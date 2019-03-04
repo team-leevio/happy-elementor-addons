@@ -1,0 +1,46 @@
+.ha-blurb {
+  @include widgetContainer {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 1.5rem;
+  }
+
+  &-title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #151515;
+    font-size: 24px;
+  }
+
+  &-figure {
+    display: inline-block;
+    margin: 0 0 1.5rem !important;
+
+    > i {
+      font-size: 3rem;
+      line-height: .86;
+    }
+
+    > img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    &--image {
+      width: 250px;
+      max-width: 250px;
+    }
+  }
+
+  &-text {
+    & + .ha-link {
+      margin-top: 1rem;
+    }
+
+    > p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}

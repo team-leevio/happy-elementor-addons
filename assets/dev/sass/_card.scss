@@ -1,0 +1,145 @@
+.ha-card {
+  @include widgetContainer {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    background-color: #fff;
+    border-radius: .5rem;
+  }
+
+  &-figure {
+    position: relative;
+    display: inline-block;
+
+    > img {
+      width: 100%;
+      border-top-left-radius: calc(.5rem - 1px);
+      border-top-right-radius: calc(.5rem - 1px);
+      object-fit: cover;
+      vertical-align: bottom;
+    }
+  }
+
+  &-body {
+    padding: 1.5rem;
+  }
+
+  &-title {
+    margin-top: 0;
+    margin-bottom: .75rem;
+    color: #151515;
+    font-size: 24px;
+  }
+
+  &-text {
+    margin-bottom: 2rem;
+    color: #616161;
+    font-size: 16px;
+    line-height: 1.7;
+
+    > p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  // Card variation
+  &--right,
+  &--left {
+    @include widgetContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .ha-card-figure,
+    .ha-card-body {
+      flex-grow: 1;
+    }
+
+    .ha-card-figure {
+      max-width: 50%;
+    }
+
+    .ha-card-body {
+      padding: 2.5rem;
+    }
+  }
+
+  &--left {
+    .ha-card-figure > img {
+      border-radius: calc(.5rem - 1px) 0 0 calc(.5rem - 1px);
+    }
+  }
+
+  &--right {
+    @include widgetContainer {
+      flex-direction: row-reverse;
+    }
+    .ha-card-figure > img {
+      border-radius: 0 calc(.5rem - 1px) calc(.5rem - 1px) 0;
+    }
+  }
+}
+
+// Card label
+.ha-card .ha-label {
+  position: absolute;
+}
+
+.ha-label {
+  background-color: #fff;
+  padding: .475rem 1.1rem;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: bold;
+
+  &--top-left {
+    left: 1rem;
+    top: 1rem;
+  }
+
+  &--top-center {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 1rem;
+  }
+
+  &--top-right {
+    right: 1rem;
+    top: 1rem;
+  }
+
+  &--middle-left {
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1rem;
+  }
+
+  &--middle-center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  &--middle-right {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
+  }
+
+  &--bottom-left {
+    left: 1rem;
+    bottom: 1rem;
+  }
+
+  &--bottom-center {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1rem;
+  }
+
+  &--bottom-right {
+    right: 1rem;
+    bottom: 1rem;
+  }
+}

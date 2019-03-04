@@ -1,0 +1,29 @@
+.ha-icon-box {
+  @include widgetContainer {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  &-title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #151515;
+    font-size: 24px;
+  }
+
+  &-icon {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    i {
+      font-size: 3rem;
+      color: inherit;
+      line-height: .86;
+    }
+  }
+
+  &-link {
+    display: block;
+    text-decoration: none;
+    color: #151515;
+  }
+}

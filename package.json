@@ -1,0 +1,23 @@
+{
+  "name": "happy-addons-markup",
+  "version": "1.0.0",
+  "description": "addons collection",
+  "main": "index.html",
+  "scripts": {
+    "test": "gulp"
+  },
+  "author": "HappyMonster",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.18.6",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-csscomb": "^3.0.8",
+    "gulp-csso": "^2.0.0",
+    "gulp-plumber-notifier": "0.0.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp": "3.9.0"
+  }
+}

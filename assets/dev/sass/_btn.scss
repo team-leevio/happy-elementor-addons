@@ -1,0 +1,23 @@
+.ha-btn {
+  background-color: #8c8c8c;
+  color: #fff;
+  text-decoration: none;
+  padding: .575rem 1.3rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all .3s;
+
+  &:hover,
+  &:focus {
+    background-color: #242424;
+  }
+
+  &--block {
+    display: block;
+  }
+}

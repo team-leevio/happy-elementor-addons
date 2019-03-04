@@ -1,0 +1,16 @@
+.happy-addon,
+.happy-addon * {
+  box-sizing: border-box;
+}
+
+.ha-text {
+  &--left {
+    text-align: left;
+  }
+  &--center {
+    text-align: center;
+  }
+  &--right {
+    text-align: right;
+  }
+}
