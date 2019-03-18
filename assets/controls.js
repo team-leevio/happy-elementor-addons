@@ -12,8 +12,12 @@
             onBaseInputChange: function( event ) {
                 elementor.modules.controls.BaseData.prototype.onBaseInputChange.apply(this, arguments);
                 if ( this.model.get('options')[event.currentTarget.value] ) {
-                    this.ui.preview.css( 'background-image', 'url(' + this.model.get('options')[event.currentTarget.value].src + ')' );
+                    this.setPreviewImage( event.currentTarget.value );
                 }
+            },
+
+            setPreviewImage: function( option ) {
+                this.ui.preview.css( 'background-image', 'url(' + this.model.get('options')[ option ].src + ')' );
             }
         } );
 

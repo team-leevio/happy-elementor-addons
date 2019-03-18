@@ -63,24 +63,19 @@ class Select_Preview extends Base_Data_Control {
 		$control_uid = $this->get_control_uid();
 		?>
 		<div class="elementor-control-field">
-			<# if ( data.label ) {#>
+			<# if ( data.label ) { console.log(data) #>
 				<label for="<?php echo $control_uid; ?>" class="elementor-control-title">{{{ data.label }}}</label>
 			<# } #>
 			<div class="elementor-control-input-wrapper">
 				<select id="<?php echo $control_uid; ?>" data-setting="{{ data.name }}">
-				<#
-                    var previewSrc = '';
-                    _.each( data.options, function( option, key ) {
-                        if ( data.controlValue === key ) {
-                        previewSrc = option.src;
-                        } #>
-                        <option value="{{ key }}">{{{ option.title }}}</option>
-                    <# } );
-                #>
+				<# _.each( data.options, function( option, key ) { #>
+                    <option value="{{ key }}">{{{ option.title }}}</option>
+                <# } ); #>
 				</select>
 			</div>
 		</div>
         <div class="elementor-control-preview-wrapper elementor-aspect-ratio-169">
+            <# var previewSrc = ( data.options[data.controlValue] && data.options[data.controlValue].src ) ? data.options[data.controlValue].src : ''; #>
             <div class="elementor-control-preview elementor-fit-aspect-ratio" style="background-image: url({{ previewSrc }})"></div>
         </div>
 		<# if ( data.description ) { #>

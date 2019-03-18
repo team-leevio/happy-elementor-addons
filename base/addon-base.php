@@ -69,6 +69,57 @@ abstract class Addon_Base extends Widget_Base {
         return rtrim( $html_class );
     }
 
+    protected function get_default_skin_args() {
+        return [
+            'title' => __( 'Default', 'happy_addons' ),
+            'src' => 'https://via.placeholder.com/150',
+        ];
+    }
+
+    private function add_skin_control() {
+        $skins = $this->get_skins();
+        if ( ! empty( $skins ) ) {
+            $skin_options = [];
+
+            if ( $this->_has_template_content ) {
+                $skin_options['_default'] = $this->get_default_skin_args();
+            }
+
+            foreach ( $skins as $skin_id => $skin ) {
+                $skin_options[ $skin_id ] = [
+                    'title' => $skin->get_title(),
+                    'src' => $skin->get_preview_src()
+                ];
+            }
+
+            // Get the first item for default value
+            $default_value = array_keys( $skin_options );
+            $default_value = array_shift( $default_value );
+
+            $this->update_control(
+                '_skin',
+                [
+                    'type' => 'select_preview',
+                    'options' => $skin_options,
+                    'default' => $default_value,
+                ]
+            );
+        } else {
+            $this->add_control(
+                '_skin',
+                [
+                    'label' => __( 'Skin', 'happy_addons' ),
+                    'type' => 'select_preview',
+                    'options' => [
+                        '_default' => $this->get_default_skin_args(),
+                    ],
+                    'default' => '_default',
+                    'render_type' => 'ui'
+                ]
+            );
+        }
+    }
+
     protected function _register_controls() {
         $this->start_controls_section(
             '_design',
@@ -78,29 +129,7 @@ abstract class Addon_Base extends Widget_Base {
             ]
         );
 
-        $skins = $this->get_skins();
-
-        if ( empty( $skins ) ) {
-            $this->add_control(
-                'skin',
-                [
-                    'label' => __('Skin', 'elementor'),
-                    'type' => 'select_preview',
-                    'default' => 'default',
-                    'options' => [
-                        'default' => [
-                            'title' => __( 'Default', 'happy_addons' ),
-                            'src' => 'https://via.placeholder.com/300.png/02f/f2f',
-                        ],
-                        'default2' => [
-                            'title' => __( 'Default 2', 'happy_addons' ),
-                            'src' => 'https://via.placeholder.com/300.png/09f/fff',
-                        ],
-                    ],
-//                    'render_type' => ''
-                ]
-            );
-        }
+        $this->add_skin_control();
 
         $this->end_controls_section();
 
