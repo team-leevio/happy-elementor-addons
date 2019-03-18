@@ -61,7 +61,10 @@ class Base {
         add_action( 'elementor/elements/categories_registered', [ $this, 'add_category' ] );
 
         // Add Plugin actions
-        add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
+        add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+
+        // Register custom controls
+        add_action( 'elementor/controls/controls_registered', [ $this, 'register_controls' ] );
 
         // Frontend scripts
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
@@ -179,22 +182,37 @@ class Base {
      *
      * @access public
      */
-    public function init_widgets() {
-        require( __DIR__ . '/addons/class-addon-base.php' );
+    public function register_widgets() {
+        require( __DIR__ . '/base/addon-base.php' );
 
         $addons = [
             'blurb',
-            'card',
-            'cf7',
-            'icon-box',
+//            'card',
+//            'cf7',
+//            'icon-box',
         ];
 
         foreach ( $addons as $addon ) {
-            require( __DIR__ . '/addons/class-' . $addon . '.php' );
+            require( __DIR__ . '/addons/' . $addon . '/addon.php' );
 
             $class_name = str_replace( '-', '_', $addon );
             $class_name = __NAMESPACE__ . '\Addons\\' . $class_name;
             Elementor::instance()->widgets_manager->register_widget_type( new $class_name() );
         }
+    }
+
+    /**
+     * Register custom controls
+     *
+     * Include custom controls file and register them
+     *
+     * @since 1.0.0
+     *
+     * @access public
+     */
+    public function register_controls( $controls_manager ) {
+        require( __DIR__ . '/controls/select-preview.php' );
+        $class = __NAMESPACE__ . '\Controls\Select_Preview';
+        $controls_manager->register_control( 'select_preview', new $class() );
     }
 }

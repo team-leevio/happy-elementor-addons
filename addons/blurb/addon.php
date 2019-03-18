@@ -43,10 +43,12 @@ class Blurb extends Addon_Base {
     }
 
     public function get_keywords() {
-        return [ 'info', 'blub', 'box', 'text', 'content' ];
+        return [ 'info', 'blurb', 'box', 'text', 'content' ];
     }
 
 	protected function _register_controls() {
+        parent::_register_controls();
+
 		$this->start_controls_section(
 			'media_section',
 			[

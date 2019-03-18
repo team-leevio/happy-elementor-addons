@@ -6,6 +6,7 @@
  */
 namespace Happy_Addons\Elementor\Addons;
 
+use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
 
 defined( 'ABSPATH' ) || die();
@@ -67,4 +68,49 @@ abstract class Addon_Base extends Widget_Base {
         $html_class .= ' ' . $this->get_custom_wrapper_class();
         return rtrim( $html_class );
     }
+
+    protected function _register_controls() {
+        $this->start_controls_section(
+            '_design',
+            [
+                'label' => __( 'Design', 'happy_addons' ),
+                'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $skins = $this->get_skins();
+
+        if ( empty( $skins ) ) {
+            $this->add_control(
+                'skin',
+                [
+                    'label' => __('Skin', 'elementor'),
+                    'type' => 'select_preview',
+                    'default' => 'default',
+                    'options' => [
+                        'default' => [
+                            'title' => __( 'Default', 'happy_addons' ),
+                            'src' => 'https://via.placeholder.com/300.png/02f/f2f',
+                        ],
+                        'default2' => [
+                            'title' => __( 'Default 2', 'happy_addons' ),
+                            'src' => 'https://via.placeholder.com/300.png/09f/fff',
+                        ],
+                    ],
+//                    'render_type' => ''
+                ]
+            );
+        }
+
+        $this->end_controls_section();
+
+
+//        $this->register_control();
+    }
+
+    protected function register_skin_control() {
+
+    }
+
+//    abstract protected function register_control();
 }

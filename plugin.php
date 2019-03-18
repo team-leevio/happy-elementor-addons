@@ -34,6 +34,7 @@ Copyright 2019 HappyMonster <http://happymonster.me>
 
 defined( 'ABSPATH' ) || die();
 
+define( 'HA_ASSETS', plugin_dir_url( __FILE__ ) . 'assets/' );
 require plugin_dir_path( __FILE__ ) . 'base.php';
 
 \Happy_Addons\Elementor\Base::instance();

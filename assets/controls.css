@@ -1,0 +1,12 @@
+.elementor-control-preview-wrapper {
+    width: 100%;
+    margin-top: 10px;
+    padding: 7px;
+    border: 1px solid #d5dadf;
+}
+
+.elementor-control-preview {
+    background-position: center center;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
