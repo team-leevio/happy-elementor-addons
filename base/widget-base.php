@@ -4,14 +4,14 @@
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Addons;
+namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
 
 defined( 'ABSPATH' ) || die();
 
-abstract class Addon_Base extends Widget_Base {
+abstract class Base extends Widget_Base {
 
     /**
      * Get widget name.
@@ -69,60 +69,12 @@ abstract class Addon_Base extends Widget_Base {
         return rtrim( $html_class );
     }
 
-    abstract protected function get_default_skin_preview();
-
-    private function get_default_skin_args() {
-        return [
-            'title' => __( 'Default', 'happy_addons' ),
-            'src' => esc_url( $this->get_default_skin_preview() ),
-        ];
-    }
-
-    private function add_skin_control() {
-        $skins = $this->get_skins();
-        if ( ! empty( $skins ) ) {
-            $skin_options = [];
-
-            if ( $this->_has_template_content ) {
-                $skin_options['_default'] = $this->get_default_skin_args();
-            }
-
-            foreach ( $skins as $skin_id => $skin ) {
-                $skin_options[ $skin_id ] = [
-                    'title' => $skin->get_title(),
-                    'src' => $skin->get_preview_src()
-                ];
-            }
-
-            // Get the first item for default value
-            $default_value = array_keys( $skin_options );
-            $default_value = array_shift( $default_value );
-
-            $this->update_control(
-                '_skin',
-                [
-                    'type' => 'select_preview',
-                    'options' => $skin_options,
-                    'default' => $default_value,
-                ]
-            );
-        } else {
-            $this->add_control(
-                '_skin',
-                [
-                    'label' => __( 'Skin', 'happy_addons' ),
-                    'type' => 'select_preview',
-                    'options' => [
-                        '_default' => $this->get_default_skin_args(),
-                    ],
-                    'default' => '_default',
-                    'render_type' => 'ui'
-                ]
-            );
-        }
-    }
-
-    private function add_design_panel() {
+    /**
+     * Register design controls
+     *
+     * Design controls are fixed for all widgets
+     */
+    private function register_design_controls() {
         $this->start_controls_section(
             '_design',
             [
@@ -144,12 +96,26 @@ abstract class Addon_Base extends Widget_Base {
             ]
         );
 
-        $this->add_skin_control();
+        if ( empty( $this->get_skins() ) ) {
+            $this->add_control(
+                '_skin',
+                [
+                    'label' => __( 'Skin', 'happy_addons' ),
+                    'type' => 'select',
+                    'options' => ['' => __( 'Default', 'happy_addons' )],
+                    'default' => '',
+                    'render_type' => 'none'
+                ]
+            );
+        }
 
         $this->end_controls_section();
     }
 
-    protected function add_faq_panel() {
+    /**
+     * Register faq controls
+     */
+    protected function register_faq_controls() {
         $this->start_controls_section(
             '_faq',
             [
@@ -161,7 +127,6 @@ abstract class Addon_Base extends Widget_Base {
         $this->add_control(
             '_faq_notes',
             [
-//                'label' => __( 'Frequelty', 'plugin-name' ),
                 'type' => Controls_Manager::RAW_HTML,
                 'raw' => __( 'A very important message to show in the panel.', 'plugin-name' ),
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
@@ -171,15 +136,28 @@ abstract class Addon_Base extends Widget_Base {
         $this->end_controls_section();
     }
 
+    /**
+     * Register widget controls
+     */
     protected function _register_controls() {
-        $this->add_design_panel();
+        $this->register_design_controls();
 
-        $this->add_faq_panel();
+        $this->register_content_controls();
+
+        $this->register_style_controls();
     }
 
-    protected function register_skin_control() {
+    /**
+     * Register content controls
+     *
+     * @return void
+     */
+    abstract protected function register_content_controls();
 
-    }
-
-//    abstract protected function register_control();
+    /**
+     * Register style controls
+     *
+     * @return void
+     */
+    abstract protected function register_style_controls();
 }

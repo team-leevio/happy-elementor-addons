@@ -183,20 +183,20 @@ class Base {
      * @access public
      */
     public function register_widgets() {
-        require( __DIR__ . '/base/addon-base.php' );
+        require( __DIR__ . '/base/widget-base.php' );
 
-        $addons = [
+        $widgets = [
             'blurb',
-//            'card',
-//            'cf7',
-//            'icon-box',
+            'card',
+            'cf7',
+            'icon-box',
         ];
 
-        foreach ( $addons as $addon ) {
-            require( __DIR__ . '/addons/' . $addon . '/addon.php' );
+        foreach ( $widgets as $widget ) {
+            require( __DIR__ . '/widgets/' . $widget . '/widget.php' );
 
-            $class_name = str_replace( '-', '_', $addon );
-            $class_name = __NAMESPACE__ . '\Addons\\' . $class_name;
+            $class_name = str_replace( '-', '_', $widget );
+            $class_name = __NAMESPACE__ . '\Widget\\' . $class_name;
             Elementor::instance()->widgets_manager->register_widget_type( new $class_name() );
         }
     }

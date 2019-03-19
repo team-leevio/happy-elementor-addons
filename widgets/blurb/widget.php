@@ -1,22 +1,22 @@
 <?php
 /**
- * Blurb addon class
+ * Blurb widget class
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Addons;
+namespace Happy_Addons\Elementor\Widget;
 
+use Elementor\Utils;
 use Elementor\Control_Media;
+use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Elementor\Controls_Manager;
-use Elementor\Utils;
 
 defined( 'ABSPATH' ) || die();
 
-class Blurb extends Addon_Base {
+class Blurb extends Base {
 
     /**
      * Get widget title.
@@ -46,15 +46,12 @@ class Blurb extends Addon_Base {
         return [ 'info', 'blurb', 'box', 'text', 'content' ];
     }
 
-    protected function get_default_skin_preview() {
-        return 'https://via.placeholder.com/150';
-    }
-
-	protected function _register_controls() {
-        parent::_register_controls();
-
+    /**
+     * Register content related controls
+     */
+	protected function register_content_controls() {
 		$this->start_controls_section(
-			'media_section',
+			'_section_media',
 			[
 				'label' => __( 'Media (Icon/Image)', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
@@ -130,7 +127,7 @@ class Blurb extends Addon_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'title_section',
+            '_section_title',
             [
                 'label' => __( 'Title & Description', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
@@ -205,7 +202,7 @@ class Blurb extends Addon_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'link_section',
+            '_section_link',
             [
                 'label' => __( 'Link', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
@@ -235,9 +232,14 @@ class Blurb extends Addon_Base {
         );
 
         $this->end_controls_section();
+    }
 
+    /**
+     * Register styles related controls
+     */
+    protected function register_style_controls() {
         $this->start_controls_section(
-            'media_style',
+            '_section_media_style',
             [
                 'label' => __( 'Media (Icon/Image)', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
@@ -373,7 +375,7 @@ class Blurb extends Addon_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'content_style',
+            '_section_title_style',
             [
                 'label' => __( 'Title & Description', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
@@ -477,7 +479,7 @@ class Blurb extends Addon_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'link_style',
+            '_section_link_style',
             [
                 'label' => __( 'Link', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,

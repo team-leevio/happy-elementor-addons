@@ -278,10 +278,13 @@
 .ha-icon-box-icon {
 	display: inline-block;
 	margin-bottom: 1.5rem;
+	font-size: 3rem;
+	line-height: .86;
 }
 .ha-icon-box-icon i {
 	color: inherit;
-	font-size: 3rem;
+	vertical-align: top; 
+	font-size: calc(1em - .1em);
 	line-height: .86;
 }
 
@@ -289,4 +292,10 @@
 	display: block;
 	color: #151515; 
 	text-decoration: none;
+}
+
+.ha-square-box {
+	display: inherit;
+	width: .86em;
+	height: .86em;
 }

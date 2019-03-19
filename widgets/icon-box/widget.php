@@ -1,19 +1,19 @@
 <?php
 /**
- * Icon Box addon class
+ * Icon Box widget class
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Addons;
+namespace Happy_Addons\Elementor\Widget;
 
+use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Controls_Manager;
 
 defined( 'ABSPATH' ) || die();
 
-class Icon_Box extends Addon_Base {
+class Icon_Box extends Base {
 
     /**
      * Get widget title.
@@ -43,9 +43,9 @@ class Icon_Box extends Addon_Base {
         return [ 'info', 'box', 'icon' ];
     }
 
-	protected function _register_controls() {
+	protected function register_content_controls() {
 		$this->start_controls_section(
-			'content',
+			'_section_icon',
 			[
 				'label' => __( 'Icon & Title', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
@@ -143,9 +143,11 @@ class Icon_Box extends Addon_Base {
         );
 
         $this->end_controls_section();
+    }
 
+    protected function register_style_controls() {
         $this->start_controls_section(
-            'Icon',
+            '_section_icon_style',
             [
                 'label' => __( 'Icon', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
@@ -178,7 +180,7 @@ class Icon_Box extends Addon_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-icon-box-icon > i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-icon-box-icon' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -293,7 +295,7 @@ class Icon_Box extends Addon_Base {
         $this->end_controls_section();
     }
 
-	protected function render() {
+    protected function render() {
         $settings = $this->get_settings_for_display();
 
         $this->add_inline_editing_attributes( 'title', 'none' );
@@ -312,7 +314,9 @@ class Icon_Box extends Addon_Base {
         endif;
         ?>
         <span class="ha-icon-box-icon">
-            <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
+            <span class="ha-square-box">
+                <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
+            </span>
         </span>
         <?php printf( '<%1$s %2$s>%3$s</%1$s>',
             tag_escape( $settings['title_tag'] ),
@@ -337,7 +341,9 @@ class Icon_Box extends Addon_Base {
             print( '<a ' + view.getRenderAttributeString( 'link' ) + '>' );
         } #>
         <span class="ha-icon-box-icon">
-            <i class="{{ settings.icon }}"></i>
+            <span class="ha-square-box">
+                <i class="{{ settings.icon }}"></i>
+            </span>
         </span>
         <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
         <#

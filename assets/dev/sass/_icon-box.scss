@@ -14,10 +14,13 @@
   &-icon {
     display: inline-block;
     margin-bottom: 1.5rem;
+    font-size: 3rem;
+    line-height: .86;
     i {
-      font-size: 3rem;
       color: inherit;
       line-height: .86;
+      font-size: calc(1em - .1em);
+      vertical-align: top;
     }
   }
 
@@ -26,4 +29,10 @@
     text-decoration: none;
     color: #151515;
   }
+}
+
+.ha-square-box {
+  display: inherit;
+  width: .86em;
+  height: .86em;
 }

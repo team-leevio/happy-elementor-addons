@@ -87,12 +87,12 @@ class Select_Preview extends Base_Data_Control {
     public function enqueue() {
         wp_enqueue_script(
             'ha-elementor-controls',
-            HA_ASSETS . 'controls.js'
+            HA_ASSETS . 'backend/controls.js'
         );
 
         wp_enqueue_style(
             'ha-elementor-controls',
-            HA_ASSETS . 'controls.css'
+            HA_ASSETS . 'backend/controls.css'
         );
     }
 }

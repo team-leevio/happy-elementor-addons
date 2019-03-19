@@ -1,10 +1,10 @@
 <?php
 /**
- * Contact form 7 addon class
+ * Contact form 7 widget class
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Addons;
+namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
@@ -13,7 +13,7 @@ use Elementor\Group_Control_Typography;
 
 defined( 'ABSPATH' ) || die();
 
-class CF7 extends Addon_Base {
+class CF7 extends Base {
 
     /**
      * Get widget title.
@@ -43,9 +43,9 @@ class CF7 extends Addon_Base {
         return [ 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
     }
 
-	protected function _register_controls() {
+	protected function register_content_controls() {
 		$this->start_controls_section(
-			'cf7',
+			'_section_cf7',
 			[
 				'label' => ha_is_cf7_activated() ? __( 'Contact Form 7', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
@@ -88,11 +88,13 @@ class CF7 extends Addon_Base {
         );
 
         $this->end_controls_section();
+    }
 
+    protected function register_style_controls() {
         $this->start_controls_section(
-            'cf7-form-fields',
+            '_section_fields_style',
             [
-                'label' => __( 'Form Fields (Regular Style)', 'happy_addons' ),
+                'label' => __( 'Form Fields (Normal State)', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -237,7 +239,7 @@ class CF7 extends Addon_Base {
         $this->start_controls_section(
             'cf7-form-fields-focus',
             [
-                'label' => __( 'Form Fields (Focus Style)', 'happy_addons' ),
+                'label' => __( 'Form Fields (Focus State)', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -527,7 +529,7 @@ class CF7 extends Addon_Base {
         $this->end_controls_section();
     }
 
-	protected function render() {
+    protected function render() {
         if ( ! ha_is_cf7_activated() ) {
             return;
         }

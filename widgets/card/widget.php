@@ -1,22 +1,22 @@
 <?php
 /**
- * Card addon class
+ * Card widget class
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Addons;
+namespace Happy_Addons\Elementor\Widget;
 
+use Elementor\Utils;
 use Elementor\Control_Media;
+use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Elementor\Controls_Manager;
-use Elementor\Utils;
 
 defined( 'ABSPATH' ) || die();
 
-class Card extends Addon_Base {
+class Card extends Base {
 
     /**
      * Get widget title.
@@ -46,9 +46,9 @@ class Card extends Addon_Base {
         return [ 'card', 'blurb', 'content', 'block', 'box' ];
     }
 
-	protected function _register_controls() {
+	protected function register_content_controls() {
 		$this->start_controls_section(
-			'image_section',
+			'_section_image',
 			[
 				'label' => __( 'Image & Label', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
@@ -135,7 +135,7 @@ class Card extends Addon_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'title_section',
+            '_section_title',
             [
                 'label' => __( 'Title & Description', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
@@ -210,7 +210,7 @@ class Card extends Addon_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'button_section',
+            '_section_button',
             [
                 'label' => __( 'Button', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
@@ -286,9 +286,11 @@ class Card extends Addon_Base {
         );
 
         $this->end_controls_section();
+    }
 
+    protected function register_style_controls() {
         $this->start_controls_section(
-            'image_style',
+            '_section_image_style',
             [
                 'label' => __( 'Image', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
@@ -389,7 +391,7 @@ class Card extends Addon_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'label_style',
+            '_section_label_style',
             [
                 'label' => __( 'Label', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
@@ -489,9 +491,9 @@ class Card extends Addon_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'content_style',
+            '_section_content_style',
             [
-                'label' => __( 'Content', 'happy_addons' ),
+                'label' => __( 'Title & Description', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -499,7 +501,7 @@ class Card extends Addon_Base {
         $this->add_responsive_control(
             'content_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Container Padding', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -593,7 +595,7 @@ class Card extends Addon_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'btn_style',
+            '_section_button_style',
             [
                 'label' => __( 'Button', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
@@ -737,10 +739,6 @@ class Card extends Addon_Base {
         $this->end_controls_tabs();
 
         $this->end_controls_section();
-    }
-
-    public function get_custom_wrapper_class() {
-        return 'ha-card';
     }
 
 	protected function render() {
