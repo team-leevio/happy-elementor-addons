@@ -69,10 +69,12 @@ abstract class Addon_Base extends Widget_Base {
         return rtrim( $html_class );
     }
 
-    protected function get_default_skin_args() {
+    abstract protected function get_default_skin_preview();
+
+    private function get_default_skin_args() {
         return [
             'title' => __( 'Default', 'happy_addons' ),
-            'src' => 'https://via.placeholder.com/150',
+            'src' => esc_url( $this->get_default_skin_preview() ),
         ];
     }
 
@@ -120,7 +122,7 @@ abstract class Addon_Base extends Widget_Base {
         }
     }
 
-    protected function _register_controls() {
+    private function add_design_panel() {
         $this->start_controls_section(
             '_design',
             [
@@ -129,12 +131,50 @@ abstract class Addon_Base extends Widget_Base {
             ]
         );
 
+        $this->add_control(
+            '_design_notes',
+            [
+                'type' => Controls_Manager::RAW_HTML,
+                'raw' => sprintf(
+                    __( 'We know how bad you feel when you see the same design over and over again across the web. You don\'t have to feel that way anymore. %sJoin us and experience the exception.%s', 'plugin-name' ),
+                    '<a href="https://fb.me/obiPlabon" target="_blank">',
+                    '</a>'
+                ),
+                'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+            ]
+        );
+
         $this->add_skin_control();
 
         $this->end_controls_section();
+    }
 
+    protected function add_faq_panel() {
+        $this->start_controls_section(
+            '_faq',
+            [
+                'label' => __( 'FAQs', 'happy_addons' ),
+                'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+        );
 
-//        $this->register_control();
+        $this->add_control(
+            '_faq_notes',
+            [
+//                'label' => __( 'Frequelty', 'plugin-name' ),
+                'type' => Controls_Manager::RAW_HTML,
+                'raw' => __( 'A very important message to show in the panel.', 'plugin-name' ),
+                'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+            ]
+        );
+
+        $this->end_controls_section();
+    }
+
+    protected function _register_controls() {
+        $this->add_design_panel();
+
+        $this->add_faq_panel();
     }
 
     protected function register_skin_control() {

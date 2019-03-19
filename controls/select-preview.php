@@ -74,7 +74,7 @@ class Select_Preview extends Base_Data_Control {
 				</select>
 			</div>
 		</div>
-        <div class="elementor-control-preview-wrapper elementor-aspect-ratio-169">
+        <div class="elementor-control-preview-wrapper elementor-aspect-ratio-43">
             <# var previewSrc = ( data.options[data.controlValue] && data.options[data.controlValue].src ) ? data.options[data.controlValue].src : ''; #>
             <div class="elementor-control-preview elementor-fit-aspect-ratio" style="background-image: url({{ previewSrc }})"></div>
         </div>

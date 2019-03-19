@@ -46,6 +46,10 @@ class Blurb extends Addon_Base {
         return [ 'info', 'blurb', 'box', 'text', 'content' ];
     }
 
+    protected function get_default_skin_preview() {
+        return 'https://via.placeholder.com/150';
+    }
+
 	protected function _register_controls() {
         parent::_register_controls();
 
