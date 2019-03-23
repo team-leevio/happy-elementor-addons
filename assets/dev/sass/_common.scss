@@ -1,6 +1,22 @@
-.happy-addon,
-.happy-addon * {
+.happy-addon {
   box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
+
+  @include widgetContainer {
+    background-color: #fff;
+    box-shadow: 0 0.2rem 2.8rem rgba(36, 36, 36, .1);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    border-radius: .5rem;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
 }
 
 .ha-text {
@@ -13,4 +29,11 @@
   &--right {
     text-align: right;
   }
+}
+
+.ha-square-box {
+  display: inherit;
+  width: .86em;
+  height: .86em;
+  text-align: center;
 }

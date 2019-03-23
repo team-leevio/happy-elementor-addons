@@ -1,13 +1,13 @@
 <?php
 /**
- * Addon base
+ * Happy Addons widget base
  *
  * @package Happy_Addons
  */
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
+use Elementor\Controls_Manager;
 
 defined( 'ABSPATH' ) || die();
 

@@ -277,7 +277,7 @@ class Blurb extends Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-blurb-figure--image' => 'width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-blurb-figure--icon > i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-blurb-figure--icon' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -587,7 +587,9 @@ class Blurb extends Base {
             <?php endif; ?>
         <?php else: ?>
             <figure class="ha-blurb-figure ha-blurb-figure--icon">
-                <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
+                <span class="ha-square-box">
+                    <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
+                </span>
             </figure>
         <?php endif; ?>
 
@@ -643,7 +645,9 @@ class Blurb extends Base {
             <# }
         } else { #>
             <figure class="ha-blurb-figure ha-blurb-figure--icon">
-                <i aria-hidden="true" class="{{ settings.icon }}"></i>
+                <span class="ha-square-box">
+                    <i aria-hidden="true" class="{{ settings.icon }}"></i>
+                </span>
             </figure>
         <# } #>
 

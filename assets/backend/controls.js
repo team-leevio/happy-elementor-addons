@@ -2,6 +2,22 @@
     'use strict';
 
     $( window ).on( 'elementor:init', function() {
+
+        elementor.hooks.addAction( 'panel/open_editor/widget', function( panel, model ) {
+            if (model.get('widgetType').indexOf('ha-') === -1) {
+                return;
+            }
+            // panel.
+            // panel.currentPageView.$childViewContainer.find('.elementor-panel-heading-title').append('Wowl')
+            // console.log(model);
+        } );
+
+        var ExtendedSelect = elementor.modules.controls.Select.extend({
+            onReady: function() {
+                // console.log(this);
+            }
+        });
+
         var SelectPreviewView = elementor.modules.controls.BaseData.extend( {
             ui: function() {
                 var ui = elementor.modules.controls.BaseData.prototype.ui.apply( this, arguments );
@@ -23,6 +39,7 @@
 
         elementor.addControlView( 'select_preview', SelectPreviewView );
         elementor.addControlView( 'image_choose', elementor.modules.controls.Choose );
+        elementor.addControlView( 'select', ExtendedSelect );
     } );
 
 })(jQuery);

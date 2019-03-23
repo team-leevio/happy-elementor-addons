@@ -1,0 +1,45 @@
+.ha-member {
+  @include widgetContainer {
+    padding: 1.25rem;
+  }
+
+  &-figure {
+    display: inline-block;
+    margin: 0 0 1.5rem !important;
+
+    img {
+      vertical-align: middle;
+    }
+  }
+
+  &-name {
+    margin-top: 0;
+    margin-bottom: .5rem;
+    color: #151515;
+    font-size: 18px;
+  }
+
+  &-role {
+    color: #7f7f7f;
+    font-size: 14px;
+    margin-bottom: 1.5rem;
+  }
+
+  &-bio {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  &-social-link {
+    a {
+      color: #9895ad;
+      margin-left: .3rem;
+      margin-right: .3rem;
+      transition: all .3s;
+      &:hover {
+        color: #222;
+      }
+    }
+  }
+}

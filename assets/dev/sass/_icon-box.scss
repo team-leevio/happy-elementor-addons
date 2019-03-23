@@ -1,12 +1,11 @@
 .ha-icon-box {
   @include widgetContainer {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    padding: 1.25rem;
   }
 
   &-title {
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     color: #151515;
     font-size: 24px;
   }
@@ -16,6 +15,7 @@
     margin-bottom: 1.5rem;
     font-size: 3rem;
     line-height: .86;
+
     i {
       color: inherit;
       line-height: .86;
@@ -29,10 +29,4 @@
     text-decoration: none;
     color: #151515;
   }
-}
-
-.ha-square-box {
-  display: inherit;
-  width: .86em;
-  height: .86em;
 }

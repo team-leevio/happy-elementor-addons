@@ -1,0 +1,126 @@
+.ha-review {
+  &-header {
+    margin-top: 1.5rem;
+  }
+
+  &-figure {
+    display: inline-block;
+    margin: 0;
+    min-width: 70px;
+    max-width: 100%;
+    width: 70px;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+  &-reviewer {
+    margin-top: 0;
+    margin-bottom: .3rem;
+    color: #151515;
+    font-size: 18px;
+  }
+
+  &-role {
+    color: #7f7f7f;
+    font-size: 15px;
+    margin-bottom: .5rem;
+  }
+
+  &-ratting-text {
+    font-size: 12px;
+    background-color: #287dfe;
+    color: #fff;
+    padding: 3px 8px;
+    display: inline-block;
+    border-radius: 30px;
+  }
+
+  &-ratting-star {
+      display: inline-block;
+      color: #ffbf36;
+      font-family: "Fontawesome";
+      overflow: hidden;
+      position: relative;
+      height: 1em;
+      line-height: 1;
+      width: 57px;
+      font-size: 12px;
+      top: 3px;
+
+      > span {
+        padding-top: 1.5em;
+        overflow: hidden;
+        float: left;
+        top: 0;
+        left: 0;
+        position: absolute;
+      }
+
+      &:before,
+      > span:before {
+        top: 0;
+        left: 0;
+        position: absolute;
+      }
+
+      &:before {
+        content: "\f006\f006\f006\f006\f006";
+      }
+
+      > span:before {
+        content: "\f005\f005\f005\f005\f005";
+      }
+  }
+
+  &-desc {
+    margin-top: 1.5rem;
+    font-size: 16px;
+    line-height: 1.6;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &--top {
+    @include widgetContainer {
+      padding: 2rem;
+    }
+  }
+
+  &--left,
+  &--right {
+    @include widgetContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-left: 2rem;
+    }
+
+    .ha-review {
+      &-figure {
+        min-width: 150px;
+        width: 150px;
+      }
+
+      &-body {
+        width: 80%;
+        padding: 2rem;
+
+        > :first-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  &--right {
+    @include widgetContainer {
+      flex-direction: row-reverse;
+      padding-right: 2rem;
+      padding-left: 0;
+    }
+  }
+}

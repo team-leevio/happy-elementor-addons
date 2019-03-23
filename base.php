@@ -68,6 +68,12 @@ class Base {
 
         // Frontend scripts
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+
+        add_filter( 'elementor/utils/get_placeholder_image_src', [ $this, 'set_placeholder_image' ] );
+    }
+
+    public function set_placeholder_image() {
+        return HAPPY_ASSETS . 'imgs/placeholder.jpg';
     }
 
     public function include_files() {
@@ -190,6 +196,8 @@ class Base {
             'card',
             'cf7',
             'icon-box',
+            'member',
+            'review',
         ];
 
         foreach ( $widgets as $widget ) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Card widget class
+ * Review widget class
  *
  * @package Happy_Addons
  */
@@ -16,7 +16,7 @@ use Elementor\Group_Control_Typography;
 
 defined( 'ABSPATH' ) || die();
 
-class Card extends Base {
+class Review extends Base {
 
     /**
      * Get widget title.
@@ -27,7 +27,7 @@ class Card extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Card', 'happy_addons' );
+        return __( 'Happy Review', 'happy_addons' );
     }
 
     /**
@@ -43,14 +43,14 @@ class Card extends Base {
     }
 
     public function get_keywords() {
-        return [ 'card', 'blurb', 'content', 'block', 'box' ];
+        return [ 'review', 'comment', 'feedback', 'testimonial' ];
     }
 
 	protected function register_content_controls() {
 		$this->start_controls_section(
-			'_section_image',
+			'_section_review',
 			[
-				'label' => __( 'Image & Label', 'happy_addons' ),
+				'label' => __( 'Review', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -58,7 +58,7 @@ class Card extends Base {
         $this->add_control(
             'image',
             [
-                'label' => __( 'Image', 'happy_addons' ),
+                'label' => __( 'Reviewer Photo', 'happy_addons' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -70,7 +70,7 @@ class Card extends Base {
             Group_Control_Image_Size::get_type(),
             [
                 'name' => 'image',
-                'default' => 'large',
+                'default' => 'thumbnail',
                 'separator' => 'none',
             ]
         );
@@ -78,7 +78,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'image_position',
             [
-                'label' => __( 'Image Position', 'happy_addons' ),
+                'label' => __( 'Photo Position', 'happy_addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
@@ -97,94 +97,83 @@ class Card extends Base {
                 'desktop_default' => 'top',
                 'toggle' => false,
                 'devices' => [ 'desktop', 'tablet', 'mobile' ],
-                'prefix_class' => 'ha-card--%s'
+                'prefix_class' => 'ha-review--%s',
             ]
         );
 
         $this->add_control(
-            'label',
+            'reviewer',
             [
-                'label' => __( 'Label', 'happy_addons' ),
+                'label' => __( 'Reviewer Name', 'happy_addons' ),
+                'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Default label', 'happy_addons' ),
-                'placeholder' => __( 'Type your label text here', 'happy_addons' ),
+                'default' => __( 'Jhon Doe', 'happy_addons' ),
+                'placeholder' => __( 'Type reviewer name', 'happy_addons' ),
                 'separator' => 'before'
             ]
         );
 
         $this->add_control(
-            'label_position',
+            'role',
             [
-                'label' => __( 'Label Position', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    'top-left'  => __( 'Top Left', 'happy_addons' ),
-                    'top-center'  => __( 'Top Center', 'happy_addons' ),
-                    'top-right'  => __( 'Top Right', 'happy_addons' ),
-                    'middle-left'  => __( 'Middle Left', 'happy_addons' ),
-                    'middle-center'  => __( 'Middle Center', 'happy_addons' ),
-                    'middle-right'  => __( 'Middle Right', 'happy_addons' ),
-                    'bottom-left'  => __( 'Bottom Left', 'happy_addons' ),
-                    'bottom-center'  => __( 'Bottom Center', 'happy_addons' ),
-                    'bottom-right'  => __( 'Bottom Right', 'happy_addons' ),
-                ],
-                'default' => 'top-right',
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            '_section_title',
-            [
-                'label' => __( 'Title & Description', 'happy_addons' ),
-                'tab' => Controls_Manager::TAB_CONTENT,
-            ]
-        );
-
-        $this->add_control(
-            'title',
-            [
-                'label' => __( 'Title', 'happy_addons' ),
+                'label' => __( 'Role', 'happy_addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Default title', 'happy_addons' ),
-                'placeholder' => __( 'Type your card title here', 'happy_addons' ),
+                'default' => __( 'Chief Operation Officer', 'happy_addons' ),
+                'placeholder' => __( 'Type reviewer role', 'happy_addons' ),
+                'description' => __( 'Add reviewer job role or designation', 'happy_addons' )
             ]
         );
 
         $this->add_control(
-            'description',
+            'ratting',
             [
-                'label' => __( 'Description', 'happy_addons' ),
-                'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Default description', 'happy_addons' ),
-                'placeholder' => __( 'Type your card description here', 'happy_addons' ),
-                'rows' => 5
+                'label' => __( 'Ratting', 'happy_addons' ),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 0,
+                'max' => 5,
+                'step' => .1,
+                'default' => 4.2,
+                'separator' => 'before'
             ]
         );
 
         $this->add_control(
-            'title_tag',
+            'ratting_style',
             [
-                'label' => __( 'Title HTML Tag', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
+                'label' => __( 'Style', 'happy_addons' ),
+                'type' => Controls_Manager::CHOOSE,
                 'options' => [
-                    'h1'  => __( 'H1', 'happy_addons' ),
-                    'h2'  => __( 'H2', 'happy_addons' ),
-                    'h3'  => __( 'H3', 'happy_addons' ),
-                    'h4'  => __( 'H4', 'happy_addons' ),
-                    'h5'  => __( 'H5', 'happy_addons' ),
-                    'h6'  => __( 'H6', 'happy_addons' ),
+                    'star' => [
+                        'title' => __( 'Only Star Rating', 'happy_addons' ),
+                        'icon' => 'fa fa-star-half-o',
+                    ],
+                    'text' => [
+                        'title' => __( 'Text Star Rating', 'happy_addons' ),
+                        'icon' => 'fa fa-i-cursor',
+                    ],
                 ],
-                'default' => 'h2',
+                'default' => 'star',
+                'toggle' => false,
+            ]
+        );
+
+        $this->add_control(
+            'review',
+            [
+                'label' => __( 'Review', 'happy_addons' ),
+                'type' => Controls_Manager::TEXTAREA,
+                'default' => __( 'Happy Addons is an amazing collection of Elementor widgets!', 'happy_addons' ),
+                'placeholder' => __( 'Type review text', 'happy_addons' ),
+                'rows' => 5,
+                'separator' => 'before'
             ]
         );
 
         $this->add_responsive_control(
             'align',
             [
-                'label' => __( 'Alignment', 'happy_addons' ),
+                'label' => __( 'Text Alignment', 'happy_addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
@@ -210,78 +199,41 @@ class Card extends Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            '_section_button',
+            '_section_advanced',
             [
-                'label' => __( 'Button', 'happy_addons' ),
-                'tab' => Controls_Manager::TAB_CONTENT,
+                'label' => __( 'Advanced', 'happy_addons' ),
+                'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
 
         $this->add_control(
-            'btn_text',
+            'name_tag',
             [
-                'label' => __( 'Text', 'happy_addons' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => __( 'Default text', 'happy_addons' ),
-                'placeholder' => __( 'Type your button text here', 'happy_addons' ),
-            ]
-        );
-
-        $this->add_control(
-            'btn_link',
-            [
-                'label' => __( 'Link', 'happy_addons' ),
-                'type' => Controls_Manager::URL,
-                'placeholder' => __( 'https://example.com/', 'happy_addons' ),
-                'default' => [
-                    'url' => '#',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'btn_icon',
-            [
-                'label' => __( 'Icon', 'happy_addons' ),
-                'type' => Controls_Manager::ICON,
-                'label_block' => true,
-                'default' => '',
-            ]
-        );
-
-        $this->add_control(
-            'btn_icon_position',
-            [
-                'label' => __( 'Icon Position', 'happy_addons' ),
+                'label' => __( 'Reviewer Name HTML Tag', 'happy_addons' ),
                 'type' => Controls_Manager::SELECT,
-                'default' => 'before',
                 'options' => [
-                    'before' => __( 'Before', 'happy_addons' ),
-                    'after' => __( 'After', 'happy_addons' ),
+                    'h1'  => __( 'H1', 'happy_addons' ),
+                    'h2'  => __( 'H2', 'happy_addons' ),
+                    'h3'  => __( 'H3', 'happy_addons' ),
+                    'h4'  => __( 'H4', 'happy_addons' ),
+                    'h5'  => __( 'H5', 'happy_addons' ),
+                    'h6'  => __( 'H6', 'happy_addons' ),
                 ],
-                'condition' => [
-                    'btn_icon!' => '',
-                ],
+                'description' => __( 'In SEO (Search Engine Optimization) and in content hierarchy heading tag has a special purpose. So, make sure to select appropriate heading tag wisely based on content hierarchy.', 'happy_addons' ),
+                'default' => 'h2',
             ]
         );
 
         $this->add_control(
-            'icon_indent',
+            'priority',
             [
-                'label' => __( 'Icon Spacing', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'max' => 50,
-                    ],
+                'label' => __( 'Visual Priority', 'happy_addons' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'reviewer' => __( 'Reviewer First', 'happy_addons' ),
+                    'review' => __( 'Review First', 'happy_addons' ),
                 ],
-                'condition' => [
-                    'btn_icon!' => '',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-btn--icon-before .ha-btn-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-btn--icon-after .ha-btn-icon' => 'margin-left: {{SIZE}}{{UNIT}};',
-                ],
+                'default' => 'reviewer',
             ]
         );
 
@@ -746,30 +698,14 @@ class Card extends Base {
 	protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $this->add_inline_editing_attributes( 'label', 'none' );
-        $this->add_render_attribute(
-            'label',
-            'class',
-            ['ha-label', sprintf( 'ha-label--%s', esc_attr( $settings['label_position'] ) )]
-        );
+        $this->add_inline_editing_attributes( 'reviewer', 'none' );
+        $this->add_render_attribute( 'reviewer', 'class', 'ha-review-reviewer' );
 
-        $this->add_inline_editing_attributes( 'title', 'none' );
-        $this->add_render_attribute( 'title', 'class', 'ha-card-title' );
+        $this->add_inline_editing_attributes( 'role', 'none' );
+        $this->add_render_attribute( 'role', 'class', 'ha-review-role' );
 
-        $this->add_inline_editing_attributes( 'description', 'basic' );
-        $this->add_render_attribute( 'description', 'class', 'ha-card-text' );
-
-        $this->add_inline_editing_attributes( 'btn_text', 'none' );
-        $this->add_render_attribute( 'btn_text', 'class', 'ha-btn-text' );
-
-        $this->add_render_attribute( 'btn', 'class', 'ha-btn' );
-        $this->add_render_attribute( 'btn', 'href', esc_url( $settings['btn_link']['url'] ) );
-        if ( ! empty( $settings['btn_link']['is_external'] ) ) {
-            $this->add_render_attribute( 'btn', 'target', '_blank' );
-        }
-        if ( ! empty( $settings['btn_link']['nofollow'] ) ) {
-            $this->set_render_attribute( 'btn', 'rel', 'nofollow' );
-        }
+        $this->add_inline_editing_attributes( 'review', 'basic' );
+        $this->add_render_attribute( 'review', 'class', 'ha-review-desc' );
         ?>
 
         <?php if ( ! empty( $settings['image']['url'] ) ) :
@@ -778,49 +714,41 @@ class Card extends Base {
             $this->add_render_attribute( 'image', 'title', Control_Media::get_image_title( $settings['image'] ) );
             $settings['hover_animation'] = 'disable-animation'; // hack to prevent image hover animation
             ?>
-            <figure class="ha-card-figure">
+            <figure class="ha-review-figure">
                 <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'image', 'image' ); ?>
-                <div <?php echo $this->get_render_attribute_string( 'label' ); ?>><?php echo esc_html( $settings['label'] ); ?></div>
             </figure>
         <?php endif; ?>
 
-        <div class="ha-card-body">
-            <?php printf( '<%1$s %2$s>%3$s</%1$s>',
-                tag_escape( $settings['title_tag'] ),
-                $this->get_render_attribute_string( 'title' ),
-                esc_html( $settings['title' ] )
-                ); ?>
-            <div <?php echo $this->get_render_attribute_string( 'description' ); ?>>
-                <p><?php echo wp_kses_data( $settings['description'] ); ?></p>
+        <div class="ha-review-body">
+            <?php if ( $settings['priority'] === 'review' ) : ?>
+                <div <?php echo $this->get_render_attribute_string( 'review' ); ?>>
+                    <p><?php echo wp_kses_data( $settings['review'] ); ?></p>
+                </div>
+            <?php endif; ?>
+
+            <div class="ha-review-header">
+                <?php printf( '<%1$s %2$s>%3$s</%1$s>',
+                    tag_escape( $settings['name_tag'] ),
+                    $this->get_render_attribute_string( 'reviewer' ),
+                    esc_html( $settings['reviewer' ] )
+                    ); ?>
+
+                <div <?php echo $this->get_render_attribute_string( 'role' ); ?>><?php echo esc_html( $settings['role' ] ); ?></div>
+
+                <?php if ( $settings['ratting_style'] === 'text' ) : ?>
+                    <div class="ha-review-ratting-text"><?php echo esc_html( $settings['ratting'] ); ?> <i class="fa fa-star"></i></div>
+                <?php else : ?>
+                    <div class="ha-review-ratting-star">
+                        <span style="width:<?php echo ($settings['ratting'] * 20); ?>%"></span>
+                    </div>
+                <?php endif; ?>
             </div>
-            <?php
-            if ( $settings['btn_text'] && empty( $settings['btn_icon'] ) ) :
-                printf( '<a %1$s>%2$s</a>',
-                    $this->get_render_attribute_string( 'btn' ),
-                    sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'btn_text' ), esc_html( $settings['btn_text'] ) )
-                    );
-            elseif ( empty( $settings['btn_text'] ) && $settings['btn_icon'] ) :
-                printf( '<a %1$s>%2$s</a>',
-                    $this->get_render_attribute_string( 'btn' ),
-                    sprintf( '<i class="%1$s"></i>', esc_attr( $settings['btn_icon'] ) )
-                );
-            elseif ( $settings['btn_text'] && $settings['btn_icon'] ) :
-                if ( $settings['btn_icon_position'] === 'before' ) :
-                    $this->add_render_attribute( 'btn', 'class', 'ha-btn--icon-before' );
-                    $btn_before = sprintf( '<i class="ha-btn-icon %1$s"></i>', esc_attr( $settings['btn_icon'] ) );
-                    $btn_after = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'btn_text' ), esc_html( $settings['btn_text'] ) );
-                else :
-                    $this->add_render_attribute( 'btn', 'class', 'ha-btn--icon-after' );
-                    $btn_before = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'btn_text' ), esc_html( $settings['btn_text'] ) );
-                    $btn_after = sprintf( '<i class="ha-btn-icon %1$s"></i>', esc_attr( $settings['btn_icon'] ) );
-                endif;
-                printf( '<a %1$s>%2$s %3$s</a>',
-                    $this->get_render_attribute_string( 'btn' ),
-                    $btn_before,
-                    $btn_after
-                );
-            endif;
-            ?>
+
+            <?php if ( $settings['priority'] === 'reviewer' ) : ?>
+                <div <?php echo $this->get_render_attribute_string( 'review' ); ?>>
+                    <p><?php echo wp_kses_data( $settings['review'] ); ?></p>
+                </div>
+            <?php endif; ?>
         </div>
         <?php
     }
@@ -828,24 +756,14 @@ class Card extends Base {
     public function _content_template() {
         ?>
         <#
-        view.addInlineEditingAttributes( 'label', 'none' );
-        view.addRenderAttribute(
-            'label',
-            'class',
-            ['ha-label', 'ha-label--' + settings.label_position]
-        );
+        view.addInlineEditingAttributes( 'reviewer', 'none' );
+        view.addRenderAttribute( 'reviewer', 'class', 'ha-review-reviewer' );
 
-        view.addInlineEditingAttributes( 'title', 'none' );
-        view.addRenderAttribute( 'title', 'class', 'ha-card-title' );
+        view.addInlineEditingAttributes( 'role', 'none' );
+        view.addRenderAttribute( 'role', 'class', 'ha-review-role' );
 
-        view.addInlineEditingAttributes( 'description', 'basic' );
-        view.addRenderAttribute( 'description', 'class', 'ha-card-text' );
-
-        view.addInlineEditingAttributes( 'btn_text', 'none' );
-        view.addRenderAttribute( 'btn_text', 'class', 'ha-btn-text' );
-
-        view.addRenderAttribute( 'btn', 'class', 'ha-btn' );
-        view.addRenderAttribute( 'btn', 'href', settings.btn_link.url );
+        view.addInlineEditingAttributes( 'review', 'basic' );
+        view.addRenderAttribute( 'review', 'class', 'ha-review-desc' );
 
         if ( settings.image.url ) {
             var image = {
@@ -858,36 +776,32 @@ class Card extends Base {
 
             var image_url = elementor.imagesManager.getImageUrl( image );
             #>
-            <figure class="ha-card-figure">
+            <figure class="ha-review-figure">
                 <img src="{{ image_url }}">
-                <div {{{ view.getRenderAttributeString( 'label' ) }}}>{{ settings.label }}</div>
             </figure>
         <# } #>
 
-        <div class="ha-card-body">
-            <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
-
-            <div {{{ view.getRenderAttributeString( 'description' ) }}}>
-                <p>{{{ settings.description }}}</p>
+        <div class="ha-review-body">
+            <# if ( settings.priority === 'review' ) { #>
+                <div {{{ view.getRenderAttributeString( 'review' ) }}}>
+                    <p>{{{ settings.review }}}</p>
+                </div>
+            <# } #>
+            <div class="ha-review-header">
+                <{{ settings.name_tag }} {{{ view.getRenderAttributeString( 'reviewer' ) }}}>{{ settings.reviewer }}</{{ settings.name_tag }}>
+                <div {{{ view.getRenderAttributeString( 'role' ) }}}>{{ settings.role }}</div>
+                <# if ( settings.ratting_style === 'text' ) { #>
+                    <div class="ha-review-ratting-text">{{ settings.ratting }} <i class="fa fa-star"></i></div>
+                <# } else { var ratingPercent = ( settings.ratting * 20 ) #>
+                    <div class="ha-review-ratting-star">
+                        <span style="width:{{ ratingPercent }}%"></span>
+                    </div>
+                <# } #>
             </div>
-
-            <# if ( settings.btn_text && ! settings.btn_icon ) { #>
-                <a {{{ view.getRenderAttributeString( 'btn' ) }}}><span {{{ view.getRenderAttributeString( 'btn_text' ) }}}>{{ settings.btn_text }}</span></a>
-            <# } else if ( ! settings.btn_text && settings.btn_icon ) { #>
-                <a {{{ view.getRenderAttributeString( 'btn' ) }}}><i class="{{ settings.btn_icon }}"></i></a>
-            <# } else if ( settings.btn_text && settings.btn_icon ) { #>
-                <#
-                if ( settings.btn_icon_position === 'before' ) {
-                    view.addRenderAttribute( 'btn', 'class', 'ha-btn--icon-before' );
-                    var btn_before = '<i class="ha-btn-icon ' + settings.btn_icon + '"></i>';
-                    var btn_after = '<span ' + view.getRenderAttributeString( 'btn_text' ) + '>' + settings.btn_text + '</span>';
-                } else {
-                    view.addRenderAttribute( 'btn', 'class', 'ha-btn--icon-after' );
-                    var btn_after = '<i class="ha-btn-icon ' + settings.btn_icon + '"></i>';
-                    var btn_before = '<span ' + view.getRenderAttributeString( 'btn_text' ) + '>' + settings.btn_text + '</span>';
-                }
-                #>
-                <a {{{ view.getRenderAttributeString( 'btn' ) }}}>{{{ btn_before }}} {{{ btn_after }}}</a>
+            <# if ( settings.priority === 'reviewer' ) { #>
+                <div {{{ view.getRenderAttributeString( 'review' ) }}}>
+                    <p>{{{ settings.review }}}</p>
+                </div>
             <# } #>
         </div>
         <?php

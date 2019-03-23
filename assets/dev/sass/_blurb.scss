@@ -1,7 +1,5 @@
 .ha-blurb {
   @include widgetContainer {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
     padding: 1.5rem;
   }
 
@@ -16,20 +14,20 @@
     display: inline-block;
     margin: 0 0 1.5rem !important;
 
-    > i {
+    &--icon {
       font-size: 3rem;
       line-height: .86;
-    }
 
-    > img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
+      i {
+        color: inherit;
+        line-height: .86;
+        font-size: calc(1em - .1em);
+        vertical-align: top;
+      }
     }
 
     &--image {
       width: 250px;
-      max-width: 250px;
     }
   }
 

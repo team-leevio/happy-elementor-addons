@@ -1,20 +1,11 @@
 .ha-card {
-  @include widgetContainer {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    background-color: #fff;
-    border-radius: .5rem;
-  }
-
   &-figure {
     position: relative;
     display: inline-block;
 
     > img {
-      width: 100%;
       border-top-left-radius: calc(.5rem - 1px);
       border-top-right-radius: calc(.5rem - 1px);
-      object-fit: cover;
       vertical-align: bottom;
     }
   }
