@@ -490,3 +490,8 @@ span .ha-review-ratting--star:before,
 	padding-right: 2rem;
 	padding-left: 0;
 }
+
+.twentytwenty-container,
+.twentytwenty-wrapper {
+	border-radius: inherit;
+}

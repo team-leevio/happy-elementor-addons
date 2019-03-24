@@ -84,12 +84,43 @@ class Base {
      * Enqueue frontend scripts
      */
     public function enqueue_scripts() {
-        $suffix = ha_is_script_debug_enabled() ? '.min' : '';
+        $suffix = ha_is_script_debug_enabled() ? '.min.' : '.';
         wp_enqueue_style(
-            'happy-addons-elementor',
-            plugin_dir_url( __FILE__ ) . 'assets/css/main' . $suffix . '.css',
+            'happy-elementor-addons',
+            HAPPY_ASSETS . 'css/main' . $suffix . 'css',
             ['elementor-frontend'],
             self::VERSION
+        );
+
+        wp_enqueue_style(
+            'twentytwenty',
+            HAPPY_ASSETS . 'vendor/twentytwenty/css/twentytwenty.css',
+            null,
+            self::VERSION
+        );
+
+        wp_enqueue_script(
+            'jquery-event-move',
+            HAPPY_ASSETS . 'vendor/twentytwenty/js/jquery.event.move.js',
+            ['jquery'],
+            self::VERSION,
+            true
+        );
+
+        wp_enqueue_script(
+            'jquery-twentytwenty',
+            HAPPY_ASSETS . 'vendor/twentytwenty/js/jquery.twentytwenty.js',
+            ['jquery-event-move'],
+            self::VERSION,
+            true
+        );
+
+        wp_enqueue_script(
+            'happy-elementor-addons',
+            HAPPY_ASSETS . 'js/happy-addons' . $suffix . 'js',
+            ['jquery-twentytwenty'],
+            self::VERSION,
+            true
         );
     }
 
@@ -198,6 +229,7 @@ class Base {
             'icon-box',
             'member',
             'review',
+            'image-comparison',
         ];
 
         foreach ( $widgets as $widget ) {

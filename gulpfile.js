@@ -60,7 +60,7 @@ gulp.task("css", function() {
 gulp.task("js", function() {
     return gulp.src(jsFiles)
         .pipe(plumberNotifier())
-        .pipe(concat('scripts.js'))
+        .pipe(concat('happy-addons.js'))
         .pipe(gulp.dest("assets/js"))
         .pipe(uglify())
         .pipe(rename({suffix: ".min"}))
