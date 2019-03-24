@@ -28,7 +28,7 @@
     margin-bottom: .5rem;
   }
 
-  &-ratting-text {
+  &-ratting--text {
     font-size: 12px;
     background-color: #287dfe;
     color: #fff;
@@ -37,39 +37,39 @@
     border-radius: 30px;
   }
 
-  &-ratting-star {
+  &-ratting--star {
       display: inline-block;
       color: #ffbf36;
       font-family: "Fontawesome";
-      overflow: hidden;
-      position: relative;
-      height: 1em;
       line-height: 1;
-      width: 57px;
       font-size: 12px;
-      top: 3px;
 
       > span {
+        overflow: hidden;
+        position: relative;
+        height: 1em;
+      }
+
+      span > span {
         padding-top: 1.5em;
         overflow: hidden;
-        float: left;
         top: 0;
         left: 0;
         position: absolute;
       }
 
-      &:before,
-      > span:before {
+      span &:before,
+      span > span:before {
         top: 0;
         left: 0;
         position: absolute;
       }
 
-      &:before {
+      span:before {
         content: "\f006\f006\f006\f006\f006";
       }
 
-      > span:before {
+      span > span:before {
         content: "\f005\f005\f005\f005\f005";
       }
   }

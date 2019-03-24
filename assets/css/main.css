@@ -20,16 +20,40 @@
 	   object-fit: cover;
 }
 
-.ha-text--left {
+.ha-text---mobileleft {
 	text-align: left;
 }
 
-.ha-text--center {
+.ha-text---mobilecenter {
 	text-align: center;
 }
 
-.ha-text--right {
+.ha-text---mobileright {
 	text-align: right;
+}
+
+@media (min-width: 600px) {
+	.ha-text---tabletleft {
+		text-align: left;
+	}
+	.ha-text---tabletcenter {
+		text-align: center;
+	}
+	.ha-text---tabletright {
+		text-align: right;
+	}
+}
+
+@media (min-width: 769px) {
+	.ha-text--left {
+		text-align: left;
+	}
+	.ha-text--center {
+		text-align: center;
+	}
+	.ha-text--right {
+		text-align: right;
+	}
 }
 
 .ha-square-box {
@@ -369,7 +393,7 @@
 	font-size: 15px;
 }
 
-.ha-review-ratting-text {
+.ha-review-ratting--text {
 	display: inline-block;
 	padding: 3px 8px;
 	border-radius: 30px; 
@@ -378,36 +402,35 @@
 	font-size: 12px;
 }
 
-.ha-review-ratting-star {
-	position: relative;
-	top: 3px; 
+.ha-review-ratting--star {
 	display: inline-block;
-	overflow: hidden;
-	width: 57px;
-	height: 1em;
 	color: #ffbf36;
-	font-size: 12px;
+	font-size: 12px; 
 	font-family: "Fontawesome";
 	line-height: 1;
 }
-.ha-review-ratting-star > span {
+.ha-review-ratting--star > span {
+	position: relative;
+	overflow: hidden;
+	height: 1em;
+}
+.ha-review-ratting--star span > span {
 	position: absolute; 
 	top: 0;
 	left: 0;
-	float: left;
 	overflow: hidden;
 	padding-top: 1.5em;
 }
-.ha-review-ratting-star:before,
-.ha-review-ratting-star > span:before {
+span .ha-review-ratting--star:before,
+.ha-review-ratting--star span > span:before {
 	position: absolute; 
 	top: 0;
 	left: 0;
 }
-.ha-review-ratting-star:before {
+.ha-review-ratting--star span:before {
 	content: "\f006\f006\f006\f006\f006";
 }
-.ha-review-ratting-star > span:before {
+.ha-review-ratting--star span > span:before {
 	content: "\f005\f005\f005\f005\f005";
 }
 

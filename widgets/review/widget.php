@@ -242,9 +242,9 @@ class Review extends Base {
 
     protected function register_style_controls() {
         $this->start_controls_section(
-            '_section_image_style',
+            '_section_photo_style',
             [
-                'label' => __( 'Image', 'happy_addons' ),
+                'label' => __( 'Photo', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -275,7 +275,7 @@ class Review extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-figure' => 'max-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-figure' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -288,10 +288,10 @@ class Review extends Base {
                 'size_units' => [ 'px', '%' ],
                 'allowed_dimensions' => ['top', 'left'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-figure' => '-ms-transform: translate({{LEFT}}{{UNIT}}, {{TOP}}{{UNIT}}); -webkit-transform: translate({{LEFT}}{{UNIT}}, {{TOP}}{{UNIT}}); transform: translate({{LEFT}}{{UNIT}}, {{TOP}}{{UNIT}});',
-                    '{{WRAPPER}}.ha-card--top .ha-card-body' => 'margin-top: {{TOP}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-card--left .ha-card-body' => 'margin-left: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-card--right .ha-card-body' => 'margin-right: calc(-1 * {{LEFT}}{{UNIT}});',
+                    '{{WRAPPER}} .ha-review-figure' => '-ms-transform: translate({{LEFT}}{{UNIT}}, {{TOP}}{{UNIT}}); -webkit-transform: translate({{LEFT}}{{UNIT}}, {{TOP}}{{UNIT}}); transform: translate({{LEFT}}{{UNIT}}, {{TOP}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-review--top .ha-review-body' => 'margin-top: {{TOP}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-review--left .ha-review-body' => 'margin-left: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-review--right .ha-review-body' => 'margin-right: calc(-1 * {{LEFT}}{{UNIT}});',
                 ],
                 'default' => [
                     'isLinked' => false,
@@ -306,7 +306,7 @@ class Review extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-figure > img' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-figure > img' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -315,7 +315,7 @@ class Review extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'image_border',
-                'selector' => '{{WRAPPER}} .ha-card-figure > img',
+                'selector' => '{{WRAPPER}} .ha-review-figure > img',
             ]
         );
 
@@ -326,7 +326,7 @@ class Review extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-figure > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-figure > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -338,62 +338,62 @@ class Review extends Base {
                 'exclude' => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .ha-card-figure > img',
+                'selector' => '{{WRAPPER}} .ha-review-figure > img',
             ]
         );
 
         $this->end_controls_section();
 
         $this->start_controls_section(
-            '_section_label_style',
+            '_section_ratting_style',
             [
-                'label' => __( 'Label', 'happy_addons' ),
+                'label' => __( 'Ratting', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_responsive_control(
-            'label_margin',
+            'ratting_margin',
             [
                 'label' => __( 'Margin', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-ratting' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_responsive_control(
-            'label_padding',
+            'ratting_padding',
             [
                 'label' => __( 'Padding', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-ratting' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'label_color',
+            'ratting_color',
             [
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-review-ratting' => 'color: {{VALUE}}',
                 ],
             ]
         );
 
         $this->add_control(
-            'label_bg_color',
+            'ratting_bg_color',
             [
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-review-ratting' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -401,97 +401,74 @@ class Review extends Base {
         $this->add_group_control(
             Group_Control_Border::get_type(),
             [
-                'name' => 'label_border',
-                'selector' => '{{WRAPPER}} .ha-label',
+                'name' => 'ratting_border',
+                'selector' => '{{WRAPPER}} .ha-review-ratting',
             ]
         );
 
-        $this->add_responsive_control(
-            'label_border_radius',
+        $this->add_control(
+            'ratting_border_radius',
             [
                 'label' => __( 'Border Radius', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-ratting' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'label_box_shadow',
-                'exclude' => [
-                    'box_shadow_position',
-                ],
-                'selector' => '{{WRAPPER}} .ha-label',
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'label_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
-                'exclude' => [
-                    'font_family',
-                    'line_height'
-                ],
-                'selector' => '{{WRAPPER}} .ha-label',
             ]
         );
 
         $this->end_controls_section();
 
+
         $this->start_controls_section(
-            '_section_content_style',
+            '_section_review_style',
             [
-                'label' => __( 'Title & Description', 'happy_addons' ),
+                'label' => __( 'Review', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_responsive_control(
-            'content_padding',
+            'body_padding',
             [
-                'label' => __( 'Container Padding', 'happy_addons' ),
+                'label' => __( 'Text Box Padding', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-body' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-body' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'title_heading',
+            '_name_heading',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Title', 'happy_addons' ),
+                'label' => __( 'Reviewer Name', 'happy_addons' ),
                 'separator' => 'before'
             ]
         );
 
         $this->add_responsive_control(
-            'title_margin',
+            'name_margin',
             [
                 'label' => __( 'Margin', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-reviewer' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'title_color',
+            'name_color',
             [
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-review-reviewer' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -499,40 +476,40 @@ class Review extends Base {
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'title_typography',
+                'name' => 'name_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-card-title',
+                'selector' => '{{WRAPPER}} .ha-review-reviewer',
             ]
         );
 
         $this->add_control(
-            'description_heading',
+            '_role_heading',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Description', 'happy_addons' ),
+                'label' => __( 'Reviewer Role', 'happy_addons' ),
                 'separator' => 'before'
             ]
         );
 
         $this->add_responsive_control(
-            'description_margin',
+            'role_margin',
             [
                 'label' => __( 'Margin', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-text' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-role' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'description_color',
+            'role_color',
             [
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-text' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-review-role' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -540,30 +517,40 @@ class Review extends Base {
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'description_typography',
+                'name' => 'role_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-card-text',
+                'selector' => '{{WRAPPER}} .ha-review-role',
             ]
         );
 
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            '_section_button_style',
+        $this->add_control(
+            '_review_heading',
             [
-                'label' => __( 'Button', 'happy_addons' ),
-                'tab' => Controls_Manager::TAB_STYLE,
+                'type' => Controls_Manager::HEADING,
+                'label' => __( 'Review', 'happy_addons' ),
+                'separator' => 'before'
             ]
         );
 
         $this->add_responsive_control(
-            'btn_padding',
+            'review_margin',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Margin', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
+                'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-desc' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'review_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-desc' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -571,126 +558,11 @@ class Review extends Base {
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'btn_typography',
-                'selector' => '{{WRAPPER}} .ha-btn',
+                'name' => 'review_typography',
+                'label' => __( 'Typography', 'happy_addons' ),
+                'selector' => '{{WRAPPER}} .ha-review-desc',
             ]
         );
-
-        $this->add_group_control(
-            Group_Control_Border::get_type(),
-            [
-                'name' => 'btn_border',
-                'selector' => '{{WRAPPER}} .ha-btn',
-            ]
-        );
-
-        $this->add_control(
-            'btn_border_radius',
-            [
-                'label' => __( 'Border Radius', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'btn_box_shadow',
-                'selector' => '{{WRAPPER}} .ha-btn',
-            ]
-        );
-
-        $this->add_control(
-            'hr',
-            [
-                'type' => Controls_Manager::DIVIDER,
-                'style' => 'thick',
-            ]
-        );
-
-        $this->start_controls_tabs( 'tabs_button_style' );
-
-        $this->start_controls_tab(
-            'tab_button_normal',
-            [
-                'label' => __( 'Normal', 'happy_addons' ),
-            ]
-        );
-
-        $this->add_control(
-            'btn_color',
-            [
-                'label' => __( 'Text Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-                'default' => '',
-                'selectors' => [
-                    '{{WRAPPER}} .ha-btn' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'btn_bg_color',
-            [
-                'label' => __( 'Background Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-btn' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_tab();
-
-        $this->start_controls_tab(
-            'tab_button_hover',
-            [
-                'label' => __( 'Hover', 'happy_addons' ),
-            ]
-        );
-
-        $this->add_control(
-            'btn_hover_color',
-            [
-                'label' => __( 'Text Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-btn:hover, {{WRAPPER}} .ha-btn:focus' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'btn_hover_bg_color',
-            [
-                'label' => __( 'Background Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-btn:hover, {{WRAPPER}} .ha-btn:focus' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'btn_hover_border_color',
-            [
-                'label' => __( 'Border Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-                'condition' => [
-                    'btn_border_border!' => '',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-btn:hover, {{WRAPPER}} .ha-btn:focus' => 'border-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_tab();
-        $this->end_controls_tabs();
 
         $this->end_controls_section();
     }
@@ -706,6 +578,11 @@ class Review extends Base {
 
         $this->add_inline_editing_attributes( 'review', 'basic' );
         $this->add_render_attribute( 'review', 'class', 'ha-review-desc' );
+
+        $this->add_render_attribute( 'ratting', 'class', [
+                'ha-review-ratting',
+                'ha-review-ratting--' . $settings['ratting_style']
+            ] );
         ?>
 
         <?php if ( ! empty( $settings['image']['url'] ) ) :
@@ -735,13 +612,13 @@ class Review extends Base {
 
                 <div <?php echo $this->get_render_attribute_string( 'role' ); ?>><?php echo esc_html( $settings['role' ] ); ?></div>
 
-                <?php if ( $settings['ratting_style'] === 'text' ) : ?>
-                    <div class="ha-review-ratting-text"><?php echo esc_html( $settings['ratting'] ); ?> <i class="fa fa-star"></i></div>
-                <?php else : ?>
-                    <div class="ha-review-ratting-star">
-                        <span style="width:<?php echo ($settings['ratting'] * 20); ?>%"></span>
-                    </div>
-                <?php endif; ?>
+                <div <?php echo $this->get_render_attribute_string( 'ratting' ); ?>>
+                    <?php if ( $settings['ratting_style'] === 'text' ) : ?>
+                        <?php echo esc_html( $settings['ratting'] ); ?> <i class="fa fa-star"></i>
+                    <?php else : ?>
+                        <span><span style="width:<?php echo ($settings['ratting'] * 20); ?>%"></span></span>
+                    <?php endif; ?>
+                 </div>
             </div>
 
             <?php if ( $settings['priority'] === 'reviewer' ) : ?>
@@ -791,10 +668,10 @@ class Review extends Base {
                 <{{ settings.name_tag }} {{{ view.getRenderAttributeString( 'reviewer' ) }}}>{{ settings.reviewer }}</{{ settings.name_tag }}>
                 <div {{{ view.getRenderAttributeString( 'role' ) }}}>{{ settings.role }}</div>
                 <# if ( settings.ratting_style === 'text' ) { #>
-                    <div class="ha-review-ratting-text">{{ settings.ratting }} <i class="fa fa-star"></i></div>
+                    <div class="ha-review-ratting ha-review-ratting--text">{{ settings.ratting }} <i class="fa fa-star"></i></div>
                 <# } else { var ratingPercent = ( settings.ratting * 20 ) #>
-                    <div class="ha-review-ratting-star">
-                        <span style="width:{{ ratingPercent }}%"></span>
+                    <div class="ha-review-ratting ha-review-ratting--star">
+                        <span><span style="width:{{ ratingPercent }}%"></span></span>
                     </div>
                 <# } #>
             </div>

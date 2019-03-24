@@ -20,14 +20,38 @@
 }
 
 .ha-text {
-  &--left {
+  &---mobileleft {
     text-align: left;
   }
-  &--center {
+  &---mobilecenter {
     text-align: center;
   }
-  &--right {
+  &---mobileright {
     text-align: right;
+  }
+
+  @media (min-width: 600px) {
+    &---tabletleft {
+      text-align: left;
+    }
+    &---tabletcenter {
+      text-align: center;
+    }
+    &---tabletright {
+      text-align: right;
+    }
+  }
+
+  @media (min-width: 769px) {
+    &--left {
+      text-align: left;
+    }
+    &--center {
+      text-align: center;
+    }
+    &--right {
+      text-align: right;
+    }
   }
 }
 
