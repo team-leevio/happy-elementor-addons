@@ -1,0 +1,39 @@
+.ha-gallery-filter {
+  list-style: none;
+  margin-bottom: 2rem;
+  padding: 0;
+
+  > li {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+
+    > button {
+      color: #000;
+      background-color: transparent;
+      text-transform: capitalize;
+      font-size: 16px;
+      border: 1px solid transparent;
+      padding: .3rem 1rem;
+      transition: all .3s;
+      cursor: pointer;
+
+      &:hover {
+        color: #b0b0b0;
+        border-color: #b0b0b0;
+      }
+
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+
+  > .ha-filter-active {
+    > button {
+      color: #b0b0b0;
+      border-color: #b0b0b0;
+    }
+  }
+}

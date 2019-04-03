@@ -1,0 +1,223 @@
+.ha-image-grid {
+  &-item {
+    float: left;
+  }
+
+  &-link {
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+
+    &:focus {
+      outline: none;
+    }
+
+    img {
+      transition: all 0.25s linear;
+    }
+  }
+
+  &-hover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    transition: all .3s;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, .8);
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+
+    &-content {
+      position: absolute;
+      transition: all .3s;
+      color: #fff;
+      font-size: 16px;
+      width: 100%;
+      opacity: 0;
+
+      &:before{
+        content: '';
+        background: #fe413b;
+        width: 35px;
+        height: 1px;
+        position: absolute;
+        top: -15px;
+      }
+    }
+
+    &-content.ha-title-top-left {
+      top: 2.9rem;
+      left: 2rem;
+      text-align: left;
+      &:before{
+        left: 0;
+      }
+    }
+
+    &-content.ha-title-top-center {
+      top: 2.9rem;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      &:before{
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    &-content.ha-title-top-right {
+      top: 2.9rem;
+      right: 2rem;
+      text-align: right;
+      &:before{
+        right: 0;
+      }
+    }
+
+    &-content.ha-title-bottom-left {
+      bottom: 2rem;
+      left: 2rem;
+      text-align: left;
+      &:before{
+        left: 0;
+      }
+    }
+
+    &-content.ha-title-bottom-center {
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      &:before{
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    &-content.ha-title-bottom-right {
+      bottom: 2rem;
+      right: 2rem;
+      text-align: right;
+      &:before{
+        right: 0;
+      }
+    }
+
+    &-content.ha-title-middle-left {
+      top: 50%;
+      transform: translateY(-50%);
+      left: 2rem;
+      text-align: left;
+      &:before{
+        left: 0;
+      }
+    }
+
+    &-content.ha-title-middle-center {
+      top: 50%;
+      transform: translateX(-50%);
+      left: 50%;
+      text-align: center;
+      &:before{
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    &-content.ha-title-middle-right {
+      top: 50%;
+      transform: translateY(-50%);
+      right: 2rem;
+      text-align: right;
+      &:before{
+        right: 0;
+      }
+        }
+
+      }
+    }
+    &:hover {
+      img {
+        transform: scale(1.25);
+      }
+      .ha-gallery-item-image-hover {
+        opacity: 1;
+        &-content {
+          opacity: 1;
+          &:before{
+            width: 80px;
+            transition: all .5s;
+          }
+        }
+      }
+    }
+  }
+
+  .ha-image-grid--2 {
+    .ha-image-grid-item {
+      width: 50%;
+    }
+  }
+
+  .ha-image-grid--3 {
+    .ha-gallery-item {
+      width: 33.33%;
+    }
+  }
+
+  .ha-image-grid--3 {
+    .ha-gallery-item {
+      width: 25%;
+    }
+  }
+
+  .ha-image-grid--3 {
+    .ha-gallery-item {
+      width: 20%;
+    }
+  }
+
+/*---------------------------------------
+ isotop style
+ --------------------------------------- */
+.isotope-item {
+  z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+
+/*Isotope CSS3 transitions */
+
+.isotope,
+.isotope .isotope-item {
+  transition-duration: 0.8s;
+}
+
+.isotope {
+  transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  transition-property: transform, opacity;
+}
+
+/*disabling Isotope CSS3 transitions */
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  transition-duration: 0s;
+}
+
+/* disable CSS transitions for containers with infinite scrolling*/
+.isotope.infinite-scrolling {
+  transition: none;
+}

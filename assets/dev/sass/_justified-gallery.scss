@@ -1,0 +1,61 @@
+.ha-justified-gallery-item {
+  transition: all .3s;
+  overflow: hidden;
+  display: block;
+  border-radius: 6px;
+
+  > img {
+    transition: all 0.25s !important;
+  }
+
+  &:hover {
+    > img {
+      transform: scale(1.25);
+    }
+  }
+}
+
+//modified justified gallery css
+.justified-gallery > a > .caption,
+.justified-gallery > div > .caption,
+.justified-gallery > figure > .caption{
+  padding: 10px;
+}
+
+.justified-gallery > a > .caption,
+.justified-gallery > div > .caption,
+.justified-gallery > figure > .caption {
+  bottom: -100px !important;
+  transition: all 0.25s !important;
+  animation: smoothScroll .3s forwards;
+}
+
+.justified-gallery > a > .caption.caption-visible,
+.justified-gallery > div > .caption.caption-visible,
+.justified-gallery > figure > .caption.caption-visible {
+  bottom: 0 !important;
+}
+
+@-webkit-keyframes smoothScroll {
+  0% {
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px)
+  }
+
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
+  }
+}
+
+@keyframes smoothScroll {
+  0% {
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px)
+  }
+
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
+  }
+}

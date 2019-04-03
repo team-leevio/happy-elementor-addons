@@ -84,3 +84,22 @@ if ( ! function_exists( 'ha_is_script_debug_enabled' ) ) {
         return ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
     }
 }
+
+function ha_prepare_data_prop_settings( $settings = [], $field_map = [] ) {
+    $data = [];
+    foreach ( $field_map as $key => $data_key ) {
+        if ( ! isset( $settings[ $key ] ) ) {
+            continue;
+        }
+
+        list( $data_field_key, $data_field_type ) = explode( '.', $data_key );
+        $validator = $data_field_type . 'val';
+        if ( is_callable( $validator ) ) {
+            $val = call_user_func( $validator, $settings[ $key ] );
+        } else {
+            $val = $settings[ $key ];
+        }
+        $data[ $data_field_key ] = $val;
+    }
+    return wp_json_encode( $data );
+}

@@ -85,12 +85,6 @@ class Base {
      */
     public function enqueue_scripts() {
         $suffix = ha_is_script_debug_enabled() ? '.min.' : '.';
-        wp_enqueue_style(
-            'happy-elementor-addons',
-            HAPPY_ASSETS . 'css/main' . $suffix . 'css',
-            ['elementor-frontend'],
-            self::VERSION
-        );
 
         wp_enqueue_style(
             'twentytwenty',
@@ -99,6 +93,42 @@ class Base {
             self::VERSION
         );
 
+        wp_enqueue_style(
+            'justifiedGallery',
+            HAPPY_ASSETS . 'vendor/justifiedGallery/css/justifiedGallery.min.css',
+            null,
+            self::VERSION
+        );
+
+        wp_enqueue_style(
+            'magnific-popup',
+            HAPPY_ASSETS . 'vendor/magnific-popup/magnific-popup.css',
+            null,
+            self::VERSION
+        );
+
+        wp_enqueue_style(
+            'owl-carousel',
+            HAPPY_ASSETS . 'vendor/owl-carousel/assets/owl.carousel.min.css',
+            null,
+            self::VERSION
+        );
+
+        wp_enqueue_style(
+            'owl-theme-default',
+            HAPPY_ASSETS . 'vendor/owl-carousel/assets/owl.theme.default.min.css',
+            null,
+            self::VERSION
+        );
+
+        wp_enqueue_style(
+            'happy-elementor-addons',
+            HAPPY_ASSETS . 'css/main' . $suffix . 'css',
+            ['elementor-frontend'],
+            self::VERSION
+        );
+
+        // Scripts
         wp_enqueue_script(
             'jquery-event-move',
             HAPPY_ASSETS . 'vendor/twentytwenty/js/jquery.event.move.js',
@@ -116,9 +146,41 @@ class Base {
         );
 
         wp_enqueue_script(
+            'jquery-justifiedGallery',
+            HAPPY_ASSETS . 'vendor/justifiedGallery/js/jquery.justifiedGallery.min.js',
+            ['jquery'],
+            self::VERSION,
+            true
+        );
+
+        wp_enqueue_script(
+            'jquery-magnific-popup',
+            HAPPY_ASSETS . 'vendor/magnific-popup/jquery.magnific-popup.min.js',
+            ['jquery'],
+            self::VERSION,
+            true
+        );
+
+        wp_enqueue_script(
+            'jquery-isotope',
+            HAPPY_ASSETS . 'vendor/jquery.isotope.js',
+            ['jquery'],
+            self::VERSION,
+            true
+        );
+
+        wp_enqueue_script(
+            'jquery-owl-carousel',
+            HAPPY_ASSETS . 'vendor/owl-carousel/owl.carousel.min.js',
+            ['jquery'],
+            self::VERSION,
+            true
+        );
+
+        wp_enqueue_script(
             'happy-elementor-addons',
             HAPPY_ASSETS . 'js/happy-addons' . $suffix . 'js',
-            ['jquery-twentytwenty'],
+            ['jquery', 'imagesloaded'],
             self::VERSION,
             true
         );
@@ -230,6 +292,9 @@ class Base {
             'member',
             'review',
             'image-comparison',
+            'justified-gallery',
+            'image-grid',
+            'slider'
         ];
 
         foreach ( $widgets as $widget ) {
