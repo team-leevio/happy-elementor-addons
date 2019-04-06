@@ -7,6 +7,7 @@
 namespace Happy_Addons\Elementor;
 
 use Elementor\Plugin as Elementor;
+use Elementor\Core\Responsive\Responsive;
 
 defined( 'ABSPATH' ) || die();
 
@@ -294,7 +295,8 @@ class Base {
             'image-comparison',
             'justified-gallery',
             'image-grid',
-            'slider'
+            'slider',
+            'carousel'
         ];
 
         foreach ( $widgets as $widget ) {

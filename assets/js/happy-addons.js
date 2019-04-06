@@ -4,6 +4,14 @@ window.Happy = window.Happy || {};
 ;(function ($, Happy) {
     var $window = $(window);
 
+    function isMobileBreakpoint() {
+        return ($window.width() < elementorFrontend.config.breakpoints.md);
+    }
+
+    function isTabletBreakpoint() {
+        return ($window.width() >= elementorFrontend.config.breakpoints.md && $window.width() < elementorFrontend.config.breakpoints.lg);
+    }
+
     $.fn.getHappySettings = function() {
         return this.data('happy-settings');
     }
@@ -63,24 +71,46 @@ window.Happy = window.Happy || {};
         var $item = $scope.find('.hajs-slider');
 
         $item.owlCarousel($.extend({}, {
-            loop:true,
-            margin:10,
+            loop: true,
+            margin: 10,
             autoplay: true,
             checkVisible: false,
-            nav:true,
-            navText: ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
-            responsive: {
-                0:{
-                    items:1
-                },
-                600:{
-                    items:1
-                },
-                1000:{
-                    items:1
-                }
-            }
+            nav: true,
+            items: 1,
+            navText: ['<i class="fa fa-chevron-left"></i>','<i class="fa fa-chevron-right"></i>'],
         }, $item.getHappySettings()));
+    }
+
+    Happy.initCarousel = function($scope) {
+        var $item = $scope.find('.hajs-carousel'),
+            happySettings = $item.getHappySettings(),
+            breakpointSettingKeys = ['nav', 'dots', 'items'],
+            settings = {};
+
+        $.each(happySettings, function(key, val) {
+            if (breakpointSettingKeys.indexOf(key) !== -1) {
+                if (isMobileBreakpoint()) {
+                    settings[key] = happySettings[key + '_mobile'];
+                } else if (isTabletBreakpoint()) {
+                    settings[key] = happySettings[key + '_tablet'];
+                } else {
+                    settings[key] = val;
+                }
+            } else {
+                settings[key] = val;
+            }
+        });
+
+        $item.owlCarousel($.extend({}, {
+            loop:true,
+            margin: 10,
+            autoplay: true,
+            checkVisible: false,
+            nav: true,
+            items: 3,
+            center: true,
+            navText: ['<i class="fa fa-chevron-left"></i>','<i class="fa fa-chevron-right"></i>'],
+        }, settings));
     }
 
     $window.on( 'elementor/frontend/init', function() {
@@ -99,6 +129,10 @@ window.Happy = window.Happy || {};
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/ha-slider.default',
             Happy.initSlider
+        );
+        elementorFrontend.hooks.addAction(
+            'frontend/element_ready/ha-carousel.default',
+            Happy.initCarousel
         );
     });
 
