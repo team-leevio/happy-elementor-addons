@@ -115,7 +115,7 @@ window.Happy = window.Happy || {};
 
     $window.on( 'elementor/frontend/init', function() {
         elementorFrontend.hooks.addAction(
-            'frontend/element_ready/ha-image-comparison.default',
+            'frontend/element_ready/ha-image-compare.default',
             Happy.initImageComparison
         );
         elementorFrontend.hooks.addAction(

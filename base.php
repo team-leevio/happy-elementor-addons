@@ -6,9 +6,6 @@
  */
 namespace Happy_Addons\Elementor;
 
-use Elementor\Plugin as Elementor;
-use Elementor\Core\Responsive\Responsive;
-
 defined( 'ABSPATH' ) || die();
 
 class Base {
@@ -40,151 +37,38 @@ class Base {
     public function init() {
         // Check if Elementor installed and activated
         if ( ! did_action( 'elementor/loaded' ) ) {
-            add_action( 'admin_notices', [ $this, 'admin_notice_missing_elementor' ] );
+            add_action( 'admin_notices', [$this, 'admin_notice_missing_elementor'] );
             return;
         }
 
         // Check for required Elementor version
         if ( ! version_compare( ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
-            add_action( 'admin_notices', [ $this, 'admin_notice_minimum_elementor_version' ] );
+            add_action( 'admin_notices', [$this, 'admin_notice_minimum_elementor_version'] );
             return;
         }
 
         // Check for required PHP version
         if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
-            add_action( 'admin_notices', [ $this, 'admin_notice_minimum_php_version' ] );
+            add_action( 'admin_notices', [$this, 'admin_notice_minimum_php_version'] );
             return;
         }
 
         $this->include_files();
 
         // Register custom category
-        add_action( 'elementor/elements/categories_registered', [ $this, 'add_category' ] );
-
-        // Add Plugin actions
-        add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+        add_action( 'elementor/elements/categories_registered', [$this, 'add_category'] );
 
         // Register custom controls
-        add_action( 'elementor/controls/controls_registered', [ $this, 'register_controls' ] );
+        add_action( 'elementor/controls/controls_registered', [$this, 'register_controls'] );
 
-        // Frontend scripts
-        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
-
-        add_filter( 'elementor/utils/get_placeholder_image_src', [ $this, 'set_placeholder_image' ] );
-    }
-
-    public function set_placeholder_image() {
-        return HAPPY_ASSETS . 'imgs/placeholder.jpg';
+        Widget_Manager::instance()->init();
+        Assets_Manager::instance()->init();
     }
 
     public function include_files() {
         require( __DIR__ . '/inc/functions.php' );
-    }
-
-    /**
-     * Enqueue frontend scripts
-     */
-    public function enqueue_scripts() {
-        $suffix = ha_is_script_debug_enabled() ? '.min.' : '.';
-
-        wp_enqueue_style(
-            'twentytwenty',
-            HAPPY_ASSETS . 'vendor/twentytwenty/css/twentytwenty.css',
-            null,
-            self::VERSION
-        );
-
-        wp_enqueue_style(
-            'justifiedGallery',
-            HAPPY_ASSETS . 'vendor/justifiedGallery/css/justifiedGallery.min.css',
-            null,
-            self::VERSION
-        );
-
-        wp_enqueue_style(
-            'magnific-popup',
-            HAPPY_ASSETS . 'vendor/magnific-popup/magnific-popup.css',
-            null,
-            self::VERSION
-        );
-
-        wp_enqueue_style(
-            'owl-carousel',
-            HAPPY_ASSETS . 'vendor/owl-carousel/assets/owl.carousel.min.css',
-            null,
-            self::VERSION
-        );
-
-        wp_enqueue_style(
-            'owl-theme-default',
-            HAPPY_ASSETS . 'vendor/owl-carousel/assets/owl.theme.default.min.css',
-            null,
-            self::VERSION
-        );
-
-        wp_enqueue_style(
-            'happy-elementor-addons',
-            HAPPY_ASSETS . 'css/main' . $suffix . 'css',
-            ['elementor-frontend'],
-            self::VERSION
-        );
-
-        // Scripts
-        wp_enqueue_script(
-            'jquery-event-move',
-            HAPPY_ASSETS . 'vendor/twentytwenty/js/jquery.event.move.js',
-            ['jquery'],
-            self::VERSION,
-            true
-        );
-
-        wp_enqueue_script(
-            'jquery-twentytwenty',
-            HAPPY_ASSETS . 'vendor/twentytwenty/js/jquery.twentytwenty.js',
-            ['jquery-event-move'],
-            self::VERSION,
-            true
-        );
-
-        wp_enqueue_script(
-            'jquery-justifiedGallery',
-            HAPPY_ASSETS . 'vendor/justifiedGallery/js/jquery.justifiedGallery.min.js',
-            ['jquery'],
-            self::VERSION,
-            true
-        );
-
-        wp_enqueue_script(
-            'jquery-magnific-popup',
-            HAPPY_ASSETS . 'vendor/magnific-popup/jquery.magnific-popup.min.js',
-            ['jquery'],
-            self::VERSION,
-            true
-        );
-
-        wp_enqueue_script(
-            'jquery-isotope',
-            HAPPY_ASSETS . 'vendor/jquery.isotope.js',
-            ['jquery'],
-            self::VERSION,
-            true
-        );
-
-        wp_enqueue_script(
-            'jquery-owl-carousel',
-            HAPPY_ASSETS . 'vendor/owl-carousel/owl.carousel.min.js',
-            ['jquery'],
-            self::VERSION,
-            true
-        );
-
-        wp_enqueue_script(
-            'happy-elementor-addons',
-            HAPPY_ASSETS . 'js/happy-addons' . $suffix . 'js',
-            ['jquery', 'imagesloaded'],
-            self::VERSION,
-            true
-        );
+        require( __DIR__ . '/classes/widget-manager.php' );
+        require( __DIR__ . '/classes/assets-manager.php' );
     }
 
     /**
@@ -271,41 +155,6 @@ class Base {
         );
 
         printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-    }
-
-    /**
-     * Init Widgets
-     *
-     * Include widgets files and register them
-     *
-     * @since 1.0.0
-     *
-     * @access public
-     */
-    public function register_widgets() {
-        require( __DIR__ . '/base/widget-base.php' );
-
-        $widgets = [
-            'blurb',
-            'card',
-            'cf7',
-            'icon-box',
-            'member',
-            'review',
-            'image-comparison',
-            'justified-gallery',
-            'image-grid',
-            'slider',
-            'carousel'
-        ];
-
-        foreach ( $widgets as $widget ) {
-            require( __DIR__ . '/widgets/' . $widget . '/widget.php' );
-
-            $class_name = str_replace( '-', '_', $widget );
-            $class_name = __NAMESPACE__ . '\Widget\\' . $class_name;
-            Elementor::instance()->widgets_manager->register_widget_type( new $class_name() );
-        }
     }
 
     /**

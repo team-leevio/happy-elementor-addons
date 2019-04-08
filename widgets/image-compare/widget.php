@@ -1,6 +1,6 @@
 <?php
 /**
- * Image Comparison widget class
+ * Image Compare widget class
  *
  * @package Happy_Addons
  */
@@ -16,7 +16,7 @@ use Elementor\Group_Control_Typography;
 
 defined( 'ABSPATH' ) || die();
 
-class Image_Comparison extends Base {
+class Image_Compare extends Base {
 
     /**
      * Get widget title.
@@ -27,7 +27,7 @@ class Image_Comparison extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Image Comparison', 'happy_addons' );
+        return __( 'Happy Image Compare', 'happy_addons' );
     }
 
     /**
@@ -82,6 +82,7 @@ class Image_Comparison extends Base {
             [
                 'label' => __( 'After Image', 'happy_addons' ),
                 'type' => Controls_Manager::MEDIA,
+                'separator' => 'before',
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
@@ -99,15 +100,6 @@ class Image_Comparison extends Base {
             ]
         );
 
-        $this->add_group_control(
-            Group_Control_Image_Size::get_type(),
-            [
-                'name' => 'thumbnail',
-                'default' => 'large',
-                'separator' => 'none',
-            ]
-        );
-
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -118,15 +110,32 @@ class Image_Comparison extends Base {
             ]
         );
 
+        $this->add_group_control(
+            Group_Control_Image_Size::get_type(),
+            [
+                'name' => 'thumbnail',
+                'default' => 'large',
+                'separator' => 'none',
+            ]
+        );
+
         $this->add_control(
             'offset',
             [
-                'label' => __( 'Slider Position', 'happy_addons' ),
-                'type' => Controls_Manager::NUMBER,
-                'default' => 5,
-                'min' => 1,
-                'max' => 10,
-                'step' => 1,
+                'label' => __( 'Visibility Ratio', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'separator' => 'before',
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1,
+                        'step' => .1,
+                    ],
+                ],
+                'default' => [
+                    'size' => .5,
+                ],
                 'description' => __( 'Set how much of the before image is visible when the page loads', 'happy_addons' ),
             ]
         );
@@ -209,26 +218,16 @@ class Image_Comparison extends Base {
 
     protected static function get_data_settings( $settings ) {
         $field_map = [
-            'offset' => 'default_offset_pct',
-            'orientation' => 'orientation',
-            'hide_overlay' => 'no_overlay',
-            'move_on_hover' => 'move_slider_on_hover',
-            'move_handle_only' => 'move_with_handle_only',
-            'click_to_move' => 'click_to_move',
-            'before_text' => 'before_label',
-            'after_text' => 'after_label',
+            'offset.size' => 'default_offset_pct.float',
+            'orientation' => 'orientation.str',
+            'hide_overlay' => 'no_overlay.bool',
+            'move_on_hover' => 'move_slider_on_hover.bool',
+            'move_handle_only' => 'move_with_handle_only.bool',
+            'click_to_move' => 'click_to_move.bool',
+            'before_text' => 'before_label.str',
+            'after_text' => 'after_label.str',
         ];
-
-        $data = [];
-        foreach ( $field_map as $setting_key => $param_key ) {
-            if ( ! isset( $settings[ $setting_key ] ) ) {
-                continue;
-            }
-
-            $val = ( $setting_key === 'offset' ? ( $settings[ $setting_key ] / 10 ) : $settings[ $setting_key ] );
-            $data[ $param_key ] = $val;
-        }
-        return $data;
+        return ha_prepare_data_prop_settings( $settings, $field_map );
     }
 
 	protected function render() {
@@ -238,7 +237,8 @@ class Image_Comparison extends Base {
             'twentytwenty-container',
             'hajs-image-comparison',
         ] );
-        $this->add_render_attribute( 'container', 'data-happy-settings', wp_json_encode( self::get_data_settings( $settings ) ) );
+
+        $this->add_render_attribute( 'container', 'data-happy-settings', self::get_data_settings( $settings ) );
         ?>
         <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
             <?php if ( ! empty( $settings['before_image']['url'] ) ) :
@@ -269,8 +269,8 @@ class Image_Comparison extends Base {
             'hajs-image-comparison',
         ] );
 
-        var map = {
-            'offset': 'default_offset_pct',
+        var fieldMap = {
+            'offset.size': 'default_offset_pct',
             'orientation': 'orientation',
             'hide_overlay': 'no_overlay',
             'move_on_hover': 'move_slider_on_hover',
@@ -280,18 +280,20 @@ class Image_Comparison extends Base {
             'after_text': 'after_label',
         };
 
-        var dataSettings = {};
+        var data = {};
 
-        _.each(map, function(dKey, sKey) {
+        _.each(fieldMap, function(dKey, sKey) {
+            if (sKey === 'offset.size') {
+                data[dKey] = settings.offset.size;
+                return;
+            }
             if (_.isUndefined(settings[sKey])) {
                 return;
             }
-
-            var val = ( sKey === 'offset' ? ( settings[sKey] / 10 ) : settings[sKey] );
-            dataSettings[dKey] = val;
+            data[dKey] = settings[sKey];
         });
-
-        view.addRenderAttribute( 'container', 'data-happy-settings', JSON.stringify(dataSettings) ); #>
+        console.log(elementorFrontend)
+        view.addRenderAttribute('container', 'data-happy-settings', JSON.stringify(data)); #>
 
         <div {{{ view.getRenderAttributeString( 'container' ) }}}>
             <# if ( settings.before_image.url ) {

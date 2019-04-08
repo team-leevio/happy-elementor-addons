@@ -85,21 +85,29 @@ if ( ! function_exists( 'ha_is_script_debug_enabled' ) ) {
     }
 }
 
-function ha_prepare_data_prop_settings( $settings = [], $field_map = [] ) {
+function ha_prepare_data_prop_settings( &$settings, $field_map = [] ) {
     $data = [];
     foreach ( $field_map as $key => $data_key ) {
-        if ( ! isset( $settings[ $key ] ) ) {
-            continue;
-        }
-
+        $setting_value = ha_get_setting_value( $settings, $key );
         list( $data_field_key, $data_field_type ) = explode( '.', $data_key );
         $validator = $data_field_type . 'val';
+
         if ( is_callable( $validator ) ) {
-            $val = call_user_func( $validator, $settings[ $key ] );
+            $val = call_user_func( $validator, $setting_value );
         } else {
-            $val = $settings[ $key ];
+            $val = $setting_value;
         }
         $data[ $data_field_key ] = $val;
     }
     return wp_json_encode( $data );
+}
+
+function ha_get_setting_value( &$settings, $keys ) {
+    if ( ! is_array( $keys ) ) {
+        $keys = explode( '.', $keys );
+    }
+    if ( is_array( $settings[ $keys[0] ] ) ) {
+        return ha_get_setting_value( $settings[ $keys[0] ], array_slice( $keys, 1 ) );
+    }
+    return $settings[ $keys[0] ];
 }

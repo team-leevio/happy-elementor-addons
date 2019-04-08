@@ -199,6 +199,19 @@ class Carousel extends Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'margin',
+            [
+                'label' => __( 'Margins', 'happy_addons' ),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 0,
+                'max' => 50,
+                'step' => 1,
+                'default' => 10,
+                'description' => __( 'Add gap among carousel items', 'happy_addons' ),
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -222,6 +235,7 @@ class Carousel extends Base {
             'items' => 'items.int',
             'items_tablet' => 'items_tablet.int',
             'items_mobile' => 'items_mobile.int',
+            'margin' => 'margin.int'
         ];
 
         return ha_prepare_data_prop_settings( $settings, $field_map );
@@ -246,6 +260,10 @@ class Carousel extends Base {
                 ?>
                 <div class="item">
                     <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr( wp_get_attachment_caption( $slide['image']['id'] ) ); ?>">
+                    <div class="ha-carousel-text">
+                        <h2 class="ha-carousel-title">Zurich, Switzerland</h2>
+                        <p class="ha-carousel-caption">5 Day City Tour</p>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
