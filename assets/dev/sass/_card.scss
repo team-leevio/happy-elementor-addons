@@ -39,7 +39,6 @@
     @include widgetContainer {
       display: flex;
       flex-direction: row;
-      align-items: center;
     }
 
     .ha-card-figure,
@@ -48,7 +47,12 @@
     }
 
     .ha-card-figure {
-      max-width: 50%;
+      width: 50%;
+      height: 250px;
+
+      > img {
+        height: 100%;
+      }
     }
 
     .ha-card-body {

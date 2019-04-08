@@ -145,10 +145,6 @@
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display:         flex;
-	-webkit-box-align: center;
-	-webkit-align-items: center;
-	        align-items: center; 
-	-ms-flex-align: center;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: row;
@@ -168,7 +164,12 @@
 
 .ha-card--right .ha-card-figure,
 .ha-card--left .ha-card-figure {
-	max-width: 50%;
+	width: 50%;
+	height: 250px;
+}
+.ha-card--right .ha-card-figure > img,
+.ha-card--left .ha-card-figure > img {
+	height: 100%;
 }
 
 .ha-card--right .ha-card-body,
