@@ -186,13 +186,72 @@ class Icon_Box extends Base {
         );
 
         $this->add_responsive_control(
-            'icon_padding',
+            'icon_width',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
+                'label' => __( 'Width', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 400,
+                    ],
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-icon-box-icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-icon-box-icon' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'icon_height',
+            [
+                'label' => __( 'Height', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 400,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-icon-box-icon' => 'height: {{SIZE}}{{UNIT}}; line-height: calc({{SIZE}}{{UNIT}} - 5px);',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'icon_rotate',
+            [
+                'label' => __( 'Rotate', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'deg' ],
+                'default' => [
+                    'unit' => 'deg',
+                ],
+                'range' => [
+                    'deg' => [
+                        'min' => 0,
+                        'max' => 360,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-icon-box-icon' => '-webkit-transform: rotate({{SIZE}}{{UNIT}}); transform: rotate({{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}} .ha-icon-box-icon > i' => '-webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
+                ],
+                'description' => __( 'Default unit is deg', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_responsive_control(
+            'icon_margin',
+            [
+                'label' => __( 'Margin', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-icon-box-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -314,9 +373,7 @@ class Icon_Box extends Base {
         endif;
         ?>
         <span class="ha-icon-box-icon">
-            <span class="ha-square-box">
-                <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
-            </span>
+            <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
         </span>
         <?php printf( '<%1$s %2$s>%3$s</%1$s>',
             tag_escape( $settings['title_tag'] ),
@@ -341,9 +398,7 @@ class Icon_Box extends Base {
             print( '<a ' + view.getRenderAttributeString( 'link' ) + '>' );
         } #>
         <span class="ha-icon-box-icon">
-            <span class="ha-square-box">
-                <i class="{{ settings.icon }}"></i>
-            </span>
+            <i class="{{ settings.icon }}"></i>
         </span>
         <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
         <#

@@ -1,11 +1,14 @@
 .ha-card {
   &-figure {
     position: relative;
+    height: 250px;
 
     > img {
       border-top-left-radius: calc(.5rem - 1px);
       border-top-right-radius: calc(.5rem - 1px);
       vertical-align: bottom;
+      height: 100%;
+      width: 100%;
     }
   }
 
@@ -49,11 +52,6 @@
     .ha-card-figure {
       flex: 0 0 50%;
       max-width: 50%;
-      height: 250px;
-
-      > img {
-        height: 100%;
-      }
     }
 
     .ha-card-body {
