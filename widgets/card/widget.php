@@ -298,7 +298,7 @@ class Card extends Base {
         );
 
         $this->add_responsive_control(
-            'width',
+            'image_width',
             [
                 'label' => __( 'Width', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
@@ -318,13 +318,33 @@ class Card extends Base {
                         'max' => 100,
                     ],
                     'px' => [
-                        'min' => 1,
+                        'min' => 50,
                         'max' => 1000,
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-figure' => 'max-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-card--right .ha-card-figure, {{WRAPPER}}.ha-card--left .ha-card-figure' => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-card--top .ha-card-figure' => 'width: {{SIZE}}{{UNIT}};',
                 ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_height',
+            [
+                'label' => __( 'Height', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 50,
+                        'max' => 1000,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-card-figure' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+                'description' => __( 'Default unit is px', 'happy_addons' )
             ]
         );
 

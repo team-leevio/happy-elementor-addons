@@ -109,7 +109,6 @@
 
 .ha-card-figure {
 	position: relative;
-	display: inline-block;
 }
 .ha-card-figure > img {
 	border-top-left-radius: calc(.5rem - 1px);
@@ -139,6 +138,10 @@
 	margin-bottom: 0;
 }
 
+.ha-card--top .ha-card-figure {
+	display: inline-block;
+}
+
 .ha-card--right .elementor-widget-container,
 .ha-card--left .elementor-widget-container {
 	display: -webkit-box;
@@ -153,18 +156,12 @@
 }
 
 .ha-card--right .ha-card-figure,
-.ha-card--right .ha-card-body,
-.ha-card--left .ha-card-figure,
-.ha-card--left .ha-card-body {
-	-webkit-box-flex: 1;
-	-webkit-flex-grow: 1;
-	-ms-flex-positive: 1;
-	        flex-grow: 1;
-}
-
-.ha-card--right .ha-card-figure,
 .ha-card--left .ha-card-figure {
-	width: 50%;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 50%;
+	    -ms-flex: 0 0 50%;
+	        flex: 0 0 50%;
+	max-width: 50%;
 	height: 250px;
 }
 .ha-card--right .ha-card-figure > img,
@@ -174,6 +171,10 @@
 
 .ha-card--right .ha-card-body,
 .ha-card--left .ha-card-body {
+	-webkit-align-self: center;
+	-ms-flex-item-align: center;
+	-ms-grid-row-align: center;
+	        align-self: center; 
 	padding: 2.5rem;
 }
 
