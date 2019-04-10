@@ -16,18 +16,13 @@
 
     &--icon {
       font-size: 3rem;
-      line-height: .86;
-
-      i {
-        color: inherit;
-        line-height: .86;
-        font-size: calc(1em - .1em);
-        vertical-align: top;
-      }
+      text-align: center;
     }
 
-    &--image {
-      width: 250px;
+    > img {
+      width: 100%;
+      height: 100%;
+      vertical-align: bottom;
     }
   }
 

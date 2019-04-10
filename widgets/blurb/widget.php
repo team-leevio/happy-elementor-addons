@@ -247,25 +247,12 @@ class Blurb extends Base {
         );
 
         $this->add_responsive_control(
-            'media_size',
+            'icon_size',
             [
                 'label' => __( 'Size', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'unit' => 'px',
-                ],
-                'tablet_default' => [
-                    'unit' => 'px',
-                ],
-                'mobile_default' => [
-                    'unit' => 'px',
-                ],
-                'size_units' => [ 'px', 'em', '%'],
+                'size_units' => [ 'px', 'em' ],
                 'range' => [
-                    '%' => [
-                        'min' => 1,
-                        'max' => 40,
-                    ],
                     'px' => [
                         'min' => 1,
                         'max' => 250,
@@ -276,8 +263,51 @@ class Blurb extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure--image' => 'width: {{SIZE}}{{UNIT}};',
                     '{{WRAPPER}} .ha-blurb-figure--icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                     'type' => 'icon'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'media_width',
+            [
+                'label' => __( 'Width', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 250,
+                    ],
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-blurb-figure' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'media_height',
+            [
+                'label' => __( 'Height', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 250,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-blurb-figure' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-blurb-figure--icon' => 'line-height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -300,6 +330,18 @@ class Blurb extends Base {
         );
 
         $this->add_responsive_control(
+            'media_margin',
+            [
+                'label' => __( 'Margin', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-blurb-figure' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
             'media_padding',
             [
                 'label' => __( 'Padding', 'happy_addons' ),
@@ -307,8 +349,10 @@ class Blurb extends Base {
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-blurb-figure--image > img' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-blurb-figure--icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'type' => 'image'
+                ]
             ]
         );
 
@@ -587,9 +631,7 @@ class Blurb extends Base {
             <?php endif; ?>
         <?php else: ?>
             <figure class="ha-blurb-figure ha-blurb-figure--icon">
-                <span class="ha-square-box">
-                    <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
-                </span>
+                <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
             </figure>
         <?php endif; ?>
 
@@ -645,9 +687,7 @@ class Blurb extends Base {
             <# }
         } else { #>
             <figure class="ha-blurb-figure ha-blurb-figure--icon">
-                <span class="ha-square-box">
-                    <i aria-hidden="true" class="{{ settings.icon }}"></i>
-                </span>
+                <i aria-hidden="true" class="{{ settings.icon }}"></i>
             </figure>
         <# } #>
 
