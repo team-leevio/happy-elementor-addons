@@ -62,13 +62,13 @@ class Base {
         add_action( 'elementor/controls/controls_registered', [$this, 'register_controls'] );
 
         Widget_Manager::instance()->init();
-        Assets_Manager::instance()->init();
+        Asset_Manager::instance()->init();
     }
 
     public function include_files() {
         require( __DIR__ . '/inc/functions.php' );
         require( __DIR__ . '/classes/widget-manager.php' );
-        require( __DIR__ . '/classes/assets-manager.php' );
+        require( __DIR__ . '/classes/asset-manager.php' );
     }
 
     /**
