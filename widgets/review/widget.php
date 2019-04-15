@@ -48,9 +48,9 @@ class Review extends Base {
 
 	protected function register_content_controls() {
 		$this->start_controls_section(
-			'_section_review',
+			'_section_reviewer',
 			[
-				'label' => __( 'Review', 'happy_addons' ),
+				'label' => __( 'Reviewer', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -58,7 +58,7 @@ class Review extends Base {
         $this->add_control(
             'image',
             [
-                'label' => __( 'Reviewer Photo', 'happy_addons' ),
+                'label' => __( 'Photo', 'happy_addons' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -96,7 +96,6 @@ class Review extends Base {
                 ],
                 'desktop_default' => 'top',
                 'toggle' => false,
-                'devices' => [ 'desktop', 'tablet', 'mobile' ],
                 'prefix_class' => 'ha-review--%s',
             ]
         );
@@ -104,12 +103,10 @@ class Review extends Base {
         $this->add_control(
             'reviewer',
             [
-                'label' => __( 'Reviewer Name', 'happy_addons' ),
-                'label_block' => true,
+                'label' => __( 'Name', 'happy_addons' ),
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Jhon Doe', 'happy_addons' ),
                 'placeholder' => __( 'Type reviewer name', 'happy_addons' ),
-                'separator' => 'before'
             ]
         );
 
@@ -117,11 +114,19 @@ class Review extends Base {
             'role',
             [
                 'label' => __( 'Role', 'happy_addons' ),
-                'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Chief Operation Officer', 'happy_addons' ),
+                'default' => __( 'COO', 'happy_addons' ),
                 'placeholder' => __( 'Type reviewer role', 'happy_addons' ),
-                'description' => __( 'Add reviewer job role or designation', 'happy_addons' )
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_review',
+            [
+                'label' => __( 'Review', 'happy_addons' ),
+                'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
 
@@ -129,12 +134,19 @@ class Review extends Base {
             'ratting',
             [
                 'label' => __( 'Ratting', 'happy_addons' ),
-                'type' => Controls_Manager::NUMBER,
-                'min' => 0,
-                'max' => 5,
-                'step' => .1,
-                'default' => 4.2,
-                'separator' => 'before'
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 4.2,
+                ],
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 5,
+                        'step' => .1,
+                    ],
+                ],
             ]
         );
 
@@ -142,19 +154,12 @@ class Review extends Base {
             'ratting_style',
             [
                 'label' => __( 'Style', 'happy_addons' ),
-                'type' => Controls_Manager::CHOOSE,
+                'type' => Controls_Manager::SELECT,
                 'options' => [
-                    'star' => [
-                        'title' => __( 'Only Star Rating', 'happy_addons' ),
-                        'icon' => 'fa fa-star-half-o',
-                    ],
-                    'text' => [
-                        'title' => __( 'Text Star Rating', 'happy_addons' ),
-                        'icon' => 'fa fa-i-cursor',
-                    ],
+                    'star' => __( 'Star Rating', 'happy_addons' ),
+                    'num' => __( 'Number Rating', 'happy_addons' ),
                 ],
                 'default' => 'star',
-                'toggle' => false,
             ]
         );
 
@@ -165,15 +170,13 @@ class Review extends Base {
                 'type' => Controls_Manager::TEXTAREA,
                 'default' => __( 'Happy Addons is an amazing collection of Elementor widgets!', 'happy_addons' ),
                 'placeholder' => __( 'Type review text', 'happy_addons' ),
-                'rows' => 5,
-                'separator' => 'before'
             ]
         );
 
         $this->add_responsive_control(
             'align',
             [
-                'label' => __( 'Text Alignment', 'happy_addons' ),
+                'label' => __( 'Alignment', 'happy_addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
@@ -225,9 +228,9 @@ class Review extends Base {
         );
 
         $this->add_control(
-            'priority',
+            'content_position',
             [
-                'label' => __( 'Visual Priority', 'happy_addons' ),
+                'label' => __( 'Content Position', 'happy_addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
                     'reviewer' => __( 'Reviewer First', 'happy_addons' ),
@@ -250,32 +253,41 @@ class Review extends Base {
         );
 
         $this->add_responsive_control(
-            'width',
+            'image_width',
             [
                 'label' => __( 'Width', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'unit' => '%',
-                ],
-                'tablet_default' => [
-                    'unit' => '%',
-                ],
-                'mobile_default' => [
-                    'unit' => '%',
-                ],
-                'size_units' => [ '%', 'px' ],
+                'size_units' => [ 'px', '%' ],
                 'range' => [
-                    '%' => [
-                        'min' => 1,
-                        'max' => 100,
-                    ],
                     'px' => [
-                        'min' => 1,
-                        'max' => 1000,
+                        'min' => 70,
+                        'max' => 500,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-review-figure' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-figure' => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_height',
+            [
+                'label' => __( 'Height', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 70,
+                        'max' => 500,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-figure' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -597,7 +609,7 @@ class Review extends Base {
         <?php endif; ?>
 
         <div class="ha-review-body">
-            <?php if ( $settings['priority'] === 'review' ) : ?>
+            <?php if ( $settings['content_position'] === 'review' ) : ?>
                 <div <?php echo $this->get_render_attribute_string( 'review' ); ?>>
                     <p><?php echo wp_kses_data( $settings['review'] ); ?></p>
                 </div>
@@ -613,15 +625,15 @@ class Review extends Base {
                 <div <?php echo $this->get_render_attribute_string( 'role' ); ?>><?php echo esc_html( $settings['role' ] ); ?></div>
 
                 <div <?php echo $this->get_render_attribute_string( 'ratting' ); ?>>
-                    <?php if ( $settings['ratting_style'] === 'text' ) : ?>
-                        <?php echo esc_html( $settings['ratting'] ); ?> <i class="fa fa-star"></i>
+                    <?php if ( $settings['ratting_style'] === 'num' ) : ?>
+                        <?php echo esc_html( $settings['ratting']['size'] ); ?> <i class="fa fa-star"></i>
                     <?php else : ?>
-                        <span><span style="width:<?php echo ($settings['ratting'] * 20); ?>%"></span></span>
+                        <span><span style="width:<?php echo ($settings['ratting']['size'] * 20); ?>%"></span></span>
                     <?php endif; ?>
                  </div>
             </div>
 
-            <?php if ( $settings['priority'] === 'reviewer' ) : ?>
+            <?php if ( $settings['content_position'] === 'reviewer' ) : ?>
                 <div <?php echo $this->get_render_attribute_string( 'review' ); ?>>
                     <p><?php echo wp_kses_data( $settings['review'] ); ?></p>
                 </div>
@@ -659,7 +671,7 @@ class Review extends Base {
         <# } #>
 
         <div class="ha-review-body">
-            <# if ( settings.priority === 'review' ) { #>
+            <# if ( settings.content_position === 'review' ) { #>
                 <div {{{ view.getRenderAttributeString( 'review' ) }}}>
                     <p>{{{ settings.review }}}</p>
                 </div>
@@ -667,15 +679,15 @@ class Review extends Base {
             <div class="ha-review-header">
                 <{{ settings.name_tag }} {{{ view.getRenderAttributeString( 'reviewer' ) }}}>{{ settings.reviewer }}</{{ settings.name_tag }}>
                 <div {{{ view.getRenderAttributeString( 'role' ) }}}>{{ settings.role }}</div>
-                <# if ( settings.ratting_style === 'text' ) { #>
-                    <div class="ha-review-ratting ha-review-ratting--text">{{ settings.ratting }} <i class="fa fa-star"></i></div>
-                <# } else { var ratingPercent = ( settings.ratting * 20 ) #>
+                <# if ( settings.ratting_style === 'num' ) { #>
+                    <div class="ha-review-ratting ha-review-ratting--num">{{ settings.ratting.size }} <i class="fa fa-star"></i></div>
+                <# } else { var ratingPercent = ( settings.ratting.size * 20 ) #>
                     <div class="ha-review-ratting ha-review-ratting--star">
                         <span><span style="width:{{ ratingPercent }}%"></span></span>
                     </div>
                 <# } #>
             </div>
-            <# if ( settings.priority === 'reviewer' ) { #>
+            <# if ( settings.content_position === 'reviewer' ) { #>
                 <div {{{ view.getRenderAttributeString( 'review' ) }}}>
                     <p>{{{ settings.review }}}</p>
                 </div>

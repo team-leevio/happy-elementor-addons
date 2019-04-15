@@ -4,14 +4,13 @@
   }
 
   &-figure {
-    display: inline-block;
     margin: 0;
-    min-width: 70px;
-    max-width: 100%;
-    width: 70px;
 
-    img {
+    > img {
       border-radius: 50%;
+      vertical-align: bottom;
+      height: 100%;
+      width: 100%;
     }
   }
 
@@ -28,7 +27,7 @@
     margin-bottom: .5rem;
   }
 
-  &-ratting--text {
+  &-ratting--num {
     font-size: 12px;
     background-color: #287dfe;
     color: #fff;
@@ -88,6 +87,12 @@
     @include widgetContainer {
       padding: 2rem;
     }
+
+    .ha-review-figure {
+      display: inline-block;
+      width: 70px;
+      height: 70px;
+    }
   }
 
   &--left,
@@ -95,18 +100,18 @@
     @include widgetContainer {
       display: flex;
       flex-direction: row;
-      align-items: center;
       padding-left: 2rem;
+      align-items: center;
     }
 
     .ha-review {
       &-figure {
-        min-width: 150px;
-        width: 150px;
+        flex: 0 0 150px;
+        max-width: 150px;
+        height: 150px;
       }
 
       &-body {
-        width: 80%;
         padding: 2rem;
 
         > :first-child {

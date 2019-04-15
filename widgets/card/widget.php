@@ -344,7 +344,6 @@ class Card extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-card-figure' => 'height: {{SIZE}}{{UNIT}};',
                 ],
-                'description' => __( 'Default unit is px', 'happy_addons' )
             ]
         );
 
