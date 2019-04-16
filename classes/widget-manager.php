@@ -44,7 +44,9 @@ class Widget_Manager {
             'justified-gallery',
             'image-grid',
             'slider',
-            'carousel'
+            'carousel',
+            'adcard',
+            'progressbars',
         ];
 
         foreach ( $widgets as $widget ) {

@@ -1,0 +1,73 @@
+.ha-progressbars {
+  @include widgetContainer {
+    padding-top: 1px;
+  }
+}
+
+.ha-progressbar {
+  display: flex;
+  font-size: .75rem;
+  background-color: #e9ecef;
+
+  &--outside,
+  &--inside {
+    .ha-progressbar-info {
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .ha-progressbar-percent {
+      float: right;
+    }
+  }
+
+  &--outside {
+    height: 2px;
+
+    .ha-progressbar-completed {
+      position: relative;
+    }
+
+    .ha-progressbar-info {
+      position: absolute;
+      width: 100%;
+      top: -25px;
+      color: #242424;
+    }
+  }
+
+  &--inside {
+    height: 30px;
+    overflow: hidden;
+    border-radius: .3rem;
+
+    .ha-progressbar-info {
+      padding-right: 1rem;
+      padding-left: 1rem;
+      color: #fff;
+    }
+  }
+
+  &-completed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #007bff;
+    transition: width .6s ease;
+  }
+
+  &--outside {
+    margin-top: 40px;
+  }
+
+  &--inside:not(:first-child) {
+    margin-top: 20px;
+  }
+
+  .elementor-inline-editing {
+    min-width: 100px;
+  }
+}
