@@ -748,6 +748,3 @@ span .ha-review-ratting--star:before,
 .ha-progressbar--inside:not(:first-child) {
 	margin-top: 20px;
 }
-.ha-progressbar .elementor-inline-editing {
-	min-width: 100px;
-}

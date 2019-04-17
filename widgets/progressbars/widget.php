@@ -126,24 +126,24 @@ class ProgressBars extends Base {
         );
 
         $repeater->add_control(
-            'bg_color',
-            [
-                'label' => __( 'Background Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}}' => 'background-color: {{VALUE}}',
-                ],
-                'condition' => ['customized' => 'yes']
-            ]
-        );
-
-        $repeater->add_control(
             'completed_color',
             [
                 'label' => __( 'Completed Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} {{CURRENT_ITEM}} .ha-progressbar-completed' => 'background-color: {{VALUE}}',
+                ],
+                'condition' => ['customized' => 'yes']
+            ]
+        );
+
+        $repeater->add_control(
+            'uncompleted_color',
+            [
+                'label' => __( 'Uncompleted Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}}' => 'background-color: {{VALUE}}',
                 ],
                 'condition' => ['customized' => 'yes']
             ]
@@ -264,23 +264,23 @@ class ProgressBars extends Base {
         );
 
         $this->add_control(
-            'bg_color',
-            [
-                'label' => __( 'Background Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-progressbar' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_control(
             'completed_color',
             [
                 'label' => __( 'Completed Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-progressbar-completed' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'uncompleted_color',
+            [
+                'label' => __( 'Uncompleted Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-progressbar' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
