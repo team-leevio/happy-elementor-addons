@@ -143,7 +143,7 @@ class ProgressBars extends Base {
                 'label' => __( 'Uncompleted Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}}' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}}.ha-progressbar' => 'background-color: {{VALUE}}',
                 ],
                 'condition' => ['customized' => 'yes']
             ]
