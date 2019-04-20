@@ -56,6 +56,8 @@ class Widget_Manager {
             $class_name = 'Happy_Addons\Elementor\Widget\\' . $class_name;
             Elementor::instance()->widgets_manager->register_widget_type( new $class_name() );
         }
+
+
     }
 
 }

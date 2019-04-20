@@ -204,7 +204,6 @@ class Image_Compare extends Base {
             ]
         );
 
-
         $this->end_controls_section();
     }
 
@@ -214,27 +213,6 @@ class Image_Compare extends Base {
             [
                 'label' => __( 'Handle', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_control(
-            'handle_width',
-            [
-                'label' => __( 'Handle Bar Width', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
-                'range' => [
-                    'px' => [
-                        'min' => 2,
-                        'max' => 50,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .twentytwenty-handle:before, {{WRAPPER}} .twentytwenty-handle:after' =>
-                        'width: {{SIZE}}{{UNIT}};'
-                        . 'margin-left: calc(-0px - {{SIZE}}{{UNIT}} / 2);',
-                    '{{WRAPPER}} .twentytwenty-handle' => 'border-width: {{SIZE}}{{UNIT}};',
-                ],
             ]
         );
 
@@ -259,6 +237,273 @@ class Image_Compare extends Base {
                 ],
             ]
         );
+
+        $this->start_controls_tabs( '_tab_handle' );
+        $this->start_controls_tab(
+            '_tab_handle_bar',
+            [
+                'label' => __( 'Bar', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_responsive_control(
+            'bar_width',
+            [
+                'label' => __( 'Width', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 2,
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-handle:before, {{WRAPPER}} .twentytwenty-handle:after' =>
+                        'width: {{SIZE}}{{UNIT}};'
+                        . 'margin-left: calc(-0px - {{SIZE}}{{UNIT}} / 2);',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            '_tab_handle_arrow',
+            [
+                'label' => __( 'Arrow', 'happy_addons' ),
+            ]
+        );
+        $this->add_responsive_control(
+            'arrow_box_width',
+            [
+                'label' => __( 'Box Width', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 20,
+                        'max' => 250,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-handle' => 'width: {{SIZE}}{{UNIT}}; margin-left: calc(-1 * ({{SIZE}}{{UNIT}} / 2));',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'arrow_box_height',
+            [
+                'label' => __( 'Box Height', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 20,
+                        'max' => 250,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-handle' => 'height: {{SIZE}}{{UNIT}}; margin-top: calc(-1 * ({{SIZE}}{{UNIT}} / 2));',
+                    '{{WRAPPER}} .twentytwenty-handle:before' => 'margin-bottom: calc(({{SIZE}}{{UNIT}} / 2) + 2px);',
+                    '{{WRAPPER}} .twentytwenty-handle:after' => 'margin-top: calc(({{SIZE}}{{UNIT}} / 2) + 2px);',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'box_border',
+                'selector' => '{{WRAPPER}} .twentytwenty-handle',
+                'exclude' => [
+                     'color'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'box_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-handle' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_label_style',
+            [
+                'label' => __( 'Label', 'happy_addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'label_padding',
+            [
+                'label' => __( 'Padding', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-after-label:before' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'label_color',
+            [
+                'label' => __( 'Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-after-label:before' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'label_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-after-label:before' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'label_box_shadow',
+                'selector' => '{{WRAPPER}} .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-after-label:before'
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'label_typography',
+                'label' => __( 'Typography', 'happy_addons' ),
+                'selector' => '{{WRAPPER}} .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-after-label:before',
+            ]
+        );
+
+        $this->start_controls_tabs( '_tab_style_label' );
+        $this->start_controls_tab(
+            '_tab_style_before',
+            [
+                'label' => __( 'Before', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_responsive_control(
+            'label_before_offset_x',
+            [
+                'label' => __( 'Offset X', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                     '{{WRAPPER}} .twentytwenty-before-label:before' => 'left: {{SIZE}}{{UNIT}}',
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'label_before_offset_y',
+            [
+                'label' => __( 'Offset Y', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-before-label:before' => 'top: {{SIZE}}{{UNIT}}',
+                ]
+            ]
+        );
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            '_tab_style_after',
+            [
+                'label' => __( 'After', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_responsive_control(
+            'label_after_offset_x',
+            [
+                'label' => __( 'Offset X', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-after-label:before' => 'right: {{SIZE}}{{UNIT}}',
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'label_after_offset_y',
+            [
+                'label' => __( 'Offset Y', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-after-label:before' => 'top: {{SIZE}}{{UNIT}}',
+                ]
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
     }
 
     protected static function get_data_settings( $settings ) {
