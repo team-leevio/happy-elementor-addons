@@ -55,10 +55,18 @@ class Image_Compare extends Base {
 			]
 		);
 
+        $this->start_controls_tabs( '_tab_images' );
+        $this->start_controls_tab(
+            '_tab_before_image',
+            [
+                'label' => __( 'Before', 'happy_addons' ),
+            ]
+        );
+
         $this->add_control(
             'before_image',
             [
-                'label' => __( 'Before Image', 'happy_addons' ),
+                'label' => __( 'Image', 'happy_addons' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -67,22 +75,30 @@ class Image_Compare extends Base {
         );
 
         $this->add_control(
-            'before_text',
+            'before_label',
             [
-                'label' => __( 'Before Text', 'happy_addons' ),
+                'label' => __( 'Label', 'happy_addons' ),
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Before', 'happy_addons' ),
-                'placeholder' => __( 'Type before image text', 'happy_addons' ),
-                'description' => __( 'Text will not be shown if Hide Overlay is enabled in Settings', 'happy_addons' ),
+                'placeholder' => __( 'Type before image label', 'happy_addons' ),
+                'description' => __( 'Label will not be shown if Hide Overlay is enabled in Settings', 'happy_addons' ),
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            '_tab_after_image',
+            [
+                'label' => __( 'After', 'happy_addons' ),
             ]
         );
 
         $this->add_control(
             'after_image',
             [
-                'label' => __( 'After Image', 'happy_addons' ),
+                'label' => __( 'Image', 'happy_addons' ),
                 'type' => Controls_Manager::MEDIA,
-                'separator' => 'before',
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
@@ -90,13 +106,25 @@ class Image_Compare extends Base {
         );
 
         $this->add_control(
-            'after_text',
+            'after_label',
             [
-                'label' => __( 'After Text', 'happy_addons' ),
+                'label' => __( 'Label', 'happy_addons' ),
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'After', 'happy_addons' ),
-                'placeholder' => __( 'Type after image text', 'happy_addons' ),
-                'description' => __( 'Text will not be shown if Hide Overlay is enabled in Settings', 'happy_addons' ),
+                'placeholder' => __( 'Type after image label', 'happy_addons' ),
+                'description' => __( 'Label will not be shown if Hide Overlay is enabled in Settings', 'happy_addons' ),
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->add_group_control(
+            Group_Control_Image_Size::get_type(),
+            [
+                'name' => 'thumbnail',
+                'default' => 'large',
+                'separator' => 'before',
             ]
         );
 
@@ -110,21 +138,11 @@ class Image_Compare extends Base {
             ]
         );
 
-        $this->add_group_control(
-            Group_Control_Image_Size::get_type(),
-            [
-                'name' => 'thumbnail',
-                'default' => 'large',
-                'separator' => 'none',
-            ]
-        );
-
         $this->add_control(
             'offset',
             [
                 'label' => __( 'Visibility Ratio', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'separator' => 'before',
                 'size_units' => ['px'],
                 'range' => [
                     'px' => [
@@ -136,7 +154,6 @@ class Image_Compare extends Base {
                 'default' => [
                     'size' => .5,
                 ],
-                'description' => __( 'Set how much of the before image is visible when the page loads', 'happy_addons' ),
             ]
         );
 
@@ -157,7 +174,6 @@ class Image_Compare extends Base {
                     ],
                 ],
                 'default' => 'horizontal',
-                'description' => __( 'Orientation of the before and after images', 'happy_addons' ),
             ]
         );
 
@@ -169,51 +185,80 @@ class Image_Compare extends Base {
                 'label_on' => __( 'Yes', 'happy_addons' ),
                 'label_off' => __( 'No', 'happy_addons' ),
                 'return_value' => 'yes',
-                'description' => __( 'Do not show the overlay with before and after', 'happy_addons' )
+                'description' => __( 'Hide overlay with before and after label', 'happy_addons' )
             ]
         );
 
         $this->add_control(
-            'move_on_hover',
+            'move_handle',
             [
-                'label' => __( 'Move On Hover', 'happy_addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
-                'return_value' => 'yes',
-                'description' => __( 'Move slider on mouse hover', 'happy_addons' )
+                'label' => __( 'Move Handle', 'happy_addons' ),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'on_swipe',
+                'options' => [
+                    'on_hover' => __( 'On Hover', 'happy_addons' ),
+                    'on_click' => __( 'On Click', 'happy_addons' ),
+                    'on_swipe' => __( 'On Swipe', 'happy_addons' ),
+                ],
+                'description' => __( 'Select handle movement type', 'happy_addons' )
             ]
         );
 
-        $this->add_control(
-            'move_handle_only',
-            [
-                'label' => __( 'Move Handle Only', 'happy_addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
-                'return_value' => 'yes',
-                'default' => 'yes',
-                'description' => __( 'Swipe anywhere on the image to control slider movement', 'happy_addons' )
-            ]
-        );
-
-        $this->add_control(
-            'click_to_move',
-            [
-                'label' => __( 'Click To Move', 'happy_addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
-                'description' => __( 'Click (or tap) anywhere on the image to move the slider to that location', 'happy_addons' )
-            ]
-        );
 
         $this->end_controls_section();
     }
 
     protected function register_style_controls() {
+        $this->start_controls_section(
+            '_section_handle_style',
+            [
+                'label' => __( 'Handle', 'happy_addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
 
+        $this->add_control(
+            'handle_width',
+            [
+                'label' => __( 'Handle Bar Width', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 2,
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-handle:before, {{WRAPPER}} .twentytwenty-handle:after' =>
+                        'width: {{SIZE}}{{UNIT}};'
+                        . 'margin-left: calc(-0px - {{SIZE}}{{UNIT}} / 2);',
+                    '{{WRAPPER}} .twentytwenty-handle' => 'border-width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'handle_color',
+            [
+                'label' => __( 'Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-handle:before, {{WRAPPER}} .twentytwenty-handle:after' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .twentytwenty-handle' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} .twentytwenty-left-arrow' => 'border-right-color: {{VALUE}}',
+                    '{{WRAPPER}} .twentytwenty-right-arrow' => 'border-left-color: {{VALUE}}',
+                    '{{WRAPPER}} .twentytwenty-handle:before' =>
+                        '-webkit-box-shadow: 0 3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);'
+                        . '-moz-box-shadow: 0 3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);'
+                        . 'box-shadow: 0 3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);',
+                    '{{WRAPPER}} .twentytwenty-handle:after' =>
+                        '-webkit-box-shadow: 0 -3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);'
+                        . '-moz-box-shadow: 0 -3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);'
+                        . 'box-shadow: 0 -3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);',
+                ],
+            ]
+        );
     }
 
     protected static function get_data_settings( $settings ) {
@@ -221,11 +266,9 @@ class Image_Compare extends Base {
             'offset.size' => 'default_offset_pct.float',
             'orientation' => 'orientation.str',
             'hide_overlay' => 'no_overlay.bool',
-            'move_on_hover' => 'move_slider_on_hover.bool',
-            'move_handle_only' => 'move_with_handle_only.bool',
-            'click_to_move' => 'click_to_move.bool',
-            'before_text' => 'before_label.str',
-            'after_text' => 'after_label.str',
+            'move_handle' => 'move_handle.str',
+            'before_label' => 'before_label.str',
+            'after_label' => 'after_label.str',
         ];
         return ha_prepare_data_prop_settings( $settings, $field_map );
     }
@@ -273,11 +316,9 @@ class Image_Compare extends Base {
             'offset.size': 'default_offset_pct',
             'orientation': 'orientation',
             'hide_overlay': 'no_overlay',
-            'move_on_hover': 'move_slider_on_hover',
-            'move_handle_only': 'move_with_handle_only',
-            'click_to_move': 'click_to_move',
-            'before_text': 'before_label',
-            'after_text': 'after_label',
+            'move_handle': 'move_handle',
+            'before_label': 'before_label',
+            'after_label': 'after_label',
         };
 
         var data = {};

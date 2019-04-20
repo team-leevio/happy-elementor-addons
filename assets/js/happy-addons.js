@@ -32,8 +32,18 @@ window.Happy = window.Happy || {};
     }
 
     Happy.initImageComparison = function($scope) {
-        var $item = $scope.find('.hajs-image-comparison');
-        $item.twentytwenty($item.getHappySettings());
+        var $item = $scope.find('.hajs-image-comparison'),
+            settings = $item.getHappySettings(),
+            fieldMap = {
+                on_hover: 'move_slider_on_hover',
+                on_swipe: 'move_with_handle_only',
+                on_click: 'click_to_move'
+            };
+
+        settings[fieldMap[settings.move_handle || 'on_swipe']] = true;
+        delete settings.move_handle;
+
+        $item.twentytwenty(settings);
     }
 
     Happy.initJustifiedGallery = function($scope) {
