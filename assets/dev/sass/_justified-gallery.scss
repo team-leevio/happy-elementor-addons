@@ -1,10 +1,9 @@
 .ha-justified-gallery-item {
   transition: all .3s;
-  overflow: hidden;
-  display: block;
   border-radius: 6px;
 
   > img {
+    width: 100%;
     transition: all 0.25s !important;
   }
 
@@ -27,7 +26,7 @@
 .justified-gallery > figure > .caption {
   bottom: -100px !important;
   transition: all 0.25s !important;
-  animation: smoothScroll .3s forwards;
+  animation: haSmoothReveal .3s forwards;
 }
 
 .justified-gallery > a > .caption.caption-visible,
@@ -36,19 +35,7 @@
   bottom: 0 !important;
 }
 
-@-webkit-keyframes smoothScroll {
-  0% {
-    -webkit-transform: translateY(100px);
-    transform: translateY(100px)
-  }
-
-  to {
-    -webkit-transform: translateY(0);
-    transform: translateY(0)
-  }
-}
-
-@keyframes smoothScroll {
+@keyframes haSmoothReveal {
   0% {
     -webkit-transform: translateY(100px);
     transform: translateY(100px)

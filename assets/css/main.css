@@ -522,13 +522,12 @@ span .ha-review-ratting--star:before,
 }
 
 .ha-justified-gallery-item {
-	display: block;
-	overflow: hidden;
 	border-radius: 6px; 
 	-webkit-transition: all .3s;
 	        transition: all .3s;
 }
 .ha-justified-gallery-item > img {
+	width: 100%;
 	-webkit-transition: all .25s !important;
 	        transition: all .25s !important;
 }
@@ -550,8 +549,8 @@ span .ha-review-ratting--star:before,
 	bottom: -100px !important;
 	-webkit-transition: all .25s !important;
 	        transition: all .25s !important;
-	-webkit-animation: smoothScroll .3s forwards;
-	        animation: smoothScroll .3s forwards;
+	-webkit-animation: haSmoothReveal .3s forwards;
+	        animation: haSmoothReveal .3s forwards;
 }
 
 .justified-gallery > a > .caption.caption-visible,
@@ -560,7 +559,7 @@ span .ha-review-ratting--star:before,
 	bottom: 0 !important;
 }
 
-@-webkit-keyframes smoothScroll {
+@-webkit-keyframes haSmoothReveal {
 	0% {
 		-webkit-transform: translateY(100px);
 		        transform: translateY(100px);
@@ -571,7 +570,7 @@ span .ha-review-ratting--star:before,
 	}
 }
 
-@keyframes smoothScroll {
+@keyframes haSmoothReveal {
 	0% {
 		-webkit-transform: translateY(100px);
 		        transform: translateY(100px);

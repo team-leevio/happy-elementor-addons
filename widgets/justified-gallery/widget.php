@@ -80,7 +80,7 @@ class Justified_Gallery extends Base {
             [
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
-                'title_field' => '{{ filter }}',
+                'title_field' => 'Filter:: {{filter}}',
                 'default' => [
                     [
                         'filter' => __( 'Happy', 'happy_addons' ),
@@ -124,9 +124,9 @@ class Justified_Gallery extends Base {
         );
 
         $this->add_control(
-            'display_filter',
+            'show_filter',
             [
-                'label' => __( 'Display Filter?', 'happy_addons' ),
+                'label' => __( 'Show Filter?', 'happy_addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy_addons' ),
                 'label_off' => __( 'No', 'happy_addons' ),
@@ -136,26 +136,63 @@ class Justified_Gallery extends Base {
         );
 
         $this->add_control(
-            'display_caption',
+            'show_all_filter',
             [
-                'label' => __( 'Display Caption?', 'happy_addons' ),
+                'label' => __( 'Show Everything Filter?', 'happy_addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy_addons' ),
                 'label_off' => __( 'No', 'happy_addons' ),
                 'return_value' => 'yes',
-                'description' => __( 'Enable to display image caption', 'happy_addons' )
+                'default' => 'yes',
+                'description' => __( 'Enable to display everything filter', 'happy_addons' ),
+                'condition' => [
+                    'show_filter' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'all_filter_label',
+            [
+                'label' => __( 'Filter Label', 'happy_addons' ),
+                'type' => Controls_Manager::TEXT,
+                'default' => __( 'All', 'happy_addons' ),
+                'placeholder' => __( 'Type filter label', 'happy_addons' ),
+                'description' => __( 'Type everything filter label', 'happy_addons' ),
+                'condition' => [
+                    'show_all_filter' => 'yes',
+                    'show_filter' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'show_caption',
+            [
+                'label' => __( 'Show Caption?', 'happy_addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'happy_addons' ),
+                'label_off' => __( 'No', 'happy_addons' ),
+                'return_value' => 'yes',
+                'description' => __( 'Make sure to add image caption otherwise you will not see anything', 'happy_addons' )
             ]
         );
 
         $this->add_control(
             'row_height',
             [
-                'label' => __( 'Row Height', 'happy_addons' ),
-                'type' => Controls_Manager::NUMBER,
-                'default' => 150,
-                'min' => 50,
-                'max' => 300,
-                'step' => 1,
+                'label' => __( 'Height', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'default' => [
+                    'size' => 150,
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 50,
+                        'max' => 500,
+                    ],
+                ],
             ]
         );
 
@@ -163,11 +200,17 @@ class Justified_Gallery extends Base {
             'margins',
             [
                 'label' => __( 'Margins', 'happy_addons' ),
-                'type' => Controls_Manager::NUMBER,
-                'default' => 10,
-                'min' => 0,
-                'max' => 50,
-                'step' => 1,
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'default' => [
+                    'size' => 10,
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
             ]
         );
 
@@ -189,14 +232,294 @@ class Justified_Gallery extends Base {
     }
 
     protected function register_style_controls() {
+        $this->start_controls_section(
+            '_section_style_gallery',
+            [
+                'label' => __( 'Gallery', 'happy_addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
 
+        $this->start_controls_tabs( '_tab_style_gallery' );
+        $this->start_controls_tab(
+            '_tab_style_image',
+            [
+                'label' => __( 'Image', 'happy_addons' ),
+            ]
+        );
+        $this->add_responsive_control(
+            'image_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-justified-gallery-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'image_box_shadow',
+                'exclude' => [
+                    'box_shadow_position',
+                ],
+                'selector' => '{{WRAPPER}} .ha-justified-gallery-item'
+            ]
+        );
+        $this->end_controls_tab();
+        $this->start_controls_tab(
+            '_tab_style_caption',
+            [
+                'label' => __( 'Caption', 'happy_addons' ),
+            ]
+        );
+        $this->add_responsive_control(
+            'caption_padding',
+            [
+                'label' => __( 'Padding', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-justified-gallery-grid > a > .caption' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'caption_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-justified-gallery-grid > a > .caption' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'caption_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-justified-gallery-grid > a > .caption' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'caption_typography',
+                'label' => __( 'Typography', 'happy_addons' ),
+                'selector' => '{{WRAPPER}} .ha-justified-gallery-grid > a > .caption',
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_style_menu',
+            [
+                'label' => __( 'Filter Menu', 'happy_addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'menu_margin',
+            [
+                'label' => __( 'Menu Margin', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_align',
+            [
+                'label' => __( 'Button Align', 'happy_addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Left', 'happy_addons' ),
+                        'icon' => 'fa fa-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Center', 'happy_addons' ),
+                        'icon' => 'fa fa-align-center',
+                    ],
+                    'right' => [
+                        'title' => __( 'Right', 'happy_addons' ),
+                        'icon' => 'fa fa-align-right',
+                    ],
+                ],
+                'desktop_default' => 'left',
+                'toggle' => false,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_margin',
+            [
+                'label' => __( 'Button Margin', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter > li' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_padding',
+            [
+                'label' => __( 'Button Padding', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter > li > button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'button_border',
+                'selector' => '{{WRAPPER}} .ha-gallery-filter > li > button'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter > li > button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'button_box_shadow',
+                'exclude' => [
+                    'box_shadow_position',
+                ],
+                'selector' => '{{WRAPPER}} .ha-gallery-filter > li > button'
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'button_typography',
+                'label' => __( 'Typography', 'happy_addons' ),
+                'selector' => '{{WRAPPER}} .ha-gallery-filter > li > button',
+            ]
+        );
+
+        $this->start_controls_tabs( '_tab_style_button' );
+
+        $this->start_controls_tab(
+            '_tab_button_normal',
+            [
+                'label' => __( 'Normal', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'button_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter > li > button' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter > li > button' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            '_tab_button_hover',
+            [
+                'label' => __( 'Hover', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'button_hover_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_hover_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_hover_border_color',
+            [
+                'label' => __( 'Border Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'condition' => [
+                    'button_border_border!' => '',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
     }
 
     protected static function get_data_prop_settings( $settings ) {
         $field_map = [
-            'display_caption' => 'captions.bool',
-            'margins' => 'margins.int',
-            'row_height' => 'rowHeight.int',
+            'show_caption' => 'captions.bool',
+            'margins.size' => 'margins.int',
+            'row_height.size' => 'rowHeight.int',
             'last_row' => 'lastRow.str',
         ];
 
@@ -218,10 +541,10 @@ class Justified_Gallery extends Base {
                 $images = $gallery_item['images'];
                 $filter_class = '';
 
-                if ( $settings['display_filter'] === 'yes' && ! empty( $gallery_item['filter'] ) ) {
+                if ( $settings['show_filter'] === 'yes' && ! empty( $gallery_item['filter'] ) ) {
                     $filter_class = sanitize_title_with_dashes( $gallery_item['filter'] );
                     $navigation[] = sprintf(
-                        '<li><button type="button" data-filter="%1$s">%2$s</button></li>',
+                        '<li><button type="button" data-filter=".%1$s">%2$s</button></li>',
                         esc_attr( $filter_class ),
                         esc_html( $gallery_item['filter'] )
                         );
@@ -236,7 +559,7 @@ class Justified_Gallery extends Base {
                             '<a class="ha-justified-gallery-item %1$s" %2$s %3$s><img src="%4$s" alt=""></a>',
                             $filter_class,
                             $settings['enable_popup'] === 'yes' ? 'href="' . esc_url( wp_get_attachment_image_url( $image['id'], 'large' ) ) . '"' : '',
-                            $settings['display_caption'] === 'yes' ? 'title="' . esc_attr( wp_get_attachment_caption( $image['id'] ) ) . '"' : '',
+                            $settings['show_caption'] === 'yes' ? 'title="' . esc_attr( wp_get_attachment_caption( $image['id'] ) ) . '"' : '',
                             esc_url( $image_url )
                         );
                     else :
@@ -256,7 +579,8 @@ class Justified_Gallery extends Base {
             $this->add_render_attribute( 'container', 'data-happy-settings', self::get_data_prop_settings( $settings ) );
 
             if ( $settings['display_filter'] === 'yes' ) :
-                echo '<ul class="ha-gallery-filter hajs-gallery-filter">';
+                echo '<ul class="ha-gallery-filter hajs-gallery-filter ha-text--' . $settings['button_align'] . '">';
+                    echo $settings['show_all_filter'] === 'yes' ? '<li class="ha-filter-active"><button type="button" data-filter="*">' . $settings['all_filter_label'] . '</button></li>' : '';
                     echo implode( "\n", $navigation );
                 echo '</ul>';
             endif;

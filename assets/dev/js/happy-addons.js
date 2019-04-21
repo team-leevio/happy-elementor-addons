@@ -16,8 +16,8 @@ window.Happy = window.Happy || {};
         return this.data('happy-settings');
     }
 
-    function initFilterable(filterFn) {
-        var $filterable = this.find('.hajs-gallery-filter');
+    function initFilterable($scope, filterFn) {
+        var $filterable = $scope.find('.hajs-gallery-filter');
         if ($filterable.length) {
             $filterable.on('click', 'button', function() {
                 var $current = $(this);
@@ -55,9 +55,9 @@ window.Happy = window.Happy || {};
             margins : 10,
         }, $item.getHappySettings()));
 
-        initFilterable.call($scope, function(filter) {
+        initFilterable($scope, function(filter) {
             $item.justifiedGallery({
-                filter: '.' + filter
+                filter: filter
             });
         });
     }
@@ -70,9 +70,9 @@ window.Happy = window.Happy || {};
             filter: '*'
         });
 
-        initFilterable.call($scope, function(filter) {
+        initFilterable($scope, function(filter) {
             $item.isotope({
-                filter: '.' + filter
+                filter: filter
             });
         });
     }
