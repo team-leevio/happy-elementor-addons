@@ -602,7 +602,7 @@ class Card extends Base {
             [
                 'label' => __( 'Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
+                'size_units' => ['px'],
                 'selectors' => [
                     '{{WRAPPER}} .ha-card-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
@@ -643,7 +643,7 @@ class Card extends Base {
             [
                 'label' => __( 'Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
+                'size_units' => ['px'],
                 'selectors' => [
                     '{{WRAPPER}} .ha-card-text' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],

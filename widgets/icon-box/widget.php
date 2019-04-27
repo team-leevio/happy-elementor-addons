@@ -65,10 +65,9 @@ class Icon_Box extends Base {
             'title',
             [
                 'label' => __( 'Title', 'happy_addons' ),
-                'label_block' => true,
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Default title', 'happy_addons' ),
-                'placeholder' => __( 'Type your blurb title', 'happy_addons' ),
+                'placeholder' => __( 'Type blurb title', 'happy_addons' ),
             ]
         );
 
@@ -76,14 +75,32 @@ class Icon_Box extends Base {
             'title_tag',
             [
                 'label' => __( 'Title HTML Tag', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
+                'type' => Controls_Manager::CHOOSE,
                 'options' => [
-                    'h1'  => __( 'H1', 'happy_addons' ),
-                    'h2'  => __( 'H2', 'happy_addons' ),
-                    'h3'  => __( 'H3', 'happy_addons' ),
-                    'h4'  => __( 'H4', 'happy_addons' ),
-                    'h5'  => __( 'H5', 'happy_addons' ),
-                    'h6'  => __( 'H6', 'happy_addons' ),
+                    'h1'  => [
+                        'title' => __( 'H1', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h1'
+                    ],
+                    'h2'  => [
+                        'title' => __( 'H2', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h2'
+                    ],
+                    'h3'  => [
+                        'title' => __( 'H3', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h3'
+                    ],
+                    'h4'  => [
+                        'title' => __( 'H4', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h4'
+                    ],
+                    'h5'  => [
+                        'title' => __( 'H5', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h5'
+                    ],
+                    'h6'  => [
+                        'title' => __( 'H6', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h6'
+                    ]
                 ],
                 'default' => 'h2',
             ]
@@ -108,22 +125,21 @@ class Icon_Box extends Base {
                         'icon' => 'fa fa-align-right',
                     ],
                 ],
-                'desktop_default' => 'left',
-                'toggle' => false,
-                'devices' => [ 'desktop', 'tablet', 'mobile' ],
-                'prefix_class' => 'ha-text--%s'
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}}' => 'text-align: {{VALUE}}'
+                ]
             ]
         );
 
         $this->add_control(
             'has_link',
             [
-                'label' => __( 'Add Link?', 'plugin-domain' ),
+                'label' => __( 'Want To Add Link?', 'plugin-domain' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'your-plugin' ),
                 'label_off' => __( 'No', 'your-plugin' ),
                 'return_value' => 'yes',
-                'default' => 'no',
             ]
         );
 
@@ -147,7 +163,7 @@ class Icon_Box extends Base {
 
     protected function register_style_controls() {
         $this->start_controls_section(
-            '_section_icon_style',
+            '_section_style_icon',
             [
                 'label' => __( 'Icon', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
@@ -159,24 +175,11 @@ class Icon_Box extends Base {
             [
                 'label' => __( 'Size', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'unit' => 'px',
-                ],
-                'tablet_default' => [
-                    'unit' => 'px',
-                ],
-                'mobile_default' => [
-                    'unit' => 'px',
-                ],
-                'size_units' => [ 'px', 'em' ],
+                'size_units' => [ 'px' ],
                 'range' => [
                     'px' => [
-                        'min' => 1,
-                        'max' => 250,
-                    ],
-                    'em' => [
-                        'min' => 1,
-                        'max' => 20,
+                        'min' => 10,
+                        'max' => 300,
                     ],
                 ],
                 'selectors' => [
@@ -185,46 +188,10 @@ class Icon_Box extends Base {
             ]
         );
 
-        $this->add_responsive_control(
-            'icon_width',
-            [
-                'label' => __( 'Width', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
-                'range' => [
-                    'px' => [
-                        'min' => 1,
-                        'max' => 400,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-icon-box-icon' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'icon_height',
-            [
-                'label' => __( 'Height', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
-                'range' => [
-                    'px' => [
-                        'min' => 1,
-                        'max' => 400,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-icon-box-icon' => 'height: {{SIZE}}{{UNIT}}; line-height: calc({{SIZE}}{{UNIT}} - 5px);',
-                ],
-            ]
-        );
-
         $this->add_control(
             'icon_rotate',
             [
-                'label' => __( 'Rotate', 'happy_addons' ),
+                'label' => __( 'Rotate (degree)', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'deg' ],
                 'default' => [
@@ -240,18 +207,17 @@ class Icon_Box extends Base {
                     '{{WRAPPER}} .ha-icon-box-icon' => '-webkit-transform: rotate({{SIZE}}{{UNIT}}); transform: rotate({{SIZE}}{{UNIT}});',
                     '{{WRAPPER}} .ha-icon-box-icon > i' => '-webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
                 ],
-                'description' => __( 'Default unit is deg', 'happy_addons' ),
             ]
         );
 
         $this->add_responsive_control(
-            'icon_margin',
+            'icon_padding',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Padding', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-icon-box-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-icon-box-icon' => 'padding: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -312,7 +278,7 @@ class Icon_Box extends Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'content_style',
+            '_section_style_title',
             [
                 'label' => __( 'Title', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
@@ -320,13 +286,13 @@ class Icon_Box extends Base {
         );
 
         $this->add_responsive_control(
-            'title_margin',
+            'title_spacing',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-icon-box-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-icon-box-title' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );

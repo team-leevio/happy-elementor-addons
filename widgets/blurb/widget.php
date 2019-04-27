@@ -53,7 +53,7 @@ class Blurb extends Base {
 		$this->start_controls_section(
 			'_section_media',
 			[
-				'label' => __( 'Media (Icon/Image)', 'happy_addons' ),
+				'label' => __( 'Icon / Image', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -66,11 +66,11 @@ class Blurb extends Base {
                 'options' => [
                     'icon' => [
                         'title' => __( 'Icon', 'happy_addons' ),
-                        'icon' => 'fa fa-font-awesome',
+                        'icon' => 'eicon-icon-box',
                     ],
                     'image' => [
                         'title' => __( 'Image', 'happy_addons' ),
-                        'icon' => 'fa fa-image',
+                        'icon' => 'eicon-image-box',
                     ],
                 ],
 				'default' => 'icon',
@@ -160,14 +160,32 @@ class Blurb extends Base {
             'title_tag',
             [
                 'label' => __( 'Title HTML Tag', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
+                'type' => Controls_Manager::CHOOSE,
                 'options' => [
-                    'h1'  => __( 'H1', 'happy_addons' ),
-                    'h2'  => __( 'H2', 'happy_addons' ),
-                    'h3'  => __( 'H3', 'happy_addons' ),
-                    'h4'  => __( 'H4', 'happy_addons' ),
-                    'h5'  => __( 'H5', 'happy_addons' ),
-                    'h6'  => __( 'H6', 'happy_addons' ),
+                    'h1'  => [
+                        'title' => __( 'H1', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h1'
+                    ],
+                    'h2'  => [
+                        'title' => __( 'H2', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h2'
+                    ],
+                    'h3'  => [
+                        'title' => __( 'H3', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h3'
+                    ],
+                    'h4'  => [
+                        'title' => __( 'H4', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h4'
+                    ],
+                    'h5'  => [
+                        'title' => __( 'H5', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h5'
+                    ],
+                    'h6'  => [
+                        'title' => __( 'H6', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h6'
+                    ]
                 ],
                 'default' => 'h2',
             ]
@@ -192,10 +210,10 @@ class Blurb extends Base {
                         'icon' => 'fa fa-align-right',
                     ],
                 ],
-                'desktop_default' => 'left',
-                'toggle' => false,
-                'devices' => [ 'desktop', 'tablet', 'mobile' ],
-                'prefix_class' => 'ha-text--%s'
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}}' => 'text-align: {{VALUE}}'
+                ]
             ]
         );
 
@@ -241,7 +259,7 @@ class Blurb extends Base {
         $this->start_controls_section(
             '_section_media_style',
             [
-                'label' => __( 'Media (Icon/Image)', 'happy_addons' ),
+                'label' => __( 'Icon / Image', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -251,15 +269,11 @@ class Blurb extends Base {
             [
                 'label' => __( 'Size', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px', 'em' ],
+                'size_units' => [ 'px' ],
                 'range' => [
                     'px' => [
-                        'min' => 1,
-                        'max' => 250,
-                    ],
-                    'em' => [
-                        'min' => 1,
-                        'max' => 20,
+                        'min' => 10,
+                        'max' => 300,
                     ],
                 ],
                 'selectors' => [
@@ -272,7 +286,7 @@ class Blurb extends Base {
         );
 
         $this->add_responsive_control(
-            'media_width',
+            'image_width',
             [
                 'label' => __( 'Width', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
@@ -280,7 +294,7 @@ class Blurb extends Base {
                 'range' => [
                     'px' => [
                         'min' => 1,
-                        'max' => 250,
+                        'max' => 400,
                     ],
                     '%' => [
                         'min' => 1,
@@ -288,13 +302,16 @@ class Blurb extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-blurb-figure--image' => 'width: {{SIZE}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'type' => 'image'
+                ]
             ]
         );
 
         $this->add_responsive_control(
-            'media_height',
+            'image_height',
             [
                 'label' => __( 'Height', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
@@ -302,13 +319,15 @@ class Blurb extends Base {
                 'range' => [
                     'px' => [
                         'min' => 1,
-                        'max' => 250,
+                        'max' => 400,
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure' => 'height: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-blurb-figure--icon' => 'line-height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-blurb-figure--image' => 'height: {{SIZE}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'type' => 'image'
+                ]
             ]
         );
 
@@ -328,7 +347,7 @@ class Blurb extends Base {
         $this->add_responsive_control(
             'media_offset_x',
             [
-                'label' => __( 'Offset X', 'happy_addons' ),
+                'label' => __( 'Offset Left', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -350,7 +369,7 @@ class Blurb extends Base {
         $this->add_responsive_control(
             'media_offset_y',
             [
-                'label' => __( 'Offset Y', 'happy_addons' ),
+                'label' => __( 'Offset Top', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -374,13 +393,13 @@ class Blurb extends Base {
         $this->end_popover();
 
         $this->add_responsive_control(
-            'media_margin',
+            'media_spacing',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
+                    '{{WRAPPER}} .ha-blurb-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
                 ],
             ]
         );
@@ -389,14 +408,11 @@ class Blurb extends Base {
             'media_padding',
             [
                 'label' => __( 'Padding', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure--image > img' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-blurb-figure--image > img, {{WRAPPER}} .ha-blurb-figure--icon' => 'padding: {{SIZE}}{{UNIT}};',
                 ],
-                'condition' => [
-                    'type' => 'image'
-                ]
             ]
         );
 
@@ -492,13 +508,13 @@ class Blurb extends Base {
         );
 
         $this->add_responsive_control(
-            'title_margin',
+            'title_spacing',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-blurb-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -533,13 +549,13 @@ class Blurb extends Base {
         );
 
         $this->add_responsive_control(
-            'description_margin',
+            'description_spacing',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-text' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-blurb-text' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
