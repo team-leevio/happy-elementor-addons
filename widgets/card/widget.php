@@ -167,7 +167,7 @@ class Card extends Base {
         $this->add_control(
             'title_tag',
             [
-                'label' => __( 'Title Tag', 'happy_addons' ),
+                'label' => __( 'Title HTML Tag', 'happy_addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'h1'  => [
@@ -218,10 +218,10 @@ class Card extends Base {
                         'icon' => 'fa fa-align-right',
                     ],
                 ],
-                'desktop_default' => 'left',
-                'toggle' => false,
-                'devices' => [ 'desktop', 'tablet', 'mobile' ],
-                'prefix_class' => 'ha-text--%s'
+                'toggle' => true,
+                'selectors' => [
+                        '{{WRAPPER}}' => 'text-align: {{VALUE}}'
+                ]
             ]
         );
 
@@ -320,16 +320,7 @@ class Card extends Base {
             [
                 'label' => __( 'Width', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'unit' => '%',
-                ],
-                'tablet_default' => [
-                    'unit' => '%',
-                ],
-                'mobile_default' => [
-                    'unit' => '%',
-                ],
-                'size_units' => [ '%', 'px' ],
+                'size_units' => [ 'px', '%' ],
                 'range' => [
                     '%' => [
                         'min' => 1,
