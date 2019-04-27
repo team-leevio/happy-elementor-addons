@@ -312,22 +312,66 @@ class Blurb extends Base {
             ]
         );
 
-        $this->add_responsive_control(
-            'media_offset',
+        $this->add_control(
+            'offset_toggle',
             [
-                'label' => __( 'Offset', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
-                'allowed_dimensions' => ['top', 'left'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure' => '-ms-transform: translate({{LEFT}}{{UNIT}}, {{TOP}}{{UNIT}}); -webkit-transform: translate({{LEFT}}{{UNIT}}, {{TOP}}{{UNIT}}); transform: translate({{LEFT}}{{UNIT}}, {{TOP}}{{UNIT}});',
-                    '{{WRAPPER}} .ha-blurb-body' => 'margin-top: {{TOP}}{{UNIT}};',
-                ],
-                'default' => [
-                    'isLinked' => false,
-                ]
+                'label' => __( 'Offset', 'plugin-name' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'label_off' => __( 'None', 'your-plugin' ),
+                'label_on' => __( 'Custom', 'your-plugin' ),
+                'return_value' => 'yes',
             ]
         );
+
+        $this->start_popover();
+
+        $this->add_responsive_control(
+            'media_offset_x',
+            [
+                'label' => __( 'Offset X', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'condition' => [
+                    'offset_toggle' => 'yes'
+                ],
+                'default' => [
+                    'size' => 1
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                    ],
+                ],
+                'render_type' => 'ui'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'media_offset_y',
+            [
+                'label' => __( 'Offset Y', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'condition' => [
+                    'offset_toggle' => 'yes'
+                ],
+                'default' => [
+                    'size' => 1
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-blurb-figure' => '-ms-transform: translate({{media_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); -webkit-transform: translate({{media_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); transform: translate({{media_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}} .ha-blurb-body' => 'margin-top: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->end_popover();
 
         $this->add_responsive_control(
             'media_margin',

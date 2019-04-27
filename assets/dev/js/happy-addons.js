@@ -67,7 +67,12 @@ window.Happy = window.Happy || {};
 
         $item.isotope({
             itemSelector: '.ha-image-grid-item',
-            filter: '*'
+            filter: '*',
+            percentPosition: true
+        });
+
+        $item.imagesLoaded().progress(function( instance, image ) {
+            image.isLoaded && $item.isotope('layout');
         });
 
         initFilterable($scope, function(filter) {

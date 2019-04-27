@@ -168,7 +168,8 @@ class Base {
      */
     public function register_controls( $controls_manager ) {
         require( __DIR__ . '/controls/select-preview.php' );
-        $class = __NAMESPACE__ . '\Controls\Select_Preview';
-        $controls_manager->register_control( 'select_preview', new $class() );
+        $select_preview = __NAMESPACE__ . '\Controls\Select_Preview';
+        $controls_manager->register_control( 'select_preview', new $select_preview() );
     }
+
 }

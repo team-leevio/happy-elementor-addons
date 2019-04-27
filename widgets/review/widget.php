@@ -252,6 +252,18 @@ class Review extends Base {
             ]
         );
 
+        $this->add_control(
+            'size_toggle',
+            [
+                'label' => __( 'Size', 'plugin-name' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'label_off' => __( 'None', 'your-plugin' ),
+                'label_on' => __( 'Custom', 'your-plugin' ),
+                'return_value' => 'yes',
+            ]
+        );
+
+        $this->start_popover();
         $this->add_responsive_control(
             'image_width',
             [
@@ -271,6 +283,9 @@ class Review extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-review-figure' => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'size_toggle' => 'yes'
+                ]
             ]
         );
 
@@ -289,27 +304,75 @@ class Review extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-review-figure' => 'height: {{SIZE}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'size_toggle' => 'yes'
+                ]
+            ]
+        );
+        $this->end_popover();
+
+        $this->add_control(
+            'offset_toggle',
+            [
+                'label' => __( 'Offset', 'plugin-name' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'label_off' => __( 'None', 'your-plugin' ),
+                'label_on' => __( 'Custom', 'your-plugin' ),
+                'return_value' => 'yes',
+            ]
+        );
+
+        $this->start_popover();
+
+        $this->add_responsive_control(
+            'image_offset_x',
+            [
+                'label' => __( 'Offset X', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'condition' => [
+                    'offset_toggle' => 'yes'
+                ],
+                'default' => [
+                    'size' => 1
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                    ],
+                ],
+                'render_type' => 'ui'
             ]
         );
 
         $this->add_responsive_control(
-            'image_offset',
+            'image_offset_y',
             [
-                'label' => __( 'Offset', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
-                'allowed_dimensions' => ['top', 'left'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-figure' => '-ms-transform: translate({{LEFT}}{{UNIT}}, {{TOP}}{{UNIT}}); -webkit-transform: translate({{LEFT}}{{UNIT}}, {{TOP}}{{UNIT}}); transform: translate({{LEFT}}{{UNIT}}, {{TOP}}{{UNIT}});',
-                    '{{WRAPPER}}.ha-review--top .ha-review-body' => 'margin-top: {{TOP}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-review--left .ha-review-body' => 'margin-left: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-review--right .ha-review-body' => 'margin-right: calc(-1 * {{LEFT}}{{UNIT}});',
+                'label' => __( 'Offset Y', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'condition' => [
+                    'offset_toggle' => 'yes'
                 ],
                 'default' => [
-                    'isLinked' => false,
-                ]
+                    'size' => 1
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-figure' => '-ms-transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); -webkit-transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-review--top .ha-review-body' => 'margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-review--left .ha-review-body' => 'margin-left: {{image_offset_x.SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-review--right .ha-review-body' => 'margin-right: calc(-1 * {{image_offset_x.SIZE}}{{UNIT}});',
+                ],
             ]
         );
+        $this->end_popover();
 
         $this->add_responsive_control(
             'image_padding',

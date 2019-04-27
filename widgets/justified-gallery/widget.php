@@ -526,12 +526,29 @@ class Justified_Gallery extends Base {
         return ha_prepare_data_prop_settings( $settings, $field_map );
     }
 
+    protected static function render_grid_item( &$settings, $image_id, $filter_class ) {
+        $caption = $popup_link = '';
+
+        if ( $settings['show_caption'] === 'yes' ) {
+            $caption = 'title="' . esc_attr( wp_get_attachment_caption( $image_id ) ) . '"';
+        }
+
+        if ( $settings['enable_popup'] === 'yes' ) {
+            $popup_link = 'href="' . esc_url( wp_get_attachment_image_url( $image_id, 'large' ) ) . '"';
+        }
+        ?>
+        <a class="ha-justified-gallery-item <?php echo esc_attr( $filter_class ); ?>" <?php echo $caption; ?> <?php echo $popup_link; ?>>
+            <?php echo wp_get_attachment_image( $image_id, $settings['thumbnail_size'] ); ?>
+        </a>
+        <?php
+    }
+
 	protected function render() {
         $settings = $this->get_settings_for_display();
 
-        if ( ! empty( $settings['gallery'] ) ) :
+        if ( is_array( $settings['gallery'] ) ) :
             $items = [];
-            $navigation = [];
+            $menu = [];
 
             foreach ( $settings['gallery'] as $gallery_item ) :
                 if ( empty( $gallery_item['images'] ) ) :
@@ -539,56 +556,46 @@ class Justified_Gallery extends Base {
                 endif;
 
                 $images = $gallery_item['images'];
-                $filter_class = '';
 
-                if ( $settings['show_filter'] === 'yes' && ! empty( $gallery_item['filter'] ) ) {
-                    $filter_class = sanitize_title_with_dashes( $gallery_item['filter'] );
-                    $navigation[] = sprintf(
-                        '<li><button type="button" data-filter=".%1$s">%2$s</button></li>',
-                        esc_attr( $filter_class ),
-                        esc_html( $gallery_item['filter'] )
+                if ( $settings['show_filter'] === 'yes' && $gallery_item['filter'] ) {
+                    $filter = sanitize_title_with_dashes( $gallery_item['filter'] );
+                    if ( ! isset( $menu[$filter] ) ) {
+                        $menu[$filter] = sprintf(
+                            '<li><button type="button" data-filter=".%s">%s</button></li>',
+                            esc_attr( $filter ),
+                            esc_html( $gallery_item['filter'] )
                         );
-
-                    $filter_class .= ' hajs-filterable-item';
+                    }
                 }
 
                 foreach ( $images as $image ) :
-                    $image_url = wp_get_attachment_image_url( $image['id'], $settings['thumbnail_size'] );
-                    if ( ! isset( $items[ $image['id'] ] ) ) :
-                        $items[ $image['id'] ] = sprintf(
-                            '<a class="ha-justified-gallery-item %1$s" %2$s %3$s><img src="%4$s" alt=""></a>',
-                            $filter_class,
-                            $settings['enable_popup'] === 'yes' ? 'href="' . esc_url( wp_get_attachment_image_url( $image['id'], 'large' ) ) . '"' : '',
-                            $settings['show_caption'] === 'yes' ? 'title="' . esc_attr( wp_get_attachment_caption( $image['id'] ) ) . '"' : '',
-                            esc_url( $image_url )
-                        );
-                    else :
-                        $items[ $image['id'] ] = str_replace(
-                            'hajs-filterable-item',
-                            $filter_class,
-                            $items[ $image['id'] ]
-                        );
-                    endif;
+                    if ( ! isset( $items[ $image['id'] ] ) ) {
+                        $items[ $image['id'] ] = [$filter];
+                    } else {
+                        array_push( $items[ $image['id'] ], $filter );
+                    }
                 endforeach;
             endforeach;
+
+            if ( $settings['show_filter'] === 'yes' ) :
+                echo '<ul class="ha-gallery-filter hajs-gallery-filter ha-text--' . $settings['button_align'] . '">';
+                echo $settings['show_all_filter'] === 'yes' ? '<li class="ha-filter-active"><button type="button" data-filter="*">' . $settings['all_filter_label'] . '</button></li>' : '';
+                echo implode( "\n", $menu );
+                echo '</ul>';
+            endif;
 
             $this->add_render_attribute( 'container', 'class', [
                 'ha-justified-gallery-grid',
                 'hajs-justified-gallery',
             ] );
+
             $this->add_render_attribute( 'container', 'data-happy-settings', self::get_data_prop_settings( $settings ) );
 
-            if ( $settings['display_filter'] === 'yes' ) :
-                echo '<ul class="ha-gallery-filter hajs-gallery-filter ha-text--' . $settings['button_align'] . '">';
-                    echo $settings['show_all_filter'] === 'yes' ? '<li class="ha-filter-active"><button type="button" data-filter="*">' . $settings['all_filter_label'] . '</button></li>' : '';
-                    echo implode( "\n", $navigation );
-                echo '</ul>';
-            endif;
-
             echo '<div ' . $this->get_render_attribute_string( 'container' ) . '>';
-                echo implode( "\n", $items );
+            foreach ( $items as $item_id => $item_filter ) :
+                self::render_grid_item( $settings, $item_id, implode( ' ', $item_filter ) );
+            endforeach;
             echo '</div>';
         endif;
     }
-
 }
