@@ -96,7 +96,6 @@ class Card extends Base {
                 ],
                 'desktop_default' => 'top',
                 'toggle' => false,
-                'devices' => [ 'desktop', 'tablet', 'mobile' ],
                 'prefix_class' => 'ha-card--%s'
             ]
         );
