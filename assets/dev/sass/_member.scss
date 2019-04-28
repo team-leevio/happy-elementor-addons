@@ -19,7 +19,7 @@
     font-size: 18px;
   }
 
-  &-role {
+  &-position {
     color: #7f7f7f;
     font-size: 14px;
     margin-bottom: 1.5rem;
@@ -31,14 +31,26 @@
     margin-bottom: 1.5rem;
   }
 
-  &-social-link {
-    a {
+  &-links {
+    > a {
       color: #9895ad;
-      margin-left: .3rem;
-      margin-right: .3rem;
-      transition: all .3s;
-      &:hover {
+      transition: all .2s;
+      text-align: center;
+      display: inline-block;
+      line-height: 1;
+
+      &:hover,
+      &:focus {
         color: #222;
+      }
+
+      > i {
+        width: 1em;
+        height: 1em;
+      }
+
+      &:not(:last-child) {
+        margin-right: .3rem;
       }
     }
   }
