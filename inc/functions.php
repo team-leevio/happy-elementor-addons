@@ -49,6 +49,28 @@ if ( ! function_exists( 'ha_get_cf7_forms' ) ) {
     }
 }
 
+if ( ! function_exists( 'ha_get_wpforms' ) ) {
+    /**
+     * Get a list of all WPForms
+     *
+     * @return array
+     */
+    function ha_get_wpforms() {
+        $forms = get_posts( [
+            'post_type'      => 'wpforms',
+            'post_status'    => 'publish',
+            'posts_per_page' => -1,
+            'orderby'        => 'title',
+            'order'          => 'ASC',
+        ] );
+
+        if ( ! empty( $forms ) ) {
+            return wp_list_pluck( $forms, 'post_title', 'ID' );
+        }
+        return [];
+    }
+}
+
 if ( ! function_exists( 'ha_sanitize_html_class_param' ) ) {
     /**
      * Sanitize html class string
@@ -76,6 +98,17 @@ if ( ! function_exists( 'ha_is_cf7_activated' ) ) {
      */
     function ha_is_cf7_activated() {
         return class_exists( 'WPCF7' );
+    }
+}
+
+if ( ! function_exists( 'ha_is_wpf_activated' ) ) {
+    /**
+     * Check if WPForms is activated
+     *
+     * @return bool
+     */
+    function ha_is_wpf_activated() {
+        return class_exists( 'WPForms_Lite' );
     }
 }
 
