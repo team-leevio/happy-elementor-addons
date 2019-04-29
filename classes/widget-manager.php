@@ -47,6 +47,7 @@ class Widget_Manager {
             'carousel',
             'adcard',
             'progressbars',
+			'wpform'
         ];
 
         foreach ( $widgets as $widget ) {
