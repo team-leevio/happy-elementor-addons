@@ -80,6 +80,7 @@ class Justified_Gallery extends Base {
             [
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
+                'show_label' => false,
                 'title_field' => 'Filter:: {{filter}}',
                 'default' => [
                     [
@@ -369,13 +370,13 @@ class Justified_Gallery extends Base {
         );
 
         $this->add_responsive_control(
-            'button_margin',
+            'button_spacing',
             [
-                'label' => __( 'Button Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Button Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-gallery-filter > li' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-gallery-filter > li:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -522,7 +523,6 @@ class Justified_Gallery extends Base {
             'row_height.size' => 'rowHeight.int',
             'last_row' => 'lastRow.str',
         ];
-
         return ha_prepare_data_prop_settings( $settings, $field_map );
     }
 
