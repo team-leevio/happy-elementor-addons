@@ -48,12 +48,20 @@ class Review extends Base {
 
 	protected function register_content_controls() {
 		$this->start_controls_section(
-			'_section_reviewer',
+			'_section_content',
 			[
-				'label' => __( 'Reviewer', 'happy_addons' ),
+				'label' => __( 'Content', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
+
+        $this->start_controls_tabs( '_tab_content' );
+        $this->start_controls_tab(
+            '_tab_reviewer',
+            [
+                'label' => __( 'Reviewer', 'happy_addons' ),
+            ]
+        );
 
         $this->add_control(
             'image',
@@ -63,6 +71,26 @@ class Review extends Base {
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
+            ]
+        );
+
+        $this->add_control(
+            'title',
+            [
+                'label' => __( 'Name', 'happy_addons' ),
+                'type' => Controls_Manager::TEXT,
+                'default' => __( 'Jhon Doe', 'happy_addons' ),
+                'placeholder' => __( 'Type reviewer name', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'job_title',
+            [
+                'label' => __( 'Job Title', 'happy_addons' ),
+                'type' => Controls_Manager::TEXT,
+                'default' => __( 'COO', 'happy_addons' ),
+                'placeholder' => __( 'Type reviewer job title', 'happy_addons' ),
             ]
         );
 
@@ -78,58 +106,71 @@ class Review extends Base {
         $this->add_responsive_control(
             'image_position',
             [
-                'label' => __( 'Photo Position', 'happy_addons' ),
+                'label' => __( 'Image Position', 'happy_addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
                         'title' => __( 'Left', 'happy_addons' ),
-                        'icon' => 'fa fa-align-left',
+                        'icon' => 'eicon-h-align-left',
                     ],
                     'top' => [
                         'title' => __( 'Top', 'happy_addons' ),
-                        'icon' => 'fa fa-align-center',
+                        'icon' => 'eicon-v-align-top',
                     ],
                     'right' => [
                         'title' => __( 'Right', 'happy_addons' ),
-                        'icon' => 'fa fa-align-right',
+                        'icon' => 'eicon-h-align-right',
                     ],
                 ],
                 'desktop_default' => 'top',
                 'toggle' => false,
-                'prefix_class' => 'ha-review--%s',
+                'prefix_class' => 'ha-review--%s'
             ]
         );
 
         $this->add_control(
-            'reviewer',
+            'title_tag',
             [
-                'label' => __( 'Name', 'happy_addons' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => __( 'Jhon Doe', 'happy_addons' ),
-                'placeholder' => __( 'Type reviewer name', 'happy_addons' ),
+                'label' => __( 'Name HTML Tag', 'happy_addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'h1'  => [
+                        'title' => __( 'H1', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h1'
+                    ],
+                    'h2'  => [
+                        'title' => __( 'H2', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h2'
+                    ],
+                    'h3'  => [
+                        'title' => __( 'H3', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h3'
+                    ],
+                    'h4'  => [
+                        'title' => __( 'H4', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h4'
+                    ],
+                    'h5'  => [
+                        'title' => __( 'H5', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h5'
+                    ],
+                    'h6'  => [
+                        'title' => __( 'H6', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h6'
+                    ]
+                ],
+                'default' => 'h2',
             ]
         );
 
-        $this->add_control(
-            'role',
-            [
-                'label' => __( 'Role', 'happy_addons' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => __( 'COO', 'happy_addons' ),
-                'placeholder' => __( 'Type reviewer role', 'happy_addons' ),
-            ]
-        );
+        $this->end_controls_tab();
 
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            '_section_review',
+        $this->start_controls_tab(
+            '_tab_review',
             [
                 'label' => __( 'Review', 'happy_addons' ),
-                'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
-
         $this->add_control(
             'ratting',
             [
@@ -172,12 +213,15 @@ class Review extends Base {
                 'placeholder' => __( 'Type review text', 'happy_addons' ),
             ]
         );
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
 
         $this->add_responsive_control(
             'align',
             [
                 'label' => __( 'Alignment', 'happy_addons' ),
                 'type' => Controls_Manager::CHOOSE,
+                'separator' => 'before',
                 'options' => [
                     'left' => [
                         'title' => __( 'Left', 'happy_addons' ),
@@ -192,51 +236,23 @@ class Review extends Base {
                         'icon' => 'fa fa-align-right',
                     ],
                 ],
-                'desktop_default' => 'left',
-                'toggle' => false,
-                'devices' => [ 'desktop', 'tablet', 'mobile' ],
-                'prefix_class' => 'ha-text--%s'
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            '_section_advanced',
-            [
-                'label' => __( 'Advanced', 'happy_addons' ),
-                'tab'   => Controls_Manager::TAB_CONTENT,
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}}' => 'text-align: {{VALUE}}'
+                ]
             ]
         );
 
         $this->add_control(
-            'name_tag',
+            'review_position',
             [
-                'label' => __( 'Reviewer Name HTML Tag', 'happy_addons' ),
+                'label' => __( 'Review Position', 'happy_addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    'h1'  => __( 'H1', 'happy_addons' ),
-                    'h2'  => __( 'H2', 'happy_addons' ),
-                    'h3'  => __( 'H3', 'happy_addons' ),
-                    'h4'  => __( 'H4', 'happy_addons' ),
-                    'h5'  => __( 'H5', 'happy_addons' ),
-                    'h6'  => __( 'H6', 'happy_addons' ),
+                    'before' => __( 'Review Before', 'happy_addons' ),
+                    'after' => __( 'Review After', 'happy_addons' ),
                 ],
-                'description' => __( 'In SEO (Search Engine Optimization) and in content hierarchy heading tag has a special purpose. So, make sure to select appropriate heading tag wisely based on content hierarchy.', 'happy_addons' ),
-                'default' => 'h2',
-            ]
-        );
-
-        $this->add_control(
-            'content_position',
-            [
-                'label' => __( 'Content Position', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    'reviewer' => __( 'Reviewer First', 'happy_addons' ),
-                    'review' => __( 'Review First', 'happy_addons' ),
-                ],
-                'default' => 'reviewer',
+                'default' => 'before',
             ]
         );
 
@@ -252,18 +268,6 @@ class Review extends Base {
             ]
         );
 
-        $this->add_control(
-            'size_toggle',
-            [
-                'label' => __( 'Size', 'plugin-name' ),
-                'type' => Controls_Manager::POPOVER_TOGGLE,
-                'label_off' => __( 'None', 'your-plugin' ),
-                'label_on' => __( 'Custom', 'your-plugin' ),
-                'return_value' => 'yes',
-            ]
-        );
-
-        $this->start_popover();
         $this->add_responsive_control(
             'image_width',
             [
@@ -283,9 +287,6 @@ class Review extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-review-figure' => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
                 ],
-                'condition' => [
-                    'size_toggle' => 'yes'
-                ]
             ]
         );
 
@@ -304,12 +305,8 @@ class Review extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-review-figure' => 'height: {{SIZE}}{{UNIT}};',
                 ],
-                'condition' => [
-                    'size_toggle' => 'yes'
-                ]
             ]
         );
-        $this->end_popover();
 
         $this->add_control(
             'offset_toggle',
@@ -428,13 +425,13 @@ class Review extends Base {
         );
 
         $this->add_responsive_control(
-            'ratting_margin',
+            'ratting_spacing',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-review-ratting' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-ratting' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -517,22 +514,22 @@ class Review extends Base {
         );
 
         $this->add_control(
-            '_name_heading',
+            '_heading_name',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Reviewer Name', 'happy_addons' ),
+                'label' => __( 'Name', 'happy_addons' ),
                 'separator' => 'before'
             ]
         );
 
         $this->add_responsive_control(
-            'name_margin',
+            'title_spacing',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-review-reviewer' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-reviewer' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -558,33 +555,33 @@ class Review extends Base {
         );
 
         $this->add_control(
-            '_role_heading',
+            '_heading_job_title',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Reviewer Role', 'happy_addons' ),
+                'label' => __( 'Job Title', 'happy_addons' ),
                 'separator' => 'before'
             ]
         );
 
         $this->add_responsive_control(
-            'role_margin',
+            'job_title_spacing',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-review-role' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-position' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'role_color',
+            'job_title_color',
             [
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-review-role' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-review-position' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -592,14 +589,14 @@ class Review extends Base {
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'role_typography',
+                'name' => 'job_title_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-review-role',
+                'selector' => '{{WRAPPER}} .ha-review-position',
             ]
         );
 
         $this->add_control(
-            '_review_heading',
+            '_heading_review',
             [
                 'type' => Controls_Manager::HEADING,
                 'label' => __( 'Review', 'happy_addons' ),
@@ -608,13 +605,13 @@ class Review extends Base {
         );
 
         $this->add_responsive_control(
-            'review_margin',
+            'review_spacing',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-review-desc' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-desc' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -645,11 +642,11 @@ class Review extends Base {
 	protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $this->add_inline_editing_attributes( 'reviewer', 'none' );
-        $this->add_render_attribute( 'reviewer', 'class', 'ha-review-reviewer' );
+        $this->add_inline_editing_attributes( 'title', 'none' );
+        $this->add_render_attribute( 'title', 'class', 'ha-review-reviewer' );
 
-        $this->add_inline_editing_attributes( 'role', 'none' );
-        $this->add_render_attribute( 'role', 'class', 'ha-review-role' );
+        $this->add_inline_editing_attributes( 'job_title', 'none' );
+        $this->add_render_attribute( 'job_title', 'class', 'ha-review-position' );
 
         $this->add_inline_editing_attributes( 'review', 'basic' );
         $this->add_render_attribute( 'review', 'class', 'ha-review-desc' );
@@ -672,7 +669,7 @@ class Review extends Base {
         <?php endif; ?>
 
         <div class="ha-review-body">
-            <?php if ( $settings['content_position'] === 'review' ) : ?>
+            <?php if ( $settings['review_position'] === 'before' ) : ?>
                 <div <?php echo $this->get_render_attribute_string( 'review' ); ?>>
                     <p><?php echo wp_kses_data( $settings['review'] ); ?></p>
                 </div>
@@ -680,12 +677,12 @@ class Review extends Base {
 
             <div class="ha-review-header">
                 <?php printf( '<%1$s %2$s>%3$s</%1$s>',
-                    tag_escape( $settings['name_tag'] ),
-                    $this->get_render_attribute_string( 'reviewer' ),
-                    esc_html( $settings['reviewer' ] )
+                    tag_escape( $settings['title_tag'] ),
+                    $this->get_render_attribute_string( 'title' ),
+                    esc_html( $settings['title' ] )
                     ); ?>
 
-                <div <?php echo $this->get_render_attribute_string( 'role' ); ?>><?php echo esc_html( $settings['role' ] ); ?></div>
+                <div <?php echo $this->get_render_attribute_string( 'job_title' ); ?>><?php echo esc_html( $settings['job_title' ] ); ?></div>
 
                 <div <?php echo $this->get_render_attribute_string( 'ratting' ); ?>>
                     <?php if ( $settings['ratting_style'] === 'num' ) : ?>
@@ -696,7 +693,7 @@ class Review extends Base {
                  </div>
             </div>
 
-            <?php if ( $settings['content_position'] === 'reviewer' ) : ?>
+            <?php if ( $settings['review_position'] === 'after' ) : ?>
                 <div <?php echo $this->get_render_attribute_string( 'review' ); ?>>
                     <p><?php echo wp_kses_data( $settings['review'] ); ?></p>
                 </div>
@@ -708,11 +705,11 @@ class Review extends Base {
     public function _content_template() {
         ?>
         <#
-        view.addInlineEditingAttributes( 'reviewer', 'none' );
-        view.addRenderAttribute( 'reviewer', 'class', 'ha-review-reviewer' );
+        view.addInlineEditingAttributes( 'title', 'none' );
+        view.addRenderAttribute( 'title', 'class', 'ha-review-reviewer' );
 
-        view.addInlineEditingAttributes( 'role', 'none' );
-        view.addRenderAttribute( 'role', 'class', 'ha-review-role' );
+        view.addInlineEditingAttributes( 'job_title', 'none' );
+        view.addRenderAttribute( 'job_title', 'class', 'ha-review-position' );
 
         view.addInlineEditingAttributes( 'review', 'basic' );
         view.addRenderAttribute( 'review', 'class', 'ha-review-desc' );
@@ -734,14 +731,14 @@ class Review extends Base {
         <# } #>
 
         <div class="ha-review-body">
-            <# if ( settings.content_position === 'review' ) { #>
+            <# if ( settings.review_position === 'before' ) { #>
                 <div {{{ view.getRenderAttributeString( 'review' ) }}}>
                     <p>{{{ settings.review }}}</p>
                 </div>
             <# } #>
             <div class="ha-review-header">
-                <{{ settings.name_tag }} {{{ view.getRenderAttributeString( 'reviewer' ) }}}>{{ settings.reviewer }}</{{ settings.name_tag }}>
-                <div {{{ view.getRenderAttributeString( 'role' ) }}}>{{ settings.role }}</div>
+                <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
+                <div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{ settings.job_title }}</div>
                 <# if ( settings.ratting_style === 'num' ) { #>
                     <div class="ha-review-ratting ha-review-ratting--num">{{ settings.ratting.size }} <i class="fa fa-star"></i></div>
                 <# } else { var ratingPercent = ( settings.ratting.size * 20 ) #>
@@ -750,7 +747,7 @@ class Review extends Base {
                     </div>
                 <# } #>
             </div>
-            <# if ( settings.content_position === 'reviewer' ) { #>
+            <# if ( settings.review_position === 'after' ) { #>
                 <div {{{ view.getRenderAttributeString( 'review' ) }}}>
                     <p>{{{ settings.review }}}</p>
                 </div>

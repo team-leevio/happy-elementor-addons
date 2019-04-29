@@ -340,7 +340,7 @@
 	font-size: 18px;
 }
 
-.ha-member-role {
+.ha-member-position {
 	margin-bottom: 1.5rem; 
 	color: #7f7f7f;
 	font-size: 14px;
@@ -352,15 +352,24 @@
 	line-height: 1.6;
 }
 
-.ha-member-social-link a {
-	margin-right: .3rem;
-	margin-left: .3rem;
+.ha-member-links > a {
+	display: inline-block;
 	color: #9895ad;
-	-webkit-transition: all .3s;
-	        transition: all .3s;
+	text-align: center;
+	line-height: 1; 
+	-webkit-transition: all .2s;
+	        transition: all .2s;
 }
-.ha-member-social-link a:hover {
+.ha-member-links > a:hover,
+.ha-member-links > a:focus {
 	color: #222;
+}
+.ha-member-links > a > i {
+	width: 1em;
+	height: 1em;
+}
+.ha-member-links > a:not(:last-child) {
+	margin-right: .3rem;
 }
 
 .ha-review-header {
@@ -384,7 +393,7 @@
 	font-size: 18px;
 }
 
-.ha-review-role {
+.ha-review-position {
 	margin-bottom: .5rem; 
 	color: #7f7f7f;
 	font-size: 15px;

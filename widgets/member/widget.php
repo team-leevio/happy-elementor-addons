@@ -1,6 +1,6 @@
 <?php
 /**
- * Person widget class
+ * Member widget class
  *
  * @package Happy_Addons
  */
@@ -47,29 +47,47 @@ class Member extends Base {
         return [ 'team', 'member', 'crew', 'staff', 'person' ];
     }
 
-    protected static function get_link_items() {
+    protected static function get_profile_names() {
         return [
             '500px' => __( '500px', 'happy_addons' ),
+            'apple' => __( 'Apple', 'happy_addons' ),
             'behance' => __( 'Behance', 'happy_addons' ),
+            'bitbucket' => __( 'BitBucket', 'happy_addons' ),
+            'codepen' => __( 'CodePen', 'happy_addons' ),
+            'delicious' => __( 'Delicious', 'happy_addons' ),
             'deviantart' => __( 'DeviantArt', 'happy_addons' ),
+            'digg' => __( 'Digg', 'happy_addons' ),
             'dribbble' => __( 'Dribbble', 'happy_addons' ),
+            'email' => __( 'Email', 'happy_addons' ),
             'facebook' => __( 'Facebook', 'happy_addons' ),
-            'flickr' => __( 'Flickr', 'happy_addons' ),
+            'flickr' => __( 'Flicker', 'happy_addons' ),
+            'foursquare' => __( 'FourSquare', 'happy_addons' ),
             'github' => __( 'Github', 'happy_addons' ),
+            'houzz' => __( 'Houzz', 'happy_addons' ),
             'instagram' => __( 'Instagram', 'happy_addons' ),
-            'jsfiddle' => __( 'JSFiddle', 'happy_addons' ),
+            'jsfiddle' => __( 'JS Fiddle', 'happy_addons' ),
             'linkedin' => __( 'LinkedIn', 'happy_addons' ),
             'medium' => __( 'Medium', 'happy_addons' ),
             'pinterest' => __( 'Pinterest', 'happy_addons' ),
+            'product-hunt' => __( 'Product Hunt', 'happy_addons' ),
             'reddit' => __( 'Reddit', 'happy_addons' ),
+            'slideshare' => __( 'Slide Share', 'happy_addons' ),
+            'snapchat' => __( 'Snapchat', 'happy_addons' ),
             'soundcloud' => __( 'SoundCloud', 'happy_addons' ),
-            'stack-exchange' => __( 'Stack Exchange', 'happy_addons' ),
-            'stack-overflow' => __( 'Stack Overflow', 'happy_addons' ),
+            'spotify' => __( 'Spotify', 'happy_addons' ),
+            'stack-overflow' => __( 'StackOverflow', 'happy_addons' ),
+            'tripadvisor' => __( 'TripAdvisor', 'happy_addons' ),
             'tumblr' => __( 'Tumblr', 'happy_addons' ),
+            'twitch' => __( 'Twitch', 'happy_addons' ),
             'twitter' => __( 'Twitter', 'happy_addons' ),
-            'web' => __( 'Website', 'happy_addons' ),
+            'vimeo' => __( 'Vimeo', 'happy_addons' ),
+            'vk' => __( 'VK', 'happy_addons' ),
+            'website' => __( 'Website', 'happy_addons' ),
+            'whatsapp' => __( 'WhatsApp', 'happy_addons' ),
             'wordpress' => __( 'WordPress', 'happy_addons' ),
-            'youtube' => __( 'Youtube', 'happy_addons' ),
+            'xing' => __( 'Xing', 'happy_addons' ),
+            'yelp' => __( 'Yelp', 'happy_addons' ),
+            'youtube' => __( 'YouTube', 'happy_addons' ),
         ];
     }
 
@@ -100,14 +118,13 @@ class Member extends Base {
             Group_Control_Image_Size::get_type(),
             [
                 'name' => 'image',
-                'label' => __( 'Photo Size', 'happy_addons' ),
                 'default' => 'medium',
                 'separator' => 'none',
             ]
         );
 
         $this->add_control(
-            'name',
+            'title',
             [
                 'label' => __( 'Name', 'happy_addons' ),
                 'label_block' => true,
@@ -118,13 +135,13 @@ class Member extends Base {
         );
 
         $this->add_control(
-            'role',
+            'job_title',
             [
-                'label' => __( 'Job Role', 'happy_addons' ),
+                'label' => __( 'Job Title', 'happy_addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Head Of Ideas', 'happy_addons' ),
-                'placeholder' => __( 'Type member job role', 'happy_addons' ),
+                'placeholder' => __( 'Type member job title', 'happy_addons' ),
             ]
         );
 
@@ -139,17 +156,35 @@ class Member extends Base {
         );
 
         $this->add_control(
-            'name_tag',
+            'title_tag',
             [
-                'label' => __( 'Name HTML Tag', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
+                'label' => __( 'Title HTML Tag', 'happy_addons' ),
+                'type' => Controls_Manager::CHOOSE,
                 'options' => [
-                    'h1'  => __( 'H1', 'happy_addons' ),
-                    'h2'  => __( 'H2', 'happy_addons' ),
-                    'h3'  => __( 'H3', 'happy_addons' ),
-                    'h4'  => __( 'H4', 'happy_addons' ),
-                    'h5'  => __( 'H5', 'happy_addons' ),
-                    'h6'  => __( 'H6', 'happy_addons' ),
+                    'h1'  => [
+                        'title' => __( 'H1', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h1'
+                    ],
+                    'h2'  => [
+                        'title' => __( 'H2', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h2'
+                    ],
+                    'h3'  => [
+                        'title' => __( 'H3', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h3'
+                    ],
+                    'h4'  => [
+                        'title' => __( 'H4', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h4'
+                    ],
+                    'h5'  => [
+                        'title' => __( 'H5', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h5'
+                    ],
+                    'h6'  => [
+                        'title' => __( 'H6', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h6'
+                    ]
                 ],
                 'default' => 'h2',
             ]
@@ -174,10 +209,10 @@ class Member extends Base {
                         'icon' => 'fa fa-align-right',
                     ],
                 ],
-                'desktop_default' => 'left',
-                'toggle' => false,
-                'devices' => [ 'desktop', 'tablet', 'mobile' ],
-                'prefix_class' => 'ha-text--%s'
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}}' => 'text-align: {{VALUE}}'
+                ]
             ]
         );
 
@@ -186,7 +221,7 @@ class Member extends Base {
         $this->start_controls_section(
             '_section_social',
             [
-                'label' => __( 'Social Information', 'happy_addons' ),
+                'label' => __( 'Social Profiles', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -194,55 +229,158 @@ class Member extends Base {
         $repeater = new Repeater();
 
         $repeater->add_control(
-            'media',
+            'name',
             [
-                'label' => __( 'Media', 'happy_addons' ),
+                'label' => __( 'Profile Name', 'happy_addons' ),
                 'type' => Controls_Manager::SELECT2,
-                'label_block' => true,
                 'select2options' => [
                     'allowClear' => false,
                 ],
-                'options' => self::get_link_items()
+                'options' => self::get_profile_names()
             ]
         );
 
         $repeater->add_control(
             'link', [
-                'label' => __( 'Link', 'happy_addons' ),
-                'placeholder' => __( 'Type or paste social link', 'happy_addons' ),
+                'label' => __( 'Profile Link', 'happy_addons' ),
+                'placeholder' => __( 'Add your profile link', 'happy_addons' ),
                 'type' => Controls_Manager::URL,
-                'label_block' => true,
+                'label_block' => false,
                 'autocomplete' => false,
                 'show_external' => false,
+                'condition' => [
+                    'name!' => 'email'
+                ]
             ]
         );
 
-        $this->add_control(
-            'social_links',
+        $repeater->add_control(
+            'email', [
+                'label' => __( 'Email Address', 'happy_addons' ),
+                'placeholder' => __( 'Add your email address', 'happy_addons' ),
+                'type' => Controls_Manager::TEXT,
+                'label_block' => false,
+                'input_type' => 'email',
+                'condition' => [
+                    'name' => 'email'
+                ]
+            ]
+        );
+
+        $repeater->add_control(
+            'customize',
             [
-                'label' => __( 'Social Links', 'happy_addons' ),
-                'label_block' => true,
+                'label' => __( 'Want To Customize?', 'happy_addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'happy_addons' ),
+                'label_off' => __( 'No', 'happy_addons' ),
+                'return_value' => 'yes',
+            ]
+        );
+
+        $repeater->start_controls_tabs(
+            '_tab_icon_colors',
+            [
+                'condition' => ['customize' => 'yes']
+            ]
+        );
+        $repeater->start_controls_tab(
+            '_tab_icon_normal',
+            [
+                'label' => __( 'Normal', 'happy_addons' ),
+            ]
+        );
+
+        $repeater->add_control(
+            'color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}' => 'color: {{VALUE}}',
+                ],
+                'condition' => ['customize' => 'yes']
+            ]
+        );
+
+        $repeater->add_control(
+            'bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}' => 'background-color: {{VALUE}}',
+                ],
+                'condition' => ['customize' => 'yes']
+            ]
+        );
+
+        $repeater->end_controls_tab();
+        $repeater->start_controls_tab(
+            '_tab_icon_hover',
+            [
+                'label' => __( 'Hover', 'happy_addons' ),
+            ]
+        );
+
+        $repeater->add_control(
+            'hover_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:hover, {{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:focus' => 'color: {{VALUE}}',
+                ],
+                'condition' => ['customize' => 'yes']
+            ]
+        );
+
+        $repeater->add_control(
+            'hover_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:hover, {{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:focus' => 'background-color: {{VALUE}}',
+                ],
+                'condition' => ['customize' => 'yes']
+            ]
+        );
+
+        $repeater->add_control(
+            'hover_border_color',
+            [
+                'label' => __( 'Border Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:hover, {{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:focus' => 'border-color: {{VALUE}}',
+                ],
+                'condition' => ['customize' => 'yes']
+            ]
+        );
+
+        $repeater->end_controls_tab();
+        $repeater->end_controls_tabs();
+
+        $this->add_control(
+            'profiles',
+            [
+                'show_label' => false,
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
-                'title_field' => '{{ media }}',
+                'title_field' => '<# print(name.slice(0,1).toUpperCase() + name.slice(1)) #>',
                 'default' => [
                     [
-                        'link' => [
-                            'url' => '#',
-                        ],
-                        'media' => 'facebook'
+                        'link' => ['url' => 'https://facebook.com/'],
+                        'profile' => 'fa fa-facebook'
                     ],
                     [
-                        'link' => [
-                            'url' => '#',
-                        ],
-                        'media' => 'twitter'
+                        'link' => ['url' => 'https://twitter.com/'],
+                        'profile' => 'fa fa-twitter'
                     ],
                     [
-                        'link' => [
-                            'url' => '#',
-                        ],
-                        'media' => 'linkedin'
+                        'link' => ['url' => 'https://linkedin.com/'],
+                        'profile' => 'fa fa-linkedin'
                     ]
                 ]
             ]
@@ -256,7 +394,7 @@ class Member extends Base {
      */
     protected function register_style_controls() {
         $this->start_controls_section(
-            '_section_photo_style',
+            '_section_style_image',
             [
                 'label' => __( 'Photo', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
@@ -290,6 +428,18 @@ class Member extends Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-figure' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_spacing',
+            [
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
                 ],
             ]
         );
@@ -340,7 +490,7 @@ class Member extends Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            '_section_info_style',
+            '_section_style_content',
             [
                 'label' => __( 'Name, Role & Bio', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
@@ -348,7 +498,7 @@ class Member extends Base {
         );
 
         $this->add_control(
-            '_name_heading',
+            '_heading_title',
             [
                 'type' => Controls_Manager::HEADING,
                 'label' => __( 'Name', 'happy_addons' ),
@@ -356,19 +506,19 @@ class Member extends Base {
         );
 
         $this->add_responsive_control(
-            'name_margin',
+            'title_spacing',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-member-name' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-member-name' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'name_color',
+            'title_color',
             [
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
@@ -381,40 +531,40 @@ class Member extends Base {
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'name_typography',
+                'name' => 'title_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-member-name',
             ]
         );
 
         $this->add_control(
-            '_role_heading',
+            '_heading_job_title',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Job Role', 'happy_addons' ),
+                'label' => __( 'Job Title', 'happy_addons' ),
                 'separator' => 'before'
             ]
         );
 
         $this->add_responsive_control(
-            'role_margin',
+            'job_title_spacing',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-member-role' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-member-position' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'role_color',
+            'job_title_color',
             [
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-member-role' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-member-position' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -422,14 +572,14 @@ class Member extends Base {
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'role_typography',
+                'name' => 'job_title_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-member-role',
+                'selector' => '{{WRAPPER}} .ha-member-position',
             ]
         );
 
         $this->add_control(
-            '_bio_heading',
+            '_heading_bio',
             [
                 'type' => Controls_Manager::HEADING,
                 'label' => __( 'Short Bio', 'happy_addons' ),
@@ -438,13 +588,13 @@ class Member extends Base {
         );
 
         $this->add_responsive_control(
-            'bio_margin',
+            'bio_spacing',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-member-bio' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-member-bio' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -470,16 +620,159 @@ class Member extends Base {
         );
 
         $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_style_social',
+            [
+                'label' => __( 'Social Icons', 'happy_addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'links_spacing',
+            [
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > a:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'links_padding',
+            [
+                'label' => __( 'Padding', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > a' => 'padding: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'links_icon_size',
+            [
+                'label' => __( 'Icon Size', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > a' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'links_border',
+                'selector' => '{{WRAPPER}} .ha-member-links > a'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'links_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs( '_tab_links_colors' );
+        $this->start_controls_tab(
+            '_tab_links_normal',
+            [
+                'label' => __( 'Normal', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'links_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > a' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'links_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > a' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->start_controls_tab(
+            '_tab_links_hover',
+            [
+                'label' => __( 'Hover', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'links_hover_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > a:hover, {{WRAPPER}} .ha-member-links > a:focus' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'links_hover_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > a:hover, {{WRAPPER}} .ha-member-links > a:focus' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'links_hover_border_color',
+            [
+                'label' => __( 'Border Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-links > a:hover, {{WRAPPER}} .ha-member-links > a:focus' => 'border-color: {{VALUE}};',
+                ],
+                'condition' => [
+                    'links_border_border!' => '',
+                ]
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
     }
 
 	protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $this->add_inline_editing_attributes( 'name', 'none' );
-        $this->add_render_attribute( 'name', 'class', 'ha-member-name' );
+        $this->add_inline_editing_attributes( 'title', 'none' );
+        $this->add_render_attribute( 'title', 'class', 'ha-member-name' );
 
-        $this->add_inline_editing_attributes( 'role', 'none' );
-        $this->add_render_attribute( 'role', 'class', 'ha-member-role' );
+        $this->add_inline_editing_attributes( 'job_title', 'none' );
+        $this->add_render_attribute( 'job_title', 'class', 'ha-member-position' );
 
         $this->add_inline_editing_attributes( 'bio', 'basic' );
         $this->add_render_attribute( 'bio', 'class', 'ha-member-bio' );
@@ -497,32 +790,33 @@ class Member extends Base {
         <?php endif; ?>
 
         <?php printf( '<%1$s %2$s>%3$s</%1$s>',
-            tag_escape( $settings['name_tag'] ),
-            $this->get_render_attribute_string( 'name' ),
-            esc_html( $settings['name' ] )
+            tag_escape( $settings['title_tag'] ),
+            $this->get_render_attribute_string( 'title' ),
+            esc_html( $settings['title' ] )
         ); ?>
-        <div <?php echo $this->get_render_attribute_string( 'role' ); ?>><?php echo esc_html( $settings['role' ] ); ?></div>
+        <div <?php echo $this->get_render_attribute_string( 'job_title' ); ?>><?php echo esc_html( $settings['job_title' ] ); ?></div>
         <div <?php echo $this->get_render_attribute_string( 'bio' ); ?>>
             <p><?php echo wp_kses_data( $settings['bio'] ); ?></p>
         </div>
 
-        <?php if ( ! empty( $settings['social_links' ] ) ) : ?>
-            <div class="ha-member-social-link">
+        <?php if ( ! empty( $settings['links' ] ) ) : ?>
+            <div class="ha-member-links">
                 <?php
-                foreach ( $settings['social_links'] as $props ) :
-                    $url = $props['link']['url'];
-                    $media = $props['media'];
-                    if ( ! $url ) {
-                        continue;
+                foreach ( $settings['profiles'] as $profile ) :
+                    $icon = $profile['name'];
+                    $url = esc_url( $profile['link']['url'] );
+
+                    if ($profile['name'] === 'website') {
+                        $icon = 'globe';
+                    } elseif ($profile['name'] === 'email') {
+                        $icon = 'envelope';
+                        $url = 'mailto:' . antispambot( $profile['email'] );
                     }
 
-                    if ( $media === 'web' ) {
-                        $media = 'globe';
-                    }
-
-                    printf( '<a target="_blank" rel="noopener" href="%s"><i class="fa fa-%s" aria-hidden="true"></i></a>',
-                        esc_url( $url ),
-                        esc_attr( $media )
+                    printf( '<a target="_blank" rel="noopener" data-tooltip="hello" href="%s" class="elementor-repeater-item-%s"><i class="fa fa-%s" aria-hidden="true"></i></a>',
+                        $url,
+                        esc_attr( $profile['_id'] ),
+                        esc_attr( $icon )
                     );
                 endforeach; ?>
             </div>
@@ -532,11 +826,11 @@ class Member extends Base {
     public function _content_template() {
         ?>
         <#
-        view.addInlineEditingAttributes( 'name', 'none' );
-        view.addRenderAttribute( 'name', 'class', 'ha-member-name' );
+        view.addInlineEditingAttributes( 'title', 'none' );
+        view.addRenderAttribute( 'title', 'class', 'ha-member-name' );
 
-        view.addInlineEditingAttributes( 'role', 'none' );
-        view.addRenderAttribute( 'role', 'class', 'ha-member-role' );
+        view.addInlineEditingAttributes( 'job_title', 'none' );
+        view.addRenderAttribute( 'job_title', 'class', 'ha-member-position' );
 
         view.addInlineEditingAttributes( 'bio', 'basic' );
         view.addRenderAttribute( 'bio', 'class', 'ha-member-bio' );
@@ -556,31 +850,31 @@ class Member extends Base {
                 <img src="{{ image_url }}">
             </figure>
         <# } #>
-        <{{ settings.name_tag }} {{{ view.getRenderAttributeString( 'name' ) }}}>{{ settings.name }}</{{ settings.name_tag }}>
-        <div {{{ view.getRenderAttributeString( 'role' ) }}}>{{ settings.role }}</div>
+        <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
+        <div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{ settings.job_title }}</div>
         <div {{{ view.getRenderAttributeString( 'bio' ) }}}>
             <p>{{{ settings.bio }}}</p>
         </div>
-        <div class="ha-member-social-link">
-            <#
-            if ( ! _.isEmpty(settings.social_links) && _.isArray(settings.social_links) ) {
-                var links = [];
-                _.each(settings.social_links, function(val) {
-                    var media = val.media;
-                    if ( _.isEmpty(val.link.url) ) {
-                        return;
-                    }
+        <# if (_.isArray(settings.links)) { #>
+        <div class="ha-member-links">
+            <# _.each(settings.profiles, function(profile, index) {
+                var icon = profile.name,
+                    url = profile.link.url,
+                    linkKey = view.getRepeaterSettingKey( 'profile', 'profiles', index);
 
-                    if ( media === 'web' ) {
-                        media = 'globe';
-                    }
+                if (profile.name === 'website') {
+                    icon = 'globe';
+                } else if (profile.name === 'email') {
+                    icon = 'envelope'
+                    url = 'mailto:' + profile.email;
+                }
 
-                    links.push('<a href="'+ val.link.url +'"><i class="fa fa-'+ media +'"></i></a>');
-                });
-                print(links.join('\n'));
-            }
-            #>
+                view.addRenderAttribute( linkKey, 'class', 'elementor-repeater-item-' + profile._id );
+                view.addRenderAttribute( linkKey, 'href', url ); #>
+                <a {{{view.getRenderAttributeString( linkKey )}}}><i class="fa fa-{{{icon}}}"></i></a>
+            <# }); #>
         </div>
+        <# } #>
         <?php
     }
 }
