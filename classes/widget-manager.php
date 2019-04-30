@@ -49,7 +49,8 @@ class Widget_Manager {
             'skills',
             'gradient-heading',
 			'wpform',
-			'ninjaform'
+			'ninjaform',
+			'calderaform'
         ];
 
         foreach ( $widgets as $widget ) {
