@@ -1,6 +1,6 @@
 <?php
 /**
- * WPForm widget class
+ * Ninja Form widget class
  *
  * @package Happy_Addons
  */
@@ -13,7 +13,7 @@ use Elementor\Group_Control_Typography;
 
 defined( 'ABSPATH' ) || die();
 
-class WPForm extends Base {
+class NinjaForm extends Base {
 
     /**
      * Get widget title.
@@ -24,7 +24,7 @@ class WPForm extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy WPForm', 'happy_addons' );
+        return __( 'Happy Ninja Form', 'happy_addons' );
     }
 
     /**
@@ -40,26 +40,26 @@ class WPForm extends Base {
     }
 
     public function get_keywords() {
-        return [ 'wpf', 'wpform', 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
+        return [ 'wpf','wpform' , 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
     }
 
 	protected function register_content_controls() {
 		$this->start_controls_section(
-			'_section_wpf',
+			'_section_ninjaf',
 			[
-				'label' => ha_is_wpf_activated() ? __( 'WPForm', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
+				'label' => ha_is_wpf_activated() ? __( 'Ninja Form', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
         if ( ! ha_is_wpf_activated() ) {
             $this->add_control(
-                'wpf_missing_notice',
+                'ninjaf_missing_notice',
                 [
                     'type' => Controls_Manager::RAW_HTML,
                     'raw' => sprintf(
                         __( 'Hi, it seems %1$s is missing in your site. Please install and activate %1$s first.', 'happy_addons' ),
-                        '<a href="https://wordpress.org/plugins/wpforms-lite/" target="_blank" rel="noopener">WPForms</a>'
+                        '<a href="https://wordpress.org/plugins/ninja-forms/" target="_blank" rel="noopener">Ninja Form</a>'
                     )
                 ]
             );
@@ -73,7 +73,7 @@ class WPForm extends Base {
                 'label' => __( 'Select Your Form', 'happy_addons' ),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
-				'options' => ['' => __( '', 'happy_addons' ) ] + \ha_get_wpforms(),
+				'options' => ['' => __( '', 'happy_addons' ) ] + \ha_get_ninjaform(),
             ]
         );
 
@@ -96,7 +96,7 @@ class WPForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-field:not(.wpforms-submit), .wpforms-field-required:not(.wpforms-submit)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .nf-field-container:not(.submit-container)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -108,7 +108,7 @@ class WPForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-field input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -117,7 +117,7 @@ class WPForm extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'field_border',
-                'selector' => '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea',
+                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea',
             ]
         );
 
@@ -128,7 +128,7 @@ class WPForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-field input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -137,7 +137,7 @@ class WPForm extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'field_box_shadow',
-                'selector' => '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea',
+                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea',
             ]
         );
 
@@ -146,7 +146,7 @@ class WPForm extends Base {
             [
                 'name' => 'field_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea',
+                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea',
             ]
         );
 
@@ -156,10 +156,10 @@ class WPForm extends Base {
                 'label' => __( 'Field Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'color: {{VALUE}}',
                 ],
             ]
-        );
+		);
 
 		$this->add_control(
             'field_placeholder_color',
@@ -180,7 +180,7 @@ class WPForm extends Base {
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -199,7 +199,7 @@ class WPForm extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'field_focus_border',
-                'selector' => '{{WRAPPER}} .wpforms-field input:focus, {{WRAPPER}} .wpforms-field-textarea textarea:focus',
+                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text]:focus, {{WRAPPER}} .email-wrap input:focus, {{WRAPPER}} .textarea-wrap textarea:focus',
             ]
         );
 
@@ -210,7 +210,7 @@ class WPForm extends Base {
                 'exclude' => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .wpforms-field input:focus, {{WRAPPER}} .wpforms-field-textarea textarea:focus',
+                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text]:focus, {{WRAPPER}} .email-wrap input:focus, {{WRAPPER}} .textarea-wrap textarea:focus',
             ]
         );
 
@@ -228,7 +228,7 @@ class WPForm extends Base {
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-field input:focus, {{WRAPPER}} .wpforms-field-textarea textarea:focus' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .textbox-wrap input[type=text]:focus, {{WRAPPER}} .email-wrap input:focus, {{WRAPPER}} .textarea-wrap textarea:focus' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -236,7 +236,7 @@ class WPForm extends Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'wpf-form-label',
+            'ninjaf-form-label',
             [
                 'label' => __( 'Form Fields Label', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
@@ -250,7 +250,7 @@ class WPForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-field-container label.wpforms-field-label' => 'display: inline-block; padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label' => 'display: inline-block; padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -262,7 +262,7 @@ class WPForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-field-container label.wpforms-field-label' => 'display: inline-block; padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label' => 'display: inline-block; padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -280,16 +280,7 @@ class WPForm extends Base {
             [
                 'name' => 'label_typography',
                 'label' => __( 'Label Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .wpforms-field-container label.wpforms-field-label',
-            ]
-        );
-
-		$this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'sublabel_typography',
-                'label' => __( 'Sub Label Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .wpforms-field-sublabel',
+                'selector' => '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label',
             ]
         );
 
@@ -298,7 +289,7 @@ class WPForm extends Base {
             [
                 'name' => 'desc_typography',
                 'label' => __( 'Description Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .wpforms-field-description',
+                'selector' => '{{WRAPPER}} .nf-field-description p',
             ]
         );
 
@@ -308,7 +299,7 @@ class WPForm extends Base {
                 'label' => __( 'Label Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-field-container label.wpforms-field-label' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label' => 'color: {{VALUE}}',
                 ],
             ]
 		);
@@ -319,29 +310,18 @@ class WPForm extends Base {
                 'label' => __( 'Required Label Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-required-label' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ninja-forms-req-symbol' => 'color: {{VALUE}}',
                 ],
             ]
         );
 
 		$this->add_control(
-            'sublabel_color',
-            [
-                'label' => __( 'Sub Label Text Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .wpforms-field-sublabel' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-
-		$this->add_control(
-            'desc_label_color',
+            'desc_color',
             [
                 'label' => __( 'Description Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-field-description' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .nf-field-description p' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -391,7 +371,7 @@ class WPForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-submit' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .submit-container input' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -403,7 +383,7 @@ class WPForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-submit' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .submit-container input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -412,7 +392,7 @@ class WPForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'submit_typography',
-                'selector' => '{{WRAPPER}} .wpforms-submit',
+                'selector' => '{{WRAPPER}} .submit-container input',
             ]
         );
 
@@ -420,7 +400,7 @@ class WPForm extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'submit_border',
-                'selector' => '{{WRAPPER}} .wpforms-submit',
+                'selector' => '{{WRAPPER}} .submit-container input',
             ]
         );
 
@@ -431,7 +411,7 @@ class WPForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-submit' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .submit-container input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -440,7 +420,7 @@ class WPForm extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'submit_box_shadow',
-                'selector' => '{{WRAPPER}} .wpforms-submit',
+                'selector' => '{{WRAPPER}} .submit-container input',
             ]
         );
 
@@ -468,7 +448,7 @@ class WPForm extends Base {
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-submit' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .submit-container input' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -479,7 +459,7 @@ class WPForm extends Base {
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-submit' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .submit-container input' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -499,7 +479,7 @@ class WPForm extends Base {
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-submit:hover, {{WRAPPER}} .wpforms-submit:focus' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .submit-container input:hover, {{WRAPPER}} .submit-container input:focus' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -510,7 +490,7 @@ class WPForm extends Base {
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-submit:hover, {{WRAPPER}} .wpforms-submit:focus' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .submit-container input:hover, {{WRAPPER}} .submit-container input:focus' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -524,7 +504,7 @@ class WPForm extends Base {
                     'btn_border_border!' => '',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-submit:hover, {{WRAPPER}} .wpforms-submit:focus' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .submit-container input:hover, {{WRAPPER}} .submit-container input:focus' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -536,14 +516,14 @@ class WPForm extends Base {
     }
 
     protected function render() {
-        if ( ! ha_is_wpf_activated() ) {
+        if ( ! ha_is_ninjaf_activated() ) {
             return;
         }
 
         $settings = $this->get_settings_for_display();
 
         if ( ! empty( $settings['id'] ) ) {
-            echo ha_do_shortcode( 'wpforms', [
+            echo ha_do_shortcode( 'ninja_form', [
                 'id' => $settings['id'],
                 //'html_class' => 'ha-cf7-form ' . ha_sanitize_html_class_param( $settings['html_class'] ),
             ] );
