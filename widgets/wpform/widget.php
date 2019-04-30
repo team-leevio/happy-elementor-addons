@@ -40,7 +40,7 @@ class WPForm extends Base {
     }
 
     public function get_keywords() {
-        return [ 'wpf','wpform' , 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
+        return [ 'wpf', 'wpform', 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
     }
 
 	protected function register_content_controls() {

@@ -1,22 +1,22 @@
-.ha-progressbars {
+.ha-skills {
   @include widgetContainer {
     padding-top: 1px;
   }
 }
 
-.ha-progressbar {
+.ha-skill {
   display: flex;
   font-size: .75rem;
   background-color: #e9ecef;
 
   &--outside,
   &--inside {
-    .ha-progressbar-info {
+    .ha-skill-info {
       font-size: 14px;
       text-align: left;
     }
 
-    .ha-progressbar-percent {
+    .ha-skill-level-text {
       float: right;
     }
   }
@@ -24,11 +24,11 @@
   &--outside {
     height: 2px;
 
-    .ha-progressbar-completed {
+    .ha-skill-level {
       position: relative;
     }
 
-    .ha-progressbar-info {
+    .ha-skill-info {
       position: absolute;
       width: 100%;
       top: -25px;
@@ -41,14 +41,14 @@
     overflow: hidden;
     border-radius: .3rem;
 
-    .ha-progressbar-info {
+    .ha-skill-info {
       padding-right: 1rem;
       padding-left: 1rem;
       color: #fff;
     }
   }
 
-  &-completed {
+  &-level {
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -46,7 +46,8 @@ class Widget_Manager {
             'slider',
             'carousel',
             'adcard',
-            'progressbars',
+            'skills',
+            'gradient-heading',
 			'wpform',
 			'ninjaform'
         ];

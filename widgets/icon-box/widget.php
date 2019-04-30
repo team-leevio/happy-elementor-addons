@@ -9,6 +9,7 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 
 defined( 'ABSPATH' ) || die();
@@ -133,28 +134,11 @@ class Icon_Box extends Base {
         );
 
         $this->add_control(
-            'has_link',
-            [
-                'label' => __( 'Want To Add Link?', 'plugin-domain' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'your-plugin' ),
-                'label_off' => __( 'No', 'your-plugin' ),
-                'return_value' => 'yes',
-            ]
-        );
-
-        $this->add_control(
             'link',
             [
                 'label' => __( 'Link', 'happy_addons' ),
                 'type' => Controls_Manager::URL,
                 'placeholder' => __( 'https://example.com/', 'happy_addons' ),
-                'condition' => [
-                    'has_link' => 'yes',
-                ],
-                'default' => [
-                    'url' => '#',
-                ],
             ]
         );
 
@@ -188,28 +172,6 @@ class Icon_Box extends Base {
             ]
         );
 
-        $this->add_control(
-            'icon_rotate',
-            [
-                'label' => __( 'Rotate (degree)', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'deg' ],
-                'default' => [
-                    'unit' => 'deg',
-                ],
-                'range' => [
-                    'deg' => [
-                        'min' => 0,
-                        'max' => 360,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-icon-box-icon' => '-webkit-transform: rotate({{SIZE}}{{UNIT}}); transform: rotate({{SIZE}}{{UNIT}});',
-                    '{{WRAPPER}} .ha-icon-box-icon > i' => '-webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
-                ],
-            ]
-        );
-
         $this->add_responsive_control(
             'icon_padding',
             [
@@ -218,6 +180,23 @@ class Icon_Box extends Base {
                 'size_units' => ['px'],
                 'selectors' => [
                     '{{WRAPPER}} .ha-icon-box-icon' => 'padding: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'icon_spacing',
+            [
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'max' => 150,
+                    ]
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-icon-box-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -275,6 +254,31 @@ class Icon_Box extends Base {
             ]
         );
 
+        $this->add_control(
+            'icon_bg_rotate',
+            [
+                'label' => __( 'Rotate Box', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'deg' ],
+                'default' => [
+                    'unit' => 'deg',
+                ],
+                'range' => [
+                    'deg' => [
+                        'min' => 0,
+                        'max' => 360,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-icon-box-icon' => '-webkit-transform: rotate({{SIZE}}{{UNIT}}); transform: rotate({{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}} .ha-icon-box-icon > i' => '-webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
+                ],
+                'condition' => [
+                     'icon_bg_color!' => '',
+                ]
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -282,18 +286,6 @@ class Icon_Box extends Base {
             [
                 'label' => __( 'Title', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_responsive_control(
-            'title_spacing',
-            [
-                'label' => __( 'Spacing', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-icon-box-title' => 'margin-top: {{SIZE}}{{UNIT}};',
-                ],
             ]
         );
 
@@ -309,10 +301,17 @@ class Icon_Box extends Base {
         );
 
         $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'title',
+                'selector' => '{{WRAPPER}} .ha-icon-box-title',
+            ]
+        );
+
+        $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'title_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'name' => 'title',
                 'selector' => '{{WRAPPER}} .ha-icon-box-title',
             ]
         );
@@ -326,7 +325,7 @@ class Icon_Box extends Base {
         $this->add_inline_editing_attributes( 'title', 'none' );
         $this->add_render_attribute( 'title', 'class', 'ha-icon-box-title' );
 
-        if ( $settings['has_link'] === 'yes' ) :
+        if ( ! empty( $settings['link']['url'] ) ) :
             $this->add_render_attribute( 'link', 'class', 'ha-icon-box-link' );
             $this->add_render_attribute( 'link', 'href', esc_url( $settings['link']['url'] ) );
             if ( ! empty( $settings['link']['is_external'] ) ) {
@@ -346,7 +345,7 @@ class Icon_Box extends Base {
             $this->get_render_attribute_string( 'title' ),
             esc_html( $settings['title' ] )
         );
-        if ( $settings['has_link'] === 'yes' ) :
+        if ( ! empty( $settings['link']['url'] ) ) :
             echo '</a>';
         endif;
     }
@@ -357,7 +356,7 @@ class Icon_Box extends Base {
         view.addInlineEditingAttributes( 'title', 'none' );
         view.addRenderAttribute( 'title', 'class', 'ha-icon-box-title' );
 
-        if ( settings.has_link === 'yes' ) {
+        if (!_.isEmpty(settings.link.url)) {
             view.addRenderAttribute( 'link', 'class', 'ha-icon-box-link' );
             view.addRenderAttribute( 'link', 'href', settings.link.url );
 
@@ -368,7 +367,7 @@ class Icon_Box extends Base {
         </span>
         <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
         <#
-        if ( settings.has_link === 'yes' ) {
+        if (!_.isEmpty(settings.link.url)) {
             print( '</a>' );
         } #>
         <?php

@@ -305,8 +305,9 @@
 
 .ha-icon-box-icon {
 	display: inline-block;
-	margin-bottom: 1.5rem;
-	text-align: center; 
+	margin-bottom: 1rem;
+	color: #151515; 
+	text-align: center;
 	font-size: 3rem;
 }
 .ha-icon-box-icon > i {
@@ -317,7 +318,7 @@
 
 .ha-icon-box-link {
 	display: block;
-	color: #151515; 
+	color: transparent; 
 	text-decoration: none;
 }
 
@@ -882,11 +883,11 @@ span .ha-review-ratting--star:before,
 	margin-right: 1.5rem;
 }
 
-.ha-progressbars .elementor-widget-container {
+.ha-skills .elementor-widget-container {
 	padding-top: 1px;
 }
 
-.ha-progressbar {
+.ha-skill {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -894,38 +895,38 @@ span .ha-review-ratting--star:before,
 	background-color: #e9ecef; 
 	font-size: .75rem;
 }
-.ha-progressbar--outside .ha-progressbar-info,
-.ha-progressbar--inside .ha-progressbar-info {
+.ha-skill--outside .ha-skill-info,
+.ha-skill--inside .ha-skill-info {
 	text-align: left; 
 	font-size: 14px;
 }
-.ha-progressbar--outside .ha-progressbar-percent,
-.ha-progressbar--inside .ha-progressbar-percent {
+.ha-skill--outside .ha-skill-level-text,
+.ha-skill--inside .ha-skill-level-text {
 	float: right;
 }
-.ha-progressbar--outside {
+.ha-skill--outside {
 	height: 2px;
 }
-.ha-progressbar--outside .ha-progressbar-completed {
+.ha-skill--outside .ha-skill-level {
 	position: relative;
 }
-.ha-progressbar--outside .ha-progressbar-info {
+.ha-skill--outside .ha-skill-info {
 	position: absolute;
 	top: -25px;
 	width: 100%;
 	color: #242424;
 }
-.ha-progressbar--inside {
+.ha-skill--inside {
 	overflow: hidden;
 	height: 30px;
 	border-radius: .3rem;
 }
-.ha-progressbar--inside .ha-progressbar-info {
+.ha-skill--inside .ha-skill-info {
 	padding-right: 1rem;
 	padding-left: 1rem;
 	color: #fff;
 }
-.ha-progressbar-completed {
+.ha-skill-level {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -946,9 +947,18 @@ span .ha-review-ratting--star:before,
 	-webkit-transition: width .6s ease;
 	        transition: width .6s ease;
 }
-.ha-progressbar--outside {
+.ha-skill--outside {
 	margin-top: 40px;
 }
-.ha-progressbar--inside:not(:first-child) {
+.ha-skill--inside:not(:first-child) {
 	margin-top: 20px;
+}
+
+.ha-gradient-heading {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.ha-gradient-heading > a {
+	color: inherit;
+	text-decoration: none;
 }

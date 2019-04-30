@@ -67,10 +67,10 @@ class AdCard extends Base {
                 'default' => 'title',
                 'options' => [
                     'button' => __( 'Button', 'happy_addons' ),
-                    'desc' => __( 'Description', 'happy_addons' ),
                     'divider' => __( 'Divider', 'happy_addons' ),
                     'image' => __( 'Image', 'happy_addons' ),
                     'title' => __( 'Title', 'happy_addons' ),
+                    'text' => __( 'Text', 'happy_addons' ),
                 ]
             ]
         );
@@ -79,7 +79,8 @@ class AdCard extends Base {
             'image',
             [
                 'type' => Controls_Manager::MEDIA,
-                'label' => __( 'Image', 'happy_addons' ),
+                'show_label' => false,
+                'separator' => 'before',
                 'condition' => [
                     'type' => 'image',
                 ]
@@ -101,85 +102,13 @@ class AdCard extends Base {
             'title',
             [
                 'type' => Controls_Manager::TEXT,
-                'label' => __( 'Title', 'happy_addons' ),
+                'show_label' => false,
+                'label_block' => true,
                 'separator' => 'before',
+                'placeholder' => __( 'Type title text', 'happy_addons' ),
                 'condition' => [
                     'type' => 'title',
                 ]
-            ]
-        );
-
-        $repeater->start_controls_tabs('title_tabs');
-
-        $repeater->start_controls_tab(
-            'title_style_tab',
-            [
-                'label' => __( 'Style', 'happy_addons' ),
-                'condition' => [
-                    'type' => 'title',
-                ]
-            ]
-        );
-
-        $repeater->add_control(
-            'title_color',
-            [
-                'label' => __( 'Text Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-label' => 'color: {{VALUE}}',
-//                ],
-                'condition' => [
-                    'type' => 'title',
-                ]
-            ]
-        );
-
-        $repeater->add_group_control(
-            Group_Control_Text_Shadow::get_type(),
-            [
-                'name' => 'title_text_shadow',
-                'label' => __( 'Text Shadow', 'happy_addons' ),
-//                'selector' => '{{WRAPPER}} .ha-label',
-                'condition' => [
-                    'type' => 'title',
-                ]
-            ]
-        );
-
-        $repeater->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'title_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
-//                'selector' => '{{WRAPPER}} .ha-label',
-                'condition' => [
-                    'type' => 'title',
-                ]
-            ]
-        );
-
-        $repeater->end_controls_tab();
-
-        $repeater->start_controls_tab(
-            'title_advanced_tab',
-            [
-                'label' => __( 'Advanced', 'happy_addons' ),
-                'condition' => [
-                    'type' => 'title',
-                ]
-            ]
-        );
-
-        $repeater->add_responsive_control(
-            'title_margin',
-            [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-card-text' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
             ]
         );
 
@@ -187,57 +116,176 @@ class AdCard extends Base {
             'title_tag',
             [
                 'label' => __( 'Title HTML Tag', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
+                'type' => Controls_Manager::CHOOSE,
                 'options' => [
-                    'h1'  => __( 'H1', 'happy_addons' ),
-                    'h2'  => __( 'H2', 'happy_addons' ),
-                    'h3'  => __( 'H3', 'happy_addons' ),
-                    'h4'  => __( 'H4', 'happy_addons' ),
-                    'h5'  => __( 'H5', 'happy_addons' ),
-                    'h6'  => __( 'H6', 'happy_addons' ),
+                    'h1'  => [
+                        'title' => __( 'H1', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h1'
+                    ],
+                    'h2'  => [
+                        'title' => __( 'H2', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h2'
+                    ],
+                    'h3'  => [
+                        'title' => __( 'H3', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h3'
+                    ],
+                    'h4'  => [
+                        'title' => __( 'H4', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h4'
+                    ],
+                    'h5'  => [
+                        'title' => __( 'H5', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h5'
+                    ],
+                    'h6'  => [
+                        'title' => __( 'H6', 'happy_addons' ),
+                        'icon' => 'eicon-editor-h6'
+                    ]
                 ],
                 'default' => 'h2',
+                'condition' => [
+                    'type' => 'title',
+                ]
             ]
         );
 
-        $repeater->end_controls_tab();
-
-        $repeater->end_controls_tabs();
-
         $repeater->add_control(
-            'desc',
+            'text',
             [
                 'type' => Controls_Manager::TEXTAREA,
-                'label' => __( 'Description', 'happy_addons' ),
+                'show_label' => false,
                 'separator' => 'before',
+                'placeholder' => __( 'Type text content', 'happy_addons' ),
                 'condition' => [
-                    'type' => 'desc',
+                    'type' => 'text',
                 ]
             ]
         );
 
-        $repeater->start_controls_tabs('desc_tabs');
-
-        $repeater->start_controls_tab(
-            'desc_style_tab',
+        $repeater->add_responsive_control(
+            'width',
             [
-                'label' => __( 'Style', 'happy_addons' ),
+                'label' => __( 'Width', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 500,
+                    ],
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+//                    '{{WRAPPER}} .ha-blurb-figure--image' => 'width: {{SIZE}}{{UNIT}};',
+                ],
                 'condition' => [
-                    'type' => 'desc',
+                    'type' => ['image', 'divider']
+                ]
+            ]
+        );
+
+        $repeater->add_responsive_control(
+            'height',
+            [
+                'label' => __( 'Height', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 500,
+                    ],
+                ],
+                'selectors' => [
+//                    '{{WRAPPER}} .ha-blurb-figure--image' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'type' => ['image', 'divider']
+                ]
+            ]
+        );
+
+        /* =======================
+         * Styles goes here
+         * ======================= */
+
+        $repeater->add_responsive_control(
+            'margin',
+            [
+                'label' => __( 'Margin', 'happy_addons' ),
+                'separator' => 'before',
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+//                'selectors' => [
+//                    '{{WRAPPER}} .ha-card-text' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+//                ],
+            ]
+        );
+
+        $repeater->add_responsive_control(
+            'padding',
+            [
+                'label' => __( 'Padding', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+//                'selectors' => [
+//                    '{{WRAPPER}} .ha-card-text' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+//                ],
+            ]
+        );
+
+        $repeater->add_responsive_control(
+            'align',
+            [
+                'label' => __( 'Alignment', 'happy_addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Left', 'happy_addons' ),
+                        'icon' => 'fa fa-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Center', 'happy_addons' ),
+                        'icon' => 'fa fa-align-center',
+                    ],
+                    'right' => [
+                        'title' => __( 'Right', 'happy_addons' ),
+                        'icon' => 'fa fa-align-right',
+                    ],
+                    'justify' => [
+                        'title' => __( 'Justify', 'happy_addons' ),
+                        'icon' => 'fa fa-align-justify',
+                    ],
+                ],
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}}' => 'text-align: {{VALUE}}'
                 ]
             ]
         );
 
         $repeater->add_control(
-            'desc_color',
+            'text_color',
             [
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-label' => 'color: {{VALUE}}',
-//                ],
                 'condition' => [
-                    'type' => 'desc',
+                    'type' => ['title','text'],
+                ]
+            ]
+        );
+
+        $repeater->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'text_shadow',
+                'label' => __( 'Text Shadow', 'happy_addons' ),
+                'condition' => [
+                    'type' => ['title', 'text'],
                 ]
             ]
         );
@@ -245,50 +293,18 @@ class AdCard extends Base {
         $repeater->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'desc_typography',
+                'name' => 'text_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
-//                'selector' => '{{WRAPPER}} .ha-label',
                 'condition' => [
-                    'type' => 'desc',
+                    'type!' => ['divider', 'image']
                 ]
             ]
         );
-
-        $repeater->end_controls_tab();
-
-        $repeater->start_controls_tab(
-            'desc_advanced_tab',
-            [
-                'label' => __( 'Advanced', 'happy_addons' ),
-                'condition' => [
-                    'type' => 'desc',
-                ]
-            ]
-        );
-
-        $repeater->add_responsive_control(
-            'desc_margin',
-            [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-card-text' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'type' => 'desc',
-                ]
-            ]
-        );
-
-        $repeater->end_controls_tab();
-
-        $repeater->end_controls_tabs();
 
         $this->add_control(
             'contents',
             [
-                'label' => __( 'Contents', 'happy_addons' ),
+                'show_label' => false,
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'title_field' => 'Type: <b><# print(type.slice(0,1).toUpperCase() + type.slice(1)) #></b>'
