@@ -1,23 +1,19 @@
 <?php
 /**
- * Progressbar widget class
+ * Skillsbar widget class
  *
  * @package Happy_Addons
  */
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Repeater;
-use Elementor\Control_Media;
 use Elementor\Controls_Manager;
-use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Elementor\Utils;
 
 defined( 'ABSPATH' ) || die();
 
-class ProgressBars extends Base {
+class Skills extends Base {
 
     /**
      * Get widget title.
@@ -28,7 +24,7 @@ class ProgressBars extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Progress Bars', 'happy_addons' );
+        return __( 'Happy Skills', 'happy_addons' );
     }
 
     /**
@@ -44,14 +40,14 @@ class ProgressBars extends Base {
     }
 
     public function get_keywords() {
-        return [ 'progressbar', 'skillbar' ];
+        return [ 'progress', 'skill', 'bar' ];
     }
 
 	protected function register_content_controls() {
         $this->start_controls_section(
-            '_section_bars',
+            '_section_skills',
             [
-                'label' => __( 'Bars', 'happy_addons' ),
+                'label' => __( 'Skills', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -60,12 +56,12 @@ class ProgressBars extends Base {
             'view',
             [
                 'type' => Controls_Manager::SELECT,
-                'label' => __( 'View', 'happy_addons' ),
+                'label' => __( 'Text Position', 'happy_addons' ),
                 'separator' => 'after',
                 'default' => 'inside',
                 'options' => [
-                    'inside' => __( 'Label Inside', 'happy_addons' ),
-                    'outside' => __( 'Label Outside', 'happy_addons' ),
+                    'inside' => __( 'Text Inside', 'happy_addons' ),
+                    'outside' => __( 'Text Outside', 'happy_addons' ),
                 ]
             ]
         );
@@ -73,18 +69,18 @@ class ProgressBars extends Base {
         $repeater = new Repeater();
 
         $repeater->add_control(
-            'label',
+            'name',
             [
                 'type' => Controls_Manager::TEXT,
-                'label' => __( 'Label', 'happy_addons' ),
-                'placeholder' => __( 'Type bar label text', 'happy_addons' ),
+                'label' => __( 'Name', 'happy_addons' ),
+                'placeholder' => __( 'Type skill name', 'happy_addons' ),
             ]
         );
 
         $repeater->add_control(
-            'completed',
+            'level',
             [
-                'label' => __( 'Completed (%)', 'happy_addons' ),
+                'label' => __( 'Level (Out Of 100)', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'unit' => '%',
@@ -101,15 +97,14 @@ class ProgressBars extends Base {
         );
 
         $repeater->add_control(
-            'customized',
+            'customize',
             [
-                'label' => __( 'Override Style', 'happy_addons' ),
+                'label' => __( 'Want To Customize?', 'happy_addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy_addons' ),
                 'label_off' => __( 'No', 'happy_addons' ),
                 'return_value' => 'yes',
-                'default' => 'no',
-                'description' => __( 'Use widget main style or override from here', 'happy_addons' )
+                'description' => __( 'You can customize this skill bar color from here or customize from Style tab', 'happy_addons' )
             ]
         );
 
@@ -119,43 +114,43 @@ class ProgressBars extends Base {
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}} .ha-progressbar-info' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .ha-skill-info' => 'color: {{VALUE}}',
                 ],
-                'condition' => ['customized' => 'yes']
+                'condition' => ['customize' => 'yes']
             ]
         );
 
         $repeater->add_control(
-            'completed_color',
+            'level_color',
             [
-                'label' => __( 'Completed Color', 'happy_addons' ),
+                'label' => __( 'Level Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}} .ha-progressbar-completed' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .ha-skill-level' => 'background-color: {{VALUE}}',
                 ],
-                'condition' => ['customized' => 'yes']
+                'condition' => ['customize' => 'yes']
             ]
         );
 
         $repeater->add_control(
-            'uncompleted_color',
+            'base_color',
             [
-                'label' => __( 'Uncompleted Color', 'happy_addons' ),
+                'label' => __( 'Base Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}}.ha-progressbar' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}}.ha-skill' => 'background-color: {{VALUE}}',
                 ],
-                'condition' => ['customized' => 'yes']
+                'condition' => ['customize' => 'yes']
             ]
         );
 
         $this->add_control(
-            'bars',
+            'skills',
             [
                 'show_label' => false,
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
-                'title_field' => '<# print((label || completed.size) ? (label || "Label") + " - " + completed.size + completed.unit : "Label - 0%") #>'
+                'title_field' => '<# print((name || level.size) ? (name || "Skill") + " - " + level.size + level.unit : "Skill - 0%") #>'
             ]
         );
 
@@ -164,9 +159,9 @@ class ProgressBars extends Base {
 
     protected function register_style_controls() {
         $this->start_controls_section(
-            '_section_bars_style',
+            '_section_skills_style',
             [
-                'label' => __( 'Bars', 'happy_addons' ),
+                'label' => __( 'Skills', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -184,8 +179,8 @@ class ProgressBars extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-progressbar--outside' => 'height: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-progressbar--inside' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-skill--outside' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-skill--inside' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -203,8 +198,8 @@ class ProgressBars extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-progressbar--outside' => 'margin-top: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-progressbar--inside:not(:first-child)' => 'margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-skill--outside' => 'margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-skill--inside:not(:first-child)' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -216,7 +211,7 @@ class ProgressBars extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-progressbar, {{WRAPPER}} .ha-progressbar-completed' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-skill, {{WRAPPER}} .ha-skill-level' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -228,27 +223,17 @@ class ProgressBars extends Base {
                 'exclude' => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .ha-progressbar'
+                'selector' => '{{WRAPPER}} .ha-skill'
             ]
         );
 
         $this->end_controls_section();
 
         $this->start_controls_section(
-            '_section_bars_label',
+            '_section_content_label',
             [
-                'label' => __( 'Label', 'happy_addons' ),
+                'label' => __( 'Content', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_control(
-            '_editing_notice',
-            [
-                'show_label' => false,
-                'type' => Controls_Manager::RAW_HTML,
-                'raw' => __( 'You can change each bar colors by overriding style respectively.', 'happy_addons' ),
-                'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
             ]
         );
 
@@ -258,29 +243,29 @@ class ProgressBars extends Base {
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-progressbar-info' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-skill-info' => 'color: {{VALUE}}',
                 ],
             ]
         );
 
         $this->add_control(
-            'completed_color',
+            'level_color',
             [
-                'label' => __( 'Completed Color', 'happy_addons' ),
+                'label' => __( 'Level Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-progressbar-completed' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-skill-level' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
 
         $this->add_control(
-            'uncompleted_color',
+            'base_color',
             [
-                'label' => __( 'Uncompleted Color', 'happy_addons' ),
+                'label' => __( 'Base Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-progressbar' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-skill' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -290,7 +275,7 @@ class ProgressBars extends Base {
             [
                 'name' => 'typography',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-progressbar-info',
+                'selector' => '{{WRAPPER}} .ha-skill-info',
             ]
         );
     }
@@ -298,17 +283,17 @@ class ProgressBars extends Base {
 	protected function render() {
         $settings = $this->get_settings_for_display();
 
-        if ( ! is_array( $settings['bars'] ) ) {
+        if ( ! is_array( $settings['skills'] ) ) {
             return;
         }
 
-        foreach ( $settings['bars'] as $index => $bar ) :
-            $label_key = $this->get_repeater_setting_key( 'label', 'bars', $index );
-            $this->add_inline_editing_attributes( $label_key, 'none' );
+        foreach ( $settings['skills'] as $index => $skill ) :
+            $name_key = $this->get_repeater_setting_key( 'name', 'bars', $index );
+            $this->add_inline_editing_attributes( $name_key, 'none' );
             ?>
-            <div class="item ha-progressbar ha-progressbar--<?php echo esc_attr( $settings['view'] ); ?> elementor-repeater-item-<?php echo $bar['_id']; ?>">
-                <div class="ha-progressbar-completed" style="width: <?php echo esc_attr( $bar['completed']['size'] ); ?>%;">
-                    <div class="ha-progressbar-info"><span <?php echo $this->get_render_attribute_string( $label_key ); ?>><?php echo esc_html( $bar['label'] ); ?></span><span class="ha-progressbar-percent"><?php echo esc_html( $bar['completed']['size'] ); ?>%</span></div>
+            <div class="ha-skill ha-skill--<?php echo esc_attr( $settings['view'] ); ?> elementor-repeater-item-<?php echo $skill['_id']; ?>">
+                <div class="ha-skill-level" style="width: <?php echo esc_attr( $skill['level']['size'] ); ?>%;">
+                    <div class="ha-skill-info"><span <?php echo $this->get_render_attribute_string( $name_key ); ?>><?php echo esc_html( $skill['name'] ); ?></span><span class="ha-skill-level-text"><?php echo esc_html( $skill['level']['size'] ); ?>%</span></div>
                 </div>
             </div>
             <?php
@@ -318,19 +303,18 @@ class ProgressBars extends Base {
     protected function _content_template() {
         ?>
         <#
-        if (!_.isArray(settings.bars)) {
-            return;
-        }
-        _.each(settings.bars, function(bar, index) {
-            var labelKey = view.getRepeaterSettingKey( 'label', 'bars', index);
-            view.addInlineEditingAttributes( labelKey, 'none' );
+        if (_.isArray(settings.skills)) {
+            _.each(settings.skills, function(skill, index) {
+            var nameKey = view.getRepeaterSettingKey( 'name', 'skills', index);
+            view.addInlineEditingAttributes( nameKey, 'none' );
             #>
-            <div class="item ha-progressbar ha-progressbar--{{settings.view}} elementor-repeater-item-{{bar._id}}">
-                <div class="ha-progressbar-completed" style="width: {{bar.completed.size}}%;">
-                    <div class="ha-progressbar-info"><span {{{view.getRenderAttributeString( labelKey )}}}>{{bar.label}}</span><span class="ha-progressbar-percent">{{bar.completed.size}}%</span></div>
+            <div class="ha-skill ha-skill--{{settings.view}} elementor-repeater-item-{{skill._id}}">
+                <div class="ha-skill-level" style="width: {{skill.level.size}}%;">
+                    <div class="ha-skill-info"><span {{{view.getRenderAttributeString( nameKey )}}}>{{skill.name}}</span><span class="ha-skill-level-text">{{skill.level.size}}%</span></div>
                 </div>
             </div>
-        <# }); #>
+            <# });
+        } #>
         <?php
     }
 }

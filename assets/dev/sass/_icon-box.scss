@@ -12,9 +12,10 @@
 
   &-icon {
     display: inline-block;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-size: 3rem;
     text-align: center;
+    color: #151515;
 
     > i {
       width: 1em;
@@ -26,6 +27,6 @@
   &-link {
     display: block;
     text-decoration: none;
-    color: #151515;
+    color: transparent;
   }
 }
