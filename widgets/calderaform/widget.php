@@ -87,6 +87,37 @@ class CalderaForm extends Base {
                 'label' => __( 'Form Fields (Normal State)', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
+		);
+
+		$this->add_responsive_control(
+            'field_width',
+            [
+                'label' => __( 'Width', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'unit' => '%',
+                ],
+                'tablet_default' => [
+                    'unit' => '%',
+                ],
+                'mobile_default' => [
+                    'unit' => '%',
+                ],
+                'size_units' => [ '%', 'px' ],
+                'range' => [
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min' => 1,
+                        'max' => 500,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
         );
 
         $this->add_responsive_control(
@@ -96,7 +127,7 @@ class CalderaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .nf-field-container:not(.submit-container)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .form-group:not(.btn)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -108,7 +139,7 @@ class CalderaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .form-group input:not(.btn)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -117,7 +148,7 @@ class CalderaForm extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'field_border',
-                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea',
+                'selector' => '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea',
             ]
         );
 
@@ -128,7 +159,7 @@ class CalderaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -137,7 +168,7 @@ class CalderaForm extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'field_box_shadow',
-                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea',
+                'selector' => '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea',
             ]
         );
 
@@ -146,7 +177,7 @@ class CalderaForm extends Base {
             [
                 'name' => 'field_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea',
+                'selector' => '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea',
             ]
         );
 
@@ -156,7 +187,7 @@ class CalderaForm extends Base {
                 'label' => __( 'Field Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea' => 'color: {{VALUE}}',
                 ],
             ]
 		);
@@ -180,7 +211,7 @@ class CalderaForm extends Base {
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -199,7 +230,7 @@ class CalderaForm extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'field_focus_border',
-                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text]:focus, {{WRAPPER}} .email-wrap input:focus, {{WRAPPER}} .textarea-wrap textarea:focus',
+                'selector' => '{{WRAPPER}} .form-group input:focus:not(.btn), {{WRAPPER}} .form-group textarea:focus',
             ]
         );
 
@@ -210,7 +241,7 @@ class CalderaForm extends Base {
                 'exclude' => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text]:focus, {{WRAPPER}} .email-wrap input:focus, {{WRAPPER}} .textarea-wrap textarea:focus',
+                'selector' => '{{WRAPPER}} .form-group input:focus:not(.btn), {{WRAPPER}} .form-group textarea:focus',
             ]
         );
 
@@ -228,7 +259,7 @@ class CalderaForm extends Base {
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap input[type=text]:focus, {{WRAPPER}} .email-wrap input:focus, {{WRAPPER}} .textarea-wrap textarea:focus' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .form-group input:focus:not(.btn), {{WRAPPER}} .form-group textarea:focus' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -236,7 +267,7 @@ class CalderaForm extends Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'ninjaf-form-label',
+            'caldera-form-label',
             [
                 'label' => __( 'Form Fields Label', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
@@ -250,7 +281,7 @@ class CalderaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label' => 'display: inline-block; padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .caldera-grid label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -262,7 +293,7 @@ class CalderaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label' => 'display: inline-block; padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .caldera-grid label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -280,7 +311,7 @@ class CalderaForm extends Base {
             [
                 'name' => 'label_typography',
                 'label' => __( 'Label Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label',
+                'selector' => '{{WRAPPER}} .caldera-grid label',
             ]
         );
 
@@ -289,7 +320,7 @@ class CalderaForm extends Base {
             [
                 'name' => 'desc_typography',
                 'label' => __( 'Description Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .nf-field-description p',
+                'selector' => '{{WRAPPER}} .caldera-grid .help-block',
             ]
         );
 
@@ -299,7 +330,7 @@ class CalderaForm extends Base {
                 'label' => __( 'Label Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .caldera-grid label' => 'color: {{VALUE}}',
                 ],
             ]
 		);
@@ -310,7 +341,7 @@ class CalderaForm extends Base {
                 'label' => __( 'Required Label Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ninja-forms-req-symbol' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .field_required' => 'color: {{VALUE}} !important',
                 ],
             ]
         );
@@ -321,7 +352,7 @@ class CalderaForm extends Base {
                 'label' => __( 'Description Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .nf-field-description p' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .caldera-grid .help-block' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -359,7 +390,7 @@ class CalderaForm extends Base {
                 'toggle' => false,
 				'prefix_class' => 'ha-form-btn--%s',
 				'selectors' => [
-                    '{{WRAPPER}} .field-wrap.submit-wrap' => 'text-align: {{Value}};',
+                    '{{WRAPPER}} .form-group' => 'text-align: {{Value}};',
                 ],
             ]
         );
@@ -371,7 +402,7 @@ class CalderaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .form-group .btn' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -383,7 +414,7 @@ class CalderaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .form-group .btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -392,7 +423,7 @@ class CalderaForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'submit_typography',
-                'selector' => '{{WRAPPER}} .submit-container input',
+                'selector' => '{{WRAPPER}} .form-group .btn',
             ]
         );
 
@@ -400,7 +431,7 @@ class CalderaForm extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'submit_border',
-                'selector' => '{{WRAPPER}} .submit-container input',
+                'selector' => '{{WRAPPER}} .form-group .btn',
             ]
         );
 
@@ -411,7 +442,7 @@ class CalderaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .form-group .btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -420,7 +451,7 @@ class CalderaForm extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'submit_box_shadow',
-                'selector' => '{{WRAPPER}} .submit-container input',
+                'selector' => '{{WRAPPER}} .form-group .btn',
             ]
         );
 
@@ -448,7 +479,7 @@ class CalderaForm extends Base {
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .form-group .btn' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -459,7 +490,7 @@ class CalderaForm extends Base {
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .form-group .btn' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -479,7 +510,7 @@ class CalderaForm extends Base {
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input:hover, {{WRAPPER}} .submit-container input:focus' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .form-group .btn:hover, {{WRAPPER}} .form-group .btn:focus' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -490,7 +521,7 @@ class CalderaForm extends Base {
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input:hover, {{WRAPPER}} .submit-container input:focus' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .form-group .btn:hover, {{WRAPPER}} .form-group .btn:focus' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -504,7 +535,7 @@ class CalderaForm extends Base {
                     'btn_border_border!' => '',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input:hover, {{WRAPPER}} .submit-container input:focus' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .form-group .btn:hover, {{WRAPPER}} .form-group .btn:focus' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -527,6 +558,6 @@ class CalderaForm extends Base {
                 'id' => $settings['id'],
                 //'html_class' => 'ha-cf7-form ' . ha_sanitize_html_class_param( $settings['html_class'] ),
             ] );
-        }
+		}
     }
 }

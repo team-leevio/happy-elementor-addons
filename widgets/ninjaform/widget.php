@@ -87,6 +87,37 @@ class NinjaForm extends Base {
                 'label' => __( 'Form Fields (Normal State)', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
+		);
+
+		$this->add_responsive_control(
+            'field_width',
+            [
+                'label' => __( 'Width', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'unit' => '%',
+                ],
+                'tablet_default' => [
+                    'unit' => '%',
+                ],
+                'mobile_default' => [
+                    'unit' => '%',
+                ],
+                'size_units' => [ '%', 'px' ],
+                'range' => [
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min' => 1,
+                        'max' => 500,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
         );
 
         $this->add_responsive_control(
