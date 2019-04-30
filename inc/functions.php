@@ -71,6 +71,34 @@ if ( ! function_exists( 'ha_get_wpforms' ) ) {
     }
 }
 
+if ( ! function_exists( 'ha_get_ninjaform' ) ) {
+    /**
+     * Get a list of all Ninja Form
+     *
+     * @return array
+     */
+    function ha_get_ninjaform() {
+        $options = array();
+
+        if ( class_exists( 'Ninja_Forms' ) ) {
+            $contact_forms = Ninja_Forms()->form()->get_forms();
+
+            if ( !empty($contact_forms) && !is_wp_error( $contact_forms ) ) {
+
+                $options[0] = esc_html__( 'Select Ninja Form', 'happy_addons' );
+
+                foreach ( $contact_forms as $form ) {
+                    $options[$form->get_id()] = $form->get_setting('title');
+                }
+            }
+        } else {
+            $options[0] = esc_html__( 'Create a Form First', 'happy_addons' );
+        }
+
+        return $options;
+    }
+}
+
 if ( ! function_exists( 'ha_sanitize_html_class_param' ) ) {
     /**
      * Sanitize html class string
@@ -109,6 +137,17 @@ if ( ! function_exists( 'ha_is_wpf_activated' ) ) {
      */
     function ha_is_wpf_activated() {
         return class_exists( 'WPForms_Lite' );
+    }
+}
+
+if ( ! function_exists( 'ha_is_ninjaf_activated' ) ) {
+    /**
+     * Check if Ninja Form is activated
+     *
+     * @return bool
+     */
+    function ha_is_ninjaf_activated() {
+        return class_exists( 'Ninja_Forms' );
     }
 }
 
