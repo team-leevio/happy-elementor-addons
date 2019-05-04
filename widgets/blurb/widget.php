@@ -61,8 +61,9 @@ class Blurb extends Base {
         $this->add_control(
             'type',
             [
-                'label' => __( 'Type', 'happy_addons' ),
+                'label' => __( 'Media Type', 'happy_addons' ),
                 'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
                 'options' => [
                     'icon' => [
                         'title' => __( 'Icon', 'happy_addons' ),
@@ -232,6 +233,7 @@ class Blurb extends Base {
             [
                 'label' => __( 'Text', 'happy_addons' ),
                 'type' => Controls_Manager::TEXT,
+                'label_block' => true,
                 'default' => __( 'Default text', 'happy_addons' ),
                 'placeholder' => __( 'Type your link text', 'happy_addons' ),
             ]
@@ -242,6 +244,7 @@ class Blurb extends Base {
             [
                 'label' => __( 'URL', 'happy_addons' ),
                 'type' => Controls_Manager::URL,
+                'label_block' => true,
                 'placeholder' => __( 'https://example.com/', 'happy_addons' ),
                 'default' => [
                     'url' => '#',

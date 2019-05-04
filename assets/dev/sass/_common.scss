@@ -4,53 +4,9 @@
     box-sizing: border-box;
   }
 
-  @include widgetContainer {
-    background-color: #fff;
-    box-shadow: 0 0.2rem 2.8rem rgba(36, 36, 36, .1);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    border-radius: .5rem;
-  }
-
   img {
     max-width: 100%;
     height: auto;
     object-fit: cover;
-  }
-}
-
-.ha-text {
-  &---mobileleft {
-    text-align: left;
-  }
-  &---mobilecenter {
-    text-align: center;
-  }
-  &---mobileright {
-    text-align: right;
-  }
-
-  @media (min-width: 600px) {
-    &---tabletleft {
-      text-align: left;
-    }
-    &---tabletcenter {
-      text-align: center;
-    }
-    &---tabletright {
-      text-align: right;
-    }
-  }
-
-  @media (min-width: 769px) {
-    &--left {
-      text-align: left;
-    }
-    &--center {
-      text-align: center;
-    }
-    &--right {
-      text-align: right;
-    }
   }
 }

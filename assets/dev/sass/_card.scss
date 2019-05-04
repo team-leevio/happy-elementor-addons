@@ -1,4 +1,7 @@
 .ha-card {
+
+  @extend %happyWidgetContainer;
+
   &-figure {
     position: relative;
     height: 250px;
@@ -36,7 +39,8 @@
   }
 
   // Card variation
-  &--top {
+  &--top,
+  &--bottom {
     .ha-card-figure {
       display: inline-block;
     }
@@ -47,17 +51,18 @@
     @include widgetContainer {
       display: flex;
       flex-direction: row;
+      align-items: center;
     }
 
     .ha-card-figure {
       flex: 0 0 50%;
       max-width: 50%;
-      align-self: center;
     }
 
     .ha-card-body {
       padding: 2.5rem;
-      align-self: center;
+      flex: 0 0 50%;
+      max-width: 50%;
     }
   }
 
@@ -70,7 +75,9 @@
   &--right {
     @include widgetContainer {
       flex-direction: row-reverse;
+      text-align: right;
     }
+
     .ha-card-figure > img {
       border-radius: 0 calc(.5rem - 1px) calc(.5rem - 1px) 0;
     }
@@ -78,11 +85,11 @@
 }
 
 // Card label
-.ha-card .ha-label {
+.ha-card .ha-badge {
   position: absolute;
 }
 
-.ha-label {
+.ha-badge {
   background-color: #fff;
   padding: .475rem 1.1rem;
   border-radius: 50px;

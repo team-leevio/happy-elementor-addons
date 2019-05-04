@@ -3,3 +3,13 @@
     @content;
   }
 }
+
+%happyWidgetContainer {
+  @include widgetContainer {
+    background-color: #fff;
+    box-shadow: 0 0.2rem 2.8rem rgba(36, 36, 36, .1);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    border-radius: .5rem;
+  }
+}
