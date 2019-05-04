@@ -593,7 +593,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'content_padding',
             [
-                'label' => __( 'Container Padding', 'happy_addons' ),
+                'label' => __( 'Content Padding', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
