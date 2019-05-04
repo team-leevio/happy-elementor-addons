@@ -1,4 +1,6 @@
 .ha-icon-box {
+  @extend %happyWidgetContainer;
+
   @include widgetContainer {
     padding: 1.25rem;
   }

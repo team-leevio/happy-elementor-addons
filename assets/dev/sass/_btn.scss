@@ -2,8 +2,8 @@
   background-color: #8c8c8c;
   color: #fff;
   text-decoration: none;
-  padding: .575rem 1.3rem;
-  line-height: 1.5;
+  padding: .7rem 1.3rem;
+  line-height: 1;
   border-radius: .25rem;
   text-align: center;
   vertical-align: middle;
@@ -19,5 +19,10 @@
 
   &--block {
     display: block;
+  }
+
+  &-icon + &-text,
+  &-text + &-icon {
+    margin-left: 5px;
   }
 }

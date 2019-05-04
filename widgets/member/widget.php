@@ -799,7 +799,7 @@ class Member extends Base {
             <p><?php echo wp_kses_data( $settings['bio'] ); ?></p>
         </div>
 
-        <?php if ( ! empty( $settings['links' ] ) ) : ?>
+        <?php if ( ! empty( $settings['profiles' ] ) ) : ?>
             <div class="ha-member-links">
                 <?php
                 foreach ( $settings['profiles'] as $profile ) :
@@ -855,7 +855,7 @@ class Member extends Base {
         <div {{{ view.getRenderAttributeString( 'bio' ) }}}>
             <p>{{{ settings.bio }}}</p>
         </div>
-        <# if (_.isArray(settings.links)) { #>
+        <# if (_.isArray(settings.profiles)) { #>
         <div class="ha-member-links">
             <# _.each(settings.profiles, function(profile, index) {
                 var icon = profile.name,
@@ -877,4 +877,5 @@ class Member extends Base {
         <# } #>
         <?php
     }
+
 }

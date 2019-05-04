@@ -27,7 +27,7 @@ class Card extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Card', 'happy_addons' );
+        return __( 'Card', 'happy_addons' );
     }
 
     /**
@@ -43,14 +43,14 @@ class Card extends Base {
     }
 
     public function get_keywords() {
-        return [ 'card', 'blurb', 'content', 'block', 'box' ];
+        return [ 'card', 'blurb', 'infobox', 'content', 'block', 'box' ];
     }
 
 	protected function register_content_controls() {
 		$this->start_controls_section(
 			'_section_image',
 			[
-				'label' => __( 'Image & Label', 'happy_addons' ),
+				'label' => __( 'Image & Badge', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -75,11 +75,12 @@ class Card extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'image_position',
             [
                 'label' => __( 'Image Position', 'happy_addons' ),
                 'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
                 'options' => [
                     'left' => [
                         'title' => __( 'Left', 'happy_addons' ),
@@ -94,27 +95,26 @@ class Card extends Base {
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
-                'desktop_default' => 'top',
                 'toggle' => false,
-                'prefix_class' => 'ha-card--%s'
+                'prefix_class' => 'ha-card--'
             ]
         );
 
         $this->add_control(
-            'label',
+            'badge_text',
             [
-                'label' => __( 'Label', 'happy_addons' ),
+                'label' => __( 'Badge Text', 'happy_addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Default label', 'happy_addons' ),
-                'placeholder' => __( 'Type label text', 'happy_addons' ),
-                'separator' => 'before'
+                'default' => __( 'Badget Text', 'happy_addons' ),
+                'placeholder' => __( 'Type badge text', 'happy_addons' ),
+                'separator' => 'before',
             ]
         );
 
         $this->add_control(
-            'label_position',
+            'badge_position',
             [
-                'label' => __( 'Label Position', 'happy_addons' ),
+                'label' => __( 'Badge Position', 'happy_addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
                     'top-left'  => __( 'Top Left', 'happy_addons' ),
@@ -216,10 +216,14 @@ class Card extends Base {
                         'title' => __( 'Right', 'happy_addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
+                    'justify' => [
+                        'title' => __( 'Justify', 'happy_addons' ),
+                        'icon' => 'fa fa-align-justify',
+                    ],
                 ],
                 'toggle' => true,
                 'selectors' => [
-                        '{{WRAPPER}}' => 'text-align: {{VALUE}}'
+                    '{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}}'
                 ]
             ]
         );
@@ -239,8 +243,9 @@ class Card extends Base {
             [
                 'label' => __( 'Text', 'happy_addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Default text', 'happy_addons' ),
-                'placeholder' => __( 'Type your button text here', 'happy_addons' ),
+                'default' => __( 'Button Text', 'happy_addons' ),
+                'placeholder' => __( 'Type button text here', 'happy_addons' ),
+                'label_block' => true,
             ]
         );
 
@@ -250,9 +255,6 @@ class Card extends Base {
                 'label' => __( 'Link', 'happy_addons' ),
                 'type' => Controls_Manager::URL,
                 'placeholder' => __( 'https://example.com/', 'happy_addons' ),
-                'default' => [
-                    'url' => '#',
-                ],
             ]
         );
 
@@ -261,8 +263,6 @@ class Card extends Base {
             [
                 'label' => __( 'Icon', 'happy_addons' ),
                 'type' => Controls_Manager::ICON,
-                'label_block' => true,
-                'default' => '',
             ]
         );
 
@@ -270,12 +270,20 @@ class Card extends Base {
             'button_icon_position',
             [
                 'label' => __( 'Icon Position', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'before',
+                'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
                 'options' => [
-                    'before' => __( 'Before', 'happy_addons' ),
-                    'after' => __( 'After', 'happy_addons' ),
+                    'before' => [
+                        'title' => __( 'Before', 'happy_addons' ),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'after' => [
+                        'title' => __( 'After', 'happy_addons' ),
+                        'icon' => 'eicon-h-align-right',
+                    ],
                 ],
+                'default' => 'before',
+                'toggle' => false,
                 'condition' => [
                     'button_icon!' => '',
                 ],
@@ -283,7 +291,7 @@ class Card extends Base {
         );
 
         $this->add_control(
-            'icon_indent',
+            'button_icon_spacing',
             [
                 'label' => __( 'Icon Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
@@ -332,6 +340,7 @@ class Card extends Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-card-figure' => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-card--right .ha-card-body, {{WRAPPER}}.ha-card--left .ha-card-body' => 'flex: 0 0 calc(100% - {{SIZE}}{{UNIT}}); max-width: calc(100% - {{SIZE}}{{UNIT}});',
                 ],
             ]
         );
@@ -410,8 +419,14 @@ class Card extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-card-figure' => '-ms-transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); -webkit-transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}});',
                     '{{WRAPPER}}.ha-card--top .ha-card-body' => 'margin-top: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-card--left .ha-card-body' => 'margin-left: {{image_offset_x.SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-card--right .ha-card-body' => 'margin-right: calc(-1 * {{image_offset_x.SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-card--left .ha-card-body' =>
+                        'margin-left: {{image_offset_x.SIZE}}{{UNIT}};'
+                        . 'flex: 0 0 calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE}}{{UNIT}}));'
+                        . 'max-width: calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE}}{{UNIT}}));',
+                    '{{WRAPPER}}.ha-card--right .ha-card-body' =>
+                        'margin-right: calc(-1 * {{image_offset_x.SIZE}}{{UNIT}});'
+                        . 'flex: 0 0 calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + {{image_offset_x.SIZE}}{{UNIT}});'
+                        . 'max-width: calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + {{image_offset_x.SIZE}}{{UNIT}});'
                 ],
             ]
         );
@@ -463,55 +478,55 @@ class Card extends Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            '_section_style_label',
+            '_section_style_badge',
             [
-                'label' => __( 'Label', 'happy_addons' ),
+                'label' => __( 'Badge', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_responsive_control(
-            'label_margin',
+            'badge_margin',
             [
                 'label' => __( 'Margin', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-badge' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_responsive_control(
-            'label_padding',
+            'badge_padding',
             [
                 'label' => __( 'Padding', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-badge' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'label_color',
+            'badge_color',
             [
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-badge' => 'color: {{VALUE}}',
                 ],
             ]
         );
 
         $this->add_control(
-            'label_bg_color',
+            'badge_bg_color',
             [
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-badge' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -519,19 +534,19 @@ class Card extends Base {
         $this->add_group_control(
             Group_Control_Border::get_type(),
             [
-                'name' => 'label_border',
-                'selector' => '{{WRAPPER}} .ha-label',
+                'name' => 'badge_border',
+                'selector' => '{{WRAPPER}} .ha-badge',
             ]
         );
 
         $this->add_responsive_control(
-            'label_border_radius',
+            'badge_border_radius',
             [
                 'label' => __( 'Border Radius', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-badge' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -539,18 +554,18 @@ class Card extends Base {
         $this->add_group_control(
             Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'label_box_shadow',
+                'name' => 'badge_box_shadow',
                 'exclude' => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .ha-label',
+                'selector' => '{{WRAPPER}} .ha-badge',
             ]
         );
 
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'label_typography',
+                'name' => 'badge_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
                 'exclude' => [
                     'font_family',
@@ -558,10 +573,10 @@ class Card extends Base {
                 ],
                 'default' => [
                     'font_size' => [
-                            ''
+                        ''
                     ]
                 ],
-                'selector' => '{{WRAPPER}} .ha-label',
+                'selector' => '{{WRAPPER}} .ha-badge',
             ]
         );
 
@@ -578,7 +593,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'content_padding',
             [
-                'label' => __( 'Container Padding', 'happy_addons' ),
+                'label' => __( 'Content Padding', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -821,11 +836,11 @@ class Card extends Base {
 	protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $this->add_inline_editing_attributes( 'label', 'none' );
+        $this->add_inline_editing_attributes( 'badge_text', 'none' );
         $this->add_render_attribute(
-            'label',
+            'badge_text',
             'class',
-            ['ha-label', sprintf( 'ha-label--%s', esc_attr( $settings['label_position'] ) )]
+            ['ha-badge', sprintf( 'ha-badge--%s', esc_attr( $settings['badge_position'] ) )]
         );
 
         $this->add_inline_editing_attributes( 'title', 'none' );
@@ -855,7 +870,7 @@ class Card extends Base {
             ?>
             <figure class="ha-card-figure">
                 <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'image', 'image' ); ?>
-                <div <?php echo $this->get_render_attribute_string( 'label' ); ?>><?php echo esc_html( $settings['label'] ); ?></div>
+                <div <?php echo $this->get_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></div>
             </figure>
         <?php endif; ?>
 
@@ -903,11 +918,11 @@ class Card extends Base {
     public function _content_template() {
         ?>
         <#
-        view.addInlineEditingAttributes( 'label', 'none' );
+        view.addInlineEditingAttributes( 'badge_text', 'none' );
         view.addRenderAttribute(
-            'label',
+            'badge_text',
             'class',
-            ['ha-label', 'ha-label--' + settings.label_position]
+            ['ha-badge', 'ha-badge--' + settings.badge_position]
         );
 
         view.addInlineEditingAttributes( 'title', 'none' );
@@ -931,11 +946,10 @@ class Card extends Base {
                 model: view.getEditModel()
             };
 
-            var image_url = elementor.imagesManager.getImageUrl( image );
-            #>
+            var image_url = elementor.imagesManager.getImageUrl( image ); #>
             <figure class="ha-card-figure">
                 <img src="{{ image_url }}">
-                <div {{{ view.getRenderAttributeString( 'label' ) }}}>{{ settings.label }}</div>
+                <div {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{ settings.badge_text }}</div>
             </figure>
         <# } #>
 
@@ -950,8 +964,7 @@ class Card extends Base {
                 <a {{{ view.getRenderAttributeString( 'button' ) }}}><span {{{ view.getRenderAttributeString( 'button_text' ) }}}>{{ settings.button_text }}</span></a>
             <# } else if ( ! settings.button_text && settings.button_icon ) { #>
                 <a {{{ view.getRenderAttributeString( 'button' ) }}}><i class="{{ settings.button_icon }}"></i></a>
-            <# } else if ( settings.button_text && settings.button_icon ) { #>
-                <#
+            <# } else if ( settings.button_text && settings.button_icon ) {
                 if ( settings.button_icon_position === 'before' ) {
                     view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-before' );
                     var button_before = '<i class="ha-btn-icon ' + settings.button_icon + '"></i>';

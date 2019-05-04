@@ -1,4 +1,6 @@
 .ha-review {
+  @extend %happyWidgetContainer;
+
   &-header {
     margin-top: 1.5rem;
   }
