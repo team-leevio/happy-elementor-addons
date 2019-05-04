@@ -125,6 +125,28 @@ if ( ! function_exists( 'ha_get_caldera_form' ) ) {
 	}
 }
 
+if ( ! function_exists( 'ha_get_we_form' ) ) {
+	/**
+	 * Get a list of all WeForm
+	 *
+	 * @return array
+	 */
+	function ha_get_we_forms() {
+        $forms = get_posts( [
+            'post_type'      => 'wpuf_contact_form',
+            'post_status'    => 'publish',
+            'posts_per_page' => -1,
+            'orderby'        => 'title',
+            'order'          => 'ASC',
+        ] );
+
+        if ( ! empty( $forms ) ) {
+            return wp_list_pluck( $forms, 'post_title', 'ID' );
+        }
+        return [];
+    }
+}
+
 if ( ! function_exists( 'ha_sanitize_html_class_param' ) ) {
     /**
      * Sanitize html class string
@@ -179,12 +201,23 @@ if ( ! function_exists( 'ha_is_ninjaf_activated' ) ) {
 
 if ( ! function_exists( 'ha_is_calderaf_activated' ) ) {
     /**
-     * Check if Ninja Form is activated
+     * Check if Caldera Form is activated
      *
      * @return bool
      */
     function ha_is_calderaf_activated() {
         return class_exists( 'Caldera_Forms' );
+    }
+}
+
+if ( ! function_exists( 'ha_is_weform_activated' ) ) {
+    /**
+     * Check if We Form is activated
+     *
+     * @return bool
+     */
+    function ha_is_weform_activated() {
+        return class_exists( 'WeForms' );
     }
 }
 

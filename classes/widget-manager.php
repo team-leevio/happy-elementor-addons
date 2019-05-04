@@ -50,7 +50,8 @@ class Widget_Manager {
             'gradient-heading',
 			'wpform',
 			'ninjaform',
-			'calderaform'
+			'calderaform',
+			'weform'
         ];
 
         foreach ( $widgets as $widget ) {
