@@ -27,7 +27,7 @@ class Card extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Card', 'happy_addons' );
+        return __( 'Card', 'happy_addons' );
     }
 
     /**
@@ -478,55 +478,55 @@ class Card extends Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            '_section_style_label',
+            '_section_style_badge',
             [
-                'label' => __( 'Label', 'happy_addons' ),
+                'label' => __( 'Badge', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_responsive_control(
-            'label_margin',
+            'badge_margin',
             [
                 'label' => __( 'Margin', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-badge' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_responsive_control(
-            'label_padding',
+            'badge_padding',
             [
                 'label' => __( 'Padding', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-badge' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'label_color',
+            'badge_color',
             [
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-badge' => 'color: {{VALUE}}',
                 ],
             ]
         );
 
         $this->add_control(
-            'label_bg_color',
+            'badge_bg_color',
             [
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-badge' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -534,19 +534,19 @@ class Card extends Base {
         $this->add_group_control(
             Group_Control_Border::get_type(),
             [
-                'name' => 'label_border',
-                'selector' => '{{WRAPPER}} .ha-label',
+                'name' => 'badge_border',
+                'selector' => '{{WRAPPER}} .ha-badge',
             ]
         );
 
         $this->add_responsive_control(
-            'label_border_radius',
+            'badge_border_radius',
             [
                 'label' => __( 'Border Radius', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-label' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-badge' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -554,18 +554,18 @@ class Card extends Base {
         $this->add_group_control(
             Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'label_box_shadow',
+                'name' => 'badge_box_shadow',
                 'exclude' => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .ha-label',
+                'selector' => '{{WRAPPER}} .ha-badge',
             ]
         );
 
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'label_typography',
+                'name' => 'badge_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
                 'exclude' => [
                     'font_family',
@@ -576,7 +576,7 @@ class Card extends Base {
                         ''
                     ]
                 ],
-                'selector' => '{{WRAPPER}} .ha-label',
+                'selector' => '{{WRAPPER}} .ha-badge',
             ]
         );
 
