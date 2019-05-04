@@ -223,7 +223,7 @@ class Card extends Base {
                 ],
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}}' => 'text-align: {{VALUE}}'
+                    '{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}}'
                 ]
             ]
         );
@@ -573,7 +573,7 @@ class Card extends Base {
                 ],
                 'default' => [
                     'font_size' => [
-                            ''
+                        ''
                     ]
                 ],
                 'selector' => '{{WRAPPER}} .ha-label',

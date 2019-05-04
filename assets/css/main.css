@@ -27,7 +27,7 @@
 
 .ha-btn {
 	display: inline-block;
-	padding: .575rem 1.3rem;
+	padding: .7rem 1.3rem;
 	border-radius: .25rem;
 	background-color: #8c8c8c;
 	color: #fff;
@@ -36,7 +36,7 @@
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 14px;
-	line-height: 1.5;
+	line-height: 1;
 	-webkit-transition: all .3s;
 	        transition: all .3s;
 }
@@ -46,6 +46,10 @@
 }
 .ha-btn--block {
 	display: block;
+}
+.ha-btn-icon + .ha-btn-text,
+.ha-btn-text + .ha-btn-icon {
+	margin-left: 5px;
 }
 
 .ha-link {
@@ -169,8 +173,7 @@
 	padding: .475rem 1.1rem;
 	border-radius: 50px;
 	background-color: #fff;
-	font-weight: bold; 
-	font-size: 14px;
+	font-size: 12px;
 }
 .ha-badge--top-left {
 	top: 1rem; 
