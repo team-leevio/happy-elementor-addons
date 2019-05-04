@@ -1,6 +1,6 @@
 <?php
 /**
- * Ninja Form widget class
+ * Caldera Form widget class
  *
  * @package Happy_Addons
  */
@@ -13,7 +13,7 @@ use Elementor\Group_Control_Typography;
 
 defined( 'ABSPATH' ) || die();
 
-class NinjaForm extends Base {
+class CalderaForm extends Base {
 
     /**
      * Get widget title.
@@ -24,7 +24,7 @@ class NinjaForm extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Ninja Form', 'happy_addons' );
+        return __( 'Happy Caldera Form', 'happy_addons' );
     }
 
     /**
@@ -40,26 +40,26 @@ class NinjaForm extends Base {
     }
 
     public function get_keywords() {
-        return [ 'wpf','wpform' , 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
+        return [ 'caldera', 'wpf','wpform' , 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
     }
 
 	protected function register_content_controls() {
 		$this->start_controls_section(
-			'_section_ninjaf',
+			'_section_calderaf',
 			[
-				'label' => ha_is_wpf_activated() ? __( 'Ninja Form', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
+				'label' => ha_is_wpf_activated() ? __( 'Caldera Form', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
         if ( ! ha_is_wpf_activated() ) {
             $this->add_control(
-                'ninjaf_missing_notice',
+                'calderaf_missing_notice',
                 [
                     'type' => Controls_Manager::RAW_HTML,
                     'raw' => sprintf(
                         __( 'Hi, it seems %1$s is missing in your site. Please install and activate %1$s first.', 'happy_addons' ),
-                        '<a href="https://wordpress.org/plugins/ninja-forms/" target="_blank" rel="noopener">Ninja Form</a>'
+                        '<a href="https://wordpress.org/plugins/caldera-forms/" target="_blank" rel="noopener">Caldera Form</a>'
                     )
                 ]
             );
@@ -73,7 +73,7 @@ class NinjaForm extends Base {
                 'label' => __( 'Select Your Form', 'happy_addons' ),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
-				'options' => ['' => __( '', 'happy_addons' ) ] + \ha_get_ninjaform(),
+				'options' => ['' => __( '', 'happy_addons' ) ] + \ha_get_caldera_form(),
             ]
         );
 
@@ -115,7 +115,7 @@ class NinjaForm extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -127,7 +127,7 @@ class NinjaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .nf-field-container:not(.submit-container)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .form-group:not(.btn)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -139,7 +139,7 @@ class NinjaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .form-group input:not(.btn)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -148,7 +148,7 @@ class NinjaForm extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'field_border',
-                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea',
+                'selector' => '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea',
             ]
         );
 
@@ -159,7 +159,7 @@ class NinjaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -168,7 +168,7 @@ class NinjaForm extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'field_box_shadow',
-                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea',
+                'selector' => '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea',
             ]
         );
 
@@ -177,7 +177,7 @@ class NinjaForm extends Base {
             [
                 'name' => 'field_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea',
+                'selector' => '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea',
             ]
         );
 
@@ -187,7 +187,7 @@ class NinjaForm extends Base {
                 'label' => __( 'Field Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea' => 'color: {{VALUE}}',
                 ],
             ]
 		);
@@ -211,7 +211,7 @@ class NinjaForm extends Base {
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -230,7 +230,7 @@ class NinjaForm extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'field_focus_border',
-                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text]:focus, {{WRAPPER}} .email-wrap input:focus, {{WRAPPER}} .textarea-wrap textarea:focus',
+                'selector' => '{{WRAPPER}} .form-group input:focus:not(.btn), {{WRAPPER}} .form-group textarea:focus',
             ]
         );
 
@@ -241,7 +241,7 @@ class NinjaForm extends Base {
                 'exclude' => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .textbox-wrap input[type=text]:focus, {{WRAPPER}} .email-wrap input:focus, {{WRAPPER}} .textarea-wrap textarea:focus',
+                'selector' => '{{WRAPPER}} .form-group input:focus:not(.btn), {{WRAPPER}} .form-group textarea:focus',
             ]
         );
 
@@ -259,7 +259,7 @@ class NinjaForm extends Base {
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap input[type=text]:focus, {{WRAPPER}} .email-wrap input:focus, {{WRAPPER}} .textarea-wrap textarea:focus' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .form-group input:focus:not(.btn), {{WRAPPER}} .form-group textarea:focus' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -267,7 +267,7 @@ class NinjaForm extends Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'ninjaf-form-label',
+            'caldera-form-label',
             [
                 'label' => __( 'Form Fields Label', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
@@ -281,7 +281,7 @@ class NinjaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label' => 'display: inline-block; padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .caldera-grid label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -293,7 +293,7 @@ class NinjaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label' => 'display: inline-block; padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .caldera-grid label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -311,7 +311,7 @@ class NinjaForm extends Base {
             [
                 'name' => 'label_typography',
                 'label' => __( 'Label Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label',
+                'selector' => '{{WRAPPER}} .caldera-grid label',
             ]
         );
 
@@ -320,7 +320,7 @@ class NinjaForm extends Base {
             [
                 'name' => 'desc_typography',
                 'label' => __( 'Description Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .nf-field-description p',
+                'selector' => '{{WRAPPER}} .caldera-grid .help-block',
             ]
         );
 
@@ -330,7 +330,7 @@ class NinjaForm extends Base {
                 'label' => __( 'Label Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .caldera-grid label' => 'color: {{VALUE}}',
                 ],
             ]
 		);
@@ -341,7 +341,7 @@ class NinjaForm extends Base {
                 'label' => __( 'Required Label Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ninja-forms-req-symbol' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .field_required' => 'color: {{VALUE}} !important',
                 ],
             ]
         );
@@ -352,7 +352,7 @@ class NinjaForm extends Base {
                 'label' => __( 'Description Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .nf-field-description p' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .caldera-grid .help-block' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -390,7 +390,7 @@ class NinjaForm extends Base {
                 'toggle' => false,
 				'prefix_class' => 'ha-form-btn--%s',
 				'selectors' => [
-                    '{{WRAPPER}} .field-wrap.submit-wrap' => 'text-align: {{Value}};',
+                    '{{WRAPPER}} .form-group' => 'text-align: {{Value}};',
                 ],
             ]
         );
@@ -402,7 +402,7 @@ class NinjaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .form-group .btn' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -414,7 +414,7 @@ class NinjaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .form-group .btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -423,7 +423,7 @@ class NinjaForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'submit_typography',
-                'selector' => '{{WRAPPER}} .submit-container input',
+                'selector' => '{{WRAPPER}} .form-group .btn',
             ]
         );
 
@@ -431,7 +431,7 @@ class NinjaForm extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'submit_border',
-                'selector' => '{{WRAPPER}} .submit-container input',
+                'selector' => '{{WRAPPER}} .form-group .btn',
             ]
         );
 
@@ -442,7 +442,7 @@ class NinjaForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .form-group .btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -451,7 +451,7 @@ class NinjaForm extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'submit_box_shadow',
-                'selector' => '{{WRAPPER}} .submit-container input',
+                'selector' => '{{WRAPPER}} .form-group .btn',
             ]
         );
 
@@ -479,7 +479,7 @@ class NinjaForm extends Base {
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .form-group .btn' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -490,7 +490,7 @@ class NinjaForm extends Base {
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .form-group .btn' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -510,7 +510,7 @@ class NinjaForm extends Base {
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input:hover, {{WRAPPER}} .submit-container input:focus' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .form-group .btn:hover, {{WRAPPER}} .form-group .btn:focus' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -521,7 +521,7 @@ class NinjaForm extends Base {
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input:hover, {{WRAPPER}} .submit-container input:focus' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .form-group .btn:hover, {{WRAPPER}} .form-group .btn:focus' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -535,7 +535,7 @@ class NinjaForm extends Base {
                     'btn_border_border!' => '',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .submit-container input:hover, {{WRAPPER}} .submit-container input:focus' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .form-group .btn:hover, {{WRAPPER}} .form-group .btn:focus' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -547,17 +547,17 @@ class NinjaForm extends Base {
     }
 
     protected function render() {
-        if ( ! ha_is_ninjaf_activated() ) {
+        if ( ! ha_is_calderaf_activated() ) {
             return;
         }
 
         $settings = $this->get_settings_for_display();
 
         if ( ! empty( $settings['id'] ) ) {
-            echo ha_do_shortcode( 'ninja_form', [
+            echo ha_do_shortcode( 'caldera_form', [
                 'id' => $settings['id'],
                 //'html_class' => 'ha-cf7-form ' . ha_sanitize_html_class_param( $settings['html_class'] ),
             ] );
-        }
+		}
     }
 }

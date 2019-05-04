@@ -72,8 +72,8 @@ class WPForm extends Base {
             [
                 'label' => __( 'Select Your Form', 'happy_addons' ),
                 'type' => Controls_Manager::SELECT,
-                'label_block' => true,
-				'options' => ['' => __( '', 'happy_addons' ) ] + \ha_get_wpforms(),
+				'label_block' => true,
+				'options' => ['' => __( 'Select a WPForm', 'happy_addons' ) ] + \ha_get_wpforms(),
             ]
         );
 
@@ -86,6 +86,37 @@ class WPForm extends Base {
             [
                 'label' => __( 'Form Fields (Normal State)', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
+            ]
+		);
+
+		$this->add_responsive_control(
+            'field_width',
+            [
+                'label' => __( 'Width', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'unit' => '%',
+                ],
+                'tablet_default' => [
+                    'unit' => '%',
+                ],
+                'mobile_default' => [
+                    'unit' => '%',
+                ],
+                'size_units' => [ '%', 'px' ],
+                'range' => [
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min' => 1,
+                        'max' => 500,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .wpforms-field input:not(.wpforms-submit), {{WRAPPER}} .wpforms-field textarea' => 'width: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -379,7 +410,7 @@ class WPForm extends Base {
                 'toggle' => false,
 				'prefix_class' => 'ha-form-btn--%s',
 				'selectors' => [
-                    '{{WRAPPER}} .field-wrap.submit-wrap' => 'text-align: {{Value}};',
+                    '{{WRAPPER}} .wpforms-submit-container' => 'text-align: {{Value}};',
                 ],
             ]
         );
