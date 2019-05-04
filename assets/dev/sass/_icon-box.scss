@@ -10,6 +10,8 @@
     margin-bottom: 0;
     color: #151515;
     font-size: 24px;
+
+    transition: color .3s;
   }
 
   &-icon {
@@ -19,10 +21,14 @@
     text-align: center;
     color: #151515;
 
+    transition: transform .3s, border .3s, background .3s, color .3s;
+
     > i {
       width: 1em;
       height: 1em;
       display: block;
+
+      transition: transform .3s;
     }
   }
 

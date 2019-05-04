@@ -1,6 +1,6 @@
 <?php
 /**
- * Blurb widget class
+ * Info box widget class
  *
  * @package Happy_Addons
  */
@@ -16,7 +16,7 @@ use Elementor\Group_Control_Typography;
 
 defined( 'ABSPATH' ) || die();
 
-class Blurb extends Base {
+class InfoBox extends Base {
 
     /**
      * Get widget title.
@@ -27,7 +27,7 @@ class Blurb extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Blurb', 'happy_addons' );
+        return __( 'Info Box', 'happy_addons' );
     }
 
     /**
@@ -210,6 +210,10 @@ class Blurb extends Base {
                         'title' => __( 'Right', 'happy_addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
+                    'justify' => [
+                        'title' => __( 'Justify', 'happy_addons' ),
+                        'icon' => 'fa fa-align-justify',
+                    ],
                 ],
                 'toggle' => true,
                 'selectors' => [
@@ -229,7 +233,7 @@ class Blurb extends Base {
         );
 
         $this->add_control(
-            'link_text',
+            'button_text',
             [
                 'label' => __( 'Text', 'happy_addons' ),
                 'type' => Controls_Manager::TEXT,
@@ -240,15 +244,12 @@ class Blurb extends Base {
         );
 
         $this->add_control(
-            'link_url',
+            'button_link',
             [
                 'label' => __( 'URL', 'happy_addons' ),
                 'type' => Controls_Manager::URL,
                 'label_block' => true,
                 'placeholder' => __( 'https://example.com/', 'happy_addons' ),
-                'default' => [
-                    'url' => '#',
-                ],
             ]
         );
 
@@ -280,7 +281,7 @@ class Blurb extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure--icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-infobox-figure--icon' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                      'type' => 'icon'
@@ -305,7 +306,7 @@ class Blurb extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure--image' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-infobox-figure--image' => 'width: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'type' => 'image'
@@ -326,7 +327,7 @@ class Blurb extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure--image' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-infobox-figure--image' => 'height: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'type' => 'image'
@@ -388,8 +389,8 @@ class Blurb extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure' => '-ms-transform: translate({{media_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); -webkit-transform: translate({{media_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); transform: translate({{media_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}});',
-                    '{{WRAPPER}} .ha-blurb-body' => 'margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-infobox-figure' => '-ms-transform: translate({{media_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); -webkit-transform: translate({{media_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); transform: translate({{media_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}} .ha-infobox-body' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -402,7 +403,7 @@ class Blurb extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+                    '{{WRAPPER}} .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
                 ],
             ]
         );
@@ -414,7 +415,7 @@ class Blurb extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure--image > img, {{WRAPPER}} .ha-blurb-figure--icon' => 'padding: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-infobox-figure--image > img, {{WRAPPER}} .ha-infobox-figure--icon' => 'padding: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -423,7 +424,7 @@ class Blurb extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'media_border',
-                'selector' => '{{WRAPPER}} .ha-blurb-figure--image > img, {{WRAPPER}} .ha-blurb-figure--icon'
+                'selector' => '{{WRAPPER}} .ha-infobox-figure--image > img, {{WRAPPER}} .ha-blurb-figure--icon'
             ]
         );
 
@@ -434,8 +435,8 @@ class Blurb extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure--image > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-blurb-figure--icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-infobox-figure--image > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-infobox-figure--icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -447,7 +448,7 @@ class Blurb extends Base {
                 'exclude' => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .ha-blurb-figure--image > img, {{WRAPPER}} .ha-blurb-figure--icon'
+                'selector' => '{{WRAPPER}} .ha-infobox-figure--image > img, {{WRAPPER}} .ha-blurb-figure--icon'
             ]
         );
 
@@ -457,7 +458,7 @@ class Blurb extends Base {
                 'label' => __( 'Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure--icon' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-infobox-figure--icon' => 'color: {{VALUE}}',
                 ],
                 'condition' => [
                     'type' => 'icon'
@@ -471,7 +472,7 @@ class Blurb extends Base {
                 'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-figure--icon' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-infobox-figure--icon' => 'background-color: {{VALUE}}',
                 ],
                 'condition' => [
                     'type' => 'icon'
@@ -496,7 +497,7 @@ class Blurb extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-body' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-infobox-body' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -517,7 +518,7 @@ class Blurb extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-infobox-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -528,7 +529,7 @@ class Blurb extends Base {
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-infobox-title' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -558,7 +559,7 @@ class Blurb extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-text' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-infobox-text' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -569,7 +570,7 @@ class Blurb extends Base {
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-blurb-text' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-infobox-text' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -579,7 +580,7 @@ class Blurb extends Base {
             [
                 'name' => 'description_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-blurb-text',
+                'selector' => '{{WRAPPER}} .ha-infobox-text',
             ]
         );
 
@@ -664,20 +665,21 @@ class Blurb extends Base {
         $settings = $this->get_settings_for_display();
 
         $this->add_inline_editing_attributes( 'title', 'none' );
-        $this->add_render_attribute( 'title', 'class', 'ha-blurb-title' );
+        $this->add_render_attribute( 'title', 'class', 'ha-infobox-title' );
 
         $this->add_inline_editing_attributes( 'description', 'basic' );
-        $this->add_render_attribute( 'description', 'class', 'ha-blurb-text' );
+        $this->add_render_attribute( 'description', 'class', 'ha-infobox-text' );
 
-        $this->add_inline_editing_attributes( 'link_text', 'none' );
-        $this->add_render_attribute( 'link_text', 'class', 'ha-link' );
+        $this->add_inline_editing_attributes( 'button_text', 'none' );
+        $this->add_render_attribute( 'button_text', 'class', 'ha-link' );
 
-        $this->add_render_attribute( 'link_text', 'href', esc_url( $settings['link_url']['url'] ) );
-        if ( ! empty( $settings['link_url']['is_external'] ) ) {
-            $this->add_render_attribute( 'link_text', 'target', '_blank' );
+        $this->add_render_attribute( 'button_text', 'href', esc_url( $settings['button_link']['url'] ) );
+        if ( ! empty( $settings['button_link']['is_external'] ) ) {
+            $this->add_render_attribute( 'button_text', 'target', '_blank' );
         }
-        if ( ! empty( $settings['link_url']['nofollow'] ) ) {
-            $this->set_render_attribute( 'link_text', 'rel', 'nofollow' );
+
+        if ( ! empty( $settings['button_link']['nofollow'] ) ) {
+            $this->set_render_attribute( 'button_text', 'rel', 'nofollow' );
         }
         ?>
 
@@ -688,17 +690,17 @@ class Blurb extends Base {
                 $this->add_render_attribute( 'image', 'title', Control_Media::get_image_title( $settings['image'] ) );
                 $settings['hover_animation'] = 'disable-animation'; // hack to prevent image hover animation
                 ?>
-                <figure class="ha-blurb-figure ha-blurb-figure--image">
+                <figure class="ha-infobox-figure ha-infobox-figure--image">
                     <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'image', 'image' ); ?>
                 </figure>
             <?php endif; ?>
         <?php else: ?>
-            <figure class="ha-blurb-figure ha-blurb-figure--icon">
+            <figure class="ha-infobox-figure ha-infobox-figure--icon">
                 <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
             </figure>
         <?php endif; ?>
 
-        <div class="ha-blurb-body">
+        <div class="ha-infobox-body">
             <?php printf( '<%1$s %2$s>%3$s</%1$s>',
                 tag_escape( $settings['title_tag'] ),
                 $this->get_render_attribute_string( 'title' ),
@@ -708,10 +710,10 @@ class Blurb extends Base {
                 <p><?php echo wp_kses_data( $settings['description'] ); ?></p>
             </div>
             <?php
-            if ( $settings['link_text'] ):
+            if ( $settings['button_text'] ):
                 printf( '<a %1$s>%2$s</a>',
-                    $this->get_render_attribute_string( 'link_text' ),
-                    esc_html( $settings['link_text'] )
+                    $this->get_render_attribute_string( 'button_text' ),
+                    esc_html( $settings['button_text'] )
                 );
             endif;
             ?>
@@ -723,14 +725,14 @@ class Blurb extends Base {
         ?>
         <#
         view.addInlineEditingAttributes( 'title', 'none' );
-        view.addRenderAttribute( 'title', 'class', 'ha-blurb-title' );
+        view.addRenderAttribute( 'title', 'class', 'ha-infobox-title' );
 
         view.addInlineEditingAttributes( 'description', 'basic' );
-        view.addRenderAttribute( 'description', 'class', 'ha-blurb-text' );
+        view.addRenderAttribute( 'description', 'class', 'ha-infobox-text' );
 
-        view.addInlineEditingAttributes( 'link_text', 'none' );
-        view.addRenderAttribute( 'link_text', 'class', 'ha-link' );
-        view.addRenderAttribute( 'link_text', 'href', settings.link_url.url );
+        view.addInlineEditingAttributes( 'button_text', 'none' );
+        view.addRenderAttribute( 'button_text', 'class', 'ha-link' );
+        view.addRenderAttribute( 'button_text', 'href', settings.button_link.url );
 
         if ( settings.type === 'image' ) {
             if ( settings.image.url ) {
@@ -744,25 +746,25 @@ class Blurb extends Base {
 
                 var image_url = elementor.imagesManager.getImageUrl( image );
                 #>
-                <figure class="ha-blurb-figure ha-blurb-figure--image">
+                <figure class="ha-infobox-figure ha-infobox-figure--image">
                     <img src="{{ image_url }}">
                 </figure>
             <# }
         } else { #>
-            <figure class="ha-blurb-figure ha-blurb-figure--icon">
+            <figure class="ha-infobox-figure ha-infobox-figure--icon">
                 <i aria-hidden="true" class="{{ settings.icon }}"></i>
             </figure>
         <# } #>
 
-        <div class="ha-blurb-body">
+        <div class="ha-infobox-body">
             <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
 
             <div {{{ view.getRenderAttributeString( 'description' ) }}}>
                 <p>{{{ settings.description }}}</p>
             </div>
 
-            <# if ( settings.link_text ) { #>
-                <a {{{ view.getRenderAttributeString( 'link_text' ) }}}>{{ settings.link_text }}</a>
+            <# if ( settings.button_text ) { #>
+                <a {{{ view.getRenderAttributeString( 'button_text' ) }}}>{{ settings.button_text }}</a>
             <# } #>
         </div>
         <?php
