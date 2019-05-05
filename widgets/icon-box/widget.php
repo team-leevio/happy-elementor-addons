@@ -375,17 +375,6 @@ class Icon_Box extends Base {
             ]
         );
 
-        $this->add_control(
-            'title_color',
-            [
-                'label' => __( 'Text Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-icon-box-title' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-
         $this->add_group_control(
             Group_Control_Text_Shadow::get_type(),
             [
@@ -401,6 +390,49 @@ class Icon_Box extends Base {
                 'selector' => '{{WRAPPER}} .ha-icon-box-title',
             ]
         );
+
+        $this->start_controls_tabs( '_tabs_title' );
+
+        $this->start_controls_tab(
+            '_tab_title_normal',
+            [
+                'label' => __( 'Normal', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'title_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-icon-box-title' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            '_tab_title_hover',
+            [
+                'label' => __( 'Hover', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'title_hover_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}}:hover .ha-icon-box-title' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
 
         $this->end_controls_section();
     }
