@@ -27,7 +27,7 @@ class Review extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Review', 'happy_addons' );
+        return __( 'Review', 'happy_addons' );
     }
 
     /**
@@ -103,11 +103,12 @@ class Review extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'image_position',
             [
                 'label' => __( 'Image Position', 'happy_addons' ),
                 'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
                 'options' => [
                     'left' => [
                         'title' => __( 'Left', 'happy_addons' ),
@@ -124,7 +125,7 @@ class Review extends Base {
                 ],
                 'desktop_default' => 'top',
                 'toggle' => false,
-                'prefix_class' => 'ha-review--%s'
+                'prefix_class' => 'ha-review--'
             ]
         );
 
@@ -160,6 +161,7 @@ class Review extends Base {
                     ]
                 ],
                 'default' => 'h2',
+                'toggle' => false,
             ]
         );
 
@@ -235,10 +237,14 @@ class Review extends Base {
                         'title' => __( 'Right', 'happy_addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
+                    'justify' => [
+                        'title' => __( 'Justify', 'happy_addons' ),
+                        'icon' => 'fa fa-align-justify',
+                    ],
                 ],
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}}' => 'text-align: {{VALUE}}'
+                    '{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}}'
                 ]
             ]
         );
@@ -286,6 +292,7 @@ class Review extends Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-review-figure' => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-review--right .ha-review-body, {{WRAPPER}}.ha-review--left .ha-review-body' => 'flex: 0 0 calc(100% - {{SIZE}}{{UNIT}}); max-width: calc(100% - {{SIZE}}{{UNIT}});',
                 ],
             ]
         );
@@ -364,8 +371,14 @@ class Review extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-review-figure' => '-ms-transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); -webkit-transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}});',
                     '{{WRAPPER}}.ha-review--top .ha-review-body' => 'margin-top: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-review--left .ha-review-body' => 'margin-left: {{image_offset_x.SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-review--right .ha-review-body' => 'margin-right: calc(-1 * {{image_offset_x.SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-review--left .ha-review-body' =>
+                        'margin-left: {{image_offset_x.SIZE}}{{UNIT}};'
+                        . 'flex: 0 0 calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE}}{{UNIT}}));'
+                        . 'max-width: calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE}}{{UNIT}}));',
+                    '{{WRAPPER}}.ha-review--right .ha-review-body' =>
+                        'margin-right: calc(-1 * {{image_offset_x.SIZE}}{{UNIT}});'
+                        . 'flex: 0 0 calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + {{image_offset_x.SIZE}}{{UNIT}});'
+                        . 'max-width: calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + {{image_offset_x.SIZE}}{{UNIT}});',
                 ],
             ]
         );

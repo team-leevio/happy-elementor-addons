@@ -427,7 +427,7 @@ class Card extends Base {
                     '{{WRAPPER}}.ha-card--right .ha-card-body' =>
                         'margin-right: calc(-1 * {{image_offset_x.SIZE}}{{UNIT}});'
                         . 'flex: 0 0 calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + {{image_offset_x.SIZE}}{{UNIT}});'
-                        . 'max-width: calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + {{image_offset_x.SIZE}}{{UNIT}});'
+                        . 'max-width: calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + {{image_offset_x.SIZE}}{{UNIT}});',
                 ],
             ]
         );

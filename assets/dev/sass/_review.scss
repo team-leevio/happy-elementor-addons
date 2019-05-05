@@ -114,6 +114,8 @@
       }
 
       &-body {
+        flex: 0 0 calc(100% - 150px);
+        max-width: calc(100% - 150px);
         padding: 2rem;
 
         > :first-child {
@@ -128,6 +130,7 @@
       flex-direction: row-reverse;
       padding-right: 2rem;
       padding-left: 0;
+      text-align: right;
     }
   }
 }

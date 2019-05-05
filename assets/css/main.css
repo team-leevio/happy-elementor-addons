@@ -107,8 +107,7 @@
 	margin-bottom: 0;
 }
 
-.ha-card--top .ha-card-figure,
-.ha-card--bottom .ha-card-figure {
+.ha-card--top .ha-card-figure {
 	display: inline-block;
 }
 
@@ -477,7 +476,12 @@ span .ha-review-ratting--star:before,
 
 .ha-review--left .ha-review-body,
 .ha-review--right .ha-review-body {
-	padding: 2rem;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 calc(100% - 150px);
+	    -ms-flex: 0 0 calc(100% - 150px);
+	        flex: 0 0 calc(100% - 150px);
+	padding: 2rem; 
+	max-width: calc(100% - 150px);
 }
 .ha-review--left .ha-review-body > :first-child,
 .ha-review--right .ha-review-body > :first-child {
@@ -492,6 +496,7 @@ span .ha-review-ratting--star:before,
 	        flex-direction: row-reverse;
 	padding-right: 2rem;
 	padding-left: 0;
+	text-align: right;
 }
 
 .twentytwenty-container,
