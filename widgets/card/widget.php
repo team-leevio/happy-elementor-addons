@@ -195,6 +195,7 @@ class Card extends Base {
                     ]
                 ],
                 'default' => 'h2',
+                'toggle' => false,
             ]
         );
 

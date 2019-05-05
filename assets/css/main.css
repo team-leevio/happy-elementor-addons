@@ -316,7 +316,9 @@
 	margin: 0 0 1.5rem !important;
 }
 .ha-member-figure img {
-	vertical-align: middle;
+	width: 100%;
+	height: 100%;
+	vertical-align: bottom;
 }
 
 .ha-member-name {

@@ -104,6 +104,7 @@ class Icon_Box extends Base {
                     ]
                 ],
                 'default' => 'h2',
+                'toggle' => false,
             ]
         );
 
