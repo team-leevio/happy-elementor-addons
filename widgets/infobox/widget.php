@@ -6,6 +6,7 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
+use Elementor\Scheme_Typography;
 use Elementor\Utils;
 use Elementor\Control_Media;
 use Elementor\Controls_Manager;
@@ -540,7 +541,8 @@ class InfoBox extends Base {
             [
                 'name' => 'title_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-blurb-title',
+                'selector' => '{{WRAPPER}} .ha-infobox-title',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_2
             ]
         );
 
