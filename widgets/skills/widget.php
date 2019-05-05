@@ -6,6 +6,7 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
+use Elementor\Group_Control_Text_Shadow;
 use Elementor\Repeater;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Box_Shadow;
@@ -24,7 +25,7 @@ class Skills extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Skills', 'happy_addons' );
+        return __( 'Skill Bars', 'happy_addons' );
     }
 
     /**
@@ -52,20 +53,6 @@ class Skills extends Base {
             ]
         );
 
-        $this->add_control(
-            'view',
-            [
-                'type' => Controls_Manager::SELECT,
-                'label' => __( 'Text Position', 'happy_addons' ),
-                'separator' => 'after',
-                'default' => 'inside',
-                'options' => [
-                    'inside' => __( 'Text Inside', 'happy_addons' ),
-                    'outside' => __( 'Text Outside', 'happy_addons' ),
-                ]
-            ]
-        );
-
         $repeater = new Repeater();
 
         $repeater->add_control(
@@ -73,6 +60,7 @@ class Skills extends Base {
             [
                 'type' => Controls_Manager::TEXT,
                 'label' => __( 'Name', 'happy_addons' ),
+                'default' => __( 'Skill Name', 'happy_addons' ),
                 'placeholder' => __( 'Type skill name', 'happy_addons' ),
             ]
         );
@@ -154,14 +142,28 @@ class Skills extends Base {
             ]
         );
 
+        $this->add_control(
+            'view',
+            [
+                'type' => Controls_Manager::SELECT,
+                'label' => __( 'Text Position', 'happy_addons' ),
+                'separator' => 'before',
+                'default' => 'inside',
+                'options' => [
+                    'inside' => __( 'Text Inside', 'happy_addons' ),
+                    'outside' => __( 'Text Outside', 'happy_addons' ),
+                ]
+            ]
+        );
+
         $this->end_controls_section();
     }
 
     protected function register_style_controls() {
         $this->start_controls_section(
-            '_section_skills_style',
+            '_section_style_bars',
             [
-                'label' => __( 'Skills', 'happy_addons' ),
+                'label' => __( 'Skill Bars', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -186,9 +188,9 @@ class Skills extends Base {
         );
 
         $this->add_control(
-            'distance',
+            'spacing',
             [
-                'label' => __( 'Distance', 'happy_addons' ),
+                'label' => __( 'Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -230,7 +232,7 @@ class Skills extends Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            '_section_content_label',
+            '_section_content',
             [
                 'label' => __( 'Content', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
@@ -273,8 +275,15 @@ class Skills extends Base {
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'name' => 'info_typography',
+                'selector' => '{{WRAPPER}} .ha-skill-info',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'info_text_shadow',
                 'selector' => '{{WRAPPER}} .ha-skill-info',
             ]
         );
