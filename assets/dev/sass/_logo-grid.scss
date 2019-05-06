@@ -1,4 +1,14 @@
 .ha-logo {
+	overflow: hidden;
+	clear: both;
+	height: 100%;
+  &::after{
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+  }
   &-item{
     float: left;
     text-align: center;
