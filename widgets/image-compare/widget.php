@@ -209,7 +209,7 @@ class Image_Compare extends Base {
 
     protected function register_style_controls() {
         $this->start_controls_section(
-            '_section_handle_style',
+            '_section_style_handle',
             [
                 'label' => __( 'Handle', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
@@ -238,42 +238,43 @@ class Image_Compare extends Base {
             ]
         );
 
-        $this->start_controls_tabs( '_tab_handle' );
-        $this->start_controls_tab(
-            '_tab_handle_bar',
+        $this->add_control(
+            '_heading_bar',
             [
-                'label' => __( 'Bar', 'happy_addons' ),
+                'label' => __( 'Handle Bar', 'plugin-name' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
             ]
         );
 
         $this->add_responsive_control(
-            'bar_width',
+            'bar_size',
             [
-                'label' => __( 'Width', 'happy_addons' ),
+                'label' => __( 'Size', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
                     'px' => [
-                        'min' => 2,
+                        'min' => 0,
                         'max' => 50,
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .twentytwenty-handle:before, {{WRAPPER}} .twentytwenty-handle:after' =>
-                        'width: {{SIZE}}{{UNIT}};'
-                        . 'margin-left: calc(-0px - {{SIZE}}{{UNIT}} / 2);',
+                    '{{WRAPPER}} .twentytwenty-horizontal .twentytwenty-handle:before, {{WRAPPER}} .twentytwenty-horizontal .twentytwenty-handle:after' => 'width: {{SIZE}}{{UNIT}}; margin-left: calc(-0px - {{SIZE}}{{UNIT}} / 2);',
+                    '{{WRAPPER}} .twentytwenty-vertical .twentytwenty-handle:before, {{WRAPPER}} .twentytwenty-vertical .twentytwenty-handle:after' => 'height: {{SIZE}}{{UNIT}}; margin-top: calc(-0px - {{SIZE}}{{UNIT}} / 2);',
                 ],
             ]
         );
 
-        $this->end_controls_tab();
-
-        $this->start_controls_tab(
-            '_tab_handle_arrow',
+        $this->add_control(
+            '_heading_arrow',
             [
-                'label' => __( 'Arrow', 'happy_addons' ),
+                'label' => __( 'Handle Arrow', 'plugin-name' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
             ]
         );
+
         $this->add_responsive_control(
             'arrow_box_width',
             [
@@ -288,6 +289,8 @@ class Image_Compare extends Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .twentytwenty-handle' => 'width: {{SIZE}}{{UNIT}}; margin-left: calc(-1 * ({{SIZE}}{{UNIT}} / 2));',
+                    '{{WRAPPER}} .twentytwenty-vertical .twentytwenty-handle:before' => 'margin-left: calc(({{SIZE}}{{UNIT}} / 2) - 1px);',
+                    '{{WRAPPER}} .twentytwenty-vertical .twentytwenty-handle:after' => 'margin-right: calc(({{SIZE}}{{UNIT}} / 2) - 1px);',
                 ],
             ]
         );
@@ -305,8 +308,8 @@ class Image_Compare extends Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .twentytwenty-handle' => 'height: {{SIZE}}{{UNIT}}; margin-top: calc(-1 * ({{SIZE}}{{UNIT}} / 2));',
-                    '{{WRAPPER}} .twentytwenty-handle:before' => 'margin-bottom: calc(({{SIZE}}{{UNIT}} / 2) + 2px);',
-                    '{{WRAPPER}} .twentytwenty-handle:after' => 'margin-top: calc(({{SIZE}}{{UNIT}} / 2) + 2px);',
+                    '{{WRAPPER}} .twentytwenty-horizontal .twentytwenty-handle:before' => 'margin-bottom: calc(({{SIZE}}{{UNIT}} / 2) + 2px);',
+                    '{{WRAPPER}} .twentytwenty-horizontal .twentytwenty-handle:after' => 'margin-top: calc(({{SIZE}}{{UNIT}} / 2) + 2px);',
                 ],
             ]
         );
@@ -333,12 +336,11 @@ class Image_Compare extends Base {
                 ],
             ]
         );
-        $this->end_controls_tab();
-        $this->end_controls_tabs();
+
         $this->end_controls_section();
 
         $this->start_controls_section(
-            '_section_label_style',
+            '_section_style_label',
             [
                 'label' => __( 'Label', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
@@ -353,6 +355,87 @@ class Image_Compare extends Base {
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
                     '{{WRAPPER}} .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-after-label:before' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'position_toggle',
+            [
+                'label' => __( 'Position', 'happy_addons' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'label_off' => __( 'None', 'happy_addons' ),
+                'label_on' => __( 'Custom', 'happy_addons' ),
+                'return_value' => 'yes',
+            ]
+        );
+
+        $this->start_popover();
+
+        $this->add_responsive_control(
+            'label_offset_y',
+            [
+                'label' => __( 'Vertical', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => -10,
+                        'max' => 600,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-vertical .twentytwenty-after-label:before' => 'bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .twentytwenty-vertical .twentytwenty-before-label:before' => 'top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .twentytwenty-horizontal .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-horizontal .twentytwenty-after-label:before' => 'top: {{SIZE}}{{UNIT}};'
+                ],
+                'condition' => [
+                    'position_toggle' => 'yes',
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'label_offset_x',
+            [
+                'label' => __( 'Horizontal', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => -10,
+                        'max' => 600,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-horizontal .twentytwenty-after-label:before' => 'right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .twentytwenty-horizontal .twentytwenty-before-label:before' => 'left: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .twentytwenty-vertical .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-vertical .twentytwenty-after-label:before' => 'left: {{SIZE}}{{UNIT}};'
+                ],
+                'condition' => [
+                    'position_toggle' => 'yes',
+                ]
+            ]
+        );
+
+        $this->end_popover();
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'label_border',
+                'selector' => '{{WRAPPER}} .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-after-label:before',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'label_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-after-label:before' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -395,113 +478,6 @@ class Image_Compare extends Base {
                 'selector' => '{{WRAPPER}} .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-after-label:before',
             ]
         );
-
-        $this->start_controls_tabs( '_tab_style_label' );
-        $this->start_controls_tab(
-            '_tab_style_before',
-            [
-                'label' => __( 'Before', 'happy_addons' ),
-            ]
-        );
-
-        $this->add_responsive_control(
-            'label_before_offset_x',
-            [
-                'label' => __( 'Offset X', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                     '{{WRAPPER}} .twentytwenty-before-label:before' => 'left: {{SIZE}}{{UNIT}}',
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'label_before_offset_y',
-            [
-                'label' => __( 'Offset Y', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .twentytwenty-before-label:before' => 'top: {{SIZE}}{{UNIT}}',
-                ]
-            ]
-        );
-        $this->end_controls_tab();
-
-        $this->start_controls_tab(
-            '_tab_style_after',
-            [
-                'label' => __( 'After', 'happy_addons' ),
-            ]
-        );
-
-        $this->add_responsive_control(
-            'label_after_offset_x',
-            [
-                'label' => __( 'Offset X', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .twentytwenty-after-label:before' => 'right: {{SIZE}}{{UNIT}}',
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'label_after_offset_y',
-            [
-                'label' => __( 'Offset Y', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .twentytwenty-after-label:before' => 'top: {{SIZE}}{{UNIT}}',
-                ]
-            ]
-        );
-
-        $this->end_controls_tab();
-        $this->end_controls_tabs();
 
         $this->end_controls_section();
     }

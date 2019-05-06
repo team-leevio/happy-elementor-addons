@@ -2,7 +2,8 @@
 .ha-infobox .elementor-widget-container,
 .ha-icon-box .elementor-widget-container,
 .ha-member .elementor-widget-container,
-.ha-review .elementor-widget-container {
+.ha-review .elementor-widget-container,
+.ha-image-compare .elementor-widget-container {
 	border-radius: .5rem; 
 	background-color: #fff;
 	box-shadow: 0 .2rem 2.8rem rgba(36, 36, 36, .1);
@@ -499,8 +500,8 @@ span .ha-review-ratting--star:before,
 	text-align: right;
 }
 
-.twentytwenty-container,
-.twentytwenty-wrapper {
+.ha-image-compare .twentytwenty-container,
+.ha-image-compare .twentytwenty-wrapper {
 	border-radius: inherit;
 }
 
