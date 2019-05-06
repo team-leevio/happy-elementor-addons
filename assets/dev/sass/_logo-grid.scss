@@ -1,0 +1,91 @@
+.ha-logo {
+	overflow: hidden;
+	clear: both;
+	height: 100%;
+  &::after{
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+  }
+  &-item{
+    float: left;
+    text-align: center;
+    position: relative;
+    &-thumb{
+      //box-shadow: 0 1px 8px rgba(0, 0, 0, .09);
+      border: 1px solid #e7e7e7;
+      border-radius: .5rem;
+      img{
+        height: auto;
+        max-width: 100%;
+
+      }
+    }
+
+  }
+
+}
+
+//grid number
+
+.ha-logo-grid-3{
+  .ha-logo-item {
+    width: 33.33%;
+  }
+}
+
+.ha-logo-grid-3 {
+  .ha-logo-item {
+    margin: .5rem;
+    width: calc(33.33% - 1rem);
+  }
+}
+
+
+.ha-logo-grid-4{
+  .ha-logo-item {
+    width: 25%;
+  }
+}
+
+.ha-logo-grid-4 {
+  .ha-logo-item {
+    margin: .5rem;
+    width: calc(25% - 1rem);
+  }
+}
+
+
+.ha-logo-grid-5{
+  .ha-logo-item {
+    width: 20%;
+  }
+}
+
+.ha-logo-grid-5 {
+  .ha-logo-item {
+    margin: .5rem;
+    width: calc(20% - 1rem);
+  }
+}
+
+.ha-logo-grid-6{
+  .ha-logo-item {
+    width: 16.66%;
+  }
+}
+
+.ha-logo-grid-6 {
+  .ha-logo-item {
+    margin: .5rem;
+    width: calc(16.66% - 1rem);
+  }
+}
+//
+
+.ha-logo-item-thumb {
+  //border: 1px solid #ddd;
+  padding: 2rem;
+}

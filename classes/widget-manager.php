@@ -51,7 +51,8 @@ class Widget_Manager {
 			'wpform',
 			'ninjaform',
 			'calderaform',
-			'weform'
+			'weform',
+			'logo-grid'
         ];
 
         foreach ( $widgets as $widget ) {
