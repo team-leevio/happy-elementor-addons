@@ -56,16 +56,7 @@ class Logo_grid extends Base {
             ]
         );
 
-        $repeater = new Repeater();
-
-        $repeater->add_control(
-            'logo_name',
-            [
-                'label' => __( 'Brand Name', 'happy_addons' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Brand Name', 'happy_addons' ),
-            ]
-        );
+		$repeater = new Repeater();
 
 		$repeater->add_control(
             'logo_image',
@@ -86,7 +77,16 @@ class Logo_grid extends Base {
             ]
         );
 
-        $repeater->add_group_control(
+        $repeater->add_control(
+            'logo_name',
+            [
+                'label' => __( 'Brand Name', 'happy_addons' ),
+				'type' => Controls_Manager::TEXT,
+				'default' => __( 'Brand Name', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_group_control(
             Group_Control_Image_Size::get_type(),
             [
                 'name' => 'thumbnail',
@@ -144,7 +144,7 @@ class Logo_grid extends Base {
                 'range' => [
                     'px' => [
                         'min' => 2,
-                        'max' => 5,
+                        'max' => 6,
                     ],
 				],
             ]
@@ -178,7 +178,7 @@ class Logo_grid extends Base {
 		$this->add_responsive_control(
             'box_spacing',
             [
-                'label' => __( 'Logo Box Spacing', 'happy_addons' ),
+                'label' => __( 'Box Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -190,7 +190,7 @@ class Logo_grid extends Base {
 		$this->add_control(
             'logo_background_color',
             [
-                'label' => __( 'Logo Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-logo-item-thumb' => 'background-color: {{VALUE}}',
@@ -217,7 +217,7 @@ class Logo_grid extends Base {
         $this->add_responsive_control(
             'logo_border_radius',
             [
-                'label' => __( 'Logo Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -248,23 +248,31 @@ class Logo_grid extends Base {
 			'ha-logo',
 			'ha-logo-grid-' . $settings['columns']['size'],
 		] );
+		?>
 
-		echo '<div ' . $this->get_render_attribute_string( 'container' ) . '>';
+		<div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
 
-		foreach( $settings['logo_list'] as $list ) {
-			echo '<div class="ha-logo-item">';
-			echo '<div class="ha-logo-item-thumb">';
+			<?php
+			$image_sizes = $settings['thumbnail_size'];
+			foreach( $settings['logo_list'] as $list ) {
+				?>
+				<div class="ha-logo-item">
+					<div class="ha-logo-item-thumb">
 
-			echo '<a target="_blank" rel="noopener" href="' . esc_url( $list['logo_link'] ) . '">';
-			echo Group_Control_Image_Size::get_attachment_image_html( $list, 'thumbnail', 'logo_image' );
-			echo '</a>';
+						<?php if ( $list['logo_link'] ) { ?>
+							<a target="_blank" rel="noopener" href="<?php echo esc_url( $list['logo_link'] ) ?>">
+								<img src="<?php echo esc_url( wp_get_attachment_image_url( $list['logo_image']['id'], 'thumbnail' ) ); ?>" alt="<?php echo esc_attr( $list['logo_name'] ); ?>">
+							</a>
+						<?php } else { ?>
+							<img src="<?php echo  esc_url( wp_get_attachment_image_url( $list['logo_image']['id'], 'thumbnail' ) ); ?>" alt="<?php echo esc_attr( $list['logo_name'] ); ?>">
+						<?php } ?>
 
-			echo '</div>';
-			echo '</div>';
-		}
+					</div>
+				</div>
+			<?php } ?>
 
-		echo '</div>';
-
+		</div>
+	<?php
 	}
 
 	public function _content_template() {
@@ -276,7 +284,7 @@ class Logo_grid extends Base {
 				var image = {
 					id: list.logo_image.id,
 					url: list.logo_image.url,
-					size: list.thumbnail,
+					size: settings.thumbnail,
 					dimension: list.thumbnail_custom_dimension,
 					model: view.getEditModel()
 				};
@@ -284,17 +292,20 @@ class Logo_grid extends Base {
 				#>
 				<div class="ha-logo-item">
 					<div class="ha-logo-item-thumb">
-						<a href="{{{ list.logo_link }}}">
-							<img src="{{{ image_url }}}" alt="">
-						</a>
+						<# if( list.logo_link ) { #>
+							<a href="{{{ list.logo_link }}}">
+								<img src="{{{ image_url }}}" alt="{{{ list.logo_name }}}">
+							</a>
+						<# } else { #>
+							<img src="{{{ image_url }}}" alt="{{{ list.logo_name }}}">
+						<# } #>
 					</div>
 				</div>
 			<#
 			});
 			#>
 		</div>
-
-		<?php
+	<?php
 	}
 
 }
