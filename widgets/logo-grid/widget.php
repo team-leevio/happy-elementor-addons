@@ -244,29 +244,57 @@ class Logo_grid extends Base {
 	protected function render() {
         $settings = $this->get_settings_for_display();
 
-            $this->add_render_attribute( 'container', 'class', [
-                'ha-logo',
-                'ha-logo-grid-' . $settings['columns']['size'],
-			] );
+		$this->add_render_attribute( 'container', 'class', [
+			'ha-logo',
+			'ha-logo-grid-' . $settings['columns']['size'],
+		] );
 
-			echo '<div ' . $this->get_render_attribute_string( 'container' ) . '>';
+		echo '<div ' . $this->get_render_attribute_string( 'container' ) . '>';
 
-			foreach( $settings['logo_list'] as $list ) {
-				echo '<div class="ha-logo-item">';
-				echo '<div class="ha-logo-item-thumb">';
+		foreach( $settings['logo_list'] as $list ) {
+			echo '<div class="ha-logo-item">';
+			echo '<div class="ha-logo-item-thumb">';
 
-				echo '<a target="_blank" rel="noopener" href="' . esc_url( $list['logo_link'] ) . '">';
-				echo Group_Control_Image_Size::get_attachment_image_html( $list, 'thumbnail', 'logo_image' );
-				echo '</a>';
-
-				echo '</div>';
-				echo '</div>';
-			}
+			echo '<a target="_blank" rel="noopener" href="' . esc_url( $list['logo_link'] ) . '">';
+			echo Group_Control_Image_Size::get_attachment_image_html( $list, 'thumbnail', 'logo_image' );
+			echo '</a>';
 
 			echo '</div>';
+			echo '</div>';
+		}
+
+		echo '</div>';
 
 	}
 
-	public function _content_template() {}
+	public function _content_template() {
+		?>
+
+		<div class="ha-logo ha-logo-grid-{{{ settings.columns.size }}}">
+			<#
+			_.each( settings.logo_list, function( list, index ) {
+				var image = {
+					id: list.logo_image.id,
+					url: list.logo_image.url,
+					size: list.thumbnail,
+					dimension: list.thumbnail_custom_dimension,
+					model: view.getEditModel()
+				};
+				var image_url = elementor.imagesManager.getImageUrl( image );
+				#>
+				<div class="ha-logo-item">
+					<div class="ha-logo-item-thumb">
+						<a href="{{{ list.logo_link }}}">
+							<img src="{{{ image_url }}}" alt="">
+						</a>
+					</div>
+				</div>
+			<#
+			});
+			#>
+		</div>
+
+		<?php
+	}
 
 }
