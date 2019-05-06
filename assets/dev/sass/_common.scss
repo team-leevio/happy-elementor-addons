@@ -10,3 +10,10 @@
     object-fit: cover;
   }
 }
+
+.ha-clearfix {
+	&:after {
+		display: table;
+		clear: both;
+	}
+}

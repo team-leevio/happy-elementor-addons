@@ -14,6 +14,10 @@
     height: auto;
     object-fit: cover; }
 
+.ha-clearfix:after {
+  display: table;
+  clear: both; }
+
 .ha-btn {
   background-color: #8c8c8c;
   color: #fff;
