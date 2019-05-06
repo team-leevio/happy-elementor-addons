@@ -34,7 +34,7 @@ class Widget_Manager {
         require( HAPPY_DIR_PATH . 'base/widget-base.php' );
 
         $widgets = [
-            'blurb',
+            'infobox',
             'card',
             'cf7',
             'icon-box',

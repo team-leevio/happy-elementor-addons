@@ -104,6 +104,7 @@ class Gradient_Heading extends Base {
                     ]
                 ],
                 'default' => 'h2',
+                'toggle' => false,
             ]
         );
 

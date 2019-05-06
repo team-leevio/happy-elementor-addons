@@ -6,6 +6,7 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
+use Elementor\Group_Control_Text_Shadow;
 use Elementor\Repeater;
 use Elementor\Utils;
 use Elementor\Control_Media;
@@ -28,7 +29,7 @@ class Member extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Member', 'happy_addons' );
+        return __( 'Team Member', 'happy_addons' );
     }
 
     /**
@@ -98,7 +99,7 @@ class Member extends Base {
 		$this->start_controls_section(
 			'_section_info',
 			[
-				'label' => __( 'Basic Information', 'happy_addons' ),
+				'label' => __( 'Information', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -187,6 +188,7 @@ class Member extends Base {
                     ]
                 ],
                 'default' => 'h2',
+                'toggle' => false,
             ]
         );
 
@@ -207,6 +209,10 @@ class Member extends Base {
                     'right' => [
                         'title' => __( 'Right', 'happy_addons' ),
                         'icon' => 'fa fa-align-right',
+                    ],
+                    'justify' => [
+                        'title' => __( 'Justify', 'happy_addons' ),
+                        'icon' => 'fa fa-align-justify',
                     ],
                 ],
                 'toggle' => true,
@@ -372,15 +378,15 @@ class Member extends Base {
                 'default' => [
                     [
                         'link' => ['url' => 'https://facebook.com/'],
-                        'profile' => 'fa fa-facebook'
+                        'name' => 'facebook'
                     ],
                     [
                         'link' => ['url' => 'https://twitter.com/'],
-                        'profile' => 'fa fa-twitter'
+                        'name' => 'twitter'
                     ],
                     [
                         'link' => ['url' => 'https://linkedin.com/'],
-                        'profile' => 'fa fa-linkedin'
+                        'name' => 'linkedin'
                     ]
                 ]
             ]
@@ -406,15 +412,6 @@ class Member extends Base {
             [
                 'label' => __( 'Width', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'unit' => 'px',
-                ],
-                'tablet_default' => [
-                    'unit' => 'px',
-                ],
-                'mobile_default' => [
-                    'unit' => 'px',
-                ],
                 'size_units' => [ 'px', '%'],
                 'range' => [
                     '%' => [
@@ -422,12 +419,30 @@ class Member extends Base {
                         'max' => 100,
                     ],
                     'px' => [
-                        'min' => 150,
-                        'max' => 400,
+                        'min' => 100,
+                        'max' => 700,
                     ],
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-figure' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_height',
+            [
+                'label' => __( 'Height', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 100,
+                        'max' => 700,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-figure' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -492,8 +507,20 @@ class Member extends Base {
         $this->start_controls_section(
             '_section_style_content',
             [
-                'label' => __( 'Name, Role & Bio', 'happy_addons' ),
+                'label' => __( 'Name, Job Title & Bio', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'content_padding',
+            [
+                'label' => __( 'Content Padding', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-body' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -502,6 +529,7 @@ class Member extends Base {
             [
                 'type' => Controls_Manager::HEADING,
                 'label' => __( 'Name', 'happy_addons' ),
+                'separator' => 'before',
             ]
         );
 
@@ -532,7 +560,14 @@ class Member extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'selector' => '{{WRAPPER}} .ha-member-name',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'title_text_shadow',
                 'selector' => '{{WRAPPER}} .ha-member-name',
             ]
         );
@@ -578,6 +613,14 @@ class Member extends Base {
             ]
         );
 
+        $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'job_title_text_shadow',
+                'selector' => '{{WRAPPER}} .ha-member-position',
+            ]
+        );
+
         $this->add_control(
             '_heading_bio',
             [
@@ -615,6 +658,14 @@ class Member extends Base {
             [
                 'name' => 'bio_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
+                'selector' => '{{WRAPPER}} .ha-member-bio',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'bio_text_shadow',
                 'selector' => '{{WRAPPER}} .ha-member-bio',
             ]
         );
@@ -789,38 +840,41 @@ class Member extends Base {
             </figure>
         <?php endif; ?>
 
-        <?php printf( '<%1$s %2$s>%3$s</%1$s>',
-            tag_escape( $settings['title_tag'] ),
-            $this->get_render_attribute_string( 'title' ),
-            esc_html( $settings['title' ] )
-        ); ?>
-        <div <?php echo $this->get_render_attribute_string( 'job_title' ); ?>><?php echo esc_html( $settings['job_title' ] ); ?></div>
-        <div <?php echo $this->get_render_attribute_string( 'bio' ); ?>>
-            <p><?php echo wp_kses_data( $settings['bio'] ); ?></p>
-        </div>
-
-        <?php if ( ! empty( $settings['profiles' ] ) ) : ?>
-            <div class="ha-member-links">
-                <?php
-                foreach ( $settings['profiles'] as $profile ) :
-                    $icon = $profile['name'];
-                    $url = esc_url( $profile['link']['url'] );
-
-                    if ($profile['name'] === 'website') {
-                        $icon = 'globe';
-                    } elseif ($profile['name'] === 'email') {
-                        $icon = 'envelope';
-                        $url = 'mailto:' . antispambot( $profile['email'] );
-                    }
-
-                    printf( '<a target="_blank" rel="noopener" data-tooltip="hello" href="%s" class="elementor-repeater-item-%s"><i class="fa fa-%s" aria-hidden="true"></i></a>',
-                        $url,
-                        esc_attr( $profile['_id'] ),
-                        esc_attr( $icon )
-                    );
-                endforeach; ?>
+        <div class="ha-member-body">
+            <?php printf( '<%1$s %2$s>%3$s</%1$s>',
+                tag_escape( $settings['title_tag'] ),
+                $this->get_render_attribute_string( 'title' ),
+                esc_html( $settings['title' ] )
+            ); ?>
+            <div <?php echo $this->get_render_attribute_string( 'job_title' ); ?>><?php echo esc_html( $settings['job_title' ] ); ?></div>
+            <div <?php echo $this->get_render_attribute_string( 'bio' ); ?>>
+                <p><?php echo wp_kses_data( $settings['bio'] ); ?></p>
             </div>
-        <?php endif;
+
+            <?php if ( ! empty( $settings['profiles' ] ) ) : ?>
+                <div class="ha-member-links">
+                    <?php
+                    foreach ( $settings['profiles'] as $profile ) :
+                        $icon = $profile['name'];
+                        $url = esc_url( $profile['link']['url'] );
+
+                        if ($profile['name'] === 'website') {
+                            $icon = 'globe';
+                        } elseif ($profile['name'] === 'email') {
+                            $icon = 'envelope';
+                            $url = 'mailto:' . antispambot( $profile['email'] );
+                        }
+
+                        printf( '<a target="_blank" rel="noopener" data-tooltip="hello" href="%s" class="elementor-repeater-item-%s"><i class="fa fa-%s" aria-hidden="true"></i></a>',
+                            $url,
+                            esc_attr( $profile['_id'] ),
+                            esc_attr( $icon )
+                        );
+                    endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+        <?php
     }
 
     public function _content_template() {
@@ -850,32 +904,33 @@ class Member extends Base {
                 <img src="{{ image_url }}">
             </figure>
         <# } #>
-        <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
-        <div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{ settings.job_title }}</div>
-        <div {{{ view.getRenderAttributeString( 'bio' ) }}}>
-            <p>{{{ settings.bio }}}</p>
-        </div>
-        <# if (_.isArray(settings.profiles)) { #>
-        <div class="ha-member-links">
-            <# _.each(settings.profiles, function(profile, index) {
-                var icon = profile.name,
-                    url = profile.link.url,
-                    linkKey = view.getRepeaterSettingKey( 'profile', 'profiles', index);
+        <div class="ha-member-body">
+            <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
+            <div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{ settings.job_title }}</div>
+            <div {{{ view.getRenderAttributeString( 'bio' ) }}}>
+                <p>{{{ settings.bio }}}</p>
+            </div>
+            <# if (_.isArray(settings.profiles)) { #>
+                <div class="ha-member-links">
+                    <# _.each(settings.profiles, function(profile, index) {
+                        var icon = profile.name,
+                            url = profile.link.url,
+                            linkKey = view.getRepeaterSettingKey( 'profile', 'profiles', index);
 
-                if (profile.name === 'website') {
-                    icon = 'globe';
-                } else if (profile.name === 'email') {
-                    icon = 'envelope'
-                    url = 'mailto:' + profile.email;
-                }
+                        if (profile.name === 'website') {
+                            icon = 'globe';
+                        } else if (profile.name === 'email') {
+                            icon = 'envelope'
+                            url = 'mailto:' + profile.email;
+                        }
 
-                view.addRenderAttribute( linkKey, 'class', 'elementor-repeater-item-' + profile._id );
-                view.addRenderAttribute( linkKey, 'href', url ); #>
-                <a {{{view.getRenderAttributeString( linkKey )}}}><i class="fa fa-{{{icon}}}"></i></a>
-            <# }); #>
+                        view.addRenderAttribute( linkKey, 'class', 'elementor-repeater-item-' + profile._id );
+                        view.addRenderAttribute( linkKey, 'href', url ); #>
+                        <a {{{view.getRenderAttributeString( linkKey )}}}><i class="fa fa-{{{icon}}}"></i></a>
+                    <# }); #>
+                </div>
+            <# } #>
         </div>
-        <# } #>
         <?php
     }
-
 }

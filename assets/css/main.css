@@ -1,4 +1,4 @@
-.ha-card .elementor-widget-container, .ha-blurb .elementor-widget-container, .ha-icon-box .elementor-widget-container, .ha-member .elementor-widget-container, .ha-review .elementor-widget-container {
+.ha-card .elementor-widget-container, .ha-infobox .elementor-widget-container, .ha-icon-box .elementor-widget-container, .ha-member .elementor-widget-container, .ha-review .elementor-widget-container {
   background-color: #fff;
   box-shadow: 0 0.2rem 2.8rem rgba(36, 36, 36, 0.1);
   word-wrap: break-word;
@@ -13,6 +13,10 @@
     max-width: 100%;
     height: auto;
     object-fit: cover; }
+
+.ha-clearfix:after {
+  display: table;
+  clear: both; }
 
 .ha-btn {
   background-color: #8c8c8c;
@@ -75,7 +79,7 @@
   .ha-card-text > p {
     margin-top: 0;
     margin-bottom: 0; }
-.ha-card--top .ha-card-figure, .ha-card--bottom .ha-card-figure {
+.ha-card--top .ha-card-figure {
   display: inline-block; }
 .ha-card--right .elementor-widget-container, .ha-card--left .elementor-widget-container {
   display: flex;
@@ -137,31 +141,31 @@
     right: 1rem;
     bottom: 1rem; }
 
-.ha-blurb .elementor-widget-container {
+.ha-infobox .elementor-widget-container {
   padding: 1.5rem; }
-.ha-blurb-title {
+.ha-infobox-title {
   margin-top: 0;
   margin-bottom: 1rem;
   color: #151515;
   font-size: 24px; }
-.ha-blurb-figure {
+.ha-infobox-figure {
   display: inline-block;
   margin: 0 0 1.5rem !important; }
-  .ha-blurb-figure--icon {
+  .ha-infobox-figure--icon {
     font-size: 3rem;
     text-align: center; }
-  .ha-blurb-figure > i {
+  .ha-infobox-figure > i {
     width: 1em;
     height: 1em;
     position: relative;
     display: block; }
-  .ha-blurb-figure > img {
+  .ha-infobox-figure > img {
     width: 100%;
     height: 100%;
     vertical-align: bottom; }
-.ha-blurb-text + .ha-link {
+.ha-infobox-text + .ha-link {
   margin-top: 1rem; }
-.ha-blurb-text > p {
+.ha-infobox-text > p {
   margin-top: 0;
   margin-bottom: 0; }
 
@@ -171,17 +175,20 @@
   margin-top: 0;
   margin-bottom: 0;
   color: #151515;
-  font-size: 24px; }
+  font-size: 24px;
+  transition: color .3s; }
 .ha-icon-box-icon {
   display: inline-block;
   margin-bottom: 1rem;
   font-size: 3rem;
   text-align: center;
-  color: #151515; }
+  color: #151515;
+  transition: transform .3s, border .3s, background .3s, color .3s; }
   .ha-icon-box-icon > i {
     width: 1em;
     height: 1em;
-    display: block; }
+    display: block;
+    transition: transform .3s; }
 .ha-icon-box-link {
   display: block;
   text-decoration: none;
@@ -193,7 +200,9 @@
   display: inline-block;
   margin: 0 0 1.5rem !important; }
   .ha-member-figure img {
-    vertical-align: middle; }
+    width: 100%;
+    height: 100%;
+    vertical-align: bottom; }
 .ha-member-name {
   margin-top: 0;
   margin-bottom: .5rem;
@@ -293,13 +302,16 @@
   max-width: 150px;
   height: 150px; }
 .ha-review--left .ha-review-body, .ha-review--right .ha-review-body {
+  flex: 0 0 calc(100% - 150px);
+  max-width: calc(100% - 150px);
   padding: 2rem; }
   .ha-review--left .ha-review-body > :first-child, .ha-review--right .ha-review-body > :first-child {
     margin-top: 0; }
 .ha-review--right .elementor-widget-container {
   flex-direction: row-reverse;
   padding-right: 2rem;
-  padding-left: 0; }
+  padding-left: 0;
+  text-align: right; }
 
 .twentytwenty-container,
 .twentytwenty-wrapper {
