@@ -83,17 +83,27 @@ window.Happy = window.Happy || {};
     }
 
     Happy.initSlider = function($scope) {
-        var $item = $scope.find('.hajs-slider');
+        var $item = $scope.find('.hajs-slider'),
+            settings = $item.getHappySettings(),
+            pauseMap = {
+                on_focus: 'pauseOnFocus',
+                on_hover: 'pauseOnHover',
+                on_dots_hover: 'pauseOnDotsHover'
+            };
 
-        // $item.owlCarousel($.extend({}, {
-        //     loop: true,
-        //     margin: 10,
-        //     autoplay: true,
-        //     checkVisible: false,
-        //     nav: true,
-        //     items: 1,
-        //     navText: ['<i class="fa fa-chevron-left"></i>','<i class="fa fa-chevron-right"></i>'],
-        // }, $item.getHappySettings()));
+        settings[pauseMap[settings.pause || 'on_focus']] = true;
+
+        $item.slick($.extend({}, {
+            // infinite:true, // default true
+            // autoplay: true, // default true
+            // arrows: true, // default true
+            // dots: true, // default false
+            checkVisible: false,
+            // centerMode: true, // default false
+            // vertical: true, // default false - vertical slide mode
+            prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
+            nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
+        }, settings));
     }
 
     Happy.initCarousel = function($scope) {

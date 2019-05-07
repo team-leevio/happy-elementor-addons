@@ -283,7 +283,7 @@ class Carousel extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'item_border',
-                'selector' => '{{WRAPPER}} .ha-carousel-item',
+                'selector' => '{{WRAPPER}} .ha-slider-item',
             ]
         );
 
@@ -294,7 +294,7 @@ class Carousel extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-carousel-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
+                    '{{WRAPPER}} .ha-slider-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
                 ],
             ]
         );
@@ -316,7 +316,7 @@ class Carousel extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-carousel-text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-slider-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -325,7 +325,7 @@ class Carousel extends Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'content_background',
-                'selector' => '{{WRAPPER}} .ha-carousel-text',
+                'selector' => '{{WRAPPER}} .ha-slider-content',
                 'exclude' => [
                      'image'
                 ]
@@ -348,7 +348,7 @@ class Carousel extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-carousel-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-slider-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -359,7 +359,7 @@ class Carousel extends Base {
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-carousel-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-slider-title' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -369,7 +369,7 @@ class Carousel extends Base {
             [
                 'name' => 'title',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-carousel-title',
+                'selector' => '{{WRAPPER}} .ha-slider-title',
             ]
         );
 
@@ -389,7 +389,7 @@ class Carousel extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-carousel-subtitle' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-slider-subtitle' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -400,7 +400,7 @@ class Carousel extends Base {
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-carousel-subtitle' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-slider-subtitle' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -410,7 +410,7 @@ class Carousel extends Base {
             [
                 'name' => 'subtitle',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-carousel-subtitle',
+                'selector' => '{{WRAPPER}} .ha-slider-subtitle',
             ]
         );
 
@@ -701,15 +701,15 @@ class Carousel extends Base {
                     $image = $slide['image']['url'];
                 }
                 ?>
-                <div class="ha-carousel-item">
+                <div class="ha-slider-item">
                     <img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $slide['title'] ); ?>">
                     <?php if ( $slide['title'] || $slide['subtitle'] ) : ?>
-                        <div class="ha-carousel-text">
+                        <div class="ha-slider-content">
                             <?php if ( $slide['title'] ) : ?>
-                                <h2 class="ha-carousel-title"><?php echo esc_html( $slide['title'] ); ?></h2>
+                                <h2 class="ha-slider-title"><?php echo esc_html( $slide['title'] ); ?></h2>
                             <?php endif; ?>
                             <?php if ( $slide['subtitle'] ) : ?>
-                                <p class="ha-carousel-subtitle"><?php echo esc_html( $slide['subtitle'] ); ?></p>
+                                <p class="ha-slider-subtitle"><?php echo esc_html( $slide['subtitle'] ); ?></p>
                             <?php endif; ?>
                         </div>
                     <?php endif; ?>
