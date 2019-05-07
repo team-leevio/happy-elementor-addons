@@ -24,7 +24,7 @@ class NinjaForm extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Ninja Form', 'happy_addons' );
+        return __( 'Ninja Form', 'happy_addons' );
     }
 
     /**
