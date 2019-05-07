@@ -54,15 +54,15 @@ class Asset_Manager {
         );
 
         wp_enqueue_style(
-            'owl-carousel',
-            HAPPY_ASSETS . 'vendor/owl-carousel/assets/owl.carousel.min.css',
+            'slick',
+            HAPPY_ASSETS . 'vendor/slick/slick.css',
             null,
             Base::VERSION
         );
 
         wp_enqueue_style(
-            'owl-theme-default',
-            HAPPY_ASSETS . 'vendor/owl-carousel/assets/owl.theme.default.min.css',
+            'slick-theme',
+            HAPPY_ASSETS . 'vendor/slick/slick-theme.css',
             null,
             Base::VERSION
         );
@@ -116,8 +116,8 @@ class Asset_Manager {
         );
 
         wp_enqueue_script(
-            'jquery-owl-carousel',
-            HAPPY_ASSETS . 'vendor/owl-carousel/owl.carousel.min.js',
+            'jquery-slick',
+            HAPPY_ASSETS . 'vendor/slick/slick' . $suffix . 'js',
             ['jquery'],
             Base::VERSION,
             true

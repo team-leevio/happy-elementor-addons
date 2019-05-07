@@ -27,7 +27,7 @@ class Image_Compare extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Image Compare', 'happy_addons' );
+        return __( 'Image Compare', 'happy_addons' );
     }
 
     /**

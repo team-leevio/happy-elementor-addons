@@ -24,7 +24,7 @@ class Gradient_Heading extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Gradient Heading', 'happy_addons' );
+        return __( 'Gradient Heading', 'happy_addons' );
     }
 
     /**
