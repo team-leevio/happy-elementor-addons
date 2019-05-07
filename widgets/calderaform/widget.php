@@ -24,7 +24,7 @@ class CalderaForm extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Caldera Form', 'happy_addons' );
+        return __( 'Caldera Form', 'happy_addons' );
     }
 
     /**
