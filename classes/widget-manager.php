@@ -52,7 +52,8 @@ class Widget_Manager {
 			'ninjaform',
 			'calderaform',
 			'weform',
-			'logo-grid'
+			'logo-grid',
+			'dual-button'
         ];
 
         foreach ( $widgets as $widget ) {

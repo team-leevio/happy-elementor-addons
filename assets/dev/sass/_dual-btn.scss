@@ -1,0 +1,83 @@
+ .ha-dual-btn{
+   position: relative;
+   display: inline-block;
+   &-link {
+     float: left;
+     position: relative;
+     .ha-dual-btn-link-primary{
+       background: #3266fd;
+       border: none;
+       color: #fff
+     }
+     .ha-dual-btn-link-secondary{
+       background: #27374c;
+       border: none;
+       color: #fff
+     }
+     a{
+       display: block;
+       vertical-align: middle;
+       overflow: hidden;
+       text-align: center;
+       position: relative;
+       transition: border-color ease .5s,background ease .5s,color ease .5s;
+       font-size: 14px;
+       font-weight: 400;
+       line-height: 1.428571429;
+       color: #7f7f7f;
+       border: 1px solid #e7e7e7;
+       background-color: #fff;
+       padding: 1.2rem 3rem;
+       text-transform: uppercase;
+       text-decoration: none;
+       box-sizing: initial;
+       border-radius: 50px;
+       i{
+         position: relative;
+         top: 3px;
+       }
+     }
+
+   }
+
+   &-link:first-child a{
+     border-top-right-radius: 0!important;
+     border-bottom-right-radius: 0!important;
+     border-right: none;
+     i {
+       float: left;
+       padding-right: 1rem;
+     }
+   }
+   &-link:last-child a{
+     border-top-left-radius: 0!important;
+     border-bottom-left-radius: 0!important;
+     i {
+       float: right;
+       padding-left: 1rem;
+     }
+   }
+
+   .ha-middle-text {
+     display: block;
+     position: absolute;
+     top: 50%;
+     right: 0;
+     transform: translate(50%,-50%);
+     height: 30px;
+     width: 30px;
+     line-height: 30px;
+     text-align: center;
+     background: #fff;
+     color: #7f7f7f;
+     box-sizing: content-box;
+     border-radius: 100%;
+     font-size: 12px;
+     //border: 5px solid rgba(255,255,255, .6);
+     box-shadow: 0 0 0 5px rgba(255,255,255,0.3);
+     font-weight: 400;
+     z-index: 12;
+     transition: border-color ease .5s,background ease .5s,color ease .5s;
+     text-transform: uppercase;
+   }
+ }
