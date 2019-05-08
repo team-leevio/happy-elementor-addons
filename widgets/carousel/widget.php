@@ -29,7 +29,7 @@ class Carousel extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Carousel', 'happy_addons' );
+        return __( 'Carousel', 'happy_addons' );
     }
 
     /**
@@ -50,9 +50,9 @@ class Carousel extends Base {
 
 	protected function register_content_controls() {
         $this->start_controls_section(
-            '_section_images',
+            '_section_slides',
             [
-                'label' => __( 'Images', 'happy_addons' ),
+                'label' => __( 'Slides', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -64,6 +64,9 @@ class Carousel extends Base {
             [
                 'type' => Controls_Manager::MEDIA,
                 'label' => __( 'Image', 'happy_addons' ),
+                'default' => [
+                    'url' => Utils::get_placeholder_image_src(),
+                ],
             ]
         );
 
@@ -72,7 +75,7 @@ class Carousel extends Base {
             [
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
-                'label' => __( 'Title', 'happy_addons' ),
+                'label' => __( 'Title & Subtitle', 'happy_addons' ),
                 'placeholder' => __( 'Type title here', 'happy_addons' )
             ]
         );
@@ -82,7 +85,7 @@ class Carousel extends Base {
             [
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
-                'label' => __( 'Subtitle', 'happy_addons' ),
+                'show_label' => false,
                 'placeholder' => __( 'Type subtitle here', 'happy_addons' )
             ]
         );
@@ -119,38 +122,53 @@ class Carousel extends Base {
             ]
         );
 
-        $this->add_responsive_control(
-            'nav',
+        $this->add_control(
+            'speed',
             [
-                'label' => __( 'Display Navigation?', 'happy_addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_block' => true,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
-                'return_value' => 'yes',
-                'default' => 'yes',
-                'description' => __( 'Enable to display next and previous navigation', 'happy_addons' )
+                'label' => __( 'Speed', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 100,
+                        'step' => 10,
+                        'max' => 1000,
+                    ],
+                ],
+                'default' => [
+                    'size' => 300,
+                ],
+                'description' => __( 'Slide speed in milliseconds', 'happy_addons' ),
             ]
         );
 
-        $this->add_responsive_control(
-            'dots',
+        $this->add_control(
+            'arrows',
             [
-                'label' => __( 'Display Pagination?', 'happy_addons' ),
+                'label' => __( 'Arrow Navigation?', 'happy_addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_block' => true,
                 'label_on' => __( 'Yes', 'happy_addons' ),
                 'label_off' => __( 'No', 'happy_addons' ),
                 'return_value' => 'yes',
-                'default' => 'yes',
-                'description' => __( 'Enable to display dots pagination', 'happy_addons' )
+                'default' => 'yes'
+            ]
+        );
+
+        $this->add_control(
+            'dots',
+            [
+                'label' => __( 'Dots Navigation?', 'happy_addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'happy_addons' ),
+                'label_off' => __( 'No', 'happy_addons' ),
+                'return_value' => 'yes',
             ]
         );
 
         $this->add_control(
             'autoplay',
             [
-                'label' => __( 'Enable Autoplay', 'happy_addons' ),
+                'label' => __( 'Autoplay?', 'happy_addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy_addons' ),
                 'label_off' => __( 'No', 'happy_addons' ),
@@ -160,36 +178,55 @@ class Carousel extends Base {
         );
 
         $this->add_control(
-            'autoplay_timeout',
+            'autoplay_speed',
             [
-                'label' => __( 'Autoplay Timeout', 'happy_addons' ),
-                'type' => Controls_Manager::NUMBER,
-                'min' => 1000,
-                'step' => 100,
-                'max' => 10000,
-                'default' => 5000,
-                'description' => __( 'Set autoplay start time in milliseconds', 'happy_addons' ),
-                'condition' => ['autoplay' => ['yes']],
+                'label' => __( 'Autoplay Speed', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 1000,
+                        'step' => 100,
+                        'max' => 6000,
+                    ],
+                ],
+                'default' => [
+                    'size' => 3000,
+                ],
+                'description' => __( 'Autoplay speed in milliseconds', 'happy_addons' ),
+                'condition' => [
+                    'autoplay' => 'yes'
+                ],
             ]
         );
 
         $this->add_control(
-            'hover_pause',
+            'infinite',
             [
-                'label' => __( 'Pause On Hover', 'happy_addons' ),
+                'label' => __( 'Infinite Loop?', 'happy_addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy_addons' ),
                 'label_off' => __( 'No', 'happy_addons' ),
                 'return_value' => 'yes',
-                'description' => __( 'Enable to pause the slides on mouse over', 'happy_addons' ),
-                'condition' => ['autoplay' => ['yes']],
             ]
         );
 
         $this->add_control(
-            'loop',
+            'center',
             [
-                'label' => __( 'Enable Loop', 'happy_addons' ),
+                'label' => __( 'Center Mode?', 'happy_addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'happy_addons' ),
+                'label_off' => __( 'No', 'happy_addons' ),
+                'return_value' => 'yes',
+                'description' => __( 'Best works with odd number of slides (Slides To Show) and loop (Infinite Loop)', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'vertical',
+            [
+                'label' => __( 'Vertical Mode?', 'happy_addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy_addons' ),
                 'label_off' => __( 'No', 'happy_addons' ),
@@ -198,9 +235,9 @@ class Carousel extends Base {
         );
 
         $this->add_responsive_control(
-            'items',
+            'slides_to_show',
             [
-                'label' => __( 'Columns', 'happy_addons' ),
+                'label' => __( 'Slides To Show', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -216,32 +253,17 @@ class Carousel extends Base {
         );
 
         $this->add_control(
-            'center',
+            'pause',
             [
-                'label' => __( 'Enable Center', 'happy_addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
-                'return_value' => 'yes',
-                'description' => __( 'This setting best works with loop enabled and even number of items', 'happy_addons' ),
-            ]
-        );
-
-        $this->add_control(
-            'margin',
-            [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 50,
-                    ],
+                'label' => __( 'Pause Autoplay', 'happy_addons' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    '' => __( 'Default', 'happy_addons' ),
+                    'on_focus' => __( 'On Focus', 'happy_addons' ),
+                    'on_hover' => __( 'On Hover', 'happy_addons' ),
+                    'on_dots_hover' => __( 'On Dots Hover', 'happy_addons' ),
                 ],
-                'default' => [
-                    'size' => 10,
-                ],
+                'default' => '',
             ]
         );
 
@@ -250,9 +272,9 @@ class Carousel extends Base {
 
     protected function register_style_controls() {
         $this->start_controls_section(
-            '_section_style_image',
+            '_section_style_item',
             [
-                'label' => __( 'Image', 'happy_addons' ),
+                'label' => __( 'Carousel Item', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -260,19 +282,19 @@ class Carousel extends Base {
         $this->add_group_control(
             Group_Control_Border::get_type(),
             [
-                'name' => 'image_border',
-                'selector' => '{{WRAPPER}} .owl-carousel .owl-item',
+                'name' => 'item_border',
+                'selector' => '{{WRAPPER}} .ha-slider-item',
             ]
         );
 
         $this->add_responsive_control(
-            'image_border_radius',
+            'item_border_radius',
             [
                 'label' => __( 'Border Radius', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .owl-carousel .owl-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
+                    '{{WRAPPER}} .ha-slider-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
                 ],
             ]
         );
@@ -294,7 +316,7 @@ class Carousel extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-carousel-text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-slider-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -303,7 +325,7 @@ class Carousel extends Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'content_background',
-                'selector' => '{{WRAPPER}} .ha-carousel-text',
+                'selector' => '{{WRAPPER}} .ha-slider-content',
                 'exclude' => [
                      'image'
                 ]
@@ -326,7 +348,7 @@ class Carousel extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-carousel-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-slider-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -337,7 +359,7 @@ class Carousel extends Base {
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-carousel-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-slider-title' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -347,7 +369,7 @@ class Carousel extends Base {
             [
                 'name' => 'title',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-carousel-title',
+                'selector' => '{{WRAPPER}} .ha-slider-title',
             ]
         );
 
@@ -367,7 +389,7 @@ class Carousel extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-carousel-subtitle' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-slider-subtitle' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -378,7 +400,7 @@ class Carousel extends Base {
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-carousel-subtitle' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-slider-subtitle' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -388,24 +410,24 @@ class Carousel extends Base {
             [
                 'name' => 'subtitle',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-carousel-subtitle',
+                'selector' => '{{WRAPPER}} .ha-slider-subtitle',
             ]
         );
 
         $this->end_controls_section();
 
         $this->start_controls_section(
-            '_section_style_navigation',
+            '_section_style_arrow',
             [
-                'label' => __( 'Navigation', 'happy_addons' ),
+                'label' => __( 'Arrow Navigation', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_control(
-            'offset_toggle',
+            'arrow_position_toggle',
             [
-                'label' => __( 'Offset', 'happy_addons' ),
+                'label' => __( 'Position', 'happy_addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
                 'label_off' => __( 'None', 'happy_addons' ),
                 'label_on' => __( 'Custom', 'happy_addons' ),
@@ -416,104 +438,227 @@ class Carousel extends Base {
         $this->start_popover();
 
         $this->add_responsive_control(
-            'navigation_offset_x',
+            'arrow_position_y',
             [
-                'label' => __( 'Offset Left', 'happy_addons' ),
+                'label' => __( 'Vertical', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
-                    'offset_toggle' => 'yes'
-                ],
-                'default' => [
-                    'size' => 1
+                    'arrow_position_toggle' => 'yes'
                 ],
                 'range' => [
                     'px' => [
-                        'min' => -1000,
-                        'max' => 1000,
+                        'min' => 0,
+                        'max' => 500,
                     ],
                 ],
-                'render_type' => 'ui'
+                'selectors' => [
+                    '{{WRAPPER}} .slick-prev, {{WRAPPER}} .slick-next' => 'top: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
         $this->add_responsive_control(
-            'navigation_offset_y',
+            'arrow_position_x',
             [
-                'label' => __( 'Offset Top', 'happy_addons' ),
+                'label' => __( 'Horizontal', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
-                    'offset_toggle' => 'yes'
-                ],
-                'default' => [
-                    'size' => 1
+                    'arrow_position_toggle' => 'yes'
                 ],
                 'range' => [
                     'px' => [
-                        'min' => -1000,
-                        'max' => 1000,
+                        'min' => -100,
+                        'max' => 250,
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-figure' => '-ms-transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); -webkit-transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}});',
-                    '{{WRAPPER}}.ha-card--top .ha-card-body' => 'margin-top: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-card--left .ha-card-body' => 'margin-left: {{image_offset_x.SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-card--right .ha-card-body' => 'margin-right: calc(-1 * {{image_offset_x.SIZE}}{{UNIT}});',
+                    '{{WRAPPER}} .slick-prev' => 'left: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .slick-next' => 'right: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
+
         $this->end_popover();
 
         $this->add_group_control(
             Group_Control_Border::get_type(),
             [
-                'name' => 'navigation_border',
-                'selector' => '{{WRAPPER}} .owl-carousel .owl-item',
+                'name' => 'arrow_border',
+                'selector' => '{{WRAPPER}} .slick-prev, {{WRAPPER}} .slick-next',
             ]
         );
 
         $this->add_responsive_control(
-            'navigation_border_radius',
+            'arrow_border_radius',
             [
                 'label' => __( 'Border Radius', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .owl-carousel .owl-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
+                    '{{WRAPPER}} .slick-prev, {{WRAPPER}} .slick-next' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
                 ],
             ]
         );
 
+        $this->start_controls_tabs( '_tabs_arrow' );
+
+        $this->start_controls_tab(
+            '_tab_arrow_normal',
+            [
+                'label' => __( 'Normal', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'arrow_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '',
+                'selectors' => [
+                    '{{WRAPPER}} .slick-prev, {{WRAPPER}} .slick-next' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'arrow_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .slick-prev, {{WRAPPER}} .slick-next' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            '_tab_arrow_hover',
+            [
+                'label' => __( 'Hover', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'arrow_hover_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .slick-prev:hover, {{WRAPPER}} .slick-next:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'arrow_hover_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .slick-prev:hover, {{WRAPPER}} .slick-next:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'arrow_hover_border_color',
+            [
+                'label' => __( 'Border Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'condition' => [
+                    'arrow_border_border!' => '',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .slick-prev:hover, {{WRAPPER}} .slick-next:hover' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
         $this->end_controls_section();
 
         $this->start_controls_section(
-            '_section_style_pagination',
+            '_section_style_dots',
             [
-                'label' => __( 'Pagination', 'happy_addons' ),
+                'label' => __( 'Dots Navigation', 'happy_addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_control(
-            'pagination_color',
+            'dots_navigation_color',
             [
                 'label' => __( 'Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .owl-theme .owl-dots .owl-dot span, {{WRAPPER}} .owl-theme .owl-dots .owl-dot.active span' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .slick-dots li button:before' => 'color: {{VALUE}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'pagination_hover_color',
+            'dots_navigation_hover_color',
             [
                 'label' => __( 'Hover Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .owl-theme .owl-dots .owl-dot:hover span' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .slick-dots li button:hover:before, {{WRAPPER}} .slick-dots .slick-active button:before' => 'color: {{VALUE}};',
                 ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dots_navigation_position_y',
+            [
+                'label' => __( 'Vertical Position', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .slick-dots' => 'bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dots_navigation_align',
+            [
+                'label' => __( 'Alignment', 'happy_addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Left', 'happy_addons' ),
+                        'icon' => 'fa fa-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Center', 'happy_addons' ),
+                        'icon' => 'fa fa-align-center',
+                    ],
+                    'right' => [
+                        'title' => __( 'Right', 'happy_addons' ),
+                        'icon' => 'fa fa-align-right',
+                    ],
+                    'justify' => [
+                        'title' => __( 'Justify', 'happy_addons' ),
+                        'icon' => 'fa fa-align-justify',
+                    ],
+                ],
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .slick-dots' => 'text-align: {{VALUE}}'
+                ]
             ]
         );
 
@@ -522,21 +667,18 @@ class Carousel extends Base {
 
     protected static function get_data_prop_settings( $settings ) {
         $field_map = [
-            'nav' => 'nav.bool',
-            'nav_tablet' => 'nav_tablet.bool',
-            'nav_mobile' => 'nav_mobile.bool',
+            'arrows' => 'arrows.bool',
             'dots' => 'dots.bool',
-            'dots_tablet' => 'dots_tablet.bool',
-            'dots_mobile' => 'dots_mobile.bool',
             'autoplay' => 'autoplay.bool',
-            'autoplay_timeout' => 'autoplayTimeout.int',
-            'hover_pause' => 'autoplayHoverPause.bool',
-            'loop' => 'loop.bool',
-            'center' => 'center.bool',
-            'items.size' => 'items.int',
-            'items_tablet.size' => 'items_tablet.int',
-            'items_mobile.size' => 'items_mobile.int',
-            'margin.size' => 'margin.int'
+            'autoplay_speed.size' => 'autoplaySpeed.int',
+            'speed.size' => 'speed.int',
+            'infinite' => 'infinite.bool',
+            'center' => 'centerMode.bool',
+            'vertical' => 'vertical.bool',
+            'slides_to_show.size' => 'slidesToShow.int',
+            'slides_to_show_tablet.size' => 'slidesToShow_tablet.int',
+            'slides_to_show_mobile.size' => 'slidesToShow_mobile.int',
+            'pause' => 'pause.str'
         ];
 
         return ha_prepare_data_prop_settings( $settings, $field_map );
@@ -549,24 +691,25 @@ class Carousel extends Base {
             return;
         }
 
-        $this->add_render_attribute( 'container', 'class', 'owl-carousel owl-theme hajs-carousel ha-carousel--regular-nav' );
+        $this->add_render_attribute( 'container', 'class', 'hajs-carousel' );
         $this->add_render_attribute( 'container', 'data-happy-settings', self::get_data_prop_settings( $settings ) );
         ?>
         <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
             <?php foreach ( $settings['slides'] as $slide ) :
-                if ( ! ( $image = wp_get_attachment_image_url( $slide['image']['id'], $settings['thumbnail_size'] ) ) ) {
-                    continue;
+                $image = wp_get_attachment_image_url( $slide['image']['id'], $settings['thumbnail_size'] );
+                if ( ! $image ) {
+                    $image = $slide['image']['url'];
                 }
                 ?>
-                <div class="item">
-                    <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr( wp_get_attachment_caption( $slide['image']['id'] ) ); ?>">
+                <div class="ha-slider-item">
+                    <img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $slide['title'] ); ?>">
                     <?php if ( $slide['title'] || $slide['subtitle'] ) : ?>
-                        <div class="ha-carousel-text">
+                        <div class="ha-slider-content">
                             <?php if ( $slide['title'] ) : ?>
-                                <h2 class="ha-carousel-title"><?php echo esc_html( $slide['title'] ); ?></h2>
+                                <h2 class="ha-slider-title"><?php echo esc_html( $slide['title'] ); ?></h2>
                             <?php endif; ?>
                             <?php if ( $slide['subtitle'] ) : ?>
-                                <p class="ha-carousel-subtitle"><?php echo esc_html( $slide['subtitle'] ); ?></p>
+                                <p class="ha-slider-subtitle"><?php echo esc_html( $slide['subtitle'] ); ?></p>
                             <?php endif; ?>
                         </div>
                     <?php endif; ?>
