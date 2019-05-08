@@ -404,6 +404,15 @@ class Dual_button extends Base {
             ]
 		);
 
+		$this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'button_direction_typography',
+                'label' => __( 'Typography', 'happy_addons' ),
+                'selector' => '{{WRAPPER}} .ha-middle-text',
+            ]
+		);
+
 		$this->add_responsive_control(
             'direction_spacing',
             [
@@ -541,29 +550,45 @@ class Dual_button extends Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+
+		$this->add_inline_editing_attributes( 'left_button_text', 'none' );
+		$this->add_inline_editing_attributes( 'right_button_text', 'none' );
+
+		$this->add_inline_editing_attributes( 'button_direction_text', 'none' );
+        $this->add_render_attribute( 'button_direction_text', 'class', 'ha-middle-text' );
 		?>
+
 			<div class="ha-dual-btn">
 
 				<div class="ha-dual-btn-link">
-					<a href="<?php echo esc_url( $settings['left_button_link']['url'] ); ?>" class="ha-dual-btn-link-primary">
+					<a
+					href="<?php echo esc_url( $settings['left_button_link']['url'] ); ?>"
+					class="ha-dual-btn-link-primary"
+					>
 
 						<i class="<?php echo esc_attr( $settings['left_icon_picker'] ); ?>"></i>
-						<?php echo esc_html( $settings['left_button_text'], 'happy_addons' ); ?>
+						<span <?php echo $this->get_render_attribute_string( 'left_button_text' ); ?>>
+							<?php echo esc_html( $settings['left_button_text'], 'happy_addons' ); ?>
+						</span>
 
 					</a>
 					<?php if ( $settings['button_direction_show'] === 'yes' ) { ?>
-						<div class="ha-middle-text">
+						<div <?php echo $this->get_render_attribute_string( 'button_direction_text' ); ?>>
 							<?php echo esc_html( $settings['button_direction_text'], 'happy_addons' ); ?>
 						</div>
 					<?php } ?>
 				</div>
 
 				<div class="ha-dual-btn-link">
-					<a href="<?php echo esc_url( $settings['right_button_link']['url'] ); ?>" class="ha-dual-btn-link-secondary">
+					<a
+					href="<?php echo esc_url( $settings['right_button_link']['url'] ); ?>"
+					class="ha-dual-btn-link-secondary"
+					>
 
 						<i class="<?php echo esc_attr( $settings['right_icon_picker'] ); ?>"></i>
-						<?php echo esc_html( $settings['right_button_text'], 'happy_addons' ); ?>
-
+						<span <?php echo $this->get_render_attribute_string( 'right_button_text' ); ?>>
+							<?php echo esc_html( $settings['right_button_text'], 'happy_addons' ); ?>
+						</span>
 					</a>
 				</div>
 
@@ -571,10 +596,47 @@ class Dual_button extends Base {
 	<?php
 	}
 
-	/* public function _content_template() {
+	public function _content_template() {
 		?>
+		<#
+		view.addInlineEditingAttributes( 'left_button_text', 'none' );
+		view.addInlineEditingAttributes( 'right_button_text', 'none' );
+
+		view.addInlineEditingAttributes( 'button_direction_text', 'none' );
+		view.addRenderAttribute( 'button_direction_text', 'class', 'ha-middle-text' );
+		#>
+		<div class="ha-dual-btn">
+
+			<div class="ha-dual-btn-link">
+				<a href="{{{ settings.left_button_link.url }}}" class="ha-dual-btn-link-primary">
+
+					<i class="{{{ settings.left_icon_picker }}}"></i>
+					<span {{{ view.getRenderAttributeString( 'left_button_text' ) }}}>
+						{{{ settings.left_button_text }}}
+					</span>
+
+				</a>
+				<# if ( settings.button_direction_show === 'yes' ) { #>
+					<div {{{ view.getRenderAttributeString( 'button_direction_text' ) }}}>
+						{{{ settings.button_direction_text }}}
+					</div>
+				<# } #>
+			</div>
+
+			<div class="ha-dual-btn-link">
+				<a href="{{{ settings.right_button_link.url }}}" class="ha-dual-btn-link-secondary">
+
+					<i class="{{{ settings.right_icon_picker }}}"></i>
+					<span {{{ view.getRenderAttributeString( 'right_button_text' ) }}}>
+						{{{ settings.right_button_text }}}
+					</span>
+
+				</a>
+			</div>
+
+		</div>
 
 	<?php
-	} */
+	}
 
 }
