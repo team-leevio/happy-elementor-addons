@@ -7,7 +7,6 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Repeater;
-use Elementor\Control_Media;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
@@ -28,7 +27,7 @@ class Justified_Gallery extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Justified Gallery', 'happy_addons' );
+        return __( 'Justified Gallery', 'happy_addons' );
     }
 
     /**
@@ -81,7 +80,7 @@ class Justified_Gallery extends Base {
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'show_label' => false,
-                'title_field' => 'Filter:: {{filter}}',
+                'title_field' => 'Group: {{filter}}',
                 'default' => [
                     [
                         'filter' => __( 'Happy', 'happy_addons' ),
@@ -526,76 +525,77 @@ class Justified_Gallery extends Base {
         return ha_prepare_data_prop_settings( $settings, $field_map );
     }
 
-    protected static function render_grid_item( &$settings, $image_id, $filter_class ) {
-        $caption = $popup_link = '';
+    protected function get_gallery_data() {
+        $gallery = $this->get_settings_for_display( 'gallery' );
 
-        if ( $settings['show_caption'] === 'yes' ) {
-            $caption = 'title="' . esc_attr( wp_get_attachment_caption( $image_id ) ) . '"';
+        if ( ! is_array( $gallery ) || empty( $gallery ) ) {
+            return [];
         }
 
-        if ( $settings['enable_popup'] === 'yes' ) {
-            $popup_link = 'href="' . esc_url( wp_get_attachment_image_url( $image_id, 'large' ) ) . '"';
+        $menu = [];
+        $items = [];
+
+        foreach ( $gallery as $item ) {
+            if ( empty( $item['images'] ) ) {
+                continue;
+            }
+
+            $images = $item['images'];
+            $filter = sanitize_title_with_dashes( $item['filter'] );
+
+            if ( $filter && ! isset( $data[ $filter ] ) ) {
+                $menu[ $filter ] = $item['filter'];
+            }
+
+            foreach ( $images as $image ) {
+                if ( ! isset( $items[ $image['id'] ] ) ) {
+                    $items[ $image['id'] ] = [ $filter ];
+                } else {
+                    array_push( $items[ $image['id'] ], $filter );
+                }
+            }
         }
-        ?>
-        <a class="ha-justified-gallery-item <?php echo esc_attr( $filter_class ); ?>" <?php echo $caption; ?> <?php echo $popup_link; ?>>
-            <?php echo wp_get_attachment_image( $image_id, $settings['thumbnail_size'] ); ?>
-        </a>
-        <?php
+
+        return [ $menu, $items ];
     }
 
 	protected function render() {
         $settings = $this->get_settings_for_display();
+        $gallery = $this->get_gallery_data();
 
-        if ( is_array( $settings['gallery'] ) ) :
-            $items = [];
-            $menu = [];
+        if ( empty( $gallery ) ) {
+            return;
+        }
 
-            foreach ( $settings['gallery'] as $gallery_item ) :
-                if ( empty( $gallery_item['images'] ) ) :
-                    continue;
-                endif;
+        $this->add_render_attribute( 'container', 'class', [
+            'ha-justified-gallery-wrapper',
+            'hajs-justified-gallery',
+        ] );
 
-                $images = $gallery_item['images'];
+        $this->add_render_attribute( 'container', 'data-happy-settings', self::get_data_prop_settings( $settings ) );
 
-                if ( $settings['show_filter'] === 'yes' && $gallery_item['filter'] ) {
-                    $filter = sanitize_title_with_dashes( $gallery_item['filter'] );
-                    if ( ! isset( $menu[$filter] ) ) {
-                        $menu[$filter] = sprintf(
-                            '<li><button type="button" data-filter=".%s">%s</button></li>',
-                            esc_attr( $filter ),
-                            esc_html( $gallery_item['filter'] )
-                        );
-                    }
-                }
+        if ( $settings['show_filter'] === 'yes' ) : ?>
+            <ul class="ha-gallery-filter hajs-gallery-filter">
+                <?php if ( $settings['show_all_filter'] === 'yes' ) : ?>
+                    <li class="ha-filter-active"><button type="button" data-filter="*"><?php echo esc_html( $settings['all_filter_label'] ); ?></button></li>
+                <?php endif; ?>
+                <?php foreach ( $gallery[0] as $key => $val ) : ?>
+                    <li><button type="button" data-filter=".<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $val ); ?></button></li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
 
-                foreach ( $images as $image ) :
-                    if ( ! isset( $items[ $image['id'] ] ) ) {
-                        $items[ $image['id'] ] = [$filter];
-                    } else {
-                        array_push( $items[ $image['id'] ], $filter );
-                    }
-                endforeach;
-            endforeach;
+        <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
+            <?php foreach ( $gallery[1] as $id => $filter ) :
+                $caption = $settings['show_caption'] === 'yes' ? 'title="' . esc_attr( wp_get_attachment_caption( $id ) ) . '"' : '';
+                $popup_link = $settings['enable_popup'] === 'yes' ? 'href="' . esc_url( wp_get_attachment_image_url( $id, 'large' ) ) . '"' : '';
+                ?>
+                <a class="ha-justified-gallery-item <?php echo esc_attr( implode( ' ', $filter ) ); ?>" <?php echo $caption; ?> <?php echo $popup_link; ?>>
+                    <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'] ); ?>
+                </a>
+            <?php endforeach; ?>
+        </div>
 
-            if ( $settings['show_filter'] === 'yes' ) :
-                echo '<ul class="ha-gallery-filter hajs-gallery-filter ha-text--' . $settings['button_align'] . '">';
-                echo $settings['show_all_filter'] === 'yes' ? '<li class="ha-filter-active"><button type="button" data-filter="*">' . $settings['all_filter_label'] . '</button></li>' : '';
-                echo implode( "\n", $menu );
-                echo '</ul>';
-            endif;
-
-            $this->add_render_attribute( 'container', 'class', [
-                'ha-justified-gallery-grid',
-                'hajs-justified-gallery',
-            ] );
-
-            $this->add_render_attribute( 'container', 'data-happy-settings', self::get_data_prop_settings( $settings ) );
-
-            echo '<div ' . $this->get_render_attribute_string( 'container' ) . '>';
-            foreach ( $items as $item_id => $item_filter ) :
-                self::render_grid_item( $settings, $item_id, implode( ' ', $item_filter ) );
-            endforeach;
-            echo '</div>';
-        endif;
+        <?php
     }
 }

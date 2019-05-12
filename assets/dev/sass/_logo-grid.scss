@@ -1,35 +1,86 @@
-.ha-logo {
+.ha-logo-grid {
+  @include widgetContainer {
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
   &-item {
+    height: 180px;
+    line-height: calc(180px + 40px); // just to vertically center the logo
+
     float: left;
-    text-align: center;
-    position: relative;
-    &-thumb{
-      //box-shadow: 0 1px 8px rgba(0, 0, 0, .09);
-      border: 1px solid #e7e7e7;
-      border-radius: .5rem;
-      img {
-        height: auto;
-        max-width: 100%;
+    overflow: hidden;
+
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  &-img {
+    object-fit: cover;
+    width: 100%;
+  }
+
+  @for $i from 2 through 6 {
+    &--col-#{$i} > &-item {
+      width: calc(100% / #{$i});
+    }
+  }
+
+  // TicTacToe style
+  &--tictactoe &-item {
+    border-width: 0 3px 3px 0;
+    border-color: #5cdb95;
+    border-style: solid;
+  }
+
+  @for $i from 2 through 6 {
+    &--tictactoe #{&}--col-#{$i} > &-item {
+      &:nth-child(#{$i}n) {
+        border-right-width: 0;
+      }
+
+      &:nth-child(-n + #{$i}) {
+        border-top-width: 0;
       }
     }
   }
-}
 
-//grid number
-.ha-logo-grid-3 {
-  .ha-logo-item {
-    width: 33.33%;
+  // Border style
+  &--border {
+    border-radius: 10px
   }
-}
 
-.ha-logo-grid-3 {
-  .ha-logo-item {
-    margin: .5rem;
-    width: calc(33.33% - 1rem);
+  &--border &-item {
+    border-width: 0 3px 3px 0;
+    border-color: #5cdb95;
+    border-style: solid;
   }
-}
 
-.ha-logo-item-thumb {
-  //border: 1px solid #ddd;
-  padding: 2rem;
+  @for $i from 2 through 6 {
+    &--border #{&}--col-#{$i} > &-item {
+      &:nth-child(-n + #{$i}) {
+        border-top-width: 3px;
+      }
+
+      &:nth-child(#{$i}n + 1) {
+        border-left-width: 3px;
+      }
+
+      &:first-child {
+        border-top-left-radius: 10px;
+      }
+
+      &:nth-child(#{$i}) {
+        border-top-right-radius: 10px;
+      }
+
+      &:nth-last-child(#{$i}) {
+        border-bottom-left-radius: 10px;
+      }
+
+      &:last-child {
+        border-bottom-right-radius: 10px;
+      }
+    }
+  }
 }
