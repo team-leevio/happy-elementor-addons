@@ -18,6 +18,8 @@ class Asset_Manager {
         // Frontend scripts
         add_action( 'wp_enqueue_scripts', [$this, 'enqueue_frontend_scripts'] );
 
+        add_action( 'elementor/editor/before_enqueue_scripts', [$this, 'enqueue_editor_scripts'] );
+
         // Placeholder image replacement
         add_filter( 'elementor/utils/get_placeholder_image_src', [$this, 'set_placeholder_image'] );
     }
@@ -31,6 +33,13 @@ class Asset_Manager {
      */
     public function enqueue_frontend_scripts() {
 		$suffix = ha_is_script_debug_enabled() ? '.min.' : '.';
+
+        wp_enqueue_style(
+            'happy-icon',
+            HAPPY_ASSETS . 'fonts/style.min.css',
+            null,
+            Base::VERSION
+        );
 
         wp_enqueue_style(
             'twentytwenty',
@@ -129,6 +138,15 @@ class Asset_Manager {
             ['jquery', 'imagesloaded'],
             Base::VERSION,
             true
+        );
+    }
+
+    public function enqueue_editor_scripts() {
+        wp_enqueue_style(
+            'happy-icon',
+            HAPPY_ASSETS . 'fonts/style.min.css',
+            null,
+            Base::VERSION
         );
     }
 }

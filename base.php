@@ -67,6 +67,7 @@ class Base {
 
     public function include_files() {
         require( __DIR__ . '/inc/functions.php' );
+        require( __DIR__ . '/inc/happy-icons.php' );
         require( __DIR__ . '/classes/widget-manager.php' );
         require( __DIR__ . '/classes/asset-manager.php' );
     }
