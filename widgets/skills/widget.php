@@ -37,7 +37,7 @@ class Skills extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'fa fa-smile-o';
+        return 'ha ha-progress-bar';
     }
 
     public function get_keywords() {

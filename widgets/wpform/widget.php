@@ -24,7 +24,7 @@ class WPForm extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'WPForm', 'happy_addons' );
+        return __( 'WP Form', 'happy_addons' );
     }
 
     /**
@@ -36,7 +36,7 @@ class WPForm extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'fa fa-smile-o';
+        return 'ha ha-form';
     }
 
     public function get_keywords() {
