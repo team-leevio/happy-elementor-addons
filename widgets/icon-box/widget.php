@@ -58,6 +58,7 @@ class Icon_Box extends Base {
             [
                 'label' => __( 'Icon', 'happy_addons' ),
                 'type' => Controls_Manager::ICON,
+                'options' => ha_get_happy_icons(),
                 'default' => 'fa fa-smile-o',
             ]
         );
