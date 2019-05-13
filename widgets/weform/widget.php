@@ -24,7 +24,7 @@ class WeForm extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'WeForm', 'happy_addons' );
+        return __( 'We Form', 'happy_addons' );
     }
 
     /**
@@ -36,7 +36,7 @@ class WeForm extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'fa fa-smile-o';
+        return 'hm hm-form';
     }
 
     public function get_keywords() {

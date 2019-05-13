@@ -40,7 +40,7 @@ class InfoBox extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'fa fa-smile-o';
+        return 'hm hm-icon-box';
     }
 
     public function get_keywords() {
@@ -120,6 +120,7 @@ class InfoBox extends Base {
                 'label' => __( 'Icon', 'happy_addons' ),
                 'type' => Controls_Manager::ICON,
                 'default' => 'fa fa-smile-o',
+                'options' => ha_get_happy_icons(),
                 'condition' => [
                     'type' => 'icon'
                 ]

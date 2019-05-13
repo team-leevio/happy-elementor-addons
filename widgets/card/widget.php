@@ -39,7 +39,7 @@ class Card extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'fa fa-smile-o';
+        return 'hm hm-card';
     }
 
     public function get_keywords() {
@@ -264,6 +264,7 @@ class Card extends Base {
             [
                 'label' => __( 'Icon', 'happy_addons' ),
                 'type' => Controls_Manager::ICON,
+                'options' => ha_get_happy_icons(),
             ]
         );
 
