@@ -1,4 +1,10 @@
 .ha-testimonial{
+	&:before {
+		visibility: hidden;
+		height: 0;
+		display: block;
+		clear: both;
+	}
   &-info{
 	padding: 2rem;
 	background-color: #fff;
