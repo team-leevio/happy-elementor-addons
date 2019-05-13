@@ -31,6 +31,8 @@ var AUTOPREFIXER_BROWSERS = [
 
 var styleSass = "assets/dev/sass/main.scss",
     sassFiles = "assets/dev/sass/*.scss",
+    adminStyleSass = "assets/dev/admin/sass/main.scss",
+    addminSassFiles = "assets/dev/admin/sass/*.scss",
     jsFiles = "assets/dev/js/*.js";
 
 
@@ -57,6 +59,19 @@ gulp.task("css", function() {
         .pipe(gulp.dest("assets/css"));
 });
 
+gulp.task("adminCss", function() {
+    return gulp.src(adminStyleSass)
+        .pipe(plumberNotifier())
+        .pipe(sass())
+        .pipe(autoPrefixer(AUTOPREFIXER_BROWSERS))
+        .pipe(csscomb())
+        .pipe(gulp.dest("assets/admin/css"))
+        .pipe(browserSync.stream())
+        .pipe(csso())
+        .pipe(rename({suffix: ".min"}))
+        .pipe(gulp.dest("assets/admin/css"));
+});
+
 gulp.task("js", function() {
     return gulp.src(jsFiles)
         .pipe(plumberNotifier())
@@ -69,8 +84,9 @@ gulp.task("js", function() {
 
 gulp.task("watch", ["serve"], function() {
     gulp.watch(sassFiles, ["css"]);
+    gulp.watch(addminSassFiles, ["adminCss"]);
     gulp.watch(jsFiles, ["js"]).on("change", browserSync.reload);
     gulp.watch("*.html").on("change", browserSync.reload);
 });
 
-gulp.task("default", ["serve", "js", "css", "watch"]);
+gulp.task("default", ["serve", "js", "css", "adminCss", "watch"]);
