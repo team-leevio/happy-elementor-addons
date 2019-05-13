@@ -36,7 +36,7 @@ class CF7 extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'ha ha-form';
+        return 'hm hm-form';
     }
 
     public function get_keywords() {

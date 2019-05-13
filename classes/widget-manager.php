@@ -53,7 +53,8 @@ class Widget_Manager {
 			'calderaform',
 			'weform',
 			'logo-grid',
-			'dual-button'
+			'dual-button',
+			'testimonial'
         ];
 
         foreach ( $widgets as $widget ) {

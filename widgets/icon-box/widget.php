@@ -37,7 +37,7 @@ class Icon_Box extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'ha ha-icon-box';
+        return 'hm hm-icon-box';
     }
 
     public function get_keywords() {

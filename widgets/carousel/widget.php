@@ -41,7 +41,7 @@ class Carousel extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'fa fa-smile-o';
+        return 'hm hm-carousal';
     }
 
     public function get_keywords() {

@@ -40,7 +40,7 @@ class InfoBox extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'fa fa-smile-o';
+        return 'hm hm-icon-box';
     }
 
     public function get_keywords() {

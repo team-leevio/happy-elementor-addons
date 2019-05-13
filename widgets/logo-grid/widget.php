@@ -43,7 +43,7 @@ class Logo_Grid extends Base
      */
     public function get_icon()
     {
-        return 'ha ha-logo-grid';
+        return 'hm hm-logo-grid';
     }
 
     public function get_keywords()

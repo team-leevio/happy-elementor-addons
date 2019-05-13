@@ -39,7 +39,7 @@ class Image_Compare extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'ha ha-image-compare';
+        return 'hm hm-image-compare';
     }
 
     public function get_keywords() {
