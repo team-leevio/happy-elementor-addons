@@ -443,25 +443,25 @@ class Icon_Box extends Base {
         parent::before_render();
         $link = $this->get_settings_for_display( 'link' );
 
-        if ( ! empty( $link['url'] ) ) :
-            $this->add_render_attribute( 'link', 'class', 'ha-icon-box-link' );
-            $this->add_render_attribute( 'link', 'href', esc_url( $link['url'] ) );
-            if ( ! empty( $settings['link']['is_external'] ) ) {
-                $this->add_render_attribute( 'link', 'target', '_blank' );
+        if ( ! empty( $link['url'] ) ) {
+            $this->add_render_attribute('link', 'class', 'ha-icon-box-link');
+            $this->add_render_attribute('link', 'href', esc_url($link['url']));
+            if (!empty($settings['link']['is_external'])) {
+                $this->add_render_attribute('link', 'target', '_blank');
             }
-            if ( ! empty( $settings['link']['nofollow'] ) ) {
-                $this->set_render_attribute( 'link', 'rel', 'nofollow' );
+            if (!empty($settings['link']['nofollow'])) {
+                $this->set_render_attribute('link', 'rel', 'nofollow');
             }
-            printf( '<a %1$s>', $this->get_render_attribute_string( 'link' ) );
-        endif;
+            printf('<a %1$s>', $this->get_render_attribute_string('link'));
+        }
     }
 
     public function after_render() {
-        parent::after_render();
         $link = $this->get_settings_for_display( 'link' );
-        if ( ! empty( $link['url'] ) ) :
+        if ( ! empty( $link['url'] ) ) {
             echo '</a>';
-        endif;
+        }
+        parent::after_render();
     }
 
     protected function render() {
