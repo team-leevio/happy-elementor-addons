@@ -1296,8 +1296,6 @@ span .ha-review-ratting--star:before,
 }
 
 .ha-testimonial-info {
-	margin-bottom: 1.5rem;
-	padding: 2rem;
 	border-radius: 6px;
 	background-color: #fff;
 	box-shadow: 0 .2rem 2.8rem rgba(36, 36, 36, .1);
@@ -1307,7 +1305,7 @@ span .ha-review-ratting--star:before,
 .ha-testimonial-thumb {
 	display: inline-block;
 	width: 65px;
-	height: 65px;
+	height: auto;
 }
 .ha-testimonial-thumb img {
 	width: 100%;
@@ -1316,8 +1314,7 @@ span .ha-review-ratting--star:before,
 }
 
 .ha-testimonial-author {
-	margin-bottom: .3rem; 
-	color: #242424;
+	color: #242424; 
 	font-weight: bold;
 	font-size: 18px;
 }
@@ -1354,7 +1351,6 @@ span .ha-review-ratting--star:before,
 
 .ha-position--center .ha-testimonial-thumb {
 	margin-right: 0;
-	margin-bottom: 1rem;
 }
 
 .ha-position--center .ha-testimonial-media-body {

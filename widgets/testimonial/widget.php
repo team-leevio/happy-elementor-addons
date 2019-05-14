@@ -12,6 +12,7 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Control_Media;
+use Elementor\Scheme_Typography;
 use Elementor\Utils;
 
 defined( 'ABSPATH' ) || die();
@@ -227,11 +228,15 @@ class Testimonial extends Base {
 		$this->add_responsive_control(
             'image_spacing',
             [
-                'label' => __( 'Image Spacing', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px'],
+                'label' => __( 'Top Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 15,
+				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-thumb' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-testimonial-thumb' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
 		);
@@ -262,24 +267,23 @@ class Testimonial extends Base {
             [
                 'name' => 'title_typography',
                 'label' => __( 'Name Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-testimonial-author',
+				'selector' => '{{WRAPPER}} .ha-testimonial-author',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
 		);
 
 		$this->add_responsive_control(
-            'name_spaceing',
+            'name_spacing',
             [
-                'label' => __( 'Name Spacing', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 50,
-                    ],
-                ],
+                'label' => __( 'Top Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 20,
+				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-author' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-testimonial-author' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -308,24 +312,23 @@ class Testimonial extends Base {
             [
                 'name' => 'designation_typography',
                 'label' => __( 'Designation Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-testimonial-designation',
+				'selector' => '{{WRAPPER}} .ha-testimonial-designation',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
 		);
 
 		$this->add_responsive_control(
-            'designation_spaceing',
+            'designation_spacing',
             [
-                'label' => __( 'Designation Spacing', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 50,
-                    ],
-                ],
+                'label' => __( 'Top Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 5,
+				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-designation' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-testimonial-designation' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -346,7 +349,11 @@ class Testimonial extends Base {
             [
                 'label' => __( 'Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+				'size_units' => ['px'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 20,
+				],
                 'selectors' => [
                     '{{WRAPPER}} .ha-testimonial-info' => 'padding: {{SIZE}}{{UNIT}};',
                 ],
@@ -380,7 +387,8 @@ class Testimonial extends Base {
             [
                 'name' => 'description_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-testimonial-info',
+				'selector' => '{{WRAPPER}} .ha-testimonial-info',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
 		);
 
