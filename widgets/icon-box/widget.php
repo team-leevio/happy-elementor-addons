@@ -439,15 +439,13 @@ class Icon_Box extends Base {
         $this->end_controls_section();
     }
 
-    protected function render() {
-        $settings = $this->get_settings_for_display();
+    public function before_render() {
+        parent::before_render();
+        $link = $this->get_settings_for_display( 'link' );
 
-        $this->add_inline_editing_attributes( 'title', 'none' );
-        $this->add_render_attribute( 'title', 'class', 'ha-icon-box-title' );
-
-        if ( ! empty( $settings['link']['url'] ) ) :
+        if ( ! empty( $link['url'] ) ) :
             $this->add_render_attribute( 'link', 'class', 'ha-icon-box-link' );
-            $this->add_render_attribute( 'link', 'href', esc_url( $settings['link']['url'] ) );
+            $this->add_render_attribute( 'link', 'href', esc_url( $link['url'] ) );
             if ( ! empty( $settings['link']['is_external'] ) ) {
                 $this->add_render_attribute( 'link', 'target', '_blank' );
             }
@@ -456,6 +454,21 @@ class Icon_Box extends Base {
             }
             printf( '<a %1$s>', $this->get_render_attribute_string( 'link' ) );
         endif;
+    }
+
+    public function after_render() {
+        parent::after_render();
+        $link = $this->get_settings_for_display( 'link' );
+        if ( ! empty( $link['url'] ) ) :
+            echo '</a>';
+        endif;
+    }
+
+    protected function render() {
+        $settings = $this->get_settings_for_display();
+
+        $this->add_inline_editing_attributes( 'title', 'none' );
+        $this->add_render_attribute( 'title', 'class', 'ha-icon-box-title' );
         ?>
         <span class="ha-icon-box-icon">
             <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
@@ -465,9 +478,6 @@ class Icon_Box extends Base {
             $this->get_render_attribute_string( 'title' ),
             esc_html( $settings['title' ] )
         );
-        if ( ! empty( $settings['link']['url'] ) ) :
-            echo '</a>';
-        endif;
     }
 
     public function _content_template() {
