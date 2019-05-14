@@ -228,11 +228,15 @@ class Testimonial extends Base {
 		$this->add_responsive_control(
             'image_spacing',
             [
-                'label' => __( 'Image Spacing', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px'],
+                'label' => __( 'Top Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 15,
+				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-thumb' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-testimonial-thumb' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
 		);
@@ -269,19 +273,17 @@ class Testimonial extends Base {
 		);
 
 		$this->add_responsive_control(
-            'name_spaceing',
+            'name_spacing',
             [
-                'label' => __( 'Name Spacing', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 50,
-                    ],
-                ],
+                'label' => __( 'Top Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 20,
+				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-author' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-testimonial-author' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -315,6 +317,22 @@ class Testimonial extends Base {
             ]
 		);
 
+		$this->add_responsive_control(
+            'designation_spacing',
+            [
+                'label' => __( 'Top Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 5,
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-testimonial-designation' => 'margin-top: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
 		$this->end_controls_section();
 
 
@@ -331,7 +349,11 @@ class Testimonial extends Base {
             [
                 'label' => __( 'Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+				'size_units' => ['px'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 20,
+				],
                 'selectors' => [
                     '{{WRAPPER}} .ha-testimonial-info' => 'padding: {{SIZE}}{{UNIT}};',
                 ],

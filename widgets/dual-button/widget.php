@@ -211,22 +211,10 @@ class Dual_button extends Base {
             'button_spacing',
             [
                 'label' => __( 'Spacing', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+                'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-dual-btn-link a' => 'padding: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-		);
-
-		$this->add_responsive_control(
-            'button_margin',
-            [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-dual-btn' => 'margin: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-dual-btn-link a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
 		);
@@ -418,7 +406,7 @@ class Dual_button extends Base {
             [
                 'label' => __( 'Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+				'size_units' => ['px'],
                 'selectors' => [
                     '{{WRAPPER}} .ha-middle-text' => 'padding: {{SIZE}}{{UNIT}};',
                 ],
