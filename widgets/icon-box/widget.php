@@ -193,7 +193,7 @@ class Icon_Box extends Base {
         $this->add_responsive_control(
             'icon_spacing',
             [
-                'label' => __( 'Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -444,7 +444,7 @@ class Icon_Box extends Base {
         $link = $this->get_settings_for_display( 'link' );
 
         if ( ! empty( $link['url'] ) ) {
-            $this->add_render_attribute('link', 'class', 'ha-icon-box-link');
+            $this->add_render_attribute('link', 'class', 'ha-icon-box-link elementor-widget-container');
             $this->add_render_attribute('link', 'href', esc_url($link['url']));
             if (!empty($settings['link']['is_external'])) {
                 $this->add_render_attribute('link', 'target', '_blank');

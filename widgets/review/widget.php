@@ -98,8 +98,8 @@ class Review extends Base {
         $this->add_group_control(
             Group_Control_Image_Size::get_type(),
             [
-                'name' => 'image',
-                'default' => 'thumbnail',
+                'name' => 'thumbnail',
+                'default' => 'large',
                 'separator' => 'none',
             ]
         );
@@ -441,7 +441,7 @@ class Review extends Base {
         $this->add_responsive_control(
             'ratting_spacing',
             [
-                'label' => __( 'Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -539,7 +539,7 @@ class Review extends Base {
         $this->add_responsive_control(
             'title_spacing',
             [
-                'label' => __( 'Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -580,7 +580,7 @@ class Review extends Base {
         $this->add_responsive_control(
             'job_title_spacing',
             [
-                'label' => __( 'Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -621,7 +621,7 @@ class Review extends Base {
         $this->add_responsive_control(
             'review_spacing',
             [
-                'label' => __( 'Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -678,7 +678,7 @@ class Review extends Base {
             $settings['hover_animation'] = 'disable-animation'; // hack to prevent image hover animation
             ?>
             <figure class="ha-review-figure">
-                <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'image', 'image' ); ?>
+                <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
             </figure>
         <?php endif; ?>
 
@@ -732,8 +732,8 @@ class Review extends Base {
             var image = {
                 id: settings.image.id,
                 url: settings.image.url,
-                size: settings.image_size,
-                dimension: settings.image_custom_dimension,
+                size: settings.thumbnail_size,
+                dimension: settings.thumbnail_custom_dimension,
                 model: view.getEditModel()
             };
 

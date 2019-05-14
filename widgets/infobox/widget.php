@@ -40,7 +40,7 @@ class InfoBox extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'hm hm-icon-box';
+        return 'hm hm-blog-content';
     }
 
     public function get_keywords() {
@@ -98,7 +98,7 @@ class InfoBox extends Base {
             Group_Control_Image_Size::get_type(),
             [
                 'name' => 'thumbnail',
-                'default' => 'medium',
+                'default' => 'medium_large',
                 'separator' => 'none',
                 'exclude' => [
                     'full',
@@ -402,7 +402,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'media_spacing',
             [
-                'label' => __( 'Bottom Margin', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -427,7 +427,7 @@ class InfoBox extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'media_border',
-                'selector' => '{{WRAPPER}} .ha-infobox-figure--image > img, {{WRAPPER}} .ha-blurb-figure--icon'
+                'selector' => '{{WRAPPER}} .ha-infobox-figure--image > img, {{WRAPPER}} .ha-blurb-figure--icon',
             ]
         );
 
@@ -517,7 +517,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'title_spacing',
             [
-                'label' => __( 'Bottom Margin', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -559,7 +559,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'description_spacing',
             [
-                'label' => __( 'Bottom Margin', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -733,7 +733,7 @@ class InfoBox extends Base {
         view.addInlineEditingAttributes( 'title', 'none' );
         view.addRenderAttribute( 'title', 'class', 'ha-infobox-title' );
 
-        view.addInlineEditingAttributes( 'description', 'basic' );
+        view.addInlineEditingAttributes( 'description', 'advanced' );
         view.addRenderAttribute( 'description', 'class', 'ha-infobox-text' );
 
         view.addInlineEditingAttributes( 'button_text', 'none' );
@@ -746,7 +746,6 @@ class InfoBox extends Base {
                     id: settings.image.id,
                     url: settings.image.url,
                     size: settings.thumbnail_size,
-                    dimension: settings.thumbnail_custom_dimension,
                     model: view.getEditModel()
                 };
 

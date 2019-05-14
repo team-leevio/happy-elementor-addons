@@ -191,7 +191,7 @@ class Skills extends Base {
         $this->add_control(
             'spacing',
             [
-                'label' => __( 'Spacing', 'happy_addons' ),
+                'label' => __( 'Top Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [

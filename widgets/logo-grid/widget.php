@@ -107,7 +107,7 @@ class Logo_Grid extends Base
             Group_Control_Image_Size::get_type(),
             [
                 'name' => 'thumbnail',
-                'default' => 'thumbnail',
+                'default' => 'large',
                 'separator' => 'before',
                 'exclude' => [
                     'custom'
