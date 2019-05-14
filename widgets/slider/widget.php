@@ -12,6 +12,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
+use Elementor\Scheme_Typography;
 use Elementor\Utils;
 
 defined( 'ABSPATH' ) || die();
@@ -336,8 +337,8 @@ class Slider extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'title',
-                'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-slider-title',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_2,
             ]
         );
 
@@ -377,8 +378,8 @@ class Slider extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'subtitle',
-                'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-slider-subtitle',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 

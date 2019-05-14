@@ -14,6 +14,7 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
+use Elementor\Scheme_Typography;
 use Elementor\Utils;
 
 defined( 'ABSPATH' ) || die();
@@ -370,6 +371,7 @@ class Carousel extends Base {
                 'name' => 'title',
                 'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-slider-title',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_2,
             ]
         );
 
@@ -411,6 +413,7 @@ class Carousel extends Base {
                 'name' => 'subtitle',
                 'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-slider-subtitle',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 

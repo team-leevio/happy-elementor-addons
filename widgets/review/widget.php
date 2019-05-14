@@ -6,6 +6,7 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
+use Elementor\Scheme_Typography;
 use Elementor\Utils;
 use Elementor\Control_Media;
 use Elementor\Controls_Manager;
@@ -562,8 +563,8 @@ class Review extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'name_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-review-reviewer',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_2,
             ]
         );
 
@@ -603,8 +604,8 @@ class Review extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'job_title_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-review-position',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 
@@ -644,8 +645,8 @@ class Review extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'review_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-review-desc',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 

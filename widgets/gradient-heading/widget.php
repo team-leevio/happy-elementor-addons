@@ -9,6 +9,7 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
+use Elementor\Scheme_Typography;
 use Happy_Addons\Elementor\Controls\Group_Control_Foreground;
 
 defined( 'ABSPATH' ) || die();
@@ -162,8 +163,8 @@ class Gradient_Heading extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'title',
-                'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-gradient-heading',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_1,
             ]
         );
 

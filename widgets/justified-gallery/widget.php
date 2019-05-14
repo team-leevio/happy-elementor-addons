@@ -12,6 +12,7 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
+use Elementor\Scheme_Typography;
 use Elementor\Utils;
 
 defined( 'ABSPATH' ) || die();
@@ -316,6 +317,7 @@ class Justified_Gallery extends Base {
                 'name' => 'caption_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-justified-gallery-grid > a > .caption',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 
@@ -429,6 +431,7 @@ class Justified_Gallery extends Base {
                 'name' => 'button_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-gallery-filter > li > button',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 

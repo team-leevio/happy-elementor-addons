@@ -6,6 +6,7 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
+use Elementor\Scheme_Typography;
 use Elementor\Utils;
 use Elementor\Control_Media;
 use Elementor\Controls_Manager;
@@ -574,11 +575,10 @@ class Card extends Base {
                     'line_height'
                 ],
                 'default' => [
-                    'font_size' => [
-                        ''
-                    ]
+                    'font_size' => ['']
                 ],
                 'selector' => '{{WRAPPER}} .ha-badge',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 
@@ -642,6 +642,7 @@ class Card extends Base {
                 'name' => 'title_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-card-title',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_2,
             ]
         );
 
@@ -683,6 +684,7 @@ class Card extends Base {
                 'name' => 'description_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-card-text',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 
@@ -713,6 +715,7 @@ class Card extends Base {
             [
                 'name' => 'button_typography',
                 'selector' => '{{WRAPPER}} .ha-btn',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 

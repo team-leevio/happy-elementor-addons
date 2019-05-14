@@ -585,6 +585,7 @@ class InfoBox extends Base {
                 'name' => 'description_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-infobox-text',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 
@@ -615,6 +616,7 @@ class InfoBox extends Base {
             [
                 'name' => 'btn_typography',
                 'selector' => '{{WRAPPER}} .ha-link',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 

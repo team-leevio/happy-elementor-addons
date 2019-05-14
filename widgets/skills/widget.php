@@ -11,6 +11,7 @@ use Elementor\Repeater;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
+use Elementor\Scheme_Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -277,6 +278,7 @@ class Skills extends Base {
             [
                 'name' => 'info_typography',
                 'selector' => '{{WRAPPER}} .ha-skill-info',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 

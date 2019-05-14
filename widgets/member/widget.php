@@ -8,6 +8,7 @@ namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Repeater;
+use Elementor\Scheme_Typography;
 use Elementor\Utils;
 use Elementor\Control_Media;
 use Elementor\Controls_Manager;
@@ -561,6 +562,7 @@ class Member extends Base {
             [
                 'name' => 'title_typography',
                 'selector' => '{{WRAPPER}} .ha-member-name',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_2,
             ]
         );
 
@@ -608,8 +610,8 @@ class Member extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'job_title_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-member-position',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 
@@ -657,8 +659,8 @@ class Member extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'bio_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-member-bio',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 
