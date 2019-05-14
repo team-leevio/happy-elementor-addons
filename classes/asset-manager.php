@@ -148,5 +148,12 @@ class Asset_Manager {
             null,
             Base::VERSION
         );
+
+        wp_enqueue_style(
+            'happy-elementor-addons-admin',
+            HAPPY_ASSETS . 'admin/css/main.min.css',
+            null,
+            Base::VERSION
+        );
     }
 }
