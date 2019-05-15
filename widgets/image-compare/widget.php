@@ -382,7 +382,7 @@ class Image_Compare extends Base {
                 'range' => [
                     'px' => [
                         'min' => -10,
-                        'max' => 600,
+                        'max' => 1000,
                     ],
                 ],
                 'selectors' => [
@@ -405,7 +405,7 @@ class Image_Compare extends Base {
                 'range' => [
                     'px' => [
                         'min' => -10,
-                        'max' => 600,
+                        'max' => 1000,
                     ],
                 ],
                 'selectors' => [

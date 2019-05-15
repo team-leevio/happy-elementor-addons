@@ -395,6 +395,7 @@ class Icon_Box extends Base {
             [
                 'name' => 'title',
                 'selector' => '{{WRAPPER}} .ha-icon-box-title',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_2
             ]
         );
 

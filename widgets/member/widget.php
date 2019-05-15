@@ -131,8 +131,8 @@ class Member extends Base {
                 'label' => __( 'Name', 'happy_addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Jhon Doe', 'happy_addons' ),
-                'placeholder' => __( 'Type member name', 'happy_addons' ),
+                'default' => __( 'Happy Member Name', 'happy_addons' ),
+                'placeholder' => __( 'Type Member Name', 'happy_addons' ),
             ]
         );
 
@@ -142,8 +142,8 @@ class Member extends Base {
                 'label' => __( 'Job Title', 'happy_addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Head Of Ideas', 'happy_addons' ),
-                'placeholder' => __( 'Type member job title', 'happy_addons' ),
+                'default' => __( 'Happy Officer', 'happy_addons' ),
+                'placeholder' => __( 'Type Member Job Title', 'happy_addons' ),
             ]
         );
 
@@ -152,7 +152,7 @@ class Member extends Base {
             [
                 'label' => __( 'Short Bio', 'happy_addons' ),
                 'type' => Controls_Manager::TEXTAREA,
-                'placeholder' => __( 'Write something amazing about the member', 'happy_addons' ),
+                'placeholder' => __( 'Write something amazing about the happy member', 'happy_addons' ),
                 'rows' => 5
             ]
         );
@@ -849,9 +849,11 @@ class Member extends Base {
                 esc_html( $settings['title' ] )
             ); ?>
             <div <?php echo $this->get_render_attribute_string( 'job_title' ); ?>><?php echo esc_html( $settings['job_title' ] ); ?></div>
-            <div <?php echo $this->get_render_attribute_string( 'bio' ); ?>>
-                <p><?php echo wp_kses_data( $settings['bio'] ); ?></p>
-            </div>
+            <?php if ( ! empty( $settings['bio'] ) ) : ?>
+                <div <?php echo $this->get_render_attribute_string( 'bio' ); ?>>
+                    <p><?php echo wp_kses_data( $settings['bio'] ); ?></p>
+                </div>
+            <?php endif; ?>
 
             <?php if ( ! empty( $settings['profiles' ] ) ) : ?>
                 <div class="ha-member-links">
@@ -909,9 +911,12 @@ class Member extends Base {
         <div class="ha-member-body">
             <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
             <div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{ settings.job_title }}</div>
-            <div {{{ view.getRenderAttributeString( 'bio' ) }}}>
-                <p>{{{ settings.bio }}}</p>
-            </div>
+
+            <# if (!_.isEmpty(settings.bio)) { #>
+                <div {{{ view.getRenderAttributeString( 'bio' ) }}}>
+                    <p>{{{ settings.bio }}}</p>
+                </div>
+            <# } #>
             <# if (_.isArray(settings.profiles)) { #>
                 <div class="ha-member-links">
                     <# _.each(settings.profiles, function(profile, index) {

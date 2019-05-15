@@ -130,8 +130,8 @@ class Card extends Base {
                 'label' => __( 'Title', 'happy_addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Default title', 'happy_addons' ),
-                'placeholder' => __( 'Type card title', 'happy_addons' ),
+                'default' => __( 'Happy Card Title', 'happy_addons' ),
+                'placeholder' => __( 'Type Card Title', 'happy_addons' ),
             ]
         );
 
@@ -140,7 +140,7 @@ class Card extends Base {
             [
                 'label' => __( 'Description', 'happy_addons' ),
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Default description', 'happy_addons' ),
+                'default' => __( 'Happy card description goes here', 'happy_addons' ),
                 'placeholder' => __( 'Type card description', 'happy_addons' ),
                 'rows' => 5
             ]

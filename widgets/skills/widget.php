@@ -61,8 +61,8 @@ class Skills extends Base {
             [
                 'type' => Controls_Manager::TEXT,
                 'label' => __( 'Name', 'happy_addons' ),
-                'default' => __( 'Skill Name', 'happy_addons' ),
-                'placeholder' => __( 'Type skill name', 'happy_addons' ),
+                'default' => __( 'Happy Skill', 'happy_addons' ),
+                'placeholder' => __( 'Type Happy Skill Name', 'happy_addons' ),
             ]
         );
 
@@ -73,7 +73,7 @@ class Skills extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'unit' => '%',
-                    'size' => 80
+                    'size' => 85
                 ],
                 'size_units' => ['%'],
                 'range' => [

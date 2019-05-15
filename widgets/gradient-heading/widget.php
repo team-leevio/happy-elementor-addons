@@ -58,8 +58,8 @@ class Gradient_Heading extends Base {
             [
                 'label' => __( 'Title', 'happy_addons' ),
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Add Your Heading Text Here', 'happy_addons' ),
-                'placeholder' => __( 'Type heading text', 'happy_addons' ),
+                'default' => __( 'Happy Gradient Heading', 'happy_addons' ),
+                'placeholder' => __( 'Type Gradient Heading Text', 'happy_addons' ),
             ]
         );
 
