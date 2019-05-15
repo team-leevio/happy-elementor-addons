@@ -1186,4 +1186,6 @@ span .ha-review-ratting--star:before,
 	text-align: right;
 }
 
-/*# sourceMappingURL=main.css.map */
+.ha-position--right .ha-testimonial-info {
+	text-align: right;
+}

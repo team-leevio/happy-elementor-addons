@@ -475,7 +475,6 @@ class Image_Compare extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'label_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-after-label:before',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]

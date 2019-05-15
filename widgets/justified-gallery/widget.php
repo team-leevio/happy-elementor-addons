@@ -429,7 +429,6 @@ class Justified_Gallery extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'button_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
                 'selector' => '{{WRAPPER}} .ha-gallery-filter > li > button',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
