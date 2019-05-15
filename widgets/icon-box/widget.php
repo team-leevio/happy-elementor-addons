@@ -439,29 +439,84 @@ class Icon_Box extends Base {
         $this->end_controls_section();
     }
 
-    public function before_render() {
-        parent::before_render();
+    /**
+     * Render widget output on the frontend.
+     *
+     * Used to generate the final HTML displayed on the frontend.
+     *
+     * Note that if skin is selected, it will be rendered by the skin itself,
+     * not the widget.
+     *
+     * @since 1.0.0
+     * @access public
+     */
+    public function render_content() {
+        /**
+         * Before widget render content.
+         *
+         * Fires before Elementor widget is being rendered.
+         *
+         * @since 1.0.0
+         *
+         * @param Widget_Base $this The current widget.
+         */
+        do_action( 'elementor/widget/before_render_content', $this );
+
+        ob_start();
+
+        $skin = $this->get_current_skin();
+        if ( $skin ) {
+            $skin->set_parent( $this );
+            $skin->render();
+        } else {
+            $this->render();
+        }
+
+        $widget_content = ob_get_clean();
+
+        if ( empty( $widget_content ) ) {
+            return;
+        }
+
+        if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
+            $this->render_edit_tools();
+        }
+
+        $tag = 'div';
         $link = $this->get_settings_for_display( 'link' );
+        $this->add_render_attribute( 'icon_box', 'class', 'elementor-widget-container' );
 
         if ( ! empty( $link['url'] ) ) {
-            $this->add_render_attribute('link', 'class', 'ha-icon-box-link elementor-widget-container');
-            $this->add_render_attribute('link', 'href', esc_url($link['url']));
-            if (!empty($settings['link']['is_external'])) {
-                $this->add_render_attribute('link', 'target', '_blank');
+            $tag = 'a';
+            $this->add_render_attribute( 'icon_box', 'class', 'ha-icon-box-link' );
+            $this->add_render_attribute( 'icon_box', 'href', esc_url( $link['url'] ) );
+            if ( ! empty ( $link['is_external'] ) ) {
+                $this->add_render_attribute( 'icon_box', 'target', '_blank' );
             }
-            if (!empty($settings['link']['nofollow'])) {
-                $this->set_render_attribute('link', 'rel', 'nofollow');
+            if ( ! empty( $link['nofollow'] ) ) {
+                $this->set_render_attribute( 'icon_box', 'rel', 'nofollow' );
             }
-            printf('<a %1$s>', $this->get_render_attribute_string('link'));
         }
-    }
+        ?>
+        <<?php echo $tag; ?> <?php echo $this->get_render_attribute_string( 'icon_box' ); ?>>
+            <?php
 
-    public function after_render() {
-        $link = $this->get_settings_for_display( 'link' );
-        if ( ! empty( $link['url'] ) ) {
-            echo '</a>';
-        }
-        parent::after_render();
+            /**
+             * Render widget content.
+             *
+             * Filters the widget content before it's rendered.
+             *
+             * @since 1.0.0
+             *
+             * @param string      $widget_content The content of the widget.
+             * @param Widget_Base $this           The widget.
+             */
+            $widget_content = apply_filters( 'elementor/widget/render_content', $widget_content, $this );
+
+            echo $widget_content; // XSS ok.
+            ?>
+        </<?php echo $tag; ?>>
+        <?php
     }
 
     protected function render() {
