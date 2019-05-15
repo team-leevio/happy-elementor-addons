@@ -56,8 +56,9 @@ class Icon_Box extends Base {
         $this->add_control(
             'icon',
             [
-                'label' => __( 'Icon', 'happy_addons' ),
+                'show_label' => false,
                 'type' => Controls_Manager::ICON,
+                'label_block' => true,
                 'options' => ha_get_happy_icons(),
                 'default' => 'fa fa-smile-o',
             ]
@@ -68,8 +69,9 @@ class Icon_Box extends Base {
             [
                 'label' => __( 'Title', 'happy_addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Title Text', 'happy_addons' ),
-                'placeholder' => __( 'Type title text', 'happy_addons' ),
+                'label_block' => true,
+                'default' => __( 'Happy Icon Box', 'happy_addons' ),
+                'placeholder' => __( 'Type Icon Box Title', 'happy_addons' ),
             ]
         );
 
@@ -142,7 +144,7 @@ class Icon_Box extends Base {
         $this->add_control(
             'link',
             [
-                'label' => __( 'Link', 'happy_addons' ),
+                'label' => __( 'Box Link', 'happy_addons' ),
                 'type' => Controls_Manager::URL,
                 'placeholder' => __( 'https://example.com/', 'happy_addons' ),
             ]
@@ -272,7 +274,7 @@ class Icon_Box extends Base {
         $this->add_control(
             'icon_bg_rotate',
             [
-                'label' => __( 'Rotate Box', 'happy_addons' ),
+                'label' => __( 'Rotate Icon Box', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'deg' ],
                 'default' => [
@@ -342,7 +344,7 @@ class Icon_Box extends Base {
         $this->add_control(
             'icon_hover_bg_rotate',
             [
-                'label' => __( 'Rotate Box', 'happy_addons' ),
+                'label' => __( 'Rotate Icon Box', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'deg' ],
                 'default' => [
@@ -359,7 +361,7 @@ class Icon_Box extends Base {
                     '{{WRAPPER}}:hover .ha-icon-box-icon > i' => '-webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
                 ],
                 'condition' => [
-                    'icon_hover_bg_color!' => '',
+                    'icon_bg_color!' => '',
                 ]
             ]
         );
@@ -378,7 +380,7 @@ class Icon_Box extends Base {
         );
 
         $this->add_group_control(
-            Group_Control_Text_Shadow::get_type(),
+            Group_Control_Typography::get_type(),
             [
                 'name' => 'title',
                 'selector' => '{{WRAPPER}} .ha-icon-box-title',
@@ -386,7 +388,7 @@ class Icon_Box extends Base {
         );
 
         $this->add_group_control(
-            Group_Control_Typography::get_type(),
+            Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'title',
                 'selector' => '{{WRAPPER}} .ha-icon-box-title',
