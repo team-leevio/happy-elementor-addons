@@ -11,6 +11,7 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
+use Elementor\Scheme_Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -48,7 +49,7 @@ class Icon_Box extends Base {
 		$this->start_controls_section(
 			'_section_icon',
 			[
-				'label' => __( 'Icon & Title', 'happy_addons' ),
+				'label' => __( 'Content', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -56,8 +57,9 @@ class Icon_Box extends Base {
         $this->add_control(
             'icon',
             [
-                'label' => __( 'Icon', 'happy_addons' ),
+                'show_label' => false,
                 'type' => Controls_Manager::ICON,
+                'label_block' => true,
                 'options' => ha_get_happy_icons(),
                 'default' => 'fa fa-smile-o',
             ]
@@ -68,8 +70,9 @@ class Icon_Box extends Base {
             [
                 'label' => __( 'Title', 'happy_addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Title Text', 'happy_addons' ),
-                'placeholder' => __( 'Type title text', 'happy_addons' ),
+                'label_block' => true,
+                'default' => __( 'Happy Icon Box', 'happy_addons' ),
+                'placeholder' => __( 'Type Icon Box Title', 'happy_addons' ),
             ]
         );
 
@@ -109,6 +112,16 @@ class Icon_Box extends Base {
             ]
         );
 
+        $this->add_control(
+            'badge_text',
+            [
+                'label' => __( 'Badge Text', 'happy_addons' ),
+                'type' => Controls_Manager::TEXT,
+                'label_block' => true,
+                'placeholder' => __( 'Type Icon Badge Text', 'happy_addons' ),
+            ]
+        );
+
         $this->add_responsive_control(
             'align',
             [
@@ -142,7 +155,7 @@ class Icon_Box extends Base {
         $this->add_control(
             'link',
             [
-                'label' => __( 'Link', 'happy_addons' ),
+                'label' => __( 'Box Link', 'happy_addons' ),
                 'type' => Controls_Manager::URL,
                 'placeholder' => __( 'https://example.com/', 'happy_addons' ),
             ]
@@ -272,7 +285,7 @@ class Icon_Box extends Base {
         $this->add_control(
             'icon_bg_rotate',
             [
-                'label' => __( 'Rotate Box', 'happy_addons' ),
+                'label' => __( 'Rotate Icon Box', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'deg' ],
                 'default' => [
@@ -342,7 +355,7 @@ class Icon_Box extends Base {
         $this->add_control(
             'icon_hover_bg_rotate',
             [
-                'label' => __( 'Rotate Box', 'happy_addons' ),
+                'label' => __( 'Rotate Icon Box', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'deg' ],
                 'default' => [
@@ -359,7 +372,7 @@ class Icon_Box extends Base {
                     '{{WRAPPER}}:hover .ha-icon-box-icon > i' => '-webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
                 ],
                 'condition' => [
-                    'icon_hover_bg_color!' => '',
+                    'icon_bg_color!' => '',
                 ]
             ]
         );
@@ -378,15 +391,16 @@ class Icon_Box extends Base {
         );
 
         $this->add_group_control(
-            Group_Control_Text_Shadow::get_type(),
+            Group_Control_Typography::get_type(),
             [
                 'name' => 'title',
                 'selector' => '{{WRAPPER}} .ha-icon-box-title',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_2
             ]
         );
 
         $this->add_group_control(
-            Group_Control_Typography::get_type(),
+            Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'title',
                 'selector' => '{{WRAPPER}} .ha-icon-box-title',
@@ -435,6 +449,158 @@ class Icon_Box extends Base {
 
         $this->end_controls_tab();
         $this->end_controls_tabs();
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_style_badge',
+            [
+                'label' => __( 'Badge', 'happy_addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'badge_offset_toggle',
+            [
+                'label' => __( 'Offset', 'happy_addons' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'label_off' => __( 'None', 'happy_addons' ),
+                'label_on' => __( 'Custom', 'happy_addons' ),
+                'return_value' => 'yes',
+            ]
+        );
+
+        $this->start_popover();
+
+        $this->add_responsive_control(
+            'badge_offset_x',
+            [
+                'label' => __( 'Offset Left', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'condition' => [
+                    'badge_offset_toggle' => 'yes'
+                ],
+                'default' => [
+                    'size' => 1
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -250,
+                        'max' => 250,
+                    ],
+                ],
+                'render_type' => 'ui'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'badge_offset_y',
+            [
+                'label' => __( 'Offset Top', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'condition' => [
+                    'badge_offset_toggle' => 'yes'
+                ],
+                'default' => [
+                    'size' => 1
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -250,
+                        'max' => 250,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-badge' => '-ms-transform: translate({{badge_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); -webkit-transform: translate({{badge_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); transform: translate({{badge_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}});',
+                ],
+            ]
+        );
+        $this->end_popover();
+
+        $this->add_responsive_control(
+            'badge_padding',
+            [
+                'label' => __( 'Padding', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-badge' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'badge_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-badge' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'badge_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-badge' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'badge_border',
+                'selector' => '{{WRAPPER}} .ha-badge',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'badge_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-badge' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'badge_box_shadow',
+                'exclude' => [
+                    'box_shadow_position',
+                ],
+                'selector' => '{{WRAPPER}} .ha-badge',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'badge_typography',
+                'label' => __( 'Typography', 'happy_addons' ),
+                'exclude' => [
+                    'font_family',
+                    'line_height'
+                ],
+                'default' => [
+                    'font_size' => ['']
+                ],
+                'selector' => '{{WRAPPER}} .ha-badge',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+            ]
+        );
 
         $this->end_controls_section();
     }
@@ -524,7 +690,15 @@ class Icon_Box extends Base {
 
         $this->add_inline_editing_attributes( 'title', 'none' );
         $this->add_render_attribute( 'title', 'class', 'ha-icon-box-title' );
+
+        $this->add_inline_editing_attributes( 'badge_text', 'none' );
+        $this->add_render_attribute( 'badge_text', 'class', 'ha-badge ha-badge--top-right' );
         ?>
+
+        <?php if ( ! empty( $settings['badge_text'] ) ) : ?>
+            <span <?php echo $this->get_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></span>
+        <?php endif; ?>
+
         <span class="ha-icon-box-icon">
             <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
         </span>
@@ -541,12 +715,20 @@ class Icon_Box extends Base {
         view.addInlineEditingAttributes( 'title', 'none' );
         view.addRenderAttribute( 'title', 'class', 'ha-icon-box-title' );
 
+        view.addInlineEditingAttributes( 'badge_text', 'none' );
+        view.addRenderAttribute( 'badge_text', 'class', 'ha-badge ha-badge--top-right' );
+
         if (!_.isEmpty(settings.link.url)) {
             view.addRenderAttribute( 'link', 'class', 'ha-icon-box-link' );
             view.addRenderAttribute( 'link', 'href', settings.link.url );
 
             print( '<a ' + view.getRenderAttributeString( 'link' ) + '>' );
         } #>
+
+        <# if (!_.isEmpty(settings.badge_text)) { #>
+            <span {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{ settings.badge_text }}</span>
+        <# } #>
+
         <span class="ha-icon-box-icon">
             <i class="{{ settings.icon }}"></i>
         </span>

@@ -68,11 +68,11 @@ class InfoBox extends Base {
                 'options' => [
                     'icon' => [
                         'title' => __( 'Icon', 'happy_addons' ),
-                        'icon' => 'eicon-icon-box',
+                        'icon' => 'fa fa-smile-o',
                     ],
                     'image' => [
                         'title' => __( 'Image', 'happy_addons' ),
-                        'icon' => 'eicon-image-box',
+                        'icon' => 'fa fa-image',
                     ],
                 ],
 				'default' => 'icon',
@@ -143,8 +143,8 @@ class InfoBox extends Base {
                 'label' => __( 'Title', 'happy_addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Default title', 'happy_addons' ),
-                'placeholder' => __( 'Type your blurb title', 'happy_addons' ),
+                'default' => __( 'Happy Info Box Title', 'happy_addons' ),
+                'placeholder' => __( 'Type Info Box Title', 'happy_addons' ),
             ]
         );
 
@@ -153,8 +153,8 @@ class InfoBox extends Base {
             [
                 'label' => __( 'Description', 'happy_addons' ),
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Default description', 'happy_addons' ),
-                'placeholder' => __( 'Type your blurb description', 'happy_addons' ),
+                'default' => __( 'Happy info box description goes here', 'happy_addons' ),
+                'placeholder' => __( 'Type info box description', 'happy_addons' ),
                 'rows' => 5
             ]
         );
@@ -241,8 +241,8 @@ class InfoBox extends Base {
                 'label' => __( 'Text', 'happy_addons' ),
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
-                'default' => __( 'Default text', 'happy_addons' ),
-                'placeholder' => __( 'Type your link text', 'happy_addons' ),
+                'default' => __( 'Link Text', 'happy_addons' ),
+                'placeholder' => __( 'Type Link Text', 'happy_addons' ),
             ]
         );
 
@@ -733,7 +733,7 @@ class InfoBox extends Base {
         view.addInlineEditingAttributes( 'title', 'none' );
         view.addRenderAttribute( 'title', 'class', 'ha-infobox-title' );
 
-        view.addInlineEditingAttributes( 'description', 'advanced' );
+        view.addInlineEditingAttributes( 'description', 'basic' );
         view.addRenderAttribute( 'description', 'class', 'ha-infobox-text' );
 
         view.addInlineEditingAttributes( 'button_text', 'none' );

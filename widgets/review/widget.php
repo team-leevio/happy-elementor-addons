@@ -80,8 +80,8 @@ class Review extends Base {
             [
                 'label' => __( 'Name', 'happy_addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Jhon Doe', 'happy_addons' ),
-                'placeholder' => __( 'Type reviewer name', 'happy_addons' ),
+                'default' => __( 'Happy Reviewer', 'happy_addons' ),
+                'placeholder' => __( 'Type Reviewer Name', 'happy_addons' ),
             ]
         );
 
@@ -90,8 +90,8 @@ class Review extends Base {
             [
                 'label' => __( 'Job Title', 'happy_addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'COO', 'happy_addons' ),
-                'placeholder' => __( 'Type reviewer job title', 'happy_addons' ),
+                'default' => __( 'Happy Officer', 'happy_addons' ),
+                'placeholder' => __( 'Type Reviewer Job Title', 'happy_addons' ),
             ]
         );
 
@@ -124,7 +124,7 @@ class Review extends Base {
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
-                'desktop_default' => 'top',
+                'default' => 'top',
                 'toggle' => false,
                 'prefix_class' => 'ha-review--'
             ]
@@ -212,8 +212,8 @@ class Review extends Base {
             [
                 'label' => __( 'Review', 'happy_addons' ),
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Happy Addons is an amazing collection of Elementor widgets!', 'happy_addons' ),
-                'placeholder' => __( 'Type review text', 'happy_addons' ),
+                'default' => __( 'Happy reviewer is super excited being part of happy addons family', 'happy_addons' ),
+                'placeholder' => __( 'Type amazing review from happy reviewer', 'happy_addons' ),
             ]
         );
         $this->end_controls_tab();

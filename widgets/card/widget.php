@@ -97,6 +97,7 @@ class Card extends Base {
                     ],
                 ],
                 'toggle' => false,
+                'default' => 'top',
                 'prefix_class' => 'ha-card--'
             ]
         );
@@ -109,26 +110,7 @@ class Card extends Base {
                 'default' => __( 'Badget Text', 'happy_addons' ),
                 'placeholder' => __( 'Type badge text', 'happy_addons' ),
                 'separator' => 'before',
-            ]
-        );
-
-        $this->add_control(
-            'badge_position',
-            [
-                'label' => __( 'Badge Position', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    'top-left'  => __( 'Top Left', 'happy_addons' ),
-                    'top-center'  => __( 'Top Center', 'happy_addons' ),
-                    'top-right'  => __( 'Top Right', 'happy_addons' ),
-                    'middle-left'  => __( 'Middle Left', 'happy_addons' ),
-                    'middle-center'  => __( 'Middle Center', 'happy_addons' ),
-                    'middle-right'  => __( 'Middle Right', 'happy_addons' ),
-                    'bottom-left'  => __( 'Bottom Left', 'happy_addons' ),
-                    'bottom-center'  => __( 'Bottom Center', 'happy_addons' ),
-                    'bottom-right'  => __( 'Bottom Right', 'happy_addons' ),
-                ],
-                'default' => 'top-right',
+                'description' => __( 'Set badget position and control all the style settings from Style tab', 'happy_addons' ),
             ]
         );
 
@@ -148,8 +130,8 @@ class Card extends Base {
                 'label' => __( 'Title', 'happy_addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Default title', 'happy_addons' ),
-                'placeholder' => __( 'Type card title', 'happy_addons' ),
+                'default' => __( 'Happy Card Title', 'happy_addons' ),
+                'placeholder' => __( 'Type Card Title', 'happy_addons' ),
             ]
         );
 
@@ -158,7 +140,7 @@ class Card extends Base {
             [
                 'label' => __( 'Description', 'happy_addons' ),
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Default description', 'happy_addons' ),
+                'default' => __( 'Happy card description goes here', 'happy_addons' ),
                 'placeholder' => __( 'Type card description', 'happy_addons' ),
                 'rows' => 5
             ]
@@ -488,17 +470,85 @@ class Card extends Base {
             ]
         );
 
-        $this->add_responsive_control(
-            'badge_margin',
+        $this->add_control(
+            'badge_position',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Position', 'happy_addons' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'top-left'  => __( 'Top Left', 'happy_addons' ),
+                    'top-center'  => __( 'Top Center', 'happy_addons' ),
+                    'top-right'  => __( 'Top Right', 'happy_addons' ),
+                    'middle-left'  => __( 'Middle Left', 'happy_addons' ),
+                    'middle-center'  => __( 'Middle Center', 'happy_addons' ),
+                    'middle-right'  => __( 'Middle Right', 'happy_addons' ),
+                    'bottom-left'  => __( 'Bottom Left', 'happy_addons' ),
+                    'bottom-center'  => __( 'Bottom Center', 'happy_addons' ),
+                    'bottom-right'  => __( 'Bottom Right', 'happy_addons' ),
+                ],
+                'default' => 'top-right',
+            ]
+        );
+
+        $this->add_control(
+            'badge_offset_toggle',
+            [
+                'label' => __( 'Offset', 'happy_addons' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'label_off' => __( 'None', 'happy_addons' ),
+                'label_on' => __( 'Custom', 'happy_addons' ),
+                'return_value' => 'yes',
+            ]
+        );
+
+        $this->start_popover();
+
+        $this->add_responsive_control(
+            'badge_offset_x',
+            [
+                'label' => __( 'Offset Left', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'condition' => [
+                    'badge_offset_toggle' => 'yes'
+                ],
+                'default' => [
+                    'size' => 1
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                    ],
+                ],
+                'render_type' => 'ui'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'badge_offset_y',
+            [
+                'label' => __( 'Offset Top', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'condition' => [
+                    'badge_offset_toggle' => 'yes'
+                ],
+                'default' => [
+                    'size' => 1
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                    ],
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-badge' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-badge' => '-ms-transform: translate({{badge_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); -webkit-transform: translate({{badge_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); transform: translate({{badge_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}});',
                 ],
             ]
         );
+        $this->end_popover();
 
         $this->add_responsive_control(
             'badge_padding',
