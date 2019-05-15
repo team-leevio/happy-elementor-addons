@@ -367,34 +367,6 @@ class CalderaForm extends Base {
             ]
 		);
 
-		$this->add_responsive_control(
-            'submit_btn_position',
-            [
-                'label' => __( 'Button Position', 'happy_addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
-                        'icon' => 'eicon-h-align-left',
-                    ],
-                    'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
-                        'icon' => 'eicon-h-align-center',
-                    ],
-                    'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
-                        'icon' => 'eicon-h-align-right',
-                    ],
-                ],
-                'desktop_default' => 'left',
-                'toggle' => false,
-				'prefix_class' => 'ha-form-btn--%s',
-				'selectors' => [
-                    '{{WRAPPER}} .form-group' => 'text-align: {{Value}};',
-                ],
-            ]
-        );
-
         $this->add_responsive_control(
             'submit_margin',
             [
