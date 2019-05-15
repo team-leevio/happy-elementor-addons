@@ -2,6 +2,7 @@
   @extend %happyWidgetContainer;
 
   @include widgetContainer {
+    position: relative;
     padding: 1.25rem;
   }
 
@@ -36,5 +37,11 @@
     display: block;
     text-decoration: none;
     color: transparent;
+  }
+
+  .ha-badge {
+    position: absolute;
+    background-color: $secondary-color;
+    color: #fff;
   }
 }

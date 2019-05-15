@@ -551,18 +551,6 @@ class Card extends Base {
         $this->end_popover();
 
         $this->add_responsive_control(
-            'badge_margin',
-            [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-badge' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
             'badge_padding',
             [
                 'label' => __( 'Padding', 'happy_addons' ),
