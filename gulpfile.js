@@ -33,7 +33,8 @@ var styleSass = "assets/dev/sass/main.scss",
     sassFiles = "assets/dev/sass/*.scss",
     adminStyleSass = "assets/dev/admin/sass/main.scss",
     addminSassFiles = "assets/dev/admin/sass/*.scss",
-    jsFiles = "assets/dev/js/*.js";
+    jsFiles = "assets/dev/js/*.js",
+    adminJSFiles = "assets/dev/admin/js/*.js";
 
 
 gulp.task("serve", function() {
@@ -82,11 +83,22 @@ gulp.task("js", function() {
         .pipe(gulp.dest("assets/js"));
 });
 
+gulp.task("adminJS", function() {
+    return gulp.src(adminJSFiles)
+        .pipe(plumberNotifier())
+        .pipe(concat('happy-addons.js'))
+        .pipe(gulp.dest("assets/admin/js"))
+        .pipe(uglify())
+        .pipe(rename({suffix: ".min"}))
+        .pipe(gulp.dest("assets/admin/js"));
+});
+
 gulp.task("watch", ["serve"], function() {
     gulp.watch(sassFiles, ["css"]);
     gulp.watch(addminSassFiles, ["adminCss"]);
     gulp.watch(jsFiles, ["js"]).on("change", browserSync.reload);
+    gulp.watch(adminJSFiles, ["adminJS"]).on("change", browserSync.reload);
     gulp.watch("*.html").on("change", browserSync.reload);
 });
 
-gulp.task("default", ["serve", "js", "css", "adminCss", "watch"]);
+gulp.task("default", ["serve", "js", "adminJS", "css", "adminCss", "watch"]);

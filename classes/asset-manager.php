@@ -155,5 +155,13 @@ class Asset_Manager {
             null,
             Base::VERSION
         );
+
+        wp_enqueue_script(
+            'happy-elementor-addons-admin',
+            HAPPY_ASSETS . 'admin/js/happy-addons.min.js',
+            ['elementor-editor'],
+            Base::VERSION,
+            true
+        );
     }
 }
