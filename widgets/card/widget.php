@@ -112,26 +112,6 @@ class Card extends Base {
             ]
         );
 
-        $this->add_control(
-            'badge_position',
-            [
-                'label' => __( 'Badge Position', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    'top-left'  => __( 'Top Left', 'happy_addons' ),
-                    'top-center'  => __( 'Top Center', 'happy_addons' ),
-                    'top-right'  => __( 'Top Right', 'happy_addons' ),
-                    'middle-left'  => __( 'Middle Left', 'happy_addons' ),
-                    'middle-center'  => __( 'Middle Center', 'happy_addons' ),
-                    'middle-right'  => __( 'Middle Right', 'happy_addons' ),
-                    'bottom-left'  => __( 'Bottom Left', 'happy_addons' ),
-                    'bottom-center'  => __( 'Bottom Center', 'happy_addons' ),
-                    'bottom-right'  => __( 'Bottom Right', 'happy_addons' ),
-                ],
-                'default' => 'top-right',
-            ]
-        );
-
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -487,6 +467,86 @@ class Card extends Base {
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
+
+        $this->add_control(
+            'badge_position',
+            [
+                'label' => __( 'Position', 'happy_addons' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'top-left'  => __( 'Top Left', 'happy_addons' ),
+                    'top-center'  => __( 'Top Center', 'happy_addons' ),
+                    'top-right'  => __( 'Top Right', 'happy_addons' ),
+                    'middle-left'  => __( 'Middle Left', 'happy_addons' ),
+                    'middle-center'  => __( 'Middle Center', 'happy_addons' ),
+                    'middle-right'  => __( 'Middle Right', 'happy_addons' ),
+                    'bottom-left'  => __( 'Bottom Left', 'happy_addons' ),
+                    'bottom-center'  => __( 'Bottom Center', 'happy_addons' ),
+                    'bottom-right'  => __( 'Bottom Right', 'happy_addons' ),
+                ],
+                'default' => 'top-right',
+            ]
+        );
+
+        $this->add_control(
+            'badge_offset_toggle',
+            [
+                'label' => __( 'Offset', 'happy_addons' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'label_off' => __( 'None', 'happy_addons' ),
+                'label_on' => __( 'Custom', 'happy_addons' ),
+                'return_value' => 'yes',
+            ]
+        );
+
+        $this->start_popover();
+
+        $this->add_responsive_control(
+            'badge_offset_x',
+            [
+                'label' => __( 'Offset Left', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'condition' => [
+                    'badge_offset_toggle' => 'yes'
+                ],
+                'default' => [
+                    'size' => 1
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                    ],
+                ],
+                'render_type' => 'ui'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'badge_offset_y',
+            [
+                'label' => __( 'Offset Top', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'condition' => [
+                    'badge_offset_toggle' => 'yes'
+                ],
+                'default' => [
+                    'size' => 1
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-badge' => '-ms-transform: translate({{badge_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); -webkit-transform: translate({{badge_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); transform: translate({{badge_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}});',
+                ],
+            ]
+        );
+        $this->end_popover();
 
         $this->add_responsive_control(
             'badge_margin',
