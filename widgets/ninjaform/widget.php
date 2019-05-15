@@ -47,12 +47,12 @@ class NinjaForm extends Base {
 		$this->start_controls_section(
 			'_section_ninjaf',
 			[
-				'label' => ha_is_wpf_activated() ? __( 'Ninja Form', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
+				'label' => ha_is_ninjaf_activated() ? __( 'Ninja Form', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
-        if ( ! ha_is_wpf_activated() ) {
+        if ( ! ha_is_ninjaf_activated() ) {
             $this->add_control(
                 'ninjaf_missing_notice',
                 [
@@ -68,7 +68,7 @@ class NinjaForm extends Base {
         }
 
         $this->add_control(
-            'id',
+            'form_id',
             [
                 'label' => __( 'Select Your Form', 'happy_addons' ),
                 'type' => Controls_Manager::SELECT,
@@ -553,10 +553,9 @@ class NinjaForm extends Base {
 
         $settings = $this->get_settings_for_display();
 
-        if ( ! empty( $settings['id'] ) ) {
+        if ( ! empty( $settings['form_id'] ) ) {
             echo ha_do_shortcode( 'ninja_form', [
-                'id' => $settings['id'],
-                //'html_class' => 'ha-cf7-form ' . ha_sanitize_html_class_param( $settings['html_class'] ),
+                'id' => $settings['form_id'],
             ] );
         }
     }

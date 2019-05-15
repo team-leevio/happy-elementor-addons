@@ -68,7 +68,7 @@ class CF7 extends Base {
         }
 
         $this->add_control(
-            'id',
+            'form_id',
             [
                 'label' => __( 'Select Your Form', 'happy_addons' ),
                 'type' => Controls_Manager::SELECT,
@@ -536,11 +536,11 @@ class CF7 extends Base {
 
         $settings = $this->get_settings_for_display();
 
-        if ( ! empty( $settings['id'] ) ) {
+        if ( ! empty( $settings['form_id'] ) ) {
             echo ha_do_shortcode( 'contact-form-7', [
-                'id' => $settings['id'],
+                'id' => $settings['form_id'],
                 'html_class' => 'ha-cf7-form ' . ha_sanitize_html_class_param( $settings['html_class'] ),
-            ] );
+			] );
         }
     }
 }
