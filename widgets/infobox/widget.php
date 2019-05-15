@@ -68,11 +68,11 @@ class InfoBox extends Base {
                 'options' => [
                     'icon' => [
                         'title' => __( 'Icon', 'happy_addons' ),
-                        'icon' => 'eicon-icon-box',
+                        'icon' => 'fa fa-smile-o',
                     ],
                     'image' => [
                         'title' => __( 'Image', 'happy_addons' ),
-                        'icon' => 'eicon-image-box',
+                        'icon' => 'fa fa-image',
                     ],
                 ],
 				'default' => 'icon',
