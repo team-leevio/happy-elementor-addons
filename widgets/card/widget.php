@@ -97,6 +97,7 @@ class Card extends Base {
                     ],
                 ],
                 'toggle' => false,
+                'default' => 'top',
                 'prefix_class' => 'ha-card--'
             ]
         );
@@ -109,6 +110,7 @@ class Card extends Base {
                 'default' => __( 'Badget Text', 'happy_addons' ),
                 'placeholder' => __( 'Type badge text', 'happy_addons' ),
                 'separator' => 'before',
+                'description' => __( 'Set badget position and control all the style settings from Style tab', 'happy_addons' ),
             ]
         );
 
