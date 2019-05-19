@@ -201,7 +201,7 @@ class Image_Compare extends Base {
                     'on_click' => __( 'On Click', 'happy_addons' ),
                     'on_swipe' => __( 'On Swipe', 'happy_addons' ),
                 ],
-                'description' => __( 'Select handle movement type', 'happy_addons' )
+                'description' => __( 'Select handle movement type. Note: overlay does not work with On Hover.', 'happy_addons' )
             ]
         );
 

@@ -92,12 +92,25 @@ window.Happy = window.Happy || {};
             };
 
         settings[pauseMap[settings.pause || 'on_focus']] = true;
+        switch (settings.navigation) {
+            case 'arrow':
+                settings.arrows = true;
+                break;
+            case 'dots':
+                settings.dots = true;
+                break;
+            case 'both':
+                settings.arrows = true;
+                settings.dots = true;
+                break;
+        }
+        delete settings.navigation;
 
         $item.slick($.extend({}, {
             // infinite:true, // default true
             // autoplay: true, // default true
-            // arrows: true, // default true
-            // dots: true, // default false
+            arrows: false, // default true
+            dots: false, // default false
             checkVisible: false,
             // centerMode: true, // default false
             // vertical: true, // default false - vertical slide mode
@@ -134,11 +147,25 @@ window.Happy = window.Happy || {};
         settings[pauseMap[settings.pause || 'on_focus']] = true;
         settings.slidesToScroll = settings.slidesToShow;
 
+        switch (settings.navigation) {
+            case 'arrow':
+                settings.arrows = true;
+                break;
+            case 'dots':
+                settings.dots = true;
+                break;
+            case 'both':
+                settings.arrows = true;
+                settings.dots = true;
+                break;
+        }
+        delete settings.navigation;
+
         $item.slick($.extend({}, {
             // infinite:true, // default true
             // autoplay: true, // default true
-            // arrows: true, // default true
-            // dots: true, // default false
+            arrows: false, // default true
+            dots: false, // default false
             checkVisible: false,
             slidesToShow: 3,
             slidesToScroll: 3,

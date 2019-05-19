@@ -144,25 +144,17 @@ class Carousel extends Base {
         );
 
         $this->add_control(
-            'arrows',
+            'navigation',
             [
-                'label' => __( 'Arrow Navigation?', 'happy_addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
-                'return_value' => 'yes',
-                'default' => 'yes'
-            ]
-        );
-
-        $this->add_control(
-            'dots',
-            [
-                'label' => __( 'Dots Navigation?', 'happy_addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
-                'return_value' => 'yes',
+                'label' => __( 'Navigation', 'happy_addons' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    '' => __( 'None', 'happy_addons' ),
+                    'arrow' => __( 'Arrow', 'happy_addons' ),
+                    'dots' => __( 'Dots', 'happy_addons' ),
+                    'both' => __( 'Arrow & Dots', 'happy_addons' ),
+                ],
+                'default' => 'both',
             ]
         );
 
@@ -670,8 +662,7 @@ class Carousel extends Base {
 
     protected static function get_data_prop_settings( $settings ) {
         $field_map = [
-            'arrows' => 'arrows.bool',
-            'dots' => 'dots.bool',
+            'navigation.str' => 'navigation.str',
             'autoplay' => 'autoplay.bool',
             'autoplay_speed.size' => 'autoplaySpeed.int',
             'speed.size' => 'speed.int',
