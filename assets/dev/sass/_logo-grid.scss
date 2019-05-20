@@ -24,7 +24,7 @@
 
   // TicTacToe style
   &--tictactoe &-item {
-    border-width: 3px 3px 0 0;
+    border-width: 2px 2px 0 0;
     border-style: solid;
   }
 
@@ -42,11 +42,11 @@
 
   // Border style
   &--border {
-    border-radius: 10px
+    border-radius: .5rem;
   }
 
   &--border &-item {
-    border-width: 0 3px 3px 0;
+    border-width: 0 2px 2px 0;
     border-style: solid;
 
     &:first-child {
@@ -78,7 +78,20 @@
     }
   }
 
-  &--box &-item {
+  &--box &-wrapper {
+    margin: -.5rem;
+  }
 
+  &--box &-item {
+    margin: .5rem;
+    border-radius: .5rem;
+    border-width: 2px;
+    border-style: solid;
+  }
+
+  @for $i from 2 through 6 {
+    &--box #{&}--col-#{$i} > &-item {
+      width: calc((100% / #{$i}) - 1rem);
+    }
   }
 }

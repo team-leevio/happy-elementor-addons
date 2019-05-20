@@ -209,6 +209,8 @@ class Logo_Grid extends Base
                     '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-6 > .ha-logo-grid-item:nth-child(-n+6)' => 'border-top-width: {{SIZE}}{{UNIT}};',
 
                     '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-item' => 'border-top-width: {{SIZE}}{{UNIT}}; border-right-width: {{SIZE}}{{UNIT}};',
+
+                    '{{WRAPPER}}.ha-logo-grid--box .ha-logo-grid-item' => 'border-width: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'grid_border_type!' => 'none',
@@ -248,7 +250,7 @@ class Logo_Grid extends Base
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-wrapper, {{WRAPPER}}.ha-logo-grid--box .ha-logo-grid-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item:first-child' => 'border-top-left-radius: {{TOP}}{{UNIT}};',
                     '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item:last-child' => 'border-bottom-right-radius: {{BOTTOM}}{{UNIT}};',
                     '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-2 > .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
