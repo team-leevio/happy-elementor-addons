@@ -192,10 +192,10 @@ class Testimonial extends Base {
             [
                 'label' => __( 'Height', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
+				'size_units' => [ 'px' ],
                 'range' => [
                     'px' => [
-                        'min' => 65,
+                        'min' => 20,
                         'max' => 200,
                     ],
 				],
