@@ -51,12 +51,11 @@ class Logo_Grid extends Base
         return ['logo', 'grid', 'brand', 'client'];
     }
 
-    protected function register_content_controls()
-    {
+    protected function register_content_controls() {
         $this->start_controls_section(
             '_section_logo',
             [
-                'label' => __('Logos', 'happy_addons'),
+                'label' => __( 'Logo Grid', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -103,6 +102,16 @@ class Logo_Grid extends Base
             ]
         );
 
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_settings',
+            [
+                'label' => __( 'Settings', 'happy_addons' ),
+                'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
         $this->add_group_control(
             Group_Control_Image_Size::get_type(),
             [
@@ -116,15 +125,16 @@ class Logo_Grid extends Base
         );
 
         $this->add_control(
-            'style',
+            'layout',
             [
-                'label' => __( 'Grid Style', 'happy_addons' ),
+                'label' => __( 'Grid Layout', 'happy_addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
                     'box' => __( 'Box', 'happy_addons' ),
                     'border' => __( 'Border', 'happy_addons' ),
                     'tictactoe' => __( 'Tic Tac Toe', 'happy_addons' ),
                 ],
+                'default' => 'box',
                 'prefix_class' => 'ha-logo-grid--'
             ]
         );
@@ -132,7 +142,7 @@ class Logo_Grid extends Base
         $this->add_control(
             'columns',
             [
-                'label' => __('Columns', 'happy_addons'),
+                'label' => __( 'Columns', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'default' => [
@@ -150,75 +160,121 @@ class Logo_Grid extends Base
         $this->end_controls_section();
     }
 
-    protected function register_style_controls()
-    {
+    protected function register_style_controls() {
         $this->start_controls_section(
-            '_section_style_logo',
+            '_section_style_grid',
             [
-                'label' => __('Logo', 'happy_addons'),
+                'label' => __( 'Grid', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
-        $this->add_responsive_control(
-            'logo_spacing',
+        $this->add_control(
+            'grid_border_type',
             [
-                'label' => __('Logo Spacing', 'happy_addons'),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+                'label' => __( 'Border Type', 'happy_addons' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'none' => __( 'None', 'happy_addons' ),
+                    'solid' => __( 'Solid', 'happy_addons' ),
+                    'double' => __( 'Double', 'happy_addons' ),
+                    'dotted' => __( 'Dotted', 'happy_addons' ),
+                    'dashed' => __( 'Dashed', 'happy_addons' ),
+                    'groove' => __( 'Groove', 'happy_addons' ),
+                ],
+                'default' => 'solid',
                 'selectors' => [
-                    '{{WRAPPER}} .ha-logo-item-thumb img' => 'padding: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-logo-grid-item' => 'border-style: {{VALUE}};',
                 ],
             ]
         );
 
         $this->add_responsive_control(
-            'box_spacing',
+            'grid_border_width',
             [
-                'label' => __('Box Spacing', 'happy_addons'),
+                'label' => __( 'Border Width', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-logo-item' => 'padding: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item' => 'border-right-width: {{SIZE}}{{UNIT}}; border-bottom-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-2 > .ha-logo-grid-item:nth-child(2n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-3 > .ha-logo-grid-item:nth-child(3n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-4 > .ha-logo-grid-item:nth-child(4n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-5 > .ha-logo-grid-item:nth-child(5n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-6 > .ha-logo-grid-item:nth-child(6n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-2 > .ha-logo-grid-item:nth-child(-n+2)' => 'border-top-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-3 > .ha-logo-grid-item:nth-child(-n+3)' => 'border-top-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-4 > .ha-logo-grid-item:nth-child(-n+4)' => 'border-top-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-5 > .ha-logo-grid-item:nth-child(-n+5)' => 'border-top-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-6 > .ha-logo-grid-item:nth-child(-n+6)' => 'border-top-width: {{SIZE}}{{UNIT}};',
+
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-item' => 'border-top-width: {{SIZE}}{{UNIT}}; border-right-width: {{SIZE}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'grid_border_type!' => 'none',
+                ]
             ]
         );
 
         $this->add_control(
-            'logo_background_color',
+            'grid_border_color',
             [
-                'label' => __('Background Color', 'happy_addons'),
+                'label' => __( 'Border Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-logo-item-thumb' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-logo-grid-item' => 'border-color: {{VALUE}};',
                 ],
+                'condition' => [
+                    'grid_border_type!' => 'none',
+                ]
             ]
         );
 
         $this->add_control(
-            'hr',
+            'grid_bg_color',
             [
-                'type' => Controls_Manager::DIVIDER,
-                'style' => 'thick',
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Border::get_type(),
-            [
-                'name' => 'logo_border',
-                'selector' => '{{WRAPPER}} .ha-logo-item-thumb'
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-logo-grid-item' => 'background-color: {{VALUE}};',
+                ],
             ]
         );
 
         $this->add_responsive_control(
-            'logo_border_radius',
+            'grid_border_radius',
             [
-                'label' => __('Border Radius', 'happy_addons'),
+                'label' => __( 'Border Radius', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-logo-item-thumb' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item:first-child' => 'border-top-left-radius: {{TOP}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item:last-child' => 'border-bottom-right-radius: {{BOTTOM}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-2 > .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-2 > .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-3 > .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-3 > .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-4 > .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-4 > .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-5 > .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-5 > .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-6 > .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-6 > .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-item:first-child' => 'border-top-left-radius: {{TOP}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-item:last-child' => 'border-bottom-right-radius: {{BOTTOM}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-2 > .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-2 > .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-3 > .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-3 > .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-4 > .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-4 > .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-5 > .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-5 > .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-6 > .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-6 > .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -226,11 +282,11 @@ class Logo_Grid extends Base
         $this->add_group_control(
             Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'logo_box_shadow',
+                'name' => 'grid_box_shadow',
                 'exclude' => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .ha-logo-item-thumb'
+                'selector' => '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-wrapper, {{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-wrapper, {{WRAPPER}}.ha-logo-grid--box .ha-logo-grid-item'
             ]
         );
 
@@ -240,35 +296,38 @@ class Logo_Grid extends Base
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $this->add_render_attribute('container', 'class', [
-            'ha-logo-grid-wrapper',
-            'ha-logo-grid--col-' . $settings['columns']['size'],
-        ]);
-
-        if (empty($settings['logo_list'])) {
+        if ( empty($settings['logo_list'] ) ) {
             return;
         }
+
+        $this->add_render_attribute( 'container', 'class', [
+            'ha-logo-grid-wrapper',
+            'ha-logo-grid--col-' . $settings['columns']['size'],
+        ] );
+
         ?>
 
-        <div <?php echo $this->get_render_attribute_string('container'); ?>>
+        <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
             <?php
-            foreach ($settings['logo_list'] as $item) :
+            foreach ( $settings['logo_list'] as $index => $item ) :
                 $image = wp_get_attachment_image_url( $item['image']['id'], $settings['thumbnail_size'] );
                 if ( ! $image ) {
                     $image = Utils::get_placeholder_image_src();
                 }
+                $repeater_key = 'grid_item' . $index;
+                $tag = 'div';
+                $this->add_render_attribute( $repeater_key, 'class', 'ha-logo-grid-item' );
+                if ( $item['link']['url'] ) {
+                    $tag = 'a';
+                    $this->add_render_attribute( $repeater_key, 'class', 'ha-logo-grid-link' );
+                    $this->add_render_attribute( $repeater_key, 'target', '_blank' );
+                    $this->add_render_attribute( $repeater_key, 'rel', 'noopener' );
+                    $this->add_render_attribute( $repeater_key, 'href', esc_url( $item['link']['url'] ) );
+                }
                 ?>
-                <div class="ha-logo-grid-item">
-                    <?php if ($item['link']['url']) : ?>
-                        <a class="ha-logo-grid-link" target="blank" rel="noopener" href="<?php echo esc_url($item['link']['url']); ?>">
-                            <img class="ha-logo-grid-img" src="<?php echo esc_url($image); ?>"
-                                 alt="<?php echo esc_attr($item['name']); ?>">
-                        </a>
-                    <?php else : ?>
-                        <img class="ha-logo-grid-img" src="<?php echo esc_url($image); ?>"
-                             alt="<?php echo esc_attr($item['name']); ?>">
-                    <?php endif; ?>
-                </div>
+                <<?php echo $tag; ?> <?php echo $this->get_render_attribute_string( $repeater_key ); ?>>
+                    <img class="ha-logo-grid-img" src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr( $item['name'] ); ?>">
+                </<?php echo $tag; ?>>
             <?php endforeach; ?>
         </div>
 
