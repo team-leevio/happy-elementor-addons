@@ -27,22 +27,24 @@ class Widget_Manager {
 
     public function add_floating_effect_controls( Element_Base $element ) {
         $element->add_control(
-            'floating_effects',
+            'floating_fx',
             [
                 'label' => __( 'Floating Effects', 'plugin-domain' ),
                 'type' => Controls_Manager::SWITCHER,
                 'return_value' => 'yes',
+                'frontend_available' => true,
             ]
         );
 
         $element->add_control(
-            'floating_effects_translate_toggle',
+            'floating_fx_translate_toggle',
             [
                 'label' => __( 'Translate', 'happy_addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
                 'return_value' => 'yes',
+                'frontend_available' => true,
                 'condition' => [
-                    'floating_effects' => 'yes',
+                    'floating_fx' => 'yes',
                 ]
             ]
         );
@@ -50,29 +52,225 @@ class Widget_Manager {
         $element->start_popover();
 
         $element->add_control(
-            'floating_effects_translate_x',
+            'floating_fx_translate_x',
             [
                 'label' => __( 'Translate X', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
-                    'floating_effects_translate_toggle' => 'yes',
-                    'floating_effects' => 'yes',
+                    'floating_fx_translate_toggle' => 'yes',
+                    'floating_fx' => 'yes',
                 ],
-                'render_type' => 'ui'
+                'render_type' => 'none',
+                'frontend_available' => true,
             ]
         );
 
         $element->add_control(
-            'floating_effects_translate_y',
+            'floating_fx_translate_y',
             [
                 'label' => __( 'Translate Y', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
-                    'floating_effects_translate_toggle' => 'yes',
-                    'floating_effects' => 'yes',
+                    'floating_fx_translate_toggle' => 'yes',
+                    'floating_fx' => 'yes',
                 ],
+                'render_type' => 'none',
+                'frontend_available' => true,
+            ]
+        );
+
+        $element->add_control(
+            'floating_fx_translate_duration',
+            [
+                'label' => __( 'Duration', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 3000,
+                        'step' => 100
+                    ]
+                ],
+                'default' => [
+                    'size' => 1000,
+                ],
+                'condition' => [
+                    'floating_fx_translate_toggle' => 'yes',
+                    'floating_fx' => 'yes',
+                ],
+                'render_type' => 'none',
+                'frontend_available' => true,
+            ]
+        );
+        $element->end_popover();
+
+        $element->add_control(
+            'floating_fx_rotate_toggle',
+            [
+                'label' => __( 'Rotate', 'happy_addons' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'return_value' => 'yes',
+                'frontend_available' => true,
+                'condition' => [
+                    'floating_fx' => 'yes',
+                ]
+            ]
+        );
+
+        $element->start_popover();
+
+        $element->add_control(
+            'floating_fx_rotate_x',
+            [
+                'label' => __( 'Rotate X', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 360,
+                    ]
+                ],
+                'condition' => [
+                    'floating_fx_rotate_toggle' => 'yes',
+                    'floating_fx' => 'yes',
+                ],
+                'render_type' => 'none',
+                'frontend_available' => true,
+            ]
+        );
+
+        $element->add_control(
+            'floating_fx_rotate_y',
+            [
+                'label' => __( 'Translate Y', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 360,
+                    ]
+                ],
+                'condition' => [
+                    'floating_fx_rotate_toggle' => 'yes',
+                    'floating_fx' => 'yes',
+                ],
+                'render_type' => 'none',
+                'frontend_available' => true,
+            ]
+        );
+
+        $element->add_control(
+            'floating_fx_rotate_duration',
+            [
+                'label' => __( 'Duration', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 3000,
+                        'step' => 100
+                    ]
+                ],
+                'default' => [
+                    'size' => 1000,
+                ],
+                'condition' => [
+                    'floating_fx_rotate_toggle' => 'yes',
+                    'floating_fx' => 'yes',
+                ],
+                'render_type' => 'none',
+                'frontend_available' => true,
+            ]
+        );
+        $element->end_popover();
+
+        $element->add_control(
+            'floating_fx_scale_toggle',
+            [
+                'label' => __( 'Scale', 'happy_addons' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'return_value' => 'yes',
+                'frontend_available' => true,
+                'condition' => [
+                    'floating_fx' => 'yes',
+                ]
+            ]
+        );
+
+        $element->start_popover();
+
+        $element->add_control(
+            'floating_fx_scale_x',
+            [
+                'label' => __( 'Scale X', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 10,
+                        'step' => .1
+                    ]
+                ],
+                'condition' => [
+                    'floating_fx_scale_toggle' => 'yes',
+                    'floating_fx' => 'yes',
+                ],
+                'render_type' => 'none',
+                'frontend_available' => true,
+            ]
+        );
+
+        $element->add_control(
+            'floating_fx_scale_y',
+            [
+                'label' => __( 'Scale Y', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 10,
+                        'step' => .1
+                    ]
+                ],
+                'condition' => [
+                    'floating_fx_scale_toggle' => 'yes',
+                    'floating_fx' => 'yes',
+                ],
+                'render_type' => 'none',
+                'frontend_available' => true,
+            ]
+        );
+
+        $element->add_control(
+            'floating_fx_scale_duration',
+            [
+                'label' => __( 'Duration', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 3000,
+                        'step' => 100
+                    ]
+                ],
+                'default' => [
+                    'size' => 1000,
+                ],
+                'condition' => [
+                    'floating_fx_scale_toggle' => 'yes',
+                    'floating_fx' => 'yes',
+                ],
+                'render_type' => 'none',
+                'frontend_available' => true,
             ]
         );
         $element->end_popover();

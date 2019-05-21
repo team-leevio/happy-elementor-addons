@@ -197,6 +197,85 @@ window.Happy = window.Happy || {};
             'frontend/element_ready/ha-carousel.default',
             Happy.initCarousel
         );
+
+        elementorFrontend.hooks.addAction(
+            'frontend/element_ready/widget',
+            function ($scope) {
+
+                var FloatingFx = elementorModules.frontend.handlers.Base.extend({
+                    onInit: function onInit() {
+                        elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+                        this.runAnimation();
+                    },
+
+                    onElementChange: function () {
+                        this.$element.find('.elementor-widget-container').removeAttr('style');
+                        this.runAnimation();
+                    },
+
+                    runAnimation: function() {
+                        var settings = this.getElementSettings();
+                        if (settings && settings.floating_fx) {
+                            var animeSettings = {
+                                targets: this.$element.find('.elementor-widget-container').get(0),
+                                loop: true,
+                                direction: 'alternate',
+                                easing: 'easeInOutSine'
+                            };
+
+                            if (settings.floating_fx_translate_toggle) {
+                                if (settings.floating_fx_translate_x.size) {
+                                    animeSettings.translateX = {
+                                        value: settings.floating_fx_translate_x.size,
+                                        duration: settings.floating_fx_translate_duration.size
+                                    }
+                                }
+                                if (settings.floating_fx_translate_y.size) {
+                                    animeSettings.translateY = {
+                                        value: settings.floating_fx_translate_y.size,
+                                        duration: settings.floating_fx_translate_duration.size
+                                    }
+                                }
+                            }
+
+                            if (settings.floating_fx_rotate_toggle) {
+                                if (settings.floating_fx_rotate_x.size) {
+                                    animeSettings.rotateX = {
+                                        value: settings.floating_fx_rotate_x.size,
+                                        duration: settings.floating_fx_rotate_duration.size
+                                    }
+                                }
+                                if (settings.floating_fx_rotate_y.size) {
+                                    animeSettings.rotateY = {
+                                        value: settings.floating_fx_rotate_y.size,
+                                        duration: settings.floating_fx_rotate_duration.size
+                                    }
+                                }
+                            }
+
+                            if (settings.floating_fx_scale_toggle) {
+                                if (settings.floating_fx_scale_x.size) {
+                                    animeSettings.scaleX = {
+                                        value: settings.floating_fx_scale_x.size,
+                                        duration: settings.floating_fx_scale_duration.size
+                                    }
+                                }
+                                if (settings.floating_fx_scale_y.size) {
+                                    animeSettings.scaleY = {
+                                        value: settings.floating_fx_scale_y.size,
+                                        duration: settings.floating_fx_scale_duration.size
+                                    }
+                                }
+                            }
+
+                            anime(animeSettings);
+                        }
+                    }
+                });
+
+                new FloatingFx({ $element: $scope });
+            }
+        );
     });
 
 } (jQuery, Happy));
