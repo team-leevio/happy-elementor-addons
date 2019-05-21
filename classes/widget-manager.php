@@ -215,7 +215,28 @@ class Widget_Manager {
         $element->add_control(
             'ha_floating_fx_rotate_y',
             [
-                'label' => __( 'Translate Y', 'happy_addons' ),
+                'label' => __( 'Rotate Y', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 360,
+                    ]
+                ],
+                'condition' => [
+                    'ha_floating_fx_rotate_toggle' => 'yes',
+                    'ha_floating_fx' => 'yes',
+                ],
+                'render_type' => 'none',
+                'frontend_available' => true,
+            ]
+        );
+
+        $element->add_control(
+            'ha_floating_fx_rotate_z',
+            [
+                'label' => __( 'Rotate Z', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [

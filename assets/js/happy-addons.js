@@ -264,6 +264,14 @@ window.Happy = window.Happy || {};
                                     delay: settings.ha_floating_fx_rotate_delay.size || 0
                                 }
                             }
+                            if (settings.ha_floating_fx_rotate_z.size) {
+                                fxSettings.rotateZ = {
+                                    value: settings.ha_floating_fx_rotate_z.size,
+                                    duration: settings.ha_floating_fx_rotate_duration.size,
+                                    easing: settings.ha_floating_fx_rotate_easing,
+                                    delay: settings.ha_floating_fx_rotate_delay.size || 0
+                                }
+                            }
                         }
 
                         if (settings.ha_floating_fx_scale_toggle) {
@@ -275,7 +283,6 @@ window.Happy = window.Happy || {};
                                     delay: settings.ha_floating_fx_scale_delay.size || 0
                                 }
                             }
-
                             if (settings.ha_floating_fx_scale_y.size) {
                                 fxSettings.scaleY = {
                                     value: settings.ha_floating_fx_scale_y.size,
