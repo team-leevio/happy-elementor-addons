@@ -805,6 +805,7 @@ span .ha-review-ratting--star:before,
 .ha-carousel .slick-prev,
 .ha-carousel .slick-next {
 	z-index: 999;
+	padding: 0; 
 	border: 1px solid rgba(255, 255, 255, .8);
 	border-radius: 50%;
 	background-color: rgba(255, 255, 255, .8);

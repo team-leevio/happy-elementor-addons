@@ -133,6 +133,14 @@ class Asset_Manager {
         );
 
         wp_enqueue_script(
+            'anime',
+            HAPPY_ASSETS . 'vendor/anime/lib/anime' . $suffix . 'js',
+            null,
+            Base::VERSION,
+            true
+        );
+
+        wp_enqueue_script(
             'happy-elementor-addons',
             HAPPY_ASSETS . 'js/happy-addons' . $suffix . 'js',
             ['jquery', 'imagesloaded'],
