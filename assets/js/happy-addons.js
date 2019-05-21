@@ -201,75 +201,92 @@ window.Happy = window.Happy || {};
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/widget',
             function ($scope) {
-
                 var FloatingFx = elementorModules.frontend.handlers.Base.extend({
                     onInit: function onInit() {
                         elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
-                        this.runAnimation();
+                        this.startFx();
                     },
 
                     onElementChange: function () {
                         this.$element.find('.elementor-widget-container').removeAttr('style');
-                        this.runAnimation();
+                        this.startFx();
                     },
 
-                    runAnimation: function() {
-                        var settings = this.getElementSettings();
-                        if (settings && settings.floating_fx) {
-                            var animeSettings = {
-                                targets: this.$element.find('.elementor-widget-container').get(0),
-                                loop: true,
-                                direction: 'alternate',
-                                easing: 'easeInOutSine'
-                            };
+                    isFxEnabled: function() {
+                        return this.getElementSettings( 'ha_floating_fx' ) === 'yes';
+                    },
 
-                            if (settings.floating_fx_translate_toggle) {
-                                if (settings.floating_fx_translate_x.size) {
-                                    animeSettings.translateX = {
-                                        value: settings.floating_fx_translate_x.size,
-                                        duration: settings.floating_fx_translate_duration.size
-                                    }
-                                }
-                                if (settings.floating_fx_translate_y.size) {
-                                    animeSettings.translateY = {
-                                        value: settings.floating_fx_translate_y.size,
-                                        duration: settings.floating_fx_translate_duration.size
-                                    }
-                                }
-                            }
-
-                            if (settings.floating_fx_rotate_toggle) {
-                                if (settings.floating_fx_rotate_x.size) {
-                                    animeSettings.rotateX = {
-                                        value: settings.floating_fx_rotate_x.size,
-                                        duration: settings.floating_fx_rotate_duration.size
-                                    }
-                                }
-                                if (settings.floating_fx_rotate_y.size) {
-                                    animeSettings.rotateY = {
-                                        value: settings.floating_fx_rotate_y.size,
-                                        duration: settings.floating_fx_rotate_duration.size
-                                    }
-                                }
-                            }
-
-                            if (settings.floating_fx_scale_toggle) {
-                                if (settings.floating_fx_scale_x.size) {
-                                    animeSettings.scaleX = {
-                                        value: settings.floating_fx_scale_x.size,
-                                        duration: settings.floating_fx_scale_duration.size
-                                    }
-                                }
-                                if (settings.floating_fx_scale_y.size) {
-                                    animeSettings.scaleY = {
-                                        value: settings.floating_fx_scale_y.size,
-                                        duration: settings.floating_fx_scale_duration.size
-                                    }
-                                }
-                            }
-
-                            anime(animeSettings);
+                    startFx: function() {
+                        if (!this.isFxEnabled()) {
+                            return;
                         }
+                        var settings = this.getElementSettings(),
+                            fxSettings = {
+                            targets: this.$element.find('.elementor-widget-container').get(0),
+                            loop: true,
+                            direction: 'alternate',
+                            easing: 'easeInOutSine'
+                        };
+
+                        if (settings.ha_floating_fx_translate_toggle) {
+                            if (settings.ha_floating_fx_translate_x.size) {
+                                fxSettings.translateX = {
+                                    value: settings.ha_floating_fx_translate_x.size,
+                                    duration: settings.ha_floating_fx_translate_duration.size,
+                                    easing: settings.ha_floating_fx_translate_easing,
+                                    delay: settings.ha_floating_fx_translate_delay.size || 0
+                                }
+                            }
+                            if (settings.ha_floating_fx_translate_y.size) {
+                                fxSettings.translateY = {
+                                    value: settings.ha_floating_fx_translate_y.size,
+                                    duration: settings.ha_floating_fx_translate_duration.size,
+                                    easing: settings.ha_floating_fx_translate_easing,
+                                    delay: settings.ha_floating_fx_translate_delay.size || 0
+                                }
+                            }
+                        }
+
+                        if (settings.ha_floating_fx_rotate_toggle) {
+                            if (settings.ha_floating_fx_rotate_x.size) {
+                                fxSettings.rotateX = {
+                                    value: settings.ha_floating_fx_rotate_x.size,
+                                    duration: settings.ha_floating_fx_rotate_duration.size,
+                                    easing: settings.ha_floating_fx_rotate_easing,
+                                    delay: settings.ha_floating_fx_rotate_delay.size || 0
+                                }
+                            }
+                            if (settings.ha_floating_fx_rotate_y.size) {
+                                fxSettings.rotateY = {
+                                    value: settings.ha_floating_fx_rotate_y.size,
+                                    duration: settings.ha_floating_fx_rotate_duration.size,
+                                    easing: settings.ha_floating_fx_rotate_easing,
+                                    delay: settings.ha_floating_fx_rotate_delay.size || 0
+                                }
+                            }
+                        }
+
+                        if (settings.ha_floating_fx_scale_toggle) {
+                            if (settings.ha_floating_fx_scale_x.size) {
+                                fxSettings.scaleX = {
+                                    value: settings.ha_floating_fx_scale_x.size,
+                                    duration: settings.ha_floating_fx_scale_duration.size,
+                                    easing: settings.ha_floating_fx_scale_easing,
+                                    delay: settings.ha_floating_fx_scale_delay.size || 0
+                                }
+                            }
+
+                            if (settings.ha_floating_fx_scale_y.size) {
+                                fxSettings.scaleY = {
+                                    value: settings.ha_floating_fx_scale_y.size,
+                                    duration: settings.ha_floating_fx_scale_duration.size,
+                                    easing: settings.ha_floating_fx_scale_easing,
+                                    delay: settings.ha_floating_fx_scale_delay.size || 0
+                                }
+                            }
+                        }
+
+                        anime(fxSettings);
                     }
                 });
 
