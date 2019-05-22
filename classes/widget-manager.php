@@ -26,34 +26,6 @@ class Widget_Manager {
     }
 
     public function add_floating_effect_controls( Element_Base $element ) {
-        $easingFns = [
-            'linear' => 'Linear',
-            'easeInQuad' => 'easeInQuad',
-            'easeInCubic' => 'easeInCubic',
-            'easeInQuart' => 'easeInQuart',
-            'easeInQuint' => 'easeInQuint',
-            'easeInSine' => 'easeInSine',
-            'easeInExpo' => 'easeInExpo',
-            'easeInCirc' => 'easeInCirc',
-            'easeInBack' => 'easeInBack',
-            'easeOutQuad' => 'easeOutQuad',
-            'easeOutCubic' => 'easeOutCubic',
-            'easeOutQuart' => 'easeOutQuart',
-            'easeOutQuint' => 'easeOutQuint',
-            'easeOutSine' => 'easeOutSine',
-            'easeOutExpo' => 'easeOutExpo',
-            'easeOutCirc' => 'easeOutCirc',
-            'easeOutBack' => 'easeOutBack',
-            'easeInOutQuad' => 'easeInOutQuad',
-            'easeInOutCubic' => 'easeInOutCubic',
-            'easeInOutQuart' => 'easeInOutQuart',
-            'easeInOutQuint' => 'easeInOutQuint',
-            'easeInOutSine' => 'easeInOutSine',
-            'easeInOutExpo' => 'easeInOutExpo',
-            'easeInOutCirc' => 'easeInOutCirc',
-            'easeInOutBack' => 'easeInOutBack',
-        ];
-
         $element->add_control(
             'ha_floating_fx',
             [
@@ -118,7 +90,7 @@ class Widget_Manager {
                 'range' => [
                     'px' => [
                         'min' => 0,
-                        'max' => 5000,
+                        'max' => 10000,
                         'step' => 100
                     ]
                 ],
@@ -147,9 +119,6 @@ class Widget_Manager {
                         'step' => 100
                     ]
                 ],
-                'default' => [
-                    'size' => 1000,
-                ],
                 'condition' => [
                     'ha_floating_fx_translate_toggle' => 'yes',
                     'ha_floating_fx' => 'yes',
@@ -159,21 +128,6 @@ class Widget_Manager {
             ]
         );
 
-        $element->add_control(
-            'ha_floating_fx_translate_easing',
-            [
-                'label' => __( 'Easing', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => $easingFns,
-                'default' => 'linear',
-                'condition' => [
-                    'ha_floating_fx_translate_toggle' => 'yes',
-                    'ha_floating_fx' => 'yes',
-                ],
-                'render_type' => 'none',
-                'frontend_available' => true,
-            ]
-        );
         $element->end_popover();
 
         $element->add_control(
@@ -263,7 +217,7 @@ class Widget_Manager {
                 'range' => [
                     'px' => [
                         'min' => 0,
-                        'max' => 5000,
+                        'max' => 10000,
                         'step' => 100
                     ]
                 ],
@@ -292,9 +246,6 @@ class Widget_Manager {
                         'step' => 100
                     ]
                 ],
-                'default' => [
-                    'size' => 1000,
-                ],
                 'condition' => [
                     'ha_floating_fx_rotate_toggle' => 'yes',
                     'ha_floating_fx' => 'yes',
@@ -304,21 +255,6 @@ class Widget_Manager {
             ]
         );
 
-        $element->add_control(
-            'ha_floating_fx_rotate_easing',
-            [
-                'label' => __( 'Easing', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => $easingFns,
-                'default' => 'linear',
-                'condition' => [
-                    'ha_floating_fx_rotate_toggle' => 'yes',
-                    'ha_floating_fx' => 'yes',
-                ],
-                'render_type' => 'none',
-                'frontend_available' => true,
-            ]
-        );
         $element->end_popover();
 
         $element->add_control(
@@ -389,7 +325,7 @@ class Widget_Manager {
                 'range' => [
                     'px' => [
                         'min' => 0,
-                        'max' => 5000,
+                        'max' => 10000,
                         'step' => 100
                     ]
                 ],
@@ -418,9 +354,6 @@ class Widget_Manager {
                         'step' => 100
                     ]
                 ],
-                'default' => [
-                    'size' => 1000,
-                ],
                 'condition' => [
                     'ha_floating_fx_scale_toggle' => 'yes',
                     'ha_floating_fx' => 'yes',
@@ -430,21 +363,6 @@ class Widget_Manager {
             ]
         );
 
-        $element->add_control(
-            'ha_floating_fx_scale_easing',
-            [
-                'label' => __( 'Easing', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => $easingFns,
-                'default' => 'linear',
-                'condition' => [
-                    'ha_floating_fx_scale_toggle' => 'yes',
-                    'ha_floating_fx' => 'yes',
-                ],
-                'render_type' => 'none',
-                'frontend_available' => true,
-            ]
-        );
         $element->end_popover();
 
         $element->add_control(

@@ -134,7 +134,7 @@ class Asset_Manager {
 
         wp_enqueue_script(
             'anime',
-            HAPPY_ASSETS . 'vendor/anime/lib/anime' . $suffix . 'js',
+            HAPPY_ASSETS . 'vendor/anime/lib/anime.min.js',
             null,
             Base::VERSION,
             true
