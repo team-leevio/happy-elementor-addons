@@ -483,6 +483,32 @@ class InfoBox extends Base {
             ]
         );
 
+        $this->add_control(
+            'icon_bg_rotate',
+            [
+                'label' => __( 'Rotate Background', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'deg' ],
+                'default' => [
+                    'unit' => 'deg',
+                ],
+                'range' => [
+                    'deg' => [
+                        'min' => 0,
+                        'max' => 360,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-infobox-figure--icon' => '-webkit-transform: rotate({{SIZE}}{{UNIT}}); transform: rotate({{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}} .ha-infobox-figure--icon > i' => '-webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
+                ],
+                'condition' => [
+                    'type' => 'icon',
+                    'icon_bg_color!' => '',
+                ]
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -496,7 +522,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'content_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Container Padding', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [

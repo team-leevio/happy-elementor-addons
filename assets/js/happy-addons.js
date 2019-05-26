@@ -178,33 +178,38 @@ window.Happy = window.Happy || {};
 
     $window.on( 'elementor/frontend/init', function() {
         var FloatingFx = elementorModules.frontend.handlers.Base.extend({
-            onInit: function onInit() {
+            onInit: function() {
                 elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
-                this.startFx();
+                this.run();
             },
 
-            onElementChange: function () {
-                this.$element.removeAttr('style');
-                this.startFx();
+            getTheElement: function() {
+                return this.$element.find('.elementor-widget-container')[0];
             },
 
-            isFxEnabled: function() {
-                return this.getElementSettings( 'ha_floating_fx' ) === 'yes';
+            resetFx: function() {
+                anime.remove(this.getTheElement());
+                this.getTheElement().removeAttribute('style');
             },
 
-            startFx: function() {
-                if (!this.isFxEnabled()) {
-                    return;
-                }
+            onDestroy: function() {
+                elementorModules.frontend.handlers.Base.prototype.onDestroy.apply(this, arguments);
+                this.resetFx();
+            },
+
+            onElementChange: function() {
+                this.resetFx();
+                this.run();
+            },
+
+            run: function() {
                 var settings = this.getElementSettings(),
                     fxSettings = {
-                        targets: this.$element[0],
+                        targets: this.getTheElement(),
                         loop: true,
                         direction: 'alternate',
                         easing: 'easeInOutSine'
                     };
-
-                this.$element[0].style.setProperty('will-change', 'transform');
 
                 if (settings.ha_floating_fx_translate_toggle) {
                     if (settings.ha_floating_fx_translate_x.size) {
@@ -264,7 +269,10 @@ window.Happy = window.Happy || {};
                     }
                 }
 
-                anime(fxSettings);
+                if (settings.ha_floating_fx_translate_toggle || settings.ha_floating_fx_rotate_toggle || settings.ha_floating_fx_scale_toggle) {
+                    this.getTheElement().style.setProperty('will-change', 'transform');
+                    anime(fxSettings);
+                }
             }
         });
 
