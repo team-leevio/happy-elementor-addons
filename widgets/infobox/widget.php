@@ -369,7 +369,7 @@ class InfoBox extends Base {
                         'max' => 1000,
                     ],
                 ],
-                'render_type' => 'ui'
+                'render_type' => 'ui',
             ]
         );
 
@@ -503,6 +503,34 @@ class InfoBox extends Base {
                     '{{WRAPPER}} .ha-infobox-figure--icon > i' => '-webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
                 ],
                 'condition' => [
+                    'type' => 'icon',
+                    'icon_bg_color!' => '',
+                    'offset_toggle!' => 'yes',
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'icon_bg_rotate_conditional',
+            [
+                'label' => __( 'Rotate Background', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'deg' ],
+                'default' => [
+                    'unit' => 'deg',
+                ],
+                'range' => [
+                    'deg' => [
+                        'min' => 0,
+                        'max' => 360,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-infobox-figure--icon' => '-ms-transform: translate({{media_offset_x.SIZE}}px, {{media_offset_y.SIZE}}px) rotate({{SIZE}}deg); -webkit-transform: translate({{media_offset_x.SIZE}}px, {{media_offset_y.SIZE}}px) rotate({{SIZE}}deg); transform: translate({{media_offset_x.SIZE}}px, {{media_offset_y.SIZE}}px) rotate({{SIZE}}deg);',
+                    '{{WRAPPER}} .ha-infobox-figure--icon > i' => '-webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
+                ],
+                'condition' => [
+                    'offset_toggle' => 'yes',
                     'type' => 'icon',
                     'icon_bg_color!' => '',
                 ]
