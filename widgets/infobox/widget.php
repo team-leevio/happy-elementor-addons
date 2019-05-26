@@ -526,7 +526,7 @@ class InfoBox extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-infobox-figure--icon' => '-ms-transform: translate({{media_offset_x.SIZE}}px, {{media_offset_y.SIZE}}px) rotate({{SIZE}}deg); -webkit-transform: translate({{media_offset_x.SIZE}}px, {{media_offset_y.SIZE}}px) rotate({{SIZE}}deg); transform: translate({{media_offset_x.SIZE}}px, {{media_offset_y.SIZE}}px) rotate({{SIZE}}deg);',
+                    '{{WRAPPER}} .ha-infobox-figure--icon' => '-ms-transform: translate({{media_offset_x.SIZE}}px, {{media_offset_y.SIZE}}px) rotate({{SIZE}}deg); -webkit-transform: translate({{media_offset_x.SIZE}}px, {{media_offset_y.SIZE}}px) rotate({{SIZE}}deg); transform: translate({{media_offset_x.SIZE}}px, {{media_offset_y.SIZE}}px) rotate({{SIZE}}deg) !important;',
                     '{{WRAPPER}} .ha-infobox-figure--icon > i' => '-webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
                 ],
                 'condition' => [
