@@ -323,6 +323,7 @@
 
 .ha-icon-box .ha-badge {
 	position: absolute;
+	z-index: 9999; 
 	background-color: #e2498a;
 	color: #fff;
 }
