@@ -19,7 +19,9 @@ window.Happy = window.Happy || {};
     function initFilterable($scope, filterFn) {
         var $filterable = $scope.find('.hajs-gallery-filter');
         if ($filterable.length) {
-            $filterable.on('click', 'button', function() {
+            $filterable.on('click', 'button', function(event) {
+                event.stopPropagation();
+
                 var $current = $(this);
                 $current
                     .parent()
@@ -65,14 +67,20 @@ window.Happy = window.Happy || {};
     Happy.initImageGrid = function($scope) {
         var $item = $scope.find('.hajs-image-grid');
 
-        $item.isotope({
-            itemSelector: '.ha-image-grid-item',
-            filter: '*',
-            percentPosition: true
-        });
+        // var t = setTimeout(function() {
+        //
+        // }, 500);
+        //
+        // // $item.imagesLoaded().progress(function( instance, image ) {
+        // //     image.isLoaded && $item.isotope('layout');
+        // // });
 
-        $item.imagesLoaded().progress(function( instance, image ) {
-            image.isLoaded && $item.isotope('layout');
+        $item.imagesLoaded().done(function() {
+            $item.isotope({
+                itemSelector: '.ha-image-grid-item',
+                layoutMode: 'fitRows',
+                percentPosition: true
+            });
         });
 
         initFilterable($scope, function(filter) {

@@ -483,83 +483,88 @@ class Image_Grid extends Base {
         $this->end_controls_section();
     }
 
-    protected static function render_grid_item( &$settings, $image_id, $filter_class ) {
-        $image_url = wp_get_attachment_image_url( $image_id, $settings['thumbnail_size'] );
-        $caption = $popup_link = '';
-        if ( $settings['show_caption'] === 'yes' ) {
-            $caption = wp_get_attachment_caption( $image_id );
+    protected function get_gallery_data() {
+        $gallery = $this->get_settings_for_display( 'gallery' );
+
+        if ( ! is_array( $gallery ) || empty( $gallery ) ) {
+            return [];
         }
 
-        if ( $settings['enable_popup'] === 'yes' ) {
-            $popup_link = 'href="' . esc_url( wp_get_attachment_image_url( $image_id, 'large' ) ) . '"';
+        $menu = [];
+        $items = [];
+
+        foreach ( $gallery as $item ) {
+            if ( empty( $item['images'] ) ) {
+                continue;
+            }
+
+            $images = $item['images'];
+            $filter = sanitize_title_with_dashes( $item['filter'] );
+
+            if ( $filter && ! isset( $data[ $filter ] ) ) {
+                $menu[ $filter ] = $item['filter'];
+            }
+
+            foreach ( $images as $image ) {
+                if ( ! isset( $items[ $image['id'] ] ) ) {
+                    $items[ $image['id'] ] = [ $filter ];
+                } else {
+                    array_push( $items[ $image['id'] ], $filter );
+                }
+            }
         }
-        ?>
-        <div class="ha-image-grid-item <?php echo esc_attr( $filter_class ); ?>">
-            <a class="ha-image-grid-link" <?php echo $popup_link; ?>>
-                <img src="<?php echo esc_url( $image_url ); ?>" alt="">
-                <?php if ( $caption ): ?>
-                    <div class="ha-image-grid-overlay">
-                        <div class="ha-image-grid-content"><?php echo esc_html( $caption ); ?></div>
-                    </div>
-                <?php endif; ?>
-            </a>
-        </div>
-        <?php
+
+        return [
+            'menu' => $menu,
+            'items' => $items
+        ];
     }
 
 	protected function render() {
         $settings = $this->get_settings_for_display();
+        $gallery = $this->get_gallery_data();
 
-        if ( is_array( $settings['gallery'] ) ) :
-            $items = [];
-            $menu = [];
+        if ( empty( $gallery ) ) {
+            return;
+        }
 
-            foreach ( $settings['gallery'] as $gallery_item ) :
-                if ( empty( $gallery_item['images'] ) ) :
-                    continue;
-                endif;
+        $this->add_render_attribute( 'container', 'class', [
+            'hajs-image-grid',
+            'ha-image-grid-wrapper',
+            'ha-image-grid--col-' . $settings['columns']['size'],
+        ] );
 
-                $images = $gallery_item['images'];
+//        $this->add_render_attribute( 'container', 'data-happy-settings', self::get_data_prop_settings( $settings ) );
 
-                if ( $settings['show_filter'] === 'yes' && $gallery_item['filter'] ) {
-                    $filter = sanitize_title_with_dashes( $gallery_item['filter'] );
-                    if ( ! isset( $menu[$filter] ) ) {
-                        $menu[$filter] = sprintf(
-                            '<li><button type="button" data-filter=".%s">%s</button></li>',
-                            esc_attr( $filter ),
-                            esc_html( $gallery_item['filter'] )
-                        );
-                    }
-                }
+        if ( $settings['show_filter'] ) : ?>
+            <ul class="ha-gallery-filter hajs-gallery-filter">
+                <?php if ( $settings['show_all_filter'] ) : ?>
+                    <li class="ha-filter-active"><button type="button" data-filter="*"><?php echo esc_html( $settings['all_filter_label'] ); ?></button></li>
+                <?php endif; ?>
+                <?php foreach ( $gallery['menu'] as $key => $val ) : ?>
+                    <li><button type="button" data-filter=".<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $val ); ?></button></li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
 
-                foreach ( $images as $image ) :
-                    if ( ! isset( $items[ $image['id'] ] ) ) {
-                        $items[ $image['id'] ] = [$filter];
-                    } else {
-                        array_push( $items[ $image['id'] ], $filter );
-                    }
-                endforeach;
-            endforeach;
+        <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
+            <?php foreach ( $gallery['items'] as $id => $filters ) :
+                $caption = $settings['show_caption'] ? 'title="' . esc_attr( wp_get_attachment_caption( $id ) ) . '"' : '';
+                $popup_link = $settings['enable_popup'] ? 'href="' . esc_url( wp_get_attachment_image_url( $id, 'large' ) ) . '"' : '';
+                ?>
+                <div class="ha-image-grid-item <?php echo esc_attr( implode( ' ', $filters ) ); ?>">
+                    <a class="ha-image-grid-link" <?php echo $popup_link; ?>>
+                        <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'alt' => $caption ] ); ?>
+                        <?php if ( $caption ): ?>
+                            <div class="ha-image-grid-overlay">
+                                <div class="ha-image-grid-content"><?php echo esc_html( $caption ); ?></div>
+                            </div>
+                        <?php endif; ?>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
 
-            $this->add_render_attribute( 'container', 'class', [
-                'hajs-image-grid',
-                'ha-image-grid-wrapper',
-                'ha-image-grid--col-' . $settings['columns']['size'],
-            ] );
-
-            if ( $settings['show_filter'] === 'yes' ) :
-                echo '<ul class="ha-gallery-filter hajs-gallery-filter ha-text--' . $settings['button_align'] . '">';
-                    echo $settings['show_all_filter'] === 'yes' ? '<li class="ha-filter-active"><button type="button" data-filter="*">' . $settings['all_filter_label'] . '</button></li>' : '';
-                    echo implode( "\n", $menu );
-                echo '</ul>';
-            endif;
-
-            echo '<div ' . $this->get_render_attribute_string( 'container' ) . '>';
-                foreach ( $items as $item_id => $item_filter ) :
-                    self::render_grid_item( $settings, $item_id, implode( ' ', $item_filter ) );
-                endforeach;
-            echo '</div>';
-        endif;
+        <?php
     }
-
 }

@@ -558,7 +558,10 @@ class Justified_Gallery extends Base {
             }
         }
 
-        return [ $menu, $items ];
+        return [
+            'menu' => $menu,
+            'items' => $items
+        ];
     }
 
 	protected function render() {
@@ -581,19 +584,19 @@ class Justified_Gallery extends Base {
                 <?php if ( $settings['show_all_filter'] === 'yes' ) : ?>
                     <li class="ha-filter-active"><button type="button" data-filter="*"><?php echo esc_html( $settings['all_filter_label'] ); ?></button></li>
                 <?php endif; ?>
-                <?php foreach ( $gallery[0] as $key => $val ) : ?>
+                <?php foreach ( $gallery['menu'] as $key => $val ) : ?>
                     <li><button type="button" data-filter=".<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $val ); ?></button></li>
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>
 
         <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
-            <?php foreach ( $gallery[1] as $id => $filter ) :
-                $caption = $settings['show_caption'] === 'yes' ? 'title="' . esc_attr( wp_get_attachment_caption( $id ) ) . '"' : '';
-                $popup_link = $settings['enable_popup'] === 'yes' ? 'href="' . esc_url( wp_get_attachment_image_url( $id, 'large' ) ) . '"' : '';
+            <?php foreach ( $gallery['items'] as $id => $filters ) :
+                $caption = $settings['show_caption'] ? 'title="' . esc_attr( wp_get_attachment_caption( $id ) ) . '"' : '';
+                $popup_link = $settings['enable_popup'] ? 'href="' . esc_url( wp_get_attachment_image_url( $id, 'large' ) ) . '"' : '';
                 ?>
-                <a class="ha-justified-gallery-item <?php echo esc_attr( implode( ' ', $filter ) ); ?>" <?php echo $caption; ?> <?php echo $popup_link; ?>>
-                    <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'] ); ?>
+                <a class="ha-justified-gallery-item <?php echo esc_attr( implode( ' ', $filters ) ); ?>" <?php echo $caption; ?> <?php echo $popup_link; ?>>
+                    <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'alt' => $caption ] ); ?>
                 </a>
             <?php endforeach; ?>
         </div>
