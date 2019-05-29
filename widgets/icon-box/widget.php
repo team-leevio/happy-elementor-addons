@@ -697,18 +697,24 @@ class Icon_Box extends Base {
         $this->add_render_attribute( 'badge_text', 'class', 'ha-badge ha-badge--top-right' );
         ?>
 
-        <?php if ( ! empty( $settings['badge_text'] ) ) : ?>
+        <?php if ( $settings['badge_text'] ) : ?>
             <span <?php echo $this->get_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></span>
         <?php endif; ?>
 
-        <span class="ha-icon-box-icon">
-            <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
-        </span>
-        <?php printf( '<%1$s %2$s>%3$s</%1$s>',
-            tag_escape( $settings['title_tag'] ),
-            $this->get_render_attribute_string( 'title' ),
-            esc_html( $settings['title' ] )
-        );
+        <?php if ( $settings['icon'] ) : ?>
+            <span class="ha-icon-box-icon">
+                <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
+            </span>
+        <?php endif; ?>
+
+        <?php
+        if ( $settings['title' ] ) :
+            printf( '<%1$s %2$s>%3$s</%1$s>',
+                tag_escape( $settings['title_tag'] ),
+                $this->get_render_attribute_string( 'title' ),
+                esc_html( $settings['title' ] )
+                );
+        endif;
     }
 
     public function _content_template() {
@@ -720,23 +726,26 @@ class Icon_Box extends Base {
         view.addInlineEditingAttributes( 'badge_text', 'none' );
         view.addRenderAttribute( 'badge_text', 'class', 'ha-badge ha-badge--top-right' );
 
-        if (!_.isEmpty(settings.link.url)) {
+        if (settings.link.url) {
             view.addRenderAttribute( 'link', 'class', 'ha-icon-box-link' );
             view.addRenderAttribute( 'link', 'href', settings.link.url );
-
             print( '<a ' + view.getRenderAttributeString( 'link' ) + '>' );
         } #>
 
-        <# if (!_.isEmpty(settings.badge_text)) { #>
+        <# if (settings.badge_text) { #>
             <span {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{ settings.badge_text }}</span>
         <# } #>
 
-        <span class="ha-icon-box-icon">
-            <i class="{{ settings.icon }}"></i>
-        </span>
-        <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
-        <#
-        if (!_.isEmpty(settings.link.url)) {
+        <# if (settings.icon) { #>
+            <span class="ha-icon-box-icon">
+                <i class="{{ settings.icon }}"></i>
+            </span>
+        <# } #>
+        <# if (settings.title) { #>
+            <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
+        <# } #>
+
+        <# if (settings.link.url) {
             print( '</a>' );
         } #>
         <?php

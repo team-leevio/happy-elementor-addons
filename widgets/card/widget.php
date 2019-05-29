@@ -916,7 +916,7 @@ class Card extends Base {
         }
         ?>
 
-        <?php if ( ! empty( $settings['image']['url'] ) ) :
+        <?php if ( $settings['image']['url'] || $settings['image']['id'] ) :
             $this->add_render_attribute( 'image', 'src', $settings['image']['url'] );
             $this->add_render_attribute( 'image', 'alt', Control_Media::get_image_alt( $settings['image'] ) );
             $this->add_render_attribute( 'image', 'title', Control_Media::get_image_title( $settings['image'] ) );
@@ -924,19 +924,30 @@ class Card extends Base {
             ?>
             <figure class="ha-card-figure">
                 <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
-                <div <?php echo $this->get_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></div>
+                <?php if ( $settings['badge_text'] ) : ?>
+                    <div <?php echo $this->get_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></div>
+                <?php endif; ?>
             </figure>
         <?php endif; ?>
 
         <div class="ha-card-body">
-            <?php printf( '<%1$s %2$s>%3$s</%1$s>',
-                tag_escape( $settings['title_tag'] ),
-                $this->get_render_attribute_string( 'title' ),
-                esc_html( $settings['title' ] )
-                ); ?>
-            <div <?php echo $this->get_render_attribute_string( 'description' ); ?>>
-                <p><?php echo wp_kses_data( $settings['description'] ); ?></p>
-            </div>
+
+            <?php
+            if ( $settings['title_tag'] ) :
+                printf( '<%1$s %2$s>%3$s</%1$s>',
+                    tag_escape( $settings['title_tag'] ),
+                    $this->get_render_attribute_string( 'title' ),
+                    esc_html( $settings['title' ] )
+                    );
+            endif;
+            ?>
+
+            <?php if ( $settings['description'] ) : ?>
+                <div <?php echo $this->get_render_attribute_string( 'description' ); ?>>
+                    <p><?php echo wp_kses_data( $settings['description'] ); ?></p>
+                </div>
+            <?php endif; ?>
+
             <?php
             if ( $settings['button_text'] && empty( $settings['button_icon'] ) ) :
                 printf( '<a %1$s>%2$s</a>',
@@ -991,7 +1002,7 @@ class Card extends Base {
         view.addRenderAttribute( 'button', 'class', 'ha-btn' );
         view.addRenderAttribute( 'button', 'href', settings.button_link.url );
 
-        if ( settings.image.url ) {
+        if ( settings.image.url || settings.image.id ) {
             var image = {
                 id: settings.image.id,
                 url: settings.image.url,
@@ -1003,16 +1014,22 @@ class Card extends Base {
             var image_url = elementor.imagesManager.getImageUrl( image ); #>
             <figure class="ha-card-figure">
                 <img src="{{ image_url }}">
-                <div {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{ settings.badge_text }}</div>
+                <# if (settings.badge_text) { #>
+                    <div {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{ settings.badge_text }}</div>
+                <# } #>
             </figure>
         <# } #>
 
         <div class="ha-card-body">
-            <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
+            <# if (settings.title) { #>
+                <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
+            <# } #>
 
-            <div {{{ view.getRenderAttributeString( 'description' ) }}}>
-                <p>{{{ settings.description }}}</p>
-            </div>
+            <# if (settings.description) { #>
+                <div {{{ view.getRenderAttributeString( 'description' ) }}}>
+                    <p>{{{ settings.description }}}</p>
+                </div>
+            <# } #>
 
             <# if ( settings.button_text && ! settings.button_icon ) { #>
                 <a {{{ view.getRenderAttributeString( 'button' ) }}}><span {{{ view.getRenderAttributeString( 'button_text' ) }}}>{{ settings.button_text }}</span></a>
