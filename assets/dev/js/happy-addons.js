@@ -178,6 +178,7 @@ window.Happy = window.Happy || {};
 
     $window.on( 'elementor/frontend/init', function() {
         var FloatingFx = elementorModules.frontend.handlers.Base.extend({
+<<<<<<< HEAD
             onInit: function onInit() {
                 elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
                 this.startFx();
@@ -199,13 +200,46 @@ window.Happy = window.Happy || {};
                 var settings = this.getElementSettings(),
                     fxSettings = {
                         targets: this.$element[0],
+=======
+            onInit: function() {
+                elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+                this.run();
+            },
+
+            getTheElement: function() {
+                return this.$element.find('.elementor-widget-container')[0];
+            },
+
+            resetFx: function() {
+                anime.remove(this.getTheElement());
+                this.getTheElement().removeAttribute('style');
+            },
+
+            onDestroy: function() {
+                elementorModules.frontend.handlers.Base.prototype.onDestroy.apply(this, arguments);
+                this.resetFx();
+            },
+
+            onElementChange: function() {
+                this.resetFx();
+                this.run();
+            },
+
+            run: function() {
+                var settings = this.getElementSettings(),
+                    fxSettings = {
+                        targets: this.getTheElement(),
+>>>>>>> 06c029179dd1a1841cb2f0a35e85fecb8cfd98e2
                         loop: true,
                         direction: 'alternate',
                         easing: 'easeInOutSine'
                     };
 
+<<<<<<< HEAD
                 this.$element[0].style.setProperty('will-change', 'transform');
 
+=======
+>>>>>>> 06c029179dd1a1841cb2f0a35e85fecb8cfd98e2
                 if (settings.ha_floating_fx_translate_toggle) {
                     if (settings.ha_floating_fx_translate_x.size) {
                         fxSettings.translateX = {
@@ -264,7 +298,14 @@ window.Happy = window.Happy || {};
                     }
                 }
 
+<<<<<<< HEAD
                 anime(fxSettings);
+=======
+                if (settings.ha_floating_fx_translate_toggle || settings.ha_floating_fx_rotate_toggle || settings.ha_floating_fx_scale_toggle) {
+                    this.getTheElement().style.setProperty('will-change', 'transform');
+                    anime(fxSettings);
+                }
+>>>>>>> 06c029179dd1a1841cb2f0a35e85fecb8cfd98e2
             }
         });
 

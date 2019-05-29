@@ -77,10 +77,31 @@ class Icon_Box extends Base {
         );
 
         $this->add_control(
+            'badge_text',
+            [
+                'label' => __( 'Badge Text', 'happy_addons' ),
+                'type' => Controls_Manager::TEXT,
+                'label_block' => true,
+                'placeholder' => __( 'Type Icon Badge Text', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'link',
+            [
+                'label' => __( 'Box Link', 'happy_addons' ),
+                'separator' => 'before',
+                'type' => Controls_Manager::URL,
+                'placeholder' => __( 'https://example.com/', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
             'title_tag',
             [
                 'label' => __( 'Title HTML Tag', 'happy_addons' ),
                 'type' => Controls_Manager::CHOOSE,
+                'separator' => 'before',
                 'options' => [
                     'h1'  => [
                         'title' => __( 'H1', 'happy_addons' ),
@@ -112,16 +133,6 @@ class Icon_Box extends Base {
             ]
         );
 
-        $this->add_control(
-            'badge_text',
-            [
-                'label' => __( 'Badge Text', 'happy_addons' ),
-                'type' => Controls_Manager::TEXT,
-                'label_block' => true,
-                'placeholder' => __( 'Type Icon Badge Text', 'happy_addons' ),
-            ]
-        );
-
         $this->add_responsive_control(
             'align',
             [
@@ -149,15 +160,6 @@ class Icon_Box extends Base {
                 'selectors' => [
                     '{{WRAPPER}}' => 'text-align: {{VALUE}}'
                 ]
-            ]
-        );
-
-        $this->add_control(
-            'link',
-            [
-                'label' => __( 'Box Link', 'happy_addons' ),
-                'type' => Controls_Manager::URL,
-                'placeholder' => __( 'https://example.com/', 'happy_addons' ),
             ]
         );
 

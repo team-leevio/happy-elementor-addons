@@ -621,7 +621,6 @@ class Card extends Base {
                 'name' => 'badge_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
                 'exclude' => [
-                    'font_family',
                     'line_height'
                 ],
                 'default' => [
@@ -765,7 +764,7 @@ class Card extends Base {
             [
                 'name' => 'button_typography',
                 'selector' => '{{WRAPPER}} .ha-btn',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
             ]
         );
 
