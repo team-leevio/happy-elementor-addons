@@ -427,7 +427,7 @@ class InfoBox extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'media_border',
-                'selector' => '{{WRAPPER}} .ha-infobox-figure--image > img, {{WRAPPER}} .ha-blurb-figure--icon',
+                'selector' => '{{WRAPPER}} .ha-infobox-figure--image > img, {{WRAPPER}} .ha-infobox-figure--icon',
             ]
         );
 
@@ -451,7 +451,7 @@ class InfoBox extends Base {
                 'exclude' => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .ha-infobox-figure--image > img, {{WRAPPER}} .ha-blurb-figure--icon'
+                'selector' => '{{WRAPPER}} .ha-infobox-figure--image > img, {{WRAPPER}} .ha-infobox-figure--icon'
             ]
         );
 
@@ -616,7 +616,7 @@ class InfoBox extends Base {
             [
                 'name' => 'btn_typography',
                 'selector' => '{{WRAPPER}} .ha-link',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
             ]
         );
 

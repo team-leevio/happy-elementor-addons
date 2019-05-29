@@ -43,6 +43,11 @@ class WeForm extends Base {
         return [ 'we form', 'caldera', 'wpf','wpform' , 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
     }
 
+    // Whether the reload preview is required or not.
+    public function is_reload_preview_required() {
+        return true;
+    }
+
 	protected function register_content_controls() {
 		$this->start_controls_section(
 			'_section_weform',

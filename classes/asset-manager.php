@@ -18,7 +18,10 @@ class Asset_Manager {
         // Frontend scripts
         add_action( 'wp_enqueue_scripts', [$this, 'enqueue_frontend_scripts'] );
 
-        add_action( 'elementor/editor/before_enqueue_scripts', [$this, 'enqueue_editor_scripts'] );
+		add_action( 'elementor/editor/before_enqueue_scripts', [$this, 'enqueue_editor_scripts'] );
+
+        add_action( 'elementor/preview/enqueue_styles', [$this, 'enqueue_preview_style'] );
+
 
         // Placeholder image replacement
         add_filter( 'elementor/utils/get_placeholder_image_src', [$this, 'set_placeholder_image'] );
@@ -81,7 +84,7 @@ class Asset_Manager {
             HAPPY_ASSETS . 'css/main' . $suffix . 'css',
             ['elementor-frontend'],
             Base::VERSION
-        );
+		);
 
         // Scripts
         wp_enqueue_script(
@@ -133,6 +136,14 @@ class Asset_Manager {
         );
 
         wp_enqueue_script(
+            'anime',
+            HAPPY_ASSETS . 'vendor/anime/lib/anime.min.js',
+            null,
+            Base::VERSION,
+            true
+        );
+
+        wp_enqueue_script(
             'happy-elementor-addons',
             HAPPY_ASSETS . 'js/happy-addons' . $suffix . 'js',
             ['jquery', 'imagesloaded'],
@@ -162,6 +173,19 @@ class Asset_Manager {
             ['elementor-editor'],
             Base::VERSION,
             true
-        );
+		);
+
+	}
+
+    public function enqueue_preview_style() {
+        if( class_exists( 'WeForms' ) ) {
+            wp_enqueue_style(
+                'happy-elementor-weform-preview',
+                plugins_url( '/weforms/assets/wpuf/css/frontend-forms.css', 'weforms' ),
+                null,
+                Base::VERSION
+            );
+        }
     }
+
 }

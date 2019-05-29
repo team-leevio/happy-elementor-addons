@@ -1,18 +1,14 @@
 .ha-logo-grid {
-  @include widgetContainer {
-    overflow: hidden;
-    border-radius: inherit;
+  &-wrapper {
+    @extend .ha-cf;
   }
 
   &-item {
     height: 180px;
-    line-height: calc(180px + 40px); // just to vertically center the logo
-
     float: left;
     overflow: hidden;
-
-    padding-left: 30px;
-    padding-right: 30px;
+    padding: 30px;
+    border-color: #e7e7e7;
   }
 
   &-img {
@@ -28,32 +24,38 @@
 
   // TicTacToe style
   &--tictactoe &-item {
-    border-width: 0 3px 3px 0;
-    border-color: #5cdb95;
+    border-width: 2px 2px 0 0;
     border-style: solid;
   }
 
   @for $i from 2 through 6 {
     &--tictactoe #{&}--col-#{$i} > &-item {
       &:nth-child(#{$i}n) {
-        border-right-width: 0;
+        border-right-width: 0 !important;
       }
 
       &:nth-child(-n + #{$i}) {
-        border-top-width: 0;
+        border-top-width: 0 !important;
       }
     }
   }
 
   // Border style
   &--border {
-    border-radius: 10px
+    border-radius: .5rem;
   }
 
   &--border &-item {
-    border-width: 0 3px 3px 0;
-    border-color: #5cdb95;
+    border-width: 0 2px 2px 0;
     border-style: solid;
+
+    &:first-child {
+      border-top-left-radius: 10px;
+    }
+
+    &:last-child {
+      border-bottom-right-radius: 10px;
+    }
   }
 
   @for $i from 2 through 6 {
@@ -66,10 +68,6 @@
         border-left-width: 3px;
       }
 
-      &:first-child {
-        border-top-left-radius: 10px;
-      }
-
       &:nth-child(#{$i}) {
         border-top-right-radius: 10px;
       }
@@ -77,10 +75,23 @@
       &:nth-last-child(#{$i}) {
         border-bottom-left-radius: 10px;
       }
+    }
+  }
 
-      &:last-child {
-        border-bottom-right-radius: 10px;
-      }
+  &--box &-wrapper {
+    margin: -.5rem;
+  }
+
+  &--box &-item {
+    margin: .5rem;
+    border-radius: .5rem;
+    border-width: 2px;
+    border-style: solid;
+  }
+
+  @for $i from 2 through 6 {
+    &--box #{&}--col-#{$i} > &-item {
+      width: calc((100% / #{$i}) - 1rem);
     }
   }
 }
