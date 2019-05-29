@@ -84,41 +84,10 @@ class WPForm extends Base {
         $this->start_controls_section(
             '_section_fields_style',
             [
-                'label' => __( 'Form Fields (Normal State)', 'happy_addons' ),
+                'label' => __( 'Form Fields', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
 		);
-
-		$this->add_responsive_control(
-            'field_width',
-            [
-                'label' => __( 'Width', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'unit' => '%',
-                ],
-                'tablet_default' => [
-                    'unit' => '%',
-                ],
-                'mobile_default' => [
-                    'unit' => '%',
-                ],
-                'size_units' => [ '%', 'px' ],
-                'range' => [
-                    '%' => [
-                        'min' => 1,
-                        'max' => 100,
-                    ],
-                    'px' => [
-                        'min' => 1,
-                        'max' => 500,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .wpforms-field input:not(.wpforms-submit), {{WRAPPER}} .wpforms-field textarea' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
 
         $this->add_responsive_control(
             'field_margin',
@@ -144,14 +113,6 @@ class WPForm extends Base {
             ]
         );
 
-        $this->add_group_control(
-            Group_Control_Border::get_type(),
-            [
-                'name' => 'field_border',
-                'selector' => '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea',
-            ]
-        );
-
         $this->add_responsive_control(
             'field_border_radius',
             [
@@ -162,15 +123,7 @@ class WPForm extends Base {
                     '{{WRAPPER}} .wpforms-field input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'field_box_shadow',
-                'selector' => '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea',
-            ]
-        );
+		);
 
         $this->add_group_control(
             Group_Control_Typography::get_type(),
@@ -205,6 +158,31 @@ class WPForm extends Base {
             ]
         );
 
+		$this->start_controls_tabs( 'tabs_field_state' );
+
+        $this->start_controls_tab(
+            'tab_field_normal',
+            [
+                'label' => __( 'Normal State', 'happy_addons' ),
+            ]
+        );
+
+		$this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'field_border',
+                'selector' => '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'field_box_shadow',
+                'selector' => '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea',
+            ]
+        );
+
         $this->add_control(
             'field_bg_color',
             [
@@ -214,27 +192,26 @@ class WPForm extends Base {
                     '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea' => 'background-color: {{VALUE}}',
                 ],
             ]
-        );
+		);
 
-        $this->end_controls_section();
+		$this->end_controls_tab();
 
-        $this->start_controls_section(
-            'fields-focus',
+		$this->start_controls_tab(
+            'tab_field_focus',
             [
-                'label' => __( 'Form Fields (Focus State)', 'happy_addons' ),
-                'tab' => Controls_Manager::TAB_STYLE,
+                'label' => __( 'Focus State', 'happy_addons' ),
             ]
         );
 
-        $this->add_group_control(
+		$this->add_group_control(
             Group_Control_Border::get_type(),
             [
                 'name' => 'field_focus_border',
                 'selector' => '{{WRAPPER}} .wpforms-field input:focus, {{WRAPPER}} .wpforms-field-textarea textarea:focus',
             ]
-        );
+		);
 
-        $this->add_group_control(
+		$this->add_group_control(
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'field_focus_box_shadow',
@@ -243,17 +220,9 @@ class WPForm extends Base {
                 ],
                 'selector' => '{{WRAPPER}} .wpforms-field input:focus, {{WRAPPER}} .wpforms-field-textarea textarea:focus',
             ]
-        );
+		);
 
-        $this->add_control(
-            'hr2',
-            [
-                'type' => Controls_Manager::DIVIDER,
-                'style' => 'thick',
-            ]
-        );
-
-        $this->add_control(
+		$this->add_control(
             'field_focus_bg_color',
             [
                 'label' => __( 'Background Color', 'happy_addons' ),
@@ -262,7 +231,10 @@ class WPForm extends Base {
                     '{{WRAPPER}} .wpforms-field input:focus, {{WRAPPER}} .wpforms-field-textarea textarea:focus' => 'background-color: {{VALUE}}',
                 ],
             ]
-        );
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
 
         $this->end_controls_section();
 
@@ -551,9 +523,6 @@ class WPForm extends Base {
             [
                 'label' => __( 'Border Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
-                'condition' => [
-                    'btn_border_border!' => '',
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-submit:hover, {{WRAPPER}} .wpforms-submit:focus' => 'border-color: {{VALUE}};',
                 ],

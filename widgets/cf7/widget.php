@@ -94,7 +94,7 @@ class CF7 extends Base {
         $this->start_controls_section(
             '_section_fields_style',
             [
-                'label' => __( 'Form Fields (Normal State)', 'happy_addons' ),
+                'label' => __( 'Form Fields', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -154,14 +154,6 @@ class CF7 extends Base {
             ]
         );
 
-        $this->add_group_control(
-            Group_Control_Border::get_type(),
-            [
-                'name' => 'field_border',
-                'selector' => '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)',
-            ]
-        );
-
         $this->add_responsive_control(
             'field_border_radius',
             [
@@ -171,14 +163,6 @@ class CF7 extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'field_box_shadow',
-                'selector' => '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)',
             ]
         );
 
@@ -221,6 +205,31 @@ class CF7 extends Base {
                     '{{WRAPPER}} ::-ms-input-placeholder' => 'color: {{VALUE}};',
                 ],
             ]
+		);
+
+		$this->start_controls_tabs( 'tabs_field_state' );
+
+        $this->start_controls_tab(
+            'tab_field_normal',
+            [
+                'label' => __( 'Normal State', 'happy_addons' ),
+            ]
+		);
+
+		$this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'field_border',
+                'selector' => '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)',
+            ]
+        );
+
+		$this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'field_box_shadow',
+                'selector' => '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)',
+            ]
         );
 
         $this->add_control(
@@ -232,19 +241,18 @@ class CF7 extends Base {
                     '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)' => 'background-color: {{VALUE}}',
                 ],
             ]
-        );
+		);
 
-        $this->end_controls_section();
+		$this->end_controls_tab();
 
-        $this->start_controls_section(
-            'cf7-form-fields-focus',
+		$this->start_controls_tab(
+            'tab_field_focus',
             [
-                'label' => __( 'Form Fields (Focus State)', 'happy_addons' ),
-                'tab' => Controls_Manager::TAB_STYLE,
+                'label' => __( 'Focus State', 'happy_addons' ),
             ]
-        );
+		);
 
-        $this->add_group_control(
+		$this->add_group_control(
             Group_Control_Border::get_type(),
             [
                 'name' => 'field_focus_border',
@@ -261,41 +269,9 @@ class CF7 extends Base {
                 ],
                 'selector' => '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit):focus',
             ]
-        );
+		);
 
-        $this->add_control(
-            'hr2',
-            [
-                'type' => Controls_Manager::DIVIDER,
-                'style' => 'thick',
-            ]
-        );
-
-        $this->add_control(
-            'field_focus_color',
-            [
-                'label' => __( 'Text Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit):focus' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'field_focus_placeholder_color',
-            [
-                'label' => __( 'Placeholder Text Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit):focus::-webkit-input-placeholder' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit):focus::-moz-placeholder' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit):focus::-ms-input-placeholder' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
+		$this->add_control(
             'field_focus_bg_color',
             [
                 'label' => __( 'Background Color', 'happy_addons' ),
@@ -306,7 +282,11 @@ class CF7 extends Base {
             ]
         );
 
-        $this->end_controls_section();
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+
 
         $this->start_controls_section(
             'cf7-form-label',
@@ -514,9 +494,6 @@ class CF7 extends Base {
             [
                 'label' => __( 'Border Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
-                'condition' => [
-                    'btn_border_border!' => '',
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .wpcf7-submit:hover, {{WRAPPER}} .wpcf7-submit:focus' => 'border-color: {{VALUE}};',
                 ],
