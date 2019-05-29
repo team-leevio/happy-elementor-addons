@@ -90,41 +90,10 @@ class WeForm extends Base {
         $this->start_controls_section(
             '_section_fields_style',
             [
-                'label' => __( 'Form Fields (Normal State)', 'happy_addons' ),
+                'label' => __( 'Form Fields', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
 		);
-
-		$this->add_responsive_control(
-            'field_width',
-            [
-                'label' => __( 'Width', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'unit' => '%',
-                ],
-                'tablet_default' => [
-                    'unit' => '%',
-                ],
-                'mobile_default' => [
-                    'unit' => '%',
-                ],
-                'size_units' => [ '%', 'px' ],
-                'range' => [
-                    '%' => [
-                        'min' => 1,
-                        'max' => 100,
-                    ],
-                    'px' => [
-                        'min' => 1,
-                        'max' => 500,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .wpuf-fields input:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-fields textarea' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
 
         $this->add_responsive_control(
             'field_margin',
@@ -150,14 +119,6 @@ class WeForm extends Base {
             ]
         );
 
-        $this->add_group_control(
-            Group_Control_Border::get_type(),
-            [
-                'name' => 'field_border',
-                'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields textarea',
-            ]
-        );
-
         $this->add_responsive_control(
             'field_border_radius',
             [
@@ -167,14 +128,6 @@ class WeForm extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .wpuf-fields input:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-fields textarea' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'field_box_shadow',
-                'selector' => '{{WRAPPER}} .wpuf-fields input:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-fields textarea',
             ]
         );
 
@@ -209,6 +162,31 @@ class WeForm extends Base {
                     '{{WRAPPER}} ::-ms-input-placeholder'		=> 'color: {{VALUE}};',
                 ],
             ]
+		);
+
+		$this->start_controls_tabs( 'tabs_field_state' );
+
+        $this->start_controls_tab(
+            'tab_field_normal',
+            [
+                'label' => __( 'Normal State', 'happy_addons' ),
+            ]
+		);
+
+		$this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'field_border',
+                'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields textarea',
+            ]
+        );
+
+		$this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'field_box_shadow',
+                'selector' => '{{WRAPPER}} .wpuf-fields input:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-fields textarea',
+            ]
         );
 
         $this->add_control(
@@ -220,19 +198,18 @@ class WeForm extends Base {
                     '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields textarea' => 'background-color: {{VALUE}}',
                 ],
             ]
-        );
+		);
 
-        $this->end_controls_section();
+		$this->end_controls_tab();
 
-        $this->start_controls_section(
-            'fields-focus',
+		$this->start_controls_tab(
+            'tab_field_focus',
             [
-                'label' => __( 'Form Fields (Focus State)', 'happy_addons' ),
-                'tab' => Controls_Manager::TAB_STYLE,
+                'label' => __( 'Focus State', 'happy_addons' ),
             ]
-        );
+		);
 
-        $this->add_group_control(
+		$this->add_group_control(
             Group_Control_Border::get_type(),
             [
                 'name' => 'field_focus_border',
@@ -249,17 +226,9 @@ class WeForm extends Base {
                 ],
                 'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input:focus:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields textarea:focus',
             ]
-        );
+		);
 
-        $this->add_control(
-            'hr2',
-            [
-                'type' => Controls_Manager::DIVIDER,
-                'style' => 'thick',
-            ]
-        );
-
-        $this->add_control(
+		$this->add_control(
             'field_focus_bg_color',
             [
                 'label' => __( 'Background Color', 'happy_addons' ),
@@ -270,7 +239,11 @@ class WeForm extends Base {
             ]
         );
 
-        $this->end_controls_section();
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+
 
         $this->start_controls_section(
             'we-form-label',
@@ -545,9 +518,6 @@ class WeForm extends Base {
             [
                 'label' => __( 'Border Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
-                'condition' => [
-                    'btn_border_border!' => '',
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:hover, {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:focus' => 'border-color: {{VALUE}};',
                 ],
