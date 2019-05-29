@@ -815,7 +815,7 @@ class InfoBox extends Base {
                     <img src="{{ image_url }}">
                 </figure>
             <# }
-        } elseif (settings.icon) { #>
+        } else if (settings.icon) { #>
             <figure class="ha-infobox-figure ha-infobox-figure--icon">
                 <i aria-hidden="true" class="{{ settings.icon }}"></i>
             </figure>
