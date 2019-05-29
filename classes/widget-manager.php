@@ -406,7 +406,7 @@ class Widget_Manager {
 			'weform',
 			'logo-grid',
 			'dual-button',
-			'testimonial'
+			'testimonial',
         ];
 
         foreach ( $widgets as $widget ) {

@@ -197,7 +197,7 @@ window.Happy = window.Happy || {};
 
             resetFx: function() {
                 anime.remove(this.getTheElement());
-                this.getTheElement().removeAttribute('style');
+                this.getTheElement() && this.getTheElement().removeAttribute('style');
             },
 
             onDestroy: function() {
@@ -278,7 +278,7 @@ window.Happy = window.Happy || {};
                 }
 
                 if (settings.ha_floating_fx_translate_toggle || settings.ha_floating_fx_rotate_toggle || settings.ha_floating_fx_scale_toggle) {
-                    this.getTheElement().style.setProperty('will-change', 'transform');
+                    this.getTheElement() && this.getTheElement().style.setProperty('will-change', 'transform');
                     anime(fxSettings);
                 }
             }
