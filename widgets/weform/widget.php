@@ -9,6 +9,7 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 
 defined( 'ABSPATH' ) || die();
@@ -456,6 +457,14 @@ class WeForm extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'submit_box_shadow',
+                'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]',
+            ]
+        );
+
+		$this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'submit_text_shadow',
                 'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]',
             ]
         );
