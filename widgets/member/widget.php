@@ -831,7 +831,7 @@ class Member extends Base {
         $this->add_render_attribute( 'bio', 'class', 'ha-member-bio' );
         ?>
 
-        <?php if ( ! empty( $settings['image']['url'] ) ) :
+        <?php if ( $settings['image']['url'] || $settings['image']['id'] ) :
             $this->add_render_attribute( 'image', 'src', $settings['image']['url'] );
             $this->add_render_attribute( 'image', 'alt', Control_Media::get_image_alt( $settings['image'] ) );
             $this->add_render_attribute( 'image', 'title', Control_Media::get_image_title( $settings['image'] ) );
@@ -843,19 +843,25 @@ class Member extends Base {
         <?php endif; ?>
 
         <div class="ha-member-body">
-            <?php printf( '<%1$s %2$s>%3$s</%1$s>',
-                tag_escape( $settings['title_tag'] ),
-                $this->get_render_attribute_string( 'title' ),
-                esc_html( $settings['title' ] )
-            ); ?>
-            <div <?php echo $this->get_render_attribute_string( 'job_title' ); ?>><?php echo esc_html( $settings['job_title' ] ); ?></div>
-            <?php if ( ! empty( $settings['bio'] ) ) : ?>
+            <?php if ( $settings['title'] ) :
+                printf( '<%1$s %2$s>%3$s</%1$s>',
+                    tag_escape( $settings['title_tag'] ),
+                    $this->get_render_attribute_string( 'title' ),
+                    esc_html( $settings['title'] )
+                );
+            endif; ?>
+
+            <?php if ( $settings['job_title' ] ) : ?>
+                <div <?php echo $this->get_render_attribute_string( 'job_title' ); ?>><?php echo esc_html( $settings['job_title' ] ); ?></div>
+            <?php endif; ?>
+
+            <?php if ( $settings['bio'] ) : ?>
                 <div <?php echo $this->get_render_attribute_string( 'bio' ); ?>>
                     <p><?php echo wp_kses_data( $settings['bio'] ); ?></p>
                 </div>
             <?php endif; ?>
 
-            <?php if ( ! empty( $settings['profiles' ] ) ) : ?>
+            <?php if ( is_array( $settings['profiles' ] ) ) : ?>
                 <div class="ha-member-links">
                     <?php
                     foreach ( $settings['profiles'] as $profile ) :
@@ -893,7 +899,7 @@ class Member extends Base {
         view.addInlineEditingAttributes( 'bio', 'basic' );
         view.addRenderAttribute( 'bio', 'class', 'ha-member-bio' );
 
-        if ( settings.image.url ) {
+        if ( settings.image.url || settings.image.id ) {
             var image = {
                 id: settings.image.id,
                 url: settings.image.url,
@@ -909,10 +915,13 @@ class Member extends Base {
             </figure>
         <# } #>
         <div class="ha-member-body">
-            <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
-            <div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{ settings.job_title }}</div>
-
-            <# if (!_.isEmpty(settings.bio)) { #>
+            <# if (settings.title) { #>
+                <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
+            <# } #>
+            <# if (settings.job_title) { #>
+                <div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{ settings.job_title }}</div>
+            <# } #>
+            <# if (settings.bio) { #>
                 <div {{{ view.getRenderAttributeString( 'bio' ) }}}>
                     <p>{{{ settings.bio }}}</p>
                 </div>

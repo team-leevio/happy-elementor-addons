@@ -671,7 +671,7 @@ class Review extends Base {
             ] );
         ?>
 
-        <?php if ( ! empty( $settings['image']['url'] ) ) :
+        <?php if ( $settings['image']['url'] || $settings['image']['id'] ) :
             $this->add_render_attribute( 'image', 'src', $settings['image']['url'] );
             $this->add_render_attribute( 'image', 'alt', Control_Media::get_image_alt( $settings['image'] ) );
             $this->add_render_attribute( 'image', 'title', Control_Media::get_image_title( $settings['image'] ) );
@@ -683,20 +683,24 @@ class Review extends Base {
         <?php endif; ?>
 
         <div class="ha-review-body">
-            <?php if ( $settings['review_position'] === 'before' ) : ?>
+            <?php if ( $settings['review_position'] === 'before' && $settings['review'] ) : ?>
                 <div <?php echo $this->get_render_attribute_string( 'review' ); ?>>
                     <p><?php echo wp_kses_data( $settings['review'] ); ?></p>
                 </div>
             <?php endif; ?>
 
             <div class="ha-review-header">
-                <?php printf( '<%1$s %2$s>%3$s</%1$s>',
-                    tag_escape( $settings['title_tag'] ),
-                    $this->get_render_attribute_string( 'title' ),
-                    esc_html( $settings['title' ] )
-                    ); ?>
+                <?php if ( $settings['title' ] ) :
+                    printf( '<%1$s %2$s>%3$s</%1$s>',
+                        tag_escape( $settings['title_tag'] ),
+                        $this->get_render_attribute_string( 'title' ),
+                        esc_html( $settings['title' ] )
+                        );
+                endif; ?>
 
-                <div <?php echo $this->get_render_attribute_string( 'job_title' ); ?>><?php echo esc_html( $settings['job_title' ] ); ?></div>
+                <?php if ( $settings['job_title' ] ) : ?>
+                    <div <?php echo $this->get_render_attribute_string( 'job_title' ); ?>><?php echo esc_html( $settings['job_title' ] ); ?></div>
+                <?php endif; ?>
 
                 <div <?php echo $this->get_render_attribute_string( 'ratting' ); ?>>
                     <?php if ( $settings['ratting_style'] === 'num' ) : ?>
@@ -707,7 +711,7 @@ class Review extends Base {
                  </div>
             </div>
 
-            <?php if ( $settings['review_position'] === 'after' ) : ?>
+            <?php if ( $settings['review_position'] === 'after' && $settings['review'] ) : ?>
                 <div <?php echo $this->get_render_attribute_string( 'review' ); ?>>
                     <p><?php echo wp_kses_data( $settings['review'] ); ?></p>
                 </div>
@@ -728,7 +732,7 @@ class Review extends Base {
         view.addInlineEditingAttributes( 'review', 'basic' );
         view.addRenderAttribute( 'review', 'class', 'ha-review-desc' );
 
-        if ( settings.image.url ) {
+        if (settings.image.url && settings.image.id) {
             var image = {
                 id: settings.image.id,
                 url: settings.image.url,
@@ -745,14 +749,18 @@ class Review extends Base {
         <# } #>
 
         <div class="ha-review-body">
-            <# if ( settings.review_position === 'before' ) { #>
+            <# if (settings.review_position === 'before' && settings.review) { #>
                 <div {{{ view.getRenderAttributeString( 'review' ) }}}>
                     <p>{{{ settings.review }}}</p>
                 </div>
             <# } #>
             <div class="ha-review-header">
-                <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
-                <div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{ settings.job_title }}</div>
+                <# if (settings.title) { #>
+                    <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
+                <# } #>
+                <# if (settings.job_title) { #>
+                    <div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{ settings.job_title }}</div>
+                <# } #>
                 <# if ( settings.ratting_style === 'num' ) { #>
                     <div class="ha-review-ratting ha-review-ratting--num">{{ settings.ratting.size }} <i class="fa fa-star"></i></div>
                 <# } else { var ratingPercent = ( settings.ratting.size * 20 ) #>
@@ -761,7 +769,7 @@ class Review extends Base {
                     </div>
                 <# } #>
             </div>
-            <# if ( settings.review_position === 'after' ) { #>
+            <# if ( settings.review_position === 'after' && settings.review) { #>
                 <div {{{ view.getRenderAttributeString( 'review' ) }}}>
                     <p>{{{ settings.review }}}</p>
                 </div>

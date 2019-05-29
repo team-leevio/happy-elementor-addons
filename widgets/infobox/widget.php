@@ -743,8 +743,8 @@ class InfoBox extends Base {
         }
         ?>
 
-        <?php if ( $settings['type'] === 'image' ) : ?>
-            <?php if ( ! empty( $settings['image']['url'] ) ) :
+        <?php if ( $settings['type'] === 'image' ) :
+            if ( $settings['image']['url'] || $settings['image']['id'] ) :
                 $this->add_render_attribute( 'image', 'src', $settings['image']['url'] );
                 $this->add_render_attribute( 'image', 'alt', Control_Media::get_image_alt( $settings['image'] ) );
                 $this->add_render_attribute( 'image', 'title', Control_Media::get_image_title( $settings['image'] ) );
@@ -753,30 +753,36 @@ class InfoBox extends Base {
                 <figure class="ha-infobox-figure ha-infobox-figure--image">
                     <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
                 </figure>
-            <?php endif; ?>
-        <?php else: ?>
+            <?php endif;
+        elseif ( $settings['icon'] ) : ?>
             <figure class="ha-infobox-figure ha-infobox-figure--icon">
                 <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
             </figure>
         <?php endif; ?>
 
         <div class="ha-infobox-body">
-            <?php printf( '<%1$s %2$s>%3$s</%1$s>',
-                tag_escape( $settings['title_tag'] ),
-                $this->get_render_attribute_string( 'title' ),
-                esc_html( $settings['title' ] )
-            ); ?>
-            <div <?php echo $this->get_render_attribute_string( 'description' ); ?>>
-                <p><?php echo wp_kses_data( $settings['description'] ); ?></p>
-            </div>
             <?php
-            if ( $settings['button_text'] ):
+            if ( $settings['title' ] ) :
+                printf( '<%1$s %2$s>%3$s</%1$s>',
+                    tag_escape( $settings['title_tag'] ),
+                    $this->get_render_attribute_string( 'title' ),
+                    esc_html( $settings['title' ] )
+                );
+            endif;
+            ?>
+
+            <?php if ( $settings['description'] ) : ?>
+                <div <?php echo $this->get_render_attribute_string( 'description' ); ?>>
+                    <p><?php echo wp_kses_data( $settings['description'] ); ?></p>
+                </div>
+            <?php endif; ?>
+
+            <?php if ( $settings['button_text'] ):
                 printf( '<a %1$s>%2$s</a>',
                     $this->get_render_attribute_string( 'button_text' ),
                     esc_html( $settings['button_text'] )
                 );
-            endif;
-            ?>
+            endif; ?>
         </div>
         <?php
     }
@@ -809,18 +815,22 @@ class InfoBox extends Base {
                     <img src="{{ image_url }}">
                 </figure>
             <# }
-        } else { #>
+        } elseif (settings.icon) { #>
             <figure class="ha-infobox-figure ha-infobox-figure--icon">
                 <i aria-hidden="true" class="{{ settings.icon }}"></i>
             </figure>
         <# } #>
 
         <div class="ha-infobox-body">
-            <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
+            <# if (settings.title) { #>
+                <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
+            <# } #>
 
-            <div {{{ view.getRenderAttributeString( 'description' ) }}}>
-                <p>{{{ settings.description }}}</p>
-            </div>
+            <# if (settings.description) { #>
+                <div {{{ view.getRenderAttributeString( 'description' ) }}}>
+                    <p>{{{ settings.description }}}</p>
+                </div>
+            <# } #>
 
             <# if ( settings.button_text ) { #>
                 <a {{{ view.getRenderAttributeString( 'button_text' ) }}}>{{ settings.button_text }}</a>
