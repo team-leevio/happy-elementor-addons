@@ -306,12 +306,28 @@ class WPForm extends Base {
         );
 
         $this->add_control(
+            'label_color_popover',
+            [
+                'label' => __( 'Colors', 'happy_addons' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'label_off' => __( '', 'happy_addons' ),
+                'label_on' => __( 'Custom', 'happy_addons' ),
+                'return_value' => 'yes',
+            ]
+        );
+
+        $this->start_popover();
+
+        $this->add_control(
             'label_color',
             [
                 'label' => __( 'Label Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-field-container label.wpforms-field-label' => 'color: {{VALUE}}',
+                ],
+                'condition' => [
+                    'label_color_popover' => 'yes'
                 ],
             ]
 		);
@@ -324,6 +340,9 @@ class WPForm extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-required-label' => 'color: {{VALUE}}',
                 ],
+                'condition' => [
+                    'label_color_popover' => 'yes'
+                ],
             ]
         );
 
@@ -334,6 +353,9 @@ class WPForm extends Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-field-sublabel' => 'color: {{VALUE}}',
+                ],
+                'condition' => [
+                    'label_color_popover' => 'yes'
                 ],
             ]
         );
@@ -346,8 +368,13 @@ class WPForm extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-field-description' => 'color: {{VALUE}}',
                 ],
+                'condition' => [
+                    'label_color_popover' => 'yes'
+                ],
             ]
         );
+
+        $this->end_popover();
 
         $this->end_controls_section();
 
