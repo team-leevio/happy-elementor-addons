@@ -124,7 +124,7 @@ class Image_Compare extends Base {
             Group_Control_Image_Size::get_type(),
             [
                 'name' => 'thumbnail',
-                'default' => 'large',
+                'default' => 'full',
                 'separator' => 'before',
             ]
         );
@@ -506,7 +506,7 @@ class Image_Compare extends Base {
         $this->add_render_attribute( 'container', 'data-happy-settings', self::get_data_settings( $settings ) );
         ?>
         <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
-            <?php if ( ! empty( $settings['before_image']['url'] ) ) :
+            <?php if ( $settings['before_image']['url'] || $settings['before_image']['id'] ) :
                 $this->add_render_attribute( 'before_image', 'src', $settings['before_image']['url'] );
                 $this->add_render_attribute( 'before_image', 'alt', Control_Media::get_image_alt( $settings['before_image'] ) );
                 $this->add_render_attribute( 'before_image', 'title', Control_Media::get_image_title( $settings['before_image'] ) );
@@ -514,7 +514,7 @@ class Image_Compare extends Base {
                 echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'before_image' );
             endif;
 
-            if ( ! empty( $settings['after_image']['url'] ) ) :
+            if ( $settings['after_image']['url'] || $settings['after_image']['id'] ) :
                 $this->add_render_attribute( 'after_image', 'src', $settings['after_image']['url'] );
                 $this->add_render_attribute( 'after_image', 'alt', Control_Media::get_image_alt( $settings['after_image'] ) );
                 $this->add_render_attribute( 'after_image', 'title', Control_Media::get_image_title( $settings['after_image'] ) );
@@ -559,7 +559,7 @@ class Image_Compare extends Base {
         view.addRenderAttribute('container', 'data-happy-settings', JSON.stringify(data)); #>
 
         <div {{{ view.getRenderAttributeString( 'container' ) }}}>
-            <# if ( settings.before_image.url ) {
+            <# if ( settings.before_image.url || settings.before_image.id ) {
                 var image = {
                     id: settings.before_image.id,
                     url: settings.before_image.url,
@@ -572,7 +572,7 @@ class Image_Compare extends Base {
                 <img src="{{ image_url }}">
             <# }
 
-            if ( settings.after_image.url ) {
+            if ( settings.after_image.url || settings.after_image.id ) {
                 var image = {
                     id: settings.after_image.id,
                     url: settings.after_image.url,
