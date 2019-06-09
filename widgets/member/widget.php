@@ -370,6 +370,18 @@ class Member extends Base {
         $repeater->end_controls_tabs();
 
         $this->add_control(
+            'show_profiles',
+            [
+                'label' => __( 'Show Profiles', 'plugin-domain' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Show', 'your-plugin' ),
+                'label_off' => __( 'Hide', 'your-plugin' ),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
             'profiles',
             [
                 'show_label' => false,
@@ -861,7 +873,7 @@ class Member extends Base {
                 </div>
             <?php endif; ?>
 
-            <?php if ( is_array( $settings['profiles' ] ) ) : ?>
+            <?php if ( $settings['show_profiles' ] && is_array( $settings['profiles' ] ) ) : ?>
                 <div class="ha-member-links">
                     <?php
                     foreach ( $settings['profiles'] as $profile ) :
@@ -926,7 +938,7 @@ class Member extends Base {
                     <p>{{{ settings.bio }}}</p>
                 </div>
             <# } #>
-            <# if (_.isArray(settings.profiles)) { #>
+            <# if (settings.show_profiles && _.isArray(settings.profiles)) { #>
                 <div class="ha-member-links">
                     <# _.each(settings.profiles, function(profile, index) {
                         var icon = profile.name,
