@@ -194,6 +194,14 @@ class Asset_Manager {
                 Base::VERSION
             );
 		}
+        if( class_exists( 'Caldera_Forms' ) ) {
+            wp_enqueue_style(
+                'happy-elementor-caldera-preview',
+                plugins_url( '/caldera-forms/assets/css/caldera-forms-front.css', 'caldera-forms' ),
+                null,
+                Base::VERSION
+            );
+        }
 
     }
 
