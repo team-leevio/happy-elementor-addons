@@ -408,21 +408,23 @@
 	font-size: 15px;
 }
 
-.ha-review-ratting--num {
+.ha-review-ratting {
 	display: inline-block;
-	padding: 3px 8px;
-	border-radius: 30px; 
+	font-size: 12px;
+	line-height: 1;
+}
+
+.ha-review-ratting--num {
+	padding: .25em .66em;
+	border-radius: 2.5em; 
 	background-color: #287dfe;
 	color: #fff;
-	font-size: 12px;
 }
 
 .ha-review-ratting--star {
 	display: inline-block;
 	color: #ffbf36;
-	font-size: 12px; 
 	font-family: "Fontawesome";
-	line-height: 1;
 }
 .ha-review-ratting--star > span {
 	position: relative;

@@ -29,21 +29,23 @@
     margin-bottom: .5rem;
   }
 
-  &-ratting--num {
+  &-ratting {
+    display: inline-block;
     font-size: 12px;
+    line-height: 1;
+  }
+
+  &-ratting--num {
     background-color: #287dfe;
     color: #fff;
-    padding: 3px 8px;
-    display: inline-block;
-    border-radius: 30px;
+    padding: .25em .66em;
+    border-radius: 2.5em;
   }
 
   &-ratting--star {
       display: inline-block;
       color: #ffbf36;
       font-family: "Fontawesome";
-      line-height: 1;
-      font-size: 12px;
 
       > span {
         overflow: hidden;
