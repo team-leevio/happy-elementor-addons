@@ -1,7 +1,7 @@
 'use strict';
 window.Happy = window.Happy || {};
 
-;(function ($, Happy) {
+(function ($, Happy) {
     var $window = $(window);
 
     function isMobileBreakpoint() {
@@ -14,7 +14,7 @@ window.Happy = window.Happy || {};
 
     $.fn.getHappySettings = function() {
         return this.data('happy-settings');
-    }
+    };
 
     function initFilterable($scope, filterFn) {
         var $filterable = $scope.find('.hajs-gallery-filter');
@@ -44,9 +44,10 @@ window.Happy = window.Happy || {};
 
         settings[fieldMap[settings.move_handle || 'on_swipe']] = true;
         delete settings.move_handle;
-
-        $item.twentytwenty(settings);
-    }
+        $item.imagesLoaded().done(function() {
+            $item.twentytwenty(settings);
+        });
+    };
 
     Happy.initJustifiedGallery = function($scope) {
         var $item = $scope.find('.hajs-justified-gallery');
@@ -62,7 +63,7 @@ window.Happy = window.Happy || {};
                 filter: filter
             });
         });
-    }
+    };
 
     Happy.initImageGrid = function($scope) {
         var $item = $scope.find('.hajs-image-grid');
@@ -88,7 +89,7 @@ window.Happy = window.Happy || {};
                 filter: filter
             });
         });
-    }
+    };
 
     Happy.initSlider = function($scope) {
         var $item = $scope.find('.hajs-slider'),
@@ -125,7 +126,7 @@ window.Happy = window.Happy || {};
             prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
             nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
         }, settings));
-    }
+    };
 
     Happy.initCarousel = function($scope) {
         var $item = $scope.find('.hajs-carousel'),
@@ -182,7 +183,7 @@ window.Happy = window.Happy || {};
             prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
             nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
         }, settings));
-    }
+    };
 
     $window.on( 'elementor/frontend/init', function() {
         var FloatingFx = elementorModules.frontend.handlers.Base.extend({
