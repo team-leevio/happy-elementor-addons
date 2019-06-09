@@ -25,6 +25,9 @@
 	-o-object-fit: cover;
 	   object-fit: cover;
 }
+.happy-addon p:empty {
+	display: none;
+}
 
 .ha-cf:before,
 .ha-logo-grid-wrapper:before,
