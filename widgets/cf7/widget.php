@@ -126,6 +126,7 @@ class CF7 extends Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-cf7-form label' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -133,11 +134,17 @@ class CF7 extends Base {
         $this->add_responsive_control(
             'field_margin',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Spacing Bottom', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -212,7 +219,7 @@ class CF7 extends Base {
         $this->start_controls_tab(
             'tab_field_normal',
             [
-                'label' => __( 'Normal State', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy_addons' ),
             ]
 		);
 
@@ -299,23 +306,17 @@ class CF7 extends Base {
         $this->add_responsive_control(
             'label_margin',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} label' => 'display: inline-block; padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                'label' => __( 'Spacing Bottom', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
                 ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'label_padding',
-            [
-                'label' => __( 'Padding', 'happy_addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} label' => 'display: inline-block; padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
