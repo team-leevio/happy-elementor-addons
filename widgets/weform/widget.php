@@ -169,7 +169,7 @@ class WeForm extends Base {
         $this->start_controls_tab(
             'tab_field_normal',
             [
-                'label' => __( 'Normal State', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy_addons' ),
             ]
 		);
 
@@ -205,7 +205,7 @@ class WeForm extends Base {
 		$this->start_controls_tab(
             'tab_field_focus',
             [
-                'label' => __( 'Focus State', 'happy_addons' ),
+                'label' => __( 'Focus', 'happy_addons' ),
             ]
 		);
 

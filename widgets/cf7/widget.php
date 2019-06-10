@@ -248,7 +248,7 @@ class CF7 extends Base {
 		$this->start_controls_tab(
             'tab_field_focus',
             [
-                'label' => __( 'Focus State', 'happy_addons' ),
+                'label' => __( 'Focus', 'happy_addons' ),
             ]
 		);
 
