@@ -142,7 +142,7 @@ class WeForm extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpuf-fields input:not(.weforms_submit_btn)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .wpuf-fields input:not(.weforms_submit_btn)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
                 ],
             ]
         );
@@ -164,7 +164,7 @@ class WeForm extends Base {
             [
                 'name' => 'field_typography',
                 'label' => __( 'Typography', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input textarea',
+                'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input:not(.weforms_submit_btn), .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields textarea',
             ]
         );
 
@@ -213,7 +213,7 @@ class WeForm extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'field_box_shadow',
-                'selector' => '{{WRAPPER}} .wpuf-fields input:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-fields textarea',
+                'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields textarea',
             ]
         );
 
