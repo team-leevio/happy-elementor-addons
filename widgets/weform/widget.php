@@ -96,6 +96,34 @@ class WeForm extends Base {
 		);
 
         $this->add_responsive_control(
+            'large_field_width',
+            [
+                'label' => __( 'Large Field Width', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'default' => [
+                    'unit' => '%',
+                    'size' => 99
+                ],
+                'range' => [
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min' => 1,
+                        'max' => 800,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .wpuf-form > li.wpuf-el.field-size-large > .wpuf-fields input' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .wpuf-form > li.wpuf-el.field-size-large > .wpuf-fields textarea' => 'width: {{SIZE}}{{UNIT}};',
+
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
             'field_margin',
             [
                 'label' => __( 'Field Spacing', 'happy_addons' ),
@@ -346,6 +374,47 @@ class WeForm extends Base {
             ]
 		);
 
+        $this->add_control(
+            'submit_btn_width',
+            [
+                'label' => __( 'Button Full Width?', 'happy_addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'happy_addons' ),
+                'label_off' => __( 'No', 'happy_addons' ),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_width',
+            [
+                'label' => __( 'Button Width', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'condition' => [
+                    'submit_btn_width' => 'yes'
+                ],
+                'default' => [
+                    'unit' => '%',
+                    'size' => 100
+                ],
+                'range' => [
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min' => 1,
+                        'max' => 800,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit .weforms_submit_btn' => 'display: block; width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
 		$this->add_responsive_control(
             'submit_btn_position',
             [
@@ -364,6 +433,9 @@ class WeForm extends Base {
                         'title' => __( 'Right', 'happy_addons' ),
                         'icon' => 'eicon-h-align-right',
                     ],
+                ],
+                'condition' => [
+                    'submit_btn_width' => ''
                 ],
                 'desktop_default' => 'left',
                 'toggle' => false,
