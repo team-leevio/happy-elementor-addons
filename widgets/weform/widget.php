@@ -382,7 +382,7 @@ class WeForm extends Base {
                 'label_on' => __( 'Yes', 'happy_addons' ),
                 'label_off' => __( 'No', 'happy_addons' ),
                 'return_value' => 'yes',
-                'default' => 'no',
+                'default' => 'yes',
             ]
         );
 

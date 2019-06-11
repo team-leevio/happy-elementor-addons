@@ -386,6 +386,47 @@ class WPForm extends Base {
             ]
 		);
 
+        $this->add_control(
+            'submit_btn_width',
+            [
+                'label' => __( 'Button Full Width?', 'happy_addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'happy_addons' ),
+                'label_off' => __( 'No', 'happy_addons' ),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_width',
+            [
+                'label' => __( 'Button Width', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'condition' => [
+                    'submit_btn_width' => 'yes'
+                ],
+                'default' => [
+                    'unit' => '%',
+                    'size' => 100
+                ],
+                'range' => [
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min' => 1,
+                        'max' => 800,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .wpforms-submit' => 'display: block; width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
 		$this->add_responsive_control(
             'submit_btn_position',
             [
@@ -404,6 +445,10 @@ class WPForm extends Base {
                         'title' => __( 'Right', 'happy_addons' ),
                         'icon' => 'eicon-h-align-right',
                     ],
+                ],
+                'condition' => [
+                    'submit_btn_width' => '',
+
                 ],
                 'desktop_default' => 'left',
                 'toggle' => false,
