@@ -41,8 +41,8 @@
    }
 
    &-link:first-child a{
-     border-top-right-radius: 0!important;
-     border-bottom-right-radius: 0!important;
+     border-top-right-radius: 0;
+     border-bottom-right-radius: 0;
      border-right: none;
      i {
        float: left;
@@ -50,8 +50,8 @@
      }
    }
    &-link:last-child a{
-     border-top-left-radius: 0!important;
-     border-bottom-left-radius: 0!important;
+     border-top-left-radius: 0;
+     border-bottom-left-radius: 0;
      i {
        float: right;
        padding-left: 1rem;

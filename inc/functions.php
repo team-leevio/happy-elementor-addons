@@ -245,17 +245,6 @@ if ( ! function_exists( 'ha_is_weform_activated' ) ) {
     }
 }
 
-if ( ! function_exists( 'ha_is_modula_activated' ) ) {
-    /**
-     * Check if Modula Gallery is activated
-     *
-     * @return bool
-     */
-    function ha_is_modula_activated() {
-        return class_exists( 'Modula' );
-    }
-}
-
 if ( ! function_exists( 'ha_is_script_debug_enabled' ) ) {
     function ha_is_script_debug_enabled() {
         return ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
