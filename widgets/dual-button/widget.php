@@ -210,11 +210,12 @@ class Dual_button extends Base {
 		$this->add_responsive_control(
             'button_spacing',
             [
-                'label' => __( 'Spacing', 'happy_addons' ),
+                'label' => __( 'Spacing Top/Bottom', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px'],
+                'allowed_dimensions' => 'vertical',
                 'selectors' => [
-                    '{{WRAPPER}} .ha-dual-btn-link a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-dual-btn-link a' => 'padding-top: {{TOP}}{{UNIT}}; padding-bottom: {{BOTTOM}}{{UNIT}};',
                 ],
             ]
 		);
@@ -260,6 +261,19 @@ class Dual_button extends Base {
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
 		);
+
+        $this->add_responsive_control(
+            'left_button_spacing',
+            [
+                'label' => __( 'Spacing Left/Right', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px'],
+                'allowed_dimensions' => 'horizontal',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn-link a.ha-dual-btn-link-primary' => 'padding-left: {{LEFT}}{{UNIT}}; padding-right: {{RIGHT}}{{UNIT}};',
+                ],
+            ]
+        );
 
 		$this->add_group_control(
             Group_Control_Border::get_type(),
@@ -434,6 +448,19 @@ class Dual_button extends Base {
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
 		);
+
+        $this->add_responsive_control(
+            'right_button_spacing',
+            [
+                'label' => __( 'Spacing Left/Right', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px'],
+                'allowed_dimensions' => 'horizontal',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn-link a.ha-dual-btn-link-secondary' => 'padding-left: {{LEFT}}{{UNIT}}; padding-right: {{RIGHT}}{{UNIT}};',
+                ],
+            ]
+        );
 
 		$this->add_group_control(
             Group_Control_Border::get_type(),

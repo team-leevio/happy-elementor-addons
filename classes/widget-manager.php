@@ -29,7 +29,7 @@ class Widget_Manager {
         $element->add_control(
             'ha_floating_fx',
             [
-                'label' => __( 'Floating Effects', 'plugin-domain' ),
+                'label' => __( 'Floating Effects', 'happy_addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'return_value' => 'yes',
                 'frontend_available' => true,
