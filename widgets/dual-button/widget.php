@@ -214,6 +214,10 @@ class Dual_button extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px'],
                 'allowed_dimensions' => 'vertical',
+                'default' => [
+                    'top' => 15,
+                    'bottom' => 15,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn-link a' => 'padding-top: {{TOP}}{{UNIT}}; padding-bottom: {{BOTTOM}}{{UNIT}};',
                 ],
@@ -269,8 +273,28 @@ class Dual_button extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px'],
                 'allowed_dimensions' => 'horizontal',
+                'default' => [
+                    'left' => 15,
+                    'right' => 30,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn-link a.ha-dual-btn-link-primary' => 'padding-left: {{LEFT}}{{UNIT}}; padding-right: {{RIGHT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'left_button_icon_spacing',
+            [
+                'label' => __( 'Icon Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn-link:first-child a i' => 'padding-left: {{SIZE}}{{UNIT}}; padding-right: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -357,20 +381,19 @@ class Dual_button extends Base {
             ]
         );
 
-		$this->end_controls_tab();
-		$this->end_controls_tabs();
-
-		$this->add_responsive_control(
-            'left_button_icon_spacing',
+        $this->add_control(
+            'left_button_hover_border_color',
             [
-                'label' => __( 'Icon Spacing', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+                'label' => __( 'Border Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-dual-btn-link:first-child a i' => 'padding-left: {{SIZE}}{{UNIT}}; padding-right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-dual-btn-link .ha-dual-btn-link-primary:hover' => 'border-color: {{VALUE}}',
                 ],
             ]
-		);
+        );
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
 
 		$this->end_controls_section();
 
@@ -456,8 +479,28 @@ class Dual_button extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px'],
                 'allowed_dimensions' => 'horizontal',
+                'default' => [
+                    'left' => 30,
+                    'right' => 15,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn-link a.ha-dual-btn-link-secondary' => 'padding-left: {{LEFT}}{{UNIT}}; padding-right: {{RIGHT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'right_button_icon_spacing',
+            [
+                'label' => __( 'Icon Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn-link:last-child a i' => 'padding-left: {{SIZE}}{{UNIT}}; padding-right: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -544,20 +587,19 @@ class Dual_button extends Base {
             ]
         );
 
-		$this->end_controls_tab();
-		$this->end_controls_tabs();
-
-		$this->add_responsive_control(
-            'right_button_icon_spacing',
+        $this->add_control(
+            'right_button_hover_border_color',
             [
-                'label' => __( 'Icon Spacing', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+                'label' => __( 'Border Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-dual-btn-link:last-child a i' => 'padding-left: {{SIZE}}{{UNIT}}; padding-right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-dual-btn-link .ha-dual-btn-link-secondary:hover' => 'border-color: {{VALUE}}',
                 ],
             ]
-		);
+        );
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
 
 		$this->end_controls_section();
 
