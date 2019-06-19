@@ -93,14 +93,8 @@ window.Happy = window.Happy || {};
 
     Happy.initSlider = function($scope) {
         var $item = $scope.find('.hajs-slider'),
-            settings = $item.getHappySettings(),
-            pauseMap = {
-                on_focus: 'pauseOnFocus',
-                on_hover: 'pauseOnHover',
-                on_dots_hover: 'pauseOnDotsHover'
-            };
+            settings = $item.getHappySettings();
 
-        settings[pauseMap[settings.pause || 'on_focus']] = true;
         switch (settings.navigation) {
             case 'arrow':
                 settings.arrows = true;
