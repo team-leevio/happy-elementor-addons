@@ -124,7 +124,7 @@ class Slider extends Base {
         $this->add_control(
             'speed',
             [
-                'label' => __( 'Speed', 'happy_addons' ),
+                'label' => __( 'Animation Speed', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -210,21 +210,6 @@ class Slider extends Base {
                 'label_on' => __( 'Yes', 'happy_addons' ),
                 'label_off' => __( 'No', 'happy_addons' ),
                 'return_value' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'pause',
-            [
-                'label' => __( 'Pause Autoplay', 'happy_addons' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    '' => __( 'Default', 'happy_addons' ),
-                    'on_focus' => __( 'On Focus', 'happy_addons' ),
-                    'on_hover' => __( 'On Hover', 'happy_addons' ),
-                    'on_dots_hover' => __( 'On Dots Hover', 'happy_addons' ),
-                ],
-                'default' => '',
             ]
         );
 
@@ -553,30 +538,8 @@ class Slider extends Base {
             ]
         );
 
-        $this->add_control(
-            'dots_navigation_color',
-            [
-                'label' => __( 'Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .slick-dots li button:before' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'dots_navigation_hover_color',
-            [
-                'label' => __( 'Hover Color', 'happy_addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .slick-dots li button:hover:before, {{WRAPPER}} .slick-dots .slick-active button:before' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
         $this->add_responsive_control(
-            'dots_navigation_position_y',
+            'dots_nav_position_y',
             [
                 'label' => __( 'Vertical Position', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
@@ -584,7 +547,7 @@ class Slider extends Base {
                 'range' => [
                     'px' => [
                         'min' => -100,
-                        'max' => 100,
+                        'max' => 500,
                     ],
                 ],
                 'selectors' => [
@@ -594,26 +557,34 @@ class Slider extends Base {
         );
 
         $this->add_responsive_control(
-            'dots_navigation_align',
+            'dots_nav_spacing',
+            [
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .slick-dots li' => 'margin-right: calc({{SIZE}}{{UNIT}} / 2); margin-left: calc({{SIZE}}{{UNIT}} / 2);',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dots_nav_align',
             [
                 'label' => __( 'Alignment', 'happy_addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
                         'title' => __( 'Left', 'happy_addons' ),
-                        'icon' => 'fa fa-align-left',
+                        'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
                         'title' => __( 'Center', 'happy_addons' ),
-                        'icon' => 'fa fa-align-center',
+                        'icon' => 'eicon-h-align-center',
                     ],
                     'right' => [
                         'title' => __( 'Right', 'happy_addons' ),
-                        'icon' => 'fa fa-align-right',
-                    ],
-                    'justify' => [
-                        'title' => __( 'Justify', 'happy_addons' ),
-                        'icon' => 'fa fa-align-justify',
+                        'icon' => 'eicon-h-align-right',
                     ],
                 ],
                 'toggle' => true,
@@ -622,6 +593,68 @@ class Slider extends Base {
                 ]
             ]
         );
+
+        $this->start_controls_tabs( '_tabs_dots' );
+        $this->start_controls_tab(
+            '_tab_dots_normal',
+            [
+                'label' => __( 'Normal', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'dots_nav_color',
+            [
+                'label' => __( 'Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .slick-dots li button:before' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            '_tab_dots_hover',
+            [
+                'label' => __( 'Hover', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'dots_nav_hover_color',
+            [
+                'label' => __( 'Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .slick-dots li button:hover:before' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            '_tab_dots_active',
+            [
+                'label' => __( 'Active', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'dots_nav_active_color',
+            [
+                'label' => __( 'Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .slick-dots .slick-active button:before' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
 
         $this->end_controls_section();
     }
@@ -634,7 +667,6 @@ class Slider extends Base {
             'speed.size' => 'speed.int',
             'infinite' => 'infinite.bool',
             'vertical' => 'vertical.bool',
-            'pause' => 'pause.str'
         ];
 
         return ha_prepare_data_prop_settings( $settings, $field_map );

@@ -93,14 +93,8 @@ window.Happy = window.Happy || {};
 
     Happy.initSlider = function($scope) {
         var $item = $scope.find('.hajs-slider'),
-            settings = $item.getHappySettings(),
-            pauseMap = {
-                on_focus: 'pauseOnFocus',
-                on_hover: 'pauseOnHover',
-                on_dots_hover: 'pauseOnDotsHover'
-            };
+            settings = $item.getHappySettings();
 
-        settings[pauseMap[settings.pause || 'on_focus']] = true;
         switch (settings.navigation) {
             case 'arrow':
                 settings.arrows = true;
@@ -132,12 +126,7 @@ window.Happy = window.Happy || {};
         var $item = $scope.find('.hajs-carousel'),
             happySettings = $item.getHappySettings(),
             breakpointSettingKeys = ['slidesToShow'],
-            settings = {},
-            pauseMap = {
-                on_focus: 'pauseOnFocus',
-                on_hover: 'pauseOnHover',
-                on_dots_hover: 'pauseOnDotsHover'
-            };
+            settings = {};
 
         $.each(happySettings, function(key, val) {
             if (breakpointSettingKeys.indexOf(key) !== -1) {
@@ -153,7 +142,6 @@ window.Happy = window.Happy || {};
             }
         });
 
-        settings[pauseMap[settings.pause || 'on_focus']] = true;
         settings.slidesToScroll = settings.slidesToShow;
 
         switch (settings.navigation) {

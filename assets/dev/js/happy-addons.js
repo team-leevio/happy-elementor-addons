@@ -132,12 +132,7 @@ window.Happy = window.Happy || {};
         var $item = $scope.find('.hajs-carousel'),
             happySettings = $item.getHappySettings(),
             breakpointSettingKeys = ['slidesToShow'],
-            settings = {},
-            pauseMap = {
-                on_focus: 'pauseOnFocus',
-                on_hover: 'pauseOnHover',
-                on_dots_hover: 'pauseOnDotsHover'
-            };
+            settings = {};
 
         $.each(happySettings, function(key, val) {
             if (breakpointSettingKeys.indexOf(key) !== -1) {
@@ -153,7 +148,6 @@ window.Happy = window.Happy || {};
             }
         });
 
-        settings[pauseMap[settings.pause || 'on_focus']] = true;
         settings.slidesToScroll = settings.slidesToShow;
 
         switch (settings.navigation) {

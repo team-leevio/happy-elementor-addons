@@ -488,7 +488,7 @@ class Member extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'image_border',
-                'selector' => '{{WRAPPER}} .ha-member-figure > img, {{WRAPPER}} .ha-blurb-figure--icon'
+                'selector' => '{{WRAPPER}} .ha-member-figure > img'
             ]
         );
 
@@ -512,6 +512,17 @@ class Member extends Base {
                     'box_shadow_position',
                 ],
                 'selector' => '{{WRAPPER}} .ha-member-figure > img'
+            ]
+        );
+
+        $this->add_control(
+            'image_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-figure > img' => 'background-color: {{VALUE}}',
+                ],
             ]
         );
 
