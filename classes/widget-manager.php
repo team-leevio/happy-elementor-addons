@@ -407,6 +407,7 @@ class Widget_Manager {
 			'logo-grid',
 			'dual-button',
 			'testimonial',
+            'heading-detail'
         ];
 
         foreach ( $widgets as $widget ) {
