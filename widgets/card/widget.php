@@ -31,6 +31,15 @@ class Card extends Base {
         return __( 'Card', 'happy_addons' );
     }
 
+    protected function get_presets() {
+        return [
+            'design-1' => __( 'Design 1', 'happy_addons' ),
+            'design-2' => __( 'Design 2', 'happy_addons' ),
+            'design-3' => __( 'Design 3', 'happy_addons' ),
+            'design-4' => __( 'Design 4', 'happy_addons' ),
+        ];
+    }
+
     /**
      * Get widget icon.
      *

@@ -175,6 +175,14 @@ class Asset_Manager {
             true
 		);
 
+        wp_localize_script(
+            'happy-elementor-addons-admin',
+            'happy',
+            [
+                'ajax_url' => admin_url( 'admin-ajax.php' ),
+                'nonce' => wp_create_nonce( 'ha_get_preset' ),
+            ]
+        );
 	}
 
     public function enqueue_preview_style() {

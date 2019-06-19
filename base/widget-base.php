@@ -69,12 +69,21 @@ abstract class Base extends Widget_Base {
         return rtrim( $html_class );
     }
 
+    protected function get_presets() {
+        return [];
+    }
+
     /**
      * Register design controls
      *
      * Design controls are fixed for all widgets
      */
     private function register_design_controls() {
+        $presets = $this->get_presets();
+        if ( empty( $presets ) ) {
+            return;
+        }
+
         $this->start_controls_section(
             '_design',
             [
@@ -84,30 +93,14 @@ abstract class Base extends Widget_Base {
         );
 
         $this->add_control(
-            '_design_notes',
+            '_preset',
             [
-                'type' => Controls_Manager::RAW_HTML,
-                'raw' => sprintf(
-                    __( 'We know how bad you feel when you see the same design over and over again across the web. You don\'t have to feel that way anymore. %sJoin us and experience the exception.%s', 'plugin-name' ),
-                    '<a href="https://fb.me/obiPlabon" target="_blank">',
-                    '</a>'
-                ),
-                'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+                'label' => __( 'Preset', 'happy_addons' ),
+                'type' => 'select',
+                'options' => ['' => __( 'Default', 'happy_addons' )] + $presets,
+                'default' => '',
             ]
         );
-
-        if ( empty( $this->get_skins() ) ) {
-            $this->add_control(
-                '_skin',
-                [
-                    'label' => __( 'Skin', 'happy_addons' ),
-                    'type' => 'select',
-                    'options' => ['' => __( 'Default', 'happy_addons' )],
-                    'default' => '',
-                    'render_type' => 'none'
-                ]
-            );
-        }
 
         $this->end_controls_section();
     }
