@@ -228,9 +228,9 @@ class InfoBox extends Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            '_section_link',
+            '_section_button',
             [
-                'label' => __( 'Link', 'happy_addons' ),
+                'label' => __( 'Button', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -240,19 +240,70 @@ class InfoBox extends Base {
             [
                 'label' => __( 'Text', 'happy_addons' ),
                 'type' => Controls_Manager::TEXT,
+                'default' => __( 'Button Text', 'happy_addons' ),
+                'placeholder' => __( 'Type button text here', 'happy_addons' ),
                 'label_block' => true,
-                'default' => __( 'Link Text', 'happy_addons' ),
-                'placeholder' => __( 'Type Link Text', 'happy_addons' ),
             ]
         );
 
         $this->add_control(
             'button_link',
             [
-                'label' => __( 'URL', 'happy_addons' ),
+                'label' => __( 'Link', 'happy_addons' ),
                 'type' => Controls_Manager::URL,
-                'label_block' => true,
                 'placeholder' => __( 'https://example.com/', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'button_icon',
+            [
+                'label' => __( 'Icon', 'happy_addons' ),
+                'type' => Controls_Manager::ICON,
+                'options' => ha_get_happy_icons(),
+                'default' => 'fa fa-angle-right'
+            ]
+        );
+
+        $this->add_control(
+            'button_icon_position',
+            [
+                'label' => __( 'Icon Position', 'happy_addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
+                'options' => [
+                    'before' => [
+                        'title' => __( 'Before', 'happy_addons' ),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'after' => [
+                        'title' => __( 'After', 'happy_addons' ),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'after',
+                'toggle' => false,
+                'condition' => [
+                    'button_icon!' => '',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_icon_spacing',
+            [
+                'label' => __( 'Icon Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => 10
+                ],
+                'condition' => [
+                    'button_icon!' => '',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-btn--icon-before .ha-btn-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-btn--icon-after .ha-btn-icon' => 'margin-left: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -646,9 +697,9 @@ class InfoBox extends Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            '_section_link_style',
+            '_section_style_button',
             [
-                'label' => __( 'Link', 'happy_addons' ),
+                'label' => __( 'Button', 'happy_addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -660,7 +711,7 @@ class InfoBox extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -669,15 +720,51 @@ class InfoBox extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'btn_typography',
-                'selector' => '{{WRAPPER}} .ha-link',
+                'selector' => '{{WRAPPER}} .ha-btn',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_4,
             ]
         );
 
-        $this->start_controls_tabs( 'tabs_link_style' );
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'button_border',
+                'selector' => '{{WRAPPER}} .ha-btn',
+            ]
+        );
+
+        $this->add_control(
+            'button_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'button_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-btn',
+            ]
+        );
+
+        $this->add_control(
+            'hr',
+            [
+                'type' => Controls_Manager::DIVIDER,
+                'style' => 'thick',
+            ]
+        );
+
+        $this->start_controls_tabs( '_tabs_button' );
 
         $this->start_controls_tab(
-            'tab_link_normal',
+            '_tab_button_normal',
             [
                 'label' => __( 'Normal', 'happy_addons' ),
             ]
@@ -690,7 +777,36 @@ class InfoBox extends Base {
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} .ha-link' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-btn' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-btn' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_icon_translate',
+            [
+                'label' => __( 'Icon Translate X', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-btn--icon-before .ha-btn-icon' => '-webkit-transform: translateX(calc(-1 * {{SIZE}}{{UNIT}})); transform: translateX(calc(-1 * {{SIZE}}{{UNIT}}));',
+                    '{{WRAPPER}} .ha-btn--icon-after .ha-btn-icon' => '-webkit-transform: translateX({{SIZE}}{{UNIT}}); transform: translateX({{SIZE}}{{UNIT}});',
                 ],
             ]
         );
@@ -698,7 +814,7 @@ class InfoBox extends Base {
         $this->end_controls_tab();
 
         $this->start_controls_tab(
-            'tab_link_hover',
+            '_tab_button_hover',
             [
                 'label' => __( 'Hover', 'happy_addons' ),
             ]
@@ -710,7 +826,53 @@ class InfoBox extends Base {
                 'label' => __( 'Text Color', 'happy_addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-link:hover, {{WRAPPER}} .ha-link:focus' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-btn:hover, {{WRAPPER}} .ha-btn:focus' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_hover_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-btn:hover, {{WRAPPER}} .ha-btn:focus' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_hover_border_color',
+            [
+                'label' => __( 'Border Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'condition' => [
+                    'button_border_border!' => '',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-btn:hover, {{WRAPPER}} .ha-btn:focus' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_hover_icon_translate',
+            [
+                'label' => __( 'Icon Translate X', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => 10
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-btn.ha-btn--icon-before:hover .ha-btn-icon' => '-webkit-transform: translateX(calc(-1 * {{SIZE}}{{UNIT}})); transform: translateX(calc(-1 * {{SIZE}}{{UNIT}}));',
+                    '{{WRAPPER}} .ha-btn.ha-btn--icon-after:hover .ha-btn-icon' => '-webkit-transform: translateX({{SIZE}}{{UNIT}}); transform: translateX({{SIZE}}{{UNIT}});',
                 ],
             ]
         );
@@ -731,15 +893,15 @@ class InfoBox extends Base {
         $this->add_render_attribute( 'description', 'class', 'ha-infobox-text' );
 
         $this->add_inline_editing_attributes( 'button_text', 'none' );
-        $this->add_render_attribute( 'button_text', 'class', 'ha-link' );
+        $this->add_render_attribute( 'button_text', 'class', 'ha-btn-text' );
 
-        $this->add_render_attribute( 'button_text', 'href', esc_url( $settings['button_link']['url'] ) );
+        $this->add_render_attribute( 'button', 'class', 'ha-btn ha-btn--link' );
+        $this->add_render_attribute( 'button', 'href', esc_url( $settings['button_link']['url'] ) );
         if ( ! empty( $settings['button_link']['is_external'] ) ) {
-            $this->add_render_attribute( 'button_text', 'target', '_blank' );
+            $this->add_render_attribute( 'button', 'target', '_blank' );
         }
-
         if ( ! empty( $settings['button_link']['nofollow'] ) ) {
-            $this->set_render_attribute( 'button_text', 'rel', 'nofollow' );
+            $this->set_render_attribute( 'button', 'rel', 'nofollow' );
         }
         ?>
 
@@ -777,12 +939,34 @@ class InfoBox extends Base {
                 </div>
             <?php endif; ?>
 
-            <?php if ( $settings['button_text'] ):
+            <?php
+            if ( $settings['button_text'] && empty( $settings['button_icon'] ) ) :
                 printf( '<a %1$s>%2$s</a>',
-                    $this->get_render_attribute_string( 'button_text' ),
-                    esc_html( $settings['button_text'] )
+                    $this->get_render_attribute_string( 'button' ),
+                    sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) )
                 );
-            endif; ?>
+            elseif ( empty( $settings['button_text'] ) && $settings['button_icon'] ) :
+                printf( '<a %1$s>%2$s</a>',
+                    $this->get_render_attribute_string( 'button' ),
+                    sprintf( '<i class="%1$s"></i>', esc_attr( $settings['button_icon'] ) )
+                );
+            elseif ( $settings['button_text'] && $settings['button_icon'] ) :
+                if ( $settings['button_icon_position'] === 'before' ) :
+                    $this->add_render_attribute( 'button', 'class', 'ha-btn--icon-before' );
+                    $btn_before = sprintf( '<i class="ha-btn-icon %1$s"></i>', esc_attr( $settings['button_icon'] ) );
+                    $btn_after = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
+                else :
+                    $this->add_render_attribute( 'button', 'class', 'ha-btn--icon-after' );
+                    $btn_before = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
+                    $btn_after = sprintf( '<i class="ha-btn-icon %1$s"></i>', esc_attr( $settings['button_icon'] ) );
+                endif;
+                printf( '<a %1$s>%2$s %3$s</a>',
+                    $this->get_render_attribute_string( 'button' ),
+                    $btn_before,
+                    $btn_after
+                );
+            endif;
+            ?>
         </div>
         <?php
     }
@@ -797,8 +981,10 @@ class InfoBox extends Base {
         view.addRenderAttribute( 'description', 'class', 'ha-infobox-text' );
 
         view.addInlineEditingAttributes( 'button_text', 'none' );
-        view.addRenderAttribute( 'button_text', 'class', 'ha-link' );
-        view.addRenderAttribute( 'button_text', 'href', settings.button_link.url );
+        view.addRenderAttribute( 'button_text', 'class', 'ha-btn-text' );
+
+        view.addRenderAttribute( 'button', 'class', 'ha-btn ha-btn--link' );
+        view.addRenderAttribute( 'button', 'href', settings.button_link.url );
 
         if ( settings.type === 'image' ) {
             if ( settings.image.url ) {
@@ -832,8 +1018,22 @@ class InfoBox extends Base {
                 </div>
             <# } #>
 
-            <# if ( settings.button_text ) { #>
-                <a {{{ view.getRenderAttributeString( 'button_text' ) }}}>{{ settings.button_text }}</a>
+            <# if ( settings.button_text && ! settings.button_icon ) { #>
+                <a {{{ view.getRenderAttributeString( 'button' ) }}}><span {{{ view.getRenderAttributeString( 'button_text' ) }}}>{{ settings.button_text }}</span></a>
+            <# } else if ( ! settings.button_text && settings.button_icon ) { #>
+                <a {{{ view.getRenderAttributeString( 'button' ) }}}><i class="{{ settings.button_icon }}"></i></a>
+            <# } else if ( settings.button_text && settings.button_icon ) {
+                var button_before = button_after = '';
+                if ( settings.button_icon_position === 'before' ) {
+                    view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-before' );
+                    button_before = '<i class="ha-btn-icon ' + settings.button_icon + '"></i>';
+                    button_after = '<span ' + view.getRenderAttributeString( 'button_text' ) + '>' + settings.button_text + '</span>';
+                } else {
+                    view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-after' );
+                    button_after = '<i class="ha-btn-icon ' + settings.button_icon + '"></i>';
+                    button_before = '<span ' + view.getRenderAttributeString( 'button_text' ) + '>' + settings.button_text + '</span>';
+                } #>
+                <a {{{ view.getRenderAttributeString( 'button' ) }}}>{{{ button_before }}} {{{ button_after }}}</a>
             <# } #>
         </div>
         <?php
