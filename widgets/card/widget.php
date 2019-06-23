@@ -289,11 +289,6 @@ class Card extends Base {
             [
                 'label' => __( 'Icon Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'max' => 50,
-                    ],
-                ],
                 'condition' => [
                     'button_icon!' => '',
                 ],
@@ -921,7 +916,7 @@ class Card extends Base {
             $this->add_render_attribute( 'button', 'target', '_blank' );
         }
         if ( ! empty( $settings['button_link']['nofollow'] ) ) {
-            $this->set_render_attribute( 'button', 'rel', 'nofollow' );
+            $this->add_render_attribute( 'button', 'rel', 'nofollow' );
         }
         ?>
 

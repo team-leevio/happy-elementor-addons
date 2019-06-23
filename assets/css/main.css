@@ -1196,88 +1196,68 @@ span .ha-review-ratting--star:before,
 	width: calc((100% / 6) - 1rem);
 }
 
-.ha-dual-btn {
-	position: relative;
+.ha-dual-button > .elementor-widget-container {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+}
+
+.ha-dual-btn,
+.ha-dual-btn-connector {
 	display: inline-block;
 }
-.ha-dual-btn-link {
-	position: relative; 
-	float: left;
-}
-.ha-dual-btn-link .ha-dual-btn-link-primary {
-	border: none;
-	background: #3266fd;
-	color: #fff;
-}
-.ha-dual-btn-link .ha-dual-btn-link-secondary {
-	border: none;
-	background: #27374c;
-	color: #fff;
-}
-.ha-dual-btn-link a {
+
+.ha-dual-btn-wrapper {
 	position: relative;
-	display: block;
-	overflow: hidden;
-	box-sizing: initial;
-	padding: 1.2rem 3rem;
-	border: 1px solid #e7e7e7;
-	border-radius: 50px; 
-	background-color: #fff;
-	color: #7f7f7f;
-	vertical-align: middle;
 	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
 	font-weight: 400;
+}
+
+.ha-dual-btn {
+	padding: 1.2rem 3rem;
+	color: #fff;
+	text-decoration: none;
 	font-size: 14px;
-	line-height: 1.428571429;
-	-webkit-transition: border-color ease .5s,background ease .5s,color ease .5s;
-	        transition: border-color ease .5s,background ease .5s,color ease .5s;
 }
-.ha-dual-btn-link a i {
-	position: relative;
-	top: 3px;
+
+.ha-dual-btn--left {
+	border-top-left-radius: 50px;
+	border-bottom-left-radius: 50px; 
+	background-color: #3266fd;
 }
-.ha-dual-btn-link:first-child a {
-	border-right: none; 
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
+
+.ha-dual-btn--right {
+	border-top-right-radius: 50px;
+	border-bottom-right-radius: 50px; 
+	background-color: #27374c;
 }
-.ha-dual-btn-link:first-child a i {
-	float: left;
-	padding-right: 1rem;
-}
-.ha-dual-btn-link:last-child a {
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-}
-.ha-dual-btn-link:last-child a i {
-	float: right;
-	padding-left: 1rem;
-}
-.ha-dual-btn .ha-middle-text {
-	position: absolute;
+
+.ha-dual-btn-connector {
+	position: absolute !important;
 	top: 50%;
 	right: 0;
-	z-index: 12;
-	display: block;
-	box-sizing: content-box;
+	z-index: 9;
 	width: 30px;
 	height: 30px;
 	border-radius: 100%;
-	background: #fff;
+	background-color: #fff;
 	box-shadow: 0 0 0 5px rgba(255, 255, 255, .3);
-	color: #7f7f7f;
-	text-align: center;
+	color: #27374c;
 	text-transform: uppercase; 
-	font-weight: 400;
 	font-size: 12px;
 	line-height: 30px;
-	-webkit-transition: border-color ease .5s,background ease .5s,color ease .5s;
-	        transition: border-color ease .5s,background ease .5s,color ease .5s;
 	-webkit-transform: translate(50%, -50%);
 	    -ms-transform: translate(50%, -50%);
 	        transform: translate(50%, -50%);
+}
+
+.ha-dual-btn-icon--before {
+	margin-right: 5px;
+}
+
+.ha-dual-btn-icon--after {
+	margin-left: 5px;
 }
 
 .ha-testimonial:before {
