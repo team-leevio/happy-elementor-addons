@@ -215,15 +215,15 @@ class Dual_button extends Base {
                 'options' => [
                     'left' => [
                         'title' => __( 'Left', 'happy_addons' ),
-                        'icon' => 'fa fa-align-left',
+                        'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
                         'title' => __( 'center', 'happy_addons' ),
-                        'icon' => 'fa fa-align-center',
+                        'icon' => 'eicon-h-align-center',
                     ],
                     'right' => [
                         'title' => __( 'Right', 'happy_addons' ),
-                        'icon' => 'fa fa-align-right',
+                        'icon' => 'eicon-h-align-right',
                     ],
                 ],
                 'toggle' => true,
