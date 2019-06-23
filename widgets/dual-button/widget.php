@@ -207,6 +207,32 @@ class Dual_button extends Base {
             ]
 		);
 
+        $this->add_responsive_control(
+            'button_align',
+            [
+                'label' => __( 'Button Alignment', 'happy_addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Left', 'happy_addons' ),
+                        'icon' => 'fa fa-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'center', 'happy_addons' ),
+                        'icon' => 'fa fa-align-center',
+                    ],
+                    'right' => [
+                        'title' => __( 'Right', 'happy_addons' ),
+                        'icon' => 'fa fa-align-right',
+                    ],
+                ],
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}}' => 'text-align: {{VALUE}}'
+                ]
+            ]
+        );
+
 		$this->add_responsive_control(
             'button_spacing',
             [
