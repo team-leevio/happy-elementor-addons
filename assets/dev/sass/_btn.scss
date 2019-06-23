@@ -1,24 +1,32 @@
 .ha-btn {
-  background-color: #8c8c8c;
-  color: #fff;
   text-decoration: none;
-  padding: .7rem 1.3rem;
   line-height: 1;
-  border-radius: .25rem;
   text-align: center;
   vertical-align: middle;
   display: inline-block;
   font-size: 14px;
-  font-weight: bold;
   transition: all .3s;
+  font-weight: bold;
 
-  &:hover,
-  &:focus {
-    background-color: #242424;
+  &:not(&--link) {
+    background-color: #8c8c8c;
+    color: #fff;
+    border-radius: .25rem;
+    padding: .7rem 1.3rem;
+    text-align: center;
+
+    &:hover,
+    &:focus {
+      background-color: #242424;
+    }
   }
 
-  &--block {
-    display: block;
+  &.ha-btn--link {
+    color: #3ca6ff;
+  }
+
+  &-icon {
+    transition: all .3s;
   }
 
   &-icon + &-text,

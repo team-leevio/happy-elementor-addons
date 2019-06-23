@@ -1053,8 +1053,7 @@ class Card extends Base {
                     view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-after' );
                     var button_after = '<i class="ha-btn-icon ' + settings.button_icon + '"></i>';
                     var button_before = '<span ' + view.getRenderAttributeString( 'button_text' ) + '>' + settings.button_text + '</span>';
-                }
-                #>
+                } #>
                 <a {{{ view.getRenderAttributeString( 'button' ) }}}>{{{ button_before }}} {{{ button_after }}}</a>
             <# } #>
         </div>
