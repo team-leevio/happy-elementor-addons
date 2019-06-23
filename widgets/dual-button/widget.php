@@ -10,6 +10,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
+use Elementor\Scheme_Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -278,410 +279,452 @@ class Dual_Button extends Base {
     }
 
     protected function register_style_controls() {
-//        $this->start_controls_section(
-//            '_section_style_dual_button',
-//            [
-//                'label' => __( 'General Settings', 'happy_addons' ),
-//                'tab'   => Controls_Manager::TAB_STYLE,
-//            ]
-//		);
-//
-//		$this->add_responsive_control(
-//            'button_spacing',
-//            [
-//                'label' => __( 'Spacing Top/Bottom', 'happy_addons' ),
-//                'type' => Controls_Manager::DIMENSIONS,
-//				'size_units' => ['px'],
-//                'allowed_dimensions' => 'vertical',
-//                'default' => [
-//                    'top' => 15,
-//                    'bottom' => 15,
-//                ],
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link a' => 'padding-top: {{TOP}}{{UNIT}}; padding-bottom: {{BOTTOM}}{{UNIT}};',
-//                ],
-//            ]
-//		);
-//
-//		$this->add_responsive_control(
-//            'button_separator_margin',
-//            [
-//                'label' => __( 'Separator Margin', 'happy_addons' ),
-//                'type' => Controls_Manager::SLIDER,
-//                'size_units' => ['px'],
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link:first-child' => 'margin-right: {{SIZE}}{{UNIT}};',
-//                ],
-//            ]
-//		);
-//
-//		$this->add_group_control(
-//            Group_Control_Typography::get_type(),
-//            [
-//                'name' => 'button_typography',
-//                'label' => __( 'Typography', 'happy_addons' ),
-//                'selector' => '{{WRAPPER}} .ha-dual-btn-link a',
-//            ]
-//		);
-//
-//		$this->add_group_control(
-//            Group_Control_Box_Shadow::get_type(),
-//            [
-//                'name' => 'btn_box_shadow',
-//                'exclude' => [
-//                    'box_shadow_position',
-//                ],
-//                'selector' => '{{WRAPPER}} .ha-dual-btn-link a'
-//            ]
-//		);
-//
-//		$this->end_controls_section();
-//
-//		$this->start_controls_section(
-//			'_section_left_button',
-//            [
-//                'label' => __( 'Left Button', 'happy_addons' ),
-//                'tab'   => Controls_Manager::TAB_STYLE,
-//            ]
-//		);
-//
-//        $this->add_responsive_control(
-//            'left_button_spacing',
-//            [
-//                'label' => __( 'Spacing Left/Right', 'happy_addons' ),
-//                'type' => Controls_Manager::DIMENSIONS,
-//                'size_units' => ['px'],
-//                'allowed_dimensions' => 'horizontal',
-//                'default' => [
-//                    'left' => 15,
-//                    'right' => 30,
-//                ],
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link a.ha-dual-btn-link-primary' => 'padding-left: {{LEFT}}{{UNIT}}; padding-right: {{RIGHT}}{{UNIT}};',
-//                ],
-//            ]
-//        );
-//
-//        $this->add_responsive_control(
-//            'left_button_icon_spacing',
-//            [
-//                'label' => __( 'Icon Spacing', 'happy_addons' ),
-//                'type' => Controls_Manager::SLIDER,
-//                'size_units' => ['px'],
-//                'default' => [
-//                    'unit' => 'px',
-//                    'size' => 8,
-//                ],
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link:first-child a i' => 'padding-left: {{SIZE}}{{UNIT}}; padding-right: {{SIZE}}{{UNIT}};',
-//                ],
-//            ]
-//        );
-//
-//		$this->add_group_control(
-//            Group_Control_Border::get_type(),
-//            [
-//                'name' => 'button_border',
-//                'selector' => '{{WRAPPER}} .ha-dual-btn-link:first-child a'
-//            ]
-//		);
-//
-//        $this->add_responsive_control(
-//            'left_btn_border_radius',
-//            [
-//                'label' => __( 'Left Button Border Radius', 'happy_addons' ),
-//                'type' => Controls_Manager::DIMENSIONS,
-//                'size_units' => [ 'px', '%' ],
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link:first-child a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-//                ],
-//            ]
-//		);
-//
-//		$this->start_controls_tabs( '_left_button_tabs' );
-//
-//        $this->start_controls_tab(
-//            '_left_button_tabs_normal',
-//            [
-//                'label' => __( 'Normal', 'happy_addons' ),
-//            ]
-//		);
-//
-//		$this->add_control(
-//            'left_button_background_color',
-//            [
-//                'label' => __( 'Background Color', 'happy_addons' ),
-//                'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link .ha-dual-btn-link-primary' => 'background: {{VALUE}}',
-//                ],
-//            ]
-//        );
-//
-//		$this->add_control(
-//            'left_button_text_color',
-//            [
-//                'label' => __( 'Text Color', 'happy_addons' ),
-//                'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link .ha-dual-btn-link-primary' => 'color: {{VALUE}}',
-//                ],
-//            ]
-//        );
-//
-//		$this->end_controls_tab();
-//
-//		$this->start_controls_tab(
-//            '_left_button_tabs_hover',
-//            [
-//                'label' => __( 'Hover', 'happy_addons' ),
-//            ]
-//		);
-//
-//		$this->add_control(
-//            'left_button_hover_bg_color',
-//            [
-//                'label' => __( 'Background Color', 'happy_addons' ),
-//                'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link .ha-dual-btn-link-primary:hover' => 'background: {{VALUE}}',
-//                ],
-//            ]
-//        );
-//
-//		$this->add_control(
-//            'left_button_hover_text_color',
-//            [
-//                'label' => __( 'Text Color', 'happy_addons' ),
-//                'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link .ha-dual-btn-link-primary:hover' => 'color: {{VALUE}}',
-//                ],
-//            ]
-//        );
-//
-//        $this->add_control(
-//            'left_button_hover_border_color',
-//            [
-//                'label' => __( 'Border Color', 'happy_addons' ),
-//                'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link .ha-dual-btn-link-primary:hover' => 'border-color: {{VALUE}}',
-//                ],
-//            ]
-//        );
-//
-//		$this->end_controls_tab();
-//		$this->end_controls_tabs();
-//
-//		$this->end_controls_section();
-//
-//
-//		$this->start_controls_section(
-//			'_section_button_direction',
-//            [
-//                'label' => __( 'Button Direction', 'happy_addons' ),
-//				'tab'   => Controls_Manager::TAB_STYLE,
-//				'condition' => ['button_direction_show'=>'yes']
-//            ]
-//		);
-//
-//		$this->add_control(
-//            'button_direction_background_color',
-//            [
-//                'label' => __( 'Background Color', 'happy_addons' ),
-//                'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-middle-text' => 'background: {{VALUE}}',
-//                ],
-//            ]
-//        );
-//
-//		$this->add_control(
-//            'button_direction_text_color',
-//            [
-//                'label' => __( 'Text Color', 'happy_addons' ),
-//                'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-middle-text' => 'color: {{VALUE}}',
-//                ],
-//            ]
-//		);
-//
-//		$this->add_group_control(
-//            Group_Control_Typography::get_type(),
-//            [
-//                'name' => 'button_direction_typography',
-//                'label' => __( 'Typography', 'happy_addons' ),
-//                'selector' => '{{WRAPPER}} .ha-middle-text',
-//            ]
-//		);
-//
-//		$this->add_responsive_control(
-//            'direction_spacing',
-//            [
-//                'label' => __( 'Spacing', 'happy_addons' ),
-//                'type' => Controls_Manager::SLIDER,
-//				'size_units' => ['px'],
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-middle-text' => 'padding: {{SIZE}}{{UNIT}};',
-//                ],
-//            ]
-//		);
-//
-//		$this->add_group_control(
-//            Group_Control_Box_Shadow::get_type(),
-//            [
-//                'name' => 'btn_direction_box_shadow',
-//                'exclude' => [
-//                    'box_shadow_position',
-//                ],
-//                'selector' => '{{WRAPPER}} .ha-middle-text'
-//            ]
-//		);
-//
-//		$this->end_controls_section();
-//
-//
-//		$this->start_controls_section(
-//			'_section_right_button',
-//            [
-//                'label' => __( 'Right Button', 'happy_addons' ),
-//                'tab'   => Controls_Manager::TAB_STYLE,
-//            ]
-//		);
-//
-//        $this->add_responsive_control(
-//            'right_button_spacing',
-//            [
-//                'label' => __( 'Spacing Left/Right', 'happy_addons' ),
-//                'type' => Controls_Manager::DIMENSIONS,
-//                'size_units' => ['px'],
-//                'allowed_dimensions' => 'horizontal',
-//                'default' => [
-//                    'left' => 30,
-//                    'right' => 15,
-//                ],
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link a.ha-dual-btn-link-secondary' => 'padding-left: {{LEFT}}{{UNIT}}; padding-right: {{RIGHT}}{{UNIT}};',
-//                ],
-//            ]
-//        );
-//
-//        $this->add_responsive_control(
-//            'right_button_icon_spacing',
-//            [
-//                'label' => __( 'Icon Spacing', 'happy_addons' ),
-//                'type' => Controls_Manager::SLIDER,
-//                'size_units' => ['px'],
-//                'default' => [
-//                    'unit' => 'px',
-//                    'size' => 8,
-//                ],
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link:last-child a i' => 'padding-left: {{SIZE}}{{UNIT}}; padding-right: {{SIZE}}{{UNIT}};',
-//                ],
-//            ]
-//        );
-//
-//		$this->add_group_control(
-//            Group_Control_Border::get_type(),
-//            [
-//                'name' => 'right_button_border',
-//                'selector' => '{{WRAPPER}} .ha-dual-btn-link:last-child a'
-//            ]
-//		);
-//
-//		$this->add_control(
-//            'right_btn_border_radius',
-//            [
-//                'label' => __( 'Border Radius', 'happy_addons' ),
-//                'type' => Controls_Manager::DIMENSIONS,
-//                'size_units' => [ 'px', '%' ],
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link:last-child a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-//                ],
-//            ]
-//		);
-//
-//		$this->start_controls_tabs( '_right_button_tabs' );
-//
-//        $this->start_controls_tab(
-//            '_right_button_tabs_normal',
-//            [
-//                'label' => __( 'Normal', 'happy_addons' ),
-//            ]
-//		);
-//
-//		$this->add_control(
-//            'right_button_background_color',
-//            [
-//                'label' => __( 'Background Color', 'happy_addons' ),
-//                'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link .ha-dual-btn-link-secondary' => 'background: {{VALUE}}',
-//                ],
-//            ]
-//        );
-//
-//		$this->add_control(
-//            'right_button_text_color',
-//            [
-//                'label' => __( 'Text Color', 'happy_addons' ),
-//                'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link .ha-dual-btn-link-secondary' => 'color: {{VALUE}}',
-//                ],
-//            ]
-//        );
-//
-//		$this->end_controls_tab();
-//
-//		$this->start_controls_tab(
-//            '_right_button_tabs_hover',
-//            [
-//                'label' => __( 'Hover', 'happy_addons' ),
-//            ]
-//		);
-//
-//		$this->add_control(
-//            'right_button_hover_bg_color',
-//            [
-//                'label' => __( 'Background Color', 'happy_addons' ),
-//                'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link .ha-dual-btn-link-secondary:hover' => 'background: {{VALUE}}',
-//                ],
-//            ]
-//        );
-//
-//		$this->add_control(
-//            'right_button_hover_text_color',
-//            [
-//                'label' => __( 'Text Color', 'happy_addons' ),
-//                'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link .ha-dual-btn-link-secondary:hover' => 'color: {{VALUE}}',
-//                ],
-//            ]
-//        );
-//
-//        $this->add_control(
-//            'right_button_hover_border_color',
-//            [
-//                'label' => __( 'Border Color', 'happy_addons' ),
-//                'type' => Controls_Manager::COLOR,
-//                'selectors' => [
-//                    '{{WRAPPER}} .ha-dual-btn-link .ha-dual-btn-link-secondary:hover' => 'border-color: {{VALUE}}',
-//                ],
-//            ]
-//        );
-//
-//		$this->end_controls_tab();
-//		$this->end_controls_tabs();
-//
-//		$this->end_controls_section();
+        $this->start_controls_section(
+            '_section_style_common',
+            [
+                'label' => __( 'Common', 'happy_addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+		);
 
+		$this->add_responsive_control(
+            'button_padding',
+            [
+                'label' => __( 'Padding', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+		);
+
+		$this->add_responsive_control(
+            'button_gap',
+            [
+                'label' => __( 'Space Between Buttons', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--left' => 'margin-right: calc({{SIZE}}{{UNIT}}/2);',
+                    '{{WRAPPER}} .ha-dual-btn--right' => 'margin-left: calc({{SIZE}}{{UNIT}}/2);',
+                ],
+            ]
+		);
+
+		$this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'button_typography',
+                'label' => __( 'Typography', 'happy_addons' ),
+                'selector' => '{{WRAPPER}} .ha-dual-btn',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+            ]
+		);
+
+		$this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'button_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-dual-btn'
+            ]
+		);
+
+        $this->add_control(
+            'button_align_x',
+            [
+                'label' => __( 'Horizontal Alignment', 'happy_addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
+                'options' => [
+                    'flex-start' => [
+                        'title' => __( 'Left', 'happy_addons' ),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Center', 'happy_addons' ),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'flex-end' => [
+                        'title' => __( 'Right', 'happy_addons' ),
+                        'icon' => 'eicon-h-align-right',
+                    ]
+                ],
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-widget-container' => 'justify-content: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_align_y',
+            [
+                'label' => __( 'Vertical Alignment', 'happy_addons' ),
+                'description' => __( 'Only works when buttons have different height', 'happy_addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
+                'options' => [
+                    'flex-start' => [
+                        'title' => __( 'Left', 'happy_addons' ),
+                        'icon' => 'eicon-v-align-top',
+                    ],
+                    'center' => [
+                        'title' => __( 'Center', 'happy_addons' ),
+                        'icon' => 'eicon-v-align-middle',
+                    ],
+                    'flex-end' => [
+                        'title' => __( 'Right', 'happy_addons' ),
+                        'icon' => 'eicon-v-align-bottom',
+                    ]
+                ],
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-widget-container' => 'align-items: {{VALUE}};',
+                ],
+            ]
+        );
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_style_left_button',
+            [
+                'label' => __( 'Left Button', 'happy_addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+		);
+
+        $this->add_responsive_control(
+            'left_button_padding',
+            [
+                'label' => __( 'Padding', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--left' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+		$this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'left_button_border',
+                'selector' => '{{WRAPPER}} .ha-dual-btn--left'
+            ]
+		);
+
+        $this->add_responsive_control(
+            'left_button_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--left' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+		);
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'left_button_typography',
+                'label' => __( 'Typography', 'happy_addons' ),
+                'selector' => '{{WRAPPER}} .ha-dual-btn--left',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'left_button_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-dual-btn--left'
+            ]
+        );
+
+		$this->start_controls_tabs( '_tabs_left_button' );
+
+        $this->start_controls_tab(
+            '_tab_left_button_normal',
+            [
+                'label' => __( 'Normal', 'happy_addons' ),
+            ]
+		);
+
+		$this->add_control(
+            'left_button_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--left' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+		$this->add_control(
+            'left_button_text_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--left' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+            '_tabs_left_button_hover',
+            [
+                'label' => __( 'Hover', 'happy_addons' ),
+            ]
+		);
+
+		$this->add_control(
+            'left_button_hover_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--left:hover' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+		$this->add_control(
+            'left_button_hover_text_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--left:hover' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'left_button_hover_border_color',
+            [
+                'label' => __( 'Border Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--left:hover' => 'border-color: {{VALUE}}',
+                ],
+                'condition' => [
+                    'left_button_border_border!' => ''
+                ]
+            ]
+        );
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_style_connector',
+            [
+                'label' => __( 'Connector', 'happy_addons' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+		);
+
+        $this->add_control(
+            'connector_notice',
+            [
+                'type' => Controls_Manager::RAW_HTML,
+                'raw' => __( 'Connector is hidden now, please enable connector from Content > Connector tab.', 'happy_addons' ),
+                'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+                'condition' => [
+                    'button_connector_hide' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'connector_text_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn-connector' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+		$this->add_control(
+            'connector_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn-connector' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+		$this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'connector_typography',
+                'label' => __( 'Typography', 'happy_addons' ),
+                'selector' => '{{WRAPPER}} .ha-dual-btn-connector',
+            ]
+		);
+
+		$this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'connector_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-dual-btn-connector'
+            ]
+		);
+
+		$this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_style_right_button',
+            [
+                'label' => __( 'Right Button', 'happy_addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'right_button_padding',
+            [
+                'label' => __( 'Padding', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--right' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'right_button_border',
+                'selector' => '{{WRAPPER}} .ha-dual-btn--right'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'right_button_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--right' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'right_button_typography',
+                'label' => __( 'Typography', 'happy_addons' ),
+                'selector' => '{{WRAPPER}} .ha-dual-btn--right',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'right_button_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-dual-btn--right'
+            ]
+        );
+
+        $this->start_controls_tabs( '_tabs_right_button' );
+
+        $this->start_controls_tab(
+            '_tab_right_button_normal',
+            [
+                'label' => __( 'Normal', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'right_button_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--right' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'right_button_text_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--right' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            '_tabs_right_button_hover',
+            [
+                'label' => __( 'Hover', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'right_button_hover_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--right:hover' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'right_button_hover_text_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--right:hover' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'right_button_hover_border_color',
+            [
+                'label' => __( 'Border Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--right:hover' => 'border-color: {{VALUE}}',
+                ],
+                'condition' => [
+                    'right_button_border_border!' => ''
+                ]
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
     }
 
     protected function render() {
