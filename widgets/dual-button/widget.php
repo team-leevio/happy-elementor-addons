@@ -43,7 +43,7 @@ class Dual_Button extends Base {
         return [ 'button', 'btn', 'dual', 'advance', 'link' ];
     }
 
-	protected function register_content_controls() {
+    protected function register_content_controls() {
         $this->start_controls_section(
             '_section_button',
             [
@@ -274,7 +274,7 @@ class Dual_Button extends Base {
         $this->end_controls_tab();
         $this->end_controls_tabs();
 
-		$this->end_controls_section();
+        $this->end_controls_section();
     }
 
     protected function register_style_controls() {
@@ -682,12 +682,12 @@ class Dual_Button extends Base {
 //
 //		$this->end_controls_section();
 
-	}
+    }
 
-	protected function render() {
-		$settings = $this->get_settings_for_display();
+    protected function render() {
+        $settings = $this->get_settings_for_display();
 
-		// Left button
+        // Left button
         $this->add_render_attribute( 'left_button', 'class', 'ha-dual-btn ha-dual-btn--left' );
         $this->add_render_attribute( 'left_button', 'href', esc_url( $settings['left_button_link']['url'] ) );
         if ( ! empty( $settings['left_button_link']['is_external'] ) ) {
@@ -735,7 +735,7 @@ class Dual_Button extends Base {
                 esc_attr( $settings['right_button_icon'] )
             ] );
         }
-		?>
+        ?>
         <div class="ha-dual-btn-wrapper">
             <a <?php echo $this->get_render_attribute_string( 'left_button' ); ?>>
                 <?php if ( $settings['left_button_icon_position'] === 'before' ) : ?>
@@ -761,52 +761,52 @@ class Dual_Button extends Base {
                 <?php endif; ?>
             </a>
         </div>
-	    <?php
-	}
+        <?php
+    }
 
-	/*
-	public function _content_template() {
-		?>
-		<#
-		view.addInlineEditingAttributes( 'left_button_text', 'none' );
-		view.addInlineEditingAttributes( 'right_button_text', 'none' );
+    /*
+    public function _content_template() {
+        ?>
+        <#
+        view.addInlineEditingAttributes( 'left_button_text', 'none' );
+        view.addInlineEditingAttributes( 'right_button_text', 'none' );
 
-		view.addInlineEditingAttributes( 'button_direction_text', 'none' );
-		view.addRenderAttribute( 'button_direction_text', 'class', 'ha-middle-text' );
-		#>
-		<div class="ha-dual-btn">
+        view.addInlineEditingAttributes( 'button_direction_text', 'none' );
+        view.addRenderAttribute( 'button_direction_text', 'class', 'ha-middle-text' );
+        #>
+        <div class="ha-dual-btn">
 
-			<div class="ha-dual-btn-link">
-				<a href="{{{ settings.left_button_link.url }}}" class="ha-dual-btn-link-primary">
+            <div class="ha-dual-btn-link">
+                <a href="{{{ settings.left_button_link.url }}}" class="ha-dual-btn-link-primary">
 
-					<i class="{{{ settings.left_icon_picker }}}"></i>
-					<span {{{ view.getRenderAttributeString( 'left_button_text' ) }}}>
-						{{{ settings.left_button_text }}}
-					</span>
+                    <i class="{{{ settings.left_icon_picker }}}"></i>
+                    <span {{{ view.getRenderAttributeString( 'left_button_text' ) }}}>
+                        {{{ settings.left_button_text }}}
+                    </span>
 
-				</a>
-				<# if ( settings.button_direction_show === 'yes' ) { #>
-					<div {{{ view.getRenderAttributeString( 'button_direction_text' ) }}}>
-						{{{ settings.button_direction_text }}}
-					</div>
-				<# } #>
-			</div>
+                </a>
+                <# if ( settings.button_direction_show === 'yes' ) { #>
+                    <div {{{ view.getRenderAttributeString( 'button_direction_text' ) }}}>
+                        {{{ settings.button_direction_text }}}
+                    </div>
+                <# } #>
+            </div>
 
-			<div class="ha-dual-btn-link">
-				<a href="{{{ settings.right_button_link.url }}}" class="ha-dual-btn-link-secondary">
+            <div class="ha-dual-btn-link">
+                <a href="{{{ settings.right_button_link.url }}}" class="ha-dual-btn-link-secondary">
 
-					<i class="{{{ settings.right_icon_picker }}}"></i>
-					<span {{{ view.getRenderAttributeString( 'right_button_text' ) }}}>
-						{{{ settings.right_button_text }}}
-					</span>
+                    <i class="{{{ settings.right_icon_picker }}}"></i>
+                    <span {{{ view.getRenderAttributeString( 'right_button_text' ) }}}>
+                        {{{ settings.right_button_text }}}
+                    </span>
 
-				</a>
-			</div>
+                </a>
+            </div>
 
-		</div>
+        </div>
 
-	<?php
-	}
-	*/
+    <?php
+    }
+    */
 
 }
