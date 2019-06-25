@@ -1,9 +1,16 @@
-.ha-heading-detail .ha-detail {
-  display: flex;
-  flex-direction: column;
-  span:after {
-    content: "";
+.ha-heading-detail {
+  .ha-detail {
     display: block;
   }
-
+  .description {
+    display: flex;
+    flex-direction: column;
+  }
+  .description span {
+    display: block;
+    &:after {
+      content: "";
+      display: block;
+    }
+  }
 }

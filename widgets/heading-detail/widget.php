@@ -55,11 +55,21 @@ class Heading_Detail extends Base {
 		);
 
         $this->add_control(
-            'title',
+            'title_first',
             [
-                'label' => __( 'Title', 'happy_addons' ),
-                'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Happy Elementor Addon Rocks', 'happy_addons' ),
+                'label' => __( 'First Section', 'happy_addons' ),
+                'type' => Controls_Manager::TEXT,
+                'default' => __( 'Happy Addon', 'happy_addons' ),
+                'placeholder' => __( 'Heading Text', 'happy_addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'title_last',
+            [
+                'label' => __( 'Second Section', 'happy_addons' ),
+                'type' => Controls_Manager::TEXT,
+                'default' => __( 'Rocks', 'happy_addons' ),
                 'placeholder' => __( 'Heading Text', 'happy_addons' ),
             ]
         );
@@ -127,15 +137,11 @@ class Heading_Detail extends Base {
                     'right' => [
                         'title' => __( 'Right', 'happy_addons' ),
                         'icon' => 'fa fa-align-right',
-                    ],
-                    'justify' => [
-                        'title' => __( 'Justify', 'happy_addons' ),
-                        'icon' => 'fa fa-align-justify',
-                    ],
+                    ]
                 ],
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-gradient-heading' => 'text-align: {{VALUE}}'
+                    '{{WRAPPER}} .ha-heading' => 'text-align: {{VALUE}}'
                 ]
             ]
         );
@@ -181,7 +187,7 @@ class Heading_Detail extends Base {
                 ],
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-detail' => 'align-items: {{VALUE}}'
+                    '{{WRAPPER}} .description' => 'align-items: {{VALUE}}',
                 ]
             ]
         );
@@ -199,11 +205,109 @@ class Heading_Detail extends Base {
             ]
         );
 
+        $this->add_control(
+            'dual_color',
+            [
+                'label' => __( 'Dual Color on Title?', 'happy_addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Show', 'happy_addons' ),
+                'label_off' => __( 'Hide', 'happy_addons' ),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->start_controls_tabs( '_tabs_section' );
+        $this->start_controls_tab(
+            '_tab_first_section',
+            [
+                'label' => __( 'First Section', 'happy_addons' ),
+                'condition' => [
+                    'dual_color' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'first_section_color',
+            [
+                'label' => __( 'Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#562dd4',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-heading span:first-of-type' => 'color: {{VALUE}}',
+                ],
+                'condition' => [
+                    'dual_color' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'first_section_background_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-heading span:first-of-type' => 'background-color: {{VALUE}}',
+                ],
+                'condition' => [
+                    'dual_color' => 'yes'
+                ]
+            ]
+        );
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            '_tab_second_section',
+            [
+                'label' => __( 'Second Section', 'happy_addons' ),
+                'condition' => [
+                    'dual_color' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'last_section_color',
+            [
+                'label' => __( 'Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#e2498a',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-heading span:last-of-type' => 'color: {{VALUE}}',
+                ],
+                'condition' => [
+                    'dual_color' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'last_section_background_color',
+            [
+                'label' => __( 'Background Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-heading span:last-of-type' => 'background-color: {{VALUE}}',
+                ],
+                'condition' => [
+                    'dual_color' => 'yes'
+                ]
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
         $this->add_group_control(
             Group_Control_Foreground::get_type(),
             [
                 'name' => 'title',
-                'selector' => '{{WRAPPER}} .ha-gradient-heading',
+                'selector' => '{{WRAPPER}} .ha-heading',
+                'condition' => [
+                    'dual_color!' => 'yes'
+                ]
             ]
         );
 
@@ -211,7 +315,7 @@ class Heading_Detail extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'title',
-                'selector' => '{{WRAPPER}} .ha-gradient-heading',
+                'selector' => '{{WRAPPER}} .ha-heading',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_1,
             ]
         );
@@ -221,7 +325,7 @@ class Heading_Detail extends Base {
             [
                 'name' => 'title',
                 'label' => __( 'Text Shadow', 'happy_addons' ),
-                'selector' => '{{WRAPPER}} .ha-gradient-heading',
+                'selector' => '{{WRAPPER}} .ha-heading',
             ]
         );
 
@@ -246,9 +350,12 @@ class Heading_Detail extends Base {
                     'luminosity' => 'Luminosity',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-gradient-heading' => 'mix-blend-mode: {{VALUE}}',
+                    '{{WRAPPER}} .ha-heading' => 'mix-blend-mode: {{VALUE}}',
                 ],
                 'separator' => 'none',
+                'condition' => [
+                    'dual_color!' => 'yes'
+                ]
             ]
         );
 
@@ -263,7 +370,7 @@ class Heading_Detail extends Base {
         );
 
         $this->add_control(
-            'detail_spacing',
+            'description_spacing',
             [
                 'label' => __( 'Top Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
@@ -279,7 +386,7 @@ class Heading_Detail extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-detail' => 'margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .description' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -320,7 +427,7 @@ class Heading_Detail extends Base {
                 ],
                 'default' => 'solid',
                 'selectors' => [
-                    '{{WRAPPER}} .ha-detail span:after' => 'border-style: {{VALUE}};',
+                    '{{WRAPPER}} span.ha-border:after' => 'border-style: {{VALUE}};',
                 ],
             ]
         );
@@ -342,7 +449,7 @@ class Heading_Detail extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-detail span:after' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} span.ha-border:after' => 'width: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'detail_border_type!' => '',
@@ -367,7 +474,7 @@ class Heading_Detail extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-detail span:after' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} span.ha-border:after' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'detail_border_type!' => '',
@@ -383,7 +490,7 @@ class Heading_Detail extends Base {
                 'type' => Controls_Manager::COLOR,
                 'default' => '#e2498a',
                 'selectors' => [
-                    '{{WRAPPER}} .ha-detail span:after' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} span.ha-border:after' => 'border-color: {{VALUE}}',
                 ],
                 'condition' => [
                     'detail_border_type!' => '',
@@ -408,7 +515,7 @@ class Heading_Detail extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-detail span' => 'margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-detail' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'detail_border_type!' => '',
@@ -423,10 +530,11 @@ class Heading_Detail extends Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $this->add_inline_editing_attributes( 'title', 'basic' );
-        $this->add_render_attribute( 'title', 'class', 'ha-gradient-heading' );
+        $this->add_inline_editing_attributes( 'detail', 'basic' );
+        $this->add_render_attribute( 'detail', 'class', 'ha-detail' );
 
-        $title = wp_kses_post( $settings['title' ] );
+        $title_first = wp_kses_post( $settings['title_first' ] );
+        $title_last = wp_kses_post( $settings['title_last' ] );
         $detail = wp_kses_post( $settings['detail' ] );
 
         if ( ! empty( $settings['link']['url'] ) ) {
@@ -438,37 +546,36 @@ class Heading_Detail extends Base {
             if ( ! empty( $settings['link']['nofollow'] ) ) {
                 $this->set_render_attribute( 'link', 'rel', 'nofollow' );
             }
+            ?>
 
-            $title = sprintf( '<a %s>%s</a>',
-                $this->get_render_attribute_string( 'link' ),
-                $title
-                );
-        }
-
-        printf( '<%1$s %2$s>%3$s</%1$s>'. '<p class="ha-detail">%4$s<span></span></p>',
-            tag_escape( $settings['title_tag'] ),
-            $this->get_render_attribute_string( 'title' ),
-            $title,
-            $detail
-        );
-    }
-
-    public function _content_template() {
-        ?>
-        <#
-        view.addInlineEditingAttributes( 'title', 'none' );
-        view.addRenderAttribute( 'title', 'class', 'ha-gradient-heading' );
-
-        view.addInlineEditingAttributes( 'detail', 'none' );
-        view.addRenderAttribute( 'detail', 'class', 'ha-detail' );
-
-        var title = _.isEmpty(settings.link.url) ? settings.title : '<a href="'+settings.link.url+'">'+settings.title+'</a>';
-        #>
-        <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>
-            {{{ title }}}
-        </{{ settings.title_tag }}>
-        <p class="ha-detail">{{ settings.detail }}<span></span></p>
+            <<?php echo tag_escape( $settings['title_tag'] ); ?> class="ha-heading">
+                <a <?php echo $this->get_render_attribute_string( 'link' ) ?>>
+                    <span><?php echo esc_html( $title_first ); ?></span>
+                    <span><?php echo esc_html( $title_last ); ?></span>
+                </a>
+            </<?php echo tag_escape( $settings['title_tag'] ); ?>>
 
         <?php
+        } else {
+            ?>
+
+            <<?php echo tag_escape( $settings['title_tag'] ); ?> class="ha-heading">
+                <span><?php echo esc_html( $title_first ); ?></span>
+                <span><?php echo esc_html( $title_last ); ?></span>
+            </<?php echo tag_escape( $settings['title_tag'] ); ?>>
+
+        <?php } ?>
+
+        <div class="description">
+            <p <?php echo $this->get_render_attribute_string( 'detail' ); ?>>
+                <?php echo esc_html( $detail ); ?>
+            </p>
+            <span class="ha-border"></span>
+        </div>
+
+        <?php
+
     }
+
+
 }
