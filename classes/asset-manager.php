@@ -35,7 +35,7 @@ class Asset_Manager {
      * Enqueue frontend scripts
      */
     public function enqueue_frontend_scripts() {
-		$suffix = ha_is_script_debug_enabled() ? '.min.' : '.';
+		$suffix = ha_is_script_debug_enabled() ? '.' : '.';
 
         wp_enqueue_style(
             'happy-icon',
