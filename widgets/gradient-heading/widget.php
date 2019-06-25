@@ -37,7 +37,7 @@ class Gradient_Heading extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'hm hm-spark';
+        return 'hm hm-drag';
     }
 
     public function get_keywords() {
