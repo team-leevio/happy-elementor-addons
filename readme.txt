@@ -1,6 +1,6 @@
 === Happy Addons For Elementor - Best Free Widgets ===
 Plugin Name: Happy Addons For Elementor - Best Free Widgets
-Version: 1.0.0
+Version: 1.0.1
 Author: HappyMonster
 Author URI: http://happymonster.me/
 Contributors: thehappymonster, happyaddons, hasinhayder, obiplabon, sourav926
@@ -8,7 +8,7 @@ Tags: elementor, card, blurb, contact form 7, icon box, widget, page builder
 Requires at least: 4.5
 Tested up to: 5.2.1
 Requires PHP: 5.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,20 +18,20 @@ Most advanced, highly customizable, flexible and easy-to-use widgets for Element
 
 Most advanced, highly customizable, flexible and easy-to-use FREE widgets for Elementor with lots of options and possibilities.
 
-### Included Free Widgets
+### Free Widgets with Demo Link
 
-1. Card
-2. Gradient Heading
-3. Info Box
-4. Icon Box
-5. Image Compare
-6. Member
-7. Review
-8. Skill Bars
-9. Contact Form 7
-10. Caldera Form
-11. We Forms
-12. WP Forms
+1. [Card](https://happyaddons.com/elementor-card-widget-demo/)
+2. [Gradient Heading](https://happyaddons.com/elementor-gradient-heading-widget-demo/)
+3. [Info Box](https://happyaddons.com/elementor-info-box-widget-demo/)
+4. [Icon Box](https://happyaddons.com/elementor-icon-box-widget-demo/)
+5. [Image Compare](https://happyaddons.com/elementor-image-compare-widget-demo/)
+6. [Member](https://happyaddons.com/elementor-team-member-widget-demo/)
+7. [Review](https://happyaddons.com/elementor-review-widget-demo/)
+8. [Skill Bars](https://happyaddons.com/elementor-skill-bars-widget-demo/)
+9. [Contact Form 7](https://happyaddons.com/elementor-contact-form-7-widget-demo/)
+10. [Caldera Form](https://happyaddons.com/elementor-caldera-forms-widget-demo/)
+11. [We Forms](https://happyaddons.com/elementor-we-forms-widget-demo/)
+12. [Ninja Forms](https://happyaddons.com/elementor-ninja-form-widget-demo/)
 
 == Installation ==
 
@@ -49,6 +49,10 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 4.  Activate the plugin through the 'Plugins' screen in WordPress.
 
 == Changelog ==
+
+= 1.0.1 =
+
+* Fix: Some minor issues
 
 = 1.0.0 =
 
