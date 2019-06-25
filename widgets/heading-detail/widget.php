@@ -256,6 +256,34 @@ class Heading_Detail extends Base {
                 ]
             ]
         );
+        $this->add_control(
+            'first_section_spacing',
+            [
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'responsive' => true,
+                'condition' => [
+                    'dual_color' => 'yes'
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-heading span:first-of-type' => 'padding: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'first_section_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-heading span:first-of-type' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'dual_color' => 'yes'
+                ],
+            ]
+        );
         $this->end_controls_tab();
 
         $this->start_controls_tab(
@@ -294,6 +322,34 @@ class Heading_Detail extends Base {
                 'condition' => [
                     'dual_color' => 'yes'
                 ]
+            ]
+        );
+        $this->add_control(
+            'last_section_spacing',
+            [
+                'label' => __( 'Spacing', 'happy_addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'responsive' => true,
+                'condition' => [
+                    'dual_color' => 'yes'
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-heading span:last-of-type' => 'padding: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'last_section_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy_addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-heading span:last-of-type' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'dual_color' => 'yes'
+                ],
             ]
         );
 
@@ -375,6 +431,7 @@ class Heading_Detail extends Base {
                 'label' => __( 'Top Spacing', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
+                'responsive' => true,
                 'default' => [
                     'unit' => 'px',
                     'size' => 15
@@ -386,7 +443,7 @@ class Heading_Detail extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .description' => 'margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .description .ha-detail' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -417,6 +474,7 @@ class Heading_Detail extends Base {
             [
                 'label' => __( 'Border Type', 'happy_addons' ),
                 'type' => Controls_Manager::SELECT,
+                'separator' => 'before',
                 'options' => [
                     '' => __( 'None', 'happy_addons' ),
                     'solid' => __( 'Solid', 'happy_addons' ),
@@ -515,7 +573,7 @@ class Heading_Detail extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-detail' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-border' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'detail_border_type!' => '',
@@ -567,9 +625,11 @@ class Heading_Detail extends Base {
         <?php } ?>
 
         <div class="description">
+            <?php if ( ! empty( $settings['detail'] ) ) { ?>
             <p <?php echo $this->get_render_attribute_string( 'detail' ); ?>>
                 <?php echo esc_html( $detail ); ?>
             </p>
+            <?php } ?>
             <span class="ha-border"></span>
         </div>
 
@@ -577,5 +637,6 @@ class Heading_Detail extends Base {
 
     }
 
+    public function _content_template() {}
 
 }

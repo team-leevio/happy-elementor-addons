@@ -838,8 +838,11 @@
 .ha-position--right .ha-testimonial-info {
   text-align: right; }
 
+.ha-heading-detail .ha-heading {
+  margin: 0; }
 .ha-heading-detail .ha-detail {
-  display: block; }
+  display: block;
+  margin-bottom: 0; }
 .ha-heading-detail .description {
   display: flex;
   flex-direction: column; }
