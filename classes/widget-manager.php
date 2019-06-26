@@ -393,21 +393,21 @@ class Widget_Manager {
             'member',
             'review',
             'image-compare',
-            //'justified-gallery',
-            //'image-grid',
-            //'slider',
-            //'carousel',
-            //'adcard',
+            'justified-gallery',
+            'image-grid',
+            'slider',
+            'carousel',
+            'adcard',
             'skills',
             'gradient-heading',
 			'wpform',
-			//'ninjaform',
+			'ninjaform',
 			'calderaform',
 			'weform',
-			//'logo-grid',
-			//'dual-button',
-			//'testimonial',
-            //'heading-detail'
+			'logo-grid',
+			'dual-button',
+			'testimonial',
+            'heading-detail'
         ];
 
         foreach ( $widgets as $widget ) {
