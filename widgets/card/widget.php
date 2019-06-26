@@ -337,7 +337,7 @@ class Card extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-figure' => 'flex: 0 0 {{SIZE || 50}}{{UNIT}}; max-width: {{SIZE || 50}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-card-figure' => 'flex: 0 0 {{SIZE || 100}}{{UNIT}}; max-width: {{SIZE || 100}}{{UNIT}};',
                     '{{WRAPPER}}.ha-card--right .ha-card-body, {{WRAPPER}}.ha-card--left .ha-card-body' => 'flex: 0 0 calc(100% - {{SIZE || 50}}{{UNIT}}); max-width: calc(100% - {{SIZE || 50}}{{UNIT}});',
                 ],
             ]

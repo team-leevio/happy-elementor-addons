@@ -292,7 +292,7 @@ class Review extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-review-figure' => 'flex: 0 0 {{SIZE || 150}}{{UNIT}}; max-width: {{SIZE || 150}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-review-figure' => 'flex: 0 0 {{SIZE || 70}}{{UNIT}}; max-width: {{SIZE || 70}}{{UNIT}};',
                     '{{WRAPPER}}.ha-review--right .ha-review-body, {{WRAPPER}}.ha-review--left .ha-review-body' => 'flex: 0 0 calc(100% - {{SIZE || 150}}{{UNIT}}); max-width: calc(100% - {{SIZE || 150}}{{UNIT}});',
                 ],
             ]
