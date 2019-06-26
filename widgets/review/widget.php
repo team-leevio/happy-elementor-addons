@@ -338,9 +338,6 @@ class Review extends Base {
                 'condition' => [
                     'offset_toggle' => 'yes'
                 ],
-                'default' => [
-                    'size' => 1
-                ],
                 'range' => [
                     'px' => [
                         'min' => -1000,
@@ -360,9 +357,6 @@ class Review extends Base {
                 'condition' => [
                     'offset_toggle' => 'yes'
                 ],
-                'default' => [
-                    'size' => 1
-                ],
                 'range' => [
                     'px' => [
                         'min' => -1000,
@@ -370,16 +364,38 @@ class Review extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-review-figure' => '-ms-transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); -webkit-transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); transform: translate({{image_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}});',
+                    // Image translate styles
+                    '(desktop){{WRAPPER}} .ha-review-figure' => '-ms-transform: translate({{image_offset_x.SIZE || 0}}{{UNIT}}, {{image_offset_y.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{image_offset_x.SIZE || 0}}{{UNIT}}, {{image_offset_y.SIZE || 0}}{{UNIT}}); transform: translate({{image_offset_x.SIZE || 0}}{{UNIT}}, {{image_offset_y.SIZE || 0}}{{UNIT}});',
+                    '(tablet){{WRAPPER}} .ha-review-figure' => '-ms-transform: translate({{image_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{image_offset_y_tablet.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{image_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{image_offset_y_tablet.SIZE || 0}}{{UNIT}}); transform: translate({{image_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{image_offset_y_tablet.SIZE || 0}}{{UNIT}});',
+                    '(mobile){{WRAPPER}} .ha-review-figure' => '-ms-transform: translate({{image_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{image_offset_y_mobile.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{image_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{image_offset_y_mobile.SIZE || 0}}{{UNIT}}); transform: translate({{image_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{image_offset_y_mobile.SIZE || 0}}{{UNIT}});',
+                    // Review body styles
                     '{{WRAPPER}}.ha-review--top .ha-review-body' => 'margin-top: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-review--left .ha-review-body' =>
-                        'margin-left: {{image_offset_x.SIZE}}{{UNIT}};'
-                        . 'flex: 0 0 calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE}}{{UNIT}}));'
-                        . 'max-width: calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE}}{{UNIT}}));',
-                    '{{WRAPPER}}.ha-review--right .ha-review-body' =>
-                        'margin-right: calc(-1 * {{image_offset_x.SIZE}}{{UNIT}});'
-                        . 'flex: 0 0 calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + {{image_offset_x.SIZE}}{{UNIT}});'
-                        . 'max-width: calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + {{image_offset_x.SIZE}}{{UNIT}});',
+                    // Left image position styles
+                    '(desktop){{WRAPPER}}.ha-review--left .ha-review-body' =>
+                        'margin-left: {{image_offset_x.SIZE || 0}}{{UNIT}};'
+                        . 'flex: 0 0 calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE || 0}}{{UNIT}}));'
+                        . 'max-width: calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE || 0}}{{UNIT}}));',
+                    '(tablet){{WRAPPER}}.ha-review--left .ha-review-body' =>
+                        'margin-left: {{image_offset_x_tablet.SIZE || 0}}{{UNIT}};'
+                        . 'flex: 0 0 calc((100% - {{image_width_tablet.SIZE}}{{image_width_tablet.UNIT}}) + (-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}));'
+                        . 'max-width: calc((100% - {{image_width_tablet.SIZE}}{{image_width_tablet.UNIT}}) + (-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}));',
+                    '(mobile){{WRAPPER}}.ha-review--left .ha-review-body' =>
+                        'margin-left: {{image_offset_x_mobile.SIZE || 0}}{{UNIT}};'
+                        . 'flex: 0 0 calc((100% - {{image_width_mobile.SIZE}}{{image_width_mobile.UNIT}}) + (-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}));'
+                        . 'max-width: calc((100% - {{image_width_mobile.SIZE}}{{image_width_mobile.UNIT}}) + (-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}));',
+                    // Image right position styles
+                    '(desktop){{WRAPPER}}.ha-review--right .ha-review-body' =>
+                        'margin-right: calc(-1 * {{image_offset_x.SIZE || 0}}{{UNIT}});'
+                        . 'flex: 0 0 calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + {{image_offset_x.SIZE || 0}}{{UNIT}});'
+                        . 'max-width: calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + {{image_offset_x.SIZE || 0}}{{UNIT}});',
+                    '(tablet){{WRAPPER}}.ha-review--right .ha-review-body' =>
+                        'margin-right: calc(-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}});'
+                        . 'flex: 0 0 calc((100% - {{image_width_tablet.SIZE}}{{image_width_tablet.UNIT}}) + {{image_offset_x_tablet.SIZE || 0}}{{UNIT}});'
+                        . 'max-width: calc((100% - {{image_width_tablet.SIZE}}{{image_width_tablet.UNIT}}) + {{image_offset_x_tablet.SIZE || 0}}{{UNIT}});',
+                    '(mobile){{WRAPPER}}.ha-review--right .ha-review-body' =>
+                        'margin-right: calc(-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}});'
+                        . 'flex: 0 0 calc((100% - {{image_width_mobile.SIZE}}{{image_width_mobile.UNIT}}) + {{image_offset_x_mobile.SIZE || 0}}{{UNIT}});'
+                        . 'max-width: calc((100% - {{image_width_mobile.SIZE}}{{image_width_mobile.UNIT}}) + {{image_offset_x_mobile.SIZE || 0}}{{UNIT}});',
                 ],
             ]
         );
@@ -734,6 +750,7 @@ class Review extends Base {
     public function _content_template() {
         ?>
         <#
+        console.log(settings)
         view.addInlineEditingAttributes( 'title', 'none' );
         view.addRenderAttribute( 'title', 'class', 'ha-review-reviewer' );
 

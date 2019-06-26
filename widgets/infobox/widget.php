@@ -411,9 +411,6 @@ class InfoBox extends Base {
                 'condition' => [
                     'offset_toggle' => 'yes'
                 ],
-                'default' => [
-                    'size' => 1
-                ],
                 'range' => [
                     'px' => [
                         'min' => -1000,
@@ -433,9 +430,6 @@ class InfoBox extends Base {
                 'condition' => [
                     'offset_toggle' => 'yes'
                 ],
-                'default' => [
-                    'size' => 1
-                ],
                 'range' => [
                     'px' => [
                         'min' => -1000,
@@ -443,7 +437,11 @@ class InfoBox extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-infobox-figure' => '-ms-transform: translate({{media_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); -webkit-transform: translate({{media_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}}); transform: translate({{media_offset_x.SIZE}}{{UNIT}}, {{SIZE}}{{UNIT}});',
+                    // Media translate styles
+                    '(desktop){{WRAPPER}} .ha-infobox-figure' => '-ms-transform: translate({{media_offset_x.SIZE || 0}}{{UNIT}}, {{media_offset_y.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{media_offset_x.SIZE || 0}}{{UNIT}}, {{media_offset_y.SIZE || 0}}{{UNIT}}); transform: translate({{media_offset_x.SIZE || 0}}{{UNIT}}, {{media_offset_y.SIZE || 0}}{{UNIT}});',
+                    '(tablet){{WRAPPER}} .ha-infobox-figure' => '-ms-transform: translate({{media_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{media_offset_y_tablet.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{media_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{media_offset_y_tablet.SIZE || 0}}{{UNIT}}); transform: translate({{media_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{media_offset_y_tablet.SIZE || 0}}{{UNIT}});',
+                    '(mobile){{WRAPPER}} .ha-infobox-figure' => '-ms-transform: translate({{media_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{media_offset_y_mobile.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{media_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{media_offset_y_mobile.SIZE || 0}}{{UNIT}}); transform: translate({{media_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{media_offset_y_mobile.SIZE || 0}}{{UNIT}});',
+                    // Body text styles
                     '{{WRAPPER}} .ha-infobox-body' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
@@ -537,7 +535,7 @@ class InfoBox extends Base {
         $this->add_control(
             'icon_bg_rotate',
             [
-                'label' => __( 'Rotate Background', 'happy_addons' ),
+                'label' => __( 'Background Rotate', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'deg' ],
                 'default' => [
@@ -550,41 +548,13 @@ class InfoBox extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-infobox-figure--icon' => '-webkit-transform: rotate({{SIZE}}{{UNIT}}); transform: rotate({{SIZE}}{{UNIT}});',
-                    '{{WRAPPER}} .ha-infobox-figure--icon > i' => '-webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
+                    // Icon rotate styles
+                    '{{WRAPPER}} .ha-infobox-figure--icon > i' => '-ms-transform: rotate(-{{SIZE}}{{UNIT}}); -webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
+                    // Icon box transform styles
+                    '(desktop){{WRAPPER}} .ha-infobox-figure--icon' => '-ms-transform: translate({{media_offset_x.SIZE || 0}}px, {{media_offset_y.SIZE || 0}}px) rotate({{SIZE}}deg); -webkit-transform: translate({{media_offset_x.SIZE || 0}}px, {{media_offset_y.SIZE || 0}}px) rotate({{SIZE}}deg); transform: translate({{media_offset_x.SIZE || 0}}px, {{media_offset_y.SIZE || 0}}px) rotate({{SIZE}}deg);',
+                    '(tablet){{WRAPPER}} .ha-infobox-figure--icon' => '-ms-transform: translate({{media_offset_x_tablet.SIZE || 0}}px, {{media_offset_y_tablet.SIZE || 0}}px) rotate({{SIZE}}deg); -webkit-transform: translate({{media_offset_x_tablet.SIZE || 0}}px, {{media_offset_y_tablet.SIZE || 0}}px) rotate({{SIZE}}deg); transform: translate({{media_offset_x_tablet.SIZE || 0}}px, {{media_offset_y_tablet.SIZE || 0}}px) rotate({{SIZE}}deg);',
+                    '(mobile){{WRAPPER}} .ha-infobox-figure--icon' => '-ms-transform: translate({{media_offset_x_mobile.SIZE || 0}}px, {{media_offset_y_mobile.SIZE || 0}}px) rotate({{SIZE}}deg); -webkit-transform: translate({{media_offset_x_mobile.SIZE || 0}}px, {{media_offset_y_mobile.SIZE || 0}}px) rotate({{SIZE}}deg); transform: translate({{media_offset_x_mobile.SIZE || 0}}px, {{media_offset_y_mobile.SIZE || 0}}px) rotate({{SIZE}}deg);',
                 ],
-                'condition' => [
-                    'type' => 'icon',
-                    'icon_bg_color!' => '',
-                    'offset_toggle!' => 'yes',
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'icon_bg_rotate_conditional',
-            [
-                'label' => __( 'Rotate Background', 'happy_addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'deg' ],
-                'default' => [
-                    'unit' => 'deg',
-                ],
-                'range' => [
-                    'deg' => [
-                        'min' => 0,
-                        'max' => 360,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-infobox-figure--icon' => '-ms-transform: translate({{media_offset_x.SIZE}}px, {{media_offset_y.SIZE}}px) rotate({{SIZE}}deg); -webkit-transform: translate({{media_offset_x.SIZE}}px, {{media_offset_y.SIZE}}px) rotate({{SIZE}}deg); transform: translate({{media_offset_x.SIZE}}px, {{media_offset_y.SIZE}}px) rotate({{SIZE}}deg) !important;',
-                    '{{WRAPPER}} .ha-infobox-figure--icon > i' => '-webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
-                ],
-                'condition' => [
-                    'offset_toggle' => 'yes',
-                    'type' => 'icon',
-                    'icon_bg_color!' => '',
-                ]
             ]
         );
 
@@ -601,7 +571,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'content_padding',
             [
-                'label' => __( 'Container Padding', 'happy_addons' ),
+                'label' => __( 'Content Box Padding', 'happy_addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
