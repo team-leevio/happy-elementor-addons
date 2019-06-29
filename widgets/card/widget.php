@@ -316,7 +316,16 @@ class Card extends Base {
             [
                 'label' => __( 'Width', 'happy_addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
+                'size_units' => [ '%', 'px' ],
+                'desktop_default' => [
+                    'unit' => '%',
+                ],
+                'tablet_default' => [
+                    'unit' => '%',
+                ],
+                'mobile_default' => [
+                    'unit' => '%',
+                ],
                 'range' => [
                     '%' => [
                         'min' => 1,
@@ -329,7 +338,7 @@ class Card extends Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-card-figure' => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-card--right .ha-card-body, {{WRAPPER}}.ha-card--left .ha-card-body' => 'flex: 0 0 calc(100% - {{SIZE}}{{UNIT}}); max-width: calc(100% - {{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-card--right .ha-card-body, {{WRAPPER}}.ha-card--left .ha-card-body' => 'flex: 0 0 calc(100% - {{SIZE || 50}}{{UNIT}}); max-width: calc(100% - {{SIZE || 50}}{{UNIT}});',
                 ],
             ]
         );
@@ -400,38 +409,20 @@ class Card extends Base {
                     ],
                 ],
                 'selectors' => [
+                    // Left image position styles
+                    '(desktop){{WRAPPER}}.ha-card--left .ha-card-body' => 'margin-left: {{image_offset_x.SIZE || 0}}{{UNIT}}; flex: 0 0 calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE || 0}}{{UNIT}})); max-width: calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE || 0}}{{UNIT}}));',
+                    '(tablet){{WRAPPER}}.ha-card--left .ha-card-body' => 'margin-left: {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}; flex: 0 0 calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + (-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}})); max-width: calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + (-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}));',
+                    '(mobile){{WRAPPER}}.ha-card--left .ha-card-body' => 'margin-left: {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}; flex: 0 0 calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + (-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}})); max-width: calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + (-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}));',
+                    // Image right position styles
+                    '(desktop){{WRAPPER}}.ha-card--right .ha-card-body' => 'margin-right: calc(-1 * {{image_offset_x.SIZE || 0}}{{UNIT}}); flex: 0 0 calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + {{image_offset_x.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + {{image_offset_x.SIZE || 0}}{{UNIT}});',
+                    '(tablet){{WRAPPER}}.ha-card--right .ha-card-body' => 'margin-right: calc(-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}); flex: 0 0 calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + {{image_offset_x_tablet.SIZE || 0}}{{UNIT}});',
+                    '(mobile){{WRAPPER}}.ha-card--right .ha-card-body' => 'margin-right: calc(-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}); flex: 0 0 calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + {{image_offset_x_mobile.SIZE || 0}}{{UNIT}});',
                     // Image translate styles
                     '(desktop){{WRAPPER}} .ha-card-figure' => '-ms-transform: translate({{image_offset_x.SIZE || 0}}{{UNIT}}, {{image_offset_y.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{image_offset_x.SIZE || 0}}{{UNIT}}, {{image_offset_y.SIZE || 0}}{{UNIT}}); transform: translate({{image_offset_x.SIZE || 0}}{{UNIT}}, {{image_offset_y.SIZE || 0}}{{UNIT}});',
                     '(tablet){{WRAPPER}} .ha-card-figure' => '-ms-transform: translate({{image_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{image_offset_y_tablet.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{image_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{image_offset_y_tablet.SIZE || 0}}{{UNIT}}); transform: translate({{image_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{image_offset_y_tablet.SIZE || 0}}{{UNIT}});',
                     '(mobile){{WRAPPER}} .ha-card-figure' => '-ms-transform: translate({{image_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{image_offset_y_mobile.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{image_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{image_offset_y_mobile.SIZE || 0}}{{UNIT}}); transform: translate({{image_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{image_offset_y_mobile.SIZE || 0}}{{UNIT}});',
                     // Card body styles
                     '{{WRAPPER}}.ha-card--top .ha-card-body' => 'margin-top: {{SIZE}}{{UNIT}};',
-                    // Left image position styles
-                    '(desktop){{WRAPPER}}.ha-card--left .ha-card-body' =>
-                        'margin-left: {{image_offset_x.SIZE || 0}}{{UNIT}};'
-                        . 'flex: 0 0 calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE || 0}}{{UNIT}}));'
-                        . 'max-width: calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE || 0}}{{UNIT}}));',
-                    '(tablet){{WRAPPER}}.ha-card--left .ha-card-body' =>
-                        'margin-left: {{image_offset_x_tablet.SIZE || 0}}{{UNIT}};'
-                        . 'flex: 0 0 calc((100% - {{image_width_tablet.SIZE}}{{image_width_tablet.UNIT}}) + (-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}));'
-                        . 'max-width: calc((100% - {{image_width_tablet.SIZE}}{{image_width_tablet.UNIT}}) + (-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}));',
-                    '(mobile){{WRAPPER}}.ha-card--left .ha-card-body' =>
-                        'margin-left: {{image_offset_x_mobile.SIZE || 0}}{{UNIT}};'
-                        . 'flex: 0 0 calc((100% - {{image_width_mobile.SIZE}}{{image_width_mobile.UNIT}}) + (-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}));'
-                        . 'max-width: calc((100% - {{image_width_mobile.SIZE}}{{image_width_mobile.UNIT}}) + (-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}));',
-                    // Image right position styles
-                    '(desktop){{WRAPPER}}.ha-card--right .ha-card-body' =>
-                        'margin-right: calc(-1 * {{image_offset_x.SIZE || 0}}{{UNIT}});'
-                        . 'flex: 0 0 calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + {{image_offset_x.SIZE || 0}}{{UNIT}});'
-                        . 'max-width: calc((100% - {{image_width.SIZE}}{{image_width.UNIT}}) + {{image_offset_x.SIZE || 0}}{{UNIT}});',
-                    '(tablet){{WRAPPER}}.ha-card--right .ha-card-body' =>
-                        'margin-right: calc(-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}});'
-                        . 'flex: 0 0 calc((100% - {{image_width_tablet.SIZE}}{{image_width_tablet.UNIT}}) + {{image_offset_x_tablet.SIZE || 0}}{{UNIT}});'
-                        . 'max-width: calc((100% - {{image_width_tablet.SIZE}}{{image_width_tablet.UNIT}}) + {{image_offset_x_tablet.SIZE || 0}}{{UNIT}});',
-                    '(mobile){{WRAPPER}}.ha-card--right .ha-card-body' =>
-                        'margin-right: calc(-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}});'
-                        . 'flex: 0 0 calc((100% - {{image_width_mobile.SIZE}}{{image_width_mobile.UNIT}}) + {{image_offset_x_mobile.SIZE || 0}}{{UNIT}});'
-                        . 'max-width: calc((100% - {{image_width_mobile.SIZE}}{{image_width_mobile.UNIT}}) + {{image_offset_x_mobile.SIZE || 0}}{{UNIT}});',
                 ],
             ]
         );

@@ -1,37 +1,37 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 1.0.2
+Version: 1.0.4
 Author: HappyMonster
 Author URI: http://happymonster.me/
 Contributors: thehappymonster, happyaddons, hasinhayder, obiplabon, sourav926
-Tags: elementor, card, blurb, contact form 7, icon box, widget, page builder
+Tags: elementor, form, page builder, widget, addon
 Requires at least: 4.5
-Tested up to: 5.2.1
+Tested up to: 5.2.2
 Requires PHP: 5.4
-Stable tag: 1.0.2
+Stable tag: 1.0.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Most advanced, highly customizable, flexible and easy-to-use widgets for Elementor with lots of options and possibilities.
+[HappyAddons](https://happyaddons.com/) is a collection of slick, powerful widgets that works seamlessly with Elementor page builder. It’s trendy look with detail customization features allows to create extraordinary designs instantly. [HappyAddons](https://happyaddons.com/) is free, rapidly growing and comes with great support.
 
 == Description ==
 
 [HappyAddons](https://happyaddons.com/) is a collection of slick, powerful widgets that works seamlessly with Elementor page builder. It’s trendy look with detail customization features allows to create extraordinary designs instantly. [HappyAddons](https://happyaddons.com/) is free, rapidly growing and comes with great support.
 
-### Check The Demos
+### Included Free Widgets
 
-1. [Card](https://happyaddons.com/elementor-card-widget-demo/)
-2. [Gradient Heading](https://happyaddons.com/elementor-gradient-heading-widget-demo/)
-3. [Info Box](https://happyaddons.com/elementor-info-box-widget-demo/)
-4. [Icon Box](https://happyaddons.com/elementor-icon-box-widget-demo/)
-5. [Image Compare](https://happyaddons.com/elementor-image-compare-widget-demo/)
-6. [Member](https://happyaddons.com/elementor-team-member-widget-demo/)
-7. [Review](https://happyaddons.com/elementor-review-widget-demo/)
-8. [Skill Bars](https://happyaddons.com/elementor-skill-bars-widget-demo/)
-9. [Contact Form 7](https://happyaddons.com/elementor-contact-form-7-widget-demo/)
-10. [Caldera Form](https://happyaddons.com/elementor-caldera-forms-widget-demo/)
-11. [We Forms](https://happyaddons.com/elementor-we-forms-widget-demo/)
-12. [Ninja Forms](https://happyaddons.com/elementor-ninja-form-widget-demo/)
+1. **[Card](https://happyaddons.com/elementor-card-widget-demo/)** - Incredibly powerful widget to demonstrate your products, articles, news, creative posts using a beautiful combination of texts, links, badge and image. Using built in positioning and offset feature you can create eye-candy designs in a twist. [Check demo](https://happyaddons.com/elementor-card-widget-demo/)
+2. **[Gradient Heading](https://happyaddons.com/elementor-gradient-heading-widget-demo/)** - Another gem to create eye candy headings for your websites. You can apply different gradient styles, angles, opacity, and positions to make them look even better across different device screens. [Check demo](https://happyaddons.com/elementor-gradient-heading-widget-demo/)
+3. **[Info Box](https://happyaddons.com/elementor-info-box-widget-demo/)** - Create beautiful information boxes using icons, links and texts, and make them slick using the built in positioning features. [Check demo](https://happyaddons.com/elementor-info-box-widget-demo/)
+4. **[Icon Box](https://happyaddons.com/elementor-icon-box-widget-demo/)** - A simplified version of Info box but comes with powerful display features. Perfect for showcasing interesting information to your users in various styles. [Check demo](https://happyaddons.com/elementor-icon-box-widget-demo/)
+5. **[Image Compare](https://happyaddons.com/elementor-image-compare-widget-demo/)** - Are you a photo-editor, agency or product designer who often needs to showcase their beautiful works in a form of before and after slider? This widget is perfect for this job. And built in styling options, vertical and horizontal orientation features can help you design these before-after sections with more creativity. [Check demo](https://happyaddons.com/elementor-image-compare-widget-demo/)
+6. **[Team Member](https://happyaddons.com/elementor-team-member-widget-demo/)** - A perfect widget to showcase your beautiful team in various styles using texts, images, and social links. And just like our other widgets, you will find powerful styling options to make them stand out quite easily. [Check demo](https://happyaddons.com/elementor-team-member-widget-demo/)
+7. **[Review](https://happyaddons.com/elementor-review-widget-demo/)** - Showcase your user feedback, reviews and rating easily than ever using our review widget. Display user photo, texts and star ratings. Make them stand out using built in offsets and positioning features. [Check demo](https://happyaddons.com/elementor-review-widget-demo/)
+8. **[Skill Bars](https://happyaddons.com/elementor-skill-bars-widget-demo/)** - An essential building block to showcase user skills, task percentage, required tools and other progressive information in different ways. Comes with incredible customizing options to suit your needs. [Check demo](https://happyaddons.com/elementor-skill-bars-widget-demo/)
+9. **[Contact Form 7](https://happyaddons.com/elementor-contact-form-7-widget-demo/)** - This utility widget helps you to integrate existing forms built using CF7 plugin across your web pages without spending too much time. [Check demo](https://happyaddons.com/elementor-contact-form-7-widget-demo/)
+10. **[Caldera Form](https://happyaddons.com/elementor-caldera-forms-widget-demo/)** - This widget can help you to display your caldera forms to display on your web pages designed with Elementor. [Check demo](https://happyaddons.com/elementor-caldera-forms-widget-demo/)
+11. **[We Forms](https://happyaddons.com/elementor-we-forms-widget-demo/)** - Designed forms using weForms plugin and looking for a way to display those on your Elementor powered pages? This is the answer for that. [Check demo](https://happyaddons.com/elementor-we-forms-widget-demo/)
+12. **[Ninja Forms](https://happyaddons.com/elementor-ninja-form-widget-demo/)** - Use this widget to embed forms created using Ninja Forms to display seamlessly on your web pages. Various styling options will help you to look at them even better. [Check demo](https://happyaddons.com/elementor-ninja-form-widget-demo/)
 
 ### Features
 
