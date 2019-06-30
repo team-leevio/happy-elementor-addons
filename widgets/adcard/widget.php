@@ -29,7 +29,7 @@ class AdCard extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy AdCard', 'happy_addons' );
+        return __( 'Happy AdCard', 'happy-elementor-addons' );
     }
 
     /**
@@ -52,7 +52,7 @@ class AdCard extends Base {
         $this->start_controls_section(
             '_section_content',
             [
-                'label' => __( 'Ad Content', 'happy_addons' ),
+                'label' => __( 'Ad Content', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -63,14 +63,14 @@ class AdCard extends Base {
             'type',
             [
                 'type' => Controls_Manager::SELECT,
-                'label' => __( 'Type', 'happy_addons' ),
+                'label' => __( 'Type', 'happy-elementor-addons' ),
                 'default' => 'title',
                 'options' => [
-                    'button' => __( 'Button', 'happy_addons' ),
-                    'divider' => __( 'Divider', 'happy_addons' ),
-                    'image' => __( 'Image', 'happy_addons' ),
-                    'title' => __( 'Title', 'happy_addons' ),
-                    'text' => __( 'Text', 'happy_addons' ),
+                    'button' => __( 'Button', 'happy-elementor-addons' ),
+                    'divider' => __( 'Divider', 'happy-elementor-addons' ),
+                    'image' => __( 'Image', 'happy-elementor-addons' ),
+                    'title' => __( 'Title', 'happy-elementor-addons' ),
+                    'text' => __( 'Text', 'happy-elementor-addons' ),
                 ]
             ]
         );
@@ -105,7 +105,7 @@ class AdCard extends Base {
                 'show_label' => false,
                 'label_block' => true,
                 'separator' => 'before',
-                'placeholder' => __( 'Type title text', 'happy_addons' ),
+                'placeholder' => __( 'Type title text', 'happy-elementor-addons' ),
                 'condition' => [
                     'type' => 'title',
                 ]
@@ -115,31 +115,31 @@ class AdCard extends Base {
         $repeater->add_control(
             'title_tag',
             [
-                'label' => __( 'Title HTML Tag', 'happy_addons' ),
+                'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'h1'  => [
-                        'title' => __( 'H1', 'happy_addons' ),
+                        'title' => __( 'H1', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h1'
                     ],
                     'h2'  => [
-                        'title' => __( 'H2', 'happy_addons' ),
+                        'title' => __( 'H2', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h2'
                     ],
                     'h3'  => [
-                        'title' => __( 'H3', 'happy_addons' ),
+                        'title' => __( 'H3', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h3'
                     ],
                     'h4'  => [
-                        'title' => __( 'H4', 'happy_addons' ),
+                        'title' => __( 'H4', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h4'
                     ],
                     'h5'  => [
-                        'title' => __( 'H5', 'happy_addons' ),
+                        'title' => __( 'H5', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h5'
                     ],
                     'h6'  => [
-                        'title' => __( 'H6', 'happy_addons' ),
+                        'title' => __( 'H6', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h6'
                     ]
                 ],
@@ -156,7 +156,7 @@ class AdCard extends Base {
                 'type' => Controls_Manager::TEXTAREA,
                 'show_label' => false,
                 'separator' => 'before',
-                'placeholder' => __( 'Type text content', 'happy_addons' ),
+                'placeholder' => __( 'Type text content', 'happy-elementor-addons' ),
                 'condition' => [
                     'type' => 'text',
                 ]
@@ -166,7 +166,7 @@ class AdCard extends Base {
         $repeater->add_responsive_control(
             'width',
             [
-                'label' => __( 'Width', 'happy_addons' ),
+                'label' => __( 'Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'range' => [
@@ -191,7 +191,7 @@ class AdCard extends Base {
         $repeater->add_responsive_control(
             'height',
             [
-                'label' => __( 'Height', 'happy_addons' ),
+                'label' => __( 'Height', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -216,7 +216,7 @@ class AdCard extends Base {
         $repeater->add_responsive_control(
             'margin',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
+                'label' => __( 'Margin', 'happy-elementor-addons' ),
                 'separator' => 'before',
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
@@ -229,7 +229,7 @@ class AdCard extends Base {
         $repeater->add_responsive_control(
             'padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
 //                'selectors' => [
@@ -241,23 +241,23 @@ class AdCard extends Base {
         $repeater->add_responsive_control(
             'align',
             [
-                'label' => __( 'Alignment', 'happy_addons' ),
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
                     'justify' => [
-                        'title' => __( 'Justify', 'happy_addons' ),
+                        'title' => __( 'Justify', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-justify',
                     ],
                 ],
@@ -271,7 +271,7 @@ class AdCard extends Base {
         $repeater->add_control(
             'text_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'condition' => [
                     'type' => ['title','text'],
@@ -283,7 +283,7 @@ class AdCard extends Base {
             Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'text_shadow',
-                'label' => __( 'Text Shadow', 'happy_addons' ),
+                'label' => __( 'Text Shadow', 'happy-elementor-addons' ),
                 'condition' => [
                     'type' => ['title', 'text'],
                 ]
@@ -294,7 +294,7 @@ class AdCard extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'text_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'condition' => [
                     'type!' => ['divider', 'image']
                 ]

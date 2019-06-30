@@ -24,7 +24,7 @@ class NinjaForm extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Ninja Form', 'happy_addons' );
+        return __( 'Ninja Form', 'happy-elementor-addons' );
     }
 
     /**
@@ -47,7 +47,7 @@ class NinjaForm extends Base {
 		$this->start_controls_section(
 			'_section_ninjaf',
 			[
-				'label' => ha_is_ninjaf_activated() ? __( 'Ninja Form', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
+				'label' => ha_is_ninjaf_activated() ? __( 'Ninja Form', 'happy-elementor-addons' ) : __( 'Notice', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -58,7 +58,7 @@ class NinjaForm extends Base {
                 [
                     'type' => Controls_Manager::RAW_HTML,
                     'raw' => sprintf(
-                        __( 'Hi, it seems %1$s is missing in your site. Please install and activate %1$s first.', 'happy_addons' ),
+                        __( 'Hi, it seems %1$s is missing in your site. Please install and activate %1$s first.', 'happy-elementor-addons' ),
                         '<a href="https://wordpress.org/plugins/ninja-forms/" target="_blank" rel="noopener">Ninja Form</a>'
                     )
                 ]
@@ -70,10 +70,10 @@ class NinjaForm extends Base {
         $this->add_control(
             'form_id',
             [
-                'label' => __( 'Select Your Form', 'happy_addons' ),
+                'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
-				'options' => ['' => __( '', 'happy_addons' ) ] + \ha_get_ninjaform(),
+				'options' => ['' => __( '', 'happy-elementor-addons' ) ] + \ha_get_ninjaform(),
             ]
         );
 
@@ -84,7 +84,7 @@ class NinjaForm extends Base {
         $this->start_controls_section(
             '_section_fields_style',
             [
-                'label' => __( 'Form Fields', 'happy_addons' ),
+                'label' => __( 'Form Fields', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -92,7 +92,7 @@ class NinjaForm extends Base {
         $this->add_responsive_control(
             'field_margin',
             [
-                'label' => __( 'Field Spacing', 'happy_addons' ),
+                'label' => __( 'Field Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -104,7 +104,7 @@ class NinjaForm extends Base {
         $this->add_responsive_control(
             'field_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -116,7 +116,7 @@ class NinjaForm extends Base {
         $this->add_responsive_control(
             'field_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -129,7 +129,7 @@ class NinjaForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'field_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea',
             ]
         );
@@ -137,7 +137,7 @@ class NinjaForm extends Base {
         $this->add_control(
             'field_textcolor',
             [
-                'label' => __( 'Field Text Color', 'happy_addons' ),
+                'label' => __( 'Field Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'color: {{VALUE}}',
@@ -148,7 +148,7 @@ class NinjaForm extends Base {
 		$this->add_control(
             'field_placeholder_color',
             [
-                'label' => __( 'Field Placeholder Color', 'happy_addons' ),
+                'label' => __( 'Field Placeholder Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} ::-webkit-input-placeholder'	=> 'color: {{VALUE}};',
@@ -163,7 +163,7 @@ class NinjaForm extends Base {
         $this->start_controls_tab(
             'tab_field_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
 		);
 
@@ -186,7 +186,7 @@ class NinjaForm extends Base {
         $this->add_control(
             'field_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea' => 'background-color: {{VALUE}}',
@@ -199,7 +199,7 @@ class NinjaForm extends Base {
 		$this->start_controls_tab(
             'tab_field_focus',
             [
-                'label' => __( 'Focus', 'happy_addons' ),
+                'label' => __( 'Focus', 'happy-elementor-addons' ),
             ]
 		);
 
@@ -225,7 +225,7 @@ class NinjaForm extends Base {
 		$this->add_control(
             'field_focus_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .textbox-wrap input[type=text]:focus, {{WRAPPER}} .email-wrap input:focus, {{WRAPPER}} .textarea-wrap textarea:focus' => 'background-color: {{VALUE}}',
@@ -242,7 +242,7 @@ class NinjaForm extends Base {
         $this->start_controls_section(
             'ninjaf-form-label',
             [
-                'label' => __( 'Form Fields Label', 'happy_addons' ),
+                'label' => __( 'Form Fields Label', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -250,7 +250,7 @@ class NinjaForm extends Base {
         $this->add_responsive_control(
             'label_margin',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
+                'label' => __( 'Margin', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -262,7 +262,7 @@ class NinjaForm extends Base {
         $this->add_responsive_control(
             'label_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -283,7 +283,7 @@ class NinjaForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'label_typography',
-                'label' => __( 'Label Typography', 'happy_addons' ),
+                'label' => __( 'Label Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label',
             ]
         );
@@ -292,7 +292,7 @@ class NinjaForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'desc_typography',
-                'label' => __( 'Description Typography', 'happy_addons' ),
+                'label' => __( 'Description Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .nf-field-description p',
             ]
         );
@@ -300,7 +300,7 @@ class NinjaForm extends Base {
         $this->add_control(
             'label_color',
             [
-                'label' => __( 'Label Text Color', 'happy_addons' ),
+                'label' => __( 'Label Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label' => 'color: {{VALUE}}',
@@ -311,7 +311,7 @@ class NinjaForm extends Base {
 		$this->add_control(
             'requered_label',
             [
-                'label' => __( 'Required Label Color', 'happy_addons' ),
+                'label' => __( 'Required Label Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ninja-forms-req-symbol' => 'color: {{VALUE}}',
@@ -322,7 +322,7 @@ class NinjaForm extends Base {
 		$this->add_control(
             'desc_color',
             [
-                'label' => __( 'Description Text Color', 'happy_addons' ),
+                'label' => __( 'Description Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .nf-field-description p' => 'color: {{VALUE}}',
@@ -335,7 +335,7 @@ class NinjaForm extends Base {
         $this->start_controls_section(
             'submit',
             [
-                'label' => __( 'Submit Button', 'happy_addons' ),
+                'label' => __( 'Submit Button', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -343,19 +343,19 @@ class NinjaForm extends Base {
 		$this->add_responsive_control(
             'submit_btn_position',
             [
-                'label' => __( 'Button Position', 'happy_addons' ),
+                'label' => __( 'Button Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -371,7 +371,7 @@ class NinjaForm extends Base {
         $this->add_responsive_control(
             'submit_margin',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
+                'label' => __( 'Margin', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -383,7 +383,7 @@ class NinjaForm extends Base {
         $this->add_responsive_control(
             'submit_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -411,7 +411,7 @@ class NinjaForm extends Base {
         $this->add_control(
             'submit_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -441,14 +441,14 @@ class NinjaForm extends Base {
         $this->start_controls_tab(
             'tab_button_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'submit_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -460,7 +460,7 @@ class NinjaForm extends Base {
         $this->add_control(
             'submit_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .submit-container input' => 'background-color: {{VALUE}};',
@@ -473,14 +473,14 @@ class NinjaForm extends Base {
         $this->start_controls_tab(
             'tab_button_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'submit_hover_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .submit-container input:hover, {{WRAPPER}} .submit-container input:focus' => 'color: {{VALUE}};',
@@ -491,7 +491,7 @@ class NinjaForm extends Base {
         $this->add_control(
             'submit_hover_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .submit-container input:hover, {{WRAPPER}} .submit-container input:focus' => 'background-color: {{VALUE}};',
@@ -502,7 +502,7 @@ class NinjaForm extends Base {
         $this->add_control(
             'submit_hover_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .submit-container input:hover, {{WRAPPER}} .submit-container input:focus' => 'border-color: {{VALUE}};',

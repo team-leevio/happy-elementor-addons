@@ -25,7 +25,7 @@ class Gradient_Heading extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Gradient Heading', 'happy_addons' );
+        return __( 'Gradient Heading', 'happy-elementor-addons' );
     }
 
     /**
@@ -48,7 +48,7 @@ class Gradient_Heading extends Base {
 		$this->start_controls_section(
 			'_section_title',
 			[
-				'label' => __( 'Title', 'happy_addons' ),
+				'label' => __( 'Title', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -56,51 +56,51 @@ class Gradient_Heading extends Base {
         $this->add_control(
             'title',
             [
-                'label' => __( 'Title', 'happy_addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Happy Gradient Heading', 'happy_addons' ),
-                'placeholder' => __( 'Type Gradient Heading Text', 'happy_addons' ),
+                'default' => __( 'Happy Gradient Heading', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type Gradient Heading Text', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'link',
             [
-                'label' => __( 'Link', 'happy_addons' ),
+                'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
                 'separator' => 'before',
-                'placeholder' => __( 'https://example.com/', 'happy_addons' ),
+                'placeholder' => __( 'https://example.com/', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'title_tag',
             [
-                'label' => __( 'Title HTML Tag', 'happy_addons' ),
+                'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'h1'  => [
-                        'title' => __( 'H1', 'happy_addons' ),
+                        'title' => __( 'H1', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h1'
                     ],
                     'h2'  => [
-                        'title' => __( 'H2', 'happy_addons' ),
+                        'title' => __( 'H2', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h2'
                     ],
                     'h3'  => [
-                        'title' => __( 'H3', 'happy_addons' ),
+                        'title' => __( 'H3', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h3'
                     ],
                     'h4'  => [
-                        'title' => __( 'H4', 'happy_addons' ),
+                        'title' => __( 'H4', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h4'
                     ],
                     'h5'  => [
-                        'title' => __( 'H5', 'happy_addons' ),
+                        'title' => __( 'H5', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h5'
                     ],
                     'h6'  => [
-                        'title' => __( 'H6', 'happy_addons' ),
+                        'title' => __( 'H6', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h6'
                     ]
                 ],
@@ -112,23 +112,23 @@ class Gradient_Heading extends Base {
         $this->add_responsive_control(
             'align',
             [
-                'label' => __( 'Alignment', 'happy_addons' ),
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
                     'justify' => [
-                        'title' => __( 'Justify', 'happy_addons' ),
+                        'title' => __( 'Justify', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-justify',
                     ],
                 ],
@@ -146,7 +146,7 @@ class Gradient_Heading extends Base {
         $this->start_controls_section(
             '_section_style_title',
             [
-                'label' => __( 'Title', 'happy_addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -172,7 +172,7 @@ class Gradient_Heading extends Base {
             Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'title',
-                'label' => __( 'Text Shadow', 'happy_addons' ),
+                'label' => __( 'Text Shadow', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-gradient-heading',
             ]
         );
@@ -180,10 +180,10 @@ class Gradient_Heading extends Base {
         $this->add_control(
             'blend_mode',
             [
-                'label' => __( 'Blend Mode', 'happy_addons' ),
+                'label' => __( 'Blend Mode', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    '' => __( 'Normal', 'happy_addons' ),
+                    '' => __( 'Normal', 'happy-elementor-addons' ),
                     'multiply' => 'Multiply',
                     'screen' => 'Screen',
                     'overlay' => 'Overlay',

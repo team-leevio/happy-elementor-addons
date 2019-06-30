@@ -85,14 +85,14 @@ if ( ! function_exists( 'ha_get_ninjaform' ) ) {
 
             if ( !empty($contact_forms) && !is_wp_error( $contact_forms ) ) {
 
-                $options[0] = esc_html__( 'Select Ninja Form', 'happy_addons' );
+                $options[0] = esc_html__( 'Select Ninja Form', 'happy-elementor-addons' );
 
                 foreach ( $contact_forms as $form ) {
                     $options[$form->get_id()] = $form->get_setting('title');
                 }
             }
         } else {
-            $options[0] = esc_html__( 'Create a Form First', 'happy_addons' );
+            $options[0] = esc_html__( 'Create a Form First', 'happy-elementor-addons' );
         }
 
         return $options;
@@ -112,13 +112,13 @@ if ( ! function_exists( 'ha_get_caldera_form' ) ) {
 			$contact_forms = \Caldera_Forms_Forms::get_forms(true, true);
 
 			if ( !empty( $contact_forms ) && !is_wp_error( $contact_forms ) ) {
-				$options[0] = esc_html__( 'Select a Caldera Form', 'happy_addons' );
+				$options[0] = esc_html__( 'Select a Caldera Form', 'happy-elementor-addons' );
 				foreach ( $contact_forms as $form ) {
 					$options[$form['ID']] = $form['name'];
 				}
 			}
 		} else {
-			$options[0] = esc_html__( 'Create a Form First', 'happy_addons' );
+			$options[0] = esc_html__( 'Create a Form First', 'happy-elementor-addons' );
 		}
 
 		return $options;
@@ -165,7 +165,7 @@ if ( ! function_exists( 'ha_get_modula_gallery' ) ) {
         if ( ! empty( $gallery ) ) {
             return wp_list_pluck( $gallery, 'post_title', 'ID' );
         } else {
-			__( 'Create a Gallery', 'happy_addons' );
+			__( 'Create a Gallery', 'happy-elementor-addons' );
 		}
         return [];
 	}

@@ -28,7 +28,7 @@ class Testimonial extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Testimonial', 'happy_addons' );
+        return __( 'Testimonial', 'happy-elementor-addons' );
     }
 
     /**
@@ -51,7 +51,7 @@ class Testimonial extends Base {
         $this->start_controls_section(
             '_testimonial_image',
             [
-                'label' => __( 'Image', 'happy_addons' ),
+                'label' => __( 'Image', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -59,7 +59,7 @@ class Testimonial extends Base {
 		$this->add_control(
             'image',
             [
-                'label' => __( 'Photo', 'happy_addons' ),
+                'label' => __( 'Photo', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -83,7 +83,7 @@ class Testimonial extends Base {
 		$this->start_controls_section(
             '_testimonial_name',
             [
-                'label' => __( 'Identity & Detail', 'happy_addons' ),
+                'label' => __( 'Identity & Detail', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -91,33 +91,33 @@ class Testimonial extends Base {
 		$this->add_control(
             'name',
             [
-                'label' => __( 'Name', 'happy_addons' ),
+                'label' => __( 'Name', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'John Doe', 'happy_addons' ),
-                'placeholder' => __( 'Name', 'happy_addons' ),
+                'default' => __( 'John Doe', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Name', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'designation',
             [
-                'label' => __( 'Designation', 'happy_addons' ),
+                'label' => __( 'Designation', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Communication Director', 'happy_addons' ),
-                'placeholder' => __( 'Designation', 'happy_addons' ),
+                'default' => __( 'Communication Director', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Designation', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'description',
             [
-                'label' => __( 'Description', 'happy_addons' ),
+                'label' => __( 'Description', 'happy-elementor-addons' ),
                 'label_block' => true,
 				'type' => Controls_Manager::TEXTAREA,
-				'default' => __( 'Write detail here', 'happy_addons' ),
-                'placeholder' => __( 'Description', 'happy_addons' ),
+				'default' => __( 'Write detail here', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Description', 'happy-elementor-addons' ),
             ]
 		);
 
@@ -129,7 +129,7 @@ class Testimonial extends Base {
         $this->start_controls_section(
             '_section_style_content',
             [
-                'label' => __( 'Content Position', 'happy_addons' ),
+                'label' => __( 'Content Position', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -137,20 +137,20 @@ class Testimonial extends Base {
 		$this->add_control(
             'content_position',
             [
-                'label' => __( 'Content horizontal Position', 'happy_addons' ),
+                'label' => __( 'Content horizontal Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => true,
                 'options' => [
 					'left' => [
-						'title' => __( 'Left', 'happy_addons' ),
+						'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-left',
                     ],
 					'center' => [
-						'title' => __( 'Center', 'happy_addons' ),
+						'title' => __( 'Center', 'happy-elementor-addons' ),
 						'icon' => 'eicon-h-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'happy_addons' ),
+						'title' => __( 'Right', 'happy-elementor-addons' ),
 						'icon' => 'eicon-h-align-right',
 					]
                 ],
@@ -164,7 +164,7 @@ class Testimonial extends Base {
 		$this->start_controls_section(
             '_section_style_image',
             [
-                'label' => __( 'Image', 'happy_addons' ),
+                'label' => __( 'Image', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -172,7 +172,7 @@ class Testimonial extends Base {
 		$this->add_responsive_control(
             'image_width',
             [
-                'label' => __( 'Width', 'happy_addons' ),
+                'label' => __( 'Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -190,7 +190,7 @@ class Testimonial extends Base {
 		$this->add_responsive_control(
             'image_height',
             [
-                'label' => __( 'Height', 'happy_addons' ),
+                'label' => __( 'Height', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
                 'range' => [
@@ -216,7 +216,7 @@ class Testimonial extends Base {
 		$this->add_responsive_control(
             'image_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -228,7 +228,7 @@ class Testimonial extends Base {
 		$this->add_responsive_control(
             'image_spacing',
             [
-                'label' => __( 'Top Spacing', 'happy_addons' ),
+                'label' => __( 'Top Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'default' => [
@@ -246,7 +246,7 @@ class Testimonial extends Base {
 		$this->start_controls_section(
             '_section_style_title',
             [
-                'label' => __( 'Identity', 'happy_addons' ),
+                'label' => __( 'Identity', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -254,7 +254,7 @@ class Testimonial extends Base {
 		$this->add_control(
             'title_color',
             [
-                'label' => __( 'Name Text Color', 'happy_addons' ),
+                'label' => __( 'Name Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-testimonial-author' => 'color: {{VALUE}}',
@@ -266,7 +266,7 @@ class Testimonial extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'label' => __( 'Name Typography', 'happy_addons' ),
+                'label' => __( 'Name Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-testimonial-author',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
@@ -275,7 +275,7 @@ class Testimonial extends Base {
 		$this->add_responsive_control(
             'name_spacing',
             [
-                'label' => __( 'Top Spacing', 'happy_addons' ),
+                'label' => __( 'Top Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'default' => [
@@ -299,7 +299,7 @@ class Testimonial extends Base {
 		$this->add_control(
             'designation_color',
             [
-                'label' => __( 'Designation Text Color', 'happy_addons' ),
+                'label' => __( 'Designation Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-testimonial-designation' => 'color: {{VALUE}}',
@@ -311,7 +311,7 @@ class Testimonial extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'designation_typography',
-                'label' => __( 'Designation Typography', 'happy_addons' ),
+                'label' => __( 'Designation Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-testimonial-designation',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
@@ -320,7 +320,7 @@ class Testimonial extends Base {
 		$this->add_responsive_control(
             'designation_spacing',
             [
-                'label' => __( 'Top Spacing', 'happy_addons' ),
+                'label' => __( 'Top Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'default' => [
@@ -339,7 +339,7 @@ class Testimonial extends Base {
 		$this->start_controls_section(
             '_section_style_description',
             [
-                'label' => __( 'Detail', 'happy_addons' ),
+                'label' => __( 'Detail', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -347,7 +347,7 @@ class Testimonial extends Base {
 		$this->add_responsive_control(
             'description_spacing',
             [
-                'label' => __( 'Spacing', 'happy_addons' ),
+                'label' => __( 'Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'default' => [
@@ -363,7 +363,7 @@ class Testimonial extends Base {
 		$this->add_control(
             'description_background_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-testimonial-info' => 'background-color: {{VALUE}}',
@@ -374,7 +374,7 @@ class Testimonial extends Base {
 		$this->add_control(
             'description_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-testimonial-info' => 'color: {{VALUE}}',
@@ -386,7 +386,7 @@ class Testimonial extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'description_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-testimonial-info',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
@@ -403,7 +403,7 @@ class Testimonial extends Base {
 		$this->add_responsive_control(
             'description_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
