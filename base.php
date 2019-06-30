@@ -6,6 +6,10 @@
  */
 namespace Happy_Addons\Elementor;
 
+use Happy_Addons\Elementor\Manager\Assets;
+use Happy_Addons\Elementor\Manager\Widgets;
+use Happy_Addons\Elementor\Extension\Happy_Effects;
+
 defined( 'ABSPATH' ) || die();
 
 class Base {
@@ -63,8 +67,9 @@ class Base {
 
         add_action( 'wp_ajax_ha_get_preset', [$this, 'handle_widget_preset_request'] );
 
-        Widget_Manager::instance()->init();
-        Asset_Manager::instance()->init();
+        Widgets::init();
+        Assets::init();
+        Happy_Effects::init();
     }
 
     public function handle_widget_preset_request() {
@@ -80,6 +85,7 @@ class Base {
         require( __DIR__ . '/inc/happy-icons.php' );
         require( __DIR__ . '/classes/widget-manager.php' );
         require( __DIR__ . '/classes/asset-manager.php' );
+        require( __DIR__ . '/classes/happy-effects.php' );
     }
 
     /**

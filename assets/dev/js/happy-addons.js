@@ -1,8 +1,8 @@
 'use strict';
 window.Happy = window.Happy || {};
 
-(function ($, Happy) {
-    var $window = $(window);
+(function ($, Happy, w) {
+    var $window = $(w);
 
     function isMobileBreakpoint() {
         return ($window.width() < elementorFrontend.config.breakpoints.md);
@@ -180,7 +180,7 @@ window.Happy = window.Happy || {};
     };
 
     $window.on( 'elementor/frontend/init', function() {
-        var FloatingFx = elementorModules.frontend.handlers.Base.extend({
+        var Happy_Effects = elementorModules.frontend.handlers.Base.extend({
             onInit: function() {
                 elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
                 this.run();
@@ -201,8 +201,21 @@ window.Happy = window.Happy || {};
             },
 
             onElementChange: function() {
+                this.transformCleanup();
                 this.resetFx();
                 this.run();
+            },
+
+            transformCleanup: function() {
+                var settings = this.getElementSettings(),
+                    model = elementorFrontend.config.elements.data[this.getModelCID()];
+                if (!settings.ha_transform_fx_translate_toggle) {
+                    // model.set('ha_transform_fx_translate_x', {size: 0});
+                    // model.set('ha_transform_fx_translate_y', {size: 0});
+                    // elementorModules.frontend.handlers.Base.prototype.setSettings.apply(this, ['ha_transform_fx_translate_x.size', '']);
+                    // this.setSettings('ha_transform_fx_translate_x.size', 0);
+                    // this.setSettings('ha_transform_fx_translate_y.size', 0);
+                }
             },
 
             run: function() {
@@ -302,9 +315,9 @@ window.Happy = window.Happy || {};
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/widget',
             function ($scope) {
-                new FloatingFx({ $element: $scope });
+                window.ele = new Happy_Effects({ $element: $scope });
             }
         );
     });
 
-} (jQuery, Happy));
+} (jQuery, Happy, window));

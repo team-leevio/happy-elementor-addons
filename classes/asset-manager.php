@@ -1,40 +1,31 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Manager;
+
+use Happy_Addons\Elementor\Base;
 
 defined( 'ABSPATH' ) || die();
 
-class Asset_Manager {
-
-    private static $instance = null;
-
-    public static function instance() {
-        if ( is_null( self::$instance ) ) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
-
-    public function init() {
+class Assets {
+    public static function init() {
         // Frontend scripts
-        add_action( 'wp_enqueue_scripts', [$this, 'enqueue_frontend_scripts'] );
+        add_action( 'wp_enqueue_scripts', [__CLASS__, 'enqueue_frontend_scripts'] );
 
-		add_action( 'elementor/editor/before_enqueue_scripts', [$this, 'enqueue_editor_scripts'] );
+		add_action( 'elementor/editor/before_enqueue_scripts', [__CLASS__, 'enqueue_editor_scripts'] );
 
-        add_action( 'elementor/preview/enqueue_styles', [$this, 'enqueue_preview_style'] );
-
+        add_action( 'elementor/preview/enqueue_styles', [__CLASS__, 'enqueue_preview_style'] );
 
         // Placeholder image replacement
-        add_filter( 'elementor/utils/get_placeholder_image_src', [$this, 'set_placeholder_image'] );
+        add_filter( 'elementor/utils/get_placeholder_image_src', [__CLASS__, 'set_placeholder_image'] );
     }
 
-    public function set_placeholder_image() {
+    public static function set_placeholder_image() {
         return HAPPY_ASSETS . 'imgs/placeholder.jpg';
     }
 
     /**
      * Enqueue frontend scripts
      */
-    public function enqueue_frontend_scripts() {
+    public static function enqueue_frontend_scripts() {
 		$suffix = ha_is_script_debug_enabled() ? '.' : '.';
 
         wp_enqueue_style(
@@ -152,7 +143,7 @@ class Asset_Manager {
         );
     }
 
-    public function enqueue_editor_scripts() {
+    public static function enqueue_editor_scripts() {
         wp_enqueue_style(
             'happy-icon',
             HAPPY_ASSETS . 'fonts/style.min.css',
@@ -185,7 +176,7 @@ class Asset_Manager {
         );
 	}
 
-    public function enqueue_preview_style() {
+    public static function enqueue_preview_style() {
         if( class_exists( 'WeForms' ) ) {
             wp_enqueue_style(
                 'happy-elementor-weform-preview',
@@ -210,7 +201,5 @@ class Asset_Manager {
                 Base::VERSION
             );
         }
-
     }
-
 }
