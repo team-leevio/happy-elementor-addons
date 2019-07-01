@@ -60,7 +60,8 @@ class CF7 extends Base {
                     'raw' => sprintf(
                         __( 'Hi, it seems %1$s is missing in your site. Please install and activate %1$s first.', 'happy_addons' ),
                         '<a href="https://wordpress.org/plugins/contact-form-7/" target="_blank" rel="noopener">Contact Form 7</a>'
-                    )
+                    ),
+                    'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
                 ]
             );
             $this->end_controls_section();

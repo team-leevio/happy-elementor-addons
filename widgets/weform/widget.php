@@ -25,7 +25,7 @@ class WeForm extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'We Form', 'happy_addons' );
+        return __( 'weForms', 'happy_addons' );
     }
 
     /**
@@ -41,7 +41,7 @@ class WeForm extends Base {
     }
 
     public function get_keywords() {
-        return [ 'we form', 'caldera', 'wpf','wpform' , 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
+        return [ 'weForms', 'we forms', 'caldera', 'wpf','wpform', 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
     }
 
     // Whether the reload preview is required or not.
@@ -53,7 +53,7 @@ class WeForm extends Base {
 		$this->start_controls_section(
 			'_section_weform',
 			[
-				'label' => ha_is_weform_activated() ? __( 'We Form', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
+				'label' => ha_is_weform_activated() ? __( 'weForms', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -65,8 +65,9 @@ class WeForm extends Base {
                     'type' => Controls_Manager::RAW_HTML,
                     'raw' => sprintf(
                         __( 'Hi, it seems %1$s is missing in your site. Please install and activate %1$s first.', 'happy_addons' ),
-                        '<a href="https://wordpress.org/plugins/weforms/" target="_blank" rel="noopener">We Form</a>'
-                    )
+                        '<a href="https://wordpress.org/plugins/weforms/" target="_blank" rel="noopener">weForms</a>'
+                    ),
+                    'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
                 ]
             );
             $this->end_controls_section();
