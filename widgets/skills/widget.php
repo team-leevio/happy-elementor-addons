@@ -26,7 +26,7 @@ class Skills extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Skill Bars', 'happy_addons' );
+        return __( 'Skill Bars', 'happy-elementor-addons' );
     }
 
     /**
@@ -49,7 +49,7 @@ class Skills extends Base {
         $this->start_controls_section(
             '_section_skills',
             [
-                'label' => __( 'Skills', 'happy_addons' ),
+                'label' => __( 'Skills', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -60,16 +60,16 @@ class Skills extends Base {
             'name',
             [
                 'type' => Controls_Manager::TEXT,
-                'label' => __( 'Name', 'happy_addons' ),
-                'default' => __( 'Happy Skill', 'happy_addons' ),
-                'placeholder' => __( 'Type Happy Skill Name', 'happy_addons' ),
+                'label' => __( 'Name', 'happy-elementor-addons' ),
+                'default' => __( 'Happy Skill', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type Happy Skill Name', 'happy-elementor-addons' ),
             ]
         );
 
         $repeater->add_control(
             'level',
             [
-                'label' => __( 'Level (Out Of 100)', 'happy_addons' ),
+                'label' => __( 'Level (Out Of 100)', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'unit' => '%',
@@ -88,19 +88,19 @@ class Skills extends Base {
         $repeater->add_control(
             'customize',
             [
-                'label' => __( 'Want To Customize?', 'happy_addons' ),
+                'label' => __( 'Want To Customize?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
-                'description' => __( 'You can customize this skill bar color from here or customize from Style tab', 'happy_addons' )
+                'description' => __( 'You can customize this skill bar color from here or customize from Style tab', 'happy-elementor-addons' )
             ]
         );
 
         $repeater->add_control(
             'color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} {{CURRENT_ITEM}} .ha-skill-info' => 'color: {{VALUE}}',
@@ -112,7 +112,7 @@ class Skills extends Base {
         $repeater->add_control(
             'level_color',
             [
-                'label' => __( 'Level Color', 'happy_addons' ),
+                'label' => __( 'Level Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} {{CURRENT_ITEM}} .ha-skill-level' => 'background-color: {{VALUE}}',
@@ -124,7 +124,7 @@ class Skills extends Base {
         $repeater->add_control(
             'base_color',
             [
-                'label' => __( 'Base Color', 'happy_addons' ),
+                'label' => __( 'Base Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} {{CURRENT_ITEM}}.ha-skill' => 'background-color: {{VALUE}}',
@@ -147,12 +147,12 @@ class Skills extends Base {
             'view',
             [
                 'type' => Controls_Manager::SELECT,
-                'label' => __( 'Text Position', 'happy_addons' ),
+                'label' => __( 'Text Position', 'happy-elementor-addons' ),
                 'separator' => 'before',
                 'default' => 'inside',
                 'options' => [
-                    'inside' => __( 'Text Inside', 'happy_addons' ),
-                    'outside' => __( 'Text Outside', 'happy_addons' ),
+                    'inside' => __( 'Text Inside', 'happy-elementor-addons' ),
+                    'outside' => __( 'Text Outside', 'happy-elementor-addons' ),
                 ]
             ]
         );
@@ -164,7 +164,7 @@ class Skills extends Base {
         $this->start_controls_section(
             '_section_style_bars',
             [
-                'label' => __( 'Skill Bars', 'happy_addons' ),
+                'label' => __( 'Skill Bars', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -172,7 +172,7 @@ class Skills extends Base {
         $this->add_control(
             'height',
             [
-                'label' => __( 'Height', 'happy_addons' ),
+                'label' => __( 'Height', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -191,7 +191,7 @@ class Skills extends Base {
         $this->add_control(
             'spacing',
             [
-                'label' => __( 'Top Spacing', 'happy_addons' ),
+                'label' => __( 'Top Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -210,7 +210,7 @@ class Skills extends Base {
         $this->add_control(
             'border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -235,7 +235,7 @@ class Skills extends Base {
         $this->start_controls_section(
             '_section_content',
             [
-                'label' => __( 'Content', 'happy_addons' ),
+                'label' => __( 'Content', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -243,7 +243,7 @@ class Skills extends Base {
         $this->add_control(
             'color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-skill-info' => 'color: {{VALUE}}',
@@ -254,7 +254,7 @@ class Skills extends Base {
         $this->add_control(
             'level_color',
             [
-                'label' => __( 'Level Color', 'happy_addons' ),
+                'label' => __( 'Level Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-skill-level' => 'background-color: {{VALUE}}',
@@ -265,7 +265,7 @@ class Skills extends Base {
         $this->add_control(
             'base_color',
             [
-                'label' => __( 'Base Color', 'happy_addons' ),
+                'label' => __( 'Base Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-skill' => 'background-color: {{VALUE}}',

@@ -28,7 +28,7 @@ class Slider extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Slider', 'happy_addons' );
+        return __( 'Slider', 'happy-elementor-addons' );
     }
 
     /**
@@ -51,7 +51,7 @@ class Slider extends Base {
         $this->start_controls_section(
             '_section_slides',
             [
-                'label' => __( 'Slides', 'happy_addons' ),
+                'label' => __( 'Slides', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -62,7 +62,7 @@ class Slider extends Base {
             'image',
             [
                 'type' => Controls_Manager::MEDIA,
-                'label' => __( 'Image', 'happy_addons' ),
+                'label' => __( 'Image', 'happy-elementor-addons' ),
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
@@ -74,8 +74,8 @@ class Slider extends Base {
             [
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
-                'label' => __( 'Title & Subtitle', 'happy_addons' ),
-                'placeholder' => __( 'Type title here', 'happy_addons' )
+                'label' => __( 'Title & Subtitle', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type title here', 'happy-elementor-addons' )
             ]
         );
 
@@ -85,7 +85,7 @@ class Slider extends Base {
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
                 'show_label' => false,
-                'placeholder' => __( 'Type subtitle here', 'happy_addons' )
+                'placeholder' => __( 'Type subtitle here', 'happy-elementor-addons' )
             ]
         );
 
@@ -116,7 +116,7 @@ class Slider extends Base {
         $this->start_controls_section(
             '_section_settings',
             [
-                'label' => __( 'Settings', 'happy_addons' ),
+                'label' => __( 'Settings', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -124,7 +124,7 @@ class Slider extends Base {
         $this->add_control(
             'speed',
             [
-                'label' => __( 'Animation Speed', 'happy_addons' ),
+                'label' => __( 'Animation Speed', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -137,20 +137,20 @@ class Slider extends Base {
                 'default' => [
                     'size' => 300,
                 ],
-                'description' => __( 'Slide speed in milliseconds', 'happy_addons' ),
+                'description' => __( 'Slide speed in milliseconds', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'navigation',
             [
-                'label' => __( 'Navigation', 'happy_addons' ),
+                'label' => __( 'Navigation', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    '' => __( 'None', 'happy_addons' ),
-                    'arrow' => __( 'Arrow', 'happy_addons' ),
-                    'dots' => __( 'Dots', 'happy_addons' ),
-                    'both' => __( 'Arrow & Dots', 'happy_addons' ),
+                    '' => __( 'None', 'happy-elementor-addons' ),
+                    'arrow' => __( 'Arrow', 'happy-elementor-addons' ),
+                    'dots' => __( 'Dots', 'happy-elementor-addons' ),
+                    'both' => __( 'Arrow & Dots', 'happy-elementor-addons' ),
                 ],
                 'default' => 'both',
             ]
@@ -159,10 +159,10 @@ class Slider extends Base {
         $this->add_control(
             'autoplay',
             [
-                'label' => __( 'Autoplay?', 'happy_addons' ),
+                'label' => __( 'Autoplay?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -171,7 +171,7 @@ class Slider extends Base {
         $this->add_control(
             'autoplay_speed',
             [
-                'label' => __( 'Autoplay Speed', 'happy_addons' ),
+                'label' => __( 'Autoplay Speed', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -184,7 +184,7 @@ class Slider extends Base {
                 'default' => [
                     'size' => 3000,
                 ],
-                'description' => __( 'Autoplay speed in milliseconds', 'happy_addons' ),
+                'description' => __( 'Autoplay speed in milliseconds', 'happy-elementor-addons' ),
                 'condition' => [
                     'autoplay' => 'yes'
                 ],
@@ -194,10 +194,10 @@ class Slider extends Base {
         $this->add_control(
             'infinite',
             [
-                'label' => __( 'Infinite Loop?', 'happy_addons' ),
+                'label' => __( 'Infinite Loop?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
             ]
         );
@@ -205,10 +205,10 @@ class Slider extends Base {
         $this->add_control(
             'vertical',
             [
-                'label' => __( 'Vertical Mode?', 'happy_addons' ),
+                'label' => __( 'Vertical Mode?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
             ]
         );
@@ -220,7 +220,7 @@ class Slider extends Base {
         $this->start_controls_section(
             '_section_style_item',
             [
-                'label' => __( 'Slider Item', 'happy_addons' ),
+                'label' => __( 'Slider Item', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -236,7 +236,7 @@ class Slider extends Base {
         $this->add_responsive_control(
             'item_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -250,7 +250,7 @@ class Slider extends Base {
         $this->start_controls_section(
             '_section_style_content',
             [
-                'label' => __( 'Content', 'happy_addons' ),
+                'label' => __( 'Content', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -258,7 +258,7 @@ class Slider extends Base {
         $this->add_responsive_control(
             'content_padding',
             [
-                'label' => __( 'Content Padding', 'happy_addons' ),
+                'label' => __( 'Content Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -282,7 +282,7 @@ class Slider extends Base {
             '_heading_title',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Title', 'happy_addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'separator' => 'before'
             ]
         );
@@ -290,7 +290,7 @@ class Slider extends Base {
         $this->add_responsive_control(
             'title_spacing',
             [
-                'label' => __( 'Bottom Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -302,7 +302,7 @@ class Slider extends Base {
         $this->add_control(
             'title_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-slider-title' => 'color: {{VALUE}}',
@@ -323,7 +323,7 @@ class Slider extends Base {
             '_heading_subtitle',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Subtitle', 'happy_addons' ),
+                'label' => __( 'Subtitle', 'happy-elementor-addons' ),
                 'separator' => 'before'
             ]
         );
@@ -331,7 +331,7 @@ class Slider extends Base {
         $this->add_responsive_control(
             'subtitle_spacing',
             [
-                'label' => __( 'Bottom Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -343,7 +343,7 @@ class Slider extends Base {
         $this->add_control(
             'subtitle_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-slider-subtitle' => 'color: {{VALUE}}',
@@ -365,7 +365,7 @@ class Slider extends Base {
         $this->start_controls_section(
             '_section_style_arrow',
             [
-                'label' => __( 'Arrow Navigation', 'happy_addons' ),
+                'label' => __( 'Arrow Navigation', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -373,10 +373,10 @@ class Slider extends Base {
         $this->add_control(
             'arrow_position_toggle',
             [
-                'label' => __( 'Position', 'happy_addons' ),
+                'label' => __( 'Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
-                'label_off' => __( 'None', 'happy_addons' ),
-                'label_on' => __( 'Custom', 'happy_addons' ),
+                'label_off' => __( 'None', 'happy-elementor-addons' ),
+                'label_on' => __( 'Custom', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
             ]
         );
@@ -386,7 +386,7 @@ class Slider extends Base {
         $this->add_responsive_control(
             'arrow_position_y',
             [
-                'label' => __( 'Vertical', 'happy_addons' ),
+                'label' => __( 'Vertical', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -407,7 +407,7 @@ class Slider extends Base {
         $this->add_responsive_control(
             'arrow_position_x',
             [
-                'label' => __( 'Horizontal', 'happy_addons' ),
+                'label' => __( 'Horizontal', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -439,7 +439,7 @@ class Slider extends Base {
         $this->add_responsive_control(
             'arrow_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -453,14 +453,14 @@ class Slider extends Base {
         $this->start_controls_tab(
             '_tab_arrow_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'arrow_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -472,7 +472,7 @@ class Slider extends Base {
         $this->add_control(
             'arrow_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .slick-prev, {{WRAPPER}} .slick-next' => 'background-color: {{VALUE}};',
@@ -485,14 +485,14 @@ class Slider extends Base {
         $this->start_controls_tab(
             '_tab_arrow_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'arrow_hover_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .slick-prev:hover, {{WRAPPER}} .slick-next:hover' => 'color: {{VALUE}};',
@@ -503,7 +503,7 @@ class Slider extends Base {
         $this->add_control(
             'arrow_hover_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .slick-prev:hover, {{WRAPPER}} .slick-next:hover' => 'background-color: {{VALUE}};',
@@ -514,7 +514,7 @@ class Slider extends Base {
         $this->add_control(
             'arrow_hover_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'condition' => [
                     'arrow_border_border!' => '',
@@ -533,7 +533,7 @@ class Slider extends Base {
         $this->start_controls_section(
             '_section_style_dots',
             [
-                'label' => __( 'Dots Navigation', 'happy_addons' ),
+                'label' => __( 'Dots Navigation', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -541,7 +541,7 @@ class Slider extends Base {
         $this->add_responsive_control(
             'dots_nav_position_y',
             [
-                'label' => __( 'Vertical Position', 'happy_addons' ),
+                'label' => __( 'Vertical Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -559,7 +559,7 @@ class Slider extends Base {
         $this->add_responsive_control(
             'dots_nav_spacing',
             [
-                'label' => __( 'Spacing', 'happy_addons' ),
+                'label' => __( 'Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -571,19 +571,19 @@ class Slider extends Base {
         $this->add_responsive_control(
             'dots_nav_align',
             [
-                'label' => __( 'Alignment', 'happy_addons' ),
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -598,14 +598,14 @@ class Slider extends Base {
         $this->start_controls_tab(
             '_tab_dots_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'dots_nav_color',
             [
-                'label' => __( 'Color', 'happy_addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .slick-dots li button:before' => 'color: {{VALUE}};',
@@ -618,14 +618,14 @@ class Slider extends Base {
         $this->start_controls_tab(
             '_tab_dots_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'dots_nav_hover_color',
             [
-                'label' => __( 'Color', 'happy_addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .slick-dots li button:hover:before' => 'color: {{VALUE}};',
@@ -638,14 +638,14 @@ class Slider extends Base {
         $this->start_controls_tab(
             '_tab_dots_active',
             [
-                'label' => __( 'Active', 'happy_addons' ),
+                'label' => __( 'Active', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'dots_nav_active_color',
             [
-                'label' => __( 'Color', 'happy_addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .slick-dots .slick-active button:before' => 'color: {{VALUE}};',

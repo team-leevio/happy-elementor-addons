@@ -60,11 +60,11 @@ class Group_Control_Foreground extends Group_Control_Base {
             'render_type' => 'ui',
             'options' => [
                 'classic' => [
-                    'title' => _x( 'Classic', 'Text Color Control', 'happy_addons' ),
+                    'title' => _x( 'Classic', 'Text Color Control', 'happy-elementor-addons' ),
                     'icon' => 'fa fa-paint-brush',
                 ],
                 'gradient' => [
-                    'title' => _x( 'Gradient', 'Text Color Control', 'happy_addons' ),
+                    'title' => _x( 'Gradient', 'Text Color Control', 'happy-elementor-addons' ),
                     'icon' => 'fa fa-barcode',
                 ],
             ],

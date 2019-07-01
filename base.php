@@ -35,7 +35,7 @@ class Base {
     }
 
     public function i18n() {
-        load_plugin_textdomain( 'happy_addons' );
+        load_plugin_textdomain( 'happy-elementor-addons' );
     }
 
     public function init() {
@@ -95,9 +95,9 @@ class Base {
      */
     public function add_category( $elements_manager ) {
         $elements_manager->add_category(
-            'happy_addons',
+            'happy-elementor-addons',
             [
-                'title' => __( 'Happy Addons', 'happy_addons' ),
+                'title' => __( 'Happy Addons', 'happy-elementor-addons' ),
                 'icon' => 'fa fa-smile-o',
             ]
         );
@@ -118,9 +118,9 @@ class Base {
 
         $message = sprintf(
         /* translators: 1: Plugin name 2: Elementor */
-            esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'happy_addons' ),
-            '<strong>' . esc_html__( 'Happy Elementor Addons', 'happy_addons' ) . '</strong>',
-            '<strong>' . esc_html__( 'Elementor', 'happy_addons' ) . '</strong>'
+            esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'happy-elementor-addons' ),
+            '<strong>' . esc_html__( 'Happy Elementor Addons', 'happy-elementor-addons' ) . '</strong>',
+            '<strong>' . esc_html__( 'Elementor', 'happy-elementor-addons' ) . '</strong>'
         );
 
         printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
@@ -141,9 +141,9 @@ class Base {
 
         $message = sprintf(
         /* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
-            esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'happy_addons' ),
-            '<strong>' . esc_html__( 'Happy Elementor Addons', 'happy_addons' ) . '</strong>',
-            '<strong>' . esc_html__( 'Elementor', 'happy_addons' ) . '</strong>',
+            esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'happy-elementor-addons' ),
+            '<strong>' . esc_html__( 'Happy Elementor Addons', 'happy-elementor-addons' ) . '</strong>',
+            '<strong>' . esc_html__( 'Elementor', 'happy-elementor-addons' ) . '</strong>',
             self::MINIMUM_ELEMENTOR_VERSION
         );
 
@@ -165,9 +165,9 @@ class Base {
 
         $message = sprintf(
         /* translators: 1: Plugin name 2: PHP 3: Required PHP version */
-            esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'happy_addons' ),
-            '<strong>' . esc_html__( 'Happy Elementor Addons', 'happy_addons' ) . '</strong>',
-            '<strong>' . esc_html__( 'PHP', 'happy_addons' ) . '</strong>',
+            esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'happy-elementor-addons' ),
+            '<strong>' . esc_html__( 'Happy Elementor Addons', 'happy-elementor-addons' ) . '</strong>',
+            '<strong>' . esc_html__( 'PHP', 'happy-elementor-addons' ) . '</strong>',
             self::MINIMUM_PHP_VERSION
         );
 

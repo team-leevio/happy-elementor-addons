@@ -71,10 +71,10 @@ class WPForm extends Base {
         $this->add_control(
             'form_id',
             [
-                'label' => __( 'Select Your Form', 'happy_addons' ),
+                'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
 				'label_block' => true,
-				'options' => ['' => __( 'Select a WPForm', 'happy_addons' ) ] + \ha_get_wpforms(),
+				'options' => ['' => __( 'Select a WPForm', 'happy-elementor-addons' ) ] + \ha_get_wpforms(),
             ]
         );
 
@@ -85,7 +85,7 @@ class WPForm extends Base {
         $this->start_controls_section(
             '_section_fields_style',
             [
-                'label' => __( 'Form Fields', 'happy_addons' ),
+                'label' => __( 'Form Fields', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -93,7 +93,7 @@ class WPForm extends Base {
         $this->add_responsive_control(
             'field_margin',
             [
-                'label' => __( 'Field Spacing', 'happy_addons' ),
+                'label' => __( 'Field Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -105,7 +105,7 @@ class WPForm extends Base {
         $this->add_responsive_control(
             'field_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -117,7 +117,7 @@ class WPForm extends Base {
         $this->add_responsive_control(
             'field_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -130,7 +130,7 @@ class WPForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'field_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea',
             ]
         );
@@ -138,7 +138,7 @@ class WPForm extends Base {
         $this->add_control(
             'field_textcolor',
             [
-                'label' => __( 'Field Text Color', 'happy_addons' ),
+                'label' => __( 'Field Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea' => 'color: {{VALUE}}',
@@ -149,7 +149,7 @@ class WPForm extends Base {
 		$this->add_control(
             'field_placeholder_color',
             [
-                'label' => __( 'Field Placeholder Color', 'happy_addons' ),
+                'label' => __( 'Field Placeholder Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} ::-webkit-input-placeholder'	=> 'color: {{VALUE}};',
@@ -164,7 +164,7 @@ class WPForm extends Base {
         $this->start_controls_tab(
             'tab_field_normal',
             [
-                'label' => __( 'Normal State', 'happy_addons' ),
+                'label' => __( 'Normal State', 'happy-elementor-addons' ),
             ]
         );
 
@@ -187,7 +187,7 @@ class WPForm extends Base {
         $this->add_control(
             'field_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea' => 'background-color: {{VALUE}}',
@@ -200,7 +200,7 @@ class WPForm extends Base {
 		$this->start_controls_tab(
             'tab_field_focus',
             [
-                'label' => __( 'Focus', 'happy_addons' ),
+                'label' => __( 'Focus', 'happy-elementor-addons' ),
             ]
         );
 
@@ -226,7 +226,7 @@ class WPForm extends Base {
 		$this->add_control(
             'field_focus_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-field input:focus, {{WRAPPER}} .wpforms-field-textarea textarea:focus' => 'background-color: {{VALUE}}',
@@ -242,7 +242,7 @@ class WPForm extends Base {
         $this->start_controls_section(
             'wpf-form-label',
             [
-                'label' => __( 'Form Fields Label', 'happy_addons' ),
+                'label' => __( 'Form Fields Label', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -250,7 +250,7 @@ class WPForm extends Base {
         $this->add_responsive_control(
             'label_margin',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
+                'label' => __( 'Margin', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -262,7 +262,7 @@ class WPForm extends Base {
         $this->add_responsive_control(
             'label_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -283,7 +283,7 @@ class WPForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'label_typography',
-                'label' => __( 'Label Typography', 'happy_addons' ),
+                'label' => __( 'Label Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field-container label.wpforms-field-label',
             ]
         );
@@ -292,7 +292,7 @@ class WPForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'sublabel_typography',
-                'label' => __( 'Sub Label Typography', 'happy_addons' ),
+                'label' => __( 'Sub Label Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field-sublabel',
             ]
         );
@@ -301,7 +301,7 @@ class WPForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'desc_typography',
-                'label' => __( 'Description Typography', 'happy_addons' ),
+                'label' => __( 'Description Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field-description',
             ]
         );
@@ -309,10 +309,10 @@ class WPForm extends Base {
         $this->add_control(
             'label_color_popover',
             [
-                'label' => __( 'Colors', 'happy_addons' ),
+                'label' => __( 'Colors', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
-                'label_off' => __( '', 'happy_addons' ),
-                'label_on' => __( 'Custom', 'happy_addons' ),
+                'label_off' => __( '', 'happy-elementor-addons' ),
+                'label_on' => __( 'Custom', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
             ]
         );
@@ -322,7 +322,7 @@ class WPForm extends Base {
         $this->add_control(
             'label_color',
             [
-                'label' => __( 'Label Text Color', 'happy_addons' ),
+                'label' => __( 'Label Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-field-container label.wpforms-field-label' => 'color: {{VALUE}}',
@@ -336,7 +336,7 @@ class WPForm extends Base {
 		$this->add_control(
             'requered_label',
             [
-                'label' => __( 'Required Label Color', 'happy_addons' ),
+                'label' => __( 'Required Label Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-required-label' => 'color: {{VALUE}}',
@@ -350,7 +350,7 @@ class WPForm extends Base {
 		$this->add_control(
             'sublabel_color',
             [
-                'label' => __( 'Sub Label Text Color', 'happy_addons' ),
+                'label' => __( 'Sub Label Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-field-sublabel' => 'color: {{VALUE}}',
@@ -364,7 +364,7 @@ class WPForm extends Base {
 		$this->add_control(
             'desc_label_color',
             [
-                'label' => __( 'Description Text Color', 'happy_addons' ),
+                'label' => __( 'Description Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-field-description' => 'color: {{VALUE}}',
@@ -382,7 +382,7 @@ class WPForm extends Base {
         $this->start_controls_section(
             'submit',
             [
-                'label' => __( 'Submit Button', 'happy_addons' ),
+                'label' => __( 'Submit Button', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -390,10 +390,10 @@ class WPForm extends Base {
         $this->add_control(
             'submit_btn_width',
             [
-                'label' => __( 'Button Full Width?', 'happy_addons' ),
+                'label' => __( 'Button Full Width?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -402,7 +402,7 @@ class WPForm extends Base {
         $this->add_responsive_control(
             'button_width',
             [
-                'label' => __( 'Button Width', 'happy_addons' ),
+                'label' => __( 'Button Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'condition' => [
@@ -431,19 +431,19 @@ class WPForm extends Base {
 		$this->add_responsive_control(
             'submit_btn_position',
             [
-                'label' => __( 'Button Position', 'happy_addons' ),
+                'label' => __( 'Button Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -463,7 +463,7 @@ class WPForm extends Base {
         $this->add_responsive_control(
             'submit_margin',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
+                'label' => __( 'Margin', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -475,7 +475,7 @@ class WPForm extends Base {
         $this->add_responsive_control(
             'submit_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -503,7 +503,7 @@ class WPForm extends Base {
         $this->add_control(
             'submit_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -533,14 +533,14 @@ class WPForm extends Base {
         $this->start_controls_tab(
             'tab_button_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'submit_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -552,7 +552,7 @@ class WPForm extends Base {
         $this->add_control(
             'submit_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-submit' => 'background-color: {{VALUE}};',
@@ -565,14 +565,14 @@ class WPForm extends Base {
         $this->start_controls_tab(
             'tab_button_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'submit_hover_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-submit:hover, {{WRAPPER}} .wpforms-submit:focus' => 'color: {{VALUE}};',
@@ -583,7 +583,7 @@ class WPForm extends Base {
         $this->add_control(
             'submit_hover_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-submit:hover, {{WRAPPER}} .wpforms-submit:focus' => 'background-color: {{VALUE}};',
@@ -594,7 +594,7 @@ class WPForm extends Base {
         $this->add_control(
             'submit_hover_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpforms-submit:hover, {{WRAPPER}} .wpforms-submit:focus' => 'border-color: {{VALUE}};',

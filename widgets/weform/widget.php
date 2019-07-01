@@ -77,10 +77,10 @@ class WeForm extends Base {
         $this->add_control(
             'form_id',
             [
-                'label' => __( 'Select Your Form', 'happy_addons' ),
+                'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
-				'options' => ['' => __( '', 'happy_addons' ) ] + \ha_get_we_forms(),
+				'options' => ['' => __( '', 'happy-elementor-addons' ) ] + \ha_get_we_forms(),
             ]
         );
 
@@ -91,7 +91,7 @@ class WeForm extends Base {
         $this->start_controls_section(
             '_section_fields_style',
             [
-                'label' => __( 'Form Fields', 'happy_addons' ),
+                'label' => __( 'Form Fields', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -99,7 +99,7 @@ class WeForm extends Base {
         $this->add_responsive_control(
             'large_field_width',
             [
-                'label' => __( 'Large Field Width', 'happy_addons' ),
+                'label' => __( 'Large Field Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'default' => [
@@ -127,7 +127,7 @@ class WeForm extends Base {
         $this->add_responsive_control(
             'field_margin',
             [
-                'label' => __( 'Field Spacing', 'happy_addons' ),
+                'label' => __( 'Field Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -139,7 +139,7 @@ class WeForm extends Base {
         $this->add_responsive_control(
             'field_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -152,7 +152,7 @@ class WeForm extends Base {
         $this->add_responsive_control(
             'field_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -165,7 +165,7 @@ class WeForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'field_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input:not(.weforms_submit_btn), .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields textarea',
             ]
         );
@@ -173,7 +173,7 @@ class WeForm extends Base {
         $this->add_control(
             'field_textcolor',
             [
-                'label' => __( 'Field Text Color', 'happy_addons' ),
+                'label' => __( 'Field Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields textarea' => 'color: {{VALUE}};',
@@ -184,7 +184,7 @@ class WeForm extends Base {
 		$this->add_control(
             'field_placeholder_color',
             [
-                'label' => __( 'Field Placeholder Color', 'happy_addons' ),
+                'label' => __( 'Field Placeholder Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} ::-webkit-input-placeholder'	=> 'color: {{VALUE}};',
@@ -199,7 +199,7 @@ class WeForm extends Base {
         $this->start_controls_tab(
             'tab_field_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
 		);
 
@@ -222,7 +222,7 @@ class WeForm extends Base {
         $this->add_control(
             'field_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields textarea' => 'background-color: {{VALUE}}',
@@ -235,7 +235,7 @@ class WeForm extends Base {
 		$this->start_controls_tab(
             'tab_field_focus',
             [
-                'label' => __( 'Focus', 'happy_addons' ),
+                'label' => __( 'Focus', 'happy-elementor-addons' ),
             ]
 		);
 
@@ -261,7 +261,7 @@ class WeForm extends Base {
 		$this->add_control(
             'field_focus_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input:focus:not(.weforms_submit_btn), {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields textarea:focus' => 'background-color: {{VALUE}}',
@@ -278,7 +278,7 @@ class WeForm extends Base {
         $this->start_controls_section(
             'we-form-label',
             [
-                'label' => __( 'Form Fields Label', 'happy_addons' ),
+                'label' => __( 'Form Fields Label', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -286,7 +286,7 @@ class WeForm extends Base {
         $this->add_responsive_control(
             'label_margin',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
+                'label' => __( 'Margin', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -298,7 +298,7 @@ class WeForm extends Base {
         $this->add_responsive_control(
             'label_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -319,7 +319,7 @@ class WeForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'label_typography',
-                'label' => __( 'Label Typography', 'happy_addons' ),
+                'label' => __( 'Label Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpuf-label label, {{WRAPPER}} .wpuf-form-sub-label',
             ]
         );
@@ -328,7 +328,7 @@ class WeForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'desc_typography',
-                'label' => __( 'Help Text Typography', 'happy_addons' ),
+                'label' => __( 'Help Text Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpuf-fields .wpuf-help',
             ]
         );
@@ -336,7 +336,7 @@ class WeForm extends Base {
         $this->add_control(
             'label_color',
             [
-                'label' => __( 'Label Text Color', 'happy_addons' ),
+                'label' => __( 'Label Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpuf-label label, {{WRAPPER}} .wpuf-form-sub-label' => 'color: {{VALUE}}',
@@ -347,7 +347,7 @@ class WeForm extends Base {
 		$this->add_control(
             'requered_label',
             [
-                'label' => __( 'Required Label Color', 'happy_addons' ),
+                'label' => __( 'Required Label Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpuf-label .required' => 'color: {{VALUE}} !important',
@@ -358,7 +358,7 @@ class WeForm extends Base {
 		$this->add_control(
             'desc_color',
             [
-                'label' => __( 'Help Text Color', 'happy_addons' ),
+                'label' => __( 'Help Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpuf-fields .wpuf-help' => 'color: {{VALUE}}',
@@ -371,7 +371,7 @@ class WeForm extends Base {
         $this->start_controls_section(
             'submit',
             [
-                'label' => __( 'Submit Button', 'happy_addons' ),
+                'label' => __( 'Submit Button', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -379,10 +379,10 @@ class WeForm extends Base {
         $this->add_control(
             'submit_btn_width',
             [
-                'label' => __( 'Button Full Width?', 'happy_addons' ),
+                'label' => __( 'Button Full Width?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -391,7 +391,7 @@ class WeForm extends Base {
         $this->add_responsive_control(
             'button_width',
             [
-                'label' => __( 'Button Width', 'happy_addons' ),
+                'label' => __( 'Button Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'condition' => [
@@ -420,19 +420,19 @@ class WeForm extends Base {
 		$this->add_responsive_control(
             'submit_btn_position',
             [
-                'label' => __( 'Button Position', 'happy_addons' ),
+                'label' => __( 'Button Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -451,7 +451,7 @@ class WeForm extends Base {
         $this->add_responsive_control(
             'submit_margin',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
+                'label' => __( 'Margin', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -463,7 +463,7 @@ class WeForm extends Base {
         $this->add_responsive_control(
             'submit_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -491,7 +491,7 @@ class WeForm extends Base {
         $this->add_control(
             'submit_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -529,14 +529,14 @@ class WeForm extends Base {
         $this->start_controls_tab(
             'tab_button_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'submit_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -548,7 +548,7 @@ class WeForm extends Base {
         $this->add_control(
             'submit_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]' => 'background-color: {{VALUE}};',
@@ -561,14 +561,14 @@ class WeForm extends Base {
         $this->start_controls_tab(
             'tab_button_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'submit_hover_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:hover, {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:focus' => 'color: {{VALUE}};',
@@ -579,7 +579,7 @@ class WeForm extends Base {
         $this->add_control(
             'submit_hover_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:hover, {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:focus' => 'background-color: {{VALUE}};',
@@ -590,7 +590,7 @@ class WeForm extends Base {
         $this->add_control(
             'submit_hover_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:hover, {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:focus' => 'border-color: {{VALUE}};',

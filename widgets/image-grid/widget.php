@@ -28,7 +28,7 @@ class Image_Grid extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Happy Image Grid', 'happy_addons' );
+        return __( 'Happy Image Grid', 'happy-elementor-addons' );
     }
 
     /**
@@ -51,7 +51,7 @@ class Image_Grid extends Base {
         $this->start_controls_section(
             '_section_gallery',
             [
-                'label' => __( 'Gallery', 'happy_addons' ),
+                'label' => __( 'Gallery', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -61,10 +61,10 @@ class Image_Grid extends Base {
         $repeater->add_control(
             'filter',
             [
-                'label' => __( 'Filter Name', 'happy_addons' ),
+                'label' => __( 'Filter Name', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
-                'placeholder' => __( 'Type gallery filter name', 'happy_addons' ),
-                'description' => __( 'Filter menu will be built using filter name', 'happy_addons' ),
+                'placeholder' => __( 'Type gallery filter name', 'happy-elementor-addons' ),
+                'description' => __( 'Filter menu will be built using filter name', 'happy-elementor-addons' ),
             ]
         );
 
@@ -83,7 +83,7 @@ class Image_Grid extends Base {
                 'title_field' => 'Filter:: {{ filter }}',
                 'default' => [
                     [
-                        'filter' => __( 'Happy', 'happy_addons' ),
+                        'filter' => __( 'Happy', 'happy-elementor-addons' ),
                     ]
                 ]
             ]
@@ -106,7 +106,7 @@ class Image_Grid extends Base {
         $this->start_controls_section(
             '_section_settings',
             [
-                'label' => __( 'Settings', 'happy_addons' ),
+                'label' => __( 'Settings', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -114,37 +114,37 @@ class Image_Grid extends Base {
         $this->add_control(
             'enable_popup',
             [
-                'label' => __( 'Enable Popup?', 'happy_addons' ),
+                'label' => __( 'Enable Popup?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
-                'description' => __( 'Enable popup to view the gallery images in a popup window', 'happy_addons' )
+                'description' => __( 'Enable popup to view the gallery images in a popup window', 'happy-elementor-addons' )
             ]
         );
 
         $this->add_control(
             'show_filter',
             [
-                'label' => __( 'Show Filter?', 'happy_addons' ),
+                'label' => __( 'Show Filter?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
-                'description' => __( 'Enable to display filter menu. Filter menu will be built using filter name from gallery', 'happy_addons' )
+                'description' => __( 'Enable to display filter menu. Filter menu will be built using filter name from gallery', 'happy-elementor-addons' )
             ]
         );
 
         $this->add_control(
             'show_all_filter',
             [
-                'label' => __( 'Show Everything Filter?', 'happy_addons' ),
+                'label' => __( 'Show Everything Filter?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'default' => true,
-                'description' => __( 'Enable to display everything filter', 'happy_addons' ),
+                'description' => __( 'Enable to display everything filter', 'happy-elementor-addons' ),
                 'condition' => [
                     'show_filter' => 'yes'
                 ]
@@ -154,11 +154,11 @@ class Image_Grid extends Base {
         $this->add_control(
             'all_filter_label',
             [
-                'label' => __( 'Filter Label', 'happy_addons' ),
+                'label' => __( 'Filter Label', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'All', 'happy_addons' ),
-                'placeholder' => __( 'Type filter label', 'happy_addons' ),
-                'description' => __( 'Type everything filter label', 'happy_addons' ),
+                'default' => __( 'All', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type filter label', 'happy-elementor-addons' ),
+                'description' => __( 'Type everything filter label', 'happy-elementor-addons' ),
                 'condition' => [
                     'show_all_filter' => 'yes',
                     'show_filter' => 'yes'
@@ -169,19 +169,19 @@ class Image_Grid extends Base {
         $this->add_control(
             'show_caption',
             [
-                'label' => __( 'Show Caption?', 'happy_addons' ),
+                'label' => __( 'Show Caption?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
-                'description' => __( 'Enable to display overly image caption', 'happy_addons' )
+                'description' => __( 'Enable to display overly image caption', 'happy-elementor-addons' )
             ]
         );
 
         $this->add_control(
             'columns',
             [
-                'label' => __( 'Columns', 'happy_addons' ),
+                'label' => __( 'Columns', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'default' => [
@@ -203,7 +203,7 @@ class Image_Grid extends Base {
         $this->start_controls_section(
             '_section_style_gallery',
             [
-                'label' => __( 'Gallery', 'happy_addons' ),
+                'label' => __( 'Gallery', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -212,13 +212,13 @@ class Image_Grid extends Base {
         $this->start_controls_tab(
             '_tab_style_image',
             [
-                'label' => __( 'Image', 'happy_addons' ),
+                'label' => __( 'Image', 'happy-elementor-addons' ),
             ]
         );
         $this->add_responsive_control(
             'image_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -241,13 +241,13 @@ class Image_Grid extends Base {
         $this->start_controls_tab(
             '_tab_style_caption',
             [
-                'label' => __( 'Caption', 'happy_addons' ),
+                'label' => __( 'Caption', 'happy-elementor-addons' ),
             ]
         );
         $this->add_responsive_control(
             'caption_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -259,7 +259,7 @@ class Image_Grid extends Base {
         $this->add_control(
             'caption_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-justified-gallery-grid > a > .caption' => 'color: {{VALUE}}',
@@ -270,7 +270,7 @@ class Image_Grid extends Base {
         $this->add_control(
             'caption_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-justified-gallery-grid > a > .caption' => 'background-color: {{VALUE}}',
@@ -282,7 +282,7 @@ class Image_Grid extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'caption_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-justified-gallery-grid > a > .caption',
             ]
         );
@@ -295,7 +295,7 @@ class Image_Grid extends Base {
         $this->start_controls_section(
             '_section_style_menu',
             [
-                'label' => __( 'Filter Menu', 'happy_addons' ),
+                'label' => __( 'Filter Menu', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -303,7 +303,7 @@ class Image_Grid extends Base {
         $this->add_responsive_control(
             'menu_margin',
             [
-                'label' => __( 'Menu Margin', 'happy_addons' ),
+                'label' => __( 'Menu Margin', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -315,19 +315,19 @@ class Image_Grid extends Base {
         $this->add_responsive_control(
             'button_align',
             [
-                'label' => __( 'Button Align', 'happy_addons' ),
+                'label' => __( 'Button Align', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
                 ],
@@ -339,7 +339,7 @@ class Image_Grid extends Base {
         $this->add_responsive_control(
             'button_margin',
             [
-                'label' => __( 'Button Margin', 'happy_addons' ),
+                'label' => __( 'Button Margin', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -351,7 +351,7 @@ class Image_Grid extends Base {
         $this->add_responsive_control(
             'button_padding',
             [
-                'label' => __( 'Button Padding', 'happy_addons' ),
+                'label' => __( 'Button Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -371,7 +371,7 @@ class Image_Grid extends Base {
         $this->add_responsive_control(
             'button_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -395,7 +395,7 @@ class Image_Grid extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'button_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-gallery-filter > li > button',
             ]
         );
@@ -405,14 +405,14 @@ class Image_Grid extends Base {
         $this->start_controls_tab(
             '_tab_button_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'button_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -424,7 +424,7 @@ class Image_Grid extends Base {
         $this->add_control(
             'button_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-gallery-filter > li > button' => 'background-color: {{VALUE}};',
@@ -437,14 +437,14 @@ class Image_Grid extends Base {
         $this->start_controls_tab(
             '_tab_button_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'button_hover_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'color: {{VALUE}};',
@@ -455,7 +455,7 @@ class Image_Grid extends Base {
         $this->add_control(
             'button_hover_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'background-color: {{VALUE}};',
@@ -466,7 +466,7 @@ class Image_Grid extends Base {
         $this->add_control(
             'button_hover_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'condition' => [
                     'button_border_border!' => '',

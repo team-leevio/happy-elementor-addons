@@ -48,7 +48,6 @@ class CalderaForm extends Base {
 			'_section_calderaf',
 			[
 				'label' => ha_is_calderaf_activated() ? __( 'Caldera Forms', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
-				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
@@ -58,7 +57,7 @@ class CalderaForm extends Base {
                 [
                     'type' => Controls_Manager::RAW_HTML,
                     'raw' => sprintf(
-                        __( 'Hi, it seems %1$s is missing in your site. Please install and activate %1$s first.', 'happy_addons' ),
+                        __( 'Hi, it seems %1$s is missing in your site. Please install and activate %1$s first.', 'happy-elementor-addons' ),
                         '<a href="https://wordpress.org/plugins/caldera-forms/" target="_blank" rel="noopener">Caldera Form</a>'
                     ),
                     'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
@@ -71,10 +70,10 @@ class CalderaForm extends Base {
         $this->add_control(
             'form_id',
             [
-                'label' => __( 'Select Your Form', 'happy_addons' ),
+                'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
-				'options' => ['' => __( '', 'happy_addons' ) ] + \ha_get_caldera_form(),
+				'options' => ['' => __( '', 'happy-elementor-addons' ) ] + \ha_get_caldera_form(),
             ]
         );
 
@@ -85,7 +84,7 @@ class CalderaForm extends Base {
         $this->start_controls_section(
             '_section_fields_style',
             [
-                'label' => __( 'Form Fields', 'happy_addons' ),
+                'label' => __( 'Form Fields', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -93,7 +92,7 @@ class CalderaForm extends Base {
         $this->add_responsive_control(
             'field_margin',
             [
-                'label' => __( 'Field Spacing', 'happy_addons' ),
+                'label' => __( 'Field Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -105,7 +104,7 @@ class CalderaForm extends Base {
         $this->add_responsive_control(
             'field_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -117,7 +116,7 @@ class CalderaForm extends Base {
         $this->add_responsive_control(
             'field_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -130,7 +129,7 @@ class CalderaForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'field_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea',
             ]
         );
@@ -138,7 +137,7 @@ class CalderaForm extends Base {
         $this->add_control(
             'field_textcolor',
             [
-                'label' => __( 'Field Text Color', 'happy_addons' ),
+                'label' => __( 'Field Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea' => 'color: {{VALUE}}',
@@ -149,7 +148,7 @@ class CalderaForm extends Base {
 		$this->add_control(
             'field_placeholder_color',
             [
-                'label' => __( 'Field Placeholder Color', 'happy_addons' ),
+                'label' => __( 'Field Placeholder Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} ::-webkit-input-placeholder'	=> 'color: {{VALUE}};',
@@ -164,7 +163,7 @@ class CalderaForm extends Base {
         $this->start_controls_tab(
             'tab_field_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
 		);
 
@@ -187,7 +186,7 @@ class CalderaForm extends Base {
         $this->add_control(
             'field_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .form-group input:not(.btn), {{WRAPPER}} .form-group textarea' => 'background-color: {{VALUE}}',
@@ -200,7 +199,7 @@ class CalderaForm extends Base {
 		$this->start_controls_tab(
             'tab_field_focus',
             [
-                'label' => __( 'Focus', 'happy_addons' ),
+                'label' => __( 'Focus', 'happy-elementor-addons' ),
             ]
 		);
 
@@ -226,7 +225,7 @@ class CalderaForm extends Base {
 		$this->add_control(
             'field_focus_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .form-group input:focus:not(.btn), {{WRAPPER}} .form-group textarea:focus' => 'background-color: {{VALUE}}',
@@ -243,7 +242,7 @@ class CalderaForm extends Base {
         $this->start_controls_section(
             'caldera-form-label',
             [
-                'label' => __( 'Form Fields Label', 'happy_addons' ),
+                'label' => __( 'Form Fields Label', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -251,7 +250,7 @@ class CalderaForm extends Base {
         $this->add_responsive_control(
             'label_margin',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
+                'label' => __( 'Margin', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -263,7 +262,7 @@ class CalderaForm extends Base {
         $this->add_responsive_control(
             'label_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -284,7 +283,7 @@ class CalderaForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'label_typography',
-                'label' => __( 'Label Typography', 'happy_addons' ),
+                'label' => __( 'Label Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .caldera-grid label',
             ]
         );
@@ -293,7 +292,7 @@ class CalderaForm extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'desc_typography',
-                'label' => __( 'Description Typography', 'happy_addons' ),
+                'label' => __( 'Description Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .caldera-grid .help-block',
             ]
         );
@@ -301,7 +300,7 @@ class CalderaForm extends Base {
         $this->add_control(
             'label_color',
             [
-                'label' => __( 'Label Text Color', 'happy_addons' ),
+                'label' => __( 'Label Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .caldera-grid label' => 'color: {{VALUE}}',
@@ -312,7 +311,7 @@ class CalderaForm extends Base {
 		$this->add_control(
             'requered_label',
             [
-                'label' => __( 'Required Label Color', 'happy_addons' ),
+                'label' => __( 'Required Label Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .field_required' => 'color: {{VALUE}} !important',
@@ -323,7 +322,7 @@ class CalderaForm extends Base {
 		$this->add_control(
             'desc_color',
             [
-                'label' => __( 'Description Text Color', 'happy_addons' ),
+                'label' => __( 'Description Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .caldera-grid .help-block' => 'color: {{VALUE}}',
@@ -336,7 +335,7 @@ class CalderaForm extends Base {
         $this->start_controls_section(
             'submit',
             [
-                'label' => __( 'Submit Button', 'happy_addons' ),
+                'label' => __( 'Submit Button', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -344,10 +343,10 @@ class CalderaForm extends Base {
         $this->add_control(
             'submit_btn_width',
             [
-                'label' => __( 'Button Full Width?', 'happy_addons' ),
+                'label' => __( 'Button Full Width?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -356,7 +355,7 @@ class CalderaForm extends Base {
         $this->add_responsive_control(
             'button_width',
             [
-                'label' => __( 'Button Width', 'happy_addons' ),
+                'label' => __( 'Button Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'condition' => [
@@ -385,7 +384,7 @@ class CalderaForm extends Base {
         $this->add_responsive_control(
             'submit_margin',
             [
-                'label' => __( 'Margin', 'happy_addons' ),
+                'label' => __( 'Margin', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -397,7 +396,7 @@ class CalderaForm extends Base {
         $this->add_responsive_control(
             'submit_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -425,7 +424,7 @@ class CalderaForm extends Base {
         $this->add_control(
             'submit_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -455,14 +454,14 @@ class CalderaForm extends Base {
         $this->start_controls_tab(
             'tab_button_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'submit_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -474,7 +473,7 @@ class CalderaForm extends Base {
         $this->add_control(
             'submit_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .form-group .btn' => 'background-color: {{VALUE}};',
@@ -487,14 +486,14 @@ class CalderaForm extends Base {
         $this->start_controls_tab(
             'tab_button_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'submit_hover_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .form-group .btn:hover, {{WRAPPER}} .form-group .btn:focus' => 'color: {{VALUE}};',
@@ -505,7 +504,7 @@ class CalderaForm extends Base {
         $this->add_control(
             'submit_hover_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .form-group .btn:hover, {{WRAPPER}} .form-group .btn:focus' => 'background-color: {{VALUE}};',
@@ -516,7 +515,7 @@ class CalderaForm extends Base {
         $this->add_control(
             'submit_hover_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .form-group .btn:hover, {{WRAPPER}} .form-group .btn:focus' => 'border-color: {{VALUE}};',

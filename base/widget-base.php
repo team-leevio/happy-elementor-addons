@@ -44,7 +44,7 @@ abstract class Base extends Widget_Base {
      * @return array Widget categories.
      */
     public function get_categories() {
-        return [ 'happy_addons' ];
+        return [ 'happy-elementor-addons' ];
     }
 
     /**
@@ -87,7 +87,7 @@ abstract class Base extends Widget_Base {
         $this->start_controls_section(
             '_design',
             [
-                'label' => __( 'Design', 'happy_addons' ),
+                'label' => __( 'Design', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -95,9 +95,9 @@ abstract class Base extends Widget_Base {
         $this->add_control(
             '_preset',
             [
-                'label' => __( 'Preset', 'happy_addons' ),
+                'label' => __( 'Preset', 'happy-elementor-addons' ),
                 'type' => 'select',
-                'options' => ['' => __( 'Default', 'happy_addons' )] + $presets,
+                'options' => ['' => __( 'Default', 'happy-elementor-addons' )] + $presets,
                 'default' => '',
             ]
         );
@@ -112,7 +112,7 @@ abstract class Base extends Widget_Base {
         $this->start_controls_section(
             '_faq',
             [
-                'label' => __( 'FAQs', 'happy_addons' ),
+                'label' => __( 'FAQs', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );

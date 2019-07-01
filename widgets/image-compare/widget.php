@@ -28,7 +28,7 @@ class Image_Compare extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Image Compare', 'happy_addons' );
+        return __( 'Image Compare', 'happy-elementor-addons' );
     }
 
     /**
@@ -51,7 +51,7 @@ class Image_Compare extends Base {
 		$this->start_controls_section(
 			'_section_images',
 			[
-				'label' => __( 'Images', 'happy_addons' ),
+				'label' => __( 'Images', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -60,14 +60,14 @@ class Image_Compare extends Base {
         $this->start_controls_tab(
             '_tab_before_image',
             [
-                'label' => __( 'Before', 'happy_addons' ),
+                'label' => __( 'Before', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'before_image',
             [
-                'label' => __( 'Image', 'happy_addons' ),
+                'label' => __( 'Image', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -78,11 +78,11 @@ class Image_Compare extends Base {
         $this->add_control(
             'before_label',
             [
-                'label' => __( 'Label', 'happy_addons' ),
+                'label' => __( 'Label', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Before', 'happy_addons' ),
-                'placeholder' => __( 'Type before image label', 'happy_addons' ),
-                'description' => __( 'Label will not be shown if Hide Overlay is enabled in Settings', 'happy_addons' ),
+                'default' => __( 'Before', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type before image label', 'happy-elementor-addons' ),
+                'description' => __( 'Label will not be shown if Hide Overlay is enabled in Settings', 'happy-elementor-addons' ),
             ]
         );
 
@@ -91,14 +91,14 @@ class Image_Compare extends Base {
         $this->start_controls_tab(
             '_tab_after_image',
             [
-                'label' => __( 'After', 'happy_addons' ),
+                'label' => __( 'After', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'after_image',
             [
-                'label' => __( 'Image', 'happy_addons' ),
+                'label' => __( 'Image', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -109,11 +109,11 @@ class Image_Compare extends Base {
         $this->add_control(
             'after_label',
             [
-                'label' => __( 'Label', 'happy_addons' ),
+                'label' => __( 'Label', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'After', 'happy_addons' ),
-                'placeholder' => __( 'Type after image label', 'happy_addons' ),
-                'description' => __( 'Label will not be shown if Hide Overlay is enabled in Settings', 'happy_addons' ),
+                'default' => __( 'After', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type after image label', 'happy-elementor-addons' ),
+                'description' => __( 'Label will not be shown if Hide Overlay is enabled in Settings', 'happy-elementor-addons' ),
             ]
         );
 
@@ -134,7 +134,7 @@ class Image_Compare extends Base {
         $this->start_controls_section(
             '_section_settings',
             [
-                'label' => __( 'Settings', 'happy_addons' ),
+                'label' => __( 'Settings', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -142,7 +142,7 @@ class Image_Compare extends Base {
         $this->add_control(
             'offset',
             [
-                'label' => __( 'Visibility Ratio', 'happy_addons' ),
+                'label' => __( 'Visibility Ratio', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -161,16 +161,16 @@ class Image_Compare extends Base {
         $this->add_control(
             'orientation',
             [
-                'label' => __( 'Orientation', 'happy_addons' ),
+                'label' => __( 'Orientation', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => false,
                 'options' => [
                     'horizontal' => [
-                        'title' => __( 'Horizontal', 'happy_addons' ),
+                        'title' => __( 'Horizontal', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-arrows-h',
                     ],
                     'vertical' => [
-                        'title' => __( 'Vertical', 'happy_addons' ),
+                        'title' => __( 'Vertical', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-arrows-v',
                     ],
                 ],
@@ -181,27 +181,27 @@ class Image_Compare extends Base {
         $this->add_control(
             'hide_overlay',
             [
-                'label' => __( 'Hide Overlay', 'happy_addons' ),
+                'label' => __( 'Hide Overlay', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
-                'description' => __( 'Hide overlay with before and after label', 'happy_addons' )
+                'description' => __( 'Hide overlay with before and after label', 'happy-elementor-addons' )
             ]
         );
 
         $this->add_control(
             'move_handle',
             [
-                'label' => __( 'Move Handle', 'happy_addons' ),
+                'label' => __( 'Move Handle', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'on_swipe',
                 'options' => [
-                    'on_hover' => __( 'On Hover', 'happy_addons' ),
-                    'on_click' => __( 'On Click', 'happy_addons' ),
-                    'on_swipe' => __( 'On Swipe', 'happy_addons' ),
+                    'on_hover' => __( 'On Hover', 'happy-elementor-addons' ),
+                    'on_click' => __( 'On Click', 'happy-elementor-addons' ),
+                    'on_swipe' => __( 'On Swipe', 'happy-elementor-addons' ),
                 ],
-                'description' => __( 'Select handle movement type. Note: overlay does not work with On Hover.', 'happy_addons' )
+                'description' => __( 'Select handle movement type. Note: overlay does not work with On Hover.', 'happy-elementor-addons' )
             ]
         );
 
@@ -212,7 +212,7 @@ class Image_Compare extends Base {
         $this->start_controls_section(
             '_section_style_handle',
             [
-                'label' => __( 'Handle', 'happy_addons' ),
+                'label' => __( 'Handle', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -220,7 +220,7 @@ class Image_Compare extends Base {
         $this->add_control(
             'handle_color',
             [
-                'label' => __( 'Color', 'happy_addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .twentytwenty-handle:before, {{WRAPPER}} .twentytwenty-handle:after' => 'background-color: {{VALUE}}',
@@ -251,7 +251,7 @@ class Image_Compare extends Base {
         $this->add_responsive_control(
             'bar_size',
             [
-                'label' => __( 'Size', 'happy_addons' ),
+                'label' => __( 'Size', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -279,7 +279,7 @@ class Image_Compare extends Base {
         $this->add_responsive_control(
             'arrow_box_width',
             [
-                'label' => __( 'Box Width', 'happy_addons' ),
+                'label' => __( 'Box Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -298,7 +298,7 @@ class Image_Compare extends Base {
         $this->add_responsive_control(
             'arrow_box_height',
             [
-                'label' => __( 'Box Height', 'happy_addons' ),
+                'label' => __( 'Box Height', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -329,7 +329,7 @@ class Image_Compare extends Base {
         $this->add_responsive_control(
             'box_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -343,7 +343,7 @@ class Image_Compare extends Base {
         $this->start_controls_section(
             '_section_style_label',
             [
-                'label' => __( 'Label', 'happy_addons' ),
+                'label' => __( 'Label', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -351,7 +351,7 @@ class Image_Compare extends Base {
         $this->add_responsive_control(
             'label_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -363,10 +363,10 @@ class Image_Compare extends Base {
         $this->add_control(
             'position_toggle',
             [
-                'label' => __( 'Position', 'happy_addons' ),
+                'label' => __( 'Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
-                'label_off' => __( 'None', 'happy_addons' ),
-                'label_on' => __( 'Custom', 'happy_addons' ),
+                'label_off' => __( 'None', 'happy-elementor-addons' ),
+                'label_on' => __( 'Custom', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
             ]
         );
@@ -376,7 +376,7 @@ class Image_Compare extends Base {
         $this->add_responsive_control(
             'label_offset_y',
             [
-                'label' => __( 'Vertical', 'happy_addons' ),
+                'label' => __( 'Vertical', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -399,7 +399,7 @@ class Image_Compare extends Base {
         $this->add_responsive_control(
             'label_offset_x',
             [
-                'label' => __( 'Horizontal', 'happy_addons' ),
+                'label' => __( 'Horizontal', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -432,7 +432,7 @@ class Image_Compare extends Base {
         $this->add_responsive_control(
             'label_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -444,7 +444,7 @@ class Image_Compare extends Base {
         $this->add_control(
             'label_color',
             [
-                'label' => __( 'Color', 'happy_addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-after-label:before' => 'color: {{VALUE}}',
@@ -455,7 +455,7 @@ class Image_Compare extends Base {
         $this->add_control(
             'label_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .twentytwenty-before-label:before, {{WRAPPER}} .twentytwenty-after-label:before' => 'background-color: {{VALUE}}',

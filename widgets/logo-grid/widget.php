@@ -30,7 +30,7 @@ class Logo_Grid extends Base
      */
     public function get_title()
     {
-        return __('Logo Grid', 'happy_addons');
+        return __('Logo Grid', 'happy-elementor-addons');
     }
 
     /**
@@ -55,7 +55,7 @@ class Logo_Grid extends Base
         $this->start_controls_section(
             '_section_logo',
             [
-                'label' => __( 'Logo Grid', 'happy_addons' ),
+                'label' => __( 'Logo Grid', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -65,7 +65,7 @@ class Logo_Grid extends Base
         $repeater->add_control(
             'image',
             [
-                'label' => __('Logo', 'happy_addons'),
+                'label' => __('Logo', 'happy-elementor-addons'),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -76,7 +76,7 @@ class Logo_Grid extends Base
         $repeater->add_control(
             'link',
             [
-                'label' => __('Website Url', 'happy_addons'),
+                'label' => __('Website Url', 'happy-elementor-addons'),
                 'type' => Controls_Manager::URL,
                 'show_external' => false,
                 'label_block' => false,
@@ -86,9 +86,9 @@ class Logo_Grid extends Base
         $repeater->add_control(
             'name',
             [
-                'label' => __('Brand Name', 'happy_addons'),
+                'label' => __('Brand Name', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
-                'default' => __('Brand Name', 'happy_addons'),
+                'default' => __('Brand Name', 'happy-elementor-addons'),
             ]
         );
 
@@ -107,7 +107,7 @@ class Logo_Grid extends Base
         $this->start_controls_section(
             '_section_settings',
             [
-                'label' => __( 'Settings', 'happy_addons' ),
+                'label' => __( 'Settings', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -127,12 +127,12 @@ class Logo_Grid extends Base
         $this->add_control(
             'layout',
             [
-                'label' => __( 'Grid Layout', 'happy_addons' ),
+                'label' => __( 'Grid Layout', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    'box' => __( 'Box', 'happy_addons' ),
-                    'border' => __( 'Border', 'happy_addons' ),
-                    'tictactoe' => __( 'Tic Tac Toe', 'happy_addons' ),
+                    'box' => __( 'Box', 'happy-elementor-addons' ),
+                    'border' => __( 'Border', 'happy-elementor-addons' ),
+                    'tictactoe' => __( 'Tic Tac Toe', 'happy-elementor-addons' ),
                 ],
                 'default' => 'box',
                 'prefix_class' => 'ha-logo-grid--'
@@ -142,7 +142,7 @@ class Logo_Grid extends Base
         $this->add_control(
             'columns',
             [
-                'label' => __( 'Columns', 'happy_addons' ),
+                'label' => __( 'Columns', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'default' => [
@@ -164,7 +164,7 @@ class Logo_Grid extends Base
         $this->start_controls_section(
             '_section_style_grid',
             [
-                'label' => __( 'Grid', 'happy_addons' ),
+                'label' => __( 'Grid', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -172,15 +172,15 @@ class Logo_Grid extends Base
         $this->add_control(
             'grid_border_type',
             [
-                'label' => __( 'Border Type', 'happy_addons' ),
+                'label' => __( 'Border Type', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    'none' => __( 'None', 'happy_addons' ),
-                    'solid' => __( 'Solid', 'happy_addons' ),
-                    'double' => __( 'Double', 'happy_addons' ),
-                    'dotted' => __( 'Dotted', 'happy_addons' ),
-                    'dashed' => __( 'Dashed', 'happy_addons' ),
-                    'groove' => __( 'Groove', 'happy_addons' ),
+                    'none' => __( 'None', 'happy-elementor-addons' ),
+                    'solid' => __( 'Solid', 'happy-elementor-addons' ),
+                    'double' => __( 'Double', 'happy-elementor-addons' ),
+                    'dotted' => __( 'Dotted', 'happy-elementor-addons' ),
+                    'dashed' => __( 'Dashed', 'happy-elementor-addons' ),
+                    'groove' => __( 'Groove', 'happy-elementor-addons' ),
                 ],
                 'default' => 'solid',
                 'selectors' => [
@@ -192,7 +192,7 @@ class Logo_Grid extends Base
         $this->add_responsive_control(
             'grid_border_width',
             [
-                'label' => __( 'Border Width', 'happy_addons' ),
+                'label' => __( 'Border Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -221,7 +221,7 @@ class Logo_Grid extends Base
         $this->add_control(
             'grid_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-logo-grid-item' => 'border-color: {{VALUE}};',
@@ -235,7 +235,7 @@ class Logo_Grid extends Base
         $this->add_control(
             'grid_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-logo-grid-item' => 'background-color: {{VALUE}};',
@@ -246,7 +246,7 @@ class Logo_Grid extends Base
         $this->add_responsive_control(
             'grid_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [

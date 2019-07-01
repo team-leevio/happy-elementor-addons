@@ -17,7 +17,7 @@ class Happy_Effects {
         $element->start_controls_section(
             '_section_happy_effects',
             [
-                'label' => __( 'Happy Effects', 'happy_addons' ),
+                'label' => __( 'Happy Effects', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_ADVANCED,
             ]
         );
@@ -32,7 +32,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx',
             [
-                'label' => __( 'Floating Effects', 'happy_addons' ),
+                'label' => __( 'Floating Effects', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'return_value' => 'yes',
                 'frontend_available' => true,
@@ -42,7 +42,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_translate_toggle',
             [
-                'label' => __( 'Translate', 'happy_addons' ),
+                'label' => __( 'Translate', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
                 'return_value' => 'yes',
                 'frontend_available' => true,
@@ -57,7 +57,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_translate_x',
             [
-                'label' => __( 'Translate X', 'happy_addons' ),
+                'label' => __( 'Translate X', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -72,7 +72,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_translate_y',
             [
-                'label' => __( 'Translate Y', 'happy_addons' ),
+                'label' => __( 'Translate Y', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -87,7 +87,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_translate_duration',
             [
-                'label' => __( 'Duration', 'happy_addons' ),
+                'label' => __( 'Duration', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -112,7 +112,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_translate_delay',
             [
-                'label' => __( 'Delay', 'happy_addons' ),
+                'label' => __( 'Delay', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -136,7 +136,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_rotate_toggle',
             [
-                'label' => __( 'Rotate', 'happy_addons' ),
+                'label' => __( 'Rotate', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
                 'return_value' => 'yes',
                 'frontend_available' => true,
@@ -151,7 +151,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_rotate_x',
             [
-                'label' => __( 'Rotate X', 'happy_addons' ),
+                'label' => __( 'Rotate X', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -172,7 +172,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_rotate_y',
             [
-                'label' => __( 'Rotate Y', 'happy_addons' ),
+                'label' => __( 'Rotate Y', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -193,7 +193,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_rotate_z',
             [
-                'label' => __( 'Rotate Z', 'happy_addons' ),
+                'label' => __( 'Rotate Z', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -214,7 +214,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_rotate_duration',
             [
-                'label' => __( 'Duration', 'happy_addons' ),
+                'label' => __( 'Duration', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -239,7 +239,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_rotate_delay',
             [
-                'label' => __( 'Delay', 'happy_addons' ),
+                'label' => __( 'Delay', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -263,7 +263,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_scale_toggle',
             [
-                'label' => __( 'Scale', 'happy_addons' ),
+                'label' => __( 'Scale', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
                 'return_value' => 'yes',
                 'frontend_available' => true,
@@ -278,7 +278,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_scale_x',
             [
-                'label' => __( 'Scale X', 'happy_addons' ),
+                'label' => __( 'Scale X', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -300,7 +300,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_scale_y',
             [
-                'label' => __( 'Scale Y', 'happy_addons' ),
+                'label' => __( 'Scale Y', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -322,7 +322,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_scale_duration',
             [
-                'label' => __( 'Duration', 'happy_addons' ),
+                'label' => __( 'Duration', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -347,7 +347,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_floating_fx_scale_delay',
             [
-                'label' => __( 'Delay', 'happy_addons' ),
+                'label' => __( 'Delay', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -380,7 +380,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_transform_fx',
             [
-                'label' => __( 'CSS Transform', 'happy_addons' ),
+                'label' => __( 'CSS Transform', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'return_value' => 'yes',
             ]
@@ -389,7 +389,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_transform_fx_translate_toggle',
             [
-                'label' => __( 'Translate', 'happy_addons' ),
+                'label' => __( 'Translate', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
                 'return_value' => 'yes',
                 'condition' => [
@@ -403,7 +403,7 @@ class Happy_Effects {
         $element->add_responsive_control(
             'ha_transform_fx_translate_x',
             [
-                'label' => __( 'Translate X', 'happy_addons' ),
+                'label' => __( 'Translate X', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -422,7 +422,7 @@ class Happy_Effects {
         $element->add_responsive_control(
             'ha_transform_fx_translate_y',
             [
-                'label' => __( 'Translate Y', 'happy_addons' ),
+                'label' => __( 'Translate Y', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -466,7 +466,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_transform_fx_rotate_toggle',
             [
-                'label' => __( 'Rotate', 'happy_addons' ),
+                'label' => __( 'Rotate', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
                 'condition' => [
                     'ha_transform_fx' => 'yes',
@@ -479,7 +479,7 @@ class Happy_Effects {
         $element->add_responsive_control(
             'ha_transform_fx_rotate_x',
             [
-                'label' => __( 'Rotate X', 'happy_addons' ),
+                'label' => __( 'Rotate X', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['deg'],
                 'range' => [
@@ -498,7 +498,7 @@ class Happy_Effects {
         $element->add_responsive_control(
             'ha_transform_fx_rotate_y',
             [
-                'label' => __( 'Rotate Y', 'happy_addons' ),
+                'label' => __( 'Rotate Y', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['deg'],
                 'range' => [
@@ -517,7 +517,7 @@ class Happy_Effects {
         $element->add_responsive_control(
             'ha_transform_fx_rotate_z',
             [
-                'label' => __( 'Rotate Z', 'happy_addons' ),
+                'label' => __( 'Rotate Z', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['deg'],
                 'range' => [
@@ -570,7 +570,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_transform_fx_scale_toggle',
             [
-                'label' => __( 'Scale', 'happy_addons' ),
+                'label' => __( 'Scale', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
                 'return_value' => 'yes',
                 'condition' => [
@@ -584,7 +584,7 @@ class Happy_Effects {
         $element->add_responsive_control(
             'ha_transform_fx_scale_x',
             [
-                'label' => __( 'Scale X', 'happy_addons' ),
+                'label' => __( 'Scale X', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'default' => [
@@ -607,7 +607,7 @@ class Happy_Effects {
         $element->add_responsive_control(
             'ha_transform_fx_scale_y',
             [
-                'label' => __( 'Scale Y', 'happy_addons' ),
+                'label' => __( 'Scale Y', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'default' => [

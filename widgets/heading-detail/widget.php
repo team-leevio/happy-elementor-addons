@@ -26,7 +26,7 @@ class Heading_Detail extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Heading With Detail', 'happy_addons' );
+        return __( 'Heading With Detail', 'happy-elementor-addons' );
     }
 
     /**
@@ -49,7 +49,7 @@ class Heading_Detail extends Base {
 		$this->start_controls_section(
 			'_section_title',
 			[
-				'label' => __( 'Title', 'happy_addons' ),
+				'label' => __( 'Title', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -57,61 +57,61 @@ class Heading_Detail extends Base {
         $this->add_control(
             'title_first',
             [
-                'label' => __( 'First Section', 'happy_addons' ),
+                'label' => __( 'First Section', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Happy Addon', 'happy_addons' ),
-                'placeholder' => __( 'Heading Text', 'happy_addons' ),
+                'default' => __( 'Happy Addon', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Heading Text', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'title_last',
             [
-                'label' => __( 'Second Section', 'happy_addons' ),
+                'label' => __( 'Second Section', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Rocks', 'happy_addons' ),
-                'placeholder' => __( 'Heading Text', 'happy_addons' ),
+                'default' => __( 'Rocks', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Heading Text', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'link',
             [
-                'label' => __( 'Link', 'happy_addons' ),
+                'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
                 'separator' => 'before',
-                'placeholder' => __( 'https://example.com/', 'happy_addons' ),
+                'placeholder' => __( 'https://example.com/', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'title_tag',
             [
-                'label' => __( 'Title HTML Tag', 'happy_addons' ),
+                'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'h1'  => [
-                        'title' => __( 'H1', 'happy_addons' ),
+                        'title' => __( 'H1', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h1'
                     ],
                     'h2'  => [
-                        'title' => __( 'H2', 'happy_addons' ),
+                        'title' => __( 'H2', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h2'
                     ],
                     'h3'  => [
-                        'title' => __( 'H3', 'happy_addons' ),
+                        'title' => __( 'H3', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h3'
                     ],
                     'h4'  => [
-                        'title' => __( 'H4', 'happy_addons' ),
+                        'title' => __( 'H4', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h4'
                     ],
                     'h5'  => [
-                        'title' => __( 'H5', 'happy_addons' ),
+                        'title' => __( 'H5', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h5'
                     ],
                     'h6'  => [
-                        'title' => __( 'H6', 'happy_addons' ),
+                        'title' => __( 'H6', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h6'
                     ]
                 ],
@@ -123,19 +123,19 @@ class Heading_Detail extends Base {
         $this->add_responsive_control(
             'heading_align',
             [
-                'label' => __( 'Alignment', 'happy_addons' ),
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ]
                 ],
@@ -151,7 +151,7 @@ class Heading_Detail extends Base {
         $this->start_controls_section(
             '_section_detail',
             [
-                'label' => __( 'Detail', 'happy_addons' ),
+                'label' => __( 'Detail', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -159,29 +159,29 @@ class Heading_Detail extends Base {
         $this->add_control(
             'detail',
             [
-                'label' => __( 'Detail', 'happy_addons' ),
+                'label' => __( 'Detail', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'happy_addons' ),
-                'placeholder' => __( 'Detail Text here', 'happy_addons' ),
+                'default' => __( 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Detail Text here', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_responsive_control(
             'detail_align',
             [
-                'label' => __( 'Alignment', 'happy_addons' ),
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'flex-start' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-center',
                     ],
                     'flex-end' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
                 ],
@@ -200,7 +200,7 @@ class Heading_Detail extends Base {
         $this->start_controls_section(
             '_section_style_title',
             [
-                'label' => __( 'Title', 'happy_addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -208,10 +208,10 @@ class Heading_Detail extends Base {
         $this->add_control(
             'dual_color',
             [
-                'label' => __( 'Dual Color on Title?', 'happy_addons' ),
+                'label' => __( 'Dual Color on Title?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Show', 'happy_addons' ),
-                'label_off' => __( 'Hide', 'happy_addons' ),
+                'label_on' => __( 'Show', 'happy-elementor-addons' ),
+                'label_off' => __( 'Hide', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -221,7 +221,7 @@ class Heading_Detail extends Base {
         $this->start_controls_tab(
             '_tab_first_section',
             [
-                'label' => __( 'First Section', 'happy_addons' ),
+                'label' => __( 'First Section', 'happy-elementor-addons' ),
                 'condition' => [
                     'dual_color' => 'yes'
                 ]
@@ -231,7 +231,7 @@ class Heading_Detail extends Base {
         $this->add_control(
             'first_section_color',
             [
-                'label' => __( 'Color', 'happy_addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#562dd4',
                 'selectors' => [
@@ -246,7 +246,7 @@ class Heading_Detail extends Base {
         $this->add_control(
             'first_section_background_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-heading span:first-of-type' => 'background-color: {{VALUE}}',
@@ -259,7 +259,7 @@ class Heading_Detail extends Base {
         $this->add_control(
             'first_section_spacing',
             [
-                'label' => __( 'Spacing', 'happy_addons' ),
+                'label' => __( 'Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'responsive' => true,
                 'condition' => [
@@ -273,7 +273,7 @@ class Heading_Detail extends Base {
         $this->add_responsive_control(
             'first_section_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -289,7 +289,7 @@ class Heading_Detail extends Base {
         $this->start_controls_tab(
             '_tab_second_section',
             [
-                'label' => __( 'Second Section', 'happy_addons' ),
+                'label' => __( 'Second Section', 'happy-elementor-addons' ),
                 'condition' => [
                     'dual_color' => 'yes'
                 ]
@@ -299,7 +299,7 @@ class Heading_Detail extends Base {
         $this->add_control(
             'last_section_color',
             [
-                'label' => __( 'Color', 'happy_addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#e2498a',
                 'selectors' => [
@@ -314,7 +314,7 @@ class Heading_Detail extends Base {
         $this->add_control(
             'last_section_background_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-heading span:last-of-type' => 'background-color: {{VALUE}}',
@@ -327,7 +327,7 @@ class Heading_Detail extends Base {
         $this->add_control(
             'last_section_spacing',
             [
-                'label' => __( 'Spacing', 'happy_addons' ),
+                'label' => __( 'Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'responsive' => true,
                 'condition' => [
@@ -341,7 +341,7 @@ class Heading_Detail extends Base {
         $this->add_responsive_control(
             'last_section_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -380,7 +380,7 @@ class Heading_Detail extends Base {
             Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'title',
-                'label' => __( 'Text Shadow', 'happy_addons' ),
+                'label' => __( 'Text Shadow', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-heading',
             ]
         );
@@ -388,10 +388,10 @@ class Heading_Detail extends Base {
         $this->add_control(
             'blend_mode',
             [
-                'label' => __( 'Blend Mode', 'happy_addons' ),
+                'label' => __( 'Blend Mode', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    '' => __( 'Normal', 'happy_addons' ),
+                    '' => __( 'Normal', 'happy-elementor-addons' ),
                     'multiply' => 'Multiply',
                     'screen' => 'Screen',
                     'overlay' => 'Overlay',
@@ -420,7 +420,7 @@ class Heading_Detail extends Base {
         $this->start_controls_section(
             '_section_style_detail',
             [
-                'label' => __( 'Detail', 'happy_addons' ),
+                'label' => __( 'Detail', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -428,7 +428,7 @@ class Heading_Detail extends Base {
         $this->add_control(
             'description_spacing',
             [
-                'label' => __( 'Top Spacing', 'happy_addons' ),
+                'label' => __( 'Top Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'responsive' => true,
@@ -451,7 +451,7 @@ class Heading_Detail extends Base {
         $this->add_control(
             'detail_color',
             [
-                'label' => __( 'Color', 'happy_addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#676767',
                 'selectors' => [
@@ -472,16 +472,16 @@ class Heading_Detail extends Base {
         $this->add_control(
             'detail_border_type',
             [
-                'label' => __( 'Border Type', 'happy_addons' ),
+                'label' => __( 'Border Type', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'separator' => 'before',
                 'options' => [
-                    '' => __( 'None', 'happy_addons' ),
-                    'solid' => __( 'Solid', 'happy_addons' ),
-                    'double' => __( 'Double', 'happy_addons' ),
-                    'dotted' => __( 'Dotted', 'happy_addons' ),
-                    'dashed' => __( 'Dashed', 'happy_addons' ),
-                    'groove' => __( 'Groove', 'happy_addons' ),
+                    '' => __( 'None', 'happy-elementor-addons' ),
+                    'solid' => __( 'Solid', 'happy-elementor-addons' ),
+                    'double' => __( 'Double', 'happy-elementor-addons' ),
+                    'dotted' => __( 'Dotted', 'happy-elementor-addons' ),
+                    'dashed' => __( 'Dashed', 'happy-elementor-addons' ),
+                    'groove' => __( 'Groove', 'happy-elementor-addons' ),
                 ],
                 'default' => 'solid',
                 'selectors' => [
@@ -493,7 +493,7 @@ class Heading_Detail extends Base {
         $this->add_control(
             'detail_border_length',
             [
-                'label' => __( 'Border Length', 'happy_addons' ),
+                'label' => __( 'Border Length', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'default' => [
@@ -519,7 +519,7 @@ class Heading_Detail extends Base {
         $this->add_control(
             'border_width',
             [
-                'label' => __( 'Border Width', 'happy_addons' ),
+                'label' => __( 'Border Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'unit' => 'px',
@@ -544,7 +544,7 @@ class Heading_Detail extends Base {
         $this->add_control(
             'detail_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#e2498a',
                 'selectors' => [
@@ -559,7 +559,7 @@ class Heading_Detail extends Base {
         $this->add_control(
             'detail_border_spacing',
             [
-                'label' => __( 'Border Top Spacing', 'happy_addons' ),
+                'label' => __( 'Border Top Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'default' => [

@@ -30,7 +30,7 @@ class Member extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Team Member', 'happy_addons' );
+        return __( 'Team Member', 'happy-elementor-addons' );
     }
 
     /**
@@ -51,45 +51,45 @@ class Member extends Base {
 
     protected static function get_profile_names() {
         return [
-            '500px' => __( '500px', 'happy_addons' ),
-            'apple' => __( 'Apple', 'happy_addons' ),
-            'behance' => __( 'Behance', 'happy_addons' ),
-            'bitbucket' => __( 'BitBucket', 'happy_addons' ),
-            'codepen' => __( 'CodePen', 'happy_addons' ),
-            'delicious' => __( 'Delicious', 'happy_addons' ),
-            'deviantart' => __( 'DeviantArt', 'happy_addons' ),
-            'digg' => __( 'Digg', 'happy_addons' ),
-            'dribbble' => __( 'Dribbble', 'happy_addons' ),
-            'email' => __( 'Email', 'happy_addons' ),
-            'facebook' => __( 'Facebook', 'happy_addons' ),
-            'flickr' => __( 'Flicker', 'happy_addons' ),
-            'foursquare' => __( 'FourSquare', 'happy_addons' ),
-            'github' => __( 'Github', 'happy_addons' ),
-            'houzz' => __( 'Houzz', 'happy_addons' ),
-            'instagram' => __( 'Instagram', 'happy_addons' ),
-            'jsfiddle' => __( 'JS Fiddle', 'happy_addons' ),
-            'linkedin' => __( 'LinkedIn', 'happy_addons' ),
-            'medium' => __( 'Medium', 'happy_addons' ),
-            'pinterest' => __( 'Pinterest', 'happy_addons' ),
-            'product-hunt' => __( 'Product Hunt', 'happy_addons' ),
-            'reddit' => __( 'Reddit', 'happy_addons' ),
-            'slideshare' => __( 'Slide Share', 'happy_addons' ),
-            'snapchat' => __( 'Snapchat', 'happy_addons' ),
-            'soundcloud' => __( 'SoundCloud', 'happy_addons' ),
-            'spotify' => __( 'Spotify', 'happy_addons' ),
-            'stack-overflow' => __( 'StackOverflow', 'happy_addons' ),
-            'tripadvisor' => __( 'TripAdvisor', 'happy_addons' ),
-            'tumblr' => __( 'Tumblr', 'happy_addons' ),
-            'twitch' => __( 'Twitch', 'happy_addons' ),
-            'twitter' => __( 'Twitter', 'happy_addons' ),
-            'vimeo' => __( 'Vimeo', 'happy_addons' ),
-            'vk' => __( 'VK', 'happy_addons' ),
-            'website' => __( 'Website', 'happy_addons' ),
-            'whatsapp' => __( 'WhatsApp', 'happy_addons' ),
-            'wordpress' => __( 'WordPress', 'happy_addons' ),
-            'xing' => __( 'Xing', 'happy_addons' ),
-            'yelp' => __( 'Yelp', 'happy_addons' ),
-            'youtube' => __( 'YouTube', 'happy_addons' ),
+            '500px' => __( '500px', 'happy-elementor-addons' ),
+            'apple' => __( 'Apple', 'happy-elementor-addons' ),
+            'behance' => __( 'Behance', 'happy-elementor-addons' ),
+            'bitbucket' => __( 'BitBucket', 'happy-elementor-addons' ),
+            'codepen' => __( 'CodePen', 'happy-elementor-addons' ),
+            'delicious' => __( 'Delicious', 'happy-elementor-addons' ),
+            'deviantart' => __( 'DeviantArt', 'happy-elementor-addons' ),
+            'digg' => __( 'Digg', 'happy-elementor-addons' ),
+            'dribbble' => __( 'Dribbble', 'happy-elementor-addons' ),
+            'email' => __( 'Email', 'happy-elementor-addons' ),
+            'facebook' => __( 'Facebook', 'happy-elementor-addons' ),
+            'flickr' => __( 'Flicker', 'happy-elementor-addons' ),
+            'foursquare' => __( 'FourSquare', 'happy-elementor-addons' ),
+            'github' => __( 'Github', 'happy-elementor-addons' ),
+            'houzz' => __( 'Houzz', 'happy-elementor-addons' ),
+            'instagram' => __( 'Instagram', 'happy-elementor-addons' ),
+            'jsfiddle' => __( 'JS Fiddle', 'happy-elementor-addons' ),
+            'linkedin' => __( 'LinkedIn', 'happy-elementor-addons' ),
+            'medium' => __( 'Medium', 'happy-elementor-addons' ),
+            'pinterest' => __( 'Pinterest', 'happy-elementor-addons' ),
+            'product-hunt' => __( 'Product Hunt', 'happy-elementor-addons' ),
+            'reddit' => __( 'Reddit', 'happy-elementor-addons' ),
+            'slideshare' => __( 'Slide Share', 'happy-elementor-addons' ),
+            'snapchat' => __( 'Snapchat', 'happy-elementor-addons' ),
+            'soundcloud' => __( 'SoundCloud', 'happy-elementor-addons' ),
+            'spotify' => __( 'Spotify', 'happy-elementor-addons' ),
+            'stack-overflow' => __( 'StackOverflow', 'happy-elementor-addons' ),
+            'tripadvisor' => __( 'TripAdvisor', 'happy-elementor-addons' ),
+            'tumblr' => __( 'Tumblr', 'happy-elementor-addons' ),
+            'twitch' => __( 'Twitch', 'happy-elementor-addons' ),
+            'twitter' => __( 'Twitter', 'happy-elementor-addons' ),
+            'vimeo' => __( 'Vimeo', 'happy-elementor-addons' ),
+            'vk' => __( 'VK', 'happy-elementor-addons' ),
+            'website' => __( 'Website', 'happy-elementor-addons' ),
+            'whatsapp' => __( 'WhatsApp', 'happy-elementor-addons' ),
+            'wordpress' => __( 'WordPress', 'happy-elementor-addons' ),
+            'xing' => __( 'Xing', 'happy-elementor-addons' ),
+            'yelp' => __( 'Yelp', 'happy-elementor-addons' ),
+            'youtube' => __( 'YouTube', 'happy-elementor-addons' ),
         ];
     }
 
@@ -100,7 +100,7 @@ class Member extends Base {
 		$this->start_controls_section(
 			'_section_info',
 			[
-				'label' => __( 'Information', 'happy_addons' ),
+				'label' => __( 'Information', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -108,7 +108,7 @@ class Member extends Base {
         $this->add_control(
             'image',
             [
-                'label' => __( 'Photo', 'happy_addons' ),
+                'label' => __( 'Photo', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -128,31 +128,31 @@ class Member extends Base {
         $this->add_control(
             'title',
             [
-                'label' => __( 'Name', 'happy_addons' ),
+                'label' => __( 'Name', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Happy Member Name', 'happy_addons' ),
-                'placeholder' => __( 'Type Member Name', 'happy_addons' ),
+                'default' => __( 'Happy Member Name', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type Member Name', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'job_title',
             [
-                'label' => __( 'Job Title', 'happy_addons' ),
+                'label' => __( 'Job Title', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Happy Officer', 'happy_addons' ),
-                'placeholder' => __( 'Type Member Job Title', 'happy_addons' ),
+                'default' => __( 'Happy Officer', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type Member Job Title', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'bio',
             [
-                'label' => __( 'Short Bio', 'happy_addons' ),
+                'label' => __( 'Short Bio', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXTAREA,
-                'placeholder' => __( 'Write something amazing about the happy member', 'happy_addons' ),
+                'placeholder' => __( 'Write something amazing about the happy member', 'happy-elementor-addons' ),
                 'rows' => 5
             ]
         );
@@ -160,31 +160,31 @@ class Member extends Base {
         $this->add_control(
             'title_tag',
             [
-                'label' => __( 'Title HTML Tag', 'happy_addons' ),
+                'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'h1'  => [
-                        'title' => __( 'H1', 'happy_addons' ),
+                        'title' => __( 'H1', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h1'
                     ],
                     'h2'  => [
-                        'title' => __( 'H2', 'happy_addons' ),
+                        'title' => __( 'H2', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h2'
                     ],
                     'h3'  => [
-                        'title' => __( 'H3', 'happy_addons' ),
+                        'title' => __( 'H3', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h3'
                     ],
                     'h4'  => [
-                        'title' => __( 'H4', 'happy_addons' ),
+                        'title' => __( 'H4', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h4'
                     ],
                     'h5'  => [
-                        'title' => __( 'H5', 'happy_addons' ),
+                        'title' => __( 'H5', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h5'
                     ],
                     'h6'  => [
-                        'title' => __( 'H6', 'happy_addons' ),
+                        'title' => __( 'H6', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h6'
                     ]
                 ],
@@ -196,23 +196,23 @@ class Member extends Base {
         $this->add_responsive_control(
             'align',
             [
-                'label' => __( 'Alignment', 'happy_addons' ),
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
                     'justify' => [
-                        'title' => __( 'Justify', 'happy_addons' ),
+                        'title' => __( 'Justify', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-justify',
                     ],
                 ],
@@ -228,7 +228,7 @@ class Member extends Base {
         $this->start_controls_section(
             '_section_social',
             [
-                'label' => __( 'Social Profiles', 'happy_addons' ),
+                'label' => __( 'Social Profiles', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -238,7 +238,7 @@ class Member extends Base {
         $repeater->add_control(
             'name',
             [
-                'label' => __( 'Profile Name', 'happy_addons' ),
+                'label' => __( 'Profile Name', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT2,
                 'select2options' => [
                     'allowClear' => false,
@@ -249,8 +249,8 @@ class Member extends Base {
 
         $repeater->add_control(
             'link', [
-                'label' => __( 'Profile Link', 'happy_addons' ),
-                'placeholder' => __( 'Add your profile link', 'happy_addons' ),
+                'label' => __( 'Profile Link', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Add your profile link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
                 'label_block' => false,
                 'autocomplete' => false,
@@ -263,8 +263,8 @@ class Member extends Base {
 
         $repeater->add_control(
             'email', [
-                'label' => __( 'Email Address', 'happy_addons' ),
-                'placeholder' => __( 'Add your email address', 'happy_addons' ),
+                'label' => __( 'Email Address', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Add your email address', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
                 'label_block' => false,
                 'input_type' => 'email',
@@ -277,10 +277,10 @@ class Member extends Base {
         $repeater->add_control(
             'customize',
             [
-                'label' => __( 'Want To Customize?', 'happy_addons' ),
+                'label' => __( 'Want To Customize?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy_addons' ),
-                'label_off' => __( 'No', 'happy_addons' ),
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
             ]
         );
@@ -294,14 +294,14 @@ class Member extends Base {
         $repeater->start_controls_tab(
             '_tab_icon_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $repeater->add_control(
             'color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}' => 'color: {{VALUE}}',
@@ -313,7 +313,7 @@ class Member extends Base {
         $repeater->add_control(
             'bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}' => 'background-color: {{VALUE}}',
@@ -326,14 +326,14 @@ class Member extends Base {
         $repeater->start_controls_tab(
             '_tab_icon_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $repeater->add_control(
             'hover_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:hover, {{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:focus' => 'color: {{VALUE}}',
@@ -345,7 +345,7 @@ class Member extends Base {
         $repeater->add_control(
             'hover_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:hover, {{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:focus' => 'background-color: {{VALUE}}',
@@ -357,7 +357,7 @@ class Member extends Base {
         $repeater->add_control(
             'hover_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:hover, {{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:focus' => 'border-color: {{VALUE}}',
@@ -415,7 +415,7 @@ class Member extends Base {
         $this->start_controls_section(
             '_section_style_image',
             [
-                'label' => __( 'Photo', 'happy_addons' ),
+                'label' => __( 'Photo', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -423,7 +423,7 @@ class Member extends Base {
         $this->add_responsive_control(
             'image_width',
             [
-                'label' => __( 'Width', 'happy_addons' ),
+                'label' => __( 'Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%'],
                 'range' => [
@@ -445,7 +445,7 @@ class Member extends Base {
         $this->add_responsive_control(
             'image_height',
             [
-                'label' => __( 'Height', 'happy_addons' ),
+                'label' => __( 'Height', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -463,7 +463,7 @@ class Member extends Base {
         $this->add_responsive_control(
             'image_spacing',
             [
-                'label' => __( 'Bottom Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -475,7 +475,7 @@ class Member extends Base {
         $this->add_responsive_control(
             'image_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -495,7 +495,7 @@ class Member extends Base {
         $this->add_responsive_control(
             'image_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -518,7 +518,7 @@ class Member extends Base {
         $this->add_control(
             'image_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-figure > img' => 'background-color: {{VALUE}}',
@@ -531,7 +531,7 @@ class Member extends Base {
         $this->start_controls_section(
             '_section_style_content',
             [
-                'label' => __( 'Name, Job Title & Bio', 'happy_addons' ),
+                'label' => __( 'Name, Job Title & Bio', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -539,7 +539,7 @@ class Member extends Base {
         $this->add_responsive_control(
             'content_padding',
             [
-                'label' => __( 'Content Padding', 'happy_addons' ),
+                'label' => __( 'Content Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -552,7 +552,7 @@ class Member extends Base {
             '_heading_title',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Name', 'happy_addons' ),
+                'label' => __( 'Name', 'happy-elementor-addons' ),
                 'separator' => 'before',
             ]
         );
@@ -560,7 +560,7 @@ class Member extends Base {
         $this->add_responsive_control(
             'title_spacing',
             [
-                'label' => __( 'Bottom Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -572,7 +572,7 @@ class Member extends Base {
         $this->add_control(
             'title_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-name' => 'color: {{VALUE}}',
@@ -601,7 +601,7 @@ class Member extends Base {
             '_heading_job_title',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Job Title', 'happy_addons' ),
+                'label' => __( 'Job Title', 'happy-elementor-addons' ),
                 'separator' => 'before'
             ]
         );
@@ -609,7 +609,7 @@ class Member extends Base {
         $this->add_responsive_control(
             'job_title_spacing',
             [
-                'label' => __( 'Bottom Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -621,7 +621,7 @@ class Member extends Base {
         $this->add_control(
             'job_title_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-position' => 'color: {{VALUE}}',
@@ -650,7 +650,7 @@ class Member extends Base {
             '_heading_bio',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Short Bio', 'happy_addons' ),
+                'label' => __( 'Short Bio', 'happy-elementor-addons' ),
                 'separator' => 'before'
             ]
         );
@@ -658,7 +658,7 @@ class Member extends Base {
         $this->add_responsive_control(
             'bio_spacing',
             [
-                'label' => __( 'Bottom Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -670,7 +670,7 @@ class Member extends Base {
         $this->add_control(
             'bio_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-bio' => 'color: {{VALUE}}',
@@ -700,7 +700,7 @@ class Member extends Base {
         $this->start_controls_section(
             '_section_style_social',
             [
-                'label' => __( 'Social Icons', 'happy_addons' ),
+                'label' => __( 'Social Icons', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -708,7 +708,7 @@ class Member extends Base {
         $this->add_responsive_control(
             'links_spacing',
             [
-                'label' => __( 'Right Spacing', 'happy_addons' ),
+                'label' => __( 'Right Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -720,7 +720,7 @@ class Member extends Base {
         $this->add_responsive_control(
             'links_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -732,7 +732,7 @@ class Member extends Base {
         $this->add_responsive_control(
             'links_icon_size',
             [
-                'label' => __( 'Icon Size', 'happy_addons' ),
+                'label' => __( 'Icon Size', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -752,7 +752,7 @@ class Member extends Base {
         $this->add_responsive_control(
             'links_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -765,14 +765,14 @@ class Member extends Base {
         $this->start_controls_tab(
             '_tab_links_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'links_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > a' => 'color: {{VALUE}}',
@@ -783,7 +783,7 @@ class Member extends Base {
         $this->add_control(
             'links_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > a' => 'background-color: {{VALUE}}',
@@ -795,14 +795,14 @@ class Member extends Base {
         $this->start_controls_tab(
             '_tab_links_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'links_hover_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > a:hover, {{WRAPPER}} .ha-member-links > a:focus' => 'color: {{VALUE}}',
@@ -813,7 +813,7 @@ class Member extends Base {
         $this->add_control(
             'links_hover_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > a:hover, {{WRAPPER}} .ha-member-links > a:focus' => 'background-color: {{VALUE}}',
@@ -824,7 +824,7 @@ class Member extends Base {
         $this->add_control(
             'links_hover_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > a:hover, {{WRAPPER}} .ha-member-links > a:focus' => 'border-color: {{VALUE}};',
