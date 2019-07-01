@@ -95,7 +95,7 @@ class Base {
      */
     public function add_category( $elements_manager ) {
         $elements_manager->add_category(
-            'happy-elementor-addons',
+            'happy_addons_category',
             [
                 'title' => __( 'Happy Addons', 'happy-elementor-addons' ),
                 'icon' => 'fa fa-smile-o',

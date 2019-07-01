@@ -24,7 +24,7 @@ class NinjaForm extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Ninja Forms', 'happy_addons' );
+        return __( 'Ninja Forms', 'happy-elementor-addons' );
     }
 
     /**
@@ -47,7 +47,7 @@ class NinjaForm extends Base {
 		$this->start_controls_section(
 			'_section_ninjaf',
 			[
-				'label' => ha_is_ninjaf_activated() ? __( 'Ninja Forms', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
+				'label' => ha_is_ninjaf_activated() ? __( 'Ninja Forms', 'happy-elementor-addons' ) : __( 'Notice', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);

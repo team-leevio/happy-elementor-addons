@@ -44,7 +44,7 @@ abstract class Base extends Widget_Base {
      * @return array Widget categories.
      */
     public function get_categories() {
-        return [ 'happy-elementor-addons' ];
+        return [ 'happy_addons_category' ];
     }
 
     /**

@@ -673,7 +673,7 @@ class Happy_Effects {
         $element->add_control(
             'ha_transform_fx_skew_toggle',
             [
-                'label' => __( 'Skew', 'happy_addons' ),
+                'label' => __( 'Skew', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
                 'return_value' => 'yes',
                 'condition' => [
@@ -687,7 +687,7 @@ class Happy_Effects {
         $element->add_responsive_control(
             'ha_transform_fx_skew_x',
             [
-                'label' => __( 'Skew X', 'happy_addons' ),
+                'label' => __( 'Skew X', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['deg'],
                 'range' => [
@@ -706,7 +706,7 @@ class Happy_Effects {
         $element->add_responsive_control(
             'ha_transform_fx_skew_y',
             [
-                'label' => __( 'Skew Y', 'happy_addons' ),
+                'label' => __( 'Skew Y', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['deg'],
                 'range' => [

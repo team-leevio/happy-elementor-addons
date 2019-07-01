@@ -24,7 +24,7 @@ class WPForm extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'WPForms', 'happy_addons' );
+        return __( 'WPForms', 'happy-elementor-addons' );
     }
 
     /**
@@ -47,7 +47,7 @@ class WPForm extends Base {
 		$this->start_controls_section(
 			'_section_wpf',
 			[
-				'label' => ha_is_wpf_activated() ? __( 'WPForms', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
+				'label' => ha_is_wpf_activated() ? __( 'WPForms', 'happy-elementor-addons' ) : __( 'Notice', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -58,7 +58,7 @@ class WPForm extends Base {
                 [
                     'type' => Controls_Manager::RAW_HTML,
                     'raw' => sprintf(
-                        __( 'Hi, it seems %1$s is missing in your site. Please install and activate %1$s first.', 'happy_addons' ),
+                        __( 'Hi, it seems %1$s is missing in your site. Please install and activate %1$s first.', 'happy-elementor-addons' ),
                         '<a href="https://wordpress.org/plugins/wpforms-lite/" target="_blank" rel="noopener">WPForms</a>'
                     ),
                     'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',

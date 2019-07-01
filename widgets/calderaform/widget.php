@@ -24,7 +24,7 @@ class CalderaForm extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Caldera Forms', 'happy_addons' );
+        return __( 'Caldera Forms', 'happy-elementor-addons' );
     }
 
     /**
@@ -47,7 +47,7 @@ class CalderaForm extends Base {
 		$this->start_controls_section(
 			'_section_calderaf',
 			[
-				'label' => ha_is_calderaf_activated() ? __( 'Caldera Forms', 'happy_addons' ) : __( 'Notice', 'happy_addons' ),
+				'label' => ha_is_calderaf_activated() ? __( 'Caldera Forms', 'happy-elementor-addons' ) : __( 'Notice', 'happy-elementor-addons' ),
 			]
 		);
 
