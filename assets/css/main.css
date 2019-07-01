@@ -254,6 +254,13 @@
 	width: 1em;
 	height: 1em;
 }
+.ha-infobox-figure > i:before {
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	    -ms-transform: translateX(-50%);
+	        transform: translateX(-50%);
+}
 .ha-infobox-figure > img {
 	width: 100%;
 	height: 100%;
@@ -295,6 +302,7 @@
 	        transition: transform .3s, border .3s, background .3s, color .3s, -webkit-transform .3s;
 }
 .ha-icon-box-icon > i {
+	position: relative;
 	display: block;
 	width: 1em;
 	height: 1em;
@@ -302,6 +310,13 @@
 	        transition: -webkit-transform .3s;
 	        transition:         transform .3s;
 	        transition:         transform .3s, -webkit-transform .3s;
+}
+.ha-icon-box-icon > i:before {
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	    -ms-transform: translateX(-50%);
+	        transform: translateX(-50%);
 }
 
 .ha-icon-box-link {

@@ -25,11 +25,17 @@
     transition: transform .3s, border .3s, background .3s, color .3s;
 
     > i {
+      position: relative;
+      display: block;
       width: 1em;
       height: 1em;
-      display: block;
-
       transition: transform .3s;
+
+      &:before {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
   }
 
