@@ -207,9 +207,15 @@ window.Happy = window.Happy || {};
             },
 
             transformCleanup: function() {
-                var settings = this.getElementSettings(),
-                    model = elementorFrontend.config.elements.data[this.getModelCID()];
-                if (!settings.ha_transform_fx_translate_toggle) {
+                var model = elementorFrontend.config.elements.data[this.getModelCID()];
+
+                // console.log(model.get('ha_transform_fx_translate_toggle'));
+
+                if (!model.get('ha_transform_fx_translate_toggle')) {
+                    // console.log(model.get('ha_transform_fx_translate_x'));
+                    // model.set('ha_transform_fx_translate_x', $.extend({}, model.get('ha_transform_fx_translate_x'), {size: 0}));
+                    // console.log(model.get('ha_transform_fx_translate_x'));
+                    // model.set($.extend({}, model.get('ha_transform_fx_translate_y'), {size: ''}));
                     // model.set('ha_transform_fx_translate_x', {size: 0});
                     // model.set('ha_transform_fx_translate_y', {size: 0});
                     // elementorModules.frontend.handlers.Base.prototype.setSettings.apply(this, ['ha_transform_fx_translate_x.size', '']);

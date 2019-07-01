@@ -10,10 +10,10 @@ defined( 'ABSPATH' ) || die();
 class Happy_Effects {
 
     public static function init() {
-        add_action( 'elementor/element/common/section_effects/after_section_end', [__CLASS__, 'add_controls_section'] );
+        add_action( 'elementor/element/common/_section_style/after_section_end', [__CLASS__, 'add_controls_section'] );
 //        add_action( 'elementor/element/before_parse_css', [__CLASS__, 'remove_disabled_effects'], 10, 2 );
 //        add_action( 'elementor/post-css-file/parse', [__CLASS__, 'remove_disabled_effects'], 100 );
-        add_action( 'elementor/document/before_save', [__CLASS__, 'remove_disabled_effects'], 10, 2 );
+//        add_action( 'elementor/document/before_save', [__CLASS__, 'remove_disabled_effects'], 10, 2 );
     }
 
 //    public static function remove_disabled_effects( Post $post, Element_Base $element ) {

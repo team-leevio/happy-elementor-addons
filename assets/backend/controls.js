@@ -10,6 +10,8 @@
             // panel.
             // panel.currentPageView.$childViewContainer.find('.elementor-panel-heading-title').append('Wowl')
             // console.log(model);
+
+            // console.log(panel);
         } );
 
         var ExtendedSelect = elementor.modules.controls.Select.extend({
@@ -37,9 +39,9 @@
             }
         } );
 
-        elementor.addControlView( 'select_preview', SelectPreviewView );
-        elementor.addControlView( 'image_choose', elementor.modules.controls.Choose );
-        elementor.addControlView( 'select', ExtendedSelect );
+        // elementor.addControlView( 'select_preview', SelectPreviewView );
+        // elementor.addControlView( 'image_choose', elementor.modules.controls.Choose );
+        // elementor.addControlView( 'select', ExtendedSelect );
     } );
 
 })(jQuery);
