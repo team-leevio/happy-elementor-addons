@@ -13,14 +13,17 @@
     function getCssEffectsControlsMap() {
         return {
             'translate' : {
-                props: ['x', 'y']
+                props: ['x', 'y', 'x_tablet', 'y_tablet', 'x_mobile', 'y_mobile']
             },
-            'rotate' : {
-                props: ['x', 'y', 'z']
+            'skew' : {
+                props: ['x', 'y', 'x_tablet', 'y_tablet', 'x_mobile', 'y_mobile']
             },
             'scale': {
                 value: 1,
-                props: ['x','y']
+                props: ['x', 'y', 'x_tablet', 'y_tablet', 'x_mobile', 'y_mobile']
+            },
+            'rotate' : {
+                props: ['x', 'y', 'z', 'x_tablet', 'y_tablet', 'z_tablet', 'x_mobile', 'y_mobile', 'z_mobile']
             }
         };
     }
