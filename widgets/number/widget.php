@@ -188,7 +188,7 @@ class Number extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-number-body'  => 'text-align: {{VALUE}}'
 				]
-                //hello
+
 			]
 		);
 
