@@ -13,6 +13,9 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
+use Elementor\Group_Control_Background;
+use Elementor\Group_Control_Text_Shadow;
+use Happy_Addons\Elementor\Controls\Group_Control_Foreground;
 
 defined( 'ABSPATH' ) || die();
 
@@ -70,6 +73,7 @@ class Number extends Base {
 
 
 
+
 		$this->end_controls_section();
 	}
 
@@ -97,16 +101,93 @@ class Number extends Base {
 			]
 		);
 
-		$this->add_control(
-			'number_background_color',
+		$this->add_group_control(
+			Group_Control_Text_Shadow::get_type(),
 			[
+				'name' => 'number_text_shadow',
+				'label' => __( 'Text Shadow', 'happy_addons' ),
+				'selector' => '{{WRAPPER}} .ha-number-border span',
+			]
+		);
+
+        // $this->add_group_control(
+        //     Group_Control_Text_Shadow::get_type(),
+        //     [
+        //         'name' => 'title',
+        //         'label' => __( 'Text Shadow', 'happy-elementor-addons' ),
+        //         'selector' => '{{WRAPPER}} .ha-gradient-heading',
+        //     ]
+        // );
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'number_background_color_new',
 				'label' => __( 'Background', 'happy_addons' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'types' => [ 'classic', 'gradient', 'video' ],
+				'selector' => '{{WRAPPER}} .ha-number-border',
+			]
+		);
+
+
+
+		$this->add_responsive_control(
+			'number_width_height',
+			[
+				'label' => __( 'Width and Height', 'happy_addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 50,
+				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-number-border' => 'background: {{VALUE}}',
+					'{{WRAPPER}} .ha-number-border' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
+
+
+		$this->add_control(
+			'number_text_rotate',
+			[
+				'label' => __( 'Text Rotate', 'happy_addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 360,
+						'step' => 5,
+					],
+
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 0,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-number-text' => '  transform: rotate(-{{SIZE}}deg);
+														  -webkit-transform: rotate(-{{SIZE}}deg);
+														  -moz-transform: rotate(-{{SIZE}}deg);
+														  -ms-transform: rotate(-{{SIZE}}deg);
+														  -o-transform: rotate(-{{SIZE}}deg);',
+
+				],
+			]
+		);		
+
 
 
 		$this->add_group_control(
@@ -171,22 +252,22 @@ class Number extends Base {
 				'label' => __( 'Alignment', 'happy_addons' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
-					'left' => [
+					'float:left' => [
 						'title' => __( 'Left', 'happy_addons' ),
 						'icon' => 'fa fa-align-left',
 					],
-					'center' => [
+					'float:inhiert' => [
 						'title' => __( 'Center', 'happy_addons' ),
 						'icon' => 'fa fa-align-center',
 					],
-					'right' => [
+					'float:right' => [
 						'title' => __( 'Right', 'happy_addons' ),
 						'icon' => 'fa fa-align-right',
 					],
 				],
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .ha-number-body'  => 'text-align: {{VALUE}}'
+					'{{WRAPPER}} .ha-number-body'  => '{{VALUE}}'
 				]
 
 			]
@@ -201,13 +282,11 @@ class Number extends Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		$title = $settings['title'];
-		$text = $settings['text'];
-		$media = $settings['MEDIA'];
+
 		?>
 		<div class="ha-number-body">
 			<div class="ha-number-border">
-				<?php echo esc_html( $settings['number_text'] ); ?>
+				<span class="ha-number-text"><?php echo esc_html( $settings['number_text'] ); ?></span>
 			</div>
 		</div>
 		<?php
