@@ -54,10 +54,5 @@ class Widgets {
             $class_name = 'Happy_Addons\Elementor\Widget\\' . $class_name;
             Elementor::instance()->widgets_manager->register_widget_type( new $class_name() );
         }
-
-        \Elementor\Element_Column::add_edit_tool('test', [
-            'title' => 'Test',
-            'icon' => 'clone',
-        ]);
     }
 }

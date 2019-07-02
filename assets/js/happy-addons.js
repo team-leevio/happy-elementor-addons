@@ -298,13 +298,6 @@ window.Happy = window.Happy || {};
             }
         });
 
-        // var AddSection = elementorModules.frontend.handlers.Base.extend({
-        //     onInit: function() {
-        //         elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
-        //         // console.log(this);
-        //     },
-        // });
-
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/ha-image-compare.default',
             Happy.initImageComparison
@@ -329,16 +322,8 @@ window.Happy = window.Happy || {};
             'frontend/element_ready/widget',
             function($scope) {
                 elementorFrontend.elementsHandler.addHandler(HappyEffects, {$element: $scope});
-                // window.ele = new Happy_Effects({ $element: $scope });
             }
         );
-
-        // elementorFrontend.hooks.addAction(
-        //     'frontend/element_ready/column',
-        //     function($scope) {
-        //         elementorFrontend.elementsHandler.addHandler(AddSection, {$element: $scope});
-        //     }
-        // );
     });
 
 } (jQuery, Happy, window));
