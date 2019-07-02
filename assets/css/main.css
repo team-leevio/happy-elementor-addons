@@ -1406,3 +1406,17 @@ span .ha-review-ratting--star:before,
 	display: block; 
 	content: "";
 }
+
+.ha-number-body .ha-number-border {
+	display: inline-block; 
+	margin: 0 auto;
+	padding: 10px 10px 10px 10px;
+	width: 50px;
+	height: 50px;
+	border-width: 4px 4px 4px 4px;
+	border-style: solid;
+	border-color: #c36;
+	border-radius: 100px 0 100px 100px;
+	color: #c36;
+	text-align: center;
+}
