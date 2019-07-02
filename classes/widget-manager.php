@@ -46,7 +46,7 @@ class Widgets {
 			'testimonial',
             'heading-detail',
 	        'number',
-            'flip-box',
+//            'flip-box',
         ];
 
         foreach ( $widgets as $widget ) {
