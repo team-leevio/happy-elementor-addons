@@ -87,4 +87,12 @@
         initPresetHandler(panel, model);
     });
 
+    // elementor.hooks.addFilter('element/view', function(ChildView, model, scope) {
+    //     if (model.get('elType') === 'column') {
+    //         console.log(scope);
+    //     }
+    //
+    //     return ChildView;
+    // });
+
 }(elementor, jQuery, window));

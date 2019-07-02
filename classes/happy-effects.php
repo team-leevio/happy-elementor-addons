@@ -481,11 +481,11 @@ class Happy_Effects {
             [
                 'label' => __( 'Rotate X', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['deg'],
+                'size_units' => ['px'],
                 'range' => [
-                    'deg' => [
-                        'min' => 0,
-                        'max' => 360,
+                    'px' => [
+                        'min' => -180,
+                        'max' => 180,
                     ]
                 ],
                 'condition' => [
@@ -500,11 +500,11 @@ class Happy_Effects {
             [
                 'label' => __( 'Rotate Y', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['deg'],
+                'size_units' => ['px'],
                 'range' => [
-                    'deg' => [
-                        'min' => 0,
-                        'max' => 360,
+                    'px' => [
+                        'min' => -180,
+                        'max' => 180,
                     ]
                 ],
                 'condition' => [
@@ -519,11 +519,11 @@ class Happy_Effects {
             [
                 'label' => __( 'Rotate Z', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['deg'],
+                'size_units' => ['px'],
                 'range' => [
-                    'deg' => [
-                        'min' => 0,
-                        'max' => 360,
+                    'px' => [
+                        'min' => -180,
+                        'max' => 180,
                     ]
                 ],
                 'condition' => [

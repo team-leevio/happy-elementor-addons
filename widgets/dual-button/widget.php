@@ -37,7 +37,7 @@ class Dual_Button extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'hm hm-spark';
+        return 'hm hm-accordion-horizontal';
     }
 
     public function get_keywords() {
