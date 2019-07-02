@@ -32,6 +32,14 @@ class Base {
     private function __construct() {
         add_action( 'init', [ $this, 'i18n' ] );
         add_action( 'plugins_loaded', [ $this, 'init' ] );
+
+//        add_action('elementor/document/before_save', function($e, $d) {
+//            file_put_contents(__DIR__ . '/datadd.txt', print_r( $d, 1 ));
+//        }, 10, 2);
+
+        add_action('elementor/element/parse_css', function($e, $d) {
+            file_put_contents(__DIR__ . '/datadd.txt', print_r( $d->get_settings(), 1 ));
+        }, 10, 2);
     }
 
     public function i18n() {
