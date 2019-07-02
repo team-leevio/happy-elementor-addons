@@ -53,7 +53,7 @@ class Number extends Base {
 		$this->start_controls_section(
 			'number_content',
 			[
-				'label' => __( 'Number', 'happy_addons' ),
+				'label' => __( 'Number test', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
