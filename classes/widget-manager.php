@@ -46,7 +46,7 @@ class Widgets {
 			'testimonial',
 //            'heading-detail',
  	        'number',
-//            'image-box',
+//           'image-box',
 //            'flip-box',
         ];
 
