@@ -14,6 +14,9 @@ class Assets {
         // Frontend scripts
         add_action( 'wp_enqueue_scripts', [__CLASS__, 'enqueue_frontend_scripts'] );
 
+        // Dashboard scripts
+        add_action( 'admin_enqueue_scripts', [__CLASS__, 'dashboard_enqueue_scripts'] );
+
         // Edit and preview enqueue
         add_action( 'elementor/preview/enqueue_styles', [__CLASS__, 'enqueue_preview_style'] );
 
@@ -145,6 +148,19 @@ class Assets {
             ['jquery', 'imagesloaded'],
             Base::VERSION,
             true
+        );
+    }
+
+    public static function dashboard_enqueue_scripts() {
+        $currentScreen = get_current_screen();
+        if ( $currentScreen->id != "elementor_page_happy-settings" ) {
+            return;
+        }
+        wp_enqueue_style(
+            'happy-dashboard',
+            HAPPY_ASSETS . 'admin/css/dashboard.css',
+            null,
+            Base::VERSION
         );
     }
 
