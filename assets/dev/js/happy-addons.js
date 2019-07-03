@@ -179,8 +179,8 @@ window.Happy = window.Happy || {};
         }, settings));
     };
 
-    $window.on( 'elementor/frontend/init', function() {
-        var Happy_Effects = elementorModules.frontend.handlers.Base.extend({
+    $window.on('elementor/frontend/init', function() {
+        var HappyEffects = elementorModules.frontend.handlers.Base.extend({
             onInit: function() {
                 elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
                 this.run();
@@ -207,9 +207,15 @@ window.Happy = window.Happy || {};
             },
 
             transformCleanup: function() {
-                var settings = this.getElementSettings(),
-                    model = elementorFrontend.config.elements.data[this.getModelCID()];
-                if (!settings.ha_transform_fx_translate_toggle) {
+                var model = elementorFrontend.config.elements.data[this.getModelCID()];
+
+                // console.log(model.get('ha_transform_fx_translate_toggle'));
+
+                if (!model.get('ha_transform_fx_translate_toggle')) {
+                    // console.log(model.get('ha_transform_fx_translate_x'));
+                    // model.set('ha_transform_fx_translate_x', $.extend({}, model.get('ha_transform_fx_translate_x'), {size: 0}));
+                    // console.log(model.get('ha_transform_fx_translate_x'));
+                    // model.set($.extend({}, model.get('ha_transform_fx_translate_y'), {size: ''}));
                     // model.set('ha_transform_fx_translate_x', {size: 0});
                     // model.set('ha_transform_fx_translate_y', {size: 0});
                     // elementorModules.frontend.handlers.Base.prototype.setSettings.apply(this, ['ha_transform_fx_translate_x.size', '']);
@@ -314,8 +320,8 @@ window.Happy = window.Happy || {};
         );
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/widget',
-            function ($scope) {
-                window.ele = new Happy_Effects({ $element: $scope });
+            function($scope) {
+                elementorFrontend.elementsHandler.addHandler(HappyEffects, {$element: $scope});
             }
         );
     });

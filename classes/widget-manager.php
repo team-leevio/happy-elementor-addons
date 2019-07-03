@@ -44,7 +44,9 @@ class Widgets {
 			'logo-grid',
 			'dual-button',
 			'testimonial',
-            'heading-detail'
+            'heading-detail',
+	        'number',
+//            'flip-box',
         ];
 
         foreach ( $widgets as $widget ) {

@@ -6,13 +6,18 @@ use Happy_Addons\Elementor\Base;
 defined( 'ABSPATH' ) || die();
 
 class Assets {
+
+    /**
+     * Bind hook and run internal methods here
+     */
     public static function init() {
         // Frontend scripts
         add_action( 'wp_enqueue_scripts', [__CLASS__, 'enqueue_frontend_scripts'] );
 
-		add_action( 'elementor/editor/before_enqueue_scripts', [__CLASS__, 'enqueue_editor_scripts'] );
-
+        // Edit and preview enqueue
         add_action( 'elementor/preview/enqueue_styles', [__CLASS__, 'enqueue_preview_style'] );
+
+		add_action( 'elementor/editor/before_enqueue_scripts', [__CLASS__, 'enqueue_editor_scripts'] );
 
         // Placeholder image replacement
         add_filter( 'elementor/utils/get_placeholder_image_src', [__CLASS__, 'set_placeholder_image'] );
@@ -25,8 +30,8 @@ class Assets {
     /**
      * Enqueue frontend scripts
      */
-    public function enqueue_frontend_scripts() {
-		$suffix = ha_is_script_debug_enabled() ? '.min.' : '.';
+    public static function enqueue_frontend_scripts() {
+		$suffix = ha_is_script_debug_enabled() ? '.' : '.';
 
         wp_enqueue_style(
             'happy-icon',

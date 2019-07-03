@@ -26,6 +26,12 @@
       height: 1em;
       position: relative;
       display: block;
+
+      &:before {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
 
     > img {

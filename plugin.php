@@ -8,7 +8,7 @@
  * Author URI: https://happymonster.me/
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: happy_addons
+ * Text Domain: happy-elementor-addons
  * Domain Path: /languages/
  *
  * @package Happy_Addons

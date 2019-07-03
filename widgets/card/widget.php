@@ -28,15 +28,15 @@ class Card extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Card', 'happy_addons' );
+        return __( 'Card', 'happy-elementor-addons' );
     }
 
     protected function get_presets() {
         return [
-            'design-1' => __( 'Design 1', 'happy_addons' ),
-            'design-2' => __( 'Design 2', 'happy_addons' ),
-            'design-3' => __( 'Design 3', 'happy_addons' ),
-            'design-4' => __( 'Design 4', 'happy_addons' ),
+            'design-1' => __( 'Design 1', 'happy-elementor-addons' ),
+            'design-2' => __( 'Design 2', 'happy-elementor-addons' ),
+            'design-3' => __( 'Design 3', 'happy-elementor-addons' ),
+            'design-4' => __( 'Design 4', 'happy-elementor-addons' ),
         ];
     }
 
@@ -60,7 +60,7 @@ class Card extends Base {
 		$this->start_controls_section(
 			'_section_image',
 			[
-				'label' => __( 'Image & Badge', 'happy_addons' ),
+				'label' => __( 'Image & Badge', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -68,7 +68,7 @@ class Card extends Base {
         $this->add_control(
             'image',
             [
-                'label' => __( 'Image', 'happy_addons' ),
+                'label' => __( 'Image', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -88,20 +88,20 @@ class Card extends Base {
         $this->add_control(
             'image_position',
             [
-                'label' => __( 'Image Position', 'happy_addons' ),
+                'label' => __( 'Image Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => false,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'top' => [
-                        'title' => __( 'Top', 'happy_addons' ),
+                        'title' => __( 'Top', 'happy-elementor-addons' ),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -114,12 +114,12 @@ class Card extends Base {
         $this->add_control(
             'badge_text',
             [
-                'label' => __( 'Badge Text', 'happy_addons' ),
+                'label' => __( 'Badge Text', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Badget Text', 'happy_addons' ),
-                'placeholder' => __( 'Type badge text', 'happy_addons' ),
+                'default' => __( 'Badget Text', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type badge text', 'happy-elementor-addons' ),
                 'separator' => 'before',
-                'description' => __( 'Set badget position and control all the style settings from Style tab', 'happy_addons' ),
+                'description' => __( 'Set badget position and control all the style settings from Style tab', 'happy-elementor-addons' ),
             ]
         );
 
@@ -128,7 +128,7 @@ class Card extends Base {
         $this->start_controls_section(
             '_section_title',
             [
-                'label' => __( 'Title & Description', 'happy_addons' ),
+                'label' => __( 'Title & Description', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -136,21 +136,21 @@ class Card extends Base {
         $this->add_control(
             'title',
             [
-                'label' => __( 'Title', 'happy_addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Happy Card Title', 'happy_addons' ),
-                'placeholder' => __( 'Type Card Title', 'happy_addons' ),
+                'default' => __( 'Happy Card Title', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type Card Title', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'description',
             [
-                'label' => __( 'Description', 'happy_addons' ),
+                'label' => __( 'Description', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Happy card description goes here', 'happy_addons' ),
-                'placeholder' => __( 'Type card description', 'happy_addons' ),
+                'default' => __( 'Happy card description goes here', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type card description', 'happy-elementor-addons' ),
                 'rows' => 5
             ]
         );
@@ -158,31 +158,31 @@ class Card extends Base {
         $this->add_control(
             'title_tag',
             [
-                'label' => __( 'Title HTML Tag', 'happy_addons' ),
+                'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'h1'  => [
-                        'title' => __( 'H1', 'happy_addons' ),
+                        'title' => __( 'H1', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h1'
                     ],
                     'h2'  => [
-                        'title' => __( 'H2', 'happy_addons' ),
+                        'title' => __( 'H2', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h2'
                     ],
                     'h3'  => [
-                        'title' => __( 'H3', 'happy_addons' ),
+                        'title' => __( 'H3', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h3'
                     ],
                     'h4'  => [
-                        'title' => __( 'H4', 'happy_addons' ),
+                        'title' => __( 'H4', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h4'
                     ],
                     'h5'  => [
-                        'title' => __( 'H5', 'happy_addons' ),
+                        'title' => __( 'H5', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h5'
                     ],
                     'h6'  => [
-                        'title' => __( 'H6', 'happy_addons' ),
+                        'title' => __( 'H6', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h6'
                     ]
                 ],
@@ -194,23 +194,23 @@ class Card extends Base {
         $this->add_responsive_control(
             'align',
             [
-                'label' => __( 'Alignment', 'happy_addons' ),
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
                     'justify' => [
-                        'title' => __( 'Justify', 'happy_addons' ),
+                        'title' => __( 'Justify', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-justify',
                     ],
                 ],
@@ -226,7 +226,7 @@ class Card extends Base {
         $this->start_controls_section(
             '_section_button',
             [
-                'label' => __( 'Button', 'happy_addons' ),
+                'label' => __( 'Button', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -234,10 +234,10 @@ class Card extends Base {
         $this->add_control(
             'button_text',
             [
-                'label' => __( 'Text', 'happy_addons' ),
+                'label' => __( 'Text', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Button Text', 'happy_addons' ),
-                'placeholder' => __( 'Type button text here', 'happy_addons' ),
+                'default' => __( 'Button Text', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type button text here', 'happy-elementor-addons' ),
                 'label_block' => true,
             ]
         );
@@ -245,16 +245,16 @@ class Card extends Base {
         $this->add_control(
             'button_link',
             [
-                'label' => __( 'Link', 'happy_addons' ),
+                'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
-                'placeholder' => __( 'https://example.com/', 'happy_addons' ),
+                'placeholder' => __( 'https://example.com/', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'button_icon',
             [
-                'label' => __( 'Icon', 'happy_addons' ),
+                'label' => __( 'Icon', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::ICON,
                 'options' => ha_get_happy_icons(),
             ]
@@ -263,16 +263,16 @@ class Card extends Base {
         $this->add_control(
             'button_icon_position',
             [
-                'label' => __( 'Icon Position', 'happy_addons' ),
+                'label' => __( 'Icon Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => false,
                 'options' => [
                     'before' => [
-                        'title' => __( 'Before', 'happy_addons' ),
+                        'title' => __( 'Before', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'after' => [
-                        'title' => __( 'After', 'happy_addons' ),
+                        'title' => __( 'After', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -287,7 +287,7 @@ class Card extends Base {
         $this->add_control(
             'button_icon_spacing',
             [
-                'label' => __( 'Icon Spacing', 'happy_addons' ),
+                'label' => __( 'Icon Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'condition' => [
                     'button_icon!' => '',
@@ -306,7 +306,7 @@ class Card extends Base {
         $this->start_controls_section(
             '_section_style_image',
             [
-                'label' => __( 'Image', 'happy_addons' ),
+                'label' => __( 'Image', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -314,7 +314,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'image_width',
             [
-                'label' => __( 'Width', 'happy_addons' ),
+                'label' => __( 'Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ '%', 'px' ],
                 'desktop_default' => [
@@ -346,7 +346,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'image_height',
             [
-                'label' => __( 'Height', 'happy_addons' ),
+                'label' => __( 'Height', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -364,10 +364,10 @@ class Card extends Base {
         $this->add_control(
             'offset_toggle',
             [
-                'label' => __( 'Offset', 'happy_addons' ),
+                'label' => __( 'Offset', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
-                'label_off' => __( 'None', 'happy_addons' ),
-                'label_on' => __( 'Custom', 'happy_addons' ),
+                'label_off' => __( 'None', 'happy-elementor-addons' ),
+                'label_on' => __( 'Custom', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
             ]
         );
@@ -377,7 +377,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'image_offset_x',
             [
-                'label' => __( 'Offset Left', 'happy_addons' ),
+                'label' => __( 'Offset Left', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -396,7 +396,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'image_offset_y',
             [
-                'label' => __( 'Offset Top', 'happy_addons' ),
+                'label' => __( 'Offset Top', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -431,7 +431,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'image_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -451,7 +451,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'image_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -476,7 +476,7 @@ class Card extends Base {
         $this->start_controls_section(
             '_section_style_badge',
             [
-                'label' => __( 'Badge', 'happy_addons' ),
+                'label' => __( 'Badge', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -484,18 +484,18 @@ class Card extends Base {
         $this->add_control(
             'badge_position',
             [
-                'label' => __( 'Position', 'happy_addons' ),
+                'label' => __( 'Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    'top-left'  => __( 'Top Left', 'happy_addons' ),
-                    'top-center'  => __( 'Top Center', 'happy_addons' ),
-                    'top-right'  => __( 'Top Right', 'happy_addons' ),
-                    'middle-left'  => __( 'Middle Left', 'happy_addons' ),
-                    'middle-center'  => __( 'Middle Center', 'happy_addons' ),
-                    'middle-right'  => __( 'Middle Right', 'happy_addons' ),
-                    'bottom-left'  => __( 'Bottom Left', 'happy_addons' ),
-                    'bottom-center'  => __( 'Bottom Center', 'happy_addons' ),
-                    'bottom-right'  => __( 'Bottom Right', 'happy_addons' ),
+                    'top-left'  => __( 'Top Left', 'happy-elementor-addons' ),
+                    'top-center'  => __( 'Top Center', 'happy-elementor-addons' ),
+                    'top-right'  => __( 'Top Right', 'happy-elementor-addons' ),
+                    'middle-left'  => __( 'Middle Left', 'happy-elementor-addons' ),
+                    'middle-center'  => __( 'Middle Center', 'happy-elementor-addons' ),
+                    'middle-right'  => __( 'Middle Right', 'happy-elementor-addons' ),
+                    'bottom-left'  => __( 'Bottom Left', 'happy-elementor-addons' ),
+                    'bottom-center'  => __( 'Bottom Center', 'happy-elementor-addons' ),
+                    'bottom-right'  => __( 'Bottom Right', 'happy-elementor-addons' ),
                 ],
                 'default' => 'top-right',
             ]
@@ -504,10 +504,10 @@ class Card extends Base {
         $this->add_control(
             'badge_offset_toggle',
             [
-                'label' => __( 'Offset', 'happy_addons' ),
+                'label' => __( 'Offset', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
-                'label_off' => __( 'None', 'happy_addons' ),
-                'label_on' => __( 'Custom', 'happy_addons' ),
+                'label_off' => __( 'None', 'happy-elementor-addons' ),
+                'label_on' => __( 'Custom', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
             ]
         );
@@ -517,7 +517,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'badge_offset_x',
             [
-                'label' => __( 'Offset Left', 'happy_addons' ),
+                'label' => __( 'Offset Left', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -536,7 +536,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'badge_offset_y',
             [
-                'label' => __( 'Offset Top', 'happy_addons' ),
+                'label' => __( 'Offset Top', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -560,7 +560,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'badge_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -572,7 +572,7 @@ class Card extends Base {
         $this->add_control(
             'badge_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-badge' => 'color: {{VALUE}}',
@@ -583,7 +583,7 @@ class Card extends Base {
         $this->add_control(
             'badge_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-badge' => 'background-color: {{VALUE}}',
@@ -602,7 +602,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'badge_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -626,7 +626,7 @@ class Card extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'badge_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'exclude' => [
                     'line_height'
                 ],
@@ -643,7 +643,7 @@ class Card extends Base {
         $this->start_controls_section(
             '_section_style_content',
             [
-                'label' => __( 'Title & Description', 'happy_addons' ),
+                'label' => __( 'Title & Description', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -651,7 +651,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'content_padding',
             [
-                'label' => __( 'Content Padding', 'happy_addons' ),
+                'label' => __( 'Content Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -664,7 +664,7 @@ class Card extends Base {
             '_heading_title',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Title', 'happy_addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'separator' => 'before'
             ]
         );
@@ -672,7 +672,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'title_spacing',
             [
-                'label' => __( 'Bottom Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -684,7 +684,7 @@ class Card extends Base {
         $this->add_control(
             'title_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-card-title' => 'color: {{VALUE}}',
@@ -696,7 +696,7 @@ class Card extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-card-title',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_2,
             ]
@@ -706,7 +706,7 @@ class Card extends Base {
             '_heading_description',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Description', 'happy_addons' ),
+                'label' => __( 'Description', 'happy-elementor-addons' ),
                 'separator' => 'before'
             ]
         );
@@ -714,7 +714,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'description_spacing',
             [
-                'label' => __( 'Bottom Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -726,7 +726,7 @@ class Card extends Base {
         $this->add_control(
             'description_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-card-text' => 'color: {{VALUE}}',
@@ -738,7 +738,7 @@ class Card extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'description_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-card-text',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
@@ -749,7 +749,7 @@ class Card extends Base {
         $this->start_controls_section(
             '_section_style_button',
             [
-                'label' => __( 'Button', 'happy_addons' ),
+                'label' => __( 'Button', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -757,7 +757,7 @@ class Card extends Base {
         $this->add_responsive_control(
             'button_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -786,7 +786,7 @@ class Card extends Base {
         $this->add_control(
             'button_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -816,14 +816,14 @@ class Card extends Base {
         $this->start_controls_tab(
             '_tab_button_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'button_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -835,7 +835,7 @@ class Card extends Base {
         $this->add_control(
             'button_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-btn' => 'background-color: {{VALUE}};',
@@ -848,14 +848,14 @@ class Card extends Base {
         $this->start_controls_tab(
             '_tab_button_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'button_hover_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-btn:hover, {{WRAPPER}} .ha-btn:focus' => 'color: {{VALUE}};',
@@ -866,7 +866,7 @@ class Card extends Base {
         $this->add_control(
             'button_hover_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-btn:hover, {{WRAPPER}} .ha-btn:focus' => 'background-color: {{VALUE}};',
@@ -877,7 +877,7 @@ class Card extends Base {
         $this->add_control(
             'button_hover_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'condition' => [
                     'button_border_border!' => '',
@@ -1008,6 +1008,8 @@ class Card extends Base {
 
         view.addRenderAttribute( 'button', 'class', 'ha-btn' );
         view.addRenderAttribute( 'button', 'href', settings.button_link.url );
+
+        HappyHelloWorld();
 
         if ( settings.image.url || settings.image.id ) {
             var image = {

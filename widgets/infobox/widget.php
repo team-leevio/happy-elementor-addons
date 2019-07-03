@@ -28,7 +28,7 @@ class InfoBox extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Info Box', 'happy_addons' );
+        return __( 'Info Box', 'happy-elementor-addons' );
     }
 
     /**
@@ -54,7 +54,7 @@ class InfoBox extends Base {
 		$this->start_controls_section(
 			'_section_media',
 			[
-				'label' => __( 'Icon / Image', 'happy_addons' ),
+				'label' => __( 'Icon / Image', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -62,16 +62,16 @@ class InfoBox extends Base {
         $this->add_control(
             'type',
             [
-                'label' => __( 'Media Type', 'happy_addons' ),
+                'label' => __( 'Media Type', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => false,
                 'options' => [
                     'icon' => [
-                        'title' => __( 'Icon', 'happy_addons' ),
+                        'title' => __( 'Icon', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-smile-o',
                     ],
                     'image' => [
-                        'title' => __( 'Image', 'happy_addons' ),
+                        'title' => __( 'Image', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-image',
                     ],
                 ],
@@ -83,7 +83,7 @@ class InfoBox extends Base {
         $this->add_control(
             'image',
             [
-                'label' => __( 'Image', 'happy_addons' ),
+                'label' => __( 'Image', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -117,7 +117,7 @@ class InfoBox extends Base {
         $this->add_control(
             'icon',
             [
-                'label' => __( 'Icon', 'happy_addons' ),
+                'label' => __( 'Icon', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::ICON,
                 'default' => 'fa fa-smile-o',
                 'options' => ha_get_happy_icons(),
@@ -132,7 +132,7 @@ class InfoBox extends Base {
         $this->start_controls_section(
             '_section_title',
             [
-                'label' => __( 'Title & Description', 'happy_addons' ),
+                'label' => __( 'Title & Description', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -140,21 +140,21 @@ class InfoBox extends Base {
         $this->add_control(
             'title',
             [
-                'label' => __( 'Title', 'happy_addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Happy Info Box Title', 'happy_addons' ),
-                'placeholder' => __( 'Type Info Box Title', 'happy_addons' ),
+                'default' => __( 'Happy Info Box Title', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type Info Box Title', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'description',
             [
-                'label' => __( 'Description', 'happy_addons' ),
+                'label' => __( 'Description', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Happy info box description goes here', 'happy_addons' ),
-                'placeholder' => __( 'Type info box description', 'happy_addons' ),
+                'default' => __( 'Happy info box description goes here', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type info box description', 'happy-elementor-addons' ),
                 'rows' => 5
             ]
         );
@@ -162,31 +162,31 @@ class InfoBox extends Base {
         $this->add_control(
             'title_tag',
             [
-                'label' => __( 'Title HTML Tag', 'happy_addons' ),
+                'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'h1'  => [
-                        'title' => __( 'H1', 'happy_addons' ),
+                        'title' => __( 'H1', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h1'
                     ],
                     'h2'  => [
-                        'title' => __( 'H2', 'happy_addons' ),
+                        'title' => __( 'H2', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h2'
                     ],
                     'h3'  => [
-                        'title' => __( 'H3', 'happy_addons' ),
+                        'title' => __( 'H3', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h3'
                     ],
                     'h4'  => [
-                        'title' => __( 'H4', 'happy_addons' ),
+                        'title' => __( 'H4', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h4'
                     ],
                     'h5'  => [
-                        'title' => __( 'H5', 'happy_addons' ),
+                        'title' => __( 'H5', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h5'
                     ],
                     'h6'  => [
-                        'title' => __( 'H6', 'happy_addons' ),
+                        'title' => __( 'H6', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h6'
                     ]
                 ],
@@ -198,23 +198,23 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'align',
             [
-                'label' => __( 'Alignment', 'happy_addons' ),
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
                     'justify' => [
-                        'title' => __( 'Justify', 'happy_addons' ),
+                        'title' => __( 'Justify', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-justify',
                     ],
                 ],
@@ -230,7 +230,7 @@ class InfoBox extends Base {
         $this->start_controls_section(
             '_section_button',
             [
-                'label' => __( 'Button', 'happy_addons' ),
+                'label' => __( 'Button', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -238,10 +238,10 @@ class InfoBox extends Base {
         $this->add_control(
             'button_text',
             [
-                'label' => __( 'Text', 'happy_addons' ),
+                'label' => __( 'Text', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Button Text', 'happy_addons' ),
-                'placeholder' => __( 'Type button text here', 'happy_addons' ),
+                'default' => __( 'Button Text', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type button text here', 'happy-elementor-addons' ),
                 'label_block' => true,
             ]
         );
@@ -249,16 +249,16 @@ class InfoBox extends Base {
         $this->add_control(
             'button_link',
             [
-                'label' => __( 'Link', 'happy_addons' ),
+                'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
-                'placeholder' => __( 'https://example.com/', 'happy_addons' ),
+                'placeholder' => __( 'https://example.com/', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'button_icon',
             [
-                'label' => __( 'Icon', 'happy_addons' ),
+                'label' => __( 'Icon', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::ICON,
                 'options' => ha_get_happy_icons(),
                 'default' => 'fa fa-angle-right'
@@ -268,16 +268,16 @@ class InfoBox extends Base {
         $this->add_control(
             'button_icon_position',
             [
-                'label' => __( 'Icon Position', 'happy_addons' ),
+                'label' => __( 'Icon Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => false,
                 'options' => [
                     'before' => [
-                        'title' => __( 'Before', 'happy_addons' ),
+                        'title' => __( 'Before', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'after' => [
-                        'title' => __( 'After', 'happy_addons' ),
+                        'title' => __( 'After', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -292,7 +292,7 @@ class InfoBox extends Base {
         $this->add_control(
             'button_icon_spacing',
             [
-                'label' => __( 'Icon Spacing', 'happy_addons' ),
+                'label' => __( 'Icon Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => 10
@@ -317,7 +317,7 @@ class InfoBox extends Base {
         $this->start_controls_section(
             '_section_media_style',
             [
-                'label' => __( 'Icon / Image', 'happy_addons' ),
+                'label' => __( 'Icon / Image', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -325,7 +325,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'icon_size',
             [
-                'label' => __( 'Size', 'happy_addons' ),
+                'label' => __( 'Size', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -346,7 +346,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'image_width',
             [
-                'label' => __( 'Width', 'happy_addons' ),
+                'label' => __( 'Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'range' => [
@@ -371,7 +371,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'image_height',
             [
-                'label' => __( 'Height', 'happy_addons' ),
+                'label' => __( 'Height', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -405,7 +405,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'media_offset_x',
             [
-                'label' => __( 'Offset Left', 'happy_addons' ),
+                'label' => __( 'Offset Left', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -424,7 +424,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'media_offset_y',
             [
-                'label' => __( 'Offset Top', 'happy_addons' ),
+                'label' => __( 'Offset Top', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -451,7 +451,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'media_spacing',
             [
-                'label' => __( 'Bottom Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -463,7 +463,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'media_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -483,7 +483,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'media_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -507,7 +507,7 @@ class InfoBox extends Base {
         $this->add_control(
             'icon_color',
             [
-                'label' => __( 'Color', 'happy_addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-infobox-figure--icon' => 'color: {{VALUE}}',
@@ -521,7 +521,7 @@ class InfoBox extends Base {
         $this->add_control(
             'icon_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-infobox-figure--icon' => 'background-color: {{VALUE}}',
@@ -535,7 +535,7 @@ class InfoBox extends Base {
         $this->add_control(
             'icon_bg_rotate',
             [
-                'label' => __( 'Background Rotate', 'happy_addons' ),
+                'label' => __( 'Background Rotate', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'deg' ],
                 'default' => [
@@ -563,7 +563,7 @@ class InfoBox extends Base {
         $this->start_controls_section(
             '_section_title_style',
             [
-                'label' => __( 'Title & Description', 'happy_addons' ),
+                'label' => __( 'Title & Description', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -571,7 +571,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'content_padding',
             [
-                'label' => __( 'Content Box Padding', 'happy_addons' ),
+                'label' => __( 'Content Box Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -584,7 +584,7 @@ class InfoBox extends Base {
             'title_heading',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Title', 'happy_addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'separator' => 'before'
             ]
         );
@@ -592,7 +592,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'title_spacing',
             [
-                'label' => __( 'Bottom Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -604,7 +604,7 @@ class InfoBox extends Base {
         $this->add_control(
             'title_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-infobox-title' => 'color: {{VALUE}}',
@@ -616,7 +616,7 @@ class InfoBox extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-infobox-title',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_2
             ]
@@ -626,7 +626,7 @@ class InfoBox extends Base {
             'description_heading',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __( 'Description', 'happy_addons' ),
+                'label' => __( 'Description', 'happy-elementor-addons' ),
                 'separator' => 'before'
             ]
         );
@@ -634,7 +634,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'description_spacing',
             [
-                'label' => __( 'Bottom Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -646,7 +646,7 @@ class InfoBox extends Base {
         $this->add_control(
             'description_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-infobox-text' => 'color: {{VALUE}}',
@@ -658,7 +658,7 @@ class InfoBox extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'description_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-infobox-text',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
@@ -669,7 +669,7 @@ class InfoBox extends Base {
         $this->start_controls_section(
             '_section_style_button',
             [
-                'label' => __( 'Button', 'happy_addons' ),
+                'label' => __( 'Button', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -677,7 +677,7 @@ class InfoBox extends Base {
         $this->add_responsive_control(
             'link_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -706,7 +706,7 @@ class InfoBox extends Base {
         $this->add_control(
             'button_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -736,14 +736,14 @@ class InfoBox extends Base {
         $this->start_controls_tab(
             '_tab_button_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'link_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -755,7 +755,7 @@ class InfoBox extends Base {
         $this->add_control(
             'button_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-btn' => 'background-color: {{VALUE}};',
@@ -766,7 +766,7 @@ class InfoBox extends Base {
         $this->add_control(
             'button_icon_translate',
             [
-                'label' => __( 'Icon Translate X', 'happy_addons' ),
+                'label' => __( 'Icon Translate X', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -786,14 +786,14 @@ class InfoBox extends Base {
         $this->start_controls_tab(
             '_tab_button_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'link_hover_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-btn:hover, {{WRAPPER}} .ha-btn:focus' => 'color: {{VALUE}};',
@@ -804,7 +804,7 @@ class InfoBox extends Base {
         $this->add_control(
             'button_hover_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-btn:hover, {{WRAPPER}} .ha-btn:focus' => 'background-color: {{VALUE}};',
@@ -815,7 +815,7 @@ class InfoBox extends Base {
         $this->add_control(
             'button_hover_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'condition' => [
                     'button_border_border!' => '',
@@ -829,7 +829,7 @@ class InfoBox extends Base {
         $this->add_control(
             'button_hover_icon_translate',
             [
-                'label' => __( 'Icon Translate X', 'happy_addons' ),
+                'label' => __( 'Icon Translate X', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => 10

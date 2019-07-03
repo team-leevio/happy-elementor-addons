@@ -1,14 +1,14 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 1.0.4
+Version: 1.0.5
 Author: HappyMonster
 Author URI: http://happymonster.me/
 Contributors: thehappymonster, happyaddons, hasinhayder, obiplabon, sourav926
 Tags: elementor, form, page builder, widget, addon
-Requires at least: 4.5
+Requires at least: 4.7
 Tested up to: 5.2.2
 Requires PHP: 5.4
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,9 +29,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 7. **[Review](https://happyaddons.com/elementor-review-widget-demo/)** - Showcase your user feedback, reviews and rating easily than ever using our review widget. Display user photo, texts and star ratings. Make them stand out using built in offsets and positioning features. [Check demo](https://happyaddons.com/elementor-review-widget-demo/)
 8. **[Skill Bars](https://happyaddons.com/elementor-skill-bars-widget-demo/)** - An essential building block to showcase user skills, task percentage, required tools and other progressive information in different ways. Comes with incredible customizing options to suit your needs. [Check demo](https://happyaddons.com/elementor-skill-bars-widget-demo/)
 9. **[Contact Form 7](https://happyaddons.com/elementor-contact-form-7-widget-demo/)** - This utility widget helps you to integrate existing forms built using CF7 plugin across your web pages without spending too much time. [Check demo](https://happyaddons.com/elementor-contact-form-7-widget-demo/)
-10. **[Caldera Form](https://happyaddons.com/elementor-caldera-forms-widget-demo/)** - This widget can help you to display your caldera forms to display on your web pages designed with Elementor. [Check demo](https://happyaddons.com/elementor-caldera-forms-widget-demo/)
-11. **[We Forms](https://happyaddons.com/elementor-we-forms-widget-demo/)** - Designed forms using weForms plugin and looking for a way to display those on your Elementor powered pages? This is the answer for that. [Check demo](https://happyaddons.com/elementor-we-forms-widget-demo/)
+10. **[Caldera Forms](https://happyaddons.com/elementor-caldera-forms-widget-demo/)** - This widget can help you to display your caldera forms to display on your web pages designed with Elementor. [Check demo](https://happyaddons.com/elementor-caldera-forms-widget-demo/)
+11. **[weForms](https://happyaddons.com/elementor-we-forms-widget-demo/)** - Designed forms using weForms plugin and looking for a way to display those on your Elementor powered pages? This is the answer for that. [Check demo](https://happyaddons.com/elementor-we-forms-widget-demo/)
 12. **[Ninja Forms](https://happyaddons.com/elementor-ninja-form-widget-demo/)** - Use this widget to embed forms created using Ninja Forms to display seamlessly on your web pages. Various styling options will help you to look at them even better. [Check demo](https://happyaddons.com/elementor-ninja-form-widget-demo/)
+12. **[WPForms]** - Use this widget to embed forms created using WPForms to display seamlessly on your web pages. Various styling options will help you to look at them even better.
+13. **[Dual Button]**
 
 ### Features
 
@@ -63,6 +65,24 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 4.  Activate the plugin through the 'Plugins' screen in WordPress.
 
 == Changelog ==
+
+= 1.0.5 =
+
+* New: Happy Effects (universal widget extension)
+* New: CSS Transform (Happy Effects)
+* New: Dual Button Widget
+* Fix: Info box icon size issue
+* Fix: Icon box icon size issue
+
+= 1.0.4 =
+
+* Fix: Card widget responsive issue
+* Fix: Review widget responsive issue
+
+= 1.0.3 =
+
+* Update: Offset settings
+* Fix: Offset responsive settings
 
 = 1.0.2 =
 

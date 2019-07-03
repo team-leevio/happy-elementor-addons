@@ -26,7 +26,7 @@ class Icon_Box extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Icon Box', 'happy_addons' );
+        return __( 'Icon Box', 'happy-elementor-addons' );
     }
 
     /**
@@ -49,7 +49,7 @@ class Icon_Box extends Base {
 		$this->start_controls_section(
 			'_section_icon',
 			[
-				'label' => __( 'Content', 'happy_addons' ),
+				'label' => __( 'Content', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -68,63 +68,63 @@ class Icon_Box extends Base {
         $this->add_control(
             'title',
             [
-                'label' => __( 'Title', 'happy_addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
-                'default' => __( 'Happy Icon Box', 'happy_addons' ),
-                'placeholder' => __( 'Type Icon Box Title', 'happy_addons' ),
+                'default' => __( 'Happy Icon Box', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type Icon Box Title', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'badge_text',
             [
-                'label' => __( 'Badge Text', 'happy_addons' ),
+                'label' => __( 'Badge Text', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
-                'placeholder' => __( 'Type Icon Badge Text', 'happy_addons' ),
+                'placeholder' => __( 'Type Icon Badge Text', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'link',
             [
-                'label' => __( 'Box Link', 'happy_addons' ),
+                'label' => __( 'Box Link', 'happy-elementor-addons' ),
                 'separator' => 'before',
                 'type' => Controls_Manager::URL,
-                'placeholder' => __( 'https://example.com/', 'happy_addons' ),
+                'placeholder' => __( 'https://example.com/', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'title_tag',
             [
-                'label' => __( 'Title HTML Tag', 'happy_addons' ),
+                'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'separator' => 'before',
                 'options' => [
                     'h1'  => [
-                        'title' => __( 'H1', 'happy_addons' ),
+                        'title' => __( 'H1', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h1'
                     ],
                     'h2'  => [
-                        'title' => __( 'H2', 'happy_addons' ),
+                        'title' => __( 'H2', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h2'
                     ],
                     'h3'  => [
-                        'title' => __( 'H3', 'happy_addons' ),
+                        'title' => __( 'H3', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h3'
                     ],
                     'h4'  => [
-                        'title' => __( 'H4', 'happy_addons' ),
+                        'title' => __( 'H4', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h4'
                     ],
                     'h5'  => [
-                        'title' => __( 'H5', 'happy_addons' ),
+                        'title' => __( 'H5', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h5'
                     ],
                     'h6'  => [
-                        'title' => __( 'H6', 'happy_addons' ),
+                        'title' => __( 'H6', 'happy-elementor-addons' ),
                         'icon' => 'eicon-editor-h6'
                     ]
                 ],
@@ -136,23 +136,23 @@ class Icon_Box extends Base {
         $this->add_responsive_control(
             'align',
             [
-                'label' => __( 'Alignment', 'happy_addons' ),
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
                     'justify' => [
-                        'title' => __( 'Justify', 'happy_addons' ),
+                        'title' => __( 'Justify', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-justify',
                     ],
                 ],
@@ -170,7 +170,7 @@ class Icon_Box extends Base {
         $this->start_controls_section(
             '_section_style_icon',
             [
-                'label' => __( 'Icon', 'happy_addons' ),
+                'label' => __( 'Icon', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -178,7 +178,7 @@ class Icon_Box extends Base {
         $this->add_responsive_control(
             'icon_size',
             [
-                'label' => __( 'Size', 'happy_addons' ),
+                'label' => __( 'Size', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -196,7 +196,7 @@ class Icon_Box extends Base {
         $this->add_responsive_control(
             'icon_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -208,7 +208,7 @@ class Icon_Box extends Base {
         $this->add_responsive_control(
             'icon_spacing',
             [
-                'label' => __( 'Bottom Spacing', 'happy_addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -233,7 +233,7 @@ class Icon_Box extends Base {
         $this->add_responsive_control(
             'icon_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -258,14 +258,14 @@ class Icon_Box extends Base {
         $this->start_controls_tab(
             '_tab_icon_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'icon_color',
             [
-                'label' => __( 'Color', 'happy_addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-icon-box-icon' => 'color: {{VALUE}}',
@@ -276,7 +276,7 @@ class Icon_Box extends Base {
         $this->add_control(
             'icon_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-icon-box-icon' => 'background-color: {{VALUE}}',
@@ -287,7 +287,7 @@ class Icon_Box extends Base {
         $this->add_control(
             'icon_bg_rotate',
             [
-                'label' => __( 'Rotate Icon Box', 'happy_addons' ),
+                'label' => __( 'Rotate Icon Box', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'deg' ],
                 'default' => [
@@ -314,14 +314,14 @@ class Icon_Box extends Base {
         $this->start_controls_tab(
             '_tab_button_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'icon_hover_color',
             [
-                'label' => __( 'Color', 'happy_addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}}:hover .ha-icon-box-icon' => 'color: {{VALUE}}',
@@ -332,7 +332,7 @@ class Icon_Box extends Base {
         $this->add_control(
             'icon_hover_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}}:hover .ha-icon-box-icon' => 'background-color: {{VALUE}}',
@@ -343,7 +343,7 @@ class Icon_Box extends Base {
         $this->add_control(
             'icon_hover_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}}:hover .ha-icon-box-icon' => 'border-color: {{VALUE}}',
@@ -357,7 +357,7 @@ class Icon_Box extends Base {
         $this->add_control(
             'icon_hover_bg_rotate',
             [
-                'label' => __( 'Rotate Icon Box', 'happy_addons' ),
+                'label' => __( 'Rotate Icon Box', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'deg' ],
                 'default' => [
@@ -387,7 +387,7 @@ class Icon_Box extends Base {
         $this->start_controls_section(
             '_section_style_title',
             [
-                'label' => __( 'Title', 'happy_addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -414,14 +414,14 @@ class Icon_Box extends Base {
         $this->start_controls_tab(
             '_tab_title_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'title_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-icon-box-title' => 'color: {{VALUE}}',
@@ -434,14 +434,14 @@ class Icon_Box extends Base {
         $this->start_controls_tab(
             '_tab_title_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'title_hover_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}}:hover .ha-icon-box-title' => 'color: {{VALUE}}',
@@ -457,7 +457,7 @@ class Icon_Box extends Base {
         $this->start_controls_section(
             '_section_style_badge',
             [
-                'label' => __( 'Badge', 'happy_addons' ),
+                'label' => __( 'Badge', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -465,10 +465,10 @@ class Icon_Box extends Base {
         $this->add_control(
             'badge_offset_toggle',
             [
-                'label' => __( 'Offset', 'happy_addons' ),
+                'label' => __( 'Offset', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
-                'label_off' => __( 'None', 'happy_addons' ),
-                'label_on' => __( 'Custom', 'happy_addons' ),
+                'label_off' => __( 'None', 'happy-elementor-addons' ),
+                'label_on' => __( 'Custom', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
             ]
         );
@@ -478,7 +478,7 @@ class Icon_Box extends Base {
         $this->add_responsive_control(
             'badge_offset_x',
             [
-                'label' => __( 'Offset Left', 'happy_addons' ),
+                'label' => __( 'Offset Left', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -500,7 +500,7 @@ class Icon_Box extends Base {
         $this->add_responsive_control(
             'badge_offset_y',
             [
-                'label' => __( 'Offset Top', 'happy_addons' ),
+                'label' => __( 'Offset Top', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'condition' => [
@@ -525,7 +525,7 @@ class Icon_Box extends Base {
         $this->add_responsive_control(
             'badge_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
@@ -537,7 +537,7 @@ class Icon_Box extends Base {
         $this->add_control(
             'badge_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-badge' => 'color: {{VALUE}}',
@@ -548,7 +548,7 @@ class Icon_Box extends Base {
         $this->add_control(
             'badge_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-badge' => 'background-color: {{VALUE}}',
@@ -567,7 +567,7 @@ class Icon_Box extends Base {
         $this->add_responsive_control(
             'badge_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -591,7 +591,7 @@ class Icon_Box extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'badge_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'exclude' => [
                     'font_family',
                     'line_height'

@@ -25,7 +25,7 @@ class Dual_Button extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Dual Button', 'happy_addons' );
+        return __( 'Dual Button', 'happy-elementor-addons' );
     }
 
     /**
@@ -37,7 +37,7 @@ class Dual_Button extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'hm hm-spark';
+        return 'hm hm-accordion-horizontal';
     }
 
     public function get_keywords() {
@@ -48,7 +48,7 @@ class Dual_Button extends Base {
         $this->start_controls_section(
             '_section_button',
             [
-                'label' => __( 'Dual Buttons', 'happy_addons' ),
+                'label' => __( 'Dual Buttons', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -58,24 +58,24 @@ class Dual_Button extends Base {
         $this->start_controls_tab(
             '_tab_button_left',
             [
-                'label' => __( 'Left', 'happy_addons' ),
+                'label' => __( 'Left', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'left_button_text',
             [
-                'label' => __( 'Text', 'happy_addons' ),
+                'label' => __( 'Text', 'happy-elementor-addons' ),
                 'label_block'=> true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Button Text', 'happy_addons' )
+                'default' => __( 'Button Text', 'happy-elementor-addons' )
             ]
         );
 
         $this->add_control(
             'left_button_link',
             [
-                'label' => __( 'Link', 'happy_addons' ),
+                'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
             ]
         );
@@ -83,7 +83,7 @@ class Dual_Button extends Base {
         $this->add_control(
             'left_button_icon',
             [
-                'label' => __( 'Icon', 'happy_addons' ),
+                'label' => __( 'Icon', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::ICON,
                 'options' => ha_get_happy_icons(),
             ]
@@ -92,16 +92,16 @@ class Dual_Button extends Base {
         $this->add_control(
             'left_button_icon_position',
             [
-                'label' => __( 'Icon Position', 'happy_addons' ),
+                'label' => __( 'Icon Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => false,
                 'options' => [
                     'before' => [
-                        'title' => __( 'Before', 'happy_addons' ),
+                        'title' => __( 'Before', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'after' => [
-                        'title' => __( 'After', 'happy_addons' ),
+                        'title' => __( 'After', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-right',
                     ]
                 ],
@@ -116,7 +116,7 @@ class Dual_Button extends Base {
         $this->add_control(
             'left_button_icon_spacing',
             [
-                'label' => __( 'Icon Spacing', 'happy_addons' ),
+                'label' => __( 'Icon Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'condition' => [
                     'left_button_icon!' => '',
@@ -133,33 +133,33 @@ class Dual_Button extends Base {
         $this->start_controls_tab(
             '_tab_button_connector',
             [
-                'label' => __( 'Connector', 'happy_addons' ),
+                'label' => __( 'Connector', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'button_connector_hide',
             [
-                'label' => __( 'Hide Connector?', 'happy_addons' ),
+                'label' => __( 'Hide Connector?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Hide', 'happy_addons' ),
-                'label_off' => __( 'Show', 'happy_addons' ),
+                'label_on' => __( 'Hide', 'happy-elementor-addons' ),
+                'label_off' => __( 'Show', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'button_connector_type',
             [
-                'label' => __( 'Connector Type', 'happy_addons' ),
+                'label' => __( 'Connector Type', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => false,
                 'options' => [
                     'text' => [
-                        'title' => __( 'Text', 'happy_addons' ),
+                        'title' => __( 'Text', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-text-width',
                     ],
                     'icon' => [
-                        'title' => __( 'Icon', 'happy_addons' ),
+                        'title' => __( 'Icon', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-star',
                     ]
                 ],
@@ -174,9 +174,9 @@ class Dual_Button extends Base {
         $this->add_control(
             'button_connector_text',
             [
-                'label' => __( 'Text', 'happy_addons' ),
+                'label' => __( 'Text', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Or', 'happy_addons' ),
+                'default' => __( 'Or', 'happy-elementor-addons' ),
                 'condition' => [
                     'button_connector_hide!' => 'yes',
                     'button_connector_type' => 'text',
@@ -187,7 +187,7 @@ class Dual_Button extends Base {
         $this->add_control(
             'button_connector_icon',
             [
-                'label' => __( 'Icon', 'happy_addons' ),
+                'label' => __( 'Icon', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::ICON,
                 'options' => ha_get_happy_icons(),
                 'condition' => [
@@ -202,24 +202,24 @@ class Dual_Button extends Base {
         $this->start_controls_tab(
             '_tab_button_right',
             [
-                'label' => __( 'Right', 'happy_addons' ),
+                'label' => __( 'Right', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'right_button_text',
             [
-                'label' => __( 'Text', 'happy_addons' ),
+                'label' => __( 'Text', 'happy-elementor-addons' ),
                 'label_block'=> true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Button Text', 'happy_addons' )
+                'default' => __( 'Button Text', 'happy-elementor-addons' )
             ]
         );
 
         $this->add_control(
             'right_button_link',
             [
-                'label' => __( 'Link', 'happy_addons' ),
+                'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL
             ]
         );
@@ -227,7 +227,7 @@ class Dual_Button extends Base {
         $this->add_control(
             'right_button_icon',
             [
-                'label' => __( 'Icon', 'happy_addons' ),
+                'label' => __( 'Icon', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::ICON,
                 'options' => ha_get_happy_icons(),
             ]
@@ -236,16 +236,16 @@ class Dual_Button extends Base {
         $this->add_control(
             'right_button_icon_position',
             [
-                'label' => __( 'Icon Position', 'happy_addons' ),
+                'label' => __( 'Icon Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => false,
                 'options' => [
                     'before' => [
-                        'title' => __( 'Before', 'happy_addons' ),
+                        'title' => __( 'Before', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'after' => [
-                        'title' => __( 'After', 'happy_addons' ),
+                        'title' => __( 'After', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-right',
                     ]
                 ],
@@ -260,7 +260,7 @@ class Dual_Button extends Base {
         $this->add_control(
             'right_button_icon_spacing',
             [
-                'label' => __( 'Icon Spacing', 'happy_addons' ),
+                'label' => __( 'Icon Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'condition' => [
                     'right_button_icon!' => '',
@@ -282,7 +282,7 @@ class Dual_Button extends Base {
         $this->start_controls_section(
             '_section_style_common',
             [
-                'label' => __( 'Common', 'happy_addons' ),
+                'label' => __( 'Common', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -290,7 +290,7 @@ class Dual_Button extends Base {
 		$this->add_responsive_control(
             'button_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -302,7 +302,7 @@ class Dual_Button extends Base {
 		$this->add_responsive_control(
             'button_gap',
             [
-                'label' => __( 'Space Between Buttons', 'happy_addons' ),
+                'label' => __( 'Space Between Buttons', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
@@ -316,7 +316,7 @@ class Dual_Button extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'button_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-dual-btn',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_4,
             ]
@@ -333,20 +333,20 @@ class Dual_Button extends Base {
         $this->add_control(
             'button_align_x',
             [
-                'label' => __( 'Horizontal Alignment', 'happy_addons' ),
+                'label' => __( 'Horizontal Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => false,
                 'options' => [
                     'flex-start' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-center',
                     ],
                     'flex-end' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-right',
                     ]
                 ],
@@ -360,21 +360,21 @@ class Dual_Button extends Base {
         $this->add_control(
             'button_align_y',
             [
-                'label' => __( 'Vertical Alignment', 'happy_addons' ),
-                'description' => __( 'Only works when buttons have different height', 'happy_addons' ),
+                'label' => __( 'Vertical Alignment', 'happy-elementor-addons' ),
+                'description' => __( 'Only works when buttons have different height', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => false,
                 'options' => [
                     'flex-start' => [
-                        'title' => __( 'Left', 'happy_addons' ),
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'happy_addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'eicon-v-align-middle',
                     ],
                     'flex-end' => [
-                        'title' => __( 'Right', 'happy_addons' ),
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'eicon-v-align-bottom',
                     ]
                 ],
@@ -390,7 +390,7 @@ class Dual_Button extends Base {
 		$this->start_controls_section(
 			'_section_style_left_button',
             [
-                'label' => __( 'Left Button', 'happy_addons' ),
+                'label' => __( 'Left Button', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -398,7 +398,7 @@ class Dual_Button extends Base {
         $this->add_responsive_control(
             'left_button_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -418,7 +418,7 @@ class Dual_Button extends Base {
         $this->add_responsive_control(
             'left_button_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -431,7 +431,7 @@ class Dual_Button extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'left_button_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-dual-btn--left',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_4,
             ]
@@ -450,14 +450,14 @@ class Dual_Button extends Base {
         $this->start_controls_tab(
             '_tab_left_button_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
 		);
 
 		$this->add_control(
             'left_button_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--left' => 'background-color: {{VALUE}}',
@@ -468,7 +468,7 @@ class Dual_Button extends Base {
 		$this->add_control(
             'left_button_text_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--left' => 'color: {{VALUE}}',
@@ -481,14 +481,14 @@ class Dual_Button extends Base {
 		$this->start_controls_tab(
             '_tabs_left_button_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
 		);
 
 		$this->add_control(
             'left_button_hover_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--left:hover' => 'background-color: {{VALUE}}',
@@ -499,7 +499,7 @@ class Dual_Button extends Base {
 		$this->add_control(
             'left_button_hover_text_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--left:hover' => 'color: {{VALUE}}',
@@ -510,7 +510,7 @@ class Dual_Button extends Base {
         $this->add_control(
             'left_button_hover_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--left:hover' => 'border-color: {{VALUE}}',
@@ -529,7 +529,7 @@ class Dual_Button extends Base {
 		$this->start_controls_section(
 			'_section_style_connector',
             [
-                'label' => __( 'Connector', 'happy_addons' ),
+                'label' => __( 'Connector', 'happy-elementor-addons' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -538,7 +538,7 @@ class Dual_Button extends Base {
             'connector_notice',
             [
                 'type' => Controls_Manager::RAW_HTML,
-                'raw' => __( 'Connector is hidden now, please enable connector from Content > Connector tab.', 'happy_addons' ),
+                'raw' => __( 'Connector is hidden now, please enable connector from Content > Connector tab.', 'happy-elementor-addons' ),
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
                 'condition' => [
                     'button_connector_hide' => 'yes'
@@ -549,7 +549,7 @@ class Dual_Button extends Base {
         $this->add_control(
             'connector_text_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn-connector' => 'color: {{VALUE}}',
@@ -560,7 +560,7 @@ class Dual_Button extends Base {
 		$this->add_control(
             'connector_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn-connector' => 'background-color: {{VALUE}}',
@@ -572,7 +572,7 @@ class Dual_Button extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'connector_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-dual-btn-connector',
             ]
 		);
@@ -590,7 +590,7 @@ class Dual_Button extends Base {
         $this->start_controls_section(
             '_section_style_right_button',
             [
-                'label' => __( 'Right Button', 'happy_addons' ),
+                'label' => __( 'Right Button', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -598,7 +598,7 @@ class Dual_Button extends Base {
         $this->add_responsive_control(
             'right_button_padding',
             [
-                'label' => __( 'Padding', 'happy_addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -618,7 +618,7 @@ class Dual_Button extends Base {
         $this->add_responsive_control(
             'right_button_border_radius',
             [
-                'label' => __( 'Border Radius', 'happy_addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -631,7 +631,7 @@ class Dual_Button extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'right_button_typography',
-                'label' => __( 'Typography', 'happy_addons' ),
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-dual-btn--right',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_4,
             ]
@@ -650,14 +650,14 @@ class Dual_Button extends Base {
         $this->start_controls_tab(
             '_tab_right_button_normal',
             [
-                'label' => __( 'Normal', 'happy_addons' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'right_button_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--right' => 'background-color: {{VALUE}}',
@@ -668,7 +668,7 @@ class Dual_Button extends Base {
         $this->add_control(
             'right_button_text_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--right' => 'color: {{VALUE}}',
@@ -681,14 +681,14 @@ class Dual_Button extends Base {
         $this->start_controls_tab(
             '_tabs_right_button_hover',
             [
-                'label' => __( 'Hover', 'happy_addons' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
             'right_button_hover_bg_color',
             [
-                'label' => __( 'Background Color', 'happy_addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--right:hover' => 'background-color: {{VALUE}}',
@@ -699,7 +699,7 @@ class Dual_Button extends Base {
         $this->add_control(
             'right_button_hover_text_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--right:hover' => 'color: {{VALUE}}',
@@ -710,7 +710,7 @@ class Dual_Button extends Base {
         $this->add_control(
             'right_button_hover_border_color',
             [
-                'label' => __( 'Border Color', 'happy_addons' ),
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--right:hover' => 'border-color: {{VALUE}}',
