@@ -5,13 +5,15 @@
   text-align:center;
   color: #fff;
   padding: 6px 6px 6px 6px;
-  border-style: solid;
-  border-width: 4px 4px 4px 4px;
-  border-color: #c36;
-  border-radius: 100px 100px 100px 100px;
+  border-radius: 100%;
   margin: 0 auto;
-  display: inline-block;
+  display: table;
   background: #c36;
   font-size: 20px;
+  text-align: center;
+  span {
+    display: table-cell;
+    vertical-align: middle;    
+  }
 }
 }
