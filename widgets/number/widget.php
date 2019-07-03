@@ -256,7 +256,7 @@ class Number extends Base {
 						'title' => __( 'Left', 'happy_addons' ),
 						'icon' => 'fa fa-align-left',
 					],
-					'float:inhiert' => [
+					'margin: 0 auto;' => [
 						'title' => __( 'Center', 'happy_addons' ),
 						'icon' => 'fa fa-align-center',
 					],
@@ -267,7 +267,7 @@ class Number extends Base {
 				],
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .ha-number-body'  => '{{VALUE}}'
+					'{{WRAPPER}} .ha-number-border'  => '{{VALUE}}'
 				]
 
 			]

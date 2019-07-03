@@ -45,7 +45,7 @@ class Widgets {
 			'dual-button',
 			'testimonial',
 //            'heading-detail',
-//	        'number',
+ 	        'number',
 //            'flip-box',
         ];
 
