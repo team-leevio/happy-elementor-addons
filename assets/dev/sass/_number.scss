@@ -11,11 +11,17 @@
     text-align: center;
     display: -webkit-flex; /* Safari */
     -webkit-align-items: center; /* Safari 7.0+ */
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+            align-items: center;
   span {
-   -webkit-flex: 1; /* Safari 6.1+ */
-   flex: 1;
+   /* Safari 6.1+ */
+   -webkit-box-flex: 1;
+   -ms-flex: 1;
+           flex: 1;
   }
 }
 }

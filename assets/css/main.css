@@ -1646,3 +1646,13 @@ span .ha-review-ratting--star:before,
 	-webkit-transform: translateZ(50px) scale(.9);
 	        transform: translateZ(50px) scale(.9);
 }
+
+.ha-image-box-body {
+	background: #c36;
+}
+.ha-image-box-body .ha-image-box-inner {
+	padding: 250px 30px 30px 30px;
+}
+.ha-image-box-body .ha-image-box-inner .ha-image-box-content {
+	color: #fff;
+}
