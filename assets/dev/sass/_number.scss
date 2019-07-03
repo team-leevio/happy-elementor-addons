@@ -1,19 +1,27 @@
 .ha-number-body {
   .ha-number-border {
-  width:50px;
-  height:50px;
-  text-align:center;
-  color: #fff;
-  padding: 6px 6px 6px 6px;
-  border-radius: 100%;
-  margin: 0 auto;
-  display: table;
-  background: #c36;
-  font-size: 20px;
-  text-align: center;
+    width:50px;
+    height:50px;
+    text-align:center;
+    color: #fff;
+    padding: 6px 6px 6px 6px;
+    border-radius: 100%;
+    background: #c36;
+    font-size: 20px;
+    text-align: center;
+    display: -webkit-flex; /* Safari */
+    -webkit-align-items: center; /* Safari 7.0+ */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+            align-items: center;
   span {
-    display: table-cell;
-    vertical-align: middle;    
+   /* Safari 6.1+ */
+   -webkit-box-flex: 1;
+   -ms-flex: 1;
+           flex: 1;
   }
 }
 }

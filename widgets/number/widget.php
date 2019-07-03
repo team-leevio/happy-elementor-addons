@@ -85,8 +85,17 @@ class Number extends Base {
 		$this->start_controls_section(
 			'number_style',
 			[
-				'label' => __( 'Style', 'happy_addons' ),
+				'label' => __( 'Text Style', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'number_text_typography',
+				'label' => __( 'Typography', 'happy_addons' ),
+				'selector' => '{{WRAPPER}} .ha-number-border',
 			]
 		);
 
@@ -110,53 +119,7 @@ class Number extends Base {
 			]
 		);
 
-        // $this->add_group_control(
-        //     Group_Control_Text_Shadow::get_type(),
-        //     [
-        //         'name' => 'title',
-        //         'label' => __( 'Text Shadow', 'happy-elementor-addons' ),
-        //         'selector' => '{{WRAPPER}} .ha-gradient-heading',
-        //     ]
-        // );
 
-		$this->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name' => 'number_background_color_new',
-				'label' => __( 'Background', 'happy_addons' ),
-				'types' => [ 'classic', 'gradient', 'video' ],
-				'selector' => '{{WRAPPER}} .ha-number-border',
-			]
-		);
-
-
-
-		$this->add_responsive_control(
-			'number_width_height',
-			[
-				'label' => __( 'Width and Height', 'happy_addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 50,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-number-border' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
 
 
 		$this->add_control(
@@ -190,15 +153,61 @@ class Number extends Base {
 
 
 
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
+
+
+
+
+
+
+		$this->end_controls_section();
+
+
+		$this->start_controls_section(
+			'number_background_style',
 			[
-				'name' => 'number_text_typography',
-				'label' => __( 'Typography', 'happy_addons' ),
+				'label' => __( 'Background Style', 'happy_addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'number_width_height',
+			[
+				'label' => __( 'Width and Height', 'happy_addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 50,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-number-border' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'number_background_color',
+				'label' => __( 'Background', 'happy_addons' ),
+				'types' => [ 'classic', 'gradient', 'video' ],
 				'selector' => '{{WRAPPER}} .ha-number-border',
 			]
 		);
 
+ 
 
 		$this->add_control(
 			'number_padding',
@@ -256,7 +265,7 @@ class Number extends Base {
 						'title' => __( 'Left', 'happy_addons' ),
 						'icon' => 'fa fa-align-left',
 					],
-					'float:inhiert' => [
+					'margin: 0 auto;' => [
 						'title' => __( 'Center', 'happy_addons' ),
 						'icon' => 'fa fa-align-center',
 					],
@@ -267,12 +276,11 @@ class Number extends Base {
 				],
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .ha-number-body'  => '{{VALUE}}'
+					'{{WRAPPER}} .ha-number-border'  => '{{VALUE}}'
 				]
 
 			]
 		);
-
 
 
 		$this->end_controls_section();
