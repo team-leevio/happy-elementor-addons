@@ -1,0 +1,42 @@
+.happy-settings {
+    padding: 15px;
+}
+.happy-settings .ha-settings-tab {
+    background-color: #fff;
+    position: relative;
+    padding: 15px 25px;
+}
+.happy-settings .row {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    padding: 15px 0;
+}
+.happy-settings .ha-container {
+    width: 100%;
+    height: auto;
+}
+.happy-settings .ha-container p.ha-elements-control-notice {
+    margin: 10px 0 10px 10px;
+}
+.happy-settings #widgets .checkbox-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.happy-settings #widgets .ha-checkbox {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 250px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 22px;
+    padding: 15px 20px;
+    margin: 10px;
+    border-radius: 3px;
+    box-shadow: 1px 2px 6px 3px rgba(80,80,80,0.1);
+}

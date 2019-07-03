@@ -9,6 +9,7 @@ namespace Happy_Addons\Elementor;
 use Happy_Addons\Elementor\Manager\Assets;
 use Happy_Addons\Elementor\Manager\Widgets;
 use Happy_Addons\Elementor\Extension\Happy_Effects;
+use Happy_Addons\Elementor\Admin\Dashboard;
 
 defined( 'ABSPATH' ) || die();
 
@@ -78,6 +79,7 @@ class Base {
         Widgets::init();
         Assets::init();
         Happy_Effects::init();
+        Dashboard::init();
     }
 
     public function handle_widget_preset_request() {
@@ -94,6 +96,7 @@ class Base {
         require( __DIR__ . '/classes/widget-manager.php' );
         require( __DIR__ . '/classes/asset-manager.php' );
         require( __DIR__ . '/classes/happy-effects.php' );
+        require( __DIR__ . '/classes/dashboard.php' );
     }
 
     /**
