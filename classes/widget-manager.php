@@ -44,8 +44,8 @@ class Widgets {
 			'logo-grid',
 			'dual-button',
 			'testimonial',
-            'heading-detail',
-	        'number',
+//            'heading-detail',
+//	        'number',
 //            'flip-box',
         ];
 

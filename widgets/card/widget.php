@@ -1009,8 +1009,6 @@ class Card extends Base {
         view.addRenderAttribute( 'button', 'class', 'ha-btn' );
         view.addRenderAttribute( 'button', 'href', settings.button_link.url );
 
-        HappyHelloWorld();
-
         if ( settings.image.url || settings.image.id ) {
             var image = {
                 id: settings.image.id,
