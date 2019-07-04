@@ -1663,7 +1663,7 @@ span .ha-review-ratting--star:before,
 	        transition-property: transform,filter,opacity,-webkit-transform,-webkit-filter;
 }
 .ha-image-box-body .ha-image-box-background .ha-image-box-inner {
-	padding: 550px 30px 70px 30px;
+	padding: 250px 30px 70px 30px;
 	background: rgba(0, 0, 0, .2);
 	-webkit-transition: background .2s ease-in-out;
 	        transition: background .2s ease-in-out;
@@ -1678,13 +1678,16 @@ span .ha-review-ratting--star:before,
 	    -ms-transform: translate(0, 0);
 	        transform: translate(0, 0);
 }
+.ha-image-box-body .ha-image-box-background .ha-image-box-inner .ha-image-box-content .ha-image-sub-title {
+	display: inline-block;
+}
 .ha-image-box-body:hover .ha-image-box-background {
 	-webkit-transform: scale(1.05, 1.05);
 	    -ms-transform: scale(1.05, 1.05);
 	        transform: scale(1.05, 1.05);
 }
 .ha-image-box-body:hover .ha-image-box-inner {
-	background: transparent;
+	background: transparent !important;
 }
 .ha-image-box-body:hover .ha-image-box-content {
 	opacity: 0 !important;
