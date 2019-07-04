@@ -1718,7 +1718,7 @@ span .ha-review-ratting--star:before,
 }
 .ha-image-box-body-reverse .ha-image-box-background .ha-image-box-inner {
 	padding: 250px 30px 70px 30px;
-	background: transparent !important;
+	background: transparent;
 	-webkit-transition: background .2s ease-in-out;
 	        transition: background .2s ease-in-out;
 }
@@ -1729,9 +1729,9 @@ span .ha-review-ratting--star:before,
 	        transition: opacity .2s ease-in-out,-webkit-transform .2s ease-in-out;
 	        transition: opacity .2s ease-in-out,transform .2s ease-in-out;
 	        transition: opacity .2s ease-in-out,transform .2s ease-in-out,-webkit-transform .2s ease-in-out;
-	-webkit-transform: translate(0, 0);
-	    -ms-transform: translate(0, 0);
-	        transform: translate(0, 0);
+	-webkit-transform: translate(0, 36px);
+	    -ms-transform: translate(0, 36px);
+	        transform: translate(0, 36px);
 }
 .ha-image-box-body-reverse .ha-image-box-background .ha-image-box-inner .ha-image-box-content .ha-image-sub-title {
 	display: inline-block;
@@ -1742,13 +1742,13 @@ span .ha-review-ratting--star:before,
 	        transform: scale(1, 1);
 }
 .ha-image-box-body-reverse:hover .ha-image-box-background .ha-image-box-inner {
-	background: rgba(0, 0, 0, .2) !important;
+	background: rgba(0, 0, 0, .2);
 }
 .ha-image-box-body-reverse:hover .ha-image-box-background .ha-image-box-inner .ha-image-box-content {
 	opacity: 1;
-	-webkit-transition-delay: 0ms !important;
-	        transition-delay: 0ms !important; 
-	-webkit-transform: translate(0, 36px) !important;
-	    -ms-transform: translate(0, 36px) !important;
-	        transform: translate(0, 36px) !important;
+	-webkit-transition-delay: 0ms;
+	        transition-delay: 0ms; 
+	-webkit-transform: translate(0, 0px);
+	    -ms-transform: translate(0, 0px);
+	        transform: translate(0, 0px);
 }

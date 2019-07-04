@@ -153,7 +153,8 @@ class Image_Box extends Base {
 				'label' => __( 'Overlay Color', 'plugin-domain' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-image-box-inner' => 'background: {{VALUE}}',
+					'{{WRAPPER}} .ha-image-box-body .ha-image-box-inner' => 'background: {{VALUE}}',
+					'{{WRAPPER}} ha-image-box-body-reverse .ha-image-box-inner' => 'background: {{VALUE}}',
 				],
 			]
 		);
