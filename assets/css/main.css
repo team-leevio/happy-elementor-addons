@@ -1697,3 +1697,58 @@ span .ha-review-ratting--star:before,
 	    -ms-transform: translate(0, 36px) !important;
 	        transform: translate(0, 36px) !important;
 }
+
+.ha-image-box-body-reverse {
+	display: block; 
+	overflow: hidden;
+}
+.ha-image-box-body-reverse .ha-image-box-background {
+	background: #c36;
+	-webkit-transition-timing-function: cubic-bezier(.57, .21, .69, 1);
+	        transition-timing-function: cubic-bezier(.57, .21, .69, 1); 
+	-webkit-transition-duration: .3s;
+	        transition-duration: .3s;
+	-webkit-transition-property: opacity,-webkit-transform,-webkit-filter;
+	        transition-property: opacity,-webkit-transform,-webkit-filter;
+	        transition-property: transform,filter,opacity;
+	        transition-property: transform,filter,opacity,-webkit-transform,-webkit-filter;
+	-webkit-transform: scale(1.05, 1.05);
+	    -ms-transform: scale(1.05, 1.05);
+	        transform: scale(1.05, 1.05);
+}
+.ha-image-box-body-reverse .ha-image-box-background .ha-image-box-inner {
+	padding: 250px 30px 70px 30px;
+	background: transparent !important;
+	-webkit-transition: background .2s ease-in-out;
+	        transition: background .2s ease-in-out;
+}
+.ha-image-box-body-reverse .ha-image-box-background .ha-image-box-inner .ha-image-box-content {
+	color: #fff;
+	opacity: 0; 
+	-webkit-transition: opacity .2s ease-in-out,-webkit-transform .2s ease-in-out;
+	        transition: opacity .2s ease-in-out,-webkit-transform .2s ease-in-out;
+	        transition: opacity .2s ease-in-out,transform .2s ease-in-out;
+	        transition: opacity .2s ease-in-out,transform .2s ease-in-out,-webkit-transform .2s ease-in-out;
+	-webkit-transform: translate(0, 0);
+	    -ms-transform: translate(0, 0);
+	        transform: translate(0, 0);
+}
+.ha-image-box-body-reverse .ha-image-box-background .ha-image-box-inner .ha-image-box-content .ha-image-sub-title {
+	display: inline-block;
+}
+.ha-image-box-body-reverse:hover .ha-image-box-background {
+	-webkit-transform: scale(1, 1);
+	    -ms-transform: scale(1, 1);
+	        transform: scale(1, 1);
+}
+.ha-image-box-body-reverse:hover .ha-image-box-background .ha-image-box-inner {
+	background: rgba(0, 0, 0, .2) !important;
+}
+.ha-image-box-body-reverse:hover .ha-image-box-background .ha-image-box-inner .ha-image-box-content {
+	opacity: 1;
+	-webkit-transition-delay: 0ms !important;
+	        transition-delay: 0ms !important; 
+	-webkit-transform: translate(0, 36px) !important;
+	    -ms-transform: translate(0, 36px) !important;
+	        transform: translate(0, 36px) !important;
+}

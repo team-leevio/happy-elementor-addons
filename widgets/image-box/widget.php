@@ -327,6 +327,29 @@ class Image_Box extends Base {
 
 		$this->end_controls_section();
 
+		$this->start_controls_section(
+			'image_box_hover',
+			[
+				'label' => __( 'Text Hover Style', 'happy_addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+
+		$this->add_control(
+			'image_box_hover_style',
+			[
+				'label' => __( 'Show Text by Hover', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __( 'On', 'your-plugin' ),
+				'label_off' => __( 'Off', 'your-plugin' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+			]
+		);
+
+		$this->end_controls_section();
+
 
  	
 
@@ -341,11 +364,13 @@ class Image_Box extends Base {
 
 		?>
 		  
+
+
 		
-		<?php // if((settings['image_box_link']['url'])): ?> 
+		<?php  if($settings['image_box_link']['url']): ?> 
 			<a href="<?php  echo esc_url( $settings['image_box_link']['url'] ); ?>"  <?php echo esc_attr($target) ?>  <?php echo esc_attr($nofollow) ?>  >
-			<?php // endif;?>
-		<div class="ha-image-box-body">
+			<?php  endif;?>
+		<div class="<?php if ( 'yes' === $settings['image_box_hover_style'] ) { echo 'ha-image-box-body-reverse'; } else { echo 'ha-image-box-body'; } ?> ">
 		<div class="ha-image-box-background">
 			 <div class="ha-image-box-inner">
 			 	<div class="ha-image-box-content">
@@ -354,14 +379,16 @@ class Image_Box extends Base {
 			 		<div class="ha-image-description">
 			 			<p>
 			 				<?php  echo esc_html( $settings['image_box_description'] ); ?>
-			 				<?php print_r(settings['image_box_link']); ?>
+			 				
 			 			</p>
 			 		</div>
 			 	</div>
 			 </div>
 		</div>
 		</div>
-		<?php // if((settings['image_box_link']['url'])): ?> </a><?php // endif;?>
+		<?php  if($settings['image_box_link']['url']): ?> 
+			</a>
+		<?php  endif;?>
 		<?php
 	}
 
