@@ -1,5 +1,49 @@
 Array
 (
+    [background_background] => classic
+    [shape_divider_bottom] => mountains
+    [margin] => Array
+        (
+            [unit] => px
+            [top] => -5
+            [right] => 0
+            [bottom] => 0
+            [left] => 0
+            [isLinked] => 
+        )
+
+    [padding] => Array
+        (
+            [unit] => px
+            [top] => 0
+            [right] => 30
+            [bottom] => 10
+            [left] => 30
+            [isLinked] => 
+        )
+
+    [overflow] => hidden
+    [padding_mobile] => Array
+        (
+            [unit] => px
+            [top] => 0
+            [right] => 0
+            [bottom] => 0
+            [left] => 0
+            [isLinked] => 1
+        )
+
+    [background_color] => #ffffff
+    [border_radius] => Array
+        (
+            [unit] => px
+            [top] => 0
+            [right] => 0
+            [bottom] => 5
+            [left] => 5
+            [isLinked] => 
+        )
+
     [_title] => 
     [stretch_section] => 
     [layout] => boxed
@@ -78,11 +122,8 @@ Array
 
     [column_position] => middle
     [content_position] => 
-    [overflow] => 
     [html_tag] => 
     [structure] => 10
-    [background_background] => 
-    [background_color] => 
     [background_color_stop] => Array
         (
             [unit] => %
@@ -228,6 +269,181 @@ Array
         (
             [unit] => px
             [size] => 
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [background_motion_fx_motion_fx_scrolling] => 
+    [background_motion_fx_translateY_effect] => 
+    [background_motion_fx_translateY_direction] => 
+    [background_motion_fx_translateY_speed] => Array
+        (
+            [unit] => px
+            [size] => 4
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [background_motion_fx_translateY_affectedRange] => Array
+        (
+            [unit] => %
+            [size] => 
+            [sizes] => Array
+                (
+                    [start] => 0
+                    [end] => 100
+                )
+
+        )
+
+    [background_motion_fx_translateX_effect] => 
+    [background_motion_fx_translateX_direction] => 
+    [background_motion_fx_translateX_speed] => Array
+        (
+            [unit] => px
+            [size] => 4
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [background_motion_fx_translateX_affectedRange] => Array
+        (
+            [unit] => %
+            [size] => 
+            [sizes] => Array
+                (
+                    [start] => 0
+                    [end] => 100
+                )
+
+        )
+
+    [background_motion_fx_opacity_effect] => 
+    [background_motion_fx_opacity_direction] => out-in
+    [background_motion_fx_opacity_level] => Array
+        (
+            [unit] => px
+            [size] => 10
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [background_motion_fx_opacity_range] => Array
+        (
+            [unit] => %
+            [size] => 
+            [sizes] => Array
+                (
+                    [start] => 20
+                    [end] => 80
+                )
+
+        )
+
+    [background_motion_fx_blur_effect] => 
+    [background_motion_fx_blur_direction] => out-in
+    [background_motion_fx_blur_level] => Array
+        (
+            [unit] => px
+            [size] => 7
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [background_motion_fx_blur_range] => Array
+        (
+            [unit] => %
+            [size] => 
+            [sizes] => Array
+                (
+                    [start] => 20
+                    [end] => 80
+                )
+
+        )
+
+    [background_motion_fx_rotateZ_direction] => 
+    [background_motion_fx_rotateZ_speed] => Array
+        (
+            [unit] => px
+            [size] => 1
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [background_motion_fx_rotateZ_affectedRange] => Array
+        (
+            [unit] => %
+            [size] => 
+            [sizes] => Array
+                (
+                    [start] => 0
+                    [end] => 100
+                )
+
+        )
+
+    [background_motion_fx_scale_effect] => 
+    [background_motion_fx_scale_direction] => out-in
+    [background_motion_fx_scale_speed] => Array
+        (
+            [unit] => px
+            [size] => 4
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [background_motion_fx_scale_range] => Array
+        (
+            [unit] => %
+            [size] => 
+            [sizes] => Array
+                (
+                    [start] => 20
+                    [end] => 80
+                )
+
+        )
+
+    [background_motion_fx_devices] => Array
+        (
+            [0] => desktop
+            [1] => tablet
+            [2] => mobile
+        )
+
+    [background_motion_fx_motion_fx_mouse] => 
+    [background_motion_fx_mouseTrack_effect] => 
+    [background_motion_fx_mouseTrack_direction] => 
+    [background_motion_fx_mouseTrack_speed] => Array
+        (
+            [unit] => px
+            [size] => 1
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [background_motion_fx_tilt_direction] => 
+    [background_motion_fx_tilt_speed] => Array
+        (
+            [unit] => px
+            [size] => 4
             [sizes] => Array
                 (
                 )
@@ -904,16 +1120,6 @@ Array
         )
 
     [border_color] => 
-    [border_radius] => Array
-        (
-            [unit] => px
-            [top] => 
-            [right] => 
-            [bottom] => 
-            [left] => 
-            [isLinked] => 1
-        )
-
     [border_radius_tablet] => Array
         (
             [unit] => px
@@ -1093,7 +1299,6 @@ Array
     [shape_divider_top_flip] => 
     [shape_divider_top_negative] => 
     [shape_divider_top_above_content] => 
-    [shape_divider_bottom] => 
     [shape_divider_bottom_color] => 
     [shape_divider_bottom_width] => Array
         (
@@ -1163,16 +1368,6 @@ Array
     [color_link] => 
     [color_link_hover] => 
     [text_align] => 
-    [margin] => Array
-        (
-            [unit] => px
-            [top] => 
-            [right] => 
-            [bottom] => 
-            [left] => 
-            [isLinked] => 1
-        )
-
     [margin_tablet] => Array
         (
             [unit] => px
@@ -1193,27 +1388,7 @@ Array
             [isLinked] => 1
         )
 
-    [padding] => Array
-        (
-            [unit] => px
-            [top] => 
-            [right] => 
-            [bottom] => 
-            [left] => 
-            [isLinked] => 1
-        )
-
     [padding_tablet] => Array
-        (
-            [unit] => px
-            [top] => 
-            [right] => 
-            [bottom] => 
-            [left] => 
-            [isLinked] => 1
-        )
-
-    [padding_mobile] => Array
         (
             [unit] => px
             [top] => 
@@ -1226,6 +1401,194 @@ Array
     [z_index] => 
     [_element_id] => 
     [css_classes] => 
+    [motion_fx_motion_fx_scrolling] => 
+    [motion_fx_translateY_effect] => 
+    [motion_fx_translateY_direction] => 
+    [motion_fx_translateY_speed] => Array
+        (
+            [unit] => px
+            [size] => 4
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [motion_fx_translateY_affectedRange] => Array
+        (
+            [unit] => %
+            [size] => 
+            [sizes] => Array
+                (
+                    [start] => 0
+                    [end] => 100
+                )
+
+        )
+
+    [motion_fx_translateX_effect] => 
+    [motion_fx_translateX_direction] => 
+    [motion_fx_translateX_speed] => Array
+        (
+            [unit] => px
+            [size] => 4
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [motion_fx_translateX_affectedRange] => Array
+        (
+            [unit] => %
+            [size] => 
+            [sizes] => Array
+                (
+                    [start] => 0
+                    [end] => 100
+                )
+
+        )
+
+    [motion_fx_opacity_effect] => 
+    [motion_fx_opacity_direction] => out-in
+    [motion_fx_opacity_level] => Array
+        (
+            [unit] => px
+            [size] => 10
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [motion_fx_opacity_range] => Array
+        (
+            [unit] => %
+            [size] => 
+            [sizes] => Array
+                (
+                    [start] => 20
+                    [end] => 80
+                )
+
+        )
+
+    [motion_fx_blur_effect] => 
+    [motion_fx_blur_direction] => out-in
+    [motion_fx_blur_level] => Array
+        (
+            [unit] => px
+            [size] => 7
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [motion_fx_blur_range] => Array
+        (
+            [unit] => %
+            [size] => 
+            [sizes] => Array
+                (
+                    [start] => 20
+                    [end] => 80
+                )
+
+        )
+
+    [motion_fx_rotateZ_effect] => 
+    [motion_fx_rotateZ_direction] => 
+    [motion_fx_rotateZ_speed] => Array
+        (
+            [unit] => px
+            [size] => 1
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [motion_fx_rotateZ_affectedRange] => Array
+        (
+            [unit] => %
+            [size] => 
+            [sizes] => Array
+                (
+                    [start] => 0
+                    [end] => 100
+                )
+
+        )
+
+    [motion_fx_scale_effect] => 
+    [motion_fx_scale_direction] => out-in
+    [motion_fx_scale_speed] => Array
+        (
+            [unit] => px
+            [size] => 4
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [motion_fx_scale_range] => Array
+        (
+            [unit] => %
+            [size] => 
+            [sizes] => Array
+                (
+                    [start] => 20
+                    [end] => 80
+                )
+
+        )
+
+    [motion_fx_transform_origin_x] => center
+    [motion_fx_transform_origin_y] => center
+    [motion_fx_devices] => Array
+        (
+            [0] => desktop
+            [1] => tablet
+            [2] => mobile
+        )
+
+    [motion_fx_mouseTrack_effect] => 
+    [motion_fx_mouseTrack_direction] => 
+    [motion_fx_mouseTrack_speed] => Array
+        (
+            [unit] => px
+            [size] => 1
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [motion_fx_tilt_effect] => 
+    [motion_fx_tilt_direction] => 
+    [motion_fx_tilt_speed] => Array
+        (
+            [unit] => px
+            [size] => 4
+            [sizes] => Array
+                (
+                )
+
+        )
+
+    [sticky] => 
+    [sticky_on] => Array
+        (
+            [0] => desktop
+            [1] => tablet
+            [2] => mobile
+        )
+
+    [sticky_offset] => 0
+    [sticky_effects_offset] => 0
     [animation] => 
     [animation_tablet] => 
     [animation_mobile] => 
@@ -1236,4 +1599,6 @@ Array
     [hide_desktop] => 
     [hide_tablet] => 
     [hide_mobile] => 
+    [_attributes] => 
+    [custom_css] => 
 )
