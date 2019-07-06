@@ -896,7 +896,7 @@ class Card extends Base {
 
 	protected function render() {
         $settings = $this->get_settings_for_display();
-
+$this->get_settings();
         $this->add_inline_editing_attributes( 'badge_text', 'none' );
         $this->add_render_attribute(
             'badge_text',

@@ -6,9 +6,26 @@
             </p>
             <div class="checkbox-wrapper">
                 <div class="ha-checkbox">
-                    <label for="card"><?php _e( 'Card', 'happy-elementor-addons' ); ?></label>
                     <input type="checkbox" id="card" name="card">
+                    <label for="card"><?php _e( 'Card', 'happy-elementor-addons' ); ?></label>
                 </div>
+                <div class="ha-checkbox">
+                    <input type="checkbox" id="infobox" name="infobox">
+                    <label for="infobox"><?php _e( 'Info Box', 'happy-elementor-addons' ); ?></label>
+                </div>
+                <div class="ha-checkbox">
+                    <input type="checkbox" id="infobox" name="infobox">
+                    <label for="infobox"><?php _e( 'Info Box', 'happy-elementor-addons' ); ?></label>
+                </div>
+                <div class="ha-checkbox">
+                    <input type="checkbox" id="infobox" name="infobox">
+                    <label for="infobox"><?php _e( 'Info Box', 'happy-elementor-addons' ); ?></label>
+                </div>
+                <div class="ha-checkbox">
+                    <input type="checkbox" id="infobox" name="infobox">
+                    <label for="infobox"><?php _e( 'Info Box', 'happy-elementor-addons' ); ?></label>
+                </div>
+
             </div>
         </div>
     </div>
