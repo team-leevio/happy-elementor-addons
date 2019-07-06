@@ -1408,8 +1408,16 @@ span .ha-review-ratting--star:before,
 }
 
 .ha-number-body .ha-number-border {
-	display: table;
-	margin: 0 auto;
+	display: -webkit-flex;
+	/* Safari 7.0+ */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-align: center;
+	/* Safari */
+	-webkit-align-items: center;
+	        align-items: center; 
+	-ms-flex-align: center;
 	padding: 6px 6px 6px 6px;
 	width: 50px;
 	height: 50px;
@@ -1417,12 +1425,15 @@ span .ha-review-ratting--star:before,
 	background: #c36;
 	color: #fff;
 	text-align: center;
-	text-align: center; 
+	text-align: center;
 	font-size: 20px;
 }
 .ha-number-body .ha-number-border span {
-	display: table-cell;
-	vertical-align: middle;
+	/* Safari 6.1+ */
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
 }
 
 .ha-flip-wrap {
@@ -1634,4 +1645,14 @@ span .ha-review-ratting--star:before,
 .ha-flip-wrap.ha-flip-effect-3d .ha-flip-box-front-inner {
 	-webkit-transform: translateZ(50px) scale(.9);
 	        transform: translateZ(50px) scale(.9);
+}
+
+.ha-image-box-body {
+	background: #c36;
+}
+.ha-image-box-body .ha-image-box-inner {
+	padding: 250px 30px 30px 30px;
+}
+.ha-image-box-body .ha-image-box-inner .ha-image-box-content {
+	color: #fff;
 }
