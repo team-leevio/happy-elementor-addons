@@ -62,7 +62,7 @@
     border-radius: 50%;
     z-index: 2;
     position: absolute;
-    right: 30px;
+    right: 20px;
     top: 50%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
