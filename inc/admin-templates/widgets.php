@@ -13,19 +13,6 @@
                     <input type="checkbox" id="infobox" name="infobox">
                     <label for="infobox"><?php _e( 'Info Box', 'happy-elementor-addons' ); ?></label>
                 </div>
-                <div class="ha-checkbox">
-                    <input type="checkbox" id="infobox" name="infobox">
-                    <label for="infobox"><?php _e( 'Info Box', 'happy-elementor-addons' ); ?></label>
-                </div>
-                <div class="ha-checkbox">
-                    <input type="checkbox" id="infobox" name="infobox">
-                    <label for="infobox"><?php _e( 'Info Box', 'happy-elementor-addons' ); ?></label>
-                </div>
-                <div class="ha-checkbox">
-                    <input type="checkbox" id="infobox" name="infobox">
-                    <label for="infobox"><?php _e( 'Info Box', 'happy-elementor-addons' ); ?></label>
-                </div>
-
             </div>
         </div>
     </div>
