@@ -19,7 +19,7 @@
     height: auto;
 }
 .happy-settings .ha-container p.ha-elements-control-notice {
-    margin: 10px 0 10px 10px;
+    margin: 10px 0 15px 10px;
 }
 .happy-settings #widgets .checkbox-wrapper {
     display: flex;
@@ -35,74 +35,70 @@
     font-size: 18px;
     margin: 10px 40px 10px 10px;
     border-radius: 3px;
-    box-shadow: 1px 2px 6px 3px rgba(80,80,80,0.1);
-}
-
-
-.ha-checkbox label {
+    box-shadow: 1px 1px 6px 2px rgba(80,80,80,0.1);
     padding: 20px;
-    width: 100%;
-    display: block;
-    text-align: left;
-    color: #3c454c;
-    cursor: pointer;
+}
+
+.ha-switch {
     position: relative;
-    z-index: 2;
-    transition: color 200ms ease-in;
-    overflow: hidden;
+    display: inline-block;
+    width: 50px;
+    height: 30px;
 }
-.ha-checkbox label:after {
-    width: 25px;
-    height: 25px;
+.ha-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.ha-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.ha-slider:before {
     content: "";
-    border: 2px solid #d1d7dc;
-    background-color: #fff;
-    background-repeat: no-repeat;
-    background-position: 1px 2px;
+    position: absolute;
+    height: 23px;
+    width: 23px;
+    left: 0px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.ha-switch input:checked + .ha-slider {
+    background-color: #562dd4;
+}
+
+.ha-switch input:focus + .ha-slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+.ha-switch input + .ha-slider:before {
+    -webkit-transform: translateX(4px);
+    -ms-transform: translateX(4px);
+    transform: translateX(4px);
+}
+.ha-switch input:checked + .ha-slider:before {
+    -webkit-transform: translateX(19px);
+    -ms-transform: translateX(19px);
+    transform: translateX(22px);
+}
+
+/* Rounded sliders */
+.ha-slider.round {
+    border-radius: 34px;
+}
+.ha-slider.round:before {
     border-radius: 50%;
-    z-index: 2;
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    cursor: pointer;
-    transition: all 200ms ease-in;
-}
-.ha-checkbox input:checked ~ label {
-    color: #222;
-}
-.ha-checkbox input:checked ~ label:before {
-    content: '';
-    background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
-    opacity: 1;
-    width: 30px;
-    height: 25px;
-    background-color: transparent;
-    position: absolute;
-    border-radius: 50%;
-    background-position: 6px 6px;
-    left: 78%;
-    top: 22%;
-    z-index: 99;
-}
-.ha-checkbox input:checked ~ label:after {
-    background: linear-gradient(90deg, #e2498a 0%, #562dd4 100%);
-    border: none;
-    padding: 4px;
-}
-.ha-checkbox input {
-    width: 32px;
-    height: 32px;
-    order: 1;
-    z-index: 2;
-    position: absolute;
-    right: 30px;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    cursor: pointer;
-    visibility: hidden;
 }
 
 /*  save button */
@@ -126,14 +122,18 @@
     padding: 10px;
 }
 button.ha-save-button {
+    font-size: 16px;
+    text-transform: capitalize;
     padding: 12px 18px;
     border-radius: 4px;
     border: none;
     background-color: #e2498a;
+    box-shadow: 0 1px 0 #8a0d42;
     color: #fff;
-    font-size: 16px;
-    text-transform: capitalize;
+    transition: background-color .4s, transform .4s;
 }
 button.ha-save-button:hover {
     background-color: #562dd4;
+    box-shadow: 0 1px 0 #301963;
+    transition: background-color .4s, transform .4s;
 }
