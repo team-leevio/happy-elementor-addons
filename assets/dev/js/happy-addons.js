@@ -186,114 +186,98 @@ window.Happy = window.Happy || {};
                 this.run();
             },
 
-            getTheElement: function() {
+            getWrapper: function() {
                 return this.$element.find('.elementor-widget-container')[0];
             },
 
-            resetFx: function() {
-                anime.remove(this.getTheElement());
-                this.getTheElement() && this.getTheElement().removeAttribute('style');
+            factoryReset: function() {
+                anime.remove(this.getWrapper());
+                this.getWrapper() && this.getWrapper().removeAttribute('style');
             },
 
             onDestroy: function() {
                 elementorModules.frontend.handlers.Base.prototype.onDestroy.apply(this, arguments);
-                this.resetFx();
+                this.factoryReset();
             },
 
             onElementChange: function() {
-                this.transformCleanup();
-                this.resetFx();
+                this.factoryReset();
                 this.run();
             },
 
-            transformCleanup: function() {
-                var model = elementorFrontend.config.elements.data[this.getModelCID()];
-
-                // console.log(model.get('ha_transform_fx_translate_toggle'));
-
-                if (!model.get('ha_transform_fx_translate_toggle')) {
-                    // console.log(model.get('ha_transform_fx_translate_x'));
-                    // model.set('ha_transform_fx_translate_x', $.extend({}, model.get('ha_transform_fx_translate_x'), {size: 0}));
-                    // console.log(model.get('ha_transform_fx_translate_x'));
-                    // model.set($.extend({}, model.get('ha_transform_fx_translate_y'), {size: ''}));
-                    // model.set('ha_transform_fx_translate_x', {size: 0});
-                    // model.set('ha_transform_fx_translate_y', {size: 0});
-                    // elementorModules.frontend.handlers.Base.prototype.setSettings.apply(this, ['ha_transform_fx_translate_x.size', '']);
-                    // this.setSettings('ha_transform_fx_translate_x.size', 0);
-                    // this.setSettings('ha_transform_fx_translate_y.size', 0);
-                }
+            getConfig: function(key) {
+                return this.getElementSettings('ha_floating_fx_' + key);
             },
 
             run: function() {
-                var settings = this.getElementSettings(),
-                    fxSettings = {
-                        targets: this.getTheElement(),
-                        loop: true,
-                        direction: 'alternate',
-                        easing: 'easeInOutSine'
-                    };
+                var config = {
+                    targets: this.getWrapper(),
+                    loop: true,
+                    direction: 'alternate',
+                    easing: 'easeInOutSine',
+                };
 
-                if (settings.ha_floating_fx_translate_toggle) {
-                    if (settings.ha_floating_fx_translate_x.size) {
-                        fxSettings.translateX = {
-                            value: settings.ha_floating_fx_translate_x.size,
-                            duration: settings.ha_floating_fx_translate_duration.size,
-                            delay: settings.ha_floating_fx_translate_delay.size || 0
+                if (this.getConfig('translate_toggle')) {
+                    if (this.getConfig('translate_x.size') || this.getConfig('translate_x.sizes.to')) {
+                        config.translateX = {
+                            value: [this.getConfig('translate_x.sizes.from') || 0, this.getConfig('translate_x.size') || this.getConfig('translate_x.sizes.to')],
+                            duration: this.getConfig('translate_duration.size'),
+                            delay: this.getConfig('translate_delay.size') || 0
                         }
                     }
-                    if (settings.ha_floating_fx_translate_y.size) {
-                        fxSettings.translateY = {
-                            value: settings.ha_floating_fx_translate_y.size,
-                            duration: settings.ha_floating_fx_translate_duration.size,
-                            delay: settings.ha_floating_fx_translate_delay.size || 0
+                    if (this.getConfig('translate_y.size') || this.getConfig('translate_y.sizes.to')) {
+                        config.translateY = {
+                            value: [this.getConfig('translate_y.sizes.from') || 0, this.getConfig('translate_y.size') || this.getConfig('translate_y.sizes.to')],
+                            duration: this.getConfig('translate_duration.size'),
+                            delay: this.getConfig('translate_delay.size') || 0
                         }
                     }
                 }
 
-                if (settings.ha_floating_fx_rotate_toggle) {
-                    if (settings.ha_floating_fx_rotate_x.size) {
-                        fxSettings.rotateX = {
-                            value: settings.ha_floating_fx_rotate_x.size,
-                            duration: settings.ha_floating_fx_rotate_duration.size,
-                            delay: settings.ha_floating_fx_rotate_delay.size || 0
+                if (this.getConfig('rotate_toggle')) {
+                    if (this.getConfig('rotate_x.size') || this.getConfig('rotate_x.sizes.to')) {
+                        config.rotateX = {
+                            value: [this.getConfig('rotate_x.sizes.from') || 0, this.getConfig('rotate_x.size') || this.getConfig('rotate_x.sizes.to')],
+                            duration: this.getConfig('rotate_duration.size'),
+                            delay: this.getConfig('rotate_delay.size') || 0
                         }
                     }
-                    if (settings.ha_floating_fx_rotate_y.size) {
-                        fxSettings.rotateY = {
-                            value: settings.ha_floating_fx_rotate_y.size,
-                            duration: settings.ha_floating_fx_rotate_duration.size,
-                            delay: settings.ha_floating_fx_rotate_delay.size || 0
+                    if (this.getConfig('rotate_y.size') || this.getConfig('rotate_y.sizes.to')) {
+                        config.rotateY = {
+                            value: [this.getConfig('rotate_y.sizes.from') || 0, this.getConfig('rotate_y.size') || this.getConfig('rotate_y.sizes.to')],
+                            duration: this.getConfig('rotate_duration.size'),
+                            delay: this.getConfig('rotate_delay.size') || 0
                         }
                     }
-                    if (settings.ha_floating_fx_rotate_z.size) {
-                        fxSettings.rotateZ = {
-                            value: settings.ha_floating_fx_rotate_z.size,
-                            duration: settings.ha_floating_fx_rotate_duration.size,
-                            delay: settings.ha_floating_fx_rotate_delay.size || 0
-                        }
-                    }
-                }
-
-                if (settings.ha_floating_fx_scale_toggle) {
-                    if (settings.ha_floating_fx_scale_x.size) {
-                        fxSettings.scaleX = {
-                            value: settings.ha_floating_fx_scale_x.size,
-                            duration: settings.ha_floating_fx_scale_duration.size,
-                            delay: settings.ha_floating_fx_scale_delay.size || 0
-                        }
-                    }
-                    if (settings.ha_floating_fx_scale_y.size) {
-                        fxSettings.scaleY = {
-                            value: settings.ha_floating_fx_scale_y.size,
-                            duration: settings.ha_floating_fx_scale_duration.size,
-                            delay: settings.ha_floating_fx_scale_delay.size || 0
+                    if (this.getConfig('rotate_z.size') || this.getConfig('rotate_z.sizes.to')) {
+                        config.rotateZ = {
+                            value: [this.getConfig('rotate_z.sizes.from') || 0, this.getConfig('rotate_z.size') || this.getConfig('rotate_z.sizes.to')],
+                            duration: this.getConfig('rotate_duration.size'),
+                            delay: this.getConfig('rotate_delay.size') || 0
                         }
                     }
                 }
 
-                if (settings.ha_floating_fx_translate_toggle || settings.ha_floating_fx_rotate_toggle || settings.ha_floating_fx_scale_toggle) {
-                    this.getTheElement() && this.getTheElement().style.setProperty('will-change', 'transform');
-                    anime(fxSettings);
+                if (this.getConfig('scale_toggle')) {
+                    if (this.getConfig('scale_x.size') || this.getConfig('scale_x.sizes.to')) {
+                        config.scaleX = {
+                            value: [this.getConfig('scale_x.sizes.from') || 0, this.getConfig('scale_x.size') || this.getConfig('scale_x.sizes.to')],
+                            duration: this.getConfig('scale_duration.size'),
+                            delay: this.getConfig('scale_delay.size') || 0
+                        }
+                    }
+                    if (this.getConfig('scale_y.size') || this.getConfig('scale_y.sizes.to')) {
+                        config.scaleY = {
+                            value: [this.getConfig('scale_y.sizes.from') || 0, this.getConfig('scale_y.size') || this.getConfig('scale_y.sizes.to')],
+                            duration: this.getConfig('scale_duration.size'),
+                            delay: this.getConfig('scale_delay.size') || 0
+                        }
+                    }
+                }
+
+                if (this.getConfig('translate_toggle') || this.getConfig('rotate_toggle') || this.getConfig('scale_toggle')) {
+                    this.getWrapper() && this.getWrapper().style.setProperty('will-change', 'transform');
+                    anime(config);
                 }
             }
         });
