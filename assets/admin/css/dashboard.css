@@ -35,8 +35,8 @@
     font-size: 18px;
     margin: 10px 40px 10px 10px;
     border-radius: 3px;
-    box-shadow: 1px 1px 6px 2px rgba(80,80,80,0.1);
-    padding: 20px;
+    box-shadow: 1px 1px 6px 1px rgba(80,80,80,0.1);
+    padding: 15px;
 }
 
 .ha-switch {
