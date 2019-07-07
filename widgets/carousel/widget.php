@@ -97,7 +97,33 @@ class Carousel extends Base {
                 'show_label' => false,
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
-                'title_field' => '<# print(title || "Carousel Item"); #>'
+                'title_field' => '<# print(title || "Carousel Item"); #>',
+                'default' => [
+                    [
+                        'image' => [
+                            'url' => Utils::get_placeholder_image_src(),
+                        ],
+                        'title' => 'Carousel Item 1'
+                    ],
+                    [
+                        'image' => [
+                            'url' => Utils::get_placeholder_image_src(),
+                        ],
+                        'title' => 'Carousel Item 2'
+                    ],
+                    [
+                        'image' => [
+                            'url' => Utils::get_placeholder_image_src(),
+                        ],
+                        'title' => 'Carousel Item 3'
+                    ],
+                    [
+                        'image' => [
+                            'url' => Utils::get_placeholder_image_src(),
+                        ],
+                        'title' => 'Carousel Item 4'
+                    ]
+                ]
             ]
         );
 
@@ -140,6 +166,7 @@ class Carousel extends Base {
                     'size' => 300,
                 ],
                 'description' => __( 'Slide speed in milliseconds', 'happy-elementor-addons' ),
+                'frontend_available' => true,
             ]
         );
 
@@ -155,6 +182,7 @@ class Carousel extends Base {
                     'both' => __( 'Arrow & Dots', 'happy-elementor-addons' ),
                 ],
                 'default' => 'both',
+                'frontend_available' => true,
             ]
         );
 
@@ -167,6 +195,7 @@ class Carousel extends Base {
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
+                'frontend_available' => true,
             ]
         );
 
@@ -190,6 +219,7 @@ class Carousel extends Base {
                 'condition' => [
                     'autoplay' => 'yes'
                 ],
+                'frontend_available' => true,
             ]
         );
 
@@ -201,6 +231,7 @@ class Carousel extends Base {
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
+                'frontend_available' => true,
             ]
         );
 
@@ -213,6 +244,7 @@ class Carousel extends Base {
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'description' => __( 'Best works with odd number of slides (Slides To Show) and loop (Infinite Loop)', 'happy-elementor-addons' ),
+                'frontend_available' => true,
             ]
         );
 
@@ -224,6 +256,7 @@ class Carousel extends Base {
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
+                'frontend_available' => true,
             ]
         );
 
@@ -242,6 +275,7 @@ class Carousel extends Base {
                 'default' => [
                     'size' => 3,
                 ],
+                'frontend_available' => true,
             ]
         );
 
@@ -399,7 +433,7 @@ class Carousel extends Base {
         $this->start_controls_section(
             '_section_style_arrow',
             [
-                'label' => __( 'Arrow Navigation', 'happy-elementor-addons' ),
+                'label' => __( 'Navigation - Arrow', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -494,7 +528,7 @@ class Carousel extends Base {
         $this->add_control(
             'arrow_color',
             [
-                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -526,7 +560,7 @@ class Carousel extends Base {
         $this->add_control(
             'arrow_hover_color',
             [
-                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .slick-prev:hover, {{WRAPPER}} .slick-next:hover' => 'color: {{VALUE}};',
@@ -567,7 +601,7 @@ class Carousel extends Base {
         $this->start_controls_section(
             '_section_style_dots',
             [
-                'label' => __( 'Dots Navigation', 'happy-elementor-addons' ),
+                'label' => __( 'Navigation - Dots', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
