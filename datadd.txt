@@ -1,49 +1,5 @@
 Array
 (
-    [background_background] => classic
-    [shape_divider_bottom] => mountains
-    [margin] => Array
-        (
-            [unit] => px
-            [top] => -5
-            [right] => 0
-            [bottom] => 0
-            [left] => 0
-            [isLinked] => 
-        )
-
-    [padding] => Array
-        (
-            [unit] => px
-            [top] => 0
-            [right] => 30
-            [bottom] => 10
-            [left] => 30
-            [isLinked] => 
-        )
-
-    [overflow] => hidden
-    [padding_mobile] => Array
-        (
-            [unit] => px
-            [top] => 0
-            [right] => 0
-            [bottom] => 0
-            [left] => 0
-            [isLinked] => 1
-        )
-
-    [background_color] => #ffffff
-    [border_radius] => Array
-        (
-            [unit] => px
-            [top] => 0
-            [right] => 0
-            [bottom] => 5
-            [left] => 5
-            [isLinked] => 
-        )
-
     [_title] => 
     [stretch_section] => 
     [layout] => boxed
@@ -122,8 +78,11 @@ Array
 
     [column_position] => middle
     [content_position] => 
+    [overflow] => 
     [html_tag] => 
     [structure] => 10
+    [background_background] => 
+    [background_color] => 
     [background_color_stop] => Array
         (
             [unit] => %
@@ -1120,6 +1079,16 @@ Array
         )
 
     [border_color] => 
+    [border_radius] => Array
+        (
+            [unit] => px
+            [top] => 
+            [right] => 
+            [bottom] => 
+            [left] => 
+            [isLinked] => 1
+        )
+
     [border_radius_tablet] => Array
         (
             [unit] => px
@@ -1299,6 +1268,7 @@ Array
     [shape_divider_top_flip] => 
     [shape_divider_top_negative] => 
     [shape_divider_top_above_content] => 
+    [shape_divider_bottom] => 
     [shape_divider_bottom_color] => 
     [shape_divider_bottom_width] => Array
         (
@@ -1368,6 +1338,16 @@ Array
     [color_link] => 
     [color_link_hover] => 
     [text_align] => 
+    [margin] => Array
+        (
+            [unit] => px
+            [top] => 
+            [right] => 
+            [bottom] => 
+            [left] => 
+            [isLinked] => 1
+        )
+
     [margin_tablet] => Array
         (
             [unit] => px
@@ -1388,7 +1368,27 @@ Array
             [isLinked] => 1
         )
 
+    [padding] => Array
+        (
+            [unit] => px
+            [top] => 
+            [right] => 
+            [bottom] => 
+            [left] => 
+            [isLinked] => 1
+        )
+
     [padding_tablet] => Array
+        (
+            [unit] => px
+            [top] => 
+            [right] => 
+            [bottom] => 
+            [left] => 
+            [isLinked] => 1
+        )
+
+    [padding_mobile] => Array
         (
             [unit] => px
             [top] => 

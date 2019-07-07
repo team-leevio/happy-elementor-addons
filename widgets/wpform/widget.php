@@ -498,7 +498,7 @@ class WPForm extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'submit_border',
-                'selector' => '{{WRAPPER}} .wpforms-submit',
+                'selector' => '{{WRAPPER}} .wpforms-form .wpforms-submit-container button[type=submit]',
             ]
         );
 
