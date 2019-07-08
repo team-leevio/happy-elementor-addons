@@ -99,6 +99,7 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 * Update: Dual Button Widget default style
 * Fix: WP Forms style issue
 * Fix: Card Widget editor mode JS error issue
+* Fix: Dual Button Widget inline editing issue
 
 = 1.0.5 =
 
