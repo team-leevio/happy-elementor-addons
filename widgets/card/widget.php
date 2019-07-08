@@ -534,7 +534,7 @@ class Card extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}}:hover .ha-card-figure > img' => 'opacity: {{SIZE}};',
+                    '{{WRAPPER}} .ha-card-figure:hover > img' => 'opacity: {{SIZE}};',
                 ],
             ]
         );
@@ -543,7 +543,7 @@ class Card extends Base {
             Group_Control_Css_Filter::get_type(),
             [
                 'name' => 'image_css_filters_hover',
-                'selector' => '{{WRAPPER}}:hover .ha-card-figure > img',
+                'selector' => '{{WRAPPER}} .ha-card-figure:hover > img',
             ]
         );
 
