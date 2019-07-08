@@ -1242,13 +1242,21 @@ span .ha-review-ratting--star:before,
 .ha-dual-btn--left {
 	border-top-left-radius: 50px;
 	border-bottom-left-radius: 50px; 
-	background-color: #3266fd;
+	background-color: #562dd4;
+}
+.ha-dual-btn--left:hover,
+.ha-dual-btn--left:focus {
+	background-color: #4423ab;
 }
 
 .ha-dual-btn--right {
 	border-top-right-radius: 50px;
 	border-bottom-right-radius: 50px; 
-	background-color: #27374c;
+	background-color: #e2498a;
+}
+.ha-dual-btn--right:hover,
+.ha-dual-btn--right:focus {
+	background-color: #d6226e;
 }
 
 .ha-dual-btn-connector {

@@ -95,7 +95,8 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 * New: Added from -> to controller in Floating Effects
 * New: Added hover animation effect in Card Widget image
-* Update: Button default styles
+* Update: Card Widget button default style
+* Update: Dual Button Widget default style
 * Fix: WP Forms style issue
 * Fix: Card Widget editor mode JS error issue
 
