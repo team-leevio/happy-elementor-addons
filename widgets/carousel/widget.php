@@ -103,25 +103,21 @@ class Carousel extends Base {
                         'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'title' => 'Carousel Item 1'
                     ],
                     [
                         'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'title' => 'Carousel Item 2'
                     ],
                     [
                         'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'title' => 'Carousel Item 3'
                     ],
                     [
                         'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'title' => 'Carousel Item 4'
                     ]
                 ]
             ]
