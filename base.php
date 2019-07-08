@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || die();
 
 class Base {
 
-    const VERSION = '1.0.5';
+    const VERSION = '1.1.6';
 
     const MINIMUM_ELEMENTOR_VERSION = '2.5.0';
 

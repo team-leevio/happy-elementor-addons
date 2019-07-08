@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 1.0.5
+Version: 1.1.6
 Author: HappyMonster
 Author URI: http://happymonster.me/
 Contributors: thehappymonster, happyaddons, hasinhayder, obiplabon, sourav926
@@ -8,7 +8,7 @@ Tags: elementor, form, page builder, widget, addon
 Requires at least: 4.7
 Tested up to: 5.2.2
 Requires PHP: 5.4
-Stable tag: 1.0.5
+Stable tag: 1.1.6
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,6 +90,14 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 1.1.6 =
+
+* New: Added from -> to controller in Floating Effects
+* New: Added hover animation effect in Card Widget image
+* Update: Button default styles
+* Fix: WP Forms style issue
+* Fix: Card Widget editor mode JS error issue
 
 = 1.0.5 =
 
