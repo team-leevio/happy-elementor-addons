@@ -47,25 +47,27 @@
 	vertical-align: middle;
 	text-align: center;
 	text-decoration: none;
-	font-weight: bold; 
 	font-size: 14px;
 	line-height: 1;
 	-webkit-transition: all .3s;
 	        transition: all .3s;
 }
 .ha-btn:not(.ha-btn--link) {
-	padding: .7rem 1.3rem;
+	padding: 15px 25px; 
 	border-radius: .25rem;
-	background-color: #8c8c8c;
+	background-color: #562dd4;
 	color: #fff;
-	text-align: center;
 }
 .ha-btn:not(.ha-btn--link):hover,
 .ha-btn:not(.ha-btn--link):focus {
-	background-color: #242424;
+	background-color: #e2498a;
 }
 .ha-btn.ha-btn--link {
-	color: #3ca6ff;
+	color: #562dd4;
+}
+.ha-btn.ha-btn--link:hover,
+.ha-btn.ha-btn--link:focus {
+	color: #e2498a;
 }
 .ha-btn-icon {
 	-webkit-transition: all .3s;
@@ -96,7 +98,8 @@
 	margin-top: 0;
 	margin-bottom: .75rem;
 	color: #151515;
-	font-size: 24px;
+	font-weight: 700; 
+	font-size: 22px;
 }
 
 .ha-card-text {
@@ -1434,225 +1437,4 @@ span .ha-review-ratting--star:before,
 	-webkit-flex: 1;
 	    -ms-flex: 1;
 	        flex: 1;
-}
-
-.ha-flip-wrap {
-	margin-bottom: 1.5rem;
-}
-.ha-flip-wrap .ha-flip-box {
-	position: relative;
-	z-index: 1;
-	margin: 0;
-	padding: 0;
-
-	-webkit-backface-visibility: hidden;
-	        backface-visibility: hidden;
-}
-.ha-flip-wrap .ha-flip-box:hover .ha-flip-box-back {
-	z-index: 1;
-}
-.ha-flip-wrap .ha-flip-box:hover .ha-flip-box-front {
-	z-index: -1;
-}
-.ha-flip-wrap .ha-flip-box .ha-flip-box-inner-wrapper {
-	position: relative;
-	margin-bottom: 15px;
-	-webkit-transform: translateZ(0);
-
-	-webkit-perspective: 1000px;
-	        perspective: 1000px;
-}
-.ha-flip-wrap .ha-flip-box .ha-flip-box-back,
-.ha-flip-wrap .ha-flip-box .ha-flip-box-front {
-	top: 0;
-	right: 0;
-	left: 0;
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display:         flex;
-	-webkit-box-align: center;
-	-webkit-align-items: center;
-	        align-items: center;
-	-ms-flex-align: center;
-	padding: 1.5rem 1.3rem;
-	background-position: center;
-	background-clip: padding-box;
-	background-size: cover; 
-	background-repeat: no-repeat;
-	text-align: center;
-
-	-webkit-backface-visibility: hidden;
-	        backface-visibility: hidden;
-	-webkit-perspective: 1000px;
-	        perspective: 1000px;
-}
-.ha-flip-wrap .ha-flip-box .ha-flip-box-front {
-	position: relative;
-	bottom: 0;
-	z-index: 10;
-	border: 1px solid #ddd;
-	border-radius: .3rem; 
-	background: #fff;
-}
-.ha-flip-wrap .ha-flip-box .ha-flip-box-back {
-	position: absolute;
-	z-index: -1;
-	border-radius: .3rem; 
-	background: #27374c;
-	color: #fff;
-}
-.ha-flip-wrap .ha-flip-box .ha-flip-box-back-inner,
-.ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner {
-	width: 100%;
-}
-.ha-flip-wrap .ha-flip-box .ha-flip-box-back-inner .ha-flip-btn,
-.ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-btn {
-	display: inline-block;
-	margin-top: .5rem;
-	padding: .8rem 2.5rem;
-	border-radius: .3rem;
-	background: #3266fd;
-	color: #fff;
-	text-decoration: none;
-	text-transform: uppercase;
-	font-size: 12px;
-	-webkit-transition: all .3s;
-	        transition: all .3s;
-}
-.ha-flip-wrap .ha-flip-box .ha-flip-box-back-inner .ha-flip-btn:hover,
-.ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-btn:hover {
-	background: #fff;
-	color: #27374c;
-}
-.ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-icon {
-	display: table;
-	margin: 0 auto 10px;
-	width: 70px;
-	height: 70px;
-	border-radius: 50%;
-	background: #27374c;
-	background-clip: padding-box; 
-	color: #fff;
-}
-.ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-icon i {
-	display: table-cell;
-	vertical-align: middle;
-	font-size: 28px;
-}
-.ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-box-heading {
-	font-weight: bold; 
-	font-size: 20px;
-}
-.ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner p {
-	margin-bottom: 0; 
-	font-size: 16px;
-}
-.ha-flip-wrap .ha-flip-box .ha-flip-box-back-inner .ha-flip-box-heading-back {
-	font-size: 18px;
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-right .ha-flip-box-front {
-	-webkit-transform: rotateY(0);
-	        transform: rotateY(0);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-right .ha-flip-box-back {
-	-webkit-transform: rotateY(-180deg);
-	        transform: rotateY(-180deg);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-right:hover .ha-flip-box-back {
-	-webkit-transform: rotateY(0);
-	        transform: rotateY(0);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-right:hover .ha-flip-box-front {
-	-webkit-transform: rotateY(180deg);
-	        transform: rotateY(180deg);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-left .ha-flip-box-front {
-	-webkit-transform: rotateY(0);
-	        transform: rotateY(0);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-left .ha-flip-box-back {
-	-webkit-transform: rotateY(180deg);
-	        transform: rotateY(180deg);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-left:hover .ha-flip-box-back {
-	-webkit-transform: rotateY(0);
-	        transform: rotateY(0);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-left:hover .ha-flip-box-front {
-	-webkit-transform: rotateY(-180deg);
-	        transform: rotateY(-180deg);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-up .ha-flip-box-front {
-	-webkit-transform: rotateX(0);
-	        transform: rotateX(0);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-up .ha-flip-box-back {
-	-webkit-transform: rotateX(-180deg);
-	        transform: rotateX(-180deg);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-up:hover .ha-flip-box-back {
-	-webkit-transform: rotateX(0);
-	        transform: rotateX(0);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-up:hover .ha-flip-box-front {
-	-webkit-transform: rotateX(180deg);
-	        transform: rotateX(180deg);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-down .ha-flip-box-front {
-	-webkit-transform: rotateX(0);
-	        transform: rotateX(0);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-down .ha-flip-box-back {
-	-webkit-transform: rotateX(180deg);
-	        transform: rotateX(180deg);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-down:hover .ha-flip-box-back {
-	-webkit-transform: rotateX(0);
-	        transform: rotateX(0);
-}
-.ha-flip-wrap .ha-flip-box.ha-flip-down:hover .ha-flip-box-front {
-	-webkit-transform: rotateX(-180deg);
-	        transform: rotateX(-180deg);
-}
-
-.ha-flip-wrap.ha-flip-effect-classic .ha-flip-box-back,
-.ha-flip-wrap.ha-flip-effect-classic .ha-flip-box-front {
-	-webkit-transition: -webkit-transform .4s cubic-bezier(.2, .85, .4, 1.275);
-	        transition: -webkit-transform .4s cubic-bezier(.2, .85, .4, 1.275);
-	        transition:         transform .4s cubic-bezier(.2, .85, .4, 1.275);
-	        transition:         transform .4s cubic-bezier(.2, .85, .4, 1.275), -webkit-transform .4s cubic-bezier(.2, .85, .4, 1.275);
-}
-
-.ha-flip-wrap.ha-flip-effect-3d .ha-flip-box-inner-wrapper {
-	-webkit-transform-style: preserve-3d;
-	        transform-style: preserve-3d;
-}
-
-.ha-flip-wrap.ha-flip-effect-3d .ha-flip-box-back,
-.ha-flip-wrap.ha-flip-effect-3d .ha-flip-box-front {
-	-webkit-transition: -webkit-transform .75s ease-in-out;
-	        transition: -webkit-transform .75s ease-in-out;
-	        transition:         transform .75s ease-in-out;
-	        transition:         transform .75s ease-in-out, -webkit-transform .75s ease-in-out;
-	        transition:         transform .75s ease-in-out,-webkit-transform .75s ease-in-out; 
-
-	-webkit-transform-style: preserve-3d;
-	        transform-style: preserve-3d;
-}
-
-.ha-flip-wrap.ha-flip-effect-3d .ha-flip-box-back-inner,
-.ha-flip-wrap.ha-flip-effect-3d .ha-flip-box-front-inner {
-	-webkit-transform: translateZ(50px) scale(.9);
-	        transform: translateZ(50px) scale(.9);
-}
-
-.ha-image-box-body {
-	background: #c36;
-}
-.ha-image-box-body .ha-image-box-inner {
-	padding: 250px 30px 30px 30px;
-}
-.ha-image-box-body .ha-image-box-inner .ha-image-box-content {
-	color: #fff;
 }

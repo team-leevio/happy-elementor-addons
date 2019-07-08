@@ -762,7 +762,9 @@ class Carousel extends Base {
                 }
                 ?>
                 <div class="ha-slider-item">
+                    <?php if ( $image ) : ?>
                     <img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $slide['title'] ); ?>">
+                    <?php endif; ?>
                     <?php if ( $slide['title'] || $slide['subtitle'] ) : ?>
                         <div class="ha-slider-content">
                             <?php if ( $slide['title'] ) : ?>
