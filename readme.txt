@@ -32,8 +32,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 10. **[Caldera Forms](https://happyaddons.com/elementor-caldera-forms-widget-demo/)** - This widget can help you to display your caldera forms to display on your web pages designed with Elementor. [Check demo](https://happyaddons.com/elementor-caldera-forms-widget-demo/)
 11. **[weForms](https://happyaddons.com/elementor-we-forms-widget-demo/)** - Designed forms using weForms plugin and looking for a way to display those on your Elementor powered pages? This is the answer for that. [Check demo](https://happyaddons.com/elementor-we-forms-widget-demo/)
 12. **[Ninja Forms](https://happyaddons.com/elementor-ninja-form-widget-demo/)** - Use this widget to embed forms created using Ninja Forms to display seamlessly on your web pages. Various styling options will help you to look at them even better. [Check demo](https://happyaddons.com/elementor-ninja-form-widget-demo/)
-12. **WPForms** - Use this widget to embed forms created using WPForms to display seamlessly on your web pages. Various styling options will help you to look at them even better.
+12. **[WPForms](https://happyaddons.com/elementor-wpform-widget-demo/)** - Use this widget to embed forms created using WPForms to display seamlessly on your web pages. Various styling options will help you to look at them even better.
 13. **[Dual Button](https://happyaddons.com/elementor-dual-button-widget-demo/)** - DualButton widget allows you to add two flexible and trendy action buttons in your sections, in different styles.
+14. **Testimonial**
 
 ### Included Free Extensions
 **Happy Effects**
@@ -94,8 +95,8 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 = 1.1.0 =
 
 * New: Testimonial Widget
-* New: Added from -> to controller in Floating Effects
-* New: Added hover animation effect in Card Widget image
+* New: Floating Effects from -> to controller
+* New: Hover animation effect in Card Widget image
 * Update: Card Widget button default style
 * Update: Dual Button Widget default style
 * Fix: WP Forms style issue
