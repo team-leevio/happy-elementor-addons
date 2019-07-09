@@ -44,14 +44,76 @@ class Testimonial extends Base {
     }
 
     public function get_keywords() {
-        return [ 'Testimonial', 'testimonials' ];
+        return [ 'testimonial', 'review', 'feedback' ];
     }
 
 	protected function register_content_controls() {
         $this->start_controls_section(
-            '_testimonial_image',
+            '_section_testimonial',
             [
-                'label' => __( 'Image', 'happy-elementor-addons' ),
+                'label' => __( 'Testimonial', 'happy-elementor-addons' ),
+                'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_control(
+            'testimonial',
+            [
+                'label' => __( 'Testimonial', 'happy-elementor-addons' ),
+                'label_block' => true,
+                'type' => Controls_Manager::TEXTAREA,
+                'default' => __( 'Testimonial contents', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type testimonial', 'happy-elementor-addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'align',
+            [
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'right' => [
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'toggle' => false,
+                'default' => 'left',
+                'prefix_class' => 'ha-testimonial--'
+            ]
+        );
+
+        $this->add_control(
+            '_design',
+            [
+                'label' => __( 'Design', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SELECT,
+                'label_block' => false,
+                'options' => [
+                    'basic' => __( 'Default', 'happy-elementor-addons' ),
+                    'bubble' => __( 'Bubble', 'happy-elementor-addons' ),
+                ],
+                'default' => 'basic',
+                'prefix_class' => 'ha-testimonial--'
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_reviewer',
+            [
+                'label' => __( 'Reviewer', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -59,7 +121,7 @@ class Testimonial extends Base {
 		$this->add_control(
             'image',
             [
-                'label' => __( 'Photo', 'happy-elementor-addons' ),
+                'label' => __( 'Image', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -70,59 +132,36 @@ class Testimonial extends Base {
 		$this->add_group_control(
             Group_Control_Image_Size::get_type(),
             [
-                'name' => 'image',
-				'default' => 'thumbnail',
-				'exclude' => [ 'custom' ],
-				'include' => [],
+                'name' => 'thumbnail',
+				'default' => 'full',
+				'exclude' => ['custom'],
                 'separator' => 'none',
             ]
 		);
 
-		$this->end_controls_section();
-
-		$this->start_controls_section(
-            '_testimonial_name',
-            [
-                'label' => __( 'Identity & Detail', 'happy-elementor-addons' ),
-                'tab' => Controls_Manager::TAB_CONTENT,
-            ]
-        );
-
-		$this->add_control(
+        $this->add_control(
             'name',
             [
                 'label' => __( 'Name', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'John Doe', 'happy-elementor-addons' ),
-                'placeholder' => __( 'Name', 'happy-elementor-addons' ),
+                'default' => __( 'Happy', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type Reviewer Name', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
-            'designation',
+            'title',
             [
-                'label' => __( 'Designation', 'happy-elementor-addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Communication Director', 'happy-elementor-addons' ),
-                'placeholder' => __( 'Designation', 'happy-elementor-addons' ),
+                'default' => __( 'CMO, HappyAddons', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type reviewer title', 'happy-elementor-addons' ),
             ]
         );
 
-        $this->add_control(
-            'description',
-            [
-                'label' => __( 'Description', 'happy-elementor-addons' ),
-                'label_block' => true,
-				'type' => Controls_Manager::TEXTAREA,
-				'default' => __( 'Write detail here', 'happy-elementor-addons' ),
-                'placeholder' => __( 'Description', 'happy-elementor-addons' ),
-            ]
-		);
-
 		$this->end_controls_section();
-
     }
 
     protected function register_style_controls() {
@@ -430,87 +469,31 @@ class Testimonial extends Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		$this->add_inline_editing_attributes( 'description', 'none' );
-		$this->add_render_attribute( 'description', 'class', 'ha-testimonial-info' );
+		$this->add_inline_editing_attributes( 'testimonial', 'basic' );
+		$this->add_render_attribute( 'testimonial', 'class', 'ha-testimonial__content' );
 
 		$this->add_inline_editing_attributes( 'name', 'none' );
-		$this->add_render_attribute( 'name', 'class', 'ha-testimonial-author' );
+		$this->add_render_attribute( 'name', 'class', 'ha-testimonial__reviewer-name' );
 
-		$this->add_inline_editing_attributes( 'designation', 'none' );
-		$this->add_render_attribute( 'designation', 'class', 'ha-testimonial-designation' );
+		$this->add_inline_editing_attributes( 'title', 'none' );
+		$this->add_render_attribute( 'title', 'class', 'ha-testimonial__reviewer-title' );
 		?>
 
-		<div <?php echo $this->get_render_attribute_string('description'); ?>>
-			<?php echo $settings['description']; ?>
+		<div <?php echo $this->get_render_attribute_string( 'testimonial' ); ?>>
+			<?php echo $settings['testimonial']; ?>
 		</div>
-		<div class="ha-testimonial-media">
+		<div class="ha-testimonial__reviewer">
+            <?php if ( ! empty( $settings['image']['url'] ) ) : ?>
+                <div class="ha-testimonial__reviewer-thumb">
+                    <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
+                </div>
+            <?php endif; ?>
 
-		<?php if ( ! empty( $settings['image']['url'] ) ) : ?>
-			<div class="ha-testimonial-thumb">
-				<?php
-				echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'image', 'image' );
-				?>
-			</div>
-		<?php endif; ?>
-
-			<div class="ha-testimonial-media-body">
-				<div <?php echo $this->get_render_attribute_string('name'); ?>>
-					<?php echo $settings['name']; ?>
-				</div>
-				<div <?php echo $this->get_render_attribute_string('designation'); ?>>
-					<?php echo $settings['designation']; ?>
-				</div>
+			<div class="ha-testimonial__reviewer-meta">
+				<div <?php echo $this->get_render_attribute_string( 'name' ); ?>><?php echo $settings['name']; ?></div>
+				<div <?php echo $this->get_render_attribute_string( 'title' ); ?>><?php echo $settings['title']; ?></div>
 			</div>
 		</div>
-	<?php
+	    <?php
 	}
-
-	public function _content_template() {
-		?>
-		<#
-		view.addInlineEditingAttributes( 'description', 'none' );
-		view.addRenderAttribute( 'description', 'class', 'ha-testimonial-info' );
-
-		view.addInlineEditingAttributes( 'name', 'none' );
-		view.addRenderAttribute( 'name', 'class', 'ha-testimonial-author' );
-
-		view.addInlineEditingAttributes( 'designation', 'none' );
-		view.addRenderAttribute( 'designation', 'class', 'ha-testimonial-designation' );
-
-		if ( settings.image.url ) {
-			var image = {
-				id: settings.image.id,
-				url: settings.image.url,
-				size: settings.image_size,
-				dimension: settings.image_custom_dimension,
-				model: view.getEditModel()
-			};
-			var image_url = elementor.imagesManager.getImageUrl( image );
-		}
-		#>
-
-		<div {{{ view.getRenderAttributeString( 'description' ) }}}>
-			{{{ settings.description }}}
-		</div>
-		<div class="ha-testimonial-media">
-
-			<# if ( settings.image.url ) { #>
-				<div class="ha-testimonial-thumb">
-					<img src="{{{ image_url }}}" />
-				</div>
-			<# } #>
-
-			<div class="ha-testimonial-media-body">
-				<div {{{ view.getRenderAttributeString( 'name' ) }}}>
-					{{{ settings.name }}}
-				</div>
-				<div {{{ view.getRenderAttributeString( 'designation' ) }}}>
-					{{{ settings.designation }}}
-				</div>
-			</div>
-		</div>
-
-	<?php
-	}
-
 }
