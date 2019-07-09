@@ -165,45 +165,10 @@ class Testimonial extends Base {
     }
 
     protected function register_style_controls() {
-        $this->start_controls_section(
-            '_section_style_content',
-            [
-                'label' => __( 'Content Position', 'happy-elementor-addons' ),
-                'tab'   => Controls_Manager::TAB_STYLE,
-            ]
-		);
-
-		$this->add_control(
-            'content_position',
-            [
-                'label' => __( 'Content horizontal Position', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'label_block' => true,
-                'options' => [
-					'left' => [
-						'title' => __( 'Left', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-h-align-left',
-                    ],
-					'center' => [
-						'title' => __( 'Center', 'happy-elementor-addons' ),
-						'icon' => 'eicon-h-align-center',
-					],
-					'right' => [
-						'title' => __( 'Right', 'happy-elementor-addons' ),
-						'icon' => 'eicon-h-align-right',
-					]
-                ],
-				'toggle' => true,
-				'prefix_class' => 'ha-position--',
-            ]
-        );
-
-		$this->end_controls_section();
-
 		$this->start_controls_section(
             '_section_style_image',
             [
-                'label' => __( 'Image', 'happy-elementor-addons' ),
+                'label' => __( 'Reviewer Image', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -221,7 +186,9 @@ class Testimonial extends Base {
                     ],
 				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-thumb' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-testimonial__reviewer-thumb' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-testimonial--left .ha-testimonial__content:after' => 'left: calc(({{SIZE}}{{UNIT}} / 2) - 13px);',
+                    '{{WRAPPER}}.ha-testimonial--right .ha-testimonial__content:after' => 'right: calc(({{SIZE}}{{UNIT}} / 2) - 13px);',
                 ],
             ]
         );
@@ -239,7 +206,21 @@ class Testimonial extends Base {
                     ],
 				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-thumb' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-testimonial__reviewer-thumb' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_spacing',
+            [
+                'label' => __( 'Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}}.ha-testimonial--left .ha-testimonial__reviewer-meta' => 'padding-left: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-testimonial--right .ha-testimonial__reviewer-meta' => 'padding-right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-testimonial--center .ha-testimonial__reviewer-meta' => 'padding-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -248,7 +229,7 @@ class Testimonial extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'image_border',
-                'selector' => '{{WRAPPER}} .ha-testimonial-thumb > img',
+                'selector' => '{{WRAPPER}} .ha-testimonial__reviewer-thumb > img',
             ]
 		);
 
@@ -259,44 +240,44 @@ class Testimonial extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-thumb > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-testimonial__reviewer-thumb > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
 		);
 
-		$this->add_responsive_control(
-            'image_spacing',
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
             [
-                'label' => __( 'Top Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'default' => [
-					'unit' => 'px',
-					'size' => 15,
-				],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-thumb' => 'margin-top: {{SIZE}}{{UNIT}};',
-                ],
+                'name' => 'image_box_shadow',
+                'selector' => '.ha-testimonial__reviewer-thumb > img',
             ]
-		);
+        );
 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-            '_section_style_title',
+            '_section_style_reviewer',
             [
-                'label' => __( 'Identity', 'happy-elementor-addons' ),
+                'label' => __( 'Reviewer Text', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
 		);
 
-		$this->add_control(
-            'title_color',
+        $this->add_control(
+            '_heading_name',
             [
-                'label' => __( 'Name Text Color', 'happy-elementor-addons' ),
+                'label' => __( 'Name', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
+
+		$this->add_control(
+            'name_color',
+            [
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-author' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-testimonial__reviewer-name' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -304,17 +285,17 @@ class Testimonial extends Base {
 		$this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'title_typography',
-                'label' => __( 'Name Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-testimonial-author',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+                'name' => 'name_typography',
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-testimonial__reviewer-name',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_2,
             ]
 		);
 
 		$this->add_responsive_control(
             'name_spacing',
             [
-                'label' => __( 'Top Spacing', 'happy-elementor-addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'default' => [
@@ -322,101 +303,98 @@ class Testimonial extends Base {
 					'size' => 20,
 				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-author' => 'margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-testimonial__reviewer-name' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
+            ]
+        );
+
+        $this->add_control(
+            '_heading_title',
+            [
+                'label' => __( 'Title', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'after',
             ]
         );
 
 		$this->add_control(
-            'hr',
-            [
-                'type' => Controls_Manager::DIVIDER,
-                'style' => 'thick',
-            ]
-        );
-
-		$this->add_control(
-            'designation_color',
-            [
-                'label' => __( 'Designation Text Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-designation' => 'color: {{VALUE}}',
-                ],
-            ]
-		);
-
-		$this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'designation_typography',
-                'label' => __( 'Designation Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-testimonial-designation',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
-            ]
-		);
-
-		$this->add_responsive_control(
-            'designation_spacing',
-            [
-                'label' => __( 'Top Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'default' => [
-					'unit' => 'px',
-					'size' => 5,
-				],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-designation' => 'margin-top: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-		$this->end_controls_section();
-
-
-		$this->start_controls_section(
-            '_section_style_description',
-            [
-                'label' => __( 'Detail', 'happy-elementor-addons' ),
-                'tab'   => Controls_Manager::TAB_STYLE,
-            ]
-		);
-
-		$this->add_responsive_control(
-            'description_spacing',
-            [
-                'label' => __( 'Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'default' => [
-					'unit' => 'px',
-					'size' => 20,
-				],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-info' => 'padding: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-		$this->add_control(
-            'description_background_color',
-            [
-                'label' => __( 'Background Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-info' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
-
-		$this->add_control(
-            'description_color',
+            'title_color',
             [
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-info' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-testimonial__reviewer-title' => 'color: {{VALUE}}',
+                ],
+            ]
+		);
+
+		$this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'title_typography',
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-testimonial__reviewer-title',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+            ]
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+            '_section_style_testimonial',
+            [
+                'label' => __( 'Testimonial', 'happy-elementor-addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+		);
+
+        $this->add_responsive_control(
+            'testimonial_padding',
+            [
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-testimonial__content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+		$this->add_responsive_control(
+            'description_spacing',
+            [
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 20,
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-testimonial__content' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'testimonial_color',
+            [
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-testimonial__content' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+		$this->add_control(
+            'testimonial_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-testimonial__content' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-testimonial__content:after' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -424,29 +402,21 @@ class Testimonial extends Base {
 		$this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'description_typography',
+                'name' => 'testimonial_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-testimonial-info',
+				'selector' => '{{WRAPPER}} .ha-testimonial__content',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
 		);
 
-		$this->add_group_control(
-            Group_Control_Border::get_type(),
-            [
-                'name' => 'description_border',
-                'selector' => '{{WRAPPER}} .ha-testimonial-info',
-            ]
-		);
-
 		$this->add_responsive_control(
-            'description_border_radius',
+            'testimonial_border_radius',
             [
                 'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial-info' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-testimonial__content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
 		);
@@ -454,16 +424,12 @@ class Testimonial extends Base {
 		$this->add_group_control(
             Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'description_box_shadow',
-                'exclude' => [
-                    'box_shadow_position',
-                ],
-                'selector' => '{{WRAPPER}} .ha-testimonial-info',
+                'name' => 'testimonial_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-testimonial__content',
             ]
         );
 
 		$this->end_controls_section();
-
 	}
 
 	protected function render() {
