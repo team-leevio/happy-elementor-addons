@@ -6,23 +6,26 @@
   display: inline-block;
   font-size: 14px;
   transition: all .3s;
-  font-weight: bold;
 
   &:not(&--link) {
-    background-color: #8c8c8c;
+    background-color: $primary-color;
     color: #fff;
     border-radius: .25rem;
-    padding: .7rem 1.3rem;
-    text-align: center;
+    padding: 15px 25px;
 
     &:hover,
     &:focus {
-      background-color: #242424;
+      background-color: $secondary-color;
     }
   }
 
   &.ha-btn--link {
-    color: #3ca6ff;
+    color: $primary-color;
+
+    &:hover,
+    &:focus {
+      color: $secondary-color;
+    }
   }
 
   &-icon {

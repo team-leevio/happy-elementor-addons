@@ -750,13 +750,13 @@ class Dual_Button extends Base {
         }
 
         // Button connector
-        $this->add_render_attribute( 'button_connector', 'class', 'ha-dual-btn-connector' );
+        $this->add_render_attribute( 'button_connector_text', 'class', 'ha-dual-btn-connector' );
         if ( $settings['button_connector_type'] === 'icon' ) {
-            $this->add_render_attribute( 'button_connector', 'class', 'ha-dual-btn-connector--icon' );
+            $this->add_render_attribute( 'button_connector_text', 'class', 'ha-dual-btn-connector--icon' );
             $connector = sprintf( '<i class="%s"></i>', esc_attr( $settings['button_connector_icon'] ) );
         } else {
-            $this->add_render_attribute( 'button_connector', 'class', 'ha-dual-btn-connector--text' );
-            $this->add_inline_editing_attributes( 'button_connector', 'none' );
+            $this->add_render_attribute( 'button_connector_text', 'class', 'ha-dual-btn-connector--text' );
+            $this->add_inline_editing_attributes( 'button_connector_text', 'none' );
             $connector = esc_html( $settings['button_connector_text'] );
         }
 
@@ -790,7 +790,7 @@ class Dual_Button extends Base {
                 <?php endif; ?>
             </a>
             <?php if ( $settings['button_connector_hide'] !== 'yes' ) : ?>
-                <span <?php echo $this->get_render_attribute_string( 'button_connector' ); ?>><?php echo $connector; ?></span>
+                <span <?php echo $this->get_render_attribute_string( 'button_connector_text' ); ?>><?php echo $connector; ?></span>
             <?php endif; ?>
         </div>
         <div class="ha-dual-btn-wrapper">

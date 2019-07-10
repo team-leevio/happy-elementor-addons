@@ -6,6 +6,7 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
+use Elementor\Group_Control_Css_Filter;
 use Elementor\Scheme_Typography;
 use Elementor\Utils;
 use Elementor\Control_Media;
@@ -468,8 +469,111 @@ class Card extends Base {
                     'box_shadow_position',
                 ],
                 'selector' => '{{WRAPPER}} .ha-card-figure > img',
+                'separator' => 'after'
             ]
         );
+
+        $this->start_controls_tabs(
+            '_tabs_image_effects',
+            [
+                'separator' => 'before'
+            ]
+        );
+
+        $this->start_controls_tab(
+            '_tab_image_effects_normal',
+            [
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'image_opacity',
+            [
+                'label' => __( 'Opacity', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 1,
+                        'min' => 0.10,
+                        'step' => 0.01,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-card-figure > img' => 'opacity: {{SIZE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Css_Filter::get_type(),
+            [
+                'name' => 'image_css_filters',
+                'selector' => '{{WRAPPER}} .ha-card-figure > img',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab( 'hover',
+            [
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'image_opacity_hover',
+            [
+                'label' => __( 'Opacity', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 1,
+                        'min' => 0.10,
+                        'step' => 0.01,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-card-figure:hover > img' => 'opacity: {{SIZE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Css_Filter::get_type(),
+            [
+                'name' => 'image_css_filters_hover',
+                'selector' => '{{WRAPPER}} .ha-card-figure:hover > img',
+            ]
+        );
+
+        $this->add_control(
+            'image_background_hover_transition',
+            [
+                'label' => __( 'Transition Duration', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 3,
+                        'step' => 0.1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-card-figure > img' => 'transition-duration: {{SIZE}}s',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'hover_animation',
+            [
+                'label' => __( 'Hover Animation', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::HOVER_ANIMATION,
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
 
         $this->end_controls_section();
 
@@ -896,7 +1000,7 @@ class Card extends Base {
 
 	protected function render() {
         $settings = $this->get_settings_for_display();
-
+$this->get_settings();
         $this->add_inline_editing_attributes( 'badge_text', 'none' );
         $this->add_render_attribute(
             'badge_text',
@@ -927,7 +1031,6 @@ class Card extends Base {
             $this->add_render_attribute( 'image', 'src', $settings['image']['url'] );
             $this->add_render_attribute( 'image', 'alt', Control_Media::get_image_alt( $settings['image'] ) );
             $this->add_render_attribute( 'image', 'title', Control_Media::get_image_title( $settings['image'] ) );
-            $settings['hover_animation'] = 'disable-animation'; // hack to prevent image hover animation
             ?>
             <figure class="ha-card-figure">
                 <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
@@ -1020,7 +1123,7 @@ class Card extends Base {
 
             var image_url = elementor.imagesManager.getImageUrl( image ); #>
             <figure class="ha-card-figure">
-                <img src="{{ image_url }}">
+                <img class="elementor-animation-{{settings.hover_animation}}" src="{{ image_url }}">
                 <# if (settings.badge_text) { #>
                     <div {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{ settings.badge_text }}</div>
                 <# } #>
