@@ -1312,6 +1312,7 @@ span .ha-review-ratting--star:before,
 	bottom: -14px;
 	color: #fff; 
 	content: "\e911";
+	font-style: normal;
 	font-size: 36px;
 	font-family: "Happy Icons";
 	-webkit-transform: rotate(-180deg);
