@@ -154,7 +154,7 @@ class Image_Box extends Base {
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-image-box-body .ha-image-box-inner' => 'background: {{VALUE}}',
-					'{{WRAPPER}} ha-image-box-body-reverse .ha-image-box-inner' => 'background: {{VALUE}}',
+					'{{WRAPPER}} .ha-image-box-body-reverse:hover .ha-image-box-inner' => 'background: {{VALUE}}',
 				],
 			]
 		);
