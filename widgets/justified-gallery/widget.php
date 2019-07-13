@@ -113,18 +113,6 @@ class Justified_Gallery extends Base {
         );
 
         $this->add_control(
-            'enable_popup',
-            [
-                'label' => __( 'Enable Popup?', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
-                'label_off' => __( 'No', 'happy-elementor-addons' ),
-                'return_value' => 'yes',
-                'description' => __( 'Enable popup to view the gallery images in a popup window', 'happy-elementor-addons' )
-            ]
-        );
-
-        $this->add_control(
             'show_filter',
             [
                 'label' => __( 'Show Filter?', 'happy-elementor-addons' ),
@@ -659,9 +647,8 @@ class Justified_Gallery extends Base {
         <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
             <?php foreach ( $gallery['items'] as $id => $filters ) :
                 $caption = $settings['show_caption'] ? 'title="' . esc_attr( wp_get_attachment_caption( $id ) ) . '"' : '';
-                $popup_link = $settings['enable_popup'] ? 'href="' . esc_url( wp_get_attachment_image_url( $id, 'large' ) ) . '"' : '';
                 ?>
-                <a class="ha-justified-gallery-item <?php echo esc_attr( implode( ' ', $filters ) ); ?>" <?php echo $caption; ?> <?php echo $popup_link; ?>>
+                <a class="ha-justified-gallery-item <?php echo esc_attr( implode( ' ', $filters ) ); ?>" <?php echo $caption; ?>>
                     <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'alt' => $caption ] ); ?>
                 </a>
             <?php endforeach; ?>
