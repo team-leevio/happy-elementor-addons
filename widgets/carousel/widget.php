@@ -103,25 +103,21 @@ class Carousel extends Base {
                         'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'title' => 'Carousel Item 1'
                     ],
                     [
                         'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'title' => 'Carousel Item 2'
                     ],
                     [
                         'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'title' => 'Carousel Item 3'
                     ],
                     [
                         'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'title' => 'Carousel Item 4'
                     ]
                 ]
             ]
@@ -291,11 +287,35 @@ class Carousel extends Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'item_margin',
+            [
+                'label' => __( 'Margin', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .slick-slide' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'item_padding',
+            [
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .slick-slide > div' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->add_group_control(
             Group_Control_Border::get_type(),
             [
                 'name' => 'item_border',
-                'selector' => '{{WRAPPER}} .ha-slider-item',
+                'selector' => '{{WRAPPER}} .slick-slide > div',
             ]
         );
 
@@ -306,7 +326,7 @@ class Carousel extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-slider-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
+                    '{{WRAPPER}} .slick-slide > div' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
                 ],
             ]
         );
@@ -762,7 +782,9 @@ class Carousel extends Base {
                 }
                 ?>
                 <div class="ha-slider-item">
+                    <?php if ( $image ) : ?>
                     <img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $slide['title'] ); ?>">
+                    <?php endif; ?>
                     <?php if ( $slide['title'] || $slide['subtitle'] ) : ?>
                         <div class="ha-slider-content">
                             <?php if ( $slide['title'] ) : ?>

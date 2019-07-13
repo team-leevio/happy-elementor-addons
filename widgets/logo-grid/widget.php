@@ -6,19 +6,16 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
+use Elementor\Group_Control_Css_Filter;
 use Elementor\Repeater;
-use Elementor\Control_Media;
 use Elementor\Controls_Manager;
-use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
-use Elementor\Group_Control_Typography;
 use Elementor\Utils;
 
 defined( 'ABSPATH' ) || die();
 
-class Logo_Grid extends Base
-{
+class Logo_Grid extends Base {
 
     /**
      * Get widget title.
@@ -28,8 +25,7 @@ class Logo_Grid extends Base
      *
      * @return string Widget title.
      */
-    public function get_title()
-    {
+    public function get_title() {
         return __('Logo Grid', 'happy-elementor-addons');
     }
 
@@ -41,13 +37,11 @@ class Logo_Grid extends Base
      *
      * @return string Widget icon.
      */
-    public function get_icon()
-    {
+    public function get_icon() {
         return 'hm hm-logo-grid';
     }
 
-    public function get_keywords()
-    {
+    public function get_keywords() {
         return ['logo', 'grid', 'brand', 'client'];
     }
 
@@ -139,21 +133,22 @@ class Logo_Grid extends Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'columns',
             [
                 'label' => __( 'Columns', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'default' => [
-                    'size' => 3,
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    2 => __( '2 Columns', 'happy-elementor-addons' ),
+                    3 => __( '3 Columns', 'happy-elementor-addons' ),
+                    4 => __( '4 Columns', 'happy-elementor-addons' ),
+                    5 => __( '5 Columns', 'happy-elementor-addons' ),
+                    6 => __( '6 Columns', 'happy-elementor-addons' ),
                 ],
-                'range' => [
-                    'px' => [
-                        'min' => 2,
-                        'max' => 6,
-                    ],
-                ],
+                'desktop_default' => 4,
+                'tablet_default' => 2,
+                'mobile_default' => 2,
+                'prefix_class' => 'ha-logo-grid--col-%s',
             ]
         );
 
@@ -197,16 +192,16 @@ class Logo_Grid extends Base
                 'size_units' => ['px'],
                 'selectors' => [
                     '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item' => 'border-right-width: {{SIZE}}{{UNIT}}; border-bottom-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-2 > .ha-logo-grid-item:nth-child(2n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-3 > .ha-logo-grid-item:nth-child(3n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-4 > .ha-logo-grid-item:nth-child(4n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-5 > .ha-logo-grid-item:nth-child(5n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-6 > .ha-logo-grid-item:nth-child(6n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-2 > .ha-logo-grid-item:nth-child(-n+2)' => 'border-top-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-3 > .ha-logo-grid-item:nth-child(-n+3)' => 'border-top-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-4 > .ha-logo-grid-item:nth-child(-n+4)' => 'border-top-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-5 > .ha-logo-grid-item:nth-child(-n+5)' => 'border-top-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-6 > .ha-logo-grid-item:nth-child(-n+6)' => 'border-top-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(-n+2)' => 'border-top-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(-n+3)' => 'border-top-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(-n+4)' => 'border-top-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(-n+5)' => 'border-top-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(-n+6)' => 'border-top-width: {{SIZE}}{{UNIT}};',
 
                     '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-item' => 'border-top-width: {{SIZE}}{{UNIT}}; border-right-width: {{SIZE}}{{UNIT}};',
 
@@ -238,7 +233,7 @@ class Logo_Grid extends Base
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-logo-grid-item' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-logo-grid-figure' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -253,30 +248,30 @@ class Logo_Grid extends Base
                     '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-wrapper, {{WRAPPER}}.ha-logo-grid--box .ha-logo-grid-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item:first-child' => 'border-top-left-radius: {{TOP}}{{UNIT}};',
                     '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item:last-child' => 'border-bottom-right-radius: {{BOTTOM}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-2 > .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-2 > .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-3 > .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-3 > .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-4 > .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-4 > .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-5 > .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-5 > .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-6 > .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid--col-6 > .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
 
                     '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-item:first-child' => 'border-top-left-radius: {{TOP}}{{UNIT}};',
                     '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-item:last-child' => 'border-bottom-right-radius: {{BOTTOM}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-2 > .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-2 > .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-3 > .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-3 > .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-4 > .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-4 > .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-5 > .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-5 > .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-6 > .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid--col-6 > .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-2 .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-3 .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-4 .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-5 .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-6 .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -292,7 +287,110 @@ class Logo_Grid extends Base
             ]
         );
 
+
+        $this->start_controls_tabs(
+            '_tabs_image_effects',
+            [
+                'separator' => 'before'
+            ]
+        );
+
+        $this->start_controls_tab(
+            '_tab_image_effects_normal',
+            [
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'image_opacity',
+            [
+                'label' => __( 'Opacity', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 1,
+                        'min' => 0.10,
+                        'step' => 0.01,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-logo-grid-figure > img' => 'opacity: {{SIZE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Css_Filter::get_type(),
+            [
+                'name' => 'image_css_filters',
+                'selector' => '{{WRAPPER}} .ha-logo-grid-figure > img',
+            ]
+        );
+
         $this->end_controls_tab();
+
+        $this->start_controls_tab( 'hover',
+            [
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'image_opacity_hover',
+            [
+                'label' => __( 'Opacity', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 1,
+                        'min' => 0.10,
+                        'step' => 0.01,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-logo-grid-figure:hover > img' => 'opacity: {{SIZE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Css_Filter::get_type(),
+            [
+                'name' => 'image_css_filters_hover',
+                'selector' => '{{WRAPPER}} .ha-logo-grid-figure:hover > img',
+            ]
+        );
+
+        $this->add_control(
+            'image_bg_hover_transition',
+            [
+                'label' => __( 'Transition Duration', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 3,
+                        'step' => 0.1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-logo-grid-figure:hover > img' => 'transition-duration: {{SIZE}}s',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'hover_animation',
+            [
+                'label' => __( 'Hover Animation', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::HOVER_ANIMATION,
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
     }
 
     protected function render() {
@@ -301,15 +399,9 @@ class Logo_Grid extends Base
         if ( empty($settings['logo_list'] ) ) {
             return;
         }
-
-        $this->add_render_attribute( 'container', 'class', [
-            'ha-logo-grid-wrapper',
-            'ha-logo-grid--col-' . $settings['columns']['size'],
-        ] );
-
         ?>
 
-        <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
+        <div class="ha-logo-grid-wrapper">
             <?php
             foreach ( $settings['logo_list'] as $index => $item ) :
                 $image = wp_get_attachment_image_url( $item['image']['id'], $settings['thumbnail_size'] );
@@ -319,6 +411,7 @@ class Logo_Grid extends Base
                 $repeater_key = 'grid_item' . $index;
                 $tag = 'div';
                 $this->add_render_attribute( $repeater_key, 'class', 'ha-logo-grid-item' );
+
                 if ( $item['link']['url'] ) {
                     $tag = 'a';
                     $this->add_render_attribute( $repeater_key, 'class', 'ha-logo-grid-link' );
@@ -327,47 +420,14 @@ class Logo_Grid extends Base
                     $this->add_render_attribute( $repeater_key, 'href', esc_url( $item['link']['url'] ) );
                 }
                 ?>
-                <<?php echo $tag; ?> <?php echo $this->get_render_attribute_string( $repeater_key ); ?>>
-                    <img class="ha-logo-grid-img" src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr( $item['name'] ); ?>">
+                <<?php echo $tag; ?> <?php $this->print_render_attribute_string( $repeater_key ); ?>>
+                    <figure class="ha-logo-grid-figure elementor-animation-<?php echo esc_attr( $settings['hover_animation'] ); ?>">
+                        <img class="ha-logo-grid-img" src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $item['name'] ); ?>">
+                    </figure>
                 </<?php echo $tag; ?>>
             <?php endforeach; ?>
         </div>
 
         <?php
     }
-
-    /*
-    public function _content_template() {
-        ?>
-
-        <div class="ha-logo ha-logo-grid-{{{ settings.columns.size }}}">
-            <#
-            _.each( settings.logo_list, function( list, index ) {
-                var image = {
-                    id: list.logo_image.id,
-                    url: list.logo_image.url,
-                    size: settings.thumbnail,
-                    dimension: list.thumbnail_custom_dimension,
-                    model: view.getEditModel()
-                };
-                var image_url = elementor.imagesManager.getImageUrl( image );
-                #>
-                <div class="ha-logo-item">
-                    <div class="ha-logo-item-thumb">
-                        <# if( list.logo_link ) { #>
-                            <a href="{{{ list.logo_link }}}">
-                                <img src="{{{ image_url }}}" alt="{{{ list.logo_name }}}">
-                            </a>
-                        <# } else { #>
-                            <img src="{{{ image_url }}}" alt="{{{ list.logo_name }}}">
-                        <# } #>
-                    </div>
-                </div>
-            <#
-            });
-            #>
-        </div>
-    <?php
-    }
-    */
 }

@@ -6,6 +6,9 @@ use Elementor\Plugin as Elementor;
 defined( 'ABSPATH' ) || die();
 
 class Widgets {
+    /**
+     * Initialize
+     */
     public static function init() {
         add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register'] );
     }
@@ -46,12 +49,23 @@ class Widgets {
 			'testimonial',
 //            'heading-detail',
  	        'number',
+<<<<<<< HEAD
 //            'image-box',
             'flip-box',
+=======
+        //   'image-box',
+
+>>>>>>> a8c53bd0dc6a1263719ff4b8dbe9f42f03f9d0df
         ];
 
         foreach ( $widgets as $widget ) {
-            require( HAPPY_DIR_PATH . 'widgets/' . $widget . '/widget.php' );
+            $widget_file = HAPPY_DIR_PATH . 'widgets/' . $widget . '/widget.php';
+
+            if ( ! is_readable( $widget_file ) ) {
+                continue;
+            }
+
+            include( $widget_file );
 
             $class_name = str_replace( '-', '_', $widget );
             $class_name = 'Happy_Addons\Elementor\Widget\\' . $class_name;
