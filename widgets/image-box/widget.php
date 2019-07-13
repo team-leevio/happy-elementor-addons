@@ -167,6 +167,14 @@ class Image_Box extends Base {
 				'label' => __( 'Paddding', 'plugin-domain' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
+				'default' => [
+								'top' => '250',
+								'right' => '30',
+								'bottom' => '70',
+								'left' => '30',
+								'unit' => 'px',
+								'isLinked' => '',
+						],
 				'selectors' => [
 					'{{WRAPPER}} .ha-image-box-body .ha-image-box-inner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -355,7 +363,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_hover_style',
 			[
-				'label' => __( 'Show Text by Hover', 'happy_addons' ),
+				'label' => __( 'Display Text on hover', 'happy_addons' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
 				'label_on' => __( 'On', 'your-plugin' ),
 				'label_off' => __( 'Off', 'your-plugin' ),
@@ -368,7 +376,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_hover_style_animation',
 			[
-				'label' => __( 'Hover text animation', 'happy_addons' ),
+				'label' => __( 'Text animation', 'happy_addons' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
 				'label_on' => __( 'On', 'your-plugin' ),
 				'label_off' => __( 'Off', 'your-plugin' ),

@@ -1770,7 +1770,6 @@ span .ha-review-ratting--star:before,
 	        transition-property: transform,filter,opacity,-webkit-transform,-webkit-filter;
 }
 .ha-image-box-body .ha-image-box-background .ha-image-box-inner {
-	padding: 250px 30px 70px 30px;
 	background: rgba(0, 0, 0, .2);
 	-webkit-transition: background .2s ease-in-out;
 	        transition: background .2s ease-in-out;
@@ -1843,7 +1842,6 @@ span .ha-review-ratting--star:before,
 	        transform: scale(1.05, 1.05);
 }
 .ha-image-box-body-reverse .ha-image-box-background .ha-image-box-inner {
-	padding: 250px 30px 70px 30px;
 	background: transparent;
 	-webkit-transition: background .2s ease-in-out;
 	        transition: background .2s ease-in-out;
