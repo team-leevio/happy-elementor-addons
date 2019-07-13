@@ -6,8 +6,18 @@
             </p>
             <div class="checkbox-wrapper">
                 <div class="ha-checkbox">
-                    <label for="card"><?php _e( 'Card', 'happy-elementor-addons' ); ?></label>
-                    <input type="checkbox" id="card" name="card">
+                    <?php _e( 'Card', 'happy-elementor-addons' ); ?>
+                    <label class="ha-switch" for="card">
+                        <input type="checkbox" checked id="card" name="card">
+                        <span class="ha-slider round"></span>
+                    </label>
+                </div>
+                <div class="ha-checkbox">
+                    <?php _e( 'Info Box', 'happy-elementor-addons' ); ?>
+                    <label class="ha-switch" for="info">
+                        <input type="checkbox" id="info" name="info">
+                        <span class="ha-slider round"></span>
+                    </label>
                 </div>
             </div>
         </div>

@@ -24,15 +24,24 @@
   }
 
   &--left {
-    background-color: #3266fd;
+    background-color: $primary-color;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
+
+    &:hover,
+    &:focus {
+      background-color: darken($primary-color, 10%);
+    }
   }
 
   &--right {
-    background-color: #27374c;
+    background-color: $secondary-color;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
+    &:hover,
+    &:focus {
+      background-color: darken($secondary-color, 10%);
+    }
   }
 
   &-connector {

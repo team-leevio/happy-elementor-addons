@@ -59,7 +59,25 @@ class Happy_Effects {
             [
                 'label' => __( 'Translate X', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+                'default' => [
+                    'sizes' => [
+                        'from' => 0,
+                        'to' => 5,
+                    ],
+                    'unit' => 'px',
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 100,
+                    ]
+                ],
+                'labels' => [
+                    __( 'From', 'happy-elementor-addons' ),
+                    __( 'To', 'happy-elementor-addons' ),
+                ],
+                'scales' => 1,
+                'handles' => 'range',
                 'condition' => [
                     'ha_floating_fx_translate_toggle' => 'yes',
                     'ha_floating_fx' => 'yes',
@@ -74,7 +92,25 @@ class Happy_Effects {
             [
                 'label' => __( 'Translate Y', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+                'default' => [
+                    'sizes' => [
+                        'from' => 0,
+                        'to' => 5,
+                    ],
+                    'unit' => 'px',
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 100,
+                    ]
+                ],
+                'labels' => [
+                    __( 'From', 'happy-elementor-addons' ),
+                    __( 'To', 'happy-elementor-addons' ),
+                ],
+                'scales' => 1,
+                'handles' => 'range',
                 'condition' => [
                     'ha_floating_fx_translate_toggle' => 'yes',
                     'ha_floating_fx' => 'yes',
@@ -153,13 +189,25 @@ class Happy_Effects {
             [
                 'label' => __( 'Rotate X', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+                'default' => [
+                    'sizes' => [
+                        'from' => 0,
+                        'to' => 45,
+                    ],
+                    'unit' => 'px',
+                ],
                 'range' => [
                     'px' => [
-                        'min' => 0,
-                        'max' => 360,
+                        'min' => -180,
+                        'max' => 180,
                     ]
                 ],
+                'labels' => [
+                    __( 'From', 'happy-elementor-addons' ),
+                    __( 'To', 'happy-elementor-addons' ),
+                ],
+                'scales' => 1,
+                'handles' => 'range',
                 'condition' => [
                     'ha_floating_fx_rotate_toggle' => 'yes',
                     'ha_floating_fx' => 'yes',
@@ -174,13 +222,25 @@ class Happy_Effects {
             [
                 'label' => __( 'Rotate Y', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+                'default' => [
+                    'sizes' => [
+                        'from' => 0,
+                        'to' => 45,
+                    ],
+                    'unit' => 'px',
+                ],
                 'range' => [
                     'px' => [
-                        'min' => 0,
-                        'max' => 360,
+                        'min' => -180,
+                        'max' => 180,
                     ]
                 ],
+                'labels' => [
+                    __( 'From', 'happy-elementor-addons' ),
+                    __( 'To', 'happy-elementor-addons' ),
+                ],
+                'scales' => 1,
+                'handles' => 'range',
                 'condition' => [
                     'ha_floating_fx_rotate_toggle' => 'yes',
                     'ha_floating_fx' => 'yes',
@@ -195,13 +255,25 @@ class Happy_Effects {
             [
                 'label' => __( 'Rotate Z', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+                'default' => [
+                    'sizes' => [
+                        'from' => 0,
+                        'to' => 45,
+                    ],
+                    'unit' => 'px',
+                ],
                 'range' => [
                     'px' => [
-                        'min' => 0,
-                        'max' => 360,
+                        'min' => -180,
+                        'max' => 180,
                     ]
                 ],
+                'labels' => [
+                    __( 'From', 'happy-elementor-addons' ),
+                    __( 'To', 'happy-elementor-addons' ),
+                ],
+                'scales' => 1,
+                'handles' => 'range',
                 'condition' => [
                     'ha_floating_fx_rotate_toggle' => 'yes',
                     'ha_floating_fx' => 'yes',
@@ -280,14 +352,26 @@ class Happy_Effects {
             [
                 'label' => __( 'Scale X', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+                'default' => [
+                    'sizes' => [
+                        'from' => 1,
+                        'to' => 1.2,
+                    ],
+                    'unit' => 'px',
+                ],
                 'range' => [
                     'px' => [
                         'min' => 0,
-                        'max' => 10,
+                        'max' => 5,
                         'step' => .1
                     ]
                 ],
+                'labels' => [
+                    __( 'From', 'happy-elementor-addons' ),
+                    __( 'To', 'happy-elementor-addons' ),
+                ],
+                'scales' => 1,
+                'handles' => 'range',
                 'condition' => [
                     'ha_floating_fx_scale_toggle' => 'yes',
                     'ha_floating_fx' => 'yes',
@@ -302,14 +386,26 @@ class Happy_Effects {
             [
                 'label' => __( 'Scale Y', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+                'default' => [
+                    'sizes' => [
+                        'from' => 1,
+                        'to' => 1.2,
+                    ],
+                    'unit' => 'px',
+                ],
                 'range' => [
                     'px' => [
                         'min' => 0,
-                        'max' => 10,
+                        'max' => 5,
                         'step' => .1
                     ]
                 ],
+                'labels' => [
+                    __( 'From', 'happy-elementor-addons' ),
+                    __( 'To', 'happy-elementor-addons' ),
+                ],
+                'scales' => 1,
+                'handles' => 'range',
                 'condition' => [
                     'ha_floating_fx_scale_toggle' => 'yes',
                     'ha_floating_fx' => 'yes',
