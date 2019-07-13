@@ -177,6 +177,7 @@ class Image_Box extends Base {
 						],
 				'selectors' => [
 					'{{WRAPPER}} .ha-image-box-body .ha-image-box-inner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-image-box-body-reverse .ha-image-box-inner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
