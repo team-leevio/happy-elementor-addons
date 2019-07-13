@@ -54,7 +54,7 @@ class Image_Box extends Base {
 	 */
 	protected function register_content_controls() {
 		$this->start_controls_section(
-			'image_box_image',
+			'_section_image_box_image',
 			[
 				'label' => __( 'Backgroud', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
@@ -101,7 +101,7 @@ class Image_Box extends Base {
 		);
 
 		$this->add_control(
-			'image_box_sub_title',
+			'_heading_image_box_sub_title',
 			[
 				'label' => __( 'Sub Heading', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
@@ -111,7 +111,7 @@ class Image_Box extends Base {
 		);
 
 		$this->add_control(
-			'image_box_title',
+			'_heading_image_box_title',
 			[
 				'label' => __( 'Heading', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
@@ -140,7 +140,7 @@ class Image_Box extends Base {
 	protected function register_style_controls() {
 
 		$this->start_controls_section(
-			'image_box_background_style',
+			'_section_style_image_box_background_style',
 			[
 				'label' => __( 'Background Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -187,7 +187,7 @@ class Image_Box extends Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'image_box_sub_title_style',
+			'_section_style_image_box_sub_title_style',
 			[
 				'label' => __( 'Sub Heading Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -258,7 +258,7 @@ class Image_Box extends Base {
 
 
 		$this->start_controls_section(
-			'image_box_title_style',
+			'_section_style_image_box_title_style',
 			[
 				'label' => __( 'Heading Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -308,7 +308,7 @@ class Image_Box extends Base {
 
 
 		$this->start_controls_section(
-			'image_box_description_style',
+			'_section_style_image_box_description_style',
 			[
 				'label' => __( 'Description Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -353,7 +353,7 @@ class Image_Box extends Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'image_box_hover',
+			'_section_style_image_box_hover',
 			[
 				'label' => __( 'Text Hover Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
