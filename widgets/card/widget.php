@@ -32,15 +32,6 @@ class Card extends Base {
         return __( 'Card', 'happy-elementor-addons' );
     }
 
-    protected function get_presets() {
-        return [
-            'design-1' => __( 'Design 1', 'happy-elementor-addons' ),
-            'design-2' => __( 'Design 2', 'happy-elementor-addons' ),
-            'design-3' => __( 'Design 3', 'happy-elementor-addons' ),
-            'design-4' => __( 'Design 4', 'happy-elementor-addons' ),
-        ];
-    }
-
     /**
      * Get widget icon.
      *
@@ -1000,7 +991,7 @@ class Card extends Base {
 
 	protected function render() {
         $settings = $this->get_settings_for_display();
-$this->get_settings();
+
         $this->add_inline_editing_attributes( 'badge_text', 'none' );
         $this->add_render_attribute(
             'badge_text',

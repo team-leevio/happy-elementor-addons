@@ -55,44 +55,8 @@
         });
     }
 
-    function initPresetHandler(panel, model) {
-        if (model.get('widgetType').indexOf('ha-') === -1) {
-            return;
-        }
-        var controller = elementor.getPanelView().getCurrentPageView().$childViewContainer.find('[data-setting="_preset"]');
-        controller.on('change.haPresetChange', function(e) {
-            e.stopPropagation();
-
-            view.copy();
-
-            var d = elementorCommon.storage.get('transfer');
-
-            // $.get(
-            //     happy.ajax_url,
-            //     {
-            //         'action': 'ha_get_preset',
-            //         'name': $(this).val(),
-            //         'widget': model.get('widgetType'),
-            //         'nonce': happy.nonce
-            //     }
-            // ).done(function(res) {
-            //     console.log(res);
-            //     model.setSetting(JSON.parse(res.data));
-            // });
-        });
-    }
-
     elementor.hooks.addAction('panel/open_editor/widget', function(panel, model) {
         initCssTransformEffects(model);
-        initPresetHandler(panel, model);
     });
-
-    // elementor.hooks.addFilter('element/view', function(ChildView, model, scope) {
-    //     if (model.get('elType') === 'column') {
-    //         console.log(scope);
-    //     }
-    //
-    //     return ChildView;
-    // });
 
 }(elementor, jQuery, window));

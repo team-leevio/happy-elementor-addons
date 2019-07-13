@@ -1,30 +1,32 @@
 .ha-gallery-filter {
   list-style: none;
-  margin-bottom: 2rem;
+  margin: 0 10px 2rem;
   padding: 0;
 
   > li {
     display: inline-block;
-    margin-right: 5px;
-    margin-bottom: 20px;
-    margin-left: 5px;
+    margin-bottom: 10px;
+
+    &:not(:last-child) {
+      margin-right: 10px
+    }
 
     > button {
-      color: #000;
+      display: block;
+      color: $primary-color;
+      border: 2px solid $primary-color;
       background-color: transparent;
-      text-transform: capitalize;
-      font-size: 16px;
-      border: 1px solid transparent;
-      padding: .3rem 1rem;
+      border-radius: .25rem;
+      padding: 10px 25px;
+      font-size: 14px;
       transition: all .3s;
       cursor: pointer;
+      text-transform: uppercase;
 
-      &:hover {
-        color: #b0b0b0;
-        border-color: #b0b0b0;
-      }
-
+      &:hover,
       &:focus {
+        color: #fff;
+        background-color: $primary-color;
         outline: 0;
       }
     }
@@ -32,8 +34,8 @@
 
   > .ha-filter-active {
     > button {
-      color: #b0b0b0;
-      border-color: #b0b0b0;
+      color: #fff;
+      background-color: $primary-color;
     }
   }
 }

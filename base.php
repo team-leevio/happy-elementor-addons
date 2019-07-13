@@ -177,12 +177,8 @@ class Base {
      * @access public
      */
     public function register_controls() {
-        require( __DIR__ . '/controls/select-preview.php' );
         require( __DIR__ . '/controls/foreground.php' );
-        $select_preview = __NAMESPACE__ . '\Controls\Select_Preview';
         $foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
-        \Elementor\Plugin::instance()->controls_manager->register_control( 'select_preview', new $select_preview() );
         \Elementor\Plugin::instance()->controls_manager->add_group_control( $foreground::get_type(), new $foreground() );
     }
-
 }

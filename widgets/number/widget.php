@@ -42,7 +42,7 @@ class Number extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-testimonial';
+		return 'hm hm-madel';
 	}
 
 	public function get_keywords() {
@@ -54,7 +54,7 @@ class Number extends Base {
 	 */
 	protected function register_content_controls() {
 		$this->start_controls_section(
-			'number_content',
+			'_section_number',
 			[
 				'label' => __( 'Number', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
@@ -65,14 +65,11 @@ class Number extends Base {
 			'number_text',
 			[
 				'label' => __( 'Number Text', 'happy_addons' ),
-				'label_block' => true,
+				'label_block' => false,
 				'type' => Controls_Manager::TEXT,
-				'default' => __( '1', 'happy_addons' ),
+				'default' => 1
 			]
 		);
-
-
-
 
 		$this->end_controls_section();
 	}
@@ -81,14 +78,24 @@ class Number extends Base {
 	 * Register styles related controls
 	 */
 	protected function register_style_controls() {
-
 		$this->start_controls_section(
-			'number_style',
+			'_section_style_number',
 			[
 				'label' => __( 'Text Style', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
+
+        $this->add_control(
+            'number_text_color',
+            [
+                'label' => __( 'Text Color', 'happy_addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-number-border' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
@@ -96,17 +103,6 @@ class Number extends Base {
 				'name' => 'number_text_typography',
 				'label' => __( 'Typography', 'happy_addons' ),
 				'selector' => '{{WRAPPER}} .ha-number-border',
-			]
-		);
-
-		$this->add_control(
-			'number_text_color',
-			[
-				'label' => __( 'Text Color', 'happy_addons' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-number-border' => 'color: {{VALUE}}',
-				],
 			]
 		);
 
@@ -118,9 +114,6 @@ class Number extends Base {
 				'selector' => '{{WRAPPER}} .ha-number-border span',
 			]
 		);
-
-
-
 
 		$this->add_control(
 			'number_text_rotate',
@@ -149,18 +142,9 @@ class Number extends Base {
 
 				],
 			]
-		);		
-
-
-
-
-
-
-
-
+		);
 
 		$this->end_controls_section();
-
 
 		$this->start_controls_section(
 			'number_background_style',
@@ -207,8 +191,6 @@ class Number extends Base {
 			]
 		);
 
- 
-
 		$this->add_control(
 			'number_padding',
 			[
@@ -242,8 +224,6 @@ class Number extends Base {
 			]
 		);
 
-
-
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			[
@@ -252,8 +232,6 @@ class Number extends Base {
 				'selector' => '{{WRAPPER}} .ha-number-border',
 			]
 		);
-
-
 
 		$this->add_responsive_control(
 			'number_align',
@@ -276,29 +254,24 @@ class Number extends Base {
 				],
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .ha-number-border'  => '{{VALUE}}'
+					'{{WRAPPER}} .ha-number-border'  => '{{VALUE}};'
 				]
-
 			]
 		);
 
-
 		$this->end_controls_section();
-
-
 	}
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-
 		?>
+
 		<div class="ha-number-body">
 			<div class="ha-number-border">
 				<span class="ha-number-text"><?php echo esc_html( $settings['number_text'] ); ?></span>
 			</div>
 		</div>
+
 		<?php
 	}
-
-
 }

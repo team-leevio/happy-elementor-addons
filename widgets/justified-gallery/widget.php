@@ -113,18 +113,6 @@ class Justified_Gallery extends Base {
         );
 
         $this->add_control(
-            'enable_popup',
-            [
-                'label' => __( 'Enable Popup?', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
-                'label_off' => __( 'No', 'happy-elementor-addons' ),
-                'return_value' => 'yes',
-                'description' => __( 'Enable popup to view the gallery images in a popup window', 'happy-elementor-addons' )
-            ]
-        );
-
-        $this->add_control(
             'show_filter',
             [
                 'label' => __( 'Show Filter?', 'happy-elementor-addons' ),
@@ -241,13 +229,14 @@ class Justified_Gallery extends Base {
             ]
         );
 
-        $this->start_controls_tabs( '_tab_style_gallery' );
-        $this->start_controls_tab(
-            '_tab_style_image',
+        $this->add_control(
+            '_heading_image',
             [
-                'label' => __( 'Image', 'happy-elementor-addons' ),
+                'label' => __( 'Image', 'plugin-name' ),
+                'type' => Controls_Manager::HEADING,
             ]
         );
+
         $this->add_responsive_control(
             'image_border_radius',
             [
@@ -270,13 +259,16 @@ class Justified_Gallery extends Base {
                 'selector' => '{{WRAPPER}} .ha-justified-gallery-item'
             ]
         );
-        $this->end_controls_tab();
-        $this->start_controls_tab(
-            '_tab_style_caption',
+
+        $this->add_control(
+            '_heading_caption',
             [
-                'label' => __( 'Caption', 'happy-elementor-addons' ),
+                'label' => __( 'Caption', 'plugin-name' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
             ]
         );
+
         $this->add_responsive_control(
             'caption_padding',
             [
@@ -321,9 +313,6 @@ class Justified_Gallery extends Base {
             ]
         );
 
-        $this->end_controls_tab();
-        $this->end_controls_tabs();
-
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -334,10 +323,18 @@ class Justified_Gallery extends Base {
             ]
         );
 
+        $this->add_control(
+            '_heading_menu',
+            [
+                'label' => __( 'Menu', 'plugin-name' ),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
+
         $this->add_responsive_control(
             'menu_margin',
             [
-                'label' => __( 'Menu Margin', 'happy-elementor-addons' ),
+                'label' => __( 'Margin', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -346,50 +343,35 @@ class Justified_Gallery extends Base {
             ]
         );
 
-        $this->add_responsive_control(
-            'button_align',
+        $this->add_control(
+            '_heading_buttons',
             [
-                'label' => __( 'Button Align', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => __( 'Left', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-left',
-                    ],
-                    'center' => [
-                        'title' => __( 'Center', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-center',
-                    ],
-                    'right' => [
-                        'title' => __( 'Right', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-right',
-                    ],
-                ],
-                'desktop_default' => 'left',
-                'toggle' => false,
-            ]
-        );
-
-        $this->add_responsive_control(
-            'button_spacing',
-            [
-                'label' => __( 'Button Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-gallery-filter > li:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
-                ],
+                'label' => __( 'Filter Buttons', 'plugin-name' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
             ]
         );
 
         $this->add_responsive_control(
             'button_padding',
             [
-                'label' => __( 'Button Padding', 'happy-elementor-addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-gallery-filter > li > button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_spacing',
+            [
+                'label' => __( 'Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter > li:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -434,7 +416,34 @@ class Justified_Gallery extends Base {
             ]
         );
 
-        $this->start_controls_tabs( '_tab_style_button' );
+        $this->add_responsive_control(
+            'button_align',
+            [
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'right' => [
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'desktop_default' => 'left',
+                'toggle' => false,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter' => 'text-align: {{VALUE}};'
+                ]
+            ]
+        );
+
+        $this->start_controls_tabs( '_tabs_style_button' );
 
         $this->start_controls_tab(
             '_tab_button_normal',
@@ -481,7 +490,7 @@ class Justified_Gallery extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button:hover, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button:focus' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -492,7 +501,7 @@ class Justified_Gallery extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button:hover, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button:focus' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -506,7 +515,52 @@ class Justified_Gallery extends Base {
                     'button_border_border!' => '',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button:hover, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button:focus' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            '_tab_button_active',
+            [
+                'label' => __( 'Active', 'happy-elementor-addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'button_active_color',
+            [
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_active_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_active_border_color',
+            [
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'condition' => [
+                    'button_border_border!' => '',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -593,9 +647,8 @@ class Justified_Gallery extends Base {
         <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
             <?php foreach ( $gallery['items'] as $id => $filters ) :
                 $caption = $settings['show_caption'] ? 'title="' . esc_attr( wp_get_attachment_caption( $id ) ) . '"' : '';
-                $popup_link = $settings['enable_popup'] ? 'href="' . esc_url( wp_get_attachment_image_url( $id, 'large' ) ) . '"' : '';
                 ?>
-                <a class="ha-justified-gallery-item <?php echo esc_attr( implode( ' ', $filters ) ); ?>" <?php echo $caption; ?> <?php echo $popup_link; ?>>
+                <a class="ha-justified-gallery-item <?php echo esc_attr( implode( ' ', $filters ) ); ?>" <?php echo $caption; ?>>
                     <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'alt' => $caption ] ); ?>
                 </a>
             <?php endforeach; ?>

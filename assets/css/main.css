@@ -536,37 +536,39 @@ span .ha-review-ratting--star:before,
 }
 
 .ha-gallery-filter {
-	margin-bottom: 2rem;
+	margin: 0 10px 2rem;
 	padding: 0; 
 	list-style: none;
 }
 .ha-gallery-filter > li {
 	display: inline-block;
-	margin-right: 5px;
-	margin-bottom: 20px;
-	margin-left: 5px;
+	margin-bottom: 10px;
+}
+.ha-gallery-filter > li:not(:last-child) {
+	margin-right: 10px;
 }
 .ha-gallery-filter > li > button {
-	padding: .3rem 1rem;
-	border: 1px solid transparent;
+	display: block;
+	padding: 10px 25px;
+	border: 2px solid #562dd4;
+	border-radius: .25rem;
 	background-color: transparent;
-	color: #000;
-	text-transform: capitalize;
-	font-size: 16px;
-	cursor: pointer; 
+	color: #562dd4;
+	text-transform: uppercase; 
+	font-size: 14px;
+	cursor: pointer;
 	-webkit-transition: all .3s;
 	        transition: all .3s;
 }
-.ha-gallery-filter > li > button:hover {
-	border-color: #b0b0b0; 
-	color: #b0b0b0;
-}
+.ha-gallery-filter > li > button:hover,
 .ha-gallery-filter > li > button:focus {
-	outline: 0;
+	outline: 0; 
+	background-color: #562dd4;
+	color: #fff;
 }
 .ha-gallery-filter > .ha-filter-active > button {
-	border-color: #b0b0b0; 
-	color: #b0b0b0;
+	background-color: #562dd4; 
+	color: #fff;
 }
 
 .ha-image-grid-item {
@@ -1312,6 +1314,7 @@ span .ha-review-ratting--star:before,
 	bottom: -14px;
 	color: #fff; 
 	content: "\e911";
+	font-style: normal;
 	font-size: 36px;
 	font-family: "Happy Icons";
 	-webkit-transform: rotate(-180deg);
