@@ -263,7 +263,7 @@ class Number extends Base {
 		$this->start_controls_section(
 			'number_background_style_overlay',
 			[
-				'label' => __( 'Background overlay', 'happy_addons' ),
+				'label' => __( 'Background Overlay', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
