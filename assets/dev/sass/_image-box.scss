@@ -37,6 +37,24 @@
 		}		
 }
 
+
+.ha-image-box-body.ha-image-box-body-animation-off {
+		&:hover{
+			.ha-image-box-background {
+			    transform: scale(1,1);
+			 }   
+
+			.ha-image-box-inner {
+				background: transparent !important;
+			}
+			.ha-image-box-content {
+				    transform: translate(0,0px) !important;
+				    opacity: 1 !important;
+				    transition-delay: 0ms!important;
+			}
+		}		
+}
+
  
 
 .ha-image-box-body-reverse {

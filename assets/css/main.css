@@ -1521,6 +1521,25 @@ span .ha-review-ratting--star:before,
 	        transform: translate(0, 36px) !important;
 }
 
+.ha-image-box-body.ha-image-box-body-animation-off:hover .ha-image-box-background {
+	-webkit-transform: scale(1, 1);
+	    -ms-transform: scale(1, 1);
+	        transform: scale(1, 1);
+}
+
+.ha-image-box-body.ha-image-box-body-animation-off:hover .ha-image-box-inner {
+	background: transparent !important;
+}
+
+.ha-image-box-body.ha-image-box-body-animation-off:hover .ha-image-box-content {
+	opacity: 1 !important;
+	-webkit-transition-delay: 0ms !important;
+	        transition-delay: 0ms !important; 
+	-webkit-transform: translate(0, 0px) !important;
+	    -ms-transform: translate(0, 0px) !important;
+	        transform: translate(0, 0px) !important;
+}
+
 .ha-image-box-body-reverse {
 	display: block; 
 	overflow: hidden;

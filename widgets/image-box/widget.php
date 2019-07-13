@@ -56,7 +56,7 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'image_box_image',
 			[
-				'label' => __( 'image', 'happy_addons' ),
+				'label' => __( 'Image/Backgroud', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -67,7 +67,7 @@ class Image_Box extends Base {
 			[
 				'name' => 'image_box_background',
 				'label' => __( 'Image/Background', 'happy_addons' ),
-				'types' => [ 'classic', 'gradient', 'video' ],
+				'types' => [ 'classic', 'gradient',  ],
 				'selector' => '{{WRAPPER}} .ha-image-box-background',
 			]
 		);
@@ -76,9 +76,9 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_link',
 			[
-				'label' => __( 'Link', 'plugin-domain' ),
+				'label' => __( 'Link', 'happy_addons' ),
 				'type' => \Elementor\Controls_Manager::URL,
-				'placeholder' => __( 'https://your-link.com', 'plugin-domain' ),
+				'placeholder' => __( 'https://your-link.com', 'happy_addons' ),
 				'show_external' => true,
 				'default' => [
 					'url' => '',
@@ -94,7 +94,7 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'image_box_content',
 			[
-				'label' => __( 'Title & Description', 'happy_addons' ),
+				'label' => __( 'Text', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -102,30 +102,30 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_sub_title',
 			[
-				'label' => __( 'Sub Title', 'plugin-domain' ),
+				'label' => __( 'Sub Heading', 'happy_addons' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Default sub title', 'plugin-domain' ),
-				'placeholder' => __( 'Type your sub title here', 'plugin-domain' ),
+				'default' => __( 'Default sub Heading', 'happy_addons' ),
+				'placeholder' => __( 'Type your sub title here', 'happy_addons' ),
 			]
 		);
 
 		$this->add_control(
 			'image_box_title',
 			[
-				'label' => __( 'Title', 'plugin-domain' ),
+				'label' => __( 'Heading', 'happy_addons' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Default title', 'plugin-domain' ),
-				'placeholder' => __( 'Type your title here', 'plugin-domain' ),
+				'default' => __( 'Default Heading', 'happy_addons' ),
+				'placeholder' => __( 'Type your title here', 'happy_addons' ),
 			]
 		);
 
 		$this->add_control(
 			'image_box_description',
 			[
-				'label' => __( 'Description', 'plugin-domain' ),
-				'type' => \Elementor\Controls_Manager::TEXTAREA,
-				'default' => __( 'Default description', 'plugin-domain' ),
-				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+				'label' => __( 'Description', 'happy_addons' ),
+				'type' => \Elementor\Controls_Manager::WYSIWYG,
+				'default' => __( 'Default description : Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,', 'happy_addons' ),
+				'placeholder' => __( 'Type your description here', 'happy_addons' ),
 			]
 		);		
 
@@ -150,7 +150,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_background_overlay_color',
 			[
-				'label' => __( 'Overlay Color', 'plugin-domain' ),
+				'label' => __( 'Overlay Color', 'happy_addons' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-image-box-body .ha-image-box-inner' => 'background: {{VALUE}}',
@@ -160,12 +160,26 @@ class Image_Box extends Base {
 		);
 
 
+		$this->add_control(
+			'image_box_background_padding',
+			[
+				'label' => __( 'Paddding', 'plugin-domain' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-image-box-body .ha-image-box-inner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'image_box_sub_title_style',
 			[
-				'label' => __( 'Sub Title Style', 'happy_addons' ),
+				'label' => __( 'Sub Heading Style', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -194,7 +208,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_sub_title_padding',
 			[
-				'label' => __( 'Padding', 'plugin-domain' ),
+				'label' => __( 'Padding', 'happy_addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -207,7 +221,7 @@ class Image_Box extends Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'image_box_sub_title_border',
-				'label' => __( 'Border', 'plugin-domain' ),
+				'label' => __( 'Border', 'happy_addons' ),
 				'selector' => '{{WRAPPER}} .ha-image-sub-title',
 			]
 		);
@@ -215,7 +229,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_sub_title_border_radius',
 			[
-				'label' => __( 'Border radius', 'plugin-domain' ),
+				'label' => __( 'Border radius', 'happy_addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -236,7 +250,7 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'image_box_title_style',
 			[
-				'label' => __( 'Title Style', 'happy_addons' ),
+				'label' => __( 'Heading Style', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -265,7 +279,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_title_padding',
 			[
-				'label' => __( 'Padding', 'plugin-domain' ),
+				'label' => __( 'Padding', 'happy_addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -315,7 +329,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_description_padding',
 			[
-				'label' => __( 'Padding', 'plugin-domain' ),
+				'label' => __( 'Padding', 'happy_addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -340,7 +354,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_hover_style',
 			[
-				'label' => __( 'Show Text by Hover', 'plugin-domain' ),
+				'label' => __( 'Show Text by Hover', 'happy_addons' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
 				'label_on' => __( 'On', 'your-plugin' ),
 				'label_off' => __( 'Off', 'your-plugin' ),
@@ -348,6 +362,23 @@ class Image_Box extends Base {
 				'default' => 'no',
 			]
 		);
+
+
+		$this->add_control(
+			'image_box_hover_style_animation',
+			[
+				'label' => __( 'Hover text animation', 'happy_addons' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __( 'On', 'your-plugin' ),
+				'label_off' => __( 'Off', 'your-plugin' ),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);		
+
+
+ 
+
 
 		$this->end_controls_section();
 
@@ -371,17 +402,18 @@ class Image_Box extends Base {
 		<?php  if($settings['image_box_link']['url']): ?> 
 			<a href="<?php  echo esc_url( $settings['image_box_link']['url'] ); ?>"  <?php echo esc_attr($target) ?>  <?php echo esc_attr($nofollow) ?>  >
 			<?php  endif;?>
-		<div class="<?php if ( 'yes' === $settings['image_box_hover_style'] ) { echo 'ha-image-box-body-reverse'; } else { echo 'ha-image-box-body'; } ?> ">
+		<div class="<?php if ( 'yes' === $settings['image_box_hover_style'] ) { echo 'ha-image-box-body-reverse'; } else { echo 'ha-image-box-body'; } ?>  <?php if ( 'yes' === $settings['image_box_hover_style_animation'] ) { echo ''; } else { echo 'ha-image-box-body-animation-off'; } ?> ">
+
 		<div class="ha-image-box-background">
 			 <div class="ha-image-box-inner">
 			 	<div class="ha-image-box-content">
 			 		<h5 class="ha-image-sub-title"><?php  echo esc_html( $settings['image_box_sub_title'] ); ?></h5>
 			 		<h1 class="ha-image-title"><?php  echo esc_html( $settings['image_box_title'] ); ?></h1>
 			 		<div class="ha-image-description">
-			 			<p>
-			 				<?php  echo esc_html( $settings['image_box_description'] ); ?>
+			 			 
+			 				<?php  echo  $settings['image_box_description']; ?>
 			 				
-			 			</p>
+			 			 
 			 		</div>
 			 	</div>
 			 </div>
