@@ -88,8 +88,8 @@
     transform: translateX(4px);
 }
 .ha-switch input:checked + .ha-slider:before {
-    -webkit-transform: translateX(19px);
-    -ms-transform: translateX(19px);
+    -webkit-transform: translateX(22px);
+    -ms-transform: translateX(22px);
     transform: translateX(22px);
 }
 
