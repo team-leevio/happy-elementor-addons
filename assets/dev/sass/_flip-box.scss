@@ -1,0 +1,261 @@
+.ha-flip-wrap {
+  &:after {
+    clear: both;
+    content: " ";
+    display: block;
+    visibility: hidden;
+    font-size: 0;
+    height: 0;
+  }
+  .ha-flip-box {
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    &:hover{
+      .ha-flip-box-back {
+        z-index: 1
+      }
+      .ha-flip-box-front {
+        z-index: -1
+      }
+    }
+    .ha-flip-box-inner-wrapper {
+      position: relative;
+      -webkit-transform: translateZ(0);
+      -webkit-perspective: 1000px;
+      perspective: 1000px
+    }
+    .ha-flip-box-back,
+    .ha-flip-box-front {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      top: 0;
+      right: 0;
+      left: 0;
+      -webkit-perspective: 1000px;
+      perspective: 1000px;
+      padding: 1.5rem 1.3rem;
+      text-align: center;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+      background-position: center;
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      background-size: cover;
+      &:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        position: absolute;
+        z-index: -9;
+        top: 0;
+        left: 0;
+      }
+    }
+    .ha-flip-box-front {
+      position: relative;
+      bottom: 0;
+      z-index: 10;
+      border: 1px solid #ddd;
+      border-radius: .3rem;
+    }
+    .ha-flip-box-back {
+      position: absolute;
+      z-index: -1;
+      color: #fff;
+      border-radius: .3rem;
+    }
+    .ha-flip-box-back-inner,
+    .ha-flip-box-front-inner {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      .icon-wrap {
+        display: flex;
+      }
+      .ha-text p {
+        margin-bottom: 0;
+      }
+      .ha-flip-btn {
+        background: #3266fd;
+        color: #fff;
+        font-size: 12px;
+        text-transform: uppercase;
+        padding: .8rem 2.5rem;
+        text-decoration: none;
+        border-radius: .3rem;
+        margin-top: .5rem;
+        display: inline-block;
+        transition: all .3s;
+        &:hover{
+          background: #fff;
+          color: #27374c;
+        }
+      }
+    }
+    .ha-flip-box-front-inner {
+      .ha-flip-image img {
+        width: 100%;
+        height: 100%;
+      }
+      .ha-flip-icon {
+        margin: 0 0 10px;
+        i{
+          font-size: 28px;
+          background: #27374c;
+          color: #fff;
+          border-radius: 50%;
+          padding: 20px;
+        }
+      }
+      .ha-flip-box-heading {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0;
+      }
+      p{
+        font-size: 16px;
+        margin-bottom: 0;
+      }
+    }
+    .ha-flip-box-back-inner{
+      .ha-flip-box-heading-back {
+        font-size: 18px;
+        margin: 0;
+      }
+    }
+  }
+  //flip right
+  .ha-flip-box.ha-flip-right .ha-flip-box-front {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0)
+  }
+  .ha-flip-box.ha-flip-right .ha-flip-box-back {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg)
+  }
+  .ha-flip-box.ha-flip-right:hover .ha-flip-box-back {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0)
+  }
+  .ha-flip-box.ha-flip-right:hover .ha-flip-box-front {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg)
+  }
+
+  //flip left
+  .ha-flip-box.ha-flip-left .ha-flip-box-front {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0)
+  }
+
+  .ha-flip-box.ha-flip-left .ha-flip-box-back {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg)
+  }
+
+  .ha-flip-box.ha-flip-left:hover .ha-flip-box-back {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0)
+  }
+
+  .ha-flip-box.ha-flip-left:hover .ha-flip-box-front {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg)
+  }
+
+  //flip up
+  .ha-flip-box.ha-flip-up .ha-flip-box-front {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0)
+  }
+
+  .ha-flip-box.ha-flip-up .ha-flip-box-back {
+    -webkit-transform: rotateX(-180deg);
+    transform: rotateX(-180deg)
+  }
+
+  .ha-flip-box.ha-flip-up:hover .ha-flip-box-back {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0)
+  }
+
+  .ha-flip-box.ha-flip-up:hover .ha-flip-box-front {
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg)
+  }
+
+  //flip down
+  .ha-flip-box.ha-flip-down .ha-flip-box-front {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0)
+  }
+
+  .ha-flip-box.ha-flip-down .ha-flip-box-back {
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg)
+  }
+
+  .ha-flip-box.ha-flip-down:hover .ha-flip-box-back {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0)
+  }
+
+  .ha-flip-box.ha-flip-down:hover .ha-flip-box-front {
+    -webkit-transform: rotateX(-180deg);
+    transform: rotateX(-180deg)
+  }
+
+}
+
+// classic effect
+.ha-flip-wrap.ha-flip-effect-classic {
+  .ha-flip-box-back,
+  .ha-flip-box-front {
+    -webkit-transition: -webkit-transform .4s cubic-bezier(.2,.85,.4,1.275);
+    transition: -webkit-transform .4s cubic-bezier(.2,.85,.4,1.275);
+    -o-transition: transform .4s cubic-bezier(.2,.85,.4,1.275);
+    transition: transform .4s cubic-bezier(.2,.85,.4,1.275);
+    transition: transform .4s cubic-bezier(.2,.85,.4,1.275),-webkit-transform .4s cubic-bezier(.2,.85,.4,1.275)
+  }
+
+}
+
+// 3d effect
+
+.ha-flip-wrap.ha-flip-effect-3d {
+  .ha-flip-box-inner-wrapper {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d
+  }
+  .ha-flip-box-back,
+  .ha-flip-box-front {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform .75s ease-in-out;
+    transition: -webkit-transform .75s ease-in-out;
+    -o-transition: transform .75s ease-in-out;
+    transition: transform .75s ease-in-out;
+    transition: transform .75s ease-in-out,-webkit-transform .75s ease-in-out
+  }
+  .ha-flip-box-back-inner,
+  .ha-flip-box-front-inner {
+    -webkit-transform: translateZ(50px) scale(.9);
+    transform: translateZ(50px) scale(.9)
+  }
+
+}
+
+
