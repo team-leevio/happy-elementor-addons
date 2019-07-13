@@ -1452,7 +1452,7 @@ span .ha-review-ratting--star:before,
 	text-align: center; 
 	font-size: 20px;
 }
-.ha-number-body .ha-number-border .ha-number-border-overly {
+.ha-number-body .ha-number-border .ha-number-border-overlay {
 	display: -webkit-flex;
 	/* Safari 7.0+ */
 	display: -webkit-box;
