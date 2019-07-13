@@ -56,7 +56,7 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'image_box_image',
 			[
-				'label' => __( 'Image/Backgroud', 'happy_addons' ),
+				'label' => __( 'Backgroud', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -79,6 +79,7 @@ class Image_Box extends Base {
 				'label' => __( 'Link', 'happy_addons' ),
 				'type' => \Elementor\Controls_Manager::URL,
 				'placeholder' => __( 'https://your-link.com', 'happy_addons' ),
+				'label_block' => false,
 				'show_external' => true,
 				'default' => [
 					'url' => '',
@@ -104,7 +105,7 @@ class Image_Box extends Base {
 			[
 				'label' => __( 'Sub Heading', 'happy_addons' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Default sub Heading', 'happy_addons' ),
+				'default' => __( 'Default sub heading', 'happy_addons' ),
 				'placeholder' => __( 'Type your sub title here', 'happy_addons' ),
 			]
 		);
@@ -124,7 +125,7 @@ class Image_Box extends Base {
 			[
 				'label' => __( 'Description', 'happy_addons' ),
 				'type' => \Elementor\Controls_Manager::WYSIWYG,
-				'default' => __( 'Default description : Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,', 'happy_addons' ),
+				'default' => __( 'Default description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.', 'happy_addons' ),
 				'placeholder' => __( 'Type your description here', 'happy_addons' ),
 			]
 		);		
