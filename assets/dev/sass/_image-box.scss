@@ -105,6 +105,32 @@
 }
 
 
+.ha-image-box-body-reverse.ha-image-box-body-animation-off { 
+	.ha-image-box-background {
+		transform: scale(1,1);
+		.ha-image-box-inner {
+			.ha-image-box-content {
+				transform: translate(0,0px);
+				transition: none ;
+
+			}
+		}
+	}
+	&:hover{
+		.ha-image-box-background {
+			.ha-image-box-inner {
+				.ha-image-box-content {
+					 	transform: translate(0,0px) ;
+					    opacity: 1;
+					    transition-delay: 0ms;
+
+				}
+			}
+		}		
+	}
+}
+
+
  
 
 
