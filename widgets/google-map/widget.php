@@ -42,7 +42,7 @@ class Google_Map extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-madel';
+		return 'hm hm-map-marker';
 	}
 
 	public function get_keywords() {

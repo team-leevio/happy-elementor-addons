@@ -42,7 +42,7 @@ class Image_Box extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-testimonial';
+		return 'hm hm-image';
 	}
 
 	public function get_keywords() {
