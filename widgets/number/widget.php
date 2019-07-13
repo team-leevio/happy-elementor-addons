@@ -149,7 +149,7 @@ class Number extends Base {
 		$this->start_controls_section(
 			'number_background_style',
 			[
-				'label' => __( 'Background Style', 'happy_addons' ),
+				'label' => __( 'General Style', 'happy_addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -186,7 +186,7 @@ class Number extends Base {
 			[
 				'name' => 'number_background_color',
 				'label' => __( 'Background', 'happy_addons' ),
-				'types' => [ 'classic', 'gradient', 'video' ],
+				'types' => [ 'classic', 'gradient' ],
 				'selector' => '{{WRAPPER}} .ha-number-border',
 			]
 		);
@@ -198,7 +198,7 @@ class Number extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-number-border' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-number-border .ha-number-border-overlay' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -260,6 +260,26 @@ class Number extends Base {
 		);
 
 		$this->end_controls_section();
+		$this->start_controls_section(
+			'number_background_style_overlay',
+			[
+				'label' => __( 'Background Overlay', 'happy_addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'number_background_overlay_color',
+				'label' => __( 'Background', 'happy_addons' ),
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .ha-number-border .ha-number-border-overlay',
+			]
+		);		
+
+
+		$this->end_controls_section();
 	}
 
 	protected function render() {
@@ -268,7 +288,9 @@ class Number extends Base {
 
 		<div class="ha-number-body">
 			<div class="ha-number-border">
+			<div class="ha-number-border-overlay">
 				<span class="ha-number-text"><?php echo esc_html( $settings['number_text'] ); ?></span>
+			</div>
 			</div>
 		</div>
 

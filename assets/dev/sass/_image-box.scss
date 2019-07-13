@@ -1,0 +1,141 @@
+.ha-image-box-body {
+	overflow: hidden;
+	display: block;
+
+	.ha-image-box-background {
+		background: #c36;
+	    transition-property: transform,filter,opacity;
+	    transition-duration: 0.3s;
+	    transition-timing-function: cubic-bezier(.57,.21,.69,1);
+
+		.ha-image-box-inner {
+			padding: 250px 30px 70px 30px;
+			background: rgba(0,0,0, .2);
+			transition: background 0.2s ease-in-out;
+		.ha-image-box-content {
+			color: #fff;
+			transform: translate(0,0);
+			transition: opacity 0.2s ease-in-out,transform 0.2s ease-in-out;
+			.ha-image-sub-title {display: inline-block;}
+		}
+		}
+
+	}
+		&:hover{
+			.ha-image-box-background {
+			    transform: scale(1.05,1.05);
+			 }   
+
+			.ha-image-box-inner {
+				background: transparent !important;
+			}
+			.ha-image-box-content {
+				    transform: translate(0,36px) !important;
+				    opacity: 0 !important;
+				    transition-delay: 0ms!important;
+			}
+		}		
+}
+
+
+.ha-image-box-body.ha-image-box-body-animation-off {
+		&:hover{
+			.ha-image-box-background {
+			    transform: scale(1,1);
+			 }   
+
+			.ha-image-box-inner {
+				background: transparent !important;
+			}
+			.ha-image-box-content {
+				    transform: translate(0,0px) !important;
+				    opacity: 1 !important;
+				    transition-delay: 0ms!important;
+			}
+		}		
+}
+
+ 
+
+.ha-image-box-body-reverse {
+	overflow: hidden;
+	display: block;
+
+	.ha-image-box-background {
+		transform: scale(1.05,1.05);
+		background: #c36;
+	    transition-property: transform,filter,opacity;
+	    transition-duration: 0.3s;
+	    transition-timing-function: cubic-bezier(.57,.21,.69,1);
+
+		.ha-image-box-inner {
+			padding: 250px 30px 70px 30px;
+			background: transparent ;
+			transition: background 0.2s ease-in-out;
+		.ha-image-box-content {
+			color: #fff;
+			transform: translate(0,36px);
+			transition: opacity 0.2s ease-in-out,transform 0.2s ease-in-out;
+			opacity: 0;
+			.ha-image-sub-title {display: inline-block;}
+		}
+		}
+
+	}
+		&:hover{
+			.ha-image-box-background {
+			    transform: scale(1,1);
+
+			.ha-image-box-inner {
+				background: rgba(0,0,0, .2) ;
+
+				.ha-image-box-content {
+					    transform: translate(0,0px) ;
+					    opacity: 1;
+					    transition-delay: 0ms;
+				}				
+				
+			}
+
+
+			 }   
+
+
+		}		
+}
+
+
+.ha-image-box-body-reverse.ha-image-box-body-animation-off { 
+	.ha-image-box-background {
+		transform: scale(1,1);
+		.ha-image-box-inner {
+			.ha-image-box-content {
+				transform: translate(0,0px);
+				transition: none ;
+
+			}
+		}
+	}
+	&:hover{
+		.ha-image-box-background {
+			.ha-image-box-inner {
+				.ha-image-box-content {
+					 	transform: translate(0,0px) ;
+					    opacity: 1;
+					    transition-delay: 0ms;
+
+				}
+			}
+		}		
+	}
+}
+
+
+ 
+
+
+
+
+
+
+  
