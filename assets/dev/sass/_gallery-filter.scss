@@ -2,9 +2,9 @@
   list-style: none;
   margin: 0 10px 2rem;
   padding: 0;
-  display: flex;
 
   > li {
+    display: inline-block;
     margin-bottom: 10px;
 
     &:not(:last-child) {

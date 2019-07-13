@@ -536,15 +536,12 @@ span .ha-review-ratting--star:before,
 }
 
 .ha-gallery-filter {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display:         flex; 
 	margin: 0 10px 2rem;
-	padding: 0;
+	padding: 0; 
 	list-style: none;
 }
 .ha-gallery-filter > li {
+	display: inline-block;
 	margin-bottom: 10px;
 }
 .ha-gallery-filter > li:not(:last-child) {
