@@ -69,42 +69,6 @@ abstract class Base extends Widget_Base {
         return rtrim( $html_class );
     }
 
-    protected function get_presets() {
-        return [];
-    }
-
-    /**
-     * Register design controls
-     *
-     * Design controls are fixed for all widgets
-     */
-    private function register_design_controls() {
-        $presets = $this->get_presets();
-        if ( empty( $presets ) ) {
-            return;
-        }
-
-        $this->start_controls_section(
-            '_design',
-            [
-                'label' => __( 'Design', 'happy-elementor-addons' ),
-                'tab' => Controls_Manager::TAB_CONTENT,
-            ]
-        );
-
-        $this->add_control(
-            '_preset',
-            [
-                'label' => __( 'Preset', 'happy-elementor-addons' ),
-                'type' => 'select',
-                'options' => ['' => __( 'Default', 'happy-elementor-addons' )] + $presets,
-                'default' => '',
-            ]
-        );
-
-        $this->end_controls_section();
-    }
-
     /**
      * Register faq controls
      */
@@ -133,8 +97,6 @@ abstract class Base extends Widget_Base {
      * Register widget controls
      */
     protected function _register_controls() {
-        $this->register_design_controls();
-
         $this->register_content_controls();
 
         $this->register_style_controls();
