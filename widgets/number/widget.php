@@ -30,7 +30,7 @@ class Number extends Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Number', 'happy_addons' );
+		return __( 'Number', 'happy-elementor-addons' );
 	}
 
 	/**
@@ -56,7 +56,7 @@ class Number extends Base {
 		$this->start_controls_section(
 			'_section_number',
 			[
-				'label' => __( 'Number', 'happy_addons' ),
+				'label' => __( 'Number', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -64,7 +64,7 @@ class Number extends Base {
 		$this->add_control(
 			'number_text',
 			[
-				'label' => __( 'Number Text', 'happy_addons' ),
+				'label' => __( 'Number Text', 'happy-elementor-addons' ),
 				'label_block' => false,
 				'type' => Controls_Manager::TEXT,
 				'default' => 1
@@ -81,7 +81,7 @@ class Number extends Base {
 		$this->start_controls_section(
 			'_section_style_number',
 			[
-				'label' => __( 'Text Style', 'happy_addons' ),
+				'label' => __( 'Text Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -89,7 +89,7 @@ class Number extends Base {
         $this->add_control(
             'number_text_color',
             [
-                'label' => __( 'Text Color', 'happy_addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-number-border' => 'color: {{VALUE}};',
@@ -101,7 +101,7 @@ class Number extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'number_text_typography',
-				'label' => __( 'Typography', 'happy_addons' ),
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-number-border',
 			]
 		);
@@ -110,7 +110,7 @@ class Number extends Base {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'number_text_shadow',
-				'label' => __( 'Text Shadow', 'happy_addons' ),
+				'label' => __( 'Text Shadow', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-number-border span',
 			]
 		);
@@ -118,7 +118,7 @@ class Number extends Base {
 		$this->add_control(
 			'number_text_rotate',
 			[
-				'label' => __( 'Text Rotate', 'happy_addons' ),
+				'label' => __( 'Text Rotate', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range' => [
@@ -149,7 +149,7 @@ class Number extends Base {
 		$this->start_controls_section(
 			'number_background_style',
 			[
-				'label' => __( 'General Style', 'happy_addons' ),
+				'label' => __( 'General Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -157,7 +157,7 @@ class Number extends Base {
 		$this->add_responsive_control(
 			'number_width_height',
 			[
-				'label' => __( 'Width and Height', 'happy_addons' ),
+				'label' => __( 'Width and Height', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range' => [
@@ -185,7 +185,7 @@ class Number extends Base {
 			Group_Control_Background::get_type(),
 			[
 				'name' => 'number_background_color',
-				'label' => __( 'Background', 'happy_addons' ),
+				'label' => __( 'Background', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient' ],
 				'selector' => '{{WRAPPER}} .ha-number-border',
 			]
@@ -194,11 +194,11 @@ class Number extends Base {
 		$this->add_control(
 			'number_padding',
 			[
-				'label' => __( 'Padding', 'happy_addons' ),
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-number-border .ha-number-border-overlay' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-number-border ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -207,7 +207,7 @@ class Number extends Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'number_border',
-				'label' => __( 'Border', 'happy_addons' ),
+				'label' => __( 'Border', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-number-border',
 			]
 		);
@@ -215,7 +215,7 @@ class Number extends Base {
 		$this->add_control(
 			'number_border_radius',
 			[
-				'label' => __( 'Border Radius', 'happy_addons' ),
+				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -228,7 +228,7 @@ class Number extends Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'number_box_shadow',
-				'label' => __( 'Box Shadow', 'happy_addons' ),
+				'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-number-border',
 			]
 		);
@@ -236,19 +236,19 @@ class Number extends Base {
 		$this->add_responsive_control(
 			'number_align',
 			[
-				'label' => __( 'Alignment', 'happy_addons' ),
+				'label' => __( 'Alignment', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'float:left' => [
-						'title' => __( 'Left', 'happy_addons' ),
+						'title' => __( 'Left', 'happy-elementor-addons' ),
 						'icon' => 'fa fa-align-left',
 					],
 					'margin: 0 auto;' => [
-						'title' => __( 'Center', 'happy_addons' ),
+						'title' => __( 'Center', 'happy-elementor-addons' ),
 						'icon' => 'fa fa-align-center',
 					],
 					'float:right' => [
-						'title' => __( 'Right', 'happy_addons' ),
+						'title' => __( 'Right', 'happy-elementor-addons' ),
 						'icon' => 'fa fa-align-right',
 					],
 				],
@@ -263,7 +263,7 @@ class Number extends Base {
 		$this->start_controls_section(
 			'number_background_style_overlay',
 			[
-				'label' => __( 'Background Overlay', 'happy_addons' ),
+				'label' => __( 'Background Overlay', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -272,11 +272,66 @@ class Number extends Base {
 			Group_Control_Background::get_type(),
 			[
 				'name' => 'number_background_overlay_color',
-				'label' => __( 'Background', 'happy_addons' ),
+				'label' => __( 'Background', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient' ],
 				'selector' => '{{WRAPPER}} .ha-number-border .ha-number-border-overlay',
 			]
 		);		
+ 
+
+		$this->add_control(
+			'number_background_overlay_blend_mode',
+			[
+				'label' => __( 'Blend Mood', 'happy-elementor-addons' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'normal',
+				'options' => [
+                    'normal' => 'Normal',
+                    'multiply' => 'Multiply',
+                    'screen' => 'Screen',
+                    'overlay' => 'Overlay',
+                    'darken' => 'Darken',
+                    'lighten' => 'Lighten',
+                    'color-dodge' => 'Color Dodge',
+                    'color-burn' => 'Color Burn',
+                    'saturation' => 'Saturation',
+                    'difference' => 'Difference',
+                    'exclusion' => 'Exclusion',
+                    'hue' => 'Hue',
+                    'saturation' => 'Saturation',
+                    'color' => 'Color',
+                    'luminosity' => 'Luminosity',
+				],
+				'selectors' => [
+                    '{{WRAPPER}} .ha-number-border-overlay' => 'mix-blend-mode: {{VALUE}}',
+                ],
+			]
+		);
+
+
+		$this->add_responsive_control(
+			'number_background_overlay_blend_mode_opacity',
+			[
+				'label' => __( 'Opacity', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1,
+						'step' => .1,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => .5,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-number-border-overlay' => 'opacity: {{SIZE}};',
+				],
+			]
+		);
+
 
 
 		$this->end_controls_section();
@@ -288,9 +343,8 @@ class Number extends Base {
 
 		<div class="ha-number-body">
 			<div class="ha-number-border">
-			<div class="ha-number-border-overlay">
-				<span class="ha-number-text"><?php echo esc_html( $settings['number_text'] ); ?></span>
-			</div>
+			<div class="ha-number-border-overlay"></div>
+			<span class="ha-number-text"><?php echo esc_html( $settings['number_text'] ); ?></span>
 			</div>
 		</div>
 

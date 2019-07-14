@@ -2,9 +2,9 @@
 /**
  * Blurb widget class
  *
- * @package Happy_Addons
+ * @package happy_addons
  */
-namespace Happy_Addons\Elementor\Widget;
+namespace happy_addons\Elementor\Widget;
 
 use Elementor\Utils;
 use Elementor\Control_Media;
@@ -15,7 +15,7 @@ use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Text_Shadow;
-use Happy_Addons\Elementor\Controls\Group_Control_Foreground;
+use happy_addons\Elementor\Controls\Group_Control_Foreground;
 
 defined( 'ABSPATH' ) || die();
 
@@ -30,7 +30,7 @@ class Image_Box extends Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Image Box', 'happy_addons' );
+		return __( 'Image Box', 'happy-elementor-addons' );
 	}
 
 	/**
@@ -56,7 +56,7 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'image_box_image',
 			[
-				'label' => __( 'Backgroud', 'happy_addons' ),
+				'label' => __( 'Backgroud', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -66,7 +66,7 @@ class Image_Box extends Base {
 			Group_Control_Background::get_type(),
 			[
 				'name' => 'image_box_background',
-				'label' => __( 'Image/Background', 'happy_addons' ),
+				'label' => __( 'Image/Background', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient',  ],
 				'selector' => '{{WRAPPER}} .ha-image-box-background',
 			]
@@ -76,9 +76,9 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_link',
 			[
-				'label' => __( 'Link', 'happy_addons' ),
+				'label' => __( 'Link', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::URL,
-				'placeholder' => __( 'https://your-link.com', 'happy_addons' ),
+				'placeholder' => __( 'https://your-link.com', 'happy-elementor-addons' ),
 				'label_block' => false,
 				'show_external' => true,
 				'default' => [
@@ -95,7 +95,7 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'image_box_content',
 			[
-				'label' => __( 'Text', 'happy_addons' ),
+				'label' => __( 'Text', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -103,30 +103,30 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_sub_title',
 			[
-				'label' => __( 'Sub Heading', 'happy_addons' ),
+				'label' => __( 'Sub Heading', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Default sub heading', 'happy_addons' ),
-				'placeholder' => __( 'Type your sub title here', 'happy_addons' ),
+				'default' => __( 'Default sub heading', 'happy-elementor-addons' ),
+				'placeholder' => __( 'Type your sub title here', 'happy-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'image_box_title',
 			[
-				'label' => __( 'Heading', 'happy_addons' ),
+				'label' => __( 'Heading', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Default Heading', 'happy_addons' ),
-				'placeholder' => __( 'Type your title here', 'happy_addons' ),
+				'default' => __( 'Default Heading', 'happy-elementor-addons' ),
+				'placeholder' => __( 'Type your title here', 'happy-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'image_box_description',
 			[
-				'label' => __( 'Description', 'happy_addons' ),
+				'label' => __( 'Description', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::WYSIWYG,
-				'default' => __( 'Default description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.', 'happy_addons' ),
-				'placeholder' => __( 'Type your description here', 'happy_addons' ),
+				'default' => __( 'Default description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.', 'happy-elementor-addons' ),
+				'placeholder' => __( 'Type your description here', 'happy-elementor-addons' ),
 			]
 		);		
 
@@ -142,7 +142,7 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'image_box_background_style',
 			[
-				'label' => __( 'Background Style', 'happy_addons' ),
+				'label' => __( 'Background Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -151,7 +151,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_background_overlay_color',
 			[
-				'label' => __( 'Overlay Color', 'happy_addons' ),
+				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-image-box-body .ha-image-box-inner' => 'background: {{VALUE}}',
@@ -164,11 +164,20 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_background_padding',
 			[
-				'label' => __( 'Paddding', 'plugin-domain' ),
+				'label' => __( 'Paddding', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
+				'default' => [
+								'top' => '250',
+								'right' => '30',
+								'bottom' => '70',
+								'left' => '30',
+								'unit' => 'px',
+								'isLinked' => '',
+						],
 				'selectors' => [
 					'{{WRAPPER}} .ha-image-box-body .ha-image-box-inner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-image-box-body-reverse .ha-image-box-inner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -180,7 +189,7 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'image_box_sub_title_style',
 			[
-				'label' => __( 'Sub Heading Style', 'happy_addons' ),
+				'label' => __( 'Sub Heading Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -190,7 +199,7 @@ class Image_Box extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'image_box_sub_title_typography',
-				'label' => __( 'Typography', 'happy_addons' ),
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-image-sub-title',
 			]
 		);
@@ -198,7 +207,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_sub_title_color',
 			[
-				'label' => __( 'Text Color', 'happy_addons' ),
+				'label' => __( 'Text Color', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-image-sub-title' => 'color: {{VALUE}}',
@@ -209,7 +218,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_sub_title_padding',
 			[
-				'label' => __( 'Padding', 'happy_addons' ),
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -222,7 +231,7 @@ class Image_Box extends Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'image_box_sub_title_border',
-				'label' => __( 'Border', 'happy_addons' ),
+				'label' => __( 'Border', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-image-sub-title',
 			]
 		);
@@ -230,7 +239,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_sub_title_border_radius',
 			[
-				'label' => __( 'Border radius', 'happy_addons' ),
+				'label' => __( 'Border radius', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -251,7 +260,7 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'image_box_title_style',
 			[
-				'label' => __( 'Heading Style', 'happy_addons' ),
+				'label' => __( 'Heading Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -261,7 +270,7 @@ class Image_Box extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'image_box_title_typography',
-				'label' => __( 'Typography', 'happy_addons' ),
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-image-title',
 			]
 		);
@@ -269,7 +278,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_title_color',
 			[
-				'label' => __( 'Text Color', 'happy_addons' ),
+				'label' => __( 'Text Color', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-image-title' => 'color: {{VALUE}}',
@@ -280,7 +289,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_title_padding',
 			[
-				'label' => __( 'Padding', 'happy_addons' ),
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -301,7 +310,7 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'image_box_description_style',
 			[
-				'label' => __( 'Description Style', 'happy_addons' ),
+				'label' => __( 'Description Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -311,7 +320,7 @@ class Image_Box extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'image_box_description_typography',
-				'label' => __( 'Typography', 'happy_addons' ),
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-image-description',
 			]
 		);
@@ -319,7 +328,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_description_color',
 			[
-				'label' => __( 'Text Color', 'happy_addons' ),
+				'label' => __( 'Text Color', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-image-description' => 'color: {{VALUE}}',
@@ -330,7 +339,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_description_padding',
 			[
-				'label' => __( 'Padding', 'happy_addons' ),
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -346,7 +355,7 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'image_box_hover',
 			[
-				'label' => __( 'Text Hover Style', 'happy_addons' ),
+				'label' => __( 'Text Hover Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -355,7 +364,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_hover_style',
 			[
-				'label' => __( 'Show Text by Hover', 'happy_addons' ),
+				'label' => __( 'Display Text on hover', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
 				'label_on' => __( 'On', 'your-plugin' ),
 				'label_off' => __( 'Off', 'your-plugin' ),
@@ -368,7 +377,7 @@ class Image_Box extends Base {
 		$this->add_control(
 			'image_box_hover_style_animation',
 			[
-				'label' => __( 'Hover text animation', 'happy_addons' ),
+				'label' => __( 'Text animation', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
 				'label_on' => __( 'On', 'your-plugin' ),
 				'label_off' => __( 'Off', 'your-plugin' ),
