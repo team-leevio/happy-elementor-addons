@@ -54,20 +54,28 @@ class Feature_List extends Base {
         $repeater = new Repeater();
 
         $repeater->add_control(
+            'icon_heading',
+            [
+                'label' => __( 'Icon', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
+
+        $repeater->add_control(
             'icon_type',
             [
                 'label' => __( 'Icon Type', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'icon',
                 'options' => [
-                    'icon'	=> __( 'Icon', 'happy-elementor-addons' ),
+                    'icon' => __( 'Icon', 'happy-elementor-addons' ),
                     'number' => __( 'Number', 'happy-elementor-addons' ),
-                    'image'	=> __( 'Image', 'happy-elementor-addons' ),
+                    'image' => __( 'Image', 'happy-elementor-addons' ),
                 ],
             ]
         );
 
-        $this->add_control(
+        $repeater->add_control(
             'icon',
             [
                 'label' => __( 'Icon', 'happy-elementor-addons' ),
@@ -89,13 +97,13 @@ class Feature_List extends Base {
                 'placeholder' => __( 'List Item Number', 'happy-elementor-addons' ),
                 'default' => __( '1', 'happy-elementor-addons' ),
                 'condition' => [
-                    'icon_type' => 'icon'
+                    'icon_type' => 'number'
                 ],
             ]
         );
 
         $repeater->add_control(
-            'icon_image',
+            'image',
             [
                 'label' => __( 'Image', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::MEDIA,
@@ -109,9 +117,18 @@ class Feature_List extends Base {
         );
 
         $repeater->add_control(
-            'text',
+            'text_heading',
             [
                 'label' => __( 'Text', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $repeater->add_control(
+            'title',
+            [
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
                 'placeholder' => __( 'List Item', 'happy-elementor-addons' ),
@@ -155,9 +172,9 @@ class Feature_List extends Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            '_section_common',
+            '_section_settings',
             [
-                'label' => __( 'Lists', 'happy-elementor-addons' ),
+                'label' => __( 'Settings', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -172,9 +189,6 @@ class Feature_List extends Base {
                     'shop_catalog',
                     'shop_single',
                 ],
-                'condition' => [
-                    'icon_type' => 'image'
-                ]
             ]
         );
 
@@ -186,7 +200,164 @@ class Feature_List extends Base {
         $this->start_controls_section(
             '_section_common_style',
             [
-                'label' => __( 'Style', 'happy-elementor-addons' ),
+                'label' => __( 'Common', 'happy-elementor-addons' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'item_spacing',
+            [
+                'label' => __( 'Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                    ]
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 20,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-list-item' => 'padding-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+//        $this->add_responsive_control(
+//            'content_position',
+//            [
+//                'label' => __( 'Content Position', 'happy-elementor-addons' ),
+//                'type' => Controls_Manager::CHOOSE,
+//                'default' => 'flex-start',
+//                'toggle' => false,
+//                'options' => [
+//                    'flex-start' => [
+//                        'title' => __( 'Left', 'happy-elementor-addons' ),
+//                        'icon' => 'fa fa-align-left',
+//                    ],
+//                    'center' => [
+//                        'title' => __( 'Center', 'happy-elementor-addons' ),
+//                        'icon' => 'fa fa-align-left',
+//                    ],
+//                    'flex-end' => [
+//                        'title' => __( 'Right', 'happy-elementor-addons' ),
+//                        'icon' => 'fa fa-align-left',
+//                    ],
+//                    'selectors' => [
+//                        '{{WRAPPER}} .ha-list-item' => 'justify-content: {{VALUE}}'
+//                    ]
+//                ],
+//            ]
+//        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_icon_style',
+            [
+                'label' => __( 'Icon', 'happy-elementor-addons' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'icon_color',
+            [
+                'label' => __( 'Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#fff',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-icon i' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-icon span' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'icon_background',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#375472',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-icon i' => 'background: {{VALUE}}',
+                    '{{WRAPPER}} .ha-icon span' => 'background: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'icon_font_size',
+            [
+                'label' => __( 'Icon Size', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ]
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 20,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'icon_background_spacing',
+            [
+                'label' => __( 'Background Size', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'default' => [
+                    'unit' => 'px',
+                    'top' => 15,
+                    'right' => 20,
+                    'bottom' => 15,
+                    'left' => 20,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-icon i' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-icon span' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'icon_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'default' => [
+                    'unit' => '%',
+                    'top' => 50,
+                    'right' => 50,
+                    'bottom' => 50,
+                    'left' => 50,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-icon i' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-icon span' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_icon_text',
+            [
+                'label' => __( 'Text', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -196,10 +367,65 @@ class Feature_List extends Base {
     }
 
     protected function render() {
-//        $settings = $this->get_settings_for_display();
+        $settings = $this->get_settings_for_display();
         ?>
 
+        <ul class="ha-list">
+            <?php foreach ( $settings['list_item'] as $index => $item ) :
+                // link
+                $this->add_render_attribute( 'link', 'class', 'ha-link' );
+                $this->add_render_attribute( 'link', 'href', esc_url( $item['link']['url'] ) );
+                if ( ! empty( $item['link']['is_external'] ) ) {
+                    $this->add_render_attribute( 'link', 'target', '_blank' );
+                }
+                if ( ! empty( $item['link']['nofollow'] ) ) {
+                    $this->set_render_attribute( 'link', 'rel', 'nofollow' );
+                }
+                ?>
+                <li class="ha-list-item">
+                    <?php if( $item['icon'] ) : ?>
+                        <div class="ha-icon">
+                            <i class="<?php echo esc_attr( $item['icon'] ); ?>"></i>
+                        </div>
 
+                    <?php elseif( $item['number'] ) : ?>
+                        <div class="ha-icon">
+                            <span><?php echo esc_html( $item['number'] ); ?></span>
+                        </div>
+
+                    <?php elseif( $item['image'] ) :
+
+                        $images = wp_get_attachment_image_src($item['image']['id'], $settings['thumbnail_size'], false);
+                        $image = $images[0];
+                        if( !$image ) {
+                            $image = $item['image']['url'];
+                        }
+                        ?>
+                        <div class="ha-icon">
+                            <img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $item['title'] ); ?>" />
+                        </div>
+
+                    <?php
+                    else: return;
+                    endif;
+                    ?>
+
+                    <div class="ha-text">
+                        <?php if ( !empty( $item['link']['url'] ) ) : ?>
+                            <h2>
+                                <a <?php echo $this->get_render_attribute_string( 'link' ); ?>>
+                                    <?php echo esc_html( $item['title'] ); ?>
+                                </a>
+                            </h2>
+                        <?php else : ?>
+
+                            <h2><?php echo esc_html( $item['title'] ); ?></h2>
+
+                        <?php endif; ?>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
 
         <?php
     }
