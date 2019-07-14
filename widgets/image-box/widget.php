@@ -183,6 +183,30 @@ class Image_Box extends Base {
 		);
 
 
+		$this->add_responsive_control(
+			'image_box_background_height',
+			[
+				'label' => __( 'Width and Height', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 2000,
+						'step' => 5,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 50,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-image-box-background' => 'height: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);		
+
+
 
 		$this->end_controls_section();
 
@@ -417,8 +441,8 @@ class Image_Box extends Base {
 		<div class="ha-image-box-background">
 			 <div class="ha-image-box-inner">
 			 	<div class="ha-image-box-content">
-			 		<h5 class="ha-image-sub-title"><?php  echo esc_html( $settings['image_box_sub_title'] ); ?></h5>
-			 		<h1 class="ha-image-title"><?php  echo esc_html( $settings['image_box_title'] ); ?></h1>
+			 		<h5 class="ha-image-sub-title"><?php  echo esc_html( $settings['_heading_image_box_sub_title'] ); ?></h5>
+			 		<h1 class="ha-image-title"><?php  echo esc_html( $settings['_heading_image_box_title'] ); ?></h1>
 			 		<div class="ha-image-description">
 			 			 
 			 				<?php  echo  $settings['image_box_description']; ?>
