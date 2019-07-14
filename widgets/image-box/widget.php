@@ -142,51 +142,17 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'_section_style_image_box_background_style',
 			[
-				'label' => __( 'Background Style', 'happy-elementor-addons' ),
+				'label' => __( 'Box Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
 
-		$this->add_control(
-			'image_box_background_overlay_color',
-			[
-				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-image-box-body .ha-image-box-inner' => 'background: {{VALUE}}',
-					'{{WRAPPER}} .ha-image-box-body-reverse:hover .ha-image-box-inner' => 'background: {{VALUE}}',
-				],
-			]
-		);
-
-
-		$this->add_control(
-			'image_box_background_padding',
-			[
-				'label' => __( 'Paddding', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'default' => [
-								'top' => '250',
-								'right' => '30',
-								'bottom' => '70',
-								'left' => '30',
-								'unit' => 'px',
-								'isLinked' => '',
-						],
-				'selectors' => [
-					'{{WRAPPER}} .ha-image-box-body .ha-image-box-inner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .ha-image-box-body-reverse .ha-image-box-inner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
 
 		$this->add_responsive_control(
 			'image_box_background_height',
 			[
-				'label' => __( 'Width and Height', 'happy-elementor-addons' ),
+				'label' => __( 'Box Height', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range' => [
@@ -198,7 +164,7 @@ class Image_Box extends Base {
 				],
 				'default' => [
 					'unit' => 'px',
-					'size' => 50,
+					'size' => 400,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-image-box-background' => 'height: {{SIZE}}{{UNIT}};',
@@ -207,6 +173,58 @@ class Image_Box extends Base {
 		);		
 
 
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_style_image_box_overlay_style',
+			[
+				'label' => __( 'Overlay Style', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+
+ 		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'image_box_overlay_color',
+				'label' => __( 'Overlay Background', 'happy-elementor-addons' ),
+				'types' => [ 'classic', 'gradient',  ],
+				'selector' => '{{WRAPPER}}  .ha-image-box-overlay',
+			]
+		);		
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_style_image_box_text_style',
+			[
+				'label' => __( 'Content Style', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'image_box_content_padding',
+			[
+				'label' => __( 'Paddding', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'default' => [
+								'top' => '150',
+								'right' => '30',
+								'bottom' => '70',
+								'left' => '30',
+								'unit' => 'px',
+								'isLinked' => '',
+						],
+				'selectors' => [
+					'{{WRAPPER}} .ha-image-box-body .ha-image-box-content ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-image-box-body-reverse .ha-image-box-content ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);		
 
 		$this->end_controls_section();
 
@@ -439,7 +457,7 @@ class Image_Box extends Base {
 		<div class="<?php if ( 'yes' === $settings['image_box_hover_style'] ) { echo 'ha-image-box-body-reverse'; } else { echo 'ha-image-box-body'; } ?>  <?php if ( 'yes' === $settings['image_box_hover_style_animation'] ) { echo ''; } else { echo 'ha-image-box-body-animation-off'; } ?> ">
 
 		<div class="ha-image-box-background">
-			 <div class="ha-image-box-inner">
+			 <div class="ha-image-box-overlay"></div>
 			 	<div class="ha-image-box-content">
 			 		<h5 class="ha-image-sub-title"><?php  echo esc_html( $settings['_heading_image_box_sub_title'] ); ?></h5>
 			 		<h1 class="ha-image-title"><?php  echo esc_html( $settings['_heading_image_box_title'] ); ?></h1>
@@ -450,7 +468,7 @@ class Image_Box extends Base {
 			 			 
 			 		</div>
 			 	</div>
-			 </div>
+			 
 		</div>
 		</div>
 		<?php  if($settings['image_box_link']['url']): ?> 
