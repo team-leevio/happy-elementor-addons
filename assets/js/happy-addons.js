@@ -172,6 +172,7 @@ window.Happy = window.Happy || {};
             checkVisible: false,
             slidesToShow: 3,
             slidesToScroll: 3,
+            rows: 0,
             // centerMode: true, // default false
             // vertical: true, // default false - vertical slide mode
             prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
@@ -183,25 +184,21 @@ window.Happy = window.Happy || {};
         var HappyEffects = elementorModules.frontend.handlers.Base.extend({
             onInit: function() {
                 elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+                this.$container = this.$element.find('.elementor-widget-container')[0];
                 this.run();
             },
 
-            getWrapper: function() {
-                return this.$element.find('.elementor-widget-container')[0];
-            },
-
-            factoryReset: function() {
-                anime.remove(this.getWrapper());
-                this.getWrapper() && this.getWrapper().removeAttribute('style');
-            },
-
-            onDestroy: function() {
-                elementorModules.frontend.handlers.Base.prototype.onDestroy.apply(this, arguments);
-                this.factoryReset();
+            getDefaultSettings: function() {
+                return {
+                    targets: this.$container,
+                    loop: true,
+                    direction: 'alternate',
+                    easing: 'easeInOutSine',
+                };
             },
 
             onElementChange: function() {
-                this.factoryReset();
+                this.animation && this.animation.restart();
                 this.run();
             },
 
@@ -210,12 +207,7 @@ window.Happy = window.Happy || {};
             },
 
             run: function() {
-                var config = {
-                    targets: this.getWrapper(),
-                    loop: true,
-                    direction: 'alternate',
-                    easing: 'easeInOutSine',
-                };
+                var config = this.getDefaultSettings();
 
                 if (this.getConfig('translate_toggle')) {
                     if (this.getConfig('translate_x.size') || this.getConfig('translate_x.sizes.to')) {
@@ -276,8 +268,8 @@ window.Happy = window.Happy || {};
                 }
 
                 if (this.getConfig('translate_toggle') || this.getConfig('rotate_toggle') || this.getConfig('scale_toggle')) {
-                    this.getWrapper() && this.getWrapper().style.setProperty('will-change', 'transform');
-                    anime(config);
+                    this.$container.style.setProperty('will-change', 'transform');
+                    this.animation = anime(config);
                 }
             }
         });
