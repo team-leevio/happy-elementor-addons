@@ -49,13 +49,8 @@ class Widgets {
 			'testimonial',
 //            'heading-detail',
  	        'number',
-<<<<<<< HEAD
-//            'image-box',
             'flip-box',
-=======
-        //   'image-box',
-
->>>>>>> a8c53bd0dc6a1263719ff4b8dbe9f42f03f9d0df
+            'image-box',
         ];
 
         foreach ( $widgets as $widget ) {
