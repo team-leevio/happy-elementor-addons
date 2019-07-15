@@ -53,13 +53,14 @@ window.Happy = window.Happy || {};
         var $item = $scope.find('.hajs-justified-gallery');
 
         $item.justifiedGallery($.extend({}, {
-            rowHeight : 150,
-            lastRow : 'justify',
-            margins : 10,
+            rowHeight: 150,
+            lastRow: 'justify',
+            margins: 10,
         }, $item.getHappySettings()));
 
         initFilterable($scope, function(filter) {
             $item.justifiedGallery({
+                lastRow: 'justify',
                 filter: filter
             });
         });
@@ -271,6 +272,37 @@ window.Happy = window.Happy || {};
                     this.$container.style.setProperty('will-change', 'transform');
                     this.animation = anime(config);
                 }
+            }
+        });
+
+        var Slick = elementorModules.frontend.handlers.Base.extend({
+            onInit: function () {
+                elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+                this.$container = this.$element.find('.elementor-widget-container');
+                this.run();
+            },
+
+            isType: function( type ) {
+                return this.$element.hasClass('ha-' + type);
+            },
+
+            getDefaultSettings: function() {
+                return {
+                    checkVisible: false,
+                    slidesToShow: this.isType('carousel') ? 3 : 1,
+                    slidesToScroll: this.isType('carousel') ? 3 : 1,
+                    rows: 0,
+                    prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
+                    nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
+                }
+            },
+
+            prepareSettings: function() {
+
+            },
+
+            run: function() {
+
             }
         });
 
