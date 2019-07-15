@@ -597,7 +597,7 @@ class Justified_Gallery extends Base {
             }
 
             $images = $item['images'];
-            $filter = sanitize_title_with_dashes( $item['filter'] );
+            $filter = 'ha-filter-is--' . sanitize_title_with_dashes( $item['filter'] );
 
             if ( $filter && ! isset( $data[ $filter ] ) ) {
                 $menu[ $filter ] = $item['filter'];
