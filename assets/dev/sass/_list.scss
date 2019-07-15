@@ -1,14 +1,69 @@
 .ha-list {
   display: flex;
   flex-direction: column;
-  padding-left: 0;
+  flex-wrap: wrap;
+  padding: 0;
+
   .ha-list-item {
-    list-style: none;
+    width: auto;
+    max-width: 100%;
     display: flex;
-    align-items: center;
-    margin: 0;
-    .ha-text h2 {
+    list-style: none;
+
+    .ha-content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      padding: 10px;
+    }
+
+    .ha-content:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 25%;
+    }
+
+    .ha-text h4 {
+      font-size: 20px;
+      color: #464646;
       margin: 0;
     }
+    .ha-text h4 a {
+      color: #562dd4;
+    }
+    .ha-text h4 a:hover {
+      color: #e2498a;
+    }
+    .ha-icon {
+      display: inline-block;
+      text-align: center;
+      padding: 0;
+      i, span {
+        font-size: 18px;
+        color: #e2498a;
+        line-height: 1;
+        width: 1em;
+        height: 1em;
+        display: block;
+        position: relative;
+      }
+    }
+    .ha-icon.image img {
+      display: block;
+    }
+
   }
+
+}
+
+.ha-content--row .ha-list {
+  justify-content: flex-start;
+}
+
+.ha-icon--column .ha-list-item .ha-content {
+  align-items: flex-start;
 }

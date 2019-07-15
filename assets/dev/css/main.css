@@ -1352,11 +1352,51 @@
 .ha-list {
   display: flex;
   flex-direction: column;
-  padding-left: 0; }
+  flex-wrap: wrap;
+  padding: 0; }
   .ha-list .ha-list-item {
-    list-style: none;
+    width: auto;
+    max-width: 100%;
     display: flex;
-    align-items: center;
-    margin: 0; }
-    .ha-list .ha-list-item .ha-text h2 {
+    list-style: none; }
+    .ha-list .ha-list-item .ha-content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      padding: 10px; }
+    .ha-list .ha-list-item .ha-content:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 25%; }
+    .ha-list .ha-list-item .ha-text h4 {
+      font-size: 20px;
+      color: #464646;
       margin: 0; }
+    .ha-list .ha-list-item .ha-text h4 a {
+      color: #562dd4; }
+    .ha-list .ha-list-item .ha-text h4 a:hover {
+      color: #e2498a; }
+    .ha-list .ha-list-item .ha-icon {
+      display: inline-block;
+      text-align: center;
+      padding: 0; }
+      .ha-list .ha-list-item .ha-icon i, .ha-list .ha-list-item .ha-icon span {
+        font-size: 18px;
+        color: #e2498a;
+        line-height: 1;
+        width: 1em;
+        height: 1em;
+        display: block;
+        position: relative; }
+    .ha-list .ha-list-item .ha-icon.image img {
+      display: block; }
+
+.ha-content--row .ha-list {
+  justify-content: flex-start; }
+
+.ha-icon--column .ha-list-item .ha-content {
+  align-items: flex-start; }
