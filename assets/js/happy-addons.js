@@ -4,14 +4,6 @@ window.Happy = window.Happy || {};
 (function ($, Happy, w) {
     var $window = $(w);
 
-    function isMobileBreakpoint() {
-        return ($window.width() < elementorFrontend.config.breakpoints.md);
-    }
-
-    function isTabletBreakpoint() {
-        return ($window.width() >= elementorFrontend.config.breakpoints.md && $window.width() < elementorFrontend.config.breakpoints.lg);
-    }
-
     $.fn.getHappySettings = function() {
         return this.data('happy-settings');
     };
@@ -50,17 +42,17 @@ window.Happy = window.Happy || {};
     };
 
     Happy.initJustifiedGallery = function($scope) {
-        var $item = $scope.find('.hajs-justified-gallery');
-
+        var $item = $scope.find('.hajs-justified-gallery'),
+            settings = $item.getHappySettings()
         $item.justifiedGallery($.extend({}, {
             rowHeight: 150,
             lastRow: 'justify',
             margins: 10,
-        }, $item.getHappySettings()));
+        }, settings));
 
         initFilterable($scope, function(filter) {
             $item.justifiedGallery({
-                lastRow: 'justify',
+                lastRow: (filter === '*' ? settings.lastRow : 'nojustify'),
                 filter: filter
             });
         });
@@ -90,95 +82,6 @@ window.Happy = window.Happy || {};
                 filter: filter
             });
         });
-    };
-
-    Happy.initSlider = function($scope) {
-        var $item = $scope.find('.hajs-slider'),
-            settings = $item.getHappySettings(),
-            pauseMap = {
-                on_focus: 'pauseOnFocus',
-                on_hover: 'pauseOnHover',
-                on_dots_hover: 'pauseOnDotsHover'
-            };
-
-        settings[pauseMap[settings.pause || 'on_focus']] = true;
-        switch (settings.navigation) {
-            case 'arrow':
-                settings.arrows = true;
-                break;
-            case 'dots':
-                settings.dots = true;
-                break;
-            case 'both':
-                settings.arrows = true;
-                settings.dots = true;
-                break;
-        }
-        delete settings.navigation;
-
-        $item.slick($.extend({}, {
-            // infinite:true, // default true
-            // autoplay: true, // default true
-            arrows: false, // default true
-            dots: false, // default false
-            checkVisible: false,
-            // centerMode: true, // default false
-            // vertical: true, // default false - vertical slide mode
-            prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
-            nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
-        }, settings));
-    };
-
-    Happy.initCarousel = function($scope) {
-        var $item = $scope.find('.hajs-carousel'),
-            happySettings = $item.getHappySettings(),
-            breakpointSettingKeys = ['slidesToShow'],
-            settings = {};
-
-        $.each(happySettings, function(key, val) {
-            if (breakpointSettingKeys.indexOf(key) !== -1) {
-                if (isMobileBreakpoint()) {
-                    settings[key] = happySettings[key + '_mobile'];
-                } else if (isTabletBreakpoint()) {
-                    settings[key] = happySettings[key + '_tablet'];
-                } else {
-                    settings[key] = val;
-                }
-            } else {
-                settings[key] = val;
-            }
-        });
-
-        settings.slidesToScroll = settings.slidesToShow;
-
-        switch (settings.navigation) {
-            case 'arrow':
-                settings.arrows = true;
-                break;
-            case 'dots':
-                settings.dots = true;
-                break;
-            case 'both':
-                settings.arrows = true;
-                settings.dots = true;
-                break;
-        }
-        delete settings.navigation;
-
-        $item.slick($.extend({}, {
-            // infinite:true, // default true
-            // autoplay: true, // default true
-            arrows: false, // default true
-            dots: false, // default false
-            checkVisible: false,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            rows: 0,
-            // centerMode: true, // default false
-            // vertical: true, // default false - vertical slide mode
-            prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
-            nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
-        }, settings));
     };
 
     $window.on('elementor/frontend/init', function() {
@@ -278,31 +181,79 @@ window.Happy = window.Happy || {};
         var Slick = elementorModules.frontend.handlers.Base.extend({
             onInit: function () {
                 elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
-                this.$container = this.$element.find('.elementor-widget-container');
+                this.$container = this.$element.find('.hajs-slick');
                 this.run();
             },
 
-            isType: function( type ) {
-                return this.$element.hasClass('ha-' + type);
+            isCarousel: function() {
+                return this.$element.hasClass('ha-carousel');
             },
 
             getDefaultSettings: function() {
                 return {
+                    arrows: false,
+                    dots: false,
                     checkVisible: false,
-                    slidesToShow: this.isType('carousel') ? 3 : 1,
-                    slidesToScroll: this.isType('carousel') ? 3 : 1,
+                    infinite: true,
+                    slidesToShow: this.isCarousel() ? 3 : 1,
                     rows: 0,
                     prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
                     nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
                 }
             },
 
-            prepareSettings: function() {
+            onElementChange: function() {
+                this.$container.slick('unslick');
+                this.run();
+            },
 
+            getReadySettings: function() {
+                var settings = {
+                    infinite: !! this.getElementSettings('loop'),
+                    autoplay: !! this.getElementSettings('autoplay'),
+                    autoplaySpeed: this.getElementSettings('autoplay_speed'),
+                    speed: this.getElementSettings('animation_speed'),
+                    centerMode: !! this.getElementSettings('center'),
+                    vertical: !! this.getElementSettings('vertical'),
+                    slidesToScroll: 1,
+                };
+
+                switch (this.getElementSettings('navigation')) {
+                    case 'arrow':
+                        settings.arrows = true;
+                        break;
+                    case 'dots':
+                        settings.dots = true;
+                        break;
+                    case 'both':
+                        settings.arrows = true;
+                        settings.dots = true;
+                        break;
+                }
+
+                if (this.isCarousel()) {
+                    settings.slidesToShow = this.getElementSettings('slides_to_show') || 3;
+                    settings.responsive = [
+                        {
+                            breakpoint: (elementorFrontend.config.breakpoints.lg - 1),
+                            settings: {
+                                slidesToShow: (this.getElementSettings('slides_to_show_tablet') || settings.slidesToShow),
+                            }
+                        },
+                        {
+                            breakpoint: (elementorFrontend.config.breakpoints.md - 1),
+                            settings: {
+                                slidesToShow: (this.getElementSettings('slides_to_show_mobile') || this.getElementSettings('slides_to_show_tablet')) || settings.slidesToShow,
+                            }
+                        }
+                    ];
+                }
+
+                return $.extend({}, this.getDefaultSettings(), settings);
             },
 
             run: function() {
-
+                this.$container.slick(this.getReadySettings());
             }
         });
 
@@ -320,11 +271,15 @@ window.Happy = window.Happy || {};
         );
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/ha-slider.default',
-            Happy.initSlider
+            function($scope) {
+                elementorFrontend.elementsHandler.addHandler(Slick, {$element: $scope});
+            }
         );
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/ha-carousel.default',
-            Happy.initCarousel
+            function($scope) {
+                elementorFrontend.elementsHandler.addHandler(Slick, {$element: $scope});
+            }
         );
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/widget',

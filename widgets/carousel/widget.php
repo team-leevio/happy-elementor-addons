@@ -84,7 +84,7 @@ class Carousel extends Base {
         $repeater->add_control(
             'subtitle',
             [
-                'type' => Controls_Manager::TEXT,
+                'type' => Controls_Manager::TEXTAREA,
                 'label_block' => true,
                 'show_label' => false,
                 'placeholder' => __( 'Type subtitle here', 'happy-elementor-addons' )
@@ -99,6 +99,11 @@ class Carousel extends Base {
                 'fields' => $repeater->get_controls(),
                 'title_field' => '<# print(title || "Carousel Item"); #>',
                 'default' => [
+                    [
+                        'image' => [
+                            'url' => Utils::get_placeholder_image_src(),
+                        ],
+                    ],
                     [
                         'image' => [
                             'url' => Utils::get_placeholder_image_src(),
@@ -160,22 +165,6 @@ class Carousel extends Base {
         );
 
         $this->add_control(
-            'navigation',
-            [
-                'label' => __( 'Navigation', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    '' => __( 'None', 'happy-elementor-addons' ),
-                    'arrow' => __( 'Arrow', 'happy-elementor-addons' ),
-                    'dots' => __( 'Dots', 'happy-elementor-addons' ),
-                    'both' => __( 'Arrow & Dots', 'happy-elementor-addons' ),
-                ],
-                'default' => 'both',
-                'frontend_available' => true,
-            ]
-        );
-
-        $this->add_control(
             'autoplay',
             [
                 'label' => __( 'Autoplay?', 'happy-elementor-addons' ),
@@ -206,13 +195,14 @@ class Carousel extends Base {
         );
 
         $this->add_control(
-            'infinite',
+            'loop',
             [
                 'label' => __( 'Infinite Loop?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
+                'default' => 'yes',
                 'frontend_available' => true,
             ]
         );
@@ -242,19 +232,38 @@ class Carousel extends Base {
             ]
         );
 
+        $this->add_control(
+            'navigation',
+            [
+                'label' => __( 'Navigation', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'none' => __( 'None', 'happy-elementor-addons' ),
+                    'arrow' => __( 'Arrow', 'happy-elementor-addons' ),
+                    'dots' => __( 'Dots', 'happy-elementor-addons' ),
+                    'both' => __( 'Arrow & Dots', 'happy-elementor-addons' ),
+                ],
+                'default' => 'arrow',
+                'frontend_available' => true,
+            ]
+        );
+
         $this->add_responsive_control(
             'slides_to_show',
             [
                 'label' => __( 'Slides To Show', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
+                    1 => __( '1 Column', 'happy-elementor-addons' ),
                     2 => __( '2 Columns', 'happy-elementor-addons' ),
                     3 => __( '3 Columns', 'happy-elementor-addons' ),
                     4 => __( '4 Columns', 'happy-elementor-addons' ),
                     5 => __( '5 Columns', 'happy-elementor-addons' ),
                     6 => __( '6 Columns', 'happy-elementor-addons' ),
                 ],
-                'default' => 3,
+                'desktop_default' => 4,
+                'tablet_default' => 3,
+                'mobile_default' => 2,
                 'frontend_available' => true,
             ]
         );
@@ -731,54 +740,47 @@ class Carousel extends Base {
         $this->end_controls_section();
     }
 
-    protected static function get_data_prop_settings( $settings ) {
-        $field_map = [
-            'navigation.str' => 'navigation.str',
-            'autoplay' => 'autoplay.bool',
-            'autoplay_speed.size' => 'autoplaySpeed.int',
-            'speed.size' => 'speed.int',
-            'infinite' => 'infinite.bool',
-            'center' => 'centerMode.bool',
-            'vertical' => 'vertical.bool',
-            'slides_to_show.size' => 'slidesToShow.int',
-            'slides_to_show_tablet.size' => 'slidesToShow_tablet.int',
-            'slides_to_show_mobile.size' => 'slidesToShow_mobile.int',
-        ];
-
-        return ha_prepare_data_prop_settings( $settings, $field_map );
-    }
-
 	protected function render() {
         $settings = $this->get_settings_for_display();
 
         if ( empty( $settings['slides'] ) ) {
             return;
         }
+        ?>
 
-        foreach ( $settings['slides'] as $slide ) :
-            $image = wp_get_attachment_image_url( $slide['image']['id'], $settings['thumbnail_size'] );
-            if ( ! $image ) {
-                $image = $slide['image']['url'];
-            }
-            ?>
+        <div class="hajs-slick ha-slick ha-slick--carousel">
 
-            <div class="ha-slider-item">
-                <?php if ( $image ) : ?>
-                    <img class="ha-slider-img" src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $slide['title'] ); ?>">
-                <?php endif; ?>
+            <?php
+            foreach ( $settings['slides'] as $slide ) :
+                $image = wp_get_attachment_image_url( $slide['image']['id'], $settings['thumbnail_size'] );
+                if ( ! $image ) {
+                    $image = $slide['image']['url'];
+                }
+                ?>
 
-                <?php if ( $slide['title'] || $slide['subtitle'] ) : ?>
-                    <div class="ha-slider-content">
-                        <?php if ( $slide['title'] ) : ?>
-                            <h2 class="ha-slider-title"><?php echo esc_html( $slide['title'] ); ?></h2>
+                <div class="ha-slick-slide">
+                    <div class="ha-slick-item">
+                        <?php if ( $image ) : ?>
+                            <img class="ha-slider-img" src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $slide['title'] ); ?>">
                         <?php endif; ?>
-                        <?php if ( $slide['subtitle'] ) : ?>
-                            <p class="ha-slider-subtitle"><?php echo esc_html( $slide['subtitle'] ); ?></p>
+
+                        <?php if ( $slide['title'] || $slide['subtitle'] ) : ?>
+                            <div class="ha-slick-content">
+                                <?php if ( $slide['title'] ) : ?>
+                                    <h2 class="ha-slick-title"><?php echo esc_html( $slide['title'] ); ?></h2>
+                                <?php endif; ?>
+                                <?php if ( $slide['subtitle'] ) : ?>
+                                    <p class="ha-slick-subtitle"><?php echo esc_html( $slide['subtitle'] ); ?></p>
+                                <?php endif; ?>
+                            </div>
                         <?php endif; ?>
                     </div>
-                <?php endif; ?>
-            </div>
+                </div>
 
-        <?php endforeach;
+            <?php endforeach; ?>
+
+        </div>
+
+        <?php
     }
 }

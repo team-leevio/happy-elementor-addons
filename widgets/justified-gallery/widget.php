@@ -81,7 +81,7 @@ class Justified_Gallery extends Base {
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'show_label' => false,
-                'title_field' => 'Group: {{filter}}',
+                'title_field' => 'Filter Group: {{filter}}',
                 'default' => [
                     [
                         'filter' => __( 'Happy', 'happy-elementor-addons' ),

@@ -906,12 +906,12 @@ span .ha-review-ratting--star:before,
 	border: 0;
 }
 
-.ha-slider-item {
+.ha-slick-item {
 	position: relative;
 	vertical-align: bottom;
 }
 
-.ha-slider-content {
+.ha-slick-content {
 	position: absolute;
 	bottom: 0;
 	padding: 1.5rem;
@@ -920,14 +920,14 @@ span .ha-review-ratting--star:before,
 	background:         linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .3));
 }
 
-.ha-slider-title {
+.ha-slick-title {
 	margin-top: 0;
 	margin-bottom: .2rem;
 	color: #fff; 
 	font-size: 20px;
 }
 
-.ha-slider-subtitle {
+.ha-slick-subtitle {
 	margin: 0;
 	color: #fff;
 }
@@ -1916,6 +1916,7 @@ span .ha-review-ratting--star:before,
 	z-index: 1;
 	margin: 0;
 	padding: 0;
+
 	-webkit-backface-visibility: hidden;
 	        backface-visibility: hidden;
 }
@@ -1928,6 +1929,7 @@ span .ha-review-ratting--star:before,
 .ha-flip-wrap .ha-flip-box .ha-flip-box-inner-wrapper {
 	position: relative;
 	-webkit-transform: translateZ(0);
+
 	-webkit-perspective: 1000px;
 	        perspective: 1000px;
 }
@@ -1950,6 +1952,7 @@ span .ha-review-ratting--star:before,
 	background-size: cover; 
 	background-repeat: no-repeat;
 	text-align: center;
+
 	-webkit-backface-visibility: hidden;
 	        backface-visibility: hidden;
 	-webkit-perspective: 1000px;
@@ -2150,6 +2153,7 @@ span .ha-review-ratting--star:before,
 	        transition:         transform .75s ease-in-out;
 	        transition:         transform .75s ease-in-out, -webkit-transform .75s ease-in-out;
 	        transition:         transform .75s ease-in-out,-webkit-transform .75s ease-in-out; 
+
 	-webkit-transform-style: preserve-3d;
 	        transform-style: preserve-3d;
 }
