@@ -207,6 +207,7 @@ class Justified_Gallery extends Base {
             'last_row',
             [
                 'label' => __( 'Last Row', 'happy-elementor-addons' ),
+                'description' => __( 'When filter is enabled make sure not to use Last Row -> Hide.', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'justify',
                 'options' => [
