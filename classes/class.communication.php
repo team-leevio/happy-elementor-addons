@@ -6,7 +6,7 @@ define( "HAPPY_API_COMMUNICATION_ENDPOINT", "https://happyaddons.com/communicati
 define( "HAPPY_API_COMMUNICATION_CHECK_INTERVAL", 60 ); //after how many seconds we will recheck - optimal value is 12*60*60
 
 
-class Communciator {
+class Communicator {
 
 	public function __construct() {
 		add_action( "admin_menu", function () {
@@ -71,4 +71,4 @@ class Communciator {
 	}
 }
 
-new Communciator();
+new Communicator();
