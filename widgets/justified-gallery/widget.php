@@ -646,9 +646,9 @@ class Justified_Gallery extends Base {
 
         <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
             <?php foreach ( $gallery['items'] as $id => $filters ) :
-                $caption = $settings['show_caption'] ? 'title="' . esc_attr( wp_get_attachment_caption( $id ) ) . '"' : '';
+                $caption = $settings['show_caption'] ? esc_attr( wp_get_attachment_caption( $id ) ) : '';
                 ?>
-                <a class="ha-justified-gallery-item <?php echo esc_attr( implode( ' ', $filters ) ); ?>" <?php echo $caption; ?>>
+                <a class="ha-justified-gallery-item <?php echo esc_attr( implode( ' ', $filters ) ); ?>">
                     <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'alt' => $caption ] ); ?>
                 </a>
             <?php endforeach; ?>
