@@ -39,7 +39,7 @@ class Feature_List extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'hm hm-spark';
+        return 'hm hm-list';
     }
 
     public function get_keywords() {
@@ -154,11 +154,11 @@ class Feature_List extends Base {
                     ],
                     [
                         'text' => __( 'List Item', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-smile-o',
+                        'icon' => 'fa fa-times',
                     ],
                     [
                         'text' => __( 'List Item', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-smile-o',
+                        'icon' => 'fa fa-check',
                     ],
                 ],
             ]
@@ -222,7 +222,7 @@ class Feature_List extends Base {
                 'toggle' => false,
                 'default' => 'flex-start',
                 'selectors' => [
-                    '{{WRAPPER}} .ha-list' => 'align-items: {{VALUE}};',
+                    '{{WRAPPER}}.ha-content--column .ha-list-item' => 'align-items: {{VALUE}};',
                     '{{WRAPPER}}.ha-content--row .ha-list' => 'justify-content: {{VALUE}};'
                 ],
             ]
@@ -309,98 +309,12 @@ class Feature_List extends Base {
             ]
         );
 
-        $this->add_control(
-            'divider',
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
             [
-                'label' => __( 'Divider', 'elementor' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_off' => __( 'Off', 'elementor' ),
-                'label_on' => __( 'On', 'elementor' ),
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_control(
-            'divider_style',
-            [
-                'label' => __( 'Style', 'elementor' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    'solid' => __( 'Solid', 'elementor' ),
-                    'double' => __( 'Double', 'elementor' ),
-                    'dotted' => __( 'Dotted', 'elementor' ),
-                    'dashed' => __( 'Dashed', 'elementor' ),
-                ],
-                'condition' => [
-                    'divider' => 'yes',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-list-item:not(:last-child) .ha-content:after' => 'border-top-style: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'divider_weight',
-            [
-                'label' => __( 'Weight', 'elementor' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
-                'range' => [
-                    'px' => [
-                        'min' => 1,
-                        'max' => 20,
-                    ],
-                ],
-                'condition' => [
-                    'divider' => 'yes',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-list-item:not(:last-child) .ha-content:after' => 'border-top-width: {{SIZE}}{{UNIT}}',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'divider_width',
-            [
-                'label' => __( 'Width', 'elementor' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 1,
-                        'max' => 600,
-                    ],
-                    '%' => [
-                        'min' => 1,
-                        'max' => 300,
-                    ]
-                ],
-                'condition' => [
-                    'divider' => 'yes',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-list-item:not(:last-child) .ha-content:after' => 'width: {{SIZE}}{{UNIT}}',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'divider_color',
-            [
-                'label' => __( 'Color', 'elementor' ),
-                'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Scheme_Color::get_type(),
-                    'value' => Scheme_Color::COLOR_3,
-                ],
-                'condition' => [
-                    'divider' => 'yes',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-list-item:not(:last-child) .ha-content:after' => 'border-color: {{VALUE}}',
-                ],
+                'name' => 'list_border',
+                'label' => __( 'List Border', 'happy-elementor-addons' ),
+                'selector' => '{{WRAPPER}} .ha-list-item',
             ]
         );
 
@@ -531,7 +445,7 @@ class Feature_List extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'text_typography',
-                'selector' => '{{WRAPPER}} .ha-text h2',
+                'selector' => '{{WRAPPER}} .ha-text h4',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_4,
             ]
         );
@@ -542,7 +456,7 @@ class Feature_List extends Base {
                 'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-text h2' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-text h4' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -553,7 +467,7 @@ class Feature_List extends Base {
                 'label' => __( 'Link Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-text h2 a' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-text h4 a' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -564,7 +478,7 @@ class Feature_List extends Base {
                 'label' => __( 'Hover Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-text h2 a:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-text h4 a:hover' => 'color: {{VALUE}}',
                 ],
             ]
         );

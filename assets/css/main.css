@@ -2120,8 +2120,6 @@ span .ha-review-ratting--star:before,
 }
 
 .ha-list .ha-list-item {
-    width: auto;
-    max-width: 100%;
     display: flex;
     list-style: none;
 }
@@ -2131,7 +2129,7 @@ span .ha-review-ratting--star:before,
     flex-direction: row;
     align-items: center;
     position: relative;
-    width: 100%;
+    width: auto;
     padding: 10px;
 }
 
@@ -2141,6 +2139,10 @@ span .ha-review-ratting--star:before,
     left: 0;
     bottom: 0;
     width: 25%;
+}
+
+.ha-list .ha-list-item .ha-text {
+    padding: 0 0 0 3px;
 }
 
 .ha-list .ha-list-item .ha-text h4 {
@@ -2177,8 +2179,14 @@ span .ha-review-ratting--star:before,
     display: block;
 }
 
-.ha-content--row .ha-list {
-    justify-content: flex-start;
+.ha-content--column .ha-list-item {
+    width: 100%;
+    flex-direction: column;
+}
+
+.ha-content--row .ha-list-item {
+    width: auto;
+    max-width: 100%;
 }
 
 .ha-icon--column .ha-list-item .ha-content {
