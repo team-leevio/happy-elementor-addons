@@ -106,9 +106,9 @@ class Image_Box extends Base {
 		$this->add_control(
 			'_heading_image_box_sub_title',
 			[
-				'label' => __( 'Sub Heading', 'happy-elementor-addons' ),
+				'label' => __( 'Pre Heading', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Default sub heading', 'happy-elementor-addons' ),
+				'default' => __( 'Default Pre Heading', 'happy-elementor-addons' ),
 				'placeholder' => __( 'Type your sub title here', 'happy-elementor-addons' ),
 			]
 		);
@@ -176,6 +176,18 @@ class Image_Box extends Base {
 		);		
 
 
+		$this->add_control(
+			'image_box_background_border_radius',
+			[
+				'label' => __( 'Border radius', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-image-box-background' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);	
+
 
 		$this->end_controls_section();
 
@@ -234,7 +246,7 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'_section_style_image_box_sub_title_style',
 			[
-				'label' => __( 'Sub Heading Style', 'happy-elementor-addons' ),
+				'label' => __( 'Pre Heading Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -260,6 +272,17 @@ class Image_Box extends Base {
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'image_box_sub_title_background',
+				'label' => __( 'Text Background', 'happy-elementor-addons' ),
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .ha-image-sub-title',
+			]
+		);
+
+
 		$this->add_control(
 			'image_box_sub_title_padding',
 			[
@@ -270,7 +293,19 @@ class Image_Box extends Base {
 					'{{WRAPPER}} .ha-image-sub-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
-		);		
+		);	
+
+		$this->add_control(
+			'image_box_sub_title_margin',
+			[
+				'label' => __( 'Margin', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-image-sub-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);			
 
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
@@ -342,6 +377,18 @@ class Image_Box extends Base {
 				],
 			]
 		);		
+
+		$this->add_control(
+			'image_box_title_margin',
+			[
+				'label' => __( 'Margin', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-image-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);			
  
 
 
@@ -462,14 +509,20 @@ class Image_Box extends Base {
 		<div class="ha-image-box-background">
 			 <div class="ha-image-box-overlay"></div>
 			 	<div class="ha-image-box-content">
+			 		<?php  if($settings['_heading_image_box_sub_title']): ?> 
 			 		<h5 class="ha-image-sub-title"><?php  echo esc_html( $settings['_heading_image_box_sub_title'] ); ?></h5>
+			 		<?php  endif;?>
+			 		<?php  if($settings['_heading_image_box_title']): ?> 
 			 		<h1 class="ha-image-title"><?php  echo esc_html( $settings['_heading_image_box_title'] ); ?></h1>
+			 		<?php  endif;?>
+			 		<?php  if($settings['image_box_description']): ?> 
 			 		<div class="ha-image-description">
 			 			 
 			 				<?php  echo  $settings['image_box_description']; ?>
 			 				
 			 			 
 			 		</div>
+			 		<?php  endif;?>
 			 	</div>
 			 
 		</div>
