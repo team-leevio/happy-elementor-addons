@@ -232,7 +232,7 @@ class Justified_Gallery extends Base {
         $this->add_control(
             '_heading_image',
             [
-                'label' => __( 'Image', 'plugin-name' ),
+                'label' => __( 'Image', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HEADING,
             ]
         );
@@ -263,7 +263,7 @@ class Justified_Gallery extends Base {
         $this->add_control(
             '_heading_caption',
             [
-                'label' => __( 'Caption', 'plugin-name' ),
+                'label' => __( 'Caption', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -326,7 +326,7 @@ class Justified_Gallery extends Base {
         $this->add_control(
             '_heading_menu',
             [
-                'label' => __( 'Menu', 'plugin-name' ),
+                'label' => __( 'Menu', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HEADING,
             ]
         );
@@ -346,7 +346,7 @@ class Justified_Gallery extends Base {
         $this->add_control(
             '_heading_buttons',
             [
-                'label' => __( 'Filter Buttons', 'plugin-name' ),
+                'label' => __( 'Filter Buttons', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
