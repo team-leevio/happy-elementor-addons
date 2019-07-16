@@ -85,7 +85,7 @@ abstract class Base extends Widget_Base {
             '_faq_notes',
             [
                 'type' => Controls_Manager::RAW_HTML,
-                'raw' => __( 'A very important message to show in the panel.', 'plugin-name' ),
+                'raw' => __( 'A very important message to show in the panel.', 'happy-elementor-addons' ),
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
             ]
         );

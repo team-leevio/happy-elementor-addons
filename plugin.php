@@ -5,7 +5,7 @@
  * Description: <a href="https://happyaddons.com/">HappyAddons</a> is a collection of slick, powerful widgets that works seamlessly with Elementor page builder. It’s trendy look with detail customization features allows to create extraordinary designs instantly. <a href="https://happyaddons.com/">HappyAddons</a> is free, rapidly growing and comes with great support.
  * Version: 1.2.0
  * Author: HappyMonster
- * Author URI: https://happymonster.me/
+ * Author URI: https://happyaddons.com/
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: happy-elementor-addons

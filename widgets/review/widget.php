@@ -319,7 +319,7 @@ class Review extends Base {
         $this->add_control(
             'offset_toggle',
             [
-                'label' => __( 'Offset', 'plugin-name' ),
+                'label' => __( 'Offset', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
                 'label_off' => __( 'None', 'your-plugin' ),
                 'label_on' => __( 'Custom', 'your-plugin' ),
