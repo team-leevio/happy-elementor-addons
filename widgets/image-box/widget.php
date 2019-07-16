@@ -182,7 +182,7 @@ class Image_Box extends Base {
 		$this->start_controls_section(
 			'_section_style_image_box_overlay_style',
 			[
-				'label' => __( 'Overlay Style', 'happy-elementor-addons' ),
+				'label' => __( 'Background Overlay', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -192,7 +192,7 @@ class Image_Box extends Base {
 			Group_Control_Background::get_type(),
 			[
 				'name' => 'image_box_overlay_color',
-				'label' => __( 'Overlay Background', 'happy-elementor-addons' ),
+				'label' => __( 'Overlay Type', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient',  ],
 				'selector' => '{{WRAPPER}}  .ha-image-box-overlay',
 			]
