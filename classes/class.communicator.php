@@ -93,7 +93,7 @@ class Communicator {
 				?>
                 <div id="happyaddons_remote_notice" class="notice notice-<?php echo $message_style; ?> is-dismissible">
 					<?php wp_nonce_field( 'happyaddons_dismiss_error', 'happyaddons_remote_dismiss' ); ?>
-                    <?php echo $message_body; ?>
+                    <div class="happyaddons-massage wp-clearfix"><?php echo $message_body; ?></div>
 					<?php if ( $action_button_title ): ?>
                         <p><a class="button button-primary"
                               href="<?php echo esc_url( $action_button_url ); ?>"><?php echo esc_html( $action_button_title ); ?></a>
