@@ -73,7 +73,7 @@ class Image_Box extends Base {
 		);
 
 
-		$this->add_control(
+		$this->add_control( 
 			'image_box_link',
 			[
 				'label' => __( 'Link', 'happy-elementor-addons' ),
@@ -86,6 +86,9 @@ class Image_Box extends Base {
 					'is_external' => false,
 					'nofollow' => false,
 				],
+				'dynamic' => [
+					'active' => true,
+				],				
 			]
 		);
 
