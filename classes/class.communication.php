@@ -4,11 +4,15 @@ namespace Happy_Addons\Communication;
 
 defined( 'ABSPATH' ) || die();
 
+define( 'HAPPY_API_COMMUNICATION_ENDPOINT', 'https://happyaddons.com/communication.php' );
+
+if ( ! ha_is_localhost() ) {
+    define( 'HAPPY_API_COMMUNICATION_CHECK_INTERVAL', ( DAY_IN_SECONDS / 2 ) );
+} else {
+    define( 'HAPPY_API_COMMUNICATION_CHECK_INTERVAL', 60 );
+}
+
 class Communicator {
-
-    const ENDPOINT = 'https://happyaddons.com/communication.php';
-
-    const CHECK_INTERVAL = ( DAY_IN_SECONDS / 2 );
 
 	public function __construct() {
 		add_action( 'admin_menu', function () {
@@ -17,14 +21,15 @@ class Communicator {
 
 			if ( $next_communication_time < time() ) {
 				//make a call
-				$happy_data = wp_remote_get( self::ENDPOINT . '?s=happy&action=notice' );
+				$happy_data = wp_remote_get( HAPPY_API_COMMUNICATION_ENDPOINT . '?s=happy&action=notice' );
+
 				if ( is_array( $happy_data ) ) {
 					$body = json_decode( wp_remote_retrieve_body( $happy_data ), true );
 					if ( is_array( $body ) ) {
 						if ( $body['digest'] != $last_message['digest'] ) {
 							$options = [
 								'happyaddons_message'            => $body,
-								'happyaddons_communication_time' => time() + self::CHECK_INTERVAL,
+								'happyaddons_communication_time' => time() + HAPPY_API_COMMUNICATION_CHECK_INTERVAL,
 								'happyaddons_message_dismissed'  => 0
 							];
 							foreach ( $options as $key => $value ) {
@@ -33,7 +38,7 @@ class Communicator {
 						}
 					} else {
 						$options = [
-							'happyaddons_communication_time' => time() + self::CHECK_INTERVAL,
+							'happyaddons_communication_time' => time() + HAPPY_API_COMMUNICATION_CHECK_INTERVAL,
 						];
 						foreach ( $options as $key => $value ) {
 							update_option( $key, $value );
