@@ -146,19 +146,19 @@ class Feature_List extends Base {
                 'show_label' => false,
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
-                'title_field' => '{{{ text }}}',
+                'title_field' => '{{{ title }}}',
                 'default' => [
                     [
-                        'text' => __( 'List Item', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-smile-o',
-                    ],
-                    [
-                        'text' => __( 'List Item', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-times',
-                    ],
-                    [
-                        'text' => __( 'List Item', 'happy-elementor-addons' ),
+                        'title' => __( 'WordPress', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-check',
+                    ],
+                    [
+                        'title' => __( 'Elementor', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-check',
+                    ],
+                    [
+                        'title' => __( 'Happy Elementor Addons', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-smile-o',
                     ],
                 ],
             ]
@@ -174,7 +174,7 @@ class Feature_List extends Base {
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'content_layout',
             [
                 'label' => __( 'Layout', 'happy-elementor-addons' ),
@@ -191,7 +191,7 @@ class Feature_List extends Base {
                     ],
                 ],
                 'toggle' => false,
-                'default' => 'row',
+                'default' => 'column',
                 'prefix_class' => 'ha-content--',
                 'selectors' => [
                     '{{WRAPPER}} .ha-list' => 'flex-direction: {{VALUE}};',
@@ -211,7 +211,7 @@ class Feature_List extends Base {
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Left', 'happy-elementor-addons' ),
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-center',
                     ],
                     'flex-end' => [
@@ -221,8 +221,11 @@ class Feature_List extends Base {
                 ],
                 'toggle' => false,
                 'default' => 'flex-start',
+                'prefix_class' => 'ha-align--',
                 'selectors' => [
                     '{{WRAPPER}}.ha-content--column .ha-list-item' => 'align-items: {{VALUE}};',
+                    '{{WRAPPER}}.ha-content--column.ha-icon--column .ha-list-item .ha-content' => 'align-items: {{VALUE}};',
+                    '{{WRAPPER}}.ha-content--row.ha-icon--column .ha-list-item .ha-content' => 'align-items: {{VALUE}};',
                     '{{WRAPPER}}.ha-content--row .ha-list' => 'justify-content: {{VALUE}};'
                 ],
             ]
@@ -238,6 +241,10 @@ class Feature_List extends Base {
                     'row' => [
                         'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-left',
+                    ],
+                    'column' => [
+                        'title' => __( 'Top', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-v-align-top',
                     ],
                     'row-reverse' => [
                         'title' => __( 'Right', 'happy-elementor-addons' ),
