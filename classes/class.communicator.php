@@ -68,7 +68,7 @@ class Communicator {
                                 action: 'happyaddons_dismiss_error',
                                 nonce: $('#happyaddons_remote_dismiss').val()
                             }, function (data) {
-                                console.log(data);
+                                //console.log(data);
                             });
                             return false;
                         });
@@ -93,9 +93,11 @@ class Communicator {
 				?>
                 <div id="happyaddons_remote_notice" class="notice notice-<?php echo $message_style; ?> is-dismissible">
 					<?php echo wp_nonce_field( 'happyaddons_dismiss_error', 'happyaddons_remote_dismiss' ); ?>
-                    <p><?php echo esc_html( $message_body ); ?></p>
+                    <p><?php echo $message_body; ?></p>
 					<?php if ( $action_button_title ): ?>
-                        <p><a class="button button-primary" href="<?php echo esc_url( $action_button_url ); ?>"><?php echo( $action_button_title ); ?></a></p>
+                        <p><a class="button button-primary"
+                              href="<?php echo esc_url( $action_button_url ); ?>"><?php echo esc_html( $action_button_title ); ?></a>
+                        </p>
 					<?php endif; ?>
                 </div>
 				<?php
