@@ -8,7 +8,8 @@ class Communicator {
 
 	const ENDPOINT = 'https://happyaddons.com/communication.php';
 
-	const CHECK_INTERVAL = ( DAY_IN_SECONDS / 2 );
+	//const CHECK_INTERVAL = ( DAY_IN_SECONDS / 2 );
+	const CHECK_INTERVAL = 60;
 
 	public function __construct() {
 		add_action( 'admin_menu', function () {
@@ -87,7 +88,7 @@ class Communicator {
 				$message_style       = isset( $last_message['style'] ) ? $last_message['style'] : '';
 				?>
                 <div id="happyaddons_remote_notice" class="notice notice-<?php echo $message_style; ?> is-dismissible">
-					<?php echo wp_nonce_field( 'happyaddons_dismiss_error', 'happyaddons_remote_dismiss' ); ?>
+					<?php wp_nonce_field( 'happyaddons_dismiss_error', 'happyaddons_remote_dismiss' ); ?>
                     <p><?php echo $message_body; ?></p>
 					<?php if ( $action_button_title ): ?>
                         <p><a class="button button-primary"
