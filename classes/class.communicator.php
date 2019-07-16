@@ -7,9 +7,9 @@ defined( 'ABSPATH' ) || die();
 define( 'HAPPY_API_COMMUNICATION_ENDPOINT', 'https://happyaddons.com/communication.php' );
 
 if ( ! ha_is_localhost() ) {
-    define( 'HAPPY_API_COMMUNICATION_CHECK_INTERVAL', ( DAY_IN_SECONDS / 2 ) );
+	define( 'HAPPY_API_COMMUNICATION_CHECK_INTERVAL', ( DAY_IN_SECONDS / 2 ) );
 } else {
-    define( 'HAPPY_API_COMMUNICATION_CHECK_INTERVAL', 60 );
+	define( 'HAPPY_API_COMMUNICATION_CHECK_INTERVAL', 60 );
 }
 
 class Communicator {
@@ -93,7 +93,7 @@ class Communicator {
 				$message_style       = isset( $last_message['style'] ) ? $last_message['style'] : '';
 				?>
                 <div id="happyaddons_remote_notice" class="notice notice-<?php echo $message_style; ?> is-dismissible">
-					<?php echo wp_nonce_field( 'happyaddons_dismiss_error', 'happyaddons_remote_dismiss' ); ?>
+					<?php wp_nonce_field( 'happyaddons_dismiss_error', 'happyaddons_remote_dismiss' ); ?>
                     <p><?php echo $message_body; ?></p>
 					<?php if ( $action_button_title ): ?>
                         <p><a class="button button-primary"
