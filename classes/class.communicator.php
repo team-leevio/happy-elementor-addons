@@ -16,6 +16,7 @@ class Communicator {
 
 	public function __construct() {
 		add_action( 'admin_menu', function () {
+//		    delete_option('happyaddons_message');
 			$last_message            = get_option( 'happyaddons_message', [ 'digest' => '404' ] );
 			$next_communication_time = get_option( 'happyaddons_communication_time', 0 );
 

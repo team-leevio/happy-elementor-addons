@@ -1,14 +1,13 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 1.1.0
+Version: 1.2.0
 Author: HappyMonster
-Author URI: http://happymonster.me/
+Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, obiplabon, sourav926
 Tags: elementor, form, page builder, widget, addon
 Requires at least: 4.7
 Tested up to: 5.2.2
 Requires PHP: 5.4
-Stable tag: 1.1.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,12 +28,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 7. **[Review](https://happyaddons.com/elementor-review-widget-demo/)** - Showcase your user feedback, reviews and rating easily than ever using our review widget. Display user photo, texts and star ratings. Make them stand out using built in offsets and positioning features. [Check demo](https://happyaddons.com/elementor-review-widget-demo/)
 8. **[Skill Bars](https://happyaddons.com/elementor-skill-bars-widget-demo/)** - An essential building block to showcase user skills, task percentage, required tools and other progressive information in different ways. Comes with incredible customizing options to suit your needs. [Check demo](https://happyaddons.com/elementor-skill-bars-widget-demo/)
 9. **[Contact Form 7](https://happyaddons.com/elementor-contact-form-7-widget-demo/)** - This utility widget helps you to integrate existing forms built using CF7 plugin across your web pages without spending too much time. [Check demo](https://happyaddons.com/elementor-contact-form-7-widget-demo/)
-10. **[Caldera Forms](https://happyaddons.com/elementor-caldera-forms-widget-demo/)** - This widget can help you to display your caldera forms to display on your web pages designed with Elementor. [Check demo](https://happyaddons.com/elementor-caldera-forms-widget-demo/)
+10. **[ Caldera Forms](https://happyaddons.com/elementor-caldera-forms-widget-demo/)** - This widget can help you to display your caldera forms to display on your web pages designed with Elementor. [Check demo](https://happyaddons.com/elementor-caldera-forms-widget-demo/)
 11. **[weForms](https://happyaddons.com/elementor-we-forms-widget-demo/)** - Designed forms using weForms plugin and looking for a way to display those on your Elementor powered pages? This is the answer for that. [Check demo](https://happyaddons.com/elementor-we-forms-widget-demo/)
 12. **[Ninja Forms](https://happyaddons.com/elementor-ninja-form-widget-demo/)** - Use this widget to embed forms created using Ninja Forms to display seamlessly on your web pages. Various styling options will help you to look at them even better. [Check demo](https://happyaddons.com/elementor-ninja-form-widget-demo/)
-12. **[WPForms](https://happyaddons.com/elementor-wpform-widget-demo/)** - Use this widget to embed forms created using WPForms to display seamlessly on your web pages. Various styling options will help you to look at them even better.
-13. **[Dual Button](https://happyaddons.com/elementor-dual-button-widget-demo/)** - DualButton widget allows you to add two flexible and trendy action buttons in your sections, in different styles.
-14. **Testimonial**
+13. **[WPForms](https://happyaddons.com/elementor-wpform-widget-demo/)** - Use this widget to embed forms created using WPForms to display seamlessly on your web pages. Various styling options will help you to look at them even better. [Check demo](https://happyaddons.com/elementor-wpform-widget-demo/)
+14. **[Dual Button](https://happyaddons.com/elementor-dual-button-widget-demo/)** - DualButton widget allows you to add two flexible and trendy action buttons in your sections, in different styles. [Check demo](https://happyaddons.com/elementor-dual-button-widget-demo/)
+15. **[Testimonial](https://happyaddons.com/elementor-testimonial-widget-demo/)**
+16. **[Justified Grid](https://happyaddons.com/elementor-justified-grid-widget-demo/)** - Discover the most precious addon of HappyAddons. Decorate your website with Justified Grid with lots of variation. [Check demo](https://happyaddons.com/elementor-justified-grid-widget-demo/)
+17. **[Number](https://happyaddons.com/elementor-number-widget-demo/)** - Create beautiful information boxes using icons, links and texts, and make them slick using the built in positioning features. [Check demo](https://happyaddons.com/elementor-number-widget-demo/)
+18. **Logo Grid** - Our happy design team is working hard to cook some awesome demo designs for you. [Subscribe to happy newsletter](https://happyaddons.com/) to smell what the design team is cooking :D
 
 ### Included Free Extensions
 **Happy Effects**
@@ -92,7 +94,13 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 == Changelog ==
 
-= 1.1.0 =
+= 1.2.0 =
+
+* New: Justified Grid Widget
+* New: Logo Grid Widget
+* New: Number Widget
+
+= 1.1.1 =
 
 * New: Testimonial Widget
 * New: Floating Effects from -> to controller
@@ -102,6 +110,10 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 * Fix: WP Forms style issue
 * Fix: Card Widget editor mode JS error issue
 * Fix: Dual Button Widget inline editing issue
+
+= 1.1.0 =
+
+* Fix: Minor issue fix
 
 = 1.0.5 =
 
