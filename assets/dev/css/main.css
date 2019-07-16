@@ -1371,7 +1371,7 @@
       bottom: 0;
       width: 25%; }
     .ha-list .ha-list-item .ha-text {
-      padding: 0 0 0 3px; }
+      padding-left: 5px; }
     .ha-list .ha-list-item .ha-text h4 {
       font-size: 18px;
       color: #464646;

@@ -2142,7 +2142,7 @@ span .ha-review-ratting--star:before,
 }
 
 .ha-list .ha-list-item .ha-text {
-    padding: 0 0 0 3px;
+    padding-left: 5px;
 }
 
 .ha-list .ha-list-item .ha-text h4 {

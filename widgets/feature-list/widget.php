@@ -393,16 +393,6 @@ class Feature_List extends Base {
             ]
         );
 
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'number_typography',
-                'label' => __( 'Number Typography', 'happy-elementor-addons' ),
-                'selector' => '{{WRAPPER}} .ha-icon.number span',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
-            ]
-        );
-
         $this->add_control(
             'icon_color',
             [
