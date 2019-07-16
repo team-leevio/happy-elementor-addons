@@ -79,7 +79,10 @@ class Base {
         require( __DIR__ . '/classes/asset-manager.php' );
         require( __DIR__ . '/classes/happy-effects.php' );
         require( __DIR__ . '/classes/dashboard.php' );
-        require( __DIR__ . '/classes/class.communication.php' );
+
+        if ( is_admin() ) {
+            require( __DIR__ . '/classes/class.communication.php' );
+        }
     }
 
     /**
