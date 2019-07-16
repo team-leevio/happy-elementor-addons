@@ -277,3 +277,7 @@ function ha_get_setting_value( &$settings, $keys ) {
     }
     return $settings[ $keys[0] ];
 }
+
+function ha_is_localhost() {
+    return isset( $_SERVER['REMOTE_ADDR'] ) && in_array( $_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'] );
+}
