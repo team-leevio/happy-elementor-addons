@@ -12,7 +12,7 @@ class Assets {
      */
     public static function init() {
         // Frontend scripts
-        add_action( 'wp_enqueue_scripts', [__CLASS__, 'enqueue_frontend_scripts'] );
+        add_action( 'elementor/frontend/after_enqueue_scripts', [__CLASS__, 'enqueue_frontend_scripts'] );
 
         // Dashboard scripts
         add_action( 'admin_enqueue_scripts', [__CLASS__, 'dashboard_enqueue_scripts'] );
@@ -145,7 +145,7 @@ class Assets {
         wp_enqueue_script(
             'happy-elementor-addons',
             HAPPY_ASSETS . 'js/happy-addons' . $suffix . 'js',
-            ['jquery', 'imagesloaded'],
+            ['imagesloaded', 'jquery-slick', 'jquery'],
             Base::VERSION,
             true
         );
@@ -186,19 +186,10 @@ class Assets {
             Base::VERSION,
             true
 		);
-
-        wp_localize_script(
-            'happy-elementor-addons-admin',
-            'happy',
-            [
-                'ajax_url' => admin_url( 'admin-ajax.php' ),
-                'nonce' => wp_create_nonce( 'ha_get_preset' ),
-            ]
-        );
 	}
 
     public static function enqueue_preview_style() {
-        if( class_exists( 'WeForms' ) ) {
+        if ( class_exists( 'WeForms' ) ) {
             wp_enqueue_style(
                 'happy-elementor-weform-preview',
                 plugins_url( '/weforms/assets/wpuf/css/frontend-forms.css', 'weforms' ),
@@ -206,7 +197,8 @@ class Assets {
                 Base::VERSION
             );
         }
-        if( class_exists( 'WPForms_Lite' ) ) {
+
+        if ( class_exists( 'WPForms_Lite' ) ) {
             wp_enqueue_style(
                 'happy-elementor-wpform-preview',
                 plugins_url( '/wpforms-lite/assets/css/wpforms-full.css', 'wpforms-lite' ),
@@ -214,7 +206,8 @@ class Assets {
                 Base::VERSION
             );
 		}
-        if( class_exists( 'Caldera_Forms' ) ) {
+
+        if ( class_exists( 'Caldera_Forms' ) ) {
             wp_enqueue_style(
                 'happy-elementor-caldera-preview',
                 plugins_url( '/caldera-forms/assets/css/caldera-forms-front.css', 'caldera-forms' ),

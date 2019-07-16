@@ -906,12 +906,12 @@ span .ha-review-ratting--star:before,
 	border: 0;
 }
 
-.ha-slider-item {
+.ha-slick-item {
 	position: relative;
 	vertical-align: bottom;
 }
 
-.ha-slider-content {
+.ha-slick-content {
 	position: absolute;
 	bottom: 0;
 	padding: 1.5rem;
@@ -920,14 +920,14 @@ span .ha-review-ratting--star:before,
 	background:         linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .3));
 }
 
-.ha-slider-title {
+.ha-slick-title {
 	margin-top: 0;
 	margin-bottom: .2rem;
 	color: #fff; 
 	font-size: 20px;
 }
 
-.ha-slider-subtitle {
+.ha-slick-subtitle {
 	margin: 0;
 	color: #fff;
 }

@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || die();
 
 class Base {
 
-    const VERSION = '1.1.0';
+    const VERSION = '1.2.0';
 
     const MINIMUM_ELEMENTOR_VERSION = '2.5.0';
 
@@ -79,6 +79,10 @@ class Base {
         require( __DIR__ . '/classes/asset-manager.php' );
         require( __DIR__ . '/classes/happy-effects.php' );
         require( __DIR__ . '/classes/dashboard.php' );
+
+        if ( is_admin() ) {
+            require( __DIR__ . '/classes/class.communicator.php' );
+        }
     }
 
     /**
