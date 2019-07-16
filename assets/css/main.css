@@ -1863,11 +1863,8 @@ span .ha-review-ratting--star:before,
 	        transition: opacity .2s ease-in-out;
 }
 .ha-image-box-body-reverse .ha-image-box-background .ha-image-box-content {
-	position: absolute;
-	bottom: 0;
-	left: 0; 
 	color: #fff;
-	opacity: 0;
+	opacity: 0; 
 	-webkit-transition: opacity .2s ease-in-out,-webkit-transform .2s ease-in-out;
 	        transition: opacity .2s ease-in-out,-webkit-transform .2s ease-in-out;
 	        transition: opacity .2s ease-in-out,transform .2s ease-in-out;

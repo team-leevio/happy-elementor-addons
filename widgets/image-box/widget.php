@@ -241,6 +241,63 @@ class Image_Box extends Base {
 			]
 		);		
 
+
+		$this->add_control(
+			'image_box_content_position', 
+			[
+				'label' => __( 'Content Position', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'solid',
+				'options' => [
+					'top-left'  => __( 'Top Left', 'plugin-domain' ),
+					'top-right' => __( 'Top Right', 'plugin-domain' ),
+					'bottom-right' => __( 'Bottom Right', 'plugin-domain' ),
+					'bottom-left' => __( 'Bottom Left', 'plugin-domain' ),
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-image-box-content'  => '{{VALUE}};'
+				],
+                'selectors_dictionary' => [
+                    'top-left' => 'top:0; left:0;',
+                    'top-right' => 'top:0; right:0; left:inherit;',
+                    'bottom-right' => 'bottom:0;right:0; left:inherit;',
+                    'bottom-left' => 'bottom:0;left:0;'
+                ],			
+                'default' => 'bottom-left',	
+			]
+		);
+
+		$this->add_responsive_control(
+			'image_box_content_position_align',
+			[
+				'label' => __( 'Content Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .ha-image-box-content'  => '{{VALUE}};'
+				],
+                'selectors_dictionary' => [
+                    'left' => 'text-align:left;',
+                    'center' => 'text-align:center;',
+                    'right' => 'text-align:right;'
+                ],
+			]
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -508,7 +565,7 @@ class Image_Box extends Base {
 
 		<div class="ha-image-box-background">
 			 <div class="ha-image-box-overlay"></div>
-			 	<div class="ha-image-box-content">
+			 	<div class="ha-image-box-content" >
 			 		<?php  if($settings['_heading_image_box_sub_title']): ?> 
 			 		<h5 class="ha-image-sub-title"><?php  echo esc_html( $settings['_heading_image_box_sub_title'] ); ?></h5>
 			 		<?php  endif;?>
