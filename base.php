@@ -81,7 +81,7 @@ class Base {
         require( __DIR__ . '/classes/dashboard.php' );
 
         if ( is_admin() ) {
-            require( __DIR__ . '/classes/class.communication.php' );
+            require( __DIR__ . '/classes/class.communicator.php' );
         }
     }
 
