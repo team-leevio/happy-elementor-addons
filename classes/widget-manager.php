@@ -51,6 +51,7 @@ class Widgets {
  	        'number',
             'flip-box',
             'image-box',
+            'google-map',
           
         ];
 
