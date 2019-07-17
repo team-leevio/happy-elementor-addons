@@ -70,6 +70,28 @@ class Base {
         Assets::init();
         Happy_Effects::init();
         Dashboard::init();
+
+        $this->init_appsero_tracking();
+    }
+
+    /**
+     * Initialize the tracker
+     *
+     * @return void
+     */
+    protected function init_appsero_tracking() {
+        if ( ! class_exists( 'Appsero\Client' ) ) {
+            require_once __DIR__ . '/appsero/src/Client.php';
+        }
+
+        $client = new \Appsero\Client(
+            '70b96801-94cc-4501-a005-8f9a4e20e152',
+            'Happy Elementor Addons',
+            HAPPY__FILE__
+        );
+
+        // Active insights
+        $client->insights()->init();
     }
 
     public function include_files() {
