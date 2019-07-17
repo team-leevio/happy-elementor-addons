@@ -50,7 +50,8 @@ class Widgets {
 //            'heading-detail',
  	        'number',
             'flip-box',
-            'image-box',
+            'google-map',
+            'calendly',
           
         ];
 
