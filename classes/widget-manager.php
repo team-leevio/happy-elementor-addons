@@ -52,6 +52,7 @@ class Widgets {
             'flip-box',
             'image-box',
             'feature-list',
+            'step-flow',
         ];
 
         foreach ( $widgets as $widget ) {
