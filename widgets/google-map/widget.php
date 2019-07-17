@@ -180,7 +180,7 @@ class Google_Map extends Base {
 
 			<div class="ha-google-map-body">
 			 
-						<iframe style="max-width: 100%;" width="600" height="500"   src="https://maps.google.com/maps?q=<?php echo esc_attr(str_replace(" ", "%20",$settings['google_map_address'])); ?>&t=&z=<?php echo esc_attr( $settings['google_map_zoom'][size] ); ?>&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+						<iframe style="max-width: 100%;" width="600" height="500"   src="https://maps.google.com/maps?q=<?php echo esc_attr(urlencode($settings['google_map_address'])); ?>&t=&z=<?php echo esc_attr( $settings['google_map_zoom']['size'] ); ?>&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 						 
 			 
 			</div>
