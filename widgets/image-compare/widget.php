@@ -242,7 +242,7 @@ class Image_Compare extends Base {
         $this->add_control(
             '_heading_bar',
             [
-                'label' => __( 'Handle Bar', 'plugin-name' ),
+                'label' => __( 'Handle Bar', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -270,7 +270,7 @@ class Image_Compare extends Base {
         $this->add_control(
             '_heading_arrow',
             [
-                'label' => __( 'Handle Arrow', 'plugin-name' ),
+                'label' => __( 'Handle Arrow', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
             ]

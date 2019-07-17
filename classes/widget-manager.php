@@ -52,6 +52,8 @@ class Widgets {
             'flip-box',
             'image-box',
             'google-map',
+            'calendly',
+
           
         ];
 

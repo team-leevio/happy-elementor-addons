@@ -92,7 +92,7 @@ class Number extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-number-border' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-number-body' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -102,7 +102,7 @@ class Number extends Base {
 			[
 				'name' => 'number_text_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-number-border',
+				'selector' => '{{WRAPPER}} .ha-number-body',
 			]
 		);
 
@@ -111,7 +111,7 @@ class Number extends Base {
 			[
 				'name' => 'number_text_shadow',
 				'label' => __( 'Text Shadow', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-number-border span',
+				'selector' => '{{WRAPPER}} .ha-number-body span',
 			]
 		);
 
@@ -171,7 +171,7 @@ class Number extends Base {
 					'size' => 50,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-number-border' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-number-body' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -183,7 +183,7 @@ class Number extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%', 'em' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-number-border ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-number-body ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -195,7 +195,7 @@ class Number extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%', 'em' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-number-border' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-number-body' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -205,7 +205,7 @@ class Number extends Base {
             [
                 'name' => 'number_border',
                 'label' => __( 'Border', 'happy-elementor-addons' ),
-                'selector' => '{{WRAPPER}} .ha-number-border',
+                'selector' => '{{WRAPPER}} .ha-number-body',
             ]
         );
 
@@ -215,7 +215,7 @@ class Number extends Base {
 				'name' => 'number_background_color',
 				'label' => __( 'Background', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .ha-number-border',
+				'selector' => '{{WRAPPER}} .ha-number-body',
 			]
 		);
 
@@ -224,7 +224,7 @@ class Number extends Base {
 			[
 				'name' => 'number_box_shadow',
 				'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-number-border',
+				'selector' => '{{WRAPPER}} .ha-number-body',
 			]
 		);
 
@@ -249,7 +249,7 @@ class Number extends Base {
 				],
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .ha-number-border'  => '{{VALUE}};'
+					'{{WRAPPER}} .ha-number-body'  => '{{VALUE}};'
 				],
                 'selectors_dictionary' => [
                     'left' => 'float: left',
@@ -274,7 +274,7 @@ class Number extends Base {
 				'name' => 'number_background_overlay_color',
 				'label' => __( 'Background', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .ha-number-border .ha-number-border-overlay',
+				'selector' => '{{WRAPPER}} .ha-number-body .ha-number-overlay',
 			]
 		);
 
@@ -303,7 +303,7 @@ class Number extends Base {
                     'luminosity' => 'Luminosity',
 				],
 				'selectors' => [
-                    '{{WRAPPER}} .ha-number-border-overlay' => 'mix-blend-mode: {{VALUE}}',
+                    '{{WRAPPER}} .ha-number-overlay' => 'mix-blend-mode: {{VALUE}}',
                 ],
 			]
 		);
@@ -327,7 +327,7 @@ class Number extends Base {
 					'size' => .5,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-number-border-overlay' => 'opacity: {{SIZE}};',
+					'{{WRAPPER}} .ha-number-overlay' => 'opacity: {{SIZE}};',
 				],
 			]
 		);
@@ -340,10 +340,8 @@ class Number extends Base {
 		?>
 
 		<div class="ha-number-body">
-			<div class="ha-number-border">
-			<div class="ha-number-border-overlay"></div>
+			<div class="ha-number-overlay"></div>
 			<span class="ha-number-text"><?php echo esc_html( $settings['number_text'] ); ?></span>
-			</div>
 		</div>
 
 		<?php

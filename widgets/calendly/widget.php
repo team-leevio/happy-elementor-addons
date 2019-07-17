@@ -19,7 +19,7 @@ use Happy_Addons\Elementor\Controls\Group_Control_Foreground;
 
 defined( 'ABSPATH' ) || die();
 
-class Google_Map extends Base {
+class Calendly extends Base {
 
 	/**
 	 * Get widget title.
@@ -30,7 +30,7 @@ class Google_Map extends Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Google Map', 'happy-elementor-addons' );
+		return __( 'Calendly', 'happy-elementor-addons' );
 	}
 
 	/**
@@ -42,7 +42,7 @@ class Google_Map extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-map-marker';
+		return 'hm hm-calendar';
 	}
 
 	public function get_keywords() {
@@ -54,7 +54,7 @@ class Google_Map extends Base {
 	 */
 	protected function register_content_controls() {
 		$this->start_controls_section(
-			'_section_google_map',
+			'_section_calendly',
 			[
 				'label' => __( 'Map Address', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
@@ -62,12 +62,12 @@ class Google_Map extends Base {
 		);
 
 		$this->add_control(
-			'google_map_address',
+			'calendly_event_link',
 			[
-				'label' => __( 'Address', 'happy-elementor-addons' ),
+				'label' => __( 'Calendly Event Link', 'plugin-domain' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'New York', 'happy-elementor-addons' ),
-				'placeholder' => __( 'Type your address here', 'happy-elementor-addons' ),
+				'default' => __( '', 'plugin-domain' ),
+				'placeholder' => __( 'Type event link here', 'plugin-domain' ),
 			]
 		);
 
@@ -82,7 +82,7 @@ class Google_Map extends Base {
 	 */
 	protected function register_style_controls() {
 		$this->start_controls_section(
-			'_section_style_google_map',
+			'_section_style_calendly',
 			[
 				'label' => __( 'Map Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -178,10 +178,26 @@ class Google_Map extends Base {
 		 <?php // echo esc_html( $settings['number_text'] ); ?> 
 
 
-			<div class="ha-google-map-body">
+			<div class="ha-calendly-body">
 			 
-						<iframe style="max-width: 100%;" width="600" height="500"   src="https://maps.google.com/maps?q=<?php echo esc_attr(urlencode($settings['google_map_address'])); ?>&t=&z=<?php echo esc_attr( $settings['google_map_zoom']['size'] ); ?>&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-						 
+			<!-- Calendly inline widget begin -->
+			<div class="calendly-inline-widget" data-url="https://calendly.com/rasel2339/15min?background_color=b74040&text_color=4681e2&primary_color=4da8dd" style="min-width:320px;height:630px;"></div>
+			<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+			<!-- Calendly inline widget end -->
+
+
+<!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/rasel2339/15min" style="min-width:320px;height:630px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+<!-- Calendly inline widget end -->
+
+
+
+
+<!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/rasel2339/15min?hide_event_type_details=1" style="min-width:320px;height:630px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+<!-- Calendly inline widget end -->						 
 			 
 			</div>
 
