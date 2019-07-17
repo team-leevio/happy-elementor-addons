@@ -84,6 +84,15 @@ class Step_flow extends Base {
         );
 
         $this->add_control(
+            'link',
+            [
+                'label' => __( 'Link', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::URL,
+                'placeholder' => __( 'https://example.com', 'happy-elementor-addons' ),
+            ]
+        );
+
+        $this->add_control(
             'detail',
             [
                 'label' => __( 'Description', 'happy-elementor-addons' ),
@@ -92,35 +101,6 @@ class Step_flow extends Base {
                 'default' => __( 'Description goes here', 'happy-elementor-addons' ),
             ]
         );
-
-//        $this->add_control(
-//            'content_layout',
-//            [
-//                'label' => __( 'Alignment', 'happy-elementor-addons' ),
-//                'type' => Controls_Manager::CHOOSE,
-//                'label_block' => false,
-//                'separator' => 'before',
-//                'options' => [
-//                    'left' => [
-//                        'title' => __( 'Left', 'happy-elementor-addons' ),
-//                        'icon' => 'fa fa-align-left',
-//                    ],
-//                    'center' => [
-//                        'title' => __( 'Center', 'happy-elementor-addons' ),
-//                        'icon' => 'fa fa-align-center',
-//                    ],
-//                    'right' => [
-//                        'title' => __( 'Right', 'happy-elementor-addons' ),
-//                        'icon' => 'fa fa-align-right',
-//                    ],
-//                ],
-//                'toggle' => false,
-//                'default' => 'center',
-//                'selectors' => [
-//                    '{{WRAPPER}}' => 'text-align: {{VALUE}};',
-//                ],
-//            ]
-//        );
 
         $this->end_controls_section();
     }
@@ -178,6 +158,24 @@ class Step_flow extends Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'icon_spacing',
+            [
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ]
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-steps-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->add_group_control(
             Group_Control_Border::get_type(),
             [
@@ -195,24 +193,6 @@ class Step_flow extends Base {
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-steps-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'icon_spacing',
-            [
-                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ]
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-steps-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -368,6 +348,31 @@ class Step_flow extends Base {
             ]
         );
 
+        $this->add_control(
+            'title_link_color',
+            [
+                'label' => __( 'Link Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'condition' => [
+                    'link' => 'yes'
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-steps-title h4 a' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'title_hover_color',
+            [
+                'label' => __( 'Hover Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-steps-title h4 a:hover' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->start_controls_tab(
@@ -459,6 +464,17 @@ class Step_flow extends Base {
 
     protected function render() {
         $settings = $this->get_settings_for_display();
+
+        $this->add_render_attribute( 'detail', 'class', 'ha-step-detail' );
+        $this->add_inline_editing_attributes( 'detail', 'basic' );
+
+        $this->add_render_attribute( 'link', 'href', esc_url( $settings['link']['url'] ) );
+        if ( ! empty( $settings['link']['is_external'] ) ) {
+            $this->add_render_attribute( 'link', 'target', '_blank' );
+        }
+        if ( ! empty( $settings['link']['nofollow'] ) ) {
+            $this->set_render_attribute( 'link', 'rel', 'nofollow' );
+        }
         ?>
 
         <?php if ( $settings['show_indicator'] === 'yes' ) : ?>
@@ -475,11 +491,21 @@ class Step_flow extends Base {
         </div>
 
         <div class="ha-steps-title">
-            <h4><?php echo esc_html( $settings['title'] ); ?></h4>
+            <?php if ( !empty( $settings['link']['url'] ) ) : ?>
+                <h4>
+                    <a <?php echo $this->get_render_attribute_string( 'link' ); ?>>
+                        <?php echo esc_html( $settings['title'] ); ?>
+                    </a>
+                </h4>
+            <?php else : ?>
+                <h4><?php echo esc_html( $settings['title'] ); ?></h4>
+            <?php endif; ?>
         </div>
 
         <?php if ( $settings['detail'] ) : ?>
-            <p class="ha-step-detail"><?php echo esc_html( $settings['detail'] ); ?></p>
+            <p <?php echo $this->get_render_attribute_string( 'detail' ); ?>>
+                <?php echo esc_html( $settings['detail'] ); ?>
+            </p>
         <?php endif; ?>
 
         <?php
