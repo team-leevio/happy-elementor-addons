@@ -65,7 +65,7 @@ class Calendly extends Base {
 			'calendly_event_link',
 			[
 				'label' => __( 'Calendly Event Link', 'plugin-domain' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
+				'type' => Controls_Manager::TEXT,
 				'default' => __( '', 'plugin-domain' ),
 				'placeholder' => __( 'Type event link here', 'plugin-domain' ),
 			]
