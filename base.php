@@ -81,7 +81,7 @@ class Base {
      */
     protected function init_appsero_tracking() {
         if ( ! class_exists( 'Appsero\Client' ) ) {
-            require_once __DIR__ . '/appsero/src/Client.php';
+            require_once __DIR__ . '/vendor/appsero/src/Client.php';
         }
 
         $client = new \Appsero\Client(
