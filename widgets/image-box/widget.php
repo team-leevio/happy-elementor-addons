@@ -42,7 +42,7 @@ class Image_Box extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-testimonial';
+		return 'hm hm-image';
 	}
 
 	public function get_keywords() {
@@ -54,7 +54,7 @@ class Image_Box extends Base {
 	 */
 	protected function register_content_controls() {
 		$this->start_controls_section(
-			'image_box_image',
+			'_section_image_box_image',
 			[
 				'label' => __( 'Backgroud', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
@@ -73,7 +73,7 @@ class Image_Box extends Base {
 		);
 
 
-		$this->add_control(
+		$this->add_control( 
 			'image_box_link',
 			[
 				'label' => __( 'Link', 'happy-elementor-addons' ),
@@ -86,6 +86,9 @@ class Image_Box extends Base {
 					'is_external' => false,
 					'nofollow' => false,
 				],
+				'dynamic' => [
+					'active' => true,
+				],				
 			]
 		);
 
@@ -101,7 +104,7 @@ class Image_Box extends Base {
 		);
 
 		$this->add_control(
-			'image_box_sub_title',
+			'_heading_image_box_sub_title',
 			[
 				'label' => __( 'Sub Heading', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
@@ -111,7 +114,7 @@ class Image_Box extends Base {
 		);
 
 		$this->add_control(
-			'image_box_title',
+			'_heading_image_box_title',
 			[
 				'label' => __( 'Heading', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
@@ -140,35 +143,79 @@ class Image_Box extends Base {
 	protected function register_style_controls() {
 
 		$this->start_controls_section(
-			'image_box_background_style',
+			'_section_style_image_box_background_style',
 			[
-				'label' => __( 'Background Style', 'happy-elementor-addons' ),
+				'label' => __( 'Box Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
 
-		$this->add_control(
-			'image_box_background_overlay_color',
+
+		$this->add_responsive_control(
+			'image_box_background_height',
 			[
-				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-image-box-body .ha-image-box-inner' => 'background: {{VALUE}}',
-					'{{WRAPPER}} .ha-image-box-body-reverse:hover .ha-image-box-inner' => 'background: {{VALUE}}',
+				'label' => __( 'Box Height', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 2000,
+						'step' => 5,
+					],
 				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 400,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-image-box-background' => 'height: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);		
+
+
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_style_image_box_overlay_style',
+			[
+				'label' => __( 'Background Overlay', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
 
+ 		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'image_box_overlay_color',
+				'label' => __( 'Overlay Type', 'happy-elementor-addons' ),
+				'types' => [ 'classic', 'gradient',  ],
+				'selector' => '{{WRAPPER}}  .ha-image-box-overlay',
+			]
+		);		
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_style_image_box_text_style',
+			[
+				'label' => __( 'Content Style', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
 		$this->add_control(
-			'image_box_background_padding',
+			'image_box_content_padding',
 			[
 				'label' => __( 'Paddding', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'default' => [
-								'top' => '250',
+								'top' => '150',
 								'right' => '30',
 								'bottom' => '70',
 								'left' => '30',
@@ -176,18 +223,16 @@ class Image_Box extends Base {
 								'isLinked' => '',
 						],
 				'selectors' => [
-					'{{WRAPPER}} .ha-image-box-body .ha-image-box-inner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .ha-image-box-body-reverse .ha-image-box-inner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-image-box-body .ha-image-box-content ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-image-box-body-reverse .ha-image-box-content ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
-		);
-
-
+		);		
 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'image_box_sub_title_style',
+			'_section_style_image_box_sub_title_style',
 			[
 				'label' => __( 'Sub Heading Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -258,7 +303,7 @@ class Image_Box extends Base {
 
 
 		$this->start_controls_section(
-			'image_box_title_style',
+			'_section_style_image_box_title_style',
 			[
 				'label' => __( 'Heading Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -308,7 +353,7 @@ class Image_Box extends Base {
 
 
 		$this->start_controls_section(
-			'image_box_description_style',
+			'_section_style_image_box_description_style',
 			[
 				'label' => __( 'Description Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -353,7 +398,7 @@ class Image_Box extends Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'image_box_hover',
+			'_section_style_image_box_hover',
 			[
 				'label' => __( 'Text Hover Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -415,10 +460,10 @@ class Image_Box extends Base {
 		<div class="<?php if ( 'yes' === $settings['image_box_hover_style'] ) { echo 'ha-image-box-body-reverse'; } else { echo 'ha-image-box-body'; } ?>  <?php if ( 'yes' === $settings['image_box_hover_style_animation'] ) { echo ''; } else { echo 'ha-image-box-body-animation-off'; } ?> ">
 
 		<div class="ha-image-box-background">
-			 <div class="ha-image-box-inner">
+			 <div class="ha-image-box-overlay"></div>
 			 	<div class="ha-image-box-content">
-			 		<h5 class="ha-image-sub-title"><?php  echo esc_html( $settings['image_box_sub_title'] ); ?></h5>
-			 		<h1 class="ha-image-title"><?php  echo esc_html( $settings['image_box_title'] ); ?></h1>
+			 		<h5 class="ha-image-sub-title"><?php  echo esc_html( $settings['_heading_image_box_sub_title'] ); ?></h5>
+			 		<h1 class="ha-image-title"><?php  echo esc_html( $settings['_heading_image_box_title'] ); ?></h1>
 			 		<div class="ha-image-description">
 			 			 
 			 				<?php  echo  $settings['image_box_description']; ?>
@@ -426,7 +471,7 @@ class Image_Box extends Base {
 			 			 
 			 		</div>
 			 	</div>
-			 </div>
+			 
 		</div>
 		</div>
 		<?php  if($settings['image_box_link']['url']): ?> 
