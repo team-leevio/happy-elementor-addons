@@ -115,6 +115,7 @@
 
 .ha-card--top .ha-card-figure {
 	display: inline-block;
+	width: 100%;
 }
 
 .ha-card--right > .elementor-widget-container,
