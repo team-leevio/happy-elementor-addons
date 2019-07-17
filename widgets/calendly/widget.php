@@ -84,38 +84,19 @@ class Calendly extends Base {
 		$this->start_controls_section(
 			'_section_style_calendly',
 			[
-				'label' => __( 'Map Style', 'happy-elementor-addons' ),
+				'label' => __( 'Calendly Style', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
 
- 		$this->add_responsive_control(
-			'google_map_zoom',
-			[
-				'label' => __( 'Map Zoom', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 19,
-						'step' => 1,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 13,
-				],
-
-			]
-		);
+ 
 
 
  		$this->add_responsive_control(
-			'google_map_width',
+			'calendly_width',
 			[
-				'label' => __( 'Map Width', 'happy-elementor-addons' ),
+				'label' => __( 'Calendly Width', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px','%' ],
 				'range' => [
@@ -141,9 +122,9 @@ class Calendly extends Base {
 
 
  		$this->add_responsive_control(
-			'google_map_height',
+			'calendly_height',
 			[
-				'label' => __( 'Map Height', 'happy-elementor-addons' ),
+				'label' => __( 'Calendly Height', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px',  ],
 				'range' => [
