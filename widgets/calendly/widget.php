@@ -64,15 +64,24 @@ class Calendly extends Base {
 		$this->add_control(
 			'calendly_event_link',
 			[
-				'label' => __( 'Calendly Event Link', 'plugin-domain' ),
+				'label' => __( 'Calendly Event Link', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( '', 'plugin-domain' ),
-				'placeholder' => __( 'Type event link here', 'plugin-domain' ),
+				'default' => __( '', 'happy-elementor-addons' ),
+				'placeholder' => __( 'Type event link here', 'happy-elementor-addons' ),
 			]
 		);
 
-
-
+		$this->add_control(
+			'event_type_details',
+			[
+				'label' => __( 'Hide Event Type Details', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'yes', 'your-plugin' ),
+				'label_off' => __( 'no', 'your-plugin' ),
+				'return_value' => 'yes',
+				'default' => '',
+			]
+		);
 
 		$this->end_controls_section();
 	}
@@ -89,65 +98,30 @@ class Calendly extends Base {
 			]
 		);
 
-
- 
-
-
- 		$this->add_responsive_control(
-			'calendly_width',
+		$this->add_control(
+			'text_color',
 			[
-				'label' => __( 'Calendly Width', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px','%' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 5000,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 600,
-				],
-				'selectors' => [
-					'{{WRAPPER}} iframe' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
-				],
+				'label' => __( 'Text Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'alpha' => false,
 			]
-		);	
+		);
 
-
- 		$this->add_responsive_control(
-			'calendly_height',
+		$this->add_control(
+			'button_link_color',
 			[
-				'label' => __( 'Calendly Height', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px',  ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 5000,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 300,
-				],
-				'selectors' => [
-					'{{WRAPPER}} iframe' => 'height: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
-				],
+				'label' => __( 'Button & Link Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
 			]
-		);				
+		);
 
+		$this->add_control(
+			'background_color',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+			]
+		);		
 
 		$this->end_controls_section();
 	}
@@ -157,30 +131,11 @@ class Calendly extends Base {
 		?>
 
 		 <?php // echo esc_html( $settings['number_text'] ); ?> 
-
-
-			<div class="ha-calendly-body">
-			 
-			<!-- Calendly inline widget begin -->
-			<div class="calendly-inline-widget" data-url="https://calendly.com/rasel2339/15min?background_color=b74040&text_color=4681e2&primary_color=4da8dd" style="min-width:320px;height:630px;"></div>
+						
+			<?php if ($settings['calendly_event_link']): ?>
+			<div class="calendly-inline-widget" data-url="<?php  echo esc_url( $settings['calendly_event_link'] ); ?>?<?php if ( 'yes' === $settings['event_type_details'] ): echo'hide_event_type_details=1'; endif; ?><?php if ($settings['text_color']): echo "&text_color=".str_replace('#', '', $settings['text_color']);  endif; ?><?php if ($settings['button_link_color']): echo "&primary_color=".str_replace('#', '', $settings['button_link_color']);  endif; ?><?php if ($settings['background_color']): echo "&background_color=".str_replace('#', '', $settings['background_color']);  endif; ?>" style="min-width:320px;height:630px;"></div>
 			<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
-			<!-- Calendly inline widget end -->
-
-
-<!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/rasel2339/15min" style="min-width:320px;height:630px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
-<!-- Calendly inline widget end -->
-
-
-
-
-<!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/rasel2339/15min?hide_event_type_details=1" style="min-width:320px;height:630px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
-<!-- Calendly inline widget end -->						 
-			 
-			</div>
+			<?php endif; ?>
 
 		<?php
 	}
