@@ -421,8 +421,8 @@ class Logo_Grid extends Base {
                 }
                 ?>
                 <<?php echo $tag; ?> <?php $this->print_render_attribute_string( $repeater_key ); ?>>
-                    <figure class="ha-logo-grid-figure elementor-animation-<?php echo esc_attr( $settings['hover_animation'] ); ?>">
-                        <img class="ha-logo-grid-img" src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $item['name'] ); ?>">
+                    <figure class="ha-logo-grid-figure">
+                        <img class="ha-logo-grid-img elementor-animation-<?php echo esc_attr( $settings['hover_animation'] ); ?>" src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $item['name'] ); ?>">
                     </figure>
                 </<?php echo $tag; ?>>
             <?php endforeach; ?>
