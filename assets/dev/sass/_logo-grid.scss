@@ -55,11 +55,11 @@
   @for $i from 2 through 6 {
     &--tictactoe#{&}--col-#{$i} &-item {
       &:nth-child(#{$i}n) {
-        border-right-width: 0;
+        border-right-width: 0 !important;
       }
 
       &:nth-child(-n + #{$i}) {
-        border-top-width: 0;
+        border-top-width: 0 !important;
       }
     }
   }
@@ -68,11 +68,11 @@
     @for $i from 2 through 6 {
       &--tictactoe#{&}--col--tablet#{$i} &-item {
         &:nth-child(#{$i}n) {
-          border-right-width: 0;
+          border-right-width: 0 !important;
         }
 
         &:nth-child(-n + #{$i}) {
-          border-top-width: 0;
+          border-top-width: 0 !important;
         }
       }
     }
@@ -82,11 +82,11 @@
     @for $i from 2 through 6 {
       &--tictactoe#{&}--col--mobile#{$i} &-item {
         &:nth-child(#{$i}n) {
-          border-right-width: 0;
+          border-right-width: 0 !important;
         }
 
         &:nth-child(-n + #{$i}) {
-          border-top-width: 0;
+          border-top-width: 0 !important;
         }
       }
     }
