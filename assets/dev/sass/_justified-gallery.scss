@@ -1,26 +1,25 @@
 .ha-justified-gallery-item {
-  border-radius: 6px;
+  &,
+  & > img {
+    border-radius: 6px;
+  }
 }
 
 //modified justified gallery css
-.justified-gallery > a > .caption,
-.justified-gallery > div > .caption,
-.justified-gallery > figure > .caption{
+.justified-gallery > .ha-justified-gallery-item > .caption {
   padding: 10px;
-}
-
-.justified-gallery > a > .caption,
-.justified-gallery > div > .caption,
-.justified-gallery > figure > .caption {
   bottom: -100px !important;
   transition: all 0.25s !important;
   animation: haSmoothReveal .3s forwards;
 }
 
-.justified-gallery > a > .caption.caption-visible,
-.justified-gallery > div > .caption.caption-visible,
-.justified-gallery > figure > .caption.caption-visible {
+.justified-gallery > .ha-justified-gallery-item > .caption.caption-visible {
   bottom: 0 !important;
+}
+
+.justified-gallery > .entry-visible > img,
+.justified-gallery > .entry-visible > a > img {
+  transition: all 300ms, opacity 500ms ease-in;
 }
 
 @keyframes haSmoothReveal {

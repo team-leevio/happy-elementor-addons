@@ -753,30 +753,28 @@ span .ha-review-ratting--star:before,
 	width: 20%;
 }
 
-.ha-justified-gallery-item {
+.ha-justified-gallery-item,
+.ha-justified-gallery-item > img {
 	border-radius: 6px;
 }
 
-.justified-gallery > a > .caption,
-.justified-gallery > div > .caption,
-.justified-gallery > figure > .caption {
-	padding: 10px;
-}
-
-.justified-gallery > a > .caption,
-.justified-gallery > div > .caption,
-.justified-gallery > figure > .caption {
+.justified-gallery > .ha-justified-gallery-item > .caption {
 	bottom: -100px !important;
+	padding: 10px;
 	-webkit-transition: all .25s !important;
 	        transition: all .25s !important;
 	-webkit-animation: haSmoothReveal .3s forwards;
 	        animation: haSmoothReveal .3s forwards;
 }
 
-.justified-gallery > a > .caption.caption-visible,
-.justified-gallery > div > .caption.caption-visible,
-.justified-gallery > figure > .caption.caption-visible {
+.justified-gallery > .ha-justified-gallery-item > .caption.caption-visible {
 	bottom: 0 !important;
+}
+
+.justified-gallery > .entry-visible > img,
+.justified-gallery > .entry-visible > a > img {
+	-webkit-transition: all 300ms, opacity 500ms ease-in;
+	        transition: all 300ms, opacity 500ms ease-in;
 }
 
 @-webkit-keyframes haSmoothReveal {
