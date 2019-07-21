@@ -6,6 +6,7 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
+use Elementor\Group_Control_Css_Filter;
 use Elementor\Repeater;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
@@ -72,6 +73,7 @@ class Justified_Gallery extends Base {
             'images',
             [
                 'type' => Controls_Manager::GALLERY,
+
             ]
         );
 
@@ -222,18 +224,10 @@ class Justified_Gallery extends Base {
 
     protected function register_style_controls() {
         $this->start_controls_section(
-            '_section_style_gallery',
-            [
-                'label' => __( 'Gallery', 'happy-elementor-addons' ),
-                'tab'   => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_control(
-            '_heading_image',
+            '_section_style_image',
             [
                 'label' => __( 'Image', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
+                'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
 
@@ -244,7 +238,7 @@ class Justified_Gallery extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-justified-gallery-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-justified-gallery-item, {{WRAPPER}} .ha-justified-gallery-item > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -261,11 +255,140 @@ class Justified_Gallery extends Base {
         );
 
         $this->add_control(
-            '_heading_caption',
+            'image_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-justified-gallery-item' => 'background-color: {{VALUE}};'
+                 ]
+            ]
+        );
+
+        $this->start_controls_tabs(
+            '_tabs_image_effects',
+            [
+                'separator' => 'before'
+            ]
+        );
+
+        $this->start_controls_tab(
+            '_tab_image_effects_normal',
+            [
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'image_opacity',
+            [
+                'label' => __( 'Opacity', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 1,
+                        'min' => 0.10,
+                        'step' => 0.01,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-justified-gallery-item > img' => 'opacity: {{SIZE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Css_Filter::get_type(),
+            [
+                'name' => 'image_css_filters',
+                'selector' => '{{WRAPPER}} .ha-justified-gallery-item > img',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab( 'hover',
+            [
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'image_opacity_hover',
+            [
+                'label' => __( 'Opacity', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 1,
+                        'min' => 0.10,
+                        'step' => 0.01,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-justified-gallery-item:hover > img' => 'opacity: {{SIZE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Css_Filter::get_type(),
+            [
+                'name' => 'image_css_filters_hover',
+                'selector' => '{{WRAPPER}} .ha-justified-gallery-item:hover > img',
+            ]
+        );
+
+        $this->add_control(
+            'image_background_hover_transition',
+            [
+                'label' => __( 'Transition Duration', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 3,
+                        'step' => 0.1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-justified-gallery-item > img' => 'transition-duration: {{SIZE}}s',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'image_hover_animation',
+            [
+                'label' => __( 'Hover Animation', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::HOVER_ANIMATION,
+                'default' => 'grow',
+                'label_block' => false,
+            ]
+        );
+
+        $this->add_control(
+            'image_hover_cursor',
+            [
+                'label' => __( 'Hover Cursor', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SELECT2,
+                'options' => ha_get_css_cursors(),
+                'default' => 'default',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-justified-gallery-item:hover > img' => 'cursor: {{VALUE}};'
+                ]
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_style_caption',
             [
                 'label' => __( 'Caption', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
-                'separator' => 'before',
+                'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
 
@@ -276,7 +399,7 @@ class Justified_Gallery extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-justified-gallery-grid > a > .caption' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .justified-gallery > .ha-justified-gallery-item > .caption' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -287,7 +410,7 @@ class Justified_Gallery extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-justified-gallery-grid > a > .caption' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .justified-gallery > .ha-justified-gallery-item > .caption' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -298,7 +421,7 @@ class Justified_Gallery extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-justified-gallery-grid > a > .caption' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .justified-gallery > .ha-justified-gallery-item > .caption' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -308,7 +431,7 @@ class Justified_Gallery extends Base {
             [
                 'name' => 'caption_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
-                'selector' => '{{WRAPPER}} .ha-justified-gallery-grid > a > .caption',
+                'selector' => '{{WRAPPER}} .justified-gallery > .ha-justified-gallery-item > .caption',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
@@ -421,6 +544,7 @@ class Justified_Gallery extends Base {
             [
                 'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
                 'options' => [
                     'left' => [
                         'title' => __( 'Left', 'happy-elementor-addons' ),
@@ -649,7 +773,7 @@ class Justified_Gallery extends Base {
                 $caption = $settings['show_caption'] ? esc_attr( wp_get_attachment_caption( $id ) ) : '';
                 ?>
                 <a class="ha-justified-gallery-item <?php echo esc_attr( implode( ' ', $filters ) ); ?>">
-                    <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'alt' => $caption ] ); ?>
+                    <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'alt' => $caption, 'class' => 'elementor-animation-' . esc_attr( $settings['image_hover_animation'] ) ] ); ?>
                 </a>
             <?php endforeach; ?>
         </div>
