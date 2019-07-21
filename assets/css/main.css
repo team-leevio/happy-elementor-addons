@@ -754,19 +754,7 @@ span .ha-review-ratting--star:before,
 }
 
 .ha-justified-gallery-item {
-	border-radius: 6px; 
-	-webkit-transition: all .3s;
-	        transition: all .3s;
-}
-.ha-justified-gallery-item > img {
-	width: 100%;
-	-webkit-transition: all .25s !important;
-	        transition: all .25s !important;
-}
-.ha-justified-gallery-item:hover > img {
-	-webkit-transform: scale(1.25);
-	    -ms-transform: scale(1.25);
-	        transform: scale(1.25);
+	border-radius: 6px;
 }
 
 .justified-gallery > a > .caption,
@@ -792,7 +780,7 @@ span .ha-review-ratting--star:before,
 }
 
 @-webkit-keyframes haSmoothReveal {
-	0% {
+	from {
 		-webkit-transform: translateY(100px);
 		        transform: translateY(100px);
 	}
@@ -803,7 +791,7 @@ span .ha-review-ratting--star:before,
 }
 
 @keyframes haSmoothReveal {
-	0% {
+	from {
 		-webkit-transform: translateY(100px);
 		        transform: translateY(100px);
 	}

@@ -10,6 +10,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
+use Elementor\Scheme_Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -188,6 +189,7 @@ class CF7 extends Base {
                 'name' => 'field_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -336,6 +338,7 @@ class CF7 extends Base {
                 'name' => 'label_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} label',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -389,6 +392,7 @@ class CF7 extends Base {
             [
                 'name' => 'submit_typography',
                 'selector' => '{{WRAPPER}} .wpcf7-submit',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_4
             ]
         );
 

@@ -345,7 +345,7 @@ class Testimonial extends Base {
 		$this->start_controls_section(
             '_section_style_reviewer',
             [
-                'label' => __( 'Reviewer Data', 'happy-elementor-addons' ),
+                'label' => __( 'Reviewer', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -396,7 +396,7 @@ class Testimonial extends Base {
             [
                 'label' => __( 'Title', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HEADING,
-                'separator' => 'after',
+                'separator' => 'before',
             ]
         );
 

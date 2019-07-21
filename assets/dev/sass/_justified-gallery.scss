@@ -1,17 +1,5 @@
 .ha-justified-gallery-item {
-  transition: all .3s;
   border-radius: 6px;
-
-  > img {
-    width: 100%;
-    transition: all 0.25s !important;
-  }
-
-  &:hover {
-    > img {
-      transform: scale(1.25);
-    }
-  }
 }
 
 //modified justified gallery css
@@ -36,13 +24,11 @@
 }
 
 @keyframes haSmoothReveal {
-  0% {
-    -webkit-transform: translateY(100px);
+  from {
     transform: translateY(100px)
   }
 
   to {
-    -webkit-transform: translateY(0);
     transform: translateY(0)
   }
 }

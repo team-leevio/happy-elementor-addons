@@ -10,6 +10,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
+use Elementor\Scheme_Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -132,6 +133,7 @@ class NinjaForm extends Base {
                 'name' => 'field_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .textbox-wrap input[type=text], {{WRAPPER}} .email-wrap input, {{WRAPPER}} .textarea-wrap textarea',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -286,6 +288,7 @@ class NinjaForm extends Base {
                 'name' => 'label_typography',
                 'label' => __( 'Label Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .textbox-wrap label, {{WRAPPER}} .email-wrap label, {{WRAPPER}} .textarea-wrap label',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -295,6 +298,7 @@ class NinjaForm extends Base {
                 'name' => 'desc_typography',
                 'label' => __( 'Description Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .nf-field-description p',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -398,6 +402,7 @@ class NinjaForm extends Base {
             [
                 'name' => 'submit_typography',
                 'selector' => '{{WRAPPER}} .submit-container input',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_4
             ]
         );
 

@@ -574,6 +574,7 @@ class Dual_Button extends Base {
                 'name' => 'connector_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-dual-btn-connector',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
 		);
 

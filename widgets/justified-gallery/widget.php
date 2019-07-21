@@ -127,13 +127,13 @@ class Justified_Gallery extends Base {
         $this->add_control(
             'show_all_filter',
             [
-                'label' => __( 'Show Everything Filter?', 'happy-elementor-addons' ),
+                'label' => __( 'Show All Filter?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
-                'description' => __( 'Enable to display everything filter', 'happy-elementor-addons' ),
+                'description' => __( 'Enable to display all filter button', 'happy-elementor-addons' ),
                 'condition' => [
                     'show_filter' => 'yes'
                 ]
@@ -147,7 +147,7 @@ class Justified_Gallery extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'All', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type filter label', 'happy-elementor-addons' ),
-                'description' => __( 'Type everything filter label', 'happy-elementor-addons' ),
+                'description' => __( 'Type all filter label', 'happy-elementor-addons' ),
                 'condition' => [
                     'show_all_filter' => 'yes',
                     'show_filter' => 'yes'
