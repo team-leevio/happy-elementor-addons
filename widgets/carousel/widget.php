@@ -293,12 +293,24 @@ class Carousel extends Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'item_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-slick-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
             '_section_style_content',
             [
-                'label' => __( 'Content', 'happy-elementor-addons' ),
+                'label' => __( 'Slide Content', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -623,6 +635,7 @@ class Carousel extends Base {
             [
                 'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
                 'options' => [
                     'left' => [
                         'title' => __( 'Left', 'happy-elementor-addons' ),
@@ -719,8 +732,7 @@ class Carousel extends Base {
 
         <div class="hajs-slick ha-slick ha-slick--carousel">
 
-            <?php
-            foreach ( $settings['slides'] as $slide ) :
+            <?php foreach ( $settings['slides'] as $slide ) :
                 $image = wp_get_attachment_image_url( $slide['image']['id'], $settings['thumbnail_size'] );
                 if ( ! $image ) {
                     $image = $slide['image']['url'];
@@ -730,7 +742,7 @@ class Carousel extends Base {
                 <div class="ha-slick-slide">
                     <div class="ha-slick-item">
                         <?php if ( $image ) : ?>
-                            <img class="ha-slider-img" src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $slide['title'] ); ?>">
+                            <img class="ha-slick-img" src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $slide['title'] ); ?>">
                         <?php endif; ?>
 
                         <?php if ( $slide['title'] || $slide['subtitle'] ) : ?>

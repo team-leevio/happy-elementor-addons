@@ -89,6 +89,8 @@
   &-item {
     position: relative;
     vertical-align: bottom;
+    border-radius: 8px;
+    overflow: hidden;
   }
 
   &-content {
