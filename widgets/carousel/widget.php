@@ -281,45 +281,14 @@ class Carousel extends Base {
         );
 
         $this->add_responsive_control(
-            'item_margin',
+            'item_spacing',
             [
-                'label' => __( 'Margin', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'label' => __( 'Slide Spacing (px)', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .slick-slide' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'item_padding',
-            [
-                'label' => __( 'Padding', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .slick-slide > div' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Border::get_type(),
-            [
-                'name' => 'item_border',
-                'selector' => '{{WRAPPER}} .slick-slide > div',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'item_border_radius',
-            [
-                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .slick-slide > div' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
+                    '{{WRAPPER}} .slick-slider:not(.slick-vertical) .slick-slide' => 'padding-right: {{SIZE}}{{UNIT}}; padding-left: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .slick-slider.slick-vertical .slick-slide' => 'padding-top: {{SIZE}}{{UNIT}}; padding-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -341,7 +310,7 @@ class Carousel extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-slider-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-slick-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -350,7 +319,7 @@ class Carousel extends Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'content_background',
-                'selector' => '{{WRAPPER}} .ha-slider-content',
+                'selector' => '{{WRAPPER}} .ha-slick-content',
                 'exclude' => [
                      'image'
                 ]
@@ -373,7 +342,7 @@ class Carousel extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-slider-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-slick-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -384,7 +353,7 @@ class Carousel extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-slider-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-slick-title' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -394,7 +363,7 @@ class Carousel extends Base {
             [
                 'name' => 'title',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
-                'selector' => '{{WRAPPER}} .ha-slider-title',
+                'selector' => '{{WRAPPER}} .ha-slick-title',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_2,
             ]
         );
@@ -415,7 +384,7 @@ class Carousel extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-slider-subtitle' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-slick-subtitle' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -426,7 +395,7 @@ class Carousel extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-slider-subtitle' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-slick-subtitle' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -436,7 +405,7 @@ class Carousel extends Base {
             [
                 'name' => 'subtitle',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
-                'selector' => '{{WRAPPER}} .ha-slider-subtitle',
+                'selector' => '{{WRAPPER}} .ha-slick-subtitle',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
