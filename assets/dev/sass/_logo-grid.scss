@@ -24,13 +24,15 @@
     max-height: 100%;
   }
 
-  @for $i from 2 through 6 {
-    &--col-#{$i} &-item {
-      width: calc(100% / #{$i});
+  @media (min-width: 1025px) {
+    @for $i from 2 through 6 {
+      &--col-#{$i} &-item {
+        width: calc(100% / #{$i});
+      }
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1024px) and (min-width: 768px) {
     @for $i from 2 through 6 {
       &--col--tablet#{$i} &-item {
         width: calc(100% / #{$i});
@@ -52,19 +54,21 @@
     border-style: solid;
   }
 
-  @for $i from 2 through 6 {
-    &--tictactoe#{&}--col-#{$i} &-item {
-      &:nth-child(#{$i}n) {
-        border-right-width: 0 !important;
-      }
+  @media (min-width: 1025px) {
+    @for $i from 2 through 6 {
+      &--tictactoe#{&}--col-#{$i} &-item {
+        &:nth-child(#{$i}n) {
+          border-right-width: 0 !important;
+        }
 
-      &:nth-child(-n + #{$i}) {
-        border-top-width: 0 !important;
+        &:nth-child(-n + #{$i}) {
+          border-top-width: 0 !important;
+        }
       }
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1024px) and (min-width: 768px) {
     @for $i from 2 through 6 {
       &--tictactoe#{&}--col--tablet#{$i} &-item {
         &:nth-child(#{$i}n) {
@@ -93,10 +97,6 @@
   }
 
   // Border style
-  &--border {
-    border-radius: .5rem;
-  }
-
   &--border &-item {
     border-width: 0 2px 2px 0;
     border-style: solid;
@@ -110,27 +110,29 @@
     }
   }
 
-  @for $i from 2 through 6 {
-    &--border#{&}--col-#{$i} &-item {
-      &:nth-child(-n + #{$i}) {
-        border-top-width: 2px;
-      }
+  @media (min-width: 1025px) {
+    @for $i from 2 through 6 {
+      &--border#{&}--col-#{$i} &-item {
+        &:nth-child(-n + #{$i}) {
+          border-top-width: 2px;
+        }
 
-      &:nth-child(#{$i}n + 1) {
-        border-left-width: 2px;
-      }
+        &:nth-child(#{$i}n + 1) {
+          border-left-width: 2px;
+        }
 
-      &:nth-child(#{$i}) {
-        border-top-right-radius: 10px;
-      }
+        &:nth-child(#{$i}) {
+          border-top-right-radius: 10px;
+        }
 
-      &:nth-last-child(#{$i}) {
-        border-bottom-left-radius: 10px;
+        &:nth-last-child(#{$i}) {
+          border-bottom-left-radius: 10px;
+        }
       }
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1024px) and (min-width: 768px) {
     @for $i from 2 through 6 {
       &--border#{&}--col--tablet#{$i} &-item {
         &:nth-child(-n + #{$i}) {
@@ -185,19 +187,22 @@
     border-style: solid;
   }
 
-  @for $i from 2 through 6 {
-    &--box#{&}--col-#{$i} &-item {
-      width: calc((100% / #{$i}) - 1rem);
+  @media (min-width: 1025px) {
+    @for $i from 2 through 6 {
+      &--box#{&}--col-#{$i} &-item {
+        width: calc((100% / #{$i}) - 1rem);
+      }
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1024px) and (min-width: 768px) {
     @for $i from 2 through 6 {
       &--box#{&}--col--tablet#{$i} &-item {
         width: calc((100% / #{$i}) - 1rem);
       }
     }
   }
+
   @media (max-width: 767px) {
     @for $i from 2 through 6 {
       &--box#{&}--col--mobile#{$i} &-item {

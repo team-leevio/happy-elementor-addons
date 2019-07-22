@@ -1029,27 +1029,25 @@ span .ha-review-ratting--star:before,
 	max-height: 100%;
 }
 
-.ha-logo-grid--col-2 .ha-logo-grid-item {
-	width: calc(100% / 2);
+@media (min-width: 1025px) {
+	.ha-logo-grid--col-2 .ha-logo-grid-item {
+		width: calc(100% / 2);
+	}
+	.ha-logo-grid--col-3 .ha-logo-grid-item {
+		width: calc(100% / 3);
+	}
+	.ha-logo-grid--col-4 .ha-logo-grid-item {
+		width: calc(100% / 4);
+	}
+	.ha-logo-grid--col-5 .ha-logo-grid-item {
+		width: calc(100% / 5);
+	}
+	.ha-logo-grid--col-6 .ha-logo-grid-item {
+		width: calc(100% / 6);
+	}
 }
 
-.ha-logo-grid--col-3 .ha-logo-grid-item {
-	width: calc(100% / 3);
-}
-
-.ha-logo-grid--col-4 .ha-logo-grid-item {
-	width: calc(100% / 4);
-}
-
-.ha-logo-grid--col-5 .ha-logo-grid-item {
-	width: calc(100% / 5);
-}
-
-.ha-logo-grid--col-6 .ha-logo-grid-item {
-	width: calc(100% / 6);
-}
-
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (min-width: 768px) {
 	.ha-logo-grid--col--tablet2 .ha-logo-grid-item {
 		width: calc(100% / 2);
 	}
@@ -1090,47 +1088,40 @@ span .ha-review-ratting--star:before,
 	border-style: solid;
 }
 
-.ha-logo-grid--tictactoe.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2n) {
-	border-right-width: 0 !important;
+@media (min-width: 1025px) {
+	.ha-logo-grid--tictactoe.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2n) {
+		border-right-width: 0 !important;
+	}
+	.ha-logo-grid--tictactoe.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(-n + 2) {
+		border-top-width: 0 !important;
+	}
+	.ha-logo-grid--tictactoe.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3n) {
+		border-right-width: 0 !important;
+	}
+	.ha-logo-grid--tictactoe.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(-n + 3) {
+		border-top-width: 0 !important;
+	}
+	.ha-logo-grid--tictactoe.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4n) {
+		border-right-width: 0 !important;
+	}
+	.ha-logo-grid--tictactoe.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(-n + 4) {
+		border-top-width: 0 !important;
+	}
+	.ha-logo-grid--tictactoe.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5n) {
+		border-right-width: 0 !important;
+	}
+	.ha-logo-grid--tictactoe.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(-n + 5) {
+		border-top-width: 0 !important;
+	}
+	.ha-logo-grid--tictactoe.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6n) {
+		border-right-width: 0 !important;
+	}
+	.ha-logo-grid--tictactoe.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(-n + 6) {
+		border-top-width: 0 !important;
+	}
 }
 
-.ha-logo-grid--tictactoe.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(-n + 2) {
-	border-top-width: 0 !important;
-}
-
-.ha-logo-grid--tictactoe.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3n) {
-	border-right-width: 0 !important;
-}
-
-.ha-logo-grid--tictactoe.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(-n + 3) {
-	border-top-width: 0 !important;
-}
-
-.ha-logo-grid--tictactoe.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4n) {
-	border-right-width: 0 !important;
-}
-
-.ha-logo-grid--tictactoe.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(-n + 4) {
-	border-top-width: 0 !important;
-}
-
-.ha-logo-grid--tictactoe.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5n) {
-	border-right-width: 0 !important;
-}
-
-.ha-logo-grid--tictactoe.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(-n + 5) {
-	border-top-width: 0 !important;
-}
-
-.ha-logo-grid--tictactoe.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6n) {
-	border-right-width: 0 !important;
-}
-
-.ha-logo-grid--tictactoe.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(-n + 6) {
-	border-top-width: 0 !important;
-}
-
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (min-width: 768px) {
 	.ha-logo-grid--tictactoe.ha-logo-grid--col--tablet2 .ha-logo-grid-item:nth-child(2n) {
 		border-right-width: 0 !important;
 	}
@@ -1196,10 +1187,6 @@ span .ha-review-ratting--star:before,
 	}
 }
 
-.ha-logo-grid--border {
-	border-radius: .5rem;
-}
-
 .ha-logo-grid--border .ha-logo-grid-item {
 	border-width: 0 2px 2px 0;
 	border-style: solid;
@@ -1211,87 +1198,70 @@ span .ha-review-ratting--star:before,
 	border-bottom-right-radius: 10px;
 }
 
-.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(-n + 2) {
-	border-top-width: 2px;
+@media (min-width: 1025px) {
+	.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(-n + 2) {
+		border-top-width: 2px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2n + 1) {
+		border-left-width: 2px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2) {
+		border-top-right-radius: 10px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-last-child(2) {
+		border-bottom-left-radius: 10px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(-n + 3) {
+		border-top-width: 2px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3n + 1) {
+		border-left-width: 2px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3) {
+		border-top-right-radius: 10px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-last-child(3) {
+		border-bottom-left-radius: 10px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(-n + 4) {
+		border-top-width: 2px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4n + 1) {
+		border-left-width: 2px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4) {
+		border-top-right-radius: 10px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-last-child(4) {
+		border-bottom-left-radius: 10px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(-n + 5) {
+		border-top-width: 2px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5n + 1) {
+		border-left-width: 2px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5) {
+		border-top-right-radius: 10px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-last-child(5) {
+		border-bottom-left-radius: 10px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(-n + 6) {
+		border-top-width: 2px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6n + 1) {
+		border-left-width: 2px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6) {
+		border-top-right-radius: 10px;
+	}
+	.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-last-child(6) {
+		border-bottom-left-radius: 10px;
+	}
 }
 
-.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2n + 1) {
-	border-left-width: 2px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2) {
-	border-top-right-radius: 10px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-last-child(2) {
-	border-bottom-left-radius: 10px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(-n + 3) {
-	border-top-width: 2px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3n + 1) {
-	border-left-width: 2px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3) {
-	border-top-right-radius: 10px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-last-child(3) {
-	border-bottom-left-radius: 10px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(-n + 4) {
-	border-top-width: 2px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4n + 1) {
-	border-left-width: 2px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4) {
-	border-top-right-radius: 10px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-last-child(4) {
-	border-bottom-left-radius: 10px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(-n + 5) {
-	border-top-width: 2px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5n + 1) {
-	border-left-width: 2px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5) {
-	border-top-right-radius: 10px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-last-child(5) {
-	border-bottom-left-radius: 10px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(-n + 6) {
-	border-top-width: 2px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6n + 1) {
-	border-left-width: 2px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6) {
-	border-top-right-radius: 10px;
-}
-
-.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-last-child(6) {
-	border-bottom-left-radius: 10px;
-}
-
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (min-width: 768px) {
 	.ha-logo-grid--border.ha-logo-grid--col--tablet2 .ha-logo-grid-item:nth-child(-n + 2) {
 		border-top-width: 2px;
 	}
@@ -1428,27 +1398,25 @@ span .ha-review-ratting--star:before,
 	border-radius: .5rem;
 }
 
-.ha-logo-grid--box.ha-logo-grid--col-2 .ha-logo-grid-item {
-	width: calc((100% / 2) - 1rem);
+@media (min-width: 1025px) {
+	.ha-logo-grid--box.ha-logo-grid--col-2 .ha-logo-grid-item {
+		width: calc((100% / 2) - 1rem);
+	}
+	.ha-logo-grid--box.ha-logo-grid--col-3 .ha-logo-grid-item {
+		width: calc((100% / 3) - 1rem);
+	}
+	.ha-logo-grid--box.ha-logo-grid--col-4 .ha-logo-grid-item {
+		width: calc((100% / 4) - 1rem);
+	}
+	.ha-logo-grid--box.ha-logo-grid--col-5 .ha-logo-grid-item {
+		width: calc((100% / 5) - 1rem);
+	}
+	.ha-logo-grid--box.ha-logo-grid--col-6 .ha-logo-grid-item {
+		width: calc((100% / 6) - 1rem);
+	}
 }
 
-.ha-logo-grid--box.ha-logo-grid--col-3 .ha-logo-grid-item {
-	width: calc((100% / 3) - 1rem);
-}
-
-.ha-logo-grid--box.ha-logo-grid--col-4 .ha-logo-grid-item {
-	width: calc((100% / 4) - 1rem);
-}
-
-.ha-logo-grid--box.ha-logo-grid--col-5 .ha-logo-grid-item {
-	width: calc((100% / 5) - 1rem);
-}
-
-.ha-logo-grid--box.ha-logo-grid--col-6 .ha-logo-grid-item {
-	width: calc((100% / 6) - 1rem);
-}
-
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (min-width: 768px) {
 	.ha-logo-grid--box.ha-logo-grid--col--tablet2 .ha-logo-grid-item {
 		width: calc((100% / 2) - 1rem);
 	}
