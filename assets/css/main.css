@@ -896,7 +896,6 @@ span .ha-review-ratting--star:before,
 .ha-slick-item {
 	position: relative;
 	overflow: hidden; 
-	border-radius: 8px;
 	vertical-align: bottom;
 }
 
