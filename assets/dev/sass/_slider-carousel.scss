@@ -42,6 +42,11 @@
       margin-right: 2px;
     }
 
+    li button:hover,
+    li button:focus {
+      background-color: transparent;
+    }
+
     li button:before {
       color: #1b1b1b;
       opacity: 1;

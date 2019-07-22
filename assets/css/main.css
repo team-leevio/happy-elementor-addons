@@ -854,6 +854,12 @@ span .ha-review-ratting--star:before,
 	margin-right: 2px; 
 	margin-left: 2px;
 }
+.ha-slider .slick-dots li button:hover,
+.ha-slider .slick-dots li button:focus,
+.ha-carousel .slick-dots li button:hover,
+.ha-carousel .slick-dots li button:focus {
+	background-color: transparent;
+}
 .ha-slider .slick-dots li button:before,
 .ha-carousel .slick-dots li button:before {
 	color: #1b1b1b;
