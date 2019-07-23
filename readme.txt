@@ -1,12 +1,13 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 1.2.0
+Version: 1.3.0
 Author: HappyMonster
 Author URI: https://happyaddons.com/
-Contributors: thehappymonster, happyaddons, hasinhayder, obiplabon, sourav926
-Tags: elementor, form, page builder, widget, addon
+Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, obiplabon, sourav926, wedevs
+Tags: elementor, elementor addon, elementor widget, essential widget, elements
 Requires at least: 4.7
 Tested up to: 5.2.2
+Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,7 +18,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 [HappyAddons](https://happyaddons.com/) is a collection of slick, powerful widgets that works seamlessly with Elementor page builder. It’s trendy look with detail customization features allows to create extraordinary designs instantly. [HappyAddons](https://happyaddons.com/) is free, rapidly growing and comes with great support.
 
-### Included Free Widgets
+
+### Included 20 Free Widgets
 
 1. **[Card](https://happyaddons.com/elementor-card-widget-demo/)** - Incredibly powerful widget to demonstrate your products, articles, news, creative posts using a beautiful combination of texts, links, badge and image. Using built in positioning and offset feature you can create eye-candy designs in a twist. [Check demo](https://happyaddons.com/elementor-card-widget-demo/)
 2. **[Gradient Heading](https://happyaddons.com/elementor-gradient-heading-widget-demo/)** - Another gem to create eye candy headings for your websites. You can apply different gradient styles, angles, opacity, and positions to make them look even better across different device screens. [Check demo](https://happyaddons.com/elementor-gradient-heading-widget-demo/)
@@ -33,18 +35,24 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 12. **[Ninja Forms](https://happyaddons.com/elementor-ninja-form-widget-demo/)** - Use this widget to embed forms created using Ninja Forms to display seamlessly on your web pages. Various styling options will help you to look at them even better. [Check demo](https://happyaddons.com/elementor-ninja-form-widget-demo/)
 13. **[WPForms](https://happyaddons.com/elementor-wpform-widget-demo/)** - Use this widget to embed forms created using WPForms to display seamlessly on your web pages. Various styling options will help you to look at them even better. [Check demo](https://happyaddons.com/elementor-wpform-widget-demo/)
 14. **[Dual Button](https://happyaddons.com/elementor-dual-button-widget-demo/)** - DualButton widget allows you to add two flexible and trendy action buttons in your sections, in different styles. [Check demo](https://happyaddons.com/elementor-dual-button-widget-demo/)
-15. **[Testimonial](https://happyaddons.com/elementor-testimonial-widget-demo/)**
-16. **[Justified Grid](https://happyaddons.com/elementor-justified-grid-widget-demo/)** - Discover the most precious addon of HappyAddons. Decorate your website with Justified Grid with lots of variation. [Check demo](https://happyaddons.com/elementor-justified-grid-widget-demo/)
-17. **[Number](https://happyaddons.com/elementor-number-widget-demo/)** - Create beautiful information boxes using icons, links and texts, and make them slick using the built in positioning features. [Check demo](https://happyaddons.com/elementor-number-widget-demo/)
-18. **Logo Grid** - Our happy design team is working hard to cook some awesome demo designs for you. [Subscribe to happy newsletter](https://happyaddons.com/) to smell what the design team is cooking :D
+15. **[Testimonial](https://happyaddons.com/elementor-testimonial-widget-demo/)** - Create beautiful testimonial sections with different look-n-feels using HappyAddons Testimonial widget. [Check demo](https://happyaddons.com/elementor-testimonial-widget-demo/)
+16. **[Justified Grid](https://happyaddons.com/elementor-justified-grid-widget-demo/)** - Another pro grade widget which can help you to create beautiful justified grid. Comes packed with tons of options to make it stand out from the crowd. [Check demo](https://happyaddons.com/elementor-justified-grid-widget-demo/)
+17. **[Number](https://happyaddons.com/elementor-number-widget-demo/)** - Simply beautiful, this widget can help you create stunning number blocks with various styles, look-n-feels that’s literally going to blow your mind. [Check demo](https://happyaddons.com/elementor-number-widget-demo/)
+18. **[Logo Grid](https://happyaddons.com/elementor-logo-grid-widget-demo)** - Showcase your clients or products using our logo grid widget, and display these items with styles. [Check demo](https://happyaddons.com/elementor-logo-grid-widget-demo)
+19. **[Carousel](https://happyaddons.com/elementor-carousel-widget-demo/)** - Create interesting image and text carousels using our carousel widget which comes with lot of options. [Check demo](https://happyaddons.com/elementor-carousel-widget-demo/)
+20. **[Slider](https://happyaddons.com/elementor-slider-widget-demo/)** - Now you can create sliders with beautiful animations and effects using our Slider widget. And just like our other widgets, there are lots of customization options for you. [Check demo](https://happyaddons.com/elementor-slider-widget-demo/)
 
-### Included Free Extensions
+### INCLUDED FREE EXTENSIONS FOR EVERY ELEMENTOR WIDGET
 **Happy Effects**
 
-1. **[Floating Effects](https://happyaddons.com/elementor-floating-effect-demo/)**
-2. **[CSS Transform](https://happyaddons.com/elementor-css-transform-demo/)**
+1. **[Floating Effects](https://happyaddons.com/elementor-floating-effect-demo/)** - Now you can create stunning animations for any Elementor widget using Floating Effects. Translate, Rotate or Scale - Imagination is the limit!
+2. **[CSS Transform](https://happyaddons.com/elementor-css-transform-demo/)** - Another missing piece, a great enhancement over core Elementor that works seamlessly with every widget. You can now apply various CSS transforms like translate, rotate, scale and skew without any limitations.
 
 https://www.youtube.com/watch?v=LmtacsLcFPU
+
+**Space Effects Using Floating Effects**
+
+https://www.youtube.com/watch?v=F33g3zqkeog
 
 ### Features
 
@@ -60,20 +68,33 @@ The widgets in [HappyAddons](https://happyaddons.com/) are well tested on differ
 * Comes with cohesive elements, which means that these widgets are so customizable that you can easily fit them in your existing designs, and they work nicely together with each other without making anything look bad.
 * [HappyAddons](https://happyaddons.com/) brings you some powerful features to the built-in motion effects section that helps you to animate and rotate objects on their x-axis, y-axis, and z-axis like never seen before, and brings lovely effects to help your websites stand out from others.
 
-== Installation ==
+### Bugs, technical hints or contribute ###
 
-It's really easy and super simple to install **Happy Elementor Addons** plugin but before installing **Happy Elementor Addons** make sure you've installed [Elementor](https://wordpress.org/plugins/elementor/ "Install Elementor"). **Elementor** is the only dependency.
+Please give us feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/weDevsOfficial/happy-elementor-addons/issues).
 
-= Automatic Installation =
-1.  Go to `Plugins > Add New` screen in WordPress.
-2.  Search for `Happy Addons For Elementor`.
-3.  Install and activate the plugin, that's it.
 
-= Manual Installation =
-1.  Download [Happy Elementor Addons](https://downloads.wordpress.org/plugin/happy-elementor-addons.zip "Download Happy Elementor Addons").
-2.  Extract the `happy-elementor-addons.zip` file. You'll get plugin files inside `happy-elementor-addons` directory.
-3.  Upload the plugin files to the `/wp-content/plugins/happy-elementor-addons` directory.
-4.  Activate the plugin through the 'Plugins' screen in WordPress.
+== Frequently Asked Questions ==
+
+= Can I use Happy Elementor Addons without Elementor? =
+
+I'm afraid, you cannot use **[Happy Elementor Addons](https://happyaddons.com/)** without Elementor. Happy Elementor Addons is a collection of slick, powerful widgets that works seamlessly with Elementor page builder and it's only for Elementor.
+
+= Does it work along with other Elementor Addons? =
+
+Yes, it does. And you'll get some cool and extra features like Happy Effects for other Elementor Addons or Extensions.
+
+= Does it work with any WordPress theme? =
+
+Yes, it works with any WordPress theme that works with Elementor. And it best works with [Hello Elementor](https://wordpress.org/themes/hello-elementor/).
+
+= Does it work with Elementor Pro? =
+
+Yes, undoubtedly.
+
+= Will Happy Elementor Addons break my site after an update? =
+
+No, It won't break your site or any page where you used Happy Elementor Addons. We put our best effort to make you happy.
+
 
 == Screenshots ==
 
@@ -91,10 +112,37 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 12. Card widget with Happy Effects (Floating Effects)
 13. Card widget - capsule design
 
+== Installation ==
+
+It's really easy and super simple to install **Happy Elementor Addons** plugin but before installing **Happy Elementor Addons** make sure you've installed [Elementor](https://wordpress.org/plugins/elementor/ "Install Elementor"). **Elementor** is the only dependency.
+
+= Automatic Installation =
+1.  Go to `Plugins > Add New` screen in WordPress.
+2.  Search for `Happy Addons For Elementor`.
+3.  Install and activate the plugin, that's it.
+
+= Manual Installation =
+1.  Download [Happy Elementor Addons](https://downloads.wordpress.org/plugin/happy-elementor-addons.zip "Download Happy Elementor Addons").
+2.  Extract the `happy-elementor-addons.zip` file. You'll get plugin files inside `happy-elementor-addons` directory.
+3.  Upload the plugin files to the `/wp-content/plugins/happy-elementor-addons` directory.
+4.  Activate the plugin through the 'Plugins' screen in WordPress.
+
 
 == Changelog ==
 
-= 1.2.0 =
+= 1.3.0 - 23 July 2019 =
+
+* New: Carousel Widget
+* New: Slider Widget
+* Update: Justified Grid Widget hover and animation effects
+* Update: Typography scheme support for all FREE widgets
+* Fix: Misc styling issue
+
+= 1.2.1 - 18 July 2019 =
+
+* Fix: Unnecessary JS and CSS loading issue fixed
+
+= 1.2.0 - 16 July 2019 =
 
 * New: Justified Grid Widget
 * New: Logo Grid Widget
