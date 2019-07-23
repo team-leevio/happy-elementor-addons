@@ -28,10 +28,9 @@ abstract class Base extends Widget_Base {
          * Card will be card
          * Blog_Card will be blog-card
          */
-        $name = str_replace( __NAMESPACE__, '', $this->get_class_name() );
+        $name = str_replace( strtolower(__NAMESPACE__), '', strtolower($this->get_class_name()) );
         $name = str_replace( '_', '-', $name );
         $name = ltrim( $name, '\\' );
-        $name = strtolower( $name );
         return 'ha-' . $name;
     }
 
