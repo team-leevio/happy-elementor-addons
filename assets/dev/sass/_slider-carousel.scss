@@ -1,5 +1,9 @@
 .ha-slider,
 .ha-carousel {
+  .slick-vertical .slick-slide {
+    border: 0;
+  }
+
   .slick-prev,
   .slick-next {
     color: #8c8c8c;
@@ -86,7 +90,6 @@
   .slick-slider.slick-vertical .slick-slide {
     padding-top: 5px;
     padding-bottom: 5px;
-    border: 0;
   }
 }
 

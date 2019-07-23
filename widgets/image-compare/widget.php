@@ -555,7 +555,6 @@ class Image_Compare extends Base {
             }
             data[dKey] = settings[sKey];
         });
-        console.log(elementorFrontend)
         view.addRenderAttribute('container', 'data-happy-settings', JSON.stringify(data)); #>
 
         <div {{{ view.getRenderAttributeString( 'container' ) }}}>

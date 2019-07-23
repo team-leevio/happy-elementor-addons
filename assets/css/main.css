@@ -799,6 +799,11 @@ span .ha-review-ratting--star:before,
 	}
 }
 
+.ha-slider .slick-vertical .slick-slide,
+.ha-carousel .slick-vertical .slick-slide {
+	border: 0;
+}
+
 .ha-slider .slick-prev,
 .ha-slider .slick-next,
 .ha-carousel .slick-prev,
@@ -896,7 +901,6 @@ span .ha-review-ratting--star:before,
 .ha-carousel .slick-slider.slick-vertical .slick-slide {
 	padding-top: 5px;
 	padding-bottom: 5px;
-	border: 0;
 }
 
 .ha-slick-item {

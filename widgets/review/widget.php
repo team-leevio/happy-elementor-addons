@@ -732,7 +732,6 @@ class Review extends Base {
     public function _content_template() {
         ?>
         <#
-        console.log(settings)
         view.addInlineEditingAttributes( 'title', 'none' );
         view.addRenderAttribute( 'title', 'class', 'ha-review-reviewer' );
 
