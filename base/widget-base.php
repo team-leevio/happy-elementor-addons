@@ -114,4 +114,15 @@ abstract class Base extends Widget_Base {
      * @return void
      */
     abstract protected function register_style_controls();
+
+    /**
+     * Fix for 2.6.*
+     *
+     * In 2.6.0 Elementor removed render_edit_tools method.
+     */
+    protected function render_edit_tools() {
+        if ( version_compare( ELEMENTOR_VERSION, '2.5.16', '<=' ) ) {
+            parent::render_edit_tools();
+        }
+    }
 }

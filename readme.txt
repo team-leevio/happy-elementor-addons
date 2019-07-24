@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 1.3.0
+Version: 1.3.1
 Author: HappyMonster
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, obiplabon, sourav926, wedevs
@@ -129,6 +129,10 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 1.3.1 - 24 July 2019 =
+
+* Fix: Elementor 2.6.* version compatibility issue
 
 = 1.3.0 - 23 July 2019 =
 
