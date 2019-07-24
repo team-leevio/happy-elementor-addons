@@ -281,7 +281,20 @@ class Hover_Box extends Base {
                 'name' => 'background_image',
                 'types' => [ 'classic', 'gradient' ],
                 'selector' => '{{WRAPPER}} .ha-hover-box-wrapper',
-                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'background_overlay',
+            [
+                'label' => __( 'Overlay', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'condition' => [
+                    'background_image_background' => 'classic'
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-hover-box-wrapper:before' => 'background-color: {{VALUE}}',
+                ],
             ]
         );
 
@@ -310,8 +323,8 @@ class Hover_Box extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}}.ha-pre--column .ha-hover-sub-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-pre--column-reverse .ha-hover-sub-title' => 'margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-pre--top .ha-hover-sub-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-pre--bottom .ha-hover-sub-title' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
