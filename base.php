@@ -6,16 +6,16 @@
  */
 namespace Happy_Addons\Elementor;
 
+use Happy_Addons\Elementor\Admin\Dashboard;
 use Happy_Addons\Elementor\Manager\Assets;
 use Happy_Addons\Elementor\Manager\Widgets;
 use Happy_Addons\Elementor\Extension\Happy_Effects;
-use Happy_Addons\Elementor\Admin\Dashboard;
 
 defined( 'ABSPATH' ) || die();
 
 class Base {
 
-    const VERSION = '1.2.2';
+    const VERSION = '1.3.1';
 
     const MINIMUM_ELEMENTOR_VERSION = '2.5.0';
 

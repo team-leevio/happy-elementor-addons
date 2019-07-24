@@ -73,7 +73,6 @@ class Justified_Gallery extends Base {
             'images',
             [
                 'type' => Controls_Manager::GALLERY,
-
             ]
         );
 

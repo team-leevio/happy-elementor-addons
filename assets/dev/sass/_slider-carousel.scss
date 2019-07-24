@@ -1,5 +1,9 @@
 .ha-slider,
 .ha-carousel {
+  .slick-vertical .slick-slide {
+    border: 0;
+  }
+
   .slick-prev,
   .slick-next {
     color: #8c8c8c;
@@ -42,6 +46,11 @@
       margin-right: 2px;
     }
 
+    li button:hover,
+    li button:focus {
+      background-color: transparent;
+    }
+
     li button:before {
       color: #1b1b1b;
       opacity: 1;
@@ -81,7 +90,6 @@
   .slick-slider.slick-vertical .slick-slide {
     padding-top: 5px;
     padding-bottom: 5px;
-    border: 0;
   }
 }
 
@@ -89,6 +97,7 @@
   &-item {
     position: relative;
     vertical-align: bottom;
+    overflow: hidden;
   }
 
   &-content {

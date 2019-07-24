@@ -93,6 +93,16 @@ class Logo_Grid extends Base {
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'title_field' => '{{{ name }}}',
+                'default' => [
+                    ['image' => ['url' => Utils::get_placeholder_image_src()]],
+                    ['image' => ['url' => Utils::get_placeholder_image_src()]],
+                    ['image' => ['url' => Utils::get_placeholder_image_src()]],
+                    ['image' => ['url' => Utils::get_placeholder_image_src()]],
+                    ['image' => ['url' => Utils::get_placeholder_image_src()]],
+                    ['image' => ['url' => Utils::get_placeholder_image_src()]],
+                    ['image' => ['url' => Utils::get_placeholder_image_src()]],
+                    ['image' => ['url' => Utils::get_placeholder_image_src()]],
+                ]
             ]
         );
 
@@ -164,6 +174,36 @@ class Logo_Grid extends Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'padding',
+            [
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-logo-grid-figure' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'height',
+            [
+                'label' => __( 'Height', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'max' => 500,
+                        'min' => 100,
+                    ]
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-logo-grid-item' => 'height: {{SIZE}}{{UNIT}};'
+                ],
+            ]
+        );
+
         $this->add_control(
             'grid_border_type',
             [
@@ -191,17 +231,42 @@ class Logo_Grid extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item' => 'border-right-width: {{SIZE}}{{UNIT}}; border-bottom-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6n+1)' => 'border-left-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(-n+2)' => 'border-top-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(-n+3)' => 'border-top-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(-n+4)' => 'border-top-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(-n+5)' => 'border-top-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(-n+6)' => 'border-top-width: {{SIZE}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item' => 'border-right-width: {{grid_border_width.SIZE}}{{UNIT}}; border-bottom-width: {{grid_border_width.SIZE}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item' => 'border-right-width: {{grid_border_width_tablet.SIZE}}{{UNIT}}; border-bottom-width: {{grid_border_width_tablet.SIZE}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item' => 'border-right-width: {{grid_border_width_mobile.SIZE}}{{UNIT}}; border-bottom-width: {{grid_border_width_mobile.SIZE}}{{UNIT}};',
+
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2n+1)' => 'border-left-width: {{grid_border_width.SIZE}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3n+1)' => 'border-left-width: {{grid_border_width.SIZE}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4n+1)' => 'border-left-width: {{grid_border_width.SIZE}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5n+1)' => 'border-left-width: {{grid_border_width.SIZE}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6n+1)' => 'border-left-width: {{grid_border_width.SIZE}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(-n+2)' => 'border-top-width: {{grid_border_width.SIZE}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(-n+3)' => 'border-top-width: {{grid_border_width.SIZE}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(-n+4)' => 'border-top-width: {{grid_border_width.SIZE}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(-n+5)' => 'border-top-width: {{grid_border_width.SIZE}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(-n+6)' => 'border-top-width: {{grid_border_width.SIZE}}{{UNIT}};',
+
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet2 .ha-logo-grid-item:nth-child(2n+1)' => 'border-left-width: {{grid_border_width_tablet.SIZE}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet3 .ha-logo-grid-item:nth-child(3n+1)' => 'border-left-width: {{grid_border_width_tablet.SIZE}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet4 .ha-logo-grid-item:nth-child(4n+1)' => 'border-left-width: {{grid_border_width_tablet.SIZE}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet5 .ha-logo-grid-item:nth-child(5n+1)' => 'border-left-width: {{grid_border_width_tablet.SIZE}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet6 .ha-logo-grid-item:nth-child(6n+1)' => 'border-left-width: {{grid_border_width_tablet.SIZE}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet2 .ha-logo-grid-item:nth-child(-n+2)' => 'border-top-width: {{grid_border_width_tablet.SIZE}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet3 .ha-logo-grid-item:nth-child(-n+3)' => 'border-top-width: {{grid_border_width_tablet.SIZE}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet4 .ha-logo-grid-item:nth-child(-n+4)' => 'border-top-width: {{grid_border_width_tablet.SIZE}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet5 .ha-logo-grid-item:nth-child(-n+5)' => 'border-top-width: {{grid_border_width_tablet.SIZE}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet6 .ha-logo-grid-item:nth-child(-n+6)' => 'border-top-width: {{grid_border_width_tablet.SIZE}}{{UNIT}};',
+
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile2 .ha-logo-grid-item:nth-child(2n+1)' => 'border-left-width: {{grid_border_width_mobile.SIZE}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile3 .ha-logo-grid-item:nth-child(3n+1)' => 'border-left-width: {{grid_border_width_mobile.SIZE}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile4 .ha-logo-grid-item:nth-child(4n+1)' => 'border-left-width: {{grid_border_width_mobile.SIZE}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile5 .ha-logo-grid-item:nth-child(5n+1)' => 'border-left-width: {{grid_border_width_mobile.SIZE}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile6 .ha-logo-grid-item:nth-child(6n+1)' => 'border-left-width: {{grid_border_width_mobile.SIZE}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile2 .ha-logo-grid-item:nth-child(-n+2)' => 'border-top-width: {{grid_border_width_mobile.SIZE}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile3 .ha-logo-grid-item:nth-child(-n+3)' => 'border-top-width: {{grid_border_width_mobile.SIZE}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile4 .ha-logo-grid-item:nth-child(-n+4)' => 'border-top-width: {{grid_border_width_mobile.SIZE}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile5 .ha-logo-grid-item:nth-child(-n+5)' => 'border-top-width: {{grid_border_width_mobile.SIZE}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile6 .ha-logo-grid-item:nth-child(-n+6)' => 'border-top-width: {{grid_border_width_mobile.SIZE}}{{UNIT}};',
 
                     '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-item' => 'border-top-width: {{SIZE}}{{UNIT}}; border-right-width: {{SIZE}}{{UNIT}};',
 
@@ -248,30 +313,77 @@ class Logo_Grid extends Base {
                     '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-wrapper, {{WRAPPER}}.ha-logo-grid--box .ha-logo-grid-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item:first-child' => 'border-top-left-radius: {{TOP}}{{UNIT}};',
                     '{{WRAPPER}}.ha-logo-grid--border .ha-logo-grid-item:last-child' => 'border-bottom-right-radius: {{BOTTOM}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
 
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{grid_border_radius.RIGHT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-2 .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{grid_border_radius.LEFT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{grid_border_radius.RIGHT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-3 .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{grid_border_radius.LEFT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{grid_border_radius.RIGHT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-4 .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{grid_border_radius.LEFT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{grid_border_radius.RIGHT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-5 .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{grid_border_radius.LEFT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{grid_border_radius.RIGHT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col-6 .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{grid_border_radius.LEFT}}{{UNIT}};',
+
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet2 .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{grid_border_radius_tablet.RIGHT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet2 .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{grid_border_radius_tablet.LEFT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet3 .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{grid_border_radius_tablet.RIGHT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet3 .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{grid_border_radius_tablet.LEFT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet4 .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{grid_border_radius_tablet.RIGHT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet4 .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{grid_border_radius_tablet.LEFT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet5 .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{grid_border_radius_tablet.RIGHT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet5 .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{grid_border_radius_tablet.LEFT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet6 .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{grid_border_radius_tablet.RIGHT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--tablet6 .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{grid_border_radius_tablet.LEFT}}{{UNIT}};',
+
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile2 .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{grid_border_radius_mobile.RIGHT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile2 .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{grid_border_radius_mobile.LEFT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile3 .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{grid_border_radius_mobile.RIGHT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile3 .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{grid_border_radius_mobile.LEFT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile4 .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{grid_border_radius_mobile.RIGHT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile4 .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{grid_border_radius_mobile.LEFT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile5 .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{grid_border_radius_mobile.RIGHT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile5 .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{grid_border_radius_mobile.LEFT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile6 .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{grid_border_radius_mobile.RIGHT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--border.ha-logo-grid--col--mobile6 .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{grid_border_radius_mobile.LEFT}}{{UNIT}};',
+
+                    // Tictactoe
                     '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-item:first-child' => 'border-top-left-radius: {{TOP}}{{UNIT}};',
                     '{{WRAPPER}}.ha-logo-grid--tictactoe .ha-logo-grid-item:last-child' => 'border-bottom-right-radius: {{BOTTOM}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-2 .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-3 .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-4 .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-5 .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{RIGHT}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-6 .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{LEFT}}{{UNIT}};',
+
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-2 .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{grid_border_radius.RIGHT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-2 .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{grid_border_radius.LEFT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-3 .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{grid_border_radius.RIGHT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-3 .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{grid_border_radius.LEFT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-4 .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{grid_border_radius.RIGHT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-4 .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{grid_border_radius.LEFT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-5 .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{grid_border_radius.RIGHT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-5 .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{grid_border_radius.LEFT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-6 .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{grid_border_radius.RIGHT}}{{UNIT}};',
+                    '(desktop+){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col-6 .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{grid_border_radius.LEFT}}{{UNIT}};',
+
+                    '(tablet){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--tablet2 .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{grid_border_radius_tablet.RIGHT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--tablet2 .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{grid_border_radius_tablet.LEFT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--tablet3 .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{grid_border_radius_tablet.RIGHT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--tablet3 .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{grid_border_radius_tablet.LEFT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--tablet4 .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{grid_border_radius_tablet.RIGHT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--tablet4 .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{grid_border_radius_tablet.LEFT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--tablet5 .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{grid_border_radius_tablet.RIGHT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--tablet5 .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{grid_border_radius_tablet.LEFT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--tablet6 .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{grid_border_radius_tablet.RIGHT}}{{UNIT}};',
+                    '(tablet){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--tablet6 .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{grid_border_radius_tablet.LEFT}}{{UNIT}};',
+
+                    '(mobile){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--mobile2 .ha-logo-grid-item:nth-child(2)' => 'border-top-right-radius: {{grid_border_radius_mobile.RIGHT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--mobile2 .ha-logo-grid-item:nth-last-child(2)' => 'border-bottom-left-radius: {{grid_border_radius_mobile.LEFT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--mobile3 .ha-logo-grid-item:nth-child(3)' => 'border-top-right-radius: {{grid_border_radius_mobile.RIGHT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--mobile3 .ha-logo-grid-item:nth-last-child(3)' => 'border-bottom-left-radius: {{grid_border_radius_mobile.LEFT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--mobile4 .ha-logo-grid-item:nth-child(4)' => 'border-top-right-radius: {{grid_border_radius_mobile.RIGHT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--mobile4 .ha-logo-grid-item:nth-last-child(4)' => 'border-bottom-left-radius: {{grid_border_radius_mobile.LEFT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--mobile5 .ha-logo-grid-item:nth-child(5)' => 'border-top-right-radius: {{grid_border_radius_mobile.RIGHT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--mobile5 .ha-logo-grid-item:nth-last-child(5)' => 'border-bottom-left-radius: {{grid_border_radius_mobile.LEFT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--mobile6 .ha-logo-grid-item:nth-child(6)' => 'border-top-right-radius: {{grid_border_radius_mobile.RIGHT}}{{UNIT}};',
+                    '(mobile){{WRAPPER}}.ha-logo-grid--tictactoe.ha-logo-grid--col--mobile6 .ha-logo-grid-item:nth-last-child(6)' => 'border-bottom-left-radius: {{grid_border_radius_mobile.LEFT}}{{UNIT}};',
                 ],
             ]
         );
