@@ -43,7 +43,6 @@
       left: 0;
       -webkit-perspective: 1000px;
       perspective: 1000px;
-      padding: 1.5rem 1.3rem;
       text-align: center;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
@@ -70,12 +69,14 @@
       z-index: 10;
       border: 1px solid #ddd;
       border-radius: .3rem;
+      padding: 30px;
     }
     .ha-flip-box-back {
       position: absolute;
       z-index: -1;
       color: #fff;
       border-radius: .3rem;
+      padding: 46px;
     }
     .ha-flip-box-back-inner,
     .ha-flip-box-front-inner {

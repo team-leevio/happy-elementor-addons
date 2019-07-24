@@ -9,7 +9,7 @@
 	padding: 50px;
 	display: flex;
 	align-items: center;
-	background-color: $primary-color;
+	//background-color: $primary-color;
 	transition-duration: 0.2s;
 
 	&:before {
@@ -19,6 +19,7 @@
 		height: 100%;
 		left: 0;
 		top: 0;
+		z-index: 1;
 	}
 
 	&:hover {
@@ -46,23 +47,25 @@
 		transform: translate(0,0);
 		transition-duration: 0.1s;
 		transition-delay: .1s;
+		z-index: 99;
+		position: relative;
 	}
 
 	.ha-hover-sub-title {
 		display: inline-block;
 		margin-bottom: 20px;
-		color: #fff;
+		color: #222;
 	}
 
 	.ha-hover-title {
 		margin-top: 0;
 		margin-bottom: 10px;
-		color: #fff;
+		color: #222;
 	}
 
 	.ha-hover-description {
 		margin: 0;
-		color: #fff;
+		color: #222;
 	}
 }
 
