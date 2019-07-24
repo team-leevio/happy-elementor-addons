@@ -647,7 +647,9 @@ class Icon_Box extends Base {
         }
 
         if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-            $this->render_edit_tools();
+            if( function_exists( 'render_edit_tools' ) ) {
+                $this->render_edit_tools();
+            }
         }
 
         $tag = 'div';

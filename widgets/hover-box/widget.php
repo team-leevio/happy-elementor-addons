@@ -56,17 +56,6 @@ class Hover_Box extends Base {
 			]
 		);
 
-        $this->add_control(
-            'link',
-            [
-                'label' => __( 'Link', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::URL,
-                'placeholder' => __( 'https://example.com', 'happy-elementor-addons' ),
-                'separator' => 'after',
-                'label_block' => true,
-            ]
-        );
-
 		$this->add_control(
 			'sub_title',
 			[
@@ -98,7 +87,18 @@ class Hover_Box extends Base {
 				'placeholder' => __( 'Type your description here', 'happy-elementor-addons' ),
                 'label_block' => true,
 			]
-		);		
+		);
+
+        $this->add_control(
+            'link',
+            [
+                'label' => __( 'Link', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::URL,
+                'placeholder' => __( 'https://example.com', 'happy-elementor-addons' ),
+                'separator' => 'before',
+                'label_block' => true,
+            ]
+        );
 
 		$this->end_controls_section();
 
