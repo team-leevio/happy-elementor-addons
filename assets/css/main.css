@@ -1904,15 +1904,15 @@ span .ha-review-ratting--star:before,
 }
 .ha-flip-wrap .ha-flip-box .ha-flip-box-back-inner .ha-text p,
 .ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-text p {
+	margin-top: 10px;
 	margin-bottom: 0;
 }
 .ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-icon.icon {
 	background-color: #562dd4;
 }
 .ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-icon {
-	display: inline-block;
+	display: inline-block; 
 	margin: 0 0 15px;
-	padding: 20px; 
 	text-align: center;
 }
 .ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-icon i {
@@ -1954,8 +1954,8 @@ span .ha-review-ratting--star:before,
 	font-size: 20px;
 }
 .ha-flip-wrap .ha-flip-box .ha-flip-box-back-inner .ha-flip-icon img {
-	width: 30px;
-	height: 30px; 
+	width: 60px;
+	height: 60px; 
 	vertical-align: middle;
 }
 

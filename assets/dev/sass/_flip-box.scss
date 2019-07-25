@@ -91,6 +91,7 @@
         text-align: center;
       }
       .ha-text p {
+        margin-top: 10px;
         margin-bottom: 0;
       }
     }
@@ -102,8 +103,7 @@
         margin: 0 0 15px;
         text-align: center;
         display: inline-block;
-        padding: 20px;
-        i{
+        i {
           display: block;
           width: 1em;
           height: 1em;
@@ -121,7 +121,7 @@
         font-weight: bold;
         margin: 0;
       }
-      p{
+      p {
         font-size: 16px;
         margin-bottom: 0;
       }
@@ -145,8 +145,8 @@
         }
         img {
           vertical-align: middle;
-          width: 30px;
-          height: 30px;
+          width: 60px;
+          height: 60px;
         }
       }
 

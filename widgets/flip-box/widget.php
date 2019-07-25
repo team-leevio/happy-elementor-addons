@@ -253,10 +253,9 @@ class Flip_box extends Base {
             [
                 'label' => __( 'Icon', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::ICON,
-                'default' => '',
                 'return_value' => 'yes',
                 'condition' => [
-                        'back_icon_type' => 'icon',
+                    'back_icon_type' => 'icon',
                 ],
                 'options' => ha_get_happy_icons(),
             ]
@@ -563,10 +562,6 @@ class Flip_box extends Base {
                         'max' => 500,
                     ]
                 ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 60,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon img' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
                 ],
@@ -614,10 +609,6 @@ class Flip_box extends Base {
                 'size_units' => ['px'],
                 'condition' => [
                     'front_icon_type' => [ 'icon', 'image' ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 20,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon' => 'padding: {{SIZE}}{{UNIT}};',
@@ -753,10 +744,6 @@ class Flip_box extends Base {
                 'label' => __( 'Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 10,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-flip-box-front-inner .ha-text p' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
@@ -936,10 +923,6 @@ class Flip_box extends Base {
                 'label' => __( 'Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 10,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-flip-box-back-inner .ha-text p' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
@@ -1032,10 +1015,6 @@ class Flip_box extends Base {
                         'min' => 10,
                         'max' => 500,
                     ]
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 60,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-icon img' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
