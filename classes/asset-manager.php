@@ -142,6 +142,9 @@ class Assets {
             true
         );
 
+        wp_enqueue_script( 'elementor-waypoints' );
+        wp_enqueue_script( 'jquery-numerator' );
+
         wp_enqueue_script(
             'happy-elementor-addons',
             HAPPY_ASSETS . 'js/happy-addons' . $suffix . 'js',

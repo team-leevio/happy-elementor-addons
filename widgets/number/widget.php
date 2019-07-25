@@ -72,7 +72,34 @@ class Number extends Base {
 			]
 		);
 
-		$this->end_controls_section();
+        $this->add_control(
+            'animate_number',
+            [
+                'label' => __( 'Animate', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
+                'return_value' => 'yes',
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'animate_duration',
+            [
+                'label' => __( 'Duration', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 100,
+                'max' => 10000,
+                'step' => 10,
+                'default' => 500,
+                'condition' => [
+                    'animate_number!' => ''
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
 	}
 
 	/**
@@ -310,11 +337,23 @@ class Number extends Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		?>
+
+		$this->add_render_attribute( 'number_text', 'class', 'ha-number-text' );
+		$number = $settings['number_text'];
+
+		if ( $settings['animate_number'] ) {
+		    $data = [
+		        'toValue' => intval( $settings['number_text'] ),
+                'duration' => intval( $settings['animate_duration'] ),
+            ];
+		    $this->add_render_attribute( 'number_text', 'data-animation', wp_json_encode( $data ) );
+            $number = 0;
+        }
+        ?>
 
 		<div class="ha-number-body">
 			<div class="ha-number-overlay"></div>
-			<span class="ha-number-text"><?php echo esc_html( $settings['number_text'] ); ?></span>
+			<span <?php $this->print_render_attribute_string( 'number_text' ); ?>><?php echo esc_html( $number ); ?></span>
 		</div>
 
 		<?php
