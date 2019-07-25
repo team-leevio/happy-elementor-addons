@@ -56,7 +56,7 @@ class Calendly extends Base {
 		$this->start_controls_section(
 			'_section_calendly',
 			[
-				'label' => __( 'Map Address', 'happy-elementor-addons' ),
+				'label' => __( 'Calendly', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -64,7 +64,7 @@ class Calendly extends Base {
 		$this->add_control(
 			'calendly_event_link',
 			[
-				'label' => __( 'Calendly Event Link', 'happy-elementor-addons' ),
+				'label' => __( 'Event Link', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => __( '', 'happy-elementor-addons' ),
 				'placeholder' => __( 'Type event link here', 'happy-elementor-addons' ),
@@ -93,7 +93,7 @@ class Calendly extends Base {
 		$this->start_controls_section(
 			'_section_style_calendly',
 			[
-				'label' => __( 'Calendly Style', 'happy-elementor-addons' ),
+				'label' => __( 'Calendly', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -121,19 +121,18 @@ class Calendly extends Base {
 				'label' => __( 'Background Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 			]
-		);		
+		);
 
 		$this->end_controls_section();
 	}
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		?>						
+		?>
 			<?php if ($settings['calendly_event_link']): ?>
 			<div class="calendly-inline-widget" data-url="<?php  echo esc_url( $settings['calendly_event_link'] ); ?>?<?php if ( 'yes' === $settings['event_type_details'] ): echo'hide_event_type_details=1'; endif; ?><?php if ($settings['text_color']): echo "&text_color=".str_replace('#', '', $settings['text_color']);  endif; ?><?php if ($settings['button_link_color']): echo "&primary_color=".str_replace('#', '', $settings['button_link_color']);  endif; ?><?php if ($settings['background_color']): echo "&background_color=".str_replace('#', '', $settings['background_color']);  endif; ?>" style="min-width:320px;height:630px;"></div>
 			<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
 			<?php endif; ?>
-
 		<?php
 	}
 }
