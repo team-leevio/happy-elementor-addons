@@ -1687,6 +1687,8 @@ span .ha-review-ratting--star:before,
 }
 
 .ha-number-text {
+	position: relative;
+	z-index: 1; 
 	-webkit-box-flex: 1;
 	-webkit-flex: 1;
 	    -ms-flex: 1;
