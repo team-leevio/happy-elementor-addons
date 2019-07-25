@@ -1956,13 +1956,15 @@ span .ha-review-ratting--star:before,
 	height: 30px; 
 	vertical-align: middle;
 }
-.ha-flip-wrap .ha-flip-box .ha-flip-box-back-inner .button-wrap {
+
+.ha-flip-wrap .ha-flip-box-back-inner .button-wrap {
 	margin-top: 12px;
 }
-.ha-flip-wrap .ha-flip-box .ha-flip-box-back-inner .ha-flip-btn {
+
+.ha-flip-wrap .ha-flip-box-back-inner .ha-flip-btn {
 	display: inline-block;
 	padding: .8rem 2.5rem;
-	border-radius: .3rem;
+	border-radius: 4px;
 	background: #3266fd;
 	color: #fff;
 	text-decoration: none;
@@ -1971,7 +1973,7 @@ span .ha-review-ratting--star:before,
 	-webkit-transition: all .3s;
 	        transition: all .3s;
 }
-.ha-flip-wrap .ha-flip-box .ha-flip-box-back-inner .ha-flip-btn:hover {
+.ha-flip-wrap .ha-flip-box-back-inner .ha-flip-btn:hover {
 	background: #fff;
 	color: #27374c;
 }

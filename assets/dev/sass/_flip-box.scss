@@ -148,27 +148,32 @@
           height: 30px;
         }
       }
-      .button-wrap {
-        margin-top: 12px;
-      }
-      .ha-flip-btn {
-        background: #3266fd;
-        color: #fff;
-        font-size: 12px;
-        text-transform: uppercase;
-        padding: .8rem 2.5rem;
-        text-decoration: none;
-        border-radius: .3rem;
-        display: inline-block;
-        transition: all .3s;
-        &:hover{
-          background: #fff;
-          color: #27374c;
-        }
-      }
 
     }
   }
+
+  .ha-flip-box-back-inner {
+    .button-wrap {
+      margin-top: 12px;
+    }
+    .ha-flip-btn {
+      background: #3266fd;
+      color: #fff;
+      font-size: 12px;
+      text-transform: uppercase;
+      padding: .8rem 2.5rem;
+      text-decoration: none;
+      border-radius: 4px;
+      display: inline-block;
+      transition: all .3s;
+
+      &:hover {
+        background: #fff;
+        color: #27374c;
+      }
+    }
+  }
+
   //flip right
   .ha-flip-box.ha-flip-right .ha-flip-box-front {
     -webkit-transform: rotateY(0);

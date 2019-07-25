@@ -573,6 +573,24 @@ class Flip_box extends Base {
             ]
         );
 
+        $this->add_control(
+            'front_icon_image_fit',
+            [
+                'label' => __( 'Image Fit', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'contain'  => __( 'Contain', 'happy-elementor-addons' ),
+                    'cover' => __( 'Cover', 'happy-elementor-addons' ),
+                ],
+                'condition' => [
+                    'front_icon_type' => 'image'
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon img' => 'object-fit: {{VALUE}};',
+                ],
+            ]
+        );
+
         $this->add_responsive_control(
             'front_icon_font_size',
             [
@@ -1025,6 +1043,24 @@ class Flip_box extends Base {
             ]
         );
 
+        $this->add_control(
+            'back_icon_image_fit',
+            [
+                'label' => __( 'Image Fit', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'contain'  => __( 'Contain', 'happy-elementor-addons' ),
+                    'cover' => __( 'Cover', 'happy-elementor-addons' ),
+                ],
+                'condition' => [
+                    'back_icon_type' => 'image'
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-flip-box-back-inner .icon-wrap .ha-flip-icon img' => 'object-fit: {{VALUE}};',
+                ],
+            ]
+        );
+
         $this->add_responsive_control(
             'back_icon_font_size',
             [
@@ -1158,7 +1194,7 @@ class Flip_box extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'button_border',
-                'selector' => '{{WRAPPER}} .ha-flip-btn',
+                'selector' => '{{WRAPPER}} .ha-flip-box-back-inner .button-wrap .ha-flip-btn',
             ]
         );
 
@@ -1169,7 +1205,7 @@ class Flip_box extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-flip-box-back-inner .button-wrap .ha-flip-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1179,7 +1215,7 @@ class Flip_box extends Base {
             [
                 'name' => 'button_box_shadow',
                 'separator' => 'after',
-                'selector' => '{{WRAPPER}} .ha-flip-btn',
+                'selector' => '{{WRAPPER}} .ha-flip-box-back-inner .button-wrap .ha-flip-btn',
             ]
         );
 
@@ -1187,7 +1223,7 @@ class Flip_box extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'btn_typography',
-                'selector' => '{{WRAPPER}} .ha-flip-btn',
+                'selector' => '{{WRAPPER}} .ha-flip-box-back-inner .button-wrap .ha-flip-btn',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_4,
             ]
         );
@@ -1202,13 +1238,12 @@ class Flip_box extends Base {
         );
 
         $this->add_control(
-            'link_color',
+            'button_color',
             [
                 'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
-                'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-btn' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-flip-wrap .ha-flip-box-back-inner .button-wrap .ha-flip-btn' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -1219,7 +1254,7 @@ class Flip_box extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-btn' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-flip-wrap .ha-flip-box-back .ha-flip-box-back-inner .button-wrap .ha-flip-btn' => 'background: {{VALUE}};',
                 ],
             ]
         );
@@ -1239,7 +1274,7 @@ class Flip_box extends Base {
                 'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-btn:hover, {{WRAPPER}} .ha-flip-btn:focus' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-flip-wrap .ha-flip-box-back .ha-flip-box-back-inner .button-wrap .ha-flip-btn:hover' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -1250,7 +1285,7 @@ class Flip_box extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-btn:hover, {{WRAPPER}} .ha-flip-btn:focus' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-flip-wrap .ha-flip-box-back .ha-flip-box-back-inner .button-wrap .ha-flip-btn:hover' => 'background: {{VALUE}};',
                 ],
             ]
         );
@@ -1264,7 +1299,7 @@ class Flip_box extends Base {
                     'button_border_border!' => '',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-btn:hover, {{WRAPPER}} .ha-flip-btn:focus' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-flip-wrap .ha-flip-box-back .ha-flip-box-back-inner .button-wrap .ha-flip-btn:hover' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
