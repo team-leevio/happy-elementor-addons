@@ -1409,9 +1409,9 @@ class Flip_box extends Base {
 
                             <div class="ha-text">
                                 <?php if ( $settings['back_title'] ) : ?>
-                                    <h3 <?php echo $this->get_render_attribute_string( 'back_title' ); ?>>
+                                    <h2 <?php echo $this->get_render_attribute_string( 'back_title' ); ?>>
                                         <?php echo esc_html( $settings['back_title'] ); ?>
-                                    </h3>
+                                    </h2>
                                 <?php endif; ?>
 
                                 <?php if ( $settings['back_description'] ) : ?>

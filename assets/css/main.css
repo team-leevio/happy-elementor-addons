@@ -1937,7 +1937,8 @@ span .ha-review-ratting--star:before,
 	font-size: 16px;
 }
 .ha-flip-wrap .ha-flip-box .ha-flip-box-back-inner .ha-flip-box-heading-back {
-	margin: 0; 
+	margin: 0;
+	color: #fff; 
 	font-size: 18px;
 }
 .ha-flip-wrap .ha-flip-box .ha-flip-box-back-inner .ha-flip-icon {
@@ -1965,9 +1966,10 @@ span .ha-review-ratting--star:before,
 .ha-flip-wrap .ha-flip-box-back-inner .ha-flip-btn {
 	display: inline-block;
 	padding: .8rem 2.5rem;
+	border: 2px solid #fff;
 	border-radius: 4px;
-	background: #3266fd;
-	color: #fff;
+	background-color: #fff;
+	color: #562dd4;
 	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 12px;
@@ -1975,8 +1977,8 @@ span .ha-review-ratting--star:before,
 	        transition: all .3s;
 }
 .ha-flip-wrap .ha-flip-box-back-inner .ha-flip-btn:hover {
-	background: #fff;
-	color: #27374c;
+	background-color: #fff; 
+	color: #fff;
 }
 
 .ha-flip-wrap .ha-flip-box.ha-flip-right .ha-flip-box-front {
