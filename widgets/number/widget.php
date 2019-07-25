@@ -300,7 +300,7 @@ class Number extends Base {
             [
                 'name' => 'number_text_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
-                'selector' => '{{WRAPPER}} .ha-number-border',
+                'selector' => '{{WRAPPER}} .ha-number-text',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
