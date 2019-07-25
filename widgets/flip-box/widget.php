@@ -8,8 +8,10 @@ namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Control_Media;
 use Elementor\Controls_Manager;
+use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
@@ -39,7 +41,7 @@ class Flip_box extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'hm hm-spark';
+        return 'hm hm-flip-card1';
     }
 
     public function get_keywords() {
@@ -48,7 +50,7 @@ class Flip_box extends Base {
 
     protected function register_content_controls() {
         $this->start_controls_section(
-            '_section_front_',
+            '_section_front',
             [
                 'label' => __( 'Front Side', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
@@ -56,24 +58,27 @@ class Flip_box extends Base {
         );
 
         $this->add_control(
-            'front_content_icon',
-            [
-                'label' => __( 'Icon', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
-            ]
-        );
-
-        $this->add_control(
             'front_icon_type',
             [
                 'label' => __( 'Icon Type', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    'none'	=> __( 'None', 'happy-elementor-addons' ),
-                    'image'	=> __( 'Image', 'happy-elementor-addons' ),
-                    'icon'	=> __( 'Icon', 'happy-elementor-addons' )
-                ],
+                'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
                 'default' => 'icon',
+                'options' => [
+                    'none' => [
+                        'title' => __( 'None', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-close',
+                    ],
+                    'icon' => [
+                        'title' => __( 'Icon', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-star',
+                    ],
+                    'image' => [
+                        'title' => __( 'Image', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-image',
+                    ],
+                ],
+                'toggle' => false,
             ]
         );
 
@@ -121,70 +126,6 @@ class Flip_box extends Base {
         );
 
         $this->add_control(
-            'front_icon_position',
-            [
-                'label' => __( 'Position', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'default' => 'top',
-                'options' => [
-                    'top' => [
-                        'title' => __( 'Top', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-v-align-top',
-                    ],
-                    'bottom' => [
-                        'title' => __( 'Bottom', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-v-align-bottom',
-                    ],
-                ],
-                'condition' => [
-                    'front_icon_type' => [ 'icon', 'image' ],
-                ],
-                'selectors_dictionary' => [
-                    'top' => 'flex-direction: column',
-                    'bottom' => 'flex-direction: column-reverse',
-                ],
-                'prefix_class' => 'ha-flip-icon--',
-                'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-front-inner' => '{{VALUE}}'
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'front_icon_align',
-            [
-                'label' => __( 'Alignment', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'default' => 'center',
-                'options' => [
-                    'left' => [
-                        'title' => __( 'Left', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-h-align-left',
-                    ],
-                    'center' => [
-                        'title' => __( 'Center', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-h-align-center',
-                    ],
-                    'right' => [
-                        'title' => __( 'Right', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-h-align-right',
-                    ],
-                ],
-                'selectors_dictionary' => [
-                    'left' => 'justify-content: flex-start',
-                    'center' => 'justify-content: center',
-                    'right' => 'justify-content: flex-end',
-                ],
-                'condition' => [
-                    'front_icon_type' => [ 'icon', 'image' ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap' => '{{VALUE}}'
-                ]
-            ]
-        );
-
-        $this->add_control(
             'front_content_text',
             [
                 'label' => __( 'Title & Description', 'happy-elementor-addons' ),
@@ -210,7 +151,7 @@ class Flip_box extends Base {
                 'label' => __( 'Description', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Type Detail Here', 'happy-elementor-addons' ),
+                'default' => __( 'Best Elementor Addons', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Description', 'happy-elementor-addons' ),
             ]
         );
@@ -218,9 +159,9 @@ class Flip_box extends Base {
         $this->add_control(
             'front_text_align',
             [
-                'label' => __( 'Text Alignment', 'happy-elementor-addons' ),
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
-                'default' => 'center',
+                'separator' => 'before',
                 'options' => [
                     'left' => [
                         'title' => __( 'Left', 'happy-elementor-addons' ),
@@ -236,6 +177,7 @@ class Flip_box extends Base {
                     ],
                 ],
                 'selectors' => [
+                    '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap' => 'text-align: {{VALUE}}',
                     '{{WRAPPER}} .ha-flip-box-front-inner .ha-text' => 'text-align: {{VALUE}}'
                 ]
             ]
@@ -252,24 +194,27 @@ class Flip_box extends Base {
         );
 
         $this->add_control(
-            'back_content_icon',
-            [
-                'label' => __( 'Icon', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
-            ]
-        );
-
-        $this->add_control(
             'back_icon_type',
             [
                 'label' => __( 'Icon Type', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SELECT,
-                'default' => '',
+                'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
+                'default' => 'none',
                 'options' => [
-                    'none'	=> __( 'None', 'happy-elementor-addons' ),
-                    'image'	=> __( 'Image', 'happy-elementor-addons' ),
-                    'icon'	=> __( 'Icon', 'happy-elementor-addons' )
+                    'none' => [
+                        'title' => __( 'None', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-close',
+                    ],
+                    'icon' => [
+                        'title' => __( 'Icon', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-star',
+                    ],
+                    'image' => [
+                        'title' => __( 'Image', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-image',
+                    ],
                 ],
+                'toggle' => false,
             ]
         );
 
@@ -318,40 +263,6 @@ class Flip_box extends Base {
         );
 
         $this->add_control(
-            'back_icon_align',
-            [
-                'label' => __( 'Alignment', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'default' => 'center',
-                'options' => [
-                    'top' => [
-                        'title' => __( 'Left', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-left',
-                    ],
-                    'center' => [
-                        'title' => __( 'Center', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-center',
-                    ],
-                    'bottom' => [
-                        'title' => __( 'Right', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-right',
-                    ],
-                ],
-                'condition' => [
-                    'back_icon_type' => [ 'icon', 'image' ],
-                ],
-                'selectors_dictionary' => [
-                    'top' => 'justify-content: flex-start',
-                    'center' => 'justify-content: center',
-                    'bottom' => 'justify-content: flex-end',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-back-inner .icon-wrap' => '{{VALUE}}'
-                ]
-            ]
-        );
-
-        $this->add_control(
             'back_content_text',
             [
                 'label' => __( 'Title & Description', 'happy-elementor-addons' ),
@@ -383,65 +294,11 @@ class Flip_box extends Base {
         );
 
         $this->add_control(
-            'back_text_align',
-            [
-                'label' => __( 'Text Alignment', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'default' => 'center',
-                'options' => [
-                    'left' => [
-                        'title' => __( 'Left', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-left',
-                    ],
-                    'center' => [
-                        'title' => __( 'Center', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-center',
-                    ],
-                    'right' => [
-                        'title' => __( 'Right', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-right',
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-back-inner .ha-text' => 'text-align: {{VALUE}}',
-                    '{{WRAPPER}} .ha-flip-box-back-inner .button-wrap' => 'text-align: {{VALUE}}',
-                ]
-            ]
-        );
-
-        $this->add_control(
             'back_button_heading',
             [
                 'label' => __( 'Button', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
-            ]
-        );
-
-        $this->add_control(
-            'back_icon_position',
-            [
-                'label' => __( 'Position', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'default' => 'top',
-                'options' => [
-                    'top' => [
-                        'title' => __( 'Top', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-v-align-top',
-                    ],
-                    'bottom' => [
-                        'title' => __( 'Bottom', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-v-align-bottom',
-                    ],
-                ],
-                'selectors_dictionary' => [
-                    'top' => 'flex-direction: column',
-                    'bottom' => 'flex-direction: column-reverse',
-                ],
-                'prefix_class' => 'ha-flip-back-icon--',
-                'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-back-inner' => '{{VALUE}}'
-                ]
             ]
         );
 
@@ -466,12 +323,40 @@ class Flip_box extends Base {
             ]
         );
 
+        $this->add_control(
+            'back_text_align',
+            [
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'separator' => 'before',
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-align-center',
+                    ],
+                    'right' => [
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-align-right',
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-flip-box-back-inner .icon-wrap' => 'text-align: {{VALUE}}',
+                    '{{WRAPPER}} .ha-flip-box-back-inner .ha-text' => 'text-align: {{VALUE}}',
+                    '{{WRAPPER}} .ha-flip-box-back-inner .button-wrap' => 'text-align: {{VALUE}}',
+                ]
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
             '_section_control_',
             [
-                'label' => __( 'Controls', 'happy-elementor-addons' ),
+                'label' => __( 'Settings', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -503,10 +388,34 @@ class Flip_box extends Base {
 
     protected function register_style_controls() {
         $this->start_controls_section(
-            '_section_common_style_',
+            '_section_common_style',
             [
                 'label' => __( 'Common', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'height',
+            [
+                'label' => __( 'Height', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 10,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 5,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-flip-box-front' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-flip-box-back' => 'height: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -530,18 +439,10 @@ class Flip_box extends Base {
 
         // front side
         $this->start_controls_section(
-            '_section_front_style_',
+            '_section_front_style',
             [
                 'label' => __( 'Front Side', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_control(
-            'front_content_area',
-            [
-                'label' => __( 'Content Area', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
             ]
         );
 
@@ -565,66 +466,20 @@ class Flip_box extends Base {
             ]
         );
 
-        $this->add_control(
-            'front_background_image',
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
             [
-                'label' => __( 'Background', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_control(
-            'front_background_type',
-            [
-                'label' => __( 'Type', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'label_block' => false,
-                'default' => 'color',
-                'options' => [
-                    'color' => [
-                        'title' => __( 'Color', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-paint-brush',
-                    ],
-                    'image' => [
-                        'title' => __( 'Image', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-image',
-                    ],
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'front_image',
-            [
-                'label' => __( 'Image', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::MEDIA,
-                'return_value' => 'yes',
-                'default' => [
-                    'url' => Utils::get_placeholder_image_src(),
-                ],
-                'condition' => [
-                    'front_background_type' => 'image'
-                ]
+                'name' => 'front_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-flip-box-front',
             ]
         );
 
         $this->add_group_control(
-            Group_Control_Image_Size::get_type(),
+            Group_Control_Background::get_type(),
             [
-                'name' => 'thumbnail',
-                'default' => 'medium_large',
-                'exclude' => [
-                    'thumbnail',
-                    'full',
-                    'custom',
-                    'shop_catalog',
-                    'shop_single',
-                    'shop_thumbnail'
-                ],
-                'condition' => [
-                    'front_background_type' => 'image'
-                ]
+                'name' => 'front_background_image',
+                'types' => [ 'classic', 'gradient' ],
+                'selector' => '{{WRAPPER}} .ha-flip-box-front',
             ]
         );
 
@@ -633,9 +488,8 @@ class Flip_box extends Base {
             [
                 'label' => __( 'Background Overlay', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
-                'default' => 'rgba(0,0,0,0.27)',
                 'condition' => [
-                    'front_background_type' => 'image'
+                    'front_background_image_image[url]!' => ''
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-flip-wrap .ha-flip-box .ha-flip-box-front:before' => 'background-color: {{VALUE}}',
@@ -654,6 +508,167 @@ class Flip_box extends Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-flip-box-front' => 'background: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'front_icon_heading',
+            [
+                'label' => __( 'Icon Type - Icon', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::HEADING,
+                'condition' => [
+                    'front_icon_type' => 'icon'
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'front_icon_heading_image',
+            [
+                'label' => __( 'Icon Type - Image', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::HEADING,
+                'condition' => [
+                    'front_icon_type' => 'image'
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'front_icon_spacing',
+            [
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-flip-box-front .ha-flip-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'front_icon_image_size',
+            [
+                'label' => __( 'Resize Image', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'condition' => [
+                    'front_icon_type' => 'image'
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 10,
+                        'max' => 500,
+                    ]
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 60,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon img' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'front_icon_font_size',
+            [
+                'label' => __( 'Font Size', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em'],
+                'condition' => [
+                    'front_icon_type' => 'icon'
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'front_icon_background_size',
+            [
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'condition' => [
+                    'front_icon_type' => [ 'icon', 'image' ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 20,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon' => 'padding: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'front_icon_border',
+                'condition' => [
+                    'front_icon_type' => [ 'icon', 'image' ],
+                ],
+                'selector' => '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon',
+            ]
+        );
+
+        $this->add_control(
+            'front_icon_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'condition' => [
+                    'front_icon_type' => [ 'icon', 'image' ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-icon img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'front_icon_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-icon',
+                'condition' => [
+                    'front_icon_type' => [ 'icon', 'image' ],
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'front_icon_color',
+            [
+                'label' => __( 'Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'condition' => [
+                    'front_icon_type' => 'icon'
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'front_icon_background_color',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'condition' => [
+                    'front_icon_type' => [ 'icon', 'image' ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon' => 'background: {{VALUE}}',
                 ],
             ]
         );
@@ -693,6 +708,15 @@ class Flip_box extends Base {
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-box-heading',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'front_title_text_shadow',
+                'label' => __( 'Text Shadow', 'happy-elementor-addons' ),
+                'selector' => '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-box-heading',
             ]
         );
 
@@ -742,170 +766,26 @@ class Flip_box extends Base {
             ]
         );
 
+        $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'front_description_text_shadow',
+                'label' => __( 'Text Shadow', 'happy-elementor-addons' ),
+                'selector' => '{{WRAPPER}} .ha-flip-box-front-inner .ha-text p',
+            ]
+        );
+
         $this->end_controls_tab();
         $this->end_controls_tabs();
-
-        $this->add_control(
-            'front_icon_heading',
-            [
-                'label' => __( 'Icon Type - Icon', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
-                'condition' => [
-                    'front_icon_type' => 'icon'
-                ],
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_control(
-            'front_icon_heading_image',
-            [
-                'label' => __( 'Icon Type - Image', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
-                'condition' => [
-                    'front_icon_type' => 'image'
-                ],
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'front_icon_spacing',
-            [
-                'label' => __( 'Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 10,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}}.ha-flip-icon--top .ha-flip-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-flip-icon--bottom .ha-flip-icon' => 'margin-top: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'front_icon_image_size',
-            [
-                'label' => __( 'Resize Image', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'condition' => [
-                    'front_icon_type' => 'image'
-                ],
-                'range' => [
-                    'px' => [
-                        'min' => 10,
-                        'max' => 500,
-                    ]
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 60,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'front_icon_font_size',
-            [
-                'label' => __( 'Font Size', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', 'em'],
-                'condition' => [
-                    'front_icon_type' => 'icon'
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 28,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'front_icon_background_size',
-            [
-                'label' => __( 'Background Size', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'condition' => [
-                    'front_icon_type' => 'icon'
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 20,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-icon i' => 'padding: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'front_icon_border_radius',
-            [
-                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-icon i' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-icon img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'front_icon_color',
-            [
-                'label' => __( 'Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'condition' => [
-                    'front_icon_type' => 'icon'
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-icon i' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'front_icon_background_color',
-            [
-                'label' => __( 'Background Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'condition' => [
-                    'front_icon_type' => 'icon'
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-icon i' => 'background: {{VALUE}}',
-                ],
-            ]
-        );
 
         $this->end_controls_section();
 
         // back side
         $this->start_controls_section(
-            '_section_back_text_style_',
+            '_section_back_text_style',
             [
                 'label' => __( 'Back Side', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_control(
-            'back_content_area',
-            [
-                'label' => __( 'Content Area', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
             ]
         );
 
@@ -929,66 +809,20 @@ class Flip_box extends Base {
             ]
         );
 
-        $this->add_control(
-            'back_background_image',
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
             [
-                'label' => __( 'Background', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_control(
-            'back_background_type',
-            [
-                'label' => __( 'Type', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'label_block' => false,
-                'default' => 'color',
-                'options' => [
-                    'color' => [
-                        'title' => __( 'Color', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-paint-brush',
-                    ],
-                    'image' => [
-                        'title' => __( 'Image', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-image',
-                    ],
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'back_image',
-            [
-                'label' => __( 'Image', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::MEDIA,
-                'return_value' => 'yes',
-                'default' => [
-                    'url' => Utils::get_placeholder_image_src(),
-                ],
-                'condition' => [
-                    'back_background_type' => 'image'
-                ]
+                'name' => 'back_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-flip-box-back',
             ]
         );
 
         $this->add_group_control(
-            Group_Control_Image_Size::get_type(),
+            Group_Control_Background::get_type(),
             [
-                'name' => 'back_thumbnail',
-                'default' => 'medium_large',
-                'exclude' => [
-                    'thumbnail',
-                    'full',
-                    'custom',
-                    'shop_catalog',
-                    'shop_single',
-                    'shop_thumbnail'
-                ],
-                'condition' => [
-                    'back_background_type' => 'image'
-                ]
+                'name' => 'back_background_image',
+                'types' => [ 'classic', 'gradient' ],
+                'selector' => '{{WRAPPER}} .ha-flip-box-back',
             ]
         );
 
@@ -999,7 +833,7 @@ class Flip_box extends Base {
                 'type' => Controls_Manager::COLOR,
                 'default' => 'rgba(0,0,0,0.27)',
                 'condition' => [
-                    'back_background_type' => 'image'
+                    'back_background_image_background' => 'classic'
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-flip-wrap .ha-flip-box .ha-flip-box-back:before' => 'background-color: {{VALUE}}',
@@ -1060,6 +894,15 @@ class Flip_box extends Base {
             ]
         );
 
+        $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'back_title_shadow',
+                'label' => __( 'Text Shadow', 'happy-elementor-addons' ),
+                'selector' => '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-box-heading-back',
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->start_controls_tab(
@@ -1106,6 +949,15 @@ class Flip_box extends Base {
             ]
         );
 
+        $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'back_description_text_shadow',
+                'label' => __( 'Text Shadow', 'happy-elementor-addons' ),
+                'selector' => '{{WRAPPER}} .ha-flip-box-back-inner .ha-text p',
+            ]
+        );
+
         $this->end_controls_tab();
         $this->end_controls_tabs();
 
@@ -1134,6 +986,21 @@ class Flip_box extends Base {
         );
 
         $this->add_responsive_control(
+            'back_icon_spacing',
+            [
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%'],
+                'condition' => [
+                    'back_icon_type' => [ 'icon', 'image' ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};'
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
             'back_icon_image_size',
             [
                 'label' => __( 'Resize Image', 'happy-elementor-addons' ),
@@ -1153,7 +1020,7 @@ class Flip_box extends Base {
                     'size' => 60,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-back-inner .icon-wrap .ha-flip-icon' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-icon img' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1167,10 +1034,6 @@ class Flip_box extends Base {
                 'condition' => [
                     'back_icon_type' => 'icon'
                 ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 25,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
@@ -1180,35 +1043,26 @@ class Flip_box extends Base {
         $this->add_responsive_control(
             'back_icon_padding',
             [
-                'label' => __( 'Background Size', 'happy-elementor-addons' ),
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
                 'condition' => [
-                    'back_icon_type' => 'icon'
+                    'back_icon_type' => [ 'icon', 'image' ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-icon i' => 'padding: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-flip-box-back-inner .icon-wrap .ha-flip-icon' => 'padding: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
-        $this->add_responsive_control(
-            'back_icon_spacing',
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
             [
-                'label' => __( 'Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%'],
+                'name' => 'back_icon_border',
                 'condition' => [
                     'back_icon_type' => [ 'icon', 'image' ],
                 ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 10,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}}.ha-flip-back-icon--top .ha-flip-box-back-inner .ha-flip-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-flip-back-icon--bottom .ha-flip-box-back-inner .ha-flip-icon' => 'margin-top: {{SIZE}}{{UNIT}};'
-                ],
+                'selector' => '{{WRAPPER}} .ha-flip-box-back-inner .icon-wrap .ha-flip-icon',
             ]
         );
 
@@ -1222,9 +1076,20 @@ class Flip_box extends Base {
                     'back_icon_type' => [ 'icon', 'image']
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-icon i' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-flip-box-back-inner .icon-wrap .ha-flip-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-icon img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'back_icon_box_shadow',
+                'condition' => [
+                    'back_icon_type' => [ 'icon', 'image']
+                ],
+                'selector' => '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-icon',
             ]
         );
 
@@ -1248,10 +1113,10 @@ class Flip_box extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'condition' => [
-                    'back_icon_type' => 'icon'
+                    'back_icon_type' => [ 'icon', 'image' ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-icon i' => 'background: {{VALUE}}',
+                    '{{WRAPPER}} .ha-flip-box-back-inner .icon-wrap .ha-flip-icon' => 'background: {{VALUE}}',
                 ],
             ]
         );
@@ -1268,16 +1133,11 @@ class Flip_box extends Base {
         $this->add_responsive_control(
             'back_button_spacing',
             [
-                'label' => __( 'Spacing', 'happy-elementor-addons' ),
+                'label' => __( 'Top Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%'],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 10,
-                ],
                 'selectors' => [
-                    '{{WRAPPER}}.ha-flip-back-icon--top .ha-flip-box-back-inner .button-wrap' => 'margin-top: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-flip-back-icon--bottom .ha-flip-box-back-inner .button-wrap' => 'margin-bottom: {{SIZE}}{{UNIT}};'
+                    '{{WRAPPER}} .ha-flip-box-back-inner .button-wrap' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1323,6 +1183,15 @@ class Flip_box extends Base {
             ]
         );
 
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'btn_typography',
+                'selector' => '{{WRAPPER}} .ha-flip-btn',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+            ]
+        );
+
         $this->start_controls_tabs( '_tabs_button' );
 
         $this->start_controls_tab(
@@ -1335,7 +1204,7 @@ class Flip_box extends Base {
         $this->add_control(
             'link_color',
             [
-                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -1367,7 +1236,7 @@ class Flip_box extends Base {
         $this->add_control(
             'link_hover_color',
             [
-                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-flip-btn:hover, {{WRAPPER}} .ha-flip-btn:focus' => 'color: {{VALUE}};',
@@ -1403,33 +1272,12 @@ class Flip_box extends Base {
         $this->end_controls_tab();
         $this->end_controls_tabs();
 
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'btn_typography',
-                'selector' => '{{WRAPPER}} .ha-flip-btn',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
-            ]
-        );
-
         $this->end_controls_section();
 
     }
 
     protected function render() {
         $settings = $this->get_settings_for_display();
-
-        // background images
-        if ( $settings['front_image']['id'] && isset( $settings['front_image']['url'] ) ) {
-            $front_image = wp_get_attachment_image_url( $settings['front_image']['id'], $settings['thumbnail_size'], false );
-        } else {
-           $front_image = $settings['front_image']['url'];
-        }
-        if ( $settings['back_image']['id'] && isset( $settings['back_image']['url'] ) ) {
-            $back_image = wp_get_attachment_image_url( $settings['back_image']['id'], $settings['back_thumbnail_size'], false );
-        } else {
-            $back_image = $settings['back_image']['url'];
-        }
 
         // icon/image
         if ( $settings['front_icon_image']['id'] && isset( $settings['front_icon_image']['url'] ) ) {
@@ -1470,12 +1318,12 @@ class Flip_box extends Base {
 
             <div <?php echo $this->get_render_attribute_string( 'flip-position' ); ?>>
                 <div class="ha-flip-box-inner-wrapper">
-                    <div class="ha-flip-box-front" style="background-image: url('<?php echo esc_url( $front_image ); ?>')">
+                    <div class="ha-flip-box-front">
                         <div class="ha-flip-box-front-inner">
 
                             <?php if ( $settings['front_icon'] ) : ?>
                                 <div class="icon-wrap">
-                                    <div class="ha-flip-icon">
+                                    <div class="ha-flip-icon icon">
                                         <i class="<?php echo esc_attr( $settings['front_icon'] ); ?>"></i>
                                     </div>
                                 </div>
@@ -1506,26 +1354,22 @@ class Flip_box extends Base {
                         </div>
                     </div>
 
-                    <div class="ha-flip-box-back" style="background-image: url('<?php echo esc_url( $back_image ); ?>')">
+                    <div class="ha-flip-box-back">
                         <div class="ha-flip-box-back-inner">
-
-                            <?php if ( $settings['back_icon_image'] || $settings['back_icon'] ) : ?>
+                            <?php if ( $settings['back_icon'] ) : ?>
                                 <div class="icon-wrap">
                                     <div class="ha-flip-icon">
-                                        <?php
-                                        if ( $settings['back_icon'] ) : ?>
-
-                                            <i class="<?php echo esc_attr( $settings['back_icon'] ); ?>"></i>
-
-                                       <?php
-                                        elseif ( $settings['back_icon_image'] ) :
-
-                                            echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'back_icon_thumbnail', 'back_icon_image' );
-
-                                        endif;
-                                        ?>
+                                        <i class="<?php echo esc_attr( $settings['back_icon'] ); ?>"></i>
                                     </div>
                                 </div>
+                            <?php endif; ?>
+
+                           <?php if ( $settings['back_icon_image'] ) : ?>
+                             <div class="icon-wrap">
+                                <div class="ha-flip-icon">
+                                    <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'back_icon_thumbnail', 'back_icon_image' ); ?>
+                                </div>
+                             </div>
                             <?php endif; ?>
 
                             <div class="ha-text">
