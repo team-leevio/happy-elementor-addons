@@ -95,12 +95,14 @@
       }
     }
     .ha-flip-box-front-inner {
+      .ha-flip-icon.icon {
+        background-color: $primary-color;
+      }
       .ha-flip-icon {
         margin: 0 0 15px;
         text-align: center;
         display: inline-block;
         padding: 20px;
-        background-color: $primary-color;
         i{
           display: block;
           width: 1em;

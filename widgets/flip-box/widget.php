@@ -488,9 +488,8 @@ class Flip_box extends Base {
             [
                 'label' => __( 'Background Overlay', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
-                'default' => 'rgba(0,0,0,0.27)',
                 'condition' => [
-                    'front_background_image_background' => 'classic'
+                    'front_background_image_image[url]!' => ''
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-flip-wrap .ha-flip-box .ha-flip-box-front:before' => 'background-color: {{VALUE}}',
@@ -1324,7 +1323,7 @@ class Flip_box extends Base {
 
                             <?php if ( $settings['front_icon'] ) : ?>
                                 <div class="icon-wrap">
-                                    <div class="ha-flip-icon">
+                                    <div class="ha-flip-icon icon">
                                         <i class="<?php echo esc_attr( $settings['front_icon'] ); ?>"></i>
                                     </div>
                                 </div>

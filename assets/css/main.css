@@ -1905,11 +1905,13 @@ span .ha-review-ratting--star:before,
 .ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-text p {
 	margin-bottom: 0;
 }
+.ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-icon.icon {
+	background-color: #562dd4;
+}
 .ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-icon {
 	display: inline-block;
 	margin: 0 0 15px;
-	padding: 20px;
-	background-color: #562dd4; 
+	padding: 20px; 
 	text-align: center;
 }
 .ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-icon i {
