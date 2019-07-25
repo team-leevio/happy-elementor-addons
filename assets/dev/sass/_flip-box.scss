@@ -160,7 +160,6 @@
     .ha-flip-btn {
       background-color: #fff;
       color: $primary-color;
-      border: 2px solid #fff;
       font-size: 12px;
       text-transform: uppercase;
       padding: .8rem 2.5rem;
@@ -170,7 +169,7 @@
       transition: all .3s;
 
       &:hover {
-        color: #fff;
+        color: $primary-color;
         background-color: #fff;
       }
     }
