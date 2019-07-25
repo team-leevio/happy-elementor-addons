@@ -47,14 +47,11 @@ class Widgets {
 			'logo-grid',
 			'dual-button',
 			'testimonial',
-//            'heading-detail',
  	        'number',
             'flip-box',
             'hover-box',
             'google-map',
             'calendly',
-
-          
         ];
 
         foreach ( $widgets as $widget ) {

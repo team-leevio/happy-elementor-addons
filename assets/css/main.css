@@ -1657,35 +1657,6 @@ span .ha-review-ratting--star:before,
 	text-align: center;
 }
 
-.ha-heading-detail .ha-heading {
-	margin: 0;
-}
-
-.ha-heading-detail .ha-detail {
-	display: block;
-	margin-bottom: 0;
-}
-
-.ha-heading-detail .description {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display:         flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-webkit-flex-direction: column;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
-}
-
-.ha-heading-detail .description span {
-	display: block;
-}
-.ha-heading-detail .description span:after {
-	display: block; 
-	content: "";
-}
-
 .ha-number-body {
 	position: relative; 
 	display: -webkit-flex;
