@@ -1,3 +1,4 @@
+@import "../../sass/variables";
 .elementor-panel {
   #elementor-panel-category-happy_addons_category .elementor-element,
   #elementor-panel-elements .happy-addons-addon {
@@ -5,7 +6,7 @@
 
     .icon,
     .title {
-      background-image: linear-gradient(135deg, #e2498a 25%, #562dd4 100%);
+      background-image: linear-gradient(135deg, $secondary-color 25%, $primary-color 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
 
@@ -14,13 +15,48 @@
 
     &:hover,
     &:focus {
-      background-image: linear-gradient(135deg, #e2498a 0%, #562dd4 100%);
+      background-image: linear-gradient(135deg, $secondary-color 0%, $primary-color 100%);
 
       .icon,
       .title {
         color: #fff;
         background: transparent;
         -webkit-text-fill-color: initial;
+      }
+    }
+  }
+
+  .elementor-control-_section_happy_effects {
+    .elementor-panel-heading-toggle,
+    .elementor-panel-heading-title {
+      color: $primary-color;
+    }
+  }
+}
+
+.elementor-control-ha_floating_fx_translate_toggle,
+.elementor-control-ha_floating_fx_rotate_toggle,
+.elementor-control-ha_floating_fx_scale_toggle {
+  + .elementor-controls-popover {
+    .elementor-control-type-slider--handles-range {
+      .elementor-slider {
+        .noUi-handle-lower {
+          &:after {
+            left: -5px;
+            box-shadow: -2px 2px 3px 0px rgba(0, 0, 0, 0.1);
+          }
+        }
+        .noUi-handle-upper {
+          &:after {
+            left: 5px;
+            box-shadow: 2px -2px 3px 0px rgba(0, 0, 0, 0.1);
+          }
+          .noUi-tooltip {
+            left: 100%;
+            top: auto;
+            bottom: calc(100% + 5px);
+          }
+        }
       }
     }
   }

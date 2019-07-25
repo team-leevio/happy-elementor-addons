@@ -134,7 +134,7 @@ class Google_Map extends Base {
 					'size' => 600,
 				],
 				'selectors' => [
-					'{{WRAPPER}} iframe' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} iframe' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);	
@@ -152,17 +152,13 @@ class Google_Map extends Base {
 						'max' => 5000,
 						'step' => 5,
 					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
 				],
 				'default' => [
 					'unit' => 'px',
 					'size' => 300,
 				],
 				'selectors' => [
-					'{{WRAPPER}} iframe' => 'height: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} iframe' => 'height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);				
