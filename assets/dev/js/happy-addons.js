@@ -257,6 +257,13 @@ window.Happy = window.Happy || {};
             }
         });
 
+        var NumberHandler = function($scope) {
+            elementorFrontend.waypoint($scope, function () {
+                var $number =  $scope.find('.ha-number-text');
+                $number.numerator($number.data('animation'));
+            });
+        };
+
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/ha-image-compare.default',
             Happy.initImageComparison
@@ -280,6 +287,10 @@ window.Happy = window.Happy || {};
             function($scope) {
                 elementorFrontend.elementsHandler.addHandler(Slick, {$element: $scope});
             }
+        );
+        elementorFrontend.hooks.addAction(
+            'frontend/element_ready/ha-number.default',
+            NumberHandler
         );
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/widget',
