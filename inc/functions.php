@@ -322,3 +322,22 @@ function ha_get_css_cursors() {
         'none' => __( 'None', 'happy-elementor-addons' ),
     ];
 }
+
+function ha_get_css_blend_modes() {
+    return [
+        'normal' => __( 'Normal', 'happy-elementor-addons' ),
+        'multiply' => __( 'Multiply', 'happy-elementor-addons' ),
+        'screen' => __( 'Screen', 'happy-elementor-addons' ),
+        'overlay' => __( 'Overlay', 'happy-elementor-addons' ),
+        'darken' => __( 'Darken', 'happy-elementor-addons' ),
+        'lighten' => __( 'Lighten', 'happy-elementor-addons' ),
+        'color-dodge' => __( 'Color Dodge', 'happy-elementor-addons' ),
+        'color-burn' => __( 'Color Burn', 'happy-elementor-addons' ),
+        'saturation' => __( 'Saturation', 'happy-elementor-addons' ),
+        'difference' => __( 'Difference', 'happy-elementor-addons' ),
+        'exclusion' => __( 'Exclusion', 'happy-elementor-addons' ),
+        'hue' => __( 'Hue', 'happy-elementor-addons' ),
+        'color' => __( 'Color', 'happy-elementor-addons' ),
+        'luminosity' => __( 'Luminosity', 'happy-elementor-addons' ),
+    ];
+}

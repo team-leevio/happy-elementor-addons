@@ -1,6 +1,6 @@
 <?php
 /**
- * Blurb widget class
+ * Number widget class
  *
  * @package Happy_Addons
  */
@@ -47,7 +47,7 @@ class Number extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'info', 'blurb', 'box', 'text', 'content' ];
+		return [ 'number', 'animate', 'text' ];
 	}
 
 	/**
@@ -68,7 +68,7 @@ class Number extends Base {
 				'label' => __( 'Text', 'happy-elementor-addons' ),
 				'label_block' => false,
 				'type' => Controls_Manager::TEXT,
-				'default' => 1
+				'default' => 7
 			]
 		);
 
@@ -80,70 +80,6 @@ class Number extends Base {
 	 */
 	protected function register_style_controls() {
 		$this->start_controls_section(
-			'_section_style_number',
-			[
-				'label' => __( 'Text', 'happy-elementor-addons' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-        $this->add_control(
-            'number_text_color',
-            [
-                'label' => __( 'Text Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-number-body' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'number_text_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-number-border',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Text_Shadow::get_type(),
-			[
-				'name' => 'number_text_shadow',
-				'label' => __( 'Text Shadow', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-number-body span',
-			]
-		);
-
-		$this->add_control(
-			'number_text_rotate',
-			[
-				'label' => __( 'Text Rotate', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 360,
-						'step' => 5,
-					],
-
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 0,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-number-text' => '-webkit-transform: rotate({{SIZE}}deg);-ms-transform: rotate({{SIZE}}deg);transform: rotate({{SIZE}}deg);'
-				],
-			]
-		);
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
 			'number_background_style',
 			[
 				'label' => __( 'General', 'happy-elementor-addons' ),
@@ -154,26 +90,17 @@ class Number extends Base {
 		$this->add_responsive_control(
 			'number_width_height',
 			[
-				'label' => __( 'Width and Height', 'happy-elementor-addons' ),
+				'label' => __( 'Size', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range' => [
 					'px' => [
 						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
+						'max' => 500,
 					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 50,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-number-body' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-number-body' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -190,18 +117,6 @@ class Number extends Base {
             ]
         );
 
-        $this->add_control(
-            'number_border_radius',
-            [
-                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%', 'em' ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-number-body' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
         $this->add_group_control(
             Group_Control_Border::get_type(),
             [
@@ -211,15 +126,17 @@ class Number extends Base {
             ]
         );
 
-		$this->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name' => 'number_background_color',
-				'label' => __( 'Background', 'happy-elementor-addons' ),
-				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .ha-number-body',
-			]
-		);
+        $this->add_control(
+            'number_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-number-body' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
@@ -261,80 +178,134 @@ class Number extends Base {
 			]
 		);
 
-		$this->end_controls_section();
-		$this->start_controls_section(
-			'number_background_style_overlay',
-			[
-				'label' => __( 'Background Overlay', 'happy-elementor-addons' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
+        $this->add_control(
+            '_heading_bg',
+            [
+                'label' => __( 'Background', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
-		$this->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name' => 'number_background_overlay_color',
-				'label' => __( 'Background', 'happy-elementor-addons' ),
-				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .ha-number-body .ha-number-overlay',
-			]
-		);
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'number_background_color',
+                'types' => [ 'classic', 'gradient' ],
+                'selector' => '{{WRAPPER}} .ha-number-body',
+            ]
+        );
 
+        $this->add_control(
+                '_heading_bg_overlay',
+                [
+                    'label' => __( 'Background Overaly', 'happy-elementor-addons' ),
+                    'type' => Controls_Manager::HEADING,
+                    'separator' => 'before',
+                ]
+        );
 
-		$this->add_control(
-			'number_background_overlay_blend_mode',
-			[
-				'label' => __( 'Blend Mood', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'normal',
-				'options' => [
-                    'normal' => 'Normal',
-                    'multiply' => 'Multiply',
-                    'screen' => 'Screen',
-                    'overlay' => 'Overlay',
-                    'darken' => 'Darken',
-                    'lighten' => 'Lighten',
-                    'color-dodge' => 'Color Dodge',
-                    'color-burn' => 'Color Burn',
-                    'saturation' => 'Saturation',
-                    'difference' => 'Difference',
-                    'exclusion' => 'Exclusion',
-                    'hue' => 'Hue',
-                    'saturation' => 'Saturation',
-                    'color' => 'Color',
-                    'luminosity' => 'Luminosity',
-				],
-				'selectors' => [
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'number_background_overlay_color',
+                'label' => __( 'Background', 'happy-elementor-addons' ),
+                'types' => [ 'classic', 'gradient' ],
+                'selector' => '{{WRAPPER}} .ha-number-overlay',
+            ]
+        );
+
+        $this->add_control(
+            'number_background_overlay_blend_mode',
+            [
+                'label' => __( 'Blend Mood', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'normal',
+                'options' => ha_get_css_blend_modes(),
+                'selectors' => [
                     '{{WRAPPER}} .ha-number-overlay' => 'mix-blend-mode: {{VALUE}}',
                 ],
-			]
-		);
+            ]
+        );
 
-
-		$this->add_responsive_control(
-			'number_background_overlay_blend_mode_opacity',
-			[
-				'label' => __( 'Opacity', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1,
-						'step' => .1,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => .5,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-number-overlay' => 'opacity: {{SIZE}};',
-				],
-			]
-		);
+        $this->add_responsive_control(
+            'number_background_overlay_blend_mode_opacity',
+            [
+                'label' => __( 'Opacity', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1,
+                        'step' => .1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-number-overlay' => 'opacity: {{SIZE}};',
+                ],
+            ]
+        );
 
 		$this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_style_text',
+            [
+                'label' => __( 'Text', 'happy-elementor-addons' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'number_text_color',
+            [
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-number-body' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'number_text_typography',
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
+                'selector' => '{{WRAPPER}} .ha-number-border',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'number_text_shadow',
+                'label' => __( 'Text Shadow', 'happy-elementor-addons' ),
+                'selector' => '{{WRAPPER}} .ha-number-text',
+            ]
+        );
+
+        $this->add_control(
+            'number_text_rotate',
+            [
+                'label' => __( 'Text Rotate', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 360,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-number-text' => '-webkit-transform: rotate({{SIZE}}deg);-ms-transform: rotate({{SIZE}}deg);transform: rotate({{SIZE}}deg);'
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
 	}
 
 	protected function render() {
