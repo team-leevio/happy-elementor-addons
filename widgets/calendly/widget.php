@@ -116,8 +116,8 @@ class Calendly extends Base {
 					],
 				],
 				'default'    => [
-					'px' => 630,
-					'%'  => 100
+					'unit' => 'px',
+					'size' => '630',
 				],
 				'selectors'  => [
 					'{{WRAPPER}} .calendly-inline-widget' => 'height: {{SIZE}}{{UNIT}};',
