@@ -203,25 +203,18 @@ class Google_Map extends Base {
 	}
 
 	protected function render() {
-		$settings = $this->get_settings_for_display();
+		$settings  = $this->get_settings_for_display();
+		$map_query = esc_attr( urlencode( $settings['google_map_address'] ) );
+		if ( 'coordinates' == $settings['google_map_type'] ) {
+			$map_query = esc_attr( $settings['google_map_latitude'] ) . "," . esc_attr( $settings['google_map_longitude'] );
+		}
 		?>
-		<?php if ( 'address' == $settings['google_map_type'] ): ?>
-            <div class="ha-google-map-body">
-                <iframe style="max-width: 100%;"
-                        src="https://maps.google.com/maps?q=<?php echo esc_attr( urlencode( $settings['google_map_address'] ) ); ?>&z=<?php echo esc_attr( $settings['google_map_zoom']['size'] ); ?>&ie=UTF8&iwloc=&output=embed"
-                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-            </div>
-
+        <div class="ha-google-map-body">
+            <iframe style="max-width: 100%;"
+                    src="https://maps.google.com/maps?q=<?php echo $map_query; ?>&z=<?php echo esc_attr( $settings['google_map_zoom']['size'] ); ?>&ie=UTF8&iwloc=&output=embed"
+                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+        </div>
 		<?php
-		else:
-			?>
-            <div class="ha-google-map-body">
-                <iframe style="max-width: 100%;"
-                        src="https://maps.google.com/maps?q=<?php echo esc_attr( $settings['google_map_latitude'] ) . "," . esc_attr( $settings['google_map_longitude'] ); ?>&z=<?php echo esc_attr( $settings['google_map_zoom']['size'] ); ?>&ie=UTF8&iwloc=&output=embed"
-                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-            </div>
-		<?php
-		endif;
 		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) :
 			?>
             <div class="maps-wrapper" style="width:100%; position:absolute; top:0; left:0; z-index:100;"></div>
