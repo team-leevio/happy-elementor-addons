@@ -4,6 +4,7 @@
  *
  * @package Happy_Addons
  */
+
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Utils;
@@ -24,10 +25,10 @@ class Calendly extends Base {
 	/**
 	 * Get widget title.
 	 *
+	 * @return string Widget title.
 	 * @since 1.0.0
 	 * @access public
 	 *
-	 * @return string Widget title.
 	 */
 	public function get_title() {
 		return __( 'Calendly', 'happy-elementor-addons' );
@@ -36,10 +37,10 @@ class Calendly extends Base {
 	/**
 	 * Get widget icon.
 	 *
+	 * @return string Widget icon.
 	 * @since 1.0.0
 	 * @access public
 	 *
-	 * @return string Widget icon.
 	 */
 	public function get_icon() {
 		return 'hm hm-calendar';
@@ -57,29 +58,71 @@ class Calendly extends Base {
 			'_section_calendly',
 			[
 				'label' => __( 'Calendly', 'happy-elementor-addons' ),
-				'tab' => Controls_Manager::TAB_CONTENT,
+				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
 		$this->add_control(
-			'calendly_event_link',
+			'calendly_username',
 			[
-				'label' => __( 'Event Link', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => __( '', 'happy-elementor-addons' ),
-				'placeholder' => __( 'Type event link here', 'happy-elementor-addons' ),
+				'label'       => __( 'Username', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( '', 'happy-elementor-addons' ),
+				'placeholder' => __( 'Type calendly username here', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'calendly_time',
+			[
+				'label'   => __( 'Time Slot', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => [
+					'15min' => __( '15 Minutes', 'happy-elementor-addons' ),
+					'30min' => __( '30 Minutes', 'happy-elementor-addons' ),
+					'60min' => __( '60 Minutes', 'happy-elementor-addons' ),
+				],
+				'default' => '15min'
 			]
 		);
 
 		$this->add_control(
 			'event_type_details',
 			[
-				'label' => __( 'Hide Event Type Details', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'yes', 'your-plugin' ),
-				'label_off' => __( 'no', 'your-plugin' ),
+				'label'        => __( 'Hide Event Type Details', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __( 'yes', 'your-plugin' ),
+				'label_off'    => __( 'no', 'your-plugin' ),
 				'return_value' => 'yes',
-				'default' => '',
+				'default'      => '',
+			]
+		);
+
+		$this->add_responsive_control(
+			'height',
+			[
+				'label'      => __( 'Height', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range'      => [
+					'px' => [
+						'min'  => 10,
+						'max'  => 1000,
+						'step' => 5,
+					],
+					'%'  => [
+						'min' => 5,
+						'max' => 100,
+					],
+				],
+				'default'    => [
+					'px' => 630,
+					'%'  => 100
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .calendly-inline-widget' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .calendly-wrapper'       => 'height: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -94,7 +137,7 @@ class Calendly extends Base {
 			'_section_style_calendly',
 			[
 				'label' => __( 'Calendly', 'happy-elementor-addons' ),
-				'tab' => Controls_Manager::TAB_STYLE,
+				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -102,7 +145,7 @@ class Calendly extends Base {
 			'text_color',
 			[
 				'label' => __( 'Text Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
+				'type'  => Controls_Manager::COLOR,
 				'alpha' => false,
 			]
 		);
@@ -111,7 +154,7 @@ class Calendly extends Base {
 			'button_link_color',
 			[
 				'label' => __( 'Button & Link Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
+				'type'  => Controls_Manager::COLOR,
 			]
 		);
 
@@ -119,7 +162,7 @@ class Calendly extends Base {
 			'background_color',
 			[
 				'label' => __( 'Background Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
+				'type'  => Controls_Manager::COLOR,
 			]
 		);
 
@@ -129,10 +172,15 @@ class Calendly extends Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		?>
-			<?php if ($settings['calendly_event_link']): ?>
-			<div class="calendly-inline-widget" data-url="<?php  echo esc_url( $settings['calendly_event_link'] ); ?>?<?php if ( 'yes' === $settings['event_type_details'] ): echo'hide_event_type_details=1'; endif; ?><?php if ($settings['text_color']): echo "&text_color=".str_replace('#', '', $settings['text_color']);  endif; ?><?php if ($settings['button_link_color']): echo "&primary_color=".str_replace('#', '', $settings['button_link_color']);  endif; ?><?php if ($settings['background_color']): echo "&background_color=".str_replace('#', '', $settings['background_color']);  endif; ?>" style="min-width:320px;height:630px;"></div>
-			<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+		<?php if ( $settings['calendly_username'] ): ?>
+            <div class="calendly-inline-widget"
+                 data-url="https://calendly.com/<?php echo esc_attr( $settings['calendly_username'] ); ?>/<?php echo esc_attr( $settings['calendly_time'] ); ?>/?<?php if ( 'yes' === $settings['event_type_details'] ): echo 'hide_event_type_details=1'; endif; ?><?php if ( $settings['text_color'] ): echo "&text_color=" . str_replace( '#', '', $settings['text_color'] ); endif; ?><?php if ( $settings['button_link_color'] ): echo "&primary_color=" . str_replace( '#', '', $settings['button_link_color'] ); endif; ?><?php if ( $settings['background_color'] ): echo "&background_color=" . str_replace( '#', '', $settings['background_color'] ); endif; ?>"
+                 style="min-width:320px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+			<?php if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) : ?>
+                <div class="calendly-wrapper" style="width:100%; position:absolute; top:0; left:0; z-index:100;"></div>
 			<?php endif; ?>
+		<?php endif; ?>
 		<?php
 	}
 }
