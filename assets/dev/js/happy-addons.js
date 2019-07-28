@@ -259,8 +259,29 @@ window.Happy = window.Happy || {};
 
         var NumberHandler = function($scope) {
             elementorFrontend.waypoint($scope, function () {
-                var $number =  $scope.find('.ha-number-text');
+                var $number = $scope.find('.ha-number-text');
                 $number.numerator($number.data('animation'));
+            });
+        };
+
+        var SkillHandler = function($scope) {
+            elementorFrontend.waypoint($scope, function () {
+                $scope.find('.ha-skill-level').each(function() {
+                    var $current = $(this),
+                        $lt = $current.find('.ha-skill-level-text'),
+                        lv = $current.data('level');
+
+                    $current.animate({
+                        width: lv+'%'
+                    }, 500);
+                    $lt.numerator({
+                        toValue: lv + '%',
+                        duration: 1300,
+                        onComplete: function() {
+                            $lt.append('%');
+                        }
+                    });
+                });
             });
         };
 
@@ -291,6 +312,10 @@ window.Happy = window.Happy || {};
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/ha-number.default',
             NumberHandler
+        );
+        elementorFrontend.hooks.addAction(
+            'frontend/element_ready/ha-skills.default',
+            SkillHandler
         );
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/widget',

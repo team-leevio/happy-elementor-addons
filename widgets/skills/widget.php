@@ -1,6 +1,6 @@
 <?php
 /**
- * Skillsbar widget class
+ * Skills widget class
  *
  * @package Happy_Addons
  */
@@ -42,7 +42,7 @@ class Skills extends Base {
     }
 
     public function get_keywords() {
-        return [ 'progress', 'skill', 'bar' ];
+        return [ 'progress', 'skill', 'bar', 'chart' ];
     }
 
 	protected function register_content_controls() {
@@ -139,7 +139,28 @@ class Skills extends Base {
                 'show_label' => false,
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
-                'title_field' => '<# print((name || level.size) ? (name || "Skill") + " - " + level.size + level.unit : "Skill - 0%") #>'
+                'title_field' => '<# print((name || level.size) ? (name || "Skill") + " - " + level.size + level.unit : "Skill - 0%") #>',
+                'default' => [
+                    [
+                        'name' => 'Design',
+                        'level' => ['size' => 97, 'unit' => 'px']
+                    ],
+                    [
+                        'name' => 'UX',
+                        'level' => ['size' => 88, 'unit' => 'px']
+                    ],
+                    [
+                        'name' => 'Coding',
+                        'level' => ['size' => 92, 'unit' => 'px']
+                    ],
+                    [
+                        'name' => 'Speed',
+                    ],
+                    [
+                        'name' => 'Passion',
+                        'level' => ['size' => 100, 'unit' => 'px']
+                    ]
+                ]
             ]
         );
 
@@ -191,7 +212,7 @@ class Skills extends Base {
         $this->add_control(
             'spacing',
             [
-                'label' => __( 'Top Spacing', 'happy-elementor-addons' ),
+                'label' => __( 'Spacing Between', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -303,8 +324,8 @@ class Skills extends Base {
             $this->add_inline_editing_attributes( $name_key, 'none' );
             ?>
             <div class="ha-skill ha-skill--<?php echo esc_attr( $settings['view'] ); ?> elementor-repeater-item-<?php echo $skill['_id']; ?>">
-                <div class="ha-skill-level" style="width: <?php echo esc_attr( $skill['level']['size'] ); ?>%;">
-                    <div class="ha-skill-info"><span <?php echo $this->get_render_attribute_string( $name_key ); ?>><?php echo esc_html( $skill['name'] ); ?></span><span class="ha-skill-level-text"><?php echo esc_html( $skill['level']['size'] ); ?>%</span></div>
+                <div class="ha-skill-level" data-level="<?php echo esc_attr( $skill['level']['size'] ); ?>">
+                    <div class="ha-skill-info"><span <?php echo $this->get_render_attribute_string( $name_key ); ?>><?php echo esc_html( $skill['name'] ); ?></span><span class="ha-skill-level-text"></span></div>
                 </div>
             </div>
             <?php
@@ -320,8 +341,8 @@ class Skills extends Base {
             view.addInlineEditingAttributes( nameKey, 'none' );
             #>
             <div class="ha-skill ha-skill--{{settings.view}} elementor-repeater-item-{{skill._id}}">
-                <div class="ha-skill-level" style="width: {{skill.level.size}}%;">
-                    <div class="ha-skill-info"><span {{{view.getRenderAttributeString( nameKey )}}}>{{skill.name}}</span><span class="ha-skill-level-text">{{skill.level.size}}%</span></div>
+                <div class="ha-skill-level" data-level="{{skill.level.size}}">
+                    <div class="ha-skill-info"><span {{{view.getRenderAttributeString( nameKey )}}}>{{skill.name}}</span><span class="ha-skill-level-text"></span></div>
                 </div>
             </div>
             <# });
