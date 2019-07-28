@@ -112,7 +112,7 @@ class Assets {
 			);
 		}
 
-		if ( ! apply_filters( 'happyaddons_ondemand_asset_compiling', true ) ) {
+		if ( ! apply_filters( 'happyaddons_ondemand_asset_compiling', true ) || \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 			wp_enqueue_style(
 				'happy-elementor-addons',
 				HAPPY_ASSETS . 'css/main' . $suffix . 'css',
@@ -248,7 +248,7 @@ class Assets {
 	public static function is_gallery_used() {
 		global $post;
 		$widgets = get_post_meta( $post->ID, '_elementor_elements_usage', true );
-		if ( ! is_array( $widgets ) ) {
+		if ( ! is_array( $widgets ) || \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 			return true; //failsafe
 		}
 		if ( in_array( 'ha-justified-gallery', array_keys( $widgets ) ) ) {
@@ -261,7 +261,7 @@ class Assets {
 	public static function is_image_grid_used() {
 		global $post;
 		$widgets = get_post_meta( $post->ID, '_elementor_elements_usage', true );
-		if ( ! is_array( $widgets ) ) {
+		if ( ! is_array( $widgets ) || \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 			return true; //failsafe
 		}
 		if ( in_array( 'ha-image-grid', array_keys( $widgets ) ) ) {
@@ -274,7 +274,7 @@ class Assets {
 	public static function is_carousel_used() {
 		global $post;
 		$widgets = get_post_meta( $post->ID, '_elementor_elements_usage', true );
-		if ( ! is_array( $widgets ) ) {
+		if ( ! is_array( $widgets ) || \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 			return true; //failsafe
 		}
 		if ( in_array( 'ha-carousel', array_keys( $widgets ) ) ) {
@@ -287,7 +287,7 @@ class Assets {
 	public static function is_image_compare_used() {
 		global $post;
 		$widgets = get_post_meta( $post->ID, '_elementor_elements_usage', true );
-		if ( ! is_array( $widgets ) ) {
+		if ( ! is_array( $widgets ) || \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 			return true; //failsafe
 		}
 		if ( in_array( 'ha-image-compare', array_keys( $widgets ) ) ) {
@@ -300,7 +300,7 @@ class Assets {
 	public static function is_slider_used() {
 		global $post;
 		$widgets = get_post_meta( $post->ID, '_elementor_elements_usage', true );
-		if ( ! is_array( $widgets ) ) {
+		if ( ! is_array( $widgets ) || \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 			return true; //failsafe
 		}
 		if ( in_array( 'ha-slider', array_keys( $widgets ) ) ) {
