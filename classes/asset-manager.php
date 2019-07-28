@@ -88,7 +88,7 @@ class Assets {
 			);
 		}
 
-		if ( self::is_carousel_used() ) {
+		if ( self::is_carousel_used() || self::is_slider_used() ) {
 			wp_enqueue_style(
 				'slick',
 				HAPPY_ASSETS . 'vendor/slick/slick.css',
@@ -248,7 +248,10 @@ class Assets {
 	public static function is_gallery_used() {
 		global $post;
 		$widgets = get_post_meta( $post->ID, '_elementor_elements_usage', true );
-		if ( in_array( 'ha-justified-gallery', $widgets ) ) {
+		if ( ! is_array( $widgets ) ) {
+			return true; //failsafe
+		}
+		if ( in_array( 'ha-justified-gallery', array_keys( $widgets ) ) ) {
 			return true;
 		}
 
@@ -258,7 +261,10 @@ class Assets {
 	public static function is_image_grid_used() {
 		global $post;
 		$widgets = get_post_meta( $post->ID, '_elementor_elements_usage', true );
-		if ( in_array( 'ha-image-grid', $widgets ) ) {
+		if ( ! is_array( $widgets ) ) {
+			return true; //failsafe
+		}
+		if ( in_array( 'ha-image-grid', array_keys( $widgets ) ) ) {
 			return true;
 		}
 
@@ -268,7 +274,10 @@ class Assets {
 	public static function is_carousel_used() {
 		global $post;
 		$widgets = get_post_meta( $post->ID, '_elementor_elements_usage', true );
-		if ( in_array( 'ha-carousel', $widgets ) ) {
+		if ( ! is_array( $widgets ) ) {
+			return true; //failsafe
+		}
+		if ( in_array( 'ha-carousel', array_keys( $widgets ) ) ) {
 			return true;
 		}
 
@@ -278,10 +287,28 @@ class Assets {
 	public static function is_image_compare_used() {
 		global $post;
 		$widgets = get_post_meta( $post->ID, '_elementor_elements_usage', true );
-		if ( in_array( 'ha-carousel', $widgets ) ) {
+		if ( ! is_array( $widgets ) ) {
+			return true; //failsafe
+		}
+		if ( in_array( 'ha-image-compare', array_keys( $widgets ) ) ) {
 			return true;
 		}
 
 		return false;
 	}
+
+	public static function is_slider_used() {
+		global $post;
+		$widgets = get_post_meta( $post->ID, '_elementor_elements_usage', true );
+		if ( ! is_array( $widgets ) ) {
+			return true; //failsafe
+		}
+		if ( in_array( 'ha-slider', array_keys( $widgets ) ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+
 }
