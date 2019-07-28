@@ -3,20 +3,24 @@
 namespace Happy_Addons\Elementor\Assets;
 
 class AssetCompiler {
+	private $upload_path;
+
 	function __construct() {
 		add_action( 'save_post', [ $this, 'compile_assets' ] );
-		//wp_mail( 'me@hasin.me', "Data ", HAPPY_DIR_PATH . 'assets/compiled/compiled-11.js' );
+		$upload_dir        = wp_upload_dir();
+		$this->upload_path = trailingslashit( $upload_dir['basedir'] );
 	}
 
 
 	public function compile_assets( $post_id ) {
 		if ( apply_filters( 'happyaddons_ondemand_asset_compiling', true ) ) {
+
 			if ( get_post_type( $post_id ) == 'page' ) {
 				//failsafe
 				if ( version_compare( ELEMENTOR_VERSION, '2.6.5', '<=' ) || ! get_post_meta( $post_id, '_elementor_elements_usage', true ) ) {
 					//we need to populate _elementor_elements_usage;
 					$usage = [];
-					$data = json_decode( get_post_meta( $post_id, '_elementor_data', true ), true );
+					$data  = json_decode( get_post_meta( $post_id, '_elementor_data', true ), true );
 					\Elementor\Plugin::$instance->db->iterate_data( $data, function ( $element ) use ( & $usage ) {
 						if ( empty( $element['widgetType'] ) ) {
 							$type = $element['elType'];
@@ -37,7 +41,7 @@ class AssetCompiler {
 
 
 				$_widgets = [];
-				$filename = HAPPY_DIR_PATH . "assets/compiled/compiled-{$post_id}.css";
+				$filename = $this->upload_path . "happyaddons/compiled/compiled-{$post_id}.css";
 				$widgets  = get_post_meta( $post_id, '_elementor_elements_usage', true );
 
 				if ( is_array( $widgets ) ) {
@@ -59,8 +63,8 @@ class AssetCompiler {
 							$data .= file_get_contents( HAPPY_DIR_PATH . "assets/css/widgets/{$_widget}.min.css" );
 						};
 					}
-					if ( ! is_dir( HAPPY_DIR_PATH . 'assets/compiled/' ) ) {
-						@mkdir( HAPPY_DIR_PATH . 'assets/compiled/' );
+					if ( ! is_dir( $this->upload_path . 'happyaddons/compiled/' ) ) {
+						@mkdir( $this->upload_path . 'happyaddons/compiled/', 0777, true );
 					}
 					file_put_contents( $filename, $data );
 				}

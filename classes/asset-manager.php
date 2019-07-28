@@ -121,13 +121,16 @@ class Assets {
 			);
 		} else {
 			global $post;
-			$filename = HAPPY_DIR_PATH . "assets/compiled/compiled-{$post->ID}.css";
+			$upload_dir  = wp_upload_dir();
+			$upload_path = trailingslashit( $upload_dir['basedir'] );
+			$upload_url  = trailingslashit( $upload_dir['baseurl'] );
+			$filename    = $upload_path . "happyaddons/compiled/compiled-{$post->ID}.css";
 			if ( file_exists( $filename ) ) {
 				wp_enqueue_style(
 					'happy-elementor-addons',
-					HAPPY_ASSETS . "compiled/compiled-{$post->ID}.css",
+					$upload_url . "happyaddons/compiled/compiled-{$post->ID}.css",
 					[ 'elementor-frontend' ],
-					Base::VERSION.'.'.get_post_modified_time()
+					Base::VERSION . '.' . get_post_modified_time()
 				);
 			} else {
 				wp_enqueue_style(
