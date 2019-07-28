@@ -1,9 +1,10 @@
 .ha-step-flow {
   text-align: center;
+  padding: 30px;
 }
 .ha-step-arrow {
-  width: 85px;
-  border: 1px dashed #ddd;
+  width: 100px;
+  border: 1px dotted #ddd;
   display: inline-block;
   position: absolute;
   top: 33%;
@@ -14,8 +15,8 @@
   display: inline-block;
   margin-bottom: 10px;
   border-radius: 50%;
-  color: #7a7a7a;
-  background: #eeeeee;
+  color: #242424;
+  background: #f1f4f8;
   text-align: center;
   position: relative;
   padding: 40px;
@@ -30,17 +31,18 @@
     position: absolute;
     top: 5px;
     right: 0;
-    background: #287dfe;
+    background: #e2498a;
     color: #fff;
     padding: 3px 12px;
     border-radius: 20px;
     font-size: 12px;
-    border: 3px solid #b8dfff;
+    border: 3px solid #fff;
   }
 }
 
 .ha-steps-title h4 {
-  font-size: 20px;
+  font-size: 16px;
+  font-weight: bold;
   margin-top: 0;
   margin-bottom: 8px;
 }
@@ -49,7 +51,7 @@
   color: #562dd4;
 }
 .ha-steps-title h4 a:hover {
-  color: #e2498a;
+  color: #242424;
 }
 
 p.ha-step-detail {

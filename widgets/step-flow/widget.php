@@ -56,7 +56,7 @@ class Step_flow extends Base {
             [
                 'label' => __( 'Icon', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::ICON,
-                'default' => 'fa fa-smile-o',
+                'default' => 'fa fa-home',
                 'options' => ha_get_happy_icons(),
             ]
         );
@@ -79,7 +79,7 @@ class Step_flow extends Base {
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
                 'placeholder' => __( 'Title', 'happy-elementor-addons' ),
-                'default' => __( 'Happy Elementor Addons', 'happy-elementor-addons' ),
+                'default' => __( 'Start Marketting', 'happy-elementor-addons' ),
             ]
         );
 
@@ -98,7 +98,7 @@ class Step_flow extends Base {
                 'label' => __( 'Description', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXTAREA,
                 'placeholder' => __( 'Description', 'happy-elementor-addons' ),
-                'default' => __( 'Description goes here', 'happy-elementor-addons' ),
+                'default' => __( 'consectetur adipiscing elit, sed do eiusmodLorem ipsum dolor sit amet consectetur.', 'happy-elementor-addons' ),
             ]
         );
 
@@ -351,12 +351,21 @@ class Step_flow extends Base {
             ]
         );
 
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
+        $this->add_responsive_control(
+            'detail_spacing',
             [
-                'name' => 'title_typography',
-                'selector' => '{{WRAPPER}} .ha-steps-title h4',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+                'label' => __( 'Top Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ]
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-steps-title h4' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -393,6 +402,15 @@ class Step_flow extends Base {
             ]
         );
 
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'title_typography',
+                'selector' => '{{WRAPPER}} .ha-steps-title h4',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -400,24 +418,6 @@ class Step_flow extends Base {
             [
                 'label' => __( 'Description', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_responsive_control(
-            'detail_spacing',
-            [
-                'label' => __( 'Top Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ]
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} p.ha-step-detail' => 'margin-top: {{SIZE}}{{UNIT}};',
-                ],
             ]
         );
 
