@@ -663,7 +663,7 @@ class Flip_box extends Base {
                     'front_icon_type' => 'icon'
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon i' => 'color: {{VALUE}}',
                 ],
             ]
         );
