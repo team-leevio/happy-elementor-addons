@@ -34,8 +34,9 @@ class AssetCompiler {
 						$data .= file_get_contents( HAPPY_DIR_PATH . "assets/css/widgets/{$_widget}.min.css" );
 					};
 				}
-
-				@mkdir( HAPPY_DIR_PATH . 'assets/compiled/' );
+				if(!is_dir(HAPPY_DIR_PATH . 'assets/compiled/')) {
+					@mkdir( HAPPY_DIR_PATH . 'assets/compiled/' );
+				}
 				file_put_contents( $filename, $data );
 			}
 		}
