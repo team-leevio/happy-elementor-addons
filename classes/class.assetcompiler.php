@@ -2,6 +2,8 @@
 
 namespace Happy_Addons\Elementor\Assets;
 
+defined( 'ABSPATH' ) || die();
+
 class AssetCompiler {
 	private $upload_path;
 
