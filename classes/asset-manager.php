@@ -127,7 +127,7 @@ class Assets {
 					'happy-elementor-addons',
 					HAPPY_ASSETS . "compiled/compiled-{$post->ID}.css",
 					[ 'elementor-frontend' ],
-					Base::VERSION
+					Base::VERSION.'.'.get_post_modified_time()
 				);
 			} else {
 				wp_enqueue_style(
