@@ -1,5 +1,10 @@
 .ha-hover-box {
 	overflow: hidden;
+
+	.ha-hover-box-main {
+		overflow: hidden;
+		position: relative;
+	}
 }
 
 .ha-hover-box-wrapper {
@@ -9,8 +14,9 @@
 	padding: 50px;
 	display: flex;
 	align-items: center;
-	//background-color: $primary-color;
-	transition-duration: 0.2s;
+	transition-duration: 0.4s;
+	overflow: hidden;
+	position: relative;
 
 	&:before {
 		content: "";
@@ -24,8 +30,7 @@
 
 	&:hover {
 		transform: scale(1.06);
-		transition-duration: 0.2s;
-		transition-delay: .1s;
+		transition-duration: 0.3s;
 
 		.ha-hover-box-content {
 			opacity: 0;
@@ -66,6 +71,21 @@
 	.ha-hover-description {
 		margin: 0;
 		color: #222;
+	}
+}
+
+.ha-hover-box-wrapper.reverse {
+	&:hover {
+		.ha-hover-box-content {
+			opacity: 1;
+			transform: translate(0,-36px);
+			transition-delay: 0.1s;
+		}
+	}
+
+	.ha-hover-box-content {
+		opacity: 0;
+		transition-delay: 0s;
 	}
 }
 
