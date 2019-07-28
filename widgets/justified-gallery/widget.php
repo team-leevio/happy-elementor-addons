@@ -29,7 +29,7 @@ class Justified_Gallery extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Justified Gallery', 'happy-elementor-addons' );
+        return __( 'Justified Grid', 'happy-elementor-addons' );
     }
 
     /**
