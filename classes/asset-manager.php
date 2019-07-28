@@ -129,6 +129,13 @@ class Assets {
 					[ 'elementor-frontend' ],
 					Base::VERSION
 				);
+			} else {
+				wp_enqueue_style(
+					'happy-elementor-addons',
+					HAPPY_ASSETS . 'css/main' . $suffix . 'css',
+					[ 'elementor-frontend' ],
+					Base::VERSION
+				);
 			}
 		}
 
