@@ -2,9 +2,6 @@
 
 namespace Happy_Addons\Elementor\Assets;
 
-
-use function WP_CLI\Utils\wp_version_compare;
-
 class AssetCompiler {
 	function __construct() {
 		add_action( 'save_post', [ $this, 'compile_assets' ] );
