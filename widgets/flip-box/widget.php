@@ -376,14 +376,6 @@ class Flip_box extends Base {
                         'title' => __( 'Left To Right', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-right',
                     ],
-                    'down' => [
-                        'title' => __( 'Top To Bottom', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-v-align-bottom',
-                    ],
-                    'left' => [
-                        'title' => __( 'Right To Left', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-h-align-left',
-                    ],
                 ],
                 'toggle' => false,
             ]
@@ -1333,10 +1325,6 @@ class Flip_box extends Base {
             $this->add_render_attribute( 'flip-position', 'class', 'ha-flip-box ha-flip-up' );
         } elseif ( $settings['flip_position'] === 'right' ) {
             $this->add_render_attribute( 'flip-position', 'class', 'ha-flip-box ha-flip-right' );
-        } elseif ( $settings['flip_position'] === 'down' ) {
-            $this->add_render_attribute( 'flip-position', 'class', 'ha-flip-box ha-flip-down' );
-        } elseif ( $settings['flip_position'] === 'left' ) {
-            $this->add_render_attribute( 'flip-position', 'class', 'ha-flip-box ha-flip-left' );
         }
         ?>
 
