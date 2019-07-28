@@ -65,8 +65,6 @@ class AssetCompiler {
 						@mkdir( HAPPY_DIR_PATH . 'assets/compiled/' );
 					}
 					file_put_contents( $filename, $data );
-				} else {
-
 				}
 			}
 		}
