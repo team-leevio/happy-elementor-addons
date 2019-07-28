@@ -8,6 +8,7 @@ namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
 
@@ -112,6 +113,36 @@ class Step_flow extends Base {
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'separator' => 'before'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'content_alignment',
+            [
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-align-center',
+                    ],
+                    'right' => [
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-align-right',
+                    ],
+                    'justify' => [
+                        'title' => __( 'Justify', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-align-justify',
+                    ],
+                ],
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}}'
+                ]
             ]
         );
 
@@ -242,6 +273,14 @@ class Step_flow extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-steps-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'icon_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-steps-icon',
             ]
         );
 
