@@ -16,7 +16,7 @@ class AssetCompiler {
 		if ( apply_filters( 'happyaddons_ondemand_asset_compiling', true ) ) {
 			if ( get_post_type( $post_id ) == 'page' ) {
 				//failsafe
-				if ( version_compare( ELEMENTOR_VERSION, '2.6.5', '<=' ) ) {
+				if ( version_compare( ELEMENTOR_VERSION, '2.6.5', '<=' ) || !get_post_meta( $post_id, '_elementor_elements_usage', true ) ) {
 					//we need to populate _elementor_elements_usage;
 					$data = json_decode( get_post_meta( $post_id, '_elementor_data', true ), true );
 					\Elementor\Plugin::$instance->db->iterate_data( $data, function ( $element ) use ( & $usage ) {
