@@ -104,8 +104,8 @@ class Base {
 
         if ( is_admin() ) {
             require( __DIR__ . '/classes/class.communicator.php' );
+	        require( __DIR__ . '/classes/class.assetcompiler.php' );
         }
-	    require( __DIR__ . '/classes/class.assetcompiler.php' );
     }
 
     /**
