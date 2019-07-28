@@ -939,7 +939,8 @@ span .ha-review-ratting--star:before,
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display:         flex;
-	background-color: #e9ecef; 
+	border-radius: 15px; 
+	background-color: #e9ecef;
 	font-size: .75rem;
 }
 .ha-skill--outside .ha-skill-info,
@@ -964,9 +965,7 @@ span .ha-review-ratting--star:before,
 	color: #242424;
 }
 .ha-skill--inside {
-	overflow: hidden;
 	height: 30px;
-	border-radius: .3rem;
 }
 .ha-skill--inside .ha-skill-info {
 	padding-right: 1rem;
@@ -987,7 +986,9 @@ span .ha-review-ratting--star:before,
 	-ms-flex-pack: center;
 	-webkit-justify-content: center;
 	        justify-content: center;
-	background-color: #007bff;
+	width: 10%; 
+	border-radius: inherit;
+	background-color: #562dd4;
 	color: #fff;
 	text-align: center;
 	white-space: nowrap;

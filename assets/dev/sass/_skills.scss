@@ -8,6 +8,7 @@
   display: flex;
   font-size: .75rem;
   background-color: #e9ecef;
+  border-radius: 15px;
 
   &--outside,
   &--inside {
@@ -38,8 +39,6 @@
 
   &--inside {
     height: 30px;
-    overflow: hidden;
-    border-radius: .3rem;
 
     .ha-skill-info {
       padding-right: 1rem;
@@ -55,8 +54,10 @@
     color: #fff;
     text-align: center;
     white-space: nowrap;
-    background-color: #007bff;
+    background-color: $primary-color;
     transition: width .6s ease;
+    border-radius: inherit;
+    width: 10%;
   }
 
   &--outside {
