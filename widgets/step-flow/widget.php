@@ -494,46 +494,6 @@ class Step_flow extends Base {
         <?php
     }
 
-    public function _content_template() {
-        ?>
-<!--        <#-->
-<!--        view.addRenderAttribute( 'detail', 'class', 'ha-step-detail' );-->
-<!--        view.addRenderAttribute( 'link', 'href', settings.link.url );-->
-<!--        view.addInlineEditingAttributes( 'detail', 'basic' );-->
-<!--        #>-->
-<!---->
-<!--        <# if ( settings.show_indicator === 'yes' ) { #>-->
-<!--            <div class="ha-step-arrow"></div>-->
-<!--        <# } #>-->
-<!---->
-<!--        <div class="ha-steps-icon">-->
-<!--            <i class="{{ settings.icon }}"></i>-->
-<!---->
-<!--            <# if ( settings.badge ) { #>-->
-<!--                <div class="ha-steps-label">{{{ settings.badge }}}</div>-->
-<!--            <# } #>-->
-<!---->
-<!--        </div>-->
-<!---->
-<!--        <div class="ha-steps-title">-->
-<!--            <# if ( settings.link.url ) { #>-->
-<!--                <h4>-->
-<!--                    <a {{{ view.getRenderAttributeString( 'link' ) }}}>-->
-<!--                        {{{ settings.title }}}-->
-<!--                    </a>-->
-<!--                </h4>-->
-<!--            <# } else { #>-->
-<!--                <h4>{{{ settings.title }}}</h4>-->
-<!--            <# } #>-->
-<!--        </div>-->
-<!---->
-<!--        <# if ( settings.detail ) { #>-->
-<!--            <p {{{ view.getRenderAttributeString( 'detail' ) }}}>-->
-<!--                {{{ settings.detail }}}-->
-<!--            </p>-->
-<!--        <# } #>-->
-
-<?php
-    }
+   
 
 }
