@@ -112,12 +112,25 @@ class Assets {
 			);
 		}
 
-		wp_enqueue_style(
-			'happy-elementor-addons',
-			HAPPY_ASSETS . 'css/main' . $suffix . 'css',
-			[ 'elementor-frontend' ],
-			Base::VERSION
-		);
+		if ( ! apply_filters( 'happyaddons_ondemand_asset_compiling', true ) ) {
+			wp_enqueue_style(
+				'happy-elementor-addons',
+				HAPPY_ASSETS . 'css/main' . $suffix . 'css',
+				[ 'elementor-frontend' ],
+				Base::VERSION
+			);
+		} else {
+			global $post;
+			$filename = HAPPY_DIR_PATH . "assets/compiled/compiled-{$post->ID}.css";
+			if ( file_exists( $filename ) ) {
+				wp_enqueue_style(
+					'happy-elementor-addons',
+					HAPPY_ASSETS . "compiled/compiled-{$post->ID}.css",
+					[ 'elementor-frontend' ],
+					Base::VERSION
+				);
+			}
+		}
 
 
 		if ( self::is_image_grid_used() ) {
