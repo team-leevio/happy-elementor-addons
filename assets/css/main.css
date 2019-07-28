@@ -1712,8 +1712,8 @@ span .ha-review-ratting--star:before,
 	max-height: 100%;
 	width: 100%;
 	height: 400px;
-	-webkit-transition-duration: .2s;
-	        transition-duration: .2s;
+	-webkit-transition-duration: .4s;
+	        transition-duration: .4s;
 }
 .ha-hover-box-wrapper:before {
 	position: absolute;
@@ -1725,10 +1725,8 @@ span .ha-review-ratting--star:before,
 	content: "";
 }
 .ha-hover-box-wrapper:hover {
-	-webkit-transition-delay: .1s;
-	        transition-delay: .1s; 
-	-webkit-transition-duration: .2s;
-	        transition-duration: .2s;
+	-webkit-transition-duration: .3s;
+	        transition-duration: .3s; 
 	-webkit-transform: scale(1.06);
 	    -ms-transform: scale(1.06);
 	        transform: scale(1.06);
@@ -1789,6 +1787,19 @@ span .ha-review-ratting--star:before,
 .ha-hover-box-wrapper .ha-hover-description {
 	margin: 0;
 	color: #222;
+}
+
+.ha-hover-box-wrapper.reverse:hover .ha-hover-box-content {
+	opacity: 1;
+	-webkit-transition-delay: .1s;
+	        transition-delay: .1s; 
+	-webkit-transform: translate(0, -36px);
+	    -ms-transform: translate(0, -36px);
+	        transform: translate(0, -36px);
+}
+
+.ha-hover-box-wrapper.reverse .ha-hover-box-content {
+	opacity: 0;
 }
 
 .ha-pre--column .ha-hover-sub-title {

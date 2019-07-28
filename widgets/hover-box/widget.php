@@ -112,6 +112,27 @@ class Hover_Box extends Base {
         );
 
         $this->add_control(
+            'display_type',
+            [
+                'label' => __( 'Display Control', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
+                'options' => [
+                    'default' => [
+                        'title' => __( 'Default', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-animation-text',
+                    ],
+                    'hover' => [
+                        'title' => __( 'On Hover', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-v-align-bottom',
+                    ],
+                ],
+                'toggle' => false,
+                'default' => 'default',
+            ]
+        );
+
+        $this->add_control(
             'content_position',
             [
                 'label' => __( 'Content Position', 'happy-elementor-addons' ),
@@ -510,13 +531,19 @@ class Hover_Box extends Base {
         if ( ! empty( $settings['link']['nofollow'] ) ) {
             $this->add_render_attribute( 'link', 'rel', 'nofollow' );
         }
+
+        if ( $settings['display_type'] === 'default' ) {
+            $this->add_render_attribute( 'display-type', 'class', 'ha-hover-box-wrapper' );
+        } elseif ( $settings['display_type'] === 'hover' ) {
+            $this->add_render_attribute( 'display-type', 'class', 'ha-hover-box-wrapper reverse' );
+        }
 		?>
 
         <?php if( $settings['link']['url'] ): ?>
             <a <?php echo $this->get_render_attribute_string( 'link' ); ?>>
         <?php endif;?>
 
-            <div class="ha-hover-box-wrapper">
+            <div <?php echo $this->get_render_attribute_string( 'display-type' ); ?>>
                 <div class="ha-hover-box-content">
 
                     <?php if( $settings['sub_title'] ): ?>
