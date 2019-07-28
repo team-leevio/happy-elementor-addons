@@ -1698,12 +1698,18 @@ span .ha-review-ratting--star:before,
 .ha-hover-box {
 	overflow: hidden;
 }
+.ha-hover-box .ha-hover-box-main {
+	position: relative; 
+	overflow: hidden;
+}
 
 .ha-hover-box-wrapper {
+	position: relative; 
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display:         flex;
+	overflow: hidden;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
 	        align-items: center;
@@ -1800,6 +1806,8 @@ span .ha-review-ratting--star:before,
 
 .ha-hover-box-wrapper.reverse .ha-hover-box-content {
 	opacity: 0;
+	-webkit-transition-delay: 0s;
+	        transition-delay: 0s;
 }
 
 .ha-pre--column .ha-hover-sub-title {

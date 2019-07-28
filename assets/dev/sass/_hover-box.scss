@@ -1,5 +1,10 @@
 .ha-hover-box {
 	overflow: hidden;
+
+	.ha-hover-box-main {
+		overflow: hidden;
+		position: relative;
+	}
 }
 
 .ha-hover-box-wrapper {
@@ -10,6 +15,8 @@
 	display: flex;
 	align-items: center;
 	transition-duration: 0.4s;
+	overflow: hidden;
+	position: relative;
 
 	&:before {
 		content: "";
@@ -78,6 +85,7 @@
 
 	.ha-hover-box-content {
 		opacity: 0;
+		transition-delay: 0s;
 	}
 }
 

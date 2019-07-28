@@ -112,27 +112,6 @@ class Hover_Box extends Base {
         );
 
         $this->add_control(
-            'display_type',
-            [
-                'label' => __( 'Display Control', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'label_block' => false,
-                'options' => [
-                    'default' => [
-                        'title' => __( 'Default', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-animation-text',
-                    ],
-                    'hover' => [
-                        'title' => __( 'On Hover', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-v-align-bottom',
-                    ],
-                ],
-                'toggle' => false,
-                'default' => 'default',
-            ]
-        );
-
-        $this->add_control(
             'content_position',
             [
                 'label' => __( 'Content Position', 'happy-elementor-addons' ),
@@ -161,6 +140,33 @@ class Hover_Box extends Base {
                 'toggle' => false,
                 'selectors' => [
                     '{{WRAPPER}} .ha-hover-box-wrapper' => '{{VALUE}};'
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'content_alignment',
+            [
+                'label' => __( 'Content Alignment', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-align-center',
+                    ],
+                    'right' => [
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-align-right',
+                    ],
+                ],
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-hover-box-content'  => 'text-align: {{VALUE}};'
                 ],
             ]
         );
@@ -195,29 +201,23 @@ class Hover_Box extends Base {
         );
 
         $this->add_control(
-            'content_alignment',
+            'display_type',
             [
-                'label' => __( 'Content Alignment', 'happy-elementor-addons' ),
+                'label' => __( 'Text Display Control', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => false,
                 'options' => [
-                    'left' => [
-                        'title' => __( 'Left', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-left',
+                    'default' => [
+                        'title' => __( 'Default', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-animation-text',
                     ],
-                    'center' => [
-                        'title' => __( 'Center', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-center',
-                    ],
-                    'right' => [
-                        'title' => __( 'Right', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-right',
+                    'hover' => [
+                        'title' => __( 'On Hover', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-click',
                     ],
                 ],
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-hover-box-content'  => 'text-align: {{VALUE}};'
-                ],
+                'toggle' => false,
+                'default' => 'default',
             ]
         );
 
@@ -272,7 +272,7 @@ class Hover_Box extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'hover_box_border',
-                'selector' => '{{WRAPPER}} .ha-hover-box-wrapper',
+                'selector' => '{{WRAPPER}} .ha-hover-box-main',
             ]
         );
 
@@ -283,7 +283,7 @@ class Hover_Box extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-hover-box-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-hover-box-main' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
                 ],
             ]
         );
@@ -292,7 +292,7 @@ class Hover_Box extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'hover_box_shadow',
-                'selector' => '{{WRAPPER}} .ha-hover-box-wrapper',
+                'selector' => '{{WRAPPER}} .ha-hover-box-main',
             ]
         );
 
@@ -301,6 +301,7 @@ class Hover_Box extends Base {
             [
                 'name' => 'background_image',
                 'types' => [ 'classic', 'gradient' ],
+                'separator' => 'before',
                 'selector' => '{{WRAPPER}} .ha-hover-box-wrapper',
             ]
         );
@@ -322,20 +323,12 @@ class Hover_Box extends Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'_section_text_style',
+			'_section_sub_title_style',
 			[
-				'label' => __( 'Text', 'happy-elementor-addons' ),
+				'label' => __( 'Sub Title', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
-
-        $this->start_controls_tabs( '_tabs_text' );
-        $this->start_controls_tab(
-            '_tab_pre_title',
-            [
-                'label' => __( 'Sub Title', 'happy-elementor-addons' ),
-            ]
-        );
 
         $this->add_responsive_control(
             'pre_title_spacing',
@@ -414,12 +407,13 @@ class Hover_Box extends Base {
             ]
         );
 
-        $this->end_controls_tab();
+        $this->end_controls_section();
 
-        $this->start_controls_tab(
-            '_tab_title',
+        $this->start_controls_section(
+            '_section_title_style',
             [
                 'label' => __( 'Title', 'happy-elementor-addons' ),
+                'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
@@ -486,12 +480,13 @@ class Hover_Box extends Base {
             ]
         );
 
-        $this->end_controls_tab();
+        $this->end_controls_section();
 
-        $this->start_controls_tab(
-            '_tab_detail',
+        $this->start_controls_section(
+            '_section_description_style',
             [
                 'label' => __( 'Description', 'happy-elementor-addons' ),
+                'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
@@ -514,9 +509,6 @@ class Hover_Box extends Base {
                 ],
             ]
         );
-
-        $this->end_controls_tab();
-        $this->end_controls_tabs();
 
 		$this->end_controls_section();
 	}
@@ -543,27 +535,28 @@ class Hover_Box extends Base {
             <a <?php echo $this->get_render_attribute_string( 'link' ); ?>>
         <?php endif;?>
 
-            <div <?php echo $this->get_render_attribute_string( 'display-type' ); ?>>
-                <div class="ha-hover-box-content">
+            <div class="ha-hover-box-main">
+                <div <?php echo $this->get_render_attribute_string( 'display-type' ); ?>>
+                    <div class="ha-hover-box-content">
 
-                    <?php if( $settings['sub_title'] ): ?>
+                        <?php if( $settings['sub_title'] ): ?>
+                            <div>
+                                <p class="ha-hover-sub-title"><?php echo esc_html( $settings['sub_title'] ); ?></p>
+                            </div>
+                        <?php endif;?>
+
                         <div>
-                            <p class="ha-hover-sub-title"><?php echo esc_html( $settings['sub_title'] ); ?></p>
+                            <?php if( $settings['title'] ): ?>
+                                <h2 class="ha-hover-title"><?php echo esc_html( $settings['title'] ); ?></h2>
+                            <?php endif;?>
+
+                            <?php if( $settings['detail'] ): ?>
+                                <p class="ha-hover-description"><?php echo $settings['detail']; ?></p>
+                            <?php endif;?>
                         </div>
-                    <?php endif;?>
-
-                    <div>
-                        <?php if( $settings['title'] ): ?>
-                            <h2 class="ha-hover-title"><?php echo esc_html( $settings['title'] ); ?></h2>
-                        <?php endif;?>
-
-                        <?php if( $settings['detail'] ): ?>
-                            <p class="ha-hover-description"><?php echo $settings['detail']; ?></p>
-                        <?php endif;?>
                     </div>
                 </div>
             </div>
-
         <?php if( $settings['link']['url'] ): ?>
            </a>
         <?php endif; ?>
