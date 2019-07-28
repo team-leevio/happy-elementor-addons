@@ -14,6 +14,7 @@ class Assets {
 	public static function init() {
 		// Frontend scripts
 		add_action( 'elementor/frontend/after_enqueue_scripts', [ __CLASS__, 'enqueue_frontend_scripts' ] );
+		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'enqueue_frontend_styles' ], 11 );
 
 		// Dashboard scripts
 		add_action( 'admin_enqueue_scripts', [ __CLASS__, 'dashboard_enqueue_scripts' ] );
@@ -29,6 +30,39 @@ class Assets {
 
 	public static function set_placeholder_image() {
 		return HAPPY_ASSETS . 'imgs/placeholder.jpg';
+	}
+
+	public static function enqueue_frontend_styles() {
+		$suffix = ha_is_script_debug_enabled() ? '.' : '.';
+		if ( ! apply_filters( 'happyaddons_ondemand_asset_compiling', true ) || \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
+			wp_enqueue_style(
+				'happy-elementor-addons',
+				HAPPY_ASSETS . 'css/main' . $suffix . 'css',
+				[ 'elementor-frontend' ],
+				Base::VERSION
+			);
+		} else {
+			global $post;
+			$upload_dir  = wp_upload_dir();
+			$upload_path = trailingslashit( $upload_dir['basedir'] );
+			$upload_url  = trailingslashit( $upload_dir['baseurl'] );
+			$filename    = $upload_path . "happyaddons/compiled/compiled-{$post->ID}.css";
+			if ( file_exists( $filename ) ) {
+				wp_enqueue_style(
+					'happy-elementor-addons',
+					$upload_url . "happyaddons/compiled/compiled-{$post->ID}.css",
+					[ 'elementor-frontend' ],
+					Base::VERSION . '.' . get_post_modified_time()
+				);
+			} else {
+				wp_enqueue_style(
+					'happy-elementor-addons',
+					HAPPY_ASSETS . 'css/main' . $suffix . 'css',
+					[ 'elementor-frontend' ],
+					Base::VERSION
+				);
+			}
+		}
 	}
 
 	/**
@@ -112,7 +146,7 @@ class Assets {
 			);
 		}
 
-		if ( ! apply_filters( 'happyaddons_ondemand_asset_compiling', true ) || \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
+		/*if ( ! apply_filters( 'happyaddons_ondemand_asset_compiling', true ) || \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 			wp_enqueue_style(
 				'happy-elementor-addons',
 				HAPPY_ASSETS . 'css/main' . $suffix . 'css',
@@ -140,7 +174,7 @@ class Assets {
 					Base::VERSION
 				);
 			}
-		}
+		}*/
 
 
 		if ( self::is_image_grid_used() ) {
