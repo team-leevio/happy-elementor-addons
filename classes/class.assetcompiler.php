@@ -18,6 +18,7 @@ class AssetCompiler {
 				//failsafe
 				if ( version_compare( ELEMENTOR_VERSION, '2.6.5', '<=' ) || ! get_post_meta( $post_id, '_elementor_elements_usage', true ) ) {
 					//we need to populate _elementor_elements_usage;
+					$usage = [];
 					$data = json_decode( get_post_meta( $post_id, '_elementor_data', true ), true );
 					\Elementor\Plugin::$instance->db->iterate_data( $data, function ( $element ) use ( & $usage ) {
 						if ( empty( $element['widgetType'] ) ) {
