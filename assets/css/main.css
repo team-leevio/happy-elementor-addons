@@ -1800,9 +1800,9 @@ span .ha-review-ratting--star:before,
 	opacity: 1;
 	-webkit-transition-delay: .1s;
 	        transition-delay: .1s; 
-	-webkit-transform: translate(0, -36px);
-	    -ms-transform: translate(0, -36px);
-	        transform: translate(0, -36px);
+	-webkit-transform: translate(0, -16px);
+	    -ms-transform: translate(0, -16px);
+	        transform: translate(0, -16px);
 }
 
 .ha-hover-box-wrapper.reverse .ha-hover-box-content {
