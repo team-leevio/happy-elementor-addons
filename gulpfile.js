@@ -101,4 +101,8 @@ gulp.task("watch", ["serve"], function() {
     gulp.watch("*.html").on("change", browserSync.reload);
 });
 
+gulp.task("watch2", ["serve"], function() {
+    gulp.watch(sassFiles, ["css"]);
+})
+
 gulp.task("default", ["serve", "js", "adminJS", "css", "adminCss", "watch"]);
