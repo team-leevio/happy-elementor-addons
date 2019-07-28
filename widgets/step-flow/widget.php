@@ -102,23 +102,71 @@ class Step_flow extends Base {
             ]
         );
 
+        $this->add_control(
+            'show_indicator',
+            [
+                'label' => __( 'Hide Indicator', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Show', 'happy-elementor-addons' ),
+                'label_off' => __( 'Hide', 'happy-elementor-addons' ),
+                'return_value' => 'yes',
+                'default' => 'yes',
+                'separator' => 'before'
+            ]
+        );
+
         $this->end_controls_section();
     }
 
     protected function register_style_controls() {
+
         $this->start_controls_section(
-            '_section_icon_style',
+            '_section_common_style',
             [
-                'label' => __('Icon & Badge', 'happy-elementor-addons'),
+                'label' => __( 'Common', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
+        
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'indicator_border',
+                'selector' => '{{WRAPPER}} .ha-step-arrow',
+                'condition' => [
+                    'show_indicator' => 'yes'
+                ]
+            ]
+        );
 
-        $this->add_control(
-            'icon_heading',
+        $this->add_responsive_control(
+            'border_resize',
+            [
+                'label' => __( 'Resize Indicator', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                    ]
+                ],
+                'condition' => [
+                    'show_indicator' => 'yes'
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-step-arrow' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_icon_style',
             [
                 'label' => __( 'Icon', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
+                'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
@@ -219,12 +267,13 @@ class Step_flow extends Base {
             ]
         );
 
-        $this->add_control(
-            'badge_heading',
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_badge_style',
             [
-                'label' => __( 'Badge', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
-                'separator' => 'before',
+                'label' => __('Badge', 'happy-elementor-addons'),
+                'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
@@ -261,15 +310,6 @@ class Step_flow extends Base {
             ]
         );
 
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'badge_typography',
-                'selector' => '{{WRAPPER}} .ha-steps-label',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
-            ]
-        );
-
         $this->add_control(
             'badge_color',
             [
@@ -292,21 +332,22 @@ class Step_flow extends Base {
             ]
         );
 
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            '_section_text_style',
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
             [
-                'label' => __('Text & Indicator', 'happy-elementor-addons'),
-                'tab' => Controls_Manager::TAB_STYLE,
+                'name' => 'badge_typography',
+                'selector' => '{{WRAPPER}} .ha-steps-label',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
             ]
         );
 
-        $this->start_controls_tabs( '_tabs_front_text' );
-        $this->start_controls_tab(
-            '_tab_title',
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_title_style',
             [
                 'label' => __( 'Title', 'happy-elementor-addons' ),
+                'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
@@ -352,12 +393,13 @@ class Step_flow extends Base {
             ]
         );
 
-        $this->end_controls_tab();
+        $this->end_controls_section();
 
-        $this->start_controls_tab(
-            '_tab_detail',
+        $this->start_controls_section(
+            '_section_description_style',
             [
-                'label' => __( 'Detail', 'happy-elementor-addons' ),
+                'label' => __( 'Description', 'happy-elementor-addons' ),
+                'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
@@ -395,62 +437,6 @@ class Step_flow extends Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-step-detail' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->end_controls_tab();
-        $this->end_controls_tabs();
-
-        $this->add_control(
-            'indicator_heading',
-            [
-                'label' => __( 'Indicator', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
-                'separator' => 'before'
-            ]
-        );
-
-        $this->add_control(
-            'show_indicator',
-            [
-                'label' => __( 'Hide Indicator', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Show', 'happy-elementor-addons' ),
-                'label_off' => __( 'Hide', 'happy-elementor-addons' ),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Border::get_type(),
-            [
-                'name' => 'indicator_border',
-                'selector' => '{{WRAPPER}} .ha-step-arrow',
-                'condition' => [
-                    'show_indicator' => 'yes'
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'border_resize',
-            [
-                'label' => __( 'Resize Indicator', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 200,
-                    ]
-                ],
-                'condition' => [
-                    'show_indicator' => 'yes'
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-step-arrow' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -510,42 +496,42 @@ class Step_flow extends Base {
 
     public function _content_template() {
         ?>
-        <#
-        view.addRenderAttribute( 'detail', 'class', 'ha-step-detail' );
-        view.addRenderAttribute( 'link', 'href', settings.link.url );
-        view.addInlineEditingAttributes( 'detail', 'basic' );
-        #>
-
-        <# if ( settings.show_indicator === 'yes' ) { #>
-            <div class="ha-step-arrow"></div>
-        <# } #>
-
-        <div class="ha-steps-icon">
-            <i class="{{ settings.icon }}"></i>
-
-            <# if ( settings.badge ) { #>
-                <div class="ha-steps-label">{{{ settings.badge }}}</div>
-            <# } #>
-
-        </div>
-
-        <div class="ha-steps-title">
-            <# if ( settings.link.url ) { #>
-                <h4>
-                    <a {{{ view.getRenderAttributeString( 'link' ) }}}>
-                        {{{ settings.title }}}
-                    </a>
-                </h4>
-            <# } else { #>
-                <h4>{{{ settings.title }}}</h4>
-            <# } #>
-        </div>
-
-        <# if ( settings.detail ) { #>
-            <p {{{ view.getRenderAttributeString( 'detail' ) }}}>
-                {{{ settings.detail }}}
-            </p>
-        <# } #>
+<!--        <#-->
+<!--        view.addRenderAttribute( 'detail', 'class', 'ha-step-detail' );-->
+<!--        view.addRenderAttribute( 'link', 'href', settings.link.url );-->
+<!--        view.addInlineEditingAttributes( 'detail', 'basic' );-->
+<!--        #>-->
+<!---->
+<!--        <# if ( settings.show_indicator === 'yes' ) { #>-->
+<!--            <div class="ha-step-arrow"></div>-->
+<!--        <# } #>-->
+<!---->
+<!--        <div class="ha-steps-icon">-->
+<!--            <i class="{{ settings.icon }}"></i>-->
+<!---->
+<!--            <# if ( settings.badge ) { #>-->
+<!--                <div class="ha-steps-label">{{{ settings.badge }}}</div>-->
+<!--            <# } #>-->
+<!---->
+<!--        </div>-->
+<!---->
+<!--        <div class="ha-steps-title">-->
+<!--            <# if ( settings.link.url ) { #>-->
+<!--                <h4>-->
+<!--                    <a {{{ view.getRenderAttributeString( 'link' ) }}}>-->
+<!--                        {{{ settings.title }}}-->
+<!--                    </a>-->
+<!--                </h4>-->
+<!--            <# } else { #>-->
+<!--                <h4>{{{ settings.title }}}</h4>-->
+<!--            <# } #>-->
+<!--        </div>-->
+<!---->
+<!--        <# if ( settings.detail ) { #>-->
+<!--            <p {{{ view.getRenderAttributeString( 'detail' ) }}}>-->
+<!--                {{{ settings.detail }}}-->
+<!--            </p>-->
+<!--        <# } #>-->
 
 <?php
     }
