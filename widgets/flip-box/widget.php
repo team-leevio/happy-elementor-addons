@@ -140,7 +140,7 @@ class Flip_box extends Base {
                 'label' => __( 'Title', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Happy Addon Rocks', 'happy-elementor-addons' ),
+                'default' => __( 'Happy Addons Rock', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type Flip Box Title', 'happy-elementor-addons' ),
             ]
         );
@@ -276,7 +276,7 @@ class Flip_box extends Base {
                 'label' => __( 'Title', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Happy Addon Rocks', 'happy-elementor-addons' ),
+                'default' => __( 'Happy Addons Rock', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type Flip Box Title', 'happy-elementor-addons' ),
             ]
         );
@@ -287,7 +287,7 @@ class Flip_box extends Base {
                 'label' => __( 'Description', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Type Detail Here', 'happy-elementor-addons' ),
+                'default' => __( 'Best Elementor Addons', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Description', 'happy-elementor-addons' ),
             ]
         );
@@ -365,16 +365,24 @@ class Flip_box extends Base {
             [
                 'label' => __( 'Flip Direction', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
-                'default' => 'top-bottom',
+                'default' => 'right',
                 'label_block' => false,
                 'options' => [
-                    'top-bottom' => [
-                        'title' => __( 'Top Bottom', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-arrows-v',
+                    'up' => [
+                        'title' => __( 'Bottom To Top', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-v-align-top',
                     ],
-                    'left-right' => [
-                        'title' => __( 'Left Right', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-arrows-h',
+                    'right' => [
+                        'title' => __( 'Left To Right', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                    'down' => [
+                        'title' => __( 'Top To Bottom', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-v-align-bottom',
+                    ],
+                    'left' => [
+                        'title' => __( 'Right To Left', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-h-align-left',
                     ],
                 ],
                 'toggle' => false,
@@ -1321,10 +1329,14 @@ class Flip_box extends Base {
         $this->add_render_attribute( 'display', 'class', 'ha-flip-wrap ha-flip-effect-classic' );
 
         // flip position
-        if ( $settings['flip_position'] === 'top-bottom' ) {
+        if ( $settings['flip_position'] === 'up' ) {
             $this->add_render_attribute( 'flip-position', 'class', 'ha-flip-box ha-flip-up' );
-        } elseif ( $settings['flip_position'] === 'left-right' ) {
+        } elseif ( $settings['flip_position'] === 'right' ) {
             $this->add_render_attribute( 'flip-position', 'class', 'ha-flip-box ha-flip-right' );
+        } elseif ( $settings['flip_position'] === 'down' ) {
+            $this->add_render_attribute( 'flip-position', 'class', 'ha-flip-box ha-flip-down' );
+        } elseif ( $settings['flip_position'] === 'left' ) {
+            $this->add_render_attribute( 'flip-position', 'class', 'ha-flip-box ha-flip-left' );
         }
         ?>
 
