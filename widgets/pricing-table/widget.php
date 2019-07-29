@@ -88,6 +88,7 @@ class Pricing_Table extends Base {
                 'options' => [
                     '' => __( 'None', 'happy-elementor-addons' ),
                     'baht' => '&#3647; ' . _x( 'Baht', 'Currency Symbol', 'happy-elementor-addons' ),
+                    'bdt' => '&#2547; ' . _x( 'BD Taka', 'Currency Symbol', 'happy-elementor-addons' ),
                     'dollar' => '&#36; ' . _x( 'Dollar', 'Currency Symbol', 'happy-elementor-addons' ),
                     'euro' => '&#128; ' . _x( 'Euro', 'Currency Symbol', 'happy-elementor-addons' ),
                     'franc' => '&#8355; ' . _x( 'Franc', 'Currency Symbol', 'happy-elementor-addons' ),
@@ -588,6 +589,14 @@ class Pricing_Table extends Base {
             ]
         );
 
+        $this->add_control(
+            '_heading_button',
+            [
+                'type' => Controls_Manager::HEADING,
+                'label' => __( 'Button', 'happy-elementor-addons' ),
+            ]
+        );
+
         $this->add_responsive_control(
             'button_padding',
             [
@@ -808,6 +817,31 @@ class Pricing_Table extends Base {
         $this->end_controls_section();
     }
 
+    private static function get_currency_symbol( $symbol_name ) {
+        $symbols = [
+            'baht' => '&#3647;',
+            'bdt' => '&#2547;',
+            'dollar' => '&#36;',
+            'euro' => '&#128;',
+            'franc' => '&#8355;',
+            'guilder' => '&fnof;',
+            'indian_rupee' => '&#8377;',
+            'pound' => '&#163;',
+            'peso' => '&#8369;',
+            'peseta' => '&#8359',
+            'lira' => '&#8356;',
+            'ruble' => '&#8381;',
+            'shekel' => '&#8362;',
+            'rupee' => '&#8360;',
+            'real' => 'R$',
+            'krona' => 'kr',
+            'won' => '&#8361;',
+            'yen' => '&#165;',
+        ];
+
+        return isset( $symbols[ $symbol_name ] ) ? $symbols[ $symbol_name ] : '';
+    }
+
 	protected function render() {
         $settings = $this->get_settings_for_display();
 
@@ -841,6 +875,12 @@ class Pricing_Table extends Base {
         if ( ! empty( $settings['button_link']['nofollow'] ) ) {
             $this->add_render_attribute( 'button_text', 'rel', 'nofollow' );
         }
+
+        if ( $settings['currency'] === 'custom' ) {
+            $currency = $settings['currency_custom'];
+        } else {
+            $currency = self::get_currency_symbol( $settings['currency'] );
+        }
         ?>
 
         <?php if ( $settings['show_badge'] ) : ?>
@@ -853,7 +893,7 @@ class Pricing_Table extends Base {
             <?php endif; ?>
         </div>
         <div class="ha-pricing-table-price">
-            <div class="ha-pricing-table-price-tag"><span class="ha-pricing-table-currency">$</span><span <?php $this->print_render_attribute_string( 'price' ); ?>><?php echo $settings['price']; ?></span></div>
+            <div class="ha-pricing-table-price-tag"><span class="ha-pricing-table-currency"><?php echo $currency; ?></span><span <?php $this->print_render_attribute_string( 'price' ); ?>><?php echo $settings['price']; ?></span></div>
             <?php if ( $settings['period'] ) : ?>
                 <div <?php $this->print_render_attribute_string( 'period' ); ?>><?php echo $settings['period']; ?></div>
             <?php endif; ?>
