@@ -526,26 +526,6 @@ class Step_flow extends Base {
         );
 
         $this->add_control(
-            'direction_weight',
-            [
-                'label' => __( 'Weight', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 1,
-                        'max' => 20,
-                    ],
-                ],
-                'condition' => [
-                    'show_indicator' => 'yes',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-step-arrow' => 'border-top-width: {{SIZE}}{{UNIT}}',
-                ]
-            ]
-        );
-
-        $this->add_control(
             'direction_width',
             [
                 'label' => __( 'Width', 'happy-elementor-addons' ),
@@ -576,6 +556,7 @@ class Step_flow extends Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-step-arrow' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-step-arrow:after' => 'color: {{VALUE}}',
                 ],
             ]
         );
