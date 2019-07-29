@@ -573,6 +573,9 @@ class Step_flow extends Base {
         $this->add_render_attribute( 'description', 'class', 'ha-step-description' );
         $this->add_inline_editing_attributes( 'description', 'basic' );
 
+        $this->add_render_attribute( 'badge', 'class', 'ha-steps-label' );
+        $this->add_inline_editing_attributes( 'badge', 'none' );
+
         $this->add_render_attribute( 'link', 'href', esc_url( $settings['link']['url'] ) );
         if ( ! empty( $settings['link']['is_external'] ) ) {
             $this->add_render_attribute( 'link', 'target', '_blank' );
@@ -590,7 +593,9 @@ class Step_flow extends Base {
             <i class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
 
             <?php if ( $settings['badge'] ) : ?>
-                <div class="ha-steps-label"><?php echo esc_html( $settings['badge'] ); ?></div>
+                <div <?php echo $this->get_render_attribute_string( 'badge' ); ?>>
+                    <?php echo esc_html( $settings['badge'] ); ?>
+                </div>
             <?php endif; ?>
 
         </div>
