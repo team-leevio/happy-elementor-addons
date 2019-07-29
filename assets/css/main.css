@@ -2135,16 +2135,16 @@ span .ha-review-ratting--star:before,
 	        transform-origin: left top;
 }
 
-.ha-pricing-table-body {
-	margin-top: 2.5rem;
-	margin-bottom: 2.5rem;
-}
-
 .ha-pricing-table-title {
 	margin-top: 0;
 	margin-bottom: .5rem;
-	color: #242424; 
+	color: #242424;
+	font-weight: 400; 
 	font-size: 24px;
+}
+
+.ha-pricing-table-price {
+	margin-bottom: 3rem;
 }
 
 .ha-pricing-table-price-tag {
@@ -2156,7 +2156,6 @@ span .ha-review-ratting--star:before,
 }
 
 .ha-pricing-table-currency {
-	padding-right: .5rem; 
 	font-size: 24px;
 }
 
@@ -2165,13 +2164,19 @@ span .ha-review-ratting--star:before,
 	font-size: 16px;
 }
 
+.ha-pricing-table-body {
+	margin-bottom: 3rem;
+}
+
 .ha-pricing-table-features-title {
-	font-weight: bold; 
+	margin-top: 0;
+	margin-bottom: 1rem; 
+	font-weight: bold;
 	font-size: 16px;
 }
 
 .ha-pricing-table-features-list {
-	margin-bottom: 2.5rem; 
+	margin: 0; 
 	padding: 0;
 	list-style: none;
 }
@@ -2185,14 +2190,14 @@ span .ha-review-ratting--star:before,
 
 .ha-pricing-table-btn {
 	display: inline-block;
-	margin-top: 2rem; 
 	padding: .8rem 2rem;
 	border: 2px solid #e2498a;
 	border-radius: 40px;
-	color: #353535;
+	background-color: #e2498a;
+	color: #fff;
 	text-decoration: none;
 	text-transform: uppercase;
-	font-size: 12px;
+	font-size: 12px; 
 	-webkit-transition: all .3s;
 	        transition: all .3s;
 }

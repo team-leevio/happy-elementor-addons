@@ -983,7 +983,8 @@ class Pricing_Table extends Base {
                 <li><i class="fa fa-check"></i> Up to 10 Users</li>
             </ul>
         </div>
-        <a href="#" class="ha-price-btn">Purchase</a>
+        <a href="#" class="ha-pricing-table-btn"><?php echo $settings['button_text']; ?></a>
+
         <?php
     }
 
