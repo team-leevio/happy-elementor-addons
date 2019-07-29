@@ -15,7 +15,7 @@
 
   &:after {
     position: absolute;
-    top: -15px;
+    top: calc(100% - 15px);
     right: -6px;
     color: #ddd;
     content: "⌃";
@@ -56,9 +56,10 @@
     right: 0;
     background: #e2498a;
     color: #fff;
-    padding: 3px 12px;
+    padding: 10px 12px;
     border-radius: 20px;
     font-size: 12px;
+    line-height: 0;
     border: 3px solid #fff;
   }
 }
@@ -70,14 +71,14 @@
   margin-bottom: 8px;
 }
 
-.ha-steps-title h4 a {
+.ha-steps-title a {
   color: #562dd4;
 }
-.ha-steps-title h4 a:hover {
+.ha-steps-title a:hover {
   color: #242424;
 }
 
-p.ha-step-detail {
+p.ha-step-description {
   color: #616161;
   font-size: 16px;
   font-weight: normal;

@@ -81,12 +81,12 @@ class Step_flow extends Base {
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
                 'placeholder' => __( 'Title', 'happy-elementor-addons' ),
-                'default' => __( 'Start Marketting', 'happy-elementor-addons' ),
+                'default' => __( 'Start Marketing', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
-            'detail',
+            'description',
             [
                 'label' => __( 'Description', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXTAREA,
@@ -466,7 +466,7 @@ class Step_flow extends Base {
                 'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-step-detail' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-step-description' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -475,7 +475,7 @@ class Step_flow extends Base {
             Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'description_shadow',
-                'selector' => '{{WRAPPER}} .ha-step-detail',
+                'selector' => '{{WRAPPER}} .ha-step-description',
             ]
         );
 
@@ -483,8 +483,8 @@ class Step_flow extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'description_typography',
-                'selector' => '{{WRAPPER}} .ha-step-detail',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+                'selector' => '{{WRAPPER}} .ha-step-description',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
             ]
         );
 
@@ -568,8 +568,10 @@ class Step_flow extends Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $this->add_render_attribute( 'detail', 'class', 'ha-step-detail' );
-        $this->add_inline_editing_attributes( 'detail', 'basic' );
+        $this->add_inline_editing_attributes( 'title', 'none' );
+
+        $this->add_render_attribute( 'description', 'class', 'ha-step-description' );
+        $this->add_inline_editing_attributes( 'description', 'basic' );
 
         $this->add_render_attribute( 'link', 'href', esc_url( $settings['link']['url'] ) );
         if ( ! empty( $settings['link']['is_external'] ) ) {
@@ -595,25 +597,25 @@ class Step_flow extends Base {
 
         <div class="ha-steps-title">
             <?php if ( !empty( $settings['link']['url'] ) ) : ?>
-                <h4>
-                    <a <?php echo $this->get_render_attribute_string( 'link' ); ?>>
+                <a <?php echo $this->get_render_attribute_string( 'link' ); ?>>
+                    <h4 <?php echo $this->get_render_attribute_string( 'title' ); ?>>
                         <?php echo esc_html( $settings['title'] ); ?>
-                    </a>
-                </h4>
+                    </h4>
+                </a>
             <?php else : ?>
-                <h4><?php echo esc_html( $settings['title'] ); ?></h4>
+                <h4 <?php echo $this->get_render_attribute_string( 'title' ); ?>>
+                    <?php echo esc_html( $settings['title'] ); ?>
+                </h4>
             <?php endif; ?>
         </div>
 
-        <?php if ( $settings['detail'] ) : ?>
-            <p <?php echo $this->get_render_attribute_string( 'detail' ); ?>>
-                <?php echo esc_html( $settings['detail'] ); ?>
+        <?php if ( $settings['description'] ) : ?>
+            <p <?php echo $this->get_render_attribute_string( 'description' ); ?>>
+                <?php echo esc_html( $settings['description'] ); ?>
             </p>
         <?php endif; ?>
 
         <?php
     }
-
-   
 
 }
