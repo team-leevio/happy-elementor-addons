@@ -1,0 +1,90 @@
+.ha-pricing-table {
+  @extend %happyWidgetContainer;
+
+  @include widgetContainer {
+    padding: 3em 4em;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &-badge {
+    position: absolute;
+    left: 40px;
+    top: 0;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 1rem;
+    background-color: $secondary-color;
+    color: #fff;
+    transform: rotate(90deg);
+    transform-origin: left top;
+  }
+
+  &-body {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  &-title {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: .5rem;
+    color: #242424;
+  }
+
+  &-price-tag {
+    font-size: 60px;
+    font-weight: bold;
+    line-height: normal;
+    margin-bottom: .5rem;
+    color: #242424;
+  }
+
+  &-currency {
+    font-size: 24px;
+    padding-right: .5rem;
+  }
+
+  &-period {
+    color: #8c8c8c;
+    font-size: 16px;
+  }
+
+  &-features-title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  &-features-list {
+    padding: 0;
+    list-style: none;
+    margin-bottom: 2.5rem;
+
+    li {
+      margin-bottom: 1rem;
+      font-size: 16px;
+    }
+
+    i {
+      padding-right: .5rem;
+    }
+  }
+
+  &-btn {
+    display: inline-block;
+    border: 2px solid $secondary-color;
+    padding: .8rem 2rem;
+    border-radius: 40px;
+    color: #353535;
+    text-decoration: none;
+    transition: all .3s;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-top: 2rem;
+
+    &:hover{
+      background-color: #fff;
+      color: $secondary-color;
+    }
+  }
+}
