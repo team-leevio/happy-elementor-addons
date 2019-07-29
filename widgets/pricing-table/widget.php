@@ -308,10 +308,48 @@ class Pricing_Table extends Base {
 
     protected function register_style_controls() {
         $this->start_controls_section(
+            '_section_style_general',
+            [
+                'label' => __( 'General', 'happy-elementor-addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'text_color',
+            [
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-pricing-table-title,'
+                    . '{{WRAPPER}} .ha-pricing-table-currency,'
+                    . '{{WRAPPER}} .ha-pricing-table-period,'
+                    . '{{WRAPPER}} .ha-pricing-table-features-title,'
+                    . '{{WRAPPER}} .ha-pricing-table-features-list li,'
+                    . '{{WRAPPER}} .ha-pricing-table-price-text' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
             '_section_style_header',
             [
                 'label' => __( 'Header', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'title_spacing',
+            [
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-pricing-table-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -845,7 +883,6 @@ class Pricing_Table extends Base {
 	protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $this->add_inline_editing_attributes( 'badge_text', 'none' );
         $this->add_render_attribute( 'badge_text', 'class',
             [
                 'ha-pricing-table-badge',
