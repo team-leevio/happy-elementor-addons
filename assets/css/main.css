@@ -758,7 +758,7 @@ span .ha-review-ratting--star:before,
 	border-radius: 6px;
 }
 
-.justified-gallery > .ha-justified-gallery-item > .caption {
+.ha-justified-gallery .justified-gallery > .ha-justified-gallery-item > .caption {
 	bottom: -100px !important;
 	padding: 10px;
 	-webkit-transition: all .25s !important;
@@ -767,12 +767,12 @@ span .ha-review-ratting--star:before,
 	        animation: haSmoothReveal .3s forwards;
 }
 
-.justified-gallery > .ha-justified-gallery-item > .caption.caption-visible {
+.ha-justified-gallery .justified-gallery > .ha-justified-gallery-item > .caption.caption-visible {
 	bottom: 0 !important;
 }
 
-.justified-gallery > .entry-visible > img,
-.justified-gallery > .entry-visible > a > img {
+.ha-justified-gallery .justified-gallery > .entry-visible > img,
+.ha-justified-gallery .justified-gallery > .entry-visible > a > img {
 	-webkit-transition: all 300ms, opacity 500ms ease-in;
 	        transition: all 300ms, opacity 500ms ease-in;
 }
