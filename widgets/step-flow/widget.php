@@ -511,7 +511,6 @@ class Step_flow extends Base {
                 'type' => Controls_Manager::SELECT,
                 'options' => [
                     'solid' => __( 'Solid', 'happy-elementor-addons' ),
-                    'double' => __( 'Double', 'happy-elementor-addons' ),
                     'dotted' => __( 'Dotted', 'happy-elementor-addons' ),
                     'dashed' => __( 'Dashed', 'happy-elementor-addons' ),
                 ],
