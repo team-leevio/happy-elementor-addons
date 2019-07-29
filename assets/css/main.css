@@ -1928,7 +1928,7 @@ span .ha-review-ratting--star:before,
 	margin-bottom: 0;
 }
 .ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-icon.icon {
-	background-color: #562dd4;
+	color: #562dd4;
 }
 .ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-icon {
 	display: inline-block; 
@@ -1939,7 +1939,6 @@ span .ha-review-ratting--star:before,
 	display: block;
 	width: 1em;
 	height: 1em;
-	color: #fff; 
 	font-size: 28px;
 }
 .ha-flip-wrap .ha-flip-box .ha-flip-box-front-inner .ha-flip-icon img {

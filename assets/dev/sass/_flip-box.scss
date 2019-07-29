@@ -97,8 +97,8 @@
     }
     .ha-flip-box-front-inner {
       .ha-flip-icon.icon {
-        background-color: $primary-color;
-      }
+         color: $primary-color;
+       }
       .ha-flip-icon {
         margin: 0 0 15px;
         text-align: center;
@@ -108,7 +108,6 @@
           width: 1em;
           height: 1em;
           font-size: 28px;
-          color: #fff;
         }
         img {
           vertical-align: middle;
