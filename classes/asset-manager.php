@@ -33,7 +33,7 @@ class Assets {
 	}
 
 	public static function enqueue_frontend_styles() {
-		$suffix = ha_is_script_debug_enabled() ? '.' : '.min';
+		$suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
 
 		if ( ha_should_load_complied_assets() ) {
             global $post;
@@ -71,7 +71,7 @@ class Assets {
 	 * Enqueue frontend scripts
 	 */
 	public static function enqueue_frontend_scripts() {
-		$suffix = ha_is_script_debug_enabled() ? '.' : '.min';
+		$suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
 
 		wp_enqueue_style(
 			'happy-icon',
