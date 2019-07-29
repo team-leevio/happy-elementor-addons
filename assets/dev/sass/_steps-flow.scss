@@ -1,8 +1,7 @@
 .ha-step-flow {
-  padding: 30px;
-
   .elementor-widget-container {
     text-align: center;
+    padding: 30px;
   }
 }
 
@@ -24,11 +23,19 @@
   text-align: center;
   position: relative;
   padding: 40px;
+  font-size: 46px;
 
   i {
-    font-size: 46px;
     width: 1em;
     height: 1em;
+    display: block;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   .ha-steps-label {

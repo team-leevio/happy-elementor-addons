@@ -2265,10 +2265,8 @@ span .ha-review-ratting--star:before,
 	-ms-flex-align: start;
 }
 
-.ha-step-flow {
-	padding: 30px;
-}
 .ha-step-flow .elementor-widget-container {
+	padding: 30px; 
 	text-align: center;
 }
 
@@ -2285,16 +2283,25 @@ span .ha-review-ratting--star:before,
 	position: relative;
 	display: inline-block;
 	margin-bottom: 10px;
-	padding: 40px; 
+	padding: 40px;
 	border-radius: 50%;
 	background: #f1f4f8;
 	color: #242424;
 	text-align: center;
+	font-size: 46px;
 }
 .ha-steps-icon i {
+	position: relative; 
+	display: block;
 	width: 1em;
-	height: 1em; 
-	font-size: 46px;
+	height: 1em;
+}
+.ha-steps-icon i:before {
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	    -ms-transform: translateX(-50%);
+	        transform: translateX(-50%);
 }
 .ha-steps-icon .ha-steps-label {
 	position: absolute;

@@ -151,35 +151,6 @@ class Step_flow extends Base {
     }
 
     protected function register_style_controls() {
-
-        $this->start_controls_section(
-            '_section_common_style',
-            [
-                'label' => __( 'Common', 'happy-elementor-addons' ),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_responsive_control(
-            'box_padding',
-            [
-                'label' => __( 'Padding', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 200,
-                    ]
-                ],
-                'selectors' => [
-                    '{{WRAPPER}}' => 'padding: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
         $this->start_controls_section(
             '_section_icon_style',
             [
@@ -201,7 +172,7 @@ class Step_flow extends Base {
                     ]
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-steps-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-steps-icon' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
