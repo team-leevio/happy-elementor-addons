@@ -1,10 +1,14 @@
 .ha-step-flow {
-  text-align: center;
   padding: 30px;
+
+  .elementor-widget-container {
+    text-align: center;
+  }
 }
+
 .ha-step-arrow {
   width: 100px;
-  border: 1px dotted #ddd;
+  border: .5px dotted #ddd;
   display: inline-block;
   position: absolute;
   top: 33%;

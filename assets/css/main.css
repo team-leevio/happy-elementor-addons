@@ -2266,7 +2266,9 @@ span .ha-review-ratting--star:before,
 }
 
 .ha-step-flow {
-	padding: 30px; 
+	padding: 30px;
+}
+.ha-step-flow .elementor-widget-container {
 	text-align: center;
 }
 
@@ -2276,7 +2278,7 @@ span .ha-review-ratting--star:before,
 	right: 0; 
 	display: inline-block;
 	width: 100px;
-	border: 1px dotted #ddd;
+	border: .5px dotted #ddd;
 }
 
 .ha-steps-icon {
