@@ -9,15 +9,23 @@
 
   &-badge {
     position: absolute;
-    left: 40px;
     top: 0;
-    height: 40px;
-    line-height: 40px;
-    padding: 0 1rem;
+    padding: .8rem 1rem;
+    line-height: 1;
     background-color: $secondary-color;
     color: #fff;
-    transform: rotate(90deg);
-    transform-origin: left top;
+
+    &--left {
+      left: 0;
+      transform: rotate(-90deg) translateX(-100%);;
+      transform-origin: left top;
+    }
+
+    &--right {
+      right: 0;
+      transform: rotate(-90deg) translateY(-100%);
+      transform-origin: right top;
+    }
   }
 
   &-title {
@@ -71,13 +79,14 @@
     }
 
     i {
-      padding-right: .5rem;
+      margin-right: .5rem;
+      min-width: 15px;
+      font-size: .8em;
     }
   }
 
   &-btn {
     display: inline-block;
-    border: 2px solid $secondary-color;
     padding: .8rem 2rem;
     border-radius: 40px;
     color: #fff;
@@ -88,8 +97,7 @@
     font-size: 12px;
 
     &:hover{
-      background-color: #fff;
-      color: $secondary-color;
+      background-color: $primary-color;
     }
   }
 }
