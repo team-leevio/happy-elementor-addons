@@ -3,7 +3,8 @@
 .ha-icon-box > .elementor-widget-container,
 .ha-member > .elementor-widget-container,
 .ha-review > .elementor-widget-container,
-.ha-image-compare > .elementor-widget-container {
+.ha-image-compare > .elementor-widget-container,
+.ha-pricing-table > .elementor-widget-container {
 	border-radius: .5rem; 
 	background-color: #fff;
 	box-shadow: 0 .2rem 2.8rem rgba(36, 36, 36, .1);
@@ -2109,4 +2110,93 @@ span .ha-review-ratting--star:before,
 .ha-flip-wrap.ha-flip-effect-3d .ha-flip-box-front-inner {
 	-webkit-transform: translateZ(50px) scale(.9);
 	        transform: translateZ(50px) scale(.9);
+}
+
+.ha-pricing-table > .elementor-widget-container {
+	position: relative;
+	overflow: hidden; 
+	padding: 3em 4em;
+}
+
+.ha-pricing-table-badge {
+	position: absolute;
+	top: 0;
+	left: 40px;
+	padding: 0 1rem;
+	height: 40px;
+	background-color: #e2498a;
+	color: #fff;
+	line-height: 40px;
+	-webkit-transform: rotate(90deg);
+	    -ms-transform: rotate(90deg);
+	        transform: rotate(90deg);
+	-webkit-transform-origin: left top;
+	    -ms-transform-origin: left top;
+	        transform-origin: left top;
+}
+
+.ha-pricing-table-body {
+	margin-top: 2.5rem;
+	margin-bottom: 2.5rem;
+}
+
+.ha-pricing-table-title {
+	margin-top: 0;
+	margin-bottom: .5rem;
+	color: #242424; 
+	font-size: 24px;
+}
+
+.ha-pricing-table-price-tag {
+	margin-bottom: .5rem;
+	color: #242424; 
+	font-weight: bold;
+	font-size: 60px;
+	line-height: normal;
+}
+
+.ha-pricing-table-currency {
+	padding-right: .5rem; 
+	font-size: 24px;
+}
+
+.ha-pricing-table-period {
+	color: #8c8c8c;
+	font-size: 16px;
+}
+
+.ha-pricing-table-features-title {
+	font-weight: bold; 
+	font-size: 16px;
+}
+
+.ha-pricing-table-features-list {
+	margin-bottom: 2.5rem; 
+	padding: 0;
+	list-style: none;
+}
+.ha-pricing-table-features-list li {
+	margin-bottom: 1rem;
+	font-size: 16px;
+}
+.ha-pricing-table-features-list i {
+	padding-right: .5rem;
+}
+
+.ha-pricing-table-btn {
+	display: inline-block;
+	margin-top: 2rem; 
+	padding: .8rem 2rem;
+	border: 2px solid #e2498a;
+	border-radius: 40px;
+	color: #353535;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 12px;
+	-webkit-transition: all .3s;
+	        transition: all .3s;
+}
+.ha-pricing-table-btn:hover {
+	background-color: #fff;
+	color: #e2498a;
 }

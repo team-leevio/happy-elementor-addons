@@ -33,35 +33,37 @@ class Assets {
 	}
 
 	public static function enqueue_frontend_styles() {
-		$suffix = ha_is_script_debug_enabled() ? '.' : '.';
-		if ( ! apply_filters( 'happyaddons_ondemand_asset_compiling', true ) || \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-			wp_enqueue_style(
-				'happy-elementor-addons',
-				HAPPY_ASSETS . 'css/main' . $suffix . 'css',
-				[ 'elementor-frontend' ],
-				Base::VERSION
-			);
+		$suffix = ha_is_script_debug_enabled() ? '.' : '.min';
+
+		if ( ha_should_load_complied_assets() ) {
+            global $post;
+            $upload_dir  = wp_upload_dir();
+            $upload_path = trailingslashit( $upload_dir['basedir'] );
+            $upload_url  = trailingslashit( $upload_dir['baseurl'] );
+            $file_source = "happyaddons/compiled/compiled-{$post->ID}.css";
+            $filepath    = $upload_path . $file_source;
+            if ( file_exists( $filepath ) ) {
+                wp_enqueue_style(
+                    'happy-elementor-addons',
+                    $upload_url . $file_source,
+                    [ 'elementor-frontend' ],
+                    Base::VERSION . '.' . get_post_modified_time()
+                );
+            } else {
+                wp_enqueue_style(
+                    'happy-elementor-addons',
+                    HAPPY_ASSETS . 'css/main' . $suffix . 'css',
+                    [ 'elementor-frontend' ],
+                    Base::VERSION
+                );
+            }
 		} else {
-			global $post;
-			$upload_dir  = wp_upload_dir();
-			$upload_path = trailingslashit( $upload_dir['basedir'] );
-			$upload_url  = trailingslashit( $upload_dir['baseurl'] );
-			$filename    = $upload_path . "happyaddons/compiled/compiled-{$post->ID}.css";
-			if ( file_exists( $filename ) ) {
-				wp_enqueue_style(
-					'happy-elementor-addons',
-					$upload_url . "happyaddons/compiled/compiled-{$post->ID}.css",
-					[ 'elementor-frontend' ],
-					Base::VERSION . '.' . get_post_modified_time()
-				);
-			} else {
-				wp_enqueue_style(
-					'happy-elementor-addons',
-					HAPPY_ASSETS . 'css/main' . $suffix . 'css',
-					[ 'elementor-frontend' ],
-					Base::VERSION
-				);
-			}
+            wp_enqueue_style(
+                'happy-elementor-addons',
+                HAPPY_ASSETS . 'css/main' . $suffix . 'css',
+                [ 'elementor-frontend' ],
+                Base::VERSION
+            );
 		}
 	}
 
@@ -69,7 +71,7 @@ class Assets {
 	 * Enqueue frontend scripts
 	 */
 	public static function enqueue_frontend_scripts() {
-		$suffix = ha_is_script_debug_enabled() ? '.' : '.';
+		$suffix = ha_is_script_debug_enabled() ? '.' : '.min';
 
 		wp_enqueue_style(
 			'happy-icon',
@@ -103,7 +105,6 @@ class Assets {
 				true
 			);
 		}
-
 
 		if ( self::is_gallery_used() ) {
 			wp_enqueue_style(
