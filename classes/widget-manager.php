@@ -52,7 +52,10 @@ class Widgets {
             'hover-box',
             'google-map',
             'calendly',
-            'pricing-table'
+            'pricing-table',
+            'image-box',
+            'feature-list',
+            'step-flow',
         ];
 
         foreach ( $widgets as $widget ) {

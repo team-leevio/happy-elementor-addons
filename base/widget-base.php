@@ -125,4 +125,50 @@ abstract class Base extends Widget_Base {
             parent::render_edit_tools();
         }
     }
+
+    /**
+     * Overriding the parent method
+     *
+     * Add inline editing attributes.
+     *
+     * Define specific area in the element to be editable inline. The element can have several areas, with this method
+     * you can set the area inside the element that can be edited inline. You can also define the type of toolbar the
+     * user will see, whether it will be a basic toolbar or an advanced one.
+     *
+     * Note: When you use wysiwyg control use the advanced toolbar, with textarea control use the basic toolbar. Text
+     * control should not have toolbar.
+     *
+     * PHP usage (inside `Widget_Base::render()` method):
+     *
+     *    $this->add_inline_editing_attributes( 'text', 'advanced' );
+     *    echo '<div ' . $this->get_render_attribute_string( 'text' ) . '>' . $this->get_settings( 'text' ) . '</div>';
+     *
+     * @since 1.8.0
+     * @access protected
+     *
+     * @param string $key     Element key.
+     * @param string $toolbar Optional. Toolbar type. Accepted values are `advanced`, `basic` or `none`. Default is
+     *                        `basic`.
+     * @param string $setting_key Additional settings key in case $key != $setting_key
+     */
+    protected function add_inline_editing_attributes( $key, $toolbar = 'basic', $setting_key = '' ) {
+        if ( ! \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
+            return;
+        }
+
+        if ( empty( $setting_key ) ) {
+            $setting_key = $key;
+        }
+
+        $this->add_render_attribute( $key, [
+            'class' => 'elementor-inline-editing',
+            'data-elementor-setting-key' => $setting_key,
+        ] );
+
+        if ( 'basic' !== $toolbar ) {
+            $this->add_render_attribute( $key, [
+                'data-elementor-inline-editing-toolbar' => $toolbar,
+            ] );
+        }
+    }
 }
