@@ -663,7 +663,7 @@ class Flip_box extends Base {
                 'name' => 'front_title_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-box-heading',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+                'scheme' => Scheme_Typography::TYPOGRAPHY_2,
             ]
         );
 
@@ -1016,7 +1016,7 @@ class Flip_box extends Base {
                 'name' => 'back_title_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-box-heading-back',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+                'scheme' => Scheme_Typography::TYPOGRAPHY_2,
             ]
         );
 
