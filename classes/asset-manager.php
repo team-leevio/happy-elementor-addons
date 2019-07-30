@@ -290,7 +290,7 @@ class Assets {
     public static function is_widget_used( $widget_name ) {
         global $post;
         $widgets = get_post_meta( $post->ID, '_elementor_elements_usage', true );
-        return array_key_exists( $widget_name, $widgets );
+        return ( is_array( $widgets ) && array_key_exists( $widget_name, $widgets ) );
     }
 
     public static function is_justified_gallery_used() {
