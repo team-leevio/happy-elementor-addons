@@ -78,7 +78,7 @@ class Admin {
             $admin_bar->add_menu( array(
                 'id'    => 'ha-clear-page-cache',
                 'parent' => 'happy-addons',
-                'title' => '<i class="eicon-redo"></i> ' . __( 'Clear Page Cache', 'happy-elementor-addons' ),
+                'title' => '<i class="dashicons dashicons-update-alt"></i> ' . __( 'Clear Page Cache', 'happy-elementor-addons' ),
                 'href'  => '#',
                 'meta' => [
                     'class' => 'hajs-clear-cache ha-clear-page-cache',
@@ -89,7 +89,7 @@ class Admin {
         $admin_bar->add_menu( array(
             'id'    => 'ha-clear-all-cache',
             'parent' => 'happy-addons',
-            'title' => '<i class="eicon-redo"></i> ' . __( 'Clear All Cache', 'happy-elementor-addons' ),
+            'title' => '<i class="dashicons dashicons-update-alt"></i> ' . __( 'Clear All Cache', 'happy-elementor-addons' ),
             'href'  => '#',
             'meta' => [
                 'class' => 'hajs-clear-cache ha-clear-all-cache',
