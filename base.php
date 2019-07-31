@@ -6,7 +6,6 @@
  */
 namespace Happy_Addons\Elementor;
 
-use Happy_Addons\Elementor\Admin\Dashboard;
 use Happy_Addons\Elementor\Assets\OnDemand_Loader;
 use Happy_Addons\Elementor\Manager\Assets;
 use Happy_Addons\Elementor\Manager\Widgets;
@@ -70,10 +69,13 @@ class Base {
         Widgets::init();
         Assets::init();
         Happy_Effects::init();
-        Dashboard::init();
         OnDemand_Loader::init();
 
         $this->init_appsero_tracking();
+
+        if ( is_user_logged_in() ) {
+            Admin::init();
+        }
     }
 
     /**
@@ -102,11 +104,14 @@ class Base {
         require( __DIR__ . '/classes/widget-manager.php' );
         require( __DIR__ . '/classes/asset-manager.php' );
         require( __DIR__ . '/classes/happy-effects.php' );
-        require( __DIR__ . '/classes/dashboard.php' );
         require( __DIR__ . '/classes/class.ondemand-loader.php' );
 
         if ( is_admin() ) {
             require( __DIR__ . '/classes/class.communicator.php' );
+        }
+
+        if ( is_user_logged_in() ) {
+            require( __DIR__ . '/classes/admin.php' );
         }
     }
 
