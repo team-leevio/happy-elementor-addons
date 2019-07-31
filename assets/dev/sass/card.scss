@@ -1,0 +1,151 @@
+@import "variables";
+@import "mixins";
+
+.ha-card {
+
+  @extend %happyWidgetContainer;
+
+  &-figure {
+    position: relative;
+    height: 250px;
+
+    > img {
+      border-top-left-radius: calc(.5rem - 1px);
+      border-top-right-radius: calc(.5rem - 1px);
+      vertical-align: bottom;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &-body {
+    padding: 1.5rem;
+  }
+
+  &-title {
+    margin-top: 0;
+    margin-bottom: .75rem;
+    color: #151515;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  &-text {
+    margin-bottom: 2rem;
+    color: #616161;
+    font-size: 16px;
+    line-height: 1.7;
+
+    > p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  // Card variation
+  &--top {
+    .ha-card-figure {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+
+  &--right,
+  &--left {
+    @include widgetContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .ha-card-figure {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+
+    .ha-card-body {
+      padding: 2.5rem;
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+
+  &--left {
+    .ha-card-figure > img {
+      border-radius: calc(.5rem - 1px) 0 0 calc(.5rem - 1px);
+    }
+  }
+
+  &--right {
+    @include widgetContainer {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+
+    .ha-card-figure > img {
+      border-radius: 0 calc(.5rem - 1px) calc(.5rem - 1px) 0;
+    }
+  }
+}
+
+// Card label
+.ha-card .ha-badge {
+  position: absolute;
+}
+
+.ha-badge {
+  background-color: #fff;
+  padding: .475rem 1.1rem;
+  border-radius: 50px;
+  font-size: 12px;
+
+  &--top-left {
+    left: 1rem;
+    top: 1rem;
+  }
+
+  &--top-center {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 1rem;
+  }
+
+  &--top-right {
+    right: 1rem;
+    top: 1rem;
+  }
+
+  &--middle-left {
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1rem;
+  }
+
+  &--middle-center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  &--middle-right {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
+  }
+
+  &--bottom-left {
+    left: 1rem;
+    bottom: 1rem;
+  }
+
+  &--bottom-center {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1rem;
+  }
+
+  &--bottom-right {
+    right: 1rem;
+    bottom: 1rem;
+  }
+}

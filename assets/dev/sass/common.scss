@@ -1,0 +1,19 @@
+@import "variables";
+@import "mixins";
+
+.happy-addon {
+  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  p:empty {
+    display: none;
+  }
+}

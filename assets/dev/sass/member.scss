@@ -1,0 +1,64 @@
+@import "variables";
+@import "mixins";
+
+.ha-member {
+  @extend %happyWidgetContainer;
+
+  @include widgetContainer {
+    padding: 1.25rem;
+  }
+
+  &-figure {
+    display: inline-block;
+    margin: 0 0 1.5rem !important;
+
+    img {
+      width: 100%;
+      height: 100%;
+      vertical-align: bottom;
+    }
+  }
+
+  &-name {
+    margin-top: 0;
+    margin-bottom: .5rem;
+    color: #151515;
+    font-size: 18px;
+  }
+
+  &-position {
+    color: #7f7f7f;
+    font-size: 14px;
+    margin-bottom: 1.5rem;
+  }
+
+  &-bio {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  &-links {
+    > a {
+      color: #9895ad;
+      transition: all .2s;
+      text-align: center;
+      display: inline-block;
+      line-height: 1;
+
+      &:hover,
+      &:focus {
+        color: #222;
+      }
+
+      > i {
+        width: 1em;
+        height: 1em;
+      }
+
+      &:not(:last-child) {
+        margin-right: .3rem;
+      }
+    }
+  }
+}

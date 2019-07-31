@@ -1,0 +1,57 @@
+@import "variables";
+@import "mixins";
+
+.ha-infobox {
+  @extend %happyWidgetContainer;
+
+  @include widgetContainer {
+    padding: 1.5rem;
+  }
+
+  &-title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #151515;
+    font-size: 24px;
+  }
+
+  &-figure {
+    display: inline-block;
+    margin: 0 0 1.5rem !important;
+
+    &--icon {
+      font-size: 3rem;
+      text-align: center;
+    }
+
+    > i {
+      width: 1em;
+      height: 1em;
+      position: relative;
+      display: block;
+
+      &:before {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    > img {
+      width: 100%;
+      height: 100%;
+      vertical-align: bottom;
+    }
+  }
+
+  &-text {
+    & + .ha-btn--link {
+      margin-top: 1rem;
+    }
+
+    > p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}

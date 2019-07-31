@@ -1,0 +1,75 @@
+@import "variables";
+@import "mixins";
+
+.ha-dual-button {
+  @include widgetContainer {
+    display: flex;
+  }
+}
+
+.ha-dual-btn {
+  &,
+  &-connector {
+    display: inline-block;
+  }
+
+  &-wrapper {
+    position: relative;
+    text-align: center;
+    font-weight: 400;
+  }
+
+  & {
+    padding: 1.2rem 3rem;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+  }
+
+  &--left {
+    background-color: $primary-color;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+
+    &:hover,
+    &:focus {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  &--right {
+    background-color: $secondary-color;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    &:hover,
+    &:focus {
+      background-color: darken($secondary-color, 10%);
+    }
+  }
+
+  &-connector {
+    position: absolute !important;
+    top: 50%;
+    right: 0;
+    z-index: 9;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, .3);
+    border-radius: 100%;
+    background-color: #fff;
+    color: #27374c;
+    font-size: 12px;
+    transform: translate(50%, -50%);
+    text-transform: uppercase;
+  }
+
+  &-icon {
+    &--before {
+      margin-right: 5px;
+    }
+    &--after {
+      margin-left: 5px;
+    }
+  }
+}

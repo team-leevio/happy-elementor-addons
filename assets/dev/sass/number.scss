@@ -1,0 +1,31 @@
+@import "variables";
+@import "mixins";
+
+.ha-number-body {
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  border-radius: 100%;
+  background-color: $primary-color;
+  font-size: 20px;
+  text-align: center;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.ha-number-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ha-number-text {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
