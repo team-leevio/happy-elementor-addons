@@ -15,7 +15,7 @@ use Elementor\Scheme_Typography;
 
 defined( 'ABSPATH' ) || die();
 
-class Step_flow extends Base {
+class Step_Flow extends Base {
     /**
      * Get widget title.
      *

@@ -7,6 +7,7 @@
 namespace Happy_Addons\Elementor;
 
 use Happy_Addons\Elementor\Admin\Dashboard;
+use Happy_Addons\Elementor\Assets\OnDemand_Loader;
 use Happy_Addons\Elementor\Manager\Assets;
 use Happy_Addons\Elementor\Manager\Widgets;
 use Happy_Addons\Elementor\Extension\Happy_Effects;
@@ -70,6 +71,7 @@ class Base {
         Assets::init();
         Happy_Effects::init();
         Dashboard::init();
+        OnDemand_Loader::init();
 
         $this->init_appsero_tracking();
     }
@@ -101,10 +103,10 @@ class Base {
         require( __DIR__ . '/classes/asset-manager.php' );
         require( __DIR__ . '/classes/happy-effects.php' );
         require( __DIR__ . '/classes/dashboard.php' );
+        require( __DIR__ . '/classes/class.ondemand-loader.php' );
 
         if ( is_admin() ) {
             require( __DIR__ . '/classes/class.communicator.php' );
-	        require( __DIR__ . '/classes/class.assetcompiler.php' );
         }
     }
 
@@ -206,6 +208,7 @@ class Base {
     public function register_controls() {
         require( __DIR__ . '/controls/foreground.php' );
         $foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
+
         \Elementor\Plugin::instance()->controls_manager->add_group_control( $foreground::get_type(), new $foreground() );
     }
 }

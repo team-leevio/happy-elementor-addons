@@ -344,7 +344,7 @@ function ha_get_css_blend_modes() {
 
 function ha_should_load_complied_assets() {
     return (
-        apply_filters( 'happyaddons_ondemand_asset_compiling', false ) &&
+        apply_filters( 'happyaddons_ondemand_asset_compiling', true ) &&
         ! \Elementor\Plugin::$instance->editor->is_edit_mode() &&
         ! \Elementor\Plugin::$instance->preview->is_preview_mode() &&
         ! is_preview()

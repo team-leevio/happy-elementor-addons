@@ -2,6 +2,7 @@
 
 namespace Happy_Addons\Elementor\Manager;
 
+use Happy_Addons\Elementor\Assets\OnDemand_Loader;
 use Happy_Addons\Elementor\Base;
 
 defined( 'ABSPATH' ) || die();
@@ -26,6 +27,19 @@ class Assets {
 
         // Placeholder image replacement
         add_filter( 'elementor/utils/get_placeholder_image_src', [ __CLASS__, 'set_placeholder_image' ] );
+
+//        add_action( 'wp_footer', function() {
+//            global $post;
+//            $post_id = $post->ID;
+//            $data2 = \Elementor\Plugin::$instance->documents->get( $post_id )->get_elements_data();
+//            echo '<pre>';
+//            print_r( $data2 );
+//            echo '<pre>';
+//            $data  = json_decode( get_post_meta( $post_id, '_elementor_data', true ), true );
+//            echo '<pre>';
+//            print_r( $data );
+//            echo '<pre>';
+//        });
     }
 
     public static function set_placeholder_image() {
@@ -133,46 +147,23 @@ class Assets {
             true
         );
 
+        // Load used libraries only on frontend
         if ( ha_should_load_used_library_only() ) {
-            if ( self::is_image_compare_used() ) {
-                wp_enqueue_style( 'twentytwenty' );
-                wp_enqueue_script( 'jquery-event-move' );
-                wp_enqueue_script( 'jquery-twentytwenty' );
-            }
-
-            if ( self::is_justified_gallery_used() ) {
-                wp_enqueue_style( 'justifiedGallery' );
-                wp_enqueue_script( 'jquery-justifiedGallery' );
-            }
-
-            if ( self::is_carousel_used() || self::is_slider_used() ) {
-                wp_enqueue_style( 'slick' );
-                wp_enqueue_style( 'slick-theme' );
-                wp_enqueue_script( 'jquery-slick' );
-            }
-
-            if ( self::is_image_grid_used() ) {
-                wp_enqueue_script( 'jquery-isotope' );
-            }
-
-            if ( self::is_image_grid_used() ) {
-                wp_enqueue_script( 'jquery-isotope' );
-            }
-
-            if ( self::is_number_used() || self::is_skills_used() ) {
-                wp_enqueue_script( 'elementor-waypoints' );
-                wp_enqueue_script( 'jquery-numerator' );
-            }
+            OnDemand_Loader::load_used_libraries();
         } else {
             wp_enqueue_style( 'twentytwenty' );
             wp_enqueue_script( 'jquery-event-move' );
             wp_enqueue_script( 'jquery-twentytwenty' );
+
             wp_enqueue_style( 'justifiedGallery' );
             wp_enqueue_script( 'jquery-justifiedGallery' );
+
             wp_enqueue_style( 'slick' );
             wp_enqueue_style( 'slick-theme' );
             wp_enqueue_script( 'jquery-slick' );
+
             wp_enqueue_script( 'jquery-isotope' );
+
             wp_enqueue_script( 'elementor-waypoints' );
             wp_enqueue_script( 'jquery-numerator' );
         }
@@ -182,17 +173,14 @@ class Assets {
         $suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
 
         if ( ha_should_load_complied_assets() ) {
-            global $post;
-            $upload_dir  = wp_upload_dir();
-            $upload_path = trailingslashit( $upload_dir['basedir'] );
-            $upload_url  = trailingslashit( $upload_dir['baseurl'] );
-            $filename    = $upload_path . "happyaddons/compiled/compiled-{$post->ID}.css";
-            if ( file_exists( $filename ) ) {
+            $compiled_asset = OnDemand_Loader::get_compiled_asset();
+
+            if ( $compiled_asset && $compiled_asset['url'] ) {
                 wp_enqueue_style(
                     'happy-elementor-addons',
-                    $upload_url . "happyaddons/compiled/compiled-{$post->ID}.css",
+                    $compiled_asset['url'],
                     [ 'elementor-frontend' ],
-                    Base::VERSION . '.' . get_post_modified_time()
+                    $compiled_asset['version']
                 );
             } else {
                 wp_enqueue_style(
@@ -285,39 +273,5 @@ class Assets {
                 Base::VERSION
             );
         }
-    }
-
-    public static function is_widget_used( $widget_name ) {
-        global $post;
-        $widgets = get_post_meta( $post->ID, '_elementor_elements_usage', true );
-        return ( is_array( $widgets ) && array_key_exists( $widget_name, $widgets ) );
-    }
-
-    public static function is_justified_gallery_used() {
-        return self::is_widget_used( 'ha-justified-gallery' );
-    }
-
-    public static function is_image_grid_used() {
-        return self::is_widget_used( 'ha-image-grid' );
-    }
-
-    public static function is_carousel_used() {
-        return self::is_widget_used( 'ha-carousel' );
-    }
-
-    public static function is_image_compare_used() {
-        return self::is_widget_used( 'ha-image-compare' );
-    }
-
-    public static function is_slider_used() {
-        return self::is_widget_used( 'ha-slider' );
-    }
-
-    public static function is_number_used() {
-        return self::is_widget_used( 'ha-number' );
-    }
-
-    public static function is_skills_used() {
-        return self::is_widget_used( 'ha-skills' );
     }
 }

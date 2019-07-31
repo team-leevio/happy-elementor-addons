@@ -19,7 +19,7 @@ use Elementor\Utils;
 
 defined( 'ABSPATH' ) || die();
 
-class Flip_box extends Base {
+class Flip_Box extends Base {
     /**
      * Get widget title.
      *
