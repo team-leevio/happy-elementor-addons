@@ -36,17 +36,6 @@ var styleSass = "assets/dev/sass/main.scss",
     jsFiles = "assets/dev/js/*.js",
     adminJSFiles = "assets/dev/admin/js/*.js";
 
-
-gulp.task("serve", function() {
-    browserSync.init({
-        server: {
-            baseDir: "./",
-            index: ""
-        },
-        notify: false
-    });
-});
-
 gulp.task("css", function() {
     return gulp.src(styleSass)
         .pipe(plumberNotifier())
@@ -54,10 +43,20 @@ gulp.task("css", function() {
         .pipe(autoPrefixer(AUTOPREFIXER_BROWSERS))
         .pipe(csscomb())
         .pipe(gulp.dest("assets/css"))
-        .pipe(browserSync.stream())
         .pipe(csso())
         .pipe(rename({suffix: ".min"}))
         .pipe(gulp.dest("assets/css"));
+});
+
+gulp.task("widgetCss", function() {
+    return gulp.src([sassFiles, '!'+styleSass])
+        .pipe(plumberNotifier())
+        .pipe(sass())
+        .pipe(autoPrefixer(AUTOPREFIXER_BROWSERS))
+        .pipe(csscomb())
+        .pipe(csso())
+        .pipe(rename({suffix: ".min"}))
+        .pipe(gulp.dest("assets/css/widgets"));
 });
 
 gulp.task("adminCss", function() {
@@ -67,7 +66,6 @@ gulp.task("adminCss", function() {
         .pipe(autoPrefixer(AUTOPREFIXER_BROWSERS))
         .pipe(csscomb())
         .pipe(gulp.dest("assets/admin/css"))
-        .pipe(browserSync.stream())
         .pipe(csso())
         .pipe(rename({suffix: ".min"}))
         .pipe(gulp.dest("assets/admin/css"));
@@ -93,16 +91,11 @@ gulp.task("adminJS", function() {
         .pipe(gulp.dest("assets/admin/js"));
 });
 
-gulp.task("watch", ["serve"], function() {
-    gulp.watch(sassFiles, ["css"]);
+gulp.task("watch", function() {
+    gulp.watch(sassFiles, ["widgetCss", "css"]);
     gulp.watch(addminSassFiles, ["adminCss"]);
-    gulp.watch(jsFiles, ["js"]).on("change", browserSync.reload);
-    gulp.watch(adminJSFiles, ["adminJS"]).on("change", browserSync.reload);
-    gulp.watch("*.html").on("change", browserSync.reload);
+    gulp.watch(jsFiles, ["js"]);
+    gulp.watch(adminJSFiles, ["adminJS"]);
 });
 
-gulp.task("watch2", ["serve"], function() {
-    gulp.watch(sassFiles, ["css"]);
-})
-
-gulp.task("default", ["serve", "js", "adminJS", "css", "adminCss", "watch"]);
+gulp.task("default", ["js", "adminJS", "widgetCss", "css", "adminCss", "watch"]);
