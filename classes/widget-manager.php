@@ -46,7 +46,7 @@ class Widgets {
         $widgets_map = [
             // This is base for happy addons
             self::get_base_widget_key() => [
-                'css' => [],
+                'css' => ['common', 'btn'],
                 'js' => [],
                 'vendor' => [
                     'js' => ['anime']
@@ -56,7 +56,7 @@ class Widgets {
             // All the widgets are listed below with respective map
             'infobox' => [
                 'class' => InfoBox::class,
-                'css' => [],
+                'css' => ['infobox'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -65,7 +65,7 @@ class Widgets {
             ],
             'card' => [
                 'class' => Card::class,
-                'css' => [],
+                'css' => ['card'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -83,7 +83,7 @@ class Widgets {
             ],
             'icon-box' => [
                 'class' => Icon_Box::class,
-                'css' => [],
+                'css' => ['icon-box'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -92,7 +92,7 @@ class Widgets {
             ],
             'member' => [
                 'class' => Member::class,
-                'css' => [],
+                'css' => ['member'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -101,7 +101,7 @@ class Widgets {
             ],
             'review' => [
                 'class' => Review::class,
-                'css' => [],
+                'css' => ['review'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -110,7 +110,7 @@ class Widgets {
             ],
             'image-compare' => [
                 'class' => Image_Compare::class,
-                'css' => [],
+                'css' => ['image-comparison'],
                 'js' => [],
                 'vendor' => [
                     'css' => ['twentytwenty'],
@@ -119,7 +119,7 @@ class Widgets {
             ],
             'justified-gallery' => [
                 'class' => Justified_Gallery::class,
-                'css' => [],
+                'css' => ['justified-gallery'],
                 'js' => [],
                 'vendor' => [
                     'css' => ['justifiedGallery'],
@@ -128,7 +128,7 @@ class Widgets {
             ],
             'image-grid' => [
                 'class' => Image_Grid::class,
-                'css' => [],
+                'css' => ['image-grid'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -137,7 +137,7 @@ class Widgets {
             ],
             'slider' => [
                 'class' => Slider::class,
-                'css' => [],
+                'css' => ['slider-carousel'],
                 'js' => [],
                 'vendor' => [
                     'css' => ['slick', 'slick-theme'],
@@ -146,7 +146,7 @@ class Widgets {
             ],
             'carousel' => [
                 'class' => Carousel::class,
-                'css' => [],
+                'css' => ['slider-carousel'],
                 'js' => [],
                 'vendor' => [
                     'css' => ['slick', 'slick-theme'],
@@ -164,7 +164,7 @@ class Widgets {
             ],
             'skills' => [
                 'class' => Skills::class,
-                'css' => [],
+                'css' => ['skills'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -173,7 +173,7 @@ class Widgets {
             ],
             'gradient-heading' => [
                 'class' => Gradient_Heading::class,
-                'css' => [],
+                'css' => ['gradient-heading'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -218,7 +218,7 @@ class Widgets {
             ],
             'logo-grid' => [
                 'class' => Logo_Grid::class,
-                'css' => [],
+                'css' => ['logo-grid'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -227,7 +227,7 @@ class Widgets {
             ],
             'dual-button' => [
                 'class' => Dual_Button::class,
-                'css' => [],
+                'css' => ['dual-btn'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -236,7 +236,7 @@ class Widgets {
             ],
             'testimonial' => [
                 'class' => Testimonial::class,
-                'css' => [],
+                'css' => ['testimonial'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -245,7 +245,7 @@ class Widgets {
             ],
             'number' => [
                 'class' => Number::class,
-                'css' => [],
+                'css' => ['number'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -254,7 +254,7 @@ class Widgets {
             ],
             'flip-box' => [
                 'class' => Flip_Box::class,
-                'css' => [],
+                'css' => ['flip-box'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -263,7 +263,7 @@ class Widgets {
             ],
             'hover-box' => [
                 'class' => Hover_Box::class,
-                'css' => [],
+                'css' => ['hover-box'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -290,7 +290,7 @@ class Widgets {
             ],
             'pricing-table' => [
                 'class' => Pricing_Table::class,
-                'css' => [],
+                'css' => ['pricing-table'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -299,7 +299,7 @@ class Widgets {
             ],
             'feature-list' => [
                 'class' => Feature_List::class,
-                'css' => [],
+                'css' => ['list'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -308,7 +308,7 @@ class Widgets {
             ],
             'step-flow' => [
                 'class' => Step_Flow::class,
-                'css' => [],
+                'css' => ['steps-flow'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],

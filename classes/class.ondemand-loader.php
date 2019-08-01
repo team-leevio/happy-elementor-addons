@@ -89,7 +89,7 @@ class OnDemand_Loader {
         return [];
     }
 
-    public static function get_supported_cpt() {
+    public static function get_supported_types() {
         return get_option( 'elementor_cpt_support', ['post', 'page'] );
     }
 
@@ -115,33 +115,52 @@ class OnDemand_Loader {
         return [];
     }
 
+    public static function get_self_elements_usage( $post_id ) {
+        return array_flip( array_filter( self::get_elements_usage( $post_id ), function( $widget_name ) {
+            return strpos( $widget_name, 'ha-' ) !== false;
+        }, ARRAY_FILTER_USE_KEY ) );
+    }
+
 	public static function compile_assets( $post_id ) {
 		if ( ! apply_filters( 'happyaddons_ondemand_asset_compiling', true ) ) {
 		    return;
 		}
 
-		if ( ! in_array( get_post_type( $post_id ), self::get_supported_cpt() ) ) {
+		if ( ! in_array( get_post_type( $post_id ), self::get_supported_types() ) ) {
 		    return;
         }
 
         $filename = self::$cache_dir . "post-{$post_id}.css";
-        $widgets  = self::get_elements_usage( $post_id );
+        $widgets = self::get_self_elements_usage( $post_id );
 
-        if ( is_array( $widgets ) ) {
-            $happyaddons = array_filter( $widgets, function( $widget_name ) {
-                return strpos( $widget_name, 'ha-' ) !== false;
-            }, ARRAY_FILTER_USE_KEY );
+        if ( $widgets && is_array( $widgets ) ) {
+            $widgets_map = Widgets::get_widgets_map();
+            $base_widget = isset( $widgets_map[ Widgets::get_base_widget_key() ] ) ? $widgets_map[ Widgets::get_base_widget_key() ] : [];
+            $data = '';
 
-            $data = file_get_contents( HAPPY_DIR_PATH . 'assets/css/widgets/ha-common.min.css' );
-            $data .= file_get_contents( HAPPY_DIR_PATH . 'assets/css/widgets/btn.min.css' );
-
-            foreach ( $happyaddons as $_widget => $counter ) {
-                if ( 'ha-justified-gallery' == $_widget || 'image-grid' == $_widget ) {
-                    $data .= file_get_contents( HAPPY_DIR_PATH . 'assets/css/widgets/gallery-filter.min.css' );
+            if ( isset( $base_widget['css'] ) && is_array( $base_widget['css'] ) ) {
+                foreach ( $base_widget['css'] as $_file_name_prefix ) {
+                    if ( file_exists( HAPPY_DIR_PATH . "assets/css/widgets/{$_file_name_prefix}.min.css" ) ) {
+                        $data .= file_get_contents( HAPPY_DIR_PATH . "assets/css/widgets/{$_file_name_prefix}.min.css" );
+                    };
                 }
-                if ( file_exists( HAPPY_DIR_PATH . "assets/css/widgets/{$_widget}.min.css" ) ) {
-                    $data .= file_get_contents( HAPPY_DIR_PATH . "assets/css/widgets/{$_widget}.min.css" );
-                };
+            }
+
+            foreach ( $widgets as $_widget ) {
+                $map_key = substr( $_widget, 3 );
+                if ( ! isset( $widgets_map[ $map_key ] ) ) {
+                    continue;
+                }
+
+                if ( ! isset( $widgets_map[ $map_key ]['css'] ) ) {
+                    continue;
+                }
+
+                foreach ( $widgets_map[ $map_key ]['css'] as $_file_name_prefix ) {
+                    if ( file_exists( HAPPY_DIR_PATH . "assets/css/widgets/{$_file_name_prefix}.min.css" ) ) {
+                        $data .= file_get_contents( HAPPY_DIR_PATH . "assets/css/widgets/{$_file_name_prefix}.min.css" );
+                    };
+                }
             }
 
             if ( ! is_dir( self::$cache_dir ) ) {
