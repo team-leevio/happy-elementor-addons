@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 1.3.1
+Version: 1.4.0
 Author: HappyMonster
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, obiplabon, sourav926, wedevs
@@ -19,7 +19,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 [HappyAddons](https://happyaddons.com/) is a collection of slick, powerful widgets that works seamlessly with Elementor page builder. It’s trendy look with detail customization features allows to create extraordinary designs instantly. [HappyAddons](https://happyaddons.com/) is free, rapidly growing and comes with great support.
 
 
-### Included 20 Free Widgets
+### Included 24 Free Widgets
 
 1. **[Card](https://happyaddons.com/elementor-card-widget-demo/)** - Incredibly powerful widget to demonstrate your products, articles, news, creative posts using a beautiful combination of texts, links, badge and image. Using built in positioning and offset feature you can create eye-candy designs in a twist. [Check demo](https://happyaddons.com/elementor-card-widget-demo/)
 2. **[Gradient Heading](https://happyaddons.com/elementor-gradient-heading-widget-demo/)** - Another gem to create eye candy headings for your websites. You can apply different gradient styles, angles, opacity, and positions to make them look even better across different device screens. [Check demo](https://happyaddons.com/elementor-gradient-heading-widget-demo/)
@@ -41,6 +41,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 18. **[Logo Grid](https://happyaddons.com/elementor-logo-grid-widget-demo)** - Showcase your clients or products using our logo grid widget, and display these items with styles. [Check demo](https://happyaddons.com/elementor-logo-grid-widget-demo)
 19. **[Carousel](https://happyaddons.com/elementor-carousel-widget-demo/)** - Create interesting image and text carousels using our carousel widget which comes with lot of options. [Check demo](https://happyaddons.com/elementor-carousel-widget-demo/)
 20. **[Slider](https://happyaddons.com/elementor-slider-widget-demo/)** - Now you can create sliders with beautiful animations and effects using our Slider widget. And just like our other widgets, there are lots of customization options for you. [Check demo](https://happyaddons.com/elementor-slider-widget-demo/)
+21. **[Step Flow](https://happyaddons.com/elementor-step-flow-widget-demo)**
+22. **[Calendly](https://happyaddons.com/elementor-calendly-widget-demo/)**
+23. **[Flip Box](https://happyaddons.com/elementor-flip-box-widget-demo/)**
+24. **Pricing Table**
 
 ### INCLUDED FREE EXTENSIONS FOR EVERY ELEMENTOR WIDGET
 **Happy Effects**
@@ -129,6 +133,19 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 1.4.0 - 1 August 2019 =
+
+* New: On demand asset loading
+* New: On demand cached asset cleaning
+* New: Step Flow Widget
+* New: Calendly Widget
+* New: Flip Box Widget
+* New: Pricing Table Widget
+* Update: Added animated number support to Number Widget
+* Update: Added progress animation to Skill Bars Widget
+* Update: Various widgets default styles
+* Fix: Various responsive issue
 
 = 1.3.1 - 24 July 2019 =
 
