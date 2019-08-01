@@ -164,13 +164,30 @@ class OnDemand_Loader {
             $widgets = Widgets::get_widgets_map();
 
             foreach( $widgets as $widget => $data ) {
-                $widget_id = 'ha-' . $widget;
-
-                if ( ! array_key_exists( $widget_id, $widgets_used ) ) {
+                if ( ! isset( $data['vendor'] ) || ! is_array( $data['vendor'] ) ) {
                     continue;
                 }
 
-                if ( ! is_array( $data['vendor'] ) ) {
+                // Handle common assets only
+                if ( Widgets::get_base_widget_key() === $widget ) {
+                    if ( isset( $data['vendor']['css'] ) && is_array( $data['vendor']['css'] ) ) {
+                        foreach ( $data['vendor']['css'] as $vendor_css_handle ) {
+                            wp_enqueue_style( $vendor_css_handle );
+                        }
+                    }
+
+                    if ( isset( $data['vendor']['js'] ) && is_array( $data['vendor']['js'] ) ) {
+                        foreach ( $data['vendor']['js'] as $vendor_css_handle ) {
+                            wp_enqueue_script( $vendor_css_handle );
+                        }
+                    }
+                    continue;
+                }
+
+                // Handle widgets assets only
+                $widget_id = 'ha-' . $widget;
+
+                if ( ! array_key_exists( $widget_id, $widgets_used ) ) {
                     continue;
                 }
 
@@ -192,7 +209,7 @@ class OnDemand_Loader {
     public static function clean_all_cache() {
         $files = glob( self::$cache_dir . '/*' );
         foreach( $files as $file ) {
-            if ( is_file( $file ) ){
+            if ( is_file( $file ) ) {
                 unlink( $file );
             }
         }

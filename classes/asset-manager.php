@@ -139,7 +139,7 @@ class Assets {
         /**
          * Floating effects
          */
-        wp_enqueue_script(
+        wp_register_script(
             'anime',
             HAPPY_ASSETS . 'vendor/anime/lib/anime.min.js',
             null,
@@ -166,6 +166,8 @@ class Assets {
 
             wp_enqueue_script( 'elementor-waypoints' );
             wp_enqueue_script( 'jquery-numerator' );
+
+            wp_enqueue_script( 'anime' );
         }
     }
 

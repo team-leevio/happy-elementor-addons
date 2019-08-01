@@ -44,6 +44,16 @@ class Widgets {
 
     public static function get_widgets_map() {
         $widgets_map = [
+            // This is base for happy addons
+            self::get_base_widget_key() => [
+                'css' => [],
+                'js' => [],
+                'vendor' => [
+                    'js' => ['anime']
+                ]
+            ],
+
+            // All the widgets are listed below with respective map
             'infobox' => [
                 'class' => InfoBox::class,
                 'css' => [],
@@ -318,11 +328,15 @@ class Widgets {
      */
     private static function is_registrable( $widget ) {
         $widget_file = HAPPY_DIR_PATH . 'widgets/' . $widget . '/widget.php';
-        if ( is_readable( $widget_file ) ) {
+        if ( $widget !== self::get_base_widget_key() && is_readable( $widget_file ) ) {
             include( $widget_file );
             return true;
         }
         return false;
+    }
+
+    public static function get_base_widget_key() {
+        return apply_filters( 'happyaddons_get_base_widget_key', '_happyaddons_base' );
     }
 
     /**
