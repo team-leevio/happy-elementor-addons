@@ -43,7 +43,8 @@ class OnDemand_Loader {
 	public static function get_elements_usage( $post_id ) {
         $usage = self::get_only_elements_usage( $post_id );
         if ( ! $usage ) {
-            $usage = self::save_elements_usage( $post_id );
+            self::save_elements_usage( $post_id );
+            $usage = self::get_only_elements_usage( $post_id );
         }
         return $usage;
     }
@@ -57,7 +58,7 @@ class OnDemand_Loader {
      * Save used elements
      *
      * @param $post_id
-     * @return array
+     * @return void
      */
     public static function save_elements_usage( $post_id ) {
         /**
@@ -66,7 +67,9 @@ class OnDemand_Loader {
         if ( version_compare( ELEMENTOR_VERSION, '2.6.5', '<=' ) && ! self::get_only_elements_usage( $post_id ) ) {
             $usage = [];
             //we need to populate _elementor_elements_usage;
-            $data = \Elementor\Plugin::$instance->documents->get( $post_id )->get_elements_data();
+            $document = \Elementor\Plugin::$instance->documents->get( $post_id );
+            $data = $document ? $document->get_elements_data() : [];
+
             \Elementor\Plugin::$instance->db->iterate_data( $data, function ( $element ) use ( & $usage ) {
                 if ( empty( $element['widgetType'] ) ) {
                     $type = $element['elType'];
@@ -84,9 +87,8 @@ class OnDemand_Loader {
             } );
 
             update_post_meta( $post_id, self::DB_KEY, $usage );
-            return $usage;
+            self::clean_only_cache( $post_id );
         }
-        return [];
     }
 
     public static function get_supported_types() {
@@ -116,7 +118,7 @@ class OnDemand_Loader {
     }
 
     public static function get_self_elements_usage( $post_id ) {
-        return array_flip( array_filter( self::get_elements_usage( $post_id ), function( $widget_name ) {
+        return array_keys( array_filter( self::get_elements_usage( $post_id ), function( $widget_name ) {
             return strpos( $widget_name, 'ha-' ) !== false;
         }, ARRAY_FILTER_USE_KEY ) );
     }
