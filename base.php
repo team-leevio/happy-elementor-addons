@@ -74,7 +74,7 @@ class Base {
         $this->init_appsero_tracking();
 
         if ( is_user_logged_in() ) {
-            Admin::init();
+            Admin_Bar::init();
         }
     }
 
@@ -111,7 +111,7 @@ class Base {
         }
 
         if ( is_user_logged_in() ) {
-            require( __DIR__ . '/classes/admin.php' );
+            require( __DIR__ . '/classes/admin-bar.php' );
         }
     }
 
