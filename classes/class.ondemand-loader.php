@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || die();
 
 class OnDemand_Loader {
 
-    const DB_KEY = '_elementor_elements_usage';
+    const ELEMENTS_USAGE_META_KEY = '_elementor_elements_usage';
 
 	private static $upload_path;
 
@@ -50,7 +50,7 @@ class OnDemand_Loader {
     }
 
     private static function get_only_elements_usage( $post_id ) {
-        $usage = get_post_meta( $post_id, self::DB_KEY, true );
+        $usage = get_post_meta( $post_id, self::ELEMENTS_USAGE_META_KEY, true );
         return ( is_array( $usage ) ? $usage : [] );
     }
 
@@ -64,7 +64,7 @@ class OnDemand_Loader {
         /**
          * Before version 2.6.5 elementor didn't store elements usage data
          */
-        if ( version_compare( ELEMENTOR_VERSION, '2.6.5', '<=' ) && ! self::get_only_elements_usage( $post_id ) ) {
+        if ( version_compare( ELEMENTOR_VERSION, '2.6.5', '<=' ) || ! self::get_only_elements_usage( $post_id ) ) {
             $usage = [];
             //we need to populate _elementor_elements_usage;
             $document = \Elementor\Plugin::$instance->documents->get( $post_id );
@@ -86,7 +86,7 @@ class OnDemand_Loader {
                 return $element;
             } );
 
-            update_post_meta( $post_id, self::DB_KEY, $usage );
+            update_post_meta( $post_id, self::ELEMENTS_USAGE_META_KEY, $usage );
             self::clean_only_cache( $post_id );
         }
     }
