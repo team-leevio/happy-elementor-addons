@@ -14,6 +14,7 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
+use ParagonIE\Sodium\Core\Curve25519\Ge\P3;
 
 defined( 'ABSPATH' ) || die();
 
@@ -188,7 +189,7 @@ class Review extends Base {
                     'px' => [
                         'min' => 0,
                         'max' => 5,
-                        'step' => .1,
+                        'step' => .5,
                     ],
                 ],
             ]
@@ -678,6 +679,8 @@ class Review extends Base {
                 'ha-review-ratting',
                 'ha-review-ratting--' . $settings['ratting_style']
             ] );
+
+        $ratting = max( 0, $settings['ratting']['size'] );
         ?>
 
         <?php if ( $settings['image']['url'] || $settings['image']['id'] ) :
@@ -713,10 +716,16 @@ class Review extends Base {
 
                 <div <?php echo $this->get_render_attribute_string( 'ratting' ); ?>>
                     <?php if ( $settings['ratting_style'] === 'num' ) : ?>
-                        <?php echo esc_html( $settings['ratting']['size'] ); ?> <i class="fa fa-star"></i>
-                    <?php else : ?>
-                        <span><span style="width:<?php echo ($settings['ratting']['size'] * 20); ?>%"></span></span>
-                    <?php endif; ?>
+                        <?php echo esc_html( $ratting ); ?> <i class="fa fa-star" aria-hidden="true"></i>
+                    <?php else :
+                        for ( $i = 1; $i <= 5; ++$i ) :
+                            if ( $i <= $ratting ) {
+                                echo '<i class="fa fa-star" aria-hidden="true"></i>';
+                            } else {
+                                echo '<i class="fa fa-star-o" aria-hidden="true"></i>';
+                            }
+                        endfor;
+                    endif; ?>
                  </div>
             </div>
 
@@ -740,6 +749,8 @@ class Review extends Base {
 
         view.addInlineEditingAttributes( 'review', 'basic' );
         view.addRenderAttribute( 'review', 'class', 'ha-review-desc' );
+
+        var ratting = Math.max(0, settings.ratting.size);
 
         if (settings.image.url || settings.image.id) {
             var image = {
@@ -771,10 +782,16 @@ class Review extends Base {
                     <div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{ settings.job_title }}</div>
                 <# } #>
                 <# if ( settings.ratting_style === 'num' ) { #>
-                    <div class="ha-review-ratting ha-review-ratting--num">{{ settings.ratting.size }} <i class="fa fa-star"></i></div>
-                <# } else { var ratingPercent = ( settings.ratting.size * 20 ) #>
+                    <div class="ha-review-ratting ha-review-ratting--num">{{ ratting }} <i class="fa fa-star"></i></div>
+                <# } else { #>
                     <div class="ha-review-ratting ha-review-ratting--star">
-                        <span><span style="width:{{ ratingPercent }}%"></span></span>
+                        <# _.each(_.range(1, 6), function(i) {
+                            if (i <= ratting) {
+                                print('<i class="fa fa-star"></i>');
+                            } else {
+                                print('<i class="fa fa-star-o"></i>');
+                            }
+                        }); #>
                     </div>
                 <# } #>
             </div>
@@ -786,4 +803,5 @@ class Review extends Base {
         </div>
         <?php
     }
+
 }
