@@ -2626,7 +2626,7 @@
 
 .ha-pricing-table-badge {
 	position: absolute;
-	top: 0;
+	top: -1px;
 	padding: .8rem 1rem;
 	background-color: #e2498a;
 	color: #fff; 
