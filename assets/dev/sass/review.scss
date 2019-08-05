@@ -39,45 +39,14 @@
   }
 
   &-ratting--num {
-    background-color: #287dfe;
+    background-color: $primary-color;
     color: #fff;
     padding: .25em .66em;
     border-radius: 2.5em;
   }
 
   &-ratting--star {
-      display: inline-block;
       color: #ffbf36;
-      font-family: "Fontawesome";
-
-      > span {
-        overflow: hidden;
-        position: relative;
-        height: 1em;
-      }
-
-      span > span {
-        padding-top: 1.5em;
-        overflow: hidden;
-        top: 0;
-        left: 0;
-        position: absolute;
-      }
-
-      span &:before,
-      span > span:before {
-        top: 0;
-        left: 0;
-        position: absolute;
-      }
-
-      span:before {
-        content: "\f006\f006\f006\f006\f006";
-      }
-
-      span > span:before {
-        content: "\f005\f005\f005\f005\f005";
-      }
   }
 
   &-desc {

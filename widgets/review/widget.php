@@ -50,131 +50,13 @@ class Review extends Base {
 
 	protected function register_content_controls() {
 		$this->start_controls_section(
-			'_section_content',
+			'_section_review',
 			[
-				'label' => __( 'Content', 'happy-elementor-addons' ),
+				'label' => __( 'Review', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
-        $this->start_controls_tabs( '_tab_content' );
-        $this->start_controls_tab(
-            '_tab_reviewer',
-            [
-                'label' => __( 'Reviewer', 'happy-elementor-addons' ),
-            ]
-        );
-
-        $this->add_control(
-            'image',
-            [
-                'label' => __( 'Photo', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::MEDIA,
-                'default' => [
-                    'url' => Utils::get_placeholder_image_src(),
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'title',
-            [
-                'label' => __( 'Name', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => __( 'Happy Reviewer', 'happy-elementor-addons' ),
-                'placeholder' => __( 'Type Reviewer Name', 'happy-elementor-addons' ),
-            ]
-        );
-
-        $this->add_control(
-            'job_title',
-            [
-                'label' => __( 'Job Title', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => __( 'Happy Officer', 'happy-elementor-addons' ),
-                'placeholder' => __( 'Type Reviewer Job Title', 'happy-elementor-addons' ),
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Image_Size::get_type(),
-            [
-                'name' => 'thumbnail',
-                'default' => 'large',
-                'separator' => 'none',
-            ]
-        );
-
-        $this->add_control(
-            'image_position',
-            [
-                'label' => __( 'Image Position', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'label_block' => false,
-                'options' => [
-                    'left' => [
-                        'title' => __( 'Left', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-h-align-left',
-                    ],
-                    'top' => [
-                        'title' => __( 'Top', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-v-align-top',
-                    ],
-                    'right' => [
-                        'title' => __( 'Right', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-h-align-right',
-                    ],
-                ],
-                'default' => 'top',
-                'toggle' => false,
-                'prefix_class' => 'ha-review--'
-            ]
-        );
-
-        $this->add_control(
-            'title_tag',
-            [
-                'label' => __( 'Name HTML Tag', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'options' => [
-                    'h1'  => [
-                        'title' => __( 'H1', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-editor-h1'
-                    ],
-                    'h2'  => [
-                        'title' => __( 'H2', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-editor-h2'
-                    ],
-                    'h3'  => [
-                        'title' => __( 'H3', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-editor-h3'
-                    ],
-                    'h4'  => [
-                        'title' => __( 'H4', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-editor-h4'
-                    ],
-                    'h5'  => [
-                        'title' => __( 'H5', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-editor-h5'
-                    ],
-                    'h6'  => [
-                        'title' => __( 'H6', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-editor-h6'
-                    ]
-                ],
-                'default' => 'h2',
-                'toggle' => false,
-            ]
-        );
-
-        $this->end_controls_tab();
-
-        $this->start_controls_tab(
-            '_tab_review',
-            [
-                'label' => __( 'Review', 'happy-elementor-addons' ),
-            ]
-        );
         $this->add_control(
             'ratting',
             [
@@ -217,15 +99,111 @@ class Review extends Base {
                 'placeholder' => __( 'Type amazing review from happy reviewer', 'happy-elementor-addons' ),
             ]
         );
-        $this->end_controls_tab();
-        $this->end_controls_tabs();
+
+        $this->add_control(
+            'review_for',
+            [
+                'label' => __( 'Review For', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::TEXT,
+                'placeholder' => __( 'Movie, Games, Software name etc.', 'happy-elementor-addons' ),
+                'description' => __( '[This field is only for structured data (schema.org) purpose] Obviously this review belongs to something like Movie, Games, Software or Service. So type the name of that thing.', 'happy-elementor-addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'review_position',
+            [
+                'label' => __( 'Review Position', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'before' => __( 'Review Before', 'happy-elementor-addons' ),
+                    'after' => __( 'Review After', 'happy-elementor-addons' ),
+                ],
+                'default' => 'before',
+            ]
+        );
+
+		$this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_reviewer',
+            [
+                'label' => __( 'Reviewer', 'happy-elementor-addons' ),
+                'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_control(
+            'image',
+            [
+                'label' => __( 'Photo', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::MEDIA,
+                'default' => [
+                    'url' => Utils::get_placeholder_image_src(),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'title',
+            [
+                'label' => __( 'Name', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::TEXT,
+                'default' => __( 'Happy Reviewer', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type Reviewer Name', 'happy-elementor-addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'job_title',
+            [
+                'label' => __( 'Job Title', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::TEXT,
+                'default' => __( 'Happy Officer', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type Reviewer Job Title', 'happy-elementor-addons' ),
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Image_Size::get_type(),
+            [
+                'name' => 'thumbnail',
+                'default' => 'large',
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'image_position',
+            [
+                'label' => __( 'Image Position', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'top' => [
+                        'title' => __( 'Top', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-v-align-top',
+                    ],
+                    'right' => [
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'top',
+                'toggle' => false,
+                'prefix_class' => 'ha-review--'
+            ]
+        );
 
         $this->add_responsive_control(
             'align',
             [
                 'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
-                'separator' => 'before',
                 'options' => [
                     'left' => [
                         'title' => __( 'Left', 'happy-elementor-addons' ),
@@ -252,15 +230,38 @@ class Review extends Base {
         );
 
         $this->add_control(
-            'review_position',
+            'title_tag',
             [
-                'label' => __( 'Review Position', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SELECT,
+                'label' => __( 'Name HTML Tag', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::CHOOSE,
                 'options' => [
-                    'before' => __( 'Review Before', 'happy-elementor-addons' ),
-                    'after' => __( 'Review After', 'happy-elementor-addons' ),
+                    'h1'  => [
+                        'title' => __( 'H1', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-editor-h1'
+                    ],
+                    'h2'  => [
+                        'title' => __( 'H2', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-editor-h2'
+                    ],
+                    'h3'  => [
+                        'title' => __( 'H3', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-editor-h3'
+                    ],
+                    'h4'  => [
+                        'title' => __( 'H4', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-editor-h4'
+                    ],
+                    'h5'  => [
+                        'title' => __( 'H5', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-editor-h5'
+                    ],
+                    'h6'  => [
+                        'title' => __( 'H6', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-editor-h6'
+                    ]
                 ],
-                'default' => 'before',
+                'default' => 'h2',
+                'toggle' => false,
             ]
         );
 
@@ -268,6 +269,239 @@ class Review extends Base {
     }
 
     protected function register_style_controls() {
+        $this->start_controls_section(
+            '_section_ratting_style',
+            [
+                'label' => __( 'Ratting', 'happy-elementor-addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'ratting_size',
+            [
+                'label' => __( 'Size', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-ratting' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'ratting_spacing',
+            [
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-ratting' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'ratting_padding',
+            [
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-ratting' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'ratting_color',
+            [
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-ratting' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'ratting_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-ratting' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'ratting_border',
+                'selector' => '{{WRAPPER}} .ha-review-ratting',
+            ]
+        );
+
+        $this->add_control(
+            'ratting_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-ratting' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_review_style',
+            [
+                'label' => __( 'Review & Reviewer', 'happy-elementor-addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'body_padding',
+            [
+                'label' => __( 'Text Box Padding', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-body' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            '_heading_name',
+            [
+                'type' => Controls_Manager::HEADING,
+                'label' => __( 'Name', 'happy-elementor-addons' ),
+                'separator' => 'before'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'title_spacing',
+            [
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-reviewer' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'name_color',
+            [
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-reviewer' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'name_typography',
+                'selector' => '{{WRAPPER}} .ha-review-reviewer',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_2,
+            ]
+        );
+
+        $this->add_control(
+            '_heading_job_title',
+            [
+                'type' => Controls_Manager::HEADING,
+                'label' => __( 'Job Title', 'happy-elementor-addons' ),
+                'separator' => 'before'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'job_title_spacing',
+            [
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-position' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'job_title_color',
+            [
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-position' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'job_title_typography',
+                'selector' => '{{WRAPPER}} .ha-review-position',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+            ]
+        );
+
+        $this->add_control(
+            '_heading_review',
+            [
+                'type' => Controls_Manager::HEADING,
+                'label' => __( 'Review', 'happy-elementor-addons' ),
+                'separator' => 'before'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'review_spacing',
+            [
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-desc' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'review_color',
+            [
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-review-desc' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'review_typography',
+                'selector' => '{{WRAPPER}} .ha-review-desc',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+            ]
+        );
+
+        $this->end_controls_section();
+
         $this->start_controls_section(
             '_section_photo_style',
             [
@@ -428,257 +662,35 @@ class Review extends Base {
         );
 
         $this->end_controls_section();
-
-        $this->start_controls_section(
-            '_section_review_style',
-            [
-                'label' => __( 'Review', 'happy-elementor-addons' ),
-                'tab'   => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_responsive_control(
-            'body_padding',
-            [
-                'label' => __( 'Text Box Padding', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-body' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            '_heading_name',
-            [
-                'type' => Controls_Manager::HEADING,
-                'label' => __( 'Name', 'happy-elementor-addons' ),
-                'separator' => 'before'
-            ]
-        );
-
-        $this->add_responsive_control(
-            'title_spacing',
-            [
-                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-reviewer' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'name_color',
-            [
-                'label' => __( 'Text Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-reviewer' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'name_typography',
-                'selector' => '{{WRAPPER}} .ha-review-reviewer',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_2,
-            ]
-        );
-
-        $this->add_control(
-            '_heading_job_title',
-            [
-                'type' => Controls_Manager::HEADING,
-                'label' => __( 'Job Title', 'happy-elementor-addons' ),
-                'separator' => 'before'
-            ]
-        );
-
-        $this->add_responsive_control(
-            'job_title_spacing',
-            [
-                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-position' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'job_title_color',
-            [
-                'label' => __( 'Text Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-position' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'job_title_typography',
-                'selector' => '{{WRAPPER}} .ha-review-position',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
-            ]
-        );
-
-        $this->add_control(
-            '_heading_review',
-            [
-                'type' => Controls_Manager::HEADING,
-                'label' => __( 'Review', 'happy-elementor-addons' ),
-                'separator' => 'before'
-            ]
-        );
-
-        $this->add_responsive_control(
-            'review_spacing',
-            [
-                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-desc' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'review_color',
-            [
-                'label' => __( 'Text Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-desc' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'review_typography',
-                'selector' => '{{WRAPPER}} .ha-review-desc',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3,
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            '_section_ratting_style',
-            [
-                'label' => __( 'Ratting', 'happy-elementor-addons' ),
-                'tab'   => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_responsive_control(
-            'ratting_size',
-            [
-                'label' => __( 'Size', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-ratting' => 'font-size: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'ratting_spacing',
-            [
-                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-ratting' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'ratting_padding',
-            [
-                'label' => __( 'Padding', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-ratting' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'ratting_color',
-            [
-                'label' => __( 'Text Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-ratting' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'ratting_bg_color',
-            [
-                'label' => __( 'Background Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-ratting' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Border::get_type(),
-            [
-                'name' => 'ratting_border',
-                'selector' => '{{WRAPPER}} .ha-review-ratting',
-            ]
-        );
-
-        $this->add_control(
-            'ratting_border_radius',
-            [
-                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-review-ratting' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
     }
 
 	protected function render() {
         $settings = $this->get_settings_for_display();
 
+        $this->add_render_attribute( '_wrapper', 'itemscope' );
+        $this->add_render_attribute( '_wrapper', 'itemtype', 'https://schema.org/Review' );
+
         $this->add_inline_editing_attributes( 'title', 'none' );
         $this->add_render_attribute( 'title', 'class', 'ha-review-reviewer' );
+        $this->add_render_attribute( 'title', 'itemprop', 'author' );
+        $this->add_render_attribute( 'title', 'itemscope', '' );
+        $this->add_render_attribute( 'title', 'itemtype', 'https://schema.org/Person' );
 
         $this->add_inline_editing_attributes( 'job_title', 'none' );
         $this->add_render_attribute( 'job_title', 'class', 'ha-review-position' );
 
         $this->add_inline_editing_attributes( 'review', 'basic' );
         $this->add_render_attribute( 'review', 'class', 'ha-review-desc' );
+        $this->add_render_attribute( 'review', 'itemprop', 'reviewBody' );
 
         $this->add_render_attribute( 'ratting', 'class', [
                 'ha-review-ratting',
                 'ha-review-ratting--' . $settings['ratting_style']
             ] );
+
+        $this->add_render_attribute( 'ratting', 'itemprop', 'reviewRating' );
+        $this->add_render_attribute( 'ratting', 'itemscope' );
+        $this->add_render_attribute( 'ratting', 'itemtype', 'https://schema.org/Rating' );
 
         $ratting = max( 0, $settings['ratting']['size'] );
         ?>
@@ -715,6 +727,8 @@ class Review extends Base {
                 <?php endif; ?>
 
                 <div <?php echo $this->get_render_attribute_string( 'ratting' ); ?>>
+                    <meta itemprop="ratingValue" content="<?php echo esc_attr( $ratting ); ?>">
+
                     <?php if ( $settings['ratting_style'] === 'num' ) : ?>
                         <?php echo esc_html( $ratting ); ?> <i class="fa fa-star" aria-hidden="true"></i>
                     <?php else :
@@ -735,6 +749,10 @@ class Review extends Base {
                 </div>
             <?php endif; ?>
         </div>
+
+        <span class="ha-screen-reader-text" itemprop="itemReviewed" itemscope itemtype="https://schema.org/Thing">
+            <span itemprop="name"><?php echo esc_html( $settings['review_for'] ); ?></span>
+        </span>
         <?php
     }
 
