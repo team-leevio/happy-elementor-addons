@@ -80,6 +80,20 @@
 	        clip-path: inset(50%);
 }
 
+.ha-has-background-overlay > .elementor-widget-container {
+	position: relative; 
+	z-index: 1;
+}
+.ha-has-background-overlay > .elementor-widget-container:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1; 
+	width: 100%;
+	height: 100%;
+	content: "";
+}
+
 .ha-card > .elementor-widget-container,
 .ha-infobox > .elementor-widget-container,
 .ha-icon-box > .elementor-widget-container,

@@ -85,11 +85,15 @@ window.Happy = window.Happy || {};
     };
 
     $window.on('elementor/frontend/init', function() {
-        var HappyEffects = elementorModules.frontend.handlers.Base.extend({
+        var ExtensionHandler = elementorModules.frontend.handlers.Base.extend({
             onInit: function() {
                 elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
                 this.$container = this.$element.find('.elementor-widget-container')[0];
                 this.run();
+
+                if (this.isEdit) {
+                    this.$element.addClass('ha-has-background-overlay')
+                }
             },
 
             getDefaultSettings: function() {
@@ -320,7 +324,7 @@ window.Happy = window.Happy || {};
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/widget',
             function($scope) {
-                elementorFrontend.elementsHandler.addHandler(HappyEffects, {$element: $scope});
+                elementorFrontend.elementsHandler.addHandler(ExtensionHandler, {$element: $scope});
             }
         );
     });

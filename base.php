@@ -7,6 +7,7 @@
 namespace Happy_Addons\Elementor;
 
 use Happy_Addons\Elementor\Assets\OnDemand_Loader;
+use Happy_Addons\Elementor\Extension\Background_Overlay;
 use Happy_Addons\Elementor\Manager\Assets;
 use Happy_Addons\Elementor\Manager\Widgets;
 use Happy_Addons\Elementor\Extension\Happy_Effects;
@@ -69,6 +70,7 @@ class Base {
         Widgets::init();
         Assets::init();
         Happy_Effects::init();
+        Background_Overlay::init();
         OnDemand_Loader::init();
 
         $this->init_appsero_tracking();
@@ -105,6 +107,7 @@ class Base {
         require( __DIR__ . '/classes/asset-manager.php' );
         require( __DIR__ . '/classes/happy-effects.php' );
         require( __DIR__ . '/classes/class.ondemand-loader.php' );
+        require( __DIR__ . '/classes/background-overlay.php' );
 
         if ( is_admin() ) {
             require( __DIR__ . '/classes/class.communicator.php' );

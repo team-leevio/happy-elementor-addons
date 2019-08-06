@@ -6,16 +6,12 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Repeater;
 use Elementor\Scheme_Typography;
-use Elementor\Utils;
-use Elementor\Control_Media;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 
 defined( 'ABSPATH' ) || die();
