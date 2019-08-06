@@ -205,7 +205,7 @@ class Assets {
         wp_enqueue_script(
             'happy-elementor-addons',
             HAPPY_ASSETS . 'js/happy-addons' . $suffix . 'js',
-            [ 'elementor-frontend', 'imagesloaded', 'jquery' ],
+            [ 'imagesloaded', 'jquery' ],
             Base::VERSION,
             true
         );
