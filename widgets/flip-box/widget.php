@@ -438,7 +438,7 @@ class Flip_Box extends Base {
                     'front_background_image_image[url]!' => ''
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-wrap .ha-flip-box .ha-flip-box-front:before' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-flip-box-front:before' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -788,7 +788,7 @@ class Flip_Box extends Base {
                     'back_background_image_background' => 'classic'
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-wrap .ha-flip-box .ha-flip-box-back:before' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-flip-box-back:before' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
