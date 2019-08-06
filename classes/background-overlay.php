@@ -26,8 +26,8 @@ class Background_Overlay {
 
         $settings = $element->get_settings_for_display();
 
-        $overlay_bg = isset( $settings['_background_overlay_background'] ) ? $settings['_background_overlay_background'] : '';
-        $overlay_hover_bg = isset( $settings['_background_overlay_hover_background'] ) ? $settings['_background_overlay_hover_background'] : '';
+        $overlay_bg = isset( $settings['_ha_background_overlay_background'] ) ? $settings['_ha_background_overlay_background'] : '';
+        $overlay_hover_bg = isset( $settings['_ha_background_overlay_hover_background'] ) ? $settings['_ha_background_overlay_hover_background'] : '';
 
         $has_background_overlay = ( in_array( $overlay_bg, [ 'classic', 'gradient' ], true ) ||
             in_array( $overlay_hover_bg, [ 'classic', 'gradient' ], true ) );
@@ -39,7 +39,7 @@ class Background_Overlay {
 
     public static function add_section( Element_Base $element ) {
         $element->start_controls_section(
-            '_section_background_overlay',
+            '_ha_section_background_overlay',
             [
                 'label' => __( 'Background Overlay', 'elementor' ),
                 'tab' => Controls_Manager::TAB_ADVANCED,
@@ -49,10 +49,10 @@ class Background_Overlay {
             ]
         );
 
-        $element->start_controls_tabs( '_tabs_background_overlay' );
+        $element->start_controls_tabs( '_ha_tabs_background_overlay' );
 
         $element->start_controls_tab(
-            '_tab_background_overlay_normal',
+            '_ha_tab_background_overlay_normal',
             [
                 'label' => __( 'Normal', 'elementor' ),
             ]
@@ -61,13 +61,13 @@ class Background_Overlay {
         $element->add_group_control(
             Group_Control_Background::get_type(),
             [
-                'name' => '_background_overlay',
+                'name' => '_ha_background_overlay',
                 'selector' => '{{WRAPPER}}.ha-has-background-overlay > .elementor-widget-container:before',
             ]
         );
 
         $element->add_control(
-            '_background_overlay_opacity',
+            '_ha_background_overlay_opacity',
             [
                 'label' => __( 'Opacity', 'elementor' ),
                 'type' => Controls_Manager::SLIDER,
@@ -84,7 +84,7 @@ class Background_Overlay {
                     '{{WRAPPER}}.ha-has-background-overlay > .elementor-widget-container:before' => 'opacity: {{SIZE}};',
                 ],
                 'condition' => [
-                    '_background_overlay_background' => [ 'classic', 'gradient' ],
+                    '_ha_background_overlay_background' => [ 'classic', 'gradient' ],
                 ],
             ]
         );
@@ -92,13 +92,13 @@ class Background_Overlay {
         $element->add_group_control(
             Group_Control_Css_Filter::get_type(),
             [
-                'name' => 'css_filters',
+                'name' => '_ha_css_filters',
                 'selector' => '{{WRAPPER}}.ha-has-background-overlay > .elementor-widget-container:before',
             ]
         );
 
         $element->add_control(
-            '_overlay_blend_mode',
+            '_ha_overlay_blend_mode',
             [
                 'label' => __( 'Blend Mode', 'elementor' ),
                 'type' => Controls_Manager::SELECT,
@@ -123,7 +123,7 @@ class Background_Overlay {
         $element->end_controls_tab();
 
         $element->start_controls_tab(
-            '_tab_background_overlay_hover',
+            '_ha_tab_background_overlay_hover',
             [
                 'label' => __( 'Hover', 'elementor' ),
             ]
@@ -132,13 +132,13 @@ class Background_Overlay {
         $element->add_group_control(
             Group_Control_Background::get_type(),
             [
-                'name' => '_background_overlay_hover',
+                'name' => '_ha_background_overlay_hover',
                 'selector' => '{{WRAPPER}}.ha-has-background-overlay:hover > .elementor-widget-container:before',
             ]
         );
 
         $element->add_control(
-            '_background_overlay_hover_opacity',
+            '_ha_background_overlay_hover_opacity',
             [
                 'label' => __( 'Opacity', 'elementor' ),
                 'type' => Controls_Manager::SLIDER,
@@ -155,7 +155,7 @@ class Background_Overlay {
                     '{{WRAPPER}}.ha-has-background-overlay:hover > .elementor-widget-container:before' => 'opacity: {{SIZE}};',
                 ],
                 'condition' => [
-                    '_background_overlay_hover_background' => [ 'classic', 'gradient' ],
+                    '_ha_background_overlay_hover_background' => [ 'classic', 'gradient' ],
                 ],
             ]
         );
@@ -163,13 +163,13 @@ class Background_Overlay {
         $element->add_group_control(
             Group_Control_Css_Filter::get_type(),
             [
-                'name' => '_css_filters_hover',
+                'name' => '_ha_css_filters_hover',
                 'selector' => '{{WRAPPER}}.ha-has-background-overlay:hover > .elementor-widget-container:before',
             ]
         );
 
         $element->add_control(
-            '_background_overlay_hover_transition',
+            '_ha_background_overlay_hover_transition',
             [
                 'label' => __( 'Transition Duration', 'elementor' ),
                 'type' => Controls_Manager::SLIDER,
