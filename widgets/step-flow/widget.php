@@ -510,7 +510,7 @@ class Step_Flow extends Base {
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'direction_width',
             [
                 'label' => __( 'Width', 'happy-elementor-addons' ),
