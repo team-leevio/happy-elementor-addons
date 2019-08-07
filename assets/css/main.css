@@ -2899,13 +2899,13 @@
 	left: calc(100% + 50px);
 	display: inline-block;
 	width: 100px;
-	border-top: 1px dashed #ddd;
+	border-top: 1px solid #ccc;
 }
 .ha-step-arrow:after {
 	position: absolute;
 	right: -6px;
 	height: 1.5em;
-	color: #ddd;
+	color: #ccc;
 	content: "\e90b";
 	font-size: 18px;
 	font-family: "Happy Icons" !important;
@@ -2920,8 +2920,9 @@
 	margin-bottom: 2rem;
 	padding: 40px;
 	border-radius: 50%;
-	background-color: #f1f4f8;
-	color: #242424;
+	background-color: #e9ecf0;
+	box-shadow: 0 2px 6px -2px #989898; 
+	color: #8056ee;
 	text-align: center;
 	font-size: 46px;
 }
@@ -2942,10 +2943,10 @@
 	position: absolute;
 	top: 5px;
 	right: 0;
-	padding: 10px 12px;
+	padding: 12px 8px;
 	border: 3px solid #fff; 
 	border-radius: 20px;
-	background-color: #e2498a;
+	background-color: #8056ee;
 	color: #fff;
 	font-size: 12px;
 	line-height: 0;

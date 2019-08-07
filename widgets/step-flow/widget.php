@@ -58,7 +58,7 @@ class Step_Flow extends Base {
             [
                 'label' => __( 'Icon', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::ICON,
-                'default' => 'fa fa-home',
+                'default' => 'hm hm-finger-index',
                 'options' => ha_get_happy_icons(),
             ]
         );
@@ -70,7 +70,7 @@ class Step_Flow extends Base {
                 'type' => Controls_Manager::TEXT,
                 'placeholder' => __( 'Badge', 'happy-elementor-addons' ),
                 'description' => __( 'Keep it blank, if you want to remove the Badge', 'happy-elementor-addons' ),
-                'default' => __( '01', 'happy-elementor-addons' ),
+                'default' => __( 'Step 1', 'happy-elementor-addons' ),
             ]
         );
 
@@ -503,7 +503,7 @@ class Step_Flow extends Base {
                     'dotted' => __( 'Dotted', 'happy-elementor-addons' ),
                     'dashed' => __( 'Dashed', 'happy-elementor-addons' ),
                 ],
-                'default' => 'dashed',
+                'default' => 'solid',
                 'selectors' => [
                     '{{WRAPPER}} .ha-step-arrow' => 'border-top-style: {{VALUE}}',
                 ],
