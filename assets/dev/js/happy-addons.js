@@ -298,8 +298,8 @@ window.Happy = window.Happy || {};
                 });
             },
 
-            onElementChange: function(changedSetting) {
-                if (changedSetting === 'layout' || changedSetting === 'image_height') {
+            onElementChange: function(changedProp) {
+                if (['layout', 'image_height', 'columns'].indexOf(changedProp) !== -1) {
                     this.run()
                 }
             },
