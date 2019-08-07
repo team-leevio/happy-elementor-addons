@@ -206,20 +206,10 @@ class Image_Grid extends Base {
         );
 
         $this->add_control(
-            'image_spacing',
-            [
-                'label' => __( 'Spacing Between', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-image-grid-inner' => 'margin: {{SIZE}}{{UNIT}}',
-                ],
-            ]
-        );
-
-        $this->add_control(
             'image_height',
             [
                 'label' => __( 'Height', 'happy-elementor-addons' ),
+                'description' => __( 'Image height is only applicable for Even layout', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -233,6 +223,18 @@ class Image_Grid extends Base {
                 'condition' => [
                     'layout' => 'even',
                 ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_margin',
+            [
+                'label' => __( 'Margin', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-image-grid-inner' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
