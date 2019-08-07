@@ -58,32 +58,6 @@ window.Happy = window.Happy || {};
         });
     };
 
-    Happy.initImageGrid = function($scope) {
-        var $item = $scope.find('.hajs-image-grid');
-
-        // var t = setTimeout(function() {
-        //
-        // }, 500);
-        //
-        // // $item.imagesLoaded().progress(function( instance, image ) {
-        // //     image.isLoaded && $item.isotope('layout');
-        // // });
-
-        $item.imagesLoaded().done(function() {
-            $item.isotope({
-                itemSelector: '.ha-image-grid-item',
-                layoutMode: 'fitRows',
-                percentPosition: true
-            });
-        });
-
-        initFilterable($scope, function(filter) {
-            $item.isotope({
-                filter: filter
-            });
-        });
-    };
-
     $window.on('elementor/frontend/init', function() {
         var ExtensionHandler = elementorModules.frontend.handlers.Base.extend({
             onInit: function() {
@@ -289,6 +263,52 @@ window.Happy = window.Happy || {};
             });
         };
 
+        var Isotope = elementorModules.frontend.handlers.Base.extend({
+            onInit: function () {
+                elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+                this.$container = this.$element.find('.hajs-isotope');
+                this.run();
+                this.runFilter();
+            },
+
+            getLayoutMode: function() {
+                var layout = this.getElementSettings('layout');
+                return ( layout === 'even' ? 'masonry' : layout );
+            },
+
+            getDefaultSettings: function() {
+                return {
+                    itemSelector: '.ha-image-grid-item',
+                    percentPosition: true,
+                    layoutMode: this.getLayoutMode()
+                };
+            },
+
+            runFilter: function() {
+                var self = this;
+                initFilterable(this.$element, function(filter) {
+                    self.$container.isotope({
+                        filter: filter
+                    });
+                });
+            },
+
+            onElementChange: function(changedSetting) {
+                if (changedSetting === 'layout' || changedSetting === 'image_height') {
+                    this.run()
+                }
+            },
+
+            run: function() {
+                var self = this;
+
+                this.$container.isotope(self.getDefaultSettings());
+                this.$container.imagesLoaded().progress(function() {
+                    self.$container.isotope('layout');
+                });
+            }
+        });
+
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/ha-image-compare.default',
             Happy.initImageComparison
@@ -297,10 +317,7 @@ window.Happy = window.Happy || {};
             'frontend/element_ready/ha-justified-gallery.default',
             Happy.initJustifiedGallery
         );
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/ha-image-grid.default',
-            Happy.initImageGrid
-        );
+
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/ha-slider.default',
             function($scope) {
@@ -311,6 +328,12 @@ window.Happy = window.Happy || {};
             'frontend/element_ready/ha-carousel.default',
             function($scope) {
                 elementorFrontend.elementsHandler.addHandler(Slick, {$element: $scope});
+            }
+        );
+        elementorFrontend.hooks.addAction(
+            'frontend/element_ready/ha-image-grid.default',
+            function($scope) {
+                elementorFrontend.elementsHandler.addHandler(Isotope, {$element: $scope});
             }
         );
         elementorFrontend.hooks.addAction(
