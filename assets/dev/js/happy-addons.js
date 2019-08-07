@@ -58,39 +58,18 @@ window.Happy = window.Happy || {};
         });
     };
 
-    Happy.initImageGrid = function($scope) {
-        var $item = $scope.find('.hajs-image-grid');
-
-        // var t = setTimeout(function() {
-        //
-        // }, 500);
-        //
-        // // $item.imagesLoaded().progress(function( instance, image ) {
-        // //     image.isLoaded && $item.isotope('layout');
-        // // });
-
-        $item.imagesLoaded().done(function() {
-            $item.isotope({
-                itemSelector: '.ha-image-grid-item',
-                layoutMode: 'fitRows',
-                percentPosition: true
-            });
-        });
-
-        initFilterable($scope, function(filter) {
-            $item.isotope({
-                filter: filter
-            });
-        });
-    };
-
     $window.on('elementor/frontend/init', function() {
         var ExtensionHandler = elementorModules.frontend.handlers.Base.extend({
             onInit: function() {
                 elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
-                this.$container = this.$element.find('.elementor-widget-container')[0];
-                this.run();
+                this.widgetContainer = this.$element.find('.elementor-widget-container')[0];
 
+                this.initFloatingEffects();
+
+                this.initBackgroundOverlay();
+            },
+
+            initBackgroundOverlay: function() {
                 if (this.isEdit) {
                     this.$element.addClass('ha-has-background-overlay')
                 }
@@ -98,7 +77,7 @@ window.Happy = window.Happy || {};
 
             getDefaultSettings: function() {
                 return {
-                    targets: this.$container,
+                    targets: this.widgetContainer,
                     loop: true,
                     direction: 'alternate',
                     easing: 'easeInOutSine',
@@ -107,14 +86,14 @@ window.Happy = window.Happy || {};
 
             onElementChange: function() {
                 this.animation && this.animation.restart();
-                this.run();
+                this.initFloatingEffects();
             },
 
             getConfig: function(key) {
                 return this.getElementSettings('ha_floating_fx_' + key);
             },
 
-            run: function() {
+            initFloatingEffects: function() {
                 var config = this.getDefaultSettings();
 
                 if (this.getConfig('translate_toggle')) {
@@ -176,7 +155,7 @@ window.Happy = window.Happy || {};
                 }
 
                 if (this.getConfig('translate_toggle') || this.getConfig('rotate_toggle') || this.getConfig('scale_toggle')) {
-                    this.$container.style.setProperty('will-change', 'transform');
+                    this.widgetContainer.style.setProperty('will-change', 'transform');
                     this.animation = anime(config);
                 }
             }
@@ -289,6 +268,52 @@ window.Happy = window.Happy || {};
             });
         };
 
+        var Isotope = elementorModules.frontend.handlers.Base.extend({
+            onInit: function () {
+                elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+                this.$container = this.$element.find('.hajs-isotope');
+                this.run();
+                this.runFilter();
+            },
+
+            getLayoutMode: function() {
+                var layout = this.getElementSettings('layout');
+                return ( layout === 'even' ? 'masonry' : layout );
+            },
+
+            getDefaultSettings: function() {
+                return {
+                    itemSelector: '.ha-image-grid-item',
+                    percentPosition: true,
+                    layoutMode: this.getLayoutMode()
+                };
+            },
+
+            runFilter: function() {
+                var self = this;
+                initFilterable(this.$element, function(filter) {
+                    self.$container.isotope({
+                        filter: filter
+                    });
+                });
+            },
+
+            onElementChange: function(changedProp) {
+                if (['layout', 'image_height', 'columns', 'image_margin'].indexOf(changedProp) !== -1) {
+                    this.run()
+                }
+            },
+
+            run: function() {
+                var self = this;
+
+                this.$container.isotope(self.getDefaultSettings());
+                this.$container.imagesLoaded().progress(function() {
+                    self.$container.isotope('layout');
+                });
+            }
+        });
+
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/ha-image-compare.default',
             Happy.initImageComparison
@@ -297,10 +322,7 @@ window.Happy = window.Happy || {};
             'frontend/element_ready/ha-justified-gallery.default',
             Happy.initJustifiedGallery
         );
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/ha-image-grid.default',
-            Happy.initImageGrid
-        );
+
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/ha-slider.default',
             function($scope) {
@@ -311,6 +333,12 @@ window.Happy = window.Happy || {};
             'frontend/element_ready/ha-carousel.default',
             function($scope) {
                 elementorFrontend.elementsHandler.addHandler(Slick, {$element: $scope});
+            }
+        );
+        elementorFrontend.hooks.addAction(
+            'frontend/element_ready/ha-image-grid.default',
+            function($scope) {
+                elementorFrontend.elementsHandler.addHandler(Isotope, {$element: $scope});
             }
         );
         elementorFrontend.hooks.addAction(
