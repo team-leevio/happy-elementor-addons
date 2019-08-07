@@ -299,7 +299,7 @@ window.Happy = window.Happy || {};
             },
 
             onElementChange: function(changedProp) {
-                if (['layout', 'image_height', 'columns'].indexOf(changedProp) !== -1) {
+                if (['layout', 'image_height', 'columns', 'image_margin'].indexOf(changedProp) !== -1) {
                     this.run()
                 }
             },
