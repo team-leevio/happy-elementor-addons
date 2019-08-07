@@ -62,9 +62,14 @@ window.Happy = window.Happy || {};
         var ExtensionHandler = elementorModules.frontend.handlers.Base.extend({
             onInit: function() {
                 elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
-                this.$container = this.$element.find('.elementor-widget-container')[0];
-                this.run();
+                this.widgetContainer = this.$element.find('.elementor-widget-container')[0];
 
+                this.initFloatingEffects();
+
+                this.initBackgroundOverlay();
+            },
+
+            initBackgroundOverlay: function() {
                 if (this.isEdit) {
                     this.$element.addClass('ha-has-background-overlay')
                 }
@@ -72,7 +77,7 @@ window.Happy = window.Happy || {};
 
             getDefaultSettings: function() {
                 return {
-                    targets: this.$container,
+                    targets: this.widgetContainer,
                     loop: true,
                     direction: 'alternate',
                     easing: 'easeInOutSine',
@@ -81,14 +86,14 @@ window.Happy = window.Happy || {};
 
             onElementChange: function() {
                 this.animation && this.animation.restart();
-                this.run();
+                this.initFloatingEffects();
             },
 
             getConfig: function(key) {
                 return this.getElementSettings('ha_floating_fx_' + key);
             },
 
-            run: function() {
+            initFloatingEffects: function() {
                 var config = this.getDefaultSettings();
 
                 if (this.getConfig('translate_toggle')) {
@@ -150,7 +155,7 @@ window.Happy = window.Happy || {};
                 }
 
                 if (this.getConfig('translate_toggle') || this.getConfig('rotate_toggle') || this.getConfig('scale_toggle')) {
-                    this.$container.style.setProperty('will-change', 'transform');
+                    this.widgetContainer.style.setProperty('will-change', 'transform');
                     this.animation = anime(config);
                 }
             }
