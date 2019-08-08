@@ -1,13 +1,12 @@
 <?php
 
-namespace Happy_Addons\Elementor\Manager;
+namespace Happy_Addons\Elementor;
 
 use Happy_Addons\Elementor\Assets\OnDemand_Loader;
-use Happy_Addons\Elementor\Base;
 
 defined( 'ABSPATH' ) || die();
 
-class Assets {
+class Assets_Manager {
 
     /**
      * Bind hook and run internal methods here

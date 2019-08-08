@@ -1,7 +1,6 @@
 <?php
-namespace Happy_Addons\Elementor\Manager;
+namespace Happy_Addons\Elementor;
 
-use Elementor\Plugin as Elementor;
 use Happy_Addons\Elementor\Widget\Card;
 use Happy_Addons\Elementor\Widget\AdCard;
 use Happy_Addons\Elementor\Widget\CalderaForm;
@@ -34,7 +33,8 @@ use Happy_Addons\Elementor\Widget\WPForm;
 
 defined( 'ABSPATH' ) || die();
 
-class Widgets {
+class Widgets_Manager {
+
     /**
      * Initialize
      */
@@ -119,7 +119,7 @@ class Widgets {
             ],
             'justified-gallery' => [
                 'class' => Justified_Gallery::class,
-                'css' => ['justified-gallery'],
+                'css' => ['justified-gallery', 'gallery-filter'],
                 'js' => [],
                 'vendor' => [
                     'css' => ['justifiedGallery'],
@@ -128,7 +128,7 @@ class Widgets {
             ],
             'image-grid' => [
                 'class' => Image_Grid::class,
-                'css' => ['image-grid'],
+                'css' => ['image-grid', 'gallery-filter'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -353,7 +353,7 @@ class Widgets {
 
         foreach ( self::get_widgets_map() as $widget => $data ) {
             if ( self::is_registrable( $widget ) && class_exists( $data['class'] ) ) {
-                Elementor::instance()->widgets_manager->register_widget_type( new $data['class'] );
+                \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $data['class'] );
             }
         }
     }

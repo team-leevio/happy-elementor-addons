@@ -3,7 +3,7 @@
 namespace Happy_Addons\Elementor\Assets;
 
 use Happy_Addons\Elementor\Base;
-use Happy_Addons\Elementor\Manager\Widgets;
+use Happy_Addons\Elementor\Widgets_Manager;
 
 defined( 'ABSPATH' ) || die();
 
@@ -136,8 +136,8 @@ class OnDemand_Loader {
         $widgets = self::get_self_elements_usage( $post_id );
 
         if ( $widgets && is_array( $widgets ) ) {
-            $widgets_map = Widgets::get_widgets_map();
-            $base_widget = isset( $widgets_map[ Widgets::get_base_widget_key() ] ) ? $widgets_map[ Widgets::get_base_widget_key() ] : [];
+            $widgets_map = Widgets_Manager::get_widgets_map();
+            $base_widget = isset( $widgets_map[ Widgets_Manager::get_base_widget_key() ] ) ? $widgets_map[ Widgets_Manager::get_base_widget_key() ] : [];
             $data = '';
 
             if ( isset( $base_widget['css'] ) && is_array( $base_widget['css'] ) ) {
@@ -182,7 +182,7 @@ class OnDemand_Loader {
         $widgets_used = self::get_elements_usage( $post->ID );
 
         if ( is_array( $widgets_used ) ) {
-            $widgets = Widgets::get_widgets_map();
+            $widgets = Widgets_Manager::get_widgets_map();
 
             foreach( $widgets as $widget => $data ) {
                 if ( ! isset( $data['vendor'] ) || ! is_array( $data['vendor'] ) ) {
@@ -190,7 +190,7 @@ class OnDemand_Loader {
                 }
 
                 // Handle common assets only
-                if ( Widgets::get_base_widget_key() === $widget ) {
+                if ( Widgets_Manager::get_base_widget_key() === $widget ) {
                     if ( isset( $data['vendor']['css'] ) && is_array( $data['vendor']['css'] ) ) {
                         foreach ( $data['vendor']['css'] as $vendor_css_handle ) {
                             wp_enqueue_style( $vendor_css_handle );

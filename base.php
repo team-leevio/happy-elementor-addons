@@ -7,10 +7,6 @@
 namespace Happy_Addons\Elementor;
 
 use Happy_Addons\Elementor\Assets\OnDemand_Loader;
-use Happy_Addons\Elementor\Extension\Background_Overlay;
-use Happy_Addons\Elementor\Manager\Assets;
-use Happy_Addons\Elementor\Manager\Widgets;
-use Happy_Addons\Elementor\Extension\Happy_Effects;
 
 defined( 'ABSPATH' ) || die();
 
@@ -67,10 +63,9 @@ class Base {
         // Register custom controls
         add_action( 'elementor/controls/controls_registered', [$this, 'register_controls'] );
 
-        Widgets::init();
-        Assets::init();
-        Happy_Effects::init();
-        Background_Overlay::init();
+        Widgets_Manager::init();
+        Assets_Manager::init();
+        Extensions_Manager::init();
         OnDemand_Loader::init();
 
         $this->init_appsero_tracking();
@@ -103,11 +98,10 @@ class Base {
     public function include_files() {
         require( __DIR__ . '/inc/functions.php' );
         require( __DIR__ . '/inc/happy-icons.php' );
-        require( __DIR__ . '/classes/widget-manager.php' );
-        require( __DIR__ . '/classes/asset-manager.php' );
-        require( __DIR__ . '/classes/happy-effects.php' );
+        require( __DIR__ . '/classes/widgets-manager.php' );
+        require( __DIR__ . '/classes/assets-manager.php' );
+        require( __DIR__ . '/classes/extensions-manager.php' );
         require( __DIR__ . '/classes/class.ondemand-loader.php' );
-        require( __DIR__ . '/classes/background-overlay.php' );
 
         if ( is_admin() ) {
             require( __DIR__ . '/classes/class.communicator.php' );
