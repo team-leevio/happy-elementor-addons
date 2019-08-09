@@ -148,6 +148,7 @@ class OnDemand_Loader {
                 }
             }
 
+            $compiled = [];
             foreach ( $widgets as $_widget ) {
                 $map_key = substr( $_widget, 3 );
                 if ( ! isset( $widgets_map[ $map_key ] ) ) {
@@ -159,11 +160,17 @@ class OnDemand_Loader {
                 }
 
                 foreach ( $widgets_map[ $map_key ]['css'] as $_file_name_prefix ) {
+                    if ( isset( $compiled[ $_file_name_prefix ] ) ) {
+                        continue;
+                    }
                     if ( file_exists( HAPPY_DIR_PATH . "assets/css/widgets/{$_file_name_prefix}.min.css" ) ) {
                         $data .= file_get_contents( HAPPY_DIR_PATH . "assets/css/widgets/{$_file_name_prefix}.min.css" );
                     };
+                    $compiled[ $_file_name_prefix ] = true;
                 }
             }
+
+            $data .= sprintf( '/** Compiled CSS for: %s **/', implode(', ', array_keys( $compiled ) ) );
 
             if ( ! is_dir( self::$cache_dir ) ) {
                 @mkdir( self::$cache_dir, 0777, true );

@@ -26,19 +26,6 @@ class Assets_Manager {
 
         // Placeholder image replacement
         add_filter( 'elementor/utils/get_placeholder_image_src', [ __CLASS__, 'set_placeholder_image' ] );
-
-//        add_action( 'wp_footer', function() {
-//            global $post;
-//            $post_id = $post->ID;
-//            $data2 = \Elementor\Plugin::$instance->documents->get( $post_id )->get_elements_data();
-//            echo '<pre>';
-//            print_r( $data2 );
-//            echo '<pre>';
-//            $data  = json_decode( get_post_meta( $post_id, '_elementor_data', true ), true );
-//            echo '<pre>';
-//            print_r( $data );
-//            echo '<pre>';
-//        });
     }
 
     public static function set_placeholder_image() {
