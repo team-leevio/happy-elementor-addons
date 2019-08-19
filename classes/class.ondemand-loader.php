@@ -34,62 +34,6 @@ class OnDemand_Loader {
         add_action( 'save_post', [__CLASS__, 'save_elements_usage'] );
 	}
 
-    /**
-     * Get used elements in a post
-     *
-     * @param $post_id
-     * @return array
-     */
-	public static function get_elements_usage( $post_id ) {
-        $usage = self::get_only_elements_usage( $post_id );
-        if ( ! $usage ) {
-            self::save_elements_usage( $post_id );
-            $usage = self::get_only_elements_usage( $post_id );
-        }
-        return $usage;
-    }
-
-    private static function get_only_elements_usage( $post_id ) {
-        $usage = get_post_meta( $post_id, self::ELEMENTS_USAGE_META_KEY, true );
-        return ( is_array( $usage ) ? $usage : [] );
-    }
-
-    /**
-     * Save used elements
-     *
-     * @param $post_id
-     * @return void
-     */
-    public static function save_elements_usage( $post_id ) {
-        /**
-         * Before version 2.6.5 elementor didn't store elements usage data
-         */
-        if ( version_compare( ELEMENTOR_VERSION, '2.6.5', '<=' ) || ! self::get_only_elements_usage( $post_id ) ) {
-            $usage = [];
-            //we need to populate _elementor_elements_usage;
-            $document = \Elementor\Plugin::$instance->documents->get( $post_id );
-            $data = $document ? $document->get_elements_data() : [];
-
-            \Elementor\Plugin::$instance->db->iterate_data( $data, function ( $element ) use ( & $usage ) {
-                if ( empty( $element['widgetType'] ) ) {
-                    $type = $element['elType'];
-                } else {
-                    $type = $element['widgetType'];
-                }
-
-                if ( ! isset( $usage[ $type ] ) ) {
-                    $usage[ $type ] = 0;
-                }
-
-                $usage[ $type ] ++;
-
-                return $element;
-            } );
-
-            update_post_meta( $post_id, self::ELEMENTS_USAGE_META_KEY, $usage );
-            self::clean_only_cache( $post_id );
-        }
-    }
 
     public static function get_supported_types() {
         return get_option( 'elementor_cpt_support', ['post', 'page'] );
@@ -234,14 +178,7 @@ class OnDemand_Loader {
         }
     }
 
-    public static function clean_all_cache() {
-        $files = glob( self::$cache_dir . '/*' );
-        foreach( $files as $file ) {
-            if ( is_file( $file ) ) {
-                unlink( $file );
-            }
-        }
-    }
+
 
     public static function clean_only_cache( $post_id ) {
         $filename = self::$cache_dir . "post-{$post_id}.css";

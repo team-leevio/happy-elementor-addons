@@ -2,8 +2,6 @@
 
 namespace Happy_Addons\Elementor;
 
-use Happy_Addons\Elementor\Assets\OnDemand_Loader;
-
 defined( 'ABSPATH' ) || die();
 
 class Assets_Manager {
@@ -134,8 +132,8 @@ class Assets_Manager {
         );
 
         // Load used libraries only on frontend
-        if ( ha_should_load_used_library_only() ) {
-            OnDemand_Loader::load_used_libraries();
+        if ( ! Assets_Cache_Manager::in_development() && Assets_Cache_Manager::should_start() ) {
+            Assets_Cache_Manager::enqueue_libraries();
         } else {
             wp_enqueue_style( 'twentytwenty' );
             wp_enqueue_script( 'jquery-event-move' );
@@ -160,31 +158,17 @@ class Assets_Manager {
     public static function enqueue_self_dependencies() {
         $suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
 
-        if ( ha_should_load_complied_assets() ) {
-            $compiled_asset = OnDemand_Loader::get_compiled_asset();
+        wp_register_style(
+            'happy-elementor-addons',
+            HAPPY_ASSETS . 'css/main' . $suffix . 'css',
+            [ 'elementor-frontend' ],
+            Base::VERSION
+        );
 
-            if ( $compiled_asset && $compiled_asset['url'] ) {
-                wp_enqueue_style(
-                    'happy-elementor-addons',
-                    $compiled_asset['url'],
-                    [ 'elementor-frontend' ],
-                    $compiled_asset['version']
-                );
-            } else {
-                wp_enqueue_style(
-                    'happy-elementor-addons',
-                    HAPPY_ASSETS . 'css/main' . $suffix . 'css',
-                    [ 'elementor-frontend' ],
-                    Base::VERSION
-                );
-            }
+        if ( ! Assets_Cache_Manager::in_development() && Assets_Cache_Manager::should_start() ) {
+            Assets_Cache_Manager::enqueue();
         } else {
-            wp_enqueue_style(
-                'happy-elementor-addons',
-                HAPPY_ASSETS . 'css/main' . $suffix . 'css',
-                [ 'elementor-frontend' ],
-                Base::VERSION
-            );
+            wp_enqueue_style( 'happy-elementor-addons' );
         }
 
         // Happy addons script

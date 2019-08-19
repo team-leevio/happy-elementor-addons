@@ -6,7 +6,7 @@
  */
 namespace Happy_Addons\Elementor;
 
-use Happy_Addons\Elementor\Assets\OnDemand_Loader;
+//use Happy_Addons\Elementor\Assets\OnDemand_Loader;
 
 defined( 'ABSPATH' ) || die();
 
@@ -66,7 +66,9 @@ class Base {
         Widgets_Manager::init();
         Assets_Manager::init();
         Extensions_Manager::init();
-        OnDemand_Loader::init();
+        Widgets_Cache_Manager::init();
+        Assets_Cache_Manager::init();
+//        OnDemand_Loader::init();
 
         $this->init_appsero_tracking();
 
@@ -101,7 +103,9 @@ class Base {
         require( __DIR__ . '/classes/widgets-manager.php' );
         require( __DIR__ . '/classes/assets-manager.php' );
         require( __DIR__ . '/classes/extensions-manager.php' );
-        require( __DIR__ . '/classes/class.ondemand-loader.php' );
+        require( __DIR__ . '/classes/widgets-cache-manager.php' );
+        require( __DIR__ . '/classes/assets-cache-manager.php' );
+//        require( __DIR__ . '/classes/class.ondemand-loader.php' );
 
         if ( is_admin() ) {
             require( __DIR__ . '/classes/class.communicator.php' );
