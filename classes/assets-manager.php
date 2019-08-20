@@ -11,8 +11,8 @@ class Assets_Manager {
      */
     public static function init() {
         // Frontend scripts
-        add_action( 'wp_enqueue_scripts', [ __CLASS__, 'enqueue_3rd_party_dependencies' ] );
-        add_action( 'wp_enqueue_scripts', [ __CLASS__, 'enqueue_self_dependencies' ], 99 );
+        add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_register' ] );
+        add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_enqueue' ], 99 );
 
         // Dashboard scripts
         add_action( 'admin_enqueue_scripts', [ __CLASS__, 'dashboard_enqueue_scripts' ] );
@@ -30,7 +30,7 @@ class Assets_Manager {
         return HAPPY_ASSETS . 'imgs/placeholder.jpg';
     }
 
-    public static function enqueue_3rd_party_dependencies() {
+    public static function frontend_register() {
         $suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
 
         wp_enqueue_style(
@@ -131,33 +131,6 @@ class Assets_Manager {
             true
         );
 
-        // Load used libraries only on frontend
-        if ( ! Assets_Cache_Manager::in_development() && Assets_Cache_Manager::should_start() ) {
-            Assets_Cache_Manager::enqueue_libraries();
-        } else {
-            wp_enqueue_style( 'twentytwenty' );
-            wp_enqueue_script( 'jquery-event-move' );
-            wp_enqueue_script( 'jquery-twentytwenty' );
-
-            wp_enqueue_style( 'justifiedGallery' );
-            wp_enqueue_script( 'jquery-justifiedGallery' );
-
-            wp_enqueue_style( 'slick' );
-            wp_enqueue_style( 'slick-theme' );
-            wp_enqueue_script( 'jquery-slick' );
-
-            wp_enqueue_script( 'jquery-isotope' );
-
-            wp_enqueue_script( 'elementor-waypoints' );
-            wp_enqueue_script( 'jquery-numerator' );
-
-            wp_enqueue_script( 'anime' );
-        }
-    }
-
-    public static function enqueue_self_dependencies() {
-        $suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
-
         wp_register_style(
             'happy-elementor-addons',
             HAPPY_ASSETS . 'css/main' . $suffix . 'css',
@@ -165,20 +138,56 @@ class Assets_Manager {
             Base::VERSION
         );
 
-        if ( ! Assets_Cache_Manager::in_development() && Assets_Cache_Manager::should_start() ) {
-            Assets_Cache_Manager::enqueue();
-        } else {
-            wp_enqueue_style( 'happy-elementor-addons' );
-        }
-
         // Happy addons script
-        wp_enqueue_script(
+        wp_register_script(
             'happy-elementor-addons',
             HAPPY_ASSETS . 'js/happy-addons' . $suffix . 'js',
             [ 'imagesloaded', 'jquery' ],
             Base::VERSION,
             true
         );
+    }
+
+    public static function frontend_enqueue() {
+        global $post;
+        if ( is_null( $post ) || ! is_object( $post ) ) {
+            return;
+        }
+
+        if ( ! isset( $post->ID ) || ! Cache_Manager::is_built_with_elementor( $post->ID ) ) {
+            return;
+        }
+
+        $widgets_cache = new Widgets_Cache( $post->ID );
+
+        if ( $widgets_cache->has() ) {
+            $assets_cache = new Assets_Cache( $post->ID );
+            $assets_cache->enqueue_libraries();
+            $assets_cache->enqueue();
+            return;
+        }
+
+        wp_enqueue_style( 'twentytwenty' );
+        wp_enqueue_script( 'jquery-event-move' );
+        wp_enqueue_script( 'jquery-twentytwenty' );
+
+        wp_enqueue_style( 'justifiedGallery' );
+        wp_enqueue_script( 'jquery-justifiedGallery' );
+
+        wp_enqueue_style( 'slick' );
+        wp_enqueue_style( 'slick-theme' );
+        wp_enqueue_script( 'jquery-slick' );
+
+        wp_enqueue_script( 'jquery-isotope' );
+
+        wp_enqueue_script( 'elementor-waypoints' );
+        wp_enqueue_script( 'jquery-numerator' );
+
+        wp_enqueue_script( 'anime' );
+
+        // Self assets
+        wp_enqueue_style( 'happy-elementor-addons' );
+        wp_enqueue_script( 'happy-elementor-addons' );
     }
 
     public static function dashboard_enqueue_scripts() {
