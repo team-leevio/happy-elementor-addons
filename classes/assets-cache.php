@@ -82,7 +82,7 @@ class Assets_Cache {
         if ( $this->has() ) {
             wp_enqueue_style(
                 'happy-elementor-addons-' . $this->get_post_id(),
-                $this->get_cache_url(),
+                $this->get_file_url(),
                 [ 'elementor-frontend' ],
                 Base::VERSION . '.' . get_post_modified_time()
             );

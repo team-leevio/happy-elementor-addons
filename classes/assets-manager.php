@@ -160,7 +160,7 @@ class Assets_Manager {
 
         $widgets_cache = new Widgets_Cache( $post->ID );
 
-        if ( $widgets_cache->has() ) {
+        if ( ! Cache_Manager::is_editing_mode() && $widgets_cache->has() ) {
             $assets_cache = new Assets_Cache( $post->ID );
             $assets_cache->enqueue_libraries();
             $assets_cache->enqueue();
