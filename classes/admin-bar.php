@@ -22,13 +22,14 @@ class Admin_Bar {
         if ( ! check_ajax_referer( 'ha_clear_cache', 'nonce' ) ) {
             wp_send_json_error();
         }
-        $type = isset( $_POST['type'] ) ? $_POST['type'] : '';
 
+        $type = isset( $_POST['type'] ) ? $_POST['type'] : '';
+        $post_id = isset( $_POST['post_id'] ) ? $_POST['post_id'] : 0;
+        $assets_cache = new Assets_Cache( $post_id );
         if ( $type === 'page' ) {
-            $post_id = isset( $_POST['post_id'] ) ? $_POST['post_id'] : 0;
-            OnDemand_Loader::clean_only_cache( $post_id );
+            $assets_cache->delete();
         } elseif ( $type === 'all' ) {
-            OnDemand_Loader::clean_all_cache();
+            $assets_cache->delete_all();
         }
         wp_send_json_success();
     }
@@ -64,7 +65,7 @@ class Admin_Bar {
         );
     }
 
-    public static function add_toolbar_items( $admin_bar ) {
+    public static function add_toolbar_items( \WP_Admin_Bar $admin_bar ) {
         if ( ! current_user_can( 'manage_options' ) ) {
             return;
         }
@@ -77,10 +78,10 @@ class Admin_Bar {
 
         if ( is_singular() ) {
             $admin_bar->add_menu( array(
-                'id'    => 'ha-clear-page-cache',
+                'id' => 'ha-clear-page-cache',
                 'parent' => 'happy-addons',
-                'title' => '<i class="dashicons dashicons-update-alt"></i> ' . __( 'Clear Page Cache', 'happy-elementor-addons' ),
-                'href'  => '#',
+                'title' => '<i class="dashicons dashicons-update-alt"></i> ' . __( 'Purge Page Cache', 'happy-elementor-addons' ),
+                'href' => '#',
                 'meta' => [
                     'class' => 'hajs-clear-cache ha-clear-page-cache',
                 ]
@@ -88,10 +89,10 @@ class Admin_Bar {
         }
 
         $admin_bar->add_menu( array(
-            'id'    => 'ha-clear-all-cache',
+            'id' => 'ha-clear-all-cache',
             'parent' => 'happy-addons',
-            'title' => '<i class="dashicons dashicons-update-alt"></i> ' . __( 'Clear All Cache', 'happy-elementor-addons' ),
-            'href'  => '#',
+            'title' => '<i class="dashicons dashicons-update-alt"></i> ' . __( 'Purge All Cache', 'happy-elementor-addons' ),
+            'href' => '#',
             'meta' => [
                 'class' => 'hajs-clear-cache ha-clear-all-cache',
             ]
