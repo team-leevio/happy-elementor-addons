@@ -164,6 +164,7 @@ class Assets_Manager {
             $assets_cache = new Assets_Cache( $post->ID );
             $assets_cache->enqueue_libraries();
             $assets_cache->enqueue();
+            wp_enqueue_script( 'happy-elementor-addons' );
             return;
         }
 
