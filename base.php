@@ -66,9 +66,7 @@ class Base {
         Widgets_Manager::init();
         Assets_Manager::init();
         Extensions_Manager::init();
-        Widgets_Cache_Manager::init();
-        Assets_Cache_Manager::init();
-//        OnDemand_Loader::init();
+        Cache_Manager::init();
 
         $this->init_appsero_tracking();
 
@@ -100,12 +98,14 @@ class Base {
     public function include_files() {
         require( __DIR__ . '/inc/functions.php' );
         require( __DIR__ . '/inc/happy-icons.php' );
+
         require( __DIR__ . '/classes/widgets-manager.php' );
         require( __DIR__ . '/classes/assets-manager.php' );
         require( __DIR__ . '/classes/extensions-manager.php' );
-        require( __DIR__ . '/classes/widgets-cache-manager.php' );
-        require( __DIR__ . '/classes/assets-cache-manager.php' );
-//        require( __DIR__ . '/classes/class.ondemand-loader.php' );
+        require( __DIR__ . '/classes/cache-manager.php' );
+
+        require( __DIR__ . '/classes/widgets-cache.php' );
+        require( __DIR__ . '/classes/assets-cache.php' );
 
         if ( is_admin() ) {
             require( __DIR__ . '/classes/class.communicator.php' );
