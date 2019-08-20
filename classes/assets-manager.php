@@ -14,9 +14,6 @@ class Assets_Manager {
         add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_register' ] );
         add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_enqueue' ], 99 );
 
-        // Dashboard scripts
-        add_action( 'admin_enqueue_scripts', [ __CLASS__, 'dashboard_enqueue_scripts' ] );
-
         // Edit and preview enqueue
         add_action( 'elementor/preview/enqueue_styles', [ __CLASS__, 'enqueue_preview_style' ] );
 
@@ -33,7 +30,7 @@ class Assets_Manager {
     public static function frontend_register() {
         $suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
 
-        wp_enqueue_style(
+        wp_register_style(
             'happy-icon',
             HAPPY_ASSETS . 'fonts/style.min.css',
             null,
@@ -160,13 +157,17 @@ class Assets_Manager {
 
         $widgets_cache = new Widgets_Cache( $post->ID );
 
-        if ( ! Cache_Manager::is_editing_mode() && $widgets_cache->has() ) {
+        $is_happy_mode_enabled = apply_filters( 'happyaddons_is_happy_mode_enabled', true );
+
+        if ( $is_happy_mode_enabled && ! Cache_Manager::is_editing_mode() && $widgets_cache->has() ) {
             $assets_cache = new Assets_Cache( $post->ID );
             $assets_cache->enqueue_libraries();
             $assets_cache->enqueue();
             wp_enqueue_script( 'happy-elementor-addons' );
             return;
         }
+
+        wp_enqueue_style( 'happy-icon' );
 
         wp_enqueue_style( 'twentytwenty' );
         wp_enqueue_script( 'jquery-event-move' );
@@ -189,19 +190,6 @@ class Assets_Manager {
         // Self assets
         wp_enqueue_style( 'happy-elementor-addons' );
         wp_enqueue_script( 'happy-elementor-addons' );
-    }
-
-    public static function dashboard_enqueue_scripts() {
-        $currentScreen = get_current_screen();
-        if ( $currentScreen->id != "elementor_page_happy-settings" ) {
-            return;
-        }
-        wp_enqueue_style(
-            'happy-dashboard',
-            HAPPY_ASSETS . 'admin/css/dashboard.css',
-            null,
-            Base::VERSION
-        );
     }
 
     public static function enqueue_editor_scripts() {

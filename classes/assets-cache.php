@@ -23,7 +23,7 @@ class Assets_Cache {
         $this->post_id = $post_id;
         $this->widgets_cache = new Widgets_Cache( $post_id );
 
-        $upload_dir        = wp_upload_dir();
+        $upload_dir = wp_upload_dir();
         $this->upload_path = trailingslashit( $upload_dir['basedir'] );
         $this->upload_url = trailingslashit( $upload_dir['baseurl'] );
     }
@@ -140,7 +140,7 @@ class Assets_Cache {
 
             // Get common css styles
             if ( isset( $base_widget['css'] ) && is_array( $base_widget['css'] ) ) {
-                $this->get_files_contents( $base_widget['css'], $data );
+                $data .= $this->get_files_contents( $base_widget['css'] );
             }
 
             $cached_widgets = [];
@@ -152,7 +152,7 @@ class Assets_Cache {
                 ) {
                     continue;
                 }
-                $this->get_files_contents( $widgets_map[ $widget_map_key ]['css'], $data );
+                $data .= $this->get_files_contents( $widgets_map[ $widget_map_key ]['css'], isset( $widgets_map['is_pro'] ) );
                 $cached_widgets[ $widget_map_key ] = true;
             }
             $data .= sprintf( '/** Compiled CSS for: %s **/', implode(', ', array_keys( $cached_widgets ) ) );
@@ -166,11 +166,15 @@ class Assets_Cache {
         }
     }
 
-    protected function get_files_contents( $files, &$data ) {
-        foreach ( $files as $file ) {
-            if ( file_exists( HAPPY_DIR_PATH . "assets/css/widgets/{$file}.min.css" ) ) {
-                $data .= file_get_contents( HAPPY_DIR_PATH . "assets/css/widgets/{$file}.min.css" );
+    protected function get_files_contents( $files_name, $is_pro = false ) {
+        $data = '';
+        foreach ( $files_name as $file_name ) {
+            $file_path = HAPPY_DIR_PATH . "assets/css/widgets/{$file_name}.min.css";
+            $file_path = apply_filters( 'happyaddons_cached_widget_css_file_path', $file_path, $file_name, $is_pro );
+            if ( file_exists( $file_path ) ) {
+                $data .= file_get_contents( $file_path );
             };
         }
+        return $data;
     }
 }

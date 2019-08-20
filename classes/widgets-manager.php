@@ -2,17 +2,13 @@
 namespace Happy_Addons\Elementor;
 
 use Happy_Addons\Elementor\Widget\Card;
-use Happy_Addons\Elementor\Widget\AdCard;
 use Happy_Addons\Elementor\Widget\CalderaForm;
 use Happy_Addons\Elementor\Widget\Calendly;
 use Happy_Addons\Elementor\Widget\Carousel;
 use Happy_Addons\Elementor\Widget\CF7;
 use Happy_Addons\Elementor\Widget\Dual_Button;
-use Happy_Addons\Elementor\Widget\Feature_List;
 use Happy_Addons\Elementor\Widget\Flip_Box;
-use Happy_Addons\Elementor\Widget\Google_Map;
 use Happy_Addons\Elementor\Widget\Gradient_Heading;
-use Happy_Addons\Elementor\Widget\Hover_Box;
 use Happy_Addons\Elementor\Widget\Icon_Box;
 use Happy_Addons\Elementor\Widget\Image_Compare;
 use Happy_Addons\Elementor\Widget\Image_Grid;
@@ -39,7 +35,7 @@ class Widgets_Manager {
      * Initialize
      */
     public static function init() {
-        add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register'] );
+        add_action( 'elementor/widgets/widgets_registered', [ __CLASS__, 'register' ] );
     }
 
     public static function get_widgets_map() {
@@ -49,7 +45,8 @@ class Widgets_Manager {
                 'css' => ['common', 'btn'],
                 'js' => [],
                 'vendor' => [
-                    'js' => ['anime']
+                    'js' => ['anime'],
+                    'css' => ['happy-icon']
                 ]
             ],
 
@@ -153,15 +150,6 @@ class Widgets_Manager {
                     'js' => ['jquery-slick'],
                 ],
             ],
-            'adcard' => [
-                'class' => AdCard::class,
-                'css' => [],
-                'js' => [],
-                'vendor' => [
-                    'css' => [],
-                    'js' => [],
-                ],
-            ],
             'skills' => [
                 'class' => Skills::class,
                 'css' => ['skills'],
@@ -261,24 +249,6 @@ class Widgets_Manager {
                     'js' => [],
                 ],
             ],
-            'hover-box' => [
-                'class' => Hover_Box::class,
-                'css' => ['hover-box'],
-                'js' => [],
-                'vendor' => [
-                    'css' => [],
-                    'js' => [],
-                ],
-            ],
-            'google-map' => [
-                'class' => Google_Map::class,
-                'css' => [],
-                'js' => [],
-                'vendor' => [
-                    'css' => [],
-                    'js' => [],
-                ],
-            ],
             'calendly' => [
                 'class' => Calendly::class,
                 'css' => [],
@@ -291,15 +261,6 @@ class Widgets_Manager {
             'pricing-table' => [
                 'class' => Pricing_Table::class,
                 'css' => ['pricing-table'],
-                'js' => [],
-                'vendor' => [
-                    'css' => [],
-                    'js' => [],
-                ],
-            ],
-            'feature-list' => [
-                'class' => Feature_List::class,
-                'css' => ['list'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -320,21 +281,6 @@ class Widgets_Manager {
         return apply_filters( 'happyaddons_widgets_map', $widgets_map );
     }
 
-    /**
-     * Check widget file and include
-     *
-     * @param $widget
-     * @return bool
-     */
-    private static function is_registrable( $widget ) {
-        $widget_file = HAPPY_DIR_PATH . 'widgets/' . $widget . '/widget.php';
-        if ( $widget !== self::get_base_widget_key() && is_readable( $widget_file ) ) {
-            include( $widget_file );
-            return true;
-        }
-        return false;
-    }
-
     public static function get_base_widget_key() {
         return apply_filters( 'happyaddons_get_base_widget_key', '_happyaddons_base' );
     }
@@ -351,10 +297,18 @@ class Widgets_Manager {
     public static function register() {
         require( HAPPY_DIR_PATH . 'base/widget-base.php' );
 
-        foreach ( self::get_widgets_map() as $widget => $data ) {
-            if ( self::is_registrable( $widget ) && class_exists( $data['class'] ) ) {
-                \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $data['class'] );
+        foreach ( self::get_widgets_map() as $widget_key => $data ) {
+            if ( ! empty( $data['class'] ) && $widget_key !== self::get_base_widget_key() ) {
+                self::register_widget( $widget_key, $data['class'] );
             }
+        }
+    }
+
+    protected static function register_widget( $widget_key, $class ) {
+        $widget_file = HAPPY_DIR_PATH . 'widgets/' . $widget_key . '/widget.php';
+        if ( is_readable( $widget_file ) ) {
+            include( $widget_file );
+            \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $class );
         }
     }
 }
