@@ -143,14 +143,19 @@ class Assets_Cache {
                 $this->get_files_contents( $base_widget['css'], $data );
             }
 
+            $cached_widgets = [];
             // Get widget specific styles
             foreach ( $widgets as $widget_id ) {
                 $widget_map_key = substr( $widget_id, 3 );
-                if ( ! isset( $widgets_map[ $widget_map_key ], $widgets_map[ $widget_map_key ]['css'] ) ) {
+                if ( isset( $cached_widgets[ $widget_map_key ] ) ||
+                    ! isset( $widgets_map[ $widget_map_key ], $widgets_map[ $widget_map_key ]['css'] )
+                ) {
                     continue;
                 }
                 $this->get_files_contents( $widgets_map[ $widget_map_key ]['css'], $data );
+                $cached_widgets[ $widget_map_key ] = true;
             }
+            $data .= sprintf( '/** Compiled CSS for: %s **/', implode(', ', array_keys( $cached_widgets ) ) );
 
             if ( ! is_dir( $this->get_cache_dir() ) ) {
                 @mkdir( $this->get_cache_dir(), 0777, true );
