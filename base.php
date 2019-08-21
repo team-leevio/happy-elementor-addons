@@ -70,6 +70,10 @@ class Base {
         if ( is_user_logged_in() ) {
             Admin_Bar::init();
         }
+
+        if ( is_admin() ) {
+            Upgrader::init();
+        }
     }
 
     /**
@@ -106,6 +110,7 @@ class Base {
 
         if ( is_admin() ) {
             require( HAPPY_ADDONS_DIR_PATH . 'classes/class.communicator.php' );
+            require( HAPPY_ADDONS_DIR_PATH . 'classes/upgrader.php' );
         }
 
         if ( is_user_logged_in() ) {

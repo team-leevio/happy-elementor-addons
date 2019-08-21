@@ -1,8 +1,6 @@
 <?php
 namespace Happy_Addons\Elementor;
 
-use Happy_Addons\Elementor\Assets\OnDemand_Loader;
-
 defined( 'ABSPATH' ) || die();
 
 class Admin_Bar {
