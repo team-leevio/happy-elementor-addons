@@ -12,6 +12,7 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
+use Happy_Addons\Elementor\Icons_Manager;
 
 defined( 'ABSPATH' ) || die();
 
@@ -717,9 +718,9 @@ class Icon_Box extends Base {
             <span <?php echo $this->get_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></span>
         <?php endif; ?>
 
-        <?php if ( ! empty( $settings['selected_icon'] ) || ! empty( $settings['icon'] ) ) : ?>
+        <?php if ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon'] ) ) : ?>
             <span class="ha-icon-box-icon">
-                <?php ha_render_icon( $settings, 'selected_icon', 'icon' ); ?>
+                <?php ha_render_icon( $settings, 'icon', 'selected_icon' ); ?>
             </span>
         <?php endif; ?>
 
@@ -755,7 +756,7 @@ class Icon_Box extends Base {
             <span {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{ settings.badge_text }}</span>
         <# } #>
 
-        <# if ( settings.selected_icon || settings.icon ) { #>
+        <# if ( settings.icon || settings.selected_icon ) { #>
             <span class="ha-icon-box-icon">
                 <# if ( iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
                     {{{ iconHTML.value }}}
@@ -773,5 +774,9 @@ class Icon_Box extends Base {
             print( '</a>' );
         } #>
         <?php
+    }
+
+    public function on_import( $element ) {
+        return Icons_Manager::on_import_migration( $element, 'icon', 'selected_icon' );
     }
 }

@@ -354,14 +354,14 @@ function ha_is_elementor_version( $operator = '<', $version = '2.6.0' ) {
 }
 
 /**
- * Render icon with backward compatibility
+ * Render icon html with backward compatibility
  *
- * @param $widget
- * @param string $new_icon_id
+ * @param array $settings
  * @param string $old_icon_id
+ * @param string $new_icon_id
  * @param array $attributes
  */
-function ha_render_icon( $settings = [], $new_icon_id = 'selected_icon', $old_icon_id = 'icon', $attributes = [ 'aria-hidden' => 'true' ] ) {
+function ha_render_icon( $settings = [], $old_icon_id = 'icon', $new_icon_id = 'selected_icon', $attributes = [ 'aria-hidden' => 'true' ] ) {
     // Check if its already migrated
     $migrated = isset( $settings['__fa4_migrated'][ $new_icon_id ] );
     // Check if its a new widget without previously selected icon using the old Icon control

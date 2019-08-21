@@ -28,6 +28,48 @@ class Icons_Manager {
     }
 
     /**
+     * on_import_migration
+     * @param array $element        settings array
+     * @param string $old_control   old control id
+     * @param string $new_control   new control id
+     * @param bool $remove_old      boolean weather to remove old control or not
+     *
+     * @return array
+     */
+    public static function on_import_migration( array $element, $old_control = '', $new_control = '', $remove_old = false ) {
+        if ( ! isset( $element['settings'][ $old_control ] ) || isset( $element['settings'][ $new_control ] ) ) {
+            return $element;
+        }
+
+        // Case when old value is saved as empty string
+        $new_value = [
+            'value' => '',
+            'library' => '',
+        ];
+
+        // Case when old value needs migration
+        if ( ! empty( $element['settings'][ $old_control ] ) && ! \Elementor\Icons_Manager::is_migration_allowed() ) {
+            if ( strpos( $element['settings'][ $old_control ], 'hm hm-' ) !== false ) {
+                $new_value = [
+                    'value' => $element['settings'][ $old_control ],
+                    'library' => 'happy-icon',
+                ];
+            } else {
+                $new_value = \Elementor\Icons_Manager::fa4_to_fa5_value_migration( $element['settings'][ $old_control ] );
+            }
+        }
+
+        $element['settings'][ $new_control ] = $new_value;
+
+        //remove old value
+        if ( $remove_old ) {
+            unset( $element['settings'][ $old_control ] );
+        }
+
+        return $element;
+    }
+
+    /**
      * Get a list of happy icons
      *
      * @return array
