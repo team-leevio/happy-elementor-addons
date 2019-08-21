@@ -1,0 +1,56 @@
+.ha-badge {
+  background-color: #fff;
+  padding: .475rem 1.1rem;
+  border-radius: 50px;
+  font-size: 12px;
+
+  &--top-left {
+    left: 1rem;
+    top: 1rem;
+  }
+
+  &--top-center {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 1rem;
+  }
+
+  &--top-right {
+    right: 1rem;
+    top: 1rem;
+  }
+
+  &--middle-left {
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1rem;
+  }
+
+  &--middle-center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  &--middle-right {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
+  }
+
+  &--bottom-left {
+    left: 1rem;
+    bottom: 1rem;
+  }
+
+  &--bottom-center {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1rem;
+  }
+
+  &--bottom-right {
+    right: 1rem;
+    bottom: 1rem;
+  }
+}

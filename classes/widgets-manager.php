@@ -62,7 +62,7 @@ class Widgets_Manager {
             ],
             'card' => [
                 'class' => Card::class,
-                'css' => ['card'],
+                'css' => ['card', 'badge'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
@@ -80,7 +80,7 @@ class Widgets_Manager {
             ],
             'icon-box' => [
                 'class' => Icon_Box::class,
-                'css' => ['icon-box'],
+                'css' => ['icon-box', 'badge'],
                 'js' => [],
                 'vendor' => [
                     'css' => [],
