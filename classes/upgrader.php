@@ -10,12 +10,20 @@ class Upgrader {
     public static function init() {
         if ( ! self::get_db_version() || version_compare( self::get_db_version(), HAPPY_ADDONS_VERSION, '<' ) ) {
             self::enable_icon_migration();
+            self::delete_assets_cache();
+
+            // Last action
             self::set_db_version();
         }
     }
 
     protected static function enable_icon_migration() {
         add_option( 'elementor_icon_manager_needs_update', 'yes' );
+    }
+
+    protected static function delete_assets_cache() {
+        $assets_cache = new Assets_Cache( 0 );
+        $assets_cache->delete_all();
     }
 
     protected static function get_db_version() {
