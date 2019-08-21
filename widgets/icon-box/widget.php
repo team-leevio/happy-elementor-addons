@@ -54,16 +54,32 @@ class Icon_Box extends Base {
 			]
 		);
 
-        $this->add_control(
-            'icon',
-            [
-                'show_label' => false,
-                'type' => Controls_Manager::ICON,
-                'label_block' => true,
-                'options' => ha_get_happy_icons(),
-                'default' => 'fa fa-smile-o',
-            ]
-        );
+        if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
+            $this->add_control(
+                'icon',
+                [
+                    'show_label' => false,
+                    'type' => Controls_Manager::ICON,
+                    'label_block' => true,
+                    'options' => ha_get_happy_icons(),
+                    'default' => 'fa fa-smile-o',
+                ]
+            );
+        } else {
+            $this->add_control(
+                'icon_new',
+                [
+                    'show_label' => false,
+                    'type' => Controls_Manager::ICONS,
+                    'fa4compatibility' => 'icon',
+                    'label_block' => true,
+                    'default' => [
+                        'value' => 'fas fa-smile-wink',
+                        'library' => 'solid'
+                    ]
+                ]
+            );
+        }
 
         $this->add_control(
             'title',
@@ -697,6 +713,10 @@ class Icon_Box extends Base {
 
         $this->add_inline_editing_attributes( 'badge_text', 'none' );
         $this->add_render_attribute( 'badge_text', 'class', 'ha-badge ha-badge--top-right' );
+
+//        echo '<pre>';
+//            print_r( $settings );
+//        echo '</pre>';
         ?>
 
         <?php if ( $settings['badge_text'] ) : ?>

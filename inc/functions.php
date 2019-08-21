@@ -341,3 +341,14 @@ function ha_get_css_blend_modes() {
         'luminosity' => __( 'Luminosity', 'happy-elementor-addons' ),
     ];
 }
+
+/**
+ * Check elementor version
+ *
+ * @param string $version
+ * @param string $operator
+ * @return bool
+ */
+function ha_is_elementor_version( $operator = '<', $version = '2.6.0' ) {
+    return defined( 'ELEMENTOR_VERSION' ) && version_compare( ELEMENTOR_VERSION, $version, $operator );
+}

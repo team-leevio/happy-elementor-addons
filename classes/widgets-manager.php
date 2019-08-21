@@ -298,7 +298,7 @@ class Widgets_Manager {
         require( HAPPY_DIR_PATH . 'base/widget-base.php' );
 
         foreach ( self::get_widgets_map() as $widget_key => $data ) {
-            if ( ! empty( $data['class'] ) && $widget_key !== self::get_base_widget_key() ) {
+            if ( $widget_key !== self::get_base_widget_key() && ! empty( $data['class'] ) && ( ! isset( $data['is_pro'] ) || ! $data['is_pro'] ) ) {
                 self::register_widget( $widget_key, $data['class'] );
             }
         }
