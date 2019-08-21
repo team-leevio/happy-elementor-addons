@@ -6,13 +6,9 @@
  */
 namespace Happy_Addons\Elementor;
 
-//use Happy_Addons\Elementor\Assets\OnDemand_Loader;
-
 defined( 'ABSPATH' ) || die();
 
 class Base {
-
-    const VERSION = '1.4.4';
 
     const MINIMUM_ELEMENTOR_VERSION = '2.5.0';
 
@@ -83,13 +79,13 @@ class Base {
      */
     protected function init_appsero_tracking() {
         if ( ! class_exists( 'Appsero\Client' ) ) {
-            require_once __DIR__ . '/vendor/appsero/src/Client.php';
+            require_once HAPPY_ADDONS_DIR_PATH . 'vendor/appsero/src/Client.php';
         }
 
         $client = new \Appsero\Client(
             '70b96801-94cc-4501-a005-8f9a4e20e152',
             'Happy Elementor Addons',
-            HAPPY__FILE__
+            HAPPY_ADDONS__FILE__
         );
 
         // Active insights
@@ -97,23 +93,23 @@ class Base {
     }
 
     public function include_files() {
-        require( __DIR__ . '/inc/functions.php' );
+        require( HAPPY_ADDONS_DIR_PATH . 'inc/functions.php' );
 
-        require( __DIR__ . '/classes/icons-manager.php' );
-        require( __DIR__ . '/classes/widgets-manager.php' );
-        require( __DIR__ . '/classes/assets-manager.php' );
-        require( __DIR__ . '/classes/extensions-manager.php' );
-        require( __DIR__ . '/classes/cache-manager.php' );
+        require( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
+        require( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
+        require( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );
+        require( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
+        require( HAPPY_ADDONS_DIR_PATH . 'classes/cache-manager.php' );
 
-        require( __DIR__ . '/classes/widgets-cache.php' );
-        require( __DIR__ . '/classes/assets-cache.php' );
+        require( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
+        require( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
 
         if ( is_admin() ) {
-            require( __DIR__ . '/classes/class.communicator.php' );
+            require( HAPPY_ADDONS_DIR_PATH . 'classes/class.communicator.php' );
         }
 
         if ( is_user_logged_in() ) {
-            require( __DIR__ . '/classes/admin-bar.php' );
+            require( HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php' );
         }
     }
 
@@ -213,7 +209,7 @@ class Base {
      * @access public
      */
     public function register_controls() {
-        require( __DIR__ . '/controls/foreground.php' );
+        require( HAPPY_ADDONS_DIR_PATH . 'controls/foreground.php' );
         $foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
 
         \Elementor\Plugin::instance()->controls_manager->add_group_control( $foreground::get_type(), new $foreground() );

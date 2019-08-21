@@ -34,11 +34,12 @@ Copyright 2019 HappyMonster <http://happymonster.me>
 
 defined( 'ABSPATH' ) || die();
 
-define( 'HAPPY__FILE__', __FILE__ );
-define( 'HAPPY_DIR_PATH', plugin_dir_path( HAPPY__FILE__ ) );
-define( 'HAPPY_DIR_URL', plugin_dir_url( HAPPY__FILE__ ) );
-define( 'HAPPY_ASSETS', trailingslashit( HAPPY_DIR_URL . 'assets' ) );
+define( 'HAPPY_ADDONS_VERSION', '1.4.0' );
+define( 'HAPPY_ADDONS__FILE__', __FILE__ );
+define( 'HAPPY_ADDONS_DIR_PATH', plugin_dir_path( HAPPY_ADDONS__FILE__ ) );
+define( 'HAPPY_ADDONS_DIR_URL', plugin_dir_url( HAPPY_ADDONS__FILE__ ) );
+define( 'HAPPY_ADDONS_ASSETS', trailingslashit( HAPPY_ADDONS_DIR_URL . 'assets' ) );
 
-require HAPPY_DIR_PATH . 'base.php';
+require HAPPY_ADDONS_DIR_PATH . 'base.php';
 
 \Happy_Addons\Elementor\Base::instance();

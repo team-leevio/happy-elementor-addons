@@ -24,7 +24,7 @@ class Assets_Manager {
     }
 
     public static function set_placeholder_image() {
-        return HAPPY_ASSETS . 'imgs/placeholder.jpg';
+        return HAPPY_ADDONS_ASSETS . 'imgs/placeholder.jpg';
     }
 
     public static function frontend_register() {
@@ -32,9 +32,9 @@ class Assets_Manager {
 
         wp_register_style(
             'happy-icon',
-            HAPPY_ASSETS . 'fonts/style.min.css',
+            HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
             null,
-            Base::VERSION
+            HAPPY_ADDONS_VERSION
         );
 
         /**
@@ -42,24 +42,24 @@ class Assets_Manager {
          */
         wp_register_style(
             'twentytwenty',
-            HAPPY_ASSETS . 'vendor/twentytwenty/css/twentytwenty.css',
+            HAPPY_ADDONS_ASSETS . 'vendor/twentytwenty/css/twentytwenty.css',
             null,
-            Base::VERSION
+            HAPPY_ADDONS_VERSION
         );
 
         wp_register_script(
             'jquery-event-move',
-            HAPPY_ASSETS . 'vendor/twentytwenty/js/jquery.event.move.js',
+            HAPPY_ADDONS_ASSETS . 'vendor/twentytwenty/js/jquery.event.move.js',
             [ 'jquery' ],
-            Base::VERSION,
+            HAPPY_ADDONS_VERSION,
             true
         );
 
         wp_register_script(
             'jquery-twentytwenty',
-            HAPPY_ASSETS . 'vendor/twentytwenty/js/jquery.twentytwenty.js',
+            HAPPY_ADDONS_ASSETS . 'vendor/twentytwenty/js/jquery.twentytwenty.js',
             [ 'jquery-event-move' ],
-            Base::VERSION,
+            HAPPY_ADDONS_VERSION,
             true
         );
 
@@ -68,16 +68,16 @@ class Assets_Manager {
          */
         wp_register_style(
             'justifiedGallery',
-            HAPPY_ASSETS . 'vendor/justifiedGallery/css/justifiedGallery.min.css',
+            HAPPY_ADDONS_ASSETS . 'vendor/justifiedGallery/css/justifiedGallery.min.css',
             null,
-            Base::VERSION
+            HAPPY_ADDONS_VERSION
         );
 
         wp_register_script(
             'jquery-justifiedGallery',
-            HAPPY_ASSETS . 'vendor/justifiedGallery/js/jquery.justifiedGallery.min.js',
+            HAPPY_ADDONS_ASSETS . 'vendor/justifiedGallery/js/jquery.justifiedGallery.min.js',
             [ 'jquery' ],
-            Base::VERSION,
+            HAPPY_ADDONS_VERSION,
             true
         );
 
@@ -86,23 +86,23 @@ class Assets_Manager {
          */
         wp_register_style(
             'slick',
-            HAPPY_ASSETS . 'vendor/slick/slick.css',
+            HAPPY_ADDONS_ASSETS . 'vendor/slick/slick.css',
             null,
-            Base::VERSION
+            HAPPY_ADDONS_VERSION
         );
 
         wp_register_style(
             'slick-theme',
-            HAPPY_ASSETS . 'vendor/slick/slick-theme.css',
+            HAPPY_ADDONS_ASSETS . 'vendor/slick/slick-theme.css',
             null,
-            Base::VERSION
+            HAPPY_ADDONS_VERSION
         );
 
         wp_register_script(
             'jquery-slick',
-            HAPPY_ASSETS . 'vendor/slick/slick' . $suffix . 'js',
+            HAPPY_ADDONS_ASSETS . 'vendor/slick/slick' . $suffix . 'js',
             [ 'jquery' ],
-            Base::VERSION,
+            HAPPY_ADDONS_VERSION,
             true
         );
 
@@ -111,9 +111,9 @@ class Assets_Manager {
          */
         wp_register_script(
             'jquery-isotope',
-            HAPPY_ASSETS . 'vendor/jquery.isotope.js',
+            HAPPY_ADDONS_ASSETS . 'vendor/jquery.isotope.js',
             [ 'jquery' ],
-            Base::VERSION,
+            HAPPY_ADDONS_VERSION,
             true
         );
 
@@ -122,25 +122,25 @@ class Assets_Manager {
          */
         wp_register_script(
             'anime',
-            HAPPY_ASSETS . 'vendor/anime/lib/anime.min.js',
+            HAPPY_ADDONS_ASSETS . 'vendor/anime/lib/anime.min.js',
             null,
-            Base::VERSION,
+            HAPPY_ADDONS_VERSION,
             true
         );
 
         wp_register_style(
             'happy-elementor-addons',
-            HAPPY_ASSETS . 'css/main' . $suffix . 'css',
+            HAPPY_ADDONS_ASSETS . 'css/main' . $suffix . 'css',
             [ 'elementor-frontend' ],
-            Base::VERSION
+            HAPPY_ADDONS_VERSION
         );
 
         // Happy addons script
         wp_register_script(
             'happy-elementor-addons',
-            HAPPY_ASSETS . 'js/happy-addons' . $suffix . 'js',
+            HAPPY_ADDONS_ASSETS . 'js/happy-addons' . $suffix . 'js',
             [ 'imagesloaded', 'jquery' ],
-            Base::VERSION,
+            HAPPY_ADDONS_VERSION,
             true
         );
     }
@@ -195,23 +195,23 @@ class Assets_Manager {
     public static function enqueue_editor_scripts() {
         wp_enqueue_style(
             'happy-icon',
-            HAPPY_ASSETS . 'fonts/style.min.css',
+            HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
             null,
-            Base::VERSION
+            HAPPY_ADDONS_VERSION
         );
 
         wp_enqueue_style(
             'happy-elementor-addons-admin',
-            HAPPY_ASSETS . 'admin/css/main.min.css',
+            HAPPY_ADDONS_ASSETS . 'admin/css/main.min.css',
             null,
-            Base::VERSION
+            HAPPY_ADDONS_VERSION
         );
 
         wp_enqueue_script(
             'happy-elementor-addons-admin',
-            HAPPY_ASSETS . 'admin/js/happy-addons.min.js',
+            HAPPY_ADDONS_ASSETS . 'admin/js/happy-addons.min.js',
             [ 'elementor-editor' ],
-            Base::VERSION,
+            HAPPY_ADDONS_VERSION,
             true
         );
     }
@@ -222,7 +222,7 @@ class Assets_Manager {
                 'happy-elementor-weform-preview',
                 plugins_url( '/weforms/assets/wpuf/css/frontend-forms.css', 'weforms' ),
                 null,
-                Base::VERSION
+                HAPPY_ADDONS_VERSION
             );
         }
 
@@ -231,7 +231,7 @@ class Assets_Manager {
                 'happy-elementor-wpform-preview',
                 plugins_url( '/wpforms-lite/assets/css/wpforms-full.css', 'wpforms-lite' ),
                 null,
-                Base::VERSION
+                HAPPY_ADDONS_VERSION
             );
         }
 
@@ -240,7 +240,7 @@ class Assets_Manager {
                 'happy-elementor-caldera-preview',
                 plugins_url( '/caldera-forms/assets/css/caldera-forms-front.css', 'caldera-forms' ),
                 null,
-                Base::VERSION
+                HAPPY_ADDONS_VERSION
             );
         }
     }

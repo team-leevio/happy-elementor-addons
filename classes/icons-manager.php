@@ -15,13 +15,13 @@ class Icons_Manager {
         $tabs['happy-icon'] = [
             'name' => 'happy-icon',
             'label' => __( 'Happy Icons', 'happy-elementor-addons' ),
-            'url' => HAPPY_ASSETS . 'fonts/style.min.css',
-            'enqueue' => [ HAPPY_ASSETS . 'fonts/style.min.css' ],
+            'url' => HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
+            'enqueue' => [ HAPPY_ADDONS_ASSETS . 'fonts/style.min.css' ],
             'prefix' => 'hm-',
             'displayPrefix' => 'hm',
             'labelIcon' => 'fas fa-grin-wink',
-            'ver' => Base::VERSION,
-            'fetchJson' => HAPPY_ASSETS . 'fonts/happy-icon.js',
+            'ver' => HAPPY_ADDONS_VERSION,
+            'fetchJson' => HAPPY_ADDONS_ASSETS . 'fonts/happy-icon.js',
             'native' => false,
         ];
         return $tabs;

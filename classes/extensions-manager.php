@@ -12,8 +12,8 @@ class Extensions_Manager {
      * Initialize
      */
     public static function init() {
-        include HAPPY_DIR_PATH . 'extensions/background-overlay.php';
-        include HAPPY_DIR_PATH . 'extensions/happy-effects.php';
+        include HAPPY_ADDONS_DIR_PATH . 'extensions/background-overlay.php';
+        include HAPPY_ADDONS_DIR_PATH . 'extensions/happy-effects.php';
 
         Background_Overlay::init();
         Happy_Effects::init();

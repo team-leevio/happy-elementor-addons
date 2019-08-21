@@ -84,7 +84,7 @@ class Assets_Cache {
                 'happy-elementor-addons-' . $this->get_post_id(),
                 $this->get_file_url(),
                 [ 'elementor-frontend' ],
-                Base::VERSION . '.' . get_post_modified_time()
+                HAPPY_ADDONS_VERSION . '.' . get_post_modified_time()
             );
         }
     }
@@ -169,7 +169,7 @@ class Assets_Cache {
     protected function get_files_contents( $files_name, $is_pro = false ) {
         $data = '';
         foreach ( $files_name as $file_name ) {
-            $file_path = HAPPY_DIR_PATH . "assets/css/widgets/{$file_name}.min.css";
+            $file_path = HAPPY_ADDONS_DIR_PATH . "assets/css/widgets/{$file_name}.min.css";
             $file_path = apply_filters( 'happyaddons_cached_widget_css_file_path', $file_path, $file_name, $is_pro );
             if ( file_exists( $file_path ) ) {
                 $data .= file_get_contents( $file_path );

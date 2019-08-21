@@ -295,7 +295,7 @@ class Widgets_Manager {
      * @access public
      */
     public static function register() {
-        require( HAPPY_DIR_PATH . 'base/widget-base.php' );
+        require( HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php' );
 
         foreach ( self::get_widgets_map() as $widget_key => $data ) {
             if ( $widget_key !== self::get_base_widget_key() && ! empty( $data['class'] ) && ( ! isset( $data['is_pro'] ) || ! $data['is_pro'] ) ) {
@@ -305,7 +305,7 @@ class Widgets_Manager {
     }
 
     protected static function register_widget( $widget_key, $class ) {
-        $widget_file = HAPPY_DIR_PATH . 'widgets/' . $widget_key . '/widget.php';
+        $widget_file = HAPPY_ADDONS_DIR_PATH . 'widgets/' . $widget_key . '/widget.php';
         if ( is_readable( $widget_file ) ) {
             include( $widget_file );
             \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $class );

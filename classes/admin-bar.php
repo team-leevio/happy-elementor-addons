@@ -41,16 +41,16 @@ class Admin_Bar {
 
         wp_enqueue_style(
             'happy-admin-bar',
-            HAPPY_ASSETS . 'admin/css/admin-bar.css',
+            HAPPY_ADDONS_ASSETS . 'admin/css/admin-bar.css',
             null,
-            Base::VERSION
+            HAPPY_ADDONS_VERSION
         );
 
         wp_enqueue_script(
             'happy-admin-bar',
-            HAPPY_ASSETS . 'admin/js/admin-bar.js',
+            HAPPY_ADDONS_ASSETS . 'admin/js/admin-bar.js',
             ['jquery'],
-            Base::VERSION,
+            HAPPY_ADDONS_VERSION,
             true
         );
 
