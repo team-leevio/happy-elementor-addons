@@ -717,9 +717,11 @@ class Icon_Box extends Base {
             <span <?php echo $this->get_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></span>
         <?php endif; ?>
 
-        <span class="ha-icon-box-icon">
-            <?php ha_render_icon( $settings, 'selected_icon', 'icon' ); ?>
-        </span>
+        <?php if ( ! empty( $settings['selected_icon'] ) || ! empty( $settings['icon'] ) ) : ?>
+            <span class="ha-icon-box-icon">
+                <?php ha_render_icon( $settings, 'selected_icon', 'icon' ); ?>
+            </span>
+        <?php endif; ?>
 
         <?php
         if ( $settings['title' ] ) :
@@ -734,6 +736,9 @@ class Icon_Box extends Base {
     public function _content_template() {
         ?>
         <#
+        var iconHTML = elementor.helpers.renderIcon( view, settings.selected_icon, { 'aria-hidden': true }, 'i' , 'object' ),
+            migrated = elementor.helpers.isIconMigrated( settings, 'selected_icon' );
+
         view.addInlineEditingAttributes( 'title', 'none' );
         view.addRenderAttribute( 'title', 'class', 'ha-icon-box-title' );
 
@@ -750,11 +755,16 @@ class Icon_Box extends Base {
             <span {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{ settings.badge_text }}</span>
         <# } #>
 
-        <# if (settings.icon) { #>
+        <# if ( settings.selected_icon || settings.icon ) { #>
             <span class="ha-icon-box-icon">
-                <i class="{{ settings.icon }}"></i>
+                <# if ( iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
+                    {{{ iconHTML.value }}}
+                <# } else { #>
+                    <i class="{{ settings.icon }}" aria-hidden="true"></i>
+                <# } #>
             </span>
         <# } #>
+
         <# if (settings.title) { #>
             <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
         <# } #>
