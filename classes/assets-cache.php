@@ -71,7 +71,7 @@ class Assets_Cache {
 
     public function delete_all() {
         $files = glob( $this->get_cache_dir() . '/*' );
-        foreach( $files as $file ) {
+        foreach ( $files as $file ) {
             if ( is_file( $file ) ) {
                 unlink( $file );
             }
@@ -79,52 +79,52 @@ class Assets_Cache {
     }
 
     public function enqueue() {
-        if ( $this->has() ) {
-            wp_enqueue_style(
-                'happy-elementor-addons-' . $this->get_post_id(),
-                $this->get_file_url(),
-                [ 'elementor-frontend' ],
-                HAPPY_ADDONS_VERSION . '.' . get_post_modified_time()
-            );
-        }
+        wp_enqueue_style(
+            'happy-elementor-addons-' . $this->get_post_id(),
+            $this->get_file_url(),
+            [ 'elementor-frontend' ],
+            HAPPY_ADDONS_VERSION . '.' . get_post_modified_time()
+        );
     }
 
     public function enqueue_libraries() {
         $widgets = $this->widgets_cache->get();
 
-        if ( is_array( $widgets ) && ! empty( $widgets ) ) {
-            $widgets_map = Widgets_Manager::get_widgets_map();
-            $base_widget = isset( $widgets_map[ Widgets_Manager::get_base_widget_key() ] ) ? $widgets_map[ Widgets_Manager::get_base_widget_key() ] : [];
+        if ( empty( $widgets ) || ! is_array( $widgets ) ) {
+            return;
+        }
 
-            if ( isset( $base_widget['vendor']['css'] ) && is_array( $base_widget['vendor']['css'] ) ) {
-                foreach ( $base_widget['vendor']['css'] as $vendor_css_handle ) {
+        $widgets_map = Widgets_Manager::get_widgets_map();
+        $base_widget = isset( $widgets_map[ Widgets_Manager::get_base_widget_key() ] ) ? $widgets_map[ Widgets_Manager::get_base_widget_key() ] : [];
+
+        if ( isset( $base_widget['vendor'], $base_widget['vendor']['css'] ) && is_array( $base_widget['vendor']['css'] ) ) {
+            foreach ( $base_widget['vendor']['css'] as $vendor_css_handle ) {
+                wp_enqueue_style( $vendor_css_handle );
+            }
+        }
+
+        if ( isset( $base_widget['vendor'], $base_widget['vendor']['js'] ) && is_array( $base_widget['vendor']['js'] ) ) {
+            foreach ( $base_widget['vendor']['js'] as $vendor_js_handle ) {
+                wp_enqueue_script( $vendor_js_handle );
+            }
+        }
+
+        foreach ( $widgets as $widget_id ) {
+            $widget_map_key = substr( $widget_id, 3 );
+            if ( ! isset( $widgets_map[ $widget_map_key ], $widgets_map[ $widget_map_key ]['vendor'] ) ) {
+                continue;
+            }
+            $vendor = $widgets_map[ $widget_map_key ]['vendor'];
+
+            if ( isset( $vendor['css'] ) && is_array( $vendor['css'] ) ) {
+                foreach ( $vendor['css'] as $vendor_css_handle ) {
                     wp_enqueue_style( $vendor_css_handle );
                 }
             }
 
-            if ( isset( $base_widget['vendor']['js'] ) && is_array( $base_widget['vendor']['js'] ) ) {
-                foreach ( $base_widget['vendor']['js'] as $vendor_js_handle ) {
+            if ( isset( $vendor['js'] ) && is_array( $vendor['js'] ) ) {
+                foreach ( $vendor['js'] as $vendor_js_handle ) {
                     wp_enqueue_script( $vendor_js_handle );
-                }
-            }
-
-            foreach ( $widgets as $widget ) {
-                $map_key = substr( $widget, 3 );
-                if ( ! isset( $widgets_map[ $map_key ], $widgets_map[ $map_key ]['vendor'] ) ) {
-                    continue;
-                }
-                $vendor = $widgets_map[ $map_key ]['vendor'];
-
-                if ( isset( $vendor['css'] ) && is_array( $vendor['css'] ) ) {
-                    foreach ( $vendor['css'] as $vendor_css_handle ) {
-                        wp_enqueue_style( $vendor_css_handle );
-                    }
-                }
-
-                if ( isset( $vendor['js'] ) && is_array( $vendor['js'] ) ) {
-                    foreach ( $vendor['js'] as $vendor_js_handle ) {
-                        wp_enqueue_script( $vendor_js_handle );
-                    }
                 }
             }
         }
@@ -133,37 +133,39 @@ class Assets_Cache {
     public function save() {
         $widgets = $this->widgets_cache->get();
 
-        if ( is_array( $widgets ) && ! empty( $widgets ) ) {
-            $widgets_map = Widgets_Manager::get_widgets_map();
-            $base_widget = isset( $widgets_map[ Widgets_Manager::get_base_widget_key() ] ) ? $widgets_map[ Widgets_Manager::get_base_widget_key() ] : [];
-            $data = '';
-
-            // Get common css styles
-            if ( isset( $base_widget['css'] ) && is_array( $base_widget['css'] ) ) {
-                $data .= $this->get_files_contents( $base_widget['css'] );
-            }
-
-            $cached_widgets = [];
-            // Get widget specific styles
-            foreach ( $widgets as $widget_id ) {
-                $widget_map_key = substr( $widget_id, 3 );
-                if ( isset( $cached_widgets[ $widget_map_key ] ) ||
-                    ! isset( $widgets_map[ $widget_map_key ], $widgets_map[ $widget_map_key ]['css'] )
-                ) {
-                    continue;
-                }
-                $data .= $this->get_files_contents( $widgets_map[ $widget_map_key ]['css'], isset( $widgets_map['is_pro'] ) );
-                $cached_widgets[ $widget_map_key ] = true;
-            }
-            $data .= sprintf( '/** Compiled CSS for: %s **/', implode(', ', array_keys( $cached_widgets ) ) );
-
-            if ( ! is_dir( $this->get_cache_dir() ) ) {
-                @mkdir( $this->get_cache_dir(), 0777, true );
-            }
-
-            $filename = $this->get_file_name();
-            file_put_contents( $filename, $data );
+        if ( empty( $widgets ) || ! is_array( $widgets ) ) {
+            return;
         }
+
+        $widgets_map = Widgets_Manager::get_widgets_map();
+        $base_widget = isset( $widgets_map[ Widgets_Manager::get_base_widget_key() ] ) ? $widgets_map[ Widgets_Manager::get_base_widget_key() ] : [];
+        $data = '';
+
+        // Get common css styles
+        if ( isset( $base_widget['css'] ) && is_array( $base_widget['css'] ) ) {
+            $data .= $this->get_files_contents( $base_widget['css'] );
+        }
+
+        $cached_widgets = [];
+        // Get widget specific styles
+        foreach ( $widgets as $widget_id ) {
+            $widget_map_key = substr( $widget_id, 3 );
+            if ( isset( $cached_widgets[ $widget_map_key ] ) ||
+                ! isset( $widgets_map[ $widget_map_key ], $widgets_map[ $widget_map_key ]['css'] )
+            ) {
+                continue;
+            }
+            $data .= $this->get_files_contents( $widgets_map[ $widget_map_key ]['css'], isset( $widgets_map['is_pro'] ) );
+            $cached_widgets[ $widget_map_key ] = true;
+        }
+        $data .= sprintf( '/** Compiled CSS for: %s **/', implode(', ', array_keys( $cached_widgets ) ) );
+
+        if ( ! is_dir( $this->get_cache_dir() ) ) {
+            @mkdir( $this->get_cache_dir(), 0777, true );
+        }
+
+        $filename = $this->get_file_name();
+        file_put_contents( $filename, $data );
     }
 
     protected function get_files_contents( $files_name, $is_pro = false ) {

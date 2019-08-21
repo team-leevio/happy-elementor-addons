@@ -157,9 +157,7 @@ class Assets_Manager {
 
         $widgets_cache = new Widgets_Cache( $post->ID );
 
-        $is_happy_mode_enabled = apply_filters( 'happyaddons_is_happy_mode_enabled', true );
-
-        if ( $is_happy_mode_enabled && ! Cache_Manager::is_editing_mode() && $widgets_cache->has() ) {
+        if ( ha_is_happy_mode_enabled() && ! Cache_Manager::is_editing_mode() && $widgets_cache->has() ) {
             $assets_cache = new Assets_Cache( $post->ID );
             $assets_cache->enqueue_libraries();
             $assets_cache->enqueue();

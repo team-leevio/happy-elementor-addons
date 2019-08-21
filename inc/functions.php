@@ -391,3 +391,10 @@ function ha_render_icon( $settings = [], $old_icon_id = 'icon', $new_icon_id = '
 function ha_get_happy_icons() {
     return \Happy_Addons\Elementor\Icons_Manager::get_happy_icons();
 }
+
+/**
+ * @return bool
+ */
+function ha_is_happy_mode_enabled() {
+    return apply_filters( 'happyaddons_is_happy_mode_enabled', true );
+}
