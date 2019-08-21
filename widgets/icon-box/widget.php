@@ -67,7 +67,7 @@ class Icon_Box extends Base {
             );
         } else {
             $this->add_control(
-                'icon_new',
+                'selected_icon',
                 [
                     'show_label' => false,
                     'type' => Controls_Manager::ICONS,
@@ -75,7 +75,7 @@ class Icon_Box extends Base {
                     'label_block' => true,
                     'default' => [
                         'value' => 'fas fa-smile-wink',
-                        'library' => 'solid'
+                        'library' => 'solid',
                     ]
                 ]
             );
@@ -663,9 +663,7 @@ class Icon_Box extends Base {
         }
 
         if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-            if( function_exists( 'render_edit_tools' ) ) {
-                $this->render_edit_tools();
-            }
+            $this->render_edit_tools();
         }
 
         $tag = 'div';
@@ -713,21 +711,15 @@ class Icon_Box extends Base {
 
         $this->add_inline_editing_attributes( 'badge_text', 'none' );
         $this->add_render_attribute( 'badge_text', 'class', 'ha-badge ha-badge--top-right' );
-
-//        echo '<pre>';
-//            print_r( $settings );
-//        echo '</pre>';
         ?>
 
         <?php if ( $settings['badge_text'] ) : ?>
             <span <?php echo $this->get_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></span>
         <?php endif; ?>
 
-        <?php if ( $settings['icon'] ) : ?>
-            <span class="ha-icon-box-icon">
-                <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
-            </span>
-        <?php endif; ?>
+        <span class="ha-icon-box-icon">
+            <?php ha_render_icon( $settings, 'selected_icon', 'icon' ); ?>
+        </span>
 
         <?php
         if ( $settings['title' ] ) :

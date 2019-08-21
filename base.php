@@ -67,6 +67,7 @@ class Base {
         Assets_Manager::init();
         Extensions_Manager::init();
         Cache_Manager::init();
+        Icons_Manager::init();
 
         $this->init_appsero_tracking();
 
@@ -97,8 +98,8 @@ class Base {
 
     public function include_files() {
         require( __DIR__ . '/inc/functions.php' );
-        require( __DIR__ . '/inc/happy-icons.php' );
 
+        require( __DIR__ . '/classes/icons-manager.php' );
         require( __DIR__ . '/classes/widgets-manager.php' );
         require( __DIR__ . '/classes/assets-manager.php' );
         require( __DIR__ . '/classes/extensions-manager.php' );
