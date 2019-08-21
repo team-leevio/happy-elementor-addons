@@ -777,6 +777,9 @@ class Icon_Box extends Base {
     }
 
     public function on_import( $element ) {
-        return Icons_Manager::on_import_migration( $element, 'icon', 'selected_icon', true );
+        if ( ha_is_elementor_version( '>=', '2.6.0' ) ) {
+            return Icons_Manager::on_import_migration( $element, 'icon', 'selected_icon', true );
+        }
+        return $element;
     }
 }
