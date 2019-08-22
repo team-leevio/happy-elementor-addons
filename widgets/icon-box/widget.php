@@ -737,8 +737,12 @@ class Icon_Box extends Base {
     public function _content_template() {
         ?>
         <#
-        var iconHTML = elementor.helpers.renderIcon( view, settings.selected_icon, { 'aria-hidden': true }, 'i' , 'object' ),
+        var iconHTML = migrated = '';
+
+        if ( ha_has_icon_library() ) {
+            iconHTML = elementor.helpers.renderIcon( view, settings.selected_icon, { 'aria-hidden': true }, 'i' , 'object' ),
             migrated = elementor.helpers.isIconMigrated( settings, 'selected_icon' );
+        }
 
         view.addInlineEditingAttributes( 'title', 'none' );
         view.addRenderAttribute( 'title', 'class', 'ha-icon-box-title' );
@@ -758,7 +762,7 @@ class Icon_Box extends Base {
 
         <# if ( settings.icon || settings.selected_icon ) { #>
             <span class="ha-icon-box-icon">
-                <# if ( iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
+                <# if ( ha_has_icon_library() && iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
                     {{{ iconHTML.value }}}
                 <# } else { #>
                     <i class="{{ settings.icon }}" aria-hidden="true"></i>
@@ -777,9 +781,6 @@ class Icon_Box extends Base {
     }
 
     public function on_import( $element ) {
-        if ( ha_is_elementor_version( '>=', '2.6.0' ) ) {
-            return Icons_Manager::on_import_migration( $element, 'icon', 'selected_icon', true );
-        }
-        return $element;
+        return Icons_Manager::on_import_migration( $element, 'icon', 'selected_icon' );
     }
 }

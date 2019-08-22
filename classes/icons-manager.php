@@ -37,7 +37,10 @@ class Icons_Manager {
      * @return array
      */
     public static function on_import_migration( array $element, $old_control = '', $new_control = '', $remove_old = false ) {
-        if ( ! isset( $element['settings'][ $old_control ] ) || isset( $element['settings'][ $new_control ] ) ) {
+        if ( ha_is_elementor_version( '<', '2.6.0' ) ||
+            ! isset( $element['settings'][ $old_control ] ) ||
+            ( isset( $element['settings'][ $new_control ] ) && $element['settings'][ $old_control ] === $element['settings'][ $new_control ] )
+        ) {
             return $element;
         }
 
@@ -49,14 +52,7 @@ class Icons_Manager {
 
         // Case when old value needs migration
         if ( ! empty( $element['settings'][ $old_control ] ) && ! \Elementor\Icons_Manager::is_migration_allowed() ) {
-            if ( strpos( $element['settings'][ $old_control ], 'hm hm-' ) !== false ) {
-                $new_value = [
-                    'value' => $element['settings'][ $old_control ],
-                    'library' => 'happy-icon',
-                ];
-            } else {
-                $new_value = \Elementor\Icons_Manager::fa4_to_fa5_value_migration( $element['settings'][ $old_control ] );
-            }
+            $new_value = self::migrate_font_value( $element['settings'][ $old_control ] );
         }
 
         $element['settings'][ $new_control ] = $new_value;
@@ -67,6 +63,19 @@ class Icons_Manager {
         }
 
         return $element;
+    }
+
+    public static function migrate_font_value( $old_control ) {
+        if ( strpos( $old_control, 'hm hm-' ) !== false ) {
+            $new_value = [
+                'value' => str_replace( ['fas', 'fa'], '', $old_control ),
+                'library' => 'happy-icon',
+            ];
+        } else {
+            $new_value = \Elementor\Icons_Manager::fa4_to_fa5_value_migration( $old_control );
+        }
+
+        return $new_value;
     }
 
     /**

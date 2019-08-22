@@ -59,4 +59,8 @@
         initCssTransformEffects(model);
     });
 
+    window.ha_has_icon_library = function() {
+        return ( elementor.helpers && elementor.helpers.renderIcon );
+    };
+
 }(elementor, jQuery, window));
