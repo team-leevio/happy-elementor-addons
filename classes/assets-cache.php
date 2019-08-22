@@ -79,12 +79,14 @@ class Assets_Cache {
     }
 
     public function enqueue() {
-        wp_enqueue_style(
-            'happy-elementor-addons-' . $this->get_post_id(),
-            $this->get_file_url(),
-            [ 'elementor-frontend' ],
-            HAPPY_ADDONS_VERSION . '.' . get_post_modified_time()
-        );
+        if ( $this->has() ) {
+            wp_enqueue_style(
+                'happy-elementor-addons-' . $this->get_post_id(),
+                $this->get_file_url(),
+                [ 'elementor-frontend' ],
+                HAPPY_ADDONS_VERSION . '.' . get_post_modified_time()
+            );
+        }
     }
 
     public function enqueue_libraries() {
