@@ -1,6 +1,8 @@
 <?php
 namespace Happy_Addons\Elementor;
 
+use Elementor\Element_Base;
+use Elementor\Widget_Base;
 use Happy_Addons\Elementor\Widget\Card;
 use Happy_Addons\Elementor\Widget\CalderaForm;
 use Happy_Addons\Elementor\Widget\Calendly;
@@ -36,6 +38,18 @@ class Widgets_Manager {
      */
     public static function init() {
         add_action( 'elementor/widgets/widgets_registered', [ __CLASS__, 'register' ] );
+        add_action( 'elementor/frontend/before_render', [ __CLASS__, 'add_global_widget_render_attributes' ] );
+    }
+
+    public static function add_global_widget_render_attributes( Element_Base $widget ) {
+        if ( $widget->get_data( 'widgetType' ) === 'global' && method_exists( $widget, 'get_original_element_instance' ) ) {
+            $original_instance = $widget->get_original_element_instance();
+            if ( strpos( $original_instance->get_data( 'widgetType' ), 'ha-' ) === 0 ) {
+                $widget->add_render_attribute( '_wrapper', [
+                    'class' => $original_instance->get_html_wrapper_class(),
+                ] );
+            }
+        }
     }
 
     public static function get_widgets_map() {
@@ -46,7 +60,7 @@ class Widgets_Manager {
                 'js' => [],
                 'vendor' => [
                     'js' => ['anime'],
-                    'css' => ['happy-icon']
+                    'css' => ['happy-icon', 'font-awesome']
                 ]
             ],
 
