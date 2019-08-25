@@ -67,7 +67,7 @@ class Upgrades_Manager extends Background_Task_Manager {
         // It's a new install.
         if ( ! $current_version ) {
             $this->update_db_version();
-            return false;
+            return true;
         }
 
         return version_compare( $this->get_new_version(), $current_version, '>' );
@@ -80,7 +80,7 @@ class Upgrades_Manager extends Background_Task_Manager {
     }
 
     public function on_runner_complete( $did_tasks = false ) {
-        $logger = \Elementor\Plugin::$instance->logger->get_logger();
+        $logger = \Elementor\Plugin::instance()->logger->get_logger();
 
         $logger->info( 'HappyAddons data updater process has been completed.', [
             'meta' => [
@@ -152,7 +152,7 @@ class Upgrades_Manager extends Background_Task_Manager {
 
         $updater->save()->dispatch();
 
-        \Elementor\Plugin::$instance->logger->get_logger()->info( 'HappyAddons data updater process has been queued.', [
+        \Elementor\Plugin::instance()->logger->get_logger()->info( 'HappyAddons data updater process has been queued.', [
             'meta' => [
                 'plugin' => $this->get_plugin_label(),
                 'from' => $this->current_version,

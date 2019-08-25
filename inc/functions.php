@@ -398,3 +398,7 @@ function ha_get_happy_icons() {
 function ha_is_happy_mode_enabled() {
     return apply_filters( 'happyaddons_is_happy_mode_enabled', true );
 }
+
+function ha_elementor() {
+    return \Elementor\Plugin::instance();
+}

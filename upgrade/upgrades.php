@@ -49,7 +49,7 @@ class Upgrades {
      *
      * @param Updater $updater
      */
-    public static function _v_1_4_9_migration( $updater ) {
+    public static function _v_1_5_6_migration( $updater ) {
         add_option( 'elementor_icon_manager_needs_update', 'yes' );
         add_option( 'elementor_load_fa4_shim', 'yes' );
 
