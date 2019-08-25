@@ -15,8 +15,10 @@ class Widgets_Cache {
 
     protected $is_built_with_elementor = false;
 
+    protected $is_published = false;
+
     public function __construct( $post_id = 0, $data = null ) {
-        if ( ! $post_id || ! Cache_Manager::is_built_with_elementor( $post_id ) ) {
+        if ( ! $post_id || ! Cache_Manager::is_built_with_elementor( $post_id ) || ! Cache_Manager::is_published( $post_id ) ) {
             return;
         }
 
@@ -25,6 +27,7 @@ class Widgets_Cache {
         }
 
         $this->post_id = $post_id;
+        $this->is_published = true;
         $this->is_built_with_elementor = true;
     }
 
@@ -92,7 +95,7 @@ class Widgets_Cache {
     }
 
     public function get_elementor_data() {
-        if ( ! $this->is_built_with_elementor ) {
+        if ( ! $this->is_built_with_elementor || ! $this->is_published ) {
             return [];
         }
 

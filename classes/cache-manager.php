@@ -12,12 +12,20 @@ class Cache_Manager {
     }
 
     public static function cache_widgets( $post_id, $data ) {
+        if ( ! self::is_published( $post_id ) ) {
+            return;
+        }
+
         self::$widgets_cache = new Widgets_Cache( $post_id, $data );
         self::$widgets_cache->save();
 
         // Delete to regenerate cache file
         $assets_cache = new Assets_Cache( $post_id, self::$widgets_cache );
         $assets_cache->delete();
+    }
+
+    public static function is_published( $post_id ) {
+        return get_post_status( $post_id ) === 'publish';
     }
 
     public static function is_editing_mode() {
@@ -35,6 +43,7 @@ class Cache_Manager {
     public static function should_enqueue( $post_id ) {
         if ( ! ha_is_happy_mode_enabled() ||
             ! self::is_built_with_elementor( $post_id ) ||
+            ! self::is_published( $post_id ) ||
             self::is_editing_mode() ) {
             return false;
         }

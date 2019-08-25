@@ -147,7 +147,7 @@ class Assets_Manager {
         );
     }
 
-    private static function stright_enqueue() {
+    private static function enqueue() {
         wp_enqueue_style( 'font-awesome' );
         wp_enqueue_style( 'happy-icon' );
 
@@ -181,7 +181,7 @@ class Assets_Manager {
         if ( Cache_Manager::should_enqueue( $file->get_post_id() ) ) {
             Cache_Manager::enqueue( $file->get_post_id() );
         } else {
-            self::stright_enqueue();
+            self::enqueue();
         }
     }
 
@@ -189,7 +189,7 @@ class Assets_Manager {
         if ( Cache_Manager::should_enqueue( get_the_ID() ) ) {
             Cache_Manager::enqueue( get_the_ID() );
         } else {
-            self::stright_enqueue();
+            self::enqueue();
         }
     }
 
