@@ -1,6 +1,7 @@
 <?php
-
 namespace Happy_Addons\Elementor;
+
+use Elementor\Core\Files\CSS\Post as Post_CSS;
 
 defined( 'ABSPATH' ) || die();
 
@@ -13,6 +14,7 @@ class Assets_Manager {
         // Frontend scripts
         add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_register' ] );
         add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_enqueue' ], 99 );
+        add_action( 'elementor/css-file/post/enqueue', [ __CLASS__, 'frontend_template_enqueue' ] );
 
         // Edit and preview enqueue
         add_action( 'elementor/preview/enqueue_styles', [ __CLASS__, 'enqueue_preview_style' ] );
@@ -145,34 +147,49 @@ class Assets_Manager {
         );
     }
 
-    public static function frontend_enqueue() {
-        if ( Cache_Manager::should_enqueue() ) {
-            Cache_Manager::enqueue();
+    private static function stright_enqueue() {
+        wp_enqueue_style( 'font-awesome' );
+        wp_enqueue_style( 'happy-icon' );
+
+        wp_enqueue_style( 'twentytwenty' );
+        wp_enqueue_script( 'jquery-event-move' );
+        wp_enqueue_script( 'jquery-twentytwenty' );
+
+        wp_enqueue_style( 'justifiedGallery' );
+        wp_enqueue_script( 'jquery-justifiedGallery' );
+
+        wp_enqueue_style( 'slick' );
+        wp_enqueue_style( 'slick-theme' );
+        wp_enqueue_script( 'jquery-slick' );
+
+        wp_enqueue_script( 'jquery-isotope' );
+
+        wp_enqueue_script( 'elementor-waypoints' );
+        wp_enqueue_script( 'jquery-numerator' );
+
+        wp_enqueue_script( 'anime' );
+
+        // Self assets
+        wp_enqueue_style( 'happy-elementor-addons' );
+        wp_enqueue_script( 'happy-elementor-addons' );
+    }
+
+    public static function frontend_template_enqueue( Post_CSS $file ) {
+        if ( get_post_type( $file->get_post_id() ) !== 'elementor_library' ) {
+            return;
+        }
+        if ( Cache_Manager::should_enqueue( $file->get_post_id() ) ) {
+            Cache_Manager::enqueue( $file->get_post_id() );
         } else {
-            wp_enqueue_style( 'font-awesome' );
-            wp_enqueue_style( 'happy-icon' );
+            self::stright_enqueue();
+        }
+    }
 
-            wp_enqueue_style( 'twentytwenty' );
-            wp_enqueue_script( 'jquery-event-move' );
-            wp_enqueue_script( 'jquery-twentytwenty' );
-
-            wp_enqueue_style( 'justifiedGallery' );
-            wp_enqueue_script( 'jquery-justifiedGallery' );
-
-            wp_enqueue_style( 'slick' );
-            wp_enqueue_style( 'slick-theme' );
-            wp_enqueue_script( 'jquery-slick' );
-
-            wp_enqueue_script( 'jquery-isotope' );
-
-            wp_enqueue_script( 'elementor-waypoints' );
-            wp_enqueue_script( 'jquery-numerator' );
-
-            wp_enqueue_script( 'anime' );
-
-            // Self assets
-            wp_enqueue_style( 'happy-elementor-addons' );
-            wp_enqueue_script( 'happy-elementor-addons' );
+    public static function frontend_enqueue() {
+        if ( Cache_Manager::should_enqueue( get_the_ID() ) ) {
+            Cache_Manager::enqueue( get_the_ID() );
+        } else {
+            self::stright_enqueue();
         }
     }
 

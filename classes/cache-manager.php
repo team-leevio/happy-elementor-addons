@@ -5,7 +5,7 @@ defined( 'ABSPATH' ) || die();
 
 class Cache_Manager {
 
-    static $widgets_cache;
+    private static $widgets_cache;
 
     public static function init() {
         add_action( 'elementor/editor/after_save', [ __CLASS__, 'cache_widgets' ], 10, 2 );
@@ -32,12 +32,14 @@ class Cache_Manager {
         return ha_elementor()->db->is_built_with_elementor( $post_id );
     }
 
-    public static function should_enqueue() {
-        if ( ! ha_is_happy_mode_enabled() || ! self::is_built_with_elementor( get_the_ID() ) || self::is_editing_mode() ) {
+    public static function should_enqueue( $post_id ) {
+        if ( ! ha_is_happy_mode_enabled() ||
+            ! self::is_built_with_elementor( $post_id ) ||
+            self::is_editing_mode() ) {
             return false;
         }
 
-        self::$widgets_cache = new Widgets_Cache( get_the_ID() );
+        self::$widgets_cache = new Widgets_Cache( $post_id );
         if ( ! self::$widgets_cache->has() ) {
             return false;
         }
@@ -45,8 +47,8 @@ class Cache_Manager {
         return true;
     }
 
-    public static function enqueue() {
-        $assets_cache = new Assets_Cache( get_the_ID(), self::$widgets_cache );
+    public static function enqueue( $post_id ) {
+        $assets_cache = new Assets_Cache( $post_id, self::$widgets_cache );
         $assets_cache->enqueue_libraries();
         $assets_cache->enqueue();
         wp_enqueue_script( 'happy-elementor-addons' );
