@@ -146,48 +146,34 @@ class Assets_Manager {
     }
 
     public static function frontend_enqueue() {
-        global $post;
-        if ( is_null( $post ) || ! is_object( $post ) ) {
-            return;
-        }
+        if ( Cache_Manager::should_enqueue() ) {
+            Cache_Manager::enqueue();
+        } else {
+            wp_enqueue_style( 'font-awesome' );
+            wp_enqueue_style( 'happy-icon' );
 
-        if ( ! isset( $post->ID ) || ! Cache_Manager::is_built_with_elementor( $post->ID ) ) {
-            return;
-        }
+            wp_enqueue_style( 'twentytwenty' );
+            wp_enqueue_script( 'jquery-event-move' );
+            wp_enqueue_script( 'jquery-twentytwenty' );
 
-        $widgets_cache = new Widgets_Cache( $post->ID );
+            wp_enqueue_style( 'justifiedGallery' );
+            wp_enqueue_script( 'jquery-justifiedGallery' );
 
-        if ( ha_is_happy_mode_enabled() && ! Cache_Manager::is_editing_mode() && $widgets_cache->has() ) {
-            $assets_cache = new Assets_Cache( $post->ID );
-            $assets_cache->enqueue_libraries();
-            $assets_cache->enqueue();
+            wp_enqueue_style( 'slick' );
+            wp_enqueue_style( 'slick-theme' );
+            wp_enqueue_script( 'jquery-slick' );
+
+            wp_enqueue_script( 'jquery-isotope' );
+
+            wp_enqueue_script( 'elementor-waypoints' );
+            wp_enqueue_script( 'jquery-numerator' );
+
+            wp_enqueue_script( 'anime' );
+
+            // Self assets
+            wp_enqueue_style( 'happy-elementor-addons' );
             wp_enqueue_script( 'happy-elementor-addons' );
-            return;
         }
-
-        wp_enqueue_style( 'happy-icon' );
-
-        wp_enqueue_style( 'twentytwenty' );
-        wp_enqueue_script( 'jquery-event-move' );
-        wp_enqueue_script( 'jquery-twentytwenty' );
-
-        wp_enqueue_style( 'justifiedGallery' );
-        wp_enqueue_script( 'jquery-justifiedGallery' );
-
-        wp_enqueue_style( 'slick' );
-        wp_enqueue_style( 'slick-theme' );
-        wp_enqueue_script( 'jquery-slick' );
-
-        wp_enqueue_script( 'jquery-isotope' );
-
-        wp_enqueue_script( 'elementor-waypoints' );
-        wp_enqueue_script( 'jquery-numerator' );
-
-        wp_enqueue_script( 'anime' );
-
-        // Self assets
-        wp_enqueue_style( 'happy-elementor-addons' );
-        wp_enqueue_script( 'happy-elementor-addons' );
     }
 
     public static function enqueue_editor_scripts() {

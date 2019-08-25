@@ -22,7 +22,7 @@ class Icons_Manager {
             'labelIcon' => 'fas fa-grin-wink',
             'ver' => HAPPY_ADDONS_VERSION,
             'fetchJson' => HAPPY_ADDONS_ASSETS . 'fonts/happy-icon.js',
-            'native' => false,
+            'native' => true,
         ];
         return $tabs;
     }
@@ -66,9 +66,9 @@ class Icons_Manager {
     }
 
     public static function migrate_font_value( $old_control ) {
-        if ( strpos( $old_control, 'hm hm-' ) !== false ) {
+        if ( ( $pos = strpos( $old_control, 'hm hm-' ) ) !== false ) {
             $new_value = [
-                'value' => " {$old_control}",
+                'value' => rtrim( substr( $old_control, $pos ) ),
                 'library' => 'happy-icon',
             ];
         } else {

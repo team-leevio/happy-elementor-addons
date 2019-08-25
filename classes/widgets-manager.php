@@ -44,7 +44,7 @@ class Widgets_Manager {
     public static function add_global_widget_render_attributes( Element_Base $widget ) {
         if ( $widget->get_data( 'widgetType' ) === 'global' && method_exists( $widget, 'get_original_element_instance' ) ) {
             $original_instance = $widget->get_original_element_instance();
-            if ( strpos( $original_instance->get_data( 'widgetType' ), 'ha-' ) === 0 ) {
+            if ( strpos( $original_instance->get_data( 'widgetType' ), 'ha-' ) !== false ) {
                 $widget->add_render_attribute( '_wrapper', [
                     'class' => $original_instance->get_html_wrapper_class(),
                 ] );

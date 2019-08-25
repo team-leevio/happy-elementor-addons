@@ -5,27 +5,36 @@ defined( 'ABSPATH' ) || die();
 
 class Assets_Cache {
 
+    const FILE_PREFIX = 'happy-';
+
     /**
      * @var int
      */
-    protected $post_id;
+    protected $post_id = 0;
 
     /**
      * @var Widgets_Cache
      */
-    protected $widgets_cache;
+    protected $widgets_cache = null;
 
     protected $upload_path;
 
     protected $upload_url;
 
-    public function __construct( $post_id ) {
+    public function __construct( $post_id = 0, Widgets_Cache $widget_cache_instance = null ) {
         $this->post_id = $post_id;
-        $this->widgets_cache = new Widgets_Cache( $post_id );
+        $this->widgets_cache = $widget_cache_instance;
 
         $upload_dir = wp_upload_dir();
         $this->upload_path = trailingslashit( $upload_dir['basedir'] );
         $this->upload_url = trailingslashit( $upload_dir['baseurl'] );
+    }
+
+    public function get_widgets_cache() {
+        if ( is_null( $this->widgets_cache ) ) {
+            $this->widgets_cache = new Widgets_Cache( $this->get_post_id() );
+        }
+        return $this->widgets_cache;
     }
 
     public function get_cache_dir_name() {
@@ -45,11 +54,11 @@ class Assets_Cache {
     }
 
     public function get_file_name() {
-        return $this->get_cache_dir() . "post-{$this->get_post_id()}.css";
+        return $this->get_cache_dir() . self::FILE_PREFIX . "{$this->get_post_id()}.css";
     }
 
     public function get_file_url() {
-        return $this->get_cache_url() . "post-{$this->get_post_id()}.css";
+        return $this->get_cache_url() . self::FILE_PREFIX . "{$this->get_post_id()}.css";
     }
 
     public function cache_exists() {
@@ -90,7 +99,7 @@ class Assets_Cache {
     }
 
     public function enqueue_libraries() {
-        $widgets = $this->widgets_cache->get();
+        $widgets = $this->get_widgets_cache()->get();
 
         if ( empty( $widgets ) || ! is_array( $widgets ) ) {
             return;
@@ -111,12 +120,12 @@ class Assets_Cache {
             }
         }
 
-        foreach ( $widgets as $widget_id ) {
-            $widget_map_key = substr( $widget_id, 3 );
-            if ( ! isset( $widgets_map[ $widget_map_key ], $widgets_map[ $widget_map_key ]['vendor'] ) ) {
+        foreach ( $widgets as $widget_key ) {
+            if ( ! isset( $widgets_map[ $widget_key ], $widgets_map[ $widget_key ]['vendor'] ) ) {
                 continue;
             }
-            $vendor = $widgets_map[ $widget_map_key ]['vendor'];
+
+            $vendor = $widgets_map[ $widget_key ]['vendor'];
 
             if ( isset( $vendor['css'] ) && is_array( $vendor['css'] ) ) {
                 foreach ( $vendor['css'] as $vendor_css_handle ) {
@@ -133,52 +142,48 @@ class Assets_Cache {
     }
 
     public function save() {
-        $widgets = $this->widgets_cache->get();
+        $widgets = $this->get_widgets_cache()->get();
 
-        if ( empty( $widgets ) || ! is_array( $widgets ) ) {
+        if ( empty( $widgets ) ) {
             return;
         }
 
         $widgets_map = Widgets_Manager::get_widgets_map();
         $base_widget = isset( $widgets_map[ Widgets_Manager::get_base_widget_key() ] ) ? $widgets_map[ Widgets_Manager::get_base_widget_key() ] : [];
-        $data = '';
+        $styles = '';
 
         // Get common css styles
         if ( isset( $base_widget['css'] ) && is_array( $base_widget['css'] ) ) {
-            $data .= $this->get_files_contents( $base_widget['css'] );
+            $styles = $this->get_styles( $base_widget['css'] );
         }
 
         $cached_widgets = [];
-        // Get widget specific styles
-        foreach ( $widgets as $widget_id ) {
-            $widget_map_key = substr( $widget_id, 3 );
-            if ( isset( $cached_widgets[ $widget_map_key ] ) ||
-                ! isset( $widgets_map[ $widget_map_key ], $widgets_map[ $widget_map_key ]['css'] )
+        foreach ( $widgets as $widget_key ) {
+            if ( isset( $cached_widgets[ $widget_key ] ) ||
+                ! isset( $widgets_map[ $widget_key ], $widgets_map[ $widget_key ]['css'] )
             ) {
                 continue;
             }
-            $data .= $this->get_files_contents( $widgets_map[ $widget_map_key ]['css'], isset( $widgets_map['is_pro'] ) );
-            $cached_widgets[ $widget_map_key ] = true;
+            $styles .= $this->get_styles( $widgets_map[ $widget_key ]['css'], isset( $widgets_map['is_pro'] ) );
+            $cached_widgets[ $widget_key ] = true;
         }
-        $data .= sprintf( '/** Compiled CSS for: %s **/', implode(', ', array_keys( $cached_widgets ) ) );
+        $styles .= sprintf( '/** Compiled CSS for: %s **/', implode(', ', array_keys( $cached_widgets ) ) );
 
         if ( ! is_dir( $this->get_cache_dir() ) ) {
             @mkdir( $this->get_cache_dir(), 0777, true );
         }
-
-        $filename = $this->get_file_name();
-        file_put_contents( $filename, $data );
+        file_put_contents( $this->get_file_name(), $styles );
     }
 
-    protected function get_files_contents( $files_name, $is_pro = false ) {
-        $data = '';
+    protected function get_styles( $files_name, $is_pro = false ) {
+        $styles = '';
         foreach ( $files_name as $file_name ) {
             $file_path = HAPPY_ADDONS_DIR_PATH . "assets/css/widgets/{$file_name}.min.css";
             $file_path = apply_filters( 'happyaddons_cached_widget_css_file_path', $file_path, $file_name, $is_pro );
             if ( file_exists( $file_path ) ) {
-                $data .= file_get_contents( $file_path );
+                $styles .= file_get_contents( $file_path );
             };
         }
-        return $data;
+        return $styles;
     }
 }
