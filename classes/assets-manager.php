@@ -149,6 +149,7 @@ class Assets_Manager {
 
     private static function enqueue() {
         wp_enqueue_style( 'happy-icons' );
+        wp_enqueue_style( 'font-awesome' );
 
         wp_enqueue_style( 'twentytwenty' );
         wp_enqueue_script( 'jquery-event-move' );

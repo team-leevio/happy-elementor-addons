@@ -59,7 +59,7 @@ class Widgets_Manager {
                 'js' => [],
                 'vendor' => [
                     'js' => ['anime'],
-                    'css' => ['happy-icons']
+                    'css' => ['happy-icons', 'font-awesome']
                 ]
             ],
         ];
