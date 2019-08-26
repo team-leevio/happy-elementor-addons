@@ -150,6 +150,8 @@ class Upgrades_Manager extends Background_Task_Manager {
             ] );
         }
 
+        file_put_contents( __DIR__ . '/data.txt', print_r( $upgrade_callbacks, 1 ), FILE_APPEND );
+
         $updater->save()->dispatch();
 
         \Elementor\Plugin::instance()->logger->get_logger()->info( 'HappyAddons data updater process has been queued.', [
@@ -209,7 +211,6 @@ class Upgrades_Manager extends Background_Task_Manager {
         include_once __DIR__ . '/upgrades.php';
 
         $updater = $this->get_task_runner();
-
         $this->start_run();
 
         if ( $updater->is_running() ) {

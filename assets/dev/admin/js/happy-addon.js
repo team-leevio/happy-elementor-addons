@@ -59,6 +59,55 @@
         initCssTransformEffects(model);
     });
 
+    if ( elementor.modules.controls.Icons ) {
+        var WithHappyIcons = elementor.modules.controls.Icons.extend({
+            getControlValue: function() {
+                var value = this.constructor.__super__.getControlValue.call(this),
+                    model = this.model,
+                    valueToMigrate = this.getValueToMigrate(),
+                    newValue = { value: '', library: 'happy-icons' };
+
+                if ( _.isObject( value ) && value.value.indexOf( 'fashm' ) === 0 && value.library === 'fa-solid' ) {
+                    newValue.value = value.value.substr( value.value.indexOf( 'hm hm-' ) );
+                    this.elementSettingsModel.set( model.get( 'name' ), newValue );
+                    return newValue;
+                }
+
+                if ( ! _.isObject( value ) && valueToMigrate && valueToMigrate.indexOf('hm hm-') === 0 ) {
+                    newValue.value = valueToMigrate;
+                    this.elementSettingsModel.set( model.get( 'name' ), value );
+                    return value;
+                }
+
+                if ( ! this.isMigrationAllowed() ) {
+                    return valueToMigrate;
+                }
+
+                // Bail if no migration flag or no value to migrate
+                if ( ! valueToMigrate ) {
+                    return value;
+                }
+
+                var didMigration = this.elementSettingsModel.get( this.dataKeys.migratedKey ),
+                    controlName = model.get( 'name' );
+
+                // Check if migration had been done and is stored locally
+                if ( this.cache.migratedFlag[ controlName ] ) {
+                    return this.cache.migratedFlag[ controlName ];
+                }
+                // Check if already migrated
+                if ( didMigration && didMigration[ controlName ] ) {
+                    return value;
+                }
+
+                // Do migration
+                return this.migrateFa4toFa5( valueToMigrate );
+            }
+        });
+
+        elementor.addControlView( 'icons', WithHappyIcons );
+    }
+
     window.ha_has_icon_library = function() {
         return ( elementor.helpers && elementor.helpers.renderIcon );
     };

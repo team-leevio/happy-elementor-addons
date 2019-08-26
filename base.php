@@ -71,9 +71,11 @@ class Base {
             Admin_Bar::init();
         }
 
-        if ( is_admin() ) {
-            new Upgrades_Manager();
-        }
+//        if ( is_admin() ) {
+//            new Upgrades_Manager();
+//        }
+
+        do_action( 'happyaddons_loaded' );
     }
 
     /**

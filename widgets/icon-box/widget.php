@@ -76,7 +76,7 @@ class Icon_Box extends Base {
                     'label_block' => true,
                     'default' => [
                         'value' => 'fas fa-smile-wink',
-                        'library' => 'solid',
+                        'library' => 'fa-solid',
                     ]
                 ]
             );
@@ -778,9 +778,5 @@ class Icon_Box extends Base {
             print( '</a>' );
         } #>
         <?php
-    }
-
-    public function on_import( $element ) {
-        return Icons_Manager::on_import_migration( $element, 'icon', 'selected_icon' );
     }
 }

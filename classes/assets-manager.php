@@ -33,7 +33,7 @@ class Assets_Manager {
         $suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
 
         wp_register_style(
-            'happy-icon',
+            'happy-icons',
             HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
             null,
             HAPPY_ADDONS_VERSION
@@ -148,8 +148,7 @@ class Assets_Manager {
     }
 
     private static function enqueue() {
-        wp_enqueue_style( 'font-awesome' );
-        wp_enqueue_style( 'happy-icon' );
+        wp_enqueue_style( 'happy-icons' );
 
         wp_enqueue_style( 'twentytwenty' );
         wp_enqueue_script( 'jquery-event-move' );
@@ -195,7 +194,7 @@ class Assets_Manager {
 
     public static function enqueue_editor_scripts() {
         wp_enqueue_style(
-            'happy-icon',
+            'happy-icons',
             HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
             null,
             HAPPY_ADDONS_VERSION

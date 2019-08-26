@@ -12,8 +12,8 @@ class Icons_Manager {
     }
 
     public static function add_happy_icons_tab( $tabs ) {
-        $tabs['happy-icon'] = [
-            'name' => 'happy-icon',
+        $tabs['happy-icons'] = [
+            'name' => 'happy-icons',
             'label' => __( 'Happy Icons', 'happy-elementor-addons' ),
             'url' => HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
             'enqueue' => [ HAPPY_ADDONS_ASSETS . 'fonts/style.min.css' ],
@@ -21,61 +21,10 @@ class Icons_Manager {
             'displayPrefix' => 'hm',
             'labelIcon' => 'fas fa-grin-wink',
             'ver' => HAPPY_ADDONS_VERSION,
-            'fetchJson' => HAPPY_ADDONS_ASSETS . 'fonts/happy-icon.js',
-            'native' => true,
+            'fetchJson' => HAPPY_ADDONS_ASSETS . 'fonts/happy-icons.js',
+            'native' => false,
         ];
         return $tabs;
-    }
-
-    /**
-     * on_import_migration
-     * @param array $element        settings array
-     * @param string $old_control   old control id
-     * @param string $new_control   new control id
-     * @param bool $remove_old      boolean weather to remove old control or not
-     *
-     * @return array
-     */
-    public static function on_import_migration( array $element, $old_control = '', $new_control = '', $remove_old = false ) {
-        if ( ha_is_elementor_version( '<', '2.6.0' ) ||
-            ! isset( $element['settings'][ $old_control ] ) ||
-            ( isset( $element['settings'][ $new_control ] ) && $element['settings'][ $old_control ] === $element['settings'][ $new_control ] )
-        ) {
-            return $element;
-        }
-
-        // Case when old value is saved as empty string
-        $new_value = [
-            'value' => '',
-            'library' => '',
-        ];
-
-        // Case when old value needs migration
-        if ( ! empty( $element['settings'][ $old_control ] ) && ! \Elementor\Icons_Manager::is_migration_allowed() ) {
-            $new_value = self::migrate_font_value( $element['settings'][ $old_control ] );
-        }
-
-        $element['settings'][ $new_control ] = $new_value;
-
-        //remove old value
-        if ( $remove_old ) {
-            unset( $element['settings'][ $old_control ] );
-        }
-
-        return $element;
-    }
-
-    public static function migrate_font_value( $old_control ) {
-        if ( ( $pos = strpos( $old_control, 'hm hm-' ) ) !== false ) {
-            $new_value = [
-                'value' => rtrim( substr( $old_control, $pos ) ),
-                'library' => 'happy-icon',
-            ];
-        } else {
-            $new_value = \Elementor\Icons_Manager::fa4_to_fa5_value_migration( $old_control );
-        }
-
-        return $new_value;
     }
 
     /**

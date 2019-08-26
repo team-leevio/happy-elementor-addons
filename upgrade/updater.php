@@ -18,8 +18,8 @@ class Updater extends Background_Task {
         $this->prefix = 'happyaddons_' . get_current_blog_id();
         $this->action = $this->manager->get_action();
 
-        $gpc = get_parent_class( get_parent_class( $this ) );
-        call_user_func( [ $gpc, '__construct' ] );
+        $grandpa_constructor = get_parent_class( get_parent_class( $this ) );
+        call_user_func( [ $grandpa_constructor, '__construct' ] );
     }
 
     protected function format_callback_log( $item ) {
