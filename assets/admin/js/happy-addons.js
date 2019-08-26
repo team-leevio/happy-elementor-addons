@@ -67,7 +67,7 @@
                     valueToMigrate = this.getValueToMigrate(),
                     newValue = { value: '', library: 'happy-icons' };
 
-                if ( _.isObject( value ) && value.value.indexOf( 'fashm' ) === 0 && value.library === 'fa-solid' ) {
+                if ( _.isObject( value ) && value.library !== 'svg' && value.value.indexOf( 'fashm' ) === 0 ) {
                     newValue.value = value.value.substr( value.value.indexOf( 'hm hm-' ) );
                     this.elementSettingsModel.set( model.get( 'name' ), newValue );
                     return newValue;

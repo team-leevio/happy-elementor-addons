@@ -1030,9 +1030,9 @@ class InfoBox extends Base {
             <# if ( settings.button_selected_icon || settings.button_icon ) {
                 if ( ha_has_icon_library() && btnIconHTML && btnIconHTML.rendered && ( ! settings.button_icon || btnMigrated ) ) {
                     btnIcon = btnIconHTML.value;
-                } else { #>
+                } else if ( settings.button_icon ) {
                     btnIcon = '<i class="ha-btn-icon ' + settings.button_icon + '" aria-hidden="true"></i>';
-                <# }
+                }
             } #>
 
             <# if ( settings.button_text && ( ! settings.button_selected_icon && ! settings.button_icon ) ) { #>
