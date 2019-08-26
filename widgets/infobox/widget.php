@@ -114,18 +114,37 @@ class InfoBox extends Base {
             ]
         );
 
-        $this->add_control(
-            'icon',
-            [
-                'label' => __( 'Icon', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::ICON,
-                'default' => 'fa fa-smile-o',
-                'options' => ha_get_happy_icons(),
-                'condition' => [
-                    'type' => 'icon'
+        if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
+            $this->add_control(
+                'icon',
+                [
+                    'label' => __( 'Icon', 'happy-elementor-addons' ),
+                    'label_block' => true,
+                    'type' => Controls_Manager::ICON,
+                    'options' => ha_get_happy_icons(),
+                    'default' => 'fa fa-smile-o',
+                    'condition' => [
+                        'type' => 'icon'
+                    ]
                 ]
-            ]
-        );
+            );
+        } else {
+            $this->add_control(
+                'selected_icon',
+                [
+                    'type' => Controls_Manager::ICONS,
+                    'fa4compatibility' => 'icon',
+                    'label_block' => true,
+                    'default' => [
+                        'value' => 'fas fa-smile-wink',
+                        'library' => 'fa-solid',
+                    ],
+                    'condition' => [
+                        'type' => 'icon'
+                    ]
+                ]
+            );
+        }
 
         $this->end_controls_section();
 
@@ -255,15 +274,30 @@ class InfoBox extends Base {
             ]
         );
 
-        $this->add_control(
-            'button_icon',
-            [
-                'label' => __( 'Icon', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::ICON,
-                'options' => ha_get_happy_icons(),
-                'default' => 'fa fa-angle-right'
-            ]
-        );
+        if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
+            $this->add_control(
+                'button_icon',
+                [
+                    'label' => __( 'Icon', 'happy-elementor-addons' ),
+                    'label_block' => true,
+                    'type' => Controls_Manager::ICON,
+                    'options' => ha_get_happy_icons(),
+                    'default' => 'fa fa-angle-right',
+                ]
+            );
+
+            $condition = ['button_icon!' => ''];
+        } else {
+            $this->add_control(
+                'button_selected_icon',
+                [
+                    'type' => Controls_Manager::ICONS,
+                    'fa4compatibility' => 'button_icon',
+                    'label_block' => true,
+                ]
+            );
+            $condition = ['button_selected_icon[value]!' => ''];
+        }
 
         $this->add_control(
             'button_icon_position',
@@ -283,9 +317,7 @@ class InfoBox extends Base {
                 ],
                 'default' => 'after',
                 'toggle' => false,
-                'condition' => [
-                    'button_icon!' => '',
-                ],
+                'condition' => $condition,
             ]
         );
 
@@ -297,9 +329,7 @@ class InfoBox extends Base {
                 'default' => [
                     'size' => 10
                 ],
-                'condition' => [
-                    'button_icon!' => '',
-                ],
+                'condition' => $condition,
                 'selectors' => [
                     '{{WRAPPER}} .ha-btn--icon-before .ha-btn-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
                     '{{WRAPPER}} .ha-btn--icon-after .ha-btn-icon' => 'margin-left: {{SIZE}}{{UNIT}};',
@@ -886,9 +916,9 @@ class InfoBox extends Base {
                     <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
                 </figure>
             <?php endif;
-        elseif ( $settings['icon'] ) : ?>
+        elseif ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon'] ) ) : ?>
             <figure class="ha-infobox-figure ha-infobox-figure--icon">
-                <i aria-hidden="true" class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
+                <?php ha_render_icon( $settings, 'icon', 'selected_icon' ); ?>
             </figure>
         <?php endif; ?>
 
@@ -910,31 +940,27 @@ class InfoBox extends Base {
             <?php endif; ?>
 
             <?php
-            if ( $settings['button_text'] && empty( $settings['button_icon'] ) ) :
+            if ( $settings['button_text'] && ( empty( $settings['button_selected_icon'] ) && empty( $settings['button_icon'] ) ) ) :
                 printf( '<a %1$s>%2$s</a>',
                     $this->get_render_attribute_string( 'button' ),
                     sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) )
                 );
-            elseif ( empty( $settings['button_text'] ) && $settings['button_icon'] ) :
-                printf( '<a %1$s>%2$s</a>',
-                    $this->get_render_attribute_string( 'button' ),
-                    sprintf( '<i class="%1$s"></i>', esc_attr( $settings['button_icon'] ) )
-                );
-            elseif ( $settings['button_text'] && $settings['button_icon'] ) :
+            elseif ( empty( $settings['button_text'] ) && ( ! empty( $settings['button_icon'] ) || ! empty( $settings['button_selected_icon'] ) ) ) : ?>
+                <a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_icon( $settings, 'button_icon', 'button_selected_icon' ); ?></a>
+            <?php elseif ( $settings['button_text'] && ( ! empty( $settings['button_icon'] ) || ! empty( $settings['button_selected_icon'] ) ) ) :
                 if ( $settings['button_icon_position'] === 'before' ) :
                     $this->add_render_attribute( 'button', 'class', 'ha-btn--icon-before' );
-                    $btn_before = sprintf( '<i class="ha-btn-icon %1$s"></i>', esc_attr( $settings['button_icon'] ) );
-                    $btn_after = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
+                    $button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
+                    ?>
+                    <a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_icon( $settings, 'button_icon', 'button_selected_icon', ['class' => 'ha-btn-icon'] ); ?> <?php echo $button_text; ?></a>
+                    <?php
                 else :
                     $this->add_render_attribute( 'button', 'class', 'ha-btn--icon-after' );
-                    $btn_before = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
-                    $btn_after = sprintf( '<i class="ha-btn-icon %1$s"></i>', esc_attr( $settings['button_icon'] ) );
+                    $button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
+                    ?>
+                    <a <?php $this->print_render_attribute_string( 'button' ); ?>><?php echo $button_text; ?> <?php ha_render_icon( $settings, 'button_icon', 'button_selected_icon', ['class' => 'ha-btn-icon'] ); ?></a>
+                    <?php
                 endif;
-                printf( '<a %1$s>%2$s %3$s</a>',
-                    $this->get_render_attribute_string( 'button' ),
-                    $btn_before,
-                    $btn_after
-                );
             endif;
             ?>
         </div>
@@ -944,6 +970,15 @@ class InfoBox extends Base {
     public function _content_template() {
         ?>
         <#
+        var iconHTML = migrated = btnIconHTML = btnMigrated = btnIcon = '';
+
+        if ( ha_has_icon_library() ) {
+            iconHTML = elementor.helpers.renderIcon( view, settings.selected_icon, { 'aria-hidden': true }, 'i' , 'object' ),
+            migrated = elementor.helpers.isIconMigrated( settings, 'selected_icon' );
+            btnIconHTML = elementor.helpers.renderIcon( view, settings.button_selected_icon, { 'aria-hidden': true, 'class': 'ha-btn-icon' }, 'i' , 'object' ),
+            btnMigrated = elementor.helpers.isIconMigrated( settings, 'button_selected_icon' );
+        }
+
         view.addInlineEditingAttributes( 'title', 'none' );
         view.addRenderAttribute( 'title', 'class', 'ha-infobox-title' );
 
@@ -971,9 +1006,13 @@ class InfoBox extends Base {
                     <img src="{{ image_url }}">
                 </figure>
             <# }
-        } else if (settings.icon) { #>
+        } else if ( settings.icon || settings.selected_icon ) { #>
             <figure class="ha-infobox-figure ha-infobox-figure--icon">
-                <i aria-hidden="true" class="{{ settings.icon }}"></i>
+                <# if ( ha_has_icon_library() && iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
+                    {{{ iconHTML.value }}}
+                <# } else { #>
+                    <i class="{{ settings.icon }}" aria-hidden="true"></i>
+                <# } #>
             </figure>
         <# } #>
 
@@ -988,19 +1027,27 @@ class InfoBox extends Base {
                 </div>
             <# } #>
 
-            <# if ( settings.button_text && ! settings.button_icon ) { #>
+            <# if ( settings.button_selected_icon || settings.button_icon ) {
+                if ( ha_has_icon_library() && btnIconHTML && btnIconHTML.rendered && ( ! settings.button_icon || btnMigrated ) ) {
+                    btnIcon = btnIconHTML.value;
+                } else { #>
+                    btnIcon = '<i class="ha-btn-icon ' + settings.button_icon + '" aria-hidden="true"></i>';
+                <# }
+            } #>
+
+            <# if ( settings.button_text && ( ! settings.button_selected_icon && ! settings.button_icon ) ) { #>
                 <a {{{ view.getRenderAttributeString( 'button' ) }}}><span {{{ view.getRenderAttributeString( 'button_text' ) }}}>{{ settings.button_text }}</span></a>
-            <# } else if ( ! settings.button_text && settings.button_icon ) { #>
-                <a {{{ view.getRenderAttributeString( 'button' ) }}}><i class="{{ settings.button_icon }}"></i></a>
-            <# } else if ( settings.button_text && settings.button_icon ) {
+            <# } else if ( ! settings.button_text && ( settings.button_selected_icon || settings.button_icon ) ) { #>
+                <a {{{ view.getRenderAttributeString( 'button' ) }}}>{{{ btnIcon }}}</a>
+            <# } else if ( settings.button_text && ( settings.button_selected_icon || settings.button_icon ) ) {
                 var button_before = button_after = '';
                 if ( settings.button_icon_position === 'before' ) {
                     view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-before' );
-                    button_before = '<i class="ha-btn-icon ' + settings.button_icon + '"></i>';
+                    button_before = btnIcon;
                     button_after = '<span ' + view.getRenderAttributeString( 'button_text' ) + '>' + settings.button_text + '</span>';
                 } else {
                     view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-after' );
-                    button_after = '<i class="ha-btn-icon ' + settings.button_icon + '"></i>';
+                    button_after = btnIcon;
                     button_before = '<span ' + view.getRenderAttributeString( 'button_text' ) + '>' + settings.button_text + '</span>';
                 } #>
                 <a {{{ view.getRenderAttributeString( 'button' ) }}}>{{{ button_before }}} {{{ button_after }}}</a>
