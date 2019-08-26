@@ -82,18 +82,37 @@ class Flip_Box extends Base {
             ]
         );
 
-        $this->add_control(
-            'front_icon',
-            [
-                'label' => __( 'Icon', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::ICON,
-                'default' => 'fa fa-home',
-                'condition' => [
-                  'front_icon_type' => 'icon'
-                ],
-                'options' => ha_get_happy_icons(),
-            ]
-        );
+        if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
+            $this->add_control(
+                'front_icon',
+                [
+                    'label' => __( 'Icon', 'happy-elementor-addons' ),
+                    'type' => Controls_Manager::ICON,
+                    'options' => ha_get_happy_icons(),
+                    'default' => 'fa fa-home',
+                    'condition' => [
+                        'front_icon_type' => 'icon'
+                    ],
+                ]
+            );
+        } else {
+            $this->add_control(
+                'front_selected_icon',
+                [
+                    'label' => __( 'Icon', 'happy-elementor-addons' ),
+                    'type' => Controls_Manager::ICONS,
+                    'fa4compatibility' => 'front_icon',
+                    'label_block' => true,
+                    'default' => [
+                        'value' => 'hm hm-home',
+                        'library' => 'happy-icons',
+                    ],
+                    'condition' => [
+                        'front_icon_type' => 'icon'
+                    ],
+                ]
+            );
+        }
 
         $this->add_control(
             'front_icon_image',
@@ -239,18 +258,37 @@ class Flip_Box extends Base {
             ]
         );
 
-        $this->add_control(
-            'back_icon',
-            [
-                'label' => __( 'Icon', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::ICON,
-                'return_value' => 'yes',
-                'condition' => [
-                    'back_icon_type' => 'icon',
-                ],
-                'options' => ha_get_happy_icons(),
-            ]
-        );
+        if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
+            $this->add_control(
+                'back_icon',
+                [
+                    'label' => __( 'Icon', 'happy-elementor-addons' ),
+                    'type' => Controls_Manager::ICON,
+                    'options' => ha_get_happy_icons(),
+                    'default' => 'fa fa-home',
+                    'condition' => [
+                        'back_icon_type' => 'icon'
+                    ],
+                ]
+            );
+        } else {
+            $this->add_control(
+                'back_selected_icon',
+                [
+                    'label' => __( 'Icon', 'happy-elementor-addons' ),
+                    'type' => Controls_Manager::ICONS,
+                    'fa4compatibility' => 'back_icon',
+                    'label_block' => true,
+                    'default' => [
+                        'value' => 'fas fa-smile-wink',
+                        'library' => 'fa-solid',
+                    ],
+                    'condition' => [
+                        'back_icon_type' => 'icon'
+                    ],
+                ]
+            );
+        }
 
         $this->add_control(
             'back_title',
@@ -1122,10 +1160,10 @@ class Flip_Box extends Base {
                     <div class="ha-flip-box-front">
                         <div class="ha-flip-box-front-inner">
                             <div class="icon-wrap">
-                                <?php if ( $settings['front_icon'] ) : ?>
-                                    <div class="ha-flip-icon icon">
-                                        <i class="<?php echo esc_attr( $settings['front_icon'] ); ?>"></i>
-                                    </div>
+                                <?php if ( ! empty( $settings['front_icon'] ) || ! empty( $settings['front_selected_icon'] ) ) : ?>
+                                    <span class="ha-flip-icon icon">
+                                        <?php ha_render_icon( $settings, 'front_icon', 'front_selected_icon' ); ?>
+                                    </span>
                                 <?php endif; ?>
                                 <?php if ( $settings['front_icon_image'] ) : ?>
                                     <div class="ha-flip-icon">
@@ -1149,10 +1187,10 @@ class Flip_Box extends Base {
                     <div class="ha-flip-box-back">
                         <div class="ha-flip-box-back-inner">
                             <div class="icon-wrap">
-                                <?php if ( $settings['back_icon'] ) : ?>
-                                    <div class="ha-flip-icon icon">
-                                        <i class="<?php echo esc_attr( $settings['back_icon'] ); ?>"></i>
-                                    </div>
+                                <?php if ( ! empty( $settings['back_icon'] ) || ! empty( $settings['back_selected_icon'] ) ) : ?>
+                                    <span class="ha-flip-icon icon">
+                                        <?php ha_render_icon( $settings, 'back_icon', 'back_selected_icon' ); ?>
+                                    </span>
                                 <?php endif; ?>
                                 <?php if ( $settings['back_icon_image'] ) : ?>
                                     <div class="ha-flip-icon">

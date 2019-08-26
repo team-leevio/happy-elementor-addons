@@ -53,15 +53,32 @@ class Step_Flow extends Base {
             ]
         );
 
-        $this->add_control(
-            'icon',
-            [
-                'label' => __( 'Icon', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::ICON,
-                'default' => 'hm hm-finger-index',
-                'options' => ha_get_happy_icons(),
-            ]
-        );
+        if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
+            $this->add_control(
+                'icon',
+                [
+                    'label' => __( 'Icon', 'happy-elementor-addons' ),
+                    'type' => Controls_Manager::ICON,
+                    'label_block' => true,
+                    'options' => ha_get_happy_icons(),
+                    'default' => 'hm hm-finger-index',
+                ]
+            );
+        } else {
+            $this->add_control(
+                'selected_icon',
+                [
+                    'label' => __( 'Icon', 'happy-elementor-addons' ),
+                    'type' => Controls_Manager::ICONS,
+                    'fa4compatibility' => 'icon',
+                    'label_block' => true,
+                    'default' => [
+                        'value' => 'hm hm-finger-index',
+                        'library' => 'happy-icons',
+                    ]
+                ]
+            );
+        }
 
         $this->add_control(
             'badge',
@@ -573,7 +590,9 @@ class Step_Flow extends Base {
                 <div class="ha-step-arrow"></div>
             <?php endif; ?>
 
-            <i class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
+            <?php if ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon'] ) ) :
+                ha_render_icon( $settings, 'icon', 'selected_icon' );
+            endif; ?>
 
             <?php if ( $settings['badge'] ) : ?>
                 <span <?php $this->print_render_attribute_string( 'badge' ); ?>><?php echo esc_html( $settings['badge'] ); ?></span>
