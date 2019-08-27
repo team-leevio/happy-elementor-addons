@@ -1,6 +1,8 @@
 <?php
 namespace Happy_Addons\Elementor;
 
+use Elementor\Core\Files\CSS\Post as Post_CSS;
+
 defined( 'ABSPATH' ) || die();
 
 class Cache_Manager {
@@ -56,10 +58,25 @@ class Cache_Manager {
         return true;
     }
 
+    public static function enqueue_fa5_fonts( $post_id ) {
+        $post_css = new Post_CSS( $post_id );
+        $meta = $post_css->get_meta();
+        if ( ! empty( $meta['icons'] ) ) {
+            $icons_types = \Elementor\Icons_Manager::get_icon_manager_tabs();
+            foreach ( $meta['icons'] as $icon_font ) {
+                if ( ! isset( $icons_types[ $icon_font ] ) ) {
+                    continue;
+                }
+                ha_elementor()->frontend->enqueue_font( $icon_font );
+            }
+        }
+    }
+
     public static function enqueue( $post_id ) {
         $assets_cache = new Assets_Cache( $post_id, self::$widgets_cache );
         $assets_cache->enqueue_libraries();
         $assets_cache->enqueue();
+        self::enqueue_fa5_fonts( $post_id );
         wp_enqueue_script( 'happy-elementor-addons' );
     }
 }

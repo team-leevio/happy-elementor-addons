@@ -14,7 +14,7 @@ class Assets_Manager {
         // Frontend scripts
         add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_register' ] );
         add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_enqueue' ], 99 );
-        add_action( 'elementor/css-file/post/enqueue', [ __CLASS__, 'frontend_template_enqueue' ] );
+        add_action( 'elementor/css-file/post/enqueue', [ __CLASS__, 'frontend_elementor_enqueue' ] );
 
         // Edit and preview enqueue
         add_action( 'elementor/preview/enqueue_styles', [ __CLASS__, 'enqueue_preview_style' ] );
@@ -120,6 +120,17 @@ class Assets_Manager {
         );
 
         /**
+         * Number animation
+         */
+        wp_register_script(
+            'jquery-numerator',
+            HAPPY_ADDONS_ASSETS . 'vendor/jquery-numerator/jquery-numerator' . $suffix . 'js',
+            [ 'jquery' ],
+            HAPPY_ADDONS_VERSION,
+            true
+        );
+
+        /**
          * Floating effects
          */
         wp_register_script(
@@ -174,14 +185,13 @@ class Assets_Manager {
         wp_enqueue_script( 'happy-elementor-addons' );
     }
 
-    public static function frontend_template_enqueue( Post_CSS $file ) {
-        if ( get_post_type( $file->get_post_id() ) !== 'elementor_library' ) {
-            return;
-        }
-        if ( Cache_Manager::should_enqueue( $file->get_post_id() ) ) {
-            Cache_Manager::enqueue( $file->get_post_id() );
-        } else {
-            self::enqueue();
+    public static function frontend_elementor_enqueue( Post_CSS $file ) {
+        if ( get_post_type( $file->get_post_id() ) === 'elementor_library' ) {
+            if ( Cache_Manager::should_enqueue( $file->get_post_id() ) ) {
+                Cache_Manager::enqueue( $file->get_post_id() );
+            } else {
+                self::enqueue();
+            }
         }
     }
 

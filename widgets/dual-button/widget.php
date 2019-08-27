@@ -833,7 +833,9 @@ class Dual_Button extends Base {
                 <?php if ( $settings['left_button_icon_position'] === 'before' && ( ! empty( $settings['left_button_icon'] ) || ! empty( $settings['left_button_selected_icon'] ) ) ) : ?>
                     <?php ha_render_icon( $settings, 'left_button_icon', 'left_button_selected_icon', $left_button_atts ); ?>
                 <?php endif; ?>
-                <span <?php echo $this->get_render_attribute_string( 'left_button_text' ); ?>><?php echo esc_html( $settings['left_button_text'] ); ?></span>
+                <?php if ( $settings['left_button_text'] ) : ?>
+                    <span <?php echo $this->get_render_attribute_string( 'left_button_text' ); ?>><?php echo esc_html( $settings['left_button_text'] ); ?></span>
+                <?php endif; ?>
                 <?php if ( $settings['left_button_icon_position'] === 'after' && ( ! empty( $settings['left_button_icon'] ) || ! empty( $settings['left_button_selected_icon'] ) ) ) : ?>
                     <?php ha_render_icon( $settings, 'left_button_icon', 'left_button_selected_icon', $left_button_atts ); ?>
                 <?php endif; ?>
@@ -853,7 +855,9 @@ class Dual_Button extends Base {
                 <?php if ( $settings['right_button_icon_position'] === 'before' && ( ! empty( $settings['right_button_icon'] ) || ! empty( $settings['right_button_selected_icon'] ) ) ) : ?>
                     <?php ha_render_icon( $settings, 'right_button_icon', 'right_button_selected_icon', $right_button_atts ); ?>
                 <?php endif; ?>
-                <span <?php echo $this->get_render_attribute_string( 'right_button_text' ); ?>><?php echo esc_html( $settings['right_button_text'] ); ?></span>
+                <?php if ( $settings['right_button_text'] ) : ?>
+                    <span <?php echo $this->get_render_attribute_string( 'right_button_text' ); ?>><?php echo esc_html( $settings['right_button_text'] ); ?></span>
+                <?php endif; ?>
                 <?php if ( $settings['right_button_icon_position'] === 'after' && ( ! empty( $settings['right_button_icon'] ) || ! empty( $settings['right_button_selected_icon'] ) ) ) : ?>
                     <?php ha_render_icon( $settings, 'right_button_icon', 'right_button_selected_icon', $right_button_atts ); ?>
                 <?php endif; ?>
