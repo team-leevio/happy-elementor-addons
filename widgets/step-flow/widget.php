@@ -534,7 +534,8 @@ class Step_Flow extends Base {
                 ],
                 'default' => 'solid',
                 'selectors' => [
-                    '{{WRAPPER}} .ha-step-arrow' => 'border-top-style: {{VALUE}}',
+                    '{{WRAPPER}} .ha-step-arrow, {{WRAPPER}} .ha-step-arrow:after' => 'border-top-style: {{VALUE}};',
+                    '{{WRAPPER}} .ha-step-arrow:after' => 'border-right-style: {{VALUE}};',
                 ],
             ]
         );
