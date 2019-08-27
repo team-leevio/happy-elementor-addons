@@ -25,7 +25,7 @@ window.Happy = window.Happy || {};
         }
     }
 
-    Happy.initImageComparison = function($scope) {
+    var HandleImageCompare = function($scope) {
         var $item = $scope.find('.hajs-image-comparison'),
             settings = $item.getHappySettings(),
             fieldMap = {
@@ -41,7 +41,7 @@ window.Happy = window.Happy || {};
         });
     };
 
-    Happy.initJustifiedGallery = function($scope) {
+    var HandleJustifiedGallery = function($scope) {
         var $item = $scope.find('.hajs-justified-gallery'),
             settings = $item.getHappySettings()
         $item.justifiedGallery($.extend({}, {
@@ -314,47 +314,29 @@ window.Happy = window.Happy || {};
             }
         });
 
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/ha-image-compare.default',
-            Happy.initImageComparison
-        );
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/ha-justified-gallery.default',
-            Happy.initJustifiedGallery
-        );
+        var handlersFnMap = {
+            'ha-image-compare.default': HandleImageCompare,
+            'ha-justified-gallery.default': HandleImageCompare,
+            'ha-number.default': NumberHandler,
+            'ha-skills.default': SkillHandler
+        };
 
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/ha-slider.default',
-            function($scope) {
-                elementorFrontend.elementsHandler.addHandler(Slick, {$element: $scope});
-            }
-        );
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/ha-carousel.default',
-            function($scope) {
-                elementorFrontend.elementsHandler.addHandler(Slick, {$element: $scope});
-            }
-        );
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/ha-image-grid.default',
-            function($scope) {
-                elementorFrontend.elementsHandler.addHandler(Isotope, {$element: $scope});
-            }
-        );
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/ha-number.default',
-            NumberHandler
-        );
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/ha-skills.default',
-            SkillHandler
-        );
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/widget',
-            function($scope) {
-                elementorFrontend.elementsHandler.addHandler(ExtensionHandler, {$element: $scope});
-            }
-        );
+        $.each( handlersFnMap, function( widgetName, handlerFn ) {
+            elementorFrontend.hooks.addAction( 'frontend/element_ready/' + widgetName, handlerFn );
+        });
+
+        var handlersClassMap = {
+            'ha-slider.default': Slick,
+            'ha-carousel.default': Slick,
+            'ha-image-grid.default': Isotope,
+            'widget': ExtensionHandler
+        };
+
+        $.each( handlersClassMap, function( widgetName, handlerClass ) {
+            elementorFrontend.hooks.addAction( 'frontend/element_ready/' + widgetName, function( $scope ) {
+                elementorFrontend.elementsHandler.addHandler( handlerClass, { $element: $scope });
+            });
+        });
     });
 
 } (jQuery, Happy, window));
