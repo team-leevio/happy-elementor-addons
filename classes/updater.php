@@ -15,6 +15,7 @@ class Updater {
     public static function init() {
         if ( self::should_update() ) {
             self::update();
+            self::update_version();
         }
     }
 
@@ -44,7 +45,6 @@ class Updater {
 
     protected static function should_update() {
         if ( ! self::get_old_version() ) {
-            self::update_version();
             return true;
         }
         return version_compare( self::get_new_version(), self::get_old_version(), '>' );
