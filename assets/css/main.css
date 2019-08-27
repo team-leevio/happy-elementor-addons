@@ -2465,7 +2465,7 @@
 .ha-step-arrow {
 	position: absolute;
 	top: 49%;
-	left: calc( 100px + 50px); 
+	left: calc( 100% + 20px); 
 	display: inline-block;
 	width: 100px;
 	border-top: 1px solid #ddd;

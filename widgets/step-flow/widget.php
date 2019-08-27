@@ -558,13 +558,60 @@ class Step_Flow extends Base {
         );
 
         $this->add_control(
+            'direction_offset_toggle',
+            [
+                'label' => __( 'Offset', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'label_off' => __( 'None', 'happy-elementor-addons' ),
+                'label_on' => __( 'Custom', 'happy-elementor-addons' ),
+                'return_value' => 'yes',
+            ]
+        );
+
+        $this->start_popover();
+
+        $this->add_responsive_control(
+            'direction_offset_y',
+            [
+                'label' => __( 'Offset Top', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'condition' => [
+                    'direction_offset_toggle' => 'yes'
+                ],
+                'render_type' => 'ui',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-step-arrow' => 'top: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'direction_offset_x',
+            [
+                'label' => __( 'Offset Left', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'condition' => [
+                    'direction_offset_toggle' => 'yes'
+                ],
+                'render_type' => 'ui',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-step-arrow' => 'left: calc( 100% + {{SIZE}}{{UNIT}} );',
+                ],
+            ]
+        );
+
+        $this->end_popover();
+
+        $this->add_control(
             'direction_color',
             [
                 'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-step-arrow' => 'border-color: {{VALUE}};',
-                    '{{WRAPPER}} .ha-step-arrow:after' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-step-arrow:after' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
