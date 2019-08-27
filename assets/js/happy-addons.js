@@ -1,7 +1,6 @@
 'use strict';
-window.Happy = window.Happy || {};
 
-(function ($, Happy, w) {
+(function ($, w) {
     var $window = $(w);
 
     $.fn.getHappySettings = function() {
@@ -59,9 +58,12 @@ window.Happy = window.Happy || {};
     };
 
     $window.on('elementor/frontend/init', function() {
-        var ExtensionHandler = elementorModules.frontend.handlers.Base.extend({
+        var EF = elementorFrontend,
+            EM = elementorModules;
+
+        var ExtensionHandler = EM.frontend.handlers.Base.extend({
             onInit: function() {
-                elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+                EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
                 this.widgetContainer = this.$element.find('.elementor-widget-container')[0];
 
                 this.initFloatingEffects();
@@ -161,9 +163,9 @@ window.Happy = window.Happy || {};
             }
         });
 
-        var Slick = elementorModules.frontend.handlers.Base.extend({
+        var Slick = EM.frontend.handlers.Base.extend({
             onInit: function () {
-                elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+                EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
                 this.$container = this.$element.find('.hajs-slick');
                 this.run();
             },
@@ -218,13 +220,13 @@ window.Happy = window.Happy || {};
                     settings.slidesToShow = this.getElementSettings('slides_to_show') || 3;
                     settings.responsive = [
                         {
-                            breakpoint: elementorFrontend.config.breakpoints.lg,
+                            breakpoint: EF.config.breakpoints.lg,
                             settings: {
                                 slidesToShow: (this.getElementSettings('slides_to_show_tablet') || settings.slidesToShow),
                             }
                         },
                         {
-                            breakpoint: elementorFrontend.config.breakpoints.md,
+                            breakpoint: EF.config.breakpoints.md,
                             settings: {
                                 slidesToShow: (this.getElementSettings('slides_to_show_mobile') || this.getElementSettings('slides_to_show_tablet')) || settings.slidesToShow,
                             }
@@ -241,14 +243,14 @@ window.Happy = window.Happy || {};
         });
 
         var NumberHandler = function($scope) {
-            elementorFrontend.waypoint($scope, function () {
+            EF.waypoint($scope, function () {
                 var $number = $scope.find('.ha-number-text');
                 $number.numerator($number.data('animation'));
             });
         };
 
         var SkillHandler = function($scope) {
-            elementorFrontend.waypoint($scope, function () {
+            EF.waypoint($scope, function () {
                 $scope.find('.ha-skill-level').each(function() {
                     var $current = $(this),
                         $lt = $current.find('.ha-skill-level-text'),
@@ -268,9 +270,9 @@ window.Happy = window.Happy || {};
             });
         };
 
-        var Isotope = elementorModules.frontend.handlers.Base.extend({
+        var Isotope = EM.frontend.handlers.Base.extend({
             onInit: function () {
-                elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+                EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
                 this.$container = this.$element.find('.hajs-isotope');
                 this.run();
                 this.runFilter();
@@ -316,13 +318,13 @@ window.Happy = window.Happy || {};
 
         var handlersFnMap = {
             'ha-image-compare.default': HandleImageCompare,
-            'ha-justified-gallery.default': HandleImageCompare,
+            'ha-justified-gallery.default': HandleJustifiedGallery,
             'ha-number.default': NumberHandler,
             'ha-skills.default': SkillHandler
         };
 
         $.each( handlersFnMap, function( widgetName, handlerFn ) {
-            elementorFrontend.hooks.addAction( 'frontend/element_ready/' + widgetName, handlerFn );
+            EF.hooks.addAction( 'frontend/element_ready/' + widgetName, handlerFn );
         });
 
         var handlersClassMap = {
@@ -333,10 +335,10 @@ window.Happy = window.Happy || {};
         };
 
         $.each( handlersClassMap, function( widgetName, handlerClass ) {
-            elementorFrontend.hooks.addAction( 'frontend/element_ready/' + widgetName, function( $scope ) {
-                elementorFrontend.elementsHandler.addHandler( handlerClass, { $element: $scope });
+            EF.hooks.addAction( 'frontend/element_ready/' + widgetName, function( $scope ) {
+                EF.elementsHandler.addHandler( handlerClass, { $element: $scope });
             });
         });
     });
 
-} (jQuery, Happy, window));
+} (jQuery, window));
