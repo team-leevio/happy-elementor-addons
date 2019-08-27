@@ -45,7 +45,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 22. **[Calendly](https://happyaddons.com/elementor-calendly-widget-demo/)** - Schedule meetings without the back-and-forth emails through Calendly. We are happy to integrate this important application in our HappyAddons. [Check demo](https://happyaddons.com/elementor-calendly-widget-demo/)
 23. **[Flip Box](https://happyaddons.com/elementor-flip-box-widget-demo/)** - FlipBox helps you to deliver messages in a beautiful way with before and after effects. [Check demo](https://happyaddons.com/elementor-flip-box-widget-demo/)
 24. **[Pricing Table](https://happyaddons.com/elementor-pricing-table-widget-demo/)** - Create beautiful pricing tables with lots of customizations and sleek look-n-feel using this widget. [Check demo](https://happyaddons.com/elementor-pricing-table-widget-demo/)
-25. **Image Grid**
+25. **[Image Grid](https://happyaddons.com/elementor-image-grid-widget-demo/)** - Simply beautiful, this widget can help you create stunning number blocks with various styles, look-n-feels that’s literally going to blow your mind. [Check demo](https://happyaddons.com/elementor-image-grid-widget-demo/)
 
 ### INCLUDED FREE EXTENSIONS FOR EVERY ELEMENTOR WIDGET
 
