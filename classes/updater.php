@@ -26,7 +26,6 @@ class Updater {
     protected static function update() {
         self::v_1_5_0();
 
-        ha_elementor()->files_manager->clear_cache();
         $assets_cache = new Assets_Cache();
         $assets_cache->delete_all();
     }

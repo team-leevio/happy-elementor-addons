@@ -44,9 +44,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 21. **[Step Flow](https://happyaddons.com/elementor-step-flow-widget-demo/)** - Create excellent step by step visual diagram and instructions using this smart widget. Change directions, counters and make them look amazing with icons, texts and colors. [Check demo](https://happyaddons.com/elementor-step-flow-widget-demo/)
 22. **[Calendly](https://happyaddons.com/elementor-calendly-widget-demo/)** - Schedule meetings without the back-and-forth emails through Calendly. We are happy to integrate this important application in our HappyAddons. [Check demo](https://happyaddons.com/elementor-calendly-widget-demo/)
 23. **[Flip Box](https://happyaddons.com/elementor-flip-box-widget-demo/)** - FlipBox helps you to deliver messages in a beautiful way with before and after effects. [Check demo](https://happyaddons.com/elementor-flip-box-widget-demo/)
-24. **Pricing Table**
+24. **[Pricing Table](https://happyaddons.com/elementor-pricing-table-widget-demo/)** - Create beautiful pricing tables with lots of customizations and sleek look-n-feel using this widget. [Check demo](https://happyaddons.com/elementor-pricing-table-widget-demo/)
+25. **Image Grid**
 
 ### INCLUDED FREE EXTENSIONS FOR EVERY ELEMENTOR WIDGET
+
+**Happy Extensions**
+1. **Background Overlay** - You can add background overlay to any widget now.
+2. **Happy Icons** - Custom icon fonts library.
+
 **Happy Effects**
 
 1. **[Floating Effects](https://happyaddons.com/elementor-floating-effect-demo/)** - Now you can create stunning animations for any Elementor widget using Floating Effects. Translate, Rotate or Scale - Imagination is the limit!
@@ -136,7 +142,22 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 = 1.5.0 - 27 August 2019 =
 
-
+- New: Image Grid Widget
+- New: Scheme data for Review Widget
+- New: Background Overlay - global extension for any widget
+- New: Step Flow Widget - direction arrow offset control
+- New: Happy Icons - Custom icon font library
+- Update: Dynamic Tags support
+- Update: New icon manager support with backward compatibility
+- Update: Step Flow Widget default view
+- Update: On demand caching handler
+- Fix: Review ratting icon missing issue
+- Fix: Justified Grid Widget filter menu style issue
+- Fix: Icon Box Widget badge style missing issue
+- Fix: Global widget CSS class missing issue
+- Fix: Section and global widget cache missing issue
+- Fix: Step Flow arrow alignment issue
+- Fix: Skill Bars Widget animation issue
 
 = 1.4.1 - 6 August 2019 =
 
