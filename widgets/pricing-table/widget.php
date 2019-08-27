@@ -62,6 +62,9 @@ class Pricing_Table extends Base {
                 'type' => Controls_Manager::TEXT,
                 'label_block' => false,
                 'default' => __( 'Basic', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true
+                ]
             ]
         );
 
@@ -104,6 +107,9 @@ class Pricing_Table extends Base {
                     'custom' => __( 'Custom', 'happy-elementor-addons' ),
                 ],
                 'default' => 'dollar',
+                'dynamic' => [
+                    'active' => true
+                ]
             ]
         );
 
@@ -124,6 +130,9 @@ class Pricing_Table extends Base {
                 'label' => __( 'Price', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
                 'default' => '9.99',
+                'dynamic' => [
+                    'active' => true
+                ]
             ]
         );
 
@@ -133,6 +142,9 @@ class Pricing_Table extends Base {
                 'label' => __( 'Period', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Per Month', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true
+                ]
             ]
         );
 
@@ -152,6 +164,9 @@ class Pricing_Table extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Features', 'happy-elementor-addons' ),
                 'separator' => 'after',
+                'dynamic' => [
+                    'active' => true
+                ]
             ]
         );
 
@@ -163,6 +178,9 @@ class Pricing_Table extends Base {
                 'label' => __( 'Text', 'elementor-pro' ),
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Exciting Feature', 'elementor-pro' ),
+                'dynamic' => [
+                    'active' => true
+                ]
             ]
         );
 
@@ -251,6 +269,9 @@ class Pricing_Table extends Base {
                 'default' => __( 'Subscribe', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type button text here', 'happy-elementor-addons' ),
                 'label_block' => false,
+                'dynamic' => [
+                    'active' => true
+                ]
             ]
         );
 
@@ -260,7 +281,7 @@ class Pricing_Table extends Base {
                 'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
                 'label_block' => true,
-                'placeholder' => __( 'https://example.com/', 'happy-elementor-addons' ),
+                'placeholder' => 'https://happyaddons.com/',
                 'dynamic' => [
                     'active' => true,
                 ],
@@ -321,6 +342,9 @@ class Pricing_Table extends Base {
                 'placeholder' => __( 'Type badge text', 'happy-elementor-addons' ),
                 'condition' => [
                     'show_badge' => 'yes'
+                ],
+                'dynamic' => [
+                    'active' => true
                 ]
             ]
         );
