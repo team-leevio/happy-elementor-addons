@@ -150,7 +150,7 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 - Update: Dynamic Tags support
 - Update: New icon manager support with backward compatibility
 - Update: Step Flow Widget default view
-- Update: On demand caching handler
+- Update: On demand caching manager
 - Fix: Review ratting icon missing issue
 - Fix: Justified Grid Widget filter menu style issue
 - Fix: Icon Box Widget badge style missing issue
