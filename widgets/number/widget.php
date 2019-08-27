@@ -68,7 +68,10 @@ class Number extends Base {
 				'label' => __( 'Text', 'happy-elementor-addons' ),
 				'label_block' => false,
 				'type' => Controls_Manager::TEXT,
-				'default' => 7
+				'default' => 7,
+                'dynamic' => [
+                    'active' => true,
+                ]
 			]
 		);
 

@@ -58,8 +58,11 @@ class Gradient_Heading extends Base {
             [
                 'label' => __( 'Title', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Happy Gradient Heading', 'happy-elementor-addons' ),
+                'default' => 'Happy Gradient Heading',
                 'placeholder' => __( 'Type Gradient Heading Text', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -69,7 +72,10 @@ class Gradient_Heading extends Base {
                 'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
                 'separator' => 'before',
-                'placeholder' => __( 'https://example.com/', 'happy-elementor-addons' ),
+                'placeholder' => 'https://happyaddons.com/',
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 

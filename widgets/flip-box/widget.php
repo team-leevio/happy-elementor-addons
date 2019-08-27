@@ -124,6 +124,9 @@ class Flip_Box extends Base {
                 ],
                 'condition' => [
                     'front_icon_type' => 'image'
+                ],
+                'dynamic' => [
+                    'active' => true,
                 ]
             ]
         );
@@ -151,8 +154,11 @@ class Flip_Box extends Base {
                 'label_block' => true,
                 'separator' => 'before',
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Start Marketing', 'happy-elementor-addons' ),
+                'default' => 'Start Marketing',
                 'placeholder' => __( 'Type Flip Box Title', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -162,8 +168,11 @@ class Flip_Box extends Base {
                 'label' => __( 'Description', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'consectetur adipiscing elit, sed do<br>eiusmod Lorem ipsum dolor sit amet,<br> consectetur.', 'happy-elementor-addons' ),
+                'default' => 'consectetur adipiscing elit, sed do<br>eiusmod Lorem ipsum dolor sit amet,<br> consectetur.',
                 'placeholder' => __( 'Description', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -238,6 +247,9 @@ class Flip_Box extends Base {
                 ],
                 'condition' => [
                     'back_icon_type' => 'image'
+                ],
+                'dynamic' => [
+                    'active' => true,
                 ]
             ]
         );
@@ -299,6 +311,9 @@ class Flip_Box extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Start Marketing', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type Flip Box Title', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -308,8 +323,11 @@ class Flip_Box extends Base {
                 'label' => __( 'Description', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'consectetur adipiscing elit, sed do<br>eiusmod Lorem ipsum dolor sit amet.', 'happy-elementor-addons' ),
+                'default' => 'consectetur adipiscing elit, sed do<br>eiusmod Lorem ipsum dolor sit amet.',
                 'placeholder' => __( 'Description', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 

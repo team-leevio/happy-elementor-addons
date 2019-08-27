@@ -65,6 +65,9 @@ class Card extends Base {
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -108,10 +111,14 @@ class Card extends Base {
             [
                 'label' => __( 'Badge Text', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
+                'label_block' => true,
                 'default' => __( 'Badget Text', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type badge text', 'happy-elementor-addons' ),
                 'separator' => 'before',
                 'description' => __( 'Set badget position and control all the style settings from Style tab', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -133,6 +140,9 @@ class Card extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Happy Card Title', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type Card Title', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -143,7 +153,10 @@ class Card extends Base {
                 'type' => Controls_Manager::TEXTAREA,
                 'default' => __( 'Happy card description goes here', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type card description', 'happy-elementor-addons' ),
-                'rows' => 5
+                'rows' => 5,
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -228,9 +241,12 @@ class Card extends Base {
             [
                 'label' => __( 'Text', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Button Text', 'happy-elementor-addons' ),
+                'default' => 'Button Text',
                 'placeholder' => __( 'Type button text here', 'happy-elementor-addons' ),
                 'label_block' => true,
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -239,18 +255,37 @@ class Card extends Base {
             [
                 'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
-                'placeholder' => __( 'https://example.com/', 'happy-elementor-addons' ),
+                'placeholder' => 'https://happyaddons.com/',
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
-        $this->add_control(
-            'button_icon',
-            [
-                'label' => __( 'Icon', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::ICON,
-                'options' => ha_get_happy_icons(),
-            ]
-        );
+        if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
+            $this->add_control(
+                'button_icon',
+                [
+                    'label' => __( 'Icon', 'happy-elementor-addons' ),
+                    'label_block' => true,
+                    'type' => Controls_Manager::ICON,
+                    'options' => ha_get_happy_icons(),
+                    'default' => 'fa fa-angle-right',
+                ]
+            );
+
+            $condition = ['button_icon!' => ''];
+        } else {
+            $this->add_control(
+                'button_selected_icon',
+                [
+                    'type' => Controls_Manager::ICONS,
+                    'fa4compatibility' => 'button_icon',
+                    'label_block' => true,
+                ]
+            );
+            $condition = ['button_selected_icon[value]!' => ''];
+        }
 
         $this->add_control(
             'button_icon_position',
@@ -270,9 +305,7 @@ class Card extends Base {
                 ],
                 'default' => 'before',
                 'toggle' => false,
-                'condition' => [
-                    'button_icon!' => '',
-                ],
+                'condition' => $condition,
             ]
         );
 
@@ -281,9 +314,7 @@ class Card extends Base {
             [
                 'label' => __( 'Icon Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'condition' => [
-                    'button_icon!' => '',
-                ],
+                'condition' => $condition,
                 'selectors' => [
                     '{{WRAPPER}} .ha-btn--icon-before .ha-btn-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
                     '{{WRAPPER}} .ha-btn--icon-after .ha-btn-icon' => 'margin-left: {{SIZE}}{{UNIT}};',
@@ -1050,31 +1081,27 @@ class Card extends Base {
             <?php endif; ?>
 
             <?php
-            if ( $settings['button_text'] && empty( $settings['button_icon'] ) ) :
+            if ( $settings['button_text'] && ( empty( $settings['button_selected_icon'] ) && empty( $settings['button_icon'] ) ) ) :
                 printf( '<a %1$s>%2$s</a>',
                     $this->get_render_attribute_string( 'button' ),
                     sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) )
                     );
-            elseif ( empty( $settings['button_text'] ) && $settings['button_icon'] ) :
-                printf( '<a %1$s>%2$s</a>',
-                    $this->get_render_attribute_string( 'button' ),
-                    sprintf( '<i class="%1$s"></i>', esc_attr( $settings['button_icon'] ) )
-                );
-            elseif ( $settings['button_text'] && $settings['button_icon'] ) :
+            elseif ( empty( $settings['button_text'] ) && ( ! empty( $settings['button_icon'] ) || ! empty( $settings['button_selected_icon'] ) )  ) : ?>
+                <a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_icon( $settings, 'button_icon', 'button_selected_icon' ); ?></a>
+            <?php elseif ( $settings['button_text'] && ( ! empty( $settings['button_icon'] ) || ! empty( $settings['button_selected_icon'] ) ) ) :
                 if ( $settings['button_icon_position'] === 'before' ) :
                     $this->add_render_attribute( 'button', 'class', 'ha-btn--icon-before' );
-                    $btn_before = sprintf( '<i class="ha-btn-icon %1$s"></i>', esc_attr( $settings['button_icon'] ) );
-                    $btn_after = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
+                    $button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
+                    ?>
+                    <a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_icon( $settings, 'button_icon', 'button_selected_icon', ['class' => 'ha-btn-icon'] ); ?> <?php echo $button_text; ?></a>
+                    <?php
                 else :
                     $this->add_render_attribute( 'button', 'class', 'ha-btn--icon-after' );
-                    $btn_before = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
-                    $btn_after = sprintf( '<i class="ha-btn-icon %1$s"></i>', esc_attr( $settings['button_icon'] ) );
+                    $button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
+                    ?>
+                    <a <?php $this->print_render_attribute_string( 'button' ); ?>><?php echo $button_text; ?> <?php ha_render_icon( $settings, 'button_icon', 'button_selected_icon', ['class' => 'ha-btn-icon'] ); ?></a>
+                <?php
                 endif;
-                printf( '<a %1$s>%2$s %3$s</a>',
-                    $this->get_render_attribute_string( 'button' ),
-                    $btn_before,
-                    $btn_after
-                );
             endif;
             ?>
         </div>
@@ -1084,6 +1111,13 @@ class Card extends Base {
     public function _content_template() {
         ?>
         <#
+        var btnIconHTML = btnMigrated = btnIcon = '';
+
+        if ( ha_has_icon_library() ) {
+            btnIconHTML = elementor.helpers.renderIcon( view, settings.button_selected_icon, { 'aria-hidden': true, 'class': 'ha-btn-icon' }, 'i' , 'object' ),
+            btnMigrated = elementor.helpers.isIconMigrated( settings, 'button_selected_icon' );
+        }
+
         view.addInlineEditingAttributes( 'badge_text', 'none' );
         view.addRenderAttribute(
             'badge_text',
@@ -1132,19 +1166,27 @@ class Card extends Base {
                 </div>
             <# } #>
 
-            <# if ( settings.button_text && ! settings.button_icon ) { #>
+            <# if ( settings.button_selected_icon || settings.button_icon ) {
+                if ( ha_has_icon_library() && btnIconHTML && btnIconHTML.rendered && ( ! settings.button_icon || btnMigrated ) ) {
+                    btnIcon = btnIconHTML.value;
+                } else if ( settings.button_icon ) {
+                    btnIcon = '<i class="ha-btn-icon ' + settings.button_icon + '" aria-hidden="true"></i>';
+                }
+            } #>
+
+            <# if ( settings.button_text && ( ! settings.button_selected_icon && ! settings.button_icon ) ) { #>
                 <a {{{ view.getRenderAttributeString( 'button' ) }}}><span {{{ view.getRenderAttributeString( 'button_text' ) }}}>{{ settings.button_text }}</span></a>
-            <# } else if ( ! settings.button_text && settings.button_icon ) { #>
-                <a {{{ view.getRenderAttributeString( 'button' ) }}}><i class="{{ settings.button_icon }}"></i></a>
-            <# } else if ( settings.button_text && settings.button_icon ) {
+            <# } else if ( ! settings.button_text && ( settings.button_selected_icon || settings.button_icon ) ) { #>
+                <a {{{ view.getRenderAttributeString( 'button' ) }}}>{{{ btnIcon }}}</a>
+            <# } else if ( settings.button_text && ( settings.button_selected_icon || settings.button_icon ) ) {
                 if ( settings.button_icon_position === 'before' ) {
                     view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-before' );
-                    var button_before = '<i class="ha-btn-icon ' + settings.button_icon + '"></i>';
-                    var button_after = '<span ' + view.getRenderAttributeString( 'button_text' ) + '>' + settings.button_text + '</span>';
+                    button_before = btnIcon;
+                    button_after = '<span ' + view.getRenderAttributeString( 'button_text' ) + '>' + settings.button_text + '</span>';
                 } else {
                     view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-after' );
-                    var button_after = '<i class="ha-btn-icon ' + settings.button_icon + '"></i>';
-                    var button_before = '<span ' + view.getRenderAttributeString( 'button_text' ) + '>' + settings.button_text + '</span>';
+                    button_after = btnIcon;
+                    button_before = '<span ' + view.getRenderAttributeString( 'button_text' ) + '>' + settings.button_text + '</span>';
                 } #>
                 <a {{{ view.getRenderAttributeString( 'button' ) }}}>{{{ button_before }}} {{{ button_after }}}</a>
             <# } #>

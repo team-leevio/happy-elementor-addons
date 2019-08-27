@@ -113,6 +113,9 @@ class Member extends Base {
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -131,8 +134,11 @@ class Member extends Base {
                 'label' => __( 'Name', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Happy Member Name', 'happy-elementor-addons' ),
+                'default' => 'Happy Member Name',
                 'placeholder' => __( 'Type Member Name', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -144,6 +150,9 @@ class Member extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Happy Officer', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type Member Job Title', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -153,7 +162,10 @@ class Member extends Base {
                 'label' => __( 'Short Bio', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXTAREA,
                 'placeholder' => __( 'Write something amazing about the happy member', 'happy-elementor-addons' ),
-                'rows' => 5
+                'rows' => 5,
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -257,6 +269,9 @@ class Member extends Base {
                 'show_external' => false,
                 'condition' => [
                     'name!' => 'email'
+                ],
+                'dynamic' => [
+                    'active' => true,
                 ]
             ]
         );
@@ -270,6 +285,9 @@ class Member extends Base {
                 'input_type' => 'email',
                 'condition' => [
                     'name' => 'email'
+                ],
+                'dynamic' => [
+                    'active' => true,
                 ]
             ]
         );

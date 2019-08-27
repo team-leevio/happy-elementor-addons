@@ -90,6 +90,9 @@ class InfoBox extends Base {
                 ],
                 'condition' => [
                     'type' => 'image'
+                ],
+                'dynamic' => [
+                    'active' => true,
                 ]
             ]
         );
@@ -164,6 +167,9 @@ class InfoBox extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Happy Info Box Title', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type Info Box Title', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -174,7 +180,10 @@ class InfoBox extends Base {
                 'type' => Controls_Manager::TEXTAREA,
                 'default' => __( 'Happy info box description goes here', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type info box description', 'happy-elementor-addons' ),
-                'rows' => 5
+                'rows' => 5,
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -262,6 +271,9 @@ class InfoBox extends Base {
                 'default' => __( 'Button Text', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type button text here', 'happy-elementor-addons' ),
                 'label_block' => true,
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -270,7 +282,10 @@ class InfoBox extends Base {
             [
                 'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
-                'placeholder' => __( 'https://example.com/', 'happy-elementor-addons' ),
+                'placeholder' => __( 'https://happyaddons.com/', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 

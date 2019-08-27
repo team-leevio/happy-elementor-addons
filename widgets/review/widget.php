@@ -74,6 +74,9 @@ class Review extends Base {
                         'step' => .5,
                     ],
                 ],
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -97,6 +100,9 @@ class Review extends Base {
                 'type' => Controls_Manager::TEXTAREA,
                 'default' => __( 'Happy reviewer is super excited being part of happy addons family', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type amazing review from happy reviewer', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -141,6 +147,9 @@ class Review extends Base {
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -149,8 +158,11 @@ class Review extends Base {
             [
                 'label' => __( 'Name', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Happy Reviewer', 'happy-elementor-addons' ),
+                'default' => 'Happy Reviewer',
                 'placeholder' => __( 'Type Reviewer Name', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -161,6 +173,9 @@ class Review extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Happy Officer', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type Reviewer Job Title', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 

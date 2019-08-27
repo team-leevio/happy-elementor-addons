@@ -88,6 +88,9 @@ class Step_Flow extends Base {
                 'placeholder' => __( 'Badge', 'happy-elementor-addons' ),
                 'description' => __( 'Keep it blank, if you want to remove the Badge', 'happy-elementor-addons' ),
                 'default' => __( 'Step 1', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -100,6 +103,9 @@ class Step_Flow extends Base {
                 'placeholder' => __( 'Title', 'happy-elementor-addons' ),
                 'default' => __( 'Start Marketing', 'happy-elementor-addons' ),
                 'separator' => 'before',
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -109,7 +115,10 @@ class Step_Flow extends Base {
                 'label' => __( 'Description', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXTAREA,
                 'placeholder' => __( 'Description', 'happy-elementor-addons' ),
-                'default' => __( 'consectetur adipiscing elit, sed do<br>eiusmod Lorem ipsum dolor sit amet,<br> consectetur.', 'happy-elementor-addons' ),
+                'default' => 'consectetur adipiscing elit, sed do<br>eiusmod Lorem ipsum dolor sit amet,<br> consectetur.',
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -118,7 +127,10 @@ class Step_Flow extends Base {
             [
                 'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
-                'placeholder' => __( 'https://example.com', 'happy-elementor-addons' ),
+                'placeholder' => 'https://happyaddons.com/',
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 

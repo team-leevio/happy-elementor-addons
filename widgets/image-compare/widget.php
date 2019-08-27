@@ -72,6 +72,9 @@ class Image_Compare extends Base {
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -83,6 +86,9 @@ class Image_Compare extends Base {
                 'default' => __( 'Before', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type before image label', 'happy-elementor-addons' ),
                 'description' => __( 'Label will not be shown if Hide Overlay is enabled in Settings', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -103,6 +109,9 @@ class Image_Compare extends Base {
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -114,6 +123,9 @@ class Image_Compare extends Base {
                 'default' => __( 'After', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type after image label', 'happy-elementor-addons' ),
                 'description' => __( 'Label will not be shown if Hide Overlay is enabled in Settings', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 

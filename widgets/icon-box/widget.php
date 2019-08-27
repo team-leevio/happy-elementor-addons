@@ -90,6 +90,9 @@ class Icon_Box extends Base {
                 'label_block' => true,
                 'default' => __( 'Happy Icon Box', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type Icon Box Title', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -100,6 +103,9 @@ class Icon_Box extends Base {
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
                 'placeholder' => __( 'Type Icon Badge Text', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -109,7 +115,10 @@ class Icon_Box extends Base {
                 'label' => __( 'Box Link', 'happy-elementor-addons' ),
                 'separator' => 'before',
                 'type' => Controls_Manager::URL,
-                'placeholder' => __( 'https://example.com/', 'happy-elementor-addons' ),
+                'placeholder' => 'https://happyaddons.com/',
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 

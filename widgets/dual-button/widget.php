@@ -68,7 +68,10 @@ class Dual_Button extends Base {
                 'label' => __( 'Text', 'happy-elementor-addons' ),
                 'label_block'=> true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Button Text', 'happy-elementor-addons' )
+                'default' => 'Button Text',
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -77,6 +80,10 @@ class Dual_Button extends Base {
             [
                 'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
+                'placeholder' => 'https://happyaddons.com/',
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -237,7 +244,10 @@ class Dual_Button extends Base {
                 'label' => __( 'Text', 'happy-elementor-addons' ),
                 'label_block'=> true,
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Button Text', 'happy-elementor-addons' )
+                'default' => 'Button Text',
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -245,7 +255,11 @@ class Dual_Button extends Base {
             'right_button_link',
             [
                 'label' => __( 'Link', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::URL
+                'type' => Controls_Manager::URL,
+                'placeholder' => 'https://happyaddons.com/',
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
