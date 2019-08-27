@@ -166,18 +166,44 @@ class Pricing_Table extends Base {
             ]
         );
 
-        $repeater->add_control(
-            'icon',
-            [
-                'label' => __( 'Icon', 'elementor-pro' ),
-                'type' => Controls_Manager::ICON,
-                'default' => 'fa fa-check',
-                'include' => [
-                    'fa fa-check',
-                    'fa fa-close',
+        if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
+            $repeater->add_control(
+                'icon',
+                [
+                    'label' => __( 'Icon', 'elementor-pro' ),
+                    'type' => Controls_Manager::ICON,
+                    'label_block' => false,
+                    'options' => ha_get_happy_icons(),
+                    'default' => 'fa fa-check',
+                    'include' => [
+                        'fa fa-check',
+                        'fa fa-close',
+                    ]
                 ]
-            ]
-        );
+            );
+        } else {
+            $repeater->add_control(
+                'selected_icon',
+                [
+                    'label' => __( 'Icon', 'elementor-pro' ),
+                    'type' => Controls_Manager::ICONS,
+                    'fa4compatibility' => 'icon',
+                    'default' => [
+                        'value' => 'fas fa-check',
+                        'library' => 'fa-solid',
+                    ],
+                    'recommended' => [
+                        'fa-regular' => [
+                            'check-square',
+                            'window-close',
+                        ],
+                        'fa-solid' => [
+                            'check',
+                        ]
+                    ]
+                ]
+            );
+        }
 
         $this->add_control(
             'features_list',
@@ -944,9 +970,9 @@ class Pricing_Table extends Base {
                         $this->add_render_attribute( $name_key, 'class', 'ha-pricing-table-feature-text' );
                         ?>
                         <li class="<?php echo esc_attr( 'elementor-repeater-item-' . $feature['_id'] ); ?>">
-                            <?php if ( $feature['icon'] ) : ?>
-                                <i class="<?php echo esc_attr( $feature['icon'] ); ?>"></i>
-                            <?php endif; ?>
+                            <?php if ( ! empty( $feature['icon'] ) || ! empty( $feature['selected_icon'] ) ) :
+                                ha_render_icon( $feature, 'icon', 'selected_icon' );
+                            endif; ?>
                             <span <?php $this->print_render_attribute_string( $name_key ); ?>><?php echo $feature['text']; ?></span>
                         </li>
                     <?php endforeach; ?>
