@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || die();
 
 /**
  * Class Updater
+ *
  * @package Happy_Addons\Elementor
  * @since 1.5.0
  */
