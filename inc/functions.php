@@ -439,3 +439,29 @@ function ha_kses_paragraph( $string = '' ) {
 
     return wp_kses( $string, $allowed_html );
 }
+
+/**
+ * Strip all the tags except allowed html tags
+ *
+ * @param string $string
+ * @param bool $allow_span
+ * @return string
+ */
+function ha_kses_heading( $string = '' ) {
+    $allowed_html = [
+        'span' => [
+            'class' => []
+        ],
+        'abbr' => [
+            'title' => [],
+        ],
+        'b' => [],
+        'i' => [],
+        'u' => [],
+        'br' => [],
+        'em' => [],
+        'strong' => [],
+    ];
+
+    return wp_kses( $string, $allowed_html );
+}

@@ -1069,7 +1069,7 @@ class Card extends Base {
                 printf( '<%1$s %2$s>%3$s</%1$s>',
                     tag_escape( $settings['title_tag'] ),
                     $this->get_render_attribute_string( 'title' ),
-                    ha_kses_paragraph( $settings['title' ] )
+                    ha_kses_heading( $settings['title' ] )
                     );
             endif;
             ?>
