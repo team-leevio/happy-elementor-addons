@@ -75,8 +75,8 @@
 
                 if ( ! _.isObject( value ) && valueToMigrate && valueToMigrate.indexOf('hm hm-') === 0 ) {
                     newValue.value = valueToMigrate;
-                    this.elementSettingsModel.set( model.get( 'name' ), value );
-                    return value;
+                    this.elementSettingsModel.set( model.get( 'name' ), newValue );
+                    return newValue;
                 }
 
                 if ( ! this.isMigrationAllowed() ) {
