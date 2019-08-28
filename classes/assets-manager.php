@@ -23,6 +23,29 @@ class Assets_Manager {
 
         // Placeholder image replacement
         add_filter( 'elementor/utils/get_placeholder_image_src', [ __CLASS__, 'set_placeholder_image' ] );
+
+        // Paragraph toolbar registration
+        add_filter( 'elementor/editor/localize_settings', [ __CLASS__, 'add_inline_editing_paragraph_toolbar' ] );
+    }
+
+    /**
+     * Register inline editing paragraph toolbar
+     *
+     * @param array $config
+     * @return array
+     */
+    public static function add_inline_editing_paragraph_toolbar( $config ) {
+        $config['inlineEditing'] = [
+            'toolbar' => [
+                'paragraph' => [
+                    'bold',
+                    'underline',
+                    'italic',
+                    'createlink',
+                ],
+            ]
+        ];
+        return $config;
     }
 
     public static function set_placeholder_image() {

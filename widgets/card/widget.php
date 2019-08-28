@@ -1030,10 +1030,10 @@ class Card extends Base {
             ['ha-badge', sprintf( 'ha-badge--%s', esc_attr( $settings['badge_position'] ) )]
         );
 
-        $this->add_inline_editing_attributes( 'title', 'none' );
+        $this->add_inline_editing_attributes( 'title', 'basic' );
         $this->add_render_attribute( 'title', 'class', 'ha-card-title' );
 
-        $this->add_inline_editing_attributes( 'description', 'basic' );
+        $this->add_inline_editing_attributes( 'description', 'advanced' );
         $this->add_render_attribute( 'description', 'class', 'ha-card-text' );
 
         $this->add_inline_editing_attributes( 'button_text', 'none' );
@@ -1069,14 +1069,14 @@ class Card extends Base {
                 printf( '<%1$s %2$s>%3$s</%1$s>',
                     tag_escape( $settings['title_tag'] ),
                     $this->get_render_attribute_string( 'title' ),
-                    esc_html( $settings['title' ] )
+                    ha_kses_paragraph( $settings['title' ] )
                     );
             endif;
             ?>
 
             <?php if ( $settings['description'] ) : ?>
                 <div <?php echo $this->get_render_attribute_string( 'description' ); ?>>
-                    <p><?php echo wp_kses_data( $settings['description'] ); ?></p>
+                    <p><?php echo ha_kses_paragraph( $settings['description'] ); ?></p>
                 </div>
             <?php endif; ?>
 
@@ -1125,10 +1125,10 @@ class Card extends Base {
             ['ha-badge', 'ha-badge--' + settings.badge_position]
         );
 
-        view.addInlineEditingAttributes( 'title', 'none' );
+        view.addInlineEditingAttributes( 'title', 'basic' );
         view.addRenderAttribute( 'title', 'class', 'ha-card-title' );
 
-        view.addInlineEditingAttributes( 'description', 'basic' );
+        view.addInlineEditingAttributes( 'description', 'advanced' );
         view.addRenderAttribute( 'description', 'class', 'ha-card-text' );
 
         view.addInlineEditingAttributes( 'button_text', 'none' );
@@ -1157,7 +1157,7 @@ class Card extends Base {
 
         <div class="ha-card-body">
             <# if (settings.title) { #>
-                <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
+                <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ settings.title }}}</{{ settings.title_tag }}>
             <# } #>
 
             <# if (settings.description) { #>
