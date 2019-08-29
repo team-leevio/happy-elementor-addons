@@ -191,10 +191,11 @@ class Assets_Manager {
      */
     public static function frontend_elementor_enqueue( Post_CSS $file ) {
         if ( get_post_type( $file->get_post_id() ) === 'elementor_library' ) {
-            if ( Cache_Manager::should_enqueue( $file->get_post_id() ) ) {
-                Cache_Manager::enqueue( $file->get_post_id() );
-            } else {
+            $should_enqueue = Cache_Manager::should_enqueue( $file->get_post_id() );
+            if ( ! $should_enqueue && $file->get_post_id() === get_the_ID() ) {
                 Cache_Manager::enqueue_without_cache();
+            } elseif ( $should_enqueue ) {
+                Cache_Manager::enqueue( $file->get_post_id() );
             }
         }
     }
