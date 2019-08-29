@@ -623,10 +623,11 @@ class Step_Flow extends Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
+        $this->add_inline_editing_attributes( 'title', 'basic' );
         $this->add_render_attribute( 'title', 'class', 'ha-steps-title' );
 
+        $this->add_inline_editing_attributes( 'description', 'intermediate' );
         $this->add_render_attribute( 'description', 'class', 'ha-step-description' );
-        $this->add_inline_editing_attributes( 'description', 'basic' );
 
         $this->add_render_attribute( 'badge', 'class', 'ha-steps-label' );
         $this->add_inline_editing_attributes( 'badge', 'none' );
@@ -661,14 +662,14 @@ class Step_Flow extends Base {
 
         <h2 <?php $this->print_render_attribute_string( 'title' ); ?>>
             <?php if ( ! empty( $settings['link']['url'] ) ) : ?>
-                <a <?php $this->print_render_attribute_string( 'link' ); ?>><?php echo $settings['title']; ?></a>
+                <a <?php $this->print_render_attribute_string( 'link' ); ?>><?php echo ha_kses_basic( $settings['title'] ); ?></a>
             <?php else : ?>
-                <?php echo $settings['title']; ?>
+                <?php echo ha_kses_basic( $settings['title'] ); ?>
             <?php endif; ?>
         </h2>
 
         <?php if ( $settings['description'] ) : ?>
-            <p <?php $this->print_render_attribute_string( 'description' ); ?>><?php echo $settings['description']; ?></p>
+            <p <?php $this->print_render_attribute_string( 'description' ); ?>><?php echo ha_kses_intermediate( $settings['description'] ); ?></p>
         <?php endif; ?>
 
         <?php

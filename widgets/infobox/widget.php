@@ -901,10 +901,10 @@ class InfoBox extends Base {
 	protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $this->add_inline_editing_attributes( 'title', 'none' );
+        $this->add_inline_editing_attributes( 'title', 'basic' );
         $this->add_render_attribute( 'title', 'class', 'ha-infobox-title' );
 
-        $this->add_inline_editing_attributes( 'description', 'basic' );
+        $this->add_inline_editing_attributes( 'description', 'intermediate' );
         $this->add_render_attribute( 'description', 'class', 'ha-infobox-text' );
 
         $this->add_inline_editing_attributes( 'button_text', 'none' );
@@ -943,14 +943,14 @@ class InfoBox extends Base {
                 printf( '<%1$s %2$s>%3$s</%1$s>',
                     tag_escape( $settings['title_tag'] ),
                     $this->get_render_attribute_string( 'title' ),
-                    esc_html( $settings['title' ] )
+                    ha_kses_basic( $settings['title' ] )
                 );
             endif;
             ?>
 
             <?php if ( $settings['description'] ) : ?>
-                <div <?php echo $this->get_render_attribute_string( 'description' ); ?>>
-                    <p><?php echo wp_kses_data( $settings['description'] ); ?></p>
+                <div <?php $this->print_render_attribute_string( 'description' ); ?>>
+                    <p><?php echo ha_kses_intermediate( $settings['description'] ); ?></p>
                 </div>
             <?php endif; ?>
 
@@ -994,10 +994,10 @@ class InfoBox extends Base {
             btnMigrated = elementor.helpers.isIconMigrated( settings, 'button_selected_icon' );
         }
 
-        view.addInlineEditingAttributes( 'title', 'none' );
+        view.addInlineEditingAttributes( 'title', 'basic' );
         view.addRenderAttribute( 'title', 'class', 'ha-infobox-title' );
 
-        view.addInlineEditingAttributes( 'description', 'basic' );
+        view.addInlineEditingAttributes( 'description', 'intermediate' );
         view.addRenderAttribute( 'description', 'class', 'ha-infobox-text' );
 
         view.addInlineEditingAttributes( 'button_text', 'none' );

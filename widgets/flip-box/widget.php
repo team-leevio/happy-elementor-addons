@@ -1157,7 +1157,7 @@ class Flip_Box extends Base {
         $this->add_render_attribute( 'back_title', 'class', 'ha-flip-box-heading-back' );
         $this->add_render_attribute( 'front_description', 'class', 'ha-desc' );
         $this->add_render_attribute( 'back_description', 'class', 'ha-desc' );
-        $this->add_inline_editing_attributes( 'back_description', 'basic' );
+        $this->add_inline_editing_attributes( 'back_description', 'intermediate' );
 
         // display type
         $this->add_render_attribute( 'display', 'class', 'ha-flip-box-container ha-flip-effect-classic' );
@@ -1192,11 +1192,11 @@ class Flip_Box extends Base {
 
                             <div class="ha-text">
                                 <?php if ( $settings['front_title'] ) : ?>
-                                    <h2 <?php echo $this->get_render_attribute_string( 'front_title' ); ?>><?php echo esc_html( $settings['front_title'] ); ?></h2>
+                                    <h2 <?php echo $this->get_render_attribute_string( 'front_title' ); ?>><?php echo ha_kses_basic( $settings['front_title'] ); ?></h2>
                                 <?php endif; ?>
 
                                 <?php if ( $settings['front_description'] ) : ?>
-                                    <p <?php echo $this->get_render_attribute_string( 'front_description' ); ?>><?php echo $settings['front_description']; ?></p>
+                                    <p <?php echo $this->get_render_attribute_string( 'front_description' ); ?>><?php echo ha_kses_basic( $settings['front_description'] ); ?></p>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -1219,11 +1219,11 @@ class Flip_Box extends Base {
 
                             <div class="ha-text">
                                 <?php if ( $settings['back_title'] ) : ?>
-                                    <h2 <?php echo $this->get_render_attribute_string( 'back_title' ); ?>><?php echo esc_html( $settings['back_title'] ); ?></h2>
+                                    <h2 <?php echo $this->get_render_attribute_string( 'back_title' ); ?>><?php echo ha_kses_basic( $settings['back_title'] ); ?></h2>
                                 <?php endif; ?>
 
                                 <?php if ( $settings['back_description'] ) : ?>
-                                    <p <?php echo $this->get_render_attribute_string( 'back_description' ) ?>><?php echo $settings['back_description'] ?></p>
+                                    <p <?php echo $this->get_render_attribute_string( 'back_description' ) ?>><?php echo ha_kses_intermediate( $settings['back_description'] ); ?></p>
                                 <?php endif; ?>
                             </div>
 

@@ -716,7 +716,7 @@ class Icon_Box extends Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $this->add_inline_editing_attributes( 'title', 'none' );
+        $this->add_inline_editing_attributes( 'title', 'basic' );
         $this->add_render_attribute( 'title', 'class', 'ha-icon-box-title' );
 
         $this->add_inline_editing_attributes( 'badge_text', 'none' );
@@ -724,21 +724,20 @@ class Icon_Box extends Base {
         ?>
 
         <?php if ( $settings['badge_text'] ) : ?>
-            <span <?php echo $this->get_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></span>
+            <span <?php $this->print_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></span>
         <?php endif; ?>
 
         <?php if ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon'] ) ) : ?>
             <span class="ha-icon-box-icon">
                 <?php ha_render_icon( $settings, 'icon', 'selected_icon' ); ?>
             </span>
-        <?php endif; ?>
+        <?php endif;
 
-        <?php
         if ( $settings['title' ] ) :
             printf( '<%1$s %2$s>%3$s</%1$s>',
                 tag_escape( $settings['title_tag'] ),
                 $this->get_render_attribute_string( 'title' ),
-                esc_html( $settings['title' ] )
+                ha_kses_basic( $settings['title' ] )
                 );
         endif;
     }
@@ -753,7 +752,7 @@ class Icon_Box extends Base {
             migrated = elementor.helpers.isIconMigrated( settings, 'selected_icon' );
         }
 
-        view.addInlineEditingAttributes( 'title', 'none' );
+        view.addInlineEditingAttributes( 'title', 'basic' );
         view.addRenderAttribute( 'title', 'class', 'ha-icon-box-title' );
 
         view.addInlineEditingAttributes( 'badge_text', 'none' );

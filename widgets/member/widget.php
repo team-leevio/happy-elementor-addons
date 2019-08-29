@@ -862,13 +862,13 @@ class Member extends Base {
 	protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $this->add_inline_editing_attributes( 'title', 'none' );
+        $this->add_inline_editing_attributes( 'title', 'basic' );
         $this->add_render_attribute( 'title', 'class', 'ha-member-name' );
 
-        $this->add_inline_editing_attributes( 'job_title', 'none' );
+        $this->add_inline_editing_attributes( 'job_title', 'basic' );
         $this->add_render_attribute( 'job_title', 'class', 'ha-member-position' );
 
-        $this->add_inline_editing_attributes( 'bio', 'basic' );
+        $this->add_inline_editing_attributes( 'bio', 'intermediate' );
         $this->add_render_attribute( 'bio', 'class', 'ha-member-bio' );
         ?>
 
@@ -888,17 +888,17 @@ class Member extends Base {
                 printf( '<%1$s %2$s>%3$s</%1$s>',
                     tag_escape( $settings['title_tag'] ),
                     $this->get_render_attribute_string( 'title' ),
-                    esc_html( $settings['title'] )
+                    ha_kses_basic( $settings['title'] )
                 );
             endif; ?>
 
             <?php if ( $settings['job_title' ] ) : ?>
-                <div <?php echo $this->get_render_attribute_string( 'job_title' ); ?>><?php echo esc_html( $settings['job_title' ] ); ?></div>
+                <div <?php $this->print_render_attribute_string( 'job_title' ); ?>><?php echo ha_kses_basic( $settings['job_title' ] ); ?></div>
             <?php endif; ?>
 
             <?php if ( $settings['bio'] ) : ?>
-                <div <?php echo $this->get_render_attribute_string( 'bio' ); ?>>
-                    <p><?php echo wp_kses_data( $settings['bio'] ); ?></p>
+                <div <?php $this->print_render_attribute_string( 'bio' ); ?>>
+                    <p><?php echo ha_kses_intermediate( $settings['bio'] ); ?></p>
                 </div>
             <?php endif; ?>
 
@@ -931,13 +931,13 @@ class Member extends Base {
     public function _content_template() {
         ?>
         <#
-        view.addInlineEditingAttributes( 'title', 'none' );
+        view.addInlineEditingAttributes( 'title', 'basic' );
         view.addRenderAttribute( 'title', 'class', 'ha-member-name' );
 
-        view.addInlineEditingAttributes( 'job_title', 'none' );
+        view.addInlineEditingAttributes( 'job_title', 'basic' );
         view.addRenderAttribute( 'job_title', 'class', 'ha-member-position' );
 
-        view.addInlineEditingAttributes( 'bio', 'basic' );
+        view.addInlineEditingAttributes( 'bio', 'intermediate' );
         view.addRenderAttribute( 'bio', 'class', 'ha-member-bio' );
 
         if ( settings.image.url || settings.image.id ) {

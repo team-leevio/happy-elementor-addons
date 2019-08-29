@@ -685,16 +685,16 @@ class Review extends Base {
         $this->add_render_attribute( '_wrapper', 'itemscope' );
         $this->add_render_attribute( '_wrapper', 'itemtype', 'https://schema.org/Review' );
 
-        $this->add_inline_editing_attributes( 'title', 'none' );
+        $this->add_inline_editing_attributes( 'title', 'basic' );
         $this->add_render_attribute( 'title', 'class', 'ha-review-reviewer' );
         $this->add_render_attribute( 'title', 'itemprop', 'author' );
         $this->add_render_attribute( 'title', 'itemscope', '' );
         $this->add_render_attribute( 'title', 'itemtype', 'https://schema.org/Person' );
 
-        $this->add_inline_editing_attributes( 'job_title', 'none' );
+        $this->add_inline_editing_attributes( 'job_title', 'basic' );
         $this->add_render_attribute( 'job_title', 'class', 'ha-review-position' );
 
-        $this->add_inline_editing_attributes( 'review', 'basic' );
+        $this->add_inline_editing_attributes( 'review', 'intermediate' );
         $this->add_render_attribute( 'review', 'class', 'ha-review-desc' );
         $this->add_render_attribute( 'review', 'itemprop', 'reviewBody' );
 
@@ -723,8 +723,8 @@ class Review extends Base {
 
         <div class="ha-review-body">
             <?php if ( $settings['review_position'] === 'before' && $settings['review'] ) : ?>
-                <div <?php echo $this->get_render_attribute_string( 'review' ); ?>>
-                    <p><?php echo wp_kses_data( $settings['review'] ); ?></p>
+                <div <?php $this->print_render_attribute_string( 'review' ); ?>>
+                    <p><?php echo ha_kses_intermediate( $settings['review'] ); ?></p>
                 </div>
             <?php endif; ?>
 
@@ -733,15 +733,15 @@ class Review extends Base {
                     printf( '<%1$s %2$s>%3$s</%1$s>',
                         tag_escape( $settings['title_tag'] ),
                         $this->get_render_attribute_string( 'title' ),
-                        esc_html( $settings['title' ] )
+                        ha_kses_basic( $settings['title' ] )
                         );
                 endif; ?>
 
                 <?php if ( $settings['job_title' ] ) : ?>
-                    <div <?php echo $this->get_render_attribute_string( 'job_title' ); ?>><?php echo esc_html( $settings['job_title' ] ); ?></div>
+                    <div <?php $this->print_render_attribute_string( 'job_title' ); ?>><?php echo ha_kses_basic( $settings['job_title' ] ); ?></div>
                 <?php endif; ?>
 
-                <div <?php echo $this->get_render_attribute_string( 'ratting' ); ?>>
+                <div <?php $this->print_render_attribute_string( 'ratting' ); ?>>
                     <meta itemprop="ratingValue" content="<?php echo esc_attr( $ratting ); ?>">
 
                     <?php if ( $settings['ratting_style'] === 'num' ) : ?>
@@ -759,8 +759,8 @@ class Review extends Base {
             </div>
 
             <?php if ( $settings['review_position'] === 'after' && $settings['review'] ) : ?>
-                <div <?php echo $this->get_render_attribute_string( 'review' ); ?>>
-                    <p><?php echo wp_kses_data( $settings['review'] ); ?></p>
+                <div <?php $this->print_render_attribute_string( 'review' ); ?>>
+                    <p><?php echo ha_kses_intermediate( $settings['review'] ); ?></p>
                 </div>
             <?php endif; ?>
         </div>
@@ -774,13 +774,13 @@ class Review extends Base {
     public function _content_template() {
         ?>
         <#
-        view.addInlineEditingAttributes( 'title', 'none' );
+        view.addInlineEditingAttributes( 'title', 'basic' );
         view.addRenderAttribute( 'title', 'class', 'ha-review-reviewer' );
 
-        view.addInlineEditingAttributes( 'job_title', 'none' );
+        view.addInlineEditingAttributes( 'job_title', 'basic' );
         view.addRenderAttribute( 'job_title', 'class', 'ha-review-position' );
 
-        view.addInlineEditingAttributes( 'review', 'basic' );
+        view.addInlineEditingAttributes( 'review', 'intermediate' );
         view.addRenderAttribute( 'review', 'class', 'ha-review-desc' );
 
         var ratting = Math.max(0, settings.ratting.size);
@@ -809,10 +809,10 @@ class Review extends Base {
             <# } #>
             <div class="ha-review-header">
                 <# if (settings.title) { #>
-                    <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
+                    <{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ settings.title }}}</{{ settings.title_tag }}>
                 <# } #>
                 <# if (settings.job_title) { #>
-                    <div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{ settings.job_title }}</div>
+                    <div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{{ settings.job_title }}}</div>
                 <# } #>
                 <# if ( settings.ratting_style === 'num' ) { #>
                     <div class="ha-review-ratting ha-review-ratting--num">{{ ratting }} <i class="fa fa-star"></i></div>

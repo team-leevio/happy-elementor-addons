@@ -939,10 +939,10 @@ class Pricing_Table extends Base {
         $this->add_inline_editing_attributes( 'title', 'basic' );
         $this->add_render_attribute( 'title', 'class', 'ha-pricing-table-title' );
 
-        $this->add_inline_editing_attributes( 'price', 'none' );
+        $this->add_inline_editing_attributes( 'price', 'basic' );
         $this->add_render_attribute( 'price', 'class', 'ha-pricing-table-price-text' );
 
-        $this->add_inline_editing_attributes( 'period', 'none' );
+        $this->add_inline_editing_attributes( 'period', 'basic' );
         $this->add_render_attribute( 'period', 'class', 'ha-pricing-table-period' );
 
         $this->add_inline_editing_attributes( 'features_title', 'basic' );
@@ -967,23 +967,23 @@ class Pricing_Table extends Base {
         ?>
 
         <?php if ( $settings['show_badge'] ) : ?>
-            <span <?php $this->print_render_attribute_string( 'badge_text' ); ?>><?php echo $settings['badge_text']; ?></span>
+            <span <?php $this->print_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></span>
         <?php endif; ?>
 
         <div class="ha-pricing-table-header">
             <?php if ( $settings['title'] ) : ?>
-                <h2 <?php $this->print_render_attribute_string( 'title' ); ?>><?php echo $settings['title']; ?></h2>
+                <h2 <?php $this->print_render_attribute_string( 'title' ); ?>><?php echo ha_kses_basic( $settings['title'] ); ?></h2>
             <?php endif; ?>
         </div>
         <div class="ha-pricing-table-price">
-            <div class="ha-pricing-table-price-tag"><span class="ha-pricing-table-currency"><?php echo $currency; ?></span><span <?php $this->print_render_attribute_string( 'price' ); ?>><?php echo $settings['price']; ?></span></div>
+            <div class="ha-pricing-table-price-tag"><span class="ha-pricing-table-currency"><?php echo esc_html( $currency ); ?></span><span <?php $this->print_render_attribute_string( 'price' ); ?>><?php echo ha_kses_basic( $settings['price'] ); ?></span></div>
             <?php if ( $settings['period'] ) : ?>
-                <div <?php $this->print_render_attribute_string( 'period' ); ?>><?php echo $settings['period']; ?></div>
+                <div <?php $this->print_render_attribute_string( 'period' ); ?>><?php echo ha_kses_basic( $settings['period'] ); ?></div>
             <?php endif; ?>
         </div>
         <div class="ha-pricing-table-body">
             <?php if ( $settings['features_title'] ) : ?>
-                <h3 <?php $this->print_render_attribute_string( 'features_title' ); ?>><?php echo $settings['features_title']; ?></h3>
+                <h3 <?php $this->print_render_attribute_string( 'features_title' ); ?>><?php echo ha_kses_basic( $settings['features_title'] ); ?></h3>
             <?php endif; ?>
 
             <?php if ( is_array( $settings['features_list'] ) ) : ?>
@@ -997,7 +997,7 @@ class Pricing_Table extends Base {
                             <?php if ( ! empty( $feature['icon'] ) || ! empty( $feature['selected_icon'] ) ) :
                                 ha_render_icon( $feature, 'icon', 'selected_icon' );
                             endif; ?>
-                            <span <?php $this->print_render_attribute_string( $name_key ); ?>><?php echo $feature['text']; ?></span>
+                            <span <?php $this->print_render_attribute_string( $name_key ); ?>><?php echo ha_kses_basic( $feature['text'] ); ?></span>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -1005,7 +1005,7 @@ class Pricing_Table extends Base {
         </div>
 
         <?php if ( $settings['button_text'] ) : ?>
-            <a <?php $this->print_render_attribute_string( 'button_text' ); ?>><?php echo $settings['button_text']; ?></a>
+            <a <?php $this->print_render_attribute_string( 'button_text' ); ?>><?php echo esc_html( $settings['button_text'] ); ?></a>
         <?php endif; ?>
 
         <?php

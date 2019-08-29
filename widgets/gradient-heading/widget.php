@@ -219,7 +219,7 @@ class Gradient_Heading extends Base {
         $this->add_inline_editing_attributes( 'title', 'basic' );
         $this->add_render_attribute( 'title', 'class', 'ha-gradient-heading' );
 
-        $title = wp_kses_post( $settings['title' ] );
+        $title = ha_kses_basic( $settings['title' ] );
 
         if ( ! empty( $settings['link']['url'] ) ) {
             $this->add_render_attribute( 'link', 'href', esc_url( $settings['link']['url'] ) );

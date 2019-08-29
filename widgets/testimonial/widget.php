@@ -427,18 +427,18 @@ class Testimonial extends Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		$this->add_inline_editing_attributes( 'testimonial', 'basic' );
+		$this->add_inline_editing_attributes( 'testimonial', 'intermediate' );
 		$this->add_render_attribute( 'testimonial', 'class', 'ha-testimonial__content' );
 
-		$this->add_inline_editing_attributes( 'name', 'none' );
+		$this->add_inline_editing_attributes( 'name', 'basic' );
 		$this->add_render_attribute( 'name', 'class', 'ha-testimonial__reviewer-name' );
 
-		$this->add_inline_editing_attributes( 'title', 'none' );
+		$this->add_inline_editing_attributes( 'title', 'basic' );
 		$this->add_render_attribute( 'title', 'class', 'ha-testimonial__reviewer-title' );
 		?>
 
-		<div <?php echo $this->get_render_attribute_string( 'testimonial' ); ?>>
-			<?php echo $settings['testimonial']; ?>
+		<div <?php $this->print_render_attribute_string( 'testimonial' ); ?>>
+			<?php echo ha_kses_intermediate( $settings['testimonial'] ); ?>
 		</div>
 		<div class="ha-testimonial__reviewer">
             <?php if ( ! empty( $settings['image']['url'] ) ) : ?>
@@ -448,8 +448,8 @@ class Testimonial extends Base {
             <?php endif; ?>
 
 			<div class="ha-testimonial__reviewer-meta">
-				<div <?php echo $this->get_render_attribute_string( 'name' ); ?>><?php echo $settings['name']; ?></div>
-				<div <?php echo $this->get_render_attribute_string( 'title' ); ?>><?php echo $settings['title']; ?></div>
+				<div <?php $this->print_render_attribute_string( 'name' ); ?>><?php echo ha_kses_basic( $settings['name'] ); ?></div>
+				<div <?php $this->print_render_attribute_string( 'title' ); ?>><?php echo ha_kses_basic( $settings['title'] ); ?></div>
 			</div>
 		</div>
 	    <?php

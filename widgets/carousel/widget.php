@@ -748,10 +748,10 @@ class Carousel extends Base {
                         <?php if ( $slide['title'] || $slide['subtitle'] ) : ?>
                             <div class="ha-slick-content">
                                 <?php if ( $slide['title'] ) : ?>
-                                    <h2 class="ha-slick-title"><?php echo esc_html( $slide['title'] ); ?></h2>
+                                    <h2 class="ha-slick-title"><?php echo ha_kses_basic( $slide['title'] ); ?></h2>
                                 <?php endif; ?>
                                 <?php if ( $slide['subtitle'] ) : ?>
-                                    <p class="ha-slick-subtitle"><?php echo esc_html( $slide['subtitle'] ); ?></p>
+                                    <p class="ha-slick-subtitle"><?php echo ha_kses_basic( $slide['subtitle'] ); ?></p>
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
