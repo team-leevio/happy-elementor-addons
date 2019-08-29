@@ -1033,7 +1033,7 @@ class Card extends Base {
         $this->add_inline_editing_attributes( 'title', 'basic' );
         $this->add_render_attribute( 'title', 'class', 'ha-card-title' );
 
-        $this->add_inline_editing_attributes( 'description', 'advanced' );
+        $this->add_inline_editing_attributes( 'description', 'intermediate' );
         $this->add_render_attribute( 'description', 'class', 'ha-card-text' );
 
         $this->add_inline_editing_attributes( 'button_text', 'none' );
@@ -1069,14 +1069,14 @@ class Card extends Base {
                 printf( '<%1$s %2$s>%3$s</%1$s>',
                     tag_escape( $settings['title_tag'] ),
                     $this->get_render_attribute_string( 'title' ),
-                    ha_kses_heading( $settings['title' ] )
+                    ha_kses_basic( $settings['title' ] )
                     );
             endif;
             ?>
 
             <?php if ( $settings['description'] ) : ?>
                 <div <?php echo $this->get_render_attribute_string( 'description' ); ?>>
-                    <p><?php echo ha_kses_paragraph( $settings['description'] ); ?></p>
+                    <p><?php echo ha_kses_intermediate( $settings['description'] ); ?></p>
                 </div>
             <?php endif; ?>
 
@@ -1128,7 +1128,7 @@ class Card extends Base {
         view.addInlineEditingAttributes( 'title', 'basic' );
         view.addRenderAttribute( 'title', 'class', 'ha-card-title' );
 
-        view.addInlineEditingAttributes( 'description', 'advanced' );
+        view.addInlineEditingAttributes( 'description', 'intermediate' );
         view.addRenderAttribute( 'description', 'class', 'ha-card-text' );
 
         view.addInlineEditingAttributes( 'button_text', 'none' );

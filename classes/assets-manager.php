@@ -37,7 +37,7 @@ class Assets_Manager {
     public static function add_inline_editing_paragraph_toolbar( $config ) {
         $config['inlineEditing'] = [
             'toolbar' => [
-                'paragraph' => [
+                'intermediate' => [
                     'bold',
                     'underline',
                     'italic',

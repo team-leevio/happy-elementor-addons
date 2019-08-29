@@ -413,11 +413,12 @@ function ha_elementor() {
 /**
  * Strip all the tags except allowed html tags
  *
+ * The name is based on inline editing toolbar name
+ *
  * @param string $string
- * @param bool $allow_span
  * @return string
  */
-function ha_kses_paragraph( $string = '' ) {
+function ha_kses_intermediate( $string = '' ) {
     $allowed_html = [
         'a' => [
             'href' => [],
@@ -443,11 +444,12 @@ function ha_kses_paragraph( $string = '' ) {
 /**
  * Strip all the tags except allowed html tags
  *
+ * The name is based on inline editing toolbar name
+ *
  * @param string $string
- * @param bool $allow_span
  * @return string
  */
-function ha_kses_heading( $string = '' ) {
+function ha_kses_basic( $string = '' ) {
     $allowed_html = [
         'span' => [
             'class' => []
