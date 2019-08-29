@@ -11,6 +11,13 @@ class Cache_Manager {
 
     public static function init() {
         add_action( 'elementor/editor/after_save', [ __CLASS__, 'cache_widgets' ], 10, 2 );
+        add_action( 'after_delete_post', [ __CLASS__, 'delete_cache' ] );
+    }
+
+    public static function delete_cache( $post_id ) {
+        // Delete to regenerate cache file
+        $assets_cache = new Assets_Cache( $post_id );
+        $assets_cache->delete();
     }
 
     public static function cache_widgets( $post_id, $data ) {
@@ -51,6 +58,7 @@ class Cache_Manager {
         }
 
         self::$widgets_cache = new Widgets_Cache( $post_id );
+
         if ( ! self::$widgets_cache->has() ) {
             return false;
         }
@@ -77,6 +85,33 @@ class Cache_Manager {
         $assets_cache->enqueue_libraries();
         $assets_cache->enqueue();
         self::enqueue_fa5_fonts( $post_id );
+        wp_enqueue_script( 'happy-elementor-addons' );
+    }
+
+    public static function enqueue_without_cache() {
+        $widgets_map = Widgets_Manager::get_widgets_map();
+
+        foreach ( $widgets_map as $widget_key => $data ) {
+            if ( ! isset( $data['vendor'] ) ) {
+                continue;
+            }
+
+            $vendor = $data['vendor'];
+
+            if ( isset( $vendor['css'] ) && is_array( $vendor['css'] ) ) {
+                foreach ( $vendor['css'] as $vendor_css_handle ) {
+                    wp_enqueue_style( $vendor_css_handle );
+                }
+            }
+
+            if ( isset( $vendor['js'] ) && is_array( $vendor['js'] ) ) {
+                foreach ( $vendor['js'] as $vendor_js_handle ) {
+                    wp_enqueue_script( $vendor_js_handle );
+                }
+            }
+        }
+
+        wp_enqueue_style( 'happy-elementor-addons' );
         wp_enqueue_script( 'happy-elementor-addons' );
     }
 }

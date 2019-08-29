@@ -181,39 +181,20 @@ class Assets_Manager {
         );
     }
 
-    private static function enqueue() {
-        wp_enqueue_style( 'happy-icons' );
-        wp_enqueue_style( 'font-awesome' );
-
-        wp_enqueue_style( 'twentytwenty' );
-        wp_enqueue_script( 'jquery-event-move' );
-        wp_enqueue_script( 'jquery-twentytwenty' );
-
-        wp_enqueue_style( 'justifiedGallery' );
-        wp_enqueue_script( 'jquery-justifiedGallery' );
-
-        wp_enqueue_style( 'slick' );
-        wp_enqueue_style( 'slick-theme' );
-        wp_enqueue_script( 'jquery-slick' );
-
-        wp_enqueue_script( 'jquery-isotope' );
-
-        wp_enqueue_script( 'elementor-waypoints' );
-        wp_enqueue_script( 'jquery-numerator' );
-
-        wp_enqueue_script( 'anime' );
-
-        // Self assets
-        wp_enqueue_style( 'happy-elementor-addons' );
-        wp_enqueue_script( 'happy-elementor-addons' );
-    }
-
+    /**
+     * Enqueue elementor template cached stylesheet
+     * when used in as shortcode in a page.
+     *
+     * This system depends of elementor cache
+     *
+     * @param Post_CSS $file
+     */
     public static function frontend_elementor_enqueue( Post_CSS $file ) {
         if ( get_post_type( $file->get_post_id() ) === 'elementor_library' ) {
             if ( Cache_Manager::should_enqueue( $file->get_post_id() ) ) {
                 Cache_Manager::enqueue( $file->get_post_id() );
             } else {
-                self::enqueue();
+                Cache_Manager::enqueue_without_cache();
             }
         }
     }
@@ -222,7 +203,7 @@ class Assets_Manager {
         if ( Cache_Manager::should_enqueue( get_the_ID() ) ) {
             Cache_Manager::enqueue( get_the_ID() );
         } else {
-            self::enqueue();
+            Cache_Manager::enqueue_without_cache();
         }
     }
 
