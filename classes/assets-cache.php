@@ -164,7 +164,7 @@ class Assets_Cache {
             ) {
                 continue;
             }
-            $is_pro = ( isset( $widgets_map['is_pro'] ) && $widgets_map['is_pro'] );
+            $is_pro = ( isset( $widgets_map[ $widget_key ]['is_pro'] ) && $widgets_map[ $widget_key ]['is_pro'] );
             $styles .= $this->get_styles( $widgets_map[ $widget_key ]['css'], $is_pro );
             $cached_widgets[ $widget_key ] = true;
         }
