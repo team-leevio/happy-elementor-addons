@@ -38,7 +38,7 @@ class Assets_Cache {
     }
 
     public function get_cache_dir_name() {
-        return trailingslashit( 'happyaddons' . DIRECTORY_SEPARATOR . 'cache' );
+        return trailingslashit( 'happyaddons' ) . trailingslashit( 'cache' );
     }
 
     public function get_post_id() {
@@ -79,7 +79,7 @@ class Assets_Cache {
     }
 
     public function delete_all() {
-        $files = glob( $this->get_cache_dir() . '/*' );
+        $files = glob( $this->get_cache_dir() . '*' );
         foreach ( $files as $file ) {
             if ( is_file( $file ) ) {
                 unlink( $file );
@@ -164,14 +164,16 @@ class Assets_Cache {
             ) {
                 continue;
             }
-            $styles .= $this->get_styles( $widgets_map[ $widget_key ]['css'], isset( $widgets_map['is_pro'] ) );
+            $is_pro = ( isset( $widgets_map['is_pro'] ) && $widgets_map['is_pro'] );
+            $styles .= $this->get_styles( $widgets_map[ $widget_key ]['css'], $is_pro );
             $cached_widgets[ $widget_key ] = true;
         }
         $styles .= sprintf( '/** Compiled CSS for: %s **/', implode(', ', array_keys( $cached_widgets ) ) );
 
         if ( ! is_dir( $this->get_cache_dir() ) ) {
-            @mkdir( $this->get_cache_dir(), 0777, true );
+            @mkdir( $this->get_cache_dir(), 0755, true );
         }
+
         file_put_contents( $this->get_file_name(), $styles );
     }
 
@@ -179,8 +181,8 @@ class Assets_Cache {
         $styles = '';
         foreach ( $files_name as $file_name ) {
             $file_path = HAPPY_ADDONS_DIR_PATH . "assets/css/widgets/{$file_name}.min.css";
-            $file_path = apply_filters( 'happyaddons_cached_widget_css_file_path', $file_path, $file_name, $is_pro );
-            if ( file_exists( $file_path ) ) {
+            $file_path = apply_filters( 'happyaddons_get_styles_file_path', $file_path, $file_name, $is_pro );
+            if ( is_readable( $file_path ) ) {
                 $styles .= file_get_contents( $file_path );
             };
         }
