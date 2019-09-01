@@ -25,7 +25,7 @@ class Assets_Manager {
         add_filter( 'elementor/utils/get_placeholder_image_src', [ __CLASS__, 'set_placeholder_image' ] );
 
         // Paragraph toolbar registration
-        add_filter( 'elementor/editor/localize_settings', [ __CLASS__, 'add_inline_editing_paragraph_toolbar' ] );
+        add_filter( 'elementor/editor/localize_settings', [ __CLASS__, 'add_inline_editing_intermediate_toolbar' ] );
     }
 
     /**
@@ -34,7 +34,7 @@ class Assets_Manager {
      * @param array $config
      * @return array
      */
-    public static function add_inline_editing_paragraph_toolbar( $config ) {
+    public static function add_inline_editing_intermediate_toolbar( $config ) {
         $config['inlineEditing'] = [
             'toolbar' => [
                 'intermediate' => [
