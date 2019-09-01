@@ -1081,14 +1081,14 @@ class Card extends Base {
             <?php endif; ?>
 
             <?php
-            if ( $settings['button_text'] && ( empty( $settings['button_selected_icon'] ) && empty( $settings['button_icon'] ) ) ) :
+            if ( $settings['button_text'] && ( ( empty( $settings['button_selected_icon'] ) || empty( $settings['button_selected_icon']['value'] ) ) && empty( $settings['button_icon'] ) ) ) :
                 printf( '<a %1$s>%2$s</a>',
                     $this->get_render_attribute_string( 'button' ),
                     sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) )
                     );
-            elseif ( empty( $settings['button_text'] ) && ( ! empty( $settings['button_icon'] ) || ! empty( $settings['button_selected_icon'] ) )  ) : ?>
+            elseif ( empty( $settings['button_text'] ) && ( ! ( empty( $settings['button_selected_icon'] ) || empty( $settings['button_selected_icon']['value'] ) ) || ! empty( $settings['button_icon'] ) ) ) : ?>
                 <a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_icon( $settings, 'button_icon', 'button_selected_icon' ); ?></a>
-            <?php elseif ( $settings['button_text'] && ( ! empty( $settings['button_icon'] ) || ! empty( $settings['button_selected_icon'] ) ) ) :
+            <?php elseif ( $settings['button_text'] && ( ! ( empty( $settings['button_selected_icon'] ) || empty( $settings['button_selected_icon']['value'] ) ) || ! empty( $settings['button_icon'] ) ) ) :
                 if ( $settings['button_icon_position'] === 'before' ) :
                     $this->add_render_attribute( 'button', 'class', 'ha-btn--icon-before' );
                     $button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
@@ -1166,7 +1166,7 @@ class Card extends Base {
                 </div>
             <# } #>
 
-            <# if ( settings.button_selected_icon || settings.button_icon ) {
+            <# if ( ( settings.button_selected_icon && settings.button_selected_icon.value ) || settings.button_icon ) {
                 if ( ha_has_icon_library() && btnIconHTML && btnIconHTML.rendered && ( ! settings.button_icon || btnMigrated ) ) {
                     btnIcon = btnIconHTML.value;
                 } else if ( settings.button_icon ) {
@@ -1174,11 +1174,11 @@ class Card extends Base {
                 }
             } #>
 
-            <# if ( settings.button_text && ( ! settings.button_selected_icon && ! settings.button_icon ) ) { #>
+            <# if ( settings.button_text && ( ! ( settings.button_selected_icon && settings.button_selected_icon.value ) && ! settings.button_icon ) ) { #>
                 <a {{{ view.getRenderAttributeString( 'button' ) }}}><span {{{ view.getRenderAttributeString( 'button_text' ) }}}>{{ settings.button_text }}</span></a>
-            <# } else if ( ! settings.button_text && ( settings.button_selected_icon || settings.button_icon ) ) { #>
+            <# } else if ( ! settings.button_text && ( ( settings.button_selected_icon && settings.button_selected_icon.value ) || settings.button_icon ) ) { #>
                 <a {{{ view.getRenderAttributeString( 'button' ) }}}>{{{ btnIcon }}}</a>
-            <# } else if ( settings.button_text && ( settings.button_selected_icon || settings.button_icon ) ) {
+            <# } else if ( settings.button_text && ( ( settings.button_selected_icon && settings.button_selected_icon.value ) || settings.button_icon ) ) {
                 if ( settings.button_icon_position === 'before' ) {
                     view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-before' );
                     button_before = btnIcon;
