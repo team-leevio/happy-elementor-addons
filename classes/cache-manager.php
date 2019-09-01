@@ -86,6 +86,8 @@ class Cache_Manager {
         $assets_cache->enqueue();
         self::enqueue_fa5_fonts( $post_id );
         wp_enqueue_script( 'happy-elementor-addons' );
+
+        do_action( 'happyaddons_enqueue_assets', $is_cache = true, $post_id );
     }
 
     public static function enqueue_without_cache() {
@@ -113,5 +115,7 @@ class Cache_Manager {
 
         wp_enqueue_style( 'happy-elementor-addons' );
         wp_enqueue_script( 'happy-elementor-addons' );
+
+        do_action( 'happyaddons_enqueue_assets', $is_cache = false, 0 );
     }
 }
