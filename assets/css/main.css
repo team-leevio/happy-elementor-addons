@@ -94,6 +94,15 @@
 	content: "";
 }
 
+.mfp-wrap .mfp-close,
+.mfp-wrap .mfp-arrow {
+	background-color: transparent;
+}
+.mfp-wrap .mfp-close:focus,
+.mfp-wrap .mfp-arrow:focus {
+	outline-width: thin;
+}
+
 .ha-card > .elementor-widget-container,
 .ha-infobox > .elementor-widget-container,
 .ha-icon-box > .elementor-widget-container,

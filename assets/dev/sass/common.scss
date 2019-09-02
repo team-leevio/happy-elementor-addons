@@ -31,7 +31,6 @@
   word-wrap: normal !important;
 }
 
-
 .ha-has-background-overlay {
   @include widgetContainer {
     z-index: 1;
@@ -45,6 +44,17 @@
       width: 100%;
       height: 100%;
       z-index: -1;
+    }
+  }
+}
+
+.mfp-wrap {
+  .mfp-close,
+  .mfp-arrow {
+    background-color: transparent;
+
+    &:focus {
+      outline-width: thin;
     }
   }
 }
