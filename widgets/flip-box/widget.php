@@ -1148,9 +1148,9 @@ class Flip_Box extends Base {
 
         // flip position
         $this->add_render_attribute( 'flip-position', 'class', 'ha-flip-box-inner' );
-        if ( $settings['flip_position'] === 'up' ) {
+        if ( $settings['flip_position'] === 'bottom-top' ) {
             $this->add_render_attribute( 'flip-position', 'class', 'ha-flip-up' );
-        } elseif ( $settings['flip_position'] === 'right' ) {
+        } elseif ( $settings['flip_position'] === 'left-right' ) {
             $this->add_render_attribute( 'flip-position', 'class', 'ha-flip-right' );
         }
         ?>
