@@ -140,8 +140,8 @@ class Widgets_Manager {
                 'css' => ['justified-gallery', 'gallery-filter'],
                 'js' => [],
                 'vendor' => [
-                    'css' => ['justifiedGallery'],
-                    'js' => ['jquery-justifiedGallery'],
+                    'css' => ['justifiedGallery', 'magnific-popup'],
+                    'js' => ['jquery-justifiedGallery', 'jquery-magnific-popup'],
                 ],
             ],
             'image-grid' => [
@@ -149,8 +149,8 @@ class Widgets_Manager {
                 'css' => ['image-grid', 'gallery-filter'],
                 'js' => [],
                 'vendor' => [
-                    'css' => [],
-                    'js' => ['jquery-isotope'],
+                    'css' => ['magnific-popup'],
+                    'js' => ['jquery-isotope', 'jquery-magnific-popup'],
                 ],
             ],
             'slider' => [

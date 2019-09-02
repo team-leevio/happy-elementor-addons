@@ -165,6 +165,7 @@ class Justified_Gallery extends Base {
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
+                'separator' => 'before',
                 'description' => __( 'Make sure to add image caption otherwise you will not see anything', 'happy-elementor-addons' )
             ]
         );
@@ -219,16 +220,6 @@ class Justified_Gallery extends Base {
             ]
         );
 
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            '_section_popup_settings',
-            [
-                'label' => __( 'Light Box', 'happy-elementor-addons' ),
-                'tab'   => Controls_Manager::TAB_CONTENT,
-            ]
-        );
-
         $this->add_control(
             'enable_popup',
             [
@@ -236,7 +227,7 @@ class Justified_Gallery extends Base {
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
-//                'separator' => 'before',
+                'separator' => 'before',
                 'return_value' => 'yes',
             ]
         );
@@ -245,9 +236,12 @@ class Justified_Gallery extends Base {
             Group_Control_Image_Size::get_type(),
             [
                 'name' => 'popup_image',
-                'default' => 'medium_large',
+                'default' => 'large',
                 'exclude' => [
                     'custom'
+                ],
+                'condition' => [
+                    'enable_popup' => 'yes',
                 ]
             ]
         );
@@ -734,6 +728,7 @@ class Justified_Gallery extends Base {
             'margins.size' => 'margins.int',
             'row_height.size' => 'rowHeight.int',
             'last_row' => 'lastRow.str',
+            'enable_popup' => 'enable_popup.bool'
         ];
         return ha_prepare_data_prop_settings( $settings, $field_map );
     }
@@ -788,6 +783,13 @@ class Justified_Gallery extends Base {
             'hajs-justified-gallery',
         ] );
 
+        $has_popup = $settings['enable_popup'];
+        $item_html_tag = 'div';
+
+        if ( $has_popup ) {
+            $item_html_tag = 'a';
+        }
+
         $this->add_render_attribute( 'container', 'data-happy-settings', self::get_data_prop_settings( $settings ) );
 
         if ( $settings['show_filter'] === 'yes' ) : ?>
@@ -804,11 +806,11 @@ class Justified_Gallery extends Base {
         <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
             <?php foreach ( $gallery['items'] as $id => $filters ) :
                 $caption = $settings['show_caption'] ? esc_attr( wp_get_attachment_caption( $id ) ) : '';
-                $popup = $settings['enable_popup'] ? sprintf( 'href="%s"', esc_url( wp_get_attachment_image_url( $id, $settings['popup_image_size'] ) ) ) : '';
+                $popup = $has_popup ? sprintf( 'href="%s"', esc_url( wp_get_attachment_image_url( $id, $settings['popup_image_size'] ) ) ) : '';
                 ?>
-                <a <?php echo $popup; ?> class="ha-justified-gallery-item <?php echo esc_attr( implode( ' ', $filters ) ); ?>">
+                <<?php echo $item_html_tag; ?> <?php echo $popup; ?> class="ha-justified-gallery-item ha-js-popup <?php echo esc_attr( implode( ' ', $filters ) ); ?>">
                     <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'alt' => $caption, 'class' => 'elementor-animation-' . esc_attr( $settings['image_hover_animation'] ) ] ); ?>
-                </a>
+                </<?php echo $item_html_tag; ?>>
             <?php endforeach; ?>
         </div>
 

@@ -193,6 +193,33 @@ class Image_Grid extends Base {
             ]
         );
 
+        $this->add_control(
+            'enable_popup',
+            [
+                'label' => __( 'Enable Popup?', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
+                'separator' => 'before',
+                'return_value' => 'yes',
+                'frontend_available' => true,
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Image_Size::get_type(),
+            [
+                'name' => 'popup_image',
+                'default' => 'large',
+                'exclude' => [
+                    'custom'
+                ],
+                'condition' => [
+                    'enable_popup' => 'yes',
+                ]
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -672,6 +699,12 @@ class Image_Grid extends Base {
             $this->add_render_attribute( 'container', 'class', 'hajs-isotope-' . $this->get_id() );
         }
 
+        $has_popup = $settings['enable_popup'];
+        $item_html_tag = 'figure';
+        if ( $has_popup ) {
+            $item_html_tag = 'a';
+        }
+
         if ( $settings['show_filter'] ) : ?>
 
             <ul class="ha-gallery-filter hajs-gallery-filter">
@@ -688,8 +721,9 @@ class Image_Grid extends Base {
         <div <?php $this->print_render_attribute_string( 'container' ); ?>>
 
             <?php foreach ( $gallery['items'] as $id => $filters ) : ?>
+                <?php $popup = $settings['enable_popup'] ? sprintf( 'href="%s"', esc_url( wp_get_attachment_image_url( $id, $settings['popup_image_size'] ) ) ) : ''; ?>
 
-                <figure class="ha-image-grid-item <?php echo esc_attr( implode( ' ', $filters ) ); ?>">
+                <<?php echo $item_html_tag; ?> <?php echo $popup; ?> class="ha-image-grid-item ha-js-popup <?php echo esc_attr( implode( ' ', $filters ) ); ?>">
                     <div class="ha-image-grid-inner">
                         <?php echo wp_get_attachment_image(
                             $id,
@@ -701,7 +735,7 @@ class Image_Grid extends Base {
                             ]
                         ); ?>
                     </div>
-                </figure>
+                </<?php echo $item_html_tag; ?>>
 
             <?php endforeach; ?>
 

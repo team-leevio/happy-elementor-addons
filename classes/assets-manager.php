@@ -125,7 +125,7 @@ class Assets_Manager {
 
         wp_register_script(
             'jquery-slick',
-            HAPPY_ADDONS_ASSETS . 'vendor/slick/slick' . $suffix . 'js',
+            HAPPY_ADDONS_ASSETS . 'vendor/slick/slick.min.js',
             [ 'jquery' ],
             HAPPY_ADDONS_VERSION,
             true
@@ -147,8 +147,26 @@ class Assets_Manager {
          */
         wp_register_script(
             'jquery-numerator',
-            HAPPY_ADDONS_ASSETS . 'vendor/jquery-numerator/jquery-numerator' . $suffix . 'js',
+            HAPPY_ADDONS_ASSETS . 'vendor/jquery-numerator/jquery-numerator.min.js',
             [ 'jquery' ],
+            HAPPY_ADDONS_VERSION,
+            true
+        );
+
+        /**
+         * Magnific popup
+         */
+        wp_register_style(
+            'magnific-popup',
+            HAPPY_ADDONS_ASSETS . 'vendor/magnific-popup/magnific-popup.css',
+            null,
+            HAPPY_ADDONS_VERSION
+        );
+
+        wp_register_script(
+            'jquery-magnific-popup',
+            HAPPY_ADDONS_ASSETS . 'vendor/magnific-popup/jquery.magnific-popup.min.js',
+            null,
             HAPPY_ADDONS_VERSION,
             true
         );
@@ -164,6 +182,7 @@ class Assets_Manager {
             true
         );
 
+        // Main assets
         wp_register_style(
             'happy-elementor-addons',
             HAPPY_ADDONS_ASSETS . 'css/main' . $suffix . 'css',

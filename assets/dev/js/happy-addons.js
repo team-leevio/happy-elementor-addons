@@ -24,6 +24,43 @@
         }
     }
 
+    function initPopupGallery($scope, selector, hasPopup, key) {
+        if ( ! $.fn.magnificPopup ) {
+            return;
+        }
+
+        if ( ! hasPopup ) {
+            $.magnificPopup.close();
+            return;
+        }
+
+        $scope.on('click', selector, function(event) {
+            event.stopPropagation();
+        });
+
+        $scope.find(selector).magnificPopup({
+            key: key,
+            type: 'image',
+            image: {
+                titleSrc: function(item) {
+                    return item.el.attr('title') ? item.el.attr('title') : item.el.find('img').attr('alt');
+                }
+            },
+            gallery: {
+                enabled: true,
+                preload: [1,2]
+            },
+            zoom: {
+                enabled: true,
+                duration: 300,
+                easing: 'ease-in-out',
+                opener: function(openerElement) {
+                    return openerElement.is('img') ? openerElement : openerElement.find('img');
+                }
+            }
+        });
+    }
+
     var HandleImageCompare = function($scope) {
         var $item = $scope.find('.hajs-image-comparison'),
             settings = $item.getHappySettings(),
@@ -42,18 +79,24 @@
 
     var HandleJustifiedGallery = function($scope) {
         var $item = $scope.find('.hajs-justified-gallery'),
-            settings = $item.getHappySettings()
+            settings = $item.getHappySettings(),
+            hasPopup = settings.enable_popup;
+
         $item.justifiedGallery($.extend({}, {
             rowHeight: 150,
             lastRow: 'justify',
             margins: 10,
         }, settings));
 
+        initPopupGallery($scope, '.ha-js-popup', hasPopup, 'justifiedgallery');
+
         initFilterable($scope, function(filter) {
             $item.justifiedGallery({
                 lastRow: (filter === '*' ? settings.lastRow : 'nojustify'),
                 filter: filter
             });
+            var selector = filter !== '*' ? filter : '.ha-js-popup';
+            initPopupGallery($scope, selector, hasPopup, 'justifiedgallery');
         });
     };
 
@@ -297,12 +340,15 @@
                     self.$container.isotope({
                         filter: filter
                     });
+
+                    var selector = filter !== '*' ? filter : '.ha-js-popup';
+                    initPopupGallery(self.$element, selector, self.getElementSettings('enable_popup'), 'imagegrid');
                 });
             },
 
             onElementChange: function(changedProp) {
-                if (['layout', 'image_height', 'columns', 'image_margin'].indexOf(changedProp) !== -1) {
-                    this.run()
+                if (['layout', 'image_height', 'columns', 'image_margin', 'enable_popup'].indexOf(changedProp) !== -1) {
+                    this.run();
                 }
             },
 
@@ -313,6 +359,8 @@
                 this.$container.imagesLoaded().progress(function() {
                     self.$container.isotope('layout');
                 });
+
+                initPopupGallery(this.$element, '.ha-js-popup', this.getElementSettings('enable_popup'), 'imagegrid');
             }
         });
 
