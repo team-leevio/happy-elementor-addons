@@ -220,6 +220,39 @@ class Justified_Gallery extends Base {
         );
 
         $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_popup_settings',
+            [
+                'label' => __( 'Light Box', 'happy-elementor-addons' ),
+                'tab'   => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_control(
+            'enable_popup',
+            [
+                'label' => __( 'Enable Popup?', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
+//                'separator' => 'before',
+                'return_value' => 'yes',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Image_Size::get_type(),
+            [
+                'name' => 'popup_image',
+                'default' => 'medium_large',
+                'exclude' => [
+                    'custom'
+                ]
+            ]
+        );
+
+        $this->end_controls_section();
     }
 
     protected function register_style_controls() {
@@ -771,8 +804,9 @@ class Justified_Gallery extends Base {
         <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
             <?php foreach ( $gallery['items'] as $id => $filters ) :
                 $caption = $settings['show_caption'] ? esc_attr( wp_get_attachment_caption( $id ) ) : '';
+                $popup = $settings['enable_popup'] ? sprintf( 'href="%s"', esc_url( wp_get_attachment_image_url( $id, $settings['popup_image_size'] ) ) ) : '';
                 ?>
-                <a class="ha-justified-gallery-item <?php echo esc_attr( implode( ' ', $filters ) ); ?>">
+                <a <?php echo $popup; ?> class="ha-justified-gallery-item <?php echo esc_attr( implode( ' ', $filters ) ); ?>">
                     <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'alt' => $caption, 'class' => 'elementor-animation-' . esc_attr( $settings['image_hover_animation'] ) ] ); ?>
                 </a>
             <?php endforeach; ?>

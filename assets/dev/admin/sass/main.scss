@@ -1,7 +1,15 @@
 @import "../../sass/variables";
 .elementor-panel {
   #elementor-panel-category-happy_addons_category .elementor-element,
-  #elementor-panel-elements .happy-addons-addon {
+  #elementor-panel-category-happy_addons_pro_category .elementor-element {
+    .icon {
+      height: 46px;
+    }
+  }
+
+  #elementor-panel-category-happy_addons_category .elementor-element,
+  #elementor-panel-category-happy_addons_pro_category .elementor-element,
+  #elementor-panel-elements .is-ha-widget {
     transition: background-image .3s;
 
     .icon,

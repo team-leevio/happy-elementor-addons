@@ -6,7 +6,7 @@
             $('#elementor-panel-elements')
                 .find('.hm')
                 .parents('.elementor-element')
-                .addClass('happy-addons-addon');
+                .addClass('is-ha-widget');
         }, 100));
     });
 
