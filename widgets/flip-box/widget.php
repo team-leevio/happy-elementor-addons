@@ -353,7 +353,6 @@ class Flip_Box extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-flip-box-back-inner .icon-wrap' => 'text-align: {{VALUE}}',
                     '{{WRAPPER}} .ha-flip-box-back-inner .ha-text' => 'text-align: {{VALUE}}',
-                    '{{WRAPPER}} .ha-flip-box-back-inner .button-wrap' => 'text-align: {{VALUE}}',
                 ]
             ]
         );
@@ -373,14 +372,14 @@ class Flip_Box extends Base {
             [
                 'label' => __( 'Flip Direction', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
-                'default' => 'right',
+                'default' => 'left-right',
                 'label_block' => false,
                 'options' => [
-                    'up' => [
+                    'bottom-top' => [
                         'title' => __( 'Bottom To Top', 'happy-elementor-addons' ),
                         'icon' => 'eicon-v-align-top',
                     ],
-                    'right' => [
+                    'left-right' => [
                         'title' => __( 'Left To Right', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-right',
                     ],
@@ -491,25 +490,10 @@ class Flip_Box extends Base {
                 'label' => __( 'Background Overlay', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'condition' => [
-                    'front_background_image_image[url]!' => ''
+					'front_background_image_background' => 'classic'
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-flip-box-front:before' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'front_background_color',
-            [
-                'label' => __( 'Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'default' => '#fff',
-                'condition' => [
-                    'front_background_type' => 'color',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-front' => 'background: {{VALUE}}',
                 ],
             ]
         );
@@ -1055,6 +1039,18 @@ class Flip_Box extends Base {
             ]
         );
 
+		$this->add_responsive_control(
+			'back_title_space',
+			[
+				'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-box-heading-back' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
         $this->add_control(
             'back_title_color',
             [
@@ -1091,18 +1087,6 @@ class Flip_Box extends Base {
             '_tab_back_description',
             [
                 'label' => __( 'Description', 'happy-elementor-addons' ),
-            ]
-        );
-
-        $this->add_responsive_control(
-            'back_description_space',
-            [
-                'label' => __( 'Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-back-inner .ha-text p' => 'margin-top: {{SIZE}}{{UNIT}};',
-                ],
             ]
         );
 

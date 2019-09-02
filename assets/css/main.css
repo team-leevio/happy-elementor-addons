@@ -2193,27 +2193,6 @@
 	vertical-align: middle;
 }
 
-.ha-flip-box-container .ha-flip-box-back-inner .button-wrap {
-	margin-top: 12px;
-}
-
-.ha-flip-box-container .ha-flip-box-back-inner .ha-flip-btn {
-	display: inline-block;
-	padding: .8rem 2.5rem;
-	border-radius: 4px;
-	background-color: #fff;
-	color: #562dd4;
-	text-decoration: none;
-	text-transform: uppercase;
-	font-size: 12px;
-	-webkit-transition: all .3s;
-	        transition: all .3s;
-}
-.ha-flip-box-container .ha-flip-box-back-inner .ha-flip-btn:hover {
-	background-color: #fff; 
-	color: #562dd4;
-}
-
 .ha-flip-box-container .ha-flip-box-inner.ha-flip-right .ha-flip-box-front {
 	-webkit-transform: rotateY(0);
 	        transform: rotateY(0);
@@ -2234,26 +2213,6 @@
 	        transform: rotateY(180deg);
 }
 
-.ha-flip-box-container .ha-flip-box-inner.ha-flip-left .ha-flip-box-front {
-	-webkit-transform: rotateY(0);
-	        transform: rotateY(0);
-}
-
-.ha-flip-box-container .ha-flip-box-inner.ha-flip-left .ha-flip-box-back {
-	-webkit-transform: rotateY(180deg);
-	        transform: rotateY(180deg);
-}
-
-.ha-flip-box-container .ha-flip-box-inner.ha-flip-left:hover .ha-flip-box-back {
-	-webkit-transform: rotateY(0);
-	        transform: rotateY(0);
-}
-
-.ha-flip-box-container .ha-flip-box.ha-flip-left:hover .ha-flip-box-front {
-	-webkit-transform: rotateY(-180deg);
-	        transform: rotateY(-180deg);
-}
-
 .ha-flip-box-container .ha-flip-box-inner.ha-flip-up .ha-flip-box-front {
 	-webkit-transform: rotateX(0);
 	        transform: rotateX(0);
@@ -2272,26 +2231,6 @@
 .ha-flip-box-container .ha-flip-box-inner.ha-flip-up:hover .ha-flip-box-front {
 	-webkit-transform: rotateX(180deg);
 	        transform: rotateX(180deg);
-}
-
-.ha-flip-box-container .ha-flip-box-inner.ha-flip-down .ha-flip-box-front {
-	-webkit-transform: rotateX(0);
-	        transform: rotateX(0);
-}
-
-.ha-flip-box-container .ha-flip-box-inner.ha-flip-down .ha-flip-box-back {
-	-webkit-transform: rotateX(180deg);
-	        transform: rotateX(180deg);
-}
-
-.ha-flip-box-container .ha-flip-box-inner.ha-flip-down:hover .ha-flip-box-back {
-	-webkit-transform: rotateX(0);
-	        transform: rotateX(0);
-}
-
-.ha-flip-box-container .ha-flip-box-inner.ha-flip-down:hover .ha-flip-box-front {
-	-webkit-transform: rotateX(-180deg);
-	        transform: rotateX(-180deg);
 }
 
 .ha-flip-box-container.ha-flip-effect-classic .ha-flip-box-back,
