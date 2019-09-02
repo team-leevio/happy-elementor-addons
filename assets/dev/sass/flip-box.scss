@@ -161,28 +161,6 @@
     }
   }
 
-  .ha-flip-box-back-inner {
-    .button-wrap {
-      margin-top: 12px;
-    }
-    .ha-flip-btn {
-      background-color: #fff;
-      color: $primary-color;
-      font-size: 12px;
-      text-transform: uppercase;
-      padding: .8rem 2.5rem;
-      text-decoration: none;
-      border-radius: 4px;
-      display: inline-block;
-      transition: all .3s;
-
-      &:hover {
-        color: $primary-color;
-        background-color: #fff;
-      }
-    }
-  }
-
   //flip right
   .ha-flip-box-inner.ha-flip-right .ha-flip-box-front {
     transform: rotateY(0)
@@ -195,23 +173,6 @@
   }
   .ha-flip-box-inner.ha-flip-right:hover .ha-flip-box-front {
     transform: rotateY(180deg)
-  }
-
-  //flip left
-  .ha-flip-box-inner.ha-flip-left .ha-flip-box-front {
-    transform: rotateY(0)
-  }
-
-  .ha-flip-box-inner.ha-flip-left .ha-flip-box-back {
-    transform: rotateY(180deg)
-  }
-
-  .ha-flip-box-inner.ha-flip-left:hover .ha-flip-box-back {
-    transform: rotateY(0)
-  }
-
-  .ha-flip-box.ha-flip-left:hover .ha-flip-box-front {
-    transform: rotateY(-180deg)
   }
 
   //flip up
@@ -229,23 +190,6 @@
 
   .ha-flip-box-inner.ha-flip-up:hover .ha-flip-box-front {
     transform: rotateX(180deg)
-  }
-
-  //flip down
-  .ha-flip-box-inner.ha-flip-down .ha-flip-box-front {
-    transform: rotateX(0)
-  }
-
-  .ha-flip-box-inner.ha-flip-down .ha-flip-box-back {
-    transform: rotateX(180deg)
-  }
-
-  .ha-flip-box-inner.ha-flip-down:hover .ha-flip-box-back {
-    transform: rotateX(0)
-  }
-
-  .ha-flip-box-inner.ha-flip-down:hover .ha-flip-box-front {
-    transform: rotateX(-180deg)
   }
 
 }
