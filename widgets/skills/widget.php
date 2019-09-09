@@ -143,22 +143,22 @@ class Skills extends Base {
                 'default' => [
                     [
                         'name' => 'Design',
-                        'level' => ['size' => 97, 'unit' => 'px']
+                        'level' => ['size' => 97, 'unit' => '%']
                     ],
                     [
                         'name' => 'UX',
-                        'level' => ['size' => 88, 'unit' => 'px']
+                        'level' => ['size' => 88, 'unit' => '%']
                     ],
                     [
                         'name' => 'Coding',
-                        'level' => ['size' => 92, 'unit' => 'px']
+                        'level' => ['size' => 92, 'unit' => '%']
                     ],
                     [
                         'name' => 'Speed',
                     ],
                     [
                         'name' => 'Passion',
-                        'level' => ['size' => 100, 'unit' => 'px']
+                        'level' => ['size' => 100, 'unit' => '%']
                     ]
                 ]
             ]
