@@ -69,26 +69,16 @@ abstract class Base extends Widget_Base {
     }
 
     /**
-     * Register faq controls
+     * Register design section
      */
-    protected function register_faq_controls() {
+    protected function register_design_controls() {
         $this->start_controls_section(
-            '_faq',
+            '_section_ha_design',
             [
-                'label' => __( 'FAQs', 'happy-elementor-addons' ),
+                'label' => __( 'Design', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
-
-        $this->add_control(
-            '_faq_notes',
-            [
-                'type' => Controls_Manager::RAW_HTML,
-                'raw' => __( 'A very important message to show in the panel.', 'happy-elementor-addons' ),
-                'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
-            ]
-        );
-
         $this->end_controls_section();
     }
 
@@ -96,6 +86,10 @@ abstract class Base extends Widget_Base {
      * Register widget controls
      */
     protected function _register_controls() {
+        if ( apply_filters( 'happyaddons_has_design_controls', false, $this->get_name(), $this ) ) {
+            $this->register_design_controls();
+        }
+
         $this->register_content_controls();
 
         $this->register_style_controls();
@@ -152,7 +146,7 @@ abstract class Base extends Widget_Base {
      * @param string $setting_key Additional settings key in case $key != $setting_key
      */
     protected function add_inline_editing_attributes( $key, $toolbar = 'basic', $setting_key = '' ) {
-        if ( ! \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
+        if ( ! ha_elementor()->editor->is_edit_mode() ) {
             return;
         }
 
