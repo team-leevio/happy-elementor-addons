@@ -69,30 +69,16 @@ abstract class Base extends Widget_Base {
     }
 
     /**
-     * Register design section
-     */
-    protected function register_design_controls() {
-        $this->start_controls_section(
-            '_section_ha_design',
-            [
-                'label' => __( 'Design', 'happy-elementor-addons' ),
-                'tab' => Controls_Manager::TAB_CONTENT,
-            ]
-        );
-        $this->end_controls_section();
-    }
-
-    /**
      * Register widget controls
      */
     protected function _register_controls() {
-        if ( apply_filters( 'happyaddons_has_design_controls', false, $this->get_name(), $this ) ) {
-            $this->register_design_controls();
-        }
+        do_action( 'happyaddons_start_register_controls', $this );
 
         $this->register_content_controls();
 
         $this->register_style_controls();
+
+        do_action( 'happyaddons_end_register_controls', $this );
     }
 
     /**
