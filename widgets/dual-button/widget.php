@@ -182,6 +182,7 @@ class Dual_Button extends Base {
                 ],
                 'toggle' => false,
                 'default' => 'text',
+                'style_transfer' => true,
                 'condition' => [
                     'button_connector_hide!' => 'yes',
                 ]
