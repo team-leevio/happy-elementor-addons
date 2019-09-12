@@ -65,7 +65,7 @@ class Justified_Gallery extends Base {
                 'label' => __( 'Filter Name', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
                 'placeholder' => __( 'Type gallery filter name', 'happy-elementor-addons' ),
-                'description' => __( 'Filter navigation will be built using filter name', 'happy-elementor-addons' ),
+                'description' => __( 'Filter name will be used in filter menu.', 'happy-elementor-addons' ),
             ]
         );
 
@@ -73,6 +73,9 @@ class Justified_Gallery extends Base {
             'images',
             [
                 'type' => Controls_Manager::GALLERY,
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -117,25 +120,25 @@ class Justified_Gallery extends Base {
         $this->add_control(
             'show_filter',
             [
-                'label' => __( 'Show Filter?', 'happy-elementor-addons' ),
+                'label' => __( 'Show Filter Menu?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
-                'description' => __( 'Enable to display filter navigation. Filter navigation will be built using filter name from gallery', 'happy-elementor-addons' )
+                'description' => __( 'Enable to display filter menu.', 'happy-elementor-addons' )
             ]
         );
 
         $this->add_control(
             'show_all_filter',
             [
-                'label' => __( 'Show All Filter?', 'happy-elementor-addons' ),
+                'label' => __( 'Show "All" Filter?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
-                'description' => __( 'Enable to display all filter button', 'happy-elementor-addons' ),
+                'description' => __( 'Enable to display "All" filter in filter menu.', 'happy-elementor-addons' ),
                 'condition' => [
                     'show_filter' => 'yes'
                 ]
@@ -149,7 +152,7 @@ class Justified_Gallery extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'All', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type filter label', 'happy-elementor-addons' ),
-                'description' => __( 'Type all filter label', 'happy-elementor-addons' ),
+                'description' => __( 'Type "All" filter label.', 'happy-elementor-addons' ),
                 'condition' => [
                     'show_all_filter' => 'yes',
                     'show_filter' => 'yes'
@@ -166,7 +169,7 @@ class Justified_Gallery extends Base {
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'separator' => 'before',
-                'description' => __( 'Make sure to add image caption otherwise you will not see anything', 'happy-elementor-addons' )
+                'description' => __( 'Make sure to add image caption.', 'happy-elementor-addons' )
             ]
         );
 
@@ -378,7 +381,7 @@ class Justified_Gallery extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-justified-gallery-item > img' => 'transition-duration: {{SIZE}}s',
+                    '{{WRAPPER}} .ha-justified-gallery-item > img' => 'transition-duration: {{SIZE}}s;',
                 ],
             ]
         );
@@ -437,7 +440,7 @@ class Justified_Gallery extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .justified-gallery > .ha-justified-gallery-item > .caption' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .justified-gallery > .ha-justified-gallery-item > .caption' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -448,7 +451,7 @@ class Justified_Gallery extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .justified-gallery > .ha-justified-gallery-item > .caption' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .justified-gallery > .ha-justified-gallery-item > .caption' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -788,6 +791,7 @@ class Justified_Gallery extends Base {
 
         if ( $has_popup ) {
             $item_html_tag = 'a';
+            $this->add_render_attribute( 'container', 'class', 'ha-popup--is-enabled' );
         }
 
         $this->add_render_attribute( 'container', 'data-happy-settings', self::get_data_prop_settings( $settings ) );

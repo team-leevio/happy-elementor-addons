@@ -2,8 +2,7 @@
 @import "mixins";
 
 .happy-addon {
-  box-sizing: border-box;
-  * {
+  &, * {
     box-sizing: border-box;
   }
 
@@ -44,6 +43,14 @@
       width: 100%;
       height: 100%;
       z-index: -1;
+    }
+  }
+}
+
+.ha-popup--is-enabled {
+  .ha-js-popup {
+    &, & > img {
+      cursor: zoom-in !important;
     }
   }
 }

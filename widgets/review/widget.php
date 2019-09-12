@@ -83,11 +83,11 @@ class Review extends Base {
         $this->add_control(
             'ratting_style',
             [
-                'label' => __( 'Style', 'happy-elementor-addons' ),
+                'label' => __( 'Ratting Style', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    'star' => __( 'Star Rating', 'happy-elementor-addons' ),
-                    'num' => __( 'Number Rating', 'happy-elementor-addons' ),
+                    'star' => __( 'Star', 'happy-elementor-addons' ),
+                    'num' => __( 'Number', 'happy-elementor-addons' ),
                 ],
                 'default' => 'star',
             ]
@@ -97,12 +97,27 @@ class Review extends Base {
             'review',
             [
                 'label' => __( 'Review', 'happy-elementor-addons' ),
+                'description' => ha_get_allowed_html_desc( 'intermediate' ),
                 'type' => Controls_Manager::TEXTAREA,
                 'default' => __( 'Happy reviewer is super excited being part of happy addons family', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type amazing review from happy reviewer', 'happy-elementor-addons' ),
+                'separator' => 'before',
                 'dynamic' => [
                     'active' => true,
                 ]
+            ]
+        );
+
+        $this->add_control(
+            'review_position',
+            [
+                'label' => __( 'Review Position', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'before' => __( 'Before Ratting', 'happy-elementor-addons' ),
+                    'after' => __( 'After Ratting', 'happy-elementor-addons' ),
+                ],
+                'default' => 'before',
             ]
         );
 
@@ -113,19 +128,6 @@ class Review extends Base {
                 'type' => Controls_Manager::TEXT,
                 'placeholder' => __( 'Movie, Games, Software name etc.', 'happy-elementor-addons' ),
                 'description' => __( '[This field is only for structured data (schema.org) purpose] Obviously this review belongs to something like Movie, Games, Software or Service. So type the name of that thing.', 'happy-elementor-addons' ),
-            ]
-        );
-
-        $this->add_control(
-            'review_position',
-            [
-                'label' => __( 'Review Position', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    'before' => __( 'Review Before', 'happy-elementor-addons' ),
-                    'after' => __( 'Review After', 'happy-elementor-addons' ),
-                ],
-                'default' => 'before',
             ]
         );
 
@@ -153,38 +155,12 @@ class Review extends Base {
             ]
         );
 
-        $this->add_control(
-            'title',
-            [
-                'label' => __( 'Name', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => 'Happy Reviewer',
-                'placeholder' => __( 'Type Reviewer Name', 'happy-elementor-addons' ),
-                'dynamic' => [
-                    'active' => true,
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'job_title',
-            [
-                'label' => __( 'Job Title', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => __( 'Happy Officer', 'happy-elementor-addons' ),
-                'placeholder' => __( 'Type Reviewer Job Title', 'happy-elementor-addons' ),
-                'dynamic' => [
-                    'active' => true,
-                ]
-            ]
-        );
-
         $this->add_group_control(
             Group_Control_Image_Size::get_type(),
             [
                 'name' => 'thumbnail',
                 'default' => 'large',
-                'separator' => 'before',
+                'separator' => 'none',
             ]
         );
 
@@ -214,6 +190,33 @@ class Review extends Base {
             ]
         );
 
+        $this->add_control(
+            'title',
+            [
+                'label' => __( 'Name', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::TEXT,
+                'default' => 'Happy Reviewer',
+                'placeholder' => __( 'Type Reviewer Name', 'happy-elementor-addons' ),
+                'separator' => 'before',
+                'dynamic' => [
+                    'active' => true,
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'job_title',
+            [
+                'label' => __( 'Job Title', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::TEXT,
+                'default' => __( 'Happy Officer', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type Reviewer Job Title', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
+            ]
+        );
+
         $this->add_responsive_control(
             'align',
             [
@@ -232,14 +235,11 @@ class Review extends Base {
                         'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
-                    'justify' => [
-                        'title' => __( 'Justify', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-justify',
-                    ],
                 ],
                 'toggle' => true,
+                'separator' => 'before',
                 'selectors' => [
-                    '{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}}'
+                    '{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};'
                 ]
             ]
         );
@@ -334,7 +334,7 @@ class Review extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-review-ratting' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-review-ratting' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -345,7 +345,7 @@ class Review extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-review-ratting' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-review-ratting' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -419,7 +419,7 @@ class Review extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-review-reviewer' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-review-reviewer' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -460,7 +460,7 @@ class Review extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-review-position' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-review-position' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -501,7 +501,7 @@ class Review extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-review-desc' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-review-desc' => 'color: {{VALUE}};',
                 ],
             ]
         );
