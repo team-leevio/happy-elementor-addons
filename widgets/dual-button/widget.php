@@ -161,6 +161,7 @@ class Dual_Button extends Base {
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Hide', 'happy-elementor-addons' ),
                 'label_off' => __( 'Show', 'happy-elementor-addons' ),
+                'style_transfer' => true,
             ]
         );
 
@@ -182,7 +183,6 @@ class Dual_Button extends Base {
                 ],
                 'toggle' => false,
                 'default' => 'text',
-                'style_transfer' => true,
                 'condition' => [
                     'button_connector_hide!' => 'yes',
                 ]
