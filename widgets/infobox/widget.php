@@ -162,7 +162,7 @@ class InfoBox extends Base {
         $this->add_control(
             'title',
             [
-                'label' => __( 'Title', 'happy-elementor-addons' ),
+                'label' => __( 'Title & Description', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Happy Info Box Title', 'happy-elementor-addons' ),
@@ -177,6 +177,8 @@ class InfoBox extends Base {
             'description',
             [
                 'label' => __( 'Description', 'happy-elementor-addons' ),
+                'show_label' => false,
+                'description' => ha_get_allowed_html_desc( 'intermediate' ),
                 'type' => Controls_Manager::TEXTAREA,
                 'default' => __( 'Happy info box description goes here', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type info box description', 'happy-elementor-addons' ),
@@ -241,14 +243,10 @@ class InfoBox extends Base {
                         'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
-                    'justify' => [
-                        'title' => __( 'Justify', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-justify',
-                    ],
                 ],
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}}' => 'text-align: {{VALUE}}'
+                    '{{WRAPPER}}' => 'text-align: {{VALUE}};'
                 ]
             ]
         );
@@ -439,8 +437,8 @@ class InfoBox extends Base {
             [
                 'label' => __( 'Offset', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
-                'label_off' => __( 'None', 'your-plugin' ),
-                'label_on' => __( 'Custom', 'your-plugin' ),
+                'label_off' => __( 'None', 'happy-elementor-addons' ),
+                'label_on' => __( 'Custom', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
             ]
         );
@@ -569,7 +567,7 @@ class InfoBox extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-infobox-figure--icon' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-infobox-figure--icon' => 'background-color: {{VALUE}};',
                 ],
                 'condition' => [
                     'type' => 'icon'
@@ -652,7 +650,7 @@ class InfoBox extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-infobox-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-infobox-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -694,7 +692,7 @@ class InfoBox extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-infobox-text' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-infobox-text' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -920,18 +918,16 @@ class InfoBox extends Base {
         }
         ?>
 
-        <?php if ( $settings['type'] === 'image' ) :
-            if ( $settings['image']['url'] || $settings['image']['id'] ) :
-                $this->add_render_attribute( 'image', 'src', $settings['image']['url'] );
-                $this->add_render_attribute( 'image', 'alt', Control_Media::get_image_alt( $settings['image'] ) );
-                $this->add_render_attribute( 'image', 'title', Control_Media::get_image_title( $settings['image'] ) );
-                $settings['hover_animation'] = 'disable-animation'; // hack to prevent image hover animation
-                ?>
-                <figure class="ha-infobox-figure ha-infobox-figure--image">
-                    <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
-                </figure>
-            <?php endif;
-        elseif ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon'] ) ) : ?>
+        <?php if ( $settings['type'] === 'image' && ( $settings['image']['url'] || $settings['image']['id'] ) ) :
+            $this->add_render_attribute( 'image', 'src', $settings['image']['url'] );
+            $this->add_render_attribute( 'image', 'alt', Control_Media::get_image_alt( $settings['image'] ) );
+            $this->add_render_attribute( 'image', 'title', Control_Media::get_image_title( $settings['image'] ) );
+            $settings['hover_animation'] = 'disable-animation'; // hack to prevent image hover animation
+            ?>
+            <figure class="ha-infobox-figure ha-infobox-figure--image">
+                <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
+            </figure>
+        <?php elseif ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon'] ) ) : ?>
             <figure class="ha-infobox-figure ha-infobox-figure--icon">
                 <?php ha_render_icon( $settings, 'icon', 'selected_icon' ); ?>
             </figure>

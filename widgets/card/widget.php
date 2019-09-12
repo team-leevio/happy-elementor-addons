@@ -135,7 +135,7 @@ class Card extends Base {
         $this->add_control(
             'title',
             [
-                'label' => __( 'Title', 'happy-elementor-addons' ),
+                'label' => __( 'Title & Description', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Happy Card Title', 'happy-elementor-addons' ),
@@ -150,6 +150,8 @@ class Card extends Base {
             'description',
             [
                 'label' => __( 'Description', 'happy-elementor-addons' ),
+                'description' => ha_get_allowed_html_desc( 'intermediate' ),
+                'show_label' => false,
                 'type' => Controls_Manager::TEXTAREA,
                 'default' => __( 'Happy card description goes here', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type card description', 'happy-elementor-addons' ),
@@ -214,14 +216,10 @@ class Card extends Base {
                         'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
-                    'justify' => [
-                        'title' => __( 'Justify', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-justify',
-                    ],
                 ],
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}}'
+                    '{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};'
                 ]
             ]
         );
@@ -581,7 +579,7 @@ class Card extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-figure > img' => 'transition-duration: {{SIZE}}s',
+                    '{{WRAPPER}} .ha-card-figure > img' => 'transition-duration: {{SIZE}}s;',
                 ],
             ]
         );
@@ -701,7 +699,7 @@ class Card extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-badge' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-badge' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -712,7 +710,7 @@ class Card extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-badge' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-badge' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -855,7 +853,7 @@ class Card extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-text' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-card-text' => 'color: {{VALUE}};',
                 ],
             ]
         );

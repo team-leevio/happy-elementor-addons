@@ -571,8 +571,8 @@ class Review extends Base {
             [
                 'label' => __( 'Offset', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
-                'label_off' => __( 'None', 'your-plugin' ),
-                'label_on' => __( 'Custom', 'your-plugin' ),
+                'label_off' => __( 'None', 'happy-elementor-addons' ),
+                'label_on' => __( 'Custom', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
             ]
         );

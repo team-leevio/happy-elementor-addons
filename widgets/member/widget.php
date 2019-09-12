@@ -136,6 +136,7 @@ class Member extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => 'Happy Member Name',
                 'placeholder' => __( 'Type Member Name', 'happy-elementor-addons' ),
+                'separator' => 'before',
                 'dynamic' => [
                     'active' => true,
                 ]
@@ -160,6 +161,7 @@ class Member extends Base {
             'bio',
             [
                 'label' => __( 'Short Bio', 'happy-elementor-addons' ),
+                'description' => ha_get_allowed_html_desc( 'intermediate' ),
                 'type' => Controls_Manager::TEXTAREA,
                 'placeholder' => __( 'Write something amazing about the happy member', 'happy-elementor-addons' ),
                 'rows' => 5,
@@ -202,6 +204,7 @@ class Member extends Base {
                 ],
                 'default' => 'h2',
                 'toggle' => false,
+                'separator' => 'before',
             ]
         );
 
@@ -223,14 +226,10 @@ class Member extends Base {
                         'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
-                    'justify' => [
-                        'title' => __( 'Justify', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-justify',
-                    ],
                 ],
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}}' => 'text-align: {{VALUE}}'
+                    '{{WRAPPER}}' => 'text-align: {{VALUE}};'
                 ]
             ]
         );
@@ -388,18 +387,6 @@ class Member extends Base {
         $repeater->end_controls_tabs();
 
         $this->add_control(
-            'show_profiles',
-            [
-                'label' => __( 'Show Profiles', 'plugin-domain' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Show', 'your-plugin' ),
-                'label_off' => __( 'Hide', 'your-plugin' ),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
             'profiles',
             [
                 'show_label' => false,
@@ -420,6 +407,19 @@ class Member extends Base {
                         'name' => 'linkedin'
                     ]
                 ]
+            ]
+        );
+
+        $this->add_control(
+            'show_profiles',
+            [
+                'label' => __( 'Show Profiles', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Show', 'happy-elementor-addons' ),
+                'label_off' => __( 'Hide', 'happy-elementor-addons' ),
+                'return_value' => 'yes',
+                'default' => 'yes',
+                'separator' => 'before',
             ]
         );
 
@@ -691,7 +691,7 @@ class Member extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-member-bio' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-member-bio' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -793,7 +793,7 @@ class Member extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-member-links > a' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-member-links > a' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -804,7 +804,7 @@ class Member extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-member-links > a' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-member-links > a' => 'background-color: {{VALUE}};',
                 ],
             ]
         );

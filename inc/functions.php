@@ -411,6 +411,40 @@ function ha_elementor() {
 }
 
 /**
+ * Get a list of all the allowed html tags.
+ *
+ * @param string $level Allowed levels are basic and intermediate
+ * @return array
+ */
+function ha_get_allowed_html_tags( $level = 'basic' ) {
+    $allowed_html = [
+        'b' => [],
+        'i' => [],
+        'u' => [],
+        'em' => [],
+        'br' => [],
+        'abbr' => [
+            'title' => [],
+        ],
+        'span' => [
+            'class' => [],
+        ],
+        'strong' => [],
+    ];
+
+    if ( $level === 'intermediate' ) {
+        $allowed_html['a'] = [
+            'href' => [],
+            'title' => [],
+            'class' => [],
+            'id' => [],
+        ];
+    }
+
+    return $allowed_html;
+}
+
+/**
  * Strip all the tags except allowed html tags
  *
  * The name is based on inline editing toolbar name
@@ -419,26 +453,7 @@ function ha_elementor() {
  * @return string
  */
 function ha_kses_intermediate( $string = '' ) {
-    $allowed_html = [
-        'a' => [
-            'href' => [],
-            'title' => [],
-        ],
-        'span' => [
-            'class' => []
-        ],
-        'abbr' => [
-            'title' => [],
-        ],
-        'b' => [],
-        'i' => [],
-        'u' => [],
-        'br' => [],
-        'em' => [],
-        'strong' => [],
-    ];
-
-    return wp_kses( $string, $allowed_html );
+    return wp_kses( $string, ha_get_allowed_html_tags( 'intermediate' ) );
 }
 
 /**
@@ -450,20 +465,20 @@ function ha_kses_intermediate( $string = '' ) {
  * @return string
  */
 function ha_kses_basic( $string = '' ) {
-    $allowed_html = [
-        'span' => [
-            'class' => []
-        ],
-        'abbr' => [
-            'title' => [],
-        ],
-        'b' => [],
-        'i' => [],
-        'u' => [],
-        'br' => [],
-        'em' => [],
-        'strong' => [],
-    ];
+    return wp_kses( $string, ha_get_allowed_html_tags( 'basic' ) );
+}
 
-    return wp_kses( $string, $allowed_html );
+/**
+ * Get a translatable string with allowed html tags.
+ *
+ * @param string $level Allowed levels are basic and intermediate
+ * @return string
+ */
+function ha_get_allowed_html_desc( $level = 'basic' ) {
+    if ( ! in_array( $level, [ 'basic', 'intermediate' ] ) ) {
+        $level = 'basic';
+    }
+
+    $tags_str = '<' . implode( '>,<', array_keys( ha_get_allowed_html_tags( $level ) ) ) . '>';
+    return sprintf( __( 'This input field has support for the following HTML tags: %1$s', 'happy-elementor-addons' ), '<code>' . esc_html( $tags_str ) . '</code>' );
 }

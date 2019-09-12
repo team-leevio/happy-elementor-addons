@@ -84,8 +84,8 @@ class Calendly extends Base {
 			[
 				'label'        => __( 'Hide Event Type Details', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
-				'label_on'     => __( 'yes', 'your-plugin' ),
-				'label_off'    => __( 'no', 'your-plugin' ),
+				'label_on'     => __( 'yes', 'happy-elementor-addons' ),
+				'label_off'    => __( 'no', 'happy-elementor-addons' ),
 				'return_value' => 'yes',
 				'default'      => '',
 			]

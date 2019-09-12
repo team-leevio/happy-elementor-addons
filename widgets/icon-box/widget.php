@@ -177,14 +177,10 @@ class Icon_Box extends Base {
                         'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
-                    'justify' => [
-                        'title' => __( 'Justify', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-justify',
-                    ],
                 ],
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}}' => 'text-align: {{VALUE}}'
+                    '{{WRAPPER}}' => 'text-align: {{VALUE}};'
                 ]
             ]
         );
@@ -294,7 +290,7 @@ class Icon_Box extends Base {
                 'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-icon-box-icon' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-icon-box-icon' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -305,7 +301,7 @@ class Icon_Box extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-icon-box-icon' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-icon-box-icon' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -350,7 +346,7 @@ class Icon_Box extends Base {
                 'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}}:hover .ha-icon-box-icon' => 'color: {{VALUE}}',
+                    '{{WRAPPER}}:hover .ha-icon-box-icon' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -361,7 +357,7 @@ class Icon_Box extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}}:hover .ha-icon-box-icon' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}}:hover .ha-icon-box-icon' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -372,7 +368,7 @@ class Icon_Box extends Base {
                 'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}}:hover .ha-icon-box-icon' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}}:hover .ha-icon-box-icon' => 'border-color: {{VALUE}};',
                 ],
                 'condition' => [
                     'icon_border_border!' => '',
@@ -450,7 +446,7 @@ class Icon_Box extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-icon-box-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-icon-box-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -470,7 +466,7 @@ class Icon_Box extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}}:hover .ha-icon-box-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}}:hover .ha-icon-box-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -566,7 +562,7 @@ class Icon_Box extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-badge' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-badge' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -577,7 +573,7 @@ class Icon_Box extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-badge' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-badge' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -672,7 +668,7 @@ class Icon_Box extends Base {
             return;
         }
 
-        if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
+        if ( ha_elementor()->editor->is_edit_mode() ) {
             $this->render_edit_tools();
         }
 
