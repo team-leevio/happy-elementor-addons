@@ -97,7 +97,7 @@ class Step_Flow extends Base {
         $this->add_control(
             'title',
             [
-                'label' => __( 'Title', 'happy-elementor-addons' ),
+                'label' => __( 'Title & Description', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
                 'placeholder' => __( 'Title', 'happy-elementor-addons' ),
@@ -113,6 +113,8 @@ class Step_Flow extends Base {
             'description',
             [
                 'label' => __( 'Description', 'happy-elementor-addons' ),
+                'show_label' => false,
+                'description' => ha_get_allowed_html_desc( 'intermediate' ),
                 'type' => Controls_Manager::TEXTAREA,
                 'placeholder' => __( 'Description', 'happy-elementor-addons' ),
                 'default' => 'consectetur adipiscing elit, sed do<br>eiusmod Lorem ipsum dolor sit amet,<br> consectetur.',
@@ -153,14 +155,10 @@ class Step_Flow extends Base {
                         'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
-                    'justify' => [
-                        'title' => __( 'Justify', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-justify',
-                    ],
                 ],
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}}'
+                    '{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};'
                 ]
             ]
         );
@@ -278,7 +276,7 @@ class Step_Flow extends Base {
                 'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-steps-icon i' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-steps-icon i' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -289,7 +287,7 @@ class Step_Flow extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-steps-icon' => 'background: {{VALUE}}',
+                    '{{WRAPPER}} .ha-steps-icon' => 'background: {{VALUE}};',
                 ],
             ]
         );
@@ -358,7 +356,7 @@ class Step_Flow extends Base {
                     'badge!' => '',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-steps-label' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-steps-label' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -372,7 +370,7 @@ class Step_Flow extends Base {
                     'badge!' => '',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-steps-label' => 'background: {{VALUE}}',
+                    '{{WRAPPER}} .ha-steps-label' => 'background: {{VALUE}};',
                 ],
             ]
         );

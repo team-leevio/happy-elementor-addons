@@ -166,6 +166,7 @@ class Flip_Box extends Base {
             'front_description',
             [
                 'label' => __( 'Description', 'happy-elementor-addons' ),
+                'description' => ha_get_allowed_html_desc( 'basic' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXTAREA,
                 'default' => 'consectetur adipiscing elit, sed do<br>eiusmod Lorem ipsum dolor sit amet,<br> consectetur.',
@@ -321,6 +322,7 @@ class Flip_Box extends Base {
             'back_description',
             [
                 'label' => __( 'Description', 'happy-elementor-addons' ),
+                'description' => ha_get_allowed_html_desc( 'intermediate' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXTAREA,
                 'default' => 'consectetur adipiscing elit, sed do<br>eiusmod Lorem ipsum dolor sit amet.',

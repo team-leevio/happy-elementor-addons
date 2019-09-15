@@ -176,7 +176,7 @@ class Pricing_Table extends Base {
             'text',
             [
                 'label' => __( 'Text', 'elementor-pro' ),
-                'type' => Controls_Manager::TEXT,
+                'type' => Controls_Manager::TEXTAREA,
                 'default' => __( 'Exciting Feature', 'elementor-pro' ),
                 'dynamic' => [
                     'active' => true
@@ -247,7 +247,7 @@ class Pricing_Table extends Base {
                         'icon' => 'fa fa-check',
                     ],
                 ],
-                'title_field' => '{{{ text }}}',
+                'title_field' => '<# print(ha_get_feature_label(text)); #>',
             ]
         );
 
@@ -990,14 +990,14 @@ class Pricing_Table extends Base {
                 <ul class="ha-pricing-table-features-list">
                     <?php foreach ( $settings['features_list'] as $index => $feature ) :
                         $name_key = $this->get_repeater_setting_key( 'text', 'features_list', $index );
-                        $this->add_inline_editing_attributes( $name_key, 'basic' );
+                        $this->add_inline_editing_attributes( $name_key, 'intermediate' );
                         $this->add_render_attribute( $name_key, 'class', 'ha-pricing-table-feature-text' );
                         ?>
                         <li class="<?php echo esc_attr( 'elementor-repeater-item-' . $feature['_id'] ); ?>">
                             <?php if ( ! empty( $feature['icon'] ) || ! empty( $feature['selected_icon'] ) ) :
                                 ha_render_icon( $feature, 'icon', 'selected_icon' );
                             endif; ?>
-                            <span <?php $this->print_render_attribute_string( $name_key ); ?>><?php echo ha_kses_basic( $feature['text'] ); ?></span>
+                            <div <?php $this->print_render_attribute_string( $name_key ); ?>><?php echo ha_kses_intermediate( $feature['text'] ); ?></div>
                         </li>
                     <?php endforeach; ?>
                 </ul>

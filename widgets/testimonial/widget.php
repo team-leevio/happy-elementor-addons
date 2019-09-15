@@ -76,15 +76,15 @@ class Testimonial extends Base {
                 'options' => [
                     'left' => [
                         'title' => __( 'Left', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-h-align-left',
+                        'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
                         'title' => __( 'Center', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-h-align-center',
+                        'icon' => 'fa fa-align-center',
                     ],
                     'right' => [
                         'title' => __( 'Right', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-h-align-right',
+                        'icon' => 'fa fa-align-right',
                     ],
                 ],
                 'toggle' => false,

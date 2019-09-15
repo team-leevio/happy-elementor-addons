@@ -61,8 +61,8 @@ class Skills extends Base {
             [
                 'type' => Controls_Manager::TEXT,
                 'label' => __( 'Name', 'happy-elementor-addons' ),
-                'default' => __( 'Happy Skill', 'happy-elementor-addons' ),
-                'placeholder' => __( 'Type Happy Skill Name', 'happy-elementor-addons' ),
+                'default' => __( 'Design', 'happy-elementor-addons' ),
+                'placeholder' => __( 'Type a skill name', 'happy-elementor-addons' ),
             ]
         );
 
@@ -73,7 +73,7 @@ class Skills extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'unit' => '%',
-                    'size' => 85
+                    'size' => 95
                 ],
                 'size_units' => ['%'],
                 'range' => [
@@ -103,7 +103,7 @@ class Skills extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}} .ha-skill-info' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .ha-skill-info' => 'color: {{VALUE}};',
                 ],
                 'condition' => ['customize' => 'yes']
             ]
@@ -115,7 +115,7 @@ class Skills extends Base {
                 'label' => __( 'Level Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}} .ha-skill-level' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .ha-skill-level' => 'background-color: {{VALUE}};',
                 ],
                 'condition' => ['customize' => 'yes']
             ]
@@ -127,7 +127,7 @@ class Skills extends Base {
                 'label' => __( 'Base Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}}.ha-skill' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}}.ha-skill' => 'background-color: {{VALUE}};',
                 ],
                 'condition' => ['customize' => 'yes']
             ]
@@ -267,7 +267,7 @@ class Skills extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-skill-info' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-skill-info' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -278,7 +278,7 @@ class Skills extends Base {
                 'label' => __( 'Level Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-skill-level' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-skill-level' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -289,7 +289,7 @@ class Skills extends Base {
                 'label' => __( 'Base Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-skill' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-skill' => 'background-color: {{VALUE}};',
                 ],
             ]
         );

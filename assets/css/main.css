@@ -2369,6 +2369,10 @@
 	font-size: .8em;
 }
 
+.ha-pricing-table-feature-text {
+	display: inline-block;
+}
+
 .ha-pricing-table-btn {
 	display: inline-block;
 	padding: .8rem 2rem;

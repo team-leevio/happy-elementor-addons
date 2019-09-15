@@ -133,14 +133,10 @@ class Gradient_Heading extends Base {
                         'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-align-right',
                     ],
-                    'justify' => [
-                        'title' => __( 'Justify', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-align-justify',
-                    ],
                 ],
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}}' => 'text-align: {{VALUE}}'
+                    '{{WRAPPER}}' => 'text-align: {{VALUE}};'
                 ]
             ]
         );
@@ -204,7 +200,7 @@ class Gradient_Heading extends Base {
                     'luminosity' => 'Luminosity',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-gradient-heading' => 'mix-blend-mode: {{VALUE}}',
+                    '{{WRAPPER}} .ha-gradient-heading' => 'mix-blend-mode: {{VALUE}};',
                 ],
                 'separator' => 'none',
             ]
@@ -247,7 +243,7 @@ class Gradient_Heading extends Base {
     public function _content_template() {
         ?>
         <#
-        view.addInlineEditingAttributes( 'title', 'none' );
+        view.addInlineEditingAttributes( 'title', 'basic' );
         view.addRenderAttribute( 'title', 'class', 'ha-gradient-heading' );
 
         var title = _.isEmpty(settings.link.url) ? settings.title : '<a href="'+settings.link.url+'">'+settings.title+'</a>';

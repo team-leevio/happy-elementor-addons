@@ -112,4 +112,13 @@
         return ( elementor.helpers && elementor.helpers.renderIcon );
     };
 
+    window.ha_get_feature_label = function( text ) {
+        var div = document.createElement('DIV');
+
+        div.innerHTML = text;
+        text = div.textContent || div.innerText || text;
+
+        return text.length > 20 ? text.substring(0, 20) + "..." : text;
+    }
+
 }(elementor, jQuery, window));
