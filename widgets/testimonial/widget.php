@@ -104,7 +104,8 @@ class Testimonial extends Base {
                     'bubble' => __( 'Bubble', 'happy-elementor-addons' ),
                 ],
                 'default' => 'basic',
-                'prefix_class' => 'ha-testimonial--'
+                'prefix_class' => 'ha-testimonial--',
+                'style_transfer' => true,
             ]
         );
 

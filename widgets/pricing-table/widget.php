@@ -306,6 +306,7 @@ class Pricing_Table extends Base {
                 'label_off' => __( 'Hide', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
+                'style_transfer' => true,
             ]
         );
 
@@ -327,6 +328,7 @@ class Pricing_Table extends Base {
                 ],
                 'toggle' => false,
                 'default' => 'left',
+                'style_transfer' => true,
                 'condition' => [
                     'show_badge' => 'yes'
                 ]

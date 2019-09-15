@@ -102,7 +102,7 @@ class Card extends Base {
                 ],
                 'toggle' => false,
                 'default' => 'top',
-                'prefix_class' => 'ha-card--'
+                'prefix_class' => 'ha-card--',
             ]
         );
 

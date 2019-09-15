@@ -172,6 +172,7 @@ class Step_Flow extends Base {
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
+                'style_transfer' => true,
             ]
         );
 

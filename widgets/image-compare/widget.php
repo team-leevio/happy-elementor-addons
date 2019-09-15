@@ -167,6 +167,7 @@ class Image_Compare extends Base {
                 'default' => [
                     'size' => .5,
                 ],
+                'style_transfer' => true,
             ]
         );
 
@@ -187,6 +188,7 @@ class Image_Compare extends Base {
                     ],
                 ],
                 'default' => 'horizontal',
+                'style_transfer' => true,
             ]
         );
 
@@ -198,7 +200,8 @@ class Image_Compare extends Base {
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
-                'description' => __( 'Hide overlay with before and after label', 'happy-elementor-addons' )
+                'description' => __( 'Hide overlay with before and after label', 'happy-elementor-addons' ),
+                'style_transfer' => true,
             ]
         );
 
@@ -213,7 +216,8 @@ class Image_Compare extends Base {
                     'on_click' => __( 'On Click', 'happy-elementor-addons' ),
                     'on_swipe' => __( 'On Swipe', 'happy-elementor-addons' ),
                 ],
-                'description' => __( 'Select handle movement type. Note: overlay does not work with On Hover.', 'happy-elementor-addons' )
+                'description' => __( 'Select handle movement type. Note: overlay does not work with On Hover.', 'happy-elementor-addons' ),
+                'style_transfer' => true,
             ]
         );
 

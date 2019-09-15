@@ -90,6 +90,7 @@ class Review extends Base {
                     'num' => __( 'Number', 'happy-elementor-addons' ),
                 ],
                 'default' => 'star',
+                'style_transfer' => true,
             ]
         );
 
@@ -118,6 +119,7 @@ class Review extends Base {
                     'after' => __( 'After Ratting', 'happy-elementor-addons' ),
                 ],
                 'default' => 'before',
+                'style_transfer' => true,
             ]
         );
 

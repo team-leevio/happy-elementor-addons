@@ -420,6 +420,7 @@ class Member extends Base {
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'separator' => 'before',
+                'style_transfer' => true,
             ]
         );
 

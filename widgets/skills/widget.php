@@ -174,7 +174,8 @@ class Skills extends Base {
                 'options' => [
                     'inside' => __( 'Text Inside', 'happy-elementor-addons' ),
                     'outside' => __( 'Text Outside', 'happy-elementor-addons' ),
-                ]
+                ],
+                'style_transfer' => true,
             ]
         );
 
