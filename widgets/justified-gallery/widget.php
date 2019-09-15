@@ -66,6 +66,7 @@ class Justified_Gallery extends Base {
                 'type' => Controls_Manager::TEXT,
                 'placeholder' => __( 'Type gallery filter name', 'happy-elementor-addons' ),
                 'description' => __( 'Filter name will be used in filter menu.', 'happy-elementor-addons' ),
+                'default' => __( 'Filter Name', 'happy-elementor-addons' ),
             ]
         );
 
@@ -226,12 +227,13 @@ class Justified_Gallery extends Base {
         $this->add_control(
             'enable_popup',
             [
-                'label' => __( 'Enable Popup?', 'happy-elementor-addons' ),
+                'label' => __( 'Enable Lightbox?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'separator' => 'before',
                 'return_value' => 'yes',
+                'default' => 'yes'
             ]
         );
 

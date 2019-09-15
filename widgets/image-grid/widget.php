@@ -64,8 +64,8 @@ class Image_Grid extends Base {
                 'label' => __( 'Filter Name', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
                 'placeholder' => __( 'Type gallery filter name', 'happy-elementor-addons' ),
-                'description' => __( 'Filter menu will be built using filter name', 'happy-elementor-addons' ),
-                'default' => __( 'Image Grid', 'happy-elementor-addons' ),
+                'description' => __( 'Filter name will be used in filter menu.', 'happy-elementor-addons' ),
+                'default' => __( 'Filter Name', 'happy-elementor-addons' ),
             ]
         );
 
@@ -73,6 +73,9 @@ class Image_Grid extends Base {
             'images',
             [
                 'type' => Controls_Manager::GALLERY,
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -81,10 +84,12 @@ class Image_Grid extends Base {
             [
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
-                'title_field' => 'Filter Group: {{ filter }}',
+                'show_label' => false,
+                /** translators: 1: Filter name */
+                'title_field' => sprintf( __( 'Filter Group: %1$s', 'happy-elementor-addons' ), '{{filter}}' ),
                 'default' => [
                     [
-                        'filter' => __( 'Image Grid', 'happy-elementor-addons' ),
+                        'filter' => __( 'Happy', 'happy-elementor-addons' ),
                     ]
                 ]
             ]
@@ -115,25 +120,25 @@ class Image_Grid extends Base {
         $this->add_control(
             'show_filter',
             [
-                'label' => __( 'Show Filter?', 'happy-elementor-addons' ),
+                'label' => __( 'Show Filter Menu?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
-                'description' => __( 'Enable to display filter navigation. Filter navigation will be built using filter name from gallery', 'happy-elementor-addons' )
+                'description' => __( 'Enable to display filter menu.', 'happy-elementor-addons' )
             ]
         );
 
         $this->add_control(
             'show_all_filter',
             [
-                'label' => __( 'Show All Filter?', 'happy-elementor-addons' ),
+                'label' => __( 'Show "All" Filter?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
-                'description' => __( 'Enable to display all filter button', 'happy-elementor-addons' ),
+                'description' => __( 'Enable to display "All" filter in filter menu.', 'happy-elementor-addons' ),
                 'condition' => [
                     'show_filter' => 'yes'
                 ]
@@ -147,7 +152,7 @@ class Image_Grid extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'All', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type filter label', 'happy-elementor-addons' ),
-                'description' => __( 'Type all filter label', 'happy-elementor-addons' ),
+                'description' => __( 'Type "All" filter label.', 'happy-elementor-addons' ),
                 'condition' => [
                     'show_all_filter' => 'yes',
                     'show_filter' => 'yes'
@@ -166,6 +171,7 @@ class Image_Grid extends Base {
                     4 => __( '4 Columns', 'happy-elementor-addons' ),
                     5 => __( '5 Columns', 'happy-elementor-addons' ),
                 ],
+                'separator' => 'before',
                 'desktop_default' => 4,
                 'tablet_default' => 3,
                 'mobile_default' => 2,
@@ -196,12 +202,13 @@ class Image_Grid extends Base {
         $this->add_control(
             'enable_popup',
             [
-                'label' => __( 'Enable Popup?', 'happy-elementor-addons' ),
+                'label' => __( 'Enable Lightbox?', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'separator' => 'before',
                 'return_value' => 'yes',
+                'default' => 'yes',
                 'frontend_available' => true,
             ]
         );
@@ -701,8 +708,10 @@ class Image_Grid extends Base {
 
         $has_popup = $settings['enable_popup'];
         $item_html_tag = 'figure';
+
         if ( $has_popup ) {
             $item_html_tag = 'a';
+            $this->add_render_attribute( 'container', 'class', 'ha-popup--is-enabled' );
         }
 
         if ( $settings['show_filter'] ) : ?>
