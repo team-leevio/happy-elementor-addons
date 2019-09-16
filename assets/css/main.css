@@ -161,10 +161,6 @@
 .ha-btn.ha-btn--link:focus {
 	color: #e2498a;
 }
-.ha-btn-icon {
-	-webkit-transition: all .3s;
-	        transition: all .3s;
-}
 .ha-btn-icon + .ha-btn-text,
 .ha-btn-text + .ha-btn-icon {
 	margin-left: 5px;

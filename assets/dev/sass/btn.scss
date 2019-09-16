@@ -31,10 +31,6 @@
     }
   }
 
-  &-icon {
-    transition: all .3s;
-  }
-
   &-icon + &-text,
   &-text + &-icon {
     margin-left: 5px;
