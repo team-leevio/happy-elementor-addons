@@ -6,9 +6,7 @@ defined( 'ABSPATH' ) || die();
 class Icons_Manager {
 
     public static function init() {
-        if ( ha_is_elementor_version( '>=', '2.6.0' ) ) {
-            add_filter( 'elementor/icons_manager/additional_tabs', [ __CLASS__, 'add_happy_icons_tab' ] );
-        }
+        add_filter( 'elementor/icons_manager/additional_tabs', [ __CLASS__, 'add_happy_icons_tab' ] );
     }
 
     public static function add_happy_icons_tab( $tabs ) {
