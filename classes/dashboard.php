@@ -185,7 +185,7 @@ class Dashboard {
                 ?>
                 <div class="<?php echo $class_attr; ?>">
                     <?php if ( $is_pro ) : ?>
-                        <span class="ha-dashboard-widgets__item-label"><?php esc_html_e( 'Pro', 'happy-elementor-addons' ); ?></span>
+                        <span class="ha-dashboard-widgets__item-badge"><?php esc_html_e( 'Pro', 'happy-elementor-addons' ); ?></span>
                     <?php endif; ?>
                     <span class="ha-dashboard-widgets__item-icon"><i class="<?php echo $icon; ?>"></i></span>
                     <h3 class="ha-dashboard-widgets__item-title">

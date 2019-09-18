@@ -141,21 +141,25 @@
 .ha-dashboard-widgets__item-preview {
 	display: inline-block;
 	margin-left: 5px; 
-	width: 18px;
-	height: 18px;
-	border-radius: 50%;
 	color: #c2cbd2;
-	text-align: center;
 	font-size: 10px;
-	line-height: 18px;
 	-webkit-transition: all .2s;
 	        transition: all .2s;
+}
+.ha-dashboard-widgets__item-preview > i {
+	position: relative;
+	top: 2px;
 }
 .ha-dashboard-widgets__item-preview:hover,
 .ha-dashboard-widgets__item-preview:focus,
 .ha-dashboard-widgets__item-preview:active {
 	box-shadow: none; 
 	color: #8799a7;
+}
+.ha-dashboard-widgets__item-badge {
+	position: absolute; 
+	background-color: #e2498a;
+	font-size: 10px;
 }
 .ha-dashboard-widgets__item-toggle {
 	position: absolute !important;

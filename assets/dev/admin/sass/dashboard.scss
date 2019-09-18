@@ -141,24 +141,28 @@
 
       &-preview {
         display: inline-block;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 18px;
-        //background-color: #c2cbd2;
         font-size: 10px;
         color: #c2cbd2;
         transition: all .2s;
         margin-left: 5px;
 
+        > i {
+          position: relative;
+          top: 2px;
+        }
+
         &:hover,
         &:focus,
         &:active {
-          //background-color: darken(#c2cbd2, 10%);
           color: darken(#c2cbd2, 20%);
           box-shadow: none;
         }
+      }
+
+      &-badge {
+        background-color: $secondary-color;
+        font-size: 10px;
+        position: absolute;
       }
 
       &-toggle {
