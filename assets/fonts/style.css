@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'Happy Icons';
-  src:  url('./Happy-Addons-Icon.eot?vf4zr6');
-  src:  url('./Happy-Addons-Icon.eot?vf4zr6#iefix') format('embedded-opentype'),
-    url('./Happy-Addons-Icon.ttf?vf4zr6') format('truetype'),
-    url('./Happy-Addons-Icon.woff?vf4zr6') format('woff'),
-    url('./Happy-Addons-Icon.svg?vf4zr6#Happy-Addons-Icon') format('svg');
+  src:  url('./happy-icons.eot?vf4zr6');
+  src:  url('./happy-icons.eot?vf4zr6#iefix') format('embedded-opentype'),
+    url('./happy-icons.ttf?vf4zr6') format('truetype'),
+    url('./happy-icons.woff?vf4zr6') format('woff'),
+    url('./happy-icons.svg?vf4zr6#happy-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -1221,4 +1221,202 @@
 }
 .hm-youtube:before {
   content: "\ea8e";
+}
+.hm-centralize:before {
+  content: "\ea8f";
+}
+.hm-add-section:before {
+  content: "\ea90";
+}
+.hm-advanced-heading:before {
+  content: "\ea91";
+}
+.hm-air-baloon:before {
+  content: "\ea92";
+}
+.hm-arrow2:before {
+  content: "\ea93";
+}
+.hm-bicycle2:before {
+  content: "\ea94";
+}
+.hm-bond2:before {
+  content: "\ea95";
+}
+.hm-bond3:before {
+  content: "\ea96";
+}
+.hm-bond4:before {
+  content: "\ea97";
+}
+.hm-calendar2:before {
+  content: "\ea98";
+}
+.hm-carousel:before {
+  content: "\ea99";
+}
+.hm-code-page:before {
+  content: "\ea9a";
+}
+.hm-comment-circle:before {
+  content: "\ea9b";
+}
+.hm-comment-square:before {
+  content: "\ea9c";
+}
+.hm-copy:before {
+  content: "\ea9d";
+}
+.hm-cursor:before {
+  content: "\ea9e";
+}
+.hm-envelop2:before {
+  content: "\ea9f";
+}
+.hm-factory:before {
+  content: "\eaa0";
+}
+.hm-finger-point:before {
+  content: "\eaa1";
+}
+.hm-finger-swipe-both:before {
+  content: "\eaa2";
+}
+.hm-finger-swipe-corner:before {
+  content: "\eaa3";
+}
+.hm-finger-swipe-left:before {
+  content: "\eaa4";
+}
+.hm-finger-swipe-up:before {
+  content: "\eaa5";
+}
+.hm-finger-swipe:before {
+  content: "\eaa6";
+}
+.hm-finger-touch:before {
+  content: "\eaa7";
+}
+.hm-folder-network:before {
+  content: "\eaa8";
+}
+.hm-folder-sync:before {
+  content: "\eaa9";
+}
+.hm-graph-bar2:before {
+  content: "\eaaa";
+}
+.hm-graph-pie2:before {
+  content: "\eaab";
+}
+.hm-heading-h:before {
+  content: "\eaac";
+}
+.hm-heading-html:before {
+  content: "\eaad";
+}
+.hm-heart:before {
+  content: "\eaae";
+}
+.hm-home2:before {
+  content: "\eaaf";
+}
+.hm-indent-left:before {
+  content: "\eab0";
+}
+.hm-indent-right:before {
+  content: "\eab1";
+}
+.hm-lock-close:before {
+  content: "\eab2";
+}
+.hm-lock-open:before {
+  content: "\eab3";
+}
+.hm-map-pointer-add:before {
+  content: "\eab4";
+}
+.hm-map-pointer-check:before {
+  content: "\eab5";
+}
+.hm-map-pointer-delete:before {
+  content: "\eab6";
+}
+.hm-map-pointer2:before {
+  content: "\eab7";
+}
+.hm-map:before {
+  content: "\eab8";
+}
+.hm-navigation1:before {
+  content: "\eab9";
+}
+.hm-navigation2:before {
+  content: "\eaba";
+}
+.hm-page-export:before {
+  content: "\eabb";
+}
+.hm-page-sync:before {
+  content: "\eabc";
+}
+.hm-piramid:before {
+  content: "\eabd";
+}
+.hm-plug:before {
+  content: "\eabe";
+}
+.hm-point-marker:before {
+  content: "\eabf";
+}
+.hm-quote2:before {
+  content: "\eac0";
+}
+.hm-refresh-check:before {
+  content: "\eac1";
+}
+.hm-refresh:before {
+  content: "\eac2";
+}
+.hm-refresh2:before {
+  content: "\eac3";
+}
+.hm-scrolling-image:before {
+  content: "\eac4";
+}
+.hm-sign-turn-right:before {
+  content: "\eac5";
+}
+.hm-speedometer:before {
+  content: "\eac6";
+}
+.hm-sticky:before {
+  content: "\eac7";
+}
+.hm-sync-cloud:before {
+  content: "\eac8";
+}
+.hm-sync:before {
+  content: "\eac9";
+}
+.hm-sync2:before {
+  content: "\eaca";
+}
+.hm-table-lamp2:before {
+  content: "\eacb";
+}
+.hm-target2:before {
+  content: "\eacc";
+}
+.hm-timeline-spiral:before {
+  content: "\eacd";
+}
+.hm-tv:before {
+  content: "\eace";
+}
+.hm-vespa:before {
+  content: "\eacf";
+}
+.hm-happyaddons:before {
+  content: "\ead0";
 }

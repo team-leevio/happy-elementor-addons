@@ -31,7 +31,7 @@ var AUTOPREFIXER_BROWSERS = [
 
 var styleSass = "assets/dev/sass/main.scss",
     sassFiles = "assets/dev/sass/*.scss",
-    adminStyleSass = "assets/dev/admin/sass/main.scss",
+    adminStyles = "assets/dev/admin/sass/*.scss",
     addminSassFiles = "assets/dev/admin/sass/*.scss",
     jsFiles = "assets/dev/js/*.js",
     adminJSFiles = "assets/dev/admin/js/*.js";
@@ -60,7 +60,7 @@ gulp.task("widgetCss", function() {
 });
 
 gulp.task("adminCss", function() {
-    return gulp.src(adminStyleSass)
+    return gulp.src(adminStyles)
         .pipe(plumberNotifier())
         .pipe(sass())
         .pipe(autoPrefixer(AUTOPREFIXER_BROWSERS))
@@ -84,7 +84,6 @@ gulp.task("js", function() {
 gulp.task("adminJS", function() {
     return gulp.src(adminJSFiles)
         .pipe(plumberNotifier())
-        .pipe(concat('happy-addons.js'))
         .pipe(gulp.dest("assets/admin/js"))
         .pipe(uglify())
         .pipe(rename({suffix: ".min"}))

@@ -482,3 +482,7 @@ function ha_get_allowed_html_desc( $level = 'basic' ) {
     $tags_str = '<' . implode( '>,<', array_keys( ha_get_allowed_html_tags( $level ) ) ) . '>';
     return sprintf( __( 'This input field has support for the following HTML tags: %1$s', 'happy-elementor-addons' ), '<code>' . esc_html( $tags_str ) . '</code>' );
 }
+
+function ha_has_pro() {
+    return defined( 'HAPPY_ADDONS_PRO_VERSION' );
+}

@@ -236,15 +236,15 @@ class Assets_Manager {
         );
 
         wp_enqueue_style(
-            'happy-elementor-addons-admin',
-            HAPPY_ADDONS_ASSETS . 'admin/css/main.min.css',
+            'happy-elementor-addons-editor',
+            HAPPY_ADDONS_ASSETS . 'admin/css/editor.min.css',
             null,
             HAPPY_ADDONS_VERSION
         );
 
         wp_enqueue_script(
-            'happy-elementor-addons-admin',
-            HAPPY_ADDONS_ASSETS . 'admin/js/happy-addons.min.js',
+            'happy-elementor-addons-editor',
+            HAPPY_ADDONS_ASSETS . 'admin/js/editor.min.js',
             [ 'elementor-editor' ],
             HAPPY_ADDONS_VERSION,
             true

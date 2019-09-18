@@ -73,6 +73,7 @@ class Base {
 
         if ( is_admin() ) {
             Updater::init();
+            Dashboard::init();
         }
 
         do_action( 'happyaddons_loaded' );
@@ -113,6 +114,7 @@ class Base {
         if ( is_admin() ) {
             require( HAPPY_ADDONS_DIR_PATH . 'classes/class.communicator.php' );
             require( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
+            require( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
         }
 
         if ( is_user_logged_in() ) {

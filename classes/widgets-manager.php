@@ -52,6 +52,10 @@ class Widgets_Manager {
         }
     }
 
+    public static function get_active_widgets() {
+
+    }
+
     public static function get_widgets_map() {
         $widgets_map = [
             self::get_base_widget_key() => [
@@ -66,13 +70,72 @@ class Widgets_Manager {
 
         $local_widgets_map = self::get_local_widgets_map();
         $widgets_map = array_merge( $widgets_map, $local_widgets_map );
-        return apply_filters( 'happyaddons_widgets_map', $widgets_map );
+        return apply_filters( 'happyaddons_get_widgets_map', $widgets_map );
     }
 
+    /**
+     * Get the pro widgets map for dashboard only
+     *
+     * @return array
+     */
+    public static function get_pro_widget_map() {
+        return [
+            'google-map' => [
+                'is_pro' => true,
+            ],
+            'advanced-heading' => [
+                'is_pro' => true,
+            ],
+            'list-group' => [
+                'is_pro' => true,
+            ],
+            'hover-box' => [
+                'is_pro' => true,
+            ],
+            'countdown' => [
+                'is_pro' => true,
+            ],
+            'team-carousel' => [
+                'is_pro' => true,
+            ],
+            'logo-carousel' => [
+                'is_pro' => true,
+            ],
+            'source-code' => [
+                'is_pro' => true,
+            ],
+            'feature-list' => [
+                'is_pro' => true,
+            ],
+            'testimonial-carousel' => [
+                'is_pro' => true,
+            ],
+            'advanced-tabs' => [
+                'is_pro' => true,
+            ],
+            'flip-box' => [
+                'is_pro' => true,
+            ],
+            'animated-text' => [
+                'is_pro' => true,
+            ],
+            'timeline' => [
+                'is_pro' => true,
+            ],
+        ];
+    }
+
+    /**
+     * Get the free widgets map
+     *
+     * @return array
+     */
     public static function get_local_widgets_map() {
         return [
             // All the widgets are listed below with respective map
             'infobox' => [
+                'title' => __( 'Info Box', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-blog-content',
                 'class' => InfoBox::class,
                 'css' => ['infobox'],
                 'js' => [],
@@ -82,6 +145,8 @@ class Widgets_Manager {
                 ],
             ],
             'card' => [
+                'title' => __( 'Card', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-card',
                 'class' => Card::class,
                 'css' => ['card', 'badge'],
                 'js' => [],
@@ -91,6 +156,8 @@ class Widgets_Manager {
                 ],
             ],
             'cf7' => [
+                'title' => __( 'Contact Form 7', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-form',
                 'class' => CF7::class,
                 'css' => [],
                 'js' => [],
@@ -100,6 +167,8 @@ class Widgets_Manager {
                 ],
             ],
             'icon-box' => [
+                'title' => __( 'Icon Box', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-icon-box',
                 'class' => Icon_Box::class,
                 'css' => ['icon-box', 'badge'],
                 'js' => [],
@@ -109,6 +178,8 @@ class Widgets_Manager {
                 ],
             ],
             'member' => [
+                'title' => __( 'Team Member', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-team-member',
                 'class' => Member::class,
                 'css' => ['member'],
                 'js' => [],
@@ -118,6 +189,8 @@ class Widgets_Manager {
                 ],
             ],
             'review' => [
+                'title' => __( 'Review', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-review',
                 'class' => Review::class,
                 'css' => ['review'],
                 'js' => [],
@@ -127,6 +200,8 @@ class Widgets_Manager {
                 ],
             ],
             'image-compare' => [
+                'title' => __( 'Image Compare', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-image-compare',
                 'class' => Image_Compare::class,
                 'css' => ['image-comparison'],
                 'js' => [],
@@ -136,6 +211,8 @@ class Widgets_Manager {
                 ],
             ],
             'justified-gallery' => [
+                'title' => __( 'Justified Grid', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-brick-wall',
                 'class' => Justified_Gallery::class,
                 'css' => ['justified-gallery', 'gallery-filter'],
                 'js' => [],
@@ -145,6 +222,8 @@ class Widgets_Manager {
                 ],
             ],
             'image-grid' => [
+                'title' => __( 'Image Grid', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-grid-even',
                 'class' => Image_Grid::class,
                 'css' => ['image-grid', 'gallery-filter'],
                 'js' => [],
@@ -154,6 +233,8 @@ class Widgets_Manager {
                 ],
             ],
             'slider' => [
+                'title' => __( 'Slider', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-image-slider',
                 'class' => Slider::class,
                 'css' => ['slider-carousel'],
                 'js' => [],
@@ -163,6 +244,8 @@ class Widgets_Manager {
                 ],
             ],
             'carousel' => [
+                'title' => __( 'Carousel', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-carousal',
                 'class' => Carousel::class,
                 'css' => ['slider-carousel'],
                 'js' => [],
@@ -172,6 +255,8 @@ class Widgets_Manager {
                 ],
             ],
             'skills' => [
+                'title' => __( 'Skill Bars', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-progress-bar',
                 'class' => Skills::class,
                 'css' => ['skills'],
                 'js' => [],
@@ -181,6 +266,8 @@ class Widgets_Manager {
                 ],
             ],
             'gradient-heading' => [
+                'title' => __( 'Gradient Heading', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-drag',
                 'class' => Gradient_Heading::class,
                 'css' => ['gradient-heading'],
                 'js' => [],
@@ -190,6 +277,8 @@ class Widgets_Manager {
                 ],
             ],
             'wpform' => [
+                'title' => __( 'WPForms', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-form',
                 'class' => WPForm::class,
                 'css' => [],
                 'js' => [],
@@ -199,6 +288,8 @@ class Widgets_Manager {
                 ],
             ],
             'ninjaform' => [
+                'title' => __( 'Ninja Forms', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-form',
                 'class' => NinjaForm::class,
                 'css' => [],
                 'js' => [],
@@ -208,6 +299,8 @@ class Widgets_Manager {
                 ],
             ],
             'calderaform' => [
+                'title' => __( 'Caldera Forms', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-form',
                 'class' => CalderaForm::class,
                 'css' => [],
                 'js' => [],
@@ -217,6 +310,8 @@ class Widgets_Manager {
                 ],
             ],
             'weform' => [
+                'title' => __( 'weForms', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-form',
                 'class' => WeForm::class,
                 'css' => [],
                 'js' => [],
@@ -226,6 +321,8 @@ class Widgets_Manager {
                 ],
             ],
             'logo-grid' => [
+                'title' => __('Logo Grid', 'happy-elementor-addons'),
+                'icon' => 'hm hm-logo-grid',
                 'class' => Logo_Grid::class,
                 'css' => ['logo-grid'],
                 'js' => [],
@@ -235,6 +332,8 @@ class Widgets_Manager {
                 ],
             ],
             'dual-button' => [
+                'title' => __( 'Dual Button', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-accordion-horizontal',
                 'class' => Dual_Button::class,
                 'css' => ['dual-btn'],
                 'js' => [],
@@ -244,6 +343,8 @@ class Widgets_Manager {
                 ],
             ],
             'testimonial' => [
+                'title' => __( 'Testimonial', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-testimonial',
                 'class' => Testimonial::class,
                 'css' => ['testimonial'],
                 'js' => [],
@@ -253,6 +354,8 @@ class Widgets_Manager {
                 ],
             ],
             'number' => [
+                'title' => __( 'Number', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-madel',
                 'class' => Number::class,
                 'css' => ['number'],
                 'js' => [],
@@ -262,6 +365,8 @@ class Widgets_Manager {
                 ],
             ],
             'flip-box' => [
+                'title' => __( 'Flip Box', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-flip-card1',
                 'class' => Flip_Box::class,
                 'css' => ['flip-box'],
                 'js' => [],
@@ -271,6 +376,8 @@ class Widgets_Manager {
                 ],
             ],
             'calendly' => [
+                'title' => __( 'Calendly', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-calendar',
                 'class' => Calendly::class,
                 'css' => [],
                 'js' => [],
@@ -280,6 +387,8 @@ class Widgets_Manager {
                 ],
             ],
             'pricing-table' => [
+                'title' => __( 'Pricing Table', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-file-cabinet',
                 'class' => Pricing_Table::class,
                 'css' => ['pricing-table'],
                 'js' => [],
@@ -289,6 +398,8 @@ class Widgets_Manager {
                 ],
             ],
             'step-flow' => [
+                'title' => __( 'Step Flow', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-step-flow',
                 'class' => Step_Flow::class,
                 'css' => ['steps-flow'],
                 'js' => [],
