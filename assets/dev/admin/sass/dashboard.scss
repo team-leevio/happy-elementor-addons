@@ -139,6 +139,28 @@
         font-weight: normal;
       }
 
+      &-preview {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 18px;
+        //background-color: #c2cbd2;
+        font-size: 10px;
+        color: #c2cbd2;
+        transition: all .2s;
+        margin-left: 5px;
+
+        &:hover,
+        &:focus,
+        &:active {
+          //background-color: darken(#c2cbd2, 10%);
+          color: darken(#c2cbd2, 20%);
+          box-shadow: none;
+        }
+      }
+
       &-toggle {
         position: absolute !important;
         right: 20px;
@@ -172,6 +194,11 @@
       height: 100%;
       opacity: 0;
       z-index: 6;
+
+      &:disabled,
+      &.disabled {
+        opacity: 0;
+      }
     }
 
     &__check:checked ~ .ha-toggle__track {

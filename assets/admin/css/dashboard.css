@@ -138,6 +138,25 @@
 	font-weight: normal; 
 	font-size: 13px;
 }
+.ha-dashboard-widgets__item-preview {
+	display: inline-block;
+	margin-left: 5px; 
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	color: #c2cbd2;
+	text-align: center;
+	font-size: 10px;
+	line-height: 18px;
+	-webkit-transition: all .2s;
+	        transition: all .2s;
+}
+.ha-dashboard-widgets__item-preview:hover,
+.ha-dashboard-widgets__item-preview:focus,
+.ha-dashboard-widgets__item-preview:active {
+	box-shadow: none; 
+	color: #8799a7;
+}
 .ha-dashboard-widgets__item-toggle {
 	position: absolute !important;
 	right: 20px;
@@ -166,6 +185,10 @@
 	height: 100%;
 	opacity: 0;
 	cursor: pointer;
+}
+.ha-dashboard .ha-toggle__check:disabled,
+.ha-dashboard .ha-toggle__check.disabled {
+	opacity: 0;
 }
 .ha-dashboard .ha-toggle__check:checked ~ .ha-toggle__track {
 	box-shadow: inset 0 0 0 20px #562dd4;

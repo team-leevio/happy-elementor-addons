@@ -71,7 +71,7 @@ class Dashboard {
             'manage_options',
             self::PAGE_SLUG,
             [ __CLASS__, 'render_main' ],
-            'data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxzdHlsZT48L3N0eWxlPjxwYXRoIGQ9Ik0yOC42IDcuOGguOGMuNSAwIC45LS41LjgtMSAwLS41LS41LS45LTEtLjgtMy41LjMtNi44LTEuOS03LjgtNS4zLS4xLS41LS42LS43LTEuMS0uNi0uNS4xLS43LjYtLjYgMS4xIDEuMiAzLjkgNC45IDYuNiA4LjkgNi42eiIvPjxwYXRoIGQ9Ik0zMCAxMS4xYy0uMy0uNi0uOS0xLTEuNi0xLS45IDAtMS45IDAtMi44LS4yLTQtLjgtNy0zLjYtOC40LTcuMS0uMy0uNi0uOS0xLjEtMS42LTFDOC4zIDEuOSAxLjggNy40LjkgMTUuMS4xIDIyLjIgNC41IDI5IDExLjMgMzEuMiAyMCAzNC4xIDI5IDI4LjcgMzAuOCAxOS45Yy43LTMuMS4zLTYuMS0uOC04Ljh6bS0xMS42IDEuMWMuMS0uNS42LS44IDEuMS0uN2wzLjcuOGMuNS4xLjguNi43IDEuMXMtLjYuOC0xLjEuN2wtMy43LS44Yy0uNC0uMS0uOC0uNi0uNy0xLjF6TTEwLjEgMTFjLjItMS4xIDEuNC0xLjkgMi41LTEuNiAxLjEuMiAxLjkgMS40IDEuNiAyLjUtLjIgMS4xLTEuNCAxLjktMi41IDEuNi0xLS4yLTEuOC0xLjMtMS42LTIuNXptMTQuNiAxMC42QzIyLjggMjYgMTcuOCAyOC41IDEzIDI3Yy0zLjYtMS4yLTYuMi00LjUtNi41LTguMi0uMS0xIC44LTEuNyAxLjctMS42bDE1LjQgMi41Yy45IDAgMS40IDEgMS4xIDEuOXoiLz48cGF0aCBkPSJNMTcuMSAyMi44Yy0xLjktLjQtMy43LjMtNC43IDEuNy0uMi4zLS4xLjcuMi45LjYuMyAxLjIuNSAxLjkuNyAxLjguNCAzLjcuMSA1LjEtLjcuMy0uMi40LS42LjItLjktLjctLjktMS42LTEuNS0yLjctMS43eiIvPjwvc3ZnPg==',
+            ha_get_b64_icon(),
             58.5
         );
     }
@@ -102,7 +102,7 @@ class Dashboard {
     public static function render_main() {
         ?>
         <div class="wrap">
-            <h1 class="screen-reader-text"><?php esc_html_e( 'Happy Addons', 'happy-elementor-addons' ); ?></h1>
+            <h1 class="screen-reader-text"><?php esc_html_e( 'Happy Elementor Addons', 'happy-elementor-addons' ); ?></h1>
             <div class="ha-dashboard">
                 <div class="ha-dashboard-tabs" role="tablist">
                     <div class="ha-dashboard-tabs__nav">
@@ -119,7 +119,7 @@ class Dashboard {
                             }
 
                             $slug = esc_attr( strtolower( $slug ) );
-                            printf( '<a href="#tab-content-%1$s" aria-controls="tab-content-%1$s" id="tab-nav-%1$s" class="%2$s" role="tab"><i class="hm hm-happyaddons"></i> %3$s</a>',
+                            printf( '<a href="#tab-content-%1$s" aria-controls="tab-content-%1$s" id="tab-nav-%1$s" class="%2$s" role="tab">%3$s</a>',
                                 $slug,
                                 $class,
                                 isset( $data['title'] ) ? $data['title'] : sprintf( esc_html__( 'Tab %s', 'happy-elementor-addons' ), $tab_count )
@@ -180,7 +180,7 @@ class Dashboard {
 
                 if ( $is_placeholder ) {
                     $class_attr .= ' item--is-placeholder';
-                    $checked = '';
+                    $checked = 'disabled="disabled"';
                 }
                 ?>
                 <div class="<?php echo $class_attr; ?>">
@@ -189,7 +189,7 @@ class Dashboard {
                     <?php endif; ?>
                     <span class="ha-dashboard-widgets__item-icon"><i class="<?php echo $icon; ?>"></i></span>
                     <h3 class="ha-dashboard-widgets__item-title">
-                        <label for="ha-widget-<?php echo $widget_key; ?>"><?php echo $title; ?></label>
+                        <label for="ha-widget-<?php echo $widget_key; ?>"><?php echo $title; ?></label> <a href="#" class="ha-dashboard-widgets__item-preview"><i class="eicon-device-desktop"></i></a>
                     </h3>
                     <div class="ha-dashboard-widgets__item-toggle ha-toggle">
                         <input id="ha-widget-<?php echo $widget_key; ?>" <?php echo $checked; ?> type="checkbox" class="ha-toggle__check" value="widgets[<?php echo $widget_key; ?>]">
