@@ -2,7 +2,6 @@
 namespace Happy_Addons\Elementor;
 
 use Elementor\Element_Base;
-use Elementor\Widget_Base;
 use Happy_Addons\Elementor\Widget\Card;
 use Happy_Addons\Elementor\Widget\CalderaForm;
 use Happy_Addons\Elementor\Widget\Calendly;
@@ -33,6 +32,8 @@ defined( 'ABSPATH' ) || die();
 
 class Widgets_Manager {
 
+    const WIDGETS_DB_KEY = 'happyaddons_inactive_widgets';
+
     /**
      * Initialize
      */
@@ -52,8 +53,12 @@ class Widgets_Manager {
         }
     }
 
-    public static function get_active_widgets() {
+    public static function get_inactive_widgets() {
+        return get_option( self::WIDGETS_DB_KEY, [] );
+    }
 
+    public static function save_inactive_widgets( $widgets = [] ) {
+        update_option( self::WIDGETS_DB_KEY, $widgets );
     }
 
     public static function get_widgets_map() {
@@ -81,45 +86,74 @@ class Widgets_Manager {
     public static function get_pro_widget_map() {
         return [
             'google-map' => [
+                'title' => __( 'Google Map', 'happy-addons-pro' ),
+                'icon' => 'hm hm-map-marker',
                 'is_pro' => true,
             ],
             'advanced-heading' => [
+                'title' => __( 'Advanced Heading', 'happy-addons-pro' ),
+                'icon' => 'hm hm-advanced-heading',
                 'is_pro' => true,
             ],
             'list-group' => [
+                'title' => __( 'List Group', 'happy-addons-pro' ),
+                'icon' => 'hm hm-list-group',
                 'is_pro' => true,
             ],
             'hover-box' => [
+                'title' => __( 'Hover Box', 'happy-addons-pro' ),
+                'icon' => 'hm hm-finger-point',
                 'is_pro' => true,
             ],
             'countdown' => [
+                'title' => __( 'Countdown', 'happy-addons-pro' ),
+                'icon' => 'hm hm-refresh-time',
                 'is_pro' => true,
             ],
             'team-carousel' => [
+                'title' => __( 'Team Carousel', 'happy-addons-pro' ),
+                'icon' => 'hm hm-team-carousel',
                 'is_pro' => true,
             ],
             'logo-carousel' => [
+                'title' => __( 'Team Carousel', 'happy-addons-pro' ),
+                'icon' => 'hm hm-team-carousel',
                 'is_pro' => true,
             ],
             'source-code' => [
+                'title' => __( 'Source Code', 'happy-addons-pro' ),
+                'icon' => 'hm hm-code-browser',
                 'is_pro' => true,
             ],
+
             'feature-list' => [
+                'title' => __( 'Feature List', 'happy-addons-pro' ),
+                'icon' => 'hm hm-list-2',
                 'is_pro' => true,
             ],
             'testimonial-carousel' => [
+                'title' => __( 'Testimonial Carousel', 'happy-addons-pro' ),
+                'icon' => 'hm hm-testimonial-carousel',
                 'is_pro' => true,
             ],
             'advanced-tabs' => [
-                'is_pro' => true,
-            ],
-            'flip-box' => [
+                'title' => __( 'Advanced Tabs', 'happy-addons-pro' ),
+                'icon' => 'hm hm-tab',
                 'is_pro' => true,
             ],
             'animated-text' => [
+                'title' => __( 'Animated Text', 'happy-addons-pro' ),
+                'icon' => 'hm hm-text-animation',
                 'is_pro' => true,
             ],
             'timeline' => [
+                'title' => __( 'Timeline', 'happy-addons-pro' ),
+                'icon' => 'hm hm-timeline',
+                'is_pro' => true,
+            ],
+            'instagram-feed' => [
+                'title' => __( 'Instagram Feed', 'happy-addons-pro' ),
+                'icon' => 'hm hm-instagram',
                 'is_pro' => true,
             ],
         ];
@@ -427,8 +461,10 @@ class Widgets_Manager {
     public static function register() {
         require( HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php' );
 
+        $inactive_widgets = self::get_inactive_widgets();
+
         foreach ( self::get_local_widgets_map() as $widget_key => $data ) {
-            if ( ! empty( $data['class'] ) ) {
+            if ( ! empty( $data['class'] ) && ! in_array( $widget_key, $inactive_widgets ) ) {
                 self::register_widget( $widget_key, $data['class'] );
             }
         }
