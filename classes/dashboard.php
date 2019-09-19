@@ -13,7 +13,7 @@ class Dashboard {
 
     const PAGE_SLUG = 'happy-addons';
 
-    const WIDGETS_NONCE = 'ha_save_widgets_settings';
+    const WIDGETS_NONCE = 'ha_save_dashboard';
 
     static $menu_slug = '';
 
@@ -21,10 +21,10 @@ class Dashboard {
         add_action( 'admin_menu', [ __CLASS__, 'add_menu' ], 30 );
         add_action( 'admin_menu', [ __CLASS__, 'update_menu_items' ], 99 );
         add_action( 'admin_enqueue_scripts', [ __CLASS__, 'enqueue_scripts' ] );
-        add_action( 'wp_ajax_' . self::WIDGETS_NONCE, [ __CLASS__, 'save_widgets_settings' ] );
+        add_action( 'wp_ajax_' . self::WIDGETS_NONCE, [ __CLASS__, 'save_dashboard' ] );
     }
 
-    public static function save_widgets_settings() {
+    public static function save_dashboard() {
         if ( ! current_user_can( 'manage_options' ) ) {
             return;
         }
@@ -33,17 +33,21 @@ class Dashboard {
             wp_send_json_error();
         }
 
-        $serialize_widgets = ! empty( $_POST['widgets'] ) ? $_POST['widgets'] : '';
-        $widgets = [];
-        parse_str( $serialize_widgets, $widgets );
+        $posted_data = ! empty( $_POST['data'] ) ? $_POST['data'] : '';
+        $data = [];
+        parse_str( $posted_data, $data );
 
-        $active_widgets = ! empty( $widgets['widgets'] ) ? $widgets['widgets'] : [];
-        $real_widgets_key = array_keys( self::get_real_widgets_map() );
-        $inactive_widgets = array_values( array_diff( $real_widgets_key, $active_widgets ) );
+        self::save_widgets_data( $data );
 
-        Widgets_Manager::save_inactive_widgets( $inactive_widgets );
+        do_action( 'happyaddons_save_dashboard', $data );
 
         wp_send_json_success();
+    }
+
+    private static function save_widgets_data( $data ) {
+        $widgets = ! empty( $data['widgets'] ) ? $data['widgets'] : [];
+        $inactive_widgets = array_values( array_diff( array_keys( self::get_real_widgets_map() ), $widgets ) );
+        Widgets_Manager::save_inactive_widgets( $inactive_widgets );
     }
 
     public static function enqueue_scripts( $hook ) {
@@ -145,11 +149,11 @@ class Dashboard {
         $tabs = [
             'home' => [
                 'title' => esc_html__( 'Home', 'happy-elementor-addons' ),
-                'renderer' => [ __CLASS__, 'render_widgets' ],
+                'renderer' => [ __CLASS__, 'render_home' ],
             ],
             'widgets' => [
                 'title' => esc_html__( 'Widgets', 'happy-elementor-addons' ),
-                'renderer' => [ __CLASS__, 'render_home' ],
+                'renderer' => [ __CLASS__, 'render_widgets' ],
             ],
             'extras' => [
                 'title' => esc_html__( 'Extras', 'happy-elementor-addons' ),
@@ -161,14 +165,14 @@ class Dashboard {
             ],
         ];
 
-        return apply_filters( 'happyaddons_dashbaord_get_tabs', $tabs );
+        return apply_filters( 'happyaddons_dashboard_get_tabs', $tabs );
     }
 
     public static function render_main() {
         ?>
         <div class="wrap">
             <h1 class="screen-reader-text"><?php esc_html_e( 'Happy Elementor Addons', 'happy-elementor-addons' ); ?></h1>
-            <div class="ha-dashboard">
+            <form class="ha-dashboard" id="ha-dashboard-form">
                 <div class="ha-dashboard-tabs" role="tablist">
                     <div class="ha-dashboard-tabs__nav">
                         <?php
@@ -178,12 +182,13 @@ class Dashboard {
                                 continue;
                             }
 
-                            $class = 'ha-dashboard-tabs__nav-item';
+                            $slug = esc_attr( strtolower( $slug ) );
+
+                            $class = 'ha-dashboard-tabs__nav-item ha-dashboard-tabs__nav-item--' . $slug;
                             if ( $tab_count === 1 ) {
                                 $class .= ' tab--is-active';
                             }
 
-                            $slug = esc_attr( strtolower( $slug ) );
                             printf( '<a href="#tab-content-%1$s" aria-controls="tab-content-%1$s" id="tab-nav-%1$s" class="%2$s" role="tab">%3$s</a>',
                                 $slug,
                                 $class,
@@ -194,7 +199,7 @@ class Dashboard {
                         endforeach;
                         ?>
 
-                        <a target="_blank" rel="noopener" href="#" class="ha-dashboard-tabs__nav-btn ha-dashboard-btn ha-dashboard-btn--pro"><?php esc_html_e( 'Upgrade To Pro', 'happy-elementor-addons' ); ?> <span class="dashicons dashicons-external"></span></a>
+                        <button disabled class="ha-dashboard-tabs__nav-btn ha-dashboard-btn ha-dashboard-btn--lg ha-dashboard-btn--save" type="submit"><?php esc_html_e( 'Save Settings', 'happy-elementor-addons' ); ?></button>
                     </div>
                     <div class="ha-dashboard-tabs__content">
                         <?php
@@ -220,21 +225,31 @@ class Dashboard {
                         ?>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
         <?php
     }
 
-    public static function render_home() {
+    public static function render_home( $slug ) {
+        echo '<h2>', $slug ,'</h2>';
+    }
+
+    public static function render_widgets() {
         ?>
-        <form class="ha-dashboard-panel" id="ha-dashboard-widgets-form">
+        <div class="ha-dashboard-panel">
             <div class="ha-dashboard-panel__header">
                 <div class="ha-dashboard-panel__header-content">
                     <h2><?php esc_html_e( 'Happy Widgets', 'happy-elementor-addons' ); ?></h2>
                     <p><?php esc_html_e( 'Here is the list of our all widgets. You can enable or disable widgets from here to optimize loading speed and Elementor editor experience.', 'happy-elementor-addons' ); ?></p>
-                </div>
-                <div class="ha-dashboard-panel__header-action">
-                    <button disabled class="ha-dashboard-btn ha-dashboard-btn--save" type="submit"><?php esc_html_e( 'Save Settings', 'happy-elementor-addons' ); ?></button>
+
+                    <div class="ha-action-list">
+                        <button type="button" class="ha-action--btn" data-filter="*"><?php esc_html_e( 'All', 'happy-elementor-addons' ); ?></button>
+                        <button type="button" class="ha-action--btn" data-filter="free"><?php esc_html_e( 'Free', 'happy-elementor-addons' ); ?></button>
+                        <button type="button" class="ha-action--btn" data-filter="pro"><?php esc_html_e( 'Pro', 'happy-elementor-addons' ); ?></button>
+                        <span class="ha-action--divider">|</span>
+                        <button type="button" class="ha-action--btn" data-action="enable"><?php esc_html_e( 'Enable All', 'happy-elementor-addons' ); ?></button>
+                        <button type="button" class="ha-action--btn" data-action="disable"><?php esc_html_e( 'Disable All', 'happy-elementor-addons' ); ?></button>
+                    </div>
                 </div>
             </div>
 
@@ -283,7 +298,7 @@ class Dashboard {
                             <b class="ha-toggle__track"></b>
                         </div>
                     </div>
-                    <?php
+                <?php
                 endforeach;
                 ?>
             </div>
@@ -291,16 +306,12 @@ class Dashboard {
             <div class="ha-dashboard-panel__footer">
                 <button disabled class="ha-dashboard-btn ha-dashboard-btn--save" type="submit"><?php esc_html_e( 'Save Settings', 'happy-elementor-addons' ); ?></button>
             </div>
-        </form>
+        </div>
         <?php
     }
 
-    public static function render_widgets( $slug ) {
-
-    }
-
     public static function render_extras( $slug ) {
-
+        echo '<h2>', $slug ,'</h2>';
     }
 
     public static function render_pro( $slug ) {

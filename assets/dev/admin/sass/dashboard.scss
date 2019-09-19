@@ -11,7 +11,7 @@
   &-btn {
     display: inline-block;
     text-decoration: none;
-    padding: 15px 30px;
+    padding: 15px 25px;
     border-radius: 5px;
     font-size: 13px;
     line-height: 1;
@@ -28,30 +28,15 @@
       box-shadow: none;
     }
 
-    &--pro {
+    &--lg {
       font-size: 14px;
-      padding: 22px 40px;
-      color: #fff;
-      background-color: $secondary-color;
-
-      &:hover,
-      &:focus,
-      &:active {
-        color: #fff;
-        background-color: $primary-color;
-      }
-
-      .dashicons {
-        font-size: 16px;
-        margin-top: -4px;
-        height: 10px;
-      }
+      padding: 18px 40px;
     }
 
     &--save {
+      width: 13em;
       color: #fff;
       background-color: #5db429;
-      width: 170px;
 
       &:hover,
       &:focus,
@@ -81,7 +66,7 @@
       &-item {
         display: block;
         float: left;
-        padding: 20px 40px;
+        padding: 15px 40px;
         text-decoration: none;
         text-transform: uppercase;
         font-size: 14px;
@@ -90,6 +75,12 @@
         color: #888;
         border-top: 3px solid #bbb;
         margin-bottom: 10px;
+
+        &--pro {
+          background-color: $secondary-color;
+          color: #fff;
+          border-color: darken($secondary-color, 10%);
+        }
 
         &:focus,
         &:hover,
@@ -101,6 +92,16 @@
           background-color: #fff;
           box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
           transition: all .3s;
+        }
+
+        &--pro {
+          &:focus,
+          &:hover,
+          &:active,
+          &.tab--is-active {
+            border-color: $secondary-color;
+            color: $secondary-color;
+          }
         }
 
         &:not(:last-child) {
@@ -129,13 +130,8 @@
 
   &-panel {
     &__header {
-      display: flex;
-      align-items: center;
       padding-bottom: 40px;
-
       &-content {
-        width: 70%;
-
         > h2 {
           margin: 0 0 20px;
           font-size: 2em;
@@ -145,11 +141,6 @@
           color: #8c8c8c;
           margin: 0;
         }
-      }
-
-      &-action {
-        width: 33%;
-        text-align: right;
       }
     }
 
@@ -336,5 +327,86 @@
   }
   100% {
     letter-spacing: 15px;
+  }
+}
+
+.ha-action-list {
+  margin: -2px;
+  padding-top: 20px;
+  font-size: 12px;
+}
+
+.ha-action--divider {
+  color: #e8e8e8;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.ha-action--btn {
+  background: transparent;
+  border: 1px solid;
+  box-shadow: none;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  line-height: 1;
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 2px;
+
+  &[data-filter="*"] {
+    color: #666;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      background-color: #666;
+      border-color: #666;
+    }
+  }
+
+  &[data-filter="free"] {
+    color: $primary-color;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      background-color: $primary-color;
+      border-color: $primary-color;
+    }
+  }
+
+  &[data-filter="pro"] {
+    color: $secondary-color;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      background-color: $secondary-color;
+      border-color: $secondary-color;
+    }
+  }
+
+  &[data-action="enable"] {
+    color: #5db429;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      background-color: #5db429;
+      border-color: #5db429;
+    }
+  }
+
+  &[data-action="disable"] {
+    color: #e63d3d;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      background-color: #e63d3d;
+      border-color: #e63d3d;
+    }
   }
 }

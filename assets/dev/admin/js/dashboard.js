@@ -1,4 +1,4 @@
-;(function($) {
+;(function($, HappyDashboard) {
     'use strict';
 
     $(function() {
@@ -15,6 +15,8 @@
             var $currentTab = $(event.currentTarget),
                 tabContentId = event.currentTarget.hash,
                 $currentTabContent = $tabsContent.find(tabContentId);
+
+            window.location.hash = tabContentId;
 
             $currentTab
                 .addClass('tab--is-active')
@@ -44,17 +46,20 @@
             }
             event.preventDefault();
 
+            window.location.hash = event.currentTarget.hash;
+
             var $currentItem = $(event.currentTarget);
             $currentItem.parent().addClass('current').siblings().removeClass('current');
 
             $tabsNav.find('a[href="'+event.currentTarget.hash+'"]').click();
         });
 
-        var $widgetsForm = $('#ha-dashboard-widgets-form'),
-            $widgetPlaceholder = $widgetsForm.find('.item--is-placeholder'),
-            $saveButton = $widgetsForm.find('.ha-dashboard-btn--save');
+        var $dashboardForm = $('#ha-dashboard-form'),
+            $widgetsList = $dashboardForm.find('.ha-dashboard-widgets'),
+            $widgetPlaceholder = $widgetsList.find('.item--is-placeholder'),
+            $saveButton = $dashboardForm.find('.ha-dashboard-btn--save');
 
-        $widgetsForm.on('submit', function(event) {
+        $dashboardForm.on('submit', function(event) {
             event.preventDefault();
 
             $.post({
@@ -62,7 +67,7 @@
                 data: {
                     nonce: HappyDashboard.nonce,
                     action: HappyDashboard.action,
-                    widgets: $widgetsForm.serialize()
+                    data: $dashboardForm.serialize()
                 },
                 beforeSend: function() {
                     $saveButton
@@ -83,12 +88,50 @@
             });
         });
 
-        $widgetsForm.on('change', ':checkbox', function() {
+        $dashboardForm.on('change', ':checkbox, :radio', function() {
             $saveButton.attr('disabled', false).text(HappyDashboard.saveChangesLabel);
         });
 
         $widgetPlaceholder.on('click', 'label, .ha-toggle', function() {
             $tabsNav.find('#tab-nav-pro').click();
         });
+
+        $('.ha-action--btn').on('click', function(event) {
+            event.preventDefault();
+
+            var $currentAction = $(this),
+                filter = $currentAction.data('filter'),
+                action = $currentAction.data('action'),
+                $all = $widgetsList.find('.ha-dashboard-widgets__item'),
+                $free = $all.not('.item--is-pro'),
+                $pro = $all.filter('.item--is-pro'),
+                $toggle = $all.not('.item--is-placeholder').find(':checkbox');
+
+            if ( filter ) {
+                switch ( filter ) {
+                    case 'free':
+                        $free.show();
+                        $pro.hide();
+                        break;
+                    case 'pro':
+                        $free.hide();
+                        $pro.show();
+                        break;
+                    case '*':
+                    default:
+                        $all.show();
+                        break;
+                }
+            }
+
+            if ( action ) {
+                if ('enable' === action) {
+                    $toggle.prop('checked', true);
+                } else if ( 'disable' === action ) {
+                    $toggle.prop('checked', false);
+                }
+                $toggle.trigger('change');
+            }
+        });
     });
-}(jQuery));
+}(jQuery, window.HappyDashboard));

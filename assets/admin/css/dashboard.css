@@ -23,7 +23,7 @@
 }
 .ha-dashboard-btn {
 	display: inline-block;
-	padding: 15px 30px;
+	padding: 15px 25px;
 	border: 0;
 	border-radius: 5px;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1); 
@@ -41,26 +41,13 @@
 	outline: 0;
 	box-shadow: none;
 }
-.ha-dashboard-btn--pro {
-	padding: 22px 40px;
-	background-color: #e2498a; 
-	color: #fff;
+.ha-dashboard-btn--lg {
+	padding: 18px 40px; 
 	font-size: 14px;
 }
-.ha-dashboard-btn--pro:hover,
-.ha-dashboard-btn--pro:focus,
-.ha-dashboard-btn--pro:active {
-	background-color: #562dd4; 
-	color: #fff;
-}
-.ha-dashboard-btn--pro .dashicons {
-	margin-top: -4px;
-	height: 10px; 
-	font-size: 16px;
-}
 .ha-dashboard-btn--save {
-	width: 170px; 
-	background-color: #5db429;
+	width: 13em;
+	background-color: #5db429; 
 	color: #fff;
 }
 .ha-dashboard-btn--save:hover,
@@ -83,7 +70,7 @@
 	display: block;
 	float: left;
 	margin-bottom: 10px; 
-	padding: 20px 40px;
+	padding: 15px 40px;
 	border-top: 3px solid #bbb;
 	border-radius: 5px;
 	background-color: #e8e8e8;
@@ -91,6 +78,11 @@
 	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 14px;
+}
+.ha-dashboard-tabs__nav-item--pro {
+	border-color: #d6226e; 
+	background-color: #e2498a;
+	color: #fff;
 }
 .ha-dashboard-tabs__nav-item:focus,
 .ha-dashboard-tabs__nav-item:hover,
@@ -103,6 +95,13 @@
 	color: #562dd4;
 	-webkit-transition: all .3s;
 	        transition: all .3s;
+}
+.ha-dashboard-tabs__nav-item--pro:focus,
+.ha-dashboard-tabs__nav-item--pro:hover,
+.ha-dashboard-tabs__nav-item--pro:active,
+.ha-dashboard-tabs__nav-item--pro.tab--is-active {
+	border-color: #e2498a;
+	color: #e2498a;
 }
 .ha-dashboard-tabs__nav-item:not(:last-child) {
 	margin-right: 10px;
@@ -120,18 +119,7 @@
 	display: block;
 }
 .ha-dashboard-panel__header {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display:         flex;
-	-webkit-box-align: center;
-	-webkit-align-items: center;
-	        align-items: center;
-	-ms-flex-align: center;
 	padding-bottom: 40px;
-}
-.ha-dashboard-panel__header-content {
-	width: 70%;
 }
 .ha-dashboard-panel__header-content > h2 {
 	margin: 0 0 20px;
@@ -140,10 +128,6 @@
 .ha-dashboard-panel__header-content > p {
 	margin: 0; 
 	color: #8c8c8c;
-}
-.ha-dashboard-panel__header-action {
-	width: 33%;
-	text-align: right;
 }
 .ha-dashboard-panel__footer {
 	margin-top: 20px;
@@ -337,4 +321,75 @@
 	100% {
 		letter-spacing: 15px;
 	}
+}
+
+.ha-action-list {
+	margin: -2px;
+	padding-top: 20px;
+	font-size: 12px;
+}
+
+.ha-action--divider {
+	padding-right: 10px; 
+	padding-left: 10px;
+	color: #e8e8e8;
+	font-weight: bold;
+}
+
+.ha-action--btn {
+	display: inline-block;
+	margin: 2px; 
+	padding: 5px 10px;
+	outline: none;
+	border: 1px solid;
+	border-radius: 3px;
+	background: transparent;
+	box-shadow: none;
+	line-height: 1;
+	cursor: pointer;
+}
+.ha-action--btn[data-filter="*"] {
+	color: #666;
+}
+.ha-action--btn[data-filter="*"]:hover,
+.ha-action--btn[data-filter="*"]:focus {
+	border-color: #666; 
+	background-color: #666;
+	color: #fff;
+}
+.ha-action--btn[data-filter="free"] {
+	color: #562dd4;
+}
+.ha-action--btn[data-filter="free"]:hover,
+.ha-action--btn[data-filter="free"]:focus {
+	border-color: #562dd4; 
+	background-color: #562dd4;
+	color: #fff;
+}
+.ha-action--btn[data-filter="pro"] {
+	color: #e2498a;
+}
+.ha-action--btn[data-filter="pro"]:hover,
+.ha-action--btn[data-filter="pro"]:focus {
+	border-color: #e2498a; 
+	background-color: #e2498a;
+	color: #fff;
+}
+.ha-action--btn[data-action="enable"] {
+	color: #5db429;
+}
+.ha-action--btn[data-action="enable"]:hover,
+.ha-action--btn[data-action="enable"]:focus {
+	border-color: #5db429; 
+	background-color: #5db429;
+	color: #fff;
+}
+.ha-action--btn[data-action="disable"] {
+	color: #e63d3d;
+}
+.ha-action--btn[data-action="disable"]:hover,
+.ha-action--btn[data-action="disable"]:focus {
+	border-color: #e63d3d; 
+	background-color: #e63d3d;
+	color: #fff;
 }
