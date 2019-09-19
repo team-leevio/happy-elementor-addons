@@ -9,24 +9,28 @@
   padding-top: 20px;
 
   &-btn {
-    cursor: pointer;
     display: inline-block;
     text-decoration: none;
     padding: 15px 30px;
     border-radius: 5px;
-    font-size: 12px;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
-    transition: all .2s;
+    font-size: 13px;
     line-height: 1;
     border: 0;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
 
     &:hover,
     &:focus,
     &:active {
+      outline: 0;
       box-shadow: none;
     }
 
     &--pro {
+      font-size: 14px;
+      padding: 22px 40px;
       color: #fff;
       background-color: $secondary-color;
 
@@ -47,7 +51,7 @@
     &--save {
       color: #fff;
       background-color: #5db429;
-      width: 150px;
+      width: 170px;
 
       &:hover,
       &:focus,
@@ -81,10 +85,11 @@
         text-decoration: none;
         text-transform: uppercase;
         font-size: 14px;
-        border-radius: 5px 5px 0 0;
+        border-radius: 5px;
         background-color: #e8e8e8;
         color: #888;
         border-top: 3px solid #bbb;
+        margin-bottom: 10px;
 
         &:focus,
         &:hover,
@@ -110,7 +115,7 @@
         display: none;
         padding: 40px;
         background-color: #fff;
-        border-radius: 0 5px 5px 5px;
+        border-radius: 5px;
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
 
         &.tab--is-active {
@@ -122,15 +127,11 @@
     }
   }
 
-  &-widgets {
-    @extend %clearfix;
-    margin-left: -10px;
-    margin-right: -10px;
-
+  &-panel {
     &__header {
       display: flex;
       align-items: center;
-      padding: 0 10px 40px;
+      padding-bottom: 40px;
 
       &-content {
         width: 70%;
@@ -151,6 +152,18 @@
         text-align: right;
       }
     }
+
+    &__footer {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px dashed #e8e8e8;
+    }
+  }
+
+  &-widgets {
+    @extend %clearfix;
+    margin-left: -10px;
+    margin-right: -10px;
 
     &__item {
       position: relative;
@@ -311,5 +324,17 @@
       box-shadow: inset 0 0 0 2px rgba(0,0,0,.01);
       border-radius: 40px;
     }
+  }
+}
+
+@keyframes animateTextIndent {
+  0% {
+    letter-spacing: 15px;
+  }
+  50% {
+    letter-spacing: 0;
+  }
+  100% {
+    letter-spacing: 15px;
   }
 }

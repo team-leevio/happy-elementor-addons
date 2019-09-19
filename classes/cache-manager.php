@@ -92,9 +92,14 @@ class Cache_Manager {
 
     public static function enqueue_without_cache() {
         $widgets_map = Widgets_Manager::get_widgets_map();
+        $inactive_widgets = Widgets_Manager::get_inactive_widgets();
 
         foreach ( $widgets_map as $widget_key => $data ) {
             if ( ! isset( $data['vendor'] ) ) {
+                continue;
+            }
+
+            if ( in_array( $widget_key, $inactive_widgets ) ) {
                 continue;
             }
 

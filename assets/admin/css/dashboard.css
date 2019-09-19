@@ -24,11 +24,12 @@
 .ha-dashboard-btn {
 	display: inline-block;
 	padding: 15px 30px;
-	border: 0; 
+	border: 0;
 	border-radius: 5px;
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1); 
+	text-align: center;
 	text-decoration: none;
-	font-size: 12px;
+	font-size: 13px;
 	line-height: 1;
 	cursor: pointer;
 	-webkit-transition: all .2s;
@@ -37,11 +38,14 @@
 .ha-dashboard-btn:hover,
 .ha-dashboard-btn:focus,
 .ha-dashboard-btn:active {
+	outline: 0;
 	box-shadow: none;
 }
 .ha-dashboard-btn--pro {
+	padding: 22px 40px;
 	background-color: #e2498a; 
 	color: #fff;
+	font-size: 14px;
 }
 .ha-dashboard-btn--pro:hover,
 .ha-dashboard-btn--pro:focus,
@@ -55,7 +59,7 @@
 	font-size: 16px;
 }
 .ha-dashboard-btn--save {
-	width: 150px; 
+	width: 170px; 
 	background-color: #5db429;
 	color: #fff;
 }
@@ -78,9 +82,10 @@
 .ha-dashboard-tabs__nav-item {
 	display: block;
 	float: left;
+	margin-bottom: 10px; 
 	padding: 20px 40px;
-	border-top: 3px solid #bbb; 
-	border-radius: 5px 5px 0 0;
+	border-top: 3px solid #bbb;
+	border-radius: 5px;
 	background-color: #e8e8e8;
 	color: #888;
 	text-decoration: none;
@@ -105,7 +110,7 @@
 .ha-dashboard-tabs__content-item {
 	display: none;
 	padding: 40px;
-	border-radius: 0 5px 5px 5px;
+	border-radius: 5px;
 	background-color: #fff;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
 }
@@ -114,11 +119,7 @@
 	z-index: 1; 
 	display: block;
 }
-.ha-dashboard-widgets {
-	margin-right: -10px; 
-	margin-left: -10px;
-}
-.ha-dashboard-widgets__header {
+.ha-dashboard-panel__header {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -127,22 +128,31 @@
 	-webkit-align-items: center;
 	        align-items: center;
 	-ms-flex-align: center;
-	padding: 0 10px 40px;
+	padding-bottom: 40px;
 }
-.ha-dashboard-widgets__header-content {
+.ha-dashboard-panel__header-content {
 	width: 70%;
 }
-.ha-dashboard-widgets__header-content > h2 {
+.ha-dashboard-panel__header-content > h2 {
 	margin: 0 0 20px;
 	font-size: 2em;
 }
-.ha-dashboard-widgets__header-content > p {
+.ha-dashboard-panel__header-content > p {
 	margin: 0; 
 	color: #8c8c8c;
 }
-.ha-dashboard-widgets__header-action {
+.ha-dashboard-panel__header-action {
 	width: 33%;
 	text-align: right;
+}
+.ha-dashboard-panel__footer {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px dashed #e8e8e8;
+}
+.ha-dashboard-widgets {
+	margin-right: -10px; 
+	margin-left: -10px;
 }
 .ha-dashboard-widgets__item {
 	position: relative;
@@ -303,4 +313,28 @@
 	box-shadow: inset 0 0 0 2px rgba(0, 0, 0, .01);
 	-webkit-transition: .35s cubic-bezier(.785, .135, .15, .86);
 	        transition: .35s cubic-bezier(.785, .135, .15, .86);
+}
+
+@-webkit-keyframes animateTextIndent {
+	0% {
+		letter-spacing: 15px;
+	}
+	50% {
+		letter-spacing: 0;
+	}
+	100% {
+		letter-spacing: 15px;
+	}
+}
+
+@keyframes animateTextIndent {
+	0% {
+		letter-spacing: 15px;
+	}
+	50% {
+		letter-spacing: 0;
+	}
+	100% {
+		letter-spacing: 15px;
+	}
 }

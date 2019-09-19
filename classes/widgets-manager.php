@@ -94,6 +94,7 @@ class Widgets_Manager {
                 'title' => __( 'Advanced Heading', 'happy-addons-pro' ),
                 'icon' => 'hm hm-advanced-heading',
                 'is_pro' => true,
+                'demo' => 'https://happyaddons.com/elementor-logo-grid-widget-demo/'
             ],
             'list-group' => [
                 'title' => __( 'List Group', 'happy-addons-pro' ),

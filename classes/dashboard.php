@@ -19,6 +19,7 @@ class Dashboard {
 
     public static function init() {
         add_action( 'admin_menu', [ __CLASS__, 'add_menu' ], 30 );
+        add_action( 'admin_menu', [ __CLASS__, 'update_menu_items' ], 99 );
         add_action( 'admin_enqueue_scripts', [ __CLASS__, 'enqueue_scripts' ] );
         add_action( 'wp_ajax_' . self::WIDGETS_NONCE, [ __CLASS__, 'save_widgets_settings' ] );
     }
@@ -116,17 +117,39 @@ class Dashboard {
             ha_get_b64_icon(),
             58.5
         );
+
+        foreach ( self::get_tabs() as $tab_key => $tab_data ) {
+            if ( empty( $tab_data['renderer'] ) || ! is_callable( $tab_data['renderer'] ) ) {
+                continue;
+            }
+
+            add_submenu_page(
+                self::PAGE_SLUG,
+                sprintf( __( '%s - Happy Elementor Addons', 'happy-elementor-addons' ), $tab_data['title'] ),
+                $tab_data['title'],
+                'manage_options',
+                self::PAGE_SLUG . '#tab-content-' . $tab_key,
+                [ __CLASS__, 'render_main' ]
+            );
+        }
+    }
+
+    public static function update_menu_items() {
+        global $submenu;
+        $menu = $submenu[ self::PAGE_SLUG ];
+        array_shift( $menu );
+        $submenu[ self::PAGE_SLUG ] = $menu;
     }
 
     public static function get_tabs() {
         $tabs = [
             'home' => [
                 'title' => esc_html__( 'Home', 'happy-elementor-addons' ),
-                'renderer' => [ __CLASS__, 'render_home' ],
+                'renderer' => [ __CLASS__, 'render_widgets' ],
             ],
             'widgets' => [
                 'title' => esc_html__( 'Widgets', 'happy-elementor-addons' ),
-                'renderer' => [ __CLASS__, 'render_widgets' ],
+                'renderer' => [ __CLASS__, 'render_home' ],
             ],
             'extras' => [
                 'title' => esc_html__( 'Extras', 'happy-elementor-addons' ),
@@ -204,67 +227,70 @@ class Dashboard {
 
     public static function render_home() {
         ?>
-        <form class="ha-dashboard-widgets" id="ha-dashboard-widgets">
-            <div class="ha-dashboard-widgets__header">
-                <div class="ha-dashboard-widgets__header-content">
+        <form class="ha-dashboard-panel" id="ha-dashboard-widgets-form">
+            <div class="ha-dashboard-panel__header">
+                <div class="ha-dashboard-panel__header-content">
                     <h2><?php esc_html_e( 'Happy Widgets', 'happy-elementor-addons' ); ?></h2>
                     <p><?php esc_html_e( 'Here is the list of our all widgets. You can enable or disable widgets from here to optimize loading speed and Elementor editor experience.', 'happy-elementor-addons' ); ?></p>
                 </div>
-                <div class="ha-dashboard-widgets__header-action">
+                <div class="ha-dashboard-panel__header-action">
                     <button disabled class="ha-dashboard-btn ha-dashboard-btn--save" type="submit"><?php esc_html_e( 'Save Settings', 'happy-elementor-addons' ); ?></button>
                 </div>
             </div>
 
-            <?php
-            $widgets = self::get_widgets();
-            $inactive_widgets = Widgets_Manager::get_inactive_widgets();
-
-            foreach ( $widgets as $widget_key => $widget_data ) :
-                $title = isset( $widget_data['title'] ) ? $widget_data['title'] : '';
-                $icon = isset( $widget_data['icon'] ) ? $widget_data['icon'] : '';
-                $is_pro = isset( $widget_data['is_pro'] ) && $widget_data['is_pro'] ? true : false;
-                $demo_url = isset( $widget_data['demo'] ) && $widget_data['demo'] ? $widget_data['demo'] : '';
-                $is_placeholder = $is_pro && ! ha_has_pro();
-                $class_attr = 'ha-dashboard-widgets__item';
-
-                if ( $is_pro ) {
-                    $class_attr .= ' item--is-pro';
-                }
-
-                $checked = 'checked="checked"';
-
-                if ( in_array( $widget_key, $inactive_widgets ) ) {
-                    $checked = '';
-                }
-
-                if ( $is_placeholder ) {
-                    $class_attr .= ' item--is-placeholder';
-                    $checked = 'disabled="disabled"';
-                }
-                ?>
-                <div class="<?php echo $class_attr; ?>">
-                    <?php if ( $is_pro ) : ?>
-                        <span class="ha-dashboard-widgets__item-badge"><?php esc_html_e( 'Pro', 'happy-elementor-addons' ); ?></span>
-                    <?php endif; ?>
-                    <span class="ha-dashboard-widgets__item-icon"><i class="<?php echo $icon; ?>"></i></span>
-                    <h3 class="ha-dashboard-widgets__item-title">
-                        <label for="ha-widget-<?php echo $widget_key; ?>"><?php echo $title; ?></label>
-                        <?php if ( $demo_url ) : ?>
-                            <a href="<?php echo esc_url( $demo_url ); ?>" target="_blank" rel="noopener" class="ha-dashboard-widgets__item-preview">
-                                <i aria-hidden="true" class="eicon-device-desktop"></i>
-                                <i class="screen-reader-text"><?php esc_html_e( 'Click here to visit demo', 'happy-elementor-addons' ); ?></i>
-                            </a>
-                        <?php endif; ?>
-                    </h3>
-                    <div class="ha-dashboard-widgets__item-toggle ha-toggle">
-                        <input id="ha-widget-<?php echo $widget_key; ?>" <?php echo $checked; ?> type="checkbox" class="ha-toggle__check" name="widgets[]" value="<?php echo $widget_key; ?>">
-                        <b class="ha-toggle__switch"></b>
-                        <b class="ha-toggle__track"></b>
-                    </div>
-                </div>
+            <div class="ha-dashboard-widgets">
                 <?php
-            endforeach;
-            ?>
+                $widgets = self::get_widgets();
+                $inactive_widgets = Widgets_Manager::get_inactive_widgets();
+
+                foreach ( $widgets as $widget_key => $widget_data ) :
+                    $title = isset( $widget_data['title'] ) ? $widget_data['title'] : '';
+                    $icon = isset( $widget_data['icon'] ) ? $widget_data['icon'] : '';
+                    $is_pro = isset( $widget_data['is_pro'] ) && $widget_data['is_pro'] ? true : false;
+                    $demo_url = isset( $widget_data['demo'] ) && $widget_data['demo'] ? $widget_data['demo'] : '';
+                    $is_placeholder = $is_pro && ! ha_has_pro();
+                    $class_attr = 'ha-dashboard-widgets__item';
+
+                    if ( $is_pro ) {
+                        $class_attr .= ' item--is-pro';
+                    }
+
+                    $checked = 'checked="checked"';
+
+                    if ( in_array( $widget_key, $inactive_widgets ) ) {
+                        $checked = '';
+                    }
+
+                    if ( $is_placeholder ) {
+                        $class_attr .= ' item--is-placeholder';
+                        $checked = 'disabled="disabled"';
+                    }
+                    ?>
+                    <div class="<?php echo $class_attr; ?>">
+                        <?php if ( $is_pro ) : ?>
+                            <span class="ha-dashboard-widgets__item-badge"><?php esc_html_e( 'Pro', 'happy-elementor-addons' ); ?></span>
+                        <?php endif; ?>
+                        <span class="ha-dashboard-widgets__item-icon"><i class="<?php echo $icon; ?>"></i></span>
+                        <h3 class="ha-dashboard-widgets__item-title">
+                            <label for="ha-widget-<?php echo $widget_key; ?>"><?php echo $title; ?></label>
+                            <?php if ( $demo_url ) : ?>
+                                <a href="<?php echo esc_url( $demo_url ); ?>" target="_blank" rel="noopener" class="ha-dashboard-widgets__item-preview"><i aria-hidden="true" class="eicon-device-desktop"></i></a>
+                            <?php endif; ?>
+                        </h3>
+                        <div class="ha-dashboard-widgets__item-toggle ha-toggle">
+                            <input id="ha-widget-<?php echo $widget_key; ?>" <?php echo $checked; ?> type="checkbox" class="ha-toggle__check" name="widgets[]" value="<?php echo $widget_key; ?>">
+                            <b class="ha-toggle__switch"></b>
+                            <b class="ha-toggle__track"></b>
+                        </div>
+                    </div>
+                    <?php
+                endforeach;
+                ?>
+            </div>
+
+            <div class="ha-dashboard-panel__footer">
+                <button disabled class="ha-dashboard-btn ha-dashboard-btn--save" type="submit"><?php esc_html_e( 'Save Settings', 'happy-elementor-addons' ); ?></button>
+            </div>
         </form>
         <?php
     }
