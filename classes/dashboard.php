@@ -155,10 +155,6 @@ class Dashboard {
                 'title' => esc_html__( 'Widgets', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_widgets' ],
             ],
-            'extras' => [
-                'title' => esc_html__( 'Extras', 'happy-elementor-addons' ),
-                'renderer' => [ __CLASS__, 'render_extras' ],
-            ],
             'pro' => [
                 'title' => esc_html__( 'Get Pro', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_pro' ],
@@ -308,10 +304,6 @@ class Dashboard {
             </div>
         </div>
         <?php
-    }
-
-    public static function render_extras( $slug ) {
-        echo '<h2>', $slug ,'</h2>';
     }
 
     public static function render_pro( $slug ) {

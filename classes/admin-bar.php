@@ -39,7 +39,7 @@ class Admin_Bar {
 
         wp_enqueue_style(
             'happy-admin-bar',
-            HAPPY_ADDONS_ASSETS . 'admin/css/admin-bar.css',
+            HAPPY_ADDONS_ASSETS . 'admin/css/admin-bar.min.css',
             null,
             HAPPY_ADDONS_VERSION
         );
@@ -70,15 +70,18 @@ class Admin_Bar {
 
         $admin_bar->add_menu( array(
             'id'    => 'happy-addons',
-            'title' => __( 'HappyAddons', 'happy-elementor-addons' ),
-            'href'  => '#',
+            'title' => '<img src="'.ha_get_b64_icon().'"">',
+            'href'  => add_query_arg( [ 'page' => 'happy-addons#tab-content-home' ], admin_url( 'admin.php' ) ),
+            'meta' => [
+                'title' => __( 'Happy Addons Menu', 'happy-elementor-addons' ),
+            ]
         ) );
 
         if ( is_singular() ) {
             $admin_bar->add_menu( array(
                 'id' => 'ha-clear-page-cache',
                 'parent' => 'happy-addons',
-                'title' => '<i class="dashicons dashicons-update-alt"></i> ' . __( 'Purge Page Cache', 'happy-elementor-addons' ),
+                'title' => '<i class="dashicons dashicons-update-alt"></i> ' . __( 'Renew Page Cache', 'happy-elementor-addons' ),
                 'href' => '#',
                 'meta' => [
                     'class' => 'hajs-clear-cache ha-clear-page-cache',
@@ -89,7 +92,7 @@ class Admin_Bar {
         $admin_bar->add_menu( array(
             'id' => 'ha-clear-all-cache',
             'parent' => 'happy-addons',
-            'title' => '<i class="dashicons dashicons-update-alt"></i> ' . __( 'Purge All Cache', 'happy-elementor-addons' ),
+            'title' => '<i class="dashicons dashicons-update-alt"></i> ' . __( 'Renew All Cache', 'happy-elementor-addons' ),
             'href' => '#',
             'meta' => [
                 'class' => 'hajs-clear-cache ha-clear-all-cache',
