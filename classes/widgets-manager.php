@@ -169,6 +169,7 @@ class Widgets_Manager {
         return [
             // All the widgets are listed below with respective map
             'infobox' => [
+                'demo' => 'https://happyaddons.com/go/demo-info-box',
                 'title' => __( 'Info Box', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-blog-content',
                 'class' => InfoBox::class,
@@ -180,6 +181,7 @@ class Widgets_Manager {
                 ],
             ],
             'card' => [
+                'demo' => 'https://happyaddons.com/go/demo-card',
                 'title' => __( 'Card', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-card',
                 'class' => Card::class,
@@ -191,6 +193,7 @@ class Widgets_Manager {
                 ],
             ],
             'cf7' => [
+                'demo' => 'https://happyaddons.com/go/demo-contact-form7',
                 'title' => __( 'Contact Form 7', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-form',
                 'class' => CF7::class,
@@ -202,6 +205,7 @@ class Widgets_Manager {
                 ],
             ],
             'icon-box' => [
+                'demo' => 'https://happyaddons.com/go/demo-icon-box',
                 'title' => __( 'Icon Box', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-icon-box',
                 'class' => Icon_Box::class,
@@ -213,6 +217,7 @@ class Widgets_Manager {
                 ],
             ],
             'member' => [
+                'demo' => 'https://happyaddons.com/go/demo-team-member',
                 'title' => __( 'Team Member', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-team-member',
                 'class' => Member::class,
@@ -224,6 +229,7 @@ class Widgets_Manager {
                 ],
             ],
             'review' => [
+                'demo' => 'https://happyaddons.com/go/demo-review',
                 'title' => __( 'Review', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-review',
                 'class' => Review::class,
@@ -235,6 +241,7 @@ class Widgets_Manager {
                 ],
             ],
             'image-compare' => [
+                'demo' => 'https://happyaddons.com/go/demo-image-compare',
                 'title' => __( 'Image Compare', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-image-compare',
                 'class' => Image_Compare::class,
@@ -246,6 +253,7 @@ class Widgets_Manager {
                 ],
             ],
             'justified-gallery' => [
+                'demo' => 'https://happyaddons.com/go/demo-justified-grid',
                 'title' => __( 'Justified Grid', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-brick-wall',
                 'class' => Justified_Gallery::class,
@@ -257,6 +265,7 @@ class Widgets_Manager {
                 ],
             ],
             'image-grid' => [
+                'demo' => 'https://happyaddons.com/go/demo-image-grid',
                 'title' => __( 'Image Grid', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-grid-even',
                 'class' => Image_Grid::class,
@@ -268,6 +277,7 @@ class Widgets_Manager {
                 ],
             ],
             'slider' => [
+                'demo' => 'https://happyaddons.com/go/demo-slider',
                 'title' => __( 'Slider', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-image-slider',
                 'class' => Slider::class,
@@ -290,6 +300,7 @@ class Widgets_Manager {
                 ],
             ],
             'skills' => [
+                'demo' => 'https://happyaddons.com/go/demo-skill-bar',
                 'title' => __( 'Skill Bars', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-progress-bar',
                 'class' => Skills::class,
@@ -301,6 +312,7 @@ class Widgets_Manager {
                 ],
             ],
             'gradient-heading' => [
+                'demo' => 'https://happyaddons.com/go/demo-gradient-heading',
                 'title' => __( 'Gradient Heading', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-drag',
                 'class' => Gradient_Heading::class,
@@ -312,6 +324,7 @@ class Widgets_Manager {
                 ],
             ],
             'wpform' => [
+                'demo' => 'https://happyaddons.com/go/demo-wpforms',
                 'title' => __( 'WPForms', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-form',
                 'class' => WPForm::class,
@@ -323,6 +336,7 @@ class Widgets_Manager {
                 ],
             ],
             'ninjaform' => [
+                'demo' => 'https://happyaddons.com/go/demo-ninja-forms',
                 'title' => __( 'Ninja Forms', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-form',
                 'class' => NinjaForm::class,
@@ -334,6 +348,7 @@ class Widgets_Manager {
                 ],
             ],
             'calderaform' => [
+                'demo' => 'https://happyaddons.com/go/demo-caldera-forms',
                 'title' => __( 'Caldera Forms', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-form',
                 'class' => CalderaForm::class,
@@ -345,6 +360,7 @@ class Widgets_Manager {
                 ],
             ],
             'weform' => [
+                'demo' => 'https://happyaddons.com/go/demo-weforms',
                 'title' => __( 'weForms', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-form',
                 'class' => WeForm::class,
@@ -367,6 +383,7 @@ class Widgets_Manager {
                 ],
             ],
             'dual-button' => [
+                'demo' => 'https://happyaddons.com/go/demo-dual-button',
                 'title' => __( 'Dual Button', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-accordion-horizontal',
                 'class' => Dual_Button::class,
@@ -378,6 +395,7 @@ class Widgets_Manager {
                 ],
             ],
             'testimonial' => [
+                'demo' => 'https://happyaddons.com/go/demo-testimonial',
                 'title' => __( 'Testimonial', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-testimonial',
                 'class' => Testimonial::class,
@@ -389,6 +407,7 @@ class Widgets_Manager {
                 ],
             ],
             'number' => [
+                'demo' => 'https://happyaddons.com/go/demo-number-widget',
                 'title' => __( 'Number', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-madel',
                 'class' => Number::class,
@@ -400,6 +419,7 @@ class Widgets_Manager {
                 ],
             ],
             'flip-box' => [
+                'demo' => 'https://happyaddons.com/gp/demo-flip-box',
                 'title' => __( 'Flip Box', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-flip-card1',
                 'class' => Flip_Box::class,
@@ -411,6 +431,7 @@ class Widgets_Manager {
                 ],
             ],
             'calendly' => [
+                'demo' => 'https://happyaddons.com/go/demo-calendly',
                 'title' => __( 'Calendly', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-calendar',
                 'class' => Calendly::class,
@@ -422,6 +443,7 @@ class Widgets_Manager {
                 ],
             ],
             'pricing-table' => [
+                'demo' => 'https://happyaddons.com/go/demo-pricing-table',
                 'title' => __( 'Pricing Table', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-file-cabinet',
                 'class' => Pricing_Table::class,
@@ -433,6 +455,7 @@ class Widgets_Manager {
                 ],
             ],
             'step-flow' => [
+                'demo' => 'https://happyaddons.com/go/demo-step-flow',
                 'title' => __( 'Step Flow', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-step-flow',
                 'class' => Step_Flow::class,

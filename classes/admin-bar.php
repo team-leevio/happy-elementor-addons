@@ -71,7 +71,7 @@ class Admin_Bar {
         $admin_bar->add_menu( array(
             'id'    => 'happy-addons',
             'title' => '<img src="'.ha_get_b64_icon().'"">',
-            'href'  => add_query_arg( [ 'page' => 'happy-addons#tab-content-home' ], admin_url( 'admin.php' ) ),
+            'href'  => ha_get_dashboard_link(),
             'meta' => [
                 'title' => __( 'Happy Addons Menu', 'happy-elementor-addons' ),
             ]

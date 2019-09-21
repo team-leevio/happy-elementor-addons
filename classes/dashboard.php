@@ -18,10 +18,38 @@ class Dashboard {
     static $menu_slug = '';
 
     public static function init() {
-        add_action( 'admin_menu', [ __CLASS__, 'add_menu' ], 30 );
+        add_action( 'admin_menu', [ __CLASS__, 'add_menu' ], 21 );
         add_action( 'admin_menu', [ __CLASS__, 'update_menu_items' ], 99 );
         add_action( 'admin_enqueue_scripts', [ __CLASS__, 'enqueue_scripts' ] );
         add_action( 'wp_ajax_' . self::WIDGETS_NONCE, [ __CLASS__, 'save_dashboard' ] );
+
+        add_action( 'admin_init', [ __CLASS__, 'activation_redirect' ] );
+        add_filter( 'plugin_action_links_' . plugin_basename( HAPPY_ADDONS__FILE__ ), [ __CLASS__, 'add_action_links' ] );
+    }
+
+    public static function activation_redirect() {
+        if ( get_option( Base::ACTIVATION_FLAG_DB_KEY, false ) && ! isset( $_GET['activate-multi'] ) ) {
+            delete_option( Base::ACTIVATION_FLAG_DB_KEY );
+            die( wp_redirect( ha_get_dashboard_link() ) );
+        }
+    }
+
+    public static function add_action_links( $links ) {
+        $links = array_merge([
+            sprintf( '<a href="%s">%s</a>',
+                ha_get_dashboard_link(),
+                esc_html__( 'Settings', 'happy-elementor-addons' )
+            )
+        ], $links );
+        if ( ! ha_has_pro() ) {
+            $links = array_merge( $links, [
+                sprintf( '<a target="_blank" style="color:#e2498a; font-weight: bold;" href="%s">%s</a>',
+                    'https://happyaddons.com/',
+                    esc_html__( 'Get Pro', 'happy-elementor-addons' )
+                )
+            ] );
+        }
+        return $links;
     }
 
     public static function save_dashboard() {

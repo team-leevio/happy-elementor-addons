@@ -14,6 +14,8 @@ class Base {
 
     const MINIMUM_PHP_VERSION = '5.4';
 
+    const ACTIVATION_FLAG_DB_KEY = 'happyaddons_do_activation_direct';
+
     private static $instance = null;
 
     public static function instance() {
@@ -26,6 +28,12 @@ class Base {
     private function __construct() {
         add_action( 'init', [ $this, 'i18n' ] );
         add_action( 'plugins_loaded', [ $this, 'init' ] );
+
+        register_activation_hook( HAPPY_ADDONS__FILE__, [ $this, 'register_activation_hook' ] );
+    }
+
+    public function register_activation_hook() {
+        add_option( self::ACTIVATION_FLAG_DB_KEY, true );
     }
 
     public function i18n() {
