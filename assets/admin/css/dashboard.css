@@ -394,3 +394,31 @@
 	background-color: #e63d3d;
 	color: #fff;
 }
+
+.ha-home-banner {
+	position: relative; 
+	padding-top: 25.20%;
+	border-radius: 5px;
+	background: url("../../imgs/admin/dashboard-header.png") no-repeat center center/cover;
+}
+.ha-home-banner__content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	max-width: 1000px;
+	width: 100%;
+	-webkit-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+}
+.ha-home-banner h2 {
+	margin: 0;
+	padding-left: 75px; 
+	border-left: 5px solid #fff;
+	color: #fff;
+	font-size: 28px;
+	line-height: 1.1;
+}
+.ha-home-banner h2 > span {
+	font-weight: 400;
+}

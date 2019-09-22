@@ -411,3 +411,50 @@
     }
   }
 }
+
+// #home-tab
+.ha-home-banner {
+  padding-top: 25.20%;
+  background: url('../../imgs/admin/dashboard-header.png') no-repeat center center/cover;
+  border-radius: 5px;
+  position: relative;
+
+  &__content {
+    width: 100%;
+    max-width: 1000px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  h2 {
+    color: #fff;
+    font-size: 28px;
+    margin: 0;
+    line-height: 1.1;
+    border-left: 5px solid #fff;
+    padding-left: 75px;
+
+    > span {
+      font-weight: 400;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
