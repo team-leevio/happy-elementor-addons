@@ -38,22 +38,22 @@ class Admin_Bar {
         }
 
         wp_enqueue_style(
-            'happy-admin-bar',
-            HAPPY_ADDONS_ASSETS . 'admin/css/admin-bar.min.css',
+            'happy-elementor-addons-admin',
+            HAPPY_ADDONS_ASSETS . 'admin/css/admin.min.css',
             null,
             HAPPY_ADDONS_VERSION
         );
 
         wp_enqueue_script(
-            'happy-admin-bar',
-            HAPPY_ADDONS_ASSETS . 'admin/js/admin-bar.js',
+            'happy-elementor-addons-admin',
+            HAPPY_ADDONS_ASSETS . 'admin/js/admin.min.js',
             ['jquery'],
             HAPPY_ADDONS_VERSION,
             true
         );
 
         wp_localize_script(
-            'happy-admin-bar',
+            'happy-elementor-addons-admin',
             'HappyAdmin',
             [
                 'nonce' => wp_create_nonce( 'ha_clear_cache' ),

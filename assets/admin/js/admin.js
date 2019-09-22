@@ -1,6 +1,6 @@
 ;(function($) {
     $(function() {
-        var $clearCache = $('.hajs-clear-cache ');
+        var $clearCache = $('.hajs-clear-cache');
 
         $clearCache.on('click', 'a', function(e) {
             e.preventDefault();
