@@ -58,7 +58,7 @@ class License {
     public function __construct( Client $client ) {
         $this->client = $client;
 
-        $this->option_key = 'appsero_' . md5( $this->client->slug ) . '_licenses';
+        $this->option_key = 'appsero_' . md5( $this->client->slug ) . '_manage_license';
     }
 
     /**
@@ -157,7 +157,7 @@ class License {
 
         $this->menu_args = wp_parse_args( $args, $defaults );
 
-        add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+        add_action( 'admin_menu', array( $this, 'admin_menu' ), 30 );
 
         add_action( $this->client->slug . '_license_check_event', array( $this, 'check_license_status' ) );
     }
