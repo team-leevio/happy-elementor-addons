@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die();
             <h2>Thanks a lot <br><span>for choosing HappyAddons</span></h2>
         </div>
     </div>
-    <div class="ha-home-container">
+    <div class="ha-home-body">
         <div class="ha-row">
             <div class="ha-col ha-col-6">
                 <h3>Knowledge & Wiki</h3>
