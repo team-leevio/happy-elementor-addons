@@ -533,6 +533,12 @@
 	color: #5e3bc4;
 }
 
+.ha-btn-view {
+	color: #835ef1;
+	text-decoration: none;
+	font-size: 16px;
+}
+
 .ha-cta {
 	padding: 2.5rem 3rem;
 	background: #e2498a;
@@ -568,6 +574,30 @@
 .ha-cta .btn-contribute:hover {
 	background: #e2498a;
 	color: #fff;
+}
+
+.ha-section-title {
+	margin: 0;
+	font-size: 48px;
+	line-height: 1;
+}
+
+.ha-badge {
+	display: inline-block;
+	margin-bottom: .3rem;
+	padding: .6rem 1rem;
+	border-radius: 5px; 
+	background: #e2498a;
+	background-image: -webkit-linear-gradient(320deg, #e05da4 0%, #7249cf 100%);
+	background-image:         linear-gradient(130deg, #e05da4 0%, #7249cf 100%);
+	color: #fff;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+.ha-sub-title-sm {
+	margin: .3rem 0 0 0; 
+	font-size: 16px;
 }
 
 .ha-border-box {
@@ -610,6 +640,29 @@
 	        flex: 1;
 }
 
+.ha-pro-widget {
+	display: block;
+	margin-bottom: 25px; 
+	padding: 1.5rem 1rem;
+	border-radius: 4px;
+	background: #7c58e5;
+	color: #fff;
+	text-align: left;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 12px;
+}
+.ha-pro-widget:hover,
+.ha-pro-widget:focus {
+	background: #df4b89;
+	color: #fff;
+}
+.ha-pro-widget i {
+	padding-right: 5px;
+	font-weight: bold; 
+	font-size: 20px;
+}
+
 .ha-dashboard .f18 {
 	font-size: 18px;
 }
@@ -645,6 +698,10 @@
 
 .ha-dashboard .ha-pr-2 {
 	padding-right: 2rem;
+}
+
+.ha-dashboard .ha-pl-2 {
+	padding-left: 2rem;
 }
 
 .ha-dashboard .ha-mt-0 {
