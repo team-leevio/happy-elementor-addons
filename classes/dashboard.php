@@ -91,6 +91,13 @@ class Dashboard {
         );
 
         wp_enqueue_style(
+            'google-nunito-font',
+            HAPPY_ADDONS_ASSETS . 'fonts/nunito/stylesheet.css',
+            null,
+            HAPPY_ADDONS_VERSION
+        );
+
+        wp_enqueue_style(
             'happy-elementor-addons-dashboard',
             HAPPY_ADDONS_ASSETS . 'admin/css/dashboard.min.css',
             null,
