@@ -542,6 +542,11 @@
   }
 }
 
+.ha-btn-view {
+  color: #835ef1;
+  text-decoration: none;
+  font-size: 16px;
+}
 
 .ha-cta {
   padding: 2.5rem 3rem;
@@ -579,6 +584,29 @@
   }
 }
 
+.ha-section-title {
+  font-size: 48px;
+  margin: 0;
+  line-height: 1;
+}
+
+.ha-badge {
+  padding: .6rem 1rem;
+  background: #e2498a;
+  background-image: linear-gradient(130deg, #e05da4 0%, #7249cf 100%);
+  color: #fff;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: .3rem;
+  border-radius: 5px;
+}
+
+.ha-sub-title-sm {
+  font-size: 16px;
+  margin: .3rem 0 0 0;
+}
+
 .ha-border-box {
   border: 1px solid #ececec;
   border-radius: 5px;
@@ -610,6 +638,28 @@
 
 .ha-media-body {
   flex: 1
+}
+
+.ha-pro-widget {
+  display: block;
+  padding: 1.5rem 1rem;
+  background: #7c58e5;
+  color: #fff;
+  text-align: left;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 25px;
+  &:hover, &:focus{
+    background: #df4b89;
+    color: #fff;
+  }
+  i{
+    padding-right: 5px;
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 
 .ha-dashboard {
@@ -649,6 +699,10 @@
 
   .ha-pr-2 {
     padding-right: 2rem;
+  }
+
+  .ha-pl-2 {
+    padding-left: 2rem;
   }
 
   .ha-mt-0 {
