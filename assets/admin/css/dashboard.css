@@ -20,6 +20,7 @@
 .ha-dashboard,
 .ha-dashboard * {
 	box-sizing: border-box;
+	font-family: "Nunito", sans-serif;
 }
 .ha-dashboard-btn {
 	display: inline-block;
