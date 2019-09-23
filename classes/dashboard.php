@@ -107,7 +107,7 @@ class Dashboard {
         /**
          * Magnific popup
          */
-        wp_enqueue_script(
+        wp_enqueue_style(
             'magnific-popup',
             HAPPY_ADDONS_ASSETS . 'vendor/magnific-popup/magnific-popup.css',
             null,

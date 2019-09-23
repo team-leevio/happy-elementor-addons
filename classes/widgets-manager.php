@@ -117,8 +117,8 @@ class Widgets_Manager {
                 'is_pro' => true,
             ],
             'logo-carousel' => [
-                'title' => __( 'Team Carousel', 'happy-addons-pro' ),
-                'icon' => 'hm hm-team-carousel',
+                'title' => __( 'Logo Carousel', 'happy-addons-pro' ),
+                'icon' => 'hm hm-logo-carousel',
                 'is_pro' => true,
             ],
             'source-code' => [
@@ -126,7 +126,6 @@ class Widgets_Manager {
                 'icon' => 'hm hm-code-browser',
                 'is_pro' => true,
             ],
-
             'feature-list' => [
                 'title' => __( 'Feature List', 'happy-addons-pro' ),
                 'icon' => 'hm hm-list-2',

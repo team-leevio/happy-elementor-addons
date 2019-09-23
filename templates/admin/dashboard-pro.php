@@ -66,30 +66,20 @@ defined( 'ABSPATH' ) || die();
         </div>
 
         <div class="ha-row ha-py-5 ha-pt-0 ha-align-items-center ha-align-center">
-            <div class="ha-col ha-col-3">
-                <a class="ha-pro-widget" href=""><i class="hm hm-team-carousel"></i> Testimonial Carousel</a>
-            </div>
-            <div class="ha-col ha-col-3">
-                <a class="ha-pro-widget" href=""><i class="hm hm-team-carousel"></i> Testimonial Carousel</a>
-            </div>
-            <div class="ha-col ha-col-3">
-                <a class="ha-pro-widget" href=""><i class="hm hm-team-carousel"></i> Testimonial Carousel</a>
-            </div>
-            <div class="ha-col ha-col-3">
-                <a class="ha-pro-widget" href=""><i class="hm hm-team-carousel"></i> Testimonial Carousel</a>
-            </div>
-            <div class="ha-col ha-col-3">
-                <a class="ha-pro-widget" href=""><i class="hm hm-team-carousel"></i> Testimonial Carousel</a>
-            </div>
-            <div class="ha-col ha-col-3">
-                <a class="ha-pro-widget" href=""><i class="hm hm-team-carousel"></i> Testimonial Carousel</a>
-            </div>
-            <div class="ha-col ha-col-3">
-                <a class="ha-pro-widget" href=""><i class="hm hm-team-carousel"></i> Testimonial Carousel</a>
-            </div>
-            <div class="ha-col ha-col-3">
-                <a class="ha-pro-widget" href=""><i class="hm hm-team-carousel"></i> Testimonial Carousel</a>
-            </div>
+            <?php
+            $pro_widgets = \Happy_Addons\Elementor\Widgets_Manager::get_pro_widget_map();
+
+            foreach ( $pro_widgets as $widget ) :
+                $title = isset( $widget['title'] ) ? $widget['title'] : 'Widget Title';
+                $icon = isset( $widget['icon'] ) ? $widget['icon'] : 'hm hm-happyaddons';
+                $demo = isset( $widget['demo'] ) ? $widget['demo'] : 'https://happyaddons.com/';
+                ?>
+                <div class="ha-col ha-col-3">
+                    <a class="ha-pro-widget" href="<?php echo esc_url( $demo ); ?>" target="_blank" rel="noopener"><i class="<?php echo $icon; ?>"></i> <?php echo $title; ?></a>
+                </div>
+                <?php
+            endforeach;
+            ?>
         </div>
 
         <hr>
