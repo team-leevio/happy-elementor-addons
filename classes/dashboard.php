@@ -150,19 +150,22 @@ class Dashboard {
             58.5
         );
 
-        foreach ( self::get_tabs() as $tab_key => $tab_data ) {
-            if ( empty( $tab_data['renderer'] ) || ! is_callable( $tab_data['renderer'] ) ) {
-                continue;
-            }
+        $tabs = self::get_tabs();
+        if ( is_array( $tabs ) ) {
+            foreach ( $tabs as $key => $data ) {
+                if ( empty( $data['renderer'] ) || ! is_callable( $data['renderer'] ) ) {
+                    continue;
+                }
 
-            add_submenu_page(
-                self::PAGE_SLUG,
-                sprintf( __( '%s - Happy Elementor Addons', 'happy-elementor-addons' ), $tab_data['title'] ),
-                $tab_data['title'],
-                'manage_options',
-                self::PAGE_SLUG . '#tab-content-' . $tab_key,
-                [ __CLASS__, 'render_main' ]
-            );
+                add_submenu_page(
+                    self::PAGE_SLUG,
+                    sprintf( __( '%s - Happy Elementor Addons', 'happy-elementor-addons' ), $data['title'] ),
+                    $data['title'],
+                    'manage_options',
+                    self::PAGE_SLUG . '#tab-content-' . $key,
+                    [ __CLASS__, 'render_main' ]
+                );
+            }
         }
     }
 

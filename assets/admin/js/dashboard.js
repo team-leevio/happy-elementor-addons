@@ -10,6 +10,12 @@
             $sidebarSubmenu = $sidebarMenuWrapper.find('.wp-submenu');
 
         $tabsNav.on('click', '.ha-dashboard-tabs__nav-item', function(event) {
+            var $currentTab = $(event.currentTarget);
+
+            if ( $currentTab.is( '.nav-item-is--link' ) ) {
+                return true;
+            }
+
             event.preventDefault();
 
             var $currentTab = $(event.currentTarget),

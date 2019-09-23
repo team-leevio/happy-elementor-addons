@@ -13,18 +13,25 @@ defined( 'ABSPATH' ) || die();
                 <?php
                 $tab_count = 1;
                 foreach ( self::get_tabs() as $slug => $data ) :
+                    $slug = esc_attr( strtolower( $slug ) );
+                    $class = 'ha-dashboard-tabs__nav-item ha-dashboard-tabs__nav-item--' . $slug;
+
                     if ( empty( $data['renderer'] ) || ! is_callable( $data['renderer'] ) ) {
-                        continue;
+                        $class .= ' nav-item-is--link';
                     }
 
-                    $slug = esc_attr( strtolower( $slug ) );
-
-                    $class = 'ha-dashboard-tabs__nav-item ha-dashboard-tabs__nav-item--' . $slug;
                     if ( $tab_count === 1 ) {
                         $class .= ' tab--is-active';
                     }
 
-                    printf( '<a href="#tab-content-%1$s" aria-controls="tab-content-%1$s" id="tab-nav-%1$s" class="%2$s" role="tab">%3$s</a>',
+                    if ( ! empty( $data['href'] ) ) {
+                        $href = esc_url( $data['href'] );
+                    } else {
+                        $href = '#tab-content-' . $slug;
+                    }
+
+                    printf( '<a href="%1$s" aria-controls="tab-content-%2$s" id="tab-nav-%2$s" class="%3$s" role="tab">%4$s</a>',
+                        $href,
                         $slug,
                         $class,
                         isset( $data['title'] ) ? $data['title'] : sprintf( esc_html__( 'Tab %s', 'happy-elementor-addons' ), $tab_count )
