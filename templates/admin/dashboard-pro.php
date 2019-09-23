@@ -1,6 +1,6 @@
 <?php
 /**
- * Dashboard home tab template
+ * Dashboard pro tab template
  */
 
 defined( 'ABSPATH' ) || die();
