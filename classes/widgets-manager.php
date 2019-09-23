@@ -289,6 +289,7 @@ class Widgets_Manager {
                 ],
             ],
             'carousel' => [
+                'demo' => 'https://happyaddons.com/go/demo-image-carousel',
                 'title' => __( 'Carousel', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-carousal',
                 'class' => Carousel::class,
@@ -372,6 +373,7 @@ class Widgets_Manager {
                 ],
             ],
             'logo-grid' => [
+                'demo' => 'https://happyaddons.com/go/demo-logo-grid',
                 'title' => __('Logo Grid', 'happy-elementor-addons'),
                 'icon' => 'hm hm-logo-grid',
                 'class' => Logo_Grid::class,
