@@ -104,6 +104,24 @@ class Dashboard {
             HAPPY_ADDONS_VERSION
         );
 
+        /**
+         * Magnific popup
+         */
+        wp_enqueue_script(
+            'magnific-popup',
+            HAPPY_ADDONS_ASSETS . 'vendor/magnific-popup/magnific-popup.css',
+            null,
+            HAPPY_ADDONS_VERSION
+        );
+
+        wp_enqueue_script(
+            'jquery-magnific-popup',
+            HAPPY_ADDONS_ASSETS . 'vendor/magnific-popup/jquery.magnific-popup.min.js',
+            null,
+            HAPPY_ADDONS_VERSION,
+            true
+        );
+
         wp_enqueue_script(
             'happy-elementor-addons-dashboard',
             HAPPY_ADDONS_ASSETS . 'admin/js/dashboard.min.js',
