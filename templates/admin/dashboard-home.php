@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || die();
 <div class="ha-dashboard-panel">
     <div class="ha-home-banner">
         <div class="ha-home-banner__content">
-            <img src="" alt="">
+            <img class="ha-dashboard-logo" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/halogo.svg" alt="">
             <h2>Thanks a lot <br><span>for choosing HappyAddons</span></h2>
         </div>
     </div>

@@ -411,9 +411,18 @@
 	    -ms-transform: translate(-50%, -50%);
 	        transform: translate(-50%, -50%);
 }
+.ha-home-banner .ha-dashboard-logo {
+	position: relative;
+	top: -12px; 
+	float: left;
+	margin-right: 50px;
+	width: 150px;
+	height: auto;
+}
 .ha-home-banner h2 {
+	float: left; 
 	margin: 0;
-	padding-left: 75px; 
+	padding-left: 50px;
 	border-left: 5px solid #fff;
 	color: #fff;
 	font-size: 28px;

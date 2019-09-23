@@ -428,13 +428,24 @@
     transform: translate(-50%, -50%);
   }
 
+  .ha-dashboard-logo{
+    float: left;
+    margin-right: 50px;
+    width: 150px;
+    height: auto;
+    position: relative;
+    top: -12px;
+  }
+;
+
   h2 {
     color: #fff;
     font-size: 28px;
     margin: 0;
     line-height: 1.1;
     border-left: 5px solid #fff;
-    padding-left: 75px;
+    padding-left: 50px;
+    float: left;
 
     > span {
       font-weight: 400;
