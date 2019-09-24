@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 1.5.0
+Version: 2.0.0
 Author: HappyMonster
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, obiplabon, sourav926, wedevs
@@ -139,6 +139,19 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.0.0 - 24 September 2019 =
+
+- New: Dashboard
+- New: Image popup support for Justified Grid
+- New: Image popup support for Image Grid
+- Update: Improved HTML tag support for description and title fields
+- Update: Added more icons in Happy Icons
+- Update: Improved HTML escaping support for security
+- Fix: Skill Bars admin label fix
+- Fix: Missing style issue while copy-pasting widget style
+- Fix: Happy Icons cache issue
+- Fix: Admin bar menu spacing issue
 
 = 1.5.0 - 27 August 2019 =
 
