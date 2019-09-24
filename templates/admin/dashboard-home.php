@@ -44,7 +44,7 @@ defined( 'ABSPATH' ) || die();
                 </a>
             </div>
             <div class="ha-col ha-col-4">
-                <a href="https://www.youtube.com/watch?t=137s&v=LmtacsLcFPU" class="ha-feature-sub-title-a">
+                <a href="https://www.youtube.com/watch?v=F33g3zqkeog" class="ha-feature-sub-title-a">
                     <img class="ha-img-fluid ha-rounded" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/floating-video-cover.jpg" alt="">
                     <h4 class="ha-feature-sub-title">Happy Effects - Floating Effects</h4>
                 </a>
