@@ -9,6 +9,7 @@ defined( 'ABSPATH' ) || die();
     <div class="ha-home-banner">
         <div class="ha-home-banner__content">
             <img class="ha-home-banner__logo" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/halogo.svg" alt="">
+            <span class="ha-home-banner__divider"></span>
             <h2>Thanks a lot <br><span>for choosing HappyAddons</span></h2>
         </div>
     </div>
@@ -31,16 +32,22 @@ defined( 'ABSPATH' ) || die();
                 <p class="f16">How to use Floating Effects and manage CSS Transform?</p>
             </div>
             <div class="ha-col ha-col-4">
-                <img class="ha-img-fluid ha-rounded" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/v-thumb.jpg" alt="">
-                <h4 class="ha-feature-sub-title"><a href="#">How to create beautiful timeline with happyaddons in elementor</a></h4>
+                <a href="https://www.youtube.com/watch?v=KSRaUaD30Jc" class="ha-feature-sub-title-a">
+                    <img class="ha-img-fluid ha-rounded" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/crossdomain-video-cover.jpg" alt="">
+                    <h4 class="ha-feature-sub-title">Cross Domain Copy Paste (Pro)</h4>
+                </a>
             </div>
             <div class="ha-col ha-col-4">
-                <img class="ha-img-fluid ha-rounded" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/v-thumb.jpg" alt="">
-                <h4 class="ha-feature-sub-title"><a href="#">How to create beautiful timeline with happyaddons in elementor</a></h4>
+                <a href="https://www.youtube.com/watch?v=LmtacsLcFPU" class="ha-feature-sub-title-a">
+                    <img class="ha-img-fluid ha-rounded" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/translate-video-cover.jpg" alt="">
+                    <h4 class="ha-feature-sub-title">Happy Effects - CSS Transform</h4>
+                </a>
             </div>
             <div class="ha-col ha-col-4">
-                <img class="ha-img-fluid ha-rounded" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/v-thumb.jpg" alt="">
-                <h4 class="ha-feature-sub-title"><a href="#">How to create beautiful timeline with happyaddons in elementor</a></h4>
+                <a href="https://www.youtube.com/watch?t=137s&v=LmtacsLcFPU" class="ha-feature-sub-title-a">
+                    <img class="ha-img-fluid ha-rounded" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/floating-video-cover.jpg" alt="">
+                    <h4 class="ha-feature-sub-title">Happy Effects - Floating Effects</h4>
+                </a>
             </div>
             <div class="ha-col ha-col-12 ha-align-center ha-pt-2">
                 <a class="ha-btn ha-btn-secondary" target="_blank" rel="noopener" href="https://www.youtube.com/channel/UC1-e7ewkKB1Dao1U90QFQFA">View more videos</a>
@@ -55,29 +62,52 @@ defined( 'ABSPATH' ) || die();
             <div class="ha-col ha-col-3 ha-align-right">
                 <a class="btn-more" target="_blank" rel="noopener" href="https://happyaddons.com/go/faq">Get More FAQ ></a>
             </div>
-            <div class="ha-col ha-col-12 ha-pt-3">
-                <p class="ha-mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aut cum, facilis magnam mollitia nam
-                    nihil nobis nulla, pariatur porro, repudiandae unde. Architecto esse explicabo ipsum odit saepe,
-                    tenetur ut.</p>
-            </div>
-        </div>
-        <div class="ha-row">
             <div class="ha-col ha-col-12">
-                <div class="ha-cta ha-rounded">
-                <div class="ha-row ha-align-items-center">
-                    <div class="ha-col-8">
-                        <h3 class="ha-feature-title">Call for Contributors</h3>
-                        <p class="f16">Are you interested to contribute to making this plugin more awesome?</p>
-                        <a class="link" href="">How am I going to contribute?</a>
+                <div class="ha-row">
+                    <div class="ha-col ha-col-6 ha-pt-3">
+                        <h4>Can I use these addons in my client project?</h4>
+                        <p class="ha-mb-0">Yes, absolutely, no holds barred. Use it to bring colorful moments to your customers. And don’t forget to check out the pro version which is coming soon with extra features.</p>
                     </div>
-                    <div class="ha-cta-action ha-col-4 ha-align-right">
-                        <a class="btn-contribute" href="">I like to contribute</a>
+                    <div class="ha-col ha-col-6 ha-pt-3">
+                        <h4>Is there any support policy available for the free users?</h4>
+                        <p class="ha-mb-0">Free or pro version, both comes with excellent support from us. However, pro users will get priority support.</p>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
-        <div class="ha-row ha-py-5">
+
+        <?php
+        $appsero = \Happy_Addons\Elementor\Base::instance()->appsero;
+        $margin_top = '';
+        if ( $appsero ) :
+            if ( ! $appsero->insights()->notice_dismissed() && ! $appsero->insights()->tracking_allowed() ) :
+                $optin_url  = add_query_arg( $appsero->slug . '_tracker_optin', 'true' );
+                $margin_top = 'ha-py-5';
+                ?>
+                <div class="ha-row">
+                    <div class="ha-col ha-col-12">
+                        <div class="ha-cta ha-rounded">
+                        <div class="ha-row ha-align-items-center">
+                            <div class="ha-col-8">
+                                <h3 class="ha-feature-title">Call for Contributors</h3>
+                                <p class="f16">Are you interested to contribute to making this plugin more awesome?</p>
+                                <a class="link btn-how-to-contribute" href="#">How am I going to contribute?</a>
+                                <p class="ha-mb-0" style="display: none;">By allow Happy Elementor Addons to collect non-sensitive diagnostic data and usage information so that we can make sure optimum compatibility.
+                                    Happy Elementor Addons collect - Server environment details (php, mysql, server, WordPress versions), Number of users in your site, Site language, Number of active and inactive plugins, Site name and url, Your name and email address</p>
+                            </div>
+                            <div class="ha-cta-action ha-col-4 ha-align-right">
+                                <a class="btn-contribute" href="<?php echo esc_url( $optin_url ); ?>">I like to contribute</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            endif;
+        endif;
+        ?>
+
+        <div class="ha-row <?php echo $margin_top; ?>">
             <div class="ha-col ha-col-6">
                 <div class="ha-border-box ha-min-height-455">
                     <img class="ha-img-fluid ha-title-icon-size" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/support-call.svg" alt="">
@@ -126,43 +156,5 @@ defined( 'ABSPATH' ) || die();
                 </div>
             </div>
         </div>
-<!---->
-<!--        <div class="ha-row ha-pt-0 ha-pb-0">-->
-<!--            <div class="ha-col ha-col-12">-->
-<!--                <img class="ha-img-fluid ha-title-icon-size" src="--><?php //echo HAPPY_ADDONS_ASSETS; ?><!--imgs/admin/comment-square.svg" alt="">-->
-<!--                <h3 class="ha-feature-title">Blog & Article</h3>-->
-<!--                <p class="f16 ha-mb-0">Are you in need of a feature that’s not available in our plugin? Feel free to do a feature request from here,</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="ha-row ha-pt-2 ha-pb-3">-->
-<!--            <div class="ha-col ha-col-6">-->
-<!--                <div class="ha-media">-->
-<!--                    <a href=""><img src="--><?php //echo HAPPY_ADDONS_ASSETS; ?><!--imgs/admin/v-thumb.jpg" class="ha-align-self-center ha-mr-3 ha-rounded" alt="..."></a>-->
-<!--                    <div class="ha-media-body">-->
-<!--                        <h3 class="ha-mt-0-">-->
-<!--                            <a href="">How to create beautiful-->
-<!--                                timeline with happyaddons-->
-<!--                                in elementor</a>-->
-<!--                        </h3>-->
-<!--                        <p class="ha-mb-0 ha-date">12 September 2019</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="ha-col ha-col-6">-->
-<!--                <div class="ha-media">-->
-<!--                    <a href=""><img src="--><?php //echo HAPPY_ADDONS_ASSETS; ?><!--imgs/admin/v-thumb.jpg" class="ha-align-self-center ha-mr-3 ha-rounded" alt="..."></a>-->
-<!--                    <div class="ha-media-body">-->
-<!--                        <h3 class="ha-mt-0-">-->
-<!--                            <a href="">How to create beautiful-->
-<!--                                timeline with happyaddons-->
-<!--                                in elementor</a>-->
-<!--                        </h3>-->
-<!--                        <p class="ha-mb-0 ha-date">12 September 2019</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
     </div>
 </div>

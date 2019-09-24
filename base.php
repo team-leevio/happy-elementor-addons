@@ -18,6 +18,8 @@ class Base {
 
     private static $instance = null;
 
+    public $appsero = null;
+
     public static function instance() {
         if ( is_null( self::$instance ) ) {
             self::$instance = new self();
@@ -97,14 +99,14 @@ class Base {
             require_once HAPPY_ADDONS_DIR_PATH . 'vendor/appsero/src/Client.php';
         }
 
-        $client = new \Appsero\Client(
+        $this->appsero = new \Appsero\Client(
             '70b96801-94cc-4501-a005-8f9a4e20e152',
             'Happy Elementor Addons',
             HAPPY_ADDONS__FILE__
         );
 
         // Active insights
-        $client->insights()->init();
+        $this->appsero->insights()->init();
     }
 
     public function include_files() {

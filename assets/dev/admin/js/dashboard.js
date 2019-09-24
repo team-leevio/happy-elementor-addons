@@ -139,5 +139,21 @@
                 $toggle.trigger('change');
             }
         });
+
+
+        $('.ha-feature-sub-title-a').magnificPopup({
+            disableOn: 700,
+            type: 'iframe',
+            mainClass: 'mfp-fade',
+            removalDelay: 160,
+            preloader: false,
+
+            fixedContentPos: false
+        });
+
+        $('.btn-how-to-contribute').on('click', function(event) {
+            event.preventDefault();
+            $(this).next().show();
+        });
     });
 }(jQuery, window.HappyDashboard));

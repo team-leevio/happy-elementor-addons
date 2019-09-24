@@ -439,14 +439,19 @@
     position: relative;
     top: -8px;
   }
-;
+
+  &__divider {
+    width: 4px;
+    background-color: #fff;
+    border-radius: 10px;
+    height: 60px;
+  }
 
   h2 {
     color: #fff;
     font-size: 28px;
     margin: 0;
     line-height: 1.1;
-    border-left: 5px solid #fff;
     padding-left: 50px;
     float: left;
 
@@ -482,18 +487,19 @@
   margin-bottom: 1rem;
 }
 
+.ha-feature-sub-title-a {
+  text-decoration: none;
+  color: #242424;
+  &:hover{
+    color: #e2498a;
+  }
+}
+
 .ha-feature-sub-title {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 1rem;
   line-height: 1.4;
-  a{
-    text-decoration: none;
-    color: #242424;
-    &:hover{
-      color: #e2498a;
-    }
-  }
 }
 
 .ha-btn {

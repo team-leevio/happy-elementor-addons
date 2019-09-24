@@ -431,11 +431,16 @@
 	width: 150px;
 	height: auto;
 }
+.ha-home-banner__divider {
+	width: 4px;
+	height: 60px; 
+	border-radius: 10px;
+	background-color: #fff;
+}
 .ha-home-banner h2 {
 	float: left; 
 	margin: 0;
 	padding-left: 50px;
-	border-left: 5px solid #fff;
 	color: #fff;
 	font-size: 28px;
 	line-height: 1.1;
@@ -470,18 +475,19 @@
 	font-size: 28px;
 }
 
+.ha-feature-sub-title-a {
+	color: #242424; 
+	text-decoration: none;
+}
+.ha-feature-sub-title-a:hover {
+	color: #e2498a;
+}
+
 .ha-feature-sub-title {
 	margin-bottom: 1rem;
 	font-weight: bold;
 	font-size: 18px;
 	line-height: 1.4;
-}
-.ha-feature-sub-title a {
-	color: #242424; 
-	text-decoration: none;
-}
-.ha-feature-sub-title a:hover {
-	color: #e2498a;
 }
 
 .ha-btn {

@@ -94,7 +94,6 @@ class Widgets_Manager {
                 'title' => __( 'Advanced Heading', 'happy-addons-pro' ),
                 'icon' => 'hm hm-advanced-heading',
                 'is_pro' => true,
-                'demo' => 'https://happyaddons.com/elementor-logo-grid-widget-demo/'
             ],
             'list-group' => [
                 'title' => __( 'List Group', 'happy-addons-pro' ),
@@ -154,6 +153,11 @@ class Widgets_Manager {
             'instagram-feed' => [
                 'title' => __( 'Instagram Feed', 'happy-addons-pro' ),
                 'icon' => 'hm hm-instagram',
+                'is_pro' => true,
+            ],
+            'scrolling-image' => [
+                'title' => __( 'Scrolling Image', 'happy-addons-pro' ),
+                'icon' => 'hm hm-scrolling-image',
                 'is_pro' => true,
             ],
         ];
