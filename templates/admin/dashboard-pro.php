@@ -60,7 +60,6 @@ defined( 'ABSPATH' ) || die();
             <div class="ha-col ha-col-12">
                 <div class="ha-badge">PRO</div>
                 <h2 class="ha-section-title ha-text-primary">Widgets</h2>
-                <p class="ha-sub-title-sm">Frequently Asked Questions</p>
             </div>
         </div>
 
@@ -87,7 +86,7 @@ defined( 'ABSPATH' ) || die();
             <div class="ha-col ha-col-12">
                 <h2 class="ha-feature-title">Get Pro and Experience all those exciting features and widgets</h2>
                 <p class="ha-sub-title-sm">We have created full-proof documentation for you. It will help you to understand how everything works</p>
-                <a class="ha-btn ha-btn-secondary" target="_blank" rel="noopener" href="">Get Pro</a>
+                <a class="ha-btn ha-btn-secondary" target="_blank" rel="noopener" href="">GET PRO</a>
             </div>
         </div>
 

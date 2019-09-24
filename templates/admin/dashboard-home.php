@@ -65,12 +65,12 @@ defined( 'ABSPATH' ) || die();
             <div class="ha-col ha-col-12">
                 <div class="ha-row">
                     <div class="ha-col ha-col-6 ha-pt-3">
-                        <h4>Can I use these addons in my client project?</h4>
-                        <p class="ha-mb-0">Yes, absolutely, no holds barred. Use it to bring colorful moments to your customers. And don’t forget to check out the pro version which is coming soon with extra features.</p>
+                        <h4 class="f18">Can I use these addons in my client project?</h4>
+                        <p class="ha-mb-0 f16">Yes, absolutely, no holds barred. Use it to bring colorful moments to your customers. And don’t forget to check out the pro version which is coming soon with extra features.</p>
                     </div>
                     <div class="ha-col ha-col-6 ha-pt-3">
-                        <h4>Is there any support policy available for the free users?</h4>
-                        <p class="ha-mb-0">Free or pro version, both comes with excellent support from us. However, pro users will get priority support.</p>
+                        <h4 class="f18">Is there any support policy available for the free users?</h4>
+                        <p class="ha-mb-0 f16">Free or pro version, both comes with excellent support from us. However, pro users will get priority support.</p>
                     </div>
                 </div>
             </div>

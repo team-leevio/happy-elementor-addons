@@ -30,6 +30,7 @@
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1); 
 	text-align: center;
 	text-decoration: none;
+	font-weight: bold;
 	font-size: 13px;
 	line-height: 1;
 	cursor: pointer;
@@ -43,7 +44,7 @@
 	box-shadow: none;
 }
 .ha-dashboard-btn--lg {
-	padding: 18px 40px; 
+	padding: 15px 30px; 
 	font-size: 14px;
 }
 .ha-dashboard-btn--save {
@@ -70,14 +71,14 @@
 .ha-dashboard-tabs__nav-item {
 	display: block;
 	float: left;
-	margin-bottom: 10px; 
 	padding: 15px 40px;
 	border-top: 3px solid #bbb;
-	border-radius: 5px;
+	border-radius: 5px 5px 0 0;
 	background-color: #e8e8e8;
 	color: #888;
 	text-decoration: none;
 	text-transform: uppercase;
+	font-weight: 700; 
 	font-size: 14px;
 }
 .ha-dashboard-tabs__nav-item--pro {
@@ -110,7 +111,7 @@
 .ha-dashboard-tabs__content-item {
 	display: none;
 	padding: 40px;
-	border-radius: 5px;
+	border-radius: 0 0 5px 5px;
 	background-color: #fff;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
 }
@@ -194,8 +195,12 @@
 .ha-dashboard-widgets__item-title {
 	display: inline-block;
 	margin: 0;
-	font-weight: normal; 
+	color: #444;
+	font-weight: 400; 
 	font-size: 13px;
+}
+.ha-dashboard-widgets__item-title > label {
+	font-weight: 700;
 }
 .ha-dashboard-widgets__item-preview {
 	display: inline-block;
@@ -327,9 +332,10 @@
 }
 
 .ha-action-list {
-	margin: -2px;
+	margin: -4px;
 	padding-top: 20px;
-	font-size: 12px;
+	font-weight: bold; 
+	font-size: 14px;
 	opacity: .7;
 }
 
@@ -337,18 +343,18 @@
 	padding-right: 10px; 
 	padding-left: 10px;
 	color: #e8e8e8;
-	font-weight: bold;
 }
 
 .ha-action--btn {
 	display: inline-block;
-	margin: 2px; 
-	padding: 5px 10px;
+	margin: 4px;
+	padding: 5px 10px 4px;
 	outline: none;
 	border: 1px solid;
 	border-radius: 3px;
 	background: transparent;
 	box-shadow: none;
+	font-weight: bold; 
 	line-height: 1;
 	cursor: pointer;
 }
@@ -491,11 +497,12 @@
 }
 
 .ha-btn {
-	display: inline-block; 
+	display: inline-block;
 	padding: .95rem 1.5rem;
 	border-radius: 4px;
 	text-decoration: none;
-	font-size: 15px;
+	font-weight: bold; 
+	font-size: 14px;
 }
 .ha-btn:hover,
 .ha-btn:focus {
@@ -648,16 +655,22 @@
 }
 
 .ha-pro-widget {
-	display: block;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-ms-flex-align: center;
 	margin-bottom: 25px; 
 	padding: 1.5rem 1rem;
 	border-radius: 4px;
 	background: #7c58e5;
 	color: #fff;
-	text-align: left;
 	text-decoration: none;
 	font-weight: bold;
-	font-size: 12px;
+	font-size: 13px;
 }
 .ha-pro-widget:hover,
 .ha-pro-widget:focus {
@@ -665,7 +678,7 @@
 	color: #fff;
 }
 .ha-pro-widget i {
-	padding-right: 5px;
+	padding-right: 15px;
 	font-weight: bold; 
 	font-size: 20px;
 }
@@ -913,7 +926,7 @@
 [data-tooltip]:after {
 	position: absolute;
 	left: 50%;
-	margin-top: -7px;
+	margin-top: -8px;
 	margin-left: -5px;
 	width: 0;
 	border-top: 5px solid #000;
