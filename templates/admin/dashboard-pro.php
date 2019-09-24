@@ -70,7 +70,7 @@ defined( 'ABSPATH' ) || die();
             foreach ( $pro_widgets as $widget ) :
                 $title = isset( $widget['title'] ) ? $widget['title'] : 'Widget Title';
                 $icon = isset( $widget['icon'] ) ? $widget['icon'] : 'hm hm-happyaddons';
-                $demo = isset( $widget['demo'] ) ? $widget['demo'] : 'https://happyaddons.com/';
+                $demo = isset( $widget['demo'] ) ? $widget['demo'] : 'https://happyaddons.com/go/get-pro';
                 ?>
                 <div class="ha-col ha-col-3">
                     <a class="ha-pro-widget" href="<?php echo esc_url( $demo ); ?>" target="_blank" rel="noopener"><i class="<?php echo $icon; ?>"></i> <?php echo $title; ?></a>
@@ -84,9 +84,8 @@ defined( 'ABSPATH' ) || die();
 
         <div class="ha-row ha-py-5 ha-pt-0- ha-align-items-center ha-align-center">
             <div class="ha-col ha-col-12">
-                <h2 class="ha-feature-title">Get Pro and Experience all those exciting features and widgets</h2>
-                <p class="ha-sub-title-sm">We have created full-proof documentation for you. It will help you to understand how everything works</p>
-                <a class="ha-btn ha-btn-secondary" target="_blank" rel="noopener" href="https://happyaddons.com/go/get-pro">GET PRO</a>
+                <h2 class="ha-feature-title ha-mb-3">Get Pro and Experience all those exciting features and widgets</h2>
+                <a style="padding: 20px 40px" class="ha-btn ha-btn-secondary" target="_blank" rel="noopener" href="https://happyaddons.com/go/get-pro">GET PRO</a>
             </div>
         </div>
 

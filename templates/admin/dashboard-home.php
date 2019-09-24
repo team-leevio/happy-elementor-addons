@@ -66,7 +66,7 @@ defined( 'ABSPATH' ) || die();
                 <div class="ha-row">
                     <div class="ha-col ha-col-6 ha-pt-3">
                         <h4 class="f18">Can I use these addons in my client project?</h4>
-                        <p class="ha-mb-0 f16">Yes, absolutely, no holds barred. Use it to bring colorful moments to your customers. And don’t forget to check out the pro version which is coming soon with extra features.</p>
+                        <p class="ha-mb-0 f16">Yes, absolutely, no holds barred. Use it to bring colorful moments to your customers. And don’t forget to check out our premium features.</p>
                     </div>
                     <div class="ha-col ha-col-6 ha-pt-3">
                         <h4 class="f18">Is there any support policy available for the free users?</h4>
@@ -112,7 +112,7 @@ defined( 'ABSPATH' ) || die();
                 <div class="ha-border-box ha-min-height-455">
                     <img class="ha-img-fluid ha-title-icon-size" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/support-call.svg" alt="">
                     <h3 class="ha-feature-title ha-text-secondary">Support And Feedback</h3>
-                    <p class="f16">Feeling like to consult with an expert? Take live Chat support immediately from happpyaddons. We are always ready to help you 24/7.</p>
+                    <p class="f16">Feeling like to consult with an expert? Take live Chat support immediately from <a href="https://happyaddons.com/" target="_blank" rel="noopener">HappyAddons</a>. We are always ready to help you 24/7.</p>
                     <p class="f16 ha-mb-2"><strong>Or if you’re facing technical issues with our plugin, then please create a support ticket</strong></p>
                     <a class="ha-btn ha-btn-secondary" target="_blank" rel="noopener" href="https://happyaddons.com/go/contact-support">Get Support</a>
                 </div>
@@ -121,7 +121,7 @@ defined( 'ABSPATH' ) || die();
                 <div class="ha-border-box ha-min-height-455">
                     <img class="ha-img-fluid ha-title-icon-size" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/newspaper.svg" alt="">
                     <h3 class="ha-feature-title ha-text-primary">Newsletter Subscription</h3>
-                    <p class="f16">To get updated news, current offers, deals, tips please subscribe to our Newsletters.</p>
+                    <p class="f16">To get updated news, current offers, deals, and tips please subscribe to our Newsletters.</p>
                     <a class="ha-btn ha-btn-primary" target="_blank" rel="noopener" href="https://happyaddons.com/go/subscribe">Subscribe Now</a>
                 </div>
             </div>
@@ -150,7 +150,7 @@ defined( 'ABSPATH' ) || die();
                         <div class="ha-col ha-col-8">
                             <h3 class="ha-feature-title ha-text-secondary ha-mt-0">Happy with Our Work?</h3>
                             <p class="f16 ha-mb-2">We are really thankful to you that you have chosen our plugin. If our plugin brings a smile in your face while working, please share your happiness by giving us a 5***** rating in WordPress Org. It will make us happy and won’t take more than 2 mins.</p>
-                            <a class="ha-btn ha-btn-secondary" target="_blank" rel="noopener" href="https://wordpress.org/plugins/happy-elementor-addons/#reviews">I’m Happy to Give You 5*</a>
+                            <a class="ha-btn ha-btn-secondary" target="_blank" rel="noopener" href="https://wordpress.org/support/plugin/happy-elementor-addons/reviews/?filter=5">I’m Happy to Give You 5*</a>
                         </div>
                     </div>
                 </div>
