@@ -44,7 +44,7 @@ class Dashboard {
         if ( ! ha_has_pro() ) {
             $links = array_merge( $links, [
                 sprintf( '<a target="_blank" style="color:#e2498a; font-weight: bold;" href="%s">%s</a>',
-                    'https://happyaddons.com/',
+                    'https://happyaddons.com/go/get-pro',
                     esc_html__( 'Get Pro', 'happy-elementor-addons' )
                 )
             ] );

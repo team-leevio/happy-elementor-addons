@@ -56,7 +56,7 @@ defined( 'ABSPATH' ) || die();
                 <?php endif; ?>
                 <span class="ha-dashboard-widgets__item-icon"><i class="<?php echo $icon; ?>"></i></span>
                 <h3 class="ha-dashboard-widgets__item-title">
-                    <label for="ha-widget-<?php echo $widget_key; ?>"><?php echo $title; ?></label>
+                    <label for="ha-widget-<?php echo $widget_key; ?>" <?php echo $is_placeholder ? 'data-tooltip="Get pro"' : ''; ?>><?php echo $title; ?></label>
                     <?php if ( $demo_url ) : ?>
                         <a href="<?php echo esc_url( $demo_url ); ?>" target="_blank" rel="noopener" data-tooltip="<?php esc_attr_e( 'Click and view demo', 'happy-elementor-addons' ); ?>" class="ha-dashboard-widgets__item-preview"><i aria-hidden="true" class="eicon-device-desktop"></i></a>
                     <?php endif; ?>

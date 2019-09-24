@@ -98,10 +98,6 @@
             $saveButton.attr('disabled', false).text(HappyDashboard.saveChangesLabel);
         });
 
-        $widgetPlaceholder.on('click', 'label, .ha-toggle', function() {
-            $tabsNav.find('#tab-nav-pro').click();
-        });
-
         $('.ha-action--btn').on('click', function(event) {
             event.preventDefault();
 
