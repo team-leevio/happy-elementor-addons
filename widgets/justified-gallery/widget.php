@@ -748,13 +748,13 @@ class Justified_Gallery extends Base {
         $menu = [];
         $items = [];
 
-        foreach ( $gallery as $item ) {
+        foreach ( $gallery as $key => $item ) {
             if ( empty( $item['images'] ) ) {
                 continue;
             }
 
             $images = $item['images'];
-            $filter = 'ha-filter-is--' . sanitize_title_with_dashes( $item['filter'] );
+            $filter = 'ha-is--filter-' . ( $key + 1 );
 
             if ( $filter && ! isset( $data[ $filter ] ) ) {
                 $menu[ $filter ] = $item['filter'];
