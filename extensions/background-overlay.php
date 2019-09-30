@@ -41,7 +41,7 @@ class Background_Overlay {
         $element->start_controls_section(
             '_ha_section_background_overlay',
             [
-                'label' => __( 'Background Overlay', 'elementor' ),
+                'label' => __( 'Background Overlay', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_ADVANCED,
                 'condition' => [
                     '_background_background' => [ 'classic', 'gradient' ],
@@ -54,7 +54,7 @@ class Background_Overlay {
         $element->start_controls_tab(
             '_ha_tab_background_overlay_normal',
             [
-                'label' => __( 'Normal', 'elementor' ),
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
@@ -69,7 +69,7 @@ class Background_Overlay {
         $element->add_control(
             '_ha_background_overlay_opacity',
             [
-                'label' => __( 'Opacity', 'elementor' ),
+                'label' => __( 'Opacity', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => .5,
@@ -100,10 +100,10 @@ class Background_Overlay {
         $element->add_control(
             '_ha_overlay_blend_mode',
             [
-                'label' => __( 'Blend Mode', 'elementor' ),
+                'label' => __( 'Blend Mode', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    '' => __( 'Normal', 'elementor' ),
+                    '' => __( 'Normal', 'happy-elementor-addons' ),
                     'multiply' => 'Multiply',
                     'screen' => 'Screen',
                     'overlay' => 'Overlay',
@@ -125,7 +125,7 @@ class Background_Overlay {
         $element->start_controls_tab(
             '_ha_tab_background_overlay_hover',
             [
-                'label' => __( 'Hover', 'elementor' ),
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
@@ -140,7 +140,7 @@ class Background_Overlay {
         $element->add_control(
             '_ha_background_overlay_hover_opacity',
             [
-                'label' => __( 'Opacity', 'elementor' ),
+                'label' => __( 'Opacity', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => .5,
@@ -171,7 +171,7 @@ class Background_Overlay {
         $element->add_control(
             '_ha_background_overlay_hover_transition',
             [
-                'label' => __( 'Transition Duration', 'elementor' ),
+                'label' => __( 'Transition Duration', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => 0.3,

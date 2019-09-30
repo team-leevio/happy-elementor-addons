@@ -54,7 +54,7 @@ class Group_Control_Foreground extends Group_Control_Base {
         $fields = [];
 
         $fields['color_type'] = [
-            'label' => _x( 'Text Color', 'Background Control', 'elementor' ),
+            'label' => _x( 'Text Color', 'Background Control', 'happy-elementor-addons' ),
             'type' => Controls_Manager::CHOOSE,
             'label_block' => false,
             'render_type' => 'ui',
@@ -72,10 +72,10 @@ class Group_Control_Foreground extends Group_Control_Base {
         ];
 
         $fields['color'] = [
-            'label' => _x( 'Color', 'Background Control', 'elementor' ),
+            'label' => _x( 'Color', 'Background Control', 'happy-elementor-addons' ),
             'type' => Controls_Manager::COLOR,
             'default' => '',
-            'title' => _x( 'Text Color', 'Background Control', 'elementor' ),
+            'title' => _x( 'Text Color', 'Background Control', 'happy-elementor-addons' ),
             'selectors' => [
                 '{{SELECTOR}}' => 'color: {{VALUE}};',
             ],
@@ -85,7 +85,7 @@ class Group_Control_Foreground extends Group_Control_Base {
         ];
 
         $fields['color_stop'] = [
-            'label' => _x( 'Location', 'Background Control', 'elementor' ),
+            'label' => _x( 'Location', 'Background Control', 'happy-elementor-addons' ),
             'type' => Controls_Manager::SLIDER,
             'size_units' => [ '%' ],
             'default' => [
@@ -100,7 +100,7 @@ class Group_Control_Foreground extends Group_Control_Base {
         ];
 
         $fields['color_b'] = [
-            'label' => _x( 'Second Color', 'Background Control', 'elementor' ),
+            'label' => _x( 'Second Color', 'Background Control', 'happy-elementor-addons' ),
             'type' => Controls_Manager::COLOR,
             'default' => '#f2295b',
             'render_type' => 'ui',
@@ -111,7 +111,7 @@ class Group_Control_Foreground extends Group_Control_Base {
         ];
 
         $fields['color_b_stop'] = [
-            'label' => _x( 'Location', 'Background Control', 'elementor' ),
+            'label' => _x( 'Location', 'Background Control', 'happy-elementor-addons' ),
             'type' => Controls_Manager::SLIDER,
             'size_units' => [ '%' ],
             'default' => [
@@ -126,11 +126,11 @@ class Group_Control_Foreground extends Group_Control_Base {
         ];
 
         $fields['gradient_type'] = [
-            'label' => _x( 'Type', 'Background Control', 'elementor' ),
+            'label' => _x( 'Type', 'Background Control', 'happy-elementor-addons' ),
             'type' => Controls_Manager::SELECT,
             'options' => [
-                'linear' => _x( 'Linear', 'Background Control', 'elementor' ),
-                'radial' => _x( 'Radial', 'Background Control', 'elementor' ),
+                'linear' => _x( 'Linear', 'Background Control', 'happy-elementor-addons' ),
+                'radial' => _x( 'Radial', 'Background Control', 'happy-elementor-addons' ),
             ],
             'default' => 'linear',
             'render_type' => 'ui',
@@ -141,7 +141,7 @@ class Group_Control_Foreground extends Group_Control_Base {
         ];
 
         $fields['gradient_angle'] = [
-            'label' => _x( 'Angle', 'Background Control', 'elementor' ),
+            'label' => _x( 'Angle', 'Background Control', 'happy-elementor-addons' ),
             'type' => Controls_Manager::SLIDER,
             'size_units' => [ 'deg' ],
             'default' => [
@@ -164,18 +164,18 @@ class Group_Control_Foreground extends Group_Control_Base {
         ];
 
         $fields['gradient_position'] = [
-            'label' => _x( 'Position', 'Background Control', 'elementor' ),
+            'label' => _x( 'Position', 'Background Control', 'happy-elementor-addons' ),
             'type' => Controls_Manager::SELECT,
             'options' => [
-                'center center' => _x( 'Center Center', 'Background Control', 'elementor' ),
-                'center left' => _x( 'Center Left', 'Background Control', 'elementor' ),
-                'center right' => _x( 'Center Right', 'Background Control', 'elementor' ),
-                'top center' => _x( 'Top Center', 'Background Control', 'elementor' ),
-                'top left' => _x( 'Top Left', 'Background Control', 'elementor' ),
-                'top right' => _x( 'Top Right', 'Background Control', 'elementor' ),
-                'bottom center' => _x( 'Bottom Center', 'Background Control', 'elementor' ),
-                'bottom left' => _x( 'Bottom Left', 'Background Control', 'elementor' ),
-                'bottom right' => _x( 'Bottom Right', 'Background Control', 'elementor' ),
+                'center center' => _x( 'Center Center', 'Background Control', 'happy-elementor-addons' ),
+                'center left' => _x( 'Center Left', 'Background Control', 'happy-elementor-addons' ),
+                'center right' => _x( 'Center Right', 'Background Control', 'happy-elementor-addons' ),
+                'top center' => _x( 'Top Center', 'Background Control', 'happy-elementor-addons' ),
+                'top left' => _x( 'Top Left', 'Background Control', 'happy-elementor-addons' ),
+                'top right' => _x( 'Top Right', 'Background Control', 'happy-elementor-addons' ),
+                'bottom center' => _x( 'Bottom Center', 'Background Control', 'happy-elementor-addons' ),
+                'bottom left' => _x( 'Bottom Left', 'Background Control', 'happy-elementor-addons' ),
+                'bottom right' => _x( 'Bottom Right', 'Background Control', 'happy-elementor-addons' ),
             ],
             'default' => 'center center',
             'selectors' => [
