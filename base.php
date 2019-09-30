@@ -69,6 +69,8 @@ class Base {
         // Register custom controls
         add_action( 'elementor/controls/controls_registered', [$this, 'register_controls'] );
 
+        add_action( 'elementor/finder/categories/init', [ $this, 'register_finder' ] );
+
         Widgets_Manager::init();
         Assets_Manager::init();
         Extensions_Manager::init();
@@ -232,5 +234,18 @@ class Base {
         $foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
 
         \Elementor\Plugin::instance()->controls_manager->add_group_control( $foreground::get_type(), new $foreground() );
+    }
+
+    /**
+     * Register elementor finder
+     *
+     * @param $categories_manager
+     */
+    public function register_finder( $categories_manager ) {
+        // Include the Finder Category class file
+        require( HAPPY_ADDONS_DIR_PATH . 'classes/finder.php' );
+
+        // Add the category
+        $categories_manager->add_category( 'happyaddons', new \Happy_Addons\Elementor\Finder() );
     }
 }
