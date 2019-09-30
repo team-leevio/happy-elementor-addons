@@ -37,13 +37,13 @@ class Finder extends Finder_Category {
             'home' => [
                 'title' => __( 'Home', 'happy-elementor-addons' ),
                 'url' => ha_get_dashboard_link(),
-                'icon' => ' hm hm-home',
+                'icon' => ' hm hm-happyaddons',
                 'keywords' => [ 'happy', 'setting', 'happyaddons', 'dashboard', 'widget', 'control', 'panel' ],
             ],
             'widgets' => [
                 'title' => __( 'Widgets Control Panel', 'happy-elementor-addons' ),
                 'url' => ha_get_dashboard_link( '#tab-content-widgets'),
-                'icon' => ' hm hm-happyaddons',
+                'icon' => ' hm hm-cross-game',
                 'keywords' => [ 'happy', 'setting', 'happyaddons', 'dashboard', 'widget', 'control', 'panel' ],
             ],
         ];
