@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || die();
     <div class="ha-dashboard-panel__header">
         <div class="ha-dashboard-panel__header-content">
             <h2><?php esc_html_e( 'Happy Widgets', 'happy-elementor-addons' ); ?></h2>
-            <p class="f16"><?php _e( 'Here is the list of our all widgets. You can enable or disable widgets from here to optimize loading speed and Elementor editor experience. <strong>After enabling or disabling any widget make sure to click the save button.</strong>', 'happy-elementor-addons' ); ?></p>
+            <p class="f16"><?php _e( 'Here is the list of our all widgets. You can enable or disable widgets from here to optimize loading speed and Elementor editor experience. <strong>After enabling or disabling any widget make sure to click the Save Changes button.</strong>', 'happy-elementor-addons' ); ?></p>
 
             <div class="ha-action-list">
                 <button type="button" class="ha-action--btn" data-filter="*"><?php esc_html_e( 'All', 'happy-elementor-addons' ); ?></button>
