@@ -10,12 +10,6 @@ defined( 'ABSPATH' ) || die();
 
 class Base {
 
-    const MINIMUM_ELEMENTOR_VERSION = '2.5.0';
-
-    const MINIMUM_PHP_VERSION = '5.4';
-
-    const ACTIVATION_FLAG_DB_KEY = 'happyaddons_do_activation_direct';
-
     private static $instance = null;
 
     public $appsero = null;
@@ -23,19 +17,13 @@ class Base {
     public static function instance() {
         if ( is_null( self::$instance ) ) {
             self::$instance = new self();
+            self::$instance->init();
         }
         return self::$instance;
     }
 
     private function __construct() {
         add_action( 'init', [ $this, 'i18n' ] );
-        add_action( 'plugins_loaded', [ $this, 'init' ] );
-
-        register_activation_hook( HAPPY_ADDONS__FILE__, [ $this, 'register_activation_hook' ] );
-    }
-
-    public function register_activation_hook() {
-        add_option( self::ACTIVATION_FLAG_DB_KEY, true );
     }
 
     public function i18n() {
@@ -43,24 +31,6 @@ class Base {
     }
 
     public function init() {
-        // Check if Elementor installed and activated
-        if ( ! did_action( 'elementor/loaded' ) ) {
-            add_action( 'admin_notices', [$this, 'admin_notice_missing_elementor'] );
-            return;
-        }
-
-        // Check for required Elementor version
-        if ( ! version_compare( ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
-            add_action( 'admin_notices', [$this, 'admin_notice_minimum_elementor_version'] );
-            return;
-        }
-
-        // Check for required PHP version
-        if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
-            add_action( 'admin_notices', [$this, 'admin_notice_minimum_php_version'] );
-            return;
-        }
-
         $this->include_files();
 
         // Register custom category
@@ -147,77 +117,6 @@ class Base {
                 'icon' => 'fa fa-smile-o',
             ]
         );
-    }
-
-    /**
-     * Admin notice.
-     *
-     * Warning when the site doesn't have Elementor installed or activated.
-     *
-     * @since 1.0.0
-     * @access public
-     */
-    public function admin_notice_missing_elementor() {
-        if ( isset( $_GET['activate'] ) ) {
-            unset( $_GET['activate'] );
-        }
-
-        $message = sprintf(
-        /* translators: 1: Plugin name 2: Elementor */
-            esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'happy-elementor-addons' ),
-            '<strong>' . esc_html__( 'Happy Elementor Addons', 'happy-elementor-addons' ) . '</strong>',
-            '<strong>' . esc_html__( 'Elementor', 'happy-elementor-addons' ) . '</strong>'
-        );
-
-        printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-    }
-
-    /**
-     * Admin notice
-     *
-     * Warning when the site doesn't have a minimum required Elementor version.
-     *
-     * @since 1.0.0
-     * @access public
-     */
-    public function admin_notice_minimum_elementor_version() {
-        if ( isset( $_GET['activate'] ) ) {
-            unset( $_GET['activate'] );
-        }
-
-        $message = sprintf(
-        /* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
-            esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'happy-elementor-addons' ),
-            '<strong>' . esc_html__( 'Happy Elementor Addons', 'happy-elementor-addons' ) . '</strong>',
-            '<strong>' . esc_html__( 'Elementor', 'happy-elementor-addons' ) . '</strong>',
-            self::MINIMUM_ELEMENTOR_VERSION
-        );
-
-        printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-    }
-
-    /**
-     * Admin notice
-     *
-     * Warning when the site doesn't have a minimum required PHP version.
-     *
-     * @since 1.0.0
-     * @access public
-     */
-    public function admin_notice_minimum_php_version() {
-        if ( isset( $_GET['activate'] ) ) {
-            unset( $_GET['activate'] );
-        }
-
-        $message = sprintf(
-        /* translators: 1: Plugin name 2: PHP 3: Required PHP version */
-            esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'happy-elementor-addons' ),
-            '<strong>' . esc_html__( 'Happy Elementor Addons', 'happy-elementor-addons' ) . '</strong>',
-            '<strong>' . esc_html__( 'PHP', 'happy-elementor-addons' ) . '</strong>',
-            self::MINIMUM_PHP_VERSION
-        );
-
-        printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
     }
 
     /**

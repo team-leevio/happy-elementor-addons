@@ -28,8 +28,8 @@ class Dashboard {
     }
 
     public static function activation_redirect() {
-        if ( get_option( Base::ACTIVATION_FLAG_DB_KEY, false ) && ! isset( $_GET['activate-multi'] ) ) {
-            delete_option( Base::ACTIVATION_FLAG_DB_KEY );
+        if ( get_option( HAPPY_ADDONS_REDIRECTION_FLAG, false ) && ! isset( $_GET['activate-multi'] ) ) {
+            delete_option( HAPPY_ADDONS_REDIRECTION_FLAG );
             die( wp_redirect( ha_get_dashboard_link() ) );
         }
     }

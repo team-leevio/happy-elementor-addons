@@ -39,7 +39,98 @@ define( 'HAPPY_ADDONS__FILE__', __FILE__ );
 define( 'HAPPY_ADDONS_DIR_PATH', plugin_dir_path( HAPPY_ADDONS__FILE__ ) );
 define( 'HAPPY_ADDONS_DIR_URL', plugin_dir_url( HAPPY_ADDONS__FILE__ ) );
 define( 'HAPPY_ADDONS_ASSETS', trailingslashit( HAPPY_ADDONS_DIR_URL . 'assets' ) );
+define( 'HAPPY_ADDONS_REDIRECTION_FLAG', 'happyaddons_do_activation_direct' );
 
-require HAPPY_ADDONS_DIR_PATH . 'base.php';
+define( 'HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION', '2.5.0' );
+define( 'HAPPY_ADDONS_MINIMUM_PHP_VERSION', '5.4' );
 
-\Happy_Addons\Elementor\Base::instance();
+/**
+ * The journey of a thousand miles starts here.
+ *
+ * @return void Some voids are not really void, you have to explore to figure out why not!
+ */
+function ha_let_the_journey_begin() {
+    // Check for required PHP version
+    if ( version_compare( PHP_VERSION, HAPPY_ADDONS_MINIMUM_PHP_VERSION, '<' ) ) {
+        add_action( 'admin_notices', 'ha_required_php_version_missing_notice' );
+        return;
+    }
+
+    // Check if Elementor installed and activated
+    if ( ! did_action( 'elementor/loaded' ) ) {
+        add_action( 'admin_notices', 'ha_elementor_missing_notice' );
+        return;
+    }
+
+    // Check for required Elementor version
+    if ( ! version_compare( ELEMENTOR_VERSION, HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
+        add_action( 'admin_notices', 'ha_required_elementor_version_missing_notice' );
+        return;
+    }
+
+    require HAPPY_ADDONS_DIR_PATH . 'base.php';
+    \Happy_Addons\Elementor\Base::instance();
+}
+
+add_action( 'plugins_loaded', 'ha_let_the_journey_begin' );
+
+/**
+ * Admin notice for required php version
+ *
+ * @return void
+ */
+function ha_required_php_version_missing_notice() {
+    $notice = sprintf(
+        /* translators: 1: Plugin name 2: PHP 3: Required PHP version */
+        esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'happy-elementor-addons' ),
+        '<strong>' . esc_html__( 'Happy Elementor Addons', 'happy-elementor-addons' ) . '</strong>',
+        '<strong>' . esc_html__( 'PHP', 'happy-elementor-addons' ) . '</strong>',
+        HAPPY_ADDONS_MINIMUM_PHP_VERSION
+    );
+
+    printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $notice );
+}
+
+/**
+ * Admin notice for elementor if missing
+ *
+ * @return void
+ */
+function ha_elementor_missing_notice() {
+    $notice = sprintf(
+        /* translators: 1: Plugin name 2: Elementor */
+        esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'happy-elementor-addons' ),
+        '<strong>' . esc_html__( 'Happy Elementor Addons', 'happy-elementor-addons' ) . '</strong>',
+        '<strong>' . esc_html__( 'Elementor', 'happy-elementor-addons' ) . '</strong>'
+    );
+
+    printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $notice );
+}
+
+/**
+ * Admin notice for required elementor version
+ *
+ * @return void
+ */
+function ha_required_elementor_version_missing_notice() {
+    $notice = sprintf(
+        /* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
+        esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'happy-elementor-addons' ),
+        '<strong>' . esc_html__( 'Happy Elementor Addons', 'happy-elementor-addons' ) . '</strong>',
+        '<strong>' . esc_html__( 'Elementor', 'happy-elementor-addons' ) . '</strong>',
+        HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION
+    );
+
+    printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $notice );
+}
+
+/**
+ * Register actions that should run on activation
+ *
+ * @return void
+ */
+function ha_register_activation_hook() {
+    add_option( HAPPY_ADDONS_REDIRECTION_FLAG, true );
+}
+
+register_activation_hook( HAPPY_ADDONS__FILE__, 'ha_register_activation_hook' );
