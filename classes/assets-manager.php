@@ -256,7 +256,7 @@ class Assets_Manager {
             [
                 'editorPanelHomeLinkURL' => ha_get_dashboard_link(),
                 'editorPanelHomeLinkTitle' => __( 'Happy Addons - Home', 'happy-elementor-addons' ),
-                'editorPanelWidgetsLinkURL' => ha_get_dashboard_link( '#tab-content-widgets' ),
+                'editorPanelWidgetsLinkURL' => ha_get_dashboard_link( '#widgets' ),
                 'editorPanelWidgetsLinkTitle' => __( 'Happy Addons - Widgets', 'happy-elementor-addons' ),
             ]
         );

@@ -42,7 +42,7 @@ class Finder extends Finder_Category {
             ],
             'widgets' => [
                 'title' => __( 'Happy Addons - Widgets Control Panel', 'happy-elementor-addons' ),
-                'url' => ha_get_dashboard_link( '#tab-content-widgets'),
+                'url' => ha_get_dashboard_link( '#widgets' ),
                 'icon' => ' hm hm-cross-game',
                 'keywords' => [ 'happy', 'setting', 'happyaddons', 'dashboard', 'widget', 'control', 'panel' ],
             ],
