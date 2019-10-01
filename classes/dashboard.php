@@ -187,7 +187,7 @@ class Dashboard {
                     sprintf( __( '%s - Happy Elementor Addons', 'happy-elementor-addons' ), $data['title'] ),
                     $data['title'],
                     'manage_options',
-                    self::PAGE_SLUG . '#tab-content-' . $key,
+                    self::PAGE_SLUG . '#' . $key,
                     [ __CLASS__, 'render_main' ]
                 );
             }
