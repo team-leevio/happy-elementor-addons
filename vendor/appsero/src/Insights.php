@@ -1,5 +1,5 @@
 <?php
-namespace Appsero;
+namespace Happy_Addons\Appsero;
 
 /**
  * Appsero Insights

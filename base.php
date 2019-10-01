@@ -67,11 +67,11 @@ class Base {
      * @return void
      */
     protected function init_appsero_tracking() {
-        if ( ! class_exists( 'Appsero\Client' ) ) {
+        if ( ! class_exists( 'Happy_Addons\Appsero\Client' ) ) {
             require_once HAPPY_ADDONS_DIR_PATH . 'vendor/appsero/src/Client.php';
         }
 
-        $this->appsero = new \Appsero\Client(
+        $this->appsero = new \Happy_Addons\Appsero\Client(
             '70b96801-94cc-4501-a005-8f9a4e20e152',
             'Happy Elementor Addons',
             HAPPY_ADDONS__FILE__
