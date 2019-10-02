@@ -35,13 +35,13 @@ class Finder extends Finder_Category {
     public function get_category_items( array $options = [] ) {
         $items = [
             'home' => [
-                'title' => __( 'Happy Addons - Home', 'happy-elementor-addons' ),
+                'title' => __( 'HappyAddons - Home', 'happy-elementor-addons' ),
                 'url' => ha_get_dashboard_link(),
                 'icon' => ' hm hm-happyaddons',
                 'keywords' => [ 'happy', 'setting', 'happyaddons', 'dashboard', 'widget', 'control', 'panel' ],
             ],
             'widgets' => [
-                'title' => __( 'Happy Addons - Widgets Control Panel', 'happy-elementor-addons' ),
+                'title' => __( 'HappyAddons - Widgets Control Panel', 'happy-elementor-addons' ),
                 'url' => ha_get_dashboard_link( '#widgets' ),
                 'icon' => ' hm hm-cross-game',
                 'keywords' => [ 'happy', 'setting', 'happyaddons', 'dashboard', 'widget', 'control', 'panel' ],

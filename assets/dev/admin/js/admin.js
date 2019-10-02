@@ -1,6 +1,10 @@
 ;(function($) {
     $(function() {
-        var $clearCache = $('.hajs-clear-cache');
+        var $clearCache = $('.hajs-clear-cache'),
+            $haMenu = $('#toplevel_page_happy-addons .toplevel_page_happy-addons .wp-menu-name'),
+            menuText = $haMenu.text();
+
+        $haMenu.text(menuText.replace(/\s/, ''));
 
         $clearCache.on('click', 'a', function(e) {
             e.preventDefault();

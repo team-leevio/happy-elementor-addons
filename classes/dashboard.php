@@ -21,10 +21,12 @@ class Dashboard {
         add_action( 'admin_menu', [ __CLASS__, 'add_menu' ], 21 );
         add_action( 'admin_menu', [ __CLASS__, 'update_menu_items' ], 99 );
         add_action( 'admin_enqueue_scripts', [ __CLASS__, 'enqueue_scripts' ] );
-        add_action( 'wp_ajax_' . self::WIDGETS_NONCE, [ __CLASS__, 'save_dashboard' ] );
+        add_action( 'wp_ajax_' . self::WIDGETS_NONCE, [ __CLASS__, 'save_data' ] );
 
         add_action( 'admin_init', [ __CLASS__, 'activation_redirect' ] );
         add_filter( 'plugin_action_links_' . plugin_basename( HAPPY_ADDONS__FILE__ ), [ __CLASS__, 'add_action_links' ] );
+
+        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_widgets_data' ] );
     }
 
     public static function activation_redirect() {
@@ -52,7 +54,7 @@ class Dashboard {
         return $links;
     }
 
-    public static function save_dashboard() {
+    public static function save_data() {
         if ( ! current_user_can( 'manage_options' ) ) {
             return;
         }
@@ -65,14 +67,12 @@ class Dashboard {
         $data = [];
         parse_str( $posted_data, $data );
 
-        self::save_widgets_data( $data );
-
-        do_action( 'happyaddons_save_dashboard', $data );
+        do_action( 'happyaddons_save_dashboard_data', $data );
 
         wp_send_json_success();
     }
 
-    private static function save_widgets_data( $data ) {
+    public static function save_widgets_data( $data ) {
         $widgets = ! empty( $data['widgets'] ) ? $data['widgets'] : [];
         $inactive_widgets = array_values( array_diff( array_keys( self::get_real_widgets_map() ), $widgets ) );
         Widgets_Manager::save_inactive_widgets( $inactive_widgets );
