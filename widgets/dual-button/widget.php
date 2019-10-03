@@ -343,7 +343,9 @@ class Dual_Button extends Base {
                     ]
                 ],
                 'toggle' => false,
-                'default' => 'queue',
+                'desktop_default' => 'queue',
+                'tablet_default' => 'queue',
+                'mobile_default' => 'queue',
                 'separator' => 'before',
                 'prefix_class' => 'ha-dual-button-%s-layout-'
             ]
