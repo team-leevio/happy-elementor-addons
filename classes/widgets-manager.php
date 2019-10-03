@@ -160,6 +160,26 @@ class Widgets_Manager {
                 'icon' => 'hm hm-scrolling-image',
                 'is_pro' => true,
             ],
+            'toggle' => [
+                'title' => __( 'Advanced Toggle', 'happy-addons-pro' ),
+                'icon' => 'hm hm-accordion-vertical',
+                'is_pro' => true,
+            ],
+            'accordion' => [
+                'title' => __( 'Advanced Accordion', 'happy-addons-pro' ),
+                'icon' => 'hm hm-accordion-vertical',
+                'is_pro' => true,
+            ],
+            'advanced-pricing-table' => [
+                'title' => __( 'Advanced Pricing Table', 'happy-addons-pro'),
+                'icon' => 'hm hm-file-cabinet',
+                'is_pro' => true,
+            ],
+            'advanced-flip-box' => [
+                'title' => __( 'Advanced Flip Box', 'happy-addons-pro' ),
+                'icon' => 'hm hm-flip-card1',
+                'is_pro' => true,
+            ],
         ];
     }
 
