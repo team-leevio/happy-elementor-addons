@@ -56,9 +56,9 @@ class Dual_Button extends Base {
         $this->start_controls_tabs( '_tabs_buttons' );
 
         $this->start_controls_tab(
-            '_tab_button_left',
+            '_tab_button_primary',
             [
-                'label' => __( 'Left', 'happy-elementor-addons' ),
+                'label' => __( 'Primary', 'happy-elementor-addons' ),
             ]
         );
 
@@ -233,9 +233,9 @@ class Dual_Button extends Base {
         $this->end_controls_tab();
 
         $this->start_controls_tab(
-            '_tab_button_right',
+            '_tab_button_secondary',
             [
-                'label' => __( 'Right', 'happy-elementor-addons' ),
+                'label' => __( 'Secondary', 'happy-elementor-addons' ),
             ]
         );
 
@@ -326,6 +326,29 @@ class Dual_Button extends Base {
         $this->end_controls_tab();
         $this->end_controls_tabs();
 
+        $this->add_responsive_control(
+            'buttons_layout',
+            [
+                'label' => __( 'Layout', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'label_block' => false,
+                'options' => [
+                    'queue' => [
+                        'title' => __( 'Queue', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-navigation-horizontal',
+                    ],
+                    'stack' => [
+                        'title' => __( 'Stack', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-navigation-vertical',
+                    ]
+                ],
+                'toggle' => false,
+                'default' => 'queue',
+                'separator' => 'before',
+                'prefix_class' => 'ha-dual-button-%s-layout-'
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -357,8 +380,10 @@ class Dual_Button extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-dual-btn--left' => 'margin-right: calc({{SIZE}}{{UNIT}}/2);',
-                    '{{WRAPPER}} .ha-dual-btn--right' => 'margin-left: calc({{SIZE}}{{UNIT}}/2);',
+                    '{{WRAPPER}}.ha-dual-button--layout-queue .ha-dual-btn--left' => 'margin-right: calc({{SIZE}}{{UNIT}}/2);',
+                    '{{WRAPPER}}.ha-dual-button--layout-queue .ha-dual-btn--right' => 'margin-left: calc({{SIZE}}{{UNIT}}/2);',
+                    '{{WRAPPER}}.ha-dual-button--layout-stack .ha-dual-btn--left' => 'margin-bottom: calc({{SIZE}}{{UNIT}}/2);',
+                    '{{WRAPPER}}.ha-dual-button--layout-stack .ha-dual-btn--right' => 'margin-top: calc({{SIZE}}{{UNIT}}/2);',
                 ],
             ]
 		);
@@ -381,14 +406,14 @@ class Dual_Button extends Base {
             ]
 		);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'button_align_x',
             [
-                'label' => __( 'Horizontal Alignment', 'happy-elementor-addons' ),
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => false,
                 'options' => [
-                    'flex-start' => [
+                    'left' => [
                         'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-left',
                     ],
@@ -396,43 +421,13 @@ class Dual_Button extends Base {
                         'title' => __( 'Center', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-center',
                     ],
-                    'flex-end' => [
+                    'right' => [
                         'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon' => 'eicon-h-align-right',
                     ]
                 ],
                 'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-widget-container' => 'justify-content: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'button_align_y',
-            [
-                'label' => __( 'Vertical Alignment', 'happy-elementor-addons' ),
-                'description' => __( 'Only works when buttons have different height', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::CHOOSE,
-                'label_block' => false,
-                'options' => [
-                    'flex-start' => [
-                        'title' => __( 'Left', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-v-align-top',
-                    ],
-                    'center' => [
-                        'title' => __( 'Center', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-v-align-middle',
-                    ],
-                    'flex-end' => [
-                        'title' => __( 'Right', 'happy-elementor-addons' ),
-                        'icon' => 'eicon-v-align-bottom',
-                    ]
-                ],
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-widget-container' => 'align-items: {{VALUE}};',
-                ],
+                'prefix_class' => 'ha-dual-button-%s-align-'
             ]
         );
 
@@ -441,7 +436,7 @@ class Dual_Button extends Base {
 		$this->start_controls_section(
 			'_section_style_left_button',
             [
-                'label' => __( 'Left Button', 'happy-elementor-addons' ),
+                'label' => __( 'Primary Button', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
 		);
@@ -505,6 +500,17 @@ class Dual_Button extends Base {
             ]
 		);
 
+        $this->add_control(
+            'left_button_text_color',
+            [
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--left' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
 		$this->add_control(
             'left_button_bg_color',
             [
@@ -512,17 +518,6 @@ class Dual_Button extends Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--left' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
-
-		$this->add_control(
-            'left_button_text_color',
-            [
-                'label' => __( 'Text Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-dual-btn--left' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -537,23 +532,23 @@ class Dual_Button extends Base {
 		);
 
 		$this->add_control(
-            'left_button_hover_bg_color',
-            [
-                'label' => __( 'Background Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-dual-btn--left:hover' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
-
-		$this->add_control(
             'left_button_hover_text_color',
             [
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--left:hover' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'left_button_hover_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--left:hover' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -642,7 +637,7 @@ class Dual_Button extends Base {
         $this->start_controls_section(
             '_section_style_right_button',
             [
-                'label' => __( 'Right Button', 'happy-elementor-addons' ),
+                'label' => __( 'Secondary Button', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -707,23 +702,23 @@ class Dual_Button extends Base {
         );
 
         $this->add_control(
-            'right_button_bg_color',
-            [
-                'label' => __( 'Background Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-dual-btn--right' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_control(
             'right_button_text_color',
             [
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--right' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'right_button_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--right' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -738,23 +733,23 @@ class Dual_Button extends Base {
         );
 
         $this->add_control(
-            'right_button_hover_bg_color',
-            [
-                'label' => __( 'Background Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-dual-btn--right:hover' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_control(
             'right_button_hover_text_color',
             [
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-dual-btn--right:hover' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'right_button_hover_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-dual-btn--right:hover' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -793,12 +788,11 @@ class Dual_Button extends Base {
         }
         $this->add_inline_editing_attributes( 'left_button_text', 'none' );
 
-        $left_button_atts = [];
         if ( ! empty( $settings['left_button_icon'] ) || ! empty( $settings['left_button_selected_icon'] ) ) {
-            $left_button_atts['class'] = [
+            $this->add_render_attribute( 'left_button_icon', 'class', [
                 'ha-dual-btn-icon',
                 'ha-dual-btn-icon--' . esc_attr( $settings['left_button_icon_position'] )
-            ];
+            ] );
         }
 
         // Button connector
@@ -821,28 +815,31 @@ class Dual_Button extends Base {
         }
         $this->add_inline_editing_attributes( 'right_button_text', 'none' );
 
-        $right_button_atts = [];
         if ( ! empty( $settings['right_button_icon'] ) || ! empty( $settings['right_button_selected_icon'] ) ) {
-            $right_button_atts['class'] = [
+            $this->add_render_attribute( 'right_button_icon', 'class', [
                 'ha-dual-btn-icon',
                 'ha-dual-btn-icon--' . esc_attr( $settings['right_button_icon_position'] )
-            ];
+            ] );
         }
         ?>
         <div class="ha-dual-btn-wrapper">
-            <a <?php echo $this->get_render_attribute_string( 'left_button' ); ?>>
+            <a <?php $this->print_render_attribute_string( 'left_button' ); ?>>
                 <?php if ( $settings['left_button_icon_position'] === 'before' && ( ! empty( $settings['left_button_icon'] ) || ! empty( $settings['left_button_selected_icon'] ) ) ) : ?>
-                    <?php ha_render_icon( $settings, 'left_button_icon', 'left_button_selected_icon', $left_button_atts ); ?>
+                    <span <?php $this->print_render_attribute_string( 'left_button_icon' ); ?>>
+                        <?php ha_render_icon( $settings, 'left_button_icon', 'left_button_selected_icon' ); ?>
+                    </span>
                 <?php endif; ?>
                 <?php if ( $settings['left_button_text'] ) : ?>
-                    <span <?php echo $this->get_render_attribute_string( 'left_button_text' ); ?>><?php echo esc_html( $settings['left_button_text'] ); ?></span>
+                    <span <?php $this->print_render_attribute_string( 'left_button_text' ); ?>><?php echo esc_html( $settings['left_button_text'] ); ?></span>
                 <?php endif; ?>
                 <?php if ( $settings['left_button_icon_position'] === 'after' && ( ! empty( $settings['left_button_icon'] ) || ! empty( $settings['left_button_selected_icon'] ) ) ) : ?>
-                    <?php ha_render_icon( $settings, 'left_button_icon', 'left_button_selected_icon', $left_button_atts ); ?>
+                    <span <?php $this->print_render_attribute_string( 'left_button_icon' ); ?>>
+                        <?php ha_render_icon( $settings, 'left_button_icon', 'left_button_selected_icon' ); ?>
+                    </span>
                 <?php endif; ?>
             </a>
             <?php if ( $settings['button_connector_hide'] !== 'yes' ) : ?>
-                <span <?php echo $this->get_render_attribute_string( 'button_connector_text' ); ?>>
+                <span <?php $this->print_render_attribute_string( 'button_connector_text' ); ?>>
                     <?php if ( $settings['button_connector_type'] === 'icon' && ( ! empty( $settings['button_connector_icon'] ) || ! empty( $settings['button_connector_selected_icon'] ) ) ) : ?>
                         <?php ha_render_icon( $settings, 'button_connector_icon', 'button_connector_selected_icon' ); ?>
                     <?php else :
@@ -852,15 +849,19 @@ class Dual_Button extends Base {
             <?php endif; ?>
         </div>
         <div class="ha-dual-btn-wrapper">
-            <a <?php echo $this->get_render_attribute_string( 'right_button' ); ?>>
+            <a <?php $this->print_render_attribute_string( 'right_button' ); ?>>
                 <?php if ( $settings['right_button_icon_position'] === 'before' && ( ! empty( $settings['right_button_icon'] ) || ! empty( $settings['right_button_selected_icon'] ) ) ) : ?>
-                    <?php ha_render_icon( $settings, 'right_button_icon', 'right_button_selected_icon', $right_button_atts ); ?>
+                    <span <?php $this->print_render_attribute_string( 'right_button_icon' ); ?>>
+                        <?php ha_render_icon( $settings, 'right_button_icon', 'right_button_selected_icon' ); ?>
+                    </span>
                 <?php endif; ?>
                 <?php if ( $settings['right_button_text'] ) : ?>
-                    <span <?php echo $this->get_render_attribute_string( 'right_button_text' ); ?>><?php echo esc_html( $settings['right_button_text'] ); ?></span>
+                    <span <?php $this->print_render_attribute_string( 'right_button_text' ); ?>><?php echo esc_html( $settings['right_button_text'] ); ?></span>
                 <?php endif; ?>
                 <?php if ( $settings['right_button_icon_position'] === 'after' && ( ! empty( $settings['right_button_icon'] ) || ! empty( $settings['right_button_selected_icon'] ) ) ) : ?>
-                    <?php ha_render_icon( $settings, 'right_button_icon', 'right_button_selected_icon', $right_button_atts ); ?>
+                    <span <?php $this->print_render_attribute_string( 'right_button_icon' ); ?>>
+                        <?php ha_render_icon( $settings, 'right_button_icon', 'right_button_selected_icon' ); ?>
+                    </span>
                 <?php endif; ?>
             </a>
         </div>
