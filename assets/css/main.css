@@ -13,14 +13,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-card > .elementor-widget-container,
@@ -38,14 +34,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .happy-addon,
@@ -124,14 +116,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-btn {
@@ -239,14 +227,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-card-figure {
@@ -361,14 +345,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-infobox > .elementor-widget-container {
@@ -433,14 +413,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-icon-box > .elementor-widget-container {
@@ -514,14 +490,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-member > .elementor-widget-container {
@@ -592,14 +564,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-review-header {
@@ -733,14 +701,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-image-compare .twentytwenty-container,
@@ -763,14 +727,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-gallery-filter {
@@ -824,14 +784,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-image-grid-item {
@@ -874,14 +830,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-justified-gallery-item,
@@ -945,14 +897,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-slider .slick-vertical .slick-slide,
@@ -1101,14 +1049,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-skills > .elementor-widget-container {
@@ -1198,14 +1142,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-gradient-heading {
@@ -1232,14 +1172,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-logo-grid-item {
@@ -1710,14 +1646,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-dual-button > .elementor-widget-container {
@@ -1807,14 +1739,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-testimonial--basic > .elementor-widget-container {
@@ -1954,14 +1882,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-number-body {
@@ -2017,14 +1941,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-flip-box-container:after {
@@ -2267,14 +2187,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-pricing-table > .elementor-widget-container {
@@ -2401,14 +2317,10 @@
 	overflow-wrap: break-word;
 }
 
-.ha-logo-grid-wrapper:before,
 .ha-logo-grid-wrapper:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-logo-grid-wrapper:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-step-flow > .elementor-widget-container {

@@ -1,17 +1,9 @@
-.ha-dashboard-tabs__nav:before,
-.ha-dashboard-tabs__content-item:before,
-.ha-dashboard-widgets:before,
 .ha-dashboard-tabs__nav:after,
 .ha-dashboard-tabs__content-item:after,
 .ha-dashboard-widgets:after {
-	display: table; 
-	content: " ";
-}
-
-.ha-dashboard-tabs__nav:after,
-.ha-dashboard-tabs__content-item:after,
-.ha-dashboard-widgets:after {
-	clear: both;
+	display: block;
+	clear: both; 
+	content: "";
 }
 
 .ha-dashboard {
