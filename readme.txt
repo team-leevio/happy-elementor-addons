@@ -1,12 +1,12 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.0.0
+Version: 2.1.0
 Author: HappyMonster
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, obiplabon, sourav926, wedevs
 Tags: elementor, elementor addon, elementor widget, essential widget, elements
 Requires at least: 4.7
-Tested up to: 5.2.2
+Tested up to: 5.2.3
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -140,9 +140,20 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 == Changelog ==
 
+= 2.1.0 - 3 October 2019 =
+
+- New: Widgets control panel link in Elementor Finder
+- New: Widgets control panel link in Elementor editor panel
+- Update: Added Dual Button layout (Stack and Queue layout)
+- Fix: Image Grid and Justified Gallery filter issue for non english languages
+- Fix: Justified gallery image alt attribute missing issue
+- Fix: Dual Button responsive issue - using layout feature
+- Fix: Dual Button default hover text color
+- Fix: Widgets Control Panel navigation jump issue
+
 = 2.0.0 - 24 September 2019 =
 
-- New: Dashboard
+- New: Dashboard - Widgets Control Panel
 - New: Image popup support for Justified Grid
 - New: Image popup support for Image Grid
 - Update: Improved HTML tag support for description and title fields
