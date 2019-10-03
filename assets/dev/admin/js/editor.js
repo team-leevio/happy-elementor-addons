@@ -119,6 +119,24 @@
         text = div.textContent || div.innerText || text;
 
         return text.length > 20 ? text.substring(0, 20) + "..." : text;
-    }
+    };
+
+    elementor.modules.layouts.panel.pages.menu.Menu.addItem({
+        name: 'happyaddons-home',
+        icon: 'hm hm-happyaddons',
+        title: HappyAddonsEditor.editorPanelHomeLinkTitle,
+        type: 'link',
+        link: HappyAddonsEditor.editorPanelHomeLinkURL,
+        newTab: true
+    }, 'settings');
+
+    elementor.modules.layouts.panel.pages.menu.Menu.addItem({
+        name: 'happyaddons-widgets',
+        icon: 'hm hm-cross-game',
+        title: HappyAddonsEditor.editorPanelWidgetsLinkTitle,
+        type: 'link',
+        link: HappyAddonsEditor.editorPanelWidgetsLinkURL,
+        newTab: true
+    }, 'settings');
 
 }(elementor, jQuery, window));

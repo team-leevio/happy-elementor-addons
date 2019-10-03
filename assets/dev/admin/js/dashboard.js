@@ -10,19 +10,16 @@
             $sidebarSubmenu = $sidebarMenuWrapper.find('.wp-submenu');
 
         $tabsNav.on('click', '.ha-dashboard-tabs__nav-item', function(event) {
-            var $currentTab = $(event.currentTarget);
+            var $currentTab = $(event.currentTarget),
+                tabTargetHash = event.currentTarget.hash,
+                tabIdSelector = '#tab-content-' + tabTargetHash.substring(1),
+                $currentTabContent = $tabsContent.find(tabIdSelector);
 
             if ( $currentTab.is( '.nav-item-is--link' ) ) {
                 return true;
             }
 
             event.preventDefault();
-
-            var $currentTab = $(event.currentTarget),
-                tabContentId = event.currentTarget.hash,
-                $currentTabContent = $tabsContent.find(tabContentId);
-
-            window.location.hash = tabContentId;
 
             $currentTab
                 .addClass('tab--is-active')
@@ -34,8 +31,9 @@
                 .siblings()
                 .removeClass('tab--is-active');
 
+            window.location.hash = tabTargetHash;
             $sidebarSubmenu.find('a').filter(function(i, a) {
-                return tabContentId === a.hash;
+                return tabTargetHash === a.hash;
             }).parent().addClass('current').siblings().removeClass('current');
         });
 
@@ -62,7 +60,6 @@
 
         var $dashboardForm = $('#ha-dashboard-form'),
             $widgetsList = $dashboardForm.find('.ha-dashboard-widgets'),
-            $widgetPlaceholder = $widgetsList.find('.item--is-placeholder'),
             $saveButton = $dashboardForm.find('.ha-dashboard-btn--save');
 
         $dashboardForm.on('submit', function(event) {
@@ -96,10 +93,6 @@
 
         $dashboardForm.on('change', ':checkbox, :radio', function() {
             $saveButton.attr('disabled', false).text(HappyDashboard.saveChangesLabel);
-        });
-
-        $widgetPlaceholder.on('click', 'label, .ha-toggle', function() {
-            $tabsNav.find('#tab-nav-pro').click();
         });
 
         $('.ha-action--btn').on('click', function(event) {
@@ -138,6 +131,22 @@
                 }
                 $toggle.trigger('change');
             }
+        });
+
+
+        $('.ha-feature-sub-title-a').magnificPopup({
+            disableOn: 700,
+            type: 'iframe',
+            mainClass: 'mfp-fade',
+            removalDelay: 160,
+            preloader: false,
+
+            fixedContentPos: false
+        });
+
+        $('.btn-how-to-contribute').on('click', function(event) {
+            event.preventDefault();
+            $(this).next().show();
         });
     });
 }(jQuery, window.HappyDashboard));

@@ -21,15 +21,17 @@ class Dashboard {
         add_action( 'admin_menu', [ __CLASS__, 'add_menu' ], 21 );
         add_action( 'admin_menu', [ __CLASS__, 'update_menu_items' ], 99 );
         add_action( 'admin_enqueue_scripts', [ __CLASS__, 'enqueue_scripts' ] );
-        add_action( 'wp_ajax_' . self::WIDGETS_NONCE, [ __CLASS__, 'save_dashboard' ] );
+        add_action( 'wp_ajax_' . self::WIDGETS_NONCE, [ __CLASS__, 'save_data' ] );
 
         add_action( 'admin_init', [ __CLASS__, 'activation_redirect' ] );
         add_filter( 'plugin_action_links_' . plugin_basename( HAPPY_ADDONS__FILE__ ), [ __CLASS__, 'add_action_links' ] );
+
+        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_widgets_data' ] );
     }
 
     public static function activation_redirect() {
-        if ( get_option( Base::ACTIVATION_FLAG_DB_KEY, false ) && ! isset( $_GET['activate-multi'] ) ) {
-            delete_option( Base::ACTIVATION_FLAG_DB_KEY );
+        if ( get_option( HAPPY_ADDONS_REDIRECTION_FLAG, false ) && ! isset( $_GET['activate-multi'] ) ) {
+            delete_option( HAPPY_ADDONS_REDIRECTION_FLAG );
             die( wp_redirect( ha_get_dashboard_link() ) );
         }
     }
@@ -44,7 +46,7 @@ class Dashboard {
         if ( ! ha_has_pro() ) {
             $links = array_merge( $links, [
                 sprintf( '<a target="_blank" style="color:#e2498a; font-weight: bold;" href="%s">%s</a>',
-                    'https://happyaddons.com/',
+                    'https://happyaddons.com/go/get-pro',
                     esc_html__( 'Get Pro', 'happy-elementor-addons' )
                 )
             ] );
@@ -52,7 +54,7 @@ class Dashboard {
         return $links;
     }
 
-    public static function save_dashboard() {
+    public static function save_data() {
         if ( ! current_user_can( 'manage_options' ) ) {
             return;
         }
@@ -65,14 +67,12 @@ class Dashboard {
         $data = [];
         parse_str( $posted_data, $data );
 
-        self::save_widgets_data( $data );
-
-        do_action( 'happyaddons_save_dashboard', $data );
+        do_action( 'happyaddons_save_dashboard_data', $data );
 
         wp_send_json_success();
     }
 
-    private static function save_widgets_data( $data ) {
+    public static function save_widgets_data( $data ) {
         $widgets = ! empty( $data['widgets'] ) ? $data['widgets'] : [];
         $inactive_widgets = array_values( array_diff( array_keys( self::get_real_widgets_map() ), $widgets ) );
         Widgets_Manager::save_inactive_widgets( $inactive_widgets );
@@ -91,10 +91,35 @@ class Dashboard {
         );
 
         wp_enqueue_style(
+            'google-nunito-font',
+            HAPPY_ADDONS_ASSETS . 'fonts/nunito/stylesheet.css',
+            null,
+            HAPPY_ADDONS_VERSION
+        );
+
+        wp_enqueue_style(
             'happy-elementor-addons-dashboard',
             HAPPY_ADDONS_ASSETS . 'admin/css/dashboard.min.css',
             null,
             HAPPY_ADDONS_VERSION
+        );
+
+        /**
+         * Magnific popup
+         */
+        wp_enqueue_style(
+            'magnific-popup',
+            HAPPY_ADDONS_ASSETS . 'vendor/magnific-popup/magnific-popup.css',
+            null,
+            HAPPY_ADDONS_VERSION
+        );
+
+        wp_enqueue_script(
+            'jquery-magnific-popup',
+            HAPPY_ADDONS_ASSETS . 'vendor/magnific-popup/jquery.magnific-popup.min.js',
+            null,
+            HAPPY_ADDONS_VERSION,
+            true
         );
 
         wp_enqueue_script(
@@ -162,7 +187,7 @@ class Dashboard {
                     sprintf( __( '%s - Happy Elementor Addons', 'happy-elementor-addons' ), $data['title'] ),
                     $data['title'],
                     'manage_options',
-                    self::PAGE_SLUG . '#tab-content-' . $key,
+                    self::PAGE_SLUG . '#' . $key,
                     [ __CLASS__, 'render_main' ]
                 );
             }

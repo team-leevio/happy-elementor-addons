@@ -524,7 +524,7 @@ class Step_Flow extends Base {
         $this->add_control(
             'direction_style',
             [
-                'label' => __( 'Style', 'elementor' ),
+                'label' => __( 'Style', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
                     'solid' => __( 'Solid', 'happy-elementor-addons' ),

@@ -27,7 +27,7 @@ defined( 'ABSPATH' ) || die();
                     if ( ! empty( $data['href'] ) ) {
                         $href = esc_url( $data['href'] );
                     } else {
-                        $href = '#tab-content-' . $slug;
+                        $href = '#' . $slug;
                     }
 
                     printf( '<a href="%1$s" aria-controls="tab-content-%2$s" id="tab-nav-%2$s" class="%3$s" role="tab">%4$s</a>',

@@ -1,5 +1,5 @@
 <?php
-namespace Appsero;
+namespace Happy_Addons\Appsero;
 
 /**
  * Appsero Insights
@@ -49,7 +49,7 @@ class Insights {
             $client = new Client( $client, $name, $file );
         }
 
-        if ( is_object( $client ) && is_a( $client, 'Appsero\Client' ) ) {
+        if ( is_object( $client ) && is_a( $client, 'Happy_Addons\Appsero\Client' ) ) {
             $this->client = $client;
         }
     }
@@ -276,7 +276,7 @@ class Insights {
      *
      * @return bool
      */
-    private function tracking_allowed() {
+    public function tracking_allowed() {
         $allow_tracking = get_option( $this->client->slug . '_allow_tracking', 'no' );
 
         return $allow_tracking == 'yes';
@@ -296,7 +296,7 @@ class Insights {
      *
      * @return boolean
      */
-    private function notice_dismissed() {
+    public function notice_dismissed() {
         $hide_notice = get_option( $this->client->slug . '_tracking_notice', 'no' );
 
         if ( 'hide' == $hide_notice ) {

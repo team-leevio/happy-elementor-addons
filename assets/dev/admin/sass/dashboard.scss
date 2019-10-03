@@ -4,6 +4,7 @@
 .ha-dashboard {
   &, * {
     box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
   }
 
   padding-top: 20px;
@@ -14,6 +15,7 @@
     padding: 15px 25px;
     border-radius: 5px;
     font-size: 13px;
+    font-weight: bold;
     line-height: 1;
     border: 0;
     text-align: center;
@@ -30,7 +32,7 @@
 
     &--lg {
       font-size: 14px;
-      padding: 18px 40px;
+      padding: 15px 30px;
     }
 
     &--save {
@@ -70,11 +72,11 @@
         text-decoration: none;
         text-transform: uppercase;
         font-size: 14px;
-        border-radius: 5px;
+        border-radius: 5px 5px 0 0;
         background-color: #e8e8e8;
         color: #888;
         border-top: 3px solid #bbb;
-        margin-bottom: 10px;
+        font-weight: 700;
 
         &--pro {
           background-color: $secondary-color;
@@ -116,7 +118,7 @@
         display: none;
         padding: 40px;
         background-color: #fff;
-        border-radius: 5px;
+        border-radius: 0 0 5px 5px;
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
 
         &.tab--is-active {
@@ -168,6 +170,7 @@
       padding: 30px 20px;
       border: 1px solid #e8e8e8;
       border-radius: 5px;
+      overflow: hidden;
 
       @media (min-width: 650px) {
         width: calc( 50% - 20px );
@@ -203,7 +206,12 @@
         display: inline-block;
         margin: 0;
         font-size: 13px;
-        font-weight: normal;
+        color: #444;
+        font-weight: 400;
+
+        > label {
+          font-weight: 700;
+        }
       }
 
       &-preview {
@@ -212,11 +220,6 @@
         color: #c2cbd2;
         transition: all .2s;
         margin-left: 5px;
-
-        > i {
-          position: relative;
-          top: 2px;
-        }
 
         &:hover,
         &:focus,
@@ -228,15 +231,18 @@
 
       &-badge {
         position: absolute;
-        top: -1px;
-        left: -1px;
+        top: -2px;
+        left: -18px;
+        padding: 6px 8px 3px;
+        width: 50px;
+        text-align: center;
         background-color: $secondary-color;
-        border-radius: 5px 0;
-        padding: 4px 8px;
         color: #fff;
         line-height: 1;
-        font-size: 8px;
+        font-size: 7px;
+        font-weight: bold;
         text-transform: uppercase;
+        transform: rotate(-45deg);
       }
 
       &-toggle {
@@ -331,15 +337,15 @@
 }
 
 .ha-action-list {
-  margin: -2px;
+  margin: -4px;
   padding-top: 20px;
-  font-size: 12px;
+  font-size: 14px;
   opacity: .7;
+  font-weight: bold;
 }
 
 .ha-action--divider {
   color: #e8e8e8;
-  font-weight: bold;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -353,8 +359,9 @@
   cursor: pointer;
   line-height: 1;
   display: inline-block;
-  padding: 5px 10px;
-  margin: 2px;
+  padding: 5px 10px 4px;
+  margin: 4px;
+  font-weight: bold;
 
   &[data-filter="*"] {
     color: #666;
@@ -422,10 +429,29 @@
   &__content {
     width: 100%;
     max-width: 1000px;
+    padding-left: 15px;
+    padding-right: 15px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    margin-right: 50px;
+    width: 150px;
+    height: auto;
+    position: relative;
+    top: -8px;
+  }
+
+  &__divider {
+    width: 4px;
+    background-color: #fff;
+    border-radius: 10px;
+    height: 60px;
   }
 
   h2 {
@@ -433,8 +459,8 @@
     font-size: 28px;
     margin: 0;
     line-height: 1.1;
-    border-left: 5px solid #fff;
-    padding-left: 75px;
+    padding-left: 50px;
+    float: left;
 
     > span {
       font-weight: 400;
@@ -446,4 +472,434 @@
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+
+.ha-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  .ha-col {
+
+  }
+
+}
+
+.ha-feature-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.ha-feature-sub-title-a {
+  text-decoration: none;
+  color: #242424;
+  &:hover{
+    color: #e2498a;
+  }
+}
+
+.ha-feature-sub-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.ha-btn {
+  padding: .95rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  display: inline-block;
+  font-weight: bold;
+  &:hover, &:focus{
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.ha-btn-primary{
+  background: #5e3bc4;
+  color: #fff;
+  &:hover, &:focus{
+    color: #fff;
+    background: darken(#5e3bc4, 10%);
+  }
+}
+
+.ha-btn-secondary{
+  background: #e2498a;
+  color: #fff;
+  &:hover, &:focus{
+    color: #fff;
+    background: darken(#e2498a, 10%);
+  }
+}
+
+.ha-text-primary{
+  color: #5e3bc4;
+}
+.ha-text-secondary{
+  color: #e2498a;
+}
+
+.btn-more {
+  color: #e2498a;
+  font-size: 16px;
+  text-decoration: none;
+  &:hover{
+    color: #5e3bc4;
+  }
+}
+
+.ha-btn-view {
+  color: #835ef1;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.ha-cta {
+  padding: 2.5rem 3rem;
+  background: #e2498a;
+  background-image: linear-gradient(130deg, #e05da4 0%, #7249cf 100%);
+  color: #fff;
+  .ha-feature-title {
+    color: #fff;
+    margin-top: 0;
+  }
+  p{
+    color: #daacdd;
+    margin-bottom: 1rem;
+  }
+  .link{
+    font-size: 16px;
+    color: #fff;
+    text-decoration: underline;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  .btn-contribute{
+    background: #fff;
+    padding: .95rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 15px;
+    display: inline-block;
+    color: #7f4bca;
+    &:hover{
+      background: #e2498a;
+      color: #fff;
+    }
+  }
+}
+
+.ha-section-title {
+  font-size: 48px;
+  margin: 0;
+  line-height: 1;
+}
+
+.ha-badge {
+  padding: .6rem 1rem;
+  background: #e2498a;
+  background-image: linear-gradient(130deg, #e05da4 0%, #7249cf 100%);
+  color: #fff;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: .3rem;
+  border-radius: 5px;
+}
+
+.ha-sub-title-sm {
+  font-size: 16px;
+  margin: .3rem 0 0 0;
+}
+
+.ha-border-box {
+  border: 1px solid #ececec;
+  border-radius: 5px;
+  box-shadow: 10px 0 20px rgba(0,0,0, .05);
+  padding: 3rem;
+}
+
+.ha-media {
+  display: flex;
+  align-items: flex-start;
+  img{
+    width: 180px;
+    height: auto;
+  }
+  h3{
+    a{
+      color: #242424;
+      text-decoration: none;
+      line-height: 1.4;
+      &:hover{
+        color: #e2498a;
+      }
+    }
+  }
+  .ha-date{
+    color: #8c8c8c;
+  }
+}
+
+.ha-media-body {
+  flex: 1
+}
+
+.ha-pro-widget {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  background: #7c58e5;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 25px;
+  &:hover, &:focus{
+    background: #df4b89;
+    color: #fff;
+  }
+  i{
+    padding-right: 15px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+.ha-dashboard {
+  //utility
+  .f18 {
+    font-size: 18px;
+  }
+
+  .f16 {
+    font-size: 16px;
+  }
+
+  .ha-py-5 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .ha-pt-0 {
+    padding-top: 0;
+  }
+
+  .ha-pb-0 {
+    padding-bottom: 0;
+  }
+
+  .ha-pb-3 {
+    margin-bottom: 3rem;
+  }
+
+  .ha-pt-2 {
+    padding-top: 2rem;
+  }
+
+  .ha-pt-3 {
+    padding-top: 3rem;
+  }
+
+  .ha-pr-2 {
+    padding-right: 2rem;
+  }
+
+  .ha-pl-2 {
+    padding-left: 2rem;
+  }
+
+  .ha-mt-0 {
+    margin-top: 0;
+  }
+  .ha-mb-0 {
+    margin-bottom: 0;
+  }
+
+  .ha-mb-2 {
+    margin-bottom: 2rem;
+  }
+
+  .ha-mb-3 {
+    margin-bottom: 3rem;
+  }
+
+  .ha-mr-3 {
+    margin-right: 1.5rem;
+  }
+
+  p {
+    margin-bottom: 2.5rem;
+  }
+
+  a, a:hover {
+    transition: all .3s;
+  }
+
+  .ha-rounded {
+    border-radius: 5px;
+  }
+
+  .ha-align-center {
+    text-align: center;
+  }
+
+  .ha-align-right {
+    text-align: right;
+  }
+
+  .ha-img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .ha-align-items-center {
+    align-items: center !important;
+  }
+
+  .ha-align-items-end {
+    align-items: flex-end !important;
+  }
+
+  .ha-min-height-455 {
+    min-height: 455px;
+  }
+
+  .ha-title-icon-size {
+    width: 48px;
+    height: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .ha-col {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .ha-col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .ha-col-11 {
+    flex: 0 0 91.666667%;
+    max-width: 91.666667%;
+  }
+  .ha-col-10 {
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+  }
+  .ha-col-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+
+  .ha-col-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+
+  .ha-col-7 {
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+  }
+
+  .ha-col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .ha-col-5 {
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+  }
+
+  .ha-col-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+
+  .ha-col-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .ha-col-2 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+  }
+
+  .ha-col-1 {
+    flex: 0 0 8.333333%;
+    max-width: 8.333333%;
+  }
+}
+
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px;
+  width: 140px;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: hsla(0, 0%, 20%, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+  position: absolute;
+  left: 50%;
+  margin-top: -8px;
+  margin-left: -5px;
+  width: 0;
+  border-top: 5px solid #000;
+  border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  opacity: 1;
 }

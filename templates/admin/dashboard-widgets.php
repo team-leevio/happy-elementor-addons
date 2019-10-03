@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || die();
     <div class="ha-dashboard-panel__header">
         <div class="ha-dashboard-panel__header-content">
             <h2><?php esc_html_e( 'Happy Widgets', 'happy-elementor-addons' ); ?></h2>
-            <p><?php esc_html_e( 'Here is the list of our all widgets. You can enable or disable widgets from here to optimize loading speed and Elementor editor experience.', 'happy-elementor-addons' ); ?></p>
+            <p class="f16"><?php _e( 'Here is the list of our all widgets. You can enable or disable widgets from here to optimize loading speed and Elementor editor experience. <strong>After enabling or disabling any widget make sure to click the Save Changes button.</strong>', 'happy-elementor-addons' ); ?></p>
 
             <div class="ha-action-list">
                 <button type="button" class="ha-action--btn" data-filter="*"><?php esc_html_e( 'All', 'happy-elementor-addons' ); ?></button>
@@ -56,9 +56,9 @@ defined( 'ABSPATH' ) || die();
                 <?php endif; ?>
                 <span class="ha-dashboard-widgets__item-icon"><i class="<?php echo $icon; ?>"></i></span>
                 <h3 class="ha-dashboard-widgets__item-title">
-                    <label for="ha-widget-<?php echo $widget_key; ?>"><?php echo $title; ?></label>
+                    <label for="ha-widget-<?php echo $widget_key; ?>" <?php echo $is_placeholder ? 'data-tooltip="Get pro"' : ''; ?>><?php echo $title; ?></label>
                     <?php if ( $demo_url ) : ?>
-                        <a href="<?php echo esc_url( $demo_url ); ?>" target="_blank" rel="noopener" class="ha-dashboard-widgets__item-preview"><i aria-hidden="true" class="eicon-device-desktop"></i></a>
+                        <a href="<?php echo esc_url( $demo_url ); ?>" target="_blank" rel="noopener" data-tooltip="<?php esc_attr_e( 'Click and view demo', 'happy-elementor-addons' ); ?>" class="ha-dashboard-widgets__item-preview"><i aria-hidden="true" class="eicon-device-desktop"></i></a>
                     <?php endif; ?>
                 </h3>
                 <div class="ha-dashboard-widgets__item-toggle ha-toggle">

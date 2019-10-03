@@ -19,7 +19,7 @@ class Icons_Manager {
             'displayPrefix' => 'hm',
             'labelIcon' => 'hm hm-happyaddons',
             'ver' => HAPPY_ADDONS_VERSION,
-            'fetchJson' => HAPPY_ADDONS_ASSETS . 'fonts/happy-icons.js',
+            'fetchJson' => HAPPY_ADDONS_ASSETS . 'fonts/happy-icons.js?v=' . HAPPY_ADDONS_VERSION,
             'native' => false,
         ];
         return $tabs;

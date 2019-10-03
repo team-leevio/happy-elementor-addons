@@ -249,6 +249,17 @@ class Assets_Manager {
             HAPPY_ADDONS_VERSION,
             true
         );
+
+        wp_localize_script(
+            'happy-elementor-addons-editor',
+            'HappyAddonsEditor',
+            [
+                'editorPanelHomeLinkURL' => ha_get_dashboard_link(),
+                'editorPanelHomeLinkTitle' => __( 'HappyAddons - Home', 'happy-elementor-addons' ),
+                'editorPanelWidgetsLinkURL' => ha_get_dashboard_link( '#widgets' ),
+                'editorPanelWidgetsLinkTitle' => __( 'HappyAddons - Widgets', 'happy-elementor-addons' ),
+            ]
+        );
     }
 
     public static function enqueue_preview_style() {

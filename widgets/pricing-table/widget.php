@@ -175,9 +175,9 @@ class Pricing_Table extends Base {
         $repeater->add_control(
             'text',
             [
-                'label' => __( 'Text', 'elementor-pro' ),
+                'label' => __( 'Text', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Exciting Feature', 'elementor-pro' ),
+                'default' => __( 'Exciting Feature', 'happy-elementor-addons' ),
                 'dynamic' => [
                     'active' => true
                 ]
@@ -188,7 +188,7 @@ class Pricing_Table extends Base {
             $repeater->add_control(
                 'icon',
                 [
-                    'label' => __( 'Icon', 'elementor-pro' ),
+                    'label' => __( 'Icon', 'happy-elementor-addons' ),
                     'type' => Controls_Manager::ICON,
                     'label_block' => false,
                     'options' => ha_get_happy_icons(),
@@ -203,7 +203,7 @@ class Pricing_Table extends Base {
             $repeater->add_control(
                 'selected_icon',
                 [
-                    'label' => __( 'Icon', 'elementor-pro' ),
+                    'label' => __( 'Icon', 'happy-elementor-addons' ),
                     'type' => Controls_Manager::ICONS,
                     'fa4compatibility' => 'icon',
                     'default' => [
@@ -231,19 +231,19 @@ class Pricing_Table extends Base {
                 'show_label' => false,
                 'default' => [
                     [
-                        'text' => __( 'Standard Feature', 'elementor-pro' ),
+                        'text' => __( 'Standard Feature', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-check',
                     ],
                     [
-                        'text' => __( 'Another Great Feature', 'elementor-pro' ),
+                        'text' => __( 'Another Great Feature', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-check',
                     ],
                     [
-                        'text' => __( 'Obsolete Feature', 'elementor-pro' ),
+                        'text' => __( 'Obsolete Feature', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-close',
                     ],
                     [
-                        'text' => __( 'Exciting Feature', 'elementor-pro' ),
+                        'text' => __( 'Exciting Feature', 'happy-elementor-addons' ),
                         'icon' => 'fa fa-check',
                     ],
                 ],

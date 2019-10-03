@@ -748,13 +748,13 @@ class Justified_Gallery extends Base {
         $menu = [];
         $items = [];
 
-        foreach ( $gallery as $item ) {
+        foreach ( $gallery as $key => $item ) {
             if ( empty( $item['images'] ) ) {
                 continue;
             }
 
             $images = $item['images'];
-            $filter = 'ha-filter-is--' . sanitize_title_with_dashes( $item['filter'] );
+            $filter = 'ha-is--filter-' . ( $key + 1 );
 
             if ( $filter && ! isset( $data[ $filter ] ) ) {
                 $menu[ $filter ] = $item['filter'];
@@ -811,11 +811,12 @@ class Justified_Gallery extends Base {
 
         <div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
             <?php foreach ( $gallery['items'] as $id => $filters ) :
-                $caption = $settings['show_caption'] ? esc_attr( wp_get_attachment_caption( $id ) ) : '';
+                $alt = esc_attr( wp_get_attachment_caption( $id ) );
+                $caption = $settings['show_caption'] ? $alt  : '';
                 $popup = $has_popup ? sprintf( 'href="%s"', esc_url( wp_get_attachment_image_url( $id, $settings['popup_image_size'] ) ) ) : '';
                 ?>
-                <<?php echo $item_html_tag; ?> <?php echo $popup; ?> class="ha-justified-gallery-item ha-js-popup <?php echo esc_attr( implode( ' ', $filters ) ); ?>">
-                    <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'alt' => $caption, 'class' => 'elementor-animation-' . esc_attr( $settings['image_hover_animation'] ) ] ); ?>
+                <<?php echo $item_html_tag; ?> <?php echo $popup; ?> class="ha-justified-gallery-item ha-js-popup <?php echo esc_attr( implode( ' ', $filters ) ); ?>" title="<?php echo $caption; ?>">
+                    <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'alt' => $alt, 'class' => 'elementor-animation-' . esc_attr( $settings['image_hover_animation'] ) ] ); ?>
                 </<?php echo $item_html_tag; ?>>
             <?php endforeach; ?>
         </div>
