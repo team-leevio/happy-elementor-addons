@@ -125,7 +125,8 @@ class Image_Grid extends Base {
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
-                'description' => __( 'Enable to display filter menu.', 'happy-elementor-addons' )
+                'description' => __( 'Enable to display filter menu.', 'happy-elementor-addons' ),
+                'style_transfer' => true,
             ]
         );
 
@@ -141,7 +142,8 @@ class Image_Grid extends Base {
                 'description' => __( 'Enable to display "All" filter in filter menu.', 'happy-elementor-addons' ),
                 'condition' => [
                     'show_filter' => 'yes'
-                ]
+                ],
+                'style_transfer' => true,
             ]
         );
 
@@ -178,7 +180,8 @@ class Image_Grid extends Base {
                 'prefix_class' => 'ha-image-grid--col-',
                 'selectors' => [
                     '{{WRAPPER}} .ha-image-grid-item' => 'width: calc(100% / {{VALUE}});',
-                ]
+                ],
+                'style_transfer' => true,
             ]
         );
 
@@ -196,6 +199,7 @@ class Image_Grid extends Base {
                 'render' => 'none',
                 'frontend_available' => true,
                 'prefix_class' => 'ha-image-grid--layout-',
+                'style_transfer' => true,
             ]
         );
 
@@ -734,15 +738,7 @@ class Image_Grid extends Base {
 
                 <<?php echo $item_html_tag; ?> <?php echo $popup; ?> class="ha-image-grid-item ha-js-popup <?php echo esc_attr( implode( ' ', $filters ) ); ?>">
                     <div class="ha-image-grid-inner">
-                        <?php echo wp_get_attachment_image(
-                            $id,
-                            $settings['thumbnail_size'],
-                            false,
-                            [
-                                'alt' => wp_get_attachment_caption( $id ),
-                                'class' => 'elementor-animation-' . esc_attr( $settings['image_hover_animation'] )
-                            ]
-                        ); ?>
+                        <?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'class' => 'elementor-animation-' . esc_attr( $settings['image_hover_animation'] ) ] ); ?>
                     </div>
                 </<?php echo $item_html_tag; ?>>
 

@@ -79,6 +79,7 @@ class Flip_Box extends Base {
                     ],
                 ],
                 'toggle' => false,
+                'style_transfer' => true,
             ]
         );
 
@@ -235,6 +236,7 @@ class Flip_Box extends Base {
                     ],
                 ],
                 'toggle' => false,
+                'style_transfer' => true,
             ]
         );
 

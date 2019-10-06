@@ -43,7 +43,7 @@ class Pricing_Table extends Base {
     }
 
     public function get_keywords() {
-        return [ 'pricing', 'table', 'package', 'product', 'plan' ];
+        return [ 'pricing', 'price', 'table', 'package', 'product', 'plan' ];
     }
 
 	protected function register_content_controls() {
@@ -60,7 +60,7 @@ class Pricing_Table extends Base {
             [
                 'label' => __( 'Title', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
-                'label_block' => false,
+                'label_block' => true,
                 'default' => __( 'Basic', 'happy-elementor-addons' ),
                 'dynamic' => [
                     'active' => true
@@ -164,6 +164,7 @@ class Pricing_Table extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Features', 'happy-elementor-addons' ),
                 'separator' => 'after',
+                'label_block' => true,
                 'dynamic' => [
                     'active' => true
                 ]
@@ -268,7 +269,7 @@ class Pricing_Table extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Subscribe', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type button text here', 'happy-elementor-addons' ),
-                'label_block' => false,
+                'label_block' => true,
                 'dynamic' => [
                     'active' => true
                 ]

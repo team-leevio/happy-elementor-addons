@@ -93,7 +93,8 @@ class Skills extends Base {
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
-                'description' => __( 'You can customize this skill bar color from here or customize from Style tab', 'happy-elementor-addons' )
+                'description' => __( 'You can customize this skill bar color from here or customize from Style tab', 'happy-elementor-addons' ),
+                'style_transfer' => true,
             ]
         );
 
@@ -105,7 +106,8 @@ class Skills extends Base {
                 'selectors' => [
                     '{{WRAPPER}} {{CURRENT_ITEM}} .ha-skill-info' => 'color: {{VALUE}};',
                 ],
-                'condition' => ['customize' => 'yes']
+                'condition' => ['customize' => 'yes'],
+                'style_transfer' => true,
             ]
         );
 
@@ -117,7 +119,8 @@ class Skills extends Base {
                 'selectors' => [
                     '{{WRAPPER}} {{CURRENT_ITEM}} .ha-skill-level' => 'background-color: {{VALUE}};',
                 ],
-                'condition' => ['customize' => 'yes']
+                'condition' => ['customize' => 'yes'],
+                'style_transfer' => true,
             ]
         );
 
@@ -129,7 +132,8 @@ class Skills extends Base {
                 'selectors' => [
                     '{{WRAPPER}} {{CURRENT_ITEM}}.ha-skill' => 'background-color: {{VALUE}};',
                 ],
-                'condition' => ['customize' => 'yes']
+                'condition' => ['customize' => 'yes'],
+                'style_transfer' => true,
             ]
         );
 

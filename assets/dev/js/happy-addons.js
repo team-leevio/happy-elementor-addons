@@ -305,7 +305,7 @@
                     $lt.numerator({
                         toValue: lv + '%',
                         duration: 1300,
-                        onComplete: function() {
+                        onStep: function() {
                             $lt.append('%');
                         }
                     });

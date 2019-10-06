@@ -103,6 +103,7 @@ class Card extends Base {
                 'toggle' => false,
                 'default' => 'top',
                 'prefix_class' => 'ha-card--',
+                'style_transfer' => true,
             ]
         );
 
@@ -135,7 +136,7 @@ class Card extends Base {
         $this->add_control(
             'title',
             [
-                'label' => __( 'Title & Description', 'happy-elementor-addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Happy Card Title', 'happy-elementor-addons' ),
@@ -151,7 +152,6 @@ class Card extends Base {
             [
                 'label' => __( 'Description', 'happy-elementor-addons' ),
                 'description' => ha_get_allowed_html_desc( 'intermediate' ),
-                'show_label' => false,
                 'type' => Controls_Manager::TEXTAREA,
                 'default' => __( 'Happy card description goes here', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type card description', 'happy-elementor-addons' ),
@@ -304,6 +304,7 @@ class Card extends Base {
                 'default' => 'before',
                 'toggle' => false,
                 'condition' => $condition,
+                'style_transfer' => true,
             ]
         );
 

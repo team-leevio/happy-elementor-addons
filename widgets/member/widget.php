@@ -299,6 +299,7 @@ class Member extends Base {
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
+                'style_transfer' => true,
             ]
         );
 
@@ -323,7 +324,8 @@ class Member extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}' => 'color: {{VALUE}}',
                 ],
-                'condition' => ['customize' => 'yes']
+                'condition' => ['customize' => 'yes'],
+                'style_transfer' => true,
             ]
         );
 
@@ -335,7 +337,8 @@ class Member extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}' => 'background-color: {{VALUE}}',
                 ],
-                'condition' => ['customize' => 'yes']
+                'condition' => ['customize' => 'yes'],
+                'style_transfer' => true,
             ]
         );
 
@@ -355,7 +358,8 @@ class Member extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:hover, {{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:focus' => 'color: {{VALUE}}',
                 ],
-                'condition' => ['customize' => 'yes']
+                'condition' => ['customize' => 'yes'],
+                'style_transfer' => true,
             ]
         );
 
@@ -367,7 +371,8 @@ class Member extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:hover, {{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:focus' => 'background-color: {{VALUE}}',
                 ],
-                'condition' => ['customize' => 'yes']
+                'condition' => ['customize' => 'yes'],
+                'style_transfer' => true,
             ]
         );
 
@@ -379,7 +384,8 @@ class Member extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:hover, {{WRAPPER}} .ha-member-links > {{CURRENT_ITEM}}:focus' => 'border-color: {{VALUE}}',
                 ],
-                'condition' => ['customize' => 'yes']
+                'condition' => ['customize' => 'yes'],
+                'style_transfer' => true,
             ]
         );
 
@@ -406,7 +412,7 @@ class Member extends Base {
                         'link' => ['url' => 'https://linkedin.com/'],
                         'name' => 'linkedin'
                     ]
-                ]
+                ],
             ]
         );
 
