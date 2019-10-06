@@ -77,6 +77,7 @@ class InfoBox extends Base {
                 ],
 				'default' => 'icon',
 				'toggle' => false,
+                'style_transfer' => true,
             ]
         );
 
@@ -162,7 +163,7 @@ class InfoBox extends Base {
         $this->add_control(
             'title',
             [
-                'label' => __( 'Title & Description', 'happy-elementor-addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Happy Info Box Title', 'happy-elementor-addons' ),
@@ -177,7 +178,6 @@ class InfoBox extends Base {
             'description',
             [
                 'label' => __( 'Description', 'happy-elementor-addons' ),
-                'show_label' => false,
                 'description' => ha_get_allowed_html_desc( 'intermediate' ),
                 'type' => Controls_Manager::TEXTAREA,
                 'default' => __( 'Happy info box description goes here', 'happy-elementor-addons' ),
@@ -331,6 +331,7 @@ class InfoBox extends Base {
                 'default' => 'after',
                 'toggle' => false,
                 'condition' => $condition,
+                'style_transfer' => true,
             ]
         );
 

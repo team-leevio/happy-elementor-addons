@@ -139,7 +139,8 @@ class Logo_Grid extends Base {
                     'tictactoe' => __( 'Tic Tac Toe', 'happy-elementor-addons' ),
                 ],
                 'default' => 'box',
-                'prefix_class' => 'ha-logo-grid--'
+                'prefix_class' => 'ha-logo-grid--',
+                'style_transfer' => true,
             ]
         );
 
@@ -159,6 +160,7 @@ class Logo_Grid extends Base {
                 'tablet_default' => 2,
                 'mobile_default' => 2,
                 'prefix_class' => 'ha-logo-grid--col-%s',
+                'style_transfer' => true,
             ]
         );
 

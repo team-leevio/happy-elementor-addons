@@ -188,7 +188,8 @@ class Review extends Base {
                 ],
                 'default' => 'top',
                 'toggle' => false,
-                'prefix_class' => 'ha-review--'
+                'prefix_class' => 'ha-review--',
+                'style_transfer' => true,
             ]
         );
 
@@ -196,6 +197,7 @@ class Review extends Base {
             'title',
             [
                 'label' => __( 'Name', 'happy-elementor-addons' ),
+                'label_block' => true,
                 'type' => Controls_Manager::TEXT,
                 'default' => 'Happy Reviewer',
                 'placeholder' => __( 'Type Reviewer Name', 'happy-elementor-addons' ),
@@ -210,6 +212,7 @@ class Review extends Base {
             'job_title',
             [
                 'label' => __( 'Job Title', 'happy-elementor-addons' ),
+                'label_block' => true,
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Happy Officer', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type Reviewer Job Title', 'happy-elementor-addons' ),

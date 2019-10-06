@@ -128,7 +128,8 @@ class Dual_Button extends Base {
                 ],
                 'toggle' => false,
                 'default' => 'before',
-                'condition' => $condition
+                'condition' => $condition,
+                'style_transfer' => true,
             ]
         );
 
@@ -185,7 +186,8 @@ class Dual_Button extends Base {
                 'default' => 'text',
                 'condition' => [
                     'button_connector_hide!' => 'yes',
-                ]
+                ],
+                'style_transfer' => true,
             ]
         );
 
@@ -222,6 +224,10 @@ class Dual_Button extends Base {
                     'label' => __( 'Icon', 'happy-elementor-addons' ),
                     'type' => Controls_Manager::ICONS,
                     'fa4compatibility' => 'button_connector_icon',
+                    'default' => [
+                        'library' => 'happy-icons',
+                        'value' => 'hm hm-happyaddons',
+                    ],
                     'condition' => [
                         'button_connector_hide!' => 'yes',
                         'button_connector_type' => 'icon',
@@ -306,7 +312,8 @@ class Dual_Button extends Base {
                 ],
                 'toggle' => false,
                 'default' => 'after',
-                'condition' => $condition
+                'condition' => $condition,
+                'style_transfer' => true,
             ]
         );
 
@@ -347,7 +354,8 @@ class Dual_Button extends Base {
                 'tablet_default' => 'queue',
                 'mobile_default' => 'queue',
                 'separator' => 'before',
-                'prefix_class' => 'ha-dual-button-%s-layout-'
+                'prefix_class' => 'ha-dual-button-%s-layout-',
+                'style_transfer' => true,
             ]
         );
 
