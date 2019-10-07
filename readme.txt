@@ -140,6 +140,13 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 == Changelog ==
 
+= 2.2.0 =
+
+- Update: Style copy-paste support improved
+- Fix: Image Grid image alt attribute value issue
+- Fix: Justified Gallery image alt attribute value issue
+- Fix: Skills Bar % sign visibility inconsistency issue
+
 = 2.1.0 - 3 October 2019 =
 
 - New: Widgets control panel link in Elementor Finder
