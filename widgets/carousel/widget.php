@@ -217,6 +217,7 @@ class Carousel extends Base {
                 'return_value' => 'yes',
                 'description' => __( 'Best works with odd number of slides (Slides To Show) and loop (Infinite Loop)', 'happy-elementor-addons' ),
                 'frontend_available' => true,
+                'style_transfer' => true,
             ]
         );
 
@@ -229,6 +230,7 @@ class Carousel extends Base {
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'frontend_available' => true,
+                'style_transfer' => true,
             ]
         );
 
@@ -245,6 +247,7 @@ class Carousel extends Base {
                 ],
                 'default' => 'arrow',
                 'frontend_available' => true,
+                'style_transfer' => true,
             ]
         );
 
@@ -265,6 +268,7 @@ class Carousel extends Base {
                 'tablet_default' => 3,
                 'mobile_default' => 2,
                 'frontend_available' => true,
+                'style_transfer' => true,
             ]
         );
 
