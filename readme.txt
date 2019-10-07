@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.1.0
+Version: 2.2.0
 Author: HappyMonster
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, obiplabon, sourav926, wedevs
@@ -140,7 +140,7 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 == Changelog ==
 
-= 2.2.0 =
+= 2.2.0 - 7 October 2019 =
 
 - Update: Style copy-paste support improved
 - Fix: Image Grid image alt attribute value issue
