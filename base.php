@@ -78,7 +78,12 @@ class Base {
         );
 
         // Active insights
-        $this->appsero->insights()->init();
+        $this->appsero->insights()
+            ->add_extra([
+                'pro_installed' => ha_has_pro() ? 'Yes' : 'No',
+                'pro_version' => ha_has_pro() ? HAPPY_ADDONS_PRO_VERSION : '',
+            ])
+            ->init();
     }
 
     public function include_files() {

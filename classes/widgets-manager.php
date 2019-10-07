@@ -86,98 +86,103 @@ class Widgets_Manager {
     public static function get_pro_widget_map() {
         return [
             'google-map' => [
-                'title' => __( 'Google Map', 'happy-addons-pro' ),
+                'title' => __( 'Google Map', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-map-marker',
                 'is_pro' => true,
             ],
             'advanced-heading' => [
-                'title' => __( 'Advanced Heading', 'happy-addons-pro' ),
+                'title' => __( 'Advanced Heading', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-advanced-heading',
                 'is_pro' => true,
             ],
             'list-group' => [
-                'title' => __( 'List Group', 'happy-addons-pro' ),
+                'title' => __( 'List Group', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-list-group',
                 'is_pro' => true,
             ],
             'hover-box' => [
-                'title' => __( 'Hover Box', 'happy-addons-pro' ),
+                'title' => __( 'Hover Box', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-finger-point',
                 'is_pro' => true,
             ],
             'countdown' => [
-                'title' => __( 'Countdown', 'happy-addons-pro' ),
+                'title' => __( 'Countdown', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-refresh-time',
                 'is_pro' => true,
             ],
             'team-carousel' => [
-                'title' => __( 'Team Carousel', 'happy-addons-pro' ),
+                'title' => __( 'Team Carousel', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-team-carousel',
                 'is_pro' => true,
             ],
             'logo-carousel' => [
-                'title' => __( 'Logo Carousel', 'happy-addons-pro' ),
+                'title' => __( 'Logo Carousel', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-logo-carousel',
                 'is_pro' => true,
             ],
             'source-code' => [
-                'title' => __( 'Source Code', 'happy-addons-pro' ),
+                'title' => __( 'Source Code', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-code-browser',
                 'is_pro' => true,
             ],
             'feature-list' => [
-                'title' => __( 'Feature List', 'happy-addons-pro' ),
+                'title' => __( 'Feature List', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-list-2',
                 'is_pro' => true,
             ],
             'testimonial-carousel' => [
-                'title' => __( 'Testimonial Carousel', 'happy-addons-pro' ),
+                'title' => __( 'Testimonial Carousel', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-testimonial-carousel',
                 'is_pro' => true,
             ],
             'advanced-tabs' => [
-                'title' => __( 'Advanced Tabs', 'happy-addons-pro' ),
+                'title' => __( 'Advanced Tabs', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-tab',
                 'is_pro' => true,
             ],
             'animated-text' => [
-                'title' => __( 'Animated Text', 'happy-addons-pro' ),
+                'title' => __( 'Animated Text', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-text-animation',
                 'is_pro' => true,
             ],
             'timeline' => [
-                'title' => __( 'Timeline', 'happy-addons-pro' ),
+                'title' => __( 'Timeline', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-timeline',
                 'is_pro' => true,
             ],
             'instagram-feed' => [
-                'title' => __( 'Instagram Feed', 'happy-addons-pro' ),
+                'title' => __( 'Instagram Feed', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-instagram',
                 'is_pro' => true,
             ],
             'scrolling-image' => [
-                'title' => __( 'Scrolling Image', 'happy-addons-pro' ),
+                'title' => __( 'Scrolling Image', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-scrolling-image',
                 'is_pro' => true,
             ],
             'toggle' => [
-                'title' => __( 'Advanced Toggle', 'happy-addons-pro' ),
+                'title' => __( 'Advanced Toggle', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-accordion-vertical',
                 'is_pro' => true,
             ],
             'accordion' => [
-                'title' => __( 'Advanced Accordion', 'happy-addons-pro' ),
+                'title' => __( 'Advanced Accordion', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-accordion-vertical',
                 'is_pro' => true,
             ],
             'advanced-pricing-table' => [
-                'title' => __( 'Advanced Pricing Table', 'happy-addons-pro'),
+                'title' => __( 'Advanced Pricing Table', 'happy-elementor-addons'),
                 'icon' => 'hm hm-file-cabinet',
                 'is_pro' => true,
             ],
             'advanced-flip-box' => [
-                'title' => __( 'Advanced Flip Box', 'happy-addons-pro' ),
+                'title' => __( 'Advanced Flip Box', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-flip-card1',
+                'is_pro' => true,
+            ],
+            'business-hour' => [
+                'title' => __( 'Business Hour', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-hand-watch',
                 'is_pro' => true,
             ],
         ];

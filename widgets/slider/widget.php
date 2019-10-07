@@ -205,7 +205,6 @@ class Slider extends Base {
             ]
         );
 
-
         $this->add_control(
             'vertical',
             [
@@ -215,6 +214,7 @@ class Slider extends Base {
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'frontend_available' => true,
+                'style_transfer' => true,
             ]
         );
 
@@ -231,6 +231,7 @@ class Slider extends Base {
                 ],
                 'default' => 'arrow',
                 'frontend_available' => true,
+                'style_transfer' => true,
             ]
         );
 

@@ -206,6 +206,11 @@ class License {
         }
     }
 
+    protected function make_license_key_unreadable( $key ) {
+        $len = strlen( $key );
+        return str_pad( substr( $key, 0, $len / 2 ), $len, '*' );
+    }
+
     /**
      * License menu output
      */
@@ -249,7 +254,7 @@ class License {
                                         <label>License key</label>
                                     </th>
                                     <td>
-                                        <input type="text" class="regular-text code" value="<?php echo $license['key']; ?>"
+                                        <input type="text" class="regular-text code" value="<?php echo $this->make_license_key_unreadable( $license['key'] ); ?>"
                                             placeholder="Enter your license key" name="license_key"
                                             <?php echo ( 'Deactive' == $action ) ? 'readonly="readonly"' : ''; ?> />
                                     </td>
