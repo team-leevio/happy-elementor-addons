@@ -18,6 +18,7 @@
     text-decoration: none;
     color: #fff;
     font-size: 14px;
+    max-width: 100%;
   }
 
   &--left {
@@ -53,6 +54,7 @@
     font-size: 12px;
     text-transform: uppercase;
     transform: translate(50%, -50%);
+    overflow: hidden;
   }
 
   &-icon {
@@ -82,6 +84,10 @@
   &--mobile-layout-stack {
     @include widgetContainer {
       flex-direction: column;
+    }
+
+    .ha-dual-btn-wrapper {
+      max-width: 100%;
     }
 
     .ha-dual-btn-connector {
@@ -133,6 +139,10 @@
   &--mobile-layout-queue {
     @include widgetContainer {
       flex-direction: row;
+    }
+
+    .ha-dual-btn-wrapper {
+      max-width: 50%;
     }
 
     .ha-dual-btn-connector {
@@ -187,6 +197,10 @@
         flex-direction: column;
       }
 
+      .ha-dual-btn-wrapper {
+        max-width: 100%;
+      }
+
       .ha-dual-btn-connector {
         top: 100%;
         right: 50%;
@@ -204,6 +218,10 @@
     &--tablet-layout-queue {
       @include widgetContainer {
         flex-direction: row;
+      }
+
+      .ha-dual-btn-wrapper {
+        max-width: 50%;
       }
 
       .ha-dual-btn-connector {
@@ -259,6 +277,10 @@
         flex-direction: column;
       }
 
+      .ha-dual-btn-wrapper {
+        max-width: 100%;
+      }
+
       .ha-dual-btn-connector {
         top: 100%;
         right: 50%;
@@ -276,6 +298,10 @@
     &--layout-queue {
       @include widgetContainer {
         flex-direction: row;
+      }
+
+      .ha-dual-btn-wrapper {
+        max-width: 50%;
       }
 
       .ha-dual-btn-connector {

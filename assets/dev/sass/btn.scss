@@ -9,6 +9,7 @@
   display: inline-block;
   font-size: 14px;
   transition: all .3s;
+  max-width: 100%;
 
   &:not(&--link) {
     background-color: $primary-color;
