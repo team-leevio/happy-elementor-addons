@@ -1,37 +1,3 @@
-.elementor-panel #elementor-panel-category-happy_addons_category .elementor-element .icon,
-.elementor-panel #elementor-panel-category-happy_addons_pro_category .elementor-element .icon {
-	height: 46px;
-}
-
-.elementor-panel #elementor-panel-category-happy_addons_category .elementor-element,
-.elementor-panel #elementor-panel-category-happy_addons_pro_category .elementor-element,
-.elementor-panel #elementor-panel-elements .is-ha-widget {
-	-webkit-transition: background-image .3s;
-	        transition: background-image .3s;
-}
-.elementor-panel #elementor-panel-category-happy_addons_category .elementor-element .icon,
-.elementor-panel #elementor-panel-category-happy_addons_category .elementor-element .title,
-.elementor-panel #elementor-panel-category-happy_addons_pro_category .elementor-element .icon,
-.elementor-panel #elementor-panel-category-happy_addons_pro_category .elementor-element .title,
-.elementor-panel #elementor-panel-elements .is-ha-widget .icon,
-.elementor-panel #elementor-panel-elements .is-ha-widget .title {
-	background-image: -webkit-linear-gradient(315deg, #e2498a 25%, #562dd4 100%);
-	background-image:         linear-gradient(135deg, #e2498a 25%, #562dd4 100%);
-	-webkit-background-clip: text;
-	-webkit-transition: background-image .2s, color .2s;
-	        transition: background-image .2s, color .2s; 
-
-	-webkit-text-fill-color: transparent;
-}
-.elementor-panel #elementor-panel-category-happy_addons_category .elementor-element:hover,
-.elementor-panel #elementor-panel-category-happy_addons_category .elementor-element:focus,
-.elementor-panel #elementor-panel-category-happy_addons_pro_category .elementor-element:hover,
-.elementor-panel #elementor-panel-category-happy_addons_pro_category .elementor-element:focus,
-.elementor-panel #elementor-panel-elements .is-ha-widget:hover,
-.elementor-panel #elementor-panel-elements .is-ha-widget:focus {
-	background-image: -webkit-linear-gradient(315deg, #e2498a 0%, #562dd4 100%);
-	background-image:         linear-gradient(135deg, #e2498a 0%, #562dd4 100%);
-}
 .elementor-panel #elementor-panel-category-happy_addons_category .elementor-element:hover .icon,
 .elementor-panel #elementor-panel-category-happy_addons_category .elementor-element:hover .title,
 .elementor-panel #elementor-panel-category-happy_addons_category .elementor-element:focus .icon,
@@ -40,14 +6,43 @@
 .elementor-panel #elementor-panel-category-happy_addons_pro_category .elementor-element:hover .title,
 .elementor-panel #elementor-panel-category-happy_addons_pro_category .elementor-element:focus .icon,
 .elementor-panel #elementor-panel-category-happy_addons_pro_category .elementor-element:focus .title,
-.elementor-panel #elementor-panel-elements .is-ha-widget:hover .icon,
-.elementor-panel #elementor-panel-elements .is-ha-widget:hover .title,
-.elementor-panel #elementor-panel-elements .is-ha-widget:focus .icon,
-.elementor-panel #elementor-panel-elements .is-ha-widget:focus .title {
-	background: transparent;
-	color: #fff;
+.elementor-panel #elementor-panel-category-happy_addons_pro_category .is-ha-widget:hover .icon,
+.elementor-panel #elementor-panel-category-happy_addons_pro_category .is-ha-widget:hover .title,
+.elementor-panel #elementor-panel-category-happy_addons_pro_category .is-ha-widget:focus .icon,
+.elementor-panel #elementor-panel-category-happy_addons_pro_category .is-ha-widget:focus .title {
+	background-image: -webkit-linear-gradient(315deg, #e2498a 25%, #562dd4 100%);
+	background-image:         linear-gradient(135deg, #e2498a 25%, #562dd4 100%);
+	-webkit-background-clip: text;
 
-	-webkit-text-fill-color: initial;
+	-webkit-text-fill-color: transparent;
+}
+
+.elementor-panel .elementor-element .icon {
+	position: relative; 
+	-webkit-transition: all .2s;
+	        transition: all .2s;
+}
+.elementor-panel .elementor-element .icon .hm:after {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	content: "\ead0";
+	font-size: 15px;
+	opacity: .3;
+}
+
+.elementor-panel .elementor-element:hover .icon .hm:after,
+.elementor-panel .elementor-element:focus .icon .hm:after {
+	opacity: 1;
+}
+
+.elementor-panel .elementor-element:hover .icon .hm:after,
+.elementor-panel .elementor-element:focus .icon .hm:after {
+	background-image: -webkit-linear-gradient(315deg, #e2498a 25%, #562dd4 100%);
+	background-image:         linear-gradient(135deg, #e2498a 25%, #562dd4 100%);
+	-webkit-background-clip: text;
+
+	-webkit-text-fill-color: transparent;
 }
 
 .elementor-panel .elementor-control-_section_happy_effects .elementor-panel-heading-toggle,

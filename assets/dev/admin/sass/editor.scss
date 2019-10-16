@@ -1,35 +1,46 @@
 @import "../../sass/variables";
 .elementor-panel {
   #elementor-panel-category-happy_addons_category .elementor-element,
-  #elementor-panel-category-happy_addons_pro_category .elementor-element {
-    .icon {
-      height: 46px;
+  #elementor-panel-category-happy_addons_pro_category .elementor-element,
+  #elementor-panel-category-happy_addons_pro_category .is-ha-widget {
+    &:hover,
+    &:focus {
+      .icon,
+      .title {
+        background-image: linear-gradient(135deg, $secondary-color 25%, $primary-color 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
   }
 
-  #elementor-panel-category-happy_addons_category .elementor-element,
-  #elementor-panel-category-happy_addons_pro_category .elementor-element,
-  #elementor-panel-elements .is-ha-widget {
-    transition: background-image .3s;
+  .elementor-element {
+    .icon {
+      transition: all .2s;
+      position: relative;
 
-    .icon,
-    .title {
-      background-image: linear-gradient(135deg, $secondary-color 25%, $primary-color 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-
-      transition: background-image .2s, color .2s;
+      .hm:after {
+        content: "\ead0";
+        font-size: 15px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        opacity: .3;
+      }
     }
 
     &:hover,
     &:focus {
-      background-image: linear-gradient(135deg, $secondary-color 0%, $primary-color 100%);
+      .icon {
+        .hm:after {
+          opacity: 1;
+        }
 
-      .icon,
-      .title {
-        color: #fff;
-        background: transparent;
-        -webkit-text-fill-color: initial;
+        .hm:after {
+          background-image: linear-gradient(135deg, $secondary-color 25%, $primary-color 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
       }
     }
   }
