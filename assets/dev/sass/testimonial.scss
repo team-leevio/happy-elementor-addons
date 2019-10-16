@@ -56,7 +56,8 @@
     align-items: center;
 
     &-thumb {
-      width: 65px;
+      flex: 0 0 65px;
+      max-width: 65px;
       height: 65px;
 
       > img {
@@ -88,6 +89,15 @@
     flex-direction: column;
     &-meta {
       padding-top: 1em;
+      max-width: 100%;
+    }
+  }
+
+  &--left &__reviewer,
+  &--right &__reviewer {
+    &-meta {
+      flex: 0 0 calc(100% - 65px);
+      max-width: calc(100% - 65px);
     }
   }
 

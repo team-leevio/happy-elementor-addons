@@ -1,9 +1,9 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.2.0
+Version: 2.2.1
 Author: HappyMonster
 Author URI: https://happyaddons.com/
-Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, obiplabon, sourav926, wedevs
+Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, obiplabon, sourav926, wedevs, iqbalrony
 Tags: elementor, elementor addon, elementor widget, essential widget, elements
 Requires at least: 4.7
 Tested up to: 5.2.3
@@ -50,6 +50,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 ### INCLUDED FREE EXTENSIONS FOR EVERY ELEMENTOR WIDGET
 
 **Happy Extensions**
+
 1. **Background Overlay** - You can add background overlay to any widget now.
 2. **Happy Icons** - Custom icon fonts library.
 
@@ -139,6 +140,11 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.2.1 - 15 October 2019 =
+
+- Fix: Text overflow issue in all widgets
+- Fix: PHP 5.4 compatibility issue
 
 = 2.2.0 - 7 October 2019 =
 

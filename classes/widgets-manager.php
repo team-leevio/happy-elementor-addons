@@ -2,31 +2,6 @@
 namespace Happy_Addons\Elementor;
 
 use Elementor\Element_Base;
-use Happy_Addons\Elementor\Widget\Card;
-use Happy_Addons\Elementor\Widget\CalderaForm;
-use Happy_Addons\Elementor\Widget\Calendly;
-use Happy_Addons\Elementor\Widget\Carousel;
-use Happy_Addons\Elementor\Widget\CF7;
-use Happy_Addons\Elementor\Widget\Dual_Button;
-use Happy_Addons\Elementor\Widget\Flip_Box;
-use Happy_Addons\Elementor\Widget\Gradient_Heading;
-use Happy_Addons\Elementor\Widget\Icon_Box;
-use Happy_Addons\Elementor\Widget\Image_Compare;
-use Happy_Addons\Elementor\Widget\Image_Grid;
-use Happy_Addons\Elementor\Widget\InfoBox;
-use Happy_Addons\Elementor\Widget\Justified_Gallery;
-use Happy_Addons\Elementor\Widget\Logo_Grid;
-use Happy_Addons\Elementor\Widget\Member;
-use Happy_Addons\Elementor\Widget\NinjaForm;
-use Happy_Addons\Elementor\Widget\Number;
-use Happy_Addons\Elementor\Widget\Pricing_Table;
-use Happy_Addons\Elementor\Widget\Review;
-use Happy_Addons\Elementor\Widget\Skills;
-use Happy_Addons\Elementor\Widget\Slider;
-use Happy_Addons\Elementor\Widget\Step_Flow;
-use Happy_Addons\Elementor\Widget\Testimonial;
-use Happy_Addons\Elementor\Widget\WeForm;
-use Happy_Addons\Elementor\Widget\WPForm;
 
 defined( 'ABSPATH' ) || die();
 
@@ -194,13 +169,13 @@ class Widgets_Manager {
      * @return array
      */
     public static function get_local_widgets_map() {
+        // All the widgets are listed below with respective map
+
         return [
-            // All the widgets are listed below with respective map
             'infobox' => [
                 'demo' => 'https://happyaddons.com/go/demo-info-box',
                 'title' => __( 'Info Box', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-blog-content',
-                'class' => InfoBox::class,
                 'css' => ['infobox'],
                 'js' => [],
                 'vendor' => [
@@ -212,7 +187,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-card',
                 'title' => __( 'Card', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-card',
-                'class' => Card::class,
                 'css' => ['card', 'badge'],
                 'js' => [],
                 'vendor' => [
@@ -224,7 +198,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-contact-form7',
                 'title' => __( 'Contact Form 7', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-form',
-                'class' => CF7::class,
                 'css' => [],
                 'js' => [],
                 'vendor' => [
@@ -236,7 +209,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-icon-box',
                 'title' => __( 'Icon Box', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-icon-box',
-                'class' => Icon_Box::class,
                 'css' => ['icon-box', 'badge'],
                 'js' => [],
                 'vendor' => [
@@ -248,7 +220,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-team-member',
                 'title' => __( 'Team Member', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-team-member',
-                'class' => Member::class,
                 'css' => ['member'],
                 'js' => [],
                 'vendor' => [
@@ -260,7 +231,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-review',
                 'title' => __( 'Review', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-review',
-                'class' => Review::class,
                 'css' => ['review'],
                 'js' => [],
                 'vendor' => [
@@ -272,7 +242,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-image-compare',
                 'title' => __( 'Image Compare', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-image-compare',
-                'class' => Image_Compare::class,
                 'css' => ['image-comparison'],
                 'js' => [],
                 'vendor' => [
@@ -284,7 +253,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-justified-grid',
                 'title' => __( 'Justified Grid', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-brick-wall',
-                'class' => Justified_Gallery::class,
                 'css' => ['justified-gallery', 'gallery-filter'],
                 'js' => [],
                 'vendor' => [
@@ -296,7 +264,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-image-grid',
                 'title' => __( 'Image Grid', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-grid-even',
-                'class' => Image_Grid::class,
                 'css' => ['image-grid', 'gallery-filter'],
                 'js' => [],
                 'vendor' => [
@@ -308,7 +275,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-slider',
                 'title' => __( 'Slider', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-image-slider',
-                'class' => Slider::class,
                 'css' => ['slider-carousel'],
                 'js' => [],
                 'vendor' => [
@@ -332,7 +298,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-skill-bar',
                 'title' => __( 'Skill Bars', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-progress-bar',
-                'class' => Skills::class,
                 'css' => ['skills'],
                 'js' => [],
                 'vendor' => [
@@ -344,7 +309,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-gradient-heading',
                 'title' => __( 'Gradient Heading', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-drag',
-                'class' => Gradient_Heading::class,
                 'css' => ['gradient-heading'],
                 'js' => [],
                 'vendor' => [
@@ -356,7 +320,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-wpforms',
                 'title' => __( 'WPForms', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-form',
-                'class' => WPForm::class,
                 'css' => [],
                 'js' => [],
                 'vendor' => [
@@ -368,7 +331,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-ninja-forms',
                 'title' => __( 'Ninja Forms', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-form',
-                'class' => NinjaForm::class,
                 'css' => [],
                 'js' => [],
                 'vendor' => [
@@ -380,7 +342,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-caldera-forms',
                 'title' => __( 'Caldera Forms', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-form',
-                'class' => CalderaForm::class,
                 'css' => [],
                 'js' => [],
                 'vendor' => [
@@ -392,7 +353,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-weforms',
                 'title' => __( 'weForms', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-form',
-                'class' => WeForm::class,
                 'css' => [],
                 'js' => [],
                 'vendor' => [
@@ -404,7 +364,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-logo-grid',
                 'title' => __('Logo Grid', 'happy-elementor-addons'),
                 'icon' => 'hm hm-logo-grid',
-                'class' => Logo_Grid::class,
                 'css' => ['logo-grid'],
                 'js' => [],
                 'vendor' => [
@@ -416,7 +375,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-dual-button',
                 'title' => __( 'Dual Button', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-accordion-horizontal',
-                'class' => Dual_Button::class,
                 'css' => ['dual-btn'],
                 'js' => [],
                 'vendor' => [
@@ -428,7 +386,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-testimonial',
                 'title' => __( 'Testimonial', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-testimonial',
-                'class' => Testimonial::class,
                 'css' => ['testimonial'],
                 'js' => [],
                 'vendor' => [
@@ -440,7 +397,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-number-widget',
                 'title' => __( 'Number', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-madel',
-                'class' => Number::class,
                 'css' => ['number'],
                 'js' => [],
                 'vendor' => [
@@ -452,7 +408,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/gp/demo-flip-box',
                 'title' => __( 'Flip Box', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-flip-card1',
-                'class' => Flip_Box::class,
                 'css' => ['flip-box'],
                 'js' => [],
                 'vendor' => [
@@ -464,7 +419,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-calendly',
                 'title' => __( 'Calendly', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-calendar',
-                'class' => Calendly::class,
                 'css' => [],
                 'js' => [],
                 'vendor' => [
@@ -476,7 +430,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-pricing-table',
                 'title' => __( 'Pricing Table', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-file-cabinet',
-                'class' => Pricing_Table::class,
                 'css' => ['pricing-table'],
                 'js' => [],
                 'vendor' => [
@@ -488,7 +441,6 @@ class Widgets_Manager {
                 'demo' => 'https://happyaddons.com/go/demo-step-flow',
                 'title' => __( 'Step Flow', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-step-flow',
-                'class' => Step_Flow::class,
                 'css' => ['steps-flow'],
                 'js' => [],
                 'vendor' => [
@@ -518,17 +470,20 @@ class Widgets_Manager {
         $inactive_widgets = self::get_inactive_widgets();
 
         foreach ( self::get_local_widgets_map() as $widget_key => $data ) {
-            if ( ! empty( $data['class'] ) && ! in_array( $widget_key, $inactive_widgets ) ) {
-                self::register_widget( $widget_key, $data['class'] );
+            if ( ! in_array( $widget_key, $inactive_widgets ) ) {
+                self::register_widget( $widget_key );
             }
         }
     }
 
-    protected static function register_widget( $widget_key, $class ) {
+    protected static function register_widget( $widget_key ) {
         $widget_file = HAPPY_ADDONS_DIR_PATH . 'widgets/' . $widget_key . '/widget.php';
         if ( is_readable( $widget_file ) ) {
             include( $widget_file );
-            \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $class );
+            $widget_class = '\Happy_Addons\Elementor\Widget\\' . str_replace( '-', '_', $widget_key );
+            if ( class_exists( $widget_class ) ) {
+                ha_elementor()->widgets_manager->register_widget_type( new $widget_class );
+            }
         }
     }
 }

@@ -16,7 +16,7 @@
   top: 49%;
   left: calc( 100% + 20px );
 
-  &:after{
+  &:after {
     position: absolute;
     top: -2px;
     right: 5px;
@@ -65,8 +65,12 @@
     padding: 12px 8px;
     border-radius: 20px;
     font-size: 12px;
-    line-height: 0;
+    line-height: 1;
     border: 3px solid #fff;
+    max-width: 200%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 
