@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.2.1
+Version: 2.2.2
 Author: HappyMonster
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, obiplabon, sourav926, wedevs, iqbalrony
@@ -140,6 +140,10 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.2.2 - 16 October 2019 =
+
+- Fix: Widget Control Panel link issue
 
 = 2.2.1 - 15 October 2019 =
 

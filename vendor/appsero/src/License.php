@@ -245,8 +245,9 @@ class License {
                 <div class="widget-top">
                     <div class="widget-title"><h3>License Settings</h3></div>
                 </div>
+
                 <div class="widget-inside" style="display: block; padding: 5px 15px;">
-                    <form method="post" action="<?php echo home_url( $_SERVER['REQUEST_URI'] ); ?>" novalidate="novalidate">
+                    <form method="post" action="<?php echo esc_url( admin_url( 'admin.php?page=' . $this->menu_args['menu_slug'] ) ); ?>" novalidate="novalidate">
                         <table class="form-table">
                             <tbody>
                                 <tr>
