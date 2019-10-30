@@ -208,7 +208,7 @@ if ( ! function_exists( 'ha_is_wpf_activated' ) ) {
      * @return bool
      */
     function ha_is_wpf_activated() {
-        return class_exists( 'WPForms_Lite' );
+        return class_exists( '\WPForms\WPForms' ) ;
     }
 }
 
