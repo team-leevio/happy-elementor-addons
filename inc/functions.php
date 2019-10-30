@@ -147,30 +147,6 @@ if ( ! function_exists( 'ha_get_we_form' ) ) {
     }
 }
 
-if ( ! function_exists( 'ha_get_modula_gallery' ) ) {
-	/**
-	 * Get a list of all Modula Gallery
-	 *
-	 * @return array
-	 */
-	function ha_get_modula_gallery() {
-		$gallery = get_posts( [
-            'post_type'      => 'modula-gallery',
-            'post_status'    => 'publish',
-            'posts_per_page' => -1,
-            'orderby'        => 'title',
-            'order'          => 'ASC',
-        ] );
-
-        if ( ! empty( $gallery ) ) {
-            return wp_list_pluck( $gallery, 'post_title', 'ID' );
-        } else {
-			__( 'Create a Gallery', 'happy-elementor-addons' );
-		}
-        return [];
-	}
-}
-
 if ( ! function_exists( 'ha_sanitize_html_class_param' ) ) {
     /**
      * Sanitize html class string
