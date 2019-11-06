@@ -494,24 +494,3 @@ function ha_get_b64_icon() {
 function ha_get_dashboard_link( $suffix = '#home' ) {
     return add_query_arg( [ 'page' => 'happy-addons' . $suffix ], admin_url( 'admin.php' ) );
 }
-
-/**
- * Generate plugin installation link
- *
- * @param $plugin_slug
- * @return string
- */
-function ha_get_plugin_installation_link( $plugin_slug ) {
-    $plugin_slug = esc_attr( $plugin_slug );
-    $install_link  = wp_nonce_url(
-        add_query_arg(
-            array(
-                'action' => 'install-plugin',
-                'plugin' => $plugin_slug,
-            ),
-            network_admin_url( 'update.php' )
-        ),
-        'install-plugin_' . $plugin_slug
-    );
-    return $install_link;
-}

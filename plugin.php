@@ -90,7 +90,7 @@ function ha_required_php_version_missing_notice() {
         HAPPY_ADDONS_MINIMUM_PHP_VERSION
     );
 
-    printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $notice );
+    printf( '<div class="notice notice-warning is-dismissible"><p style="padding: 13px 0">%1$s</p></div>', $notice );
 }
 
 /**
@@ -101,13 +101,13 @@ function ha_required_php_version_missing_notice() {
 function ha_elementor_missing_notice() {
     $notice = ha_kses_intermediate( sprintf(
         /* translators: 1: Plugin name 2: Elementor 3: Elementor installation link */
-        __( '%1$s requires %2$s to be installed and activated. %3$s.', 'happy-elementor-addons' ),
+        __( '%1$s requires %2$s to be installed and activated to function properly. %3$s', 'happy-elementor-addons' ),
         '<strong>' . __( 'Happy Elementor Addons', 'happy-elementor-addons' ) . '</strong>',
         '<strong>' . __( 'Elementor', 'happy-elementor-addons' ) . '</strong>',
-        '<a href="' . ha_get_plugin_installation_link( 'elementor' ) . '">' . __( 'Please click here to install Elementor', 'happy-elementor-addons' ) . '</a>'
+        '<a href="' . esc_url( admin_url( 'plugin-install.php?s=Elementor&tab=search&type=term' ) ) . '">' . __( 'Please click on this link and install Elementor', 'happy-elementor-addons' ) . '</a>'
     ) );
 
-    printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $notice );
+    printf( '<div class="notice notice-warning is-dismissible"><p style="padding: 13px 0">%1$s</p></div>', $notice );
 }
 
 /**
@@ -124,7 +124,7 @@ function ha_required_elementor_version_missing_notice() {
         HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION
     );
 
-    printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $notice );
+    printf( '<div class="notice notice-warning is-dismissible"><p style="padding: 13px 0">%1$s</p></div>', $notice );
 }
 
 /**
