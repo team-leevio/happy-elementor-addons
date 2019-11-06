@@ -275,7 +275,7 @@ class Assets_Manager {
             );
         }
 
-        if ( class_exists( 'WPForms_Lite' ) ) {
+        if ( class_exists( '\WPForms\WPForms' ) ) {
             wp_enqueue_style(
                 'happy-elementor-wpform-preview',
                 plugins_url( '/wpforms-lite/assets/css/wpforms-full.css', 'wpforms-lite' ),

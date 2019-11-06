@@ -133,7 +133,7 @@ function ha_required_elementor_version_missing_notice() {
  * @return void
  */
 function ha_register_activation_hook() {
-    add_option( HAPPY_ADDONS_REDIRECTION_FLAG, true );
+	add_option( HAPPY_ADDONS_REDIRECTION_FLAG, true );
 }
 
 register_activation_hook( HAPPY_ADDONS__FILE__, 'ha_register_activation_hook' );
