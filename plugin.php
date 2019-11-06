@@ -4,7 +4,7 @@
  * Plugin URI: https://happyaddons.com/
  * Description: <a href="https://happyaddons.com/">HappyAddons</a> is a collection of slick, powerful widgets that works seamlessly with Elementor page builder. It’s trendy look with detail customization features allows to create extraordinary designs instantly. <a href="https://happyaddons.com/">HappyAddons</a> is free, rapidly growing and comes with great support.
  * Version: 2.2.2
- * Author: HappyMonster
+ * Author: weDevs
  * Author URI: https://happyaddons.com/
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -50,6 +50,8 @@ define( 'HAPPY_ADDONS_MINIMUM_PHP_VERSION', '5.4' );
  * @return void Some voids are not really void, you have to explore to figure out why not!
  */
 function ha_let_the_journey_begin() {
+    require( HAPPY_ADDONS_DIR_PATH . 'inc/functions.php' );
+
     // Check for required PHP version
     if ( version_compare( PHP_VERSION, HAPPY_ADDONS_MINIMUM_PHP_VERSION, '<' ) ) {
         add_action( 'admin_notices', 'ha_required_php_version_missing_notice' );
@@ -97,12 +99,13 @@ function ha_required_php_version_missing_notice() {
  * @return void
  */
 function ha_elementor_missing_notice() {
-    $notice = sprintf(
-        /* translators: 1: Plugin name 2: Elementor */
-        esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'happy-elementor-addons' ),
-        '<strong>' . esc_html__( 'Happy Elementor Addons', 'happy-elementor-addons' ) . '</strong>',
-        '<strong>' . esc_html__( 'Elementor', 'happy-elementor-addons' ) . '</strong>'
-    );
+    $notice = ha_kses_intermediate( sprintf(
+        /* translators: 1: Plugin name 2: Elementor 3: Elementor installation link */
+        __( '%1$s requires %2$s to be installed and activated. %3$s.', 'happy-elementor-addons' ),
+        '<strong>' . __( 'Happy Elementor Addons', 'happy-elementor-addons' ) . '</strong>',
+        '<strong>' . __( 'Elementor', 'happy-elementor-addons' ) . '</strong>',
+        '<a href="' . ha_get_plugin_installation_link( 'elementor' ) . '">' . __( 'Please click here to install Elementor', 'happy-elementor-addons' ) . '</a>'
+    ) );
 
     printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $notice );
 }

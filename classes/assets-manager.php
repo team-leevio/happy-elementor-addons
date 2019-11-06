@@ -209,6 +209,9 @@ class Assets_Manager {
      * @param Post_CSS $file
      */
     public static function frontend_elementor_enqueue( Post_CSS $file ) {
+        /**
+         * Todo: Fix exclusive or unknown cpt cache support issue, 1 possible solution is get_queried_object_id() !== $file->get_post_id()
+         */
         if ( get_post_type( $file->get_post_id() ) === 'elementor_library' ) {
             $should_enqueue = Cache_Manager::should_enqueue( $file->get_post_id() );
             if ( ! $should_enqueue && $file->get_post_id() === get_the_ID() ) {
