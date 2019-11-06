@@ -16,6 +16,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
+https://www.youtube.com/watch?v=XpWm7zdvUoM
+
 [HappyAddons](https://happyaddons.com/) is a collection of slick, powerful widgets that works seamlessly with Elementor page builder. It’s trendy look with detail customization features allows to create extraordinary designs instantly. [HappyAddons](https://happyaddons.com/) is free, rapidly growing and comes with great support.
 
 
@@ -143,8 +145,8 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 = 2.2.3 - 6 November 2019 =
 
-- Update: Improved support for image optimization plugins. ex: [shortpixel](https://wordpress
-.org/plugins/shortpixel-image-optimiser/)
+- Update: Improved support for image optimization plugins. ex: Shortpixel Image Optimiser
+- Update: Widgets default styles
 - Fix: WPForms Pro compatibility issue
 - Fix: Image border radius style issue
 
