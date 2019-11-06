@@ -86,7 +86,7 @@
 }
 
 .ha-popup--is-enabled .ha-js-popup,
-.ha-popup--is-enabled .ha-js-popup > img {
+.ha-popup--is-enabled .ha-js-popup img {
 	cursor: -webkit-zoom-in !important;
 	cursor:         zoom-in !important;
 }
@@ -232,7 +232,7 @@
 	position: relative;
 	height: 250px;
 }
-.ha-card-figure > img {
+.ha-card-figure img {
 	width: 100%; 
 	height: 100%;
 	border-top-left-radius: calc(.5rem - 1px);
@@ -304,7 +304,7 @@
 	max-width: 50%;
 }
 
-.ha-card--left .ha-card-figure > img {
+.ha-card--left .ha-card-figure img {
 	border-radius: calc(.5rem - 1px) 0 0 calc(.5rem - 1px);
 }
 
@@ -317,7 +317,7 @@
 	text-align: right;
 }
 
-.ha-card--right .ha-card-figure > img {
+.ha-card--right .ha-card-figure img {
 	border-radius: 0 calc(.5rem - 1px) calc(.5rem - 1px) 0;
 }
 
@@ -375,7 +375,7 @@
 	    -ms-transform: translateX(-50%);
 	        transform: translateX(-50%);
 }
-.ha-infobox-figure > img {
+.ha-infobox-figure img {
 	width: 100%;
 	height: 100%;
 	vertical-align: bottom;
@@ -560,7 +560,7 @@
 .ha-review-figure {
 	margin: 0;
 }
-.ha-review-figure > img {
+.ha-review-figure img {
 	width: 100%; 
 	height: 100%;
 	border-radius: 50%;
@@ -789,7 +789,7 @@
 .ha-image-grid--layout-even .ha-image-grid-inner {
 	height: 250px;
 }
-.ha-image-grid--layout-even .ha-image-grid-inner > img {
+.ha-image-grid--layout-even .ha-image-grid-inner img {
 	height: 100%;
 }
 
@@ -2035,7 +2035,7 @@
 	max-width: 65px;
 	height: 65px;
 }
-.ha-testimonial__reviewer-thumb > img {
+.ha-testimonial__reviewer-thumb img {
 	width: 100%;
 	height: 100%;
 	border-radius: 50%;

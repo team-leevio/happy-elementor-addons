@@ -9,7 +9,7 @@
     position: relative;
     height: 250px;
 
-    > img {
+    img {
       border-top-left-radius: calc(.5rem - 1px);
       border-top-right-radius: calc(.5rem - 1px);
       vertical-align: bottom;
@@ -71,7 +71,7 @@
   }
 
   &--left {
-    .ha-card-figure > img {
+    .ha-card-figure img {
       border-radius: calc(.5rem - 1px) 0 0 calc(.5rem - 1px);
     }
   }
@@ -82,7 +82,7 @@
       text-align: right;
     }
 
-    .ha-card-figure > img {
+    .ha-card-figure img {
       border-radius: 0 calc(.5rem - 1px) calc(.5rem - 1px) 0;
     }
   }

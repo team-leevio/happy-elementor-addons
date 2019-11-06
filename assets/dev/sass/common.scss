@@ -54,7 +54,7 @@
 
 .ha-popup--is-enabled {
   .ha-js-popup {
-    &, & > img {
+    &, & img {
       cursor: zoom-in !important;
     }
   }
