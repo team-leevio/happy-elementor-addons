@@ -429,7 +429,7 @@ class Logo_Grid extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-logo-grid-figure > img' => 'opacity: {{SIZE}};',
+                    '{{WRAPPER}} .ha-logo-grid-figure img' => 'opacity: {{SIZE}};',
                 ],
             ]
         );
@@ -438,7 +438,7 @@ class Logo_Grid extends Base {
             Group_Control_Css_Filter::get_type(),
             [
                 'name' => 'image_css_filters',
-                'selector' => '{{WRAPPER}} .ha-logo-grid-figure > img',
+                'selector' => '{{WRAPPER}} .ha-logo-grid-figure img',
             ]
         );
 
@@ -463,7 +463,7 @@ class Logo_Grid extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-logo-grid-figure:hover > img' => 'opacity: {{SIZE}};',
+                    '{{WRAPPER}} .ha-logo-grid-figure:hover img' => 'opacity: {{SIZE}};',
                 ],
             ]
         );
@@ -472,7 +472,7 @@ class Logo_Grid extends Base {
             Group_Control_Css_Filter::get_type(),
             [
                 'name' => 'image_css_filters_hover',
-                'selector' => '{{WRAPPER}} .ha-logo-grid-figure:hover > img',
+                'selector' => '{{WRAPPER}} .ha-logo-grid-figure:hover img',
             ]
         );
 
@@ -488,7 +488,7 @@ class Logo_Grid extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-logo-grid-figure:hover > img' => 'transition-duration: {{SIZE}}s',
+                    '{{WRAPPER}} .ha-logo-grid-figure:hover img' => 'transition-duration: {{SIZE}}s;',
                 ],
             ]
         );
@@ -519,9 +519,6 @@ class Logo_Grid extends Base {
             <?php
             foreach ( $settings['logo_list'] as $index => $item ) :
                 $image = wp_get_attachment_image_url( $item['image']['id'], $settings['thumbnail_size'] );
-                if ( ! $image ) {
-                    $image = Utils::get_placeholder_image_src();
-                }
                 $repeater_key = 'grid_item' . $index;
                 $tag = 'div';
                 $this->add_render_attribute( $repeater_key, 'class', 'ha-logo-grid-item' );
@@ -536,7 +533,22 @@ class Logo_Grid extends Base {
                 ?>
                 <<?php echo $tag; ?> <?php $this->print_render_attribute_string( $repeater_key ); ?>>
                     <figure class="ha-logo-grid-figure">
-                        <img class="ha-logo-grid-img elementor-animation-<?php echo esc_attr( $settings['hover_animation'] ); ?>" src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $item['name'] ); ?>">
+                    <?php if ( $image ) :
+                            echo wp_get_attachment_image(
+                                $item['image']['id'],
+                                $settings['thumbnail_size'],
+                                false,
+                                [
+                                    'class' => 'ha-logo-grid-img elementor-animation-' . esc_attr( $settings['hover_animation'] )
+                                ]
+                            );
+                        else :
+                            printf( '<img class="ha-logo-grid-img elementor-animation-%s" src="%s" alt="%s">',
+                                esc_attr( $settings['hover_animation'] ),
+                                Utils::get_placeholder_image_src(),
+                                esc_attr( $item['name'] )
+                                );
+                        endif; ?>
                     </figure>
                 </<?php echo $tag; ?>>
             <?php endforeach; ?>

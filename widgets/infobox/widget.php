@@ -511,7 +511,7 @@ class InfoBox extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-infobox-figure--image > img, {{WRAPPER}} .ha-infobox-figure--icon' => 'padding: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-infobox-figure--image img, {{WRAPPER}} .ha-infobox-figure--icon' => 'padding: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -520,7 +520,7 @@ class InfoBox extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'media_border',
-                'selector' => '{{WRAPPER}} .ha-infobox-figure--image > img, {{WRAPPER}} .ha-infobox-figure--icon',
+                'selector' => '{{WRAPPER}} .ha-infobox-figure--image img, {{WRAPPER}} .ha-infobox-figure--icon',
             ]
         );
 
@@ -531,7 +531,7 @@ class InfoBox extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-infobox-figure--image > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-infobox-figure--image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     '{{WRAPPER}} .ha-infobox-figure--icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
@@ -544,7 +544,7 @@ class InfoBox extends Base {
                 'exclude' => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .ha-infobox-figure--image > img, {{WRAPPER}} .ha-infobox-figure--icon'
+                'selector' => '{{WRAPPER}} .ha-infobox-figure--image img, {{WRAPPER}} .ha-infobox-figure--icon'
             ]
         );
 

@@ -457,7 +457,7 @@ class Card extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-figure > img' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-card-figure img' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -466,7 +466,7 @@ class Card extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'image_border',
-                'selector' => '{{WRAPPER}} .ha-card-figure > img',
+                'selector' => '{{WRAPPER}} .ha-card-figure img',
             ]
         );
 
@@ -477,7 +477,7 @@ class Card extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-figure > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-card-figure img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -489,7 +489,7 @@ class Card extends Base {
                 'exclude' => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .ha-card-figure > img',
+                'selector' => '{{WRAPPER}} .ha-card-figure img',
                 'separator' => 'after'
             ]
         );
@@ -521,7 +521,7 @@ class Card extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-figure > img' => 'opacity: {{SIZE}};',
+                    '{{WRAPPER}} .ha-card-figure img' => 'opacity: {{SIZE}};',
                 ],
             ]
         );
@@ -530,7 +530,7 @@ class Card extends Base {
             Group_Control_Css_Filter::get_type(),
             [
                 'name' => 'image_css_filters',
-                'selector' => '{{WRAPPER}} .ha-card-figure > img',
+                'selector' => '{{WRAPPER}} .ha-card-figure img',
             ]
         );
 
@@ -555,7 +555,7 @@ class Card extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-figure:hover > img' => 'opacity: {{SIZE}};',
+                    '{{WRAPPER}} .ha-card-figure:hover img' => 'opacity: {{SIZE}};',
                 ],
             ]
         );
@@ -564,7 +564,7 @@ class Card extends Base {
             Group_Control_Css_Filter::get_type(),
             [
                 'name' => 'image_css_filters_hover',
-                'selector' => '{{WRAPPER}} .ha-card-figure:hover > img',
+                'selector' => '{{WRAPPER}} .ha-card-figure:hover img',
             ]
         );
 
@@ -580,7 +580,7 @@ class Card extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-card-figure > img' => 'transition-duration: {{SIZE}}s;',
+                    '{{WRAPPER}} .ha-card-figure img' => 'transition-duration: {{SIZE}}s;',
                 ],
             ]
         );

@@ -319,7 +319,7 @@ class Testimonial extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'image_border',
-                'selector' => '{{WRAPPER}} .ha-testimonial__reviewer-thumb > img',
+                'selector' => '{{WRAPPER}} .ha-testimonial__reviewer-thumb img',
             ]
 		);
 
@@ -330,7 +330,7 @@ class Testimonial extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial__reviewer-thumb > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-testimonial__reviewer-thumb img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
 		);
@@ -339,7 +339,7 @@ class Testimonial extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'image_box_shadow',
-                'selector' => '.ha-testimonial__reviewer-thumb > img',
+                'selector' => '.ha-testimonial__reviewer-thumb img',
             ]
         );
 
@@ -367,7 +367,7 @@ class Testimonial extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-testimonial__reviewer-name' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-testimonial__reviewer-name' => 'color: {{VALUE}};',
                 ],
             ]
         );

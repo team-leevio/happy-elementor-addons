@@ -272,7 +272,7 @@ class Justified_Gallery extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-justified-gallery-item, {{WRAPPER}} .ha-justified-gallery-item > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-justified-gallery-item, {{WRAPPER}} .ha-justified-gallery-item img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -326,7 +326,7 @@ class Justified_Gallery extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-justified-gallery-item > img' => 'opacity: {{SIZE}};',
+                    '{{WRAPPER}} .ha-justified-gallery-item img' => 'opacity: {{SIZE}};',
                 ],
             ]
         );
@@ -335,7 +335,7 @@ class Justified_Gallery extends Base {
             Group_Control_Css_Filter::get_type(),
             [
                 'name' => 'image_css_filters',
-                'selector' => '{{WRAPPER}} .ha-justified-gallery-item > img',
+                'selector' => '{{WRAPPER}} .ha-justified-gallery-item img',
             ]
         );
 
@@ -360,7 +360,7 @@ class Justified_Gallery extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-justified-gallery-item:hover > img' => 'opacity: {{SIZE}};',
+                    '{{WRAPPER}} .ha-justified-gallery-item:hover img' => 'opacity: {{SIZE}};',
                 ],
             ]
         );
@@ -369,7 +369,7 @@ class Justified_Gallery extends Base {
             Group_Control_Css_Filter::get_type(),
             [
                 'name' => 'image_css_filters_hover',
-                'selector' => '{{WRAPPER}} .ha-justified-gallery-item:hover > img',
+                'selector' => '{{WRAPPER}} .ha-justified-gallery-item:hover img',
             ]
         );
 
@@ -385,7 +385,7 @@ class Justified_Gallery extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-justified-gallery-item > img' => 'transition-duration: {{SIZE}}s;',
+                    '{{WRAPPER}} .ha-justified-gallery-item img' => 'transition-duration: {{SIZE}}s;',
                 ],
             ]
         );
@@ -408,7 +408,7 @@ class Justified_Gallery extends Base {
                 'options' => ha_get_css_cursors(),
                 'default' => 'default',
                 'selectors' => [
-                    '{{WRAPPER}} .ha-justified-gallery-item:hover > img' => 'cursor: {{VALUE}};'
+                    '{{WRAPPER}} .ha-justified-gallery-item:hover img' => 'cursor: {{VALUE}};'
                 ]
             ]
         );

@@ -283,7 +283,7 @@ class Image_Grid extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-image-grid-inner, {{WRAPPER}} .ha-image-grid-inner > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-image-grid-inner, {{WRAPPER}} .ha-image-grid-inner img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -323,7 +323,7 @@ class Image_Grid extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-image-grid-inner > img' => 'opacity: {{SIZE}};',
+                    '{{WRAPPER}} .ha-image-grid-inner img' => 'opacity: {{SIZE}};',
                 ],
             ]
         );
@@ -332,7 +332,7 @@ class Image_Grid extends Base {
             Group_Control_Css_Filter::get_type(),
             [
                 'name' => 'image_css_filters',
-                'selector' => '{{WRAPPER}} .ha-image-grid-inner > img',
+                'selector' => '{{WRAPPER}} .ha-image-grid-inner img',
             ]
         );
 
@@ -357,7 +357,7 @@ class Image_Grid extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-image-grid-inner:hover > img' => 'opacity: {{SIZE}};',
+                    '{{WRAPPER}} .ha-image-grid-inner:hover img' => 'opacity: {{SIZE}};',
                 ],
             ]
         );
@@ -366,7 +366,7 @@ class Image_Grid extends Base {
             Group_Control_Css_Filter::get_type(),
             [
                 'name' => 'image_css_filters_hover',
-                'selector' => '{{WRAPPER}} .ha-image-grid-inner:hover > img',
+                'selector' => '{{WRAPPER}} .ha-image-grid-inner:hover img',
             ]
         );
 
@@ -382,7 +382,7 @@ class Image_Grid extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-image-grid-inner > img' => 'transition-duration: {{SIZE}}s',
+                    '{{WRAPPER}} .ha-image-grid-inner img' => 'transition-duration: {{SIZE}}s',
                 ],
             ]
         );
