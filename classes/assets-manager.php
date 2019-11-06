@@ -266,7 +266,7 @@ class Assets_Manager {
     }
 
     public static function enqueue_preview_style() {
-        if ( class_exists( 'WeForms' ) ) {
+        if ( ha_is_weforms_activated() ) {
             wp_enqueue_style(
                 'happy-elementor-weform-preview',
                 plugins_url( '/weforms/assets/wpuf/css/frontend-forms.css', 'weforms' ),
@@ -275,16 +275,16 @@ class Assets_Manager {
             );
         }
 
-        if ( class_exists( '\WPForms\WPForms' ) ) {
+        if ( ha_is_wpforms_activated() && defined( 'WPFORMS_PLUGIN_SLUG' ) ) {
             wp_enqueue_style(
                 'happy-elementor-wpform-preview',
-                plugins_url( '/wpforms-lite/assets/css/wpforms-full.css', 'wpforms-lite' ),
+                plugins_url( '/'. WPFORMS_PLUGIN_SLUG . '/assets/css/wpforms-full.css', WPFORMS_PLUGIN_SLUG ),
                 null,
                 HAPPY_ADDONS_VERSION
             );
         }
 
-        if ( class_exists( 'Caldera_Forms' ) ) {
+        if ( ha_is_calderaforms_activated() ) {
             wp_enqueue_style(
                 'happy-elementor-caldera-preview',
                 plugins_url( '/caldera-forms/assets/css/caldera-forms-front.css', 'caldera-forms' ),
