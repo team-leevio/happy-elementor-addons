@@ -46,23 +46,32 @@ class NinjaForm extends Base {
 
 	protected function register_content_controls() {
 		$this->start_controls_section(
-			'_section_ninjaf',
+			'_section_ninjaforms',
 			[
-				'label' => ha_is_ninjaf_activated() ? __( 'Ninja Forms', 'happy-elementor-addons' ) : __( 'Notice', 'happy-elementor-addons' ),
+				'label' => ha_is_ninjaforms_activated() ? __( 'Ninja Forms', 'happy-elementor-addons' ) : __( 'Missing Notice', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
-        if ( ! ha_is_ninjaf_activated() ) {
+        if ( ! ha_is_ninjaforms_activated() ) {
             $this->add_control(
-                'ninjaf_missing_notice',
+                '_ninjaforms_missing_notice',
                 [
                     'type' => Controls_Manager::RAW_HTML,
                     'raw' => sprintf(
-                        __( 'Hi, it seems %1$s is missing in your site. Please install and activate %1$s first.', 'happy-elementor-addons' ),
-                        '<a href="https://wordpress.org/plugins/ninja-forms/" target="_blank" rel="noopener">Ninja Form</a>'
+                        __( 'Hello %2$s, looks like %1$s is missing in your site. Please click on the link below and install/activate %1$s. Make sure to refresh this page after installation or activation.', 'happy-elementor-addons' ),
+                        '<a href="'.esc_url( admin_url( 'plugin-install.php?s=Ninja+Forms&tab=search&type=term' ) ).'" target="_blank" rel="noopener">Ninja Forms</a>',
+                        ha_get_current_user_display_name()
                     ),
-                    'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+                    'content_classes' => 'elementor-panel-alert elementor-panel-alert-danger',
+                ]
+            );
+
+            $this->add_control(
+                '_ninjaforms_install',
+                [
+                    'type' => Controls_Manager::RAW_HTML,
+                    'raw' => '<a href="'.esc_url( admin_url( 'plugin-install.php?s=Ninja+Forms&tab=search&type=term' ) ).'" target="_blank" rel="noopener">Click to install or activate Ninja Forms</a>',
                 ]
             );
             $this->end_controls_section();
@@ -523,7 +532,7 @@ class NinjaForm extends Base {
     }
 
     protected function render() {
-        if ( ! ha_is_ninjaf_activated() ) {
+        if ( ! ha_is_ninjaforms_activated() ) {
             return;
         }
 

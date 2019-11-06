@@ -52,23 +52,33 @@ class WeForm extends Base {
 
 	protected function register_content_controls() {
 		$this->start_controls_section(
-			'_section_weform',
+			'_section_weforms',
 			[
-				'label' => ha_is_weform_activated() ? __( 'weForms', 'happy-elementor-addons' ) : __( 'Notice', 'happy-elementor-addons' ),
+				'label' => ha_is_weforms_activated() ? __( 'weForms', 'happy-elementor-addons' ) : __( 'Missing Notice',
+                    'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
-        if ( ! ha_is_weform_activated() ) {
+        if ( ! ha_is_weforms_activated() ) {
             $this->add_control(
-                'wef_missing_notice',
+                '_weforms_missing_notice',
                 [
                     'type' => Controls_Manager::RAW_HTML,
                     'raw' => sprintf(
-                        __( 'Hi, it seems %1$s is missing in your site. Please install and activate %1$s first.', 'happy-elementor-addons' ),
-                        '<a href="https://wordpress.org/plugins/weforms/" target="_blank" rel="noopener">weForms</a>'
+                        __( 'Hello %2$s, looks like %1$s is missing in your site. Please click on the link below and install/activate %1$s. Make sure to refresh this page after installation or activation.', 'happy-elementor-addons' ),
+                        '<a href="'.esc_url( admin_url( 'plugin-install.php?s=weForms&tab=search&type=term' ) ).'" target="_blank" rel="noopener">weForms</a>',
+                        ha_get_current_user_display_name()
                     ),
-                    'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+                    'content_classes' => 'elementor-panel-alert elementor-panel-alert-danger',
+                ]
+            );
+
+            $this->add_control(
+                '_weforms_install',
+                [
+                    'type' => Controls_Manager::RAW_HTML,
+                    'raw' => '<a href="'.esc_url( admin_url( 'plugin-install.php?s=weForms&tab=search&type=term' ) ).'" target="_blank" rel="noopener">Click to install or activate weForms</a>',
                 ]
             );
             $this->end_controls_section();
@@ -610,7 +620,7 @@ class WeForm extends Base {
     }
 
     protected function render() {
-        if ( ! ha_is_weform_activated() ) {
+        if ( ! ha_is_weforms_activated() ) {
             return;
         }
 

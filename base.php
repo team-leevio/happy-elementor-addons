@@ -87,6 +87,7 @@ class Base {
     }
 
     public function include_files() {
+        require( HAPPY_ADDONS_DIR_PATH . 'inc/functions-forms.php' );
         require( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
         require( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
         require( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );

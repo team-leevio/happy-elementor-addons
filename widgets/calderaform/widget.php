@@ -40,29 +40,39 @@ class CalderaForm extends Base {
     }
 
     public function get_keywords() {
-        return [ 'caldera', 'wpf','wpform' , 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
+        return [ 'caldera', 'wpf', 'wpform' , 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
     }
 
 	protected function register_content_controls() {
 		$this->start_controls_section(
 			'_section_calderaf',
 			[
-				'label' => ha_is_calderaf_activated() ? __( 'Caldera Forms', 'happy-elementor-addons' ) : __( 'Notice', 'happy-elementor-addons' ),
+				'label' => ha_is_calderaforms_activated() ? __( 'Caldera Forms', 'happy-elementor-addons' ) : __( 'Missing Notice', 'happy-elementor-addons' ),
 			]
 		);
 
-        if ( ! ha_is_calderaf_activated() ) {
+        if ( ! ha_is_calderaforms_activated() ) {
             $this->add_control(
-                'calderaf_missing_notice',
+                '_calderaforms_missing_notice',
                 [
                     'type' => Controls_Manager::RAW_HTML,
                     'raw' => sprintf(
-                        __( 'Hi, it seems %1$s is missing in your site. Please install and activate %1$s first.', 'happy-elementor-addons' ),
-                        '<a href="https://wordpress.org/plugins/caldera-forms/" target="_blank" rel="noopener">Caldera Form</a>'
+                        __( 'Hello %2$s, looks like %1$s is missing in your site. Please click on the link below and install/activate %1$s. Make sure to refresh this page after installation or activation.', 'happy-elementor-addons' ),
+                        '<a href="'.esc_url( admin_url( 'plugin-install.php?s=Caldera+Forms&tab=search&type=term' ) ).'" target="_blank" rel="noopener">Caldera Forms</a>',
+                        ha_get_current_user_display_name()
                     ),
-                    'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+                    'content_classes' => 'elementor-panel-alert elementor-panel-alert-danger',
                 ]
             );
+
+            $this->add_control(
+                '_calderaforms_install',
+                [
+                    'type' => Controls_Manager::RAW_HTML,
+                    'raw' => '<a href="'.esc_url( admin_url( 'plugin-install.php?s=Caldera+Forms&tab=search&type=term' ) ).'" target="_blank" rel="noopener">Click to install or activate Caldera Forms</a>',
+                ]
+            );
+
             $this->end_controls_section();
             return;
         }
@@ -530,7 +540,7 @@ class CalderaForm extends Base {
     }
 
     protected function render() {
-        if ( ! ha_is_calderaf_activated() ) {
+        if ( ! ha_is_calderaforms_activated() ) {
             return;
         }
 
