@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.2.2
+Version: 2.2.3
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, obiplabon
@@ -140,6 +140,13 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.2.3 - 6 November 2019 =
+
+- Update: Improved support for image optimization plugins. ex: [shortpixel](https://wordpress
+.org/plugins/shortpixel-image-optimiser/)
+- Fix: WPForms Pro compatibility issue
+- Fix: Image border radius style issue
 
 = 2.2.2 - 16 October 2019 =
 
