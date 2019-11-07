@@ -14,7 +14,7 @@ class Assets_Manager {
         // Frontend scripts
         add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_register' ] );
         add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_enqueue' ], 99 );
-        add_action( 'elementor/css-file/post/enqueue', [ __CLASS__, 'frontend_elementor_enqueue' ] );
+        add_action( 'elementor/css-file/post/enqueue', [ __CLASS__, 'frontend_enqueue_exceptions' ] );
 
         // Edit and preview enqueue
         add_action( 'elementor/preview/enqueue_styles', [ __CLASS__, 'enqueue_preview_style' ] );
@@ -201,28 +201,25 @@ class Assets_Manager {
     }
 
     /**
-     * Enqueue elementor template cached stylesheet
-     * when used in as shortcode in a page.
-     *
-     * This system depends of elementor cache
+     * Handle exception cases where regular enqueue won't work
      *
      * @param Post_CSS $file
      */
-    public static function frontend_elementor_enqueue( Post_CSS $file ) {
-        /**
-         * Todo: Fix exclusive or unknown cpt cache support issue, 1 possible solution is get_queried_object_id() !== $file->get_post_id()
-         */
-        if ( get_post_type( $file->get_post_id() ) === 'elementor_library' ) {
-            $should_enqueue = Cache_Manager::should_enqueue( $file->get_post_id() );
-            if ( ! $should_enqueue && $file->get_post_id() === get_the_ID() ) {
-                Cache_Manager::enqueue_without_cache();
-            } elseif ( $should_enqueue ) {
+    public static function frontend_enqueue_exceptions( Post_CSS $file ) {
+        if ( get_queried_object_id() !== $file->get_post_id() ) {
+            if ( Cache_Manager::should_enqueue( $file->get_post_id() ) ) {
                 Cache_Manager::enqueue( $file->get_post_id() );
+            } else {
+                Cache_Manager::enqueue_without_cache();
             }
         }
     }
 
     public static function frontend_enqueue() {
+        if ( ! is_singular() ) {
+            return;
+        }
+
         if ( Cache_Manager::should_enqueue( get_the_ID() ) ) {
             Cache_Manager::enqueue( get_the_ID() );
         } else {
