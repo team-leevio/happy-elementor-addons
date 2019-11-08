@@ -1,12 +1,12 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.2.3
+Version: 2.2.4
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, obiplabon
 Tags: elementor, elementor addon, elementor widget, essential widget, elements
 Requires at least: 4.7
-Tested up to: 5.2.3
+Tested up to: 5.2.4
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2

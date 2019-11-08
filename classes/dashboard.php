@@ -37,7 +37,11 @@ class Dashboard {
     }
 
     public static function add_action_links( $links ) {
-        $links = array_merge([
+        if ( ! current_user_can( 'manage_options' ) ) {
+            return $links;
+        }
+
+        $links = array_merge( [
             sprintf( '<a href="%s">%s</a>',
                 ha_get_dashboard_link(),
                 esc_html__( 'Settings', 'happy-elementor-addons' )
@@ -79,7 +83,7 @@ class Dashboard {
     }
 
     public static function enqueue_scripts( $hook ) {
-        if ( self::$menu_slug !== $hook ) {
+        if ( self::$menu_slug !== $hook || ! current_user_can( 'manage_options' ) ) {
             return;
         }
 
@@ -195,6 +199,10 @@ class Dashboard {
     }
 
     public static function update_menu_items() {
+        if ( ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
+
         global $submenu;
         $menu = $submenu[ self::PAGE_SLUG ];
         array_shift( $menu );
