@@ -16,10 +16,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-https://www.youtube.com/watch?v=XpWm7zdvUoM
-
 [HappyAddons](https://happyaddons.com/) is a collection of slick, powerful widgets that works seamlessly with Elementor page builder. It’s trendy look with detail customization features allows to create extraordinary designs instantly. [HappyAddons](https://happyaddons.com/) is free, rapidly growing and comes with great support.
 
+https://www.youtube.com/watch?v=XpWm7zdvUoM
+
+> HappyAddons is a unique Elementor Addon
+   — Adam Preiser, Founder of WP Crafter
 
 ### Included 25 Free Widgets
 
