@@ -143,10 +143,16 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 == Changelog ==
 
+= 2.2.4 - 8 November 2019 =
+
+- Tweak: Improved on demand assets loading for Elementor theme builder
+- Tweak: Improved support for 3rd party header, footer builders
+- Fix: Dashboard php error for users with non admin or super admin roles
+
 = 2.2.3 - 6 November 2019 =
 
-- Update: Improved support for image optimization plugins. ex: Shortpixel Image Optimiser
-- Update: Widgets default styles
+- Tweak: Improved support for image optimization plugins. ex: Shortpixel Image Optimiser
+- Tweak: Widgets default styles
 - Fix: WPForms Pro compatibility issue
 - Fix: Image border radius style issue
 
