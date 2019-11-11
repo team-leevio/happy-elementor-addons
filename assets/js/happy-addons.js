@@ -7,6 +7,21 @@
         return this.data('happy-settings');
     };
 
+    function debounce(func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    }
+
     function initFilterable($scope, filterFn) {
         var $filterable = $scope.find('.hajs-gallery-filter');
         if ($filterable.length) {
@@ -129,10 +144,16 @@
                 };
             },
 
-            onElementChange: function() {
+            onElementChange: function(changedProp) {
+                if (changedProp.indexOf('ha_floating') !== -1) {
+                    this.runOnElementChange();
+                }
+            },
+
+            runOnElementChange: debounce(function() {
                 this.animation && this.animation.restart();
                 this.initFloatingEffects();
-            },
+            }, 200),
 
             getConfig: function(key) {
                 return this.getElementSettings('ha_floating_fx_' + key);
