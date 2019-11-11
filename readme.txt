@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.2.5
+Version: 2.2.6
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, obiplabon
@@ -144,6 +144,11 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.2.6 - 11 November 2019 =
+
+- Fix: Conflict with Essential Addons causing PHP fatal error
+- Fix: PHP cannot declare class `Happy_Addons\Elementor\Finder` issue
 
 = 2.2.5 - 11 November 2019 =
 
