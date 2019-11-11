@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.2.4
+Version: 2.2.5
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, obiplabon
@@ -145,6 +145,11 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 == Changelog ==
 
+= 2.2.5 - 11 November 2019 =
+
+- Tweak: Improved floating effects editing performance
+- Fix: Text editor slow performance and rendering lag issue
+
 = 2.2.4 - 8 November 2019 =
 
 - Tweak: Improved on demand assets loading for Elementor theme builder
@@ -197,128 +202,3 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 - Fix: Missing style issue while copy-pasting widget style
 - Fix: Happy Icons cache issue
 - Fix: Admin bar menu spacing issue
-
-= 1.5.0 - 27 August 2019 =
-
-- New: Image Grid Widget
-- New: Scheme data for Review Widget
-- New: Background Overlay - global extension for any widget
-- New: Step Flow Widget - direction arrow offset control
-- New: Happy Icons - Custom icon font library
-- Update: Dynamic Tags support
-- Update: New icon manager support with backward compatibility
-- Update: Step Flow Widget default view
-- Update: On demand caching manager
-- Fix: Review ratting icon missing issue
-- Fix: Justified Grid Widget filter menu style issue
-- Fix: Icon Box Widget badge style missing issue
-- Fix: Global widget CSS class missing issue
-- Fix: Section and global widget cache missing issue
-- Fix: Step Flow arrow alignment issue
-- Fix: Skill Bars Widget animation issue
-
-= 1.4.1 - 6 August 2019 =
-
-* Fix: Elementor frontend script dependency and console error issue
-
-= 1.4.0 - 1 August 2019 =
-
-* New: On demand asset loading
-* New: On demand cached asset cleaning
-* New: Step Flow Widget
-* New: Calendly Widget
-* New: Flip Box Widget
-* New: Pricing Table Widget
-* Update: Added animated number support to Number Widget
-* Update: Added progress animation to Skill Bars Widget
-* Update: Various widgets default styles
-* Fix: Various responsive issue
-
-= 1.3.1 - 24 July 2019 =
-
-* Fix: Elementor 2.6.* version compatibility issue
-
-= 1.3.0 - 23 July 2019 =
-
-* New: Carousel Widget
-* New: Slider Widget
-* Update: Justified Grid Widget hover and animation effects
-* Update: Typography scheme support for all FREE widgets
-* Fix: Misc styling issue
-
-= 1.2.1 - 18 July 2019 =
-
-* Fix: Unnecessary JS and CSS loading issue fixed
-
-= 1.2.0 - 16 July 2019 =
-
-* New: Justified Grid Widget
-* New: Logo Grid Widget
-* New: Number Widget
-
-= 1.1.1 =
-
-* New: Testimonial Widget
-* New: Floating Effects from -> to controller
-* New: Hover animation effect in Card Widget image
-* Update: Card Widget button default style
-* Update: Dual Button Widget default style
-* Fix: WP Forms style issue
-* Fix: Card Widget editor mode JS error issue
-* Fix: Dual Button Widget inline editing issue
-
-= 1.1.0 =
-
-* Fix: Minor issue fix
-
-= 1.0.5 =
-
-* New: Happy Effects (universal widget extension)
-* New: CSS Transform (Happy Effects)
-* New: Dual Button Widget
-* Fix: Info box icon size issue
-* Fix: Icon box icon size issue
-
-= 1.0.4 =
-
-* Fix: Card widget responsive issue
-* Fix: Review widget responsive issue
-
-= 1.0.3 =
-
-* Update: Offset settings
-* Fix: Offset responsive settings
-
-= 1.0.2 =
-
-* Update: Floating effects settings
-* Update: Info box link updated to button
-* Fix: Some minor styling issues
-
-= 1.0.1 =
-
-* Fix: Some minor issues
-
-= 1.0.0 =
-
-* New: Card Widget
-* New: Gradient Heading Widget
-* New: Info Box Widget
-* New: Icon Box Widget
-* New: Image Compare Widget
-* New: Member Widget
-* New: Review Widget
-* New: Skill Bars Widget
-* New: Contact Form 7 Widget
-* New: Caldera Form Widget
-* New: We Forms Widget
-* New: WP Forms Widget
-* New: Floating effects (check motion effect panel)
-* Update: Plugin structure
-* Update: Widgets CSS
-* Fix: Card layout issue
-* Fix: Contact Form 7 form deletion issue
-
-= 0.0.1 =
-
-* Initial release
