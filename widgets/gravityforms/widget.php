@@ -142,7 +142,7 @@ class GravityForms extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .gform_body .gfield .ginput_container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .gform_body .gform_fields .gfield' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -154,7 +154,7 @@ class GravityForms extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .gform_body .gfield input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .gfield .ginput_container > input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} .gform_body .gfield  textarea' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
@@ -167,7 +167,7 @@ class GravityForms extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .gform_body .gfield input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .gfield .ginput_container > input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} .gform_body .gfield  textarea' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
@@ -178,7 +178,7 @@ class GravityForms extends Base {
 			[
 				'name' => 'field_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .gform_body .gfield input, .gform_body .gfield textarea',
+				'selector' => '{{WRAPPER}} .gfield .ginput_container > input, .gform_body .gfield textarea',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3
 			]
 		);
@@ -189,9 +189,11 @@ class GravityForms extends Base {
 				'label' => __( 'Field Text Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .gform_body .gfield input' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .gfield .ginput_container > input' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .gform_body .gfield textarea' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .gform_body .gfield .gfield_select' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .gform_body .gfield select' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .gfield_list tbody td input' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ginput_container_address input' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -222,7 +224,11 @@ class GravityForms extends Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'field_border',
-				'selector' => '{{WRAPPER}} .gform_body .gfield input, {{WRAPPER}} .gform_body .gfield textarea',
+				'selector' => '{{WRAPPER}} .gfield .ginput_container > input, 
+				{{WRAPPER}} .gfield .ginput_container_address input, 
+				{{WRAPPER}} .gfield_list_cell input, 
+				{{WRAPPER}} .gfield .ginput_container select, 
+				{{WRAPPER}} .gform_body .gfield textarea',
 			]
 		);
 
@@ -230,7 +236,7 @@ class GravityForms extends Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'field_box_shadow',
-				'selector' => '{{WRAPPER}} .gform_body .gfield input, {{WRAPPER}} .gform_body .gfield textarea',
+				'selector' => '{{WRAPPER}} .gfield .ginput_container > input, {{WRAPPER}} .gfield .ginput_container_address input, {{WRAPPER}} .gform_body .gfield textarea',
 			]
 		);
 
@@ -240,9 +246,11 @@ class GravityForms extends Base {
 				'label' => __( 'Background Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .gform_body .gfield input' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .gfield .ginput_container > input' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .gfield .ginput_container_address input' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .gfield .ginput_container_list input' => 'background-color: {{VALUE}}',
 					'{{WRAPPER}} .gform_body .gfield textarea' => 'background-color: {{VALUE}}',
-					'{{WRAPPER}} .gform_body .gfield .gfield_select' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .gform_body .gfield select' => 'background-color: {{VALUE}}',
 				],
 			]
 		);
@@ -260,7 +268,7 @@ class GravityForms extends Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'field_focus_border',
-				'selector' => '{{WRAPPER}} .gform_body .gfield input:focus, {{WRAPPER}} .gform_body .gfield textarea:focus',
+				'selector' => '{{WRAPPER}} .gfield .ginput_container > input:focus, {{WRAPPER}} .gfield .ginput_container_address input:focus, {{WRAPPER}} .gfield_list_cell input:focus, {{WRAPPER}} .gform_body .gfield textarea:focus'
 			]
 		);
 
@@ -271,7 +279,7 @@ class GravityForms extends Base {
 				'exclude' => [
 					'box_shadow_position',
 				],
-				'selector' => '{{WRAPPER}} .gform_body .gfield input:focus, {{WRAPPER}} .gform_body .gfield textarea:focus',
+				'selector' => '{{WRAPPER}} .gfield .ginput_container > input:focus, {{WRAPPER}} .gfield .ginput_container_address input, {{WRAPPER}} .gform_body .gfield textarea:focus',
 			]
 		);
 
@@ -294,7 +302,7 @@ class GravityForms extends Base {
 
 
 		$this->start_controls_section(
-			'we-form-label',
+			'form-label',
 			[
 				'label' => __( 'Form Fields Label', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -343,6 +351,7 @@ class GravityForms extends Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gform_body .gfield .gfield_label' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .gfield .gfield_list thead th' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -579,6 +588,267 @@ class GravityForms extends Base {
 
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_break',
+			[
+				'label' => __( 'Break', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'section_break',
+			[
+				'label' => __( 'Section Break', 'plugin-name' ),
+				'type' => Controls_Manager::HEADING,
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'section_break_title_typography',
+				'label' => __( 'Title Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .gsection .gsection_title',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_2
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'section_break_description_typography',
+				'label' => __( 'Description Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .gsection .gsection_description',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_4
+			]
+		);
+
+		$this->start_controls_tabs( 'tabs_section_break_style' );
+		$this->start_controls_tab(
+			'section_break__title',
+			[
+				'label' => __( 'Title', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'section_break_title_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .gsection .gsection_title' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'section_break_tab_description',
+			[
+				'label' => __( 'Description', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'section_break_description_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .gsection .gsection_description' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_control(
+			'page_break',
+			[
+				'label' => __( 'Page Break', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'page_break_button_box_shadow',
+				'label' => __( 'Button Box Shadow', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .gform_next_button, {{WRAPPER}} .gform_previous_button',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'page_break_button_border',
+				'selector' => '{{WRAPPER}} .gform_next_button, {{WRAPPER}} .gform_previous_button',
+			]
+		);
+
+		$this->add_control(
+			'page_break_button_border_radius',
+			[
+				'label' => __( 'Button Border Radius', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .gform_next_button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .gform_previous_button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->start_controls_tabs( 'page_break_tabs_button_style' );
+
+		$this->start_controls_tab(
+			'page_break_tab_button_normal',
+			[
+				'label' => __( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'page_break_color',
+			[
+				'label' => __( 'Text Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .gform_next_button' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .gform_previous_button ' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'page_break_bg_color',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .gform_next_button' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .gform_previous_button' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'page_break_tab_button_hover',
+			[
+				'label' => __( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'page_break_hover_color',
+			[
+				'label' => __( 'Text Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .gform_next_button:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .gform_next_button:focus' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .gform_previous_button:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .gform_previous_button:focus' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'page_break_hover_bg_color',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .gform_next_button:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .gform_next_button:focus' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .gform_previous_button:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .gform_previous_button:focus' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'page_break_hover_border_color',
+			[
+				'label' => __( 'Border Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .gform_next_button:hover' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .gform_next_button:focus' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .gform_previous_button:hover' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .gform_previous_button:focus' => 'border-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'repeater_list',
+			[
+				'label' => __( 'List', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'list_button_size',
+			[
+				'label' => __( 'Button Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'default' => [
+					'unit' => 'px',
+					'size' => 16,
+				],
+				'range' => [
+					'px' => [
+						'min' => 5,
+						'max' => 100,
+					]
+				],
+				'selectors' => [
+					'{{WRAPPER}} .gfield_list .gfield_list_icons img' => 'width: {{SIZE}}{{UNIT}} !important;',
+				],
+			]
+		);
+
+		$this->add_control(
+			'list_even_background_color',
+			[
+				'label' => __( 'Background Color (Even)', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .gfield_list .gfield_list_row_even td' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'list_odd_background_color',
+			[
+				'label' => __( 'Background Color (Odd)', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .gfield_list .gfield_list_row_odd td' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
 
 		$this->end_controls_section();
 	}
