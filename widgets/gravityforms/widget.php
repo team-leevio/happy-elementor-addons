@@ -66,8 +66,7 @@ class GravityForms extends Base {
 				[
 					'type' => Controls_Manager::RAW_HTML,
 					'raw' => sprintf(
-						__( 'Hello %2$s, looks like %1$s is missing in your site. Please click on the link below and install/activate %1$s. Make sure to refresh this page after installation or activation.', 'happy-elementor-addons' ),
-						'<a href="'.esc_url( admin_url( 'plugin-install.php?s=weForms&tab=search&type=term' ) ).'" target="_blank" rel="noopener">weForms</a>',
+						__( 'Hello %1$s, looks like Gravity Forms is missing in your site. Please click on the link below and install/activate Gravity Forms. Make sure to refresh this page after installation or activation.', 'happy-elementor-addons' ),
 						ha_get_current_user_display_name()
 					),
 					'content_classes' => 'elementor-panel-alert elementor-panel-alert-danger',
@@ -377,7 +376,7 @@ class GravityForms extends Base {
 				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
 				'label_off' => __( 'No', 'happy-elementor-addons' ),
 				'return_value' => 'yes',
-				'default' => 'yes',
+				'default' => '',
 			]
 		);
 
@@ -405,12 +404,12 @@ class GravityForms extends Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit .weforms_submit_btn' => 'display: block; width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .gform_wrapper .gform_button' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
 
-		$this->add_responsive_control(
+		$this->add_control(
 			'submit_btn_position',
 			[
 				'label' => __( 'Button Position', 'happy-elementor-addons' ),
@@ -432,11 +431,9 @@ class GravityForms extends Base {
 				'condition' => [
 					'submit_btn_width' => ''
 				],
-				'desktop_default' => 'left',
-				'toggle' => false,
-				'prefix_class' => 'ha-form-btn--%s',
+				'default' => 'left',
 				'selectors' => [
-					'{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit' => 'text-align: {{Value}};',
+					'{{WRAPPER}} .gform_wrapper .gform_footer' => 'text-align: {{Value}};',
 				],
 			]
 		);
@@ -448,7 +445,7 @@ class GravityForms extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .gform_wrapper .gform_footer' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -458,9 +455,9 @@ class GravityForms extends Base {
 			[
 				'label' => __( 'Padding', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', 'em', '%' ],
+				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .gform_wrapper .gform_button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -469,7 +466,7 @@ class GravityForms extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'submit_typography',
-				'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]',
+				'selector' => '{{WRAPPER}} .gform_wrapper .gform_button',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_4
 			]
 		);
@@ -478,7 +475,7 @@ class GravityForms extends Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'submit_border',
-				'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]',
+				'selector' => '{{WRAPPER}} .gform_wrapper .gform_button',
 			]
 		);
 
@@ -489,7 +486,7 @@ class GravityForms extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .gform_wrapper .gform_button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -498,23 +495,8 @@ class GravityForms extends Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'submit_box_shadow',
-				'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]',
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Text_Shadow::get_type(),
-			[
-				'name' => 'submit_text_shadow',
-				'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]',
-			]
-		);
-
-		$this->add_control(
-			'hr4',
-			[
-				'type' => Controls_Manager::DIVIDER,
-				'style' => 'thick',
+				'selector' => '{{WRAPPER}} .gform_wrapper .gform_button',
+				'separator' => 'after'
 			]
 		);
 
@@ -534,7 +516,7 @@ class GravityForms extends Base {
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .gform_wrapper .gform_button' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -545,7 +527,7 @@ class GravityForms extends Base {
 				'label' => __( 'Background Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .gform_wrapper .gform_button' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -565,7 +547,8 @@ class GravityForms extends Base {
 				'label' => __( 'Text Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:hover, {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:focus' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .gform_wrapper .gform_button:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .gform_wrapper .gform_button:focus' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -576,7 +559,8 @@ class GravityForms extends Base {
 				'label' => __( 'Background Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:hover, {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:focus' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .gform_wrapper .gform_button:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .gform_wrapper .gform_button:focus' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -587,7 +571,8 @@ class GravityForms extends Base {
 				'label' => __( 'Border Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:hover, {{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]:focus' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .gform_wrapper .gform_button:hover' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .gform_wrapper .gform_button:focus' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
