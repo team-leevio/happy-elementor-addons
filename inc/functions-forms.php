@@ -53,6 +53,15 @@ function ha_is_weforms_activated() {
 }
 
 /**
+ * Check if Gravity Forms is activated
+ *
+ * @return bool
+ */
+function ha_is_gravityforms_activated() {
+	return class_exists( 'GFForms' );
+}
+
+/**
  * Get a list of all CF7 forms
  *
  * @return array
@@ -157,4 +166,23 @@ function ha_get_we_forms() {
         }
     }
     return $forms;
+}
+
+/**
+ * Get a list of all GravityForms
+ *
+ * @return array
+ */
+function ha_get_gravity_forms() {
+	$forms = [];
+	if ( ha_is_gravityforms_activated() ) {
+		$gravity_forms = \RGFormsModel::get_forms( null, 'title' );
+
+		if ( ! empty( $gravity_forms ) && ! is_wp_error( $gravity_forms ) ) {
+			foreach ( $gravity_forms as $gravity_form ) {
+				$forms[ $gravity_form->id ] = $gravity_form->title;
+			}
+		}
+	}
+	return $forms;
 }
