@@ -53,6 +53,15 @@ function ha_is_weforms_activated() {
 }
 
 /**
+ * Check if Fluent Form is activated
+ *
+ * @return bool
+ */
+function ha_is_fluent_form_activated() {
+    return defined('FLUENTFORM');
+}
+
+/**
  * Get a list of all CF7 forms
  *
  * @return array
@@ -158,3 +167,27 @@ function ha_get_we_forms() {
     }
     return $forms;
 }
+
+function ha_get_fluent_forms() {
+	$forms = [];
+	if(defined('FLUENTFORM')) {
+		global $wpdb;
+		$fluent_forms = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}fluentform_forms" );
+
+		if($fluent_forms) {
+			foreach($fluent_forms as $form) {
+				$forms[$form->id] = $form->title;
+			}
+		}
+	}
+	return $forms;
+}
+
+
+//$request = new \FluentForm\Framework\Foundation\Application($application);
+//$formIds = $request->get('forms');
+//$form = wpFluent()->table('fluentform_forms')->whereIn('id', $formIds)->get();
+//$form = wpFluent()->from('fluentform_forms');
+//echo '<pre>';
+//var_dump(ha_get_fluent_forms());
+//echo '</pre>';

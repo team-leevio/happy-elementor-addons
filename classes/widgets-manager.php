@@ -448,6 +448,17 @@ class Widgets_Manager {
                     'js' => [],
                 ],
             ],
+	        'fluent-form' => [
+		        'demo' => 'https://happyaddons.com/go/demo-fluent-form',
+		        'title' => __( 'Fluent Form', 'happy-elementor-addons' ),
+		        'icon' => 'hm hm-form',
+		        'css' => [],
+		        'js' => [],
+		        'vendor' => [
+			        'css' => [],
+			        'js' => [],
+		        ],
+	        ],
         ];
     }
 
