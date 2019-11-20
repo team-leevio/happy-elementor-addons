@@ -145,6 +145,14 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 == Changelog ==
 
+= 2.3.0 - 20 November 2019 =
+
+- New: Gravity Forms Widget
+- New: Column Order control
+- New: Custom Column Width control
+- New: weForms section break styles
+- Fix: weForms misc style issues
+
 = 2.2.6 - 11 November 2019 =
 
 - Fix: Conflict with Essential Addons causing PHP fatal error

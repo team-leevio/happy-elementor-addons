@@ -54,6 +54,7 @@ class Base {
         if ( is_admin() ) {
             Updater::init();
             Dashboard::init();
+            Attention_Seeker::init();
         }
 
         do_action( 'happyaddons_loaded' );
@@ -66,7 +67,7 @@ class Base {
      */
     protected function init_appsero_tracking() {
         if ( ! class_exists( 'Happy_Addons\Appsero\Client' ) ) {
-            require_once HAPPY_ADDONS_DIR_PATH . 'vendor/appsero/src/Client.php';
+            include_once HAPPY_ADDONS_DIR_PATH . 'vendor/appsero/src/Client.php';
         }
 
         $this->appsero = new \Happy_Addons\Appsero\Client(
@@ -85,24 +86,25 @@ class Base {
     }
 
     public function include_files() {
-        require( HAPPY_ADDONS_DIR_PATH . 'inc/functions-forms.php' );
-        require( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
-        require( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
-        require( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );
-        require( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
-        require( HAPPY_ADDONS_DIR_PATH . 'classes/cache-manager.php' );
+        include( HAPPY_ADDONS_DIR_PATH . 'inc/functions-forms.php' );
+        include( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
+        include( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
+        include( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );
+        include( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
+        include( HAPPY_ADDONS_DIR_PATH . 'classes/cache-manager.php' );
 
-        require( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
-        require( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
+        include( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
+        include( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
 
         if ( is_admin() ) {
-            require( HAPPY_ADDONS_DIR_PATH . 'classes/class.communicator.php' );
-            require( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
-            require( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
+            include( HAPPY_ADDONS_DIR_PATH . 'classes/class.communicator.php' );
+            include( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
+            include( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
+            include( HAPPY_ADDONS_DIR_PATH . 'classes/attention-seeker.php' );
         }
 
         if ( is_user_logged_in() ) {
-            require( HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php' );
+            include( HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php' );
         }
     }
 
