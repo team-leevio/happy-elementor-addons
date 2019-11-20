@@ -9,7 +9,6 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
 
@@ -42,7 +41,7 @@ class GravityForms extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'gravity forms', 'form', 'contact' ];
+		return [ 'gravity forms', 'form', 'contact', 'advanced', 'ninja' ];
 	}
 
 	// Whether the reload preview is required or not.
@@ -155,7 +154,7 @@ class GravityForms extends Base {
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .gfield .ginput_container > input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .gform_body .gfield  textarea' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .gform_body .gfield textarea' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -168,7 +167,7 @@ class GravityForms extends Base {
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .gfield .ginput_container > input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .gform_body .gfield  textarea' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .gform_body .gfield textarea' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -178,7 +177,7 @@ class GravityForms extends Base {
 			[
 				'name' => 'field_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .gfield .ginput_container > input, .gform_body .gfield textarea',
+				'selector' => '{{WRAPPER}} .gfield .ginput_container > input, {{WRAPPER}} .gform_body .gfield textarea',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3
 			]
 		);
@@ -276,9 +275,6 @@ class GravityForms extends Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'field_focus_box_shadow',
-				'exclude' => [
-					'box_shadow_position',
-				],
 				'selector' => '{{WRAPPER}} .gfield .ginput_container > input:focus, {{WRAPPER}} .gfield .ginput_container_address input, {{WRAPPER}} .gform_body .gfield textarea:focus',
 			]
 		);
