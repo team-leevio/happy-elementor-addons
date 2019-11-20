@@ -131,9 +131,9 @@ class Base {
      * @access public
      */
     public function register_controls() {
-        require( HAPPY_ADDONS_DIR_PATH . 'controls/foreground.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'controls/foreground.php' );
         $foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
 
-        \Elementor\Plugin::instance()->controls_manager->add_group_control( $foreground::get_type(), new $foreground() );
+        ha_elementor()->controls_manager->add_group_control( $foreground::get_type(), new $foreground() );
     }
 }

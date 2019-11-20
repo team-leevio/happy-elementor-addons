@@ -60,11 +60,6 @@ class Widgets_Manager {
      */
     public static function get_pro_widget_map() {
         return [
-            'google-map' => [
-                'title' => __( 'Google Map', 'happy-elementor-addons' ),
-                'icon' => 'hm hm-map-marker',
-                'is_pro' => true,
-            ],
             'advanced-heading' => [
                 'title' => __( 'Advanced Heading', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-advanced-heading',
@@ -449,7 +444,6 @@ class Widgets_Manager {
                 ],
             ],
 			'gravityforms' => [
-                'demo' => 'https://happyaddons.com/go/demo-step-flow',
                 'title' => __( 'Gravity Forms', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-form',
                 'css' => [],
@@ -476,7 +470,7 @@ class Widgets_Manager {
      * @access public
      */
     public static function register() {
-        require( HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php' );
 
         $inactive_widgets = self::get_inactive_widgets();
 
@@ -490,7 +484,7 @@ class Widgets_Manager {
     protected static function register_widget( $widget_key ) {
         $widget_file = HAPPY_ADDONS_DIR_PATH . 'widgets/' . $widget_key . '/widget.php';
         if ( is_readable( $widget_file ) ) {
-            include( $widget_file );
+            include_once( $widget_file );
             $widget_class = '\Happy_Addons\Elementor\Widget\\' . str_replace( '-', '_', $widget_key );
             if ( class_exists( $widget_class ) ) {
                 ha_elementor()->widgets_manager->register_widget_type( new $widget_class );
