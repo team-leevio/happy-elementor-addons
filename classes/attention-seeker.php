@@ -48,8 +48,8 @@ class Attention_Seeker {
 
         if ( wp_verify_nonce( $nonce, 'ignore_attention_seeker' ) && $id ) {
             $seeker = wp_list_filter( self::get_attentions(), ['_id' => $id] );
-            $expire_date = $seeker['end_date'] + DAY_IN_SECONDS;
-            set_transient( self::generate_db_key( $id ), 'ignore', $expire_date );
+            $expire_date = $seeker[0]['end_date'];
+            set_transient( self::generate_db_key( $id ), 'ignore', intval( $expire_date ) );
             wp_send_json_success();
         }
 
@@ -81,7 +81,7 @@ class Attention_Seeker {
     }
 
     private static function generate_db_key( $id ) {
-        return 'ha-seeker-' . md5( $id );
+        return 'ha-seeker-' . substr( md5( $id ), 0, 7 );
     }
 
     public static function seek_attention() {
@@ -97,7 +97,7 @@ class Attention_Seeker {
             [
                 '_id' => '#000Friday',
                 'start_date' => strtotime( '10th November 2019, 12AM' ),
-                'end_date' => strtotime( '4th December 2019, 11:59:59 PM' ),
+                'end_date' => strtotime( '4th December 2019, 11:59:59PM' ),
                 'render_cb' => [ __CLASS__, 'render_000Friday_offer' ],
             ]
         ];
