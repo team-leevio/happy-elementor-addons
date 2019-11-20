@@ -65,7 +65,7 @@ class GravityForms extends Base {
 				[
 					'type' => Controls_Manager::RAW_HTML,
 					'raw' => sprintf(
-						__( 'Hello %1$s, looks like Gravity Forms is missing in your site. Please click on the link below and install/activate Gravity Forms. Make sure to refresh this page after installation or activation.', 'happy-elementor-addons' ),
+						__( 'Hello %1$s, looks like Gravity Forms is missing in your site. Please install/activate Gravity Forms. Make sure to refresh this page after installation or activation.', 'happy-elementor-addons' ),
 						ha_get_current_user_display_name()
 					),
 					'content_classes' => 'elementor-panel-alert elementor-panel-alert-danger',
