@@ -448,6 +448,17 @@ class Widgets_Manager {
                     'js' => [],
                 ],
             ],
+			'gravityforms' => [
+                'demo' => 'https://happyaddons.com/go/demo-step-flow',
+                'title' => __( 'Gravity Forms', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-form',
+                'css' => [],
+                'js' => [],
+                'vendor' => [
+                    'css' => [],
+                    'js' => [],
+                ],
+            ],
         ];
     }
 
