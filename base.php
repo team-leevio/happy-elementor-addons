@@ -95,6 +95,8 @@ class Base {
         require( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
         require( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
 
+        require( HAPPY_ADDONS_DIR_PATH . 'classes/column-enhance.php' );
+
         if ( is_admin() ) {
             require( HAPPY_ADDONS_DIR_PATH . 'classes/class.communicator.php' );
             require( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
