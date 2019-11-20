@@ -1,4 +1,9 @@
 <?php
+/**
+ * Show something awesome!
+ *
+ * @since 2.3.0
+ */
 namespace Happy_Addons\Elementor;
 
 defined( 'ABSPATH' ) || die();
