@@ -128,7 +128,7 @@ class WeForm extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpuf-form > li.wpuf-el.field-size-large > .wpuf-fields input' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .wpuf-form > li.wpuf-el.field-size-large > .wpuf-fields input:not([type=radio]):not([type=checkbox])' => 'width: {{SIZE}}{{UNIT}};',
                     '{{WRAPPER}} .wpuf-form > li.wpuf-el.field-size-large > .wpuf-fields textarea' => 'width: {{SIZE}}{{UNIT}};',
 
                 ],
@@ -617,7 +617,81 @@ class WeForm extends Base {
         $this->end_controls_tabs();
 
         $this->end_controls_section();
-    }
+
+		$this->start_controls_section(
+			'section_break',
+			[
+				'label' => __( 'Section Break', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'break_title_typography',
+				'label' => __( 'Title Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .section_break .wpuf-section-title',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_2
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'break_description_typography',
+				'label' => __( 'Description Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .section_break .wpuf-section-details',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_4
+			]
+		);
+
+		$this->start_controls_tabs( 'tabs_section_break_style' );
+
+		$this->start_controls_tab(
+			'tab_break_title',
+			[
+				'label' => __( 'Title', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'break_title_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .section_break .wpuf-section-title' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'tab_break_description',
+			[
+				'label' => __( 'Description', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'break_description_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .section_break .wpuf-section-details' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+
+	}
 
     protected function render() {
         if ( ! ha_is_weforms_activated() ) {
