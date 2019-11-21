@@ -453,6 +453,16 @@ class Widgets_Manager {
                     'js' => [],
                 ],
             ],
+			'news-ticker' => [
+                'title' => __( 'News Ticker', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-image-slider',
+                'css' => ['news-ticker'],
+                'js' => [],
+                'vendor' => [
+                    'css' => [],
+                    'js' => [],
+                ],
+            ],
         ];
     }
 
