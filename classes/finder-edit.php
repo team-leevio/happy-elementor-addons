@@ -25,7 +25,7 @@ class Finder_Edit extends Finder_Category {
      * @return string
      */
     public function get_title() {
-        return __( 'Edit + Happy Addons Tools', 'happy-elementor-addons' );
+        return __( 'Edit + HappyAddons Tools', 'happy-elementor-addons' );
     }
 
     /**
@@ -83,22 +83,22 @@ class Finder_Edit extends Finder_Category {
         ];
 
         $editor_post_id = isset( $options['editor_post_id'] ) ? $options['editor_post_id'] : 0;
-        $document = ha_elementor()->documents->get( $editor_post_id );
+        $editor_document = ha_elementor()->documents->get( $editor_post_id );
         $items = [];
 
         $ref = 'list';
 
-        if ( $document ) {
-            $description = $document->get_title();
+        if ( $editor_document ) {
+            $description = $editor_document->get_title();
             $icon = 'document-file';
             $ref = 'editor';
 
-            if ( $document->get_post()->post_type === Source_Local::CPT ) {
+            if ( $editor_document->get_post()->post_type === Source_Local::CPT ) {
                 $description = __( 'Template', 'happy-elementor-addons' ) . ' / ' . $description;
                 $icon = 'post-title';
             }
 
-            $url = Cloner::get_url( $document->get_id(), $ref );
+            $url = Cloner::get_url( $editor_document->get_id(), $ref );
             $items[] = [
                 'icon' => $icon,
                 'title' => __( 'Clone / Duplicate This', 'happy-elementor-addons' ),

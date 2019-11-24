@@ -84,18 +84,19 @@ class Clone_Handler {
         $current_user = wp_get_current_user();
 
         $duplicated_post_args = [
-            'post_author'    => $current_user->ID,
-            'post_title'     => $post->post_title,
-            'post_content'   => $post->post_content,
-            'post_excerpt'   => $post->post_excerpt,
-            'post_parent'    => $post->post_parent,
             'post_status'    => 'draft',
-            'ping_status'    => $post->ping_status,
-            'comment_status' => $post->comment_status,
-            'post_password'  => $post->post_password,
-            'post_type'      => $post->post_type,
             'to_ping'        => $post->to_ping,
+            'post_type'      => $post->post_type,
             'menu_order'     => $post->menu_order,
+            'post_author'    => $current_user->ID,
+            'post_parent'    => $post->post_parent,
+            'ping_status'    => $post->ping_status,
+            'post_excerpt'   => $post->post_excerpt,
+            'post_content'   => $post->post_content,
+            'post_password'  => $post->post_password,
+            'comment_status' => $post->comment_status,
+            'post_title'     => sprintf( __( '%s - [Cloned #%d]', 'happy-elementor-addons' ), $post->post_title,
+                $post->ID ),
         ];
 
         return wp_insert_post( $duplicated_post_args );
