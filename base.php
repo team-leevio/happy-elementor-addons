@@ -34,10 +34,13 @@ class Base {
         $this->include_files();
 
         // Register custom category
-        add_action( 'elementor/elements/categories_registered', [$this, 'add_category'] );
+        add_action( 'elementor/elements/categories_registered', [ $this, 'add_category' ] );
 
         // Register custom controls
-        add_action( 'elementor/controls/controls_registered', [$this, 'register_controls'] );
+        add_action( 'elementor/controls/controls_registered', [ $this, 'register_controls' ] );
+
+        // Register finder category
+        add_action( 'elementor/finder/categories/init', [ $this, 'register_finder' ] );
 
         Widgets_Manager::init();
         Assets_Manager::init();
@@ -86,25 +89,26 @@ class Base {
     }
 
     public function include_files() {
-        include( HAPPY_ADDONS_DIR_PATH . 'inc/functions-forms.php' );
-        include( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
-        include( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
-        include( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );
-        include( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
-        include( HAPPY_ADDONS_DIR_PATH . 'classes/cache-manager.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-forms.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/cache-manager.php' );
 
-        include( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
-        include( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
 
         if ( is_admin() ) {
-            include( HAPPY_ADDONS_DIR_PATH . 'classes/class.communicator.php' );
-            include( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
-            include( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
-            include( HAPPY_ADDONS_DIR_PATH . 'classes/attention-seeker.php' );
+            include_once( HAPPY_ADDONS_DIR_PATH . 'classes/class.communicator.php' );
+            include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
+            include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
+            include_once( HAPPY_ADDONS_DIR_PATH . 'classes/attention-seeker.php' );
         }
 
         if ( is_user_logged_in() ) {
-            include( HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php' );
+            include_once( HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php' );
+            include_once( HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php' );
         }
     }
 
@@ -137,5 +141,18 @@ class Base {
         $foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
 
         ha_elementor()->controls_manager->add_group_control( $foreground::get_type(), new $foreground() );
+    }
+
+    /**
+     * Register finder category and category items
+     *
+     * @param $categories_manager
+     */
+    public function register_finder( $categories_manager ) {
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/finder-dashboard.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/finder-edit.php' );
+        // Add the category
+        $categories_manager->add_category( Finder_Dashboard::SLUG, new Finder_Dashboard() );
+        $categories_manager->add_category( Finder_Edit::SLUG, new Finder_Edit() );
     }
 }
