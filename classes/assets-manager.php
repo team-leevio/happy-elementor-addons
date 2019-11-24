@@ -182,6 +182,15 @@ class Assets_Manager {
             true
         );
 
+	    // keyframes
+	    wp_register_script(
+		    'jquery-keyframes',
+		    HAPPY_ADDONS_ASSETS . 'vendor/keyframes/jquery.keyframes.min.js',
+		    [ 'jquery' ],
+		    HAPPY_ADDONS_VERSION,
+		    true
+	    );
+
         // Main assets
         wp_register_style(
             'happy-elementor-addons',

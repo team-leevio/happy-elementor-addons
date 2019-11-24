@@ -460,7 +460,7 @@ class Widgets_Manager {
                 'js' => [],
                 'vendor' => [
                     'css' => [],
-                    'js' => [],
+                    'js' => ['jquery-keyframes'],
                 ],
             ],
         ];

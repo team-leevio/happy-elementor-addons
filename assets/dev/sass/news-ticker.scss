@@ -1,0 +1,36 @@
+.ha-news-ticker {
+	display: flex;
+	/*padding-left: 100%;*/
+	overflow: hidden;
+}
+
+.ha-news-ticker ul {
+	display: flex;
+	list-style: none;
+	transform: translateX(100%);
+	animation: 28479ms linear 0s infinite normal none running slider1;
+}
+
+@keyframes slider1 {
+	0% {
+		transform: translateX(100%)
+	}
+	100% {
+		transform: translateX(-100%)
+	}
+}
+
+.ha-news-ticker li {
+	padding-left: 1rem;
+	white-space: nowrap;
+}
+
+.ha-news-ticker li:first-child {
+	padding-left: 0;
+}
+
+//.ha-news-ticker li::before {
+//	content: "+++";
+//	display: inline;
+//	padding-right: 1rem;
+//}
