@@ -385,6 +385,57 @@
             }
         });
 
+	    //NewsTicker
+	    var NewsTicker = EM.frontend.handlers.Base.extend({
+
+		    onInit: function () {
+			    EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+			    this.wrapper = this.$element.find('.ha-news-ticker-wrapper');
+			    this.run();
+		    },
+		    onElementChange: function () {
+			    this.run();
+		    },
+		    run: function () {
+			    var wrapper_height = this.wrapper.innerHeight(),
+				    wrapper_width = this.wrapper.innerWidth(),
+				    container = this.wrapper.find('.ha-news-ticker-container'),
+				    single_item = container.find('.ha-news-ticker-item'),
+				    scroll_direction = this.wrapper.data('scroll-direction'),
+				    scroll = 'scroll'+scroll_direction+wrapper_height+wrapper_width,
+				    duration = this.wrapper.data('duration'),
+				    direction = 'normal',
+				    all_title_width = 10;
+
+			    var start = {'transform': 'translateX(0'+wrapper_width+'px)'},
+			        end = {'transform': 'translateX(-101%)'};
+			    if('right' === scroll_direction){
+				    direction = 'reverse';
+			    }
+			    single_item.each(function(){
+				    all_title_width += $(this).outerWidth(true);
+				    console.log($(this).outerWidth(true),all_title_width);
+			    });
+			    container.css({'width':all_title_width,'display':'flex'});
+			    $.keyframe.define([{
+				    name: scroll,
+				    '0%': start,
+				    '100%':end,
+			    }]);
+			    container.playKeyframe({
+				    name: scroll,
+				    duration: duration+'ms',
+				    timingFunction: 'linear',
+				    delay: '0s',
+				    iterationCount: 'infinite',
+				    direction: direction,
+				    fillMode: 'none',
+				    complete: function(){
+				    }
+			    });
+		    }
+	    });
+
         var handlersFnMap = {
             'ha-image-compare.default': HandleImageCompare,
             'ha-justified-gallery.default': HandleJustifiedGallery,
@@ -400,6 +451,7 @@
             'ha-slider.default': Slick,
             'ha-carousel.default': Slick,
             'ha-image-grid.default': Isotope,
+            'ha-news-ticker.default': NewsTicker,
             'widget': ExtensionHandler
         };
 
