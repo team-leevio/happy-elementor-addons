@@ -82,37 +82,41 @@ class Finder_Edit extends Finder_Category {
             's' => $options['filter'],
         ];
 
-        $editor_post_id = isset( $options['editor_post_id'] ) ? $options['editor_post_id'] : 0;
-        $editor_document = ha_elementor()->documents->get( $editor_post_id );
-        $items = [];
 
-        $ref = 'list';
+        if ( Cloner::can_clone() ) {
+            $editor_post_id = isset( $options['editor_post_id'] ) ? $options['editor_post_id'] : 0;
+            $editor_document = ha_elementor()->documents->get( $editor_post_id );
+            $items = [];
 
-        if ( $editor_document ) {
-            $description = $editor_document->get_title();
-            $icon = 'document-file';
-            $ref = 'editor';
+            $ref = 'list';
 
-            if ( $editor_document->get_post()->post_type === Source_Local::CPT ) {
-                $description = __( 'Template', 'happy-elementor-addons' ) . ' / ' . $description;
-                $icon = 'post-title';
-            }
+            if ( $editor_document ) {
+                $description = $editor_document->get_title();
+                $icon = 'document-file';
+                $ref = 'editor';
 
-            $url = Cloner::get_url( $editor_document->get_id(), $ref );
-            $items[] = [
-                'icon' => $icon,
-                'title' => __( 'Clone / Duplicate This', 'happy-elementor-addons' ),
-                'description' => $description,
-                'url' => $url,
-                'actions' => [
-                    [
-                        'name' => 'clone',
-                        'url' => $url,
-                        'icon' => 'clone',
+                if ( $editor_document->get_post()->post_type === Source_Local::CPT ) {
+                    $description = __( 'Template', 'happy-elementor-addons' ) . ' / ' . $description;
+                    $icon = 'post-title';
+                }
+
+                $url = Cloner::get_url( $editor_document->get_id(), $ref );
+                $items[] = [
+                    'icon' => $icon,
+                    'title' => __( 'Clone / Duplicate This', 'happy-elementor-addons' ),
+                    'description' => $description,
+                    'url' => $url,
+                    'actions' => [
+                        [
+                            'name' => 'clone',
+                            'url' => $url,
+                            'icon' => 'clone',
+                        ]
                     ]
-                ]
-            ];
+                ];
+            }
         }
+
 
         $posts_query = new \WP_Query( $query_args );
 
@@ -135,23 +139,28 @@ class Finder_Edit extends Finder_Category {
                 $icon = 'post-title';
             }
 
+            $actions = [
+                [
+                    'name' => 'view',
+                    'url' => $document->get_permalink(),
+                    'icon' => 'eye',
+                ],
+            ];
+
+            if ( Cloner::can_clone() ) {
+                $actions[] = [
+                    'name' => 'clone',
+                    'url' => Cloner::get_url( $document->get_id(), $ref ),
+                    'icon' => 'clone',
+                ];
+            }
+
             $items[] = [
                 'icon' => $icon,
                 'title' => $post->post_title,
                 'description' => $description,
                 'url' => $document->get_edit_url(),
-                'actions' => [
-                    [
-                        'name' => 'view',
-                        'url' => $document->get_permalink(),
-                        'icon' => 'eye',
-                    ],
-                    [
-                        'name' => 'clone',
-                        'url' => Cloner::get_url( $document->get_id(), $ref ),
-                        'icon' => 'clone',
-                    ],
-                ],
+                'actions' => $actions,
             ];
         }
 

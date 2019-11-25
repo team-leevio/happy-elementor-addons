@@ -3,14 +3,56 @@ namespace Happy_Addons\Elementor;
 
 class Clone_Handler {
 
+    /**
+     * Request and nonce action name
+     */
     const ACTION = 'ha_duplicate_thing';
 
+    /**
+     * Register hooks and initialize
+     */
     public static function init() {
         add_action( 'admin_action_' . self::ACTION, [ __CLASS__, 'duplicate_thing' ] );
+        add_filter( 'post_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
+        add_filter( 'page_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
     }
 
+    /**
+     * Check if current user can clone
+     *
+     * @return bool
+     */
+    public static function can_clone() {
+        return current_user_can( 'edit_posts' );
+    }
+
+    /**
+     * Add clone link in row actions
+     *
+     * @param array $actions
+     * @param \WP_Post $post
+     * @return array
+     */
+    public static function add_row_actions( $actions, $post ) {
+        if ( self::can_clone() && post_type_supports( $post->post_type, 'elementor' ) ) {
+            $actions[ self::ACTION ] = sprintf(
+                '<a href="%1$s" title="%2$s"><span class="screen-reader-text">%2$s</span>%3$s</a>',
+                esc_url( self::get_url( $post->ID, 'list' ) ),
+                sprintf( esc_attr__( 'Clone - %s', 'happy-elementor-addons' ), esc_attr( $post->post_title ) ),
+                esc_html__( 'Happy Clone', 'happy-elementor-addons' )
+            );
+        }
+
+        return $actions;
+    }
+
+    /**
+     * Duplicate requested post
+     *
+     * @return void
+     */
     public static function duplicate_thing() {
-        if ( ! current_user_can( 'edit_posts' ) ) {
+        if ( ! self::can_clone() ) {
             return;
         }
 
@@ -62,6 +104,13 @@ class Clone_Handler {
         die();
     }
 
+    /**
+     * Get clone url with required query params
+     *
+     * @param $post_id
+     * @param string $ref
+     * @return string
+     */
     public static function get_url( $post_id, $ref = '' ) {
         return wp_nonce_url(
             add_query_arg(
@@ -77,6 +126,8 @@ class Clone_Handler {
     }
 
     /**
+     * Clone post
+     *
      * @param $old_post
      * @return int $dulicated post id
      */
@@ -102,6 +153,12 @@ class Clone_Handler {
         return wp_insert_post( $duplicated_post_args );
     }
 
+    /**
+     * Copy post taxonomies to cloned post
+     *
+     * @param $post
+     * @param $duplicated_post_id
+     */
     protected static function duplicate_taxonomies( $post, $duplicated_post_id ) {
         $taxonomies = get_object_taxonomies( $post->post_type );
         if ( ! empty( $taxonomies ) && is_array( $taxonomies ) ) {
@@ -112,6 +169,12 @@ class Clone_Handler {
         }
     }
 
+    /**
+     * Copy post meta entries to cloned post
+     *
+     * @param $post
+     * @param $duplicated_post_id
+     */
     protected static function duplicate_meta_entries( $post, $duplicated_post_id ) {
         global $wpdb;
 
