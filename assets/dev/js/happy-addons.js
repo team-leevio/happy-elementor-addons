@@ -393,8 +393,10 @@
 			    this.wrapper = this.$element.find('.ha-news-ticker-wrapper');
 			    this.run();
 		    },
-		    onElementChange: function () {
-			    this.run();
+		    onElementChange: function (changed_prop) {
+		    	if( changed_prop === 'item_space' || changed_prop === 'title_typography_font_size' ){
+				    this.run();
+			    }
 		    },
 		    run: function () {
 			    var wrapper_height = this.wrapper.innerHeight(),
@@ -414,7 +416,6 @@
 			    }
 			    single_item.each(function(){
 				    all_title_width += $(this).outerWidth(true);
-				    console.log($(this).outerWidth(true),all_title_width);
 			    });
 			    container.css({'width':all_title_width,'display':'flex'});
 			    $.keyframe.define([{

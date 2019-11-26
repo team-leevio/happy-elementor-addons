@@ -1,63 +1,53 @@
-//.ha-news-ticker {
-//	display: flex;
-//	/*padding-left: 100%;*/
-//	overflow: hidden;
-//}
 .ha-news-ticker-wrapper {
 	overflow: hidden;
+	position: relative;
+	padding: 20px 0;
+	border: 1px solid #d2d2d2;
+	border-radius: 5px;
 }
-ul.ha-news-ticker-container {
+.ha-news-ticker-wrapper ul.ha-news-ticker-container {
 	margin: 0;
 	padding: 0;
 	display: flex;
 	list-style: none;
-	//transform: translateX(100%);
-	//animation: 28479ms linear 0s infinite normal none running slider1;
 }
-ul.ha-news-ticker-container:hover {
-	/* -webkit-animation-play-state: paused; */
+.ha-news-ticker-wrapper ul.ha-news-ticker-container:hover,
+.ha-news-ticker-wrapper ul.ha-news-ticker-container:focus {
 	animation-play-state: paused !important;
-	/* cursor: pointer; */
 }
 
-//.ha-news-ticker-container ul {
-//	width: 13190px;
-//	display: flex;
-//	animation: 200000ms linear 0s infinite normal none running scrollha-horizontalleft8281120;
-//}
-
-@keyframes slider1 {
-	0% {
-		transform: translateX(100%)
-	}
-	100% {
-		transform: translateX(-100%)
-	}
+.ha-news-ticker-wrapper span.ha-news-ticker-sticky-title {
+	position: absolute;
+	background: #333333;
+	color: #ffffff;
+	font-size: 1rem;
+	line-height: 1;
+	padding: 20px;
+	top: 50%;
+	left: auto;
+	transform: translateY(-50%);
+	z-index: 1;
 }
 
-//ul.ha-news-ticker-container li {
-//	padding-left: 1rem;
-//	white-space: nowrap;
-//}
-
-//ul.ha-news-ticker-container li:first-child {
-//	padding-left: 0;
-//}
-
-//ul.ha-news-ticker-container li {
-//
-//	display: inline-block;
-//	justify-content: center;
-//	align-items: center;
-//	flex-direction: column;
-//	margin-right: 20px;
-//	white-space: nowrap;
-//}
-ul.ha-news-ticker-container li{
+.ha-news-ticker-wrapper  li.ha-news-ticker-item{
 	margin-right: 20px;
 	white-space: nowrap;
 }
 
-ul.ha-news-ticker-container li:last-child{
+.ha-news-ticker-wrapper li.ha-news-ticker-item:last-child{
 	margin-right: 0;
+}
+
+.ha-news-ticker-wrapper  .ha-news-ticker-title{
+	margin: 0;
+	font-size: 1rem;
+	line-height: 1;
+}
+
+.ha-news-ticker-wrapper  li.ha-news-ticker-item a{
+	color: #242424;
+}
+
+.ha-news-ticker-wrapper  li.ha-news-ticker-item a:hover{
+	color: #E04C8A;
 }
