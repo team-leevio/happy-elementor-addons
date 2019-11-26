@@ -179,6 +179,7 @@ class Icon_Box extends Base {
                     ],
                 ],
                 'toggle' => true,
+                'default' => 'center',
                 'selectors' => [
                     '{{WRAPPER}}' => 'text-align: {{VALUE}};'
                 ]
