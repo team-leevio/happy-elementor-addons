@@ -113,6 +113,9 @@ class News_Ticker extends Base {
 				'selectors_dictionary' => [
 					'left' => 'left: 0',
 					'right' => 'right: 0'
+				],
+				'condition' => [
+					'sticky_title!' => '',
 				]
 			]
 		);
@@ -237,7 +240,7 @@ class News_Ticker extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'wrapper_padding',
 			[
 				'label' => __( 'Padding', 'happy-elementor-addons' ),
@@ -246,6 +249,42 @@ class News_Ticker extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-news-ticker-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
+			]
+		);
+
+		$this->add_control(
+			'sticky_title_position_left',
+			[
+				'label' => __( 'Sticky Title Position Left', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HIDDEN,
+				'default' => 'left',
+				'selectors' => [
+					'(desktop){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'left: {{wrapper_padding.LEFT || 0}}{{wrapper_padding.UNIT}}; right:auto;',
+					'(tablet){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'left: {{wrapper_padding_tablet.LEFT || 0}}{{wrapper_padding_tablet.UNIT}}; right:auto;',
+					'(mobile){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'left: {{wrapper_padding_mobile.LEFT || 0}}{{wrapper_padding_mobile.UNIT}}; right:auto;',
+				],
+				'condition' => [
+					'sticky_title!' => '',
+					'sticky_title_position' => 'left',
+				]
+			]
+		);
+
+		$this->add_control(
+			'sticky_title_position_right',
+			[
+				'label' => __( 'Sticky Title Position Right', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HIDDEN,
+				'default' => 'right',
+				'selectors' => [
+					'(desktop){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'right: {{wrapper_padding.RIGHT || 0}}{{wrapper_padding.UNIT}}; left:auto;',
+					'(tablet){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'right: {{wrapper_padding_tablet.RIGHT}}{{wrapper_padding_tablet.UNIT}}; left:auto;',
+					'(mobile){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'right: {{wrapper_padding_mobile.RIGHT}}{{wrapper_padding_mobile.UNIT}}; left:auto;',
+				],
+				'condition' => [
+					'sticky_title!' => '',
+					'sticky_title_position' => 'right',
+				]
 			]
 		);
 
@@ -313,7 +352,7 @@ class News_Ticker extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'sticky_title_padding',
 			[
 				'label' => __( 'Padding', 'happy-elementor-addons' ),
@@ -401,70 +440,6 @@ class News_Ticker extends Base {
 		$this->end_controls_section();
 	}
 
-	public function prefix_get_rss_feed ( $url, $post_per_page = 10 ) {
-
-		$rss_feed = [];
-		$url = ! empty( $url ) ? $url : '';
-		while ( stristr( $url, 'http' ) != $url ) {
-			$url = substr( $url, 1 );
-		}
-
-		if ( empty( $url ) ) {
-			return;
-		}
-
-		// self-url destruction sequence
-		if ( in_array( untrailingslashit( $url ), array( site_url(), home_url() ) ) ) {
-			return;
-		}
-
-		$rss = fetch_feed( $url );
-
-		if ( is_string( $rss ) ) {
-			$rss = fetch_feed( $rss );
-		} elseif ( is_array( $rss ) && isset( $rss['url'] ) ) {
-			$rss = fetch_feed( $rss['url'] );
-		} elseif ( ! is_object( $rss ) ) {
-			return;
-		}
-
-		$error = '';
-		if ( is_wp_error( $rss ) && ( is_admin() || current_user_can( 'manage_options' ) ) ) {
-			$error = __( 'RSS Error:', 'text-domain' ) . '</strong> ' . $rss->get_error_message();
-			return $error;
-		}
-
-		if ( ! $rss->get_item_quantity() ) {
-			$error = __( 'An error has occurred, which probably means the feed is down. Try again later.', 'text-domain' );
-			$rss->__destruct();
-			unset( $rss );
-			return $error;
-		}
-
-		$post_per_page = (int) $post_per_page;
-		if ( $post_per_page == -1 ) {
-			$post_per_page = $rss->get_item_quantity();
-		}
-
-		foreach ( $rss->get_items( 0, 10 ) as $item ) {
-			$link = $item->get_image_link();
-			while ( stristr( $link, 'http' ) != $link ) {
-				$link = substr( $link, 1 );
-			}
-			$link = esc_url( strip_tags( $link ) );
-
-			$title = esc_html( trim( strip_tags( $item->get_title() ) ) );
-			if ( empty( $title ) ) {
-				$title = __( 'Untitled' );
-			}
-			$rss_feed[$link] = $title;
-		}
-//		$rss->__destruct();
-//		unset( $rss );
-
-		return $rss->get_favicon();
-	}
-
 	protected function render () {
 
 		$settings = $this->get_settings_for_display();
@@ -486,13 +461,13 @@ class News_Ticker extends Base {
 		$this->add_render_attribute( 'container', 'class', [ 'ha-news-ticker-container' ] );
 		$this->add_render_attribute( 'item', 'class', [ 'ha-news-ticker-item' ] );
 
-		$rss = $this->prefix_get_rss_feed('https://happyaddons.com/feed/','10');
-		echo '<pre>';
-		var_dump($rss);
-		echo '</pre>';
 		if ( $the_query->have_posts() ) :?>
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
-				<span class="ha-news-ticker-sticky-title"><?php echo esc_html( $settings['sticky_title'] ); ?></span>
+				<?php if ( $settings['sticky_title'] ): ?>
+					<span class="ha-news-ticker-sticky-title">
+						<?php echo esc_html( $settings['sticky_title'] ); ?>
+					</span>
+				<?php endif; ?>
 				<ul <?php $this->print_render_attribute_string( 'container' ); ?>>
 					<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
 						<li <?php $this->print_render_attribute_string( 'item' ); ?>>
