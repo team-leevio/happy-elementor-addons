@@ -997,7 +997,7 @@ class Pricing_Table extends Base {
                         $this->add_render_attribute( $name_key, 'class', 'ha-pricing-table-feature-text' );
                         ?>
                         <li class="<?php echo esc_attr( 'elementor-repeater-item-' . $feature['_id'] ); ?>">
-                            <?php if ( ! empty( $feature['icon'] ) || ! empty( $feature['selected_icon'] ) ) :
+                            <?php if ( ! empty( $feature['icon'] ) || ! empty( $feature['selected_icon']['value'] ) ) :
                                 ha_render_icon( $feature, 'icon', 'selected_icon' );
                             endif; ?>
                             <div <?php $this->print_render_attribute_string( $name_key ); ?>><?php echo ha_kses_intermediate( $feature['text'] ); ?></div>

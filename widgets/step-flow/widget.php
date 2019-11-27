@@ -650,7 +650,7 @@ class Step_Flow extends Base {
                 <div class="ha-step-arrow"></div>
             <?php endif; ?>
 
-            <?php if ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon'] ) ) :
+            <?php if ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon']['value'] ) ) :
                 ha_render_icon( $settings, 'icon', 'selected_icon' );
             endif; ?>
 

@@ -928,7 +928,7 @@ class InfoBox extends Base {
             <figure class="ha-infobox-figure ha-infobox-figure--image">
                 <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
             </figure>
-        <?php elseif ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon'] ) ) : ?>
+        <?php elseif ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon']['value'] ) ) : ?>
             <figure class="ha-infobox-figure ha-infobox-figure--icon">
                 <?php ha_render_icon( $settings, 'icon', 'selected_icon' ); ?>
             </figure>
@@ -1018,7 +1018,7 @@ class InfoBox extends Base {
                     <img src="{{ image_url }}">
                 </figure>
             <# }
-        } else if ( settings.icon || settings.selected_icon ) { #>
+        } else if ( settings.icon || settings.selected_icon.value ) { #>
             <figure class="ha-infobox-figure ha-infobox-figure--icon">
                 <# if ( ha_has_icon_library() && iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
                     {{{ iconHTML.value }}}

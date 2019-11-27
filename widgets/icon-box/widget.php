@@ -732,7 +732,7 @@ class Icon_Box extends Base {
             <span <?php $this->print_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></span>
         <?php endif; ?>
 
-        <?php if ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon'] ) ) : ?>
+        <?php if ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon']['value'] ) ) : ?>
             <span class="ha-icon-box-icon">
                 <?php ha_render_icon( $settings, 'icon', 'selected_icon' ); ?>
             </span>
@@ -773,7 +773,7 @@ class Icon_Box extends Base {
             <span {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{ settings.badge_text }}</span>
         <# } #>
 
-        <# if ( settings.icon || settings.selected_icon ) { #>
+        <# if ( settings.icon || settings.selected_icon.value ) { #>
             <span class="ha-icon-box-icon">
                 <# if ( ha_has_icon_library() && iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
                     {{{ iconHTML.value }}}
