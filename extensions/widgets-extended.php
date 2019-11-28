@@ -1,6 +1,6 @@
 <?php
 /**
- * Column Option Enhance functions
+ * Elementor default widgets enhancements
  *
  * @package Happy_Addons
  */
