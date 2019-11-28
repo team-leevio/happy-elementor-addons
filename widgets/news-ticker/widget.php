@@ -14,7 +14,6 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
 use Elementor\Group_Control_Background;
-use Happy_Addons\Elementor\Controls\Group_Control_Foreground;
 
 defined( 'ABSPATH' ) || die();
 
@@ -79,7 +78,6 @@ class News_Ticker extends Base {
 			]
 		);
 
-
 		$this->add_control(
 			'sticky_title',
 			[
@@ -119,7 +117,6 @@ class News_Ticker extends Base {
 				]
 			]
 		);
-
 
 		$this->add_control(
 			'selected_posts',
@@ -260,8 +257,8 @@ class News_Ticker extends Base {
 				'default' => 'left',
 				'selectors' => [
 					'(desktop){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'left: {{wrapper_padding.LEFT || 0}}{{wrapper_padding.UNIT}}; right:auto;',
-					'(tablet){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'left: {{wrapper_padding_tablet.LEFT || 0}}{{wrapper_padding_tablet.UNIT}}; right:auto;',
-					'(mobile){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'left: {{wrapper_padding_mobile.LEFT || 0}}{{wrapper_padding_mobile.UNIT}}; right:auto;',
+					'(tablet){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'left: {{wrapper_padding_tablet.LEFT}}{{wrapper_padding_tablet.UNIT}}; right:auto;',
+					'(mobile){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'left: {{wrapper_padding_mobile.LEFT}}{{wrapper_padding_mobile.UNIT}}; right:auto;',
 				],
 				'condition' => [
 					'sticky_title!' => '',
@@ -289,7 +286,6 @@ class News_Ticker extends Base {
 		);
 
 		$this->end_controls_section();
-
 
 		$this->start_controls_section(
 			'_style_news_ticker_sticky_title',
@@ -319,7 +315,6 @@ class News_Ticker extends Base {
 				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title',
 			]
 		);
-
 
 		$this->add_group_control(
 			Group_Control_Background::get_type(),
@@ -374,7 +369,7 @@ class News_Ticker extends Base {
 			]
 		);
 
-		$this->start_controls_tabs( '_tabs_button' );
+		$this->start_controls_tabs( '_tabs_title' );
 
 		$this->start_controls_tab(
 			'_tab_title_normal',
