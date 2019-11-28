@@ -44,7 +44,6 @@ class Base {
 
         Widgets_Manager::init();
         Assets_Manager::init();
-        Extensions_Manager::init();
         Cache_Manager::init();
         Icons_Manager::init();
 
@@ -52,6 +51,7 @@ class Base {
 
         if ( is_user_logged_in() ) {
             Admin_Bar::init();
+            Extensions_Manager::init();
         }
 
         if ( is_admin() ) {
@@ -90,10 +90,10 @@ class Base {
 
     public function include_files() {
         include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-forms.php' );
+
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );
-        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/cache-manager.php' );
 
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
@@ -109,6 +109,7 @@ class Base {
         if ( is_user_logged_in() ) {
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php' );
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php' );
+            include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
         }
     }
 
