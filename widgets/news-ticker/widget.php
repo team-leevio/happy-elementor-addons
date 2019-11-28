@@ -40,7 +40,7 @@ class News_Ticker extends Base {
 	 *
 	 */
 	public function get_icon () {
-		return 'hm hm-image-slider';
+		return 'hm hm-slider';
 	}
 
 	public function get_keywords () {
@@ -448,7 +448,11 @@ class News_Ticker extends Base {
 			'post__in' => (array) $settings['selected_posts'],
 		];
 
-		$the_query = new \WP_Query( $query_args );
+		$news_posts = [];
+		$the_query = get_posts( $query_args );
+		if ( ! empty( $the_query ) ) {
+			$news_posts = wp_list_pluck( $the_query, 'post_title', 'post_status' );
+		}
 
 		$this->add_render_attribute( 'wrapper', 'class', [ 'ha-news-ticker-wrapper' ] );
 		$this->add_render_attribute( 'wrapper', 'data-duration', $settings['speed'] ? ( $settings['speed'] * '1000' ) : '30000' );
@@ -456,7 +460,7 @@ class News_Ticker extends Base {
 		$this->add_render_attribute( 'container', 'class', [ 'ha-news-ticker-container' ] );
 		$this->add_render_attribute( 'item', 'class', [ 'ha-news-ticker-item' ] );
 
-		if ( $the_query->have_posts() ) :?>
+		if ( count( $news_posts ) !== 0 ) :?>
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
 				<?php if ( $settings['sticky_title'] ): ?>
 					<span class="ha-news-ticker-sticky-title">
@@ -464,16 +468,15 @@ class News_Ticker extends Base {
 					</span>
 				<?php endif; ?>
 				<ul <?php $this->print_render_attribute_string( 'container' ); ?>>
-					<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+					<?php foreach ( $news_posts as $key => $value ): ?>
 						<li <?php $this->print_render_attribute_string( 'item' ); ?>>
 							<h2 class="ha-news-ticker-title">
-								<a href="<?php echo esc_url( get_permalink() ); ?>">
-									<?php echo esc_html( get_the_title() ); ?>
+								<a href="<?php echo esc_url( $key ); ?>">
+									<?php echo esc_html( $value ); ?>
 								</a>
 							</h2>
 						</li>
-					<?php endwhile;
-					wp_reset_postdata(); ?>
+					<?php endforeach; ?>
 				</ul>
 			</div>
 		<?php
