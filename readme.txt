@@ -145,6 +145,14 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 == Changelog ==
 
+= 2.4.0 - 2 December 2019 =
+
+- New: Happy Clone - (duplicate post/page from anywhere!)
+- New: News Ticker Widget
+- New: Fixed size controls in Elementor Button widget
+- Fix: Badge offset responsive issue for Icon Box Widget
+- Fix: Wrapper is rendered when icon/image is missing issue
+
 = 2.3.0 - 20 November 2019 =
 
 - New: Gravity Forms Widget
