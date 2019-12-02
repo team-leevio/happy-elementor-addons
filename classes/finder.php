@@ -10,9 +10,9 @@ use Elementor\Core\Common\Modules\Finder\Base_Category as Finder_Category;
 
 defined( 'ABSPATH' ) || die();
 
-class Finder_Dashboard extends Finder_Category {
+class Finder extends Finder_Category {
 
-    const SLUG = 'happy-addons-dashboard';
+    const SLUG = 'happy-addons';
 
     /**
      * Get title.
@@ -22,7 +22,7 @@ class Finder_Dashboard extends Finder_Category {
      * @return string
      */
     public function get_title() {
-        return __( 'Happy Addons Dashboard', 'happy-elementor-addons' );
+        return __( 'Happy Addons', 'happy-elementor-addons' );
     }
 
     /**

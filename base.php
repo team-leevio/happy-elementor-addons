@@ -150,10 +150,10 @@ class Base {
      * @param $categories_manager
      */
     public function register_finder( $categories_manager ) {
-        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/finder-dashboard.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/finder.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/finder-edit.php' );
         // Add the category
-        $categories_manager->add_category( Finder_Dashboard::SLUG, new Finder_Dashboard() );
+        $categories_manager->add_category( Finder::SLUG, new Finder() );
         $categories_manager->add_category( Finder_Edit::SLUG, new Finder_Edit() );
     }
 }
