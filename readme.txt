@@ -23,7 +23,7 @@ https://www.youtube.com/watch?v=XpWm7zdvUoM
 > HappyAddons is a unique Elementor Addon
    — Adam Preiser, Founder of WP Crafter
 
-### Included 25 Free Widgets
+### Included 27 Free Widgets
 
 1. **[Card](https://demo.happyaddons.com/elementor-card-widget-demo/)** - Incredibly powerful widget to demonstrate your products, articles, news, creative posts using a beautiful combination of texts, links, badge and image. Using built in positioning and offset feature you can create eye-candy designs in a twist. [Check demo](https://demo.happyaddons.com/elementor-card-widget-demo/)
 2. **[Gradient Heading](https://demo.happyaddons.com/elementor-gradient-heading-widget-demo/)** - Another gem to create eye candy headings for your websites. You can apply different gradient styles, angles, opacity, and positions to make them look even better across different device screens. [Check demo](https://demo.happyaddons.com/elementor-gradient-heading-widget-demo/)
@@ -50,6 +50,8 @@ https://www.youtube.com/watch?v=XpWm7zdvUoM
 23. **[Flip Box](https://demo.happyaddons.com/elementor-flip-box-widget-demo/)** - FlipBox helps you to deliver messages in a beautiful way with before and after effects. [Check demo](https://demo.happyaddons.com/elementor-flip-box-widget-demo/)
 24. **[Pricing Table](https://demo.happyaddons.com/elementor-pricing-table-widget-demo/)** - Create beautiful pricing tables with lots of customizations and sleek look-n-feel using this widget. [Check demo](https://demo.happyaddons.com/elementor-pricing-table-widget-demo/)
 25. **[Image Grid](https://demo.happyaddons.com/elementor-image-grid-widget-demo/)** - Simply beautiful, this widget can help you create stunning number blocks with various styles, look-n-feels that’s literally going to blow your mind. [Check demo](https://demo.happyaddons.com/elementor-image-grid-widget-demo/)
+26. **Gravity Forms**
+27. **News Ticker**
 
 ### INCLUDED FREE EXTENSIONS FOR EVERY ELEMENTOR WIDGET
 
@@ -57,6 +59,11 @@ https://www.youtube.com/watch?v=XpWm7zdvUoM
 
 1. **Background Overlay** - You can add background overlay to any widget now.
 2. **Happy Icons** - Custom icon fonts library.
+3. **Elementor Column Extension**
+    1. Column Custom Width
+    2. Column Order
+4. **Elementor Default Widget Extension**
+    1. Button Fixed Size
 
 **Happy Effects**
 
