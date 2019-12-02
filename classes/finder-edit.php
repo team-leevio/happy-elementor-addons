@@ -25,7 +25,7 @@ class Finder_Edit extends Finder_Category {
      * @return string
      */
     public function get_title() {
-        return __( 'Edit + HappyAddons Tools', 'happy-elementor-addons' );
+        return __( 'Edit + Happy Clone', 'happy-elementor-addons' );
     }
 
     /**
