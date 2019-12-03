@@ -87,9 +87,12 @@ As mentioned, the happy Elementor Addons caters you with these two effects that 
 
 👉  **[CSS Transform](https://demo.happyaddons.com/elementor-css-transform-demo/)** – Another missing piece, a great enhancement over core Elementor that works seamlessly with every widget. You can now apply various CSS transforms like translate, rotate, scale and skew without any limitations.
 
-[Floating and CSS transform effects video]
+https://www.youtube.com/watch?v=LmtacsLcFPU
 
-[Space Effect Video]
+**Space Effects Using Floating Effects**
+
+https://www.youtube.com/watch?v=F33g3zqkeog
+
 
 ### **Presenting the Mighty Happy Elementor Add Ons Pro**
 
