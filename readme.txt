@@ -106,7 +106,7 @@ https://www.youtube.com/watch?v=QwJrFMtfO2U
 The premium features of happy addons make it stand out from all the other Elementor add-ons. You will get the following three premium features from the Happy Addons:
 
 
-### **Apply the Same Design to Multiple Domains with a Single Click**
+### **Cross-Domain Copy-Paste: Apply the Same Design to Multiple Domains with a Single Click**
 
 If you are creating different web pages with WordPress, you will often try to use the same elements of a web page to other pages over and over again.
 
@@ -119,7 +119,7 @@ This is where the goodness of the Happy Addons comes to the rescue! With this to
 https://www.youtube.com/watch?v=s1WlUYweJl0
 
 
-### **Save Your Time and Effort by Using the Preset Feature**
+### **Preset: Save Your Time and Effort by Using the Preset Feature**
 
 If you try to create your website from scratch and give it a professional appearance, then it will take up a huge amount of time and effort.
 
@@ -130,7 +130,7 @@ To tackle this hassle, the Preset option of the Happy Addons comes into play! Mu
 https://www.youtube.com/watch?v=fEEvoc6HRBA
 
 
-### **Unlimited Section Nesting to Go Beyond the Limit**
+### **Unlimited Section Nesting: Use Unlimited Section Nesting to Go Beyond the Limit**
 
 With Elementor, you can create sections to make room for elements. We feel happy to say that by integrating the Happy Elementor add-ons, you can create infinite sections within a single section.
 
@@ -141,7 +141,7 @@ And as usual, you can insert as many widgets as you want into those sections.
 https://www.youtube.com/watch?v=Vr0-msIB3jc
 
 
-### **Copy Designs from Demo Site to Get It Done Right Away!**
+### **Live Copy: Copy Designs from Demo Site to Get It Done Right Away!**
 
 Sometimes you may wish to simulate exactly the same design that you see on our demo page. Amazingly, with the Live Copy option, you can do it at your disposal.
 
