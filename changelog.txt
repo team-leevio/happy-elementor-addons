@@ -1,4 +1,4 @@
-= 2.4.0 - 2 December 2019 =
+= 2.4.0 - 3 December 2019 =
 
 - New: Happy Clone - (duplicate post/page from anywhere!)
 - New: News Ticker Widget
