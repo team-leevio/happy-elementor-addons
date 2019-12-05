@@ -62,18 +62,22 @@
     if ( elementor.modules.controls.Icons ) {
         var WithHappyIcons = elementor.modules.controls.Icons.extend({
             getControlValue: function() {
-                var value = this.constructor.__super__.getControlValue.call(this),
+                var controlValue = this.constructor.__super__.getControlValue.call(this),
                     model = this.model,
                     valueToMigrate = this.getValueToMigrate(),
                     newValue = { value: '', library: 'happy-icons' };
 
-                if ( _.isObject( value ) && value.library !== 'svg' && value.value.indexOf( 'fashm' ) === 0 ) {
-                    newValue.value = value.value.substr( value.value.indexOf( 'hm hm-' ) );
+                if ( _.isObject( controlValue ) &&
+                    !_.isEmpty( controlValue ) &&
+                    controlValue.library !== 'svg' &&
+                    controlValue.value.indexOf( 'fashm' ) === 0
+                ) {
+                    newValue.value = controlValue.value.substr( controlValue.value.indexOf( 'hm hm-' ) );
                     this.elementSettingsModel.set( model.get( 'name' ), newValue );
                     return newValue;
                 }
 
-                if ( ! _.isObject( value ) && valueToMigrate && valueToMigrate.indexOf('hm hm-') === 0 ) {
+                if ( ! _.isObject( controlValue ) && valueToMigrate && valueToMigrate.indexOf( 'hm hm-' ) === 0 ) {
                     newValue.value = valueToMigrate;
                     this.elementSettingsModel.set( model.get( 'name' ), newValue );
                     return newValue;
@@ -85,7 +89,7 @@
 
                 // Bail if no migration flag or no value to migrate
                 if ( ! valueToMigrate ) {
-                    return value;
+                    return controlValue;
                 }
 
                 var didMigration = this.elementSettingsModel.get( this.dataKeys.migratedKey ),
@@ -97,7 +101,7 @@
                 }
                 // Check if already migrated
                 if ( didMigration && didMigration[ controlName ] ) {
-                    return value;
+                    return controlValue;
                 }
 
                 // Do migration
