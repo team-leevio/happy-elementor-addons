@@ -451,7 +451,7 @@ class News_Ticker extends Base {
 		$news_posts = [];
 		$the_query = get_posts( $query_args );
 		if ( ! empty( $the_query ) ) {
-			$news_posts = wp_list_pluck( $the_query, 'post_title', 'post_status' );
+			$news_posts = wp_list_pluck( $the_query, 'post_title', 'ID' );
 		}
 
 		$this->add_render_attribute( 'wrapper', 'class', [ 'ha-news-ticker-wrapper' ] );
@@ -471,7 +471,7 @@ class News_Ticker extends Base {
 					<?php foreach ( $news_posts as $key => $value ): ?>
 						<li <?php $this->print_render_attribute_string( 'item' ); ?>>
 							<h2 class="ha-news-ticker-title">
-								<a href="<?php echo esc_url( $key ); ?>">
+								<a href="<?php echo esc_url( get_the_permalink($key) ); ?>">
 									<?php echo esc_html( $value ); ?>
 								</a>
 							</h2>
