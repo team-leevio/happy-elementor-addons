@@ -43,7 +43,7 @@ class Fun_Factor extends Base {
 	 *
 	 */
 	public function get_icon() {
-		return 'eicon eicon-call-to-action';
+		return 'hm hm-cross-game';
 	}
 
 	public function get_keywords() {
@@ -171,7 +171,7 @@ class Fun_Factor extends Base {
 			[
 				'label'     => __('Number', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::TEXT,
-				'default'   => '7',
+				'default'   => '507',
 				'dynamic'   => [
 					'active' => true,
 				],
@@ -198,6 +198,7 @@ class Fun_Factor extends Base {
 				'label_off'    => __('No', 'happy-elementor-addons'),
 				'return_value' => 'yes',
 				'separator'    => 'before',
+				'default'      => 'yes'
 			]
 		);
 
@@ -287,6 +288,8 @@ class Fun_Factor extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-fun-box-container, {{WRAPPER}} .ha-fun-box-image-section' => 'text-align: {{VALUE}};',
 				],
+				'default'   => 'center',
+				'render_type' => 'template',
 			]
 		);
 
@@ -696,7 +699,7 @@ class Fun_Factor extends Base {
 				'size_units' => ['%'],
 				'range'      => [
 					'%' => [
-						'min' => 25,
+						'min' => 10,
 						'max' => 100
 					],
 				],
@@ -719,7 +722,7 @@ class Fun_Factor extends Base {
 					'px' => 1
 				],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-fun-factor-divider' => 'border-top-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-fun-factor-divider' => 'height: {{SIZE}}{{UNIT}} !important;',
 				],
 			]
 		);
@@ -741,7 +744,7 @@ class Fun_Factor extends Base {
 				'label'     => __('Color', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-fun-factor-divider' => 'border-top-color: {{VALUE}} !important;',
+					'{{WRAPPER}} .ha-fun-factor-divider' => 'background-color: {{VALUE}} !important;',
 				],
 			]
 		);
@@ -798,7 +801,7 @@ class Fun_Factor extends Base {
 			<div class="ha-fun-box">
 				<h2 <?php $this->print_render_attribute_string('fun_factor_number'); ?> > <?php echo esc_html($number); ?></h2>
 				<?php if ('yes' === $settings['divider_show_hide']) : ?>
-					<hr class="w-25 ha-fun-factor-divider ha-fun-factor-divider-align-<?php echo $settings['text_align']; ?>">
+					<span class="ha-fun-factor-divider ha-fun-factor-divider-align-<?php echo $settings['text_align']; ?>"></span>
 				<?php endif; ?>
 				<<?php echo tag_escape($settings['title_tag']); ?>
 				class="ha-fun-box-text"><?php echo esc_html($fun_factor_title); ?>

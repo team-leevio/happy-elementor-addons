@@ -1,9 +1,20 @@
+.ha-fun-box h2.ha-fun-box-number,
+.ha-fun-box .ha-fun-box-text{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 .ha-ff-icon--left .ha-fun-box {
 	padding-left: 20px;
 }
 
-.ha-ff-icon--right .ha-fun-box{
+.ha-ff-icon--right .ha-fun-box {
 	padding-right: 20px;
+}
+
+span.ha-fun-factor-divider {
+	height: 1px;
+	background-color: #CCCCCC;
 }
 
 .ha-ff-icon--top .ha-fun-box-icon-section,
@@ -13,10 +24,8 @@
 	height: auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-
 }
+
 .ha-fun-box-container {
 	padding: 10px;
 	word-wrap: break-word;
@@ -55,13 +64,14 @@
 	margin: auto;
 }
 
+.elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider {
+	display: block;
+	width: 10%;
+}
+
 .ha-ff-icon--right > .elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider,
 .ha-ff-icon--left > .elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider {
 	width: 100% !important;
-}
-
-.elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider{
-	display: inline-block;
 }
 
 .ha-fun-factor-divider-align-left {
@@ -79,6 +89,7 @@
 	margin-left: auto !important;
 	margin-right: auto !important;
 }
+
 .ha-fun-box-text {
 	margin-top: 20px;
 	margin-bottom: 20px;
