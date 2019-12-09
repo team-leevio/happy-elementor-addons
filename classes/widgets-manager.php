@@ -155,6 +155,11 @@ class Widgets_Manager {
                 'icon' => 'hm hm-hand-watch',
                 'is_pro' => true,
             ],
+			'promo-box' => [
+				'title' => __( 'Promo Box', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-promo',
+				'is_pro' => true,
+			],
         ];
     }
 
