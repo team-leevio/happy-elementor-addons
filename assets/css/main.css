@@ -2707,6 +2707,7 @@
 .ha-fun-box .ha-fun-box-text {
 	margin-top: 0;
 	margin-bottom: 0;
+	margin-bottom: 15px;
 }
 
 .ha-ff-icon--left .ha-fun-box {
@@ -2718,6 +2719,7 @@
 }
 
 span.ha-fun-factor-divider {
+	margin-bottom: 15px !important; 
 	height: 1px;
 	background-color: #ccc;
 }

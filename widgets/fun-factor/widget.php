@@ -767,7 +767,7 @@ class Fun_Factor extends Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		$this->add_render_attribute('fun_factor_number', 'class', 'value ha-fun-box-number mt-3 font-weight-normal');
+		$this->add_render_attribute('fun_factor_number', 'class', 'ha-fun-box-number');
 		$number           = $settings['fun_factor_number'];
 		$fun_factor_title = $settings['fun_factor_title'];
 
