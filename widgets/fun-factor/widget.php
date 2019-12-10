@@ -260,7 +260,7 @@ class Fun_Factor extends Base {
 						'icon'  => 'eicon-editor-h6'
 					]
 				],
-				'default' => 'h6',
+				'default' => 'h2',
 				'toggle'  => false,
 			]
 		);
@@ -317,7 +317,7 @@ class Fun_Factor extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'image_width',
 			[
 				'label'      => __('Width', 'happy-elementor-addons'),
@@ -348,7 +348,7 @@ class Fun_Factor extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'image_height',
 			[
 				'label'      => __('Height', 'happy-elementor-addons'),
