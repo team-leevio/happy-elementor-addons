@@ -2703,6 +2703,13 @@
 	color: #e04c8a;
 }
 
+.ha-fun-box h2.ha-fun-box-number,
+.ha-fun-box .ha-fun-box-text {
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-bottom: 15px;
+}
+
 .ha-ff-icon--left .ha-fun-box {
 	padding-left: 20px;
 }
@@ -2711,13 +2718,17 @@
 	padding-right: 20px;
 }
 
+span.ha-fun-factor-divider {
+	margin-bottom: 15px !important; 
+	height: 1px;
+	background-color: #ccc;
+}
+
 .ha-ff-icon--top .ha-fun-box-icon-section,
 .ha-ff-icon--top .ha-fun-box-image-section {
 	display: inline-block;
 	margin-top: 10px;
-	margin-bottom: 10px;
-	padding-top: 10px;
-	padding-bottom: 10px; 
+	margin-bottom: 10px; 
 	width: auto;
 	height: auto;
 }
@@ -2761,13 +2772,14 @@
 	margin: auto;
 }
 
+.elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider {
+	display: block;
+	width: 10%;
+}
+
 .ha-ff-icon--right > .elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider,
 .ha-ff-icon--left > .elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider {
 	width: 100% !important;
-}
-
-.elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider {
-	display: inline-block;
 }
 
 .ha-fun-factor-divider-align-left {
