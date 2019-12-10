@@ -27,7 +27,7 @@ _HappyAddons is a unique Elementor Addon. It might be the best addon package for
 _— **Adam Preiser, Founder of WP Crafter**_
 
 
-### **INCLUDED 27 FREE WIDGETS**
+### INCLUDED 27 FREE WIDGETS
 
 Unlike other Elementor addons, the Happy Elementor Addons comes with a host of free yet powerful widgets. The magical widgets will impress you so much that you will be confused whether they are premium or free:
 
@@ -60,7 +60,7 @@ Unlike other Elementor addons, the Happy Elementor Addons comes with a host of f
 27. **[News Ticker](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/news-ticker/)** - Want to show updates, popular content or messages on your website? With the Happy Elementor Addons Content Ticker widget, you can do this at your disposal with great customizability.
 
 
-### **Free Built-in Extensions to Give You an Awesome Experience**
+### Free Built-in Extensions to Give You an Awesome Experience
 
 **Happy Extensions contain free extensions augmenting the features of the Elementor page builder to add additional customizations. These effects are unique and exclusive that is only available in Happy Addons.**
 
@@ -94,19 +94,19 @@ https://www.youtube.com/watch?v=LmtacsLcFPU
 https://www.youtube.com/watch?v=F33g3zqkeog
 
 
-### **Presenting the Mighty Happy Elementor Add Ons Pro**
+### Presenting the Mighty Happy Elementor Add Ons Pro
 
 The Happy Elementor Addons ships not only with some unique premium features but also with premium widgets. The premium features are 100% unique and exclusive and the premium widgets are there to give you professional assistance to craft any design.
 
 https://www.youtube.com/watch?v=QwJrFMtfO2U
 
 
-## **Premium (Pro) Features of the Happy Elementor Addons**
+## Premium (Pro) Features of the Happy Elementor Addons
 
 The premium features of happy addons make it stand out from all the other Elementor add-ons. You will get the following three premium features from the Happy Addons:
 
 
-### **Cross-Domain Copy-Paste: Apply the Same Design to Multiple Domains with a Single Click**
+### Cross-Domain Copy-Paste: Apply the Same Design to Multiple Domains with a Single Click
 
 If you are creating different web pages with WordPress, you will often try to use the same elements of a web page to other pages over and over again.
 
@@ -119,7 +119,7 @@ This is where the goodness of the Happy Addons comes to the rescue! With this to
 https://www.youtube.com/watch?v=s1WlUYweJl0
 
 
-### **Preset: Save Your Time and Effort by Using the Preset Feature**
+### Preset: Save Your Time and Effort by Using the Preset Feature
 
 If you try to create your website from scratch and give it a professional appearance, then it will take up a huge amount of time and effort.
 
@@ -130,7 +130,7 @@ To tackle this hassle, the Preset option of the Happy Addons comes into play! Mu
 https://www.youtube.com/watch?v=fEEvoc6HRBA
 
 
-### **Unlimited Section Nesting: Use Unlimited Section Nesting to Go Beyond the Limit**
+### Unlimited Section Nesting: Use Unlimited Section Nesting to Go Beyond the Limit
 
 With Elementor, you can create sections to make room for elements. We feel happy to say that by integrating the Happy Elementor add-ons, you can create infinite sections within a single section.
 
@@ -141,7 +141,7 @@ And as usual, you can insert as many widgets as you want into those sections.
 https://www.youtube.com/watch?v=Vr0-msIB3jc
 
 
-### **Live Copy: Copy Designs from Demo Site to Get It Done Right Away!**
+### Live Copy: Copy Designs from Demo Site to Get It Done Right Away!
 
 Sometimes you may wish to simulate exactly the same design that you see on our demo page. Amazingly, with the Live Copy option, you can do it at your disposal.
 
@@ -154,7 +154,7 @@ Unlike a theme template, using the demo designs won’t put any pressure on your
 https://www.youtube.com/watch?v=339WNqlDFAA
 
 
-## **Premium Widgets of Happy Elementor Addons**
+## Premium Widgets of Happy Elementor Addons
 
 If you are not contented with the free widgets, then the following premium widgets are there to quench your thirst. The best part is that you can copy and paste the design source code and so you won’t have to make any design from scratch:
 
@@ -183,7 +183,7 @@ to make your text stand apart from the crowd applying smart animations. You can 
 19. **[Source Code](https://demo.happyaddons.com/elementor-source-code-widget-demo/)** - While writing docs or tutorial posts, you can use this widget to skillfully show codes to your visitors so that they can copy and paste them anywhere on the page at their disposal. [Check demo](https://demo.happyaddons.com/elementor-source-code-widget-demo/)
 
 
-### **Enjoy Extra Benefits from the Happy Addons!**
+### Enjoy Extra Benefits from the Happy Addons!
 
 Our code doesn’t stink and we don’t leave you blindfolded when you need support from us. Apart from the freemium widgets, the plugin will pamper you with a fleet of professional quality features.
 
@@ -192,7 +192,7 @@ For example, it’s compatible with almost every WordPress theme; it’s lightwe
 If you don’t understand a feature or fail to give it the desired look which was already demonstrated in a demo, or it’s not working as expected – we got your back. Just drop us a line and we will do our best to help you figure a way out.
 
 
-### **BUGS, TECHNICAL HINTS OR CONTRIBUTE**
+### BUGS, TECHNICAL HINTS OR CONTRIBUTE
 
 Please give us feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/weDevsOfficial/happy-elementor-addons/issues).
 
