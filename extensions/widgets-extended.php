@@ -14,13 +14,11 @@ defined('ABSPATH') || die();
 class Widgets_Extended {
 
     public static function init() {
-        add_action( 'elementor/element/button/section_style/after_section_start', [ __CLASS__, 'add_button_controls'
-        ] );
+        add_action( 'elementor/element/button/section_style/after_section_start', [ __CLASS__, 'add_button_controls' ] );
     }
 
-    public static function add_button_controls( Widget_Base $element ) {
-
-        $element->add_control(
+    public static function add_button_controls( Widget_Base $widget ) {
+        $widget->add_control(
             'ha_fixed_size_toggle',
             [
                 'label' => sprintf( __( 'Fixed Size %s', 'happy-elementor-addons' ), '<i style="color: #d5dadf;" class="hm hm-happyaddons"></i>' ),
@@ -29,9 +27,9 @@ class Widgets_Extended {
             ]
         );
 
-        $element->start_popover();
+        $widget->start_popover();
 
-        $element->add_responsive_control(
+        $widget->add_responsive_control(
             'ha_height',
             [
                 'label' => __( 'Height', 'happy-elementor-addons' ),
@@ -53,7 +51,7 @@ class Widgets_Extended {
             ]
         );
 
-        $element->add_responsive_control(
+        $widget->add_responsive_control(
             'ha_width',
             [
                 'label' => __( 'Width', 'happy-elementor-addons' ),
@@ -75,7 +73,7 @@ class Widgets_Extended {
             ]
         );
 
-        $element->add_control(
+        $widget->add_control(
             'ha_align_x',
             [
                 'type' => Controls_Manager::CHOOSE,
@@ -110,7 +108,7 @@ class Widgets_Extended {
             ]
         );
 
-        $element->add_control(
+        $widget->add_control(
             'ha_align_y',
             [
                 'type' => Controls_Manager::CHOOSE,
@@ -145,7 +143,7 @@ class Widgets_Extended {
             ]
         );
 
-        $element->add_control(
+        $widget->add_control(
             'ha_flex_display',
             [
                 'type' => Controls_Manager::HIDDEN,
@@ -161,6 +159,6 @@ class Widgets_Extended {
             ]
         );
 
-        $element->end_popover();
+        $widget->end_popover();
     }
 }
