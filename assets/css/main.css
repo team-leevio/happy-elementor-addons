@@ -2703,10 +2703,9 @@
 	color: #e04c8a;
 }
 
-.ha-fun-box h2.ha-fun-box-number,
+.ha-fun-box .ha-fun-box-number,
 .ha-fun-box .ha-fun-box-text {
 	margin-top: 0;
-	margin-bottom: 0;
 	margin-bottom: 15px;
 }
 
@@ -2718,8 +2717,8 @@
 	padding-right: 20px;
 }
 
-span.ha-fun-factor-divider {
-	margin-bottom: 15px !important; 
+.ha-fun-factor-divider {
+	margin-bottom: 15px; 
 	height: 1px;
 	background-color: #ccc;
 }

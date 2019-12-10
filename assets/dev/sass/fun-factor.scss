@@ -1,7 +1,6 @@
-.ha-fun-box h2.ha-fun-box-number,
-.ha-fun-box .ha-fun-box-text{
+.ha-fun-box .ha-fun-box-number,
+.ha-fun-box .ha-fun-box-text {
 	margin-top: 0;
-	margin-bottom: 0;
 	margin-bottom: 15px;
 }
 
@@ -13,7 +12,7 @@
 	padding-right: 20px;
 }
 
-span.ha-fun-factor-divider {
+.ha-fun-factor-divider {
 	height: 1px;
 	background-color: #CCCCCC;
 	margin-bottom: 15px;
@@ -36,26 +35,12 @@ span.ha-fun-factor-divider {
 
 .ha-ff-icon--right > .elementor-widget-container .ha-fun-box-container,
 .ha-ff-icon--left > .elementor-widget-container .ha-fun-box-container {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-align: center;
-	-webkit-align-items: center;
 	align-items: center;
-	-ms-flex-align: center;
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
-	-webkit-flex-direction: row;
-	-ms-flex-direction: row;
 	flex-direction: row;
 }
 
 .ha-ff-icon--right > .elementor-widget-container .ha-fun-box-container {
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: reverse;
-	-webkit-flex-direction: row-reverse;
-	-ms-flex-direction: row-reverse;
 	flex-direction: row-reverse;
 	text-align: right;
 }
