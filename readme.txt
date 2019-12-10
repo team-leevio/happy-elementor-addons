@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.4.0
+Version: 2.4.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, obiplabon
@@ -257,6 +257,12 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.4.1 - 10 December 2019 =
+
+- Fix: News Ticket single post selection issue
+- Fix: Blank icons controls JS error issue (it also fixes EA Table and Elementor FORM issue)
+- Fix: Gravity Forms Elementor editor style issue
 
 = 2.4.0 - 3 December 2019 =
 

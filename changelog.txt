@@ -1,3 +1,9 @@
+= 2.4.1 - 10 December 2019 =
+
+- Fix: News Ticket single post selection issue
+- Fix: Blank icons controls JS error issue (it also fixes EA Table and Elementor FORM issue)
+- Fix: Gravity Forms Elementor editor style issue
+
 = 2.4.0 - 3 December 2019 =
 
 - New: Happy Clone - (duplicate post/page from anywhere!)
