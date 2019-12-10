@@ -437,21 +437,11 @@
 		    }
 	    });
 
-	    // fun-factor
-		// var FunFactor = EM.frontend.handlers.Base.extend({
-			var FunFactor = function ($scope) {
-				EF.waypoint($scope, function () {
-					var $fun_factor = $scope.find('.ha-fun-box-number');
-					$fun_factor.numerator($fun_factor.data('animation'));
-				});
-			};
-		// });
         var handlersFnMap = {
             'ha-image-compare.default': HandleImageCompare,
             'ha-justified-gallery.default': HandleJustifiedGallery,
             'ha-number.default': NumberHandler,
             'ha-skills.default': SkillHandler,
-            'ha-fun-factor.default': FunFactor,
         };
 
         $.each( handlersFnMap, function( widgetName, handlerFn ) {
