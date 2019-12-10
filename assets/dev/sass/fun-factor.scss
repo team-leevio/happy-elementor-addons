@@ -41,10 +41,6 @@
 }
 
 .ha-ff-icon--right > .elementor-widget-container .ha-fun-box-container {
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: reverse;
-	-webkit-flex-direction: row-reverse;
-	-ms-flex-direction: row-reverse;
 	flex-direction: row-reverse;
 	text-align: right;
 }
