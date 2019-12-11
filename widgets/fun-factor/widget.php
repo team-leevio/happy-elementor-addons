@@ -268,9 +268,9 @@ class Fun_Factor extends Base {
 		$this->add_responsive_control(
 			'text_align',
 			[
-				'label'     => __('Text Alignment', 'happy-elementor-addons'),
-				'type'      => Controls_Manager::CHOOSE,
-				'options'   => [
+				'label'       => __('Text Alignment', 'happy-elementor-addons'),
+				'type'        => Controls_Manager::CHOOSE,
+				'options'     => [
 					'left'   => [
 						'title' => __('Left', 'happy-elementor-addons'),
 						'icon'  => 'eicon-text-align-left',
@@ -284,11 +284,11 @@ class Fun_Factor extends Base {
 						'icon'  => 'eicon-text-align-right',
 					],
 				],
-				'toggle'    => true,
-				'selectors' => [
-					'{{WRAPPER}} .ha-fun-box-container, {{WRAPPER}} .ha-fun-box-image-section' => 'text-align: {{VALUE}};',
+				'toggle'      => true,
+				'selectors'   => [
+					'{{WRAPPER}} .ha-ff-container, {{WRAPPER}} .ha-fun-factor-image-section' => 'text-align: {{VALUE}};',
 				],
-				'default'   => 'center',
+				'default'     => 'center',
 				'render_type' => 'template',
 			]
 		);
@@ -326,7 +326,7 @@ class Fun_Factor extends Base {
 				'range'      => [
 					'px' => [
 						'min' => 150,
-						'max' => 600,
+						'max' => 1024,
 					],
 					'%'  => [
 						'min' => 30,
@@ -338,8 +338,8 @@ class Fun_Factor extends Base {
 				],
 
 				'selectors' => [
-					'{{WRAPPER}} .ha-fun-box-image-section, {{WRAPPER}} .ha-fun-box-icon-section'           => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-ff-icon--right .ha-fun-box, {{WRAPPER}} .ha-ff-icon--left .ha-fun-box' => 'flex: 0 0 calc(100% - {{SIZE || 50}}{{UNIT}}); max-width: calc(100% - {{SIZE || 50}}{{UNIT}});',
+					'{{WRAPPER}} .ha-fun-factor-image-section img'                                                                => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-fun-factor-image-section, {{WRAPPER}} .ha-fun-factor-icon-section'                           => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
 				],
 
 				'condition' => [
@@ -357,7 +357,7 @@ class Fun_Factor extends Base {
 				'range'      => [
 					'px' => [
 						'min' => 150,
-						'max' => 600,
+						'max' => 1024,
 					],
 					'%'  => [
 						'min' => 30,
@@ -368,7 +368,7 @@ class Fun_Factor extends Base {
 					'unit' => 'px',
 				],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-fun-box-image-section img' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-fun-factor-image-section img' => 'height: {{SIZE}}{{UNIT}};',
 				],
 				'condition'  => [
 					'media_type' => 'image',
@@ -379,16 +379,33 @@ class Fun_Factor extends Base {
 		$this->add_responsive_control(
 			'icon_size',
 			[
-				'label'       => __('Size', 'happy-elementor-addons'),
-				'type'        => Controls_Manager::NUMBER,
-				'description' => __('Maximum font size is 10', 'happy-elementor-addons'),
-				'min'         => 2,
-				'max'         => 10,
-				'step'        => 1,
-				'default'     => 3,
-				'selectors'   => [
-					'{{WRAPPER}} .ha-fun-box-icon-section'                                                => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}}.ha-ff-icon--right .ha-fun-box, {{WRAPPER}}.ha-ff-icon--left .ha-fun-box' => 'flex: 0 0 calc(100% - {{SIZE || 50}}{{UNIT}}); max-width: calc(100% - {{SIZE || 50}}{{UNIT}}) !important;',
+				'label'      => __('Size (em)', 'happy-elementor-addons'),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => ['em'],
+				'range'      => [
+					'em' => [
+						'min'  => 1,
+						'max'  => 10,
+						'step' => 1,
+					],
+				],
+
+				'devices'         => ['desktop', 'tablet', 'mobile'],
+				'desktop_default' => [
+					'unit' => 'em',
+					'size' => 3,
+				],
+				'tablet_default'  => [
+					'unit' => 'em',
+					'size' => 2,
+				],
+				'mobile_default'  => [
+					'unit' => 'em',
+					'size' => 2,
+				],
+
+				'selectors' => [
+					'{{WRAPPER}} .ha-fun-factor-icon' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
 
 				'condition'   => [
@@ -404,7 +421,7 @@ class Fun_Factor extends Base {
 				'label'     => __('Icon Color', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} i.ha-fun-box-icon' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-fun-factor-icon' => 'color: {{VALUE}};',
 				],
 				'condition' => [
 					'media_type' => 'icon',
@@ -419,7 +436,7 @@ class Fun_Factor extends Base {
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-fun-box-image-section img, {{WRAPPER}} .ha-fun-box-icon-section' => 'padding: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-fun-factor-image-section img, {{WRAPPER}} .ha-fun-factor-icon-section' => 'padding: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -428,7 +445,7 @@ class Fun_Factor extends Base {
 			Group_Control_Border::get_type(),
 			[
 				'name'      => 'media_border',
-				'selector'  => '{{WRAPPER}} .ha-fun-box-image-section img, {{WRAPPER}} .ha-fun-box-icon-section',
+				'selector'  => '{{WRAPPER}} .ha-fun-factor-image-section img, {{WRAPPER}} .ha-fun-factor-icon-section',
 				'separator' => 'before'
 			]
 		);
@@ -440,7 +457,7 @@ class Fun_Factor extends Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-fun-box-image-section img, {{WRAPPER}} .ha-fun-box-icon-section' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-fun-factor-image-section img, {{WRAPPER}} .ha-fun-factor-icon-section' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -449,7 +466,7 @@ class Fun_Factor extends Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name'     => 'media_box_shadow',
-				'selector' => '{{WRAPPER}} .ha-fun-box-image-section img, {{WRAPPER}} .ha-fun-box-icon-section',
+				'selector' => '{{WRAPPER}} .ha-fun-factor-image-section img, {{WRAPPER}} .ha-fun-factor-icon-section',
 			]
 		);
 
@@ -459,7 +476,7 @@ class Fun_Factor extends Base {
 				'label'     => __('Bottom Spacing', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [
-					'{{WRAPPER}} .ha-fun-box-icon-section, {{WRAPPER}} .ha-fun-box-image-section' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-fun-factor-icon-section, {{WRAPPER}} .ha-fun-factor-image-section' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -470,7 +487,7 @@ class Fun_Factor extends Base {
 				'label'     => __('Background Color', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-fun-box-icon-section, {{WRAPPER}} .ha-fun-box-image-section' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-fun-factor-icon-section, {{WRAPPER}} .ha-fun-factor-image-section' => 'background-color: {{VALUE}};',
 				],
 				'condition' => [
 					'media_type' => 'icon'
@@ -527,19 +544,19 @@ class Fun_Factor extends Base {
 
 				'selectors' => [
 					// Left image position styles
-					'(desktop){{WRAPPER}}.ha-ff-icon--left .ha-fun-box'                                    => 'margin-left: {{media_offset_x.SIZE || 0}}{{UNIT}}; flex: 0 0 calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + (-1 * {{media_offset_x.SIZE || 0}}{{UNIT}})); max-width: calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + (-1 * {{media_offset_x.SIZE || 0}}{{UNIT}}));',
-					'(tablet){{WRAPPER}}.ha-ff-icon--left .ha-fun-box'                                     => 'margin-left: {{media_offset_x_tablet.SIZE || 0}}{{UNIT}}; flex: 0 0 calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + (-1 * {{media_offset_x_tablet.SIZE || 0}}{{UNIT}})); max-width: calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + (-1 * {{media_offset_x_tablet.SIZE || 0}}{{UNIT}}));',
-					'(mobile){{WRAPPER}}.ha-ff-icon--left .ha-fun-box'                                     => 'margin-left: {{media_offset_x_mobile.SIZE || 0}}{{UNIT}}; flex: 0 0 calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + (-1 * {{media_offset_x_mobile.SIZE || 0}}{{UNIT}})); max-width: calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + (-1 * {{media_offset_x_mobile.SIZE || 0}}{{UNIT}}));',
+					'(desktop){{WRAPPER}}.ha-ff-icon--left .ha-fun-factor-content'                               => 'margin-left: {{media_offset_x.SIZE || 0}}{{UNIT}}; max-width: calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + (-1 * {{media_offset_x.SIZE || 0}}{{UNIT}}));',
+					'(tablet){{WRAPPER}}.ha-ff-icon--left .ha-fun-factor-content'                                => 'margin-left: {{media_offset_x_tablet.SIZE || 0}}{{UNIT}}; max-width: calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + (-1 * {{media_offset_x_tablet.SIZE || 0}}{{UNIT}}));',
+					'(mobile){{WRAPPER}}.ha-ff-icon--left .ha-fun-factor-content'                                => 'margin-left: {{media_offset_x_mobile.SIZE || 0}}{{UNIT}}; max-width: calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + (-1 * {{media_offset_x_mobile.SIZE || 0}}{{UNIT}}));',
 					// Image right position styles
-					'(desktop){{WRAPPER}}.ha-ff-icon--right .ha-fun-box'                                   => 'margin-right: calc(-1 * {{media_offset_x.SIZE || 0}}{{UNIT}}); flex: 0 0 calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + {{media_offset_x.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + {{media_offset_x.SIZE || 0}}{{UNIT}});',
-					'(tablet){{WRAPPER}}.ha-ff-icon--right .ha-fun-box'                                    => 'margin-right: calc(-1 * {{media_offset_x_tablet.SIZE || 0}}{{UNIT}}); flex: 0 0 calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + {{media_offset_x_tablet.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + {{media_offset_x_tablet.SIZE || 0}}{{UNIT}});',
-					'(mobile){{WRAPPER}}.ha-ff-icon--right .ha-fun-box'                                    => 'margin-right: calc(-1 * {{media_offset_x_mobile.SIZE || 0}}{{UNIT}}); flex: 0 0 calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + {{media_offset_x_mobile.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + {{media_offset_x_mobile.SIZE || 0}}{{UNIT}});',
+					'(desktop){{WRAPPER}}.ha-ff-icon--right .ha-fun-factor-content'                              => 'margin-right: calc(-1 * {{media_offset_x.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + {{media_offset_x.SIZE || 0}}{{UNIT}});',
+					'(tablet){{WRAPPER}}.ha-ff-icon--right .ha-fun-factor-content'                               => 'margin-right: calc(-1 * {{media_offset_x_tablet.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + {{media_offset_x_tablet.SIZE || 0}}{{UNIT}});',
+					'(mobile){{WRAPPER}}.ha-ff-icon--right .ha-fun-factor-content'                               => 'margin-right: calc(-1 * {{media_offset_x_mobile.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + {{media_offset_x_mobile.SIZE || 0}}{{UNIT}});',
 					// Image translate styles
-					'(desktop){{WRAPPER}} .ha-fun-box-icon-section, {{WRAPPER}} .ha-fun-box-image-section' => '-ms-transform: translate({{media_offset_x.SIZE || 0}}{{UNIT}}, {{media_offset_y.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{media_offset_x.SIZE || 0}}{{UNIT}}, {{media_offset_y.SIZE || 0}}{{UNIT}}); transform: translate({{media_offset_x.SIZE || 0}}{{UNIT}}, {{media_offset_y.SIZE || 0}}{{UNIT}});',
-					'(tablet){{WRAPPER}} .ha-fun-box-icon-section, {WRAPPER}} .ha-fun-box-image-section'   => '-ms-transform: translate({{media_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{media_offset_y_tablet.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{media_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{media_offset_y_tablet.SIZE || 0}}{{UNIT}}); transform: translate({{media_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{media_offset_y_tablet.SIZE || 0}}{{UNIT}});',
-					'(mobile){{WRAPPER}} .ha-fun-box-icon-section, {{WRAPPER}} .ha-fun-box-image-section'  => '-ms-transform: translate({{media_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{media_offset_y_mobile.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{media_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{media_offset_y_mobile.SIZE || 0}}{{UNIT}}); transform: translate({{media_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{media_offset_y_mobile.SIZE || 0}}{{UNIT}});',
-					// Card body styles
-					'{{WRAPPER}}.ha-ff-icon--top .ha-fun-box'                                              => 'margin-top: {{SIZE}}{{UNIT}};',
+					'(desktop){{WRAPPER}} .ha-fun-factor-icon-section, {{WRAPPER}} .ha-fun-factor-image-section' => '-ms-transform: translate({{media_offset_x.SIZE || 0}}{{UNIT}}, {{media_offset_y.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{media_offset_x.SIZE || 0}}{{UNIT}}, {{media_offset_y.SIZE || 0}}{{UNIT}}); transform: translate({{media_offset_x.SIZE || 0}}{{UNIT}}, {{media_offset_y.SIZE || 0}}{{UNIT}});',
+					'(tablet){{WRAPPER}} .ha-fun-factor-icon-section, {WRAPPER}} .ha-fun-factor-image-section'   => '-ms-transform: translate({{media_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{media_offset_y_tablet.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{media_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{media_offset_y_tablet.SIZE || 0}}{{UNIT}}); transform: translate({{media_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{media_offset_y_tablet.SIZE || 0}}{{UNIT}});',
+					'(mobile){{WRAPPER}} .ha-fun-factor-icon-section, {{WRAPPER}} .ha-fun-factor-image-section'  => '-ms-transform: translate({{media_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{media_offset_y_mobile.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{media_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{media_offset_y_mobile.SIZE || 0}}{{UNIT}}); transform: translate({{media_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{media_offset_y_mobile.SIZE || 0}}{{UNIT}});',
+					// Fun Factor body styles
+					'{{WRAPPER}}.ha-ff-icon--top .ha-fun-factor-content'                                         => 'margin-top: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -565,7 +582,7 @@ class Fun_Factor extends Base {
 				'label'     => __('Padding', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::DIMENSIONS,
 				'selectors' => [
-					'{{WRAPPER}} .ha-fun-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-fun-factor-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				]
 			]
 		);
@@ -585,7 +602,7 @@ class Fun_Factor extends Base {
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => ['px', '%', 'em'],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-fun-box-number' => 'margin-bottom: {{SIZE}}{{UNIT}};'
+					'{{WRAPPER}} .ha-fun-factor-content-number' => 'margin-bottom: {{SIZE}}{{UNIT}};'
 				]
 			]
 		);
@@ -596,7 +613,7 @@ class Fun_Factor extends Base {
 				'label'     => __('Color', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-fun-box-number' => 'color: {{VALUE}} !important;',
+					'{{WRAPPER}} .ha-fun-factor-content-number' => 'color: {{VALUE}} !important;',
 				],
 			]
 		);
@@ -607,7 +624,7 @@ class Fun_Factor extends Base {
 				'name'     => 'number_typography',
 				'label'    => __('Typography', 'happy-elementor-addons'),
 				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
-				'selector' => '{{WRAPPER}} .ha-fun-box-number',
+				'selector' => '{{WRAPPER}} .ha-fun-factor-content-number',
 			]
 		);
 
@@ -616,7 +633,7 @@ class Fun_Factor extends Base {
 			[
 				'name'     => 'fun_factor_number_shadow',
 				'label'    => __('Text Shadow', 'happy-elementor-addons'),
-				'selector' => '{{WRAPPER}} .ha-fun-box-number',
+				'selector' => '{{WRAPPER}} .ha-fun-factor-content-number',
 			]
 		);
 
@@ -640,7 +657,7 @@ class Fun_Factor extends Base {
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-fun-box-text' => 'margin-bottom: {{SIZE}}{{UNIT}};'
+					'{{WRAPPER}} .ha-fun-factor-content-text' => 'margin-bottom: {{SIZE}}{{UNIT}};'
 				]
 			]
 		);
@@ -651,7 +668,7 @@ class Fun_Factor extends Base {
 				'label'     => __('Color', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-fun-box-text' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-fun-factor-content-text' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -662,7 +679,7 @@ class Fun_Factor extends Base {
 				'name'     => 'content_typography',
 				'label'    => __('Typography', 'happy-elementor-addons'),
 				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
-				'selector' => '{{WRAPPER}} .ha-fun-box-text',
+				'selector' => '{{WRAPPER}} .ha-fun-factor-content-text',
 			]
 		);
 
@@ -671,7 +688,7 @@ class Fun_Factor extends Base {
 			[
 				'name'     => 'fun_factor_content_shadow',
 				'label'    => __('Text Shadow', 'happy-elementor-addons'),
-				'selector' => '{{WRAPPER}} .ha-fun-box-text',
+				'selector' => '{{WRAPPER}} .ha-fun-factor-content-text',
 			]
 		);
 
@@ -767,7 +784,7 @@ class Fun_Factor extends Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		$this->add_render_attribute('fun_factor_number', 'class', 'ha-fun-box-number');
+		$this->add_render_attribute('fun_factor_number', 'class', 'ha-fun-factor-content-number');
 		$number           = $settings['fun_factor_number'];
 		$fun_factor_title = $settings['fun_factor_title'];
 
@@ -781,10 +798,10 @@ class Fun_Factor extends Base {
 		}
 		?>
 
-		<div class="ha-fun-box-container">
+		<div class="ha-ff-container">
 			<?php if (!empty($settings['icons']['value'])) : ?>
-				<div class="ha-fun-box-icon-section">
-					<?php Icons_Manager::render_icon($settings['icons'], ['aria-hidden' => 'true', 'class' => 'ha-fun-box-icon fa-' . $settings['icon_size'] . 'x']); ?>
+				<div class="ha-fun-factor-icon-section">
+					<?php Icons_Manager::render_icon($settings['icons'], ['aria-hidden' => 'true', 'class' => 'ha-fun-factor-icon']); ?>
 				</div>
 			<?php endif; ?>
 
@@ -793,18 +810,19 @@ class Fun_Factor extends Base {
 				$this->add_render_attribute('image', 'alt', Control_Media::get_image_alt($settings['image']));
 				$this->add_render_attribute('image', 'title', Control_Media::get_image_title($settings['image']));
 				?>
-				<div class="ha-fun-box-image-section">
+				<div class="ha-fun-factor-image-section">
 					<?php echo Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'image'); ?>
 				</div>
 			<?php endif; ?>
 
-			<div class="ha-fun-box">
+			<div class="ha-fun-factor-content">
 				<h2 <?php $this->print_render_attribute_string('fun_factor_number'); ?> > <?php echo esc_html($number); ?></h2>
 				<?php if ('yes' === $settings['divider_show_hide']) : ?>
-					<span class="ha-fun-factor-divider ha-fun-factor-divider-align-<?php echo $settings['text_align']; ?>"></span>
+					<span
+						class="ha-fun-factor-divider ha-fun-factor-divider-align-<?php echo $settings['text_align']; ?>"></span>
 				<?php endif; ?>
 				<<?php echo tag_escape($settings['title_tag']); ?>
-				class="ha-fun-box-text"><?php echo esc_html($fun_factor_title); ?>
+				class="ha-fun-factor-content-text"><?php echo esc_html($fun_factor_title); ?>
 			</<?php echo tag_escape($settings['title_tag']); ?>>
 		</div>
 		</div>

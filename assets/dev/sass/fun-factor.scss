@@ -1,14 +1,18 @@
-.ha-fun-box .ha-fun-box-number,
-.ha-fun-box .ha-fun-box-text {
+.ha-fun-factor-icon {
+	font-size: 3em;
+}
+.ha-fun-factor-content .ha-fun-factor-content-number,
+.ha-fun-factor-content .ha-fun-factor-content-text {
 	margin-top: 0;
 	margin-bottom: 15px;
+	font-size: 24px;
 }
 
-.ha-ff-icon--left .ha-fun-box {
+.ha-ff-icon--left .ha-fun-factor-content {
 	padding-left: 20px;
 }
 
-.ha-ff-icon--right .ha-fun-box {
+.ha-ff-icon--right .ha-fun-factor-content {
 	padding-right: 20px;
 }
 
@@ -18,8 +22,8 @@
 	margin-bottom: 15px;
 }
 
-.ha-ff-icon--top .ha-fun-box-icon-section,
-.ha-ff-icon--top .ha-fun-box-image-section {
+.ha-ff-icon--top .ha-fun-factor-icon-section,
+.ha-ff-icon--top .ha-fun-factor-image-section {
 	display: inline-block;
 	width: auto;
 	height: auto;
@@ -27,38 +31,40 @@
 	margin-bottom: 10px;
 }
 
-.ha-fun-box-container {
+.ha-fun-factor-image-section img {
+	width: 200px;
+	height: 100px;
+}
+
+.ha-ff-container {
 	padding: 10px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 }
 
-.ha-ff-icon--right > .elementor-widget-container .ha-fun-box-container,
-.ha-ff-icon--left > .elementor-widget-container .ha-fun-box-container {
+.ha-ff-icon--right > .elementor-widget-container .ha-ff-container,
+.ha-ff-icon--left > .elementor-widget-container .ha-ff-container {
 	display: flex;
 	align-items: center;
 	flex-direction: row;
 }
 
-.ha-ff-icon--right > .elementor-widget-container .ha-fun-box-container {
+.ha-ff-icon--right > .elementor-widget-container .ha-ff-container {
 	flex-direction: row-reverse;
 	text-align: right;
 }
 
-.ha-ff-icon--right > .elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider,
-.ha-ff-icon--left > .elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider,
-.ha-ff-icon--top > .elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider {
+.ha-ff-icon--right > .elementor-widget-container .ha-ff-container .ha-fun-factor-divider,
+.ha-ff-icon--left > .elementor-widget-container .ha-ff-container .ha-fun-factor-divider,
+.ha-ff-icon--top > .elementor-widget-container .ha-ff-container .ha-fun-factor-divider {
 	margin-left: auto;
 	margin-right: auto;
-}
-
-.elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider {
 	display: block;
-	width: 10%;
+	width: 100px;
 }
 
-.ha-ff-icon--right > .elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider,
-.ha-ff-icon--left > .elementor-widget-container .ha-fun-box-container .ha-fun-factor-divider {
+.ha-ff-icon--right > .elementor-widget-container .ha-ff-container .ha-fun-factor-divider,
+.ha-ff-icon--left > .elementor-widget-container .ha-ff-container .ha-fun-factor-divider {
 	width: 100% !important;
 }
 
@@ -76,9 +82,4 @@
 	text-align: center;
 	margin-left: auto !important;
 	margin-right: auto !important;
-}
-
-.ha-fun-box-text {
-	margin-top: 20px;
-	margin-bottom: 20px;
 }
