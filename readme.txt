@@ -260,6 +260,7 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 = 2.4.2 - 12 December 2019 =
 
+- Fix: Compatibility with Elementor 2.8.*
 - Fix: Extension loading issue for non logged in users
 
 = 2.4.1 - 10 December 2019 =
