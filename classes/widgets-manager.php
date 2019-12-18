@@ -478,6 +478,16 @@ class Widgets_Manager {
 					'js' => ['elementor-waypoints', 'jquery-numerator'],
 				],
 			],
+			'twitter-feed' => [
+				'title' => __( 'Twitter Feed', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-twitter',
+				'css' => ['twitter-feed'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
         ];
     }
 

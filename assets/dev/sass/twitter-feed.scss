@@ -1,0 +1,97 @@
+.ha-twitter-feed {
+
+	.ha-tweeter-feed-wrapper {
+		display: grid;
+		grid-gap: 30px;
+	}
+
+	.ha-tweet-item {
+		box-shadow: 1px 1px 8px 1px rgba(0,0,0,.1);
+		padding: 20px;
+		position: relative;
+	}
+
+	.ha-tweet-author,
+	.ha-tweet-user {
+		display: flex;
+	}
+
+	.ha-tweet-author {
+		margin-bottom: 25px;
+	}
+
+	.ha-tweet-avatar {
+		margin-right: 15px;
+	}
+
+	.ha-tweet-user {
+		flex-direction: column;
+	}
+
+	.ha-tweet-author-name {
+		color: #e2498a;
+	}
+	.ha-tweet-author-name:hover {
+		color: #562dd4;
+	}
+
+	.ha-tweet-username {
+		color: #a7a7a7;
+	}
+	.ha-tweet-username:hover {
+		color: #818181;
+	}
+
+	.ha-tweet-description {
+		color: #222;
+		margin-bottom: 40px;
+	}
+	.ha-tweet-description p {
+		margin-bottom: 5px;
+	}
+
+	.ha-tweet-footer {
+		display: flex;
+		justify-content: space-around;
+		position: absolute;
+		width: 100%;
+		left: 0;
+		bottom: 10px;
+	}
+
+	.ha-tweet-date {
+		color: #a7a7a7;
+	}
+
+	.ha-tweet-meta {
+		display: flex;
+		justify-content: space-around;
+		padding: 15px;
+	}
+
+	.ha-tweet-favorite,
+	.ha-tweet-retweet {
+		color: #a7a7a7;
+	}
+
+	&.ha-tweet-column-one {
+		.ha-tweeter-feed-wrapper {
+			grid-template-columns: 1fr;
+		}
+	}
+	&.ha-tweet-column-two {
+		.ha-tweeter-feed-wrapper {
+			grid-template-columns: repeat(2, auto);
+		}
+	}
+	&.ha-tweet-column-three {
+		.ha-tweeter-feed-wrapper {
+			grid-template-columns: repeat(3, auto);
+		}
+	}
+	&.ha-tweet-column-four {
+		.ha-tweeter-feed-wrapper {
+			grid-template-columns: repeat(4, auto);
+		}
+	}
+}
