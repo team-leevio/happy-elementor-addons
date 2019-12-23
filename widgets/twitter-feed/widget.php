@@ -14,7 +14,6 @@ use Elementor\Scheme_Typography;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Background;
-use Happy_Addons\Elementor\Extarnal_Api;
 
 defined('ABSPATH') || die();
 
@@ -465,6 +464,178 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_twitter_header',
+			[
+				'label' => __('Header', 'happy-elementor-addons'),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'twitter_logo_heading',
+			[
+				'label' => __( 'Twitter Icon', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+			]
+		);
+
+		$this->add_responsive_control(
+			'twitter_logo_icon_size',
+			[
+				'label' => __( 'Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweeter-feed-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'twitter_logo_icon_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweeter-feed-icon i' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'profile_image_heading',
+			[
+				'label' => __( 'Profile Image', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_responsive_control(
+			'profile_image_spacing',
+			[
+				'label' => __( 'Spacing', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}}.ha-twitter-left .ha-tweet-avatar' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.ha-twitter-center .ha-tweet-avatar' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.ha-twitter-right .ha-tweet-avatar' => 'margin-left: {{SIZE}}{{UNIT}};'
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'profile_image_border',
+				'selector' => '{{WRAPPER}} .ha-tweet-avatar',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'profile_image_box_shadow',
+				'selector' => '{{WRAPPER}} .ha-tweet-avatar',
+			]
+		);
+
+		$this->add_control(
+			'name_heading',
+			[
+				'label' => __( 'Name & User Name', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'name_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-tweet-author-name',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'user_name_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-tweet-username',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+			]
+		);
+
+		$this->start_controls_tabs( '_tabs_image_effects' );
+		$this->start_controls_tab(
+			'_tab_name_normal',
+			[
+				'label' => __( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'name_color',
+			[
+				'label' => __( 'Name Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-author-name' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'user_name_color',
+			[
+				'label' => __( 'User Name Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-username' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab( 'hover',
+			[
+				'label' => __( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'name__hover_color',
+			[
+				'label' => __( 'Name Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-author-name:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'user_name_hover_color',
+			[
+				'label' => __( 'User Name Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-username:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+
 	}
 
 	protected function render() {
@@ -502,7 +673,6 @@ class Twitter_Feed extends Base {
 					],
 					'body' => ['grant_type' => 'client_credentials'],
 				) );
-			$response_code = wp_remote_retrieve_response_code($auth_response);
 
 			$body = json_decode( wp_remote_retrieve_body( $auth_response ) );
 			update_option($id . '_' . $user_name . HA_TWEETS_TOKEN, $body->access_token);
