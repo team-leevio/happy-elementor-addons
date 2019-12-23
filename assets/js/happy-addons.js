@@ -469,6 +469,49 @@
 				EF.elementsHandler.addHandler(handlerClass, {$element: $scope});
 			});
 		});
+
+		//twitter Feed
+		var TwitterFeed = function($scope) {
+			var button = $scope.find('.ha-twitter-load-more');
+			var twitter_wrap = $scope.find('.ha-tweet-items');
+
+			button.on("click", function(e) {
+				e.preventDefault();
+
+				var $self = $(this),
+					query_settings = $self.data("settings"),
+					total = $self.data("total"),
+					items = $scope.find('.ha-tweet-item').length;
+
+				$.ajax({
+					url: HappyTwitterLocalize.ajax_url,
+					type: 'POST',
+					data: {
+						action: "ha_twitter_feed_action",
+						security: HappyTwitterLocalize.nonce,
+						query_settings: query_settings,
+						loaded_item: items,
+					},
+					success: function(response) {
+						if(total > items){
+							$(response).appendTo(twitter_wrap);
+						}else{
+							$self.text('All Loaded').addClass('loaded');
+							setTimeout( function(){
+								$self.css({"display": "none"});
+							},800);
+						}
+
+					},
+					error: function(error) {}
+				});
+			});
+		};
+		elementorFrontend.hooks.addAction(
+			'frontend/element_ready/ha-twitter-feed.default',
+			TwitterFeed
+		);
+
 	});
 
 }(jQuery, window));

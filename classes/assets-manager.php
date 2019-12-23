@@ -207,6 +207,12 @@ class Assets_Manager {
             HAPPY_ADDONS_VERSION,
             true
         );
+
+		//Localize scripts
+		wp_localize_script( 'happy-elementor-addons', 'HappyTwitterLocalize', [
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce' => wp_create_nonce( 'happy_addons_twitter_nonce' ),
+		] );
     }
 
     /**

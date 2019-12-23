@@ -6,12 +6,15 @@
  */
 
 namespace Happy_Addons\Elementor\Widget;
+//namespace Happy_Addons\Elementor;
 
 use Elementor\Controls_Manager;
+use Elementor\Group_Control_Box_Shadow;
 use Elementor\Scheme_Typography;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Background;
+use Happy_Addons\Elementor\Extarnal_Api;
 
 defined('ABSPATH') || die();
 
@@ -65,7 +68,7 @@ class Twitter_Feed extends Base {
 				'type' => Controls_Manager::TEXT,
 				'default' => '@wpdevteam',
 				'label_block' => false,
-				'description' => esc_html__('Use @ sign with your account name.', 'happy-elementor-addons' ),
+				'description' => esc_html__('Use @ sign with your Twitter user name.', 'happy-elementor-addons' ),
 
 			]
 		);
@@ -77,7 +80,7 @@ class Twitter_Feed extends Base {
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
 				'default' => 'wwC72W809xRKd9ySwUzXzjkmS',
-				'description' => '<a href="https://apps.twitter.com/app/" target="_blank">Get Consumer Key.</a> Create a new app or select existing app and grab the <b>consumer key.</b>',
+				'description' => '<a href="https://apps.twitter.com/app/" target="_blank">Get Consumer Key.</a>',
 			]
 		);
 
@@ -88,7 +91,7 @@ class Twitter_Feed extends Base {
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
 				'default' => 'rn54hBqxjve2CWOtZqwJigT3F5OEvrriK2XAcqoQVohzr2UA8h',
-				'description' => '<a href="https://apps.twitter.com/app/" target="_blank">Get Consumer Secret.</a> Create a new app or select existing app and grab the <b>consumer secret.</b>',
+				'description' => '<a href="https://apps.twitter.com/app/" target="_blank">Get Consumer Secret key.</a>',
 			]
 		);
 
@@ -97,7 +100,7 @@ class Twitter_Feed extends Base {
 		$this->start_controls_section(
 			'_section_twitter_settings',
 			[
-				'label' => __('Settings', 'happy-elementor-addons'),
+				'label' => __('Twitter Settings', 'happy-elementor-addons'),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -124,27 +127,43 @@ class Twitter_Feed extends Base {
 				'type' => Controls_Manager::NUMBER,
 				'separator' => 'after',
 				'min' => 0,
-				'max' => 100,
+				'max' => 800,
 				'step' => 1,
 				'default' => 6,
 				'style_transfer' => true,
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'columns',
 			[
 				'label' => __('Column Number', 'happy-elementor-addons'),
 				'type' => Controls_Manager::SELECT,
 				'label_block' => false,
-				'default' => 'three',
+				'desktop_default' => '3',
+				'tablet_default' => '2',
+				'mobile_default' => '1',
 				'options' => [
-					'one' => __( '1 Column', 'happy-elementor-addons' ),
-					'two' => __( '2 Column', 'happy-elementor-addons' ),
-					'three' => __( '3 Column', 'happy-elementor-addons' ),
-					'four' => __( '4 Column', 'happy-elementor-addons' ),
+					'1' => __( '1 Column', 'happy-elementor-addons' ),
+					'2' => __( '2 Column', 'happy-elementor-addons' ),
+					'3' => __( '3 Column', 'happy-elementor-addons' ),
+					'4' => __( '4 Column', 'happy-elementor-addons' ),
 				],
-				'prefix_class' => 'ha-tweet-column-',
+				'selectors' => [
+					'(desktop){{WRAPPER}} .ha-tweet-items' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+					'(tablet){{WRAPPER}} .ha-tweet-items' => 'grid-template-columns: repeat({{columns_tablet.VALUE || 0}}, 1fr);',
+					'(mobile){{WRAPPER}} .ha-tweet-items' => 'grid-template-columns: repeat({{columns_mobile.VALUE || 0}}, 1fr);'
+				]
+			]
+		);
+
+		$this->add_control(
+			'show_twitter_logo',
+			[
+				'label' => __('Show Twitter Logo?', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default' => 'yes',
 				'style_transfer' => true,
 			]
 		);
@@ -155,7 +174,7 @@ class Twitter_Feed extends Base {
 				'label' => __('Show Favorite?', 'happy-elementor-addons'),
 				'type' => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
-				'default' => 'no',
+				'default' => 'yes',
 				'style_transfer' => true,
 			]
 		);
@@ -166,7 +185,7 @@ class Twitter_Feed extends Base {
 				'label' => __('Show Retweets Count?', 'happy-elementor-addons'),
 				'type' => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
-				'default' => 'no',
+				'default' => 'yes',
 				'style_transfer' => true,
 			]
 		);
@@ -208,29 +227,6 @@ class Twitter_Feed extends Base {
 				'type' => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default' => 'yes',
-			]
-		);
-
-		$this->add_control(
-			'title_btn',
-			[
-				'label' => __('Title Button?', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
-				'default' => 'yes',
-				'style_transfer' => true,
-			]
-		);
-
-		$this->add_control(
-			'title_btn_text',
-			[
-				'label' => __('Title Button Text', 'happy-elementor-addons'),
-				'type' => Controls_Manager::TEXT,
-				'default' => __('Instagram', 'happy-elementor-addons'),
-				'condition' => [
-					'title_btn' => 'yes',
-				],
 			]
 		);
 
@@ -326,6 +322,71 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_general_settings',
+			[
+				'label' => __('General Settings', 'happy-elementor-addons'),
+				'tab' => Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_responsive_control(
+			'alignment',
+			[
+				'label' => __( 'Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'default' => 'left',
+				'toggle' => false,
+				'prefix_class' => 'ha-twitter-',
+				'selectors' => [
+					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};'
+				]
+			]
+		);
+
+		$this->add_control(
+			'favorite_retweet_position',
+			[
+				'label' => __( 'Favorite & Retweet Position', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'label_block' => true,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-footer' => 'text-align: {{VALUE}};'
+				]
+			]
+		);
+
+		$this->end_controls_section();
 	}
 
 
@@ -334,25 +395,80 @@ class Twitter_Feed extends Base {
 	 */
 	protected function register_style_controls() {
 		$this->start_controls_section(
-			'_section_instagram_style',
+			'_section_twitter_style',
 			[
-				'label' => __('Instagram', 'happy-elementor-addons'),
+				'label' => __('Common', 'happy-elementor-addons'),
 				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'item_spacing',
+			[
+				'label' => __( 'Spacing between items', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-items' => 'grid-gap: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'items_border',
+				'selector' => '{{WRAPPER}} .ha-tweet-item',
+			]
+		);
+
+		$this->add_responsive_control(
+			'items_border_radius',
+			[
+				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'items_box_shadow',
+				'selector' => '{{WRAPPER}} .ha-tweet-item'
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'item_background',
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .ha-tweet-item',
+			]
+		);
+
+		$this->add_control(
+			'item_background_overlay',
+			[
+				'label' => __( 'Background Overlay', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'item_background_background' => 'classic'
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-item:before' => 'background-color: {{VALUE}}',
+				],
 			]
 		);
 
 		$this->end_controls_section();
 	}
 
-
-	protected function instagram_get_b64_icon() {
-		return 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOC4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4IiB2aWV3Qm94PSIwIDAgMzIgMzIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyIDMyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZGlzcGxheTpub25lO2ZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MjtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW1pdGVybGltaXQ6MTA7fQ0KCS5zdDF7ZGlzcGxheTpub25lO30NCjwvc3R5bGU+DQo8cGF0aCBkPSJNMTYsMzJDNy4yLDMyLDAsMjQuOCwwLDE2UzcuMiwwLDE2LDBzMTYsNy4yLDE2LDE2YzAsMi40LTAuNSw0LjgtMS42LDdsMS42LDYuN2MwLjEsMC4zLDAsMC43LTAuMywwLjkNCgljLTAuMiwwLjItMC42LDAuMy0wLjksMC4zbC02LjMtMS40QzIyLDMxLjIsMTksMzIsMTYsMzJ6IE0xNiwyQzguMywyLDIsOC4zLDIsMTZzNi4zLDE0LDE0LDE0YzIuOCwwLDUuNS0wLjgsNy44LTIuNA0KCWMwLjItMC4yLDAuNS0wLjIsMC44LTAuMWw1LjEsMS4xbC0xLjMtNS41Yy0wLjEtMC4yLDAtMC41LDAuMS0wLjdjMS0yLDEuNS00LjEsMS41LTYuNEMzMCw4LjMsMjMuNywyLDE2LDJ6Ii8+DQo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNLTY3LDkwLjdjMy40LTMuNSwzLjQtOS4yLTAuMS0xMi43bDAsMGMtMy41LTMuNS05LjItMy41LTEyLjctMC4xYy0zLjUtMy40LTkuMi0zLjQtMTIuNywwLjFsMCwwDQoJYy0zLjUsMy41LTMuNSw5LjItMC4xLDEyLjdsMCwwbDAuMSwwLjFsMTEuMywxMS4zYzAuOCwwLjgsMiwwLjgsMi44LDBsMTEuMy0xMS4zTC02Nyw5MC43TC02Nyw5MC43eiIvPg0KPHBhdGggY2xhc3M9InN0MSIgZD0iTTIzLDMySDljLTUsMC05LTQtOS05VjljMC01LDQtOSw5LTloMTRjNSwwLDksNCw5LDl2MTRDMzIsMjgsMjgsMzIsMjMsMzJ6IE05LDJDNS4xLDIsMiw1LjEsMiw5djE0DQoJYzAsMy45LDMuMSw3LDcsN2gxNGMzLjksMCw3LTMuMSw3LTdWOWMwLTMuOS0zLjEtNy03LTdIOXoiLz4NCjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0xNiwyNC4yYy00LjUsMC04LjItMy43LTguMi04LjJjMC00LjUsMy43LTguMiw4LjItOC4yYzQuNSwwLDguMiwzLjcsOC4yLDguMkMyNC4yLDIwLjUsMjAuNSwyNC4yLDE2LDI0LjJ6DQoJIE0xNiw5LjhjLTMuNCwwLTYuMiwyLjgtNi4yLDYuMnMyLjgsNi4yLDYuMiw2LjJzNi4yLTIuOCw2LjItNi4yUzE5LjQsOS44LDE2LDkuOHoiLz4NCjxjaXJjbGUgY2xhc3M9InN0MSIgY3g9IjE2IiBjeT0iMTYiIHI9IjEuOSIvPg0KPC9zdmc+DQo=';
-	}
-
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-
-//		$this->add_render_attribute('wrapper', 'class', 'ha-instagram-wrapper');
 		?>
 		<div class="ha-tweeter-feed-wrapper">
 			<?php $this->twitter_feed_render($this->get_id(), $settings); ?>
@@ -364,17 +480,16 @@ class Twitter_Feed extends Base {
 		define( 'HA_TWEETS_TOKEN', '_tweet_token' );
 		define( 'HA_TWEETS_CASH', '_tweet_cash' );
 
-		if ( empty( $settings['user_name'] ) || empty( $settings['consumer_key'] ) || empty( $settings['consumer_secret'] ) ) {
+		$user_name = trim($settings['user_name']);
+		if ( empty( $user_name ) || empty( $settings['consumer_key'] ) || empty( $settings['consumer_secret'] ) ) {
 			return;
 		}
 
-		$token = get_option( $id . '_'. $settings['user_name'] . HA_TWEETS_TOKEN );
-		$transient_key = $id . '_' . $settings['user_name'] . HA_TWEETS_CASH;
-
-//		$messages = array();
+		$transient_key = $id . '_' . $user_name . HA_TWEETS_CASH;
 		$twitter_data = get_transient($transient_key);
 		$credentials = base64_encode($settings['consumer_key'] . ':' . $settings['consumer_secret']);
 
+		$messages = [];
 		if ( $twitter_data === false ) {
 			$auth_response = wp_remote_post('https://api.twitter.com/oauth2/token',
 				array(
@@ -389,37 +504,58 @@ class Twitter_Feed extends Base {
 				) );
 			$response_code = wp_remote_retrieve_response_code($auth_response);
 
-			if ( $response_code == 200 ) {
-				$body = json_decode( wp_remote_retrieve_body( $auth_response ) );
-				update_option($id . '_' . $settings['user_name'] . HA_TWEETS_TOKEN, $body->access_token);
-				$token = $body->access_token;
+			$body = json_decode( wp_remote_retrieve_body( $auth_response ) );
+			update_option($id . '_' . $user_name . HA_TWEETS_TOKEN, $body->access_token);
+			$token = $body->access_token;
 
-				$tweets_response = wp_remote_get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $settings['user_name'] . '&count=999&tweet_mode=extended',
-					array(
-						'httpversion' => '1.1',
-						'blocking' => true,
-						'headers' => [ 'Authorization' => "Bearer $token", ],
-					) );
+			$tweets_response = wp_remote_get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $user_name . '&count=999&tweet_mode=extended',
+				array(
+					'httpversion' => '1.1',
+					'blocking' => true,
+					'headers' => [ 'Authorization' => "Bearer $token", ],
+				) );
 
-				if ( !is_wp_error( $tweets_response ) ) {
-					$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
-					set_transient($id . '_' . $settings['user_name'] . HA_TWEETS_CASH, $twitter_data, 0 ); // 2 * MINUTE_IN_SECONDS
-				}
-			}
+			$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
+			set_transient($id . '_' . $user_name . HA_TWEETS_CASH, $twitter_data, 2 * MINUTE_IN_SECONDS ); // 2 * MINUTE_IN_SECONDS
 
 		}
 
+		 if ( array_key_exists( 'errors', $twitter_data ) ) {
+			foreach ( $twitter_data['errors'] as $error ) {
+				$messages['error'] = $error['message'];
+			}
+		} elseif ( count( $twitter_data ) < $settings['tweets_limit'] ) {
+			$messages['item_limit'] = __( ' "Number of Tweets to show"  is more than your actual total Tweets\'s number. You have only ' . count( $twitter_data ) . ' Tweets', 'happy-elementor-addons' );
+		}
+
+		if ( !empty( $messages ) ) {
+			foreach ($messages as $key => $message) {
+				printf('<div class="ha-tweet-error-message">%1$s</div>', esc_html( $message ) );
+			}
+			return;
+		}
+
 		$query_settings = [
-			'tweets_limit' => $settings['sort_by'],
+			'credentials' 		=> $credentials,
+			'id' 				=> $id,
+			'user_name' 		=> $user_name,
+			'show_twitter_logo' => $settings['show_twitter_logo'],
+			'tweets_limit' 		=> $settings['tweets_limit'],
+			'sort_by' 			=> $settings['sort_by'],
+			'show_user_image' 	=> $settings['show_user_image'],
+			'show_name' 		=> $settings['show_name'],
+			'show_user_name' 	=> $settings['show_user_name'],
+			'show_date' 		=> $settings['show_date'],
+			'show_favorite' 	=> $settings['show_favorite'],
+			'show_retweet' 		=> $settings['show_retweet'],
 		];
-//		$query_settings = json_encode($query_settings, true);
+		$query_settings = json_encode($query_settings, true);
 
 		switch ($settings['sort_by']) {
 			case 'old-posts':
 				usort($twitter_data, function ($a,$b) {
 					if ( $a['created_at'] == $b['created_at'] ) return 0;
 					return ( $a['created_at'] < $b['created_at'] ) ? -1 : 1 ;
-//					print_r($twitter_data);
 				});
 				break;
 			case 'favorite_count':
@@ -444,71 +580,85 @@ class Twitter_Feed extends Base {
 		if ( empty( $settings['tweets_limit'] ) ) {
 			$items = $twitter_data;
 		}
+		?>
+		<div class="ha-tweet-items">
+			<?php foreach ( $items as $item ) : ?>
+				<div class="ha-tweet-item">
 
-		foreach ($items as $item) :
-//			echo "<pre>";
-//			var_dump( $item );
-//			echo "</pre>";
-			?>
-			<div class="ha-tweet-item">
-
-				<div class="ha-tweet-author">
-					<?php if ( $settings['show_user_image'] == 'yes' ) : ?>
-						<img
-							src="<?php echo esc_url( $item['user']['profile_image_url_https'] ); ?>"
-							alt="<?php echo esc_attr( $item['user']['name'] ); ?>"
-							class="ha-tweet-avatar"
-						>
-					<?php endif; ?>
-
-					<div class="ha-tweet-user">
-						<?php if ( $settings['show_name'] == 'yes' ) : ?>
-							<a href="<?php echo esc_url( 'https://twitter.com/'.$settings['user_name'] ); ?>" class="ha-tweet-author-name">
-								<?php echo esc_html( $item['user']['name'] ); ?>
-							</a>
-						<?php endif; ?>
-
-						<?php if ( $settings['show_user_name'] == 'yes' ) : ?>
-							<a href="<?php echo esc_url( 'https://twitter.com/'.$settings['user_name'] ); ?>" class="ha-tweet-username">
-								<?php echo esc_html( $settings['user_name'] ); ?>
-							</a>
-						<?php endif; ?>
-					</div>
-				</div>
-
-				<div class="ha-tweet-description">
-					<p><?php echo esc_html( $item['full_text'] ); ?></p>
-
-					<?php if ( $settings['show_date'] == 'yes' ) : ?>
-						<div class="ha-tweet-date">
-							<?php echo esc_html( date("M d Y", strtotime( $item['created_at'] ) ) );?>
+					<?php if ( $settings['show_twitter_logo'] == 'yes' ) : ?>
+						<div class="ha-tweeter-feed-icon">
+							<i class="hm hm-twitter-bird"></i>
 						</div>
 					<?php endif; ?>
-				</div>
 
-				<?php if ( $settings['show_favorite'] == 'yes' || $settings['show_retweet'] == 'yes' ) : ?>
-					<div class="ha-tweet-footer">
-
-						<?php if ( $settings['show_favorite'] == 'yes' ) : ?>
-							<div class="ha-tweet-favorite">
-								<?php echo esc_html( $item['favorite_count'] ); ?>
-								<i class="fa fa-heart"></i>
-							</div>
+					<div class="ha-tweet-author">
+						<?php if ( $settings['show_user_image'] == 'yes' ) : ?>
+							<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>">
+								<img
+									src="<?php echo esc_url( $item['user']['profile_image_url_https'] ); ?>"
+									alt="<?php echo esc_attr( $item['user']['name'] ); ?>"
+									class="ha-tweet-avatar"
+								>
+							</a>
 						<?php endif; ?>
 
-						<?php if ( $settings['show_retweet'] == 'yes' ) : ?>
-							<div class="ha-tweet-retweet">
-								<?php echo esc_html( $item['retweet_count'] ); ?>
-								<i class="fa fa-retweet"></i>
-							</div>
-						<?php endif; ?>
+						<div class="ha-tweet-user">
+							<?php if ( $settings['show_name'] == 'yes' ) : ?>
+								<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-author-name">
+									<?php echo esc_html( $item['user']['name'] ); ?>
+								</a>
+							<?php endif; ?>
 
+							<?php if ( $settings['show_user_name'] == 'yes' ) : ?>
+								<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-username">
+									<?php echo esc_html( $settings['user_name'] ); ?>
+								</a>
+							<?php endif; ?>
+						</div>
 					</div>
-				<?php endif; ?>
 
+					<div class="ha-tweet-description">
+						<p><?php echo esc_html( $item['full_text'] ); ?></p>
+
+						<?php if ( $settings['show_date'] == 'yes' ) : ?>
+							<div class="ha-tweet-date">
+								<?php echo esc_html( date("M d Y", strtotime( $item['created_at'] ) ) );?>
+							</div>
+						<?php endif; ?>
+					</div>
+
+					<?php if ( $settings['show_favorite'] == 'yes' || $settings['show_retweet'] == 'yes' ) : ?>
+						<div class="ha-tweet-footer">
+
+							<?php if ( $settings['show_favorite'] == 'yes' ) : ?>
+								<div class="ha-tweet-favorite">
+									<?php echo esc_html( $item['favorite_count'] ); ?>
+									<i class="fa fa-heart-o"></i>
+								</div>
+							<?php endif; ?>
+
+							<?php if ( $settings['show_retweet'] == 'yes' ) : ?>
+								<div class="ha-tweet-retweet">
+									<?php echo esc_html( $item['retweet_count'] ); ?>
+									<i class="fa fa-retweet"></i>
+								</div>
+							<?php endif; ?>
+
+						</div>
+					<?php endif; ?>
+
+				</div>
+			<?php endforeach; ?>
+		</div>
+
+		<?php if ( $settings['load_more'] == 'yes' ) : ?>
+			<div class="ha-twitter-load-more-wrapper">
+				<button class="ha-twitter-load-more" data-settings="<?php echo esc_attr( $query_settings ); ?>" data-total="<?php echo esc_attr( count( $twitter_data ) ); ?>">
+					<?php echo esc_html( $settings['load_more_text'] ); ?>
+				</button>
 			</div>
 		<?php
-		endforeach;
+		endif;
 	}
 
 }
