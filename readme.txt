@@ -201,6 +201,16 @@ Please give us feedback, contribute and file technical bugs on [GitHub Repo](htt
 In case you want to share any ideas on Happy Addons with other users or if you are in any trouble, don’t feel stranded. Stay connected with [the Happy addons community](https://www.facebook.com/groups/HappyAddonsCommunity/).
 
 
+## Privacy Policy
+**Happy Elementor Addons** uses [Appsero](https://appsero.com) SDK to collect some telemetry data upon user's confirmation. This helps us to troubleshoot problems faster & make product improvements.
+
+Appsero SDK **does not gather any data by default.** The SDK only starts gathering basic telemetry data **when a user allows it via the admin notice**. We collect the data to ensure great user experience for all our users.
+
+Integrating Appsero SDK **DOES NOT IMMEDIATELY** start gathering data, **without confirmation from users in any case.**
+
+Learn more how [Appsero collects and uses this data](https://appsero.com/privacy-policy/). Additionally, read weDevs [privacy policy](https://wedevs.com/privacy-policy/) for more.
+
+
 == Frequently Asked Questions ==
 
 = Can I use Happy Elementor Addons without Elementor? =
