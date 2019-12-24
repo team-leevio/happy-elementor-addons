@@ -159,29 +159,7 @@ class Twitter_Feed extends Base {
 		$this->add_control(
 			'show_twitter_logo',
 			[
-				'label' => __('Show Twitter Logo?', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
-				'default' => 'yes',
-				'style_transfer' => true,
-			]
-		);
-
-		$this->add_control(
-			'show_favorite',
-			[
-				'label' => __('Show Favorite?', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
-				'default' => 'yes',
-				'style_transfer' => true,
-			]
-		);
-
-		$this->add_control(
-			'show_retweet',
-			[
-				'label' => __('Show Retweets Count?', 'happy-elementor-addons'),
+				'label' => __('Show Twitter Logo', 'happy-elementor-addons'),
 				'type' => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default' => 'yes',
@@ -230,9 +208,31 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->add_control(
+			'show_favorite',
+			[
+				'label' => __('Show Favorite Count', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default' => 'yes',
+				'style_transfer' => true,
+			]
+		);
+
+		$this->add_control(
+			'show_retweet',
+			[
+				'label' => __('Show Retweets Count', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default' => 'yes',
+				'style_transfer' => true,
+			]
+		);
+
+		$this->add_control(
 			'load_more',
 			[
-				'label' => __('Load More Button?', 'happy-elementor-addons'),
+				'label' => __('Load More Button', 'happy-elementor-addons'),
 				'type' => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default' => '',
@@ -249,74 +249,6 @@ class Twitter_Feed extends Base {
 				'condition' => [
 					'load_more' => 'yes',
 				],
-			]
-		);
-
-		$this->add_control(
-			'_heading_user_info',
-			[
-				'label' => __( 'User Info', 'plugin-name' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
-				'condition' => [
-					'view_style' => 'ha-feed-view',
-				],
-			]
-		);
-
-		$this->add_control(
-			'show_user_picture',
-			[
-				'label' => __('Show Profile Picture?', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
-				'default' => 'yes',
-				'condition' => [
-					'view_style' => 'ha-feed-view',
-				],
-				'style_transfer' => true,
-			]
-		);
-
-		$this->add_control(
-			'show_username',
-			[
-				'label' => __('Show Username?', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
-				'default' => 'yes',
-				'condition' => [
-					'view_style' => 'ha-feed-view',
-				],
-				'style_transfer' => true,
-			]
-		);
-
-		$this->add_control(
-			'show_user_postdate',
-			[
-				'label' => __('Show Post Date?', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
-				'default' => 'yes',
-				'condition' => [
-					'view_style' => 'ha-feed-view',
-				],
-				'style_transfer' => true,
-			]
-		);
-
-		$this->add_control(
-			'show_user_insta_icon',
-			[
-				'label' => __('Show Insta Icon?', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
-				'default' => 'yes',
-				'condition' => [
-					'view_style' => 'ha-feed-view',
-				],
-				'style_transfer' => true,
 			]
 		);
 
@@ -381,6 +313,33 @@ class Twitter_Feed extends Base {
 				'toggle' => true,
 				'selectors' => [
 					'{{WRAPPER}} .ha-tweet-footer' => 'text-align: {{VALUE}};'
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'button_alignment',
+			[
+				'label' => __( 'Button Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'default' => 'left',
+				'toggle' => false,
+				'selectors' => [
+					'{{WRAPPER}} .ha-twitter-load-more-wrapper' => 'text-align: {{VALUE}};'
 				]
 			]
 		);
@@ -483,8 +442,19 @@ class Twitter_Feed extends Base {
 		$this->start_controls_section(
 			'_section_twitter_header',
 			[
-				'label' => __('Header', 'happy-elementor-addons'),
+				'label' => __( 'Header', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'header_spacing',
+			[
+				'label' => __( 'Header Bottom Spacing', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-author' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -493,6 +463,19 @@ class Twitter_Feed extends Base {
 			[
 				'label' => __( 'Twitter Icon', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_control(
+			'twitter_icon_note',
+			[
+				'label' => false,
+				'type' => Controls_Manager::RAW_HTML,
+				'condition' => [
+					'show_twitter_logo' => ''
+				],
+				'raw' => __( 'Twitter Icon is hidden from <strong>Twitter Settings</strong> section.', 'happy-elementor-addons' ),
 			]
 		);
 
@@ -501,6 +484,9 @@ class Twitter_Feed extends Base {
 			[
 				'label' => __( 'Size', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
+				'condition' => [
+					'show_twitter_logo' => 'yes'
+				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-tweeter-feed-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
@@ -512,6 +498,9 @@ class Twitter_Feed extends Base {
 			[
 				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'show_twitter_logo' => 'yes'
+				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-tweeter-feed-icon i' => 'color: {{VALUE}}',
 				],
@@ -527,12 +516,27 @@ class Twitter_Feed extends Base {
 			]
 		);
 
+		$this->add_control(
+			'profile_image_note',
+			[
+				'label' => false,
+				'type' => Controls_Manager::RAW_HTML,
+				'condition' => [
+					'show_user_image' => ''
+				],
+				'raw' => __( 'Profile Image is hidden from <strong>Twitter Settings</strong> section.', 'happy-elementor-addons' ),
+			]
+		);
+
 		$this->add_responsive_control(
 			'profile_image_spacing',
 			[
 				'label' => __( 'Spacing', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px', '%'],
+				'condition' => [
+					'show_user_image' => 'yes'
+				],
 				'selectors' => [
 					'{{WRAPPER}}.ha-twitter-left .ha-tweet-avatar' => 'margin-right: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}}.ha-twitter-center .ha-tweet-avatar' => 'margin-bottom: {{SIZE}}{{UNIT}};',
@@ -546,6 +550,9 @@ class Twitter_Feed extends Base {
 			[
 				'name' => 'profile_image_border',
 				'selector' => '{{WRAPPER}} .ha-tweet-avatar',
+				'condition' => [
+					'show_user_image' => 'yes'
+				],
 			]
 		);
 
@@ -554,6 +561,9 @@ class Twitter_Feed extends Base {
 			[
 				'name' => 'profile_image_box_shadow',
 				'selector' => '{{WRAPPER}} .ha-tweet-avatar',
+				'condition' => [
+					'show_user_image' => 'yes'
+				],
 			]
 		);
 
@@ -566,13 +576,29 @@ class Twitter_Feed extends Base {
 			]
 		);
 
+		$this->add_control(
+			'name_username_note',
+			[
+				'label' => false,
+				'type' => Controls_Manager::RAW_HTML,
+				'condition' => [
+					'show_name' => '',
+					'show_user_name' => ''
+				],
+				'raw' => __( 'Name and UserName both are hidden from <strong>Twitter Settings</strong> section.', 'happy-elementor-addons' ),
+			]
+		);
+
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'name_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'label' => __( 'Name Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-author-name',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'condition' => [
+					'show_name' => 'yes'
+				],
 			]
 		);
 
@@ -580,13 +606,35 @@ class Twitter_Feed extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'user_name_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'label' => __( 'User Name Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-username',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'condition' => [
+					'show_user_name' => 'yes'
+				],
 			]
 		);
 
-		$this->start_controls_tabs( '_tabs_image_effects' );
+		$this->start_controls_tabs(
+			'_tabs_name_username',
+			[
+				'conditions' => [
+					'relation' => 'or',
+					'terms' => [
+						[
+							'name' => 'show_name',
+							'operator' => '==',
+							'value' => 'yes',
+						],
+						[
+							'name' => 'show_user_name',
+							'operator' => '==',
+							'value' => 'yes',
+						],
+					],
+				],
+			]
+		);
 		$this->start_controls_tab(
 			'_tab_name_normal',
 			[
@@ -599,6 +647,9 @@ class Twitter_Feed extends Base {
 			[
 				'label' => __( 'Name Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'show_name' => 'yes'
+				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-tweet-author-name' => 'color: {{VALUE}}',
 				],
@@ -610,6 +661,9 @@ class Twitter_Feed extends Base {
 			[
 				'label' => __( 'User Name Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'show_user_name' => 'yes'
+				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-tweet-username' => 'color: {{VALUE}}',
 				],
@@ -629,6 +683,9 @@ class Twitter_Feed extends Base {
 			[
 				'label' => __( 'Name Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'show_name' => 'yes'
+				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-tweet-author-name:hover' => 'color: {{VALUE}}',
 				],
@@ -640,6 +697,9 @@ class Twitter_Feed extends Base {
 			[
 				'label' => __( 'User Name Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'show_user_name' => 'yes'
+				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-tweet-username:hover' => 'color: {{VALUE}}',
 				],
@@ -734,6 +794,18 @@ class Twitter_Feed extends Base {
 			]
 		);
 
+		$this->add_control(
+			'date_note',
+			[
+				'label' => false,
+				'type' => Controls_Manager::RAW_HTML,
+				'condition' => [
+					'show_date' => ''
+				],
+				'raw' => __( 'Date is hidden from <strong>Twitter Settings</strong> section.', 'happy-elementor-addons' ),
+			]
+		);
+
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
@@ -741,6 +813,9 @@ class Twitter_Feed extends Base {
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-date',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'condition' => [
+					'show_date' => 'yes'
+				],
 			]
 		);
 
@@ -749,11 +824,228 @@ class Twitter_Feed extends Base {
 			[
 				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'show_date' => 'yes'
+				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-tweet-date' => 'color: {{VALUE}}',
 				],
 			]
 		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_twitter_footer_button',
+			[
+				'label' => __( 'Footer & Button', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'favorite_retweet_note',
+			[
+				'label' => false,
+				'type' => Controls_Manager::RAW_HTML,
+				'condition' => [
+					'show_favorite' => '',
+					'show_retweet' => '',
+				],
+				'raw' => __( 'Favorite and Retweet both are hidden from <strong>Twitter Settings</strong> section.', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'favorite_retweet_heading',
+			[
+				'label' => __( 'Favorite & Retweet', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING
+			]
+		);
+
+		$this->add_responsive_control(
+			'favorite_retweet_spacing',
+			[
+				'label' => __( 'Space Between', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'condition' => [
+					'show_favorite' => 'yes',
+					'show_retweet' => 'yes',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-favorite' => 'margin-right: {{SIZE}}{{UNIT}};'
+				],
+			]
+		);
+
+		$this->add_control(
+			'favorite_retweet_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-favorite' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-tweet-retweet' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'favorite_retweet_icon_color',
+			[
+				'label' => __( 'Icon Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-favorite i' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-tweet-retweet i' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'button_heading',
+			[
+				'label' => __( 'Load More Button', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_control(
+			'button_note',
+			[
+				'label' => false,
+				'type' => Controls_Manager::RAW_HTML,
+				'condition' => [
+					'load_more' => ''
+				],
+				'raw' => __( 'Button is hidden from <strong>Twitter Settings</strong> section.', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'button_border',
+				'condition' => [
+					'load_more' => 'yes'
+				],
+				'selector' => '{{WRAPPER}} .ha-twitter-load-more',
+			]
+		);
+
+		$this->add_responsive_control(
+			'button_border_radius',
+			[
+				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'condition' => [
+					'load_more' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-twitter-load-more' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'button_box_shadow',
+				'condition' => [
+					'load_more' => 'yes'
+				],
+				'selector' => '{{WRAPPER}} .ha-twitter-load-more'
+			]
+		);
+
+		$this->start_controls_tabs(
+			'_tabs_button',
+			[
+				'condition' => [
+					'load_more' => 'yes'
+				],
+			]
+		);
+		$this->start_controls_tab(
+			'_tab_button_normal',
+			[
+				'label' => __( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'button_background_color',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-twitter-load-more' => 'background-color: {{VALUE}};'
+				],
+			]
+		);
+
+		$this->add_control(
+			'button_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-twitter-load-more' => 'color: {{VALUE}};'
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'_tab_button_hover',
+			[
+				'label' => __( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'button_background_color_hover',
+			[
+				'label' => __('Background Color', 'happy-elementor-addons'),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-twitter-load-more:hover' => 'background-color: {{VALUE}};'
+				],
+			]
+		);
+
+		$this->add_control(
+			'button_color_hover',
+			[
+				'label' => __('Color', 'happy-elementor-addons'),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-twitter-load-more:hover' => 'color: {{VALUE}};'
+				],
+			]
+		);
+
+		$this->add_control(
+			'button_border_hover_color',
+			[
+				'label' => __('Border Color', 'happy-elementor-addons'),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'button_border_border!' => '',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-twitter-load-more:hover' => 'border-color: {{VALUE}};'
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
 
 		$this->end_controls_section();
 
