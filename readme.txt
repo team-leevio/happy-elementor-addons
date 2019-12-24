@@ -272,6 +272,7 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 - New: Added Step Flow widget title heading level control
 - Update: Tracking system update to comply with wp.org user privacy policy
+- Fix: Dark mode Happy Effects heading color
 
 = 2.4.2 - 12 December 2019 =
 
