@@ -463,6 +463,21 @@ class Twitter_Feed extends Base {
 			]
 		);
 
+		$this->add_control(
+			'content_glassy_effect',
+			[
+				'label' => __('Content Glassy Effect', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default' => 'no',
+				'condition' => [
+					'item_background_background' => 'classic'
+				],
+				'prefix_class' => 'ha-tweet-glassy-',
+				'style_transfer' => true,
+			]
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -610,7 +625,7 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->add_control(
-			'name__hover_color',
+			'name_hover_color',
 			[
 				'label' => __( 'Name Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
@@ -633,6 +648,112 @@ class Twitter_Feed extends Base {
 
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_twitter_content',
+			[
+				'label' => __('Content', 'happy-elementor-addons'),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'content_padding',
+			[
+				'label' => __('Padding', 'happy-elementor-addons'),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'content_spacing',
+			[
+				'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-content' => 'margin-bottom: {{SIZE}}{{UNIT}};'
+				],
+			]
+		);
+
+		$this->add_control(
+			'description_heading',
+			[
+				'label' => __( 'Description', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_responsive_control(
+			'description_spacing',
+			[
+				'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-content p' => 'margin-bottom: {{SIZE}}{{UNIT}};'
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'description_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-tweet-content p',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+			]
+		);
+
+		$this->add_control(
+			'description_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-content p' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'date_heading',
+			[
+				'label' => __( 'Date', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'date_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-tweet-date',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+			]
+		);
+
+		$this->add_control(
+			'date_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-date' => 'color: {{VALUE}}',
+				],
+			]
+		);
 
 		$this->end_controls_section();
 
@@ -686,7 +807,7 @@ class Twitter_Feed extends Base {
 				) );
 
 			$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
-			set_transient($id . '_' . $user_name . HA_TWEETS_CASH, $twitter_data, 2 * MINUTE_IN_SECONDS ); // 2 * MINUTE_IN_SECONDS
+			set_transient($id . '_' . $user_name . HA_TWEETS_CASH, $twitter_data, 5 * MINUTE_IN_SECONDS ); // 2 * MINUTE_IN_SECONDS
 
 		}
 
@@ -787,7 +908,7 @@ class Twitter_Feed extends Base {
 						</div>
 					</div>
 
-					<div class="ha-tweet-description">
+					<div class="ha-tweet-content">
 						<p><?php echo esc_html( $item['full_text'] ); ?></p>
 
 						<?php if ( $settings['show_date'] == 'yes' ) : ?>

@@ -63,11 +63,21 @@
 		color: #818181;
 	}
 
-	.ha-tweet-description {
+	.ha-tweet-content {
 		color: #222;
 		margin-bottom: 40px;
+		position: relative;
 	}
-	.ha-tweet-description p {
+	.ha-tweet-content:before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
+	.ha-tweet-content p {
 		margin-bottom: 5px;
 	}
 
@@ -131,7 +141,7 @@
 		.ha-tweet-avatar {
 			margin-right: 15px;
 		}
-		.ha-tweet-description {
+		.ha-tweet-content {
 			text-align: left;
 		}
 	}
@@ -140,7 +150,7 @@
 			flex-direction: column;
 			align-items: center;
 		}
-		.ha-tweet-description {
+		.ha-tweet-content {
 			text-align: center;
 		}
 	}
@@ -153,8 +163,15 @@
 		.ha-tweet-author {
 			flex-direction: row-reverse;
 		}
-		.ha-tweet-description {
+		.ha-tweet-content {
 			text-align: right;
+		}
+	}
+
+	&.ha-tweet-glassy-yes {
+		.ha-tweet-content:before {
+			background-color: rgba(255, 255, 255, 0.4);
+			backdrop-filter: blur(10px);
 		}
 	}
 }

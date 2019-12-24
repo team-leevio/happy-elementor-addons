@@ -2883,12 +2883,23 @@
 	color: #818181;
 }
 
-.ha-twitter-feed .ha-tweet-description {
-	margin-bottom: 40px; 
+.ha-twitter-feed .ha-tweet-content {
+	position: relative; 
+	margin-bottom: 40px;
 	color: #222;
 }
 
-.ha-twitter-feed .ha-tweet-description p {
+.ha-twitter-feed .ha-tweet-content:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1; 
+	width: 100%;
+	height: 100%;
+	content: "";
+}
+
+.ha-twitter-feed .ha-tweet-content p {
 	margin-bottom: 5px;
 }
 
@@ -2959,7 +2970,7 @@
 	margin-right: 15px;
 }
 
-.ha-twitter-feed.ha-twitter-left .ha-tweet-description {
+.ha-twitter-feed.ha-twitter-left .ha-tweet-content {
 	text-align: left;
 }
 
@@ -2975,7 +2986,7 @@
 	        flex-direction: column;
 }
 
-.ha-twitter-feed.ha-twitter-center .ha-tweet-description {
+.ha-twitter-feed.ha-twitter-center .ha-tweet-content {
 	text-align: center;
 }
 
@@ -2994,6 +3005,13 @@
 	        flex-direction: row-reverse;
 }
 
-.ha-twitter-feed.ha-twitter-right .ha-tweet-description {
+.ha-twitter-feed.ha-twitter-right .ha-tweet-content {
 	text-align: right;
+}
+
+.ha-twitter-feed.ha-tweet-glassy-yes .ha-tweet-content:before {
+	background-color: rgba(255, 255, 255, .4);
+
+	-webkit-backdrop-filter: blur(10px);
+	        backdrop-filter: blur(10px);
 }
