@@ -198,6 +198,16 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->add_control(
+			'show_feature_image',
+			[
+				'label' => __('Show Feature Image', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default' => 'no',
+			]
+		);
+
+		$this->add_control(
 			'show_date',
 			[
 				'label' => __('Show Date', 'happy-elementor-addons'),
@@ -1122,12 +1132,13 @@ class Twitter_Feed extends Base {
 			'credentials' 		=> $credentials,
 			'id' 				=> $id,
 			'user_name' 		=> $user_name,
+			'sort_by' 			=> $settings['sort_by'],
 			'show_twitter_logo' => $settings['show_twitter_logo'],
 			'tweets_limit' 		=> $settings['tweets_limit'],
-			'sort_by' 			=> $settings['sort_by'],
 			'show_user_image' 	=> $settings['show_user_image'],
 			'show_name' 		=> $settings['show_name'],
 			'show_user_name' 	=> $settings['show_user_name'],
+			'show_feature_image' => $settings['show_feature_image'],
 			'show_date' 		=> $settings['show_date'],
 			'show_favorite' 	=> $settings['show_favorite'],
 			'show_retweet' 		=> $settings['show_retweet'],
@@ -1165,8 +1176,15 @@ class Twitter_Feed extends Base {
 		}
 		?>
 		<div class="ha-tweet-items">
-			<?php foreach ( $items as $item ) : ?>
-				<div class="ha-tweet-item">
+			<?php
+			foreach ( $items as $item ) :
+				$feature_image = '';
+				if ( array_key_exists( 'media', $item['entities'] ) && $item['entities']['media'][0]['type'] == 'photo' ) {
+					$feature_image_url = esc_url($item['entities']['media'][0]['media_url_https']);
+					$feature_image = sprintf('style="background-image:url(%s)"', $feature_image_url);
+				}
+				?>
+				<div class="ha-tweet-item" <?php echo $feature_image; ?>>
 
 					<?php if ( $settings['show_twitter_logo'] == 'yes' ) : ?>
 						<div class="ha-tweeter-feed-icon">
@@ -1199,6 +1217,12 @@ class Twitter_Feed extends Base {
 							<?php endif; ?>
 						</div>
 					</div>
+
+<!--					--><?php //if ( array_key_exists( 'media', $item['entities'] ) && $item['entities']['media'][0]['type'] == 'photo' ) : ?>
+<!--						<div class="ha-tweet-feature-image">-->
+<!--							<img src="--><?php //echo esc_url( $item['entities']['media'][0]['media_url_https'] ); ?><!--" alt="--><?php //echo esc_attr( $item['user']['name'] ); ?><!--">-->
+<!--						</div>-->
+<!--					--><?php //endif; ?>
 
 					<div class="ha-tweet-content">
 						<p><?php echo esc_html( $item['full_text'] ); ?></p>

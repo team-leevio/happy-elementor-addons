@@ -2816,6 +2816,8 @@
 .ha-twitter-feed .ha-tweet-items {
 	display: -ms-grid;
 	display:     grid;
+	background-size: cover;
+	background-repeat: no-repeat; 
 
 	grid-gap: 30px;
 }
@@ -2851,10 +2853,12 @@
 	-webkit-flex-direction: row;
 	    -ms-flex-direction: row;
 	        flex-direction: row;
-	margin-bottom: 25px;
+	margin-bottom: 10px;
 }
 
 .ha-twitter-feed .ha-tweet-avatar {
+	width: 30px;
+	height: 30px;
 	border: 2px solid #777; 
 	border-radius: 50%;
 }
