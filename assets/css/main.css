@@ -2816,8 +2816,6 @@
 .ha-twitter-feed .ha-tweet-items {
 	display: -ms-grid;
 	display:     grid;
-	background-size: cover;
-	background-repeat: no-repeat; 
 
 	grid-gap: 30px;
 }
