@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.4.2
+Version: 2.5.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, obiplabon
@@ -267,6 +267,11 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.5.0 - 24 December 2019 =
+
+- New: Added Step Flow widget title heading level control
+- Update: Tracking system update to comply with wp.org user privacy policy
 
 = 2.4.2 - 12 December 2019 =
 
