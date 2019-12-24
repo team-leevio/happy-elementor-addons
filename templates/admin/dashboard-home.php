@@ -93,7 +93,7 @@ defined( 'ABSPATH' ) || die();
                                 <p class="f16">Are you interested to contribute to making this plugin more awesome?</p>
                                 <a class="link btn-how-to-contribute" href="#">How am I going to contribute?</a>
                                 <p class="ha-mb-0" style="display: none;">By allow Happy Elementor Addons to collect non-sensitive diagnostic data and usage information so that we can make sure optimum compatibility.
-                                    Happy Elementor Addons collect - Server environment details (php, mysql, server, WordPress versions), Number of users in your site, Site language, Number of active and inactive plugins, Site name and url, Your name and email address</p>
+                                    Happy Elementor Addons collect - Server environment details (php, mysql, server, WordPress versions), Number of users in your site, Site language, Number of active and inactive plugins, Site name and url, Your name and email address. We are using Appsero to collect your data. <a href="https://appsero.com/privacy-policy/" target="_blank" style="color:#fff">Learn more</a> about how Appsero collects and handle your data.</p>
                             </div>
                             <div class="ha-cta-action ha-col-4 ha-align-right">
                                 <a class="btn-contribute" href="<?php echo esc_url( $optin_url ); ?>">I like to contribute</a>
