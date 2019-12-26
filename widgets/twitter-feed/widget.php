@@ -193,7 +193,7 @@ class Twitter_Feed extends Base {
 				'label' => __('Show User Name', 'happy-elementor-addons'),
 				'type' => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
-				'default' => 'yes',
+				'default' => 'no',
 			]
 		);
 
@@ -293,9 +293,9 @@ class Twitter_Feed extends Base {
 		$this->add_control(
 			'favorite_retweet_position',
 			[
-				'label' => __( 'Favorite & Retweet Position', 'happy-elementor-addons' ),
+				'label' => __( 'Footer Alignment', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
-				'label_block' => true,
+				'label_block' => false,
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'happy-elementor-addons' ),
@@ -355,7 +355,7 @@ class Twitter_Feed extends Base {
 		$this->start_controls_section(
 			'_section_twitter_style',
 			[
-				'label' => __('Common', 'happy-elementor-addons'),
+				'label' => __( 'Common', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -363,10 +363,22 @@ class Twitter_Feed extends Base {
 		$this->add_responsive_control(
 			'item_spacing',
 			[
-				'label' => __( 'Spacing between items', 'happy-elementor-addons' ),
+				'label' => __( 'Spacing between Tweets', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .ha-tweet-items' => 'grid-gap: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'item_padding',
+			[
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -719,18 +731,6 @@ class Twitter_Feed extends Base {
 			]
 		);
 
-		$this->add_control(
-			'content_padding',
-			[
-				'label' => __('Padding', 'happy-elementor-addons'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => ['px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} .ha-tweet-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
 		$this->add_responsive_control(
 			'content_spacing',
 			[
@@ -739,6 +739,18 @@ class Twitter_Feed extends Base {
 				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} .ha-tweet-content' => 'margin-bottom: {{SIZE}}{{UNIT}};'
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'content_padding',
+			[
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-content' => 'padding: {{SIZE}}{{UNIT}};'
 				],
 			]
 		);
@@ -1128,7 +1140,6 @@ class Twitter_Feed extends Base {
 			'show_user_image' 	=> $settings['show_user_image'],
 			'show_name' 		=> $settings['show_name'],
 			'show_user_name' 	=> $settings['show_user_name'],
-			'show_feature_image' => $settings['show_feature_image'],
 			'show_date' 		=> $settings['show_date'],
 			'show_favorite' 	=> $settings['show_favorite'],
 			'show_retweet' 		=> $settings['show_retweet'],
