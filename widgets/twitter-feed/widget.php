@@ -541,6 +541,21 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->add_responsive_control(
+			'profile_image_size',
+			[
+				'label' => __( 'Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'condition' => [
+					'show_user_image' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-avatar' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};'
+				],
+			]
+		);
+
+		$this->add_responsive_control(
 			'profile_image_spacing',
 			[
 				'label' => __( 'Spacing', 'happy-elementor-addons' ),
