@@ -1147,7 +1147,7 @@ class Twitter_Feed extends Base {
 
 		}
 
-		 if ( array_key_exists( 'errors', $twitter_data ) ) {
+		 if ( !empty( $twitter_data ) && array_key_exists( 'errors', $twitter_data ) ) {
 			foreach ( $twitter_data['errors'] as $error ) {
 				$messages['error'] = $error['message'];
 			}
