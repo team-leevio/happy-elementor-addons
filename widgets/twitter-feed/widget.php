@@ -336,10 +336,38 @@ class Twitter_Feed extends Base {
 						'icon' => 'fa fa-align-right',
 					],
 				],
-				'default' => 'left',
+				'default' => 'center',
 				'toggle' => false,
 				'selectors' => [
 					'{{WRAPPER}} .ha-twitter-load-more-wrapper' => 'text-align: {{VALUE}};'
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'user_info_position',
+			[
+				'label' => __( 'User Info Position', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'top' => [
+						'title' => __( 'Top', 'happy-elementor-addons' ),
+						'icon' => 'eicon-arrow-up',
+					],
+					'bottom' => [
+						'title' => __( 'Bottom', 'happy-elementor-addons' ),
+						'icon' => 'eicon-arrow-down',
+					],
+				],
+				'default' => 'top',
+				'toggle' => false,
+				'prefix_class' => 'ha-twitter-user-',
+				'selectors_dictionary' => [
+					'top' => 'flex-direction: column',
+					'bottom' => 'flex-direction: column-reverse',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-inner-wrapper' => '{{VALUE}};'
 				]
 			]
 		);
@@ -378,7 +406,7 @@ class Twitter_Feed extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .ha-tweet-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-tweet-inner-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -452,20 +480,21 @@ class Twitter_Feed extends Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'_section_twitter_header',
+			'_section_twitter_user_info',
 			[
-				'label' => __( 'Header', 'happy-elementor-addons' ),
+				'label' => __( 'User Info', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
 		$this->add_responsive_control(
-			'header_spacing',
+			'user_info_spacing',
 			[
-				'label' => __( 'Header Bottom Spacing', 'happy-elementor-addons' ),
+				'label' => __( 'User Info Spacing', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'selectors' => [
-					'{{WRAPPER}} .ha-tweet-author' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.ha-twitter-user-top .ha-tweet-author' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.ha-twitter-user-bottom .ha-tweet-author' => 'margin-top: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -743,18 +772,6 @@ class Twitter_Feed extends Base {
 			[
 				'label' => __('Content', 'happy-elementor-addons'),
 				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		$this->add_responsive_control(
-			'content_spacing',
-			[
-				'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} .ha-tweet-content' => 'margin-bottom: {{SIZE}}{{UNIT}};'
-				],
 			]
 		);
 
@@ -1197,63 +1214,69 @@ class Twitter_Feed extends Base {
 
 					<?php if ( $settings['show_twitter_logo'] == 'yes' ) : ?>
 						<div class="ha-tweeter-feed-icon">
-							<i class="hm hm-twitter-bird"></i>
+							<i class="fa fa-twitter"></i>
 						</div>
 					<?php endif; ?>
 
-					<div class="ha-tweet-author">
-						<?php if ( $settings['show_user_image'] == 'yes' ) : ?>
-							<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>">
-								<img
-									src="<?php echo esc_url( $item['user']['profile_image_url_https'] ); ?>"
-									alt="<?php echo esc_attr( $item['user']['name'] ); ?>"
-									class="ha-tweet-avatar"
-								>
-							</a>
-						<?php endif; ?>
+					<div class="ha-tweet-inner-wrapper">
 
-						<div class="ha-tweet-user">
-							<?php if ( $settings['show_name'] == 'yes' ) : ?>
-								<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-author-name">
-									<?php echo esc_html( $item['user']['name'] ); ?>
+						<div class="ha-tweet-author">
+							<?php if ( $settings['show_user_image'] == 'yes' ) : ?>
+								<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>">
+									<img
+										src="<?php echo esc_url( $item['user']['profile_image_url_https'] ); ?>"
+										alt="<?php echo esc_attr( $item['user']['name'] ); ?>"
+										class="ha-tweet-avatar"
+									>
 								</a>
 							<?php endif; ?>
 
-							<?php if ( $settings['show_user_name'] == 'yes' ) : ?>
-								<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-username">
-									<?php echo esc_html( $settings['user_name'] ); ?>
-								</a>
+							<div class="ha-tweet-user">
+								<?php if ( $settings['show_name'] == 'yes' ) : ?>
+									<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-author-name">
+										<?php echo esc_html( $item['user']['name'] ); ?>
+									</a>
+								<?php endif; ?>
+
+								<?php if ( $settings['show_user_name'] == 'yes' ) : ?>
+									<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-username">
+										<?php echo esc_html( $settings['user_name'] ); ?>
+									</a>
+								<?php endif; ?>
+							</div>
+						</div>
+
+						<div class="ha-tweet-content">
+							<p><?php echo esc_html( $item['full_text'] ); ?></p>
+
+							<?php if ( $settings['show_date'] == 'yes' ) : ?>
+								<div class="ha-tweet-date">
+									<?php echo esc_html( date("M d Y", strtotime( $item['created_at'] ) ) );?>
+								</div>
 							<?php endif; ?>
 						</div>
-					</div>
 
-					<div class="ha-tweet-content">
-						<p><?php echo esc_html( $item['full_text'] ); ?></p>
-
-						<?php if ( $settings['show_date'] == 'yes' ) : ?>
-							<div class="ha-tweet-date">
-								<?php echo esc_html( date("M d Y", strtotime( $item['created_at'] ) ) );?>
-							</div>
-						<?php endif; ?>
 					</div>
 
 					<?php if ( $settings['show_favorite'] == 'yes' || $settings['show_retweet'] == 'yes' ) : ?>
-						<div class="ha-tweet-footer">
+						<div class="ha-tweet-footer-wrapper">
+							<div class="ha-tweet-footer">
 
-							<?php if ( $settings['show_favorite'] == 'yes' ) : ?>
-								<div class="ha-tweet-favorite">
-									<?php echo esc_html( $item['favorite_count'] ); ?>
-									<i class="fa fa-heart-o"></i>
-								</div>
-							<?php endif; ?>
+								<?php if ( $settings['show_favorite'] == 'yes' ) : ?>
+									<div class="ha-tweet-favorite">
+										<?php echo esc_html( $item['favorite_count'] ); ?>
+										<i class="fa fa-heart-o"></i>
+									</div>
+								<?php endif; ?>
 
-							<?php if ( $settings['show_retweet'] == 'yes' ) : ?>
-								<div class="ha-tweet-retweet">
-									<?php echo esc_html( $item['retweet_count'] ); ?>
-									<i class="fa fa-retweet"></i>
-								</div>
-							<?php endif; ?>
+								<?php if ( $settings['show_retweet'] == 'yes' ) : ?>
+									<div class="ha-tweet-retweet">
+										<?php echo esc_html( $item['retweet_count'] ); ?>
+										<i class="fa fa-retweet"></i>
+									</div>
+								<?php endif; ?>
 
+							</div>
 						</div>
 					<?php endif; ?>
 

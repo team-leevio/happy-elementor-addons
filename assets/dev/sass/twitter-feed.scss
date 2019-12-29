@@ -1,11 +1,13 @@
 .ha-twitter-feed {
 
-	.ha-tweeter-feed-icon i {
-		position: absolute;
-		right: 12px;
-		top: 12px;
-		color: #1da1f2;
-		font-size: 22px;
+	.ha-tweeter-feed-icon {
+		i {
+			position: absolute;
+			top: 5px;
+			right: 5px;
+			color: #1da1f2;
+			font-size: 22px;
+		}
 	}
 
 	.ha-tweet-items {
@@ -14,8 +16,8 @@
 	}
 
 	.ha-tweet-item {
+		display: flex;
 		box-shadow: 1px 1px 8px 1px rgba(0,0,0,.1);
-		padding: 20px;
 		position: relative;
 		z-index: 0;
 	}
@@ -30,6 +32,12 @@
 		height: 100%;
 	}
 
+	.ha-tweet-inner-wrapper {
+		display: flex;
+		flex-direction: column;
+		padding: 30px 10px;
+	}
+
 	.ha-tweet-author,
 	.ha-tweet-user {
 		display: flex;
@@ -37,12 +45,12 @@
 
 	.ha-tweet-author {
 		flex-direction: row;
+		align-items: center;
 		margin-bottom: 10px;
 	}
 
 	.ha-tweet-avatar {
-		width: 30px;
-		height: 30px;
+		width: 45px;
 		border-radius: 50%;
 		border: 2px solid #777;
 	}
@@ -67,7 +75,6 @@
 
 	.ha-tweet-content {
 		color: #222;
-		margin-bottom: 40px;
 		position: relative;
 	}
 	.ha-tweet-content:before {
@@ -160,7 +167,7 @@
 	&.ha-twitter-right {
 		.ha-tweeter-feed-icon i {
 			right: auto;
-			left: 12px;
+			left: 5px;
 			transform: rotateY(-180deg);
 		}
 		.ha-tweet-author {
@@ -168,6 +175,16 @@
 		}
 		.ha-tweet-content {
 			text-align: right;
+		}
+	}
+
+	&.ha-twitter-user-bottom {
+		.ha-tweet-inner-wrapper {
+			justify-content: flex-end;
+		}
+		.ha-tweet-author {
+			margin-bottom: 0;
+			margin-top: 10px;
 		}
 	}
 
