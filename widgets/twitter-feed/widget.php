@@ -6,7 +6,6 @@
  */
 
 namespace Happy_Addons\Elementor\Widget;
-//namespace Happy_Addons\Elementor;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Box_Shadow;
@@ -65,7 +64,7 @@ class Twitter_Feed extends Base {
 			[
 				'label' => esc_html__('User Name', 'happy-elementor-addons'),
 				'type' => Controls_Manager::TEXT,
-				'default' => '@wpdevteam',
+				'default' => '@HappyAddons',
 				'label_block' => false,
 				'description' => esc_html__('Use @ sign with your Twitter user name.', 'happy-elementor-addons' ),
 
@@ -78,7 +77,7 @@ class Twitter_Feed extends Base {
 				'label' => esc_html__('Consumer Key', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => 'wwC72W809xRKd9ySwUzXzjkmS',
+				'default' => 'eNoxL16kBQYcJ3u6NafUmv6NZ',
 				'description' => '<a href="https://apps.twitter.com/app/" target="_blank">Get Consumer Key.</a>',
 			]
 		);
@@ -89,7 +88,7 @@ class Twitter_Feed extends Base {
 				'label' => esc_html__('Consumer Secret', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => 'rn54hBqxjve2CWOtZqwJigT3F5OEvrriK2XAcqoQVohzr2UA8h',
+				'default' => 'wnwKqdRkkJzPJ8bZIWPRBKjGYEU4PBWAUYiyShArQQJV6VaPBY',
 				'description' => '<a href="https://apps.twitter.com/app/" target="_blank">Get Consumer Secret key.</a>',
 			]
 		);
@@ -1119,7 +1118,8 @@ class Twitter_Feed extends Base {
 
 		$messages = [];
 		if ( $twitter_data === false ) {
-			$auth_response = wp_remote_post('https://api.twitter.com/oauth2/token',
+			$auth_url = 'https://api.twitter.com/oauth2/token';
+			$auth_response = wp_remote_post( $auth_url,
 				array(
 					'method' => 'POST',
 					'httpversion' => '1.1',
@@ -1135,7 +1135,8 @@ class Twitter_Feed extends Base {
 			update_option($id . '_' . $user_name . HA_TWEETS_TOKEN, $body->access_token);
 			$token = $body->access_token;
 
-			$tweets_response = wp_remote_get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $user_name . '&count=999&tweet_mode=extended',
+			$twitter_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $user_name . '&count=999&tweet_mode=extended';
+			$tweets_response = wp_remote_get( $twitter_url,
 				array(
 					'httpversion' => '1.1',
 					'blocking' => true,
@@ -1181,8 +1182,8 @@ class Twitter_Feed extends Base {
 		switch ($settings['sort_by']) {
 			case 'old-posts':
 				usort($twitter_data, function ($a,$b) {
-					if ( $a['created_at'] == $b['created_at'] ) return 0;
-					return ( $a['created_at'] < $b['created_at'] ) ? -1 : 1 ;
+					if ( strtotime($a['created_at']) == strtotime($b['created_at']) ) return 0;
+					return ( strtotime($a['created_at']) < strtotime($b['created_at']) ? -1 : 1 );
 				});
 				break;
 			case 'favorite_count':
@@ -1251,7 +1252,7 @@ class Twitter_Feed extends Base {
 
 							<?php if ( $settings['show_date'] == 'yes' ) : ?>
 								<div class="ha-tweet-date">
-									<?php echo esc_html( date("M d Y", strtotime( $item['created_at'] ) ) );?>
+									<?php echo esc_html( date("M d Y", strtotime( $item['created_at'] ) ) ); ?>
 								</div>
 							<?php endif; ?>
 						</div>

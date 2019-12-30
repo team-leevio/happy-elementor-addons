@@ -375,63 +375,69 @@ function ha_twitter_feed_ajax() {
 
 				<?php if ( $settings['show_twitter_logo'] == 'yes' ) : ?>
 					<div class="ha-tweeter-feed-icon">
-						<i class="hm hm-twitter-bird"></i>
+						<i class="fa fa-twitter"></i>
 					</div>
 				<?php endif; ?>
 
-				<div class="ha-tweet-author">
-					<?php if ( $settings['show_user_image'] == 'yes' ) : ?>
-						<a href="<?php echo esc_url( 'https://twitter.com/'.$settings['user_name'] ); ?>">
-							<img
-								src="<?php echo esc_url( $item['user']['profile_image_url_https'] ); ?>"
-								alt="<?php echo esc_attr( $item['user']['name'] ); ?>"
-								class="ha-tweet-avatar"
-							>
-						</a>
-					<?php endif; ?>
+				<div class="ha-tweet-inner-wrapper">
 
-					<div class="ha-tweet-user">
-						<?php if ( $settings['show_name'] == 'yes' ) : ?>
-							<a href="<?php echo esc_url( 'https://twitter.com/'.$settings['user_name'] ); ?>" class="ha-tweet-author-name">
-								<?php echo esc_html( $item['user']['name'] ); ?>
+					<div class="ha-tweet-author">
+						<?php if ( $settings['show_user_image'] == 'yes' ) : ?>
+							<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>">
+								<img
+									src="<?php echo esc_url( $item['user']['profile_image_url_https'] ); ?>"
+									alt="<?php echo esc_attr( $item['user']['name'] ); ?>"
+									class="ha-tweet-avatar"
+								>
 							</a>
 						<?php endif; ?>
 
-						<?php if ( $settings['show_user_name'] == 'yes' ) : ?>
-							<a href="<?php echo esc_url( 'https://twitter.com/'.$settings['user_name'] ); ?>" class="ha-tweet-username">
-								<?php echo esc_html( $settings['user_name'] ); ?>
-							</a>
+						<div class="ha-tweet-user">
+							<?php if ( $settings['show_name'] == 'yes' ) : ?>
+								<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-author-name">
+									<?php echo esc_html( $item['user']['name'] ); ?>
+								</a>
+							<?php endif; ?>
+
+							<?php if ( $settings['show_user_name'] == 'yes' ) : ?>
+								<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-username">
+									<?php echo esc_html( $settings['user_name'] ); ?>
+								</a>
+							<?php endif; ?>
+						</div>
+					</div>
+
+					<div class="ha-tweet-content">
+						<p><?php echo esc_html( $item['full_text'] ); ?></p>
+
+						<?php if ( $settings['show_date'] == 'yes' ) : ?>
+							<div class="ha-tweet-date">
+								<?php echo esc_html( date("M d Y", strtotime( $item['created_at'] ) ) );?>
+							</div>
 						<?php endif; ?>
 					</div>
-				</div>
 
-				<div class="ha-tweet-description">
-					<p><?php echo esc_html( $item['full_text'] ); ?></p>
-
-					<?php if ( $settings['show_date'] == 'yes' ) : ?>
-						<div class="ha-tweet-date">
-							<?php echo esc_html( date("M d Y", strtotime( $item['created_at'] ) ) );?>
-						</div>
-					<?php endif; ?>
 				</div>
 
 				<?php if ( $settings['show_favorite'] == 'yes' || $settings['show_retweet'] == 'yes' ) : ?>
-					<div class="ha-tweet-footer">
+					<div class="ha-tweet-footer-wrapper">
+						<div class="ha-tweet-footer">
 
-						<?php if ( $settings['show_favorite'] == 'yes' ) : ?>
-							<div class="ha-tweet-favorite">
-								<?php echo esc_html( $item['favorite_count'] ); ?>
-								<i class="fa fa-heart-o"></i>
-							</div>
-						<?php endif; ?>
+							<?php if ( $settings['show_favorite'] == 'yes' ) : ?>
+								<div class="ha-tweet-favorite">
+									<?php echo esc_html( $item['favorite_count'] ); ?>
+									<i class="fa fa-heart-o"></i>
+								</div>
+							<?php endif; ?>
 
-						<?php if ( $settings['show_retweet'] == 'yes' ) : ?>
-							<div class="ha-tweet-retweet">
-								<?php echo esc_html( $item['retweet_count'] ); ?>
-								<i class="fa fa-retweet"></i>
-							</div>
-						<?php endif; ?>
+							<?php if ( $settings['show_retweet'] == 'yes' ) : ?>
+								<div class="ha-tweet-retweet">
+									<?php echo esc_html( $item['retweet_count'] ); ?>
+									<i class="fa fa-retweet"></i>
+								</div>
+							<?php endif; ?>
 
+						</div>
 					</div>
 				<?php endif; ?>
 
