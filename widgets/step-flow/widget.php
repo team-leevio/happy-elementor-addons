@@ -682,7 +682,7 @@ class Step_Flow extends Base {
         if ( ! empty( $settings['link']['url'] ) ) {
             $title = sprintf(
                 '<a %1$s>%2$s</a>',
-                $this->print_render_attribute_string( 'link' ),
+                $this->get_render_attribute_string( 'link' ),
                 ha_kses_basic( $settings['title'] )
             );
         } else {
