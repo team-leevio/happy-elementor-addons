@@ -1,3 +1,20 @@
+= 2.5.0 - 24 December 2019 =
+
+- New: Added Step Flow widget title heading level control
+- Update: Tracking system update to comply with wp.org user privacy policy
+- Fix: Dark mode Happy Effects heading color
+
+= 2.4.2 - 12 December 2019 =
+
+- Fix: Compatibility with Elementor 2.8.*
+- Fix: Extension loading issue for non logged in users
+
+= 2.4.1 - 10 December 2019 =
+
+- Fix: News Ticket single post selection issue
+- Fix: Blank icons controls JS error issue (it also fixes EA Table and Elementor FORM issue)
+- Fix: Gravity Forms Elementor editor style issue
+
 = 2.4.0 - 3 December 2019 =
 
 - New: Happy Clone - (duplicate post/page from anywhere!)

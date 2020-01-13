@@ -65,7 +65,8 @@
                 var controlValue = this.constructor.__super__.getControlValue.call(this),
                     model = this.model,
                     valueToMigrate = this.getValueToMigrate(),
-                    newValue = { value: '', library: 'happy-icons' };
+                    newValue = { value: '', library: 'happy-icons' },
+                    elementSettingsModel = ( this.container && this.container.settings ) || this.elementSettingsModel;
 
                 if ( _.isObject( controlValue ) &&
                     !_.isEmpty( controlValue ) &&
@@ -73,13 +74,13 @@
                     controlValue.value.indexOf( 'fashm' ) === 0
                 ) {
                     newValue.value = controlValue.value.substr( controlValue.value.indexOf( 'hm hm-' ) );
-                    this.elementSettingsModel.set( model.get( 'name' ), newValue );
+                    elementSettingsModel.set( model.get( 'name' ), newValue );
                     return newValue;
                 }
 
                 if ( ! _.isObject( controlValue ) && valueToMigrate && valueToMigrate.indexOf( 'hm hm-' ) === 0 ) {
                     newValue.value = valueToMigrate;
-                    this.elementSettingsModel.set( model.get( 'name' ), newValue );
+                    elementSettingsModel.set( model.get( 'name' ), newValue );
                     return newValue;
                 }
 
@@ -92,7 +93,7 @@
                     return controlValue;
                 }
 
-                var didMigration = this.elementSettingsModel.get( this.dataKeys.migratedKey ),
+                var didMigration = elementSettingsModel.get( this.dataKeys.migratedKey ),
                     controlName = model.get( 'name' );
 
                 // Check if migration had been done and is stored locally

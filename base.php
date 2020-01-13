@@ -46,12 +46,12 @@ class Base {
         Assets_Manager::init();
         Cache_Manager::init();
         Icons_Manager::init();
+        Extensions_Manager::init();
 
         $this->init_appsero_tracking();
 
         if ( is_user_logged_in() ) {
             Admin_Bar::init();
-            Extensions_Manager::init();
         }
 
         if ( is_admin() ) {
@@ -98,6 +98,7 @@ class Base {
 
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
 
         if ( is_admin() ) {
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/class.communicator.php' );
@@ -109,7 +110,6 @@ class Base {
         if ( is_user_logged_in() ) {
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php' );
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php' );
-            include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
         }
     }
 

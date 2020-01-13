@@ -458,7 +458,7 @@ class Widgets_Manager {
                     'js' => [],
                 ],
             ],
-			'news-ticker' => [
+            'news-ticker' => [
                 'title' => __( 'News Ticker', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-slider',
                 'css' => ['news-ticker'],
@@ -468,16 +468,16 @@ class Widgets_Manager {
                     'js' => ['jquery-keyframes'],
                 ],
             ],
-			'fun-factor' => [
-				'title' => __( 'Fun Factor', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-slider',
-				'css' => ['fun-factor'],
-				'js' => [],
-				'vendor' => [
-					'css' => [],
-					'js' => ['elementor-waypoints', 'jquery-numerator'],
-				],
-			],
+            'fun-factor' => [
+                'title' => __( 'Fun Factor', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-slider',
+                'css' => ['fun-factor'],
+                'js' => [],
+                'vendor' => [
+                    'css' => [],
+                    'js' => ['elementor-waypoints', 'jquery-numerator'],
+                ],
+            ],
         ];
     }
 
@@ -508,8 +508,11 @@ class Widgets_Manager {
 
     protected static function register_widget( $widget_key ) {
         $widget_file = HAPPY_ADDONS_DIR_PATH . 'widgets/' . $widget_key . '/widget.php';
+
         if ( is_readable( $widget_file ) ) {
+
             include_once( $widget_file );
+
             $widget_class = '\Happy_Addons\Elementor\Widget\\' . str_replace( '-', '_', $widget_key );
             if ( class_exists( $widget_class ) ) {
                 ha_elementor()->widgets_manager->register_widget_type( new $widget_class );

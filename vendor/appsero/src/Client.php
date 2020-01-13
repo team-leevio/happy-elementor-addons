@@ -13,7 +13,7 @@ class Client {
      *
      * @var string
      */
-    public $version = '1.1.2';
+    public $version = '1.1.9';
 
     /**
      * Hash identifier of the plugin
@@ -67,7 +67,14 @@ class Client {
      */
     public $type;
 
-	/**
+    /**
+     * textdomain
+     *
+     * @var string
+     */
+    public $textdomain;
+
+    /**
      * Initialize the class
      *
      * @param string  $hash hash of the plugin
@@ -85,7 +92,7 @@ class Client {
     /**
      * Initialize insights class
      *
-     * @return Appsero\Insights
+     * @return Happy_Addons\Appsero\Insights
      */
     public function insights() {
 
@@ -99,7 +106,7 @@ class Client {
     /**
      * Initialize plugin/theme updater
      *
-     * @return Appsero\Updater
+     * @return Happy_Addons\Appsero\Updater
      */
     public function updater() {
 
@@ -113,7 +120,7 @@ class Client {
     /**
      * Initialize license checker
      *
-     * @return Appsero\License
+     * @return Happy_Addons\Appsero\License
      */
     public function license() {
 
@@ -154,6 +161,7 @@ class Client {
 
             $this->project_version = $plugin_data['Version'];
             $this->type = 'plugin';
+            $this->textdomain = $this->slug;
 
         } else {
 

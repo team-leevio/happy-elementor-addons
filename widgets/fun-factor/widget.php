@@ -333,15 +333,13 @@ class Fun_Factor extends Base {
 						'max' => 100,
 					],
 				],
-				'default'    => [
+				'default' => [
 					'unit' => 'px',
 				],
-
 				'selectors' => [
-					'{{WRAPPER}} .ha-fun-factor-image-section img'                                                                => 'width: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-fun-factor-image-section, {{WRAPPER}} .ha-fun-factor-icon-section'                           => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-fun-factor-image-section img' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-fun-factor-image-section, {{WRAPPER}} .ha-fun-factor-icon-section' => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
 				],
-
 				'condition' => [
 					'media_type' => 'image',
 				]
@@ -389,7 +387,6 @@ class Fun_Factor extends Base {
 						'step' => 1,
 					],
 				],
-
 				'devices'         => ['desktop', 'tablet', 'mobile'],
 				'desktop_default' => [
 					'unit' => 'em',
@@ -403,11 +400,9 @@ class Fun_Factor extends Base {
 					'unit' => 'em',
 					'size' => 2,
 				],
-
 				'selectors' => [
 					'{{WRAPPER}} .ha-fun-factor-icon' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
-
 				'condition'   => [
 					'media_type' => 'icon',
 				],
@@ -799,33 +794,26 @@ class Fun_Factor extends Base {
 		?>
 
 		<div class="ha-ff-container">
-			<?php if (!empty($settings['icons']['value'])) : ?>
+			<?php if ( ! empty( $settings['icons']['value'] ) ) : ?>
 				<div class="ha-fun-factor-icon-section">
-					<?php Icons_Manager::render_icon($settings['icons'], ['aria-hidden' => 'true', 'class' => 'ha-fun-factor-icon']); ?>
+					<?php Icons_Manager::render_icon( $settings['icons'], ['aria-hidden' => 'true', 'class' => 'ha-fun-factor-icon']); ?>
 				</div>
-			<?php endif; ?>
-
-			<?php if ($settings['image']['url'] || $settings['image']['id']) :
-				$this->add_render_attribute('image', 'src', $settings['image']['url']);
-				$this->add_render_attribute('image', 'alt', Control_Media::get_image_alt($settings['image']));
-				$this->add_render_attribute('image', 'title', Control_Media::get_image_title($settings['image']));
-				?>
+			<?php elseif ( $settings['image']['url'] || $settings['image']['id']) : ?>
 				<div class="ha-fun-factor-image-section">
-					<?php echo Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'image'); ?>
+					<?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
 				</div>
 			<?php endif; ?>
 
 			<div class="ha-fun-factor-content">
-				<h2 <?php $this->print_render_attribute_string('fun_factor_number'); ?> > <?php echo esc_html($number); ?></h2>
+				<h2 <?php $this->print_render_attribute_string( 'fun_factor_number' ); ?> > <?php echo esc_html($number); ?></h2>
 				<?php if ('yes' === $settings['divider_show_hide']) : ?>
-					<span
-						class="ha-fun-factor-divider ha-fun-factor-divider-align-<?php echo $settings['text_align']; ?>"></span>
+					<span class="ha-fun-factor-divider ha-fun-factor-divider-align-<?php echo $settings['text_align']; ?>"></span>
 				<?php endif; ?>
-				<<?php echo tag_escape($settings['title_tag']); ?>
-				class="ha-fun-factor-content-text"><?php echo esc_html($fun_factor_title); ?>
-			</<?php echo tag_escape($settings['title_tag']); ?>>
+				<<?php echo tag_escape( $settings['title_tag'] ); ?> class="ha-fun-factor-content-text"><?php echo esc_html( $fun_factor_title ); ?>
+			    </<?php echo tag_escape( $settings['title_tag'] ); ?>>
+		    </div>
 		</div>
-		</div>
+
 		<?php
 	}
 }
