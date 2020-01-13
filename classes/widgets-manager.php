@@ -448,7 +448,7 @@ class Widgets_Manager {
                     'js' => [],
                 ],
             ],
-			'gravityforms' => [
+            'gravityforms' => [
                 'title' => __( 'Gravity Forms', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-form',
                 'css' => [],
