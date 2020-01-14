@@ -28,6 +28,10 @@ class GravityForms extends Base {
 		return __( 'Gravity Forms', 'happy-elementor-addons' );
 	}
 
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/gravity-forms/';
+	}
+
 	/**
 	 * Get widget icon.
 	 *

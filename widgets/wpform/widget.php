@@ -28,6 +28,10 @@ class WPForm extends Base {
         return __( 'WPForms', 'happy-elementor-addons' );
     }
 
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/wp-forms/';
+	}
+
     /**
      * Get widget icon.
      *

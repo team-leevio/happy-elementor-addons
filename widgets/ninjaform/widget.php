@@ -28,6 +28,10 @@ class NinjaForm extends Base {
         return __( 'Ninja Forms', 'happy-elementor-addons' );
     }
 
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/ninja-forms/';
+	}
+
     /**
      * Get widget icon.
      *

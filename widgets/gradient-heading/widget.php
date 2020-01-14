@@ -28,7 +28,11 @@ class Gradient_Heading extends Base {
         return __( 'Gradient Heading', 'happy-elementor-addons' );
     }
 
-    /**
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/gradient-heading/';
+	}
+
+	/**
      * Get widget icon.
      *
      * @since 1.0.0

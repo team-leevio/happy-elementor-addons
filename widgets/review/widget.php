@@ -32,7 +32,11 @@ class Review extends Base {
         return __( 'Review', 'happy-elementor-addons' );
     }
 
-    /**
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/review/';
+	}
+
+	/**
      * Get widget icon.
      *
      * @since 1.0.0
