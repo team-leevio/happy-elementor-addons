@@ -11,7 +11,6 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Icons_Manager;
 use Elementor\Scheme_Typography;
 use Elementor\Utils;
-use Elementor\Control_Media;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
@@ -47,7 +46,7 @@ class Fun_Factor extends Base {
 	}
 
 	public function get_keywords() {
-		return ['fun', 'factor'];
+		return ['fun', 'factor', 'animation', 'info', 'box', 'number', 'animated'];
 	}
 
 	protected function register_content_controls() {
