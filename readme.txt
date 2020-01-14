@@ -268,6 +268,15 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 == Changelog ==
 
+= 2.6.0 - 14 January 2020 =
+
+- New: Fun Factor widget
+- Update: Page break styling for Gravity Forms widget
+- Update: Widgets help link added in "Need Help?" button
+- Fix: Image Comparision widget extra height issue
+- Fix: Step Flow widget title link issue
+- Fix: Gravity Forms styling issue
+
 = 2.5.0 - 24 December 2019 =
 
 - New: Added Step Flow widget title heading level control
