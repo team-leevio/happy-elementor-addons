@@ -805,7 +805,7 @@ class Fun_Factor extends Base {
 			<?php endif; ?>
 
 			<div class="ha-fun-factor-content">
-				<h2 <?php $this->print_render_attribute_string( 'fun_factor_number' ); ?> > <?php echo esc_html($number); ?></h2>
+				<p <?php $this->print_render_attribute_string( 'fun_factor_number' ); ?> > <?php echo esc_html($number); ?></p>
 				<?php if ('yes' === $settings['divider_show_hide']) : ?>
 					<span class="ha-fun-factor-divider ha-fun-factor-divider-align-<?php echo $settings['text_align']; ?>"></span>
 				<?php endif; ?>
