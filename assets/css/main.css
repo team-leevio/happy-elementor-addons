@@ -2723,6 +2723,7 @@
 }
 
 .ha-fun-factor-divider {
+	display: block;
 	margin-bottom: 15px; 
 	height: 1px;
 	background-color: #ccc;
