@@ -27,6 +27,10 @@ class CalderaForm extends Base {
         return __( 'Caldera Forms', 'happy-elementor-addons' );
     }
 
+    public function get_custom_help_url() {
+        return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/caldera-forms/';
+    }
+
     /**
      * Get widget icon.
      *

@@ -26,7 +26,11 @@ class Calendly extends Base {
 		return __( 'Calendly', 'happy-elementor-addons' );
 	}
 
-	/**
+    public function get_custom_help_url() {
+        return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/calendly/';
+    }
+
+    /**
 	 * Get widget icon.
 	 *
 	 * @return string Widget icon.

@@ -33,6 +33,10 @@ class Carousel extends Base {
         return __( 'Carousel', 'happy-elementor-addons' );
     }
 
+    public function get_custom_help_url() {
+        return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/carousel/';
+    }
+
     /**
      * Get widget icon.
      *
