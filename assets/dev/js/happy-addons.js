@@ -87,8 +87,14 @@
 
         settings[fieldMap[settings.move_handle || 'on_swipe']] = true;
         delete settings.move_handle;
+
         $item.imagesLoaded().done(function() {
             $item.twentytwenty(settings);
+
+            var t = setTimeout(function() {
+                $window.trigger('resize.twentytwenty');
+                clearTimeout(t);
+            }, 400);
         });
     };
 
