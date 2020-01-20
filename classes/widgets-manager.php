@@ -465,12 +465,23 @@ class Widgets_Manager {
             ],
 			'fun-factor' => [
 				'title' => __( 'Fun Factor', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-slider',
+				'icon' => 'hm hm-cross-game',
 				'css' => ['fun-factor'],
 				'js' => [],
 				'vendor' => [
 					'css' => [],
 					'js' => ['elementor-waypoints', 'jquery-numerator'],
+				],
+			],
+
+			'social-icons' => [
+				'title' => __( 'Social Icons', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-bond',
+				'css' => [],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
 				],
 			],
         ];
