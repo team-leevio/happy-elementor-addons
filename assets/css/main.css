@@ -2805,3 +2805,20 @@
 	margin-left: auto !important;
 	text-align: center;
 }
+
+.ha-social-icons-wrapper a {
+	display: inline-block;
+	font-size: 30px;
+}
+
+.ha-social-icon:not(:last-child) {
+	margin-right: 10px;
+}
+
+.ha-social-icon i,
+.ha-social-icon svg {
+	position: relative;
+	display: block; 
+	width: 1em;
+	height: 1em;
+}
