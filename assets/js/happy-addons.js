@@ -451,12 +451,39 @@
             });
         };
 
+		var BarChart = function( $scope ) {
+			EF.waypoint($scope, function () {
+				var $chart = $(this),
+					$container = $chart.find( '.ha-chart-container' ),
+					$chart_canvas = $chart.find( '#ha-chart-bar' ),
+					settings      = $container.data( 'settings' );
+
+				var chart = new Chart( $chart_canvas, settings )
+
+				// elementorFrontend.waypoint( $chart_canvas, function() {
+				// 	var $this   = $( this ),
+				// 		ctx     = $this[0].getContext( '2d' ),
+				// 		myChart = new Chart( ctx, settings );
+				// }, {
+				// 	offset: 'bottom-in-view'
+				// } );
+			} );
+			// var $chart        = $scope.find( '.ha-chart' ),
+			// 	$chart_canvas = $chart.find( '#ha-chart-bar' ),
+			// 	settings      = $chart.data( 'settings' );
+			//
+			// if ( ! $chart.length ) {
+			// 	return;
+			// }
+		};
+
         var handlersFnMap = {
             'ha-image-compare.default': HandleImageCompare,
             'ha-justified-gallery.default': HandleJustifiedGallery,
             'ha-number.default': NumberHandler,
             'ha-skills.default': SkillHandler,
             'ha-fun-factor.default': FunFactor,
+            'ha-chart.default': BarChart,
         };
 
         $.each( handlersFnMap, function( widgetName, handlerFn ) {

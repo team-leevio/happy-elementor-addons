@@ -478,6 +478,16 @@ class Widgets_Manager {
                     'js' => ['elementor-waypoints', 'jquery-numerator'],
                 ],
             ],
+			'chart' => [
+				'title' => __( 'Fun Factor', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-graph-bar',
+				'css' => ['chart'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => ['chart-js'],
+				],
+			],
         ];
     }
 
