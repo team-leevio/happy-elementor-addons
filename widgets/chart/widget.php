@@ -9,6 +9,7 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Repeater;
 use Elementor\Scheme_Typography;
+use Happy_Addons\Elementor\Widget\Chart\Data;
 
 defined( 'ABSPATH' ) || die();
 
@@ -60,7 +61,7 @@ class Chart extends Base {
 			[
 				'label'   => __( 'Bar Type', 'happy-elementor-addons' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => 'horizontalBar',
+				'default' => 'bar',
 				'options' => [
 					'bar'           => __( 'Vertical', 'happy-elementor-addons' ),
 					'horizontalBar' => __( 'Horizontal', 'happy-elementor-addons' ),
@@ -76,27 +77,6 @@ class Chart extends Base {
 				'label_block' => true,
 				'default'     => __( 'January, February, March', 'happy-elementor-addons' ),
 				'description' => __( 'Write multiple label with comma ( , ) separator. Example: March, April, May etc', 'happy-elementor-addons' ),
-			]
-		);
-
-		$this->add_control(
-			'axis_range',
-			[
-				'label'       => __( 'Scale Axis Range', 'happy-elementor-addons' ),
-				'type'        => Controls_Manager::NUMBER,
-				'default'     => 10,
-				'description' => __( 'User defined maximum number for the scale, overrides maximum value from data.', 'happy-elementor-addons' ),
-			]
-		);
-
-		$this->add_control(
-			'step_size',
-			[
-				'label'       => __( 'Step Size', 'happy-elementor-addons' ),
-				'type'        => Controls_Manager::NUMBER,
-				'default'     => 1,
-				'step'        => 1,
-				'description' => __( 'User defined fixed step size for the scale.', 'happy-elementor-addons' ),
 			]
 		);
 
@@ -139,7 +119,7 @@ class Chart extends Base {
 		);
 
 		$repeater->add_control(
-			'bg_color',
+			'background_color',
 			[
 				'label' => __( 'Background Color', 'happy-elementor-addons' ),
 				'type'  => Controls_Manager::COLOR,
@@ -147,7 +127,7 @@ class Chart extends Base {
 		);
 
 		$repeater->add_control(
-			'bg_hover_color',
+			'background_hover_color',
 			[
 				'label' => __( 'Background Hover Color', 'happy-elementor-addons' ),
 				'type'  => Controls_Manager::COLOR,
@@ -180,29 +160,21 @@ class Chart extends Base {
 				'title_field' => '{{{ label }}}',
 				'default'     => [
 					[
-						'label'              => __( 'Google', 'happy-elementor-addons' ),
+						'label'              => __( 'WordPress', 'happy-elementor-addons' ),
 						'data'               => __( '2, 4, 8', 'happy-elementor-addons' ),
-						'bg_color'           => 'rgba(221,75,57,0.4)',
-						'bg_hover_color'     => '#dd4b39',
-						'border_color'       => '#dd4b39',
-						'border_hover_color' => '#dd4b39',
+						'background_color'       => 'rgba(86, 45, 212, 0.7)',
+						'background_hover_color' => '#562dd4',
+						'border_color'       => '#602edc',
+						'border_hover_color' => '#602edc',
 					],
 					[
-						'label'              => __( 'Facebook', 'happy-elementor-addons' ),
-						'data'               => __( '1, 5, 3', 'happy-elementor-addons' ),
-						'bg_color'           => 'rgba(59,89,152,0.4)',
-						'bg_hover_color'     => '#3b5998',
-						'border_color'       => '#3b5998',
-						'border_hover_color' => '#3b5998',
-					],
-					[
-						'label'              => __( 'Twitter', 'happy-elementor-addons' ),
-						'data'               => __( '5, 9, 5', 'happy-elementor-addons' ),
-						'bg_color'           => 'rgba(85,172,238,0.4)',
-						'bg_hover_color'     => '#55acee',
-						'border_color'       => '#55acee',
-						'border_hover_color' => '#55acee',
-					],
+						'label'              => __( 'Happy Addons', 'happy-elementor-addons' ),
+						'data'               => __( '1, 6, 6', 'happy-elementor-addons' ),
+						'background_color'       => 'rgba(226, 73, 138, 0.7)',
+						'background_hover_color' => '#e2498a',
+						'border_color'       => '#d23b7b',
+						'border_hover_color' => '#d23b7b',
+					]
 				]
 			]
 		);
@@ -227,10 +199,13 @@ class Chart extends Base {
 						'max' => 1500,
 					],
 				],
-				'selectors'   => [
-					'{{WRAPPER}} .chartjs-size-monitor' => 'height: {{SIZE}}{{UNIT}};',
+				'default' => [
+					'unit' => 'px',
+					'size' => 400,
 				],
-				'render_type' => 'template',
+				'selectors'   => [
+					'{{WRAPPER}} .ha-chart-container' => 'height: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -261,6 +236,50 @@ class Chart extends Base {
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => 'yes',
 				'return_value' => 'yes',
+			]
+		);
+
+		$this->add_control(
+			'title_display',
+			[
+				'label'        => __( 'Show Title', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'no',
+				'return_value' => 'yes',
+			]
+		);
+
+		$this->add_control(
+			'chart_title',
+			[
+				'label'       => __( 'Title', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::TEXT,
+				'label_block' => true,
+				'default'     => __( 'Happy Addons Rocks', 'happy-elementor-addons' ),
+				'condition' => [
+					'title_display' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'axis_range',
+			[
+				'label'       => __( 'Scale Axis Range', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 10,
+				'description' => __( 'User defined maximum number for the scale, overrides maximum value from data.', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'step_size',
+			[
+				'label'       => __( 'Step Size', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 1,
+				'step'        => 1,
+				'description' => __( 'User defined fixed step size for the scale.', 'happy-elementor-addons' ),
 			]
 		);
 
@@ -314,6 +333,43 @@ class Chart extends Base {
 			]
 		);
 
+		$this->add_control(
+			'animation_heading',
+			[
+				'label'     => __( 'Animation', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'chart_animation_duration',
+			[
+				'label' => __( 'Duration', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::NUMBER,
+				'min' => 0,
+				'max' => 10000,
+				'step' => 1,
+				'default' => 1000,
+				'frontend_available' => true,
+			]
+		);
+
+		$this->add_control(
+			'animation_options',
+			[
+				'label'     => __( 'Easing', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'linear',
+				'options'   => [
+					'linear'    => __( 'Linear', 'happy-elementor-addons' ),
+					'easeInCubic'   => __( 'Ease In Cubic', 'happy-elementor-addons' ),
+					'easeInCirc' => __( 'Ease In Circ', 'happy-elementor-addons' ),
+					'easeInBounce' => __( 'Ease In Bounce', 'happy-elementor-addons' ),
+				]
+			]
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -343,41 +399,20 @@ class Chart extends Base {
 		$this->end_controls_section();
 	}
 
-	protected function chart_data() {
-		$settings = $this->get_settings_for_display();
-
-		$datasets = [];
-		$items = $settings['chart_data'];
-
-		if ( !empty( $items ) ) {
-			foreach ( $items as $item ) {
-				$item['label']                = !empty( $item['label'] ) ? $item['label'] : '';
-				$item['data']                 = !empty( $item['data'] ) ? array_map('intval', explode(',', $item['data'])) : '';
-				$item['backgroundColor']      = !empty( $item['bg_color'] ) ? $item['bg_color'] : '#cecece';
-				$item['hoverBackgroundColor'] = !empty( $item['bg_hover_color'] ) ? $item['bg_hover_color'] : '#7a7a7a';
-				$item['borderColor']          = !empty( $item['border_color'] ) ? $item['border_color'] : '#7a7a7a';
-				$item['hoverBorderColor']     = !empty( $item['border_hover_color'] ) ? $item['border_hover_color'] : '#7a7a7a';
-				$item['borderWidth']          = ( $settings['chart_border_width']['size'] !== '' ) ? $settings['chart_border_width']['size'] : 1;
-
-				$datasets[] = $item;
-			}
-		}
-
-		return $datasets;
-	}
 
 	protected function render() {
+		include_once HAPPY_ADDONS_DIR_PATH . "widgets/chart/classes/data.php";
+
 		$settings = $this->get_settings_for_display();
-		$data_options = '';
 
 		$data_settings = esc_attr( json_encode(
 			[
 				'type'    => $settings['type'],
 				'data'    => array(
 					'labels'   => explode(',', $settings['labels']),
-					'datasets' => $this->chart_data(),
+					'datasets' => Data::chart_data($settings),
 				),
-				'options' => $data_options
+				'options' => Data::chart_options($settings)
 			]
 		) );
 		$this->add_render_attribute(
@@ -388,7 +423,13 @@ class Chart extends Base {
 			]
 		);
 
-		$this->add_render_attribute( 'canvas', [ 'id' => 'ha-chart-bar', 'role'  => 'img', ] );
+		$this->add_render_attribute(
+			'canvas',
+			[
+				'id' => 'ha-chart-bar',
+				'role'  => 'img',
+			]
+		);
 		?>
 
 		<div <?php echo $this->get_render_attribute_string( 'container' ); ?>>

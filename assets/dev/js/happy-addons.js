@@ -459,22 +459,7 @@
 					settings      = $container.data( 'settings' );
 
 				var chart = new Chart( $chart_canvas, settings )
-
-				// elementorFrontend.waypoint( $chart_canvas, function() {
-				// 	var $this   = $( this ),
-				// 		ctx     = $this[0].getContext( '2d' ),
-				// 		myChart = new Chart( ctx, settings );
-				// }, {
-				// 	offset: 'bottom-in-view'
-				// } );
 			} );
-			// var $chart        = $scope.find( '.ha-chart' ),
-			// 	$chart_canvas = $chart.find( '#ha-chart-bar' ),
-			// 	settings      = $chart.data( 'settings' );
-			//
-			// if ( ! $chart.length ) {
-			// 	return;
-			// }
 		};
 
         var handlersFnMap = {
