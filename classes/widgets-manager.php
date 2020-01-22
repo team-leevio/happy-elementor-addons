@@ -468,7 +468,6 @@ class Widgets_Manager {
                     'js' => ['jquery-keyframes'],
                 ],
             ],
-<<<<<<< HEAD
 			'fun-factor' => [
 				'title' => __( 'Fun Factor', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-cross-game',
@@ -490,18 +489,6 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
-=======
-            'fun-factor' => [
-                'title' => __( 'Fun Factor', 'happy-elementor-addons' ),
-                'icon' => 'hm hm-slider',
-                'css' => ['fun-factor'],
-                'js' => [],
-                'vendor' => [
-                    'css' => [],
-                    'js' => ['elementor-waypoints', 'jquery-numerator'],
-                ],
-            ],
->>>>>>> c4450a9083fde8fb1a6de3cb09970f23051f4701
         ];
     }
 
