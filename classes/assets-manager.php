@@ -298,5 +298,14 @@ class Assets_Manager {
                 HAPPY_ADDONS_VERSION
             );
         }
+
+		if ( ha_is_gravityforms_activated() ) {
+			wp_enqueue_style(
+				'happy-elementor-gravity-preview',
+				plugins_url( '/gravityforms/css/formsmain.min.css', 'gravityforms' ),
+				null,
+				HAPPY_ADDONS_VERSION
+			);
+		}
     }
 }

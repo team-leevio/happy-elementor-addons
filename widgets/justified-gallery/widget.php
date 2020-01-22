@@ -31,6 +31,10 @@ class Justified_Gallery extends Base {
         return __( 'Justified Grid', 'happy-elementor-addons' );
     }
 
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/justified-grid/';
+	}
+
     /**
      * Get widget icon.
      *

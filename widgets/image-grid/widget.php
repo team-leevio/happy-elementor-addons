@@ -31,6 +31,10 @@ class Image_Grid extends Base {
         return __( 'Image Grid', 'happy-elementor-addons' );
     }
 
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/image-grid/';
+	}
+
     /**
      * Get widget icon.
      *

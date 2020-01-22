@@ -87,8 +87,14 @@
 
         settings[fieldMap[settings.move_handle || 'on_swipe']] = true;
         delete settings.move_handle;
+
         $item.imagesLoaded().done(function() {
             $item.twentytwenty(settings);
+
+            var t = setTimeout(function() {
+                $window.trigger('resize.twentytwenty');
+                clearTimeout(t);
+            }, 400);
         });
     };
 
@@ -437,15 +443,14 @@
 		    }
 	    });
 
-	    // fun-factor
-		// var FunFactor = EM.frontend.handlers.Base.extend({
-			var FunFactor = function ($scope) {
-				EF.waypoint($scope, function () {
-					var $fun_factor = $scope.find('.ha-fun-box-number');
-					$fun_factor.numerator($fun_factor.data('animation'));
-				});
-			};
-		// });
+        // fun-factor
+        var FunFactor = function ($scope) {
+            EF.waypoint($scope, function () {
+                var $fun_factor = $scope.find('.ha-fun-factor-content-number');
+                $fun_factor.numerator($fun_factor.data('animation'));
+            });
+        };
+
         var handlersFnMap = {
             'ha-image-compare.default': HandleImageCompare,
             'ha-justified-gallery.default': HandleJustifiedGallery,

@@ -6,6 +6,10 @@
  */
 namespace Happy_Addons\Elementor;
 
+use Elementor\Controls_Manager;
+use Elementor\Elements_Manager;
+use Elementor\Core\Common\Modules\Finder\Categories_Manager;
+
 defined( 'ABSPATH' ) || die();
 
 class Base {
@@ -46,12 +50,12 @@ class Base {
         Assets_Manager::init();
         Cache_Manager::init();
         Icons_Manager::init();
+        Extensions_Manager::init();
 
         $this->init_appsero_tracking();
 
         if ( is_user_logged_in() ) {
             Admin_Bar::init();
-            Extensions_Manager::init();
         }
 
         if ( is_admin() ) {
@@ -98,9 +102,9 @@ class Base {
 
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
 
         if ( is_admin() ) {
-            include_once( HAPPY_ADDONS_DIR_PATH . 'classes/class.communicator.php' );
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/attention-seeker.php' );
@@ -109,7 +113,6 @@ class Base {
         if ( is_user_logged_in() ) {
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php' );
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php' );
-            include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
         }
     }
 
@@ -118,7 +121,7 @@ class Base {
      *
      * @param $elements_manager
      */
-    public function add_category( $elements_manager ) {
+    public function add_category( Elements_Manager $elements_manager ) {
         $elements_manager->add_category(
             'happy_addons_category',
             [
@@ -129,19 +132,15 @@ class Base {
     }
 
     /**
-     * Register custom controls
+     * Register controls
      *
-     * Include custom controls file and register them
-     *
-     * @since 1.0.0
-     *
-     * @access public
+     * @param Controls_Manager $controls_Manager
      */
-    public function register_controls() {
+    public function register_controls( Controls_Manager $controls_Manager ) {
         include_once( HAPPY_ADDONS_DIR_PATH . 'controls/foreground.php' );
         $foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
 
-        ha_elementor()->controls_manager->add_group_control( $foreground::get_type(), new $foreground() );
+        $controls_Manager->add_group_control( $foreground::get_type(), new $foreground() );
     }
 
     /**
@@ -149,7 +148,7 @@ class Base {
      *
      * @param $categories_manager
      */
-    public function register_finder( $categories_manager ) {
+    public function register_finder( Categories_Manager $categories_manager ) {
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/finder.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/finder-edit.php' );
         // Add the category

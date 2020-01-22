@@ -98,23 +98,6 @@ class Attention_Seeker {
     }
 
     private static function get_attentions() {
-        return [
-            [
-                '_id' => '#000Friday',
-                'start_date' => strtotime( '20th November 2019, 12AM' ),
-                'end_date' => strtotime( '4th December 2019, 11:59:59PM' ),
-                'render_cb' => [ __CLASS__, 'render_000Friday_offer' ],
-            ]
-        ];
-    }
-
-    public static function render_000Friday_offer( $id ) {
-        ?>
-        <div class="notice updated elementor-message is-dismissible ha-seeker" data-id="<?php echo $id; ?>">
-            <a href="https://happyaddons.com/pricing/" target="_blank" rel="noopener">
-                <img style="max-width:100%; height: auto; display: block;" src="<?php echo HAPPY_ADDONS_ASSETS ?>/imgs/bf-img.png" alt="Black Friday & Cyber Monday Offer - BFCM2019">
-            </a>
-        </div>
-        <?php
+        return [];
     }
 }

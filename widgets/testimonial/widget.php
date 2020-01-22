@@ -31,6 +31,10 @@ class Testimonial extends Base {
         return __( 'Testimonial', 'happy-elementor-addons' );
     }
 
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/testimonial/';
+	}
+
     /**
      * Get widget icon.
      *

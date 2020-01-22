@@ -155,6 +155,11 @@ class Widgets_Manager {
                 'icon' => 'hm hm-hand-watch',
                 'is_pro' => true,
             ],
+			'promo-box' => [
+				'title' => __( 'Promo Box', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-promo',
+				'is_pro' => true,
+			],
         ];
     }
 
@@ -443,7 +448,7 @@ class Widgets_Manager {
                     'js' => [],
                 ],
             ],
-			'gravityforms' => [
+            'gravityforms' => [
                 'title' => __( 'Gravity Forms', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-form',
                 'css' => [],
@@ -453,7 +458,7 @@ class Widgets_Manager {
                     'js' => [],
                 ],
             ],
-			'news-ticker' => [
+            'news-ticker' => [
                 'title' => __( 'News Ticker', 'happy-elementor-addons' ),
                 'icon' => 'hm hm-slider',
                 'css' => ['news-ticker'],
@@ -463,6 +468,7 @@ class Widgets_Manager {
                     'js' => ['jquery-keyframes'],
                 ],
             ],
+<<<<<<< HEAD
 			'fun-factor' => [
 				'title' => __( 'Fun Factor', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-cross-game',
@@ -484,6 +490,18 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+=======
+            'fun-factor' => [
+                'title' => __( 'Fun Factor', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-slider',
+                'css' => ['fun-factor'],
+                'js' => [],
+                'vendor' => [
+                    'css' => [],
+                    'js' => ['elementor-waypoints', 'jquery-numerator'],
+                ],
+            ],
+>>>>>>> c4450a9083fde8fb1a6de3cb09970f23051f4701
         ];
     }
 
@@ -514,8 +532,11 @@ class Widgets_Manager {
 
     protected static function register_widget( $widget_key ) {
         $widget_file = HAPPY_ADDONS_DIR_PATH . 'widgets/' . $widget_key . '/widget.php';
+
         if ( is_readable( $widget_file ) ) {
+
             include_once( $widget_file );
+
             $widget_class = '\Happy_Addons\Elementor\Widget\\' . str_replace( '-', '_', $widget_key );
             if ( class_exists( $widget_class ) ) {
                 ha_elementor()->widgets_manager->register_widget_type( new $widget_class );

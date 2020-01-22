@@ -32,6 +32,10 @@ class Card extends Base {
         return __( 'Card', 'happy-elementor-addons' );
     }
 
+    public function get_custom_help_url() {
+        return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/card/';
+    }
+
     /**
      * Get widget icon.
      *

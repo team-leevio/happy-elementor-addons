@@ -28,6 +28,10 @@ class CF7 extends Base {
         return __( 'Contact Form 7', 'happy-elementor-addons' );
     }
 
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/contact-7-form/';
+	}
+
     /**
      * Get widget icon.
      *

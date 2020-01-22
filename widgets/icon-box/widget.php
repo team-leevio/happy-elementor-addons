@@ -30,6 +30,10 @@ class Icon_Box extends Base {
         return __( 'Icon Box', 'happy-elementor-addons' );
     }
 
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/icon-box/';
+	}
+
     /**
      * Get widget icon.
      *

@@ -18,7 +18,7 @@ class Updater {
     /**
      * Initialize the class
      *
-     * @param Appsero\Client
+     * @param Happy_Addons\Appsero\Client
      */
     public function __construct( Client $client ) {
 

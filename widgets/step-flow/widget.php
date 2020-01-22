@@ -28,6 +28,10 @@ class Step_Flow extends Base {
         return __( 'Step Flow', 'happy-elementor-addons' );
     }
 
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/step-flow/';
+	}
+
     /**
      * Get widget icon.
      *
@@ -97,7 +101,7 @@ class Step_Flow extends Base {
         $this->add_control(
             'title',
             [
-                'label' => __( 'Title & Description', 'happy-elementor-addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
                 'placeholder' => __( 'Title', 'happy-elementor-addons' ),
@@ -113,7 +117,6 @@ class Step_Flow extends Base {
             'description',
             [
                 'label' => __( 'Description', 'happy-elementor-addons' ),
-                'show_label' => false,
                 'description' => ha_get_allowed_html_desc( 'intermediate' ),
                 'type' => Controls_Manager::TEXTAREA,
                 'placeholder' => __( 'Description', 'happy-elementor-addons' ),
@@ -137,11 +140,47 @@ class Step_Flow extends Base {
         );
 
         $this->add_control(
+            'title_tag',
+            [
+                'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'separator' => 'before',
+                'options' => [
+                    'h1'  => [
+                        'title' => __( 'H1', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-editor-h1'
+                    ],
+                    'h2'  => [
+                        'title' => __( 'H2', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-editor-h2'
+                    ],
+                    'h3'  => [
+                        'title' => __( 'H3', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-editor-h3'
+                    ],
+                    'h4'  => [
+                        'title' => __( 'H4', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-editor-h4'
+                    ],
+                    'h5'  => [
+                        'title' => __( 'H5', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-editor-h5'
+                    ],
+                    'h6'  => [
+                        'title' => __( 'H6', 'happy-elementor-addons' ),
+                        'icon' => 'eicon-editor-h6'
+                    ]
+                ],
+                'default' => 'h2',
+                'toggle' => false,
+            ]
+        );
+
+        $this->add_control(
             'content_alignment',
             [
                 'label' => __( 'Alignment', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::CHOOSE,
-                'separator' => 'before',
                 'options' => [
                     'left' => [
                         'title' => __( 'Left', 'happy-elementor-addons' ),
@@ -643,6 +682,16 @@ class Step_Flow extends Base {
         } else {
             $this->add_inline_editing_attributes( 'title', 'basic' );
         }
+
+        if ( ! empty( $settings['link']['url'] ) ) {
+            $title = sprintf(
+                '<a %1$s>%2$s</a>',
+                $this->get_render_attribute_string( 'link' ),
+                ha_kses_basic( $settings['title'] )
+            );
+        } else {
+            $title = ha_kses_basic( $settings['title'] );
+        }
         ?>
 
         <div class="ha-steps-icon">
@@ -659,13 +708,14 @@ class Step_Flow extends Base {
             <?php endif; ?>
         </div>
 
-        <h2 <?php $this->print_render_attribute_string( 'title' ); ?>>
-            <?php if ( ! empty( $settings['link']['url'] ) ) : ?>
-                <a <?php $this->print_render_attribute_string( 'link' ); ?>><?php echo ha_kses_basic( $settings['title'] ); ?></a>
-            <?php else : ?>
-                <?php echo ha_kses_basic( $settings['title'] ); ?>
-            <?php endif; ?>
-        </h2>
+        <?php
+        printf(
+            '<%1$s %2$s>%3$s</%1$s>',
+            tag_escape( $settings['title_tag'] ),
+            $this->get_render_attribute_string( 'title' ),
+            $title
+        );
+        ?>
 
         <?php if ( $settings['description'] ) : ?>
             <p <?php $this->print_render_attribute_string( 'description' ); ?>><?php echo ha_kses_intermediate( $settings['description'] ); ?></p>

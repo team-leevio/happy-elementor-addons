@@ -28,6 +28,10 @@ class GravityForms extends Base {
 		return __( 'Gravity Forms', 'happy-elementor-addons' );
 	}
 
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/gravity-forms/';
+	}
+
 	/**
 	 * Get widget icon.
 	 *
@@ -153,8 +157,8 @@ class GravityForms extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .gfield .ginput_container:not(.ginput_container_fileupload) > input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .gfield .ginput_container.ginput_complex input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .gform_body .gfield .ginput_container:not(.ginput_container_fileupload) > input:not(.ginput_quantity)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .gform_body .gfield .ginput_container.ginput_complex input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} .gform_body .gfield textarea' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
@@ -336,11 +340,12 @@ class GravityForms extends Base {
 		$this->add_responsive_control(
 			'label_padding',
 			[
-				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'label' => __( 'Label Padding', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', 'em', '%' ],
+				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .gform_body .gfield .gfield_label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} table.gfield_list thead th' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -353,7 +358,7 @@ class GravityForms extends Base {
 				'size_units' => [ 'px', '%' ],
 				'separator' => 'after',
 				'selectors' => [
-					'{{WRAPPER}} .gform_body .gfield .ginput_complex label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .gform_body .gfield .gfield_description' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -363,7 +368,7 @@ class GravityForms extends Base {
 			[
 				'name' => 'label_typography',
 				'label' => __( 'Label Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .gform_body .gfield .gfield_label',
+				'selector' => '{{WRAPPER}} .gform_body .gfield .gfield_label, {{WRAPPER}} table.gfield_list thead th',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
@@ -373,7 +378,7 @@ class GravityForms extends Base {
 			[
 				'name' => 'sub_label_typography',
 				'label' => __( 'Sub Label Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .gform_body .gfield .ginput_complex label',
+				'selector' => '{{WRAPPER}} .gform_body .gfield .gfield_description',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
@@ -386,7 +391,18 @@ class GravityForms extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .gform_body .gfield .gfield_label' => 'color: {{VALUE}}',
 					'{{WRAPPER}} .gform_body .gfield .ginput_complex label' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .gfield .gfield_list thead th' => 'color: {{VALUE}}',
+					'{{WRAPPER}} table.gfield_list thead th' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'sub_label_color',
+			[
+				'label' => __( 'Sub Label Text Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .gform_body .gfield .gfield_description' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -724,6 +740,19 @@ class GravityForms extends Base {
 			]
 		);
 
+		$this->add_control(
+			'page_break_button_paddding',
+			[
+				'label' => __( 'Button Padding', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .gform_next_button.button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .gform_previous_button.button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			[
@@ -751,6 +780,16 @@ class GravityForms extends Base {
 					'{{WRAPPER}} .gform_next_button.button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} .gform_previous_button.button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'page_break_button_typography',
+				'label' => __( 'Button Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .gform_next_button.button, {{WRAPPER}} .gform_previous_button.button',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_4
 			]
 		);
 
