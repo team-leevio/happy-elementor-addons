@@ -7,6 +7,7 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
+use Elementor\Group_Control_Typography;
 use Elementor\Repeater;
 use Elementor\Scheme_Typography;
 use Happy_Addons\Elementor\Widget\Chart\Data;
@@ -57,17 +58,17 @@ class Chart extends Base {
 		);
 
 		$this->add_control(
-			'type',
+			'chart_type',
 			[
-				'label'   => __( 'Bar Type', 'happy-elementor-addons' ),
+				'label'   => __( 'Chart Type', 'happy-elementor-addons' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'bar',
 				'options' => [
-					'bar'           => __( 'Vertical', 'happy-elementor-addons' ),
-					'horizontalBar' => __( 'Horizontal', 'happy-elementor-addons' ),
+					'bar'           => __( 'Vertical Bar', 'happy-elementor-addons' ),
+					'horizontalBar' => __( 'Horizontal Bar', 'happy-elementor-addons' ),
 				],
 			]
-		);
+			);
 
 		$this->add_control(
 			'labels',
@@ -76,7 +77,7 @@ class Chart extends Base {
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
 				'default'     => __( 'January, February, March', 'happy-elementor-addons' ),
-				'description' => __( 'Write multiple label with comma ( , ) separator. Example: March, April, May etc', 'happy-elementor-addons' ),
+				'description' => __( 'Write multiple label with comma ( , ) separator. Example: January, February, March etc', 'happy-elementor-addons' ),
 			]
 		);
 
@@ -105,7 +106,7 @@ class Chart extends Base {
 			[
 				'label'       => __( 'Data', 'happy-elementor-addons' ),
 				'type'        => Controls_Manager::TEXT,
-				'description' => __( 'Enter data values width comma ( , ) separator. Example: 4, 2, 6', 'happy-elementor-addons' ),
+				'description' => __( 'Write data values with comma ( , ) separator. Example: 4, 2, 6', 'happy-elementor-addons' ),
 			]
 		);
 
@@ -160,16 +161,16 @@ class Chart extends Base {
 				'title_field' => '{{{ label }}}',
 				'default'     => [
 					[
-						'label'              => __( 'WordPress', 'happy-elementor-addons' ),
-						'data'               => __( '2, 4, 8', 'happy-elementor-addons' ),
+						'label'              => __( 'Happy Addons', 'happy-elementor-addons' ),
+						'data'               => __( '2, 4, 5', 'happy-elementor-addons' ),
 						'background_color'       => 'rgba(86, 45, 212, 0.7)',
 						'background_hover_color' => '#562dd4',
 						'border_color'       => '#602edc',
 						'border_hover_color' => '#602edc',
 					],
 					[
-						'label'              => __( 'Happy Addons', 'happy-elementor-addons' ),
-						'data'               => __( '1, 6, 6', 'happy-elementor-addons' ),
+						'label'              => __( 'Happy Addons Pro', 'happy-elementor-addons' ),
+						'data'               => __( '1, 6, 8', 'happy-elementor-addons' ),
 						'background_color'       => 'rgba(226, 73, 138, 0.7)',
 						'background_hover_color' => '#e2498a',
 						'border_color'       => '#d23b7b',
@@ -201,7 +202,7 @@ class Chart extends Base {
 				],
 				'default' => [
 					'unit' => 'px',
-					'size' => 400,
+					'size' => 500,
 				],
 				'selectors'   => [
 					'{{WRAPPER}} .ha-chart-container' => 'height: {{SIZE}}{{UNIT}};',
@@ -220,9 +221,19 @@ class Chart extends Base {
 		);
 
 		$this->add_control(
-			'labels_display',
+			'xaxes_labels_display',
 			[
-				'label'        => __( 'Show Labels', 'happy-elementor-addons' ),
+				'label'        => __( 'Show X Axes Labels', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'yes',
+				'return_value' => 'yes',
+			]
+		);
+
+		$this->add_control(
+			'yaxes_labels_display',
+			[
+				'label'        => __( 'Show Y Axes Labels', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => 'yes',
 				'return_value' => 'yes',
@@ -268,7 +279,7 @@ class Chart extends Base {
 				'label'       => __( 'Scale Axis Range', 'happy-elementor-addons' ),
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => 10,
-				'description' => __( 'User defined maximum number for the scale, overrides maximum value from data.', 'happy-elementor-addons' ),
+				'description' => __( 'Maximum number for the scale.', 'happy-elementor-addons' ),
 			]
 		);
 
@@ -279,7 +290,7 @@ class Chart extends Base {
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => 1,
 				'step'        => 1,
-				'description' => __( 'User defined fixed step size for the scale.', 'happy-elementor-addons' ),
+				'description' => __( 'Step size for the scale.', 'happy-elementor-addons' ),
 			]
 		);
 
@@ -375,17 +386,26 @@ class Chart extends Base {
 
 	protected function register_style_controls() {
 		$this->start_controls_section(
-			'_section_style_chart',
+			'_section_style_common',
 			[
-				'label' => __( 'Chart', 'happy-elementor-addons' ),
+				'label' => __( 'Common', 'happy-elementor-addons' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
 
-		$this->add_control(
-			'chart_border_width',
+		$this->add_responsive_control(
+			'layout_padding',
 			[
-				'label' => __( 'Border Width', 'happy-elementor-addons' ),
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+			]
+		);
+
+		$this->add_control(
+			'bar_border_width',
+			[
+				'label' => __( 'Bar Border Width', 'happy-elementor-addons' ),
 				'type'  => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -396,25 +416,412 @@ class Chart extends Base {
 			]
 		);
 
+		$this->add_control(
+			'grid_color',
+			[
+				'label' => __( 'Grid Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#eee',
+				'condition' => [
+					'grid_display' => 'yes',
+				]
+			]
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_style_legend',
+			[
+				'label' => __( 'Legend', 'happy-elementor-addons' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'lagend_note',
+			[
+				'label' => false,
+				'type' => Controls_Manager::RAW_HTML,
+				'raw' => __( 'Lagend is Switched off from Content > Settings.', 'happy-elementor-addons' ),
+				'condition' => [
+					'legend_display!' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'legend_box_width',
+			[
+				'label' => __( 'Box Width', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 5,
+						'max' => 70,
+					],
+				],
+				'condition' => [
+					'legend_display' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+            'legend_typography_toggle',
+            [
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'label_off' => __( 'None', 'happy-elementor-addons' ),
+                'label_on' => __( 'Custom', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'condition' => [
+					'legend_display' => 'yes'
+				]
+            ]
+		);
+
+		$this->start_popover();
+
+		$this->add_control(
+			'legend_font_size',
+			[
+				'label' => __( 'Font Size', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 50,
+					],
+				],
+				'condition' => [
+					'legend_display' => 'yes',
+					'legend_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'legend_font_family',
+			[
+				'label' => __( 'Font Family', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::FONT,
+				'default' => '',
+				'condition' => [
+					'legend_display' => 'yes',
+					'legend_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'legend_font_weight',
+			[
+				'label'   => esc_html__( 'Font Weight', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => [
+					'' => __( 'Default', 'happy-elementor-addons' ),
+					'normal' => __( 'Normal', 'happy-elementor-addons' ),
+					'bold'   => __( 'Bold', 'happy-elementor-addons' ),
+					'300'    => __( '300', 'happy-elementor-addons' ),
+					'400'    => __( '400', 'happy-elementor-addons' ),
+					'600'    => __( '600', 'happy-elementor-addons' ),
+					'700'    => __( '700', 'happy-elementor-addons' )
+				],
+				'condition' => [
+					'legend_display' => 'yes',
+					'legend_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'legend_font_style',
+			array(
+				'label'   => esc_html__( 'Font Style', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => '',
+				'options' => array(
+					''        => __( 'Default', 'happy-elementor-addons' ),
+					'normal'  => __( 'Normal', 'happy-elementor-addons' ),
+					'italic'  => __( 'Italic', 'happy-elementor-addons' ),
+					'oblique' => __( 'Oblique', 'happy-elementor-addons' ),
+				),
+				'condition' => [
+					'legend_display' => 'yes',
+					'legend_typography_toggle' => 'yes'
+				]
+			)
+		);
+
+		$this->add_control(
+			'legend_font_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'legend_display' => 'yes',
+					'legend_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->end_popover();
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_style_label',
+			[
+				'label' => __( 'Labels', 'happy-elementor-addons' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'xaxes_label_note',
+			[
+				'label' => false,
+				'type' => Controls_Manager::RAW_HTML,
+				'raw' => __( 'X Axes Label is Switched off from Content > Settings.', 'happy-elementor-addons' ),
+				'condition' => [
+					'xaxes_labels_display!' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+            'labels_xaxes_typography_toggle',
+            [
+                'label' => __( 'X Axes Typography', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'label_off' => __( 'None', 'happy-elementor-addons' ),
+                'label_on' => __( 'Custom', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'condition' => [
+					'xaxes_labels_display' => 'yes'
+				]
+            ]
+		);
+
+		$this->start_popover();
+
+		$this->add_control(
+			'labels_xaxes_font_size',
+			[
+				'label' => __( 'Font Size', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 50,
+					],
+				],
+				'condition' => [
+					'xaxes_labels_display' => 'yes',
+					'labels_xaxes_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'labels_xaxes_font_family',
+			[
+				'label' => __( 'Font Family', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::FONT,
+				'default' => '',
+				'condition' => [
+					'xaxes_labels_display' => 'yes',
+					'labels_xaxes_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'labels_xaxes_font_weight',
+			[
+				'label'   => esc_html__( 'Font Weight', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => [
+					'' => __( 'Default', 'happy-elementor-addons' ),
+					'normal' => __( 'Normal', 'happy-elementor-addons' ),
+					'bold'   => __( 'Bold', 'happy-elementor-addons' ),
+					'300'    => __( '300', 'happy-elementor-addons' ),
+					'400'    => __( '400', 'happy-elementor-addons' ),
+					'600'    => __( '600', 'happy-elementor-addons' ),
+					'700'    => __( '700', 'happy-elementor-addons' )
+				],
+				'condition' => [
+					'xaxes_labels_display' => 'yes',
+					'labels_xaxes_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'labels_xaxes_font_style',
+			array(
+				'label'   => esc_html__( 'Font Style', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => '',
+				'options' => array(
+					''        => __( 'Default', 'happy-elementor-addons' ),
+					'normal'  => __( 'Normal', 'happy-elementor-addons' ),
+					'italic'  => __( 'Italic', 'happy-elementor-addons' ),
+					'oblique' => __( 'Oblique', 'happy-elementor-addons' ),
+				),
+				'condition' => [
+					'xaxes_labels_display' => 'yes',
+					'labels_xaxes_typography_toggle' => 'yes'
+				]
+			)
+		);
+
+		$this->add_control(
+			'labels_xaxes_font_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'xaxes_labels_display' => 'yes',
+					'labels_xaxes_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->end_popover();
+
+		$this->add_control(
+			'yaxes_label_note',
+			[
+				'label' => false,
+				'type' => Controls_Manager::RAW_HTML,
+				'raw' => __( 'Y Axes Label is Switched off from Content > Settings.', 'happy-elementor-addons' ),
+				'condition' => [
+					'yaxes_labels_display!' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+            'labels_yaxes_typography_toggle',
+            [
+                'label' => __( 'Y Axes Typography', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'label_off' => __( 'None', 'happy-elementor-addons' ),
+                'label_on' => __( 'Custom', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'condition' => [
+					'yaxes_labels_display' => 'yes'
+				]
+            ]
+		);
+
+		$this->start_popover();
+
+		$this->add_control(
+			'labels_yaxes_font_size',
+			[
+				'label' => __( 'Font Size', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 50,
+					],
+				],
+				'condition' => [
+					'xaxes_labels_display' => 'yes',
+					'labels_yaxes_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'labels_yaxes_font_family',
+			[
+				'label' => __( 'Font Family', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::FONT,
+				'default' => '',
+				'condition' => [
+					'xaxes_labels_display' => 'yes',
+					'labels_yaxes_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'labels_yaxes_font_weight',
+			[
+				'label'   => esc_html__( 'Font Weight', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => [
+					'' => __( 'Default', 'happy-elementor-addons' ),
+					'normal' => __( 'Normal', 'happy-elementor-addons' ),
+					'bold'   => __( 'Bold', 'happy-elementor-addons' ),
+					'300'    => __( '300', 'happy-elementor-addons' ),
+					'400'    => __( '400', 'happy-elementor-addons' ),
+					'600'    => __( '600', 'happy-elementor-addons' ),
+					'700'    => __( '700', 'happy-elementor-addons' )
+				],
+				'condition' => [
+					'xaxes_labels_display' => 'yes',
+					'labels_yaxes_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'labels_yaxes_font_style',
+			array(
+				'label'   => esc_html__( 'Font Style', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => '',
+				'options' => array(
+					''        => __( 'Default', 'happy-elementor-addons' ),
+					'normal'  => __( 'Normal', 'happy-elementor-addons' ),
+					'italic'  => __( 'Italic', 'happy-elementor-addons' ),
+					'oblique' => __( 'Oblique', 'happy-elementor-addons' ),
+				),
+				'condition' => [
+					'xaxes_labels_display' => 'yes',
+					'labels_yaxes_typography_toggle' => 'yes'
+				]
+			)
+		);
+
+		$this->add_control(
+			'labels_yaxes_font_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'xaxes_labels_display' => 'yes',
+					'labels_yaxes_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->end_popover();
+
 		$this->end_controls_section();
 	}
 
 
 	protected function render() {
+		$settings = $this->get_settings_for_display();
 		include_once HAPPY_ADDONS_DIR_PATH . "widgets/chart/classes/data.php";
 
-		$settings = $this->get_settings_for_display();
-
-		$data_settings = esc_attr( json_encode(
+		$data_settings = json_encode(
 			[
-				'type'    => $settings['type'],
-				'data'    => array(
-					'labels'   => explode(',', $settings['labels']),
+				'type'    => $settings['chart_type'],
+				'data'    => [
+					'labels'   => explode(',', esc_html( $settings['labels'] ) ),
 					'datasets' => Data::chart_data($settings),
-				),
+				],
 				'options' => Data::chart_options($settings)
 			]
-		) );
+		);
 		$this->add_render_attribute(
 			'container',
 			[
