@@ -805,6 +805,229 @@ class Chart extends Base {
 		$this->end_popover();
 
 		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_style_tooltip',
+			[
+				'label' => __( 'Tooltip', 'happy-elementor-addons' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'tooltip_background_color',
+			[
+				'label' => esc_html__( 'Background Color', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::COLOR,
+				'condition' => [
+					'tooltip_display' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_title_typography_toggle',
+			[
+				'label' => __( 'Title Typography', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::POPOVER_TOGGLE,
+				'label_off' => __( 'None', 'happy-elementor-addons' ),
+				'label_on' => __( 'Custom', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'condition' => [
+					'tooltip_display' => 'yes'
+				]
+			]
+		);
+
+		$this->start_popover();
+
+		$this->add_control(
+			'tooltip_title_font_size',
+			[
+				'label' => __( 'Font Size', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 50,
+					],
+				],
+				'condition' => [
+					'tooltip_display' => 'yes',
+					'tooltip_title_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_title_font_family',
+			[
+				'label' => __( 'Font Family', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::FONT,
+				'default' => '',
+				'condition' => [
+					'tooltip_display' => 'yes',
+					'tooltip_title_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_title_font_weight',
+			[
+				'label'   => esc_html__( 'Font Weight', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => [
+					'' => __( 'Default', 'happy-elementor-addons' ),
+					'normal' => __( 'Normal', 'happy-elementor-addons' ),
+					'bold'   => __( 'Bold', 'happy-elementor-addons' ),
+					'300'    => __( '300', 'happy-elementor-addons' ),
+					'400'    => __( '400', 'happy-elementor-addons' ),
+					'600'    => __( '600', 'happy-elementor-addons' ),
+					'700'    => __( '700', 'happy-elementor-addons' )
+				],
+				'condition' => [
+					'tooltip_display' => 'yes',
+					'tooltip_title_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_title_font_style',
+			[
+				'label'   => esc_html__( 'Font Style', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => '',
+				'options' => [
+					''        => __( 'Default', 'happy-elementor-addons' ),
+					'normal'  => __( 'Normal', 'happy-elementor-addons' ),
+					'italic'  => __( 'Italic', 'happy-elementor-addons' ),
+					'oblique' => __( 'Oblique', 'happy-elementor-addons' ),
+				],
+				'condition' => [
+					'tooltip_display' => 'yes',
+					'tooltip_title_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_title_font_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'tooltip_display' => 'yes',
+					'tooltip_title_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->end_popover();
+
+		$this->add_control(
+			'tooltip_body_typography_toggle',
+			[
+				'label' => __( 'Body Typography', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::POPOVER_TOGGLE,
+				'label_off' => __( 'None', 'happy-elementor-addons' ),
+				'label_on' => __( 'Custom', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'condition' => [
+					'tooltip_display' => 'yes'
+				]
+			]
+		);
+
+		$this->start_popover();
+
+		$this->add_control(
+			'tooltip_body_font_size',
+			[
+				'label' => __( 'Font Size', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 50,
+					],
+				],
+				'condition' => [
+					'tooltip_display' => 'yes',
+					'tooltip_body_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_body_font_family',
+			[
+				'label' => __( 'Font Family', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::FONT,
+				'default' => '',
+				'condition' => [
+					'tooltip_display' => 'yes',
+					'tooltip_body_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_body_font_weight',
+			[
+				'label'   => esc_html__( 'Font Weight', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => [
+					'' => __( 'Default', 'happy-elementor-addons' ),
+					'normal' => __( 'Normal', 'happy-elementor-addons' ),
+					'bold'   => __( 'Bold', 'happy-elementor-addons' ),
+					'300'    => __( '300', 'happy-elementor-addons' ),
+					'400'    => __( '400', 'happy-elementor-addons' ),
+					'600'    => __( '600', 'happy-elementor-addons' ),
+					'700'    => __( '700', 'happy-elementor-addons' )
+				],
+				'condition' => [
+					'tooltip_display' => 'yes',
+					'tooltip_body_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_body_font_style',
+			[
+				'label'   => esc_html__( 'Font Style', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => '',
+				'options' => [
+					''        => __( 'Default', 'happy-elementor-addons' ),
+					'normal'  => __( 'Normal', 'happy-elementor-addons' ),
+					'italic'  => __( 'Italic', 'happy-elementor-addons' ),
+					'oblique' => __( 'Oblique', 'happy-elementor-addons' ),
+				],
+				'condition' => [
+					'tooltip_display' => 'yes',
+					'tooltip_body_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_body_font_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'tooltip_display' => 'yes',
+					'tooltip_body_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->end_popover();
+
+		$this->end_controls_section();
 	}
 
 

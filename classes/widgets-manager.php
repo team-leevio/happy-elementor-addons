@@ -481,7 +481,7 @@ class Widgets_Manager {
 			'chart' => [
 				'title' => __( 'Fun Factor', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-graph-bar',
-				'css' => ['chart'],
+				'css' => [],
 				'js' => [],
 				'vendor' => [
 					'css' => [],
