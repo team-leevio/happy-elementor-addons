@@ -41,7 +41,7 @@ class Chart extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-icon-box';
+		return 'hm hm-graph-bar';
 	}
 
 	public function get_keywords() {
