@@ -313,7 +313,9 @@ function ha_twitter_feed_ajax() {
 		$settings = $_POST['query_settings'];
 		$loaded_item = $_POST['loaded_item'];
 
-		$transient_key = $settings['id'] . '_' . $settings['user_name'] . HA_TWEETS_CASH;
+		$user_name = trim($settings['user_name']);
+
+		$transient_key = $settings['id'] . '_' . $user_name . HA_TWEETS_CASH;
 		$twitter_data = get_transient($transient_key);
 		$credentials = $settings['credentials'];
 
