@@ -7,7 +7,6 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
-use Elementor\Group_Control_Typography;
 use Elementor\Repeater;
 use Elementor\Scheme_Typography;
 use Happy_Addons\Elementor\Widget\Chart\Data;
@@ -28,9 +27,9 @@ class Chart extends Base {
 		return __( 'Chart', 'happy-elementor-addons' );
 	}
 
-	public function get_custom_help_url() {
-		return '';
-	}
+//	public function get_custom_help_url() {
+//		return '';
+//	}
 
 	/**
 	 * Get widget icon.

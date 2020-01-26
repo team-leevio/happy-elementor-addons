@@ -479,7 +479,8 @@ class Widgets_Manager {
                 ],
             ],
 			'chart' => [
-				'title' => __( 'Fun Factor', 'happy-elementor-addons' ),
+				'demo' => 'https://happyaddons.com/go/demo-step-flow',
+				'title' => __( 'Chart', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-graph-bar',
 				'css' => [],
 				'js' => [],
