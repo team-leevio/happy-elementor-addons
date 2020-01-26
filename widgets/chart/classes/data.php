@@ -25,6 +25,8 @@ class Data {
 				$item['borderColor']          = !empty( $item['border_color'] ) ? $item['border_color'] : '#602edc';
 				$item['hoverBorderColor']     = !empty( $item['border_hover_color'] ) ? $item['border_hover_color'] : '#602edc';
 				$item['borderWidth']          = ( $settings['bar_border_width']['size'] !== '' ) ? $settings['bar_border_width']['size'] : 1;
+				$item['barPercentage'] = ( $settings['bar_width']['size'] !== '' ) ? $settings['bar_width']['size'] / 100 : '';
+				$item['categoryPercentage'] =  ( $settings['category_width']['size'] !== '' ) ? $settings['category_width']['size'] / 100 : '';
 
 				$datasets[] = $item;
 			}
@@ -40,7 +42,8 @@ class Data {
 		$yaxes_labels_display   = $settings['yaxes_labels_display'] == 'yes' ? true : false;
 		$tooltips_display = $settings['tooltip_display'] == 'yes' ? true : false;
 		$legend_display   = $settings['legend_display'] == 'yes' ? true : false;
-		$grid_display     = $settings['grid_display'] == 'yes' ? true : false;
+		$xaxes_grid_display = $settings['xaxes_grid_display'] == 'yes' ? true : false;
+		$yaxes_grid_display = $settings['yaxes_grid_display'] == 'yes' ? true : false;
 		$title_display    = $settings['title_display'] == 'yes' ? true : false;
 
 		$legend_style = [
@@ -51,35 +54,58 @@ class Data {
 			'fontColor'  => !empty( $settings['legend_font_color'] ) ? $settings['legend_font_color'] : '#222',
 		];
 
-		if ( $grid_display == 'yes' ) {
-			$gridLines = [
+		$tooltip = [
+			'enabled' 			=> $tooltips_display,
+			'backgroundColor' 	=> !empty( $settings['tooltip_background_color'] ) ? $settings['tooltip_background_color'] : 'rgba(0, 0, 0, .7)',
+			'borderWidth' 		=> !empty( $settings['tooltip_border_width']['size'] ) ? $settings['tooltip_border_width']['size'] : 0,
+			'borderColor' 		=> !empty( $settings['tooltip_border_color'] ) ? $settings['tooltip_border_width'] : '',
+			'titleFontFamily' 	=> !empty( $settings['tooltip_title_font_family'] ) ? $settings['tooltip_title_font_family'] : 'auto',
+			'titleFontSize'   	=> !empty( $settings['tooltip_title_font_size']['size'] ) ? $settings['tooltip_title_font_size']['size'] : 12,
+			'titleFontStyle'	=> (!empty( $settings['tooltip_title_font_style'] ) ? $settings['tooltip_title_font_style'] : '') . ' ' . (!empty( $settings['tooltip_title_font_weight'] ) ? $settings['tooltip_title_font_weight'] : ''),
+			'titleFontColor'  	=> !empty( $settings['tooltip_title_font_color'] ) ? $settings['tooltip_title_font_color'] : '#fff',
+			'bodyFontFamily' 	=> !empty( $settings['tooltip_body_font_family'] ) ? $settings['tooltip_body_font_family'] : 'auto',
+			'bodyFontSize'   	=> !empty( $settings['tooltip_body_font_size']['size'] ) ? $settings['tooltip_body_font_size']['size'] : 11,
+			'bodyFontStyle'  	=> (!empty( $settings['tooltip_body_font_style'] ) ? $settings['tooltip_body_font_style'] : '') . ' ' . (!empty( $settings['tooltip_body_font_weight'] ) ? $settings['tooltip_body_font_weight'] : ''),
+			'bodyFontColor'  	=> !empty( $settings['tooltip_body_font_color'] ) ? $settings['tooltip_body_font_color'] : '#f7f7f7',
+			'cornerRadius'  	=> !empty( $settings['tooltip_border_radius']['size'] ) ? $settings['tooltip_border_radius']['size'] : 6,
+			'xPadding'  		=> !empty( $settings['tooltip_padding']['size'] ) ? $settings['tooltip_padding']['size'] : 6,
+			'yPadding'  		=> !empty( $settings['tooltip_padding']['size'] ) ? $settings['tooltip_padding']['size'] : 6,
+			'caretSize'  		=> !empty( $settings['tooltip_caret_size']['size'] ) ? $settings['tooltip_caret_size']['size'] : 5,
+			'mode' 				=> !empty( $settings['tooltip_mode'] ) ? $settings['tooltip_mode'] : 'nearest',
+			];
+
+		if ( $xaxes_grid_display == 'yes' ) {
+			$xaxes_gridLines = [
 				'drawBorder' => false,
 				'color'      => isset( $settings['grid_color'] ) ? $settings['grid_color'] : '#eeeeee',
 			];
 		} else {
-			$gridLines = [];
+			$xaxes_gridLines = [];
+		}
+
+		if ( $yaxes_grid_display == 'yes' ) {
+			$yaxes_gridLines = [
+				'drawBorder' => false,
+				'color'      => isset( $settings['grid_color'] ) ? $settings['grid_color'] : '#eeeeee',
+			];
+		} else {
+			$yaxes_gridLines = [];
 		}
 
 		$options = [
 			'title' => [
 				'display' => $title_display,
-				'text' => $settings['chart_title']
+				'text' => $settings['chart_title'],
+				'fontFamily' => !empty( $settings['title_font_family'] ) ? $settings['title_font_family'] : 'auto',
+				'fontSize'   => !empty( $settings['title_font_size']['size'] ) ? $settings['title_font_size']['size'] : 18,
+				'fontStyle'  => (!empty( $settings['title_font_style'] ) ? $settings['title_font_style'] : '') . ' ' . (!empty( $settings['title_font_weight'] ) ? $settings['title_font_weight'] : ''),
+				'fontColor'  => !empty( $settings['title_font_color'] ) ? $settings['title_font_color'] : '#222',
 			],
-			'tooltips' => [
-				'enabled' => $tooltips_display,
-				'backgroundColor' => !empty( $settings['tooltip_background_color'] ) ? $settings['tooltip_background_color'] : 'rgba(0, 0, 0, .7)',
-				'titleFontFamily' => !empty( $settings['tooltip_title_font_family'] ) ? $settings['tooltip_title_font_family'] : 'auto',
-				'titleFontSize'   => !empty( $settings['tooltip_title_font_size']['size'] ) ? $settings['tooltip_title_font_size']['size'] : 12,
-				'titleFontStyle'  => (!empty( $settings['tooltip_title_font_style'] ) ? $settings['tooltip_title_font_style'] : '') . ' ' . (!empty( $settings['tooltip_title_font_weight'] ) ? $settings['tooltip_title_font_weight'] : ''),
-				'titleFontColor'  => !empty( $settings['tooltip_title_font_color'] ) ? $settings['tooltip_title_font_color'] : '#fff',
-				'bodyFontFamily' => !empty( $settings['tooltip_body_font_family'] ) ? $settings['tooltip_body_font_family'] : 'auto',
-				'bodyFontSize'   => !empty( $settings['tooltip_body_font_size']['size'] ) ? $settings['tooltip_body_font_size']['size'] : 11,
-				'bodyFontStyle'  => (!empty( $settings['tooltip_body_font_style'] ) ? $settings['tooltip_body_font_style'] : '') . ' ' . (!empty( $settings['tooltip_body_font_weight'] ) ? $settings['tooltip_body_font_weight'] : ''),
-				'bodyFontColor'  => !empty( $settings['tooltip_body_font_color'] ) ? $settings['tooltip_body_font_color'] : '#f7f7f7',
-			],
+			'tooltips' => $tooltip,
 			'legend' => [
 				'display'  => $legend_display,
 				'position' => !empty( $settings['legend_position'] ) ? $settings['legend_position'] : 'top',
+				'align' => !empty( $settings['legend_alignment'] ) ? $settings['legend_alignment'] : 'center',
 				'reverse'  => $settings['legend_reverse'] == 'yes' ? true : false,
 				'labels' => $legend_style,
 			],
@@ -109,7 +135,7 @@ class Data {
 							'fontStyle'  => (!empty( $settings['labels_xaxes_font_style'] ) ? $settings['labels_xaxes_font_style'] : '') . ' ' . (!empty( $settings['labels_xaxes_font_weight'] ) ? $settings['labels_xaxes_font_weight'] : ''),
 							'fontColor'  => !empty( $settings['labels_xaxes_font_color'] ) ? $settings['labels_xaxes_font_color'] : '#222',
 						],
-						'gridLines' => $gridLines
+						'gridLines' => $xaxes_gridLines
 					]
 				],
 				'yAxes' => [
@@ -124,7 +150,7 @@ class Data {
 							'fontStyle'  => (!empty( $settings['labels_yaxes_font_style'] ) ? $settings['labels_yaxes_font_style'] : '') . ' ' . (!empty( $settings['labels_yaxes_font_weight'] ) ? $settings['labels_yaxes_font_weight'] : ''),
 							'fontColor'  => !empty( $settings['labels_yaxes_font_color'] ) ? $settings['labels_yaxes_font_color'] : '#222',
 						],
-						'gridLines' => $gridLines
+						'gridLines' => $yaxes_gridLines
 					]
 				],
 			],

@@ -211,9 +211,19 @@ class Chart extends Base {
 		);
 
 		$this->add_control(
-			'grid_display',
+			'xaxes_grid_display',
 			[
-				'label'        => __( 'Show Grid Lines', 'happy-elementor-addons' ),
+				'label'        => __( 'X Axes Grid Lines', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'yes',
+				'return_value' => 'yes',
+			]
+		);
+
+		$this->add_control(
+			'yaxes_grid_display',
+			[
+				'label'        => __( 'Y Axes Grid Lines', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => 'yes',
 				'return_value' => 'yes',
@@ -332,6 +342,32 @@ class Chart extends Base {
 		);
 
 		$this->add_control(
+			'legend_alignment',
+			[
+				'label' => __( 'Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'label_block' => false,
+				'options' => [
+					'start' => [
+						'title' => __( 'Start', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'end' => [
+						'title' => __( 'End', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'condition' => [
+					'legend_display' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
 			'legend_reverse',
 			[
 				'label'        => __( 'Reverse', 'happy-elementor-addons' ),
@@ -403,6 +439,42 @@ class Chart extends Base {
 		);
 
 		$this->add_control(
+			'bar_width',
+			[
+				'label' => __( 'Bar Width', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 99,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 80,
+				],
+			]
+		);
+
+		$this->add_control(
+			'category_width',
+			[
+				'label' => __( 'Category Width', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 99,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 85,
+				],
+			]
+		);
+
+		$this->add_control(
 			'bar_border_width',
 			[
 				'label' => __( 'Bar Border Width', 'happy-elementor-addons' ),
@@ -427,6 +499,107 @@ class Chart extends Base {
 				]
 			]
 		);
+
+		$this->add_control(
+			'title_typography_toggle',
+			[
+				'label' => __( 'Title Typography', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::POPOVER_TOGGLE,
+				'label_off' => __( 'None', 'happy-elementor-addons' ),
+				'label_on' => __( 'Custom', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'condition' => [
+					'title_display' => 'yes'
+				]
+			]
+		);
+
+		$this->start_popover();
+
+		$this->add_control(
+			'title_font_size',
+			[
+				'label' => __( 'Font Size', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 50,
+					],
+				],
+				'condition' => [
+					'title_display' => 'yes',
+					'title_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'title_font_family',
+			[
+				'label' => __( 'Font Family', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::FONT,
+				'default' => '',
+				'condition' => [
+					'title_display' => 'yes',
+					'title_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'title_font_weight',
+			[
+				'label'   => esc_html__( 'Font Weight', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => [
+					'' => __( 'Default', 'happy-elementor-addons' ),
+					'normal' => __( 'Normal', 'happy-elementor-addons' ),
+					'bold'   => __( 'Bold', 'happy-elementor-addons' ),
+					'300'    => __( '300', 'happy-elementor-addons' ),
+					'400'    => __( '400', 'happy-elementor-addons' ),
+					'600'    => __( '600', 'happy-elementor-addons' ),
+					'700'    => __( '700', 'happy-elementor-addons' )
+				],
+				'condition' => [
+					'title_display' => 'yes',
+					'title_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'title_font_style',
+			[
+				'label'   => esc_html__( 'Font Style', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => '',
+				'options' => [
+					''        => __( 'Default', 'happy-elementor-addons' ),
+					'normal'  => __( 'Normal', 'happy-elementor-addons' ),
+					'italic'  => __( 'Italic', 'happy-elementor-addons' ),
+					'oblique' => __( 'Oblique', 'happy-elementor-addons' ),
+				],
+				'condition' => [
+					'title_display' => 'yes',
+					'title_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'title_font_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'title_display' => 'yes',
+					'title_typography_toggle' => 'yes'
+				]
+			]
+		);
+
+		$this->end_popover();
 
 		$this->end_controls_section();
 
@@ -815,9 +988,89 @@ class Chart extends Base {
 		);
 
 		$this->add_control(
+			'tooltip_padding',
+			[
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::SLIDER,
+				'condition' => [
+					'tooltip_display' => 'yes',
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_border_width',
+			[
+				'label' => __( 'Border Width', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 20,
+					],
+				],
+				'condition' => [
+					'tooltip_display' => 'yes',
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_border_radius',
+			[
+				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::SLIDER,
+				'condition' => [
+					'tooltip_display' => 'yes',
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_caret_size',
+			[
+				'label' => __( 'Caret Size', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::SLIDER,
+				'condition' => [
+					'tooltip_display' => 'yes',
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_mode',
+			[
+				'label'   => esc_html__( 'Mode', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => [
+					'' => __( 'Select Mode', 'happy-elementor-addons' ),
+					'nearest' => __( 'Nearest', 'happy-elementor-addons' ),
+					'index' => __( 'Index', 'happy-elementor-addons' ),
+					'x' => __( 'X', 'happy-elementor-addons' ),
+					'y' => __( 'Y', 'happy-elementor-addons' ),
+				],
+				'default' => '',
+				'condition' => [
+					'tooltip_display' => 'yes',
+				]
+			]
+		);
+
+		$this->add_control(
 			'tooltip_background_color',
 			[
 				'label' => esc_html__( 'Background Color', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::COLOR,
+				'condition' => [
+					'tooltip_display' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'tooltip_border_color',
+			[
+				'label' => esc_html__( 'Border Color', 'happy-elementor-addons' ),
 				'type'  => Controls_Manager::COLOR,
 				'condition' => [
 					'tooltip_display' => 'yes'
