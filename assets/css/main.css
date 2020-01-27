@@ -2806,8 +2806,29 @@
 	text-align: center;
 }
 
+.ha-social-icons-wrapper {
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display:         inline-flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center; 
+	-ms-flex-align: center;
+}
+
 .ha-social-icons-wrapper a {
-	display: inline-block;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display:         inline-flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-ms-flex-align: center;
+	padding: 5px;
+	border-radius: 5px; 
+	color: #fff;
 	font-size: 30px;
 }
 
@@ -2818,18 +2839,27 @@
 .ha-social-icon i,
 .ha-social-icon svg {
 	position: relative;
-	display: block; 
+	display: initial;
+}
+
+.ha-social-icon svg {
+	width: 100%;
+	height: 100%;
+}
+
+.ha-social-icon i {
 	width: 1em;
 	height: 1em;
 }
 
 .ha-social-icon-label {
-	display: table;
 	margin: 0;
+	margin-left: 10px; 
 	width: 100%;
 	height: 100%;
-	vertical-align: middle;
-	text-align: center;
+	font-size: 18px;
+	font-family: Roboto, sans-serif;
+	line-height: 1;
 }
 
 .elementor-element-edit-mode .ha-social-icon-sticky {
@@ -2838,6 +2868,23 @@
 
 .ha-social-icon-sticky {
 	position: fixed;
-	top: 20px;
-	left: 20px;
+}
+
+.ha-social-icon-separator {
+	margin-right: 10px;
+}
+
+.ha-separator--stroke .ha-social-icon-separator {
+	width: 1px;
+	height: 1em;
+	background: #d30c5c;
+}
+
+.ha-separator--custom .ha-social-icon-separator {
+	color: #d30c5c;
+	font-size: 24px;
+}
+
+.ha-social-icon-separator:last-child {
+	display: none;
 }
