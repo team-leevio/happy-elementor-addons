@@ -41,7 +41,7 @@
 .elementor-element-edit-mode .ha-social-icon-sticky {
 	z-index: 9999 ;
 }
-.ha-social-icon-sticky {
+.ha-social-icons:not(.elementor-element-edit-mode) .ha-social-icon-sticky {
 	position: fixed;
 }
 
