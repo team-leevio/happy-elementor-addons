@@ -298,3 +298,157 @@ function ha_get_current_user_display_name() {
     }
     return $name;
 }
+
+/**
+ * Twitter Feed Ajax call
+ */
+function ha_twitter_feed_ajax() {
+
+	define( 'HA_TWEETS_TOKEN', '_tweet_token' );
+	define( 'HA_TWEETS_CASH', '_tweet_cash' );
+
+	$security = check_ajax_referer('happy_addons_twitter_nonce', 'security');
+
+	if ( true == $security && isset( $_POST['query_settings'] ) ) :
+		$settings = $_POST['query_settings'];
+		$loaded_item = $_POST['loaded_item'];
+
+		$user_name = trim($settings['user_name']);
+
+		$transient_key = $settings['id'] . '_' . $user_name . HA_TWEETS_CASH;
+		$twitter_data = get_transient($transient_key);
+		$credentials = $settings['credentials'];
+
+		$auth_response = wp_remote_post('https://api.twitter.com/oauth2/token',
+			array(
+				'method' => 'POST',
+				'httpversion' => '1.1',
+				'blocking' => true,
+				'headers' => [
+					'Authorization' => 'Basic ' . $credentials,
+					'Content-Type' => 'application/x-www-form-urlencoded;charset=UTF-8',
+				],
+				'body' => ['grant_type' => 'client_credentials'],
+			));
+
+		$body = json_decode( wp_remote_retrieve_body( $auth_response ) );
+		$token = $body->access_token;
+
+		$tweets_response = wp_remote_get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $settings['user_name'] . '&count=999&tweet_mode=extended',
+			array(
+				'httpversion' => '1.1',
+				'blocking' => true,
+				'headers' => ['Authorization' => "Bearer $token",],
+			));
+
+		if ( !is_wp_error( $tweets_response ) ) {
+			$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
+			set_transient($settings['id'] . '_' . $settings['user_name'] . HA_TWEETS_CASH, $twitter_data, 0); // 2 * MINUTE_IN_SECONDS
+		}
+
+		switch ($settings['sort_by']) {
+			case 'old-posts':
+				usort($twitter_data, function ($a,$b) {
+					if ( $a['created_at'] == $b['created_at'] ) return 0;
+					return ( $a['created_at'] < $b['created_at'] ) ? -1 : 1 ;
+				});
+				break;
+			case 'favorite_count':
+				usort($twitter_data, function ($a,$b){
+					if ($a['favorite_count'] == $b['favorite_count']) return 0;
+					return ($a['favorite_count'] > $b['favorite_count']) ? -1 : 1 ;
+				});
+				break;
+			case 'retweet_count':
+				usort($twitter_data, function ($a,$b){
+					if ($a['retweet_count'] == $b['retweet_count']) return 0;
+					return ($a['retweet_count'] > $b['retweet_count']) ? -1 : 1 ;
+				});
+				break;
+			default:
+				$twitter_data;
+		}
+
+		$items = array_splice($twitter_data, $loaded_item, $settings['tweets_limit'] );
+
+		foreach ($items as $item) :
+			?>
+			<div class="ha-tweet-item">
+
+				<?php if ( $settings['show_twitter_logo'] == 'yes' ) : ?>
+					<div class="ha-tweeter-feed-icon">
+						<i class="fa fa-twitter"></i>
+					</div>
+				<?php endif; ?>
+
+				<div class="ha-tweet-inner-wrapper">
+
+					<div class="ha-tweet-author">
+						<?php if ( $settings['show_user_image'] == 'yes' ) : ?>
+							<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>">
+								<img
+									src="<?php echo esc_url( $item['user']['profile_image_url_https'] ); ?>"
+									alt="<?php echo esc_attr( $item['user']['name'] ); ?>"
+									class="ha-tweet-avatar"
+								>
+							</a>
+						<?php endif; ?>
+
+						<div class="ha-tweet-user">
+							<?php if ( $settings['show_name'] == 'yes' ) : ?>
+								<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-author-name">
+									<?php echo esc_html( $item['user']['name'] ); ?>
+								</a>
+							<?php endif; ?>
+
+							<?php if ( $settings['show_user_name'] == 'yes' ) : ?>
+								<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-username">
+									<?php echo esc_html( $settings['user_name'] ); ?>
+								</a>
+							<?php endif; ?>
+						</div>
+					</div>
+
+					<div class="ha-tweet-content">
+						<p><?php echo esc_html( $item['full_text'] ); ?></p>
+
+						<?php if ( $settings['show_date'] == 'yes' ) : ?>
+							<div class="ha-tweet-date">
+								<?php echo esc_html( date("M d Y", strtotime( $item['created_at'] ) ) );?>
+							</div>
+						<?php endif; ?>
+					</div>
+
+				</div>
+
+				<?php if ( $settings['show_favorite'] == 'yes' || $settings['show_retweet'] == 'yes' ) : ?>
+					<div class="ha-tweet-footer-wrapper">
+						<div class="ha-tweet-footer">
+
+							<?php if ( $settings['show_favorite'] == 'yes' ) : ?>
+								<div class="ha-tweet-favorite">
+									<?php echo esc_html( $item['favorite_count'] ); ?>
+									<i class="fa fa-heart-o"></i>
+								</div>
+							<?php endif; ?>
+
+							<?php if ( $settings['show_retweet'] == 'yes' ) : ?>
+								<div class="ha-tweet-retweet">
+									<?php echo esc_html( $item['retweet_count'] ); ?>
+									<i class="fa fa-retweet"></i>
+								</div>
+							<?php endif; ?>
+
+						</div>
+					</div>
+				<?php endif; ?>
+
+			</div>
+		<?php
+		endforeach;
+	endif;
+	wp_die();
+
+}
+add_action( 'wp_ajax_ha_twitter_feed_action', 'ha_twitter_feed_ajax' );
+add_action( 'wp_ajax_nopriv_ha_twitter_feed_action', 'ha_twitter_feed_ajax' );

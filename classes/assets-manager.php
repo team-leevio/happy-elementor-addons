@@ -191,6 +191,15 @@ class Assets_Manager {
 		    true
 	    );
 
+		// Chart.js
+		wp_register_script(
+			'chart-js',
+			HAPPY_ADDONS_ASSETS . 'vendor/chart/chart.min.js',
+			[ 'jquery' ],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
         // Main assets
         wp_register_style(
             'happy-elementor-addons',
@@ -207,6 +216,12 @@ class Assets_Manager {
             HAPPY_ADDONS_VERSION,
             true
         );
+
+		//Localize scripts
+		wp_localize_script( 'happy-elementor-addons', 'HappyTwitterLocalize', [
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce' => wp_create_nonce( 'happy_addons_twitter_nonce' ),
+		] );
     }
 
     /**

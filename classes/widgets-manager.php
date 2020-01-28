@@ -478,7 +478,6 @@ class Widgets_Manager {
 					'js' => ['elementor-waypoints', 'jquery-numerator'],
 				],
 			],
-
 			'social-icons' => [
 				'title' => __( 'Social Icons', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-bond',
@@ -487,7 +486,7 @@ class Widgets_Manager {
 				'vendor' => [
 					'css' => [],
 					'js' => [],
-				],
+				]
 			],
         ];
     }
