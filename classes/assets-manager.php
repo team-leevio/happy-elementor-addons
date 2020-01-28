@@ -191,6 +191,15 @@ class Assets_Manager {
 		    true
 	    );
 
+		// Chart.js
+		wp_register_script(
+			'chart-js',
+			HAPPY_ADDONS_ASSETS . 'vendor/chart/chart.min.js',
+			[ 'jquery' ],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
         // Main assets
         wp_register_style(
             'happy-elementor-addons',
