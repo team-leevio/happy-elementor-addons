@@ -637,7 +637,7 @@ class Social_Icons extends Base {
 				'label'     => __('Spacing', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [
-					'{{WRAPPER}} .ha-social-icon-label' => 'margin-left: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .ha-social-icon:not(.elementor-social-icon-label) .ha-social-icon-label' => 'margin-left: {{SIZE}}{{UNIT}}',
 				],
 			]
 		);
