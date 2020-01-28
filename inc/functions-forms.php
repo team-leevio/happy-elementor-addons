@@ -168,26 +168,27 @@ function ha_get_we_forms() {
     return $forms;
 }
 
+/**
+ * Get a list of all Fluent Forms
+ *
+ * @return array
+ */
 function ha_get_fluent_forms() {
 	$forms = [];
-	if(defined('FLUENTFORM')) {
-		global $wpdb;
-		$fluent_forms = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}fluentform_forms" );
 
-		if($fluent_forms) {
-			foreach($fluent_forms as $form) {
+	if( defined('FLUENTFORM' ) ) {
+		global $wpdb;
+
+		$table = $wpdb->prefix.'fluentform_forms';
+		$query = "SELECT * FROM {$table}";
+		$fluent_forms = $wpdb->get_results( $query );
+
+		if( $fluent_forms ) {
+			foreach( $fluent_forms as $form ) {
 				$forms[$form->id] = $form->title;
 			}
 		}
 	}
+
 	return $forms;
 }
-
-
-//$request = new \FluentForm\Framework\Foundation\Application($application);
-//$formIds = $request->get('forms');
-//$form = wpFluent()->table('fluentform_forms')->whereIn('id', $formIds)->get();
-//$form = wpFluent()->from('fluentform_forms');
-//echo '<pre>';
-//var_dump(ha_get_fluent_forms());
-//echo '</pre>';

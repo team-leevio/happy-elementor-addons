@@ -41,7 +41,7 @@ class Fluent_Form extends Base {
     }
 
     public function get_keywords() {
-        return [ 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja', 'fluent-form' ];
+        return [ 'fluent-form', 'form', 'contact', 'contact form' ];
     }
 
 	protected function register_content_controls() {
@@ -60,7 +60,7 @@ class Fluent_Form extends Base {
                     'type' => Controls_Manager::RAW_HTML,
                     'raw' => sprintf(
                         __( 'Hello %2$s, looks like %1$s is missing in your site. Please click on the link below and install/activate %1$s. Make sure to refresh this page after installation or activation.', 'happy-elementor-addons' ),
-                        '<a href="'.esc_url( admin_url( 'plugin-install.php?s=Contact+Form+7&tab=search&type=term' ) )
+                        '<a href="'.esc_url( admin_url( 'plugin-install.php?s=fluentform&tab=search&type=term' ) )
                         .'" target="_blank" rel="noopener">Fluent Form</a>',
                         ha_get_current_user_display_name()
                     ),
@@ -72,7 +72,7 @@ class Fluent_Form extends Base {
                 '_fluent_form_install',
                 [
                     'type' => Controls_Manager::RAW_HTML,
-                    'raw' => '<a href="'.esc_url( admin_url( 'plugin-install.php?s=Contact+Form+7&tab=search&type=term' ) ).'" target="_blank" rel="noopener">Click to install or activate Fluent Form</a>',
+                    'raw' => '<a href="'.esc_url( admin_url( 'plugin-install.php?s=fluentform+7&tab=search&type=term' ) ).'" target="_blank" rel="noopener">Click to install or activate Fluent Form</a>',
                 ]
             );
             $this->end_controls_section();
@@ -85,17 +85,7 @@ class Fluent_Form extends Base {
                 'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
-                'options' => ['' => __( '', 'happy-elementor-addons' ) ] + \ha_get_fluent_forms(),
-            ]
-        );
-
-        $this->add_control(
-            'html_class',
-            [
-                'label' => __( 'HTML Class', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::TEXT,
-                'label_block' => true,
-                'description' => __( 'Add CSS custom class to the form.', 'happy-elementor-addons' ),
+                'options' => ['' => __( 'Select a Form', 'happy-elementor-addons' ) ] + \ha_get_fluent_forms(),
             ]
         );
 
@@ -112,38 +102,6 @@ class Fluent_Form extends Base {
         );
 
         $this->add_responsive_control(
-            'field_width',
-            [
-                'label' => __( 'Width', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'unit' => '%',
-                ],
-                'tablet_default' => [
-                    'unit' => '%',
-                ],
-                'mobile_default' => [
-                    'unit' => '%',
-                ],
-                'size_units' => [ '%', 'px' ],
-                'range' => [
-                    '%' => [
-                        'min' => 1,
-                        'max' => 100,
-                    ],
-                    'px' => [
-                        'min' => 1,
-                        'max' => 500,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)' => 'width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-cf7-form label' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
             'field_margin',
             [
                 'label' => __( 'Spacing Bottom', 'happy-elementor-addons' ),
@@ -156,7 +114,7 @@ class Fluent_Form extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ff-el-group:not(.ff_submit_btn_wrapper)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -166,9 +124,9 @@ class Fluent_Form extends Base {
             [
                 'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
+                'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ff-el-form-control:not(select)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -180,7 +138,7 @@ class Fluent_Form extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ff-el-form-control' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -198,7 +156,7 @@ class Fluent_Form extends Base {
             [
                 'name' => 'field_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
-                'selector' => '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)',
+                'selector' => '{{WRAPPER}} .ff-el-form-control',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
         );
@@ -209,7 +167,7 @@ class Fluent_Form extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ff-el-form-control' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -240,7 +198,7 @@ class Fluent_Form extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'field_border',
-                'selector' => '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)',
+                'selector' => '{{WRAPPER}} .ff-el-form-control',
             ]
         );
 
@@ -248,7 +206,7 @@ class Fluent_Form extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'field_box_shadow',
-                'selector' => '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)',
+                'selector' => '{{WRAPPER}} .ff-el-form-control:not(select)',
             ]
         );
 
@@ -258,7 +216,7 @@ class Fluent_Form extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ff-el-form-control' => 'background-color: {{VALUE}}',
                 ],
             ]
 		);
@@ -276,7 +234,7 @@ class Fluent_Form extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'field_focus_border',
-                'selector' => '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit):focus',
+                'selector' => '{{WRAPPER}} .ff-el-form-control:focus',
             ]
         );
 
@@ -287,7 +245,7 @@ class Fluent_Form extends Base {
                 'exclude' => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit):focus',
+                'selector' => '{{WRAPPER}} .ff-el-form-control:not(select):focus',
             ]
 		);
 
@@ -297,7 +255,7 @@ class Fluent_Form extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit):focus' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ff-el-form-control:focus' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -309,7 +267,7 @@ class Fluent_Form extends Base {
 
 
         $this->start_controls_section(
-            'cf7-form-label',
+            'form-label',
             [
                 'label' => __( 'Form Fields Label', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
@@ -329,7 +287,7 @@ class Fluent_Form extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)' => 'margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ff-el-input--label' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -347,21 +305,138 @@ class Fluent_Form extends Base {
             [
                 'name' => 'label_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
-                'selector' => '{{WRAPPER}} label',
+                'selector' => '{{WRAPPER}} .ff-el-input--label label',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
         );
 
         $this->add_control(
-            'label_color',
-            [
-                'label' => __( 'Text Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} label' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
+			'label_color',
+			[
+				'label' => __( 'Text Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ff-el-input--label label' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'check_box_label_color',
+			[
+				'label' => __( 'Check Box Label Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ff-el-form-check .ff-el-form-check-label' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'required_label_color',
+			[
+				'label' => __( 'Required Label Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ff-el-input--label label:before' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'help_text_heading',
+			[
+				'label' => __( 'Help Text', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_responsive_control(
+			'help_text_padding',
+			[
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ff-el-tooltip:before' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'help_text_border',
+				'selector' => '{{WRAPPER}} .ff-el-tooltip:before',
+			]
+		);
+
+		$this->add_control(
+			'help_text_border_radius',
+			[
+				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ff-el-tooltip:before' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'help_text_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ff-el-tooltip:before',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+			]
+		);
+
+		$this->add_control(
+			'help_text_icon_color',
+			[
+				'label' => __( 'Icon Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ff-el-tooltip' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'help_text_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ff-el-tooltip:before' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'help_text_arrow_color',
+			[
+				'label' => __( 'Arrow Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ff-el-tooltip:after' => 'border-top-color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'help_text_background_color',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ff-el-tooltip:before' => 'background-color: {{VALUE}}',
+				],
+			]
+		);
 
         $this->end_controls_section();
 
@@ -380,7 +455,7 @@ class Fluent_Form extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-submit' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ff-btn-submit' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -390,9 +465,9 @@ class Fluent_Form extends Base {
             [
                 'label' => __( 'Padding', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
+                'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-submit' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ff-btn-submit' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -401,7 +476,7 @@ class Fluent_Form extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'submit_typography',
-                'selector' => '{{WRAPPER}} .wpcf7-submit',
+                'selector' => '{{WRAPPER}} .ff-btn-submit',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_4
             ]
         );
@@ -410,7 +485,7 @@ class Fluent_Form extends Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'submit_border',
-                'selector' => '{{WRAPPER}} .wpcf7-submit',
+                'selector' => '{{WRAPPER}} .ff-btn-submit',
             ]
         );
 
@@ -421,7 +496,7 @@ class Fluent_Form extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-submit' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ff-btn-submit' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -430,7 +505,7 @@ class Fluent_Form extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'submit_box_shadow',
-                'selector' => '{{WRAPPER}} .wpcf7-submit',
+                'selector' => '{{WRAPPER}} .ff-btn-submit',
             ]
         );
 
@@ -458,7 +533,7 @@ class Fluent_Form extends Base {
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-submit' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ff-btn-submit' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -469,7 +544,7 @@ class Fluent_Form extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-submit' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .ff-btn-submit' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -489,7 +564,7 @@ class Fluent_Form extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-submit:hover, {{WRAPPER}} .wpcf7-submit:focus' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ff-btn-submit:hover, {{WRAPPER}} .wpcf7-submit:focus' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -500,7 +575,7 @@ class Fluent_Form extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-submit:hover, {{WRAPPER}} .wpcf7-submit:focus' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .ff-btn-submit:hover, {{WRAPPER}} .ff-btn-submit:focus' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -511,7 +586,7 @@ class Fluent_Form extends Base {
                 'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpcf7-submit:hover, {{WRAPPER}} .wpcf7-submit:focus' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .ff-btn-submit:hover, {{WRAPPER}} .ff-btn-submit:focus' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -520,6 +595,85 @@ class Fluent_Form extends Base {
         $this->end_controls_tabs();
 
         $this->end_controls_section();
+
+		$this->start_controls_section(
+			'_break',
+			[
+				'label' => __( 'Break', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'section_break',
+			[
+				'label' => __( 'Section Break', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'section_break_title_typography',
+				'label' => __( 'Title Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ff-el-section-break .ff-el-section-title',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'section_break_description_typography',
+				'label' => __( 'Description Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ff-el-section-break .ff-section_break_desk',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_4
+			]
+		);
+
+		$this->start_controls_tabs( 'tabs_section_break_style' );
+
+		$this->start_controls_tab(
+			'section_break__title',
+			[
+				'label' => __( 'Title', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'section_break_title_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ff-el-section-break .ff-el-section-title' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'section_break_tab_description',
+			[
+				'label' => __( 'Description', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'section_break_description_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ff-el-section-break .ff-section_break_desk' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
     }
 
     protected function render() {
@@ -528,7 +682,7 @@ class Fluent_Form extends Base {
         }
 
         $settings = $this->get_settings_for_display();
-		//[fluentform id="1"]
+
         if ( ! empty( $settings['form_id'] ) ) {
             echo ha_do_shortcode( 'fluentform', [
                 'id' => $settings['form_id'],
