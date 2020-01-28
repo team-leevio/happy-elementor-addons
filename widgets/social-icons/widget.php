@@ -8,6 +8,7 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
+use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
@@ -544,7 +545,7 @@ class Social_Icons extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'ha_social_icon_border_radius',
 			[
 				'label'      => __('Border Radius', 'happy-elementor-addons'),
@@ -553,6 +554,15 @@ class Social_Icons extends Base {
 				'selectors'  => [
 					'{{WRAPPER}} .ha-social-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'icons_box_shadow',
+//				'selector'      => '{{WRAPPER}} .ha-social-icon, {{WRAPPER}} .ha-social-icon-separator',
+				'selector'      => '{{WRAPPER}} .ha-social-icon',
 			]
 		);
 
@@ -608,7 +618,6 @@ class Social_Icons extends Base {
 				],
 			]
 		);
-
 
 		$this->end_controls_section();
 
