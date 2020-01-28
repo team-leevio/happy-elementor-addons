@@ -202,7 +202,6 @@ class Social_Icons extends Base {
 				'selectors'      => [
 					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}}.ha-social-icon'       => 'color: {{VALUE}};',
 					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}}.ha-social-icon > svg' => 'fill: {{VALUE}};',
-//					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}} > .ha-social-icon-label' => 'color: {{VALUE}};',
 				],
 				'condition'      => ['customize' => 'yes'],
 				'style_transfer' => true,
@@ -238,7 +237,6 @@ class Social_Icons extends Base {
 				'selectors'      => [
 					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}}.ha-social-icon:hover'     => 'color: {{VALUE}};',
 					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}}.ha-social-icon:hover svg' => 'fill: {{VALUE}};',
-//					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}} > .ha-social-icon-label' => 'color: {{VALUE}};',
 				],
 				'condition'      => ['customize' => 'yes'],
 				'style_transfer' => true,
@@ -285,33 +283,9 @@ class Social_Icons extends Base {
 						],
 					],
 				],
-				'title_field' => '{{{elementor.helpers.getSocialNetworkNameFromIcon( ha_social_icon)}}}',
+				'title_field' => '<# print(elementor.helpers.getSocialNetworkNameFromIcon( ha_social_icon ) || ha_social_icon_title); #>',
 			]
 		);
-
-//		$this->add_control(
-//			'custom_text_rotate',
-//			[
-//				'label'      => __('Rotate Text', 'happy-elementor-addons'),
-//				'type'       => Controls_Manager::SLIDER,
-//				'size_units' => ['deg'],
-//				'range'      => [
-//					'deg' => [
-//						'min'  => 0,
-//						'max'  => 360,
-//						'step' => 15
-//					]
-//				],
-//				'default'    => [
-//					'unit' => 'deg',
-//					'size' => 0
-//				],
-//				'separator'  => 'before',
-//				'selectors'  => [
-//					'{{WRAPPER}} .ha-social-icon' => 'transform: rotate({{SIZE}}{{UNIT}});'
-//				]
-//			]
-//		);
 
 		$this->add_control(
 			'social_media_separator',
@@ -337,45 +311,21 @@ class Social_Icons extends Base {
 				],
 				'prefix_class' => 'ha-separator--',
 				'render_type'  => 'template',
-//				'selectors' => [
-////					'{{WRAPPER}} .ha-social-icon(:not):last-child' => 'border-right: {{SIZE}}{{UNIT}};'
-//
-//				]
 			]
 		);
-
-//		$this->add_group_control(
-//			Group_Control_Border::get_type(),
-//			[
-//				'label'     => __('Separator', 'happy-elementor-addons'),
-//				'type'      => Controls_Manager::DIMENSIONS,
-//				'condition' => [
-//					'social_media_separator' => 'yes',
-//					'separator_type'         => 'default'
-//				],
-////				'unit_sizes' => ['px'],
-////				'selectors' => [
-////					'{{WRAPPER}} .ha-social-icon:not(:last-child)' => 'border: {{SIZE}}{{UNIT}};'
-////				]
-//				'default'   => 'solid',
-//				'selector'  => '{{WRAPPER}} .ha-social-icon-separator:not(:last-child)',
-//
-//			]
-//		);
 
 		$this->add_control(
 			'default_separator',
 			[
-				'label'      => __('Stroke Size', 'happy-elementor-addons'),
-				'type'       => Controls_Manager::SLIDER,
-				'condition'  => [
+				'label'       => __('Stroke Size', 'happy-elementor-addons'),
+				'type'        => Controls_Manager::SLIDER,
+				'condition'   => [
 					'social_media_separator' => 'yes',
 					'separator_type'         => 'stroke'
 				],
-				'size_units' => ['px', 'em'],
-				'selectors'  => [
-//					'{{WRAPPER}} .ha-social-icon-separator' => 'width: {{SIZE}}{{UNIT}} !important;',
-					'.ha-separator--stroke .ha-social-icon-separator' => 'width: {{SIZE}}{{UNIT}} !important;',
+				'size_units'  => ['px', 'em'],
+				'selectors'   => [
+					'{{WRAPPER}}.ha-separator--stroke .ha-social-icon-separator' => 'width: {{SIZE}}{{UNIT}} !important;',
 				],
 				'render_type' => 'template'
 			]
@@ -391,8 +341,7 @@ class Social_Icons extends Base {
 					'separator_type'         => 'stroke'
 				],
 				'selectors' => [
-//					'{{WRAPPER}} .ha-social-icon-separator' => 'background: {{VALUE}};',
-					'.ha-separator--stroke .ha-social-icon-separator' => 'background: {{VALUE}};',
+					'{{WRAPPER}}.ha-separator--stroke .ha-social-icon-separator' => 'background: {{VALUE}};',
 				],
 			]
 		);
@@ -403,35 +352,20 @@ class Social_Icons extends Base {
 				'label'       => __('Custom Character', 'happy-elementor-addons'),
 				'type'        => Controls_Manager::TEXT,
 				'condition'   => [
-					'separator_type' => 'custom'
+					'social_media_separator' => 'yes',
+					'separator_type'         => 'custom'
 				],
 				'render_type' => 'template'
 			]
 		);
 
-		$this->add_control(
-			'custom_separator_color',
-			[
-				'label'     => __('Color', 'happy-elementor-addons'),
-				'type'      => Controls_Manager::COLOR,
-				'condition' => [
-					'social_media_separator' => 'yes',
-					'separator_type'         => 'custom'
-				],
-				'selectors' => [
-//					'{{WRAPPER}} .ha-social-icon-separator' => 'color: {{VALUE}} !important;',
-					'.ha-separator--custom .ha-social-icon-separator' => 'color: {{VALUE}} !important;',
-				],
-//				'render_type' => 'template'
-			]
-		);
 
 		$this->add_responsive_control(
 			'ha_social_icon_align',
 			[
-				'label'     => __('Alignment', 'happy-elementor-addons'),
-				'type'      => Controls_Manager::CHOOSE,
-				'options'   => [
+				'label'       => __('Alignment', 'happy-elementor-addons'),
+				'type'        => Controls_Manager::CHOOSE,
+				'options'     => [
 					'left'   => [
 						'title' => __('Left', 'happy-elementor-addons'),
 						'icon'  => 'eicon-text-align-left',
@@ -445,11 +379,11 @@ class Social_Icons extends Base {
 						'icon'  => 'eicon-text-align-right',
 					],
 				],
-				'default'   => 'center',
-				'selectors' => [
+				'default'     => 'center',
+				'selectors'   => [
 					'{{WRAPPER}}' => 'text-align: {{VALUE}};',
 				],
-				'separator' => 'before',
+				'separator'   => 'before',
 				'render_type' => 'ui'
 			]
 		);
@@ -493,6 +427,8 @@ class Social_Icons extends Base {
 
 				'selectors'      => [
 					'{{WRAPPER}} .ha-social-icons-wrapper > .ha-social-icon'       => 'color: {{VALUE}};',
+					'{{WRAPPER}}.ha-separator--stroke .ha-social-icon-separator'   => 'background: {{VALUE}};',
+					'{{WRAPPER}}.ha-separator--custom .ha-social-icon-separator'   => 'color: {{VALUE}};',
 					'{{WRAPPER}} .ha-social-icons-wrapper > .ha-social-icon > svg' => 'fill: {{VALUE}};',
 				],
 				'style_transfer' => true,
@@ -526,6 +462,8 @@ class Social_Icons extends Base {
 				'type'           => Controls_Manager::COLOR,
 				'selectors'      => [
 					'{{WRAPPER}} .ha-social-icons-wrapper > .ha-social-icon:hover'     => 'color: {{VALUE}};',
+					'{{WRAPPER}}.ha-separator--stroke .ha-social-icon-separator'       => 'background: {{VALUE}};',
+					'{{WRAPPER}}.ha-separator--custom .ha-social-icon-separator'       => 'color: {{VALUE}};',
 					'{{WRAPPER}} .ha-social-icons-wrapper > .ha-social-icon:hover svg' => 'fill: {{VALUE}};',
 				],
 				'style_transfer' => true,
@@ -591,8 +529,8 @@ class Social_Icons extends Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-social-icon:not(:last-child)'           => $icon_spacing,
-					'{{WRAPPER}} .ha-social-icon-separator' => $icon_spacing,
+					'{{WRAPPER}} .ha-social-icon:not(:last-child)' => $icon_spacing,
+					'{{WRAPPER}} .ha-social-icon-separator'        => $icon_spacing,
 				],
 			]
 		);
@@ -681,56 +619,6 @@ class Social_Icons extends Base {
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
-//		$this->add_responsive_control(
-//			'custom_label_width',
-//			[
-//				'label'      => __('Width', 'happy-elementor-addons'),
-//				'type'       => Controls_Manager::SLIDER,
-//				'size_units' => ['px', 'em', '%'],
-//				'range'      => [
-//					'px' => [
-//						'min' => 0,
-//						'max' => 1000
-//					],
-//					'em' => [
-//						'min' => 1,
-//						'max' => 100
-//					],
-//					'%'  => [
-//						'min' => 5,
-//						'max' => 400
-//					],
-//				],
-//				'selectors'  => [
-//					'{{WRAPPER}} .ha-social-icon.ha-social-icon--custom-label' => 'width: {{SIZE}}{{UNIT}};'
-//				]
-//			]
-//		);
-//		$this->add_responsive_control(
-//			'custom_label_height',
-//			[
-//				'label'      => __('Height', 'happy-elementor-addons'),
-//				'type'       => Controls_Manager::SLIDER,
-//				'size_units' => ['px', 'em', '%'],
-//				'range'      => [
-//					'px' => [
-//						'min' => 0,
-//						'max' => 1000
-//					],
-//					'em' => [
-//						'min' => 1,
-//						'max' => 100
-//					],
-//					'%'  => [
-//						'min' => 5,
-//						'max' => 400
-//					],
-//				],
-//				'selectors'  => [
-//					'{{WRAPPER}} .ha-social-icon.ha-social-icon--custom-label' => 'height: {{SIZE}}{{UNIT}};'
-//				]
-//			]
-//		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
@@ -754,72 +642,31 @@ class Social_Icons extends Base {
 			]
 		);
 
+		$this->end_controls_section();
 
-//		$this->add_responsive_control(
-//			'custom_label_padding',
-//			[
-//				'label'          => __('Padding', 'happy-elementor-addons'),
-//				'type'           => Controls_Manager::SLIDER,
-//				'selectors'      => [
-//					'{{WRAPPER}} .ha-social-icon' => 'padding: {{SIZE}}{{UNIT}};',
-//				],
-//				'default'        => [
-//					'unit' => 'em',
-//				],
-//				'tablet_default' => [
-//					'unit' => 'em',
-//				],
-//				'mobile_default' => [
-//					'unit' => 'em',
-//				],
-//				'range'          => [
-//					'em' => [
-//						'min' => 0,
-//						'max' => 5,
-//					],
-//				],
-//			]
-//		);
-//
-//		$icon_spacing = is_rtl() ? 'margin-left: {{SIZE}}{{UNIT}};' : 'margin-right: {{SIZE}}{{UNIT}};';
-//
-//		$this->add_responsive_control(
-//			'custom_label_spacing',
-//			[
-//				'label'     => __('Spacing', 'happy-elementor-addons'),
-//				'type'      => Controls_Manager::SLIDER,
-//				'range'     => [
-//					'px' => [
-//						'min' => 0,
-//						'max' => 100,
-//					],
-//				],
-//				'selectors' => [
-//					'{{WRAPPER}} .ha-social-icon:not(:last-child)' => $icon_spacing,
-//				],
-//			]
-//		);
-//
-//		$this->add_group_control(
-//			Group_Control_Border::get_type(),
-//			[
-//				'name'      => 'image_border',
-//				'selector'  => '{{WRAPPER}} .ha-social-icon',
-//				'separator' => 'before',
-//			]
-//		);
-//
-//		$this->add_control(
-//			'custom_label_border_radius',
-//			[
-//				'label'      => __('Border Radius', 'happy-elementor-addons'),
-//				'type'       => Controls_Manager::DIMENSIONS,
-//				'size_units' => ['px', '%'],
-//				'selectors'  => [
-//					'{{WRAPPER}} .ha-social-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-//				],
-//			]
-//		);
+		$this->start_controls_section(
+			'_section_social_icon_separator',
+			[
+				'label' => __('Separator', 'happy-elementor-addons'),
+				'tab'   => Controls_Manager::TAB_STYLE
+			]
+		);
+
+		$this->add_control(
+			'custom_separator_color',
+			[
+				'label'     => __('Color', 'happy-elementor-addons'),
+				'type'      => Controls_Manager::COLOR,
+				'condition' => [
+					'social_media_separator' => 'yes',
+				],
+				'selectors' => [
+					'{{WRAPPER}}.ha-separator--stroke .ha-social-icon-separator' => 'background: {{VALUE}} !important;',
+					'{{WRAPPER}}.ha-separator--custom .ha-social-icon-separator' => 'color: {{VALUE}} !important;',
+				],
+			]
+		);
+
 		$this->end_controls_section();
 
 	}
@@ -840,7 +687,7 @@ class Social_Icons extends Base {
 		<div class="ha-social-icons-wrapper <?php echo $sticky_class; ?>">
 			<?php
 			foreach ($social_list as $key => $icons) {
-				$icon = $icons['ha_social_icon']['value'];
+				$icon         = $icons['ha_social_icon']['value'];
 				$url          = esc_url($icons['ha_social_link']['url']);
 				$social_title = esc_html($icons['ha_social_icon_title']);
 				$link_attr    = 'link_' . $key;
@@ -854,7 +701,7 @@ class Social_Icons extends Base {
 				$this->add_render_attribute($link_attr, 'class', [
 					'ha-social-icon',
 					'elementor-repeater-item-' . $icons['_id'],
-					'elementor-social-icon-' . $social_name,
+					'elementor-social-icon-' . ($icon ? $social_name : 'label'),
 
 				]);
 

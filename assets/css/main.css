@@ -2832,6 +2832,10 @@
 	font-size: 30px;
 }
 
+.elementor-social-icon-label .ha-social-icons-wrapper a {
+	color: #d30c5c;
+}
+
 .ha-social-icon:not(:last-child) {
 	margin-right: 10px;
 }
@@ -2860,6 +2864,10 @@
 	font-size: 18px;
 	font-family: Roboto, sans-serif;
 	line-height: 1;
+}
+
+.elementor-social-icon-label .ha-social-icon-label {
+	margin-left: 0;
 }
 
 .elementor-element-edit-mode .ha-social-icon-sticky {
