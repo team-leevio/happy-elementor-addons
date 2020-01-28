@@ -468,16 +468,26 @@ class Widgets_Manager {
                     'js' => ['jquery-keyframes'],
                 ],
             ],
-            'fun-factor' => [
-                'title' => __( 'Fun Factor', 'happy-elementor-addons' ),
-                'icon' => 'hm hm-slider',
-                'css' => ['fun-factor'],
-                'js' => [],
-                'vendor' => [
-                    'css' => [],
-                    'js' => ['elementor-waypoints', 'jquery-numerator'],
-                ],
-            ],
+			'fun-factor' => [
+				'title' => __( 'Fun Factor', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-slider',
+				'css' => ['fun-factor'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => ['elementor-waypoints', 'jquery-numerator'],
+				],
+			],
+			'twitter-feed' => [
+				'title' => __( 'Twitter Feed', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-twitter',
+				'css' => ['twitter-feed'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
         ];
     }
 

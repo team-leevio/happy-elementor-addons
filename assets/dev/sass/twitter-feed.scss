@@ -1,0 +1,196 @@
+.ha-twitter-feed {
+
+	.ha-tweeter-feed-icon {
+		i {
+			position: absolute;
+			top: 5px;
+			right: 5px;
+			color: #1da1f2;
+			font-size: 22px;
+		}
+	}
+
+	.ha-tweet-items {
+		display: grid;
+		grid-gap: 30px;
+	}
+
+	.ha-tweet-item {
+		display: flex;
+		box-shadow: 1px 1px 8px 1px rgba(0,0,0,.1);
+		position: relative;
+		z-index: 0;
+	}
+
+	.ha-tweet-item:before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.ha-tweet-inner-wrapper {
+		display: flex;
+		flex-direction: column;
+		padding: 30px 10px;
+	}
+
+	.ha-tweet-author,
+	.ha-tweet-user {
+		display: flex;
+	}
+
+	.ha-tweet-author {
+		flex-direction: row;
+		align-items: center;
+		margin-bottom: 10px;
+	}
+
+	.ha-tweet-avatar {
+		width: 45px;
+		border-radius: 50%;
+	}
+
+	.ha-tweet-user {
+		flex-direction: column;
+	}
+
+	.ha-tweet-author-name {
+		color: #e2498a;
+	}
+	.ha-tweet-author-name:hover {
+		color: #562dd4;
+	}
+
+	.ha-tweet-username {
+		color: #a7a7a7;
+	}
+	.ha-tweet-username:hover {
+		color: #818181;
+	}
+
+	.ha-tweet-content {
+		color: #222;
+		position: relative;
+	}
+	.ha-tweet-content:before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
+	.ha-tweet-content p {
+		margin-bottom: 5px;
+	}
+
+	.ha-tweet-footer {
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		width: 100%;
+		padding: 0 10px;
+		text-align: right;
+	}
+
+	.ha-tweet-date {
+		color: #a7a7a7;
+	}
+
+	.ha-tweet-meta {
+		display: flex;
+		justify-content: space-around;
+		padding: 15px;
+	}
+
+	.ha-tweet-favorite,
+	.ha-tweet-retweet {
+		display: inline-block;
+		color: #a7a7a7;
+	}
+
+	.ha-tweet-favorite {
+		margin-right: 12px;
+	}
+
+	.ha-twitter-load-more-wrapper {
+		margin-top: 30px;
+		text-align: center;
+	}
+	.ha-twitter-load-more {
+		display: inline-block;
+		padding: 10px 25px;
+		outline: none;
+		border: none;
+		border-radius: 50px;
+		background-color: #302a8c;
+		color: #fff;
+		text-align: center;
+		font-weight: 400;
+		font-size: 16px;
+		transition: all .3s;
+	}
+
+	.ha-twitter-load-more:hover {
+		background-color: #e2498a;
+	}
+
+	.ha-tweet-error-message {
+		padding: 20px;
+		border-left: 4px solid #ff7726;
+		background-color: #fff9f5;
+	}
+
+	&.ha-twitter-left {
+		.ha-tweet-avatar {
+			margin-right: 15px;
+		}
+		.ha-tweet-content {
+			text-align: left;
+		}
+	}
+	&.ha-twitter-center {
+		.ha-tweet-author {
+			flex-direction: column;
+			align-items: center;
+		}
+		.ha-tweet-content {
+			text-align: center;
+		}
+	}
+	&.ha-twitter-right {
+		.ha-tweeter-feed-icon i {
+			right: auto;
+			left: 5px;
+			transform: rotateY(-180deg);
+		}
+		.ha-tweet-author {
+			flex-direction: row-reverse;
+		}
+		.ha-tweet-content {
+			text-align: right;
+		}
+	}
+
+	&.ha-twitter-user-bottom {
+		.ha-tweet-inner-wrapper {
+			justify-content: flex-end;
+		}
+		.ha-tweet-author {
+			margin-bottom: 0;
+			margin-top: 10px;
+		}
+	}
+
+	&.ha-tweet-glassy-yes {
+		.ha-tweet-content:before {
+			background-color: rgba(255, 255, 255, 0.4);
+			backdrop-filter: blur(10px);
+		}
+	}
+}
