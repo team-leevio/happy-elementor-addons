@@ -486,7 +486,7 @@ class Social_Icons extends Base {
 		$this->end_controls_tabs();
 
 		$this->add_responsive_control(
-			'ha_social_icon_padding',
+			'ha_social_icon_global_padding',
 			[
 				'label'          => __('Padding', 'happy-elementor-addons'),
 				'type'           => Controls_Manager::DIMENSIONS,
@@ -720,11 +720,11 @@ class Social_Icons extends Base {
 					$this->add_render_attribute($link_attr, 'class', 'ha-social-icon--custom-label');
 				}
 
-				if ($icons['link']['is_external']) {
+				if ($icons['ha_social_link']['is_external']) {
 					$this->add_render_attribute($link_attr, 'target', '_blank');
 				}
 
-				if ($icons['link']['nofollow']) {
+				if ($icons['ha_social_link']['nofollow']) {
 					$this->add_render_attribute($link_attr, 'rel', 'nofollow');
 				}
 
