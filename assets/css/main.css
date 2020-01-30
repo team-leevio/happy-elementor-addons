@@ -2827,9 +2827,11 @@
 	        align-items: center;
 	-ms-flex-align: center;
 	padding: 5px;
-	border-radius: 5px; 
+	border-radius: 5px;
 	color: #fff;
 	font-size: 30px;
+	-webkit-transition: all .3s;
+	        transition: all .3s;
 }
 
 .ha-social-icons-wrapper a.elementor-social-icon-label {

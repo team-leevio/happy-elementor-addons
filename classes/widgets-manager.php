@@ -484,7 +484,7 @@ class Widgets_Manager {
 				'css' => ['social-icons'],
 				'js' => [],
 				'vendor' => [
-					'css' => [],
+					'css' => ['hover-css'],
 					'js' => [],
 				]
 			],
