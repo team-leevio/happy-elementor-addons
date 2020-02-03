@@ -9,9 +9,9 @@ namespace Happy_Addons\Elementor\Widget\Chart;
 defined( 'ABSPATH' ) || die();
 
 
-class Data {
+class Bar_Chart {
 
-	public static function chart_data($settings) {
+	public static function chart_dataset($settings) {
 
 		$datasets = [];
 		$items = $settings['chart_data'];
@@ -72,7 +72,7 @@ class Data {
 			'yPadding'  		=> !empty( $settings['tooltip_padding']['size'] ) ? $settings['tooltip_padding']['size'] : 6,
 			'caretSize'  		=> !empty( $settings['tooltip_caret_size']['size'] ) ? $settings['tooltip_caret_size']['size'] : 5,
 			'mode' 				=> !empty( $settings['tooltip_mode'] ) ? $settings['tooltip_mode'] : 'nearest',
-			];
+		];
 
 		if ( $xaxes_grid_display == 'yes' ) {
 			$xaxes_gridLines = [

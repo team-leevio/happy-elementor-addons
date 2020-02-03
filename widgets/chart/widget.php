@@ -9,7 +9,7 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Repeater;
 use Elementor\Scheme_Typography;
-use Happy_Addons\Elementor\Widget\Chart\Data;
+use Happy_Addons\Elementor\Widget\Chart\Chart_type;
 
 defined( 'ABSPATH' ) || die();
 
@@ -44,7 +44,7 @@ class Chart extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'chart', 'statistic' ];
+		return [ 'chart', 'pie', 'bar', 'line', 'statistic' ];
 	}
 
 	protected function register_content_controls() {
@@ -63,11 +63,40 @@ class Chart extends Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'bar',
 				'options' => [
-					'bar'           => __( 'Vertical Bar', 'happy-elementor-addons' ),
+					'bar' => __( 'Bar', 'happy-elementor-addons' ),
+					'line' => __( 'Line', 'happy-elementor-addons' ),
+					'pie' => __( 'Pie', 'happy-elementor-addons' ),
+				],
+			]
+		);
+
+		$this->add_control(
+			'chart_pro_notice',
+			[
+				'label' => false,
+				'type' => Controls_Manager::RAW_HTML,
+				'condition' => [
+					'chart_type!' => 'bar'
+				],
+				'raw' => __( 'Please install <a href="https://happyaddons.com/pricing/" target="_blank">Happy Addons Pro</a>', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'chart_position',
+			[
+				'label'   => __( 'Chart Position', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'bar',
+				'condition' => [
+					'chart_type' => 'bar'
+				],
+				'options' => [
+					'bar' => __( 'Vertical Bar', 'happy-elementor-addons' ),
 					'horizontalBar' => __( 'Horizontal Bar', 'happy-elementor-addons' ),
 				],
 			]
-			);
+		);
 
 		$this->add_control(
 			'labels',
@@ -1285,42 +1314,45 @@ class Chart extends Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		include_once HAPPY_ADDONS_DIR_PATH . "widgets/chart/classes/data.php";
+		include_once HAPPY_ADDONS_DIR_PATH . "widgets/chart/classes/chart-type.php";
 
-		$data_settings = json_encode(
-			[
-				'type'    => $settings['chart_type'],
-				'data'    => [
-					'labels'   => explode(',', esc_html( $settings['labels'] ) ),
-					'datasets' => Data::chart_data($settings),
-				],
-				'options' => Data::chart_options($settings)
-			]
-		);
 		$this->add_render_attribute(
 			'container',
 			[
 				'class'         => 'ha-chart-container',
-				'data-settings' => $data_settings
+				'data-settings' => Chart_type::initial($settings)
 			]
 		);
 
-		$this->add_render_attribute(
-			'canvas',
+		$this->add_render_attribute( 'canvas',
 			[
 				'id' => 'ha-chart-bar',
 				'role'  => 'img',
 			]
 		);
+
+		if ( $settings['chart_type'] == 'bar' ) :
 		?>
+			<div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
 
-		<div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
+				<canvas <?php echo $this->get_render_attribute_string( 'canvas' ); ?>></canvas>
 
-			<canvas <?php echo $this->get_render_attribute_string( 'canvas' ); ?>></canvas>
+			</div>
 
-		</div>
+		<?php elseif ( is_admin() ): ?>
+			<div class="ha-chart-pro-msg">
+				<?php
+				printf( '%s <span>%s</span>',
+					esc_html( 'Please install ' ),
+					esc_html( 'Happy Addons Pro' )
+				);
+				?>
+			</div>
 
-	<?php
+		<?php
+			else: return '';
+
+		endif;
 	}
 
 }
