@@ -2922,6 +2922,14 @@
 	margin-bottom: 5px;
 }
 
+.ha-twitter-feed .ha-tweet-content p a {
+	color: #562dd4;
+}
+
+.ha-twitter-feed .ha-tweet-content p a:hover {
+	color: #e2498a;
+}
+
 .ha-twitter-feed .ha-tweet-footer {
 	position: absolute;
 	bottom: 10px;

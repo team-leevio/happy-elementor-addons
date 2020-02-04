@@ -88,6 +88,12 @@
 	.ha-tweet-content p {
 		margin-bottom: 5px;
 	}
+	.ha-tweet-content p a {
+		color: #562dd4;
+	}
+	.ha-tweet-content p a:hover {
+		color: #e2498a;
+	}
 
 	.ha-tweet-footer {
 		position: absolute;
