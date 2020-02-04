@@ -229,6 +229,29 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->add_control(
+			'read_more',
+			[
+				'label' => __('Read More', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default' => 'yes',
+				'style_transfer' => true,
+			]
+		);
+
+		$this->add_control(
+			'read_more_text',
+			[
+				'label' => __('Read More Text', 'happy-elementor-addons'),
+				'type' => Controls_Manager::TEXT,
+				'default' => 'Read More',
+				'condition' => [
+					'read_more' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
 			'load_more',
 			[
 				'label' => __('Load More Button', 'happy-elementor-addons'),
@@ -829,6 +852,68 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->add_control(
+			'read_more_heading',
+			[
+				'label' => __( 'Read More', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_control(
+			'read_more_note',
+			[
+				'label' => false,
+				'type' => Controls_Manager::RAW_HTML,
+				'condition' => [
+					'read_more' => ''
+				],
+				'raw' => __( 'Read More is hidden from <strong>Twitter Settings</strong> section.', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'read_more_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-tweet-content p a',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'condition' => [
+					'read_more' => 'yes'
+				],
+			]
+		);
+
+		$this->add_control(
+			'read_more_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'read_more' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-content p a' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'read_more_hover_color',
+			[
+				'label' => __( 'Hover Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'read_more' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-tweet-content p a:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
 			'date_heading',
 			[
 				'label' => __( 'Date', 'happy-elementor-addons' ),
@@ -1248,7 +1333,16 @@ class Twitter_Feed extends Base {
 						</div>
 
 						<div class="ha-tweet-content">
-							<p><?php echo esc_html( $item['full_text'] ); ?></p>
+							<?php $content = str_replace( $item['entities']['urls'][0]['url'], '', $item['full_text'] ); ?>
+							<p>
+								<?php echo esc_html( $content ); ?>
+
+								<?php if ( $settings['read_more'] == 'yes' ) : ?>
+									<a href="<?php echo esc_url( '//twitter.com/' . $item['user']['screen_name'] . '/status/' . $item['id'] ); ?>" target="_blank">
+										<?php echo esc_html( $settings['read_more_text'] ); ?>
+									</a>
+								<?php endif; ?>
+							</p>
 
 							<?php if ( $settings['show_date'] == 'yes' ) : ?>
 								<div class="ha-tweet-date">
