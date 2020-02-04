@@ -1104,15 +1104,15 @@ class Twitter_Feed extends Base {
 	}
 
 	protected function twitter_feed_render( $id, $settings ) {
-		define( 'HA_TWEETS_TOKEN', '_tweet_token' );
-		define( 'HA_TWEETS_CASH', '_tweet_cash' );
+		$ha_tweets_token = '_' . $id . '_tweet_token';
+		$ha_tweets_cash = '_' . $id . '_tweet_cash';
 
 		$user_name = trim($settings['user_name']);
 		if ( empty( $user_name ) || empty( $settings['consumer_key'] ) || empty( $settings['consumer_secret'] ) ) {
 			return;
 		}
 
-		$transient_key = $id . '_' . $user_name . HA_TWEETS_CASH;
+		$transient_key = $user_name . $ha_tweets_cash;
 		$twitter_data = get_transient($transient_key);
 		$credentials = base64_encode($settings['consumer_key'] . ':' . $settings['consumer_secret']);
 
@@ -1132,7 +1132,7 @@ class Twitter_Feed extends Base {
 				) );
 
 			$body = json_decode( wp_remote_retrieve_body( $auth_response ) );
-			update_option($id . '_' . $user_name . HA_TWEETS_TOKEN, $body->access_token);
+			update_option($user_name . $ha_tweets_token, $body->access_token);
 			$token = $body->access_token;
 
 			$twitter_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $user_name . '&count=999&tweet_mode=extended';
@@ -1144,7 +1144,7 @@ class Twitter_Feed extends Base {
 				) );
 
 			$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
-			set_transient($id . '_' . $user_name . HA_TWEETS_CASH, $twitter_data, 5 * MINUTE_IN_SECONDS ); // 2 * MINUTE_IN_SECONDS
+			set_transient($user_name . $ha_tweets_cash, $twitter_data, 5 * MINUTE_IN_SECONDS );
 
 		}
 
