@@ -15,7 +15,7 @@ class Happy_Grid {
     public static function add_controls_section( $element ) {
 
         $element->start_controls_section(
-            '_section_happy_grid',
+            '_section_happy_grid_layer',
             [
                 'label' => __( 'Happy Grid Layer', 'happy-elementor-addons' ),
 	            'tab' => Controls_Manager::TAB_SETTINGS,
@@ -26,19 +26,12 @@ class Happy_Grid {
 		    'ha_grid',
 		    [
 			    'label'     => __( 'Grid Layer', 'happy-elementor-addons' ),
+			    'description'     => __( 'Use "Cmd/Ctrl + Shift + G" to On/Off Grid Layer', 'happy-elementor-addons' ),
 			    'type'      => Controls_Manager::SWITCHER,
-			    'label_on'  => __( 'Show', 'happy-elementor-addons' ),
-			    'label_off' => __( 'Hide', 'happy-elementor-addons' ),
+			    'label_on'  => __( 'On', 'happy-elementor-addons' ),
+			    'label_off' => __( 'Off', 'happy-elementor-addons' ),
 			    'return_value' => 'yes',
 				'default' => '',
-			    'selectors_dictionary' => [
-				    '' => '',
-				    'yes' => 'content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; margin-right: auto; margin-left: auto; pointer-events: none;',
-			    ],
-			    'selectors' => [
-				    //'html.elementor-html' => 'position: relative;',
-				    'html.elementor-html::before' => '{{VALUE}}',
-			    ],
 		    ]
 	    );
 
@@ -50,14 +43,16 @@ class Happy_Grid {
 			    'min'       => 1,
 			    'max'       => 100,
 			    'step'      => 1,
-			    'default'   => 12,
+			    'devices' => [ 'desktop', 'tablet', 'mobile' ],
+			    'desktop_default' => 12,
+			    'tablet_default' => 12,
+			    'mobile_default' => 12,
 			    'condition' => [
 				    'ha_grid' => 'yes',
 			    ],
 			    'render_type' => 'none',
 		    ]
 	    );
-
 
 	    $element->add_responsive_control(
 		    'ha_grid_max_width',
@@ -77,9 +72,18 @@ class Happy_Grid {
 					    'step' => 0.1,
 				    ],
 			    ],
-			    'default' => [
+			    'devices' => [ 'desktop', 'tablet', 'mobile' ],
+			    'desktop_default' => [
+				    'size' => self::get_default_grid_value('desktop'),
 				    'unit' => 'px',
-				    'size' => 1140,
+			    ],
+			    'tablet_default' => [
+				    'size' => self::get_default_grid_value('tablet'),
+				    'unit' => 'px',
+			    ],
+			    'mobile_default' => [
+				    'size' => self::get_default_grid_value('mobile'),
+				    'unit' => 'px',
 			    ],
 			    'condition' => [
 				    'ha_grid' => 'yes',
@@ -115,6 +119,19 @@ class Happy_Grid {
 				    'unit' => 'px',
 				    'size' => 0,
 			    ],
+			    'devices' => [ 'desktop', 'tablet', 'mobile' ],
+			    'desktop_default' => [
+				    'size' => 0,
+				    'unit' => 'px',
+			    ],
+			    'tablet_default' => [
+				    'size' => 0,
+				    'unit' => 'px',
+			    ],
+			    'mobile_default' => [
+				    'size' => 0,
+				    'unit' => 'px',
+			    ],
 			    'condition' => [
 				    'ha_grid' => 'yes',
 			    ],
@@ -145,10 +162,33 @@ class Happy_Grid {
 					    'step' => 0.1,
 				    ],
 			    ],
-			    'default' => [
-				    'unit' => 'px',
+			    'devices' => [ 'desktop', 'tablet', 'mobile' ],
+			    'desktop_default' => [
 				    'size' => 15,
+				    'unit' => 'px',
 			    ],
+			    'tablet_default' => [
+				    'size' => 10,
+				    'unit' => 'px',
+			    ],
+			    'mobile_default' => [
+				    'size' => 8,
+				    'unit' => 'px',
+			    ],
+			    'condition' => [
+				    'ha_grid' => 'yes',
+			    ],
+			    'render_type' => 'none',
+		    ]
+	    );
+
+	    $element->add_control(
+		    'ha_grid_zindex',
+		    [
+			    'label'      => __( 'Z-Index', 'happy-elementor-addons' ),
+			    'type'       => Controls_Manager::TEXT,
+			    'input_type' => 'number',
+			    'default' => '1000',
 			    'condition' => [
 				    'ha_grid' => 'yes',
 			    ],
@@ -161,17 +201,13 @@ class Happy_Grid {
 		    [
 			    'label'     => __( 'Grid Color', 'happy-elementor-addons' ),
 			    'type'      => Controls_Manager::COLOR,
-			    'default'   => 'rgba(0,255,255,0.25)',
+			    'default'   => 'rgba(226, 73, 138, 0.5)',
 			    'condition' => [
 				    'ha_grid' => 'yes',
-			    ],
-			    'selectors' => [
-				    'html.elementor-html' => '--ha_grid_color: {{VALUE}};',
 			    ],
 			    'render_type' => 'none',
 		    ]
 	    );
-
 
 	    $element->add_control(
 		    'ha_grid_on',
@@ -184,7 +220,7 @@ class Happy_Grid {
 			    ],
 			    'selectors' => [
 				    'html.elementor-html' => 'position: relative;',
-				    'html.elementor-html::before' => 'content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; margin-right: auto; margin-left: auto; pointer-events: none; z-index: 1000; min-height: 100vh;',
+				    'html.elementor-html::before' => 'content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; margin-right: auto; margin-left: auto; pointer-events: none; z-index: {{ha_grid_zindex.VALUE || 1000}}; min-height: 100vh;',
 				    //Desktop view
 				    '(desktop) html.elementor-html::before' => '
 				    width: calc(100% - (2 * {{ha_grid_offset.SIZE}}{{ha_grid_offset.UNIT}}));
@@ -212,4 +248,16 @@ class Happy_Grid {
 
         $element->end_controls_section();
     }
+
+	public static function get_default_grid_value( $value = '' ) {
+
+		$default = [
+			'desktop' => get_option('elementor_container_width') ? get_option('elementor_container_width') : '1140',
+			'tablet' => get_option('elementor_viewport_lg') ? get_option('elementor_viewport_lg') : '1025',
+			'mobile' => get_option('elementor_viewport_md') ? get_option('elementor_viewport_md') : '768',
+		];
+
+		return $default[$value];
+    }
+
 }
