@@ -6,7 +6,7 @@ Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, obiplabon
 Tags: elementor, elementor addon, elementor widget, essential widget, elements
 Requires at least: 4.7
-Tested up to: 5.2.4
+Tested up to: 5.3.2
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
