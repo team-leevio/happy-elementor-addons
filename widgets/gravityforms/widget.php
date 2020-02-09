@@ -946,7 +946,7 @@ class GravityForms extends Base {
 		$settings = $this->get_settings_for_display();
 
 		if ( ! empty( $settings['form_id'] ) ) {
-			gravity_form( $settings['form_id'], $settings['form_title_show'] );
+			gravity_form( $settings['form_id'], $settings['form_title_show'], $echo = true );
 		}
 	}
 }

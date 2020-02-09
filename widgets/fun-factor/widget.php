@@ -430,7 +430,7 @@ class Fun_Factor extends Base {
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-fun-factor-image-section img, {{WRAPPER}} .ha-fun-factor-icon-section' => 'padding: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-fun-factor-image-section img, {{WRAPPER}} .ha-fun-factor-icon-section' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
