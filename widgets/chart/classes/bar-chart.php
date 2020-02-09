@@ -25,8 +25,6 @@ class Bar_Chart {
 				$item['borderColor']          = !empty( $item['border_color'] ) ? $item['border_color'] : '#602edc';
 				$item['hoverBorderColor']     = !empty( $item['border_hover_color'] ) ? $item['border_hover_color'] : '#602edc';
 				$item['borderWidth']          = ( $settings['bar_border_width']['size'] !== '' ) ? $settings['bar_border_width']['size'] : 1;
-				$item['barPercentage'] = ( $settings['bar_width']['size'] !== '' ) ? $settings['bar_width']['size'] / 100 : '';
-				$item['categoryPercentage'] =  ( $settings['category_width']['size'] !== '' ) ? $settings['category_width']['size'] / 100 : '';
 
 				$datasets[] = $item;
 			}
@@ -134,7 +132,9 @@ class Bar_Chart {
 							'fontStyle'  => (!empty( $settings['labels_xaxes_font_style'] ) ? $settings['labels_xaxes_font_style'] : '') . ' ' . (!empty( $settings['labels_xaxes_font_weight'] ) ? $settings['labels_xaxes_font_weight'] : ''),
 							'fontColor'  => !empty( $settings['labels_xaxes_font_color'] ) ? $settings['labels_xaxes_font_color'] : '#222',
 						],
-						'gridLines' => $xaxes_gridLines
+						'gridLines' => $xaxes_gridLines,
+						'barPercentage' => ( $settings['bar_width']['size'] !== '' ) ? $settings['bar_width']['size'] / 100 : '',
+						'categoryPercentage' =>  ( $settings['category_width']['size'] !== '' ) ? $settings['category_width']['size'] / 100 : '',
 					]
 				],
 				'yAxes' => [
@@ -149,7 +149,9 @@ class Bar_Chart {
 							'fontStyle'  => (!empty( $settings['labels_yaxes_font_style'] ) ? $settings['labels_yaxes_font_style'] : '') . ' ' . (!empty( $settings['labels_yaxes_font_weight'] ) ? $settings['labels_yaxes_font_weight'] : ''),
 							'fontColor'  => !empty( $settings['labels_yaxes_font_color'] ) ? $settings['labels_yaxes_font_color'] : '#222',
 						],
-						'gridLines' => $yaxes_gridLines
+						'gridLines' => $yaxes_gridLines,
+						'barPercentage' => ( $settings['bar_width']['size'] !== '' ) ? $settings['bar_width']['size'] / 100 : '',
+						'categoryPercentage' =>  ( $settings['category_width']['size'] !== '' ) ? $settings['category_width']['size'] / 100 : '',
 					]
 				],
 			],
