@@ -268,6 +268,9 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 == Changelog ==
 
+= 2.7.0 - =
+- Fix: Stepflow inline editing issue
+
 = 2.6.0 - 15 January 2020 =
 
 - New: Fun Factor widget
