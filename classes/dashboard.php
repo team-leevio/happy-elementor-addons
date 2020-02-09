@@ -13,6 +13,8 @@ class Dashboard {
 
     const PAGE_SLUG = 'happy-addons';
 
+    const LICENSE_PAGE_SLUG = 'happy-addons-license';
+
     const WIDGETS_NONCE = 'ha_save_dashboard';
 
     static $menu_slug = '';
@@ -32,7 +34,7 @@ class Dashboard {
     }
 
     public static function is_page() {
-        return ( isset( $_GET['page'] ) && $_GET['page'] === self::PAGE_SLUG );
+        return ( isset( $_GET['page'] ) && ( $_GET['page'] === self::PAGE_SLUG || $_GET['page'] === self::LICENSE_PAGE_SLUG ) );
     }
 
     public static function remove_all_notices() {
