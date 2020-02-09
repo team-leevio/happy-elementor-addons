@@ -37,6 +37,9 @@ class Chart_type {
 	}
 
 	private static function chart_options($settings) {
+		if ( $settings['chart_type'] == 'bar' ) {
+			return Bar_Chart::chart_options($settings);
+		}
 
 		return Bar_Chart::chart_options($settings);
 	}

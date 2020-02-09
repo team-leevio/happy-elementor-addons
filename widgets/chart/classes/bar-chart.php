@@ -105,7 +105,6 @@ class Bar_Chart {
 			'legend' => [
 				'display'  => $legend_display,
 				'position' => !empty( $settings['legend_position'] ) ? $settings['legend_position'] : 'top',
-				'align' => !empty( $settings['legend_alignment'] ) ? $settings['legend_alignment'] : 'center',
 				'reverse'  => $settings['legend_reverse'] == 'yes' ? true : false,
 				'labels' => $legend_style,
 			],

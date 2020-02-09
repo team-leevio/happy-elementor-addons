@@ -66,6 +66,8 @@ class Chart extends Base {
 					'bar' => __( 'Bar', 'happy-elementor-addons' ),
 					'line' => __( 'Line', 'happy-elementor-addons' ),
 					'pie' => __( 'Pie', 'happy-elementor-addons' ),
+					'radar' => __( 'Radar', 'happy-elementor-addons' ),
+					'polarArea' => __( 'Polar Area', 'happy-elementor-addons' ),
 				],
 			]
 		);
@@ -78,7 +80,7 @@ class Chart extends Base {
 				'condition' => [
 					'chart_type!' => 'bar'
 				],
-				'raw' => __( 'Please install <a href="https://happyaddons.com/pricing/" target="_blank">Happy Addons Pro</a>', 'happy-elementor-addons' ),
+				'raw' => __( 'Please install/active <a href="https://happyaddons.com/pricing/" target="_blank">Happy Addons Pro</a>', 'happy-elementor-addons' ),
 			]
 		);
 
@@ -362,32 +364,6 @@ class Chart extends Base {
 					'left'   => __( 'Left', 'happy-elementor-addons' ),
 					'bottom' => __( 'Bottom', 'happy-elementor-addons' ),
 					'right'  => __( 'Right', 'happy-elementor-addons' ),
-				],
-				'condition' => [
-					'legend_display' => 'yes',
-				],
-			]
-		);
-
-		$this->add_control(
-			'legend_alignment',
-			[
-				'label' => __( 'Alignment', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::CHOOSE,
-				'label_block' => false,
-				'options' => [
-					'start' => [
-						'title' => __( 'Start', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-left',
-					],
-					'center' => [
-						'title' => __( 'Center', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-center',
-					],
-					'end' => [
-						'title' => __( 'End', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-right',
-					],
 				],
 				'condition' => [
 					'legend_display' => 'yes',
@@ -1343,7 +1319,7 @@ class Chart extends Base {
 			<div class="ha-chart-pro-msg">
 				<?php
 				printf( '%s <span>%s</span>',
-					esc_html( 'Please install ' ),
+					esc_html( 'Please install/active ' ),
 					esc_html( 'Happy Addons Pro' )
 				);
 				?>
