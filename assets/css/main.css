@@ -2807,8 +2807,8 @@
 
 .ha-twitter-feed .ha-tweeter-feed-icon i {
 	position: absolute;
-	top: 5px;
-	right: 5px;
+	top: 15px;
+	right: 15px;
 	color: #1da1f2;
 	font-size: 22px;
 }
@@ -2932,9 +2932,9 @@
 
 .ha-twitter-feed .ha-tweet-footer {
 	position: absolute;
-	bottom: 10px;
+	bottom: 15px;
 	left: 0;
-	padding: 0 10px;
+	padding: 0 15px;
 	width: 100%;
 	text-align: right;
 }
