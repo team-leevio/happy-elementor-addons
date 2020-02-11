@@ -255,6 +255,7 @@ class Member extends Base {
             [
                 'label' => __( 'Profile Name', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT2,
+                'label_block' => true,
                 'select2options' => [
                     'allowClear' => false,
                 ],
@@ -267,7 +268,7 @@ class Member extends Base {
                 'label' => __( 'Profile Link', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Add your profile link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
-                'label_block' => false,
+                'label_block' => true,
                 'autocomplete' => false,
                 'show_external' => false,
                 'condition' => [
