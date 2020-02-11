@@ -1,4 +1,4 @@
-;(function(elementor, $, window) {
+;(function($) {
     'use strict';
 
     elementor.on('panel:init', function() {
@@ -144,4 +144,4 @@
         newTab: true
     }, 'settings');
 
-}(elementor, jQuery, window));
+}(jQuery));
