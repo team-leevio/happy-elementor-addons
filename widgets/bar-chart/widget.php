@@ -724,6 +724,14 @@ class Bar_Chart extends Base {
 			]
 		);
 
+		$this->add_responsive_control(
+			'labels_padding',
+			[
+				'label'       => __( 'Padding', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::SLIDER,
+			]
+		);
+
 		$this->add_control(
 			'xaxes_label_note',
 			[
