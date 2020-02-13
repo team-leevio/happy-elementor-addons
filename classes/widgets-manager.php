@@ -478,9 +478,9 @@ class Widgets_Manager {
                     'js' => ['elementor-waypoints', 'jquery-numerator'],
                 ],
             ],
-			'chart' => [
-				'demo' => 'https://happyaddons.com/go/demo-step-flow',
-				'title' => __( 'Chart', 'happy-elementor-addons' ),
+			'bar-chart' => [
+				'demo' => '',
+				'title' => __( 'Bar Chart', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-graph-bar',
 				'css' => ['chart'],
 				'js' => [],

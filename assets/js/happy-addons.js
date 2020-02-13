@@ -451,11 +451,11 @@
             });
         };
 
-		var Ha_Chart = function( $scope ) {
+		var BarChart = function( $scope ) {
 			EF.waypoint($scope, function () {
 				var $chart = $(this),
-					$container = $chart.find( '.ha-chart-container' ),
-					$chart_canvas = $chart.find( '#ha-chart-bar' ),
+					$container = $chart.find( '.ha-bar-chart-container' ),
+					$chart_canvas = $chart.find( '#ha-bar-chart' ),
 					settings      = $container.data( 'settings' );
 
 				if ( $container.length ) {
@@ -470,7 +470,7 @@
             'ha-number.default': NumberHandler,
             'ha-skills.default': SkillHandler,
             'ha-fun-factor.default': FunFactor,
-            'ha-chart.default': Ha_Chart,
+            'ha-bar-chart.default': BarChart,
         };
 
         $.each( handlersFnMap, function( widgetName, handlerFn ) {

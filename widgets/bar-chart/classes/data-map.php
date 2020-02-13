@@ -4,12 +4,26 @@
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Widget\Chart;
+namespace Happy_Addons\Elementor\Widget\Bar_Chart;
 
 defined( 'ABSPATH' ) || die();
 
 
-class Bar_Chart {
+class Data_Map {
+
+	public static function initial($settings) {
+		$data_settings = json_encode(
+			[
+				'type'    => $settings['chart_position'],
+				'data'    => [
+					'labels'   => explode(',', esc_html( $settings['labels'] ) ),
+					'datasets' => self::chart_dataset($settings),
+				],
+				'options' => self::chart_options($settings)
+			]
+		);
+		return $data_settings;
+	}
 
 	public static function chart_dataset($settings) {
 
