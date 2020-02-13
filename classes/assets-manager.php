@@ -36,22 +36,19 @@ class Assets_Manager {
      */
     public static function add_inline_editing_intermediate_toolbar( $config ) {
         if ( isset( $config['inlineEditing'] ) ) {
+            $tools = [
+                'bold',
+                'underline',
+                'italic',
+                'createlink',
+            ];
+
             if ( isset( $config['inlineEditing']['toolbar'] ) ) {
-                $config['inlineEditing']['toolbar']['intermediate'] = [
-                    'bold',
-                    'underline',
-                    'italic',
-                    'createlink',
-                ];
+                $config['inlineEditing']['toolbar']['intermediate'] = $tools;
             } else {
                 $config['inlineEditing'] = [
                     'toolbar' => [
-                        'intermediate' => [
-                            'bold',
-                            'underline',
-                            'italic',
-                            'createlink',
-                        ],
+                        'intermediate' => $tools,
                     ],
                 ];
             }

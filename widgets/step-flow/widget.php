@@ -671,14 +671,14 @@ class Step_Flow extends Base {
 
         if ( ! empty( $settings['link']['url'] ) ) {
             $this->add_link_attributes( 'link', $settings['link'] );
-            $this->add_inline_editing_attributes( 'link', 'none', 'title' );
+            $this->add_inline_editing_attributes( 'link', 'basic', 'title' );
 
             $title = sprintf( '<a %s>%s</a>',
                 $this->get_render_attribute_string( 'link' ),
                 ha_kses_basic( $settings['title'] )
             );
         } else {
-            $this->add_inline_editing_attributes( 'title', 'none' );
+            $this->add_inline_editing_attributes( 'title', 'basic' );
             $title = ha_kses_basic( $settings['title'] );
         }
         ?>
