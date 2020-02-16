@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.6.0
+Version: 2.6.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, obiplabon
@@ -268,8 +268,9 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 == Changelog ==
 
-= 2.7.0 - =
+= 2.6.1 - 16 February 2020 =
 
+- Fix: Conflict with Rank Math
 - Fix: Stepflow inline editing issue
 - Fix: Gravity Forms conditional field issue
 - Fix: Fun Factor padding issue
