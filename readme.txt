@@ -275,6 +275,7 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 - Fix: Stepflow inline editing issue
 - Fix: Gravity Forms conditional field issue
 - Fix: Inline editing issue in Elementor 2.9.*
+- Fix: Select2 width collapse issue in Elementor 2.9.*
 
 = 2.6.0 - 15 January 2020 =
 

@@ -400,7 +400,7 @@ class Justified_Gallery extends Base {
                 'label' => __( 'Hover Animation', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HOVER_ANIMATION,
                 'default' => 'grow',
-                'label_block' => false,
+                'label_block' => true,
             ]
         );
 
@@ -409,6 +409,7 @@ class Justified_Gallery extends Base {
             [
                 'label' => __( 'Hover Cursor', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SELECT2,
+                'label_block' => true,
                 'options' => ha_get_css_cursors(),
                 'default' => 'default',
                 'selectors' => [
