@@ -204,7 +204,7 @@ class Assets_Manager {
 		// Hover css
 		wp_enqueue_style(
 			'hover-css',
-			'//cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css',
+			HAPPY_ADDONS_ASSETS . 'vendor/hover-css/hover-min.css',
 			null,
 			HAPPY_ADDONS_VERSION
 		);
