@@ -284,16 +284,6 @@ class Social_Icons extends Base {
 		$repeater->end_controls_tab();
 		$repeater->end_controls_tabs();
 
-//		$repeater->add_group_control(
-//			Group_Control_Border::get_type(),
-//			[
-//				'name'      => 'icon_border',
-//				'selector'  => '{{WRAPPER}} .ha-social-icons-wrapper {{CURRENT_ITEM}}',
-//				'separator' => 'before',
-//				'condition'      => ['customize' => 'yes'],
-//			]
-//		);
-
 		$this->add_control(
 			'ha_social_icon_list',
 			[
@@ -677,20 +667,13 @@ class Social_Icons extends Base {
 			]
 		);
 
-//		$this->add_control(
-//			'hover_animation',
-//			[
-//				'label' => __( 'Hover Animation', 'happy-elementor-addons' ),
-//				'type' => Controls_Manager::HOVER_ANIMATION,
-//			]
-//		);
-
 		$this->add_control(
 			'hover_animation',
 			[
 				'label'   => __('Hover Animation', 'happy-elementor-addons'),
 				'type'    => Controls_Manager::SELECT,
 				'options' => [
+					'none'                   => __('None', 'happy-elementor-addons'),
 					'2d-transition'          => __('2D Animation', 'happy-elementor-addons'),
 					'background-transition'  => __('Background Animation', 'happy-elementor-addons'),
 					'shadow-glow-transition' => __('Shadow and Glow Animation', 'happy-elementor-addons'),
@@ -738,24 +721,24 @@ class Social_Icons extends Base {
 				'label'     => __('Animation', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => [
-					'hvr-fade' => __('Fade', 'happy-elementor-addons'),
-					'hvr-back-pulse' => __('Back Pulse', 'happy-elementor-addons'),
-					'hvr-sweep-to-right' => __('Sweep To Right', 'happy-elementor-addons'),
-					'hvr-sweep-to-left' => __('Sweep To Left', 'happy-elementor-addons'),
-					'hvr-sweep-to-bottom' => __('Sweep To Bottom', 'happy-elementor-addons'),
-					'hvr-sweep-to-top' => __('Sweep To Top', 'happy-elementor-addons'),
-					'hvr-bounce-to-right' => __('Bounce To Right', 'happy-elementor-addons'),
-					'hvr-bounce-to-left' => __('Bounce To Left', 'happy-elementor-addons'),
-					'hvr-bounce-to-bottom' => __('Bounce To Bottom', 'happy-elementor-addons'),
-					'hvr-bounce-to-top' => __('Bounce To Top', 'happy-elementor-addons'),
-					'hvr-radial-out' => __('Radial Out', 'happy-elementor-addons'),
-					'hvr-radial-in' => __('Radial In', 'happy-elementor-addons'),
-					'hvr-rectangle-in' => __('Rectangle In', 'happy-elementor-addons'),
-					'hvr-rectangle-out' => __('Rectangle Out', 'happy-elementor-addons'),
-					'hvr-shutter-in-horizontal' => __('Shutter In Horizontal', 'happy-elementor-addons'),
+					'hvr-fade'                   => __('Fade', 'happy-elementor-addons'),
+					'hvr-back-pulse'             => __('Back Pulse', 'happy-elementor-addons'),
+					'hvr-sweep-to-right'         => __('Sweep To Right', 'happy-elementor-addons'),
+					'hvr-sweep-to-left'          => __('Sweep To Left', 'happy-elementor-addons'),
+					'hvr-sweep-to-bottom'        => __('Sweep To Bottom', 'happy-elementor-addons'),
+					'hvr-sweep-to-top'           => __('Sweep To Top', 'happy-elementor-addons'),
+					'hvr-bounce-to-right'        => __('Bounce To Right', 'happy-elementor-addons'),
+					'hvr-bounce-to-left'         => __('Bounce To Left', 'happy-elementor-addons'),
+					'hvr-bounce-to-bottom'       => __('Bounce To Bottom', 'happy-elementor-addons'),
+					'hvr-bounce-to-top'          => __('Bounce To Top', 'happy-elementor-addons'),
+					'hvr-radial-out'             => __('Radial Out', 'happy-elementor-addons'),
+					'hvr-radial-in'              => __('Radial In', 'happy-elementor-addons'),
+					'hvr-rectangle-in'           => __('Rectangle In', 'happy-elementor-addons'),
+					'hvr-rectangle-out'          => __('Rectangle Out', 'happy-elementor-addons'),
+					'hvr-shutter-in-horizontal'  => __('Shutter In Horizontal', 'happy-elementor-addons'),
 					'hvr-shutter-out-horizontal' => __('Shutter Out Horizontal', 'happy-elementor-addons'),
-					'hvr-shutter-in-vertical' => __('Shutter In Vertical', 'happy-elementor-addons'),
-					'hvr-shutter-out-vertical' => __('Shutter Out Vertical', 'happy-elementor-addons'),
+					'hvr-shutter-in-vertical'    => __('Shutter In Vertical', 'happy-elementor-addons'),
+					'hvr-shutter-out-vertical'   => __('Shutter Out Vertical', 'happy-elementor-addons'),
 				],
 				'condition' => [
 					'hover_animation' => 'background-transition'
@@ -770,13 +753,13 @@ class Social_Icons extends Base {
 				'label'     => __('Animation', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => [
-					'hvr-glow' => __('Glow', 'happy-elementor-addons'),
-					'hvr-shadow' => __('Shadow', 'happy-elementor-addons'),
-					'hvr-grow-shadow' => __('Grow Shadow', 'happy-elementor-addons'),
+					'hvr-glow'              => __('Glow', 'happy-elementor-addons'),
+					'hvr-shadow'            => __('Shadow', 'happy-elementor-addons'),
+					'hvr-grow-shadow'       => __('Grow Shadow', 'happy-elementor-addons'),
 					'hvr-box-shadow-outset' => __('Box Shadow Outset', 'happy-elementor-addons'),
-					'hvr-box-shadow-inset' => __('Box Shadow Inset', 'happy-elementor-addons'),
-					'hvr-float-shadow' => __('Float Shadow', 'happy-elementor-addons'),
-					'hvr-shadow-radial' => __('Shadow Radial', 'happy-elementor-addons'),
+					'hvr-box-shadow-inset'  => __('Box Shadow Inset', 'happy-elementor-addons'),
+					'hvr-float-shadow'      => __('Float Shadow', 'happy-elementor-addons'),
+					'hvr-shadow-radial'     => __('Shadow Radial', 'happy-elementor-addons'),
 				],
 				'condition' => [
 					'hover_animation' => 'shadow-glow-transition'
@@ -869,7 +852,7 @@ class Social_Icons extends Base {
 		$custom_separators = $settings['custom_separator'];
 		$separators        = $custom_separators ? $custom_separators : '';
 
-		$hover_css_animation  = '';
+		$hover_css_animation = '';
 
 		if (!empty($settings['hover_animation'])) {
 

@@ -2834,6 +2834,11 @@
 	        transition: all .3s;
 }
 
+a.ha-social-icon:before,
+a.ha-social-icon:after {
+	border-radius: inherit;
+}
+
 .ha-social-icons-wrapper a.elementor-social-icon-label {
 	color: #d30c5c;
 }
