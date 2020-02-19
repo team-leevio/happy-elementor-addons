@@ -8,6 +8,21 @@
                 .parents('.elementor-element')
                 .addClass('is-ha-widget');
         }, 100));
+        //Happy Grid Layer Shortcut Register
+	    if ( typeof $e !== 'undefined' || $e !== null ) {
+		    var option = {
+			    callback: function() {
+				    var ha_grid = elementor.settings.page.model.attributes.ha_grid;
+				    if ( '' === ha_grid ) {
+					    elementor.settings.page.model.setExternalChange( 'ha_grid', 'yes' );
+				    } else if ( 'yes' === ha_grid ) {
+					    elementor.settings.page.model.setExternalChange( 'ha_grid', '' );
+				    }
+			    }
+		    };
+		    $e.shortcuts.register( 'ctrl+shift+g', option);
+		    $e.shortcuts.register( 'cmd+shift+g', option);
+	    }
     });
 
     function getCssEffectsControlsMap() {
