@@ -85,6 +85,9 @@ class Skills extends Base {
                         'min' => 0,
                         'max' => 100,
                     ],
+                ],
+                'dynamic' => [
+                    'active' => true,
                 ]
             ]
         );

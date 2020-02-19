@@ -111,9 +111,6 @@ class Pricing_Table extends Base {
                     'custom' => __( 'Custom', 'happy-elementor-addons' ),
                 ],
                 'default' => 'dollar',
-                'dynamic' => [
-                    'active' => true
-                ]
             ]
         );
 
@@ -125,6 +122,9 @@ class Pricing_Table extends Base {
                 'condition' => [
                     'currency' => 'custom',
                 ],
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
