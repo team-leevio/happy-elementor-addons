@@ -88,6 +88,9 @@ class News_Ticker extends Base {
 				'label' => __( 'Sticky Title', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => __( 'Breaking News', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
 			]
 		);
 

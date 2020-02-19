@@ -68,6 +68,9 @@ class Logo_Grid extends Base {
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -78,6 +81,9 @@ class Logo_Grid extends Base {
                 'type' => Controls_Manager::URL,
                 'show_external' => false,
                 'label_block' => false,
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -502,6 +508,7 @@ class Logo_Grid extends Base {
             [
                 'label' => __( 'Hover Animation', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HOVER_ANIMATION,
+                'label_block' => true,
             ]
         );
 

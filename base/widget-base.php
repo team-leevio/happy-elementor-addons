@@ -151,4 +151,76 @@ abstract class Base extends Widget_Base {
             ] );
         }
     }
+
+    /**
+     * Add link render attributes.
+     *
+     * Used to add link tag attributes to a specific HTML element.
+     *
+     * The HTML link tag is represented by the element parameter. The `url_control` parameter
+     * needs to be an array of link settings in the same format they are set by Elementor's URL control.
+     *
+     * Example usage:
+     *
+     * `$this->add_link_attributes( 'button', $settings['link'] );`
+     *
+     * @since 2.8.0
+     * @access public
+     *
+     * @param array|string $element   The HTML element.
+     * @param array $url_control      Array of link settings.
+     * @param bool $overwrite         Optional. Whether to overwrite existing
+     *                                attribute. Default is false, not to overwrite.
+     *
+     * @return \Elementor\Element_Base instance
+     */
+
+    public function add_link_attributes( $element, array $url_control, $overwrite = false ) {
+        /**
+         * add_link_attributes is only available form 2.8.0
+         */
+        if ( ha_is_elementor_version( '>=', '2.8.0' ) ) {
+            return parent::add_link_attributes( $element, $url_control, $overwrite );
+        }
+
+        $attributes = [];
+
+        if ( ! empty( $url_control['url'] ) ) {
+            $attributes['href'] = $url_control['url'];
+        }
+
+        if ( ! empty( $url_control['is_external'] ) ) {
+            $attributes['target'] = '_blank';
+        }
+
+        if ( ! empty( $url_control['nofollow'] ) ) {
+            $attributes['rel'] = 'nofollow';
+        }
+
+        if ( ! empty( $url_control['custom_attributes'] ) ) {
+            // Custom URL attributes should come as a string of comma-delimited key|value pairs
+            $custom_attributes = explode( ',', $url_control['custom_attributes'] );
+            $blacklist = [ 'onclick', 'onfocus', 'onblur', 'onchange', 'onresize', 'onmouseover', 'onmouseout', 'onkeydown', 'onkeyup' ];
+
+            foreach ( $custom_attributes as $attribute ) {
+                // Trim in case users inserted unwanted spaces
+                list( $attr_key, $attr_value ) = explode( '|', $attribute );
+
+                // Cover cases where key/value have spaces both before and/or after the actual value
+                $attr_key = trim( $attr_key );
+                $attr_value = trim( $attr_value );
+
+                // Implement attribute blacklist
+                if ( ! in_array( strtolower( $attr_key ), $blacklist, true ) ) {
+                    $attributes[ $attr_key ] = $attr_value;
+                }
+            }
+        }
+
+        if ( $attributes ) {
+            $this->add_render_attribute( $element, $attributes, $overwrite );
+        }
+
+        return $this;
+    }
 }

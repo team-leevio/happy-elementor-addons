@@ -1,12 +1,12 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.6.0
+Version: 2.6.2
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, obiplabon
 Tags: elementor, elementor addon, elementor widget, essential widget, elements
 Requires at least: 4.7
-Tested up to: 5.2.4
+Tested up to: 5.3.2
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -267,6 +267,27 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.6.2 - 19 February 2020 =
+
+- Update: Dynamic Tags support in Carousel widget
+- Update: Dynamic Tags support in Dual Button widget
+- Update: Dynamic Tags support in Logo Grid widget
+- Update: Dynamic Tags support in News Ticker widget
+- Update: Dynamic Tags support in Pricing Table widget
+- Update: Dynamic Tags support in Skills widget
+- Update: Dynamic Tags support in Slider widget
+- Update: Dynamic Tags support in Testimonial widget
+- Fix: Pricing Table widget php warning
+
+= 2.6.1 - 16 February 2020 =
+
+- Fix: Conflict with Rank Math
+- Fix: Fun Factor padding issue
+- Fix: Stepflow inline editing issue
+- Fix: Gravity Forms conditional field issue
+- Fix: Inline editing issue in Elementor 2.9.*
+- Fix: Select2 width collapse issue in Elementor 2.9.*
 
 = 2.6.0 - 15 January 2020 =
 

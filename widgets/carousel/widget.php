@@ -72,6 +72,9 @@ class Carousel extends Base {
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -81,7 +84,10 @@ class Carousel extends Base {
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
                 'label' => __( 'Title & Subtitle', 'happy-elementor-addons' ),
-                'placeholder' => __( 'Type title here', 'happy-elementor-addons' )
+                'placeholder' => __( 'Type title here', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -91,7 +97,10 @@ class Carousel extends Base {
                 'type' => Controls_Manager::TEXTAREA,
                 'label_block' => true,
                 'show_label' => false,
-                'placeholder' => __( 'Type subtitle here', 'happy-elementor-addons' )
+                'placeholder' => __( 'Type subtitle here', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 

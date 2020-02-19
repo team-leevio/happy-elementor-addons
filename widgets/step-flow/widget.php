@@ -661,7 +661,6 @@ class Step_Flow extends Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $this->add_inline_editing_attributes( 'title', 'basic' );
         $this->add_render_attribute( 'title', 'class', 'ha-steps-title' );
 
         $this->add_inline_editing_attributes( 'description', 'intermediate' );
@@ -670,26 +669,16 @@ class Step_Flow extends Base {
         $this->add_render_attribute( 'badge', 'class', 'ha-steps-label' );
         $this->add_inline_editing_attributes( 'badge', 'none' );
 
-        if ( $settings['link']['url'] ) {
-            $this->add_inline_editing_attributes( 'link', 'basic', 'title' );
-            $this->add_render_attribute( 'link', 'href', esc_url( $settings['link']['url'] ) );
-            if ( ! empty( $settings['link']['is_external'] ) ) {
-                $this->add_render_attribute( 'link', 'target', '_blank' );
-            }
-            if ( ! empty( $settings['link']['nofollow'] ) ) {
-                $this->set_render_attribute( 'link', 'rel', 'nofollow' );
-            }
-        } else {
-            $this->add_inline_editing_attributes( 'title', 'basic' );
-        }
-
         if ( ! empty( $settings['link']['url'] ) ) {
-            $title = sprintf(
-                '<a %1$s>%2$s</a>',
+            $this->add_link_attributes( 'link', $settings['link'] );
+            $this->add_inline_editing_attributes( 'link', 'basic', 'title' );
+
+            $title = sprintf( '<a %s>%s</a>',
                 $this->get_render_attribute_string( 'link' ),
                 ha_kses_basic( $settings['title'] )
             );
         } else {
+            $this->add_inline_editing_attributes( 'title', 'basic' );
             $title = ha_kses_basic( $settings['title'] );
         }
         ?>
@@ -709,8 +698,7 @@ class Step_Flow extends Base {
         </div>
 
         <?php
-        printf(
-            '<%1$s %2$s>%3$s</%1$s>',
+        printf( '<%1$s %2$s>%3$s</%1$s>',
             tag_escape( $settings['title_tag'] ),
             $this->get_render_attribute_string( 'title' ),
             $title

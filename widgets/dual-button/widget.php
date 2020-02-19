@@ -204,6 +204,9 @@ class Dual_Button extends Base {
                 'condition' => [
                     'button_connector_hide!' => 'yes',
                     'button_connector_type' => 'text',
+                ],
+                'dynamic' => [
+                    'active' => true,
                 ]
             ]
         );

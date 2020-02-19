@@ -594,6 +594,7 @@ class Card extends Base {
             [
                 'label' => __( 'Hover Animation', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HOVER_ANIMATION,
+                'label_block' => true,
             ]
         );
 

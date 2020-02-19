@@ -397,7 +397,7 @@ class Image_Grid extends Base {
                 'label' => __( 'Hover Animation', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HOVER_ANIMATION,
                 'default' => 'grow',
-                'label_block' => false,
+                'label_block' => true,
             ]
         );
 

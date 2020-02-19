@@ -19,7 +19,8 @@ class Assets_Manager {
         // Edit and preview enqueue
         add_action( 'elementor/preview/enqueue_styles', [ __CLASS__, 'enqueue_preview_style' ] );
 
-        add_action( 'elementor/editor/before_enqueue_scripts', [ __CLASS__, 'enqueue_editor_scripts' ] );
+        // Enqueue editor scripts
+        add_action( 'elementor/editor/after_enqueue_scripts', [ __CLASS__, 'enqueue_editor_scripts' ] );
 
         // Placeholder image replacement
         add_filter( 'elementor/utils/get_placeholder_image_src', [ __CLASS__, 'set_placeholder_image' ] );
@@ -35,16 +36,24 @@ class Assets_Manager {
      * @return array
      */
     public static function add_inline_editing_intermediate_toolbar( $config ) {
-        $config['inlineEditing'] = [
-            'toolbar' => [
-                'intermediate' => [
-                    'bold',
-                    'underline',
-                    'italic',
-                    'createlink',
-                ],
-            ]
-        ];
+        if ( isset( $config['inlineEditing'] ) ) {
+            $tools = [
+                'bold',
+                'underline',
+                'italic',
+                'createlink',
+            ];
+
+            if ( isset( $config['inlineEditing']['toolbar'] ) ) {
+                $config['inlineEditing']['toolbar']['intermediate'] = $tools;
+            } else {
+                $config['inlineEditing'] = [
+                    'toolbar' => [
+                        'intermediate' => $tools,
+                    ],
+                ];
+            }
+        }
         return $config;
     }
 

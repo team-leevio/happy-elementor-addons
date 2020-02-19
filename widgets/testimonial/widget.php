@@ -68,6 +68,9 @@ class Testimonial extends Base {
                 'type' => Controls_Manager::TEXTAREA,
                 'default' => __( 'Testimonial contents', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type testimonial', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -131,6 +134,9 @@ class Testimonial extends Base {
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
 		);
 
@@ -152,6 +158,9 @@ class Testimonial extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Happy', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type Reviewer Name', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 
@@ -163,6 +172,9 @@ class Testimonial extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'CMO, HappyAddons', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type reviewer title', 'happy-elementor-addons' ),
+                'dynamic' => [
+                    'active' => true,
+                ]
             ]
         );
 

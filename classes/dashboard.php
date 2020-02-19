@@ -13,6 +13,8 @@ class Dashboard {
 
     const PAGE_SLUG = 'happy-addons';
 
+    const LICENSE_PAGE_SLUG = 'happy-addons-license';
+
     const WIDGETS_NONCE = 'ha_save_dashboard';
 
     static $menu_slug = '';
@@ -27,6 +29,19 @@ class Dashboard {
         add_filter( 'plugin_action_links_' . plugin_basename( HAPPY_ADDONS__FILE__ ), [ __CLASS__, 'add_action_links' ] );
 
         add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_widgets_data' ] );
+
+        add_action( 'in_admin_header', [ __CLASS__, 'remove_all_notices' ], PHP_INT_MAX );
+    }
+
+    public static function is_page() {
+        return ( isset( $_GET['page'] ) && ( $_GET['page'] === self::PAGE_SLUG || $_GET['page'] === self::LICENSE_PAGE_SLUG ) );
+    }
+
+    public static function remove_all_notices() {
+        if ( self::is_page() ) {
+            remove_all_actions( 'admin_notices' );
+            remove_all_actions( 'all_admin_notices' );
+        }
     }
 
     public static function activation_redirect() {
