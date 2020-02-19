@@ -451,12 +451,26 @@
             });
         };
 
+		var BarChart = function( $scope ) {
+			EF.waypoint($scope, function () {
+				var $chart = $(this),
+					$container = $chart.find( '.ha-bar-chart-container' ),
+					$chart_canvas = $chart.find( '#ha-bar-chart' ),
+					settings      = $container.data( 'settings' );
+
+				if ( $container.length ) {
+					var chart = new Chart( $chart_canvas, settings );
+				}
+			} );
+		};
+
         var handlersFnMap = {
             'ha-image-compare.default': HandleImageCompare,
             'ha-justified-gallery.default': HandleJustifiedGallery,
             'ha-number.default': NumberHandler,
             'ha-skills.default': SkillHandler,
             'ha-fun-factor.default': FunFactor,
+            'ha-bar-chart.default': BarChart,
         };
 
         $.each( handlersFnMap, function( widgetName, handlerFn ) {
