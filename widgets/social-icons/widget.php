@@ -162,6 +162,9 @@ class Social_Icons extends Base {
 			[
 				'label'     => __('Social Name', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::TEXT,
+				'dynamic'     => [
+					'active' => true,
+				],
 				'condition' => [
 					'ha_enable_text' => 'yes'
 				],
@@ -378,6 +381,9 @@ class Social_Icons extends Base {
 			[
 				'label'       => __('Custom Character', 'happy-elementor-addons'),
 				'type'        => Controls_Manager::TEXT,
+				'dynamic'     => [
+					'active' => true,
+				],
 				'condition'   => [
 					'social_media_separator' => 'yes',
 					'separator_type'         => 'custom'
