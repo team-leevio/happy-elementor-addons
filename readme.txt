@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.6.1
+Version: 2.6.2
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, obiplabon
@@ -267,6 +267,18 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.6.2 - 19 February 2020 =
+
+- Update: Dynamic Tags support in Carousel widget
+- Update: Dynamic Tags support in Dual Button widget
+- Update: Dynamic Tags support in Logo Grid widget
+- Update: Dynamic Tags support in News Ticker widget
+- Update: Dynamic Tags support in Pricing Table widget
+- Update: Dynamic Tags support in Skills widget
+- Update: Dynamic Tags support in Slider widget
+- Update: Dynamic Tags support in Testimonial widget
+- Fix: Pricing Table widget php warning
 
 = 2.6.1 - 16 February 2020 =
 
