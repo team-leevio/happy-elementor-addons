@@ -70,7 +70,7 @@ class Data_Map {
 			'enabled' 			=> $tooltips_display,
 			'backgroundColor' 	=> !empty( $settings['tooltip_background_color'] ) ? $settings['tooltip_background_color'] : 'rgba(0, 0, 0, .7)',
 			'borderWidth' 		=> !empty( $settings['tooltip_border_width']['size'] ) ? $settings['tooltip_border_width']['size'] : 0,
-			'borderColor' 		=> !empty( $settings['tooltip_border_color'] ) ? $settings['tooltip_border_width'] : '',
+			'borderColor' 		=> !empty( $settings['tooltip_border_color'] ) ? $settings['tooltip_border_color'] : 'rgba(0, 0, 0, 0.1)',
 			'titleFontFamily' 	=> !empty( $settings['tooltip_title_font_family'] ) ? $settings['tooltip_title_font_family'] : 'auto',
 			'titleFontSize'   	=> !empty( $settings['tooltip_title_font_size']['size'] ) ? $settings['tooltip_title_font_size']['size'] : 12,
 			'titleFontStyle'	=> (!empty( $settings['tooltip_title_font_style'] ) ? $settings['tooltip_title_font_style'] : '') . ' ' . (!empty( $settings['tooltip_title_font_weight'] ) ? $settings['tooltip_title_font_weight'] : ''),
