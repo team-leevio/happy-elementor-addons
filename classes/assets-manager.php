@@ -3,7 +3,7 @@ namespace Happy_Addons\Elementor;
 
 use Elementor\Core\Files\CSS\Post as Post_CSS;
 
-defined( 'ABSPATH' ) || die();
+defined('ABSPATH') || die();
 
 class Assets_Manager {
 
@@ -204,132 +204,141 @@ class Assets_Manager {
 		wp_register_script(
 			'chart-js',
 			HAPPY_ADDONS_ASSETS . 'vendor/chart/chart.min.js',
-			[ 'jquery' ],
+			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
 
-        // Main assets
-        wp_register_style(
-            'happy-elementor-addons',
-            HAPPY_ADDONS_ASSETS . 'css/main' . $suffix . 'css',
-            [ 'elementor-frontend' ],
-            HAPPY_ADDONS_VERSION
-        );
+		// Hover css
+		wp_enqueue_style(
+			'hover-css',
+			HAPPY_ADDONS_ASSETS . 'vendor/hover-css/hover-min.css',
+			null,
+			HAPPY_ADDONS_VERSION
+		);
 
-        // Happy addons script
-        wp_register_script(
-            'happy-elementor-addons',
-            HAPPY_ADDONS_ASSETS . 'js/happy-addons' . $suffix . 'js',
-            [ 'imagesloaded', 'jquery' ],
-            HAPPY_ADDONS_VERSION,
-            true
-        );
+		// Main assets
+		wp_register_style(
+			'happy-elementor-addons',
+			HAPPY_ADDONS_ASSETS . 'css/main' . $suffix . 'css',
+			['elementor-frontend'],
+			HAPPY_ADDONS_VERSION
+		);
+
+		// Happy addons script
+		wp_register_script(
+			'happy-elementor-addons',
+			HAPPY_ADDONS_ASSETS . 'js/happy-addons' . $suffix . 'js',
+			['imagesloaded', 'jquery'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
 
 		//Localize scripts
-		wp_localize_script( 'happy-elementor-addons', 'HappyTwitterLocalize', [
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'nonce' => wp_create_nonce( 'happy_addons_twitter_nonce' ),
-		] );
-    }
+		wp_localize_script('happy-elementor-addons', 'HappyTwitterLocalize', [
+			'ajax_url' => admin_url('admin-ajax.php'),
+			'nonce'    => wp_create_nonce('happy_addons_twitter_nonce'),
+		]);
+	}
 
-    /**
-     * Handle exception cases where regular enqueue won't work
-     *
-     * @param Post_CSS $file
-     */
-    public static function frontend_enqueue_exceptions( Post_CSS $file ) {
-        if ( get_queried_object_id() !== $file->get_post_id() ) {
-            if ( Cache_Manager::should_enqueue( $file->get_post_id() ) ) {
-                Cache_Manager::enqueue( $file->get_post_id() );
-            } else {
-                Cache_Manager::enqueue_without_cache();
-            }
-        }
-    }
+	/**
+	 * Handle exception cases where regular enqueue won't work
+	 *
+	 * @param Post_CSS $file
+	 */
+	public static function frontend_enqueue_exceptions(Post_CSS $file) {
+		if (get_queried_object_id() !== $file->get_post_id()) {
+			if (Cache_Manager::should_enqueue($file->get_post_id())) {
+				Cache_Manager::enqueue($file->get_post_id());
+			} else {
+				Cache_Manager::enqueue_without_cache();
+			}
+		}
+	}
 
-    public static function frontend_enqueue() {
-        if ( ! is_singular() ) {
-            return;
-        }
+	public static function frontend_enqueue() {
+		if (!is_singular()) {
+			return;
+		}
 
-        if ( Cache_Manager::should_enqueue( get_the_ID() ) ) {
-            Cache_Manager::enqueue( get_the_ID() );
-        } else {
-            Cache_Manager::enqueue_without_cache();
-        }
-    }
+		if (Cache_Manager::should_enqueue(get_the_ID())) {
+			Cache_Manager::enqueue(get_the_ID());
+		} else {
+			Cache_Manager::enqueue_without_cache();
+		}
+	}
 
-    public static function enqueue_editor_scripts() {
-        wp_enqueue_style(
-            'happy-icons',
-            HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
-            null,
-            HAPPY_ADDONS_VERSION
-        );
+	public static function enqueue_editor_scripts() {
+		wp_enqueue_style(
+			'happy-icons',
+			HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
+			null,
+			HAPPY_ADDONS_VERSION
+		);
 
-        wp_enqueue_style(
-            'happy-elementor-addons-editor',
-            HAPPY_ADDONS_ASSETS . 'admin/css/editor.min.css',
-            null,
-            HAPPY_ADDONS_VERSION
-        );
+		wp_enqueue_style(
+			'happy-elementor-addons-editor',
+			HAPPY_ADDONS_ASSETS . 'admin/css/editor.min.css',
+			null,
+			HAPPY_ADDONS_VERSION
+		);
 
-        wp_enqueue_script(
-            'happy-elementor-addons-editor',
-            HAPPY_ADDONS_ASSETS . 'admin/js/editor.min.js',
-            [ 'elementor-editor' ],
-            HAPPY_ADDONS_VERSION,
-            true
-        );
+		wp_enqueue_script(
+			'happy-elementor-addons-editor',
+			HAPPY_ADDONS_ASSETS . 'admin/js/editor.min.js',
+			['elementor-editor'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
 
-        wp_localize_script(
-            'happy-elementor-addons-editor',
-            'HappyAddonsEditor',
-            [
-                'editorPanelHomeLinkURL' => ha_get_dashboard_link(),
-                'editorPanelHomeLinkTitle' => __( 'HappyAddons - Home', 'happy-elementor-addons' ),
-                'editorPanelWidgetsLinkURL' => ha_get_dashboard_link( '#widgets' ),
-                'editorPanelWidgetsLinkTitle' => __( 'HappyAddons - Widgets', 'happy-elementor-addons' ),
-            ]
-        );
-    }
+		wp_localize_script(
+			'happy-elementor-addons-editor',
+			'HappyAddonsEditor',
+			[
+				'editorPanelHomeLinkURL'      => ha_get_dashboard_link(),
+				'editorPanelHomeLinkTitle'    => __('HappyAddons - Home', 'happy-elementor-addons'),
+				'editorPanelWidgetsLinkURL'   => ha_get_dashboard_link('#widgets'),
+				'editorPanelWidgetsLinkTitle' => __('HappyAddons - Widgets', 'happy-elementor-addons'),
+			]
+		);
+	}
 
-    public static function enqueue_preview_style() {
-        if ( ha_is_weforms_activated() ) {
-            wp_enqueue_style(
-                'happy-elementor-weform-preview',
-                plugins_url( '/weforms/assets/wpuf/css/frontend-forms.css', 'weforms' ),
-                null,
-                HAPPY_ADDONS_VERSION
-            );
-        }
-
-        if ( ha_is_wpforms_activated() && defined( 'WPFORMS_PLUGIN_SLUG' ) ) {
-            wp_enqueue_style(
-                'happy-elementor-wpform-preview',
-                plugins_url( '/'. WPFORMS_PLUGIN_SLUG . '/assets/css/wpforms-full.css', WPFORMS_PLUGIN_SLUG ),
-                null,
-                HAPPY_ADDONS_VERSION
-            );
-        }
-
-        if ( ha_is_calderaforms_activated() ) {
-            wp_enqueue_style(
-                'happy-elementor-caldera-preview',
-                plugins_url( '/caldera-forms/assets/css/caldera-forms-front.css', 'caldera-forms' ),
-                null,
-                HAPPY_ADDONS_VERSION
-            );
-        }
-
-		if ( ha_is_gravityforms_activated() ) {
+	public static function enqueue_preview_style() {
+		if (ha_is_weforms_activated()) {
 			wp_enqueue_style(
-				'happy-elementor-gravity-preview',
-				plugins_url( '/gravityforms/css/formsmain.min.css', 'gravityforms' ),
+				'happy-elementor-weform-preview',
+				plugins_url('/weforms/assets/wpuf/css/frontend-forms.css', 'weforms'),
 				null,
 				HAPPY_ADDONS_VERSION
 			);
 		}
-    }
+
+		if (ha_is_wpforms_activated() && defined('WPFORMS_PLUGIN_SLUG')) {
+			wp_enqueue_style(
+				'happy-elementor-wpform-preview',
+				plugins_url('/' . WPFORMS_PLUGIN_SLUG . '/assets/css/wpforms-full.css', WPFORMS_PLUGIN_SLUG),
+				null,
+				HAPPY_ADDONS_VERSION
+			);
+		}
+
+		if (ha_is_calderaforms_activated()) {
+			wp_enqueue_style(
+				'happy-elementor-caldera-preview',
+				plugins_url('/caldera-forms/assets/css/caldera-forms-front.css', 'caldera-forms'),
+				null,
+				HAPPY_ADDONS_VERSION
+			);
+		}
+
+		if (ha_is_gravityforms_activated()) {
+			wp_enqueue_style(
+				'happy-elementor-gravity-preview',
+				plugins_url('/gravityforms/css/formsmain.min.css', 'gravityforms'),
+				null,
+				HAPPY_ADDONS_VERSION
+			);
+		}
+
+	}
 }

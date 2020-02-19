@@ -427,7 +427,7 @@ class Fun_Factor extends Base {
 			'media_padding',
 			[
 				'label'      => __('Padding', 'happy-elementor-addons'),
-				'type'       => Controls_Manager::SLIDER,
+				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px'],
 				'selectors'  => [
 					'{{WRAPPER}} .ha-fun-factor-image-section img, {{WRAPPER}} .ha-fun-factor-icon-section' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -809,8 +809,13 @@ class Fun_Factor extends Base {
 					<span class="ha-fun-factor-divider ha-fun-factor-divider-align-<?php echo $settings['text_align']; ?>"></span>
 				<?php endif; ?>
 				<<?php echo tag_escape( $settings['title_tag'] ); ?> class="ha-fun-factor-content-text"><?php echo esc_html( $fun_factor_title ); ?>
+<<<<<<< HEAD
+			</<?php echo tag_escape( $settings['title_tag'] ); ?>>
+		</div>
+=======
 			    </<?php echo tag_escape( $settings['title_tag'] ); ?>>
 		    </div>
+>>>>>>> c4450a9083fde8fb1a6de3cb09970f23051f4701
 		</div>
 
 		<?php

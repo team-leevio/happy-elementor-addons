@@ -478,26 +478,26 @@ class Widgets_Manager {
                     'js' => ['elementor-waypoints', 'jquery-numerator'],
                 ],
             ],
-			'bar-chart' => [
-				'demo' => '',
-				'title' => __( 'Bar Chart', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-graph-bar',
-				'css' => ['chart'],
+            'bar-chart' => [
+                'demo' => '',
+                'title' => __( 'Bar Chart', 'happy-elementor-addons' ),
+                'icon' => 'hm hm-graph-bar',
+                'css' => ['chart'],
+                'js' => [],
+                'vendor' => [
+                    'css' => [],
+                    'js' => ['chart-js'],
+                ],
+            ],
+			'social-icons' => [
+				'title' => __( 'Social Icons', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-bond',
+				'css' => ['social-icons'],
 				'js' => [],
 				'vendor' => [
-					'css' => [],
-					'js' => ['chart-js'],
-				],
-			],
-			'twitter-feed' => [
-				'title' => __( 'Twitter Feed', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-twitter',
-				'css' => ['twitter-feed'],
-				'js' => [],
-				'vendor' => [
-					'css' => [],
+					'css' => ['hover-css'],
 					'js' => [],
-				],
+				]
 			],
         ];
     }
