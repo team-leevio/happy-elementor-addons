@@ -1420,3 +1420,108 @@
 .hm-happyaddons:before {
   content: "\ead0";
 }
+.ha-brain:before {
+  content: "\ead1";
+}
+.ha-breadcrumbs:before {
+  content: "\ead2";
+}
+.ha-circular-chat:before {
+  content: "\ead3";
+}
+.ha-currency-exchange:before {
+  content: "\ead4";
+}
+.ha-cta:before {
+  content: "\ead5";
+}
+.ha-data-table:before {
+  content: "\ead6";
+}
+.ha-display-condition:before {
+  content: "\ead7";
+}
+.ha-digital-memory:before {
+  content: "\ead8";
+}
+.ha-dollar-box:before {
+  content: "\ead9";
+}
+.ha-faq:before {
+  content: "\eada";
+}
+.ha-facebook-feed:before {
+  content: "\eadb";
+}
+.ha-header-footer:before {
+  content: "\eadc";
+}
+.ha-heart:before {
+  content: "\eadd";
+}
+.ha-image-accordion:before {
+  content: "\eade";
+}
+.ha-image-masking:before {
+  content: "\eadf";
+}
+.ha-instagram:before {
+  content: "\eae0";
+}
+.ha-mail-chimp:before {
+  content: "\eae1";
+}
+.ha-minus-large:before {
+  content: "\eae2";
+}
+.ha-minus-small:before {
+  content: "\eae3";
+}
+.ha-mobile-chat:before {
+  content: "\eae4";
+}
+.ha-motion-button:before {
+  content: "\eae5";
+}
+.ha-news-ticker:before {
+  content: "\eae6";
+}
+.ha-offcanvas-menu:before {
+  content: "\eae7";
+}
+.ha-post-grid:before {
+  content: "\eae8";
+}
+.ha-post-list:before {
+  content: "\eae9";
+}
+.ha-post-tab:before {
+  content: "\eaea";
+}
+.ha-pricing-menu:before {
+  content: "\eaeb";
+}
+.ha-scheduled-section:before {
+  content: "\eaec";
+}
+.ha-section-link:before {
+  content: "\eaed";
+}
+.ha-sticky-video:before {
+  content: "\eaee";
+}
+.ha-section-nesting:before {
+  content: "\eaef";
+}
+.ha-traffic-signal:before {
+  content: "\eaf0";
+}
+.ha-tshirt:before {
+  content: "\eaf1";
+}
+.ha-twitter-feed:before {
+  content: "\eaf2";
+}
+.ha-grid-layout:before {
+  content: "\eaf3";
+}
