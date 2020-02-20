@@ -3,7 +3,7 @@ Plugin Name: Happy Elementor Addons
 Version: 2.7.0
 Author: weDevs
 Author URI: https://happyaddons.com/
-Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, obiplabon
+Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
 Tags: elementor, elementor addon, elementor widget, essential widget, elements
 Requires at least: 4.7
 Tested up to: 5.3.2
