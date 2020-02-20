@@ -210,9 +210,9 @@ class Assets_Manager {
 		);
 
 		// Hover css
-		wp_enqueue_style(
+		wp_register_style(
 			'hover-css',
-			HAPPY_ADDONS_ASSETS . 'vendor/hover-css/hover-min.css',
+			HAPPY_ADDONS_ASSETS . 'vendor/hover-css/hover-css.css',
 			null,
 			HAPPY_ADDONS_VERSION
 		);

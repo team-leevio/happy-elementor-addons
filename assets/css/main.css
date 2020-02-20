@@ -2826,12 +2826,18 @@
 	-webkit-align-items: center;
 	        align-items: center;
 	-ms-flex-align: center;
-	padding: 5px;
-	border-radius: 5px;
+	padding: 15px;
+	border-radius: 4px;
 	color: #fff;
 	font-size: 30px;
 	-webkit-transition: all .3s;
 	        transition: all .3s;
+}
+
+a.ha-social-icon:hover {
+	position: relative;
+	z-index: 1; 
+	background: #e2498a;
 }
 
 a.ha-social-icon:before,
@@ -2844,7 +2850,7 @@ a.ha-social-icon:after {
 }
 
 .ha-social-icon:not(:last-child) {
-	margin-right: 10px;
+	margin-right: 2px;
 }
 
 .ha-social-icon i,

@@ -2,17 +2,25 @@
 	display: inline-flex;
 	align-items: center;
 }
+
 .ha-social-icons-wrapper a {
 	display: inline-flex;
 	font-size: 30px;
 	align-items: center;
 	color: #fff;
-	padding: 5px;
-	border-radius: 5px;
+	padding: 15px;
+	border-radius: 4px;
 	transition: all 0.3s;
 }
 
-a.ha-social-icon:before, a.ha-social-icon:after {
+a.ha-social-icon:hover {
+	position: relative;
+	background: #E2498A;
+	z-index: 1;
+}
+
+a.ha-social-icon:before,
+a.ha-social-icon:after {
 	border-radius: inherit;
 }
 
@@ -21,16 +29,19 @@ a.ha-social-icon:before, a.ha-social-icon:after {
 }
 
 .ha-social-icon:not(:last-child) {
-	margin-right: 10px;
+	margin-right: 2px;
 }
+
 .ha-social-icon i, .ha-social-icon svg {
 	position: relative;
 	display: initial;
 }
+
 .ha-social-icon svg {
 	width: 100%;
 	height: 100%;
 }
+
 .ha-social-icon i {
 	width: 1em;
 	height: 1em;
@@ -45,12 +56,15 @@ a.ha-social-icon:before, a.ha-social-icon:after {
 	height: 100%;
 	margin-left: 10px;
 }
+
 .elementor-social-icon-label .ha-social-icon-label {
 	margin-left: 0;
 }
+
 .elementor-element-edit-mode .ha-social-icon-sticky {
-	z-index: 9999 ;
+	z-index: 9999;
 }
+
 .ha-social-icons:not(.elementor-element-edit-mode) .ha-social-icon-sticky {
 	position: fixed;
 }
@@ -58,6 +72,7 @@ a.ha-social-icon:before, a.ha-social-icon:after {
 .ha-social-icon-separator {
 	margin-right: 10px;
 }
+
 .ha-separator--stroke .ha-social-icon-separator {
 	width: 1px;
 	height: 1em;

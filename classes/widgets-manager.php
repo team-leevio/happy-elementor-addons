@@ -491,7 +491,7 @@ class Widgets_Manager {
             ],
 			'social-icons' => [
 				'title' => __( 'Social Icons', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-bond',
+				'icon' => 'hm hm-bond2',
 				'css' => ['social-icons'],
 				'js' => [],
 				'vendor' => [
