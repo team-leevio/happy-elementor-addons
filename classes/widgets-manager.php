@@ -499,6 +499,16 @@ class Widgets_Manager {
 					'js' => [],
 				]
 			],
+			'twitter-feed' => [
+				'title' => __( 'Twitter Feed', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-twitter',
+				'css' => ['twitter-feed'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
         ];
     }
 
