@@ -498,6 +498,6 @@
         "traffic-signal",
         "tshirt",
         "twitter-feed",
-        "grid-layout",
+        "grid-layout"
     ]
 }
