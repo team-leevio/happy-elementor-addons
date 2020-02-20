@@ -276,7 +276,7 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 == Changelog ==
 
-= 2.7.0 - 19 February 2020 =
+= 2.7.0 - 20 February 2020 =
 
 - New: Twitter feed widget
 - New: Bar Chart widget

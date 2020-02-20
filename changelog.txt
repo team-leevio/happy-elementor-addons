@@ -1,4 +1,4 @@
-= 2.7.0 - 19 February 2020 =
+= 2.7.0 - 20 February 2020 =
 
 - New: Twitter Feed widget
 - New: Bar Chart widget
