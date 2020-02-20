@@ -16,7 +16,7 @@ class Happy_Effects {
         $element->start_controls_section(
             '_section_happy_effects',
             [
-                'label' => __( 'Happy Effects', 'happy-elementor-addons' ),
+                'label' => ha_get_icon_for_label() . __( 'Happy Effects', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_ADVANCED,
             ]
         );

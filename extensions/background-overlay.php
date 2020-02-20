@@ -41,7 +41,7 @@ class Background_Overlay {
         $element->start_controls_section(
             '_ha_section_background_overlay',
             [
-                'label' => __( 'Background Overlay', 'happy-elementor-addons' ),
+                'label' => ha_get_icon_for_label() . __( 'Background Overlay', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_ADVANCED,
                 'condition' => [
                     '_background_background' => [ 'classic', 'gradient' ],

@@ -21,7 +21,7 @@ class Widgets_Extended {
         $widget->add_control(
             'ha_fixed_size_toggle',
             [
-                'label' => sprintf( __( 'Fixed Size %s', 'happy-elementor-addons' ), '<i style="color: #d5dadf;" class="hm hm-happyaddons"></i>' ),
+                'label' => ha_get_icon_for_label() . __( 'Fixed Size', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
                 'return_value' => 'yes',
             ]

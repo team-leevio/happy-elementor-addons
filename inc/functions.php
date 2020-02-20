@@ -452,3 +452,7 @@ function ha_twitter_feed_ajax() {
 }
 add_action( 'wp_ajax_ha_twitter_feed_action', 'ha_twitter_feed_ajax' );
 add_action( 'wp_ajax_nopriv_ha_twitter_feed_action', 'ha_twitter_feed_ajax' );
+
+function ha_get_icon_for_label() {
+    return '<i style="position: relative; top: 1px" class="hm hm-happyaddons"></i> ';
+}

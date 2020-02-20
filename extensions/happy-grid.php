@@ -17,7 +17,7 @@ class Happy_Grid {
         $element->start_controls_section(
             '_section_happy_grid_layer',
             [
-                'label' => __( 'Happy Grid Layer', 'happy-elementor-addons' ),
+                'label' => ha_get_icon_for_label() . __( 'Grid Layer', 'happy-elementor-addons' ),
 	            'tab' => Controls_Manager::TAB_SETTINGS,
             ]
         );

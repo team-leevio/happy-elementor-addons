@@ -18,20 +18,12 @@ class Column_Extended {
     }
 
     public static function add_controls( Element_Column $element ) {
-        $element->add_control(
-            '_ha_column_features_heading',
-            [
-                'label' => __( 'Happy Features', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
         $element->add_responsive_control(
             '_ha_column_width',
             [
-                'label' => __( 'Custom Column Width', 'happy-elementor-addons' ),
+                'label' => ha_get_icon_for_label() . __( 'Custom Column Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
+                'separator' => 'before',
                 'label_block' => true,
                 'description' => __( 'Here you can set the column width the way you always wanted to! e.g 250px, 50%, calc(100% - 250px)', 'happy-elementor-addons' ),
                 'selectors' => [
@@ -43,7 +35,7 @@ class Column_Extended {
         $element->add_responsive_control(
             '_ha_column_order',
             [
-                'label' => __( 'Column Order', 'happy-elementor-addons' ),
+                'label' => ha_get_icon_for_label() . __( 'Column Order', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::NUMBER,
                 'style_transfer' => true,
                 'selectors' => [
