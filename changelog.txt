@@ -1,5 +1,10 @@
-= 2.6.2 - 19 February 2020 =
+= 2.7.0 - 19 February 2020 =
 
+- New: Twitter Feed widget
+- New: Bar Chart widget
+- New: Social Icons widget
+- New: Grid Layer feature for designer
+- New: Wrapper Link feature for section, column and widget
 - Update: Dynamic Tags support in Carousel widget
 - Update: Dynamic Tags support in Dual Button widget
 - Update: Dynamic Tags support in Logo Grid widget

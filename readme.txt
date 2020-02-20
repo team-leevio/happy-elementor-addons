@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.6.2
+Version: 2.7.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, obiplabon
@@ -27,7 +27,7 @@ _HappyAddons is a unique Elementor Addon. It might be the best addon package for
 _— **Adam Preiser, Founder of WP Crafter**_
 
 
-### INCLUDED 27 FREE WIDGETS
+### INCLUDED 30 FREE WIDGETS
 
 Unlike other Elementor addons, the Happy Elementor Addons comes with a host of free yet powerful widgets. The magical widgets will impress you so much that you will be confused whether they are premium or free:
 
@@ -58,6 +58,9 @@ Unlike other Elementor addons, the Happy Elementor Addons comes with a host of f
 25. **[Image Grid](https://demo.happyaddons.com/elementor-image-grid-widget-demo/)** – Simply beautiful, this widget can help you create stunning number blocks with various styles, look-n-feels that’s literally going to blow your mind. [Check demo](https://demo.happyaddons.com/elementor-image-grid-widget-demo/)
 26. **[Gravity Forms](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/gravity-forms/)** - While using Gravity forms, you may want to change the appearance of the form fields. With the Happy Addons, you can spruce up your Gravity forms like a pro. [Check demo](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/gravity-forms/)
 27. **[News Ticker](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/news-ticker/)** - Want to show updates, popular content or messages on your website? With the Happy Elementor Addons Content Ticker widget, you can do this at your disposal with great customizability.
+28. **[Twitter Feed]**
+28. **[Bar Chart]**
+28. **[Social Icons]**
 
 
 ### Free Built-in Extensions to Give You an Awesome Experience
@@ -78,6 +81,11 @@ Elementor Page Builder by using the buttons (CMD/CTRL + E). Surprisingly, you ca
 
 **🔆 Fixed Size Controls in Elementor Button Widget -** Some times, you may need to make perfectly circular shaped
 buttons in Elementor. With this free feature, you can do that by just setting a fixed size, that is, by specifying an equal height and width of the Elementor Button widget.
+
+**🔆 Grid Layer **
+
+**🔆 Wrapper Link **
+
 
 **Happy Effects**
 
@@ -268,8 +276,13 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 == Changelog ==
 
-= 2.6.2 - 19 February 2020 =
+= 2.7.0 - 19 February 2020 =
 
+- New: Twitter feed widget
+- New: Bar Chart widget
+- New: Social Icons widget
+- New: Grid Layer feature for designer
+- New: Wrapper Link feature for section, column and widget
 - Update: Dynamic Tags support in Carousel widget
 - Update: Dynamic Tags support in Dual Button widget
 - Update: Dynamic Tags support in Logo Grid widget
