@@ -6,6 +6,7 @@ use Happy_Addons\Elementor\Extension\Column_Extended;
 use Happy_Addons\Elementor\Extension\Happy_Grid;
 use Happy_Addons\Elementor\Extension\Widgets_Extended;
 use Happy_Addons\Elementor\Extension\Background_Overlay;
+use Happy_Addons\Elementor\Extension\Wrapper_Link;
 
 defined( 'ABSPATH' ) || die();
 
@@ -22,6 +23,7 @@ class Extensions_Manager {
         Column_Extended::init();
         Background_Overlay::init();
         Widgets_Extended::init();
+        Wrapper_Link::init();
     }
 
     public static function include_extensions() {
@@ -30,5 +32,6 @@ class Extensions_Manager {
         include_once HAPPY_ADDONS_DIR_PATH . 'extensions/column-extended.php';
         include_once HAPPY_ADDONS_DIR_PATH . 'extensions/widgets-extended.php';
         include_once HAPPY_ADDONS_DIR_PATH . 'extensions/background-overlay.php';
+        include_once HAPPY_ADDONS_DIR_PATH . 'extensions/wrapper-link.php';
     }
 }

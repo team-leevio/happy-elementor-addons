@@ -498,6 +498,17 @@
             });
         };
 
+        $('[data-ha-element-link]').each(function() {
+            var link = $(this).data('ha-element-link');
+            $(this).on('click.haElementOnClick', function() {
+                if (link.is_external) {
+                    window.open(link.url);
+                } else {
+                    location.href = link.url;
+                }
+            })
+        });
+
         var handlersFnMap = {
             'ha-image-compare.default': HandleImageCompare,
             'ha-justified-gallery.default': HandleJustifiedGallery,
