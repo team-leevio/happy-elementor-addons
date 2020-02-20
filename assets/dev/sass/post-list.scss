@@ -1,0 +1,18 @@
+.ha-post-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.ha-post-list .ha-post-list-item {
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+.ha-post-list .ha-post-list-item a {
+	display: flex;
+}
+.ha-post-list-title {
+	margin-bottom: 2px;
+	display: block;
+	font-size: 1rem;
+}

@@ -299,6 +299,7 @@ class Assets_Manager {
 				'editorPanelHomeLinkTitle'    => __('HappyAddons - Home', 'happy-elementor-addons'),
 				'editorPanelWidgetsLinkURL'   => ha_get_dashboard_link('#widgets'),
 				'editorPanelWidgetsLinkTitle' => __('HappyAddons - Widgets', 'happy-elementor-addons'),
+				'select2Secret' => wp_create_nonce( 'HappyAddons_Select2_Secret' )
 			]
 		);
 	}

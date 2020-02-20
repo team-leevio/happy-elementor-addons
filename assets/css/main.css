@@ -3160,3 +3160,31 @@ a.ha-social-icon:after {
 	-webkit-backdrop-filter: blur(10px);
 	        backdrop-filter: blur(10px);
 }
+
+.ha-post-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ha-post-list .ha-post-list-item {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex; 
+	margin: 0;
+	padding: 0;
+}
+
+.ha-post-list .ha-post-list-item a {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+}
+
+.ha-post-list-title {
+	display: block;
+	margin-bottom: 2px;
+	font-size: 1rem;
+}
