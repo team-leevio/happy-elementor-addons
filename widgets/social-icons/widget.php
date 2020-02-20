@@ -40,11 +40,11 @@ class Social_Icons extends Base {
 	 *
 	 */
 	public function get_icon() {
-		return 'hm hm-bond';
+		return 'hm hm-bond2';
 	}
 
 	public function get_keywords() {
-		return ['social', 'icons'];
+		return ['social', 'icons', 'media', 'facebook', 'fb', 'twitter', 'linkedin'];
 	}
 
 	protected function register_content_controls() {
