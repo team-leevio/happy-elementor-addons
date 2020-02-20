@@ -5,6 +5,7 @@
 }
 .ha-post-list .ha-post-list-item {
 	margin: 0;
+	margin-bottom: 10px;
 	padding: 0;
 	display: flex;
 }
@@ -12,7 +13,31 @@
 	display: flex;
 }
 .ha-post-list-title {
-	margin-bottom: 2px;
+	margin-top: 0;
+	margin-bottom: 3px;
 	display: block;
 	font-size: 1rem;
+	color: #242424;
+}
+.ha-post-list-title:hover {
+	color: #e04d8b;
+}
+span.ha-post-list-icon {
+	margin-right: 8px;
+	color: #242424;
+	font-size: 14px;
+}
+.ha-post-list-meta-wrap {
+	display: flex;
+}
+.ha-post-list-meta-wrap span {
+	color: #8c8c8c;
+	font-size: 13px;
+	margin-right: 5px;
+}
+.ha-post-list-meta-wrap span:last-child {
+	margin-right: 0;
+}
+.ha-post-list-meta-wrap span i {
+	margin-right: 3px;
 }

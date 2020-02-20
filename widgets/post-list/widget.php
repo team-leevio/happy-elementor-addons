@@ -268,7 +268,7 @@ class Post_List extends Base {
 				'type' => Controls_Manager::ICONS,
 				'label_block' => true,
 				'default' => [
-					'value' => 'far fa-circle',
+					'value' => 'hm hm-tick-circle',
 					'library' => 'regular'
 				],
 				'condition' => [
