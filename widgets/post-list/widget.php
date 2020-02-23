@@ -15,7 +15,7 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes;
 use Elementor\Group_Control_Background;
 use Happy_Addons\Elementor\Controls\Select2;
 
@@ -91,7 +91,7 @@ class Post_List extends Base {
 
 	protected function register_content_controls () {
 		$this->start_controls_section(
-			'_section_list',
+			'_section_post_list',
 			[
 				'label' => __( 'List', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
@@ -113,7 +113,7 @@ class Post_List extends Base {
 			[
 				'label' => __( 'Show post by:', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
-				'default' => 'selected',
+				'default' => 'recent',
 				'options' => [
 					'recent' => __( 'Recent Post', 'happy-elementor-addons' ),
 					//'popular'          => __( 'Popular Post', 'happy-elementor-addons' ),
@@ -128,7 +128,7 @@ class Post_List extends Base {
 			[
 				'label' => __( 'Item Limit', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::NUMBER,
-				'default' => 5,
+				'default' => 3,
 				'condition' => [
 					'show_post_by' => [ 'recent' ]
 				]
@@ -214,8 +214,8 @@ class Post_List extends Base {
 						'icon' => 'eicon-ellipsis-h',
 					],
 				],
-				'render_type' => 'template',
-				'classes' => 'elementor-control-start-end',
+				//'render_type' => 'template',
+				//'classes' => 'elementor-control-start-end',
 				'style_transfer' => true,
 			]
 		);
@@ -268,8 +268,8 @@ class Post_List extends Base {
 				'type' => Controls_Manager::ICONS,
 				'label_block' => true,
 				'default' => [
-					'value' => 'hm hm-tick-circle',
-					'library' => 'regular'
+					'value' => 'far fa-check-circle',
+					'library' => 'reguler'
 				],
 				'condition' => [
 					'list_icon' => 'yes',
@@ -311,8 +311,8 @@ class Post_List extends Base {
 				'label' => __( 'Author Icon', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::ICONS,
 				'default' => [
-					'value' => 'icon icon-folder',
-					'library' => 'ekiticons',
+					'value' => 'far fa-user',
+					'library' => 'reguler',
 				],
 				'condition' => [
 					'meta' => 'yes',
@@ -342,8 +342,8 @@ class Post_List extends Base {
 				'label' => __( 'Date Icon', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::ICONS,
 				'default' => [
-					'value' => 'icon icon-calendar-page-empty',
-					'library' => 'ekiticons',
+					'value' => 'far fa-calendar-check',
+					'library' => 'reguler',
 				],
 				'condition' => [
 					'meta' => 'yes',
@@ -374,8 +374,8 @@ class Post_List extends Base {
 				'label' => __( 'Category Icon', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::ICONS,
 				'default' => [
-					'value' => 'icon icon-folder',
-					'library' => 'ekiticons',
+					'value' => 'far fa-folder-open',
+					'library' => 'reguler',
 				],
 				'condition' => [
 					'meta' => 'yes',
@@ -443,189 +443,170 @@ class Post_List extends Base {
 	protected function register_style_controls () {
 
 		$this->start_controls_section(
-			'_style_news_ticker_wrapper',
+			'_section_post_list_style',
 			[
-				'label' => __( 'Wrapper', 'happy-elementor-addons' ),
+				'label' => esc_html__( 'List', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'list_item_common',
+			[
+				'label' => __( 'Common', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+			]
+		);
+
+		$this->add_responsive_control(
+			'list_item_margin',
+			[
+				'label' => __( 'Margin', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list .ha-post-list-item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'list_item_padding',
+			[
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list .ha-post-list-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				]
 			]
 		);
 
 		$this->add_group_control(
 			Group_Control_Background::get_type(),
 			[
-				'name' => 'wrapper_background',
+				'name' => 'list_item_background',
 				'label' => __( 'Background', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper',
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			[
-				'name' => 'wrapper_border',
-				'label' => __( 'Border', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper',
-			]
-		);
-
-		$this->add_control(
-			'wrapper_border_radius',
-			[
-				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px' ],
-				'selectors' => [
-					'{{WRAPPER}} .ha-news-ticker-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
+				'selector' => '{{WRAPPER}} .ha-post-list .ha-post-list-item',
 			]
 		);
 
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			[
-				'name' => 'wrapper_box_shadow',
+				'name' => 'list_item_box_shadow',
 				'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper',
-			]
-		);
-
-		$this->add_responsive_control(
-			'wrapper_padding',
-			[
-				'label' => __( 'Padding', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'selectors' => [
-					'{{WRAPPER}} .ha-news-ticker-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'sticky_title_position_left',
-			[
-				'label' => __( 'Sticky Title Position Left', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::HIDDEN,
-				'default' => 'left',
-				'selectors' => [
-					'(desktop){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'left: {{wrapper_padding.LEFT || 0}}{{wrapper_padding.UNIT}}; right:auto;',
-					'(tablet){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'left: {{wrapper_padding_tablet.LEFT}}{{wrapper_padding_tablet.UNIT}}; right:auto;',
-					'(mobile){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'left: {{wrapper_padding_mobile.LEFT}}{{wrapper_padding_mobile.UNIT}}; right:auto;',
-				],
-				'condition' => [
-					'sticky_title!' => '',
-					'sticky_title_position' => 'left',
-				]
-			]
-		);
-
-		$this->add_control(
-			'sticky_title_position_right',
-			[
-				'label' => __( 'Sticky Title Position Right', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::HIDDEN,
-				'default' => 'right',
-				'selectors' => [
-					'(desktop){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'right: {{wrapper_padding.RIGHT || 0}}{{wrapper_padding.UNIT}}; left:auto;',
-					'(tablet){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'right: {{wrapper_padding_tablet.RIGHT}}{{wrapper_padding_tablet.UNIT}}; left:auto;',
-					'(mobile){{WRAPPER}}  .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'right: {{wrapper_padding_mobile.RIGHT}}{{wrapper_padding_mobile.UNIT}}; left:auto;',
-				],
-				'condition' => [
-					'sticky_title!' => '',
-					'sticky_title_position' => 'right',
-				]
-			]
-		);
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
-			'_style_news_ticker_sticky_title',
-			[
-				'label' => __( 'Sticky Title', 'happy-elementor-addons' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		$this->add_control(
-			'sticky_title_color',
-			[
-				'label' => __( 'Title Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title' => 'color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'sticky_title_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
-				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title',
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name' => 'sticky_title_background',
-				'label' => __( 'Background', 'happy-elementor-addons' ),
-				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper span.ha-news-ticker-sticky-title',
+				'selector' => '{{WRAPPER}} .ha-post-list .ha-post-list-item',
 			]
 		);
 
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
-				'name' => 'sticky_title_border',
+				'name' => 'list_item_border',
 				'label' => __( 'Border', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper span.ha-news-ticker-sticky-title',
-			]
-		);
-
-		$this->add_control(
-			'sticky_title_border_radius',
-			[
-				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px' ],
-				'selectors' => [
-					'{{WRAPPER}} .ha-news-ticker-wrapper span.ha-news-ticker-sticky-title' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
+				'selector' => '{{WRAPPER}} .ha-post-list .ha-post-list-item',
 			]
 		);
 
 		$this->add_responsive_control(
-			'sticky_title_padding',
+			'list_item_border_radius',
 			[
-				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
+				'size_units' => [ 'px', 'em', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-news-ticker-wrapper span.ha-news-ticker-sticky-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
+					'{{WRAPPER}} .ha-post-list .ha-post-list-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'list_item_first',
+			[
+				'label' => __( 'First Item', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_responsive_control(
+			'list_item_first_child_margin',
+			[
+				'label' => __( 'Margin', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list .ha-post-list-item:first-child' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'list_item_first_child_border',
+				'label' => __( 'Border', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-post-list .ha-post-list-item:first-child',
+			]
+		);
+
+		$this->add_responsive_control(
+			'list_item_last',
+			[
+				'label' => __( 'Last Item', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_responsive_control(
+			'list_item_last_child_margin',
+			[
+				'label' => __( 'Margin', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list .ha-post-list-item:last-child' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'list_item_last_child_border',
+				'label' => __( 'Border', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-post-list .ha-post-list-item:last-child',
 			]
 		);
 
 		$this->end_controls_section();
-
+		//Title Style
 		$this->start_controls_section(
-			'_style_news_ticker_title',
+			'_section_post_list_title_style',
 			[
 				'label' => __( 'Title', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
-		$this->start_controls_tabs( '_tabs_title' );
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'scheme' => Schemes\Typography::TYPOGRAPHY_2,
+				'selector' => '{{WRAPPER}} .ha-post-list-title',
+			]
+		);
 
+		$this->start_controls_tabs(
+			'title_tabs'
+		);
 		$this->start_controls_tab(
-			'_tab_title_normal',
+			'title_normal_tab',
 			[
 				'label' => __( 'Normal', 'happy-elementor-addons' ),
 			]
@@ -634,56 +615,106 @@ class Post_List extends Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label' => __( 'Title Color', 'happy-elementor-addons' ),
+				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-news-ticker-wrapper  li.ha-news-ticker-item a' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-post-list-title' => 'color: {{VALUE}}',
 				],
 			]
 		);
-
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
-			'_tab_title_hover',
+			'title_hover_tab',
 			[
 				'label' => __( 'Hover', 'happy-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
-			'title_hover_color',
+			'title_hvr_color',
 			[
-				'label' => __( 'Title Color', 'happy-elementor-addons' ),
+				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-news-ticker-wrapper  li.ha-news-ticker-item a:hover, {{WRAPPER}} .ha-news-ticker-wrapper  li.ha-news-ticker-item a:focus' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-post-list .ha-post-list-item a:hover .ha-post-list-title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_responsive_control(
+			'title_margin_btm',
+			[
+				'label' => esc_html__( 'Margin Bottom', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list-title' => 'margin-bottom: {{SIZE}}{{UNIT}}',
 				],
 			]
 		);
 
-		$this->end_controls_tab();
-		$this->end_controls_tabs();
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
+		$this->end_controls_section();
+		//List Icon Style
+		$this->start_controls_section(
+			'_section_list_icon_style',
 			[
-				'name' => 'title_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
-				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper  li.ha-news-ticker-item .ha-news-ticker-title',
+				'label' => esc_html__( 'Icon', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+				'condition'	=> [
+					'feature_image!'	=> 'yes',
+				]
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Text_Shadow::get_type(),
+		$this->add_control(
+			'icon_color',
 			[
-				'name' => 'title_shadow',
-				'label' => __( 'Title Shadow', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper  li.ha-news-ticker-item a',
-				'style_transfer' => true,
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} span.ha-post-list-icon' => 'color: {{VALUE}};',
+				],
 			]
 		);
+
+		$this->add_responsive_control(
+			'icon_size',
+			[
+				'label' => esc_html__( 'Font Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} span.ha-post-list-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_line_height',
+			[
+				'label' => esc_html__( 'Line Height', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} span.ha-post-list-icon' => 'line-height: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+		//List Meta Style
+		$this->start_controls_section(
+			'_section_list_meta_style',
+			[
+				'label' => esc_html__( 'Meta', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+				'condition'	=> [
+					'meta'	=> 'yes',
+				]
+			]
+		);
+
 
 		$this->end_controls_section();
 	}
@@ -697,35 +728,47 @@ class Post_List extends Base {
 			$settings['selected_list_' . $settings['post_type']],
 		];
 //		show_post_by
-		//echo '<pre>';
-		//var_dump( $array );
-		//echo '</pre>';
+//		echo '<pre>';
+//		var_dump( $settings['selected_list_' . $settings['post_type']] );
+//		echo '</pre>';
 		$args = [
 			'post_status' => 'publish',
 			'post_type' => $settings['post_type'],
 		];
-		$args['ignore_sticky_posts'] = 1;
+		//$args['posts_per_page'] = 0;
 		if ( 'recent' === $settings['show_post_by'] ) {
 			$args['posts_per_page'] = $settings['posts_per_page'];
 			//$args['order'] =  $settings['ASC'];
 		}
 
 		$customize_title = [];
-		if ( 'selected' === $settings['show_post_by'] && ! empty( $settings['selected_list_' . $settings['post_type']] ) ) {
+		$ids = [];
+		if ( 'selected' === $settings['show_post_by'] ) {
+			$args['posts_per_page'] = -1;
 			$lists = $settings['selected_list_' . $settings['post_type']];
-			$ids = [];
-			foreach ( $lists as $index => $value ) {
-				$ids[] = $value['post_id'];
-				if( $value['title'] ) $customize_title[$value['post_id']] = $value['title'];
+			if( ! empty( $lists ) ){
+				foreach ( $lists as $index => $value ) {
+					$ids[] = $value['post_id'];
+					if( $value['title'] ) $customize_title[$value['post_id']] = $value['title'];
+				}
 			}
 			$args['post__in'] = (array) $ids;
+			$args['orderby'] = 'post__in';
 		}
 		//$args['post__in'] =  (array) $settings['selected_posts'];
-		$posts = get_posts( $args );
+
+		if ( 'selected' === $settings['show_post_by']  && empty( $ids ) ) {
+			$posts = [];
+		}else{
+			$posts = get_posts( $args );
+		}
 
 		//var_dump($posts);
 		$this->add_render_attribute( 'wrapper', 'class', [ 'ha-post-list-wrapper' ] );
 		$this->add_render_attribute( 'wrapper-inner', 'class', [ 'ha-post-list' ] );
+		if ( 'inline' === $settings['view'] ) {
+			$this->add_render_attribute( 'wrapper-inner', 'class', [ 'ha-post-list-inline' ] );
+		}
 		$this->add_render_attribute( 'item', 'class', [ 'ha-post-list-item' ] );
 
 		if ( count( $posts ) !== 0 ) :?>
@@ -747,7 +790,7 @@ class Post_List extends Base {
 									if ( 'selected' === $settings['show_post_by'] && array_key_exists( $post->ID ,$customize_title ) ){
 										$title = $customize_title[$post->ID];
 									}
-									if('top' === $settings['meta_position'] ){
+									if('top' !== $settings['meta_position'] && $title ){
 										printf( '<%1$s %2$s>%3$s</%1$s>',
 											tag_escape( $settings['title_tag'] ),
 											'class="ha-post-list-title"',
@@ -755,7 +798,7 @@ class Post_List extends Base {
 										);
 									}
 									?>
-									<?php if ( 'yes' === $settings['meta'] || 'yes' === $settings['category_meta'] ): ?>
+									<?php if ( 'yes' === $settings['meta'] ): ?>
 										<div class="ha-post-list-meta-wrap">
 
 											<?php if ( 'yes' === $settings['author_meta'] ):
@@ -773,7 +816,7 @@ class Post_List extends Base {
 													<?php if ( $settings['date_icon'] ):
 														Icons_Manager::render_icon( $settings['date_icon'], [ 'aria-hidden' => 'true' ] );
 													endif;
-													echo get_the_date( "d M Y" );
+													echo get_the_date( "M d, Y" );
 													?>
 												</span>
 											<?php endif; ?>
@@ -792,7 +835,7 @@ class Post_List extends Base {
 										</div>
 									<?php endif; ?>
 									<?php
-									if('bottom' === $settings['meta_position'] ){
+									if('top' === $settings['meta_position'] && $title ){
 										printf( '<%1$s %2$s>%3$s</%1$s>',
 											tag_escape( $settings['title_tag'] ),
 											'class="ha-post-list-title"',
@@ -807,6 +850,12 @@ class Post_List extends Base {
 				</ul>
 			</div>
 		<?php
+		else:
+			printf( '%1$s %2$s %3$s',
+				__( 'No ', 'happy-elementor-addons' ),
+				esc_html( $settings['post_type'] ),
+				__( 'Found', 'happy-elementor-addons' )
+			);
 		endif;
 	}
 }

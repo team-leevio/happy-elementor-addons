@@ -3167,6 +3167,16 @@ a.ha-social-icon:after {
 	list-style: none;
 }
 
+.ha-post-list.ha-post-list-inline {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+
 .ha-post-list .ha-post-list-item {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -3175,6 +3185,16 @@ a.ha-social-icon:after {
 	margin: 0;
 	margin-bottom: 10px;
 	padding: 0;
+}
+
+.ha-post-list.ha-post-list-inline .ha-post-list-item {
+	margin-right: 21px;
+}
+
+.ha-post-list .ha-post-list-item:last-child,
+.ha-post-list.ha-post-list-inline .ha-post-list-item:last-child {
+	margin-right: 0;
+	margin-bottom: 0;
 }
 
 .ha-post-list .ha-post-list-item a {
@@ -3188,11 +3208,13 @@ a.ha-social-icon:after {
 	display: block;
 	margin-top: 0;
 	margin-bottom: 3px;
-	color: #242424; 
+	color: #242424;
 	font-size: 1rem;
+	-webkit-transition: all .4s;
+	        transition: all .4s;
 }
 
-.ha-post-list-title:hover {
+.ha-post-list .ha-post-list-item a:hover .ha-post-list-title {
 	color: #e04d8b;
 }
 
@@ -3210,7 +3232,7 @@ span.ha-post-list-icon {
 }
 
 .ha-post-list-meta-wrap span {
-	margin-right: 5px; 
+	margin-right: 10px; 
 	color: #8c8c8c;
 	font-size: 13px;
 }
