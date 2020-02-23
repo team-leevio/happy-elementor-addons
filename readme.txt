@@ -59,8 +59,8 @@ Unlike other Elementor addons, the Happy Elementor Addons comes with a host of f
 26. **[Gravity Forms](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/gravity-forms/)** - While using Gravity forms, you may want to change the appearance of the form fields. With the Happy Addons, you can spruce up your Gravity forms like a pro. [Check demo](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/gravity-forms/)
 27. **[News Ticker](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/news-ticker/)** - Want to show updates, popular content or messages on your website? With the Happy Elementor Addons Content Ticker widget, you can do this at your disposal with great customizability.
 28. **[Twitter Feed]**
-28. **[Bar Chart]**
-28. **[Social Icons]**
+29. **[Bar Chart]**
+30. **[Social Icons]**
 
 
 ### Free Built-in Extensions to Give You an Awesome Experience
