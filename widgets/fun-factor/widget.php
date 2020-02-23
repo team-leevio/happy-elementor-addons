@@ -183,6 +183,9 @@ class Fun_Factor extends Base {
 			[
 				'label'   => __('Title', 'happy-elementor-addons'),
 				'type'    => Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
 				'default' => __('Happy Clients', 'happy-elementor-addons'),
 			]
 		);
@@ -212,6 +215,9 @@ class Fun_Factor extends Base {
 				'default'   => 500,
 				'condition' => [
 					'animate_number!' => ''
+				],
+				'dynamic'   => [
+					'active' => true,
 				],
 			]
 		);
@@ -795,24 +801,25 @@ class Fun_Factor extends Base {
 		<div class="ha-ff-container">
             <?php if (!empty($settings['icons']['value'])) : ?>
                 <div class="ha-fun-factor-icon-section">
-                    <?php Icons_Manager::render_icon($settings['icons'], ['aria-hidden' => 'true', 'class' => 'ha-fun-factor-icon']); ?>
+                    <?php Icons_Manager::render_icon( $settings['icons'], ['aria-hidden' => 'true', 'class' => 'ha-fun-factor-icon'] ); ?>
                 </div>
-            <?php elseif ($settings['image']['url'] || $settings['image']['id']) : ?>
+            <?php elseif ( $settings['image']['url'] || $settings['image']['id'] ) : ?>
                 <div class="ha-fun-factor-image-section">
-                    <?php echo Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'image'); ?>
+                    <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
                 </div>
             <?php endif; ?>
 
             <div class="ha-fun-factor-content">
-                <p <?php $this->print_render_attribute_string('fun_factor_number'); ?> > <?php echo esc_html($number); ?></p>
-                <?php if ('yes' === $settings['divider_show_hide']) : ?>
-                    <span
-                        class="ha-fun-factor-divider ha-fun-factor-divider-align-<?php echo $settings['text_align']; ?>"></span>
+                <p <?php $this->print_render_attribute_string( 'fun_factor_number' ); ?> ><?php echo esc_html( $number ); ?></p>
+                <?php if ( 'yes' === $settings['divider_show_hide'] ) : ?>
+                    <span class="ha-fun-factor-divider ha-fun-factor-divider-align-<?php echo esc_attr( $settings['text_align'] ); ?>"></span>
                 <?php endif; ?>
-                <<?php echo tag_escape($settings['title_tag']); ?> class="ha-fun-factor-content-text"><?php echo esc_html($fun_factor_title); ?></<?php echo tag_escape($settings['title_tag']); ?>>
+                <?php printf( '<%1$s class="ha-fun-factor-content-text">%2$s</%1$s>',
+                    tag_escape( $settings['title_tag'] ),
+                    esc_html( $fun_factor_title )
+                ); ?>
             </div>
         </div>
-
 		<?php
 	}
 }
