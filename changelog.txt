@@ -1,3 +1,7 @@
+= 2.7.1 - 23 February 2020 =
+
+- Fix: Fun Factor broken markup issue
+
 = 2.7.0 - 20 February 2020 =
 
 - New: Twitter Feed widget
