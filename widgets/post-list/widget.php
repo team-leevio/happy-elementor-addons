@@ -56,37 +56,13 @@ class Post_List extends Base {
 	}
 
 	/**
-	 * Get a list of all WPForms
+	 * Get a list of All Post Types
 	 *
 	 * @return array
 	 */
-	public function ha_get_posts () {
-		$posts = [];
-		$_posts = get_posts( [
-			'post_type' => 'post',
-			'post_status' => 'publish',
-			'posts_per_page' => -1,
-			'orderby' => 'title',
-			'order' => 'ASC',
-		] );
-
-		if ( ! empty( $_posts ) ) {
-			$posts = wp_list_pluck( $_posts, 'post_title', 'ID' );
-		}
-		return $posts;
-
-	}
-
-	public function ha_get_post_types () {
-		$post_types = get_post_types( [ 'public' => true, 'show_in_nav_menus' => true ], 'objects' );
-		$post_types = wp_list_pluck( $post_types, 'label', 'name' );
-		$extra = [
-			'key' => 'Extar'
-		];
-
-		$post_types = array_merge( $extra, $post_types );
-
-		return array_diff_key( $post_types, [ 'elementor_library', 'attachment' ] );
+	public function get_post_types () {
+		$post_types = ha_get_post_types( [],[ 'elementor_library', 'attachment' ] );
+		return $post_types;
 	}
 
 	protected function register_content_controls () {
@@ -103,8 +79,8 @@ class Post_List extends Base {
 			[
 				'label' => __( 'Source', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
-				'options' => $this->ha_get_post_types(),
-				'default' => key( $this->ha_get_post_types() ),
+				'options' => $this->get_post_types(),
+				'default' => key( $this->get_post_types() ),
 			]
 		);
 
@@ -116,7 +92,6 @@ class Post_List extends Base {
 				'default' => 'recent',
 				'options' => [
 					'recent' => __( 'Recent Post', 'happy-elementor-addons' ),
-					//'popular'          => __( 'Popular Post', 'happy-elementor-addons' ),
 					'selected' => __( 'Selected Post', 'happy-elementor-addons' ),
 				],
 
@@ -129,6 +104,7 @@ class Post_List extends Base {
 				'label' => __( 'Item Limit', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::NUMBER,
 				'default' => 3,
+				'dynamic' => [ 'active' => true ],
 				'condition' => [
 					'show_post_by' => [ 'recent' ]
 				]
@@ -137,7 +113,7 @@ class Post_List extends Base {
 
 		$repeater = [];
 
-		foreach ( $this->ha_get_post_types() as $key => $value ) {
+		foreach ( $this->get_post_types() as $key => $value ) {
 
 			$repeater[$key] = new Repeater();
 
@@ -180,11 +156,10 @@ class Post_List extends Base {
 					'condition' => [
 						'show_post_by' => 'selected',
 						'post_type' => $key
-					]
+					],
 				]
 			);
 		}
-
 
 		$this->end_controls_section();
 
@@ -214,8 +189,6 @@ class Post_List extends Base {
 						'icon' => 'eicon-ellipsis-h',
 					],
 				],
-				//'render_type' => 'template',
-				//'classes' => 'elementor-control-start-end',
 				'style_transfer' => true,
 			]
 		);
@@ -233,18 +206,18 @@ class Post_List extends Base {
 		);
 
 		$this->add_group_control(
-            Group_Control_Image_Size::get_type(),
-            [
-                'name' => 'post_image',
-                'default' => 'thumbnail',
-                'exclude' => [
-                    'custom'
-                ],
-                'condition' => [
-	                'feature_image' => 'yes'
-                ]
-            ]
-        );
+			Group_Control_Image_Size::get_type(),
+			[
+				'name' => 'post_image',
+				'default' => 'thumbnail',
+				'exclude' => [
+					'custom'
+				],
+				'condition' => [
+					'feature_image' => 'yes'
+				]
+			]
+		);
 
 		$this->add_control(
 			'list_icon',
@@ -390,7 +363,7 @@ class Post_List extends Base {
 			[
 				'label' => __( 'Meta Position', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
-				'default' => 'top',
+				'default' => 'bottom',
 				'options' => [
 					'top' => __( 'Top', 'happy-elementor-addons' ),
 					'bottom' => __( 'Bottom', 'happy-elementor-addons' ),
@@ -407,27 +380,27 @@ class Post_List extends Base {
 				'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
-					'h1'  => [
+					'h1' => [
 						'title' => __( 'H1', 'happy-elementor-addons' ),
 						'icon' => 'eicon-editor-h1'
 					],
-					'h2'  => [
+					'h2' => [
 						'title' => __( 'H2', 'happy-elementor-addons' ),
 						'icon' => 'eicon-editor-h2'
 					],
-					'h3'  => [
+					'h3' => [
 						'title' => __( 'H3', 'happy-elementor-addons' ),
 						'icon' => 'eicon-editor-h3'
 					],
-					'h4'  => [
+					'h4' => [
 						'title' => __( 'H4', 'happy-elementor-addons' ),
 						'icon' => 'eicon-editor-h4'
 					],
-					'h5'  => [
+					'h5' => [
 						'title' => __( 'H5', 'happy-elementor-addons' ),
 						'icon' => 'eicon-editor-h5'
 					],
-					'h6'  => [
+					'h6' => [
 						'title' => __( 'H6', 'happy-elementor-addons' ),
 						'icon' => 'eicon-editor-h6'
 					]
@@ -445,7 +418,7 @@ class Post_List extends Base {
 		$this->start_controls_section(
 			'_section_post_list_style',
 			[
-				'label' => esc_html__( 'List', 'happy-elementor-addons' ),
+				'label' => __( 'List', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -477,7 +450,7 @@ class Post_List extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-post-list .ha-post-list-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-post-list .ha-post-list-item a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				]
 			]
 		);
@@ -522,12 +495,27 @@ class Post_List extends Base {
 			]
 		);
 
+		$this->add_control(
+			'advance_style',
+			[
+				'label' => __( 'Advance Style', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'On', 'happy-elementor-addons' ),
+				'label_off' => __( 'Off', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => '',
+			]
+		);
+
 		$this->add_responsive_control(
 			'list_item_first',
 			[
 				'label' => __( 'First Item', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
+				'condition' => [
+					'advance_style' => 'yes',
+				]
 			]
 		);
 
@@ -539,6 +527,9 @@ class Post_List extends Base {
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .ha-post-list .ha-post-list-item:first-child' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition' => [
+					'advance_style' => 'yes',
 				]
 			]
 		);
@@ -549,6 +540,9 @@ class Post_List extends Base {
 				'name' => 'list_item_first_child_border',
 				'label' => __( 'Border', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-post-list .ha-post-list-item:first-child',
+				'condition' => [
+					'advance_style' => 'yes',
+				]
 			]
 		);
 
@@ -558,6 +552,9 @@ class Post_List extends Base {
 				'label' => __( 'Last Item', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
+				'condition' => [
+					'advance_style' => 'yes',
+				]
 			]
 		);
 
@@ -569,6 +566,9 @@ class Post_List extends Base {
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .ha-post-list .ha-post-list-item:last-child' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition' => [
+					'advance_style' => 'yes',
 				]
 			]
 		);
@@ -579,6 +579,9 @@ class Post_List extends Base {
 				'name' => 'list_item_last_child_border',
 				'label' => __( 'Border', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-post-list .ha-post-list-item:last-child',
+				'condition' => [
+					'advance_style' => 'yes',
+				]
 			]
 		);
 
@@ -602,9 +605,7 @@ class Post_List extends Base {
 			]
 		);
 
-		$this->start_controls_tabs(
-			'title_tabs'
-		);
+		$this->start_controls_tabs( 'title_tabs' );
 		$this->start_controls_tab(
 			'title_normal_tab',
 			[
@@ -644,60 +645,133 @@ class Post_List extends Base {
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
 
-		$this->add_responsive_control(
-			'title_margin_btm',
-			[
-				'label' => esc_html__( 'Margin Bottom', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'selectors' => [
-					'{{WRAPPER}} .ha-post-list-title' => 'margin-bottom: {{SIZE}}{{UNIT}}',
-				],
-			]
-		);
-
 		$this->end_controls_section();
 		//List Icon Style
 		$this->start_controls_section(
-			'_section_list_icon_style',
+			'_section_list_icon_feature_iamge_style',
 			[
-				'label' => esc_html__( 'Icon', 'happy-elementor-addons' ),
+				'label' => __( 'Icon & Feature Image', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
-				'condition'	=> [
-					'feature_image!'	=> 'yes',
-				]
+				'conditions' => [
+					'relation' => 'or',
+					'terms' => [
+						[
+							'name' => 'feature_image',
+							'operator' => '==',
+							'value' => 'yes',
+						],
+						[
+							'name' => 'list_icon',
+							'operator' => '==',
+							'value' => 'yes',
+						],
+					],
+				],
 			]
 		);
 
 		$this->add_control(
 			'icon_color',
 			[
-				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}} span.ha-post-list-icon' => 'color: {{VALUE}};',
 				],
+				'condition' => [
+					'feature_image!' => 'yes',
+					'list_icon' => 'yes',
+				]
 			]
 		);
 
 		$this->add_responsive_control(
 			'icon_size',
 			[
-				'label' => esc_html__( 'Font Size', 'happy-elementor-addons' ),
+				'label' => __( 'Font Size', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} span.ha-post-list-icon' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
+				'condition' => [
+					'feature_image!' => 'yes',
+					'list_icon' => 'yes',
+				]
 			]
 		);
 
 		$this->add_responsive_control(
 			'icon_line_height',
 			[
-				'label' => esc_html__( 'Line Height', 'happy-elementor-addons' ),
+				'label' => __( 'Line Height', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} span.ha-post-list-icon' => 'line-height: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'feature_image!' => 'yes',
+					'list_icon' => 'yes',
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'image_width',
+			[
+				'label' => __( 'Image Width', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list-item a img' => 'width: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'feature_image' => 'yes',
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'image_boder',
+				'label' => __( 'Border', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-post-list-item a img',
+				'condition' => [
+					'feature_image' => 'yes',
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'image_boder_radius',
+			[
+				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list-item a img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition' => [
+					'feature_image' => 'yes',
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_margin_right',
+			[
+				'label' => __( 'Margin Right', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} span.ha-post-list-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-post-list-item a img' => 'margin-right: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -707,14 +781,91 @@ class Post_List extends Base {
 		$this->start_controls_section(
 			'_section_list_meta_style',
 			[
-				'label' => esc_html__( 'Meta', 'happy-elementor-addons' ),
+				'label' => __( 'Meta', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
-				'condition'	=> [
-					'meta'	=> 'yes',
+				'condition' => [
+					'meta' => 'yes',
 				]
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'meta_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'selector' => '{{WRAPPER}} .ha-post-list-meta-wrap span',
+			]
+		);
+
+		$this->add_control(
+			'meta_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list-meta-wrap span' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'meta_space',
+			[
+				'label' => __( 'Space Between', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list-meta-wrap span' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-post-list-meta-wrap span:last-child' => 'margin-right: 0;',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'meta_box_margin',
+			[
+				'label' => __( 'Margin', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list-meta-wrap' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'meta_icon_heading',
+			[
+				'label' => __( 'Meta Icon', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'meta_icon_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list-meta-wrap span i' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'meta_icon_space',
+			[
+				'label' => __( 'Space Between', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list-meta-wrap span i' => 'margin-right: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
 
 		$this->end_controls_section();
 	}
@@ -722,23 +873,13 @@ class Post_List extends Base {
 	protected function render () {
 
 		$settings = $this->get_settings_for_display();
-		//var_dump( $this->ha_get_post_types() );
-		$array = [
-			$settings['post_type'],
-			$settings['selected_list_' . $settings['post_type']],
-		];
-//		show_post_by
-//		echo '<pre>';
-//		var_dump( $settings['selected_list_' . $settings['post_type']] );
-//		echo '</pre>';
+		if ( ! $settings['post_type'] ) return;
 		$args = [
 			'post_status' => 'publish',
 			'post_type' => $settings['post_type'],
 		];
-		//$args['posts_per_page'] = 0;
 		if ( 'recent' === $settings['show_post_by'] ) {
 			$args['posts_per_page'] = $settings['posts_per_page'];
-			//$args['order'] =  $settings['ASC'];
 		}
 
 		$customize_title = [];
@@ -746,24 +887,22 @@ class Post_List extends Base {
 		if ( 'selected' === $settings['show_post_by'] ) {
 			$args['posts_per_page'] = -1;
 			$lists = $settings['selected_list_' . $settings['post_type']];
-			if( ! empty( $lists ) ){
+			if ( ! empty( $lists ) ) {
 				foreach ( $lists as $index => $value ) {
 					$ids[] = $value['post_id'];
-					if( $value['title'] ) $customize_title[$value['post_id']] = $value['title'];
+					if ( $value['title'] ) $customize_title[$value['post_id']] = $value['title'];
 				}
 			}
 			$args['post__in'] = (array) $ids;
 			$args['orderby'] = 'post__in';
 		}
-		//$args['post__in'] =  (array) $settings['selected_posts'];
 
-		if ( 'selected' === $settings['show_post_by']  && empty( $ids ) ) {
+		if ( 'selected' === $settings['show_post_by'] && empty( $ids ) ) {
 			$posts = [];
-		}else{
+		} else {
 			$posts = get_posts( $args );
 		}
 
-		//var_dump($posts);
 		$this->add_render_attribute( 'wrapper', 'class', [ 'ha-post-list-wrapper' ] );
 		$this->add_render_attribute( 'wrapper-inner', 'class', [ 'ha-post-list' ] );
 		if ( 'inline' === $settings['view'] ) {
@@ -787,10 +926,10 @@ class Post_List extends Base {
 								<div class="ha-post-list-content">
 									<?php
 									$title = $post->post_title;
-									if ( 'selected' === $settings['show_post_by'] && array_key_exists( $post->ID ,$customize_title ) ){
+									if ( 'selected' === $settings['show_post_by'] && array_key_exists( $post->ID, $customize_title ) ) {
 										$title = $customize_title[$post->ID];
 									}
-									if('top' !== $settings['meta_position'] && $title ){
+									if ( 'top' !== $settings['meta_position'] && $title ) {
 										printf( '<%1$s %2$s>%3$s</%1$s>',
 											tag_escape( $settings['title_tag'] ),
 											'class="ha-post-list-title"',
@@ -835,7 +974,7 @@ class Post_List extends Base {
 										</div>
 									<?php endif; ?>
 									<?php
-									if('top' === $settings['meta_position'] && $title ){
+									if ( 'top' === $settings['meta_position'] && $title ) {
 										printf( '<%1$s %2$s>%3$s</%1$s>',
 											tag_escape( $settings['title_tag'] ),
 											'class="ha-post-list-title"',

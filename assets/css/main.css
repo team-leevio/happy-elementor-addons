@@ -3202,12 +3202,13 @@ a.ha-social-icon:after {
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display:         flex;
+	width: 100%;
 }
 
 .ha-post-list-title {
 	display: block;
 	margin-top: 0;
-	margin-bottom: 3px;
+	margin-bottom: 0;
 	color: #242424;
 	font-size: 1rem;
 	-webkit-transition: all .4s;
@@ -3216,6 +3217,10 @@ a.ha-social-icon:after {
 
 .ha-post-list .ha-post-list-item a:hover .ha-post-list-title {
 	color: #e04d8b;
+}
+
+.ha-post-list-item a img {
+	margin-right: 15px;
 }
 
 span.ha-post-list-icon {
@@ -3229,6 +3234,7 @@ span.ha-post-list-icon {
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display:         flex;
+	margin-top: 3px;
 }
 
 .ha-post-list-meta-wrap span {
