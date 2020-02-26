@@ -477,3 +477,48 @@ function ha_get_post_types ( $args = array(), $diff_key = array() ) {
 	}
 	return $post_types;
 }
+
+function ha_get_taxonomies ( $args = array(), $output = 'object', $list = true, $diff_key = array() ) {
+
+	$taxonomies = get_taxonomies( $args , $output );
+	if( 'object' === $output && $list ){
+		$taxonomies = wp_list_pluck( $taxonomies, 'label', 'name' );
+	}
+
+	if( !empty( $diff_key ) ){
+		$taxonomies = array_diff_key( $taxonomies, $diff_key );
+	}
+
+	return $taxonomies;
+}
+//add_action('wp_footer','get_tax_types');
+//function get_tax_types () {
+//	$args = [
+//		'public' => true,
+//		//"object_type"=> [ "post" ],
+//	];
+//	$taxonomies = $taxonomies = get_taxonomies( $args ,'names');
+//	//return $taxonomies;
+//	echo '<pre>';
+//	var_dump( $taxonomies );
+//	echo '</pre>';
+//}
+////get_tax_types ();
+//echo '<pre>';
+////var_dump(get_tax_types());
+//echo '</pre>';
+//
+//$args = array(
+//
+//	'labels' => [
+//		'name'   => 'Movies Cat',
+//	]
+//);
+//$args = [];
+//$output = 'names'; // or objects
+//$operator = 'and'; // 'and' or 'or'
+//$taxonomies = get_taxonomies( [ '_builtin' => false ] );
+//echo '<pre>';
+////var_dump(get_taxonomies([ 'public' => true ],'object'));
+//echo '</pre>';
+

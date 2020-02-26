@@ -519,6 +519,16 @@ class Widgets_Manager {
 			        'js' => [],
 		        ],
 	        ],
+	        'post-tab' => [
+		        'title' => __( 'Post Tab', 'happy-elementor-addons' ),
+		        'icon' => 'hm hm-post-tab',
+		        'css' => ['post-tab'],
+		        'js' => [],
+		        'vendor' => [
+			        'css' => [],
+			        'js' => [],
+		        ],
+	        ],
         ];
     }
 
