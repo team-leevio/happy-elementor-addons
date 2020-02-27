@@ -88,9 +88,9 @@ class Post_Tab extends Base {
 
 	protected function register_content_controls () {
 		$this->start_controls_section(
-			'_section_post_tab',
+			'_section_post_tab_query',
 			[
-				'label' => __( 'List', 'happy-elementor-addons' ),
+				'label' => __( 'Query', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -178,15 +178,45 @@ class Post_Tab extends Base {
 		}
 
 		$this->add_control(
-			'posts_per_page',
+			'item_limit',
 			[
 				'label' => __( 'Item Limit', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::NUMBER,
 				'default' => 3,
 				'dynamic' => [ 'active' => true ],
-				'condition' => [
-					'show_post_by' => [ 'recent' ]
-				]
+			]
+		);
+
+		$this->add_control(
+			'orderby',
+			[
+				'label' => __( 'Order By', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'date',
+				'options' => [
+					'ID' => __( 'Post ID', 'happy-elementor-addons' ),
+					'author' => __( 'Post Author', 'happy-elementor-addons' ),
+					'title' => __( 'Title', 'happy-elementor-addons' ),
+					'date' => __( 'Date', 'happy-elementor-addons' ),
+					'modified' => __( 'Last Modified Date', 'happy-elementor-addons' ),
+					'parent' => __( 'Parent Id', 'happy-elementor-addons' ),
+					'rand' => __( 'Random', 'happy-elementor-addons' ),
+					'comment_count' => __( 'Comment Count', 'happy-elementor-addons' ),
+					'menu_order' => __( 'Menu Order', 'happy-elementor-addons' ),
+				],
+			]
+		);
+
+		$this->add_control(
+			'order',
+			[
+				'label' => __( 'Order', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'desc',
+				'options' => [
+					'asc' => __( 'ASC', 'happy-elementor-addons' ),
+					'desc' => __( 'DESC', 'happy-elementor-addons' ),
+				],
 			]
 		);
 
@@ -242,9 +272,9 @@ class Post_Tab extends Base {
 				'exclude' => [
 					'custom'
 				],
-				'condition' => [
+				/*'condition' => [
 					'feature_image' => 'yes'
-				]
+				]*/
 			]
 		);
 
@@ -257,149 +287,9 @@ class Post_Tab extends Base {
 				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
-				'condition' => [
+				/*'condition' => [
 					'feature_image!' => 'yes'
-				]
-			]
-		);
-
-		$this->add_control(
-			'icon',
-			[
-				'label' => __( 'Icon', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::ICONS,
-				'label_block' => true,
-				'default' => [
-					'value' => 'far fa-check-circle',
-					'library' => 'reguler'
-				],
-				'condition' => [
-					'list_icon' => 'yes',
-					'feature_image!' => 'yes'
-				]
-			]
-		);
-
-		$this->add_control(
-			'meta',
-			[
-				'label' => __( 'Show Meta', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'happy-elementor-addons' ),
-				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-				'default' => '',
-			]
-		);
-
-		$this->add_control(
-			'author_meta',
-			[
-				'label' => __( 'Author', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'happy-elementor-addons' ),
-				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-				'default' => '',
-				'condition' => [
-					'meta' => 'yes',
-				]
-			]
-		);
-
-		$this->add_control(
-			'author_icon',
-			[
-				'label' => __( 'Author Icon', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::ICONS,
-				'default' => [
-					'value' => 'far fa-user',
-					'library' => 'reguler',
-				],
-				'condition' => [
-					'meta' => 'yes',
-					'author_meta' => 'yes',
-				]
-			]
-		);
-
-		$this->add_control(
-			'date_meta',
-			[
-				'label' => __( 'Date', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'happy-elementor-addons' ),
-				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-				'default' => '',
-				'condition' => [
-					'meta' => 'yes',
-				]
-			]
-		);
-
-		$this->add_control(
-			'date_icon',
-			[
-				'label' => __( 'Date Icon', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::ICONS,
-				'default' => [
-					'value' => 'far fa-calendar-check',
-					'library' => 'reguler',
-				],
-				'condition' => [
-					'meta' => 'yes',
-					'date_meta' => 'yes',
-				]
-			]
-		);
-
-		$this->add_control(
-			'category_meta',
-			[
-				'label' => __( 'Category', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'happy-elementor-addons' ),
-				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-				'default' => '',
-				'condition' => [
-					'meta' => 'yes',
-					'post_type' => 'post',
-				]
-			]
-		);
-
-		$this->add_control(
-			'category_icon',
-			[
-				'label' => __( 'Category Icon', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::ICONS,
-				'default' => [
-					'value' => 'far fa-folder-open',
-					'library' => 'reguler',
-				],
-				'condition' => [
-					'meta' => 'yes',
-					'category_meta' => 'yes',
-					'post_type' => 'post',
-				]
-			]
-		);
-
-		$this->add_control(
-			'meta_position',
-			[
-				'label' => __( 'Meta Position', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'bottom',
-				'options' => [
-					'top' => __( 'Top', 'happy-elementor-addons' ),
-					'bottom' => __( 'Bottom', 'happy-elementor-addons' ),
-				],
-				'condition' => [
-					'meta' => 'yes',
-				]
+				]*/
 			]
 		);
 
@@ -922,24 +812,32 @@ class Post_Tab extends Base {
 		//var_dump( $data );
 		echo '</pre>';
 		//return;
-		if ( ! $settings['post_type'] || !post_type_exists($settings['post_type']) )
-		return;
+		if ( ! $settings['post_type'] || ! post_type_exists( $settings['post_type'] ) )
+			return;
 
 		$taxonomy = $settings['tax_type_' . $settings['post_type']];
-		var_dump($taxonomy,$settings[ 'tax_ids_' . $taxonomy ]);
+		$terms_ids = $settings['tax_ids_' . $taxonomy];
+		var_dump( $taxonomy, $settings['tax_ids_' . $taxonomy] );
 		//return;
 		$args = [
 			'post_status' => 'publish',
 			'post_type' => $settings['post_type'],
 			'posts_per_page' => -1,
-			'tax_query' => array(
+			/*'tax_query' => array(
 				array(
 					'taxonomy' => $taxonomy,
 					'field'    => 'term_id',
-					'terms'    => $settings[ 'tax_ids_' . $taxonomy ],
+					'terms'    => $terms_ids,
 				),
-			),
+			),*/
 		];
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => $taxonomy,
+				'field' => 'term_id',
+				'terms' => $terms_ids[0],
+			),
+		);
 
 
 		$customize_title = [];
@@ -963,94 +861,72 @@ class Post_Tab extends Base {
 			$posts = get_posts( $args );
 		}
 
+		$arg = [
+			'taxonomy' => $taxonomy,
+			//'taxonomy' => 'movies_cat',
+			'hide_empty' => true,
+			'include' => $terms_ids,
+		];
+		$tab_list = get_terms( $arg );
+
 		echo '<pre>';
-		var_dump($posts);
+
+		foreach ( $tab_list as $list ) {
+			var_dump( $list->name );
+		}
+		foreach ( $posts as $post ) {
+			var_dump( $post->post_title );
+		}
 		echo '</pre>';
 
-		$this->add_render_attribute( 'wrapper', 'class', [ 'ha-post-list-wrapper' ] );
-		$this->add_render_attribute( 'wrapper-inner', 'class', [ 'ha-post-list' ] );
+		$this->add_render_attribute( 'wrapper', 'class', [ 'ha-post-tab-wrapper' ] );
+		$this->add_render_attribute( 'tab-list', 'class', [ 'ha-post-tab-list' ] );
+		$this->add_render_attribute( 'tab-body', 'class', [ 'ha-post-tab-body' ] );
 		// if ( 'inline' === $settings['view'] ) {
 		// 	$this->add_render_attribute( 'wrapper-inner', 'class', [ 'ha-post-list-inline' ] );
 		// }
 		$this->add_render_attribute( 'item', 'class', [ 'ha-post-list-item' ] );
-
-		if ( false && count( $posts ) !== 0 ) :?>
+		$i = 1;
+		if ( count( $posts ) !== 0 ) :?>
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
-				<ul <?php $this->print_render_attribute_string( 'wrapper-inner' ); ?> >
-					<?php foreach ( $posts as $post ): ?>
-						<li <?php $this->print_render_attribute_string( 'item' ); ?>>
-							<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>">
-								<?php if ( 'yes' === $settings['feature_image'] ):
-									echo get_the_post_thumbnail( $post->ID, $settings['post_image_size'] );
-								elseif ( 'yes' === $settings['list_icon'] && $settings['icon'] ) :
-									echo '<span class="ha-post-list-icon">';
-									Icons_Manager::render_icon( $settings['icon'], [ 'aria-hidden' => 'true' ] );
-									echo '</span>';
-								endif; ?>
-								<div class="ha-post-list-content">
-									<?php
-									$title = $post->post_title;
-									if ( 'selected' === $settings['show_post_by'] && array_key_exists( $post->ID, $customize_title ) ) {
-										$title = $customize_title[$post->ID];
-									}
-									if ( 'top' !== $settings['meta_position'] && $title ) {
-										printf( '<%1$s %2$s>%3$s</%1$s>',
-											tag_escape( $settings['title_tag'] ),
-											'class="ha-post-list-title"',
-											esc_html( $title )
-										);
-									}
-									?>
-									<?php if ( 'yes' === $settings['meta'] ): ?>
-										<div class="ha-post-list-meta-wrap">
+				<ul <?php //$this->print_render_attribute_string( 'tab-list' );
+				?> >
+					<?php
+					/*
+					$this->print_render_attribute_string( 'item' );
+					echo esc_url( get_the_permalink( $post->ID ) );
+					echo get_the_post_thumbnail( $post->ID, $settings['post_image_size'] );
+					Icons_Manager::render_icon( $settings['icon'], [ 'aria-hidden' => 'true' ] );
+					$title = $post->post_title;
+					tag_escape( $settings['title_tag'] )
+					echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) );
+					echo get_the_date( "M d, Y" );
+					$categories = get_the_category( $post->ID );
+					echo esc_html( $categories[0]->name );
+					printf( '<%1$s %2$s>%3$s</%1$s>',
+						tag_escape( $settings['title_tag'] ),
+						'class="ha-post-list-title"',
+						esc_html( $title )
+					);
+					*/
+					?>
 
-											<?php if ( 'yes' === $settings['author_meta'] ):
-												?>
-												<span class="ha-post-list-author">
-												<?php if ( $settings['author_icon'] ):
-													Icons_Manager::render_icon( $settings['author_icon'], [ 'aria-hidden' => 'true' ] );
-												endif;
-												echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?>
-												</span>
-											<?php endif; ?>
+				</ul>
 
-											<?php if ( 'yes' === $settings['date_meta'] ): ?>
-												<span class="ha-post-list-date">
-													<?php if ( $settings['date_icon'] ):
-														Icons_Manager::render_icon( $settings['date_icon'], [ 'aria-hidden' => 'true' ] );
-													endif;
-													echo get_the_date( "M d, Y" );
-													?>
-												</span>
-											<?php endif; ?>
-
-											<?php if ( 'post' === $settings['post_type'] && 'yes' === $settings['category_meta'] ):
-												$categories = get_the_category( $post->ID );
-												?>
-												<span class="ha-post-list-category">
-												<?php if ( $settings['category_icon'] ):
-													Icons_Manager::render_icon( $settings['category_icon'], [ 'aria-hidden' => 'true' ] );
-												endif;
-												echo esc_html( $categories[0]->name ); ?>
-												</span>
-											<?php endif; ?>
-
-										</div>
-									<?php endif; ?>
-									<?php
-									if ( 'top' === $settings['meta_position'] && $title ) {
-										printf( '<%1$s %2$s>%3$s</%1$s>',
-											tag_escape( $settings['title_tag'] ),
-											'class="ha-post-list-title"',
-											esc_html( $title )
-										);
-									}
-									?>
-								</div>
-							</a>
-						</li>
+				<ul <?php $this->print_render_attribute_string( 'tab-list' ); ?>>
+					<?php foreach ( $tab_list as $list ): ?>
+						<li><?php echo esc_html( $list->name ); ?></li>
 					<?php endforeach; ?>
 				</ul>
+
+				<div <?php $this->print_render_attribute_string( 'tab-body' ); ?>>
+					<?php foreach ( $posts as $post ): ?>
+						<h4 class="ha-post-tab-title">
+							<?php echo esc_html( $post->post_title ); ?>
+						</h4>
+					<?php if( $i===$settings['item_limit'] ){break;}$i++; endforeach; ?>
+				</div>
+
 			</div>
 		<?php
 		else:
