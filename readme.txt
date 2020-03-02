@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.7.1
+Version: 2.7.2
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -275,6 +275,10 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.7.2 - 2 March 2020 =
+
+- Fix: Dual Button space between buttons issue
 
 = 2.7.1 - 23 February 2020 =
 
