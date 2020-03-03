@@ -252,6 +252,18 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->add_control(
+			'content_word_count',
+			[
+				'label' => __( 'Content Word Count', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::NUMBER,
+				'min' => 0,
+				'step' => 1,
+				'max' => 500,
+				'default' => 15,
+			]
+		);
+
+		$this->add_control(
 			'load_more',
 			[
 				'label' => __('Load More Button', 'happy-elementor-addons'),
@@ -1230,7 +1242,7 @@ class Twitter_Feed extends Base {
 
 			$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
 
-			set_transient($user_name . $ha_tweets_cash, $twitter_data, 5 * MINUTE_IN_SECONDS );
+			set_transient( $transient_key, $twitter_data, 2 * MINUTE_IN_SECONDS );
 
 		}
 
@@ -1250,18 +1262,21 @@ class Twitter_Feed extends Base {
 		}
 
 		$query_settings = [
-			'credentials' 		=> $credentials,
-			'id' 				=> $id,
-			'user_name' 		=> $user_name,
-			'sort_by' 			=> $settings['sort_by'],
-			'show_twitter_logo' => $settings['show_twitter_logo'],
-			'tweets_limit' 		=> $settings['tweets_limit'],
-			'show_user_image' 	=> $settings['show_user_image'],
-			'show_name' 		=> $settings['show_name'],
-			'show_user_name' 	=> $settings['show_user_name'],
-			'show_date' 		=> $settings['show_date'],
-			'show_favorite' 	=> $settings['show_favorite'],
-			'show_retweet' 		=> $settings['show_retweet'],
+			'credentials' 			=> $credentials,
+			'id' 					=> $id,
+			'user_name' 			=> $user_name,
+			'sort_by' 				=> $settings['sort_by'],
+			'show_twitter_logo' 	=> $settings['show_twitter_logo'],
+			'tweets_limit' 			=> $settings['tweets_limit'],
+			'show_user_image' 		=> $settings['show_user_image'],
+			'show_name' 			=> $settings['show_name'],
+			'show_user_name' 		=> $settings['show_user_name'],
+			'show_date' 			=> $settings['show_date'],
+			'show_favorite' 		=> $settings['show_favorite'],
+			'show_retweet' 			=> $settings['show_retweet'],
+			'read_more' 			=> $settings['read_more'],
+			'read_more_text'		=> $settings['read_more_text'],
+			'content_word_count'	=> $settings['content_word_count'],
 		];
 		$query_settings = json_encode($query_settings, true);
 
@@ -1296,7 +1311,22 @@ class Twitter_Feed extends Base {
 		}
 		?>
 		<div class="ha-tweet-items">
-			<?php foreach ( $items as $item ) : ?>
+			<?php
+			foreach ( $items as $item ) :
+				if ( !empty( $item['entities']['urls'] ) ) {
+					$content = str_replace( $item['entities']['urls'][0]['url'], '', $item['full_text'] );
+				} else {
+					$content = $item['full_text'];
+				}
+
+				$description = explode( ' ', $content );
+				if ( !empty( $settings['content_word_count'] ) && count( $description ) > $settings['content_word_count'] ) {
+					$description_shorten = array_slice( $description, 0, $settings['content_word_count'] );
+					$description = implode( ' ', $description_shorten ) . '...';
+				} else {
+					$description = $content;
+				}
+				?>
 				<div class="ha-tweet-item">
 
 					<?php if ( $settings['show_twitter_logo'] == 'yes' ) : ?>
@@ -1334,9 +1364,8 @@ class Twitter_Feed extends Base {
 						</div>
 
 						<div class="ha-tweet-content">
-							<?php $content = str_replace( $item['entities']['urls'][0]['url'], '', $item['full_text'] ); ?>
 							<p>
-								<?php echo esc_html( $content ); ?>
+								<?php echo esc_html( $description ); ?>
 
 								<?php if ( $settings['read_more'] == 'yes' ) : ?>
 									<a href="<?php echo esc_url( '//twitter.com/' . $item['user']['screen_name'] . '/status/' . $item['id'] ); ?>" target="_blank">

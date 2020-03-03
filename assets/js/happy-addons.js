@@ -475,11 +475,11 @@
                     total = $self.data("total"),
                     items = $scope.find('.ha-tweet-item').length;
                 $.ajax({
-                    url: HappyTwitterLocalize.ajax_url,
+                    url: HappyLocalize.ajax_url,
                     type: 'POST',
                     data: {
                         action: "ha_twitter_feed_action",
-                        security: HappyTwitterLocalize.nonce,
+                        security: HappyLocalize.nonce,
                         query_settings: query_settings,
                         loaded_item: items,
                     },

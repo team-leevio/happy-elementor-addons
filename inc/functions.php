@@ -304,18 +304,16 @@ function ha_get_current_user_display_name() {
  */
 function ha_twitter_feed_ajax() {
 
-	define( 'HA_TWEETS_TOKEN', '_tweet_token' );
-	define( 'HA_TWEETS_CASH', '_tweet_cash' );
-
-	$security = check_ajax_referer('happy_addons_twitter_nonce', 'security');
+	$security = check_ajax_referer('happy_addons_nonce', 'security');
 
 	if ( true == $security && isset( $_POST['query_settings'] ) ) :
 		$settings = $_POST['query_settings'];
 		$loaded_item = $_POST['loaded_item'];
 
 		$user_name = trim($settings['user_name']);
+		$ha_tweets_cash = '_' . $settings['id'] . '_tweet_cash';
 
-		$transient_key = $settings['id'] . '_' . $user_name . HA_TWEETS_CASH;
+		$transient_key = $user_name . $ha_tweets_cash;
 		$twitter_data = get_transient($transient_key);
 		$credentials = $settings['credentials'];
 
@@ -343,7 +341,7 @@ function ha_twitter_feed_ajax() {
 
 		if ( !is_wp_error( $tweets_response ) ) {
 			$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
-			set_transient($settings['id'] . '_' . $settings['user_name'] . HA_TWEETS_CASH, $twitter_data, 0); // 2 * MINUTE_IN_SECONDS
+			set_transient( $transient_key, $twitter_data, 2 * MINUTE_IN_SECONDS );
 		}
 
 		switch ($settings['sort_by']) {
@@ -372,6 +370,19 @@ function ha_twitter_feed_ajax() {
 		$items = array_splice($twitter_data, $loaded_item, $settings['tweets_limit'] );
 
 		foreach ($items as $item) :
+			if ( !empty( $item['entities']['urls'] ) ) {
+				$content = str_replace( $item['entities']['urls'][0]['url'], '', $item['full_text'] );
+			} else {
+				$content = $item['full_text'];
+			}
+
+			$description = explode( ' ', $content );
+			if ( !empty( $settings['content_word_count'] ) && count( $description ) > $settings['content_word_count'] ) {
+				$description_shorten = array_slice( $description, 0, $settings['content_word_count'] );
+				$description = implode( ' ', $description_shorten ) . '...';
+			} else {
+				$description = $content;
+			}
 			?>
 			<div class="ha-tweet-item">
 
@@ -410,11 +421,19 @@ function ha_twitter_feed_ajax() {
 					</div>
 
 					<div class="ha-tweet-content">
-						<p><?php echo esc_html( $item['full_text'] ); ?></p>
+						<p>
+							<?php echo esc_html( $description ); ?>
+
+							<?php if ( $settings['read_more'] == 'yes' ) : ?>
+								<a href="<?php echo esc_url( '//twitter.com/' . $item['user']['screen_name'] . '/status/' . $item['id'] ); ?>" target="_blank">
+									<?php echo esc_html( $settings['read_more_text'] ); ?>
+								</a>
+							<?php endif; ?>
+						</p>
 
 						<?php if ( $settings['show_date'] == 'yes' ) : ?>
 							<div class="ha-tweet-date">
-								<?php echo esc_html( date("M d Y", strtotime( $item['created_at'] ) ) );?>
+								<?php echo esc_html( date("M d Y", strtotime( $item['created_at'] ) ) ); ?>
 							</div>
 						<?php endif; ?>
 					</div>
