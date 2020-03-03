@@ -1,3 +1,7 @@
+= 2.7.2 - 2 March 2020 =
+
+- Fix: Dual Button space between buttons issue
+
 = 2.7.1 - 23 February 2020 =
 
 - Fix: Fun Factor broken markup issue

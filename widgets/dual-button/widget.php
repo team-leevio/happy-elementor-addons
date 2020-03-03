@@ -397,10 +397,20 @@ class Dual_Button extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}}.ha-dual-button--layout-queue .ha-dual-btn--left' => 'margin-right: calc({{SIZE}}{{UNIT}}/2);',
-                    '{{WRAPPER}}.ha-dual-button--layout-queue .ha-dual-btn--right' => 'margin-left: calc({{SIZE}}{{UNIT}}/2);',
-                    '{{WRAPPER}}.ha-dual-button--layout-stack .ha-dual-btn--left' => 'margin-bottom: calc({{SIZE}}{{UNIT}}/2);',
-                    '{{WRAPPER}}.ha-dual-button--layout-stack .ha-dual-btn--right' => 'margin-top: calc({{SIZE}}{{UNIT}}/2);',
+                    '(desktop+){{WRAPPER}}.ha-dual-button--layout-queue .ha-dual-btn--left' => 'margin-right: calc({{button_gap.SIZE}}{{UNIT}}/2);',
+                    '(desktop+){{WRAPPER}}.ha-dual-button--layout-stack .ha-dual-btn--left' => 'margin-bottom: calc({{button_gap.SIZE}}{{UNIT}}/2);',
+                    '(desktop+){{WRAPPER}}.ha-dual-button--layout-queue .ha-dual-btn--right' => 'margin-left: calc({{button_gap.SIZE}}{{UNIT}}/2);',
+                    '(desktop+){{WRAPPER}}.ha-dual-button--layout-stack .ha-dual-btn--right' => 'margin-top: calc({{button_gap.SIZE}}{{UNIT}}/2);',
+
+                    '(tablet){{WRAPPER}}.ha-dual-button--tablet-layout-queue .ha-dual-btn--left' => 'margin-right: calc({{button_gap_tablet.SIZE || button_gap.SIZE}}{{UNIT}}/2); margin-bottom: 0;',
+                    '(tablet){{WRAPPER}}.ha-dual-button--tablet-layout-stack .ha-dual-btn--left' => 'margin-bottom: calc({{button_gap_tablet.SIZE || button_gap.SIZE}}{{UNIT}}/2); margin-right: 0;',
+                    '(tablet){{WRAPPER}}.ha-dual-button--tablet-layout-queue .ha-dual-btn--right' => 'margin-left: calc({{button_gap_tablet.SIZE || button_gap.SIZE}}{{UNIT}}/2); margin-top: 0;',
+                    '(tablet){{WRAPPER}}.ha-dual-button--tablet-layout-stack .ha-dual-btn--right' => 'margin-top: calc({{button_gap_tablet.SIZE || button_gap.SIZE}}{{UNIT}}/2); margin-left: 0;',
+
+                    '(mobile){{WRAPPER}}.ha-dual-button--mobile-layout-queue .ha-dual-btn--left' => 'margin-right: calc({{button_gap_mobile.SIZE || button_gap_tablet.SIZE || button_gap.SIZE}}{{UNIT}}/2); margin-bottom: 0;',
+                    '(mobile){{WRAPPER}}.ha-dual-button--mobile-layout-stack .ha-dual-btn--left' => 'margin-bottom: calc({{button_gap_mobile.SIZE || button_gap_tablet.SIZE || button_gap.SIZE}}{{UNIT}}/2); margin-right: 0;',
+                    '(mobile){{WRAPPER}}.ha-dual-button--mobile-layout-queue .ha-dual-btn--right' => 'margin-left: calc({{button_gap_mobile.SIZE || button_gap_tablet.SIZE || button_gap.SIZE}}{{UNIT}}/2); margin-top: 0;',
+                    '(mobile){{WRAPPER}}.ha-dual-button--mobile-layout-stack .ha-dual-btn--right' => 'margin-top: calc({{button_gap_mobile.SIZE || button_gap_tablet.SIZE || button_gap.SIZE}}{{UNIT}}/2); margin-left: 0;',
                 ],
             ]
 		);
