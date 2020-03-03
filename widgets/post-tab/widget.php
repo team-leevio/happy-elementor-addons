@@ -187,38 +187,38 @@ class Post_Tab extends Base {
 			]
 		);
 
-		$this->add_control(
-			'orderby',
-			[
-				'label' => __( 'Order By', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'date',
-				'options' => [
-					'ID' => __( 'Post ID', 'happy-elementor-addons' ),
-					'author' => __( 'Post Author', 'happy-elementor-addons' ),
-					'title' => __( 'Title', 'happy-elementor-addons' ),
-					'date' => __( 'Date', 'happy-elementor-addons' ),
-					'modified' => __( 'Last Modified Date', 'happy-elementor-addons' ),
-					'parent' => __( 'Parent Id', 'happy-elementor-addons' ),
-					'rand' => __( 'Random', 'happy-elementor-addons' ),
-					'comment_count' => __( 'Comment Count', 'happy-elementor-addons' ),
-					'menu_order' => __( 'Menu Order', 'happy-elementor-addons' ),
-				],
-			]
-		);
+		/* $this->add_control(
+		 	'orderby',
+		 	[
+		 		'label' => __( 'Order By', 'happy-elementor-addons' ),
+		 		'type' => Controls_Manager::SELECT,
+		 		'default' => 'date',
+		 		'options' => [
+		 			'ID' => __( 'Post ID', 'happy-elementor-addons' ),
+		 			'author' => __( 'Post Author', 'happy-elementor-addons' ),
+		 			'title' => __( 'Title', 'happy-elementor-addons' ),
+		 			'date' => __( 'Date', 'happy-elementor-addons' ),
+		 			'modified' => __( 'Last Modified Date', 'happy-elementor-addons' ),
+		 			'parent' => __( 'Parent Id', 'happy-elementor-addons' ),
+		 			'rand' => __( 'Random', 'happy-elementor-addons' ),
+		 			'comment_count' => __( 'Comment Count', 'happy-elementor-addons' ),
+		 			'menu_order' => __( 'Menu Order', 'happy-elementor-addons' ),
+		 		],
+		 	]
+		 );
 
-		$this->add_control(
-			'order',
-			[
-				'label' => __( 'Order', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'desc',
-				'options' => [
-					'asc' => __( 'ASC', 'happy-elementor-addons' ),
-					'desc' => __( 'DESC', 'happy-elementor-addons' ),
-				],
-			]
-		);
+		 $this->add_control(
+		 	'order',
+		 	[
+		 		'label' => __( 'Order', 'happy-elementor-addons' ),
+		 		'type' => Controls_Manager::SELECT,
+		 		'default' => 'desc',
+		 		'options' => [
+		 			'asc' => __( 'ASC', 'happy-elementor-addons' ),
+		 			'desc' => __( 'DESC', 'happy-elementor-addons' ),
+		 		],
+		 	]
+		 );*/
 
 		$this->end_controls_section();
 
@@ -231,21 +231,51 @@ class Post_Tab extends Base {
 			]
 		);
 
-		$this->add_control(
-			'view',
+		$this->add_responsive_control(
+			'column',
 			[
-				'label' => __( 'Layout', 'happy-elementor-addons' ),
+				'label' => __( 'Column', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'1' => __( '1 Column', 'happy-elementor-addons' ),
+					'2' => __( '2 Column', 'happy-elementor-addons' ),
+					'3' => __( '3 Column', 'happy-elementor-addons' ),
+					'4' => __( '4 Column', 'happy-elementor-addons' ),
+					'5' => __( '5 Column', 'happy-elementor-addons' ),
+					'6' => __( '6 Column', 'happy-elementor-addons' ),
+				],
+				'desktop_default' => '4',
+				'tablet_default' => '3',
+				'mobile_default' => '1',
+				'selectors' => [
+					'(desktop){{WRAPPER}}.ha-post-tab .ha-post-tab-item' => 'flex-basis: calc(100% / {{VALUE}});',
+					'(tablet){{WRAPPER}}.ha-post-tab .ha-post-tab-item' => 'flex-basis: calc(100% / {{column_tablet.VALUE}});',
+					'(mobile){{WRAPPER}}.ha-post-tab .ha-post-tab-item' => 'flex-basis: calc(100% / {{column_mobile.VALUE}});'
+				],
+				'render_type' => 'template',
+				'style_transfer' => true,
+			]
+		);
+
+		$this->add_control(
+			'filter_pos',
+			[
+				'label' => __( 'Filter Position', 'happy-elementor-addons' ),
 				'label_block' => false,
 				'type' => Controls_Manager::CHOOSE,
-				'default' => 'list',
+				'default' => 'top',
 				'options' => [
-					'list' => [
-						'title' => __( 'List', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-list-ul',
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-left',
 					],
-					'inline' => [
-						'title' => __( 'Inline', 'happy-elementor-addons' ),
-						'icon' => 'eicon-ellipsis-h',
+					'top' => [
+						'title' => __( 'Top', 'happy-elementor-addons' ),
+						'icon' => 'eicon-v-align-top',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-right',
 					],
 				],
 				'style_transfer' => true,
@@ -792,7 +822,7 @@ class Post_Tab extends Base {
 	protected function render () {
 
 		$settings = $this->get_settings_for_display();
-		$terms = get_terms( array(
+		/*$terms = get_terms( array(
 			'search' => 'b',
 			'taxonomy' => 'category',
 			'hide_empty' => false,
@@ -804,9 +834,9 @@ class Post_Tab extends Base {
 				'id' => $value->term_id,
 				'text' => $value->name,
 			];
-		}
+		}*/
 		echo '<pre>';
-		var_dump( self::get_taxonomies( 'movies' ) );
+		//var_dump( self::get_taxonomies( 'movies' ) );
 		//var_dump( ha_get_taxonomies([ 'public' => true, "object_type"=> ['movies'] ], 'object', false) );
 		//var_dump( ha_get_post_types( [], [ 'elementor_library'=>'', 'attachment'=>'','post'=>'' ] ) );
 		//var_dump( $data );
@@ -817,116 +847,147 @@ class Post_Tab extends Base {
 
 		$taxonomy = $settings['tax_type_' . $settings['post_type']];
 		$terms_ids = $settings['tax_ids_' . $taxonomy];
-		var_dump( $taxonomy, $settings['tax_ids_' . $taxonomy] );
+		//var_dump( $taxonomy, $settings['tax_ids_' . $taxonomy] );
 		//return;
 		$args = [
 			'post_status' => 'publish',
 			'post_type' => $settings['post_type'],
 			'posts_per_page' => -1,
-			/*'tax_query' => array(
+			/*'orderby' => $settings['orderby'],
+			'order' => $settings['order'],*/
+			'tax_query' => array(
 				array(
 					'taxonomy' => $taxonomy,
-					'field'    => 'term_id',
-					'terms'    => $terms_ids,
+					'field' => 'term_id',
+					'terms' => $terms_ids[0],
 				),
-			),*/
+			),
 		];
-		$args['tax_query'] = array(
+/*		$args['tax_query'] = array(
 			array(
 				'taxonomy' => $taxonomy,
 				'field' => 'term_id',
+//				'terms' => $terms_ids,
 				'terms' => $terms_ids[0],
 			),
-		);
+		);*/
+		$posts = get_posts( $args );
 
 
-		$customize_title = [];
-		$ids = [];
-		if ( false ) {
-			$args['posts_per_page'] = -1;
-			$lists = $settings['selected_list_' . $settings['post_type']];
-			if ( ! empty( $lists ) ) {
-				foreach ( $lists as $index => $value ) {
-					$ids[] = $value['post_id'];
-					if ( $value['title'] ) $customize_title[$value['post_id']] = $value['title'];
-				}
-			}
-			$args['post__in'] = (array) $ids;
-			$args['orderby'] = 'post__in';
-		}
-
-		if ( false ) {
-			$posts = [];
-		} else {
-			$posts = get_posts( $args );
-		}
-
-		$arg = [
+		$terms_args = [
 			'taxonomy' => $taxonomy,
 			//'taxonomy' => 'movies_cat',
 			'hide_empty' => true,
 			'include' => $terms_ids,
+			'orderby' => 'term_id',
 		];
-		$tab_list = get_terms( $arg );
+		$filter_list = get_terms( $terms_args );
 
 		echo '<pre>';
-
-		foreach ( $tab_list as $list ) {
+		//var_dump( $filter_list );
+		/*foreach ( $filter_list as $list ) {
 			var_dump( $list->name );
 		}
 		foreach ( $posts as $post ) {
 			var_dump( $post->post_title );
-		}
+		}*/
 		echo '</pre>';
 
-		$this->add_render_attribute( 'wrapper', 'class', [ 'ha-post-tab-wrapper' ] );
-		$this->add_render_attribute( 'tab-list', 'class', [ 'ha-post-tab-list' ] );
-		$this->add_render_attribute( 'tab-body', 'class', [ 'ha-post-tab-body' ] );
-		// if ( 'inline' === $settings['view'] ) {
-		// 	$this->add_render_attribute( 'wrapper-inner', 'class', [ 'ha-post-list-inline' ] );
-		// }
+		$query_args = [
+			//'view_style' => $settings['view_style'],
+			'post_type' => $settings['post_type'],
+			'taxonomy' => $taxonomy,
+			'terms_ids' => $terms_ids,
+			//'item_limit' => $settings['item_limit'],
+			'item_limit' => 10,
+		];
+		$query_args = json_encode( $query_args, true );
+
+		$event = 'click';
+		//$event = 'hover';
+		//$event = 'mouseenter';
+		//$event = 'touchstart';
+		$wrapper_calss = [
+			//'ha-post-tab ha-post-tab-left- -ha-post-tab-right',
+			'ha-post-tab',
+			'ha-post-tab-' . $settings['filter_pos'],
+			'ha-post-tab-grid-' . $settings['column'],
+			'ha-post-tab-grid-tablet-' . $settings['column_tablet'],
+			'ha-post-tab-grid-mobile-' . $settings['column_mobile'],
+		];
+		$this->add_render_attribute( 'wrapper', 'class', $wrapper_calss );
+		$this->add_render_attribute( 'wrapper', 'data-query-args', $query_args );
+		$this->add_render_attribute( 'wrapper', 'data-event', $event );
+		$this->add_render_attribute( 'tab-filter', 'class', [ 'ha-post-tab-filter ha-text--center' ] );
+		$this->add_render_attribute( 'tab-body', 'class', [ 'ha-post-tab-content' ] );
+		$this->add_render_attribute( 'tab-item-wrapper', 'class', [ 'ha-post-tab-item-wrapper active' ] );
 		$this->add_render_attribute( 'item', 'class', [ 'ha-post-list-item' ] );
 		$i = 1;
+		$j = 1;
 		if ( count( $posts ) !== 0 ) :?>
+
+			<?php
+			/*
+			$this->print_render_attribute_string( 'item' );
+			echo esc_url( get_the_permalink( $post->ID ) );
+			echo get_the_post_thumbnail( $post->ID, $settings['post_image_size'] );
+			Icons_Manager::render_icon( $settings['icon'], [ 'aria-hidden' => 'true' ] );
+			$title = $post->post_title;
+			tag_escape( $settings['title_tag'] )
+			echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) );
+			echo get_the_date( "M d, Y" );
+			$categories = get_the_category( $post->ID );
+			echo esc_html( $categories[0]->name );
+			printf( '<%1$s %2$s>%3$s</%1$s>',
+				tag_escape( $settings['title_tag'] ),
+				'class="ha-post-list-title"',
+				esc_html( $title )
+			);
+			*/
+			?>
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
-				<ul <?php //$this->print_render_attribute_string( 'tab-list' );
-				?> >
-					<?php
-					/*
-					$this->print_render_attribute_string( 'item' );
-					echo esc_url( get_the_permalink( $post->ID ) );
-					echo get_the_post_thumbnail( $post->ID, $settings['post_image_size'] );
-					Icons_Manager::render_icon( $settings['icon'], [ 'aria-hidden' => 'true' ] );
-					$title = $post->post_title;
-					tag_escape( $settings['title_tag'] )
-					echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) );
-					echo get_the_date( "M d, Y" );
-					$categories = get_the_category( $post->ID );
-					echo esc_html( $categories[0]->name );
-					printf( '<%1$s %2$s>%3$s</%1$s>',
-						tag_escape( $settings['title_tag'] ),
-						'class="ha-post-list-title"',
-						esc_html( $title )
-					);
-					*/
-					?>
-
-				</ul>
-
-				<ul <?php $this->print_render_attribute_string( 'tab-list' ); ?>>
-					<?php foreach ( $tab_list as $list ): ?>
-						<li><?php echo esc_html( $list->name ); ?></li>
+				<ul <?php $this->print_render_attribute_string( 'tab-filter' ); ?>>
+					<?php foreach ( $filter_list as $list ): ?>
+						<?php if ( $j === 1 ): $j++; ?>
+							<li class="actie" data-term="<?php echo esc_attr( $list->term_id ); ?>"><?php echo esc_html( $list->name ); ?></li>
+						<?php else: ?>
+							<li data-term="<?php echo esc_attr( $list->term_id ); ?>"><?php echo esc_html( $list->name ); ?></li>
+						<?php endif; ?>
 					<?php endforeach; ?>
 				</ul>
-
 				<div <?php $this->print_render_attribute_string( 'tab-body' ); ?>>
-					<?php foreach ( $posts as $post ): ?>
-						<h4 class="ha-post-tab-title">
-							<?php echo esc_html( $post->post_title ); ?>
-						</h4>
-					<?php if( $i===$settings['item_limit'] ){break;}$i++; endforeach; ?>
+					<div <?php $this->print_render_attribute_string( 'tab-item-wrapper' ); ?> data-term="<?php echo esc_attr($terms_ids[0]); ?>">
+						<?php foreach ( $posts as $post ): ?>
+							<div class="ha-post-tab-item">
+								<div class="ha-post-tab-item-inner">
+									<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>"
+									   class="ha-post-tab-thumb">
+										<?php echo get_the_post_thumbnail( $post->ID, 'full' );?>
+										<!--<img
+											src="http://localhost/wp-test/wp-content/uploads/2013/03/soworthloving-wallpaper.jpg"
+											alt="">-->
+									</a>
+									<h2 class="ha-post-tab-title">
+										<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>"> <?php echo esc_html( $post->post_title ); ?></a>
+									</h2>
+									<div class="ha-post-tab-meta">
+			                        <span class="ha-post-tab-meta-author">
+			                            <i class="fa fa-user-o"></i>
+			                            <a href="#"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
+			                        </span>
+										<span class="ha-post-tab-meta-date">
+			                            <i class="fa fa-calendar-o"></i>
+			                            <a href="#"><?php echo get_the_date( "M d, Y" ); ?></a>
+			                        </span>
+									</div>
+								</div>
+							</div>
+							<?php if ( $i === $settings['item_limit']  ) { //$settings['item_limit']
+								break;
+							}
+							$i++; endforeach; ?>
+					</div>
 				</div>
-
 			</div>
 		<?php
 		else:

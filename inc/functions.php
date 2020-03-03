@@ -491,34 +491,76 @@ function ha_get_taxonomies ( $args = array(), $output = 'object', $list = true, 
 
 	return $taxonomies;
 }
-//add_action('wp_footer','get_tax_types');
-//function get_tax_types () {
-//	$args = [
-//		'public' => true,
-//		//"object_type"=> [ "post" ],
-//	];
-//	$taxonomies = $taxonomies = get_taxonomies( $args ,'names');
-//	//return $taxonomies;
-//	echo '<pre>';
-//	var_dump( $taxonomies );
-//	echo '</pre>';
-//}
-////get_tax_types ();
-//echo '<pre>';
-////var_dump(get_tax_types());
-//echo '</pre>';
-//
-//$args = array(
-//
-//	'labels' => [
-//		'name'   => 'Movies Cat',
-//	]
-//);
-//$args = [];
-//$output = 'names'; // or objects
-//$operator = 'and'; // 'and' or 'or'
-//$taxonomies = get_taxonomies( [ '_builtin' => false ] );
-//echo '<pre>';
-////var_dump(get_taxonomies([ 'public' => true ],'object'));
-//echo '</pre>';
+
+/**
+ * Twitter Feed Ajax call
+ */
+function ha_post_tab() {
+
+	$security = check_ajax_referer('happy_addons_nonce', 'security');
+
+	if ( true == $security ) :
+		$settings = $_POST['post_tab_query'];
+		$taxonomy = $settings['taxonomy'];
+		$item_limit = $settings['item_limit'];
+		$terms_ids = $settings['terms_ids'];
+		$term_id = $_POST['term_id'];
+
+		$args = [
+			'post_status' => 'publish',
+			'post_type' => $settings['post_type'],
+			'posts_per_page' => $settings['item_limit'],
+			'tax_query' => array(
+				array(
+					'taxonomy' => $settings['taxonomy'],
+					'field'    => 'term_id',
+					'terms'    => $term_id,
+				),
+			),
+		];
+
+		$posts = get_posts( $args );
+
+
+		//$body = json_decode( wp_remote_retrieve_body( $auth_response ) );
+	?>
+		<div class="ha-post-tab-item-wrapper active" data-term="<?php echo esc_attr($term_id); ?>">
+			<?php foreach ( $posts as $post ): ?>
+				<div class="ha-post-tab-item">
+					<div class="ha-post-tab-item-inner">
+						<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>"
+						   class="ha-post-tab-thumb">
+							<?php echo get_the_post_thumbnail( $post->ID, 'full' );?>
+<!--							<img-->
+<!--								src="http://localhost/wp-test/wp-content/uploads/2013/03/soworthloving-wallpaper.jpg"-->
+<!--								alt="">-->
+						</a>
+						<h2 class="ha-post-tab-title">
+							<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>"> <?php echo esc_html( $post->post_title ); ?></a>
+						</h2>
+						<div class="ha-post-tab-meta">
+			                        <span class="ha-post-tab-meta-author">
+			                            <i class="fa fa-user-o"></i>
+			                            <a href="#"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
+			                        </span>
+							<span class="ha-post-tab-meta-date">
+			                            <i class="fa fa-calendar-o"></i>
+			                            <a href="#"><?php echo get_the_date( "M d, Y" ); ?></a>
+			                        </span>
+						</div>
+					</div>
+				</div>
+				<?php endforeach; ?>
+		</div>
+		<?php
+
+		//echo true;
+		//var_dump($settings);
+
+	endif;
+	wp_die();
+
+}
+add_action( 'wp_ajax_ha_post_tab_action', 'ha_post_tab' );
+add_action( 'wp_ajax_nopriv_ha_post_tab_action', 'ha_post_tab' );
 

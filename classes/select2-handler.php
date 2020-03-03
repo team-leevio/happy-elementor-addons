@@ -87,7 +87,7 @@ class Select2_Handler {
 			foreach ($terms as $value){
 				$data[] = [
 					'id' => $value->term_id,
-					'text' => $value->name,
+					'text' => $value->name . ' ('. $value->count.')',
 				];
 			}
 		}
