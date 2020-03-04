@@ -12,7 +12,7 @@ class Select2_Handler {
 
 	public static function init () {
 		add_action( 'wp_ajax_ha_post_list_query', [ __CLASS__, 'ha_post_list_query' ] );
-		add_action( 'wp_ajax_ha_post_tab_query', [ __CLASS__, 'post_tab_query' ] );
+		add_action( 'wp_ajax_ha_post_tab_select_query', [ __CLASS__, 'post_tab_query' ] );
 	}
 
 	/**
@@ -74,7 +74,6 @@ class Select2_Handler {
 
 		$arg = [
 			'taxonomy' => $tax_id,
-			//'taxonomy' => 'movies_cat',
 			'hide_empty' => true,
 			'include' => $ids,
 		];
@@ -100,67 +99,5 @@ class Select2_Handler {
 		wp_send_json( $data );
 
 	}
-
-	/**
-	 * Return Post tab query value
-	 */
-	/*public static function post_tab_query () {
-		$security = check_ajax_referer( 'HappyAddons_Select2_Secret', 'security' );
-		if ( ! $security ) return;
-		$data = [];
-		$tax_id = isset( $_POST['tax_id'] ) ? sanitize_text_field( $_POST['tax_id'] ) : '';
-		$post_type = isset( $_POST['post_type'] ) ? sanitize_text_field( $_POST['post_type'] ) : '';
-		//if ( ! $tax_id ) return;
-
-		$select_type = isset( $_POST['select_type'] ) ? $_POST['select_type'] : false;
-		$search = isset( $_POST['q'] ) ? sanitize_text_field( $_POST['q'] ) : '';
-		$ids = isset( $_POST['id'] ) ? $_POST['id'] : array();
-
-
-
-		if ( $post_type ) {
-			$tax_list = ha_get_taxonomies( [ 'public' => true, "object_type" => [ $post_type ] ], 'object', true );
-			if ( $select_type === 'choose' ) {
-				foreach ( $tax_list as $key => $value ) {
-					$data[] = [
-						'id' => $key,
-						'text' => $value,
-					];
-				}
-			}
-			if ( $select_type === 'selected' ) {
-				foreach ( $tax_list as $key => $value ) {
-					$data[$key] = $value;
-				}
-			}
-		}
-
-		if ( $tax_id ) {
-			$arg = [
-				'search' => $search,
-				'taxonomy' => $tax_id,
-				//'taxonomy' => 'movies_cat',
-				'hide_empty' => true,
-				'include' => $ids,
-			];
-			$terms = get_terms( $arg );
-			if ( $select_type === 'choose' ) {
-				foreach ( $terms as $value ) {
-					$data[] = [
-						'id' => $value->term_id,
-						'text' => $value->name,
-					];
-				}
-			}
-			if ( $select_type === 'selected' ) {
-				foreach ( $terms as $value ) {
-					$data[$value->term_id] = $value->name;
-				}
-			}
-		}
-		// return the results in json.
-		wp_send_json( $data );
-
-	}*/
 
 }

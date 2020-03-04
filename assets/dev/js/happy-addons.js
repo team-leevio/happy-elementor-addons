@@ -506,24 +506,11 @@
 			    this.wrapper = this.$element.find('.ha-post-tab');
 			    this.run();
 		    },
-		    /*onElementChange: function (changed_prop) {
-			    if( changed_prop === 'item_space' || changed_prop === 'title_typography_font_size' ){
-				    this.run();
-			    }
-		    },*/
 		    run: function () {
 			    var filter_wrap = this.wrapper.find('.ha-post-tab-filter'),
 				    filter = filter_wrap.find('li'),
-				    active = filter.first().addClass('active'),
-				    //content = this.wrapper.find('.ha-post-tab-content'),
-				    //tab_item = content.find('.ha-post-tab-item-wrapper');
-				    total;
-			    var event = this.wrapper.data('event');
-			    var args = this.wrapper.data('query-args');
-
-			    //var $ajax_query = true;
-			    // var event = this.wrapper.data('')"scroll.timelineScroll"+T_ID+" resize.timelineScroll"+T_ID;
-				//console.log(args);
+				    event = this.wrapper.data('event'),
+				    args = this.wrapper.data('query-args');
 
 			    filter.on(event, debounce(function (e) {
 				    e.preventDefault();
@@ -534,50 +521,44 @@
 					    content = $wrapper.find('.ha-post-tab-content'),
 					    loading = content.find('.ha-post-tab-loading'),
 					    tab_item = content.find('.ha-post-tab-item-wrapper'),
-					    total;
-				    filter.removeClass('active');
-				    tab_item.removeClass('active');
-				    $self.addClass('active');
-				    //var $ajax_query = true;
-				    var $has = false;
-				    //console.log(loading);
-				    tab_item.each(function () {
-					    var $self = $(this),
-						    $content_id = $self.data("term");
+					    $content_exist = false;
 
-					    if (term_id === $content_id) {
-						    $self.addClass('active');
-						    $has = true;
-					    }
-					    console.log($has,$content_id);
-				    });
-				    //console.log($has);
+				    if (0 === loading.length) {
+					    filter.removeClass('active');
+					    tab_item.removeClass('active');
+					    $self.addClass('active');
 
-				    if (false === $has && 0 === loading.length) {
-					    console.log('ajax request sent', $has);
-					    $.ajax({
-						    url: HappyLocalize.ajax_url,
-						    type: 'POST',
-						    data: {
-							    action: "ha_post_tab_action",
-							    security: HappyLocalize.nonce,
-							    post_tab_query: args,
-							    term_id: term_id,
-							    //loaded_item: items,
-						    },
-						    beforeSend: function () {
-							    content.append('<span class="ha-post-tab-loading"><i class="eicon-spinner eicon-animation-spin"></i></span>');
-						    },
-						    success: function (response) {
-							    content.find('.ha-post-tab-loading').remove();
-							    content.append(response);
-						    },
-						    error: function (error) {
+					    tab_item.each(function () {
+						    var $self = $(this),
+							    $content_id = $self.data("term");
+						    if (term_id === $content_id) {
+							    $self.addClass('active');
+							    $content_exist = true;
 						    }
 					    });
 
-				    } else {
-					    console.log('ajax request not sent');
+					    if (false === $content_exist) {
+						    $.ajax({
+							    url: HappyLocalize.ajax_url,
+							    type: 'POST',
+							    data: {
+								    action: "ha_post_tab_action",
+								    security: HappyLocalize.nonce,
+								    post_tab_query: args,
+								    term_id: term_id,
+							    },
+							    beforeSend: function () {
+								    content.append('<span class="ha-post-tab-loading"><i class="eicon-spinner eicon-animation-spin"></i></span>');
+							    },
+							    success: function (response) {
+								    content.find('.ha-post-tab-loading').remove();
+								    content.append(response);
+							    },
+							    error: function (error) {
+							    }
+						    });
+
+					    }
 				    }
 
 			    }, 200));
