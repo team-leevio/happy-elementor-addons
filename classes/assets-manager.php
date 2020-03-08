@@ -289,17 +289,29 @@ class Assets_Manager {
 			['elementor-editor'],
 			HAPPY_ADDONS_VERSION,
 			true
-		);
+        );
+        
+        $localize_data = [
+            'editorPanelHomeLinkURL'      => ha_get_dashboard_link(),
+            'editorPanelWidgetsLinkURL'   => ha_get_dashboard_link('#widgets'),
+            'i18n' => [
+                'editorPanelHomeLinkTitle'    => esc_html__( 'HappyAddons - Home', 'happy-elementor-addons' ),
+                'editorPanelWidgetsLinkTitle' => esc_html__( 'HappyAddons - Widgets', 'happy-elementor-addons' ),
+                'promotionDialogHeader' => esc_html__( '%s Widget', 'happy-elementor-addons' ),
+                'promotionDialogMessage' => esc_html__( 'Use %s widget with other exclusive pro widgets and 100% unique features to extend your toolbox and build sites faster and better.', 'happy-elementor-addons' ),
+            ],
+            'proWidgets' => [],
+            'hasPro' => ha_has_pro(),
+        ];
+
+        if ( ! ha_has_pro() && ha_is_elementor_version( '>=', '2.9.0' ) ) {
+            $localize_data['proWidgets'] = Widgets_Manager::get_pro_widget_map();
+        }
 
 		wp_localize_script(
 			'happy-elementor-addons-editor',
 			'HappyAddonsEditor',
-			[
-				'editorPanelHomeLinkURL'      => ha_get_dashboard_link(),
-				'editorPanelHomeLinkTitle'    => __('HappyAddons - Home', 'happy-elementor-addons'),
-				'editorPanelWidgetsLinkURL'   => ha_get_dashboard_link('#widgets'),
-				'editorPanelWidgetsLinkTitle' => __('HappyAddons - Widgets', 'happy-elementor-addons'),
-			]
+            $localize_data
 		);
 	}
 

@@ -1,3 +1,8 @@
+.elementor-panel .ha-element--promotion > .elementor-element > .eicon-lock {
+	right: auto; 
+	left: 5px;
+}
+
 .elementor-panel #elementor-panel-category-happy_addons_category .elementor-element:hover .icon,
 .elementor-panel #elementor-panel-category-happy_addons_category .elementor-element:hover .title,
 .elementor-panel #elementor-panel-category-happy_addons_category .elementor-element:focus .icon,
@@ -70,4 +75,8 @@
 	top: auto;
 	bottom: calc(100% + 5px); 
 	left: 100%;
+}
+
+.elementor-button.ha-btn--promotion:not([disabled]) {
+	background-color: #e04d8b !important;
 }

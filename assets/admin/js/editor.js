@@ -141,10 +141,14 @@
         return text.length > 20 ? text.substring(0, 20) + "..." : text;
     };
 
+    function ha_translate(stringKey, templateArgs) {
+        return elementorCommon.translate(stringKey, null, templateArgs, HappyAddonsEditor.i18n);
+    }
+
     elementor.modules.layouts.panel.pages.menu.Menu.addItem({
         name: 'happyaddons-home',
         icon: 'hm hm-happyaddons',
-        title: HappyAddonsEditor.editorPanelHomeLinkTitle,
+        title: ha_translate( 'editorPanelHomeLinkTitle' ),
         type: 'link',
         link: HappyAddonsEditor.editorPanelHomeLinkURL,
         newTab: true
@@ -153,10 +157,103 @@
     elementor.modules.layouts.panel.pages.menu.Menu.addItem({
         name: 'happyaddons-widgets',
         icon: 'hm hm-cross-game',
-        title: HappyAddonsEditor.editorPanelWidgetsLinkTitle,
+        title: ha_translate( 'editorPanelWidgetsLinkTitle' ),
         type: 'link',
         link: HappyAddonsEditor.editorPanelWidgetsLinkURL,
         newTab: true
     }, 'settings');
+    
+    /**
+     * Add pro widgets placeholder
+     */
+    elementor.hooks.addFilter( 'panel/elements/regionViews', function( regionViews ) {
+        if ( HappyAddonsEditor.hasPro || _.isEmpty( HappyAddonsEditor.proWidgets ) ) {
+            return regionViews;
+        }
+
+        var CATEGOERY_NAME = 'happy_addons_pro',
+            elementsView = regionViews.elements.view,
+            categoriesView = regionViews.categories.view,
+            elementsCollection = regionViews.elements.options.collection,
+            categoriesCollection = regionViews.categories.options.collection,
+            proWidgets = [],
+            ElementView,
+            freeCategoryIndex;
+
+        _.each( HappyAddonsEditor.proWidgets, function( widget, name ) {
+            elementsCollection.add({
+                name: 'ha-' + name,
+                title: widget.title,
+                icon: widget.icon,
+                categories: [ CATEGOERY_NAME ],
+                editable: false,
+            });
+        });
+
+		elementsCollection.each( function( element ) {
+            if ( element.get( 'categories' )[0] === CATEGOERY_NAME ) {
+                proWidgets.push( element );
+            }
+        } );
+
+        freeCategoryIndex = categoriesCollection.findIndex({ name:'happy_addons_category' });
+
+        if ( freeCategoryIndex ) {
+            categoriesCollection.add( {
+                name: 'happy_addons_pro_category',
+                title: 'Happy Addons Pro',
+                icon: 'hm hm-happyaddons',
+                defaultActive: false,
+                items: proWidgets,
+            }, {
+                at: freeCategoryIndex + 1 
+            });
+        }
+
+        ElementView = {
+            className: function() {
+                var className = this.constructor.__super__.className.call(this);
+                if ( ! this.isEditable() && this.isHappyWidget() ) {
+                    className += ' ha-element--promotion';
+                }
+
+                return className;
+            },
+
+            isHappyWidget: function() {
+                return this.model.get('name').indexOf('ha-') === 0;
+            },
+
+            onMouseDown: function() {
+                if ( ! this.isHappyWidget() ) {
+                    elementor.promotion.dialog.buttons[0].removeClass('ha-btn--promotion');
+                    this.constructor.__super__.onMouseDown.call(this);
+                    return;
+                }
+
+                elementor.promotion.dialog.buttons[0].addClass('ha-btn--promotion');
+
+                elementor.promotion.showDialog( {
+                    headerMessage: ha_translate( 'promotionDialogHeader', [ this.model.get( 'title' ) ] ),
+                    message: ha_translate( 'promotionDialogMessage', [ this.model.get( 'title' ) ] ),
+                    top: '-7',
+                    element: this.el,
+                    actionURL: 'https://demo.happyaddons.com/',
+                } );
+            }
+        };
+
+        regionViews.elements.view = elementsView.extend({
+            childView: elementsView.prototype.childView.extend(ElementView)
+        });
+
+        regionViews.categories.view = categoriesView.extend({
+            childView: categoriesView.prototype.childView.extend({
+                childView: categoriesView.prototype.childView.prototype.childView.extend(ElementView)
+            })
+        });
+
+        return regionViews;
+    });
 
 }(jQuery));

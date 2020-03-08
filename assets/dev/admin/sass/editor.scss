@@ -1,5 +1,10 @@
 @import "../../sass/variables";
 .elementor-panel {
+  .ha-element--promotion  > .elementor-element > .eicon-lock {
+    left: 5px;
+    right: auto;
+  }
+
   #elementor-panel-category-happy_addons_category .elementor-element,
   #elementor-panel-category-happy_addons_pro_category .elementor-element,
   #elementor-panel-category-happy_addons_pro_category .is-ha-widget {
@@ -79,4 +84,8 @@
       }
     }
   }
+}
+
+.elementor-button.ha-btn--promotion:not([disabled]) {
+  background-color: #e04d8b !important;
 }
