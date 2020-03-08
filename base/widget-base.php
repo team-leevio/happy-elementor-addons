@@ -7,7 +7,6 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Widget_Base;
-use Elementor\Controls_Manager;
 
 defined( 'ABSPATH' ) || die();
 
