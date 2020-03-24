@@ -410,6 +410,40 @@ class Post_List extends Base {
 			]
 		);
 
+		$this->add_control(
+			'item_align',
+			[
+				'label' => __( 'Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'toggle' => true,
+				'selectors_dictionary' => [
+					'left' => 'justify-content: flex-start',
+					'center' => 'justify-content: center',
+					'right' => 'justify-content: flex-end',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list .ha-post-list-item a' => '{{VALUE}};'
+				],
+				'condition' => [
+					'view' => 'list',
+				]
+			]
+		);
+
 		$this->end_controls_section();
 	}
 
