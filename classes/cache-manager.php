@@ -91,6 +91,10 @@ class Cache_Manager {
     }
 
     public static function enqueue_without_cache() {
+		if ( ! self::is_editing_mode() ) {
+			return;
+		}
+
         $widgets_map = Widgets_Manager::get_widgets_map();
         $inactive_widgets = Widgets_Manager::get_inactive_widgets();
 
