@@ -806,13 +806,7 @@ class Dual_Button extends Base {
 
         // Left button
         $this->add_render_attribute( 'left_button', 'class', 'ha-dual-btn ha-dual-btn--left' );
-        $this->add_render_attribute( 'left_button', 'href', esc_url( $settings['left_button_link']['url'] ) );
-        if ( ! empty( $settings['left_button_link']['is_external'] ) ) {
-            $this->add_render_attribute( 'left_button', 'target', '_blank' );
-        }
-        if ( ! empty( $settings['left_button_link']['nofollow'] ) ) {
-            $this->add_render_attribute( 'left_button', 'rel', 'nofollow' );
-        }
+        $this->add_link_attributes( 'left_button', $settings['left_button_link'] );
         $this->add_inline_editing_attributes( 'left_button_text', 'none' );
 
         if ( ! empty( $settings['left_button_icon'] ) || ! empty( $settings['left_button_selected_icon'] ) ) {
@@ -833,13 +827,7 @@ class Dual_Button extends Base {
 
         // Right button
         $this->add_render_attribute( 'right_button', 'class', 'ha-dual-btn ha-dual-btn--right' );
-        $this->add_render_attribute( 'right_button', 'href', esc_url( $settings['right_button_link']['url'] ) );
-        if ( ! empty( $settings['right_button_link']['is_external'] ) ) {
-            $this->add_render_attribute( 'right_button', 'target', '_blank' );
-        }
-        if ( ! empty( $settings['right_button_link']['nofollow'] ) ) {
-            $this->add_render_attribute( 'right_button', 'rel', 'nofollow' );
-        }
+        $this->add_link_attributes( 'right_button', $settings['right_button_link'] );
         $this->add_inline_editing_attributes( 'right_button_text', 'none' );
 
         if ( ! empty( $settings['right_button_icon'] ) || ! empty( $settings['right_button_selected_icon'] ) ) {

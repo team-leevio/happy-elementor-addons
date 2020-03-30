@@ -222,16 +222,9 @@ class Gradient_Heading extends Base {
         $title = ha_kses_basic( $settings['title' ] );
 
         if ( ! empty( $settings['link']['url'] ) ) {
-            $this->add_render_attribute( 'link', 'href', esc_url( $settings['link']['url'] ) );
-            if ( ! empty( $settings['link']['is_external'] ) ) {
-                $this->add_render_attribute( 'link', 'target', '_blank' );
-            }
+            $this->add_link_attributes( 'link', $settings['link'] );
 
-            if ( ! empty( $settings['link']['nofollow'] ) ) {
-                $this->set_render_attribute( 'link', 'rel', 'nofollow' );
-            }
-
-            $title = sprintf( '<a %s>%s</a>',
+            $title = sprintf( '<a %1$s>%2$s</a>',
                 $this->get_render_attribute_string( 'link' ),
                 $title
                 );

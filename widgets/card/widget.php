@@ -1043,14 +1043,9 @@ class Card extends Base {
         $this->add_inline_editing_attributes( 'button_text', 'none' );
         $this->add_render_attribute( 'button_text', 'class', 'ha-btn-text' );
 
-        $this->add_render_attribute( 'button', 'class', 'ha-btn' );
-        $this->add_render_attribute( 'button', 'href', esc_url( $settings['button_link']['url'] ) );
-        if ( ! empty( $settings['button_link']['is_external'] ) ) {
-            $this->add_render_attribute( 'button', 'target', '_blank' );
-        }
-        if ( ! empty( $settings['button_link']['nofollow'] ) ) {
-            $this->add_render_attribute( 'button', 'rel', 'nofollow' );
-        }
+		$this->add_render_attribute( 'button', 'class', 'ha-btn' );
+
+		$this->add_link_attributes( 'button', $settings['button_link'] );
         ?>
 
         <?php if ( $settings['image']['url'] || $settings['image']['id'] ) :

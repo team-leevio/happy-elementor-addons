@@ -914,13 +914,7 @@ class InfoBox extends Base {
         $this->add_render_attribute( 'button_text', 'class', 'ha-btn-text' );
 
         $this->add_render_attribute( 'button', 'class', 'ha-btn ha-btn--link' );
-        $this->add_render_attribute( 'button', 'href', esc_url( $settings['button_link']['url'] ) );
-        if ( ! empty( $settings['button_link']['is_external'] ) ) {
-            $this->add_render_attribute( 'button', 'target', '_blank' );
-        }
-        if ( ! empty( $settings['button_link']['nofollow'] ) ) {
-            $this->set_render_attribute( 'button', 'rel', 'nofollow' );
-        }
+        $this->add_link_attributes( 'button', $settings['button_link'] );
         ?>
 
         <?php if ( $settings['type'] === 'image' && ( $settings['image']['url'] || $settings['image']['id'] ) ) :

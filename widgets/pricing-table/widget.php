@@ -958,13 +958,7 @@ class Pricing_Table extends Base {
         $this->add_inline_editing_attributes( 'button_text', 'none' );
         $this->add_render_attribute( 'button_text', 'class', 'ha-pricing-table-btn' );
 
-        $this->add_render_attribute( 'button_text', 'href', esc_url( $settings['button_link']['url'] ) );
-        if ( ! empty( $settings['button_link']['is_external'] ) ) {
-            $this->add_render_attribute( 'button_text', 'target', '_blank' );
-        }
-        if ( ! empty( $settings['button_link']['nofollow'] ) ) {
-            $this->add_render_attribute( 'button_text', 'rel', 'nofollow' );
-        }
+        $this->add_link_attributes( 'button_text', $settings['button_link'] );
 
         if ( $settings['currency'] === 'custom' ) {
             $currency = $settings['currency_custom'];

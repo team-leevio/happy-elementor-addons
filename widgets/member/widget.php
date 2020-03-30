@@ -919,7 +919,7 @@ class Member extends Base {
                     <?php
                     foreach ( $settings['profiles'] as $profile ) :
                         $icon = $profile['name'];
-                        $url = esc_url( $profile['link']['url'] );
+                        $url = $profile['link']['url'];
 
                         if ($profile['name'] === 'website') {
                             $icon = 'globe';

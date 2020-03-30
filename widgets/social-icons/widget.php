@@ -879,7 +879,6 @@ class Social_Icons extends Base {
 			<?php
 			foreach ($social_list as $key => $icons) {
 				$icon         = $icons['ha_social_icon']['value'];
-				$url          = esc_url($icons['ha_social_link']['url']);
 				$social_title = esc_html($icons['ha_social_icon_title']);
 				$link_attr    = 'link_' . $key;
 
@@ -887,14 +886,12 @@ class Social_Icons extends Base {
 					$social_name = str_replace(['fa fa-', 'fab fa-', 'far fa-'], '', $icon);
 				}
 
-				$this->add_render_attribute($link_attr, 'href', $url);
+				$this->add_link_attributes( $link_attr, $icons['ha_social_link'] );
 
 				$this->add_render_attribute($link_attr, 'class', [
 					'ha-social-icon',
 					'elementor-repeater-item-' . $icons['_id'] . ' ' . $hover_css_animation,
 					'elementor-social-icon-' . ($icon ? $social_name : 'label'),
-
-
 				]);
 
 				if (!empty($icon)) {
@@ -902,15 +899,6 @@ class Social_Icons extends Base {
 				} else {
 					$this->add_render_attribute($link_attr, 'class', 'ha-social-icon--custom-label');
 				}
-
-				if ($icons['ha_social_link']['is_external']) {
-					$this->add_render_attribute($link_attr, 'target', '_blank');
-				}
-
-				if ($icons['ha_social_link']['nofollow']) {
-					$this->add_render_attribute($link_attr, 'rel', 'nofollow');
-				}
-
 				?>
 				<a <?php echo $this->get_render_attribute_string($link_attr); ?>>
 					<?php

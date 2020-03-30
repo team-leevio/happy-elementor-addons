@@ -27,10 +27,6 @@ class Bar_Chart extends Base {
 		return __( 'Bar Chart', 'happy-elementor-addons' );
 	}
 
-//	public function get_custom_help_url() {
-//		return '';
-//	}
-
 	/**
 	 * Get widget icon.
 	 *

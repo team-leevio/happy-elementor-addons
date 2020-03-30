@@ -35,7 +35,7 @@ class Wrapper_Link {
             'ha_element_link',
             [
                 'label'       => __( 'Link', 'happy-elementor-addons' ),
-                'type'        => Controls_Manager::URL,
+				'type'        => Controls_Manager::URL,
                 'dynamic'     => [
                     'active' => true,
                 ],

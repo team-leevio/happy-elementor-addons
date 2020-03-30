@@ -692,13 +692,7 @@ class Icon_Box extends Base {
         if ( ! empty( $link['url'] ) ) {
             $tag = 'a';
             $this->add_render_attribute( 'icon_box', 'class', 'ha-icon-box-link' );
-            $this->add_render_attribute( 'icon_box', 'href', esc_url( $link['url'] ) );
-            if ( ! empty ( $link['is_external'] ) ) {
-                $this->add_render_attribute( 'icon_box', 'target', '_blank' );
-            }
-            if ( ! empty( $link['nofollow'] ) ) {
-                $this->set_render_attribute( 'icon_box', 'rel', 'nofollow' );
-            }
+			$this->add_link_attributes( 'icon_box', $link );
         }
         ?>
         <<?php echo $tag; ?> <?php echo $this->get_render_attribute_string( 'icon_box' ); ?>>

@@ -536,10 +536,11 @@ class Logo_Grid extends Base {
 
                 if ( $item['link']['url'] ) {
                     $tag = 'a';
-                    $this->add_render_attribute( $repeater_key, 'class', 'ha-logo-grid-link' );
+					$this->add_render_attribute( $repeater_key, 'class', 'ha-logo-grid-link' );
+
                     $this->add_render_attribute( $repeater_key, 'target', '_blank' );
                     $this->add_render_attribute( $repeater_key, 'rel', 'noopener' );
-                    $this->add_render_attribute( $repeater_key, 'href', esc_url( $item['link']['url'] ) );
+                    $this->add_render_attribute( $repeater_key, 'href', $item['link']['url'] );
                 }
                 ?>
                 <<?php echo $tag; ?> <?php $this->print_render_attribute_string( $repeater_key ); ?>>
