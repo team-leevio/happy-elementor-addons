@@ -400,6 +400,7 @@ class Post_Tab extends Base {
 				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
+					'{{WRAPPER}} .ha-post-tab .ha-post-tab-filter li.active' => 'color: {{VALUE}}',
 					'{{WRAPPER}} .ha-post-tab .ha-post-tab-filter li:hover' => 'color: {{VALUE}}',
 				],
 			]
@@ -412,7 +413,7 @@ class Post_Tab extends Base {
 				'name' => 'tab_item_hvr_background',
 				'label' => __( 'Background', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .ha-post-tab .ha-post-tab-filter li:hover',
+				'selector' => '{{WRAPPER}} .ha-post-tab .ha-post-tab-filter li.active,{{WRAPPER}} .ha-post-tab .ha-post-tab-filter li:hover',
 			]
 		);
 		$this->end_controls_tab();
@@ -560,7 +561,7 @@ class Post_Tab extends Base {
 		);
 
 		$this->add_responsive_control(
-			'post_item_margin_btm',
+			'post_item_content_img_margin_btm',
 			[
 				'label' => __( 'Margin Bottom', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
