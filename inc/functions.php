@@ -512,6 +512,7 @@ function ha_post_tab () {
 		$post_type = $settings['post_type'];
 		$taxonomy = $settings['taxonomy'];
 		$item_limit = $settings['item_limit'];
+		$excerpt = $settings['excerpt'];
 		$term_id = $_POST['term_id'];
 
 		$args = [
@@ -557,6 +558,11 @@ function ha_post_tab () {
 		                            <a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>"><?php echo get_the_date( "M d, Y", $post->ID ); ?></a>
 								</span>
 							</div>
+							<?php if( 'yes' === $excerpt && !empty($post->post_excerpt) ): ?>
+								<div class="ha-post-tab-excerpt">
+									<span><?php echo esc_html($post->post_excerpt);?></span>
+								</div>
+							<?php endif;?>
 						</div>
 					</div>
 				<?php endforeach; ?>

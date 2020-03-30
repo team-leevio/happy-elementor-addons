@@ -191,6 +191,18 @@ class Post_Tab extends Base {
 		);
 
 		$this->add_control(
+			'excerpt',
+			[
+				'label' => __( 'Show Title', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Show', 'happy-elementor-addons' ),
+				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => '',
+			]
+		);
+
+		$this->add_control(
 			'filter_pos',
 			[
 				'label' => __( 'Filter Position', 'happy-elementor-addons' ),
@@ -743,6 +755,63 @@ class Post_Tab extends Base {
 			]
 		);
 
+		$this->add_responsive_control(
+			'post_content_excerpt',
+			[
+				'label' => __( 'Excerpt', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => [
+					'excerpt' => 'yes',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'excerpt_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'selector' => '{{WRAPPER}} .ha-post-tab .ha-post-tab-excerpt span',
+				'condition' => [
+					'excerpt' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'excerpt_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-tab .ha-post-tab-excerpt span' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'excerpt' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'excerpt_margin_top',
+			[
+				'label' => __( 'Margin Top', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'default' => [
+					'unit' => 'px',
+					'size' => 15,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-tab .ha-post-tab-excerpt' => 'margin-top: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'excerpt' => 'yes',
+				],
+			]
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -781,6 +850,7 @@ class Post_Tab extends Base {
 			'taxonomy' => $taxonomy,
 			'terms_ids' => $terms_ids,
 			'item_limit' => $settings['item_limit'],
+			'excerpt' => $settings['excerpt'] ? $settings['excerpt'] : 'no',
 		];
 		$query_settings = json_encode( $query_settings, true );
 
@@ -846,6 +916,11 @@ class Post_Tab extends Base {
 				                            <a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>"><?php echo get_the_date( "M d, Y", $post->ID ); ?></a>
 				                        </span>
 									</div>
+									<?php if( 'yes' === $settings['excerpt'] && !empty($post->post_excerpt) ): ?>
+										<div class="ha-post-tab-excerpt">
+											<span><?php echo esc_html($post->post_excerpt);?></span>
+										</div>
+									<?php endif;?>
 								</div>
 							</div>
 						<?php
