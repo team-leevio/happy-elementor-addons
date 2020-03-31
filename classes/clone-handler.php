@@ -1,6 +1,8 @@
 <?php
 namespace Happy_Addons\Elementor;
 
+use Elementor\Core\Files\CSS\Post as Post_CSS;
+
 class Clone_Handler {
 
     /**
@@ -92,7 +94,10 @@ class Clone_Handler {
 
         if ( ! is_wp_error( $duplicated_post_id ) ) {
             self::duplicate_taxonomies( $post, $duplicated_post_id );
-            self::duplicate_meta_entries( $post, $duplicated_post_id );
+			self::duplicate_meta_entries( $post, $duplicated_post_id );
+
+			$css = Post_CSS::create( $duplicated_post_id );
+			$css->update();
 
             if ( $ref === 'editor' ) {
                 $document = ha_elementor()->documents->get( $duplicated_post_id );
@@ -189,7 +194,7 @@ class Clone_Handler {
                 $_value = wp_slash( $entry->meta_value );
                 $_records[] = "( $duplicated_post_id, '{$entry->meta_key}', '{$_value}' )";
             }
-            $query .= implode( ', ', $_records ) . ';';
+			$query .= implode( ', ', $_records ) . ';';
             $wpdb->query( $query  );
         }
     }
