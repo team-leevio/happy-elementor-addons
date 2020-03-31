@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.7.2
+Version: 2.7.3
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -275,6 +275,14 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.7.3 - 31 March 2020 =
+
+- Tweak: Custom attribute output support for all links
+- Tweak: Added pro widgets awarness panel
+- Fix: Missing styles issue on page/post clone
+- Fix: Popup link not working with link issue
+- Fix: Twitter feed issue
 
 = 2.7.2 - 2 March 2020 =
 
