@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.7.3
+Version: 2.8.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -27,7 +27,7 @@ _HappyAddons is a unique Elementor Addon. It might be the best addon package for
 _— **Adam Preiser, Founder of WP Crafter**_
 
 
-### INCLUDED 30 FREE WIDGETS
+### INCLUDED 32 FREE WIDGETS
 
 Unlike other Elementor addons, the Happy Elementor Addons comes with a host of free yet powerful widgets. The magical widgets will impress you so much that you will be confused whether they are premium or free:
 
@@ -61,6 +61,8 @@ Unlike other Elementor addons, the Happy Elementor Addons comes with a host of f
 28. **[Twitter Feed](https://demo.happyaddons.com/elementor-twitter-feed-widget-demo/)**
 29. **[Bar Chart](https://demo.happyaddons.com/elementor-bar-chart-widget-demo/)**
 30. **[Social Icons](https://demo.happyaddons.com/elementor-social-icon-widget-demo/)**
+31. **[Post Tab]**
+32. **[Post List]**
 
 
 ### Free Built-in Extensions to Give You an Awesome Experience
@@ -275,6 +277,11 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.8.0 - 1 April 2020 =
+
+- New: Post Tab widget
+- New: Post List widget
 
 = 2.7.3 - 31 March 2020 =
 
