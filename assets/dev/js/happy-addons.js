@@ -498,6 +498,73 @@
             });
         };
 
+	    //PostTab
+	    var PostTab = EM.frontend.handlers.Base.extend({
+
+		    onInit: function () {
+			    EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+			    this.wrapper = this.$element.find('.ha-post-tab');
+			    this.run();
+		    },
+		    run: function () {
+			    var filter_wrap = this.wrapper.find('.ha-post-tab-filter'),
+				    filter = filter_wrap.find('li'),
+				    event = this.wrapper.data('event'),
+				    args = this.wrapper.data('query-args');
+
+			    filter.on(event, debounce(function (e) {
+				    e.preventDefault();
+
+				    var $self = $(this),
+					    term_id = $self.data("term"),
+					    $wrapper = $self.closest(".ha-post-tab"),
+					    content = $wrapper.find('.ha-post-tab-content'),
+					    loading = content.find('.ha-post-tab-loading'),
+					    tab_item = content.find('.ha-post-tab-item-wrapper'),
+					    $content_exist = false;
+
+				    if (0 === loading.length) {
+					    filter.removeClass('active');
+					    tab_item.removeClass('active');
+					    $self.addClass('active');
+
+					    tab_item.each(function () {
+						    var $self = $(this),
+							    $content_id = $self.data("term");
+						    if (term_id === $content_id) {
+							    $self.addClass('active');
+							    $content_exist = true;
+						    }
+					    });
+
+					    if (false === $content_exist) {
+						    $.ajax({
+							    url: HappyLocalize.ajax_url,
+							    type: 'POST',
+							    data: {
+								    action: "ha_post_tab_action",
+								    security: HappyLocalize.nonce,
+								    post_tab_query: args,
+								    term_id: term_id,
+							    },
+							    beforeSend: function () {
+								    content.append('<span class="ha-post-tab-loading"><i class="eicon-spinner eicon-animation-spin"></i></span>');
+							    },
+							    success: function (response) {
+								    content.find('.ha-post-tab-loading').remove();
+								    content.append(response);
+							    },
+							    error: function (error) {
+							    }
+						    });
+
+					    }
+				    }
+
+			    }, 200));
+		    }
+	    });
+
         $('[data-ha-element-link]').each(function() {
             var link = $(this).data('ha-element-link');
             $(this).on('click.haElementOnClick', function() {
@@ -528,6 +595,7 @@
             'ha-carousel.default': Slick,
             'ha-image-grid.default': Isotope,
             'ha-news-ticker.default': NewsTicker,
+            'ha-post-tab.default': PostTab,
             'widget': ExtensionHandler
         };
 

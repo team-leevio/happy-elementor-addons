@@ -240,7 +240,7 @@ class Assets_Manager {
 		//Localize scripts
 		wp_localize_script('happy-elementor-addons', 'HappyLocalize', [
 			'ajax_url' => admin_url('admin-ajax.php'),
-			'nonce'    => wp_create_nonce('happy_addons_nonce'),
+			'nonce' => wp_create_nonce('happy_addons_nonce'),
 		]);
 	}
 

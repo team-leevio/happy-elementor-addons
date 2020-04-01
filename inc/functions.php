@@ -496,3 +496,103 @@ function ha_get_post_types ( $args = array(), $diff_key = array() ) {
 	}
 	return $post_types;
 }
+
+/**
+ * Get All Taxonomies
+ * @param array $args
+ * @param string $output
+ * @param bool $list
+ * @param array $diff_key
+ * @return array|string[]|WP_Taxonomy[]
+ */
+function ha_get_taxonomies ( $args = array(), $output = 'object', $list = true, $diff_key = array() ) {
+
+	$taxonomies = get_taxonomies( $args , $output );
+	if( 'object' === $output && $list ){
+		$taxonomies = wp_list_pluck( $taxonomies, 'label', 'name' );
+	}
+
+	if( !empty( $diff_key ) ){
+		$taxonomies = array_diff_key( $taxonomies, $diff_key );
+	}
+
+	return $taxonomies;
+}
+
+/**
+ * Post Tab Ajax call
+ */
+function ha_post_tab () {
+
+	$security = check_ajax_referer( 'happy_addons_nonce', 'security' );
+
+	if ( true == $security ) :
+		$settings = $_POST['post_tab_query'];
+		$post_type = $settings['post_type'];
+		$taxonomy = $settings['taxonomy'];
+		$item_limit = $settings['item_limit'];
+		$excerpt = $settings['excerpt'];
+		$term_id = $_POST['term_id'];
+
+		$args = [
+			'post_status' => 'publish',
+			'post_type' => $post_type,
+			'posts_per_page' => $item_limit,
+			'tax_query' => array(
+				array(
+					'taxonomy' => $taxonomy,
+					'field' => 'term_id',
+					'terms' => $term_id,
+				),
+			),
+		];
+		$posts = get_posts( $args );
+		if ( count( $posts ) !== 0 ):
+			?>
+			<div class="ha-post-tab-item-wrapper active" data-term="<?php echo esc_attr( $term_id ); ?>">
+				<?php foreach ( $posts as $post ): ?>
+					<div class="ha-post-tab-item">
+						<div class="ha-post-tab-item-inner">
+							<?php if ( has_post_thumbnail( $post->ID ) ): ?>
+								<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>"
+								   class="ha-post-tab-thumb">
+									<?php echo get_the_post_thumbnail( $post->ID, 'full' ); ?>
+								</a>
+							<?php endif; ?>
+							<h2 class="ha-post-tab-title">
+								<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>"> <?php echo esc_html( $post->post_title ); ?></a>
+							</h2>
+							<div class="ha-post-tab-meta">
+		                        <span class="ha-post-tab-meta-author">
+		                            <i class="fa fa-user-o"></i>
+		                            <a href="<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
+		                        </span>
+								<?php
+								$archive_year = get_the_time( 'Y', $post->ID );
+								$archive_month = get_the_time( 'm', $post->ID );
+								$archive_day = get_the_time( 'd', $post->ID );
+								?>
+								<span class="ha-post-tab-meta-date">
+		                            <i class="fa fa-calendar-o"></i>
+		                            <a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>"><?php echo get_the_date( "M d, Y", $post->ID ); ?></a>
+								</span>
+							</div>
+							<?php if( 'yes' === $excerpt && !empty($post->post_excerpt) ): ?>
+								<div class="ha-post-tab-excerpt">
+									<p><?php echo esc_html($post->post_excerpt);?></p>
+								</div>
+							<?php endif;?>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		<?php
+
+		endif;
+	endif;
+	wp_die();
+
+}
+add_action( 'wp_ajax_ha_post_tab_action', 'ha_post_tab' );
+add_action( 'wp_ajax_nopriv_ha_post_tab_action', 'ha_post_tab' );
+

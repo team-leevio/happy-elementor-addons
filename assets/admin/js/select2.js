@@ -38,9 +38,7 @@
 					success: function (results) {
 
 						self.isPostSearchReady = true;
-						//console.log(results);
 						self.model.set('options', results);
-
 						self.render();
 					}
 				});
@@ -52,7 +50,7 @@
 			onReady: function () {
 				var self = this,
 					dataQueryOption = this.dataQueryOption();
-				//console.log('on ready',dataQueryOption);
+				
 				if( !dataQueryOption ){
 					return;
 				}
