@@ -847,7 +847,6 @@ class Post_Tab extends Base {
 		$query_settings = [
 			'post_type' => $settings['post_type'],
 			'taxonomy' => $taxonomy,
-			'terms_ids' => $terms_ids,
 			'item_limit' => $settings['item_limit'],
 			'excerpt' => $settings['excerpt'] ? $settings['excerpt'] : 'no',
 		];
