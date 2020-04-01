@@ -305,6 +305,7 @@ class Assets_Manager {
 			],
 			'proWidgets' => [],
 			'hasPro' => ha_has_pro(),
+			'select2Secret' => wp_create_nonce( 'HappyAddons_Select2_Secret' ),
 		];
 
 		if ( ! ha_has_pro() && ha_is_elementor_version( '>=', '2.9.0' ) ) {

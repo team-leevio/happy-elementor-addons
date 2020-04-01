@@ -475,3 +475,24 @@ add_action( 'wp_ajax_nopriv_ha_twitter_feed_action', 'ha_twitter_feed_ajax' );
 function ha_get_icon_for_label() {
     return '<i style="position: relative; top: 1px" class="hm hm-happyaddons"></i> ';
 }
+
+/**
+ * Get All Post Types
+ * @param array $args
+ * @param array $diff_key
+ * @return array|string[]|WP_Post_Type[]
+ */
+function ha_get_post_types ( $args = array(), $diff_key = array() ) {
+	$default = [
+		'public' => true,
+		'show_in_nav_menus' => true
+	];
+	$args = array_merge( $default, $args );
+	$post_types = get_post_types( $args , 'objects' );
+	$post_types = wp_list_pluck( $post_types, 'label', 'name' );
+
+	if( !empty( $diff_key ) ){
+		$post_types = array_diff_key( $post_types, $diff_key );
+	}
+	return $post_types;
+}

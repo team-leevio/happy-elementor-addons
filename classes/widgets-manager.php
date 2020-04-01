@@ -509,6 +509,16 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+	        'post-list' => [
+		        'title' => __( 'Post List', 'happy-elementor-addons' ),
+		        'icon' => 'hm hm-post-list',
+		        'css' => ['post-list'],
+		        'js' => [],
+		        'vendor' => [
+			        'css' => [],
+			        'js' => [],
+		        ],
+	        ],
         ];
     }
 

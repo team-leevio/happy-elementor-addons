@@ -51,6 +51,7 @@ class Base {
         Cache_Manager::init();
         Icons_Manager::init();
         Extensions_Manager::init();
+	    Select2_Handler::init();
 
         $this->init_appsero_tracking();
 
@@ -103,6 +104,7 @@ class Base {
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
+	    include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
 
         if ( is_admin() ) {
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
@@ -138,9 +140,12 @@ class Base {
      */
     public function register_controls( Controls_Manager $controls_Manager ) {
         include_once( HAPPY_ADDONS_DIR_PATH . 'controls/foreground.php' );
+	    include_once( HAPPY_ADDONS_DIR_PATH . 'controls/select2.php' );
         $foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
+	    $select2 = __NAMESPACE__ . '\Controls\Select2';
 
         $controls_Manager->add_group_control( $foreground::get_type(), new $foreground() );
+	    ha_elementor()->controls_manager->register_control( $select2::TYPE, new $select2() );
     }
 
     /**
