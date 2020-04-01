@@ -838,7 +838,7 @@ class Post_Tab extends Base {
 				array(
 					'taxonomy' => $taxonomy,
 					'field' => 'term_id',
-					'terms' => $filter_list[0]->term_id,
+					'terms' => $terms_ids ? $filter_list[0]->term_id : '',
 				),
 			),
 		];
@@ -871,7 +871,7 @@ class Post_Tab extends Base {
 		$this->add_render_attribute( 'tab-item-wrapper', 'class', [ 'ha-post-tab-item-wrapper active' ] );
 		$this->add_render_attribute( 'item', 'class', [ 'ha-post-list-item' ] );
 		$i = 1;
-		if ( count( $posts ) !== 0 ) :?>
+		if ( !empty($terms_ids) && count( $posts ) !== 0 ) :?>
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
 				<ul <?php $this->print_render_attribute_string( 'tab-filter' ); ?>>
 					<?php foreach ( $filter_list as $list ): ?>
