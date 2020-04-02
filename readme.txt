@@ -61,8 +61,8 @@ Unlike other Elementor addons, the Happy Elementor Addons comes with a host of f
 28. **[Twitter Feed](https://demo.happyaddons.com/elementor-twitter-feed-widget-demo/)**
 29. **[Bar Chart](https://demo.happyaddons.com/elementor-bar-chart-widget-demo/)**
 30. **[Social Icons](https://demo.happyaddons.com/elementor-social-icon-widget-demo/)**
-31. **[Post Tab]**
-32. **[Post List]**
+31. **[Post Tab](https://demo.happyaddons.com/elementor-post-tab-widget-demo/)**
+32. **[Post List](https://demo.happyaddons.com/elementor-post-list-widget-demo/)**
 
 
 ### Free Built-in Extensions to Give You an Awesome Experience
