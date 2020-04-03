@@ -212,6 +212,23 @@ class Assets_Manager {
 			true
 		);
 
+		// Threesixty Rotation js
+		wp_register_script(
+			'circlr',
+			HAPPY_ADDONS_ASSETS . 'vendor/threesixty-rotation/circlr.min.js',
+			['jquery'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+		// happy magnify js
+		wp_register_script(
+			'ha-simple-magnify',
+			HAPPY_ADDONS_ASSETS . 'vendor/threesixty-rotation/happy-simple-magnify.js',
+			['jquery'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
 		// Hover css
 		wp_register_style(
 			'hover-css',

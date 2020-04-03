@@ -565,6 +565,67 @@
 		    }
 	    });
 
+	    //Threesixty Rotation
+	    var Threesixty_Rotation = function($scope) {
+		    var ha_circlr = $scope.find('.ha-threesixty-rotation-inner');
+		    var cls = ha_circlr.data('selector');
+		    var autoplay = ha_circlr.data('autoplay');
+		    var glass_on = $scope.find('.ha-threesixty-rotation-magnify');
+		    var zoom = glass_on.data('zoom');
+		    console.log(autoplay);
+		    var playb = $scope.find('.ha-threesixty-rotation-play');
+		    var stop = $scope.find('.ha-threesixty-rotation-stop');
+
+		    var crl = circlr(cls, {
+			    play : true,
+			    // vertical : true,
+			    // scroll : true,
+			    //interval : 340,
+		    });
+		    //console.log(crl);
+		    if( 'on' ===autoplay ){
+			    var autoplay_btn = $scope.find('.ha-threesixty-rotation-autoplay');
+			    autoplay_btn.on('click', function(el) {
+				    el.preventDefault();
+				    crl.play();
+			    });
+			    setTimeout(function(){
+				    autoplay_btn.trigger('click');
+			    },350);
+		    }else {
+			    playb.on('click', function(el) {
+				    el.preventDefault();
+				    crl.play();
+			    });
+			    stop.on('click', function(el) {
+				    el.preventDefault();
+				    crl.stop();
+			    });
+		    }
+
+		    glass_on.on('click', function(el) {
+			    var img_block = $scope.find('img');
+			    img_block.each(function(){
+				    var style = $(this).attr('style');
+				    if( -1 !== style.indexOf("block") ){
+					    HappySimplaMagnify($(this)[0],zoom);
+					    glass_on.css('display','none');
+				    }
+			    });
+		    });
+
+		    $(document).on('click', function (e) {
+			    var t = $(e.target);
+			    var magnifier = $scope.find('.ha-img-magnifier-glass');
+			    var i = glass_on.find('i');
+			    if( magnifier.length && t[0] !== i[0] ){
+				    magnifier.remove();
+				    glass_on.removeAttr('style');
+			    }
+		    });
+
+	    };
+
         $('[data-ha-element-link]').each(function() {
             var link = $(this).data('ha-element-link');
             $(this).on('click.haElementOnClick', function() {
@@ -583,7 +644,8 @@
             'ha-skills.default': SkillHandler,
             'ha-fun-factor.default': FunFactor,
             'ha-bar-chart.default': BarChart,
-            'ha-twitter-feed.default': TwitterFeed
+            'ha-twitter-feed.default': TwitterFeed,
+	         'ha-threesixty-rotation.default': Threesixty_Rotation
         };
 
         $.each( handlersFnMap, function( widgetName, handlerFn ) {

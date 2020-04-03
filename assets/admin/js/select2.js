@@ -50,7 +50,7 @@
 			onReady: function () {
 				var self = this,
 					dataQueryOption = this.dataQueryOption();
-				
+
 				if( !dataQueryOption ){
 					return;
 				}
