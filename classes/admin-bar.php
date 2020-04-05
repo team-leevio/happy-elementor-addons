@@ -66,14 +66,16 @@ class Admin_Bar {
     public static function add_toolbar_items( \WP_Admin_Bar $admin_bar ) {
         if ( ! current_user_can( 'manage_options' ) ) {
             return;
-        }
+		}
+
+		$icon = '<i class="dashicons dashicons-update-alt"></i> ';
 
         $admin_bar->add_menu( array(
             'id'    => 'happy-addons',
             'title' => '<img src="'.ha_get_b64_icon().'"">',
             'href'  => ha_get_dashboard_link(),
             'meta' => [
-                'title' => __( 'Happy Addons Menu', 'happy-elementor-addons' ),
+                'title' => __( 'Happy Elementor Addons', 'happy-elementor-addons' ),
             ]
         ) );
 
@@ -81,7 +83,7 @@ class Admin_Bar {
             $admin_bar->add_menu( array(
                 'id' => 'ha-clear-page-cache',
                 'parent' => 'happy-addons',
-                'title' => '<i class="dashicons dashicons-update-alt"></i> ' . __( 'Renew Page Cache', 'happy-elementor-addons' ),
+                'title' => $icon . __( 'Page: Renew On Demand Assets', 'happy-elementor-addons' ),
                 'href' => '#',
                 'meta' => [
                     'class' => 'hajs-clear-cache ha-clear-page-cache',
@@ -92,7 +94,7 @@ class Admin_Bar {
         $admin_bar->add_menu( array(
             'id' => 'ha-clear-all-cache',
             'parent' => 'happy-addons',
-            'title' => '<i class="dashicons dashicons-update-alt"></i> ' . __( 'Renew All Cache', 'happy-elementor-addons' ),
+            'title' => $icon . __( 'Global: Renew On Demand Assets', 'happy-elementor-addons' ),
             'href' => '#',
             'meta' => [
                 'class' => 'hajs-clear-cache ha-clear-all-cache',
