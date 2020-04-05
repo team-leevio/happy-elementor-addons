@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.8.0
+Version: 2.8.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -277,6 +277,12 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.8.1 - 5 April 2020 =
+
+- Tweak: Adminbar actions terms updated to more meaningful terms
+- Fix: Floating effect not working on frontend
+- Fix: Adminbar HappyAddons icon position
 
 = 2.8.0 - 1 April 2020 =
 
