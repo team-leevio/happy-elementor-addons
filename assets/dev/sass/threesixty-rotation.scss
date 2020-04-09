@@ -26,16 +26,42 @@ span.ha-threesixty-rotation-magnify {
 }
 .ha-threesixty-rotation-autoplay-button button{
   display: inline-block;
-  padding: .8rem 2rem;
+  padding: .4rem 2rem;
   border-radius: 40px;
   background-color: #e2498a;
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 24px;
   transition: all .3s;
+  outline: none;
+}
+.ha-threesixty-rotation-autoplay-button button:focus{
+  outline: none;
 }
 .ha-threesixty-rotation-autoplay-button button:hover{
   background-color: #562dd4;
   color: #fff;
+  outline: none;
+}
+.ha-threesixty-rotation-360img{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  border-radius: 50%;
+  box-shadow: rgba(255, 255, 255, 0.5) 0 0 4px;
+  transition: all 0.5s ease 0s;
+  color: rgb(80, 80, 80);
+  text-align: center;
+  line-height: 100px;
+  z-index: 2;
+  background-color: rgba(38, 39, 39, 0.5);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 50%;
 }

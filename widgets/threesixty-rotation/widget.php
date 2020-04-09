@@ -90,35 +90,9 @@ class Threesixty_Rotation extends Base {
 				'default' => 'none',
 				'options' => [
 					'autoplay'  => __( 'Autoplay', 'happy-elementor-addons' ),
-					'button'  => __( 'Autoplay by button', 'happy-elementor-addons' ),
+					'button'  => __( 'Button Play', 'happy-elementor-addons' ),
 					'none' => __( 'None', 'happy-elementor-addons' ),
 				],
-			]
-		);
-
-		$this->add_control(
-			'play_text',
-			[
-				'label' => __('Play Text', 'happy-elementor-addons'),
-				'type' => Controls_Manager::TEXT,
-				'default' => __('Play', 'happy-elementor-addons'),
-				'placeholder' => __('Play', 'happy-elementor-addons'),
-				'condition' => [
-					'auto_play' => 'button'
-				]
-			]
-		);
-
-		$this->add_control(
-			'stop_text',
-			[
-				'label' => __('Stop Text', 'happy-elementor-addons'),
-				'type' => Controls_Manager::TEXT,
-				'default' => __('Stop', 'happy-elementor-addons'),
-				'placeholder' => __('Stop', 'happy-elementor-addons'),
-				'condition' => [
-					'auto_play' => 'button'
-				]
 			]
 		);
 
@@ -424,16 +398,6 @@ class Threesixty_Rotation extends Base {
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'button_typography',
-				'label' => __('Typography', 'happy-elementor-addons'),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
-				'selector' => '{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play,{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-stop',
-			]
-		);
-
 		$this->start_controls_tabs('_tabs_button');
 
 		$this->start_controls_tab(
@@ -450,7 +414,6 @@ class Threesixty_Rotation extends Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-threesixty-rotation-wrapper  button.ha-threesixty-rotation-play' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-threesixty-rotation-wrapper  button.ha-threesixty-rotation-stop' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -461,7 +424,7 @@ class Threesixty_Rotation extends Base {
 				'name' => 'button_background',
 				'label' => __('Background', 'happy-elementor-addons'),
 				'types' => ['classic', 'gradient'],
-				'selector' => '{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play,{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-stop',
+				'selector' => '{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play',
 			]
 		);
 
@@ -481,7 +444,6 @@ class Threesixty_Rotation extends Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-threesixty-rotation-wrapper  button.ha-threesixty-rotation-play:hover, {{WRAPPER}} .ha-threesixty-rotation-wrapper  button.ha-threesixty-rotation-play:focus' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-threesixty-rotation-wrapper  button.ha-threesixty-rotation-stop:hover, {{WRAPPER}} .ha-threesixty-rotation-wrapper  button.ha-threesixty-rotation-stop:focus' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -492,7 +454,7 @@ class Threesixty_Rotation extends Base {
 				'name' => 'button_hover_background',
 				'label' => __('Background', 'happy-elementor-addons'),
 				'types' => ['classic', 'gradient'],
-				'selector' => '{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play:hover,{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-stop:hover',
+				'selector' => '{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play:hover',
 			]
 		);
 
@@ -504,7 +466,7 @@ class Threesixty_Rotation extends Base {
 			[
 				'name' => 'button_border',
 				'label' => __('Border', 'happy-elementor-addons'),
-				'selector' => '{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play,{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-stop',
+				'selector' => '{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play',
 			]
 		);
 
@@ -515,8 +477,7 @@ class Threesixty_Rotation extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px'],
 				'selectors' => [
-					'{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-stop' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
 				],
 			]
 		);
@@ -526,7 +487,7 @@ class Threesixty_Rotation extends Base {
 			[
 				'name' => 'button_box_shadow',
 				'label' => __('Box Shadow', 'happy-elementor-addons'),
-				'selector' => '{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play,{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-stop',
+				'selector' => '{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play',
 			]
 		);
 
@@ -537,8 +498,7 @@ class Threesixty_Rotation extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%', 'em'],
 				'selectors' => [
-					'{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-stop' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
 				],
 			]
 		);
@@ -558,26 +518,6 @@ class Threesixty_Rotation extends Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play' => 'margin-top: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-stop' => 'margin-top: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'button_space_between',
-			[
-				'label' => __( 'Space Between', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 100,
-						'step' => 1,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-threesixty-rotation-wrapper button.ha-threesixty-rotation-play' => 'margin-right: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -609,6 +549,7 @@ class Threesixty_Rotation extends Base {
 				]
 			);
 		}
+		$svg_url = HAPPY_ADDONS_ASSETS . 'imgs/360_view.svg'
 		?>
 
 		<div <?php $this->print_render_attribute_string('wrapper'); ?>>
@@ -621,17 +562,15 @@ class Threesixty_Rotation extends Base {
 				<?php foreach ($settings['images'] as $item) : ?>
 					<img data-src="<?php echo esc_url($item['url']); ?>">
 				<?php endforeach; ?>
+				<div class="ha-threesixty-rotation-360img" style='background-image:url("<?php echo esc_url($svg_url);?>")'></div>
 			</div>
 			<?php if ('autoplay' === $settings['auto_play'] ) : ?>
 				<button class="ha-threesixty-rotation-autoplay"></button>
 			<?php endif; ?>
-			<?php if ('button' === $settings['auto_play'] && !empty($settings['play_text']) && !empty($settings['stop_text']) ) : ?>
+			<?php if ('button' === $settings['auto_play'] ) : ?>
 			<div class="ha-threesixty-rotation-autoplay-button">
 				<button class="ha-threesixty-rotation-play">
-					<?php echo esc_html($settings['play_text']); ?>
-				</button>
-				<button class="ha-threesixty-rotation-stop">
-					<?php echo esc_html($settings['stop_text']); ?>
+					<i aria-hidden="true" class="hm hm-play-button"></i>
 				</button>
 			</div>
 			<?php endif; ?>
