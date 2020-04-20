@@ -21,7 +21,7 @@ class Column_Extended {
         $element->add_responsive_control(
             '_ha_column_width',
             [
-                'label' => ha_get_icon_for_label() . __( 'Custom Column Width', 'happy-elementor-addons' ),
+                'label' => __( 'Custom Column Width', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
                 'separator' => 'before',
                 'label_block' => true,
@@ -35,7 +35,7 @@ class Column_Extended {
         $element->add_responsive_control(
             '_ha_column_order',
             [
-                'label' => ha_get_icon_for_label() . __( 'Column Order', 'happy-elementor-addons' ),
+                'label' => __( 'Column Order', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::NUMBER,
                 'style_transfer' => true,
                 'selectors' => [
@@ -43,7 +43,7 @@ class Column_Extended {
                 ],
                 'description' => sprintf(
                     __( 'Column ordering is a great addition for responsive design. You can learn more about CSS order property from %sMDN%s.', 'happy-elementor-addons' ),
-                    '<a 
+                    '<a
 href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Ordering_Flex_Items#The_order_property" target="_blank">',
                     '</a>'
                 ),

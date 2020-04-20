@@ -26,7 +26,7 @@ class Wrapper_Link {
         $element->start_controls_section(
             '_section_ha_wrapper_link',
             [
-                'label' => ha_get_icon_for_label() . __( 'Wrapper Link', 'happy-elementor-addons' ),
+                'label' => __( 'Wrapper Link', 'happy-elementor-addons' ) . ha_get_section_icon(),
                 'tab'   => $tabs,
             ]
         );

@@ -18,11 +18,11 @@ defined( 'ABSPATH' ) || die();
  * @return string|bool False on failure, the result of the shortcode on success.
  */
 function ha_do_shortcode( $tag, array $atts = array(), $content = null ) {
-    global $shortcode_tags;
-    if ( ! isset( $shortcode_tags[ $tag ] ) ) {
-        return false;
-    }
-    return call_user_func( $shortcode_tags[ $tag ], $atts, $content, $tag );
+	global $shortcode_tags;
+	if ( ! isset( $shortcode_tags[ $tag ] ) ) {
+		return false;
+	}
+	return call_user_func( $shortcode_tags[ $tag ], $atts, $content, $tag );
 }
 
 /**
@@ -32,109 +32,109 @@ function ha_do_shortcode( $tag, array $atts = array(), $content = null ) {
  * @return string
  */
 function ha_sanitize_html_class_param( $class ) {
-    $classes = ! empty( $class ) ? explode( ' ', $class ) : [];
-    $sanitized = [];
-    if ( ! empty( $classes ) ) {
-        $sanitized = array_map( function( $cls ) {
-            return sanitize_html_class( $cls );
-        }, $classes );
-    }
-    return implode( ' ', $sanitized );
+	$classes = ! empty( $class ) ? explode( ' ', $class ) : [];
+	$sanitized = [];
+	if ( ! empty( $classes ) ) {
+		$sanitized = array_map( function( $cls ) {
+			return sanitize_html_class( $cls );
+		}, $classes );
+	}
+	return implode( ' ', $sanitized );
 }
 
 function ha_is_script_debug_enabled() {
-    return ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
+	return ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
 }
 
 function ha_prepare_data_prop_settings( &$settings, $field_map = [] ) {
-    $data = [];
-    foreach ( $field_map as $key => $data_key ) {
-        $setting_value = ha_get_setting_value( $settings, $key );
-        list( $data_field_key, $data_field_type ) = explode( '.', $data_key );
-        $validator = $data_field_type . 'val';
+	$data = [];
+	foreach ( $field_map as $key => $data_key ) {
+		$setting_value = ha_get_setting_value( $settings, $key );
+		list( $data_field_key, $data_field_type ) = explode( '.', $data_key );
+		$validator = $data_field_type . 'val';
 
-        if ( is_callable( $validator ) ) {
-            $val = call_user_func( $validator, $setting_value );
-        } else {
-            $val = $setting_value;
-        }
-        $data[ $data_field_key ] = $val;
-    }
-    return wp_json_encode( $data );
+		if ( is_callable( $validator ) ) {
+			$val = call_user_func( $validator, $setting_value );
+		} else {
+			$val = $setting_value;
+		}
+		$data[ $data_field_key ] = $val;
+	}
+	return wp_json_encode( $data );
 }
 
 function ha_get_setting_value( &$settings, $keys ) {
-    if ( ! is_array( $keys ) ) {
-        $keys = explode( '.', $keys );
-    }
-    if ( is_array( $settings[ $keys[0] ] ) ) {
-        return ha_get_setting_value( $settings[ $keys[0] ], array_slice( $keys, 1 ) );
-    }
-    return $settings[ $keys[0] ];
+	if ( ! is_array( $keys ) ) {
+		$keys = explode( '.', $keys );
+	}
+	if ( is_array( $settings[ $keys[0] ] ) ) {
+		return ha_get_setting_value( $settings[ $keys[0] ], array_slice( $keys, 1 ) );
+	}
+	return $settings[ $keys[0] ];
 }
 
 function ha_is_localhost() {
-    return isset( $_SERVER['REMOTE_ADDR'] ) && in_array( $_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'] );
+	return isset( $_SERVER['REMOTE_ADDR'] ) && in_array( $_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'] );
 }
 
 function ha_get_css_cursors() {
-    return [
-        'default' => __( 'Default', 'happy-elementor-addons' ),
-        'alias' => __( 'Alias', 'happy-elementor-addons' ),
-        'all-scroll' => __( 'All scroll', 'happy-elementor-addons' ),
-        'auto' => __( 'Auto', 'happy-elementor-addons' ),
-        'cell' => __( 'Cell', 'happy-elementor-addons' ),
-        'context-menu' => __( 'Context menu', 'happy-elementor-addons' ),
-        'col-resize' => __( 'Col-resize', 'happy-elementor-addons' ),
-        'copy' => __( 'Copy', 'happy-elementor-addons' ),
-        'crosshair' => __( 'Crosshair', 'happy-elementor-addons' ),
-        'e-resize' => __( 'E-resize', 'happy-elementor-addons' ),
-        'ew-resize' => __( 'EW-resize', 'happy-elementor-addons' ),
-        'grab' => __( 'Grab', 'happy-elementor-addons' ),
-        'grabbing' => __( 'Grabbing', 'happy-elementor-addons' ),
-        'help' => __( 'Help', 'happy-elementor-addons' ),
-        'move' => __( 'Move', 'happy-elementor-addons' ),
-        'n-resize' => __( 'N-resize', 'happy-elementor-addons' ),
-        'ne-resize' => __( 'NE-resize', 'happy-elementor-addons' ),
-        'nesw-resize' => __( 'NESW-resize', 'happy-elementor-addons' ),
-        'ns-resize' => __( 'NS-resize', 'happy-elementor-addons' ),
-        'nw-resize' => __( 'NW-resize', 'happy-elementor-addons' ),
-        'nwse-resize' => __( 'NWSE-resize', 'happy-elementor-addons' ),
-        'no-drop' => __( 'No-drop', 'happy-elementor-addons' ),
-        'not-allowed' => __( 'Not-allowed', 'happy-elementor-addons' ),
-        'pointer' => __( 'Pointer', 'happy-elementor-addons' ),
-        'progress' => __( 'Progress', 'happy-elementor-addons' ),
-        'row-resize' => __( 'Row-resize', 'happy-elementor-addons' ),
-        's-resize' => __( 'S-resize', 'happy-elementor-addons' ),
-        'se-resize' => __( 'SE-resize', 'happy-elementor-addons' ),
-        'sw-resize' => __( 'SW-resize', 'happy-elementor-addons' ),
-        'text' => __( 'Text', 'happy-elementor-addons' ),
-        'url' => __( 'URL', 'happy-elementor-addons' ),
-        'w-resize' => __( 'W-resize', 'happy-elementor-addons' ),
-        'wait' => __( 'Wait', 'happy-elementor-addons' ),
-        'zoom-in' => __( 'Zoom-in', 'happy-elementor-addons' ),
-        'zoom-out' => __( 'Zoom-out', 'happy-elementor-addons' ),
-        'none' => __( 'None', 'happy-elementor-addons' ),
-    ];
+	return [
+		'default' => __( 'Default', 'happy-elementor-addons' ),
+		'alias' => __( 'Alias', 'happy-elementor-addons' ),
+		'all-scroll' => __( 'All scroll', 'happy-elementor-addons' ),
+		'auto' => __( 'Auto', 'happy-elementor-addons' ),
+		'cell' => __( 'Cell', 'happy-elementor-addons' ),
+		'context-menu' => __( 'Context menu', 'happy-elementor-addons' ),
+		'col-resize' => __( 'Col-resize', 'happy-elementor-addons' ),
+		'copy' => __( 'Copy', 'happy-elementor-addons' ),
+		'crosshair' => __( 'Crosshair', 'happy-elementor-addons' ),
+		'e-resize' => __( 'E-resize', 'happy-elementor-addons' ),
+		'ew-resize' => __( 'EW-resize', 'happy-elementor-addons' ),
+		'grab' => __( 'Grab', 'happy-elementor-addons' ),
+		'grabbing' => __( 'Grabbing', 'happy-elementor-addons' ),
+		'help' => __( 'Help', 'happy-elementor-addons' ),
+		'move' => __( 'Move', 'happy-elementor-addons' ),
+		'n-resize' => __( 'N-resize', 'happy-elementor-addons' ),
+		'ne-resize' => __( 'NE-resize', 'happy-elementor-addons' ),
+		'nesw-resize' => __( 'NESW-resize', 'happy-elementor-addons' ),
+		'ns-resize' => __( 'NS-resize', 'happy-elementor-addons' ),
+		'nw-resize' => __( 'NW-resize', 'happy-elementor-addons' ),
+		'nwse-resize' => __( 'NWSE-resize', 'happy-elementor-addons' ),
+		'no-drop' => __( 'No-drop', 'happy-elementor-addons' ),
+		'not-allowed' => __( 'Not-allowed', 'happy-elementor-addons' ),
+		'pointer' => __( 'Pointer', 'happy-elementor-addons' ),
+		'progress' => __( 'Progress', 'happy-elementor-addons' ),
+		'row-resize' => __( 'Row-resize', 'happy-elementor-addons' ),
+		's-resize' => __( 'S-resize', 'happy-elementor-addons' ),
+		'se-resize' => __( 'SE-resize', 'happy-elementor-addons' ),
+		'sw-resize' => __( 'SW-resize', 'happy-elementor-addons' ),
+		'text' => __( 'Text', 'happy-elementor-addons' ),
+		'url' => __( 'URL', 'happy-elementor-addons' ),
+		'w-resize' => __( 'W-resize', 'happy-elementor-addons' ),
+		'wait' => __( 'Wait', 'happy-elementor-addons' ),
+		'zoom-in' => __( 'Zoom-in', 'happy-elementor-addons' ),
+		'zoom-out' => __( 'Zoom-out', 'happy-elementor-addons' ),
+		'none' => __( 'None', 'happy-elementor-addons' ),
+	];
 }
 
 function ha_get_css_blend_modes() {
-    return [
-        'normal' => __( 'Normal', 'happy-elementor-addons' ),
-        'multiply' => __( 'Multiply', 'happy-elementor-addons' ),
-        'screen' => __( 'Screen', 'happy-elementor-addons' ),
-        'overlay' => __( 'Overlay', 'happy-elementor-addons' ),
-        'darken' => __( 'Darken', 'happy-elementor-addons' ),
-        'lighten' => __( 'Lighten', 'happy-elementor-addons' ),
-        'color-dodge' => __( 'Color Dodge', 'happy-elementor-addons' ),
-        'color-burn' => __( 'Color Burn', 'happy-elementor-addons' ),
-        'saturation' => __( 'Saturation', 'happy-elementor-addons' ),
-        'difference' => __( 'Difference', 'happy-elementor-addons' ),
-        'exclusion' => __( 'Exclusion', 'happy-elementor-addons' ),
-        'hue' => __( 'Hue', 'happy-elementor-addons' ),
-        'color' => __( 'Color', 'happy-elementor-addons' ),
-        'luminosity' => __( 'Luminosity', 'happy-elementor-addons' ),
-    ];
+	return [
+		'normal' => __( 'Normal', 'happy-elementor-addons' ),
+		'multiply' => __( 'Multiply', 'happy-elementor-addons' ),
+		'screen' => __( 'Screen', 'happy-elementor-addons' ),
+		'overlay' => __( 'Overlay', 'happy-elementor-addons' ),
+		'darken' => __( 'Darken', 'happy-elementor-addons' ),
+		'lighten' => __( 'Lighten', 'happy-elementor-addons' ),
+		'color-dodge' => __( 'Color Dodge', 'happy-elementor-addons' ),
+		'color-burn' => __( 'Color Burn', 'happy-elementor-addons' ),
+		'saturation' => __( 'Saturation', 'happy-elementor-addons' ),
+		'difference' => __( 'Difference', 'happy-elementor-addons' ),
+		'exclusion' => __( 'Exclusion', 'happy-elementor-addons' ),
+		'hue' => __( 'Hue', 'happy-elementor-addons' ),
+		'color' => __( 'Color', 'happy-elementor-addons' ),
+		'luminosity' => __( 'Luminosity', 'happy-elementor-addons' ),
+	];
 }
 
 /**
@@ -145,7 +145,7 @@ function ha_get_css_blend_modes() {
  * @return bool
  */
 function ha_is_elementor_version( $operator = '<', $version = '2.6.0' ) {
-    return defined( 'ELEMENTOR_VERSION' ) && version_compare( ELEMENTOR_VERSION, $version, $operator );
+	return defined( 'ELEMENTOR_VERSION' ) && version_compare( ELEMENTOR_VERSION, $version, $operator );
 }
 
 /**
@@ -157,27 +157,27 @@ function ha_is_elementor_version( $operator = '<', $version = '2.6.0' ) {
  * @param array $attributes
  */
 function ha_render_icon( $settings = [], $old_icon_id = 'icon', $new_icon_id = 'selected_icon', $attributes = [] ) {
-    // Check if its already migrated
-    $migrated = isset( $settings['__fa4_migrated'][ $new_icon_id ] );
-    // Check if its a new widget without previously selected icon using the old Icon control
-    $is_new = empty( $settings[ $old_icon_id ] );
+	// Check if its already migrated
+	$migrated = isset( $settings['__fa4_migrated'][ $new_icon_id ] );
+	// Check if its a new widget without previously selected icon using the old Icon control
+	$is_new = empty( $settings[ $old_icon_id ] );
 
-    $attributes['aria-hidden'] = 'true';
+	$attributes['aria-hidden'] = 'true';
 
-    if ( ha_is_elementor_version( '>=', '2.6.0' ) && ( $is_new || $migrated ) ) {
-        \Elementor\Icons_Manager::render_icon( $settings[ $new_icon_id ], $attributes );
-    } else {
-        if ( empty( $attributes['class'] ) ) {
-            $attributes['class'] = $settings[ $old_icon_id ];
-        } else {
-            if ( is_array( $attributes['class'] ) ) {
-                $attributes['class'][] = $settings[ $old_icon_id ];
-            } else {
-                $attributes['class'] .= ' ' . $settings[ $old_icon_id ];
-            }
-        }
-        printf( '<i %s></i>', \Elementor\Utils::render_html_attributes( $attributes ) );
-    }
+	if ( ha_is_elementor_version( '>=', '2.6.0' ) && ( $is_new || $migrated ) ) {
+		\Elementor\Icons_Manager::render_icon( $settings[ $new_icon_id ], $attributes );
+	} else {
+		if ( empty( $attributes['class'] ) ) {
+			$attributes['class'] = $settings[ $old_icon_id ];
+		} else {
+			if ( is_array( $attributes['class'] ) ) {
+				$attributes['class'][] = $settings[ $old_icon_id ];
+			} else {
+				$attributes['class'] .= ' ' . $settings[ $old_icon_id ];
+			}
+		}
+		printf( '<i %s></i>', \Elementor\Utils::render_html_attributes( $attributes ) );
+	}
 }
 
 /**
@@ -186,14 +186,14 @@ function ha_render_icon( $settings = [], $old_icon_id = 'icon', $new_icon_id = '
  * @return array
  */
 function ha_get_happy_icons() {
-    return \Happy_Addons\Elementor\Icons_Manager::get_happy_icons();
+	return \Happy_Addons\Elementor\Icons_Manager::get_happy_icons();
 }
 
 /**
  * @return bool
  */
 function ha_is_happy_mode_enabled() {
-    return apply_filters( 'happyaddons_is_happy_mode_enabled', true );
+	return apply_filters( 'happyaddons_is_happy_mode_enabled', true );
 }
 
 /**
@@ -202,7 +202,7 @@ function ha_is_happy_mode_enabled() {
  * @return \Elementor\Plugin
  */
 function ha_elementor() {
-    return \Elementor\Plugin::instance();
+	return \Elementor\Plugin::instance();
 }
 
 /**
@@ -212,31 +212,31 @@ function ha_elementor() {
  * @return array
  */
 function ha_get_allowed_html_tags( $level = 'basic' ) {
-    $allowed_html = [
-        'b' => [],
-        'i' => [],
-        'u' => [],
-        'em' => [],
-        'br' => [],
-        'abbr' => [
-            'title' => [],
-        ],
-        'span' => [
-            'class' => [],
-        ],
-        'strong' => [],
-    ];
+	$allowed_html = [
+		'b' => [],
+		'i' => [],
+		'u' => [],
+		'em' => [],
+		'br' => [],
+		'abbr' => [
+			'title' => [],
+		],
+		'span' => [
+			'class' => [],
+		],
+		'strong' => [],
+	];
 
-    if ( $level === 'intermediate' ) {
-        $allowed_html['a'] = [
-            'href' => [],
-            'title' => [],
-            'class' => [],
-            'id' => [],
-        ];
-    }
+	if ( $level === 'intermediate' ) {
+		$allowed_html['a'] = [
+			'href' => [],
+			'title' => [],
+			'class' => [],
+			'id' => [],
+		];
+	}
 
-    return $allowed_html;
+	return $allowed_html;
 }
 
 /**
@@ -248,7 +248,7 @@ function ha_get_allowed_html_tags( $level = 'basic' ) {
  * @return string
  */
 function ha_kses_intermediate( $string = '' ) {
-    return wp_kses( $string, ha_get_allowed_html_tags( 'intermediate' ) );
+	return wp_kses( $string, ha_get_allowed_html_tags( 'intermediate' ) );
 }
 
 /**
@@ -260,7 +260,7 @@ function ha_kses_intermediate( $string = '' ) {
  * @return string
  */
 function ha_kses_basic( $string = '' ) {
-    return wp_kses( $string, ha_get_allowed_html_tags( 'basic' ) );
+	return wp_kses( $string, ha_get_allowed_html_tags( 'basic' ) );
 }
 
 /**
@@ -270,33 +270,33 @@ function ha_kses_basic( $string = '' ) {
  * @return string
  */
 function ha_get_allowed_html_desc( $level = 'basic' ) {
-    if ( ! in_array( $level, [ 'basic', 'intermediate' ] ) ) {
-        $level = 'basic';
-    }
+	if ( ! in_array( $level, [ 'basic', 'intermediate' ] ) ) {
+		$level = 'basic';
+	}
 
-    $tags_str = '<' . implode( '>,<', array_keys( ha_get_allowed_html_tags( $level ) ) ) . '>';
-    return sprintf( __( 'This input field has support for the following HTML tags: %1$s', 'happy-elementor-addons' ), '<code>' . esc_html( $tags_str ) . '</code>' );
+	$tags_str = '<' . implode( '>,<', array_keys( ha_get_allowed_html_tags( $level ) ) ) . '>';
+	return sprintf( __( 'This input field has support for the following HTML tags: %1$s', 'happy-elementor-addons' ), '<code>' . esc_html( $tags_str ) . '</code>' );
 }
 
 function ha_has_pro() {
-    return defined( 'HAPPY_ADDONS_PRO_VERSION' );
+	return defined( 'HAPPY_ADDONS_PRO_VERSION' );
 }
 
 function ha_get_b64_icon() {
-    return 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGcgZmlsbD0iI0ZGRiI+PHBhdGggZD0iTTI4LjYgNy44aC44Yy41IDAgLjktLjUuOC0xIDAtLjUtLjUtLjktMS0uOC0zLjUuMy02LjgtMS45LTcuOC01LjMtLjEtLjUtLjYtLjctMS4xLS42cy0uNy42LS42IDEuMWMxLjIgMy45IDQuOSA2LjYgOC45IDYuNnoiLz48cGF0aCBkPSJNMzAgMTEuMWMtLjMtLjYtLjktMS0xLjYtMS0uOSAwLTEuOSAwLTIuOC0uMi00LS44LTctMy42LTguNC03LjEtLjMtLjYtLjktMS4xLTEuNi0xQzguMyAxLjkgMS44IDcuNC45IDE1LjEuMSAyMi4yIDQuNSAyOSAxMS4zIDMxLjIgMjAgMzQuMSAyOSAyOC43IDMwLjggMTkuOWMuNy0zLjEuMy02LjEtLjgtOC44em0tMTEuNiAxLjFjLjEtLjUuNi0uOCAxLjEtLjdsMy43LjhjLjUuMS44LjYuNyAxLjFzLS42LjgtMS4xLjdsLTMuNy0uOGMtLjQtLjEtLjgtLjYtLjctMS4xek0xMC4xIDExYy4yLTEuMSAxLjQtMS45IDIuNS0xLjYgMS4xLjIgMS45IDEuNCAxLjYgMi41LS4yIDEuMS0xLjQgMS45LTIuNSAxLjYtMS0uMi0xLjgtMS4zLTEuNi0yLjV6bTE0LjYgMTAuNkMyMi44IDI2IDE3LjggMjguNSAxMyAyN2MtMy42LTEuMi02LjItNC41LTYuNS04LjItLjEtMSAuOC0xLjcgMS43LTEuNmwxNS40IDIuNWMuOSAwIDEuNCAxIDEuMSAxLjl6Ii8+PHBhdGggZD0iTTE3LjEgMjIuOGMtMS45LS40LTMuNy4zLTQuNyAxLjctLjIuMy0uMS43LjIuOS42LjMgMS4yLjUgMS45LjcgMS44LjQgMy43LjEgNS4xLS43LjMtLjIuNC0uNi4yLS45LS43LS45LTEuNi0xLjUtMi43LTEuN3oiLz48L2c+PC9zdmc+';
+	return 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGcgZmlsbD0iI0ZGRiI+PHBhdGggZD0iTTI4LjYgNy44aC44Yy41IDAgLjktLjUuOC0xIDAtLjUtLjUtLjktMS0uOC0zLjUuMy02LjgtMS45LTcuOC01LjMtLjEtLjUtLjYtLjctMS4xLS42cy0uNy42LS42IDEuMWMxLjIgMy45IDQuOSA2LjYgOC45IDYuNnoiLz48cGF0aCBkPSJNMzAgMTEuMWMtLjMtLjYtLjktMS0xLjYtMS0uOSAwLTEuOSAwLTIuOC0uMi00LS44LTctMy42LTguNC03LjEtLjMtLjYtLjktMS4xLTEuNi0xQzguMyAxLjkgMS44IDcuNC45IDE1LjEuMSAyMi4yIDQuNSAyOSAxMS4zIDMxLjIgMjAgMzQuMSAyOSAyOC43IDMwLjggMTkuOWMuNy0zLjEuMy02LjEtLjgtOC44em0tMTEuNiAxLjFjLjEtLjUuNi0uOCAxLjEtLjdsMy43LjhjLjUuMS44LjYuNyAxLjFzLS42LjgtMS4xLjdsLTMuNy0uOGMtLjQtLjEtLjgtLjYtLjctMS4xek0xMC4xIDExYy4yLTEuMSAxLjQtMS45IDIuNS0xLjYgMS4xLjIgMS45IDEuNCAxLjYgMi41LS4yIDEuMS0xLjQgMS45LTIuNSAxLjYtMS0uMi0xLjgtMS4zLTEuNi0yLjV6bTE0LjYgMTAuNkMyMi44IDI2IDE3LjggMjguNSAxMyAyN2MtMy42LTEuMi02LjItNC41LTYuNS04LjItLjEtMSAuOC0xLjcgMS43LTEuNmwxNS40IDIuNWMuOSAwIDEuNCAxIDEuMSAxLjl6Ii8+PHBhdGggZD0iTTE3LjEgMjIuOGMtMS45LS40LTMuNy4zLTQuNyAxLjctLjIuMy0uMS43LjIuOS42LjMgMS4yLjUgMS45LjcgMS44LjQgMy43LjEgNS4xLS43LjMtLjIuNC0uNi4yLS45LS43LS45LTEuNi0xLjUtMi43LTEuN3oiLz48L2c+PC9zdmc+';
 }
 
 function ha_get_dashboard_link( $suffix = '#home' ) {
-    return add_query_arg( [ 'page' => 'happy-addons' . $suffix ], admin_url( 'admin.php' ) );
+	return add_query_arg( [ 'page' => 'happy-addons' . $suffix ], admin_url( 'admin.php' ) );
 }
 
 function ha_get_current_user_display_name() {
-    $user = wp_get_current_user();
-    $name = 'user';
-    if ( $user->exists() && $user->display_name ) {
-        $name = $user->display_name;
-    }
-    return $name;
+	$user = wp_get_current_user();
+	$name = 'user';
+	if ( $user->exists() && $user->display_name ) {
+		$name = $user->display_name;
+	}
+	return $name;
 }
 
 /**
@@ -472,10 +472,6 @@ function ha_twitter_feed_ajax() {
 add_action( 'wp_ajax_ha_twitter_feed_action', 'ha_twitter_feed_ajax' );
 add_action( 'wp_ajax_nopriv_ha_twitter_feed_action', 'ha_twitter_feed_ajax' );
 
-function ha_get_icon_for_label() {
-    return '<i style="position: relative; top: 1px" class="hm hm-happyaddons"></i> ';
-}
-
 /**
  * Get All Post Types
  * @param array $args
@@ -563,18 +559,18 @@ function ha_post_tab () {
 								<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>"> <?php echo esc_html( $post->post_title ); ?></a>
 							</h2>
 							<div class="ha-post-tab-meta">
-		                        <span class="ha-post-tab-meta-author">
-		                            <i class="fa fa-user-o"></i>
-		                            <a href="<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
-		                        </span>
+								<span class="ha-post-tab-meta-author">
+									<i class="fa fa-user-o"></i>
+									<a href="<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
+								</span>
 								<?php
 								$archive_year = get_the_time( 'Y', $post->ID );
 								$archive_month = get_the_time( 'm', $post->ID );
 								$archive_day = get_the_time( 'd', $post->ID );
 								?>
 								<span class="ha-post-tab-meta-date">
-		                            <i class="fa fa-calendar-o"></i>
-		                            <a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>"><?php echo get_the_date( "M d, Y", $post->ID ); ?></a>
+									<i class="fa fa-calendar-o"></i>
+									<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>"><?php echo get_the_date( "M d, Y", $post->ID ); ?></a>
 								</span>
 							</div>
 							<?php if( 'yes' === $excerpt && !empty($post->post_excerpt) ): ?>
@@ -596,3 +592,13 @@ function ha_post_tab () {
 add_action( 'wp_ajax_ha_post_tab_action', 'ha_post_tab' );
 add_action( 'wp_ajax_nopriv_ha_post_tab_action', 'ha_post_tab' );
 
+if ( ! function_exists( 'ha_get_section_icon' ) ) {
+	/**
+	 * Get happy addons icon for panel section heading
+	 *
+	 * @return string
+	 */
+	function ha_get_section_icon() {
+		return '<i style="float: right" class="hm hm-happyaddons"></i>';
+	}
+}

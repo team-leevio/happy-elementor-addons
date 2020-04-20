@@ -17,7 +17,7 @@ class Happy_Grid {
         $element->start_controls_section(
             '_section_happy_grid_layer',
             [
-                'label' => ha_get_icon_for_label() . __( 'Grid Layer', 'happy-elementor-addons' ),
+                'label' => __( 'Grid Layer', 'happy-elementor-addons' ) . ha_get_section_icon(),
 	            'tab' => Controls_Manager::TAB_SETTINGS,
             ]
         );
@@ -250,11 +250,10 @@ class Happy_Grid {
     }
 
 	public static function get_default_grid_value( $value = '' ) {
-
 		$default = [
-			'desktop' => get_option('elementor_container_width') ? get_option('elementor_container_width') : '1140',
-			'tablet' => get_option('elementor_viewport_lg') ? get_option('elementor_viewport_lg') : '1025',
-			'mobile' => get_option('elementor_viewport_md') ? get_option('elementor_viewport_md') : '768',
+			'desktop' => get_option( 'elementor_container_width', 1140 ),
+			'tablet' => get_option( 'elementor_viewport_lg', 1025 ),
+			'mobile' => get_option( 'elementor_viewport_md', 768 ),
 		];
 
 		return $default[$value];
