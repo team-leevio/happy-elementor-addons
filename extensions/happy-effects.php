@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || die();
 class Happy_Effects {
 
     public static function init() {
-        add_action( 'elementor/element/common/_section_style/after_section_end', [__CLASS__, 'add_controls_section'] );
+        add_action( 'elementor/element/common/_section_style/after_section_end', [ __CLASS__, 'add_controls_section' ], 1 );
     }
 
     public static function add_controls_section( Element_Base $element ) {
