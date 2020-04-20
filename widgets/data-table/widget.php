@@ -8,6 +8,7 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
+use Elementor\Repeater;
 use Elementor\Scheme_Typography;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
@@ -55,10 +56,46 @@ class Data_Table extends Base {
 	 */
 	protected function register_content_controls() {
 		$this->start_controls_section(
-			'_section_table',
+			'_section_table_column',
 			[
-				'label' => __( 'Data Table', 'happy-elementor-addons' ),
+				'label' => __( 'Column', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$repeater = new Repeater();
+
+		$repeater->add_control(
+			'column_name',
+			[
+				'label' => __( 'Title', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::TEXT,
+				'label_block' => true,
+				'placeholder' => __( 'Column Name', 'happy-elementor-addons' ),
+				'default' => __( 'Column One', 'happy-elementor-addons' ),
+				'dynamic' => [
+					'active' => true,
+				]
+			]
+		);
+
+		$this->add_control(
+			'columns_data',
+			[
+				'type' => Controls_Manager::REPEATER,
+				'fields' => $repeater->get_controls(),
+				'title_field' => '{{{ column_name }}}',
+				'default' => [
+					[
+						'column_name' => __( 'WordPress', 'happy-elementor-addons' )
+					],
+					[
+						'column_name' => __( 'Elementor', 'happy-elementor-addons' )
+					],
+					[
+						'column_name' => __( 'Happy Addons', 'happy-elementor-addons' )
+					],
+				]
 			]
 		);
 
@@ -114,6 +151,88 @@ class Data_Table extends Base {
 		);
 
 		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_table_row',
+			[
+				'label' => __( 'Row', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$repeater = new Repeater();
+
+		$repeater->add_control(
+			'row_column_type',
+			[
+				'label'   => __( 'Row/Column', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'row',
+				'options' => [
+					'row' => __( 'Row', 'happy-elementor-addons' ),
+					'column' => __( 'Column', 'happy-elementor-addons' ),
+				],
+			]
+		);
+
+		$this->add_control(
+			'row_starts',
+			[
+				'label' => false,
+				'type' => Controls_Manager::HIDDEN,
+				'default' => __( 'Row Starts', 'happy-elementor-addons' ),
+				'condition' => [
+					'row_column_type' => 'row'
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'cell_name',
+			[
+				'label' => __( 'Title', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::TEXT,
+				'label_block' => true,
+				'placeholder' => __( 'Cell Name', 'happy-elementor-addons' ),
+				'dynamic' => [
+					'active' => true,
+				],
+				'condition' => [
+					'row_column_type' => 'column'
+				],
+			]
+		);
+
+		$this->add_control(
+			'rows_data',
+			[
+				'type' => Controls_Manager::REPEATER,
+				'fields' => $repeater->get_controls(),
+				'title_field' => '<# print( (row_column_type == "column" ) ? cell_name : ("Row Starts") ) #>',
+				'default' => [
+					[
+						'row_column_type' => 'row',
+						'row_starts' => __( 'Row Starts', 'happy-elementor-addons' ),
+//						'cell_name' => ''
+					],
+					[
+						'row_column_type' => 'column',
+						'cell_name' => __( 'Stay Happy', 'happy-elementor-addons' )
+					],
+					[
+						'row_column_type' => 'column',
+						'cell_name' => __( 'Stay Safe', 'happy-elementor-addons' )
+					],
+					[
+						'row_column_type' => 'column',
+						'cell_name' => __( 'Spread Happiness', 'happy-elementor-addons' )
+					],
+				]
+			]
+		);
+
+		$this->end_controls_section();
+
 	}
 
 
@@ -184,7 +303,7 @@ class Data_Table extends Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'_section_table_row',
+			'_section_table_row_style',
 			[
 				'label' => __( 'Table Row', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -332,25 +451,64 @@ class Data_Table extends Base {
 	}
 
 	protected function render() {
-		$this->data_table_render( $this->get_id() );
+		$this->data_table_render();
 	}
 
-	protected function data_table_render($id) {
+	protected function data_table_render() {
 		$settings = $this->get_settings_for_display();
+
+		$table_row = [];
+		$table_cell = [];
+		foreach ( $settings['rows_data'] as $row ) {
+			$row_id = uniqid();
+
+			if ( $row['row_column_type'] == 'row' ) {
+				$table_row[] = [
+					'id' => $row_id,
+					'type' => $row['row_column_type'],
+				];
+			}
+
+			if ( $row['row_column_type'] == 'column' ) {
+				$table_row_keys = array_keys( $table_row );
+				$cell_key = end($table_row_keys );
+
+				$table_cell[] = [
+					'row_id' => $table_row[$cell_key]['id'],
+					'title' => $row['cell_name']
+				];
+			}
+
+		}
+
+//		echo '<pre>';
+//		print_r($table_cell);
+//		echo '</pre>';
 		?>
 
 		<table class="ha-table">
 
 			<thead class="ha-table__head">
 				<tr class="ha-table__head-column">
-					<th class="ha-table__head-column-cell"><?php echo esc_html( 'Column' ); ?></th>
+					<?php foreach ( $settings['columns_data'] as $index => $column_cell ) : ?>
+						<th class="ha-table__head-column-cell"><?php echo esc_html( $column_cell['column_name'] ); ?></th>
+					<?php endforeach; ?>
 				</tr>
 			</thead>
 
 			<tbody class="ha-table__body">
-				<tr class="ha-table__body-row">
-					<td class="ha-table__body-row-cell"><?php echo esc_html( 'Row' ); ?></td>
-				</tr>
+				<?php for ( $i = 0; $i < count( $table_row ); $i++ ) : ?>
+					<tr class="ha-table__body-row">
+						<?php for ( $j = 0; $j < count( $table_cell ); $j++ ) :
+							if( $table_row[$i]['id'] == $table_cell[$j]['row_id'] ) :
+							?>
+								<td class="ha-table__body-row-cell"><?php echo esc_html( $table_cell[$j]['title'] ); ?></td>
+							<?php
+							endif;
+						endfor;
+						?>
+					</tr>
+				<?php endfor; ?>
 			</tbody>
 
 		</table>

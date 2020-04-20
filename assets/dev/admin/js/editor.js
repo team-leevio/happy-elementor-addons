@@ -162,7 +162,7 @@
         link: HappyAddonsEditor.editorPanelWidgetsLinkURL,
         newTab: true
     }, 'settings');
-    
+
     /**
      * Add pro widgets placeholder
      */
@@ -206,7 +206,7 @@
                 defaultActive: false,
                 items: proWidgets,
             }, {
-                at: freeCategoryIndex + 1 
+                at: freeCategoryIndex + 1
             });
         }
 
