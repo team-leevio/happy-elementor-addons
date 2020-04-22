@@ -8,6 +8,7 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
+use Elementor\Icons_Manager;
 use Elementor\Repeater;
 use Elementor\Scheme_Typography;
 use Elementor\Group_Control_Typography;
@@ -79,6 +80,38 @@ class Data_Table extends Base {
 			]
 		);
 
+		$repeater->add_control(
+			'column_span',
+			[
+				'label' => __( 'Span', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::NUMBER,
+				'min' => 0,
+				'max' => 50,
+				'step' => 1
+			]
+		);
+
+		if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
+			$repeater->add_control(
+				'column_icon',
+				[
+					'label' => __( 'Icon', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::ICON,
+					'options' => ha_get_happy_icons()
+				]
+			);
+		} else {
+			$repeater->add_control(
+				'column_icons',
+				[
+					'label' => __( 'Icon', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::ICONS,
+					'fa4compatibility' => 'column_icon',
+					'label_block' => true
+				]
+			);
+		}
+
 		$this->add_control(
 			'columns_data',
 			[
@@ -102,7 +135,7 @@ class Data_Table extends Base {
 		$this->add_responsive_control(
 			'head_align',
 			[
-				'label' => __( 'Head Alignment', 'happy-elementor-addons' ),
+				'label' => __( 'Alignment', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
 				'separator' => 'before',
 				'options' => [
@@ -120,15 +153,50 @@ class Data_Table extends Base {
 					]
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__head-column-cell' => 'text-align: {{VALUE}}'
+					'{{WRAPPER}} .ha-table__head-column-cell' => 'text-align: {{VALUE}}'
 				]
 			]
 		);
 
 		$this->add_responsive_control(
-			'row_align',
+			'icon_position',
 			[
-				'label' => __( 'Row Alignment', 'happy-elementor-addons' ),
+				'label' => __( 'Icon Position', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-left',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-right',
+					],
+					'top' => [
+						'title' => __( 'Top', 'happy-elementor-addons' ),
+						'icon' => 'eicon-v-align-top',
+					],
+					'bottom' => [
+						'title' => __( 'Bottom', 'happy-elementor-addons' ),
+						'icon' => 'eicon-v-align-bottom',
+					],
+				],
+				'selectors_dictionary' => [
+					'right' => 'flex-direction: row',
+					'left' => 'flex-direction: row-reverse',
+					'bottom' => 'flex-direction: column',
+					'top' => 'flex-direction: column-reverse',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-table__head-column-cell-wrap' => '{{VALUE}}'
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_alignment',
+			[
+				'label' => __( 'Icon Alignment', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
@@ -145,7 +213,7 @@ class Data_Table extends Base {
 					]
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__body-row-cell' => 'text-align: {{VALUE}}'
+					'{{WRAPPER}} .ha-table__head-column-cell-wrap' => 'text-align: {{VALUE}}'
 				]
 			]
 		);
@@ -203,6 +271,55 @@ class Data_Table extends Base {
 			]
 		);
 
+		$repeater->add_control(
+			'row_column_span',
+			[
+				'label' => __( 'Col Span', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::NUMBER,
+				'min' => 0,
+				'max' => 50,
+				'step' => 1,
+				'condition' => [
+					'row_column_type' => 'column'
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'row_span',
+			[
+				'label' => __( 'Row Span', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::NUMBER,
+				'min' => 0,
+				'max' => 50,
+				'step' => 1,
+				'condition' => [
+					'row_column_type' => 'column'
+				],
+			]
+		);
+
+		if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
+			$repeater->add_control(
+				'row_icon',
+				[
+					'label' => __( 'Icon', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::ICON,
+					'options' => ha_get_happy_icons()
+				]
+			);
+		} else {
+			$repeater->add_control(
+				'row_icons',
+				[
+					'label' => __( 'Icon', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::ICONS,
+					'fa4compatibility' => 'row_icon',
+					'label_block' => true
+				]
+			);
+		}
+
 		$this->add_control(
 			'rows_data',
 			[
@@ -213,7 +330,6 @@ class Data_Table extends Base {
 					[
 						'row_column_type' => 'row',
 						'row_starts' => __( 'Row Starts', 'happy-elementor-addons' ),
-//						'cell_name' => ''
 					],
 					[
 						'row_column_type' => 'column',
@@ -227,6 +343,92 @@ class Data_Table extends Base {
 						'row_column_type' => 'column',
 						'cell_name' => __( 'Spread Happiness', 'happy-elementor-addons' )
 					],
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'row_align',
+			[
+				'label' => __( 'Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'separator' => 'before',
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-right',
+					]
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-table__body-row-cell' => 'text-align: {{VALUE}}'
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'row_icon_position',
+			[
+				'label' => __( 'Icon Position', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-left',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-right',
+					],
+					'top' => [
+						'title' => __( 'Top', 'happy-elementor-addons' ),
+						'icon' => 'eicon-v-align-top',
+					],
+					'bottom' => [
+						'title' => __( 'Bottom', 'happy-elementor-addons' ),
+						'icon' => 'eicon-v-align-bottom',
+					],
+				],
+				'selectors_dictionary' => [
+					'right' => 'flex-direction: row',
+					'left' => 'flex-direction: row-reverse',
+					'bottom' => 'flex-direction: column',
+					'top' => 'flex-direction: column-reverse',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-table__body-row-cell-wrap' => '{{VALUE}}'
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'row_icon_alignment',
+			[
+				'label' => __( 'Icon Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-right',
+					]
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-table__body-row-cell-wrap' => 'text-align: {{VALUE}}'
 				]
 			]
 		);
@@ -473,9 +675,15 @@ class Data_Table extends Base {
 				$table_row_keys = array_keys( $table_row );
 				$cell_key = end($table_row_keys );
 
+//				$row_icon = ha_is_elementor_version( '<', '2.6.0' ) ? $row['row_icon'] : $row['ro_icons'];
+
 				$table_cell[] = [
 					'row_id' => $table_row[$cell_key]['id'],
-					'title' => $row['cell_name']
+					'title' => $row['cell_name'],
+					'row_span' => $row['row_span'],
+					'row_column_span' => $row['row_column_span'],
+					'row_icon' => ! empty( $row['row_icon'] ) ? $row['row_icon'] : '',
+					'row_icons' => ! empty( $row['row_icons']['value'] ) ? $row['row_icons'] : '',
 				];
 			}
 
@@ -490,8 +698,29 @@ class Data_Table extends Base {
 
 			<thead class="ha-table__head">
 				<tr class="ha-table__head-column">
-					<?php foreach ( $settings['columns_data'] as $index => $column_cell ) : ?>
-						<th class="ha-table__head-column-cell"><?php echo esc_html( $column_cell['column_name'] ); ?></th>
+					<?php foreach ( $settings['columns_data'] as $index => $column_cell ) :
+						$column_repeater_key = $this->get_repeater_setting_key( 'column_span', 'columns_data', $index );
+						$this->add_render_attribute( $column_repeater_key, 'class', 'ha-table__head-column-cell' );
+						if ( $column_cell['column_span'] ) {
+							$this->add_render_attribute( $column_repeater_key, 'colspan', $column_cell['column_span'] );
+						}
+						?>
+						<th <?php echo $this->get_render_attribute_string( $column_repeater_key ); ?>>
+							<div class="ha-table__head-column-cell-wrap">
+								<div class="ha-table__head-column-cell-text"><?php echo esc_html( $column_cell['column_name'] ); ?></div>
+									<?php if ( ha_is_elementor_version( '>', '2.6.0' ) && ! empty( $column_cell['column_icons'] ) ) : ?>
+										<div class="ha-table_head-column-icon">
+											<?php Icons_Manager::render_icon( $column_cell['column_icons'] ); ?>
+										</div>
+									<?php endif; ?>
+
+									<?php if ( ha_is_elementor_version( '<', '2.6.0' ) && ! empty( $column_cell['column_icon'] ) ) : ?>
+										<div class="ha-table_head-column-icon">
+											<i class="<?php echo esc_attr( $column_cell['icon'] ); ?>"></i>
+										</div>
+									<?php endif; ?>
+							</div>
+						</th>
 					<?php endforeach; ?>
 				</tr>
 			</thead>
@@ -501,8 +730,32 @@ class Data_Table extends Base {
 					<tr class="ha-table__body-row">
 						<?php for ( $j = 0; $j < count( $table_cell ); $j++ ) :
 							if( $table_row[$i]['id'] == $table_cell[$j]['row_id'] ) :
+								$row_repeater_key = $this->get_repeater_setting_key( 'row_span', 'rows_data', $table_cell[$j]['row_id'].$i.$j );
+								$this->add_render_attribute( $row_repeater_key, 'class', 'ha-table__body-row-cell' );
+								if ( ! empty( $table_cell[$j]['row_column_span'] ) ) {
+									$this->add_render_attribute( $row_repeater_key, 'colspan', $table_cell[$j]['row_column_span'] );
+								}
+								if ( ! empty( $table_cell[$j]['row_span'] ) ) {
+									$this->add_render_attribute( $row_repeater_key, 'rowspan', $table_cell[$j]['row_span'] );
+								}
 							?>
-								<td class="ha-table__body-row-cell"><?php echo esc_html( $table_cell[$j]['title'] ); ?></td>
+								<td <?php echo $this->get_render_attribute_string( $row_repeater_key ); ?>>
+									<div class="ha-table__body-row-cell-wrap">
+										<div class="ha-tabel__body-row-cell-text"><?php echo esc_html( $table_cell[$j]['title'] ); ?></div>
+
+										<?php if ( ha_is_elementor_version( '>', '2.6.0' ) && ! empty( $table_cell[$j]['row_icons'] ) ) : ?>
+											<div class="ha-tabel__body-row-cell-icon">
+												<?php Icons_Manager::render_icon( $table_cell[$j]['row_icons'] ); ?>
+											</div>
+										<?php endif; ?>
+
+										<?php if ( ha_is_elementor_version( '<', '2.6.0' ) && ! empty( $table_cell[$j]['row_icon'] ) ) : ?>
+											<div class="ha-tabel__body-row-cell-icon">
+												<i class="<?php echo esc_attr( $table_cell[$j]['row_icon'] ); ?>"></i>
+											</div>
+										<?php endif; ?>
+									</div>
+								</td>
 							<?php
 							endif;
 						endfor;

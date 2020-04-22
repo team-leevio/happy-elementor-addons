@@ -3516,11 +3516,23 @@ span.ha-post-list-icon {
 	background-color: #5636d1;
 }
 .ha-data-table .ha-table .ha-table__head-column-cell {
-	padding: 20px; 
+	padding: 20px;
 	border: 1px solid;
 	border-color: #5636d1 #320ebd #5636d1 #5636d1;
 	background-color: transparent;
 	color: #fff;
+	text-align: center;
+}
+.ha-data-table .ha-table .ha-table__head-column-cell-wrap {
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display:         inline-flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
 }
 .ha-data-table .ha-table .ha-table__body-row:nth-child(even) {
 	background-color: #fff;
@@ -3538,4 +3550,15 @@ span.ha-post-list-icon {
 	padding: 15px; 
 	border: 1px solid #ddd;
 	background-color: transparent;
+}
+.ha-data-table .ha-table .ha-table__body-row-cell-wrap {
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display:         inline-flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
 }
