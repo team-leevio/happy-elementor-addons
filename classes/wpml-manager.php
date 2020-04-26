@@ -10,10 +10,39 @@ class WPML_Manager {
 
 	public static function init() {
 		add_filter( 'wpml_elementor_widgets_to_translate', [ __CLASS__, 'add_widgets_to_translate' ] );
+
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/bar-chart.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/carousel.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-grid.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/justified-gallery.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/logo-grid.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/pricing-table.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/skills.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/slider.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/social-icons.php' );
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
 		$widgets_map = [
+			/**
+			 * Bar Chart
+			 */
+			'bar-chart' => [
+				'fields' => [
+					[
+						'field'       => 'labels',
+						'type'        => __( 'Bar Chart: Labels', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'chart_title',
+						'type'        => __( 'Bar Chart: Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+				],
+				'integration-class' => __NAMESPACE__ . '\\WPML_Bar_Chart',
+			],
+
 			/**
 			 * Card
 			 */
@@ -45,6 +74,14 @@ class WPML_Manager {
 						'editor_type' => 'LINK',
 					],
 				],
+			],
+
+			/**
+			 * Carousel
+			 */
+			'carousel' => [
+				'fields' => [],
+				'integration-class' => __NAMESPACE__ . '\\WPML_Carousel',
 			],
 
 			/**
@@ -122,7 +159,7 @@ class WPML_Manager {
 			],
 
 			/**
-			 * Fun Factor
+			 * Gradient Heading
 			 */
 			'gradient-heading' => [
 				'fields' => [
@@ -181,6 +218,20 @@ class WPML_Manager {
 			],
 
 			/**
+			 * Image Grid
+			 */
+			'image-grid' => [
+				'fields' => [
+					[
+						'field'       => 'all_filter_label',
+						'type'        => __( 'Image Grid: All Filter Label', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+				],
+				'integration-class' => __NAMESPACE__ . '\\WPML_Image_Grid',
+			],
+
+			/**
 			 * Info Box
 			 */
 			'infobox' => [
@@ -206,6 +257,28 @@ class WPML_Manager {
 						'editor_type' => 'LINK',
 					],
 				],
+			],
+
+			/**
+			 * Justified Gallery
+			 */
+			'justified-gallery' => [
+				'fields' => [
+					[
+						'field'       => 'all_filter_label',
+						'type'        => __( 'Justified Grid: All Filter Label', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+				],
+				'integration-class' => __NAMESPACE__ . '\\WPML_Justified_Gallery',
+			],
+
+			/**
+			 * Logo Grid
+			 */
+			'logo-grid' => [
+				'fields' => [],
+				'integration-class' => __NAMESPACE__ . '\\WPML_Logo_Grid',
 			],
 
 			/**
@@ -298,18 +371,141 @@ class WPML_Manager {
 						'editor_type' => 'LINE',
 					],
 				],
+				'integration-class' => __NAMESPACE__ . '\\WPML_Pricing_Table',
+			],
+
+			/**
+			 * Review
+			 */
+			'review' => [
+				'fields' => [
+					[
+						'field'       => 'review',
+						'type'        => __( 'Review: Review Text', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+					[
+						'field'       => 'title',
+						'type'        => __( 'Review: Reviewer Name', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'job_title',
+						'type'        => __( 'Review: Job Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+				],
+			],
+
+			/**
+			 * Skills
+			 */
+			'skills' => [
+				'fields' => [],
+				'integration-class' => __NAMESPACE__ . '\\WPML_Skills',
+			],
+
+			/**
+			 * Slider
+			 */
+			'slider' => [
+				'fields' => [],
+				'integration-class' => __NAMESPACE__ . '\\WPML_Slider',
+			],
+
+			/**
+			 * Social Icons
+			 */
+			'social-icons' => [
+				'fields' => [],
+				'integration-class' => __NAMESPACE__ . '\\WPML_Social_Icons',
+			],
+
+			/**
+			 * Step Flow
+			 */
+			'step-flow' => [
+				'fields' => [
+					[
+						'field'       => 'badge',
+						'type'        => __( 'Step Flow: Badge Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'title',
+						'type'        => __( 'Step Flow: Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'description',
+						'type'        => __( 'Step Flow: Description', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+					[
+						'field'       => 'link',
+						'type'        => __( 'Step Flow: Link', 'happy-elementor-addons' ),
+						'editor_type' => 'LINK',
+					],
+				],
+			],
+
+			/**
+			 * Testimonial
+			 */
+			'testimonial' => [
+				'fields' => [
+					[
+						'field'       => 'testimonial',
+						'type'        => __( 'Testimonial: Testimonial Text', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+					[
+						'field'       => 'name',
+						'type'        => __( 'Testimonial: Reviewer Name', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'title',
+						'type'        => __( 'Testimonial: Job Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+				],
+			],
+
+			/**
+			 * Twitter Feed
+			 */
+			'twitter-feed' => [
+				'fields' => [
+					[
+						'field'       => 'read_more_text',
+						'type'        => __( 'Twitter Feed: Read More Text', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+					[
+						'field'       => 'load_more_text',
+						'type'        => __( 'Twitter Feed: Load More Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+				],
 			],
 		];
 
 		foreach ( $widgets_map as $key => $data ) {
 			$widget_name = 'ha-'.$key;
 
-			$widgets[ $widget_name ] = [
+			$entry = [
 				'conditions' => [
 					'widgetType' => $widget_name,
 				],
 				'fields' => $data['fields'],
 			];
+
+			if ( isset( $data['integration-class'] ) ) {
+				$entry['integration-class'] = $data['integration-class'];
+			}
+
+			$widgets[ $widget_name ] = $entry;
 		}
 
 		return $widgets;

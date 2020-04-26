@@ -107,8 +107,6 @@ class Base {
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
 
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
-
         if ( is_admin() ) {
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
@@ -118,7 +116,9 @@ class Base {
         if ( is_user_logged_in() ) {
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php' );
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php' );
-        }
+		}
+
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
     }
 
     /**
