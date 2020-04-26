@@ -51,7 +51,8 @@ class Base {
         Cache_Manager::init();
         Icons_Manager::init();
         Extensions_Manager::init();
-	    Select2_Handler::init();
+		Select2_Handler::init();
+		WPML_Manager::init();
 
         $this->init_appsero_tracking();
 
@@ -104,7 +105,9 @@ class Base {
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
-	    include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
+
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
 
         if ( is_admin() ) {
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );

@@ -78,7 +78,7 @@ abstract class Base extends Widget_Base {
         $this->register_style_controls();
 
         do_action( 'happyaddons_end_register_controls', $this );
-    }
+	}
 
     /**
      * Register content controls
