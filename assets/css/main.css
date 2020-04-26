@@ -3503,12 +3503,6 @@ span.ha-post-list-icon {
 	overflow: hidden;
 }
 
-.ha-data-table .data-table-error {
-	padding: 20px;
-	border-left: 4px solid #ff7726;
-	background-color: #fff9f5;
-}
-
 .ha-data-table .ha-table {
 	margin-bottom: 0;
 }
@@ -3528,11 +3522,18 @@ span.ha-post-list-icon {
 	display: -webkit-inline-flex;
 	display: -ms-inline-flexbox;
 	display:         inline-flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center; 
+	-ms-flex-align: center;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: row;
 	    -ms-flex-direction: row;
 	        flex-direction: row;
+}
+.ha-data-table .ha-table .ha-table__head-column-cell-icon {
+	line-height: 1;
 }
 .ha-data-table .ha-table .ha-table__body-row:nth-child(even) {
 	background-color: #fff;
@@ -3556,9 +3557,16 @@ span.ha-post-list-icon {
 	display: -webkit-inline-flex;
 	display: -ms-inline-flexbox;
 	display:         inline-flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center; 
+	-ms-flex-align: center;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: row;
 	    -ms-flex-direction: row;
 	        flex-direction: row;
+}
+.ha-data-table .ha-table .ha-table__body-row-cell-icon {
+	line-height: 1;
 }

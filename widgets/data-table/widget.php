@@ -59,7 +59,7 @@ class Data_Table extends Base {
 		$this->start_controls_section(
 			'_section_table_column',
 			[
-				'label' => __( 'Column', 'happy-elementor-addons' ),
+				'label' => __( 'Table Head', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -83,7 +83,7 @@ class Data_Table extends Base {
 		$repeater->add_control(
 			'column_span',
 			[
-				'label' => __( 'Span', 'happy-elementor-addons' ),
+				'label' => __( 'Col Span', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::NUMBER,
 				'min' => 0,
 				'max' => 50,
@@ -428,7 +428,7 @@ class Data_Table extends Base {
 					]
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__body-row-cell-wrap' => 'text-align: {{VALUE}}'
+					'{{WRAPPER}} .ha-table__body-row-cell' => 'text-align: {{VALUE}}'
 				]
 			]
 		);
@@ -458,7 +458,7 @@ class Data_Table extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__head .ha-advanced-table__head-column-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-table__head .ha-table__head-column-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -467,16 +467,7 @@ class Data_Table extends Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'head_border',
-				'selector' => '{{WRAPPER}} .ha-advanced-table__head .ha-advanced-table__head-column-cell',
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'head_typography',
-				'selector' => '{{WRAPPER}} .ha-advanced-table__head .ha-advanced-table__head-column-cell',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'selector' => '{{WRAPPER}} .ha-table__head .ha-table__head-column-cell',
 			]
 		);
 
@@ -486,18 +477,68 @@ class Data_Table extends Base {
 				'label' => __( 'Background Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__head .ha-advanced-table__head-column' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .ha-table__head .ha-table__head-column-cell' => 'background-color: {{VALUE}}',
 				],
 			]
 		);
 
 		$this->add_control(
-			'head_color',
+			'_heading_title',
+			[
+				'type' => Controls_Manager::HEADING,
+				'label' => __( 'Title', 'happy-elementor-addons' ),
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'head_typography',
+				'selector' => '{{WRAPPER}} .ha-table__head .ha-table__head-column-cell-text',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+			]
+		);
+
+		$this->add_control(
+			'head_text_color',
 			[
 				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__head .ha-advanced-table__head-column-cell' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-table__head .ha-table__head-column-cell-text' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'_heading_icon',
+			[
+				'type' => Controls_Manager::HEADING,
+				'label' => __( 'Icon', 'happy-elementor-addons' ),
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_spacing',
+			[
+				'label' => __( 'Spacing', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-table__head .ha-table__head-column-cell-icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'head_icon',
+			[
+				'label' => __( 'Icon Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .ha-table__head .ha-table__head-column-cell-icon' => 'font-size: {{SIZE}}{{UNIT}};'
 				],
 			]
 		);
@@ -519,7 +560,7 @@ class Data_Table extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__body .ha-advanced-table__body-row-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-table__body .ha-table__body-row-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -528,16 +569,79 @@ class Data_Table extends Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'row_border',
-				'selector' => '{{WRAPPER}} .ha-advanced-table__body .ha-advanced-table__body-row-cell',
+				'selector' => '{{WRAPPER}} .ha-table__body .ha-table__body-row-cell',
+			]
+		);
+
+		$this->add_control(
+			'_row_title',
+			[
+				'type' => Controls_Manager::HEADING,
+				'label' => __( 'Title', 'happy-elementor-addons' ),
+				'separator' => 'before'
 			]
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'row_typography',
-				'selector' => '{{WRAPPER}} .ha-advanced-table__body .ha-advanced-table__body-row-cell',
+				'name' => 'row_text_typography',
+				'selector' => '{{WRAPPER}} .ha-table__body .ha-table__body-row-cell-text',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+			]
+		);
+
+		$this->add_control(
+			'row_text_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-table__body .ha-table__body-row-cell-text' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'_row_icon',
+			[
+				'type' => Controls_Manager::HEADING,
+				'label' => __( 'Icon', 'happy-elementor-addons' ),
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_responsive_control(
+			'row_icon_spacing',
+			[
+				'label' => __( 'Spacing', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-table__body .ha-table__body-row-cell-icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'row_icon_size',
+			[
+				'label' => __( 'Icon Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .ha-table__body .ha-table__body-row-cell-icon' => 'font-size: {{SIZE}}{{UNIT}};'
+				],
+			]
+		);
+
+		$this->add_control(
+			'row_icon_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-table__body .ha-table__body-row-cell-icon' => 'color: {{VALUE}}',
+				],
 			]
 		);
 
@@ -555,7 +659,7 @@ class Data_Table extends Base {
 				'label' => __( 'Background Color (Even)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__body .ha-advanced-table__body-row:nth-child(even)' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even)' => 'background-color: {{VALUE}}',
 				],
 			]
 		);
@@ -566,7 +670,7 @@ class Data_Table extends Base {
 				'label' => __( 'Background Color (Odd)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__body .ha-advanced-table__body-row:nth-child(odd)' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd)' => 'background-color: {{VALUE}}',
 				],
 			]
 		);
@@ -577,7 +681,7 @@ class Data_Table extends Base {
 				'label' => __( 'Color (Even) ', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__body .ha-advanced-table__body-row:nth-child(even)' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even)' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -588,7 +692,7 @@ class Data_Table extends Base {
 				'label' => __( 'Color (Odd)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__body .ha-advanced-table__body-row:nth-child(odd)' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd)' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -608,7 +712,7 @@ class Data_Table extends Base {
 				'label' => __( 'Background Color (Even)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__body .ha-advanced-table__body-row:nth-child(even):hover' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even):hover' => 'background-color: {{VALUE}}',
 				],
 			]
 		);
@@ -619,7 +723,7 @@ class Data_Table extends Base {
 				'label' => __( 'Background Color (Odd)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__body .ha-advanced-table__body-row:nth-child(odd):hover' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd):hover' => 'background-color: {{VALUE}}',
 				],
 			]
 		);
@@ -630,7 +734,7 @@ class Data_Table extends Base {
 				'label' => __( 'Color (Even)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__body .ha-advanced-table__body-row:nth-child(even):hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even):hover' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -641,7 +745,7 @@ class Data_Table extends Base {
 				'label' => __( 'Color (Odd)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-table__body .ha-advanced-table__body-row:nth-child(odd):hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd):hover' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -675,8 +779,6 @@ class Data_Table extends Base {
 				$table_row_keys = array_keys( $table_row );
 				$cell_key = end($table_row_keys );
 
-//				$row_icon = ha_is_elementor_version( '<', '2.6.0' ) ? $row['row_icon'] : $row['ro_icons'];
-
 				$table_cell[] = [
 					'row_id' => $table_row[$cell_key]['id'],
 					'title' => $row['cell_name'],
@@ -709,13 +811,13 @@ class Data_Table extends Base {
 							<div class="ha-table__head-column-cell-wrap">
 								<div class="ha-table__head-column-cell-text"><?php echo esc_html( $column_cell['column_name'] ); ?></div>
 									<?php if ( ha_is_elementor_version( '>', '2.6.0' ) && ! empty( $column_cell['column_icons'] ) ) : ?>
-										<div class="ha-table_head-column-icon">
+										<div class="ha-table__head-column-cell-icon">
 											<?php Icons_Manager::render_icon( $column_cell['column_icons'] ); ?>
 										</div>
 									<?php endif; ?>
 
 									<?php if ( ha_is_elementor_version( '<', '2.6.0' ) && ! empty( $column_cell['column_icon'] ) ) : ?>
-										<div class="ha-table_head-column-icon">
+										<div class="ha-table__head-column-cell-icon">
 											<i class="<?php echo esc_attr( $column_cell['icon'] ); ?>"></i>
 										</div>
 									<?php endif; ?>
@@ -728,7 +830,8 @@ class Data_Table extends Base {
 			<tbody class="ha-table__body">
 				<?php for ( $i = 0; $i < count( $table_row ); $i++ ) : ?>
 					<tr class="ha-table__body-row">
-						<?php for ( $j = 0; $j < count( $table_cell ); $j++ ) :
+						<?php
+						for ( $j = 0; $j < count( $table_cell ); $j++ ) :
 							if( $table_row[$i]['id'] == $table_cell[$j]['row_id'] ) :
 								$row_repeater_key = $this->get_repeater_setting_key( 'row_span', 'rows_data', $table_cell[$j]['row_id'].$i.$j );
 								$this->add_render_attribute( $row_repeater_key, 'class', 'ha-table__body-row-cell' );
@@ -741,16 +844,16 @@ class Data_Table extends Base {
 							?>
 								<td <?php echo $this->get_render_attribute_string( $row_repeater_key ); ?>>
 									<div class="ha-table__body-row-cell-wrap">
-										<div class="ha-tabel__body-row-cell-text"><?php echo esc_html( $table_cell[$j]['title'] ); ?></div>
+										<div class="ha-table__body-row-cell-text"><?php echo esc_html( $table_cell[$j]['title'] ); ?></div>
 
 										<?php if ( ha_is_elementor_version( '>', '2.6.0' ) && ! empty( $table_cell[$j]['row_icons'] ) ) : ?>
-											<div class="ha-tabel__body-row-cell-icon">
+											<div class="ha-table__body-row-cell-icon">
 												<?php Icons_Manager::render_icon( $table_cell[$j]['row_icons'] ); ?>
 											</div>
 										<?php endif; ?>
 
 										<?php if ( ha_is_elementor_version( '<', '2.6.0' ) && ! empty( $table_cell[$j]['row_icon'] ) ) : ?>
-											<div class="ha-tabel__body-row-cell-icon">
+											<div class="ha-table__body-row-cell-icon">
 												<i class="<?php echo esc_attr( $table_cell[$j]['row_icon'] ); ?>"></i>
 											</div>
 										<?php endif; ?>

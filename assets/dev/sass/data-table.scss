@@ -4,12 +4,6 @@
 		overflow: hidden;
 	}
 
-	.data-table-error {
-		padding: 20px;
-		border-left: 4px solid #ff7726;
-		background-color: #fff9f5;
-	}
-
 	.ha-table {
 		margin-bottom: 0;
 
@@ -27,6 +21,10 @@
 			&-cell-wrap {
 				display: inline-flex;
 				flex-direction: row;
+				align-items: center;
+			}
+			&-cell-icon {
+				line-height: 1;
 			}
 		}
 
@@ -55,6 +53,10 @@
 			&-row-cell-wrap {
 				display: inline-flex;
 				flex-direction: row;
+				align-items: center;
+			}
+			&-row-cell-icon {
+				line-height: 1;
 			}
 		}
 
