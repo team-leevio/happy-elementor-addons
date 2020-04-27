@@ -44,7 +44,9 @@ class Base {
         add_action( 'elementor/controls/controls_registered', [ $this, 'register_controls' ] );
 
         // Register finder category
-        add_action( 'elementor/finder/categories/init', [ $this, 'register_finder' ] );
+		add_action( 'elementor/finder/categories/init', [ $this, 'register_finder' ] );
+
+		add_action( 'wpml_loaded', [ $this, 'add_wpml_support' ] );
 
         Widgets_Manager::init();
         Assets_Manager::init();
@@ -52,7 +54,6 @@ class Base {
         Icons_Manager::init();
         Extensions_Manager::init();
 		Select2_Handler::init();
-		WPML_Manager::init();
 
         $this->init_appsero_tracking();
 
@@ -67,7 +68,7 @@ class Base {
         }
 
         do_action( 'happyaddons_loaded' );
-    }
+	}
 
     /**
      * Initialize the tracker
@@ -117,8 +118,6 @@ class Base {
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php' );
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php' );
 		}
-
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
     }
 
     /**
@@ -162,5 +161,15 @@ class Base {
         // Add the category
         $categories_manager->add_category( Finder::SLUG, new Finder() );
         $categories_manager->add_category( Finder_Edit::SLUG, new Finder_Edit() );
-    }
+	}
+
+	/**
+	 * Add wpml support
+	 *
+	 * @return void
+	 */
+	public function add_wpml_support() {
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
+		WPML_Manager::init();
+	}
 }
