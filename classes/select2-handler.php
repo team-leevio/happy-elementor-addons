@@ -13,6 +13,7 @@ class Select2_Handler {
 	public static function init () {
 		add_action( 'wp_ajax_ha_post_list_query', [ __CLASS__, 'ha_post_list_query' ] );
 		add_action( 'wp_ajax_ha_post_tab_select_query', [ __CLASS__, 'post_tab_query' ] );
+		add_action( 'wp_ajax_ha_taxonomy_list_query', [ __CLASS__, 'taxonomy_list_query' ] );
 	}
 
 	/**
@@ -87,6 +88,47 @@ class Select2_Handler {
 				$data[] = [
 					'id' => $value->term_id,
 					'text' => $value->name . ' ('. $value->count.')',
+				];
+			}
+		}
+		if ( $select_type === 'selected' ) {
+			foreach ($terms as $value){
+				$data[ $value->term_id ] = $value->name;
+			}
+		}
+		// return the results in json.
+		wp_send_json( $data );
+
+	}
+
+	/**
+	 * Return Post tab query value
+	 */
+	public static function taxonomy_list_query () {
+		$security = check_ajax_referer( 'HappyAddons_Select2_Secret', 'security' );
+		if ( ! $security ) return;
+		$taxonomy_type = isset( $_POST['taxonomy_type'] ) ? sanitize_text_field( $_POST['taxonomy_type'] ) : '';
+		if ( ! $taxonomy_type ) return;
+
+		$select_type = isset( $_POST['select_type'] ) ? $_POST['select_type'] : false;
+		$search = isset( $_POST['q'] ) ? sanitize_text_field( $_POST['q'] ) : '';
+		$ids = isset( $_POST['id'] ) ? $_POST['id'] : array();
+
+		$arg = [
+			'taxonomy' => $taxonomy_type,
+			'hide_empty' => true,
+			'include' => $ids,
+		];
+		if($search)
+			$arg['search'] = $search;
+		$terms = get_terms( $arg );
+
+		$data = [];
+		if ( $select_type === 'choose' ) {
+			foreach ($terms as $value){
+				$data[] = [
+					'id' => $value->term_id,
+					'text' => $value->name,
 				];
 			}
 		}
