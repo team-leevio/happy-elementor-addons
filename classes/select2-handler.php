@@ -102,7 +102,7 @@ class Select2_Handler {
 	}
 
 	/**
-	 * Return Post tab query value
+	 * Return Taxonomy query value
 	 */
 	public static function taxonomy_list_query () {
 		$security = check_ajax_referer( 'HappyAddons_Select2_Secret', 'security' );

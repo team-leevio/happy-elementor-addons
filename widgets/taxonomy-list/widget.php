@@ -10,8 +10,6 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
-use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
@@ -53,7 +51,7 @@ class Taxonomy_List extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'taxonomies', 'taxonomy', 'taxonomy-list', 'list', 'news' ];
+		return [ 'taxonomies', 'taxonomy', 'taxonomy-list', 'category', 'category-list', 'list' ];
 	}
 
 	/**
@@ -115,17 +113,13 @@ class Taxonomy_List extends Base {
 				[
 					'label' => __( 'Icon', 'happy-addons-pro' ),
 					'type' => Controls_Manager::CHOOSE,
-					//'label_block' => true,
-					//'show_label' => false,
 					'options' => [
 						'icon' => [
 							'title' => __( 'Icon', 'happy-addons-pro' ),
-							//'icon' => 'eicon-star',
 							'icon' => 'fas fa-star',
 						],
 						'image' => [
 							'title' => __( 'Image', 'happy-addons-pro' ),
-							//'icon' => 'eicon-text',
 							'icon' => 'fas fa-image',
 						],
 					],
@@ -138,11 +132,8 @@ class Taxonomy_List extends Base {
 				'icon',
 				[
 					'label' => __( 'Icon', 'happy-addons-pro' ),
-					//'label_block' => false,
 					'show_label' => false,
 					'type' => Controls_Manager::ICONS,
-					//'skin' => 'inline',
-					//'exclude_inline_options' => [ 'svg' ],
 					'default' => [
 						'value' => 'far fa-check-circle',
 						'library' => 'reguler'
@@ -194,7 +185,6 @@ class Taxonomy_List extends Base {
 					'fields' => $repeater[$key]->get_controls(),
 					'title_field' => '{{ title }}',
 					'condition' => [
-						//'show_post_by' => 'selected',
 						'taxonomy_type' => $key
 					],
 				]
@@ -565,21 +555,6 @@ class Taxonomy_List extends Base {
 			[
 				'label' => __( 'Icon & Image', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
-				/*'conditions' => [
-					'relation' => 'or',
-					'terms' => [
-						[
-							'name' => 'feature_image',
-							'operator' => '==',
-							'value' => 'yes',
-						],
-						[
-							'name' => 'common_icon',
-							'operator' => '==',
-							'value' => 'yes',
-						],
-					],
-				],*/
 			]
 		);
 
@@ -592,10 +567,6 @@ class Taxonomy_List extends Base {
 				'selectors' => [
 					'{{WRAPPER}} span.ha-taxonomy-list-icon' => 'color: {{VALUE}};',
 				],
-//				'condition' => [
-//					'feature_image!' => 'yes',
-//					'common_icon' => 'yes',
-//				]
 			]
 		);
 
@@ -607,10 +578,6 @@ class Taxonomy_List extends Base {
 				'selectors' => [
 					'{{WRAPPER}} span.ha-taxonomy-list-icon' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
-//				'condition' => [
-//					'feature_image!' => 'yes',
-//					'common_icon' => 'yes',
-//				]
 			]
 		);
 
@@ -622,10 +589,6 @@ class Taxonomy_List extends Base {
 				'selectors' => [
 					'{{WRAPPER}} span.ha-taxonomy-list-icon' => 'line-height: {{SIZE}}{{UNIT}};',
 				],
-//				'condition' => [
-//					'feature_image!' => 'yes',
-//					'common_icon' => 'yes',
-//				]
 			]
 		);
 
@@ -644,9 +607,6 @@ class Taxonomy_List extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-taxonomy-list-image img' => 'width: {{SIZE}}{{UNIT}};',
 				],
-//				'condition' => [
-//					'feature_image' => 'yes',
-//				]
 			]
 		);
 
@@ -656,9 +616,6 @@ class Taxonomy_List extends Base {
 				'name' => 'image_boder',
 				'label' => __( 'Border', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-taxonomy-list-item a img',
-//				'condition' => [
-//					'feature_image' => 'yes',
-//				]
 			]
 		);
 
@@ -671,9 +628,6 @@ class Taxonomy_List extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-taxonomy-list-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
-//				'condition' => [
-//					'feature_image' => 'yes',
-//				]
 			]
 		);
 
@@ -685,7 +639,6 @@ class Taxonomy_List extends Base {
 				'selectors' => [
 					'{{WRAPPER}} span.ha-taxonomy-list-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} span.ha-taxonomy-list-image' => 'margin-right: {{SIZE}}{{UNIT}};',
-					//'{{WRAPPER}} .ha-taxonomy-list-item a img' => 'margin-right: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -716,12 +669,6 @@ class Taxonomy_List extends Base {
 			];
 			$terms = get_terms( $args );
 		}
-//		echo "<pre>";
-//		var_dump( count( $ids ), count( $lists ) );
-//		echo "</pre>";
-//		echo "<pre>";
-//		var_dump( count( $terms ) );
-//		echo "</pre>";
 		$this->add_render_attribute( 'wrapper', 'class', [ 'ha-taxonomy-list-wrapper' ] );
 		$this->add_render_attribute( 'wrapper-inner', 'class', [ 'ha-taxonomy-list' ] );
 		if ( 'inline' === $settings['view'] ) {
@@ -750,7 +697,6 @@ class Taxonomy_List extends Base {
 										endif;
 										echo '</span>';
 									endif; ?>
-									<!--	<div class="ha-taxonomy-list-content">-->
 									<?php
 									//Term Title
 									$title = $terms[$index]->name;
@@ -765,7 +711,6 @@ class Taxonomy_List extends Base {
 										);
 									}
 									?>
-									<!--	</div>-->
 								</a>
 							</li>
 				  <?php endforeach; ?>
@@ -776,7 +721,7 @@ class Taxonomy_List extends Base {
 			printf( '%1$s %2$s %3$s',
 				__( 'No ', 'happy-elementor-addons' ),
 				esc_html( $settings['taxonomy_type'] ),
-				__( 'Found', 'happy-elementor-addons' )
+				__( 'found', 'happy-elementor-addons' )
 			);
 		endif;
 	}
