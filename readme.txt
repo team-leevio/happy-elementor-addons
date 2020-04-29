@@ -1,6 +1,6 @@
 === Happy Elementor Addons ===
 Plugin Name: Happy Elementor Addons
-Version: 2.8.1
+Version: 2.9.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -168,7 +168,6 @@ https://www.youtube.com/watch?v=339WNqlDFAA
 
 If you are not contented with the free widgets, then the following premium widgets are there to quench your thirst. The best part is that you can copy and paste the design source code and so you won’t have to make any design from scratch:
 
-
 1. **[Pricing Table](https://demo.happyaddons.com/elementor-pricing-table-widget-demo/)** - This one of a kind widget
 will allow you to create any kind of pricing table under the sun. As a surprise, you can use gradient background, oval-shaped button, font awesome icons, background fill color, different heights, dark mood and so on.  [Check demo](https://demo.happyaddons.com/elementor-pricing-table-widget-demo/)
 2. **[Flip Box](https://demo.happyaddons.com/elementor-flip-box-widget-demo-2/)** - This exquisite widget will help
@@ -277,6 +276,10 @@ It's really easy and super simple to install **Happy Elementor Addons** plugin b
 
 
 == Changelog ==
+
+= 2.9.0 - 29 April 2020 =
+
+- New: WPML support for all widgets [Documentation](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/wpml-support-for-happyaddons-free/)
 
 = 2.8.1 - 5 April 2020 =
 
