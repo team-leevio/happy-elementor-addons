@@ -30,7 +30,7 @@ class Select2 extends Base_Data_Control {
 	public function enqueue() {
 		wp_enqueue_script(
 			'ha-select2',
-			HAPPY_ADDONS_ASSETS.'/admin/js/select2.js',
+			HAPPY_ADDONS_ASSETS . 'admin/js/select2.js',
 			['jquery'],
 			HAPPY_ADDONS_VERSION
 		);

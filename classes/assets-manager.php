@@ -2,6 +2,7 @@
 namespace Happy_Addons\Elementor;
 
 use Elementor\Core\Files\CSS\Post as Post_CSS;
+use HappyMonster\HappyAddons\Template_Library;
 
 defined('ABSPATH') || die();
 
@@ -294,6 +295,21 @@ class Assets_Manager {
 			true
 		);
 
+		wp_enqueue_style(
+			'happy-elementor-addons-templates',
+			HAPPY_ADDONS_ASSETS . 'admin/css/template-library.min.css',
+			null,
+			HAPPY_ADDONS_VERSION
+		);
+
+		wp_enqueue_script(
+			'happy-elementor-addons-templates',
+			HAPPY_ADDONS_ASSETS . 'admin/js/template-library.js',
+			['elementor-editor'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
 		$localize_data = [
 			'editorPanelHomeLinkURL'      => ha_get_dashboard_link(),
 			'editorPanelWidgetsLinkURL'   => ha_get_dashboard_link('#widgets'),
@@ -311,6 +327,8 @@ class Assets_Manager {
 		if ( ! ha_has_pro() && ha_is_elementor_version( '>=', '2.9.0' ) ) {
 			$localize_data['proWidgets'] = Widgets_Manager::get_pro_widget_map();
 		}
+
+		$localize_data['libraryConfig'] = Template_Library::get_config();
 
 		wp_localize_script(
 			'happy-elementor-addons-editor',
@@ -356,5 +374,13 @@ class Assets_Manager {
 			);
 		}
 
+		$data = '
+		.elementor-add-new-section .ha-add-template-button {
+			background-color: #5636d1;
+			margin-left: 5px;
+			font-size: 20px;
+		}
+		';
+		wp_add_inline_style( 'happy-elementor-addons', $data );
 	}
 }
