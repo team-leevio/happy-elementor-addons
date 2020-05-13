@@ -1,41 +1,32 @@
 ;(function($, elementor) {
-	var TemplateLibraryLogoView = Marionette.ItemView.extend({
-		getTemplate: function() {
-			return '#tmpl-haTemplateLibrary__header-logo';
-		},
+	var Library = {
+		View: {},
+		Model: {},
+		Collection: {},
+		Layout: null,
+		Manager: null,
+	};
 
-		className: function() {
-			return 'haTemplateLibrary__header-logo';
-		},
+	Library.View.Loading = Marionette.ItemView.extend({
+		template: '#tmpl-haTemplateLibrary__loading',
+		id: 'haTemplateLibrary__loading',
+	});
 
-		events: function() {
-			return {
-				click: 'onClick',
-			};
-		},
+	Library.View.Logo = Marionette.ItemView.extend({
+		template: '#tmpl-haTemplateLibrary__header-logo',
+		className: 'haTemplateLibrary__header-logo',
 
 		templateHelpers: function() {
 			return {
 				title: this.getOption('title'),
 			};
 		},
-
-		onClick: function() {
-			const clickCallback = this.getOption('click');
-			clickCallback && clickCallback();
-		}
 	});
 
-	var TemplateLibraryBackView = Marionette.ItemView.extend( {
+	Library.View.BackButton = Marionette.ItemView.extend( {
+		template: '#tmpl-haTemplateLibrary__header-back',
 		id: 'elementor-template-library-header-preview-back',
-
-		getTemplate: function() {
-			return '#tmpl-haTemplateLibrary__header-back';
-		},
-
-		className: function() {
-			return 'haTemplateLibrary__header-back';
-		},
+		className:'haTemplateLibrary__header-back',
 
 		events: function() {
 			return {
@@ -44,44 +35,66 @@
 		},
 
 		onClick: function() {
-			// $e.routes.restoreState( 'library' );
-			tlm.getModal().showPages();
+			libraryManager.getModal().showBlocks();
 		},
 	} );
 
-	var TemplateLibraryMenuView = Marionette.ItemView.extend( {
+	Library.View.Menu = Marionette.ItemView.extend( {
+		template: '#tmpl-haTemplateLibrary__header-menu',
 		id: 'elementor-template-library-header-menu',
-
-		getTemplate: function() {
-			return '#tmpl-haTemplateLibrary__header-menu';
-		},
-
-		className: function() {
-			return 'haTemplateLibrary__header-menu';
-		},
+		className: 'haTemplateLibrary__header-menu',
 
 		templateHelpers: function() {
-			return {
-				tabs: {
-					blocks: {
-						'title': 'Blocks'
-					},
-					pages: {
-						'title': 'Pages'
-					}
-				},
-			};
+			return libraryManager.getTabs();
 		},
 	} );
 
-	var TemplateLibraryIframeView = Marionette.ItemView.extend({
-		getTemplate: function() {
-			return '#tmpl-haTemplateLibrary__iframe';
+	Library.View.Actions = Marionette.ItemView.extend( {
+		template: '#tmpl-haTemplateLibrary__header-actions',
+		id: 'elementor-template-library-header-actions',
+
+		ui: {
+			sync: '#haTemplateLibrary__header-sync i',
 		},
 
-		className: function() {
-			return 'haTemplateLibrary__iframe';
+		events: {
+			'click @ui.sync': 'onSyncClick',
 		},
+
+		onSyncClick: function() {
+			var self = this;
+
+			self.ui.sync.addClass( 'eicon-animation-spin' );
+
+			elementor.templates.requestLibraryData( {
+				onUpdate: function() {
+					self.ui.sync.removeClass( 'eicon-animation-spin' );
+
+					$e.routes.refreshContainer( 'library' );
+				},
+				forceUpdate: true,
+				forceSync: true,
+			} );
+		},
+	} );
+
+	// var TemplateLibraryInsertTemplateBehavior = require( 'elementor-templates/behaviors/insert-template' );
+
+	Library.View.InsertWrapper = Marionette.ItemView.extend( {
+		template: '#tmpl-haTemplateLibrary__header-insert',
+
+		id: 'elementor-template-library-header-preview',
+
+		// behaviors: {
+		// 	insertTemplate: {
+		// 		behaviorClass: TemplateLibraryInsertTemplateBehavior,
+		// 	},
+		// },
+	} );
+
+	Library.View.Preview = Marionette.ItemView.extend({
+		template: '#tmpl-haTemplateLibrary__preview',
+		className: 'haTemplateLibrary__preview',
 
 		ui: function() {
 			return {
@@ -90,26 +103,22 @@
 		},
 
 		onRender: function() {
-			// this.$el.css('height', '100%');
-			this.ui.iframe.attr('src', this.getOption('url'));
+			this.ui.iframe.attr('src', this.getOption('url')).hide();
+			var self = this,
+				loadingScreen = (new Library.View.Loading()).render();
 
-			// const onSaveCallback = this.getOption('onSave');
+			this.$el.append(loadingScreen.el);
 
-			// onSaveCallback && this.ui.iframe.on('load', (event) => {
-			// 	const editorWindow = event.target.contentWindow;
-			// 	editorWindow.$e && editorWindow.$e.components.get('document/save').on('save', onSaveCallback);
-			// });
+			this.ui.iframe.on('load', function() {
+				self.$el.find('#haTemplateLibrary__loading').remove();
+				self.ui.iframe.show();
+			});
 		}
 	});
 
-	var TemplateLibraryCollectionView = Marionette.ItemView.extend({
-		getTemplate: function() {
-			return '#tmpl-haTemplateLibrary__collection';
-		},
-
-		className: function() {
-			return 'haTemplateLibrary__collection';
-		},
+	Library.View.Templates = Marionette.ItemView.extend({
+		template: '#tmpl-haTemplateLibrary__collection',
+		className: 'haTemplateLibrary__collection',
 
 		ui: function() {
 			return {
@@ -128,7 +137,7 @@
 		onShowBack: function(event) {
 			event.preventDefault();
 			console.log('show back')
-			tlm.getModal().showPreview({url:'https://obiPlabon.im'});
+			libraryManager.getModal().showPreview({url:'https://obiPlabon.im'});
 		},
 
 		onGoBack: function(event) {
@@ -137,7 +146,7 @@
 		}
 	});
 
-	var TemplateLibraryModal = elementorModules.common.views.modal.Layout.extend({
+	Library.Modal = elementorModules.common.views.modal.Layout.extend({
 		getModalOptions: function() {
 			return {
 				id: 'haTemplateLibrary__modal',
@@ -149,59 +158,51 @@
 			};
 		},
 
-		getLogoOptions: function() {
-			return {
-				title: 'Templates',
-			};
+		getTemplateActionButton: function getTemplateActionButton( templateData ) {
+			var viewId = '#tmpl-haTemplateLibrary__' + ( templateData.isPro ? 'pro-button' : 'insert-button' ),
+				template = Marionette.TemplateCache.get(viewId);
+
+			return Marionette.Renderer.render(template);
 		},
 
 		showLogo: function(args) {
-			this.getHeaderView().logoArea.show(new TemplateLibraryLogoView(args));
+			this.getHeaderView().logoArea.show( new Library.View.Logo(args) );
+		},
+
+		showDefaultHeader: function() {
+			this.showLogo({
+				title: 'HAPPY LIBRARY'
+			});
+
+			var headerView = this.getHeaderView();
+			headerView.tools.show( new Library.View.Actions() );
+			headerView.menuArea.show( new Library.View.Menu() );
 		},
 
 		showPreview: function(args) {
-			this.modalContent.show( new TemplateLibraryIframeView( {
-				url: 'https://obiplabon.im',
-			} ) );
-
 			var headerView = this.getHeaderView();
 			headerView.menuArea.reset();
+			headerView.logoArea.show( new Library.View.BackButton() );
+			headerView.tools.show( new Library.View.InsertWrapper({isPro: true}) );
 
-			// headerView.tools.show( new TemplateLibraryHeaderPreviewView( {
-			// 	model: templateModel,
-			// } ) );
-
-			headerView.logoArea.show( new TemplateLibraryBackView() );
-		},
-
-		showPages: function(args) {
-			this.showLogo({title: 'TEMPLATES'});
-
-			var headerView = this.getHeaderView();
-
-			headerView.menuArea.show( new TemplateLibraryMenuView() );
-
-			this.modalContent.show(new TemplateLibraryCollectionView(args));
+			this.modalContent.show( new Library.View.Preview( {
+				url: 'https://obiplabon.im',
+			} ) );
 		},
 
 		showBlocks: function(args) {
-			this.modalContent.show(new TemplateLibraryCollectionView(args));
+			this.showDefaultHeader();
+			this.modalContent.show(new Library.View.Templates(args));
 		}
 	});
 
-	var TemplateLibraryManager = function() {
+	Library.Manager = function() {
 		var self = this,
-			libraryModal,
+			modal,
+			FIND_SELECTOR = '.elementor-add-new-section .elementor-add-template-button',
 			$openLibraryButton = '<div class="elementor-add-section-area-button ha-add-template-button"><i class="hm hm-happyaddons"></i></div>';
 
 		this.atIndex = -1;
-
-		// layout: !1,
-		// collections: {},
-		// tabs: {},
-		// defaultTab: "",
-		// channels: {},
-		// atIndex: null,
 
 		function onAddElementButtonClick() {
 			var $topSection = $(this).closest('.elementor-top-section'),
@@ -218,17 +219,17 @@
 
 			$topSection
 				.prev('.elementor-add-section')
-				.find('.elementor-add-new-section')
-				.append($openLibraryButton);
+				.find( FIND_SELECTOR )
+				.after($openLibraryButton);
 		}
 
 		function addLibraryModalOpenButton( $previewContents ) {
-			var $addNewSection = $previewContents.find('.elementor-add-new-section');
+			var $addNewSection = $previewContents.find( FIND_SELECTOR );
 
-			$addNewSection.length && $addNewSection.append($openLibraryButton);
+			$addNewSection.length && $addNewSection.after( $openLibraryButton );
 
 			$previewContents.on(
-				'click',
+				'click.onAddElement',
 				'.elementor-editor-section-settings .elementor-editor-element-add',
 				onAddElementButtonClick
 			);
@@ -241,89 +242,49 @@
 					$previewContents.find('.elementor-add-new-section').length > 0 && clearInterval(time);
 				}, 100 );
 
-				$previewContents.on(
-					'click.onHAOpenTemplateLibrary',
-					'.ha-add-template-button',
-					self.showModal.bind(self)
-				);
-
-			self.channels = {
-				templates: Backbone.Radio.channel('HAPPY_ADDONS:templates'),
-				tabs: Backbone.Radio.channel('HAPPY_ADDONS:tabs'),
-				layout: Backbone.Radio.channel('HAPPY_ADDONS:layout')
-			};
-
-			// this.tabs = []; //a.tabs;
-			// this.defaultTab = a.defaultTab;
+			$previewContents.on(
+				'click.onAddTemplateButton',
+				'.ha-add-template-button',
+				self.showModal.bind(self)
+			);
 		}
 
 		this.showModal = function() {
 			this.getModal().showModal();
-			this.getModal().showPages();
+			this.getModal().showBlocks();
 
-			// if ( ! this.layout ) {
-			// 	this.layout = new TemplateLibrary.LibraryLayoutView;
-			// }
 
 			// this.layout.showLoadingView()
 			// this.setTab(this.defaultTab, !0)
 			// // this.requestTemplates(this.defaultTab);
 			// this.setPreview('initial');
-		},
+		};
 
 		this.closeModal = function() {
 			this.getModal().hideModal();
 		};
 
 		this.getModal = function() {
-			if ( ! libraryModal ) {
-				libraryModal = new TemplateLibraryModal();
+			if ( ! modal ) {
+				modal = new Library.Modal();
 			}
-			return libraryModal;
+
+			return modal;
 		};
 
-		function onInit() {
-			elementor.on('preview:loaded', onPreviewLoaded.bind(this));
-		};
-
-		this.init = onInit;
-
-		this.getFilter = function( name ) {
-			return this.channels.templates.request( 'filter:' + name );
-		};
-
-		this.setFilter = function(name, callback) {
-			this.channels.templates.reply( 'filter:' + name, callback );
-			this.channels.templates.trigger( 'filter:change' );
-		};
-
-		this.getTab = function() {
-			return this.channels.tabs.request( 'filter:tabs' );
-		};
-
-		this.setTab = function( name, callback ) {
-			this.channels.tabs.reply( 'filter:tabs', name, callback );
-			this.channels.tabs.trigger( 'filter:change' );
-		},
+		this.init = function() {
+			elementor.on( 'preview:loaded', onPreviewLoaded.bind( this ) );
+		}
 
 		this.getTabs = function() {
-			var tabs = [];
-			_.each( this.tabs, function(t, i) {
-				tabs.push({
-					slug: i,
-					title: t.title
-				})
-			});
-
-			return tabs;
-		},
-
-		this.getPreview = function(e) {
-			return this.channels.layout.request('preview');
-		};
-
-		this.setPreview = function(e, t) {
-			this.channels.layout.reply('preview', e), t || this.channels.layout.trigger('preview:change')
+			return {
+				tabs: {
+					blocks: {
+						title: 'Blocks',
+						active: true
+					},
+				},
+			};
 		};
 
 		// getKeywords: function() {
@@ -359,9 +320,9 @@
 		// },
 	};
 
-	var tlm = new TemplateLibraryManager();
-	tlm.init();
+	var libraryManager = new Library.Manager();
 
-	window.tlm = tlm;
+	window.haLibary = libraryManager;
+	window.haLibary.init();
 
 }(jQuery, window.elementor));

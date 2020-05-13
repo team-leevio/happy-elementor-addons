@@ -377,8 +377,9 @@ class Assets_Manager {
 		$data = '
 		.elementor-add-new-section .ha-add-template-button {
 			background-color: #5636d1;
-			margin-left: 5px;
+			margin-left: 9px;
 			font-size: 20px;
+			vertical-align: bottom;
 		}
 		';
 		wp_add_inline_style( 'happy-elementor-addons', $data );

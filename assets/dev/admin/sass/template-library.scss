@@ -1,3 +1,8 @@
-.elementor-add-new-section .ha-add-template-button {
-	background-color: #e04d8b;
+.haTemplateLibrary__preview {
+	height: 100%;
+}
+
+.haTemplateLibrary__preview > iframe {
+	height: 100%;
+	width: 100%;
 }
