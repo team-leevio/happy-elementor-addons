@@ -7,10 +7,10 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 <script type="text/template" id="tmpl-haTemplateLibrary__header-logo">
-    <span class="elementor-templates-modal__header__logo__icon-wrapper">
+    <span class="haTemplateLibrary__logo-wrap">
 		<i class="hm hm-happyaddons"></i>
 	</span>
-    <span class="elementor-templates-modal__header__logo__title">{{{ title }}}</span>
+    <span class="haTemplateLibrary__logo-title">{{{ title }}}</span>
 </script>
 
 <script type="text/template" id="tmpl-haTemplateLibrary__header-back">
@@ -24,10 +24,25 @@ defined( 'ABSPATH' ) || exit;
 	<# } ); #>
 </script>
 
+<script type="text/template" id="tmpl-haTemplateLibrary__header-menu-responsive">
+	<div class="elementor-component-tab haTemplateLibrary__responsive-menu-item elementor-active" data-tab="desktop">
+		<i class="eicon-device-desktop" aria-hidden="true" title="<?php esc_attr_e( 'Desktop view', 'happy-elementor-addons' ); ?>"></i>
+		<span class="elementor-screen-only"><?php esc_html_e( 'Desktop view', 'happy-elementor-addons' ); ?></span>
+	</div>
+	<div class="elementor-component-tab haTemplateLibrary__responsive-menu-item" data-tab="tab">
+		<i class="eicon-device-tablet" aria-hidden="true" title="<?php esc_attr_e( 'Tab view', 'happy-elementor-addons' ); ?>"></i>
+		<span class="elementor-screen-only"><?php esc_html_e( 'Tab view', 'happy-elementor-addons' ); ?></span>
+	</div>
+	<div class="elementor-component-tab haTemplateLibrary__responsive-menu-item" data-tab="mobile">
+		<i class="eicon-device-mobile" aria-hidden="true" title="<?php esc_attr_e( 'Mobile view', 'happy-elementor-addons' ); ?>"></i>
+		<span class="elementor-screen-only"><?php esc_html_e( 'Mobile view', 'happy-elementor-addons' ); ?></span>
+	</div>
+</script>
+
 <script type="text/template" id="tmpl-haTemplateLibrary__header-actions">
 	<div id="haTemplateLibrary__header-sync" class="elementor-templates-modal__header__item">
 		<i class="eicon-sync" aria-hidden="true" title="<?php esc_attr_e( 'Sync Library', 'happy-elementor-addons' ); ?>"></i>
-		<span class="elementor-screen-only"><?php echo __( 'Sync Library', 'happy-elementor-addons' ); ?></span>
+		<span class="elementor-screen-only"><?php esc_html_e( 'Sync Library', 'happy-elementor-addons' ); ?></span>
 	</div>
 </script>
 

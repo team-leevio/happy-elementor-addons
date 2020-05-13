@@ -49,6 +49,27 @@
 		},
 	} );
 
+	Library.View.ResponsiveMenu = Marionette.ItemView.extend( {
+		template: '#tmpl-haTemplateLibrary__header-menu-responsive',
+		id: 'elementor-template-library-header-menu-responsive',
+		className: 'haTemplateLibrary__header-menu-responsive',
+
+		ui: {
+			items: '> .elementor-component-tab'
+		},
+
+		events: {
+			'click @ui.items': 'onTabItemClick'
+		},
+
+		onTabItemClick: function(event) {
+			var $target = $(event.currentTarget),
+				device = $target.data('tab');
+
+			libraryManager.channels.tabs.trigger('change:device', device, $target);
+		}
+	} );
+
 	Library.View.Actions = Marionette.ItemView.extend( {
 		template: '#tmpl-haTemplateLibrary__header-actions',
 		id: 'elementor-template-library-header-actions',
@@ -181,7 +202,8 @@
 
 		showPreview: function(args) {
 			var headerView = this.getHeaderView();
-			headerView.menuArea.reset();
+
+			headerView.menuArea.show( new Library.View.ResponsiveMenu() );
 			headerView.logoArea.show( new Library.View.BackButton() );
 			headerView.tools.show( new Library.View.InsertWrapper({isPro: true}) );
 
@@ -200,9 +222,27 @@
 		var self = this,
 			modal,
 			FIND_SELECTOR = '.elementor-add-new-section .elementor-add-template-button',
-			$openLibraryButton = '<div class="elementor-add-section-area-button ha-add-template-button"><i class="hm hm-happyaddons"></i></div>';
+			$openLibraryButton = '<div class="elementor-add-section-area-button ha-add-template-button"><i class="hm hm-happyaddons"></i></div>',
+			devicesResponsiveMap = {
+				desktop: {
+					width: '100%',
+					height: '100%'
+				},
+				tab: {
+					width: '768px',
+					height: '1025px'
+				},
+				mobile: {
+					width: '360px',
+    				height: '640px'
+				}
+			};
 
 		this.atIndex = -1;
+
+		this.channels = {
+			tabs: Backbone.Radio.channel( 'tabs' )
+		};
 
 		function onAddElementButtonClick() {
 			var $topSection = $(this).closest('.elementor-top-section'),
@@ -235,6 +275,16 @@
 			);
 		}
 
+		function onDeviceChange( device, $target ) {
+			$target
+				.addClass('elementor-active')
+				.siblings()
+				.removeClass('elementor-active');
+
+			var sizes = devicesResponsiveMap[device] || devicesResponsiveMap['desktop'];
+			$('.haTemplateLibrary__preview > iframe').css(sizes);
+		}
+
 		function onPreviewLoaded() {
 			var $previewContents = window.elementor.$previewContents,
 				time = setInterval( function() {
@@ -247,6 +297,8 @@
 				'.ha-add-template-button',
 				self.showModal.bind(self)
 			);
+
+			this.channels.tabs.on('change:device', onDeviceChange);
 		}
 
 		this.showModal = function() {
