@@ -221,7 +221,7 @@
 	Library.Manager = function() {
 		var self = this,
 			modal,
-			FIND_SELECTOR = '.elementor-add-new-section .elementor-add-template-button',
+			FIND_SELECTOR = '.elementor-add-new-section .elementor-add-section-drag-title',
 			$openLibraryButton = '<div class="elementor-add-section-area-button ha-add-template-button"><i class="hm hm-happyaddons"></i></div>',
 			devicesResponsiveMap = {
 				desktop: {
@@ -260,13 +260,13 @@
 			$topSection
 				.prev('.elementor-add-section')
 				.find( FIND_SELECTOR )
-				.after($openLibraryButton);
+				.before($openLibraryButton);
 		}
 
 		function addLibraryModalOpenButton( $previewContents ) {
 			var $addNewSection = $previewContents.find( FIND_SELECTOR );
 
-			$addNewSection.length && $addNewSection.after( $openLibraryButton );
+			$addNewSection.length && $addNewSection.before( $openLibraryButton );
 
 			$previewContents.on(
 				'click.onAddElement',
