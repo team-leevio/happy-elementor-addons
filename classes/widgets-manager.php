@@ -531,7 +531,7 @@ class Widgets_Manager {
 	        ],
 	        'taxonomy-list' => [
 		        'title' => __( 'Taxonomy List', 'happy-elementor-addons' ),
-		        'icon' => 'hm hm-post-list',
+		        'icon' => 'hm hm-clip-board',
 		        'css' => ['taxonomy-list'],
 		        'js' => [],
 		        'vendor' => [

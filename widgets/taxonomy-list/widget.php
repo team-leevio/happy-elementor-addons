@@ -17,6 +17,7 @@ use Elementor\Utils;
 use Elementor\Core\Schemes;
 use Elementor\Group_Control_Background;
 use Happy_Addons\Elementor\Controls\Select2;
+use Elementor\Group_Control_Css_Filter;
 
 defined( 'ABSPATH' ) || die();
 
@@ -47,7 +48,7 @@ class Taxonomy_List extends Base {
 	 *
 	 */
 	public function get_icon() {
-		return 'hm hm-post-list';
+		return 'hm hm-clip-board';
 	}
 
 	public function get_keywords() {
@@ -607,6 +608,14 @@ class Taxonomy_List extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-taxonomy-list-image img' => 'width: {{SIZE}}{{UNIT}};',
 				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Css_Filter::get_type(),
+			[
+				'name' => 'image_css_filter',
+				'selector' => '{{WRAPPER}} .ha-taxonomy-list-image img',
 			]
 		);
 
