@@ -112,15 +112,15 @@ class Taxonomy_List extends Base {
 			$repeater[$key]->add_control(
 				'individual_icon',
 				[
-					'label' => __( 'Icon', 'happy-addons-pro' ),
+					'label' => __( 'Icon', 'happy-elementor-addons' ),
 					'type' => Controls_Manager::CHOOSE,
 					'options' => [
 						'icon' => [
-							'title' => __( 'Icon', 'happy-addons-pro' ),
+							'title' => __( 'Icon', 'happy-elementor-addons' ),
 							'icon' => 'fas fa-star',
 						],
 						'image' => [
-							'title' => __( 'Image', 'happy-addons-pro' ),
+							'title' => __( 'Image', 'happy-elementor-addons' ),
 							'icon' => 'fas fa-image',
 						],
 					],
@@ -132,7 +132,7 @@ class Taxonomy_List extends Base {
 			$repeater[$key]->add_control(
 				'icon',
 				[
-					'label' => __( 'Icon', 'happy-addons-pro' ),
+					'label' => __( 'Icon', 'happy-elementor-addons' ),
 					'show_label' => false,
 					'type' => Controls_Manager::ICONS,
 					'default' => [
@@ -225,21 +225,35 @@ class Taxonomy_List extends Base {
 		);
 
 		$this->add_control(
+			'common_icon_enable',
+			[
+				'label' => __( 'Common icon enable?', 'happy-elementor-addons' ),
+				'description' => __( 'If you want to use individual icon disable common icon.', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);
+
+		$this->add_control(
 			'common_icon',
 			[
-				'label' => __( 'Common Icon', 'happy-addons-pro' ),
+				'label' => __( 'Common Icon', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'icon' => [
-						'title' => __( 'Icon', 'happy-addons-pro' ),
+						'title' => __( 'Icon', 'happy-elementor-addons' ),
 						'icon' => 'fas fa-star',
 					],
 					'image' => [
-						'title' => __( 'Image', 'happy-addons-pro' ),
+						'title' => __( 'Image', 'happy-elementor-addons' ),
 						'icon' => 'fas fa-image',
 					],
 				],
-				'toggle' => true,
+				'condition' => [
+					'common_icon_enable' => 'yes',
+				],
+				'toggle' => false,
 				'default' => 'icon',
 			]
 		);
@@ -247,8 +261,8 @@ class Taxonomy_List extends Base {
 		$this->add_control(
 			'icon',
 			[
-				'label' => __( 'Icon', 'happy-addons-pro' ),
-				'description' => __( 'Common icon will overwrite individual icon.', 'happy-addons-pro' ),
+				'label' => __( 'Icon', 'happy-elementor-addons' ),
+				'description' => __( 'Common icon will overwrite individual icon.', 'happy-elementor-addons' ),
 				'show_label' => false,
 				'type' => Controls_Manager::ICONS,
 				'default' => [
@@ -256,6 +270,7 @@ class Taxonomy_List extends Base {
 					'library' => 'reguler'
 				],
 				'condition' => [
+					'common_icon_enable' => 'yes',
 					'common_icon' => 'icon',
 				]
 			]
@@ -265,7 +280,7 @@ class Taxonomy_List extends Base {
 			'image',
 			[
 				'label' => __( 'Image', 'happy-elementor-addons' ),
-				'description' => __( 'Common icon will overwrite individual icon.', 'happy-addons-pro' ),
+				'description' => __( 'Common icon will overwrite individual icon.', 'happy-elementor-addons' ),
 				'show_label' => false,
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
@@ -275,6 +290,7 @@ class Taxonomy_List extends Base {
 					'active' => true,
 				],
 				'condition' => [
+					'common_icon_enable' => 'yes',
 					'common_icon' => 'image',
 				]
 			]
@@ -693,9 +709,11 @@ class Taxonomy_List extends Base {
 							<li <?php $this->print_render_attribute_string( 'item' ); ?>>
 								<a href="<?php echo esc_url( get_term_link( $terms[$index]->term_id ) ); ?>">
 									<?php
-									$icon_settings = !empty( $settings['common_icon'] ) ? $settings['common_icon'] : $value['individual_icon'];
-									$icon = !empty( $settings['icon'] ) ? $settings['icon'] : $value['icon'];
-									$image_url = !empty( $settings['image']['url'] ) ? $settings['image']['url'] : $value['image']['url'];
+									$icon_settings = 'yes' === $settings['common_icon_enable'] && !empty( $settings['common_icon'] ) ? $settings['common_icon'] : $value['individual_icon'];
+
+									$icon = 'yes' === $settings['common_icon_enable'] && !empty( $settings['icon'] ) ? $settings['icon'] : $value['icon'];
+
+									$image_url = 'yes' === $settings['common_icon_enable'] && !empty( $settings['image']['url'] ) ? $settings['image']['url'] : $value['image']['url'];
 									?>
 									<?php if ( $icon_settings ) :
 										echo '<span class="ha-taxonomy-list-' . esc_attr( $icon_settings ) . '">';
