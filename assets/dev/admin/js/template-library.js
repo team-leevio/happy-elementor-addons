@@ -202,7 +202,34 @@
 		},
 
 		initialize: function() {
-			this.listenTo( elementor.channels.templates, 'filter:change', this._renderChildren );
+			this.listenTo( ha.library.channels.templates, 'filter:change', this._renderChildren );
+		},
+
+		filter: function filter( childModel ) {
+			var filterTerms = ha.library.getFilterTerms(),
+				passingFilter = true;
+
+			_.each( filterTerms, function( filterTerm, filterTermName ) {
+				var filterValue = ha.library.getFilter( filterTermName );
+
+				if ( ! filterValue ) {
+					return;
+				}
+
+				if ( filterTerm.callback ) {
+					var callbackResult = filterTerm.callback.call( childModel, filterValue );
+
+					if ( ! callbackResult ) {
+						passingFilter = false;
+					}
+
+					return callbackResult;
+				}
+
+				// return filterResult;
+			});
+
+			return passingFilter;
 		},
 
 		setFiltersUI: function() {
@@ -234,12 +261,12 @@
 		},
 
 		onTextFilterInput: function() {
-			elementor.templates.setFilter( 'text', this.ui.textFilter.val() );
+			ha.library.setFilter( 'text', this.ui.textFilter.val() );
 		},
 
 		onSelectFilterChange: function( event ) {
 			var $select = $( event.currentTarget );
-			elementor.templates.setFilter( 'tags', $select.val() );
+			ha.library.setFilter( 'tags', $select.val() );
 		},
 	} );
 
@@ -297,7 +324,8 @@
 
 			var headerView = this.getHeaderView();
 			headerView.tools.show( new Library.View.Actions() );
-			headerView.menuArea.show( new Library.View.Menu() );
+			// headerView.menuArea.show( new Library.View.Menu() );
+			headerView.menuArea.reset();
 		},
 
 		showPreviewView: function( templateModel ) {
@@ -313,6 +341,7 @@
 		},
 
 		showBlocksView: function( blocksCollection ) {
+			this.showDefaultHeader();
 			this.modalContent.show( new Library.View.TemplateCollection( {
 				collection: blocksCollection,
 			} ) );
@@ -336,6 +365,7 @@
 
 		this.channels = {
 			tabs: Backbone.Radio.channel( 'tabs' ),
+			templates: Backbone.Radio.channel( 'templates' ),
 		};
 
 		function onAddElementButtonClick() {
@@ -395,6 +425,43 @@
 			this.channels.tabs.on('change:device', onDeviceChange);
 		}
 
+		this.setFilter = function( name, value, silent ) {
+			self.channels.templates.reply( 'filter:' + name, value );
+
+			if ( ! silent ) {
+				self.channels.templates.trigger( 'filter:change' );
+			}
+		}
+
+		this.getFilter = function( name ) {
+			return self.channels.templates.request( 'filter:' + name );
+		};
+
+		this.getFilterTerms = function() {
+			return {
+				tags: {
+					callback: function callback( value ) {
+						return _.any(this.get('tags'), function (tag) {
+							return tag.indexOf(value) >= 0;
+						});
+					}
+				},
+				text: {
+					callback: function callback( value ) {
+						value = value.toLowerCase();
+
+						if ( this.get('title').toLowerCase().indexOf( value ) >= 0 ) {
+							return true;
+						}
+
+						return _.any(this.get('tags'), function (tag) {
+							return tag.indexOf(value) >= 0;
+						});
+					}
+				},
+			};
+		}
+
 		this.showModal = function() {
 			self.getModal().showModal();
 			self.showBlocksView();
@@ -438,7 +505,6 @@
 		}
 
 		this.showBlocksView = function() {
-			self.getModal().showDefaultHeader();
 			self.loadTemplates( function() {
 				self.getModal().showBlocksView( templatesCollection );
 			} );
