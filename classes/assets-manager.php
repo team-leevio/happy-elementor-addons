@@ -2,7 +2,6 @@
 namespace Happy_Addons\Elementor;
 
 use Elementor\Core\Files\CSS\Post as Post_CSS;
-use HappyMonster\HappyAddons\Template_Library;
 
 defined('ABSPATH') || die();
 
@@ -327,8 +326,6 @@ class Assets_Manager {
 		if ( ! ha_has_pro() && ha_is_elementor_version( '>=', '2.9.0' ) ) {
 			$localize_data['proWidgets'] = Widgets_Manager::get_pro_widget_map();
 		}
-
-		$localize_data['libraryConfig'] = Template_Library::get_config();
 
 		wp_localize_script(
 			'happy-elementor-addons-editor',

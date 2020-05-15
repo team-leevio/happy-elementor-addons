@@ -9,7 +9,6 @@ namespace Happy_Addons\Elementor;
 use Elementor\Controls_Manager;
 use Elementor\Elements_Manager;
 use Elementor\Core\Common\Modules\Finder\Categories_Manager;
-use HappyMonster\HappyAddons\Template_Library;
 
 defined( 'ABSPATH' ) || die();
 
@@ -60,7 +59,7 @@ class Base {
 
         if ( is_user_logged_in() ) {
 			Admin_Bar::init();
-			Template_Library::init();
+			Library_Manager::init();
         }
 
         if ( is_admin() ) {
@@ -119,7 +118,8 @@ class Base {
         if ( is_user_logged_in() ) {
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php' );
-			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/template-library.php' );
+			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-manager.php' );
+			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-api.php' );
 		}
     }
 

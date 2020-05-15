@@ -46,17 +46,13 @@ defined( 'ABSPATH' ) || exit;
 	</div>
 </script>
 
-<script type="text/template" id="tmpl-haTemplateLibrary__collection">
-	<div>Hello library <button type="button" class="btn-back">Show Back</button> <button type="button" class="btn-go">Go Back</button></div>
-</script>
-
 <script type="text/template" id="tmpl-haTemplateLibrary__preview">
     <iframe></iframe>
 </script>
 
 <script type="text/template" id="tmpl-haTemplateLibrary__header-insert">
 	<div id="elementor-template-library-header-preview-insert-wrapper" class="elementor-templates-modal__header__item">
-		{{{ haLibary.getModal().getTemplateActionButton( obj ) }}}
+		{{{ ha.library.getModal().getTemplateActionButton( obj ) }}}
 	</div>
 </script>
 
@@ -85,5 +81,42 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 		</div>
 		<div class="elementor-loading-title"><?php esc_html_e( 'Loading', 'happy-elementor-addons' ); ?></div>
+	</div>
+</script>
+
+<script type="text/template" id="tmpl-haTemplateLibrary__templates">
+	<div id="haTemplateLibrary__toolbar">
+		<div id="haTemplateLibrary__toolbar-filter" class="haTemplateLibrary__toolbar-filter">
+			<# if ( ha.library.getTags() ) { #>
+				<div id="haTemplateLibrary__filter">
+					<select id="haTemplateLibrary__filter-tags" class="haTemplateLibrary__filter-tags">
+						<option></option>
+						<# _.each( ha.library.getTags(), function( name, slug ) { #>
+							<option value="{{ slug }}">{{{ name }}}</option>
+						<# } ); #>
+					</select>
+				</div>
+			<# } #>
+		</div>
+
+		<div id="haTemplateLibrary__toolbar-search">
+			<label for="haTemplateLibrary__search" class="elementor-screen-only"><?php esc_html_e( 'Search Templates:', 'happy-elementor-addons' ); ?></label>
+			<input id="haTemplateLibrary__search" placeholder="<?php esc_attr_e( 'Search', 'happy-elementor-addons' ); ?>">
+			<i class="eicon-search"></i>
+		</div>
+	</div>
+
+	<div id="haTemplateLibrary__templates-list"></div>
+</script>
+
+<script type="text/template" id="tmpl-haTemplateLibrary__template">
+	<div class="haTemplateLibrary__template-body">
+		<img class="haTemplateLibrary__template-thumbnail" src="{{ thumbnail }}">
+		<div class="haTemplateLibrary__template-preview">
+			<i class="eicon-zoom-in-bold" aria-hidden="true"></i>
+		</div>
+	</div>
+	<div class="haTemplateLibrary__template-footer">
+		<div class="haTemplateLibrary__template-name">{{{ title }}}</div>
 	</div>
 </script>

@@ -1,11 +1,48 @@
 ;(function($, elementor) {
+	window.ha = window.ha || {};
+
 	var Library = {
 		View: {},
 		Model: {},
 		Collection: {},
+		Behavior: {},
 		Layout: null,
 		Manager: null,
 	};
+
+	Library.Model.Template = Backbone.Model.extend( {
+		defaults: {
+			template_id: 0,
+			title: '',
+			type: '',
+			thumbnail: '',
+			url: '',
+			tags: [],
+			isPro: false
+		},
+	} );
+
+	Library.Collection.Template = Backbone.Collection.extend( {
+		model: Library.Model.Template
+	} );
+
+	Library.Behavior.InsertTemplate = Marionette.Behavior.extend( {
+		ui: {
+			insertButton: '.elementor-template-library-template-insert',
+		},
+
+		events: {
+			'click @ui.insertButton': 'onInsertButtonClick',
+		},
+
+		onInsertButtonClick: function() {
+			const args = {
+				model: this.view.model,
+			};
+
+			$e.run( 'library/insert-template', args );
+		},
+	} );
 
 	Library.View.Loading = Marionette.ItemView.extend({
 		template: '#tmpl-haTemplateLibrary__loading',
@@ -35,7 +72,7 @@
 		},
 
 		onClick: function() {
-			libraryManager.getModal().showBlocks();
+			ha.library.showBlocksView();
 		},
 	} );
 
@@ -45,7 +82,7 @@
 		className: 'haTemplateLibrary__header-menu',
 
 		templateHelpers: function() {
-			return libraryManager.getTabs();
+			return ha.library.getTabs();
 		},
 	} );
 
@@ -66,7 +103,7 @@
 			var $target = $(event.currentTarget),
 				device = $target.data('tab');
 
-			libraryManager.channels.tabs.trigger('change:device', device, $target);
+			ha.library.channels.tabs.trigger('change:device', device, $target);
 		}
 	} );
 
@@ -137,35 +174,98 @@
 		}
 	});
 
-	Library.View.Templates = Marionette.ItemView.extend({
-		template: '#tmpl-haTemplateLibrary__collection',
-		className: 'haTemplateLibrary__collection',
+	Library.View.TemplateCollection = Marionette.CompositeView.extend( {
+		template: '#tmpl-haTemplateLibrary__templates',
 
-		ui: function() {
-			return {
-				showBack: '.btn-back',
-				goBack: '.btn-go',
-			}
+		id: 'haTemplateLibrary__templates',
+
+		childViewContainer: '#haTemplateLibrary__templates-list',
+
+		emptyView: function() {
+			// var EmptyView = require( 'elementor-templates/views/parts/templates-empty' );
+
+			// return new EmptyView();
 		},
 
-		events: function() {
-			return {
-				'click @ui.showBack': 'onShowBack',
-				'click @ui.goBack': 'onGoBack',
-			};
+		ui: {
+			textFilter: '#haTemplateLibrary__search',
+			selectFilter: '#haTemplateLibrary__filter-tags',
 		},
 
-		onShowBack: function(event) {
-			event.preventDefault();
-			console.log('show back')
-			libraryManager.getModal().showPreview({url:'https://obiPlabon.im'});
+		events: {
+			'input @ui.textFilter': 'onTextFilterInput',
+			'change @ui.selectFilter': 'onSelectFilterChange',
 		},
 
-		onGoBack: function(event) {
-			event.preventDefault();
-			console.log('go back')
-		}
-	});
+		getChildView: function( childModel ) {
+			return Library.View.Template;
+		},
+
+		initialize: function() {
+			this.listenTo( elementor.channels.templates, 'filter:change', this._renderChildren );
+		},
+
+		setFiltersUI: function() {
+			var $filters = this.$( this.ui.selectFilter );
+
+			$filters.select2( {
+				placeholder: 'Select ...',
+				allowClear: true,
+				width: 150,
+				dropdownParent: this.$el,
+			} );
+		},
+
+		setMasonrySkin: function() {
+			var masonry = new elementorModules.utils.Masonry( {
+				container: this.$childViewContainer,
+				items: this.$childViewContainer.children(),
+			} );
+
+			this.$childViewContainer.imagesLoaded( masonry.run.bind( masonry ) );
+		},
+
+		onRender: function() {
+			this.setFiltersUI();
+		},
+
+		onRenderCollection: function() {
+			this.setMasonrySkin();
+		},
+
+		onTextFilterInput: function() {
+			elementor.templates.setFilter( 'text', this.ui.textFilter.val() );
+		},
+
+		onSelectFilterChange: function( event ) {
+			var $select = $( event.currentTarget );
+			elementor.templates.setFilter( 'tags', $select.val() );
+		},
+	} );
+
+	Library.View.Template = Marionette.ItemView.extend( {
+		template: '#tmpl-haTemplateLibrary__template',
+
+		className: 'haTemplateLibrary__template',
+
+		ui: {
+			previewButton: '.haTemplateLibrary__template-preview',
+		},
+
+		events: {
+			'click @ui.previewButton': 'onPreviewButtonClick',
+		},
+
+		// behaviors: {
+		// 	insertTemplate: {
+		// 		behaviorClass: Library.Behavior.InsertTemplate,
+		// 	},
+		// },
+
+		onPreviewButtonClick: function() {
+			ha.library.showPreviewView( this.model )
+		},
+	} );
 
 	Library.Modal = elementorModules.common.views.modal.Layout.extend({
 		getModalOptions: function() {
@@ -200,48 +300,42 @@
 			headerView.menuArea.show( new Library.View.Menu() );
 		},
 
-		showPreview: function(args) {
+		showPreviewView: function( templateModel ) {
 			var headerView = this.getHeaderView();
 
 			headerView.menuArea.show( new Library.View.ResponsiveMenu() );
 			headerView.logoArea.show( new Library.View.BackButton() );
-			headerView.tools.show( new Library.View.InsertWrapper({isPro: true}) );
+			headerView.tools.show( new Library.View.InsertWrapper({ isPro: true} ) );
 
 			this.modalContent.show( new Library.View.Preview( {
-				url: 'https://obiplabon.im',
+				url: templateModel.get( 'url' )
 			} ) );
 		},
 
-		showBlocks: function(args) {
-			this.showDefaultHeader();
-			this.modalContent.show(new Library.View.Templates(args));
+		showBlocksView: function( blocksCollection ) {
+			this.modalContent.show( new Library.View.TemplateCollection( {
+				collection: blocksCollection,
+			} ) );
 		}
 	});
 
 	Library.Manager = function() {
-		var self = this,
-			modal,
+		var modal,
+			tags,
+			self = this,
+			templatesCollection,
 			FIND_SELECTOR = '.elementor-add-new-section .elementor-add-section-drag-title',
 			$openLibraryButton = '<div class="elementor-add-section-area-button ha-add-template-button"><i class="hm hm-happyaddons"></i></div>',
 			devicesResponsiveMap = {
-				desktop: {
-					width: '100%',
-					height: '100%'
-				},
-				tab: {
-					width: '768px',
-					height: '1025px'
-				},
-				mobile: {
-					width: '360px',
-    				height: '640px'
-				}
+				desktop: '100%',
+				tab: '768px',
+				mobile: '360px',
 			};
 
 		this.atIndex = -1;
 
 		this.channels = {
-			tabs: Backbone.Radio.channel( 'tabs' )
+			tabs: Backbone.Radio.channel( 'tabs' ),
 		};
 
 		function onAddElementButtonClick() {
@@ -281,8 +375,8 @@
 				.siblings()
 				.removeClass('elementor-active');
 
-			var sizes = devicesResponsiveMap[device] || devicesResponsiveMap['desktop'];
-			$('.haTemplateLibrary__preview > iframe').css(sizes);
+			var width = devicesResponsiveMap[device] || devicesResponsiveMap['desktop'];
+			$('.haTemplateLibrary__preview').css('width', width);
 		}
 
 		function onPreviewLoaded() {
@@ -302,8 +396,8 @@
 		}
 
 		this.showModal = function() {
-			this.getModal().showModal();
-			this.getModal().showBlocks();
+			self.getModal().showModal();
+			self.showBlocksView();
 
 
 			// this.layout.showLoadingView()
@@ -339,42 +433,70 @@
 			};
 		};
 
-		// getKeywords: function() {
-		//     return _.each(this.keywords, function(e, t) {
-		//         tabs.push({
-		//             slug: t,
-		//             title: e
-		//         })
-		//     }), []
-		// },
+		this.getTags = function() {
+			return tags;
+		}
 
-		// requestTemplates: function(t) {
-		//     var n = this,
-		//         a = n.tabs[t];
-		//     n.setFilter("category", !1), a.data.templates && a.data.categories ? n.layout.showTemplatesView(a.data.templates, a.data.categories, a.data.keywords) : e.ajax({
-		//         url: ajaxurl,
-		//         type: "get",
-		//         dataType: "json",
-		//         data: {
-		//             action: "elementskit_get_layouts",
-		//             tab: t
-		//         },
-		//         success: function(e) {
-		//             var a = new i.LibraryCollection(e.data.templates),
-		//                 l = new i.CategoriesCollection(e.data.categories);
-		//             n.tabs[t].data = {
-		//                 templates: a,
-		//                 categories: l,
-		//                 keywords: e.data.keywords
-		//             }, n.layout.showTemplatesView(a, l, e.data.keywords)
-		//         }
-		//     })
-		// },
+		this.showBlocksView = function() {
+			self.getModal().showDefaultHeader();
+			self.loadTemplates( function() {
+				self.getModal().showBlocksView( templatesCollection );
+			} );
+		};
+
+		this.showPreviewView = function( templateModel ) {
+			self.getModal().showPreviewView( templateModel );
+		};
+
+		this.loadTemplates = function( onUpdate ) {
+			self.requestLibraryData( {
+				onBeforeUpdate: self.getModal().showLoadingView.bind( self.getModal() ),
+				onUpdate: function() {
+					self.getModal().hideLoadingView();
+
+					if ( onUpdate ) {
+						onUpdate();
+					}
+				},
+			} );
+		};
+
+		this.requestLibraryData = function( options ) {
+			if ( templatesCollection && ! options.forceUpdate ) {
+				if ( options.onUpdate ) {
+					options.onUpdate();
+				}
+
+				return;
+			}
+
+			if ( options.onBeforeUpdate ) {
+				options.onBeforeUpdate();
+			}
+
+			var ajaxOptions = {
+				data: {},
+				success: function( data ) {
+					templatesCollection = new Library.Collection.Template( data.templates );
+
+					if ( data.tags ) {
+						tags = data.tags;
+					}
+
+					if ( options.onUpdate ) {
+						options.onUpdate();
+					}
+				},
+			};
+
+			if ( options.forceSync ) {
+				ajaxOptions.data.sync = true;
+			}
+
+			elementorCommon.ajax.addRequest( 'get_happy_library_data', ajaxOptions );
+		};
 	};
 
-	var libraryManager = new Library.Manager();
-
-	window.haLibary = libraryManager;
-	window.haLibary.init();
-
+	window.ha.library = new Library.Manager();
+	window.ha.library.init();
 }(jQuery, window.elementor));

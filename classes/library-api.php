@@ -1,0 +1,101 @@
+<?php
+/**
+ * Library api class
+ *
+ * @package HappyAddons
+ * @author HappyMonster
+ */
+namespace Happy_Addons\Elementor;
+
+defined( 'ABSPATH' ) || die();
+
+class Library_Api {
+
+	/**
+	 * Template library data cache
+	 */
+	const LIBRARY_CACHE_KEY = 'ha_library_cache';
+
+	/**
+	 * Template info api url
+	 */
+	const API_TEMPLATES_INFO_URL = 'https://templates.happyaddons.com/wp-json/ha/v1/templates-info';
+
+	/**
+	 * Template data api url
+	 */
+	const API_TEMPLATE_DATA_URL = 'https://happyaddons.local/wp-json/ha/v1/templates/';
+
+	/**
+	 * Get library data from remote source and cache
+	 *
+	 * @param boolean $force_update
+	 * @return array
+	 */
+	private static function request_data( $force_update = false ) {
+		$data = get_option( self::LIBRARY_CACHE_KEY );
+
+		if ( $force_update || false === $data ) {
+			$timeout = ( $force_update ) ? 25 : 8;
+
+			$response = wp_remote_get( self::API_TEMPLATES_INFO_URL, [
+				'timeout' => $timeout,
+			] );
+
+			if ( is_wp_error( $response ) || 200 !== (int) wp_remote_retrieve_response_code( $response ) ) {
+				update_option( self::LIBRARY_CACHE_KEY, [] );
+				return false;
+			}
+
+			$data = json_decode( wp_remote_retrieve_body( $response ), true );
+
+			if ( empty( $data ) || ! is_array( $data ) ) {
+				update_option( self::LIBRARY_CACHE_KEY, [] );
+				return false;
+			}
+
+			update_option( self::LIBRARY_CACHE_KEY, $data, 'no' );
+		}
+
+		return $data;
+	}
+
+	/**
+	 * Get library data
+	 *
+	 * @param boolean $force_update
+	 * @return array
+	 */
+	public static function get_data( $force_update = false ) {
+		self::request_data( $force_update );
+
+		$data = get_option( self::LIBRARY_CACHE_KEY );
+
+		if ( empty( $data ) ) {
+			return [];
+		}
+
+		return $data;
+	}
+
+	/**
+	 * Ajax reset API data.
+	 *
+	 * Reset Elementor library API data using an ajax call.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 * @static
+	 */
+	public static function ajax_reset_api_data() {
+		check_ajax_referer( 'elementor_reset_library', '_nonce' );
+
+		self::request_data( true );
+
+		wp_send_json_success();
+	}
+
+	public static function init() {
+		// add_action( 'wp_ajax_elementor_reset_library', [ __CLASS__, 'ajax_reset_api_data' ] );
+	}
+}
