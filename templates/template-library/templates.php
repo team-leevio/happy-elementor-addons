@@ -91,8 +91,10 @@ defined( 'ABSPATH' ) || exit;
 				<div id="haTemplateLibrary__filter">
 					<select id="haTemplateLibrary__filter-tags" class="haTemplateLibrary__filter-tags">
 						<option></option>
-						<# _.each( ha.library.getTags(), function( name, slug ) { #>
-							<option value="{{ slug }}">{{{ name }}}</option>
+						<# _.each( ha.library.getTags(), function( name, slug ) {
+							var selected = ha.library.getFilter( 'tags' ) === slug ? 'selected="selected"' : '';
+							#>
+							<option value="{{ slug }}" {{{ selected }}}>{{{ name }}}</option>
 						<# } ); #>
 					</select>
 				</div>
