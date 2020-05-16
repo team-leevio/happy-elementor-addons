@@ -36,11 +36,12 @@
 		},
 
 		onInsertButtonClick: function() {
-			const args = {
-				model: this.view.model,
-			};
+			console.log('wow insert');
+			// const args = {
+			// 	model: this.view.model,
+			// };
 
-			$e.run( 'library/insert-template', args );
+			// $e.run( 'library/insert-template', args );
 		},
 	} );
 
@@ -124,11 +125,10 @@
 
 			self.ui.sync.addClass( 'eicon-animation-spin' );
 
-			elementor.templates.requestLibraryData( {
+			ha.library.requestLibraryData( {
 				onUpdate: function() {
 					self.ui.sync.removeClass( 'eicon-animation-spin' );
-
-					$e.routes.refreshContainer( 'library' );
+					ha.library.updateBlocksView();
 				},
 				forceUpdate: true,
 				forceSync: true,
@@ -136,18 +136,16 @@
 		},
 	} );
 
-	// var TemplateLibraryInsertTemplateBehavior = require( 'elementor-templates/behaviors/insert-template' );
-
 	Library.View.InsertWrapper = Marionette.ItemView.extend( {
 		template: '#tmpl-haTemplateLibrary__header-insert',
 
 		id: 'elementor-template-library-header-preview',
 
-		// behaviors: {
-		// 	insertTemplate: {
-		// 		behaviorClass: TemplateLibraryInsertTemplateBehavior,
-		// 	},
-		// },
+		behaviors: {
+			insertTemplate: {
+				behaviorClass: Library.Behavior.InsertTemplate,
+			},
+		},
 	} );
 
 	Library.View.Preview = Marionette.ItemView.extend({
@@ -225,8 +223,6 @@
 
 					return callbackResult;
 				}
-
-				// return filterResult;
 			});
 
 			return passingFilter;
@@ -283,11 +279,11 @@
 			'click @ui.previewButton': 'onPreviewButtonClick',
 		},
 
-		// behaviors: {
-		// 	insertTemplate: {
-		// 		behaviorClass: Library.Behavior.InsertTemplate,
-		// 	},
-		// },
+		behaviors: {
+			insertTemplate: {
+				behaviorClass: Library.Behavior.InsertTemplate,
+			},
+		},
 
 		onPreviewButtonClick: function() {
 			ha.library.showPreviewView( this.model )
@@ -341,7 +337,6 @@
 		},
 
 		showBlocksView: function( blocksCollection ) {
-			this.showDefaultHeader();
 			this.modalContent.show( new Library.View.TemplateCollection( {
 				collection: blocksCollection,
 			} ) );
@@ -425,6 +420,10 @@
 			this.channels.tabs.on('change:device', onDeviceChange);
 		}
 
+		this.updateBlocksView = function() {
+			self.getModal().showBlocksView( templatesCollection );
+		}
+
 		this.setFilter = function( name, value, silent ) {
 			self.channels.templates.reply( 'filter:' + name, value );
 
@@ -465,12 +464,6 @@
 		this.showModal = function() {
 			self.getModal().showModal();
 			self.showBlocksView();
-
-
-			// this.layout.showLoadingView()
-			// this.setTab(this.defaultTab, !0)
-			// // this.requestTemplates(this.defaultTab);
-			// this.setPreview('initial');
 		};
 
 		this.closeModal = function() {
@@ -505,6 +498,7 @@
 		}
 
 		this.showBlocksView = function() {
+			self.getModal().showDefaultHeader();
 			self.loadTemplates( function() {
 				self.getModal().showBlocksView( templatesCollection );
 			} );

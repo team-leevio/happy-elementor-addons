@@ -77,25 +77,4 @@ class Library_Api {
 
 		return $data;
 	}
-
-	/**
-	 * Ajax reset API data.
-	 *
-	 * Reset Elementor library API data using an ajax call.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 * @static
-	 */
-	public static function ajax_reset_api_data() {
-		check_ajax_referer( 'elementor_reset_library', '_nonce' );
-
-		self::request_data( true );
-
-		wp_send_json_success();
-	}
-
-	public static function init() {
-		// add_action( 'wp_ajax_elementor_reset_library', [ __CLASS__, 'ajax_reset_api_data' ] );
-	}
 }
