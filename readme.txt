@@ -1,12 +1,12 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.9.0
+Version: 2.10.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
 Tags: Elementor Page Builder, Elementor addons, Elementor Widgets, Elementor Editor, Web Page Builder
 Requires at least: 4.7
-Tested up to: 5.3.2
+Tested up to: 5.4.1
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -22,7 +22,7 @@ This Elementor based plugin is the latest addition in the list of [weDevs](https
 
 This Elementor based plugin is the latest addition in the list of [weDevs](https://wedevs.com/) premium product library. Enjoy this freemium (free+premium) page builder for Elementor that consists of cutting-edge widgets that are surely set to take your page building experience with Elementor editor to the next level.
 
-### **32+ FREE PREMIUM-LIKE WIDGETS AND MORE ON ITS WAY**
+### **34+ FREE PREMIUM-LIKE WIDGETS AND MORE ON ITS WAY**
 
 Unlike most other Elementor addons, Happy Addons offers itself with many robust free widgets. These free yet important widgets would surely give you a feel of premium widgets making you wonder how come these widgets are free. Let's explore all the magical free widgets of Happy Addons:
 
@@ -53,11 +53,13 @@ Unlike most other Elementor addons, Happy Addons offers itself with many robust 
 - [**Image Grid**](https://demo.happyaddons.com/elementor-image-grid-widget-demo/) – Simply beautiful, this widget can help you create stunning number blocks with various styles, look-n-feels that's literally going to blow your mind.
 - [**Gravity Forms**](https://demo.happyaddons.com/elementor-gravity-form-widget-demo/) – While using Gravity forms, you may want to change the appearance of the form fields. With the Happy Addons, you can spruce up your Gravity forms like a pro.
 - [**News Ticker**](https://demo.happyaddons.com/elementor-news-ticker-widget-demo/) – Want to show updates, popular content or messages on your website? With the Happy Elementor Addons Content Ticker widget, you can do this at your disposal with great customizability.
-- **[Twitter Fee](https://demo.happyaddons.com/elementor-twitter-feed-widget-demo/)d** – Showcase your awesome team decorating in the Twitter feed mode applying various styles, texts, images, and social links.
-- **[Bar Chart](https://demo.happyaddons.com/elementor-bar-chart-widget-demo/)**– Display charts in an animated and customizable bar form essentially in case of imaging different data and other relevant statistical visualizations.
-- **[Social Icon](https://demo.happyaddons.com/elementor-social-icon-widget-demo/)s** – Beautifully insert and display your social links onto your webpage using this widget to easily connect with your site visitor.
-- **[Post Tab](https://demo.happyaddons.com/elementor-post-tab-widget-demo/)**– Enable users to present your post in multiple workable tabs ideally useful for grouped and related content.
-- **[Post List](https://demo.happyaddons.com/elementor-post-list-widget-demo/)**– List any post elegantly using this widget displaying them in a creative and innovative manner with multiple options to play with.
+- [**Twitter Fee**](https://demo.happyaddons.com/elementor-twitter-feed-widget-demo/) – Showcase your awesome team decorating in the Twitter feed mode applying various styles, texts, images, and social links.
+- [**Bar Chart**](https://demo.happyaddons.com/elementor-bar-chart-widget-demo/) – Display charts in an animated and customizable bar form essentially in case of imaging different data and other relevant statistical visualizations.
+- [**Social Icon**](https://demo.happyaddons.com/elementor-social-icon-widget-demo/) – Beautifully insert and display your social links onto your webpage using this widget to easily connect with your site visitor.
+- [**Post Tab**](https://demo.happyaddons.com/elementor-post-tab-widget-demo/) – Enable users to present your post in multiple workable tabs ideally useful for grouped and related content.
+- [**Post List**](https://demo.happyaddons.com/elementor-post-list-widget-demo/) – List any post elegantly using this widget displaying them in a creative and innovative manner with multiple options to play with.
+- [**360° Rotation**](https://demo.happyaddons.com/) - Demo coming soon
+- [**Taxonomy List**](https://demo.happyaddons.com/) - Demo coming soon
 
 New free widgets or features are added every month. With all these awesome free widgets, this nifty plugin, not just aims to the trendy and sophisticated WordPress website design philosophy but also effortlessly aligns with any Elementor powered WordPress website design requirements.
 
@@ -201,19 +203,6 @@ Learn more about how [Appsero collects and uses this data](https://appsero.com/p
 
 Despite Happy Addons for Elementor, being the newest addition to the product line up of [weDevs](https://wedevs.com/), it has already managed to win the heart of its users with a staggering 5-star rating. The plugin is programmed in a way so you don't require any prior coding know-how and is completely cross-browser compatible with mobile responsive feature.
 
-Not just Happy Addons, the team of weDevs have been working on a number of exciting WordPress plugins & web-based applications for the last 9 years. Apart from Happy Addons, its amazing creation includes:
-
-- [**WP User Frontend:**](https://wedevs.com/wp-user-frontend-pro)Complete Frontend Posting Management Plugin for WordPress
-- [**WP Project Manager:**](https://wedevs.com/wp-project-manager-pro/)Project management solution for WordPress to manage your projects more efficiently
-- [**WooCommerce Conversion Tracking:**](https://wedevs.com/woocommerce-conversion-tracking/)WooCommerce site conversion data tracking solution to send it to the top ad platforms for better retargeting
-- [**Dokan:**](https://wedevs.com/dokan/)Most popularWooCommerce Based Multi-vendor Marketplacefor your WordPress powered business site
-- [**WP ERP:**](https://wperp.com/)All-in-one business management solution with separate modules to manage your HRM, CRM, and Accounts
-- [**weMail:**](https://getwemail.io/)Cost-effective marketing tool to boost your email conversion
-- [**Appsero:**](https://appsero.com/?utm_source=wedevs&utm_medium=footer)Comprehensive sales, analytics & deployment management tool for theme and plugin developer
-- [**wePos:**](https://wedevs.com/wepos) WooCommerce Point of Sales plugin
-
-And some more interesting projects like [**weCare**](https://wedevs.com/wecare) **,** [**weLab**](https://wedevs.com/welab) **,** [**weDocs**](https://wordpress.org/plugins/wedocs/).
-
 
 == Frequently Asked Questions ==
 
@@ -269,6 +258,11 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.10.0 - 18 May 2020 =
+
+- New: 360° Rotation widget
+- New: Taxonomy List widget
 
 = 2.9.0 - 29 April 2020 =
 
