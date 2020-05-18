@@ -529,6 +529,16 @@ class Widgets_Manager {
 			        'js' => [],
 		        ],
 	        ],
+	        'taxonomy-list' => [
+		        'title' => __( 'Taxonomy List', 'happy-elementor-addons' ),
+		        'icon' => 'hm hm-clip-board',
+		        'css' => ['taxonomy-list'],
+		        'js' => [],
+		        'vendor' => [
+			        'css' => [],
+			        'js' => [],
+		        ],
+	        ],
         ];
     }
 
