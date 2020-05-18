@@ -539,6 +539,16 @@ class Widgets_Manager {
 			        'js' => [],
 		        ],
 	        ],
+	        'threesixty-rotation' => [
+		        'title' => __( 'Threesixty Rotation', 'happy-elementor-addons' ),
+		        'icon' => 'hm hm-3d-rotate',
+		        'css' => ['threesixty-rotation'],
+		        'js' => [],
+		        'vendor' => [
+			        'css' => [],
+			        'js' => ['circlr','ha-simple-magnify'],
+		        ],
+            ]
         ];
     }
 
