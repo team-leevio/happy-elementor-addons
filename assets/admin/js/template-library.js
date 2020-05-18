@@ -36,7 +36,7 @@
 		},
 
 		onInsertButtonClick: function() {
-			console.log('wow insert');
+			console.log(this);
 			// const args = {
 			// 	model: this.view.model,
 			// };
@@ -187,12 +187,12 @@
 
 		ui: {
 			textFilter: '#haTemplateLibrary__search',
-			selectFilter: '#haTemplateLibrary__filter-tags',
+			tagsFilter: '#haTemplateLibrary__filter-tags > li',
 		},
 
 		events: {
 			'input @ui.textFilter': 'onTextFilterInput',
-			'change @ui.selectFilter': 'onSelectFilterChange',
+			'click @ui.tagsFilter': 'onTagsFilterClick',
 		},
 
 		getChildView: function( childModel ) {
@@ -228,17 +228,6 @@
 			return passingFilter;
 		},
 
-		setFiltersUI: function() {
-			var $filters = this.$( this.ui.selectFilter );
-
-			$filters.select2( {
-				placeholder: 'Select ...',
-				allowClear: true,
-				width: 150,
-				dropdownParent: this.$el,
-			} );
-		},
-
 		setMasonrySkin: function() {
 			var masonry = new elementorModules.utils.Masonry( {
 				container: this.$childViewContainer,
@@ -246,10 +235,6 @@
 			} );
 
 			this.$childViewContainer.imagesLoaded( masonry.run.bind( masonry ) );
-		},
-
-		onRender: function() {
-			this.setFiltersUI();
 		},
 
 		onRenderCollection: function() {
@@ -260,9 +245,9 @@
 			ha.library.setFilter( 'text', this.ui.textFilter.val() );
 		},
 
-		onSelectFilterChange: function( event ) {
+		onTagsFilterClick: function( event ) {
 			var $select = $( event.currentTarget );
-			ha.library.setFilter( 'tags', $select.val() );
+			ha.library.setFilter( 'tags', $select.data('tag') );
 		},
 	} );
 
@@ -329,7 +314,7 @@
 
 			headerView.menuArea.show( new Library.View.ResponsiveMenu() );
 			headerView.logoArea.show( new Library.View.BackButton() );
-			headerView.tools.show( new Library.View.InsertWrapper({ isPro: true} ) );
+			headerView.tools.show( new Library.View.InsertWrapper( { model: templateModel } ) );
 
 			this.modalContent.show( new Library.View.Preview( {
 				url: templateModel.get( 'url' )

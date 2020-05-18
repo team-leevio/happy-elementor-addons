@@ -36,13 +36,13 @@
 
 .haTemplateLibrary__responsive-menu-item {
 	display: inline-block;
-    padding: 17px 0;
+    padding: 15px 0;
     width: 40px;
 	cursor: pointer;
 
 	&.elementor-active {
 		background-image: linear-gradient(to bottom, #f1f3f5, #fff);
-		border-bottom: 3px solid #D30C5C;
+		border-bottom: 3px solid #562dd4;
 	}
 }
 
@@ -59,18 +59,71 @@
 }
 
 #haTemplateLibrary__filter {
-	width: 150px;
+	position: relative;
+	text-align: left;
+	width: 200px;
+}
 
-	.select2 {
-		text-align: left;
+#haTemplateLibrary__filter-tags {
+	padding: 10px;
+	margin-top: 10px;
+	position: absolute;
+    top: 100%;
+    left: 0;
+    width: 270%;
+    z-index: 999;
+	background: #fff;
+	border-radius: 0 2px 2px;
+	box-shadow: 0 4px 8px rgba(0,0,0,.05);
+	display: none;
+
+	> li {
+		padding: 10px;
+		float: left;
+		width: calc(100% / 4);
 		text-transform: capitalize;
+		cursor: pointer;
+
+		&:hover {
+			color: #562dd4;
+		}
+	}
+
+	&:before {
+		content: " ";
+		position: absolute;
+		bottom: 100%;
+		left: 0;
+		width: 0;
+		height: 0;
+		border: solid transparent;
+		border-width: 0px 10px 10px 0;
+		border-bottom-color: #ffffff;
+		pointer-events: none;
 	}
 }
 
-#haTemplateLibrary__templates {
-	.select2-dropdown {
-		text-align: left;
-		text-transform: capitalize;
+.haTemplateLibrary__filter {
+	&-btn {
+		width: 100%;
+		padding: 8px 15px 8px 0;
+		height: 30px;
+		line-height: 0;
+		border: 0;
+		border-bottom: 1px solid #d5dadf;
+		position: relative;
+		background-color: transparent;
+		outline: 0;
+		color: #aeb7be;
+		text-align: inherit;
+		cursor: pointer;
+
+		> i {
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+		}
 	}
 }
 

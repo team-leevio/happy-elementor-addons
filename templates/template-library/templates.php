@@ -89,14 +89,14 @@ defined( 'ABSPATH' ) || exit;
 		<div id="haTemplateLibrary__toolbar-filter" class="haTemplateLibrary__toolbar-filter">
 			<# if ( ha.library.getTags() ) { #>
 				<div id="haTemplateLibrary__filter">
-					<select id="haTemplateLibrary__filter-tags" class="haTemplateLibrary__filter-tags">
-						<option></option>
+					<button type="button" class="haTemplateLibrary__filter-btn"><?php esc_html_e( 'Filter ...', 'happy-elementor-addons' ); ?> <i class="eicon-caret-right"></i></button>
+					<ul id="haTemplateLibrary__filter-tags" class="haTemplateLibrary__filter-tags">
 						<# _.each( ha.library.getTags(), function( name, slug ) {
-							var selected = ha.library.getFilter( 'tags' ) === slug ? 'selected="selected"' : '';
+							var selected = ha.library.getFilter( 'tags' ) === slug ? 'ha--active' : '';
 							#>
-							<option value="{{ slug }}" {{{ selected }}}>{{{ name }}}</option>
+							<li data-tag="{{ slug }}" class="{{ selected }}">{{{ name }}}</li>
 						<# } ); #>
-					</select>
+					</ul>
 				</div>
 			<# } #>
 		</div>
