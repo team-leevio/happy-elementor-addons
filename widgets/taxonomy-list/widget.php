@@ -694,6 +694,7 @@ class Taxonomy_List extends Base {
 			];
 			$terms = get_terms( $args );
 		}
+		$loop_count = count($terms) - 1;
 		$this->add_render_attribute( 'wrapper', 'class', [ 'ha-taxonomy-list-wrapper' ] );
 		$this->add_render_attribute( 'wrapper-inner', 'class', [ 'ha-taxonomy-list' ] );
 		if ( 'inline' === $settings['view'] ) {
@@ -702,52 +703,53 @@ class Taxonomy_List extends Base {
 		$this->add_render_attribute( 'item', 'class', [ 'ha-taxonomy-list-item' ] );
 
 		if ( count( $terms ) !== 0 && count( $lists ) !== 0 ) :?>
-			  <div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
-				  <ul <?php $this->print_render_attribute_string( 'wrapper-inner' ); ?> >
-				  <?php foreach ( $lists as $index => $value ):
-					  if ( !$value['tax_id'] ) continue; ?>
-							<li <?php $this->print_render_attribute_string( 'item' ); ?>>
-								<a href="<?php echo esc_url( get_term_link( $terms[$index]->term_id ) ); ?>">
-									<?php
-									$icon_settings = 'yes' === $settings['common_icon_enable'] && !empty( $settings['common_icon'] ) ? $settings['common_icon'] : $value['individual_icon'];
+			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
+				<ul <?php $this->print_render_attribute_string( 'wrapper-inner' ); ?> >
+				<?php foreach ( $lists as $index => $value ):
+					if ( !$value['tax_id'] ) continue; ?>
+					<li <?php $this->print_render_attribute_string( 'item' ); ?>>
+						<a href="<?php echo esc_url( get_term_link( $terms[$index]->term_id ) ); ?>">
+							<?php
+							$icon_settings = 'yes' === $settings['common_icon_enable'] && !empty( $settings['common_icon'] ) ? $settings['common_icon'] : $value['individual_icon'];
 
-									$icon = 'yes' === $settings['common_icon_enable'] && !empty( $settings['icon'] ) ? $settings['icon'] : $value['icon'];
+							$icon = 'yes' === $settings['common_icon_enable'] && !empty( $settings['icon'] ) ? $settings['icon'] : $value['icon'];
 
-									$image_url = 'yes' === $settings['common_icon_enable'] && !empty( $settings['image']['url'] ) ? $settings['image']['url'] : $value['image']['url'];
-									?>
-									<?php if ( $icon_settings ) :
-										echo '<span class="ha-taxonomy-list-' . esc_attr( $icon_settings ) . '">';
-										if ( 'icon' === $icon_settings && !empty( $icon ) ) :
-											Icons_Manager::render_icon( $icon, [ 'aria-hidden' => 'true' ] );
-												  elseif ( 'image' === $icon_settings && !empty( $image_url ) ) :
-											echo '<img src="' . esc_url( $image_url ) . '">';
-										endif;
-										echo '</span>';
-									endif; ?>
-									<?php
-									//Term Title
-									$title = $terms[$index]->name;
-									if ( array_key_exists( $terms[$index]->term_id, $customize_title ) ) {
-										$title = $customize_title[$terms[$index]->term_id];
-									}
-									if ( $title ) {
-										printf( '<%1$s %2$s>%3$s</%1$s>',
-											'h4',
-											'class="ha-taxonomy-list-title"',
-											esc_html( $title )
-										);
-									}
-									?>
-								</a>
-							</li>
-				  <?php endforeach; ?>
-				  </ul>
-			  </div>
+							$image_url = 'yes' === $settings['common_icon_enable'] && !empty( $settings['image']['url'] ) ? $settings['image']['url'] : $value['image']['url'];
+							?>
+							<?php if ( $icon_settings ) :
+								echo '<span class="ha-taxonomy-list-' . esc_attr( $icon_settings ) . '">';
+								if ( 'icon' === $icon_settings && !empty( $icon ) ) :
+									Icons_Manager::render_icon( $icon, [ 'aria-hidden' => 'true' ] );
+											elseif ( 'image' === $icon_settings && !empty( $image_url ) ) :
+									echo '<img src="' . esc_url( $image_url ) . '">';
+								endif;
+								echo '</span>';
+							endif; ?>
+							<?php
+							//Term Title
+							$title = $terms[$index]->name;
+							if ( array_key_exists( $terms[$index]->term_id, $customize_title ) ) {
+								$title = $customize_title[$terms[$index]->term_id];
+							}
+							if ( $title ) {
+								printf( '<%1$s %2$s>%3$s</%1$s>',
+									'h4',
+									'class="ha-taxonomy-list-title"',
+									esc_html( $title )
+								);
+							}
+							?>
+						</a>
+					</li>
+					<?php if ( $loop_count === $index ) break; ?>
+				<?php endforeach; ?>
+				</ul>
+			</div>
 		<?php
 		else:
 			printf( '%1$s %2$s %3$s',
 				__( 'No ', 'happy-elementor-addons' ),
-				esc_html( $settings['taxonomy_type'] ),
+				esc_html( str_replace( '_', ' ', $settings['taxonomy_type'] ) ),
 				__( 'found', 'happy-elementor-addons' )
 			);
 		endif;
