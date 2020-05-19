@@ -228,12 +228,47 @@ function ha_get_allowed_html_tags( $level = 'basic' ) {
 	];
 
 	if ( $level === 'intermediate' ) {
-		$allowed_html['a'] = [
-			'href' => [],
-			'title' => [],
-			'class' => [],
-			'id' => [],
+		$tags = [
+			'a' => [
+				'href' => [],
+				'title' => [],
+				'class' => [],
+				'id' => [],
+			],
+			'q' => [
+				'cite' => [],
+			],
+			'img' => [
+				'src' => [],
+				'alt' => [],
+				'height' => [],
+				'width' => [],
+			],
+			'dfn' => [
+				'title' => [],
+			],
+			'time' => [
+				'datetime' => [],
+			],
+			'cite' => [
+				'title' => [],
+			],
+			'acronym' => [
+				'title' => [],
+			],
+			'strike' => [],
+			'small' => [],
+			'code' => [],
+			'mark' => [],
+			'del' => [],
+			'ins' => [],
+			'sub' => [],
+			'sup' => [],
+			'hr' => [],
+			's' => [],
 		];
+
+		$allowed_html = array_merge( $allowed_html, $tags );
 	}
 
 	return $allowed_html;
