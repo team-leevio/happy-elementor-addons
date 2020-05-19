@@ -286,7 +286,7 @@ class Pricing_Table extends Base {
                 'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
                 'label_block' => true,
-                'placeholder' => 'https://happyaddons.com/',
+                'placeholder' => 'https://example.com',
                 'dynamic' => [
                     'active' => true,
                 ],

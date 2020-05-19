@@ -76,7 +76,7 @@ class Gradient_Heading extends Base {
                 'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
                 'separator' => 'before',
-                'placeholder' => 'https://happyaddons.com/',
+                'placeholder' => 'https://example.com',
                 'dynamic' => [
                     'active' => true,
                 ]

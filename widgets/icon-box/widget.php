@@ -119,7 +119,7 @@ class Icon_Box extends Base {
                 'label' => __( 'Box Link', 'happy-elementor-addons' ),
                 'separator' => 'before',
                 'type' => Controls_Manager::URL,
-                'placeholder' => 'https://happyaddons.com/',
+                'placeholder' => 'https://example.com',
                 'dynamic' => [
                     'active' => true,
                 ]

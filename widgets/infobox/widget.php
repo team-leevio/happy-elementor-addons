@@ -284,7 +284,7 @@ class InfoBox extends Base {
             [
                 'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
-                'placeholder' => __( 'https://happyaddons.com/', 'happy-elementor-addons' ),
+                'placeholder' => 'https://example.com',
                 'dynamic' => [
                     'active' => true,
                 ]
