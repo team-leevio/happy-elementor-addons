@@ -72,7 +72,7 @@ class Admin_Bar {
 
         $admin_bar->add_menu( array(
             'id'    => 'happy-addons',
-            'title' => '<img src="'.ha_get_b64_icon().'"">',
+            'title' => sprintf( '<img src="%s">', ha_get_b64_icon() ),
             'href'  => ha_get_dashboard_link(),
             'meta' => [
                 'title' => __( 'Happy Elementor Addons', 'happy-elementor-addons' ),
