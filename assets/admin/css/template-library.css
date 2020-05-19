@@ -65,21 +65,43 @@
 }
 
 #haTemplateLibrary__toolbar-filter {
+	position: relative; 
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display:         flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	        align-items: center; 
+	        align-items: center;
 	-ms-flex-align: center;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 200px;
+	    -ms-flex: 0 0 200px;
+	        flex: 0 0 200px;
 	font-size: 11px;
 }
 
-#haTemplateLibrary__filter {
+.haTemplateLibrary__filter-btn {
 	position: relative;
-	width: 200px; 
+	padding: 8px 15px 8px 0;
+	width: 100%;
+	height: 30px;
+	outline: 0;
+	border: 0;
+	border-bottom: 1px solid #d5dadf;
+	background-color: transparent;
+	color: #aeb7be;
 	text-align: left;
+	line-height: 0;
+	cursor: pointer;
+}
+.haTemplateLibrary__filter-btn > i {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	-webkit-transform: translateY(-50%);
+	    -ms-transform: translateY(-50%);
+	        transform: translateY(-50%);
 }
 
 #haTemplateLibrary__filter-tags {
@@ -116,29 +138,6 @@
 	border-bottom-color: #fff;
 	content: " ";
 	pointer-events: none;
-}
-
-.haTemplateLibrary__filter-btn {
-	position: relative;
-	padding: 8px 15px 8px 0;
-	width: 100%;
-	height: 30px;
-	outline: 0;
-	border: 0;
-	border-bottom: 1px solid #d5dadf;
-	background-color: transparent;
-	color: #aeb7be;
-	text-align: inherit;
-	line-height: 0;
-	cursor: pointer;
-}
-.haTemplateLibrary__filter-btn > i {
-	position: absolute;
-	top: 50%;
-	right: 0;
-	-webkit-transform: translateY(-50%);
-	    -ms-transform: translateY(-50%);
-	        transform: translateY(-50%);
 }
 
 #haTemplateLibrary__toolbar-search {

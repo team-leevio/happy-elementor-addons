@@ -57,7 +57,7 @@ defined( 'ABSPATH' ) || exit;
 </script>
 
 <script type="text/template" id="tmpl-haTemplateLibrary__insert-button">
-	<a class="elementor-template-library-template-action elementor-button elementor-template-library-template-insert ">
+	<a class="elementor-template-library-template-action elementor-button elementor-template-library-template-insert">
 		<i class="eicon-file-download" aria-hidden="true"></i>
 		<span class="elementor-button-title"><?php esc_html_e( 'Insert', 'happy-elementor-addons' ); ?></span>
 	</a>
@@ -88,16 +88,16 @@ defined( 'ABSPATH' ) || exit;
 	<div id="haTemplateLibrary__toolbar">
 		<div id="haTemplateLibrary__toolbar-filter" class="haTemplateLibrary__toolbar-filter">
 			<# if ( ha.library.getTags() ) { #>
-				<div id="haTemplateLibrary__filter">
-					<button type="button" class="haTemplateLibrary__filter-btn"><?php esc_html_e( 'Filter ...', 'happy-elementor-addons' ); ?> <i class="eicon-caret-right"></i></button>
-					<ul id="haTemplateLibrary__filter-tags" class="haTemplateLibrary__filter-tags">
-						<# _.each( ha.library.getTags(), function( name, slug ) {
-							var selected = ha.library.getFilter( 'tags' ) === slug ? 'ha--active' : '';
-							#>
-							<li data-tag="{{ slug }}" class="{{ selected }}">{{{ name }}}</li>
-						<# } ); #>
-					</ul>
-				</div>
+				<!-- <div id="haTemplateLibrary__filter"> -->
+				<button type="button" class="haTemplateLibrary__filter-btn"><?php esc_html_e( 'Filter ...', 'happy-elementor-addons' ); ?> <i class="eicon-caret-right"></i></button>
+				<ul id="haTemplateLibrary__filter-tags" class="haTemplateLibrary__filter-tags">
+					<# _.each( ha.library.getTags(), function( name, slug ) {
+						var selected = ha.library.getFilter( 'tags' ) === slug ? 'ha--active' : '';
+						#>
+						<li data-tag="{{ slug }}" class="{{ selected }}">{{{ name }}}</li>
+					<# } ); #>
+				</ul>
+				<!-- </div> -->
 			<# } #>
 		</div>
 
