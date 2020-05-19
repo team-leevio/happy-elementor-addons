@@ -902,7 +902,8 @@
 .ha-carousel .slick-prev:focus,
 .ha-carousel .slick-next:hover,
 .ha-carousel .slick-next:focus {
-	background-color: white;
+	background-color: white; 
+	color: #8c8c8c;
 }
 .ha-slider .slick-prev:before,
 .ha-slider .slick-next:before,
@@ -981,7 +982,8 @@
 
 .ha-slick-item {
 	position: relative;
-	overflow: hidden; 
+	display: inline-block; 
+	overflow: hidden;
 	vertical-align: bottom;
 }
 

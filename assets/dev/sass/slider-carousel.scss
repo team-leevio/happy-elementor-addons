@@ -21,6 +21,7 @@
 
     &:hover,
     &:focus {
+	  color: #8c8c8c;
       background-color: white;
     }
 
@@ -100,7 +101,8 @@
   &-item {
     position: relative;
     vertical-align: bottom;
-    overflow: hidden;
+	overflow: hidden;
+	display: inline-block;
   }
 
   &-content {

@@ -108,7 +108,7 @@ class Carousel extends Base {
 				'label' => __( 'Link', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::URL,
 				'label_block' => true,
-				'placeholder' => __( 'https://example.com', 'happy-elementor-addons' ),
+				'placeholder' => 'https://example.com',
 				'dynamic' => [
 					'active' => true,
 				]
