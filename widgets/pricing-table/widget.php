@@ -252,7 +252,7 @@ class Pricing_Table extends Base {
                         'icon' => 'fa fa-check',
                     ],
                 ],
-                'title_field' => '<# print(ha_get_feature_label(text)); #>',
+                'title_field' => '<# print(ha.getFeatureLabel(text)); #>',
             ]
         );
 

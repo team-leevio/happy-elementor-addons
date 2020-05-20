@@ -750,7 +750,7 @@ class Icon_Box extends Base {
         <#
         var iconHTML = migrated = '';
 
-        if ( ha_has_icon_library() ) {
+        if ( ha.hasIconLibrary() ) {
             iconHTML = elementor.helpers.renderIcon( view, settings.selected_icon, { 'aria-hidden': true }, 'i' , 'object' ),
             migrated = elementor.helpers.isIconMigrated( settings, 'selected_icon' );
         }
@@ -773,7 +773,7 @@ class Icon_Box extends Base {
 
         <# if ( settings.icon || settings.selected_icon.value ) { #>
             <span class="ha-icon-box-icon">
-                <# if ( ha_has_icon_library() && iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
+                <# if ( ha.hasIconLibrary() && iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
                     {{{ iconHTML.value }}}
                 <# } else { #>
                     <i class="{{ settings.icon }}" aria-hidden="true"></i>

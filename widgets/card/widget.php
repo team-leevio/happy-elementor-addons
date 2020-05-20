@@ -1112,7 +1112,7 @@ class Card extends Base {
         <#
         var btnIconHTML = btnMigrated = btnIcon = '';
 
-        if ( ha_has_icon_library() ) {
+        if ( ha.hasIconLibrary() ) {
             btnIconHTML = elementor.helpers.renderIcon( view, settings.button_selected_icon, { 'aria-hidden': true, 'class': 'ha-btn-icon' }, 'i' , 'object' ),
             btnMigrated = elementor.helpers.isIconMigrated( settings, 'button_selected_icon' );
         }
@@ -1166,7 +1166,7 @@ class Card extends Base {
             <# } #>
 
             <# if ( ( settings.button_selected_icon && settings.button_selected_icon.value ) || settings.button_icon ) {
-                if ( ha_has_icon_library() && btnIconHTML && btnIconHTML.rendered && ( ! settings.button_icon || btnMigrated ) ) {
+                if ( ha.hasIconLibrary() && btnIconHTML && btnIconHTML.rendered && ( ! settings.button_icon || btnMigrated ) ) {
                     btnIcon = btnIconHTML.value;
                 } else if ( settings.button_icon ) {
                     btnIcon = '<i class="ha-btn-icon ' + settings.button_icon + '" aria-hidden="true"></i>';

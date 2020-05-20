@@ -980,13 +980,11 @@ class InfoBox extends Base {
     public function _content_template() {
         ?>
         <#
-        var iconHTML = migrated = btnIconHTML = btnMigrated = btnIcon = '';
+        var iconHTML, migrated;
 
-        if ( ha_has_icon_library() ) {
+        if ( ha.hasIconLibrary() ) {
             iconHTML = elementor.helpers.renderIcon( view, settings.selected_icon, { 'aria-hidden': true }, 'i' , 'object' ),
             migrated = elementor.helpers.isIconMigrated( settings, 'selected_icon' );
-            btnIconHTML = elementor.helpers.renderIcon( view, settings.button_selected_icon, { 'aria-hidden': true, 'class': 'ha-btn-icon' }, 'i' , 'object' ),
-            btnMigrated = elementor.helpers.isIconMigrated( settings, 'button_selected_icon' );
         }
 
         view.addInlineEditingAttributes( 'title', 'basic' );
@@ -994,12 +992,6 @@ class InfoBox extends Base {
 
         view.addInlineEditingAttributes( 'description', 'intermediate' );
         view.addRenderAttribute( 'description', 'class', 'ha-infobox-text' );
-
-        view.addInlineEditingAttributes( 'button_text', 'none' );
-        view.addRenderAttribute( 'button_text', 'class', 'ha-btn-text' );
-
-        view.addRenderAttribute( 'button', 'class', 'ha-btn ha-btn--link' );
-        view.addRenderAttribute( 'button', 'href', settings.button_link.url );
 
         if ( settings.type === 'image' ) {
             if ( settings.image.url ) {
@@ -1018,7 +1010,7 @@ class InfoBox extends Base {
             <# }
         } else if ( settings.icon || settings.selected_icon.value ) { #>
             <figure class="ha-infobox-figure ha-infobox-figure--icon">
-                <# if ( ha_has_icon_library() && iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
+                <# if ( ha.hasIconLibrary() && iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
                     {{{ iconHTML.value }}}
                 <# } else { #>
                     <i class="{{ settings.icon }}" aria-hidden="true"></i>
@@ -1037,31 +1029,7 @@ class InfoBox extends Base {
                 </div>
             <# } #>
 
-            <# if ( settings.button_selected_icon || settings.button_icon ) {
-                if ( ha_has_icon_library() && btnIconHTML && btnIconHTML.rendered && ( ! settings.button_icon || btnMigrated ) ) {
-                    btnIcon = btnIconHTML.value;
-                } else if ( settings.button_icon ) {
-                    btnIcon = '<i class="ha-btn-icon ' + settings.button_icon + '" aria-hidden="true"></i>';
-                }
-            } #>
-
-            <# if ( settings.button_text && ( ! settings.button_selected_icon && ! settings.button_icon ) ) { #>
-                <a {{{ view.getRenderAttributeString( 'button' ) }}}><span {{{ view.getRenderAttributeString( 'button_text' ) }}}>{{ settings.button_text }}</span></a>
-            <# } else if ( ! settings.button_text && ( settings.button_selected_icon || settings.button_icon ) ) { #>
-                <a {{{ view.getRenderAttributeString( 'button' ) }}}>{{{ btnIcon }}}</a>
-            <# } else if ( settings.button_text && ( settings.button_selected_icon || settings.button_icon ) ) {
-                var button_before = button_after = '';
-                if ( settings.button_icon_position === 'before' ) {
-                    view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-before' );
-                    button_before = btnIcon;
-                    button_after = '<span ' + view.getRenderAttributeString( 'button_text' ) + '>' + settings.button_text + '</span>';
-                } else {
-                    view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-after' );
-                    button_after = btnIcon;
-                    button_before = '<span ' + view.getRenderAttributeString( 'button_text' ) + '>' + settings.button_text + '</span>';
-                } #>
-                <a {{{ view.getRenderAttributeString( 'button' ) }}}>{{{ button_before }}} {{{ button_after }}}</a>
-            <# } #>
+            <# print( ha.getButtonWithIcon(view) ); #>
         </div>
         <?php
     }
