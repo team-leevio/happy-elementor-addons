@@ -566,7 +566,8 @@ class Widgets_Manager {
      * @access public
      */
     public static function register() {
-        include_once( HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'traits/with-button-renderer.php' );
 
         $inactive_widgets = self::get_inactive_widgets();
 

@@ -16,10 +16,13 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
+use Happy_Addons\Elementor\Traits\With_Button_Renderer;
 
 defined( 'ABSPATH' ) || die();
 
 class Member extends Base {
+
+	use With_Button_Renderer;
 
 	/**
 	 * Get widget title.
@@ -1003,6 +1006,13 @@ class Member extends Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
+		$button_position = ! empty( $settings['button_position'] ) ? $settings['button_position'] : 'after';
+
+		$show_button = false;
+		if ( ! empty( $settings['show_details_button'] ) && $settings['show_details_button'] === 'yes'  ) {
+			$show_button = true;
+		}
+
 		$this->add_inline_editing_attributes( 'title', 'basic' );
 		$this->add_render_attribute( 'title', 'class', 'ha-member-name' );
 
@@ -1041,8 +1051,8 @@ class Member extends Base {
 			<?php endif; ?>
 
 			<?php
-			if ( ! empty( $settings['button_position'] ) && $settings['button_position'] === 'before' ) {
-				$this->render_details_button();
+			if ( $show_button && $button_position === 'before' ) {
+				$this->render_icon_button( [ 'new_icon' => 'button_icon', 'old_icon' => '' ] );
 			}
 			?>
 
@@ -1070,48 +1080,12 @@ class Member extends Base {
 			<?php endif; ?>
 
 			<?php
-			if ( ! empty( $settings['button_position'] ) && $settings['button_position'] === 'after' ) {
-				$this->render_details_button();
+			if ( $show_button && $button_position === 'after' ) {
+				$this->render_icon_button( [ 'new_icon' => 'button_icon', 'old_icon' => '' ] );
 			}
 			?>
 		</div>
 		<?php
-	}
-
-	protected function render_details_button() {
-		$settings = $this->get_settings_for_display();
-		$this->add_inline_editing_attributes( 'button_text', 'none' );
-        $this->add_render_attribute( 'button_text', 'class', 'ha-btn-text' );
-
-        $this->add_render_attribute( 'button', 'class', 'ha-btn ha-btn--link' );
-		$this->add_link_attributes( 'button', $settings['button_link'] );
-
-		if ( empty( $settings['show_details_button'] ) || $settings['show_details_button'] !== 'yes'  ) {
-			return;
-		}
-
-		if ( $settings['button_text'] && empty( $settings['button_icon'] ) ) :
-			printf( '<a %1$s>%2$s</a>',
-				$this->get_render_attribute_string( 'button' ),
-				sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) )
-			);
-		elseif ( empty( $settings['button_text'] ) && ! empty( $settings['button_icon'] ) ) : ?>
-			<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_icon( $settings, '', 'button_icon' ); ?></a>
-		<?php elseif ( $settings['button_text'] && ! empty( $settings['button_icon'] ) ) :
-			if ( $settings['button_icon_position'] === 'before' ) :
-				$this->add_render_attribute( 'button', 'class', 'ha-btn--icon-before' );
-				$button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
-				?>
-				<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_icon( $settings, '', 'button_icon', ['class' => 'ha-btn-icon'] ); ?> <?php echo $button_text; ?></a>
-				<?php
-			else :
-				$this->add_render_attribute( 'button', 'class', 'ha-btn--icon-after' );
-				$button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
-				?>
-				<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php echo $button_text; ?> <?php ha_render_icon( $settings, '', 'button_icon', ['class' => 'ha-btn-icon'] ); ?></a>
-				<?php
-			endif;
-		endif;
 	}
 
 	public function _content_template() {
@@ -1154,6 +1128,11 @@ class Member extends Base {
 					<p>{{{ settings.bio }}}</p>
 				</div>
 			<# } #>
+
+			<# if ( !_.isUndefined( settings['button_position'] ) && settings['button_position'] === 'before' ) {
+				print( ha.getButtonWithIcon( view, {newIcon: 'button_icon', oldIcon: ''} ) );
+			} #>
+
 			<# if (settings.show_profiles && _.isArray(settings.profiles)) { #>
 				<div class="ha-member-links">
 					<# _.each(settings.profiles, function(profile, index) {
@@ -1174,6 +1153,10 @@ class Member extends Base {
 					<# }); #>
 				</div>
 			<# } #>
+
+			<# if ( !_.isUndefined( settings['button_position'] ) && settings['button_position'] === 'after' ) {
+				print( ha.getButtonWithIcon( view, {newIcon: 'button_icon', oldIcon: ''} ) );
+			} #>
 		</div>
 		<?php
 	}

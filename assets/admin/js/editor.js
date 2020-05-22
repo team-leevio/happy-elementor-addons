@@ -29,7 +29,8 @@
 			buttonBefore,
 			buttonAfter;
 
-		args = _.defaults({
+		args = args || {};
+		args = _.defaults( args, {
 			oldIcon: 'button_icon',
 			iconPos: 'button_icon_position',
 			newIcon: 'button_selected_icon',
@@ -37,7 +38,7 @@
 			link: 'button_link',
 			class: 'ha-btn ha-btn--link',
 			textClass: 'ha-btn-text',
-		}, args);
+		} );
 
 		if (!_.isObject(view) || _.isUndefined(view['getContainer']) ) {
 			return '';
@@ -56,9 +57,9 @@
         view.addRenderAttribute( 'button', 'class', args.class );
         view.addRenderAttribute( 'button', 'href', settings[args.link].url );
 
-		if ( settings[args.newIcon] || settings[args.oldIcon] ) {
+		if ( ( settings[args.newIcon] && settings[args.newIcon].value ) || settings[args.oldIcon] ) {
 			if ( ha.hasIconLibrary() && btnIconHTML && btnIconHTML.rendered && ( ! settings[args.oldIcon] || btnMigrated ) ) {
-				btnIcon = btnIconHTML.value;
+				btnIcon = '<span class="ha-btn-icon ha-btn-icon--svg">' + btnIconHTML.value + '</span>';
 			} else if ( settings[args.oldIcon] ) {
 				btnIcon = '<i class="ha-btn-icon ' + args.oldIcon + '" aria-hidden="true"></i>';
 			}
