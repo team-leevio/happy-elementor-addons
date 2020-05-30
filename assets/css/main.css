@@ -150,6 +150,13 @@
 .ha-btn-text + .ha-btn-icon {
 	margin-left: 5px;
 }
+.ha-btn-icon--svg {
+	display: inline-block;
+}
+.ha-btn-icon--svg svg {
+	width: auto;
+	height: 1em;
+}
 
 .ha-badge {
 	padding: .475rem 1.1rem;

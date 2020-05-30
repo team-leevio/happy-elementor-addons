@@ -163,9 +163,16 @@ function ha_render_icon( $settings = [], $old_icon_id = 'icon', $new_icon_id = '
 	$is_new = empty( $settings[ $old_icon_id ] );
 
 	$attributes['aria-hidden'] = 'true';
+	$is_svg = ( isset( $settings[ $new_icon_id ], $settings[ $new_icon_id ]['library'] ) && $settings[ $new_icon_id ]['library'] === 'svg' );
 
 	if ( ha_is_elementor_version( '>=', '2.6.0' ) && ( $is_new || $migrated ) ) {
+		if ( $is_svg ) {
+			echo '<span class="ha-btn-icon ha-btn-icon--svg">';
+		}
 		\Elementor\Icons_Manager::render_icon( $settings[ $new_icon_id ], $attributes );
+		if ( $is_svg ) {
+			echo '</span>';
+		}
 	} else {
 		if ( empty( $attributes['class'] ) ) {
 			$attributes['class'] = $settings[ $old_icon_id ];

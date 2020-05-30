@@ -2,38 +2,46 @@
 @import "mixins";
 
 .ha-btn {
-  text-decoration: none;
-  line-height: 1;
-  text-align: center;
-  vertical-align: middle;
-  display: inline-block;
-  font-size: 14px;
-  transition: all .3s;
-  max-width: 100%;
+	text-decoration: none;
+	line-height: 1;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+	font-size: 14px;
+	transition: all .3s;
+	max-width: 100%;
 
-  &:not(&--link) {
-    background-color: $primary-color;
-    color: #fff;
-    border-radius: .25rem;
-    padding: 15px 25px;
+	&:not(&--link) {
+		background-color: $primary-color;
+		color: #fff;
+		border-radius: .25rem;
+		padding: 15px 25px;
 
-    &:hover,
-    &:focus {
-      background-color: $secondary-color;
-    }
-  }
+		&:hover,
+		&:focus {
+			background-color: $secondary-color;
+		}
+	}
 
-  &.ha-btn--link {
-    color: $primary-color;
+	&.ha-btn--link {
+		color: $primary-color;
 
-    &:hover,
-    &:focus {
-      color: $secondary-color;
-    }
-  }
+		&:hover,
+		&:focus {
+			color: $secondary-color;
+		}
+	}
 
-  &-icon + &-text,
-  &-text + &-icon {
-    margin-left: 5px;
-  }
+	&-icon + &-text,
+	&-text + &-icon {
+		margin-left: 5px;
+	}
+
+	&-icon--svg {
+		display: inline-block;
+		svg {
+			width: auto;
+			height: 1em;
+		}
+	}
 }

@@ -13,7 +13,7 @@
         div.innerHTML = text;
         text = div.textContent || div.innerText || text;
 
-        return text.length > 20 ? text.substring(0, 20) + "..." : text;
+        return text.length > 20 ? text.substring(0, 20) + '...' : text;
     };
 
     ha.translate = function(stringKey, templateArgs) {
@@ -59,7 +59,11 @@
 
 		if ( ( settings[args.newIcon] && settings[args.newIcon].value ) || settings[args.oldIcon] ) {
 			if ( ha.hasIconLibrary() && btnIconHTML && btnIconHTML.rendered && ( ! settings[args.oldIcon] || btnMigrated ) ) {
-				btnIcon = '<span class="ha-btn-icon ha-btn-icon--svg">' + btnIconHTML.value + '</span>';
+				if ( settings[args.newIcon].library === 'svg' ) {
+					btnIcon = '<span class="ha-btn-icon ha-btn-icon--svg">' + btnIconHTML.value + '</span>';
+				} else {
+					btnIcon = btnIconHTML.value;
+				}
 			} else if ( settings[args.oldIcon] ) {
 				btnIcon = '<i class="ha-btn-icon ' + args.oldIcon + '" aria-hidden="true"></i>';
 			}

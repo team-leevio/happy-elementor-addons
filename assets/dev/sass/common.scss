@@ -2,71 +2,71 @@
 @import "mixins";
 
 .happy-addon {
-  @include widgetContainer {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+	@include widgetContainer {
+		word-wrap: break-word;
+		overflow-wrap: break-word;
 
-    &, * {
-      box-sizing: border-box;
-    }
-  }
+		&, * {
+			box-sizing: border-box;
+		}
+	}
 
-  img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
+	img {
+		max-width: 100%;
+		height: auto;
+		object-fit: cover;
+	}
 
-  p:empty {
-    display: none;
-  }
+	p:empty {
+		display: none;
+	}
 }
 
 .ha-screen-reader-text {
-  border: 0;
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  word-wrap: normal !important;
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
 }
 
 .ha-has-background-overlay {
-  @include widgetContainer {
-    z-index: 1;
-    position: relative;
+	@include widgetContainer {
+		z-index: 1;
+		position: relative;
 
-    &:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-  }
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+		}
+	}
 }
 
 .ha-popup--is-enabled {
-  .ha-js-popup {
-    &, & img {
-      cursor: zoom-in !important;
-    }
-  }
+	.ha-js-popup {
+		&, & img {
+			cursor: zoom-in !important;
+		}
+	}
 }
 
 .mfp-wrap {
-  .mfp-close,
-  .mfp-arrow {
-    background-color: transparent;
+	.mfp-close,
+	.mfp-arrow {
+		background-color: transparent;
 
-    &:focus {
-      outline-width: thin;
-    }
-  }
+		&:focus {
+			outline-width: thin;
+		}
+	}
 }
