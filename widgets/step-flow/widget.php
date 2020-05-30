@@ -235,8 +235,12 @@ class Step_Flow extends Base {
                 'size_units' => [ 'px', 'em' ],
                 'range' => [
                     'px' => [
-                        'min' => 0,
-                        'max' => 100,
+                        'min' => 6,
+                        'max' => 300,
+					],
+					'em' => [
+                        'min' => 6,
+                        'max' => 300,
                     ]
                 ],
                 'selectors' => [

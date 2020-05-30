@@ -2594,7 +2594,8 @@
 	text-align: center;
 	font-size: 46px;
 }
-.ha-steps-icon i {
+.ha-steps-icon i,
+.ha-steps-icon svg {
 	position: relative; 
 	display: block;
 	width: 1em;
