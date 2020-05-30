@@ -2210,6 +2210,7 @@
 .ha-flip-box-container .ha-flip-box-inner .ha-flip-box-inner-wrapper {
 	position: relative;
 	-webkit-transform: translateZ(0);
+	        transform: translateZ(0);
 
 	-webkit-perspective: 1000px;
 	        perspective: 1000px;
@@ -2297,16 +2298,19 @@
 	color: #242424;
 }
 .ha-flip-box-container .ha-flip-box-inner .ha-flip-box-front-inner .ha-flip-icon {
-	display: inline-block; 
+	display: inline-block;
 	margin-bottom: 20px;
 	text-align: center;
+	font-size: 28px;
 }
-.ha-flip-box-container .ha-flip-box-inner .ha-flip-box-front-inner .ha-flip-icon i {
-	position: relative; 
+.ha-flip-box-container .ha-flip-box-inner .ha-flip-box-front-inner .ha-flip-icon i,
+.ha-flip-box-container .ha-flip-box-inner .ha-flip-box-front-inner .ha-flip-icon svg {
 	display: block;
 	width: 1em;
 	height: 1em;
-	font-size: 28px;
+}
+.ha-flip-box-container .ha-flip-box-inner .ha-flip-box-front-inner .ha-flip-icon i {
+	position: relative;
 }
 .ha-flip-box-container .ha-flip-box-inner .ha-flip-box-front-inner .ha-flip-icon i:before {
 	position: absolute;
@@ -2335,17 +2339,20 @@
 	font-size: 18px;
 }
 .ha-flip-box-container .ha-flip-box-inner .ha-flip-box-back-inner .ha-flip-icon {
-	display: inline-block; 
+	display: inline-block;
 	margin-bottom: 20px;
 	text-align: center;
+	font-size: 20px;
 }
-.ha-flip-box-container .ha-flip-box-inner .ha-flip-box-back-inner .ha-flip-icon i {
-	position: relative; 
+.ha-flip-box-container .ha-flip-box-inner .ha-flip-box-back-inner .ha-flip-icon i,
+.ha-flip-box-container .ha-flip-box-inner .ha-flip-box-back-inner .ha-flip-icon svg {
 	display: block;
 	width: 1em;
 	height: 1em;
+}
+.ha-flip-box-container .ha-flip-box-inner .ha-flip-box-back-inner .ha-flip-icon i {
+	position: relative; 
 	color: #fff;
-	font-size: 20px;
 }
 .ha-flip-box-container .ha-flip-box-inner .ha-flip-box-back-inner .ha-flip-icon i:before {
 	position: absolute;

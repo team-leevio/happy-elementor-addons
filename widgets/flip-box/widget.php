@@ -587,12 +587,22 @@ class Flip_Box extends Base {
             [
                 'label' => __( 'Icon Size', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', 'em'],
+				'size_units' => ['px', 'em'],
+				'range' => [
+					'px' => [
+						'min' => 6,
+						'max' => 300
+					],
+					'em' => [
+						'min' => 6,
+						'max' => 300
+					]
+				],
                 'condition' => [
                     'front_icon_type' => 'icon'
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-flip-box-front-inner .ha-flip-icon' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -940,12 +950,22 @@ class Flip_Box extends Base {
             [
                 'label' => __( 'Icon Size', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', 'em'],
+				'size_units' => ['px', 'em'],
+				'range' => [
+					'px' => [
+						'min' => 6,
+						'max' => 300
+					],
+					'em' => [
+						'min' => 6,
+						'max' => 300
+					]
+				],
                 'condition' => [
                     'back_icon_type' => 'icon'
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-icon' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
