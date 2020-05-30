@@ -210,7 +210,7 @@ class Icon_Box extends Base {
                 'size_units' => [ 'px' ],
                 'range' => [
                     'px' => [
-                        'min' => 10,
+                        'min' => 6,
                         'max' => 300,
                     ],
                 ],
