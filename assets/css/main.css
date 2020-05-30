@@ -2515,10 +2515,15 @@
 	margin-bottom: 1rem;
 	font-size: 16px;
 }
-.ha-pricing-table-features-list i {
+.ha-pricing-table-features-list i,
+.ha-pricing-table-features-list svg {
 	margin-right: .5rem;
 	min-width: 15px;
 	font-size: .8em;
+}
+.ha-pricing-table-features-list svg {
+	width: auto; 
+	height: 1em;
 }
 
 .ha-pricing-table-feature-text {
