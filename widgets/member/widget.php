@@ -16,13 +16,13 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Happy_Addons\Elementor\Traits\With_Button_Renderer;
+use Happy_Addons\Elementor\Traits\Button_Renderer;
 
 defined( 'ABSPATH' ) || die();
 
 class Member extends Base {
 
-	use With_Button_Renderer;
+	use Button_Renderer;
 
 	/**
 	 * Get widget title.

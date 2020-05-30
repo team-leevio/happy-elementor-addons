@@ -6,7 +6,7 @@ namespace Happy_Addons\Elementor\Traits;
 
 defined( 'ABSPATH' ) || exit;
 
-trait With_Button_Renderer {
+trait Button_Renderer {
 
 	/**
 	 * Render button with icon
