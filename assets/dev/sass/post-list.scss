@@ -43,7 +43,14 @@ span.ha-post-list-icon {
 	margin-right: 8px;
 	color: #242424;
 	font-size: 14px;
+
+	svg {
+		height: 1em;
+		width: auto;
+	}
 }
+
+
 .ha-post-list-meta-wrap {
 	display: flex;
 	margin-top: 3px;

@@ -41,6 +41,12 @@
 	margin-right: 8px;
 	color: #242424;
 	font-size: 14px;
+
+	svg {
+		width: auto;
+		height: 1em;
+		display: block;
+	}
 }
 .ha-taxonomy-list span.ha-taxonomy-list-image {
 	margin-right: 15px;
