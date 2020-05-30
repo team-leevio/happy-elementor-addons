@@ -27,13 +27,16 @@
 
     transition: transform .3s, border .3s, background .3s, color .3s;
 
-    > i {
-      position: relative;
-      display: block;
-      width: 1em;
-      height: 1em;
-      transition: transform .3s;
+	i,
+	svg {
+		position: relative;
+		display: block;
+		width: 1em;
+		height: 1em;
+	}
 
+    i {
+      transition: transform .3s;
       &:before {
         position: absolute;
         left: 50%;
