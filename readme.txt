@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.10.0
+Version: 2.11.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -21,6 +21,8 @@ This Elementor based plugin is the latest addition in the list of [weDevs](https
 [Happy Addons for Elementor page builder](https://happyaddons.com/) promises to enhance and take your WordPress webpage editing & designing capabilities to a whole new level.
 
 This Elementor based plugin is the latest addition in the list of [weDevs](https://wedevs.com/) premium product library. Enjoy this freemium (free+premium) page builder for Elementor that consists of cutting-edge widgets that are surely set to take your page building experience with Elementor editor to the next level.
+
+Officially recommended by Elementor Page Builder! We are now listed on their [official addons page](https://elementor.com/addons/).
 
 ### **34+ FREE PREMIUM-LIKE WIDGETS AND MORE ON ITS WAY**
 
@@ -58,18 +60,10 @@ Unlike most other Elementor addons, Happy Addons offers itself with many robust 
 - [**Social Icon**](https://demo.happyaddons.com/elementor-social-icon-widget-demo/) – Beautifully insert and display your social links onto your webpage using this widget to easily connect with your site visitor.
 - [**Post Tab**](https://demo.happyaddons.com/elementor-post-tab-widget-demo/) – Enable users to present your post in multiple workable tabs ideally useful for grouped and related content.
 - [**Post List**](https://demo.happyaddons.com/elementor-post-list-widget-demo/) – List any post elegantly using this widget displaying them in a creative and innovative manner with multiple options to play with.
-- [**360° Rotation**](https://demo.happyaddons.com/) - Demo coming soon
-- [**Taxonomy List**](https://demo.happyaddons.com/) - Demo coming soon
+- [**360° Rotation**](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/360-degree-rotation/) - Create 360 Degree rotated images for your Products with this widget. Flexibility to add auto-rotate or click to the rotation functionality. Also, you can add Magnify Button to Zoom-in your pictures.
+- [**Taxonomy List**](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/taxonomy/) - This widget will help you to create a list of posts by sorting categories, tags, post formats.
 
 New free widgets or features are added every month. With all these awesome free widgets, this nifty plugin, not just aims to the trendy and sophisticated WordPress website design philosophy but also effortlessly aligns with any Elementor powered WordPress website design requirements.
-
-Now have a look at the Happy Addons feature and widget demo explained by our well-wisher, **Adam Preiser, Founder of WP Crafter**
-
-https://www.youtube.com/watch?v=XpWm7zdvUoM
-
-He also acknowledged Happy Addons saying:-
-
-> HappyAddons is a unique Elementor Addon. It might be the best addon package for Elementor.
 
 
 ### **FREE BUILT-IN EXTENSIONS FOR AN UNPRECEDENTED WEB-PAGE DESIGNING EXPERIENCE**
@@ -258,6 +252,19 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.11.0 - 1 June 2020 =
+
+- Tweak: Slide item link support for Carousel widget
+- Tweak: Slide item link support for Slider widget
+- Tweak: More html tags support for textarea/description type input
+- Tweak: Advanced button support for Team Member widget
+- Tweak: Restored default placeholder image
+- Fix: Adminbar happy icon markup issue
+- Fix: Carousel and Slider css issue
+- Fix: SVG icon sizing issues in all widgets
+- Fix: WPML support issue
+- Fix: 360° widget default style
 
 = 2.10.0 - 18 May 2020 =
 

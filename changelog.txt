@@ -1,3 +1,16 @@
+= 2.11.0 - 1 June 2020 =
+
+- Tweak: Slide item link support for Carousel widget
+- Tweak: Slide item link support for Slider widget
+- Tweak: More html tags support for textarea/description type input
+- Tweak: Advanced button support for Team Member widget
+- Tweak: Restored default placeholder image
+- Fix: Adminbar happy icon markup issue
+- Fix: Carousel and Slider css issue
+- Fix: SVG icon sizing issues in all widgets
+- Fix: WPML support issue
+- Fix: 360° widget default style
+
 = 2.10.0 - 18 May 2020 =
 
 - New: 360° Rotation widget
