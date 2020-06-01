@@ -547,6 +547,15 @@
 	margin-right: .3rem;
 }
 
+.ha-member .ha-btn {
+	margin-bottom: 10px;
+}
+
+.ha-member-links + .ha-btn {
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+
 .ha-card > .elementor-widget-container,
 .ha-infobox > .elementor-widget-container,
 .ha-icon-box > .elementor-widget-container,

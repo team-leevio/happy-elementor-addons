@@ -38,19 +38,19 @@ trait Button_Renderer {
 				sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( $args['text'] ), esc_html( $settings[ $args['text'] ] ) )
 			);
 		elseif ( empty( $settings[ $args['text'] ] ) && ( ! empty( $settings[ $args['old_icon'] ] ) || ! empty( $settings[ $args['new_icon'] ] ) ) ) : ?>
-			<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_icon( $settings, $args['old_icon'], $args['new_icon'] ); ?></a>
+			<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_button_icon( $settings, $args['old_icon'], $args['new_icon'] ); ?></a>
 		<?php elseif ( $settings[ $args['text'] ] && ( ! empty( $settings[ $args['old_icon'] ] ) || ! empty( $settings[ $args['new_icon'] ] ) ) ) :
 			if ( $settings[ $args['icon_pos'] ] === 'before' ) :
 				$this->add_render_attribute( 'button', 'class', 'ha-btn--icon-before' );
 				$button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( $args['text'] ), esc_html( $settings[ $args['text'] ] ) );
 				?>
-				<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_icon( $settings, $args['old_icon'], $args['new_icon'], ['class' => 'ha-btn-icon'] ); ?> <?php echo $button_text; ?></a>
+				<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_button_icon( $settings, $args['old_icon'], $args['new_icon'], ['class' => 'ha-btn-icon'] ); ?> <?php echo $button_text; ?></a>
 				<?php
 			else :
 				$this->add_render_attribute( 'button', 'class', 'ha-btn--icon-after' );
 				$button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( $args['text'] ), esc_html( $settings[ $args['text'] ] ) );
 				?>
-				<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php echo $button_text; ?> <?php ha_render_icon( $settings, $args['old_icon'], $args['new_icon'], ['class' => 'ha-btn-icon'] ); ?></a>
+				<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php echo $button_text; ?> <?php ha_render_button_icon( $settings, $args['old_icon'], $args['new_icon'], ['class' => 'ha-btn-icon'] ); ?></a>
 				<?php
 			endif;
 		endif;
