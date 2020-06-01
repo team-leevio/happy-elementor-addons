@@ -2913,18 +2913,9 @@ a.ha-social-icon:after {
 	margin-right: 2px;
 }
 
-.ha-social-icon i,
-.ha-social-icon svg {
+.ha-social-icon i {
 	position: relative;
 	display: initial;
-}
-
-.ha-social-icon svg {
-	width: 100%;
-	height: 100%;
-}
-
-.ha-social-icon i {
 	width: 1em;
 	height: 1em;
 }
@@ -2935,7 +2926,6 @@ a.ha-social-icon:after {
 	width: 100%;
 	height: 100%;
 	font-size: 18px;
-	font-family: Roboto, sans-serif;
 	line-height: 1;
 }
 
