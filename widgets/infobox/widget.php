@@ -600,7 +600,7 @@ class InfoBox extends Base {
 				],
 				'selectors' => [
 					// Icon rotate styles
-					'{{WRAPPER}} .ha-infobox-figure--icon > i' => '-ms-transform: rotate(-{{SIZE}}{{UNIT}}); -webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
+					'{{WRAPPER}} .ha-infobox-figure--icon i, {{WRAPPER}} .ha-infobox-figure--icon svg' => '-ms-transform: rotate(-{{SIZE}}{{UNIT}}); -webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
 					// Icon box transform styles
 					'(desktop){{WRAPPER}} .ha-infobox-figure--icon' => '-ms-transform: translate({{media_offset_x.SIZE || 0}}px, {{media_offset_y.SIZE || 0}}px) rotate({{SIZE}}deg); -webkit-transform: translate({{media_offset_x.SIZE || 0}}px, {{media_offset_y.SIZE || 0}}px) rotate({{SIZE}}deg); transform: translate({{media_offset_x.SIZE || 0}}px, {{media_offset_y.SIZE || 0}}px) rotate({{SIZE}}deg);',
 					'(tablet){{WRAPPER}} .ha-infobox-figure--icon' => '-ms-transform: translate({{media_offset_x_tablet.SIZE || 0}}px, {{media_offset_y_tablet.SIZE || 0}}px) rotate({{SIZE}}deg); -webkit-transform: translate({{media_offset_x_tablet.SIZE || 0}}px, {{media_offset_y_tablet.SIZE || 0}}px) rotate({{SIZE}}deg); transform: translate({{media_offset_x_tablet.SIZE || 0}}px, {{media_offset_y_tablet.SIZE || 0}}px) rotate({{SIZE}}deg);',
@@ -912,18 +912,9 @@ class InfoBox extends Base {
 
 		$this->add_inline_editing_attributes( 'description', 'intermediate' );
 		$this->add_render_attribute( 'description', 'class', 'ha-infobox-text' );
-
-		$this->add_inline_editing_attributes( 'button_text', 'none' );
-		$this->add_render_attribute( 'button_text', 'class', 'ha-btn-text' );
-
-		$this->add_render_attribute( 'button', 'class', 'ha-btn ha-btn--link' );
-		$this->add_link_attributes( 'button', $settings['button_link'] );
 		?>
 
 		<?php if ( $settings['type'] === 'image' && ( $settings['image']['url'] || $settings['image']['id'] ) ) :
-			$this->add_render_attribute( 'image', 'src', $settings['image']['url'] );
-			$this->add_render_attribute( 'image', 'alt', Control_Media::get_image_alt( $settings['image'] ) );
-			$this->add_render_attribute( 'image', 'title', Control_Media::get_image_title( $settings['image'] ) );
 			$settings['hover_animation'] = 'disable-animation'; // hack to prevent image hover animation
 			?>
 			<figure class="ha-infobox-figure ha-infobox-figure--image">
