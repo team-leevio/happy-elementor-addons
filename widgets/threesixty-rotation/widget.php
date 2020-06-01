@@ -66,6 +66,11 @@ class Threesixty_Rotation extends Base {
 			[
 				'label' => __('Gallery', 'happy-elementor-addons'),
 				'type' => Controls_Manager::GALLERY,
+				'default' => [
+					[
+						'url' => Utils::get_placeholder_image_src(),
+					]
+				],
 				'dynamic' => [
 					'active' => true,
 				]
@@ -528,6 +533,9 @@ class Threesixty_Rotation extends Base {
 	protected function render() {
 
 		$settings = $this->get_settings_for_display();
+		if ( empty( $settings['images'] ) ) {
+			return;
+		}
 		$this->add_render_attribute('wrapper', 'class', 'ha-threesixty-rotation-wrapper');
 		$this->add_render_attribute(
 			'rotation',
@@ -549,7 +557,7 @@ class Threesixty_Rotation extends Base {
 				]
 			);
 		}
-		$svg_url = HAPPY_ADDONS_ASSETS . 'imgs/360_view.svg'
+		$svg_url = HAPPY_ADDONS_ASSETS . 'imgs/360_view.svg';
 		?>
 
 		<div <?php $this->print_render_attribute_string('wrapper'); ?>>
