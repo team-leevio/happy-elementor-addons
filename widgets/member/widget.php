@@ -1070,7 +1070,7 @@ class Member extends Base {
 							$url = 'mailto:' . antispambot( $profile['email'] );
 						}
 
-						printf( '<a target="_blank" rel="noopener" data-tooltip="hello" href="%s" class="elementor-repeater-item-%s"><i class="fa fa-%s" aria-hidden="true"></i></a>',
+						printf( '<a target="_blank" rel="noopener" href="%s" class="elementor-repeater-item-%s"><i class="fa fa-%s" aria-hidden="true"></i></a>',
 							$url,
 							esc_attr( $profile['_id'] ),
 							esc_attr( $icon )

@@ -15,10 +15,13 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
+use Happy_Addons\Elementor\Traits\Button_Renderer;
 
 defined( 'ABSPATH' ) || die();
 
 class Card extends Base {
+
+	use Button_Renderer;
 
 	/**
 	 * Get widget title.
@@ -1039,20 +1042,9 @@ class Card extends Base {
 
 		$this->add_inline_editing_attributes( 'description', 'intermediate' );
 		$this->add_render_attribute( 'description', 'class', 'ha-card-text' );
-
-		$this->add_inline_editing_attributes( 'button_text', 'none' );
-		$this->add_render_attribute( 'button_text', 'class', 'ha-btn-text' );
-
-		$this->add_render_attribute( 'button', 'class', 'ha-btn' );
-
-		$this->add_link_attributes( 'button', $settings['button_link'] );
 		?>
 
-		<?php if ( $settings['image']['url'] || $settings['image']['id'] ) :
-			$this->add_render_attribute( 'image', 'src', $settings['image']['url'] );
-			$this->add_render_attribute( 'image', 'alt', Control_Media::get_image_alt( $settings['image'] ) );
-			$this->add_render_attribute( 'image', 'title', Control_Media::get_image_title( $settings['image'] ) );
-			?>
+		<?php if ( $settings['image']['url'] || $settings['image']['id'] ) : ?>
 			<figure class="ha-card-figure">
 				<?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
 				<?php if ( $settings['badge_text'] ) : ?>
@@ -1079,30 +1071,7 @@ class Card extends Base {
 				</div>
 			<?php endif; ?>
 
-			<?php
-			if ( $settings['button_text'] && ( ( empty( $settings['button_selected_icon'] ) || empty( $settings['button_selected_icon']['value'] ) ) && empty( $settings['button_icon'] ) ) ) :
-				printf( '<a %1$s>%2$s</a>',
-					$this->get_render_attribute_string( 'button' ),
-					sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) )
-					);
-			elseif ( empty( $settings['button_text'] ) && ( ! ( empty( $settings['button_selected_icon'] ) || empty( $settings['button_selected_icon']['value'] ) ) || ! empty( $settings['button_icon'] ) ) ) : ?>
-				<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_icon( $settings, 'button_icon', 'button_selected_icon' ); ?></a>
-			<?php elseif ( $settings['button_text'] && ( ! ( empty( $settings['button_selected_icon'] ) || empty( $settings['button_selected_icon']['value'] ) ) || ! empty( $settings['button_icon'] ) ) ) :
-				if ( $settings['button_icon_position'] === 'before' ) :
-					$this->add_render_attribute( 'button', 'class', 'ha-btn--icon-before' );
-					$button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
-					?>
-					<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_icon( $settings, 'button_icon', 'button_selected_icon', ['class' => 'ha-btn-icon'] ); ?> <?php echo $button_text; ?></a>
-					<?php
-				else :
-					$this->add_render_attribute( 'button', 'class', 'ha-btn--icon-after' );
-					$button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( 'button_text' ), esc_html( $settings['button_text'] ) );
-					?>
-					<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php echo $button_text; ?> <?php ha_render_icon( $settings, 'button_icon', 'button_selected_icon', ['class' => 'ha-btn-icon'] ); ?></a>
-				<?php
-				endif;
-			endif;
-			?>
+			<?php $this->render_icon_button( [ 'class' => 'ha-btn' ] ); ?>
 		</div>
 		<?php
 	}
@@ -1152,7 +1121,7 @@ class Card extends Base {
 				</div>
 			<# } #>
 
-			<# print( ha.getButtonWithIcon( view, {class: 'ha-btn'} ) ) #>
+			<# print( ha.getButtonWithIcon( view, { class: 'ha-btn' } ) ) #>
 		</div>
 		<?php
 	}

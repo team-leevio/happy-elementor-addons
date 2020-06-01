@@ -11,7 +11,7 @@ trait Button_Renderer {
 	/**
 	 * Render button with icon
 	 *
-	 * @param array $args
+	 * @param array $args { old_icon, icon_pos, new_icon, text, link, class, text_class }
 	 * @return void
 	 */
 	public function render_icon_button( $args = [] ) {
