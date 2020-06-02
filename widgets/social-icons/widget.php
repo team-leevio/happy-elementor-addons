@@ -62,11 +62,13 @@ class Social_Icons extends Base {
 			[
 				'label'       => __('Icon', 'happy-elementor-addons'),
 				'type'        => Controls_Manager::ICONS,
-				'label_block' => true,
+				'label_block' => false,
 				'default'     => [
 					'value'   => 'fab fa-wordpress',
 					'library' => 'fa-brands',
 				],
+				'skin' => 'inline',
+				'exclude_inline_options' => ['svg'],
 				'recommended' => [
 					'fa-brands' => [
 						'android',
@@ -204,8 +206,7 @@ class Social_Icons extends Base {
 				'type'  => Controls_Manager::COLOR,
 
 				'selectors'      => [
-					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}}.ha-social-icon'       => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}}.ha-social-icon > svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}}.ha-social-icon' => 'color: {{VALUE}};',
 				],
 				'condition'      => ['customize' => 'yes'],
 				'style_transfer' => true,
@@ -253,7 +254,6 @@ class Social_Icons extends Base {
 				'type'           => Controls_Manager::COLOR,
 				'selectors'      => [
 					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}}.ha-social-icon:hover'     => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}}.ha-social-icon:hover svg' => 'fill: {{VALUE}};',
 				],
 				'condition'      => ['customize' => 'yes'],
 				'style_transfer' => true,
@@ -462,7 +462,6 @@ class Social_Icons extends Base {
 					'{{WRAPPER}} .ha-social-icons-wrapper > .ha-social-icon'       => 'color: {{VALUE}};',
 					'{{WRAPPER}}.ha-separator--stroke .ha-social-icon-separator'   => 'background: {{VALUE}};',
 					'{{WRAPPER}}.ha-separator--custom .ha-social-icon-separator'   => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-social-icons-wrapper > .ha-social-icon > svg' => 'fill: {{VALUE}};',
 				],
 				'style_transfer' => true,
 			]
@@ -508,7 +507,6 @@ class Social_Icons extends Base {
 					'{{WRAPPER}} .ha-social-icons-wrapper > .ha-social-icon:hover'     => 'color: {{VALUE}};',
 					'{{WRAPPER}}.ha-separator--stroke .ha-social-icon-separator'       => 'background: {{VALUE}};',
 					'{{WRAPPER}}.ha-separator--custom .ha-social-icon-separator'       => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-social-icons-wrapper > .ha-social-icon:hover svg' => 'fill: {{VALUE}};',
 				],
 				'style_transfer' => true,
 			]
@@ -642,7 +640,6 @@ class Social_Icons extends Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-social-icon.ha-social-icon--network i'   => 'font-size: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-social-icon.ha-social-icon--network svg' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);

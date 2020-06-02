@@ -61,4 +61,13 @@
       }
     }
   }
+
+  .ha-btn {
+	  margin-bottom: 10px;
+  }
+
+  &-links + .ha-btn {
+	  margin-top: 10px;
+	  margin-bottom: 0;
+  }
 }

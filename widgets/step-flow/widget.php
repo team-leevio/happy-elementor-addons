@@ -132,7 +132,7 @@ class Step_Flow extends Base {
             [
                 'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
-                'placeholder' => 'https://happyaddons.com/',
+                'placeholder' => 'https://example.com',
                 'dynamic' => [
                     'active' => true,
                 ]
@@ -235,8 +235,12 @@ class Step_Flow extends Base {
                 'size_units' => [ 'px', 'em' ],
                 'range' => [
                     'px' => [
-                        'min' => 0,
-                        'max' => 100,
+                        'min' => 6,
+                        'max' => 300,
+					],
+					'em' => [
+                        'min' => 6,
+                        'max' => 300,
                     ]
                 ],
                 'selectors' => [

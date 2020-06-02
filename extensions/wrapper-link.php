@@ -39,7 +39,7 @@ class Wrapper_Link {
                 'dynamic'     => [
                     'active' => true,
                 ],
-                'placeholder' => __( 'https://your-link.com', 'happy-elementor-addons' ),
+                'placeholder' => 'https://example.com',
             ]
         );
 

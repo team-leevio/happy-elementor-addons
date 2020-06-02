@@ -84,7 +84,7 @@ class Dual_Button extends Base {
             [
                 'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
-                'placeholder' => 'https://happyaddons.com/',
+                'placeholder' => 'https://example.com',
                 'dynamic' => [
                     'active' => true,
                 ]
@@ -270,7 +270,7 @@ class Dual_Button extends Base {
             [
                 'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
-                'placeholder' => 'https://happyaddons.com/',
+                'placeholder' => 'https://example.com',
                 'dynamic' => [
                     'active' => true,
                 ]

@@ -81,7 +81,7 @@ class Slider extends Base {
             [
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
-                'label' => __( 'Title & Subtitle', 'happy-elementor-addons' ),
+                'label' => __( 'Title', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type title here', 'happy-elementor-addons' ),
                 'dynamic' => [
                     'active' => true,
@@ -94,13 +94,26 @@ class Slider extends Base {
             [
                 'type' => Controls_Manager::TEXTAREA,
                 'label_block' => true,
-                'show_label' => false,
+                'label' => __( 'Subtitle', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Type subtitle here', 'happy-elementor-addons' ),
                 'dynamic' => [
                     'active' => true,
                 ]
             ]
-        );
+		);
+
+		$repeater->add_control(
+			'link',
+			[
+				'label' => __( 'Link', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::URL,
+				'label_block' => true,
+				'placeholder' => 'https://example.com',
+				'dynamic' => [
+					'active' => true,
+				]
+			]
+		);
 
         $this->add_control(
             'slides',
@@ -707,13 +720,24 @@ class Slider extends Base {
 
             <?php foreach ( $settings['slides'] as $slide ) :
                 $image = wp_get_attachment_image_url( $slide['image']['id'], $settings['thumbnail_size'] );
-                if ( ! $image ) {
-                    $image = $slide['image']['url'];
-                }
+
+				if ( ! $image ) {
+					$image = $slide['image']['url'];
+				}
+
+				$item_tag = 'div';
+				$id = 'ha-slick-item-' . $slide['_id'];
+
+				$this->add_render_attribute( $id, 'class', 'ha-slick-item' );
+
+				if ( isset( $slide['link'] ) && ! empty( $slide['link']['url'] ) ) {
+					$item_tag = 'a';
+					$this->add_link_attributes( $id, $slide['link'] );
+				}
                 ?>
 
                 <div class="ha-slick-slide">
-                    <div class="ha-slick-item">
+					<<?php echo $item_tag; ?> <?php $this->print_render_attribute_string( $id ); ?>>
                         <?php if ( $image ) : ?>
                             <img class="ha-slick-img" src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $slide['title'] ); ?>">
                         <?php endif; ?>
@@ -728,7 +752,7 @@ class Slider extends Base {
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
-                    </div>
+					</<?php echo $item_tag; ?>>
                 </div>
 
             <?php endforeach; ?>

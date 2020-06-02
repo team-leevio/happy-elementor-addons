@@ -228,12 +228,47 @@ function ha_get_allowed_html_tags( $level = 'basic' ) {
 	];
 
 	if ( $level === 'intermediate' ) {
-		$allowed_html['a'] = [
-			'href' => [],
-			'title' => [],
-			'class' => [],
-			'id' => [],
+		$tags = [
+			'a' => [
+				'href' => [],
+				'title' => [],
+				'class' => [],
+				'id' => [],
+			],
+			'q' => [
+				'cite' => [],
+			],
+			'img' => [
+				'src' => [],
+				'alt' => [],
+				'height' => [],
+				'width' => [],
+			],
+			'dfn' => [
+				'title' => [],
+			],
+			'time' => [
+				'datetime' => [],
+			],
+			'cite' => [
+				'title' => [],
+			],
+			'acronym' => [
+				'title' => [],
+			],
+			'strike' => [],
+			'small' => [],
+			'code' => [],
+			'mark' => [],
+			'del' => [],
+			'ins' => [],
+			'sub' => [],
+			'sup' => [],
+			'hr' => [],
+			's' => [],
 		];
+
+		$allowed_html = array_merge( $allowed_html, $tags );
 	}
 
 	return $allowed_html;
@@ -600,5 +635,44 @@ if ( ! function_exists( 'ha_get_section_icon' ) ) {
 	 */
 	function ha_get_section_icon() {
 		return '<i style="float: right" class="hm hm-happyaddons"></i>';
+	}
+}
+
+/**
+ * Render icon html with backward compatibility
+ *
+ * @param array $settings
+ * @param string $old_icon_id
+ * @param string $new_icon_id
+ * @param array $attributes
+ */
+function ha_render_button_icon( $settings = [], $old_icon_id = 'icon', $new_icon_id = 'selected_icon', $attributes = [] ) {
+	// Check if its already migrated
+	$migrated = isset( $settings['__fa4_migrated'][ $new_icon_id ] );
+	// Check if its a new widget without previously selected icon using the old Icon control
+	$is_new = empty( $settings[ $old_icon_id ] );
+
+	$attributes['aria-hidden'] = 'true';
+	$is_svg = ( isset( $settings[ $new_icon_id ], $settings[ $new_icon_id ]['library'] ) && $settings[ $new_icon_id ]['library'] === 'svg' );
+
+	if ( ha_is_elementor_version( '>=', '2.6.0' ) && ( $is_new || $migrated ) ) {
+		if ( $is_svg ) {
+			echo '<span class="ha-btn-icon ha-btn-icon--svg">';
+		}
+		\Elementor\Icons_Manager::render_icon( $settings[ $new_icon_id ], $attributes );
+		if ( $is_svg ) {
+			echo '</span>';
+		}
+	} else {
+		if ( empty( $attributes['class'] ) ) {
+			$attributes['class'] = $settings[ $old_icon_id ];
+		} else {
+			if ( is_array( $attributes['class'] ) ) {
+				$attributes['class'][] = $settings[ $old_icon_id ];
+			} else {
+				$attributes['class'] .= ' ' . $settings[ $old_icon_id ];
+			}
+		}
+		printf( '<i %s></i>', \Elementor\Utils::render_html_attributes( $attributes ) );
 	}
 }

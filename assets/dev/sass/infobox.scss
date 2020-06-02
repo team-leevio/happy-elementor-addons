@@ -21,21 +21,23 @@
 
     &--icon {
       font-size: 3rem;
-      text-align: center;
-    }
+	  text-align: center;
+	  line-height: 1;
+	}
 
-    > i {
-      width: 1em;
-      height: 1em;
-      position: relative;
-      display: block;
+	i,
+	svg {
+		width: 1em;
+		height: 1em;
+		position: relative;
+      	display: block;
+	}
 
-      &:before {
+    i:before {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-      }
-    }
+	}
 
     img {
       width: 100%;
@@ -45,13 +47,13 @@
   }
 
   &-text {
-    & + .ha-btn--link {
-      margin-top: 1rem;
-    }
-
-    > p {
+    p {
       margin-top: 0;
       margin-bottom: 0;
-    }
+	}
+
+	& + .ha-btn--link {
+		margin-top: 1rem;
+	}
   }
 }

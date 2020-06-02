@@ -10,7 +10,9 @@ class WPML_Manager {
 
 	public static function init() {
 		add_filter( 'wpml_elementor_widgets_to_translate', [ __CLASS__, 'add_widgets_to_translate' ] );
+	}
 
+	public static function load_integration_files() {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/bar-chart.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/carousel.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-grid.php' );
@@ -23,6 +25,8 @@ class WPML_Manager {
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
+		self::load_integration_files();
+
 		$widgets_map = [
 			/**
 			 * Bar Chart

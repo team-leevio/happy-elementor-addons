@@ -81,11 +81,16 @@
       font-size: 16px;
     }
 
-    i {
+	i, svg {
       margin-right: .5rem;
       min-width: 15px;
       font-size: .8em;
-    }
+	}
+
+	svg {
+		height: 1em;
+		width: auto;
+	}
   }
 
   &-feature-text {

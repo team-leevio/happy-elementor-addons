@@ -22,9 +22,6 @@ class Assets_Manager {
 		// Enqueue editor scripts
 		add_action( 'elementor/editor/after_enqueue_scripts', [ __CLASS__, 'enqueue_editor_scripts' ] );
 
-		// Placeholder image replacement
-		add_filter( 'elementor/utils/get_placeholder_image_src', [ __CLASS__, 'set_placeholder_image' ] );
-
 		// Paragraph toolbar registration
 		add_filter( 'elementor/editor/localize_settings', [ __CLASS__, 'add_inline_editing_intermediate_toolbar' ] );
 	}
@@ -58,10 +55,6 @@ class Assets_Manager {
 		}
 
 		return $config;
-	}
-
-	public static function set_placeholder_image() {
-		return HAPPY_ADDONS_ASSETS . 'imgs/placeholder.jpg';
 	}
 
 	public static function frontend_register() {
@@ -207,6 +200,23 @@ class Assets_Manager {
 		wp_register_script(
 			'chart-js',
 			HAPPY_ADDONS_ASSETS . 'vendor/chart/chart.min.js',
+			['jquery'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
+		// Threesixty Rotation js
+		wp_register_script(
+			'circlr',
+			HAPPY_ADDONS_ASSETS . 'vendor/threesixty-rotation/circlr.min.js',
+			['jquery'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+		// happy magnify js
+		wp_register_script(
+			'ha-simple-magnify',
+			HAPPY_ADDONS_ASSETS . 'vendor/threesixty-rotation/happy-simple-magnify.js',
 			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true

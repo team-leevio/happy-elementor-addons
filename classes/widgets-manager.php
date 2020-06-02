@@ -529,6 +529,26 @@ class Widgets_Manager {
 			        'js' => [],
 		        ],
 	        ],
+	        'taxonomy-list' => [
+		        'title' => __( 'Taxonomy List', 'happy-elementor-addons' ),
+		        'icon' => 'hm hm-clip-board',
+		        'css' => ['taxonomy-list'],
+		        'js' => [],
+		        'vendor' => [
+			        'css' => [],
+			        'js' => [],
+		        ],
+	        ],
+	        'threesixty-rotation' => [
+		        'title' => __( 'Threesixty Rotation', 'happy-elementor-addons' ),
+		        'icon' => 'hm hm-3d-rotate',
+		        'css' => ['threesixty-rotation'],
+		        'js' => [],
+		        'vendor' => [
+			        'css' => [],
+			        'js' => ['circlr','ha-simple-magnify'],
+		        ],
+            ]
         ];
     }
 
@@ -546,7 +566,8 @@ class Widgets_Manager {
      * @access public
      */
     public static function register() {
-        include_once( HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'traits/button-renderer.php' );
 
         $inactive_widgets = self::get_inactive_widgets();
 

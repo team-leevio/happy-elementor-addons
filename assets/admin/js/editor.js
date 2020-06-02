@@ -1,5 +1,108 @@
 ;(function($) {
-    'use strict';
+	'use strict';
+
+	window.ha = window.ha || {};
+
+	ha.hasIconLibrary = function() {
+        return ( elementor.helpers && elementor.helpers.renderIcon );
+    };
+
+    ha.getFeatureLabel = function( text ) {
+        var div = document.createElement('DIV');
+
+        div.innerHTML = text;
+        text = div.textContent || div.innerText || text;
+
+        return text.length > 20 ? text.substring(0, 20) + '...' : text;
+    };
+
+    ha.translate = function(stringKey, templateArgs) {
+        return elementorCommon.translate(stringKey, null, templateArgs, HappyAddonsEditor.i18n);
+	};
+
+	ha.getButtonWithIcon = function(view, args) {
+		var buttonMarkup = [],
+			settings = {},
+			btnIconHTML,
+			btnMigrated,
+			btnIcon,
+			buttonBefore,
+			buttonAfter;
+
+		args = args || {};
+		args = _.defaults( args, {
+			oldIcon: 'button_icon',
+			iconPos: 'button_icon_position',
+			newIcon: 'button_selected_icon',
+			text: 'button_text',
+			link: 'button_link',
+			class: 'ha-btn ha-btn--link',
+			textClass: 'ha-btn-text',
+		} );
+
+		if (!_.isObject(view) || _.isUndefined(view['getContainer']) ) {
+			return '';
+		}
+
+		settings = view.getContainer().settings.toJSON();
+
+		if ( ha.hasIconLibrary() ) {
+            btnIconHTML = elementor.helpers.renderIcon( view, settings[args.newIcon], { 'aria-hidden': true, 'class': 'ha-btn-icon' }, 'i' , 'object' ),
+            btnMigrated = elementor.helpers.isIconMigrated( settings, args.newIcon );
+		}
+
+		view.addInlineEditingAttributes( args.text, 'none' );
+        view.addRenderAttribute( args.text, 'class', args.textClass );
+
+        view.addRenderAttribute( 'button', 'class', args.class );
+        view.addRenderAttribute( 'button', 'href', settings[args.link].url );
+
+		if ( ( settings[args.newIcon] && settings[args.newIcon].value ) || settings[args.oldIcon] ) {
+			if ( ha.hasIconLibrary() && btnIconHTML && btnIconHTML.rendered && ( ! settings[args.oldIcon] || btnMigrated ) ) {
+				if ( settings[args.newIcon].library === 'svg' ) {
+					btnIcon = '<span class="ha-btn-icon ha-btn-icon--svg">' + btnIconHTML.value + '</span>';
+				} else {
+					btnIcon = btnIconHTML.value;
+				}
+			} else if ( settings[args.oldIcon] ) {
+				btnIcon = '<i class="ha-btn-icon ' + args.oldIcon + '" aria-hidden="true"></i>';
+			}
+		}
+
+		if ( settings[args.text] && ( ! settings[args.newIcon] && ! settings[args.oldIcon] ) ) {
+			buttonMarkup = [
+				'<a ' + view.getRenderAttributeString( 'button' ) + '>',
+				'<span ' + view.getRenderAttributeString( args.text ) + '>',
+				settings[args.text],
+				'</span>',
+				'</a>',
+			];
+		} else if ( ! settings[args.text] && ( settings[args.newIcon] || settings[args.oldIcon] ) ) {
+			buttonMarkup = [
+				'<a ' + view.getRenderAttributeString( 'button' ) + '>',
+				btnIcon,
+				'</a>',
+			];
+		} else if ( settings[args.text] && ( settings[args.newIcon] || settings[args.oldIcon] ) ) {
+			if ( settings[args.iconPos] === 'before' ) {
+				view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-before' );
+				buttonBefore = btnIcon;
+				buttonAfter = '<span ' + view.getRenderAttributeString( args.text ) + '>' + settings[args.text] + '</span>';
+			} else {
+				view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-after' );
+				buttonAfter = btnIcon;
+				buttonBefore = '<span ' + view.getRenderAttributeString( args.text ) + '>' + settings[args.text] + '</span>';
+			}
+			buttonMarkup = [
+				'<a ' + view.getRenderAttributeString( 'button' ) + '>',
+				buttonBefore,
+				buttonAfter,
+				'</a>',
+			];
+		}
+
+		return buttonMarkup.join('');
+	}
 
     elementor.on('panel:init', function() {
         $('#elementor-panel-elements-search-input').on('keyup', _.debounce(function() {
@@ -128,27 +231,10 @@
         elementor.addControlView( 'icons', WithHappyIcons );
     }
 
-    window.ha_has_icon_library = function() {
-        return ( elementor.helpers && elementor.helpers.renderIcon );
-    };
-
-    window.ha_get_feature_label = function( text ) {
-        var div = document.createElement('DIV');
-
-        div.innerHTML = text;
-        text = div.textContent || div.innerText || text;
-
-        return text.length > 20 ? text.substring(0, 20) + "..." : text;
-    };
-
-    function ha_translate(stringKey, templateArgs) {
-        return elementorCommon.translate(stringKey, null, templateArgs, HappyAddonsEditor.i18n);
-    }
-
     elementor.modules.layouts.panel.pages.menu.Menu.addItem({
         name: 'happyaddons-home',
         icon: 'hm hm-happyaddons',
-        title: ha_translate( 'editorPanelHomeLinkTitle' ),
+        title: ha.translate( 'editorPanelHomeLinkTitle' ),
         type: 'link',
         link: HappyAddonsEditor.editorPanelHomeLinkURL,
         newTab: true
@@ -157,12 +243,12 @@
     elementor.modules.layouts.panel.pages.menu.Menu.addItem({
         name: 'happyaddons-widgets',
         icon: 'hm hm-cross-game',
-        title: ha_translate( 'editorPanelWidgetsLinkTitle' ),
+        title: ha.translate( 'editorPanelWidgetsLinkTitle' ),
         type: 'link',
         link: HappyAddonsEditor.editorPanelWidgetsLinkURL,
         newTab: true
     }, 'settings');
-    
+
     /**
      * Add pro widgets placeholder
      */
@@ -206,7 +292,7 @@
                 defaultActive: false,
                 items: proWidgets,
             }, {
-                at: freeCategoryIndex + 1 
+                at: freeCategoryIndex + 1
             });
         }
 
@@ -234,8 +320,8 @@
                 elementor.promotion.dialog.buttons[0].addClass('ha-btn--promotion');
 
                 elementor.promotion.showDialog( {
-                    headerMessage: ha_translate( 'promotionDialogHeader', [ this.model.get( 'title' ) ] ),
-                    message: ha_translate( 'promotionDialogMessage', [ this.model.get( 'title' ) ] ),
+                    headerMessage: ha.translate( 'promotionDialogHeader', [ this.model.get( 'title' ) ] ),
+                    message: ha.translate( 'promotionDialogMessage', [ this.model.get( 'title' ) ] ),
                     top: '-7',
                     element: this.el,
                     actionURL: 'https://demo.happyaddons.com/',
@@ -254,6 +340,5 @@
         });
 
         return regionViews;
-    });
-
+	});
 }(jQuery));

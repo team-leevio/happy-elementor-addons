@@ -46,14 +46,13 @@ class Base {
         // Register finder category
 		add_action( 'elementor/finder/categories/init', [ $this, 'register_finder' ] );
 
-		add_action( 'wpml_loaded', [ $this, 'add_wpml_support' ] );
-
         Widgets_Manager::init();
         Assets_Manager::init();
         Cache_Manager::init();
         Icons_Manager::init();
         Extensions_Manager::init();
 		Select2_Handler::init();
+		WPML_Manager::init();
 
 		$this->init_appsero_tracking();
 
@@ -68,7 +67,7 @@ class Base {
 			Attention_Seeker::init();
         }
 
-        do_action( 'happyaddons_loaded' );
+		do_action( 'happyaddons_loaded' );
 	}
 
     /**
@@ -108,6 +107,7 @@ class Base {
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
 
         if ( is_admin() ) {
             include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
@@ -164,15 +164,5 @@ class Base {
         // Add the category
         $categories_manager->add_category( Finder::SLUG, new Finder() );
         $categories_manager->add_category( Finder_Edit::SLUG, new Finder_Edit() );
-	}
-
-	/**
-	 * Add wpml support
-	 *
-	 * @return void
-	 */
-	public function add_wpml_support() {
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
-		WPML_Manager::init();
 	}
 }

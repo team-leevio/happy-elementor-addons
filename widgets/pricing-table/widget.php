@@ -252,7 +252,7 @@ class Pricing_Table extends Base {
                         'icon' => 'fa fa-check',
                     ],
                 ],
-                'title_field' => '<# print(ha_get_feature_label(text)); #>',
+                'title_field' => '<# print(ha.getFeatureLabel(text)); #>',
             ]
         );
 
@@ -286,7 +286,7 @@ class Pricing_Table extends Base {
                 'label' => __( 'Link', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::URL,
                 'label_block' => true,
-                'placeholder' => 'https://happyaddons.com/',
+                'placeholder' => 'https://example.com',
                 'dynamic' => [
                     'active' => true,
                 ],

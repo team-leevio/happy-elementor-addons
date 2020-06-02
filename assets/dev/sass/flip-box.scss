@@ -28,7 +28,7 @@
     }
     .ha-flip-box-inner-wrapper {
       position: relative;
-      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
       perspective: 1000px
     }
     .ha-flip-box-back,
@@ -98,20 +98,25 @@
       .ha-flip-icon {
         margin-bottom: 20px;
         text-align: center;
-        display: inline-block;
-        i {
-          display: block;
-          width: 1em;
-          height: 1em;
-          font-size: 28px;
-          position: relative;
+		display: inline-block;
+		font-size: 28px;
 
+		i,
+		svg {
+			display: block;
+			width: 1em;
+			height: 1em;
+		}
+
+        i {
+          position: relative;
           &:before {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
           }
-        }
+		}
+
         img {
           vertical-align: middle;
           width: 60px;
@@ -137,20 +142,26 @@
       .ha-flip-icon {
         margin-bottom: 20px;
         text-align: center;
-        display: inline-block;
+		display: inline-block;
+		font-size: 20px;
+
+		i,
+		svg {
+			display: block;
+			width: 1em;
+			height: 1em;
+		}
+
         i {
-          display: block;
-          width: 1em;
-          height: 1em;
-          font-size: 20px;
           color: #fff;
-          position: relative;
+		  position: relative;
           &:before {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
           }
-        }
+		}
+
         img {
           vertical-align: middle;
           width: 60px;
