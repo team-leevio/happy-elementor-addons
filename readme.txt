@@ -433,3 +433,9 @@ For a more detailed explanation check out the following documentation
 - Fix: Missing style issue while copy-pasting widget style
 - Fix: Happy Icons cache issue
 - Fix: Admin bar menu spacing issue
+
+
+== Upgrade Notice ==
+
+= 2.11.0 =
+Added link support to Carousel and Slider widget. Fixed SVG issues and WMPL compatibility issue and more.
