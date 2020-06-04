@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.11.0
+Version: 2.11.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -252,6 +252,11 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.11.1 - 4 June 2020 =
+
+- Fix: JS function backward compatibility issue
+- Fix: `ha_get_feature_label` JS error issue in Pricing table
 
 = 2.11.0 - 1 June 2020 =
 
