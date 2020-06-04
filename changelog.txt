@@ -1,3 +1,8 @@
+= 2.11.1 - 4 June 2020 =
+
+- Fix: JS function backward compatibility issue
+- Fix: `ha_get_feature_label` JS error issue in Pricing table
+
 = 2.11.0 - 1 June 2020 =
 
 - Tweak: Slide item link support for Carousel widget
