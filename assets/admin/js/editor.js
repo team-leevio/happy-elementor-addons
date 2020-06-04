@@ -20,6 +20,11 @@
         return elementorCommon.translate(stringKey, null, templateArgs, HappyAddonsEditor.i18n);
 	};
 
+	// For BC
+	window.ha_get_feature_label = ha.getFeatureLabel;
+	window.ha_has_icon_library = ha.hasIconLibrary;
+	window.ha_translate = ha.hasIconLibrary;
+
 	ha.getButtonWithIcon = function(view, args) {
 		var buttonMarkup = [],
 			settings = {},
