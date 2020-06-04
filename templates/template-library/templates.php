@@ -57,14 +57,14 @@ defined( 'ABSPATH' ) || exit;
 </script>
 
 <script type="text/template" id="tmpl-haTemplateLibrary__insert-button">
-	<a class="elementor-template-library-template-action elementor-button elementor-template-library-template-insert">
+	<a class="elementor-template-library-template-action elementor-button haTemplateLibrary__insert-button">
 		<i class="eicon-file-download" aria-hidden="true"></i>
 		<span class="elementor-button-title"><?php esc_html_e( 'Insert', 'happy-elementor-addons' ); ?></span>
 	</a>
 </script>
 
 <script type="text/template" id="tmpl-haTemplateLibrary__pro-button">
-	<a class="elementor-template-library-template-action elementor-button elementor-go-pro" href="https://happyaddons.com/" target="_blank">
+	<a class="elementor-template-library-template-action elementor-button haTemplateLibrary__pro-button" href="https://happyaddons.com/" target="_blank">
 		<i class="eicon-external-link-square" aria-hidden="true"></i>
 		<span class="elementor-button-title"><?php esc_html_e( 'Get Pro', 'happy-elementor-addons' ); ?></span>
 	</a>
@@ -108,17 +108,23 @@ defined( 'ABSPATH' ) || exit;
 		</div>
 	</div>
 
-	<div id="haTemplateLibrary__templates-list"></div>
+	<div class="haTemplateLibrary__templates-window">
+		<div id="haTemplateLibrary__templates-list"></div>
+	</div>
 </script>
 
 <script type="text/template" id="tmpl-haTemplateLibrary__template">
 	<div class="haTemplateLibrary__template-body">
-		<img class="haTemplateLibrary__template-thumbnail" src="{{ thumbnail }}">
 		<div class="haTemplateLibrary__template-preview">
 			<i class="eicon-zoom-in-bold" aria-hidden="true"></i>
 		</div>
+		<img class="haTemplateLibrary__template-thumbnail" src="{{ thumbnail }}">
 	</div>
 	<div class="haTemplateLibrary__template-footer">
-		<div class="haTemplateLibrary__template-name">{{{ title }}}</div>
+		{{{ ha.library.getModal().getTemplateActionButton( obj ) }}}
+		<a href="#" class="elementor-button haTemplateLibrary__preview-button">
+			<i class="eicon-device-desktop" aria-hidden="true"></i>
+			<?php esc_html_e( 'Preview', 'happy-elementor-addons' ); ?>
+		</a>
 	</div>
 </script>

@@ -28,7 +28,7 @@
 
 	Library.Behavior.InsertTemplate = Marionette.Behavior.extend( {
 		ui: {
-			insertButton: '.elementor-template-library-template-insert',
+			insertButton: '.haTemplateLibrary__insert-button',
 		},
 
 		events: {
@@ -186,6 +186,7 @@
 		},
 
 		ui: {
+			templatesWindow: '.haTemplateLibrary__templates-window',
 			textFilter: '#haTemplateLibrary__search',
 			tagsFilter: '#haTemplateLibrary__filter-tags > li',
 		},
@@ -242,12 +243,27 @@
 		},
 
 		onTextFilterInput: function() {
-			ha.library.setFilter( 'text', this.ui.textFilter.val() );
+			var self = this;
+			// ha.library.setFilter( 'text', self.ui.textFilter.val() );
+			_.defer(function() {
+				ha.library.setFilter( 'text', self.ui.textFilter.val() );
+			});
 		},
 
 		onTagsFilterClick: function( event ) {
 			var $select = $( event.currentTarget );
 			ha.library.setFilter( 'tags', $select.data('tag') );
+		},
+
+		onRender: function() {
+			if (!this.perfectScrollbar) {
+				this.perfectScrollbar = new PerfectScrollbar(this.ui.templatesWindow[0], {
+					suppressScrollX: true
+				}); // The RTL is buggy, so always keep it LTR.
+
+				this.perfectScrollbar.isRtl = false;
+				return;
+			}
 		},
 	} );
 
@@ -257,7 +273,7 @@
 		className: 'haTemplateLibrary__template',
 
 		ui: {
-			previewButton: '.haTemplateLibrary__template-preview',
+			previewButton: '.haTemplateLibrary__preview-button, .haTemplateLibrary__template-preview',
 		},
 
 		events: {
@@ -334,7 +350,7 @@
 			self = this,
 			templatesCollection,
 			FIND_SELECTOR = '.elementor-add-new-section .elementor-add-section-drag-title',
-			$openLibraryButton = '<div class="elementor-add-section-area-button ha-add-template-button"><i class="hm hm-happyaddons"></i></div>',
+			$openLibraryButton = '<div class="elementor-add-section-area-button elementor-add-ha-button"> <i class="hm hm-happyaddons"></i> </div>',
 			devicesResponsiveMap = {
 				desktop: '100%',
 				tab: '768px',
@@ -398,7 +414,7 @@
 
 			$previewContents.on(
 				'click.onAddTemplateButton',
-				'.ha-add-template-button',
+				'.elementor-add-ha-button',
 				self.showModal.bind(self)
 			);
 

@@ -24,7 +24,6 @@
 	background-color: #562dd4; 
 	color: #fff;
 	text-align: center;
-	font-size: 18px;
 	line-height: 30px;
 }
 
@@ -164,6 +163,17 @@
 	        transition: border .5s;
 }
 
+#haTemplateLibrary__templates {
+	height: calc(100% + 30px);
+}
+
+.haTemplateLibrary__templates-window {
+	position: relative; 
+	overflow-y: auto;
+	margin: 10px -15px 0;
+	height: calc(100% - 40px);
+}
+
 #haTemplateLibrary__templates-list {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -176,14 +186,12 @@
 	-webkit-flex-wrap: wrap;
 	    -ms-flex-wrap: wrap;
 	        flex-wrap: wrap;
-	margin: 10px -15px 0;
 }
 
 .haTemplateLibrary__template {
 	position: relative;
 	overflow: hidden;
 	margin: 15px;
-	padding: 8px;
 	width: calc(33.333% - 30px);
 	border-radius: 2px; 
 	background-color: #fff;
@@ -191,10 +199,6 @@
 }
 .haTemplateLibrary__template-body {
 	position: relative;
-}
-.haTemplateLibrary__template-thumbnail {
-	display: block;
-	width: 100%;
 }
 .haTemplateLibrary__template-preview {
 	position: absolute;
@@ -208,10 +212,7 @@
 	-webkit-transition: opacity .5s;
 	        transition: opacity .5s;
 }
-.haTemplateLibrary__template-preview:hover {
-	opacity: 1;
-}
-.haTemplateLibrary__template-preview > i {
+.haTemplateLibrary__template-preview i {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -221,6 +222,13 @@
 	    -ms-transform: translate(-50%, -50%);
 	        transform: translate(-50%, -50%);
 }
+.haTemplateLibrary__template:hover .haTemplateLibrary__template-preview {
+	opacity: 1;
+}
+.haTemplateLibrary__template-thumbnail {
+	display: block;
+	width: 100%;
+}
 .haTemplateLibrary__template-footer {
 	position: absolute;
 	bottom: 0;
@@ -229,11 +237,14 @@
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display:         flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-ms-flex-align: center;
 	-webkit-box-pack: justify;
 	-ms-flex-pack: justify;
 	-webkit-justify-content: space-between;
 	        justify-content: space-between;
-	margin-top: 10px;
 	padding: 10px;
 	width: 100%;
 	background-color: #fff;
@@ -242,5 +253,54 @@
 	-webkit-transition: -webkit-transform .5s;
 	        transition: -webkit-transform .5s;
 	        transition:         transform .5s;
-	        transition:         transform .5s, -webkit-transform .5s;
+	        transition:         transform .5s, -webkit-transform .5s; 
+	-webkit-transform: translateY(100%);
+	    -ms-transform: translateY(100%);
+	        transform: translateY(100%);
+}
+.haTemplateLibrary__template:hover .haTemplateLibrary__template-footer {
+	-webkit-transform: translateY(0);
+	    -ms-transform: translateY(0);
+	        transform: translateY(0);
+}
+.haTemplateLibrary__template .haTemplateLibrary__pro-button {
+	color: #e8357c;
+}
+.haTemplateLibrary__template .haTemplateLibrary__pro-button:hover,
+.haTemplateLibrary__template .haTemplateLibrary__pro-button:focus {
+	color: #ed639a;
+}
+.haTemplateLibrary__template .haTemplateLibrary__insert-button {
+	color: #562dd4;
+}
+.haTemplateLibrary__template .haTemplateLibrary__insert-button:hover,
+.haTemplateLibrary__template .haTemplateLibrary__insert-button:focus {
+	color: #7857dd;
+}
+.haTemplateLibrary__template .haTemplateLibrary__preview-button {
+	color: #495157;
+}
+.haTemplateLibrary__template .haTemplateLibrary__preview-button:hover,
+.haTemplateLibrary__template .haTemplateLibrary__preview-button:focus {
+	color: #606b73;
+}
+
+#elementor-template-library-header-preview .haTemplateLibrary__pro-button {
+	background-color: #e8357c;
+	color: #fff;
+}
+#elementor-template-library-header-preview .haTemplateLibrary__pro-button:hover,
+#elementor-template-library-header-preview .haTemplateLibrary__pro-button:focus {
+	background-color: #ed639a; 
+	color: #fff;
+}
+
+#elementor-template-library-header-preview .haTemplateLibrary__insert-button {
+	background-color: #562dd4;
+	color: #fff;
+}
+#elementor-template-library-header-preview .haTemplateLibrary__insert-button:hover,
+#elementor-template-library-header-preview .haTemplateLibrary__insert-button:focus {
+	background-color: #7857dd; 
+	color: #fff;
 }

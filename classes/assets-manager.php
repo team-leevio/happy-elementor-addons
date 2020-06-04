@@ -382,7 +382,7 @@ class Assets_Manager {
 		}
 
 		$data = '
-		.elementor-add-new-section .ha-add-template-button {
+		.elementor-add-new-section .elementor-add-ha-button {
 			background-color: #5636d1;
 			margin-left: 5px;
 			font-size: 18px;
