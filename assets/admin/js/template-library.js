@@ -2,15 +2,15 @@
 	window.ha = window.ha || {};
 
 	var Library = {
-		View: {},
-		Model: {},
-		Collection: {},
-		Behavior: {},
+		Views: {},
+		Models: {},
+		Collections: {},
+		Behaviors: {},
 		Layout: null,
 		Manager: null,
 	};
 
-	Library.Model.Template = Backbone.Model.extend( {
+	Library.Models.Template = Backbone.Model.extend( {
 		defaults: {
 			template_id: 0,
 			title: '',
@@ -22,11 +22,11 @@
 		},
 	} );
 
-	Library.Collection.Template = Backbone.Collection.extend( {
-		model: Library.Model.Template
+	Library.Collections.Template = Backbone.Collection.extend( {
+		model: Library.Models.Template
 	} );
 
-	Library.Behavior.InsertTemplate = Marionette.Behavior.extend( {
+	Library.Behaviors.InsertTemplate = Marionette.Behavior.extend( {
 		ui: {
 			insertButton: '.haTemplateLibrary__insert-button',
 		},
@@ -45,12 +45,12 @@
 		},
 	} );
 
-	Library.View.Loading = Marionette.ItemView.extend({
+	Library.Views.Loading = Marionette.ItemView.extend( {
 		template: '#tmpl-haTemplateLibrary__loading',
 		id: 'haTemplateLibrary__loading',
-	});
+	} );
 
-	Library.View.Logo = Marionette.ItemView.extend({
+	Library.Views.Logo = Marionette.ItemView.extend( {
 		template: '#tmpl-haTemplateLibrary__header-logo',
 		className: 'haTemplateLibrary__header-logo',
 
@@ -59,9 +59,9 @@
 				title: this.getOption('title'),
 			};
 		},
-	});
+	} );
 
-	Library.View.BackButton = Marionette.ItemView.extend( {
+	Library.Views.BackButton = Marionette.ItemView.extend( {
 		template: '#tmpl-haTemplateLibrary__header-back',
 		id: 'elementor-template-library-header-preview-back',
 		className:'haTemplateLibrary__header-back',
@@ -77,7 +77,7 @@
 		},
 	} );
 
-	Library.View.Menu = Marionette.ItemView.extend( {
+	Library.Views.Menu = Marionette.ItemView.extend( {
 		template: '#tmpl-haTemplateLibrary__header-menu',
 		id: 'elementor-template-library-header-menu',
 		className: 'haTemplateLibrary__header-menu',
@@ -87,7 +87,7 @@
 		},
 	} );
 
-	Library.View.ResponsiveMenu = Marionette.ItemView.extend( {
+	Library.Views.ResponsiveMenu = Marionette.ItemView.extend( {
 		template: '#tmpl-haTemplateLibrary__header-menu-responsive',
 		id: 'elementor-template-library-header-menu-responsive',
 		className: 'haTemplateLibrary__header-menu-responsive',
@@ -108,7 +108,7 @@
 		}
 	} );
 
-	Library.View.Actions = Marionette.ItemView.extend( {
+	Library.Views.Actions = Marionette.ItemView.extend( {
 		template: '#tmpl-haTemplateLibrary__header-actions',
 		id: 'elementor-template-library-header-actions',
 
@@ -136,19 +136,19 @@
 		},
 	} );
 
-	Library.View.InsertWrapper = Marionette.ItemView.extend( {
+	Library.Views.InsertWrapper = Marionette.ItemView.extend( {
 		template: '#tmpl-haTemplateLibrary__header-insert',
 
 		id: 'elementor-template-library-header-preview',
 
 		behaviors: {
 			insertTemplate: {
-				behaviorClass: Library.Behavior.InsertTemplate,
+				behaviorClass: Library.Behaviors.InsertTemplate,
 			},
 		},
 	} );
 
-	Library.View.Preview = Marionette.ItemView.extend({
+	Library.Views.Preview = Marionette.ItemView.extend( {
 		template: '#tmpl-haTemplateLibrary__preview',
 		className: 'haTemplateLibrary__preview',
 
@@ -161,7 +161,7 @@
 		onRender: function() {
 			this.ui.iframe.attr('src', this.getOption('url')).hide();
 			var self = this,
-				loadingScreen = (new Library.View.Loading()).render();
+				loadingScreen = (new Library.Views.Loading()).render();
 
 			this.$el.append(loadingScreen.el);
 
@@ -170,9 +170,9 @@
 				self.ui.iframe.show();
 			});
 		}
-	});
+	} );
 
-	Library.View.TemplateCollection = Marionette.CompositeView.extend( {
+	Library.Views.TemplateCollection = Marionette.CompositeView.extend( {
 		template: '#tmpl-haTemplateLibrary__templates',
 
 		id: 'haTemplateLibrary__templates',
@@ -198,7 +198,7 @@
 		},
 
 		getChildView: function( childModel ) {
-			return Library.View.Template;
+			return Library.Views.Template;
 		},
 
 		initialize: function() {
@@ -241,6 +241,7 @@
 
 		onRenderCollection: function() {
 			this.setMasonrySkin();
+			this.updatePerfectScrollbar();
 		},
 
 		onTextFilterInput: function() {
@@ -266,36 +267,48 @@
 			this.ui.filterBar.find('.haTemplateLibrary__filter-btn').html(tag);
 		},
 
-		onRender: function() {
-			if (!this.perfectScrollbar) {
+		updatePerfectScrollbar: function() {
+			if ( ! this.perfectScrollbar ) {
 				this.perfectScrollbar = new PerfectScrollbar(this.ui.templatesWindow[0], {
 					suppressScrollX: true
 				}); // The RTL is buggy, so always keep it LTR.
-
-				this.perfectScrollbar.isRtl = false;
 			}
+			this.perfectScrollbar.isRtl = false;
+			this.perfectScrollbar.update();
+		},
 
+		setTagsFilterHover: function() {
 			var self = this;
 
-			this.ui.filterBar.hoverIntent(function() {
-				self.ui.tagsFilter.css('display', 'block');
-				self.ui.filterBar.find('.haTemplateLibrary__filter-btn i')
-					.addClass('eicon-caret-down')
-					.removeClass('eicon-caret-right');
-			}, function() {
-				self.ui.tagsFilter.css('display', 'none');
-				self.ui.filterBar.find('.haTemplateLibrary__filter-btn i')
-					.addClass('eicon-caret-right')
-					.removeClass('eicon-caret-down');
-			}, {
-				sensitivity: 50,
-				interval: 150,
-				timeout: 100,
-			});
+			self.ui.filterBar.hoverIntent(
+				function() {
+					self.ui.tagsFilter.css('display', 'block');
+					self.ui.filterBar
+						.find('.haTemplateLibrary__filter-btn i')
+						.addClass('eicon-caret-down')
+						.removeClass('eicon-caret-right');
+				},
+				function() {
+					self.ui.tagsFilter.css('display', 'none');
+					self.ui.filterBar
+						.find('.haTemplateLibrary__filter-btn i')
+						.addClass('eicon-caret-right')
+						.removeClass('eicon-caret-down');
+				}, {
+					sensitivity: 50,
+					interval: 150,
+					timeout: 100,
+				}
+			);
+		},
+
+		onRender: function() {
+			this.setTagsFilterHover();
+			this.updatePerfectScrollbar();
 		},
 	} );
 
-	Library.View.Template = Marionette.ItemView.extend( {
+	Library.Views.Template = Marionette.ItemView.extend( {
 		template: '#tmpl-haTemplateLibrary__template',
 
 		className: 'haTemplateLibrary__template',
@@ -310,7 +323,7 @@
 
 		behaviors: {
 			insertTemplate: {
-				behaviorClass: Library.Behavior.InsertTemplate,
+				behaviorClass: Library.Behaviors.InsertTemplate,
 			},
 		},
 
@@ -339,7 +352,7 @@
 		},
 
 		showLogo: function(args) {
-			this.getHeaderView().logoArea.show( new Library.View.Logo(args) );
+			this.getHeaderView().logoArea.show( new Library.Views.Logo(args) );
 		},
 
 		showDefaultHeader: function() {
@@ -348,25 +361,25 @@
 			});
 
 			var headerView = this.getHeaderView();
-			headerView.tools.show( new Library.View.Actions() );
-			// headerView.menuArea.show( new Library.View.Menu() );
+			headerView.tools.show( new Library.Views.Actions() );
+			// headerView.menuArea.show( new Library.Views.Menu() );
 			headerView.menuArea.reset();
 		},
 
 		showPreviewView: function( templateModel ) {
 			var headerView = this.getHeaderView();
 
-			headerView.menuArea.show( new Library.View.ResponsiveMenu() );
-			headerView.logoArea.show( new Library.View.BackButton() );
-			headerView.tools.show( new Library.View.InsertWrapper( { model: templateModel } ) );
+			headerView.menuArea.show( new Library.Views.ResponsiveMenu() );
+			headerView.logoArea.show( new Library.Views.BackButton() );
+			headerView.tools.show( new Library.Views.InsertWrapper( { model: templateModel } ) );
 
-			this.modalContent.show( new Library.View.Preview( {
+			this.modalContent.show( new Library.Views.Preview( {
 				url: templateModel.get( 'url' )
 			} ) );
 		},
 
 		showBlocksView: function( blocksCollection ) {
-			this.modalContent.show( new Library.View.TemplateCollection( {
+			this.modalContent.show( new Library.Views.TemplateCollection( {
 				collection: blocksCollection,
 			} ) );
 		}
@@ -566,7 +579,7 @@
 			var ajaxOptions = {
 				data: {},
 				success: function( data ) {
-					templatesCollection = new Library.Collection.Template( data.templates );
+					templatesCollection = new Library.Collections.Template( data.templates );
 
 					if ( data.tags ) {
 						tags = data.tags;

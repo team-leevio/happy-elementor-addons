@@ -144,7 +144,7 @@
 	position: relative; 
 	overflow-y: auto;
 	margin: 10px -15px 0;
-	height: calc(100% - 40px);
+	height: calc(100% - 45px);
 }
 
 #haTemplateLibrary__templates-list {
