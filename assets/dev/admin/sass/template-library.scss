@@ -51,34 +51,37 @@
 	align-items: center;
 }
 
+#haTemplateLibrary__toolbar-search,
 #haTemplateLibrary__toolbar-filter {
-	font-size: 11px;
-	display: flex;
-	align-items: center;
-	flex: 0 0 200px;
-	position: relative;
+	width: 200px;
+    position: relative;
+}
+
+#haTemplateLibrary__toolbar-search i,
+.haTemplateLibrary__filter-btn i {
+	position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
 }
 
 .haTemplateLibrary__filter-btn {
-	width: 100%;
-	padding: 8px 15px 8px 0;
-	height: 30px;
-	line-height: 0;
-	border: 0;
-	border-bottom: 1px solid #d5dadf;
-	position: relative;
-	background-color: transparent;
-	outline: 0;
-	color: #aeb7be;
 	text-align: left;
 	cursor: pointer;
+	display: block;
+}
 
-	> i {
-		position: absolute;
-		right: 0;
-		top: 50%;
-		transform: translateY(-50%);
-	}
+#haTemplateLibrary__search {
+	border: none;
+}
+
+#haTemplateLibrary__search,
+.haTemplateLibrary__filter-btn {
+    border-bottom: 1px solid #d5dadf;
+    border-radius: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+    padding: 8px 15px 8px 0;
 }
 
 #haTemplateLibrary__filter-tags {
@@ -97,11 +100,13 @@
 	> li {
 		padding: 10px;
 		float: left;
+		text-align: left;
 		width: calc(100% / 4);
 		text-transform: capitalize;
 		cursor: pointer;
 
-		&:hover {
+		&:hover,
+		&.active {
 			color: #562dd4;
 		}
 	}
@@ -118,27 +123,6 @@
 		border-bottom-color: #ffffff;
 		pointer-events: none;
 	}
-}
-
-#haTemplateLibrary__toolbar-search {
-	width: 200px;
-    position: relative;
-}
-
-#haTemplateLibrary__toolbar-search i {
-	position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-}
-
-#haTemplateLibrary__search {
-	border: none;
-    border-bottom: 1px solid #d5dadf;
-    border-radius: 0;
-    font-size: 11px;
-    padding: 8px 15px 8px 0;
-    transition: border 0.5s;
 }
 
 #haTemplateLibrary__templates {
@@ -190,6 +174,20 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 		}
+	}
+
+	&-badge {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		display: inline-block;
+		padding: 2px 4px;
+		background-color: #e8357c;
+		color: #fff;
+		text-transform: uppercase;
+		font-size: 10px;
+		letter-spacing: .5px;
+		border-radius: 2px;
 	}
 
 	&:hover &-preview {

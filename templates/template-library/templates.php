@@ -87,17 +87,20 @@ defined( 'ABSPATH' ) || exit;
 <script type="text/template" id="tmpl-haTemplateLibrary__templates">
 	<div id="haTemplateLibrary__toolbar">
 		<div id="haTemplateLibrary__toolbar-filter" class="haTemplateLibrary__toolbar-filter">
-			<# if ( ha.library.getTags() ) { #>
-				<!-- <div id="haTemplateLibrary__filter"> -->
-				<button type="button" class="haTemplateLibrary__filter-btn"><?php esc_html_e( 'Filter ...', 'happy-elementor-addons' ); ?> <i class="eicon-caret-right"></i></button>
+			<# if ( ha.library.getTags() ) { var selectedTag = ha.library.getFilter( 'tags' ); #>
+				<# if ( selectedTag ) { #>
+				<span class="haTemplateLibrary__filter-btn">{{{ ha.library.getTags()[selectedTag] }}} <i class="eicon-caret-right"></i></span>
+				<# } else { #>
+				<span class="haTemplateLibrary__filter-btn"><?php esc_html_e( 'Filter', 'happy-elementor-addons' ); ?> <i class="eicon-caret-right"></i></span>
+				<# } #>
 				<ul id="haTemplateLibrary__filter-tags" class="haTemplateLibrary__filter-tags">
+					<li data-tag="">All</li>
 					<# _.each( ha.library.getTags(), function( name, slug ) {
-						var selected = ha.library.getFilter( 'tags' ) === slug ? 'ha--active' : '';
+						var selected = selectedTag === slug ? 'active' : '';
 						#>
 						<li data-tag="{{ slug }}" class="{{ selected }}">{{{ name }}}</li>
 					<# } ); #>
 				</ul>
-				<!-- </div> -->
 			<# } #>
 		</div>
 
@@ -119,6 +122,9 @@ defined( 'ABSPATH' ) || exit;
 			<i class="eicon-zoom-in-bold" aria-hidden="true"></i>
 		</div>
 		<img class="haTemplateLibrary__template-thumbnail" src="{{ thumbnail }}">
+		<# if ( obj.isPro ) { #>
+		<span class="haTemplateLibrary__template-badge"><?php esc_html_e( 'Pro', 'happy-elementor-addons' ); ?></span>
+		<# } #>
 	</div>
 	<div class="haTemplateLibrary__template-footer">
 		{{{ ha.library.getModal().getTemplateActionButton( obj ) }}}

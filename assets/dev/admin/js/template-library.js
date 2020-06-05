@@ -188,12 +188,13 @@
 		ui: {
 			templatesWindow: '.haTemplateLibrary__templates-window',
 			textFilter: '#haTemplateLibrary__search',
-			tagsFilter: '#haTemplateLibrary__filter-tags > li',
+			tagsFilter: '#haTemplateLibrary__filter-tags',
+			filterBar: '#haTemplateLibrary__toolbar-filter',
 		},
 
 		events: {
 			'input @ui.textFilter': 'onTextFilterInput',
-			'click @ui.tagsFilter': 'onTagsFilterClick',
+			'click @ui.tagsFilter li': 'onTagsFilterClick',
 		},
 
 		getChildView: function( childModel ) {
@@ -244,15 +245,25 @@
 
 		onTextFilterInput: function() {
 			var self = this;
-			// ha.library.setFilter( 'text', self.ui.textFilter.val() );
 			_.defer(function() {
 				ha.library.setFilter( 'text', self.ui.textFilter.val() );
 			});
 		},
 
 		onTagsFilterClick: function( event ) {
-			var $select = $( event.currentTarget );
-			ha.library.setFilter( 'tags', $select.data('tag') );
+			var $select = $( event.currentTarget ),
+				tag = $select.data('tag');
+			ha.library.setFilter( 'tags', tag );
+
+			$select.addClass('active').siblings().removeClass('active');
+
+			if ( ! tag ) {
+				tag = 'Filter'
+			} else {
+				tag = ha.library.getTags()[tag];
+			}
+
+			this.ui.filterBar.find('.haTemplateLibrary__filter-btn').html(tag);
 		},
 
 		onRender: function() {
@@ -262,8 +273,25 @@
 				}); // The RTL is buggy, so always keep it LTR.
 
 				this.perfectScrollbar.isRtl = false;
-				return;
 			}
+
+			var self = this;
+
+			this.ui.filterBar.hoverIntent(function() {
+				self.ui.tagsFilter.css('display', 'block');
+				self.ui.filterBar.find('.haTemplateLibrary__filter-btn i')
+					.addClass('eicon-caret-down')
+					.removeClass('eicon-caret-right');
+			}, function() {
+				self.ui.tagsFilter.css('display', 'none');
+				self.ui.filterBar.find('.haTemplateLibrary__filter-btn i')
+					.addClass('eicon-caret-right')
+					.removeClass('eicon-caret-down');
+			}, {
+				sensitivity: 50,
+				interval: 150,
+				timeout: 100,
+			});
 		},
 	} );
 
