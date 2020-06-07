@@ -45,6 +45,42 @@
 		},
 	} );
 
+	Library.Views.EmptyTemplateCollection = Marionette.ItemView.extend( {
+		id: 'elementor-template-library-templates-empty',
+		template: '#tmpl-haTemplateLibrary__empty',
+
+		ui: {
+			title: '.elementor-template-library-blank-title',
+			message: '.elementor-template-library-blank-message',
+		},
+
+		modesStrings: {
+			empty: {
+				title: ha.translate( 'templatesEmptyTitle' ),
+				message: ha.translate( 'templatesEmptyMessage' ),
+			},
+			noResults: {
+				title: ha.translate( 'templatesNoResultsTitle' ),
+				message: ha.translate( 'templatesNoResultsMessage' ),
+			},
+		},
+
+		getCurrentMode: function() {
+			if ( ha.library.getFilter( 'text' ) ) {
+				return 'noResults';
+			}
+
+			return 'empty';
+		},
+
+		onRender: function() {
+			var modeStrings = this.modesStrings[ this.getCurrentMode() ];
+
+			this.ui.title.html( modeStrings.title );
+			this.ui.message.html( modeStrings.message );
+		},
+	} );
+
 	Library.Views.Loading = Marionette.ItemView.extend( {
 		template: '#tmpl-haTemplateLibrary__loading',
 		id: 'haTemplateLibrary__loading',
@@ -180,9 +216,7 @@
 		childViewContainer: '#haTemplateLibrary__templates-list',
 
 		emptyView: function() {
-			// var EmptyView = require( 'elementor-templates/views/parts/templates-empty' );
-
-			// return new EmptyView();
+			return new Library.Views.EmptyTemplateCollection();
 		},
 
 		ui: {
@@ -541,6 +575,9 @@
 
 		this.showBlocksView = function() {
 			self.getModal().showDefaultHeader();
+			self.setFilter('tags', '', true );
+			self.setFilter('text', '', true );
+
 			self.loadTemplates( function() {
 				self.getModal().showBlocksView( templatesCollection );
 			} );

@@ -134,3 +134,15 @@ defined( 'ABSPATH' ) || exit;
 		</a>
 	</div>
 </script>
+
+<script type="text/template" id="tmpl-haTemplateLibrary__empty">
+	<div class="elementor-template-library-blank-icon">
+		<img src="<?php echo ELEMENTOR_ASSETS_URL . 'images/no-search-results.svg'; ?>" class="elementor-template-library-no-results" />
+	</div>
+	<div class="elementor-template-library-blank-title"></div>
+	<div class="elementor-template-library-blank-message"></div>
+	<div class="elementor-template-library-blank-footer">
+		<?php esc_html_e( 'Want to learn more about the Happy Library?', 'happy-elementor-addons' ); ?>
+		<a class="elementor-template-library-blank-footer-link" href="https://happyaddons.com/" target="_blank"><?php echo __( 'Click here', 'happy-elementor-addons' ); ?></a>
+	</div>
+</script>

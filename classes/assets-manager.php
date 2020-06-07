@@ -330,6 +330,11 @@ class Assets_Manager {
 				'editorPanelWidgetsLinkTitle' => esc_html__( 'HappyAddons - Widgets', 'happy-elementor-addons' ),
 				'promotionDialogHeader' => esc_html__( '%s Widget', 'happy-elementor-addons' ),
 				'promotionDialogMessage' => esc_html__( 'Use %s widget with other exclusive pro widgets and 100% unique features to extend your toolbox and build sites faster and better.', 'happy-elementor-addons' ),
+
+				'templatesEmptyTitle' => esc_html__( 'No Templates Found', 'happy-elementor-addons' ),
+				'templatesEmptyMessage' => esc_html__( 'Try different category or sync for new templates.', 'happy-elementor-addons' ),
+				'templatesNoResultsTitle' => esc_html__( 'No Results Found', 'happy-elementor-addons' ),
+				'templatesNoResultsMessage' => esc_html__( 'Please make sure your search is spelled correctly or try a different words.', 'happy-elementor-addons' ),
 			],
 			'proWidgets' => [],
 			'hasPro' => ha_has_pro(),
