@@ -84,7 +84,7 @@ gulp.task("js", function() {
 gulp.task("adminJS", function() {
     return gulp.src(adminJSFiles)
         .pipe(plumberNotifier())
-        .pipe(gulp.dest("assets/admin/js"))
+        // .pipe(gulp.dest("assets/admin/js"))
         .pipe(uglify())
         .pipe(rename({suffix: ".min"}))
         .pipe(gulp.dest("assets/admin/js"));
