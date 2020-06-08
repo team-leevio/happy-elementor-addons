@@ -376,7 +376,8 @@
 		},
 
 		getTemplateActionButton: function getTemplateActionButton( templateData ) {
-			var viewId = '#tmpl-haTemplateLibrary__' + ( templateData.isPro ? 'pro-button' : 'insert-button' ),
+			var templateName = ( templateData.isPro && ! HappyAddonsEditor.hasPro ) ? 'pro-button' : 'insert-button';
+				viewId = '#tmpl-haTemplateLibrary__' + templateName,
 				template = Marionette.TemplateCache.get(viewId);
 
 			return Marionette.Renderer.render(template);

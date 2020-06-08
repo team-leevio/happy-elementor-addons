@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || die();
  * @return bool
  */
 function ha_is_cf7_activated() {
-    return class_exists( 'WPCF7' );
+    return class_exists( '\WPCF7' );
 }
 
 /**
@@ -49,7 +49,7 @@ function ha_is_calderaforms_activated() {
  * @return bool
  */
 function ha_is_weforms_activated() {
-    return class_exists( 'WeForms' );
+    return class_exists( '\WeForms' );
 }
 
 /**
@@ -58,7 +58,7 @@ function ha_is_weforms_activated() {
  * @return bool
  */
 function ha_is_gravityforms_activated() {
-	return class_exists( 'GFForms' );
+	return class_exists( '\GFForms' );
 }
 
 /*
@@ -203,16 +203,16 @@ function ha_get_gravity_forms() {
 function ha_get_fluent_forms() {
 	$forms = [];
 
-	if ( defined('FLUENTFORM' ) ) {
+	if ( ha_is_fluent_form_activated() ) {
 		global $wpdb;
 
-		$table = $wpdb->prefix.'fluentform_forms';
+		$table = $wpdb->prefix . 'fluentform_forms';
 		$query = "SELECT * FROM {$table}";
 		$fluent_forms = $wpdb->get_results( $query );
 
 		if ( $fluent_forms ) {
 			foreach( $fluent_forms as $form ) {
-				$forms[$form->id] = $form->title;
+				$forms[ $form->id ] = $form->title;
 			}
 		}
 	}
