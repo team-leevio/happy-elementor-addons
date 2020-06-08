@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || die();
  * @return bool
  */
 function ha_is_cf7_activated() {
-    return class_exists( '\WPCF7' );
+	return class_exists( '\WPCF7' );
 }
 
 /**
@@ -22,7 +22,7 @@ function ha_is_cf7_activated() {
  * @return bool
  */
 function ha_is_wpforms_activated() {
-    return class_exists( '\WPForms\WPForms' ) ;
+	return class_exists( '\WPForms\WPForms' ) ;
 }
 
 /**
@@ -31,7 +31,7 @@ function ha_is_wpforms_activated() {
  * @return bool
  */
 function ha_is_ninjaforms_activated() {
-    return class_exists( '\Ninja_Forms' );
+	return class_exists( '\Ninja_Forms' );
 }
 
 /**
@@ -40,7 +40,7 @@ function ha_is_ninjaforms_activated() {
  * @return bool
  */
 function ha_is_calderaforms_activated() {
-    return class_exists( '\Caldera_Forms' );
+	return class_exists( '\Caldera_Forms' );
 }
 
 /**
@@ -49,7 +49,7 @@ function ha_is_calderaforms_activated() {
  * @return bool
  */
 function ha_is_weforms_activated() {
-    return class_exists( '\WeForms' );
+	return class_exists( '\WeForms' );
 }
 
 /**
@@ -67,7 +67,7 @@ function ha_is_gravityforms_activated() {
  * @return bool
  */
 function ha_is_fluent_form_activated() {
-    return defined( 'FLUENTFORM' );
+	return defined( 'FLUENTFORM' );
 }
 
 /**
@@ -76,21 +76,23 @@ function ha_is_fluent_form_activated() {
  * @return array
  */
 function ha_get_cf7_forms() {
-    $forms = [];
-    if ( ha_is_cf7_activated() ) {
-        $_forms = get_posts( [
-            'post_type'      => 'wpcf7_contact_form',
-            'post_status'    => 'publish',
-            'posts_per_page' => -1,
-            'orderby'        => 'title',
-            'order'          => 'ASC',
-        ] );
+	$forms = [];
 
-        if ( ! empty( $_forms ) ) {
-            $forms = wp_list_pluck( $_forms, 'post_title', 'ID' );
-        }
-    }
-    return $forms;
+	if ( ha_is_cf7_activated() ) {
+		$_forms = get_posts( [
+			'post_type'      => 'wpcf7_contact_form',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+		] );
+
+		if ( ! empty( $_forms ) ) {
+			$forms = wp_list_pluck( $_forms, 'post_title', 'ID' );
+		}
+	}
+
+	return $forms;
 }
 
 /**
@@ -99,21 +101,23 @@ function ha_get_cf7_forms() {
  * @return array
  */
 function ha_get_wpforms() {
-    $forms = [];
-    if ( ha_is_wpforms_activated() ) {
-        $_forms = get_posts( [
-            'post_type' => 'wpforms',
-            'post_status' => 'publish',
-            'posts_per_page' => -1,
-            'orderby' => 'title',
-            'order' => 'ASC',
-        ] );
+	$forms = [];
 
-        if ( ! empty( $_forms ) ) {
-            $forms = wp_list_pluck( $_forms, 'post_title', 'ID' );
-        }
-    }
-    return $forms;
+	if ( ha_is_wpforms_activated() ) {
+		$_forms = get_posts( [
+			'post_type' => 'wpforms',
+			'post_status' => 'publish',
+			'posts_per_page' => -1,
+			'orderby' => 'title',
+			'order' => 'ASC',
+		] );
+
+		if ( ! empty( $_forms ) ) {
+			$forms = wp_list_pluck( $_forms, 'post_title', 'ID' );
+		}
+	}
+
+	return $forms;
 }
 
 /**
@@ -122,17 +126,19 @@ function ha_get_wpforms() {
  * @return array
  */
 function ha_get_ninjaform() {
-    $forms = [];
-    if ( ha_is_ninjaforms_activated() ) {
-        $_forms = \Ninja_Forms()->form()->get_forms();
+	$forms = [];
 
-        if ( ! empty( $_forms ) && ! is_wp_error( $_forms ) ) {
-            foreach ( $_forms as $form ) {
-                $forms[ $form->get_id( )] = $form->get_setting('title');
-            }
-        }
-    }
-    return $forms;
+	if ( ha_is_ninjaforms_activated() ) {
+		$_forms = \Ninja_Forms()->form()->get_forms();
+
+		if ( ! empty( $_forms ) && ! is_wp_error( $_forms ) ) {
+			foreach ( $_forms as $form ) {
+				$forms[ $form->get_id( )] = $form->get_setting('title');
+			}
+		}
+	}
+
+	return $forms;
 }
 
 /**
@@ -141,17 +147,19 @@ function ha_get_ninjaform() {
  * @return array
  */
 function ha_get_caldera_form() {
-    $forms = [];
-    if ( ha_is_calderaforms_activated() ) {
-        $_forms = \Caldera_Forms_Forms::get_forms(true, true);
+	$forms = [];
 
-        if ( ! empty( $_forms ) && ! is_wp_error( $_forms ) ) {
-            foreach ( $_forms as $form ) {
-                $forms[ $form['ID'] ] = $form['name'];
-            }
-        }
-    }
-    return $forms;
+	if ( ha_is_calderaforms_activated() ) {
+		$_forms = \Caldera_Forms_Forms::get_forms(true, true);
+
+		if ( ! empty( $_forms ) && ! is_wp_error( $_forms ) ) {
+			foreach ( $_forms as $form ) {
+				$forms[ $form['ID'] ] = $form['name'];
+			}
+		}
+	}
+
+	return $forms;
 }
 
 /**
@@ -160,21 +168,23 @@ function ha_get_caldera_form() {
  * @return array
  */
 function ha_get_we_forms() {
-    $forms = [];
-    if ( ha_is_weforms_activated() ) {
-        $_forms = get_posts( [
-            'post_type' => 'wpuf_contact_form',
-            'post_status' => 'publish',
-            'posts_per_page' => -1,
-            'orderby' => 'title',
-            'order' => 'ASC',
-        ] );
+	$forms = [];
 
-        if ( ! empty( $_forms ) ) {
-            $forms = wp_list_pluck( $_forms, 'post_title', 'ID' );
-        }
-    }
-    return $forms;
+	if ( ha_is_weforms_activated() ) {
+		$_forms = get_posts( [
+			'post_type' => 'wpuf_contact_form',
+			'post_status' => 'publish',
+			'posts_per_page' => -1,
+			'orderby' => 'title',
+			'order' => 'ASC',
+		] );
+
+		if ( ! empty( $_forms ) ) {
+			$forms = wp_list_pluck( $_forms, 'post_title', 'ID' );
+		}
+	}
+
+	return $forms;
 }
 
 /**
@@ -184,6 +194,7 @@ function ha_get_we_forms() {
  */
 function ha_get_gravity_forms() {
 	$forms = [];
+
 	if ( ha_is_gravityforms_activated() ) {
 		$gravity_forms = \RGFormsModel::get_forms( null, 'title' );
 
@@ -193,6 +204,8 @@ function ha_get_gravity_forms() {
 			}
 		}
 	}
+
+	return $forms;
 }
 
 /*
