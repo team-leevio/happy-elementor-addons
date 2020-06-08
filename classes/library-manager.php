@@ -73,8 +73,6 @@ class Library_Manager {
 
 			$result = self::get_template_data( $data );
 
-			file_put_contents( __DIR__ . '/data.txt', print_r( $result, 1) );
-
 			return $result;
 		} );
 	}

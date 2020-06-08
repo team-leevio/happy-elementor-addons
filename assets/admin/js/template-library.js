@@ -495,9 +495,6 @@
 		}
 
 		this.updateBlocksView = function() {
-			self.setFilter('tags', '', true );
-			self.setFilter('text', '', true );
-
 			self.getModal().showBlocksView( templatesCollection );
 		}
 
@@ -650,7 +647,7 @@
 				jQuery.extend( true, options, ajaxOptions );
 			}
 
-			return elementorCommon.ajax.addRequest( 'get_ha_template_data', options );
+			elementorCommon.ajax.addRequest( 'get_ha_template_data', options );
 		};
 
 		this.insertTemplate = function( args ) {
