@@ -1,3 +1,7 @@
+= 2.12.0 - 8 June 2020 =
+
+- New: Happy Templates Library
+
 = 2.11.1 - 4 June 2020 =
 
 - Fix: JS function backward compatibility issue

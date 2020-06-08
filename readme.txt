@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.11.1
+Version: 2.12.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -64,6 +64,10 @@ Unlike most other Elementor addons, Happy Addons offers itself with many robust 
 - [**Taxonomy List**](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/taxonomy/) - This widget will help you to create a list of posts by sorting categories, tags, post formats.
 
 New free widgets or features are added every month. With all these awesome free widgets, this nifty plugin, not just aims to the trendy and sophisticated WordPress website design philosophy but also effortlessly aligns with any Elementor powered WordPress website design requirements.
+
+
+### **Happy Templates**
+Finally, we are happy to announce that we are introducing the Happy Template import feature within our HappyAddons. Initially, it comes with almost 400 readymade templates. We will continuously improve our template library. Both of our Free and Pro users can use happy templates. Templates are labeled in two tags, Pro and Free. To import premium templates you will need the [HappyAddons Pro](https://happyaddons.com/). Template import feature works as like Elementor Template importing feature. Additionally, you can check the previews in three device viewport; Desktop, Tab, Mobile.
 
 
 ### **FREE BUILT-IN EXTENSIONS FOR AN UNPRECEDENTED WEB-PAGE DESIGNING EXPERIENCE**
@@ -252,6 +256,10 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.12.0 - 8 June 2020 =
+
+- New: Happy Templates Library
 
 = 2.11.1 - 4 June 2020 =
 
