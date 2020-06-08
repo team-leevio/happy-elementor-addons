@@ -2,23 +2,23 @@
 	window.ha = window.ha || {};
 
 	var Library = {
-		Views: {},
-		Models: {},
+		Views      : {},
+		Models     : {},
 		Collections: {},
-		Behaviors: {},
-		Layout: null,
-		Manager: null,
+		Behaviors  : {},
+		Layout     : null,
+		Manager    : null,
 	};
 
 	Library.Models.Template = Backbone.Model.extend( {
 		defaults: {
 			template_id: 0,
-			title: '',
-			type: '',
-			thumbnail: '',
-			url: '',
-			tags: [],
-			isPro: false
+			title      : '',
+			type       : '',
+			thumbnail  : '',
+			url        : '',
+			tags       : [],
+			isPro      : false
 		},
 	} );
 
@@ -36,12 +36,9 @@
 		},
 
 		onInsertButtonClick: function() {
-			console.log(this);
-			// const args = {
-			// 	model: this.view.model,
-			// };
-
-			// $e.run( 'library/insert-template', args );
+			ha.library.insertTemplate( {
+				model: this.view.model,
+			} );
 		},
 	} );
 
@@ -424,6 +421,7 @@
 			tags,
 			self = this,
 			templatesCollection,
+			errorDialog
 			FIND_SELECTOR = '.elementor-add-new-section .elementor-add-section-drag-title',
 			$openLibraryButton = '<div class="elementor-add-section-area-button elementor-add-ha-button"> <i class="hm hm-happyaddons"></i> </div>',
 			devicesResponsiveMap = {
@@ -632,7 +630,91 @@
 				ajaxOptions.data.sync = true;
 			}
 
-			elementorCommon.ajax.addRequest( 'get_happy_library_data', ajaxOptions );
+			elementorCommon.ajax.addRequest( 'get_ha_library_data', ajaxOptions );
+		};
+
+		this.requestTemplateData = function( template_id, ajaxOptions ) {
+			var options = {
+				unique_id: template_id,
+				data: {
+					edit_mode: true,
+					display: true,
+					template_id: template_id,
+				},
+			};
+
+			if ( ajaxOptions ) {
+				jQuery.extend( true, options, ajaxOptions );
+			}
+
+			return elementorCommon.ajax.addRequest( 'get_ha_template_data', options );
+		};
+
+		this.insertTemplate = function( args ) {
+			var model = args.model,
+				self = this;
+
+			self.getModal().showLoadingView();
+
+			self.requestTemplateData( model.get( 'template_id' ), {
+				success: function( data ) {
+					self.getModal().hideLoadingView();
+					self.getModal().hideModal();
+
+					var options = {}
+
+					if ( self.atIndex !== -1) {
+						options.at = self.atIndex;
+					}
+
+					$e.run( 'document/elements/import', {
+						model: model,
+						data: data,
+						options: options
+					} );
+
+					self.atIndex = -1;
+
+
+				},
+				error: function( data ) {
+					self.showErrorDialog( data );
+				},
+				complete: function( data ) {
+					self.getModal().hideLoadingView();
+				},
+			} );
+		};
+
+		this.showErrorDialog = function( errorMessage ) {
+			if ( 'object' === typeof errorMessage ) {
+				var message = '';
+
+				_.each( errorMessage, function( error ) {
+					message += '<div>' + error.message + '.</div>';
+				} );
+
+				errorMessage = message;
+			} else if ( errorMessage ) {
+				errorMessage += '.';
+			} else {
+				errorMessage = '<i>&#60;The error message is empty&#62;</i>';
+			}
+
+			self.getErrorDialog()
+				.setMessage( 'The following error(s) occurred while processing the request:' + '<div id="elementor-template-library-error-info">' + errorMessage + '</div>' )
+				.show();
+		};
+
+		this.getErrorDialog = function() {
+			if ( ! errorDialog ) {
+				errorDialog = elementorCommon.dialogsManager.createWidget( 'alert', {
+					id: 'elementor-template-library-error-dialog',
+					headerMessage: 'An error occurred',
+				} );
+			}
+
+			return errorDialog;
 		};
 	};
 

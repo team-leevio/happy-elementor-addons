@@ -7,6 +7,8 @@ defined('ABSPATH') || die();
 
 class Library_Manager {
 
+	protected static $source = null;
+
 	public static function init() {
 		add_action( 'elementor/editor/footer', [ __CLASS__, 'print_template_views' ] );
 		add_action( 'elementor/ajax/register_actions', [ __CLASS__, 'register_ajax_actions' ] );
@@ -16,8 +18,21 @@ class Library_Manager {
 		include_once HAPPY_ADDONS_DIR_PATH . 'templates/template-library/templates.php';
 	}
 
+	/**
+	 * Undocumented function
+	 *
+	 * @return Library_Source
+	 */
+	public static function get_source() {
+		if ( is_null( self::$source ) ) {
+			self::$source = new Library_Source();
+		}
+
+		return self::$source;
+	}
+
 	public static function register_ajax_actions( Ajax $ajax ) {
-		$ajax->register_ajax_action( 'get_happy_library_data', function( $data ) {
+		$ajax->register_ajax_action( 'get_ha_library_data', function( $data ) {
 			if ( ! current_user_can( 'edit_posts' ) ) {
 				throw new \Exception( 'Access Denied' );
 			}
@@ -34,57 +49,52 @@ class Library_Manager {
 
 			$result = self::get_library_data( $data );
 
-			if ( is_wp_error( $result ) ) {
-				throw new \Exception( $result->get_error_message() );
+			return $result;
+		} );
+
+		$ajax->register_ajax_action( 'get_ha_template_data', function( $data ) {
+			if ( ! current_user_can( 'edit_posts' ) ) {
+				throw new \Exception( 'Access Denied' );
 			}
+
+			if ( ! empty( $data['editor_post_id'] ) ) {
+				$editor_post_id = absint( $data['editor_post_id'] );
+
+				if ( ! get_post( $editor_post_id ) ) {
+					throw new \Exception( __( 'Post not found.', 'happy-elementor-addons' ) );
+				}
+
+				ha_elementor()->db->switch_to_post( $editor_post_id );
+			}
+
+			if ( empty( $data['template_id'] ) ) {
+				throw new \Exception( __( 'Template id missing.', 'happy-elementor-addons' ) );
+			}
+
+			$result = self::get_template_data( $data );
+
+			file_put_contents( __DIR__ . '/data.txt', print_r( $result, 1) );
 
 			return $result;
 		} );
 	}
 
-	public static function get_library_data( array $args ) {
-		$library_data = Library_Api::get_data( ! empty( $args['sync'] ) );
-
-		return [
-			'templates' => self::get_templates( $library_data ),
-			'tags' => ! empty( $library_data['tags'] ) ? $library_data['tags'] : [],
-		];
+	public static function get_template_data( array $args ) {
+		$source = self::get_source();
+		$data = $source->get_data( $args );
+		return $data;
 	}
 
-	/**
-	 * Get templates from library data
-	 *
-	 * @param array $library_data
-	 * @return array
-	 */
-	private static function get_templates( array $library_data ) {
-		$templates = [];
+	public static function get_library_data( array $args ) {
+		$source = self::get_source();
 
-		if ( ! empty( $library_data['templates'] ) ) {
-			foreach ( $library_data['templates'] as $template_data ) {
-				$templates[] = self::prepare_template( $template_data );
-			}
+		if ( ! empty( $args['sync'] ) ) {
+			Library_Source::get_library_data( true );
 		}
 
-		return $templates;
-	}
-
-	/**
-	 * Prepare template items to match model
-	 *
-	 * @param array $template_data
-	 * @return array
-	 */
-	private static function prepare_template( array $template_data ) {
 		return [
-			'template_id' => $template_data['id'],
-			'title' => $template_data['title'],
-			'type' => $template_data['type'],
-			'thumbnail' => $template_data['thumbnail'],
-			'date' => $template_data['created_at'],
-			'tags' => $template_data['tags'],
-			'isPro' => $template_data['is_pro'],
-			'url' => $template_data['url'],
+			'templates' => $source->get_items(),
+			'tags' => $source->get_tags(),
 		];
 	}
 }
