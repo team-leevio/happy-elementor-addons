@@ -548,7 +548,17 @@ class Widgets_Manager {
 			        'css' => [],
 			        'js' => ['circlr','ha-simple-magnify'],
 		        ],
-            ]
+			],
+			'fluent-form' => [
+		        'title' => __( 'Fluent Form', 'happy-elementor-addons' ),
+		        'icon' => 'hm hm-form',
+		        'css' => [],
+		        'js' => [],
+		        'vendor' => [
+			        'css' => [],
+			        'js' => [],
+		        ],
+	        ],
         ];
     }
 

@@ -31,7 +31,7 @@ function ha_is_wpforms_activated() {
  * @return bool
  */
 function ha_is_ninjaforms_activated() {
-    return class_exists( 'Ninja_Forms' );
+    return class_exists( '\Ninja_Forms' );
 }
 
 /**
@@ -40,7 +40,7 @@ function ha_is_ninjaforms_activated() {
  * @return bool
  */
 function ha_is_calderaforms_activated() {
-    return class_exists( 'Caldera_Forms' );
+    return class_exists( '\Caldera_Forms' );
 }
 
 /**
@@ -59,6 +59,15 @@ function ha_is_weforms_activated() {
  */
 function ha_is_gravityforms_activated() {
 	return class_exists( 'GFForms' );
+}
+
+/*
+ * Check if Fluent Form is activated
+ *
+ * @return bool
+ */
+function ha_is_fluent_form_activated() {
+    return defined( 'FLUENTFORM' );
 }
 
 /**
@@ -184,5 +193,29 @@ function ha_get_gravity_forms() {
 			}
 		}
 	}
+}
+
+/*
+ * Get a list of all Fluent Forms
+ *
+ * @return array
+ */
+function ha_get_fluent_forms() {
+	$forms = [];
+
+	if ( defined('FLUENTFORM' ) ) {
+		global $wpdb;
+
+		$table = $wpdb->prefix.'fluentform_forms';
+		$query = "SELECT * FROM {$table}";
+		$fluent_forms = $wpdb->get_results( $query );
+
+		if ( $fluent_forms ) {
+			foreach( $fluent_forms as $form ) {
+				$forms[$form->id] = $form->title;
+			}
+		}
+	}
+
 	return $forms;
 }
