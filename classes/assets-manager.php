@@ -313,7 +313,7 @@ class Assets_Manager {
 
 		wp_enqueue_script(
 			'happy-elementor-addons-templates',
-			HAPPY_ADDONS_ASSETS . 'admin/js/template-library.js',
+			HAPPY_ADDONS_ASSETS . 'admin/js/template-library.min.js',
 			[
 				'elementor-editor',
 				'jquery-hover-intent',
