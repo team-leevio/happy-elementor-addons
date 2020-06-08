@@ -61,14 +61,14 @@ class Library_Manager {
 				$editor_post_id = absint( $data['editor_post_id'] );
 
 				if ( ! get_post( $editor_post_id ) ) {
-					throw new \Exception( __( 'Post not found.', 'happy-elementor-addons' ) );
+					throw new \Exception( __( 'Post not found', 'happy-elementor-addons' ) );
 				}
 
 				ha_elementor()->db->switch_to_post( $editor_post_id );
 			}
 
 			if ( empty( $data['template_id'] ) ) {
-				throw new \Exception( __( 'Template id missing.', 'happy-elementor-addons' ) );
+				throw new \Exception( __( 'Template id missing', 'happy-elementor-addons' ) );
 			}
 
 			$result = self::get_template_data( $data );

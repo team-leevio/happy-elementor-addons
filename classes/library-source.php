@@ -199,7 +199,7 @@ class Library_Source extends Source_Base {
 		$data = json_decode( $data, true );
 
 		if ( empty( $data ) || empty( $data['content'] ) ) {
-			throw new \Exception( __( 'Template does not have any content.', 'happy-elementor-addons' ) );
+			throw new \Exception( __( 'Template does not have any content', 'happy-elementor-addons' ) );
 		}
 
 		$data['content'] = $this->replace_elements_ids( $data['content'] );
