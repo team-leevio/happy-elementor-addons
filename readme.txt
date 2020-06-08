@@ -24,7 +24,7 @@ This Elementor based plugin is the latest addition in the list of [weDevs](https
 
 Officially recommended by Elementor Page Builder! We are now listed on their [official addons page](https://elementor.com/addons/).
 
-### **34+ FREE PREMIUM-LIKE WIDGETS AND MORE ON ITS WAY**
+### **35+ FREE PREMIUM-LIKE WIDGETS AND MORE ON ITS WAY**
 
 Unlike most other Elementor addons, Happy Addons offers itself with many robust free widgets. These free yet important widgets would surely give you a feel of premium widgets making you wonder how come these widgets are free. Let's explore all the magical free widgets of Happy Addons:
 
@@ -62,6 +62,7 @@ Unlike most other Elementor addons, Happy Addons offers itself with many robust 
 - [**Post List**](https://demo.happyaddons.com/elementor-post-list-widget-demo/) – List any post elegantly using this widget displaying them in a creative and innovative manner with multiple options to play with.
 - [**360° Rotation**](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/360-degree-rotation/) - Create 360 Degree rotated images for your Products with this widget. Flexibility to add auto-rotate or click to the rotation functionality. Also, you can add Magnify Button to Zoom-in your pictures.
 - [**Taxonomy List**](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/taxonomy/) - This widget will help you to create a list of posts by sorting categories, tags, post formats.
+- [**WP Fluent Forms**](https://happyaddons.com/) - Easliy customize and use Fluent Forms using this super intuitive widget.
 
 New free widgets or features are added every month. With all these awesome free widgets, this nifty plugin, not just aims to the trendy and sophisticated WordPress website design philosophy but also effortlessly aligns with any Elementor powered WordPress website design requirements.
 
@@ -260,6 +261,7 @@ For a more detailed explanation check out the following documentation
 = 2.12.0 - 8 June 2020 =
 
 - New: Happy Templates Library
+- New: WP Fluent Forms widget
 
 = 2.11.1 - 4 June 2020 =
 
