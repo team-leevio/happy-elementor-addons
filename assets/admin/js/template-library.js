@@ -495,6 +495,9 @@
 		}
 
 		this.updateBlocksView = function() {
+			self.setFilter('tags', '', true );
+			self.setFilter('text', '', true );
+
 			self.getModal().showBlocksView( templatesCollection );
 		}
 
