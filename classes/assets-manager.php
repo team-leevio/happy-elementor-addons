@@ -2,6 +2,7 @@
 namespace Happy_Addons\Elementor;
 
 use Elementor\Core\Files\CSS\Post as Post_CSS;
+use Elementor\Core\Settings\Manager as SettingsManager;
 
 defined('ABSPATH') || die();
 
@@ -281,6 +282,32 @@ class Assets_Manager {
 		}
 	}
 
+	public static function get_dark_stylesheet_url() {
+		return HAPPY_ADDONS_ASSETS . 'admin/css/editor-dark.min.css';
+	}
+
+	protected static function enqueue_dark_stylesheet() {
+		$theme = SettingsManager::get_settings_managers( 'editorPreferences' )->get_model()->get_settings( 'ui_theme' );
+
+		if ( 'light' !== $theme ) {
+			$media_queries = 'all';
+
+			if ( 'auto' === $theme ) {
+				$media_queries = '(prefers-color-scheme: dark)';
+			}
+
+			wp_enqueue_style(
+				'happy-addons-editor-dark',
+				self::get_dark_stylesheet_url(),
+				[
+					'elementor-editor',
+				],
+				HAPPY_ADDONS_VERSION,
+				$media_queries
+			);
+		}
+	}
+
 	public static function enqueue_editor_scripts() {
 		wp_enqueue_style(
 			'happy-icons',
@@ -304,23 +331,13 @@ class Assets_Manager {
 			true
 		);
 
-		wp_enqueue_style(
-			'happy-elementor-addons-templates',
-			HAPPY_ADDONS_ASSETS . 'admin/css/template-library.min.css',
-			null,
-			HAPPY_ADDONS_VERSION
-		);
+		Library_Manager::enqueue_assets();
 
-		wp_enqueue_script(
-			'happy-elementor-addons-templates',
-			HAPPY_ADDONS_ASSETS . 'admin/js/template-library.min.js',
-			[
-				'elementor-editor',
-				'jquery-hover-intent',
-			],
-			HAPPY_ADDONS_VERSION,
-			true
-		);
+		/**
+		 * Make sure to enqueue this at the end
+		 * otherwise it may not work properly
+		 */
+		self::enqueue_dark_stylesheet();
 
 		$localize_data = [
 			'editorPanelHomeLinkURL'      => ha_get_dashboard_link(),
@@ -339,6 +356,7 @@ class Assets_Manager {
 			'proWidgets' => [],
 			'hasPro' => ha_has_pro(),
 			'select2Secret' => wp_create_nonce( 'HappyAddons_Select2_Secret' ),
+			'darkStylesheetURL' => self::get_dark_stylesheet_url()
 		];
 
 		if ( ! ha_has_pro() && ha_is_elementor_version( '>=', '2.9.0' ) ) {
