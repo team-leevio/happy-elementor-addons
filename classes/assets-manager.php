@@ -398,5 +398,14 @@ class Assets_Manager {
 		}
 		';
 		wp_add_inline_style( 'happy-elementor-addons', $data );
+
+		if ( ha_is_fluent_form_activated() ) {
+			wp_enqueue_style(
+				'happy-elementor-fluent-preview',
+				plugins_url('/fluentform/public/css/fluent-forms-public.css', 'fluentform'),
+				null,
+				HAPPY_ADDONS_VERSION
+			);
+		}
 	}
 }
