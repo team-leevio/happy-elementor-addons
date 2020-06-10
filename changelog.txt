@@ -1,3 +1,8 @@
+= 2.12.2 - 10 June 2020 =
+
+- Fix: Template library dark mode compatibility issue
+- Fix: Fluent Forms styles issue
+
 = 2.12.1 - 9 June 2020 =
 
 - Fix: GravityForms widget issue causing elementor editor continuous loding
