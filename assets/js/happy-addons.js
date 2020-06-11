@@ -446,7 +446,7 @@
         // fun-factor
         var FunFactor = function ($scope) {
             EF.waypoint($scope, function () {
-                var $fun_factor = $scope.find('.ha-fun-factor-content-number');
+                var $fun_factor = $scope.find('.ha-fun-factor__content-number');
                 $fun_factor.numerator($fun_factor.data('animation'));
             });
         };
