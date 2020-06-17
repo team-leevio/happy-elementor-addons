@@ -204,6 +204,38 @@ class Post_List extends Base {
 			]
 		);
 
+		$this->add_control(
+			'feature_image_pos',
+			[
+				'label' => __( 'Image Position', 'happy-elementor-addons' ),
+				'label_block' => false,
+				'type' => Controls_Manager::CHOOSE,
+				'default' => 'left',
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-left',
+					],
+					'top' => [
+						'title' => __( 'Top', 'happy-elementor-addons' ),
+						'icon' => 'eicon-v-align-top',
+					],
+				],
+				'style_transfer' => true,
+				'condition' => [
+					'feature_image' => 'yes'
+				],
+				'selectors_dictionary' => [
+					'left' => 'flex-direction: row',
+					'top' => 'flex-direction: column',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list .ha-post-list-item a' => '{{VALUE}};',
+					'{{WRAPPER}} .ha-post-list-item a img' => 'margin-right: 0px;',
+				],
+			]
+		);
+
 		$this->add_group_control(
 			Group_Control_Image_Size::get_type(),
 			[
@@ -247,6 +279,18 @@ class Post_List extends Base {
 					'list_icon' => 'yes',
 					'feature_image!' => 'yes'
 				]
+			]
+		);
+
+		$this->add_control(
+			'content',
+			[
+				'label' => __( 'Show Content', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Show', 'happy-elementor-addons' ),
+				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => '',
 			]
 		);
 
@@ -439,6 +483,7 @@ class Post_List extends Base {
 				],
 				'condition' => [
 					'view' => 'list',
+					'feature_image_pos' => 'left',
 				]
 			]
 		);
@@ -802,14 +847,87 @@ class Post_List extends Base {
 			[
 				'label' => __( 'Margin Right', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
+				'default' => [
+					'unit' => 'px',
+					'size' => '15',
+				],
 				'selectors' => [
 					'{{WRAPPER}} span.ha-post-list-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .ha-post-list-item a img' => 'margin-right: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'feature_image_pos' => 'left'
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'feature_margin_bottom',
+			[
+				'label' => __( 'Margin Bottom', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'default' => [
+					'unit' => 'px',
+					'size' => '15',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list-item a img' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'feature_image_pos' => 'top'
 				],
 			]
 		);
 
 		$this->end_controls_section();
+
+		//List Content Style
+		$this->start_controls_section(
+			'_section_list_excerpt_style',
+			[
+				'label' => __( 'Content', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'content' => 'yes',
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'excerpt_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'selector' => '{{WRAPPER}} .ha-post-list-excerpt p',
+			]
+		);
+
+		$this->add_control(
+			'excerpt_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list-excerpt p' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'excerpt_space',
+			[
+				'label' => __( 'Space Top', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list-excerpt' => 'margin-top: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+
 		//List Meta Style
 		$this->start_controls_section(
 			'_section_list_meta_style',
@@ -906,6 +1024,7 @@ class Post_List extends Base {
 	protected function render () {
 
 		$settings = $this->get_settings_for_display();
+		//content
 		if ( ! $settings['post_type'] ) return;
 		$args = [
 			'post_status' => 'publish',
@@ -1015,6 +1134,21 @@ class Post_List extends Base {
 										);
 									}
 									?>
+									<?php if ( 'yes' === $settings['content'] ): ?>
+										<div class="ha-post-list-excerpt">
+											<?php
+												if ( 'post' !== $settings['post_type'] && has_excerpt($post->ID) ) {
+													printf('<p>%1$s</p>',
+														wp_trim_words(get_the_excerpt($post->ID))
+													);
+												}else{
+													printf('<p>%1$s</p>',
+														wp_trim_words(get_the_content(null,false,$post->ID), 25, '.')
+													);
+												}
+											?>
+										</div>
+									<?php endif; ?>
 								</div>
 							</a>
 						</li>
