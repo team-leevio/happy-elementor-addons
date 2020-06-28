@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.12.1
+Version: 2.12.2
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -257,6 +257,11 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.12.2 - 10 June 2020 =
+
+- Fix: Template library dark mode compatibility issue
+- Fix: Fluent Forms styles issue
 
 = 2.12.1 - 9 June 2020 =
 

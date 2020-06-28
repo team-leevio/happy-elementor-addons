@@ -1,0 +1,26 @@
+$primary-color: #562dd4;
+$secondary-color: #e8357c;
+
+.haTemplateLibrary__logo-wrap {
+	background-color: $secondary-color;
+}
+
+#haTemplateLibrary__filter-tags {
+	background-color: #26292C;
+
+	&:before {
+		border-bottom-color: #26292C;
+	}
+}
+
+.haTemplateLibrary__template,
+.haTemplateLibrary__template-footer {
+	background-color: #f5f5f5;
+}
+
+.haTemplateLibrary__responsive-menu-item {
+	&.elementor-active {
+		background-image: linear-gradient(to bottom, #26292C, #34383C);
+		border-bottom-color: $secondary-color;
+	}
+}

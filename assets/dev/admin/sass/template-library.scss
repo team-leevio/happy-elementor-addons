@@ -1,3 +1,6 @@
+$primary-color: #562dd4;
+$secondary-color: #e8357c;
+
 .haTemplateLibrary__preview {
 	height: 100%;
 	width: 100%;
@@ -21,7 +24,7 @@
 	line-height: 30px;
 	border-radius: 100%;
 	color: #fff;
-	background-color: #562dd4;
+	background-color: $primary-color;
 }
 
 .haTemplateLibrary__logo-wrap > i {
@@ -41,7 +44,7 @@
 
 	&.elementor-active {
 		background-image: linear-gradient(to bottom, #f1f3f5, #fff);
-		border-bottom: 3px solid #562dd4;
+		border-bottom: 3px solid $primary-color;
 	}
 }
 
@@ -107,7 +110,7 @@
 
 		&:hover,
 		&.active {
-			color: #e8357c;
+			color: $secondary-color;
 		}
 	}
 
@@ -120,7 +123,7 @@
 		height: 0;
 		border: solid transparent;
 		border-width: 0px 10px 10px 0;
-		border-bottom-color: #ffffff;
+		border-bottom-color: #fff;
 		pointer-events: none;
 	}
 }
@@ -182,7 +185,7 @@
 		right: 10px;
 		display: inline-block;
 		padding: 2px 4px;
-		background-color: #e8357c;
+		background-color: $secondary-color;
 		color: #fff;
 		text-transform: uppercase;
 		font-size: 10px;
@@ -220,20 +223,20 @@
 	}
 
 	.haTemplateLibrary__pro-button {
-		color: #e8357c;
+		color: $secondary-color;
 
 		&:hover,
 		&:focus {
-			color: lighten(#e8357c, 10%);
+			color: lighten($secondary-color, 10%);
 		}
 	}
 
 	.haTemplateLibrary__insert-button {
-		color: #562dd4;
+		color: $primary-color;
 
 		&:hover,
 		&:focus {
-			color: lighten(#562dd4, 10%);
+			color: lighten($primary-color, 10%);
 		}
 	}
 
@@ -249,24 +252,24 @@
 
 #elementor-template-library-header-preview {
 	.haTemplateLibrary__pro-button {
-		background-color: #e8357c;
+		background-color: $secondary-color;
 		color: #fff;
 
 		&:hover,
 		&:focus {
 			color: #fff;
-			background-color: lighten(#e8357c, 10%);
+			background-color: lighten($secondary-color, 10%);
 		}
 	}
 
 	.haTemplateLibrary__insert-button {
-		background-color: #562dd4;
+		background-color: $primary-color;
 		color: #fff;
 
 		&:hover,
 		&:focus {
 			color: #fff;
-			background-color: lighten(#562dd4, 10%);
+			background-color: lighten($primary-color, 10%);
 		}
 	}
 }

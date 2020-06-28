@@ -18,6 +18,28 @@ class Library_Manager {
 		include_once HAPPY_ADDONS_DIR_PATH . 'templates/template-library/templates.php';
 	}
 
+	public static function enqueue_assets() {
+		wp_enqueue_style(
+			'happy-addons-templates-library',
+			HAPPY_ADDONS_ASSETS . 'admin/css/template-library.min.css',
+			[
+				'elementor-editor',
+			],
+			HAPPY_ADDONS_VERSION
+		);
+
+		wp_enqueue_script(
+			'happy-addons-templates-library',
+			HAPPY_ADDONS_ASSETS . 'admin/js/template-library.min.js',
+			[
+				'elementor-editor',
+				'jquery-hover-intent',
+			],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+	}
+
 	/**
 	 * Undocumented function
 	 *

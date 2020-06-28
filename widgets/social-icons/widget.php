@@ -140,6 +140,9 @@ class Social_Icons extends Base {
 				'dynamic'     => [
 					'active' => true,
 				],
+				'default' => [
+					'url' => '#'
+				],
 				'placeholder' => __('https://your-social-link.com', 'happy-elementor-addons'),
 			]
 		);
@@ -299,17 +302,26 @@ class Social_Icons extends Base {
 							'value'   => 'fab fa-facebook',
 							'library' => 'fa-brands',
 						],
+						'ha_social_link' => [
+							'url' => '#'
+						],
 					],
 					[
 						'ha_social_icon' => [
 							'value'   => 'fab fa-twitter',
 							'library' => 'fa-brands',
 						],
+						'ha_social_link' => [
+							'url' => '#'
+						],
 					],
 					[
 						'ha_social_icon' => [
 							'value'   => 'fab fa-linkedin',
 							'library' => 'fa-brands',
+						],
+						'ha_social_link' => [
+							'url' => '#'
 						],
 					],
 				],

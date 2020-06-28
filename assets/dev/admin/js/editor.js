@@ -4,20 +4,20 @@
 	window.ha = window.ha || {};
 
 	ha.hasIconLibrary = function() {
-        return ( elementor.helpers && elementor.helpers.renderIcon );
-    };
+		return ( elementor.helpers && elementor.helpers.renderIcon );
+	};
 
-    ha.getFeatureLabel = function( text ) {
-        var div = document.createElement('DIV');
+	ha.getFeatureLabel = function( text ) {
+		var div = document.createElement('DIV');
 
-        div.innerHTML = text;
-        text = div.textContent || div.innerText || text;
+		div.innerHTML = text;
+		text = div.textContent || div.innerText || text;
 
-        return text.length > 20 ? text.substring(0, 20) + '...' : text;
-    };
+		return text.length > 20 ? text.substring(0, 20) + '...' : text;
+	};
 
-    ha.translate = function(stringKey, templateArgs) {
-        return elementorCommon.translate(stringKey, null, templateArgs, HappyAddonsEditor.i18n);
+	ha.translate = function(stringKey, templateArgs) {
+		return elementorCommon.translate(stringKey, null, templateArgs, HappyAddonsEditor.i18n);
 	};
 
 	// For BC
@@ -52,15 +52,15 @@
 		settings = view.getContainer().settings.toJSON();
 
 		if ( ha.hasIconLibrary() ) {
-            btnIconHTML = elementor.helpers.renderIcon( view, settings[args.newIcon], { 'aria-hidden': true, 'class': 'ha-btn-icon' }, 'i' , 'object' ),
-            btnMigrated = elementor.helpers.isIconMigrated( settings, args.newIcon );
+			btnIconHTML = elementor.helpers.renderIcon( view, settings[args.newIcon], { 'aria-hidden': true, 'class': 'ha-btn-icon' }, 'i' , 'object' ),
+			btnMigrated = elementor.helpers.isIconMigrated( settings, args.newIcon );
 		}
 
 		view.addInlineEditingAttributes( args.text, 'none' );
-        view.addRenderAttribute( args.text, 'class', args.textClass );
+		view.addRenderAttribute( args.text, 'class', args.textClass );
 
-        view.addRenderAttribute( 'button', 'class', args.class );
-        view.addRenderAttribute( 'button', 'href', settings[args.link].url );
+		view.addRenderAttribute( 'button', 'class', args.class );
+		view.addRenderAttribute( 'button', 'href', settings[args.link].url );
 
 		if ( ( settings[args.newIcon] && settings[args.newIcon].value ) || settings[args.oldIcon] ) {
 			if ( ha.hasIconLibrary() && btnIconHTML && btnIconHTML.rendered && ( ! settings[args.oldIcon] || btnMigrated ) ) {
@@ -109,241 +109,271 @@
 		return buttonMarkup.join('');
 	}
 
-    elementor.on('panel:init', function() {
-        $('#elementor-panel-elements-search-input').on('keyup', _.debounce(function() {
-            $('#elementor-panel-elements')
-                .find('.hm')
-                .parents('.elementor-element')
-                .addClass('is-ha-widget');
-        }, 100));
-        //Happy Grid Layer Shortcut Register
-	    if ( typeof $e !== 'undefined' || $e !== null ) {
-		    var option = {
-			    callback: function() {
-				    var ha_grid = elementor.settings.page.model.attributes.ha_grid;
-				    if ( '' === ha_grid ) {
-					    elementor.settings.page.model.setExternalChange( 'ha_grid', 'yes' );
-				    } else if ( 'yes' === ha_grid ) {
-					    elementor.settings.page.model.setExternalChange( 'ha_grid', '' );
-				    }
-			    }
-		    };
-		    $e.shortcuts.register( 'ctrl+shift+g', option);
-		    $e.shortcuts.register( 'cmd+shift+g', option);
-	    }
-    });
+	function setupDarkModeStylesheet() {
+		var darkModeLinkID = 'happy-addons-editor-dark-css',
+			$darkModeLink = $( '#' + darkModeLinkID );
 
-    function getCssEffectsControlsMap() {
-        return {
-            'translate' : ['x', 'y', 'x_tablet', 'y_tablet', 'x_mobile', 'y_mobile'],
-            'skew' : ['x', 'y', 'x_tablet', 'y_tablet', 'x_mobile', 'y_mobile'],
-            'scale': ['x', 'y', 'x_tablet', 'y_tablet', 'x_mobile', 'y_mobile'],
-            'rotate' : ['x', 'y', 'z', 'x_tablet', 'y_tablet', 'z_tablet', 'x_mobile', 'y_mobile', 'z_mobile']
-        };
-    }
+		if ( ! $darkModeLink.length ) {
+			$darkModeLink = $( '<link>', {
+				id: darkModeLinkID,
+				rel: 'stylesheet',
+				href: HappyAddonsEditor.darkStylesheetURL,
+			} );
+		}
 
-    function bindCssTransformControls(effectSwitch, effectControl, widgetModel) {
-        var settingPrefix = 'ha_transform_fx_';
-        effectSwitch = settingPrefix + effectSwitch;
-        effectControl = settingPrefix + effectControl;
+		elementor.settings.editorPreferences.model.on('change:ui_theme', function(m, newValue) {
+			if ( 'light' === newValue ) {
+				$darkModeLink.remove();
+				return;
+			}
 
-        widgetModel.on('change:'+ effectSwitch, function(model, isActive) {
-            if (!isActive) {
-                var controlView = elementor.getPanelView().getCurrentPageView().children.find(function(view) {
-                    return view.model.get('name') === effectControl;
-                });
-                widgetModel.set(effectControl, _.extend({}, widgetModel.defaults[effectControl]));
-                controlView && controlView.render();
-            }
-        });
-    }
+			$darkModeLink
+				.attr( 'media', 'auto' === newValue ? '(prefers-color-scheme: dark)' : '' )
+				.appendTo( elementorCommon.elements.$body );
+		});
+	}
 
-    function initCssTransformEffects(model) {
-        var widgetModel = elementorFrontend.config.elements.data[model.cid];
-        _.each(getCssEffectsControlsMap(), function(effectProps, effectKey) {
-            _.each(effectProps, function(effectProp) {
-                bindCssTransformControls(
-                    effectKey + '_toggle',
-                    effectKey + '_' + effectProp,
-                    widgetModel
-                );
-            })
-        });
+	elementor.on('panel:init', function() {
+		$('#elementor-panel-elements-search-input').on('keyup', _.debounce(function() {
+			$('#elementor-panel-elements')
+				.find('.hm')
+				.parents('.elementor-element')
+				.addClass('is-ha-widget');
+		}, 100));
 
-        // Event bindings cleanup
-        elementor.getPanelView().getCurrentPageView().model.on('editor:close', function() {
-            _.each(getCssEffectsControlsMap(), function(effectConfig, effectKey) {
-                widgetModel.off('change:ha_transform_fx_'+effectKey+'_toggle');
-            });
-        });
-    }
+		/**
+		 * Register grid layer shortcut
+		 */
+		if ( typeof $e !== 'undefined' || $e !== null ) {
+			var option = {
+				callback: function() {
+					var ha_grid = elementor.settings.page.model.attributes.ha_grid;
+					if ( '' === ha_grid ) {
+						elementor.settings.page.model.setExternalChange( 'ha_grid', 'yes' );
+					} else if ( 'yes' === ha_grid ) {
+						elementor.settings.page.model.setExternalChange( 'ha_grid', '' );
+					}
+				}
+			};
+			$e.shortcuts.register( 'ctrl+shift+g', option);
+			$e.shortcuts.register( 'cmd+shift+g', option);
+		}
 
-    elementor.hooks.addAction('panel/open_editor/widget', function(panel, model) {
-        initCssTransformEffects(model);
-    });
 
-    if ( elementor.modules.controls.Icons ) {
-        var WithHappyIcons = elementor.modules.controls.Icons.extend({
-            getControlValue: function() {
-                var controlValue = this.constructor.__super__.getControlValue.call(this),
-                    model = this.model,
-                    valueToMigrate = this.getValueToMigrate(),
-                    newValue = { value: '', library: 'happy-icons' },
-                    elementSettingsModel = ( this.container && this.container.settings ) || this.elementSettingsModel;
+		setupDarkModeStylesheet();
+	});
 
-                if ( _.isObject( controlValue ) &&
-                    !_.isEmpty( controlValue ) &&
-                    controlValue.library !== 'svg' &&
-                    controlValue.value.indexOf( 'fashm' ) === 0
-                ) {
-                    newValue.value = controlValue.value.substr( controlValue.value.indexOf( 'hm hm-' ) );
-                    elementSettingsModel.set( model.get( 'name' ), newValue );
-                    return newValue;
-                }
+	function getCssEffectsControlsMap() {
+		return {
+			'translate' : ['x', 'y', 'x_tablet', 'y_tablet', 'x_mobile', 'y_mobile'],
+			'skew' : ['x', 'y', 'x_tablet', 'y_tablet', 'x_mobile', 'y_mobile'],
+			'scale': ['x', 'y', 'x_tablet', 'y_tablet', 'x_mobile', 'y_mobile'],
+			'rotate' : ['x', 'y', 'z', 'x_tablet', 'y_tablet', 'z_tablet', 'x_mobile', 'y_mobile', 'z_mobile']
+		};
+	}
 
-                if ( ! _.isObject( controlValue ) && valueToMigrate && valueToMigrate.indexOf( 'hm hm-' ) === 0 ) {
-                    newValue.value = valueToMigrate;
-                    elementSettingsModel.set( model.get( 'name' ), newValue );
-                    return newValue;
-                }
+	function bindCssTransformControls(effectSwitch, effectControl, widgetModel) {
+		var settingPrefix = 'ha_transform_fx_';
+		effectSwitch = settingPrefix + effectSwitch;
+		effectControl = settingPrefix + effectControl;
 
-                if ( ! this.isMigrationAllowed() ) {
-                    return valueToMigrate;
-                }
+		widgetModel.on('change:'+ effectSwitch, function(model, isActive) {
+			if (!isActive) {
+				var controlView = elementor.getPanelView().getCurrentPageView().children.find(function(view) {
+					return view.model.get('name') === effectControl;
+				});
+				widgetModel.set(effectControl, _.extend({}, widgetModel.defaults[effectControl]));
+				controlView && controlView.render();
+			}
+		});
+	}
 
-                // Bail if no migration flag or no value to migrate
-                if ( ! valueToMigrate ) {
-                    return controlValue;
-                }
+	function initCssTransformEffects(model) {
+		var widgetModel = elementorFrontend.config.elements.data[model.cid];
+		_.each(getCssEffectsControlsMap(), function(effectProps, effectKey) {
+			_.each(effectProps, function(effectProp) {
+				bindCssTransformControls(
+					effectKey + '_toggle',
+					effectKey + '_' + effectProp,
+					widgetModel
+				);
+			})
+		});
 
-                var didMigration = elementSettingsModel.get( this.dataKeys.migratedKey ),
-                    controlName = model.get( 'name' );
+		// Event bindings cleanup
+		elementor.getPanelView().getCurrentPageView().model.on('editor:close', function() {
+			_.each(getCssEffectsControlsMap(), function(effectConfig, effectKey) {
+				widgetModel.off('change:ha_transform_fx_'+effectKey+'_toggle');
+			});
+		});
+	}
 
-                // Check if migration had been done and is stored locally
-                if ( this.cache.migratedFlag[ controlName ] ) {
-                    return this.cache.migratedFlag[ controlName ];
-                }
-                // Check if already migrated
-                if ( didMigration && didMigration[ controlName ] ) {
-                    return controlValue;
-                }
+	elementor.hooks.addAction('panel/open_editor/widget', function(panel, model) {
+		initCssTransformEffects(model);
+	});
 
-                // Do migration
-                return this.migrateFa4toFa5( valueToMigrate );
-            }
-        });
+	if ( elementor.modules.controls.Icons ) {
+		var WithHappyIcons = elementor.modules.controls.Icons.extend({
+			getControlValue: function() {
+				var controlValue = this.constructor.__super__.getControlValue.call(this),
+					model = this.model,
+					valueToMigrate = this.getValueToMigrate(),
+					newValue = { value: '', library: 'happy-icons' },
+					elementSettingsModel = ( this.container && this.container.settings ) || this.elementSettingsModel;
 
-        elementor.addControlView( 'icons', WithHappyIcons );
-    }
+				if ( _.isObject( controlValue ) &&
+					!_.isEmpty( controlValue ) &&
+					controlValue.library !== 'svg' &&
+					controlValue.value.indexOf( 'fashm' ) === 0
+				) {
+					newValue.value = controlValue.value.substr( controlValue.value.indexOf( 'hm hm-' ) );
+					elementSettingsModel.set( model.get( 'name' ), newValue );
+					return newValue;
+				}
 
-    elementor.modules.layouts.panel.pages.menu.Menu.addItem({
-        name: 'happyaddons-home',
-        icon: 'hm hm-happyaddons',
-        title: ha.translate( 'editorPanelHomeLinkTitle' ),
-        type: 'link',
-        link: HappyAddonsEditor.editorPanelHomeLinkURL,
-        newTab: true
-    }, 'settings');
+				if ( ! _.isObject( controlValue ) && valueToMigrate && valueToMigrate.indexOf( 'hm hm-' ) === 0 ) {
+					newValue.value = valueToMigrate;
+					elementSettingsModel.set( model.get( 'name' ), newValue );
+					return newValue;
+				}
 
-    elementor.modules.layouts.panel.pages.menu.Menu.addItem({
-        name: 'happyaddons-widgets',
-        icon: 'hm hm-cross-game',
-        title: ha.translate( 'editorPanelWidgetsLinkTitle' ),
-        type: 'link',
-        link: HappyAddonsEditor.editorPanelWidgetsLinkURL,
-        newTab: true
-    }, 'settings');
+				if ( ! this.isMigrationAllowed() ) {
+					return valueToMigrate;
+				}
 
-    /**
-     * Add pro widgets placeholder
-     */
-    elementor.hooks.addFilter( 'panel/elements/regionViews', function( regionViews ) {
-        if ( HappyAddonsEditor.hasPro || _.isEmpty( HappyAddonsEditor.proWidgets ) ) {
-            return regionViews;
-        }
+				// Bail if no migration flag or no value to migrate
+				if ( ! valueToMigrate ) {
+					return controlValue;
+				}
 
-        var CATEGOERY_NAME = 'happy_addons_pro',
-            elementsView = regionViews.elements.view,
-            categoriesView = regionViews.categories.view,
-            elementsCollection = regionViews.elements.options.collection,
-            categoriesCollection = regionViews.categories.options.collection,
-            proWidgets = [],
-            ElementView,
-            freeCategoryIndex;
+				var didMigration = elementSettingsModel.get( this.dataKeys.migratedKey ),
+					controlName = model.get( 'name' );
 
-        _.each( HappyAddonsEditor.proWidgets, function( widget, name ) {
-            elementsCollection.add({
-                name: 'ha-' + name,
-                title: widget.title,
-                icon: widget.icon,
-                categories: [ CATEGOERY_NAME ],
-                editable: false,
-            });
-        });
+				// Check if migration had been done and is stored locally
+				if ( this.cache.migratedFlag[ controlName ] ) {
+					return this.cache.migratedFlag[ controlName ];
+				}
+				// Check if already migrated
+				if ( didMigration && didMigration[ controlName ] ) {
+					return controlValue;
+				}
+
+				// Do migration
+				return this.migrateFa4toFa5( valueToMigrate );
+			}
+		});
+
+		elementor.addControlView( 'icons', WithHappyIcons );
+	}
+
+	elementor.modules.layouts.panel.pages.menu.Menu.addItem({
+		name: 'happyaddons-home',
+		icon: 'hm hm-happyaddons',
+		title: ha.translate( 'editorPanelHomeLinkTitle' ),
+		type: 'link',
+		link: HappyAddonsEditor.editorPanelHomeLinkURL,
+		newTab: true
+	}, 'settings');
+
+	elementor.modules.layouts.panel.pages.menu.Menu.addItem({
+		name: 'happyaddons-widgets',
+		icon: 'hm hm-cross-game',
+		title: ha.translate( 'editorPanelWidgetsLinkTitle' ),
+		type: 'link',
+		link: HappyAddonsEditor.editorPanelWidgetsLinkURL,
+		newTab: true
+	}, 'settings');
+
+	/**
+	 * Add pro widgets placeholder
+	 */
+	elementor.hooks.addFilter( 'panel/elements/regionViews', function( regionViews ) {
+		if ( HappyAddonsEditor.hasPro || _.isEmpty( HappyAddonsEditor.proWidgets ) ) {
+			return regionViews;
+		}
+
+		var CATEGOERY_NAME = 'happy_addons_pro',
+			elementsView = regionViews.elements.view,
+			categoriesView = regionViews.categories.view,
+			elementsCollection = regionViews.elements.options.collection,
+			categoriesCollection = regionViews.categories.options.collection,
+			proWidgets = [],
+			ElementView,
+			freeCategoryIndex;
+
+		_.each( HappyAddonsEditor.proWidgets, function( widget, name ) {
+			elementsCollection.add({
+				name: 'ha-' + name,
+				title: widget.title,
+				icon: widget.icon,
+				categories: [ CATEGOERY_NAME ],
+				editable: false,
+			});
+		});
 
 		elementsCollection.each( function( element ) {
-            if ( element.get( 'categories' )[0] === CATEGOERY_NAME ) {
-                proWidgets.push( element );
-            }
-        } );
+			if ( element.get( 'categories' )[0] === CATEGOERY_NAME ) {
+				proWidgets.push( element );
+			}
+		} );
 
-        freeCategoryIndex = categoriesCollection.findIndex({ name:'happy_addons_category' });
+		freeCategoryIndex = categoriesCollection.findIndex({ name:'happy_addons_category' });
 
-        if ( freeCategoryIndex ) {
-            categoriesCollection.add( {
-                name: 'happy_addons_pro_category',
-                title: 'Happy Addons Pro',
-                icon: 'hm hm-happyaddons',
-                defaultActive: false,
-                items: proWidgets,
-            }, {
-                at: freeCategoryIndex + 1
-            });
-        }
+		if ( freeCategoryIndex ) {
+			categoriesCollection.add( {
+				name: 'happy_addons_pro_category',
+				title: 'Happy Addons Pro',
+				icon: 'hm hm-happyaddons',
+				defaultActive: false,
+				items: proWidgets,
+			}, {
+				at: freeCategoryIndex + 1
+			});
+		}
 
-        ElementView = {
-            className: function() {
-                var className = this.constructor.__super__.className.call(this);
-                if ( ! this.isEditable() && this.isHappyWidget() ) {
-                    className += ' ha-element--promotion';
-                }
+		ElementView = {
+			className: function() {
+				var className = this.constructor.__super__.className.call(this);
+				if ( ! this.isEditable() && this.isHappyWidget() ) {
+					className += ' ha-element--promotion';
+				}
 
-                return className;
-            },
+				return className;
+			},
 
-            isHappyWidget: function() {
-                return this.model.get('name').indexOf('ha-') === 0;
-            },
+			isHappyWidget: function() {
+				return this.model.get('name').indexOf('ha-') === 0;
+			},
 
-            onMouseDown: function() {
-                if ( ! this.isHappyWidget() ) {
-                    elementor.promotion.dialog.buttons[0].removeClass('ha-btn--promotion');
-                    this.constructor.__super__.onMouseDown.call(this);
-                    return;
-                }
+			onMouseDown: function() {
+				if ( ! this.isHappyWidget() ) {
+					elementor.promotion.dialog.buttons[0].removeClass('ha-btn--promotion');
+					this.constructor.__super__.onMouseDown.call(this);
+					return;
+				}
 
-                elementor.promotion.dialog.buttons[0].addClass('ha-btn--promotion');
+				elementor.promotion.dialog.buttons[0].addClass('ha-btn--promotion');
 
-                elementor.promotion.showDialog( {
-                    headerMessage: ha.translate( 'promotionDialogHeader', [ this.model.get( 'title' ) ] ),
-                    message: ha.translate( 'promotionDialogMessage', [ this.model.get( 'title' ) ] ),
-                    top: '-7',
-                    element: this.el,
-                    actionURL: 'https://demo.happyaddons.com/',
-                } );
-            }
-        };
+				elementor.promotion.showDialog( {
+					headerMessage: ha.translate( 'promotionDialogHeader', [ this.model.get( 'title' ) ] ),
+					message: ha.translate( 'promotionDialogMessage', [ this.model.get( 'title' ) ] ),
+					top: '-7',
+					element: this.el,
+					actionURL: 'https://demo.happyaddons.com/',
+				} );
+			}
+		};
 
-        regionViews.elements.view = elementsView.extend({
-            childView: elementsView.prototype.childView.extend(ElementView)
-        });
+		regionViews.elements.view = elementsView.extend({
+			childView: elementsView.prototype.childView.extend(ElementView)
+		});
 
-        regionViews.categories.view = categoriesView.extend({
-            childView: categoriesView.prototype.childView.extend({
-                childView: categoriesView.prototype.childView.prototype.childView.extend(ElementView)
-            })
-        });
+		regionViews.categories.view = categoriesView.extend({
+			childView: categoriesView.prototype.childView.extend({
+				childView: categoriesView.prototype.childView.prototype.childView.extend(ElementView)
+			})
+		});
 
-        return regionViews;
+		return regionViews;
 	});
 }(jQuery));
