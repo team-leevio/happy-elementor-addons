@@ -365,18 +365,23 @@ function ha_twitter_feed_ajax() {
 			));
 
 		$body = json_decode( wp_remote_retrieve_body( $auth_response ) );
-		$token = $body->access_token;
 
-		$tweets_response = wp_remote_get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $settings['user_name'] . '&count=999&tweet_mode=extended',
-			array(
-				'httpversion' => '1.1',
-				'blocking' => true,
-				'headers' => ['Authorization' => "Bearer $token",],
-			));
+		if ( !empty( $body ) ) {
+			$token = $body->access_token;
+			$tweets_response = wp_remote_get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $settings['user_name'] . '&count=999&tweet_mode=extended',
+				array(
+					'httpversion' => '1.1',
+					'blocking' => true,
+					'headers' => ['Authorization' => "Bearer $token",],
+				));
 
-		if ( !is_wp_error( $tweets_response ) ) {
-			$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
-			set_transient( $transient_key, $twitter_data, 2 * MINUTE_IN_SECONDS );
+			if ( !is_wp_error( $tweets_response ) ) {
+				$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
+				set_transient( $transient_key, $twitter_data, 0 );
+			}
+		}
+		if ( $settings['remove_cache'] == 'yes' ) {
+			delete_transient( $transient_key );
 		}
 
 		switch ($settings['sort_by']) {

@@ -123,12 +123,22 @@ class Twitter_Feed extends Base {
 			[
 				'label' => __( 'Number of tweets to show', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::NUMBER,
-				'separator' => 'after',
 				'min' => 0,
 				'max' => 800,
 				'step' => 1,
 				'default' => 6,
 				'style_transfer' => true,
+			]
+		);
+
+		$this->add_control(
+			'remove_cache',
+			[
+				'label' => __('Remove Cache', 'happy-addons-pro'),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default' => 'no',
+				'separator' => 'after',
 			]
 		);
 
@@ -1204,8 +1214,19 @@ class Twitter_Feed extends Base {
 		$ha_tweets_token = '_' . $id . '_tweet_token';
 		$ha_tweets_cash = '_' . $id . '_tweet_cash';
 
+		$messages = [];
 		$user_name = trim($settings['user_name']);
-		if ( empty( $user_name ) || empty( $settings['consumer_key'] ) || empty( $settings['consumer_secret'] ) ) {
+		
+		if ( empty( $user_name ) ) {
+			$messages[] = __( 'Add user Name', 'happy-addons-pro' );
+		} elseif ( empty( $settings['consumer_key'] ) ) {
+			$messages[] = __( 'Add Consumer Key', 'happy-addons-pro' );
+		} elseif ( empty( $settings['consumer_secret'] ) ) {
+			$messages[] = __( 'Add Consumer Secret Key', 'happy-addons-pro' );
+		}
+
+		if ( !empty( $messages ) ) {
+			printf('<div class="ha-tweet-error-message">%1$s</div>', esc_html( $messages[0] ) );
 			return;
 		}
 
@@ -1213,7 +1234,6 @@ class Twitter_Feed extends Base {
 		$twitter_data = get_transient($transient_key);
 		$credentials = base64_encode($settings['consumer_key'] . ':' . $settings['consumer_secret']);
 
-		$messages = [];
 		if ( $twitter_data === false ) {
 			$auth_url = 'https://api.twitter.com/oauth2/token';
 			$auth_response = wp_remote_post( $auth_url,
@@ -1229,35 +1249,42 @@ class Twitter_Feed extends Base {
 				) );
 
 			$body = json_decode( wp_remote_retrieve_body( $auth_response ) );
-			update_option($user_name . $ha_tweets_token, $body->access_token);
-			$token = $body->access_token;
+			
+			if ( !empty( $body ) ) {
+				$token = $body->access_token;
 
-			$twitter_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $user_name . '&count=999&tweet_mode=extended';
-			$tweets_response = wp_remote_get( $twitter_url,
-				array(
-					'httpversion' => '1.1',
-					'blocking' => true,
-					'headers' => [ 'Authorization' => "Bearer $token", ],
-				) );
+				$twitter_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $user_name . '&count=999&tweet_mode=extended';
+				$tweets_response = wp_remote_get( $twitter_url,
+					array(
+						'httpversion' => '1.1',
+						'blocking' => true,
+						'headers' => [ 'Authorization' => "Bearer $token", ],
+					) );
 
-			$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
-
-			set_transient( $transient_key, $twitter_data, 2 * MINUTE_IN_SECONDS );
-
+				$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
+				set_transient( $transient_key, $twitter_data, 0 );
+			}
+		}
+		if ( $settings['remove_cache'] == 'yes' ) {
+			delete_transient( $transient_key );
 		}
 
-		 if ( !empty( $twitter_data ) && array_key_exists( 'errors', $twitter_data ) ) {
-			foreach ( $twitter_data['errors'] as $error ) {
-				$messages['error'] = $error['message'];
+		if ( !empty( $twitter_data ) && !array_key_exists( 'errors', $twitter_data ) && count( $twitter_data ) < $settings['tweets_limit'] ) {
+			$messages[] = __( ' "Number of Tweets to show"  is more than your actual total Tweets\'s number. You have only ' . count( $twitter_data ) . ' Tweets', 'happy-elementor-addons' );
+		}
+		if ( !empty( $twitter_data ) ) {
+			if ( array_key_exists( 'errors', $twitter_data ) ) {
+				foreach ( $twitter_data['errors'] as $error ) {
+					$messages[] = $error['message'];
+				}
 			}
-		} elseif ( count( $twitter_data ) < $settings['tweets_limit'] ) {
-			$messages['item_limit'] = __( ' "Number of Tweets to show"  is more than your actual total Tweets\'s number. You have only ' . count( $twitter_data ) . ' Tweets', 'happy-elementor-addons' );
+		}
+		if ( empty( $twitter_data ) ) {
+			$messages[] = __( 'Nothing Found', 'happy-elementor-addons' );
 		}
 
 		if ( !empty( $messages ) ) {
-			foreach ($messages as $key => $message) {
-				printf('<div class="ha-tweet-error-message">%1$s</div>', esc_html( $message ) );
-			}
+			printf('<div class="ha-tweet-error-message">%1$s</div>', esc_html( $messages[0] ) );
 			return;
 		}
 
@@ -1265,6 +1292,7 @@ class Twitter_Feed extends Base {
 			'credentials' 			=> $credentials,
 			'id' 					=> $id,
 			'user_name' 			=> $user_name,
+			'remove_cache' 			=> $settings['remove_cache'],
 			'sort_by' 				=> $settings['sort_by'],
 			'show_twitter_logo' 	=> $settings['show_twitter_logo'],
 			'tweets_limit' 			=> $settings['tweets_limit'],
