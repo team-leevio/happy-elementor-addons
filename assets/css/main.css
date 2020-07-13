@@ -48,8 +48,7 @@
 	max-width: 100%;
 	height: auto;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .happy-addon p:empty {
@@ -2040,8 +2039,7 @@
 	height: 100%;
 	border-radius: 50%;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 .ha-testimonial__reviewer-name {
 	margin-bottom: .3rem; 
@@ -3506,14 +3504,11 @@ span.ha-post-list-icon {
 .ha-data-table .ha-table {
 	margin-bottom: 0;
 }
-.ha-data-table .ha-table .ha-table__head-column {
-	background-color: #5636d1;
-}
 .ha-data-table .ha-table .ha-table__head-column-cell {
 	padding: 20px;
 	border: 1px solid;
 	border-color: #5636d1 #320ebd #5636d1 #5636d1;
-	background-color: transparent;
+	background-color: #5636d1;
 	color: #fff;
 	text-align: center;
 }
