@@ -120,10 +120,10 @@ class Card extends Base {
 				'label' => __( 'Badge Text', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => __( 'Badget Text', 'happy-elementor-addons' ),
+				'default' => __( 'Badge Text', 'happy-elementor-addons' ),
 				'placeholder' => __( 'Type badge text', 'happy-elementor-addons' ),
 				'separator' => 'before',
-				'description' => __( 'Set badget position and control all the style settings from Style tab', 'happy-elementor-addons' ),
+				'description' => __( 'Set badge position and control all the style settings from Style tab', 'happy-elementor-addons' ),
 				'dynamic' => [
 					'active' => true,
 				]
