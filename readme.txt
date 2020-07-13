@@ -266,6 +266,7 @@ For a more detailed explanation check out the following documentation
 - Tweak: Social link widget default value
 - Fix: Fun factor animation issue
 - Fix: Card widget default text spelling error
+- Fix: Empty button rendering issue
 
 = 2.12.2 - 10 June 2020 =
 
