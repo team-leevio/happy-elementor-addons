@@ -26,29 +26,39 @@ trait Button_Renderer {
 		] );
 
 		$settings = $this->get_settings_for_display();
+		$button_text = isset( $settings[ $args['text'] ] ) ? $settings[ $args['text'] ] : '';
+		$has_new_icon = ( ! empty( $settings[ $args['new_icon'] ] ) && ! empty( $settings[ $args['new_icon'] ]['value'] ) ) ? true : false;
+		$has_old_icon = ! empty( $settings[ $args['old_icon'] ] ) ? true : false;
+
+		// Return as early as possible
+		// Do not process anything if there is no icon and text
+		if ( empty( $button_text ) && ! $has_new_icon && ! $has_old_icon ) {
+			return;
+		}
+
 		$this->add_inline_editing_attributes( $args['text'], 'none' );
         $this->add_render_attribute( $args['text'], 'class', $args['text_class'] );
 
         $this->add_render_attribute( 'button', 'class', $args['class'] );
 		$this->add_link_attributes( 'button', $settings[ $args['link'] ] );
 
-		if ( $settings[ $args['text'] ] && ( empty( $settings[ $args['new_icon'] ] ) && empty( $settings[ $args['old_icon'] ] ) ) ) :
+		if ( $button_text && ( empty( $has_new_icon ) && empty( $has_old_icon ) ) ) :
 			printf( '<a %1$s>%2$s</a>',
 				$this->get_render_attribute_string( 'button' ),
-				sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( $args['text'] ), esc_html( $settings[ $args['text'] ] ) )
+				sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( $args['text'] ), esc_html( $button_text ) )
 			);
-		elseif ( empty( $settings[ $args['text'] ] ) && ( ! empty( $settings[ $args['old_icon'] ] ) || ! empty( $settings[ $args['new_icon'] ] ) ) ) : ?>
+		elseif ( empty( $button_text ) && ( ! empty( $has_old_icon ) || ! empty( $has_new_icon ) ) ) : ?>
 			<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_button_icon( $settings, $args['old_icon'], $args['new_icon'] ); ?></a>
-		<?php elseif ( $settings[ $args['text'] ] && ( ! empty( $settings[ $args['old_icon'] ] ) || ! empty( $settings[ $args['new_icon'] ] ) ) ) :
+		<?php elseif ( $button_text && ( ! empty( $has_old_icon ) || ! empty( $has_new_icon ) ) ) :
 			if ( $settings[ $args['icon_pos'] ] === 'before' ) :
 				$this->add_render_attribute( 'button', 'class', 'ha-btn--icon-before' );
-				$button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( $args['text'] ), esc_html( $settings[ $args['text'] ] ) );
+				$button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( $args['text'] ), esc_html( $button_text ) );
 				?>
 				<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php ha_render_button_icon( $settings, $args['old_icon'], $args['new_icon'], ['class' => 'ha-btn-icon'] ); ?> <?php echo $button_text; ?></a>
 				<?php
 			else :
 				$this->add_render_attribute( 'button', 'class', 'ha-btn--icon-after' );
-				$button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( $args['text'] ), esc_html( $settings[ $args['text'] ] ) );
+				$button_text = sprintf( '<span %1$s>%2$s</span>', $this->get_render_attribute_string( $args['text'] ), esc_html( $button_text ) );
 				?>
 				<a <?php $this->print_render_attribute_string( 'button' ); ?>><?php echo $button_text; ?> <?php ha_render_button_icon( $settings, $args['old_icon'], $args['new_icon'], ['class' => 'ha-btn-icon'] ); ?></a>
 				<?php

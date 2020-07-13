@@ -51,6 +51,14 @@
 
 		settings = view.getContainer().settings.toJSON();
 
+		var buttonText = !_.isUndefined(settings[args.text]) ? settings[args.text] : '',
+			hasOldIcon = (!_.isUndefined(settings[args.oldIcon]) && settings[args.oldIcon] ) ? true : false,
+			hasNewIcon = (!_.isUndefined(settings[args.newIcon]) && _.isObject(settings[args.newIcon]) && settings[args.newIcon].value) ? true : false;
+
+		if (!buttonText && !hasNewIcon && !hasOldIcon) {
+			return;
+		}
+
 		if ( ha.hasIconLibrary() ) {
 			btnIconHTML = elementor.helpers.renderIcon( view, settings[args.newIcon], { 'aria-hidden': true, 'class': 'ha-btn-icon' }, 'i' , 'object' ),
 			btnMigrated = elementor.helpers.isIconMigrated( settings, args.newIcon );
@@ -62,41 +70,41 @@
 		view.addRenderAttribute( 'button', 'class', args.class );
 		view.addRenderAttribute( 'button', 'href', settings[args.link].url );
 
-		if ( ( settings[args.newIcon] && settings[args.newIcon].value ) || settings[args.oldIcon] ) {
-			if ( ha.hasIconLibrary() && btnIconHTML && btnIconHTML.rendered && ( ! settings[args.oldIcon] || btnMigrated ) ) {
+		if ( hasNewIcon || hasOldIcon ) {
+			if ( ha.hasIconLibrary() && btnIconHTML && btnIconHTML.rendered && ( ! hasOldIcon || btnMigrated ) ) {
 				if ( settings[args.newIcon].library === 'svg' ) {
 					btnIcon = '<span class="ha-btn-icon ha-btn-icon--svg">' + btnIconHTML.value + '</span>';
 				} else {
 					btnIcon = btnIconHTML.value;
 				}
-			} else if ( settings[args.oldIcon] ) {
+			} else if ( hasOldIcon ) {
 				btnIcon = '<i class="ha-btn-icon ' + args.oldIcon + '" aria-hidden="true"></i>';
 			}
 		}
 
-		if ( settings[args.text] && ( ! settings[args.newIcon] && ! settings[args.oldIcon] ) ) {
+		if ( buttonText && ( ! hasNewIcon && ! hasOldIcon ) ) {
 			buttonMarkup = [
 				'<a ' + view.getRenderAttributeString( 'button' ) + '>',
 				'<span ' + view.getRenderAttributeString( args.text ) + '>',
-				settings[args.text],
+				buttonText,
 				'</span>',
 				'</a>',
 			];
-		} else if ( ! settings[args.text] && ( settings[args.newIcon] || settings[args.oldIcon] ) ) {
+		} else if ( ! buttonText && ( hasNewIcon || hasOldIcon ) ) {
 			buttonMarkup = [
 				'<a ' + view.getRenderAttributeString( 'button' ) + '>',
 				btnIcon,
 				'</a>',
 			];
-		} else if ( settings[args.text] && ( settings[args.newIcon] || settings[args.oldIcon] ) ) {
+		} else if ( buttonText && ( hasNewIcon || hasOldIcon ) ) {
 			if ( settings[args.iconPos] === 'before' ) {
 				view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-before' );
 				buttonBefore = btnIcon;
-				buttonAfter = '<span ' + view.getRenderAttributeString( args.text ) + '>' + settings[args.text] + '</span>';
+				buttonAfter = '<span ' + view.getRenderAttributeString( args.text ) + '>' + buttonText + '</span>';
 			} else {
 				view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-after' );
 				buttonAfter = btnIcon;
-				buttonBefore = '<span ' + view.getRenderAttributeString( args.text ) + '>' + settings[args.text] + '</span>';
+				buttonBefore = '<span ' + view.getRenderAttributeString( args.text ) + '>' + buttonText + '</span>';
 			}
 			buttonMarkup = [
 				'<a ' + view.getRenderAttributeString( 'button' ) + '>',
