@@ -177,7 +177,7 @@ class Data_Table extends Base {
 		$repeater->add_control(
 			'head_custom_color',
 			[
-				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'label' => __( 'Icon Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'condition' => [
 					'column_custom_style' => 'yes',
@@ -479,7 +479,8 @@ class Data_Table extends Base {
 				'type' => Controls_Manager::COLOR,
 				'condition' => [
 					'row_column_type' => 'column',
-					'row_custom_style' => 'yes'
+					'row_custom_style' => 'yes',
+					'row_icon_show' => 'yes'
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-table__body-row-cell-icon i' => 'color: {{VALUE}}',
@@ -494,6 +495,7 @@ class Data_Table extends Base {
 				'type' => Controls_Manager::SLIDER,
 				'condition' => [
 					'row_column_type' => 'column',
+					'row_custom_style' => 'yes'
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-table__body-row-cell-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
