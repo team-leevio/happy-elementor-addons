@@ -16,6 +16,7 @@
 				border-color: #5636d1 #320ebd #5636d1 #5636d1;
 				padding: 20px;
 				text-align: center;
+				vertical-align: middle;
 			}
 			&-cell-wrap {
 				display: inline-flex;
@@ -48,6 +49,7 @@
 				background-color: transparent;
 				border: 1px solid #ddd;
 				padding: 15px;
+				vertical-align: middle;
 			}
 			&-row-cell-wrap {
 				display: inline-flex;

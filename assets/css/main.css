@@ -3510,6 +3510,7 @@ span.ha-post-list-icon {
 	border-color: #5636d1 #320ebd #5636d1 #5636d1;
 	background-color: #5636d1;
 	color: #fff;
+	vertical-align: middle; 
 	text-align: center;
 }
 .ha-data-table .ha-table .ha-table__head-column-cell-wrap {
@@ -3543,9 +3544,10 @@ span.ha-post-list-icon {
 	background-color: rgba(232, 53, 124, .08);
 }
 .ha-data-table .ha-table .ha-table__body-row-cell {
-	padding: 15px; 
+	padding: 15px;
 	border: 1px solid #ddd;
 	background-color: transparent;
+	vertical-align: middle;
 }
 .ha-data-table .ha-table .ha-table__body-row-cell-wrap {
 	display: -webkit-inline-box;
