@@ -617,19 +617,22 @@ class Data_Table extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__head .ha-table__head-column-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-table .ha-table__head-column-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'head_border_radius',
 			[
 				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__head .ha-table__head-column-cell:first-child' => 'border-top-left-radius: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-table__head .ha-table__head-column-cell:last-child' => 'border-top-right-radius: {{SIZE}}{{UNIT}};'
+					'(desktop){{WRAPPER}} .ha-table .ha-table__head-column-cell:first-child' => 'border-top-left-radius: {{SIZE}}{{UNIT}};',
+					'(desktop){{WRAPPER}} .ha-table .ha-table__head-column-cell:last-child' => 'border-top-right-radius: {{SIZE}}{{UNIT}};',
+					'(tablet){{WRAPPER}} .ha-table .ha-table__head-column-cell:first-child' => 'border-top-left-radius: {{SIZE}}{{UNIT}};',
+					'(tablet){{WRAPPER}} .ha-table .ha-table__head-column-cell:last-child' => 'border-top-right-radius: {{SIZE}}{{UNIT}};',
+					'(mobile){{WRAPPER}} .ha-table .ha-table__head-column-cell' => 'border-radius: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -638,7 +641,7 @@ class Data_Table extends Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'head_border',
-				'selector' => '{{WRAPPER}} .ha-table__head .ha-table__head-column-cell',
+				'selector' => '{{WRAPPER}} .ha-table .ha-table__head-column-cell',
 			]
 		);
 
@@ -648,7 +651,7 @@ class Data_Table extends Base {
                 'name' => 'head_background_color',
 				'types' => [ 'classic', 'gradient' ],
 				'exclude' => [ 'image' ],
-                'selector' => '{{WRAPPER}} .ha-table__head .ha-table__head-column-cell',
+                'selector' => '{{WRAPPER}} .ha-table .ha-table__head-column-cell',
             ]
         );
 
@@ -665,7 +668,7 @@ class Data_Table extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'head_typography',
-				'selector' => '{{WRAPPER}} .ha-table__head .ha-table__head-column-cell-text',
+				'selector' => '{{WRAPPER}} .ha-table .ha-table__head-column-cell-text',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
@@ -676,7 +679,7 @@ class Data_Table extends Base {
 				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__head .ha-table__head-column-cell-wrap' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-table .ha-table__head-column-cell-wrap' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -697,7 +700,7 @@ class Data_Table extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__head .ha-table__head-column-cell-icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-table .ha-table__head-column-cell-icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -708,7 +711,7 @@ class Data_Table extends Base {
 				'label' => __( 'Icon Size', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__head .ha-table__head-column-cell-icon' => 'font-size: {{SIZE}}{{UNIT}};'
+					'{{WRAPPER}} .ha-table .ha-table__head-column-cell-icon' => 'font-size: {{SIZE}}{{UNIT}};'
 				],
 			]
 		);
@@ -719,7 +722,7 @@ class Data_Table extends Base {
 				'label' => __( 'Image Border Radius', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__head .ha-table__head-column-cell-icon img' => 'border-radius: {{SIZE}}{{UNIT}};'
+					'{{WRAPPER}} .ha-table .ha-table__head-column-cell-icon img' => 'border-radius: {{SIZE}}{{UNIT}};'
 				],
 			]
 		);
@@ -760,7 +763,10 @@ class Data_Table extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__body .ha-table__body-row-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell-text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell' => 'padding: 0;'
 				],
 			]
 		);
@@ -773,6 +779,21 @@ class Data_Table extends Base {
 			]
 		);
 
+		$this->add_responsive_control(
+			'row_border_radius',
+			[
+				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'(desktop){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:first-child' => 'border-bottom-left-radius: {{SIZE}}{{UNIT}};',
+					'(desktop){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:last-child' => 'border-bottom-right-radius: {{SIZE}}{{UNIT}};',
+					'(tablet){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:first-child' => 'border-bottom-left-radius: {{SIZE}}{{UNIT}};',
+					'(tablet){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:last-child' => 'border-bottom-right-radius: {{SIZE}}{{UNIT}};',
+					'(mobile){{WRAPPER}} .ha-table .ha-table__body-row-cell' => 'border-radius: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
 		$this->start_controls_tabs( '_tabs_rows' );
 		$this->start_controls_tab(
 			'_tab_head_row',
@@ -781,46 +802,56 @@ class Data_Table extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'row_background_color_even',
 			[
 				'label' => __( 'Background Color (Even)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even)' => 'background-color: {{VALUE}}',
+					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even)' => 'background-color: {{VALUE}}',
+					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even)' => 'background-color: {{VALUE}}',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell:nth-child(even) .ha-table__body-row-cell-wrap' => 'background-color: {{VALUE}}',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even)' => 'background-color: transparent',
 				],
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'row_background_color_odd',
 			[
 				'label' => __( 'Background Color (Odd)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd)' => 'background-color: {{VALUE}}',
+					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd)' => 'background-color: {{VALUE}}',
+					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd)' => 'background-color: {{VALUE}}',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell:nth-child(odd) .ha-table__body-row-cell-wrap' => 'background-color: {{VALUE}}',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd)' => 'background-color: transparent',
 				],
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'row_color_even',
 			[
 				'label' => __( 'Color (Even)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even) .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even) ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even) ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell:nth-child(even) .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}'
 				],
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'row_color_odd',
 			[
 				'label' => __( 'Color (Odd)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd) .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd) ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd) ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell:nth-child(odd) .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}'
 				],
 			]
 		);
@@ -834,46 +865,56 @@ class Data_Table extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'row_hover_background_color_even',
 			[
 				'label' => __( 'Background Color (Even)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even):hover' => 'background-color: {{VALUE}}',
+					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even):hover' => 'background-color: {{VALUE}}',
+					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even):hover' => 'background-color: {{VALUE}}',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell:nth-child(even) .ha-table__body-row-cell-wrap:hover' => 'background-color: {{VALUE}}',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even):hover' => 'background-color: transparent',
 				],
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'row_hover_background_color_odd',
 			[
 				'label' => __( 'Background Color (Odd)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd):hover' => 'background-color: {{VALUE}}',
+					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd):hover' => 'background-color: {{VALUE}}',
+					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd):hover' => 'background-color: {{VALUE}}',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell:nth-child(odd) .ha-table__body-row-cell-wrap:hover' => 'background-color: {{VALUE}}',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd):hover' => 'background-color: transparent',
 				],
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'row_hover_color_even',
 			[
 				'label' => __( 'Color (Even)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even):hover .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even):hover ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even):hover ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell:nth-child(even):hover .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}'
 				],
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'row_hover_color_odd',
 			[
 				'label' => __( 'Color (Odd)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd):hover .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd):hover ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd):hover ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell:nth-child(odd):hover .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}'
 				],
 			]
 		);

@@ -563,7 +563,22 @@
 
 			    }, 200));
 		    }
-	    });
+        });
+        
+        var DataTable = function($scope) {
+            var columnTH = $scope.find('.ha-table__head-column-cell');
+            var rowTR = $scope.find('.ha-table__body-row');
+
+            rowTR.each( function( i, tr) {
+                // console.log(tr);
+                var th = $(tr).find('.ha-table__body-row-cell');
+                // console.log(th);
+                th.each( function( index, th ) {
+                    $(th).prepend( '<div class="ha-table__head-column-cell">' + columnTH.eq(index).html() + '</div>' );
+                    // console.log(th);
+                } );
+            } ); 
+        };
 
         $('[data-ha-element-link]').each(function() {
             var link = $(this).data('ha-element-link');
@@ -583,7 +598,8 @@
             'ha-skills.default': SkillHandler,
             'ha-fun-factor.default': FunFactor,
             'ha-bar-chart.default': BarChart,
-            'ha-twitter-feed.default': TwitterFeed
+            'ha-twitter-feed.default': TwitterFeed,
+            'ha-data-table.default': DataTable
         };
 
         $.each( handlersFnMap, function( widgetName, handlerFn ) {

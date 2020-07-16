@@ -1,66 +1,99 @@
 .ha-data-table {
-
 	.elementor-widget-container {
 		overflow: hidden;
 	}
 
 	.ha-table {
 		margin-bottom: 0;
+	}
 
-		.ha-table__head-column {
+	.ha-table__head-column {
 
-			&-cell {
-				background-color: #5636d1;
-				color: #fff;
-				border: 1px solid;
-				border-color: #5636d1 #320ebd #5636d1 #5636d1;
-				padding: 20px;
-				text-align: center;
-				vertical-align: middle;
-			}
-			&-cell-wrap {
-				display: inline-flex;
-				flex-direction: row;
-				align-items: center;
-			}
-			&-cell-icon {
-				line-height: 1;
-			}
+		&-cell {
+			background-color: #5636d1;
+			color: #fff;
+			border: 1px solid;
+			border-color: #5636d1 #320ebd #5636d1 #5636d1;
+			padding: 20px;
+			text-align: center;
+			vertical-align: middle;
 		}
-
-		.ha-table__body {
-			&-row {
-				&:nth-child(even) {
-					background-color: #fff;
-
-					&:hover {
-						background-color: rgba(86, 54, 209, 0.08);
-					}
-				}
-				&:nth-child(odd) {
-					background-color: #fff;
-
-					&:hover {
-						background-color: rgba(232, 53, 124, 0.08);
-					}
+		&-cell-wrap {
+			display: inline-flex;
+			flex-direction: row;
+			align-items: center;
+		}
+		&-cell-icon {
+			line-height: 1;
+		}
+	}
+	
+	.ha-table__body {
+		&-row {
+			&:nth-child(even) {
+				background-color: #fff;
+	
+				&:hover {
+					background-color: rgba(86, 54, 209, 0.08);
 				}
 			}
-			&-row-cell {
+			&:nth-child(odd) {
+				background-color: #fff;
+	
+				&:hover {
+					background-color: rgba(232, 53, 124, 0.08);
+				}
+			}
+	
+			&-cell {
 				background-color: transparent;
 				border: 1px solid #ddd;
 				padding: 15px;
 				vertical-align: middle;
 			}
-			&-row-cell-wrap {
-				display: inline-flex;
-				flex-direction: row;
-				align-items: center;
-			}
-			&-row-cell-icon {
-				line-height: 1;
-			}
+		}
+		
+		&-row-cell-wrap {
+			display: inline-flex;
+			flex-direction: row;
+			align-items: center;
+		}
+		&-row-cell-icon {
+			line-height: 1;
+		}
+	
+		.ha-table__head-column-cell {
+			display: none;
+		}
+	}
+}
+
+@media(max-width:767px) {
+
+	.ha-data-table {
+		.ha-table__head {
+			display: none;
 		}
 
+		.ha-table__body {
+			.ha-table__body-row {
+				display: flex;
+				flex-direction: column;
+			}
+			.ha-table__body-row-cell {
+				display: flex;
+				justify-content: space-between;
+				padding: 0;
+				overflow: hidden;
+			}
+			.ha-table__head-column-cell {
+				display: block;
+				width: 100%;
+			}
+			.ha-table__body-row-cell-wrap {
+				width: 100%;
+			}
+		}
 	}
 
 }
