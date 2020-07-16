@@ -113,20 +113,39 @@
 
 		&.ha-row-icon-left.ha-row-alignment-left {
 			.ha-table__body-row-cell-wrap {
-				justify-content: center;
-				align-items: flex-start;
+				justify-content: flex-end;
 			}
 		}
 		&.ha-row-icon-left.ha-row-alignment-center {
 			.ha-table__body-row-cell-wrap {
 				justify-content: center;
-				align-items: center;
 			}
 		}
 		&.ha-row-icon-left.ha-row-alignment-right {
 			.ha-table__body-row-cell-wrap {
+				justify-content: flex-start;
+			}
+		}
+
+		&.ha-row-icon-top.ha-row-alignment-left,
+		&.ha-row-icon-bottom.ha-row-alignment-left {
+			.ha-table__body-row-cell-wrap {
+				align-items: flex-start;
 				justify-content: center;
+			}
+		}
+		&.ha-row-icon-top.ha-row-alignment-center,
+		&.ha-row-icon-bottom.ha-row-alignment-center {
+			.ha-table__body-row-cell-wrap {
+				align-items: center;
+				justify-content: center;
+			}
+		}
+		&.ha-row-icon-top.ha-row-alignment-right,
+		&.ha-row-icon-bottom.ha-row-alignment-right {
+			.ha-table__body-row-cell-wrap {
 				align-items: flex-end;
+				justify-content: center;
 			}
 		}
 	}
