@@ -110,6 +110,25 @@
 				justify-content: flex-end;
 			}
 		}
+
+		&.ha-row-icon-left.ha-row-alignment-left {
+			.ha-table__body-row-cell-wrap {
+				justify-content: center;
+				align-items: flex-start;
+			}
+		}
+		&.ha-row-icon-left.ha-row-alignment-center {
+			.ha-table__body-row-cell-wrap {
+				justify-content: center;
+				align-items: center;
+			}
+		}
+		&.ha-row-icon-left.ha-row-alignment-right {
+			.ha-table__body-row-cell-wrap {
+				justify-content: center;
+				align-items: flex-end;
+			}
+		}
 	}
 
 }

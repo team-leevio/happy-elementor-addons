@@ -583,6 +583,7 @@ class Data_Table extends Base {
 						'icon' => 'eicon-v-align-bottom',
 					],
 				],
+				'prefix_class' => 'ha-row-icon-',
 				'selectors_dictionary' => [
 					'right' => 'flex-direction: row',
 					'left' => 'flex-direction: row-reverse',
