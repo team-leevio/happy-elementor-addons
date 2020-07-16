@@ -551,8 +551,11 @@ class Data_Table extends Base {
 						'icon' => 'fa fa-align-right',
 					]
 				],
+				'prefix_class' => 'ha-row-alignment-',
 				'selectors' => [
-					'{{WRAPPER}} .ha-table__body-row-cell' => 'text-align: {{VALUE}}'
+					'(desktop){{WRAPPER}} .ha-table__body-row-cell' => 'text-align: {{VALUE}}',
+					'(tablet){{WRAPPER}} .ha-table__body-row-cell' => 'text-align: {{VALUE}}',
+					'(mobile){{WRAPPER}} .ha-table__body-row-cell' => 'text-align: {{VALUE}}'
 				]
 			]
 		);

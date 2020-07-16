@@ -94,6 +94,22 @@
 				width: 100%;
 			}
 		}
+
+		&.ha-row-alignment-left {
+			.ha-table__body-row-cell-wrap {
+				justify-content: flex-start;
+			}
+		}
+		&.ha-row-alignment-center {
+			.ha-table__body-row-cell-wrap {
+				justify-content: center;
+			}
+		}
+		&.ha-row-alignment-right {
+			.ha-table__body-row-cell-wrap {
+				justify-content: flex-end;
+			}
+		}
 	}
 
 }
