@@ -229,6 +229,9 @@ class Data_Table extends Base {
 						'icon' => 'fa fa-align-right',
 					]
 				],
+				'default' => 'right',
+				'toggle' => false,
+				'prefix_class' => 'ha-column-alignment-',
 				'selectors' => [
 					'{{WRAPPER}} .ha-table__head-column-cell' => 'text-align: {{VALUE}}'
 				]
@@ -258,6 +261,9 @@ class Data_Table extends Base {
 						'icon' => 'eicon-v-align-bottom',
 					],
 				],
+				'default' => 'right',
+				'toggle' => false,
+				'prefix_class' => 'ha-column-icon-',
 				'selectors_dictionary' => [
 					'right' => 'flex-direction: row',
 					'left' => 'flex-direction: row-reverse',
@@ -551,6 +557,8 @@ class Data_Table extends Base {
 						'icon' => 'fa fa-align-right',
 					]
 				],
+				'default' => 'right',
+				'toggle' => false,
 				'prefix_class' => 'ha-row-alignment-',
 				'selectors' => [
 					'(desktop){{WRAPPER}} .ha-table__body-row-cell' => 'text-align: {{VALUE}}',
@@ -583,6 +591,8 @@ class Data_Table extends Base {
 						'icon' => 'eicon-v-align-bottom',
 					],
 				],
+				'default' => 'right',
+				'toggle' => false,
 				'prefix_class' => 'ha-row-icon-',
 				'selectors_dictionary' => [
 					'right' => 'flex-direction: row',
@@ -769,8 +779,7 @@ class Data_Table extends Base {
 				'selectors' => [
 					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell-text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell' => 'padding: 0;'
+					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell-wrap' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -840,8 +849,8 @@ class Data_Table extends Base {
 				'label' => __( 'Color (Even)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even) ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
-					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even) ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even) .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even) .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
 					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell:nth-child(even) .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}'
 				],
 			]
@@ -853,8 +862,8 @@ class Data_Table extends Base {
 				'label' => __( 'Color (Odd)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd) ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
-					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd) ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd) .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd) .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
 					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell:nth-child(odd) .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}'
 				],
 			]
@@ -903,8 +912,8 @@ class Data_Table extends Base {
 				'label' => __( 'Color (Even)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even):hover ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
-					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even):hover ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even):hover .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(even):hover .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
 					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell:nth-child(even):hover .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}'
 				],
 			]
@@ -916,8 +925,8 @@ class Data_Table extends Base {
 				'label' => __( 'Color (Odd)', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd):hover ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
-					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd):hover ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd):hover .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
+					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row:nth-child(odd):hover .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}',
 					'(mobile){{WRAPPER}} .ha-table__body .ha-table__body-row-cell:nth-child(odd):hover .ha-table__body-row-cell-wrap' => 'color: {{VALUE}}'
 				],
 			]
