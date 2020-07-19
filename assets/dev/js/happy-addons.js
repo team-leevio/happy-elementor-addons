@@ -570,12 +570,9 @@
             var rowTR = $scope.find('.ha-table__body-row');
 
             rowTR.each( function( i, tr) {
-                // console.log(tr);
                 var th = $(tr).find('.ha-table__body-row-cell');
-                // console.log(th);
                 th.each( function( index, th ) {
                     $(th).prepend( '<div class="ha-table__head-column-cell">' + columnTH.eq(index).html() + '</div>' );
-                    // console.log(th);
                 } );
             } ); 
         };

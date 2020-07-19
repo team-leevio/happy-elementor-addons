@@ -783,20 +783,20 @@ class Data_Table extends Base {
 			]
 		);
 
-		$this->add_responsive_control(
-			'row_border_radius',
-			[
-				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'selectors' => [
-					'(desktop){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:first-child' => 'border-bottom-left-radius: {{SIZE}}{{UNIT}};',
-					'(desktop){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:last-child' => 'border-bottom-right-radius: {{SIZE}}{{UNIT}};',
-					'(tablet){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:first-child' => 'border-bottom-left-radius: {{SIZE}}{{UNIT}};',
-					'(tablet){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:last-child' => 'border-bottom-right-radius: {{SIZE}}{{UNIT}};',
-					'(mobile){{WRAPPER}} .ha-table .ha-table__body-row-cell' => 'border-radius: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
+		// $this->add_responsive_control(
+		// 	'row_border_radius',
+		// 	[
+		// 		'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+		// 		'type' => Controls_Manager::SLIDER,
+		// 		'selectors' => [
+		// 			'(desktop){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:first-child' => 'border-bottom-left-radius: {{SIZE}}{{UNIT}};',
+		// 			'(desktop){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:last-child' => 'border-bottom-right-radius: {{SIZE}}{{UNIT}};',
+		// 			'(tablet){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:first-child' => 'border-bottom-left-radius: {{SIZE}}{{UNIT}};',
+		// 			'(tablet){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:last-child' => 'border-bottom-right-radius: {{SIZE}}{{UNIT}};',
+		// 			'(mobile){{WRAPPER}} .ha-table .ha-table__body-row-cell' => 'border-radius: {{SIZE}}{{UNIT}};',
+		// 		],
+		// 	]
+		// );
 
 		$this->start_controls_tabs( '_tabs_rows' );
 		$this->start_controls_tab(
