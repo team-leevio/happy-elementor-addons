@@ -11,6 +11,7 @@ use Elementor\Scheme_Typography;
 use Elementor\Utils;
 use Elementor\Control_Media;
 use Elementor\Controls_Manager;
+use Elementor\Controls_Stack;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
@@ -213,15 +214,19 @@ class Card extends Base {
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
+					],
+					'justify' => [
+						'title' => __( 'Justify', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-justify',
 					],
 				],
 				'toggle' => true,
@@ -263,7 +268,52 @@ class Card extends Base {
 				'placeholder' => 'https://example.com',
 				'dynamic' => [
 					'active' => true,
+				],
+				'default' => [
+					'url' => '#'
+				],
+			]
+		);
+
+		$this->add_control(
+			'button_fullwidth',
+			[
+				'label' => __( 'Full Width?', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => false,
+				'return_value' => 'yes',
+				'style_transfer' => true,
+				'selectors' => [
+					'{{WRAPPER}} .ha-btn' => 'display: -webkit-box; display: -ms-flexbox; display: flex;',
 				]
+			]
+		);
+
+		$this->add_control(
+			'button_align',
+			[
+				'label' => __( 'Content Align', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'left' => __( 'Left', 'happy-elementor-addons' ),
+					'center' => __( 'Center', 'happy-elementor-addons' ),
+					'right' => __( 'Right', 'happy-elementor-addons' ),
+					'stretch' => __( 'Stretch', 'happy-elementor-addons' ),
+				],
+				'toggle' => false,
+				'default' => 'center',
+				'selectors' => [
+					'{{WRAPPER}} .ha-btn' => '{{VALUE}}',
+				],
+				'selectors_dictionary' => [
+					'left' => '-webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start;',
+					'center' => '-webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;',
+					'right' => '-webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end;',
+					'stretch' => '-webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between;',
+				],
+				'condition' => [
+					'button_fullwidth' => 'yes',
+				],
 			]
 		);
 
@@ -296,17 +346,11 @@ class Card extends Base {
 			'button_icon_position',
 			[
 				'label' => __( 'Icon Position', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::CHOOSE,
+				'type' => Controls_Manager::SELECT,
 				'label_block' => false,
 				'options' => [
-					'before' => [
-						'title' => __( 'Before', 'happy-elementor-addons' ),
-						'icon' => 'eicon-h-align-left',
-					],
-					'after' => [
-						'title' => __( 'After', 'happy-elementor-addons' ),
-						'icon' => 'eicon-h-align-right',
-					],
+					'before' => __( 'Before Text', 'happy-elementor-addons' ),
+					'after' => __( 'After Text', 'happy-elementor-addons' ),
 				],
 				'default' => 'before',
 				'toggle' => false,
