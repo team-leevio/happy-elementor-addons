@@ -229,7 +229,7 @@ class Data_Table extends Base {
 						'icon' => 'fa fa-align-right',
 					]
 				],
-				'default' => 'right',
+				'default' => 'center',
 				'toggle' => false,
 				'prefix_class' => 'ha-column-alignment-',
 				'selectors' => [
@@ -557,7 +557,7 @@ class Data_Table extends Base {
 						'icon' => 'fa fa-align-right',
 					]
 				],
-				'default' => 'right',
+				'default' => 'left',
 				'toggle' => false,
 				'prefix_class' => 'ha-row-alignment-',
 				'selectors' => [
