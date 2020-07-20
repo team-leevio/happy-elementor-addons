@@ -10,25 +10,25 @@
 	transform: translate(var(--ha-badge-translate-x), var(--ha-badge-translate-y));
 
 	&--top-left {
-		left: 30px;
-		top: 30px;
+		left: 25px;
+		top: 25px;
 	}
 
 	&--top-center {
 		left: 50%;
 		--ha-badge-translate-x: -50%;
-		top: 30px;
+		top: 25px;
 	}
 
 	&--top-right {
-		right: 30px;
-		top: 30px;
+		right: 25px;
+		top: 25px;
 	}
 
 	&--middle-left {
 		top: 50%;
 		--ha-badge-translate-x: -50%;
-		left: 30px;
+		left: 25px;
 	}
 
 	&--middle-center {
@@ -41,22 +41,22 @@
 	&--middle-right {
 		top: 50%;
 		--ha-badge-translate-y: -50%;
-		right: 30px;
+		right: 25px;
 	}
 
 	&--bottom-left {
-		left: 30px;
-		bottom: 30px;
+		left: 25px;
+		bottom: 25px;
 	}
 
 	&--bottom-center {
 		left: 50%;
 		--ha-badge-translate-x: -50%;
-		bottom: 30px;
+		bottom: 25px;
 	}
 
 	&--bottom-right {
-		right: 30px;
-		bottom: 30px;
+		right: 25px;
+		bottom: 25px;
 	}
 }

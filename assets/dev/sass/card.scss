@@ -29,7 +29,7 @@
 	}
 
 	&-body {
-		padding: 30px;
+		padding: 25px;
 	}
 
 	&-title {
@@ -41,7 +41,7 @@
 	}
 
 	&-text {
-		margin-bottom: 30px;
+		margin-bottom: 25px;
 		color: #616161;
 		font-size: 16px;
 		line-height: 1.7;
@@ -58,7 +58,7 @@
 			display: inline-block;
 
 			img {
-				border-radius: 3px 3px 0 0;
+				border-radius: 5px 5px 0 0;
 			}
 		}
 
@@ -79,7 +79,7 @@
 		}
 
 		.ha-card-body {
-			padding: 40px;
+			padding: 35px;
 		}
 	}
 
@@ -91,7 +91,7 @@
 		}
 
 		.ha-card-figure img {
-			border-radius: 3px 0 0 3px;
+			border-radius: 5px 0 0 5px;
 		}
 	}
 
@@ -103,7 +103,7 @@
 		}
 
 		.ha-card-figure img {
-			border-radius: 0 3px 3px 0;
+			border-radius: 0 5px 5px 0;
 		}
 	}
 
@@ -115,7 +115,7 @@
 				display: inline-block;
 
 				img {
-					border-radius: 3px 3px 0 0;
+					border-radius: 5px 5px 0 0;
 				}
 			}
 
@@ -123,7 +123,7 @@
 				max-width: initial;
 				width: 100%;
 				margin-top: var(--ha-card-image-offset-y);
-				padding: 30px;
+				padding: 25px;
 			}
 		}
 
@@ -135,10 +135,6 @@
 				display: flex;
 				align-items: center;
 			}
-
-			.ha-card-body {
-				padding: 40px;
-			}
 		}
 
 		&--tablet-left {
@@ -149,7 +145,7 @@
 			}
 
 			.ha-card-figure img {
-				border-radius: 3px 0 0 3px;
+				border-radius: 5px 0 0 5px;
 			}
 		}
 
@@ -161,7 +157,7 @@
 			}
 
 			.ha-card-figure img {
-				border-radius: 0 3px 3px 0;
+				border-radius: 0 5px 5px 0;
 			}
 		}
 	}
@@ -174,13 +170,14 @@
 				display: inline-block;
 
 				img {
-					border-radius: 3px 3px 0 0;
+					border-radius: 5px 5px 0 0;
 				}
 			}
 
 			.ha-card-body {
 				max-width: initial;
 				width: 100%;
+				padding: 25px;
 				margin-top: var(--ha-card-image-offset-y);
 			}
 		}
@@ -193,10 +190,6 @@
 				display: flex;
 				align-items: center;
 			}
-
-			.ha-card-body {
-				padding: 20px;
-			}
 		}
 
 		&--mobile-left {
@@ -207,7 +200,7 @@
 			}
 
 			.ha-card-figure img {
-				border-radius: 3px 0 0 3px;
+				border-radius: 5px 0 0 5px;
 			}
 		}
 
@@ -219,7 +212,7 @@
 			}
 
 			.ha-card-figure img {
-				border-radius: 0 3px 3px 0;
+				border-radius: 0 5px 5px 0;
 			}
 		}
 	}

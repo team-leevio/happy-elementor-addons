@@ -5,7 +5,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -23,7 +23,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -111,7 +111,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -135,7 +135,7 @@
 }
 .ha-btn:not(.ha-btn--link) {
 	padding: 15px 25px; 
-	border-radius: 3px;
+	border-radius: 5px;
 	background-color: #562dd4;
 	color: #fff;
 }
@@ -176,22 +176,22 @@
 	--ha-badge-translate-y: 0;
 }
 .ha-badge--top-left {
-	top: 30px; 
-	left: 30px;
+	top: 25px; 
+	left: 25px;
 }
 .ha-badge--top-center {
-	top: 30px; 
+	top: 25px; 
 	left: 50%;
 
 	--ha-badge-translate-x: -50%;
 }
 .ha-badge--top-right {
-	top: 30px; 
-	right: 30px;
+	top: 25px; 
+	right: 25px;
 }
 .ha-badge--middle-left {
 	top: 50%;
-	left: 30px; 
+	left: 25px; 
 
 	--ha-badge-translate-x: -50%;
 }
@@ -204,23 +204,23 @@
 }
 .ha-badge--middle-right {
 	top: 50%;
-	right: 30px; 
+	right: 25px; 
 
 	--ha-badge-translate-y: -50%;
 }
 .ha-badge--bottom-left {
-	bottom: 30px; 
-	left: 30px;
+	bottom: 25px; 
+	left: 25px;
 }
 .ha-badge--bottom-center {
-	bottom: 30px; 
+	bottom: 25px; 
 	left: 50%;
 
 	--ha-badge-translate-x: -50%;
 }
 .ha-badge--bottom-right {
-	right: 30px;
-	bottom: 30px;
+	right: 25px;
+	bottom: 25px;
 }
 
 .ha-card > .elementor-widget-container,
@@ -230,7 +230,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -268,7 +268,7 @@
 }
 
 .ha-card-body {
-	padding: 30px;
+	padding: 25px;
 }
 
 .ha-card-title {
@@ -280,7 +280,7 @@
 }
 
 .ha-card-text {
-	margin-bottom: 30px;
+	margin-bottom: 25px;
 	color: #616161;
 	font-size: 16px;
 	line-height: 1.7;
@@ -294,7 +294,7 @@
 	display: inline-block;
 }
 .ha-card--top .ha-card-figure img {
-	border-radius: 3px 3px 0 0;
+	border-radius: 5px 5px 0 0;
 }
 
 .ha-card--top .ha-card-body {
@@ -320,7 +320,7 @@
 }
 .ha-card--right .ha-card-body,
 .ha-card--left .ha-card-body {
-	padding: 40px;
+	padding: 35px;
 }
 
 .ha-card--left .ha-card-body {
@@ -333,7 +333,7 @@
 }
 
 .ha-card--left .ha-card-figure img {
-	border-radius: 3px 0 0 3px;
+	border-radius: 5px 0 0 5px;
 }
 
 .ha-card--right .ha-card-body {
@@ -346,7 +346,7 @@
 }
 
 .ha-card--right .ha-card-figure img {
-	border-radius: 0 3px 3px 0;
+	border-radius: 0 5px 5px 0;
 }
 
 @media (max-width: 1024px) {
@@ -357,11 +357,11 @@
 		display: inline-block;
 	}
 	.ha-card--tablet-top .ha-card-figure img {
-		border-radius: 3px 3px 0 0;
+		border-radius: 5px 5px 0 0;
 	}
 	.ha-card--tablet-top .ha-card-body {
 		margin-top: var(--ha-card-image-offset-y);
-		padding: 30px; 
+		padding: 25px; 
 		max-width: initial;
 		width: 100%;
 	}
@@ -380,10 +380,6 @@
 		        align-items: center; 
 		-ms-flex-align: center;
 	}
-	.ha-card--tablet-right .ha-card-body,
-	.ha-card--tablet-left .ha-card-body {
-		padding: 40px;
-	}
 	.ha-card--tablet-left .ha-card-body {
 		-webkit-box-flex: 0;
 		-webkit-flex: 0 0 var(--ha-card-body-width-left);
@@ -393,7 +389,7 @@
 		max-width: var(--ha-card-body-width-left);
 	}
 	.ha-card--tablet-left .ha-card-figure img {
-		border-radius: 3px 0 0 3px;
+		border-radius: 5px 0 0 5px;
 	}
 	.ha-card--tablet-right .ha-card-body {
 		-webkit-box-flex: 0;
@@ -404,7 +400,7 @@
 		max-width: var(--ha-card-body-width-right);
 	}
 	.ha-card--tablet-right .ha-card-figure img {
-		border-radius: 0 3px 3px 0;
+		border-radius: 0 5px 5px 0;
 	}
 }
 
@@ -416,10 +412,11 @@
 		display: inline-block;
 	}
 	.ha-card--tablet-top .ha-card-figure img {
-		border-radius: 3px 3px 0 0;
+		border-radius: 5px 5px 0 0;
 	}
 	.ha-card--tablet-top .ha-card-body {
 		margin-top: var(--ha-card-image-offset-y); 
+		padding: 25px;
 		max-width: initial;
 		width: 100%;
 	}
@@ -438,10 +435,6 @@
 		        align-items: center; 
 		-ms-flex-align: center;
 	}
-	.ha-card--mobile-right .ha-card-body,
-	.ha-card--mobile-left .ha-card-body {
-		padding: 20px;
-	}
 	.ha-card--mobile-left .ha-card-body {
 		-webkit-box-flex: 0;
 		-webkit-flex: 0 0 var(--ha-card-body-width-left);
@@ -451,7 +444,7 @@
 		max-width: var(--ha-card-body-width-left);
 	}
 	.ha-card--mobile-left .ha-card-figure img {
-		border-radius: 3px 0 0 3px;
+		border-radius: 5px 0 0 5px;
 	}
 	.ha-card--mobile-right .ha-card-body {
 		-webkit-box-flex: 0;
@@ -462,7 +455,7 @@
 		max-width: var(--ha-card-body-width-right);
 	}
 	.ha-card--mobile-right .ha-card-figure img {
-		border-radius: 0 3px 3px 0;
+		border-radius: 0 5px 5px 0;
 	}
 }
 
@@ -477,7 +470,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -544,7 +537,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -557,7 +550,7 @@
 
 .ha-icon-box > .elementor-widget-container {
 	position: relative;
-	padding: 1.25rem;
+	padding: 25px;
 }
 
 .ha-icon-box-title {
@@ -571,10 +564,10 @@
 
 .ha-icon-box-icon {
 	display: inline-block;
-	margin-bottom: 1rem;
+	margin-bottom: 20px;
 	color: #151515;
 	text-align: center;
-	font-size: 3rem;
+	font-size: 48px;
 	-webkit-transition: border .3s, background .3s, color .3s, -webkit-transform .3s;
 	        transition: border .3s, background .3s, color .3s, -webkit-transform .3s;
 	        transition: transform .3s, border .3s, background .3s, color .3s;
@@ -621,7 +614,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -701,7 +694,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -835,7 +828,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -858,7 +851,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -916,7 +909,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -959,7 +952,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -1023,7 +1016,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -1174,7 +1167,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -1271,7 +1264,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -1298,7 +1291,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -1769,7 +1762,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -2116,7 +2109,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -2270,7 +2263,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -2326,7 +2319,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -2576,7 +2569,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }
@@ -2708,7 +2701,7 @@
 .ha-review > .elementor-widget-container,
 .ha-image-compare > .elementor-widget-container,
 .ha-pricing-table > .elementor-widget-container {
-	border-radius: 3px; 
+	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
 }

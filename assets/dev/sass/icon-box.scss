@@ -6,7 +6,7 @@
 
   @include widgetContainer {
     position: relative;
-    padding: 1.25rem;
+    padding: 25px;
   }
 
   &-title {
@@ -20,8 +20,8 @@
 
   &-icon {
     display: inline-block;
-    margin-bottom: 1rem;
-    font-size: 3rem;
+    margin-bottom: 20px;
+    font-size: 48px;
     text-align: center;
     color: #151515;
 
