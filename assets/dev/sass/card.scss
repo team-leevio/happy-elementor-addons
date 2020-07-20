@@ -11,7 +11,7 @@
 }
 
 .ha-card {
-	@extend %widgetContainerBase;
+	@include widgetContainerBase;
 
 	&-figure {
 		position: relative;

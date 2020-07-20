@@ -87,7 +87,10 @@ class Dual_Button extends Base {
                 'placeholder' => 'https://example.com',
                 'dynamic' => [
                     'active' => true,
-                ]
+				],
+				'default' => [
+					'url' => '#',
+				],
             ]
         );
 
@@ -273,7 +276,10 @@ class Dual_Button extends Base {
                 'placeholder' => 'https://example.com',
                 'dynamic' => [
                     'active' => true,
-                ]
+				],
+				'default' => [
+					'url' => '#',
+				],
             ]
         );
 

@@ -4,11 +4,15 @@
 	}
 }
 
-%widgetContainerBase {
+@mixin widgetContainerBaseStyle {
+	background-color: #fff;
+	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
+	border-radius: 5px;
+}
+
+@mixin widgetContainerBase {
 	@include widgetContainer {
-		background-color: #fff;
-		box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
-		border-radius: 5px;
+		@include widgetContainerBaseStyle;
 	}
 }
 

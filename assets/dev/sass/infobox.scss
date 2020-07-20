@@ -2,14 +2,13 @@
 @import "mixins";
 
 .ha-infobox {
-	@extend %widgetContainerBase;
-
 	--ha-infobox-media-offset-x: 0;
 	--ha-infobox-media-offset-y: 0;
 	--ha-infobox-media-rotate: 0;
 
 	@include widgetContainer {
 		padding: 25px;
+		@include widgetContainerBaseStyle;
 	}
 
 	&-title {
