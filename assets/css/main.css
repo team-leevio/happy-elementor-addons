@@ -481,32 +481,44 @@
 	content: "";
 }
 
-.ha-infobox > .elementor-widget-container {
-	padding: 1.5rem;
+.ha-infobox {
+	--ha-infobox-media-offset-x: 0;
+	--ha-infobox-media-offset-y: 0;
+	--ha-infobox-media-rotate: 0;
 }
-
+.ha-infobox > .elementor-widget-container {
+	padding: 25px;
+}
 .ha-infobox-title {
 	margin-top: 0;
-	margin-bottom: 1rem;
+	margin-bottom: 10px;
 	color: #151515;
 	font-size: 24px;
 }
-
 .ha-infobox-figure {
 	display: inline-block;
-	margin: 0 0 1.5rem !important;
+	margin: 0 0 25px !important;
+	-webkit-transform: translate(var(--ha-infobox-media-offset-x), var(--ha-infobox-media-offset-y));
+	    -ms-transform: translate(var(--ha-infobox-media-offset-x), var(--ha-infobox-media-offset-y));
+	        transform: translate(var(--ha-infobox-media-offset-x), var(--ha-infobox-media-offset-y));
 }
 .ha-infobox-figure--icon {
 	text-align: center;
-	font-size: 3rem;
+	font-size: 48px;
 	line-height: 1;
+	-webkit-transform: translate(var(--ha-infobox-media-offset-x), var(--ha-infobox-media-offset-y)) rotate(var(--ha-infobox-media-rotate));
+	    -ms-transform: translate(var(--ha-infobox-media-offset-x), var(--ha-infobox-media-offset-y)) rotate(var(--ha-infobox-media-rotate));
+	        transform: translate(var(--ha-infobox-media-offset-x), var(--ha-infobox-media-offset-y)) rotate(var(--ha-infobox-media-rotate));
 }
 .ha-infobox-figure i,
 .ha-infobox-figure svg {
 	position: relative;
-	display: block; 
+	display: block;
 	width: 1em;
 	height: 1em;
+	-webkit-transform: rotate(calc(-1 * var(--ha-infobox-media-rotate)));
+	    -ms-transform: rotate(calc(-1 * var(--ha-infobox-media-rotate)));
+	        transform: rotate(calc(-1 * var(--ha-infobox-media-rotate)));
 }
 .ha-infobox-figure i:before {
 	position: absolute;
@@ -520,14 +532,15 @@
 	height: 100%;
 	vertical-align: bottom;
 }
-
+.ha-infobox-body {
+	margin-top: var(--ha-infobox-media-offset-y);
+}
 .ha-infobox-text p {
 	margin-top: 0;
 	margin-bottom: 0;
 }
-
 .ha-infobox-text + .ha-btn--link {
-	margin-top: 1rem;
+	margin-top: 25px;
 }
 
 .ha-card > .elementor-widget-container,
