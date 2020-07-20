@@ -3,7 +3,7 @@
 
 .ha-image-compare {
 
-  @extend %happyWidgetContainer;
+  @extend %widgetContainerBase;
 
   .twentytwenty-container,
   .twentytwenty-wrapper {

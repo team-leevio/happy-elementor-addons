@@ -2,7 +2,7 @@
 @import "mixins";
 
 .ha-infobox {
-  @extend %happyWidgetContainer;
+  @extend %widgetContainerBase;
 
   @include widgetContainer {
     padding: 1.5rem;

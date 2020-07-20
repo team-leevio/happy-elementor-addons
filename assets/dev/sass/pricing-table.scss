@@ -2,7 +2,7 @@
 @import "mixins";
 
 .ha-pricing-table {
-  @extend %happyWidgetContainer;
+  @extend %widgetContainerBase;
 
   @include widgetContainer {
     padding: 3em 4em;

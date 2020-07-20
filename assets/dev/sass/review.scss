@@ -2,7 +2,7 @@
 @import "mixins";
 
 .ha-review {
-  @extend %happyWidgetContainer;
+  @extend %widgetContainerBase;
 
   &-header {
     margin-top: 1.5rem;

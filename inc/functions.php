@@ -216,8 +216,17 @@ function ha_get_allowed_html_tags( $level = 'basic' ) {
 		'b' => [],
 		'i' => [],
 		'u' => [],
-		'em' => [],
+		's' => [],
 		'br' => [],
+		'em' => [],
+		'del' => [],
+		'ins' => [],
+		'sub' => [],
+		'sup' => [],
+		'code' => [],
+		'mark' => [],
+		'small' => [],
+		'strike' => [],
 		'abbr' => [
 			'title' => [],
 		],
@@ -256,16 +265,7 @@ function ha_get_allowed_html_tags( $level = 'basic' ) {
 			'acronym' => [
 				'title' => [],
 			],
-			'strike' => [],
-			'small' => [],
-			'code' => [],
-			'mark' => [],
-			'del' => [],
-			'ins' => [],
-			'sub' => [],
-			'sup' => [],
 			'hr' => [],
-			's' => [],
 		];
 
 		$allowed_html = array_merge( $allowed_html, $tags );

@@ -2,7 +2,7 @@
 @import "mixins";
 
 .ha-icon-box {
-  @extend %happyWidgetContainer;
+  @extend %widgetContainerBase;
 
   @include widgetContainer {
     position: relative;

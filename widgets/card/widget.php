@@ -11,7 +11,6 @@ use Elementor\Scheme_Typography;
 use Elementor\Utils;
 use Elementor\Control_Media;
 use Elementor\Controls_Manager;
-use Elementor\Controls_Stack;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
@@ -88,7 +87,7 @@ class Card extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'image_position',
 			[
 				'label' => __( 'Image Position', 'happy-elementor-addons' ),
@@ -109,9 +108,19 @@ class Card extends Base {
 					],
 				],
 				'toggle' => false,
-				'default' => 'top',
-				'prefix_class' => 'ha-card--',
+				'desktop_default' => 'top',
+				'tablet_default' => 'top',
+				'mobile_default' => 'top',
+				'prefix_class' => 'ha-card-%s-',
 				'style_transfer' => true,
+				'selectors' => [
+					'{{WRAPPER}} .elementor-widget-container' => '{{VALUE}};',
+				],
+				'selectors_dictionary' => [
+					'left' => '-webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; text-align: left;',
+					'top' => '-webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; text-align: left;',
+					'right' => '-webkit-box-orient: horizontal; -webkit-box-direction: reverse; -ms-flex-direction: row-reverse; flex-direction: row-reverse; text-align: right;'
+				]
 			]
 		);
 
@@ -292,13 +301,25 @@ class Card extends Base {
 		$this->add_control(
 			'button_align',
 			[
-				'label' => __( 'Content Align', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SELECT,
+				'label' => __( 'Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
 				'options' => [
-					'left' => __( 'Left', 'happy-elementor-addons' ),
-					'center' => __( 'Center', 'happy-elementor-addons' ),
-					'right' => __( 'Right', 'happy-elementor-addons' ),
-					'stretch' => __( 'Stretch', 'happy-elementor-addons' ),
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-right',
+					],
+					'stretch' => [
+						'title' => __( 'Stretch', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-justify',
+					],
 				],
 				'toggle' => false,
 				'default' => 'center',
@@ -410,8 +431,7 @@ class Card extends Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-card-figure' => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}}.ha-card--right .ha-card-body, {{WRAPPER}}.ha-card--left .ha-card-body' => 'flex: 0 0 calc(100% - {{SIZE || 50}}{{UNIT}}); max-width: calc(100% - {{SIZE || 50}}{{UNIT}});',
+					'{{WRAPPER}}' => '--ha-card-image-width: {{SIZE}}{{UNIT}};'
 				],
 			]
 		);
@@ -462,7 +482,9 @@ class Card extends Base {
 						'max' => 1000,
 					],
 				],
-				'render_type' => 'ui'
+				'selectors' => [
+					'{{WRAPPER}}' => '--ha-card-image-offset-x: {{SIZE}}{{UNIT}};'
+				]
 			]
 		);
 
@@ -482,23 +504,11 @@ class Card extends Base {
 					],
 				],
 				'selectors' => [
-					// Left image position styles
-					'(desktop){{WRAPPER}}.ha-card--left .ha-card-body' => 'margin-left: {{image_offset_x.SIZE || 0}}{{UNIT}}; flex: 0 0 calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE || 0}}{{UNIT}})); max-width: calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE || 0}}{{UNIT}}));',
-					'(tablet){{WRAPPER}}.ha-card--left .ha-card-body' => 'margin-left: {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}; flex: 0 0 calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + (-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}})); max-width: calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + (-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}));',
-					'(mobile){{WRAPPER}}.ha-card--left .ha-card-body' => 'margin-left: {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}; flex: 0 0 calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + (-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}})); max-width: calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + (-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}));',
-					// Image right position styles
-					'(desktop){{WRAPPER}}.ha-card--right .ha-card-body' => 'margin-right: calc(-1 * {{image_offset_x.SIZE || 0}}{{UNIT}}); flex: 0 0 calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + {{image_offset_x.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width.SIZE || 50}}{{image_width.UNIT}}) + {{image_offset_x.SIZE || 0}}{{UNIT}});',
-					'(tablet){{WRAPPER}}.ha-card--right .ha-card-body' => 'margin-right: calc(-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}); flex: 0 0 calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width_tablet.SIZE || 50}}{{image_width_tablet.UNIT}}) + {{image_offset_x_tablet.SIZE || 0}}{{UNIT}});',
-					'(mobile){{WRAPPER}}.ha-card--right .ha-card-body' => 'margin-right: calc(-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}); flex: 0 0 calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width_mobile.SIZE || 50}}{{image_width_mobile.UNIT}}) + {{image_offset_x_mobile.SIZE || 0}}{{UNIT}});',
-					// Image translate styles
-					'(desktop){{WRAPPER}} .ha-card-figure' => '-ms-transform: translate({{image_offset_x.SIZE || 0}}{{UNIT}}, {{image_offset_y.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{image_offset_x.SIZE || 0}}{{UNIT}}, {{image_offset_y.SIZE || 0}}{{UNIT}}); transform: translate({{image_offset_x.SIZE || 0}}{{UNIT}}, {{image_offset_y.SIZE || 0}}{{UNIT}});',
-					'(tablet){{WRAPPER}} .ha-card-figure' => '-ms-transform: translate({{image_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{image_offset_y_tablet.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{image_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{image_offset_y_tablet.SIZE || 0}}{{UNIT}}); transform: translate({{image_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{image_offset_y_tablet.SIZE || 0}}{{UNIT}});',
-					'(mobile){{WRAPPER}} .ha-card-figure' => '-ms-transform: translate({{image_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{image_offset_y_mobile.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{image_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{image_offset_y_mobile.SIZE || 0}}{{UNIT}}); transform: translate({{image_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{image_offset_y_mobile.SIZE || 0}}{{UNIT}});',
-					// Card body styles
-					'{{WRAPPER}}.ha-card--top .ha-card-body' => 'margin-top: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}' => '--ha-card-image-offset-y: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
+
 		$this->end_popover();
 
 		$this->add_responsive_control(
@@ -664,14 +674,14 @@ class Card extends Base {
 				'label' => __( 'Position', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'top-left'  => __( 'Top Left', 'happy-elementor-addons' ),
-					'top-center'  => __( 'Top Center', 'happy-elementor-addons' ),
-					'top-right'  => __( 'Top Right', 'happy-elementor-addons' ),
-					'middle-left'  => __( 'Middle Left', 'happy-elementor-addons' ),
-					'middle-center'  => __( 'Middle Center', 'happy-elementor-addons' ),
+					'top-left'      => __( 'Top Left', 'happy-elementor-addons' ),
+					'top-center'    => __( 'Top Center', 'happy-elementor-addons' ),
+					'top-right'     => __( 'Top Right', 'happy-elementor-addons' ),
+					'middle-left'   => __( 'Middle Left', 'happy-elementor-addons' ),
+					'middle-center' => __( 'Middle Center', 'happy-elementor-addons' ),
 					'middle-right'  => __( 'Middle Right', 'happy-elementor-addons' ),
-					'bottom-left'  => __( 'Bottom Left', 'happy-elementor-addons' ),
-					'bottom-center'  => __( 'Bottom Center', 'happy-elementor-addons' ),
+					'bottom-left'   => __( 'Bottom Left', 'happy-elementor-addons' ),
+					'bottom-center' => __( 'Bottom Center', 'happy-elementor-addons' ),
 					'bottom-right'  => __( 'Bottom Right', 'happy-elementor-addons' ),
 				],
 				'default' => 'top-right',
@@ -706,7 +716,9 @@ class Card extends Base {
 						'max' => 1000,
 					],
 				],
-				'render_type' => 'ui'
+				'selectors' => [
+					'{{WRAPPER}} .ha-badge' => '--ha-badge-translate-x: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -726,9 +738,7 @@ class Card extends Base {
 					],
 				],
 				'selectors' => [
-					'(desktop){{WRAPPER}} .ha-badge' => '-ms-transform: translate({{badge_offset_x.SIZE || 0}}{{UNIT}}, {{badge_offset_y.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{badge_offset_x.SIZE || 0}}{{UNIT}}, {{badge_offset_y.SIZE || 0}}{{UNIT}}); transform: translate({{badge_offset_x.SIZE || 0}}{{UNIT}}, {{badge_offset_y.SIZE || 0}}{{UNIT}});',
-					'(tablet){{WRAPPER}} .ha-badge' => '-ms-transform: translate({{badge_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{badge_offset_y_tablet.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{badge_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{badge_offset_y_tablet.SIZE || 0}}{{UNIT}}); transform: translate({{badge_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{badge_offset_y_tablet.SIZE || 0}}{{UNIT}});',
-					'(mobile){{WRAPPER}} .ha-badge' => '-ms-transform: translate({{badge_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{badge_offset_y_mobile.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{badge_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{badge_offset_y_mobile.SIZE || 0}}{{UNIT}}); transform: translate({{badge_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{badge_offset_y_mobile.SIZE || 0}}{{UNIT}});',
+					'{{WRAPPER}} .ha-badge' => '--ha-badge-translate-y: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -1092,7 +1102,7 @@ class Card extends Base {
 			<figure class="ha-card-figure">
 				<?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
 				<?php if ( $settings['badge_text'] ) : ?>
-					<div <?php echo $this->get_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></div>
+					<span <?php echo $this->get_render_attribute_string( 'badge_text' ); ?>><?php echo esc_html( $settings['badge_text'] ); ?></span>
 				<?php endif; ?>
 			</figure>
 		<?php endif; ?>
@@ -1149,7 +1159,7 @@ class Card extends Base {
 			<figure class="ha-card-figure">
 				<img class="elementor-animation-{{settings.hover_animation}}" src="{{ image_url }}">
 				<# if (settings.badge_text) { #>
-					<div {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{ settings.badge_text }}</div>
+					<span {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{ settings.badge_text }}</span>
 				<# } #>
 			</figure>
 		<# } #>

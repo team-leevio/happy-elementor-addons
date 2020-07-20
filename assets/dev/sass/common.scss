@@ -20,6 +20,10 @@
 	p:empty {
 		display: none;
 	}
+
+	.elementor-inline-editing {
+		min-height: auto !important
+	}
 }
 
 .ha-screen-reader-text {

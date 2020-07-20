@@ -1,21 +1,21 @@
 @mixin widgetContainer {
-  > .elementor-widget-container {
-    @content;
-  }
+	> .elementor-widget-container {
+		@content;
+	}
 }
 
-%happyWidgetContainer {
-  @include widgetContainer {
-    background-color: #fff;
-    box-shadow: 0 0.2rem 2.8rem rgba(36, 36, 36, .1);
-    border-radius: .5rem;
-  }
+%widgetContainerBase {
+	@include widgetContainer {
+		background-color: #fff;
+		box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
+		border-radius: 3px;
+	}
 }
 
 %clearfix {
-  &:after {
-    content: '';
-    display: block;
-    clear: both;
-  }
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
 }
