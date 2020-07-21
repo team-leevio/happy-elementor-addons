@@ -536,6 +536,9 @@ class Happy_Effects {
 					'ha_transform_fx_translate_toggle' => 'yes',
 					'ha_transform_fx' => 'yes',
 				],
+				'selectors' => [
+					'{{WRAPPER}}' => '--ha-tfx-translate-x: {{SIZE}}px;'
+				],
 			]
 		);
 
@@ -556,28 +559,8 @@ class Happy_Effects {
 					'ha_transform_fx' => 'yes',
 				],
 				'selectors' => [
-					'(desktop){{WRAPPER}}' =>
-						'-ms-transform:'
-							. 'translate({{ha_transform_fx_translate_x.SIZE || 0}}px, {{ha_transform_fx_translate_y.SIZE || 0}}px);'
-						. '-webkit-transform:'
-							. 'translate({{ha_transform_fx_translate_x.SIZE || 0}}px, {{ha_transform_fx_translate_y.SIZE || 0}}px);'
-						. 'transform:'
-							. 'translate({{ha_transform_fx_translate_x.SIZE || 0}}px, {{ha_transform_fx_translate_y.SIZE || 0}}px);',
-					'(tablet){{WRAPPER}}' =>
-						'-ms-transform:'
-							. 'translate({{ha_transform_fx_translate_x_tablet.SIZE || 0}}px, {{ha_transform_fx_translate_y_tablet.SIZE || 0}}px);'
-						. '-webkit-transform:'
-							. 'translate({{ha_transform_fx_translate_x_tablet.SIZE || 0}}px, {{ha_transform_fx_translate_y_tablet.SIZE || 0}}px);'
-						. 'transform:'
-							. 'translate({{ha_transform_fx_translate_x_tablet.SIZE || 0}}px, {{ha_transform_fx_translate_y_tablet.SIZE || 0}}px);',
-					'(mobile){{WRAPPER}}' =>
-						'-ms-transform:'
-							. 'translate({{ha_transform_fx_translate_x_mobile.SIZE || 0}}px, {{ha_transform_fx_translate_y_mobile.SIZE || 0}}px);'
-						. '-webkit-transform:'
-							. 'translate({{ha_transform_fx_translate_x_mobile.SIZE || 0}}px, {{ha_transform_fx_translate_y_mobile.SIZE || 0}}px);'
-						. 'transform:'
-							. 'translate({{ha_transform_fx_translate_x_mobile.SIZE || 0}}px, {{ha_transform_fx_translate_y_mobile.SIZE || 0}}px);',
-				]
+					'{{WRAPPER}}' => '--ha-tfx-translate-y: {{SIZE}}px;'
+				],
 			]
 		);
 
@@ -612,6 +595,9 @@ class Happy_Effects {
 					'ha_transform_fx_rotate_toggle' => 'yes',
 					'ha_transform_fx' => 'yes',
 				],
+				'selectors' => [
+					'{{WRAPPER}}' => '--ha-tfx-rotate-x: {{SIZE}}deg;'
+				],
 			]
 		);
 
@@ -630,6 +616,9 @@ class Happy_Effects {
 				'condition' => [
 					'ha_transform_fx_rotate_toggle' => 'yes',
 					'ha_transform_fx' => 'yes',
+				],
+				'selectors' => [
+					'{{WRAPPER}}' => '--ha-tfx-rotate-y: {{SIZE}}deg;'
 				],
 			]
 		);
@@ -651,37 +640,8 @@ class Happy_Effects {
 					'ha_transform_fx' => 'yes',
 				],
 				'selectors' => [
-					'(desktop){{WRAPPER}}' =>
-						'-ms-transform:'
-							. 'translate({{ha_transform_fx_translate_x.SIZE || 0}}px, {{ha_transform_fx_translate_y.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z.SIZE || 0}}deg);'
-						. '-webkit-transform:'
-							. 'translate({{ha_transform_fx_translate_x.SIZE || 0}}px, {{ha_transform_fx_translate_y.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z.SIZE || 0}}deg);'
-						. 'transform:'
-							. 'translate({{ha_transform_fx_translate_x.SIZE || 0}}px, {{ha_transform_fx_translate_y.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z.SIZE || 0}}deg);',
-					'(tablet){{WRAPPER}}' =>
-						'-ms-transform:'
-							. 'translate({{ha_transform_fx_translate_x_tablet.SIZE || 0}}px, {{ha_transform_fx_translate_y_tablet.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_tablet.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_tablet.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_tablet.SIZE || 0}}deg);'
-						. '-webkit-transform:'
-							. 'translate({{ha_transform_fx_translate_x_tablet.SIZE || 0}}px, {{ha_transform_fx_translate_y_tablet.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_tablet.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_tablet.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_tablet.SIZE || 0}}deg);'
-						. 'transform:'
-							. 'translate({{ha_transform_fx_translate_x_tablet.SIZE || 0}}px, {{ha_transform_fx_translate_y_tablet.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_tablet.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_tablet.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_tablet.SIZE || 0}}deg);',
-					'(mobile){{WRAPPER}}' =>
-						'-ms-transform:'
-							. 'translate({{ha_transform_fx_translate_x_mobile.SIZE || 0}}px, {{ha_transform_fx_translate_y_mobile.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_mobile.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_mobile.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_mobile.SIZE || 0}}deg);'
-						. '-webkit-transform:'
-							. 'translate({{ha_transform_fx_translate_x_mobile.SIZE || 0}}px, {{ha_transform_fx_translate_y_mobile.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_mobile.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_mobile.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_mobile.SIZE || 0}}deg);'
-						. 'transform:'
-							. 'translate({{ha_transform_fx_translate_x_mobile.SIZE || 0}}px, {{ha_transform_fx_translate_y_mobile.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_mobile.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_mobile.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_mobile.SIZE || 0}}deg);'
-				]
+					'{{WRAPPER}}' => '--ha-tfx-rotate-z: {{SIZE}}deg;'
+				],
 			]
 		);
 
@@ -721,6 +681,9 @@ class Happy_Effects {
 					'ha_transform_fx_scale_toggle' => 'yes',
 					'ha_transform_fx' => 'yes',
 				],
+				'selectors' => [
+					'{{WRAPPER}}' => '--ha-tfx-scale-x: {{SIZE}};'
+				],
 			]
 		);
 
@@ -745,46 +708,8 @@ class Happy_Effects {
 					'ha_transform_fx' => 'yes',
 				],
 				'selectors' => [
-					'(desktop){{WRAPPER}}' =>
-						'-ms-transform:'
-							. 'translate({{ha_transform_fx_translate_x.SIZE || 0}}px, {{ha_transform_fx_translate_y.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y.SIZE || 1}});'
-						. '-webkit-transform:'
-							. 'translate({{ha_transform_fx_translate_x.SIZE || 0}}px, {{ha_transform_fx_translate_y.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y.SIZE || 1}});'
-						. 'transform:'
-							. 'translate({{ha_transform_fx_translate_x.SIZE || 0}}px, {{ha_transform_fx_translate_y.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y.SIZE || 1}});',
-					'(tablet){{WRAPPER}}' =>
-						'-ms-transform:'
-							. 'translate({{ha_transform_fx_translate_x_tablet.SIZE || 0}}px, {{ha_transform_fx_translate_y_tablet.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_tablet.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_tablet.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_tablet.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x_tablet.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y_tablet.SIZE || 1}});'
-						. '-webkit-transform:'
-							. 'translate({{ha_transform_fx_translate_x_tablet.SIZE || 0}}px, {{ha_transform_fx_translate_y_tablet.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_tablet.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_tablet.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_tablet.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x_tablet.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y_tablet.SIZE || 1}});'
-						. 'transform:'
-							. 'translate({{ha_transform_fx_translate_x_tablet.SIZE || 0}}px, {{ha_transform_fx_translate_y_tablet.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_tablet.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_tablet.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_tablet.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x_tablet.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y_tablet.SIZE || 1}});',
-					'(mobile){{WRAPPER}}' =>
-						'-ms-transform:'
-							. 'translate({{ha_transform_fx_translate_x_mobile.SIZE || 0}}px, {{ha_transform_fx_translate_y_mobile.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_mobile.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_mobile.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_mobile.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x_mobile.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y_mobile.SIZE || 1}});'
-						. '-webkit-transform:'
-							. 'translate({{ha_transform_fx_translate_x_mobile.SIZE || 0}}px, {{ha_transform_fx_translate_y_mobile.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_mobile.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_mobile.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_mobile.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x_mobile.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y_mobile.SIZE || 1}});'
-						. 'transform:'
-							. 'translate({{ha_transform_fx_translate_x_mobile.SIZE || 0}}px, {{ha_transform_fx_translate_y_mobile.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_mobile.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_mobile.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_mobile.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x_mobile.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y_mobile.SIZE || 1}});'
-				]
+					'{{WRAPPER}}' => '--ha-tfx-scale-y: {{SIZE}};'
+				],
 			]
 		);
 
@@ -820,6 +745,9 @@ class Happy_Effects {
 					'ha_transform_fx_skew_toggle' => 'yes',
 					'ha_transform_fx' => 'yes',
 				],
+				'selectors' => [
+					'{{WRAPPER}}' => '--ha-tfx-skew-x: {{SIZE}}deg;'
+				],
 			]
 		);
 
@@ -840,55 +768,8 @@ class Happy_Effects {
 					'ha_transform_fx' => 'yes',
 				],
 				'selectors' => [
-					'(desktop){{WRAPPER}}' =>
-						'-ms-transform:'
-							. 'translate({{ha_transform_fx_translate_x.SIZE || 0}}px, {{ha_transform_fx_translate_y.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y.SIZE || 1}}) '
-							. 'skew({{ha_transform_fx_skew_x.SIZE || 0}}deg, {{ha_transform_fx_skew_y.SIZE || 0}}deg);'
-						. '-webkit-transform:'
-							. 'translate({{ha_transform_fx_translate_x.SIZE || 0}}px, {{ha_transform_fx_translate_y.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y.SIZE || 1}}) '
-							. 'skew({{ha_transform_fx_skew_x.SIZE || 0}}deg, {{ha_transform_fx_skew_y.SIZE || 0}}deg);'
-						. 'transform:'
-							. 'translate({{ha_transform_fx_translate_x.SIZE || 0}}px, {{ha_transform_fx_translate_y.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y.SIZE || 1}}) '
-							. 'skew({{ha_transform_fx_skew_x.SIZE || 0}}deg, {{ha_transform_fx_skew_y.SIZE || 0}}deg);',
-					'(tablet){{WRAPPER}}' =>
-						'-ms-transform:'
-							. 'translate({{ha_transform_fx_translate_x_tablet.SIZE || 0}}px, {{ha_transform_fx_translate_y_tablet.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_tablet.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_tablet.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_tablet.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x_tablet.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y_tablet.SIZE || 1}}) '
-							. 'skew({{ha_transform_fx_skew_x_tablet.SIZE || 0}}deg, {{ha_transform_fx_skew_y_tablet.SIZE || 0}}deg);'
-						. '-webkit-transform:'
-							. 'translate({{ha_transform_fx_translate_x_tablet.SIZE || 0}}px, {{ha_transform_fx_translate_y_tablet.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_tablet.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_tablet.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_tablet.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x_tablet.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y_tablet.SIZE || 1}}) '
-							. 'skew({{ha_transform_fx_skew_x_tablet.SIZE || 0}}deg, {{ha_transform_fx_skew_y_tablet.SIZE || 0}}deg);'
-						. 'transform:'
-							. 'translate({{ha_transform_fx_translate_x_tablet.SIZE || 0}}px, {{ha_transform_fx_translate_y_tablet.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_tablet.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_tablet.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_tablet.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x_tablet.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y_tablet.SIZE || 1}}) '
-							. 'skew({{ha_transform_fx_skew_x_tablet.SIZE || 0}}deg, {{ha_transform_fx_skew_y_tablet.SIZE || 0}}deg);',
-					'(mobile){{WRAPPER}}' =>
-						'-ms-transform:'
-							. 'translate({{ha_transform_fx_translate_x_mobile.SIZE || 0}}px, {{ha_transform_fx_translate_y_mobile.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_mobile.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_mobile.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_mobile.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x_mobile.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y_mobile.SIZE || 1}}) '
-							. 'skew({{ha_transform_fx_skew_x_mobile.SIZE || 0}}deg, {{ha_transform_fx_skew_y_mobile.SIZE || 0}}deg);'
-						. '-webkit-transform:'
-							. 'translate({{ha_transform_fx_translate_x_mobile.SIZE || 0}}px, {{ha_transform_fx_translate_y_mobile.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_mobile.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_mobile.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_mobile.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x_mobile.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y_mobile.SIZE || 1}}) '
-							. 'skew({{ha_transform_fx_skew_x_mobile.SIZE || 0}}deg, {{ha_transform_fx_skew_y_mobile.SIZE || 0}}deg);'
-						. 'transform:'
-							. 'translate({{ha_transform_fx_translate_x_mobile.SIZE || 0}}px, {{ha_transform_fx_translate_y_mobile.SIZE || 0}}px) '
-							. 'rotateX({{ha_transform_fx_rotate_x_mobile.SIZE || 0}}deg) rotateY({{ha_transform_fx_rotate_y_mobile.SIZE || 0}}deg) rotateZ({{ha_transform_fx_rotate_z_mobile.SIZE || 0}}deg) '
-							. 'scaleX({{ha_transform_fx_scale_x_mobile.SIZE || 1}}) scaleY({{ha_transform_fx_scale_y_mobile.SIZE || 1}}) '
-							. 'skew({{ha_transform_fx_skew_x_mobile.SIZE || 0}}deg, {{ha_transform_fx_skew_y_mobile.SIZE || 0}}deg);'
-				]
+					'{{WRAPPER}}' => '--ha-tfx-skew-y: {{SIZE}}deg;'
+				],
 			]
 		);
 
