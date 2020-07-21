@@ -4,24 +4,33 @@
 .ha-review {
 	@include widgetContainerBase;
 
+	--ha-review-media-offset-x: calc(1px - 1px);
+	--ha-review-media-offset-y: calc(1px - 1px);
+
+	--ha-review-left-body-width: calc(100% - var(--ha-review-media-width) + (-1 * var(--ha-review-media-offset-x)));
+	--ha-review-right-body-width: calc(100% - var(--ha-review-media-width) + (var(--ha-review-media-offset-x)));
+
 	&-header {
-		margin-top: 1.5rem;
+		margin-top: 25px;
 	}
 
 	&-figure {
 		margin: 0;
+		flex: 0 0 var(--ha-review-media-width, 70px);
+		max-width: var(--ha-review-media-width, 70px);
+		transform: translate(var(--ha-review-media-offset-x), var(--ha-review-media-offset-y));
 
 		img {
-			border-radius: 50%;
-			vertical-align: bottom;
 			height: 100%;
 			width: 100%;
+			border-radius: 50%;
+			vertical-align: bottom;
 		}
 	}
 
 	&-reviewer {
 		margin-top: 0;
-		margin-bottom: .3rem;
+		margin-bottom: 10px;
 		color: #151515;
 		font-size: 18px;
 	}
@@ -29,7 +38,7 @@
 	&-position {
 		color: #7f7f7f;
 		font-size: 15px;
-		margin-bottom: .5rem;
+		margin-bottom: 10px;
 	}
 
 	&-ratting {
@@ -41,8 +50,8 @@
 	&-ratting--num {
 		background-color: $primary-color;
 		color: #fff;
-		padding: .25em .66em;
-		border-radius: 2.5em;
+		padding: 5px 10px;
+		border-radius: 20px;
 	}
 
 	&-ratting--star {
@@ -50,7 +59,7 @@
 	}
 
 	&-desc {
-		margin-top: 1.5rem;
+		margin-top: 25px;
 		font-size: 16px;
 		line-height: 1.6;
 
@@ -61,13 +70,16 @@
 
 	&--top {
 		@include widgetContainer {
-			padding: 2rem;
+			padding: 25px;
 		}
 
 		.ha-review-figure {
 			display: inline-block;
-			max-width: 70px;
 			height: 70px;
+		}
+
+		.ha-review-body {
+			margin-top: var(--ha-review-media-offset-y);
 		}
 	}
 
@@ -75,22 +87,18 @@
 	&--right {
 		@include widgetContainer {
 			display: flex;
-			flex-direction: row;
-			padding-left: 2rem;
 			align-items: center;
 		}
 
+		--ha-review-media-width: 150px;
+
 		.ha-review {
 			&-figure {
-				flex: 0 0 150px;
-				max-width: 150px;
 				height: 150px;
 			}
 
 			&-body {
-				flex: 0 0 calc(100% - 150px);
-				max-width: calc(100% - 150px);
-				padding: 2rem;
+				padding: 25px;
 
 				> :first-child {
 					margin-top: 0;
@@ -99,12 +107,34 @@
 		}
 	}
 
+	&--left {
+		@include widgetContainer {
+			flex-direction: row;
+			padding-left: 25px;
+		}
+
+		.ha-review {
+			&-body {
+				flex: 0 0 var(--ha-review-left-body-width);
+				max-width: var(--ha-review-left-body-width);
+				margin-left: var(--ha-review-media-offset-x);
+			}
+		}
+	}
+
 	&--right {
 		@include widgetContainer {
 			flex-direction: row-reverse;
-			padding-right: 2rem;
-			padding-left: 0;
+			padding-right: 25px;
 			text-align: right;
+		}
+
+		.ha-review {
+			&-body {
+				flex: 0 0 var(--ha-review-right-body-width);
+				max-width: var(--ha-review-right-body-width);
+				margin-right: calc(-1 * var(--ha-review-media-offset-x));
+			}
 		}
 	}
 }

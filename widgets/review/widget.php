@@ -8,13 +8,11 @@ namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Scheme_Typography;
 use Elementor\Utils;
-use Elementor\Control_Media;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use ParagonIE\Sodium\Core\Curve25519\Ge\P3;
 
 defined( 'ABSPATH' ) || die();
 
@@ -50,6 +48,13 @@ class Review extends Base {
 
 	public function get_keywords() {
 		return [ 'review', 'comment', 'feedback', 'testimonial' ];
+	}
+
+	public function get_style_depends() {
+		return [
+			'elementor-icons-fa-solid',
+			'elementor-icons-fa-regular',
+		];
 	}
 
 	protected function register_content_controls() {
@@ -555,8 +560,7 @@ class Review extends Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-review-figure' => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}}.ha-review--right .ha-review-body, {{WRAPPER}}.ha-review--left .ha-review-body' => 'flex: 0 0 calc(100% - {{SIZE || 150}}{{UNIT}}); max-width: calc(100% - {{SIZE || 150}}{{UNIT}});',
+					'{{WRAPPER}}' => '--ha-review-media-width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -607,7 +611,9 @@ class Review extends Base {
 						'max' => 1000,
 					],
 				],
-				'render_type' => 'ui'
+				'selectors' => [
+					'{{WRAPPER}}' => '--ha-review-media-offset-x: {{SIZE}}{{UNIT}};'
+				]
 			]
 		);
 
@@ -627,20 +633,7 @@ class Review extends Base {
 					],
 				],
 				'selectors' => [
-					// Left image position styles
-					'(desktop){{WRAPPER}}.ha-review--left .ha-review-body' => 'margin-left: {{image_offset_x.SIZE || 0}}{{UNIT}}; flex: 0 0 calc((100% - {{image_width.SIZE || 150}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE || 0}}{{UNIT}})); max-width: calc((100% - {{image_width.SIZE || 150}}{{image_width.UNIT}}) + (-1 * {{image_offset_x.SIZE || 0}}{{UNIT}}));',
-					'(tablet){{WRAPPER}}.ha-review--left .ha-review-body' => 'margin-left: {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}; flex: 0 0 calc((100% - {{image_width_tablet.SIZE || 150}}{{image_width_tablet.UNIT}}) + (-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}})); max-width: calc((100% - {{image_width_tablet.SIZE || 150}}{{image_width_tablet.UNIT}}) + (-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}));',
-					'(mobile){{WRAPPER}}.ha-review--left .ha-review-body' => 'margin-left: {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}; flex: 0 0 calc((100% - {{image_width_mobile.SIZE || 150}}{{image_width_mobile.UNIT}}) + (-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}})); max-width: calc((100% - {{image_width_mobile.SIZE || 150}}{{image_width_mobile.UNIT}}) + (-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}));',
-					// Image right position styles
-					'(desktop){{WRAPPER}}.ha-review--right .ha-review-body' => 'margin-right: calc(-1 * {{image_offset_x.SIZE || 0}}{{UNIT}}); flex: 0 0 calc((100% - {{image_width.SIZE || 150}}{{image_width.UNIT}}) + {{image_offset_x.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width.SIZE || 150}}{{image_width.UNIT}}) + {{image_offset_x.SIZE || 0}}{{UNIT}});',
-					'(tablet){{WRAPPER}}.ha-review--right .ha-review-body' => 'margin-right: calc(-1 * {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}); flex: 0 0 calc((100% - {{image_width_tablet.SIZE || 150}}{{image_width_tablet.UNIT}}) + {{image_offset_x_tablet.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width_tablet.SIZE || 150}}{{image_width_tablet.UNIT}}) + {{image_offset_x_tablet.SIZE || 0}}{{UNIT}});',
-					'(mobile){{WRAPPER}}.ha-review--right .ha-review-body' => 'margin-right: calc(-1 * {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}); flex: 0 0 calc((100% - {{image_width_mobile.SIZE || 150}}{{image_width_mobile.UNIT}}) + {{image_offset_x_mobile.SIZE || 0}}{{UNIT}}); max-width: calc((100% - {{image_width_mobile.SIZE || 150}}{{image_width_mobile.UNIT}}) + {{image_offset_x_mobile.SIZE || 0}}{{UNIT}});',
-					// Image translate styles
-					'(desktop){{WRAPPER}} .ha-review-figure' => '-ms-transform: translate({{image_offset_x.SIZE || 0}}{{UNIT}}, {{image_offset_y.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{image_offset_x.SIZE || 0}}{{UNIT}}, {{image_offset_y.SIZE || 0}}{{UNIT}}); transform: translate({{image_offset_x.SIZE || 0}}{{UNIT}}, {{image_offset_y.SIZE || 0}}{{UNIT}});',
-					'(tablet){{WRAPPER}} .ha-review-figure' => '-ms-transform: translate({{image_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{image_offset_y_tablet.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{image_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{image_offset_y_tablet.SIZE || 0}}{{UNIT}}); transform: translate({{image_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{image_offset_y_tablet.SIZE || 0}}{{UNIT}});',
-					'(mobile){{WRAPPER}} .ha-review-figure' => '-ms-transform: translate({{image_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{image_offset_y_mobile.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{image_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{image_offset_y_mobile.SIZE || 0}}{{UNIT}}); transform: translate({{image_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{image_offset_y_mobile.SIZE || 0}}{{UNIT}});',
-					// Review body styles
-					'{{WRAPPER}}.ha-review--top .ha-review-body' => 'margin-top: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}' => '--ha-review-media-offset-y: {{SIZE}}{{UNIT}};'
 				],
 			]
 		);
@@ -724,9 +717,6 @@ class Review extends Base {
 		?>
 
 		<?php if ( $settings['image']['url'] || $settings['image']['id'] ) :
-			$this->add_render_attribute( 'image', 'src', $settings['image']['url'] );
-			$this->add_render_attribute( 'image', 'alt', Control_Media::get_image_alt( $settings['image'] ) );
-			$this->add_render_attribute( 'image', 'title', Control_Media::get_image_title( $settings['image'] ) );
 			$settings['hover_animation'] = 'disable-animation'; // hack to prevent image hover animation
 			?>
 			<figure class="ha-review-figure">
@@ -758,13 +748,13 @@ class Review extends Base {
 					<meta itemprop="ratingValue" content="<?php echo esc_attr( $ratting ); ?>">
 
 					<?php if ( $settings['ratting_style'] === 'num' ) : ?>
-						<?php echo esc_html( $ratting ); ?> <i class="fa fa-star" aria-hidden="true"></i>
+						<?php echo esc_html( $ratting ); ?> <i class="fas fa-star" aria-hidden="true"></i>
 					<?php else :
 						for ( $i = 1; $i <= 5; ++$i ) :
 							if ( $i <= $ratting ) {
-								echo '<i class="fa fa-star" aria-hidden="true"></i>';
+								echo '<i class="fas fa-star" aria-hidden="true"></i>';
 							} else {
-								echo '<i class="fa fa-star-o" aria-hidden="true"></i>';
+								echo '<i class="far fa-star" aria-hidden="true"></i>';
 							}
 						endfor;
 					endif; ?>
@@ -833,9 +823,9 @@ class Review extends Base {
 					<div class="ha-review-ratting ha-review-ratting--star">
 						<# _.each(_.range(1, 6), function(i) {
 							if (i <= ratting) {
-								print('<i class="fa fa-star"></i>');
+								print('<i class="fas fa-star"></i>');
 							} else {
-								print('<i class="fa fa-star-o"></i>');
+								print('<i class="far fa-star"></i>');
 							}
 						}); #>
 					</div>
