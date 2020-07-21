@@ -13,12 +13,12 @@
 }
 
 .ha-step-arrow {
-	width: 100px;
-	border-top: 1px solid #ddd;
-	display: inline-block;
 	position: absolute;
 	top: 49%;
 	left: calc( 100% + 20px );
+	display: inline-block;
+	width: 100px;
+	border-top: 1px solid #ddd;
 	transform-origin: var(--ha-stepflow-direction-origin-x) center;
 	transform: rotate(var(--ha-stepflow-direction-angle, 0));
 
