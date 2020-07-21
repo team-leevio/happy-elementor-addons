@@ -2492,18 +2492,29 @@
 	content: "";
 }
 
+.ha-step-flow {
+	--ha-stepflow-direction-origin-x: calc(-1 * ((var(--ha-stepflow-icon-size, 46px) / 2)
+		+ var(--ha-stepflow-icon-padding, 40px)
+		+ var(--ha-stepflow-direction-offset-x, 20px)));
+}
 .ha-step-flow > .elementor-widget-container {
-	padding: 30px; 
+	padding: 25px; 
 	text-align: center;
 }
 
 .ha-step-arrow {
 	position: absolute;
 	top: 49%;
-	left: calc( 100% + 20px); 
+	left: calc( 100% + 20px);
 	display: inline-block;
 	width: 100px;
 	border-top: 1px solid #ddd;
+	-webkit-transform: rotate(var(--ha-stepflow-direction-angle, 0));
+	    -ms-transform: rotate(var(--ha-stepflow-direction-angle, 0));
+	        transform: rotate(var(--ha-stepflow-direction-angle, 0)); 
+	-webkit-transform-origin: var(--ha-stepflow-direction-origin-x) center;
+	    -ms-transform-origin: var(--ha-stepflow-direction-origin-x) center;
+	        transform-origin: var(--ha-stepflow-direction-origin-x) center;
 }
 .ha-step-arrow:after {
 	position: absolute;
@@ -2552,7 +2563,7 @@
 	top: 5px;
 	right: 0;
 	overflow: hidden; 
-	padding: 12px 8px;
+	padding: 8px 10px;
 	max-width: 200%;
 	border: 3px solid #fff;
 	border-radius: 20px;

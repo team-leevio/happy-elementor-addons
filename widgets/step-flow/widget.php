@@ -249,6 +249,7 @@ class Step_Flow extends Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-steps-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}' => '--ha-stepflow-icon-size: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -267,6 +268,7 @@ class Step_Flow extends Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-steps-icon' => 'padding: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}' => '--ha-stepflow-icon-padding: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -604,6 +606,33 @@ class Step_Flow extends Base {
 			]
 		);
 
+		$this->add_responsive_control(
+			'direction_angle',
+			[
+				'label' => __( 'Angle', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['deg'],
+				'default' => [
+					'unit' => 'deg',
+				],
+				'tablet_default' => [
+					'unit' => 'deg',
+				],
+				'mobile_default' => [
+					'unit' => 'deg',
+				],
+				'range' => [
+					'deg' => [
+						'min' => 0,
+						'max' => 360,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}}' => '--ha-stepflow-direction-angle: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
 		$this->add_control(
 			'direction_offset_toggle',
 			[
@@ -623,6 +652,16 @@ class Step_Flow extends Base {
 				'label' => __( 'Offset Top', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 500,
+					]
+				],
 				'condition' => [
 					'direction_offset_toggle' => 'yes'
 				],
@@ -638,12 +677,22 @@ class Step_Flow extends Base {
 				'label' => __( 'Offset Left', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 500,
+					]
+				],
 				'condition' => [
 					'direction_offset_toggle' => 'yes'
 				],
-				'render_type' => 'ui',
 				'selectors' => [
 					'{{WRAPPER}} .ha-step-arrow' => 'left: calc( 100% + {{SIZE}}{{UNIT}} );',
+					'{{WRAPPER}}' => '--ha-stepflow-direction-offset-x: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -692,7 +741,7 @@ class Step_Flow extends Base {
 
 		<div class="ha-steps-icon">
 			<?php if ( $settings['show_indicator'] === 'yes' ) : ?>
-				<div class="ha-step-arrow"></div>
+				<span class="ha-step-arrow"></span>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon']['value'] ) ) :
