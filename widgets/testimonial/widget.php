@@ -66,7 +66,7 @@ class Testimonial extends Base {
 				'label' => __( 'Testimonial', 'happy-elementor-addons' ),
 				'label_block' => true,
 				'type' => Controls_Manager::TEXTAREA,
-				'default' => __( 'Testimonial contents', 'happy-elementor-addons' ),
+				'default' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 				'placeholder' => __( 'Type testimonial', 'happy-elementor-addons' ),
 				'dynamic' => [
 					'active' => true,
@@ -93,14 +93,13 @@ class Testimonial extends Base {
 						'title' => __( 'Right', 'happy-elementor-addons' ),
 						'icon' => 'eicon-text-align-right',
 					],
-					'justify' => [
-						'title' => __( 'Justify', 'happy-elementor-addons' ),
-						'icon' => 'eicon-text-align-justify',
-					],
 				],
 				'toggle' => false,
 				'default' => 'left',
-				'prefix_class' => 'ha-testimonial--'
+				'prefix_class' => 'ha-testimonial--',
+				'selectors' => [
+					'{{WRAPPER}}' => 'text-align: {{VALUE}};'
+				]
 			]
 		);
 
@@ -295,9 +294,13 @@ class Testimonial extends Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-testimonial__reviewer-thumb' => '-webkit-flex: 0 0 {{SIZE}}{{UNIT}}; -ms-flex: 0 0 {{SIZE}}{{UNIT}}; flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
+
 					'{{WRAPPER}}.ha-testimonial--left .ha-testimonial__reviewer-meta' => '-webkit-flex: 0 0 calc(100% - {{SIZE}}{{UNIT}}); -ms-flex: 0 0 calc(100% - {{SIZE}}{{UNIT}}); flex: 0 0 calc(100% - {{SIZE}}{{UNIT}}); max-width: calc(100% - {{SIZE}}{{UNIT}});',
+
 					'{{WRAPPER}}.ha-testimonial--right .ha-testimonial__reviewer-meta' => '-webkit-flex: 0 0 calc(100% - {{SIZE}}{{UNIT}}); -ms-flex: 0 0 calc(100% - {{SIZE}}{{UNIT}}); flex: 0 0 calc(100% - {{SIZE}}{{UNIT}}); max-width: calc(100% - {{SIZE}}{{UNIT}});',
+
 					'{{WRAPPER}}.ha-testimonial--left .ha-testimonial__content:after' => 'left: calc(({{SIZE}}{{UNIT}} / 2) - 18px);',
+
 					'{{WRAPPER}}.ha-testimonial--right .ha-testimonial__content:after' => 'right: calc(({{SIZE}}{{UNIT}} / 2) - 18px);',
 				],
 			]
