@@ -247,14 +247,8 @@ class Image_Compare extends Base {
                     '{{WRAPPER}} .twentytwenty-handle' => 'border-color: {{VALUE}}',
                     '{{WRAPPER}} .twentytwenty-left-arrow' => 'border-right-color: {{VALUE}}',
                     '{{WRAPPER}} .twentytwenty-right-arrow' => 'border-left-color: {{VALUE}}',
-                    '{{WRAPPER}} .twentytwenty-handle:before' =>
-                        '-webkit-box-shadow: 0 3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);'
-                        . '-moz-box-shadow: 0 3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);'
-                        . 'box-shadow: 0 3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);',
-                    '{{WRAPPER}} .twentytwenty-handle:after' =>
-                        '-webkit-box-shadow: 0 -3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);'
-                        . '-moz-box-shadow: 0 -3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);'
-                        . 'box-shadow: 0 -3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);',
+                    '{{WRAPPER}} .twentytwenty-handle:before' => 'box-shadow: 0 3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);',
+                    '{{WRAPPER}} .twentytwenty-handle:after' => 'box-shadow: 0 -3px 0 {{VALUE}}, 0px 0px 12px rgba(51, 51, 51, 0.5);',
                 ],
             ]
         );
