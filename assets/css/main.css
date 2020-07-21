@@ -567,7 +567,7 @@
 }
 
 .ha-member > .elementor-widget-container {
-	padding: 1.25rem;
+	padding: 25px;
 	border-radius: 5px; 
 	background-color: #fff;
 	box-shadow: 0 3px 40px rgba(36, 36, 36, .1);
@@ -575,7 +575,7 @@
 
 .ha-member-figure {
 	display: inline-block;
-	margin: 0 0 1.5rem !important;
+	margin: 0 0 25px !important;
 }
 .ha-member-figure img {
 	width: 100%;
@@ -585,19 +585,19 @@
 
 .ha-member-name {
 	margin-top: 0;
-	margin-bottom: .5rem;
+	margin-bottom: 10px;
 	color: #151515;
 	font-size: 18px;
 }
 
 .ha-member-position {
-	margin-bottom: 1.5rem; 
+	margin-bottom: 25px; 
 	color: #7f7f7f;
 	font-size: 14px;
 }
 
 .ha-member-bio {
-	margin-bottom: 1.5rem; 
+	margin-bottom: 25px; 
 	font-size: 14px;
 	line-height: 1.6;
 }
@@ -619,15 +619,15 @@
 	height: 1em;
 }
 .ha-member-links > a:not(:last-child) {
-	margin-right: .3rem;
+	margin-right: 10px;
 }
 
 .ha-member .ha-btn {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 
-.ha-member-links + .ha-btn {
-	margin-top: 10px;
+.ha-member-body .ha-btn:last-child {
+	margin-top: 15px;
 	margin-bottom: 0;
 }
 
