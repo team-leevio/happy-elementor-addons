@@ -9,6 +9,19 @@
 		rotateX(var(--ha-tfx-rotate-x, 0))
 		rotateY(var(--ha-tfx-rotate-y, 0))
 		rotateZ(var(--ha-tfx-rotate-z, 0));
+
+	transition-property: transform;
+	transition-duration: var(--ha-tfx-transition-duration, .2s);
+
+	&:hover {
+		transform:
+			translate(var(--ha-tfx-translate-x-hover, 0), var(--ha-tfx-translate-y-hover, 0))
+			scale(var(--ha-tfx-scale-x-hover, 1), var(--ha-tfx-scale-y-hover, 1))
+			skew(var(--ha-tfx-skew-x-hover, 0), var(--ha-tfx-skew-y-hover, 0))
+			rotateX(var(--ha-tfx-rotate-x-hover, 0))
+			rotateY(var(--ha-tfx-rotate-y-hover, 0))
+			rotateZ(var(--ha-tfx-rotate-z-hover, 0));
+	}
 }
 
 .happy-addon {
