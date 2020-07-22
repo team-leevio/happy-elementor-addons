@@ -234,15 +234,6 @@
 		newTab: true
 	}, 'settings');
 
-	elementor.modules.layouts.panel.pages.menu.Menu.addItem({
-		name: 'happyaddons-widgets',
-		icon: 'hm hm-cross-game',
-		title: ha.translate( 'editorPanelWidgetsLinkTitle' ),
-		type: 'link',
-		link: HappyAddonsEditor.editorPanelWidgetsLinkURL,
-		newTab: true
-	}, 'settings');
-
 	/**
 	 * Add pro widgets placeholder
 	 */
