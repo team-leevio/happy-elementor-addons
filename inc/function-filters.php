@@ -71,3 +71,12 @@ function ha_is_wrapper_link_enabled() {
 function ha_is_happy_clone_enabled() {
 	return apply_filters( 'happyaddons/extensions/happy_clone', true );
 }
+
+/**
+ * Check if On Demand Cache is enabled
+ *
+ * @return bool
+ */
+function ha_is_on_demand_cache_enabled() {
+	return apply_filters( 'happyaddons/extensions/on_demand_cache', true );
+}
