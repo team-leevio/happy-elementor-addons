@@ -40,7 +40,7 @@ class Bar_Chart extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'chart', 'bar', 'statistic' ];
+		return [ 'chart', 'bar', 'statistic', 'graph' ];
 	}
 
 	protected function register_content_controls() {
@@ -55,7 +55,7 @@ class Bar_Chart extends Base {
 		$this->add_control(
 			'chart_position',
 			[
-				'label'   => __( 'Chart Position', 'happy-elementor-addons' ),
+				'label'   => __( '', 'happy-elementor-addons' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'bar',
 				'options' => [
@@ -92,6 +92,7 @@ class Bar_Chart extends Base {
 			[
 				'label'   => __( 'Label', 'happy-elementor-addons' ),
 				'type'    => Controls_Manager::TEXT,
+				'label_block' => true,
 				'dynamic' => [ 'active' => true ],
 			]
 		);
@@ -100,6 +101,7 @@ class Bar_Chart extends Base {
 			'data',
 			[
 				'label'       => __( 'Data', 'happy-elementor-addons' ),
+				'label_block' => true,
 				'type'        => Controls_Manager::TEXT,
 				'description' => __( 'Write data values with comma ( , ) separator. Example: 4, 2, 6', 'happy-elementor-addons' ),
 			]

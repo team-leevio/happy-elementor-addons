@@ -2,109 +2,139 @@
 @import "mixins";
 
 .ha-review {
-  @extend %happyWidgetContainer;
+	@include widgetContainerBase;
 
-  &-header {
-    margin-top: 1.5rem;
-  }
+	--ha-review-media-offset-x: calc(1px - 1px);
+	--ha-review-media-offset-y: calc(1px - 1px);
 
-  &-figure {
-    margin: 0;
+	--ha-review-left-body-width: calc(100% - var(--ha-review-media-width) + (-1 * var(--ha-review-media-offset-x)));
+	--ha-review-right-body-width: calc(100% - var(--ha-review-media-width) + (var(--ha-review-media-offset-x)));
 
-    img {
-      border-radius: 50%;
-      vertical-align: bottom;
-      height: 100%;
-      width: 100%;
-    }
-  }
+	&-header {
+		margin-top: 25px;
+	}
 
-  &-reviewer {
-    margin-top: 0;
-    margin-bottom: .3rem;
-    color: #151515;
-    font-size: 18px;
-  }
+	&-figure {
+		margin: 0;
+		flex: 0 0 var(--ha-review-media-width, 70px);
+		max-width: var(--ha-review-media-width, 70px);
+		transform: translate(var(--ha-review-media-offset-x), var(--ha-review-media-offset-y));
 
-  &-position {
-    color: #7f7f7f;
-    font-size: 15px;
-    margin-bottom: .5rem;
-  }
+		img {
+			height: 100%;
+			width: 100%;
+			border-radius: 50%;
+			vertical-align: bottom;
+		}
+	}
 
-  &-ratting {
-    display: inline-block;
-    font-size: 12px;
-    line-height: 1;
-  }
+	&-reviewer {
+		margin-top: 0;
+		margin-bottom: 10px;
+		color: #151515;
+		font-size: 18px;
+	}
 
-  &-ratting--num {
-    background-color: $primary-color;
-    color: #fff;
-    padding: .25em .66em;
-    border-radius: 2.5em;
-  }
+	&-position {
+		color: #7f7f7f;
+		font-size: 15px;
+		margin-bottom: 10px;
+	}
 
-  &-ratting--star {
-      color: #ffbf36;
-  }
+	&-ratting {
+		display: inline-block;
+		font-size: 12px;
+		line-height: 1;
+	}
 
-  &-desc {
-    margin-top: 1.5rem;
-    font-size: 16px;
-    line-height: 1.6;
+	&-ratting--num {
+		background-color: $primary-color;
+		color: #fff;
+		padding: 5px 10px;
+		border-radius: 20px;
+	}
 
-    p {
-      margin: 0;
-    }
-  }
+	&-ratting--star {
+		color: #ffbf36;
+	}
 
-  &--top {
-    @include widgetContainer {
-      padding: 2rem;
-    }
+	&-desc {
+		margin-top: 25px;
+		font-size: 16px;
+		line-height: 1.6;
 
-    .ha-review-figure {
-      display: inline-block;
-      max-width: 70px;
-      height: 70px;
-    }
-  }
+		p {
+			margin: 0;
+		}
+	}
 
-  &--left,
-  &--right {
-    @include widgetContainer {
-      display: flex;
-      flex-direction: row;
-      padding-left: 2rem;
-      align-items: center;
-    }
+	&--top {
+		@include widgetContainer {
+			padding: 25px;
+		}
 
-    .ha-review {
-      &-figure {
-        flex: 0 0 150px;
-        max-width: 150px;
-        height: 150px;
-      }
+		.ha-review-figure {
+			display: inline-block;
+			height: 70px;
+		}
 
-      &-body {
-        flex: 0 0 calc(100% - 150px);
-        max-width: calc(100% - 150px);
-        padding: 2rem;
+		.ha-review-body {
+			margin-top: var(--ha-review-media-offset-y);
+		}
+	}
 
-        > :first-child {
-          margin-top: 0;
-        }
-      }
-    }
-  }
+	&--left,
+	&--right {
+		@include widgetContainer {
+			display: flex;
+			align-items: center;
+		}
 
-  &--right {
-    @include widgetContainer {
-      flex-direction: row-reverse;
-      padding-right: 2rem;
-      padding-left: 0;
-      text-align: right;
-    }
-  }
+		--ha-review-media-width: 150px;
+
+		.ha-review {
+			&-figure {
+				height: 150px;
+			}
+
+			&-body {
+				padding: 25px;
+
+				> :first-child {
+					margin-top: 0;
+				}
+			}
+		}
+	}
+
+	&--left {
+		@include widgetContainer {
+			flex-direction: row;
+			padding-left: 25px;
+		}
+
+		.ha-review {
+			&-body {
+				flex: 0 0 var(--ha-review-left-body-width);
+				max-width: var(--ha-review-left-body-width);
+				margin-left: var(--ha-review-media-offset-x);
+			}
+		}
+	}
+
+	&--right {
+		@include widgetContainer {
+			flex-direction: row-reverse;
+			padding-right: 25px;
+			text-align: right;
+		}
+
+		.ha-review {
+			&-body {
+				flex: 0 0 var(--ha-review-right-body-width);
+				max-width: var(--ha-review-right-body-width);
+				margin-right: calc(-1 * var(--ha-review-media-offset-x));
+			}
+		}
+	}
 }

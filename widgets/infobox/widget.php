@@ -8,7 +8,6 @@ namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Scheme_Typography;
 use Elementor\Utils;
-use Elementor\Control_Media;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
@@ -240,15 +239,19 @@ class InfoBox extends Base {
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
+					],
+					'justify' => [
+						'title' => __( 'Justify', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-justify',
 					],
 				],
 				'toggle' => true,
@@ -290,6 +293,9 @@ class InfoBox extends Base {
 				'placeholder' => 'https://example.com',
 				'dynamic' => [
 					'active' => true,
+				],
+				'default' => [
+					'url' => '#',
 				]
 			]
 		);
@@ -468,7 +474,9 @@ class InfoBox extends Base {
 						'max' => 1000,
 					],
 				],
-				'render_type' => 'ui',
+				'selectors' => [
+					'{{WRAPPER}}' => '--ha-infobox-media-offset-x: {{SIZE}}{{UNIT}};',
+				]
 			]
 		);
 
@@ -488,12 +496,7 @@ class InfoBox extends Base {
 					],
 				],
 				'selectors' => [
-					// Media translate styles
-					'(desktop){{WRAPPER}} .ha-infobox-figure' => '-ms-transform: translate({{media_offset_x.SIZE || 0}}{{UNIT}}, {{media_offset_y.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{media_offset_x.SIZE || 0}}{{UNIT}}, {{media_offset_y.SIZE || 0}}{{UNIT}}); transform: translate({{media_offset_x.SIZE || 0}}{{UNIT}}, {{media_offset_y.SIZE || 0}}{{UNIT}});',
-					'(tablet){{WRAPPER}} .ha-infobox-figure' => '-ms-transform: translate({{media_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{media_offset_y_tablet.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{media_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{media_offset_y_tablet.SIZE || 0}}{{UNIT}}); transform: translate({{media_offset_x_tablet.SIZE || 0}}{{UNIT}}, {{media_offset_y_tablet.SIZE || 0}}{{UNIT}});',
-					'(mobile){{WRAPPER}} .ha-infobox-figure' => '-ms-transform: translate({{media_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{media_offset_y_mobile.SIZE || 0}}{{UNIT}}); -webkit-transform: translate({{media_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{media_offset_y_mobile.SIZE || 0}}{{UNIT}}); transform: translate({{media_offset_x_mobile.SIZE || 0}}{{UNIT}}, {{media_offset_y_mobile.SIZE || 0}}{{UNIT}});',
-					// Body text styles
-					'{{WRAPPER}} .ha-infobox-body' => 'margin-top: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}' => '--ha-infobox-media-offset-y: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -599,13 +602,11 @@ class InfoBox extends Base {
 					],
 				],
 				'selectors' => [
-					// Icon rotate styles
-					'{{WRAPPER}} .ha-infobox-figure--icon i, {{WRAPPER}} .ha-infobox-figure--icon svg' => '-ms-transform: rotate(-{{SIZE}}{{UNIT}}); -webkit-transform: rotate(-{{SIZE}}{{UNIT}}); transform: rotate(-{{SIZE}}{{UNIT}});',
-					// Icon box transform styles
-					'(desktop){{WRAPPER}} .ha-infobox-figure--icon' => '-ms-transform: translate({{media_offset_x.SIZE || 0}}px, {{media_offset_y.SIZE || 0}}px) rotate({{SIZE}}deg); -webkit-transform: translate({{media_offset_x.SIZE || 0}}px, {{media_offset_y.SIZE || 0}}px) rotate({{SIZE}}deg); transform: translate({{media_offset_x.SIZE || 0}}px, {{media_offset_y.SIZE || 0}}px) rotate({{SIZE}}deg);',
-					'(tablet){{WRAPPER}} .ha-infobox-figure--icon' => '-ms-transform: translate({{media_offset_x_tablet.SIZE || 0}}px, {{media_offset_y_tablet.SIZE || 0}}px) rotate({{SIZE}}deg); -webkit-transform: translate({{media_offset_x_tablet.SIZE || 0}}px, {{media_offset_y_tablet.SIZE || 0}}px) rotate({{SIZE}}deg); transform: translate({{media_offset_x_tablet.SIZE || 0}}px, {{media_offset_y_tablet.SIZE || 0}}px) rotate({{SIZE}}deg);',
-					'(mobile){{WRAPPER}} .ha-infobox-figure--icon' => '-ms-transform: translate({{media_offset_x_mobile.SIZE || 0}}px, {{media_offset_y_mobile.SIZE || 0}}px) rotate({{SIZE}}deg); -webkit-transform: translate({{media_offset_x_mobile.SIZE || 0}}px, {{media_offset_y_mobile.SIZE || 0}}px) rotate({{SIZE}}deg); transform: translate({{media_offset_x_mobile.SIZE || 0}}px, {{media_offset_y_mobile.SIZE || 0}}px) rotate({{SIZE}}deg);',
+					'{{WRAPPER}}' => '--ha-infobox-media-rotate: {{SIZE}}{{UNIT}};',
 				],
+				'condition' => [
+					'type' => 'icon'
+				]
 			]
 		);
 

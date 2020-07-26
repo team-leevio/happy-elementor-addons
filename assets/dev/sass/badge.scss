@@ -1,57 +1,62 @@
 .ha-badge {
-  background-color: #fff;
-  padding: .475rem 1.1rem;
-  border-radius: 50px;
-  font-size: 12px;
-  max-width: 100%;
+	--ha-badge-translate-x: 0;
+	--ha-badge-translate-y: 0;
 
-  &--top-left {
-    left: 1rem;
-    top: 1rem;
-  }
+	background-color: #fff;
+	padding: 10px 18px;
+	border-radius: 50px;
+	font-size: 12px;
+	line-height: 1;
+	transform: translate(var(--ha-badge-translate-x), var(--ha-badge-translate-y));
 
-  &--top-center {
-    left: 50%;
-    transform: translateX(-50%);
-    top: 1rem;
-  }
+	&--top-left {
+		left: 25px;
+		top: 25px;
+	}
 
-  &--top-right {
-    right: 1rem;
-    top: 1rem;
-  }
+	&--top-center {
+		left: 50%;
+		--ha-badge-translate-x: -50%;
+		top: 25px;
+	}
 
-  &--middle-left {
-    top: 50%;
-    transform: translateY(-50%);
-    left: 1rem;
-  }
+	&--top-right {
+		right: 25px;
+		top: 25px;
+	}
 
-  &--middle-center {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-  }
+	&--middle-left {
+		top: 50%;
+		--ha-badge-translate-x: -50%;
+		left: 25px;
+	}
 
-  &--middle-right {
-    top: 50%;
-    transform: translateY(-50%);
-    right: 1rem;
-  }
+	&--middle-center {
+		left: 50%;
+		top: 50%;
+		--ha-badge-translate-x: -50%;
+		--ha-badge-translate-y: -50%;
+	}
 
-  &--bottom-left {
-    left: 1rem;
-    bottom: 1rem;
-  }
+	&--middle-right {
+		top: 50%;
+		--ha-badge-translate-y: -50%;
+		right: 25px;
+	}
 
-  &--bottom-center {
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 1rem;
-  }
+	&--bottom-left {
+		left: 25px;
+		bottom: 25px;
+	}
 
-  &--bottom-right {
-    right: 1rem;
-    bottom: 1rem;
-  }
+	&--bottom-center {
+		left: 50%;
+		--ha-badge-translate-x: -50%;
+		bottom: 25px;
+	}
+
+	&--bottom-right {
+		right: 25px;
+		bottom: 25px;
+	}
 }

@@ -1,3 +1,13 @@
+= 2.12.3 - 13 July 2020 =
+
+- Tweak: Twitter feed widget icon updated
+- Tweak: Twitter feed cache cleaner added
+- Tweak: Twitter feed Error handling updated
+- Tweak: Social link widget default value
+- Fix: Fun factor animation issue
+- Fix: Card widget default text spelling error
+- Fix: Empty button rendering issue
+
 = 2.12.2 - 10 June 2020 =
 
 - Fix: Template library dark mode compatibility issue

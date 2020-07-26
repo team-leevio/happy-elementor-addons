@@ -56,47 +56,54 @@ class Member extends Base {
 		return [ 'team', 'member', 'crew', 'staff', 'person' ];
 	}
 
+	public function get_style_depends() {
+		return [
+			'elementor-icons-fa-solid',
+			'elementor-icons-fa-brands',
+		];
+	}
+
 	protected static function get_profile_names() {
 		return [
-			'500px' => __( '500px', 'happy-elementor-addons' ),
-			'apple' => __( 'Apple', 'happy-elementor-addons' ),
-			'behance' => __( 'Behance', 'happy-elementor-addons' ),
-			'bitbucket' => __( 'BitBucket', 'happy-elementor-addons' ),
-			'codepen' => __( 'CodePen', 'happy-elementor-addons' ),
-			'delicious' => __( 'Delicious', 'happy-elementor-addons' ),
-			'deviantart' => __( 'DeviantArt', 'happy-elementor-addons' ),
-			'digg' => __( 'Digg', 'happy-elementor-addons' ),
-			'dribbble' => __( 'Dribbble', 'happy-elementor-addons' ),
-			'email' => __( 'Email', 'happy-elementor-addons' ),
-			'facebook' => __( 'Facebook', 'happy-elementor-addons' ),
-			'flickr' => __( 'Flicker', 'happy-elementor-addons' ),
-			'foursquare' => __( 'FourSquare', 'happy-elementor-addons' ),
-			'github' => __( 'Github', 'happy-elementor-addons' ),
-			'houzz' => __( 'Houzz', 'happy-elementor-addons' ),
-			'instagram' => __( 'Instagram', 'happy-elementor-addons' ),
-			'jsfiddle' => __( 'JS Fiddle', 'happy-elementor-addons' ),
-			'linkedin' => __( 'LinkedIn', 'happy-elementor-addons' ),
-			'medium' => __( 'Medium', 'happy-elementor-addons' ),
-			'pinterest' => __( 'Pinterest', 'happy-elementor-addons' ),
-			'product-hunt' => __( 'Product Hunt', 'happy-elementor-addons' ),
-			'reddit' => __( 'Reddit', 'happy-elementor-addons' ),
-			'slideshare' => __( 'Slide Share', 'happy-elementor-addons' ),
-			'snapchat' => __( 'Snapchat', 'happy-elementor-addons' ),
-			'soundcloud' => __( 'SoundCloud', 'happy-elementor-addons' ),
-			'spotify' => __( 'Spotify', 'happy-elementor-addons' ),
+			'500px'          => __( '500px', 'happy-elementor-addons' ),
+			'apple'          => __( 'Apple', 'happy-elementor-addons' ),
+			'behance'        => __( 'Behance', 'happy-elementor-addons' ),
+			'bitbucket'      => __( 'BitBucket', 'happy-elementor-addons' ),
+			'codepen'        => __( 'CodePen', 'happy-elementor-addons' ),
+			'delicious'      => __( 'Delicious', 'happy-elementor-addons' ),
+			'deviantart'     => __( 'DeviantArt', 'happy-elementor-addons' ),
+			'digg'           => __( 'Digg', 'happy-elementor-addons' ),
+			'dribbble'       => __( 'Dribbble', 'happy-elementor-addons' ),
+			'email'          => __( 'Email', 'happy-elementor-addons' ),
+			'facebook'       => __( 'Facebook', 'happy-elementor-addons' ),
+			'flickr'         => __( 'Flicker', 'happy-elementor-addons' ),
+			'foursquare'     => __( 'FourSquare', 'happy-elementor-addons' ),
+			'github'         => __( 'Github', 'happy-elementor-addons' ),
+			'houzz'          => __( 'Houzz', 'happy-elementor-addons' ),
+			'instagram'      => __( 'Instagram', 'happy-elementor-addons' ),
+			'jsfiddle'       => __( 'JS Fiddle', 'happy-elementor-addons' ),
+			'linkedin'       => __( 'LinkedIn', 'happy-elementor-addons' ),
+			'medium'         => __( 'Medium', 'happy-elementor-addons' ),
+			'pinterest'      => __( 'Pinterest', 'happy-elementor-addons' ),
+			'product-hunt'   => __( 'Product Hunt', 'happy-elementor-addons' ),
+			'reddit'         => __( 'Reddit', 'happy-elementor-addons' ),
+			'slideshare'     => __( 'Slide Share', 'happy-elementor-addons' ),
+			'snapchat'       => __( 'Snapchat', 'happy-elementor-addons' ),
+			'soundcloud'     => __( 'SoundCloud', 'happy-elementor-addons' ),
+			'spotify'        => __( 'Spotify', 'happy-elementor-addons' ),
 			'stack-overflow' => __( 'StackOverflow', 'happy-elementor-addons' ),
-			'tripadvisor' => __( 'TripAdvisor', 'happy-elementor-addons' ),
-			'tumblr' => __( 'Tumblr', 'happy-elementor-addons' ),
-			'twitch' => __( 'Twitch', 'happy-elementor-addons' ),
-			'twitter' => __( 'Twitter', 'happy-elementor-addons' ),
-			'vimeo' => __( 'Vimeo', 'happy-elementor-addons' ),
-			'vk' => __( 'VK', 'happy-elementor-addons' ),
-			'website' => __( 'Website', 'happy-elementor-addons' ),
-			'whatsapp' => __( 'WhatsApp', 'happy-elementor-addons' ),
-			'wordpress' => __( 'WordPress', 'happy-elementor-addons' ),
-			'xing' => __( 'Xing', 'happy-elementor-addons' ),
-			'yelp' => __( 'Yelp', 'happy-elementor-addons' ),
-			'youtube' => __( 'YouTube', 'happy-elementor-addons' ),
+			'tripadvisor'    => __( 'TripAdvisor', 'happy-elementor-addons' ),
+			'tumblr'         => __( 'Tumblr', 'happy-elementor-addons' ),
+			'twitch'         => __( 'Twitch', 'happy-elementor-addons' ),
+			'twitter'        => __( 'Twitter', 'happy-elementor-addons' ),
+			'vimeo'          => __( 'Vimeo', 'happy-elementor-addons' ),
+			'vk'             => __( 'VK', 'happy-elementor-addons' ),
+			'website'        => __( 'Website', 'happy-elementor-addons' ),
+			'whatsapp'       => __( 'WhatsApp', 'happy-elementor-addons' ),
+			'wordpress'      => __( 'WordPress', 'happy-elementor-addons' ),
+			'xing'           => __( 'Xing', 'happy-elementor-addons' ),
+			'yelp'           => __( 'Yelp', 'happy-elementor-addons' ),
+			'youtube'        => __( 'YouTube', 'happy-elementor-addons' ),
 		];
 	}
 
@@ -223,15 +230,19 @@ class Member extends Base {
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
+					],
+					'justify' => [
+						'title' => __( 'Justify', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-justify',
 					],
 				],
 				'toggle' => true,
@@ -506,6 +517,9 @@ class Member extends Base {
 				],
 				'condition' => [
 					'show_details_button' => 'yes',
+				],
+				'default' => [
+					'url' => '#',
 				]
 			]
 		);
@@ -1229,7 +1243,7 @@ class Member extends Base {
 							$url = 'mailto:' . antispambot( $profile['email'] );
 						}
 
-						printf( '<a target="_blank" rel="noopener" href="%s" class="elementor-repeater-item-%s"><i class="fa fa-%s" aria-hidden="true"></i></a>',
+						printf( '<a target="_blank" rel="noopener" href="%s" class="elementor-repeater-item-%s"><i class="fa fab fa-%s" aria-hidden="true"></i></a>',
 							$url,
 							esc_attr( $profile['_id'] ),
 							esc_attr( $icon )
@@ -1308,7 +1322,7 @@ class Member extends Base {
 
 						view.addRenderAttribute( linkKey, 'class', 'elementor-repeater-item-' + profile._id );
 						view.addRenderAttribute( linkKey, 'href', url ); #>
-						<a {{{view.getRenderAttributeString( linkKey )}}}><i class="fa fa-{{{icon}}}"></i></a>
+						<a {{{view.getRenderAttributeString( linkKey )}}}><i class="fa fab fa-{{{icon}}}"></i></a>
 					<# }); #>
 				</div>
 			<# } #>

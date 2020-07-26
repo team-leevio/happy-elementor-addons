@@ -235,6 +235,50 @@ class Fun_Factor extends Base {
 		);
 
 		$this->add_control(
+			'divider_show_hide',
+			[
+				'label'        => __('Show Divider', 'happy-elementor-addons'),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __('Show', 'happy-elementor-addons'),
+				'label_off'    => __('Hide', 'happy-elementor-addons'),
+				'return_value' => 'yes',
+				'default'      => 'yes',
+			]
+		);
+
+		$this->add_responsive_control(
+			'text_align',
+			[
+				'label'       => __('Text Alignment', 'happy-elementor-addons'),
+				'type'        => Controls_Manager::CHOOSE,
+				'options'     => [
+					'left'   => [
+						'title' => __('Left', 'happy-elementor-addons'),
+						'icon'  => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => __('Center', 'happy-elementor-addons'),
+						'icon'  => 'eicon-text-align-center',
+					],
+					'right'  => [
+						'title' => __('Right', 'happy-elementor-addons'),
+						'icon'  => 'eicon-text-align-right',
+					],
+					'justify'  => [
+						'title' => __('Justify', 'happy-elementor-addons'),
+						'icon'  => 'eicon-text-align-justify',
+					],
+				],
+				'toggle'      => true,
+				'selectors'   => [
+					'{{WRAPPER}} .ha-fun-factor__wrap, {{WRAPPER}} .ha-fun-factor__media--image' => 'text-align: {{VALUE}};',
+				],
+				'default'     => 'center',
+				'render_type' => 'template',
+			]
+		);
+
+		$this->add_control(
 			'title_tag',
 			[
 				'label'   => __('Title HTML Tag', 'happy-elementor-addons'),
@@ -267,46 +311,6 @@ class Fun_Factor extends Base {
 				],
 				'default' => 'h2',
 				'toggle'  => false,
-			]
-		);
-
-		$this->add_responsive_control(
-			'text_align',
-			[
-				'label'       => __('Text Alignment', 'happy-elementor-addons'),
-				'type'        => Controls_Manager::CHOOSE,
-				'options'     => [
-					'left'   => [
-						'title' => __('Left', 'happy-elementor-addons'),
-						'icon'  => 'eicon-text-align-left',
-					],
-					'center' => [
-						'title' => __('Center', 'happy-elementor-addons'),
-						'icon'  => 'eicon-text-align-center',
-					],
-					'right'  => [
-						'title' => __('Right', 'happy-elementor-addons'),
-						'icon'  => 'eicon-text-align-right',
-					],
-				],
-				'toggle'      => true,
-				'selectors'   => [
-					'{{WRAPPER}} .ha-fun-factor__wrap, {{WRAPPER}} .ha-fun-factor__media--image' => 'text-align: {{VALUE}};',
-				],
-				'default'     => 'center',
-				'render_type' => 'template',
-			]
-		);
-
-		$this->add_control(
-			'divider_show_hide',
-			[
-				'label'        => __('Show Divider', 'happy-elementor-addons'),
-				'type'         => Controls_Manager::SWITCHER,
-				'label_on'     => __('Show', 'happy-elementor-addons'),
-				'label_off'    => __('Hide', 'happy-elementor-addons'),
-				'return_value' => 'yes',
-				'default'      => 'yes',
 			]
 		);
 

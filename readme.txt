@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.12.2
+Version: 2.12.3
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -257,6 +257,16 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.12.3 - 13 July 2020 =
+
+- Tweak: Twitter feed widget icon updated
+- Tweak: Twitter feed cache cleaner added
+- Tweak: Twitter feed Error handling updated
+- Tweak: Social link widget default value
+- Fix: Fun factor animation issue
+- Fix: Card widget default text spelling error
+- Fix: Empty button rendering issue
 
 = 2.12.2 - 10 June 2020 =
 

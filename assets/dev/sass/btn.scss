@@ -14,7 +14,7 @@
 	&:not(&--link) {
 		background-color: $primary-color;
 		color: #fff;
-		border-radius: .25rem;
+		border-radius: 5px;
 		padding: 15px 25px;
 
 		&:hover,

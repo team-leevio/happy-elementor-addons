@@ -3,10 +3,10 @@
 
 .ha-image-compare {
 
-  @extend %happyWidgetContainer;
+	@include widgetContainerBase;
 
-  .twentytwenty-container,
-  .twentytwenty-wrapper {
-    border-radius: inherit;
-  }
+	.twentytwenty-container,
+	.twentytwenty-wrapper {
+		border-radius: inherit;
+	}
 }

@@ -343,8 +343,7 @@ class Assets_Manager {
 			'editorPanelHomeLinkURL'      => ha_get_dashboard_link(),
 			'editorPanelWidgetsLinkURL'   => ha_get_dashboard_link('#widgets'),
 			'i18n' => [
-				'editorPanelHomeLinkTitle'    => esc_html__( 'HappyAddons - Home', 'happy-elementor-addons' ),
-				'editorPanelWidgetsLinkTitle' => esc_html__( 'HappyAddons - Widgets', 'happy-elementor-addons' ),
+				'editorPanelHomeLinkTitle'    => esc_html__( 'HappyAddons', 'happy-elementor-addons' ),
 				'promotionDialogHeader' => esc_html__( '%s Widget', 'happy-elementor-addons' ),
 				'promotionDialogMessage' => esc_html__( 'Use %s widget with other exclusive pro widgets and 100% unique features to extend your toolbox and build sites faster and better.', 'happy-elementor-addons' ),
 
@@ -371,36 +370,36 @@ class Assets_Manager {
 	}
 
 	public static function enqueue_preview_style() {
-		if (ha_is_weforms_activated()) {
+		if ( ha_is_weforms_activated() ) {
 			wp_enqueue_style(
-				'happy-elementor-weform-preview',
+				'happy-addons-weform',
 				plugins_url('/weforms/assets/wpuf/css/frontend-forms.css', 'weforms'),
 				null,
 				HAPPY_ADDONS_VERSION
 			);
 		}
 
-		if (ha_is_wpforms_activated() && defined('WPFORMS_PLUGIN_SLUG')) {
+		if ( ha_is_wpforms_activated() && defined( 'WPFORMS_PLUGIN_SLUG' ) ) {
 			wp_enqueue_style(
-				'happy-elementor-wpform-preview',
+				'happy-addons-wpform',
 				plugins_url('/' . WPFORMS_PLUGIN_SLUG . '/assets/css/wpforms-full.css', WPFORMS_PLUGIN_SLUG),
 				null,
 				HAPPY_ADDONS_VERSION
 			);
 		}
 
-		if (ha_is_calderaforms_activated()) {
+		if ( ha_is_calderaforms_activated() ) {
 			wp_enqueue_style(
-				'happy-elementor-caldera-preview',
+				'happy-addons-caldera-forms',
 				plugins_url('/caldera-forms/assets/css/caldera-forms-front.css', 'caldera-forms'),
 				null,
 				HAPPY_ADDONS_VERSION
 			);
 		}
 
-		if (ha_is_gravityforms_activated()) {
+		if ( ha_is_gravityforms_activated() ) {
 			wp_enqueue_style(
-				'happy-elementor-gravity-preview',
+				'happy-addons-gravity-forms',
 				plugins_url('/gravityforms/css/formsmain.min.css', 'gravityforms'),
 				null,
 				HAPPY_ADDONS_VERSION
@@ -419,7 +418,7 @@ class Assets_Manager {
 
 		if ( ha_is_fluent_form_activated() ) {
 			wp_enqueue_style(
-				'happy-elementor-fluent-preview',
+				'happy-addons-fluent-forms',
 				plugins_url('/fluentform/public/css/fluent-forms-public.css', 'fluentform'),
 				null,
 				HAPPY_ADDONS_VERSION

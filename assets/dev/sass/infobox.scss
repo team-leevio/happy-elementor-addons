@@ -2,58 +2,68 @@
 @import "mixins";
 
 .ha-infobox {
-  @extend %happyWidgetContainer;
+	--ha-infobox-media-offset-x: 0;
+	--ha-infobox-media-offset-y: 0;
+	--ha-infobox-media-rotate: 0;
 
-  @include widgetContainer {
-    padding: 1.5rem;
-  }
-
-  &-title {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: #151515;
-    font-size: 24px;
-  }
-
-  &-figure {
-    display: inline-block;
-    margin: 0 0 1.5rem !important;
-
-    &--icon {
-      font-size: 3rem;
-	  text-align: center;
-	  line-height: 1;
+	@include widgetContainer {
+		padding: 25px;
+		@include widgetContainerBaseStyle;
 	}
 
-	i,
-	svg {
-		width: 1em;
-		height: 1em;
-		position: relative;
-      	display: block;
+	&-title {
+		margin-top: 0;
+		margin-bottom: 10px;
+		color: #151515;
+		font-size: 24px;
 	}
 
-    i:before {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+	&-figure {
+		display: inline-block;
+		margin: 0 0 25px !important;
+		transform: translate(var(--ha-infobox-media-offset-x), var(--ha-infobox-media-offset-y));
+
+		&--icon {
+			font-size: 48px;
+			text-align: center;
+			line-height: 1;
+			transform: translate(var(--ha-infobox-media-offset-x), var(--ha-infobox-media-offset-y)) rotate(var(--ha-infobox-media-rotate));
+		}
+
+		i,
+		svg {
+			width: 1em;
+			height: 1em;
+			position: relative;
+			display: block;
+			transform: rotate(calc(-1 * var(--ha-infobox-media-rotate)));
+		}
+
+		i:before {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			vertical-align: bottom;
+		}
 	}
 
-    img {
-      width: 100%;
-      height: 100%;
-      vertical-align: bottom;
-    }
-  }
-
-  &-text {
-    p {
-      margin-top: 0;
-      margin-bottom: 0;
+	&-body {
+		margin-top: var(--ha-infobox-media-offset-y);
 	}
 
-	& + .ha-btn--link {
-		margin-top: 1rem;
+	&-text {
+		p {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+
+		& + .ha-btn--link {
+			margin-top: 25px;
+		}
 	}
-  }
 }
