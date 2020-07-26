@@ -551,17 +551,27 @@ class Widgets_Manager {
 				],
 			],
 			'fluent-form' => [
-				'title' => __( 'Fluent Form', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-form',
-				'css' => [],
+		        'title' => __( 'Fluent Form', 'happy-elementor-addons' ),
+		        'icon' => 'hm hm-form',
+		        'css' => [],
+		        'js' => [],
+		        'vendor' => [
+			        'css' => [],
+			        'js' => [],
+		        ],
+	        ],
+			'data-table' => [
+				'title' => __( 'Data Table', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-post-tab',
+				'css' => ['data-table'],
 				'js' => [],
 				'vendor' => [
 					'css' => [],
 					'js' => [],
 				],
 			],
-		];
-	}
+        ];
+    }
 
 	public static function get_base_widget_key() {
 		return apply_filters( 'happyaddons_get_base_widget_key', '_happyaddons_base' );

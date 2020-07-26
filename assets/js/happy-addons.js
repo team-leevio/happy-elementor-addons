@@ -563,7 +563,19 @@
 
 			    }, 200));
 		    }
-	    });
+        });
+        
+        var DataTable = function($scope) {
+            var columnTH = $scope.find('.ha-table__head-column-cell');
+            var rowTR = $scope.find('.ha-table__body-row');
+
+            rowTR.each( function( i, tr) {
+                var th = $(tr).find('.ha-table__body-row-cell');
+                th.each( function( index, th ) {
+                    $(th).prepend( '<div class="ha-table__head-column-cell">' + columnTH.eq(index).html() + '</div>' );
+                } );
+            } ); 
+        };
 
 	    //Threesixty Rotation
 	    var Threesixty_Rotation = function($scope) {
@@ -662,7 +674,8 @@
             'ha-fun-factor.default': FunFactor,
             'ha-bar-chart.default': BarChart,
             'ha-twitter-feed.default': TwitterFeed,
-	         'ha-threesixty-rotation.default': Threesixty_Rotation
+	         'ha-threesixty-rotation.default': Threesixty_Rotation,
+            'ha-data-table.default': DataTable
         };
 
         $.each( handlersFnMap, function( widgetName, handlerFn ) {
