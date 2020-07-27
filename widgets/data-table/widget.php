@@ -366,9 +366,9 @@ class Data_Table extends Base {
 				'label_block' => false,
 				'toggle' => false,
 				'default' => 'none',
-				// 'condition' => [
-				// 	'row_column_type' => 'column'
-				// ],
+				'condition' => [
+					'row_column_type' => 'column'
+				],
 				'options' => [
 					'icon' => [
 						'title' => __( 'Icon', 'happy-elementor-addons' ),
