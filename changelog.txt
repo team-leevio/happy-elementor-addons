@@ -11,6 +11,9 @@
 - Tweak: Removed widget control panel link from editor panel
 - Tweak: Removed HappyAddons shortcut link from finder
 - Tweak: Removed unnecessary css
+- Tweak: Post List content on/off option
+- Tweak: Post List feature image left & top show option
+- Fix: Post List date issue
 - Fix: WPML link translation issue
 
 = 2.12.3 - 13 July 2020 =
