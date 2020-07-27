@@ -1,3 +1,18 @@
+= 2.13.0 - 27 July 2020 =
+
+- New: Data Table widget
+- New: Introducing hooks to disable extensions and featuers
+- Tweak: Added CSS Transform hover state support
+- Tweak: Added Stepflow direction arrow rotatation support
+- Tweak: Added Card button full width support
+- Tweak: Added Card responsive image positioning
+- Tweak: Restored justify alignment in all widgets
+- Tweak: Improved base styles in all widgets
+- Tweak: Removed widget control panel link from editor panel
+- Tweak: Removed HappyAddons shortcut link from finder
+- Tweak: Removed unnecessary css
+- Fix: WPML link translation issue
+
 = 2.12.3 - 13 July 2020 =
 
 - Tweak: Twitter feed widget icon updated
