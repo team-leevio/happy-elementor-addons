@@ -19,7 +19,10 @@ class WPML_Social_Icons extends \WPML_Elementor_Module_With_Items  {
 	 * @return array
 	 */
 	public function get_fields() {
-		return ['ha_social_icon_title'];
+		return [
+			'ha_social_icon_title',
+			'ha_social_link' => ['url']
+		];
 	}
 
 	/**
@@ -31,6 +34,8 @@ class WPML_Social_Icons extends \WPML_Elementor_Module_With_Items  {
 		switch ( $field ) {
 			case 'ha_social_icon_title':
 				return __( 'Social Icons: Title', 'happy-elementor-addons' );
+			case 'url':
+				return __( 'Social Icons: Link', 'happy-elementor-addons' );
 			default:
 				return '';
 		}
@@ -45,6 +50,8 @@ class WPML_Social_Icons extends \WPML_Elementor_Module_With_Items  {
 		switch ( $field ) {
 			case 'ha_social_icon_title':
 				return 'LINE';
+			case 'url':
+				return 'LINK';
 			default:
 				return '';
 		}

@@ -19,7 +19,11 @@ class WPML_Slider extends \WPML_Elementor_Module_With_Items  {
 	 * @return array
 	 */
 	public function get_fields() {
-		return ['title', 'subtitle'];
+		return [
+			'title',
+			'subtitle',
+			'link' => ['url']
+		];
 	}
 
 	/**
@@ -33,6 +37,8 @@ class WPML_Slider extends \WPML_Elementor_Module_With_Items  {
 				return __( 'Slider: Title', 'happy-elementor-addons' );
 			case 'subtitle':
 				return __( 'Slider: Subtitle', 'happy-elementor-addons' );
+			case 'url':
+				return __( 'Slider: Link', 'happy-elementor-addons' );
 			default:
 				return '';
 		}
@@ -49,6 +55,8 @@ class WPML_Slider extends \WPML_Elementor_Module_With_Items  {
 				return 'LINE';
 			case 'subtitle':
 				return 'AREA';
+			case 'url':
+				return 'LINK';
 			default:
 				return '';
 		}

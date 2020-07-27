@@ -72,8 +72,8 @@ class WPML_Manager {
 						'type'        => __( 'Card: Button Text', 'happy-elementor-addons' ),
 						'editor_type' => 'LINE',
 					],
-					[
-						'field'       => 'button_link',
+					'button_link' => [
+						'field'       => 'url',
 						'type'        => __( 'Card: Button Link', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
 					],
@@ -98,8 +98,8 @@ class WPML_Manager {
 						'type'        => __( 'Dual Button: Primary Button Text', 'happy-elementor-addons' ),
 						'editor_type' => 'LINE',
 					],
-					[
-						'field'       => 'left_button_link',
+					'left_button_link' => [
+						'field'       => 'url',
 						'type'        => __( 'Dual Button: Primary Button Link', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
 					],
@@ -113,8 +113,8 @@ class WPML_Manager {
 						'type'        => __( 'Dual Button: Secondary Button Text', 'happy-elementor-addons' ),
 						'editor_type' => 'LINE',
 					],
-					[
-						'field'       => 'right_button_link',
+					'right_button_link' => [
+						'field'       => 'url',
 						'type'        => __( 'Dual Button: Secondary Button Link', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
 					],
@@ -172,8 +172,8 @@ class WPML_Manager {
 						'type'        => __( 'Gradient_Heading: Title', 'happy-elementor-addons' ),
 						'editor_type' => 'AREA',
 					],
-					[
-						'field'       => 'link',
+					'link' => [
+						'field'       => 'url',
 						'type'        => __( 'Gradient_Heading: Link', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
 					],
@@ -195,8 +195,8 @@ class WPML_Manager {
 						'type'        => __( 'Icon Box: Badge Text', 'happy-elementor-addons' ),
 						'editor_type' => 'LINE',
 					],
-					[
-						'field'       => 'link',
+					'link' => [
+						'field'       => 'url',
 						'type'        => __( 'Icon Box: Link', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
 					],
@@ -255,8 +255,8 @@ class WPML_Manager {
 						'type'        => __( 'Info Box: Button Text', 'happy-elementor-addons' ),
 						'editor_type' => 'LINE',
 					],
-					[
-						'field'       => 'button_link',
+					'button_link' => [
+						'field'       => 'url',
 						'type'        => __( 'Info Box: Button Link', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
 					],
@@ -364,8 +364,8 @@ class WPML_Manager {
 						'type'        => __( 'Pricing Table: Button Text', 'happy-elementor-addons' ),
 						'editor_type' => 'LINE',
 					],
-					[
-						'field'       => 'button_link',
+					'button_link' => [
+						'field'       => 'url',
 						'type'        => __( 'Pricing Table: Button Link', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
 					],
@@ -445,8 +445,8 @@ class WPML_Manager {
 						'type'        => __( 'Step Flow: Description', 'happy-elementor-addons' ),
 						'editor_type' => 'AREA',
 					],
-					[
-						'field'       => 'link',
+					'link' => [
+						'field'       => 'url',
 						'type'        => __( 'Step Flow: Link', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
 					],
