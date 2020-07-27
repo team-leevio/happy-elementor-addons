@@ -31,13 +31,13 @@ class Extensions_Manager {
 		}
 
 		if ( is_user_logged_in() && ha_is_adminbar_enabled() ) {
-			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php' );
+			include_once HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php';
 		}
 
 		if ( is_user_logged_in() && ha_is_happy_clone_enabled() ) {
 			add_action( 'elementor/finder/categories/init', [ __CLASS__, 'register_finder' ] );
 
-			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php' );
+			include_once HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php';
 		}
 	}
 
@@ -47,7 +47,7 @@ class Extensions_Manager {
      * @param $categories_manager
      */
     public static function register_finder( Categories_Manager $categories_manager ) {
-        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/finder-edit.php' );
+        include_once HAPPY_ADDONS_DIR_PATH . 'classes/finder-edit.php';
         $categories_manager->add_category( Finder_Edit::SLUG, new Finder_Edit() );
 	}
 }
