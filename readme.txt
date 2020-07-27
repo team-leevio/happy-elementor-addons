@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.12.3
+Version: 2.13.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -257,6 +257,31 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.13.0 - 27 July 2020 =
+
+- New: Data Table widget
+- New: `happyaddons/extensions/grid_layer` hook to control Grid Layer
+- New: `happyaddons/extensions/background_overlay` hook to control Background Overlay
+- New: `happyaddons/extensions/wrapper_link` hook to control Wrapper Link
+- New: `happyaddons/extensions/happy_clone` hook to control Happy Clone
+- New: `happyaddons/extensions/adminbar_menu` hook to control Adminbar menu
+- New: `happyaddons/extensions/floating_effects` hook to control Floating Effects
+- New: `happyaddons/extensions/css_transform` hook to control CSS Transform
+- New: `happyaddons/extensions/on_demand_cache` hook to control On Demand Assets Loading
+- Tweak: Added CSS Transform hover state support
+- Tweak: Added Stepflow direction arrow rotatation support
+- Tweak: Added Card button full width support
+- Tweak: Added Card responsive image positioning
+- Tweak: Restored justify alignment in all widgets
+- Tweak: Improved base styles in all widgets
+- Tweak: Removed widget control panel link from editor panel
+- Tweak: Removed HappyAddons shortcut link from finder
+- Tweak: Removed unnecessary css
+- Tweak: Post List content on/off option
+- Tweak: Post List feature image left & top show option
+- Fix: Post List date issue
+- Fix: WPML link translation issue
 
 = 2.12.3 - 13 July 2020 =
 
