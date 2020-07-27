@@ -363,34 +363,19 @@ class Data_Table extends Base {
             ]
         );
 
-		if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
-			$repeater->add_control(
-				'row_icon',
-				[
-					'label' => __( 'Icon', 'happy-elementor-addons' ),
-					'type' => Controls_Manager::ICON,
-					'condition' => [
-						'row_icon_show' => 'yes',
-						'row_column_type' => 'column'
-					],
-					'options' => ha_get_happy_icons()
-				]
-			);
-		} else {
-			$repeater->add_control(
-				'row_icons',
-				[
-					'label' => __( 'Icon', 'happy-elementor-addons' ),
-					'type' => Controls_Manager::ICONS,
-					'fa4compatibility' => 'row_icon',
-					'label_block' => true,
-					'condition' => [
-						'row_icon_show' => 'yes',
-						'row_column_type' => 'column'
-					],
-				]
-			);
-		}
+		$repeater->add_control(
+			'row_icons',
+			[
+				'label' => __( 'Icon', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::ICONS,
+				'fa4compatibility' => 'row_icon',
+				'label_block' => true,
+				'condition' => [
+					'row_icon_show' => 'yes',
+					'row_column_type' => 'column'
+				],
+			]
+		);
 
 		$repeater->add_control(
             'row_image',
