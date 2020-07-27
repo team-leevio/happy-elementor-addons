@@ -109,6 +109,10 @@ class Data_Table extends Base {
 				'toggle' => false,
 				'default' => 'none',
 				'options' => [
+					'none' => [
+						'title' => __( 'None', 'happy-elementor-addons' ),
+						'icon' => 'eicon-editor-close',
+					],
 					'icon' => [
 						'title' => __( 'Icon', 'happy-elementor-addons' ),
 						'icon' => 'eicon-info-circle',
@@ -116,10 +120,6 @@ class Data_Table extends Base {
 					'image' => [
 						'title' => __( 'Image', 'happy-elementor-addons' ),
 						'icon' => 'eicon-image-bold',
-					],
-					'none' => [
-						'title' => __( 'None', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-close',
 					],
 				]
 			]
@@ -154,7 +154,7 @@ class Data_Table extends Base {
                 ]
             ]
 		);
-		
+
 		$repeater->add_group_control(
 			Group_Control_Image_Size::get_type(),
 			[
@@ -295,14 +295,7 @@ class Data_Table extends Base {
 			]
 		);
 
-		$repeater->start_controls_tabs( 
-			'_tabs_row',
-			[
-				'condition' => [
-					// 'row_column_type!' => 'row'
-				],
-			]
-		);
+		$repeater->start_controls_tabs( '_tabs_row' );
 
 		$repeater->start_controls_tab(
 			'_tab_row_content',
@@ -357,7 +350,7 @@ class Data_Table extends Base {
 				],
 			]
 		);
-		
+
 		$repeater->add_control(
 			'row_media',
 			[
@@ -395,7 +388,7 @@ class Data_Table extends Base {
 				'label_block' => true,
 				'condition' => [
 					'row_media' => 'icon',
-					// 'row_column_type' => 'column'
+					'row_column_type' => 'column'
 				],
 			]
 		);
@@ -417,7 +410,7 @@ class Data_Table extends Base {
                 ]
             ]
 		);
-		
+
 		$repeater->add_group_control(
 			Group_Control_Image_Size::get_type(),
 			[
@@ -442,7 +435,7 @@ class Data_Table extends Base {
 				],
 			]
 		);
-		
+
 		$repeater->add_control(
 			'row_custom_background_color',
 			[
@@ -1066,8 +1059,8 @@ class Data_Table extends Base {
 										</div>
 									<?php endif; ?>
 
-									<?php 
-									if ( $column_cell['column_image']['url'] || $column_cell['column_image']['id'] ) : 
+									<?php
+									if ( $column_cell['column_image']['url'] || $column_cell['column_image']['id'] ) :
 										$this->add_render_attribute( 'column_image', 'src', $column_cell['column_image']['url'] );
 										$this->add_render_attribute( 'column_image', 'alt', Control_Media::get_image_alt( $column_cell['column_image'] ) );
 										$this->add_render_attribute( 'column_image', 'title', Control_Media::get_image_title( $column_cell['column_image'] ) );
@@ -1108,8 +1101,8 @@ class Data_Table extends Base {
 											</div>
 										<?php endif; ?>
 
-										<?php 
-										if ( $table_cell[$j]['row_image']['url'] || $table_cell[$j]['row_image']['id'] ) : 
+										<?php
+										if ( $table_cell[$j]['row_image']['url'] || $table_cell[$j]['row_image']['id'] ) :
 											$image = wp_get_attachment_image_url( $table_cell[$j]['row_image']['id'], $table_cell[$j]['row_thumbnail_size'] );
 											if ( ! $image ) {
 												$image = $table_cell[$j]['row_image']['url'];
