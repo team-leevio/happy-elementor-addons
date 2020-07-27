@@ -101,34 +101,20 @@ class Data_Table extends Base {
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
-        );
-
-		if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
-			$repeater->add_control(
-				'column_icon',
-				[
-					'label' => __( 'Icon', 'happy-elementor-addons' ),
-					'type' => Controls_Manager::ICON,
-					'condition' => [
-						'column_icon_show' => 'yes'
-					],
-					'options' => ha_get_happy_icons()
-				]
-			);
-		} else {
-			$repeater->add_control(
-				'column_icons',
-				[
-					'label' => __( 'Icon', 'happy-elementor-addons' ),
-					'type' => Controls_Manager::ICONS,
-					'fa4compatibility' => 'column_icon',
-					'label_block' => true,
-					'condition' => [
-						'column_icon_show' => 'yes'
-					],
-				]
-			);
-		}
+		);
+		
+		$repeater->add_control(
+			'column_icons',
+			[
+				'label' => __( 'Icon', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::ICONS,
+				'fa4compatibility' => 'column_icon',
+				'label_block' => true,
+				'condition' => [
+					'column_icon_show' => 'yes'
+				],
+			]
+		);
 
 		$repeater->add_control(
             'column_image',
@@ -1042,15 +1028,9 @@ class Data_Table extends Base {
 						<th <?php echo $this->get_render_attribute_string( $column_repeater_key ); ?>>
 							<div class="ha-table__head-column-cell-wrap">
 								<div class="ha-table__head-column-cell-text"><?php echo esc_html( $column_cell['column_name'] ); ?></div>
-									<?php if ( $column_cell['column_icon_show'] == 'yes' && ha_is_elementor_version( '>', '2.6.0' ) && ! empty( $column_cell['column_icons'] ) ) : ?>
+									<?php if ( $column_cell['column_icon_show'] == 'yes' && ! empty( $column_cell['column_icons'] ) ) : ?>
 										<div class="ha-table__head-column-cell-icon">
 											<?php Icons_Manager::render_icon( $column_cell['column_icons'] ); ?>
-										</div>
-									<?php endif; ?>
-
-									<?php if ( $column_cell['column_icon_show'] == 'yes' && ha_is_elementor_version( '<', '2.6.0' ) && ! empty( $column_cell['column_icon'] ) ) : ?>
-										<div class="ha-table__head-column-cell-icon">
-											<i class="<?php echo esc_attr( $column_cell['icon'] ); ?>"></i>
 										</div>
 									<?php endif; ?>
 
@@ -1090,15 +1070,9 @@ class Data_Table extends Base {
 									<div class="ha-table__body-row-cell-wrap">
 										<div class="ha-table__body-row-cell-text"><?php echo esc_html( $table_cell[$j]['title'] ); ?></div>
 
-										<?php if ( ha_is_elementor_version( '>', '2.6.0' ) && ! empty( $table_cell[$j]['row_icons'] ) ) : ?>
+										<?php if ( ! empty( $table_cell[$j]['row_icons'] ) ) : ?>
 											<div class="ha-table__body-row-cell-icon">
 												<?php Icons_Manager::render_icon( $table_cell[$j]['row_icons'] ); ?>
-											</div>
-										<?php endif; ?>
-
-										<?php if ( ha_is_elementor_version( '<', '2.6.0' ) && ! empty( $table_cell[$j]['row_icon'] ) ) : ?>
-											<div class="ha-table__body-row-cell-icon">
-												<i class="<?php echo esc_attr( $table_cell[$j]['row_icon'] ); ?>"></i>
 											</div>
 										<?php endif; ?>
 
