@@ -3691,6 +3691,14 @@ span.ha-threesixty-rotation-magnify {
 	line-height: 1;
 }
 
+.ha-data-table .ha-table__head-column-cell-icon img {
+	width: 40px;
+}
+
+.ha-data-table .ha-table__head-column-cell-icon svg {
+	width: 40px;
+}
+
 .ha-data-table .ha-table__body-row:nth-child(even) {
 	background-color: #fff;
 }
@@ -3731,6 +3739,14 @@ span.ha-threesixty-rotation-magnify {
 .ha-data-table .ha-table__body-row-cell-icon {
 	padding-left: 10px; 
 	line-height: 1;
+}
+
+.ha-data-table .ha-table__body-row-cell-icon img {
+	width: 40px;
+}
+
+.ha-data-table .ha-table__body-row-cell-icon svg {
+	width: 40px;
 }
 
 .ha-data-table .ha-table__body .ha-table__head-column-cell {
