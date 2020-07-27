@@ -359,7 +359,7 @@ class Data_Table extends Base {
 		);
 		
 		$repeater->add_control(
-			'_row_media',
+			'row_media',
 			[
 				'label' => __( 'Media', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
@@ -394,7 +394,7 @@ class Data_Table extends Base {
 				'fa4compatibility' => 'row_icon',
 				'label_block' => true,
 				'condition' => [
-					'_row_media' => 'icon',
+					'row_media' => 'icon',
 					// 'row_column_type' => 'column'
 				],
 			]
