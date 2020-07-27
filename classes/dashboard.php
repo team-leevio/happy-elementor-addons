@@ -266,3 +266,5 @@ class Dashboard {
         self::load_template( 'pro' );
     }
 }
+
+Dashboard::init();

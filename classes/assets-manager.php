@@ -426,3 +426,5 @@ class Assets_Manager {
 		}
 	}
 }
+
+Assets_Manager::init();

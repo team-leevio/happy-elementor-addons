@@ -6,10 +6,6 @@ defined( 'ABSPATH' ) || die();
 class Admin_Bar {
 
 	public static function init() {
-		if ( ha_is_adminbar_enabled() ) {
-			return;
-		}
-
 		add_action( 'admin_bar_menu', [__CLASS__, 'add_toolbar_items'], 500 );
 		add_action( 'wp_enqueue_scripts', [__CLASS__, 'enqueue_assets'] );
 		add_action( 'admin_enqueue_scripts', [__CLASS__, 'enqueue_assets'] );
@@ -106,3 +102,5 @@ class Admin_Bar {
 		] );
 	}
 }
+
+Admin_Bar::init();

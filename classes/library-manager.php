@@ -118,3 +118,5 @@ class Library_Manager {
 		];
 	}
 }
+
+Library_Manager::init();

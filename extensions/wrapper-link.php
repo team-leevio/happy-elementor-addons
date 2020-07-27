@@ -61,3 +61,5 @@ class Wrapper_Link {
         }
     }
 }
+
+Wrapper_Link::init();

@@ -1198,3 +1198,5 @@ class Happy_Effects {
 		$element->end_controls_tabs();
 	}
 }
+
+Happy_Effects::init();

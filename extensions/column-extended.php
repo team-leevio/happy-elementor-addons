@@ -51,3 +51,5 @@ href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/O
         );
     }
 }
+
+Column_Extended::init();

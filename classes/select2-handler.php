@@ -143,3 +143,5 @@ class Select2_Handler {
 	}
 
 }
+
+Select2_Handler::init();

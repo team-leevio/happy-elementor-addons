@@ -515,3 +515,5 @@ class WPML_Manager {
 		return $widgets;
 	}
 }
+
+WPML_Manager::init();

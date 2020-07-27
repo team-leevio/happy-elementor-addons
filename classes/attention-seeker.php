@@ -101,3 +101,5 @@ class Attention_Seeker {
         return [];
     }
 }
+
+Attention_Seeker::init();

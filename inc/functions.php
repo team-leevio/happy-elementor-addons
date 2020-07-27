@@ -190,13 +190,6 @@ function ha_get_happy_icons() {
 }
 
 /**
- * @return bool
- */
-function ha_is_happy_mode_enabled() {
-	return apply_filters( 'happyaddons_is_happy_mode_enabled', true );
-}
-
-/**
  * Get elementor instance
  *
  * @return \Elementor\Plugin

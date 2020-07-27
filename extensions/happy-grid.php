@@ -2,7 +2,6 @@
 namespace Happy_Addons\Elementor\Extension;
 
 use Elementor\Controls_Manager;
-use Elementor\Element_Base;
 
 defined( 'ABSPATH' ) || die();
 
@@ -260,3 +259,5 @@ class Happy_Grid {
     }
 
 }
+
+Happy_Grid::init();

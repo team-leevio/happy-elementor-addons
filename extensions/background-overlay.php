@@ -196,3 +196,5 @@ class Background_Overlay {
         $element->end_controls_section();
     }
 }
+
+Background_Overlay::init();

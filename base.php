@@ -8,7 +8,6 @@ namespace Happy_Addons\Elementor;
 
 use Elementor\Controls_Manager;
 use Elementor\Elements_Manager;
-use Elementor\Core\Common\Modules\Finder\Categories_Manager;
 
 defined( 'ABSPATH' ) || die();
 
@@ -43,29 +42,7 @@ class Base {
         // Register custom controls
         add_action( 'elementor/controls/controls_registered', [ $this, 'register_controls' ] );
 
-        // Register finder category
-		add_action( 'elementor/finder/categories/init', [ $this, 'register_finder' ] );
-
-        Widgets_Manager::init();
-        Assets_Manager::init();
-        Cache_Manager::init();
-        Icons_Manager::init();
-        Extensions_Manager::init();
-		Select2_Handler::init();
-		WPML_Manager::init();
-
 		$this->init_appsero_tracking();
-
-        if ( is_user_logged_in() ) {
-			Admin_Bar::init();
-			Library_Manager::init();
-        }
-
-        if ( is_admin() ) {
-            Updater::init();
-            Dashboard::init();
-			Attention_Seeker::init();
-        }
 
 		do_action( 'happyaddons_loaded' );
 	}
@@ -96,7 +73,8 @@ class Base {
     }
 
     public function include_files() {
-        include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-forms.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-forms.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-extensions.php' );
 
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
@@ -116,8 +94,6 @@ class Base {
         }
 
         if ( is_user_logged_in() ) {
-            include_once( HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php' );
-			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-manager.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-source.php' );
 		}
@@ -152,17 +128,4 @@ class Base {
         $controls_Manager->add_group_control( $foreground::get_type(), new $foreground() );
 	    ha_elementor()->controls_manager->register_control( $select2::TYPE, new $select2() );
     }
-
-    /**
-     * Register finder category and category items
-     *
-     * @param $categories_manager
-     */
-    public function register_finder( Categories_Manager $categories_manager ) {
-        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/finder.php' );
-        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/finder-edit.php' );
-        // Add the category
-        $categories_manager->add_category( Finder::SLUG, new Finder() );
-        $categories_manager->add_category( Finder_Edit::SLUG, new Finder_Edit() );
-	}
 }

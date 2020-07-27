@@ -162,3 +162,5 @@ class Widgets_Extended {
         $widget->end_popover();
     }
 }
+
+Widgets_Extended::init();

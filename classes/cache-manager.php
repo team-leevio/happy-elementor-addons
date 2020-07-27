@@ -50,7 +50,7 @@ class Cache_Manager {
 	}
 
 	public static function should_enqueue( $post_id ) {
-		if ( ! ha_is_happy_mode_enabled() ||
+		if ( ! ha_is_on_demand_cache_enabled() ||
 			! self::is_built_with_elementor( $post_id ) ||
 			! self::is_published( $post_id ) ||
 			self::is_editing_mode() ) {
@@ -123,3 +123,5 @@ class Cache_Manager {
 		do_action( 'happyaddons_enqueue_assets', $is_cache = false, 0 );
 	}
 }
+
+Cache_Manager::init();

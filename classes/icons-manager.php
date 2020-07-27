@@ -499,3 +499,5 @@ class Icons_Manager {
         ];
     }
 }
+
+Icons_Manager::init();

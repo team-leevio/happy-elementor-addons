@@ -613,3 +613,5 @@ class Widgets_Manager {
 		}
 	}
 }
+
+Widgets_Manager::init();
