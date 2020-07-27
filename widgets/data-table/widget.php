@@ -263,16 +263,7 @@ class Data_Table extends Base {
 				],
 				'default' => 'right',
 				'toggle' => false,
-				'prefix_class' => 'ha-column-icon-',
-				'selectors_dictionary' => [
-					'right' => 'flex-direction: row',
-					'left' => 'flex-direction: row-reverse',
-					'bottom' => 'flex-direction: column',
-					'top' => 'flex-direction: column-reverse',
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-table__head-column-cell-wrap' => '{{VALUE}}'
-				]
+				'prefix_class' => 'ha-column-icon-'
 			]
 		);
 
@@ -593,16 +584,7 @@ class Data_Table extends Base {
 				],
 				'default' => 'right',
 				'toggle' => false,
-				'prefix_class' => 'ha-row-icon-',
-				'selectors_dictionary' => [
-					'right' => 'flex-direction: row',
-					'left' => 'flex-direction: row-reverse',
-					'bottom' => 'flex-direction: column',
-					'top' => 'flex-direction: column-reverse',
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-table__body-row-cell-wrap' => '{{VALUE}}'
-				]
+				'prefix_class' => 'ha-row-icon-'
 			]
 		);
 

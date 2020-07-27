@@ -39,8 +39,7 @@
 	max-width: 100%;
 	height: auto;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .happy-addon p:empty {
@@ -2046,8 +2045,7 @@
 	height: 100%;
 	border-radius: 50%;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 .ha-testimonial__reviewer-name {
 	margin-bottom: 10px; 
@@ -3755,6 +3753,70 @@ span.ha-threesixty-rotation-magnify {
 .ha-data-table.ha-row-icon-left .ha-table__body-row-cell-icon,
 .ha-data-table.ha-row-icon-right .ha-table__body-row-cell-icon {
 	width: auto;
+}
+
+.ha-data-table.ha-column-icon-left .ha-table__head-column-cell-wrap {
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: reverse;
+	-webkit-flex-direction: row-reverse;
+	    -ms-flex-direction: row-reverse;
+	        flex-direction: row-reverse;
+}
+
+.ha-data-table.ha-column-icon-right .ha-table__head-column-cell-wrap {
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+}
+
+.ha-data-table.ha-column-icon-top .ha-table__head-column-cell-wrap {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: reverse;
+	-webkit-flex-direction: column-reverse;
+	    -ms-flex-direction: column-reverse;
+	        flex-direction: column-reverse;
+}
+
+.ha-data-table.ha-column-icon-bottom .ha-table__head-column-cell-wrap {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+}
+
+.ha-data-table.ha-row-icon-left .ha-table__body-row-cell-wrap {
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: reverse;
+	-webkit-flex-direction: row-reverse;
+	    -ms-flex-direction: row-reverse;
+	        flex-direction: row-reverse;
+}
+
+.ha-data-table.ha-row-icon-right .ha-table__body-row-cell-wrap {
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+}
+
+.ha-data-table.ha-row-icon-top .ha-table__body-row-cell-wrap {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: reverse;
+	-webkit-flex-direction: column-reverse;
+	    -ms-flex-direction: column-reverse;
+	        flex-direction: column-reverse;
+}
+
+.ha-data-table.ha-row-icon-bottom .ha-table__body-row-cell-wrap {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 }
 
 @media (max-width: 767px) {
