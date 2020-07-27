@@ -44,7 +44,7 @@ class Data_Table extends Base {
 	 *
 	 */
 	public function get_icon() {
-		return 'hm hm-tablet';
+		return 'hm hm-data-table';
 	}
 
 	public function get_keywords() {

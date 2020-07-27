@@ -562,7 +562,7 @@ class Widgets_Manager {
 	        ],
 			'data-table' => [
 				'title' => __( 'Data Table', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-post-tab',
+				'icon' => 'hm hm-data-table',
 				'css' => ['data-table'],
 				'js' => [],
 				'vendor' => [
