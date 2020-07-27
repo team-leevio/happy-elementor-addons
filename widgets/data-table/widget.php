@@ -66,6 +66,15 @@ class Data_Table extends Base {
 
 		$repeater = new Repeater();
 
+		$repeater->start_controls_tabs( '_tabs_column' );
+
+		$repeater->start_controls_tab(
+			'_tab_column_content',
+			[
+				'label' => __( 'Content', 'happy-elementor-addons' ),
+			]
+		);
+
 		$repeater->add_control(
 			'column_name',
 			[
@@ -91,18 +100,31 @@ class Data_Table extends Base {
 			]
 		);
 
-		$repeater->add_control(
-            'column_icon_show',
-            [
-                'label' => __( 'Show Icon', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
-                'label_off' => __( 'No', 'happy-elementor-addons' ),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
+		$repeater->add_responsive_control(
+			'column_media',
+			[
+				'label' => __( 'Media', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'label_block' => false,
+				'toggle' => false,
+				'default' => 'none',
+				'options' => [
+					'icon' => [
+						'title' => __( 'Icon', 'happy-elementor-addons' ),
+						'icon' => 'eicon-info-circle',
+					],
+					'image' => [
+						'title' => __( 'Image', 'happy-elementor-addons' ),
+						'icon' => 'eicon-image-bold',
+					],
+					'none' => [
+						'title' => __( 'None', 'happy-elementor-addons' ),
+						'icon' => 'eicon-editor-close',
+					],
+				]
+			]
 		);
-		
+
 		$repeater->add_control(
 			'column_icons',
 			[
@@ -111,7 +133,7 @@ class Data_Table extends Base {
 				'fa4compatibility' => 'column_icon',
 				'label_block' => true,
 				'condition' => [
-					'column_icon_show' => 'yes'
+					'column_media' => 'icon'
 				],
 			]
 		);
@@ -123,12 +145,12 @@ class Data_Table extends Base {
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
+				],
+				'dynamic' => [
+                    'active' => true,
                 ],
                 'condition' => [
-                    'column_icon_show!' => 'yes'
-                ],
-                'dynamic' => [
-                    'active' => true,
+                    'column_media' => 'image'
                 ]
             ]
 		);
@@ -140,24 +162,17 @@ class Data_Table extends Base {
 				'default' => 'thumbnail',
 				'separator' => 'none',
 				'condition' => [
-                    'column_icon_show!' => 'yes'
-                ],
+                    'column_media' => 'image'
+                ]
 			]
 		);
 
-		$repeater->add_control(
-            'column_custom_style',
-            [
-                'label' => __( 'Custom Style', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
-                'label_off' => __( 'No', 'happy-elementor-addons' ),
-                'return_value' => 'yes',
-				'default' => 'no',
-				'condition' => [
-					'column_icon_show' => 'yes'
-				],
-            ]
+		$repeater->end_controls_tab();
+
+		$repeater->start_controls_tab( '_tabs_column_style',
+			[
+				'label' => __( 'Style', 'happy-elementor-addons' ),
+			]
 		);
 
 		$repeater->add_control(
@@ -166,14 +181,16 @@ class Data_Table extends Base {
 				'label' => __( 'Icon Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'condition' => [
-					'column_custom_style' => 'yes',
-					'column_icon_show' => 'yes'
+					'column_media' => 'icon'
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-table__head-column-cell-icon i' => 'color: {{VALUE}}',
 				],
 			]
 		);
+
+		$repeater->end_controls_tab();
+		$repeater->end_controls_tabs();
 
 		$this->add_control(
 			'columns_data',
@@ -278,14 +295,21 @@ class Data_Table extends Base {
 			]
 		);
 
-		$this->add_control(
-			'row_starts',
+		$repeater->start_controls_tabs( 
+			'_tabs_row',
 			[
-				'label' => false,
-				'type' => Controls_Manager::HIDDEN,
-				'default' => __( 'Row Starts', 'happy-elementor-addons' ),
 				'condition' => [
-					'row_column_type' => 'row'
+					'row_column_type' => 'column'
+				],
+			]
+		);
+
+		$repeater->start_controls_tab(
+			'_tab_row_content',
+			[
+				'label' => __( 'Content', 'happy-elementor-addons' ),
+				'condition' => [
+					'row_column_type' => 'column'
 				],
 			]
 		);
@@ -333,21 +357,34 @@ class Data_Table extends Base {
 				],
 			]
 		);
-
+		
 		$repeater->add_control(
-            'row_icon_show',
-            [
-                'label' => __( 'Show Icon', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
-                'label_off' => __( 'No', 'happy-elementor-addons' ),
-                'return_value' => 'yes',
-				'default' => 'yes',
-				'condition' => [
-					'row_column_type' => 'column'
-				],
-            ]
-        );
+			'_row_media',
+			[
+				'label' => __( 'Media', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'label_block' => false,
+				'toggle' => false,
+				'default' => 'none',
+				// 'condition' => [
+				// 	'row_column_type' => 'column'
+				// ],
+				'options' => [
+					'icon' => [
+						'title' => __( 'Icon', 'happy-elementor-addons' ),
+						'icon' => 'eicon-info-circle',
+					],
+					'image' => [
+						'title' => __( 'Image', 'happy-elementor-addons' ),
+						'icon' => 'eicon-image-bold',
+					],
+					'none' => [
+						'title' => __( 'None', 'happy-elementor-addons' ),
+						'icon' => 'eicon-editor-close',
+					],
+				]
+			]
+		);
 
 		$repeater->add_control(
 			'row_icons',
@@ -357,8 +394,8 @@ class Data_Table extends Base {
 				'fa4compatibility' => 'row_icon',
 				'label_block' => true,
 				'condition' => [
-					'row_icon_show' => 'yes',
-					'row_column_type' => 'column'
+					'_row_media' => 'icon',
+					// 'row_column_type' => 'column'
 				],
 			]
 		);
@@ -372,9 +409,9 @@ class Data_Table extends Base {
                     'url' => Utils::get_placeholder_image_src(),
                 ],
                 'condition' => [
-					'row_icon_show!' => 'yes',
+					'row_media' => 'image',
 					'row_column_type' => 'column'
-                ],
+				],
                 'dynamic' => [
                     'active' => true,
                 ]
@@ -389,25 +426,21 @@ class Data_Table extends Base {
 				'separator' => 'none',
 				'exclude' => [ 'custom' ],
 				'condition' => [
-					'row_icon_show!' => 'yes',
+					'row_media' => 'image',
 					'row_column_type' => 'column'
                 ],
 			]
 		);
 
-		$repeater->add_control(
-            'row_custom_style',
-            [
-                'label' => __( 'Custom Style', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
-                'label_off' => __( 'No', 'happy-elementor-addons' ),
-                'return_value' => 'yes',
-				'default' => 'no',
+		$repeater->end_controls_tab();
+
+		$repeater->start_controls_tab( '_tabs_row_style',
+			[
+				'label' => __( 'Style', 'happy-elementor-addons' ),
 				'condition' => [
 					'row_column_type' => 'column'
-                ],
-            ]
+				],
+			]
 		);
 		
 		$repeater->add_control(
@@ -416,8 +449,7 @@ class Data_Table extends Base {
 				'label' => __( 'Background Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'condition' => [
-					'row_column_type' => 'column',
-					'row_custom_style' => 'yes'
+					'row_column_type' => 'column'
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-table__body-row-cell' => 'background-color: {{VALUE}}',
@@ -431,8 +463,7 @@ class Data_Table extends Base {
 				'label' => __( 'Text Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'condition' => [
-					'row_column_type' => 'column',
-					'row_custom_style' => 'yes'
+					'row_column_type' => 'column'
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-table__body-row-cell-text' => 'color: {{VALUE}}',
@@ -447,8 +478,7 @@ class Data_Table extends Base {
 				'type' => Controls_Manager::COLOR,
 				'condition' => [
 					'row_column_type' => 'column',
-					'row_custom_style' => 'yes',
-					'row_icon_show' => 'yes'
+					'row_media' => 'icon'
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-table__body-row-cell-icon i' => 'color: {{VALUE}}',
@@ -462,12 +492,26 @@ class Data_Table extends Base {
 				'label' => __( 'Icon/Image Size', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'condition' => [
-					'row_column_type' => 'column',
-					'row_custom_style' => 'yes'
+					'row_column_type' => 'column'
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-table__body-row-cell-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-table__body-row-cell-icon img' => 'width: {{SIZE}}{{UNIT}};'
+				],
+			]
+		);
+
+		$repeater->end_controls_tab();
+		$repeater->end_controls_tabs();
+
+		$this->add_control(
+			'row_starts',
+			[
+				'label' => false,
+				'type' => Controls_Manager::HIDDEN,
+				'default' => __( 'Row Starts', 'happy-elementor-addons' ),
+				'condition' => [
+					'row_column_type' => 'row'
 				],
 			]
 		);
@@ -678,7 +722,8 @@ class Data_Table extends Base {
 				'label' => __( 'Icon Size', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'selectors' => [
-					'{{WRAPPER}} .ha-table .ha-table__head-column-cell-icon' => 'font-size: {{SIZE}}{{UNIT}};'
+					'{{WRAPPER}} .ha-table .ha-table__head-column-cell-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-table .ha-table__head-column-cell-icon svg' => 'width: {{SIZE}}{{UNIT}};'
 				],
 			]
 		);
@@ -744,21 +789,6 @@ class Data_Table extends Base {
 				'selector' => '{{WRAPPER}} .ha-table__body .ha-table__body-row-cell',
 			]
 		);
-
-		// $this->add_responsive_control(
-		// 	'row_border_radius',
-		// 	[
-		// 		'label' => __( 'Border Radius', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::SLIDER,
-		// 		'selectors' => [
-		// 			'(desktop){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:first-child' => 'border-bottom-left-radius: {{SIZE}}{{UNIT}};',
-		// 			'(desktop){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:last-child' => 'border-bottom-right-radius: {{SIZE}}{{UNIT}};',
-		// 			'(tablet){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:first-child' => 'border-bottom-left-radius: {{SIZE}}{{UNIT}};',
-		// 			'(tablet){{WRAPPER}} .ha-table .ha-table__body-row:last-child .ha-table__body-row-cell:last-child' => 'border-bottom-right-radius: {{SIZE}}{{UNIT}};',
-		// 			'(mobile){{WRAPPER}} .ha-table .ha-table__body-row-cell' => 'border-radius: {{SIZE}}{{UNIT}};',
-		// 		],
-		// 	]
-		// );
 
 		$this->start_controls_tabs( '_tabs_rows' );
 		$this->start_controls_tab(
@@ -934,7 +964,8 @@ class Data_Table extends Base {
 				'type' => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .ha-table__body-row-cell-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-table__body-row-cell-icon img' => 'width: {{SIZE}}{{UNIT}};'
+					'{{WRAPPER}} .ha-table__body-row-cell-icon img' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-table__body-row-cell-icon svg' => 'width: {{SIZE}}{{UNIT}};'
 				],
 			]
 		);
@@ -1028,7 +1059,7 @@ class Data_Table extends Base {
 						<th <?php echo $this->get_render_attribute_string( $column_repeater_key ); ?>>
 							<div class="ha-table__head-column-cell-wrap">
 								<div class="ha-table__head-column-cell-text"><?php echo esc_html( $column_cell['column_name'] ); ?></div>
-									<?php if ( $column_cell['column_icon_show'] == 'yes' && ! empty( $column_cell['column_icons'] ) ) : ?>
+									<?php if ( $column_cell['column_media'] == 'icon' && ! empty( $column_cell['column_icons'] ) ) : ?>
 										<div class="ha-table__head-column-cell-icon">
 											<?php Icons_Manager::render_icon( $column_cell['column_icons'] ); ?>
 										</div>

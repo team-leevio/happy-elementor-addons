@@ -3687,6 +3687,7 @@ span.ha-threesixty-rotation-magnify {
 }
 
 .ha-data-table .ha-table__head-column-cell-icon {
+	padding-left: 10px; 
 	line-height: 1;
 }
 
@@ -3728,6 +3729,7 @@ span.ha-threesixty-rotation-magnify {
 }
 
 .ha-data-table .ha-table__body-row-cell-icon {
+	padding-left: 10px; 
 	line-height: 1;
 }
 
