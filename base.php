@@ -40,7 +40,9 @@ class Base {
         add_action( 'elementor/elements/categories_registered', [ $this, 'add_category' ] );
 
         // Register custom controls
-        add_action( 'elementor/controls/controls_registered', [ $this, 'register_controls' ] );
+		add_action( 'elementor/controls/controls_registered', [ $this, 'register_controls' ] );
+
+		add_action( 'init', [ $this, 'include_on_init' ] );
 
 		$this->init_appsero_tracking();
 
@@ -74,7 +76,6 @@ class Base {
 
     public function include_files() {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-forms.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-extensions.php' );
 
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
@@ -83,7 +84,7 @@ class Base {
 
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
         include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
-        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
+
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
 
@@ -97,7 +98,12 @@ class Base {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-manager.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-source.php' );
 		}
-    }
+	}
+
+	public function include_on_init() {
+		include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-extensions.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
+	}
 
     /**
      * Add custom category.

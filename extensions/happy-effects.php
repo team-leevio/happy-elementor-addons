@@ -21,8 +21,22 @@ class Happy_Effects {
 			]
 		);
 
-		self::add_floating_effects( $element );
-		self::add_css_effects( $element );
+		if ( ha_is_floating_effects_enabled() ) {
+			self::add_floating_effects( $element );
+		}
+
+		if ( ha_is_floating_effects_enabled() && ha_is_css_transform_enabled() ) {
+			$element->add_control(
+				'ha_effects_divider_1',
+				[
+					'type' => Controls_Manager::DIVIDER,
+				]
+			);
+		}
+
+		if ( ha_is_css_transform_enabled() ) {
+			self::add_css_effects( $element );
+		}
 
 		$element->end_controls_section();
 	}
@@ -462,13 +476,6 @@ class Happy_Effects {
 		);
 
 		$element->end_popover();
-
-		$element->add_control(
-			'ha_hr',
-			[
-				'type' => Controls_Manager::DIVIDER,
-			]
-		);
 	}
 
 	/**

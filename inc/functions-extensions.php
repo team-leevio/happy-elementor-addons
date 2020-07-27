@@ -9,14 +9,14 @@
  */
 defined( 'ABSPATH' ) || die();
 
-if ( ! function_exists( 'ha_is_adminbar_enabled' ) ) {
+if ( ! function_exists( 'ha_is_adminbar_menu_enabled' ) ) {
 	/**
 	 * Check if Adminbar is enabled
 	 *
 	 * @return bool
 	 */
-	function ha_is_adminbar_enabled() {
-		return apply_filters( 'happyaddons/extensions/adminbar', true );
+	function ha_is_adminbar_menu_enabled() {
+		return apply_filters( 'happyaddons/extensions/adminbar_menu', true );
 	}
 }
 
