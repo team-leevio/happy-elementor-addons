@@ -209,7 +209,7 @@ class Twitter_Feed extends Base {
 		$this->add_control(
 			'show_date',
 			[
-				'label' => __('Show Date', 'happy-elementor-addons'),
+				'label' => __('Show Date Time', 'happy-elementor-addons'),
 				'type' => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default' => 'yes',
@@ -938,7 +938,7 @@ class Twitter_Feed extends Base {
 		$this->add_control(
 			'date_heading',
 			[
-				'label' => __( 'Date', 'happy-elementor-addons' ),
+				'label' => __( 'Date Time', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before'
 			]
@@ -1404,7 +1404,7 @@ class Twitter_Feed extends Base {
 
 							<?php if ( $settings['show_date'] == 'yes' ) : ?>
 								<div class="ha-tweet-date">
-									<?php echo esc_html( date("M d Y", strtotime( $item['created_at'] ) ) ); ?>
+									<?php echo esc_html( date("M d Y, g:i a", strtotime( $item['created_at'] ) ) ); ?>
 								</div>
 							<?php endif; ?>
 						</div>
