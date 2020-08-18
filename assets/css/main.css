@@ -10,7 +10,7 @@
 	content: "";
 }
 
-.elementor-widget {
+.ha-css-transform-yes {
 	-webkit-transition-duration: var(--ha-tfx-transition-duration, .2s);
 	        transition-duration: var(--ha-tfx-transition-duration, .2s); 
 	-webkit-transition-property: -webkit-transform;
@@ -20,9 +20,9 @@
 	-webkit-transform: translate(var(--ha-tfx-translate-x, 0), var(--ha-tfx-translate-y, 0)) scale(var(--ha-tfx-scale-x, 1), var(--ha-tfx-scale-y, 1)) skew(var(--ha-tfx-skew-x, 0), var(--ha-tfx-skew-y, 0)) rotateX(var(--ha-tfx-rotate-x, 0)) rotateY(var(--ha-tfx-rotate-y, 0)) rotateZ(var(--ha-tfx-rotate-z, 0));
 	        transform: translate(var(--ha-tfx-translate-x, 0), var(--ha-tfx-translate-y, 0)) scale(var(--ha-tfx-scale-x, 1), var(--ha-tfx-scale-y, 1)) skew(var(--ha-tfx-skew-x, 0), var(--ha-tfx-skew-y, 0)) rotateX(var(--ha-tfx-rotate-x, 0)) rotateY(var(--ha-tfx-rotate-y, 0)) rotateZ(var(--ha-tfx-rotate-z, 0));
 }
-.elementor-widget:hover {
-	-webkit-transform: translate(var(--ha-tfx-translate-x-hover, 0), var(--ha-tfx-translate-y-hover, 0)) scale(var(--ha-tfx-scale-x-hover, 1), var(--ha-tfx-scale-y-hover, 1)) skew(var(--ha-tfx-skew-x-hover, 0), var(--ha-tfx-skew-y-hover, 0)) rotateX(var(--ha-tfx-rotate-x-hover, 0)) rotateY(var(--ha-tfx-rotate-y-hover, 0)) rotateZ(var(--ha-tfx-rotate-z-hover, 0));
-	        transform: translate(var(--ha-tfx-translate-x-hover, 0), var(--ha-tfx-translate-y-hover, 0)) scale(var(--ha-tfx-scale-x-hover, 1), var(--ha-tfx-scale-y-hover, 1)) skew(var(--ha-tfx-skew-x-hover, 0), var(--ha-tfx-skew-y-hover, 0)) rotateX(var(--ha-tfx-rotate-x-hover, 0)) rotateY(var(--ha-tfx-rotate-y-hover, 0)) rotateZ(var(--ha-tfx-rotate-z-hover, 0));
+.ha-css-transform-yes:hover {
+	-webkit-transform: translate(var(--ha-tfx-translate-x-hover, var(--ha-tfx-translate-x, 0)), var(--ha-tfx-translate-y-hover, var(--ha-tfx-translate-y, 0))) scale(var(--ha-tfx-scale-x-hover, var(--ha-tfx-scale-x, 1)), var(--ha-tfx-scale-y-hover, var(--ha-tfx-scale-y, 1))) skew(var(--ha-tfx-skew-x-hover, var(--ha-tfx-skew-x, 0)), var(--ha-tfx-skew-y-hover, var(--ha-tfx-skew-y, 0))) rotateX(var(--ha-tfx-rotate-x-hover, var(--ha-tfx-rotate-x, 0))) rotateY(var(--ha-tfx-rotate-y-hover, var(--ha-tfx-rotate-y, 0))) rotateZ(var(--ha-tfx-rotate-z-hover, var(--ha-tfx-rotate-z, 0)));
+	        transform: translate(var(--ha-tfx-translate-x-hover, var(--ha-tfx-translate-x, 0)), var(--ha-tfx-translate-y-hover, var(--ha-tfx-translate-y, 0))) scale(var(--ha-tfx-scale-x-hover, var(--ha-tfx-scale-x, 1)), var(--ha-tfx-scale-y-hover, var(--ha-tfx-scale-y, 1))) skew(var(--ha-tfx-skew-x-hover, var(--ha-tfx-skew-x, 0)), var(--ha-tfx-skew-y-hover, var(--ha-tfx-skew-y, 0))) rotateX(var(--ha-tfx-rotate-x-hover, var(--ha-tfx-rotate-x, 0))) rotateY(var(--ha-tfx-rotate-y-hover, var(--ha-tfx-rotate-y, 0))) rotateZ(var(--ha-tfx-rotate-z-hover, var(--ha-tfx-rotate-z, 0)));
 }
 
 .happy-addon > .elementor-widget-container {

@@ -35,7 +35,7 @@ class Happy_Effects {
 		}
 
 		if ( ha_is_css_transform_enabled() ) {
-			self::add_css_effects( $element );
+			self::add_css_transform( $element );
 		}
 
 		$element->end_controls_section();
@@ -484,13 +484,14 @@ class Happy_Effects {
 	 * @param Element_Base $element
 	 * @return void
 	 */
-	public static function add_css_effects( Element_Base $element ) {
+	public static function add_css_transform( Element_Base $element ) {
 		$element->add_control(
 			'ha_transform_fx',
 			[
 				'label' => __( 'CSS Transform', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
+				'prefix_class' => 'ha-css-transform-',
 			]
 		);
 

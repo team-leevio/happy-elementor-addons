@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.13.0
+Version: 2.13.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -60,9 +60,10 @@ Unlike most other Elementor addons, Happy Addons offers itself with many robust 
 - [**Social Icon**](https://demo.happyaddons.com/elementor-social-icon-widget-demo/) – Beautifully insert and display your social links onto your webpage using this widget to easily connect with your site visitor.
 - [**Post Tab**](https://demo.happyaddons.com/elementor-post-tab-widget-demo/) – Enable users to present your post in multiple workable tabs ideally useful for grouped and related content.
 - [**Post List**](https://demo.happyaddons.com/elementor-post-list-widget-demo/) – List any post elegantly using this widget displaying them in a creative and innovative manner with multiple options to play with.
-- [**360° Rotation**](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/360-degree-rotation/) - Create 360 Degree rotated images for your Products with this widget. Flexibility to add auto-rotate or click to the rotation functionality. Also, you can add Magnify Button to Zoom-in your pictures.
-- [**Taxonomy List**](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/taxonomy/) - This widget will help you to create a list of posts by sorting categories, tags, post formats.
-- [**WP Fluent Forms**](https://happyaddons.com/) - Easliy customize and use Fluent Forms using this super intuitive widget.
+- [**360° Rotation**](https://demo.happyaddons.com/elementor-360-rotation-widget-demo/) - Create 360 Degree rotated images for your Products with this widget. Flexibility to add auto-rotate or click to the rotation functionality. Also, you can add Magnify Button to Zoom-in your pictures.
+- [**Taxonomy List**](https://demo.happyaddons.com/elementor-taxonomy-widget-demo/) - This widget will help you to create a list of posts by sorting categories, tags, post formats.
+- [**WP Fluent Forms**](https://demo.happyaddons.com/elementor-fluent-form-widget-demo/) - Easliy customize and use Fluent Forms using this super intuitive widget.
+- [**Data Table**](https://demo.happyaddons.com/elementor-datatable-widget-demo/) Using a data table on the website is a difficult task if you don't have any coding ideas or knowledge. However, the data table widget of Happy Elementor Addons will solve this problem.
 
 New free widgets or features are added every month. With all these awesome free widgets, this nifty plugin, not just aims to the trendy and sophisticated WordPress website design philosophy but also effortlessly aligns with any Elementor powered WordPress website design requirements.
 
@@ -257,6 +258,10 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.13.1 - 6 August 2020 =
+
+- Fix: CSS Transform conflict issue
 
 = 2.13.0 - 27 July 2020 =
 
