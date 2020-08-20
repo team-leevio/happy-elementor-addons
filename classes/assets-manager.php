@@ -326,7 +326,7 @@ class Assets_Manager {
 		wp_enqueue_script(
 			'happy-elementor-addons-editor',
 			HAPPY_ADDONS_ASSETS . 'admin/js/editor.min.js',
-			['elementor-editor'],
+			['elementor-editor', 'jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
 		);

@@ -1,13 +1,12 @@
-;(function($) {
+;
+(function ($, ha) {
 	'use strict';
 
-	window.ha = window.ha || {};
-
-	ha.hasIconLibrary = function() {
-		return ( elementor.helpers && elementor.helpers.renderIcon );
+	ha.hasIconLibrary = function () {
+		return (elementor.helpers && elementor.helpers.renderIcon);
 	};
 
-	ha.getFeatureLabel = function( text ) {
+	ha.getFeatureLabel = function (text) {
 		var div = document.createElement('DIV');
 
 		div.innerHTML = text;
@@ -16,7 +15,7 @@
 		return text.length > 20 ? text.substring(0, 20) + '...' : text;
 	};
 
-	ha.translate = function(stringKey, templateArgs) {
+	ha.translate = function (stringKey, templateArgs) {
 		return elementorCommon.translate(stringKey, null, templateArgs, HappyAddonsEditor.i18n);
 	};
 
@@ -25,7 +24,7 @@
 	window.ha_has_icon_library = ha.hasIconLibrary;
 	window.ha_translate = ha.translate;
 
-	ha.getButtonWithIcon = function(view, args) {
+	ha.getButtonWithIcon = function (view, args) {
 		var buttonMarkup = [],
 			settings = {},
 			btnIconHTML,
@@ -35,7 +34,7 @@
 			buttonAfter;
 
 		args = args || {};
-		args = _.defaults( args, {
+		args = _.defaults(args, {
 			oldIcon: 'button_icon',
 			iconPos: 'button_icon_position',
 			newIcon: 'button_selected_icon',
@@ -43,71 +42,74 @@
 			link: 'button_link',
 			class: 'ha-btn ha-btn--link',
 			textClass: 'ha-btn-text',
-		} );
+		});
 
-		if (!_.isObject(view) || _.isUndefined(view['getContainer']) ) {
+		if (!_.isObject(view) || _.isUndefined(view['getContainer'])) {
 			return '';
 		}
 
 		settings = view.getContainer().settings.toJSON();
 
 		var buttonText = !_.isUndefined(settings[args.text]) ? settings[args.text] : '',
-			hasOldIcon = (!_.isUndefined(settings[args.oldIcon]) && settings[args.oldIcon] ) ? true : false,
+			hasOldIcon = (!_.isUndefined(settings[args.oldIcon]) && settings[args.oldIcon]) ? true : false,
 			hasNewIcon = (!_.isUndefined(settings[args.newIcon]) && _.isObject(settings[args.newIcon]) && settings[args.newIcon].value) ? true : false;
 
 		if (!buttonText && !hasNewIcon && !hasOldIcon) {
 			return;
 		}
 
-		if ( ha.hasIconLibrary() ) {
-			btnIconHTML = elementor.helpers.renderIcon( view, settings[args.newIcon], { 'aria-hidden': true, 'class': 'ha-btn-icon' }, 'i' , 'object' ),
-			btnMigrated = elementor.helpers.isIconMigrated( settings, args.newIcon );
+		if (ha.hasIconLibrary()) {
+			btnIconHTML = elementor.helpers.renderIcon(view, settings[args.newIcon], {
+					'aria-hidden': true,
+					'class': 'ha-btn-icon'
+				}, 'i', 'object'),
+				btnMigrated = elementor.helpers.isIconMigrated(settings, args.newIcon);
 		}
 
-		view.addInlineEditingAttributes( args.text, 'none' );
-		view.addRenderAttribute( args.text, 'class', args.textClass );
+		view.addInlineEditingAttributes(args.text, 'none');
+		view.addRenderAttribute(args.text, 'class', args.textClass);
 
-		view.addRenderAttribute( 'button', 'class', args.class );
-		view.addRenderAttribute( 'button', 'href', settings[args.link].url );
+		view.addRenderAttribute('button', 'class', args.class);
+		view.addRenderAttribute('button', 'href', settings[args.link].url);
 
-		if ( hasNewIcon || hasOldIcon ) {
-			if ( ha.hasIconLibrary() && btnIconHTML && btnIconHTML.rendered && ( ! hasOldIcon || btnMigrated ) ) {
-				if ( settings[args.newIcon].library === 'svg' ) {
+		if (hasNewIcon || hasOldIcon) {
+			if (ha.hasIconLibrary() && btnIconHTML && btnIconHTML.rendered && (!hasOldIcon || btnMigrated)) {
+				if (settings[args.newIcon].library === 'svg') {
 					btnIcon = '<span class="ha-btn-icon ha-btn-icon--svg">' + btnIconHTML.value + '</span>';
 				} else {
 					btnIcon = btnIconHTML.value;
 				}
-			} else if ( hasOldIcon ) {
+			} else if (hasOldIcon) {
 				btnIcon = '<i class="ha-btn-icon ' + args.oldIcon + '" aria-hidden="true"></i>';
 			}
 		}
 
-		if ( buttonText && ( ! hasNewIcon && ! hasOldIcon ) ) {
+		if (buttonText && (!hasNewIcon && !hasOldIcon)) {
 			buttonMarkup = [
-				'<a ' + view.getRenderAttributeString( 'button' ) + '>',
-				'<span ' + view.getRenderAttributeString( args.text ) + '>',
+				'<a ' + view.getRenderAttributeString('button') + '>',
+				'<span ' + view.getRenderAttributeString(args.text) + '>',
 				buttonText,
 				'</span>',
 				'</a>',
 			];
-		} else if ( ! buttonText && ( hasNewIcon || hasOldIcon ) ) {
+		} else if (!buttonText && (hasNewIcon || hasOldIcon)) {
 			buttonMarkup = [
-				'<a ' + view.getRenderAttributeString( 'button' ) + '>',
+				'<a ' + view.getRenderAttributeString('button') + '>',
 				btnIcon,
 				'</a>',
 			];
-		} else if ( buttonText && ( hasNewIcon || hasOldIcon ) ) {
-			if ( settings[args.iconPos] === 'before' ) {
-				view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-before' );
+		} else if (buttonText && (hasNewIcon || hasOldIcon)) {
+			if (settings[args.iconPos] === 'before') {
+				view.addRenderAttribute('button', 'class', 'ha-btn--icon-before');
 				buttonBefore = btnIcon;
-				buttonAfter = '<span ' + view.getRenderAttributeString( args.text ) + '>' + buttonText + '</span>';
+				buttonAfter = '<span ' + view.getRenderAttributeString(args.text) + '>' + buttonText + '</span>';
 			} else {
-				view.addRenderAttribute( 'button', 'class', 'ha-btn--icon-after' );
+				view.addRenderAttribute('button', 'class', 'ha-btn--icon-after');
 				buttonAfter = btnIcon;
-				buttonBefore = '<span ' + view.getRenderAttributeString( args.text ) + '>' + buttonText + '</span>';
+				buttonBefore = '<span ' + view.getRenderAttributeString(args.text) + '>' + buttonText + '</span>';
 			}
 			buttonMarkup = [
-				'<a ' + view.getRenderAttributeString( 'button' ) + '>',
+				'<a ' + view.getRenderAttributeString('button') + '>',
 				buttonBefore,
 				buttonAfter,
 				'</a>',
@@ -119,30 +121,30 @@
 
 	function setupDarkModeStylesheet() {
 		var darkModeLinkID = 'happy-addons-editor-dark-css',
-			$darkModeLink = $( '#' + darkModeLinkID );
+			$darkModeLink = $('#' + darkModeLinkID);
 
-		if ( ! $darkModeLink.length ) {
-			$darkModeLink = $( '<link>', {
+		if (!$darkModeLink.length) {
+			$darkModeLink = $('<link>', {
 				id: darkModeLinkID,
 				rel: 'stylesheet',
 				href: HappyAddonsEditor.darkStylesheetURL,
-			} );
+			});
 		}
 
-		elementor.settings.editorPreferences.model.on('change:ui_theme', function(m, newValue) {
-			if ( 'light' === newValue ) {
+		elementor.settings.editorPreferences.model.on('change:ui_theme', function (m, newValue) {
+			if ('light' === newValue) {
 				$darkModeLink.remove();
 				return;
 			}
 
 			$darkModeLink
-				.attr( 'media', 'auto' === newValue ? '(prefers-color-scheme: dark)' : '' )
-				.appendTo( elementorCommon.elements.$body );
+				.attr('media', 'auto' === newValue ? '(prefers-color-scheme: dark)' : '')
+				.appendTo(elementorCommon.elements.$body);
 		});
 	}
 
-	elementor.on('panel:init', function() {
-		$('#elementor-panel-elements-search-input').on('keyup', _.debounce(function() {
+	elementor.on('panel:init', function () {
+		$('#elementor-panel-elements-search-input').on('keyup', _.debounce(function () {
 			$('#elementor-panel-elements')
 				.find('.hm')
 				.parents('.elementor-element')
@@ -152,83 +154,29 @@
 		/**
 		 * Register grid layer shortcut
 		 */
-		if ( typeof $e !== 'undefined' || $e !== null ) {
+		if (typeof $e !== 'undefined' || $e !== null) {
 			var option = {
-				callback: function() {
+				callback: function () {
 					var ha_grid = elementor.settings.page.model.attributes.ha_grid;
-					if ( '' === ha_grid ) {
-						elementor.settings.page.model.setExternalChange( 'ha_grid', 'yes' );
-					} else if ( 'yes' === ha_grid ) {
-						elementor.settings.page.model.setExternalChange( 'ha_grid', '' );
+					if ('' === ha_grid) {
+						elementor.settings.page.model.setExternalChange('ha_grid', 'yes');
+					} else if ('yes' === ha_grid) {
+						elementor.settings.page.model.setExternalChange('ha_grid', '');
 					}
 				}
 			};
-			$e.shortcuts.register( 'ctrl+shift+g', option);
-			$e.shortcuts.register( 'cmd+shift+g', option);
+			$e.shortcuts.register('ctrl+shift+g', option);
+			$e.shortcuts.register('cmd+shift+g', option);
 		}
 
 
 		setupDarkModeStylesheet();
 	});
 
-	if ( elementor.modules.controls.Icons ) {
-		var WithHappyIcons = elementor.modules.controls.Icons.extend({
-			getControlValue: function() {
-				var controlValue = this.constructor.__super__.getControlValue.call(this),
-					model = this.model,
-					valueToMigrate = this.getValueToMigrate(),
-					newValue = { value: '', library: 'happy-icons' },
-					elementSettingsModel = ( this.container && this.container.settings ) || this.elementSettingsModel;
-
-				if ( _.isObject( controlValue ) &&
-					!_.isEmpty( controlValue ) &&
-					controlValue.library !== 'svg' &&
-					controlValue.value.indexOf( 'fashm' ) === 0
-				) {
-					newValue.value = controlValue.value.substr( controlValue.value.indexOf( 'hm hm-' ) );
-					elementSettingsModel.set( model.get( 'name' ), newValue );
-					return newValue;
-				}
-
-				if ( ! _.isObject( controlValue ) && valueToMigrate && valueToMigrate.indexOf( 'hm hm-' ) === 0 ) {
-					newValue.value = valueToMigrate;
-					elementSettingsModel.set( model.get( 'name' ), newValue );
-					return newValue;
-				}
-
-				if ( ! this.isMigrationAllowed() ) {
-					return valueToMigrate;
-				}
-
-				// Bail if no migration flag or no value to migrate
-				if ( ! valueToMigrate ) {
-					return controlValue;
-				}
-
-				var didMigration = elementSettingsModel.get( this.dataKeys.migratedKey ),
-					controlName = model.get( 'name' );
-
-				// Check if migration had been done and is stored locally
-				if ( this.cache.migratedFlag[ controlName ] ) {
-					return this.cache.migratedFlag[ controlName ];
-				}
-				// Check if already migrated
-				if ( didMigration && didMigration[ controlName ] ) {
-					return controlValue;
-				}
-
-				// Do migration
-				return this.migrateFa4toFa5( valueToMigrate );
-			}
-		});
-
-		elementor.addControlView( 'icons', WithHappyIcons );
-	}
-
 	elementor.modules.layouts.panel.pages.menu.Menu.addItem({
 		name: 'happyaddons-home',
 		icon: 'hm hm-happyaddons',
-		title: ha.translate( 'editorPanelHomeLinkTitle' ),
+		title: ha.translate('editorPanelHomeLinkTitle'),
 		type: 'link',
 		link: HappyAddonsEditor.editorPanelHomeLinkURL,
 		newTab: true
@@ -237,8 +185,8 @@
 	/**
 	 * Add pro widgets placeholder
 	 */
-	elementor.hooks.addFilter( 'panel/elements/regionViews', function( regionViews ) {
-		if ( HappyAddonsEditor.hasPro || _.isEmpty( HappyAddonsEditor.proWidgets ) ) {
+	elementor.hooks.addFilter('panel/elements/regionViews', function (regionViews) {
+		if (HappyAddonsEditor.hasPro || _.isEmpty(HappyAddonsEditor.proWidgets)) {
 			return regionViews;
 		}
 
@@ -251,26 +199,28 @@
 			ElementView,
 			freeCategoryIndex;
 
-		_.each( HappyAddonsEditor.proWidgets, function( widget, name ) {
+		_.each(HappyAddonsEditor.proWidgets, function (widget, name) {
 			elementsCollection.add({
 				name: 'ha-' + name,
 				title: widget.title,
 				icon: widget.icon,
-				categories: [ CATEGOERY_NAME ],
+				categories: [CATEGOERY_NAME],
 				editable: false,
 			});
 		});
 
-		elementsCollection.each( function( element ) {
-			if ( element.get( 'categories' )[0] === CATEGOERY_NAME ) {
-				proWidgets.push( element );
+		elementsCollection.each(function (element) {
+			if (element.get('categories')[0] === CATEGOERY_NAME) {
+				proWidgets.push(element);
 			}
-		} );
+		});
 
-		freeCategoryIndex = categoriesCollection.findIndex({ name:'happy_addons_category' });
+		freeCategoryIndex = categoriesCollection.findIndex({
+			name: 'happy_addons_category'
+		});
 
-		if ( freeCategoryIndex ) {
-			categoriesCollection.add( {
+		if (freeCategoryIndex) {
+			categoriesCollection.add({
 				name: 'happy_addons_pro_category',
 				title: 'Happy Addons Pro',
 				icon: 'hm hm-happyaddons',
@@ -282,21 +232,21 @@
 		}
 
 		ElementView = {
-			className: function() {
+			className: function () {
 				var className = this.constructor.__super__.className.call(this);
-				if ( ! this.isEditable() && this.isHappyWidget() ) {
+				if (!this.isEditable() && this.isHappyWidget()) {
 					className += ' ha-element--promotion';
 				}
 
 				return className;
 			},
 
-			isHappyWidget: function() {
+			isHappyWidget: function () {
 				return this.model.get('name').indexOf('ha-') === 0;
 			},
 
-			onMouseDown: function() {
-				if ( ! this.isHappyWidget() ) {
+			onMouseDown: function () {
+				if (!this.isHappyWidget()) {
 					elementor.promotion.dialog.buttons[0].removeClass('ha-btn--promotion');
 					this.constructor.__super__.onMouseDown.call(this);
 					return;
@@ -304,13 +254,13 @@
 
 				elementor.promotion.dialog.buttons[0].addClass('ha-btn--promotion');
 
-				elementor.promotion.showDialog( {
-					headerMessage: ha.translate( 'promotionDialogHeader', [ this.model.get( 'title' ) ] ),
-					message: ha.translate( 'promotionDialogMessage', [ this.model.get( 'title' ) ] ),
+				elementor.promotion.showDialog({
+					headerMessage: ha.translate('promotionDialogHeader', [this.model.get('title')]),
+					message: ha.translate('promotionDialogMessage', [this.model.get('title')]),
 					top: '-7',
 					element: this.el,
 					actionURL: 'https://demo.happyaddons.com/',
-				} );
+				});
 			}
 		};
 
@@ -326,4 +276,7 @@
 
 		return regionViews;
 	});
-}(jQuery));
+
+
+	window.ha = ha;
+}(jQuery, window.ha || {}));

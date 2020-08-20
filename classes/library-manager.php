@@ -32,7 +32,7 @@ class Library_Manager {
 			'happy-addons-templates-library',
 			HAPPY_ADDONS_ASSETS . 'admin/js/template-library.min.js',
 			[
-				'elementor-editor',
+				'happy-elementor-addons-editor',
 				'jquery-hover-intent',
 			],
 			HAPPY_ADDONS_VERSION,

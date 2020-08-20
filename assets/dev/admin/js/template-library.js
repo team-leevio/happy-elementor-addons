@@ -1,32 +1,31 @@
-;(function($, elementor) {
-	window.ha = window.ha || {};
-
+;
+(function ($, elementor, ha) {
 	var Library = {
-		Views      : {},
-		Models     : {},
+		Views: {},
+		Models: {},
 		Collections: {},
-		Behaviors  : {},
-		Layout     : null,
-		Manager    : null,
+		Behaviors: {},
+		Layout: null,
+		Manager: null,
 	};
 
-	Library.Models.Template = Backbone.Model.extend( {
+	Library.Models.Template = Backbone.Model.extend({
 		defaults: {
 			template_id: 0,
-			title      : '',
-			type       : '',
-			thumbnail  : '',
-			url        : '',
-			tags       : [],
-			isPro      : false
+			title: '',
+			type: '',
+			thumbnail: '',
+			url: '',
+			tags: [],
+			isPro: false
 		},
-	} );
+	});
 
-	Library.Collections.Template = Backbone.Collection.extend( {
+	Library.Collections.Template = Backbone.Collection.extend({
 		model: Library.Models.Template
-	} );
+	});
 
-	Library.Behaviors.InsertTemplate = Marionette.Behavior.extend( {
+	Library.Behaviors.InsertTemplate = Marionette.Behavior.extend({
 		ui: {
 			insertButton: '.haTemplateLibrary__insert-button',
 		},
@@ -35,14 +34,14 @@
 			'click @ui.insertButton': 'onInsertButtonClick',
 		},
 
-		onInsertButtonClick: function() {
-			ha.library.insertTemplate( {
+		onInsertButtonClick: function () {
+			ha.library.insertTemplate({
 				model: this.view.model,
-			} );
+			});
 		},
-	} );
+	});
 
-	Library.Views.EmptyTemplateCollection = Marionette.ItemView.extend( {
+	Library.Views.EmptyTemplateCollection = Marionette.ItemView.extend({
 		id: 'elementor-template-library-templates-empty',
 		template: '#tmpl-haTemplateLibrary__empty',
 
@@ -53,74 +52,74 @@
 
 		modesStrings: {
 			empty: {
-				title: ha.translate( 'templatesEmptyTitle' ),
-				message: ha.translate( 'templatesEmptyMessage' ),
+				title: ha.translate('templatesEmptyTitle'),
+				message: ha.translate('templatesEmptyMessage'),
 			},
 			noResults: {
-				title: ha.translate( 'templatesNoResultsTitle' ),
-				message: ha.translate( 'templatesNoResultsMessage' ),
+				title: ha.translate('templatesNoResultsTitle'),
+				message: ha.translate('templatesNoResultsMessage'),
 			},
 		},
 
-		getCurrentMode: function() {
-			if ( ha.library.getFilter( 'text' ) ) {
+		getCurrentMode: function () {
+			if (ha.library.getFilter('text')) {
 				return 'noResults';
 			}
 
 			return 'empty';
 		},
 
-		onRender: function() {
-			var modeStrings = this.modesStrings[ this.getCurrentMode() ];
+		onRender: function () {
+			var modeStrings = this.modesStrings[this.getCurrentMode()];
 
-			this.ui.title.html( modeStrings.title );
-			this.ui.message.html( modeStrings.message );
+			this.ui.title.html(modeStrings.title);
+			this.ui.message.html(modeStrings.message);
 		},
-	} );
+	});
 
-	Library.Views.Loading = Marionette.ItemView.extend( {
+	Library.Views.Loading = Marionette.ItemView.extend({
 		template: '#tmpl-haTemplateLibrary__loading',
 		id: 'haTemplateLibrary__loading',
-	} );
+	});
 
-	Library.Views.Logo = Marionette.ItemView.extend( {
+	Library.Views.Logo = Marionette.ItemView.extend({
 		template: '#tmpl-haTemplateLibrary__header-logo',
 		className: 'haTemplateLibrary__header-logo',
 
-		templateHelpers: function() {
+		templateHelpers: function () {
 			return {
 				title: this.getOption('title'),
 			};
 		},
-	} );
+	});
 
-	Library.Views.BackButton = Marionette.ItemView.extend( {
+	Library.Views.BackButton = Marionette.ItemView.extend({
 		template: '#tmpl-haTemplateLibrary__header-back',
 		id: 'elementor-template-library-header-preview-back',
-		className:'haTemplateLibrary__header-back',
+		className: 'haTemplateLibrary__header-back',
 
-		events: function() {
+		events: function () {
 			return {
 				click: 'onClick',
 			};
 		},
 
-		onClick: function() {
+		onClick: function () {
 			ha.library.showBlocksView();
 		},
-	} );
+	});
 
-	Library.Views.Menu = Marionette.ItemView.extend( {
+	Library.Views.Menu = Marionette.ItemView.extend({
 		template: '#tmpl-haTemplateLibrary__header-menu',
 		id: 'elementor-template-library-header-menu',
 		className: 'haTemplateLibrary__header-menu',
 
-		templateHelpers: function() {
+		templateHelpers: function () {
 			return ha.library.getTabs();
 		},
-	} );
+	});
 
-	Library.Views.ResponsiveMenu = Marionette.ItemView.extend( {
+	Library.Views.ResponsiveMenu = Marionette.ItemView.extend({
 		template: '#tmpl-haTemplateLibrary__header-menu-responsive',
 		id: 'elementor-template-library-header-menu-responsive',
 		className: 'haTemplateLibrary__header-menu-responsive',
@@ -133,15 +132,15 @@
 			'click @ui.items': 'onTabItemClick'
 		},
 
-		onTabItemClick: function(event) {
+		onTabItemClick: function (event) {
 			var $target = $(event.currentTarget),
 				device = $target.data('tab');
 
 			ha.library.channels.tabs.trigger('change:device', device, $target);
 		}
-	} );
+	});
 
-	Library.Views.Actions = Marionette.ItemView.extend( {
+	Library.Views.Actions = Marionette.ItemView.extend({
 		template: '#tmpl-haTemplateLibrary__header-actions',
 		id: 'elementor-template-library-header-actions',
 
@@ -153,23 +152,23 @@
 			'click @ui.sync': 'onSyncClick',
 		},
 
-		onSyncClick: function() {
+		onSyncClick: function () {
 			var self = this;
 
-			self.ui.sync.addClass( 'eicon-animation-spin' );
+			self.ui.sync.addClass('eicon-animation-spin');
 
-			ha.library.requestLibraryData( {
-				onUpdate: function() {
-					self.ui.sync.removeClass( 'eicon-animation-spin' );
+			ha.library.requestLibraryData({
+				onUpdate: function () {
+					self.ui.sync.removeClass('eicon-animation-spin');
 					ha.library.updateBlocksView();
 				},
 				forceUpdate: true,
 				forceSync: true,
-			} );
+			});
 		},
-	} );
+	});
 
-	Library.Views.InsertWrapper = Marionette.ItemView.extend( {
+	Library.Views.InsertWrapper = Marionette.ItemView.extend({
 		template: '#tmpl-haTemplateLibrary__header-insert',
 
 		id: 'elementor-template-library-header-preview',
@@ -179,40 +178,40 @@
 				behaviorClass: Library.Behaviors.InsertTemplate,
 			},
 		},
-	} );
+	});
 
-	Library.Views.Preview = Marionette.ItemView.extend( {
+	Library.Views.Preview = Marionette.ItemView.extend({
 		template: '#tmpl-haTemplateLibrary__preview',
 		className: 'haTemplateLibrary__preview',
 
-		ui: function() {
+		ui: function () {
 			return {
 				iframe: '> iframe'
 			}
 		},
 
-		onRender: function() {
+		onRender: function () {
 			this.ui.iframe.attr('src', this.getOption('url')).hide();
 			var self = this,
 				loadingScreen = (new Library.Views.Loading()).render();
 
 			this.$el.append(loadingScreen.el);
 
-			this.ui.iframe.on('load', function() {
+			this.ui.iframe.on('load', function () {
 				self.$el.find('#haTemplateLibrary__loading').remove();
 				self.ui.iframe.show();
 			});
 		}
-	} );
+	});
 
-	Library.Views.TemplateCollection = Marionette.CompositeView.extend( {
+	Library.Views.TemplateCollection = Marionette.CompositeView.extend({
 		template: '#tmpl-haTemplateLibrary__templates',
 
 		id: 'haTemplateLibrary__templates',
 
 		childViewContainer: '#haTemplateLibrary__templates-list',
 
-		emptyView: function() {
+		emptyView: function () {
 			return new Library.Views.EmptyTemplateCollection();
 		},
 
@@ -228,29 +227,29 @@
 			'click @ui.tagsFilter li': 'onTagsFilterClick',
 		},
 
-		getChildView: function( childModel ) {
+		getChildView: function (childModel) {
 			return Library.Views.Template;
 		},
 
-		initialize: function() {
-			this.listenTo( ha.library.channels.templates, 'filter:change', this._renderChildren );
+		initialize: function () {
+			this.listenTo(ha.library.channels.templates, 'filter:change', this._renderChildren);
 		},
 
-		filter: function filter( childModel ) {
+		filter: function filter(childModel) {
 			var filterTerms = ha.library.getFilterTerms(),
 				passingFilter = true;
 
-			_.each( filterTerms, function( filterTerm, filterTermName ) {
-				var filterValue = ha.library.getFilter( filterTermName );
+			_.each(filterTerms, function (filterTerm, filterTermName) {
+				var filterValue = ha.library.getFilter(filterTermName);
 
-				if ( ! filterValue ) {
+				if (!filterValue) {
 					return;
 				}
 
-				if ( filterTerm.callback ) {
-					var callbackResult = filterTerm.callback.call( childModel, filterValue );
+				if (filterTerm.callback) {
+					var callbackResult = filterTerm.callback.call(childModel, filterValue);
 
-					if ( ! callbackResult ) {
+					if (!callbackResult) {
 						passingFilter = false;
 					}
 
@@ -261,35 +260,35 @@
 			return passingFilter;
 		},
 
-		setMasonrySkin: function() {
-			var masonry = new elementorModules.utils.Masonry( {
+		setMasonrySkin: function () {
+			var masonry = new elementorModules.utils.Masonry({
 				container: this.$childViewContainer,
 				items: this.$childViewContainer.children(),
-			} );
+			});
 
-			this.$childViewContainer.imagesLoaded( masonry.run.bind( masonry ) );
+			this.$childViewContainer.imagesLoaded(masonry.run.bind(masonry));
 		},
 
-		onRenderCollection: function() {
+		onRenderCollection: function () {
 			this.setMasonrySkin();
 			this.updatePerfectScrollbar();
 		},
 
-		onTextFilterInput: function() {
+		onTextFilterInput: function () {
 			var self = this;
-			_.defer(function() {
-				ha.library.setFilter( 'text', self.ui.textFilter.val() );
+			_.defer(function () {
+				ha.library.setFilter('text', self.ui.textFilter.val());
 			});
 		},
 
-		onTagsFilterClick: function( event ) {
-			var $select = $( event.currentTarget ),
+		onTagsFilterClick: function (event) {
+			var $select = $(event.currentTarget),
 				tag = $select.data('tag');
-			ha.library.setFilter( 'tags', tag );
+			ha.library.setFilter('tags', tag);
 
 			$select.addClass('active').siblings().removeClass('active');
 
-			if ( ! tag ) {
+			if (!tag) {
 				tag = 'Filter'
 			} else {
 				tag = ha.library.getTags()[tag];
@@ -298,8 +297,8 @@
 			this.ui.filterBar.find('.haTemplateLibrary__filter-btn').html(tag);
 		},
 
-		updatePerfectScrollbar: function() {
-			if ( ! this.perfectScrollbar ) {
+		updatePerfectScrollbar: function () {
+			if (!this.perfectScrollbar) {
 				this.perfectScrollbar = new PerfectScrollbar(this.ui.templatesWindow[0], {
 					suppressScrollX: true
 				}); // The RTL is buggy, so always keep it LTR.
@@ -308,18 +307,18 @@
 			this.perfectScrollbar.update();
 		},
 
-		setTagsFilterHover: function() {
+		setTagsFilterHover: function () {
 			var self = this;
 
 			self.ui.filterBar.hoverIntent(
-				function() {
+				function () {
 					self.ui.tagsFilter.css('display', 'block');
 					self.ui.filterBar
 						.find('.haTemplateLibrary__filter-btn i')
 						.addClass('eicon-caret-down')
 						.removeClass('eicon-caret-right');
 				},
-				function() {
+				function () {
 					self.ui.tagsFilter.css('display', 'none');
 					self.ui.filterBar
 						.find('.haTemplateLibrary__filter-btn i')
@@ -333,13 +332,13 @@
 			);
 		},
 
-		onRender: function() {
+		onRender: function () {
 			this.setTagsFilterHover();
 			this.updatePerfectScrollbar();
 		},
-	} );
+	});
 
-	Library.Views.Template = Marionette.ItemView.extend( {
+	Library.Views.Template = Marionette.ItemView.extend({
 		template: '#tmpl-haTemplateLibrary__template',
 
 		className: 'haTemplateLibrary__template',
@@ -358,13 +357,13 @@
 			},
 		},
 
-		onPreviewButtonClick: function() {
-			ha.library.showPreviewView( this.model )
+		onPreviewButtonClick: function () {
+			ha.library.showPreviewView(this.model)
 		},
-	} );
+	});
 
 	Library.Modal = elementorModules.common.views.modal.Layout.extend({
-		getModalOptions: function() {
+		getModalOptions: function () {
 			return {
 				id: 'haTemplateLibrary__modal',
 				hide: {
@@ -375,55 +374,57 @@
 			};
 		},
 
-		getTemplateActionButton: function getTemplateActionButton( templateData ) {
-			var templateName = ( templateData.isPro && ! HappyAddonsEditor.hasPro ) ? 'pro-button' : 'insert-button';
-				viewId = '#tmpl-haTemplateLibrary__' + templateName,
+		getTemplateActionButton: function getTemplateActionButton(templateData) {
+			var templateName = (templateData.isPro && !HappyAddonsEditor.hasPro) ? 'pro-button' : 'insert-button';
+			viewId = '#tmpl-haTemplateLibrary__' + templateName,
 				template = Marionette.TemplateCache.get(viewId);
 
 			return Marionette.Renderer.render(template);
 		},
 
-		showLogo: function(args) {
-			this.getHeaderView().logoArea.show( new Library.Views.Logo(args) );
+		showLogo: function (args) {
+			this.getHeaderView().logoArea.show(new Library.Views.Logo(args));
 		},
 
-		showDefaultHeader: function() {
+		showDefaultHeader: function () {
 			this.showLogo({
 				title: 'HAPPY LIBRARY'
 			});
 
 			var headerView = this.getHeaderView();
-			headerView.tools.show( new Library.Views.Actions() );
+			headerView.tools.show(new Library.Views.Actions());
 			// headerView.menuArea.show( new Library.Views.Menu() );
 			headerView.menuArea.reset();
 		},
 
-		showPreviewView: function( templateModel ) {
+		showPreviewView: function (templateModel) {
 			var headerView = this.getHeaderView();
 
-			headerView.menuArea.show( new Library.Views.ResponsiveMenu() );
-			headerView.logoArea.show( new Library.Views.BackButton() );
-			headerView.tools.show( new Library.Views.InsertWrapper( { model: templateModel } ) );
+			headerView.menuArea.show(new Library.Views.ResponsiveMenu());
+			headerView.logoArea.show(new Library.Views.BackButton());
+			headerView.tools.show(new Library.Views.InsertWrapper({
+				model: templateModel
+			}));
 
-			this.modalContent.show( new Library.Views.Preview( {
-				url: templateModel.get( 'url' )
-			} ) );
+			this.modalContent.show(new Library.Views.Preview({
+				url: templateModel.get('url')
+			}));
 		},
 
-		showBlocksView: function( blocksCollection ) {
-			this.modalContent.show( new Library.Views.TemplateCollection( {
+		showBlocksView: function (blocksCollection) {
+			this.modalContent.show(new Library.Views.TemplateCollection({
 				collection: blocksCollection,
-			} ) );
+			}));
 		}
 	});
 
-	Library.Manager = function() {
+	Library.Manager = function () {
 		var modal,
 			tags,
 			self = this,
 			templatesCollection,
 			errorDialog
-			FIND_SELECTOR = '.elementor-add-new-section .elementor-add-section-drag-title',
+		FIND_SELECTOR = '.elementor-add-new-section .elementor-add-section-drag-title',
 			$openLibraryButton = '<div class="elementor-add-section-area-button elementor-add-ha-button"> <i class="hm hm-happyaddons"></i> </div>',
 			devicesResponsiveMap = {
 				desktop: '100%',
@@ -434,8 +435,8 @@
 		this.atIndex = -1;
 
 		this.channels = {
-			tabs: Backbone.Radio.channel( 'tabs' ),
-			templates: Backbone.Radio.channel( 'templates' ),
+			tabs: Backbone.Radio.channel('tabs'),
+			templates: Backbone.Radio.channel('templates'),
 		};
 
 		function onAddElementButtonClick() {
@@ -444,7 +445,7 @@
 				sections = window.elementor.sections;
 
 			if (sections.currentView.collection.length) {
-				_.each(sections.currentView.collection.models, function(model, index) {
+				_.each(sections.currentView.collection.models, function (model, index) {
 					if (modelId === model.cid) {
 						self.atIndex = index
 					}
@@ -453,14 +454,14 @@
 
 			$topSection
 				.prev('.elementor-add-section')
-				.find( FIND_SELECTOR )
+				.find(FIND_SELECTOR)
 				.before($openLibraryButton);
 		}
 
-		function addLibraryModalOpenButton( $previewContents ) {
-			var $addNewSection = $previewContents.find( FIND_SELECTOR );
+		function addLibraryModalOpenButton($previewContents) {
+			var $addNewSection = $previewContents.find(FIND_SELECTOR);
 
-			$addNewSection.length && $addNewSection.before( $openLibraryButton );
+			$addNewSection.length && $addNewSection.before($openLibraryButton);
 
 			$previewContents.on(
 				'click.onAddElement',
@@ -469,7 +470,7 @@
 			);
 		}
 
-		function onDeviceChange( device, $target ) {
+		function onDeviceChange(device, $target) {
 			$target
 				.addClass('elementor-active')
 				.siblings()
@@ -481,10 +482,10 @@
 
 		function onPreviewLoaded() {
 			var $previewContents = window.elementor.$previewContents,
-				time = setInterval( function() {
-					addLibraryModalOpenButton( $previewContents );
+				time = setInterval(function () {
+					addLibraryModalOpenButton($previewContents);
 					$previewContents.find('.elementor-add-new-section').length > 0 && clearInterval(time);
-				}, 100 );
+				}, 100);
 
 			$previewContents.on(
 				'click.onAddTemplateButton',
@@ -495,39 +496,39 @@
 			this.channels.tabs.on('change:device', onDeviceChange);
 		}
 
-		this.updateBlocksView = function() {
-			self.setFilter('tags', '', true );
-			self.setFilter('text', '', true );
+		this.updateBlocksView = function () {
+			self.setFilter('tags', '', true);
+			self.setFilter('text', '', true);
 
-			self.getModal().showBlocksView( templatesCollection );
+			self.getModal().showBlocksView(templatesCollection);
 		}
 
-		this.setFilter = function( name, value, silent ) {
-			self.channels.templates.reply( 'filter:' + name, value );
+		this.setFilter = function (name, value, silent) {
+			self.channels.templates.reply('filter:' + name, value);
 
-			if ( ! silent ) {
-				self.channels.templates.trigger( 'filter:change' );
+			if (!silent) {
+				self.channels.templates.trigger('filter:change');
 			}
 		}
 
-		this.getFilter = function( name ) {
-			return self.channels.templates.request( 'filter:' + name );
+		this.getFilter = function (name) {
+			return self.channels.templates.request('filter:' + name);
 		};
 
-		this.getFilterTerms = function() {
+		this.getFilterTerms = function () {
 			return {
 				tags: {
-					callback: function callback( value ) {
+					callback: function callback(value) {
 						return _.any(this.get('tags'), function (tag) {
 							return tag.indexOf(value) >= 0;
 						});
 					}
 				},
 				text: {
-					callback: function callback( value ) {
+					callback: function callback(value) {
 						value = value.toLowerCase();
 
-						if ( this.get('title').toLowerCase().indexOf( value ) >= 0 ) {
+						if (this.get('title').toLowerCase().indexOf(value) >= 0) {
 							return true;
 						}
 
@@ -539,28 +540,28 @@
 			};
 		}
 
-		this.showModal = function() {
+		this.showModal = function () {
 			self.getModal().showModal();
 			self.showBlocksView();
 		};
 
-		this.closeModal = function() {
+		this.closeModal = function () {
 			this.getModal().hideModal();
 		};
 
-		this.getModal = function() {
-			if ( ! modal ) {
+		this.getModal = function () {
+			if (!modal) {
 				modal = new Library.Modal();
 			}
 
 			return modal;
 		};
 
-		this.init = function() {
-			elementor.on( 'preview:loaded', onPreviewLoaded.bind( this ) );
+		this.init = function () {
+			elementor.on('preview:loaded', onPreviewLoaded.bind(this));
 		}
 
-		this.getTabs = function() {
+		this.getTabs = function () {
 			return {
 				tabs: {
 					blocks: {
@@ -571,73 +572,73 @@
 			};
 		};
 
-		this.getTags = function() {
+		this.getTags = function () {
 			return tags;
 		}
 
-		this.showBlocksView = function() {
+		this.showBlocksView = function () {
 			self.getModal().showDefaultHeader();
-			self.setFilter('tags', '', true );
-			self.setFilter('text', '', true );
+			self.setFilter('tags', '', true);
+			self.setFilter('text', '', true);
 
-			self.loadTemplates( function() {
-				self.getModal().showBlocksView( templatesCollection );
-			} );
+			self.loadTemplates(function () {
+				self.getModal().showBlocksView(templatesCollection);
+			});
 		};
 
-		this.showPreviewView = function( templateModel ) {
-			self.getModal().showPreviewView( templateModel );
+		this.showPreviewView = function (templateModel) {
+			self.getModal().showPreviewView(templateModel);
 		};
 
-		this.loadTemplates = function( onUpdate ) {
-			self.requestLibraryData( {
-				onBeforeUpdate: self.getModal().showLoadingView.bind( self.getModal() ),
-				onUpdate: function() {
+		this.loadTemplates = function (onUpdate) {
+			self.requestLibraryData({
+				onBeforeUpdate: self.getModal().showLoadingView.bind(self.getModal()),
+				onUpdate: function () {
 					self.getModal().hideLoadingView();
 
-					if ( onUpdate ) {
+					if (onUpdate) {
 						onUpdate();
 					}
 				},
-			} );
+			});
 		};
 
-		this.requestLibraryData = function( options ) {
-			if ( templatesCollection && ! options.forceUpdate ) {
-				if ( options.onUpdate ) {
+		this.requestLibraryData = function (options) {
+			if (templatesCollection && !options.forceUpdate) {
+				if (options.onUpdate) {
 					options.onUpdate();
 				}
 
 				return;
 			}
 
-			if ( options.onBeforeUpdate ) {
+			if (options.onBeforeUpdate) {
 				options.onBeforeUpdate();
 			}
 
 			var ajaxOptions = {
 				data: {},
-				success: function( data ) {
-					templatesCollection = new Library.Collections.Template( data.templates );
+				success: function (data) {
+					templatesCollection = new Library.Collections.Template(data.templates);
 
-					if ( data.tags ) {
+					if (data.tags) {
 						tags = data.tags;
 					}
 
-					if ( options.onUpdate ) {
+					if (options.onUpdate) {
 						options.onUpdate();
 					}
 				},
 			};
 
-			if ( options.forceSync ) {
+			if (options.forceSync) {
 				ajaxOptions.data.sync = true;
 			}
 
-			elementorCommon.ajax.addRequest( 'get_ha_library_data', ajaxOptions );
+			elementorCommon.ajax.addRequest('get_ha_library_data', ajaxOptions);
 		};
 
-		this.requestTemplateData = function( template_id, ajaxOptions ) {
+		this.requestTemplateData = function (template_id, ajaxOptions) {
 			var options = {
 				unique_id: template_id,
 				data: {
@@ -647,79 +648,81 @@
 				},
 			};
 
-			if ( ajaxOptions ) {
-				jQuery.extend( true, options, ajaxOptions );
+			if (ajaxOptions) {
+				jQuery.extend(true, options, ajaxOptions);
 			}
 
-			elementorCommon.ajax.addRequest( 'get_ha_template_data', options );
+			elementorCommon.ajax.addRequest('get_ha_template_data', options);
 		};
 
-		this.insertTemplate = function( args ) {
+		this.insertTemplate = function (args) {
 			var model = args.model,
 				self = this;
 
 			self.getModal().showLoadingView();
 
-			self.requestTemplateData( model.get( 'template_id' ), {
-				success: function( data ) {
+			self.requestTemplateData(model.get('template_id'), {
+				success: function (data) {
 					self.getModal().hideLoadingView();
 					self.getModal().hideModal();
 
 					var options = {}
 
-					if ( self.atIndex !== -1) {
+					if (self.atIndex !== -1) {
 						options.at = self.atIndex;
 					}
 
-					$e.run( 'document/elements/import', {
+					$e.run('document/elements/import', {
 						model: model,
 						data: data,
 						options: options
-					} );
+					});
 
 					self.atIndex = -1;
 				},
-				error: function( data ) {
-					self.showErrorDialog( data );
+				error: function (data) {
+					self.showErrorDialog(data);
 				},
-				complete: function( data ) {
+				complete: function (data) {
 					self.getModal().hideLoadingView();
 				},
-			} );
+			});
 		};
 
-		this.showErrorDialog = function( errorMessage ) {
-			if ( 'object' === typeof errorMessage ) {
+		this.showErrorDialog = function (errorMessage) {
+			if ('object' === typeof errorMessage) {
 				var message = '';
 
-				_.each( errorMessage, function( error ) {
+				_.each(errorMessage, function (error) {
 					message += '<div>' + error.message + '.</div>';
-				} );
+				});
 
 				errorMessage = message;
-			} else if ( errorMessage ) {
+			} else if (errorMessage) {
 				errorMessage += '.';
 			} else {
 				errorMessage = '<i>&#60;The error message is empty&#62;</i>';
 			}
 
 			self.getErrorDialog()
-				.setMessage( 'The following error(s) occurred while processing the request:' + '<div id="elementor-template-library-error-info">' + errorMessage + '</div>' )
+				.setMessage('The following error(s) occurred while processing the request:' + '<div id="elementor-template-library-error-info">' + errorMessage + '</div>')
 				.show();
 		};
 
-		this.getErrorDialog = function() {
-			if ( ! errorDialog ) {
-				errorDialog = elementorCommon.dialogsManager.createWidget( 'alert', {
+		this.getErrorDialog = function () {
+			if (!errorDialog) {
+				errorDialog = elementorCommon.dialogsManager.createWidget('alert', {
 					id: 'elementor-template-library-error-dialog',
 					headerMessage: 'An error occurred',
-				} );
+				});
 			}
 
 			return errorDialog;
 		};
 	};
 
-	window.ha.library = new Library.Manager();
-	window.ha.library.init();
-}(jQuery, window.elementor));
+	ha.library = new Library.Manager();
+	ha.library.init();
+
+	window.ha = ha;
+}(jQuery, window.elementor, window.ha || {}));
