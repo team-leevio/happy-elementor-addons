@@ -327,6 +327,7 @@ class Step_Flow extends Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-steps-icon i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-steps-icon svg' => 'fill: {{VALUE}};',
 				],
 			]
 		);
