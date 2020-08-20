@@ -119,11 +119,15 @@
             var selector = filter !== '*' ? filter : '.ha-js-popup';
             initPopupGallery($scope, selector, hasPopup, 'justifiedgallery');
         });
-    };
+	};
+
+
 
     $window.on('elementor/frontend/init', function() {
         var EF = elementorFrontend,
-            EM = elementorModules;
+			EM = elementorModules;
+
+		console.log('elementor init')
 
         var ExtensionHandler = EM.frontend.handlers.Base.extend({
             onInit: function() {
@@ -564,7 +568,7 @@
 			    }, 200));
 		    }
         });
-        
+
         var DataTable = function($scope) {
             var columnTH = $scope.find('.ha-table__head-column-cell');
             var rowTR = $scope.find('.ha-table__body-row');
@@ -574,7 +578,7 @@
                 th.each( function( index, th ) {
                     $(th).prepend( '<div class="ha-table__head-column-cell">' + columnTH.eq(index).html() + '</div>' );
                 } );
-            } ); 
+            } );
         };
 
 	    //Threesixty Rotation
@@ -696,6 +700,5 @@
                 EF.elementsHandler.addHandler( handlerClass, { $element: $scope });
             });
         });
-    });
-
+	});
 } (jQuery, window));
