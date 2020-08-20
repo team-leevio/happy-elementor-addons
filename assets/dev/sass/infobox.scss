@@ -37,6 +37,7 @@
 			position: relative;
 			display: block;
 			transform: rotate(calc(-1 * var(--ha-infobox-media-rotate)));
+			fill: currentColor;
 		}
 
 		i:before {
@@ -62,7 +63,7 @@
 			margin-bottom: 0;
 		}
 
-		& + .ha-btn--link {
+		&+.ha-btn--link {
 			margin-top: 25px;
 		}
 	}

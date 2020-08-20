@@ -2,213 +2,236 @@
 @import "mixins";
 
 .ha-flip-box-container {
-  &:after {
-    clear: both;
-    content: " ";
-    display: block;
-    visibility: hidden;
-    font-size: 0;
-    height: 0;
-  }
+	&:after {
+		clear: both;
+		content: " ";
+		display: block;
+		visibility: hidden;
+		font-size: 0;
+		height: 0;
+	}
 
-  .ha-flip-box-inner {
-    position: relative;
-    z-index: 1;
-    padding: 0;
-    margin: 0;
-    backface-visibility: hidden;
+	.ha-flip-box-inner {
+		position: relative;
+		z-index: 1;
+		padding: 0;
+		margin: 0;
+		backface-visibility: hidden;
 
-    &:hover {
-      .ha-flip-box-back {
-        z-index: 1
-      }
-      .ha-flip-box-front {
-        z-index: -1
-      }
-    }
-    .ha-flip-box-inner-wrapper {
-      position: relative;
-      transform: translateZ(0);
-      perspective: 1000px
-    }
-    .ha-flip-box-back,
-    .ha-flip-box-front {
-      display: flex;
-      align-items: center;
-      top: 0;
-      right: 0;
-      left: 0;
-      perspective: 1000px;
-      text-align: center;
-      backface-visibility: hidden;
-      background-clip: padding-box;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      height: 250px;
-      background-color: transparent;
-      &:before {
-        content: "";
-        width: 100%;
-        height: 100%;
-        background-color: transparent;
-        position: absolute;
-        z-index: -9;
-        top: 0;
-        left: 0;
-      }
-    }
-    .ha-flip-box-front {
-      position: relative;
-      bottom: 0;
-      z-index: 10;
-      border: 1px solid #ddd;
-      border-radius: .3rem;
-      padding: 30px;
-    }
-    .ha-flip-box-back {
-      background-color: $primary-color;
-      position: absolute;
-      z-index: -1;
-      color: #fff;
-      border-radius: .3rem;
-      padding: 46px;
-    }
-    .ha-flip-box-back-inner,
-    .ha-flip-box-front-inner {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      .ha-text {
-        text-align: center;
-      }
-      .ha-text p {
-        margin-top: 10px;
-        margin-bottom: 0;
-      }
-    }
-    .ha-flip-box-front-inner {
-      .ha-flip-icon.icon {
-          background-color: #f1f4f8;
-          color: #242424;
-          border-radius: 50%;
-          padding: 20px;
-       }
-      .ha-flip-icon {
-        margin-bottom: 20px;
-        text-align: center;
-		display: inline-block;
-		font-size: 28px;
+		&:hover {
+			.ha-flip-box-back {
+				z-index: 1
+			}
 
-		i,
-		svg {
-			display: block;
-			width: 1em;
-			height: 1em;
+			.ha-flip-box-front {
+				z-index: -1
+			}
 		}
 
-        i {
-          position: relative;
-          &:before {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-          }
+		.ha-flip-box-inner-wrapper {
+			position: relative;
+			transform: translateZ(0);
+			perspective: 1000px
 		}
 
-        img {
-          vertical-align: middle;
-          width: 60px;
-          height: 60px;
-        }
-      }
-      .ha-flip-box-heading {
-        font-size: 20px;
-        font-weight: bold;
-        margin: 0;
-      }
-      p {
-        font-size: 16px;
-        margin-bottom: 0;
-      }
-    }
-    .ha-flip-box-back-inner{
-      .ha-flip-box-heading-back {
-        font-size: 18px;
-        margin: 0;
-        color: #fff;
-      }
-      .ha-flip-icon {
-        margin-bottom: 20px;
-        text-align: center;
-		display: inline-block;
-		font-size: 20px;
+		.ha-flip-box-back,
+		.ha-flip-box-front {
+			display: flex;
+			align-items: center;
+			top: 0;
+			right: 0;
+			left: 0;
+			perspective: 1000px;
+			text-align: center;
+			backface-visibility: hidden;
+			background-clip: padding-box;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			height: 250px;
+			background-color: transparent;
 
-		i,
-		svg {
-			display: block;
-			width: 1em;
-			height: 1em;
+			&:before {
+				content: "";
+				width: 100%;
+				height: 100%;
+				background-color: transparent;
+				position: absolute;
+				z-index: -9;
+				top: 0;
+				left: 0;
+			}
 		}
 
-        i {
-          color: #fff;
-		  position: relative;
-          &:before {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-          }
+		.ha-flip-box-front {
+			position: relative;
+			bottom: 0;
+			z-index: 10;
+			border: 1px solid #ddd;
+			border-radius: .3rem;
+			padding: 30px;
 		}
 
-        img {
-          vertical-align: middle;
-          width: 60px;
-          height: 60px;
-        }
-      }
+		.ha-flip-box-back {
+			background-color: $primary-color;
+			position: absolute;
+			z-index: -1;
+			color: #fff;
+			border-radius: .3rem;
+			padding: 46px;
+		}
 
-    }
-  }
+		.ha-flip-box-back-inner,
+		.ha-flip-box-front-inner {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			position: relative;
 
-  //flip right
-  .ha-flip-box-inner.ha-flip-right .ha-flip-box-front {
-    transform: rotateY(0)
-  }
-  .ha-flip-box-inner.ha-flip-right .ha-flip-box-back {
-    transform: rotateY(-180deg)
-  }
-  .ha-flip-box-inner.ha-flip-right:hover .ha-flip-box-back {
-    transform: rotateY(0)
-  }
-  .ha-flip-box-inner.ha-flip-right:hover .ha-flip-box-front {
-    transform: rotateY(180deg)
-  }
+			.ha-text {
+				text-align: center;
+			}
 
-  //flip up
-  .ha-flip-box-inner.ha-flip-up .ha-flip-box-front {
-    transform: rotateX(0)
-  }
+			.ha-text p {
+				margin-top: 10px;
+				margin-bottom: 0;
+			}
+		}
 
-  .ha-flip-box-inner.ha-flip-up .ha-flip-box-back {
-    transform: rotateX(-180deg)
-  }
+		.ha-flip-box-front-inner {
+			.ha-flip-icon.icon {
+				background-color: #f1f4f8;
+				color: #242424;
+				border-radius: 50%;
+				padding: 20px;
+			}
 
-  .ha-flip-box-inner.ha-flip-up:hover .ha-flip-box-back {
-    transform: rotateX(0)
-  }
+			.ha-flip-icon {
+				margin-bottom: 20px;
+				text-align: center;
+				display: inline-block;
+				font-size: 28px;
 
-  .ha-flip-box-inner.ha-flip-up:hover .ha-flip-box-front {
-    transform: rotateX(180deg)
-  }
+				i,
+				svg {
+					display: block;
+					width: 1em;
+					height: 1em;
+					fill: currentColor;
+				}
+
+				i {
+					position: relative;
+
+					&:before {
+						position: absolute;
+						left: 50%;
+						transform: translateX(-50%);
+					}
+				}
+
+				img {
+					vertical-align: middle;
+					width: 60px;
+					height: 60px;
+				}
+			}
+
+			.ha-flip-box-heading {
+				font-size: 20px;
+				font-weight: bold;
+				margin: 0;
+			}
+
+			p {
+				font-size: 16px;
+				margin-bottom: 0;
+			}
+		}
+
+		.ha-flip-box-back-inner {
+			.ha-flip-box-heading-back {
+				font-size: 18px;
+				margin: 0;
+				color: #fff;
+			}
+
+			.ha-flip-icon {
+				margin-bottom: 20px;
+				text-align: center;
+				display: inline-block;
+				font-size: 20px;
+				color: #fff;
+
+				i,
+				svg {
+					display: block;
+					width: 1em;
+					height: 1em;
+					fill: currentColor;
+				}
+
+				i {
+					position: relative;
+
+					&:before {
+						position: absolute;
+						left: 50%;
+						transform: translateX(-50%);
+					}
+				}
+
+				img {
+					vertical-align: middle;
+					width: 60px;
+					height: 60px;
+				}
+			}
+
+		}
+	}
+
+	//flip right
+	.ha-flip-box-inner.ha-flip-right .ha-flip-box-front {
+		transform: rotateY(0)
+	}
+
+	.ha-flip-box-inner.ha-flip-right .ha-flip-box-back {
+		transform: rotateY(-180deg)
+	}
+
+	.ha-flip-box-inner.ha-flip-right:hover .ha-flip-box-back {
+		transform: rotateY(0)
+	}
+
+	.ha-flip-box-inner.ha-flip-right:hover .ha-flip-box-front {
+		transform: rotateY(180deg)
+	}
+
+	//flip up
+	.ha-flip-box-inner.ha-flip-up .ha-flip-box-front {
+		transform: rotateX(0)
+	}
+
+	.ha-flip-box-inner.ha-flip-up .ha-flip-box-back {
+		transform: rotateX(-180deg)
+	}
+
+	.ha-flip-box-inner.ha-flip-up:hover .ha-flip-box-back {
+		transform: rotateX(0)
+	}
+
+	.ha-flip-box-inner.ha-flip-up:hover .ha-flip-box-front {
+		transform: rotateX(180deg)
+	}
 
 }
 
 // classic effect
 .ha-flip-box-container.ha-flip-effect-classic {
-  .ha-flip-box-back,
-  .ha-flip-box-front {
-    transition: transform .6s cubic-bezier(.2,.85,.4,1.275);
-  }
+
+	.ha-flip-box-back,
+	.ha-flip-box-front {
+		transition: transform .6s cubic-bezier(.2, .85, .4, 1.275);
+	}
 }

@@ -669,7 +669,7 @@ class Flip_Box extends Base {
                     'front_icon_type' => 'icon'
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon i' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-flip-box-front-inner .icon-wrap .ha-flip-icon' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -1032,7 +1032,7 @@ class Flip_Box extends Base {
                     'back_icon_type' => 'icon'
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-icon i' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-flip-box-back-inner .ha-flip-icon' => 'color: {{VALUE}}',
                 ],
             ]
         );

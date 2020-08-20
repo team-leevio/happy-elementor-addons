@@ -2,320 +2,337 @@
 @import "mixins";
 
 .ha-dual-btn {
-  &,
-  &-connector {
-    display: inline-block;
-  }
 
-  &-wrapper {
-    position: relative;
-    text-align: center;
-    font-weight: 400;
-  }
+	&,
+	&-connector {
+		display: inline-block;
+	}
 
-  & {
-    padding: 1.2rem 3rem;
-    text-decoration: none;
-    color: #fff;
-    font-size: 14px;
-    max-width: 100%;
-  }
+	&-wrapper {
+		position: relative;
+		text-align: center;
+		font-weight: 400;
+	}
 
-  &--left {
-    background-color: $primary-color;
+	& {
+		padding: 1.3rem 2.3rem;
+		text-decoration: none;
+		color: #fff;
+		font-size: 14px;
+		max-width: 100%;
+		line-height: 1;
+	}
 
-    &:hover,
-    &:focus {
-      color: #fff;
-      background-color: darken($primary-color, 10%);
-    }
-  }
+	&--left {
+		background-color: $primary-color;
 
-  &--right {
-    background-color: $secondary-color;
+		&:hover,
+		&:focus {
+			color: #fff;
+			background-color: darken($primary-color, 10%);
+		}
+	}
 
-    &:hover,
-    &:focus {
-      color: #fff;
-      background-color: darken($secondary-color, 10%);
-    }
-  }
+	&--right {
+		background-color: $secondary-color;
 
-  &-connector {
-    position: absolute !important;
-    z-index: 9;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    box-shadow: 0 0 0 5px rgba(255, 255, 255, .3);
-    border-radius: 100%;
-    background-color: #fff;
-    color: #27374c;
-    font-size: 12px;
-    text-transform: uppercase;
-    transform: translate(50%, -50%);
-    overflow: hidden;
-  }
+		&:hover,
+		&:focus {
+			color: #fff;
+			background-color: darken($secondary-color, 10%);
+		}
+	}
 
-  &-icon {
-    > svg {
-      width: 1em;
-      height: auto;
-    }
+	&-connector {
+		position: absolute !important;
+		z-index: 9;
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		box-shadow: 0 0 0 5px rgba(255, 255, 255, .3);
+		border-radius: 100%;
+		background-color: #fff;
+		color: #27374c;
+		font-size: 12px;
+		text-transform: uppercase;
+		transform: translate(50%, -50%);
+		overflow: hidden;
+	}
 
-    > i {
-      font-size: 1em;
-    }
+	&-icon {
+		>svg {
+			width: 1em;
+			height: auto;
+			fill: currentColor;
+			vertical-align: top;
+		}
 
-    &--before {
-      margin-right: 5px;
-    }
-    &--after {
-      margin-left: 5px;
-    }
-  }
+		>i {
+			font-size: 1em;
+		}
+
+		&--before {
+			margin-right: 5px;
+		}
+
+		&--after {
+			margin-left: 5px;
+		}
+	}
 }
 
 .ha-dual-button {
-  @include widgetContainer {
-    display: flex;
-  }
+	@include widgetContainer {
+		display: flex;
+	}
 
-  &--mobile-layout-stack {
-    @include widgetContainer {
-      flex-direction: column;
-    }
+	&--mobile-layout-stack {
+		@include widgetContainer {
+			flex-direction: column;
+		}
 
-    .ha-dual-btn-wrapper {
-      max-width: 100%;
-    }
+		.ha-dual-btn-wrapper {
+			max-width: 100%;
+		}
 
-    .ha-dual-btn-connector {
-      top: 100%;
-      right: 50%;
-    }
+		.ha-dual-btn-connector {
+			top: 100%;
+			right: 50%;
+		}
 
-    .ha-dual-btn--left {
-      border-radius: 30px 30px 0 0;
-    }
+		.ha-dual-btn--left {
+			border-radius: 30px 30px 0 0;
+		}
 
-    .ha-dual-btn--right {
-      border-radius: 0 0 30px 30px;
-    }
-  }
+		.ha-dual-btn--right {
+			border-radius: 0 0 30px 30px;
+		}
+	}
 
-  &--mobile-layout-stack#{&}--mobile-align-left {
-    @include widgetContainer {
-      align-items: flex-start;
-    }
-  }
-  &--mobile-layout-stack#{&}--mobile-align-center {
-    @include widgetContainer {
-      align-items: center;
-    }
-  }
-  &--mobile-layout-stack#{&}--mobile-align-right {
-    @include widgetContainer {
-      align-items: flex-end;
-    }
-  }
+	&--mobile-layout-stack#{&}--mobile-align-left {
+		@include widgetContainer {
+			align-items: flex-start;
+		}
+	}
 
-  &--mobile-layout-queue#{&}--mobile-align-left {
-    @include widgetContainer {
-      justify-content: flex-start;
-    }
-  }
-  &--mobile-layout-queue#{&}--mobile-align-center {
-    @include widgetContainer {
-      justify-content: center;
-    }
-  }
-  &--mobile-layout-queue#{&}--mobile-align-right {
-    @include widgetContainer {
-      justify-content: flex-end;
-    }
-  }
+	&--mobile-layout-stack#{&}--mobile-align-center {
+		@include widgetContainer {
+			align-items: center;
+		}
+	}
 
-  &--mobile-layout-queue {
-    @include widgetContainer {
-      flex-direction: row;
-    }
+	&--mobile-layout-stack#{&}--mobile-align-right {
+		@include widgetContainer {
+			align-items: flex-end;
+		}
+	}
 
-    .ha-dual-btn-wrapper {
-      max-width: 50%;
-    }
+	&--mobile-layout-queue#{&}--mobile-align-left {
+		@include widgetContainer {
+			justify-content: flex-start;
+		}
+	}
 
-    .ha-dual-btn-connector {
-      top: 50%;
-      right: 0;
-    }
+	&--mobile-layout-queue#{&}--mobile-align-center {
+		@include widgetContainer {
+			justify-content: center;
+		}
+	}
 
-    .ha-dual-btn--left {
-      border-radius: 50px 0 0 50px;
-    }
+	&--mobile-layout-queue#{&}--mobile-align-right {
+		@include widgetContainer {
+			justify-content: flex-end;
+		}
+	}
 
-    .ha-dual-btn--right {
-      border-radius: 0 50px 50px 0;
-    }
-  }
+	&--mobile-layout-queue {
+		@include widgetContainer {
+			flex-direction: row;
+		}
 
-  @media (min-width: 768px) {
-    &--tablet-layout-stack#{&}--tablet-align-left {
-      @include widgetContainer {
-        align-items: flex-start;
-      }
-    }
-    &--tablet-layout-stack#{&}--tablet-align-center {
-      @include widgetContainer {
-        align-items: center;
-      }
-    }
-    &--tablet-layout-stack#{&}--tablet-align-right {
-      @include widgetContainer {
-        align-items: flex-end;
-      }
-    }
+		.ha-dual-btn-wrapper {
+			max-width: 50%;
+		}
 
-    &--tablet-layout-queue#{&}--tablet-align-left {
-      @include widgetContainer {
-        justify-content: flex-start;
-      }
-    }
-    &--tablet-layout-queue#{&}--tablet-align-center {
-      @include widgetContainer {
-        justify-content: center;
-      }
-    }
-    &--tablet-layout-queue#{&}--tablet-align-right {
-      @include widgetContainer {
-        justify-content: flex-end;
-      }
-    }
+		.ha-dual-btn-connector {
+			top: 50%;
+			right: 0;
+		}
 
-    &--tablet-layout-stack {
-      @include widgetContainer {
-        flex-direction: column;
-      }
+		.ha-dual-btn--left {
+			border-radius: 50px 0 0 50px;
+		}
 
-      .ha-dual-btn-wrapper {
-        max-width: 100%;
-      }
+		.ha-dual-btn--right {
+			border-radius: 0 50px 50px 0;
+		}
+	}
 
-      .ha-dual-btn-connector {
-        top: 100%;
-        right: 50%;
-      }
+	@media (min-width: 768px) {
+		&--tablet-layout-stack#{&}--tablet-align-left {
+			@include widgetContainer {
+				align-items: flex-start;
+			}
+		}
 
-      .ha-dual-btn--left {
-        border-radius: 30px 30px 0 0;
-      }
+		&--tablet-layout-stack#{&}--tablet-align-center {
+			@include widgetContainer {
+				align-items: center;
+			}
+		}
 
-      .ha-dual-btn--right {
-        border-radius: 0 0 30px 30px;
-      }
-    }
+		&--tablet-layout-stack#{&}--tablet-align-right {
+			@include widgetContainer {
+				align-items: flex-end;
+			}
+		}
 
-    &--tablet-layout-queue {
-      @include widgetContainer {
-        flex-direction: row;
-      }
+		&--tablet-layout-queue#{&}--tablet-align-left {
+			@include widgetContainer {
+				justify-content: flex-start;
+			}
+		}
 
-      .ha-dual-btn-wrapper {
-        max-width: 50%;
-      }
+		&--tablet-layout-queue#{&}--tablet-align-center {
+			@include widgetContainer {
+				justify-content: center;
+			}
+		}
 
-      .ha-dual-btn-connector {
-        top: 50%;
-        right: 0;
-      }
+		&--tablet-layout-queue#{&}--tablet-align-right {
+			@include widgetContainer {
+				justify-content: flex-end;
+			}
+		}
 
-      .ha-dual-btn--left {
-        border-radius: 50px 0 0 50px;
-      }
+		&--tablet-layout-stack {
+			@include widgetContainer {
+				flex-direction: column;
+			}
 
-      .ha-dual-btn--right {
-        border-radius: 0 50px 50px 0;
-      }
-    }
-  }
+			.ha-dual-btn-wrapper {
+				max-width: 100%;
+			}
 
-  @media (min-width: 1025px) {
-    &--layout-stack#{&}--align-left {
-      @include widgetContainer {
-        align-items: flex-start;
-      }
-    }
-    &--layout-stack#{&}--align-center {
-      @include widgetContainer {
-        align-items: center;
-      }
-    }
-    &--layout-stack#{&}--align-right {
-      @include widgetContainer {
-        align-items: flex-end;
-      }
-    }
+			.ha-dual-btn-connector {
+				top: 100%;
+				right: 50%;
+			}
 
-    &--layout-queue#{&}--align-left {
-      @include widgetContainer {
-        justify-content: flex-start;
-      }
-    }
-    &--layout-queue#{&}--align-center {
-      @include widgetContainer {
-        justify-content: center;
-      }
-    }
-    &--layout-queue#{&}--align-right {
-      @include widgetContainer {
-        justify-content: flex-end;
-      }
-    }
+			.ha-dual-btn--left {
+				border-radius: 30px 30px 0 0;
+			}
 
-    &--layout-stack {
-      @include widgetContainer {
-        flex-direction: column;
-      }
+			.ha-dual-btn--right {
+				border-radius: 0 0 30px 30px;
+			}
+		}
 
-      .ha-dual-btn-wrapper {
-        max-width: 100%;
-      }
+		&--tablet-layout-queue {
+			@include widgetContainer {
+				flex-direction: row;
+			}
 
-      .ha-dual-btn-connector {
-        top: 100%;
-        right: 50%;
-      }
+			.ha-dual-btn-wrapper {
+				max-width: 50%;
+			}
 
-      .ha-dual-btn--left {
-        border-radius: 30px 30px 0 0;
-      }
+			.ha-dual-btn-connector {
+				top: 50%;
+				right: 0;
+			}
 
-      .ha-dual-btn--right {
-        border-radius: 0 0 30px 30px;
-      }
-    }
+			.ha-dual-btn--left {
+				border-radius: 50px 0 0 50px;
+			}
 
-    &--layout-queue {
-      @include widgetContainer {
-        flex-direction: row;
-      }
+			.ha-dual-btn--right {
+				border-radius: 0 50px 50px 0;
+			}
+		}
+	}
 
-      .ha-dual-btn-wrapper {
-        max-width: 50%;
-      }
+	@media (min-width: 1025px) {
+		&--layout-stack#{&}--align-left {
+			@include widgetContainer {
+				align-items: flex-start;
+			}
+		}
 
-      .ha-dual-btn-connector {
-        top: 50%;
-        right: 0;
-      }
+		&--layout-stack#{&}--align-center {
+			@include widgetContainer {
+				align-items: center;
+			}
+		}
 
-      .ha-dual-btn--left {
-        border-radius: 50px 0 0 50px;
-      }
+		&--layout-stack#{&}--align-right {
+			@include widgetContainer {
+				align-items: flex-end;
+			}
+		}
 
-      .ha-dual-btn--right {
-        border-radius: 0 50px 50px 0;
-      }
-    }
-  }
+		&--layout-queue#{&}--align-left {
+			@include widgetContainer {
+				justify-content: flex-start;
+			}
+		}
+
+		&--layout-queue#{&}--align-center {
+			@include widgetContainer {
+				justify-content: center;
+			}
+		}
+
+		&--layout-queue#{&}--align-right {
+			@include widgetContainer {
+				justify-content: flex-end;
+			}
+		}
+
+		&--layout-stack {
+			@include widgetContainer {
+				flex-direction: column;
+			}
+
+			.ha-dual-btn-wrapper {
+				max-width: 100%;
+			}
+
+			.ha-dual-btn-connector {
+				top: 100%;
+				right: 50%;
+			}
+
+			.ha-dual-btn--left {
+				border-radius: 30px 30px 0 0;
+			}
+
+			.ha-dual-btn--right {
+				border-radius: 0 0 30px 30px;
+			}
+		}
+
+		&--layout-queue {
+			@include widgetContainer {
+				flex-direction: row;
+			}
+
+			.ha-dual-btn-wrapper {
+				max-width: 50%;
+			}
+
+			.ha-dual-btn-connector {
+				top: 50%;
+				right: 0;
+			}
+
+			.ha-dual-btn--left {
+				border-radius: 50px 0 0 50px;
+			}
+
+			.ha-dual-btn--right {
+				border-radius: 0 50px 50px 0;
+			}
+		}
+	}
 }

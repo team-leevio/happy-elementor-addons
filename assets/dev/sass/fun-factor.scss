@@ -50,6 +50,7 @@
 		display: block;
 		width: 1em;
 		height: 1em;
+		fill: currentColor;
 	}
 
 	i:before {
@@ -65,29 +66,29 @@
 	overflow-wrap: break-word;
 }
 
-.ha-ff-icon--right > .elementor-widget-container .ha-fun-factor__wrap,
-.ha-ff-icon--left > .elementor-widget-container .ha-fun-factor__wrap {
+.ha-ff-icon--right>.elementor-widget-container .ha-fun-factor__wrap,
+.ha-ff-icon--left>.elementor-widget-container .ha-fun-factor__wrap {
 	display: flex;
 	align-items: center;
 	flex-direction: row;
 }
 
-.ha-ff-icon--right > .elementor-widget-container .ha-fun-factor__wrap {
+.ha-ff-icon--right>.elementor-widget-container .ha-fun-factor__wrap {
 	flex-direction: row-reverse;
 	text-align: right;
 }
 
-.ha-ff-icon--right > .elementor-widget-container .ha-fun-factor__wrap .ha-fun-factor__divider,
-.ha-ff-icon--left > .elementor-widget-container .ha-fun-factor__wrap .ha-fun-factor__divider,
-.ha-ff-icon--top > .elementor-widget-container .ha-fun-factor__wrap .ha-fun-factor__divider {
+.ha-ff-icon--right>.elementor-widget-container .ha-fun-factor__wrap .ha-fun-factor__divider,
+.ha-ff-icon--left>.elementor-widget-container .ha-fun-factor__wrap .ha-fun-factor__divider,
+.ha-ff-icon--top>.elementor-widget-container .ha-fun-factor__wrap .ha-fun-factor__divider {
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
 	width: 100px;
 }
 
-.ha-ff-icon--right > .elementor-widget-container .ha-fun-factor__wrap .ha-fun-factor__divider,
-.ha-ff-icon--left > .elementor-widget-container .ha-fun-factor__wrap .ha-fun-factor__divider {
+.ha-ff-icon--right>.elementor-widget-container .ha-fun-factor__wrap .ha-fun-factor__divider,
+.ha-ff-icon--left>.elementor-widget-container .ha-fun-factor__wrap .ha-fun-factor__divider {
 	width: 100% !important;
 }
 

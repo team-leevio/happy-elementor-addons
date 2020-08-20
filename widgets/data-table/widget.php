@@ -490,7 +490,7 @@ class Data_Table extends Base {
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-table__body-row-cell-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-table__body-row-cell-icon img' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-table__body-row-cell-icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};'
+					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-table__body-row-cell-icon svg' => 'width: {{SIZE}}{{UNIT}};'
 				],
 			]
 		);
@@ -717,7 +717,7 @@ class Data_Table extends Base {
 				'type' => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .ha-table .ha-table__head-column-cell-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-table .ha-table__head-column-cell-icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};'
+					'{{WRAPPER}} .ha-table .ha-table__head-column-cell-icon svg' => 'width: {{SIZE}}{{UNIT}};'
 				],
 			]
 		);

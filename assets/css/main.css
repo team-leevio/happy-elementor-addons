@@ -39,8 +39,7 @@
 	max-width: 100%;
 	height: auto;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .happy-addon p:empty {
@@ -139,6 +138,8 @@
 .ha-btn-icon--svg svg {
 	width: auto;
 	height: 1em;
+
+	fill: currentColor;
 }
 
 .ha-badge {
@@ -483,6 +484,8 @@
 	-webkit-transform: rotate(calc(-1 * var(--ha-infobox-media-rotate)));
 	    -ms-transform: rotate(calc(-1 * var(--ha-infobox-media-rotate)));
 	        transform: rotate(calc(-1 * var(--ha-infobox-media-rotate)));
+
+	fill: currentColor;
 }
 .ha-infobox-figure i:before {
 	position: absolute;
@@ -547,6 +550,8 @@
 	display: block;
 	width: 1em;
 	height: 1em;
+
+	fill: currentColor;
 }
 .ha-icon-box-icon i {
 	-webkit-transition: -webkit-transform .3s;
@@ -1649,11 +1654,12 @@
 }
 
 .ha-dual-btn {
-	padding: 1.2rem 3rem;
-	max-width: 100%; 
+	padding: 1.3rem 2.3rem;
+	max-width: 100%;
 	color: #fff;
 	text-decoration: none;
 	font-size: 14px;
+	line-height: 1;
 }
 
 .ha-dual-btn--left {
@@ -1695,6 +1701,9 @@
 .ha-dual-btn-icon > svg {
 	width: 1em;
 	height: auto;
+	vertical-align: top; 
+
+	fill: currentColor;
 }
 
 .ha-dual-btn-icon > i {
@@ -2046,8 +2055,7 @@
 	height: 100%;
 	border-radius: 50%;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 .ha-testimonial__reviewer-name {
 	margin-bottom: 10px; 
@@ -2271,6 +2279,8 @@
 	display: block;
 	width: 1em;
 	height: 1em;
+
+	fill: currentColor;
 }
 .ha-flip-box-container .ha-flip-box-inner .ha-flip-box-front-inner .ha-flip-icon i {
 	position: relative;
@@ -2304,6 +2314,7 @@
 .ha-flip-box-container .ha-flip-box-inner .ha-flip-box-back-inner .ha-flip-icon {
 	display: inline-block;
 	margin-bottom: 20px;
+	color: #fff; 
 	text-align: center;
 	font-size: 20px;
 }
@@ -2312,10 +2323,11 @@
 	display: block;
 	width: 1em;
 	height: 1em;
+
+	fill: currentColor;
 }
 .ha-flip-box-container .ha-flip-box-inner .ha-flip-box-back-inner .ha-flip-icon i {
-	position: relative; 
-	color: #fff;
+	position: relative;
 }
 .ha-flip-box-container .ha-flip-box-inner .ha-flip-box-back-inner .ha-flip-icon i:before {
 	position: absolute;
@@ -2508,9 +2520,7 @@
 }
 
 .ha-step-flow {
-	--ha-stepflow-direction-origin-x: calc(-1 * ((var(--ha-stepflow-icon-size, 46px) / 2)
-		+ var(--ha-stepflow-icon-padding, 40px)
-		+ var(--ha-stepflow-direction-offset-x, 20px)));
+	--ha-stepflow-direction-origin-x: calc(-1 * ((var(--ha-stepflow-icon-size, 46px) / 2) + var(--ha-stepflow-icon-padding, 40px) + var(--ha-stepflow-direction-offset-x, 20px)));
 }
 .ha-step-flow > .elementor-widget-container {
 	padding: 25px; 
@@ -2520,7 +2530,7 @@
 .ha-step-arrow {
 	position: absolute;
 	top: 49%;
-	left: calc( 100% + 20px);
+	left: calc(100% + 20px);
 	display: inline-block;
 	width: 100px;
 	border-top: 1px solid #ddd;
@@ -2560,10 +2570,12 @@
 }
 .ha-steps-icon i,
 .ha-steps-icon svg {
-	position: relative; 
+	position: relative;
 	display: block;
 	width: 1em;
 	height: 1em;
+
+	fill: currentColor;
 }
 .ha-steps-icon i:before {
 	position: absolute;
@@ -2730,6 +2742,8 @@
 	display: block;
 	width: 1em;
 	height: 1em;
+
+	fill: currentColor;
 }
 .ha-fun-factor__media--icon i:before {
 	position: absolute;
@@ -3215,8 +3229,10 @@ span.ha-post-list-icon {
 	font-size: 14px;
 }
 span.ha-post-list-icon svg {
-	width: auto; 
+	width: auto;
 	height: 1em;
+
+	fill: currentColor;
 }
 
 .ha-post-list-meta-wrap {
@@ -3699,6 +3715,9 @@ span.ha-threesixty-rotation-magnify {
 
 .ha-data-table .ha-table__head-column-cell-icon svg {
 	width: 40px;
+	height: auto;
+
+	fill: currentColor;
 }
 
 .ha-data-table .ha-table__body-row:nth-child(even) {
@@ -3749,6 +3768,9 @@ span.ha-threesixty-rotation-magnify {
 
 .ha-data-table .ha-table__body-row-cell-icon svg {
 	width: 40px;
+	height: auto;
+
+	fill: currentColor;
 }
 
 .ha-data-table .ha-table__body .ha-table__head-column-cell {

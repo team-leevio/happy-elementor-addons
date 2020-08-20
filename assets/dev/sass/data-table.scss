@@ -18,40 +18,47 @@
 			text-align: center;
 			vertical-align: middle;
 		}
+
 		&-cell-wrap {
 			display: inline-flex;
 			flex-direction: row;
 			align-items: center;
 		}
+
 		&-cell-icon {
 			line-height: 1;
 			padding-left: 10px;
 		}
+
 		&-cell-icon img {
 			width: 40px;
 		}
+
 		&-cell-icon svg {
 			width: 40px;
+			height: auto;
+			fill: currentColor;
 		}
 	}
-	
+
 	.ha-table__body {
 		&-row {
 			&:nth-child(even) {
 				background-color: #fff;
-	
+
 				&:hover {
 					background-color: rgba(86, 54, 209, 0.08);
 				}
 			}
+
 			&:nth-child(odd) {
 				background-color: #fff;
-	
+
 				&:hover {
 					background-color: rgba(232, 53, 124, 0.08);
 				}
 			}
-	
+
 			&-cell {
 				background-color: transparent;
 				border: 1px solid #ddd;
@@ -59,23 +66,28 @@
 				vertical-align: middle;
 			}
 		}
-		
+
 		&-row-cell-wrap {
 			display: inline-flex;
 			flex-direction: row;
 			align-items: center;
 		}
+
 		&-row-cell-icon {
 			line-height: 1;
 			padding-left: 10px;
 		}
+
 		&-row-cell-icon img {
 			width: 40px;
 		}
+
 		&-row-cell-icon svg {
 			width: 40px;
+			height: auto;
+			fill: currentColor;
 		}
-	
+
 		.ha-table__head-column-cell {
 			display: none;
 		}
@@ -87,6 +99,7 @@
 			width: 100%;
 		}
 	}
+
 	&.ha-column-icon-left,
 	&.ha-column-icon-right {
 		.ha-table__head-column-cell-icon {
@@ -100,6 +113,7 @@
 			width: 100%;
 		}
 	}
+
 	&.ha-row-icon-left,
 	&.ha-row-icon-right {
 		.ha-table__body-row-cell-icon {
@@ -112,16 +126,19 @@
 			flex-direction: row-reverse;
 		}
 	}
+
 	&.ha-column-icon-right {
 		.ha-table__head-column-cell-wrap {
 			flex-direction: row;
 		}
 	}
+
 	&.ha-column-icon-top {
 		.ha-table__head-column-cell-wrap {
 			flex-direction: column-reverse;
 		}
 	}
+
 	&.ha-column-icon-bottom {
 		.ha-table__head-column-cell-wrap {
 			flex-direction: column;
@@ -133,16 +150,19 @@
 			flex-direction: row-reverse;
 		}
 	}
+
 	&.ha-row-icon-right {
 		.ha-table__body-row-cell-wrap {
 			flex-direction: row;
 		}
 	}
+
 	&.ha-row-icon-top {
 		.ha-table__body-row-cell-wrap {
 			flex-direction: column-reverse;
 		}
 	}
+
 	&.ha-row-icon-bottom {
 		.ha-table__body-row-cell-wrap {
 			flex-direction: column;
@@ -162,6 +182,7 @@
 				display: flex;
 				flex-direction: column;
 			}
+
 			.ha-table__body-row-cell {
 				display: flex;
 				justify-content: space-between;
@@ -173,10 +194,12 @@
 					margin-top: auto;
 				}
 			}
+
 			.ha-table__head-column-cell {
 				display: block;
 				width: 100%;
 			}
+
 			.ha-table__body-row-cell-wrap {
 				display: flex;
 				width: 100%;
@@ -188,11 +211,13 @@
 				justify-content: flex-end;
 			}
 		}
+
 		&.ha-row-icon-left.ha-row-alignment-center {
 			.ha-table__body-row-cell-wrap {
 				justify-content: center;
 			}
 		}
+
 		&.ha-row-icon-left.ha-row-alignment-right {
 			.ha-table__body-row-cell-wrap {
 				justify-content: flex-start;
@@ -206,6 +231,7 @@
 				justify-content: center;
 			}
 		}
+
 		&.ha-row-icon-top.ha-row-alignment-center,
 		&.ha-row-icon-bottom.ha-row-alignment-center {
 			.ha-table__body-row-cell-wrap {
@@ -213,6 +239,7 @@
 				justify-content: center;
 			}
 		}
+
 		&.ha-row-icon-top.ha-row-alignment-right,
 		&.ha-row-icon-bottom.ha-row-alignment-right {
 			.ha-table__body-row-cell-wrap {

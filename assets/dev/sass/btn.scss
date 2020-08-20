@@ -32,16 +32,18 @@
 		}
 	}
 
-	&-icon + &-text,
-	&-text + &-icon {
+	&-icon+&-text,
+	&-text+&-icon {
 		margin-left: 5px;
 	}
 
 	&-icon--svg {
 		display: inline-block;
+
 		svg {
 			width: auto;
 			height: 1em;
+			fill: currentColor;
 		}
 	}
 }
