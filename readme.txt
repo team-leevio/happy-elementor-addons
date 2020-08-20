@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.13.1
+Version: 2.13.2
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -258,6 +258,15 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.13.2 - 20 August 2020 =
+
+- Tweak: Removed icons control workaround for HappyIcons
+- Tweak: Removed assets loading hook priority
+- Tweak: Improved Dual Button default style
+- Fix: CSS Transform normal/hover mode not working on frontend issue
+- Fix: Color change doens't have any effect on SVG icon issue
+- Fix: Card widget image size issue on Firefox and responsive mode
 
 = 2.13.1 - 6 August 2020 =
 
