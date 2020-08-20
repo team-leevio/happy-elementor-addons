@@ -147,10 +147,6 @@ class Assets_Cache {
 	public function save() {
 		$widgets = $this->get_widgets_cache()->get();
 
-		if ( empty( $widgets ) ) {
-			return;
-		}
-
 		$widgets_map = Widgets_Manager::get_widgets_map();
 		$base_widget = isset( $widgets_map[ Widgets_Manager::get_base_widget_key() ] ) ? $widgets_map[ Widgets_Manager::get_base_widget_key() ] : [];
 		$styles = '';
