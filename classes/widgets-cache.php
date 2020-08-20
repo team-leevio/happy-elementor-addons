@@ -68,7 +68,7 @@ class Widgets_Cache {
 
     public function get_cache_data() {
         $cache = get_post_meta( $this->get_post_id(), self::META_KEY, true );
-        if ( empty( $cache ) ) {
+        if ( empty( $cache ) || ! is_array( $cache ) ) {
             $cache = $this->save();
         }
         return $cache;
