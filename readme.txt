@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.13.2
+Version: 2.13.3
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -258,6 +258,11 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.13.3 - 24 August 2020 =
+
+- Fix: HappyAddons Pro assets loading issues
+- Fix: Misc style issue
 
 = 2.13.2 - 20 August 2020 =
 

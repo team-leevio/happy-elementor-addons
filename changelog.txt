@@ -1,3 +1,8 @@
+= 2.13.3 - 24 August 2020 =
+
+- Fix: HappyAddons Pro assets loading issues
+- Fix: Misc style issue
+
 = 2.13.2 - 20 August 2020 =
 
 - Tweak: Removed icons control workaround for HappyIcons
