@@ -25,6 +25,11 @@ class Assets_Manager {
 
 		// Paragraph toolbar registration
 		add_filter( 'elementor/editor/localize_settings', [ __CLASS__, 'add_inline_editing_intermediate_toolbar' ] );
+
+		/**
+		 * @see self::fix_pro_assets_loading
+		 */
+		self::fix_pro_assets_loading();
 	}
 
 	/**
@@ -423,6 +428,24 @@ class Assets_Manager {
 				null,
 				HAPPY_ADDONS_VERSION
 			);
+		}
+	}
+
+	/**
+	 * Fix HappyAddons Pro assets loading.
+	 * 
+	 * Assets loading issue casued by free 2.13.2 release
+	 * due to a change in hook priority.
+	 * 
+	 * @todo remove in future
+	 *
+	 * @return void
+	 */
+	public static function fix_pro_assets_loading() {
+		if ( ha_has_pro() && version_compare( HAPPY_ADDONS_PRO_VERSION, '1.9.0', '<=' ) ) {
+			$callback = [ '\Happy_Addons_Pro\Assets_Manager', 'frontend_register' ];		
+			remove_action( 'wp_enqueue_scripts', $callback );
+			add_action( 'happyaddons_enqueue_assets', $callback );
 		}
 	}
 }
