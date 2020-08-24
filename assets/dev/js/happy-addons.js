@@ -121,13 +121,9 @@
         });
 	};
 
-
-
     $window.on('elementor/frontend/init', function() {
         var EF = elementorFrontend,
 			EM = elementorModules;
-
-		console.log('elementor init')
 
         var ExtensionHandler = EM.frontend.handlers.Base.extend({
             onInit: function() {
