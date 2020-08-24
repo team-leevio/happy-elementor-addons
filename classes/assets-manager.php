@@ -445,7 +445,7 @@ class Assets_Manager {
 		if ( ha_has_pro() && version_compare( HAPPY_ADDONS_PRO_VERSION, '1.9.0', '<=' ) ) {
 			$callback = [ '\Happy_Addons_Pro\Assets_Manager', 'frontend_register' ];		
 			remove_action( 'wp_enqueue_scripts', $callback );
-			add_action( 'happyaddons_enqueue_assets', $callback );
+			add_action( 'wp_enqueue_scripts', $callback, 0 );
 		}
 	}
 }
