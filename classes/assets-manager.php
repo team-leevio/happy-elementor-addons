@@ -18,7 +18,8 @@ class Assets_Manager {
 		add_action( 'elementor/css-file/post/enqueue', [ __CLASS__, 'frontend_enqueue_exceptions' ] );
 
 		// Edit and preview enqueue
-		add_action( 'elementor/preview/enqueue_styles', [ __CLASS__, 'enqueue_preview_style' ] );
+		add_action( 'elementor/preview/enqueue_styles', [ __CLASS__, 'enqueue_preview_styles' ] );
+		// add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'enqueue_preview_scripts' ] );
 
 		// Enqueue editor scripts
 		add_action( 'elementor/editor/after_enqueue_scripts', [ __CLASS__, 'enqueue_editor_scripts' ] );
@@ -248,15 +249,19 @@ class Assets_Manager {
 		wp_register_script(
 			'happy-elementor-addons',
 			HAPPY_ADDONS_ASSETS . 'js/happy-addons' . $suffix . 'js',
-			['imagesloaded', 'jquery'],
+			[
+				'elementor-frontend-modules',
+				'elementor-frontend',
+				'jquery'
+			],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
 
 		//Localize scripts
 		wp_localize_script('happy-elementor-addons', 'HappyLocalize', [
-			'ajax_url' => admin_url('admin-ajax.php'),
-			'nonce' => wp_create_nonce('happy_addons_nonce'),
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce' => wp_create_nonce( 'happy_addons_nonce' ),
 		]);
 	}
 
@@ -345,22 +350,21 @@ class Assets_Manager {
 		self::enqueue_dark_stylesheet();
 
 		$localize_data = [
-			'editorPanelHomeLinkURL'      => ha_get_dashboard_link(),
-			'editorPanelWidgetsLinkURL'   => ha_get_dashboard_link('#widgets'),
+			'proWidgets'                => [],
+			'hasPro'                    => ha_has_pro(),
+			'editorPanelHomeLinkURL'    => ha_get_dashboard_link(),
+			'editorPanelWidgetsLinkURL' => ha_get_dashboard_link( '#widgets' ),
+			'select2Secret'             => wp_create_nonce( 'HappyAddons_Select2_Secret' ),
+			'darkStylesheetURL'         => self::get_dark_stylesheet_url(),
 			'i18n' => [
-				'editorPanelHomeLinkTitle'    => esc_html__( 'HappyAddons', 'happy-elementor-addons' ),
-				'promotionDialogHeader' => esc_html__( '%s Widget', 'happy-elementor-addons' ),
-				'promotionDialogMessage' => esc_html__( 'Use %s widget with other exclusive pro widgets and 100% unique features to extend your toolbox and build sites faster and better.', 'happy-elementor-addons' ),
-
-				'templatesEmptyTitle' => esc_html__( 'No Templates Found', 'happy-elementor-addons' ),
-				'templatesEmptyMessage' => esc_html__( 'Try different category or sync for new templates.', 'happy-elementor-addons' ),
-				'templatesNoResultsTitle' => esc_html__( 'No Results Found', 'happy-elementor-addons' ),
+				'editorPanelHomeLinkTitle'  => esc_html__( 'HappyAddons', 'happy-elementor-addons' ),
+				'promotionDialogHeader'     => esc_html__( '%s Widget', 'happy-elementor-addons' ),
+				'promotionDialogMessage'    => esc_html__( 'Use %s widget with other exclusive pro widgets and 100% unique features to extend your toolbox and build sites faster and better.', 'happy-elementor-addons' ),
+				'templatesEmptyTitle'       => esc_html__( 'No Templates Found', 'happy-elementor-addons' ),
+				'templatesEmptyMessage'     => esc_html__( 'Try different category or sync for new templates.', 'happy-elementor-addons' ),
+				'templatesNoResultsTitle'   => esc_html__( 'No Results Found', 'happy-elementor-addons' ),
 				'templatesNoResultsMessage' => esc_html__( 'Please make sure your search is spelled correctly or try a different words.', 'happy-elementor-addons' ),
 			],
-			'proWidgets' => [],
-			'hasPro' => ha_has_pro(),
-			'select2Secret' => wp_create_nonce( 'HappyAddons_Select2_Secret' ),
-			'darkStylesheetURL' => self::get_dark_stylesheet_url()
 		];
 
 		if ( ! ha_has_pro() && ha_is_elementor_version( '>=', '2.9.0' ) ) {
@@ -374,7 +378,13 @@ class Assets_Manager {
 		);
 	}
 
-	public static function enqueue_preview_style() {
+	/**
+	 * Enqueue stylesheets only for preview window
+	 * editing mode basically.
+	 *
+	 * @return void
+	 */
+	public static function enqueue_preview_styles() {
 		if ( ha_is_weforms_activated() ) {
 			wp_enqueue_style(
 				'happy-addons-weform',
@@ -431,19 +441,33 @@ class Assets_Manager {
 		}
 	}
 
+	// /**
+	//  * Enqueue scripts only for preview window
+	//  * editing mode basically.
+	//  *
+	//  * @return void
+	//  */
+	// public static function enqueue_preview_scripts() {
+	// 	/**
+	// 	 * Load only for preview since on frontend it'll be loaded via
+	// 	 * on demand assets loading
+	// 	 */
+	// 	// wp_enequeue_script( 'imagesloaded' );
+	// }
+
 	/**
 	 * Fix HappyAddons Pro assets loading.
-	 * 
+	 *
 	 * Assets loading issue casued by free 2.13.2 release
 	 * due to a change in hook priority.
-	 * 
+	 *
 	 * @todo remove in future
 	 *
 	 * @return void
 	 */
 	public static function fix_pro_assets_loading() {
 		if ( ha_has_pro() && version_compare( HAPPY_ADDONS_PRO_VERSION, '1.9.0', '<=' ) ) {
-			$callback = [ '\Happy_Addons_Pro\Assets_Manager', 'frontend_register' ];		
+			$callback = [ '\Happy_Addons_Pro\Assets_Manager', 'frontend_register' ];
 			remove_action( 'wp_enqueue_scripts', $callback );
 			add_action( 'wp_enqueue_scripts', $callback, 0 );
 		}

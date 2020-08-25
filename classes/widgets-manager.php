@@ -247,7 +247,7 @@ class Widgets_Manager {
 				'js' => [],
 				'vendor' => [
 					'css' => ['twentytwenty'],
-					'js' => ['jquery-event-move','jquery-twentytwenty'],
+					'js' => ['jquery-event-move','jquery-twentytwenty', 'imagesloaded'],
 				],
 			],
 			'justified-gallery' => [
@@ -269,7 +269,7 @@ class Widgets_Manager {
 				'js' => [],
 				'vendor' => [
 					'css' => ['magnific-popup'],
-					'js' => ['jquery-isotope', 'jquery-magnific-popup'],
+					'js' => ['jquery-isotope', 'jquery-magnific-popup', 'imagesloaded'],
 				],
 			],
 			'slider' => [
@@ -287,7 +287,6 @@ class Widgets_Manager {
 				'demo' => 'https://happyaddons.com/go/demo-image-carousel',
 				'title' => __( 'Carousel', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-carousal',
-				'class' => Carousel::class,
 				'css' => ['slider-carousel'],
 				'js' => [],
 				'vendor' => [
