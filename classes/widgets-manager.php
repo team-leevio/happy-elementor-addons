@@ -570,6 +570,16 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'social-share' => [
+				'title' => __( 'Social Share', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-share',
+				'css' => ['social-share'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => ['sharer-js'],
+				]
+			],
         ];
     }
 
