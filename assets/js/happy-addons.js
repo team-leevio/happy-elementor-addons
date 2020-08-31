@@ -95,8 +95,6 @@
 				$window.trigger('resize.twentytwenty');
 				clearTimeout(t);
 			}, 400);
-
-			console.log('wow');
 		});
 	};
 

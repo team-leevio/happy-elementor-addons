@@ -19,7 +19,6 @@ class Assets_Manager {
 
 		// Edit and preview enqueue
 		add_action( 'elementor/preview/enqueue_styles', [ __CLASS__, 'enqueue_preview_styles' ] );
-		// add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'enqueue_preview_scripts' ] );
 
 		// Enqueue editor scripts
 		add_action( 'elementor/editor/after_enqueue_scripts', [ __CLASS__, 'enqueue_editor_scripts' ] );
@@ -250,6 +249,7 @@ class Assets_Manager {
 			'happy-elementor-addons',
 			HAPPY_ADDONS_ASSETS . 'js/happy-addons' . $suffix . 'js',
 			[
+				'elementor-common',
 				'elementor-frontend-modules',
 				'elementor-frontend',
 				'jquery'
@@ -440,20 +440,6 @@ class Assets_Manager {
 			);
 		}
 	}
-
-	// /**
-	//  * Enqueue scripts only for preview window
-	//  * editing mode basically.
-	//  *
-	//  * @return void
-	//  */
-	// public static function enqueue_preview_scripts() {
-	// 	/**
-	// 	 * Load only for preview since on frontend it'll be loaded via
-	// 	 * on demand assets loading
-	// 	 */
-	// 	// wp_enequeue_script( 'imagesloaded' );
-	// }
 
 	/**
 	 * Fix HappyAddons Pro assets loading.
