@@ -44,11 +44,11 @@
 			textClass: 'ha-btn-text',
 		});
 
-		if (!_.isObject(view) || _.isUndefined(view['getContainer'])) {
-			return '';
+		if (!_.isObject(view)) {
+			return;
 		}
 
-		settings = view.getContainer().settings.toJSON();
+		settings = view.model.attributes.settings.toJSON();
 
 		var buttonText = !_.isUndefined(settings[args.text]) ? settings[args.text] : '',
 			hasOldIcon = (!_.isUndefined(settings[args.oldIcon]) && settings[args.oldIcon]) ? true : false,
