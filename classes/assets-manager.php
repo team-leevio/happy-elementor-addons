@@ -244,25 +244,33 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION
 		);
 
+		$script_deps = [
+			'elementor-frontend-modules',
+			'elementor-frontend',
+			'jquery'
+		];
+
+		if ( ! ha_elementor()->preview->is_preview() ) {
+			array_unshift( $script_deps, 'elementor-common' );
+		}
+
 		// Happy addons script
 		wp_register_script(
 			'happy-elementor-addons',
 			HAPPY_ADDONS_ASSETS . 'js/happy-addons' . $suffix . 'js',
-			[
-				// 'elementor-common',
-				'elementor-frontend-modules',
-				'elementor-frontend',
-				'jquery'
-			],
+			$script_deps,
 			HAPPY_ADDONS_VERSION,
 			true
 		);
 
 		//Localize scripts
-		wp_localize_script('happy-elementor-addons', 'HappyLocalize', [
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'nonce' => wp_create_nonce( 'happy_addons_nonce' ),
-		]);
+		wp_localize_script(
+			'happy-elementor-addons',
+			'HappyLocalize', [
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'nonce'    => wp_create_nonce( 'happy_addons_nonce' ),
+			]
+		);
 	}
 
 	/**
