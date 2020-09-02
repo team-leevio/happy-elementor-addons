@@ -69,7 +69,7 @@ class Review extends Base {
 		$this->add_control(
 			'ratting',
 			[
-				'label' => __( 'Ratting', 'happy-elementor-addons' ),
+				'label' => __( 'Rating', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'unit' => 'px',
@@ -92,7 +92,7 @@ class Review extends Base {
 		$this->add_control(
 			'ratting_style',
 			[
-				'label' => __( 'Ratting Style', 'happy-elementor-addons' ),
+				'label' => __( 'Rating Style', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'star' => __( 'Star', 'happy-elementor-addons' ),
@@ -124,8 +124,8 @@ class Review extends Base {
 				'label' => __( 'Review Position', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'before' => __( 'Before Ratting', 'happy-elementor-addons' ),
-					'after' => __( 'After Ratting', 'happy-elementor-addons' ),
+					'before' => __( 'Before Rating', 'happy-elementor-addons' ),
+					'after' => __( 'After Rating', 'happy-elementor-addons' ),
 				],
 				'default' => 'before',
 				'style_transfer' => true,
@@ -305,7 +305,7 @@ class Review extends Base {
 		$this->start_controls_section(
 			'_section_ratting_style',
 			[
-				'label' => __( 'Ratting', 'happy-elementor-addons' ),
+				'label' => __( 'Rating', 'happy-elementor-addons' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);

@@ -5,6 +5,7 @@
 - Fix: Templates compatibility issue with Elementor 3.x.x
 - Fix: Script dependency order issue
 - Tweak: Removed common image styles, instead added widget wise
+- Fix: Review widget spelling error
 
 = 2.13.3 - 24 August 2020 =
 
