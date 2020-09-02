@@ -23,7 +23,8 @@
 
   .justified-gallery > .entry-visible > img,
   .justified-gallery > .entry-visible > a > img {
-    transition: all 300ms, opacity 500ms ease-in;
+	transition: all 300ms, opacity 500ms ease-in;
+	object-fit: cover;
   }
 }
 

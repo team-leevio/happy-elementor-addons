@@ -16,7 +16,8 @@
     img {
       display: block;
       width: 100%;
-      transition: all .25s;
+	  transition: all .25s;
+	  object-fit: cover;
     }
 
     //&:hover {

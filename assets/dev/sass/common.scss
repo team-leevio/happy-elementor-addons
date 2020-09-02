@@ -34,19 +34,19 @@
 		}
 	}
 
-	img {
-		max-width: 100%;
-		height: auto;
-		object-fit: cover;
-	}
-
 	p:empty {
 		display: none;
 	}
 
 	.elementor-inline-editing {
-		min-height: auto !important
+		min-height: auto !important;
 	}
+}
+
+.happy-addon-pro img {
+	max-width: 100%;
+	height: auto;
+	object-fit: cover;
 }
 
 .ha-screen-reader-text {

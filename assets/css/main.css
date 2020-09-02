@@ -35,20 +35,20 @@
 	box-sizing: border-box;
 }
 
-.happy-addon img {
-	max-width: 100%;
-	height: auto;
-
-	-o-object-fit: cover;
-	   object-fit: cover;
-}
-
 .happy-addon p:empty {
 	display: none;
 }
 
 .happy-addon .elementor-inline-editing {
 	min-height: auto !important;
+}
+
+.happy-addon-pro img {
+	max-width: 100%;
+	height: auto;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .ha-screen-reader-text {
@@ -238,9 +238,12 @@
 	        transform: translate(var(--ha-card-image-offset-x), var(--ha-card-image-offset-y));
 }
 .ha-card-figure img {
-	width: 100%; 
+	width: 100%;
 	height: 100%;
 	vertical-align: bottom;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .ha-card-body {
@@ -502,6 +505,9 @@
 	width: 100%;
 	height: 100%;
 	vertical-align: bottom;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 .ha-infobox-body {
 	margin-top: var(--ha-infobox-media-offset-y);
@@ -605,6 +611,9 @@
 	width: 100%;
 	height: 100%;
 	vertical-align: bottom;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .ha-member-name {
@@ -691,6 +700,9 @@
 	height: 100%;
 	border-radius: 50%;
 	vertical-align: bottom;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 .ha-review-reviewer {
 	margin-top: 0;
@@ -881,6 +893,9 @@
 	width: 100%;
 	-webkit-transition: all .25s;
 	        transition: all .25s;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .ha-image-grid--layout-even .ha-image-grid-inner {
@@ -918,6 +933,9 @@
 .ha-justified-gallery .justified-gallery > .entry-visible > a > img {
 	-webkit-transition: all 300ms, opacity 500ms ease-in;
 	        transition: all 300ms, opacity 500ms ease-in;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 @-webkit-keyframes haSmoothReveal {
@@ -1215,6 +1233,9 @@
 
 .ha-logo-grid-img {
 	max-height: 100%;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 @media (min-width: 1025px) {
@@ -2299,8 +2320,11 @@
 }
 .ha-flip-box-container .ha-flip-box-inner .ha-flip-box-front-inner .ha-flip-icon img {
 	width: 60px;
-	height: 60px; 
+	height: 60px;
 	vertical-align: middle;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 .ha-flip-box-container .ha-flip-box-inner .ha-flip-box-front-inner .ha-flip-box-heading {
 	margin: 0; 
@@ -2343,8 +2367,11 @@
 }
 .ha-flip-box-container .ha-flip-box-inner .ha-flip-box-back-inner .ha-flip-icon img {
 	width: 60px;
-	height: 60px; 
+	height: 60px;
 	vertical-align: middle;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .ha-flip-box-container .ha-flip-box-inner.ha-flip-right .ha-flip-box-front {
@@ -2736,6 +2763,9 @@
 	width: 100%;
 	height: 100%;
 	vertical-align: bottom;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .ha-fun-factor__media--icon {
@@ -2987,6 +3017,9 @@ a.ha-social-icon:after {
 .ha-twitter-feed .ha-tweet-avatar {
 	width: 45px;
 	border-radius: 50%;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .ha-twitter-feed .ha-tweet-user {
@@ -3226,6 +3259,9 @@ a.ha-social-icon:after {
 
 .ha-post-list-item a img {
 	margin-right: 15px;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 span.ha-post-list-icon {
@@ -3359,6 +3395,9 @@ span.ha-post-list-icon svg {
 .ha-post-tab .ha-post-tab-item-inner .ha-post-tab-thumb img {
 	max-width: 100%;
 	height: auto;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .ha-post-tab .ha-post-tab-item-inner .ha-post-tab-title {
@@ -3595,6 +3634,9 @@ span.ha-post-list-icon svg {
 
 .ha-taxonomy-list span.ha-taxonomy-list-image img {
 	width: 50px;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .ha-threesixty-rotation-inner {
@@ -3604,6 +3646,9 @@ span.ha-post-list-icon svg {
 
 .ha-threesixty-rotation-inner img {
 	cursor: move;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .ha-img-magnifier-glass {
@@ -3716,6 +3761,9 @@ span.ha-threesixty-rotation-magnify {
 
 .ha-data-table .ha-table__head-column-cell-icon img {
 	width: 40px;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .ha-data-table .ha-table__head-column-cell-icon svg {
@@ -3769,6 +3817,9 @@ span.ha-threesixty-rotation-magnify {
 
 .ha-data-table .ha-table__body-row-cell-icon img {
 	width: 40px;
+
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .ha-data-table .ha-table__body-row-cell-icon svg {
