@@ -249,7 +249,7 @@ class Assets_Manager {
 			'happy-elementor-addons',
 			HAPPY_ADDONS_ASSETS . 'js/happy-addons' . $suffix . 'js',
 			[
-				'elementor-common',
+				// 'elementor-common',
 				'elementor-frontend-modules',
 				'elementor-frontend',
 				'jquery'
@@ -271,12 +271,20 @@ class Assets_Manager {
 	 * @param Post_CSS $file
 	 */
 	public static function frontend_enqueue_exceptions( Post_CSS $file ) {
-		if ( get_queried_object_id() !== $file->get_post_id() ) {
-			if ( Cache_Manager::should_enqueue( $file->get_post_id() ) ) {
-				Cache_Manager::enqueue( $file->get_post_id() );
-			} else {
-				Cache_Manager::enqueue_without_cache();
-			}
+		if ( get_queried_object_id() === $file->get_post_id() ) {
+			return;
+		}
+
+		$template_type = get_post_meta( $file->get_post_id(), '_elementor_template_type', true );
+
+		if ( $template_type === 'kit' ) {
+			return;
+		}
+
+		if ( Cache_Manager::should_enqueue( $file->get_post_id() ) ) {
+			Cache_Manager::enqueue( $file->get_post_id() );
+		} else {
+			Cache_Manager::enqueue_without_cache();
 		}
 	}
 

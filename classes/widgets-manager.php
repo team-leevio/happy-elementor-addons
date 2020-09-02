@@ -39,7 +39,7 @@ class Widgets_Manager {
 	public static function get_widgets_map() {
 		$widgets_map = [
 			self::get_base_widget_key() => [
-				'css' => ['common', 'btn'],
+				'css' => ['common'],
 				'js' => [],
 				'vendor' => [
 					'js' => ['anime'],
@@ -177,7 +177,7 @@ class Widgets_Manager {
 				'demo' => 'https://happyaddons.com/go/demo-info-box',
 				'title' => __( 'Info Box', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-blog-content',
-				'css' => ['infobox'],
+				'css' => ['btn', 'infobox', ],
 				'js' => [],
 				'vendor' => [
 					'css' => [],
@@ -188,7 +188,7 @@ class Widgets_Manager {
 				'demo' => 'https://happyaddons.com/go/demo-card',
 				'title' => __( 'Card', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-card',
-				'css' => ['card', 'badge'],
+				'css' => ['btn', 'badge', 'card'],
 				'js' => [],
 				'vendor' => [
 					'css' => [],
@@ -210,7 +210,7 @@ class Widgets_Manager {
 				'demo' => 'https://happyaddons.com/go/demo-icon-box',
 				'title' => __( 'Icon Box', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-icon-box',
-				'css' => ['icon-box', 'badge'],
+				'css' => ['badge', 'icon-box'],
 				'js' => [],
 				'vendor' => [
 					'css' => [],
@@ -221,7 +221,7 @@ class Widgets_Manager {
 				'demo' => 'https://happyaddons.com/go/demo-team-member',
 				'title' => __( 'Team Member', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-team-member',
-				'css' => ['member'],
+				'css' => ['btn', 'member'],
 				'js' => [],
 				'vendor' => [
 					'css' => [],

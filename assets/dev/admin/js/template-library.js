@@ -441,12 +441,12 @@
 
 		function onAddElementButtonClick() {
 			var $topSection = $(this).closest('.elementor-top-section'),
-				modelId = $topSection.data('model-cid'),
-				sections = window.elementor.sections;
+				sectionId = $topSection.data('id'),
+				documentSections = elementor.documents.getCurrent().container.children;
 
-			if (sections.currentView.collection.length) {
-				_.each(sections.currentView.collection.models, function (model, index) {
-					if (modelId === model.cid) {
+			if (documentSections) {
+				_.each(documentSections, function (sectionContainer, index) {
+					if (sectionId === sectionContainer.id) {
 						self.atIndex = index
 					}
 				});
@@ -685,6 +685,7 @@
 				},
 				complete: function (data) {
 					self.getModal().hideLoadingView();
+					window.elementor.$previewContents.find('.elementor-add-section .elementor-add-section-close').click();
 				},
 			});
 		};

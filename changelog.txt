@@ -1,3 +1,9 @@
+= 2.14 - 24 August 2020 =
+
+- Fix: Card and Infobox delete issue
+- Tweak: Removed unnecessary Elementor kit assets enqueue
+- Fix: Templates compatibility issue with Elementor 3.x.x
+
 = 2.13.3 - 24 August 2020 =
 
 - Fix: HappyAddons Pro assets loading issues
