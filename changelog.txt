@@ -1,10 +1,13 @@
-= 2.14 - 24 August 2020 =
+= 2.14.0 - 3 September 2020 =
 
-- Fix: Card and Infobox delete issue
+- New: Updated compatibility with WP 5.5.x
+- New: Updated compatibility with Elementor 3.x.x
+- New: Twitter feed timestamp settings 
 - Tweak: Removed unnecessary Elementor kit assets enqueue
+- Tweak: Removed common image styles, instead added widget wise
 - Fix: Templates compatibility issue with Elementor 3.x.x
 - Fix: Script dependency order issue
-- Tweak: Removed common image styles, instead added widget wise
+- Fix: Card and Infobox delete issue
 - Fix: Review widget spelling error
 
 = 2.13.3 - 24 August 2020 =

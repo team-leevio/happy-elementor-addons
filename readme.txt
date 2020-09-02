@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.13.3
+Version: 2.14.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -258,6 +258,18 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.14.0 - 3 September 2020 =
+
+- New: Updated compatibility with WP 5.5.x
+- New: Updated compatibility with Elementor 3.x.x
+- New: Twitter feed timestamp settings 
+- Tweak: Removed unnecessary Elementor kit assets enqueue
+- Tweak: Removed common image styles, instead added widget wise
+- Fix: Templates compatibility issue with Elementor 3.x.x
+- Fix: Script dependency order issue
+- Fix: Card and Infobox delete issue
+- Fix: Review widget spelling error
 
 = 2.13.3 - 24 August 2020 =
 
