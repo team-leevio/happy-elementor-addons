@@ -3,6 +3,7 @@
 - Fix: Card and Infobox delete issue
 - Tweak: Removed unnecessary Elementor kit assets enqueue
 - Fix: Templates compatibility issue with Elementor 3.x.x
+- Fix: Script dependency order issue
 
 = 2.13.3 - 24 August 2020 =
 
