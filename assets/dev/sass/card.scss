@@ -71,11 +71,15 @@
 		}
 	}
 
-	.elementor &#{&}--right,
-	.elementor &#{&}--left {
+	// .elementor &#{&}--right,
+	// .elementor &#{&}--left {
+	// 	--ha-card-image-width: 50%;
+	// }
+
+	&#{&}--right,
+	&#{&}--left {
 		--ha-card-image-width: 50%;
 	}
-
 
 	&--right,
 	&--left {
@@ -115,9 +119,9 @@
 	}
 
 	@media (max-width: 1024px) {
-		.elementor &#{&}--tablet-top {
-			--ha-card-image-width: 100%;
-		}
+		// .elementor &#{&}--tablet-top {
+		// 	--ha-card-image-width: 100%;
+		// }
 
 		&--tablet-top {
 			.ha-card-figure {
@@ -136,10 +140,10 @@
 			}
 		}
 
-		.elementor &#{&}--tablet-right,
-		.elementor &#{&}--tablet-left {
-			--ha-card-image-width: 50%;
-		}
+		// .elementor &#{&}--tablet-right,
+		// .elementor &#{&}--tablet-left {
+		// 	--ha-card-image-width: 50%;
+		// }
 
 		&--tablet-right,
 		&--tablet-left {
@@ -175,9 +179,9 @@
 	}
 
 	@media (max-width: 767px) {
-		.elementor &#{&}--mobile-top {
-			--ha-card-image-width: 100%;
-		}
+		// .elementor &#{&}--mobile-top {
+		// 	--ha-card-image-width: 100%;
+		// }
 
 		&--mobile-top {
 			.ha-card-figure {
@@ -196,10 +200,10 @@
 			}
 		}
 
-		.elementor &#{&}--mobile-right,
-		.elementor &#{&}--mobile-left {
-			--ha-card-image-width: 50%;
-		}
+		// .elementor &#{&}--mobile-right,
+		// .elementor &#{&}--mobile-left {
+		// 	--ha-card-image-width: 50%;
+		// }
 
 		&--mobile-right,
 		&--mobile-left {

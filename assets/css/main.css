@@ -282,8 +282,8 @@
 	width: 100%;
 }
 
-.elementor .ha-card.ha-card--right,
-.elementor .ha-card.ha-card--left {
+.ha-card.ha-card--right,
+.ha-card.ha-card--left {
 	--ha-card-image-width: 50%;
 }
 
@@ -331,9 +331,6 @@
 }
 
 @media (max-width: 1024px) {
-	.elementor .ha-card.ha-card--tablet-top {
-		--ha-card-image-width: 100%;
-	}
 	.ha-card--tablet-top .ha-card-figure {
 		display: inline-block;
 	}
@@ -345,10 +342,6 @@
 		padding: 25px; 
 		max-width: initial;
 		width: 100%;
-	}
-	.elementor .ha-card.ha-card--tablet-right,
-	.elementor .ha-card.ha-card--tablet-left {
-		--ha-card-image-width: 50%;
 	}
 	.ha-card--tablet-right > .elementor-widget-container,
 	.ha-card--tablet-left > .elementor-widget-container {
@@ -386,9 +379,6 @@
 }
 
 @media (max-width: 767px) {
-	.elementor .ha-card.ha-card--mobile-top {
-		--ha-card-image-width: 100%;
-	}
 	.ha-card--mobile-top .ha-card-figure {
 		display: inline-block;
 	}
@@ -400,10 +390,6 @@
 		padding: 25px;
 		max-width: initial;
 		width: 100%;
-	}
-	.elementor .ha-card.ha-card--mobile-right,
-	.elementor .ha-card.ha-card--mobile-left {
-		--ha-card-image-width: 50%;
 	}
 	.ha-card--mobile-right > .elementor-widget-container,
 	.ha-card--mobile-left > .elementor-widget-container {

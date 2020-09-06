@@ -91,6 +91,7 @@ class Card extends Base {
 			'image_position',
 			[
 				'label' => __( 'Image Position', 'happy-elementor-addons' ),
+				'description' => __( 'You can adjust the image width and height from <mark>Style</mark> tab to get your expected design.', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
 				'label_block' => false,
 				'options' => [
@@ -412,13 +413,15 @@ class Card extends Base {
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ '%', 'px' ],
 				'desktop_default' => [
-					'unit' => '%',
+					'unit' => '%'
 				],
 				'tablet_default' => [
 					'unit' => '%',
+					'size' => 100
 				],
 				'mobile_default' => [
 					'unit' => '%',
+					'size' => 100
 				],
 				'range' => [
 					'%' => [

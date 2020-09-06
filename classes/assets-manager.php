@@ -14,7 +14,7 @@ class Assets_Manager {
 	public static function init() {
 		// Frontend scripts
 		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_register' ] );
-		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_enqueue' ] );
+		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_enqueue' ], 15 );
 		add_action( 'elementor/css-file/post/enqueue', [ __CLASS__, 'frontend_enqueue_exceptions' ] );
 
 		// Edit and preview enqueue
@@ -249,10 +249,6 @@ class Assets_Manager {
 			'elementor-frontend',
 			'jquery'
 		];
-
-		if ( ! ha_elementor()->preview->is_preview() ) {
-			array_unshift( $script_deps, 'elementor-common' );
-		}
 
 		// Happy addons script
 		wp_register_script(
