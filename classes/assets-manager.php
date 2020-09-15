@@ -14,7 +14,7 @@ class Assets_Manager {
 	public static function init() {
 		// Frontend scripts
 		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_register' ] );
-		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_enqueue' ], 15 );
+		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_enqueue' ], 100 );
 		add_action( 'elementor/css-file/post/enqueue', [ __CLASS__, 'frontend_enqueue_exceptions' ] );
 
 		// Edit and preview enqueue
@@ -244,17 +244,11 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION
 		);
 
-		$script_deps = [
-			'elementor-frontend-modules',
-			'elementor-frontend',
-			'jquery'
-		];
-
 		// Happy addons script
 		wp_register_script(
 			'happy-elementor-addons',
 			HAPPY_ADDONS_ASSETS . 'js/happy-addons' . $suffix . 'js',
-			$script_deps,
+			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
@@ -285,10 +279,14 @@ class Assets_Manager {
 			return;
 		}
 
-		if ( Cache_Manager::should_enqueue( $file->get_post_id() ) ) {
-			Cache_Manager::enqueue( $file->get_post_id() );
-		} else {
-			Cache_Manager::enqueue_without_cache();
+		$post_id = $file->get_post_id();
+
+		if ( Cache_Manager::should_enqueue( $post_id ) ) {
+			Cache_Manager::enqueue( $post_id );
+		}
+
+		if ( Cache_Manager::should_enqueue_raw( $post_id ) ) {
+			Cache_Manager::enqueue_raw( $post_id );
 		}
 	}
 
@@ -297,10 +295,14 @@ class Assets_Manager {
 			return;
 		}
 
-		if ( Cache_Manager::should_enqueue( get_the_ID() ) ) {
-			Cache_Manager::enqueue( get_the_ID() );
-		} else {
-			Cache_Manager::enqueue_without_cache();
+		$post_id = get_the_ID();
+
+		if ( Cache_Manager::should_enqueue( $post_id ) ) {
+			Cache_Manager::enqueue( $post_id );
+		}
+
+		if ( Cache_Manager::should_enqueue_raw( $post_id ) ) {
+			Cache_Manager::enqueue_raw( $post_id );
 		}
 	}
 

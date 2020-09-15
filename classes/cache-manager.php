@@ -50,14 +50,19 @@ class Cache_Manager {
 	}
 
 	public static function should_enqueue( $post_id ) {
-		if ( ! ha_is_on_demand_cache_enabled() ||
-			! self::is_built_with_elementor( $post_id ) ||
-			! self::is_published( $post_id ) ||
-			self::is_editing_mode() ) {
-			return false;
+		if ( ha_is_on_demand_cache_enabled() && self::is_built_with_elementor( $post_id ) && self::is_published( $post_id ) && ! self::is_editing_mode() ) {
+			return true;
 		}
 
-		return true;
+		return false;
+	}
+
+	public static function should_enqueue_raw( $post_id ) {
+		if ( ( ! ha_is_on_demand_cache_enabled() && self::is_built_with_elementor( $post_id ) ) || self::is_editing_mode() ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	public static function enqueue_fa5_fonts( $post_id ) {
@@ -85,7 +90,7 @@ class Cache_Manager {
 		do_action( 'happyaddons_enqueue_assets', $is_cache = true, $post_id );
 	}
 
-	public static function enqueue_without_cache() {
+	public static function enqueue_raw() {
 		if ( ! self::is_editing_mode() ) {
 			return;
 		}
