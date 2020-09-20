@@ -6,7 +6,7 @@ Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
 Tags: Elementor Page Builder, Elementor Addons, Widgets, Editor, Web Page Builder
 Requires at least: 4.7
-Tested up to: 5.4.1
+Tested up to: 5.5.1
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
