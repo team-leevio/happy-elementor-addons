@@ -139,6 +139,19 @@ class Calendly extends Base {
 		);
 
 		$this->add_control(
+			'_calendly_pro_notice',
+			[
+				'type' => Controls_Manager::RAW_HTML,
+				'raw' => sprintf(
+					__( 'The following color customization controls only work with %s. Basic and Premium plan users cannot customize colors as per Calendy pricing plan. For more information please %s.', 'happy-elementor-addons' ),
+					'<a href="https://calendly.com/pages/pricing" target="_blank">Calendly Pro plan</a>',
+					'<a href="https://calendly.com/pages/pricing" target="_blank">click here</a>'
+				),
+				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+			]
+		);
+
+		$this->add_control(
 			'text_color',
 			[
 				'label' => __( 'Text Color', 'happy-elementor-addons' ),
