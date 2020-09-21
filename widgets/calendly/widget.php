@@ -63,7 +63,7 @@ class Calendly extends Base {
 			[
 				'label'       => __( 'Username', 'happy-elementor-addons' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => __( '', 'happy-elementor-addons' ),
+				'default'     => 'happyaddons',
 				'placeholder' => __( 'Type calendly username here', 'happy-elementor-addons' ),
 			]
 		);
