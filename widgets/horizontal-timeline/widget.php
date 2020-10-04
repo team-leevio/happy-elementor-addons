@@ -137,7 +137,62 @@ class Horizontal_Timeline extends Base {
             ]
         );
 
-        $this->end_controls_section();
+		$this->end_controls_section();
+		
+		$this->start_controls_section(
+            '_section_settings',
+            [
+                'label' => __( 'Settings', 'happy-elementor-addons' ),
+                'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+		);
+
+		$this->add_responsive_control(
+			'events_distance',
+			[
+				'label' => __( 'Minimum Distance bitween Events', 'happy-elementor-addons' ),
+				'description' => __( 'Reload the page to see changes.', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+					],
+				],
+				'default' => [
+                    'unit' => 'px',
+                    'size' => 200
+                ],
+			]
+		);
+
+		$this->add_responsive_control(
+			'content_alignment',
+			[
+				'label' => __( 'Content Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-right',
+					]
+				],
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .ha-events-content .ha-selected' => 'text-align: {{VALUE}};'
+				]
+			]
+		);
+		
+		$this->end_controls_section();
     }
 
     protected function register_style_controls() {
@@ -161,8 +216,11 @@ class Horizontal_Timeline extends Base {
         if ( empty( $settings['timeline'] ) ) {
             return;
 		}
+
+		$this->add_render_attribute( 'wrapper', 'class', 'ha-horizontal-timeline-wrapper' );
+		$this->add_render_attribute( 'wrapper', 'data-event-distance', $settings['events_distance']['size'] );
         ?>
-		<div class="ha-horizontal-timeline-wrapper">
+		<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
 			
 			<div class="ha-timeline">
 				<div class="ha-events-wrapper">

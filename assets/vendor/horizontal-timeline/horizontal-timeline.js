@@ -1,10 +1,13 @@
 ;( function( $ ) {
 
 	$( document ).ready(function() {
-		var eventsMinDistance = 200;
+		const options = [];
 
-		function initTimeline(timelines) {
+		function initTimeline(timelines, distance) {
+			
 			timelines.each(function(){
+				options.push(distance);
+
 				var timeline = $(this),
 					timelineComponents = {};
 				//cache timeline components 
@@ -18,9 +21,9 @@
 				timelineComponents['eventsContent'] = timeline.children('.ha-events-content');
 
 				//assign a left postion to the single events along the timeline
-				setDatePosition(timelineComponents, eventsMinDistance);
+				setDatePosition(timelineComponents, options[0]);
 				//assign a width to the timeline
-				var timelineTotWidth = setTimelineWidth(timelineComponents, eventsMinDistance);
+				var timelineTotWidth = setTimelineWidth(timelineComponents, options[0]);
 				//the timeline has been initialize - show it
 				timeline.addClass('loaded');
 
@@ -79,8 +82,8 @@
 				wrapperWidth = Number(timelineComponents['timelineWrapper'].css('width').replace('px', ''));
 			//translate the timeline to the left('next')/right('prev') 
 			(string == 'next') 
-				? translateTimeline(timelineComponents, translateValue - wrapperWidth + eventsMinDistance, wrapperWidth - timelineTotWidth)
-				: translateTimeline(timelineComponents, translateValue + wrapperWidth - eventsMinDistance);
+				? translateTimeline(timelineComponents, translateValue - wrapperWidth + options[0], wrapperWidth - timelineTotWidth)
+				: translateTimeline(timelineComponents, translateValue + wrapperWidth - options[0]);
 		}
 
 		function showNewContent(timelineComponents, timelineTotWidth, string) {
@@ -167,11 +170,11 @@
 					classLeaving = 'leave-right';
 			}
 
-			selectedContent.attr('class', classEnetering);
 			visibleContent.attr('class', classLeaving).one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function() {
 				visibleContent.removeClass('leave-right leave-left');
 				selectedContent.removeClass('enter-left enter-right');
 			});
+			selectedContent.attr('class', classEnetering);
 			eventsContent.css('height', selectedContentHeight+'px');
 		}
 

@@ -657,13 +657,14 @@
 
 		//Horizontal Timeline
 		var Horizontal_Timeline = function($scope) {
-			const timeline = $('.ha-horizontal-timeline-wrapper');
+			const timeline = $scope.find('.ha-horizontal-timeline-wrapper');
 			const events = $scope.find('.ha-event-list li');
+			const events_distance = timeline.data('event-distance');
 
 			if (events.length == 0) {
 				return;
 			}
-			initTimeline(timeline);
+			initTimeline(timeline, events_distance);
 		};
 
 		$('[data-ha-element-link]').each(function() {
