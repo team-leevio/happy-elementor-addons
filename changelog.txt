@@ -7,6 +7,7 @@
 - Fix: Happy templates popup button auto duplicate issue
 - Fix: Removed duplicate On demand assets cache file enqueue
 - Fix: Removed broken Review widget schema data
+- Fix: Team member widget email envelope icon issue
 
 = 2.14.2 - 20 September 2020 =
 
