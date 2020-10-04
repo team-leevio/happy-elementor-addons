@@ -228,6 +228,15 @@ class Assets_Manager {
 			true
 		);
 
+		// Horizontal Timeline
+		wp_register_script(
+			'horizontal-timeline',
+			HAPPY_ADDONS_ASSETS . 'vendor/horizontal-timeline/horizontal-timeline.js',
+			[ 'jquery' ],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
 		// Hover css
 		wp_register_style(
 			'hover-css',

@@ -655,6 +655,17 @@
 
 		};
 
+		//Horizontal Timeline
+		var Horizontal_Timeline = function($scope) {
+			const timeline = $('.ha-horizontal-timeline-wrapper');
+			const events = $scope.find('.ha-event-list li');
+
+			if (events.length == 0) {
+				return;
+			}
+			initTimeline(timeline);
+		};
+
 		$('[data-ha-element-link]').each(function() {
 			var link = $(this).data('ha-element-link');
 			$(this).on('click.haElementOnClick', function() {
@@ -675,7 +686,8 @@
 			'ha-bar-chart.default': BarChart,
 			'ha-twitter-feed.default': TwitterFeed,
 			'ha-threesixty-rotation.default': Threesixty_Rotation,
-			'ha-data-table.default': DataTable
+			'ha-data-table.default': DataTable,
+			'ha-horizontal-timeline.default': Horizontal_Timeline
 		};
 
 		$.each( handlersFnMap, function( widgetName, handlerFn ) {
