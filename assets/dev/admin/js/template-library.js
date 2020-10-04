@@ -424,7 +424,7 @@
 			self = this,
 			templatesCollection,
 			errorDialog
-		FIND_SELECTOR = '.elementor-add-new-section .elementor-add-section-drag-title',
+			FIND_SELECTOR = '.elementor-add-new-section .elementor-add-section-drag-title',
 			$openLibraryButton = '<div class="elementor-add-section-area-button elementor-add-ha-button"> <i class="hm hm-happyaddons"></i> </div>',
 			devicesResponsiveMap = {
 				desktop: '100%',
@@ -442,7 +442,8 @@
 		function onAddElementButtonClick() {
 			var $topSection = $(this).closest('.elementor-top-section'),
 				sectionId = $topSection.data('id'),
-				documentSections = elementor.documents.getCurrent().container.children;
+				documentSections = elementor.documents.getCurrent().container.children,
+				$addSection = $topSection.prev('.elementor-add-section');
 
 			if (documentSections) {
 				_.each(documentSections, function (sectionContainer, index) {
@@ -452,16 +453,19 @@
 				});
 			}
 
-			$topSection
-				.prev('.elementor-add-section')
-				.find(FIND_SELECTOR)
-				.before($openLibraryButton);
+			if (!$addSection.find('.elementor-add-ha-button').length) {
+				$addSection
+					.find(FIND_SELECTOR)
+					.before($openLibraryButton);
+			}
 		}
 
 		function addLibraryModalOpenButton($previewContents) {
 			var $addNewSection = $previewContents.find(FIND_SELECTOR);
 
-			$addNewSection.length && $addNewSection.before($openLibraryButton);
+			if ($addNewSection.length && ! $previewContents.find('.elementor-add-ha-button').length) {
+				$addNewSection.before($openLibraryButton);
+			}
 
 			$previewContents.on(
 				'click.onAddElement',
