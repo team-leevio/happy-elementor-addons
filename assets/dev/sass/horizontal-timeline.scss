@@ -132,6 +132,7 @@
 	transition: height 0.4s;
 
 	li {
+		display: flex;
 		position: absolute;
 		list-style: none;
 		z-index: 1;
@@ -152,41 +153,53 @@
 	}
 	li.enter-right,
 	li.leave-right {
-		animation-name: cd-enter-right;
+		animation-name: ha-enter-right;
 	}
 	li.enter-left,
 	li.leave-left {
-		animation-name: cd-enter-left;
+		animation-name: ha-enter-left;
 	}
 	li.leave-right,
 	li.leave-left {
 		animation-direction: reverse;
 	}
-	li > * {
-		max-width: 800px;
-		margin: 0 auto;
+
+	h2 {
+		margin-top: 0;
+		margin-bottom: 15px;
+	}
+	p {
+		margin: 0;
+	}
+
+	.ha-event-image {
+		width: 300px;
+	}
+
+	.ha-event-content {
+		margin-left: 20px;
 	}
 
 }
 
-@keyframes cd-enter-right {
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0%);
-  }
+@keyframes ha-enter-right {
+	0% {
+		opacity: 0;
+		transform: translateX(100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0%);
+	}
 }
 
-@keyframes cd-enter-left {
-  0% {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0%);
-  }
+@keyframes ha-enter-left {
+	0% {
+		opacity: 0;
+		transform: translateX(-100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0%);
+	}
 }
