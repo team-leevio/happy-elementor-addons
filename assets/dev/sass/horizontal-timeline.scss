@@ -1,183 +1,187 @@
-.ha-horizontal-timeline-wrapper {
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.ha-horizontal-timeline-wrapper::before {
-  content: 'mobile';
-  display: none;
-}
-.ha-horizontal-timeline-wrapper.loaded {
-  opacity: 1;
-}
-
-.ha-timeline {
-  position: relative;
-  height: 70px;
-  width: 100%;
-}
-
-.ha-events-wrapper {
-  position: relative;
-  height: 100%;
-  margin: 0 40px;
-  overflow: hidden;
-}
-
-.ha-events {
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  top: 49px;
-  height: 2px;
-  background: #dfdfdf;
-  transition: transform 0.4s;
-}
-.ha-event-list {
-	li {
-		list-style: none;
+.ha-horizontal-timeline {
+	.ha-horizontal-timeline-wrapper {
+	opacity: 0;
+	transition: opacity 0.2s;
 	}
-}
-
-.ha-filling-line {
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #0099ff;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.3s;
-}
-.ha-events a {
-  position: absolute;
-  bottom: 0;
-  z-index: 2;
-  text-align: center;
-  padding-bottom: 15px;
-  color: #383838;
-  transform: translateZ(0);
-}
-.ha-events a::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  right: auto;
-  transform: translateX(-50%);
-  bottom: -5px;
-  height: 12px;
-  width: 12px;
-  border-radius: 50%;
-  border: 2px solid #dfdfdf;
-  background-color: #f8f8f8;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-.no-touch .ha-events a:hover::after {
-  background-color:#0099ff;
-  border-color: #0099ff;
-}
-.ha-events .ha-selected {
-  pointer-events: none;
-}
-.ha-events .ha-selected::after {
-  background-color: #0099ff;
-  border-color: #0099ff;
-}
-.ha-events a.older-event::after {
-  border-color: #0099ff;
-}
-@media only screen and (min-width: 1100px) {
-  .ha-horizontal-timeline-wrapper::before {
-    content: 'desktop';
-  }
-}
-
-.ha-timeline-navigation {
-	li {
-		list-style: none;
+	.ha-horizontal-timeline-wrapper::before {
+	content: 'mobile';
+	display: none;
 	}
-	a {
-		display: inline-flex;
-		justify-content: center;
-		align-items: center;
-		position: absolute;
-		top: 45%;
-		z-index: 1;
-		height: 34px;
-		width: 34px;
-		border-radius: 50%;
-		border: 1px solid #9d9d9d;
-		color: #9d9d9d;
+	.ha-horizontal-timeline-wrapper.loaded {
+	opacity: 1;
 	}
 
-	.ha-prev {
-		left: 0;
-	}
-	.ha-next {
-		right: 0;
-	}
-
-	.ha-inactive {
-		cursor: not-allowed;
-		border-color: #ddd;
-		color: #ddd;
-	}
-}
-
-.ha-events-content {
+	.ha-timeline {
 	position: relative;
+	height: 70px;
 	width: 100%;
+	}
+
+	.ha-events-wrapper {
+	position: relative;
+	height: 100%;
+	margin: 0 40px;
 	overflow: hidden;
-	transition: height 0.4s;
-
-	li {
-		display: flex;
-		position: absolute;
-		list-style: none;
-		z-index: 1;
-		width: 100%;
-		left: 0;
-		top: 0;
-		transform: translateX(-100%);
-		padding: 0 5%;
-		opacity: 0;
-		animation-duration: 0.4s;
-		animation-timing-function: ease-in-out;
 	}
-	.ha-selected {
+
+	.ha-events {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	top: 49px;
+	height: 2px;
+	background: #dfdfdf;
+	transition: transform 0.4s;
+	}
+	.ha-event-list {
+		li {
+			list-style: none;
+		}
+	}
+
+	.ha-filling-line {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #0099ff;
+	transform: scaleX(0);
+	transform-origin: left center;
+	transition: transform 0.3s;
+	}
+	.ha-events a {
+	position: absolute;
+	bottom: 0;
+	z-index: 2;
+	text-align: center;
+	padding-bottom: 15px;
+	color: #383838;
+	transform: translateZ(0);
+	}
+	.ha-events a::after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	right: auto;
+	transform: translateX(-50%);
+	bottom: -5px;
+	height: 12px;
+	width: 12px;
+	border-radius: 50%;
+	border: 2px solid #dfdfdf;
+	background-color: #f8f8f8;
+	transition: background-color 0.3s, border-color 0.3s;
+	}
+	.no-touch .ha-events a:hover::after {
+	background-color:#0099ff;
+	border-color: #0099ff;
+	}
+	.ha-events .ha-selected {
+	pointer-events: none;
+	}
+	.ha-events .ha-selected::after {
+	background-color: #0099ff;
+	border-color: #0099ff;
+	}
+	.ha-events a.older-event::after {
+	border-color: #0099ff;
+	}
+	@media only screen and (min-width: 1100px) {
+	.ha-horizontal-timeline-wrapper::before {
+		content: 'desktop';
+	}
+	}
+
+	.ha-timeline-navigation {
+		li {
+			list-style: none;
+		}
+		a {
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			position: absolute;
+			top: 45%;
+			z-index: 1;
+			height: 34px;
+			width: 34px;
+			border-radius: 50%;
+			border: 1px solid #9d9d9d;
+			color: #9d9d9d;
+		}
+
+		.ha-prev {
+			left: 0;
+		}
+		.ha-next {
+			right: 0;
+		}
+
+		.ha-inactive {
+			cursor: not-allowed;
+			border-color: #ddd;
+			color: #ddd;
+		}
+	}
+
+	.ha-events-content {
 		position: relative;
-		z-index: 2;
-		opacity: 1;
-		transform: translateX(0);
-	}
-	li.enter-right,
-	li.leave-right {
-		animation-name: ha-enter-right;
-	}
-	li.enter-left,
-	li.leave-left {
-		animation-name: ha-enter-left;
-	}
-	li.leave-right,
-	li.leave-left {
-		animation-direction: reverse;
-	}
+		width: 100%;
+		overflow: hidden;
+		transition: height 0.4s;
 
-	h2 {
-		margin-top: 0;
-		margin-bottom: 15px;
-	}
-	p {
-		margin: 0;
-	}
+		li {
+			display: flex;
+			position: absolute;
+			list-style: none;
+			z-index: 1;
+			width: 100%;
+			left: 0;
+			top: 0;
+			transform: translateX(-100%);
+			padding: 0 5%;
+			opacity: 0;
+			animation-duration: 0.4s;
+			animation-timing-function: ease-in-out;
+		}
+		.ha-selected {
+			position: relative;
+			z-index: 2;
+			opacity: 1;
+			transform: translateX(0);
+		}
+		li.enter-right,
+		li.leave-right {
+			animation-name: ha-enter-right;
+		}
+		li.enter-left,
+		li.leave-left {
+			animation-name: ha-enter-left;
+		}
+		li.leave-right,
+		li.leave-left {
+			animation-direction: reverse;
+		}
 
-	.ha-event-image {
-		width: 300px;
-	}
+		h2 {
+			margin-top: 0;
+			margin-bottom: 15px;
+		}
+		p {
+			margin: 0;
+		}
 
-	.ha-event-content {
-		margin-left: 20px;
+		.ha-event-image {
+			width: 300px;
+		}
+
+		.ha-event-content {
+			width: 100%;
+			margin-left: 20px;
+		}
+
 	}
 
 }

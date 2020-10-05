@@ -164,7 +164,6 @@ class Horizontal_Timeline extends Base {
 			'events_distance',
 			[
 				'label' => __( 'Minimum Distance bitween Events', 'happy-elementor-addons' ),
-				'description' => __( 'Reload the page to see changes.', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [

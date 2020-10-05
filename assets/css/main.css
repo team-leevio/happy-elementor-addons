@@ -3979,35 +3979,35 @@ span.ha-threesixty-rotation-magnify {
 	}
 }
 
-.ha-horizontal-timeline-wrapper {
+.ha-horizontal-timeline .ha-horizontal-timeline-wrapper {
 	opacity: 0;
 	-webkit-transition: opacity .2s;
 	        transition: opacity .2s;
 }
 
-.ha-horizontal-timeline-wrapper::before {
+.ha-horizontal-timeline .ha-horizontal-timeline-wrapper::before {
 	display: none; 
 	content: "mobile";
 }
 
-.ha-horizontal-timeline-wrapper.loaded {
+.ha-horizontal-timeline .ha-horizontal-timeline-wrapper.loaded {
 	opacity: 1;
 }
 
-.ha-timeline {
+.ha-horizontal-timeline .ha-timeline {
 	position: relative;
 	width: 100%; 
 	height: 70px;
 }
 
-.ha-events-wrapper {
+.ha-horizontal-timeline .ha-events-wrapper {
 	position: relative;
 	overflow: hidden; 
 	margin: 0 40px;
 	height: 100%;
 }
 
-.ha-events {
+.ha-horizontal-timeline .ha-events {
 	position: absolute;
 	top: 49px;
 	left: 0;
@@ -4020,11 +4020,11 @@ span.ha-threesixty-rotation-magnify {
 	        transition:         transform .4s, -webkit-transform .4s;
 }
 
-.ha-event-list li {
+.ha-horizontal-timeline .ha-event-list li {
 	list-style: none;
 }
 
-.ha-filling-line {
+.ha-horizontal-timeline .ha-filling-line {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -4044,7 +4044,7 @@ span.ha-threesixty-rotation-magnify {
 	        transform-origin: left center;
 }
 
-.ha-events a {
+.ha-horizontal-timeline .ha-events a {
 	position: absolute;
 	bottom: 0;
 	z-index: 2;
@@ -4055,7 +4055,7 @@ span.ha-threesixty-rotation-magnify {
 	        transform: translateZ(0);
 }
 
-.ha-events a::after {
+.ha-horizontal-timeline .ha-events a::after {
 	position: absolute;
 	right: auto;
 	bottom: -5px;
@@ -4073,35 +4073,35 @@ span.ha-threesixty-rotation-magnify {
 	        transform: translateX(-50%);
 }
 
-.no-touch .ha-events a:hover::after {
+.ha-horizontal-timeline .no-touch .ha-events a:hover::after {
 	border-color: #09f; 
 	background-color: #09f;
 }
 
-.ha-events .ha-selected {
+.ha-horizontal-timeline .ha-events .ha-selected {
 	pointer-events: none;
 }
 
-.ha-events .ha-selected::after {
+.ha-horizontal-timeline .ha-events .ha-selected::after {
 	border-color: #09f; 
 	background-color: #09f;
 }
 
-.ha-events a.older-event::after {
+.ha-horizontal-timeline .ha-events a.older-event::after {
 	border-color: #09f;
 }
 
 @media only screen and (min-width: 1100px) {
-	.ha-horizontal-timeline-wrapper::before {
+	.ha-horizontal-timeline .ha-horizontal-timeline-wrapper::before {
 		content: "desktop";
 	}
 }
 
-.ha-timeline-navigation li {
+.ha-horizontal-timeline .ha-timeline-navigation li {
 	list-style: none;
 }
 
-.ha-timeline-navigation a {
+.ha-horizontal-timeline .ha-timeline-navigation a {
 	position: absolute;
 	top: 45%;
 	z-index: 1;
@@ -4124,28 +4124,28 @@ span.ha-threesixty-rotation-magnify {
 	color: #9d9d9d;
 }
 
-.ha-timeline-navigation .ha-prev {
+.ha-horizontal-timeline .ha-timeline-navigation .ha-prev {
 	left: 0;
 }
 
-.ha-timeline-navigation .ha-next {
+.ha-horizontal-timeline .ha-timeline-navigation .ha-next {
 	right: 0;
 }
 
-.ha-timeline-navigation .ha-inactive {
+.ha-horizontal-timeline .ha-timeline-navigation .ha-inactive {
 	border-color: #ddd;
 	color: #ddd; 
 	cursor: not-allowed;
 }
 
-.ha-events-content {
+.ha-horizontal-timeline .ha-events-content {
 	position: relative;
 	overflow: hidden;
 	width: 100%;
 	-webkit-transition: height .4s;
 	        transition: height .4s;
 }
-.ha-events-content li {
+.ha-horizontal-timeline .ha-events-content li {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -4166,7 +4166,7 @@ span.ha-threesixty-rotation-magnify {
 	-webkit-animation-timing-function: ease-in-out;
 	        animation-timing-function: ease-in-out;
 }
-.ha-events-content .ha-selected {
+.ha-horizontal-timeline .ha-events-content .ha-selected {
 	position: relative;
 	z-index: 2;
 	opacity: 1;
@@ -4174,33 +4174,34 @@ span.ha-threesixty-rotation-magnify {
 	    -ms-transform: translateX(0);
 	        transform: translateX(0);
 }
-.ha-events-content li.enter-right,
-.ha-events-content li.leave-right {
+.ha-horizontal-timeline .ha-events-content li.enter-right,
+.ha-horizontal-timeline .ha-events-content li.leave-right {
 	-webkit-animation-name: ha-enter-right;
 	        animation-name: ha-enter-right;
 }
-.ha-events-content li.enter-left,
-.ha-events-content li.leave-left {
+.ha-horizontal-timeline .ha-events-content li.enter-left,
+.ha-horizontal-timeline .ha-events-content li.leave-left {
 	-webkit-animation-name: ha-enter-left;
 	        animation-name: ha-enter-left;
 }
-.ha-events-content li.leave-right,
-.ha-events-content li.leave-left {
+.ha-horizontal-timeline .ha-events-content li.leave-right,
+.ha-horizontal-timeline .ha-events-content li.leave-left {
 	-webkit-animation-direction: reverse;
 	        animation-direction: reverse;
 }
-.ha-events-content h2 {
+.ha-horizontal-timeline .ha-events-content h2 {
 	margin-top: 0;
 	margin-bottom: 15px;
 }
-.ha-events-content p {
+.ha-horizontal-timeline .ha-events-content p {
 	margin: 0;
 }
-.ha-events-content .ha-event-image {
+.ha-horizontal-timeline .ha-events-content .ha-event-image {
 	width: 300px;
 }
-.ha-events-content .ha-event-content {
-	margin-left: 20px;
+.ha-horizontal-timeline .ha-events-content .ha-event-content {
+	margin-left: 20px; 
+	width: 100%;
 }
 
 @-webkit-keyframes ha-enter-right {

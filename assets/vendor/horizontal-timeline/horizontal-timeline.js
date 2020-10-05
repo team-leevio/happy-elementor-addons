@@ -6,7 +6,7 @@
 		function initTimeline(timelines, distance) {
 			
 			timelines.each(function(){
-				options.push(distance);
+				options[0] = distance;
 
 				var timeline = $(this),
 					timelineComponents = {};
