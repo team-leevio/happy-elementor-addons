@@ -231,7 +231,7 @@ class Assets_Manager {
 		// Horizontal Timeline
 		wp_register_script(
 			'horizontal-timeline',
-			HAPPY_ADDONS_ASSETS . 'vendor/horizontal-timeline/horizontal-timeline.js',
+			HAPPY_ADDONS_ASSETS . 'vendor/horizontal-timeline/horizontal-timeline.min.js',
 			[ 'jquery' ],
 			HAPPY_ADDONS_VERSION,
 			true

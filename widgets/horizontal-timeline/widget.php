@@ -373,7 +373,7 @@ class Horizontal_Timeline extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-event-content' => 'margin-left: {{SIZE}}{{UNIT}};'
+                    '{{WRAPPER}} .ha-event-image' => 'margin-right: {{SIZE}}{{UNIT}};'
                 ],
             ]
 		);
@@ -513,9 +513,11 @@ class Horizontal_Timeline extends Base {
 				<ol>
 					<?php foreach ( $settings['timeline'] as $timeline ) : ?>
 						<li data-date="<?php echo esc_attr( $timeline['event_date'] ); ?>">
-							<div class="ha-event-image">
-								<?php echo Group_Control_Image_Size::get_attachment_image_html( $timeline, 'thumbnail', 'image' ); ?>
-							</div>
+							<?php if ( ! empty( $timeline['image']['id'] ) ) : ?>
+								<div class="ha-event-image">
+									<?php echo Group_Control_Image_Size::get_attachment_image_html( $timeline, 'thumbnail', 'image' ); ?>
+								</div>
+							<?php endif; ?>
 							<div class="ha-event-content">
 								<h2><?php echo esc_html( $timeline['event_title'] ); ?></h2>
 								<p><?php echo $timeline['event_description']; ?></p>

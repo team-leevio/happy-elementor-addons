@@ -4197,10 +4197,10 @@ span.ha-threesixty-rotation-magnify {
 	margin: 0;
 }
 .ha-horizontal-timeline .ha-events-content .ha-event-image {
+	margin-right: 20px; 
 	width: 300px;
 }
 .ha-horizontal-timeline .ha-events-content .ha-event-content {
-	margin-left: 20px; 
 	width: 100%;
 }
 
