@@ -513,7 +513,7 @@ class Horizontal_Timeline extends Base {
 				<ol>
 					<?php foreach ( $settings['timeline'] as $timeline ) : ?>
 						<li data-date="<?php echo esc_attr( $timeline['event_date'] ); ?>">
-							<?php if ( ! empty( $timeline['image']['id'] ) ) : ?>
+							<?php if ( ! empty( $timeline['image']['url'] ) ) : ?>
 								<div class="ha-event-image">
 									<?php echo Group_Control_Image_Size::get_attachment_image_html( $timeline, 'thumbnail', 'image' ); ?>
 								</div>
