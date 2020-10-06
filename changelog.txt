@@ -1,5 +1,6 @@
 = 2.14.3 - n October 2020 =
 
+- Update: Appsero client updated to `v1.2.0`
 - Tweak: Added Calendy pro feature notice
 - Tweak: Added Calendy default username "happyaddons"
 - Tweak: Common cached files are loaded once as internal css
