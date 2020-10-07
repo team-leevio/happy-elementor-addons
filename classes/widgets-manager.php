@@ -575,8 +575,8 @@ class Widgets_Manager {
 				'css' => ['horizontal-timeline'],
 				'js' => [],
 				'vendor' => [
-					'css' => [],
-					'js' => ['horizontal-timeline'],
+					'css' => ['slick', 'slick-theme'],
+					'js' => ['jquery-slick'],
 				],
 			],
         ];

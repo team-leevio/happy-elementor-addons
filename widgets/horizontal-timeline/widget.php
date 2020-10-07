@@ -60,10 +60,9 @@ class Horizontal_Timeline extends Base {
         $repeater->add_control(
             'event_date',
             [
-                'label' => __( 'Date', 'happy-elementor-addons' ),
+                'label' => __( 'Event Date', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::TEXT,
 				'placeholder' => __( 'Event Date', 'happy-elementor-addons' ),
-				'description' => __( 'Date Format: d/m/Y. Add unique dates in a ascending order.', 'happy-elementor-addons' ),
             ]
 		);
 		
@@ -74,6 +73,16 @@ class Horizontal_Timeline extends Base {
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
                 'placeholder' => __( 'Event Title', 'happy-elementor-addons' ),
+            ]
+		);
+
+		$repeater->add_control(
+            'event_subtitle',
+            [
+                'label' => __( 'Sub Title', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::TEXT,
+                'label_block' => true,
+                'placeholder' => __( 'Event Sub Title', 'happy-elementor-addons' ),
             ]
 		);
 		
@@ -123,29 +132,21 @@ class Horizontal_Timeline extends Base {
                 'title_field' => '{{{ event_title }}}',
                 'default' => [
                     [
-						'event_date' => '1/01/2020',
+						'event_date' => 'Jan 01, 2020',
                         'event_title' => __( 'Build beautiful websites', 'happy-elementor-addons' ),
                     ],
                     [
-						'event_date' => '2/01/2020',
+						'event_date' => 'Jan 02, 2020',
                         'event_title' => __( 'Cross Domain Copy Paste', 'happy-elementor-addons' ),
                     ],
                     [
-						'event_date' => '3/01/2020',
+						'event_date' => 'Jan 03, 2020',
                         'event_title' => __( 'CSS Transform', 'happy-elementor-addons' ),
                     ],
                     [
-						'event_date' => '5/01/2020',
+						'event_date' => 'Jan 04, 2020',
                         'event_title' => __( 'Fast and Lightweight', 'happy-elementor-addons' ),
-					],
-					[
-						'event_date' => '6/01/2020',
-                        'event_title' => __( 'Amazing Widgets', 'happy-elementor-addons' ),
-					],
-					[
-						'event_date' => '7/01/2020',
-                        'event_title' => __( 'Floating Effect', 'happy-elementor-addons' ),
-                    ],
+					]
                 ],
             ]
         );
@@ -156,55 +157,76 @@ class Horizontal_Timeline extends Base {
             '_section_settings',
             [
                 'label' => __( 'Settings', 'happy-elementor-addons' ),
-                'tab' => Controls_Manager::TAB_CONTENT,
+                'tab'   => Controls_Manager::TAB_CONTENT,
             ]
-		);
+        );
 
-		$this->add_responsive_control(
-			'events_distance',
-			[
-				'label' => __( 'Minimum Distance bitween Events', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-					],
-				],
-				'default' => [
-                    'unit' => 'px',
-                    'size' => 200
+        $this->add_control(
+            'animation_speed',
+            [
+                'label' => __( 'Animation Speed', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 100,
+                'step' => 10,
+                'max' => 10000,
+                'default' => 800,
+                'description' => __( 'Slide speed in milliseconds', 'happy-elementor-addons' ),
+                'frontend_available' => true,
+            ]
+        );
+
+        $this->add_control(
+            'autoplay_speed',
+            [
+                'label' => __( 'Autoplay Speed', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 100,
+                'step' => 100,
+                'max' => 10000,
+                'default' => 3000,
+                'description' => __( 'Autoplay speed in milliseconds', 'happy-elementor-addons' ),
+                'condition' => [
+                    'autoplay' => 'yes'
                 ],
-			]
-		);
+                'frontend_available' => true,
+            ]
+        );
 
-		$this->add_responsive_control(
-			'content_alignment',
-			[
-				'label' => __( 'Content Alignment', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::CHOOSE,
-				'options' => [
-					'left' => [
-						'title' => __( 'Left', 'happy-elementor-addons' ),
-						'icon' => 'eicon-text-align-left',
-					],
-					'center' => [
-						'title' => __( 'Center', 'happy-elementor-addons' ),
-						'icon' => 'eicon-text-align-center',
-					],
-					'right' => [
-						'title' => __( 'Right', 'happy-elementor-addons' ),
-						'icon' => 'eicon-text-align-right',
-					]
-				],
-				'toggle' => true,
-				'selectors' => [
-					'{{WRAPPER}} .ha-events-content .ha-selected' => 'text-align: {{VALUE}};'
-				]
-			]
-		);
+        $this->add_control(
+            'loop',
+            [
+                'label' => __( 'Infinite Loop?', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
+                'return_value' => 'yes',
+                'default' => 'yes',
+                'frontend_available' => true,
+            ]
+        );
 		
-		$this->end_controls_section();
+		$this->add_responsive_control(
+            'slides_to_show',
+            [
+                'label' => __( 'Slides To Show', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    1 => __( '1 Slide', 'happy-elementor-addons' ),
+                    2 => __( '2 Slides', 'happy-elementor-addons' ),
+                    3 => __( '3 Slides', 'happy-elementor-addons' ),
+                    4 => __( '4 Slides', 'happy-elementor-addons' ),
+                    5 => __( '5 Slides', 'happy-elementor-addons' ),
+                    6 => __( '6 Slides', 'happy-elementor-addons' ),
+                ],
+                'desktop_default' => 2,
+                'tablet_default' => 3,
+                'mobile_default' => 2,
+                'frontend_available' => true,
+                'style_transfer' => true,
+            ]
+        );
+
+        $this->end_controls_section();
     }
 
     protected function register_style_controls() {		
@@ -482,50 +504,38 @@ class Horizontal_Timeline extends Base {
 		}
 
 		$this->add_render_attribute( 'wrapper', 'class', 'ha-horizontal-timeline-wrapper' );
-		$this->add_render_attribute( 'wrapper', 'data-event-distance', $settings['events_distance']['size'] );
+		$this->add_render_attribute( 'wrapper', 'class', 'ha-carousel' );
         ?>
 		<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
 			
-			<div class="ha-timeline">
-				<div class="ha-events-wrapper">
-					<div class="ha-events">
-						<ol class="ha-event-list">
-							<?php foreach ( $settings['timeline'] as $timeline ) : ?>
-								<li>
-									<a href="#" data-date="<?php echo esc_attr( $timeline['event_date'] ); ?>">
-										<?php echo esc_html( $timeline['event_title'] ); ?>
-									</a>
-								</li>
-							<?php endforeach; ?>
-						</ol>
+			<?php foreach ( $settings['timeline'] as $timeline ) : ?>
+				<div class="ha-horizontal-timeline-block">
+					<div class="ha-horizontal-timeline-icon-box">
+						<div class="ha-horizontal-timeline-icon">
+							<i class="fas fa-calendar-alt"></i>
+						</div>
+						<span class="ha-horizontal-timeline-date"><?php echo esc_html( $timeline['event_date'] ); ?></span>
+						<div class="ha-horizontal-timeline-tree"></div>
+					</div>
 
-						<span class="ha-filling-line" aria-hidden="true"></span>
+					<div class="ha-horizontal-timeline-content">
+						<?php if ( ! empty( $timeline['image']['url'] ) ) : ?>
+							<div class="ha-horizontal-timeline-image">
+								<?php echo Group_Control_Image_Size::get_attachment_image_html( $timeline, 'thumbnail', 'image' ); ?>
+							</div>
+						<?php endif; ?>
+
+						<h2 class="ha-horizontal-timeline-title"><?php echo esc_html( $timeline['event_title'] ); ?></h2>
+
+						<?php if ( !empty( $timeline['event_subtitle'] ) ) : ?>
+							<span class="ha-horizontal-timeline-subtitle"><?php echo esc_html( $timeline['event_subtitle'] ); ?></span>
+						<?php endif; ?>
+
+						<p class="ha-horizontal-timeline-description"><?php echo esc_html( $timeline['event_description'] ); ?></p>
 					</div>
 				</div>
-					
-				<ul class="ha-timeline-navigation">
-					<li><a href="#0" class="ha-prev ha-inactive"><i class="hm hm-arrow-left"></i></a></li>
-					<li><a href="#0" class="ha-next"><i class="hm hm-arrow-right"></i></a></li>
-				</ul>
-			</div>
+			<?php endforeach; ?>
 
-			<div class="ha-events-content">
-				<ol>
-					<?php foreach ( $settings['timeline'] as $timeline ) : ?>
-						<li data-date="<?php echo esc_attr( $timeline['event_date'] ); ?>">
-							<?php if ( ! empty( $timeline['image']['url'] ) ) : ?>
-								<div class="ha-event-image">
-									<?php echo Group_Control_Image_Size::get_attachment_image_html( $timeline, 'thumbnail', 'image' ); ?>
-								</div>
-							<?php endif; ?>
-							<div class="ha-event-content">
-								<h2><?php echo esc_html( $timeline['event_title'] ); ?></h2>
-								<p><?php echo $timeline['event_description']; ?></p>
-							</div>
-						</li>				
-					<?php endforeach; ?>	
-				</ol>
-			</div>
 		</div>
 
         <?php
