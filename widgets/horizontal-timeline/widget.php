@@ -73,6 +73,7 @@ class Horizontal_Timeline extends Base {
 				'type' => Controls_Manager::ICONS,
 				'label_block' => false,
 				'skin' => 'inline',
+				'separator' => 'after',
 				'default' => [
 					'value' => 'fas fa-calendar-alt',
 					'library' => 'solid',
@@ -80,6 +81,30 @@ class Horizontal_Timeline extends Base {
 			]
 		);
 		
+		$repeater->add_control(
+            'image',
+            [
+                'label' => __( 'Image', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::MEDIA,
+                'default' => [
+                    'url' => Utils::get_placeholder_image_src(),
+                ],
+                'dynamic' => [
+                    'active' => true,
+                ]
+            ]
+		);
+		
+		$repeater->add_group_control(
+            Group_Control_Image_Size::get_type(),
+            [
+                'name' => 'thumbnail',
+                'default' => 'medium',
+                'exclude' => [
+                    'custom'
+                ]
+            ]
+		);
 
 		$repeater->add_control(
             'event_title',
@@ -111,32 +136,6 @@ class Horizontal_Timeline extends Base {
                 'default' => __( 'Best Elementor Addons Plugin.', 'happy-elementor-addons' ),
             ]
         );
-
-        $repeater->add_control(
-            'image',
-            [
-                'label' => __( 'Image', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::MEDIA,
-                'default' => [
-                    'url' => Utils::get_placeholder_image_src(),
-                ],
-                'dynamic' => [
-                    'active' => true,
-                ]
-            ]
-		);
-		
-		$repeater->add_group_control(
-            Group_Control_Image_Size::get_type(),
-            [
-                'name' => 'thumbnail',
-                'default' => 'medium',
-                'separator' => 'before',
-                'exclude' => [
-                    'custom'
-                ]
-            ]
-		);
 		
 		$repeater->add_control(
             'custom_look',
