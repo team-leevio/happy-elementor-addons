@@ -65,7 +65,22 @@ class Horizontal_Timeline extends Base {
 				'placeholder' => __( 'Event Date', 'happy-elementor-addons' ),
             ]
 		);
+
+		$repeater->add_control(
+			'event_icon',
+			[
+				'label' => __('Icon', 'happy-addons-pro'),
+				'type' => Controls_Manager::ICONS,
+				'label_block' => false,
+				'skin' => 'inline',
+				'default' => [
+					'value' => 'fas fa-calendar-alt',
+					'library' => 'solid',
+				],
+			]
+		);
 		
+
 		$repeater->add_control(
             'event_title',
             [
@@ -121,7 +136,63 @@ class Horizontal_Timeline extends Base {
                     'custom'
                 ]
             ]
-        );
+		);
+		
+		$repeater->add_control(
+            'custom_look',
+            [
+                'label' => __( 'Custom Look', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+		);
+		
+		$repeater->add_control(
+            'custom_event_icon_color',
+            [
+                'label' => __( 'Icon Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'custom_look' => 'yes'
+				],
+                'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-horizontal-timeline-icon-box .ha-horizontal-timeline-icon i' => 'color: {{VALUE}}',
+					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-horizontal-timeline-icon-box .ha-horizontal-timeline-icon svg' => 'color: {{VALUE}}'
+                ],
+            ]
+		);
+
+		$repeater->add_control(
+            'custom_event_icon_background_color',
+            [
+                'label' => __( 'Icon Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'custom_look' => 'yes'
+				],
+                'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} .ha-horizontal-timeline-icon-box .ha-horizontal-timeline-icon' => 'background-color: {{VALUE}}'
+                ],
+            ]
+		);
+
+		$repeater->add_control(
+            'custom_content_background_color',
+            [
+                'label' => __( 'Content Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'custom_look' => 'yes'
+				],
+                'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content:before' => 'color: {{VALUE}}'
+                ],
+            ]
+		);
 
         $this->add_control(
             'timeline',
@@ -132,19 +203,19 @@ class Horizontal_Timeline extends Base {
                 'title_field' => '{{{ event_title }}}',
                 'default' => [
                     [
-						'event_date' => 'Jan 01, 2020',
+						'event_date' => 'Jan 01, 2021',
                         'event_title' => __( 'Build beautiful websites', 'happy-elementor-addons' ),
                     ],
                     [
-						'event_date' => 'Jan 02, 2020',
+						'event_date' => 'Jan 02, 2021',
                         'event_title' => __( 'Cross Domain Copy Paste', 'happy-elementor-addons' ),
                     ],
                     [
-						'event_date' => 'Jan 03, 2020',
+						'event_date' => 'Jan 03, 2021',
                         'event_title' => __( 'CSS Transform', 'happy-elementor-addons' ),
                     ],
                     [
-						'event_date' => 'Jan 04, 2020',
+						'event_date' => 'Jan 04, 2021',
                         'event_title' => __( 'Fast and Lightweight', 'happy-elementor-addons' ),
 					]
                 ],
@@ -159,7 +230,39 @@ class Horizontal_Timeline extends Base {
                 'label' => __( 'Settings', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
-        );
+		);
+		
+		$this->add_control(
+			'content_alignment',
+			[
+				'label' => __( 'Content Alignment', 'happy-addons-pro' ),
+				'type' => Controls_Manager::CHOOSE,
+				'label_block' => false,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-addons-pro' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-addons-pro' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-addons-pro' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'toggle' => true,
+				'selectors_dictionary' => [
+					'left' => 'align-items: flex-start',
+					'center' => 'align-items: center',
+                    'right' => 'align-items: flex-end',
+                ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-horizontal-timeline-content'  => '{{VALUE}};'
+				],
+			]
+		);
 
         $this->add_control(
             'animation_speed',
@@ -236,48 +339,158 @@ class Horizontal_Timeline extends Base {
                 'label' => __( 'Events', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
-        );
+		);
+
+		$this->add_control(
+            'line_heading',
+            [
+                'label' => __( 'Line', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::HEADING,
+            ]
+		);
+
+		$this->add_responsive_control(
+            'line_spacing',
+            [
+                'label' => __( 'Thickness', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 1,
+						'max' => 50,
+					],
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-horizontal-timeline-tree' => 'height: {{SIZE}}{{UNIT}};'
+                ],
+            ]
+		);
+
+		$this->add_control(
+            'line_color',
+            [
+                'label' => __( 'Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-horizontal-timeline-tree' => 'background-color: {{VALUE}}',
+                ],
+            ]
+		);
+		
+		$this->add_control(
+            'date_heading',
+            [
+                'label' => __( 'Date', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before'
+            ]
+		);
 
 		$this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'event_typography',
+                'name' => 'date_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
-                'selector' => '{{WRAPPER}} .ha-event-list li a',
+                'selector' => '{{WRAPPER}} .ha-horizontal-timeline-date',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
 		);
 		
 		$this->add_control(
-            'event_color',
+            'date_color',
             [
                 'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-event-list li a' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-horizontal-timeline-date' => 'color: {{VALUE}}',
+                ],
+            ]
+		);
+
+		$this->add_control(
+            'icon_heading',
+            [
+                'label' => __( 'Icon', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before'
+            ]
+		);
+
+		$this->add_responsive_control(
+            'icon_background_size',
+            [
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 5,
+						'max' => 50,
+					],
+				],
+                'selectors' => [
+					'{{WRAPPER}} .ha-horizontal-timeline-icon' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};'
+                ],
+            ]
+		);
+
+		$this->add_responsive_control(
+            'icon_size',
+            [
+                'label' => __( 'Size', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 2,
+						'max' => 35,
+					],
+				],
+                'selectors' => [
+					'{{WRAPPER}} .ha-horizontal-timeline-icon i' => 'font-size: {{SIZE}}{{UNIT}};'
+                ],
+            ]
+		);
+
+		$this->add_responsive_control(
+            'icon_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-horizontal-timeline-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+		);
+
+		$this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'icon_border',
+                'selector' => '{{WRAPPER}} .ha-horizontal-timeline-icon',
+            ]
+		);
+
+		$this->add_control(
+            'event_icon_background_color',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-horizontal-timeline-icon' => 'background-color: {{VALUE}}',
                 ],
             ]
 		);
 		
 		$this->add_control(
-            'line_color',
+            'event_icon_color',
             [
-                'label' => __( 'Line Color', 'happy-elementor-addons' ),
+                'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-filling-line' => 'background-color: {{VALUE}}',
-                ],
-            ]
-		);
-		
-		$this->add_control(
-            'line_bullet_color',
-            [
-                'label' => __( 'Line Bullet Color', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-					'{{WRAPPER}} .ha-event-list a:after' => 'border-color: {{VALUE}}',
-					'{{WRAPPER}} .ha-event-list .ha-selected:after' => 'background-color: {{VALUE}}'
+                    '{{WRAPPER}} .ha-horizontal-timeline-icon i' => 'color: {{VALUE}}',
                 ],
             ]
 		);
@@ -291,84 +504,105 @@ class Horizontal_Timeline extends Base {
             ]
 		);
 
-		$this->add_group_control(
+        $this->add_group_control(
             Group_Control_Border::get_type(),
             [
                 'name' => 'arrow_border',
-                'selector' => '{{WRAPPER}} .ha-prev, {{WRAPPER}} .ha-next',
+                'selector' => '{{WRAPPER}} .slick-prev, {{WRAPPER}} .slick-next',
             ]
-		);
-		
-		$this->add_control(
-            'disable_arrow_border_type',
+        );
+
+        $this->add_responsive_control(
+            'arrow_border_radius',
             [
-                'label' => __( 'Disable Arrow Border', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'solid',
-                'options' => [
-					'none' => __( 'None', 'happy-elementor-addons' ),
-					'solid' => __( 'Solid', 'happy-elementor-addons' ),
-					'double' => __( 'Double', 'happy-elementor-addons' ),
-					'dotted' => __( 'Dotted', 'happy-elementor-addons' ),  
-					'dashed' => __( 'Dotted', 'happy-elementor-addons' ),  
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-timeline-navigation .ha-inactive' => 'border-style: {{VALUE}}'
-                ],
-            ]
-		);
-		
-		$this->add_responsive_control(
-            'disable_arrow_border_width',
-            [
-                'label' => __( 'Width', 'happy-elementor-addons' ),
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px' ],
-				'condition' => [
-					'disable_arrow_border_type!' => 'none'
-				],
+                'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-timeline-navigation .ha-inactive' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .slick-prev, {{WRAPPER}} .slick-next' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
                 ],
             ]
-		);
-		
-		$this->add_control(
-            'disable_arrow_border_color',
+        );
+
+        $this->start_controls_tabs( '_tabs_arrow' );
+
+        $this->start_controls_tab(
+            '_tab_arrow_normal',
             [
-                'label' => __( 'Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'condition' => [
-					'disable_arrow_border_type!' => 'none'
-				],
-                'selectors' => [
-					'{{WRAPPER}} .ha-timeline-navigation .ha-inactive' => 'border-color: {{VALUE}}',
-                ],
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
             ]
-		);
-		
-		$this->add_control(
+        );
+
+        $this->add_control(
             'arrow_color',
             [
-                'label' => __( 'Arrow Color', 'happy-elementor-addons' ),
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
+                'default' => '',
                 'selectors' => [
-					'{{WRAPPER}} .ha-prev i' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .ha-next i' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .slick-prev, {{WRAPPER}} .slick-next' => 'color: {{VALUE}};',
                 ],
             ]
-		);
+        );
 
-		$this->add_control(
-            'disable_arrow_color',
+        $this->add_control(
+            'arrow_bg_color',
             [
-                'label' => __( 'Disable Arrow Color', 'happy-elementor-addons' ),
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-					'{{WRAPPER}} .ha-timeline-navigation .ha-inactive i' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .slick-prev, {{WRAPPER}} .slick-next' => 'background-color: {{VALUE}};',
                 ],
             ]
-		);
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            '_tab_arrow_hover',
+            [
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
+            ]
+        );
+
+        $this->add_control(
+            'arrow_hover_color',
+            [
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .slick-prev:hover, {{WRAPPER}} .slick-next:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'arrow_hover_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .slick-prev:hover, {{WRAPPER}} .slick-next:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'arrow_hover_border_color',
+            [
+                'label' => __( 'Border Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'condition' => [
+                    'arrow_border_border!' => '',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .slick-prev:hover, {{WRAPPER}} .slick-next:hover' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
 
 		$this->end_controls_section();
 		
@@ -380,22 +614,67 @@ class Horizontal_Timeline extends Base {
             ]
 		);
 
+		$this->add_responsive_control(
+            'content_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-horizontal-timeline-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+		);
+
+		$this->add_responsive_control(
+            'content_padding',
+            [
+                'label' => __( 'Padding', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-horizontal-timeline-content' => 'padding: {{SIZE}}{{UNIT}};'
+                ],
+            ]
+		);
+
+		$this->add_responsive_control(
+            'content_space',
+            [
+                'label' => __( 'Space between contents', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-horizontal-timeline-block' => 'padding: {{SIZE}}{{UNIT}};'
+                ],
+            ]
+		);
+
+		$this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'content_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-horizontal-timeline-content',
+            ]
+        );
+
 		$this->add_control(
             'image_heading',
             [
                 'label' => __( 'Image', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
+				'separator' => 'before'
             ]
 		);
 
 		$this->add_responsive_control(
             'image_spacing',
             [
-                'label' => __( 'Right Spacing', 'happy-elementor-addons' ),
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-event-image' => 'margin-right: {{SIZE}}{{UNIT}};'
+                    '{{WRAPPER}} .ha-horizontal-timeline-image' => 'margin-bottom: {{SIZE}}{{UNIT}};'
                 ],
             ]
 		);
@@ -407,7 +686,7 @@ class Horizontal_Timeline extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-event-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-horizontal-timeline-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
 		);
@@ -416,7 +695,7 @@ class Horizontal_Timeline extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'image_box_shadow',
-                'selector' => '{{WRAPPER}} .ha-event-image img',
+                'selector' => '{{WRAPPER}} .ha-horizontal-timeline-image img',
             ]
         );
 
@@ -436,7 +715,7 @@ class Horizontal_Timeline extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-event-content h2' => 'margin-bottom: {{SIZE}}{{UNIT}};'
+                    '{{WRAPPER}} .ha-horizontal-timeline-title' => 'margin-bottom: {{SIZE}}{{UNIT}};'
                 ],
             ]
         );
@@ -446,7 +725,7 @@ class Horizontal_Timeline extends Base {
             [
                 'name' => 'title_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
-                'selector' => '{{WRAPPER}} .ha-event-content h2',
+                'selector' => '{{WRAPPER}} .ha-horizontal-timeline-title',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_2
             ]
 		);
@@ -457,15 +736,57 @@ class Horizontal_Timeline extends Base {
                 'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-					'{{WRAPPER}} .ha-event-content h2' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-horizontal-timeline-title' => 'color: {{VALUE}}',
                 ],
             ]
 		);
 
 		$this->add_control(
-            'content_heading',
+            'subtitle_heading',
             [
-                'label' => __( 'Content', 'happy-elementor-addons' ),
+                'label' => __( 'Sub Title', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before'
+            ]
+		);
+
+		$this->add_responsive_control(
+            'subtitle_spacing',
+            [
+                'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-horizontal-timeline-subtitle' => 'margin-bottom: {{SIZE}}{{UNIT}};'
+                ],
+            ]
+        );
+
+		$this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'subtitle_typography',
+                'label' => __( 'Typography', 'happy-elementor-addons' ),
+                'selector' => '{{WRAPPER}} .ha-horizontal-timeline-subtitle',
+                'scheme' => Scheme_Typography::TYPOGRAPHY_3
+            ]
+		);
+
+		$this->add_control(
+            'subtitle_color',
+            [
+                'label' => __( 'Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+					'{{WRAPPER}} .ha-horizontal-timeline-subtitle' => 'color: {{VALUE}}',
+                ],
+            ]
+		);
+
+		$this->add_control(
+            'description_heading',
+            [
+                'label' => __( 'Description', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before'
             ]
@@ -474,20 +795,20 @@ class Horizontal_Timeline extends Base {
 		$this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'content_typography',
+                'name' => 'description_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
-                'selector' => '{{WRAPPER}} .ha-event-content p',
+                'selector' => '{{WRAPPER}} .ha-horizontal-timeline-description',
                 'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
 		);
 
 		$this->add_control(
-            'content_color',
+            'description_color',
             [
                 'label' => __( 'Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-					'{{WRAPPER}} .ha-event-content p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-horizontal-timeline-description' => 'color: {{VALUE}}',
                 ],
             ]
 		);
@@ -509,11 +830,14 @@ class Horizontal_Timeline extends Base {
 		<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
 			
 			<?php foreach ( $settings['timeline'] as $timeline ) : ?>
-				<div class="ha-horizontal-timeline-block">
+				<div class="ha-horizontal-timeline-block elementor-repeater-item-<?php echo $timeline['_id']; ?>">
 					<div class="ha-horizontal-timeline-icon-box">
-						<div class="ha-horizontal-timeline-icon">
-							<i class="fas fa-calendar-alt"></i>
-						</div>
+
+						<?php if ( $timeline['event_icon'] ) : ?>
+							<div class="ha-horizontal-timeline-icon">
+								<?php Icons_Manager::render_icon( $timeline['event_icon'], ['aria-hidden' => 'true'] ); ?>
+							</div>
+						<?php endif; ?>
 						<span class="ha-horizontal-timeline-date"><?php echo esc_html( $timeline['event_date'] ); ?></span>
 						<div class="ha-horizontal-timeline-tree"></div>
 					</div>
