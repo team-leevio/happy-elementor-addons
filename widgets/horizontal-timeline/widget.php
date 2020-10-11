@@ -188,7 +188,8 @@ class Horizontal_Timeline extends Base {
 				],
                 'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content' => 'background-color: {{VALUE}}',
-					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content:before' => 'color: {{VALUE}}'
+					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-arrow:before' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-inner' => 'background-color: {{VALUE}}'
                 ],
             ]
 		);
@@ -636,7 +637,26 @@ class Horizontal_Timeline extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-horizontal-timeline-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-horizontal-timeline-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-horizontal-timeline-inner' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+		);
+
+		$this->add_responsive_control(
+            'content_height',
+            [
+                'label' => __( 'Height', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 10,
+						'max' => 3000,
+					],
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-horizontal-timeline-content' => 'height: {{SIZE}}{{UNIT}};'
                 ],
             ]
 		);
@@ -669,7 +689,20 @@ class Horizontal_Timeline extends Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'content_box_shadow',
-                'selector' => '{{WRAPPER}} .ha-horizontal-timeline-content',
+                'selector' => '{{WRAPPER}} .ha-horizontal-timeline-content, {{WRAPPER}} .ha-horizontal-timeline-arrow',
+            ]
+		);
+		
+		$this->add_control(
+            'content_background_color',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+					'{{WRAPPER}} .ha-horizontal-timeline-content' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-horizontal-timeline-arrow::before' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-horizontal-timeline-inner' => 'background-color: {{VALUE}};'
+                ],
             ]
         );
 
@@ -894,21 +927,23 @@ class Horizontal_Timeline extends Base {
 					</div>
 
 					<div class="ha-horizontal-timeline-content">
-						<!-- <div class="ha-horizontal-timeline-arrow"></div> -->
+						<div class="ha-horizontal-timeline-arrow"></div>
 						
-						<?php if ( ! empty( $timeline['image']['url'] ) ) : ?>
-							<div class="ha-horizontal-timeline-image">
-								<?php echo Group_Control_Image_Size::get_attachment_image_html( $timeline, 'thumbnail', 'image' ); ?>
-							</div>
-						<?php endif; ?>
+						<div class="ha-horizontal-timeline-inner">
+							<?php if ( ! empty( $timeline['image']['url'] ) ) : ?>
+								<div class="ha-horizontal-timeline-image">
+									<?php echo Group_Control_Image_Size::get_attachment_image_html( $timeline, 'thumbnail', 'image' ); ?>
+								</div>
+							<?php endif; ?>
 
-						<h2 class="ha-horizontal-timeline-title"><?php echo esc_html( $timeline['event_title'] ); ?></h2>
+							<h2 class="ha-horizontal-timeline-title"><?php echo esc_html( $timeline['event_title'] ); ?></h2>
 
-						<?php if ( !empty( $timeline['event_subtitle'] ) ) : ?>
-							<span class="ha-horizontal-timeline-subtitle"><?php echo esc_html( $timeline['event_subtitle'] ); ?></span>
-						<?php endif; ?>
+							<?php if ( !empty( $timeline['event_subtitle'] ) ) : ?>
+								<span class="ha-horizontal-timeline-subtitle"><?php echo esc_html( $timeline['event_subtitle'] ); ?></span>
+							<?php endif; ?>
 
-						<p class="ha-horizontal-timeline-description"><?php echo esc_html( $timeline['event_description'] ); ?></p>
+							<p class="ha-horizontal-timeline-description"><?php echo esc_html( $timeline['event_description'] ); ?></p>
+						</div>
 					</div>
 				</div>
 			<?php endforeach; ?>

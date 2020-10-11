@@ -47,45 +47,35 @@
 		display: flex;
 		flex-direction: column;
 		position: relative;
-		padding: 20px 25px;
 		box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
 
-		&:before {
+		.ha-horizontal-timeline-arrow {
 			position: absolute;
-			top: -44px;
-			left: 15px;
-			color: #fff;
-			content: "\e911";
-			font-style: normal;
-			font-size: 55px;
-			font-family: "Happy Icons";
+			transition: inherit;
+			width: 15px;
+			height: 15px;
+			left: 25px;
+			bottom: 100%;
+			transform: translateY(50%) rotate(45deg);
+			border-right-color: transparent;
+			border-bottom-color: transparent;
+			box-sizing: content-box;
 		}
-
-		// .ha-horizontal-timeline-arrow {
-		// 	position: absolute;
-		// 	top: 0;
-		// 	width: 20px;
-		// 	height: 20px;
-		// 	transform: translateY(-50%) rotate(45deg);
-		// 	border-width: 1px;
-		// 	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
-		// 	background-color: #fff;
-
-		// 	&:before {
-		// 		content: '';
-		// 		display: block;
-		// 		width: 100%;
-		// 		height: 100%;
-		// 		background-color: #f8f8f8;
-		// 		transition: inherit;
-		// 	}
-		// }
-
-		// .ha-horizontal-timeline-arrow {
-		// 	border-left-color: transparent;
-		// 	border-top-color: transparent;
-		// }
+		.ha-horizontal-timeline-arrow::before {
+			background-color: #fff;
+			content: '';
+			display: block;
+			width: 100%;
+			height: 100%;
+			transition: inherit;
+		}
 	}
+
+	.ha-horizontal-timeline-inner {
+		padding: 20px 25px;
+		z-index: 1;
+		background-color: #fff;
+    }
 
 	.ha-horizontal-timeline-image {
 		margin-bottom: 10px;
