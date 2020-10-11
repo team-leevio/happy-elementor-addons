@@ -668,7 +668,7 @@ class Horizontal_Timeline extends Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-horizontal-timeline-content' => 'padding: {{SIZE}}{{UNIT}};'
+                    '{{WRAPPER}} .ha-horizontal-timeline-inner' => 'padding: {{SIZE}}{{UNIT}};'
                 ],
             ]
 		);
