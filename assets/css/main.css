@@ -4061,6 +4061,9 @@ span.ha-threesixty-rotation-magnify {
 .ha-horizontal-timeline .ha-horizontal-timeline-image {
 	margin-bottom: 10px;
 }
+.ha-horizontal-timeline .ha-horizontal-timeline-image img {
+	object-fit: cover;
+}
 
 .ha-horizontal-timeline .ha-horizontal-timeline-title {
 	margin-top: 0;

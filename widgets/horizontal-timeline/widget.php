@@ -140,7 +140,7 @@ class Horizontal_Timeline extends Base {
 		$repeater->add_control(
             'custom_look',
             [
-                'label' => __( 'Custom Look', 'happy-elementor-addons' ),
+                'label' => __( 'Custom Style', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'happy-elementor-addons' ),
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
@@ -189,6 +189,22 @@ class Horizontal_Timeline extends Base {
                 'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content' => 'background-color: {{VALUE}}',
 					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content:before' => 'color: {{VALUE}}'
+                ],
+            ]
+		);
+
+		$repeater->add_control(
+            'custom_content_color',
+            [
+                'label' => __( 'Content Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'custom_look' => 'yes'
+				],
+                'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content .ha-horizontal-timeline-title' => 'color: {{VALUE}}',
+					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content .ha-horizontal-timeline-subtitle' => 'color: {{VALUE}}',
+					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content .ha-horizontal-timeline-description' => 'color: {{VALUE}}'
                 ],
             ]
 		);
@@ -320,7 +336,7 @@ class Horizontal_Timeline extends Base {
                     5 => __( '5 Slides', 'happy-elementor-addons' ),
                     6 => __( '6 Slides', 'happy-elementor-addons' ),
                 ],
-                'desktop_default' => 2,
+                'desktop_default' => 3,
                 'tablet_default' => 3,
                 'mobile_default' => 2,
                 'frontend_available' => true,
@@ -667,6 +683,42 @@ class Horizontal_Timeline extends Base {
 		);
 
 		$this->add_responsive_control(
+            'image_width',
+            [
+                'label' => __( 'Width', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 10,
+						'max' => 3000,
+					],
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-horizontal-timeline-image img' => 'width: {{SIZE}}{{UNIT}};'
+                ],
+            ]
+		);
+
+		$this->add_responsive_control(
+            'image_height',
+            [
+                'label' => __( 'Height', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 10,
+						'max' => 3000,
+					],
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-horizontal-timeline-image img' => 'height: {{SIZE}}{{UNIT}};'
+                ],
+            ]
+		);
+
+		$this->add_responsive_control(
             'image_spacing',
             [
                 'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
@@ -842,6 +894,8 @@ class Horizontal_Timeline extends Base {
 					</div>
 
 					<div class="ha-horizontal-timeline-content">
+						<!-- <div class="ha-horizontal-timeline-arrow"></div> -->
+						
 						<?php if ( ! empty( $timeline['image']['url'] ) ) : ?>
 							<div class="ha-horizontal-timeline-image">
 								<?php echo Group_Control_Image_Size::get_attachment_image_html( $timeline, 'thumbnail', 'image' ); ?>
