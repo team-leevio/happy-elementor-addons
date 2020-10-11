@@ -4044,7 +4044,7 @@ span.ha-threesixty-rotation-magnify {
 	-webkit-flex-direction: column;
 	    -ms-flex-direction: column;
 	        flex-direction: column;
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, .5);
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, .15);
 }
 .ha-horizontal-timeline .ha-horizontal-timeline-content .ha-horizontal-timeline-arrow {
 	position: absolute;
@@ -4087,7 +4087,8 @@ span.ha-threesixty-rotation-magnify {
 .ha-horizontal-timeline .ha-horizontal-timeline-title {
 	margin-top: 0;
 	margin-bottom: 10px;
-	color: #3c3c3c;
+	color: #3c3c3c; 
+	font-size: 22px;
 }
 
 .ha-horizontal-timeline .ha-horizontal-timeline-subtitle {
@@ -4098,7 +4099,8 @@ span.ha-threesixty-rotation-magnify {
 
 .ha-horizontal-timeline .ha-horizontal-timeline-description {
 	margin: 0;
-	color: #3c3c3c;
+	color: #3c3c3c; 
+	font-size: 16px;
 }
 
 .ha-horizontal-timeline .slick-prev,

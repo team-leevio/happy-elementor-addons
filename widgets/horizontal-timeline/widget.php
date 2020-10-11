@@ -643,23 +643,23 @@ class Horizontal_Timeline extends Base {
             ]
 		);
 
-		$this->add_responsive_control(
-            'content_height',
-            [
-                'label' => __( 'Height', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'range' => [
-					'px' => [
-						'min' => 10,
-						'max' => 3000,
-					],
-				],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-horizontal-timeline-content' => 'height: {{SIZE}}{{UNIT}};'
-                ],
-            ]
-		);
+		// $this->add_responsive_control(
+        //     'content_height',
+        //     [
+        //         'label' => __( 'Height', 'happy-elementor-addons' ),
+        //         'type' => Controls_Manager::SLIDER,
+		// 		'size_units' => ['px'],
+		// 		'range' => [
+		// 			'px' => [
+		// 				'min' => 10,
+		// 				'max' => 3000,
+		// 			],
+		// 		],
+        //         'selectors' => [
+        //             '{{WRAPPER}} .ha-horizontal-timeline-content' => 'height: {{SIZE}}{{UNIT}};'
+        //         ],
+        //     ]
+		// );
 
 		$this->add_responsive_control(
             'content_padding',
@@ -683,6 +683,15 @@ class Horizontal_Timeline extends Base {
                     '{{WRAPPER}} .ha-horizontal-timeline-block' => 'padding: {{SIZE}}{{UNIT}};'
                 ],
             ]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'content_border',
+				'label' => __( 'Border', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-horizontal-timeline-content, {{WRAPPER}} .ha-horizontal-timeline-arrow',
+			]
 		);
 
 		$this->add_group_control(
