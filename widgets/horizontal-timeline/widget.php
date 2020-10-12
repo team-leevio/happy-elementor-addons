@@ -442,7 +442,7 @@ class Horizontal_Timeline extends Base {
 				'range' => [
 					'px' => [
 						'min' => 5,
-						'max' => 50,
+						'max' => 80,
 					],
 				],
                 'selectors' => [
@@ -517,6 +517,25 @@ class Horizontal_Timeline extends Base {
                 'label' => __( 'Arrow', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
+            ]
+		);
+
+		$this->add_responsive_control(
+            'arrow_vertical_alignment',
+            [
+                'label' => __( 'Vertical Alignment', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 800,
+					],
+				],
+                'selectors' => [
+					'{{WRAPPER}} .slick-prev' => 'top: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .slick-next' => 'top: {{SIZE}}{{UNIT}};'
+                ],
             ]
 		);
 
@@ -926,13 +945,16 @@ class Horizontal_Timeline extends Base {
 				<div class="ha-horizontal-timeline-block elementor-repeater-item-<?php echo $timeline['_id']; ?>">
 					<div class="ha-horizontal-timeline-icon-box">
 
-						<?php if ( $timeline['event_icon'] ) : ?>
-							<div class="ha-horizontal-timeline-icon">
-								<?php Icons_Manager::render_icon( $timeline['event_icon'], ['aria-hidden' => 'true'] ); ?>
-							</div>
-						<?php endif; ?>
 						<span class="ha-horizontal-timeline-date"><?php echo esc_html( $timeline['event_date'] ); ?></span>
-						<div class="ha-horizontal-timeline-tree"></div>
+
+						<div class="ha-horizontal-timeline-top-inner">
+							<?php if ( $timeline['event_icon'] ) : ?>
+								<div class="ha-horizontal-timeline-icon">
+									<?php Icons_Manager::render_icon( $timeline['event_icon'], ['aria-hidden' => 'true'] ); ?>
+								</div>
+							<?php endif; ?>
+							<div class="ha-horizontal-timeline-tree"></div>
+						</div>
 					</div>
 
 					<div class="ha-horizontal-timeline-content">

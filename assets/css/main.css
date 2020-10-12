@@ -3985,13 +3985,15 @@ span.ha-threesixty-rotation-magnify {
 }
 
 .ha-horizontal-timeline .ha-horizontal-timeline-icon-box {
-	margin-bottom: 100px;
+	position: relative;
+	margin-bottom: 35px;
+}
+
+.ha-horizontal-timeline .ha-horizontal-timeline-top-inner {
+	position: relative;
 }
 
 .ha-horizontal-timeline .ha-horizontal-timeline-icon {
-	position: absolute;
-	top: 33px;
-	left: 40px;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -4004,28 +4006,27 @@ span.ha-threesixty-rotation-magnify {
 	-ms-flex-pack: center;
 	-webkit-justify-content: center;
 	        justify-content: center;
+	margin-top: 10px;
+	margin-left: 10px; 
 	width: 48px;
 	height: 48px;
-	border-radius: 50%; 
+	border-radius: 50%;
 	background-color: #34485d;
 	color: #fff;
 }
 
 .ha-horizontal-timeline .ha-horizontal-timeline-date {
-	position: absolute;
-	top: 0;
-	left: 25px;
 	color: #a2a2a2; 
 	font-size: 14px;
 }
 
 .ha-horizontal-timeline .ha-horizontal-timeline-tree {
 	position: absolute;
-	top: 58px;
+	top: 50%;
 	left: 0;
 	z-index: -5;
 	overflow: hidden;
-	width: 100%;
+	width: 150%;
 	height: 2px;
 	background: #34485d;
 	-webkit-transform: translateY(-50%);
@@ -4050,11 +4051,12 @@ span.ha-threesixty-rotation-magnify {
 	position: absolute;
 	bottom: 100%;
 	left: 25px;
-	box-sizing: content-box; 
+	box-sizing: content-box;
 	width: 15px;
 	height: 15px;
 	border-right-color: transparent;
 	border-bottom-color: transparent;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, .15); 
 	-webkit-transition: inherit;
 	        transition: inherit;
 	-webkit-transform: translateY(50%) rotate(45deg);
@@ -4105,7 +4107,7 @@ span.ha-threesixty-rotation-magnify {
 
 .ha-horizontal-timeline .slick-prev,
 .ha-horizontal-timeline .slick-next {
-	top: 57px;
+	top: 88px;
 	z-index: 999;
 	padding: 0; 
 	width: 40px;
