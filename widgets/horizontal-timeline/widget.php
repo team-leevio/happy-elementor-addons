@@ -406,11 +406,17 @@ class Horizontal_Timeline extends Base {
 		$this->add_responsive_control(
             'date_spacing',
             [
-                'label' => __( 'Spacing', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px' ],
+                'label' => __( 'Left Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 60,
+					],
+				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-horizontal-timeline-date' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-horizontal-timeline-date' => 'padding-left: {{SIZE}}{{UNIT}};'
                 ],
             ]
 		);
