@@ -4075,6 +4075,15 @@ span.ha-threesixty-rotation-magnify {
 
 .ha-horizontal-timeline .ha-horizontal-timeline-inner {
 	z-index: 1;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 	padding: 20px 25px;
 	background-color: #fff;
 }

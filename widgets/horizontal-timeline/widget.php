@@ -275,7 +275,7 @@ class Horizontal_Timeline extends Base {
                     'right' => 'align-items: flex-end',
                 ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-horizontal-timeline-content'  => '{{VALUE}};'
+					'{{WRAPPER}} .ha-horizontal-timeline-inner'  => '{{VALUE}};'
 				],
 			]
 		);
@@ -400,6 +400,18 @@ class Horizontal_Timeline extends Base {
                 'label' => __( 'Date', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before'
+            ]
+		);
+
+		$this->add_responsive_control(
+            'date_spacing',
+            [
+                'label' => __( 'Spacing', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-horizontal-timeline-date' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
 		);
 
