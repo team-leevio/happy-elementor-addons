@@ -280,6 +280,18 @@ class Horizontal_Timeline extends Base {
 			]
 		);
 
+		$this->add_control(
+            'content_arrow',
+            [
+                'label' => __( 'Hide Content Arrow', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off' => __( 'No', 'happy-elementor-addons' ),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
+
         $this->add_control(
             'animation_speed',
             [
@@ -976,8 +988,11 @@ class Horizontal_Timeline extends Base {
 					</div>
 
 					<div class="ha-horizontal-timeline-content">
-						<div class="ha-horizontal-timeline-arrow"></div>
-						
+
+						<?php if ( $settings['content_arrow'] != 'yes' ) : ?>
+							<div class="ha-horizontal-timeline-arrow"></div>
+						<?php endif; ?>
+
 						<div class="ha-horizontal-timeline-inner">
 							<?php if ( ! empty( $timeline['image']['url'] ) ) : ?>
 								<div class="ha-horizontal-timeline-image">
