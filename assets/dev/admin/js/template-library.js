@@ -114,6 +114,21 @@
 		id: 'elementor-template-library-header-menu',
 		className: 'haTemplateLibrary__header-menu',
 
+		ui: {
+			menu: '.elementor-template-library-menu-item'
+		},
+
+		events: function () {
+			return {
+				'click @ui.menu': 'onClick',
+			};
+		},
+
+		onClick: function(event) {
+			var tab = $(event.currentTarget).data('tab');
+			ha.library.setFilter('type', tab);
+		},
+
 		templateHelpers: function () {
 			return ha.library.getTabs();
 		},
@@ -136,7 +151,7 @@
 			var $target = $(event.currentTarget),
 				device = $target.data('tab');
 
-			ha.library.channels.tabs.trigger('change:device', device, $target);
+			ha.library.channels.devices.trigger('change:device', device, $target);
 		}
 	});
 
@@ -388,13 +403,13 @@
 
 		showDefaultHeader: function () {
 			this.showLogo({
-				title: 'HAPPY LIBRARY'
+				title: 'TEMPLATES'
 			});
 
 			var headerView = this.getHeaderView();
 			headerView.tools.show(new Library.Views.Actions());
-			// headerView.menuArea.show( new Library.Views.Menu() );
-			headerView.menuArea.reset();
+			headerView.menuArea.show(new Library.Views.Menu());
+			// headerView.menuArea.reset();
 		},
 
 		showPreviewView: function (templateModel) {
@@ -411,11 +426,11 @@
 			}));
 		},
 
-		showBlocksView: function (blocksCollection) {
+		showTemplatesView: function (templatesCollection) {
 			this.modalContent.show(new Library.Views.TemplateCollection({
-				collection: blocksCollection,
+				collection: templatesCollection,
 			}));
-		}
+		},
 	});
 
 	Library.Manager = function () {
@@ -435,7 +450,7 @@
 		this.atIndex = -1;
 
 		this.channels = {
-			tabs: Backbone.Radio.channel('tabs'),
+			devices: Backbone.Radio.channel('devices'),
 			templates: Backbone.Radio.channel('templates'),
 		};
 
@@ -497,12 +512,13 @@
 				self.showModal.bind(self)
 			);
 
-			this.channels.tabs.on('change:device', onDeviceChange);
+			this.channels.devices.on('change:device', onDeviceChange);
 		}
 
 		this.updateBlocksView = function () {
 			self.setFilter('tags', '', true);
 			self.setFilter('text', '', true);
+			self.setFilter('type', 'section', true);
 
 			self.getModal().showBlocksView(templatesCollection);
 		}
@@ -563,17 +579,42 @@
 
 		this.init = function () {
 			elementor.on('preview:loaded', onPreviewLoaded.bind(this));
+			self.setFilter('type', 'section', true);
+
+			this.channels.templates.on('filter:change', function() {
+				var type = self.getFilter('type');
+				if (!type) {
+					return;
+				}
+
+				if (type === 'section') {
+					self.showBlocksView();
+				}
+
+				if (type === 'page') {
+					self.showPagesView();
+				}
+			});
 		}
 
 		this.getTabs = function () {
-			return {
-				tabs: {
-					blocks: {
-						title: 'Blocks',
-						active: true
+			var type = self.getFilter('type'),
+				tabs = {
+					section: {
+						title: 'Sections',
 					},
-				},
-			};
+					page: {
+						title: 'Pages',
+					},
+				};
+
+			$.each(tabs, function(tab) {
+				if (tab === type) {
+					tabs[tab].active = true;
+				}
+			});
+
+			return {tabs: tabs};
 		};
 
 		this.getTags = function () {
@@ -586,8 +627,16 @@
 			self.setFilter('text', '', true);
 
 			self.loadTemplates(function () {
-				self.getModal().showBlocksView(templatesCollection);
+				self.getModal().showTemplatesView(templatesCollection);
 			});
+		};
+
+		this.showPagesView = function () {
+			self.getModal().showDefaultHeader();
+			self.setFilter('tags', '', true);
+			self.setFilter('text', '', true);
+
+			self.getModal().showTemplatesView(templatesCollection)
 		};
 
 		this.showPreviewView = function (templateModel) {
