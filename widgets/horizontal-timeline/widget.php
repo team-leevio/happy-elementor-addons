@@ -533,7 +533,7 @@ class Horizontal_Timeline extends Base {
 		$this->add_control(
             'event_icon_color',
             [
-                'label' => __( 'Color', 'happy-elementor-addons' ),
+                'label' => __( 'Icon Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-horizontal-timeline-icon i' => 'color: {{VALUE}}',
