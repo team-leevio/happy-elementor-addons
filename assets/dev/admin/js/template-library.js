@@ -114,21 +114,6 @@
 		id: 'elementor-template-library-header-menu',
 		className: 'haTemplateLibrary__header-menu',
 
-		ui: {
-			menu: '.elementor-template-library-menu-item'
-		},
-
-		events: function () {
-			return {
-				'click @ui.menu': 'onClick',
-			};
-		},
-
-		onClick: function(event) {
-			var tab = $(event.currentTarget).data('tab');
-			ha.library.setFilter('type', tab);
-		},
-
 		templateHelpers: function () {
 			return ha.library.getTabs();
 		},
@@ -151,7 +136,7 @@
 			var $target = $(event.currentTarget),
 				device = $target.data('tab');
 
-			ha.library.channels.devices.trigger('change:device', device, $target);
+			ha.library.channels.tabs.trigger('change:device', device, $target);
 		}
 	});
 
@@ -309,7 +294,7 @@
 				tag = ha.library.getTags()[tag];
 			}
 
-			this.ui.filterBar.find('.haTemplateLibrary__filter-btn').html(tag);
+			this.ui.filterBar.find('.haTemplateLibrary__filter-btn').html(tag + ' <i class="eicon-caret-down"></i>');
 		},
 
 		updatePerfectScrollbar: function () {
@@ -403,13 +388,13 @@
 
 		showDefaultHeader: function () {
 			this.showLogo({
-				title: 'TEMPLATES'
+				title: 'HAPPY LIBRARY'
 			});
 
 			var headerView = this.getHeaderView();
 			headerView.tools.show(new Library.Views.Actions());
-			headerView.menuArea.show(new Library.Views.Menu());
-			// headerView.menuArea.reset();
+			// headerView.menuArea.show( new Library.Views.Menu() );
+			headerView.menuArea.reset();
 		},
 
 		showPreviewView: function (templateModel) {
@@ -426,11 +411,11 @@
 			}));
 		},
 
-		showTemplatesView: function (templatesCollection) {
+		showBlocksView: function (blocksCollection) {
 			this.modalContent.show(new Library.Views.TemplateCollection({
-				collection: templatesCollection,
+				collection: blocksCollection,
 			}));
-		},
+		}
 	});
 
 	Library.Manager = function () {
@@ -450,7 +435,7 @@
 		this.atIndex = -1;
 
 		this.channels = {
-			devices: Backbone.Radio.channel('devices'),
+			tabs: Backbone.Radio.channel('tabs'),
 			templates: Backbone.Radio.channel('templates'),
 		};
 
@@ -512,13 +497,12 @@
 				self.showModal.bind(self)
 			);
 
-			this.channels.devices.on('change:device', onDeviceChange);
+			this.channels.tabs.on('change:device', onDeviceChange);
 		}
 
 		this.updateBlocksView = function () {
 			self.setFilter('tags', '', true);
 			self.setFilter('text', '', true);
-			self.setFilter('type', 'section', true);
 
 			self.getModal().showBlocksView(templatesCollection);
 		}
@@ -579,42 +563,17 @@
 
 		this.init = function () {
 			elementor.on('preview:loaded', onPreviewLoaded.bind(this));
-			self.setFilter('type', 'section', true);
-
-			this.channels.templates.on('filter:change', function() {
-				var type = self.getFilter('type');
-				if (!type) {
-					return;
-				}
-
-				if (type === 'section') {
-					self.showBlocksView();
-				}
-
-				if (type === 'page') {
-					self.showPagesView();
-				}
-			});
 		}
 
 		this.getTabs = function () {
-			var type = self.getFilter('type'),
-				tabs = {
-					section: {
-						title: 'Sections',
+			return {
+				tabs: {
+					blocks: {
+						title: 'Blocks',
+						active: true
 					},
-					page: {
-						title: 'Pages',
-					},
-				};
-
-			$.each(tabs, function(tab) {
-				if (tab === type) {
-					tabs[tab].active = true;
-				}
-			});
-
-			return {tabs: tabs};
+				},
+			};
 		};
 
 		this.getTags = function () {
@@ -627,16 +586,8 @@
 			self.setFilter('text', '', true);
 
 			self.loadTemplates(function () {
-				self.getModal().showTemplatesView(templatesCollection);
+				self.getModal().showBlocksView(templatesCollection);
 			});
-		};
-
-		this.showPagesView = function () {
-			self.getModal().showDefaultHeader();
-			self.setFilter('tags', '', true);
-			self.setFilter('text', '', true);
-
-			self.getModal().showTemplatesView(templatesCollection)
 		};
 
 		this.showPreviewView = function (templateModel) {
