@@ -127,7 +127,10 @@
 		},
 
 		onMenuItemClick: function(event) {
-			ha.library.setFilter('type', event.currentTarget.dataset.tab);
+			ha.library.setFilter('tags', '');
+			ha.library.setFilter('text', '');
+			ha.library.setFilter('type', event.currentTarget.dataset.tab, true);
+
 			ha.library.showTemplatesView();
 		}
 	});
@@ -521,6 +524,9 @@
 		}
 
 		this.updateBlocksView = function () {
+			self.setFilter('tags', '', true);
+			self.setFilter('text', '', true);
+
 			self.getModal().showTemplatesView(templatesCollection);
 		}
 
