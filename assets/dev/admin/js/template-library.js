@@ -105,7 +105,7 @@
 		},
 
 		onClick: function () {
-			ha.library.showBlocksView();
+			ha.library.showTemplatesView();
 		},
 	});
 
@@ -117,6 +117,19 @@
 		templateHelpers: function () {
 			return ha.library.getTabs();
 		},
+
+		ui: {
+			menuItem: '.elementor-template-library-menu-item'
+		},
+
+		events: {
+			'click @ui.menuItem': 'onMenuItemClick'
+		},
+
+		onMenuItemClick: function(event) {
+			ha.library.setFilter('type', event.currentTarget.dataset.tab);
+			ha.library.showTemplatesView();
+		}
 	});
 
 	Library.Views.ResponsiveMenu = Marionette.ItemView.extend({
@@ -208,6 +221,10 @@
 		template: '#tmpl-haTemplateLibrary__templates',
 
 		id: 'haTemplateLibrary__templates',
+
+		className: function() {
+			return 'haTemplateLibrary__templates haTemplateLibrary__templates--' + ha.library.getFilter('type');
+		},
 
 		childViewContainer: '#haTemplateLibrary__templates-list',
 
@@ -393,8 +410,8 @@
 
 			var headerView = this.getHeaderView();
 			headerView.tools.show(new Library.Views.Actions());
-			// headerView.menuArea.show( new Library.Views.Menu() );
-			headerView.menuArea.reset();
+			headerView.menuArea.show( new Library.Views.Menu() );
+			// headerView.menuArea.reset();
 		},
 
 		showPreviewView: function (templateModel) {
@@ -411,9 +428,11 @@
 			}));
 		},
 
-		showBlocksView: function (blocksCollection) {
+		showTemplatesView: function (templatesCollection) {
+			this.showDefaultHeader();
+
 			this.modalContent.show(new Library.Views.TemplateCollection({
-				collection: blocksCollection,
+				collection: templatesCollection,
 			}));
 		}
 	});
@@ -421,6 +440,7 @@
 	Library.Manager = function () {
 		var modal,
 			tags,
+			typeTags,
 			self = this,
 			templatesCollection,
 			errorDialog
@@ -501,10 +521,7 @@
 		}
 
 		this.updateBlocksView = function () {
-			self.setFilter('tags', '', true);
-			self.setFilter('text', '', true);
-
-			self.getModal().showBlocksView(templatesCollection);
+			self.getModal().showTemplatesView(templatesCollection);
 		}
 
 		this.setFilter = function (name, value, silent) {
@@ -522,14 +539,14 @@
 		this.getFilterTerms = function () {
 			return {
 				tags: {
-					callback: function callback(value) {
+					callback: function(value) {
 						return _.any(this.get('tags'), function (tag) {
 							return tag.indexOf(value) >= 0;
 						});
 					}
 				},
 				text: {
-					callback: function callback(value) {
+					callback: function(value) {
 						value = value.toLowerCase();
 
 						if (this.get('title').toLowerCase().indexOf(value) >= 0) {
@@ -541,12 +558,17 @@
 						});
 					}
 				},
+				type: {
+					callback: function(value) {
+						return this.get('type') === value;
+					}
+				}
 			};
 		}
 
 		this.showModal = function () {
 			self.getModal().showModal();
-			self.showBlocksView();
+			self.showTemplatesView();
 		};
 
 		this.closeModal = function () {
@@ -562,17 +584,32 @@
 		};
 
 		this.init = function () {
+			self.setFilter('tags', '', true);
+			self.setFilter('text', '', true);
+			self.setFilter('type', 'section', true);
+
 			elementor.on('preview:loaded', onPreviewLoaded.bind(this));
 		}
 
 		this.getTabs = function () {
-			return {
-				tabs: {
-					blocks: {
-						title: 'Blocks',
-						active: true
-					},
+			var type = this.getFilter('type');
+				tabs = {
+				section: {
+					title: 'Blocks',
 				},
+				page: {
+					title: 'Pages'
+				}
+			};
+
+			_.each(tabs, function(obj, key) {
+				if (type === key) {
+					tabs[type].active = true;
+				}
+			})
+
+			return {
+				tabs: tabs
 			};
 		};
 
@@ -580,13 +617,15 @@
 			return tags;
 		}
 
-		this.showBlocksView = function () {
-			self.getModal().showDefaultHeader();
-			self.setFilter('tags', '', true);
-			self.setFilter('text', '', true);
+		this.getTypeTags = function () {
+			var type = self.getFilter('type');
 
+			return typeTags[type];
+		}
+
+		this.showTemplatesView = function () {
 			self.loadTemplates(function () {
-				self.getModal().showBlocksView(templatesCollection);
+				self.getModal().showTemplatesView(templatesCollection);
 			});
 		};
 
@@ -627,6 +666,10 @@
 
 					if (data.tags) {
 						tags = data.tags;
+					}
+
+					if (data.type_tags) {
+						typeTags = data.type_tags;
 					}
 
 					if (options.onUpdate) {
