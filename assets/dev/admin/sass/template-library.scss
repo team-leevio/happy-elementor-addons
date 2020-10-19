@@ -48,6 +48,10 @@ $secondary-color: #e8357c;
 	}
 }
 
+.haTemplateLibrary__header-menu .elementor-template-library-menu-item.elementor-active {
+	border-bottom-color: $primary-color;
+}
+
 #haTemplateLibrary__toolbar {
 	display: flex;
 	justify-content: space-between;
@@ -146,8 +150,15 @@ $secondary-color: #e8357c;
 }
 
 .haTemplateLibrary__template {
+	.haTemplateLibrary__templates--section & {
+		width: calc(33.333% - 30px);
+	}
+
+	.haTemplateLibrary__templates--page & {
+		width: calc(25% - 30px);
+	}
+
 	position: relative;
-    width: calc(33.333% - 30px);
     overflow: hidden;
 	margin: 15px;
     background-color: #fff;
