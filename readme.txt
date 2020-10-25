@@ -259,7 +259,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 2.14.3 - n October 2020 =
+= 2.14.3 - 12 October 2020 =
 
 - Tweak: Added Calendy pro feature notice
 - Tweak: Added Calendy default username "happyaddons"

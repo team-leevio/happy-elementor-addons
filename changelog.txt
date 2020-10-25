@@ -1,4 +1,4 @@
-= 2.14.3 - n October 2020 =
+= 2.14.3 - 2.14.3 October 2020 =
 
 - Update: Appsero client updated to `v1.2.0`
 - Tweak: Added Calendy pro feature notice
