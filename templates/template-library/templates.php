@@ -103,7 +103,7 @@ defined( 'ABSPATH' ) || exit;
 				</ul>
 			<# } #>
 		</div>
-
+		<div id="haTemplateLibrary__toolbar-counter"></div>
 		<div id="haTemplateLibrary__toolbar-search">
 			<label for="haTemplateLibrary__search" class="elementor-screen-only"><?php esc_html_e( 'Search Templates:', 'happy-elementor-addons' ); ?></label>
 			<input id="haTemplateLibrary__search" placeholder="<?php esc_attr_e( 'Search', 'happy-elementor-addons' ); ?>">

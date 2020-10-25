@@ -240,6 +240,7 @@
 			textFilter: '#haTemplateLibrary__search',
 			tagsFilter: '#haTemplateLibrary__filter-tags',
 			filterBar: '#haTemplateLibrary__toolbar-filter',
+			counter: '#haTemplateLibrary__toolbar-counter'
 		},
 
 		events: {
@@ -292,11 +293,13 @@
 		onRenderCollection: function () {
 			this.setMasonrySkin();
 			this.updatePerfectScrollbar();
+
+			this.ui.counter.text( this.children.length + ' templates found' );
 		},
 
 		onTextFilterInput: function () {
 			var self = this;
-			_.defer(function () {
+			_.defer(function() {
 				ha.library.setFilter('text', self.ui.textFilter.val());
 			});
 		},
