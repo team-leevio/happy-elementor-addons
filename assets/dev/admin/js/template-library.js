@@ -293,8 +293,23 @@
 		onRenderCollection: function () {
 			this.setMasonrySkin();
 			this.updatePerfectScrollbar();
+			this.setTemplatesFoundText();
+		},
 
-			this.ui.counter.text( this.children.length + ' templates found' );
+		setTemplatesFoundText: function() {
+			var type = ha.library.getFilter('type'),
+				len = this.children.length;
+				text = '<b>' + len + '</b>';
+
+			text += ( type === 'section' ? ' block' : ' ' + type );
+
+			if (len > 1) {
+				text += 's';
+			}
+
+			text += ' found';
+
+			this.ui.counter.html(text);
 		},
 
 		onTextFilterInput: function () {
@@ -411,7 +426,7 @@
 
 		showDefaultHeader: function () {
 			this.showLogo({
-				title: 'HAPPY LIBRARY'
+				title: 'TEMPLATES'
 			});
 
 			var headerView = this.getHeaderView();

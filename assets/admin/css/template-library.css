@@ -84,9 +84,14 @@
 }
 
 .haTemplateLibrary__filter-btn {
-	display: block; 
+	display: block;
 	text-align: left;
+	text-transform: uppercase; 
 	cursor: pointer;
+}
+
+#haTemplateLibrary__toolbar-counter {
+	font-size: 12px;
 }
 
 #haTemplateLibrary__search {
@@ -98,8 +103,7 @@
 	padding: 8px 15px 8px 0; 
 	border-bottom: 1px solid #d5dadf;
 	border-radius: 0;
-	text-transform: uppercase;
-	font-size: 11px;
+	font-size: 12px;
 }
 
 #haTemplateLibrary__filter-tags {
