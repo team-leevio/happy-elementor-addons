@@ -608,8 +608,6 @@
 		};
 
 		this.init = function () {
-			self.setFilter('tags', '', true);
-			self.setFilter('text', '', true);
 			self.setFilter('type', 'section', true);
 
 			elementor.on('preview:loaded', onPreviewLoaded.bind(this));
@@ -648,6 +646,9 @@
 		}
 
 		this.showTemplatesView = function () {
+			self.setFilter('tags', '', true);
+			self.setFilter('text', '', true);
+
 			self.loadTemplates(function () {
 				self.getModal().showTemplatesView(templatesCollection);
 			});
