@@ -236,13 +236,8 @@
 		var SliderBase = EM.frontend.handlers.Base.extend({
 			onInit: function () {
 				EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
-				// this.$container = this.$element.find('.hajs-slick');
 				this.run();
 			},
-
-			// isCarousel: function() {
-			// 	return this.$element.hasClass('ha-carousel');
-			// },
 
 			getDefaultSettings: function() {
 				return {
@@ -296,23 +291,22 @@
 						break;
 				}
 
-				// if (this.isCarousel()) {
-					settings.slidesToShow = this.getElementSettings('slides_to_show') || 1;
-					settings.responsive = [
-						{
-							breakpoint: EF.config.breakpoints.lg,
-							settings: {
-								slidesToShow: (this.getElementSettings('slides_to_show_tablet') || settings.slidesToShow),
-							}
-						},
-						{
-							breakpoint: EF.config.breakpoints.md,
-							settings: {
-								slidesToShow: (this.getElementSettings('slides_to_show_mobile') || this.getElementSettings('slides_to_show_tablet')) || settings.slidesToShow,
-							}
+				
+				settings.slidesToShow = this.getElementSettings('slides_to_show') || 1;
+				settings.responsive = [
+					{
+						breakpoint: EF.config.breakpoints.lg,
+						settings: {
+							slidesToShow: (this.getElementSettings('slides_to_show_tablet') || settings.slidesToShow),
 						}
-					];
-				// }
+					},
+					{
+						breakpoint: EF.config.breakpoints.md,
+						settings: {
+							slidesToShow: (this.getElementSettings('slides_to_show_mobile') || this.getElementSettings('slides_to_show_tablet')) || settings.slidesToShow,
+						}
+					}
+				];
 
 				return $.extend({}, this.getDefaultSettings(), settings);
 			},
@@ -665,6 +659,38 @@
 
 		};
 
+		// Slider
+		elementorFrontend.hooks.addAction(
+			'frontend/element_ready/ha-slider.default',
+			function ($scope) {
+				elementorFrontend.elementsHandler.addHandler(SliderBase, {
+					$element: $scope,
+					selectors: {
+						container: '.ha-slick--slider',
+					},
+					autoplay: true,
+					prevArrow: '<button type="button" class="slick-prev"><i class="hm hm-arrow-left"></i></button>',
+					nextArrow: '<button type="button" class="slick-next"><i class="hm hm-arrow-right"></i></button>'
+				});
+			}
+		);
+
+		// Carousel
+		elementorFrontend.hooks.addAction(
+			'frontend/element_ready/ha-carousel.default',
+			function ($scope) {
+				elementorFrontend.elementsHandler.addHandler(SliderBase, {
+					$element: $scope,
+					selectors: {
+						container: '.ha-slick--carousel',
+					},
+					autoplay: true,
+					prevArrow: '<button type="button" class="slick-prev"><i class="hm hm-arrow-left"></i></button>',
+					nextArrow: '<button type="button" class="slick-next"><i class="hm hm-arrow-right"></i></button>'
+				});
+			}
+		);
+
 		//Horizontal Timeline
 		elementorFrontend.hooks.addAction(
 			'frontend/element_ready/ha-horizontal-timeline.default',
@@ -702,7 +728,6 @@
 			'ha-twitter-feed.default': TwitterFeed,
 			'ha-threesixty-rotation.default': Threesixty_Rotation,
 			'ha-data-table.default': DataTable
-			// 'ha-horizontal-timeline.default': Horizontal_Timeline
 		};
 
 		$.each( handlersFnMap, function( widgetName, handlerFn ) {
