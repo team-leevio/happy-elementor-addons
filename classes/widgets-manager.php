@@ -569,6 +569,16 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'horizontal-timeline' => [
+				'title' => __( 'Horizontal Timeline', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-timeline',
+				'css' => ['horizontal-timeline'],
+				'js' => [],
+				'vendor' => [
+					'css' => ['slick', 'slick-theme'],
+					'js' => ['jquery-slick'],
+				],
+			],
         ];
     }
 

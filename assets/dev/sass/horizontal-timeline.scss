@@ -1,0 +1,147 @@
+.ha-horizontal-timeline {
+
+	.ha-horizontal-timeline-block {
+		position: relative;
+		padding: 30px;
+	}
+
+	.ha-horizontal-timeline-icon-box {
+		position: relative;
+		margin-bottom: 35px;
+	}
+
+	.ha-horizontal-timeline-top-inner {
+		position: relative;
+	}
+
+	.ha-horizontal-timeline-icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 48px;
+		height: 48px;
+		background-color: #34485d;
+		color: #fff;
+		border-radius: 50%;
+		margin-top: 10px;
+		margin-left: 10px;
+	}
+
+	.ha-horizontal-timeline-date {
+		font-size: 14px;
+		color: #a2a2a2;
+	}
+
+	.ha-horizontal-timeline-tree {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		z-index: -5;
+		overflow: hidden;
+		width: 150%;
+		height: 2px;
+		background: #34485d;
+		transform: translateY(-50%);
+	}
+
+	.ha-horizontal-timeline-content {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+
+		.ha-horizontal-timeline-arrow {
+			position: absolute;
+			transition: inherit;
+			width: 15px;
+			height: 15px;
+			left: 25px;
+			bottom: 100%;
+			transform: translateY(50%) rotate(45deg);
+			border-right-color: transparent;
+			border-bottom-color: transparent;
+			box-sizing: content-box;
+			box-shadow: 0 0 20px 0 rgba(0,0,0,.15);
+		}
+		.ha-horizontal-timeline-arrow::before {
+			background-color: #fff;
+			content: '';
+			display: block;
+			width: 100%;
+			height: 100%;
+			transition: inherit;
+		}
+	}
+
+	.ha-horizontal-timeline-inner {
+		display: flex;
+		flex-direction: column;
+		padding: 20px 25px;
+		z-index: 1;
+		background-color: #fff;
+    }
+
+	.ha-horizontal-timeline-image {
+		margin-bottom: 10px;
+
+		img {
+			object-fit: cover;
+		}
+	}
+
+	.ha-horizontal-timeline-title {
+		font-size: 22px;
+		margin-top: 0;
+		margin-bottom: 10px;
+		color: #3c3c3c;
+	}
+	.ha-horizontal-timeline-subtitle {
+		display: block;
+		color: #999;
+		margin-bottom: 20px;
+	}
+	.ha-horizontal-timeline-description {
+		font-size: 16px;
+		margin: 0;
+		color: #3c3c3c;
+	}
+
+	.slick-prev,
+	.slick-next {
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		top: 88px;
+		color: #8c8c8c;
+		background-color: #ddd;
+		border: 1px solid #ddd;
+		font-size: 12px;
+		text-align: center;
+		border-radius: 50%;
+		z-index: 999;
+		opacity: 1;
+		padding: 0;
+  
+		&:hover,
+		&:focus {
+			color: #8c8c8c;
+			background-color: white;
+		}
+	
+		&:before {
+			content: '';
+		}
+	}
+
+	.slick-prev {
+		left: -25px;
+	}
+	.slick-next {
+		right: -25px;
+	}
+
+	.slick-disabled {
+		opacity: .7;
+	}
+
+}

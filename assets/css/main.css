@@ -47,8 +47,7 @@
 	max-width: 100%;
 	height: auto;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .ha-screen-reader-text {
@@ -242,8 +241,7 @@
 	height: 100%;
 	vertical-align: bottom;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .ha-card-body {
@@ -492,8 +490,7 @@
 	height: 100%;
 	vertical-align: bottom;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 .ha-infobox-body {
 	margin-top: var(--ha-infobox-media-offset-y);
@@ -598,8 +595,7 @@
 	height: 100%;
 	vertical-align: bottom;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .ha-member-name {
@@ -687,8 +683,7 @@
 	border-radius: 50%;
 	vertical-align: bottom;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 .ha-review-reviewer {
 	margin-top: 0;
@@ -880,8 +875,7 @@
 	-webkit-transition: all .25s;
 	        transition: all .25s;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .ha-image-grid--layout-even .ha-image-grid-inner {
@@ -920,8 +914,7 @@
 	-webkit-transition: all 300ms, opacity 500ms ease-in;
 	        transition: all 300ms, opacity 500ms ease-in;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 @-webkit-keyframes haSmoothReveal {
@@ -1220,8 +1213,7 @@
 .ha-logo-grid-img {
 	max-height: 100%;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 @media (min-width: 1025px) {
@@ -2066,8 +2058,7 @@
 	height: 100%;
 	border-radius: 50%;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 .ha-testimonial__reviewer-name {
 	margin-bottom: 10px; 
@@ -2309,8 +2300,7 @@
 	height: 60px;
 	vertical-align: middle;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 .ha-flip-box-container .ha-flip-box-inner .ha-flip-box-front-inner .ha-flip-box-heading {
 	margin: 0; 
@@ -2356,8 +2346,7 @@
 	height: 60px;
 	vertical-align: middle;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .ha-flip-box-container .ha-flip-box-inner.ha-flip-right .ha-flip-box-front {
@@ -2750,8 +2739,7 @@
 	height: 100%;
 	vertical-align: bottom;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .ha-fun-factor__media--icon {
@@ -3004,8 +2992,7 @@ a.ha-social-icon:after {
 	width: 45px;
 	border-radius: 50%;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .ha-twitter-feed .ha-tweet-user {
@@ -3246,8 +3233,7 @@ a.ha-social-icon:after {
 .ha-post-list-item a img {
 	margin-right: 15px;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 span.ha-post-list-icon {
@@ -3382,8 +3368,7 @@ span.ha-post-list-icon svg {
 	max-width: 100%;
 	height: auto;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .ha-post-tab .ha-post-tab-item-inner .ha-post-tab-title {
@@ -3621,8 +3606,7 @@ span.ha-post-list-icon svg {
 .ha-taxonomy-list span.ha-taxonomy-list-image img {
 	width: 50px;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .ha-threesixty-rotation-inner {
@@ -3633,8 +3617,7 @@ span.ha-post-list-icon svg {
 .ha-threesixty-rotation-inner img {
 	cursor: move;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .ha-img-magnifier-glass {
@@ -3748,8 +3731,7 @@ span.ha-threesixty-rotation-magnify {
 .ha-data-table .ha-table__head-column-cell-icon img {
 	width: 40px;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .ha-data-table .ha-table__head-column-cell-icon svg {
@@ -3804,8 +3786,7 @@ span.ha-threesixty-rotation-magnify {
 .ha-data-table .ha-table__body-row-cell-icon img {
 	width: 40px;
 
-	-o-object-fit: cover;
-	   object-fit: cover;
+	object-fit: cover;
 }
 
 .ha-data-table .ha-table__body-row-cell-icon svg {
@@ -3996,4 +3977,179 @@ span.ha-threesixty-rotation-magnify {
 		-webkit-justify-content: center;
 		        justify-content: center;
 	}
+}
+
+.ha-horizontal-timeline .ha-horizontal-timeline-block {
+	position: relative;
+	padding: 30px;
+}
+
+.ha-horizontal-timeline .ha-horizontal-timeline-icon-box {
+	position: relative;
+	margin-bottom: 35px;
+}
+
+.ha-horizontal-timeline .ha-horizontal-timeline-top-inner {
+	position: relative;
+}
+
+.ha-horizontal-timeline .ha-horizontal-timeline-icon {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-ms-flex-align: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	margin-top: 10px;
+	margin-left: 10px; 
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background-color: #34485d;
+	color: #fff;
+}
+
+.ha-horizontal-timeline .ha-horizontal-timeline-date {
+	color: #a2a2a2; 
+	font-size: 14px;
+}
+
+.ha-horizontal-timeline .ha-horizontal-timeline-tree {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	z-index: -5;
+	overflow: hidden;
+	width: 150%;
+	height: 2px;
+	background: #34485d;
+	-webkit-transform: translateY(-50%);
+	    -ms-transform: translateY(-50%);
+	        transform: translateY(-50%);
+}
+
+.ha-horizontal-timeline .ha-horizontal-timeline-content {
+	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, .15);
+}
+.ha-horizontal-timeline .ha-horizontal-timeline-content .ha-horizontal-timeline-arrow {
+	position: absolute;
+	bottom: 100%;
+	left: 25px;
+	box-sizing: content-box;
+	width: 15px;
+	height: 15px;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, .15); 
+	-webkit-transition: inherit;
+	        transition: inherit;
+	-webkit-transform: translateY(50%) rotate(45deg);
+	    -ms-transform: translateY(50%) rotate(45deg);
+	        transform: translateY(50%) rotate(45deg);
+}
+.ha-horizontal-timeline .ha-horizontal-timeline-content .ha-horizontal-timeline-arrow::before {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	content: "";
+	-webkit-transition: inherit;
+	        transition: inherit;
+}
+
+.ha-horizontal-timeline .ha-horizontal-timeline-inner {
+	z-index: 1;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	padding: 20px 25px;
+	background-color: #fff;
+}
+
+.ha-horizontal-timeline .ha-horizontal-timeline-image {
+	margin-bottom: 10px;
+}
+.ha-horizontal-timeline .ha-horizontal-timeline-image img {
+	object-fit: cover;
+}
+
+.ha-horizontal-timeline .ha-horizontal-timeline-title {
+	margin-top: 0;
+	margin-bottom: 10px;
+	color: #3c3c3c; 
+	font-size: 22px;
+}
+
+.ha-horizontal-timeline .ha-horizontal-timeline-subtitle {
+	display: block;
+	margin-bottom: 20px; 
+	color: #999;
+}
+
+.ha-horizontal-timeline .ha-horizontal-timeline-description {
+	margin: 0;
+	color: #3c3c3c; 
+	font-size: 16px;
+}
+
+.ha-horizontal-timeline .slick-prev,
+.ha-horizontal-timeline .slick-next {
+	top: 88px;
+	z-index: 999;
+	padding: 0; 
+	width: 40px;
+	height: 40px;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+	background-color: #ddd;
+	color: #8c8c8c;
+	text-align: center;
+	font-size: 12px;
+	line-height: 40px;
+	opacity: 1;
+}
+.ha-horizontal-timeline .slick-prev:hover,
+.ha-horizontal-timeline .slick-prev:focus,
+.ha-horizontal-timeline .slick-next:hover,
+.ha-horizontal-timeline .slick-next:focus {
+	background-color: white; 
+	color: #8c8c8c;
+}
+.ha-horizontal-timeline .slick-prev:before,
+.ha-horizontal-timeline .slick-next:before {
+	content: "";
+}
+
+.ha-horizontal-timeline .slick-prev {
+	left: -25px;
+}
+
+.ha-horizontal-timeline .slick-next {
+	right: -25px;
+}
+
+.ha-horizontal-timeline .slick-disabled {
+	opacity: .7;
 }
