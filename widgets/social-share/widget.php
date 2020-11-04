@@ -455,7 +455,7 @@
 					'label'       => __( 'Display', 'happy-elementor-addons' ),
 					'type'        => Controls_Manager::CHOOSE,
 					'options'     => [
-						'inline'   => [
+						'inline-block'   => [
 							'title' => __( 'Inline', 'happy-elementor-addons' ),
 							'icon'  => 'eicon-ellipsis-h',
 						],
@@ -464,15 +464,13 @@
 							'icon'  => 'eicon-ellipsis-v',
 						]
 					],
-					'default'     => 'inline',
+					'desktop_default' => 'inline-block',
+					'tablet_default' => 'inline-block',
+					'mobile_default' => 'block',
 					'toggle' => false,
-					'selectors_dictionary' => [
-						'inline' => 'flex-direction: row',
-						'block' => 'flex-direction: column'
-					],
-					'prefix_class' => 'ha-display-',
+					// 'prefix_class' => 'ha-display-',
 					'selectors'   => [
-						'{{WRAPPER}} .ha-share-buttons' => '{{VALUE}};'
+						'{{WRAPPER}} .ha-share-button' => 'display: {{VALUE}};'
 					],
 				]
 			);
@@ -497,12 +495,9 @@
 						],
 					],
 					'default'     => 'center',
-					'selectors_dictionary' => [
-						'left' => 'justify-content: flex-start',
-						'center' => 'justify-content: center',
-						'right' => 'justify-content: flex-end'
+					'selectors'   => [
+						'{{WRAPPER}} .ha-share-buttons' => 'text-align: {{VALUE}};'
 					],
-					'prefix_class' => 'ha-alignment-'
 				]
 			);
 			
@@ -532,19 +527,12 @@
 			);
 			
 			$this->add_responsive_control(
-				'button_icon_spacing',
+				'button_spacing',
 				[
-					'label'     => __( 'Button Spacing', 'happy-elementor-addons' ),
-					'type'      => Controls_Manager::SLIDER,
-					'range'     => [
-						'px' => [
-							'min' => 0,
-							'max' => 100,
-						],
-					],
+					'label'     => __( 'Spacing', 'happy-elementor-addons' ),
+					'type'      => Controls_Manager::DIMENSIONS,
 					'selectors' => [
-						'{{WRAPPER}}.ha-display-block .ha-share-button' => 'margin-bottom: {{SIZE}}{{UNIT}}',
-						'{{WRAPPER}}.ha-display-inline .ha-share-button' => 'margin-right: {{SIZE}}{{UNIT}}',
+						'{{WRAPPER}} .ha-share-button:not(:last-child)' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					],
 				]
 			);
@@ -590,7 +578,7 @@
 						],
 					],
 					'selectors' => [
-						'{{WRAPPER}} .ha-share-network i' => 'font-size: {{SIZE}}{{UNIT}};',
+						'{{WRAPPER}} .ha-share-network' => 'font-size: {{SIZE}}{{UNIT}};',
 					],
 				]
 			);
@@ -623,7 +611,7 @@
 					'name'     => 'text_typography',
 					'label'    => __( 'Typography', 'happy-elementor-addons' ),
 					'scheme'   => Typography::TYPOGRAPHY_3,
-					'selector' => '{{WRAPPER}} .ha-share-label'
+					'selector' => '{{WRAPPER}} .ha-share-network .ha-share-label'
 				]
 			);
 			
@@ -717,7 +705,7 @@
 					'label' => __( 'Separator Color', 'happy-elementor-addons' ),
 					'type'  => Controls_Manager::COLOR,
 					'selectors'      => [
-						'{{WRAPPER}} .ha-share-label:hover' => 'border-color: {{VALUE}};',
+						'{{WRAPPER}} .ha-share-network:hover .ha-share-label' => 'border-color: {{VALUE}};',
 					]
 				]
 			);
@@ -733,6 +721,8 @@
 			$settings = $this->get_settings_for_display();
 			$social_icons = $settings['icon_list'];
 			$network_view = $settings['network_view'];
+
+			// print_r($settings);
 			?>
 			<ul class="ha-share-buttons">
 				<?php
