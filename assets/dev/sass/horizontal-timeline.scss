@@ -76,7 +76,7 @@
 	.ha-horizontal-timeline-inner {
 		display: flex;
 		flex-direction: column;
-		padding: 20px 25px;
+		padding: 20px;
 		z-index: 1;
 		background-color: #fff;
     }
@@ -106,8 +106,8 @@
 		color: #3c3c3c;
 	}
 
-	.slick-prev,
-	.slick-next {
+	.slick-prev.slick-arrow,
+	.slick-next.slick-arrow {
 		width: 40px;
 		height: 40px;
 		line-height: 40px;
@@ -133,10 +133,10 @@
 		}
 	}
 
-	.slick-prev {
+	.slick-prev.slick-arrow {
 		left: -25px;
 	}
-	.slick-next {
+	.slick-next.slick-arrow {
 		right: -25px;
 	}
 
