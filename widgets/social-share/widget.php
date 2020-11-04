@@ -590,7 +590,7 @@
 						],
 					],
 					'selectors' => [
-						'{{WRAPPER}} .ha-share-network i' => 'font-size: {{SIZE}}{{UNIT}};',
+						'{{WRAPPER}} .ha-share-network' => 'font-size: {{SIZE}}{{UNIT}};',
 					],
 				]
 			);
@@ -623,7 +623,7 @@
 					'name'     => 'text_typography',
 					'label'    => __( 'Typography', 'happy-elementor-addons' ),
 					'scheme'   => Typography::TYPOGRAPHY_3,
-					'selector' => '{{WRAPPER}} .ha-share-label'
+					'selector' => '{{WRAPPER}} .ha-share-network .ha-share-label'
 				]
 			);
 			
