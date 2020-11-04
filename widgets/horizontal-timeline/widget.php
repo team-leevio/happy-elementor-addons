@@ -69,7 +69,7 @@ class Horizontal_Timeline extends Base {
 		$repeater->add_control(
 			'event_icon',
 			[
-				'label' => __('Icon', 'happy-addons-pro'),
+				'label' => __('Icon', 'happy-elementor-addons'),
 				'type' => Controls_Manager::ICONS,
 				'label_block' => false,
 				'skin' => 'inline',
@@ -80,7 +80,7 @@ class Horizontal_Timeline extends Base {
 				],
 			]
 		);
-		
+
 		$repeater->add_control(
             'image',
             [
@@ -94,7 +94,7 @@ class Horizontal_Timeline extends Base {
                 ]
             ]
 		);
-		
+
 		$repeater->add_group_control(
             Group_Control_Image_Size::get_type(),
             [
@@ -125,7 +125,7 @@ class Horizontal_Timeline extends Base {
                 'placeholder' => __( 'Event Sub Title', 'happy-elementor-addons' ),
             ]
 		);
-		
+
 		$repeater->add_control(
             'event_description',
             [
@@ -136,7 +136,7 @@ class Horizontal_Timeline extends Base {
                 'default' => __( 'Best Elementor Addons Plugin.', 'happy-elementor-addons' ),
             ]
         );
-		
+
 		$repeater->add_control(
             'custom_look',
             [
@@ -148,7 +148,7 @@ class Horizontal_Timeline extends Base {
                 'default' => 'no',
             ]
 		);
-		
+
 		$repeater->add_control(
             'custom_event_icon_color',
             [
@@ -239,7 +239,7 @@ class Horizontal_Timeline extends Base {
         );
 
 		$this->end_controls_section();
-		
+
 		$this->start_controls_section(
             '_section_settings',
             [
@@ -247,24 +247,24 @@ class Horizontal_Timeline extends Base {
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
 		);
-		
+
 		$this->add_control(
 			'content_alignment',
 			[
-				'label' => __( 'Content Alignment', 'happy-addons-pro' ),
+				'label' => __( 'Content Alignment', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
 				'label_block' => false,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'happy-addons-pro' ),
+						'title' => __( 'Left', 'happy-elementor-addons' ),
 						'icon' => 'fa fa-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'happy-addons-pro' ),
+						'title' => __( 'Center', 'happy-elementor-addons' ),
 						'icon' => 'fa fa-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'happy-addons-pro' ),
+						'title' => __( 'Right', 'happy-elementor-addons' ),
 						'icon' => 'fa fa-align-right',
 					],
 				],
@@ -335,7 +335,7 @@ class Horizontal_Timeline extends Base {
                 'frontend_available' => true,
             ]
         );
-		
+
 		$this->add_responsive_control(
             'slides_to_show',
             [
@@ -360,7 +360,7 @@ class Horizontal_Timeline extends Base {
         $this->end_controls_section();
     }
 
-    protected function register_style_controls() {		
+    protected function register_style_controls() {
 		$this->start_controls_section(
             '_section_events_style',
             [
@@ -405,7 +405,7 @@ class Horizontal_Timeline extends Base {
                 ],
             ]
 		);
-		
+
 		$this->add_control(
             'date_heading',
             [
@@ -442,7 +442,7 @@ class Horizontal_Timeline extends Base {
                 'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
 		);
-		
+
 		$this->add_control(
             'date_color',
             [
@@ -529,7 +529,7 @@ class Horizontal_Timeline extends Base {
                 ],
             ]
 		);
-		
+
 		$this->add_control(
             'event_icon_color',
             [
@@ -540,7 +540,7 @@ class Horizontal_Timeline extends Base {
                 ],
             ]
 		);
-		
+
 		$this->add_control(
             'arrow_heading',
             [
@@ -670,7 +670,7 @@ class Horizontal_Timeline extends Base {
         $this->end_controls_tabs();
 
 		$this->end_controls_section();
-		
+
 		$this->start_controls_section(
             '_section_content_style',
             [
@@ -750,7 +750,7 @@ class Horizontal_Timeline extends Base {
                 'selector' => '{{WRAPPER}} .ha-horizontal-timeline-content, {{WRAPPER}} .ha-horizontal-timeline-arrow',
             ]
 		);
-		
+
 		$this->add_control(
             'content_background_color',
             [
@@ -954,7 +954,7 @@ class Horizontal_Timeline extends Base {
                 ],
             ]
 		);
-		
+
 		$this->end_controls_section();
 
     }
@@ -970,7 +970,7 @@ class Horizontal_Timeline extends Base {
 		$this->add_render_attribute( 'wrapper', 'class', 'ha-carousel' );
         ?>
 		<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
-			
+
 			<?php foreach ( $settings['timeline'] as $timeline ) : ?>
 				<div class="ha-horizontal-timeline-block elementor-repeater-item-<?php echo $timeline['_id']; ?>">
 					<div class="ha-horizontal-timeline-icon-box">
