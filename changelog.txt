@@ -4,6 +4,7 @@
 - New: Horizontal TimeLine widget
 - New: Social Share widget
 - New: Happy Icons v4 (44 new icons)
+- Tweak: Data Table row-cell text link option 
 - Fix: On Demand Assets Loading compatibility with WPML
 - Fix: Post Tab widget compatibility with WPML
 - Fix: News Ticker widget compatibility with WPML
