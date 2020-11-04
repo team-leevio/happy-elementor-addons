@@ -1,3 +1,12 @@
+= 2.15.0 - 4 November 2020 =
+
+- New: Horizontal TimeLine widget
+- New: Social Share widget
+- New: Happy Icons v4 (44 new icons)
+- Fix: On Demand Assets Loading compatibility with WPML
+- Fix: Pricing Table long feature text breaks into 2nd line issue
+- Fix: Pricing Table default style and content issue
+
 = 2.14.3 - 2.14.3 October 2020 =
 
 - Update: Appsero client updated to `v1.2.0`
