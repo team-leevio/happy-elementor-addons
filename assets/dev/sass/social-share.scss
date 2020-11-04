@@ -50,3 +50,11 @@
 	}
 
 }
+
+@media (max-width: 767px) {
+	.ha-social-share {
+		.ha-share-buttons .ha-share-button {
+			margin: 0 0 10px 0;
+		}
+	}
+}
