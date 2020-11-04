@@ -34,7 +34,7 @@ Copyright 2019 HappyMonster <http://happymonster.me>
 
 defined( 'ABSPATH' ) || die();
 
-define( 'HAPPY_ADDONS_VERSION', '2.14.3' );
+define( 'HAPPY_ADDONS_VERSION', '2.15.0' );
 define( 'HAPPY_ADDONS__FILE__', __FILE__ );
 define( 'HAPPY_ADDONS_DIR_PATH', plugin_dir_path( HAPPY_ADDONS__FILE__ ) );
 define( 'HAPPY_ADDONS_DIR_URL', plugin_dir_url( HAPPY_ADDONS__FILE__ ) );
