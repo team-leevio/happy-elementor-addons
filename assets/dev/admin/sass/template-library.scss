@@ -48,6 +48,10 @@ $secondary-color: #e8357c;
 	}
 }
 
+.haTemplateLibrary__header-menu .elementor-template-library-menu-item.elementor-active {
+	border-bottom-color: $primary-color;
+}
+
 #haTemplateLibrary__toolbar {
 	display: flex;
 	justify-content: space-between;
@@ -72,6 +76,11 @@ $secondary-color: #e8357c;
 	text-align: left;
 	cursor: pointer;
 	display: block;
+	text-transform: uppercase;
+}
+
+#haTemplateLibrary__toolbar-counter {
+	font-size: 12px;
 }
 
 #haTemplateLibrary__search {
@@ -82,8 +91,7 @@ $secondary-color: #e8357c;
 .haTemplateLibrary__filter-btn {
     border-bottom: 1px solid #d5dadf;
     border-radius: 0;
-	font-size: 11px;
-	text-transform: uppercase;
+	font-size: 12px;
     padding: 8px 15px 8px 0;
 }
 
@@ -146,8 +154,15 @@ $secondary-color: #e8357c;
 }
 
 .haTemplateLibrary__template {
+	.haTemplateLibrary__templates--section & {
+		width: calc(33.333% - 30px);
+	}
+
+	.haTemplateLibrary__templates--page & {
+		width: calc(25% - 30px);
+	}
+
 	position: relative;
-    width: calc(33.333% - 30px);
     overflow: hidden;
 	margin: 15px;
     background-color: #fff;

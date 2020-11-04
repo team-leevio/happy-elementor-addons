@@ -105,7 +105,7 @@
 		},
 
 		onClick: function () {
-			ha.library.showBlocksView();
+			ha.library.showTemplatesView();
 		},
 	});
 
@@ -117,6 +117,22 @@
 		templateHelpers: function () {
 			return ha.library.getTabs();
 		},
+
+		ui: {
+			menuItem: '.elementor-template-library-menu-item'
+		},
+
+		events: {
+			'click @ui.menuItem': 'onMenuItemClick'
+		},
+
+		onMenuItemClick: function(event) {
+			ha.library.setFilter('tags', '');
+			ha.library.setFilter('text', '');
+			ha.library.setFilter('type', event.currentTarget.dataset.tab, true);
+
+			ha.library.showTemplatesView();
+		}
 	});
 
 	Library.Views.ResponsiveMenu = Marionette.ItemView.extend({
@@ -209,6 +225,10 @@
 
 		id: 'haTemplateLibrary__templates',
 
+		className: function() {
+			return 'haTemplateLibrary__templates haTemplateLibrary__templates--' + ha.library.getFilter('type');
+		},
+
 		childViewContainer: '#haTemplateLibrary__templates-list',
 
 		emptyView: function () {
@@ -220,6 +240,7 @@
 			textFilter: '#haTemplateLibrary__search',
 			tagsFilter: '#haTemplateLibrary__filter-tags',
 			filterBar: '#haTemplateLibrary__toolbar-filter',
+			counter: '#haTemplateLibrary__toolbar-counter'
 		},
 
 		events: {
@@ -261,22 +282,41 @@
 		},
 
 		setMasonrySkin: function () {
-			var masonry = new elementorModules.utils.Masonry({
-				container: this.$childViewContainer,
-				items: this.$childViewContainer.children(),
-			});
+			if (ha.library.getFilter('type') === 'section') {
+				var masonry = new elementorModules.utils.Masonry({
+					container: this.$childViewContainer,
+					items: this.$childViewContainer.children(),
+				});
 
-			this.$childViewContainer.imagesLoaded(masonry.run.bind(masonry));
+				this.$childViewContainer.imagesLoaded(masonry.run.bind(masonry));
+			}
 		},
 
 		onRenderCollection: function () {
 			this.setMasonrySkin();
 			this.updatePerfectScrollbar();
+			this.setTemplatesFoundText();
+		},
+
+		setTemplatesFoundText: function() {
+			var type = ha.library.getFilter('type'),
+				len = this.children.length;
+				text = '<b>' + len + '</b>';
+
+			text += ( type === 'section' ? ' block' : ' ' + type );
+
+			if (len > 1) {
+				text += 's';
+			}
+
+			text += ' found';
+
+			this.ui.counter.html(text);
 		},
 
 		onTextFilterInput: function () {
 			var self = this;
-			_.defer(function () {
+			_.defer(function() {
 				ha.library.setFilter('text', self.ui.textFilter.val());
 			});
 		},
@@ -294,7 +334,7 @@
 				tag = ha.library.getTags()[tag];
 			}
 
-			this.ui.filterBar.find('.haTemplateLibrary__filter-btn').html(tag);
+			this.ui.filterBar.find('.haTemplateLibrary__filter-btn').html(tag + ' <i class="eicon-caret-down"></i>');
 		},
 
 		updatePerfectScrollbar: function () {
@@ -388,13 +428,13 @@
 
 		showDefaultHeader: function () {
 			this.showLogo({
-				title: 'HAPPY LIBRARY'
+				title: 'TEMPLATES'
 			});
 
 			var headerView = this.getHeaderView();
 			headerView.tools.show(new Library.Views.Actions());
-			// headerView.menuArea.show( new Library.Views.Menu() );
-			headerView.menuArea.reset();
+			headerView.menuArea.show( new Library.Views.Menu() );
+			// headerView.menuArea.reset();
 		},
 
 		showPreviewView: function (templateModel) {
@@ -411,9 +451,11 @@
 			}));
 		},
 
-		showBlocksView: function (blocksCollection) {
+		showTemplatesView: function (templatesCollection) {
+			this.showDefaultHeader();
+
 			this.modalContent.show(new Library.Views.TemplateCollection({
-				collection: blocksCollection,
+				collection: templatesCollection,
 			}));
 		}
 	});
@@ -421,6 +463,7 @@
 	Library.Manager = function () {
 		var modal,
 			tags,
+			typeTags,
 			self = this,
 			templatesCollection,
 			errorDialog
@@ -504,7 +547,7 @@
 			self.setFilter('tags', '', true);
 			self.setFilter('text', '', true);
 
-			self.getModal().showBlocksView(templatesCollection);
+			self.getModal().showTemplatesView(templatesCollection);
 		}
 
 		this.setFilter = function (name, value, silent) {
@@ -522,14 +565,14 @@
 		this.getFilterTerms = function () {
 			return {
 				tags: {
-					callback: function callback(value) {
+					callback: function(value) {
 						return _.any(this.get('tags'), function (tag) {
 							return tag.indexOf(value) >= 0;
 						});
 					}
 				},
 				text: {
-					callback: function callback(value) {
+					callback: function(value) {
 						value = value.toLowerCase();
 
 						if (this.get('title').toLowerCase().indexOf(value) >= 0) {
@@ -541,12 +584,17 @@
 						});
 					}
 				},
+				type: {
+					callback: function(value) {
+						return this.get('type') === value;
+					}
+				}
 			};
 		}
 
 		this.showModal = function () {
 			self.getModal().showModal();
-			self.showBlocksView();
+			self.showTemplatesView();
 		};
 
 		this.closeModal = function () {
@@ -562,17 +610,30 @@
 		};
 
 		this.init = function () {
+			self.setFilter('type', 'section', true);
+
 			elementor.on('preview:loaded', onPreviewLoaded.bind(this));
 		}
 
 		this.getTabs = function () {
-			return {
-				tabs: {
-					blocks: {
-						title: 'Blocks',
-						active: true
-					},
+			var type = this.getFilter('type');
+				tabs = {
+				section: {
+					title: 'Blocks',
 				},
+				page: {
+					title: 'Pages'
+				}
+			};
+
+			_.each(tabs, function(obj, key) {
+				if (type === key) {
+					tabs[type].active = true;
+				}
+			})
+
+			return {
+				tabs: tabs
 			};
 		};
 
@@ -580,14 +641,23 @@
 			return tags;
 		}
 
-		this.showBlocksView = function () {
-			self.getModal().showDefaultHeader();
+		this.getTypeTags = function () {
+			var type = self.getFilter('type');
+
+			return typeTags[type];
+		}
+
+		this.showTemplatesView = function () {
 			self.setFilter('tags', '', true);
 			self.setFilter('text', '', true);
 
-			self.loadTemplates(function () {
-				self.getModal().showBlocksView(templatesCollection);
-			});
+			if (!templatesCollection) {
+				self.loadTemplates(function () {
+					self.getModal().showTemplatesView(templatesCollection);
+				});
+			} else {
+				self.getModal().showTemplatesView(templatesCollection);
+			}
 		};
 
 		this.showPreviewView = function (templateModel) {
@@ -627,6 +697,10 @@
 
 					if (data.tags) {
 						tags = data.tags;
+					}
+
+					if (data.type_tags) {
+						typeTags = data.type_tags;
 					}
 
 					if (options.onUpdate) {
