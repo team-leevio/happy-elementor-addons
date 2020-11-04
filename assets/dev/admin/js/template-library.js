@@ -282,12 +282,14 @@
 		},
 
 		setMasonrySkin: function () {
-			var masonry = new elementorModules.utils.Masonry({
-				container: this.$childViewContainer,
-				items: this.$childViewContainer.children(),
-			});
+			if (ha.library.getFilter('type') === 'section') {
+				var masonry = new elementorModules.utils.Masonry({
+					container: this.$childViewContainer,
+					items: this.$childViewContainer.children(),
+				});
 
-			this.$childViewContainer.imagesLoaded(masonry.run.bind(masonry));
+				this.$childViewContainer.imagesLoaded(masonry.run.bind(masonry));
+			}
 		},
 
 		onRenderCollection: function () {
@@ -649,9 +651,13 @@
 			self.setFilter('tags', '', true);
 			self.setFilter('text', '', true);
 
-			self.loadTemplates(function () {
+			if (!templatesCollection) {
+				self.loadTemplates(function () {
+					self.getModal().showTemplatesView(templatesCollection);
+				});
+			} else {
 				self.getModal().showTemplatesView(templatesCollection);
-			});
+			}
 		};
 
 		this.showPreviewView = function (templateModel) {
