@@ -1,14 +1,18 @@
 .ha-social-share {
 
 	.ha-share-buttons {
-		display: flex;
-		flex-direction: row;
+		display: block;
 		list-style: none;
 		padding: 0;
 	}
 
-	.ha-share-buttons li {
+	.ha-share-buttons .ha-share-button {
 		display: inline-block;
+		margin: 0 10px 0 0;
+
+		&:last-child {
+			margin: 0;
+		}
 	}
 
 	.ha-share-button .ha-share-network {
@@ -34,55 +38,6 @@
 
 	.ha-share-label {
 		padding-left: 10px;
-	}
-
-	&.ha-display-inline {
-		.ha-share-button {
-			margin-right: 5px;
-			&:last-child {
-				margin-right: 0;
-			}
-		}
-	}
-	&.ha-display-block {
-		.ha-share-button {
-			margin-bottom: 5px;
-			&:last-child {
-				margin-bottom: 0;
-			}
-		}
-	}
-
-	&.ha-display-block.ha-alignment-left {
-		.ha-share-buttons {
-			align-items: flex-start;
-		}
-	}
-	&.ha-display-block.ha-alignment-center {
-		.ha-share-buttons {
-			align-items: center;
-		}
-	}
-	&.ha-display-block.ha-alignment-right {
-		.ha-share-buttons {
-			align-items: flex-end;
-		}
-	}
-
-	&.ha-display-inline.ha-alignment-left {
-		.ha-share-buttons {
-			justify-content: flex-start;
-		}
-	}
-	&.ha-display-inline.ha-alignment-center {
-		.ha-share-buttons {
-			justify-content: center;
-		}
-	}
-	&.ha-display-inline.ha-alignment-right {
-		.ha-share-buttons {
-			justify-content: flex-end;
-		}
 	}
 
 	&.ha-separator-yes {
