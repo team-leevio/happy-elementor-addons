@@ -21,7 +21,7 @@ class Assets_Manager {
 		add_action( 'elementor/preview/enqueue_styles', [ __CLASS__, 'enqueue_preview_styles' ] );
 
 		// Enqueue editor scripts
-		add_action( 'elementor/editor/after_enqueue_scripts', [ __CLASS__, 'enqueue_editor_scripts' ] );
+		add_action( 'elementor/editor/after_enqueue_scripts', [ __CLASS__, 'editor_enqueue' ] );
 
 		// Paragraph toolbar registration
 		add_filter( 'elementor/editor/localize_settings', [ __CLASS__, 'add_inline_editing_intermediate_toolbar' ] );
@@ -63,6 +63,14 @@ class Assets_Manager {
 		return $config;
 	}
 
+	/**
+	 * Register frontend assets.
+	 *
+	 * Frontend assets handler will be used in widgets map
+	 * to load widgets assets on demand.
+	 *
+	 * @return void
+	 */
 	public static function frontend_register() {
 		$suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
 
@@ -73,9 +81,7 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION
 		);
 
-		/**
-		 * Image comparasion
-		 */
+		// Image comparasion
 		wp_register_style(
 			'twentytwenty',
 			HAPPY_ADDONS_ASSETS . 'vendor/twentytwenty/css/twentytwenty.css',
@@ -99,9 +105,7 @@ class Assets_Manager {
 			true
 		);
 
-		/**
-		 * Justified Grid
-		 */
+		// Justified Grid
 		wp_register_style(
 			'justifiedGallery',
 			HAPPY_ADDONS_ASSETS . 'vendor/justifiedGallery/css/justifiedGallery.min.css',
@@ -117,9 +121,7 @@ class Assets_Manager {
 			true
 		);
 
-		/**
-		 * Carousel and Slider
-		 */
+		// Carousel and Slider
 		wp_register_style(
 			'slick',
 			HAPPY_ADDONS_ASSETS . 'vendor/slick/slick.css',
@@ -142,9 +144,7 @@ class Assets_Manager {
 			true
 		);
 
-		/**
-		 * Masonry grid
-		 */
+		// Masonry grid
 		wp_register_script(
 			'jquery-isotope',
 			HAPPY_ADDONS_ASSETS . 'vendor/jquery.isotope.js',
@@ -153,9 +153,7 @@ class Assets_Manager {
 			true
 		);
 
-		/**
-		 * Number animation
-		 */
+		// Number animation
 		wp_register_script(
 			'jquery-numerator',
 			HAPPY_ADDONS_ASSETS . 'vendor/jquery-numerator/jquery-numerator.min.js',
@@ -164,9 +162,7 @@ class Assets_Manager {
 			true
 		);
 
-		/**
-		 * Magnific popup
-		 */
+		// Magnific popup
 		wp_register_style(
 			'magnific-popup',
 			HAPPY_ADDONS_ASSETS . 'vendor/magnific-popup/magnific-popup.css',
@@ -182,9 +178,7 @@ class Assets_Manager {
 			true
 		);
 
-		/**
-		 * Floating effects
-		 */
+		// Floating effects
 		wp_register_script(
 			'anime',
 			HAPPY_ADDONS_ASSETS . 'vendor/anime/lib/anime.min.js',
@@ -219,6 +213,7 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
+
 		// happy magnify js
 		wp_register_script(
 			'ha-simple-magnify',
@@ -276,36 +271,49 @@ class Assets_Manager {
 	 * Handle exception cases where regular enqueue won't work
 	 *
 	 * @param Post_CSS $file
+	 *
+	 * @return void
 	 */
 	public static function frontend_enqueue_exceptions( Post_CSS $file ) {
-		if ( get_queried_object_id() === $file->get_post_id() ) {
+		$post_id = $file->get_post_id();
+
+		if ( get_queried_object_id() === $post_id ) {
 			return;
 		}
 
-		$template_type = get_post_meta( $file->get_post_id(), '_elementor_template_type', true );
+		$template_type = get_post_meta( $post_id, '_elementor_template_type', true );
 
 		if ( $template_type === 'kit' ) {
 			return;
 		}
 
-		$post_id = $file->get_post_id();
-
-		if ( Cache_Manager::should_enqueue( $post_id ) ) {
-			Cache_Manager::enqueue( $post_id );
-		}
-
-		if ( Cache_Manager::should_enqueue_raw( $post_id ) ) {
-			Cache_Manager::enqueue_raw( $post_id );
-		}
+		self::enqueue( $post_id );
 	}
 
+	/**
+	 * Enqueue fontend assets
+	 *
+	 * @return void
+	 */
 	public static function frontend_enqueue() {
 		if ( ! is_singular() ) {
 			return;
 		}
 
-		$post_id = get_the_ID();
+		self::enqueue( get_the_ID() );
+	}
 
+	/**
+	 * Just enqueue the assets
+	 *
+	 * It just processes the assets from cache if avilable
+	 * otherwise raw assets
+	 *
+	 * @param int $post_id
+	 *
+	 * @return void
+	 */
+	public static function enqueue( $post_id ) {
 		if ( Cache_Manager::should_enqueue( $post_id ) ) {
 			Cache_Manager::enqueue( $post_id );
 		}
@@ -319,7 +327,7 @@ class Assets_Manager {
 		return HAPPY_ADDONS_ASSETS . 'admin/css/editor-dark.min.css';
 	}
 
-	protected static function enqueue_dark_stylesheet() {
+	public static function enqueue_dark_stylesheet() {
 		$theme = SettingsManager::get_settings_managers( 'editorPreferences' )->get_model()->get_settings( 'ui_theme' );
 
 		if ( 'light' !== $theme ) {
@@ -341,7 +349,12 @@ class Assets_Manager {
 		}
 	}
 
-	public static function enqueue_editor_scripts() {
+	/**
+	 * Enqueue editor assets
+	 *
+	 * @return void
+	 */
+	public static function editor_enqueue() {
 		wp_enqueue_style(
 			'happy-icons',
 			HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
