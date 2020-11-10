@@ -291,7 +291,7 @@
 						break;
 				}
 
-				
+
 				settings.slidesToShow = this.getElementSettings('slides_to_show') || 1;
 				settings.responsive = [
 					{
@@ -707,15 +707,27 @@
 			}
 		);
 
-		$('[data-ha-element-link]').each(function() {
-			var link = $(this).data('ha-element-link');
-			$(this).on('click.haElementOnClick', function() {
-				if (link.is_external) {
-					window.open(link.url);
-				} else {
-					location.href = link.url;
-				}
-			})
+		$('[data-ha-element-link]').on('click.onWrapperLink', function() {
+			var link = $(this).data('ha-element-link'),
+				id = $(this).data('id'),
+				a = document.createElement('a'),
+				aDOM;
+
+			a.id = 'hawl' + id;
+			a.href = link.url;
+			a.target = link.is_external ? '_blank' : '_self';
+			a.rel = link.nofollow ? 'nofollow noreferer' : '';
+			a.style.display = 'none';
+
+			document.body.appendChild(a);
+
+			aDOM = document.getElementById(a.id);
+			aDOM.click();
+
+			var t = setTimeout(function() {
+				document.body.removeChild(aDOM);
+				clearTimeout(t);
+			});
 		});
 
 		var handlersFnMap = {
