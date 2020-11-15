@@ -200,7 +200,7 @@ class Assets_Cache {
 		$styles .= sprintf( '/** Compiled CSS for: %s **/', implode(', ', array_keys( $cached_widgets ) ) );
 
 		if ( ! is_dir( $this->get_cache_dir() ) ) {
-			@mkdir( $this->get_cache_dir(), 0755, true );
+			wp_mkdir_p( $this->get_cache_dir() );
 		}
 
 		file_put_contents( $this->get_file_name(), $styles );
