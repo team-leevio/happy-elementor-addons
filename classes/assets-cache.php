@@ -5,7 +5,11 @@ defined( 'ABSPATH' ) || die();
 
 class Assets_Cache {
 
-	const FILE_PREFIX = 'happy-';
+	const FILE_PREFIX = 'ha-';
+
+	const BASE_DIR = 'happyaddons';
+
+	const CSS_DIR = 'css';
 
 	protected static $is_common_loaded = false;
 
@@ -40,7 +44,7 @@ class Assets_Cache {
 	}
 
 	public function get_cache_dir_name() {
-		return trailingslashit( 'happyaddons' ) . trailingslashit( 'cache' );
+		return trailingslashit( self::BASE_DIR ) . trailingslashit( self::CSS_DIR );
 	}
 
 	public function get_post_id() {
@@ -48,7 +52,7 @@ class Assets_Cache {
 	}
 
 	public function get_cache_dir() {
-		return $this->upload_path . $this->get_cache_dir_name();
+		return wp_normalize_path( $this->upload_path . $this->get_cache_dir_name() );
 	}
 
 	public function get_cache_url() {
@@ -128,7 +132,7 @@ class Assets_Cache {
 		// TODO: Update style handler, now it's dependent on elementor-frontend
 		wp_add_inline_style(
 			'elementor-frontend',
-			$this->get_styles( $base_widget['css'] )
+			$this->get_css( $base_widget['css'] )
 		);
 
 		self::$is_common_loaded = true;
@@ -181,42 +185,49 @@ class Assets_Cache {
 	}
 
 	public function save() {
-		$widgets        = $this->get_widgets_cache()->get();
-		$widgets_map    = Widgets_Manager::get_widgets_map();
-		$cached_widgets = [];
-		$styles         = '';
+		$widgets           = $this->get_widgets_cache()->get();
+		$widgets_map       = Widgets_Manager::get_widgets_map();
+		$widgets_processed = [];
+		$css               = '';
 
 		foreach ( $widgets as $widget_key ) {
-			if ( isset( $cached_widgets[ $widget_key ] ) ||
+			if ( isset( $processed[ $widget_key ] ) ||
 				! isset( $widgets_map[ $widget_key ], $widgets_map[ $widget_key ]['css'] )
 			) {
 				continue;
 			}
+
 			$is_pro = ( isset( $widgets_map[ $widget_key ]['is_pro'] ) && $widgets_map[ $widget_key ]['is_pro'] );
-			$styles .= $this->get_styles( $widgets_map[ $widget_key ]['css'], $is_pro );
-			$cached_widgets[ $widget_key ] = true;
+			$css   .= $this->get_css( $widgets_map[ $widget_key ]['css'], $is_pro );
+
+			$widgets_processed[ $widget_key ] = true;
 		}
 
-		$styles .= sprintf( '/** Compiled CSS for: %s **/', implode(', ', array_keys( $cached_widgets ) ) );
+		if ( empty( $css ) ) {
+			return;
+		}
+
+		$css .= sprintf( '/** Widgets: %s **/', implode( ', ', array_keys( $widgets_processed ) ) );
 
 		if ( ! is_dir( $this->get_cache_dir() ) ) {
 			wp_mkdir_p( $this->get_cache_dir() );
 		}
 
-		file_put_contents( $this->get_file_name(), $styles );
+		file_put_contents( $this->get_file_name(), $css );
 	}
 
-	protected function get_styles( $files_name, $is_pro = false ) {
-		$styles = '';
+	protected function get_css( $files_name, $is_pro = false ) {
+		$css = '';
 
 		foreach ( $files_name as $file_name ) {
 			$file_path = HAPPY_ADDONS_DIR_PATH . "assets/css/widgets/{$file_name}.min.css";
 			$file_path = apply_filters( 'happyaddons_get_styles_file_path', $file_path, $file_name, $is_pro );
+
 			if ( is_readable( $file_path ) ) {
-				$styles .= file_get_contents( $file_path );
+				$css .= file_get_contents( $file_path );
 			};
 		}
 
-		return $styles;
+		return $css;
 	}
 }
