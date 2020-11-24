@@ -22,7 +22,7 @@
 		};
 	}
 
-	function initFilterable($scope, filterFn) {
+	function initFilterNav($scope, filterFn) {
 		var $filterNav = $scope.find('.hajs-filter'),
 			defaultFilter = $filterNav.data('default-filter');
 
@@ -118,38 +118,6 @@
 				$window.trigger('resize.twentytwenty');
 				clearTimeout(t);
 			}, 400);
-		});
-	};
-
-	var HandleJustifiedGallery = function($scope) {
-		var $item = $scope.find('.hajs-justified-gallery'),
-			settings = $item.getHappySettings(),
-			lbSettings = {
-				$element: $scope,
-				selector: '.ha-js-popup',
-				isEnabled: settings.enable_popup,
-				key: 'justifiedgallery'
-			};
-
-		$item.justifiedGallery($.extend({}, {
-			rowHeight: 150,
-			lastRow: 'justify',
-			margins: 10,
-		}, settings));
-
-		initPopupGallery(lbSettings);
-
-		initFilterable($scope, function(filter) {
-			$item.justifiedGallery({
-				lastRow: (filter === '*' ? settings.lastRow : 'nojustify'),
-				filter: filter
-			});
-
-			if (filter !== '*') {
-				lbSettings.selector = filter
-			}
-
-			initPopupGallery(lbSettings);
 		});
 	};
 
@@ -376,7 +344,7 @@
 			});
 		};
 
-		var Isotope = EM.frontend.handlers.Base.extend({
+		var ImageGrid = EM.frontend.handlers.Base.extend({
 			onInit: function () {
 				EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
 				this.run();
@@ -419,7 +387,7 @@
 				var self = this,
 					lbSettings = this.getLightBoxSettings();
 
-				initFilterable(this.$element, function(filter) {
+				initFilterNav(this.$element, function(filter) {
 					self.elements.$container.isotope({
 						filter: filter
 					});
@@ -449,6 +417,76 @@
 					});
 
 				initPopupGallery(self.getLightBoxSettings());
+			}
+		});
+
+		var JustifiedGrid = EM.frontend.handlers.Base.extend({
+			onInit: function () {
+				EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+				this.run();
+				this.runFilter();
+
+				$window.on('resize', debounce(this.run.bind(this), 100));
+			},
+
+			getDefaultSettings: function() {
+				return {
+					rowHeight: +this.getElementSettings('row_height.size') || 150,
+					lastRow: this.getElementSettings('last_row'),
+					margins: +this.getElementSettings('margins.size'),
+					captions: !!this.getElementSettings('show_caption')
+				};
+			},
+
+			getDefaultElements: function() {
+				return {
+					$container: this.findElement('.hajs-justified-grid')
+				};
+			},
+
+			getLightBoxSettings: function() {
+				return {
+					key            : 'justifiedgallery',
+					$element       : this.$element,
+					selector       : '.ha-js-lightbox',
+					isEnabled      : !!this.getElementSettings('enable_popup'),
+					disableOnTablet: !!this.getElementSettings('disable_lightbox_on_tablet'),
+					disableOnMobile: !!this.getElementSettings('disable_lightbox_on_mobile')
+				};
+			},
+
+			runFilter: function() {
+				var self = this,
+					lbSettings = this.getLightBoxSettings(),
+					settings = {
+						lastRow: this.getElementSettings('last_row')
+					};
+
+				initFilterNav(self.$element, function(filter) {
+					if (filter !== '*') {
+						settings.lastRow = 'nojustify';
+						lbSettings.selector = filter
+					}
+
+					settings.filter = filter;
+					self.elements.$container.justifiedGallery(settings);
+
+					initPopupGallery(lbSettings);
+				});
+			},
+
+			onElementChange: function(changedProp) {
+				if (['row_height', 'last_row', 'margins', 'show_caption', 'enable_popup'].indexOf(changedProp) !== -1) {
+					this.run();
+				}
+			},
+
+			run: function() {
+				this.elements
+					.$container
+					.justifiedGallery(this.getDefaultSettings());
+
+				initPopupGallery(this.getLightBoxSettings());
 			}
 		});
 
@@ -787,9 +825,8 @@
 			});
 		});
 
-		var handlersFnMap = {
+		var fnHanlders = {
 			'ha-image-compare.default': HandleImageCompare,
-			'ha-justified-gallery.default': HandleJustifiedGallery,
 			'ha-number.default': NumberHandler,
 			'ha-skills.default': SkillHandler,
 			'ha-fun-factor.default': FunFactor,
@@ -799,20 +836,19 @@
 			'ha-data-table.default': DataTable
 		};
 
-		$.each( handlersFnMap, function( widgetName, handlerFn ) {
+		$.each( fnHanlders, function( widgetName, handlerFn ) {
 			EF.hooks.addAction( 'frontend/element_ready/' + widgetName, handlerFn );
 		});
 
-		var handlersClassMap = {
-			// 'ha-slider.default': Slick,
-			// 'ha-carousel.default': Slick,
-			'ha-image-grid.default': Isotope,
+		var classHandlers = {
+			'ha-image-grid.default': ImageGrid,
+			'ha-justified-gallery.default': JustifiedGrid,
 			'ha-news-ticker.default': NewsTicker,
 			'ha-post-tab.default': PostTab,
 			'widget': ExtensionHandler,
 		};
 
-		$.each( handlersClassMap, function( widgetName, handlerClass ) {
+		$.each( classHandlers, function( widgetName, handlerClass ) {
 			EF.hooks.addAction( 'frontend/element_ready/' + widgetName, function( $scope ) {
 				EF.elementsHandler.addHandler( handlerClass, { $element: $scope });
 			});
