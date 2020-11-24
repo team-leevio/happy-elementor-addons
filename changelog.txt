@@ -1,3 +1,9 @@
+= 2.15.1 - November 2020 =
+
+- Tweak: Improved on demand assets loading
+- Fix: Private page on demand assets loading issue
+- Fix: Lightbox and Popup not working with wrapper link issue
+
 = 2.15.0 - 4 November 2020 =
 
 - New: Ready made page templates (Happy Templates)
