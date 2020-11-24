@@ -273,6 +273,7 @@ class Image_Grid extends Base {
 				'size_units' => [ 'px', 'em', '%', 'rem' ],
 				'selectors' => [
 					'{{WRAPPER}} .ha-image-grid__item' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-image-grid__wrap' => '--image-grid-right: {{RIGHT}}{{UNIT}}; --image-grid-left: {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -286,14 +287,6 @@ class Image_Grid extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-image-grid__item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			[
-				'name' => 'image_box_shadow',
-				'selector' => '{{WRAPPER}} .ha-image-grid__item img'
 			]
 		);
 
@@ -676,7 +669,7 @@ class Image_Grid extends Base {
 			}
 
 			$images = $item['images'];
-			$filter = '__filter-' . ( $key + 1 );
+			$filter = '__fltr-' . ( $key + 1 );
 
 			if ( $filter && ! isset( $data[ $filter ] ) ) {
 				$menu[ $filter ] = $item['filter'];
@@ -684,17 +677,14 @@ class Image_Grid extends Base {
 
 			foreach ( $images as $image ) {
 				if ( ! isset( $items[ $image['id'] ] ) ) {
-					$items[ $image['id'] ] = [ $filter ];
+					$items[ $image['id'] ] = $filter;
 				} else {
-					array_push( $items[ $image['id'] ], $filter );
+					$items[ $image['id'] ] .= ' ' . $filter;
 				}
 			}
 		}
 
-		return [
-			'menu' => $menu,
-			'items' => $items
-		];
+		return compact( 'menu', 'items' );
 	}
 
 	protected function render() {
@@ -731,10 +721,10 @@ class Image_Grid extends Base {
 		<?php endif; ?>
 
 		<div <?php $this->print_render_attribute_string( 'grid_wrap' ); ?>>
-			<?php foreach ( $gallery['items'] as $id => $filters ) : ?>
+			<?php foreach ( $gallery['items'] as $id => $filter_str ) : ?>
 				<?php $popup = $settings['enable_popup'] ? sprintf( 'href="%s"', esc_url( wp_get_attachment_image_url( $id, $settings['popup_image_size'] ) ) ) : ''; ?>
 
-				<<?php echo $item_html_tag; ?> <?php echo $popup; ?> class="ha-image-grid__item ha-js-lightbox <?php echo esc_attr( implode( ' ', $filters ) ); ?>">
+				<<?php echo $item_html_tag; ?> <?php echo $popup; ?> class="ha-image-grid__item ha-js-lightbox <?php echo esc_attr( $filter_str ); ?>">
 					<?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'class' => 'elementor-animation-' . esc_attr( $settings['image_hover_animation'] ) ] ); ?>
 				</<?php echo $item_html_tag; ?>>
 			<?php endforeach; ?>
@@ -745,7 +735,7 @@ class Image_Grid extends Base {
 		 * Happy isotope hack.
 		 *
 		 * This piece of code may seem unnecessary to you
-		 * but it saved me from hell!!!
+		 * but it saved the world!
 		 */
 		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) :
 			printf( '<script>jQuery(".hajs-isotope-%s").isotope();</script>', $this->get_id() );

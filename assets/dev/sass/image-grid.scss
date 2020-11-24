@@ -5,6 +5,8 @@
 
 	&__wrap {
 		overflow: hidden;
+		margin-right: calc(-1 * var(--image-grid-right, 10px));
+		margin-left: calc(-1 * var(--image-grid-left, 10px));
 	}
 
 	&__item {
