@@ -23,17 +23,17 @@
 	}
 
 	function initFilterable($scope, filterFn) {
-		var $filterable = $scope.find('.hajs-gallery-filter');
-		if ($filterable.length) {
-			$filterable.on('click', 'button', function(event) {
+		var $filterNav = $scope.find('.hajs-filter');
+
+		if ($filterNav.length) {
+			$filterNav.on('click.onFilterNav', 'button', function(event) {
 				event.stopPropagation();
 
 				var $current = $(this);
 				$current
-					.parent()
-					.addClass('ha-filter-active')
+					.addClass('ha-filter__item--active')
 					.siblings()
-					.removeClass('ha-filter-active');
+					.removeClass('ha-filter__item--active');
 				filterFn($current.data('filter'));
 			});
 		}

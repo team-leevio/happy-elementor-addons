@@ -426,7 +426,7 @@ class Image_Grid extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-gallery-filter' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-filter' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -447,7 +447,7 @@ class Image_Grid extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-gallery-filter > li > button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-filter__item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -459,7 +459,7 @@ class Image_Grid extends Base {
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'selectors' => [
-					'{{WRAPPER}} .ha-gallery-filter > li:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-filter__item:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -468,7 +468,7 @@ class Image_Grid extends Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'button_border',
-				'selector' => '{{WRAPPER}} .ha-gallery-filter > li > button'
+				'selector' => '{{WRAPPER}} .ha-filter__item'
 			]
 		);
 
@@ -479,7 +479,7 @@ class Image_Grid extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-gallery-filter > li > button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-filter__item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -491,7 +491,7 @@ class Image_Grid extends Base {
 				'exclude' => [
 					'box_shadow_position',
 				],
-				'selector' => '{{WRAPPER}} .ha-gallery-filter > li > button'
+				'selector' => '{{WRAPPER}} .ha-filter__item'
 			]
 		);
 
@@ -499,7 +499,7 @@ class Image_Grid extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'button_typography',
-				'selector' => '{{WRAPPER}} .ha-gallery-filter > li > button',
+				'selector' => '{{WRAPPER}} .ha-filter__item',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
@@ -527,7 +527,7 @@ class Image_Grid extends Base {
 				'desktop_default' => 'left',
 				'toggle' => false,
 				'selectors' => [
-					'{{WRAPPER}} .ha-gallery-filter' => 'text-align: {{VALUE}};'
+					'{{WRAPPER}} .ha-filter' => 'text-align: {{VALUE}};'
 				]
 			]
 		);
@@ -548,7 +548,7 @@ class Image_Grid extends Base {
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .ha-gallery-filter > li > button' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-filter__item' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -559,7 +559,7 @@ class Image_Grid extends Base {
 				'label' => __( 'Background Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-gallery-filter > li > button' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-filter__item' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -579,7 +579,7 @@ class Image_Grid extends Base {
 				'label' => __( 'Text Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button:hover, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button:focus' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-filter__item:hover, {{WRAPPER}} .ha-filter__item:focus' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -590,7 +590,7 @@ class Image_Grid extends Base {
 				'label' => __( 'Background Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button:hover, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button:focus' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-filter__item:hover, {{WRAPPER}} .ha-filter__item:focus' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -604,7 +604,7 @@ class Image_Grid extends Base {
 					'button_border_border!' => '',
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-gallery-filter > li > button:hover, {{WRAPPER}} .ha-gallery-filter > li > button:focus, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button:hover, {{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button:focus' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-filter__item:hover, {{WRAPPER}} .ha-filter__item:focus' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -624,7 +624,7 @@ class Image_Grid extends Base {
 				'label' => __( 'Text Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-filter__item:active, {{WRAPPER}} .ha-filter__item--active' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -635,7 +635,7 @@ class Image_Grid extends Base {
 				'label' => __( 'Background Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-filter__item:active, {{WRAPPER}} .ha-filter__item--active' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -649,7 +649,7 @@ class Image_Grid extends Base {
 					'button_border_border!' => '',
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-gallery-filter > .ha-filter-active > button' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-filter__item:active, {{WRAPPER}} .ha-filter__item--active' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -676,7 +676,7 @@ class Image_Grid extends Base {
 			}
 
 			$images = $item['images'];
-			$filter = 'ha-is--filter-' . ( $key + 1 );
+			$filter = '__filter-' . ( $key + 1 );
 
 			if ( $filter && ! isset( $data[ $filter ] ) ) {
 				$menu[ $filter ] = $item['filter'];
@@ -720,16 +720,14 @@ class Image_Grid extends Base {
 		}
 
 		if ( $settings['show_filter'] ) : ?>
-
-			<ul class="ha-gallery-filter hajs-gallery-filter">
+			<div class="ha-filter hajs-filter" role="navigation" aria-label="<?php echo esc_attr_x( 'Gallery filter', 'Gallery filter aria label', 'happy-elementor-addons' ); ?>">
 				<?php if ( $settings['show_all_filter'] ) : ?>
-					<li class="ha-filter-active"><button type="button" data-filter="*"><?php echo esc_html( $settings['all_filter_label'] ); ?></button></li>
+					<button class="ha-filter__item ha-filter__item--active" type="button" data-filter="*"><?php echo esc_html( $settings['all_filter_label'] ); ?></button></li>
 				<?php endif; ?>
 				<?php foreach ( $gallery['menu'] as $key => $val ) : ?>
-					<li><button type="button" data-filter=".<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $val ); ?></button></li>
+					<button class="ha-filter__item" type="button" data-filter=".<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $val ); ?></button></li>
 				<?php endforeach; ?>
-			</ul>
-
+			</div>
 		<?php endif; ?>
 
 		<div <?php $this->print_render_attribute_string( 'grid_wrap' ); ?>>

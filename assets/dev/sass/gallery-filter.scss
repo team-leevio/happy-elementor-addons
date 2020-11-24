@@ -1,48 +1,43 @@
 @import "variables";
 @import "mixins";
 
-.ha-gallery-filter {
-  list-style: none;
-  margin: 0 10px 2rem;
-  padding: 0;
+$primary-color: #885cff;
 
-  > li {
-    display: inline-block;
-    margin-bottom: 10px;
-    max-width: 100%;
+.ha-filter {
+	margin: 0 10px 20px;
 
-    &:not(:last-child) {
-      margin-right: 10px
-    }
+	&__item {
+		display: inline-block;
+		margin-bottom: 10px;
+		color: $primary-color;
+		border: 2px solid $primary-color;
+		background-color: transparent;
+		border-radius: 3px;
+		padding: 8px 20px;
+		line-height: 1.2;
+		font-size: 14px;
+		transition: all .3s;
+		cursor: pointer;
+		text-transform: uppercase;
+		max-width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
 
-    > button {
-      display: block;
-      color: $primary-color;
-      border: 2px solid $primary-color;
-      background-color: transparent;
-      border-radius: .25rem;
-      padding: 10px 25px;
-      font-size: 14px;
-      transition: all .3s;
-      cursor: pointer;
-      text-transform: uppercase;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
+		&:hover,
+		&:focus {
+			color: #fff;
+			background-color: $primary-color;
+			outline: 0;
+		}
 
-      &:hover,
-      &:focus {
-        color: #fff;
-        background-color: $primary-color;
-        outline: 0;
-      }
-    }
-  }
+		&:active,
+		&--active {
+			color: #fff;
+			background-color: $primary-color;
+		}
 
-  > .ha-filter-active {
-    > button {
-      color: #fff;
-      background-color: $primary-color;
-    }
-  }
+		&:not(:last-child) {
+			margin-right: 10px
+		}
+	}
 }
