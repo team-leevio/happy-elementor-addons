@@ -23,7 +23,8 @@
 	}
 
 	function initFilterable($scope, filterFn) {
-		var $filterNav = $scope.find('.hajs-filter');
+		var $filterNav = $scope.find('.hajs-filter'),
+			defaultFilter = $filterNav.data('default-filter');
 
 		if ($filterNav.length) {
 			$filterNav.on('click.onFilterNav', 'button', function(event) {
@@ -36,6 +37,8 @@
 					.removeClass('ha-filter__item--active');
 				filterFn($current.data('filter'));
 			});
+
+			$filterNav.find('[data-filter="'+defaultFilter+'"]').click();
 		}
 	}
 

@@ -20,13 +20,13 @@ defined( 'ABSPATH' ) || die();
 class Image_Grid extends Base {
 
 	/**
-	 * Get widget title.
+	 * Default filter is the global filter
+	 * and can be overriden from settings
 	 *
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 * @return string Widget title.
+	 * @var string
 	 */
+	protected $_default_filter = '*';
+
 	public function get_title() {
 		return __( 'Image Grid', 'happy-elementor-addons' );
 	}
@@ -70,6 +70,20 @@ class Image_Grid extends Base {
 				'placeholder' => __( 'Type gallery filter name', 'happy-elementor-addons' ),
 				'description' => __( 'Filter name will be used in filter menu.', 'happy-elementor-addons' ),
 				'default' => __( 'Filter Name', 'happy-elementor-addons' ),
+				'dynamic' => [
+					'active' => true,
+				]
+			]
+		);
+
+		$repeater->add_control(
+			'is_default_filter',
+			[
+				'label' => __( 'Is Default Filter?', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'description' => __( 'Set this as default active filter. Make sure filter menu is active and visible. Last active will get priority.', 'happy-elementor-addons' ),
+				'style_transfer' => true,
 			]
 		);
 
@@ -158,6 +172,9 @@ class Image_Grid extends Base {
 				'condition' => [
 					'show_all_filter' => 'yes',
 					'show_filter' => 'yes'
+				],
+				'dynamic' => [
+					'active' => true,
 				]
 			]
 		);
@@ -671,6 +688,10 @@ class Image_Grid extends Base {
 			$images = $item['images'];
 			$filter = '__fltr-' . ( $key + 1 );
 
+			if ( ! empty( $item['is_default_filter'] ) ) {
+				$this->_default_filter = '.' . $filter;
+			}
+
 			if ( $filter && ! isset( $data[ $filter ] ) ) {
 				$menu[ $filter ] = $item['filter'];
 			}
@@ -709,10 +730,14 @@ class Image_Grid extends Base {
 			$this->add_render_attribute( 'grid_wrap', 'class', 'ha-lightbox--has' );
 		}
 
+		if ( empty( $this->_default_filter ) ) {
+			$this->_default_filter = '*';
+		}
+
 		if ( $settings['show_filter'] ) : ?>
-			<div class="ha-filter hajs-filter" role="navigation" aria-label="<?php echo esc_attr_x( 'Gallery filter', 'Gallery filter aria label', 'happy-elementor-addons' ); ?>">
+			<div class="ha-filter hajs-filter" data-default-filter="<?php echo $this->_default_filter; ?>" role="navigation" aria-label="<?php echo esc_attr_x( 'Gallery filter', 'Gallery filter aria label', 'happy-elementor-addons' ); ?>">
 				<?php if ( $settings['show_all_filter'] ) : ?>
-					<button class="ha-filter__item ha-filter__item--active" type="button" data-filter="*"><?php echo esc_html( $settings['all_filter_label'] ); ?></button></li>
+					<button class="ha-filter__item" type="button" data-filter="*"><?php echo esc_html( $settings['all_filter_label'] ); ?></button></li>
 				<?php endif; ?>
 				<?php foreach ( $gallery['menu'] as $key => $val ) : ?>
 					<button class="ha-filter__item" type="button" data-filter=".<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $val ); ?></button></li>
