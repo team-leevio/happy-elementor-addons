@@ -756,10 +756,6 @@ class Image_Grid extends Base {
 			$this->add_render_attribute( 'grid_wrap', 'class', 'ha-lightbox--has' );
 		}
 
-		if ( empty( $this->_default_filter ) ) {
-			$this->_default_filter = '*';
-		}
-
 		if ( $settings['show_filter'] ) : ?>
 			<div class="ha-filter hajs-filter" data-default-filter="<?php echo $this->_default_filter; ?>" role="navigation" aria-label="<?php echo esc_attr_x( 'Gallery filter', 'Gallery filter aria label', 'happy-elementor-addons' ); ?>">
 				<?php if ( $settings['show_all_filter'] ) : ?>

@@ -1,5 +1,11 @@
 = 2.15.1 - November 2020 =
 
+- Added: Justified Grid lightbox disable option for mobile and tablet
+- Added: Image Grid lightbox disable option for mobile and tablet
+- Added: Justified Grid default filter select option
+- Added: Image Grid default filter select option
+- Tweak: Improved Justified Grid and Image Grid base style
+- Tweak: Improved Image Grid markup - removed extra inner div
 - Tweak: Improved on demand assets loading
 - Fix: Private page on demand assets loading issue
 - Fix: Lightbox and Popup not working with wrapper link issue
