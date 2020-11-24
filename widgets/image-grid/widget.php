@@ -233,6 +233,32 @@ class Image_Grid extends Base {
 			]
 		);
 
+		$this->add_control(
+			'disable_lightbox_on_tablet',
+			[
+				'label' => __( 'Disable On Tablet', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'frontend_available' => true,
+				'condition' => [
+					'enable_popup' => 'yes',
+				]
+			]
+		);
+
+		$this->add_control(
+			'disable_lightbox_on_mobile',
+			[
+				'label' => __( 'Disable On Mobile', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'frontend_available' => true,
+				'condition' => [
+					'enable_popup' => 'yes',
+				]
+			]
+		);
+
 		$this->add_group_control(
 			Group_Control_Image_Size::get_type(),
 			[
@@ -747,7 +773,7 @@ class Image_Grid extends Base {
 
 		<div <?php $this->print_render_attribute_string( 'grid_wrap' ); ?>>
 			<?php foreach ( $gallery['items'] as $id => $filter_str ) : ?>
-				<?php $popup = $settings['enable_popup'] ? sprintf( 'href="%s"', esc_url( wp_get_attachment_image_url( $id, $settings['popup_image_size'] ) ) ) : ''; ?>
+				<?php $popup = $settings['enable_popup'] ? sprintf( 'href="#" data-mfp-src="%s"', esc_url( wp_get_attachment_image_url( $id, $settings['popup_image_size'] ) ) ) : ''; ?>
 
 				<<?php echo $item_html_tag; ?> <?php echo $popup; ?> class="ha-image-grid__item ha-js-lightbox <?php echo esc_attr( $filter_str ); ?>">
 					<?php echo wp_get_attachment_image( $id, $settings['thumbnail_size'], false, [ 'class' => 'elementor-animation-' . esc_attr( $settings['image_hover_animation'] ) ] ); ?>

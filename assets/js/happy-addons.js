@@ -42,22 +42,31 @@
 		}
 	}
 
-	function initPopupGallery($scope, selector, hasPopup, key) {
+	/**
+	 * Initialize magnific lighbox gallery
+	 *
+	 * @param {$element, selector, isEnabled, key} settings
+	 */
+	function initPopupGallery(settings) {
+		settings.$element.on('click', settings.selector, function(event) {
+			event.preventDefault();
+		});
+
 		if ( ! $.fn.magnificPopup ) {
 			return;
 		}
 
-		if ( ! hasPopup ) {
+		if ( ! settings.isEnabled ) {
 			$.magnificPopup.close();
 			return;
 		}
 
-		$scope.on('click', selector, function(event) {
-			event.stopPropagation();
-		});
+		var windowWidth = $(window).width(),
+			mobileWidth = elementorFrontendConfig.breakpoints.md,
+			tabletWidth = elementorFrontendConfig.breakpoints.lg;
 
-		$scope.find(selector).magnificPopup({
-			key: key,
+		settings.$element.find(settings.selector).magnificPopup({
+			key: settings.key,
 			type: 'image',
 			image: {
 				titleSrc: function(item) {
@@ -75,6 +84,17 @@
 				opener: function(openerElement) {
 					return openerElement.is('img') ? openerElement : openerElement.find('img');
 				}
+			},
+			disableOn: function() {
+				if (settings.disableOnMobile && windowWidth < mobileWidth) {
+					return false;
+				}
+
+				if (settings.disableOnTablet && windowWidth >= mobileWidth && windowWidth < tabletWidth) {
+					return false;
+				}
+
+				return true;
 			}
 		});
 	}
@@ -104,7 +124,12 @@
 	var HandleJustifiedGallery = function($scope) {
 		var $item = $scope.find('.hajs-justified-gallery'),
 			settings = $item.getHappySettings(),
-			hasPopup = settings.enable_popup;
+			lbSettings = {
+				$element: $scope,
+				selector: '.ha-js-popup',
+				isEnabled: settings.enable_popup,
+				key: 'justifiedgallery'
+			};
 
 		$item.justifiedGallery($.extend({}, {
 			rowHeight: 150,
@@ -112,15 +137,19 @@
 			margins: 10,
 		}, settings));
 
-		initPopupGallery($scope, '.ha-js-popup', hasPopup, 'justifiedgallery');
+		initPopupGallery(lbSettings);
 
 		initFilterable($scope, function(filter) {
 			$item.justifiedGallery({
 				lastRow: (filter === '*' ? settings.lastRow : 'nojustify'),
 				filter: filter
 			});
-			var selector = filter !== '*' ? filter : '.ha-js-popup';
-			initPopupGallery($scope, selector, hasPopup, 'justifiedgallery');
+
+			if (filter !== '*') {
+				lbSettings.selector = filter
+			}
+
+			initPopupGallery(lbSettings);
 		});
 	};
 
@@ -350,9 +379,10 @@
 		var Isotope = EM.frontend.handlers.Base.extend({
 			onInit: function () {
 				EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
-				this.$container = this.$element.find('.hajs-isotope');
 				this.run();
 				this.runFilter();
+
+				$window.on('resize', debounce(this.run.bind(this), 100));
 			},
 
 			getLayoutMode: function() {
@@ -368,15 +398,37 @@
 				};
 			},
 
+			getDefaultElements: function() {
+				return {
+					$container: this.findElement('.hajs-isotope')
+				};
+			},
+
+			getLightBoxSettings: function() {
+				return {
+					key            : 'imagegrid',
+					$element       : this.$element,
+					selector       : '.ha-js-lightbox',
+					isEnabled      : !!this.getElementSettings('enable_popup'),
+					disableOnTablet: !!this.getElementSettings('disable_lightbox_on_tablet'),
+					disableOnMobile: !!this.getElementSettings('disable_lightbox_on_mobile')
+				};
+			},
+
 			runFilter: function() {
-				var self = this;
+				var self = this,
+					lbSettings = this.getLightBoxSettings();
+
 				initFilterable(this.$element, function(filter) {
-					self.$container.isotope({
+					self.elements.$container.isotope({
 						filter: filter
 					});
 
-					var selector = filter !== '*' ? filter : '.ha-js-popup';
-					initPopupGallery(self.$element, selector, self.getElementSettings('enable_popup'), 'imagegrid');
+					if (filter !== '*') {
+						lbSettings.selector = filter;
+					}
+
+					initPopupGallery(lbSettings);
 				});
 			},
 
@@ -389,12 +441,14 @@
 			run: function() {
 				var self = this;
 
-				this.$container.isotope(self.getDefaultSettings());
-				this.$container.imagesLoaded().progress(function() {
-					self.$container.isotope('layout');
-				});
+				self.elements
+					.$container
+					.isotope(self.getDefaultSettings())
+					.imagesLoaded().progress(function() {
+						self.elements.$container.isotope('layout');
+					});
 
-				initPopupGallery(this.$element, '.ha-js-lightbox', this.getElementSettings('enable_popup'), 'imagegrid');
+				initPopupGallery(self.getLightBoxSettings());
 			}
 		});
 
