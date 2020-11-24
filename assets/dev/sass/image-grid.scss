@@ -2,114 +2,34 @@
 @import "mixins";
 
 .ha-image-grid {
-  &-item {
-    float: left;
-  }
 
-  &-inner {
-    display: block;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    margin: 10px;
+	&__wrap {
+		overflow: hidden;
+	}
 
-    img {
-      display: block;
-      width: 100%;
-	  transition: all .25s;
-	  object-fit: cover;
-    }
+	&__item {
+		float: left;
+		display: block;
+		text-decoration: none;
+		outline: none;
+		overflow: hidden;
+		border: 10px solid transparent;
+		width: calc(100% / var(--image-grid-column, 4));
 
-    //&:hover {
-    //  z-index: 1;
-      //.ha-image-grid {
-      //  &-overlay,
-      //  &-caption {
-      //    opacity: 1;
-      //  }
-      //}
-    //}
-  }
+		img {
+			display: block;
+			width: 100%;
+			transition: all .25s;
+			object-fit: cover;
+			border-radius: inherit;
+		}
+	}
 
-  &--layout-even &-inner {
-    height: 250px;
+	&--even &__item {
+		height: 250px;
 
-    img {
-      height: 100%;
-    }
-  }
-
-  //&-overlay {
-  //  position: absolute;
-  //  top: 0;
-  //  right: 0;
-  //  bottom: 0;
-  //  left: 0;
-  //  opacity: 0;
-  //  background-color: rgba(0, 0, 0, .8);
-  //  padding: 30px;
-  //  transition: opacity .5s;
-  //}
-
-  //&-caption {
-  //  position: absolute;
-  //  transition: opacity .5s;
-  //  color: #fff;
-  //  font-size: 16px;
-  //  width: 100%;
-  //  opacity: 0;
-  //  font-style: normal;
-  //
-  //  // Positioning
-  //  &--topleft,
-  //  &--topcenter,
-  //  &--topright {
-  //    top: 2.9rem;
-  //  }
-  //
-  //  &--middleleft,
-  //  &--middlecenter,
-  //  &--middleright {
-  //    top: 50%;
-  //    transform: translateY(-50%);
-  //  }
-  //
-  //  &--bottomleft,
-  //  &--bottomcenter,
-  //  &--bottomright {
-  //    bottom: 2rem;
-  //  }
-  //
-  //  &--topleft,
-  //  &--middleleft,
-  //  &--bottomleft {
-  //    left: 2rem;
-  //    text-align: left;
-  //    &:before {
-  //      left: 0;
-  //    }
-  //  }
-  //
-  //  &--topcenter,
-  //  &--middlecenter,
-  //  &--bottomcenter {
-  //    left: 50%;
-  //    transform: translateX(-50%);
-  //    text-align: center;
-  //    &:before {
-  //      left: 50%;
-  //      transform: translateX(-50%);
-  //    }
-  //  }
-  //
-  //  &--topright,
-  //  &--middleright,
-  //  &--bottomright {
-  //    right: 2rem;
-  //    text-align: right;
-  //    &:before {
-  //      right: 0;
-  //    }
-  //  }
-  //}
+		img {
+			height: 100%;
+		}
+	}
 }

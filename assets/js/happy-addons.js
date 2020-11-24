@@ -359,9 +359,9 @@
 
 			getDefaultSettings: function() {
 				return {
-					itemSelector: '.ha-image-grid-item',
+					itemSelector: '.ha-image-grid__item',
 					percentPosition: true,
-					layoutMode: this.getLayoutMode()
+					layoutMode: this.getLayoutMode(),
 				};
 			},
 
@@ -391,7 +391,7 @@
 					self.$container.isotope('layout');
 				});
 
-				initPopupGallery(this.$element, '.ha-js-popup', this.getElementSettings('enable_popup'), 'imagegrid');
+				initPopupGallery(this.$element, '.ha-js-lightbox', this.getElementSettings('enable_popup'), 'imagegrid');
 			}
 		});
 
