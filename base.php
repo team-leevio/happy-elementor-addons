@@ -30,7 +30,11 @@ class Base {
     }
 
     public function i18n() {
-        load_plugin_textdomain( 'happy-elementor-addons' );
+		load_plugin_textdomain(
+			'happy-elementor-addons',
+			false,
+			dirname( plugin_basename( HAPPY_ADDONS__FILE__ ) ) . '/i18n/'
+		);
     }
 
     public function init() {

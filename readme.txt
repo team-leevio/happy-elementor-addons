@@ -1,12 +1,12 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.15.0
+Version: 2.16.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
 Tags: Elementor Page Builder, Elementor Addons, Widgets, Editor, Web Page Builder
 Requires at least: 4.7
-Tested up to: 5.5.1
+Tested up to: 5.5.3
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -151,6 +151,10 @@ If you are still craving for more widgets, then the following premium widgets ar
 - [**Smart Post List**](https://demo.happyaddons.com/elementor-smart-post-list-widget-demo/) - Are you looking for a magnificent listing facility with the highlighted option for your sticky featured article? HappyAddons Smart Post list widget will handle all of your desirable styles smartly, like featuring the sticky post, filterable post list, and more
 - [**Post Carousel**](https://demo.happyaddons.com/elementor-post-carousel-widget-demo/) - The Post carousel feature is now trendy in News Portals or other blogging sites to grab visitors’ attention. Now you can create a stunning post carousel for your site with the HappyAddons Post Carousel widget
 - [**Author List**](https://demo.happyaddons.com/elementor-author-list-widget-demo/) - Decently showcase your creative writers with the HappyAddons Author List widget. It will help you to display all of your authors in one place
+- [**WooCommerce Product Grid**](https://demo.happyaddons.com/elementor-product-grid-widget-demo/) - Are you struggling with showcasing your products in perfect grid alignment within WooCommerce? From now, you can display your products in grid views lucratively with HappyAddons Pro Product Grid Widget
+- [**WooCommerce Product Carousel**](https://demo.happyaddons.com/elementor-product-carousel-widget-demo/) - Wondering about a perfect WooCommerce Product Carousel widget for Elementor to grab the attention of your customers? Try HappyAddons Pro’s Product Carousel Widget to make it happen.
+- [**WooCommerce Product Cateogry Grid**](https://demo.happyaddons.com/elementor-product-category-grid-widget-demo/) - Sometimes you need to display your eCommerce products category wise to target a specific genre of visitors. Our HappyAddons Product Category Grid Widget is the best fit for displaying WooCommerce Products category wise
+- [**WooCommerce Product Category Carousel**](https://demo.happyaddons.com/elementor-product-category-carousel-widget-demo/) - From now you can display products in carousels based on specific categories with the help of HappyAddons Pro Product Category Carousel Widget to make them more lucrative
 
 
 ### **UNIQUE PRO FEATURES OF HAPPY ADDONS TO WATCH OUT FOR**
@@ -278,6 +282,19 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.16.0 - 29 November 2020 =
+
+- Added: Justified Grid lightbox disable option for mobile and tablet
+- Added: Image Grid lightbox disable option for mobile and tablet
+- Added: Justified Grid default filter select option
+- Added: Image Grid default filter select option
+- Added: Added .pot file
+- Tweak: Improved Justified Grid and Image Grid base style
+- Tweak: Improved Image Grid markup - removed extra inner div
+- Tweak: Improved on demand assets loading
+- Fix: Private page on demand assets loading issue
+- Fix: Lightbox and Popup not working with wrapper link issue
 
 = 2.15.0 - 4 November 2020 =
 
