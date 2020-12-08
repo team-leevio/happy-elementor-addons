@@ -93,7 +93,8 @@ class Equal_Height {
 			[
 				'label' => __( 'Select Widgets', 'happy-elementor-addons' ),
 				'label_block' => true,
-				'type'  => Widget_List::TYPE,
+				'description' => __( 'You can select multiple widgets from the dropdown and these widgets are only from the current selected section.', 'happy-elementor-addons' ),
+				'type' => Widget_List::TYPE,
 				'multiple' => true,
 				'condition' => [
 					'_ha_eqh_enable' => 'yes',
