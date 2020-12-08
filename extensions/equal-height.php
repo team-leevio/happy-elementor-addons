@@ -12,7 +12,7 @@ class Equal_Height {
 	static $should_script_enqueue = false;
 
 	public static function init() {
-		add_action( 'elementor/element/section/section_advanced/after_section_end', [ __CLASS__, 'register' ] );
+		add_action( 'elementor/element/section/section_advanced/after_section_end', [ __CLASS__, 'register' ], 1 );
 
 		add_action( 'elementor/frontend/section/before_render', [ __CLASS__, 'should_script_enqueue' ] );
 
