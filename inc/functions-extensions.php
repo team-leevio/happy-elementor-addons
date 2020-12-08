@@ -96,3 +96,14 @@ if ( ! function_exists( 'ha_is_on_demand_cache_enabled' ) ) {
 		return apply_filters( 'happyaddons/extensions/on_demand_cache', true );
 	}
 }
+
+if ( ! function_exists( 'ha_is_equal_height_enabled' ) ) {
+	/**
+	 * Check if equal height is enabled
+	 *
+	 * @return bool
+	 */
+	function ha_is_equal_height_enabled() {
+		return apply_filters( 'happyaddons/extensions/equal_height', true );
+	}
+}

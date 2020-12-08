@@ -277,6 +277,49 @@
 		return regionViews;
 	});
 
+	// Widget List controller view
+	var WidgetList = elementor.modules.controls.Select2.extend({
+		getSelect2DefaultOptions: function() {
+			var options = elementor.modules.controls.Select2.prototype.getSelect2DefaultOptions.apply(this, arguments);
+
+			if (this.container && this.container.type === 'section') {
+				var widgets = {}, data = [];
+				this.container.children.forEach(function(column) {
+					if (column.children.length) {
+						column.children.forEach(function(widget) {
+							if (widget.type !== 'widget') {
+								return;
+							}
+
+							widgets[ widget.model.get('widgetType') ] = widget.label + ' ('+widget.model.get('widgetType')+')';
+						});
+					}
+				});
+
+				_.each(widgets, function(label, id) {
+					data.push({
+						id: id,
+						text: label
+					});
+				});
+
+				options.data = data;
+				this.model.set('options', widgets);
+			}
+
+			return options;
+		},
+
+		onRender: function() {
+			if (this.container && this.container.type === 'section') {
+				this.applySavedValue();
+			}
+
+			elementor.modules.controls.Select2.prototype.onRender.apply(this, arguments);
+		},
+	});
+
+	elementor.addControlView('widget-list', WidgetList);
 
 	window.ha = ha;
 }(jQuery, window.ha || {}));

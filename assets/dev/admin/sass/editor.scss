@@ -1,91 +1,98 @@
 @import "../../sass/variables";
+
 .elementor-panel {
-  .ha-element--promotion  > .elementor-element > .eicon-lock {
-    left: 5px;
-    right: auto;
-  }
+	.ha-element--promotion  > .elementor-element > .eicon-lock {
+		left: 5px;
+		right: auto;
+	}
 
-  #elementor-panel-category-happy_addons_category .elementor-element,
-  #elementor-panel-category-happy_addons_pro_category .elementor-element,
-  #elementor-panel-category-happy_addons_pro_category .is-ha-widget {
-    &:hover,
-    &:focus {
-      .icon,
-      .title {
-        background-image: linear-gradient(135deg, $secondary-color 25%, $primary-color 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-    }
-  }
+	#elementor-panel-category-happy_addons_category .elementor-element,
+	#elementor-panel-category-happy_addons_pro_category .elementor-element,
+	#elementor-panel-category-happy_addons_pro_category .is-ha-widget {
+		&:hover,
+		&:focus {
+			.icon,
+			.title {
+				background-image: linear-gradient(135deg, $secondary-color 25%, $primary-color 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+		}
+	}
 
-  .elementor-element {
-    .icon {
-      transition: all .2s;
-      position: relative;
+	.ha-section-icon {
+		background-image: linear-gradient(135deg, $secondary-color 25%, $primary-color 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
 
-      .hm:after {
-        content: "\ead0";
-        font-size: 15px;
-        position: absolute;
-        right: 5px;
-        top: 5px;
-        opacity: .3;
-      }
-    }
+	.elementor-element {
+		.icon {
+			transition: all .2s;
+			position: relative;
 
-    &:hover,
-    &:focus {
-      .icon {
-        .hm:after {
-          opacity: 1;
-        }
+			.hm:after {
+				content: "\ead0";
+				font-size: 15px;
+				position: absolute;
+				right: 5px;
+				top: 5px;
+				opacity: .3;
+			}
+		}
 
-        .hm:after {
-          background-image: linear-gradient(135deg, $secondary-color 25%, $primary-color 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-      }
-    }
-  }
+		&:hover,
+		&:focus {
+			.icon {
+				.hm:after {
+					opacity: 1;
+				}
 
-  .elementor-control-_section_happy_effects {
-    .elementor-panel-heading-toggle,
-    .elementor-panel-heading-title {
-      color: $secondary-color;
-    }
-  }
+				.hm:after {
+					background-image: linear-gradient(135deg, $secondary-color 25%, $primary-color 100%);
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+				}
+			}
+		}
+	}
+
+	.elementor-control-_section_happy_effects {
+		.elementor-panel-heading-toggle,
+		.elementor-panel-heading-title {
+			color: $secondary-color;
+		}
+	}
 }
 
 .elementor-control-ha_floating_fx_translate_toggle,
 .elementor-control-ha_floating_fx_rotate_toggle,
 .elementor-control-ha_floating_fx_scale_toggle {
-  + .elementor-controls-popover {
-    .elementor-control-type-slider--handles-range {
-      .elementor-slider {
-        .noUi-handle-lower {
-          &:after {
-            left: -5px;
-            box-shadow: -2px 2px 3px 0px rgba(0, 0, 0, 0.1);
-          }
-        }
-        .noUi-handle-upper {
-          &:after {
-            left: 5px;
-            box-shadow: 2px -2px 3px 0px rgba(0, 0, 0, 0.1);
-          }
-          .noUi-tooltip {
-            left: 100%;
-            top: auto;
-            bottom: calc(100% + 5px);
-          }
-        }
-      }
-    }
-  }
+	+ .elementor-controls-popover {
+		.elementor-control-type-slider--handles-range {
+			.elementor-slider {
+				.noUi-handle-lower {
+					&:after {
+						left: -5px;
+						box-shadow: -2px 2px 3px 0px rgba(0, 0, 0, 0.1);
+					}
+				}
+				.noUi-handle-upper {
+					&:after {
+						left: 5px;
+						box-shadow: 2px -2px 3px 0px rgba(0, 0, 0, 0.1);
+					}
+					.noUi-tooltip {
+						left: 100%;
+						top: auto;
+						bottom: calc(100% + 5px);
+					}
+				}
+			}
+		}
+	}
 }
 
 .elementor-button.ha-btn--promotion:not([disabled]) {
-  background-color: #e04d8b !important;
+	background-color: #e04d8b !important;
 }

@@ -635,7 +635,7 @@ if ( ! function_exists( 'ha_get_section_icon' ) ) {
 	 * @return string
 	 */
 	function ha_get_section_icon() {
-		return '<i style="float: right" class="hm hm-happyaddons"></i>';
+		return '<i style="float: right" class="hm hm-happyaddons ha-section-icon"></i>';
 	}
 }
 
