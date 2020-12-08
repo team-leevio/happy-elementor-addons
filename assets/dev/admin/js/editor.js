@@ -2,6 +2,8 @@
 (function ($, ha) {
 	'use strict';
 
+	var Select2Base = elementor.modules.controls.Select2;
+
 	ha.hasIconLibrary = function () {
 		return (elementor.helpers && elementor.helpers.renderIcon);
 	};
@@ -278,9 +280,11 @@
 	});
 
 	// Widget List controller view
-	var WidgetList = elementor.modules.controls.Select2.extend({
+	var WidgetList = Select2Base.extend({
+		ALLOW_RERENDER: true,
+
 		getSelect2DefaultOptions: function() {
-			var options = elementor.modules.controls.Select2.prototype.getSelect2DefaultOptions.apply(this, arguments);
+			var options = Select2Base.prototype.getSelect2DefaultOptions.apply(this, arguments);
 
 			if (this.container && this.container.type === 'section') {
 				var widgets = {}, data = [];
@@ -311,11 +315,17 @@
 		},
 
 		onRender: function() {
-			if (this.container && this.container.type === 'section') {
-				this.applySavedValue();
-			}
+			Select2Base.prototype.onRender.apply(this, arguments);
 
-			elementor.modules.controls.Select2.prototype.onRender.apply(this, arguments);
+			if (this.container && this.container.type === 'section' && this.ALLOW_RERENDER) {
+				var _this = this;
+				var t = setTimeout(function() {
+					_this.render();
+					clearTimeout(t);
+				}, 20);
+
+				this.ALLOW_RERENDER = false;
+			}
 		},
 	});
 
