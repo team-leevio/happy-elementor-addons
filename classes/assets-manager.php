@@ -178,15 +178,6 @@ class Assets_Manager {
 			true
 		);
 
-		// Floating effects
-		wp_register_script(
-			'anime',
-			HAPPY_ADDONS_ASSETS . 'vendor/anime/lib/anime.min.js',
-			null,
-			HAPPY_ADDONS_VERSION,
-			true
-		);
-
 		// keyframes
 		wp_register_script(
 			'jquery-keyframes',

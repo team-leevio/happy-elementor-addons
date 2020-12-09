@@ -26,8 +26,12 @@ class Extensions_Manager {
 			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/wrapper-link.php';
 		}
 
-		if ( ha_is_floating_effects_enabled() || ha_is_css_transform_enabled() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/happy-effects.php';
+		if ( ha_is_floating_effects_enabled() ) {
+			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/floating-effects.php';
+		}
+
+		if ( ha_is_css_transform_enabled() ) {
+			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/css-transform.php';
 		}
 
 		if ( is_user_logged_in() && ha_is_adminbar_menu_enabled() ) {
