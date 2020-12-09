@@ -127,7 +127,7 @@ class Equal_Height {
 			[
 				'label'        => __( 'Disable On Tablet', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
-				'default'      => 'yes',
+				'default'      => 'no',
 				'return_value' => 'yes',
 				'render_type'  => 'ui',
 				'frontend_available' => true,
