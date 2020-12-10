@@ -1,12 +1,12 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.16.0
+Version: 2.16.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
 Tags: Elementor Page Builder, Elementor Addons, Widgets, Editor, Web Page Builder
 Requires at least: 4.7
-Tested up to: 5.5.3
+Tested up to: 5.6
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -282,6 +282,13 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.16.1 - 10 December 2020 =
+
+- Fix: WordPress 5.6 compatibility
+- Fix: Floating effect dependency loading only when activated
+- Fix: Infobox button icon animation
+- Fix: JS error in elementor editor
 
 = 2.16.0 - 29 November 2020 =
 
