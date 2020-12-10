@@ -43,10 +43,6 @@ class Extensions_Manager {
 
 			include_once HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php';
 		}
-
-		if ( ha_is_equal_height_enabled() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/equal-height.php';
-		}
 	}
 
 	/**

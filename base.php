@@ -132,15 +132,11 @@ class Base {
 	public function register_controls( Controls_Manager $controls_Manager ) {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/foreground.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/select2.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/widget-list.php' );
 
 		$Foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
 		$controls_Manager->add_group_control( $Foreground::get_type(), new $Foreground() );
 
 		$Select2 = __NAMESPACE__ . '\Controls\Select2';
 		ha_elementor()->controls_manager->register_control( $Select2::TYPE, new $Select2() );
-
-		$Widget_List = __NAMESPACE__ . '\Controls\Widget_List';
-		ha_elementor()->controls_manager->register_control( $Widget_List::TYPE, new $Widget_List() );
 	}
 }
