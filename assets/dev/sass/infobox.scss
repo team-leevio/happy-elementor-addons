@@ -64,8 +64,26 @@
 			margin-bottom: 0;
 		}
 
-		&+.ha-btn--link {
+		& + .ha-btn--link {
 			margin-top: 25px;
+		}
+	}
+
+	.ha-btn {
+		&--icon-before .ha-btn-icon,
+		&--icon-after .ha-btn-icon {
+			transform: translateX(var(--infobox-btn-icon-translate-x, 0));
+			transition: inherit;
+		}
+
+		&--icon-before:hover .ha-btn-icon,
+		&--icon-before:focus .ha-btn-icon {
+			transform: translateX(var(--infobox-btn-icon-translate-x-hover, 10px));
+		}
+
+		&--icon-after:hover .ha-btn-icon,
+		&--icon-after:focus .ha-btn-icon {
+			transform: translateX(var(--infobox-btn-icon-translate-x-hover, 10px));
 		}
 	}
 }

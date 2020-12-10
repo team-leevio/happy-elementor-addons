@@ -827,8 +827,7 @@ class InfoBox extends Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-btn--icon-before .ha-btn-icon' => '-webkit-transform: translateX(calc(-1 * {{SIZE}}{{UNIT}})); transform: translateX(calc(-1 * {{SIZE}}{{UNIT}}));',
-					'{{WRAPPER}} .ha-btn--icon-after .ha-btn-icon' => '-webkit-transform: translateX({{SIZE}}{{UNIT}}); transform: translateX({{SIZE}}{{UNIT}});',
+					'{{WRAPPER}} .ha-btn .ha-btn-icon' => '--infobox-btn-icon-translate-x: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -893,8 +892,7 @@ class InfoBox extends Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-btn.ha-btn--icon-before:hover .ha-btn-icon' => '-webkit-transform: translateX(calc(-1 * {{SIZE}}{{UNIT}})); transform: translateX(calc(-1 * {{SIZE}}{{UNIT}}));',
-					'{{WRAPPER}} .ha-btn.ha-btn--icon-after:hover .ha-btn-icon' => '-webkit-transform: translateX({{SIZE}}{{UNIT}}); transform: translateX({{SIZE}}{{UNIT}});',
+					'{{WRAPPER}} .ha-btn .ha-btn-icon' => '--infobox-btn-icon-translate-x-hover: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
