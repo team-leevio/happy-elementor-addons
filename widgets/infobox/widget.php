@@ -954,7 +954,7 @@ class InfoBox extends Base {
 		<#
 		var iconHTML, migrated;
 
-		if ( ha.hasIconLibrary() ) {
+		if ( haHasIconLibrary() ) {
 			iconHTML = elementor.helpers.renderIcon( view, settings.selected_icon, { 'aria-hidden': true }, 'i' , 'object' ),
 			migrated = elementor.helpers.isIconMigrated( settings, 'selected_icon' );
 		}
@@ -982,7 +982,7 @@ class InfoBox extends Base {
 			<# }
 		} else if ( settings.icon || settings.selected_icon.value ) { #>
 			<figure class="ha-infobox-figure ha-infobox-figure--icon">
-				<# if ( ha.hasIconLibrary() && iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
+				<# if ( haHasIconLibrary() && iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
 					{{{ iconHTML.value }}}
 				<# } else { #>
 					<i class="{{ settings.icon }}" aria-hidden="true"></i>
@@ -1001,7 +1001,7 @@ class InfoBox extends Base {
 				</div>
 			<# } #>
 
-			<# print( ha.getButtonWithIcon(view) ); #>
+			<# print( haGetButtonWithIcon(view) ); #>
 		</div>
 		<?php
 	}

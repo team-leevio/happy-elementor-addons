@@ -52,12 +52,12 @@
 
 		modesStrings: {
 			empty: {
-				title: ha.translate('templatesEmptyTitle'),
-				message: ha.translate('templatesEmptyMessage'),
+				title: haGetTranslated('templatesEmptyTitle'),
+				message: haGetTranslated('templatesEmptyMessage'),
 			},
 			noResults: {
-				title: ha.translate('templatesNoResultsTitle'),
-				message: ha.translate('templatesNoResultsMessage'),
+				title: haGetTranslated('templatesNoResultsTitle'),
+				message: haGetTranslated('templatesNoResultsMessage'),
 			},
 		},
 

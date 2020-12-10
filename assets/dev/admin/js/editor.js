@@ -1,14 +1,11 @@
-;
-(function ($, ha) {
+;(function($) {
 	'use strict';
 
-	var Select2Base = elementor.modules.controls.Select2;
-
-	ha.hasIconLibrary = function () {
+	window.haHasIconLibrary = function () {
 		return (elementor.helpers && elementor.helpers.renderIcon);
 	};
 
-	ha.getFeatureLabel = function (text) {
+	window.haGetFeatureLabel = function (text) {
 		var div = document.createElement('DIV');
 
 		div.innerHTML = text;
@@ -17,16 +14,11 @@
 		return text.length > 20 ? text.substring(0, 20) + '...' : text;
 	};
 
-	ha.translate = function (stringKey, templateArgs) {
+	window.haGetTranslated = function (stringKey, templateArgs) {
 		return elementorCommon.translate(stringKey, null, templateArgs, HappyAddonsEditor.i18n);
 	};
 
-	// For BC
-	window.ha_get_feature_label = ha.getFeatureLabel;
-	window.ha_has_icon_library = ha.hasIconLibrary;
-	window.ha_translate = ha.translate;
-
-	ha.getButtonWithIcon = function (view, args) {
+	window.haGetButtonWithIcon = function (view, args) {
 		var buttonMarkup = [],
 			settings = {},
 			btnIconHTML,
@@ -60,7 +52,7 @@
 			return;
 		}
 
-		if (ha.hasIconLibrary()) {
+		if (haHasIconLibrary()) {
 			btnIconHTML = elementor.helpers.renderIcon(view, settings[args.newIcon], {
 					'aria-hidden': true,
 					'class': 'ha-btn-icon'
@@ -75,7 +67,7 @@
 		view.addRenderAttribute('button', 'href', settings[args.link].url);
 
 		if (hasNewIcon || hasOldIcon) {
-			if (ha.hasIconLibrary() && btnIconHTML && btnIconHTML.rendered && (!hasOldIcon || btnMigrated)) {
+			if (haHasIconLibrary() && btnIconHTML && btnIconHTML.rendered && (!hasOldIcon || btnMigrated)) {
 				if (settings[args.newIcon].library === 'svg') {
 					btnIcon = '<span class="ha-btn-icon ha-btn-icon--svg">' + btnIconHTML.value + '</span>';
 				} else {
@@ -121,7 +113,10 @@
 		return buttonMarkup.join('');
 	}
 
-	function setupDarkModeStylesheet() {
+	var Select2Base = elementor.modules.controls.Select2,
+		registerDarkModeStylesheet;
+
+	registerDarkModeStylesheet = function() {
 		var darkModeLinkID = 'happy-addons-editor-dark-css',
 			$darkModeLink = $('#' + darkModeLinkID);
 
@@ -133,7 +128,7 @@
 			});
 		}
 
-		elementor.settings.editorPreferences.model.on('change:ui_theme', function (m, newValue) {
+		elementor.settings.editorPreferences.model.on('change:ui_theme', function (model, newValue) {
 			if ('light' === newValue) {
 				$darkModeLink.remove();
 				return;
@@ -145,8 +140,8 @@
 		});
 	}
 
-	elementor.on('panel:init', function () {
-		$('#elementor-panel-elements-search-input').on('keyup', _.debounce(function () {
+	elementor.on('panel:init', function() {
+		$('#elementor-panel-elements-search-input').on('keyup', _.debounce(function() {
 			$('#elementor-panel-elements')
 				.find('.hm')
 				.parents('.elementor-element')
@@ -167,22 +162,13 @@
 					}
 				}
 			};
+
 			$e.shortcuts.register('ctrl+shift+g', option);
 			$e.shortcuts.register('cmd+shift+g', option);
 		}
 
-
-		setupDarkModeStylesheet();
+		registerDarkModeStylesheet();
 	});
-
-	elementor.modules.layouts.panel.pages.menu.Menu.addItem({
-		name: 'happyaddons-home',
-		icon: 'hm hm-happyaddons',
-		title: ha.translate('editorPanelHomeLinkTitle'),
-		type: 'link',
-		link: HappyAddonsEditor.editorPanelHomeLinkURL,
-		newTab: true
-	}, 'settings');
 
 	/**
 	 * Add pro widgets placeholder
@@ -257,8 +243,8 @@
 				elementor.promotion.dialog.buttons[0].addClass('ha-btn--promotion');
 
 				elementor.promotion.showDialog({
-					headerMessage: ha.translate('promotionDialogHeader', [this.model.get('title')]),
-					message: ha.translate('promotionDialogMessage', [this.model.get('title')]),
+					headerMessage: haGetTranslated('promotionDialogHeader', [this.model.get('title')]),
+					message: haGetTranslated('promotionDialogMessage', [this.model.get('title')]),
 					top: '-7',
 					element: this.el,
 					actionURL: 'https://demo.happyaddons.com/',
@@ -330,6 +316,4 @@
 	});
 
 	elementor.addControlView('widget-list', WidgetList);
-
-	window.ha = ha;
-}(jQuery, window.ha || {}));
+}(jQuery));

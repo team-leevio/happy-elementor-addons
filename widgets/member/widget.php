@@ -1305,7 +1305,7 @@ class Member extends Base {
 			<# } #>
 
 			<# if ( !_.isUndefined( settings['button_position'] ) && settings['button_position'] === 'before' ) {
-				print( ha.getButtonWithIcon( view, {newIcon: 'button_icon', oldIcon: ''} ) );
+				print( haGetButtonWithIcon( view, {newIcon: 'button_icon', oldIcon: ''} ) );
 			} #>
 
 			<# if (settings.show_profiles && _.isArray(settings.profiles)) { #>
@@ -1330,7 +1330,7 @@ class Member extends Base {
 			<# } #>
 
 			<# if ( !_.isUndefined( settings['button_position'] ) && settings['button_position'] === 'after' ) {
-				print( ha.getButtonWithIcon( view, {newIcon: 'button_icon', oldIcon: ''} ) );
+				print( haGetButtonWithIcon( view, {newIcon: 'button_icon', oldIcon: ''} ) );
 			} #>
 		</div>
 		<?php

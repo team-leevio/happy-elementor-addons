@@ -1178,7 +1178,7 @@ class Card extends Base {
 				</div>
 			<# } #>
 
-			<# print( ha.getButtonWithIcon( view, { class: 'ha-btn' } ) ) #>
+			<# print( haGetButtonWithIcon( view, { class: 'ha-btn' } ) ) #>
 		</div>
 		<?php
 	}
