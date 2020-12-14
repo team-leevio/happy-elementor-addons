@@ -81,7 +81,7 @@ function startWatching() {
 }
 
 function deleteOld() {
-	return src(['assets/css', 'assets/admin'], {read: false})
+	return src(['assets/css', 'assets/admin', 'assets/js'], {read: false})
 		.pipe(clean({force: true}));
 }
 
@@ -95,7 +95,7 @@ function makePot() {
 		.pipe(dest('i18n/happy-elementor-addons.pot'));
 }
 
-exports.makePot = makePot;
+exports.pot = makePot;
 exports.clean = deleteOld;
 exports.default = series(
 	makeFrontendCSS,
