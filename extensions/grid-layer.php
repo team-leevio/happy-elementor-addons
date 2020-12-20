@@ -48,7 +48,7 @@ class Grid_Layer {
 		$element->add_responsive_control(
 			'ha_grid_number',
 			[
-				'label'     => __( 'Grid Number', 'happy-elementor-addons' ),
+				'label'     => __( 'Columns', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::NUMBER,
 				'min'       => 1,
 				'max'       => 100,
