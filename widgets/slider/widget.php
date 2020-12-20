@@ -755,10 +755,12 @@ class Slider extends Base {
 					</<?php echo $item_tag; ?>>
                 </div>
 
-            <?php endforeach; ?>
+			<?php endforeach; ?>
 
-        </div>
+		</div>
 
+		<button type="button" class="slick-prev"><i class="hm hm-arrow-left"></i></button>
+		<button type="button" class="slick-next"><i class="hm hm-arrow-right"></i></button>
         <?php
     }
 }

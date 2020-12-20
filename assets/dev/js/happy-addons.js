@@ -125,28 +125,29 @@
 		var ModuleHandler = elementorModules.frontend.handlers.Base;
 
 		var SliderBase = ModuleHandler.extend({
-			onInit: function () {
-				ModuleHandler.prototype.onInit.apply(this, arguments);
+			bindEvents: function() {
 				this.run();
 			},
 
 			getDefaultSettings: function() {
 				return {
-					arrows           : false,
-					checkVisible     : false,
-					containerSelector: '.hajs-slick',
-					dots             : false,
-					infinite         : true,
-					rows             : 0,
-					slidesToShow     : 1,
-					prevArrow        : '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
-					nextArrow        : '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
+					rtl         : false,
+					autoplay    : true,
+					arrows      : false,
+					checkVisible: false,
+					container   : '.hajs-slick',
+					dots        : false,
+					infinite    : true,
+					rows        : 0,
+					slidesToShow: 1,
+					prevArrow   : this.findElement('.slick-prev'),
+					nextArrow   : this.findElement('.slick-next'),
 				}
 			},
 
 			getDefaultElements: function () {
 				return {
-					$container: this.findElement(this.getSettings('containerSelector'))
+					$container: this.findElement(this.getSettings('container'))
 				};
 			},
 
@@ -647,13 +648,7 @@
 			'frontend/element_ready/ha-slider.default',
 			function ($scope) {
 				elementorFrontend.elementsHandler.addHandler(SliderBase, {
-					$element: $scope,
-					selectors: {
-						container: '.ha-slick--slider',
-					},
-					autoplay: true,
-					prevArrow: '<button type="button" class="slick-prev"><i class="hm hm-arrow-left"></i></button>',
-					nextArrow: '<button type="button" class="slick-next"><i class="hm hm-arrow-right"></i></button>'
+					$element: $scope
 				});
 			}
 		);
@@ -663,13 +658,7 @@
 			'frontend/element_ready/ha-carousel.default',
 			function ($scope) {
 				elementorFrontend.elementsHandler.addHandler(SliderBase, {
-					$element: $scope,
-					selectors: {
-						container: '.ha-slick--carousel',
-					},
-					autoplay: true,
-					prevArrow: '<button type="button" class="slick-prev"><i class="hm hm-arrow-left"></i></button>',
-					nextArrow: '<button type="button" class="slick-next"><i class="hm hm-arrow-right"></i></button>'
+					$element: $scope
 				});
 			}
 		);
@@ -680,12 +669,8 @@
 			function ($scope) {
 				elementorFrontend.elementsHandler.addHandler(SliderBase, {
 					$element: $scope,
-					selectors: {
-						container: '.ha-horizontal-timeline-wrapper',
-					},
+					container: '.ha-horizontal-timeline-wrapper',
 					autoplay: false,
-					prevArrow: '<button type="button" class="slick-prev"><i class="hm hm-arrow-left"></i></button>',
-					nextArrow: '<button type="button" class="slick-next"><i class="hm hm-arrow-right"></i></button>'
 				});
 			}
 		);
