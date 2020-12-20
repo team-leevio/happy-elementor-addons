@@ -17,7 +17,7 @@ class Extensions_Manager {
 		}
 
 		if ( ha_is_grid_layer_enabled() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/happy-grid.php';
+			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/grid-layer.php';
 		}
 
 		if ( ha_is_wrapper_link_enabled() ) {

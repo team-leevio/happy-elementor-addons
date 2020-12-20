@@ -29,12 +29,12 @@
 
 		args = args || {};
 		args = _.defaults(args, {
-			oldIcon: 'button_icon',
-			iconPos: 'button_icon_position',
-			newIcon: 'button_selected_icon',
-			text: 'button_text',
-			link: 'button_link',
-			class: 'ha-btn ha-btn--link',
+			oldIcon  : 'button_icon',
+			iconPos  : 'button_icon_position',
+			newIcon  : 'button_selected_icon',
+			text     : 'button_text',
+			link     : 'button_link',
+			class    : 'ha-btn ha-btn--link',
 			textClass: 'ha-btn-text',
 		});
 
