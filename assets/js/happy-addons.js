@@ -132,24 +132,21 @@
 
 			getDefaultSettings: function() {
 				return {
-					selectors: {
-						container: '.hajs-slick'
-					},
-					arrows: true,
-					dots: false,
-					checkVisible: false,
-					infinite: true,
-					slidesToShow: 1,
-					rows: 0,
-					prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
-					nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
+					arrows           : false,
+					checkVisible     : false,
+					containerSelector: '.hajs-slick',
+					dots             : false,
+					infinite         : true,
+					rows             : 0,
+					slidesToShow     : 1,
+					prevArrow        : '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
+					nextArrow        : '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
 				}
 			},
 
 			getDefaultElements: function () {
-				var selectors = this.getSettings('selectors');
 				return {
-					$container: this.findElement(selectors.container)
+					$container: this.findElement(this.getSettings('containerSelector'))
 				};
 			},
 
