@@ -1,7 +1,10 @@
 <?php
 namespace Happy_Addons\Elementor;
 
+defined( 'ABSPATH' ) || die();
+
 use Elementor\Core\Files\CSS\Post as Post_CSS;
+use Elementor\Core\Common\Modules\Finder\Categories_Manager;
 
 class Clone_Handler {
 
@@ -17,6 +20,8 @@ class Clone_Handler {
 		add_action( 'admin_action_' . self::ACTION, [ __CLASS__, 'duplicate_thing' ] );
 		add_filter( 'post_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
 		add_filter( 'page_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
+
+		add_action( 'elementor/finder/categories/init', [ __CLASS__, 'register_finder' ] );
 	}
 
 	/**
@@ -197,6 +202,17 @@ class Clone_Handler {
 			$query .= implode( ', ', $_records ) . ';';
 			$wpdb->query( $query  );
 		}
+	}
+
+	/**
+	 * Register finder category and category items
+	 *
+	 * @param $categories_manager
+	 */
+	public static function register_finder( Categories_Manager $categories_manager ) {
+		include_once HAPPY_ADDONS_DIR_PATH . 'classes/finder-edit.php';
+
+		$categories_manager->add_category( Finder_Edit::SLUG, new Finder_Edit() );
 	}
 
 }
