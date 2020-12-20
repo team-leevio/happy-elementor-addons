@@ -1,27 +1,7 @@
-;(function ($, w) {
+;(function ($) {
 	'use strict';
 
-	var $window = $(w),
-		rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
-		fcssescape = function( ch, asCodePoint ) {
-			if ( asCodePoint ) {
-
-				// U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
-				if ( ch === "\0" ) {
-					return "\uFFFD";
-				}
-
-				// Control characters and (dependent upon position) numbers get escaped as code points
-				return ch.slice( 0, -1 ) + "\\" +
-					ch.charCodeAt( ch.length - 1 ).toString( 16 ) + " ";
-			}
-
-			// Other potentially-special ASCII characters get backslash-escaped
-			return "\\" + ch;
-		},
-		escapeSelector = function(selector) {
-			return selector.replace(rcssescape, fcssescape)
-		};
+	var $window = $(window)
 
 	$.fn.getHappySettings = function() {
 		return this.data('happy-settings');
@@ -142,120 +122,11 @@
 	};
 
 	$window.on('elementor/frontend/init', function() {
-		var EF = elementorFrontend,
-			EM = elementorModules;
+		var ModuleHandler = elementorModules.frontend.handlers.Base;
 
-		var ExtensionHandler = EM.frontend.handlers.Base.extend({
-			onInit: function() {
-				EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
-				this.widgetContainer = this.$element.find('.elementor-widget-container')[0];
-
-				this.initFloatingEffects();
-
-				this.initBackgroundOverlay();
-			},
-
-			initBackgroundOverlay: function() {
-				if (this.isEdit) {
-					this.$element.addClass('ha-has-background-overlay')
-				}
-			},
-
-			getDefaultSettings: function() {
-				return {
-					targets: this.widgetContainer,
-					loop: true,
-					direction: 'alternate',
-					easing: 'easeInOutSine',
-				};
-			},
-
-			onElementChange: function(changedProp) {
-				if (changedProp.indexOf('ha_floating') !== -1) {
-					this.runOnElementChange();
-				}
-			},
-
-			runOnElementChange: debounce(function() {
-				this.animation && this.animation.restart();
-				this.initFloatingEffects();
-			}, 200),
-
-			getConfig: function(key) {
-				return this.getElementSettings('ha_floating_fx_' + key);
-			},
-
-			initFloatingEffects: function() {
-				var config = this.getDefaultSettings();
-
-				if (this.getConfig('translate_toggle')) {
-					if (this.getConfig('translate_x.size') || this.getConfig('translate_x.sizes.to')) {
-						config.translateX = {
-							value: [this.getConfig('translate_x.sizes.from') || 0, this.getConfig('translate_x.size') || this.getConfig('translate_x.sizes.to')],
-							duration: this.getConfig('translate_duration.size'),
-							delay: this.getConfig('translate_delay.size') || 0
-						}
-					}
-					if (this.getConfig('translate_y.size') || this.getConfig('translate_y.sizes.to')) {
-						config.translateY = {
-							value: [this.getConfig('translate_y.sizes.from') || 0, this.getConfig('translate_y.size') || this.getConfig('translate_y.sizes.to')],
-							duration: this.getConfig('translate_duration.size'),
-							delay: this.getConfig('translate_delay.size') || 0
-						}
-					}
-				}
-
-				if (this.getConfig('rotate_toggle')) {
-					if (this.getConfig('rotate_x.size') || this.getConfig('rotate_x.sizes.to')) {
-						config.rotateX = {
-							value: [this.getConfig('rotate_x.sizes.from') || 0, this.getConfig('rotate_x.size') || this.getConfig('rotate_x.sizes.to')],
-							duration: this.getConfig('rotate_duration.size'),
-							delay: this.getConfig('rotate_delay.size') || 0
-						}
-					}
-					if (this.getConfig('rotate_y.size') || this.getConfig('rotate_y.sizes.to')) {
-						config.rotateY = {
-							value: [this.getConfig('rotate_y.sizes.from') || 0, this.getConfig('rotate_y.size') || this.getConfig('rotate_y.sizes.to')],
-							duration: this.getConfig('rotate_duration.size'),
-							delay: this.getConfig('rotate_delay.size') || 0
-						}
-					}
-					if (this.getConfig('rotate_z.size') || this.getConfig('rotate_z.sizes.to')) {
-						config.rotateZ = {
-							value: [this.getConfig('rotate_z.sizes.from') || 0, this.getConfig('rotate_z.size') || this.getConfig('rotate_z.sizes.to')],
-							duration: this.getConfig('rotate_duration.size'),
-							delay: this.getConfig('rotate_delay.size') || 0
-						}
-					}
-				}
-
-				if (this.getConfig('scale_toggle')) {
-					if (this.getConfig('scale_x.size') || this.getConfig('scale_x.sizes.to')) {
-						config.scaleX = {
-							value: [this.getConfig('scale_x.sizes.from') || 0, this.getConfig('scale_x.size') || this.getConfig('scale_x.sizes.to')],
-							duration: this.getConfig('scale_duration.size'),
-							delay: this.getConfig('scale_delay.size') || 0
-						}
-					}
-					if (this.getConfig('scale_y.size') || this.getConfig('scale_y.sizes.to')) {
-						config.scaleY = {
-							value: [this.getConfig('scale_y.sizes.from') || 0, this.getConfig('scale_y.size') || this.getConfig('scale_y.sizes.to')],
-							duration: this.getConfig('scale_duration.size'),
-							delay: this.getConfig('scale_delay.size') || 0
-						}
-					}
-				}
-
-				if (this.getConfig('translate_toggle') || this.getConfig('rotate_toggle') || this.getConfig('scale_toggle')) {
-					this.widgetContainer.style.setProperty('will-change', 'transform');
-					this.animation = anime(config);
-				}
-			}
-		});
-
-		var SliderBase = EM.frontend.handlers.Base.extend({
+		var SliderBase = ModuleHandler.extend({
 			onInit: function () {
-				EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+				ModuleHandler.prototype.onInit.apply(this, arguments);
 				this.run();
 			},
 
@@ -315,13 +186,13 @@
 				settings.slidesToShow = this.getElementSettings('slides_to_show') || 1;
 				settings.responsive = [
 					{
-						breakpoint: EF.config.breakpoints.lg,
+						breakpoint: elementorFrontend.config.breakpoints.lg,
 						settings: {
 							slidesToShow: (this.getElementSettings('slides_to_show_tablet') || settings.slidesToShow),
 						}
 					},
 					{
-						breakpoint: EF.config.breakpoints.md,
+						breakpoint: elementorFrontend.config.breakpoints.md,
 						settings: {
 							slidesToShow: (this.getElementSettings('slides_to_show_mobile') || this.getElementSettings('slides_to_show_tablet')) || settings.slidesToShow,
 						}
@@ -337,14 +208,14 @@
 		});
 
 		var NumberHandler = function($scope) {
-			EF.waypoint($scope, function () {
+			elementorFrontend.waypoint($scope, function () {
 				var $number = $scope.find('.ha-number-text');
 				$number.numerator($number.data('animation'));
 			});
 		};
 
 		var SkillHandler = function($scope) {
-			EF.waypoint($scope, function () {
+			elementorFrontend.waypoint($scope, function () {
 				$scope.find('.ha-skill-level').each(function() {
 					var $current = $(this),
 						$lt = $current.find('.ha-skill-level-text'),
@@ -364,9 +235,9 @@
 			});
 		};
 
-		var ImageGrid = EM.frontend.handlers.Base.extend({
+		var ImageGrid = ModuleHandler.extend({
 			onInit: function () {
-				EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+				ModuleHandler.prototype.onInit.apply(this, arguments);
 				this.run();
 				this.runFilter();
 
@@ -440,9 +311,9 @@
 			}
 		});
 
-		var JustifiedGrid = EM.frontend.handlers.Base.extend({
+		var JustifiedGrid = ModuleHandler.extend({
 			onInit: function () {
-				EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+				ModuleHandler.prototype.onInit.apply(this, arguments);
 				this.run();
 				this.runFilter();
 
@@ -510,11 +381,11 @@
 			}
 		});
 
-		//NewsTicker
-		var NewsTicker = EM.frontend.handlers.Base.extend({
+		// NewsTicker
+		var NewsTicker = ModuleHandler.extend({
 
 			onInit: function () {
-				EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+				ModuleHandler.prototype.onInit.apply(this, arguments);
 				this.wrapper = this.$element.find('.ha-news-ticker-wrapper');
 				this.run();
 			},
@@ -562,16 +433,16 @@
 			}
 		});
 
-		// fun-factor
+		// Fun factor
 		var FunFactor = function ($scope) {
-			EF.waypoint($scope, function () {
+			elementorFrontend.waypoint($scope, function () {
 				var $fun_factor = $scope.find('.ha-fun-factor__content-number');
 				$fun_factor.numerator($fun_factor.data('animation'));
 			});
 		};
 
-		var BarChart = function( $scope ) {
-			EF.waypoint($scope, function () {
+		var BarChart = function($scope) {
+			elementorFrontend.waypoint($scope, function () {
 				var $chart = $(this),
 					$container = $chart.find( '.ha-bar-chart-container' ),
 					$chart_canvas = $chart.find( '#ha-bar-chart' ),
@@ -618,10 +489,10 @@
 		};
 
 		//PostTab
-		var PostTab = EM.frontend.handlers.Base.extend({
+		var PostTab = ModuleHandler.extend({
 
 			onInit: function () {
-				EM.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+				ModuleHandler.prototype.onInit.apply(this, arguments);
 				this.wrapper = this.$element.find('.ha-post-tab');
 				this.run();
 			},
@@ -825,53 +696,59 @@
 		$('[data-ha-element-link]').on('click.onWrapperLink', function() {
 			var link = $(this).data('ha-element-link'),
 				id = $(this).data('id'),
-				a = document.createElement('a'),
-				aDOM;
+				link = document.createElement('a'),
+				linkEle,
+				time;
 
-			a.id = 'hawl' + id;
-			a.href = link.url;
-			a.target = link.is_external ? '_blank' : '_self';
-			a.rel = link.nofollow ? 'nofollow noreferer' : '';
-			a.style.display = 'none';
+			link.id            = 'happy-addons-wrapper-link-' + id;
+			link.href          = link.url;
+			link.target        = link.is_external ? '_blank' : '_self';
+			link.rel           = link.nofollow ? 'nofollow noreferer' : '';
+			link.style.display = 'none';
 
-			document.body.appendChild(a);
+			document.body.appendChild(link);
 
-			aDOM = document.getElementById(a.id);
-			aDOM.click();
+			linkEle = document.getElementById(link.id);
+			linkEle.click();
 
-			var t = setTimeout(function() {
-				document.body.removeChild(aDOM);
-				clearTimeout(t);
+			time = setTimeout(function() {
+				document.body.removeChild(linkEle);
+				clearTimeout(time);
 			});
 		});
 
+		// Background overlay extension
+		var BackgroundOverlay = function($scope) {
+			$scope.hasClass('elementor-element-edit-mode') && $scope.addClass('has-bg-overlay');
+		}
+
 		var fnHanlders = {
-			'ha-image-compare.default': HandleImageCompare,
-			'ha-number.default': NumberHandler,
-			'ha-skills.default': SkillHandler,
-			'ha-fun-factor.default': FunFactor,
-			'ha-bar-chart.default': BarChart,
-			'ha-twitter-feed.default': TwitterFeed,
+			'ha-image-compare.default'      : HandleImageCompare,
+			'ha-number.default'             : NumberHandler,
+			'ha-skills.default'             : SkillHandler,
+			'ha-fun-factor.default'         : FunFactor,
+			'ha-bar-chart.default'          : BarChart,
+			'ha-twitter-feed.default'       : TwitterFeed,
 			'ha-threesixty-rotation.default': Threesixty_Rotation,
-			'ha-data-table.default': DataTable
+			'ha-data-table.default'         : DataTable,
+			'widget'                        : BackgroundOverlay,
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {
-			EF.hooks.addAction( 'frontend/element_ready/' + widgetName, handlerFn );
+			elementorFrontend.hooks.addAction( 'frontend/element_ready/' + widgetName, handlerFn );
 		});
 
 		var classHandlers = {
-			'ha-image-grid.default': ImageGrid,
+			'ha-image-grid.default'       : ImageGrid,
 			'ha-justified-gallery.default': JustifiedGrid,
-			'ha-news-ticker.default': NewsTicker,
-			'ha-post-tab.default': PostTab,
-			'widget': ExtensionHandler,
+			'ha-news-ticker.default'      : NewsTicker,
+			'ha-post-tab.default'         : PostTab
 		};
 
 		$.each( classHandlers, function( widgetName, handlerClass ) {
-			EF.hooks.addAction( 'frontend/element_ready/' + widgetName, function( $scope ) {
-				EF.elementsHandler.addHandler( handlerClass, { $element: $scope });
+			elementorFrontend.hooks.addAction( 'frontend/element_ready/' + widgetName, function( $scope ) {
+				elementorFrontend.elementsHandler.addHandler( handlerClass, { $element: $scope });
 			});
 		});
 	});
-} (jQuery, window));
+} (jQuery));

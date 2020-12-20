@@ -14,13 +14,33 @@
 				timeout = setTimeout(later, wait);
 				if (callNow) func.apply(context, args);
 			};
+		},
+		rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
+		fcssescape = function( ch, asCodePoint ) {
+			if ( asCodePoint ) {
+
+				// U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
+				if ( ch === "\0" ) {
+					return "\uFFFD";
+				}
+
+				// Control characters and (dependent upon position) numbers get escaped as code points
+				return ch.slice( 0, -1 ) + "\\" +
+					ch.charCodeAt( ch.length - 1 ).toString( 16 ) + " ";
+			}
+
+			// Other potentially-special ASCII characters get backslash-escaped
+			return "\\" + ch;
+		},
+		escapeSelector = function(selector) {
+			return selector.replace(rcssescape, fcssescape)
 		};
 
 	$window.on('elementor/frontend/init', function() {
-		var BaseHandler = elementorModules.frontend.handlers.Base,
+		var ModuleHandler = elementorModules.frontend.handlers.Base,
 			EqualHeightHandler;
 
-		EqualHeightHandler = BaseHandler.extend({
+		EqualHeightHandler = ModuleHandler.extend({
 			isEqhEnabled: function() {
 				return (
 					this.getElementSettings( '_ha_eqh_enable' ) === 'yes' &&
@@ -31,14 +51,17 @@
 
 			isDisabledOnDevice: function() {
 				var windowWidth = $(window).width(),
-				mobileWidth = elementorFrontendConfig.breakpoints.md,
-				tabletWidth = elementorFrontendConfig.breakpoints.lg;
+					mobileWidth = elementorFrontendConfig.breakpoints.md,
+					tabletWidth = elementorFrontendConfig.breakpoints.lg;
+
 				if (this.getElementSettings('_ha_eqh_disable_on_mobile') && windowWidth < mobileWidth) {
 					return true;
 				}
+
 				if (this.getElementSettings('_ha_eqh_disable_on_tablet') && windowWidth >= mobileWidth && windowWidth < tabletWidth) {
 					return true;
 				}
+
 				return false;
 			},
 
@@ -82,50 +105,53 @@
 				return this.getEqhTo() === 'selector' ? {byRow: false} : {};
 			},
 
-			onInit: function () {
-				BaseHandler.prototype.onInit.apply(this, arguments);
-
+			bindEvents: function () {
 				if (this.isEqhEnabled()) {
 					this.run();
-					$window.on('resize orientationchange', debounce(this.run.bind(this), 80));
 				}
+
+				$window.on('resize orientationchange', debounce(this.run.bind(this), 80));
 			},
 
-			// onElementChange: function(prop, ele) {
-			// 	if (prop.indexOf('_ha_eqh') === -1) {
-			// 		return;
-			// 	}
-			// 	if (['_ha_eqh_widget', '_ha_eqh_selector', '_ha_eqh_to'].indexOf(prop) !== -1) {
-			// 		var _prop, changed, setting;
-			// 		if (prop === '_ha_eqh_to') {
-			// 			_prop = this.getEqhTo() === 'widget' ? '_ha_eqh_selector' : '_ha_eqh_widget';
-			// 			changed = ele.container.settings._previousAttributes[_prop]
-			// 		} else {
-			// 			_prop = prop;
-			// 			changed = ele.container.oldValues[_prop];
-			// 		}
-			// 		setting = _prop.replace('_ha_eqh_', '');
-			// 		this.setSettings(setting, changed);
-			// 		this.unbindMathHeight();
-			// 		// Restore
-			// 		if (prop === '_ha_eqh_to') {
-			// 			_prop = this.getEqhTo() === 'widget' ? '_ha_eqh_widget' : '_ha_eqh_selector';
-			// 		} else {
-			// 			_prop = prop;
-			// 		}
-			// 		if (_prop === '_ha_eqh_selector') {
-			// 			changed = this.getElementSettings(_prop) || '';
-			// 		} else {
-			// 			changed = this.getElementSettings(_prop) || [];
-			// 		}
-			// 		setting = this.getEqhTo();
-			// 		this.setSettings(setting, changed);
-			// 		console.log('after', _prop, this.getSettings(setting));
-			// 	}
-			// 	this.run();
-			// },
+			onElementChange: debounce(function(prop, ele) {
+				if (prop.indexOf('_ha_eqh') === -1 || this.getEqhTo() !== 'widget') {
+					return;
+				}
 
-			unbindMathHeight: function() {
+				if (['_ha_eqh_widget', '_ha_eqh_selector', '_ha_eqh_to'].indexOf(prop) !== -1) {
+					var _prop, changed, setting;
+					if (prop === '_ha_eqh_to') {
+						_prop = this.getEqhTo() === 'widget' ? '_ha_eqh_selector' : '_ha_eqh_widget';
+						changed = ele.container.settings._previousAttributes[_prop]
+					} else {
+						_prop = prop;
+						changed = ele.container.oldValues[_prop];
+					}
+
+					setting = _prop.replace('_ha_eqh_', '');
+					this.setSettings(setting, changed);
+					this.unbindMatchHeight();
+
+					// Restore
+					if (prop === '_ha_eqh_to') {
+						_prop = this.getEqhTo() === 'widget' ? '_ha_eqh_widget' : '_ha_eqh_selector';
+					} else {
+						_prop = prop;
+					}
+					if (_prop === '_ha_eqh_selector') {
+						changed = this.getElementSettings(_prop) || '';
+					} else {
+						changed = this.getElementSettings(_prop) || [];
+					}
+
+					setting = this.getEqhTo();
+					this.setSettings(setting, changed);
+				}
+
+				this.run();
+			}, 100),
+
+			unbindMatchHeight: function() {
 				this.getTargetElements().forEach(function($el) {
 					$el && $el.matchHeight({remove: true});
 				});
@@ -133,7 +159,7 @@
 
 			run: function() {
 				if (this.isDisabledOnDevice()) {
-					this.unbindMathHeight();
+					this.unbindMatchHeight();
 					return;
 				}
 

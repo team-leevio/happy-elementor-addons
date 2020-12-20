@@ -32,6 +32,15 @@ class Floating_Effects {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
+
+		$extension_js = HAPPY_ADDONS_DIR_PATH . 'assets/js/extension-floating-effects.min.js';
+
+		if ( file_exists( $extension_js ) ) {
+			wp_add_inline_script(
+				'elementor-frontend',
+				file_get_contents( $extension_js )
+			);
+		}
 	}
 
 	/**
