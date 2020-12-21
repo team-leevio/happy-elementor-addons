@@ -126,12 +126,20 @@
 
 		var SliderBase = ModuleHandler.extend({
 			bindEvents: function() {
+				this.removeArrows();
 				this.run();
+			},
+
+			removeArrows: function() {
+				var _this = this;
+
+				this.elements.$container.on('init', function() {
+					_this.elements.$container.siblings().hide();
+				});
 			},
 
 			getDefaultSettings: function() {
 				return {
-					rtl         : false,
 					autoplay    : true,
 					arrows      : false,
 					checkVisible: false,
@@ -140,8 +148,8 @@
 					infinite    : true,
 					rows        : 0,
 					slidesToShow: 1,
-					prevArrow   : this.findElement('.slick-prev'),
-					nextArrow   : this.findElement('.slick-next'),
+					prevArrow   : $('<div />').append(this.findElement('.slick-prev').clone().show()).html(),
+					nextArrow   : $('<div />').append(this.findElement('.slick-next').clone().show()).html()
 				}
 			},
 
@@ -151,12 +159,12 @@
 				};
 			},
 
-			onElementChange: function() {
+			onElementChange: debounce(function() {
 				this.elements.$container.slick('unslick');
 				this.run();
-			},
+			}, 200),
 
-			getReadySettings: function() {
+			getSlickSettings: function() {
 				var settings = {
 					infinite: !! this.getElementSettings('loop'),
 					autoplay: !! this.getElementSettings('autoplay'),
@@ -180,7 +188,6 @@
 						break;
 				}
 
-
 				settings.slidesToShow = this.getElementSettings('slides_to_show') || 1;
 				settings.responsive = [
 					{
@@ -201,7 +208,7 @@
 			},
 
 			run: function() {
-				this.elements.$container.slick(this.getReadySettings());
+				this.elements.$container.slick(this.getSlickSettings());
 			}
 		});
 

@@ -3,21 +3,20 @@
 
 .ha-slider,
 .ha-carousel {
-	.elementor-widget-container {
-		position: relative;
-	}
-
 	.slick-vertical .slick-slide {
 		border: 0;
 	}
 
 	.slick-prev,
 	.slick-next {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+
 		color: #8c8c8c;
 		background-color: rgba(255,255,255,.8);
 		border: 1px solid rgba(255,255,255,.8);
-		font-size: 12px;
-		text-align: center;
+		font-size: 15px;
 		border-radius: 50%;
 		z-index: 999;
 		opacity: 1;
@@ -31,6 +30,13 @@
 
 		&:before {
 			content: '';
+			display: none;
+		}
+
+		> svg {
+			height: 1em;
+			fill: currentColor;
+			width: auto;
 		}
 	}
 
@@ -74,18 +80,16 @@
 .ha-carousel {
 	.slick-prev,
 	.slick-next {
-		width: 40px;
-		height: 40px;
-		line-height: 40px;
+		width: 2.66em;
+		height: 2.66em;
 	}
 }
 
 .ha-slider {
 	.slick-prev,
 	.slick-next {
-		width: 50px;
-		height: 50px;
-		line-height: 50px;
+		width: 3.33em;
+		height: 3.33em;
 	}
 }
 
