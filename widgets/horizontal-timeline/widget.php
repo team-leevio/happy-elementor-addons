@@ -302,7 +302,8 @@ class Horizontal_Timeline extends Base {
                 'max' => 10000,
                 'default' => 800,
                 'description' => __( 'Slide speed in milliseconds', 'happy-elementor-addons' ),
-                'frontend_available' => true,
+				'frontend_available' => true,
+				'render_type' => 'ui',
             ]
         );
 
@@ -319,7 +320,8 @@ class Horizontal_Timeline extends Base {
                 'condition' => [
                     'autoplay' => 'yes'
                 ],
-                'frontend_available' => true,
+				'frontend_available' => true,
+				'render_type' => 'ui',
             ]
         );
 
@@ -332,7 +334,8 @@ class Horizontal_Timeline extends Base {
                 'label_off' => __( 'No', 'happy-elementor-addons' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
-                'frontend_available' => true,
+				'frontend_available' => true,
+				'render_type' => 'ui',
             ]
         );
 
@@ -353,9 +356,38 @@ class Horizontal_Timeline extends Base {
                 'tablet_default' => 3,
                 'mobile_default' => 2,
                 'frontend_available' => true,
-                'style_transfer' => true,
+				'style_transfer' => true,
+				'render_type' => 'ui',
             ]
-        );
+		);
+
+		$this->add_control(
+			'arrow_prev_icon',
+			[
+				'label' => __( 'Previous Icon', 'happy-elementor-addons' ),
+				'label_block' => false,
+				'type' => Controls_Manager::ICONS,
+				'skin' => 'inline',
+				'default' => [
+					'value' => 'fas fa-chevron-left',
+					'library' => 'fa-solid',
+				],
+			]
+		);
+
+		$this->add_control(
+			'arrow_next_icon',
+			[
+				'label' => __( 'Next Icon', 'happy-elementor-addons' ),
+				'label_block' => false,
+				'type' => Controls_Manager::ICONS,
+				'skin' => 'inline',
+				'default' => [
+					'value' => 'fas fa-chevron-right',
+					'library' => 'fa-solid',
+				],
+			]
+		);
 
         $this->end_controls_section();
     }
@@ -494,7 +526,7 @@ class Horizontal_Timeline extends Base {
 					],
 				],
                 'selectors' => [
-					'{{WRAPPER}} .ha-horizontal-timeline-icon i' => 'font-size: {{SIZE}}{{UNIT}};'
+					'{{WRAPPER}} .ha-horizontal-timeline-icon' => 'font-size: {{SIZE}}{{UNIT}};'
                 ],
             ]
 		);
@@ -536,7 +568,7 @@ class Horizontal_Timeline extends Base {
                 'label' => __( 'Icon Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-horizontal-timeline-icon i' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-horizontal-timeline-icon' => 'color: {{VALUE}}',
                 ],
             ]
 		);
@@ -553,9 +585,9 @@ class Horizontal_Timeline extends Base {
 		$this->add_responsive_control(
             'arrow_vertical_alignment',
             [
-                'label' => __( 'Vertical Alignment', 'happy-elementor-addons' ),
+                'label' => __( 'Vertical Position', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
+				'size_units' => ['px', '%'],
 				'range' => [
 					'px' => [
 						'min' => 0,
@@ -1010,9 +1042,18 @@ class Horizontal_Timeline extends Base {
 						</div>
 					</div>
 				</div>
+
 			<?php endforeach; ?>
 
 		</div>
+
+		<?php if ( ! empty( $settings['arrow_prev_icon']['value'] ) ) : ?>
+			<button type="button" class="slick-prev"><?php Icons_Manager::render_icon( $settings['arrow_prev_icon'], ['aria-hidden' => 'true'] ); ?></button>
+		<?php endif; ?>
+
+		<?php if ( ! empty( $settings['arrow_next_icon']['value'] ) ) : ?>
+			<button type="button" class="slick-next"><?php Icons_Manager::render_icon( $settings['arrow_next_icon'], ['aria-hidden' => 'true'] ); ?></button>
+		<?php endif; ?>
 
         <?php
     }

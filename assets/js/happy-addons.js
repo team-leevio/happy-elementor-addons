@@ -204,7 +204,7 @@
 					}
 				];
 
-				return $.extend({}, this.getDefaultSettings(), settings);
+				return $.extend({}, this.getSettings(), settings);
 			},
 
 			run: function() {
@@ -675,9 +675,11 @@
 			'frontend/element_ready/ha-horizontal-timeline.default',
 			function ($scope) {
 				elementorFrontend.elementsHandler.addHandler(SliderBase, {
-					$element: $scope,
-					container: '.ha-horizontal-timeline-wrapper',
-					autoplay: false,
+					$element  : $scope,
+					autoplay  : false,
+					container : '.ha-horizontal-timeline-wrapper',
+					navigation: 'arrow',
+					arrows    : true,
 				});
 			}
 		);

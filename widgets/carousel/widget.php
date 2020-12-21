@@ -14,6 +14,7 @@ use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
 use Elementor\Utils;
+use Elementor\Icons_Manager;
 
 defined( 'ABSPATH' ) || die();
 
@@ -306,6 +307,40 @@ class Carousel extends Base {
 			]
 		);
 
+		$this->add_control(
+			'arrow_prev_icon',
+			[
+				'label' => __( 'Previous Icon', 'happy-elementor-addons' ),
+				'label_block' => false,
+				'type' => Controls_Manager::ICONS,
+				'skin' => 'inline',
+				'default' => [
+					'value' => 'fas fa-chevron-left',
+					'library' => 'fa-solid',
+				],
+				'condition' => [
+					'navigation' => ['arrow', 'both']
+				],
+			]
+		);
+
+		$this->add_control(
+			'arrow_next_icon',
+			[
+				'label' => __( 'Next Icon', 'happy-elementor-addons' ),
+				'label_block' => false,
+				'type' => Controls_Manager::ICONS,
+				'skin' => 'inline',
+				'default' => [
+					'value' => 'fas fa-chevron-right',
+					'library' => 'fa-solid',
+				],
+				'condition' => [
+					'navigation' => ['arrow', 'both']
+				],
+			]
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -488,14 +523,18 @@ class Carousel extends Base {
 			[
 				'label' => __( 'Vertical', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
+				'size_units' => ['px', '%'],
 				'condition' => [
 					'arrow_position_toggle' => 'yes'
 				],
 				'range' => [
 					'px' => [
-						'min' => 0,
+						'min' => -100,
 						'max' => 500,
+					],
+					'%' => [
+						'min' => -110,
+						'max' => 110,
 					],
 				],
 				'selectors' => [
@@ -509,14 +548,18 @@ class Carousel extends Base {
 			[
 				'label' => __( 'Horizontal', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
+				'size_units' => ['px', '%'],
 				'condition' => [
 					'arrow_position_toggle' => 'yes'
 				],
 				'range' => [
 					'px' => [
 						'min' => -100,
-						'max' => 250,
+						'max' => 500,
+					],
+					'%' => [
+						'min' => -110,
+						'max' => 110,
 					],
 				],
 				'selectors' => [
@@ -527,6 +570,18 @@ class Carousel extends Base {
 		);
 
 		$this->end_popover();
+
+		$this->add_responsive_control(
+			'arrow_size',
+			[
+				'label' => __( 'Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', 'em'],
+				'selectors' => [
+					'{{WRAPPER}} .slick-prev, {{WRAPPER}} .slick-next' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
 
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
@@ -810,6 +865,14 @@ class Carousel extends Base {
 			<?php endforeach; ?>
 
 		</div>
+
+		<?php if ( ! empty( $settings['arrow_prev_icon']['value'] ) ) : ?>
+			<button type="button" class="slick-prev"><?php Icons_Manager::render_icon( $settings['arrow_prev_icon'], ['aria-hidden' => 'true'] ); ?></button>
+		<?php endif; ?>
+
+		<?php if ( ! empty( $settings['arrow_next_icon']['value'] ) ) : ?>
+			<button type="button" class="slick-next"><?php Icons_Manager::render_icon( $settings['arrow_next_icon'], ['aria-hidden' => 'true'] ); ?></button>
+		<?php endif; ?>
 
 		<?php
 	}
