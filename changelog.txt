@@ -1,3 +1,20 @@
+= 2.17.0 - x December 2020 =
+
+- New: Widget equal height feature
+- New: Custom arrow icon control in Slider widget
+- New: Custom arrow icon control in Carousel widget
+- New: Custom arrow icon control in Horizontal timeline widget
+- New: Slider arrow size control
+- New: Carousel arrow size control
+- New: Horizontal timeline arrow size control
+- Tweak: Updated Horizontal timeline widget default style
+- Tweak: Added % unit in Slider arrow position controls
+- Tweak: Added % unit in Carousel arrow position controls
+- Tweak: Added % unit in Horizontal timline arrow position control
+- Tweak: Separated Floating effects JS handler from main JS file
+- Fix: Slider arrow not hiding issue
+- Fix: Carousel arrow not hiding issue
+
 = 2.16.1 - 10 December 2020 =
 
 - Fix: WordPress 5.6 compatibility
