@@ -85,8 +85,7 @@ class Equal_Height {
 				'label' => __( 'Apply To', 'happy-elementor-addons' ),
 				'type'  => Controls_Manager::SELECT,
 				'options' => [
-					'widget'   => __( 'Widget', 'happy-elementor-addons' ),
-					'selector' => __( 'Custom Selector', 'happy-elementor-addons' ),
+					'widget'   => __( 'Widgets', 'happy-elementor-addons' ),
 				],
 				'default' => 'widget',
 				'condition' => [
@@ -110,23 +109,6 @@ class Equal_Height {
 					'_ha_eqh_to' => 'widget'
 				],
 				'render_type' => 'ui',
-				'frontend_available' => true,
-			]
-		);
-
-		$element->add_control(
-			'_ha_eqh_selector',
-			[
-				'label' => __( 'Add Selectors', 'happy-elementor-addons' ),
-				'label_block' => true,
-				'description' => __( 'You can use any CSS selector (eg. <b><code>.ha-card-text</code></b>) and you can group selectors with comma (eg. <b><code>.ha-card-title, .ha-card-text</code></b>).', 'happy-elementor-addons' ),
-				'type'  => Controls_Manager::TEXT,
-				'rows' => 4,
-				'condition' => [
-					'_ha_eqh_enable' => 'yes',
-					'_ha_eqh_to' => 'selector'
-				],
-				'render_type'  => 'ui',
 				'frontend_available' => true,
 			]
 		);
