@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.16.1
+Version: 2.17.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -282,6 +282,24 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.17.0 - 23 December 2020 =
+
+- New: Widget equal height feature
+- New: Custom arrow icon control in Slider widget
+- New: Custom arrow icon control in Carousel widget
+- New: Custom arrow icon control in Horizontal timeline widget
+- New: Slider arrow size control
+- New: Carousel arrow size control
+- New: Horizontal timeline arrow size control
+- New: Horizontal timeline arrow horizontal position control
+- Tweak: Updated Horizontal timeline widget default style
+- Tweak: Added % unit in Slider arrow position controls
+- Tweak: Added % unit in Carousel arrow position controls
+- Tweak: Added % unit in Horizontal timline arrow position control
+- Tweak: Separated Floating effects JS handler from main JS file
+- Fix: Slider arrow not hiding issue
+- Fix: Carousel arrow not hiding issue
 
 = 2.16.1 - 10 December 2020 =
 
