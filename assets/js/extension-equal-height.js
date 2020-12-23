@@ -101,7 +101,9 @@
 				} else {
 					this.getTargetElements().forEach(function($el) {
 						if ($el.length) {
-							$el.matchHeight();
+							$el.matchHeight({
+								byRow: false
+							});
 
 							_this.CACHED_ELEMENTS.push($el);
 						}
