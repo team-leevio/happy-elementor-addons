@@ -273,24 +273,33 @@
 		getSelect2DefaultOptions: function() {
 			var options = Select2Base.prototype.getSelect2DefaultOptions.apply(this, arguments);
 			if (this.container && this.container.type === 'section') {
-				var widgets = {}, data = [];
+				var widgetsConfig = elementor.widgetsCache || elementor.config.widgets,
+					widgets = {},
+					data = [];
+
 				this.container.children.forEach(function(column) {
-					if (column.children.length) {
-						column.children.forEach(function(widget) {
-							if (widget.type !== 'widget') {
-								return;
-							}
-							widgets[ widget.model.get('widgetType') ] = widget.label + ' ('+widget.model.get('widgetType')+')';
-						});
-					}
+					var $widgets = column.view.$childViewContainer.children('[data-widget_type]');
+
+					$widgets.each(function(index, widget) {
+						var name = $(widget).data('widget_type'),
+							name = name.slice(0, name.lastIndexOf('.')),
+							config = !_.isUndefined(widgetsConfig[name]) ? widgetsConfig[name] : false;
+
+						if (config) {
+							widgets[config.widget_type] = config.title + ' ('+config.widget_type+')';
+						}
+					});
 				});
+
 				_.each(widgets, function(label, id) {
 					data.push({
 						id: id,
 						text: label
 					});
 				});
+
 				options.data = data;
+
 				this.model.set('options', widgets);
 			}
 			return options;
