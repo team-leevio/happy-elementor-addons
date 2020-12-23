@@ -7,6 +7,7 @@
 - New: Slider arrow size control
 - New: Carousel arrow size control
 - New: Horizontal timeline arrow size control
+- New: Horizontal timeline arrow horizontal position control
 - Tweak: Updated Horizontal timeline widget default style
 - Tweak: Added % unit in Slider arrow position controls
 - Tweak: Added % unit in Carousel arrow position controls
