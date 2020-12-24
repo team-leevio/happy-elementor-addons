@@ -188,18 +188,18 @@
 						break;
 				}
 
-				settings.slidesToShow = this.getElementSettings('slides_to_show') || 1;
+				settings.slidesToShow = parseInt( this.getElementSettings('slides_to_show') ) || 1;
 				settings.responsive = [
 					{
 						breakpoint: elementorFrontend.config.breakpoints.lg,
 						settings: {
-							slidesToShow: (this.getElementSettings('slides_to_show_tablet') || settings.slidesToShow),
+							slidesToShow: (parseInt(this.getElementSettings('slides_to_show_tablet')) || settings.slidesToShow),
 						}
 					},
 					{
 						breakpoint: elementorFrontend.config.breakpoints.md,
 						settings: {
-							slidesToShow: (this.getElementSettings('slides_to_show_mobile') || this.getElementSettings('slides_to_show_tablet')) || settings.slidesToShow,
+							slidesToShow: (parseInt(this.getElementSettings('slides_to_show_mobile')) || parseInt(this.getElementSettings('slides_to_show_tablet'))) || settings.slidesToShow,
 						}
 					}
 				];
