@@ -685,26 +685,27 @@
 		);
 
 		$('[data-ha-element-link]').on('click.onWrapperLink', function() {
-			var link = $(this).data('ha-element-link'),
-				id = $(this).data('id'),
-				link = document.createElement('a'),
-				linkEle,
-				time;
+			var $wrapper = $(this),
+			    data     = $wrapper.data('ha-element-link'),
+			    id       = $wrapper.data('id'),
+			    anchor   = document.createElement('a'),
+				anchorReal,
+				timeout;
 
-			link.id            = 'happy-addons-wrapper-link-' + id;
-			link.href          = link.url;
-			link.target        = link.is_external ? '_blank' : '_self';
-			link.rel           = link.nofollow ? 'nofollow noreferer' : '';
-			link.style.display = 'none';
+			anchor.id            = 'happy-addons-wrapper-link-' + id;
+			anchor.href          = data.url;
+			anchor.target        = data.is_external ? '_blank' : '_self';
+			anchor.rel           = data.nofollow ? 'nofollow noreferer' : '';
+			anchor.style.display = 'none';
 
-			document.body.appendChild(link);
+			document.body.appendChild(anchor);
 
-			linkEle = document.getElementById(link.id);
-			linkEle.click();
+			anchorReal = document.getElementById(anchor.id);
+			anchorReal.click();
 
-			time = setTimeout(function() {
-				document.body.removeChild(linkEle);
-				clearTimeout(time);
+			timeout = setTimeout(function() {
+				document.body.removeChild(anchorReal);
+				clearTimeout(timeout);
 			});
 		});
 
