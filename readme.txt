@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.17.0
+Version: 2.17.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -282,6 +282,10 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.17.1 - 24 December 2020 =
+
+- Fix: Wrapper link undefined url issue
 
 = 2.17.0 - 23 December 2020 =
 
