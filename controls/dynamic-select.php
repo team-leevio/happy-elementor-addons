@@ -15,7 +15,7 @@ class Dynamic_Select extends Control_Select2 {
 	/**
 	 * Control identifier
 	 */
-	const TYPE = 'ha-dynamic-select';
+	const TYPE = 'ha_dynamic_select';
 
 	/**
 	 * Set control type.
@@ -39,6 +39,7 @@ class Dynamic_Select extends Control_Select2 {
 			'options'        => [],
 			'multiple'       => false,
 			'sortable'       => false,
+			'dynamic_params' => [],
 			'select2options' => [],
 		];
 	}

@@ -4,8 +4,9 @@
  *
  * @package Happy_Addons
  */
-
 namespace Happy_Addons\Elementor\Widget;
+
+defined( 'ABSPATH' ) || die();
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
@@ -17,9 +18,7 @@ use Elementor\Icons_Manager;
 use Elementor\Repeater;
 use Elementor\Core\Schemes;
 use Elementor\Group_Control_Background;
-use Happy_Addons\Elementor\Controls\Select2;
-
-defined( 'ABSPATH' ) || die();
+use Happy_Addons\Elementor\Controls\Dynamic_Select;
 
 class Post_List extends Base {
 
@@ -135,12 +134,12 @@ class Post_List extends Base {
 				[
 					'label' => __( 'Select ', 'happy-elementor-addons' ) . $value,
 					'label_block' => true,
-					'type' => Select2::TYPE,
+					'type' => Dynamic_Select::TYPE,
 					'multiple' => false,
 					'placeholder' => 'Search ' . $value,
-					'data_options' => [
-						'post_type' => $key,
-						'action' => 'ha_post_list_query'
+					'dynamic_params' => [
+						'object_type' => 'post',
+						'post_type'   => $key,
 					],
 				]
 			);
