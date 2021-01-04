@@ -28,7 +28,7 @@ class Dynamic_Select_Handler {
 			$response = [];
 
 			if ( $object_type === 'post' ) {
-				$response = self::process_post_object_request();
+				$response = self::process_post();
 			}
 
 			wp_send_json_success( $response );
@@ -37,7 +37,7 @@ class Dynamic_Select_Handler {
 		}
 	}
 
-	public static function process_post_object_request() {
+	public static function process_post() {
 		$post_type    = ! empty( $_REQUEST['post_type'] ) ? $_REQUEST['post_type'] : 'any';
 		$query_term   = ! empty( $_REQUEST['query_term'] ) ? $_REQUEST['query_term'] : '';
 		$saved_values = ! empty( $_REQUEST['saved_values'] ) ? $_REQUEST['saved_values'] : 0;
