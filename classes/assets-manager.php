@@ -377,14 +377,12 @@ class Assets_Manager {
 		self::enqueue_dark_stylesheet();
 
 		$localize_data = [
-			'proWidgets'                => [],
-			'hasPro'                    => ha_has_pro(),
-			'editorPanelHomeLinkURL'    => ha_get_dashboard_link(),
-			'editorPanelWidgetsLinkURL' => ha_get_dashboard_link( '#widgets' ),
-			'select2Secret'             => wp_create_nonce( 'HappyAddons_Select2_Secret' ),
-			'darkStylesheetURL'         => self::get_dark_stylesheet_url(),
+			'proWidgets'        => [],
+			'hasPro'            => ha_has_pro(),
+			'editor_nonce'      => wp_create_nonce( 'ha_editor_nonce' ),
+			'select2Secret'     => wp_create_nonce( 'HappyAddons_Select2_Secret' ),
+			'darkStylesheetURL' => self::get_dark_stylesheet_url(),
 			'i18n' => [
-				'editorPanelHomeLinkTitle'  => esc_html__( 'HappyAddons', 'happy-elementor-addons' ),
 				'promotionDialogHeader'     => esc_html__( '%s Widget', 'happy-elementor-addons' ),
 				'promotionDialogMessage'    => esc_html__( 'Use %s widget with other exclusive pro widgets and 100% unique features to extend your toolbox and build sites faster and better.', 'happy-elementor-addons' ),
 				'templatesEmptyTitle'       => esc_html__( 'No Templates Found', 'happy-elementor-addons' ),

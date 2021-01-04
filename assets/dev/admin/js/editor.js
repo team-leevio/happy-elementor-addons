@@ -113,10 +113,7 @@
 		return buttonMarkup.join('');
 	}
 
-	var Select2Base = elementor.modules.controls.Select2,
-		registerDarkModeStylesheet;
-
-	registerDarkModeStylesheet = function() {
+	var registerDarkModeStylesheet = function() {
 		var darkModeLinkID = 'happy-addons-editor-dark-css',
 			$darkModeLink = $('#' + darkModeLinkID);
 
@@ -265,17 +262,12 @@
 		return regionViews;
 	});
 
-
 	// Widget List controller view
-	var WidgetList = Select2Base.extend({
-		ALLOW_RERENDER: true,
-
-		getSelect2DefaultOptions: function() {
-			var options = Select2Base.prototype.getSelect2DefaultOptions.apply(this, arguments);
+	var WidgetList = elementor.modules.controls.Select2.extend({
+		onBeforeRender: function() {
 			if (this.container && this.container.type === 'section') {
 				var widgetsConfig = elementor.widgetsCache || elementor.config.widgets,
-					widgets = {},
-					data = [];
+					widgets = {};
 
 				this.container.children.forEach(function(column) {
 					var $widgets = column.view.$childViewContainer.children('[data-widget_type]');
@@ -291,33 +283,145 @@
 					});
 				});
 
-				_.each(widgets, function(label, id) {
-					data.push({
-						id: id,
-						text: label
-					});
-				});
-
-				options.data = data;
-
 				this.model.set('options', widgets);
 			}
-			return options;
-		},
-
-		onRender: function() {
-			Select2Base.prototype.onRender.apply(this, arguments);
-			if (this.container && this.container.type === 'section' && this.ALLOW_RERENDER) {
-				var _this = this;
-				var t = setTimeout(function() {
-					_this.render();
-					clearTimeout(t);
-				}, 20);
-				this.ALLOW_RERENDER = false;
-			}
-		},
+		}
 	});
 
 	elementor.addControlView('widget-list', WidgetList);
+
+
+	var Select2ControlBase = elementor.modules.controls.BaseData.extend({
+		getSelect2Placeholder: function() {
+			return this.ui.select.children( 'option:first[value=""]' ).text();
+		},
+
+		getSelect2DefaultOptions: function() {
+			return {
+				allowClear: true,
+				placeholder: this.getSelect2Placeholder(),
+				dir: elementorCommon.config.isRTL ? 'rtl' : 'ltr',
+			};
+		},
+
+		getSelect2Options: function() {
+			return jQuery.extend( this.getSelect2DefaultOptions(), this.model.get( 'select2options' ) );
+		},
+
+		onBeforeDestroy: function() {
+			// We always destroy the select2 instance because there are cases where the DOM element's data cache
+			// itself has been destroyed but the select2 instance on it still exists
+			this.ui.select.select2( 'destroy' );
+			this.$el.remove();
+		},
+	});
+
+	var DynamicSelect = Select2ControlBase.extend({
+		isPostSearchReady: false,
+
+		// dataQueryOption: function(){
+		// 	var self = this;
+		// 	var data_options = self.model.get('data_options');
+		// 	if( !data_options && typeof data_options !== "object"){
+		// 		return false;
+		// 	}else{
+		// 		return data_options;
+		// 	}
+		// },
+
+		// getPostTitlesbyID: function () {
+		// 	var self = this,
+		// 		dataQueryOption = this.dataQueryOption(),
+		// 		ids = this.getControlValue();
+
+		// 	if (!ids || 0 === ids.length) {
+		// 		return;
+		// 	}
+
+		// 	if (!_.isArray(ids)) {
+		// 		ids = [ids];
+		// 	}
+		// 	var default_value = {
+		// 		security: HappyAddonsEditor.select2Secret,
+		// 		select_type: 'selected',
+		// 		id: ids
+		// 	};
+		// 	$.ajax({
+		// 		url: ajaxurl,
+		// 		type: 'POST',
+		// 		data: $.extend( {}, default_value, dataQueryOption ),
+		// 		before: self.addControlSpinner(),
+		// 		success: function (results) {
+
+		// 			self.isPostSearchReady = true;
+		// 			self.model.set('options', results);
+		// 			self.render();
+		// 		}
+		// 	});
+		// },
+
+		// addControlSpinner: function () {
+		// 	this.ui.select.prop('disabled', true);
+		// 	this.$el.find('.elementor-control-title').after('<span class="elementor-control-spinner">&nbsp;<i class="eicon-spinner eicon-animation-spin"></i>&nbsp;</span>');
+		// },
+
+		onReady: function () {
+			var self = this,
+				dataQueryOption = this.dataQueryOption();
+
+			if ( !dataQueryOption ){
+				return;
+			}
+
+			this.ui.select.select2({
+				placeholder: self.model.get('placeholder') || 'Search',
+				minimumInputLength: self.model.get('mininput') || 0,
+				allowClear: true,
+				ajax: {
+					url: ajaxurl,
+					dataType: 'json',
+					method: 'post',
+					delay: 250,
+					data: function (params) {
+						var default_value = {
+							security: HappyAddonsEditor.select2Secret,
+							select_type: 'choose',
+							q: params.term,
+						};
+						var data_options = self.model.get('data_options');
+						return $.extend( {}, default_value, data_options );
+					},
+					processResults: function (data) {
+						// parse the results into the format expected by Select2.
+						// since we are using custom formatting functions we do not need to
+						// alter the remote JSON data
+						var notFound = [{
+								"id": -1,
+								"text": "No results found",
+								"disabled": true
+							}];
+						return {
+							results: data !== null ? data : notFound
+						}
+					},
+					cache: true
+				}
+			});
+
+			// if (!this.isPostSearchReady) {
+			// 	this.getPostTitlesbyID();
+			// }
+		},
+
+		onBeforeDestroy: function () {
+			if (this.ui.select.data('select2')) {
+				this.ui.select.select2('destroy');
+			}
+
+			this.$el.remove();
+		}
+	});
+
+	elementor.addControlView('ha-dynamic-select', DynamicSelect);
 
 }(jQuery));
