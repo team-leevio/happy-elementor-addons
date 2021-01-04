@@ -43,4 +43,13 @@ class Dynamic_Select extends Control_Select2 {
 			'select2options' => [],
 		];
 	}
+
+	/**
+	 * Enqueue control scripts and styles.
+	 */
+	public function enqueue() {
+		if ( $this->get_settings( 'sortable' ) ) {
+			wp_enqueue_script( 'jquery-ui-sortable' );
+		}
+	}
 }

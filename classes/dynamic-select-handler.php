@@ -31,6 +31,10 @@ class Dynamic_Select_Handler {
 				$response = self::process_post();
 			}
 
+			if ( $object_type === 'term' ) {
+				$response = self::process_term();
+			}
+
 			wp_send_json_success( $response );
 		} catch( Exception $e ) {
 			wp_send_json_error( $e->getMessage() );
@@ -63,7 +67,63 @@ class Dynamic_Select_Handler {
 
 		$posts = get_posts( $args );
 
-		return wp_list_pluck( $posts, 'post_title', 'ID' );
+		if ( empty( $posts ) ) {
+			return [];
+		}
+
+		$out = [];
+
+		foreach ( $posts as $post ) {
+			// empty space is must needed, otherwise the list become reordered in JS
+			$out[" {$post->ID}"] = esc_html( $post->post_title );
+		}
+
+		return $out;
+	}
+
+	public static function process_term() {
+		$term_taxonomy = ! empty( $_REQUEST['term_taxonomy'] ) ? $_REQUEST['term_taxonomy'] : '';
+		$query_term    = ! empty( $_REQUEST['query_term'] ) ? $_REQUEST['query_term'] : '';
+		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? $_REQUEST['saved_values'] : 0;
+
+		if ( empty( $term_taxonomy ) ) {
+			throw new Exception( 'Invalid taxonomy' );
+		}
+
+		$args = [
+			'taxonomy'   => $term_taxonomy,
+			'hide_empty' => false,
+			'orderby'    => 'name',
+			'order'      => 'ASC',
+			'number'     => 20,
+		];
+
+		if ( $query_term ) {
+			$args['search'] = $query_term;
+			$args['count'] = true;
+		}
+
+		if ( $saved_values ) {
+			$args['include'] = $saved_values;
+			$args['number']  = count( $saved_values );
+			$args['orderby'] = 'include';
+		}
+
+		$terms = get_terms( $args );
+
+		if ( empty( $terms ) || is_wp_error( $terms ) ) {
+			return [];
+		}
+
+		$out = [];
+
+		foreach ( $terms as $term ) {
+			$title = ! empty( $query_term ) ? "{$term->name} ({$term->count})" : $term->name;
+			// empty space is must needed, otherwise the list become reordered in JS
+			$out[" {$term->term_id}"] = $title;
+		}
+
+		return $out;
 	}
 }
 

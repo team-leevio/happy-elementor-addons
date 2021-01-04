@@ -302,6 +302,7 @@
 				allowClear: true,
 				placeholder: this.getSelect2Placeholder(),
 				dir: elementorCommon.config.isRTL ? 'rtl' : 'ltr',
+				minimumInputLength: 1,
 				ajax: {
 					url     : ajaxurl,
 					dataType: 'json',
@@ -336,7 +337,7 @@
 								id: id,
 								text: title,
 							});
-						})
+						});
 
 						return {
 							results: data
@@ -400,9 +401,52 @@
 
 			if ( ! select2Instance ) {
 				this.ui.select.select2( this.getSelect2Options() );
+
+				if ( this.model.get('sortable') ) {
+					this.initSortable();
+				}
 			} else {
 				this.ui.select.trigger( 'change' );
 			}
+		},
+
+		initSortable: function() {
+			var $sortable = this.$el.find('ul.select2-selection__rendered'),
+				_this = this;
+
+			$sortable.sortable({
+				containment: 'parent',
+
+				update: function() {
+					_this._orderSortedOption($sortable);
+
+					_this.container.settings.setExternalChange(
+						_this.model.get('name'),
+						_this.ui.select.val()
+					);
+
+					_this.model.set('options', _this.ui.select.val());
+				}
+			});
+		},
+
+		_orderSortedOption: function($sortable) {
+			var _this = this;
+
+			$sortable.children('li[title]').each(function(i, obj) {
+				var $elment = _this.ui.select.children('option').filter(function() {
+					return $(this).html() == obj.title;
+				});
+
+				_this._moveOptionToEnd($elment)
+			});
+		},
+
+		_moveOptionToEnd: function($elment) {
+			var $parent = $elment.parent();
+
+			$elment.detach();
+			$parent.append($elment);
 		},
 
 		onBeforeDestroy: function() {

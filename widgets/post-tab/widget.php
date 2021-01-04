@@ -14,6 +14,7 @@ use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
 use Elementor\Group_Control_Background;
 use Happy_Addons\Elementor\Controls\Select2;
+use Happy_Addons\Elementor\Controls\Dynamic_Select;
 
 defined( 'ABSPATH' ) || die();
 
@@ -125,18 +126,18 @@ class Post_Tab extends Base {
 					[
 						'label' => __( 'Select ', 'happy-elementor-addons' ) . $tax_value,
 						'label_block' => true,
-						'type' => Select2::TYPE,
+						'type' => Dynamic_Select::TYPE,
 						'multiple' => true,
+						'sortable' => true,
 						'placeholder' => 'Search ' . $tax_value,
-						'data_options' => [
-							'tax_id' => $tax_key,
-							'action' => 'ha_post_tab_select_query'
+						'dynamic_params' => [
+							'term_taxonomy' => $tax_key,
+							'object_type'   => 'term'
 						],
 						'condition' => [
 							'post_type' => $key,
 							'tax_type_' . $key => $tax_key
 						],
-						'render_type' => 'template',
 					]
 				);
 			}
@@ -822,12 +823,14 @@ class Post_Tab extends Base {
 
 		$taxonomy = $settings['tax_type_' . $settings['post_type']];
 		$terms_ids = $settings['tax_ids_' . $taxonomy];
+
 		$terms_args = [
-			'taxonomy' => $taxonomy,
+			'taxonomy'   => $taxonomy,
 			'hide_empty' => true,
-			'include' => $terms_ids,
-			'orderby' => 'term_id',
+			'include'    => $terms_ids,
+			'orderby'    => 'include',
 		];
+
 		$filter_list = get_terms( $terms_args );
 
 		$post_args = [
