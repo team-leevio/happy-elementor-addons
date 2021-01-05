@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.17.1
+Version: 2.18.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
@@ -282,6 +282,13 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.18.0 - 5 January 2020 =
+
+- New: Tabs are sortable in Post Tab widget
+- Tweak: Added Post tab widget tab hover cursor
+- Fix: Equal height control rendering issue
+- Fix: Horizontal Timeline inconsistency with Infinite loop
 
 = 2.17.1 - 24 December 2020 =
 

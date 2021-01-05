@@ -1,6 +1,9 @@
-	 24 December 2020 =
+= 2.18.0 - 5 January 2020 =
 
-- Fix: Horizontal Timeline inconsistency with Infinite loop.
+- New: Tabs are sortable in Post Tab widget
+- Tweak: Added Post tab widget tab hover cursor
+- Fix: Equal height control rendering issue
+- Fix: Horizontal Timeline inconsistency with Infinite loop
 
 = 2.17.1 - 24 December 2020 =
 
