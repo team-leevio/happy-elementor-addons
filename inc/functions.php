@@ -677,3 +677,46 @@ function ha_render_button_icon( $settings = [], $old_icon_id = 'icon', $new_icon
 		printf( '<i %s></i>', \Elementor\Utils::render_html_attributes( $attributes ) );
 	}
 }
+
+
+
+// function ha_additional_shape_divider($shapes) {
+// 	$shape_list = [
+// 		'abstruct-web',
+// 		'crossline',
+// 		'droplet',
+// 		'flame',
+// 		'frame',
+// 		'half-circle',
+// 		'multi-cloud',
+// 		'multi-web',
+// 		'smooth-zigzag',
+// 		'splash',
+// 		'splash2',
+// 		'torn-paper',
+// 	];
+
+// 	$shapes = [];
+// 	foreach ( $shape_list as $list ){
+
+// 		$shapes [ $list]  = [
+// 				'title' => _x( $list , 'Shapes', 'happy-elementor-addons' ),
+// 				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/'.$list.'.svg',
+// 				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/'.$list.'.svg',
+// 				'has_flip' => true,
+// 				'has_negative' => false,
+// 				'ha_shape' => true,
+
+// 		];
+// 	}
+
+// 	// echo '<pre>';
+// 	// var_dump($shapes);
+// 	// echo '</pre>';
+// 	/*
+// 		svg path should contain elementor class to show in editor mode
+// 	*/
+
+// 	return $shapes;
+// }
+// add_filter( 'elementor/shapes/additional_shapes', 'ha_additional_shape_divider' );

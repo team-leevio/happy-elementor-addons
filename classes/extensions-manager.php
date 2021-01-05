@@ -43,6 +43,10 @@ class Extensions_Manager {
 		if ( ha_is_equal_height_enabled() ) {
 			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/equal-height.php';
 		}
+
+		if ( ha_is_shape_divider_enabled() ) {
+			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/shape-divider.php';
+		}
 	}
 
 }

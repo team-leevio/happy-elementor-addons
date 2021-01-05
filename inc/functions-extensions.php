@@ -107,3 +107,14 @@ if ( ! function_exists( 'ha_is_equal_height_enabled' ) ) {
 		return apply_filters( 'happyaddons/extensions/equal_height', true );
 	}
 }
+
+if ( ! function_exists( 'ha_is_shape_divider_enabled' ) ) {
+	/**
+	 * Check if Happy Shape Divider is enabled
+	 *
+	 * @return bool
+	 */
+	function ha_is_shape_divider_enabled() {
+		return apply_filters( 'happyaddons/extensions/shape_divider', true );
+	}
+}
