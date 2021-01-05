@@ -377,11 +377,10 @@ class Assets_Manager {
 		self::enqueue_dark_stylesheet();
 
 		$localize_data = [
-			'proWidgets'        => [],
-			'hasPro'            => ha_has_pro(),
-			'editor_nonce'      => wp_create_nonce( 'ha_editor_nonce' ),
-			'select2Secret'     => wp_create_nonce( 'HappyAddons_Select2_Secret' ),
-			'darkStylesheetURL' => self::get_dark_stylesheet_url(),
+			'placeholder_widgets' => [],
+			'hasPro'                  => ha_has_pro(),
+			'editor_nonce'            => wp_create_nonce( 'ha_editor_nonce' ),
+			'dark_stylesheet_url'     => self::get_dark_stylesheet_url(),
 			'i18n' => [
 				'promotionDialogHeader'     => esc_html__( '%s Widget', 'happy-elementor-addons' ),
 				'promotionDialogMessage'    => esc_html__( 'Use %s widget with other exclusive pro widgets and 100% unique features to extend your toolbox and build sites faster and better.', 'happy-elementor-addons' ),
@@ -393,7 +392,7 @@ class Assets_Manager {
 		];
 
 		if ( ! ha_has_pro() && ha_is_elementor_version( '>=', '2.9.0' ) ) {
-			$localize_data['proWidgets'] = Widgets_Manager::get_pro_widget_map();
+			$localize_data['placeholder_widgets'] = Widgets_Manager::get_pro_widget_map();
 		}
 
 		wp_localize_script(

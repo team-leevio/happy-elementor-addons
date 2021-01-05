@@ -121,7 +121,7 @@
 			$darkModeLink = $('<link>', {
 				id: darkModeLinkID,
 				rel: 'stylesheet',
-				href: HappyAddonsEditor.darkStylesheetURL,
+				href: HappyAddonsEditor.dark_stylesheet_url,
 			});
 		}
 
@@ -171,7 +171,7 @@
 	 * Add pro widgets placeholder
 	 */
 	elementor.hooks.addFilter('panel/elements/regionViews', function (regionViews) {
-		if (HappyAddonsEditor.hasPro || _.isEmpty(HappyAddonsEditor.proWidgets)) {
+		if (HappyAddonsEditor.hasPro || _.isEmpty(HappyAddonsEditor.placeholder_widgets)) {
 			return regionViews;
 		}
 
@@ -184,7 +184,7 @@
 			ElementView,
 			freeCategoryIndex;
 
-		_.each(HappyAddonsEditor.proWidgets, function (widget, name) {
+		_.each(HappyAddonsEditor.placeholder_widgets, function (widget, name) {
 			elementsCollection.add({
 				name: 'ha-' + name,
 				title: widget.title,
