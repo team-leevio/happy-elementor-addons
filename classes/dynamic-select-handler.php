@@ -11,19 +11,27 @@ class Dynamic_Select_Handler {
 		add_action( 'wp_ajax_ha_process_dynamic_select', [ __CLASS__, 'process_request' ] );
 	}
 
-	protected static function verify_request() {
+	protected static function validate_reqeust() {
 		$nonce = ! empty( $_REQUEST['nonce'] ) ? $_REQUEST['nonce'] : '';
 
-		return wp_verify_nonce( $nonce, 'ha_editor_nonce' );
+		if ( ! wp_verify_nonce( $nonce, 'ha_editor_nonce' ) ) {
+			throw new Exception( 'Invalid request' );
+		}
+
+		if ( current_user_can( 'edit_posts' ) ) {
+			throw new Exception( 'Unauthorized request' );
+		}
 	}
 
 	public static function process_request() {
 		try {
-			if ( ! self::verify_request() ) {
-				throw new Exception( 'Invalid request' );
-			}
+			self::validate_reqeust();
 
-			$object_type = ! empty( $_REQUEST['object_type'] ) ? $_REQUEST['object_type'] : 'post';
+			$object_type = ! empty( $_REQUEST['object_type'] ) ? trim( $_REQUEST['object_type'] ) : '';
+
+			if ( ! in_array( $object_type, [ 'post', 'term', 'user' ], true ) ) {
+				throw new Exception( 'Invalid object type' );
+			}
 
 			$response = [];
 
@@ -71,14 +79,7 @@ class Dynamic_Select_Handler {
 			return [];
 		}
 
-		$out = [];
-
-		foreach ( $posts as $post ) {
-			// empty space is must needed, otherwise the list become reordered in JS
-			$out[" {$post->ID}"] = esc_html( $post->post_title );
-		}
-
-		return $out;
+		return wp_list_pluck( $posts, 'post_title', 'ID' );
 	}
 
 	public static function process_term() {
@@ -119,8 +120,7 @@ class Dynamic_Select_Handler {
 
 		foreach ( $terms as $term ) {
 			$title = ! empty( $query_term ) ? "{$term->name} ({$term->count})" : $term->name;
-			// empty space is must needed, otherwise the list become reordered in JS
-			$out[" {$term->term_id}"] = $title;
+			$out[ $term->term_id ] = $title;
 		}
 
 		return $out;

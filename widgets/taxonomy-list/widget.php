@@ -18,6 +18,7 @@ use Elementor\Core\Schemes;
 use Elementor\Group_Control_Background;
 use Happy_Addons\Elementor\Controls\Select2;
 use Elementor\Group_Control_Css_Filter;
+use Happy_Addons\Elementor\Controls\Dynamic_Select;
 
 defined( 'ABSPATH' ) || die();
 
@@ -168,12 +169,12 @@ class Taxonomy_List extends Base {
 				[
 					'label' => __( 'Select ', 'happy-elementor-addons' ) . $value,
 					'label_block' => true,
-					'type' => Select2::TYPE,
+					'type' => Dynamic_Select::TYPE,
 					'multiple' => false,
 					'placeholder' => 'Search ' . $value,
-					'data_options' => [
-						'taxonomy_type' => $key,
-						'action' => 'ha_taxonomy_list_query'
+					'dynamic_params' => [
+						'term_taxonomy' => $key,
+						'object_type'   => 'term'
 					],
 				]
 			);
