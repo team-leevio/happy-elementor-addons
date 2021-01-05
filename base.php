@@ -88,21 +88,18 @@ class Base {
 
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
-
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
 
 		if ( is_admin() ) {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/attention-seeker.php' );
+			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
 		}
 
 		if ( is_user_logged_in() ) {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-manager.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-source.php' );
-
-			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dynamic-select-handler.php' );
 		}
 	}
 
@@ -135,7 +132,6 @@ class Base {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/foreground.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/select2.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/widget-list.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/dynamic-select.php' );
 
 		$Foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
 		$controls_Manager->add_group_control( $Foreground::get_type(), new $Foreground() );
@@ -145,8 +141,5 @@ class Base {
 
 		$Widget_List = __NAMESPACE__ . '\Controls\Widget_List';
 		ha_elementor()->controls_manager->register_control( $Widget_List::TYPE, new $Widget_List() );
-
-		$Dynamic_Select = __NAMESPACE__ . '\Controls\Dynamic_Select';
-		ha_elementor()->controls_manager->register_control( $Dynamic_Select::TYPE, new $Dynamic_Select() );
 	}
 }

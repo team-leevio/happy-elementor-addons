@@ -290,7 +290,7 @@
 
 	elementor.addControlView('widget-list', WidgetList);
 
-	var DynamicSelect = elementor.modules.controls.BaseData.extend({
+	var AdvancedSelect2 = elementor.modules.controls.BaseData.extend({
 		getSelect2Placeholder: function() {
 			return this.ui.select.children( 'option:first[value=""]' ).text() || this.model.get('placeholder');
 		},
@@ -387,7 +387,13 @@
 				beforeSend: _this.addLoadingSpinner.bind(this),
 				success: function(response) {
 					if (response.success && response.data.length !== 0) {
+						var ids = _.keys(response.data).map(function(id) {
+							return ' ' + $.trim(id);
+						});
+
+						_this.container.settings.set(_this.model.get('name'), ids);
 						_this.model.set('options', response.data);
+
 						_this.render();
 					}
 				}
@@ -457,5 +463,5 @@
 		},
 	});
 
-	elementor.addControlView('ha_dynamic_select', DynamicSelect);
+	elementor.addControlView('ha_advanced_select2', AdvancedSelect2);
 }(jQuery));

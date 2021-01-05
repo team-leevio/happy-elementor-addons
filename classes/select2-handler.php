@@ -1,147 +1,138 @@
 <?php
-
 namespace Happy_Addons\Elementor;
 
 defined( 'ABSPATH' ) || die();
 
-/**
- * Class Select2_Handler
- * @package Happy_Addons\Elementor
- */
+use Exception;
+
 class Select2_Handler {
 
-	public static function init () {
-		add_action( 'wp_ajax_ha_post_list_query', [ __CLASS__, 'ha_post_list_query' ] );
-		add_action( 'wp_ajax_ha_post_tab_select_query', [ __CLASS__, 'post_tab_query' ] );
-		add_action( 'wp_ajax_ha_taxonomy_list_query', [ __CLASS__, 'taxonomy_list_query' ] );
+	public static function init() {
+		add_action( 'wp_ajax_ha_process_dynamic_select', [ __CLASS__, 'process_request' ] );
 	}
 
-	/**
-	 * Return Post list based on post type
-	 */
-	public static function ha_post_list_query () {
-		$security = check_ajax_referer( 'HappyAddons_Select2_Secret', 'security' );
-		if ( ! $security ) return;
-		$post_type = isset( $_POST['post_type'] ) ? sanitize_text_field( $_POST['post_type'] ) : '';
-		if ( ! $post_type ) return;
+	protected static function validate_reqeust() {
+		$nonce = ! empty( $_REQUEST['nonce'] ) ? $_REQUEST['nonce'] : '';
 
-		$select_type = isset( $_POST['select_type'] ) ? $_POST['select_type'] : false;
-		$search_string = isset( $_POST['q'] ) ? sanitize_text_field( $_POST['q'] ) : '';
-		$ids = isset( $_POST['id'] ) ? $_POST['id'] : array();
+		if ( ! wp_verify_nonce( $nonce, 'ha_editor_nonce' ) ) {
+			throw new Exception( 'Invalid request' );
+		}
 
-		$data = [];
-		$arg = [
-			'post_status' => 'publish',
-			'post_type' => $post_type,
-			'posts_per_page' => -1,
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			throw new Exception( 'Unauthorized request' );
+		}
+	}
+
+	public static function process_request() {
+		try {
+			self::validate_reqeust();
+
+			$object_type = ! empty( $_REQUEST['object_type'] ) ? trim( $_REQUEST['object_type'] ) : '';
+
+			if ( ! in_array( $object_type, [ 'post', 'term', 'user' ], true ) ) {
+				throw new Exception( 'Invalid object type' );
+			}
+
+			$response = [];
+
+			if ( $object_type === 'post' ) {
+				$response = self::process_post();
+			}
+
+			if ( $object_type === 'term' ) {
+				$response = self::process_term();
+			}
+
+			wp_send_json_success( $response );
+		} catch( Exception $e ) {
+			wp_send_json_error( $e->getMessage() );
+		}
+	}
+
+	public static function process_post() {
+		$post_type    = ! empty( $_REQUEST['post_type'] ) ? $_REQUEST['post_type'] : 'any';
+		$query_term   = ! empty( $_REQUEST['query_term'] ) ? $_REQUEST['query_term'] : '';
+		$saved_values = ! empty( $_REQUEST['saved_values'] ) ? $_REQUEST['saved_values'] : 0;
+
+		$args = [
+			'post_type'        => $post_type,
+			'suppress_filters' => false,
+			'posts_per_page'   => 20,
+			'orderby'          => 'title',
+			'order'            => 'ASC',
+			'post_status'      => 'publish',
 		];
-		$arg['s'] = $search_string;
-		$arg['post__in'] = $ids;
-		$query = new \WP_Query( $arg );
-		if ( $select_type === 'choose' && $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-				$data[] = [
-					'id' => get_the_id(),
-					'text' => get_the_title(),
-				];
-			}
-			wp_reset_postdata();
-		}
-		if ( $select_type === 'selected' && $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-				$data[get_the_id()] = get_the_title();
-			}
-			wp_reset_postdata();
-		}
-		// return the results in json.
-		wp_send_json( $data );
 
+		if ( $query_term ) {
+			$args['s'] = $query_term;
+		}
+
+		if ( $saved_values ) {
+			$args['post__in'] = $saved_values;
+			$args['posts_per_page'] = count( $saved_values );
+			$args['orderby'] = 'post__in';
+		}
+
+		$posts = get_posts( $args );
+
+		if ( empty( $posts ) ) {
+			return [];
+		}
+
+		$out = [];
+
+		foreach ( $posts as $post ) {
+			// extra space is needed to maintain order in elementor control
+			$out[" {$post->ID}"] = esc_html( $post->post_title );
+		}
+
+		return $out;
 	}
 
-	/**
-	 * Return Post tab query value
-	 */
-	public static function post_tab_query () {
-		$security = check_ajax_referer( 'HappyAddons_Select2_Secret', 'security' );
-		if ( ! $security ) return;
-		$tax_id = isset( $_POST['tax_id'] ) ? sanitize_text_field( $_POST['tax_id'] ) : '';
-		if ( ! $tax_id ) return;
+	public static function process_term() {
+		$term_taxonomy = ! empty( $_REQUEST['term_taxonomy'] ) ? $_REQUEST['term_taxonomy'] : '';
+		$query_term    = ! empty( $_REQUEST['query_term'] ) ? $_REQUEST['query_term'] : '';
+		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? $_REQUEST['saved_values'] : 0;
 
-		$select_type = isset( $_POST['select_type'] ) ? $_POST['select_type'] : false;
-		$search = isset( $_POST['q'] ) ? sanitize_text_field( $_POST['q'] ) : '';
-		$ids = isset( $_POST['id'] ) ? $_POST['id'] : array();
+		if ( empty( $term_taxonomy ) ) {
+			throw new Exception( 'Invalid taxonomy' );
+		}
 
-		$arg = [
-			'taxonomy' => $tax_id,
-			'hide_empty' => true,
-			'include' => $ids,
+		$args = [
+			'taxonomy'   => $term_taxonomy,
+			'hide_empty' => false,
+			'orderby'    => 'name',
+			'order'      => 'ASC',
+			'number'     => 20,
 		];
-		if($search)
-			$arg['search'] = $search;
-		$terms = get_terms( $arg );
 
-		$data = [];
-		if ( $select_type === 'choose' ) {
-			foreach ($terms as $value){
-				$data[] = [
-					'id' => $value->term_id,
-					'text' => $value->name . ' ('. $value->count.')',
-				];
-			}
+		if ( $query_term ) {
+			$args['search'] = $query_term;
+			$args['count'] = true;
 		}
-		if ( $select_type === 'selected' ) {
-			foreach ($terms as $value){
-				$data[ $value->term_id ] = $value->name;
-			}
-		}
-		// return the results in json.
-		wp_send_json( $data );
 
+		if ( $saved_values ) {
+			$args['include'] = $saved_values;
+			$args['number']  = count( $saved_values );
+			$args['orderby'] = 'include';
+		}
+
+		$terms = get_terms( $args );
+
+		if ( empty( $terms ) || is_wp_error( $terms ) ) {
+			return [];
+		}
+
+		$out = [];
+
+		foreach ( $terms as $term ) {
+			$title = ! empty( $query_term ) ? "{$term->name} ({$term->count})" : $term->name;
+			// extra space is needed to maintain order in elementor control
+			$out[" {$term->term_id}"] = $title;
+		}
+
+		return $out;
 	}
-
-	/**
-	 * Return Taxonomy query value
-	 */
-	public static function taxonomy_list_query () {
-		$security = check_ajax_referer( 'HappyAddons_Select2_Secret', 'security' );
-		if ( ! $security ) return;
-		$taxonomy_type = isset( $_POST['taxonomy_type'] ) ? sanitize_text_field( $_POST['taxonomy_type'] ) : '';
-		if ( ! $taxonomy_type ) return;
-
-		$select_type = isset( $_POST['select_type'] ) ? $_POST['select_type'] : false;
-		$search = isset( $_POST['q'] ) ? sanitize_text_field( $_POST['q'] ) : '';
-		$ids = isset( $_POST['id'] ) ? $_POST['id'] : array();
-
-		$arg = [
-			'taxonomy' => $taxonomy_type,
-			'hide_empty' => true,
-			'include' => $ids,
-		];
-		if($search)
-			$arg['search'] = $search;
-		$terms = get_terms( $arg );
-
-		$data = [];
-		if ( $select_type === 'choose' ) {
-			foreach ($terms as $value){
-				$data[] = [
-					'id' => $value->term_id,
-					'text' => $value->name,
-				];
-			}
-		}
-		if ( $select_type === 'selected' ) {
-			foreach ($terms as $value){
-				$data[ $value->term_id ] = $value->name;
-			}
-		}
-		// return the results in json.
-		wp_send_json( $data );
-
-	}
-
 }
 
 Select2_Handler::init();

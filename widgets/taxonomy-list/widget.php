@@ -8,17 +8,16 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Schemes;
+use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Typography;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
 use Elementor\Utils;
-use Elementor\Core\Schemes;
-use Elementor\Group_Control_Background;
 use Happy_Addons\Elementor\Controls\Select2;
-use Elementor\Group_Control_Css_Filter;
-use Happy_Addons\Elementor\Controls\Dynamic_Select;
 
 defined( 'ABSPATH' ) || die();
 
@@ -169,7 +168,7 @@ class Taxonomy_List extends Base {
 				[
 					'label' => __( 'Select ', 'happy-elementor-addons' ) . $value,
 					'label_block' => true,
-					'type' => Dynamic_Select::TYPE,
+					'type' => Select2::TYPE,
 					'multiple' => false,
 					'placeholder' => 'Search ' . $value,
 					'dynamic_params' => [
