@@ -387,13 +387,20 @@
 				beforeSend: _this.addLoadingSpinner.bind(this),
 				success: function(response) {
 					if (response.success && response.data.length !== 0) {
-						var ids = _.keys(response.data).map(function(id) {
-							return ' ' + $.trim(id);
-						});
+						var ids = _.keys(response.data),
+							isPrefixed = _.every(ids, function(id) {
+								return id.indexOf(' ') === 0;
+							});
 
-						_this.container.settings.set(_this.model.get('name'), ids);
+						if (!isPrefixed) {
+							ids = _.keys(response.data).map(function(id) {
+								return ' ' + $.trim(id);
+							});
+
+							_this.container.settings.set(_this.model.get('name'), ids);
+						}
+
 						_this.model.set('options', response.data);
-
 						_this.render();
 					}
 				}
