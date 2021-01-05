@@ -188,9 +188,9 @@ class Shape_Divider {
 			];
 		} */
 
-		echo '<pre>';
-		var_dump( $shape_list );
-		echo '</pre>';
+		// echo '<pre>';
+		// var_dump( $shape_list );
+		// echo '</pre>';
 		/*
 			svg path should contain elementor class to show in editor mode
 		*/
