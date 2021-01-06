@@ -3,8 +3,6 @@ namespace Happy_Addons\Elementor\Extension;
 
 use Elementor\Controls_Manager;
 use Elementor\Element_Base;
-use Elementor\Group_Control_Background;
-use Elementor\Group_Control_Css_Filter;
 
 defined( 'ABSPATH' ) || die();
 
@@ -78,7 +76,7 @@ class Shape_Divider {
 		$shape_list = [
 			'abstruct-web' => [
 				'title' => _x( 'Abstruct Web', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/dabstruct-web.svg',
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/abstruct-web.svg',
 				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/abstruct-web.svg',
 				'has_flip' => true,
 				'has_negative' => false,
@@ -86,7 +84,7 @@ class Shape_Divider {
 			],
 			'crossline' => [
 				'title' => _x( 'Crossline', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/dcrossline.svg',
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/crossline.svg',
 				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/crossline.svg',
 				'has_flip' => true,
 				'has_negative' => false,
@@ -94,7 +92,7 @@ class Shape_Divider {
 			],
 			'droplet' => [
 				'title' => _x( 'Droplet', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/ddroplet.svg',
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/droplet.svg',
 				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/droplet.svg',
 				'has_flip' => true,
 				'has_negative' => true,
@@ -102,7 +100,7 @@ class Shape_Divider {
 			],
 			'flame' => [
 				'title' => _x( 'Flame', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/dflame.svg',
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/flame.svg',
 				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/flame.svg',
 				'has_flip' => true,
 				'has_negative' => false,
@@ -110,7 +108,7 @@ class Shape_Divider {
 			],
 			'frame' => [
 				'title' => _x( 'Frame', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/dframe.svg',
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/frame.svg',
 				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/frame.svg',
 				'has_flip' => true,
 				'has_negative' => true,
@@ -118,7 +116,7 @@ class Shape_Divider {
 			],
 			'half-circle' => [
 				'title' => _x( 'Half Circle', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/dhalf-circle.svg',
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/half-circle.svg',
 				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/half-circle.svg',
 				'has_flip' => true,
 				'has_negative' => true,
@@ -126,7 +124,7 @@ class Shape_Divider {
 			],
 			'multi-cloud' => [
 				'title' => _x( 'Multi Cloud', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/dmulti-cloud.svg',
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/multi-cloud.svg',
 				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/multi-cloud.svg',
 				'has_flip' => true,
 				'has_negative' => false,
@@ -134,7 +132,7 @@ class Shape_Divider {
 			],
 			'multi-web' => [
 				'title' => _x( 'Multi Web', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/dmulti-web.svg',
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/multi-web.svg',
 				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/multi-web.svg',
 				'has_flip' => true,
 				'has_negative' => false,
@@ -142,7 +140,7 @@ class Shape_Divider {
 			],
 			'smooth-zigzag' => [
 				'title' => _x( 'Smooth Zigzag', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/dsmooth-zigzag.svg',
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/smooth-zigzag.svg',
 				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/smooth-zigzag.svg',
 				'has_flip' => true,
 				'has_negative' => false,
@@ -150,7 +148,7 @@ class Shape_Divider {
 			],
 			'splash' => [
 				'title' => _x( 'Splash', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/dsplash.svg',
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/splash.svg',
 				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/splash.svg',
 				'has_flip' => true,
 				'has_negative' => true,
@@ -158,7 +156,7 @@ class Shape_Divider {
 			],
 			'splash2' => [
 				'title' => _x( 'Splash 2', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/dsplash2.svg',
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/splash2.svg',
 				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/splash2.svg',
 				'has_flip' => true,
 				'has_negative' => true,
@@ -166,27 +164,13 @@ class Shape_Divider {
 			],
 			'torn-paper' => [
 				'title' => _x( 'Torn Paper', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/dtorn-paper.svg',
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/torn-paper.svg',
 				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/torn-paper.svg',
 				'has_flip' => true,
 				'has_negative' => false,
 				'ha_shape' => true,
 			]
 		];
-
-		/* $shapes = [];
-		foreach ( $shape_list as $list ){
-
-			$shapes [ $list]  = [
-					'title' => _x( $list , 'Shapes', 'happy-elementor-addons' ),
-					'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/'.$list.'.svg',
-					'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/'.$list.'.svg',
-					'has_flip' => true
-					'has_negative' => false,
-					'ha_shape' => true,
-
-			];
-		} */
 
 		// echo '<pre>';
 		// var_dump( $shape_list );
