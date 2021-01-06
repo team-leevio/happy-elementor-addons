@@ -48,6 +48,19 @@ class Shape_Divider {
 				],
 			]
 		);
+
+
+
+		// $element->update_control(
+		// 	'shape_divider_top_color',
+		// 	[
+		// 		'selectors' => [
+		// 			"{{WRAPPER}} > .elementor-shape-top .elementor-shape-fill" => 'fill: {{UNIT}};',
+		// 			"{{WRAPPER}} > .elementor-shape-top svg" => 'fill: {{UNIT}};',
+		// 		],
+		// 	]
+		// );
+
 		$element->update_control(
 			'shape_divider_bottom',
 			[
@@ -70,6 +83,16 @@ class Shape_Divider {
 				],
 			]
 		);
+
+		// $element->update_control(
+		// 	'shape_divider_bottom_color',
+		// 	[
+		// 		'selectors' => [
+		// 			"{{WRAPPER}} > .elementor-shape-bottom .elementor-shape-fill" => 'fill: {{UNIT}};',
+		// 			"{{WRAPPER}} > .elementor-shape-bottom svg" => 'fill: {{UNIT}};',
+		// 		],
+		// 	]
+		// );
 	}
 
 	public static function additional_shape_divider( $shape_list ) {
