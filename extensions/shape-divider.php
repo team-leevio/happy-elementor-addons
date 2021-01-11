@@ -17,12 +17,15 @@ class Shape_Divider {
 
 		$elementor_shapes_options = [];
 		$happy_shapes_options = [];
+		$happy_shapes_options_footer = [];
 
 		foreach ( \Elementor\Shapes::get_shapes() as $shape_name => $shape_props ) {
 			if ( ! isset( $shape_props['ha_shape'] ) ) {
 				$elementor_shapes_options[ $shape_name ] = $shape_props['title'];
-			}else{
+			}elseif( ! isset( $shape_props['ha_shape_bottom'] ) ){
 				$happy_shapes_options[ $shape_name ] = $shape_props['title'];
+			}else{
+				$happy_shapes_options_footer[ $shape_name ] = $shape_props['title'];
 			}
 		}
 
@@ -78,7 +81,7 @@ class Shape_Divider {
 					],
 					[
 						'label' => __( 'HappyAddon Shapes', 'happy-elementor-addons' ),
-						'options' => $happy_shapes_options,
+						'options' => array_merge($happy_shapes_options,$happy_shapes_options_footer),
 					],
 				],
 			]
@@ -95,6 +98,12 @@ class Shape_Divider {
 		// );
 	}
 
+	/**
+	 * Undocumented function
+	 *
+	 * @param array $shape_list
+	 * @return void
+	 */
 	public static function additional_shape_divider( $shape_list ) {
 		$shape_list = [
 			'abstruct-web' => [
@@ -192,6 +201,15 @@ class Shape_Divider {
 				'has_flip' => true,
 				'has_negative' => false,
 				'ha_shape' => true,
+			],
+			'sports' => [
+				'title' => _x( 'Sports', 'Shapes', 'happy-elementor-addons' ),
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/sports.svg',
+				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/sports.svg',
+				'has_flip' => true,
+				'has_negative' => false,
+				'ha_shape' => true,
+				'ha_shape_bottom' => true,
 			]
 		];
 
