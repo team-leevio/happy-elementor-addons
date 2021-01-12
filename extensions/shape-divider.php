@@ -210,6 +210,33 @@ class Shape_Divider {
 				'has_negative' => false,
 				'ha_shape' => true,
 				'ha_shape_bottom' => true,
+			],
+			'landscape' => [
+				'title' => _x( 'Landscape', 'Shapes', 'happy-elementor-addons' ),
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/landscape.svg',
+				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/landscape.svg',
+				'has_flip' => true,
+				'has_negative' => false,
+				'ha_shape' => true,
+				'ha_shape_bottom' => true,
+			],
+			'nature' => [
+				'title' => _x( 'Nature', 'Shapes', 'happy-elementor-addons' ),
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/nature.svg',
+				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/nature.svg',
+				'has_flip' => true,
+				'has_negative' => false,
+				'ha_shape' => true,
+				'ha_shape_bottom' => true,
+			],
+			'desert' => [
+				'title' => _x( 'Desert', 'Shapes', 'happy-elementor-addons' ),
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/desert.svg',
+				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/desert.svg',
+				'has_flip' => true,
+				'has_negative' => false,
+				'ha_shape' => true,
+				'ha_shape_bottom' => true,
 			]
 		];
 
