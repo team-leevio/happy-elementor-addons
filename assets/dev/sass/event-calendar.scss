@@ -1,0 +1,403 @@
+/* popup */
+
+.ha-ec-popup-wrapper {
+    --ha-ec-popup-image-width: 16.666667%;
+}
+.ha-ec-popup-wrapper {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease-out;
+}
+
+.ha-ec-popup-wrapper.ha-ec-popup-ready {
+    z-index: 99999;
+    opacity: 1;
+    visibility: visible;
+}
+
+.ha-ec-popup-wrapper.ha-ec-popup-ready:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    opacity: 0;
+    transition: all .3s ease-out;
+    opacity: .7;
+}
+
+.ha-ec-popup {
+    width: 900px;
+    display: block;
+    position: relative;
+    padding: 40px;
+    background: #fff;
+    box-shadow: 0 3px 13px 0 rgba(0, 0, 0, .08);
+    transform: scale(0);
+    transition: all ease .4s;
+}
+
+.ha-ec-popup-wrapper.ha-ec-popup-ready .ha-ec-popup {
+    transform: scale(1);
+}
+
+.ha-ec-popup-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    top: -18px;
+    right: -15px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    z-index: 9999;
+    display: flex;
+    overflow: visible;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 50%;
+    color: #000;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 2px 0 12px 3px rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+    transition: all ease .4s;
+}
+
+.ha-ec-popup-body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.ha-ec-popup-image,
+.ha-ec-popup-content {
+    position: relative;
+}
+
+.ha-ec-popup-image {
+    overflow: hidden;
+    margin-right: 15px;
+    flex: 0 0 var(--ha-ec-popup-image-width, 16.666667%);
+    max-width: var(--ha-ec-popup-image-width, 16.666667%);
+}
+
+.ha-ec-popup-content {
+    flex: 0 0 calc(100% - ( 15px + var(--ha-ec-popup-image-width, 16.666667%) ));
+    max-width: calc(100% - ( 15px + var(--ha-ec-popup-image-width, 16.666667%) ));
+}
+
+.ha-ec-popup-image img {
+    border-radius: 100%;
+    height: auto;
+    max-width: 100%;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.ha-ec-popup-content h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+
+.ha-ec-popup-content p.ha-ec-popup-desc {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 0;
+}
+
+.ha-ec-popup-content ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    width: 100%;
+}
+
+.ha-ec-popup-content ul li {
+    float: left;
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 700;
+    color: #666;
+    margin-right: 30px;
+    margin-bottom: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.ha-ec-popup-content ul li:last-child {
+    margin-right: 0;
+}
+
+.ha-ec-popup-content ul li svg {
+    padding-right: 5px;
+    width: auto;
+    height: .9em;
+    fill: currentColor;
+}
+
+.ha-ec-popup-content .ha-ec-popup-readmore a.ha-ec-popup-readmore-link {
+    margin: 10px 0 0;
+}
+            /* popup End */
+
+span.ha-ec-error-message {
+    padding: 10px;
+    display: block;
+    border-left-color: #ffb900;
+    border-left-width: 5px;
+    border-left-style: solid;
+    margin: 5px 0px;
+}
+
+/*=================================== 
+    Full Calendar css
+=====================================*/
+
+.ha-ec-wrapper .fc table {
+    margin: auto;
+    overflow: auto;
+}
+
+
+/* all table body bg color */
+.ha-ec-wrapper table tbody tr td:not(.fc-timegrid-slot):not(.fc-timegrid-col),
+.ha-ec-wrapper table tbody tr td,
+.ha-ec-wrapper table tbody tr th {
+    /* background-color: rgb(162, 32, 202); */
+    background-color: transparent;
+}
+.ha-ec-wrapper table tbody tr td.fc-timegrid-slot{
+    background: transparent!important;
+}
+
+.ha-ec-wrapper .fc-view-harness.fc-view-harness-passive table.fc-scrollgrid,
+.ha-ec-wrapper .fc-view-harness.fc-view-harness-passive table.fc-list-table{
+    /* background: rgba(226, 73, 138, .5); */
+}
+
+/* All Boarder color */
+.ha-ec-wrapper table thead:first-child tr:first-child th,
+.ha-ec-wrapper .fc-theme-standard .fc-scrollgrid,
+.ha-ec-wrapper .fc-theme-standard .fc-list,
+.ha-ec-wrapper .fc-theme-standard td,
+.ha-ec-wrapper .fc-theme-standard th{
+    /* border: 1px solid var(--fc-border-color,#ddd); */
+    /* border: 1px solid red; */
+    border-color: #B0B0B0;
+}
+
+/* Today BG color (Month, week, day view) */
+.ha-ec-wrapper .fc .fc-daygrid-day.fc-day-today,
+.ha-ec-wrapper .fc .fc-timegrid-col.fc-day-today {
+    /* background-color: var(--fc-today-bg-color,rgba(255,220,40,.15)); */
+    background-color: rgba(226, 73, 138, .5);;
+}
+
+
+.ha-ec-wrapper .fc .fc-list-table tr > * {
+    border-left: 0!important;
+    border-right: 0!important;
+}
+
+
+/* Day color */
+.ha-ec-wrapper th.fc-col-header-cell.fc-day,
+.ha-ec-wrapper .fc .fc-list-table th .fc-list-day-cushion {
+    color: #222222;
+}
+/* Day BG color */
+.ha-ec-wrapper th.fc-col-header-cell.fc-day {
+    background-color: #ffffff;
+    padding: 15px;
+}
+/* Day BG color(List view) */
+.ha-ec-wrapper .fc .fc-list-table th .fc-list-day-cushion {
+    background-color: #ffffff;
+}
+
+/* Week View & Day View (Time List Color) */
+.ha-ec-wrapper span.fc-timegrid-axis-cushion.fc-scrollgrid-shrink-cushion.fc-scrollgrid-sync-inner,
+.ha-ec-wrapper .fc-timegrid-slot-label-cushion.fc-scrollgrid-shrink-cushion {
+    color: #222222;
+}
+
+/* Month View Date number Style */
+.ha-ec-wrapper .fc .fc-daygrid-day-top {
+    font-size: 1em;
+    color: #222222;
+    justify-content: flex-start;
+}
+
+
+
+/* ========================
+    Event Item css 
+===========================*/
+
+/* Month View extra padding remove */
+.ha-ec-wrapper .fc-daygrid-block-event .fc-event-time,
+.ha-ec-wrapper .fc-daygrid-block-event .fc-event-title{
+    padding: 0;
+}
+.ha-ec-wrapper .fc-daygrid-day-events .fc-daygrid-event.fc-daygrid-dot-event,
+.ha-ec-wrapper .fc-daygrid-day-events .fc-daygrid-event.fc-daygrid-block-event{
+    padding: 10px;
+}
+
+/* Common event item css */
+.ha-ec-wrapper .fc-daygrid-event,
+.ha-ec-wrapper .fc-timegrid-event {
+    border: 0!important;
+}
+
+.ha-ec-wrapper .fc-daygrid-event,
+.ha-ec-wrapper .fc-timegrid-event,
+.ha-ec-wrapper .fc-list-event {
+    background: #ac89ff;
+}
+
+.ha-ec-wrapper .fc-daygrid-event,
+.ha-ec-wrapper .fc-daygrid-event .fc-event-main,
+.ha-ec-wrapper .fc-timegrid-event,
+.ha-ec-wrapper .fc-timegrid-event .fc-event-main,
+.ha-ec-wrapper .fc-list-event {
+    color: #222222;
+    font-size: 16px;
+}
+
+.ha-ec-wrapper .fc-daygrid-event .fc-daygrid-event-dot,
+.ha-ec-wrapper .fc-list-event .fc-list-event-dot {
+    border-color: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+/* Header Toolbar */
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar .fc-toolbar-title {
+    font-size: 1.5em;
+    color: #242424;
+}
+
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar .fc-button .fc-icon {
+    font-size: 1em;
+}
+
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar .fc-button-group button:not(:first-child) {
+    margin-left: 5px;
+}
+
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-timeGridWeek-button,
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-timeGridDay-button,
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-listWeek-button,
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-listMonth-button,
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-dayGridMonth-button {
+    position: relative;
+}
+
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-timeGridWeek-button:before,
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-timeGridDay-button:before,
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-listWeek-button:before,
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-listMonth-button:before,
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-dayGridMonth-button:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1em;
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 0;
+}
+
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-timeGridWeek-button:before {
+    content: "\f03a";
+    left: 8px;
+}
+
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-timeGridDay-button:before {
+    content: "\f0c9";
+    left: 21px;
+}
+
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-dayGridMonth-button:before {
+    content: "\f00a";
+}
+
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-listWeek-button:before,
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-listMonth-button:before {
+    content: "\f00b";
+}
+
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button.fc-button-primary {
+    box-shadow: none;
+    height: auto;
+    width: auto;
+    float: none;
+    font-size: 1em;
+    font-weight: 400;
+    color: #242424;
+    border-radius: 3px;
+    text-transform: capitalize;
+    background: #f7f7fb;
+    text-shadow: none;
+    line-height: 19px;
+    padding: 8px 12px;
+    border: none;
+}
+
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button.fc-button-primary.fc-state-active,
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button.fc-button-primary:hover,
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button.fc-button-primary:visited,
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button.fc-button-primary:focus {
+    background: #e2498a;
+    color: #fff;
+    box-shadow: none;
+}
+
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button.fc-button-primary.fc-button-active {
+    background: #e2498a;
+    color: #fff;
+}
+/* Header Toolbar END*/
+
+
+
+
+@media (max-width: 575px) {
+
+    .ha-ec-popup-image,
+    .ha-ec-popup-content {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .ha-ec-popup-body .ha-ec-popup-image {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .ha-ec-wrapper .fc-daygrid-day-events .fc-daygrid-event.fc-daygrid-block-event, .ha-ec-wrapper .fc-daygrid-day-events .fc-daygrid-event.fc-daygrid-dot-event {
+        padding: 0px;
+    }
+}

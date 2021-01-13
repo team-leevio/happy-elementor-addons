@@ -214,6 +214,32 @@ class Assets_Manager {
 			true
 		);
 
+		// fullcalendar js
+		wp_register_script(
+			'ha-fullcalendar',
+			HAPPY_ADDONS_ASSETS . 'vendor/fullcalendar/fullcalendar.min.js',
+			['jquery'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
+		// fullcalendar language js
+		wp_register_script(
+			'ha-fullcalendar-locales',
+			HAPPY_ADDONS_ASSETS . 'vendor/fullcalendar/locales-all.min.js',
+			['jquery'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
+		// fullcalendar css
+		wp_register_style(
+			'ha-fullcalendar',
+			HAPPY_ADDONS_ASSETS . 'vendor/fullcalendar/fullcalendar.min.css',
+			null,
+			HAPPY_ADDONS_VERSION
+		);
+
 		// Hover css
 		wp_register_style(
 			'hover-css',
@@ -242,7 +268,8 @@ class Assets_Manager {
 		// Happy addons script
 		wp_register_script(
 			'happy-elementor-addons',
-			HAPPY_ADDONS_ASSETS . 'js/happy-addons' . $suffix . 'js',
+			// HAPPY_ADDONS_ASSETS . 'js/happy-addons' . $suffix . 'js',
+			HAPPY_ADDONS_ASSETS . 'js/happy-addons.js',
 			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true

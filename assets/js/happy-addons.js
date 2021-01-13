@@ -650,6 +650,393 @@
 
 		};
 
+
+
+		//Event Calendar
+		var Event_Calendar = function($scope) {
+			var calendarEl =  $scope.find('.ha-ec');
+			var popup = $scope.find('.ha-ec-popup-wrapper');
+			var popupClose = $scope.find(".ha-ec-popup-close");
+			var calenderIcon = '<i class="eicon-calendar"></i>';
+			var clockIcon = '<i class="eicon-clock"></i>';
+			var events = calendarEl.data('events');
+			var initialview = calendarEl.data('initialview');
+			var firstday = calendarEl.data('firstday');
+			var locale = calendarEl.data('locale');
+			var showPopup = calendarEl.data('show-popup');
+			// var initialView = 'dayGridMonth';
+			var itemDate;
+			// return;
+			var setEvents = [
+				{
+					title: 'Event1',
+					"start": "2020-09-07",
+					"end": "2020-09-08",
+					"borderColor": "red",
+					"textColor": "#000",
+					color: "rgb(239 105 105)",
+					"url": "",
+					// "allDay": "yes",
+					"external": "",
+					"nofollow": "",
+					"backgroundColor": 'yellow',
+					"display": 'background'
+				},
+				{
+					title: 'Event2',
+					start: '2020-09-20 15:12',
+					end: '2020-09-20 14:34:01',
+					"borderColor": "#13DF99",
+					"color": "#13DF99",
+					"textColor": "#000",
+					"allDay": "yes",
+					"url": "#",
+					"backgroundColor": 'yellow',
+					"display": 'background'
+				},
+				{
+					title: 'Event3',
+					start: '2020-09-20 16:12',
+					end: '2020-09-20 13:34:01',
+					"borderColor": "#13DF99",
+					"color": "#13DF99",
+					"textColor": "#000",
+					// "allDay": "yes",
+					"url": "#",
+				}
+				// etc...
+			];
+
+			console.log(events);
+			// console.log(setEvents);
+			// console.log(initialview);
+			// console.log(firstday);
+			if( 'undefined' == typeof events){
+				return;
+			}
+			console.log(events);
+			var event = [{
+				"id": 0,
+				"title": "Dance program",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+				"start": "2020-09-07",
+				"end": "2020-09-08",
+				"borderColor": "#E8E6ED",
+				"textColor": "#ffffff",
+				"color": "#5725ff",
+				"url": "",
+				"allDay": "yes",
+				"external": "",
+				"nofollow": ""
+			  }, {
+				"id": 1,
+				"title": "Yesterday Event Title",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+				"start": "2020-09-07 16:13",
+				"end": "2020-09-07 18:12:01",
+				"borderColor": "#E8E6ED",
+				"textColor": "#ffffff",
+				"color": "#5725ff",
+				"url": "",
+				"allDay": "",
+				"external": "",
+				"nofollow": ""
+			  }, {
+				"id": 2,
+				"title": "Event Title",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+				"start": "2020-09-08 16:13",
+				"end": "2020-09-08 18:12:01",
+				"borderColor": "#E8E6ED",
+				"textColor": "#ffffff",
+				"color": "#5725ff",
+				"url": "",
+				"allDay": "",
+				"external": "",
+				"nofollow": "",
+			  }, {
+				"id": 3,
+				"title": "Dance program",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+				"start": "2020-09-10",
+				"end": "2020-09-11",
+				"borderColor": "#E8E6ED",
+				"textColor": "#ffffff",
+				"color": "#5725ff",
+				"url": "",
+				"allDay": "yes",
+				"external": "",
+				"nofollow": ""
+			  }, {
+				"id": 4,
+				"title": "Event title 2",
+				"description": "<p>Lorem ipsum dolor sit amet, consectetur <strong>adipiscing elit, sed do eiusmod tempor<\/strong> incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco<span style=\"color: #ff6600;\"><strong> laboris nisi ut<\/strong><\/span> aliquip ex ea commodo consequat. <em>Duis aute irure dolor<\/em> in reprehenderit in voluptate velit esse cillum <span style=\"text-decoration: underline;\">dolore eu fugiat nulla<\/span> pariatur. Excepteur sint occaecat <a href=\"#\">cupidatat non proident, sunt in culpa<\/a> qui officia deserunt mollit anim id est laborum.<\/p>",
+				"start": "2020-09-09 04:13",
+				"end": "2020-09-08 17:12:01",
+				"borderColor": "#E8E6ED",
+				"textColor": "#ffffff",
+				"color": "#5725ff",
+				"url": "#",
+				"allDay": "",
+				"external": "",
+				"nofollow": ""
+			  }, {
+				"id": 5,
+				"title": "Event title 3",
+				"description": "",
+				"start": "2020-09-09 04:13",
+				"end": "2020-09-08 17:12:01",
+				"borderColor": "#E8E6ED",
+				"textColor": "#ffffff",
+				"color": "#5725ff",
+				"url": "#",
+				"allDay": "",
+				"external": "",
+				"nofollow": "",
+			  }, {
+				"id": 6,
+				"title": "Event title 2",
+				"description": "<p>Lorem ipsum dolor sit amet, consectetur <strong>adipiscing elit, sed do eiusmod tempor<\/strong> incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco<span style=\"color: #ff6600;\"><strong> laboris nisi ut<\/strong><\/span> aliquip ex ea commodo consequat. <em>Duis aute irure dolor<\/em> in reprehenderit in voluptate velit esse cillum <span style=\"text-decoration: underline;\">dolore eu fugiat nulla<\/span> pariatur. Excepteur sint occaecat <a href=\"#\">cupidatat non proident, sunt in culpa<\/a> qui officia deserunt mollit anim id est laborum.<\/p>",
+				"start": "2020-09-11 04:13",
+				"end": "2020-09-11 07:12:01",
+				"borderColor": "#E8E6ED",
+				"textColor": "#ffffff",
+				"color": "#5725ff",
+				"url": "#",
+				"allDay": "",
+				"external": "",
+				"nofollow": "",
+			  }, {
+				"id": 7,
+				"title": "special",
+				"description": "",
+				"start": "2020-09-11 08:13",
+				"end": "2020-09-11 17:12:01",
+				"borderColor": "#E8E6ED",
+				"textColor": "#ffffff",
+				"color": "#5725ff",
+				"url": "#",
+				"allDay": "",
+				"external": "",
+				"nofollow": "",
+			  }, {
+				"id": 8,
+				"title": "special",
+				"description": "",
+				"start": "2020-09-11 08:13",
+				"end": "2020-09-11 17:12:01",
+				"borderColor": "#E8E6ED",
+				"textColor": "#ffffff",
+				"color": "#5725ff",
+				"url": "#",
+				"allDay": "",
+				"external": "",
+				"nofollow": "",
+			  }, {
+				"id": 9,
+				"title": "special",
+				"description": "",
+				"start": "2020-09-11 08:13",
+				"end": "2020-09-11 17:12:01",
+			  //   "backgroundColor": "red",
+				"borderColor": "#E8E6ED",
+				"textColor": "blue",
+				"color": "black",
+				"url": "#",
+				"allDay": "",
+				"external": "",
+				"nofollow": "",
+			}];
+			var option = {
+				stickyHeaderDates: false,
+				locale: locale,
+				headerToolbar: {
+					left: "prev,next today",
+					center: "title",
+					right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
+				},
+				initialView: initialview,
+				firstDay: firstday,
+				events: events,
+
+				height: 'auto',
+				// contentHeight: 'auto',
+				// aspectRatio: 2,
+				// expandRows: true,
+				eventClick: function (info) {
+					info.jsEvent.preventDefault(); // don't let the browser navigate
+					// return;
+					if( 'yes' != showPopup){
+						return;
+					}
+					// console.log(info);
+					function getTheDate(timeString) {
+						return new Date(timeString);
+					}
+
+					function timeFormat(date) {
+						var hours = date.getHours();
+						var minutes = date.getMinutes();
+						var ampm = hours >= 12 ? 'pm' : 'am';
+						hours = hours % 12;
+						hours = hours ? hours : 12; // the hour '0' should be '12'
+						minutes = minutes < 10 ? '0' + minutes : minutes;
+						var strTime = hours + ':' + minutes + '' + ampm;
+						return strTime;
+					}
+
+					function dateFormat(fullDate) {
+						//"YYYY-MM-DD"
+						//16 Jul 2020
+						var day = fullDate.getDay(),
+						date = fullDate.getDate(),
+						month = fullDate.getMonth(),
+						year = fullDate.getFullYear(),
+						hours = fullDate.getHours(),
+						minutes = fullDate.getMinutes(),
+						seconds = fullDate.getSeconds(),
+						textualMonthNames = {
+							short: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
+							'Dec'],
+							long: ["January", "February", "March", "April", "May", "June", "July", "August",
+							"September", "October", "November", "December"
+							]
+						};
+
+						// textualMonthNames.short[ date.getMonth() ]
+
+						var formatedDate = [
+						date,
+						textualMonthNames.short[month],
+						year
+						];
+						formatedDate = formatedDate.join(' ');
+
+						return formatedDate;
+					}
+
+					var todayDateString = info.view.calendar.currentData.currentDate.toString(),
+						allDay = info.event.allDay,
+						title = info.event.title,
+						startDate = info.event.startStr,
+						endDate = info.event.endStr,
+						guest = info.event.extendedProps.guest,
+						location = info.event.extendedProps.location,
+						description = info.event.extendedProps.description,
+						detailsUrl = info.event.url,
+						imageUrl = info.event.extendedProps.image,
+						some;
+
+					//var date = getTheDate(startDate);
+
+					var titleWrap = popup.find('.ha-ec-event-title'),
+						timeWrap = popup.find('.ha-ec-event-time'),
+						guestWrap = popup.find('.ha-ec-event-guest'),
+						locationWrap = popup.find('.ha-ec-event-location'),
+						descWrap = popup.find('.ha-ec-popup-desc'),
+						detailsWrap = popup.find('.ha-ec-popup-readmore-link'),
+						imageWrap = popup.find('.ha-ec-popup-image');
+
+					// return;
+					// display none
+					imageWrap.css('display', 'none');
+					titleWrap.css('display', 'none');
+					timeWrap.css('display', 'none');
+					guestWrap.css('display', 'none');
+					locationWrap.css('display', 'none');
+					descWrap.css('display', 'none');
+					detailsWrap.css('display', 'none');
+
+					popup.addClass("ha-ec-popup-ready");
+
+					// image markup
+					if (imageUrl) {
+						imageWrap.removeAttr("style");
+						imageWrap.find('img').attr("src", imageUrl );
+						imageWrap.find('img').attr("alt", title );
+					}
+
+					// image markup
+					if (title) {
+						titleWrap.removeAttr("style");
+						titleWrap.html(title);
+					}
+
+					// image markup
+					if (guest) {
+						guestWrap.removeAttr("style");
+						guestWrap.find('span').html( guest );
+					}
+
+					// image markup
+					if (location) {
+						locationWrap.removeAttr("style");
+						locationWrap.find('span').html( location );
+					}
+
+					// image markup
+					if (description) {
+						descWrap.removeAttr("style");
+						descWrap.html(description);
+					}
+
+					// image markup
+					if (allDay !== true) {
+						timeWrap.removeAttr("style");
+						startDate = Date.parse(getTheDate(startDate));
+						endDate = Date.parse(getTheDate(endDate));
+						var startTimeText = timeFormat(getTheDate(startDate));
+						var endTimeText = 'Invalid Data';
+						if (startDate < endDate) {
+							endTimeText = timeFormat(getTheDate(endDate));
+						}
+						timeWrap.find('span').html(startTimeText + ' - ' + endTimeText);
+					}
+
+					// details markup
+					if (detailsUrl) {
+						detailsWrap.removeAttr("style");
+						detailsWrap.attr("href", detailsUrl);
+						if ("on" === info.event.extendedProps.external) {
+							detailsWrap.attr("target", "_blank");
+						}
+						if ("on" === info.event.extendedProps.nofollow) {
+							detailsWrap.attr("rel", "nofollow");
+						}
+					}
+
+
+					// alert('Event: ' + info.event.title);
+					// alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+					// alert('View: ' + info.view.type);
+
+					// change the border color just for fun
+					//info.el.style.borderColor = 'red';
+				},
+				dateClick: function (arg) {
+					itemDate = arg.date.toUTCString();
+					//console.log(arg); // use *UTC* methods on the native Date Object
+					//console.log(arg.date.toString()); // use *UTC* methods on the native Date Object
+					// will output something like 'Sat, 01 Sep 2018 00:00:00 GMT'
+				}
+			}
+
+			var calendar = new FullCalendar.Calendar( calendarEl[0], option );
+				calendar.render();
+
+				// var ratio = calendar.getOption('aspectRatio');
+				// console.log(ratio);
+
+			$scope.find(".ha-ec-popup-wrapper").on("click", function (e) {
+				e.stopPropagation();
+
+				if(e.target === e.currentTarget || e.target == popupClose[0] || e.target == popupClose.find(".eicon-editor-close")[0]){
+					popup.addClass("ha-ec-popup-removing").removeClass("ha-ec-popup-ready");
+				}
+			});
+
+		};
+
 		// Slider
 		elementorFrontend.hooks.addAction(
 			'frontend/element_ready/ha-slider.default',
@@ -724,6 +1111,7 @@
 			'ha-threesixty-rotation.default': Threesixty_Rotation,
 			'ha-data-table.default'         : DataTable,
 			'widget'                        : BackgroundOverlay,
+			'ha-event-calendar.default'		: Event_Calendar,
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {
