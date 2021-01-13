@@ -97,7 +97,7 @@ class Extensions_Manager {
 			],
 			'floating-effects' => [
 				'title' => __( 'Floating Effects', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-ghost',
+				'icon' => 'hm hm-weather-flood',
 				'demo' => 'https://happyaddons.com/elementor-floating-effect-demo-2/',
 				'is_pro' => false,
 			],
@@ -105,6 +105,12 @@ class Extensions_Manager {
 				'title' => __( 'Wrapper Link', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-section-link',
 				'demo' => 'https://happyaddons.com/wrapper-link-feature-demo/',
+				'is_pro' => false,
+			],
+			'css-transform' => [
+				'title' => __( 'CSS Transform', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-3d-rotate',
+				'demo' => 'https://happyaddons.com/elementor-css-transform-demo-3/',
 				'is_pro' => false,
 			],
 			'css-transform' => [
