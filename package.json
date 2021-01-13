@@ -4,7 +4,8 @@
   "description": "addons collection",
   "main": "index.html",
   "scripts": {
-    "dev": "gulp"
+    "dev": "gulp",
+    "zip": "cd ../ && zip -r happy-elementor-addons.zip happy-elementor-addons -x '*/.*' -x '*.zip*' -x '*.git*' -x '*/.editorconfig/*' -x 'gulpfile.js' -x 'yarn.lock' -x 'package.json' -x 'package-lock.json' -x '*/node_modules/*' -x '*/assets/dev/*' && cd happy-elementor-addons"
   },
   "author": "HappyMonster",
   "license": "MIT",

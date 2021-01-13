@@ -1,3 +1,4 @@
+- New: Feature Manager
 = 2.18.0 - 5 January 2020 =
 
 - New: Tabs are sortable in Post Tab widget

@@ -148,23 +148,23 @@
 	margin-bottom: 20px;
 	margin-left: 10px;
 	padding: 30px 20px;
-	width: calc( 100% - 20px);
+	width: calc(100% - 20px);
 	border: 1px solid #e8e8e8;
 	border-radius: 5px;
 }
 @media (min-width: 650px) {
 	.ha-dashboard-widgets__item {
-		width: calc( 50% - 20px);
+		width: calc(50% - 20px);
 	}
 }
 @media (min-width: 1100px) {
 	.ha-dashboard-widgets__item {
-		width: calc( 33.33% - 20px);
+		width: calc(33.33% - 20px);
 	}
 }
 @media (min-width: 1350px) {
 	.ha-dashboard-widgets__item {
-		width: calc( 25% - 20px);
+		width: calc(25% - 20px);
 	}
 }
 .ha-dashboard-widgets__item.item--is-placeholder {
@@ -377,20 +377,26 @@
 	background-color: #e2498a;
 	color: #fff;
 }
-.ha-action--btn[data-action="enable"] {
+.ha-action--btn[data-action="enable"],
+.ha-action--btn[data-action="enable_feature"] {
 	color: #5db429;
 }
 .ha-action--btn[data-action="enable"]:hover,
-.ha-action--btn[data-action="enable"]:focus {
+.ha-action--btn[data-action="enable"]:focus,
+.ha-action--btn[data-action="enable_feature"]:hover,
+.ha-action--btn[data-action="enable_feature"]:focus {
 	border-color: #5db429; 
 	background-color: #5db429;
 	color: #fff;
 }
-.ha-action--btn[data-action="disable"] {
+.ha-action--btn[data-action="disable"],
+.ha-action--btn[data-action="disable_feature"] {
 	color: #e63d3d;
 }
 .ha-action--btn[data-action="disable"]:hover,
-.ha-action--btn[data-action="disable"]:focus {
+.ha-action--btn[data-action="disable"]:focus,
+.ha-action--btn[data-action="disable_feature"]:hover,
+.ha-action--btn[data-action="disable_feature"]:focus {
 	border-color: #e63d3d; 
 	background-color: #e63d3d;
 	color: #fff;
@@ -398,7 +404,7 @@
 
 .ha-home-banner {
 	position: relative; 
-	padding-top: 25.20%;
+	padding-top: 25.2%;
 	border-radius: 5px;
 	background: url("../../imgs/admin/dashboard-header.png") no-repeat center center/cover;
 }

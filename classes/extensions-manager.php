@@ -4,6 +4,7 @@ namespace Happy_Addons\Elementor;
 defined( 'ABSPATH' ) || die();
 
 class Extensions_Manager {
+	const FEATURES_DB_KEY = 'happyaddons_inactive_features';
 
 	/**
 	 * Initialize
@@ -11,26 +12,6 @@ class Extensions_Manager {
 	public static function init() {
 		include_once HAPPY_ADDONS_DIR_PATH . 'extensions/column-extended.php';
 		include_once HAPPY_ADDONS_DIR_PATH . 'extensions/widgets-extended.php';
-
-		if ( ha_is_background_overlay_enabled() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/background-overlay.php';
-		}
-
-		if ( ha_is_grid_layer_enabled() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/grid-layer.php';
-		}
-
-		if ( ha_is_wrapper_link_enabled() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/wrapper-link.php';
-		}
-
-		if ( ha_is_floating_effects_enabled() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/floating-effects.php';
-		}
-
-		if ( ha_is_css_transform_enabled() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/css-transform.php';
-		}
 
 		if ( is_user_logged_in() && ha_is_adminbar_menu_enabled() ) {
 			include_once HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php';
@@ -40,11 +21,114 @@ class Extensions_Manager {
 			include_once HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php';
 		}
 
-		if ( ha_is_equal_height_enabled() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/equal-height.php';
+		$inactive_features = self::get_inactive_features();
+		foreach ( self::get_local_features_map() as $feature_key => $data ) {
+			if ( ! in_array( $feature_key, $inactive_features ) ) {
+				self::enable_feature( $feature_key );
+			}
 		}
 	}
 
+	public static function get_features_map() {
+		$widgets_map = [];
+
+		$local_widgets_map = self::get_local_features_map();
+		$widgets_map = array_merge( $widgets_map, $local_widgets_map );
+
+		return apply_filters( 'happyaddons_get_features_map', $widgets_map );
+	}
+
+	public static function get_inactive_features() {
+		return get_option( self::FEATURES_DB_KEY, [] );
+	}
+
+	public static function save_inactive_features( $widgets = [] ) {
+		update_option( self::FEATURES_DB_KEY, $widgets );
+	}
+
+	/**
+	 * Get the pro widgets map for dashboard only
+	 *
+	 * @return array
+	 */
+	public static function get_pro_features_map() {
+		return [
+			'display-conditions' => [
+				'title' => __( 'Display Condition', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-display-condition',
+				'is_pro' => true,
+			],
+			'happy-features' => [
+				'title' => __( 'Happy Features', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-happyaddons',
+				'is_pro' => true,
+			],
+			'happy-particle-effects' => [
+				'title' => __( 'Happy Particle Effect', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-snow',
+				'is_pro' => true,
+			],
+			'image-masking' => [
+				'title' => __( 'Image Masking', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-image-masking',
+				'is_pro' => true,
+			]
+		];
+	}
+
+	/**
+	 * Get the free widgets map
+	 *
+	 * @return array
+	 */
+	public static function get_local_features_map() {
+		return [
+			'background-overlay' => [
+				'title' => __( 'Background Overlay', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-layer',
+				'demo' => 'https://happyaddons.com/background-overlay-demo/',
+				'is_pro' => false,
+			],
+			'grid-layer' => [
+				'title' => __( 'Grid Layer', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-grid',
+				'demo' => 'https://happyaddons.com/happy-grid-layout-demo/',
+				'is_pro' => false,
+			],
+			'floating-effects' => [
+				'title' => __( 'Floating Effects', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-ghost',
+				'demo' => 'https://happyaddons.com/elementor-floating-effect-demo-2/',
+				'is_pro' => false,
+			],
+			'wrapper-link' => [
+				'title' => __( 'Wrapper Link', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-section-link',
+				'demo' => 'https://happyaddons.com/wrapper-link-feature-demo/',
+				'is_pro' => false,
+			],
+			'css-transform' => [
+				'title' => __( 'Css Transform', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-3d-rotate',
+				'demo' => 'https://happyaddons.com/elementor-css-transform-demo-3/',
+				'is_pro' => false,
+			],
+			'equal-height' => [
+				'title' => __( 'Equal Height Column', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-grid-layout',
+				'demo' => '#',
+				'is_pro' => false,
+			]
+		];
+	}
+
+	protected static function enable_feature( $feature_key ) {
+		$feature_file = HAPPY_ADDONS_DIR_PATH . 'extensions/' . $feature_key . '.php';
+
+		if ( is_readable( $feature_file ) ) {
+			include_once( $feature_file );
+		}
+	}
 }
 
 Extensions_Manager::init();

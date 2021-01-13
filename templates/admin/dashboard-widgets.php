@@ -64,7 +64,7 @@ $total_widgets_count = count( $widgets );
                     <?php endif; ?>
                 </h3>
                 <div class="ha-dashboard-widgets__item-toggle ha-toggle">
-                    <input id="ha-widget-<?php echo $widget_key; ?>" <?php echo $checked; ?> type="checkbox" class="ha-toggle__check" name="widgets[]" value="<?php echo $widget_key; ?>">
+                    <input id="ha-widget-<?php echo $widget_key; ?>" <?php echo $checked; ?> type="checkbox" class="ha-toggle__check ha-widget" name="widgets[]" value="<?php echo $widget_key; ?>">
                     <b class="ha-toggle__switch"></b>
                     <b class="ha-toggle__track"></b>
                 </div>

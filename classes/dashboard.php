@@ -29,6 +29,7 @@ class Dashboard {
         add_filter( 'plugin_action_links_' . plugin_basename( HAPPY_ADDONS__FILE__ ), [ __CLASS__, 'add_action_links' ] );
 
         add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_widgets_data' ] );
+        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_features_data' ] );
 
         add_action( 'in_admin_header', [ __CLASS__, 'remove_all_notices' ], PHP_INT_MAX );
     }
@@ -95,6 +96,12 @@ class Dashboard {
         $widgets = ! empty( $data['widgets'] ) ? $data['widgets'] : [];
         $inactive_widgets = array_values( array_diff( array_keys( self::get_real_widgets_map() ), $widgets ) );
         Widgets_Manager::save_inactive_widgets( $inactive_widgets );
+    }
+
+    public static function save_features_data( $data ) {
+        $features = ! empty( $data['features'] ) ? $data['features'] : [];
+        $inactive_features = array_values( array_diff( array_keys( self::get_real_features_map() ), $features ) );
+        Extensions_Manager::save_inactive_features( $inactive_features );
     }
 
     public static function enqueue_scripts( $hook ) {
@@ -179,6 +186,22 @@ class Dashboard {
         return $widgets_map;
     }
 
+    private static function get_real_features_map() {
+        $widgets_map = Extensions_Manager::get_features_map();
+        return $widgets_map;
+    }
+
+    public static function get_features() {
+        $widgets_map = self::get_real_features_map();
+
+        if ( ! ha_has_pro() ) {
+            $widgets_map = array_merge( $widgets_map, Extensions_Manager::get_pro_features_map() );
+        }
+
+        uksort( $widgets_map, [ __CLASS__, 'sort_widgets' ] );
+        return $widgets_map;
+    }
+
     public static function sort_widgets( $k1, $k2 ) {
         return strcasecmp( $k1, $k2 );
     }
@@ -234,6 +257,10 @@ class Dashboard {
                 'title' => esc_html__( 'Widgets', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_widgets' ],
             ],
+            'features' => [
+                'title' => esc_html__( 'Features', 'happy-elementor-addons' ),
+                'renderer' => [ __CLASS__, 'render_features' ],
+            ],
             'pro' => [
                 'title' => esc_html__( 'Get Pro', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_pro' ],
@@ -260,6 +287,10 @@ class Dashboard {
 
     public static function render_widgets() {
         self::load_template( 'widgets' );
+    }
+
+    public static function render_features() {
+        self::load_template( 'features' );
     }
 
     public static function render_pro() {
