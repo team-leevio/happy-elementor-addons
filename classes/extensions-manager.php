@@ -108,7 +108,7 @@ class Extensions_Manager {
 				'is_pro' => false,
 			],
 			'css-transform' => [
-				'title' => __( 'Css Transform', 'happy-elementor-addons' ),
+				'title' => __( 'CSS Transform', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-3d-rotate',
 				'demo' => 'https://happyaddons.com/elementor-css-transform-demo-3/',
 				'is_pro' => false,
