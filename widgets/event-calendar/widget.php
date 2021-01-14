@@ -1373,6 +1373,16 @@ class Event_Calendar extends Base {
             ]
 		);
 
+		$this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name'     => 'event_popup_border',
+                'label'    => __('Border', 'happy-elementor-addons'),
+				//'exclude' => ['color'], //remove border color
+                'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup',
+            ]
+		);
+
         $this->add_control(
             'event_popup_image_heading',
             [

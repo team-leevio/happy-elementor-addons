@@ -167,7 +167,7 @@ span.ha-ec-error-message {
     margin: 5px 0px;
 }
 
-/*=================================== 
+/*===================================
     Full Calendar css
 =====================================*/
 
@@ -204,6 +204,16 @@ span.ha-ec-error-message {
     border-color: #B0B0B0;
 }
 
+/* Top Bar */
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar {
+	flex-wrap: wrap;
+}
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar .fc-button-group {
+    flex-wrap: wrap;
+}
+.ha-ec-wrapper .fc-toolbar.fc-header-toolbar .fc-button-group .fc-button-primary {
+    flex: none;
+}
 /* Today BG color (Month, week, day view) */
 .ha-ec-wrapper .fc .fc-daygrid-day.fc-day-today,
 .ha-ec-wrapper .fc .fc-timegrid-col.fc-day-today {
@@ -249,7 +259,7 @@ span.ha-ec-error-message {
 
 
 /* ========================
-    Event Item css 
+    Event Item css
 ===========================*/
 
 /* Month View extra padding remove */
@@ -396,7 +406,7 @@ span.ha-ec-error-message {
         margin-right: 0;
         margin-bottom: 15px;
     }
-    
+
     .ha-ec-wrapper .fc-daygrid-day-events .fc-daygrid-event.fc-daygrid-block-event, .ha-ec-wrapper .fc-daygrid-day-events .fc-daygrid-event.fc-daygrid-dot-event {
         padding: 0px;
     }
