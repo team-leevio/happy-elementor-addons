@@ -11,6 +11,7 @@ class Extensions_Manager {
 	 */
 	public static function init() {
 		include_once HAPPY_ADDONS_DIR_PATH . 'extensions/column-extended.php';
+		include_once HAPPY_ADDONS_DIR_PATH . 'extensions/widgets-extended.php';
 
 		if ( is_user_logged_in() && ha_is_adminbar_menu_enabled() ) {
 			include_once HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php';
@@ -21,9 +22,16 @@ class Extensions_Manager {
 		}
 
 		$inactive_features = self::get_inactive_features();
+
 		foreach ( self::get_local_features_map() as $feature_key => $data ) {
 			if ( ! in_array( $feature_key, $inactive_features ) ) {
 				self::enable_feature( $feature_key );
+			}
+		}
+
+		foreach ( self::get_pro_features_map() as $feature_key => $data ) {
+			if ( in_array( $feature_key, $inactive_features ) ) {
+				self::disable_pro_feature( $feature_key );
 			}
 		}
 	}
@@ -55,16 +63,6 @@ class Extensions_Manager {
 			'display-conditions' => [
 				'title' => __( 'Display Condition', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-display-condition',
-				'is_pro' => true,
-			],
-			'happy-features' => [
-				'title' => __( 'Happy Features', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-happyaddons',
-				'is_pro' => true,
-			],
-			'happy-particle-effects' => [
-				'title' => __( 'Happy Particle Effect', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-snow',
 				'is_pro' => true,
 			],
 			'image-masking' => [
@@ -132,6 +130,18 @@ class Extensions_Manager {
 
 		if ( is_readable( $feature_file ) ) {
 			include_once( $feature_file );
+		}
+	}
+
+	protected static function disable_pro_feature( $feature_key ) {
+		switch ($feature_key) {
+			case 'display-conditions':
+				add_filter( 'happyaddons/extensions/display_condition', '__return_false' );
+				break;
+
+			case 'image-masking':
+				add_filter( 'happyaddons/extensions/image_masking', '__return_false' );
+				break;
 		}
 	}
 }

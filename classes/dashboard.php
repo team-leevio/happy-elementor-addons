@@ -100,7 +100,15 @@ class Dashboard {
 
     public static function save_features_data( $data ) {
         $features = ! empty( $data['features'] ) ? $data['features'] : [];
-        $inactive_features = array_values( array_diff( array_keys( self::get_real_features_map() ), $features ) );
+
+        /* Check whether Pro is available and allow to disable pro features */
+        $widgets_map = self::get_real_features_map();
+        if ( ha_has_pro() ) {
+            $widgets_map = array_merge( $widgets_map, Extensions_Manager::get_pro_features_map() );
+        }
+
+        $inactive_features = array_values( array_diff( array_keys( $widgets_map ), $features ) );
+
         Extensions_Manager::save_inactive_features( $inactive_features );
     }
 
@@ -194,9 +202,9 @@ class Dashboard {
     public static function get_features() {
         $widgets_map = self::get_real_features_map();
 
-        if ( ! ha_has_pro() ) {
+        //if ( ! ha_has_pro() ) {
             $widgets_map = array_merge( $widgets_map, Extensions_Manager::get_pro_features_map() );
-        }
+        //}
 
         uksort( $widgets_map, [ __CLASS__, 'sort_widgets' ] );
         return $widgets_map;
