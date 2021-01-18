@@ -11,7 +11,6 @@ class Extensions_Manager {
 	 */
 	public static function init() {
 		include_once HAPPY_ADDONS_DIR_PATH . 'extensions/column-extended.php';
-		include_once HAPPY_ADDONS_DIR_PATH . 'extensions/widgets-extended.php';
 
 		if ( is_user_logged_in() && ha_is_adminbar_menu_enabled() ) {
 			include_once HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php';
@@ -30,24 +29,24 @@ class Extensions_Manager {
 	}
 
 	public static function get_features_map() {
-		$widgets_map = [];
+		$features_map = [];
 
-		$local_widgets_map = self::get_local_features_map();
-		$widgets_map = array_merge( $widgets_map, $local_widgets_map );
+		$local_features_map = self::get_local_features_map();
+		$features_map = array_merge( $features_map, $local_features_map );
 
-		return apply_filters( 'happyaddons_get_features_map', $widgets_map );
+		return apply_filters( 'happyaddons_get_features_map', $features_map );
 	}
 
 	public static function get_inactive_features() {
 		return get_option( self::FEATURES_DB_KEY, [] );
 	}
 
-	public static function save_inactive_features( $widgets = [] ) {
-		update_option( self::FEATURES_DB_KEY, $widgets );
+	public static function save_inactive_features( $features = [] ) {
+		update_option( self::FEATURES_DB_KEY, $features );
 	}
 
 	/**
-	 * Get the pro widgets map for dashboard only
+	 * Get the pro features map for dashboard only
 	 *
 	 * @return array
 	 */
@@ -77,7 +76,7 @@ class Extensions_Manager {
 	}
 
 	/**
-	 * Get the free widgets map
+	 * Get the free features map
 	 *
 	 * @return array
 	 */
