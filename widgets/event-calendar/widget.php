@@ -1754,7 +1754,7 @@ class Event_Calendar extends Base {
 
 		<?php
 		if( 'yes' === $settings['show_event_popup'] ){
-			$this->get_popup_markup3($settings);
+			$this->get_popup_markup__($settings);
 		}
 		endif;
 	}
@@ -2001,6 +2001,56 @@ class Event_Calendar extends Base {
 
     }
 
+	public function get_popup_markup__ ( $settings ) {
+	   $readmore_text = !empty($settings['readmore_text']) ? esc_html($settings['readmore_text']) : '';
+	   $time_title = !empty($settings['time_title']) ? esc_html($settings['time_title']) : '';
+	   $speaker_title = !empty($settings['speaker_title']) ? esc_html($settings['speaker_title']) : '';
+	   $location_title = !empty($settings['location_title']) ? esc_html($settings['location_title']) : '';
+       $popup = '<div class="ha-ec-popup-wrapper ha-ec-popup-ready">
+					<div class="ha-ec-popup">
+
+						<span class="ha-ec-popup-close"><i class="eicon-editor-close"></i></span>
+						<div class="ha-ec-popup-body">
+							<div class="ha-ec-popup-image">
+								<img src="" alt="">
+							</div>
+							<div class="ha-ec-popup-content">
+								<ul>
+									<li class="ha-ec-event-time-wrap">
+										<div class="ha-ec-time-icon">'.$this->render_svg_icon('clock').'</div>
+										<div class="ha-ec-time-content">
+											<span class="ha-ec-time-title">'.$time_title.'</span>
+											<span class="ha-ec-event-time"></span>
+										</div>
+									</li>
+									<li class="ha-ec-event-guest-wrap">
+										<div class="ha-ec-guest-icon">'.$this->render_svg_icon('speaker').'</div>
+										<div class="ha-ec-guest-content">
+											<span class="ha-ec-guest-title">'.$speaker_title.'</span>
+											<span class="ha-ec-event-guest"></span>
+										</div>
+									</li>
+									<li class="ha-ec-event-location-wrap">
+										<div class="ha-ec-location-icon">'.$this->render_svg_icon('map').'</div>
+										<div class="ha-ec-location-content">
+											<span class="ha-ec-location-title">'.$location_title.'</span>
+											<span class="ha-ec-event-location"></span>
+										</div>
+									</li>
+								</ul>
+								<h3 class="ha-ec-event-title"></h3>
+								<p class="ha-ec-popup-desc"></p>
+								<div class="ha-ec-popup-readmore">
+									<a class="ha-ec-popup-readmore-link" href="">'.$readmore_text.'</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>';
+        echo $popup;
+	}
+
 	public function get_popup_markup3 ( $settings ) {
 	   $readmore_text = !empty($settings['readmore_text']) ? esc_html($settings['readmore_text']) : '';
 	   $time_title = !empty($settings['time_title']) ? esc_html($settings['time_title']) : '';
@@ -2016,17 +2066,26 @@ class Event_Calendar extends Base {
 							</div>
 							<div class="ha-ec-popup-content">
 								<ul>
-									<li class="ha-ec-time-wrap">
-										<div class="ha-ec-time-title">'.$this->render_svg_icon('clock').'</div>
-										<div class="ha-ec-event-time">Timezone UTC+6<span>9:16am - 10:15am</span></div>
+									<li class="ha-ec-event-time-wrap">
+										<div class="ha-ec-time-icon">'.$this->render_svg_icon('clock').'</div>
+										<div class="ha-ec-time-content">
+											<span class="ha-ec-time-title">Timezone UTC+6</span>
+											<span class="ha-ec-event-time">9:16am - 10:15am</span>
+										</div>
 									</li>
-									<li class="ha-ec-guest-wrap">
-										<div class="ha-ec-guest-title">Speaker</div>
-										<div class="ha-ec-event-guest">'.$this->render_svg_icon('speaker').'<span>Hasin Hayder</span></div>
+									<li class="ha-ec-event-guest-wrap">
+										<div class="ha-ec-guest-icon">'.$this->render_svg_icon('speaker').'</div>
+										<div class="ha-ec-guest-content">
+											<span class="ha-ec-guest-title">Speaker</span>
+											<span class="ha-ec-event-guest">9:16am - 10:15am</span>
+										</div>
 									</li>
-									<li class="ha-ec-location-wrap">
-										<div class="ha-ec-location-title">Address</div>
-										<div class="ha-ec-event-location">'.$this->render_svg_icon('map').'<span>Mirpur DOHS, Dhaka</span></div>
+									<li class="ha-ec-event-location-wrap">
+										<div class="ha-ec-location-icon">'.$this->render_svg_icon('map').'</div>
+										<div class="ha-ec-location-content">
+											<span class="ha-ec-location-title">Speaker</span>
+											<span class="ha-ec-event-location">9:16am - 10:15am</span>
+										</div>
 									</li>
 								</ul>
 								<h3 class="ha-ec-event-title">Hasin Hayder</h3>

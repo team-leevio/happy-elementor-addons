@@ -928,9 +928,9 @@
 					//var date = getTheDate(startDate);
 
 					var titleWrap = popup.find('.ha-ec-event-title'),
-						timeWrap = popup.find('.ha-ec-event-time'),
-						guestWrap = popup.find('.ha-ec-event-guest'),
-						locationWrap = popup.find('.ha-ec-event-location'),
+						timeWrap = popup.find('.ha-ec-event-time-wrap'),
+						guestWrap = popup.find('.ha-ec-event-guest-wrap'),
+						locationWrap = popup.find('.ha-ec-event-location-wrap'),
 						descWrap = popup.find('.ha-ec-popup-desc'),
 						detailsWrap = popup.find('.ha-ec-popup-readmore-link'),
 						imageWrap = popup.find('.ha-ec-popup-image');
@@ -963,13 +963,13 @@
 					// image markup
 					if (guest) {
 						guestWrap.removeAttr("style");
-						guestWrap.find('span').html( guest );
+						guestWrap.find('span.ha-ec-event-guest').html( guest );
 					}
 
 					// image markup
 					if (location) {
 						locationWrap.removeAttr("style");
-						locationWrap.find('span').html( location );
+						locationWrap.find('span.ha-ec-event-location').html( location );
 					}
 
 					// image markup
@@ -988,10 +988,10 @@
 						if (startDate < endDate) {
 							endTimeText = timeFormat(getTheDate(endDate));
 						}
-						timeWrap.find('span').html(startTimeText + ' - ' + endTimeText);
+						timeWrap.find('span.ha-ec-event-time').html(startTimeText + ' - ' + endTimeText);
 					}else{
 						timeWrap.removeAttr("style");
-						timeWrap.find('span').html(allday_text);
+						timeWrap.find('span.ha-ec-event-time').html(allday_text);
 					}
 
 					// details markup
