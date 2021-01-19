@@ -650,24 +650,23 @@
 
 		};
 
-
-
 		//Event Calendar
 		var Event_Calendar = function($scope) {
 			var calendarEl =  $scope.find('.ha-ec');
 			var popup = $scope.find('.ha-ec-popup-wrapper');
 			var popupClose = $scope.find(".ha-ec-popup-close");
-			var calenderIcon = '<i class="eicon-calendar"></i>';
-			var clockIcon = '<i class="eicon-clock"></i>';
+			//var calenderIcon = '<i class="eicon-calendar"></i>';
+			//var clockIcon = '<i class="eicon-clock"></i>';
 			var events = calendarEl.data('events');
 			var initialview = calendarEl.data('initialview');
 			var firstday = calendarEl.data('firstday');
 			var locale = calendarEl.data('locale');
 			var showPopup = calendarEl.data('show-popup');
+			var allday_text = calendarEl.data('allday-text');
 			// var initialView = 'dayGridMonth';
-			var itemDate;
+			// var itemDate;
 			// return;
-			var setEvents = [
+			/* var setEvents = [
 				{
 					title: 'Event1',
 					"start": "2020-09-07",
@@ -704,149 +703,148 @@
 					// "allDay": "yes",
 					"url": "#",
 				}
-				// etc...
-			];
+			]; */
 
-			console.log(events);
+			// console.log(events);
 			// console.log(setEvents);
 			// console.log(initialview);
 			// console.log(firstday);
 			if( 'undefined' == typeof events){
 				return;
 			}
-			console.log(events);
-			var event = [{
-				"id": 0,
-				"title": "Dance program",
-				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-				"start": "2020-09-07",
-				"end": "2020-09-08",
-				"borderColor": "#E8E6ED",
-				"textColor": "#ffffff",
-				"color": "#5725ff",
-				"url": "",
-				"allDay": "yes",
-				"external": "",
-				"nofollow": ""
-			  }, {
-				"id": 1,
-				"title": "Yesterday Event Title",
-				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-				"start": "2020-09-07 16:13",
-				"end": "2020-09-07 18:12:01",
-				"borderColor": "#E8E6ED",
-				"textColor": "#ffffff",
-				"color": "#5725ff",
-				"url": "",
-				"allDay": "",
-				"external": "",
-				"nofollow": ""
-			  }, {
-				"id": 2,
-				"title": "Event Title",
-				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-				"start": "2020-09-08 16:13",
-				"end": "2020-09-08 18:12:01",
-				"borderColor": "#E8E6ED",
-				"textColor": "#ffffff",
-				"color": "#5725ff",
-				"url": "",
-				"allDay": "",
-				"external": "",
-				"nofollow": "",
-			  }, {
-				"id": 3,
-				"title": "Dance program",
-				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-				"start": "2020-09-10",
-				"end": "2020-09-11",
-				"borderColor": "#E8E6ED",
-				"textColor": "#ffffff",
-				"color": "#5725ff",
-				"url": "",
-				"allDay": "yes",
-				"external": "",
-				"nofollow": ""
-			  }, {
-				"id": 4,
-				"title": "Event title 2",
-				"description": "<p>Lorem ipsum dolor sit amet, consectetur <strong>adipiscing elit, sed do eiusmod tempor<\/strong> incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco<span style=\"color: #ff6600;\"><strong> laboris nisi ut<\/strong><\/span> aliquip ex ea commodo consequat. <em>Duis aute irure dolor<\/em> in reprehenderit in voluptate velit esse cillum <span style=\"text-decoration: underline;\">dolore eu fugiat nulla<\/span> pariatur. Excepteur sint occaecat <a href=\"#\">cupidatat non proident, sunt in culpa<\/a> qui officia deserunt mollit anim id est laborum.<\/p>",
-				"start": "2020-09-09 04:13",
-				"end": "2020-09-08 17:12:01",
-				"borderColor": "#E8E6ED",
-				"textColor": "#ffffff",
-				"color": "#5725ff",
-				"url": "#",
-				"allDay": "",
-				"external": "",
-				"nofollow": ""
-			  }, {
-				"id": 5,
-				"title": "Event title 3",
-				"description": "",
-				"start": "2020-09-09 04:13",
-				"end": "2020-09-08 17:12:01",
-				"borderColor": "#E8E6ED",
-				"textColor": "#ffffff",
-				"color": "#5725ff",
-				"url": "#",
-				"allDay": "",
-				"external": "",
-				"nofollow": "",
-			  }, {
-				"id": 6,
-				"title": "Event title 2",
-				"description": "<p>Lorem ipsum dolor sit amet, consectetur <strong>adipiscing elit, sed do eiusmod tempor<\/strong> incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco<span style=\"color: #ff6600;\"><strong> laboris nisi ut<\/strong><\/span> aliquip ex ea commodo consequat. <em>Duis aute irure dolor<\/em> in reprehenderit in voluptate velit esse cillum <span style=\"text-decoration: underline;\">dolore eu fugiat nulla<\/span> pariatur. Excepteur sint occaecat <a href=\"#\">cupidatat non proident, sunt in culpa<\/a> qui officia deserunt mollit anim id est laborum.<\/p>",
-				"start": "2020-09-11 04:13",
-				"end": "2020-09-11 07:12:01",
-				"borderColor": "#E8E6ED",
-				"textColor": "#ffffff",
-				"color": "#5725ff",
-				"url": "#",
-				"allDay": "",
-				"external": "",
-				"nofollow": "",
-			  }, {
-				"id": 7,
-				"title": "special",
-				"description": "",
-				"start": "2020-09-11 08:13",
-				"end": "2020-09-11 17:12:01",
-				"borderColor": "#E8E6ED",
-				"textColor": "#ffffff",
-				"color": "#5725ff",
-				"url": "#",
-				"allDay": "",
-				"external": "",
-				"nofollow": "",
-			  }, {
-				"id": 8,
-				"title": "special",
-				"description": "",
-				"start": "2020-09-11 08:13",
-				"end": "2020-09-11 17:12:01",
-				"borderColor": "#E8E6ED",
-				"textColor": "#ffffff",
-				"color": "#5725ff",
-				"url": "#",
-				"allDay": "",
-				"external": "",
-				"nofollow": "",
-			  }, {
-				"id": 9,
-				"title": "special",
-				"description": "",
-				"start": "2020-09-11 08:13",
-				"end": "2020-09-11 17:12:01",
-			  //   "backgroundColor": "red",
-				"borderColor": "#E8E6ED",
-				"textColor": "blue",
-				"color": "black",
-				"url": "#",
-				"allDay": "",
-				"external": "",
-				"nofollow": "",
-			}];
+			// console.log(events);
+			// var event = [{
+			// 	"id": 0,
+			// 	"title": "Dance program",
+			// 	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+			// 	"start": "2020-09-07",
+			// 	"end": "2020-09-08",
+			// 	"borderColor": "#E8E6ED",
+			// 	"textColor": "#ffffff",
+			// 	"color": "#5725ff",
+			// 	"url": "",
+			// 	"allDay": "yes",
+			// 	"external": "",
+			// 	"nofollow": ""
+			//   }, {
+			// 	"id": 1,
+			// 	"title": "Yesterday Event Title",
+			// 	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+			// 	"start": "2020-09-07 16:13",
+			// 	"end": "2020-09-07 18:12:01",
+			// 	"borderColor": "#E8E6ED",
+			// 	"textColor": "#ffffff",
+			// 	"color": "#5725ff",
+			// 	"url": "",
+			// 	"allDay": "",
+			// 	"external": "",
+			// 	"nofollow": ""
+			//   }, {
+			// 	"id": 2,
+			// 	"title": "Event Title",
+			// 	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+			// 	"start": "2020-09-08 16:13",
+			// 	"end": "2020-09-08 18:12:01",
+			// 	"borderColor": "#E8E6ED",
+			// 	"textColor": "#ffffff",
+			// 	"color": "#5725ff",
+			// 	"url": "",
+			// 	"allDay": "",
+			// 	"external": "",
+			// 	"nofollow": "",
+			//   }, {
+			// 	"id": 3,
+			// 	"title": "Dance program",
+			// 	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+			// 	"start": "2020-09-10",
+			// 	"end": "2020-09-11",
+			// 	"borderColor": "#E8E6ED",
+			// 	"textColor": "#ffffff",
+			// 	"color": "#5725ff",
+			// 	"url": "",
+			// 	"allDay": "yes",
+			// 	"external": "",
+			// 	"nofollow": ""
+			//   }, {
+			// 	"id": 4,
+			// 	"title": "Event title 2",
+			// 	"description": "<p>Lorem ipsum dolor sit amet, consectetur <strong>adipiscing elit, sed do eiusmod tempor<\/strong> incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco<span style=\"color: #ff6600;\"><strong> laboris nisi ut<\/strong><\/span> aliquip ex ea commodo consequat. <em>Duis aute irure dolor<\/em> in reprehenderit in voluptate velit esse cillum <span style=\"text-decoration: underline;\">dolore eu fugiat nulla<\/span> pariatur. Excepteur sint occaecat <a href=\"#\">cupidatat non proident, sunt in culpa<\/a> qui officia deserunt mollit anim id est laborum.<\/p>",
+			// 	"start": "2020-09-09 04:13",
+			// 	"end": "2020-09-08 17:12:01",
+			// 	"borderColor": "#E8E6ED",
+			// 	"textColor": "#ffffff",
+			// 	"color": "#5725ff",
+			// 	"url": "#",
+			// 	"allDay": "",
+			// 	"external": "",
+			// 	"nofollow": ""
+			//   }, {
+			// 	"id": 5,
+			// 	"title": "Event title 3",
+			// 	"description": "",
+			// 	"start": "2020-09-09 04:13",
+			// 	"end": "2020-09-08 17:12:01",
+			// 	"borderColor": "#E8E6ED",
+			// 	"textColor": "#ffffff",
+			// 	"color": "#5725ff",
+			// 	"url": "#",
+			// 	"allDay": "",
+			// 	"external": "",
+			// 	"nofollow": "",
+			//   }, {
+			// 	"id": 6,
+			// 	"title": "Event title 2",
+			// 	"description": "<p>Lorem ipsum dolor sit amet, consectetur <strong>adipiscing elit, sed do eiusmod tempor<\/strong> incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco<span style=\"color: #ff6600;\"><strong> laboris nisi ut<\/strong><\/span> aliquip ex ea commodo consequat. <em>Duis aute irure dolor<\/em> in reprehenderit in voluptate velit esse cillum <span style=\"text-decoration: underline;\">dolore eu fugiat nulla<\/span> pariatur. Excepteur sint occaecat <a href=\"#\">cupidatat non proident, sunt in culpa<\/a> qui officia deserunt mollit anim id est laborum.<\/p>",
+			// 	"start": "2020-09-11 04:13",
+			// 	"end": "2020-09-11 07:12:01",
+			// 	"borderColor": "#E8E6ED",
+			// 	"textColor": "#ffffff",
+			// 	"color": "#5725ff",
+			// 	"url": "#",
+			// 	"allDay": "",
+			// 	"external": "",
+			// 	"nofollow": "",
+			//   }, {
+			// 	"id": 7,
+			// 	"title": "special",
+			// 	"description": "",
+			// 	"start": "2020-09-11 08:13",
+			// 	"end": "2020-09-11 17:12:01",
+			// 	"borderColor": "#E8E6ED",
+			// 	"textColor": "#ffffff",
+			// 	"color": "#5725ff",
+			// 	"url": "#",
+			// 	"allDay": "",
+			// 	"external": "",
+			// 	"nofollow": "",
+			//   }, {
+			// 	"id": 8,
+			// 	"title": "special",
+			// 	"description": "",
+			// 	"start": "2020-09-11 08:13",
+			// 	"end": "2020-09-11 17:12:01",
+			// 	"borderColor": "#E8E6ED",
+			// 	"textColor": "#ffffff",
+			// 	"color": "#5725ff",
+			// 	"url": "#",
+			// 	"allDay": "",
+			// 	"external": "",
+			// 	"nofollow": "",
+			//   }, {
+			// 	"id": 9,
+			// 	"title": "special",
+			// 	"description": "",
+			// 	"start": "2020-09-11 08:13",
+			// 	"end": "2020-09-11 17:12:01",
+			//   //   "backgroundColor": "red",
+			// 	"borderColor": "#E8E6ED",
+			// 	"textColor": "blue",
+			// 	"color": "black",
+			// 	"url": "#",
+			// 	"allDay": "",
+			// 	"external": "",
+			// 	"nofollow": "",
+			// }];
 			var option = {
 				stickyHeaderDates: false,
 				locale: locale,
@@ -885,7 +883,7 @@
 						return strTime;
 					}
 
-					function dateFormat(fullDate) {
+					/* function dateFormat(fullDate) {
 						//"YYYY-MM-DD"
 						//16 Jul 2020
 						var day = fullDate.getDay(),
@@ -913,7 +911,7 @@
 						formatedDate = formatedDate.join(' ');
 
 						return formatedDate;
-					}
+					} */
 
 					var todayDateString = info.view.calendar.currentData.currentDate.toString(),
 						allDay = info.event.allDay,
@@ -991,6 +989,9 @@
 							endTimeText = timeFormat(getTheDate(endDate));
 						}
 						timeWrap.find('span').html(startTimeText + ' - ' + endTimeText);
+					}else{
+						timeWrap.removeAttr("style");
+						timeWrap.find('span').html(allday_text);
 					}
 
 					// details markup
