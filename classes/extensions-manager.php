@@ -123,7 +123,7 @@ class Extensions_Manager {
 				'is_pro' => false,
 			],
 			'shape-divider' => [
-				'title' => __( 'HappyAddon Shape', 'happy-elementor-addons' ),
+				'title' => __( 'Shape Divider', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-minus-large',
 				'demo' => '#',
 				'is_pro' => false,
