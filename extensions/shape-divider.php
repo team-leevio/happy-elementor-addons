@@ -52,18 +52,6 @@ class Shape_Divider {
 			]
 		);
 
-
-
-		// $element->update_control(
-		// 	'shape_divider_top_color',
-		// 	[
-		// 		'selectors' => [
-		// 			"{{WRAPPER}} > .elementor-shape-top .elementor-shape-fill" => 'fill: {{UNIT}};',
-		// 			"{{WRAPPER}} > .elementor-shape-top svg" => 'fill: {{UNIT}};',
-		// 		],
-		// 	]
-		// );
-
 		$element->update_control(
 			'shape_divider_bottom',
 			[
@@ -87,15 +75,6 @@ class Shape_Divider {
 			]
 		);
 
-		// $element->update_control(
-		// 	'shape_divider_bottom_color',
-		// 	[
-		// 		'selectors' => [
-		// 			"{{WRAPPER}} > .elementor-shape-bottom .elementor-shape-fill" => 'fill: {{UNIT}};',
-		// 			"{{WRAPPER}} > .elementor-shape-bottom svg" => 'fill: {{UNIT}};',
-		// 		],
-		// 	]
-		// );
 	}
 
 	/**
@@ -257,13 +236,9 @@ class Shape_Divider {
 			]
 		];
 
-		// echo '<pre>';
-		// var_dump( $shape_list );
-		// echo '</pre>';
 		/*
-			svg path should contain elementor class to show in editor mode
+		 * svg path should contain elementor class to show in editor mode
 		*/
-
 		return $shape_list;
 	}
 }
