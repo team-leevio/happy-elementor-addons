@@ -954,31 +954,31 @@
 						imageWrap.find('img').attr("alt", title );
 					}
 
-					// image markup
+					// title markup
 					if (title) {
 						titleWrap.removeAttr("style");
 						titleWrap.html(title);
 					}
 
-					// image markup
+					// guest markup
 					if (guest) {
 						guestWrap.removeAttr("style");
 						guestWrap.find('span.ha-ec-event-guest').html( guest );
 					}
 
-					// image markup
+					// location markup
 					if (location) {
 						locationWrap.removeAttr("style");
 						locationWrap.find('span.ha-ec-event-location').html( location );
 					}
 
-					// image markup
+					// description markup
 					if (description) {
 						descWrap.removeAttr("style");
 						descWrap.html(description);
 					}
 
-					// image markup
+					// time markup
 					if (allDay !== true) {
 						timeWrap.removeAttr("style");
 						startDate = Date.parse(getTheDate(startDate));
@@ -994,7 +994,7 @@
 						timeWrap.find('span.ha-ec-event-time').html(allday_text);
 					}
 
-					// details markup
+					// read more markup
 					if (detailsUrl) {
 						detailsWrap.removeAttr("style");
 						detailsWrap.attr("href", detailsUrl);

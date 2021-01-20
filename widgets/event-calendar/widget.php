@@ -376,7 +376,6 @@ class Event_Calendar extends Base {
 				],
 				'condition' => [
 					'individual_style' => 'yes',
-                    // 'all_day' => 'yes',
 				],
                 'style_transfer' => true,
                 // 'render_type' => 'template',
@@ -393,10 +392,8 @@ class Event_Calendar extends Base {
 				],
 				'condition' => [
 					'individual_style' => 'yes',
-                    // 'all_day' => 'yes',
 				],
                 'style_transfer' => true,
-                // 'render_type' => 'template',
 			]
 		);
 
@@ -413,7 +410,6 @@ class Event_Calendar extends Base {
 					'individual_style' => 'yes'
 				],
                 'style_transfer' => true,
-                // 'render_type' => 'template',
 			]
 		);
 
@@ -456,22 +452,6 @@ class Event_Calendar extends Base {
 				],
 			]
 		);
-
-		/* $this->add_group_control(
-            Group_Control_Image_Size::get_type(),
-            [
-                'name' => 'thumbnail',
-                'label' => 'Thumbnail Size',
-                'default' => 'thumbnail',
-                'separator' => 'before',
-                'exclude' => [
-                    'custom'
-				],
-				'condition' => [
-					'event_calendar_type' => 'manual'
-				],
-            ]
-		); */
 
 		if ( !class_exists( 'Tribe__Events__Main' ) ) {
 			$this->add_control(
@@ -645,20 +625,6 @@ class Event_Calendar extends Base {
 			]
 		);
 
-		/* $this->add_control(
-            'details_link_hide',
-            [
-                'label'        => __('Hide Event Details Link', 'happy-elementor-addons'),
-                'label_block'  => false,
-                'type'         => Controls_Manager::SWITCHER,
-                'description'  => __('Hide Event Details link in event popup','happy-elementor-addons'),
-				'return_value' => 'yes',
-                'condition' => [
-                    'event_calendar_type!' => 'manual',
-                ],
-            ]
-		); */
-
 		$this->add_control(
             'language',
             [
@@ -831,9 +797,6 @@ class Event_Calendar extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-ec-wrapper .fc-view > table'=> 'background-color: {{VALUE}}',
                     '{{WRAPPER}} .ha-ec-wrapper .fc-view table.fc-list-table'=> 'background-color: {{VALUE}}',
-                    // '{{WRAPPER}} .ha-ec-wrapper table tbody tr td:not(.fc-timegrid-slot):not(.fc-timegrid-col),
-					// {{WRAPPER}} .ha-ec-wrapper table tbody tr td,
-					// {{WRAPPER}} .ha-ec-wrapper table tbody tr th' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -872,7 +835,6 @@ class Event_Calendar extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-ec-wrapper .fc .fc-daygrid-day.fc-day-today' => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .ha-ec-wrapper .fc .fc-timegrid-col.fc-day-today' => 'background-color: {{VALUE}};',
-					// '{{WRAPPER}} .ha-ec-wrapper .fc .fc-list-event.fc-event-today' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -898,19 +860,6 @@ class Event_Calendar extends Base {
                 ],
             ]
         );
-
-        /* $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'calendar_heading_typography',
-				'label'    => __('Typography', 'happy-elementor-addons'),
-				'exclude' => [
-					'font_family',
-				],
-				'selector' => '{{WRAPPER}} .ha-ec-wrapper .fc .fc-list-table th .fc-list-day-cushion,
-								{{WRAPPER}} .ha-ec-wrapper th.fc-col-header-cell.fc-day',
-            ]
-		); */
 
         $this->add_responsive_control(
 			'calendar_heading_font_size',
@@ -1005,59 +954,6 @@ class Event_Calendar extends Base {
                 ],
             ]
         );
-
-        /* $this->add_responsive_control(
-            'calendar_inside',
-            [
-                'label'      => __('Inside Space', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors'  => [
-                    '{{WRAPPER}} .ha-ec-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'calendar_outside',
-            [
-                'label'      => __('Outside Space', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors'  => [
-                    '{{WRAPPER}} .ha-ec-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-                'separator'  => 'after',
-            ]
-        ); */
-
-        /* $this->add_control(
-            'calendar_title_heading',
-            [
-                'label' => __('Title', 'happy-elementor-addons'),
-                'type'  => Controls_Manager::HEADING,
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'calendar_title_typography',
-                'label'    => __('Typography', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .fc-toolbar h2',
-            ]
-        );
-
-        $this->add_control(
-            'calendar_title_color',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .fc-toolbar h2' => 'color: {{VALUE}};',
-                ],
-            ]
-        ); */
 
 		$this->end_controls_section();
 	}
@@ -1466,7 +1362,6 @@ class Event_Calendar extends Base {
             [
                 'name'     => 'event_popup_border',
                 'label'    => __('Border', 'happy-elementor-addons'),
-				//'exclude' => ['color'], //remove border color
                 'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup',
             ]
 		);
@@ -1499,7 +1394,6 @@ class Event_Calendar extends Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-ec-popup-wrapper' => '--ha-ec-popup-image-width: {{SIZE}}{{UNIT}};',
-					//'{{WRAPPER}} .ha-ec-popup-wrapper' => '--ha-ec-popup-content-width: calc(100% - {{SIZE}}{{UNIT}});',
 				],
 			]
 		);
@@ -1524,6 +1418,25 @@ class Event_Calendar extends Base {
                 'separator'  => 'before',
             ]
         );
+
+        $this->add_responsive_control(
+			'event_popup_title_margin_bottom',
+			[
+				'label' => __( 'Margin Bottom', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content h3' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+			]
+		);
 
         $this->add_group_control(
             Group_Control_Typography::get_type(),
@@ -1557,6 +1470,25 @@ class Event_Calendar extends Base {
             ]
         );
 
+        $this->add_responsive_control(
+			'event_popup_desc__margin_bottom',
+			[
+				'label' => __( 'Margin Bottom', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ec-popup-wrapper p.ha-ec-popup-desc' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+			]
+		);
+
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
@@ -1578,41 +1510,9 @@ class Event_Calendar extends Base {
                     '{{WRAPPER}} .ha-ec-popup-wrapper p.ha-ec-popup-desc' => 'color: {{VALUE}}',
                 ],
             ]
-        );
+		);
 
-        $this->add_control(
-            'event_popup_meta_heading',
-            [
-                'label' => __('Meta', 'happy-elementor-addons'),
-                'type'  => Controls_Manager::HEADING,
-                'separator'  => 'before',
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'event_popup_meta_typography',
-				'label'    => __('Typography', 'happy-elementor-addons'),
-				'exclude' => [
-					'font_family',
-				],
-                'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-time,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-guest,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-location',
-            ]
-        );
-
-        $this->add_control(
-            'event_popup_meta_color',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-time' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-guest' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-location' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
+		$this->popup_meta_style_controls();
 
         $this->add_control(
             'event_popup_readmore_heading',
@@ -1708,13 +1608,170 @@ class Event_Calendar extends Base {
         $this->end_controls_section();
 	}
 
+	protected function popup_meta_style_controls () {
+
+        $this->add_control(
+            'event_popup_meta_heading',
+            [
+                'label' => __('Meta', 'happy-elementor-addons'),
+                'type'  => Controls_Manager::HEADING,
+                'separator'  => 'before',
+            ]
+        );
+
+		$this->add_responsive_control(
+            'event_popup_meta_item_margin',
+            [
+                'label'      => __('Item Margin', 'happy-elementor-addons'),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors'  => [
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li:last-child' => 'margin-right: 0;',
+                ],
+            ]
+		);
+
+        $this->add_control(
+            'event_popup_meta_icon_heading',
+            [
+                'label' => __('Meta Icon', 'happy-elementor-addons'),
+                'type'  => Controls_Manager::HEADING,
+                'separator'  => 'before',
+            ]
+        );
+
+        $this->add_responsive_control(
+			'event_popup_meta_icon_font_size',
+			[
+				'label' => __( 'Icon Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 200,
+						'step' => 1,
+					],
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+			]
+		);
+
+        $this->add_control(
+            'event_popup_meta_icon_color',
+            [
+                'label'     => __('Color', 'happy-elementor-addons'),
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-icon' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-icon' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-icon' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'event_popup_meta_title_heading',
+            [
+                'label' => __('Meta Title', 'happy-elementor-addons'),
+                'type'  => Controls_Manager::HEADING,
+                'separator'  => 'before',
+            ]
+        );
+
+        $this->add_responsive_control(
+			'event_popup_meta_title_margin_bottom',
+			[
+				'label' => __( 'Margin Bottom', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+			]
+		);
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name'     => 'event_popup_meta_title_typography',
+				'label'    => __('Typography', 'happy-elementor-addons'),
+				'exclude' => [
+					'font_family',
+				],
+                'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-title,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-title,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-title',
+            ]
+        );
+
+        $this->add_control(
+            'event_popup_meta_title_color',
+            [
+                'label'     => __('Color', 'happy-elementor-addons'),
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-title' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'event_popup_meta_content_heading',
+            [
+                'label' => __('Meta Content', 'happy-elementor-addons'),
+                'type'  => Controls_Manager::HEADING,
+                'separator'  => 'before',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name'     => 'event_popup_meta_content_typography',
+				'label'    => __('Typography', 'happy-elementor-addons'),
+				'exclude' => [
+					'font_family',
+				],
+                'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-time,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-guest,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-location',
+            ]
+        );
+
+        $this->add_control(
+            'event_popup_meta_content_color',
+            [
+                'label'     => __('Color', 'happy-elementor-addons'),
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-time' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-guest' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-location' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+
+	}
+
 
 	protected function render () {
 
 		$settings = $this->get_settings_for_display();
-		// echo '<pre>';
-		// var_dump( get_option('timezone_string') );
-		// echo '</pre>';
+
 		if ($settings['event_calendar_type'] == 'google_calendar') {
             $data = $this->get_google_calendar_events($settings);
         } elseif ($settings['event_calendar_type'] == 'the_events_calendar') {
@@ -1742,10 +1799,6 @@ class Event_Calendar extends Base {
 				'data-allday-text' => !empty($settings['allday_text']) ? esc_html($settings['allday_text']) : '',
 			]
 		);
-
-		// echo '<pre>';
-		// var_dump($data);
-		// echo '</pre>';
 
 		if ( $data ) :?>
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
@@ -2006,7 +2059,7 @@ class Event_Calendar extends Base {
 	   $time_title = !empty($settings['time_title']) ? esc_html($settings['time_title']) : '';
 	   $speaker_title = !empty($settings['speaker_title']) ? esc_html($settings['speaker_title']) : '';
 	   $location_title = !empty($settings['location_title']) ? esc_html($settings['location_title']) : '';
-       $popup = '<div class="ha-ec-popup-wrapper ha-ec-popup-ready">
+       $popup = '<div class="ha-ec-popup-wrapper">
 					<div class="ha-ec-popup">
 
 						<span class="ha-ec-popup-close"><i class="eicon-editor-close"></i></span>
