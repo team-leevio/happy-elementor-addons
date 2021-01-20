@@ -131,6 +131,10 @@ class Extensions_Manager {
 		if ( is_readable( $feature_file ) ) {
 			include_once( $feature_file );
 		}
+
+		if ( ha_is_shape_divider_enabled() ) {
+			include_once HAPPY_ADDONS_DIR_PATH . 'extensions/shape-divider.php';
+		}
 	}
 
 	protected static function disable_pro_feature( $feature_key ) {
