@@ -1,10 +1,10 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.18.0
+Version: 2.19.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, obiplabon
-Tags: Elementor Page Builder, Elementor Addons, Widgets, Editor, Web Page Builder
+Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Elements
 Requires at least: 4.7
 Tested up to: 5.6
 Stable tag: trunk
@@ -282,6 +282,13 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.19.0 - 20 January 2020 =
+
+- New: Features control panel
+- New: Section Shape Divider - 18 custom shapes (Happy Shapes)
+- Tweak: Improved elementor missing notice
+- Fix: Misc css bug resolved
 
 = 2.18.0 - 5 January 2020 =
 

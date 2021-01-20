@@ -3,6 +3,7 @@ namespace Happy_Addons\Elementor\Extension;
 
 use Elementor\Controls_Manager;
 use Elementor\Element_Base;
+use Elementor\Shapes;
 
 defined( 'ABSPATH' ) || die();
 
@@ -14,18 +15,17 @@ class Shape_Divider {
 	}
 
 	public static function update_shape_list( Element_Base $element ) {
+		$default_shapes = [];
+		$happy_shapes_top = [];
+		$happy_shapes_bottom = [];
 
-		$elementor_shapes_options = [];
-		$happy_shapes_options = [];
-		$happy_shapes_options_footer = [];
-
-		foreach ( \Elementor\Shapes::get_shapes() as $shape_name => $shape_props ) {
+		foreach ( Shapes::get_shapes() as $shape_name => $shape_props ) {
 			if ( ! isset( $shape_props['ha_shape'] ) ) {
-				$elementor_shapes_options[ $shape_name ] = $shape_props['title'];
-			}elseif( ! isset( $shape_props['ha_shape_bottom'] ) ){
-				$happy_shapes_options[ $shape_name ] = $shape_props['title'];
-			}else{
-				$happy_shapes_options_footer[ $shape_name ] = $shape_props['title'];
+				$default_shapes[ $shape_name ] = $shape_props['title'];
+			} elseif ( ! isset( $shape_props['ha_shape_bottom'] ) ){
+				$happy_shapes_top[ $shape_name ] = $shape_props['title'];
+			} else {
+				$happy_shapes_bottom[ $shape_name ] = $shape_props['title'];
 			}
 		}
 
@@ -35,18 +35,18 @@ class Shape_Divider {
 				'type' => Controls_Manager::SELECT,
 				'groups' => [
 					[
-						'label' => __( 'None', 'happy-elementor-addons' ),
+						'label' => __( 'Disable', 'happy-elementor-addons' ),
 						'options' => [
 							'' => __( 'None', 'happy-elementor-addons' ),
 						],
 					],
 					[
-						'label' => __( 'Elementor Shapes', 'happy-elementor-addons' ),
-						'options' => $elementor_shapes_options,
+						'label' => __( 'Default Shapes', 'happy-elementor-addons' ),
+						'options' => $default_shapes,
 					],
 					[
-						'label' => __( 'HappyAddon Shapes', 'happy-elementor-addons' ),
-						'options' => $happy_shapes_options,
+						'label' => __( 'Happy Shapes', 'happy-elementor-addons' ),
+						'options' => $happy_shapes_top,
 					],
 				],
 			]
@@ -58,23 +58,22 @@ class Shape_Divider {
 				'type' => Controls_Manager::SELECT,
 				'groups' => [
 					[
-						'label' => __( 'None', 'happy-elementor-addons' ),
+						'label' => __( 'Disable', 'happy-elementor-addons' ),
 						'options' => [
 							'' => __( 'None', 'happy-elementor-addons' ),
 						],
 					],
 					[
-						'label' => __( 'Elementor Shapes', 'happy-elementor-addons' ),
-						'options' => $elementor_shapes_options,
+						'label' => __( 'Default Shapes', 'happy-elementor-addons' ),
+						'options' => $default_shapes,
 					],
 					[
-						'label' => __( 'HappyAddon Shapes', 'happy-elementor-addons' ),
-						'options' => array_merge($happy_shapes_options,$happy_shapes_options_footer),
+						'label' => __( 'Happy Shapes', 'happy-elementor-addons' ),
+						'options' => array_merge( $happy_shapes_top, $happy_shapes_bottom ),
 					],
 				],
 			]
 		);
-
 	}
 
 	/**

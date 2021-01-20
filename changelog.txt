@@ -1,4 +1,10 @@
-- New: Feature Manager
+= 2.19.0 - 20 January 2020 =
+
+- New: Features control panel
+- New: Section Shape Divider - 18 custom shapes (Happy Shapes)
+- Tweak: Improved elementor missing notice
+- Fix: Misc css bug resolved
+
 = 2.18.0 - 5 January 2020 =
 
 - New: Tabs are sortable in Post Tab widget
