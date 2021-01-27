@@ -1,3 +1,7 @@
+27 January 2020 =
+
+- Fix: Shape Divider spell
+
 = 2.19.0 - 20 January 2020 =
 
 - New: Features control panel
