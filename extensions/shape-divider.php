@@ -140,10 +140,10 @@ class Shape_Divider {
 				'has_negative' => false,
 				'ha_shape' => true,
 			],
-			'multi-web' => [
-				'title' => _x( 'Multi Web', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/multi-web.svg',
-				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/multi-web.svg',
+			'multi-wave' => [
+				'title' => _x( 'Multi Wave', 'Shapes', 'happy-elementor-addons' ),
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/multi-wave.svg',
+				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/multi-wave.svg',
 				'has_flip' => true,
 				'has_negative' => false,
 				'ha_shape' => true,
