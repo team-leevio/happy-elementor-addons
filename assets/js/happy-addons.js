@@ -855,6 +855,11 @@
 				},
 				initialView: initialview,
 				firstDay: firstday,
+				eventTimeFormat: { // like '7pm'
+					hour: 'numeric',
+					minute: '2-digit',
+					meridiem: 'short'
+				},
 				events: events,
 
 				height: 'auto',

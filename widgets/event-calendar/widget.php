@@ -427,7 +427,14 @@ class Event_Calendar extends Base {
             [
                 'label' => __('Description', 'happy-elementor-addons'),
                 'show_label' => true,
-                'type'  => Controls_Manager::WYSIWYG,
+				'type'  => Controls_Manager::WYSIWYG,
+				'default' => sprintf(
+					'<strong>%s</strong> %s',
+					__('Lorem Ipsum', 'happy-elementor-addons'),
+					__('is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries', 'happy-elementor-addons')
+				),
+
+                'default' => __('<strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries', 'happy-elementor-addons'),
             ]
         );
 
@@ -453,14 +460,19 @@ class Event_Calendar extends Base {
 			]
 		);
 
-		if ( !class_exists( 'Tribe__Events__Main' ) ) {
+		if ( ! class_exists( 'Tribe__Events__Main' ) ) {
 			$this->add_control(
 				'the_event_calendar_warning_text',
 				[
 					'type'            => Controls_Manager::RAW_HTML,
-					'raw'             => __('<strong>The Events Calendar</strong> is not installed/activated on your site. Please install and activate <a href="plugin-install.php?s=the-events-calendar&tab=search&type=term" target="_blank">The Events Calendar</a> first.',
-						'essential-addons-for-elementor'),
-					'content_classes' => 'eael-warning',
+					'raw'             => sprintf(
+						'<strong>%s</strong> %s <a href="plugin-install.php?s=the-events-calendar&tab=search&type=term" target="_blank">%s</a> %s',
+						__('The Events Calendar', 'happy-elementor-addons'),
+						__('is not installed/activated on your site. Please install and activate.', 'happy-elementor-addons'),
+						__('The Events Calendar', 'happy-elementor-addons'),
+						__(' first.', 'happy-elementor-addons')
+					),
+					// 'content_classes' => 'eael-warning',
 					'condition' => [
 						'event_calendar_type' => 'the_events_calendar',
 					],
