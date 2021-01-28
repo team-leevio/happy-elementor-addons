@@ -441,6 +441,12 @@ span.ha-ec-error-message {
 
 @media (max-width: 575px) {
 
+	.ha-ec-wrapper .fc-header-toolbar.fc-toolbar .fc-toolbar-chunk {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
     .ha-ec-popup-image,
     .ha-ec-popup-content {
         flex: 0 0 100%;
