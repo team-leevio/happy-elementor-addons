@@ -1042,8 +1042,9 @@ class Data_Table extends Base {
 	protected function data_table_render() {
 		$settings = $this->get_settings_for_display();
 
-		$table_row = [];
+		$table_row  = [];
 		$table_cell = [];
+
 		foreach ( $settings['rows_data'] as $row ) {
 			$row_id = uniqid();
 
@@ -1059,38 +1060,38 @@ class Data_Table extends Base {
 				$cell_key = end($table_row_keys );
 
 				$table_cell[] = [
-					'repeater_id' => $row['_id'],
-					'row_id' => $table_row[$cell_key]['id'],
-					'title' => $row['cell_name'],
-					'row_span' => $row['row_span'],
-					'row_column_span' => $row['row_column_span'],
-					'row_icon' => ! empty( $row['row_icon'] ) ? $row['row_icon'] : '',
-					'row_icons' => ! empty( $row['row_icons']['value'] ) ? $row['row_icons'] : '',
-					'row_icon_show' => ! empty( $row['row_icon_show'] ) ? $row['row_icon_show'] : '',
-					'row_image' => array_key_exists( 'row_image', $row ) ? $row['row_image'] : '',
+					'repeater_id'        => $row['_id'],
+					'row_id'             => $table_row[$cell_key]['id'],
+					'title'              => $row['cell_name'],
+					'row_span'           => $row['row_span'],
+					'row_column_span'    => $row['row_column_span'],
+					'row_icon'           => ! empty( $row['row_icon'] ) ? $row['row_icon'] : '',
+					'row_icons'          => ! empty( $row['row_icons']['value'] ) ? $row['row_icons'] : '',
+					'row_icon_show'      => ! empty( $row['row_icon_show'] ) ? $row['row_icon_show'] : '',
+					'row_image'          => array_key_exists( 'row_image', $row ) ? $row['row_image'] : '',
 					'row_thumbnail_size' => !empty( $row['row_thumbnail_size'] ) ? $row['row_thumbnail_size'] : '',
-					'cell_link' => !empty( $row['cell_link']['url'] ) ? $row['cell_link'] : '',
+					'cell_link'          => !empty( $row['cell_link']['url'] ) ? $row['cell_link'] : '',
 				];
 			}
-
 		}
 		?>
 
 		<table class="ha-table">
-
 			<thead class="ha-table__head">
 				<tr class="ha-table__head-column">
 					<?php foreach ( $settings['columns_data'] as $index => $column_cell ) :
 						$column_repeater_key = $this->get_repeater_setting_key( 'column_span', 'columns_data', $index );
+
 						$this->add_render_attribute( $column_repeater_key, 'class', 'ha-table__head-column-cell' );
 						$this->add_render_attribute( $column_repeater_key, 'class', 'elementor-repeater-item-' . $column_cell['_id'] );
+
 						if ( $column_cell['column_span'] ) {
 							$this->add_render_attribute( $column_repeater_key, 'colspan', $column_cell['column_span'] );
 						}
 						?>
 						<th <?php echo $this->get_render_attribute_string( $column_repeater_key ); ?>>
 							<div class="ha-table__head-column-cell-wrap">
-								<div class="ha-table__head-column-cell-text"><?php echo esc_html( $column_cell['column_name'] ); ?></div>
+								<div class="ha-table__head-column-cell-text"><?php echo ha_kses_basic( $column_cell['column_name'] ); ?></div>
 									<?php if ( $column_cell['column_media'] == 'icon' && ! empty( $column_cell['column_icons'] ) ) : ?>
 										<div class="ha-table__head-column-cell-icon">
 											<?php Icons_Manager::render_icon( $column_cell['column_icons'] ); ?>
@@ -1138,14 +1139,12 @@ class Data_Table extends Base {
 								<td <?php echo $this->get_render_attribute_string( $row_span_repeater_key ); ?>>
 									<div class="ha-table__body-row-cell-wrap">
 										<div class="ha-table__body-row-cell-text">
-											<?php 
-											if ( ! empty( $table_cell[$j]['cell_link']['url'] ) ) :
-												?>
-												 <a <?php $this->print_render_attribute_string( $row_link_key ); ?>>
-												 	<?php echo esc_html( $table_cell[$j]['title'] );  ?>
+											<?php if ( ! empty( $table_cell[$j]['cell_link']['url'] ) ) : ?>
+												<a <?php $this->print_render_attribute_string( $row_link_key ); ?>>
+												 	<?php echo ha_kses_basic( $table_cell[$j]['title'] );  ?>
 												</a>
-												<?php
-												else: echo esc_html( $table_cell[$j]['title'] ); 
+											<?php else:
+												echo ha_kses_basic( $table_cell[$j]['title'] );
 											endif;
 											?>
 										</div>
@@ -1176,11 +1175,8 @@ class Data_Table extends Base {
 					</tr>
 				<?php endfor; ?>
 			</tbody>
-
 		</table>
 
 		<?php
-
 	}
-
 }
