@@ -44,6 +44,7 @@ class WPML_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/slider.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/social-icons.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/data-table.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/horizontal-timeline.php' );
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -524,6 +525,16 @@ class WPML_Manager {
 				'integration-class' => [
 					__NAMESPACE__ . '\\WPML_Data_Table_Column_Data',
 					__NAMESPACE__ . '\\WPML_Data_Table_Row_Data',
+				]
+			],
+
+			/**
+			 * Horizontal Timeline
+			 */
+			'horizontal-timeline' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Data_Horizontal_Timeline',
 				]
 			],
 		];
