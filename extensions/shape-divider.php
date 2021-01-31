@@ -84,10 +84,10 @@ class Shape_Divider {
 	 */
 	public static function additional_shape_divider( $shape_list ) {
 		$shape_list = [
-			'abstruct-web' => [
-				'title' => _x( 'Abstruct Web', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/abstruct-web.svg',
-				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/abstruct-web.svg',
+			'abstract-web' => [
+				'title' => _x( 'Abstract Web', 'Shapes', 'happy-elementor-addons' ),
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/abstract-web.svg',
+				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/abstract-web.svg',
 				'has_flip' => true,
 				'has_negative' => false,
 				'ha_shape' => true,
@@ -140,10 +140,10 @@ class Shape_Divider {
 				'has_negative' => false,
 				'ha_shape' => true,
 			],
-			'multi-web' => [
-				'title' => _x( 'Multi Web', 'Shapes', 'happy-elementor-addons' ),
-				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/multi-web.svg',
-				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/multi-web.svg',
+			'multi-wave' => [
+				'title' => _x( 'Multi Wave', 'Shapes', 'happy-elementor-addons' ),
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/multi-wave.svg',
+				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/multi-wave.svg',
 				'has_flip' => true,
 				'has_negative' => false,
 				'ha_shape' => true,
