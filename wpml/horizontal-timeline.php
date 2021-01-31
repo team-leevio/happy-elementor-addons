@@ -6,7 +6,7 @@ namespace Happy_Addons\Elementor;
 
 defined( 'ABSPATH' ) || die();
 
-class WPML_Data_Horizontal_Timeline extends \WPML_Elementor_Module_With_Items  {
+class WPML_Horizontal_Timeline extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string

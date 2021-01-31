@@ -552,7 +552,7 @@ class WPML_Manager {
 			'horizontal-timeline' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Data_Horizontal_Timeline',
+					__NAMESPACE__ . '\\WPML_Horizontal_Timeline',
 				]
 			],
 		];
