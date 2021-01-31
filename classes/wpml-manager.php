@@ -43,6 +43,7 @@ class WPML_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/skills.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/slider.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/social-icons.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/data-table.php' );
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -513,6 +514,17 @@ class WPML_Manager {
 						'editor_type' => 'LINE',
 					],
 				],
+			],
+
+			/**
+			 * Data table
+			 */
+			'data-table' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Data_Table_Column_Data',
+					__NAMESPACE__ . '\\WPML_Data_Table_Row_Data',
+				]
 			],
 		];
 
