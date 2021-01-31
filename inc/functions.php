@@ -206,27 +206,92 @@ function ha_elementor() {
  */
 function ha_get_allowed_html_tags( $level = 'basic' ) {
 	$allowed_html = [
-		'b' => [],
-		'i' => [],
-		'u' => [],
-		's' => [],
-		'br' => [],
-		'em' => [],
-		'del' => [],
-		'ins' => [],
-		'sub' => [],
-		'sup' => [],
-		'code' => [],
-		'mark' => [],
-		'small' => [],
-		'strike' => [],
+		'b' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
+		'i' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
+		'u' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
+		's' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
+		'br' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
+		'em' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
+		'del' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
+		'ins' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
+		'sub' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
+		'sup' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
+		'code' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
+		'mark' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
+		'small' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
+		'strike' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
 		'abbr' => [
 			'title' => [],
+			'class' => [],
+			'id' => [],
+			'style' => []
 		],
 		'span' => [
 			'class' => [],
+			'id' => [],
+			'style' => []
 		],
-		'strong' => [],
+		'strong' => [
+			'class' => [],
+			'id' => [],
+			'style' => []
+		],
 	];
 
 	if ( $level === 'intermediate' ) {
@@ -236,29 +301,52 @@ function ha_get_allowed_html_tags( $level = 'basic' ) {
 				'title' => [],
 				'class' => [],
 				'id' => [],
+				'style' => []
 			],
 			'q' => [
 				'cite' => [],
+				'class' => [],
+				'id' => [],
+				'style' => []
 			],
 			'img' => [
 				'src' => [],
 				'alt' => [],
 				'height' => [],
 				'width' => [],
+				'class' => [],
+				'id' => [],
+				'style' => []
 			],
 			'dfn' => [
 				'title' => [],
+				'class' => [],
+				'id' => [],
+				'style' => []
 			],
 			'time' => [
 				'datetime' => [],
+				'class' => [],
+				'id' => [],
+				'style' => []
 			],
 			'cite' => [
 				'title' => [],
+				'class' => [],
+				'id' => [],
+				'style' => []
 			],
 			'acronym' => [
 				'title' => [],
+				'class' => [],
+				'id' => [],
+				'style' => []
 			],
-			'hr' => [],
+			'hr' => [
+				'class' => [],
+				'id' => [],
+				'style' => []
+			],
 		];
 
 		$allowed_html = array_merge( $allowed_html, $tags );
