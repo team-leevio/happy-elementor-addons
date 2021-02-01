@@ -132,6 +132,7 @@ class Base {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/foreground.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/select2.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/widget-list.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/text-stroke.php' );
 
 		$Foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
 		$controls_Manager->add_group_control( $Foreground::get_type(), new $Foreground() );
@@ -141,5 +142,8 @@ class Base {
 
 		$Widget_List = __NAMESPACE__ . '\Controls\Widget_List';
 		ha_elementor()->controls_manager->register_control( $Widget_List::TYPE, new $Widget_List() );
+
+		$Text_Stroke = __NAMESPACE__ . '\Controls\Group_Control_Text_Stroke';
+		$controls_Manager->add_group_control( $Text_Stroke::get_type(), new $Text_Stroke() );
 	}
 }
