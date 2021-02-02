@@ -711,7 +711,7 @@
 
 		// Background overlay extension
 		var BackgroundOverlay = function($scope) {
-			$scope.hasClass('elementor-element-edit-mode') && $scope.addClass('has-bg-overlay');
+			$scope.hasClass('elementor-element-edit-mode') && $scope.addClass('ha-has-bg-overlay');
 		}
 
 		var fnHanlders = {
