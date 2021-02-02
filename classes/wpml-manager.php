@@ -43,6 +43,8 @@ class WPML_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/skills.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/slider.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/social-icons.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/data-table.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/horizontal-timeline.php' );
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -65,7 +67,9 @@ class WPML_Manager {
 						'editor_type' => 'LINE',
 					],
 				],
-				'integration-class' => __NAMESPACE__ . '\\WPML_Bar_Chart',
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Bar_Chart',
+				]
 			],
 
 			/**
@@ -106,7 +110,9 @@ class WPML_Manager {
 			 */
 			'carousel' => [
 				'fields' => [],
-				'integration-class' => __NAMESPACE__ . '\\WPML_Carousel',
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Carousel',
+				]
 			],
 
 			/**
@@ -253,7 +259,9 @@ class WPML_Manager {
 						'editor_type' => 'LINE',
 					],
 				],
-				'integration-class' => __NAMESPACE__ . '\\WPML_Image_Grid',
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Image_Grid',
+				]
 			],
 
 			/**
@@ -295,7 +303,9 @@ class WPML_Manager {
 						'editor_type' => 'LINE',
 					],
 				],
-				'integration-class' => __NAMESPACE__ . '\\WPML_Justified_Gallery',
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Justified_Gallery',
+				]
 			],
 
 			/**
@@ -303,7 +313,9 @@ class WPML_Manager {
 			 */
 			'logo-grid' => [
 				'fields' => [],
-				'integration-class' => __NAMESPACE__ . '\\WPML_Logo_Grid',
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Logo_Grid',
+				]
 			],
 
 			/**
@@ -396,7 +408,9 @@ class WPML_Manager {
 						'editor_type' => 'LINE',
 					],
 				],
-				'integration-class' => __NAMESPACE__ . '\\WPML_Pricing_Table',
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Pricing_Table',
+				]
 			],
 
 			/**
@@ -427,7 +441,9 @@ class WPML_Manager {
 			 */
 			'skills' => [
 				'fields' => [],
-				'integration-class' => __NAMESPACE__ . '\\WPML_Skills',
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Skills',
+				]
 			],
 
 			/**
@@ -435,7 +451,9 @@ class WPML_Manager {
 			 */
 			'slider' => [
 				'fields' => [],
-				'integration-class' => __NAMESPACE__ . '\\WPML_Slider',
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Slider',
+				]
 			],
 
 			/**
@@ -443,7 +461,9 @@ class WPML_Manager {
 			 */
 			'social-icons' => [
 				'fields' => [],
-				'integration-class' => __NAMESPACE__ . '\\WPML_Social_Icons',
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Social_Icons',
+				]
 			],
 
 			/**
@@ -513,6 +533,27 @@ class WPML_Manager {
 						'editor_type' => 'LINE',
 					],
 				],
+			],
+
+			/**
+			 * Data table
+			 */
+			'data-table' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Data_Table_Column_Data',
+					__NAMESPACE__ . '\\WPML_Data_Table_Row_Data',
+				]
+			],
+
+			/**
+			 * Horizontal Timeline
+			 */
+			'horizontal-timeline' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Horizontal_Timeline',
+				]
 			],
 		];
 

@@ -154,7 +154,7 @@ class Bar_Chart extends Base {
 			'chart_data',
 			[
 				'type'        => Controls_Manager::REPEATER,
-				'fields'      => array_values( $repeater->get_controls() ),
+				'fields'      => $repeater->get_controls(),
 				'title_field' => '{{{ label }}}',
 				'default'     => [
 					[

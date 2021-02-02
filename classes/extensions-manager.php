@@ -69,6 +69,11 @@ class Extensions_Manager {
 				'title' => __( 'Image Masking', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-image-masking',
 				'is_pro' => true,
+			],
+			'happy-particle-effects' => [
+				'title' => __( 'Happy Particle Effects', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-spark',
+				'is_pro' => true,
 			]
 		];
 	}
@@ -147,6 +152,10 @@ class Extensions_Manager {
 
 			case 'image-masking':
 				add_filter( 'happyaddons/extensions/image_masking', '__return_false' );
+				break;
+
+			case 'happy-particle-effects':
+				add_filter( 'happyaddons/extensions/happy_particle_effects', '__return_false' );
 				break;
 		}
 	}

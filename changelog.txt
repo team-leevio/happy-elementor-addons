@@ -1,3 +1,9 @@
+27 January 2020 =
+
+- Fix: Shape Divider spell
+- Fix: Chart Widgets console error
+- New: Happy Particle Effects disable option
+
 = 2.19.0 - 20 January 2020 =
 
 - New: Features control panel
