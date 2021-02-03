@@ -3,10 +3,10 @@
 
 
 .grid {
+	display: flex;
 	position: relative;
 	margin: 0 auto;
-	padding: 1em 0 4em;
-	max-width: 1000px;
+	width: 100%;
 	list-style: none;
 	text-align: center;
 }
@@ -14,13 +14,11 @@
 /* Common style */
 .grid figure {
 	position: relative;
-	float: left;
 	overflow: hidden;
 	margin: 10px 1%;
-	min-width: 320px;
-	max-width: 480px;
+	height: 100%;
+	width: 100%;
 	max-height: 360px;
-	width: 48%;
 	background: #3085a3;
 	text-align: center;
 	cursor: pointer;
@@ -29,9 +27,11 @@
 .grid figure img {
 	position: relative;
 	display: block;
-	min-height: 100%;
-	max-width: 100%;
+	height: 100%;
+	width: 100%;
 	opacity: 0.8;
+	object-fit: cover;
+    object-position: center;
 }
 
 .grid figure figcaption {
@@ -40,6 +40,10 @@
 	text-transform: uppercase;
 	font-size: 1.25em;
 	backface-visibility: hidden;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .grid figure figcaption::before,
@@ -47,8 +51,7 @@
 	pointer-events: none;
 }
 
-.grid figure figcaption,
-.grid figure figcaption > a {
+.grid figure figcaption{
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -56,18 +59,7 @@
 	height: 100%;
 }
 
-/* Anchor will cover the whole item by default */
-/* For some effects it will show as a button */
-.grid figure figcaption > a {
-	z-index: 1000;
-	text-indent: 200%;
-	white-space: nowrap;
-	font-size: 0;
-	opacity: 0;
-}
-
 .grid figure h2 {
-	word-spacing: -0.15em;
 	font-weight: 300;
 }
 
@@ -81,8 +73,7 @@
 }
 
 .grid figure p {
-	letter-spacing: 1px;
-	font-size: 68.5%;
+	font-size: 16px;
 }
 
 /* Individual effects */
@@ -428,12 +419,12 @@ figure.ha-effect-layla figcaption::after {
 }
 
 figure.ha-effect-layla h2 {
-	padding-top: 26%;
+	// padding-top: 26%;
 	transition: transform 0.35s;
 }
 
 figure.ha-effect-layla p {
-	padding: 0.5em 2em;
+	// padding: 0.5em 2em;
 	text-transform: none;
 	opacity: 0;
 	transform: translate3d(0,-10px,0);
@@ -770,6 +761,7 @@ figure.ha-effect-dexter:hover figcaption::after {
 figure.ha-effect-dexter figcaption {
 	padding: 3em;
 	text-align: left;
+	justify-content: flex-start;
 }
 
 figure.ha-effect-dexter p {
@@ -810,6 +802,7 @@ figure.ha-effect-sarah:hover img {
 
 figure.ha-effect-sarah figcaption {
 	text-align: left;
+	align-items: flex-start;
 }
 
 figure.ha-effect-sarah h2 {
@@ -844,105 +837,6 @@ figure.ha-effect-sarah p {
 figure.ha-effect-sarah:hover p {
 	opacity: 1;
 	transform: translate3d(0,0,0);
-}
-
-/*---------------*/
-/***** Zoe *****/
-/*---------------*/
-
-figure.ha-effect-zoe figcaption {
-	top: auto;
-	bottom: 0;
-	padding: 1em;
-	height: 3.75em;
-	background: #fff;
-	color: #3c4a50;
-	transition: transform 0.35s;
-	transform: translate3d(0,100%,0);
-}
-
-figure.ha-effect-zoe h2 {
-	float: left;
-}
-
-figure.ha-effect-zoe p.icon-links a {
-	float: right;
-	color: #3c4a50;
-	font-size: 1.4em;
-}
-
-figure.ha-effect-zoe:hover p.icon-links a:hover,
-figure.ha-effect-zoe:hover p.icon-links a:focus {
-	color: #252d31;
-}
-
-figure.ha-effect-zoe p.description {
-	position: absolute;
-	bottom: 8em;
-	padding: 2em;
-	color: #fff;
-	text-transform: none;
-	font-size: 90%;
-	opacity: 0;
-	transition: opacity 0.35s;
-	-webkit-backface-visibility: hidden; /* Fix for Chrome 37.0.2062.120 (Mac) */
-}
-
-figure.ha-effect-zoe h2,
-figure.ha-effect-zoe p.icon-links a {
-	transition: transform 0.35s;
-	transform: translate3d(0,200%,0);
-}
-
-figure.ha-effect-zoe p.icon-links a span::before {
-	display: inline-block;
-	padding: 8px 10px;
-	font-family: 'feathericons';
-	speak: none;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.icon-eye::before {
-	content: '\e000';
-}
-
-.icon-paper-clip::before {
-	content: '\e001';
-}
-
-.icon-heart::before {
-	content: '\e024';
-}
-
-figure.ha-effect-zoe h2 {
-	display: inline-block;
-}
-
-figure.ha-effect-zoe:hover p.description {
-	opacity: 1;
-}
-
-figure.ha-effect-zoe:hover figcaption,
-figure.ha-effect-zoe:hover h2,
-figure.ha-effect-zoe:hover p.icon-links a {
-	transform: translate3d(0,0,0);
-}
-
-figure.ha-effect-zoe:hover h2 {
-	transition-delay: 0.05s;
-}
-
-figure.ha-effect-zoe:hover p.icon-links a:nth-child(3) {
-	transition-delay: 0.1s;
-}
-
-figure.ha-effect-zoe:hover p.icon-links a:nth-child(2) {
-	transition-delay: 0.15s;
-}
-
-figure.ha-effect-zoe:hover p.icon-links a:first-child {
-	transition-delay: 0.2s;
 }
 
 /*---------------*/
@@ -1113,410 +1007,7 @@ figure.ha-effect-goliath:hover p {
 	transform: translate3d(0,0,0);
 }
 
-/*-----------------*/
-/***** Hera *****/
-/*-----------------*/
 
-figure.ha-effect-hera {
-	background: #303fa9;
-}
-
-figure.ha-effect-hera h2 {
-	font-size: 158.75%;
-}
-
-figure.ha-effect-hera h2,
-figure.ha-effect-hera p {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transition: opacity 0.35s, transform 0.35s;
-	transform: translate3d(-50%,-50%,0);
-	transform-origin: 50%;
-}
-
-figure.ha-effect-hera figcaption::before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 200px;
-	height: 200px;
-	border: 2px solid #fff;
-	content: '';
-	opacity: 0;
-	transition: opacity 0.35s, transform 0.35s;
-	transform: translate3d(-50%,-50%,0) rotate3d(0,0,1,-45deg) scale3d(0,0,1);
-	transform-origin: 50%;
-}
-
-figure.ha-effect-hera p {
-	width: 100px;
-	text-transform: none;
-	font-size: 121%;
-	line-height: 2;
-}
-
-figure.ha-effect-hera p a {
-	color: #fff;
-}
-
-figure.ha-effect-hera p a:hover,
-figure.ha-effect-hera p a:focus {
-	opacity: 0.6;
-}
-
-figure.ha-effect-hera p a i {
-	opacity: 0;
-	transition: opacity 0.35s, transform 0.35s;
-}
-
-figure.ha-effect-hera p a:first-child i {
-	transform: translate3d(-60px,-60px,0);
-}
-
-figure.ha-effect-hera p a:nth-child(2) i {
-	transform: translate3d(60px,-60px,0);
-}
-
-figure.ha-effect-hera p a:nth-child(3) i {
-	transform: translate3d(-60px,60px,0);
-}
-
-figure.ha-effect-hera p a:nth-child(4) i {
-	transform: translate3d(60px,60px,0);
-}
-
-figure.ha-effect-hera:hover figcaption::before {
-	opacity: 1;
-	transform: translate3d(-50%,-50%,0) rotate3d(0,0,1,-45deg) scale3d(1,1,1);
-}
-
-figure.ha-effect-hera:hover h2 {
-	opacity: 0;
-	transform: translate3d(-50%,-50%,0) scale3d(0.8,0.8,1);
-}
-
-figure.ha-effect-hera:hover p i:empty {
-	transform: translate3d(0,0,0); /* just because it's stronger than nth-child */
-	opacity: 1;
-}
-
-/*-----------------*/
-/***** Winston *****/
-/*-----------------*/
-
-figure.ha-effect-winston {
-	background: #162633;
-	text-align: left;
-}
-
-figure.ha-effect-winston img {
-	transition: opacity 0.45s;
-	backface-visibility: hidden;
-}
-
-figure.ha-effect-winston figcaption::before {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: url(../img/triangle.svg) no-repeat center center;
-	background-size: 100% 100%;
-	content: '';
-	transition: opacity 0.45s, transform 0.45s;
-	transform: rotate3d(0,0,1,45deg);
-	transform-origin: 0 100%;
-}
-
-figure.ha-effect-winston h2 {
-	transition: transform 0.35s;
-	transform: translate3d(0,20px,0);
-}
-
-figure.ha-effect-winston p {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	padding: 0 1.5em 7% 0;
-}
-
-figure.ha-effect-winston a {
-	margin: 0 10px;
-	color: #5d504f;
-	font-size: 170%;
-}
-
-figure.ha-effect-winston a:hover,
-figure.ha-effect-winston a:focus {
-	color: #cc6055;
-}
-
-figure.ha-effect-winston p a i {
-	opacity: 0;
-	transition: opacity 0.35s, transform 0.35s;
-	transform: translate3d(0,50px,0);
-}
-
-figure.ha-effect-winston:hover img {
-	opacity: 0.6;
-}
-
-figure.ha-effect-winston:hover h2 {
-	transform: translate3d(0,0,0);
-}
-
-figure.ha-effect-winston:hover figcaption::before {
-	opacity: 0.7;
-	transform: rotate3d(0,0,1,20deg);
-}
-
-figure.ha-effect-winston:hover p i {
-	opacity: 1;
-	transform: translate3d(0,0,0);
-}
-
-figure.ha-effect-winston:hover p a:nth-child(3) i {
-	transition-delay: 0.05s;
-}
-
-figure.ha-effect-winston:hover p a:nth-child(2) i {
-	transition-delay: 0.1s;
-}
-
-figure.ha-effect-winston:hover p a:first-child i {
-	transition-delay: 0.15s;
-}
-
-/*-----------------*/
-/***** Selena *****/
-/*-----------------*/
-
-figure.ha-effect-selena {
-	background: #fff;
-}
-
-figure.ha-effect-selena img {
-	opacity: 0.95;
-	transition: transform 0.35s;
-	transform-origin: 50% 50%;
-}
-
-figure.ha-effect-selena:hover img {
-	transform: scale3d(0.95,0.95,1);
-}
-
-figure.ha-effect-selena h2 {
-	transition: transform 0.35s;
-	transform: translate3d(0,20px,0);
-}
-
-figure.ha-effect-selena p {
-	opacity: 0;
-	transition: opacity 0.35s, transform 0.35s;
-	transform: perspective(1000px) rotate3d(1,0,0,90deg);
-	transform-origin: 50% 0%;
-}
-
-figure.ha-effect-selena:hover h2 {
-	transform: translate3d(0,0,0);
-}
-
-figure.ha-effect-selena:hover p {
-	opacity: 1;
-	transform: perspective(1000px) rotate3d(1,0,0,0);
-}
-
-/*-----------------*/
-/***** Terry *****/
-/*-----------------*/
-
-figure.ha-effect-terry {
-	background: #34495e;
-}
-
-figure.ha-effect-terry figcaption {
-	padding: 1em;
-}
-
-figure.ha-effect-terry figcaption::before,
-figure.ha-effect-terry figcaption::after {
-	position: absolute;
-	width: 200%;
-	height: 200%;
-	border-style: solid;
-	border-color: #101010;
-	content: '';
-	transition: transform 0.35s;
-}
-
-figure.ha-effect-terry figcaption::before {
-	right: 0;
-	bottom: 0;
-	border-width: 0 70px 60px 0;
-	transform: translate3d(70px,60px,0);
-}
-
-figure.ha-effect-terry figcaption::after {
-	top: 0;
-	left: 0;
-	border-width: 15px 0 0 15px;
-	transform: translate3d(-15px,-15px,0);
-}
-
-figure.ha-effect-terry img,
-figure.ha-effect-terry p a {
-	transition: opacity 0.35s, transform 0.35s;
-}
-
-figure.ha-effect-terry img {
-	opacity: 0.85;
-}
-
-figure.ha-effect-terry h2 {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	padding: 0.4em 10px;
-	width: 50%;
-	transition: transform 0.35s;
-	transform: translate3d(100%,0,0);
-}
-
-@media screen and (max-width: 920px) {
-	figure.ha-effect-terry h2 {
-		padding: 0.75em 10px;
-		font-size: 120%;
-	}
-}
-
-figure.ha-effect-terry p {
-	float: right;
-	clear: both;
-	text-align: left;
-	text-transform: none;
-	font-size: 111%;
-}
-
-figure.ha-effect-terry p a {
-	display: block;
-	margin-bottom: 1em;
-	color: #fff;
-	opacity: 0;
-	transform: translate3d(90px,0,0);
-}
-
-figure.ha-effect-terry p a:hover,
-figure.ha-effect-terry p a:focus {
-	color: #f3cf3f;
-}
-
-figure.ha-effect-terry:hover figcaption::before,
-figure.ha-effect-terry:hover figcaption::after {
-	transform: translate3d(0,0,0);
-}
-
-figure.ha-effect-terry:hover img {
-	opacity: 0.6;
-
-}
-
-figure.ha-effect-terry:hover h2,
-figure.ha-effect-terry:hover p a {
-	transform: translate3d(0,0,0);
-}
-
-figure.ha-effect-terry:hover p a {
-	opacity: 1;
-}
-
-figure.ha-effect-terry:hover p a:first-child {
-	transition-delay: 0.025s;
-}
-
-figure.ha-effect-terry:hover p a:nth-child(2) {
-	transition-delay: 0.05s;
-}
-
-figure.ha-effect-terry:hover p a:nth-child(3) {
-	transition-delay: 0.075s;
-}
-
-figure.ha-effect-terry:hover p a:nth-child(4) {
-	transition-delay: 0.1s;
-}
-
-/*-----------------*/
-/***** Phoebe *****/
-/*-----------------*/
-
-figure.ha-effect-phoebe {
-	background: #675983;
-}
-
-figure.ha-effect-phoebe img {
-	opacity: 0.85;
-	transition: opacity 0.35s;
-}
-
-figure.ha-effect-phoebe:hover img {
-	opacity: 0.6;
-}
-
-figure.ha-effect-phoebe figcaption::before {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: url(../img/triangle2.svg) no-repeat center center;
-	background-size: 100% 100%;
-	content: '';
-	transition: opacity 0.35s, transform 0.35s;
-	transform: scale3d(5,2.5,1);
-	transform-origin: 50% 50%;
-}
-
-figure.ha-effect-phoebe:hover figcaption::before {
-	opacity: 0.6;
-	transform: scale3d(1,1,1);
-}
-
-figure.ha-effect-phoebe h2 {
-	margin-top: 1em;
-	transition: transform 0.35s;
-	transform: translate3d(0,40px,0);
-}
-
-figure.ha-effect-phoebe:hover h2 {
-	transform: translate3d(0,0,0);
-}
-
-figure.ha-effect-phoebe p a {
-	color: #fff;
-	font-size: 140%;
-	opacity: 0;
-	position: relative;
-	display: inline-block;
-	transition: opacity 0.35s, transform 0.35s;
-}
-
-figure.ha-effect-phoebe p a:first-child {
-	transform: translate3d(-60px,-60px,0);
-}
-
-figure.ha-effect-phoebe p a:nth-child(2) {
-	transform: translate3d(0,60px,0);
-}
-
-figure.ha-effect-phoebe p a:nth-child(3) {
-	transform: translate3d(60px,-60px,0);
-}
-
-figure.ha-effect-phoebe:hover p a {
-	opacity: 1;
-	transform: translate3d(0,0,0);
-}
 
 /*-----------------*/
 /***** Apollo *****/
@@ -1576,151 +1067,6 @@ figure.ha-effect-apollo:hover p {
 }
 
 /*-----------------*/
-/***** Kira *****/
-/*-----------------*/
-
-figure.ha-effect-kira {
-	background: #fff;
-	text-align: left;
-}
-
-figure.ha-effect-kira img {
-	transition: opacity 0.35s;
-}
-
-figure.ha-effect-kira figcaption {
-	z-index: 1;
-}
-
-figure.ha-effect-kira p {
-	padding: 2.25em 0.5em;
-	font-weight: 600;	
-	font-size: 100%;
-	line-height: 1.5;
-	opacity: 0;
-	transition: opacity 0.35s, transform 0.35s;
-	transform: translate3d(0,-10px,0);
-}
-
-figure.ha-effect-kira p a {
-	margin: 0 0.5em;
-	color: #101010;
-}
-
-figure.ha-effect-kira p a:hover,
-figure.ha-effect-kira p a:focus {
-	opacity: 0.6;
-}
-
-figure.ha-effect-kira figcaption::before {
-	position: absolute;
-	top: 0;
-	right: 2em;
-	left: 2em;
-	z-index: -1;
-	height: 3.5em;
-	background: #fff;
-	content: '';
-	transition: opacity 0.35s, transform 0.35s;
-	transform: translate3d(0,4em,0) scale3d(1,0.023,1);
-	transform-origin: 50% 0;
-}
-
-figure.ha-effect-kira:hover img {
-	opacity: 0.5;
-}
-
-figure.ha-effect-kira:hover p {
-	opacity: 1;
-	transform: translate3d(0,0,0);
-}
-
-figure.ha-effect-kira:hover figcaption::before {
-	opacity: 0.7;
-	transform: translate3d(0,5em,0) scale3d(1,1,1);
-}
-
-/*-----------------*/
-/***** Steve *****/
-/*-----------------*/
-
-figure.ha-effect-steve {
-	z-index: auto;
-	overflow: visible;
-	background: #000;
-}
-
-figure.ha-effect-steve:before,
-figure.ha-effect-steve h2:before {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: -1;
-	width: 100%;
-	height: 100%;
-	background: #000;
-	content: '';
-	transition: opacity 0.35s;
-}
-
-figure.ha-effect-steve:before {
-	box-shadow: 0 3px 30px rgba(0,0,0,0.8);
-	opacity: 0;
-}
-
-figure.ha-effect-steve figcaption {
-	z-index: 1;
-}
-
-figure.ha-effect-steve img {
-	opacity: 1;
-	transition: transform 0.35s;
-	transform: perspective(1000px) translate3d(0,0,0);
-}
-
-figure.ha-effect-steve h2,
-figure.ha-effect-steve p {
-	background: #fff;
-	color: #2d434e;
-}
-
-figure.ha-effect-steve h2 {
-	position: relative;
-	margin-top: 2em;
-	padding: 0.25em;
-}
-
-figure.ha-effect-steve h2:before {
-	box-shadow: 0 1px 10px rgba(0,0,0,0.5);
-}
-
-figure.ha-effect-steve p {
-	margin-top: 1em;
-	padding: 0.5em;
-	font-weight: 800;
-	opacity: 0;
-	transition: opacity 0.35s, transform 0.35s;
-	transform: scale3d(0.9,0.9,1);
-}
-
-figure.ha-effect-steve:hover:before {
-	opacity: 1;
-}
-
-figure.ha-effect-steve:hover img {
-	transform: perspective(1000px) translate3d(0,0,21px);
-}
-
-figure.ha-effect-steve:hover h2:before {
-	opacity: 0;
-}
-
-figure.ha-effect-steve:hover p {
-	opacity: 1;
-	transform: scale3d(1,1,1);
-}
-
-/*-----------------*/
 /***** Moses *****/
 /*-----------------*/
 
@@ -1731,6 +1077,10 @@ figure.ha-effect-moses {
 figure.ha-effect-moses img {
 	opacity: 0.85;
 	transition: opacity 0.35s;
+}
+
+figure.ha-effect-moses figcaption{
+	align-items: flex-start;
 }
 
 figure.ha-effect-moses h2,
@@ -1765,7 +1115,7 @@ figure.ha-effect-moses:hover h2 {
 
 figure.ha-effect-moses:hover p {
 	opacity: 1;
-	transform: translate3d(0,0,0);
+	transform: translate3d(100%,0,0);
 }
 
 figure.ha-effect-moses:hover img {
@@ -1811,7 +1161,6 @@ figure.ha-effect-jazz p {
 }
 
 figure.ha-effect-jazz h2 {
-	padding-top: 26%;
 	transition: transform 0.35s;
 }
 
@@ -1974,6 +1323,10 @@ figure.ha-effect-duke {
 	background: linear-gradient(-45deg, #34495e 0%,#cc6055 100%);
 }
 
+figure.ha-effect-duke figcaption{
+	justify-content: flex-end;
+}
+
 figure.ha-effect-duke img,
 figure.ha-effect-duke p {
 	transition: opacity 0.35s, transform 0.35s;
@@ -1988,13 +1341,10 @@ figure.ha-effect-duke h2 {
 	transition: transform 0.35s;
 	transform: scale3d(0.8,0.8,1);
 	transform-origin: 50% 100%;
+	margin-bottom: auto;
 }
 
 figure.ha-effect-duke p {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	margin: 20px;
 	padding: 30px;
 	border: 2px solid #fff;
 	text-transform: none;
@@ -2002,6 +1352,8 @@ figure.ha-effect-duke p {
 	opacity: 0;
 	transform: scale3d(0.8,0.8,1);
 	transform-origin: 50% -100%;
+	margin-top: auto;
+    width: 100%;
 }
 
 figure.ha-effect-duke:hover h2,

@@ -67,7 +67,6 @@ class Image_Hovereffect extends Base
 			[
 				'label' => __('Hover Effect', 'happy-elementor-addons'),
 				'type' => Controls_Manager::SELECT2,
-				'multiple' => false,
 				'options' => [
 					'ha-effect-sadie'  => __('Sadie', 'happy-elementor-addons'),
 					'ha-effect-lily'  => __('Lily', 'happy-elementor-addons'),
@@ -91,7 +90,7 @@ class Image_Hovereffect extends Base
 					'ha-effect-lexi'  => __('Lexi', 'happy-elementor-addons'),
 					'ha-effect-duke'  => __('Duke', 'happy-elementor-addons'),
 				],
-				'default' => ['ha-effect-sadie'],
+				'default' => 'ha-effect-sadie',
 			]
 		);
 
@@ -120,7 +119,6 @@ class Image_Hovereffect extends Base
 						<?php if ($settings['hover_effect'] == 'ha-effect-lily') : ?>
 						</div>
 					<?php endif; ?>
-					<a href="#">View more</a>
 				</figcaption>
 			</figure>
 		</div>
