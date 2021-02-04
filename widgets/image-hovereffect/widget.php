@@ -9,13 +9,13 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Group_Control_Css_Filter;
-use Elementor\Repeater;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
+use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Typography;
 use Elementor\Core\Schemes\Typography;
+use Elementor\Utils;
 
 defined('ABSPATH') || die();
 
@@ -55,10 +55,72 @@ class Image_Hovereffect extends Base
 	protected function register_content_controls()
 	{
 		$this->start_controls_section(
-			'_section_effects',
+			'_section_image_content',
 			[
-				'label' => __('Effects', 'happy-elementor-addons'),
+				'label' => __('Image Content', 'happy-elementor-addons'),
 				'tab' => Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_control(
+			'hover_image',
+			[
+				'label' => __('Image', 'happy-elementor-addons'),
+				'type' => Controls_Manager::MEDIA,
+				'default' => [
+					'url' => Utils::get_placeholder_image_src(),
+				],
+			]
+		);
+
+		$this->add_control(
+			'hover_image_alt_tag',
+			[
+				'label' => __('Image ALT Tag', 'happy-elementor-addons'),
+				'type' => Controls_Manager::TEXT,
+				'default' => __('Image hover effect image', 'happy-elementor-addons'),
+				'placeholder' => __('Type here image alt tag value', 'happy-elementor-addons'),
+				'dynamic' => ['active' => true,],
+			]
+		);
+
+		$this->add_control(
+			'hover_title',
+			[
+				'label' => __('Title', 'happy-elementor-addons'),
+				'type' => Controls_Manager::TEXTAREA,
+				'rows' => 3,
+				'default' => __('Holy <span>Sadie</span>', 'happy-elementor-addons'),
+				'placeholder' => __('Type your title here', 'happy-elementor-addons'),
+				'dynamic' => ['active' => true],
+			]
+		);
+
+		$this->add_control(
+			'hover_description',
+			[
+				'label' => __('Description', 'happy-elementor-addons'),
+				'type' => Controls_Manager::TEXTAREA,
+				'rows' => 10,
+				'default' => __('Sadie never took her eyes off me. She had a dark soul.', 'happy-elementor-addons'),
+				'placeholder' => __('Type your description here', 'happy-elementor-addons'),
+				'dynamic' => ['active' => true],
+			]
+		);
+
+		$this->add_control(
+			'hover_link',
+			[
+				'label' => __('Link URL', 'happy-elementor-addons'),
+				'type' => Controls_Manager::URL,
+				'placeholder' => __('https://your-link.com', 'happy-elementor-addons'),
+				'show_external' => true,
+				'default' => [
+					'url' => '',
+					'is_external' => true,
+					'nofollow' => true,
+				],
+				'dynamic' => ['active' => true],
 			]
 		);
 
@@ -94,40 +156,110 @@ class Image_Hovereffect extends Base
 			]
 		);
 
-		$this->add_control(
-			'hover_title',
-			[
-				'label' => __('Title', 'happy-elementor-addons'),
-				'type' => Controls_Manager::TEXTAREA,
-				'rows' => 3,
-				'default' => __('Holy <span>Sadie</span>', 'happy-elementor-addons'),
-				'placeholder' => __('Type your title here', 'happy-elementor-addons'),
-				'dynamic' => ['active' => true],
-			]
-		);
-
-		$this->add_control(
-			'hover_description',
-			[
-				'label' => __('Description', 'happy-elementor-addons'),
-				'type' => Controls_Manager::TEXTAREA,
-				'rows' => 10,
-				'default' => __('Sadie never took her eyes off me. She had a dark soul.', 'happy-elementor-addons'),
-				'placeholder' => __('Type your description here', 'happy-elementor-addons'),
-				'dynamic' => ['active' => true],
-			]
-		);
-
 		$this->end_controls_section();
 	}
 
 	protected function register_style_controls()
 	{
 		$this->start_controls_section(
-			'_section_effects_style',
+			'_section_common_style',
 			[
-				'label' => __('Style', 'happy-elementor-addons'),
+				'label' => __('Common', 'happy-elementor-addons'),
 				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'hover_container_height_width_control',
+			[
+				'label' => __('Container Max Width?', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __('Yes', 'happy-elementor-addons'),
+				'label_off' => __('No', 'happy-elementor-addons'),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);
+
+		$this->add_responsive_control(
+			'hover_width',
+			[
+				'label' => __('Width', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => '%',
+					'size' => 50,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .box' => 'width: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'hover_container_height_width_control' => 'yes'
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'hover_height',
+			[
+				'label' => __('Height', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => '%',
+					'size' => 50,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .box' => 'width: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'hover_container_height_width_control' => 'yes'
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'hover_border',
+				'label' => __('Border', 'happy-elementor-addons'),
+				'selector' => '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig',
+			]
+		);
+
+		$this->add_control(
+			'hover_border_radius',
+			[
+				'label' => __('Border Radius', 'happy-elementor-addons'),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%', 'em'],
+				'selectors' => [
+					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -135,7 +267,7 @@ class Image_Hovereffect extends Base
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typo',
-				'label' => 'Title Typography',
+				'label' => __('Title Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-title',
 				'scheme' => Typography::TYPOGRAPHY_2,
 			]
@@ -146,9 +278,23 @@ class Image_Hovereffect extends Base
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'description_typo',
-				'label' => 'Description Typography',
+				'label' => __('Description Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-desc',
 				'scheme' => Typography::TYPOGRAPHY_2,
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name'     => 'hover_overlay',
+				'label' => __('Background', 'happy-elementor-addons'),
+				'show_label' => true,
+				'types' => ['classic', 'gradient'],
+				'exclude' => [
+					'classic' => 'image' // remove image bg option
+				],
+				'selector' => '{{WRAPPER}} .jhh',
 			]
 		);
 
@@ -232,10 +378,12 @@ class Image_Hovereffect extends Base
 	protected function render()
 	{
 		$settings = $this->get_settings_for_display();
+		$url_target = $settings['hover_link']['is_external'] ? ' target="_blank"' : '';
+		$url_nofollow = $settings['hover_link']['nofollow'] ? ' rel="nofollow"' : '';
 ?>
 		<div class="ha-ihe-wrapper grid">
 			<figure class="ha-ihe-fig <?php echo esc_attr($settings['hover_effect']); ?>">
-				<img class="ha-ihe-img" src="https://tympanus.net/Development/HoverEffectIdeas/img/9.jpg" alt="img12" />
+				<img class="ha-ihe-img" src="<?php echo esc_url($settings['hover_image']['url']); ?>" alt="<?php echo esc_attr($settings['hover_image_alt_tag']); ?>" />
 				<figcaption class="ha-ihe-caption">
 					<?php if ($settings['hover_effect'] == 'ha-effect-lily') : ?>
 						<div>
@@ -246,6 +394,9 @@ class Image_Hovereffect extends Base
 						<?php endif; ?>
 						<?php if ($settings['hover_effect'] == 'ha-effect-lily') : ?>
 						</div>
+					<?php endif; ?>
+					<?php if ($settings['hover_link']['url'] != '') : ?>
+						<a href="<?php echo esc_url($settings['hover_link']['url']); ?>" <?php echo esc_attr($url_target . $url_nofollow); ?>></a>
 					<?php endif; ?>
 				</figcaption>
 			</figure>
