@@ -168,13 +168,10 @@ class Image_Hovereffect extends Base
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-title' => 'color: {{VALUE}}; border-color: {{VALUE}};',
-					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-title::after' => 'background: {{VALUE}};',
-					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-caption::before' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-caption::before' => 'border-color: {{VALUE}};',
-					// '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-caption::before' => 'background: {{VALUE}};',
-					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-caption::after' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-caption::after' => 'border-color: {{VALUE}};',
-					// '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-caption::after' => 'background: {{VALUE}};',
+					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-title::before' => '--ha-ihe-title-before-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-title::after' => '--ha-ihe-title-after-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-caption::before' => '--ha-ihe-fig-before-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-caption::after' => '--ha-ihe-fig-after-color: {{VALUE}};',
 				],
 			]
 		);
@@ -185,8 +182,7 @@ class Image_Hovereffect extends Base
 				'label' => __('Description Color', 'happy-elementor-addons'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-desc' => 'color: {{VALUE}}; border-color: {{VALUE}};',
-					// '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-desc' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-desc' => 'color: {{VALUE}}; --ha-ihe-desc-border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -207,13 +203,10 @@ class Image_Hovereffect extends Base
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-title' => 'color: {{VALUE}}; border-color: {{VALUE}};',
-					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-title::after' => 'background: {{VALUE}};',
-					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-caption::before' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-caption::before' => 'border-color: {{VALUE}};',
-					// '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-caption::before' => 'background: {{VALUE}};',
-					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-caption::after' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-caption::after' => 'border-color: {{VALUE}};',
-					// '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-caption::after' => 'background: {{VALUE}};',
+					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-title::before' => '--ha-ihe-title-before-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-title::after' => '-ha-ihe-title-after-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-caption::before' => '--ha-ihe-fig-before-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-caption::after' => '--ha-ihe-fig-after-color: {{VALUE}};',
 				],
 			]
 		);
@@ -224,8 +217,7 @@ class Image_Hovereffect extends Base
 				'label' => __('Description Color', 'happy-elementor-addons'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-desc' => 'color: {{VALUE}}; border-color: {{VALUE}};',
-					// '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-desc' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover .ha-ihe-desc' => 'color: {{VALUE}}; --ha-ihe-desc-border-color: {{VALUE}};',
 				],
 			]
 		);
