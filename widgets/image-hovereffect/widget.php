@@ -187,54 +187,21 @@ class Image_Hovereffect extends Base
 			[
 				'label' => __('Width', 'happy-elementor-addons'),
 				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px', '%'],
+				'size_units' => ['px'],
 				'range' => [
 					'px' => [
 						'min' => 0,
-						'max' => 1000,
+						'max' => 1200,
 						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
 					],
 				],
 				'default' => [
-					'unit' => '%',
-					'size' => 50,
+					'unit' => 'px',
+					'size' => 480,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .box' => 'width: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'hover_container_height_width_control' => 'yes'
-				],
-			]
-		);
-
-		$this->add_responsive_control(
-			'hover_height',
-			[
-				'label' => __('Height', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px', '%'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'unit' => '%',
-					'size' => 50,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .box' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-ihe-wrapper' => 'width: {{SIZE}}{{UNIT}}; height: calc({{SIZE}}{{UNIT}}/1.34);',
+					// '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig.ha-effect-layla .ha-ihe-img' => 'height: calc({{SIZE}}{{UNIT}} + 30px);',
 				],
 				'condition' => [
 					'hover_container_height_width_control' => 'yes'
