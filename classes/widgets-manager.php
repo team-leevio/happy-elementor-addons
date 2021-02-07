@@ -589,6 +589,16 @@ class Widgets_Manager {
 					'js' => ['sharer-js'],
 				]
 			],
+			'image-hovereffect' => [
+				'title' => __( 'Image Hover Effect', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-finger-index',
+				'css' => ['image-hovereffect'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				]
+			],
         ];
     }
 
