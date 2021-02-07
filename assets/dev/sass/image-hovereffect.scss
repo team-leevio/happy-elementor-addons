@@ -188,6 +188,8 @@
 		transform: translate3d(-50px, 0, 0);
 	}
 	.ha-ihe-caption {
+		align-items: flex-start;
+		justify-content: center;
 		&::before {
 			position: absolute;
 			top: 30px;
@@ -511,6 +513,8 @@
 		padding: 3em;
 		background-color: rgba(58, 52, 42, 0.7);
 		transition: background-color 0.35s;
+		justify-content: center;
+		align-items: center;
 		&::before {
 			position: absolute;
 			top: 30px;
@@ -525,7 +529,7 @@
 		}
 	}
 	.ha-ihe-title {
-		margin: 20% 0 10px 0;
+		// margin: 20% 0 10px 0;
 		transition: transform 0.35s;
 		transform: translate3d(0, 100%, 0);
 	}
