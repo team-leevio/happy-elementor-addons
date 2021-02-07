@@ -15,6 +15,7 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Typography;
 use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Schemes\Color;
 use Elementor\Utils;
 
 defined('ABSPATH') || die();
@@ -284,20 +285,6 @@ class Image_Hovereffect extends Base
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name'     => 'hover_overlay',
-				'label' => __('Background', 'happy-elementor-addons'),
-				'show_label' => true,
-				'types' => ['classic', 'gradient'],
-				'exclude' => [
-					'classic' => 'image' // remove image bg option
-				],
-				'selector' => '{{WRAPPER}} .jhh',
-			]
-		);
-
 		$this->start_controls_tabs('_tabs_style');
 
 		$this->start_controls_tab(
@@ -371,6 +358,46 @@ class Image_Hovereffect extends Base
 		$this->end_controls_tab();
 
 		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'_section_overlay_style',
+			[
+				'label' => __('Background Overlay', 'happy-elementor-addons'),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name'     => 'hover_overlay',
+				'label' => __('Background', 'happy-elementor-addons'),
+				'show_label' => true,
+				'types' => ['classic', 'gradient'],
+				'exclude' => [
+					'classic' => 'image'
+				],
+				'selector' => '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig, {{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig.ha-effect-sadie .ha-ihe-caption::before',
+			]
+		);
+
+		// $this->add_control(
+		// 	'hover_overlay',
+		// 	[
+		// 		'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
+		// 		'type' => Controls_Manager::COLOR,
+		// 		'scheme' => [
+		// 			'type' => Color::get_type(),
+		// 			'value' => Color::COLOR_1,
+		// 		],
+		// 		'selectors' => [
+		// 			'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig' => 'background: {{VALUE}}',
+		// 		],
+		// 	]
+		// );
 
 		$this->end_controls_section();
 	}

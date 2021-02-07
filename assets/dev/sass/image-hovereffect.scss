@@ -673,6 +673,7 @@
 		opacity: 0;
 		transition: opacity 0.35s, transform 0.35s;
 		transform: translate3d(-40px, 0, 0);
+		margin: 0 auto auto 0;
 	}
 }
 .ha-ihe-fig.ha-effect-dexter {
@@ -746,7 +747,8 @@
 	}
 	.ha-ihe-caption {
 		text-align: left;
-		align-items: flex-start;
+		align-items: stretch;
+		justify-content: flex-start;
 	}
 	.ha-ihe-title {
 		position: relative;
