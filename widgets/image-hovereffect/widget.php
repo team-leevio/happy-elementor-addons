@@ -201,7 +201,6 @@ class Image_Hovereffect extends Base
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-ihe-wrapper' => 'width: {{SIZE}}{{UNIT}}; height: calc({{SIZE}}{{UNIT}}/1.34);',
-					// '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig.ha-effect-layla .ha-ihe-img' => 'height: calc({{SIZE}}{{UNIT}}/1.34 + 30px);',
 				],
 				'condition' => [
 					'hover_container_height_width_control' => 'yes'
@@ -335,11 +334,19 @@ class Image_Hovereffect extends Base
 			]
 		);
 
+		$this->start_controls_tabs('_tabs_overlay_style');
+
+		$this->start_controls_tab(
+			'_tab_overlay_normal',
+			[
+				'label' => __('Normal', 'happy-elementor-addons'),
+			]
+		);
 
 		$this->add_group_control(
 			Group_Control_Background::get_type(),
 			[
-				'name'     => 'hover_overlay',
+				'name'     => 'hover_overlay_normal',
 				'label' => __('Background', 'happy-elementor-addons'),
 				'show_label' => true,
 				'types' => ['classic', 'gradient'],
@@ -350,20 +357,33 @@ class Image_Hovereffect extends Base
 			]
 		);
 
-		// $this->add_control(
-		// 	'hover_overlay',
-		// 	[
-		// 		'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::COLOR,
-		// 		'scheme' => [
-		// 			'type' => Color::get_type(),
-		// 			'value' => Color::COLOR_1,
-		// 		],
-		// 		'selectors' => [
-		// 			'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig' => 'background: {{VALUE}}',
-		// 		],
-		// 	]
-		// );
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'_tab_overlay_hover',
+			[
+				'label' => __('Hover', 'happy-elementor-addons'),
+			]
+		);
+
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name'     => 'hover_overlay_hover',
+				'label' => __('Background', 'happy-elementor-addons'),
+				'show_label' => true,
+				'types' => ['classic', 'gradient'],
+				'exclude' => [
+					'classic' => 'image'
+				],
+				'selector' => '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig:hover, {{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig.ha-effect-sadie:hover .ha-ihe-caption::before',
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
 
 		$this->end_controls_section();
 	}
