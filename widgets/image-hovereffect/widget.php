@@ -103,8 +103,11 @@ class Image_Hovereffect extends Base
 				'label' => __('Description', 'happy-elementor-addons'),
 				'type' => Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __('Sadie never took her eyes off me. She had a dark soul.', 'happy-elementor-addons'),
+				'default' => __('Sadie never took her eyes off me.', 'happy-elementor-addons'),
 				'placeholder' => __('Type your description here', 'happy-elementor-addons'),
+				'condition' => [
+					'hover_effect!' => 'ha-effect-honey',
+				],
 				'dynamic' => ['active' => true],
 			]
 		);

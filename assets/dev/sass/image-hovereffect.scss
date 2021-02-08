@@ -900,10 +900,13 @@
 		left: auto;
 		padding: 1em;
 		text-transform: none;
-		// font-size: 90%;
+		font-size: 90%;
 		opacity: 0;
 		transition: opacity 0.35s, transform 0.35s;
 		transform: translate3d(0, 50px, 0);
+		height: 80px;
+		display: flex;
+		align-items: center;
 	}
 	&:hover {
 		.ha-ihe-img {
@@ -937,7 +940,7 @@
 			background: rgba(255, 255, 255, 0.5);
 			content: "";
 			transition: transform 0.6s;
-			transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
+			transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -109%, 0);
 		}
 	}
 	.ha-ihe-desc {
@@ -962,7 +965,7 @@
 		}
 		.ha-ihe-caption {
 			&::before {
-				transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, 100%, 0);
+				transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, 109%, 0);
 			}
 		}
 		.ha-ihe-desc {
