@@ -201,7 +201,7 @@ class Image_Hovereffect extends Base
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-ihe-wrapper' => 'width: {{SIZE}}{{UNIT}}; height: calc({{SIZE}}{{UNIT}}/1.34);',
-					// '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig.ha-effect-layla .ha-ihe-img' => 'height: calc({{SIZE}}{{UNIT}} + 30px);',
+					// '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig.ha-effect-layla .ha-ihe-img' => 'height: calc({{SIZE}}{{UNIT}}/1.34 + 30px);',
 				],
 				'condition' => [
 					'hover_container_height_width_control' => 'yes'
@@ -226,7 +226,6 @@ class Image_Hovereffect extends Base
 				'size_units' => ['px', '%', 'em'],
 				'selectors' => [
 					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
