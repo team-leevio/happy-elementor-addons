@@ -237,7 +237,7 @@ class Image_Hovereffect extends Base
 				'name' => 'title_typo',
 				'label' => __('Title Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-title',
-				'scheme' => Typography::TYPOGRAPHY_2,
+				'scheme' => Typography::TYPOGRAPHY_1,
 			]
 		);
 
@@ -248,7 +248,7 @@ class Image_Hovereffect extends Base
 				'name' => 'description_typo',
 				'label' => __('Description Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-desc',
-				'scheme' => Typography::TYPOGRAPHY_2,
+				'scheme' => Typography::TYPOGRAPHY_1,
 			]
 		);
 
