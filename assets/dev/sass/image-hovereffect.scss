@@ -1001,7 +1001,7 @@
 		text-align: right;
 		opacity: 0;
 		transition: opacity 0.35s, transform 0.35s;
-		transform: translate3d(-50%, -50%, 0);
+		transform: translate3d(50%, -50%, 0);
 	}
 	&:hover {
 		.ha-ihe-title {
