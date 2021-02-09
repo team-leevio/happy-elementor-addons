@@ -198,10 +198,19 @@ class Image_Hovereffect extends Base
 						'step' => 5,
 					],
 				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 480,
-				],
+				'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
+                    'size' => 480,
+                    'unit' => 'px',
+                ],
+                'tablet_default' => [
+                    'size' => 480,
+                    'unit' => 'px',
+                ],
+                'mobile_default' => [
+                    'size' => 300,
+                    'unit' => 'px',
+                ],
 				'selectors' => [
 					'{{WRAPPER}} .ha-ihe-wrapper' => 'width: {{SIZE}}{{UNIT}}; height: calc({{SIZE}}{{UNIT}}/1.34);',
 				],
