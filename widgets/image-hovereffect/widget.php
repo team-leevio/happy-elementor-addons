@@ -8,14 +8,11 @@
 
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Group_Control_Css_Filter;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
-use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Typography;
 use Elementor\Core\Schemes\Typography;
-use Elementor\Core\Schemes\Color;
 use Elementor\Utils;
 
 defined('ABSPATH') || die();
@@ -91,7 +88,7 @@ class Image_Hovereffect extends Base
 				'label' => __('Title', 'happy-elementor-addons'),
 				'type' => Controls_Manager::TEXTAREA,
 				'rows' => 3,
-				'default' => __('Happy <span>Addons</span>', 'happy-elementor-addons'),
+				'default' => __('Holy <span>Sadie</span>', 'happy-elementor-addons'),
 				'placeholder' => __('Type your title here', 'happy-elementor-addons'),
 				'dynamic' => ['active' => true],
 			]
@@ -103,7 +100,7 @@ class Image_Hovereffect extends Base
 				'label' => __('Description', 'happy-elementor-addons'),
 				'type' => Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __('Best Elementor Addons', 'happy-elementor-addons'),
+				'default' => __('Sadie never took her eyes off me.', 'happy-elementor-addons'),
 				'placeholder' => __('Type your description here', 'happy-elementor-addons'),
 				'condition' => [
 					'hover_effect!' => 'ha-effect-honey',
@@ -199,18 +196,18 @@ class Image_Hovereffect extends Base
 					],
 				],
 				'devices' => ['desktop', 'tablet', 'mobile'],
-                'desktop_default' => [
-                    'size' => 480,
-                    'unit' => 'px',
-                ],
-                'tablet_default' => [
-                    'size' => 480,
-                    'unit' => 'px',
-                ],
-                'mobile_default' => [
-                    'size' => 300,
-                    'unit' => 'px',
-                ],
+				'desktop_default' => [
+					'size' => 480,
+					'unit' => 'px',
+				],
+				'tablet_default' => [
+					'size' => 480,
+					'unit' => 'px',
+				],
+				'mobile_default' => [
+					'size' => 300,
+					'unit' => 'px',
+				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-ihe-wrapper' => 'width: {{SIZE}}{{UNIT}}; height: calc({{SIZE}}{{UNIT}}/1.34);',
 				],
@@ -247,7 +244,12 @@ class Image_Hovereffect extends Base
 				'name' => 'title_typo',
 				'label' => __('Title Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-title',
-				'scheme' => Typography::TYPOGRAPHY_1,
+				'fields_options' => [
+					'typography' => ['default' => 'yes'],
+					'font_family' => [
+						'default' => 'Roboto',
+					],
+				],
 			]
 		);
 
@@ -258,7 +260,12 @@ class Image_Hovereffect extends Base
 				'name' => 'description_typo',
 				'label' => __('Description Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} .ha-ihe-wrapper .ha-ihe-fig .ha-ihe-desc',
-				'scheme' => Typography::TYPOGRAPHY_1,
+				'fields_options' => [
+					'typography' => ['default' => 'yes'],
+					'font_family' => [
+						'default' => 'Roboto',
+					],
+				],
 			]
 		);
 
