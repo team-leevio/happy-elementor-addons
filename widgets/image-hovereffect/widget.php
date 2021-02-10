@@ -88,7 +88,7 @@ class Image_Hovereffect extends Base
 				'label' => __('Title', 'happy-elementor-addons'),
 				'type' => Controls_Manager::TEXTAREA,
 				'rows' => 3,
-				'default' => __('Holy <span>Sadie</span>', 'happy-elementor-addons'),
+				'default' => __('Happy <span>Addons</span>', 'happy-elementor-addons'),
 				'placeholder' => __('Type your title here', 'happy-elementor-addons'),
 				'dynamic' => ['active' => true],
 			]
@@ -100,7 +100,7 @@ class Image_Hovereffect extends Base
 				'label' => __('Description', 'happy-elementor-addons'),
 				'type' => Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __('Sadie never took her eyes off me.', 'happy-elementor-addons'),
+				'default' => __('Best Elementor Addons', 'happy-elementor-addons'),
 				'placeholder' => __('Type your description here', 'happy-elementor-addons'),
 				'condition' => [
 					'hover_effect!' => 'ha-effect-honey',
