@@ -1,11 +1,13 @@
 = 2.20.0 - 27 January 2021 =
 
-- New: Text Stroke feature
-- New: Happy Particle Effects disable option
+- New: Text stroke feature
+- New: Happy particle effects disable option
 - Tweak: Updated kses function to support more attributes
 - Tweak: Added html tag support in Data Table widget
-- Fix: Shape Divider spell
-- Fix: Chart Widgets console error
+- Tweak: Added slider widget dots size control
+- Tweak: Added carousel widget dots size control 
+- Fix: Shape divider spell
+- Fix: Chart widgets console error
 - Fix: Widget background overlay class mismatch issue
 - Fix: Data Table widget compatibility issue with WPML
 
