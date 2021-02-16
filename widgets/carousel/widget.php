@@ -116,6 +116,12 @@ class Carousel extends Base {
 			]
 		);
 
+		$placeholder = [
+			'image' => [
+				'url' => Utils::get_placeholder_image_src(),
+			],
+		];
+
 		$this->add_control(
 			'slides',
 			[
@@ -123,43 +129,7 @@ class Carousel extends Base {
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'title_field' => '<# print(title || "Carousel Item"); #>',
-				'default' => [
-					[
-						'image' => [
-							'url' => Utils::get_placeholder_image_src(),
-						],
-					],
-					[
-						'image' => [
-							'url' => Utils::get_placeholder_image_src(),
-						],
-					],
-					[
-						'image' => [
-							'url' => Utils::get_placeholder_image_src(),
-						],
-					],
-					[
-						'image' => [
-							'url' => Utils::get_placeholder_image_src(),
-						],
-					],
-					[
-						'image' => [
-							'url' => Utils::get_placeholder_image_src(),
-						],
-					],
-					[
-						'image' => [
-							'url' => Utils::get_placeholder_image_src(),
-						],
-					],
-					[
-						'image' => [
-							'url' => Utils::get_placeholder_image_src(),
-						],
-					]
-				]
+				'default' => array_fill( 0, 7, $placeholder )
 			]
 		);
 
@@ -500,7 +470,7 @@ class Carousel extends Base {
 		$this->start_controls_section(
 			'_section_style_arrow',
 			[
-				'label' => __( 'Navigation - Arrow', 'happy-elementor-addons' ),
+				'label' => __( 'Navigation :: Arrow', 'happy-elementor-addons' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -688,7 +658,7 @@ class Carousel extends Base {
 		$this->start_controls_section(
 			'_section_style_dots',
 			[
-				'label' => __( 'Navigation - Dots', 'happy-elementor-addons' ),
+				'label' => __( 'Navigation :: Dots', 'happy-elementor-addons' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -759,6 +729,18 @@ class Carousel extends Base {
 		);
 
 		$this->add_control(
+			'dots_nav_size',
+			[
+				'label' => __( 'Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'selectors' => [
+					'{{WRAPPER}} .slick-dots li button:before' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
 			'dots_nav_color',
 			[
 				'label' => __( 'Color', 'happy-elementor-addons' ),
@@ -795,6 +777,18 @@ class Carousel extends Base {
 			'_tab_dots_active',
 			[
 				'label' => __( 'Active', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'dots_nav_active_size',
+			[
+				'label' => __( 'Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'selectors' => [
+					'{{WRAPPER}} .slick-dots li.slick-active button:before' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
