@@ -650,6 +650,170 @@
 
 		};
 
+		//Event Calendar
+		var Event_Calendar = function($scope) {
+			var calendarEl =  $scope.find('.ha-ec');
+			var popup = $scope.find('.ha-ec-popup-wrapper');
+			var popupClose = $scope.find(".ha-ec-popup-close");
+			var events = calendarEl.data('events');
+			var initialview = calendarEl.data('initialview');
+			var firstday = calendarEl.data('firstday');
+			var locale = calendarEl.data('locale');
+			var showPopup = calendarEl.data('show-popup');
+			var allday_text = calendarEl.data('allday-text');
+
+			if( 'undefined' == typeof events){
+				return;
+			}
+
+			var option = {
+				stickyHeaderDates: false,
+				locale: locale,
+				headerToolbar: {
+					left: "prev,next today",
+					center: "title",
+					right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
+				},
+				initialView: initialview,
+				firstDay: firstday,
+				eventTimeFormat: { // like '7pm'
+					hour: 'numeric',
+					minute: '2-digit',
+					meridiem: 'short'
+				},
+				events: events,
+
+				height: 'auto',
+
+				eventClick: function (info) {
+					info.jsEvent.preventDefault(); // don't let the browser navigate
+
+					if( 'yes' != showPopup){
+						return;
+					}
+
+					function getTheDate(timeString) {
+						return new Date(timeString);
+					}
+
+					function timeFormat(date) {
+						var hours = date.getHours();
+						var minutes = date.getMinutes();
+						var ampm = hours >= 12 ? 'pm' : 'am';
+						hours = hours % 12;
+						hours = hours ? hours : 12; // the hour '0' should be '12'
+						minutes = minutes < 10 ? '0' + minutes : minutes;
+						var strTime = hours + ':' + minutes + '' + ampm;
+						return strTime;
+					}
+
+					var todayDateString = info.view.calendar.currentData.currentDate.toString(),
+						allDay = info.event.allDay,
+						title = info.event.title,
+						startDate = info.event.startStr,
+						endDate = info.event.endStr,
+						guest = info.event.extendedProps.guest,
+						location = info.event.extendedProps.location,
+						description = info.event.extendedProps.description,
+						detailsUrl = info.event.url,
+						imageUrl = info.event.extendedProps.image;
+
+					var titleWrap = popup.find('.ha-ec-event-title'),
+						timeWrap = popup.find('.ha-ec-event-time-wrap'),
+						guestWrap = popup.find('.ha-ec-event-guest-wrap'),
+						locationWrap = popup.find('.ha-ec-event-location-wrap'),
+						descWrap = popup.find('.ha-ec-popup-desc'),
+						detailsWrap = popup.find('.ha-ec-popup-readmore-link'),
+						imageWrap = popup.find('.ha-ec-popup-image');
+
+					// display none
+					imageWrap.css('display', 'none');
+					titleWrap.css('display', 'none');
+					timeWrap.css('display', 'none');
+					guestWrap.css('display', 'none');
+					locationWrap.css('display', 'none');
+					descWrap.css('display', 'none');
+					detailsWrap.css('display', 'none');
+
+					popup.addClass("ha-ec-popup-ready");
+
+					// image markup
+					if (imageUrl) {
+						imageWrap.removeAttr("style");
+						imageWrap.find('img').attr("src", imageUrl );
+						imageWrap.find('img').attr("alt", title );
+					}
+
+					// title markup
+					if (title) {
+						titleWrap.removeAttr("style");
+						titleWrap.html(title);
+					}
+
+					// guest markup
+					if (guest) {
+						guestWrap.removeAttr("style");
+						guestWrap.find('span.ha-ec-event-guest').html( guest );
+					}
+
+					// location markup
+					if (location) {
+						locationWrap.removeAttr("style");
+						locationWrap.find('span.ha-ec-event-location').html( location );
+					}
+
+					// description markup
+					if (description) {
+						descWrap.removeAttr("style");
+						descWrap.html(description);
+					}
+
+					// time markup
+					if (allDay !== true) {
+						timeWrap.removeAttr("style");
+						startDate = Date.parse(getTheDate(startDate));
+						endDate = Date.parse(getTheDate(endDate));
+						var startTimeText = timeFormat(getTheDate(startDate));
+						var endTimeText = 'Invalid Data';
+						if (startDate < endDate) {
+							endTimeText = timeFormat(getTheDate(endDate));
+						}
+						timeWrap.find('span.ha-ec-event-time').html(startTimeText + ' - ' + endTimeText);
+					}else{
+						timeWrap.removeAttr("style");
+						timeWrap.find('span.ha-ec-event-time').html(allday_text);
+					}
+
+					// read more markup
+					if (detailsUrl) {
+						detailsWrap.removeAttr("style");
+						detailsWrap.attr("href", detailsUrl);
+						if ("on" === info.event.extendedProps.external) {
+							detailsWrap.attr("target", "_blank");
+						}
+						if ("on" === info.event.extendedProps.nofollow) {
+							detailsWrap.attr("rel", "nofollow");
+						}
+					}
+				},
+				dateClick: function (arg) {
+					itemDate = arg.date.toUTCString();
+				}
+			}
+
+			var calendar = new FullCalendar.Calendar( calendarEl[0], option );
+				calendar.render();
+
+			$scope.find(".ha-ec-popup-wrapper").on("click", function (e) {
+				e.stopPropagation();
+
+				if(e.target === e.currentTarget || e.target == popupClose[0] || e.target == popupClose.find(".eicon-editor-close")[0]){
+					popup.addClass("ha-ec-popup-removing").removeClass("ha-ec-popup-ready");
+				}
+			});
+
+		};
+
 		// Slider
 		elementorFrontend.hooks.addAction(
 			'frontend/element_ready/ha-slider.default',
@@ -724,6 +888,7 @@
 			'ha-threesixty-rotation.default': Threesixty_Rotation,
 			'ha-data-table.default'         : DataTable,
 			'widget'                        : BackgroundOverlay,
+			'ha-event-calendar.default'		: Event_Calendar,
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {
