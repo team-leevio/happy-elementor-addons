@@ -589,6 +589,16 @@ class Widgets_Manager {
 					'js' => ['sharer-js'],
 				]
 			],
+			'event-calendar' => [
+				'title' => __( 'Event Calendar', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-calendar2',
+				'css' => ['event-calendar'],
+				'js' => [],
+				'vendor' => [
+					'css' => ['ha-fullcalendar'],
+					'js' => ['ha-fullcalendar','ha-fullcalendar-locales'],
+				],
+			],
         ];
     }
 
