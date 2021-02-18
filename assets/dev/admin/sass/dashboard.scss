@@ -158,6 +158,8 @@
 		@extend %clearfix;
 		margin-left: -10px;
 		margin-right: -10px;
+		display: flex;
+		flex-wrap: wrap;
 
 		&__item {
 			position: relative;
@@ -167,7 +169,7 @@
 			margin-left: 10px;
 			margin-right: 10px;
 			margin-bottom: 20px;
-			float: left;
+			// float: left;
 			padding: 30px 20px;
 			border: 1px solid #e8e8e8;
 			border-radius: 5px;
@@ -177,11 +179,11 @@
 				width: calc(50% - 20px);
 			}
 
-			@media (min-width: 1100px) {
+			@media (min-width: 1350px) {
 				width: calc(33.33% - 20px);
 			}
 
-			@media (min-width: 1350px) {
+			@media (min-width: 1500px) {
 				width: calc(25% - 20px);
 			}
 
