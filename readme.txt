@@ -284,14 +284,14 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 2.20.0 - 16 February 2021 =
+= 2.20.0 - 18 February 2021 =
 
 - New: Text stroke feature
 - New: Happy particle effects disable option
 - Tweak: Updated kses function to support more attributes
 - Tweak: Added html tag support in Data Table widget
 - Tweak: Added slider widget dots size control
-- Tweak: Added carousel widget dots size control 
+- Tweak: Added carousel widget dots size control
 - Fix: Shape divider spell
 - Fix: Chart widgets console error
 - Fix: Widget background overlay class mismatch issue
@@ -359,7 +359,7 @@ For a more detailed explanation check out the following documentation
 - New: Horizontal TimeLine widget
 - New: Social Share widget
 - New: Happy Icons v4 (44 new icons)
-- Tweak: Data Table row-cell text link option 
+- Tweak: Data Table row-cell text link option
 - Fix: On Demand Assets Loading compatibility with WPML
 - Fix: Post Tab widget compatibility with WPML
 - Fix: News Ticker widget compatibility with WPML
@@ -393,7 +393,7 @@ For a more detailed explanation check out the following documentation
 
 - New: Updated compatibility with WP 5.5.x
 - New: Updated compatibility with Elementor 3.x.x
-- New: Twitter feed timestamp settings 
+- New: Twitter feed timestamp settings
 - Tweak: Removed unnecessary Elementor kit assets enqueue
 - Tweak: Removed common image styles, instead added widget wise
 - Fix: Templates compatibility issue with Elementor 3.x.x
