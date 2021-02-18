@@ -287,6 +287,7 @@ For a more detailed explanation check out the following documentation
 = 2.20.0 - 18 February 2021 =
 
 - New: Text stroke feature
+- New: Event Calendar widget
 - New: Happy particle effects disable option
 - Tweak: Updated kses function to support more attributes
 - Tweak: Added html tag support in Data Table widget
