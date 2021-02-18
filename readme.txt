@@ -298,14 +298,14 @@ For a more detailed explanation check out the following documentation
 - Fix: Widget background overlay class mismatch issue
 - Fix: Data Table widget compatibility issue with WPML
 
-= 2.19.0 - 20 January 2020 =
+= 2.19.0 - 20 January 2021 =
 
 - New: Features control panel
 - New: Section Shape Divider - 18 custom shapes (Happy Shapes)
 - Tweak: Improved elementor missing notice
 - Fix: Misc css bug resolved
 
-= 2.18.0 - 5 January 2020 =
+= 2.18.0 - 5 January 2021 =
 
 - New: Tabs are sortable in Post Tab widget
 - Tweak: Added Post tab widget tab hover cursor
