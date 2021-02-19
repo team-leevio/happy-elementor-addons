@@ -284,6 +284,10 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 2.20.1 - 19 February 2021 =
+
+- Tweak: Removed unnecessary code from event calendar widget
+
 = 2.20.0 - 18 February 2021 =
 
 - New: Text stroke feature

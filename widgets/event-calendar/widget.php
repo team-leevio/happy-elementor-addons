@@ -237,7 +237,7 @@ class Event_Calendar extends Base {
 				'label' => __('Guest/Speaker', 'happy-elementor-addons'),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => __('Hasin Hayder', 'happy-elementor-addons'),
+				'default' => __('John Doe', 'happy-elementor-addons'),
 				'dynamic' => [
 					'active' => true,
 				]
@@ -250,7 +250,7 @@ class Event_Calendar extends Base {
 				'label' => __('Location', 'happy-elementor-addons'),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => __('Mirpur DOHS, Dhaka', 'happy-elementor-addons'),
+				'default' => __('4382 Roosevelt Road, KS, Kansas', 'happy-elementor-addons'),
 				'dynamic' => [
 					'active' => true,
 				]
@@ -472,7 +472,7 @@ class Event_Calendar extends Base {
 						__('The Events Calendar', 'happy-elementor-addons'),
 						__(' first.', 'happy-elementor-addons')
 					),
-					// 'content_classes' => 'eael-warning',
+					// 'content_classes' => 'ha-warning',
 					'condition' => [
 						'event_calendar_type' => 'the_events_calendar',
 					],
@@ -2049,9 +2049,9 @@ class Event_Calendar extends Base {
                 'start' => tribe_get_start_date($event->ID, true, $date_format),
 				'end' => tribe_get_end_date($event->ID, true, $date_format),
 
-                // 'borderColor' => !empty($settings['eael_event_global_popup_ribbon_color']) ? $settings['eael_event_global_popup_ribbon_color'] : '#10ecab',
-                // 'textColor' => $settings['eael_event_global_text_color'],
-				// 'color' => $settings['eael_event_global_bg_color'],
+                // 'borderColor' => !empty($settings['ha_event_global_popup_ribbon_color']) ? $settings['ha_event_global_popup_ribbon_color'] : '#10ecab',
+                // 'textColor' => $settings['ha_event_global_text_color'],
+				// 'color' => $settings['ha_event_global_bg_color'],
 
                 'url' => !empty( get_the_permalink( $event->ID ) ) ? get_the_permalink( $event->ID ) : '',
                 'allDay' => $all_day,
@@ -2153,7 +2153,7 @@ class Event_Calendar extends Base {
 										</div>
 									</li>
 								</ul>
-								<h3 class="ha-ec-event-title">Hasin Hayder</h3>
+								<h3 class="ha-ec-event-title">John Doe</h3>
 								<p class="ha-ec-popup-desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum ipsum voluptatibus nulla quis! Cum soluta consectetur molestiae dolorem aperiam deleniti possimus veniam minima, distinctio facilis cupiditate perferendis incidunt odio doloremque?</p>
 								<div class="ha-ec-popup-readmore">
 									<a class="ha-ec-popup-readmore-link" href="">'.$readmore_text.'</a>
@@ -2187,14 +2187,14 @@ class Event_Calendar extends Base {
 									</li>
 									<li class="ha-ec-guest-wrap">
 										<div class="ha-ec-guest-title">Speaker</div>
-										<div class="ha-ec-event-guest">'.$this->render_svg_icon('speaker').'<span>Hasin Hayder</span></div>
+										<div class="ha-ec-event-guest">'.$this->render_svg_icon('speaker').'<span>John Doe</span></div>
 									</li>
 									<li class="ha-ec-location-wrap">
 										<div class="ha-ec-location-title">Address</div>
-										<div class="ha-ec-event-location">'.$this->render_svg_icon('map').'<span>Mirpur DOHS, Dhaka</span></div>
+										<div class="ha-ec-event-location">'.$this->render_svg_icon('map').'<span>4382 Roosevelt Road, KS, Kansas</span></div>
 									</li>
 								</ul>
-								<h3 class="ha-ec-event-title">Hasin Hayder</h3>
+								<h3 class="ha-ec-event-title">John Doe</h3>
 								<p class="ha-ec-popup-desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum ipsum voluptatibus nulla quis! Cum soluta consectetur molestiae dolorem aperiam deleniti possimus veniam minima, distinctio facilis cupiditate perferendis incidunt odio doloremque?</p>
 								<div class="ha-ec-popup-readmore">
 									<a class="ha-ec-popup-readmore-link" href="">'.$readmore_text.'</a>
