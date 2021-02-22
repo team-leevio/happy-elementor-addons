@@ -87,7 +87,7 @@ class Group_Control_Text_Stroke extends Group_Control_Base {
 		return [
 			'popover' => [
 				'starter_name' => 'ha-text-stroke',
-				'starter_title' => '<i class="hm hm-happyaddons ha-section-icon"></i>&nbsp;' . _x( 'Text Stroke ', 'Text Stroke', 'happy-elementor-addons' ),
+				'starter_title' => _x( 'Text Stroke ', 'Text Stroke', 'happy-elementor-addons' ) . '&nbsp;<i style="color: #d5dadf;" class="hm hm-happyaddons"></i>',
 				'settings' => [
 					'render_type' => 'ui',
 				],
