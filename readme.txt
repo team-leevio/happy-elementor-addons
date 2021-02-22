@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.19.0
+Version: 2.20.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, obiplabon
@@ -60,6 +60,7 @@ Unlike most other Elementor addons, Happy Addons offers itself with many robust 
 - [**Taxonomy List**](https://demo.happyaddons.com/elementor-taxonomy-widget-demo/) - This widget will help you to create a list of posts by sorting categories, tags, post formats.
 - [**Horizontal TimeLine**]
 - [**Social Share**]
+- [**Event Calender**]
 - [**Contact Form 7**](https://demo.happyaddons.com/elementor-contact-form-7-widget-demo/) – This utility widget helps you to integrate existing forms built using CF7 plugin across your web pages without spending too much time.
 - [**Caldera Forms**](https://demo.happyaddons.com/elementor-caldera-forms-widget-demo/) – This widget can help you to display your caldera forms to display on your web pages designed with Elementor.
 - [**weForms**](https://demo.happyaddons.com/elementor-we-forms-widget-demo/) – Designed forms using weForms plugin and looking for a way to display those on your Elementor powered pages? This is the answer to that.
@@ -283,14 +284,28 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 2.19.0 - 20 January 2020 =
+= 2.20.0 - 18 February 2021 =
+
+- New: Text stroke feature
+- New: Event Calendar widget
+- New: Happy particle effects disable option
+- Tweak: Updated kses function to support more attributes
+- Tweak: Added html tag support in Data Table widget
+- Tweak: Added slider widget dots size control
+- Tweak: Added carousel widget dots size control
+- Fix: Shape divider spell
+- Fix: Chart widgets console error
+- Fix: Widget background overlay class mismatch issue
+- Fix: Data Table widget compatibility issue with WPML
+
+= 2.19.0 - 20 January 2021 =
 
 - New: Features control panel
 - New: Section Shape Divider - 18 custom shapes (Happy Shapes)
 - Tweak: Improved elementor missing notice
 - Fix: Misc css bug resolved
 
-= 2.18.0 - 5 January 2020 =
+= 2.18.0 - 5 January 2021 =
 
 - New: Tabs are sortable in Post Tab widget
 - Tweak: Added Post tab widget tab hover cursor
@@ -345,7 +360,7 @@ For a more detailed explanation check out the following documentation
 - New: Horizontal TimeLine widget
 - New: Social Share widget
 - New: Happy Icons v4 (44 new icons)
-- Tweak: Data Table row-cell text link option 
+- Tweak: Data Table row-cell text link option
 - Fix: On Demand Assets Loading compatibility with WPML
 - Fix: Post Tab widget compatibility with WPML
 - Fix: News Ticker widget compatibility with WPML
@@ -379,7 +394,7 @@ For a more detailed explanation check out the following documentation
 
 - New: Updated compatibility with WP 5.5.x
 - New: Updated compatibility with Elementor 3.x.x
-- New: Twitter feed timestamp settings 
+- New: Twitter feed timestamp settings
 - Tweak: Removed unnecessary Elementor kit assets enqueue
 - Tweak: Removed common image styles, instead added widget wise
 - Fix: Templates compatibility issue with Elementor 3.x.x
