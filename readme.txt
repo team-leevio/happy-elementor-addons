@@ -3,7 +3,7 @@ Plugin Name: Happy Addons for Elementor
 Version: 2.20.0
 Author: weDevs
 Author URI: https://happyaddons.com/
-Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, obiplabon
+Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, sayedulsayem, obiplabon
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Elements
 Requires at least: 4.7
 Tested up to: 5.6
@@ -58,9 +58,9 @@ Unlike most other Elementor addons, Happy Addons offers itself with many robust 
 - [**Post Tab**](https://demo.happyaddons.com/elementor-post-tab-widget-demo/) – Enable users to present your post in multiple workable tabs ideally useful for grouped and related content.
 - [**Post List**](https://demo.happyaddons.com/elementor-post-list-widget-demo/) – List any post elegantly using this widget displaying them in a creative and innovative manner with multiple options to play with.
 - [**Taxonomy List**](https://demo.happyaddons.com/elementor-taxonomy-widget-demo/) - This widget will help you to create a list of posts by sorting categories, tags, post formats.
-- [**Horizontal TimeLine**]
-- [**Social Share**]
-- [**Event Calender**]
+- [**Horizontal TimeLine**](https://demo.happyaddons.com/elementor-horizontal-timeline-widget-demo/) – Design your storyline horizontally using the Horizontal Timeline Widget by HappyAddons. It’s absolutely free!
+- [**Social Share**](https://demo.happyaddons.com/elementor-social-share-widget-demo/) – No need to buy a social share plugin anymore. Get many of the premium features of social share plugins within HappyAddons Social Share widget for free!
+- [**Event Calender**](https://demo.happyaddons.com/elementor-event-calendar-widget-demo/) – Are you struggling to incorporate an event calendar on your website with the help of Elementor? Don’t worry; we have added an amazing Event Calendar Widget in the HappyAddons Free Version for you! You can create your own personalized calendar manually or use your Google calendar or the Events Calendar Plugin’s calendar to showcase your events.
 - [**Contact Form 7**](https://demo.happyaddons.com/elementor-contact-form-7-widget-demo/) – This utility widget helps you to integrate existing forms built using CF7 plugin across your web pages without spending too much time.
 - [**Caldera Forms**](https://demo.happyaddons.com/elementor-caldera-forms-widget-demo/) – This widget can help you to display your caldera forms to display on your web pages designed with Elementor.
 - [**weForms**](https://demo.happyaddons.com/elementor-we-forms-widget-demo/) – Designed forms using weForms plugin and looking for a way to display those on your Elementor powered pages? This is the answer to that.
