@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.21.0
+Version: 2.21.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, sayedulsayem, obiplabon
@@ -156,6 +156,8 @@ If you are still craving for more widgets, then the following premium widgets ar
 - [**WooCommerce Product Carousel**](https://demo.happyaddons.com/elementor-product-carousel-widget-demo/) - Wondering about a perfect WooCommerce Product Carousel widget for Elementor to grab the attention of your customers? Try HappyAddons Pro’s Product Carousel Widget to make it happen.
 - [**WooCommerce Product Cateogry Grid**](https://demo.happyaddons.com/elementor-product-category-grid-widget-demo/) - Sometimes you need to display your eCommerce products category wise to target a specific genre of visitors. Our HappyAddons Product Category Grid Widget is the best fit for displaying WooCommerce Products category wise
 - [**WooCommerce Product Category Carousel**](https://demo.happyaddons.com/elementor-product-category-carousel-widget-demo/) - From now you can display products in carousels based on specific categories with the help of HappyAddons Pro Product Category Carousel Widget to make them more lucrative
+- [**WooCommerce Single Product**](https://demo.happyaddons.com/elementor-single-product-demo/) - Are you looking for a design element to design your single WooCommerce products in various designs? No worries, HappyAddons Single WooCommerce Product Widget will fulfill your desired goal. Check out the demos here.
+- [**WooCommerce Mini Cart**](https://demo.happyaddons.com/elementor-mini-cart-widget-demo/) - Want to increase your eCommerce store’s customer experience? Use the mini cart widget of HappyAddons to boost your conversion rate swiftly.
 
 
 ### **UNIQUE PRO FEATURES OF HAPPY ADDONS TO WATCH OUT FOR**

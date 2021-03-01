@@ -591,7 +591,7 @@ class Widgets_Manager {
 			],
 			'event-calendar' => [
 				'title' => __( 'Event Calendar', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-calendar2',
+				'icon' => 'hm hm-event-calendar',
 				'css' => ['event-calendar'],
 				'js' => [],
 				'vendor' => [
