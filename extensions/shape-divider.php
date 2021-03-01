@@ -232,6 +232,31 @@ class Shape_Divider {
 				'has_negative' => false,
 				'ha_shape' => true,
 				'ha_shape_bottom' => true,
+			],
+			'cityscape-layer' => [
+				'title' => _x( 'Cityscape Layer', 'Shapes', 'happy-elementor-addons' ),
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/cityscape-layer.svg',
+				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/cityscape-layer.svg',
+				'has_flip' => true,
+				'has_negative' => false,
+				'ha_shape' => true,
+				'ha_shape_bottom' => true,
+			],
+			'drop' => [
+				'title' => _x( 'Drop', 'Shapes', 'happy-elementor-addons' ),
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/drop.svg',
+				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/drop.svg',
+				'has_flip' => true,
+				'has_negative' => false,
+				'ha_shape' => true,
+			],
+			'mosque' => [
+				'title' => _x( 'Mosque', 'Shapes', 'happy-elementor-addons' ),
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/mosque.svg',
+				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/mosque.svg',
+				'has_flip' => true,
+				'has_negative' => false,
+				'ha_shape' => true,
 			]
 		];
 

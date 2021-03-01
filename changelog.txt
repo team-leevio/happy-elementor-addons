@@ -1,3 +1,9 @@
+= 2.21.0 - 28 February 2021 =
+
+- New: Happy Icons v5 (33 new icons)
+- New: Section Shape Divider (3 new Happy Shapes)
+- Tweak: Removed unnecessary code from event calendar widget
+
 = 2.20.0 - 18 February 2021 =
 
 - New: Text stroke feature
