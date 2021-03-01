@@ -47,7 +47,7 @@ class Event_Calendar extends Base {
 	 *
 	 */
 	public function get_icon () {
-		return 'hm hm-calendar2';
+		return 'hm hm-event-calendar';
 	}
 
 	public function get_keywords () {
