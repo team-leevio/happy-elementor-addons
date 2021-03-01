@@ -286,6 +286,10 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 2.21.1 - 1 March 2021 =
+
+- Fix: Happy Icons blank issue
+
 = 2.21.0 - 28 February 2021 =
 
 - New: Happy Icons v5 (33 new icons)
