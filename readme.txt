@@ -6,7 +6,7 @@ Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, sayedulsayem, obiplabon
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Elements
 Requires at least: 4.7
-Tested up to: 5.6
+Tested up to: 5.6.2
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
