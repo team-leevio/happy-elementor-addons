@@ -591,7 +591,7 @@ class Widgets_Manager {
 			],
 			'image-hovereffect' => [
 				'title' => __( 'Image Hover Effect', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-finger-index',
+				'icon' => 'hm hm-cursor-hover-click',
 				'css' => ['image-hovereffect'],
 				'js' => [],
 				'vendor' => [

@@ -41,7 +41,7 @@ class Image_Hovereffect extends Base
 	 */
 	public function get_icon()
 	{
-		return 'hm hm-finger-index';
+		return 'hm hm-cursor-hover-click';
 	}
 
 	public function get_keywords()
