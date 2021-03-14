@@ -797,9 +797,3 @@ For a more detailed explanation check out the following documentation
 = 0.0.1 =
 
 * Initial release
-
-
-== Upgrade Notice ==
-
-= 2.11.0 =
-Added link support to Carousel and Slider widget. Fixed SVG issues and WMPL compatibility issue and more.
