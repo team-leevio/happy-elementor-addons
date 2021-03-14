@@ -35,7 +35,7 @@ class Event_Calendar extends Base {
 	}
 
 	public function get_custom_help_url() {
-		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/event-calendar/';
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/events-calendar/';
 	}
 
 	/**
@@ -47,7 +47,7 @@ class Event_Calendar extends Base {
 	 *
 	 */
 	public function get_icon () {
-		return 'hm hm-calendar2';
+		return 'hm hm-event-calendar';
 	}
 
 	public function get_keywords () {
@@ -55,7 +55,7 @@ class Event_Calendar extends Base {
 	}
 
 	/**
-	 * Get a list of all WPForms
+	 * Get a list of all event
 	 *
 	 * @return array
 	 */
@@ -64,13 +64,6 @@ class Event_Calendar extends Base {
             return [];
         }
 		$posts = [];
-		// $_posts = get_posts( [
-		// 	'post_type' => 'post',
-		// 	'post_status' => 'publish',
-		// 	'posts_per_page' => -1,
-		// 	'orderby' => 'title',
-		// 	'order' => 'ASC',
-		// ] );
 
 		$_posts = tribe_get_events();
 
@@ -237,7 +230,7 @@ class Event_Calendar extends Base {
 				'label' => __('Guest/Speaker', 'happy-elementor-addons'),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => __('Hasin Hayder', 'happy-elementor-addons'),
+				'default' => __('John Doe', 'happy-elementor-addons'),
 				'dynamic' => [
 					'active' => true,
 				]
@@ -250,7 +243,7 @@ class Event_Calendar extends Base {
 				'label' => __('Location', 'happy-elementor-addons'),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => __('Mirpur DOHS, Dhaka', 'happy-elementor-addons'),
+				'default' => __('4382 Roosevelt Road, KS, Kansas', 'happy-elementor-addons'),
 				'dynamic' => [
 					'active' => true,
 				]
@@ -472,7 +465,7 @@ class Event_Calendar extends Base {
 						__('The Events Calendar', 'happy-elementor-addons'),
 						__(' first.', 'happy-elementor-addons')
 					),
-					// 'content_classes' => 'eael-warning',
+					// 'content_classes' => 'ha-warning',
 					'condition' => [
 						'event_calendar_type' => 'the_events_calendar',
 					],
@@ -501,7 +494,7 @@ class Event_Calendar extends Base {
                 'label'       => __('API Key', 'happy-elementor-addons'),
                 'label_block' => true,
                 'type'        => Controls_Manager::TEXT,
-                'default' => 'AIzaSyDiXYw6nDZIE6RzqIy2WNZxvrze73smMo0',
+                'default' => '',
                 'description' => sprintf(__('<a href="https://docs.simplecalendar.io/google-api-key/" target="_blank">%s</a>','happy-elementor-addons'), 'Get API Key'),
             ]
         );
@@ -512,8 +505,8 @@ class Event_Calendar extends Base {
                 'label'       => __('Calendar ID', 'happy-elementor-addons'),
                 'label_block' => true,
                 'type'        => Controls_Manager::TEXT,
-                'default' => 'en.bd#holiday@group.v.calendar.google.com',
-                //'description' => sprintf(__('<a href="#" target="_blank">%s</a>','happy-elementor-addons'), 'Get google calendar ID'),
+                'default' => '',
+                //'description' => sprintf(__('<a href="#" target="_blank">%s</a>','happy-elementor-addons'), 'Get calendar ID'),
             ]
         );
 
@@ -1819,7 +1812,7 @@ class Event_Calendar extends Base {
 
 		<?php
 		if( 'yes' === $settings['show_event_popup'] ){
-			$this->get_popup_markup__($settings);
+			$this->get_popup_markup($settings);
 		}
 		endif;
 	}
@@ -1827,17 +1820,11 @@ class Event_Calendar extends Base {
 	public function get_manual_calendar_events ($settings) {
 		$events = $settings['manual_event_list'];
 
-				// echo '<pre>';
-				// var_dump($events);
-				// echo '</pre>';
         $data = [];
         if ($events) {
             $i = 0;
 
             foreach ($events as $event) {
-				// echo '<pre>';
-				// var_dump($event['image']);
-				// echo '</pre>';
 
                 if ( $event['all_day'] == 'yes' ) {
                     $start = $event["start_date_allday"];
@@ -1870,10 +1857,6 @@ class Event_Calendar extends Base {
 					'guest' => $event['guest'],
 					'location' => $event['location'],
 					'image' => $image,
-
-					//"textColor" =>  ( $event['all_day'] == 'yes' && !empty($event['text_color']) ) ? $event['text_color'] : '',
-					//"backgroundColor" =>  ( $event['all_day'] == 'yes' && !empty($event['bg_color']) ) ? $event['bg_color'] : '',
-					//"borderColor" => !empty($event['border_color']) ? $event['border_color'] : '',
                 ];
 
                 $i++;
@@ -1890,15 +1873,6 @@ class Event_Calendar extends Base {
 			printf('<span class="ha-ec-error-message">%1$s</span>', esc_html( $message ) );
             return [];
 		}
-
-		// GET https://www.googleapis.com/calendar/v3/calendars/en.bd%23holiday%40group.v.calendar.google.com/events?key=AIzaSyDiXYw6nDZIE6RzqIy2WNZxvrze73smMo0&orderBy=updated&showDeleted=true
-
-		// GET https://www.googleapis.com/calendar/v3/calendars/iqbalrony30%40gmail.com/events?key=AIzaSyDiXYw6nDZIE6RzqIy2WNZxvrze73smMo0&orderBy=updated&showDeleted=true
-
-        // [calendar_id] en.bd%23holiday%40group.v.calendar.google.com
-        // [calendar_id] iqbalrony30%40gmail.com
-        // key= AIzaSyDiXYw6nDZIE6RzqIy2WNZxvrze73smMo0
-
 
         $calendar_id = urlencode($settings['google_calendar_id']);
         $base_url = "https://www.googleapis.com/calendar/v3/calendars/" . $calendar_id . "/events";
@@ -1920,16 +1894,12 @@ class Event_Calendar extends Base {
         $transient_key = 'ha_ec_google_calendar_'.md5( urlencode($settings['google_calendar_id']) . implode('', $arg) );
         $data = get_transient($transient_key);
 
-		// delete_transient($transient_key);
-
         if( false === $data ){
 			$data = wp_remote_retrieve_body(wp_remote_get(add_query_arg($arg, $base_url)));
-			// echo '<pre>';
-			// var_dump(json_decode($data));
-			// echo '</pre>';
+
 			if( is_object( json_decode($data) ) && !array_key_exists('error', json_decode($data) ) ){
 				// echo 'cacheeed';
-				set_transient($transient_key, $data, 1 * HOUR_IN_SECONDS);
+				// set_transient($transient_key, $data, 1 * HOUR_IN_SECONDS);
 				set_transient($transient_key, $data, 10 * MINUTE_IN_SECONDS);
 			}
         }
@@ -1941,11 +1911,6 @@ class Event_Calendar extends Base {
 		}
 
 		$data = false !== $data ? json_decode( $data ) : '';
-
-
-        // echo '<pre>';
-		// var_dump($data);
-		// echo '</pre>';
 
 		$calendar_data = [];
         if ( isset ( $data->items ) ) {
@@ -1973,18 +1938,10 @@ class Event_Calendar extends Base {
                     'description' => isset( $item->description ) ? $item->description : '',
                     'start' => $ev_start_date,
 					'end' => $ev_end_date,
-
-                    // 'borderColor' => !empty($settings['global_popup_ribbon_color']) ? $settings['global_popup_ribbon_color'] : '#10ecab',
-                    // 'textColor' => $settings['global_text_color'],
-					// 'color' => $settings['global_bg_color'],
-
 					'url'         => !empty( $item->htmlLink ) ? $item->htmlLink : '',
-					// 'url'         => $item->htmlLink ,
-
                     'allDay' => $all_day,
                     'external' => 'on',
 					'nofollow' => 'on',
-
 					'guest' => !empty( $item->creator->displayName ) ? $item->creator->displayName : '',
 					'location' => !empty( $item->location ) ? $item->location : '',
                 ];
@@ -2048,11 +2005,6 @@ class Event_Calendar extends Base {
                 'description' => $event->post_content,
                 'start' => tribe_get_start_date($event->ID, true, $date_format),
 				'end' => tribe_get_end_date($event->ID, true, $date_format),
-
-                // 'borderColor' => !empty($settings['eael_event_global_popup_ribbon_color']) ? $settings['eael_event_global_popup_ribbon_color'] : '#10ecab',
-                // 'textColor' => $settings['eael_event_global_text_color'],
-				// 'color' => $settings['eael_event_global_bg_color'],
-
                 'url' => !empty( get_the_permalink( $event->ID ) ) ? get_the_permalink( $event->ID ) : '',
                 'allDay' => $all_day,
                 'external' => 'on',
@@ -2066,7 +2018,7 @@ class Event_Calendar extends Base {
 
     }
 
-	public function get_popup_markup__ ( $settings ) {
+	public function get_popup_markup ( $settings ) {
 	   $readmore_text = !empty($settings['readmore_text']) ? esc_html($settings['readmore_text']) : '';
 	   $time_title = !empty($settings['time_title']) ? esc_html($settings['time_title']) : '';
 	   $speaker_title = !empty($settings['speaker_title']) ? esc_html($settings['speaker_title']) : '';
@@ -2101,138 +2053,6 @@ class Event_Calendar extends Base {
 											<span class="ha-ec-location-title">'.$location_title.'</span>
 											<span class="ha-ec-event-location"></span>
 										</div>
-									</li>
-								</ul>
-								<h3 class="ha-ec-event-title"></h3>
-								<p class="ha-ec-popup-desc"></p>
-								<div class="ha-ec-popup-readmore">
-									<a class="ha-ec-popup-readmore-link" href="">'.$readmore_text.'</a>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>';
-        echo $popup;
-	}
-
-	public function get_popup_markup3 ( $settings ) {
-	   $readmore_text = !empty($settings['readmore_text']) ? esc_html($settings['readmore_text']) : '';
-	   $time_title = !empty($settings['time_title']) ? esc_html($settings['time_title']) : '';
-	   $speaker_title = !empty($settings['speaker_title']) ? esc_html($settings['speaker_title']) : '';
-	   $location_title = !empty($settings['location_title']) ? esc_html($settings['location_title']) : '';
-       $popup = '<div class="ha-ec-popup-wrapper ha-ec-popup-ready">
-					<div class="ha-ec-popup">
-
-						<span class="ha-ec-popup-close"><i class="eicon-editor-close"></i></span>
-						<div class="ha-ec-popup-body">
-							<div class="ha-ec-popup-image">
-								<img src="" alt="">
-							</div>
-							<div class="ha-ec-popup-content">
-								<ul>
-									<li class="ha-ec-event-time-wrap">
-										<div class="ha-ec-time-icon">'.$this->render_svg_icon('clock').'</div>
-										<div class="ha-ec-time-content">
-											<span class="ha-ec-time-title">Timezone UTC+6</span>
-											<span class="ha-ec-event-time">9:16am - 10:15am</span>
-										</div>
-									</li>
-									<li class="ha-ec-event-guest-wrap">
-										<div class="ha-ec-guest-icon">'.$this->render_svg_icon('speaker').'</div>
-										<div class="ha-ec-guest-content">
-											<span class="ha-ec-guest-title">Speaker</span>
-											<span class="ha-ec-event-guest">9:16am - 10:15am</span>
-										</div>
-									</li>
-									<li class="ha-ec-event-location-wrap">
-										<div class="ha-ec-location-icon">'.$this->render_svg_icon('map').'</div>
-										<div class="ha-ec-location-content">
-											<span class="ha-ec-location-title">Speaker</span>
-											<span class="ha-ec-event-location">9:16am - 10:15am</span>
-										</div>
-									</li>
-								</ul>
-								<h3 class="ha-ec-event-title">Hasin Hayder</h3>
-								<p class="ha-ec-popup-desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum ipsum voluptatibus nulla quis! Cum soluta consectetur molestiae dolorem aperiam deleniti possimus veniam minima, distinctio facilis cupiditate perferendis incidunt odio doloremque?</p>
-								<div class="ha-ec-popup-readmore">
-									<a class="ha-ec-popup-readmore-link" href="">'.$readmore_text.'</a>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>';
-        echo $popup;
-	}
-
-	public function get_popup_markup2 ( $settings ) {
-	   $readmore_text = !empty($settings['readmore_text']) ? esc_html($settings['readmore_text']) : '';
-	   $time_title = !empty($settings['time_title']) ? esc_html($settings['time_title']) : '';
-	   $speaker_title = !empty($settings['speaker_title']) ? esc_html($settings['speaker_title']) : '';
-	   $location_title = !empty($settings['location_title']) ? esc_html($settings['location_title']) : '';
-       $popup = '<div class="ha-ec-popup-wrapper ha-ec-popup-ready">
-					<div class="ha-ec-popup">
-
-						<span class="ha-ec-popup-close"><i class="eicon-editor-close"></i></span>
-						<div class="ha-ec-popup-body">
-							<div class="ha-ec-popup-image">
-								<img src="" alt="">
-							</div>
-							<div class="ha-ec-popup-content">
-								<ul>
-									<li class="ha-ec-time-wrap">
-										<div class="ha-ec-time-title">Timezone UTC+6</div>
-										<div class="ha-ec-event-time">'.$this->render_svg_icon('clock').'<span>9:16am - 10:15am</span></div>
-									</li>
-									<li class="ha-ec-guest-wrap">
-										<div class="ha-ec-guest-title">Speaker</div>
-										<div class="ha-ec-event-guest">'.$this->render_svg_icon('speaker').'<span>Hasin Hayder</span></div>
-									</li>
-									<li class="ha-ec-location-wrap">
-										<div class="ha-ec-location-title">Address</div>
-										<div class="ha-ec-event-location">'.$this->render_svg_icon('map').'<span>Mirpur DOHS, Dhaka</span></div>
-									</li>
-								</ul>
-								<h3 class="ha-ec-event-title">Hasin Hayder</h3>
-								<p class="ha-ec-popup-desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum ipsum voluptatibus nulla quis! Cum soluta consectetur molestiae dolorem aperiam deleniti possimus veniam minima, distinctio facilis cupiditate perferendis incidunt odio doloremque?</p>
-								<div class="ha-ec-popup-readmore">
-									<a class="ha-ec-popup-readmore-link" href="">'.$readmore_text.'</a>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>';
-        echo $popup;
-	}
-
-	public function get_popup_markup ( $settings ) {
-	   $readmore_text = !empty($settings['readmore_text']) ? esc_html($settings['readmore_text']) : '';
-	   $time_title = !empty($settings['time_title']) ? esc_html($settings['time_title']) : '';
-	   $speaker_title = !empty($settings['speaker_title']) ? esc_html($settings['speaker_title']) : '';
-	   $location_title = !empty($settings['location_title']) ? esc_html($settings['location_title']) : '';
-       $popup = '<div class="ha-ec-popup-wrapper">
-					<div class="ha-ec-popup">
-
-						<span class="ha-ec-popup-close"><i class="eicon-editor-close"></i></span>
-						<div class="ha-ec-popup-body">
-							<div class="ha-ec-popup-image">
-								<img src="" alt="">
-							</div>
-							<div class="ha-ec-popup-content">
-								<ul>
-									<li>
-										<div class="ha-ec-time-title">'.$time_title.'</div>
-										<div class="ha-ec-event-time">'.$this->render_svg_icon('clock').'<span></span></div>
-									</li>
-									<li>
-										<div class="ha-ec-guest-title">'.$speaker_title.'</div>
-										<div class="ha-ec-event-guest">'.$this->render_svg_icon('speaker').'<span></span></div>
-									</li>
-									<li>
-										<div class="ha-ec-location-title">'.$location_title.'</div>
-										<div class="ha-ec-event-location">'.$this->render_svg_icon('map').'<span></span></div>
 									</li>
 								</ul>
 								<h3 class="ha-ec-event-title"></h3>

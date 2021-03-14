@@ -1,12 +1,12 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.20.0
+Version: 2.21.1
 Author: weDevs
 Author URI: https://happyaddons.com/
-Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, obiplabon
+Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, sayedulsayem, obiplabon
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Elements
 Requires at least: 4.7
-Tested up to: 5.6
+Tested up to: 5.6.2
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -58,9 +58,9 @@ Unlike most other Elementor addons, Happy Addons offers itself with many robust 
 - [**Post Tab**](https://demo.happyaddons.com/elementor-post-tab-widget-demo/) – Enable users to present your post in multiple workable tabs ideally useful for grouped and related content.
 - [**Post List**](https://demo.happyaddons.com/elementor-post-list-widget-demo/) – List any post elegantly using this widget displaying them in a creative and innovative manner with multiple options to play with.
 - [**Taxonomy List**](https://demo.happyaddons.com/elementor-taxonomy-widget-demo/) - This widget will help you to create a list of posts by sorting categories, tags, post formats.
-- [**Horizontal TimeLine**]
-- [**Social Share**]
-- [**Event Calender**]
+- [**Horizontal TimeLine**](https://demo.happyaddons.com/elementor-horizontal-timeline-widget-demo/) – Design your storyline horizontally using the Horizontal Timeline Widget by HappyAddons. It’s absolutely free!
+- [**Social Share**](https://demo.happyaddons.com/elementor-social-share-widget-demo/) – No need to buy a social share plugin anymore. Get many of the premium features of social share plugins within HappyAddons Social Share widget for free!
+- [**Event Calender**](https://demo.happyaddons.com/elementor-event-calendar-widget-demo/) – Are you struggling to incorporate an event calendar on your website with the help of Elementor? Don’t worry; we have added an amazing Event Calendar Widget in the HappyAddons Free Version for you! You can create your own personalized calendar manually or use your Google calendar or the Events Calendar Plugin’s calendar to showcase your events.
 - [**Contact Form 7**](https://demo.happyaddons.com/elementor-contact-form-7-widget-demo/) – This utility widget helps you to integrate existing forms built using CF7 plugin across your web pages without spending too much time.
 - [**Caldera Forms**](https://demo.happyaddons.com/elementor-caldera-forms-widget-demo/) – This widget can help you to display your caldera forms to display on your web pages designed with Elementor.
 - [**weForms**](https://demo.happyaddons.com/elementor-we-forms-widget-demo/) – Designed forms using weForms plugin and looking for a way to display those on your Elementor powered pages? This is the answer to that.
@@ -156,6 +156,8 @@ If you are still craving for more widgets, then the following premium widgets ar
 - [**WooCommerce Product Carousel**](https://demo.happyaddons.com/elementor-product-carousel-widget-demo/) - Wondering about a perfect WooCommerce Product Carousel widget for Elementor to grab the attention of your customers? Try HappyAddons Pro’s Product Carousel Widget to make it happen.
 - [**WooCommerce Product Cateogry Grid**](https://demo.happyaddons.com/elementor-product-category-grid-widget-demo/) - Sometimes you need to display your eCommerce products category wise to target a specific genre of visitors. Our HappyAddons Product Category Grid Widget is the best fit for displaying WooCommerce Products category wise
 - [**WooCommerce Product Category Carousel**](https://demo.happyaddons.com/elementor-product-category-carousel-widget-demo/) - From now you can display products in carousels based on specific categories with the help of HappyAddons Pro Product Category Carousel Widget to make them more lucrative
+- [**WooCommerce Single Product**](https://demo.happyaddons.com/elementor-single-product-demo/) - Are you looking for a design element to design your single WooCommerce products in various designs? No worries, HappyAddons Single WooCommerce Product Widget will fulfill your desired goal. Check out the demos here.
+- [**WooCommerce Mini Cart**](https://demo.happyaddons.com/elementor-mini-cart-widget-demo/) - Want to increase your eCommerce store’s customer experience? Use the mini cart widget of HappyAddons to boost your conversion rate swiftly.
 
 
 ### **UNIQUE PRO FEATURES OF HAPPY ADDONS TO WATCH OUT FOR**
@@ -284,6 +286,16 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 2.21.1 - 1 March 2021 =
+
+- Fix: Happy Icons blank issue
+
+= 2.21.0 - 28 February 2021 =
+
+- New: Happy Icons v5 (33 new icons)
+- New: Section Shape Divider (3 new Happy Shapes)
+- Tweak: Removed unnecessary code from event calendar widget
+
 = 2.20.0 - 18 February 2021 =
 
 - New: Text stroke feature
@@ -340,321 +352,6 @@ For a more detailed explanation check out the following documentation
 - Fix: Floating effect dependency loading only when activated
 - Fix: Infobox button icon animation
 - Fix: JS error in elementor editor
-
-= 2.16.0 - 29 November 2020 =
-
-- Added: Justified Grid lightbox disable option for mobile and tablet
-- Added: Image Grid lightbox disable option for mobile and tablet
-- Added: Justified Grid default filter select option
-- Added: Image Grid default filter select option
-- Added: Added .pot file
-- Tweak: Improved Justified Grid and Image Grid base style
-- Tweak: Improved Image Grid markup - removed extra inner div
-- Tweak: Improved on demand assets loading
-- Fix: Private page on demand assets loading issue
-- Fix: Lightbox and Popup not working with wrapper link issue
-
-= 2.15.0 - 4 November 2020 =
-
-- New: Ready made page templates (Happy Templates)
-- New: Horizontal TimeLine widget
-- New: Social Share widget
-- New: Happy Icons v4 (44 new icons)
-- Tweak: Data Table row-cell text link option
-- Fix: On Demand Assets Loading compatibility with WPML
-- Fix: Post Tab widget compatibility with WPML
-- Fix: News Ticker widget compatibility with WPML
-- Fix: Pricing Table long feature text breaks into 2nd line issue
-- Fix: Pricing Table default style and content issue
-- Fix: Text domain inconsistency
-
-= 2.14.3 - 12 October 2020 =
-
-- Tweak: Added Calendy pro feature notice
-- Tweak: Added Calendy default username "happyaddons"
-- Tweak: Common cached files are loaded once as internal css
-- Fix: Card widget badge dynamic tag issue
-- Fix: Happy templates popup button auto duplicate issue
-- Fix: Removed duplicate On demand assets cache file enqueue
-- Fix: Removed broken Review widget schema data
-- Fix: Team member widget email envelope icon issue
-
-= 2.14.2 - 20 September 2020 =
-
-- Fix: JS loading issue for non logged in users
-- Fix: JS loading issue for logged in users
-- Fix: All the JS dependent widgets with issue
-- Fix: Editor loading issue
-
-= 2.14.1 - 7 September 2020 =
-
-- Fix: JS loading issue for non logged in users
-
-= 2.14.0 - 3 September 2020 =
-
-- New: Updated compatibility with WP 5.5.x
-- New: Updated compatibility with Elementor 3.x.x
-- New: Twitter feed timestamp settings
-- Tweak: Removed unnecessary Elementor kit assets enqueue
-- Tweak: Removed common image styles, instead added widget wise
-- Fix: Templates compatibility issue with Elementor 3.x.x
-- Fix: Script dependency order issue
-- Fix: Card and Infobox delete issue
-- Fix: Review widget spelling error
-
-= 2.13.3 - 24 August 2020 =
-
-- Fix: HappyAddons Pro assets loading issues
-- Fix: Misc style issue
-
-= 2.13.2 - 20 August 2020 =
-
-- Tweak: Removed icons control workaround for HappyIcons
-- Tweak: Removed assets loading hook priority
-- Tweak: Improved Dual Button default style
-- Fix: CSS Transform normal/hover mode not working on frontend issue
-- Fix: Color change doens't have any effect on SVG icon issue
-- Fix: Card widget image size issue on Firefox and responsive mode
-
-= 2.13.1 - 6 August 2020 =
-
-- Fix: CSS Transform conflict issue
-
-= 2.13.0 - 27 July 2020 =
-
-- New: Data Table widget
-- New: `happyaddons/extensions/grid_layer` hook to control Grid Layer
-- New: `happyaddons/extensions/background_overlay` hook to control Background Overlay
-- New: `happyaddons/extensions/wrapper_link` hook to control Wrapper Link
-- New: `happyaddons/extensions/happy_clone` hook to control Happy Clone
-- New: `happyaddons/extensions/adminbar_menu` hook to control Adminbar menu
-- New: `happyaddons/extensions/floating_effects` hook to control Floating Effects
-- New: `happyaddons/extensions/css_transform` hook to control CSS Transform
-- New: `happyaddons/extensions/on_demand_cache` hook to control On Demand Assets Loading
-- Tweak: Added CSS Transform hover state support
-- Tweak: Added Stepflow direction arrow rotatation support
-- Tweak: Added Card button full width support
-- Tweak: Added Card responsive image positioning
-- Tweak: Restored justify alignment in all widgets
-- Tweak: Improved base styles in all widgets
-- Tweak: Removed widget control panel link from editor panel
-- Tweak: Removed HappyAddons shortcut link from finder
-- Tweak: Removed unnecessary css
-- Tweak: Post List content on/off option
-- Tweak: Post List feature image left & top show option
-- Fix: Post List date issue
-- Fix: WPML link translation issue
-
-= 2.12.3 - 13 July 2020 =
-
-- Tweak: Twitter feed widget icon updated
-- Tweak: Twitter feed cache cleaner added
-- Tweak: Twitter feed Error handling updated
-- Tweak: Social link widget default value
-- Fix: Fun factor animation issue
-- Fix: Card widget default text spelling error
-- Fix: Empty button rendering issue
-
-= 2.12.2 - 10 June 2020 =
-
-- Fix: Template library dark mode compatibility issue
-- Fix: Fluent Forms styles issue
-
-= 2.12.1 - 9 June 2020 =
-
-- Fix: GravityForms widget issue causing elementor editor continuous loding
-
-= 2.12.0 - 8 June 2020 =
-
-- New: Happy Templates Library
-- New: WP Fluent Forms widget
-
-= 2.11.1 - 4 June 2020 =
-
-- Fix: JS function backward compatibility issue
-- Fix: `ha_get_feature_label` JS error issue in Pricing table
-
-= 2.11.0 - 1 June 2020 =
-
-- Tweak: Slide item link support for Carousel widget
-- Tweak: Slide item link support for Slider widget
-- Tweak: More html tags support for textarea/description type input
-- Tweak: Advanced button support for Team Member widget
-- Tweak: Restored default placeholder image
-- Fix: Adminbar happy icon markup issue
-- Fix: Carousel and Slider css issue
-- Fix: SVG icon sizing issues in all widgets
-- Fix: WPML support issue
-- Fix: 360° widget default style
-
-= 2.10.0 - 18 May 2020 =
-
-- New: 360° Rotation widget
-- New: Taxonomy List widget
-
-= 2.9.0 - 29 April 2020 =
-
-- New: WPML support for all widgets [Documentation](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/wpml-support-for-happyaddons-free/)
-
-= 2.8.1 - 5 April 2020 =
-
-- Tweak: Adminbar actions terms updated to more meaningful terms
-- Fix: Floating effect not working on frontend
-- Fix: Adminbar HappyAddons icon position
-
-= 2.8.0 - 1 April 2020 =
-
-- New: Post Tab widget
-- New: Post List widget
-
-= 2.7.3 - 31 March 2020 =
-
-- Tweak: Custom attribute output support for all links
-- Tweak: Added pro widgets awarness panel
-- Fix: Missing styles issue on page/post clone
-- Fix: Popup link not working with link issue
-- Fix: Twitter feed issue
-
-= 2.7.2 - 2 March 2020 =
-
-- Fix: Dual Button space between buttons issue
-
-= 2.7.1 - 23 February 2020 =
-
-- Fix: Fun Factor broken markup issue
-
-= 2.7.0 - 20 February 2020 =
-
-- New: Twitter feed widget
-- New: Bar Chart widget
-- New: Social Icons widget
-- New: Grid Layer feature for designer
-- New: Wrapper Link feature for section, column and widget
-- Update: Dynamic Tags support in Carousel widget
-- Update: Dynamic Tags support in Dual Button widget
-- Update: Dynamic Tags support in Logo Grid widget
-- Update: Dynamic Tags support in News Ticker widget
-- Update: Dynamic Tags support in Pricing Table widget
-- Update: Dynamic Tags support in Skills widget
-- Update: Dynamic Tags support in Slider widget
-- Update: Dynamic Tags support in Testimonial widget
-- Fix: Pricing Table widget php warning
-
-= 2.6.1 - 16 February 2020 =
-
-- Fix: Conflict with Rank Math
-- Fix: Fun Factor padding issue
-- Fix: Stepflow inline editing issue
-- Fix: Gravity Forms conditional field issue
-- Fix: Inline editing issue in Elementor 2.9.*
-- Fix: Select2 width collapse issue in Elementor 2.9.*
-
-= 2.6.0 - 15 January 2020 =
-
-- New: Fun Factor widget
-- Update: Page break styling for Gravity Forms widget
-- Update: Widgets help link added in "Need Help?" button
-- Fix: Image Compare widget extra height issue
-- Fix: Step Flow widget title link issue
-- Fix: Gravity Forms styling issue
-- Fix: Removed welcome notice in admin
-
-= 2.5.0 - 24 December 2019 =
-
-- New: Added Step Flow widget title heading level control
-- Update: Tracking system update to comply with wp.org user privacy policy
-- Fix: Dark mode Happy Effects heading color
-
-= 2.4.2 - 12 December 2019 =
-
-- Fix: Compatibility with Elementor 2.8.*
-- Fix: Extension loading issue for non logged in users
-
-= 2.4.1 - 10 December 2019 =
-
-- Fix: News Ticket single post selection issue
-- Fix: Blank icons controls JS error issue (it also fixes EA Table and Elementor FORM issue)
-- Fix: Gravity Forms Elementor editor style issue
-
-= 2.4.0 - 3 December 2019 =
-
-- New: Happy Clone - (duplicate post/page from anywhere!)
-- New: News Ticker Widget
-- New: Fixed size controls in Elementor Button widget
-- Fix: Badge offset responsive issue for Icon Box Widget
-- Fix: Wrapper is rendered when icon/image is missing issue
-
-= 2.3.0 - 20 November 2019 =
-
-- New: Gravity Forms Widget
-- New: Column Order control
-- New: Custom Column Width control
-- New: weForms section break styles
-- Fix: weForms misc style issues
-
-= 2.2.6 - 11 November 2019 =
-
-- Fix: Conflict with Essential Addons causing PHP fatal error
-- Fix: PHP cannot declare class `Happy_Addons\Elementor\Finder` issue
-
-= 2.2.5 - 11 November 2019 =
-
-- Tweak: Improved floating effects editing performance
-- Fix: Text editor slow performance and rendering lag issue
-
-= 2.2.4 - 8 November 2019 =
-
-- Tweak: Improved on demand assets loading for Elementor theme builder
-- Tweak: Improved support for 3rd party header, footer builders
-- Fix: Dashboard php error for users with non admin or super admin roles
-
-= 2.2.3 - 6 November 2019 =
-
-- Tweak: Improved support for image optimization plugins. ex: Shortpixel Image Optimiser
-- Tweak: Widgets default styles
-- Fix: WPForms Pro compatibility issue
-- Fix: Image border radius style issue
-
-= 2.2.2 - 16 October 2019 =
-
-- Fix: Widget Control Panel link issue
-
-= 2.2.1 - 15 October 2019 =
-
-- Fix: Text overflow issue in all widgets
-- Fix: PHP 5.4 compatibility issue
-
-= 2.2.0 - 7 October 2019 =
-
-- Update: Style copy-paste support improved
-- Fix: Image Grid image alt attribute value issue
-- Fix: Justified Gallery image alt attribute value issue
-- Fix: Skills Bar % sign visibility inconsistency issue
-
-= 2.1.0 - 3 October 2019 =
-
-- New: Widgets control panel link in Elementor Finder
-- New: Widgets control panel link in Elementor editor panel
-- Update: Added Dual Button layout (Stack and Queue layout)
-- Fix: Image Grid and Justified Gallery filter issue for non english languages
-- Fix: Justified gallery image alt attribute missing issue
-- Fix: Dual Button responsive issue - using layout feature
-- Fix: Dual Button default hover text color
-- Fix: Widgets Control Panel navigation jump issue
-
-= 2.0.0 - 24 September 2019 =
-
-- New: Dashboard - Widgets Control Panel
-- New: Image popup support for Justified Grid
-- New: Image popup support for Image Grid
-- Update: Improved HTML tag support for description and title fields
-- Update: Added more icons in Happy Icons
-- Update: Improved HTML escaping support for security
-- Fix: Skill Bars admin label fix
-- Fix: Missing style issue while copy-pasting widget style
-- Fix: Happy Icons cache issue
-- Fix: Admin bar menu spacing issue
-
 
 == Upgrade Notice ==
 
