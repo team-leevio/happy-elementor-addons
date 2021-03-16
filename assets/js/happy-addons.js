@@ -848,7 +848,7 @@
 			}
 		);
 
-		$('[data-ha-element-link]').on('click.onWrapperLink', function() {
+		$('body').on('click.onWrapperLink', '[data-ha-element-link]', function() {
 			var $wrapper = $(this),
 			    data     = $wrapper.data('ha-element-link'),
 			    id       = $wrapper.data('id'),

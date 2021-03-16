@@ -12,23 +12,36 @@ Requires PHP: 5.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-[Happy Addons for Elementor page builder](https://happyaddons.com/) promises to enhance and take your WordPress webpage editing & designing capabilities to a whole new level.
-
-This Elementor based plugin is the latest addition in the list of [weDevs](https://wedevs.com/) premium product library. Enjoy this freemium (free+premium) page builder for Elementor that consists of cutting-edge widgets that are surely set to take your page building experience with Elementor editor to the next level.
+[Happy Addons for Elementor](https://happyaddons.com/) Comes With 42 Free Elementor Widgets: Table Builder, Testimonial, Event Calendar, Slider, News Ticker, Elementor Templates & More. Features Like Elementor Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Elementor Icons, & More.
 
 == Description ==
 
-[Happy Addons for Elementor page builder](https://happyaddons.com/) promises to enhance and take your WordPress webpage editing & designing capabilities to a whole new level.
+[Happy Addons for Elementor page builder](https://happyaddons.com/)Is One of the Best Elementor Addons That Comes With **87 Elementor Free & Pro Widgets and 16+ Problem-Solving Elementor Features**.
 
-This Elementor based plugin is the latest addition in the list of [weDevs](https://wedevs.com/) premium product library. Enjoy this freemium (free+premium) page builder for Elementor that consists of cutting-edge widgets that are surely set to take your page building experience with Elementor editor to the next level.
+### **Why Should You Choose HappyAddons?**
+HappyAddons is the pioneer of adding exclusive problem-solving features. Also we have added premium quality Widgets in the Elementor Library. Reasons for choosing Happyaddons over any other Elementor Addons:
 
-Officially recommended by Elementor Page Builder! We are now listed on their [official addons page](https://elementor.com/addons/).
+- You Can Create Advanced Data Table,
+- Facility to Add Text Stroke or Outline to Elementor Typography
+- Manage Your Event Calendars,
+- Design Your Woocommerce Sites,
+- Copy and Paste All of Your Elements Within Cross-Domain,
+- Masking Your Images Into Different Shapes Within the Elementor Editing Panel,
+- Flexibility to Create Advance Background Parallax for Your Elementor Site,
+- Exclusive Blog Archive Page Designing Capability,
+- 500+ Readymade Elementor Template Kits to Use,
+- Moreover, You Can Copy Happyaddons Demo Contents Directly from Our [demo site](https://demo.happyaddons.com/) and much more.
+- Officially recommended by Elementor Page Builder! We are now listed on their [official addons page](https://elementor.com/addons/).
+- This Elementor Page Builder Addon is the latest addition in the list of [weDevs](https://wedevs.com/) premium product library. **weDevs is famous for reliable after sales service**.
 
-### **39+ FREE PREMIUM-LIKE WIDGETS AND MORE ON ITS WAY**
 
-Unlike most other Elementor addons, Happy Addons offers itself with many robust free widgets. These free yet important widgets would surely give you a feel of premium widgets making you wonder how come these widgets are free. Let's explore all the magical free widgets of Happy Addons:
 
-- [**Card**](https://demo.happyaddons.com/elementor-card-widget-demo/) – Incredibly powerful widget to demonstrate your products, articles, news, creative posts using a beautiful combination of texts, links, badge, and image. Using built-in positioning and offset feature you can create eye-candy designs in a twist.
+### **What You will Get in HappyAddons Free Version**
+
+**42 Free Elementor Widgets Are Available in the HappyAddons Free**
+HappyAddons comes with plenty of Elementor Widgets in the free version. And all of the widgets are full of customization. Also we have created design inspiration for our each and every single widgets. Let’s have a look what you will get in our free version:
+
+- [**Card**](https://demo.happyaddons.com/elementor-card-widget-demo/) – Incredibly powerful widget to demonstrate your products, articles, news, creative posts using a beautiful combination of texts, links, badge, and image. Using built-in positioning and offset features you can create eye-candy designs in a twist.
 - [**Info Box**](https://demo.happyaddons.com/elementor-info-box-widget-demo/) – Create beautiful information boxes using icons, links, and texts, and make them slick using the built-in positioning features.
 - [**Icon Box**](https://demo.happyaddons.com/elementor-icon-box-widget-demo/) – A simplified version of Infobox but comes with powerful display features. Perfect for showcasing interesting information to your users in various styles.
 - [**Skill Bars**](https://demo.happyaddons.com/elementor-skill-bars-widget-demo/) – An essential building block to showcase user skills, task percentage, required tools, and other progressive information in different ways. It comes with incredible customizing options to suit your needs.
@@ -52,7 +65,7 @@ Unlike most other Elementor addons, Happy Addons offers itself with many robust 
 - [**Twitter Feed**](https://demo.happyaddons.com/elementor-twitter-feed-widget-demo/) – Showcase your awesome team decorating in the Twitter feed mode applying various styles, texts, images, and social links.
 - [**Bar Chart**](https://demo.happyaddons.com/elementor-bar-chart-widget-demo/) – Display charts in an animated and customizable bar form essentially in case of imaging different data and other relevant statistical visualizations.
 - [**360° Rotation**](https://demo.happyaddons.com/elementor-360-rotation-widget-demo/) - Create 360 Degree rotated images for your Products with this widget. Flexibility to add auto-rotate or click to the rotation functionality. Also, you can add Magnify Button to Zoom-in your pictures.
-- [**Data Table**](https://demo.happyaddons.com/elementor-datatable-widget-demo/) Using a data table on the website is a difficult task if you don't have any coding ideas or knowledge. However, the data table widget of Happy Elementor Addons will solve this problem.
+- [**Data Table**](https://demo.happyaddons.com/elementor-datatable-widget-demo/) - Using a data table on the website is a difficult task if you don't have any coding ideas or knowledge. However, the data table widget of Happy Elementor Addons will solve this problem.
 - [**Pricing Table Lite**](https://demo.happyaddons.com/elementor-pricing-table-widget-demo/) – Create beautiful pricing tables with lots of customizations and sleek look-n-feel using this widget.
 - [**Flip Box Lite**](https://demo.happyaddons.com/elementor-flip-box-widget-demo/) – FlipBox helps you to deliver messages in a beautiful way with before and after-effects.
 - [**Post Tab**](https://demo.happyaddons.com/elementor-post-tab-widget-demo/) – Enable users to present your post in multiple workable tabs ideally useful for grouped and related content.
@@ -60,67 +73,83 @@ Unlike most other Elementor addons, Happy Addons offers itself with many robust 
 - [**Taxonomy List**](https://demo.happyaddons.com/elementor-taxonomy-widget-demo/) - This widget will help you to create a list of posts by sorting categories, tags, post formats.
 - [**Horizontal TimeLine**](https://demo.happyaddons.com/elementor-horizontal-timeline-widget-demo/) – Design your storyline horizontally using the Horizontal Timeline Widget by HappyAddons. It’s absolutely free!
 - [**Social Share**](https://demo.happyaddons.com/elementor-social-share-widget-demo/) – No need to buy a social share plugin anymore. Get many of the premium features of social share plugins within HappyAddons Social Share widget for free!
-- [**Event Calender**](https://demo.happyaddons.com/elementor-event-calendar-widget-demo/) – Are you struggling to incorporate an event calendar on your website with the help of Elementor? Don’t worry; we have added an amazing Event Calendar Widget in the HappyAddons Free Version for you! You can create your own personalized calendar manually or use your Google calendar or the Events Calendar Plugin’s calendar to showcase your events.
+- [**Event Calendar**](https://demo.happyaddons.com/elementor-event-calendar-widget-demo/) – Are you struggling to incorporate an event calendar on your website with the help of Elementor? Don’t worry; we have added an amazing Event Calendar Widget in the HappyAddons Free Version for you! You can create your own personalized calendar manually or use your Google calendar or the Events Calendar Plugin’s calendar to showcase your events.
+- [**Image Hover Effect**](https://demo.happyaddons.com/elementor-image-hover-effect-widget-demo/) – If you want to add lucrative hover effects to your website’s images, you can try HappyAddons Image Hover Effect Widget. It allows you to add 20+ stunning hover effects to your photos. Start adding attention grabbing images easily.
 - [**Contact Form 7**](https://demo.happyaddons.com/elementor-contact-form-7-widget-demo/) – This utility widget helps you to integrate existing forms built using CF7 plugin across your web pages without spending too much time.
 - [**Caldera Forms**](https://demo.happyaddons.com/elementor-caldera-forms-widget-demo/) – This widget can help you to display your caldera forms to display on your web pages designed with Elementor.
 - [**weForms**](https://demo.happyaddons.com/elementor-we-forms-widget-demo/) – Designed forms using weForms plugin and looking for a way to display those on your Elementor powered pages? This is the answer to that.
 - [**Ninja Forms**](https://demo.happyaddons.com/elementor-ninja-form-widget-demo/) – Use this widget to embed forms created using Ninja Forms to display seamlessly on your web pages. Various styling options will help you to look at them even better.
 - [**WPForms**](https://demo.happyaddons.com/elementor-wpform-widget-demo/) – Use this widget to embed forms created using WPForms to display seamlessly on your web pages. Various styling options will help you to look at them even better.
 - [**Gravity Forms**](https://demo.happyaddons.com/elementor-gravity-form-widget-demo/) – While using Gravity forms, you may want to change the appearance of the form fields. With the Happy Addons, you can spruce up your Gravity forms like a pro.
-- [**WP Fluent Forms**](https://demo.happyaddons.com/elementor-fluent-form-widget-demo/) - Easliy customize and use Fluent Forms using this super intuitive widget.
+- [**WP Fluent Forms**](https://demo.happyaddons.com/elementor-fluent-form-widget-demo/) - Easily customize and use Fluent Forms using this super intuitive widget.
 
-New free widgets or features are added every month. With all these awesome free widgets, this nifty plugin, not just aims to the trendy and sophisticated WordPress website design philosophy but also effortlessly aligns with any Elementor powered WordPress website design requirements.
+**13+ Free Elementor Enhancement Features Are Available in the HappyAddons Free**
 
-
-### **Happy Templates**
-Finally, we are happy to announce that we are introducing the Happy Template import feature within our HappyAddons. Initially, it comes with almost 400 readymade templates. We will continuously improve our template library. Both of our Free and Pro users can use happy templates. Templates are labeled in two tags, Pro and Free. To import premium templates you will need the [HappyAddons Pro](https://happyaddons.com/). Template import feature works as like Elementor Template importing feature. Additionally, you can check the previews in three device viewport; Desktop, Tab, Mobile.
+HappyAddons not only comes with extendable elementor widgets but also it has some cool features which help you to increase your web designing skill. You will get 13+ exclusive Elementor features in HappyAddons Free.
 
 
-### **FREE BUILT-IN EXTENSIONS FOR AN UNPRECEDENTED WEB-PAGE DESIGNING EXPERIENCE**
+[**Happy Templates**](https://happyaddons.com/template-importer/) - Finally, we are happy to announce that we are introducing the Happy Template import feature within our HappyAddons. Initially, it comes with almost 500 readymade elementor templates. We will continuously improve our template library. Both of our Free and Pro users can use happy templates. Templates are labeled in two tags, Pro and Free. To import premium templates you will need the [HappyAddons Pro](https://happyaddons.com/pricing). Template import feature works as like Elementor Template importing feature. Additionally, you can check the previews in three device viewport; Desktop, Tab, Mobile.
 
-_Happy Addons Extensions comprise with free extensions augmenting the features of the Elementor page builder to add additional customizations. These effects are novel and exclusive that is only available in Happy Addons._
+[**Happy Shape Dividers**](https://happyaddons.com/happy-shape-divider/) - If you want to get some unique shape dividers within your elementor shape divider you can use our HappyAddons Shape Dividers for Elementor. Initially you will get 18+ new shape dividers.
 
-- **Background Overlay –** This extension will allow you to add images, colors, and icons behind a widget. You can add background overlay to any widget.
-- **Happy Icons –** This will help you embellish your web page with an army of free happy icons. To do so, you have to choose a widget that supports happy icons. Currently, the custom fonts library contains 500+ icons.
-- **Managing Column Order on Mobile Responsive Mood –** Your designed web page may contain some columns that may require to reorder in the mobile device view. By using the Happy Elementor Addons, you can rearrange the order of the column.
-- **Manage Column Width by Adding Pixels –** You can control the column width of your widgets with percentage parameters in Elementor. However, sometimes, you need to adjust the column width to meet your design aesthetics. The Happy Addons will let you do so with ease.
-- **Happy Clone –** While designing with Elementor, you may need to duplicate page or posts from the finder of Elementor Page Builder by using the buttons (CMD/CTRL + E). Surprisingly, you can copy pages and posts lighting fast from the Elementor finder using the Happy clone feature.
-- **Fixed Size Controls in Elementor Button Widget –** Some times, you may need to make perfectly circular shaped buttons in Elementor. With this free feature, you can do that by just setting a fixed size, that is, by specifying an equal height and width of the Elementor Button widget.
-- **Grid Layer:** Maintain proper alignment of your page's elements. Enjoy full flexibility while setting your grid color, width, and position of your grid layout.
-- **Wrapper Link:** No limitation on adding links to specific areas. Use the Wrapper Link feature to insert links to any column, section or any other place you want.
+[**Elementor Equal Heights**](https://happyaddons.com/equal-height-feature/) - From now you can set equal heights to your Elementor Columns, widgets without using zero coding knowledge.
 
-### **Happy Addons Exclusive: Happy Effects**
+[**Text Outline**](https://happyaddons.com/text-outline/) - With this Text Outline feature you can add an exterior border around each character of your text or Heading lines. You can create Neon Text Effect, Parallax Heading Effect, Stroke Heading Effect and much more. You can also apply this feature in the Elementor’s Default Heading Widgets. Here is the list of widgets within which you will get this text outline option,
+- Elementor Heading Widget
+- Elementor Page Title Widget
+- Elementor Site Title Widget
+- Elementor Post Title Widget
+- Elementor Product Title Widget
+- Elementor Animated Heading Widget
+- HappyAddons Gradient Heading Widget
 
-As mentioned, the happy Elementor Addons caters you with these two effects that are dying to make you happy:
+Here are some design inspirations for you. [**Demo“**](https://demo.happyaddons.com/text-outline/)
 
-[**Floating Effects**](https://demo.happyaddons.com/elementor-floating-effect-demo/) – Now you can create stunning animations for any Elementor widget using Floating Effects. Translate, Rotate or Scale – Imagination is the limit!
+[**Background Overlay**](https://happyaddons.com/background-overlay-demo/) - This extension will allow you to add images, colors, and icons behind a widget. You can add background overlay to any widget.
 
-[**CSS Transform**](https://demo.happyaddons.com/elementor-css-transform-demo/) – Another missing piece, a great enhancement over core Elementor that works seamlessly with every widget. You can now apply various CSS transforms like translate, rotate, scale and skew without any limitations.
+[**Happy Icons**](https://happyaddons.com/happy-icon/) - This will help you embellish your web page with an army of free happy icons. To do so, you have to choose a widget that supports happy icons. Currently, the custom fonts library contains 500+ icons.
+
+[**Managing Column Order on Mobile Responsive Mood** ](https://happyaddons.com/happy-column-control/) - Your designed web page may contain some columns that may require to reorder in the mobile device view. By using the Happy Elementor Addons, you can rearrange the order of the column.
+
+[**Manage Column Width by Adding Pixels**](https://happyaddons.com/happy-column-control/)  – You can control the column width of your widgets with percentage parameters in Elementor. However, sometimes, you need to adjust the column width to meet your design aesthetics. The Happy Addons will let you do so with ease.
+
+[**Happy Clone**](https://happyaddons.com/happy-clone-demo/)  – While designing with Elementor, you may need to duplicate pages or posts from the finder of Elementor Page Builder by using the buttons (CMD/CTRL + E). Surprisingly, you can copy pages and posts lighting fast from the Elementor finder using the Happy clone feature.
+
+**Fixed Size Controls in Elementor Button Widget** – Sometimes, you may need to make perfectly circular shaped buttons in Elementor. With this free feature, you can do that by just setting a fixed size, that is, by specifying an equal height and width of the Elementor Button widget.
+
+[**Grid Layer**](https://happyaddons.com/happy-grid-layout-demo/) – Maintain proper alignment of your page's elements. Enjoy full flexibility while setting your grid color, width, and position of your grid layout.
+
+[**Wrapper Link**](https://happyaddons.com/wrapper-link-feature-demo/) – No limitation on adding links to specific areas. Use the Wrapper Link feature to insert links to any column, section or any other place you want.
+
+[**Floating Effects**](https://happyaddons.com/elementor-floating-effect-demo-2/) – Now you can create stunning animations for any Elementor widget using Floating Effects. Translate, Rotate or Scale Imagination is the limit!
 
 **Floating Effects & CSS Transformations demo:**
 
 https://www.youtube.com/watch?v=LmtacsLcFPU
 
-**Floating Effects used for Space effect illustration**
+**Floating Effects used for Space effect illustration:**
 
 https://www.youtube.com/watch?v=F33g3zqkeog
 
-### **PRESENTING THE ALL-EXCLUSIVE HAPPY ADDONS FOR ELEMENTOR PRO**
+[**CSS Transform**](https://happyaddons.com/elementor-css-transform-demo-3/) – Another missing piece, a great enhancement over core Elementor that works seamlessly with every widget. You can now apply various CSS transforms like translate, rotate, scale and skew without any limitations.
+
+
+### **Presenting the All-Exclusive Widgets & Features Happy Addons Pro**
 
 The Happy Elementor Addons ships not only with some unique premium features but also with premium widgets. The premium features are 100% unique and exclusive and the premium widgets are there to give you professional assistance to craft any design of your webpage.
 
 https://www.youtube.com/watch?v=QwJrFMtfO2U
 
-_INTRODUCING HAPPY ADDONS PRO_
+_Introducing Happy Addons Pro (Check What You Will Get in the Pro Version of Happyaddons)_
 
-### **PREMIUM ELEMENTOR WIDGETS OF HAPPY ADDONS (PRO)**
+### ** 45 Premium Elementor Widgets of Happy Addons (pro)**
 
 If you are still craving for more widgets, then the following premium widgets are there to quench your thirst. The best part is that you can copy and paste the design source code so you won't have to make any design from scratch. Let's explore the world of Happy Addons Pro Widgets:
 
 - [**Feature List**](https://demo.happyaddons.com/elementor-feature-list-widget-demo/) – You can display your product features using different styles using this widget. As a bonus, you can also customize each and every predefined design.
 - [**Pricing Table**](https://demo.happyaddons.com/elementor-pricing-table-widget-demo/) – This one of a kind widget will allow you to create any kind of pricing table under the sun. As a surprise, you can use gradient background, oval-shaped button, font awesome icons, background fill color, different heights, dark mood and so on.
 - [**Flip Box**](https://demo.happyaddons.com/elementor-flip-box-widget-demo-2/) – This exquisite widget will help you show different messages or texts at the time before and after a user hover on a certain element. Just like the other widgets, you can customize this with background image, gutter and circular arrow navigation on both sides.
-- [**Advanced Heading**](https://demo.happyaddons.com/elementor-advanced-heading-widget-demo/) – With this useful widget you can create beautiful heading design for your text. Like the other widgets, you will get a bunch of free customization options for different sections of the texts.
+- [**Advanced Heading**](https://demo.happyaddons.com/elementor-advanced-heading-widget-demo/) – With this useful widget you can create beautiful heading designs for your text. Like the other widgets, you will get a bunch of free customization options for different sections of the texts.
 - [**Hover Box**](https://demo.happyaddons.com/elementor-image-hover-box-widget-demo/) – Give boring images lives by adding dynamic animated texts with this nifty little tool. You can display texts with this tool right after a user hovers an image.
 - [**Team Carousel**](https://demo.happyaddons.com/elementor-team-carousel-widget-demo/) – Present your team members with beautiful carousels that include social profile buttons, arrow icons, and great customizability.
 - [**Scrolling Image**](https://demo.happyaddons.com/elementor-scrolling-image-widget-demo/) – Using this widget, you can show your products or services in a way that slides horizontally or vertically. You can also create a stunning photo gallery with this awesome widget.
@@ -154,17 +183,17 @@ If you are still craving for more widgets, then the following premium widgets ar
 - [**Author List**](https://demo.happyaddons.com/elementor-author-list-widget-demo/) - Decently showcase your creative writers with the HappyAddons Author List widget. It will help you to display all of your authors in one place
 - [**WooCommerce Product Grid**](https://demo.happyaddons.com/elementor-product-grid-widget-demo/) - Are you struggling with showcasing your products in perfect grid alignment within WooCommerce? From now, you can display your products in grid views lucratively with HappyAddons Pro Product Grid Widget
 - [**WooCommerce Product Carousel**](https://demo.happyaddons.com/elementor-product-carousel-widget-demo/) - Wondering about a perfect WooCommerce Product Carousel widget for Elementor to grab the attention of your customers? Try HappyAddons Pro’s Product Carousel Widget to make it happen.
-- [**WooCommerce Product Cateogry Grid**](https://demo.happyaddons.com/elementor-product-category-grid-widget-demo/) - Sometimes you need to display your eCommerce products category wise to target a specific genre of visitors. Our HappyAddons Product Category Grid Widget is the best fit for displaying WooCommerce Products category wise
+- [**WooCommerce Product Category Grid**](https://demo.happyaddons.com/elementor-product-category-grid-widget-demo/) - Sometimes you need to display your eCommerce products category wise to target a specific genre of visitors. Our HappyAddons Product Category Grid Widget is the best fit for displaying WooCommerce Products category wise
 - [**WooCommerce Product Category Carousel**](https://demo.happyaddons.com/elementor-product-category-carousel-widget-demo/) - From now you can display products in carousels based on specific categories with the help of HappyAddons Pro Product Category Carousel Widget to make them more lucrative
 - [**WooCommerce Single Product**](https://demo.happyaddons.com/elementor-single-product-demo/) - Are you looking for a design element to design your single WooCommerce products in various designs? No worries, HappyAddons Single WooCommerce Product Widget will fulfill your desired goal. Check out the demos here.
 - [**WooCommerce Mini Cart**](https://demo.happyaddons.com/elementor-mini-cart-widget-demo/) - Want to increase your eCommerce store’s customer experience? Use the mini cart widget of HappyAddons to boost your conversion rate swiftly.
 
 
-### **UNIQUE PRO FEATURES OF HAPPY ADDONS TO WATCH OUT FOR**
+### **Unique Pro Features of Happy Addons to Watch Out For**
 
 The premium (PRO) features of Happy Addons truly make it stand out from all the other Elementor add-ons out there right now. You will get the below mentioned much talked about standout premium features in the PRO version of Happy Addons:
 
-### **CROSS-DOMAIN COPY-PASTE: APPLY THE SAME DESIGN TO MULTIPLE DOMAINS WITH A SINGLE CLICK**
+### **Cross-Domain Copy-Paste: Apply the Same Design to Multiple Domains With a Single Click**
 
 If you are creating different web pages with WordPress, you will often try to use the same elements of a web page to other pages over and over again.
 
@@ -172,25 +201,25 @@ To address this issue, the Elementor page builder comes with a free copy and pas
 
 This is where the goodness of the Happy Addons comes to the rescue! With this tool, you can copy and paste any element (for example, buttons, navigation bars, carousel, accordion, etc.) from one domain to another domain. Cool, right?
 
-[Watch Demo](https://demo.happyaddons.com/cross-domain-copy-paste/)
+[Check Demo](https://demo.happyaddons.com/cross-domain-copy-paste/)
 
-### **PRESET: SAVE YOUR TIME AND EFFORT BY USING THE PRESET FEATURE**
+### **Preset: Save Your Time and Effort by Using the Preset Feature**
 
 If you try to create your website from scratch and give it a professional appearance, then it will take up a huge amount of time and effort.
 
 To tackle this hassle, the Preset option of the Happy Addons comes into play! Much like its name, it will let you select pre-made designs to create a web page faster and of course without compromising the quality. Currently, there are 400+ preset designs available in Happy Addons.
 
-[Watch Demo](https://demo.happyaddons.com/presets-demo/)
+[Check Demo](https://demo.happyaddons.com/presets-demo/)
 
-### **UNLIMITED SECTION NESTING: USE UNLIMITED SECTION NESTING TO GO BEYOND THE LIMIT**
+### **Unlimited Section Nesting: Use Unlimited Section Nesting to Go Beyond the Limit**
 
 With Elementor, you can create sections to make room for elements. We feel happy to say that by integrating the Happy Elementor add-ons, you can create infinite sections within a single section.
 
 And as usual, you can insert as many widgets as you want into those sections.
 
-[Watch demo](https://demo.happyaddons.com/unlimited-section-nesting/)
+[Check demo](https://demo.happyaddons.com/unlimited-section-nesting/)
 
-### **LIVE COPY: COPY DESIGNS FROM DEMO SITE TO GET IT DONE RIGHT AWAY!**
+### **Live Copy: Copy designs from demo sites to get it done right away!**
 
 Sometimes you may wish to simulate exactly the same design that you see on our demo page. Amazingly, with the Live Copy option, you can do it at your disposal.
 
@@ -198,9 +227,30 @@ This is a go-to way that lets you copy the code of the demo design from the demo
 
 Unlike a theme template, using the demo designs won't put any pressure on your media server which is a must-have to help load the page faster.
 
-[Watch Demo](https://demo.happyaddons.com/live-copy/)
+[Check Demo](https://demo.happyaddons.com/live-copy/)
 
-### **ENJOY EXTRA BENEFITS FROM HAPPY ADDONS!**
+### **Image Masking: Mask your images within your Elementor Editing Planel!**
+Sometimes, a square or circular shaped image is not enough to create a good design in elementor. You might need different types of creative and unusual image shapes. HappyAddons is introducing custom shaped images to bring a creative touch in your design. Now you will be able to convert your square image into lovely custom shapes. No hassles, just upload your image and choose your shape. Boom! Just done. Very Easy.
+
+[Check Demo](https://happyaddons.com/image-masking-demo/)
+
+https://www.youtube.com/watch?v=0U3wq3oxy2k
+
+### **Happy Particle Effect: Add Exclusive Background Particle Effects to Your Website!**
+We have added three predefined particle effects, which are commonly used, Polygon, NASA, Snow. But you have plenty of options for adding as much as your need with our custom Particle adding option. Moreover, you can customize them at your desired level. You can set the number of Particles, the size of your particles, the speed of the Particle movements, and the flexibility to add Hover Effect to your Particle effects.
+
+[Check Demo](https://demo.happyaddons.com/happy-particle-demo/)
+
+https://www.youtube.com/watch?v=iD83Sr4pFSw
+
+### **Display Condition: Show, Hide and Schedule Content to Display on Your Site According to Your Need!**
+This feature will help you to display your content depending on different kinds of condition like Browser, Operating System, Date Range, Time and many more
+
+[Check Demo](https://happyaddons.com/display-condition/)
+
+https://www.youtube.com/watch?v=kiGj1ZyX6T4
+
+### **Enjoy Extra Benefits from Happy Addons!**
 
 Our code doesn't stink and we don't leave you blindfolded when you need support from us. Apart from the freemium widgets, the plugin will pamper you with a fleet of professional quality features.
 
@@ -208,7 +258,7 @@ For example, it's compatible with almost every WordPress theme; it's lightweight
 
 If you don't understand a feature or fail to give it the desired look which was already demonstrated in a demo, or it's not working as expected – we got your back. Just drop us a line and we will do our best to help you figure a way out.
 
-### **BUGS, TECHNICAL HINTS OR CONTRIBUTE**
+### **Bugs, Technical Hints or Contribute**
 
 Please provide us with constructive feedback, contribute and file any technical bugs on [GitHub Repository](https://github.com/weDevsOfficial/happy-elementor-addons/issues).
 
@@ -226,7 +276,7 @@ Integrating Appsero SDK **DOES NOT IMMEDIATELY** start gathering data, **without
 
 Learn more about how [Appsero collects and uses this data](https://appsero.com/privacy-policy/). Additionally, read weDevs [privacy policy](https://wedevs.com/privacy-policy/) for better knowledge on it.
 
-### **ABOUT THE MAKER**
+### **About the Maker**
 
 Despite Happy Addons for Elementor, being the newest addition to the product line up of [weDevs](https://wedevs.com/), it has already managed to win the heart of its users with a staggering 5-star rating. The plugin is programmed in a way so you don't require any prior coding know-how and is completely cross-browser compatible with mobile responsive feature.
 
@@ -286,9 +336,10 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 2.22.0 - 14 March 2021 =
+= 2.22.0 - 16 March 2021 =
 
-- New: Image Hover Widget
+- New: Image Hover Effect Widget
+- Fix: Wrapper link issue
 
 = 2.21.1 - 1 March 2021 =
 

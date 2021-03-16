@@ -1,3 +1,8 @@
+= 2.22.0 - 16 March 2021 =
+
+- New: Image Hover Effect Widget
+- Fix: Wrapper link issue
+
 = 2.21.1 - 1 March 2021 =
 
 - Fix: Happy Icons blank issue
