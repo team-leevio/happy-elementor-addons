@@ -12,12 +12,11 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
 use Elementor\Utils;
 
 defined('ABSPATH') || die();
 
-class Image_Hovereffect extends Base
+class Image_Hover_Effect extends Base
 {
 
 	/**
@@ -42,7 +41,7 @@ class Image_Hovereffect extends Base
 	 */
 	public function get_icon()
 	{
-		return 'hm hm-finger-index';
+		return 'hm hm-cursor-hover-click';
 	}
 
 	public function get_keywords()
