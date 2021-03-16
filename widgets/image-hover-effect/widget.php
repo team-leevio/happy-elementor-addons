@@ -16,8 +16,7 @@ use Elementor\Utils;
 
 defined('ABSPATH') || die();
 
-class Image_Hovereffect extends Base
-{
+class Image_Hover_Effect extends Base {
 
 	/**
 	 * Default filter is the global filter
@@ -26,8 +25,7 @@ class Image_Hovereffect extends Base
 	 * @var string
 	 */
 
-	public function get_title()
-	{
+	public function get_title() {
 		return __('Image Hover Effect', 'happy-elementor-addons');
 	}
 
@@ -39,18 +37,15 @@ class Image_Hovereffect extends Base
 	 *
 	 * @return string Widget icon.
 	 */
-	public function get_icon()
-	{
+	public function get_icon() {
 		return 'hm hm-cursor-hover-click';
 	}
 
-	public function get_keywords()
-	{
+	public function get_keywords() {
 		return ['hover', 'image', 'effect'];
 	}
 
-	protected function register_content_controls()
-	{
+	protected function register_content_controls() {
 		$this->start_controls_section(
 			'_section_image_content',
 			[
@@ -159,8 +154,7 @@ class Image_Hovereffect extends Base
 		$this->end_controls_section();
 	}
 
-	protected function register_style_controls()
-	{
+	protected function register_style_controls() {
 		$this->start_controls_section(
 			'_section_common_style',
 			[
@@ -406,8 +400,7 @@ class Image_Hovereffect extends Base
 		$this->end_controls_section();
 	}
 
-	protected function render()
-	{
+	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$url_target = $settings['hover_link']['is_external'] ? ' target="_blank"' : '';
 		$url_nofollow = $settings['hover_link']['nofollow'] ? ' rel="nofollow"' : '';
