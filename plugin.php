@@ -3,11 +3,11 @@
  * Plugin Name: Happy Elementor Addons
  * Plugin URI: https://happyaddons.com/
  * Description: <a href="https://happyaddons.com/">HappyAddons</a> is a collection of slick, powerful widgets that works seamlessly with Elementor page builder. It’s trendy look with detail customization features allows to create extraordinary designs instantly. <a href="https://happyaddons.com/">HappyAddons</a> is free, rapidly growing and comes with great support.
- * Version: 2.22.0
+ * Version: 2.22.1
  * Author: weDevs
  * Author URI: https://happyaddons.com/
  * Elementor tested up to: 3.1.4
- * Elementor Pro tested up to: 3.1.1
+ * Elementor Pro tested up to: 3.2.1
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: happy-elementor-addons
@@ -36,7 +36,7 @@ Copyright 2019 HappyMonster <http://happymonster.me>
 
 defined( 'ABSPATH' ) || die();
 
-define( 'HAPPY_ADDONS_VERSION', '2.22.0' );
+define( 'HAPPY_ADDONS_VERSION', '2.22.1' );
 define( 'HAPPY_ADDONS__FILE__', __FILE__ );
 define( 'HAPPY_ADDONS_DIR_PATH', plugin_dir_path( HAPPY_ADDONS__FILE__ ) );
 define( 'HAPPY_ADDONS_DIR_URL', plugin_dir_url( HAPPY_ADDONS__FILE__ ) );
