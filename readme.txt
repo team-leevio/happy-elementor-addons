@@ -83,9 +83,9 @@ HappyAddons comes with plenty of Elementor Widgets in the free version. And all 
 - [**Gravity Forms**](https://demo.happyaddons.com/elementor-gravity-form-widget-demo/) – While using Gravity forms, you may want to change the appearance of the form fields. With the Happy Addons, you can spruce up your Gravity forms like a pro.
 - [**WP Fluent Forms**](https://demo.happyaddons.com/elementor-fluent-form-widget-demo/) - Easily customize and use Fluent Forms using this super intuitive widget.
 
-**13+ Free Elementor Enhancement Features Are Available in the HappyAddons Free**
+**16+ Free Elementor Enhancement Features Are Available in the HappyAddons Free**
 
-HappyAddons not only comes with extendable elementor widgets but also it has some cool features which help you to increase your web designing skill. You will get 13+ exclusive Elementor features in HappyAddons Free.
+HappyAddons not only comes with extendable elementor widgets but also it has some cool features which help you to increase your web designing skill. You will get 16+ exclusive Elementor features in HappyAddons Free.
 
 
 [**Happy Templates**](https://happyaddons.com/template-importer/) - Finally, we are happy to announce that we are introducing the Happy Template import feature within our HappyAddons. Initially, it comes with almost 500 readymade elementor templates. We will continuously improve our template library. Both of our Free and Pro users can use happy templates. Templates are labeled in two tags, Pro and Free. To import premium templates you will need the [HappyAddons Pro](https://happyaddons.com/pricing). Template import feature works as like Elementor Template importing feature. Additionally, you can check the previews in three device viewport; Desktop, Tab, Mobile.
