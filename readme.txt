@@ -336,6 +336,10 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 2.22.1 - 24 March 2021 =
+
+- Fix: Elementor compatibility tag added
+
 = 2.22.0 - 16 March 2021 =
 
 - New: Image Hover Effect Widget
