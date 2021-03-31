@@ -83,7 +83,7 @@ class Shape_Divider {
 	 * @return void
 	 */
 	public static function additional_shape_divider( $shape_list ) {
-		$shape_list = [
+		$happy_shapes = [
 			'abstract-web' => [
 				'title' => _x( 'Abstract Web', 'Shapes', 'happy-elementor-addons' ),
 				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/abstract-web.svg',
@@ -263,7 +263,7 @@ class Shape_Divider {
 		/*
 		 * svg path should contain elementor class to show in editor mode
 		*/
-		return $shape_list;
+		return array_merge( $happy_shapes, $shape_list );
 	}
 }
 
