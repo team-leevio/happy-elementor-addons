@@ -1,5 +1,6 @@
-= - 31 March 2021 =
+#  - 7 April 2021
 
+- New: Infobox widget media direction option
 - Fix: Shape Divider issue
 
 = 2.22.1 - 24 March 2021 =
