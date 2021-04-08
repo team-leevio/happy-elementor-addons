@@ -7,19 +7,15 @@
 
 namespace Happy_Addons\Elementor\Widget;
 
-// use Elementor\Scheme_Typography;
-use Elementor\Utils;
 use Elementor\Controls_Manager;
-use Elementor\Group_Control_Border;
-use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
+use Elementor\Scheme_Typography;
 use Happy_Addons\Elementor\Traits\Link_Hover_Markup;
 
-class LinkHover extends Base {
-    use Link_Hover_Markup;
+class Link_Hover extends Base {
+	use Link_Hover_Markup;
 
-    /**
+	/**
 	 * Get widget title.
 	 *
 	 * @since 1.0.0
@@ -27,7 +23,7 @@ class LinkHover extends Base {
 	 *
 	 * @return string Widget title.
 	 */
-    public function get_title() {
+	public function get_title() {
 		return __( 'Link Hover', 'happy-elementor-addons' );
 	}
 
@@ -35,8 +31,7 @@ class LinkHover extends Base {
 		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/link-hover/';
 	}
 
-
-    /**
+	/**
 	 * Get widget icon.
 	 *
 	 * @since 1.0.0
@@ -49,61 +44,140 @@ class LinkHover extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'link', 'hover', 'animation' ];
+		return array('link', 'hover', 'animation');
 	}
 
-    /**
+	/**
 	 * Register content related controls
 	 */
 	protected function register_content_controls() {
-        $this->start_controls_section(
+		$this->start_controls_section(
 			'_section_title',
-			[
-				'label' => __( 'Title & Description', 'happy-elementor-addons' ),
-				'tab' => Controls_Manager::TAB_CONTENT,
-			]
+			array(
+				'label' => __( 'Link Content', 'happy-elementor-addons' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
 		);
 
 		$this->add_control(
-			'title',
-			[
-				'label' => __( 'Title', 'happy-elementor-addons' ),
+			'animation_style',
+			array(
+				'label'   => __( 'Animation Style', 'happy-elementor-addons' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'metis',
+				'options' => array(
+					'carpo'   => __( 'Carpo', 'happy-elementor-addons' ),
+					'carme'   => __( 'Carme', 'happy-elementor-addons' ),
+					'dia'     => __( 'Dia', 'happy-elementor-addons' ),
+					'eirene'  => __( 'Eirene', 'happy-elementor-addons' ),
+					'elara'   => __( 'Elara', 'happy-elementor-addons' ),
+					'ersa'    => __( 'Ersa', 'happy-elementor-addons' ),
+					'helike'  => __( 'Helike', 'happy-elementor-addons' ),
+					'herse'   => __( 'Herse', 'happy-elementor-addons' ),
+					'io'      => __( 'Io', 'happy-elementor-addons' ),
+					'iocaste' => __( 'Iocaste', 'happy-elementor-addons' ),
+					'kale'    => __( 'Kale', 'happy-elementor-addons' ),
+					'leda'    => __( 'Leda', 'happy-elementor-addons' ),
+					'metis'   => __( 'Metis', 'happy-elementor-addons' ),
+					'mneme'   => __( 'Mneme', 'happy-elementor-addons' ),
+					'thebe'   => __( 'Thebe', 'happy-elementor-addons' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'link_text',
+			array(
+				'label'       => __( 'Title', 'happy-elementor-addons' ),
 				'label_block' => true,
-				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Happy Info Box Title', 'happy-elementor-addons' ),
-				'placeholder' => __( 'Type Info Box Title', 'happy-elementor-addons' ),
-				'dynamic' => [
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'Animated Link', 'happy-elementor-addons' ),
+				'placeholder' => __( 'Type Link Title', 'happy-elementor-addons' ),
+				'dynamic'     => array(
 					'active' => true,
-				]
-			]
+				),
+			)
 		);
 
 		$this->add_control(
-			'description',
-			[
-				'label' => __( 'Description', 'happy-elementor-addons' ),
-				'description' => ha_get_allowed_html_desc( 'intermediate' ),
-				'type' => Controls_Manager::URL,
-				'default' => __( 'Happy info box description goes here', 'happy-elementor-addons' ),
-				'placeholder' => __( 'Type info box description', 'happy-elementor-addons' ),
-				'rows' => 5,
-				'dynamic' => [
-					'active' => true,
-				]
-			]
+			'link_url',
+			array(
+				'label'         => __( 'Link', 'happy-elementor-addons' ),
+				'type'          => Controls_Manager::URL,
+				'placeholder'   => __( 'https://your-link.com', 'happy-elementor-addons' ),
+				'show_external' => true,
+				'default'       => array(
+					'url'         => '',
+					'is_external' => false,
+					'nofollow'    => true,
+				),
+			)
 		);
-    }
 
-    /**
+		$this->end_controls_section();
+	}
+
+	/**
 	 * Register styles related controls
 	 */
 	protected function register_style_controls() {
+		$this->start_controls_section(
+			'_section_media_style',
+			array(
+				'label' => __( 'Link Content', 'happy-elementor-addons' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
 
-    }
+		$this->add_responsive_control(
+			'content_padding',
+			array(
+				'label'      => __( 'Content Box Padding', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array('px', 'em', '%'),
+				'selectors'  => array(
+					'{{WRAPPER}} .ha_content__item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
 
-    protected function render() {
-        $settings = $this->get_settings_for_display();
+		$this->add_control(
+			'title_color',
+			array(
+				'label'     => __( 'Link Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .ha-link' => 'color: {{VALUE}};',
+				),
+			)
+		);
 
-        self::render_dia_markup($settings);
-    }
+        $this->add_control(
+			'title_hover_color',
+			array(
+				'label'     => __( 'Link Hover Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .ha-link:hover' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'title_typography',
+				'label'    => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-link',
+				'scheme'   => Scheme_Typography::TYPOGRAPHY_2,
+			)
+		);
+		$this->end_controls_section();
+	}
+
+	protected function render() {
+		$settings = $this->get_settings_for_display();
+
+		self::{'render_' . $settings['animation_style'] . '_markup'}( $settings );
+	}
 }
