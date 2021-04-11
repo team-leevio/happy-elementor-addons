@@ -64,7 +64,7 @@ class Link_Hover extends Base {
 			array(
 				'label'   => __( 'Animation Style', 'happy-elementor-addons' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
-				'default' => 'metis',
+				'default' => 'carpo',
 				'options' => array(
 					'carpo'   => __( 'Carpo', 'happy-elementor-addons' ),
 					'carme'   => __( 'Carme', 'happy-elementor-addons' ),
