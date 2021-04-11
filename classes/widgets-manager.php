@@ -611,7 +611,7 @@ class Widgets_Manager {
 			],
 			'link-hover' => [
 				'title' => __( 'Link Hover', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-event-calendar',
+				'icon' => 'hm hm-cursor-hover-click',
 				'css' => ['link-hover'],
 				'js' => [],
 				'vendor' => [
