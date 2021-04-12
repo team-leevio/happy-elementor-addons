@@ -1,5 +1,6 @@
-#  - 7 April 2021
+= 2.23.0 - 12 April 2021 =
 
+- New: Animated Link Widget
 - New: Infobox widget media direction option
 - Fix: Shape Divider issue
 

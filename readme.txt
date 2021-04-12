@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.22.1
+Version: 2.23.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, sayedulsayem, obiplabon
@@ -12,7 +12,7 @@ Requires PHP: 5.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-[Happy Addons for Elementor](https://happyaddons.com/) Comes With 42 Free Elementor Widgets: Table Builder, Testimonial, Event Calendar, Slider, News Ticker, Elementor Templates & More. Features Like Elementor Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Elementor Icons, & More.
+[Happy Addons for Elementor](https://happyaddons.com/) Comes With 43 Free Elementor Widgets: Table Builder, Testimonial, Event Calendar, Slider, News Ticker, Elementor Templates & More. Features Like Elementor Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Elementor Icons, & More.
 
 == Description ==
 
@@ -38,7 +38,7 @@ HappyAddons is the pioneer of adding exclusive problem-solving features. Also we
 
 ### **What You will Get in HappyAddons Free Version**
 
-**42 Free Elementor Widgets Are Available in the HappyAddons Free**
+**43 Free Elementor Widgets Are Available in the HappyAddons Free**
 HappyAddons comes with plenty of Elementor Widgets in the free version. And all of the widgets are full of customization. Also we have created design inspiration for our each and every single widgets. Let’s have a look what you will get in our free version:
 
 - [**Card**](https://demo.happyaddons.com/elementor-card-widget-demo/) – Incredibly powerful widget to demonstrate your products, articles, news, creative posts using a beautiful combination of texts, links, badge, and image. Using built-in positioning and offset features you can create eye-candy designs in a twist.
@@ -335,6 +335,12 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.23.0 - 12 April 2021 =
+
+- New: Animated Link Widget
+- New: Infobox widget media direction option
+- Fix: Shape Divider issue
 
 = 2.22.1 - 24 March 2021 =
 
