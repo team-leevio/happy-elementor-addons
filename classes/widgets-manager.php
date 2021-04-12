@@ -610,7 +610,7 @@ class Widgets_Manager {
 				],
 			],
 			'link-hover' => [
-				'title' => __( 'Link Hover', 'happy-elementor-addons' ),
+				'title' => __( 'Animated Link', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-cursor-hover-click',
 				'css' => ['link-hover'],
 				'js' => [],
