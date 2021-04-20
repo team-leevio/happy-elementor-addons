@@ -1,3 +1,7 @@
+= 20 Apr 2021 =
+
+- Tweak: Animated Link widget alignment control added
+
 = 2.23.0 - 12 April 2021 =
 
 - New: Animated Link Widget

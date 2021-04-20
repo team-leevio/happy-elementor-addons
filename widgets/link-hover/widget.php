@@ -99,6 +99,39 @@ class Link_Hover extends Base {
 			)
 		);
 
+		$this->add_responsive_control(
+            'link_align',
+            [
+                'label' => __( 'Alignment', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Center', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-align-center',
+                    ],
+                    'right' => [
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
+                        'icon' => 'fa fa-align-right',
+                    ]
+                ],
+                'default' => 'left',
+                'toggle' => true,
+                // 'prefix_class' => 'ha-align-',
+                'selectors_dictionary' => [
+                    'left' => 'justify-content: flex-start',
+                    'center' => 'justify-content: center',
+                    'right' => 'justify-content: flex-end',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha_content__item' => '{{VALUE}}'
+                ]
+            ]
+        );
+
 		$this->add_control(
 			'link_url',
 			array(
