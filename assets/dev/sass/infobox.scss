@@ -11,6 +11,18 @@
 		@include widgetContainerBaseStyle;
 	}
 
+	&.ha-infobox-media-dir-left {
+
+		.elementor-widget-container {
+			display: flex;
+
+			.ha-infobox-figure {
+				margin: 0 25px 0 0!important;
+				align-self: flex-start;
+			}
+		}
+	}
+
 	&-title {
 		margin-top: 0;
 		margin-bottom: 10px;
@@ -54,6 +66,7 @@
 		}
 	}
 
+	&.ha-infobox-media-dir-top
 	&-body {
 		margin-top: var(--ha-infobox-media-offset-y);
 	}

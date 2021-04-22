@@ -1,3 +1,22 @@
+= 20 Apr 2021 =
+
+- Tweak: Animated Link widget alignment control added
+
+= 2.23.0 - 12 April 2021 =
+
+- New: Animated Link Widget
+- New: Infobox widget media direction option
+- Fix: Shape Divider issue
+
+= 2.22.1 - 24 March 2021 =
+
+- Fix: Elementor compatibility tag added
+
+= 2.22.0 - 16 March 2021 =
+
+- New: Image Hover Effect Widget
+- Fix: Wrapper link issue
+
 = 2.21.1 - 1 March 2021 =
 
 - Fix: Happy Icons blank issue

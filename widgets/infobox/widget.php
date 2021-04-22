@@ -156,6 +156,63 @@ class InfoBox extends Base {
 			);
 		}
 
+		$this->add_control(
+			'media_direction',
+			[
+				'label' => __('Media direction', 'happy-elementor-addons'),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __('Left', 'happy-elementor-addons'),
+						'icon' => 'eicon-h-align-left',
+					],
+					'top' => [
+						'title' => __('Top', 'happy-elementor-addons'),
+						'icon' => 'eicon-v-align-top',
+					],
+				],
+				'default' => 'top',
+				'toggle' => false,
+                'style_transfer' => true,
+				'prefix_class' => 'ha-infobox-media-dir-',
+			]
+		);
+
+		$this->add_control(
+			'media_v_align',
+			[
+				'label' => __('Vertical Alignment', 'happy-elementor-addons'),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'top' => [
+						'title' => __('Top', 'happy-elementor-addons'),
+						'icon' => 'eicon-v-align-top',
+					],
+					'center' => [
+						'title' => __('Center', 'happy-elementor-addons'),
+						'icon' => 'eicon-v-align-middle',
+					],
+					'bottom' => [
+						'title' => __('Bottom', 'happy-elementor-addons'),
+						'icon' => 'eicon-v-align-bottom',
+					],
+				],
+				'default' => 'top',
+				'toggle' => false,
+				'condition' => [
+					'media_direction' => 'left',
+				],
+                'style_transfer' => true,
+				'selectors_dictionary' => [
+                    'center' => '    -webkit-align-self: center; -ms-flex-item-align: center; align-self: center;',
+                    'bottom' => '    -webkit-align-self: flex-end; -ms-flex-item-align: end; align-self: flex-end;',
+                ],
+				'selectors' => [
+					'{{WRAPPER}}.ha-infobox-media-dir-left .ha-infobox-figure' => '{{VALUE}};'
+				]
+			]
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -255,6 +312,9 @@ class InfoBox extends Base {
 					],
 				],
 				'toggle' => true,
+				'condition' => [
+					'media_direction' => 'top',
+				],
 				'selectors' => [
 					'{{WRAPPER}}' => 'text-align: {{VALUE}};'
 				]
@@ -505,11 +565,12 @@ class InfoBox extends Base {
 		$this->add_responsive_control(
 			'media_spacing',
 			[
-				'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+				'label' => __( 'Spacing', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'selectors' => [
-					'{{WRAPPER}} .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}}.ha-infobox-media-dir-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}}.ha-infobox-media-dir-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
 				],
 			]
 		);

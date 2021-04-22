@@ -591,7 +591,7 @@ class Widgets_Manager {
 			],
 			'image-hover-effect' => [
 				'title' => __( 'Image Hover Effect', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-finger-index',
+				'icon' => 'hm hm-cursor-hover-click',
 				'css' => ['image-hover-effect'],
 				'js' => [],
 				'vendor' => [
@@ -607,6 +607,16 @@ class Widgets_Manager {
 				'vendor' => [
 					'css' => ['ha-fullcalendar'],
 					'js' => ['ha-fullcalendar','ha-fullcalendar-locales'],
+				],
+			],
+			'link-hover' => [
+				'title' => __( 'Animated Link', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-cursor-hover-click',
+				'css' => ['link-hover'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
 				],
 			],
         ];
@@ -628,7 +638,8 @@ class Widgets_Manager {
 	public static function register() {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'traits/button-renderer.php' );
-
+		include_once( HAPPY_ADDONS_DIR_PATH . 'traits/link-hover-markup.php' );
+		
 		$inactive_widgets = self::get_inactive_widgets();
 
 		foreach ( self::get_local_widgets_map() as $widget_key => $data ) {
