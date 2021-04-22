@@ -736,7 +736,7 @@ class Icon_Box extends Base {
 
 		if ( $settings['title' ] ) :
 			printf( '<%1$s %2$s>%3$s</%1$s>',
-				ha_escape_title_tag( $settings['title_tag'], 'h2' ),
+				ha_escape_tags( $settings['title_tag'], 'h2' ),
 				$this->get_render_attribute_string( 'title' ),
 				ha_kses_basic( $settings['title' ] )
 				);
