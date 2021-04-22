@@ -1,6 +1,7 @@
 = 20 Apr 2021 =
 
 - Tweak: Animated Link widget alignment control added
+- Fix: Security patches
 
 = 2.23.0 - 12 April 2021 =
 
