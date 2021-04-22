@@ -9,7 +9,7 @@ namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Icons_Manager;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 use Elementor\Utils;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
@@ -613,7 +613,7 @@ class Fun_Factor extends Base {
 			[
 				'name'     => 'number_typography',
 				'label'    => __('Typography', 'happy-elementor-addons'),
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme'   => Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .ha-fun-factor__content-number',
 			]
 		);
@@ -668,7 +668,7 @@ class Fun_Factor extends Base {
 			[
 				'name'     => 'content_typography',
 				'label'    => __('Typography', 'happy-elementor-addons'),
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme'   => Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .ha-fun-factor__content-text',
 			]
 		);

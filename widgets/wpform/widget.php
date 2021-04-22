@@ -10,7 +10,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -149,7 +149,7 @@ class WPForm extends Base {
                 'name' => 'field_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3
+                'scheme' => Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -303,7 +303,7 @@ class WPForm extends Base {
                 'name' => 'label_typography',
                 'label' => __( 'Label Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field-container label.wpforms-field-label',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3
+                'scheme' => Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -313,7 +313,7 @@ class WPForm extends Base {
                 'name' => 'sublabel_typography',
                 'label' => __( 'Sub Label Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field-sublabel',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3
+                'scheme' => Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -323,7 +323,7 @@ class WPForm extends Base {
                 'name' => 'desc_typography',
                 'label' => __( 'Description Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field-description',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3
+                'scheme' => Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -510,7 +510,7 @@ class WPForm extends Base {
             [
                 'name' => 'submit_typography',
                 'selector' => '{{WRAPPER}} .wpforms-submit',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_4
+                'scheme' => Typography::TYPOGRAPHY_4
             ]
         );
 

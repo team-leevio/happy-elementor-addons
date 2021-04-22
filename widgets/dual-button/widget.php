@@ -10,7 +10,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -427,7 +427,7 @@ class Dual_Button extends Base {
                 'name' => 'button_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-dual-btn',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+                'scheme' => Typography::TYPOGRAPHY_4,
             ]
 		);
 
@@ -512,7 +512,7 @@ class Dual_Button extends Base {
                 'name' => 'left_button_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-dual-btn--left',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+                'scheme' => Typography::TYPOGRAPHY_4,
             ]
         );
 
@@ -653,7 +653,7 @@ class Dual_Button extends Base {
                 'name' => 'connector_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-dual-btn-connector',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3
+                'scheme' => Typography::TYPOGRAPHY_3
             ]
 		);
 
@@ -713,7 +713,7 @@ class Dual_Button extends Base {
                 'name' => 'right_button_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ha-dual-btn--right',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+                'scheme' => Typography::TYPOGRAPHY_4,
             ]
         );
 

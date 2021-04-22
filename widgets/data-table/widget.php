@@ -10,7 +10,7 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Background;
@@ -689,7 +689,7 @@ class Data_Table extends Base {
 			[
 				'name' => 'head_typography',
 				'selector' => '{{WRAPPER}} .ha-table .ha-table__head-column-cell-text',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -963,7 +963,7 @@ class Data_Table extends Base {
 			[
 				'name' => 'row_text_typography',
 				'selector' => '{{WRAPPER}} .ha-table__body .ha-table__body-row-cell-text',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 			]
 		);
 
