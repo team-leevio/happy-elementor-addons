@@ -712,7 +712,7 @@ class Review extends Base {
 			<div class="ha-review-header">
 				<?php if ( $settings['title' ] ) :
 					printf( '<%1$s %2$s>%3$s</%1$s>',
-						tag_escape( $settings['title_tag'] ),
+						ha_escape_title_tag( $settings['title_tag'], 'h2' ),
 						$this->get_render_attribute_string( 'title' ),
 						ha_kses_basic( $settings['title' ] )
 						);

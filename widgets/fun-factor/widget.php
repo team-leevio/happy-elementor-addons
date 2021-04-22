@@ -805,7 +805,7 @@ class Fun_Factor extends Base {
                     <span class="ha-fun-factor__divider ha-fun-factor__divider-align-<?php echo esc_attr( $settings['text_align'] ); ?>"></span>
                 <?php endif; ?>
                 <?php printf( '<%1$s class="ha-fun-factor__content-text">%2$s</%1$s>',
-                    tag_escape( $settings['title_tag'] ),
+                    ha_escape_title_tag( $settings['title_tag'], 'h2' ),
                     ha_kses_basic( $fun_factor_title )
                 ); ?>
             </div>
