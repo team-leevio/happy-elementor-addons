@@ -1,7 +1,9 @@
-= 20 Apr 2021 =
+= 2.24.0 - 25 April 2021 =
 
 - Tweak: Animated Link widget alignment control added
 - Fix: Security patches
+- Tweak: Removed `Elementor\Scheme_Typography` deprecated function
+- Tweak: Happy Elementor Addons not active when Elementor doesn’t meet minimum version requirements
 
 = 2.23.0 - 12 April 2021 =
 

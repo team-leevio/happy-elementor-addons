@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.23.0
+Version: 2.24.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, sayedulsayem, obiplabon
@@ -75,6 +75,7 @@ HappyAddons comes with plenty of Elementor Widgets in the free version. And all 
 - [**Social Share**](https://demo.happyaddons.com/elementor-social-share-widget-demo/) – No need to buy a social share plugin anymore. Get many of the premium features of social share plugins within HappyAddons Social Share widget for free!
 - [**Event Calendar**](https://demo.happyaddons.com/elementor-event-calendar-widget-demo/) – Are you struggling to incorporate an event calendar on your website with the help of Elementor? Don’t worry; we have added an amazing Event Calendar Widget in the HappyAddons Free Version for you! You can create your own personalized calendar manually or use your Google calendar or the Events Calendar Plugin’s calendar to showcase your events.
 - [**Image Hover Effect**](https://demo.happyaddons.com/elementor-image-hover-effect-widget-demo/) – If you want to add lucrative hover effects to your website’s images, you can try HappyAddons Image Hover Effect Widget. It allows you to add 20+ stunning hover effects to your photos. Start adding attention grabbing images easily.
+- [**Animated Link**](https://demo.happyaddons.com/elementor-animated-link-widget-demo/) – Are you wondering about increasing the click-through rate of your website’s links? Grab your visitor’s attention by adding different effects to your links using the Happy Animated Link widget.
 - [**Contact Form 7**](https://demo.happyaddons.com/elementor-contact-form-7-widget-demo/) – This utility widget helps you to integrate existing forms built using CF7 plugin across your web pages without spending too much time.
 - [**Caldera Forms**](https://demo.happyaddons.com/elementor-caldera-forms-widget-demo/) – This widget can help you to display your caldera forms to display on your web pages designed with Elementor.
 - [**weForms**](https://demo.happyaddons.com/elementor-we-forms-widget-demo/) – Designed forms using weForms plugin and looking for a way to display those on your Elementor powered pages? This is the answer to that.
@@ -176,6 +177,9 @@ If you are still craving for more widgets, then the following premium widgets ar
 - [**Twitter Feed Carousel**](https://demo.happyaddons.com/elementor-twitter-feed-carousel-widget-demo/) - Showcase your awesome team decorating in the Twitter feed mode applying various styles, texts, images, and social links
 - [**Breadcrumbs**](https://demo.happyaddons.com/elementor-breadcrumb-widget-demo/) - Visualize your breadcrumbs in different ways; each of them customisable
 - [**Sticky Video**](https://demo.happyaddons.com/elementor-sticky-video-widget-demo/) - From now, you can set sticky videos with the HappyAddons sticky video widget. Also, you will get plenty of options to manage your videos in an advanced way
+- [**Advanced Data table**](https://demo.happyaddons.com/elementor-advanced-datatable-widget-demo/) - Manage Your Table Data with Google Sheet, Table Press, Import from CSV, Local Database.
+- [**Modal Popup**](https://demo.happyaddons.com/elementor-modal-popup-widget-demo/) - Create click triggered Popups to grab and collect various information from the visitors.
+- [**Single Image Scroll**](https://demo.happyaddons.com/single-image-scroll-widget-demo/) - Facing difficulties while presenting long images like web page screenshots, panorama shots, etc to your portfolios? From now you can showcase long images by using the Happy Single Image Scroll widget.
 - [**Post Grid**](https://demo.happyaddons.com/elementor-post-grid-widget-demo/) - Scale your blog archive page with the HappyAddons Post Grid widget. It comes with predefined skins, so you spend less time designing your blog page
 - [**Post Tiles**](https://demo.happyaddons.com/elementor-post-tiles-widget-demo/) - Now you can showcase your most desirable blog posts exclusively with the Post Tiles widget of Happy Elementor Addons. It’s available with predefined tiles set to achieve an elegant look
 - [**Smart Post List**](https://demo.happyaddons.com/elementor-smart-post-list-widget-demo/) - Are you looking for a magnificent listing facility with the highlighted option for your sticky featured article? HappyAddons Smart Post list widget will handle all of your desirable styles smartly, like featuring the sticky post, filterable post list, and more
@@ -335,6 +339,13 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.24.0 - 25 April 2021 =
+
+- Tweak: Animated Link widget alignment control added
+- Fix: Security patches
+- Tweak: Removed `Elementor\Scheme_Typography` deprecated function
+- Tweak: Happy Elementor Addons not active when Elementor doesn’t meet minimum version requirements
 
 = 2.23.0 - 12 April 2021 =
 
