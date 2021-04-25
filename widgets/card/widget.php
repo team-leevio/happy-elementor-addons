@@ -1091,7 +1091,7 @@ class Card extends Base {
 		$this->add_render_attribute(
 			'badge_text',
 			'class',
-			['ha-badge', sprintf( 'ha-badge--%s', esc_attr( $settings['badge_position'] ) )]
+			[ 'ha-badge', sprintf( 'ha-badge--%s', esc_attr( $settings['badge_position'] ) ) ]
 		);
 
 		$this->add_inline_editing_attributes( 'title', 'basic' );

@@ -1,8 +1,0 @@
-{
-    "phpcs.enable": true,
-    "phpcs.standard": "WordPress-Extra",
-    "phpcs.executablePath": "/Users/sabbirhasan/.composer/vendor/bin/phpcs",
-    "phpcs.autoConfigSearch": true,
-    "intelephense.format.braces": "k&r",
-    "intelephense.environment.phpVersion": "7.2.0",
-}
