@@ -143,36 +143,20 @@ class Step_Flow extends Base {
 			'title_tag',
 			[
 				'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::CHOOSE,
+				'type' => Controls_Manager::SELECT,
 				'separator' => 'before',
 				'options' => [
-					'h1'  => [
-						'title' => __( 'H1', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-h1'
-					],
-					'h2'  => [
-						'title' => __( 'H2', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-h2'
-					],
-					'h3'  => [
-						'title' => __( 'H3', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-h3'
-					],
-					'h4'  => [
-						'title' => __( 'H4', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-h4'
-					],
-					'h5'  => [
-						'title' => __( 'H5', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-h5'
-					],
-					'h6'  => [
-						'title' => __( 'H6', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-h6'
-					]
+					'h1' => 'H1',
+					'h2' => 'H2',
+					'h3' => 'H3',
+					'h4' => 'H4',
+					'h5' => 'H5',
+					'h6' => 'H6',
+					'div' => 'div',
+					'span' => 'span',
+					'p' => 'p',
 				],
 				'default' => 'h2',
-				'toggle' => false,
 			]
 		);
 
@@ -223,6 +207,13 @@ class Step_Flow extends Base {
 	}
 
 	protected function register_style_controls() {
+		$this->__icon_style_controls();
+		$this->__badge_style_controls();
+		$this->__title_desc_style_controls();
+		$this->__direction_style_controls();
+	}
+
+	protected function __icon_style_controls() {
 		$this->start_controls_section(
 			'_section_icon_style',
 			[
@@ -343,7 +334,9 @@ class Step_Flow extends Base {
 		);
 
 		$this->end_controls_section();
+	}
 
+	protected function __badge_style_controls() {
 		$this->start_controls_section(
 			'_section_badge_style',
 			[
@@ -438,7 +431,9 @@ class Step_Flow extends Base {
 		);
 
 		$this->end_controls_section();
+	}
 
+	protected function __title_desc_style_controls() {
 		$this->start_controls_section(
 			'_section_title_style',
 			[
@@ -561,7 +556,9 @@ class Step_Flow extends Base {
 		);
 
 		$this->end_controls_section();
+	}
 
+	protected function __direction_style_controls() {
 		$this->start_controls_section(
 			'_section_direction_style',
 			[

@@ -1,5 +1,6 @@
 = - 29 April 2021 =
 
+- Tweak: Step Flow title html tag option increased
 - Tweak: Gravity form ajax submit enable option
 - Fix: Gravity form input height issue
 
