@@ -1,3 +1,8 @@
+= - 29 April 2021 =
+
+- Tweak: Gravity form ajax submit enable option
+- Fix: Gravity form input height issue
+
 = 2.24.0 - 25 April 2021 =
 
 - Tweak: Animated Link widget alignment control added
