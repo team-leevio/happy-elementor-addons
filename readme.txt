@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.24.0
+Version: 2.24.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, sayedulsayem, obiplabon
@@ -339,6 +339,12 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.24.1 - 17 May 2021 =
+
+- Tweak: Step Flow title html tag option increased
+- Tweak: Gravity form ajax submit enable option
+- Fix: Gravity form input height issue
 
 = 2.24.0 - 25 April 2021 =
 
