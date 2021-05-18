@@ -340,11 +340,12 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 2.24.1 - 17 May 2021 =
+= 2.24.1 - 18 May 2021 =
 
 - Tweak: Step Flow title html tag option increased
 - Tweak: Gravity form ajax submit enable option
 - Fix: Gravity form input height issue
+- Fix: 360 Rotation widget fallback background color conflict issue
 
 = 2.24.0 - 25 April 2021 =
 
