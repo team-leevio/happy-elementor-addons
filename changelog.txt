@@ -1,3 +1,7 @@
+ - 26 May 2021 =
+
+- New: Image Hover Effect hover title html tag option added
+
 = 2.24.1 - 18 May 2021 =
 
 - Tweak: Step Flow title html tag option increased
