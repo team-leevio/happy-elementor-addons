@@ -818,7 +818,7 @@
 
 			var elMessage = $scope.find('.ha-response-message');
 			var elForm = $scope.find('.ha-mailchimp-form');
-			var elButton = elForm.find('.ha-button-wrapper input');
+			var elButton = elForm.find('.ha-button-wrapper button');
 
 			elButton.on('click', function(e){
 				e.preventDefault();

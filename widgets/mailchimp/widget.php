@@ -208,6 +208,67 @@ class Mailchimp extends Base {
             ]
         );
 
+        $this->add_control(
+            '_button_heading',
+            [
+                'label' => __('Button:', 'happy-elementor-addons'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'button_text',
+            [
+                'label' => __('Text', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'default' => 'Subscribe',
+            ]
+        );
+
+        $this->add_control(
+            'button_enable_icon',
+            [
+                'label' => __('Enable Icon With Button?', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'happy-elementor-addons'),
+                'label_off' => __('No', 'happy-elementor-addons'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
+            'button_icon',
+            [
+                'label' => __('Icon', 'happy-elementor-addons'),
+                'type' => Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'hm hm-tick',
+                    'library' => 'regular',
+                ],
+                'condition' => [
+                    'button_enable_icon' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_icon_position',
+            [
+                'label' => __('Icon Position', 'plugin-domain'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'before',
+                'options' => [
+                    'before'  => __('Before Input', 'plugin-domain'),
+                    'after' => __('After Input', 'plugin-domain'),
+                ],
+                'condition' => [
+                    'button_enable_icon' => 'yes',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -278,8 +339,16 @@ class Mailchimp extends Base {
                     </div>
                 </div>
                 <div class="ha-button-wrapper">
-                    <div class="ha-icon-wrapper">Icon</div>
-                    <input type="button" value="Submit">
+                    
+                    <button>
+                    <?php if ($settings['button_enable_icon'] == 'yes' && $settings['button_icon_position'] == 'before') : ?>
+                        <div class="ha-icon-wrapper"><?php ha_render_icon($settings, null, 'button_icon'); ?></div>
+                    <?php endif; ?>
+                    <?php echo esc_attr($settings['button_text']); ?>
+                    <?php if ($settings['button_enable_icon'] == 'yes' && $settings['button_icon_position'] == 'after') : ?>
+                        <div class="ha-icon-wrapper"><?php ha_render_icon($settings, null, 'button_icon'); ?></div>
+                    <?php endif; ?>
+                    </button>
                 </div>
             </form>
         </div>
