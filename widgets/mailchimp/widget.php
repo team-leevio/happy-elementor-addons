@@ -14,6 +14,7 @@ use Elementor\Core\Schemes\Typography;
 use Elementor\Utils;
 use Elementor\Control_Media;
 use Elementor\Controls_Manager;
+use Elementor\Icons_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
@@ -113,6 +114,97 @@ class Mailchimp extends Base {
             ]
         );
 
+        $this->add_control(
+			'enable_name',
+			[
+				'label' => __( 'Enable Name?', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+			]
+		);
+
+        $this->add_control(
+			'enable_phone',
+			[
+				'label' => __( 'Enable Phone?', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+			]
+		);
+
+        $this->add_control(
+			'_email_heading',
+			[
+				'label' => __( 'Email:', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+        $this->add_control(
+			'email_label',
+			[
+				'label' => __( 'Label', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::TEXT,
+				'placeholder' => __( 'Email input label', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'email_placeholder',
+			[
+				'label' => __( 'Placeholder', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::TEXT,
+				'placeholder' => __( 'Email input placeholder', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'email_enable_icon',
+			[
+				'label' => __( 'Show With Input?', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);
+
+        $this->add_control(
+			'email_icon',
+			[
+				'label' => __( 'Icon', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::ICONS,
+				'default' => [
+					'value' => 'hm hm-envelop',
+					'library' => 'regular',
+				],
+                'condition' => [
+                    'email_enable_icon' => 'yes',
+                ],
+			]
+		);
+
+        $this->add_control(
+			'email_icon_position',
+			[
+				'label' => __( 'Icon Position', 'plugin-domain' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'before',
+				'options' => [
+					'before'  => __( 'Before Input', 'plugin-domain' ),
+					'after' => __( 'After Input', 'plugin-domain' ),
+				],
+			]
+		);
+
         $this->end_controls_section();
     }
 
@@ -143,7 +235,7 @@ class Mailchimp extends Base {
 
         $settings = $this->get_settings_for_display();
         // echo "<pre>";
-        // print_r(Mailchimp_api::get_mailchimp_lists());
+        // print_r($settings);
         // echo "</pre>";
 ?>
         <div class="ha-mailchimp-wrapper">
@@ -152,33 +244,33 @@ class Mailchimp extends Base {
                 <div class="ha-input-wrapper">
                     <label for="">First Name</label>
                     <div class="ha-input">
-                        <div>Icon</div>
+                        <div class="ha-icon-wrapper">Icon</div>
                         <input type="text" name="fname" placeholder="Enter your first name">
                     </div>
                 </div>
                 <div class="ha-input-wrapper">
                     <label for="">Last Name</label>
                     <div class="ha-input">
-                        <div>Icon</div>
+                        <div class="ha-icon-wrapper">Icon</div>
                         <input type="text" name="lname" placeholder="Enter your last name">
                     </div>
                 </div>
                 <div class="ha-input-wrapper">
                     <label for="">Phone</label>
                     <div class="ha-input">
-                        <div>Icon</div>
+                        <div class="ha-icon-wrapper">Icon</div>
                         <input type="text" name="phone" placeholder="Enter your phone">
                     </div>
                 </div>
                 <div class="ha-input-wrapper">
                     <label for="">Email</label>
                     <div class="ha-input">
-                        <div>Icon</div>
+                        <div class="ha-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?><?php //Icons_Manager::render_icon( $settings['email_icon'] ); ?></div>
                         <input type="email" name="email" placeholder="Enter your email">
                     </div>
                 </div>
                 <div class="ha-button-wrapper">
-                    <div>Icon</div>
+                    <div class="ha-icon-wrapper">Icon</div>
                     <input type="button" value="Submit">
                 </div>
             </form>
