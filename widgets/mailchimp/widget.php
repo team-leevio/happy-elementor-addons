@@ -115,95 +115,95 @@ class Mailchimp extends Base {
         );
 
         $this->add_control(
-			'enable_name',
-			[
-				'label' => __( 'Enable Name?', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
-				'label_off' => __( 'No', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-				'default' => 'no',
-			]
-		);
+            'enable_name',
+            [
+                'label' => __('Enable Name?', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'happy-elementor-addons'),
+                'label_off' => __('No', 'happy-elementor-addons'),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
 
         $this->add_control(
-			'enable_phone',
-			[
-				'label' => __( 'Enable Phone?', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
-				'label_off' => __( 'No', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-				'default' => 'no',
-			]
-		);
+            'enable_phone',
+            [
+                'label' => __('Enable Phone?', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'happy-elementor-addons'),
+                'label_off' => __('No', 'happy-elementor-addons'),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
 
         $this->add_control(
-			'_email_heading',
-			[
-				'label' => __( 'Email:', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
+            '_email_heading',
+            [
+                'label' => __('Email:', 'happy-elementor-addons'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
         $this->add_control(
-			'email_label',
-			[
-				'label' => __( 'Label', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'Email input label', 'happy-elementor-addons' ),
-			]
-		);
+            'email_label',
+            [
+                'label' => __('Label', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'placeholder' => __('Email input label', 'happy-elementor-addons'),
+            ]
+        );
 
         $this->add_control(
-			'email_placeholder',
-			[
-				'label' => __( 'Placeholder', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'Email input placeholder', 'happy-elementor-addons' ),
-			]
-		);
+            'email_placeholder',
+            [
+                'label' => __('Placeholder', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'placeholder' => __('Email input placeholder', 'happy-elementor-addons'),
+            ]
+        );
 
         $this->add_control(
-			'email_enable_icon',
-			[
-				'label' => __( 'Show With Input?', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
-				'label_off' => __( 'No', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-			]
-		);
+            'email_enable_icon',
+            [
+                'label' => __('Show With Input?', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'happy-elementor-addons'),
+                'label_off' => __('No', 'happy-elementor-addons'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
 
         $this->add_control(
-			'email_icon',
-			[
-				'label' => __( 'Icon', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::ICONS,
-				'default' => [
-					'value' => 'hm hm-envelop',
-					'library' => 'regular',
-				],
+            'email_icon',
+            [
+                'label' => __('Icon', 'happy-elementor-addons'),
+                'type' => Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'hm hm-envelop',
+                    'library' => 'regular',
+                ],
                 'condition' => [
                     'email_enable_icon' => 'yes',
                 ],
-			]
-		);
+            ]
+        );
 
         $this->add_control(
-			'email_icon_position',
-			[
-				'label' => __( 'Icon Position', 'plugin-domain' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'before',
-				'options' => [
-					'before'  => __( 'Before Input', 'plugin-domain' ),
-					'after' => __( 'After Input', 'plugin-domain' ),
-				],
-			]
-		);
+            'email_icon_position',
+            [
+                'label' => __('Icon Position', 'plugin-domain'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'before',
+                'options' => [
+                    'before'  => __('Before Input', 'plugin-domain'),
+                    'after' => __('After Input', 'plugin-domain'),
+                ],
+            ]
+        );
 
         $this->end_controls_section();
     }
@@ -265,8 +265,13 @@ class Mailchimp extends Base {
                 <div class="ha-input-wrapper">
                     <label for="">Email</label>
                     <div class="ha-input">
-                        <div class="ha-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?><?php //Icons_Manager::render_icon( $settings['email_icon'] ); ?></div>
+                        <?php if ($settings['email_icon_position'] == 'before') : ?>
+                            <div class="ha-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>
+                        <?php endif; ?>
                         <input type="email" name="email" placeholder="Enter your email">
+                        <?php if ($settings['email_icon_position'] == 'after') : ?>
+                            <div class="ha-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="ha-button-wrapper">
