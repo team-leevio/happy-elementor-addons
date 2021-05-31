@@ -168,7 +168,7 @@ class Mailchimp extends Base {
         $this->add_control(
             'email_enable_icon',
             [
-                'label' => __('Show With Input?', 'happy-elementor-addons'),
+                'label' => __('Enable Icon With Input?', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __('Yes', 'happy-elementor-addons'),
                 'label_off' => __('No', 'happy-elementor-addons'),
@@ -201,6 +201,9 @@ class Mailchimp extends Base {
                 'options' => [
                     'before'  => __('Before Input', 'plugin-domain'),
                     'after' => __('After Input', 'plugin-domain'),
+                ],
+                'condition' => [
+                    'email_enable_icon' => 'yes',
                 ],
             ]
         );
@@ -242,34 +245,34 @@ class Mailchimp extends Base {
             <div class="ha-response-message"></div>
             <form class="ha-mailchimp-form" data-list-id="<?php echo esc_attr(isset($settings['mailchimp_lists']) ? $settings['mailchimp_lists'] : ''); ?>">
                 <div class="ha-input-wrapper">
-                    <label for="">First Name</label>
+                    <label>First Name</label>
                     <div class="ha-input">
                         <div class="ha-icon-wrapper">Icon</div>
                         <input type="text" name="fname" placeholder="Enter your first name">
                     </div>
                 </div>
                 <div class="ha-input-wrapper">
-                    <label for="">Last Name</label>
+                    <label>Last Name</label>
                     <div class="ha-input">
                         <div class="ha-icon-wrapper">Icon</div>
                         <input type="text" name="lname" placeholder="Enter your last name">
                     </div>
                 </div>
                 <div class="ha-input-wrapper">
-                    <label for="">Phone</label>
+                    <label>Phone</label>
                     <div class="ha-input">
                         <div class="ha-icon-wrapper">Icon</div>
                         <input type="text" name="phone" placeholder="Enter your phone">
                     </div>
                 </div>
                 <div class="ha-input-wrapper">
-                    <label for="">Email</label>
+                    <label><?php echo esc_html($settings['email_label']); ?></label>
                     <div class="ha-input">
-                        <?php if ($settings['email_icon_position'] == 'before') : ?>
+                        <?php if ($settings['email_enable_icon'] == 'yes' && $settings['email_icon_position'] == 'before') : ?>
                             <div class="ha-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>
                         <?php endif; ?>
-                        <input type="email" name="email" placeholder="Enter your email">
-                        <?php if ($settings['email_icon_position'] == 'after') : ?>
+                        <input type="email" name="email" placeholder="<?php echo esc_attr($settings['email_placeholder']); ?>">
+                        <?php if ($settings['email_enable_icon'] == 'yes' && $settings['email_icon_position'] == 'after') : ?>
                             <div class="ha-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>
                         <?php endif; ?>
                     </div>
