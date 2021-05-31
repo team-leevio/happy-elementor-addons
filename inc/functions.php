@@ -7,6 +7,8 @@
  */
 defined( 'ABSPATH' ) || die();
 
+use Happy_Addons\Elementor\Widget\Mailchimp\Mailchimp_api;
+
 /**
  * Call a shortcode function by tag name.
  *
@@ -808,3 +810,6 @@ function ha_render_button_icon( $settings = [], $old_icon_id = 'icon', $new_icon
 		printf( '<i %s></i>', \Elementor\Utils::render_html_attributes( $attributes ) );
 	}
 }
+
+include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
+Mailchimp_api::set_ajax_call();

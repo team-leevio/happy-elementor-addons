@@ -619,6 +619,16 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'mailchimp' => [
+				'title' => __( 'MailChimp', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-mail-open',
+				'css' => ['mailchimp'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
         ];
     }
 
