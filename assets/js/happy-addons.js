@@ -839,9 +839,13 @@
 					success: function(response) {
 						elForm.trigger('reset');
 						if(response.status){
+							elMessage.removeClass('error');
+							elMessage.addClass('success');
 							elMessage.show();
 							elMessage.text(response.msg);
 						}else {
+							elMessage.addClass('error');
+							elMessage.removeClass('success');
 							elMessage.show();
 							elMessage.text(response.msg);
 						}

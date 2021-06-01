@@ -1,0 +1,14 @@
+.ha-mailchimp-wrapper {
+    .ha-response-message {
+        display: none;
+        padding: 5px;
+        &.error {
+            background-color: red;
+            color: white;
+        }
+        &.success {
+            background-color: green;
+            color: white;
+        }
+    }
+}

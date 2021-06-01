@@ -26,14 +26,6 @@ defined('ABSPATH') || die();
 
 class Mailchimp extends Base {
 
-    // public function __construct() {
-
-    //     // include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
-    //     parent::__construct();
-    //     // Mailchimp_api::set_ajax_call();
-
-    // }
-
     /**
      * Get widget title.
      *
@@ -61,13 +53,6 @@ class Mailchimp extends Base {
     public function get_keywords() {
         return ['email', 'mail chimp', 'mail', 'subscription'];
     }
-
-    // public function get_style_depends() {
-    // 	return [
-    // 		'elementor-icons-fa-solid',
-    // 		'elementor-icons-fa-brands',
-    // 	];
-    // }
 
     /**
      * Register content related controls
@@ -127,6 +112,174 @@ class Mailchimp extends Base {
         );
 
         $this->add_control(
+            '_fname_heading',
+            [
+                'label' => __('First Name:', 'happy-elementor-addons'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+                'condition' => [
+                    'enable_name' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'fname_label',
+            [
+                'label' => __('Label', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'placeholder' => __('First Name input label', 'happy-elementor-addons'),
+                'condition' => [
+                    'enable_name' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'fname_placeholder',
+            [
+                'label' => __('Placeholder', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'placeholder' => __('First Name input placeholder', 'happy-elementor-addons'),
+                'condition' => [
+                    'enable_name' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'fname_enable_icon',
+            [
+                'label' => __('Enable Icon With Input?', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'happy-elementor-addons'),
+                'label_off' => __('No', 'happy-elementor-addons'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+                'condition' => [
+                    'enable_name' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'fname_icon',
+            [
+                'label' => __('Icon', 'happy-elementor-addons'),
+                'type' => Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'hm hm-envelop',
+                    'library' => 'regular',
+                ],
+                'condition' => [
+                    'enable_name' => 'yes',
+                    'fname_enable_icon' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'fname_icon_position',
+            [
+                'label' => __('Icon Position', 'plugin-domain'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'before',
+                'options' => [
+                    'before'  => __('Before Input', 'plugin-domain'),
+                    'after' => __('After Input', 'plugin-domain'),
+                ],
+                'condition' => [
+                    'enable_name' => 'yes',
+                    'fname_enable_icon' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            '_lname_heading',
+            [
+                'label' => __('Last Name:', 'happy-elementor-addons'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+                'condition' => [
+                    'enable_name' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lname_label',
+            [
+                'label' => __('Label', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'placeholder' => __('Last Name input label', 'happy-elementor-addons'),
+                'condition' => [
+                    'enable_name' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lname_placeholder',
+            [
+                'label' => __('Placeholder', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'placeholder' => __('Last Name input placeholder', 'happy-elementor-addons'),
+                'condition' => [
+                    'enable_name' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lname_enable_icon',
+            [
+                'label' => __('Enable Icon With Input?', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'happy-elementor-addons'),
+                'label_off' => __('No', 'happy-elementor-addons'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+                'condition' => [
+                    'enable_name' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lname_icon',
+            [
+                'label' => __('Icon', 'happy-elementor-addons'),
+                'type' => Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'hm hm-envelop',
+                    'library' => 'regular',
+                ],
+                'condition' => [
+                    'enable_name' => 'yes',
+                    'lname_enable_icon' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lname_icon_position',
+            [
+                'label' => __('Icon Position', 'plugin-domain'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'before',
+                'options' => [
+                    'before'  => __('Before Input', 'plugin-domain'),
+                    'after' => __('After Input', 'plugin-domain'),
+                ],
+                'condition' => [
+                    'enable_name' => 'yes',
+                    'lname_enable_icon' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
             'enable_phone',
             [
                 'label' => __('Enable Phone?', 'happy-elementor-addons'),
@@ -135,6 +288,90 @@ class Mailchimp extends Base {
                 'label_off' => __('No', 'happy-elementor-addons'),
                 'return_value' => 'yes',
                 'default' => 'no',
+            ]
+        );
+
+        $this->add_control(
+            '_phone_heading',
+            [
+                'label' => __('Phone:', 'happy-elementor-addons'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+                'condition' => [
+                    'enable_phone' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'phone_label',
+            [
+                'label' => __('Label', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'placeholder' => __('Phone input label', 'happy-elementor-addons'),
+                'condition' => [
+                    'enable_phone' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'phone_placeholder',
+            [
+                'label' => __('Placeholder', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'placeholder' => __('Phone input placeholder', 'happy-elementor-addons'),
+                'condition' => [
+                    'enable_phone' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'phone_enable_icon',
+            [
+                'label' => __('Enable Icon With Input?', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'happy-elementor-addons'),
+                'label_off' => __('No', 'happy-elementor-addons'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+                'condition' => [
+                    'enable_phone' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'phone_icon',
+            [
+                'label' => __('Icon', 'happy-elementor-addons'),
+                'type' => Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'hm hm-envelop',
+                    'library' => 'regular',
+                ],
+                'condition' => [
+                    'enable_phone' => 'yes',
+                    'phone_enable_icon' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'phone_icon_position',
+            [
+                'label' => __('Icon Position', 'plugin-domain'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'before',
+                'options' => [
+                    'before'  => __('Before Input', 'plugin-domain'),
+                    'after' => __('After Input', 'plugin-domain'),
+                ],
+                'condition' => [
+                    'enable_phone' => 'yes',
+                    'phone_enable_icon' => 'yes',
+                ],
             ]
         );
 
