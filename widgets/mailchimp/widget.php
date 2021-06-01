@@ -181,7 +181,7 @@ class Mailchimp extends Base {
                 'label' => __('Icon', 'happy-elementor-addons'),
                 'type' => Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'hm hm-envelop',
+                    'value' => 'hm hm-user',
                     'library' => 'regular',
                 ],
                 'condition' => [
@@ -265,7 +265,7 @@ class Mailchimp extends Base {
                 'label' => __('Icon', 'happy-elementor-addons'),
                 'type' => Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'hm hm-envelop',
+                    'value' => 'hm hm-user',
                     'library' => 'regular',
                 ],
                 'condition' => [
@@ -361,7 +361,7 @@ class Mailchimp extends Base {
                 'label' => __('Icon', 'happy-elementor-addons'),
                 'type' => Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'hm hm-envelop',
+                    'value' => 'hm hm-phone',
                     'library' => 'regular',
                 ],
                 'condition' => [

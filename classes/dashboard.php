@@ -269,6 +269,10 @@ class Dashboard {
                 'title' => esc_html__( 'Features', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_features' ],
             ],
+            'credentials' => [
+                'title' => esc_html__( 'Credentials', 'happy-elementor-addons' ),
+                'renderer' => [ __CLASS__, 'render_credentials' ],
+            ],
             'pro' => [
                 'title' => esc_html__( 'Get Pro', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_pro' ],
@@ -299,6 +303,10 @@ class Dashboard {
 
     public static function render_features() {
         self::load_template( 'features' );
+    }
+
+    public static function render_credentials() {
+        self::load_template( 'credentials' );
     }
 
     public static function render_pro() {
