@@ -100,6 +100,19 @@ class Mailchimp extends Base {
         );
 
         $this->add_control(
+            'form_alignment',
+            [
+                'label' => __('Form Aligment', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'horizontal',
+                'options' => [
+                    'horizontal' => esc_html__('Horizontal', 'happy-elementor-addons'),
+                    'vertical' => esc_html__('Vertical', 'happy-elementor-addons'),
+                ],
+            ]
+        );
+
+        $this->add_control(
             'enable_name',
             [
                 'label' => __('Enable Name?', 'happy-elementor-addons'),
@@ -540,51 +553,70 @@ class Mailchimp extends Base {
         // echo "</pre>";
 ?>
         <div class="ha-mailchimp-wrapper">
-            <div class="ha-response-message"></div>
-            <form class="ha-mailchimp-form" data-list-id="<?php echo esc_attr(isset($settings['mailchimp_lists']) ? $settings['mailchimp_lists'] : ''); ?>">
-                <div class="ha-input-wrapper">
-                    <label>First Name</label>
-                    <div class="ha-input">
-                        <div class="ha-icon-wrapper">Icon</div>
-                        <input type="text" name="fname" placeholder="Enter your first name">
+            <div class="ha-mc-response-message"></div>
+            <form class="ha-mailchimp-form <?php echo esc_attr($settings['form_alignment']); ?>" data-list-id="<?php echo esc_attr(isset($settings['mailchimp_lists']) ? $settings['mailchimp_lists'] : ''); ?>">
+                <?php if ($settings['enable_name'] == 'yes') : ?>
+                    <div class="ha-mc-input-wrapper">
+                        <label><?php echo esc_html($settings['fname_label']); ?></label>
+                        <div class="ha-mc-input">
+                            <?php if ($settings['fname_enable_icon'] == 'yes' && $settings['fname_icon_position'] == 'before') : ?>
+                                <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'fname_icon'); ?></div>
+                            <?php endif; ?>
+                            <input type="text" name="fname" placeholder="<?php echo esc_attr($settings['fname_placeholder']); ?>">
+                            <?php if ($settings['fname_enable_icon'] == 'yes' && $settings['fname_icon_position'] == 'after') : ?>
+                                <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'fname_icon'); ?></div>
+                            <?php endif; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="ha-input-wrapper">
-                    <label>Last Name</label>
-                    <div class="ha-input">
-                        <div class="ha-icon-wrapper">Icon</div>
-                        <input type="text" name="lname" placeholder="Enter your last name">
+                    <div class="ha-mc-input-wrapper">
+                        <label><?php echo esc_html($settings['lname_label']); ?></label>
+                        <div class="ha-mc-input">
+                            <?php if ($settings['lname_enable_icon'] == 'yes' && $settings['lname_icon_position'] == 'before') : ?>
+                                <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'lname_icon'); ?></div>
+                            <?php endif; ?>
+                            <input type="text" name="lname" placeholder="<?php echo esc_attr($settings['lname_placeholder']); ?>">
+                            <?php if ($settings['lname_enable_icon'] == 'yes' && $settings['lname_icon_position'] == 'after') : ?>
+                                <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'lname_icon'); ?></div>
+                            <?php endif; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="ha-input-wrapper">
-                    <label>Phone</label>
-                    <div class="ha-input">
-                        <div class="ha-icon-wrapper">Icon</div>
-                        <input type="text" name="phone" placeholder="Enter your phone">
+                <?php endif; ?>
+                <?php if ($settings['enable_phone'] == 'yes') : ?>
+                    <div class="ha-mc-input-wrapper">
+                        <label><?php echo esc_html($settings['phone_label']); ?></label>
+                        <div class="ha-mc-input">
+                            <?php if ($settings['phone_enable_icon'] == 'yes' && $settings['phone_icon_position'] == 'before') : ?>
+                                <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'phone_icon'); ?></div>
+                            <?php endif; ?>
+                            <input type="text" name="phone" placeholder="<?php echo esc_attr($settings['phone_placeholder']); ?>">
+                            <?php if ($settings['phone_enable_icon'] == 'yes' && $settings['phone_icon_position'] == 'after') : ?>
+                                <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'phone_icon'); ?></div>
+                            <?php endif; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="ha-input-wrapper">
+                <?php endif; ?>
+                <div class="ha-mc-input-wrapper">
                     <label><?php echo esc_html($settings['email_label']); ?></label>
-                    <div class="ha-input">
+                    <div class="ha-mc-input">
                         <?php if ($settings['email_enable_icon'] == 'yes' && $settings['email_icon_position'] == 'before') : ?>
-                            <div class="ha-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>
+                            <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>
                         <?php endif; ?>
                         <input type="email" name="email" placeholder="<?php echo esc_attr($settings['email_placeholder']); ?>">
                         <?php if ($settings['email_enable_icon'] == 'yes' && $settings['email_icon_position'] == 'after') : ?>
-                            <div class="ha-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>
+                            <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>
                         <?php endif; ?>
                     </div>
                 </div>
-                <div class="ha-button-wrapper">
-                    
-                    <button>
-                    <?php if ($settings['button_enable_icon'] == 'yes' && $settings['button_icon_position'] == 'before') : ?>
-                        <div class="ha-icon-wrapper"><?php ha_render_icon($settings, null, 'button_icon'); ?></div>
-                    <?php endif; ?>
-                    <?php echo esc_attr($settings['button_text']); ?>
-                    <?php if ($settings['button_enable_icon'] == 'yes' && $settings['button_icon_position'] == 'after') : ?>
-                        <div class="ha-icon-wrapper"><?php ha_render_icon($settings, null, 'button_icon'); ?></div>
-                    <?php endif; ?>
+                <div class="ha-mc-button-wrapper">
+
+                    <button class="ha-mc-button">
+                        <?php if ($settings['button_enable_icon'] == 'yes' && $settings['button_icon_position'] == 'before') : ?>
+                            <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'button_icon'); ?></div>
+                        <?php endif; ?>
+                        <?php echo esc_attr($settings['button_text']); ?>
+                        <?php if ($settings['button_enable_icon'] == 'yes' && $settings['button_icon_position'] == 'after') : ?>
+                            <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'button_icon'); ?></div>
+                        <?php endif; ?>
                     </button>
                 </div>
             </form>

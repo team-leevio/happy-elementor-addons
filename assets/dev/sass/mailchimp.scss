@@ -1,5 +1,5 @@
 .ha-mailchimp-wrapper {
-    .ha-response-message {
+    .ha-mc-response-message {
         display: none;
         padding: 5px;
         &.error {
@@ -9,6 +9,45 @@
         &.success {
             background-color: green;
             color: white;
+        }
+    }
+
+    .ha-mailchimp-form {
+        display: flex;
+        &.horizontal {
+            flex-direction: row;
+            .ha-mc-input-wrapper {
+                margin: 0 0.5em;
+            }
+        }
+        &.vertical {
+            flex-direction: column;
+            .ha-mc-input-wrapper {
+                margin: 0.5em 0;
+            }
+        }
+
+        .ha-mc-input-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ha-mc-input {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            input {
+                width: 100%;
+            }
+        }
+
+        .ha-mc-button {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
         }
     }
 }
