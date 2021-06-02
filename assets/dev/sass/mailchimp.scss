@@ -17,9 +17,14 @@
     .ha-mailchimp-form {
         display: flex;
         &.horizontal {
-            flex-direction: row;
+            flex-wrap: wrap;
             .ha-mc-input-wrapper {
                 margin: 0 0.5em;
+                flex: 1;
+            }
+
+            .ha-mc-button-wrapper {
+                align-self: flex-end;
             }
         }
         &.vertical {
@@ -29,24 +34,61 @@
             }
         }
 
+        .ha-mc-input-label {
+            color: #000000;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
         .ha-mc-input-wrapper {
             display: flex;
             flex-direction: column;
         }
 
         .ha-mc-input {
+            position: relative;
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
+            flex-wrap: wrap;
+            align-items: stretch;
+            width: 100%;
+
+            .ha-mc-icon-wrapper {
+                margin-right: -1px;
+                font-size: 10px;
+                display: flex;
+                align-items: center;
+                color: #495057;
+                text-align: center;
+                white-space: nowrap;
+                background-color: #e9ecef;
+                border: 1px solid #ced4da;
+                height: 100%;
+                padding: 15px;
+                border-radius: 5px 0 0 5px;
+
+                i {
+                    color: #000000;
+                }
+            }
 
             input {
-                width: 100%;
+                padding: 0 20px 0 20px;
+                border-radius: 0 5px 5px 0;
+                position: relative;
+                flex: 1 1 auto;
+                width: 1%;
+                display: block;
+                height: auto;
+                min-height: 42px;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #495057;
+                background-color: #ffffff;
+                background-clip: padding-box;
+                border: 1px solid #ced4da;
+                transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
             }
-        }
-
-        .ha-mc-button-wrapper {
-            align-self: flex-end;
         }
 
         .ha-mc-button {
@@ -54,6 +96,27 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
+
+            position: relative;
+            z-index: 1;
+            font-size: 16px;
+            border: 0 solid #374a5e;
+            border-radius: 5px;
+            box-shadow: none;
+            background-color: #374a5e;
+            padding: 8px 20px 8px 20px;
+            margin-top: 0;
+            margin-bottom: 0;
+            line-height: 26px;
+            color: #ffffff;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.4s ease;
+
+            i {
+                margin-right: 10px;
+
+            }
         }
     }
 }
