@@ -816,11 +816,11 @@
 
 		var MailChimp = function($scope) {
 
-			var elMessage = $scope.find('.ha-response-message');
+			var elMessage = $scope.find('.ha-mc-response-message');
 			var elForm = $scope.find('.ha-mailchimp-form');
 			var elButton = elForm.find('.ha-button-wrapper button');
 
-			elButton.on('click', function(e){
+			elForm.on('submit', function(e){
 				e.preventDefault();
 
 				// console.log(HappyLocalize.ajax_url);
@@ -838,15 +838,16 @@
 					data: data,
 					success: function(response) {
 						elForm.trigger('reset');
+						console.log(response);
 						if(response.status){
 							elMessage.removeClass('error');
 							elMessage.addClass('success');
-							elMessage.show();
+							// elMessage.show();
 							elMessage.text(response.msg);
 						}else {
 							elMessage.addClass('error');
 							elMessage.removeClass('success');
-							elMessage.show();
+							// elMessage.show();
 							elMessage.text(response.msg);
 						}
 						// console.log(response);

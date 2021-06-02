@@ -10,23 +10,27 @@ namespace Happy_Addons\Elementor\Widget\Mailchimp;
 
 defined('ABSPATH') || die();
 
-use Happy_Addons\Elementor\Widget\Mailchimp;
+// use Happy_Addons\Elementor\Widget\Mailchimp;
 
 class Mailchimp_api {
 
-    private static $apiKey = 'b5626fed144e863d6ae61f56e764d6fb-us17';
+    private static $apiKey;
     public static $list_id;
 
     public static function set_ajax_call() {
+
+        // self::$apiKey  = 'b5626fed144e863d6ae61f56e764d6fb-us17';
+        self::$apiKey  = 'b5626fed144e863d6ae61f56e764d6fb-us1';
+
         add_action('wp_ajax_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);
         add_action('wp_ajax_nopriv_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);
     }
 
     public static function mailchimp_prepare_ajax() {
 
-        $security = check_ajax_referer( 'happy_addons_nonce', 'security' );
+        $security = check_ajax_referer('happy_addons_nonce', 'security');
 
-        if(!$security) return;
+        if (!$security) return;
 
         $subscriber_data = $_POST;
 
@@ -35,7 +39,7 @@ class Mailchimp_api {
             'list_id' => $subscriber_data['list_id']
         ];
 
-        parse_str(isset($subscriber_data['subscriber_info'])? $subscriber_data['subscriber_info']: '', $subsciber);
+        parse_str(isset($subscriber_data['subscriber_info']) ? $subscriber_data['subscriber_info'] : '', $subsciber);
 
         $response = self::insert_subscriber_to_mailchimp($auth, $subsciber);
 
@@ -92,8 +96,17 @@ class Mailchimp_api {
             $return['status'] = 0;
             $return['msg'] = "Something went wrong: " . esc_html($error_message);
         } else {
-            $return['status'] = 1;
-            $return['msg'] = esc_html__('Your data inserted on Mailchimp.', 'happy-elementor-addons');
+            $body = (array) json_decode($response['body']);
+            if ($body['status'] > 399 && $body['status'] < 600) {
+                $return['status'] = 0;
+                $return['msg'] = $body['title'];
+            } else if($body['status'] == 'subscribed') {
+                $return['status'] = 1;
+                $return['msg'] = esc_html__('Your data inserted on Mailchimp.', 'happy-elementor-addons');
+            }else {
+                $return['status'] = 0;
+                $return['msg'] = esc_html__('Something went wrong. Try again later.', 'happy-elementor-addons');
+            }
         }
 
         return $return;

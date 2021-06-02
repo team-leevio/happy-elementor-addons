@@ -92,10 +92,14 @@
 			});
 		});
 
-		$dashboardForm.on('change', ':checkbox, :radio', function () {
+		// $dashboardForm.on('change', ':checkbox, :radio', function () {
+		// 	$saveButton.attr('disabled', false).text(HappyDashboard.saveChangesLabel);
+		// });
+
+		$dashboardForm.on('change keyup', 'input', function () {
 			$saveButton.attr('disabled', false).text(HappyDashboard.saveChangesLabel);
 		});
-
+		
 		$('.ha-action--btn').on('click', function (event) {
 			event.preventDefault();
 

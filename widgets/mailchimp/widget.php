@@ -70,15 +70,18 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_control(
-            'mailchimp_api',
-            [
-                'label' => __('MailChimp API', 'happy-elementor-addons'),
-                'type' => Controls_Manager::TEXT,
-                'label_block' => true,
-                'placeholder' => __('Enter your mailchimp api here', 'happy-elementor-addons'),
-            ]
-        );
+        /*
+        * Need to solve api get issue from controller to controller
+        */
+        // $this->add_control(
+        //     'mailchimp_api',
+        //     [
+        //         'label' => __('MailChimp API', 'happy-elementor-addons'),
+        //         'type' => Controls_Manager::TEXT,
+        //         'label_block' => true,
+        //         'placeholder' => __('Enter your mailchimp api here', 'happy-elementor-addons'),
+        //     ]
+        // );
 
         $this->add_control(
             'mailchimp_lists',
@@ -1041,10 +1044,10 @@ class Mailchimp extends Base {
                     'size' => 10,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-mc-button > i, {{WRAPPER}} .ha-mc-button > svg' => 'margin-right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > svg' => 'margin-right: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
-                    'submit_icon_position' => 'before'
+                    'button_icon_position' => 'before'
                 ]
             ]
         );
@@ -1067,10 +1070,10 @@ class Mailchimp extends Base {
                     'size' => 10,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-mc-button > i, {{WRAPPER}} .ha-mc-button > svg' => 'margin-left: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > svg' => 'margin-left: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
-                    'submit_icon_position' => 'after'
+                    'button_icon_position' => 'after'
                 ]
             ]
         );
@@ -1093,8 +1096,8 @@ class Mailchimp extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-mc-button > i, {{WRAPPER}} .ha-mc-button > i' => 'font-size: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-mc-button > i, {{WRAPPER}} .ha-mc-button > svg' => 'max-width: {{SIZE}}{{UNIT}}; height: auto',
+                    '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > svg' => 'max-width: {{SIZE}}{{UNIT}}; height: auto',
                 ],
             ]
         );
@@ -1409,7 +1412,7 @@ class Mailchimp extends Base {
                 </div>
                 <div class="ha-mc-button-wrapper">
 
-                    <button class="ha-mc-button">
+                    <button type="submit" class="ha-mc-button" name="ha-mailchimp">
                         <?php if ($settings['button_enable_icon'] == 'yes' && $settings['button_icon_position'] == 'before') : ?>
                             <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'button_icon'); ?></div>
                         <?php endif; ?>
@@ -1424,9 +1427,4 @@ class Mailchimp extends Base {
 <?php
     }
 
-    // public function mailchimp_ajax_handler() {
-    //     echo wp_send_json(['test' => 'data']);
-
-    //     wp_die();
-    // }
 }
