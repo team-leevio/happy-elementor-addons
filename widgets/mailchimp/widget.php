@@ -16,6 +16,7 @@ use Elementor\Control_Media;
 use Elementor\Controls_Manager;
 use Elementor\Icons_Manager;
 use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
@@ -194,12 +195,12 @@ class Mailchimp extends Base {
         $this->add_control(
             'fname_icon_position',
             [
-                'label' => __('Icon Position', 'plugin-domain'),
+                'label' => __('Icon Position', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'before',
                 'options' => [
-                    'before'  => __('Before Input', 'plugin-domain'),
-                    'after' => __('After Input', 'plugin-domain'),
+                    'before'  => __('Before Input', 'happy-elementor-addons'),
+                    'after' => __('After Input', 'happy-elementor-addons'),
                 ],
                 'condition' => [
                     'enable_name' => 'yes',
@@ -278,12 +279,12 @@ class Mailchimp extends Base {
         $this->add_control(
             'lname_icon_position',
             [
-                'label' => __('Icon Position', 'plugin-domain'),
+                'label' => __('Icon Position', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'before',
                 'options' => [
-                    'before'  => __('Before Input', 'plugin-domain'),
-                    'after' => __('After Input', 'plugin-domain'),
+                    'before'  => __('Before Input', 'happy-elementor-addons'),
+                    'after' => __('After Input', 'happy-elementor-addons'),
                 ],
                 'condition' => [
                     'enable_name' => 'yes',
@@ -374,12 +375,12 @@ class Mailchimp extends Base {
         $this->add_control(
             'phone_icon_position',
             [
-                'label' => __('Icon Position', 'plugin-domain'),
+                'label' => __('Icon Position', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'before',
                 'options' => [
-                    'before'  => __('Before Input', 'plugin-domain'),
-                    'after' => __('After Input', 'plugin-domain'),
+                    'before'  => __('Before Input', 'happy-elementor-addons'),
+                    'after' => __('After Input', 'happy-elementor-addons'),
                 ],
                 'condition' => [
                     'enable_phone' => 'yes',
@@ -445,12 +446,12 @@ class Mailchimp extends Base {
         $this->add_control(
             'email_icon_position',
             [
-                'label' => __('Icon Position', 'plugin-domain'),
+                'label' => __('Icon Position', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'before',
                 'options' => [
-                    'before'  => __('Before Input', 'plugin-domain'),
-                    'after' => __('After Input', 'plugin-domain'),
+                    'before'  => __('Before Input', 'happy-elementor-addons'),
+                    'after' => __('After Input', 'happy-elementor-addons'),
                 ],
                 'condition' => [
                     'email_enable_icon' => 'yes',
@@ -506,12 +507,12 @@ class Mailchimp extends Base {
         $this->add_control(
             'button_icon_position',
             [
-                'label' => __('Icon Position', 'plugin-domain'),
+                'label' => __('Icon Position', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'before',
                 'options' => [
-                    'before'  => __('Before Input', 'plugin-domain'),
-                    'after' => __('After Input', 'plugin-domain'),
+                    'before'  => __('Before Input', 'happy-elementor-addons'),
+                    'after' => __('After Input', 'happy-elementor-addons'),
                 ],
                 'condition' => [
                     'button_enable_icon' => 'yes',
@@ -528,12 +529,805 @@ class Mailchimp extends Base {
     protected function register_style_controls() {
 
         $this->start_controls_section(
-            '_section_style_mailchimp_form',
+            '_section_style_mailchimp_label',
             [
-                'label' => __('Form', 'happy-elementor-addons'),
+                'label' => esc_html__('Label', 'happy-elementor-addons'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'input_label_typography',
+                'label' => esc_html__('Typography', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-mc-input-label',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_label_color',
+            [
+                'label' => esc_html__('Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#000000',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input-label' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_label_margin',
+            [
+                'label' => esc_html__('Margin', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input-label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // input style
+        $this->start_controls_section(
+            'input_style',
+            [
+                'label' => esc_html__('Input', 'happy-elementor-addons'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'input_typography',
+                'label' => esc_html__('Typography', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-mc-input input',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'input_style_background',
+                'label' => esc_html__('Background', 'happy-elementor-addons'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .ha-mc-input input',
+                'exclude' => [
+                    'image'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_style_radius',
+            [
+                'label' => esc_html__('Border Radius', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'input_style_border',
+                'label' => esc_html__('Border', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-mc-input input',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'input_style_box_shadow',
+                'label' => esc_html__('Box Shadow', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-mc-input input, {{WRAPPER}} .ha-mc-input input:focus',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_style_padding',
+            [
+                'label' => esc_html__('Padding', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'default'        => [
+                    'top'        => 0,
+                    'right'        => 20,
+                    'bottom'    => 0,
+                    'left'        => 20
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'input_style_width__switch',
+            [
+                'label' => esc_html__('Use Width', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'happy-elementor-addons'),
+                'label_off' => esc_html__('Hide', 'happy-elementor-addons'),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_style_width',
+            [
+                'label' => esc_html__('Width', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'default'    => [
+                    'unit'    => '%',
+                    'size'    => 66
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input-wrapper' => 'flex: 0 0 {{SIZE}}{{UNIT}};',
+                ],
+                'condition'    => [
+                    'input_style_width__switch' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_style_margin_bottom',
+            [
+                'label' => esc_html__('Margin Bottom', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 20,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input-wrapper:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'form_style_switcher!' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_style_margin_right',
+            [
+                'label' => esc_html__('Margin Right', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px',],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 30,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mailchimp-form.horizontal .ha-mc-input-wrapper:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'form_style_switcher' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'inline_margin_bottom',
+            [
+                'label'        => esc_html__('Margin Bottom', 'happy-elementor-addons'),
+                'type'        => Controls_Manager::SLIDER,
+                'devices'    => ['mobile'],
+                'selectors' => [
+                    '{{WRAPPER}} .multiple_form_fields > .ha-mc-input-wrapper:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'form_style_switcher' => 'yes', // Inline Style
+                    'section_form_name_show' => 'yes', // Show Names
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'input_style_placeholder_heading',
+            [
+                'label' => esc_html__('Placeholder', 'happy-elementor-addons'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_style_placeholder_color',
+            [
+                'label' => esc_html__('Placeholder Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#000000',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input input::-webkit-input-placeholder' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-mc-input input::-moz-placeholder' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-mc-input input:-ms-input-placeholder' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-mc-input input:-moz-placeholder' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_style_placeholder_font_size',
+            [
+                'label' => esc_html__('Font Size', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 14,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input input::-webkit-input-placeholder' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-input input::-moz-placeholder' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-input input:-ms-input-placeholder' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-input input:-moz-placeholder' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'button_style_holder',
+            [
+                'label' => esc_html__('Button', 'happy-elementor-addons'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'button_typography',
+                'label' => esc_html__('Typography', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-mc-button',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_border_padding',
+            [
+                'label' => esc_html__('Padding', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'default'    => [
+                    'top'        => 8,
+                    'right'        => 20,
+                    'bottom'    => 8,
+                    'left'        => 20
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'button_box_shadow',
+                'label' => esc_html__('Box Shadow', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-mc-button',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'button_border',
+                'label' => esc_html__('Border', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-mc-button',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'button_title_shadow',
+                'selector' => '{{WRAPPER}} .ha-mc-button',
+            ]
+        );
+
+        $this->add_control(
+            'button_style_use_width_height',
+            [
+                'label' => esc_html__('Use Width', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'happy-elementor-addons'),
+                'label_off' => esc_html__('Hide', 'happy-elementor-addons'),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_width',
+            [
+                'label' => esc_html__('Width', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 50,
+                        'max' => 1000,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 50,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-button' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'button_style_use_width_height' => 'yes'
+                ]
+            ]
+        );
+
+
+        $this->add_responsive_control(
+            'button_style_margin',
+            [
+                'label' => esc_html__('Margin', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs(
+            'button_normal_and_hover_tabs'
+        );
+        $this->start_controls_tab(
+            'button_normal_tab',
+            [
+                'label' => esc_html__('Normal', 'happy-elementor-addons'),
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_color',
+            [
+                'label' => esc_html__('Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#fff',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-button' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-mc-button svg path'    => 'stroke: {{VALUE}}; fill: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'button_background',
+                'label' => esc_html__('Background', 'happy-elementor-addons'),
+                'types' => ['classic', 'gradient',],
+                'selector' => '{{WRAPPER}} .ha-mc-button',
+                'exclude' => [
+                    'image'
+                ]
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->start_controls_tab(
+            'button_hover_tab',
+            [
+                'label' => esc_html__('Hover', 'happy-elementor-addons'),
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_color_hover',
+            [
+                'label' => esc_html__('Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#fff',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-button:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-mc-button:hover svg path'    => 'stroke: {{VALUE}}; fill: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'button_background_hover',
+                'label' => esc_html__('Background', 'happy-elementor-addons'),
+                'types' => ['classic', 'gradient',],
+                'selector' => '{{WRAPPER}} .ha-mc-button:hover',
+                'exclude' => [
+                    'image'
+                ]
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_control(
+            'button_icon_heading',
+            [
+                'label' => esc_html__('Icon', 'happy-elementor-addons'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_icon_padding_right',
+            [
+                'label' => esc_html__('Icon Spacing', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-button > i, {{WRAPPER}} .ha-mc-button > svg' => 'margin-right: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'submit_icon_position' => 'before'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_icon_padding_left',
+            [
+                'label' => esc_html__('Icon Spacing', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-button > i, {{WRAPPER}} .ha-mc-button > svg' => 'margin-left: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'submit_icon_position' => 'after'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_icon_size',
+            [
+                'label' => esc_html__('Icon Size', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 100,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-button > i, {{WRAPPER}} .ha-mc-button > i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-button > i, {{WRAPPER}} .ha-mc-button > svg' => 'max-width: {{SIZE}}{{UNIT}}; height: auto',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'input_icon_style_holder',
+            [
+                'label' => esc_html__('Input Icon', 'happy-elementor-addons'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'input_icon_background',
+                'label' => esc_html__('Background', 'happy-elementor-addons'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper',
+                'exclude' => [
+                    'image'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'input_icon_color_hr',
+            [
+                'type' => Controls_Manager::DIVIDER,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_icon_color',
+            [
+                'label' => esc_html__('Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#000000',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper svg path'    => 'stroke: {{VALUE}}; fill: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_icon_font_size',
+            [
+                'label' => esc_html__('Font Size', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper svg'    => 'max-width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'input_icon_border',
+                'label' => esc_html__('Border', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_icon_padding',
+            [
+                'label' => esc_html__('Padding', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_icon_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'success_error',
+            [
+                'label' => esc_html__('Sucess & Error message', 'happy-elementor-addons'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'success_error_padding',
+            [
+                'label' => esc_html__('Padding', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-response-message' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'success_error_margin',
+            [
+                'label' => esc_html__('Margin', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-response-message' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'success_error_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-response-message' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ]
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name'         => 'success_error_typography',
+                'selector'     => '{{WRAPPER}} .ha-mc-response-message',
+            ]
+        );
+
+        $this->add_control(
+            'success_heading',
+            [
+                'label' => esc_html__('Success:', 'happy-elementor-addons'),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'success_color',
+            [
+                'label'         => esc_html__('Color', 'happy-elementor-addons'),
+                'type'         => Controls_Manager::COLOR,
+                'selectors'     => [
+                    '{{WRAPPER}} .ha-mc-response-message.success' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            array(
+                'name'     => 'success_bg_color',
+                'label'         => esc_html__('Background Color', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-mc-response-message.success',
+            )
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'success_border',
+                'label' => esc_html__('Border', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-mc-response-message.success',
+            ]
+        );
+
+        $this->add_control(
+            'error_heading',
+            [
+                'label' => esc_html__('Error:', 'happy-elementor-addons'),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'error_color',
+            [
+                'label'         => esc_html__('Color', 'happy-elementor-addons'),
+                'type'         => Controls_Manager::COLOR,
+                'selectors'     => [
+                    '{{WRAPPER}} .ha-mc-response-message.error' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            array(
+                'name'     => 'error_bg_color',
+                'label'         => esc_html__('Background Color', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-mc-response-message.error',
+            )
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'error_border',
+                'label' => esc_html__('Border', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-mc-response-message.error',
+            ]
+        );
+
 
         $this->end_controls_section();
     }
@@ -548,16 +1342,22 @@ class Mailchimp extends Base {
         // add_action('wp_ajax_nopriv_ha_mailchimp_ajax', [$this, 'mailchimp_ajax_handler']);
 
         $settings = $this->get_settings_for_display();
+
+        $form_fields = (($settings['enable_name'] == 'yes' || $settings['enable_phone'] == 'yes') ? 'multiple_form_fields' : '');
         // echo "<pre>";
         // print_r($settings);
         // echo "</pre>";
 ?>
         <div class="ha-mailchimp-wrapper">
+            <?php if (\Elementor\Plugin::$instance->editor->is_edit_mode()) : ?>
+                <div class="ha-mc-response-message success"><?php esc_html_e('This is a dummy message for success. This won\'t show in preview', 'happy-elementor-addons'); ?></div>
+                <div class="ha-mc-response-message error"><?php esc_html_e('This is a dummy message for error. This won\'t show in preview', 'happy-elementor-addons'); ?></div>
+            <?php endif; ?>
             <div class="ha-mc-response-message"></div>
-            <form class="ha-mailchimp-form <?php echo esc_attr($settings['form_alignment']); ?>" data-list-id="<?php echo esc_attr(isset($settings['mailchimp_lists']) ? $settings['mailchimp_lists'] : ''); ?>">
+            <form class="ha-mailchimp-form <?php echo esc_attr($settings['form_alignment']); ?> <?php echo esc_attr($form_fields); ?>" data-list-id="<?php echo esc_attr(isset($settings['mailchimp_lists']) ? $settings['mailchimp_lists'] : ''); ?>">
                 <?php if ($settings['enable_name'] == 'yes') : ?>
                     <div class="ha-mc-input-wrapper">
-                        <label><?php echo esc_html($settings['fname_label']); ?></label>
+                        <label class="ha-mc-input-label"><?php echo esc_html($settings['fname_label']); ?></label>
                         <div class="ha-mc-input">
                             <?php if ($settings['fname_enable_icon'] == 'yes' && $settings['fname_icon_position'] == 'before') : ?>
                                 <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'fname_icon'); ?></div>
@@ -569,7 +1369,7 @@ class Mailchimp extends Base {
                         </div>
                     </div>
                     <div class="ha-mc-input-wrapper">
-                        <label><?php echo esc_html($settings['lname_label']); ?></label>
+                        <label class="ha-mc-input-label"><?php echo esc_html($settings['lname_label']); ?></label>
                         <div class="ha-mc-input">
                             <?php if ($settings['lname_enable_icon'] == 'yes' && $settings['lname_icon_position'] == 'before') : ?>
                                 <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'lname_icon'); ?></div>
@@ -583,7 +1383,7 @@ class Mailchimp extends Base {
                 <?php endif; ?>
                 <?php if ($settings['enable_phone'] == 'yes') : ?>
                     <div class="ha-mc-input-wrapper">
-                        <label><?php echo esc_html($settings['phone_label']); ?></label>
+                        <label class="ha-mc-input-label"><?php echo esc_html($settings['phone_label']); ?></label>
                         <div class="ha-mc-input">
                             <?php if ($settings['phone_enable_icon'] == 'yes' && $settings['phone_icon_position'] == 'before') : ?>
                                 <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'phone_icon'); ?></div>
@@ -596,7 +1396,7 @@ class Mailchimp extends Base {
                     </div>
                 <?php endif; ?>
                 <div class="ha-mc-input-wrapper">
-                    <label><?php echo esc_html($settings['email_label']); ?></label>
+                    <label class="ha-mc-input-label"><?php echo esc_html($settings['email_label']); ?></label>
                     <div class="ha-mc-input">
                         <?php if ($settings['email_enable_icon'] == 'yes' && $settings['email_icon_position'] == 'before') : ?>
                             <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>

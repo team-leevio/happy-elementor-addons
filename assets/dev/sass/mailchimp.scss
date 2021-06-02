@@ -3,10 +3,12 @@
         display: none;
         padding: 5px;
         &.error {
+            display: block;
             background-color: red;
             color: white;
         }
         &.success {
+            display: block;
             background-color: green;
             color: white;
         }
@@ -41,6 +43,10 @@
             input {
                 width: 100%;
             }
+        }
+
+        .ha-mc-button-wrapper {
+            align-self: flex-end;
         }
 
         .ha-mc-button {
