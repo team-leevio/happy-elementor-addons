@@ -62,6 +62,9 @@ class Image_Hover_Effect extends Base {
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
 				],
+				'dynamic' => [
+					'active' => true
+				],
 			]
 		);
 
