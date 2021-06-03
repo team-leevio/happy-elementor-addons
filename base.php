@@ -106,6 +106,7 @@ class Base {
 	public function include_on_init() {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-extensions.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
 	}
 
 	/**

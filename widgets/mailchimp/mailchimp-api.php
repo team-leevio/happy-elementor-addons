@@ -10,17 +10,22 @@ namespace Happy_Addons\Elementor\Widget\Mailchimp;
 
 defined('ABSPATH') || die();
 
+use \Happy_Addons\Elementor\Credentials_Manager;
+
 // use Happy_Addons\Elementor\Widget\Mailchimp;
 
 class Mailchimp_api {
 
     private static $apiKey;
+    private static $credentials;
     public static $list_id;
 
     public static function set_ajax_call() {
 
-        // self::$apiKey  = 'b5626fed144e863d6ae61f56e764d6fb-us17';
-        self::$apiKey  = 'b5626fed144e863d6ae61f56e764d6fb-us1';
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
+        self::$credentials = Credentials_Manager::get_saved_credentials();
+
+        self::$apiKey  = isset(self::$credentials['mailchimp']['api'])? self::$credentials['mailchimp']['api']: '';
 
         add_action('wp_ajax_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);
         add_action('wp_ajax_nopriv_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);
@@ -75,6 +80,9 @@ class Mailchimp_api {
         ];
 
         $server = explode('-', $auth['api_key']);
+
+        if(!isset($server[1])) return ['status' => 0, 'msg' => esc_html__('Invalid API key.', 'happy-elementor-addons')];
+
         $url = 'https://' . $server[1] . '.api.mailchimp.com/3.0/lists/' . $auth['list_id'] . '/members/';
 
         $response = wp_remote_post(
@@ -122,6 +130,8 @@ class Mailchimp_api {
         $options = [];
 
         $server = explode('-', self::$apiKey);
+
+        if(!isset($server[1])) return 0;
 
         $url = 'https://' . $server[1] . '.api.mailchimp.com/3.0/lists';
 

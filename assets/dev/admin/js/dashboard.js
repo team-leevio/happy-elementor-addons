@@ -96,7 +96,7 @@
 		// 	$saveButton.attr('disabled', false).text(HappyDashboard.saveChangesLabel);
 		// });
 
-		$dashboardForm.on('change keyup', 'input', function () {
+		$dashboardForm.on('change keyup paste', 'input', function () {
 			$saveButton.attr('disabled', false).text(HappyDashboard.saveChangesLabel);
 		});
 		

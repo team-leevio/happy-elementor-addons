@@ -70,6 +70,19 @@ class Mailchimp extends Base {
             ]
         );
 
+        $this->add_control(
+            'mailchimp_api_check',
+            [
+                'raw' => '<strong>' . esc_html__( 'Please note!', 'happy-elementor-addons' ) . '</strong> ' . esc_html__( 'Please set API Key in Happy Addons Dashboard - Credentials - MailChimp and Create Campaign..', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::RAW_HTML,
+                'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+                'render_type' => 'ui',
+                'condition' => [
+                    'mailchimp_lists' => '01',
+                ],
+            ]
+        );
+
         /*
         * Need to solve api get issue from controller to controller
         */
@@ -83,13 +96,19 @@ class Mailchimp extends Base {
         //     ]
         // );
 
+        $list_option = ['01' => esc_html__('Select a List', 'happy-elementor-addons')];
+        if(Mailchimp_api::get_mailchimp_lists()){
+            $list_option = $list_option + Mailchimp_api::get_mailchimp_lists();
+        }
+
         $this->add_control(
             'mailchimp_lists',
             [
                 'label' => __('Lists', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
                 'default' => '01',
-                'options' => ['01' => esc_html__('Select a List', 'happy-elementor-addons')] + Mailchimp_api::get_mailchimp_lists(),
+                'options' =>  $list_option,
+                'description' => esc_html__('Create a campaign in mailchimp account ', 'happy-elementor-addons').'<a href="https://mailchimp.com/help/create-a-regular-email-campaign/#Create_a_campaign" target="_blank"> '.esc_html__('Create Campaign', 'happy-elementor-addons').'</a>',
             ]
         );
 

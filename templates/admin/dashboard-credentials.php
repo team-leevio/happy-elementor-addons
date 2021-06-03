@@ -1,43 +1,76 @@
 <?php
 
 /**
- * Dashboard widgets tab template
+ * Dashboard credentials tab template
  */
 
 defined('ABSPATH') || die();
+
+$credential_list = self::get_credentials();
+$credential_data = \Happy_Addons\Elementor\Credentials_Manager::get_saved_credentials();
+$has_pro = ha_has_pro();
 
 ?>
 <div class="ha-dashboard-panel">
     <div class="ha-dashboard-panel__header">
         <div class="ha-dashboard-panel__header-content">
             <h2><?php esc_html_e('Happy Credentials', 'happy-elementor-addons'); ?></h2>
-            <p class="f16"><?php printf(esc_html__('Here is the list of our all %s widgets. You can enable or disable widgets from here to optimize loading speed and Elementor editor experience. %sAfter enabling or disabling any widget make sure to click the Save Changes button.%s', 'happy-elementor-addons'), $total_widgets_count, '<strong>', '</strong>'); ?></p>
+            <p class="f16"><?php printf(esc_html__('Here is the list of our all credentials. You can input credentials from here. %sAfter changing any input make sure to click the Save Changes button.%s', 'happy-elementor-addons'), '<strong>', '</strong>'); ?></p>
         </div>
     </div>
 
-    <div class="ha-dashboard-widgets">
-        <div class="ha-dashboard-widgets__item">
-            <span class="ha-dashboard-widgets__item-icon"><i class="hm hm-accordion-vertical"></i></span>
-            <h3 class="ha-dashboard-widgets__item-title">
-                <label for="ha-widget-accordion">MailChimp</label>
-            </h3>
-            <div class="ha-dashboard-widgets__item-toggle">
-                <input id="ha-widget-accordion" type="text" class="ha-widget" name="credentials[mailchimp_api]" value="">
+    <div class="ha-dashboard-credentials">
+        <?php
+        foreach ($credential_list as $cred_key => $cred_data) :
+            $title = isset($cred_data['title']) ? $cred_data['title'] : '';
+            $icon = isset($cred_data['icon']) ? $cred_data['icon'] : '';
+            $is_pro = isset($cred_data['is_pro']) && $cred_data['is_pro'] ? true : false;
+            $demo_url = isset($cred_data['demo']) && $cred_data['demo'] ? $cred_data['demo'] : '';
+            $is_placeholder = $is_pro && !ha_has_pro();
+            $class_attr = 'ha-dashboard-credentials__item';
+
+            $fields = isset($cred_data['fiels']) ? $cred_data['fiels'] : '';
+
+            if ($is_pro) {
+                $class_attr .= ' item--is-pro';
+            }
+
+            $checked = '';
+
+            // if ( ! in_array( $cred_key, $inactive_features ) ) {
+            //     $checked = 'checked="checked"';
+            // }
+
+            if ($is_placeholder) {
+                $class_attr .= ' item--is-placeholder';
+                $checked = 'disabled="disabled"';
+            }
+        ?>
+            <div class="<?php echo $class_attr; ?>">
+                <?php if ($is_pro) : ?>
+                    <span class="ha-dashboard-credentials__item-badge"><?php esc_html_e('Pro', 'happy-elementor-addons'); ?></span>
+                <?php endif; ?>
+                <span class="ha-dashboard-credentials__item-icon"><i class="<?php echo $icon; ?>"></i></span>
+                <h3 class="ha-dashboard-credentials__item-title">
+                    <label for="ha-widget-<?php echo $cred_key; ?>" <?php echo $is_placeholder ? 'data-tooltip="Get pro"' : ''; ?>><?php echo $title; ?></label>
+                    <?php if ($demo_url) : ?>
+                        <a href="<?php echo esc_url($demo_url); ?>" target="_blank" rel="noopener" data-tooltip="<?php esc_attr_e('Click and view demo', 'happy-elementor-addons'); ?>" class="ha-dashboard-credentials__item-preview"><i aria-hidden="true" class="eicon-device-desktop"></i></a>
+                    <?php endif; ?>
+                </h3>
+                <?php foreach ($fields as $key => $value) : ?>
+                    <div class="ha-dashboard-credentials__item-toggle">
+                        <label for=""><?php echo esc_html($value['label']); ?></label>
+                        <?php if ($value['type'] == 'textarea') : ?>
+                            <textarea id="ha-widget-<?php echo $cred_key; ?>" <?php echo $checked; ?> class="ha-credential" name="credentials[<?php echo esc_attr($cred_key); ?>][<?php echo esc_attr($value['name']); ?>]" cols="30" rows="10"><?php echo esc_attr(isset($credential_data[$cred_key][$value['name']])?$credential_data[$cred_key][$value['name']]: ''); ?></textarea>
+                        <?php else : ?>
+                            <input id="ha-widget-<?php echo $cred_key; ?>" <?php echo $checked; ?> type="<?php echo esc_attr($value['type']); ?>" class="ha-credential" name="credentials[<?php echo esc_attr($cred_key); ?>][<?php echo esc_attr($value['name']); ?>]" value="<?php echo esc_attr(isset($credential_data[$cred_key][$value['name']])?$credential_data[$cred_key][$value['name']]: ''); ?>">
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
             </div>
-        </div>
-        <!-- <div class="ha-dashboard-widgets__item item--is-pro">
-            <span class="ha-dashboard-widgets__item-badge">Pro</span>
-            <span class="ha-dashboard-widgets__item-icon"><i class="hm hm-accordion-vertical"></i></span>
-            <h3 class="ha-dashboard-widgets__item-title">
-                <label for="ha-widget-accordion">Advanced Accordion</label>
-            </h3>
-            <div class="ha-dashboard-widgets__item-toggle">
-                <input id="ha-widget-accordion" type="text" class="ha-widget" name="credentials[instragram][user_id]" value="accordion">
-                <input id="ha-widget-accordion" type="text" class="ha-widget" name="credentials[instragram][user_api]" value="accordion">
-                <b class="ha-toggle__switch"></b>
-                <b class="ha-toggle__track"></b>
-            </div>
-        </div> -->
+        <?php
+        endforeach;
+        ?>
     </div>
 
     <div class="ha-dashboard-panel__footer">
