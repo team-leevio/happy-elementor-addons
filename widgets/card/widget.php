@@ -7,7 +7,7 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Group_Control_Css_Filter;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 use Elementor\Utils;
 use Elementor\Control_Media;
 use Elementor\Controls_Manager;
@@ -824,7 +824,7 @@ class Card extends Base {
 					'font_size' => ['']
 				],
 				'selector' => '{{WRAPPER}} .ha-badge',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -888,7 +888,7 @@ class Card extends Base {
 				'name' => 'title_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-card-title',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_2,
+				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
 
@@ -930,7 +930,7 @@ class Card extends Base {
 				'name' => 'description_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-card-text',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -961,7 +961,7 @@ class Card extends Base {
 			[
 				'name' => 'button_typography',
 				'selector' => '{{WRAPPER}} .ha-btn',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+				'scheme' => Typography::TYPOGRAPHY_4,
 			]
 		);
 
@@ -1091,7 +1091,7 @@ class Card extends Base {
 		$this->add_render_attribute(
 			'badge_text',
 			'class',
-			['ha-badge', sprintf( 'ha-badge--%s', esc_attr( $settings['badge_position'] ) )]
+			[ 'ha-badge', sprintf( 'ha-badge--%s', esc_attr( $settings['badge_position'] ) ) ]
 		);
 
 		$this->add_inline_editing_attributes( 'title', 'basic' );
@@ -1115,7 +1115,7 @@ class Card extends Base {
 			<?php
 			if ( $settings['title' ] ) :
 				printf( '<%1$s %2$s>%3$s</%1$s>',
-					tag_escape( $settings['title_tag'] ),
+					ha_escape_tags( $settings['title_tag'] ),
 					$this->get_render_attribute_string( 'title' ),
 					ha_kses_basic( $settings['title' ] )
 					);

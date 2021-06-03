@@ -10,7 +10,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -157,7 +157,7 @@ class Fluent_Form extends Base {
                 'name' => 'field_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ff-el-form-control',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3
+                'scheme' => Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -306,7 +306,7 @@ class Fluent_Form extends Base {
                 'name' => 'label_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ff-el-input--label label',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3
+                'scheme' => Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -390,7 +390,7 @@ class Fluent_Form extends Base {
 				'name' => 'help_text_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ff-el-tooltip:before',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+				'scheme' => Typography::TYPOGRAPHY_4,
 			]
 		);
 
@@ -477,7 +477,7 @@ class Fluent_Form extends Base {
             [
                 'name' => 'submit_typography',
                 'selector' => '{{WRAPPER}} .ff-btn-submit',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_4
+                'scheme' => Typography::TYPOGRAPHY_4
             ]
         );
 
@@ -618,7 +618,7 @@ class Fluent_Form extends Base {
 				'name' => 'section_break_title_typography',
 				'label' => __( 'Title Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ff-el-section-break .ff-el-section-title',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3
+				'scheme' => Typography::TYPOGRAPHY_3
 			]
 		);
 
@@ -628,7 +628,7 @@ class Fluent_Form extends Base {
 				'name' => 'section_break_description_typography',
 				'label' => __( 'Description Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ff-el-section-break .ff-section_break_desk',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_4
+				'scheme' => Typography::TYPOGRAPHY_4
 			]
 		);
 

@@ -216,3 +216,6 @@ classes/data.txt
 assets/dev/css
 assets/compiled
 npm-shrinkwrap.json
+
+.vscode/
+assets/designs/list-group-backup.json

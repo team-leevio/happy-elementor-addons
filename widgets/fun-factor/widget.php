@@ -9,7 +9,7 @@ namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Icons_Manager;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 use Elementor\Utils;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
@@ -613,7 +613,7 @@ class Fun_Factor extends Base {
 			[
 				'name'     => 'number_typography',
 				'label'    => __('Typography', 'happy-elementor-addons'),
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme'   => Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .ha-fun-factor__content-number',
 			]
 		);
@@ -668,7 +668,7 @@ class Fun_Factor extends Base {
 			[
 				'name'     => 'content_typography',
 				'label'    => __('Typography', 'happy-elementor-addons'),
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme'   => Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .ha-fun-factor__content-text',
 			]
 		);
@@ -805,7 +805,7 @@ class Fun_Factor extends Base {
                     <span class="ha-fun-factor__divider ha-fun-factor__divider-align-<?php echo esc_attr( $settings['text_align'] ); ?>"></span>
                 <?php endif; ?>
                 <?php printf( '<%1$s class="ha-fun-factor__content-text">%2$s</%1$s>',
-                    tag_escape( $settings['title_tag'] ),
+                    ha_escape_tags( $settings['title_tag'], 'h2' ),
                     ha_kses_basic( $fun_factor_title )
                 ); ?>
             </div>

@@ -6,7 +6,7 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 use Elementor\Utils;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
@@ -731,7 +731,7 @@ class InfoBox extends Base {
 				'name' => 'title_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-infobox-title',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_2
+				'scheme' => Typography::TYPOGRAPHY_2
 			]
 		);
 
@@ -773,7 +773,7 @@ class InfoBox extends Base {
 				'name' => 'description_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-infobox-text',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -804,7 +804,7 @@ class InfoBox extends Base {
 			[
 				'name' => 'btn_typography',
 				'selector' => '{{WRAPPER}} .ha-btn',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+				'scheme' => Typography::TYPOGRAPHY_4,
 			]
 		);
 
@@ -990,7 +990,7 @@ class InfoBox extends Base {
 			<?php
 			if ( $settings['title' ] ) :
 				printf( '<%1$s %2$s>%3$s</%1$s>',
-					tag_escape( $settings['title_tag'] ),
+					ha_escape_tags( $settings['title_tag'], 'h2' ),
 					$this->get_render_attribute_string( 'title' ),
 					ha_kses_basic( $settings['title' ] )
 				);

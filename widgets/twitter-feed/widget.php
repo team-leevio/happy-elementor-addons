@@ -9,7 +9,7 @@ namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Background;
@@ -695,7 +695,7 @@ class Twitter_Feed extends Base {
 				'name' => 'name_typography',
 				'label' => __( 'Name Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-author-name',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 				'condition' => [
 					'show_name' => 'yes'
 				],
@@ -708,7 +708,7 @@ class Twitter_Feed extends Base {
 				'name' => 'user_name_typography',
 				'label' => __( 'User Name Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-username',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 				'condition' => [
 					'show_user_name' => 'yes'
 				],
@@ -858,7 +858,7 @@ class Twitter_Feed extends Base {
 				'name' => 'description_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-content p',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -900,7 +900,7 @@ class Twitter_Feed extends Base {
 				'name' => 'read_more_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-content p a',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 				'condition' => [
 					'read_more' => 'yes'
 				],
@@ -962,7 +962,7 @@ class Twitter_Feed extends Base {
 				'name' => 'date_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-date',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 				'condition' => [
 					'show_date' => 'yes'
 				],

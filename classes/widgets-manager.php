@@ -575,8 +575,8 @@ class Widgets_Manager {
 				'css' => ['horizontal-timeline'],
 				'js' => [],
 				'vendor' => [
-					'css' => ['slick', 'slick-theme'],
-					'js' => ['jquery-slick'],
+					'css' => ['slick', 'slick-theme','magnific-popup'],
+					'js' => ['jquery-slick','jquery-magnific-popup'],
 				],
 			],
 			'social-share' => [
@@ -639,7 +639,7 @@ class Widgets_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'traits/button-renderer.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'traits/link-hover-markup.php' );
-		
+
 		$inactive_widgets = self::get_inactive_widgets();
 
 		foreach ( self::get_local_widgets_map() as $widget_key => $data ) {

@@ -12,7 +12,7 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Background;
 
 defined( 'ABSPATH' ) || die();
@@ -318,7 +318,7 @@ class News_Ticker extends Base {
 			[
 				'name' => 'sticky_title_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title',
 			]
 		);
@@ -424,7 +424,7 @@ class News_Ticker extends Base {
 			[
 				'name' => 'title_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper  li.ha-news-ticker-item .ha-news-ticker-title',
 			]
 		);

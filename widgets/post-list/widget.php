@@ -1090,7 +1090,7 @@ class Post_List extends Base {
 									}
 									if ( 'top' !== $settings['meta_position'] && $title ) {
 										printf( '<%1$s %2$s>%3$s</%1$s>',
-											tag_escape( $settings['title_tag'] ),
+											ha_escape_tags( $settings['title_tag'], 'h2' ),
 											'class="ha-post-list-title"',
 											esc_html( $title )
 										);
@@ -1135,7 +1135,7 @@ class Post_List extends Base {
 									<?php
 									if ( 'top' === $settings['meta_position'] && $title ) {
 										printf( '<%1$s %2$s>%3$s</%1$s>',
-											tag_escape( $settings['title_tag'] ),
+											ha_escape_tags( $settings['title_tag'] ),
 											'class="ha-post-list-title"',
 											esc_html( $title )
 										);

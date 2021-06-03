@@ -13,7 +13,7 @@ use Elementor\Group_Control_Typography;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
 use Elementor\Group_Control_Border;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 
 defined('ABSPATH') || die();
 
@@ -798,7 +798,7 @@ class Social_Icons extends Base {
 			[
 				'name'     => 'custom_label_typography',
 				'label'    => __('Typography', 'happy-elementor-addons'),
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme'   => Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .ha-social-icon-label'
 			]
 

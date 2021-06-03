@@ -11,7 +11,7 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 use Happy_Addons\Elementor\Icons_Manager;
 
 defined( 'ABSPATH' ) || die();
@@ -428,7 +428,7 @@ class Icon_Box extends Base {
 			[
 				'name' => 'title',
 				'selector' => '{{WRAPPER}} .ha-icon-box-title',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_2
+				'scheme' => Typography::TYPOGRAPHY_2
 			]
 		);
 
@@ -633,7 +633,7 @@ class Icon_Box extends Base {
 					'font_size' => ['']
 				],
 				'selector' => '{{WRAPPER}} .ha-badge',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -736,7 +736,7 @@ class Icon_Box extends Base {
 
 		if ( $settings['title' ] ) :
 			printf( '<%1$s %2$s>%3$s</%1$s>',
-				tag_escape( $settings['title_tag'] ),
+				ha_escape_tags( $settings['title_tag'], 'h2' ),
 				$this->get_render_attribute_string( 'title' ),
 				ha_kses_basic( $settings['title' ] )
 				);

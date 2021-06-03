@@ -12,7 +12,7 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 use Elementor\Utils;
 use Elementor\Group_Control_Image_Size;
 
@@ -293,6 +293,18 @@ class Horizontal_Timeline extends Base {
 		);
 
 		$this->add_control(
+			'magnific_popup',
+			[
+				'label' => __( 'Enable Lightbox', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+			]
+		);
+
+		$this->add_control(
 			'animation_speed',
 			[
 				'label' => __( 'Animation Speed', 'happy-elementor-addons' ),
@@ -471,7 +483,7 @@ class Horizontal_Timeline extends Base {
 				'name' => 'date_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-horizontal-timeline-date',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3
+				'scheme' => Typography::TYPOGRAPHY_3
 			]
 		);
 
@@ -939,7 +951,7 @@ class Horizontal_Timeline extends Base {
 				'name' => 'title_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-horizontal-timeline-title',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_2
+				'scheme' => Typography::TYPOGRAPHY_2
 			]
 		);
 
@@ -981,7 +993,7 @@ class Horizontal_Timeline extends Base {
 				'name' => 'subtitle_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-horizontal-timeline-subtitle',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3
+				'scheme' => Typography::TYPOGRAPHY_3
 			]
 		);
 
@@ -1011,7 +1023,7 @@ class Horizontal_Timeline extends Base {
 				'name' => 'description_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-horizontal-timeline-description',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3
+				'scheme' => Typography::TYPOGRAPHY_3
 			]
 		);
 
@@ -1036,6 +1048,7 @@ class Horizontal_Timeline extends Base {
 		if ( empty( $settings['timeline'] ) ) {
 			return;
 		}
+		$magnific_popup = '';
 
 		$this->add_render_attribute( 'wrapper', 'class', 'ha-horizontal-timeline-wrapper' );
 		$this->add_render_attribute( 'wrapper', 'class', 'ha-carousel' );
@@ -1066,7 +1079,12 @@ class Horizontal_Timeline extends Base {
 
 						<div class="ha-horizontal-timeline-inner">
 							<?php if ( ! empty( $timeline['image']['url'] ) ) : ?>
-								<div class="ha-horizontal-timeline-image">
+								<?php
+									if( 'yes' === $settings['magnific_popup'] && ! ha_elementor()->editor->is_edit_mode() ){
+										$magnific_popup = 'data-mfp-src=' . esc_url($timeline['image']['url']);
+									}
+								?>
+								<div class="ha-horizontal-timeline-image" <?php echo $magnific_popup;?>>
 									<?php echo Group_Control_Image_Size::get_attachment_image_html( $timeline, 'thumbnail', 'image' ); ?>
 								</div>
 							<?php endif; ?>

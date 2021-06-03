@@ -1,6 +1,23 @@
-= 20 Apr 2021 =
+ - 3 June 2021 =
+
+- New: Added Lightbox support to Horizontal Timeline widget
+- New: Image Hover Effect hover title html tag option added
+- Tweak: Dynamic Tag support for Image Hover effect's image field
+- Fix: The Event Widget's events popups responsive issue
+
+= 2.24.1 - 18 May 2021 =
+
+- Tweak: Step Flow title html tag option increased
+- Tweak: Gravity form ajax submit enable option
+- Fix: Gravity form input height issue
+- Fix: 360 Rotation widget fallback background color conflict issue
+
+= 2.24.0 - 25 April 2021 =
 
 - Tweak: Animated Link widget alignment control added
+- Fix: Security patches
+- Tweak: Removed `Elementor\Scheme_Typography` deprecated function
+- Tweak: Happy Elementor Addons not active when Elementor doesn’t meet minimum version requirements
 
 = 2.23.0 - 12 April 2021 =
 

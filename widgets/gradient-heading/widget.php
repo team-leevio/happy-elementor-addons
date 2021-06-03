@@ -9,7 +9,7 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 use Happy_Addons\Elementor\Controls\Group_Control_Foreground;
 
 defined( 'ABSPATH' ) || die();
@@ -174,7 +174,7 @@ class Gradient_Heading extends Base {
 			[
 				'name' => 'title',
 				'selector' => '{{WRAPPER}} .ha-gradient-heading',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'scheme' => Typography::TYPOGRAPHY_1,
 			]
 		);
 
@@ -235,7 +235,7 @@ class Gradient_Heading extends Base {
 		}
 
 		printf( '<%1$s %2$s>%3$s</%1$s>',
-			tag_escape( $settings['title_tag'] ),
+			ha_escape_tags( $settings['title_tag'], 'h2' ),
 			$this->get_render_attribute_string( 'title' ),
 			$title
 		);

@@ -8,7 +8,7 @@ namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Repeater;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Schemes\Typography;
 use Elementor\Utils;
 use Elementor\Control_Media;
 use Elementor\Controls_Manager;
@@ -761,7 +761,7 @@ class Member extends Base {
 			[
 				'name' => 'title_typography',
 				'selector' => '{{WRAPPER}} .ha-member-name',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_2,
+				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
 
@@ -810,7 +810,7 @@ class Member extends Base {
 			[
 				'name' => 'job_title_typography',
 				'selector' => '{{WRAPPER}} .ha-member-position',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -859,7 +859,7 @@ class Member extends Base {
 			[
 				'name' => 'bio_typography',
 				'selector' => '{{WRAPPER}} .ha-member-bio',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -1053,7 +1053,7 @@ class Member extends Base {
 			[
 				'name' => 'button_typography',
 				'selector' => '{{WRAPPER}} .ha-btn',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+				'scheme' => Typography::TYPOGRAPHY_4,
 			]
 		);
 
@@ -1207,7 +1207,7 @@ class Member extends Base {
 		<div class="ha-member-body">
 			<?php if ( $settings['title'] ) :
 				printf( '<%1$s %2$s>%3$s</%1$s>',
-					tag_escape( $settings['title_tag'] ),
+					ha_escape_tags( $settings['title_tag'], 'h2' ),
 					$this->get_render_attribute_string( 'title' ),
 					ha_kses_basic( $settings['title'] )
 				);
