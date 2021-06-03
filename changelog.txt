@@ -1,5 +1,6 @@
  - 26 May 2021 =
 
+- New: Added Lightbox support to Horizontal Timeline widget
 - New: Image Hover Effect hover title html tag option added
 - Fix: The Event Widget's events popups responsive issue
 
