@@ -814,6 +814,51 @@
 
 		};
 
+		var MailChimp = function($scope) {
+
+			var elMessage = $scope.find('.ha-mc-response-message');
+			var elForm = $scope.find('.ha-mailchimp-form');
+			var elButton = elForm.find('.ha-button-wrapper button');
+
+			elForm.on('submit', function(e){
+				e.preventDefault();
+
+				// console.log(HappyLocalize.ajax_url);
+
+				var data = {
+					action: 'ha_mailchimp_ajax',
+					security: HappyLocalize.nonce,
+					subscriber_info: elForm.serialize(),
+					list_id: elForm.data('list-id'),
+				};
+		
+				$.ajax({
+					type: 'post',
+					url: HappyLocalize.ajax_url,
+					data: data,
+					success: function(response) {
+						elForm.trigger('reset');
+						console.log(response);
+						if(response.status){
+							elMessage.removeClass('error');
+							elMessage.addClass('success');
+							// elMessage.show();
+							elMessage.text(response.msg);
+						}else {
+							elMessage.addClass('error');
+							elMessage.removeClass('success');
+							// elMessage.show();
+							elMessage.text(response.msg);
+						}
+						// console.log(response);
+					},
+					error: function(error) {
+						// console.log(error);
+					}
+				});
+			});
+		}
+
 		// Slider
 		elementorFrontend.hooks.addAction(
 			'frontend/element_ready/ha-slider.default',
@@ -900,6 +945,7 @@
 			'ha-data-table.default'         : DataTable,
 			'widget'                        : BackgroundOverlay,
 			'ha-event-calendar.default'		: Event_Calendar,
+			'ha-mailchimp.default'			: MailChimp,
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {
