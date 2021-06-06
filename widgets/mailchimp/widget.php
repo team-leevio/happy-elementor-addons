@@ -73,7 +73,7 @@ class Mailchimp extends Base {
         $this->add_control(
             'mailchimp_api_check',
             [
-                'raw' => '<strong>' . esc_html__( 'Please note!', 'happy-elementor-addons' ) . '</strong> ' . esc_html__( 'Please set API Key in Happy Addons Dashboard - Credentials - MailChimp and Create Campaign..', 'happy-elementor-addons' ),
+                'raw' => '<strong>' . esc_html__('Please note!', 'happy-elementor-addons') . '</strong> ' . esc_html__('Please set API Key in Happy Addons Dashboard - Credentials - MailChimp and Create Campaign..', 'happy-elementor-addons'),
                 'type' => Controls_Manager::RAW_HTML,
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
                 'render_type' => 'ui',
@@ -97,7 +97,7 @@ class Mailchimp extends Base {
         // );
 
         $list_option = ['01' => esc_html__('Select a List', 'happy-elementor-addons')];
-        if(Mailchimp_api::get_mailchimp_lists()){
+        if (Mailchimp_api::get_mailchimp_lists()) {
             $list_option = $list_option + Mailchimp_api::get_mailchimp_lists();
         }
 
@@ -108,7 +108,7 @@ class Mailchimp extends Base {
                 'type' => Controls_Manager::SELECT,
                 'default' => '01',
                 'options' =>  $list_option,
-                'description' => esc_html__('Create a campaign in mailchimp account ', 'happy-elementor-addons').'<a href="https://mailchimp.com/help/create-a-regular-email-campaign/#Create_a_campaign" target="_blank"> '.esc_html__('Create Campaign', 'happy-elementor-addons').'</a>',
+                'description' => esc_html__('Create a campaign in mailchimp account ', 'happy-elementor-addons') . '<a href="https://mailchimp.com/help/create-a-regular-email-campaign/#Create_a_campaign" target="_blank"> ' . esc_html__('Create Campaign', 'happy-elementor-addons') . '</a>',
             ]
         );
 
@@ -602,6 +602,30 @@ class Mailchimp extends Base {
             ]
         );
 
+        $this->add_responsive_control(
+			'space_between_input',
+			[
+				'label' => __( 'Space Between Input (px)', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 500,
+						'step' => 1,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 30,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-mailchimp-form.vertical .ha-mc-input-wrapper' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-mailchimp-form.horizontal .ha-mc-input-wrapper' => 'margin-right: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
@@ -828,6 +852,107 @@ class Mailchimp extends Base {
                     '{{WRAPPER}} .ha-mc-input input::-moz-placeholder' => 'font-size: {{SIZE}}{{UNIT}};',
                     '{{WRAPPER}} .ha-mc-input input:-ms-input-placeholder' => 'font-size: {{SIZE}}{{UNIT}};',
                     '{{WRAPPER}} .ha-mc-input input:-moz-placeholder' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'input_icon_style_holder',
+            [
+                'label' => esc_html__('Input Icon', 'happy-elementor-addons'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'input_icon_background',
+                'label' => esc_html__('Background', 'happy-elementor-addons'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper',
+                'exclude' => [
+                    'image'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'input_icon_color_hr',
+            [
+                'type' => Controls_Manager::DIVIDER,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_icon_color',
+            [
+                'label' => esc_html__('Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#000000',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper svg path'    => 'stroke: {{VALUE}}; fill: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_icon_font_size',
+            [
+                'label' => esc_html__('Font Size', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper svg'    => 'max-width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'input_icon_border',
+                'label' => esc_html__('Border', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_icon_padding',
+            [
+                'label' => esc_html__('Padding', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'input_icon_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1124,107 +1249,6 @@ class Mailchimp extends Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'input_icon_style_holder',
-            [
-                'label' => esc_html__('Input Icon', 'happy-elementor-addons'),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Background::get_type(),
-            [
-                'name' => 'input_icon_background',
-                'label' => esc_html__('Background', 'happy-elementor-addons'),
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper',
-                'exclude' => [
-                    'image'
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'input_icon_color_hr',
-            [
-                'type' => Controls_Manager::DIVIDER,
-            ]
-        );
-
-        $this->add_responsive_control(
-            'input_icon_color',
-            [
-                'label' => esc_html__('Color', 'happy-elementor-addons'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '#000000',
-                'selectors' => [
-                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper i' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper svg path'    => 'stroke: {{VALUE}}; fill: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'input_icon_font_size',
-            [
-                'label' => esc_html__('Font Size', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 200,
-                        'step' => 1,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 10,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'font-size: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper svg'    => 'max-width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-
-        $this->add_group_control(
-            Group_Control_Border::get_type(),
-            [
-                'name' => 'input_icon_border',
-                'label' => esc_html__('Border', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'input_icon_padding',
-            [
-                'label' => esc_html__('Padding', 'happy-elementor-addons'),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'input_icon_border_radius',
-            [
-                'label' => esc_html__('Border Radius', 'happy-elementor-addons'),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
             'success_error',
             [
                 'label' => esc_html__('Sucess & Error message', 'happy-elementor-addons'),
@@ -1379,8 +1403,10 @@ class Mailchimp extends Base {
             <form class="ha-mailchimp-form <?php echo esc_attr($settings['form_alignment']); ?> <?php echo esc_attr($form_fields); ?>" data-list-id="<?php echo esc_attr(isset($settings['mailchimp_lists']) ? $settings['mailchimp_lists'] : ''); ?>">
                 <?php if ($settings['enable_name'] == 'yes') : ?>
                     <div class="ha-mc-input-wrapper">
-                        <label class="ha-mc-input-label"><?php echo esc_html($settings['fname_label']); ?></label>
-                        <div class="ha-mc-input">
+                        <?php if (!empty($settings['fname_label'])) : ?>
+                            <label class="ha-mc-input-label"><?php echo esc_html($settings['fname_label']); ?></label>
+                        <?php endif; ?>
+                        <div class="ha-mc-input <?php echo esc_attr($settings['fname_icon_position']); ?>">
                             <?php if ($settings['fname_enable_icon'] == 'yes' && $settings['fname_icon_position'] == 'before') : ?>
                                 <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'fname_icon'); ?></div>
                             <?php endif; ?>
@@ -1391,8 +1417,10 @@ class Mailchimp extends Base {
                         </div>
                     </div>
                     <div class="ha-mc-input-wrapper">
-                        <label class="ha-mc-input-label"><?php echo esc_html($settings['lname_label']); ?></label>
-                        <div class="ha-mc-input">
+                        <?php if (!empty($settings['lname_label'])) : ?>
+                            <label class="ha-mc-input-label"><?php echo esc_html($settings['lname_label']); ?></label>
+                        <?php endif; ?>
+                        <div class="ha-mc-input <?php echo esc_attr($settings['lname_icon_position']); ?>">
                             <?php if ($settings['lname_enable_icon'] == 'yes' && $settings['lname_icon_position'] == 'before') : ?>
                                 <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'lname_icon'); ?></div>
                             <?php endif; ?>
@@ -1405,8 +1433,10 @@ class Mailchimp extends Base {
                 <?php endif; ?>
                 <?php if ($settings['enable_phone'] == 'yes') : ?>
                     <div class="ha-mc-input-wrapper">
-                        <label class="ha-mc-input-label"><?php echo esc_html($settings['phone_label']); ?></label>
-                        <div class="ha-mc-input">
+                        <?php if (!empty($settings['phone_label'])) : ?>
+                            <label class="ha-mc-input-label"><?php echo esc_html($settings['phone_label']); ?></label>
+                        <?php endif; ?>
+                        <div class="ha-mc-input <?php echo esc_attr($settings['phone_icon_position']); ?>">
                             <?php if ($settings['phone_enable_icon'] == 'yes' && $settings['phone_icon_position'] == 'before') : ?>
                                 <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'phone_icon'); ?></div>
                             <?php endif; ?>
@@ -1418,8 +1448,10 @@ class Mailchimp extends Base {
                     </div>
                 <?php endif; ?>
                 <div class="ha-mc-input-wrapper">
-                    <label class="ha-mc-input-label"><?php echo esc_html($settings['email_label']); ?></label>
-                    <div class="ha-mc-input">
+                    <?php if (!empty($settings['email_label'])) : ?>
+                        <label class="ha-mc-input-label"><?php echo esc_html($settings['email_label']); ?></label>
+                    <?php endif; ?>
+                    <div class="ha-mc-input <?php echo esc_attr($settings['email_icon_position']); ?>">
                         <?php if ($settings['email_enable_icon'] == 'yes' && $settings['email_icon_position'] == 'before') : ?>
                             <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>
                         <?php endif; ?>
@@ -1445,5 +1477,4 @@ class Mailchimp extends Base {
         </div>
 <?php
     }
-
 }
