@@ -818,7 +818,7 @@
 
 			var elMessage = $scope.find('.ha-mc-response-message');
 			var elForm = $scope.find('.ha-mailchimp-form');
-			var elButton = elForm.find('.ha-button-wrapper button');
+			var successMessage = elForm.data('success-message');
 
 			elForm.on('submit', function(e){
 				e.preventDefault();
@@ -843,7 +843,7 @@
 							elMessage.removeClass('error');
 							elMessage.addClass('success');
 							// elMessage.show();
-							elMessage.text(response.msg);
+							elMessage.text(successMessage);
 						}else {
 							elMessage.addClass('error');
 							elMessage.removeClass('success');
