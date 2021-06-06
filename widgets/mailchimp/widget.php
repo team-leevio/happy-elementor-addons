@@ -967,7 +967,8 @@ class Mailchimp extends Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'font-size: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper svg'    => 'max-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper svg'    => 'max-width: {{SIZE}}{{UNIT}}; max-height: {{SIZE}}{{UNIT}};',
+                    // '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper svg'    => 'height: 1em, width: auto;',
                 ],
             ]
         );
@@ -1288,9 +1289,15 @@ class Mailchimp extends Base {
                         'max' => 100,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i' => 'font-size: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > svg' => 'max-width: {{SIZE}}{{UNIT}}; height: auto',
+                //     '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i' => 'font-size: {{SIZE}}{{UNIT}};',
+                //     '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > svg' => 'max-width: {{SIZE}}{{UNIT}}; height: auto',
+                    '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper svg' => 'max-width: {{SIZE}}{{UNIT}}; max-height: {{SIZE}}{{UNIT}}',
                 ],
             ]
         );

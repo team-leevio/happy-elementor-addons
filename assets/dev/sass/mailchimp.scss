@@ -101,12 +101,13 @@
 				.ha-mc-icon-wrapper {
 					border-radius: 0 5px 5px 0;
 				}
-				
+
 				input {
 					margin-right: -1px;
 					border-radius: 5px 0 0 5px;
 				}
 			}
+
 			&.before {
 				.ha-mc-icon-wrapper {
 					margin-right: -1px;
@@ -141,10 +142,16 @@
 			cursor: pointer;
 			transition: all 0.4s ease;
 
-			i {
-				margin-right: 10px;
+			.ha-mc-icon-wrapper {
+				display: flex;
+				align-items: center;
+				justify-content: center;
 
+				i {
+					margin-right: 10px;
+				}
 			}
+
 		}
 	}
 }
