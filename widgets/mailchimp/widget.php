@@ -55,12 +55,22 @@ class Mailchimp extends Base {
         return ['email', 'mail chimp', 'mail', 'subscription'];
     }
 
+    public function __get_lists() {
+        include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
+
+        $list_option = ['01' => esc_html__('Select a List', 'happy-elementor-addons')];
+
+        if (Mailchimp_api::get_mailchimp_lists()) {
+            $list_option = $list_option + Mailchimp_api::get_mailchimp_lists();
+        }
+
+        return $list_option;
+    }
+
     /**
      * Register content related controls
      */
     protected function register_content_controls() {
-
-        include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
 
         $this->start_controls_section(
             '_section_mailchimp',
@@ -96,10 +106,7 @@ class Mailchimp extends Base {
         //     ]
         // );
 
-        $list_option = ['01' => esc_html__('Select a List', 'happy-elementor-addons')];
-        if (Mailchimp_api::get_mailchimp_lists()) {
-            $list_option = $list_option + Mailchimp_api::get_mailchimp_lists();
-        }
+        
 
         $this->add_control(
             'mailchimp_lists',
@@ -107,7 +114,7 @@ class Mailchimp extends Base {
                 'label' => __('Lists', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
                 'default' => '01',
-                'options' =>  $list_option,
+                'options' =>  $this->__get_lists(),
                 'description' => esc_html__('Create a campaign in mailchimp account ', 'happy-elementor-addons') . '<a href="https://mailchimp.com/help/create-a-regular-email-campaign/#Create_a_campaign" target="_blank"> ' . esc_html__('Create Campaign', 'happy-elementor-addons') . '</a>',
             ]
         );
