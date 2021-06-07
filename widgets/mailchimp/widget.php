@@ -660,7 +660,7 @@ class Mailchimp extends Base {
                 'range' => [
                     'px' => [
                         'min' => 0,
-                        'max' => 500,
+                        'max' => 100,
                         'step' => 1,
                     ],
                 ],
