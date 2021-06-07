@@ -69,10 +69,10 @@ class Credentials_Manager {
 		return [
 			'twitter' => [
 				'title' => __('Twitter', 'happy-elementor-addons'),
-				'icon' => 'hm hm-layer',
+				'icon' => 'hm hm-twitter-bird',
 				'fiels' => [
 					[
-						'label' => esc_html__('UserName', 'happy-elementor-addons'),
+						'label' => esc_html__('User Name', 'happy-elementor-addons'),
 						'type' => 'text',
 						'name' => 'username',
 					],
@@ -87,7 +87,6 @@ class Credentials_Manager {
 						'name' => 'secret_key',
 					],
 				],
-				'demo' => 'https://happyaddons.com/mailchimp/',
 				'help' => 'https://happyaddons.com/mailchimp/',
 				'is_pro' => true,
 			],
@@ -103,10 +102,10 @@ class Credentials_Manager {
 		return [
 			'mailchimp' => [
 				'title' => __('MailChimp', 'happy-elementor-addons'),
-				'icon' => 'hm hm-layer',
+				'icon' => 'hm hm-mail-chimp',
 				'fiels' => [
 					[
-						'label' => esc_html__('API', 'happy-elementor-addons'),
+						'label' => esc_html__('Enter API Key', 'happy-elementor-addons'),
 						'type' => 'text',
 						'name' => 'api',
 					],
@@ -117,10 +116,10 @@ class Credentials_Manager {
 			],
 			'instagram' => [
 				'title' => __('Instagram', 'happy-elementor-addons'),
-				'icon' => 'hm hm-layer',
+				'icon' => 'hm hm-instagram',
 				'fiels' => [
 					[
-						'label' => esc_html__('UserName', 'happy-elementor-addons'),
+						'label' => esc_html__('User Name', 'happy-elementor-addons'),
 						'type' => 'text',
 						'name' => 'username',
 					],
@@ -135,7 +134,6 @@ class Credentials_Manager {
 						'name' => 'secret_key',
 					],
 				],
-				'demo' => 'https://happyaddons.com/mailchimp/',
 				'help' => 'https://happyaddons.com/mailchimp/',
 				'is_pro' => false,
 			],

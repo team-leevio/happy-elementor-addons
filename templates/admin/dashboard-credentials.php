@@ -25,7 +25,6 @@ $has_pro = ha_has_pro();
             $title = isset($cred_data['title']) ? $cred_data['title'] : '';
             $icon = isset($cred_data['icon']) ? $cred_data['icon'] : '';
             $is_pro = isset($cred_data['is_pro']) && $cred_data['is_pro'] ? true : false;
-            $demo_url = isset($cred_data['demo']) && $cred_data['demo'] ? $cred_data['demo'] : '';
             $is_placeholder = $is_pro && !ha_has_pro();
             $class_attr = 'ha-dashboard-credentials__item';
 
@@ -53,9 +52,6 @@ $has_pro = ha_has_pro();
                 <span class="ha-dashboard-credentials__item-icon"><i class="<?php echo $icon; ?>"></i></span>
                 <h3 class="ha-dashboard-credentials__item-title">
                     <label for="ha-widget-<?php echo $cred_key; ?>" <?php echo $is_placeholder ? 'data-tooltip="Get pro"' : ''; ?>><?php echo $title; ?></label>
-                    <?php if ($demo_url) : ?>
-                        <a href="<?php echo esc_url($demo_url); ?>" target="_blank" rel="noopener" data-tooltip="<?php esc_attr_e('Click and view demo', 'happy-elementor-addons'); ?>" class="ha-dashboard-credentials__item-preview"><i aria-hidden="true" class="eicon-device-desktop"></i></a>
-                    <?php endif; ?>
                 </h3>
                 <?php foreach ($fields as $key => $value) : ?>
                     <div class="ha-dashboard-credentials__item-toggle">
