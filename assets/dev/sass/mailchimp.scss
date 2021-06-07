@@ -155,3 +155,22 @@
 		}
 	}
 }
+
+@media (max-width: 425px) {
+	.ha-mailchimp-wrapper {
+		.ha-mailchimp-form {
+			&.horizontal {
+				.ha-mc-input-wrapper {
+					margin-right: 10px;
+				}
+			}
+	
+			&.vertical {
+	
+				.ha-mc-input-wrapper {
+					margin-bottom: 10px;
+				}
+			}
+		}
+	}
+}

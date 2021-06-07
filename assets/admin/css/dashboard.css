@@ -341,6 +341,9 @@
 .ha-dashboard-credentials__item-toggle input {
 	border-color: #e1e5e8;
 }
+.ha-dashboard-credentials__item-toggle label {
+	margin-bottom: 5px;
+}
 .ha-dashboard .ha-toggle {
 	position: relative;
 	display: block;

@@ -133,6 +133,7 @@ class Mailchimp extends Base {
                     'horizontal' => esc_html__('Horizontal', 'happy-elementor-addons'),
                     'vertical' => esc_html__('Vertical', 'happy-elementor-addons'),
                 ],
+                'frontend_available' => true,
             ]
         );
 
