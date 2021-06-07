@@ -96,6 +96,7 @@ class Mailchimp extends Base {
         //         'type' => Controls_Manager::TEXT,
         //         'label_block' => true,
         //         'placeholder' => __('Enter your mailchimp api here', 'happy-elementor-addons'),
+        //         'dynamic' => [ 'active' => true]
         //     ]
         // );
 
@@ -168,6 +169,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_name' => 'yes',
                 ],
+                'dynamic' => [ 'active' => true]
             ]
         );
 
@@ -181,6 +183,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_name' => 'yes',
                 ],
+                'dynamic' => [ 'active' => true]
             ]
         );
 
@@ -253,6 +256,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_name' => 'yes',
                 ],
+                'dynamic' => [ 'active' => true]
             ]
         );
 
@@ -266,6 +270,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_name' => 'yes',
                 ],
+                'dynamic' => [ 'active' => true]
             ]
         );
 
@@ -350,6 +355,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_phone' => 'yes',
                 ],
+                'dynamic' => [ 'active' => true]
             ]
         );
 
@@ -363,6 +369,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_phone' => 'yes',
                 ],
+                'dynamic' => [ 'active' => true]
             ]
         );
 
@@ -429,6 +436,7 @@ class Mailchimp extends Base {
                 'label' => __('Label', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
                 'placeholder' => __('Email input label', 'happy-elementor-addons'),
+                'dynamic' => [ 'active' => true]
             ]
         );
 
@@ -439,6 +447,7 @@ class Mailchimp extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __('Email', 'happy-elementor-addons'),
                 'placeholder' => __('Email input placeholder', 'happy-elementor-addons'),
+                'dynamic' => [ 'active' => true]
             ]
         );
 
@@ -499,7 +508,8 @@ class Mailchimp extends Base {
             [
                 'label' => __('Text', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
-                'default' => 'Subscribe',
+                'default' => esc_html__('Subscribe', 'happy-elementor-addons'),
+                'dynamic' => [ 'active' => true]
             ]
         );
 
@@ -560,10 +570,11 @@ class Mailchimp extends Base {
 			'mailchimp_success_message',
 			[
 				'label' => __( 'Success Message', 'happy-elementor-addons' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
+				'type' => Controls_Manager::TEXT,
                 'label_block' => true,
 				'default' => __( 'Your data inserted on Mailchimp.', 'happy-elementor-addons' ),
 				'placeholder' => __( 'Type your success message here', 'happy-elementor-addons' ),
+                'dynamic' => [ 'active' => true]
 			]
 		);
 
@@ -616,7 +627,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'input_label_color',
             [
                 'label' => esc_html__('Color', 'happy-elementor-addons'),
@@ -864,7 +875,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'input_style_placeholder_color',
             [
                 'label' => esc_html__('Placeholder Color', 'happy-elementor-addons'),
@@ -935,7 +946,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'input_icon_color',
             [
                 'label' => esc_html__('Color', 'happy-elementor-addons'),
@@ -1147,7 +1158,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'button_color',
             [
                 'label' => esc_html__('Color', 'happy-elementor-addons'),
@@ -1181,7 +1192,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'button_color_hover',
             [
                 'label' => esc_html__('Color', 'happy-elementor-addons'),
@@ -1364,7 +1375,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'success_color',
             [
                 'label'         => esc_html__('Color', 'happy-elementor-addons'),
@@ -1401,7 +1412,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'error_color',
             [
                 'label'         => esc_html__('Color', 'happy-elementor-addons'),

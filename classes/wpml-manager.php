@@ -607,6 +607,11 @@ class WPML_Manager {
 						'type'        => __( 'MailChimp: Button Text', 'happy-elementor-addons' ),
 						'editor_type' => 'LINE',
 					],
+					[
+						'field'       => 'mailchimp_success_message',
+						'type'        => __( 'MailChimp: Success Message', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
 				],
 			],
 		];
