@@ -41,7 +41,7 @@ class Mailchimp extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'hm hm-mail-open';
+        return 'hm hm-mail-chimp';
     }
 
     public function get_keywords() {
