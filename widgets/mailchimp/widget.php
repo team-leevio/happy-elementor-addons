@@ -89,6 +89,20 @@ class Mailchimp extends Base {
         /*
         * Need to solve api get issue from controller to controller
         */
+
+        // $this->add_control(
+        //     'mailchimp_api_choose',
+        //     [
+        //         'label' => __('Choose api from', 'happy-elementor-addons'),
+        //         'type' => Controls_Manager::SELECT,
+        //         'default' => 'global',
+        //         'options' =>  [
+        //             'global' => __('Global', 'happy-elementor-addons'),
+        //             'custom' => __('Custom', 'happy-elementor-addons'),
+        //         ],
+        //     ]
+        // );
+
         // $this->add_control(
         //     'mailchimp_api',
         //     [
@@ -96,11 +110,12 @@ class Mailchimp extends Base {
         //         'type' => Controls_Manager::TEXT,
         //         'label_block' => true,
         //         'placeholder' => __('Enter your mailchimp api here', 'happy-elementor-addons'),
+        //         'condition' => [
+        //             'mailchimp_api_choose' => 'custom',
+        //         ],
         //         'dynamic' => [ 'active' => true]
         //     ]
         // );
-
-
 
         $this->add_control(
             'mailchimp_lists',
