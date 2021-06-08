@@ -15,6 +15,7 @@ use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Happy_Addons\Elementor\Widget\MailChimp\Mailchimp_api;
+use Happy_Addons\Elementor\Controls\Select2;
 
 defined('ABSPATH') || die();
 
@@ -90,43 +91,58 @@ class Mailchimp extends Base {
         * Need to solve api get issue from controller to controller
         */
 
-        // $this->add_control(
-        //     'mailchimp_api_choose',
-        //     [
-        //         'label' => __('Choose api from', 'happy-elementor-addons'),
-        //         'type' => Controls_Manager::SELECT,
-        //         'default' => 'global',
-        //         'options' =>  [
-        //             'global' => __('Global', 'happy-elementor-addons'),
-        //             'custom' => __('Custom', 'happy-elementor-addons'),
-        //         ],
-        //     ]
-        // );
-
-        // $this->add_control(
-        //     'mailchimp_api',
-        //     [
-        //         'label' => __('MailChimp API', 'happy-elementor-addons'),
-        //         'type' => Controls_Manager::TEXT,
-        //         'label_block' => true,
-        //         'placeholder' => __('Enter your mailchimp api here', 'happy-elementor-addons'),
-        //         'condition' => [
-        //             'mailchimp_api_choose' => 'custom',
-        //         ],
-        //         'dynamic' => [ 'active' => true]
-        //     ]
-        // );
-
         $this->add_control(
-            'mailchimp_lists',
+            'mailchimp_api_choose',
             [
-                'label' => __('Lists', 'happy-elementor-addons'),
+                'label' => __('Choose api from', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
-                'default' => '01',
-                'options' =>  $this->__get_lists(),
-                'description' => esc_html__('Create a campaign in mailchimp account ', 'happy-elementor-addons') . '<a href="https://mailchimp.com/help/create-a-regular-email-campaign/#Create_a_campaign" target="_blank"> ' . esc_html__('Create Campaign', 'happy-elementor-addons') . '</a>',
+                'default' => 'global',
+                'options' =>  [
+                    'global' => __('Global', 'happy-elementor-addons'),
+                    'custom' => __('Custom', 'happy-elementor-addons'),
+                ],
             ]
         );
+
+        $this->add_control(
+            'mailchimp_api',
+            [
+                'label' => __('MailChimp API', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'label_block' => true,
+                'placeholder' => __('Enter your mailchimp api here', 'happy-elementor-addons'),
+                'condition' => [
+                    'mailchimp_api_choose' => 'custom',
+                ],
+                'dynamic' => [ 'active' => true]
+            ]
+        );
+
+        $this->add_control(
+			'mailchimp_lists',
+			[
+				'label' => __( 'Lists', 'happy-elementor-addons' ),
+				'label_block' => true,
+				'type' => Select2::TYPE,
+				'multiple' => false,
+				'placeholder' => 'Search ',
+				'dynamic_params' => [
+					'object_type' => 'custom',
+					'post_type'   => 'b5626fed144e863d6ae61f56e764d6fb-us17',
+				],
+			]
+		);
+
+        // $this->add_control(
+        //     'mailchimp_lists',
+        //     [
+        //         'label' => __('Lists', 'happy-elementor-addons'),
+        //         'type' => Controls_Manager::SELECT,
+        //         'default' => '01',
+        //         'options' =>  $this->__get_lists(),
+        //         'description' => esc_html__('Create a campaign in mailchimp account ', 'happy-elementor-addons') . '<a href="https://mailchimp.com/help/create-a-regular-email-campaign/#Create_a_campaign" target="_blank"> ' . esc_html__('Create Campaign', 'happy-elementor-addons') . '</a>',
+        //     ]
+        // );
 
         $this->end_controls_section();
 

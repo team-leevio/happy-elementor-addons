@@ -125,9 +125,13 @@ class Mailchimp_api {
      *
      * @return array all list
      */
-    public static function get_mailchimp_lists() {
+    public static function get_mailchimp_lists($api = null) {
 
         $options = [];
+
+        if($api != null) {
+            self::$apiKey = $api;
+        }
 
         $server = explode('-', self::$apiKey);
 

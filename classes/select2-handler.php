@@ -4,6 +4,7 @@ namespace Happy_Addons\Elementor;
 defined( 'ABSPATH' ) || die();
 
 use Exception;
+use Happy_Addons\Elementor\Widget\MailChimp\Mailchimp_api;
 
 class Select2_Handler {
 
@@ -29,7 +30,7 @@ class Select2_Handler {
 
 			$object_type = ! empty( $_REQUEST['object_type'] ) ? trim( $_REQUEST['object_type'] ) : '';
 
-			if ( ! in_array( $object_type, [ 'post', 'term', 'user' ], true ) ) {
+			if ( ! in_array( $object_type, [ 'post', 'term', 'user', 'custom' ], true ) ) {
 				throw new Exception( 'Invalid object type' );
 			}
 
@@ -41,6 +42,10 @@ class Select2_Handler {
 
 			if ( $object_type === 'term' ) {
 				$response = self::process_term();
+			}
+
+			if ( $object_type === 'custom' ) {
+				$response = self::process_custom();
 			}
 
 			wp_send_json_success( $response );
@@ -130,6 +135,20 @@ class Select2_Handler {
 			// extra space is needed to maintain order in elementor control
 			$out[" {$term->term_id}"] = $title;
 		}
+
+		return $out;
+	}
+
+	public static function process_custom() {
+		$post_type = ! empty( $_REQUEST['post_type'] ) ? $_REQUEST['post_type'] : '';
+		$query_term    = ! empty( $_REQUEST['query_term'] ) ? $_REQUEST['query_term'] : '';
+		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? $_REQUEST['saved_values'] : 0;
+
+		if ( empty( $post_type ) ) {
+			throw new Exception( 'Invalid taxonomy' );
+		}
+
+		$out = Mailchimp_api::get_mailchimp_lists($post_type);
 
 		return $out;
 	}
