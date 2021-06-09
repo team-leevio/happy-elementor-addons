@@ -711,6 +711,18 @@ class Mailchimp extends Base {
             ]
         );
 
+        $this->add_control(
+            'input_style_inputted_value_color',
+            [
+                'label' => esc_html__('Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#000000',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input input' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
