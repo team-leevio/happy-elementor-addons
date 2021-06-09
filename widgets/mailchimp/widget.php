@@ -691,9 +691,18 @@ class Mailchimp extends Base {
                         'step' => 1,
                     ],
                 ],
-                'default' => [
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
                     'unit' => 'px',
                     'size' => 30,
+                ],
+                'tablet_default' => [
+                    'size' => 10,
+                    'unit' => 'px',
+                ],
+                'mobile_default' => [
+                    'size' => 5,
+                    'unit' => 'px',
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-mailchimp-form.vertical .ha-mc-input-wrapper' => 'margin-bottom: {{SIZE}}{{UNIT}};',
@@ -1066,16 +1075,35 @@ class Mailchimp extends Base {
         );
 
         $this->add_responsive_control(
-            'button_border_padding',
+            'button_padding',
             [
                 'label' => esc_html__('Padding', 'happy-elementor-addons'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
-                'default'    => [
-                    'top'        => 8,
-                    'right'        => 20,
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
+                    'top'       => 8,
+                    'right'     => 20,
                     'bottom'    => 8,
-                    'left'        => 20
+                    'left'      => 20,
+                    'unit'      => 'px',
+                    'isLinked'  => ''
+                ],
+                'tablet_default' => [
+                    'top'       => 8,
+                    'right'     => 15,
+                    'bottom'    => 8,
+                    'left'      => 15,
+                    'unit'      => 'px',
+                    'isLinked'  => ''
+                ],
+                'mobile_default' => [
+                    'top'       => 8,
+                    'right'     => 10,
+                    'bottom'    => 8,
+                    'left'      => 10,
+                    'unit'      => 'px',
+                    'isLinked'  => ''
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-mc-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',

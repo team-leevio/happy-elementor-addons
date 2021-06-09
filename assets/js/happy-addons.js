@@ -879,33 +879,32 @@
 				var tabletWidth = elementorFrontendConfig.breakpoints.md;
 
 				function responsiveClass(){
+					// console.log(settings);
 					var windowWidth = $(window).width();
 
 					if (windowWidth > tabletWidth) {
 						elForm.removeClass('vertical');
+						elForm.removeClass('horizontal');
 						elForm.addClass(settings.formAlign);
-					}
-
-					if(windowWidth > mobileWidth && windowWidth <= tabletWidth) {
+					}else if(windowWidth > mobileWidth && windowWidth <= tabletWidth) {
 						elForm.removeClass('vertical');
+						elForm.removeClass('horizontal');
 						elForm.addClass(settings.formAlignTablet);
-					}
-
-					if ( elForm.hasClass('multiple_form_fields') ){
-					}
-
-					if ( windowWidth <= mobileWidth ) {
-						elForm.removeClass('horizontal'); 
-						elForm.addClass('vertical');
-					}else {
+					}else if ( windowWidth <= mobileWidth ) {
 						elForm.removeClass('vertical');
-						elForm.addClass(settings.formAlignMobile);
+						elForm.removeClass('horizontal');
+						if ( elForm.hasClass('multiple_form_fields') ){
+							elForm.addClass('vertical');
+						}else {
+							elForm.addClass(settings.formAlignMobile);
+						}
 					}
+					
 				};
 
 				responsiveClass();
 				$(window).on('load, resize', responsiveClass);
-				
+
 			}
 		});
 
