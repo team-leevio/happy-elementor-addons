@@ -138,7 +138,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'form_alignment',
             [
                 'label' => __('Form Aligment', 'happy-elementor-addons'),
@@ -185,7 +185,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_name' => 'yes',
                 ],
-                'dynamic' => [ 'active' => true]
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -199,7 +199,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_name' => 'yes',
                 ],
-                'dynamic' => [ 'active' => true]
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -272,7 +272,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_name' => 'yes',
                 ],
-                'dynamic' => [ 'active' => true]
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -286,7 +286,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_name' => 'yes',
                 ],
-                'dynamic' => [ 'active' => true]
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -371,7 +371,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_phone' => 'yes',
                 ],
-                'dynamic' => [ 'active' => true]
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -385,7 +385,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_phone' => 'yes',
                 ],
-                'dynamic' => [ 'active' => true]
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -452,7 +452,7 @@ class Mailchimp extends Base {
                 'label' => __('Label', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
                 'placeholder' => __('Email input label', 'happy-elementor-addons'),
-                'dynamic' => [ 'active' => true]
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -463,7 +463,7 @@ class Mailchimp extends Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __('Email', 'happy-elementor-addons'),
                 'placeholder' => __('Email input placeholder', 'happy-elementor-addons'),
-                'dynamic' => [ 'active' => true]
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -525,7 +525,7 @@ class Mailchimp extends Base {
                 'label' => __('Text', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
                 'default' => esc_html__('Subscribe', 'happy-elementor-addons'),
-                'dynamic' => [ 'active' => true]
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -583,16 +583,16 @@ class Mailchimp extends Base {
         );
 
         $this->add_control(
-			'mailchimp_success_message',
-			[
-				'label' => __( 'Success Message', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::TEXT,
+            'mailchimp_success_message',
+            [
+                'label' => __('Success Message', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
                 'label_block' => true,
-				'default' => __( 'Your data inserted on Mailchimp.', 'happy-elementor-addons' ),
-				'placeholder' => __( 'Type your success message here', 'happy-elementor-addons' ),
-                'dynamic' => [ 'active' => true]
-			]
-		);
+                'default' => __('Your data inserted on Mailchimp.', 'happy-elementor-addons'),
+                'placeholder' => __('Type your success message here', 'happy-elementor-addons'),
+                'dynamic' => ['active' => true]
+            ]
+        );
 
         $this->add_control(
             'mailchimp_success_message_show_in_editor',
@@ -1321,8 +1321,8 @@ class Mailchimp extends Base {
                     'size' => 10,
                 ],
                 'selectors' => [
-                //     '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i' => 'font-size: {{SIZE}}{{UNIT}};',
-                //     '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > svg' => 'max-width: {{SIZE}}{{UNIT}}; height: auto',
+                    //     '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    //     '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > svg' => 'max-width: {{SIZE}}{{UNIT}}; height: auto',
                     '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper' => 'font-size: {{SIZE}}{{UNIT}};',
                     '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper svg' => 'max-width: {{SIZE}}{{UNIT}}; max-height: {{SIZE}}{{UNIT}}',
                 ],

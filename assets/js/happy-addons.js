@@ -826,6 +826,8 @@
 			getReadySettings: function () {
 				var settings = {
 					formAlign: this.getElementSettings('form_alignment'),
+					formAlignTablet: this.getElementSettings('form_alignment_tablet') || this.getElementSettings('form_alignment'),
+					formAlignMobile: this.getElementSettings('form_alignment_mobile') || this.getElementSettings('form_alignment_tablet') || this.getElementSettings('form_alignment'),
 				};
 				return $.extend({}, settings);
 			},
@@ -874,24 +876,36 @@
 				});
 
 				var mobileWidth = elementorFrontendConfig.breakpoints.sm;
+				var tabletWidth = elementorFrontendConfig.breakpoints.md;
 
 				function responsiveClass(){
 					var windowWidth = $(window).width();
+
+					if (windowWidth > tabletWidth) {
+						elForm.removeClass('vertical');
+						elForm.addClass(settings.formAlign);
+					}
+
+					if(windowWidth > mobileWidth && windowWidth <= tabletWidth) {
+						elForm.removeClass('vertical');
+						elForm.addClass(settings.formAlignTablet);
+					}
+
+					if ( elForm.hasClass('multiple_form_fields') ){
+					}
 
 					if ( windowWidth <= mobileWidth ) {
 						elForm.removeClass('horizontal'); 
 						elForm.addClass('vertical');
 					}else {
 						elForm.removeClass('vertical');
-						elForm.addClass(settings.formAlign);
+						elForm.addClass(settings.formAlignMobile);
 					}
 				};
 
-				if ( elForm.hasClass('multiple_form_fields') ){
-					responsiveClass();
-					$(window).on('load, resize', responsiveClass);
-				}
-
+				responsiveClass();
+				$(window).on('load, resize', responsiveClass);
+				
 			}
 		});
 
