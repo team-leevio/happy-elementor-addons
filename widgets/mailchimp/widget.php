@@ -1374,7 +1374,7 @@ class Mailchimp extends Base {
         $this->start_controls_section(
             'success_error',
             [
-                'label' => esc_html__('Sucess & Error message', 'happy-elementor-addons'),
+                'label' => esc_html__('Success & Error Message', 'happy-elementor-addons'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
