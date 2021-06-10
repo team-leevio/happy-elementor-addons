@@ -30,7 +30,7 @@ class Select2_Handler {
 
 			$object_type = ! empty( $_REQUEST['object_type'] ) ? trim( $_REQUEST['object_type'] ) : '';
 
-			if ( ! in_array( $object_type, [ 'post', 'term', 'user', 'custom' ], true ) ) {
+			if ( ! in_array( $object_type, [ 'post', 'term', 'user', 'mailchimp_list' ], true ) ) {
 				throw new Exception( 'Invalid object type' );
 			}
 
@@ -44,7 +44,7 @@ class Select2_Handler {
 				$response = self::process_term();
 			}
 
-			if ( $object_type === 'custom' ) {
+			if ( $object_type === 'mailchimp_list' ) {
 				$response = self::process_custom();
 			}
 
@@ -140,17 +140,40 @@ class Select2_Handler {
 	}
 
 	public static function process_custom() {
-		$post_type = ! empty( $_REQUEST['post_type'] ) ? $_REQUEST['post_type'] : '';
-		$query_term    = ! empty( $_REQUEST['query_term'] ) ? $_REQUEST['query_term'] : '';
+		$global_api = ! empty( $_REQUEST['global_api'] ) ? $_REQUEST['global_api'] : '';
+		$api_kay = ! empty( $_REQUEST['mailchimp_api'] ) ? $_REQUEST['mailchimp_api'] : $global_api;
+		// $query_term    = ! empty( $_REQUEST['query_term'] ) ? $_REQUEST['query_term'] : '';
 		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? $_REQUEST['saved_values'] : 0;
 
-		if ( empty( $post_type ) ) {
+		if ( empty( $api_kay ) ) {
 			throw new Exception( 'Invalid taxonomy' );
 		}
 
-		$out = Mailchimp_api::get_mailchimp_lists($post_type);
+		// $out = Mailchimp_api::get_mailchimp_lists($api_kay);
+		$out = [
+			' key_1' => 'value 1',
+			' key_2' => 'value 2',
+		];
+		// return [
+		// 	$saved_values => $out[ $saved_values ]
+		// ];
+		// if ( $saved_values ) {
+		// 	return $saved_values;
+		// }
 
-		return $out;
+		if ( $saved_values  ){
+			return [
+				$saved_values[0] => $out[ $saved_values[0] ]
+				// $saved_values[0] => $out[ trim($saved_values[0]) ]
+			];
+		}else{
+			return $out;
+		}
+
+		// echo '<pre>';
+		// var_dump($out);
+		// echo '</pre>';
+
 	}
 }
 

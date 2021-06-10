@@ -33,6 +33,11 @@ class Mailchimp extends Base {
         return __('MailChimp', 'happy-elementor-addons');
     }
 
+	// public function __construct($data = [], $args = null) {
+	// 	parent::__construct($data, $args);
+	// 	add_action( 'wp_ajax_ha_process_dynamic_select', [ $this, 'insert_subscriber_to_mailchimp' ] );
+	// }
+
     /**
      * Get widget icon.
      *
@@ -127,8 +132,16 @@ class Mailchimp extends Base {
 				'multiple' => false,
 				'placeholder' => 'Search ',
 				'dynamic_params' => [
-					'object_type' => 'custom',
-					'post_type'   => 'b5626fed144e863d6ae61f56e764d6fb-us17',
+					'object_type' => 'mailchimp_list',
+					// 'global_api'   => get_option('global_api_key'),
+					'global_api'   => 'b5626fed144e863d6ae61f56e764d6fb-us17',
+					// 'global_api'   => '',
+					'control_dependency' => [
+						'mailchimp_api' => 'mailchimp_api'
+					]
+				],
+				'select2options' => [
+					'minimumInputLength' => 0,
 				],
 			]
 		);
@@ -1477,9 +1490,85 @@ class Mailchimp extends Base {
         $this->end_controls_section();
     }
 
+	    /**
+     * request
+     *
+     * @param array $settings
+     * @param array $submitted_data
+     * @return array | int error
+     */
+    public function insert_subscriber_to_mailchimp($settings, $submitted_data) {
+
+		$settings = $this->get_settings_for_display();
+
+        $return = [];
+        $auth = [
+            'api_key' => ($settings['api_key'] != '') ? $settings['api_key'] : null,
+            'list_id' => ($settings['list_id'] != '') ? $settings['list_id'] : null,
+
+        ];
+
+        $data = [
+            'email_address' => (isset($submitted_data['email']) ? $submitted_data['email'] : ''),
+            'status' => 'subscribed',
+            'status_if_new' => 'subscribed',
+            'merge_fields' => [
+                'FNAME' => (isset($submitted_data['fname']) ? $submitted_data['fname'] : ''),
+                'LNAME' => (isset($submitted_data['lname']) ? $submitted_data['lname'] : ''),
+                'PHONE' => (isset($submitted_data['phone']) ? $submitted_data['phone'] : ''),
+            ],
+        ];
+
+        $server = explode('-', $auth['api_key']);
+
+        if(!isset($server[1])) return ['status' => 0, 'msg' => esc_html__('Invalid API key.', 'happy-elementor-addons')];
+
+        $url = 'https://' . $server[1] . '.api.mailchimp.com/3.0/lists/' . $auth['list_id'] . '/members/';
+
+        $response = wp_remote_post(
+            $url,
+            [
+                'method' => 'POST',
+                'data_format' => 'body',
+                'timeout' => 45,
+                'headers' => [
+                    'Authorization' => 'apikey ' . $auth['api_key'],
+                    'Content-Type' => 'application/json; charset=utf-8'
+                ],
+                'body' => json_encode($data)
+            ]
+        );
+
+        if (is_wp_error($response)) {
+            $error_message = $response->get_error_message();
+            $return['status'] = 0;
+            $return['msg'] = "Something went wrong: " . esc_html($error_message);
+        } else {
+            $body = (array) json_decode($response['body']);
+            if ($body['status'] > 399 && $body['status'] < 600) {
+                $return['status'] = 0;
+                $return['msg'] = $body['title'];
+            } else if($body['status'] == 'subscribed') {
+                $return['status'] = 1;
+                $return['msg'] = esc_html__('Your data inserted on Mailchimp.', 'happy-elementor-addons');
+            }else {
+                $return['status'] = 0;
+                $return['msg'] = esc_html__('Something went wrong. Try again later.', 'happy-elementor-addons');
+            }
+        }
+
+        return $return;
+    }
+
     protected function render() {
 
         $settings = $this->get_settings_for_display();
+
+		echo '<pre>';
+		var_dump($settings['mailchimp_lists']);
+		echo '</pre>';
+
+		// return;
 
         $form_fields = (($settings['enable_name'] == 'yes' || $settings['enable_phone'] == 'yes') ? 'multiple_form_fields' : '');
 ?>
