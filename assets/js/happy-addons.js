@@ -826,6 +826,8 @@
 			getReadySettings: function () {
 				var settings = {
 					formAlign: this.getElementSettings('form_alignment'),
+					formAlignTablet: this.getElementSettings('form_alignment_tablet') || this.getElementSettings('form_alignment'),
+					formAlignMobile: this.getElementSettings('form_alignment_mobile') || this.getElementSettings('form_alignment_tablet') || this.getElementSettings('form_alignment'),
 				};
 				return $.extend({}, settings);
 			},
@@ -874,23 +876,34 @@
 				});
 
 				var mobileWidth = elementorFrontendConfig.breakpoints.sm;
+				var tabletWidth = elementorFrontendConfig.breakpoints.md;
 
 				function responsiveClass(){
+					// console.log(settings);
 					var windowWidth = $(window).width();
 
-					if ( windowWidth <= mobileWidth ) {
-						elForm.removeClass('horizontal'); 
-						elForm.addClass('vertical');
-					}else {
+					if (windowWidth > tabletWidth) {
 						elForm.removeClass('vertical');
+						elForm.removeClass('horizontal');
 						elForm.addClass(settings.formAlign);
+					}else if(windowWidth > mobileWidth && windowWidth <= tabletWidth) {
+						elForm.removeClass('vertical');
+						elForm.removeClass('horizontal');
+						elForm.addClass(settings.formAlignTablet);
+					}else if ( windowWidth <= mobileWidth ) {
+						elForm.removeClass('vertical');
+						elForm.removeClass('horizontal');
+						if ( elForm.hasClass('multiple_form_fields') ){
+							elForm.addClass('vertical');
+						}else {
+							elForm.addClass(settings.formAlignMobile);
+						}
 					}
+					
 				};
 
-				if ( elForm.hasClass('multiple_form_fields') ){
-					responsiveClass();
-					$(window).on('load, resize', responsiveClass);
-				}
+				responsiveClass();
+				$(window).on('load, resize', responsiveClass);
 
 			}
 		});

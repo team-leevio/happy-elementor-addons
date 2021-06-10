@@ -399,7 +399,7 @@
 			$.ajax({
 				url: ajaxurl,
 				type: 'POST',
-				data: $.extend(defaults, _this.model.get('dynamic_params'),_this.getDependencyArgs()),
+				data: $.extend(defaults, _this.model.get('dynamic_params'), _this.getDependencyArgs()),
 				beforeSend: _this.addLoadingSpinner.bind(this),
 				success: function(response) {
 					if (response.success && response.data.length !== 0) {
