@@ -16,10 +16,13 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Happy_Addons\Elementor\Widget\MailChimp\Mailchimp_api;
 use Happy_Addons\Elementor\Controls\Select2;
+use \Happy_Addons\Elementor\Credentials_Manager;
 
 defined('ABSPATH') || die();
 
 class Mailchimp extends Base {
+
+    private $settings;
 
     /**
      * Get widget title.
@@ -33,10 +36,12 @@ class Mailchimp extends Base {
         return __('MailChimp', 'happy-elementor-addons');
     }
 
-	// public function __construct($data = [], $args = null) {
-	// 	parent::__construct($data, $args);
-	// 	add_action( 'wp_ajax_ha_process_dynamic_select', [ $this, 'insert_subscriber_to_mailchimp' ] );
-	// }
+	public function __construct($data = [], $args = null) {
+		parent::__construct($data, $args);
+
+        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
+        $this->settings = Credentials_Manager::get_saved_credentials();
+	}
 
     /**
      * Get widget icon.
@@ -52,18 +57,6 @@ class Mailchimp extends Base {
 
     public function get_keywords() {
         return ['email', 'mail chimp', 'mail', 'subscription'];
-    }
-
-    public function __get_lists() {
-        include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
-
-        $list_option = ['01' => esc_html__('Select a List', 'happy-elementor-addons')];
-
-        if (Mailchimp_api::get_mailchimp_lists()) {
-            $list_option = $list_option + Mailchimp_api::get_mailchimp_lists();
-        }
-
-        return $list_option;
     }
 
     /**
@@ -87,7 +80,7 @@ class Mailchimp extends Base {
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
                 'render_type' => 'ui',
                 'condition' => [
-                    'mailchimp_lists' => '01',
+                    'mailchimp_api_choose' => 'global',
                 ],
             ]
         );
@@ -99,7 +92,7 @@ class Mailchimp extends Base {
         $this->add_control(
             'mailchimp_api_choose',
             [
-                'label' => __('Choose api from', 'happy-elementor-addons'),
+                'label' => __('Choose API from', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'global',
                 'options' =>  [
@@ -133,16 +126,16 @@ class Mailchimp extends Base {
 				'placeholder' => 'Search ',
 				'dynamic_params' => [
 					'object_type' => 'mailchimp_list',
-					// 'global_api'   => get_option('global_api_key'),
-					'global_api'   => 'b5626fed144e863d6ae61f56e764d6fb-us17',
-					// 'global_api'   => '',
+					'global_api'   => isset($this->settings['mailchimp']['api'])? $this->settings['mailchimp']['api']: '',
 					'control_dependency' => [
-						'mailchimp_api' => 'mailchimp_api'
+						'mailchimp_api_choose' => 'mailchimp_api_choose',
+						'mailchimp_api' => 'mailchimp_api',
 					]
 				],
 				'select2options' => [
 					'minimumInputLength' => 0,
 				],
+                'description' => esc_html__('Create a campaign in mailchimp account ', 'happy-elementor-addons') . '<a href="https://mailchimp.com/help/create-a-regular-email-campaign/#Create_a_campaign" target="_blank"> ' . esc_html__('Create Campaign', 'happy-elementor-addons') . '</a>',
 			]
 		);
 
@@ -1546,89 +1539,13 @@ class Mailchimp extends Base {
         $this->end_controls_section();
     }
 
-	    /**
-     * request
-     *
-     * @param array $settings
-     * @param array $submitted_data
-     * @return array | int error
-     */
-    public function insert_subscriber_to_mailchimp($settings, $submitted_data) {
-
-		$settings = $this->get_settings_for_display();
-
-        $return = [];
-        $auth = [
-            'api_key' => ($settings['api_key'] != '') ? $settings['api_key'] : null,
-            'list_id' => ($settings['list_id'] != '') ? $settings['list_id'] : null,
-
-        ];
-
-        $data = [
-            'email_address' => (isset($submitted_data['email']) ? $submitted_data['email'] : ''),
-            'status' => 'subscribed',
-            'status_if_new' => 'subscribed',
-            'merge_fields' => [
-                'FNAME' => (isset($submitted_data['fname']) ? $submitted_data['fname'] : ''),
-                'LNAME' => (isset($submitted_data['lname']) ? $submitted_data['lname'] : ''),
-                'PHONE' => (isset($submitted_data['phone']) ? $submitted_data['phone'] : ''),
-            ],
-        ];
-
-        $server = explode('-', $auth['api_key']);
-
-        if(!isset($server[1])) return ['status' => 0, 'msg' => esc_html__('Invalid API key.', 'happy-elementor-addons')];
-
-        $url = 'https://' . $server[1] . '.api.mailchimp.com/3.0/lists/' . $auth['list_id'] . '/members/';
-
-        $response = wp_remote_post(
-            $url,
-            [
-                'method' => 'POST',
-                'data_format' => 'body',
-                'timeout' => 45,
-                'headers' => [
-                    'Authorization' => 'apikey ' . $auth['api_key'],
-                    'Content-Type' => 'application/json; charset=utf-8'
-                ],
-                'body' => json_encode($data)
-            ]
-        );
-
-        if (is_wp_error($response)) {
-            $error_message = $response->get_error_message();
-            $return['status'] = 0;
-            $return['msg'] = "Something went wrong: " . esc_html($error_message);
-        } else {
-            $body = (array) json_decode($response['body']);
-            if ($body['status'] > 399 && $body['status'] < 600) {
-                $return['status'] = 0;
-                $return['msg'] = $body['title'];
-            } else if($body['status'] == 'subscribed') {
-                $return['status'] = 1;
-                $return['msg'] = esc_html__('Your data inserted on Mailchimp.', 'happy-elementor-addons');
-            }else {
-                $return['status'] = 0;
-                $return['msg'] = esc_html__('Something went wrong. Try again later.', 'happy-elementor-addons');
-            }
-        }
-
-        return $return;
-    }
-
     protected function render() {
 
         $settings = $this->get_settings_for_display();
 
-		echo '<pre>';
-		var_dump($settings['mailchimp_lists']);
-		echo '</pre>';
-
-		// return;
-
         $form_fields = (($settings['enable_name'] == 'yes' || $settings['enable_phone'] == 'yes') ? 'multiple_form_fields' : '');
 ?>
-        <div class="ha-mailchimp-wrapper">
+        <div class="ha-mailchimp-wrapper" data-post-id="<?php echo esc_attr(get_the_id()); ?>" data-widget-id="<?php echo esc_attr($this->get_id()); ?>">
             <?php if (\Elementor\Plugin::$instance->editor->is_edit_mode() && $settings['mailchimp_success_message_show_in_editor'] == 'yes') : ?>
                 <div class="ha-mc-response-message success"><?php esc_html_e('This is a dummy message for success. This won\'t show in preview', 'happy-elementor-addons'); ?></div>
             <?php endif; ?>
@@ -1636,7 +1553,7 @@ class Mailchimp extends Base {
                 <div class="ha-mc-response-message error"><?php esc_html_e('This is a dummy message for error. This won\'t show in preview', 'happy-elementor-addons'); ?></div>
             <?php endif; ?>
             <div class="ha-mc-response-message"></div>
-            <form class="ha-mailchimp-form <?php echo esc_attr($settings['form_alignment']); ?> <?php echo esc_attr($form_fields); ?>" data-list-id="<?php echo esc_attr(isset($settings['mailchimp_lists']) ? $settings['mailchimp_lists'] : ''); ?>" data-success-message="<?php echo esc_attr($settings['mailchimp_success_message']); ?>">
+            <form class="ha-mailchimp-form <?php echo esc_attr($settings['form_alignment']); ?> <?php echo esc_attr($form_fields); ?>" data-list-id="<?php echo esc_attr(isset($settings['mailchimp_lists']) ? ltrim($settings['mailchimp_lists']) : ''); ?>" data-success-message="<?php echo esc_attr($settings['mailchimp_success_message']); ?>">
                 <?php if ($settings['enable_name'] == 'yes') : ?>
                     <div class="ha-mc-input-wrapper">
                         <?php if (!empty($settings['fname_label'])) : ?>

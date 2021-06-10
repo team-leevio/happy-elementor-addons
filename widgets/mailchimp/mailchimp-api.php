@@ -37,14 +37,18 @@ class Mailchimp_api {
 
         if (!$security) return;
 
-        $subscriber_data = $_POST;
+        $widget_settings = ha_get_ele_widget_settings($_POST['post_id'], $_POST['widget_id']);
 
         $auth = [
             'api_key' => self::$apiKey,
-            'list_id' => $subscriber_data['list_id']
+            'list_id' => $_POST['list_id']
         ];
 
-        parse_str(isset($subscriber_data['subscriber_info']) ? $subscriber_data['subscriber_info'] : '', $subsciber);
+        if($widget_settings['mailchimp_api_choose'] == 'custom') {
+            $auth['api_key'] = $widget_settings['mailchimp_api'];
+        }
+
+        parse_str(isset($_POST['subscriber_info']) ? $_POST['subscriber_info'] : '', $subsciber);
 
         $response = self::insert_subscriber_to_mailchimp($auth, $subsciber);
 
@@ -162,7 +166,8 @@ class Mailchimp_api {
             if (is_array($listed) && sizeof($listed) > 0) {
 
                 $options = array_reduce($listed, function ($result, $item) {
-                    $result[$item->id] = $item->name;
+                    // extra space is needed to maintain order in elementor control
+                    $result[' '.$item->id] = $item->name;
                     return $result;
                 }, array());
             }

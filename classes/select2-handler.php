@@ -45,7 +45,7 @@ class Select2_Handler {
 			}
 
 			if ( $object_type === 'mailchimp_list' ) {
-				$response = self::process_custom();
+				$response = self::process_mailchimp_list();
 			}
 
 			wp_send_json_success( $response );
@@ -139,40 +139,30 @@ class Select2_Handler {
 		return $out;
 	}
 
-	public static function process_custom() {
+	public static function process_mailchimp_list() {
+		$choose_api = ! empty( $_REQUEST['mailchimp_api_choose'] ) ? $_REQUEST['mailchimp_api_choose'] : '';
 		$global_api = ! empty( $_REQUEST['global_api'] ) ? $_REQUEST['global_api'] : '';
-		$api_kay = ! empty( $_REQUEST['mailchimp_api'] ) ? $_REQUEST['mailchimp_api'] : $global_api;
-		// $query_term    = ! empty( $_REQUEST['query_term'] ) ? $_REQUEST['query_term'] : '';
+		$custom_api = ! empty( $_REQUEST['mailchimp_api'] ) ? $_REQUEST['mailchimp_api'] : $global_api;
+		
 		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? $_REQUEST['saved_values'] : 0;
 
-		if ( empty( $api_kay ) ) {
+		if ( empty( $custom_api ) && empty( $global_api ) ) {
 			throw new Exception( 'Invalid taxonomy' );
 		}
 
-		// $out = Mailchimp_api::get_mailchimp_lists($api_kay);
-		$out = [
-			' key_1' => 'value 1',
-			' key_2' => 'value 2',
-		];
-		// return [
-		// 	$saved_values => $out[ $saved_values ]
-		// ];
-		// if ( $saved_values ) {
-		// 	return $saved_values;
-		// }
+		$current_api = $global_api;
+
+        if($choose_api == 'custom') {
+            $current_api = $custom_api;
+        }
+
+		$options = Mailchimp_api::get_mailchimp_lists($current_api);
 
 		if ( $saved_values  ){
-			return [
-				$saved_values[0] => $out[ $saved_values[0] ]
-				// $saved_values[0] => $out[ trim($saved_values[0]) ]
-			];
+			return (array_key_exists($saved_values[0], $options)? [ $saved_values[0] => $options[ $saved_values[0] ] ]: [] );
 		}else{
-			return $out;
+			return $options;
 		}
-
-		// echo '<pre>';
-		// var_dump($out);
-		// echo '</pre>';
 
 	}
 }

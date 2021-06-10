@@ -848,6 +848,8 @@
 						security: HappyLocalize.nonce,
 						subscriber_info: elForm.serialize(),
 						list_id: elForm.data('list-id'),
+						post_id: elForm.parent().data('post-id'),
+						widget_id: elForm.parent().data('widget-id'),
 					};
 			
 					$.ajax({
