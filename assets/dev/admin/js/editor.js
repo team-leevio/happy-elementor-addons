@@ -295,6 +295,23 @@
 			return this.ui.select.children( 'option:first[value=""]' ).text() || this.model.get('placeholder');
 		},
 
+		getDependencyArgs: function() {
+			var self = this,
+				args = self.model.get('dynamic_params');
+
+			if (!_.isObject(args)) {
+				args = {};
+			}
+			// console.log(self.container.settings.get('post_type'));
+			if (args.control_dependency && _.isObject(args.control_dependency)) {
+				_.each(args.control_dependency, function(prop, key) {
+					args[key] = self.container.settings.get(prop);
+				});
+			}
+
+			return args;
+		},
+
 		getSelect2DefaultOptions: function() {
 			var _this = this;
 
@@ -315,8 +332,7 @@
 							object_type: 'post',
 							query_term : params.term,
 						};
-
-						return $.extend(defaults, _this.model.get('dynamic_params'));
+						return $.extend(defaults, _this.model.get('dynamic_params'), _this.getDependencyArgs());
 					},
 
 					processResults: function(response) {
@@ -383,7 +399,7 @@
 			$.ajax({
 				url: ajaxurl,
 				type: 'POST',
-				data: $.extend(defaults, _this.model.get('dynamic_params')),
+				data: $.extend(defaults, _this.model.get('dynamic_params'), _this.getDependencyArgs()),
 				beforeSend: _this.addLoadingSpinner.bind(this),
 				success: function(response) {
 					if (response.success && response.data.length !== 0) {

@@ -2027,6 +2027,7 @@ class Event_Calendar extends Base {
 					<div class="ha-ec-popup">
 
 						<span class="ha-ec-popup-close"><i class="eicon-editor-close"></i></span>
+						<div class="ha-ec-popup-body-wrap">
 						<div class="ha-ec-popup-body">
 							<div class="ha-ec-popup-image">
 								<img src="" alt="">
@@ -2061,6 +2062,7 @@ class Event_Calendar extends Base {
 									<a class="ha-ec-popup-readmore-link" href="">'.$readmore_text.'</a>
 								</div>
 							</div>
+						</div>
 						</div>
 
 					</div>

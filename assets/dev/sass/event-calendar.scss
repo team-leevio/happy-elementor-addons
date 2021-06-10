@@ -39,7 +39,9 @@
 
 .ha-ec-popup {
     width: 900px;
-    display: block;
+    max-height: calc(100% - 40px);
+    display: flex;
+    justify-content: center;
     position: relative;
     padding: 40px;
     background: #fff;
@@ -73,6 +75,11 @@
     cursor: pointer;
     box-shadow: 2px 0 12px 3px rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
     transition: all ease .4s;
+}
+
+.ha-ec-popup-body-wrap{
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .ha-ec-popup-body {

@@ -939,6 +939,17 @@
 					navigation: 'arrow',
 					arrows    : true,
 				});
+				var img_wrap = $scope.find(".ha-horizontal-timeline-image");
+				var magnific_popup = img_wrap.data("mfp-src");
+				// console.log(magnific_popup);
+				if( undefined !== magnific_popup ){
+					img_wrap.magnificPopup({
+						type: "image",
+						gallery: {
+							enabled: true
+						}
+					});
+				}
 			}
 		);
 

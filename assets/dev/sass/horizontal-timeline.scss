@@ -95,6 +95,10 @@
 		}
 	}
 
+	.ha-horizontal-timeline-image[data-mfp-src] {
+		cursor: pointer;
+	}
+
 	.ha-horizontal-timeline-title {
 		font-size: 22px;
 		margin-top: 0;
