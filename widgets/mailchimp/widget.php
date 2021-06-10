@@ -141,7 +141,7 @@ class Mailchimp extends Base {
         $this->add_responsive_control(
             'form_alignment',
             [
-                'label' => __('Form Aligment', 'happy-elementor-addons'),
+                'label' => __('Form Alignment', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'horizontal',
                 'options' => [
@@ -752,7 +752,7 @@ class Mailchimp extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-mc-input input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-input input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
                 ],
             ]
         );
@@ -1050,7 +1050,7 @@ class Mailchimp extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;;',
                 ],
             ]
         );
@@ -1273,6 +1273,22 @@ class Mailchimp extends Base {
                 ]
             ]
         );
+
+        $this->add_control(
+            'button_border_color_hover',
+            [
+                'label' => esc_html__('Border Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-button:hover' => 'border-color: {{VALUE}};',
+                ],
+                'condition' => [
+                    'button_border_border!' => ''
+                ]
+            ]
+        );
+
+        
 
         $this->end_controls_tab();
 
@@ -1570,7 +1586,7 @@ class Mailchimp extends Base {
                         <?php if ($settings['email_enable_icon'] == 'yes' && $settings['email_icon_position'] == 'before') : ?>
                             <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>
                         <?php endif; ?>
-                        <input type="email" name="email" placeholder="<?php echo esc_attr($settings['email_placeholder']); ?>">
+                        <input type="email" name="email" placeholder="<?php echo esc_attr($settings['email_placeholder']); ?>" required>
                         <?php if ($settings['email_enable_icon'] == 'yes' && $settings['email_icon_position'] == 'after') : ?>
                             <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>
                         <?php endif; ?>
