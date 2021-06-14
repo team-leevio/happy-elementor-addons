@@ -130,7 +130,8 @@ class Horizontal_Timeline extends Base {
 			'event_description',
 			[
 				'label' => __( 'Description', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::TEXTAREA,
+				// 'type' => Controls_Manager::TEXTAREA,
+				'type' => Controls_Manager::WYSIWYG,
 				'label_block' => true,
 				'placeholder' => __( 'Event Description', 'happy-elementor-addons' ),
 				'default' => __( 'Best Elementor Addons Plugin.', 'happy-elementor-addons' ),
@@ -1095,7 +1096,11 @@ class Horizontal_Timeline extends Base {
 								<span class="ha-horizontal-timeline-subtitle"><?php echo esc_html( $timeline['event_subtitle'] ); ?></span>
 							<?php endif; ?>
 
-							<p class="ha-horizontal-timeline-description"><?php echo esc_html( $timeline['event_description'] ); ?></p>
+							<?php
+							if ($timeline['event_description']) {
+								printf('<div class="ha-horizontal-timeline-description">%s</div>', $this->parse_text_editor($timeline['event_description']));
+							}
+							?>
 						</div>
 					</div>
 				</div>
