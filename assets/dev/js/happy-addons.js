@@ -814,6 +814,57 @@
 
 		};
 
+		//Content Switcher
+		var Content_Switcher = function($scope) {
+			var parent = $scope.find('.ha-content-switcher-wrapper'),
+				designType = parent.data('design-type');
+			
+			if(designType == 'button') {
+				var buttons = parent.find('.ha-cs-button'),
+					contents = parent.find('.ha-cs-content-section');
+				buttons.each(function (inx, btn){
+					$(this).on('click', function(e) {
+						e.preventDefault();
+						if($(this).hasClass('active')) {
+							return;
+						}else {
+							buttons.removeClass('active');
+							$(this).addClass('active');
+
+							contents.removeClass('active');
+							var contentId = $(this).data('content-id');
+							parent.find('#'+contentId).addClass('active');
+						}
+					} );
+				});
+
+			}else{
+				var toggleSwitch = parent.find('.ha-cs-switch.ha-input-label'),
+					input = parent.find('input.ha-cs-toggle-switch'),
+					primarySwitcher = parent.find('.ha-cs-switch.primary'),
+					secondarySwitcher = parent.find('.ha-cs-switch.secondary'),
+					primaryContent = parent.find('.ha-cs-content-section.primary'),
+					secondaryContent = parent.find('.ha-cs-content-section.secondary');
+				
+				toggleSwitch.on('click', function(e){
+					console.log('toggle click');
+					if(input.is(':checked')){
+						primarySwitcher.removeClass('active');
+						primaryContent.removeClass('active');
+						secondarySwitcher.addClass('active');
+						secondaryContent.addClass('active');
+					}else {
+						secondarySwitcher.removeClass('active');
+						secondaryContent.removeClass('active');
+						primarySwitcher.addClass('active');
+						primaryContent.addClass('active');
+					}
+				});
+
+			}
+
+		};
+
 		// Slider
 		elementorFrontend.hooks.addAction(
 			'frontend/element_ready/ha-slider.default',
@@ -900,6 +951,7 @@
 			'ha-data-table.default'         : DataTable,
 			'widget'                        : BackgroundOverlay,
 			'ha-event-calendar.default'		: Event_Calendar,
+			'ha-content-switcher.default'	: Content_Switcher,
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {

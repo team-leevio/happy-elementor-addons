@@ -379,7 +379,7 @@ class Content_Switcher extends Base {
         $primary = (isset($settings['content_list'][0]) ? $settings['content_list'][0] : '');
         $secondary = (isset($settings['content_list'][1]) ? $settings['content_list'][1] : '');
 ?>
-        <div class="ha-content-switcher-wrapper ha-cs-design-<?php echo esc_attr($settings['select_design']); ?>">
+        <div class="ha-content-switcher-wrapper ha-cs-design-<?php echo esc_attr($settings['select_design']); ?>" data-design-type="<?php echo esc_attr($settings['select_design']); ?>">
             <div class="ha-cs-switch-container">
                 <div class="ha-cs-switch-wrapper">
                     <?php if ($settings['select_design'] == 'button') : ?>
@@ -390,16 +390,16 @@ class Content_Switcher extends Base {
                         <?php endforeach; ?>
                     <?php else :
                     ?>
-                        <div class="ha-cs-switch <?php echo esc_attr(($primary['active'] == 'yes') ? 'active' : ''); ?>" data-content-id="<?php echo esc_attr($primary['_id']); ?>">
+                        <div class="ha-cs-switch primary <?php echo esc_attr(($primary['active'] == 'yes') ? 'active' : ''); ?>" data-content-id="<?php echo esc_attr($primary['_id']); ?>">
                             <div class="ha-cs-icon-wrapper"><?php ha_render_icon($primary, null, 'icon'); ?></div><span><?php echo esc_html($primary['title']); ?></span>
                         </div>
 
-                        <label class="ha-cs-switch">
-                            <input type="checkbox">
+                        <label class="ha-cs-switch ha-input-label">
+                            <input class="ha-cs-toggle-switch" type="checkbox">
                             <span class="ha-cs-slider ha-cs-<?php echo esc_attr($settings['select_design']); ?>"></span>
                         </label>
 
-                        <div class="ha-cs-switch <?php echo esc_attr(($secondary['active'] == 'yes') ? 'active' : ''); ?>" data-content-id="<?php echo esc_attr($secondary['_id']); ?>">
+                        <div class="ha-cs-switch secondary <?php echo esc_attr(($secondary['active'] == 'yes') ? 'active' : ''); ?>" data-content-id="<?php echo esc_attr($secondary['_id']); ?>">
                             <div class="ha-cs-icon-wrapper"><?php ha_render_icon($secondary, null, 'icon'); ?></div><span><?php echo esc_html($secondary['title']); ?></span>
                         </div>
 
@@ -414,9 +414,9 @@ class Content_Switcher extends Base {
                         <?php endforeach; ?>
                     <?php else :
                     ?>
-                        <div id="<?php echo esc_attr($primary['_id']); ?>" class="ha-cs-content-section <?php echo esc_attr(($primary['active'] == 'yes') ? 'active' : ''); ?>"><?php echo $primary['plain_content'] ?></div>
+                        <div id="<?php echo esc_attr($primary['_id']); ?>" class="ha-cs-content-section primary <?php echo esc_attr(($primary['active'] == 'yes') ? 'active' : ''); ?>"><?php echo $primary['plain_content'] ?></div>
 
-                        <div id="<?php echo esc_attr($secondary['_id']); ?>" class="ha-cs-content-section <?php echo esc_attr(($secondary['active'] == 'yes') ? 'active' : ''); ?>"><?php echo $secondary['plain_content'] ?></div>
+                        <div id="<?php echo esc_attr($secondary['_id']); ?>" class="ha-cs-content-section secondary <?php echo esc_attr(($secondary['active'] == 'yes') ? 'active' : ''); ?>"><?php echo $secondary['plain_content'] ?></div>
 
                     <?php endif; ?>
                 </div>
