@@ -67,29 +67,29 @@ class Credentials_Manager {
 	 */
 	public static function get_pro_credentials_map() {
 		return [
-			'twitter' => [
-				'title' => __('Twitter', 'happy-elementor-addons'),
-				'icon' => 'hm hm-twitter-bird',
-				'fiels' => [
-					[
-						'label' => esc_html__('User Name', 'happy-elementor-addons'),
-						'type' => 'text',
-						'name' => 'username',
-					],
-					[
-						'label' => esc_html__('Public Key', 'happy-elementor-addons'),
-						'type' => 'text',
-						'name' => 'public_key',
-					],
-					[
-						'label' => esc_html__('Secret Key', 'happy-elementor-addons'),
-						'type' => 'text',
-						'name' => 'secret_key',
-					],
-				],
-				'help' => 'https://happyaddons.com/mailchimp/',
-				'is_pro' => true,
-			],
+			// 'twitter' => [
+			// 	'title' => __('Twitter', 'happy-elementor-addons'),
+			// 	'icon' => 'hm hm-twitter-bird',
+			// 	'fiels' => [
+			// 		[
+			// 			'label' => esc_html__('User Name', 'happy-elementor-addons'),
+			// 			'type' => 'text',
+			// 			'name' => 'username',
+			// 		],
+			// 		[
+			// 			'label' => esc_html__('Public Key', 'happy-elementor-addons'),
+			// 			'type' => 'text',
+			// 			'name' => 'public_key',
+			// 		],
+			// 		[
+			// 			'label' => esc_html__('Secret Key', 'happy-elementor-addons'),
+			// 			'type' => 'text',
+			// 			'name' => 'secret_key',
+			// 		],
+			// 	],
+			// 	'help' => 'https://happyaddons.com/mailchimp/',
+			// 	'is_pro' => true,
+			// ],
 		];
 	}
 
@@ -114,29 +114,29 @@ class Credentials_Manager {
 				'help' => 'https://happyaddons.com/mailchimp/',
 				'is_pro' => false,
 			],
-			'instagram' => [
-				'title' => __('Instagram', 'happy-elementor-addons'),
-				'icon' => 'hm hm-instagram',
-				'fiels' => [
-					[
-						'label' => esc_html__('User Name', 'happy-elementor-addons'),
-						'type' => 'text',
-						'name' => 'username',
-					],
-					[
-						'label' => esc_html__('Public Key', 'happy-elementor-addons'),
-						'type' => 'text',
-						'name' => 'public_key',
-					],
-					[
-						'label' => esc_html__('Secret Key', 'happy-elementor-addons'),
-						'type' => 'text',
-						'name' => 'secret_key',
-					],
-				],
-				'help' => 'https://happyaddons.com/mailchimp/',
-				'is_pro' => false,
-			],
+			// 'instagram' => [
+			// 	'title' => __('Instagram', 'happy-elementor-addons'),
+			// 	'icon' => 'hm hm-instagram',
+			// 	'fiels' => [
+			// 		[
+			// 			'label' => esc_html__('User Name', 'happy-elementor-addons'),
+			// 			'type' => 'text',
+			// 			'name' => 'username',
+			// 		],
+			// 		[
+			// 			'label' => esc_html__('Public Key', 'happy-elementor-addons'),
+			// 			'type' => 'text',
+			// 			'name' => 'public_key',
+			// 		],
+			// 		[
+			// 			'label' => esc_html__('Secret Key', 'happy-elementor-addons'),
+			// 			'type' => 'text',
+			// 			'name' => 'secret_key',
+			// 		],
+			// 	],
+			// 	'help' => 'https://happyaddons.com/mailchimp/',
+			// 	'is_pro' => false,
+			// ],
 		];
 	}
 
