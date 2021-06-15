@@ -555,6 +555,65 @@ class WPML_Manager {
 					__NAMESPACE__ . '\\WPML_Horizontal_Timeline',
 				]
 			],
+
+			
+			/**
+			 * Mailchimp
+			 */
+			'mailchimp' => [
+				'fields' => [
+					[
+						'field'       => 'fname_label',
+						'type'        => __( 'MailChimp: First Name Label', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'fname_placeholder',
+						'type'        => __( 'MailChimp: First Name Place Holder', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'lname_label',
+						'type'        => __( 'MailChimp: Last Name Label', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'lname_placeholder',
+						'type'        => __( 'MailChimp: Last Name Place Holder', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'phone_label',
+						'type'        => __( 'MailChimp: Phone Label', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'phone_placeholder',
+						'type'        => __( 'MailChimp: Phone Place Holder', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'email_label',
+						'type'        => __( 'MailChimp: Email Label', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'email_placeholder',
+						'type'        => __( 'MailChimp: Email Place Holder', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'button_text',
+						'type'        => __( 'MailChimp: Button Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'mailchimp_success_message',
+						'type'        => __( 'MailChimp: Success Message', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+				],
+			],
 		];
 
 		foreach ( $widgets_map as $key => $data ) {
