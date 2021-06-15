@@ -130,7 +130,8 @@ class Horizontal_Timeline extends Base {
 			'event_description',
 			[
 				'label' => __( 'Description', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::TEXTAREA,
+				// 'type' => Controls_Manager::TEXTAREA,
+				'type' => Controls_Manager::WYSIWYG,
 				'label_block' => true,
 				'placeholder' => __( 'Event Description', 'happy-elementor-addons' ),
 				'default' => __( 'Best Elementor Addons Plugin.', 'happy-elementor-addons' ),
@@ -284,6 +285,18 @@ class Horizontal_Timeline extends Base {
 			'content_arrow',
 			[
 				'label' => __( 'Hide Content Arrow', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+			]
+		);
+
+		$this->add_control(
+			'magnific_popup',
+			[
+				'label' => __( 'Enable Lightbox', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
 				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
 				'label_off' => __( 'No', 'happy-elementor-addons' ),
@@ -1036,6 +1049,7 @@ class Horizontal_Timeline extends Base {
 		if ( empty( $settings['timeline'] ) ) {
 			return;
 		}
+		$magnific_popup = '';
 
 		$this->add_render_attribute( 'wrapper', 'class', 'ha-horizontal-timeline-wrapper' );
 		$this->add_render_attribute( 'wrapper', 'class', 'ha-carousel' );
@@ -1066,7 +1080,12 @@ class Horizontal_Timeline extends Base {
 
 						<div class="ha-horizontal-timeline-inner">
 							<?php if ( ! empty( $timeline['image']['url'] ) ) : ?>
-								<div class="ha-horizontal-timeline-image">
+								<?php
+									if( 'yes' === $settings['magnific_popup'] && ! ha_elementor()->editor->is_edit_mode() ){
+										$magnific_popup = 'data-mfp-src=' . esc_url($timeline['image']['url']);
+									}
+								?>
+								<div class="ha-horizontal-timeline-image" <?php echo $magnific_popup;?>>
 									<?php echo Group_Control_Image_Size::get_attachment_image_html( $timeline, 'thumbnail', 'image' ); ?>
 								</div>
 							<?php endif; ?>
@@ -1077,7 +1096,11 @@ class Horizontal_Timeline extends Base {
 								<span class="ha-horizontal-timeline-subtitle"><?php echo esc_html( $timeline['event_subtitle'] ); ?></span>
 							<?php endif; ?>
 
-							<p class="ha-horizontal-timeline-description"><?php echo esc_html( $timeline['event_description'] ); ?></p>
+							<?php
+							if ($timeline['event_description']) {
+								printf('<div class="ha-horizontal-timeline-description">%s</div>', $this->parse_text_editor($timeline['event_description']));
+							}
+							?>
 						</div>
 					</div>
 				</div>

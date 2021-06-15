@@ -30,6 +30,7 @@ class Dashboard {
 
         add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_widgets_data' ] );
         add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_features_data' ] );
+        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_credentials_data' ] );
 
         add_action( 'in_admin_header', [ __CLASS__, 'remove_all_notices' ], PHP_INT_MAX );
     }
@@ -110,6 +111,20 @@ class Dashboard {
         $inactive_features = array_values( array_diff( array_keys( $widgets_map ), $features ) );
 
         Extensions_Manager::save_inactive_features( $inactive_features );
+    }
+
+    public static function save_credentials_data( $data ) {
+        $credentials = ! empty( $data['credentials'] ) ? $data['credentials'] : [];
+
+        /* Check whether Pro is available and allow to disable pro features */
+        // $widgets_map = self::get_real_features_map();
+        // if ( ha_has_pro() ) {
+        //     $widgets_map = array_merge( $widgets_map, Extensions_Manager::get_pro_features_map() );
+        // }
+
+        // $inactive_features = array_values( array_diff( array_keys( $widgets_map ), $features ) );
+
+        Credentials_Manager::save_credentials( $credentials );
     }
 
     public static function enqueue_scripts( $hook ) {
@@ -210,6 +225,21 @@ class Dashboard {
         return $widgets_map;
     }
 
+    private static function get_real_credentials_map() {
+        $credentail_map = Credentials_Manager::get_local_credentials_map();
+        return $credentail_map;
+    }
+
+    public static function get_credentials() {
+        $credentail_map = self::get_real_credentials_map();
+
+        //if ( ! ha_has_pro() ) {
+            $credentail_map = array_merge( $credentail_map, Credentials_Manager::get_pro_credentials_map() );
+        //}
+
+        return $credentail_map;
+    }
+
     public static function sort_widgets( $k1, $k2 ) {
         return strcasecmp( $k1, $k2 );
     }
@@ -269,6 +299,10 @@ class Dashboard {
                 'title' => esc_html__( 'Features', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_features' ],
             ],
+            'credentials' => [
+                'title' => esc_html__( 'Credentials', 'happy-elementor-addons' ),
+                'renderer' => [ __CLASS__, 'render_credentials' ],
+            ],
             'pro' => [
                 'title' => esc_html__( 'Get Pro', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_pro' ],
@@ -299,6 +333,10 @@ class Dashboard {
 
     public static function render_features() {
         self::load_template( 'features' );
+    }
+
+    public static function render_credentials() {
+        self::load_template( 'credentials' );
     }
 
     public static function render_pro() {

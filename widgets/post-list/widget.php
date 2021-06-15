@@ -1047,8 +1047,9 @@ class Post_List extends Base {
 
 			if ( ! empty( $lists ) ) {
 				foreach ( $lists as $index => $value ) {
-					$ids[] = $value['post_id'];
-					if ( $value['title'] ) $customize_title[$value['post_id']] = $value['title'];
+					$post_id = ! empty($value['post_id'][0]) ? trim($value['post_id'][0]) : '';
+					$ids[] = $post_id;
+					if ( $value['title'] ) $customize_title[$post_id] = $value['title'];
 				}
 			}
 

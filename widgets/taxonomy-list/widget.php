@@ -114,6 +114,7 @@ class Taxonomy_List extends Base {
 				[
 					'label' => __( 'Icon', 'happy-elementor-addons' ),
 					'type' => Controls_Manager::CHOOSE,
+					'description' => __( 'If you want to use individual icon disable common icon.', 'happy-elementor-addons' ),
 					'options' => [
 						'icon' => [
 							'title' => __( 'Icon', 'happy-elementor-addons' ),
@@ -228,7 +229,7 @@ class Taxonomy_List extends Base {
 			'common_icon_enable',
 			[
 				'label' => __( 'Common icon enable?', 'happy-elementor-addons' ),
-				'description' => __( 'If you want to use individual icon disable common icon.', 'happy-elementor-addons' ),
+				'description' => __( 'Common icon will overwrite all individual icon.', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default' => 'yes',
@@ -680,8 +681,10 @@ class Taxonomy_List extends Base {
 		$lists = $settings['selected_list_' . $settings['taxonomy_type']];
 		if ( !empty( $lists ) ) {
 			foreach ( $lists as $index => $value ) {
-				$ids[] = $value['tax_id'];
-				if ( $value['title'] ) $customize_title[$value['tax_id']] = $value['title'];
+				//trim function to remove extra space before taxonomy ID
+				$tax_id = ! empty($value['tax_id'][0]) ? trim($value['tax_id'][0]) : '';
+				$ids[] = $tax_id;
+				if ( $value['title'] ) $customize_title[$tax_id] = $value['title'];
 			}
 		}
 		$terms = [];

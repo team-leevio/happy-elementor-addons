@@ -62,6 +62,9 @@ class Image_Hover_Effect extends Base {
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
 				],
+				'dynamic' => [
+					'active' => true
+				],
 			]
 		);
 
@@ -81,10 +84,32 @@ class Image_Hover_Effect extends Base {
 			[
 				'label' => __('Title', 'happy-elementor-addons'),
 				'type' => Controls_Manager::TEXTAREA,
+				'description' => ha_get_allowed_html_desc( 'intermediate' ),
 				'rows' => 3,
 				'default' => __('Happy <span>Addons</span>', 'happy-elementor-addons'),
 				'placeholder' => __('Type your title here', 'happy-elementor-addons'),
 				'dynamic' => ['active' => true],
+			]
+		);
+
+		$this->add_control(
+			'title_tag',
+			[
+				'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				// 'separator' => 'before',
+				'options' => [
+					'h1' => 'H1',
+					'h2' => 'H2',
+					'h3' => 'H3',
+					'h4' => 'H4',
+					'h5' => 'H5',
+					'h6' => 'H6',
+					'div' => 'div',
+					'span' => 'span',
+					'p' => 'p',
+				],
+				'default' => 'h2',
 			]
 		);
 
@@ -412,7 +437,12 @@ class Image_Hover_Effect extends Base {
 					<?php if ($settings['hover_effect'] == 'ha-effect-lily') : ?>
 						<div>
 						<?php endif; ?>
-						<h2 class="ha-ihe-title"><?php echo ha_kses_intermediate($settings['hover_title']); ?></h2>
+						<?php
+						printf( '<%1$s class="ha-ihe-title">%2$s</%1$s>',
+							ha_escape_tags( $settings['title_tag'], 'h2' ),
+							ha_kses_intermediate($settings['hover_title'])
+						);
+						?>
 						<?php if ($settings['hover_effect'] != 'ha-effect-honey') : ?>
 							<p class="ha-ihe-desc"><?php echo ha_kses_intermediate($settings['hover_description']); ?></p>
 						<?php endif; ?>

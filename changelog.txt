@@ -1,3 +1,13 @@
+= 2.25.0 - 15 June 2021 =
+
+- New: Mailchimp Widget
+- New: Added Lightbox support to Horizontal Timeline widget
+- New: Image Hover Effect hover title html tag option added
+- Tweak: Added html tag support to Horizontal Timeline description
+- Tweak: Dynamic Tag support for Image Hover effect's image field
+- Tweak: Modify select 2 control
+- Fix: The Event Widget's events popups responsive issue
+
 = 2.24.1 - 18 May 2021 =
 
 - Tweak: Step Flow title html tag option increased
