@@ -8,6 +8,8 @@
 
 namespace Happy_Addons\Elementor\Widget;
 
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
@@ -353,6 +355,354 @@ class Content_Switcher extends Base {
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
+
+        $this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'typography',
+				'global'   => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
+				'selector' => '{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button, {{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch',
+
+			]
+		);
+
+		$this->start_controls_tabs(
+			'label_tabs'
+		);
+
+		$this->start_controls_tab(
+			'label_style_normal',
+			[
+				'label' => __( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'title_color',
+			[
+				'label'     => __( 'Title Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button span' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch span' => 'color: {{VALUE}}',
+				],
+			]
+		);
+		$this->add_control(
+			'icon_color',
+			[
+				'label'     => __( 'Icon Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button div > i' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch div > i' => 'color: {{VALUE}}',
+
+				],
+			]
+		);
+
+		$this->add_control(
+			'title_bg_color',
+			[
+				'label'     => __( 'Background Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button' => 'background-color: {{VALUE}}',
+				],
+				'condition' => [
+					'select_design' => [ 'button' ],
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name'      => 'title_border_normal',
+				'label'     => __( 'Border', 'happy-elementor-addons' ),
+				'selector'  => '{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button',
+				'condition' => [
+					'select_design' => [ 'button' ],
+				],
+			]
+		);
+
+		$this->add_control(
+			'button_border_radius',
+			[
+				'label'      => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition'  => [
+					'select_design' => [ 'button' ],
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name'      => 'title_box_shadow',
+				'label'     => __( 'Box Shadow', 'happy-elementor-addons' ),
+				'selector'  => '{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button',
+				'condition' => [
+					'select_design' => [ 'button' ],
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'label_style_active',
+			[
+				'label' => __( 'Active', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'title_color_active',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.active span' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch.active span' => 'color: {{VALUE}}',
+
+				],
+			]
+		);
+
+		$this->add_control(
+			'icon_color_active',
+			[
+				'label'     => __( 'Icon Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.active i' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch.active i' => 'color: {{VALUE}}',
+
+				],
+			]
+		);
+
+		$this->add_control(
+			'title_bg_color_active',
+			[
+				'label'     => __( 'Background Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.active' => 'background-color: {{VALUE}}',
+				],
+				'condition' => [
+					'select_design' => [ 'button' ],
+				],
+			]
+		);
+
+		$this->add_control(
+			'title_border_color_active',
+			[
+				'label'     => __( 'Border Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.active' => 'border-color: {{VALUE}}',
+				],
+				'condition' => [
+					'select_design' => [ 'button' ],
+					'title_border_normal_border!' => '',
+				],
+			]
+		);
+
+		$this->add_control(
+			'button_border_radius_active',
+			[
+				'label'      => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.active' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition'  => [
+					'select_design' => [ 'button' ],
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name'      => 'title_box_shadow_active',
+				'label'     => __( 'Box Shadow', 'happy-elementor-addons' ),
+				'selector'  => '{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.active',
+				'condition' => [
+					'select_design' => [ 'button' ],
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->add_responsive_control(
+			'icon_spacing',
+			[
+				'label'      => __( 'Icon Spacing', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					],
+				],
+				'default'    => [
+					'unit' => 'px',
+					'size' => 5,
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.ha-cs-icon-left i' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.ha-cs-icon-right i' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch.ha-cs-icon-left i' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch.ha-cs-icon-right i' => 'margin-left: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'label_spacing',
+			[
+				'label'      => __( 'Spacing', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 1000,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default'    => [
+					'unit' => 'px',
+					'size' => 30,
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-cs-switch.primary' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-cs-switch.secondary' => 'margin-left: {{SIZE}}{{UNIT}};',
+				],
+				'condition'  => [
+					'select_design' => [ 'round', 'round-2', 'square' ],
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'button_padding',
+			[
+				'label'      => __( 'Padding', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition'  => [
+					'select_design' => [ 'button' ],
+				],
+				'separator'  => 'before',
+			]
+		);
+
+		$this->add_responsive_control(
+			'button_margin',
+			[
+				'label'      => __( 'Margin', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition'  => [
+					'select_design' => [ 'button' ],
+				],
+			]
+		);
+
+		$this->add_control(
+			'box_style',
+			[
+				'label'     => __( 'Box Style', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => [
+					'select_design' => [ 'button' ],
+				],
+			]
+		);
+
+		$this->add_control(
+			'title_box_bg_color',
+			[
+				'label'     => __( 'Box Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper' => 'background-color: {{VALUE}}',
+				],
+				'condition' => [
+					'select_design' => [ 'button' ],
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'box_padding',
+			[
+				'label'      => __( 'Box Padding', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition'  => [
+					'select_design' => [ 'button' ],
+				],
+			]
+		);
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name'      => 'box_border',
+				'label'     => __( 'Border', 'happy-elementor-addons' ),
+				'selector'  => '{{WRAPPER}} .ha-cs-switch-wrapper',
+				'condition' => [
+					'select_design' => [ 'button' ],
+				],
+			]
+		);
+
+		$this->add_control(
+			'box_border_radius',
+			[
+				'label'      => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition'  => [
+					'select_design' => [ 'button' ],
+				],
+			]
+		);
 
         $this->end_controls_section();
     }
