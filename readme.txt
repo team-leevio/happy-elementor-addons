@@ -348,7 +348,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 2.25.0 - 15 June 2021 =
+= 2.25.0 - 16 June 2021 =
 
 - New: Mailchimp Widget
 - New: Added Lightbox support to Horizontal Timeline widget
