@@ -1,3 +1,8 @@
+.ha-cs-switch-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .ha-cs-switch-wrapper {
     display: flex;
     justify-content: center;
@@ -7,7 +12,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0 10px 0 10px;
+
+        &.primary {
+            margin-right: 20px;
+        }
+
+        &.secondary {
+            margin-left: 20px;
+        }
 
         &.active {
             color: #2196F3;
@@ -19,9 +31,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0 10px 0 10px;
         color: #ccc;
         background-color: #2196F3;
+
+        &:not(:last-of-type) {
+            margin-right: 20px;
+        }
 
         &.active {
             color: #000;

@@ -125,19 +125,6 @@ class Content_Switcher extends Base {
             ]
         );
 
-        // $this->add_control(
-        // 	'skin_msg',
-        // 	[
-        // 		'label'      => __( 'Skin Note', 'happy-elementor-addons' ),
-        // 		'type'       => Controls_Manager::RAW_HTML,
-        // 		'raw'        => __( 'NOTE : This Skin requires only two items.', 'happy-elementor-addons' ),
-        // 		'show_label' => false,
-        // 		'condition'  => [
-        // 			'_skin' => [ 'skin3', 'skin4' ],
-        // 		],
-        // 	]
-        // );
-
         $repeater = new Repeater();
 
         $repeater->add_control(
@@ -286,7 +273,7 @@ class Content_Switcher extends Base {
                 'label'     => __('Switch Alignment', 'happy-elementor-addons'),
                 'type'      => Controls_Manager::CHOOSE,
                 'options'   => [
-                    'left' => [
+                    'flex-start' => [
                         'title' => __('Left', 'happy-elementor-addons'),
                         'icon'  => 'fa fa-align-left',
                     ],
@@ -294,13 +281,13 @@ class Content_Switcher extends Base {
                         'title' => __('Center', 'happy-elementor-addons'),
                         'icon'  => 'fa fa-align-center',
                     ],
-                    'right' => [
+                    'flex-end' => [
                         'title' => __('Right', 'happy-elementor-addons'),
                         'icon'  => 'fa fa-align-right',
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} ' => 'text-align : {{VALUE}}',
+                    '{{WRAPPER}} .ha-cs-switch-wrapper' => 'justify-content : {{VALUE}}',
                 ],
                 'default'   => 'center',
                 'toggle'    => true,
@@ -330,7 +317,7 @@ class Content_Switcher extends Base {
                     'size' => 20,
                 ],
                 'selectors'   => [
-                    '{{WRAPPER}} ' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-cs-switch-wrapper' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -346,8 +333,10 @@ class Content_Switcher extends Base {
                 'step'        => 100,
                 'default'     => 400,
                 'selectors'   => [
-                    '{{WRAPPER}} ' => 'transition-duration: {{VALUE}}ms',
-                    '{{WRAPPER}} ' => 'transition-duration: {{VALUE}}ms',
+                    '{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-slider:before' => 'transition-duration: {{VALUE}}ms',
+                    '{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button' => 'transition-duration: {{VALUE}}ms',
+                    '{{WRAPPER}} .ha-cs-content-wrapper .ha-cs-content-section' => 'transition: transform calc( {{VALUE}}ms / 2 ) ease-in;',
+                    '{{WRAPPER}} .ha-cs-content-wrapper .ha-cs-content-section' => 'transition: transform calc( {{VALUE}}ms / 2 ) ease-out;',
                 ],
             ]
         );
@@ -404,13 +393,43 @@ class Content_Switcher extends Base {
                 <div class="ha-cs-content-wrapper">
                     <?php if ($settings['select_design'] == 'button') : ?>
                         <?php foreach ($settings['content_list'] as $i => $item) : ?>
-                            <div id="<?php echo esc_attr($item['_id']); ?>" class="ha-cs-content-section <?php echo esc_attr(($item['active'] == 'yes') ? 'active' : ''); ?>"><?php echo $item['plain_content'] ?></div>
+                            <div id="<?php echo esc_attr($item['_id']); ?>" class="ha-cs-content-section <?php echo esc_attr(($item['active'] == 'yes') ? 'active' : ''); ?>">
+                                <?php
+                                if ($item['content_type'] == 'plain_content') {
+                                    echo do_shortcode($item['plain_content']);
+                                } else if ($item['content_type'] == 'saved_section') {
+                                    echo ha_elementor()->frontend->get_builder_content_for_display($item['saved_section']);
+                                } else if ($item['content_type'] == 'saved_page') {
+                                    echo ha_elementor()->frontend->get_builder_content_for_display($item['saved_pages']);
+                                }
+                                ?>
+                            </div>
                         <?php endforeach; ?>
                     <?php else :
                     ?>
-                        <div id="<?php echo esc_attr($primary['_id']); ?>" class="ha-cs-content-section primary <?php echo esc_attr(($primary['active'] == 'yes') ? 'active' : ''); ?>"><?php echo $primary['plain_content'] ?></div>
+                        <div id="<?php echo esc_attr($primary['_id']); ?>" class="ha-cs-content-section primary <?php echo esc_attr(($primary['active'] == 'yes') ? 'active' : ''); ?>">
+                            <?php
+                            if ($primary['content_type'] == 'plain_content') {
+                                echo do_shortcode($primary['plain_content']);
+                            } else if ($primary['content_type'] == 'saved_section') {
+                                echo ha_elementor()->frontend->get_builder_content_for_display($primary['saved_section']);
+                            } else if ($primary['content_type'] == 'saved_page') {
+                                echo ha_elementor()->frontend->get_builder_content_for_display($primary['saved_pages']);
+                            }
+                            ?>
+                        </div>
 
-                        <div id="<?php echo esc_attr($secondary['_id']); ?>" class="ha-cs-content-section secondary <?php echo esc_attr(($secondary['active'] == 'yes') ? 'active' : ''); ?>"><?php echo $secondary['plain_content'] ?></div>
+                        <div id="<?php echo esc_attr($secondary['_id']); ?>" class="ha-cs-content-section secondary <?php echo esc_attr(($secondary['active'] == 'yes') ? 'active' : ''); ?>">
+                            <?php
+                            if ($secondary['content_type'] == 'plain_content') {
+                                echo do_shortcode($secondary['plain_content']);
+                            } else if ($secondary['content_type'] == 'saved_section') {
+                                echo ha_elementor()->frontend->get_builder_content_for_display($secondary['saved_section']);
+                            } else if ($secondary['content_type'] == 'saved_page') {
+                                echo ha_elementor()->frontend->get_builder_content_for_display($secondary['saved_pages']);
+                            }
+                            ?>
+                        </div>
 
                     <?php endif; ?>
                 </div>
