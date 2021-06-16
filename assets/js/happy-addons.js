@@ -819,53 +819,147 @@
 			var parent = $scope.find('.ha-content-switcher-wrapper'),
 				designType = parent.data('design-type');
 			
-				if(designType == 'button') {
-					var buttons = parent.find('.ha-cs-button'),
-						contents = parent.find('.ha-cs-content-section');
-					buttons.each(function (inx, btn){
-						$(this).on('click', function(e) {
-							e.preventDefault();
-							if($(this).hasClass('active')) {
-								return;
-							}else {
-								buttons.removeClass('active');
-								$(this).addClass('active');
-
-								contents.removeClass('active');
-								var contentId = $(this).data('content-id');
-								parent.find('#'+contentId).addClass('active');
-							}
-						} );
-					});
-
-				}else{
-					var toggleSwitch = parent.find('.ha-cs-switch.ha-input-label'),
-						input = parent.find('input.ha-cs-toggle-switch'),
-						primarySwitcher = parent.find('.ha-cs-switch.primary'),
-						secondarySwitcher = parent.find('.ha-cs-switch.secondary'),
-						primaryContent = parent.find('.ha-cs-content-section.primary'),
-						secondaryContent = parent.find('.ha-cs-content-section.secondary');
-					
-					toggleSwitch.on('click', function(e){
-						console.log('toggle click');
-						// e.preventDefault();
-						if(input.is(':checked')){
-							primarySwitcher.removeClass('active');
-							primaryContent.removeClass('active');
-							secondarySwitcher.addClass('active');
-							secondaryContent.addClass('active');
+			if(designType == 'button') {
+				var buttons = parent.find('.ha-cs-button'),
+					contents = parent.find('.ha-cs-content-section');
+				buttons.each(function (inx, btn){
+					$(this).on('click', function(e) {
+						e.preventDefault();
+						if($(this).hasClass('active')) {
+							return;
 						}else {
-							secondarySwitcher.removeClass('active');
-							secondaryContent.removeClass('active');
-							primarySwitcher.addClass('active');
-							primaryContent.addClass('active');
+							buttons.removeClass('active');
+							$(this).addClass('active');
+
+							contents.removeClass('active');
+							var contentId = $(this).data('content-id');
+							parent.find('#'+contentId).addClass('active');
+						}
+					} );
+				});
+
+			}else{
+				var toggleSwitch = parent.find('.ha-cs-switch.ha-input-label'),
+					input = parent.find('input.ha-cs-toggle-switch'),
+					primarySwitcher = parent.find('.ha-cs-switch.primary'),
+					secondarySwitcher = parent.find('.ha-cs-switch.secondary'),
+					primaryContent = parent.find('.ha-cs-content-section.primary'),
+					secondaryContent = parent.find('.ha-cs-content-section.secondary');
+				
+				toggleSwitch.on('click', function(e){
+					console.log('toggle click');
+					if(input.is(':checked')){
+						primarySwitcher.removeClass('active');
+						primaryContent.removeClass('active');
+						secondarySwitcher.addClass('active');
+						secondaryContent.addClass('active');
+					}else {
+						secondarySwitcher.removeClass('active');
+						secondaryContent.removeClass('active');
+						primarySwitcher.addClass('active');
+						primaryContent.addClass('active');
+					}
+				});
+
+			}
+
+		};
+		
+		var MailChimp = elementorModules.frontend.handlers.Base.extend({
+
+			onInit: function () {
+				elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+				this.elForm = this.$element.find('.ha-mailchimp-form');
+				this.elMessage = this.$element.find('.ha-mc-response-message');
+				this.successMessage = this.elForm.data('success-message');
+				this.run();
+			},
+			getReadySettings: function () {
+				var settings = {
+					formAlign: this.getElementSettings('form_alignment'),
+					formAlignTablet: this.getElementSettings('form_alignment_tablet') || this.getElementSettings('form_alignment'),
+					formAlignMobile: this.getElementSettings('form_alignment_mobile') || this.getElementSettings('form_alignment_tablet') || this.getElementSettings('form_alignment'),
+				};
+				return $.extend({}, settings);
+			},
+			onElementChange: function () {
+				this.run();
+			},
+			run: function () {
+				var settings = this.getReadySettings();
+				var elForm = this.elForm;
+				var elMessage = this.elMessage;
+				var successMessage = this.successMessage;
+
+				elForm.on('submit', function(e){
+					e.preventDefault();
+
+					var data = {
+						action: 'ha_mailchimp_ajax',
+						security: HappyLocalize.nonce,
+						subscriber_info: elForm.serialize(),
+						list_id: elForm.data('list-id'),
+						post_id: elForm.parent().data('post-id'),
+						widget_id: elForm.parent().data('widget-id'),
+					};
+			
+					$.ajax({
+						type: 'post',
+						url: HappyLocalize.ajax_url,
+						data: data,
+						success: function(response) {
+							elForm.trigger('reset');
+							console.log(response);
+							if(response.status){
+								elMessage.removeClass('error');
+								elMessage.addClass('success');
+								elMessage.text(successMessage);
+							}else {
+								elMessage.addClass('error');
+								elMessage.removeClass('success');
+								elMessage.text(response.msg);
+							}
+							// console.log(response);
+						},
+						error: function(error) {
+							// console.log(error);
 						}
 					});
 
+				});
 
-				}
+				var mobileWidth = elementorFrontendConfig.breakpoints.sm;
+				var tabletWidth = elementorFrontendConfig.breakpoints.md;
 
-		};
+				function responsiveClass(){
+					// console.log(settings);
+					var windowWidth = $(window).width();
+
+					if (windowWidth > tabletWidth) {
+						elForm.removeClass('vertical');
+						elForm.removeClass('horizontal');
+						elForm.addClass(settings.formAlign);
+					}else if(windowWidth > mobileWidth && windowWidth <= tabletWidth) {
+						elForm.removeClass('vertical');
+						elForm.removeClass('horizontal');
+						elForm.addClass(settings.formAlignTablet);
+					}else if ( windowWidth <= mobileWidth ) {
+						elForm.removeClass('vertical');
+						elForm.removeClass('horizontal');
+						if ( elForm.hasClass('multiple_form_fields') ){
+							elForm.addClass('vertical');
+						}else {
+							elForm.addClass(settings.formAlignMobile);
+						}
+					}
+					
+				};
+
+				responsiveClass();
+				$(window).on('load, resize', responsiveClass);
+
+			}
+		});
 
 		// Slider
 		elementorFrontend.hooks.addAction(
@@ -909,6 +1003,15 @@
 						}
 					});
 				}
+			}
+		);
+
+		elementorFrontend.hooks.addAction(
+			'frontend/element_ready/ha-mailchimp.default',
+			function ($scope) {
+				elementorFrontend.elementsHandler.addHandler(MailChimp, {
+					$element: $scope,
+				});
 			}
 		);
 

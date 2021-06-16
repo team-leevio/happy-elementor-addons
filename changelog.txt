@@ -1,5 +1,6 @@
- - 14 June 2021 =
+= 2.25.0 - 16 June 2021 =
 
+- New: Mailchimp Widget
 - New: Added Lightbox support to Horizontal Timeline widget
 - New: Image Hover Effect hover title html tag option added
 - Tweak: Added html tag support to Horizontal Timeline description
