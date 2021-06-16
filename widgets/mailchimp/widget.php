@@ -75,7 +75,7 @@ class Mailchimp extends Base {
         $this->add_control(
             'mailchimp_api_check',
             [
-                'raw' => '<strong>' . esc_html__('Please note!', 'happy-elementor-addons') . '</strong> ' . esc_html__('Please set API Key in Happy Addons Dashboard - Credentials - MailChimp and Create Campaign..', 'happy-elementor-addons'),
+                'raw' => '<strong>' . esc_html__('Please note!', 'happy-elementor-addons') . '</strong> ' . esc_html__('Please set API Key in Happy Addons Dashboard - Credentials - MailChimp and Create Audience.', 'happy-elementor-addons'),
                 'type' => Controls_Manager::RAW_HTML,
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
                 'render_type' => 'ui',
@@ -119,11 +119,11 @@ class Mailchimp extends Base {
         $this->add_control(
 			'mailchimp_lists',
 			[
-				'label' => __( 'Lists', 'happy-elementor-addons' ),
+				'label' => __( 'Audience', 'happy-elementor-addons' ),
 				'label_block' => true,
 				'type' => Select2::TYPE,
 				'multiple' => false,
-				'placeholder' => 'Search ',
+				'placeholder' => 'Choose your created audience ',
 				'dynamic_params' => [
 					'object_type' => 'mailchimp_list',
 					'global_api'   => isset($this->settings['mailchimp']['api'])? $this->settings['mailchimp']['api']: '',
@@ -135,18 +135,22 @@ class Mailchimp extends Base {
 				'select2options' => [
 					'minimumInputLength' => 0,
 				],
-                'description' => esc_html__('Create a campaign in mailchimp account ', 'happy-elementor-addons') . '<a href="https://mailchimp.com/help/create-a-regular-email-campaign/#Create_a_campaign" target="_blank"> ' . esc_html__('Create Campaign', 'happy-elementor-addons') . '</a>',
+                'description' => esc_html__('Create a audience/ list in mailchimp account ', 'happy-elementor-addons') . '<a href="https://mailchimp.com/help/create-audience/" target="_blank"> ' . esc_html__('Create Audience', 'happy-elementor-addons') . '</a>',
 			]
 		);
 
+        // next plan to include tag
         // $this->add_control(
-        //     'mailchimp_lists',
+        //     'mailchimp_list_tags',
         //     [
-        //         'label' => __('Lists', 'happy-elementor-addons'),
-        //         'type' => Controls_Manager::SELECT,
-        //         'default' => '01',
-        //         'options' =>  $this->__get_lists(),
-        //         'description' => esc_html__('Create a campaign in mailchimp account ', 'happy-elementor-addons') . '<a href="https://mailchimp.com/help/create-a-regular-email-campaign/#Create_a_campaign" target="_blank"> ' . esc_html__('Create Campaign', 'happy-elementor-addons') . '</a>',
+        //         'label' => __('Tags', 'happy-elementor-addons'),
+        //         'type' => Controls_Manager::TEXT,
+        //         'label_block' => true,
+        //         'placeholder' => __('Enter tags here. Ex: Tag-1, Tag-2', 'happy-elementor-addons'),
+        //         'condition' => [
+        //             'mailchimp_lists!' => '',
+        //         ],
+        //         'dynamic' => [ 'active' => true]
         //     ]
         // );
 

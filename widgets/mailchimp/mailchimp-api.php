@@ -76,6 +76,8 @@ class Mailchimp_api {
             'email_address' => (isset($submitted_data['email']) ? $submitted_data['email'] : ''),
             'status' => 'subscribed',
             'status_if_new' => 'subscribed',
+            // next plan to include tag
+            // 'tags'  => ['your-tag-name'],
             'merge_fields' => [
                 'FNAME' => (isset($submitted_data['fname']) ? $submitted_data['fname'] : ''),
                 'LNAME' => (isset($submitted_data['lname']) ? $submitted_data['lname'] : ''),

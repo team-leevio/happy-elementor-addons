@@ -1,3 +1,6 @@
+= 16 June 2021 =
+- Fix: Mailchimp integration instruction improved
+
 = 2.25.0 - 16 June 2021 =
 
 - New: Mailchimp Widget
