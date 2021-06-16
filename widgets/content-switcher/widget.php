@@ -51,6 +51,32 @@ class Content_Switcher extends Base {
         return ['content', 'switcher', 'toggle'];
     }
 
+    public function select_elementor_page($type) {
+        $args  = [
+            'tax_query'      => [
+                [
+                    'taxonomy' => 'elementor_library_type',
+                    'field'    => 'slug',
+                    'terms'    => $type,
+                ],
+            ],
+            'post_type'      => 'elementor_library',
+            'posts_per_page' => -1,
+        ];
+        $query = new \WP_Query($args);
+
+        $posts = $query->posts;
+        foreach ($posts as $post) {
+            $items[$post->ID] = $post->post_title;
+        }
+
+        if (empty($items)) {
+            $items = [];
+        }
+
+        return $items;
+    }
+
     protected function register_content_controls() {
 
         $this->start_controls_section(
@@ -153,14 +179,9 @@ class Content_Switcher extends Base {
                 'default'   => __('Add some nice text here.', 'happy-elementor-addons'),
             ]
         );
-        // $saved_sections[''] = __( 'Select Section', 'happy-elementor-addons' );
-        // $saved_sections     = $saved_sections + Helper::select_elementor_page( 'section' );
-        $saved_sections = [
-            '01' => '01',
-            '02' => '02',
-            '03' => '03',
-            '04' => '04',
-        ];
+
+        $saved_sections = ['0' => __('--- Select Section ---', 'happy-elementor-addons')];
+        $saved_sections = $saved_sections + $this->select_elementor_page('section');
 
         $repeater->add_control(
             'saved_section',
@@ -168,21 +189,15 @@ class Content_Switcher extends Base {
                 'label'     => __('Sections', 'happy-elementor-addons'),
                 'type'      => Controls_Manager::SELECT,
                 'options'   => $saved_sections,
+                'default'   => '0',
                 'condition' => [
                     'content_type' => 'saved_section',
                 ],
             ]
         );
 
-        // $saved_page[''] = __( 'Select Pages', 'happy-elementor-addons' );
-        // $saved_page     = $saved_page + Helper::select_elementor_page( 'page' );
-
-        $saved_page = [
-            '01' => '01',
-            '02' => '02',
-            '03' => '03',
-            '04' => '04',
-        ];
+        $saved_page = ['0' => __('--- Select Page ---', 'happy-elementor-addons')];
+        $saved_page = $saved_page + $this->select_elementor_page('page');
 
         $repeater->add_control(
             'saved_pages',
@@ -190,33 +205,12 @@ class Content_Switcher extends Base {
                 'label'     => __('Pages', 'happy-elementor-addons'),
                 'type'      => Controls_Manager::SELECT,
                 'options'   => $saved_page,
+                'default'   => '0',
                 'condition' => [
                     'content_type' => 'saved_page',
                 ],
             ]
         );
-
-        // $saved_ae_template[''] = __( 'Select AE Template', 'happy-elementor-addons' );
-        // $saved_ae_template     = $saved_ae_template + Helper::select_ae_templates();
-
-        // $saved_page = [
-        //     '01' => '01',
-        //     '02' => '02',
-        //     '03' => '03',
-        //     '04' => '04',
-        // ];
-
-        // $repeater->add_control(
-        // 	'ae_templates',
-        // 	[
-        // 		'label'     => __( 'AE-Templates', 'happy-elementor-addons' ),
-        // 		'type'      => Controls_Manager::SELECT,
-        // 		'options'   => $saved_ae_template,
-        // 		'condition' => [
-        // 			'content_type' => 'ae_template',
-        // 		],
-        // 	]
-        // );
 
         $repeater->add_control(
             'icon',
@@ -384,22 +378,22 @@ class Content_Switcher extends Base {
                 <div class="ha-cs-switch-wrapper">
                     <?php if ($settings['select_design'] == 'button') : ?>
                         <?php foreach ($settings['content_list'] as $i => $item) : ?>
-                            <button class="ha-cs-button <?php echo esc_attr(($item['active'] == 'yes') ? 'active' : ''); ?>" data-content-id="<?php echo esc_attr($item['_id']); ?>">
+                            <button class="ha-cs-button <?php echo esc_attr(($item['active'] == 'yes') ? 'active' : ''); ?> ha-cs-icon-<?php echo esc_attr($item['icon_align']); ?>" data-content-id="<?php echo esc_attr($item['_id']); ?>">
                                 <div class="ha-cs-icon-wrapper"><?php ha_render_icon($item, null, 'icon'); ?></div><span><?php echo esc_html($item['title']); ?></span>
                             </button>
                         <?php endforeach; ?>
                     <?php else :
                     ?>
-                        <div class="ha-cs-switch primary <?php echo esc_attr(($primary['active'] == 'yes') ? 'active' : ''); ?>" data-content-id="<?php echo esc_attr($primary['_id']); ?>">
+                        <div class="ha-cs-switch primary <?php echo esc_attr(($primary['active'] == 'yes') ? 'active' : ''); ?> ha-cs-icon-<?php echo esc_attr($primary['icon_align']); ?>" data-content-id="<?php echo esc_attr($primary['_id']); ?>">
                             <div class="ha-cs-icon-wrapper"><?php ha_render_icon($primary, null, 'icon'); ?></div><span><?php echo esc_html($primary['title']); ?></span>
                         </div>
 
                         <label class="ha-cs-switch ha-input-label">
-                            <input class="ha-cs-toggle-switch" type="checkbox">
+                            <input class="ha-cs-toggle-switch" type="checkbox" <?php echo esc_attr(($secondary['active'] == 'yes') ? 'checked' : ''); ?>>
                             <span class="ha-cs-slider ha-cs-<?php echo esc_attr($settings['select_design']); ?>"></span>
                         </label>
 
-                        <div class="ha-cs-switch secondary <?php echo esc_attr(($secondary['active'] == 'yes') ? 'active' : ''); ?>" data-content-id="<?php echo esc_attr($secondary['_id']); ?>">
+                        <div class="ha-cs-switch secondary <?php echo esc_attr(($secondary['active'] == 'yes') ? 'active' : ''); ?> ha-cs-icon-<?php echo esc_attr($secondary['icon_align']); ?>" data-content-id="<?php echo esc_attr($secondary['_id']); ?>">
                             <div class="ha-cs-icon-wrapper"><?php ha_render_icon($secondary, null, 'icon'); ?></div><span><?php echo esc_html($secondary['title']); ?></span>
                         </div>
 
