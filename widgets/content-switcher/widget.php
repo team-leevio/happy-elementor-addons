@@ -370,6 +370,63 @@ class Content_Switcher extends Base {
 			]
 		);
 
+        $this->add_responsive_control(
+			'icon_spacing',
+			[
+				'label'      => __( 'Icon Spacing', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					],
+				],
+				'default'    => [
+					'unit' => 'px',
+					'size' => 5,
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.ha-cs-icon-left i' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.ha-cs-icon-right i' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch.ha-cs-icon-left i' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch.ha-cs-icon-right i' => 'margin-left: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'label_spacing',
+			[
+				'label'      => __( 'Spacing', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 1000,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default'    => [
+					'unit' => 'px',
+					'size' => 30,
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-cs-switch.primary' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-cs-switch.secondary' => 'margin-left: {{SIZE}}{{UNIT}};',
+				],
+				'condition'  => [
+					'select_design' => [ 'round', 'round-2', 'square' ],
+				],
+			]
+		);
+
 		$this->start_controls_tabs(
 			'label_tabs'
 		);
@@ -471,7 +528,7 @@ class Content_Switcher extends Base {
 		$this->add_control(
 			'title_color_active',
 			[
-				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'label'     => __( 'Title Color', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.active span' => 'color: {{VALUE}}',
@@ -508,20 +565,32 @@ class Content_Switcher extends Base {
 			]
 		);
 
-		$this->add_control(
-			'title_border_color_active',
+        $this->add_group_control(
+			Group_Control_Border::get_type(),
 			[
-				'label'     => __( 'Border Color', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.active' => 'border-color: {{VALUE}}',
-				],
+				'name'      => 'title_border_active',
+				'label'     => __( 'Border', 'happy-elementor-addons' ),
+				'selector'  => '{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.active',
 				'condition' => [
 					'select_design' => [ 'button' ],
-					'title_border_normal_border!' => '',
 				],
 			]
 		);
+
+		// $this->add_control(
+		// 	'title_border_color_active',
+		// 	[
+		// 		'label'     => __( 'Border Color', 'happy-elementor-addons' ),
+		// 		'type'      => Controls_Manager::COLOR,
+		// 		'selectors' => [
+		// 			'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.active' => 'border-color: {{VALUE}}',
+		// 		],
+		// 		'condition' => [
+		// 			'select_design' => [ 'button' ],
+		// 			'title_border_normal_border!' => '',
+		// 		],
+		// 	]
+		// );
 
 		$this->add_control(
 			'button_border_radius_active',
@@ -553,63 +622,6 @@ class Content_Switcher extends Base {
 		$this->end_controls_tab();
 
 		$this->end_controls_tabs();
-
-		$this->add_responsive_control(
-			'icon_spacing',
-			[
-				'label'      => __( 'Icon Spacing', 'happy-elementor-addons' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%' ],
-				'range'      => [
-					'px' => [
-						'min'  => 0,
-						'max'  => 100,
-						'step' => 1,
-					],
-				],
-				'default'    => [
-					'unit' => 'px',
-					'size' => 5,
-				],
-				'selectors'  => [
-					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.ha-cs-icon-left i' => 'margin-right: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.ha-cs-icon-right i' => 'margin-left: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch.ha-cs-icon-left i' => 'margin-right: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch.ha-cs-icon-right i' => 'margin-left: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_responsive_control(
-			'label_spacing',
-			[
-				'label'      => __( 'Spacing', 'happy-elementor-addons' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%' ],
-				'range'      => [
-					'px' => [
-						'min'  => 0,
-						'max'  => 1000,
-						'step' => 1,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'default'    => [
-					'unit' => 'px',
-					'size' => 30,
-				],
-				'selectors'  => [
-					'{{WRAPPER}} .ha-cs-switch.primary' => 'margin-right: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-cs-switch.secondary' => 'margin-left: {{SIZE}}{{UNIT}};',
-				],
-				'condition'  => [
-					'select_design' => [ 'round', 'round-2', 'square' ],
-				],
-			]
-		);
 
 		$this->add_responsive_control(
 			'button_padding',
