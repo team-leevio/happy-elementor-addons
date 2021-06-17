@@ -917,7 +917,6 @@ class Content_Switcher extends Base {
 				'selectors'  => [
 					'{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-content-container .ha-cs-content-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
-				'separator'  => 'before',
 			]
 		);
 
