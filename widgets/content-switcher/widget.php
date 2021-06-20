@@ -723,6 +723,15 @@ class Content_Switcher extends Base {
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'box_box_shadow',
+				'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-cs-switch-wrapper',
+			]
+		);
+
         $this->end_controls_section();
 
 		$this->start_controls_section(
