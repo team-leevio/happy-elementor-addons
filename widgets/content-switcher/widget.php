@@ -100,6 +100,7 @@ class Content_Switcher extends Base {
                     'round' => __('Round', 'happy-elementor-addons'),
                     'round-2'   => __('Round 2', 'happy-elementor-addons'),
                     'square' => __('Square', 'happy-elementor-addons'),
+                    'square-2' => __('Square 2', 'happy-elementor-addons'),
                     'button'    => __('Button', 'happy-elementor-addons'),
                 ],
                 'default' => 'round',
@@ -119,12 +120,12 @@ class Content_Switcher extends Base {
         $this->add_control(
             'design_warning_message',
             [
-                'raw' => '<strong>' . esc_html__('Please note!', 'happy-elementor-addons') . '</strong> ' . esc_html__('This design requires only two items.', 'happy-elementor-addons'),
+                'raw' => '<strong>' . esc_html__('Please note!', 'happy-elementor-addons') . '</strong> ' . esc_html__('This design requires only two items. Only the first two items will be used.', 'happy-elementor-addons'),
                 'type' => Controls_Manager::RAW_HTML,
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
                 'render_type' => 'ui',
                 'condition' => [
-                    'select_design' => ['round', 'round-2', 'square'],
+                    'select_design' => ['round', 'round-2', 'square', 'square-2'],
                 ],
             ]
         );
@@ -422,7 +423,7 @@ class Content_Switcher extends Base {
 					'{{WRAPPER}} .ha-cs-switch.secondary' => 'margin-left: {{SIZE}}{{UNIT}};',
 				],
 				'condition'  => [
-					'select_design' => [ 'round', 'round-2', 'square' ],
+					'select_design' => [ 'round', 'round-2', 'square', 'square-2' ],
 				],
 			]
 		);
@@ -724,75 +725,13 @@ class Content_Switcher extends Base {
 
         $this->end_controls_section();
 
-        $this->start_controls_section(
-            '_section_style_switch_bar',
-            [
-                'label' => __('Switch Bar', 'happy-elementor-addons'),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_responsive_control(
-			'title_section_padding',
-			[
-				'label'      => __( 'Section Padding', 'happy-elementor-addons' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', 'em', '%' ],
-				'selectors'  => [
-					'{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-switch-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name'     => 'title_section_bg_color',
-				'label'    => __( 'Background', 'happy-elementor-addons' ),
-				'types'    => [ 'classic', 'gradient', 'video' ],
-				'selector' => '{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-switch-container',
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			[
-				'name'     => 'title_section_border',
-				'label'    => __( 'Border', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-switch-container',
-			]
-		);
-
-		$this->add_control(
-			'title_section_border_radius',
-			[
-				'label'      => __( 'Border Radius', 'happy-elementor-addons' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
-				'selectors'  => [
-					'{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-switch-container' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			[
-				'name'     => 'title_section_shadow',
-				'label'    => __( 'Box Shadow', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-switch-container',
-			]
-		);
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
+		$this->start_controls_section(
             '_section_style_switcher_control',
             [
                 'label' => __('Switcher Control', 'happy-elementor-addons'),
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
-					'select_design' => [ 'round', 'round-2', 'square' ],
+					'select_design' => [ 'round', 'round-2', 'square', 'square-2' ],
 				],
             ]
         );
@@ -897,6 +836,68 @@ class Content_Switcher extends Base {
 		$this->end_controls_tab();
 
 		$this->end_controls_tabs();
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            '_section_style_switch_bar',
+            [
+                'label' => __('Switch Bar', 'happy-elementor-addons'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+			'title_section_padding',
+			[
+				'label'      => __( 'Section Padding', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-switch-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name'     => 'title_section_bg_color',
+				'label'    => __( 'Background', 'happy-elementor-addons' ),
+				'types'    => [ 'classic', 'gradient', 'video' ],
+				'selector' => '{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-switch-container',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name'     => 'title_section_border',
+				'label'    => __( 'Border', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-switch-container',
+			]
+		);
+
+		$this->add_control(
+			'title_section_border_radius',
+			[
+				'label'      => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-switch-container' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name'     => 'title_section_shadow',
+				'label'    => __( 'Box Shadow', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-switch-container',
+			]
+		);
 
         $this->end_controls_section();
 

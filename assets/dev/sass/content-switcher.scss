@@ -124,6 +124,20 @@
                 background-color: #2196F3;
             }
         }
+
+        &.ha-cs-square-2 {
+            top: 50%;
+            border-radius: 0;
+            height: 1em;
+            transform: translateY(-50%);
+
+            &:before {
+                border-radius: 0;
+                left: -0.1em;
+                bottom: -50%;
+                background-color: #2196F3;
+            }
+        }
     }
 
     input {
@@ -159,6 +173,15 @@
                     transform: translateX(100%);
                 }
             }
+
+            &+.ha-cs-square-2 {
+                background-color: #ccc;
+
+                &:before {
+                    left: 1.1em;
+                    transform: translateX(100%);
+                }
+            }
         }
 
         &:focus {
@@ -172,6 +195,10 @@
             }
 
             &+.ha-cs-round-2 {
+                box-shadow: 0 0 1px #ccc;
+            }
+
+            &+.ha-cs-square-2 {
                 box-shadow: 0 0 1px #ccc;
             }
         }
