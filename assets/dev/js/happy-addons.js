@@ -405,7 +405,12 @@
 					container = this.wrapper.find('.ha-news-ticker-container'),
 					single_item = container.find('.ha-news-ticker-item'),
 					scroll_direction = this.wrapper.data('scroll-direction'),
-					scroll = 'scroll'+scroll_direction+wrapper_height+wrapper_width,
+					//scroll = 'scroll'+scroll_direction+wrapper_height+wrapper_width,
+					scroll =
+						"scroll" +
+						scroll_direction +
+						parseInt(wrapper_height) +
+						parseInt(wrapper_width),
 					duration = this.wrapper.data('duration'),
 					direction = 'normal',
 					all_title_width = 10;
@@ -426,7 +431,7 @@
 				}]);
 				container.playKeyframe({
 					name: scroll,
-					duration: duration+'ms',
+					duration: duration.toString() + "ms",
 					timingFunction: 'linear',
 					delay: '0s',
 					iterationCount: 'infinite',
@@ -851,7 +856,7 @@
 						post_id: elForm.parent().data('post-id'),
 						widget_id: elForm.parent().data('widget-id'),
 					};
-			
+
 					$.ajax({
 						type: 'post',
 						url: HappyLocalize.ajax_url,
@@ -901,7 +906,7 @@
 							elForm.addClass(settings.formAlignMobile);
 						}
 					}
-					
+
 				};
 
 				responsiveClass();

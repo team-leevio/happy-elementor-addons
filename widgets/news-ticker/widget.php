@@ -14,6 +14,7 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Background;
+use Happy_Addons\Elementor\Controls\Select2;
 
 defined( 'ABSPATH' ) || die();
 
@@ -56,24 +57,30 @@ class News_Ticker extends Base {
 	 *
 	 * @return array
 	 */
-	public function ha_get_posts () {
-		$posts = [];
-		$_posts = get_posts( [
-			'post_type'      => 'post',
-			'post_status'    => 'publish',
-			'posts_per_page' => -1,
-			'orderby'        => 'title',
-			'order'          => 'ASC',
-		] );
+	// public function ha_get_posts () {
+	// 	$posts = [];
+	// 	$_posts = get_posts( [
+	// 		'post_type'      => 'post',
+	// 		'post_status'    => 'publish',
+	// 		'posts_per_page' => -1,
+	// 		'orderby'        => 'title',
+	// 		'order'          => 'ASC',
+	// 	] );
 
-		if ( ! empty( $_posts ) ) {
-			$posts = wp_list_pluck( $_posts, 'post_title', 'ID' );
-		}
+	// 	if ( ! empty( $_posts ) ) {
+	// 		$posts = wp_list_pluck( $_posts, 'post_title', 'ID' );
+	// 	}
 
-		return $posts;
-	}
+	// 	return $posts;
+	// }
 
+	/**
+	 * Register Content Control
+	 *
+	 * @return void
+	 */
 	protected function register_content_controls () {
+
 		$this->start_controls_section(
 			'_section_news_ticker',
 			[
@@ -130,10 +137,42 @@ class News_Ticker extends Base {
 			[
 				'label' => __( 'Select Posts', 'happy-elementor-addons' ),
 				'label_block' => true,
-				'type' => Controls_Manager::SELECT2,
-				'default' => '',
-				'options' => $this->ha_get_posts(),
+				// 'type' => Controls_Manager::SELECT2,
+				// 'default' => '',
+				// 'options' => $this->ha_get_posts(),
+				// 'multiple' => true,
+
+				'type' => Select2::TYPE,
 				'multiple' => true,
+				'placeholder' => 'Search Post',
+				'dynamic_params' => [
+					'object_type' => 'post',
+					'post_type'   => 'post',
+				],
+				'select2options' => [
+					'minimumInputLength' => 0,
+				],
+			]
+		);
+
+		$this->add_control(
+			'title_tag',
+			[
+				'label' => __( 'Post Title Tag', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				// 'separator' => 'before',
+				'options' => [
+					'h1' => 'H1',
+					'h2' => 'H2',
+					'h3' => 'H3',
+					'h4' => 'H4',
+					'h5' => 'H5',
+					'h6' => 'H6',
+					'div' => 'div',
+					'span' => 'span',
+					'p' => 'p',
+				],
+				'default' => 'h2',
 			]
 		);
 
@@ -194,7 +233,18 @@ class News_Ticker extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+	 * Register Style Control
+	 *
+	 * @return void
+	 */
 	protected function register_style_controls () {
+		$this->wrapper_style_controls();
+		$this->sticky_title_style_controls();
+		$this->title_style_controls();
+	}
+
+	protected function wrapper_style_controls () {
 
 		$this->start_controls_section(
 			'_style_news_ticker_wrapper',
@@ -293,6 +343,9 @@ class News_Ticker extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function sticky_title_style_controls () {
 
 		$this->start_controls_section(
 			'_style_news_ticker_sticky_title',
@@ -368,6 +421,9 @@ class News_Ticker extends Base {
 
 		$this->end_controls_section();
 
+	}
+
+	protected function title_style_controls () {
 		$this->start_controls_section(
 			'_style_news_ticker_title',
 			[
@@ -480,11 +536,13 @@ class News_Ticker extends Base {
 				<ul <?php $this->print_render_attribute_string( 'container' ); ?>>
 					<?php foreach ( $news_posts as $key => $value ): ?>
 						<li <?php $this->print_render_attribute_string( 'item' ); ?>>
-							<h2 class="ha-news-ticker-title">
-								<a href="<?php echo esc_url( get_the_permalink($key) ); ?>">
-									<?php echo esc_html( $value ); ?>
-								</a>
-							</h2>
+							<?php
+								printf( '<%1$s class="ha-news-ticker-title"><a href="%2$s">%3$s</a></%1$s>',
+									ha_escape_tags( $settings['title_tag'], 'h2' ),
+									esc_url( get_the_permalink($key) ),
+									esc_html( $value )
+								);
+							?>
 						</li>
 					<?php endforeach; ?>
 				</ul>

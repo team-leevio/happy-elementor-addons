@@ -82,7 +82,18 @@ class Post_Tab extends Base {
 		return $list;
 	}
 
+	/**
+	 * Register Content Control
+	 *
+	 * @return void
+	 */
 	protected function register_content_controls () {
+		$this->query_content_controls();
+		$this->settings_content_controls();
+	}
+
+	protected function query_content_controls () {
+
 		$this->start_controls_section(
 			'_section_post_tab_query',
 			[
@@ -154,7 +165,11 @@ class Post_Tab extends Base {
 
 		$this->end_controls_section();
 
-		//Settings
+	}
+
+	//Settings
+	protected function settings_content_controls () {
+
 		$this->start_controls_section(
 			'_section_settings',
 			[
@@ -186,6 +201,27 @@ class Post_Tab extends Base {
 				],
 				'render_type' => 'template',
 				'style_transfer' => true,
+			]
+		);
+
+		$this->add_control(
+			'title_tag',
+			[
+				'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				// 'separator' => 'before',
+				'options' => [
+					'h1' => 'H1',
+					'h2' => 'H2',
+					'h3' => 'H3',
+					'h4' => 'H4',
+					'h5' => 'H5',
+					'h6' => 'H6',
+					'div' => 'div',
+					'span' => 'span',
+					'p' => 'p',
+				],
+				'default' => 'h2',
 			]
 		);
 
@@ -276,7 +312,19 @@ class Post_Tab extends Base {
 		$this->end_controls_section();
 	}
 
+
+	/**
+	 * Register Style Control
+	 *
+	 * @return void
+	 */
 	protected function register_style_controls () {
+		$this->tab_style_controls();
+		$this->tab_column_style_controls();
+		$this->content_style_controls();
+	}
+
+	protected function tab_style_controls () {
 
 		$this->start_controls_section(
 			'_section_post_tab_filter',
@@ -460,9 +508,14 @@ class Post_Tab extends Base {
 				]
 			]
 		);
+
 		$this->end_controls_section();
 
-		//Column
+	}
+
+	//Column
+	protected function tab_column_style_controls () {
+
 		$this->start_controls_section(
 			'_section_post_tab_column',
 			[
@@ -554,7 +607,11 @@ class Post_Tab extends Base {
 		);
 		$this->end_controls_section();
 
-		//Content Style
+	}
+
+	//Content Style
+	protected function content_style_controls () {
+
 		$this->start_controls_section(
 			'_section_post_tab_content',
 			[
@@ -899,9 +956,13 @@ class Post_Tab extends Base {
 											<?php echo get_the_post_thumbnail( $post->ID, 'full' ); ?>
 										</a>
 									<?php endif; ?>
-									<h2 class="ha-post-tab-title">
-										<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>"> <?php echo esc_html( $post->post_title ); ?></a>
-									</h2>
+									<?php
+										printf( '<%1$s class="ha-post-tab-title"><a href="%2$s">%3$s</a></%1$s>',
+											ha_escape_tags( $settings['title_tag'], 'h2' ),
+											esc_url( get_the_permalink( $post->ID ) ),
+											esc_html( $post->post_title )
+										);
+									?>
 									<div class="ha-post-tab-meta">
 				                        <span class="ha-post-tab-meta-author">
 				                            <i class="fa fa-user-o"></i>
