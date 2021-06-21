@@ -249,13 +249,18 @@ class Content_Switcher extends Base {
 					[
 						'title'         => __('Primary', 'happy-elementor-addons'),
 						'content_type'  => 'plain_content',
-						'plain_content' => __('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'happy-elementor-addons'),
+						'plain_content' => __('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
 						'active'        => 'yes',
 					],
 					[
 						'title'         => __('Secondary', 'happy-elementor-addons'),
 						'content_type'  => 'plain_content',
 						'plain_content' => __('It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 'happy-elementor-addons'),
+					],
+					[
+						'title'         => __('Others', 'happy-elementor-addons'),
+						'content_type'  => 'plain_content',
+						'plain_content' => __('Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 'happy-elementor-addons'),
 					],
 				],
 				'title_field'   => '{{{ title }}}',
@@ -322,7 +327,7 @@ class Content_Switcher extends Base {
 					'size' => 20,
 				],
 				'selectors'   => [
-					'{{WRAPPER}} .ha-cs-switch-wrapper' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-cs-switch-container' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -363,8 +368,14 @@ class Content_Switcher extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'typography',
-				'global'   => [
-					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				'fields_options' => [
+					'typography' => ['default' => 'yes'],
+					'font_family' => [
+						'default' => 'Nunito',
+					],
+					'font_weight' => [
+						'default' => 'Bold',
+					],
 				],
 				'selector' => '{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button, {{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch',
 
@@ -498,6 +509,14 @@ class Content_Switcher extends Base {
 				'label'      => __('Border Radius', 'happy-elementor-addons'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
+				'default' 	 => [
+					'top' => '30',
+					'right' => '30',
+					'bottom' => '30',
+					'left' => '30',
+					'unit' => 'px',
+					'isLinked' => 'true',
+				],
 				'selectors'  => [
 					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -602,6 +621,14 @@ class Content_Switcher extends Base {
 				'label'      => __('Border Radius', 'happy-elementor-addons'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
+				'default' 	 => [
+					'top' => '30',
+					'right' => '30',
+					'bottom' => '30',
+					'left' => '30',
+					'unit' => 'px',
+					'isLinked' => 'true',
+				],
 				'selectors'  => [
 					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.active' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -633,6 +660,14 @@ class Content_Switcher extends Base {
 				'label'      => __('Padding', 'happy-elementor-addons'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
+				'default' 	 => [
+					'top' => '10',
+					'right' => '20',
+					'bottom' => '10',
+					'left' => '20',
+					'unit' => 'px',
+					'isLinked' => '',
+				],
 				'selectors'  => [
 					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -649,6 +684,14 @@ class Content_Switcher extends Base {
 				'label'      => __('Margin', 'happy-elementor-addons'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
+				'default' 	 => [
+					'top' => '5',
+					'right' => '5',
+					'bottom' => '5',
+					'left' => '5',
+					'unit' => 'px',
+					'isLinked' => 'true',
+				],
 				'selectors'  => [
 					'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -675,6 +718,7 @@ class Content_Switcher extends Base {
 			[
 				'label'     => __('Box Color', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::COLOR,
+				'default'	=> '#FFF',
 				'selectors' => [
 					'{{WRAPPER}} .ha-cs-switch-wrapper' => 'background-color: {{VALUE}}',
 				],
@@ -690,6 +734,14 @@ class Content_Switcher extends Base {
 				'label'      => __('Box Padding', 'happy-elementor-addons'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
+				'default' 	 => [
+					'top' => '5',
+					'right' => '5',
+					'bottom' => '5',
+					'left' => '5',
+					'unit' => 'px',
+					'isLinked' => 'true',
+				],
 				'selectors'  => [
 					'{{WRAPPER}} .ha-cs-switch-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -717,6 +769,14 @@ class Content_Switcher extends Base {
 				'label'      => __('Border Radius', 'happy-elementor-addons'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
+				'default' 	 => [
+					'top' => '50',
+					'right' => '50',
+					'bottom' => '50',
+					'left' => '50',
+					'unit' => 'px',
+					'isLinked' => 'true',
+				],
 				'selectors'  => [
 					'{{WRAPPER}} .ha-cs-switch-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -767,7 +827,7 @@ class Content_Switcher extends Base {
 				],
 				'default' => [
 					'unit' => 'px',
-					'size' => 10,
+					'size' => 12,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-cs-switch-container .ha-cs-switch.ha-input-label' => 'font-size: {{SIZE}}{{UNIT}};',
@@ -794,9 +854,6 @@ class Content_Switcher extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-input-label .ha-cs-slider:before' => 'background-color : {{VALUE}}',
 				],
-				'global'    => [
-					'default' => Global_Colors::COLOR_ACCENT,
-				],
 			]
 		);
 
@@ -807,9 +864,6 @@ class Content_Switcher extends Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-input-label .ha-cs-slider' => 'background-color : {{VALUE}}',
-				],
-				'global'    => [
-					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 			]
 		);
@@ -865,6 +919,14 @@ class Content_Switcher extends Base {
 				'label'      => __('Section Padding', 'happy-elementor-addons'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
+				// 'default' 	 => [
+				// 	'top' => '20',
+				// 	'right' => '20',
+				// 	'bottom' => '20',
+				// 	'left' => '20',
+				// 	'unit' => 'px',
+				// 	'isLinked' => 'true',
+				// ],
 				'selectors'  => [
 					'{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-switch-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -937,8 +999,14 @@ class Content_Switcher extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'content_typography',
-				'global'   => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				'fields_options' => [
+					'typography' => ['default' => 'yes'],
+					'font_family' => [
+						'default' => 'Nunito',
+					],
+					'font_weight' => [
+						'default' => '600',
+					],
 				],
 				'selector' => '{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-content-section',
 			]
