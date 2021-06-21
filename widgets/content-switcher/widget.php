@@ -767,7 +767,7 @@ class Content_Switcher extends Base {
 				],
 				'default' => [
 					'unit' => 'px',
-					'size' => 15,
+					'size' => 10,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-cs-switch-container .ha-cs-switch.ha-input-label' => 'font-size: {{SIZE}}{{UNIT}};',
