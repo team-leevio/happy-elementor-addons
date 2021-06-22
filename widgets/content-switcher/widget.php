@@ -1,22 +1,18 @@
 <?php
 
 /**
- * Contact form 7 widget class
+ * Content Switcher widget class
  *
  * @package Happy_Addons
  */
 
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
-use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
-
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Background;
-use Elementor\Core\Schemes\Typography;
 use Elementor\Repeater;
 
 defined('ABSPATH') || die();
@@ -1000,7 +996,9 @@ class Content_Switcher extends Base {
 			[
 				'name'     => 'content_typography',
 				'fields_options' => [
-					'typography' => ['default' => 'yes'],
+					'typography' => [
+						'default' => 'yes'
+					],
 					'font_family' => [
 						'default' => 'Nunito',
 					],
