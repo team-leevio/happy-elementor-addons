@@ -138,20 +138,20 @@ class Mailchimp extends Base {
 			]
 		);
 
-        // next plan to include tag
-        // $this->add_control(
-        //     'mailchimp_list_tags',
-        //     [
-        //         'label' => __('Tags', 'happy-elementor-addons'),
-        //         'type' => Controls_Manager::TEXT,
-        //         'label_block' => true,
-        //         'placeholder' => __('Enter tags here. Ex: Tag-1, Tag-2', 'happy-elementor-addons'),
-        //         'condition' => [
-        //             'mailchimp_lists!' => '',
-        //         ],
-        //         'dynamic' => [ 'active' => true]
-        //     ]
-        // );
+        $this->add_control(
+            'mailchimp_list_tags',
+            [
+                'label' => __('Tags', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'label_block' => true,
+                'placeholder' => __('Tag-1, Tag-2', 'happy-elementor-addons'),
+                'description' => __('Enter tag here to separate your subscribers. Use comma separator to use multiple tags. Example: Tag-1, Tag-2, Tag-3', 'happy-elementor-addons'),
+                'condition' => [
+                    'mailchimp_lists!' => '',
+                ],
+                'dynamic' => [ 'active' => true]
+            ]
+        );
 
         $this->end_controls_section();
 
@@ -1548,6 +1548,7 @@ class Mailchimp extends Base {
 
         $form_fields = (($settings['enable_name'] == 'yes' || $settings['enable_phone'] == 'yes') ? 'multiple_form_fields' : '');
         $list_id = ((is_array($settings['mailchimp_lists']))? (isset($settings['mailchimp_lists'][0])? ltrim($settings['mailchimp_lists'][0]): ''): (ltrim($settings['mailchimp_lists'])));
+
 ?>
         <div class="ha-mailchimp-wrapper" data-post-id="<?php echo esc_attr(get_the_id()); ?>" data-widget-id="<?php echo esc_attr($this->get_id()); ?>">
             <?php if (\Elementor\Plugin::$instance->editor->is_edit_mode() && $settings['mailchimp_success_message_show_in_editor'] == 'yes') : ?>
