@@ -416,6 +416,19 @@ class Twitter_Feed extends Base {
 			]
 		);
 
+		$this->add_control(
+			'link_target',
+			[
+				'label' => __( 'Link Target', 'happy-addons-pro' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'_self' => __( 'Open in same window', 'happy-addons-pro' ),
+					'_blank' => __( 'Open in new window', 'happy-addons-pro' ),
+				],
+				'default' => '_blank',
+			]
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -1337,6 +1350,10 @@ class Twitter_Feed extends Base {
 		if ( empty( $settings['tweets_limit'] ) ) {
 			$items = $twitter_data;
 		}
+		$link_target = 'target="_blank"';
+		if ( !empty( $settings['link_target'] ) && '_self' == $settings['link_target'] ) {
+			$link_target = 'target="_self"';
+		}
 		?>
 		<div class="ha-tweet-items">
 			<?php
@@ -1367,7 +1384,7 @@ class Twitter_Feed extends Base {
 
 						<div class="ha-tweet-author">
 							<?php if ( $settings['show_user_image'] == 'yes' ) : ?>
-								<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>">
+								<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" <?php echo $link_target;?>>
 									<img
 										src="<?php echo esc_url( $item['user']['profile_image_url_https'] ); ?>"
 										alt="<?php echo esc_attr( $item['user']['name'] ); ?>"
@@ -1378,13 +1395,13 @@ class Twitter_Feed extends Base {
 
 							<div class="ha-tweet-user">
 								<?php if ( $settings['show_name'] == 'yes' ) : ?>
-									<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-author-name">
+									<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-author-name" <?php echo $link_target;?>>
 										<?php echo esc_html( $item['user']['name'] ); ?>
 									</a>
 								<?php endif; ?>
 
 								<?php if ( $settings['show_user_name'] == 'yes' ) : ?>
-									<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-username">
+									<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-username" <?php echo $link_target;?>>
 										<?php echo esc_html( $settings['user_name'] ); ?>
 									</a>
 								<?php endif; ?>
@@ -1396,7 +1413,7 @@ class Twitter_Feed extends Base {
 								<?php echo esc_html( $description ); ?>
 
 								<?php if ( $settings['read_more'] == 'yes' ) : ?>
-									<a href="<?php echo esc_url( '//twitter.com/' . $item['user']['screen_name'] . '/status/' . $item['id'] ); ?>" target="_blank">
+									<a href="<?php echo esc_url( '//twitter.com/' . $item['user']['screen_name'] . '/status/' . $item['id'] ); ?>" <?php echo $link_target;?>>
 										<?php echo esc_html( $settings['read_more_text'] ); ?>
 									</a>
 								<?php endif; ?>
