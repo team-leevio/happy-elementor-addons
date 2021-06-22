@@ -1,4 +1,5 @@
-= 16 June 2021 =
+= 22 June 2021 =
+- New: Link Target option added to Twitter Feed widget
 - Fix: Mailchimp integration instruction improved
 
 = 2.25.0 - 16 June 2021 =
