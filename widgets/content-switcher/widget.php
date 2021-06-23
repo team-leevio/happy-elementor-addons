@@ -407,7 +407,7 @@ class Content_Switcher extends Base {
 		$this->add_responsive_control(
 			'label_spacing',
 			[
-				'label'      => __('Spacing', 'happy-elementor-addons'),
+				'label'      => __('Title Spacing', 'happy-elementor-addons'),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => ['px', '%'],
 				'range'      => [
@@ -595,21 +595,6 @@ class Content_Switcher extends Base {
 				],
 			]
 		);
-
-		// $this->add_control(
-		// 	'title_border_color_active',
-		// 	[
-		// 		'label'     => __( 'Border Color', 'happy-elementor-addons' ),
-		// 		'type'      => Controls_Manager::COLOR,
-		// 		'selectors' => [
-		// 			'{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button.active' => 'border-color: {{VALUE}}',
-		// 		],
-		// 		'condition' => [
-		// 			'select_design' => [ 'button' ],
-		// 			'title_border_normal_border!' => '',
-		// 		],
-		// 	]
-		// );
 
 		$this->add_control(
 			'button_border_radius_active',
@@ -915,14 +900,6 @@ class Content_Switcher extends Base {
 				'label'      => __('Section Padding', 'happy-elementor-addons'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
-				// 'default' 	 => [
-				// 	'top' => '20',
-				// 	'right' => '20',
-				// 	'bottom' => '20',
-				// 	'left' => '20',
-				// 	'unit' => 'px',
-				// 	'isLinked' => 'true',
-				// ],
 				'selectors'  => [
 					'{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-switch-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
