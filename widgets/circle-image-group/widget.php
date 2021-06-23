@@ -1,0 +1,397 @@
+<?php
+/**
+ * Circle Image Group widget class
+ *
+ * @package Happy_Addons
+ */
+namespace Happy_Addons\Elementor\Widget;
+
+use Elementor\Controls_Manager;
+use Elementor\Repeater;
+use Elementor\Utils;
+use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Text_Shadow;
+use Elementor\Group_Control_Typography;
+use Elementor\Core\Schemes\Typography;
+use Happy_Addons\Elementor\Icons_Manager;
+
+defined( 'ABSPATH' ) || die();
+
+class Circle_Image_Group extends Base {
+
+	/**
+	 * Get widget title.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return string Widget title.
+	 */
+	public function get_title() {
+		return __( 'Circle Image Group', 'happy-elementor-addons' );
+	}
+
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/icon-box/';
+	}
+
+	/**
+	 * Get widget icon.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return string Widget icon.
+	 */
+	public function get_icon() {
+		return 'hm hm-icon-box';
+	}
+
+	public function get_keywords() {
+		return [ 'info', 'box', 'icon' ];
+	}
+
+	protected function register_content_controls() {
+		$this->start_controls_section(
+			'_section_icon',
+			[
+				'label' => __( 'Items', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$repeater = new Repeater();
+
+		$repeater->add_control(
+			'media_type',
+			[
+				'label' => __( 'Media Type', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'img' => [
+						'title' => __( 'Image', 'plugin-domain' ),
+						'icon' => 'far fa-image',
+					],
+					'icon' => [
+						'title' => __( 'Icon', 'plugin-domain' ),
+						'icon' => 'fas fa-icons',
+					],
+				],
+				'default' => 'img',
+				'toggle' => true,
+			]
+		);
+
+		if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
+			$repeater->add_control(
+				'icon',
+				[
+					'label' => 'Icon',
+					'type' => Controls_Manager::ICON,
+					'label_block' => true,
+					'options' => ha_get_happy_icons(),
+					'default' => 'fa fa-smile-o',
+					'condition' => [ 'media_type' => 'icon' ],
+				]
+			);
+		} else {
+			$repeater->add_control(
+				'selected_icon',
+				[
+					'label' => 'Icon',
+					'type' => Controls_Manager::ICONS,
+					'fa4compatibility' => 'icon',
+					'label_block' => true,
+					'default' => [
+						'value' => 'fas fa-smile-wink',
+						'library' => 'fa-solid',
+					],
+					'condition' => [ 'media_type' => 'icon' ]
+				]
+			);
+		}
+
+		$repeater->add_control(
+			'image',
+			[
+				'type' => Controls_Manager::MEDIA,
+				'label' => __( 'Image', 'happy-elementor-addons' ),
+				'default' => [
+					'url' => Utils::get_placeholder_image_src(),
+				],
+				'condition' => [ 'media_type' => 'img' ],
+				'dynamic' => [
+					'active' => true,
+				]
+			]
+		);
+
+		$repeater->add_control(
+			'tooltip',
+			[
+				'type' => Controls_Manager::TEXT,
+				'label_block' => true,
+				'label' => __( 'Tooltip', 'happy-elementor-addons' ),
+				'placeholder' => __( 'Type title here', 'happy-elementor-addons' ),
+				'dynamic' => [
+					'active' => true,
+				]
+			]
+		);
+
+		$repeater->add_control(
+			'tooltip_position',
+			[
+				'label' => __( 'Tooltip Position', 'plugin-domain' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left'  => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-left'
+					],
+					'up'  => [
+						'title' => __( 'Up', 'happy-elementor-addons' ),
+						'icon' => 'eicon-v-align-top'
+					],
+					'down'  => [
+						'title' => __( 'Down', 'happy-elementor-addons' ),
+						'icon' => 'eicon-v-align-bottom'
+					],
+					'right'  => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-right'
+					],
+				],
+				'default' => 'up',
+				'toggle' => true,
+			]
+		);
+
+		$repeater->add_control(
+			'link',
+			[
+				'label' => __( 'Link', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::URL,
+				'label_block' => true,
+				'placeholder' => 'https://example.com',
+				'dynamic' => [
+					'active' => true,
+				]
+			]
+		);
+
+
+		$repeater->add_control(
+			'icon_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [ 'media_type' => 'icon' ],
+			]
+		);
+
+		$repeater->add_control(
+			'icon_bg_color',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [ 'media_type' => 'icon' ],
+			]
+		);
+
+		$placeholder = [
+			'image' => [
+				'url' => Utils::get_placeholder_image_src(),
+			],
+		];
+
+		$this->add_control(
+			'images',
+			[
+				'show_label' => false,
+				'type' => Controls_Manager::REPEATER,
+				'fields' => $repeater->get_controls(),
+				'title_field' => '<# print(tooltip || "Circle Image Group Item"); #>',
+				'default' => array_fill( 0, 4, $placeholder )
+			]
+		);
+
+		$this->add_responsive_control(
+			'align',
+			[
+				'label' => __( 'Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-right',
+					],
+					'justify' => [
+						'title' => __( 'Justify', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-justify',
+					],
+				],
+				'toggle' => true,
+				'default' => 'center',
+				'selectors' => [
+					'{{WRAPPER}}' => 'text-align: {{VALUE}};'
+				]
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
+	protected function register_style_controls() {
+		$this->start_controls_section(
+			'_section_style_icon',
+			[
+				'label' => __( 'Image / Icon', 'happy-elementor-addons' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_size',
+			[
+				'label' => __( 'Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 6,
+						'max' => 300,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 60,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-cig-item i,{{WRAPPER}} .ha-cig-item img' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_spacing',
+			[
+				'label' => __( 'Spacing', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 5,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-cig-item:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_border_size',
+			[
+				'label' => __( 'Border Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 3,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-cig-item i,{{WRAPPER}} .ha-cig-item img' => 'border-width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'icon_color',
+			[
+				'label' => __( 'Border Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-cig-item i,{{WRAPPER}} .ha-cig-item img' => 'border-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Render widget output on the frontend.
+	 *
+	 * Used to generate the final HTML displayed on the frontend.
+	 *
+	 * Note that if skin is selected, it will be rendered by the skin itself,
+	 * not the widget.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+	protected function render() {
+		$settings = $this->get_settings_for_display();
+
+		if ( empty( $settings['images'] ) ) {
+			return;
+		}
+		?>
+
+		<div class="ha-cig">
+			<?php foreach ( $settings['images'] as $item ) : 
+				$media_type = $item['media_type'];
+
+				if($media_type == "icon"){
+					$color = $item['icon_color']?$item['icon_color']:'#000000';
+					$bg = $item['icon_bg_color']?$item['icon_bg_color']:'#ffffff';
+
+					$attr['style'] = "background: ".$bg."; color: ".$color;
+
+					ob_start();
+					ha_render_icon( $item, 'icon', 'selected_icon', $attr);
+					$content = ob_get_clean();
+				}else{
+					$content = '<img src="'.$item['image']['url'].'" alt="">';
+				}
+
+				$tooltip_data = '';
+
+				$tooltip_txt = $item['tooltip'];
+				$tooltip_position = $item['tooltip_position'];
+
+				if($tooltip_txt){
+					$tooltip_data = 'tooltip="Tooltips '.$tooltip_position.'" flow="'.$tooltip_position.'"';
+				}
+
+				$id = 'ha-cig-item-' . $item['_id'];
+
+				$link = $item['link'];
+
+				if(!empty($link['url'])){
+					$this->add_link_attributes( $id, $item['link'] );
+					$wrap_start = '<a '.$this->get_render_attribute_string( $id ).' class="ha-cig-item ha-cig-item-outline" '.$tooltip_data.'>';
+					$wrap_end   = '</a>';
+				}else{
+					$wrap_start = '<span class="ha-cig-item ha-cig-item-outline" '.$tooltip_data.'>';
+					$wrap_end   = '</span>';
+				}
+
+				echo $wrap_start, $content, $wrap_end;
+			
+			endforeach; ?>
+			
+		</div>
+
+		<?php
+	}
+}
