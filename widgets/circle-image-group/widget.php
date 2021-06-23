@@ -66,15 +66,15 @@ class Circle_Image_Group extends Base {
 		$repeater->add_control(
 			'media_type',
 			[
-				'label' => __( 'Media Type', 'plugin-domain' ),
+				'label' => __( 'Media Type', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'img' => [
-						'title' => __( 'Image', 'plugin-domain' ),
+						'title' => __( 'Image', 'happy-elementor-addons' ),
 						'icon' => 'far fa-image',
 					],
 					'icon' => [
-						'title' => __( 'Icon', 'plugin-domain' ),
+						'title' => __( 'Icon', 'happy-elementor-addons' ),
 						'icon' => 'fas fa-icons',
 					],
 				],
@@ -143,7 +143,7 @@ class Circle_Image_Group extends Base {
 		$repeater->add_control(
 			'tooltip_position',
 			[
-				'label' => __( 'Tooltip Position', 'plugin-domain' ),
+				'label' => __( 'Tooltip Position', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left'  => [
@@ -163,7 +163,6 @@ class Circle_Image_Group extends Base {
 						'icon' => 'eicon-h-align-right'
 					],
 				],
-				'default' => 'up',
 				'toggle' => true,
 			]
 		);
@@ -234,11 +233,7 @@ class Circle_Image_Group extends Base {
 					'right' => [
 						'title' => __( 'Right', 'happy-elementor-addons' ),
 						'icon' => 'eicon-text-align-right',
-					],
-					'justify' => [
-						'title' => __( 'Justify', 'happy-elementor-addons' ),
-						'icon' => 'eicon-text-align-justify',
-					],
+					]
 				],
 				'toggle' => true,
 				'default' => 'center',
@@ -261,9 +256,9 @@ class Circle_Image_Group extends Base {
 		);
 
 		$this->add_responsive_control(
-			'icon_size',
+			'img_size',
 			[
-				'label' => __( 'Size', 'happy-elementor-addons' ),
+				'label' => __( 'Item Size', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range' => [
@@ -278,6 +273,28 @@ class Circle_Image_Group extends Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-cig-item i,{{WRAPPER}} .ha-cig-item img' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_size',
+			[
+				'label' => __( 'Icon Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 6,
+						'max' => 300,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 25,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-cig-item i' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -298,6 +315,13 @@ class Circle_Image_Group extends Base {
 			]
 		);
 
+		$this->add_control(
+			'hr1',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+			]
+		);
+
 		$this->add_responsive_control(
 			'icon_border_size',
 			[
@@ -315,13 +339,121 @@ class Circle_Image_Group extends Base {
 		);
 
 		$this->add_control(
-			'icon_color',
+			'border_color',
 			[
 				'label' => __( 'Border Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-cig-item i,{{WRAPPER}} .ha-cig-item img' => 'border-color: {{VALUE}};',
 				],
+			]
+		);
+
+		$this->add_control(
+			'hr2',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+			]
+		);
+
+		$this->add_control(
+			'icon_color',
+			[
+				'label' => __( 'Icon Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+			]
+		);
+
+		$this->add_control(
+			'icon_bg_color',
+			[
+				'label' => __( 'Icon Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+			]
+		);
+
+		$this->add_group_control( Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'item_box_shadow',
+				'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-cig-item-outline',
+			]
+		);
+
+		$this->end_controls_section();
+
+
+		$this->start_controls_section(
+			'_section_style_tooltip',
+			[
+				'label' => __( 'Tooltips', 'happy-elementor-addons' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'tooltip_position',
+			[
+				'label' => __( 'Position', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left'  => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-left'
+					],
+					'up'  => [
+						'title' => __( 'Up', 'happy-elementor-addons' ),
+						'icon' => 'eicon-v-align-top'
+					],
+					'down'  => [
+						'title' => __( 'Down', 'happy-elementor-addons' ),
+						'icon' => 'eicon-v-align-bottom'
+					],
+					'right'  => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-right'
+					],
+				],
+				'default' => 'up',
+				'toggle' => false,
+			]
+		);
+
+		$this->add_group_control( Group_Control_Typography::get_type(),
+			[
+				'name' => 'tooltip_content_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} [tooltip]::after',
+			]
+		);
+
+		$this->add_control(
+			'tooltip_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} [tooltip]::after' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'tooltip_background',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} [tooltip]::after' => 'background: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control( Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'tooltip_box_shadow',
+				'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} [tooltip]::after',
 			]
 		);
 
@@ -352,8 +484,8 @@ class Circle_Image_Group extends Base {
 				$media_type = $item['media_type'];
 
 				if($media_type == "icon"){
-					$color = $item['icon_color']?$item['icon_color']:'#000000';
-					$bg = $item['icon_bg_color']?$item['icon_bg_color']:'#ffffff';
+					$color = $item['icon_color']?$item['icon_color']:$settings['icon_color'];
+					$bg = $item['icon_bg_color']?$item['icon_bg_color']:$settings['icon_bg_color'];
 
 					$attr['style'] = "background: ".$bg."; color: ".$color;
 
@@ -367,7 +499,11 @@ class Circle_Image_Group extends Base {
 				$tooltip_data = '';
 
 				$tooltip_txt = $item['tooltip'];
-				$tooltip_position = $item['tooltip_position'];
+				if(!empty($item['tooltip_position'])){
+					$tooltip_position = $item['tooltip_position'];
+				}else{
+					$tooltip_position = $settings['tooltip_position'];
+				}
 
 				if($tooltip_txt){
 					$tooltip_data = 'tooltip="'.$tooltip_txt.'" flow="'.$tooltip_position.'"';
