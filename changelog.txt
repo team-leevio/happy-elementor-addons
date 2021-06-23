@@ -1,5 +1,6 @@
-= 22 June 2021 =
+= 23 June 2021 =
 
+- New: Prefix and Suffix option for the Fun Factor widget
 - New: Link Target option added to Twitter Feed widget
 - Tweak: Added Tag for subscriber lists
 - Fix: Mailchimp integration instruction improved
