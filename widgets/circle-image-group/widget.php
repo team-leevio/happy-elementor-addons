@@ -370,7 +370,7 @@ class Circle_Image_Group extends Base {
 				$tooltip_position = $item['tooltip_position'];
 
 				if($tooltip_txt){
-					$tooltip_data = 'tooltip="Tooltips '.$tooltip_position.'" flow="'.$tooltip_position.'"';
+					$tooltip_data = 'tooltip="'.$tooltip_txt.'" flow="'.$tooltip_position.'"';
 				}
 
 				$id = 'ha-cig-item-' . $item['_id'];
