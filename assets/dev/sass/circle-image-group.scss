@@ -122,7 +122,7 @@
 [tooltip][flow^="up"]::before {
   bottom: 100%;
   border-bottom-width: 0;
-  border-top-color: #333;
+  border-top-color: var(--caret-color,#333);
 }
 
 [tooltip]:not([flow])::after,
@@ -142,7 +142,7 @@
 [tooltip][flow^="down"]::before {
   top: 100%;
   border-top-width: 0;
-  border-bottom-color: #333;
+  border-bottom-color: var(--caret-color,#333);
 }
 
 [tooltip][flow^="down"]::after {
@@ -159,7 +159,7 @@
 [tooltip][flow^="left"]::before {
   top: 50%;
   border-right-width: 0;
-  border-left-color: #333;
+  border-left-color: var(--caret-color,#333);
   left: calc(0em - 5px);
   transform: translate(-.5em, -50%);
 }
@@ -174,7 +174,7 @@
 [tooltip][flow^="right"]::before {
   top: 50%;
   border-left-width: 0;
-  border-right-color: #333;
+  border-right-color: var(--caret-color,#333);
   right: calc(0em - 5px);
   transform: translate(.5em, -50%);
 }

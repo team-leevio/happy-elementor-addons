@@ -349,6 +349,18 @@ class Circle_Image_Group extends Base {
 			]
 		);
 
+		$this->add_responsive_control(
+            'icon_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-cig-item,{{WRAPPER}}  .ha-cig-item i, {{WRAPPER}} .ha-cig-item img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+		);
+
 		$this->add_control(
 			'hr2',
 			[
@@ -419,6 +431,37 @@ class Circle_Image_Group extends Base {
 			]
 		);
 
+		$this->add_responsive_control(
+			'tooltip_padding',
+			[
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} [tooltip]::after' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+            'tooltip_border_radius',
+            [
+                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} [tooltip]::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+		);
+
+		$this->add_control(
+			'hr',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+			]
+		);
+
 		$this->add_group_control( Group_Control_Typography::get_type(),
 			[
 				'name' => 'tooltip_content_typography',
@@ -445,6 +488,7 @@ class Circle_Image_Group extends Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} [tooltip]::after' => 'background: {{VALUE}};',
+					'{{WRAPPER}} [tooltip]::before' => '--caret-color: {{VALUE}};',
 				],
 			]
 		);
