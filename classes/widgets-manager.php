@@ -629,6 +629,16 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'image-accordion' => [
+				'title' => __( 'Image Accordion', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-image-accordion',
+				'css' => ['image-accordion'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
         ];
     }
 
