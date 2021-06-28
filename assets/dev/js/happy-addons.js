@@ -814,6 +814,24 @@
 
 		};
 
+		//Image Accordion
+		var Image_Accordion = function($scope) {
+			if($scope.hasClass('ha-image-accordion-click')) {
+				var items = $scope.find('.ha-ia-item');
+				items.each(function (inx, btn){
+					$(this).on('click', function(e) {
+						e.preventDefault();
+						if($(this).hasClass('active')) {
+							return;
+						}else {
+							items.removeClass('active');
+							$(this).addClass('active');
+						}
+					} );
+				});
+			}
+		};
+
 		var MailChimp = elementorModules.frontend.handlers.Base.extend({
 
 			onInit: function () {
@@ -1005,6 +1023,7 @@
 			'ha-data-table.default'         : DataTable,
 			'widget'                        : BackgroundOverlay,
 			'ha-event-calendar.default'		: Event_Calendar,
+			'ha-image-accordion.default'	: Image_Accordion,
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {

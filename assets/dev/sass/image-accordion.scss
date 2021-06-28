@@ -15,12 +15,11 @@
 
 .ha-image-accordion-wrapper {
     display: flex;
+	width: 100%;
 }
 
 .ha-ia-container {
-	padding: 75px 0;
-	margin: 0 auto;
-	width: 1140px;
+	width: 100%;
 }
 
 .ha-ia-gallery-wrap {
@@ -40,6 +39,8 @@
 	transition: all 0.4s ease;
 	overflow: hidden;
 	cursor: pointer;
+	justify-content: center;
+    align-items: center;
 }
 
 .ha-image-accordion-hover .ha-ia-item:hover {
@@ -50,6 +51,26 @@
     flex: 3;
 }
 
+.ha-ia-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ha-ia-content-icon-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+	&.ha-ia-icon-left {
+		flex-direction: row;
+	}
+
+	&.ha-ia-icon-right {
+		flex-direction: row-reverse;
+	}
+}
 
 /* On screens that are 768px or less, set the background color to blue */
 @media screen and (max-width: 768px) {

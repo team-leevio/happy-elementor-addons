@@ -337,11 +337,39 @@ class Image_Accordion extends Base {
         <div class="ha-image-accordion-wrapper">
             <div class="ha-ia-container">
                 <div class="ha-ia-gallery-wrap">
-                    <div style="background-image: url('https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');" class="ha-ia-item"></div>
-                    <div style="background-image: url('https://images.unsplash.com/photo-1622495892577-2d07f607968e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80');" class="ha-ia-item"></div>
-                    <div style="background-image: url('https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');" class="ha-ia-item active"></div>
-                    <div style="background-image: url('https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');" class="ha-ia-item"></div>
-                    <div style="background-image: url('https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');" class="ha-ia-item"></div>
+                    <?php foreach ($settings['accordion_items'] as $inx => $item) : ?>
+                        <div style="background-image: url('<?php echo esc_url($item['background_image']['url']); ?>');" class="ha-ia-item <?php echo esc_attr(($item['active'] == 'yes') ? 'active' : ''); ?>">
+                            <div class="ha-ia-content-wrapper">
+                                <?php if ($item['enable_popup'] == 'yes' || $item['enable_link'] == 'yes') : ?>
+                                    <div class="ha-ia-actions">
+                                        <?php if ($item['enable_popup'] == 'yes') : ?>
+                                            <span class="ha-ia-popup">
+                                                <a href="<?php echo esc_url($item['background_image']['url']); ?>" data-elementor-open-lightbox="yes">
+                                                    <?php ha_render_icon($item, null, 'popup_icon'); ?>
+                                                </a>
+                                            </span>
+                                        <?php endif; ?>
+                                        <?php if ($item['enable_link'] == 'yes') : ?>
+                                            <span class="ha-ia-link">
+                                                <a href="<?php echo esc_url($item['link_url']['url']); ?>" <?php echo esc_attr($item['link_url']['is_external'] ? 'target="_blank"' : ''); ?> <?php echo esc_attr($item['link_url']['nofollow'] ? 'rel="nofollow"' : ''); ?>>
+                                                    <?php ha_render_icon($item, null, 'link_icon'); ?>
+                                                </a>
+                                            </span>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="ha-ia-content-icon-title ha-ia-icon-<?php echo esc_attr($item['icon_align']); ?>">
+                                    <?php ha_render_icon($item, null, 'icon'); ?>
+                                    <span class="ha-ia-content-title"><?php echo esc_html($item['title']); ?></span>
+                                </div>
+                                <?php if ($item['enable_button'] == 'yes') : ?>
+                                    <div class="ha-ia-content-button">
+                                        <a href="<?php echo esc_attr($item['button_url']['url']); ?>"  <?php echo esc_attr($item['button_url']['is_external'] ? 'target="_blank"' : ''); ?> <?php echo esc_attr($item['button_url']['nofollow'] ? 'rel="nofollow"' : ''); ?>><?php echo esc_html($item['button_label']); ?></a>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
