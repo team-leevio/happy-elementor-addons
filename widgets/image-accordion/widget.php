@@ -55,7 +55,7 @@ class Image_Accordion extends Base {
         return ['image', 'accordion', 'image accordion'];
     }
 
-    protected function content() {
+    protected function content_common() {
         $this->start_controls_section(
             '_section_content',
             [
@@ -69,11 +69,23 @@ class Image_Accordion extends Base {
         $repeater->add_control(
             'background_image',
             [
-                'label' => __('Choose Image', 'plugin-domain'),
+                'label' => __('Choose Image', 'happy-elementor-addons'),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
+                'dynamic' => [
+                    'active' => true,
+                ],
+            ]
+        );
+
+        $repeater->add_control(
+            'label',
+            [
+                'label'   => __('Label', 'happy-elementor-addons'),
+                'type'    => Controls_Manager::TEXT,
+                'default' => __('Accordion Label', 'happy-elementor-addons'),
                 'dynamic' => [
                     'active' => true,
                 ],
@@ -95,8 +107,11 @@ class Image_Accordion extends Base {
         $repeater->add_control(
             'icon',
             [
-                'label' => __('Icon', 'happy-elementor-addons'),
+                'label' => __('Title Icon', 'happy-elementor-addons'),
                 'type'  => Controls_Manager::ICONS,
+                'label_block' => false,
+                'skin' => 'inline',
+                'exclude_inline_options' => ['svg'],
             ]
         );
 
@@ -110,6 +125,16 @@ class Image_Accordion extends Base {
                     'left'  => __('Left', 'happy-elementor-addons'),
                     'right' => __('Right', 'happy-elementor-addons'),
                 ],
+            ]
+        );
+
+        $repeater->add_control(
+            'description',
+            [
+                'label' => __('Description', 'happy-elementor-addons'),
+                'type' => Controls_Manager::WYSIWYG,
+                'default' => __('Image accordion content.', 'happy-elementor-addons'),
+                'placeholder' => __('Type your description here', 'happy-elementor-addons'),
             ]
         );
 
@@ -173,6 +198,13 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Popup Icon', 'happy-elementor-addons'),
                 'type'  => Controls_Manager::ICONS,
+                'label_block' => false,
+                'default' => [
+                    'value' => 'hm hm-popup',
+                    'library' => 'solid',
+                ],
+                'skin' => 'inline',
+                'exclude_inline_options' => ['svg'],
                 'condition' => [
                     'enable_popup' => 'yes',
                 ],
@@ -211,6 +243,13 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Link Icon', 'happy-elementor-addons'),
                 'type'  => Controls_Manager::ICONS,
+                'label_block' => false,
+                'default' => [
+                    'value' => 'hm hm-link',
+                    'library' => 'solid',
+                ],
+                'skin' => 'inline',
+                'exclude_inline_options' => ['svg'],
                 'condition' => [
                     'enable_link' => 'yes',
                 ],
@@ -309,14 +348,241 @@ class Image_Accordion extends Base {
      * Register content related controls
      */
     protected function register_content_controls() {
-        $this->content();
+        $this->content_common();
     }
 
-    protected function common() {
+    protected function style_common() {
         $this->start_controls_section(
             '_section_common',
             [
                 'label' => __('Common', 'happy-elementor-addons'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'common_height',
+            [
+                'label' => __('Height', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'vh'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                    'vh' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 500,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .box' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'common_margin',
+            [
+                'label' => __('Margin', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .your-class' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'common_padding',
+            [
+                'label' => __('Padding', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .your-class' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'common_border',
+                'label' => __('Border', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .wrapper',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'common_border_radius',
+            [
+                'label' => __('Border Radius', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .your-class' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'common_box_shadow',
+				'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .wrapper',
+			]
+		);
+
+        $this->start_controls_tabs('common_color');
+
+        $this->start_controls_tab(
+            'common_normal',
+            [
+                'label' => __('Normal', 'happy-elementor-addons'),
+
+            ],
+        );
+
+        $this->add_control(
+			'common_background_color',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+        $this->add_control(
+			'common_overlay_color',
+			[
+				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'common_hover',
+            [
+                'label' => __('Hover', 'happy-elementor-addons'),
+
+            ],
+        );
+
+        
+        $this->add_control(
+			'common_background_color_hover',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+        $this->add_control(
+			'common_overlay_color_hover',
+			[
+				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+        $this->add_control(
+			'common_border_color_hover',
+			[
+				'label' => __( 'Border Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
+				],
+                'condition' => [
+                    'common_border_border!' => '',
+                ],
+			]
+		);
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'common_active',
+            [
+                'label' => __('Active', 'happy-elementor-addons'),
+
+            ],
+        );
+
+        $this->add_control(
+			'common_background_color_active',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+        $this->add_control(
+			'common_overlay_color_active',
+			[
+				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+        $this->add_control(
+			'common_border_color_active',
+			[
+				'label' => __( 'Border Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
+				],
+                'condition' => [
+                    'common_border_border!' => '',
+                ],
+			]
+		);
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
+    }
+
+    protected function style_content() {
+
+        $this->start_controls_section(
+            '_section_style_content',
+            [
+                'label' => __('Content', 'happy-elementor-addons'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -328,7 +594,8 @@ class Image_Accordion extends Base {
      * Register styles related controls
      */
     protected function register_style_controls() {
-        $this->common();
+        $this->style_common();
+        $this->style_content();
     }
 
     protected function render() {
@@ -358,13 +625,19 @@ class Image_Accordion extends Base {
                                         <?php endif; ?>
                                     </div>
                                 <?php endif; ?>
+                                <?php if (!empty($item['label'])) : ?>
+                                    <span class="ha-ia-content-label"><?php echo esc_html($item['label']); ?></span>
+                                <?php endif; ?>
                                 <div class="ha-ia-content-icon-title ha-ia-icon-<?php echo esc_attr($item['icon_align']); ?>">
                                     <?php ha_render_icon($item, null, 'icon'); ?>
                                     <span class="ha-ia-content-title"><?php echo esc_html($item['title']); ?></span>
                                 </div>
+                                <?php if (!empty($item['description'])) :
+                                    printf('<div class="ha-ia-content-description">%s</div>', $this->parse_text_editor($item['description']));
+                                endif; ?>
                                 <?php if ($item['enable_button'] == 'yes') : ?>
                                     <div class="ha-ia-content-button">
-                                        <a href="<?php echo esc_attr($item['button_url']['url']); ?>"  <?php echo esc_attr($item['button_url']['is_external'] ? 'target="_blank"' : ''); ?> <?php echo esc_attr($item['button_url']['nofollow'] ? 'rel="nofollow"' : ''); ?>><?php echo esc_html($item['button_label']); ?></a>
+                                        <a href="<?php echo esc_attr($item['button_url']['url']); ?>" <?php echo esc_attr($item['button_url']['is_external'] ? 'target="_blank"' : ''); ?> <?php echo esc_attr($item['button_url']['nofollow'] ? 'rel="nofollow"' : ''); ?>><?php echo esc_html($item['button_label']); ?></a>
                                     </div>
                                 <?php endif; ?>
                             </div>
