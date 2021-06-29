@@ -341,6 +341,87 @@ class Image_Accordion extends Base {
             ]
         );
 
+        $this->add_control(
+			'content_text_align',
+			[
+				'label' => __( 'Text Align', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'flex-start' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'flex-end' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'default' => 'center',
+				'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper' => 'align-items: {{VALUE}};',
+                ],
+			]
+		);
+
+        $this->add_control(
+			'content_h_align',
+			[
+				'label' => __( 'Horizontal Align', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'flex-start' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-center',
+					],
+					'flex-end' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-right',
+					],
+				],
+				'default' => 'center',
+				'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-overlay' => 'justify-content: {{VALUE}};',
+                ],
+			]
+		);
+
+        $this->add_control(
+			'content_v_align',
+			[
+				'label' => __( 'Vertical Align', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'flex-start' => [
+						'title' => __( 'Top', 'happy-elementor-addons' ),
+						'icon' => 'eicon-v-align-top',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'eicon-v-align-middle',
+					],
+					'flex-end' => [
+						'title' => __( 'Bottom', 'happy-elementor-addons' ),
+						'icon' => 'eicon-v-align-bottom',
+					],
+				],
+				'default' => 'center',
+				'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-overlay' => 'align-items: {{VALUE}};',
+                ],
+			]
+		);
+
         $this->end_controls_section();
     }
 
@@ -386,7 +467,7 @@ class Image_Accordion extends Base {
                     'size' => 500,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .box' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ia-gallery-wrap' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -398,7 +479,7 @@ class Image_Accordion extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .your-class' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ia-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -410,7 +491,7 @@ class Image_Accordion extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .your-class' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ia-gallery-wrap' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -420,7 +501,7 @@ class Image_Accordion extends Base {
             [
                 'name' => 'common_border',
                 'label' => __('Border', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .wrapper',
+                'selector' => '{{WRAPPER}} .ha-ia-gallery-wrap',
             ]
         );
 
@@ -431,19 +512,30 @@ class Image_Accordion extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .your-class' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ia-gallery-wrap' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			[
-				'name' => 'common_box_shadow',
-				'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .wrapper',
-			]
-		);
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'common_box_shadow',
+                'label' => __('Box Shadow', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-ia-gallery-wrap',
+            ]
+        );
+
+        $this->add_control(
+            'common_background_color',
+            [
+                'label' => __('Background Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-gallery-wrap' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->start_controls_tabs('common_color');
 
@@ -456,26 +548,15 @@ class Image_Accordion extends Base {
         );
 
         $this->add_control(
-			'common_background_color',
-			[
-				'label' => __( 'Background Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
-        $this->add_control(
-			'common_overlay_color',
-			[
-				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
+            'common_overlay_color',
+            [
+                'label' => __('Overlay Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-item .ha-overlay' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -487,42 +568,30 @@ class Image_Accordion extends Base {
             ],
         );
 
-        
         $this->add_control(
-			'common_background_color_hover',
-			[
-				'label' => __( 'Background Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
-        $this->add_control(
-			'common_overlay_color_hover',
-			[
-				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
-        $this->add_control(
-			'common_border_color_hover',
-			[
-				'label' => __( 'Border Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-                'condition' => [
-                    'common_border_border!' => '',
+            'common_overlay_color_hover',
+            [
+                'label' => __('Overlay Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-item:hover .ha-overlay' => 'background-color: {{VALUE}}',
                 ],
-			]
-		);
+            ]
+        );
+
+        // $this->add_control(
+        //     'common_border_color_hover',
+        //     [
+        //         'label' => __('Border Color', 'happy-elementor-addons'),
+        //         'type' => Controls_Manager::COLOR,
+        //         'selectors' => [
+        //             '{{WRAPPER}} .title' => 'color: {{VALUE}}',
+        //         ],
+        //         'condition' => [
+        //             'common_border_border!' => '',
+        //         ],
+        //     ]
+        // );
 
         $this->end_controls_tab();
 
@@ -535,40 +604,29 @@ class Image_Accordion extends Base {
         );
 
         $this->add_control(
-			'common_background_color_active',
-			[
-				'label' => __( 'Background Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
-        $this->add_control(
-			'common_overlay_color_active',
-			[
-				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
-        $this->add_control(
-			'common_border_color_active',
-			[
-				'label' => __( 'Border Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-                'condition' => [
-                    'common_border_border!' => '',
+            'common_overlay_color_active',
+            [
+                'label' => __('Overlay Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-item.active .ha-overlay' => 'background-color: {{VALUE}}',
                 ],
-			]
-		);
+            ]
+        );
+
+        // $this->add_control(
+        //     'common_border_color_active',
+        //     [
+        //         'label' => __('Border Color', 'happy-elementor-addons'),
+        //         'type' => Controls_Manager::COLOR,
+        //         'selectors' => [
+        //             '{{WRAPPER}} .title' => 'color: {{VALUE}}',
+        //         ],
+        //         'condition' => [
+        //             'common_border_border!' => '',
+        //         ],
+        //     ]
+        // );
 
         $this->end_controls_tab();
 
@@ -606,40 +664,42 @@ class Image_Accordion extends Base {
                 <div class="ha-ia-gallery-wrap">
                     <?php foreach ($settings['accordion_items'] as $inx => $item) : ?>
                         <div style="background-image: url('<?php echo esc_url($item['background_image']['url']); ?>');" class="ha-ia-item <?php echo esc_attr(($item['active'] == 'yes') ? 'active' : ''); ?>">
-                            <div class="ha-ia-content-wrapper">
-                                <?php if ($item['enable_popup'] == 'yes' || $item['enable_link'] == 'yes') : ?>
-                                    <div class="ha-ia-actions">
-                                        <?php if ($item['enable_popup'] == 'yes') : ?>
-                                            <span class="ha-ia-popup">
-                                                <a href="<?php echo esc_url($item['background_image']['url']); ?>" data-elementor-open-lightbox="yes">
-                                                    <?php ha_render_icon($item, null, 'popup_icon'); ?>
-                                                </a>
-                                            </span>
-                                        <?php endif; ?>
-                                        <?php if ($item['enable_link'] == 'yes') : ?>
-                                            <span class="ha-ia-link">
-                                                <a href="<?php echo esc_url($item['link_url']['url']); ?>" <?php echo esc_attr($item['link_url']['is_external'] ? 'target="_blank"' : ''); ?> <?php echo esc_attr($item['link_url']['nofollow'] ? 'rel="nofollow"' : ''); ?>>
-                                                    <?php ha_render_icon($item, null, 'link_icon'); ?>
-                                                </a>
-                                            </span>
-                                        <?php endif; ?>
+                            <div class="ha-overlay">
+                                <div class="ha-ia-content-wrapper">
+                                    <?php if ($item['enable_popup'] == 'yes' || $item['enable_link'] == 'yes') : ?>
+                                        <div class="ha-ia-actions">
+                                            <?php if ($item['enable_popup'] == 'yes') : ?>
+                                                <span class="ha-ia-popup">
+                                                    <a href="<?php echo esc_url($item['background_image']['url']); ?>" data-elementor-open-lightbox="yes">
+                                                        <?php ha_render_icon($item, null, 'popup_icon'); ?>
+                                                    </a>
+                                                </span>
+                                            <?php endif; ?>
+                                            <?php if ($item['enable_link'] == 'yes') : ?>
+                                                <span class="ha-ia-link">
+                                                    <a href="<?php echo esc_url($item['link_url']['url']); ?>" <?php echo esc_attr($item['link_url']['is_external'] ? 'target="_blank"' : ''); ?> <?php echo esc_attr($item['link_url']['nofollow'] ? 'rel="nofollow"' : ''); ?>>
+                                                        <?php ha_render_icon($item, null, 'link_icon'); ?>
+                                                    </a>
+                                                </span>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if (!empty($item['label'])) : ?>
+                                        <span class="ha-ia-content-label"><?php echo esc_html($item['label']); ?></span>
+                                    <?php endif; ?>
+                                    <div class="ha-ia-content-icon-title ha-ia-icon-<?php echo esc_attr($item['icon_align']); ?>">
+                                        <?php ha_render_icon($item, null, 'icon'); ?>
+                                        <span class="ha-ia-content-title"><?php echo esc_html($item['title']); ?></span>
                                     </div>
-                                <?php endif; ?>
-                                <?php if (!empty($item['label'])) : ?>
-                                    <span class="ha-ia-content-label"><?php echo esc_html($item['label']); ?></span>
-                                <?php endif; ?>
-                                <div class="ha-ia-content-icon-title ha-ia-icon-<?php echo esc_attr($item['icon_align']); ?>">
-                                    <?php ha_render_icon($item, null, 'icon'); ?>
-                                    <span class="ha-ia-content-title"><?php echo esc_html($item['title']); ?></span>
+                                    <?php if (!empty($item['description'])) :
+                                        printf('<div class="ha-ia-content-description">%s</div>', $this->parse_text_editor($item['description']));
+                                    endif; ?>
+                                    <?php if ($item['enable_button'] == 'yes') : ?>
+                                        <a class="ha-ia-content-button" href="<?php echo esc_attr($item['button_url']['url']); ?>" <?php echo esc_attr($item['button_url']['is_external'] ? 'target="_blank"' : ''); ?> <?php echo esc_attr($item['button_url']['nofollow'] ? 'rel="nofollow"' : ''); ?>>
+                                            <?php echo esc_html($item['button_label']); ?>
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
-                                <?php if (!empty($item['description'])) :
-                                    printf('<div class="ha-ia-content-description">%s</div>', $this->parse_text_editor($item['description']));
-                                endif; ?>
-                                <?php if ($item['enable_button'] == 'yes') : ?>
-                                    <div class="ha-ia-content-button">
-                                        <a href="<?php echo esc_attr($item['button_url']['url']); ?>" <?php echo esc_attr($item['button_url']['is_external'] ? 'target="_blank"' : ''); ?> <?php echo esc_attr($item['button_url']['nofollow'] ? 'rel="nofollow"' : ''); ?>><?php echo esc_html($item['button_label']); ?></a>
-                                    </div>
-                                <?php endif; ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
