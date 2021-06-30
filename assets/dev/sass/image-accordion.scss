@@ -123,6 +123,10 @@
 		width: 1.9em;
 
 		a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			
 			i {
 				font-size: 0.9em;
 				padding: 0.5em;
