@@ -439,6 +439,55 @@ class Image_Accordion extends Base {
         );
 
         $this->add_responsive_control(
+            'image_gutter',
+            [
+                'label' => __('Image Gutter', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                    'em' => [
+                        'min' => 0,
+                        'max' => 16,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 0,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}}.ha-image-accordion-horizontal .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-image-accordion-tablet-horizontal .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-image-accordion-mobile-horizontal .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
+
+                    '{{WRAPPER}}.ha-image-accordion-vertical .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-image-accordion-tablet-vertical .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-image-accordion-mobile-vertical .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_radius',
+            [
+                'label' => __('Image Radius', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-gallery-wrap .ha-ia-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
             'common_height',
             [
                 'label' => __('Height', 'happy-elementor-addons'),
@@ -632,6 +681,94 @@ class Image_Accordion extends Base {
         $this->end_controls_section();
     }
 
+    protected function style_title() {
+        $this->start_controls_section(
+            '_section_style_title',
+            [
+                'label' => __('Title', 'happy-elementor-addons'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'title_margin',
+            [
+                'label' => __('Margin', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'title_color',
+            [
+                'label' => __('Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'title_typography',
+                'label' => __('Typography', 'happy-elementor-addons'),
+                'fields_options' => [
+                    'typography' => [
+                        'default' => 'yes'
+                    ],
+                    'font_family' => [
+                        'default' => 'Nunito',
+                    ],
+                    'font_weight' => [
+                        'default' => 'bold', // 100, 200, 300, 400, 500, 600, 700, 800, 900, normal, bold
+                    ],
+                    'font_size' => [
+                        'default' => [
+                            'unit' => 'px', // px, em, rem, vh
+                            'size' => '30', // any number
+                        ],
+                    ],
+                ],
+                'selector' => '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'space_between_title_icon',
+            [
+                'label' => __('Space Between Title Icon', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title i + span' => 'margin-left: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+    }
+
     protected function style_content() {
 
         $this->start_controls_section(
@@ -642,11 +779,36 @@ class Image_Accordion extends Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'content_margin',
+            [
+                'label' => __('Margin', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-container .ha-ia-content-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'content_padding',
+            [
+                'label' => __('Padding', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-container .ha-ia-content-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->add_control(
             'label_heading',
             [
                 'label' => __('Label', 'happy-elementor-addons'),
                 'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
             ]
         );
 
@@ -657,19 +819,7 @@ class Image_Accordion extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .your-class' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'label_padding',
-            [
-                'label' => __('Padding', 'happy-elementor-addons'),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em'],
-                'selectors' => [
-                    '{{WRAPPER}} .your-class' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ia-container .ha-ia-content-wrapper .ha-ia-content-label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -680,7 +830,7 @@ class Image_Accordion extends Base {
                 'label' => __('Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .label' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ia-container .ha-ia-content-wrapper .ha-ia-content-label' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -690,7 +840,24 @@ class Image_Accordion extends Base {
             [
                 'name' => 'label_typography',
                 'label' => __('Typography', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .text',
+                'fields_options' => [
+                    'typography' => [
+                        'default' => 'yes'
+                    ],
+                    'font_family' => [
+                        'default' => 'Nunito',
+                    ],
+                    'font_weight' => [
+                        'default' => '400', // 100, 200, 300, 400, 500, 600, 700, 800, 900, normal, bold
+                    ],
+                    'font_size' => [
+                        'default' => [
+                            'unit' => 'px', // px, em, rem, vh
+                            'size' => '16', // any number
+                        ],
+                    ],
+                ],
+                'selector' => '{{WRAPPER}} .ha-ia-container .ha-ia-content-wrapper .ha-ia-content-label',
             ]
         );
 
@@ -710,22 +877,11 @@ class Image_Accordion extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .your-class' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ia-container .ha-ia-content-wrapper .ha-ia-content-description' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
-        $this->add_responsive_control(
-            'description_padding',
-            [
-                'label' => __('Padding', 'happy-elementor-addons'),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em'],
-                'selectors' => [
-                    '{{WRAPPER}} .your-class' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
 
         $this->add_control(
             'description_color',
@@ -733,7 +889,7 @@ class Image_Accordion extends Base {
                 'label' => __('Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .description' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ia-container .ha-ia-content-wrapper .ha-ia-content-description' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -743,90 +899,24 @@ class Image_Accordion extends Base {
             [
                 'name' => 'description_typography',
                 'label' => __('Typography', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .text',
-            ]
-        );
-
-        $this->end_controls_section();
-    }
-
-    protected function style_title() {
-        $this->start_controls_section(
-            '_section_style_title',
-            [
-                'label' => __('Title', 'happy-elementor-addons'),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_responsive_control(
-            'title_margin',
-            [
-                'label' => __('Margin', 'happy-elementor-addons'),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em'],
-                'selectors' => [
-                    '{{WRAPPER}} .your-class' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'title_padding',
-            [
-                'label' => __('Padding', 'happy-elementor-addons'),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em'],
-                'selectors' => [
-                    '{{WRAPPER}} .your-class' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'title_color',
-            [
-                'label' => __('Title Color', 'happy-elementor-addons'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .title' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'title_typography',
-                'label' => __('Typography', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .text',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'icon_size',
-            [
-                'label' => __('Icon Size', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
+                'fields_options' => [
+                    'typography' => [
+                        'default' => 'yes'
                     ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
+                    'font_family' => [
+                        'default' => 'Nunito',
+                    ],
+                    'font_weight' => [
+                        'default' => '500', // 100, 200, 300, 400, 500, 600, 700, 800, 900, normal, bold
+                    ],
+                    'font_size' => [
+                        'default' => [
+                            'unit' => 'px', // px, em, rem, vh
+                            'size' => '20', // any number
+                        ],
                     ],
                 ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 22,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .box' => 'font-size: {{SIZE}}{{UNIT}};',
-                ],
+                'selector' => '{{WRAPPER}} .ha-ia-container .ha-ia-content-wrapper .ha-ia-content-description',
             ]
         );
 
@@ -848,8 +938,15 @@ class Image_Accordion extends Base {
                 'label' => __('Padding', 'happy-elementor-addons'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
+                'default' => [
+                    'top' => '5',
+                    'right' => '15',
+                    'bottom' => '5',
+                    'left' => '15',
+                    'isLinked' => false,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .your-class' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -859,7 +956,24 @@ class Image_Accordion extends Base {
             [
                 'name' => 'button_typography',
                 'label' => __('Typography', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .text',
+                'fields_options' => [
+                    'typography' => [
+                        'default' => 'yes'
+                    ],
+                    'font_family' => [
+                        'default' => 'Nunito',
+                    ],
+                    'font_weight' => [
+                        'default' => '400', // 100, 200, 300, 400, 500, 600, 700, 800, 900, normal, bold
+                    ],
+                    'font_size' => [
+                        'default' => [
+                            'unit' => 'px', // px, em, rem, vh
+                            'size' => '16', // any number
+                        ],
+                    ],
+                ],
+                'selector' => '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button',
             ]
         );
 
@@ -868,7 +982,7 @@ class Image_Accordion extends Base {
             [
                 'name' => 'button_border',
                 'label' => __('Border', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .ha-ia-gallery-wrap',
+                'selector' => '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button',
             ]
         );
 
@@ -879,7 +993,7 @@ class Image_Accordion extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .your-class' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -895,25 +1009,25 @@ class Image_Accordion extends Base {
         );
 
         $this->add_control(
-			'button_color',
-			[
-				'label' => __( 'Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
+            'button_color',
+            [
+                'label' => __('Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name' => 'button_background',
-				'label' => __( 'Background', 'happy-elementor-addons' ),
-				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .wrapper',
-			]
-		);
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'button_background',
+                'label' => __('Background', 'happy-elementor-addons'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button',
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -926,39 +1040,39 @@ class Image_Accordion extends Base {
         );
 
         $this->add_control(
-			'button_color_hover',
-			[
-				'label' => __( 'Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
+            'button_color_hover',
+            [
+                'label' => __('Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button:hover' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name' => 'button_background_hover',
-				'label' => __( 'Background', 'happy-elementor-addons' ),
-				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .wrapper',
-			]
-		);
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'button_background_hover',
+                'label' => __('Background', 'happy-elementor-addons'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button:hover',
+            ]
+        );
 
         $this->add_control(
-			'button_border_color_hover',
-			[
-				'label' => __( 'Border Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
+            'button_border_color_hover',
+            [
+                'label' => __('Border Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
                 'condition' => [
                     'button_border_border!' => ''
                 ],
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button:hover' => 'border-color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -977,65 +1091,85 @@ class Image_Accordion extends Base {
         );
 
         $this->add_responsive_control(
-			'action_icon_size',
-			[
-				'label' => __( 'Icon Size', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 100,
-						'step' => 1,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 16,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .box' => 'width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
+            'action_margin',
+            [
+                'label' => __('Margin', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'default' => [
+                    'top' => '',
+                    'right' => '',
+                    'bottom' => '10',
+                    'left' => '',
+                    'isLinked' => false,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_responsive_control(
-			'action_icon_space_between',
-			[
-				'label' => __( 'Space Between', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 100,
-						'step' => 1,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 16,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .box' => 'width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
+            'action_icon_size',
+            [
+                'label' => __('Icon Size', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 22,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-popup' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-link' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'action_icon_space_between',
+            [
+                'label' => __('Space Between', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 15,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-popup+.ha-ia-link' => 'margin-left: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_group_control(
             Group_Control_Border::get_type(),
             [
                 'name' => 'action_icon_border',
                 'label' => __('Border', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .ha-ia-gallery-wrap',
+                'selector' => '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions span',
             ]
         );
 
@@ -1054,7 +1188,7 @@ class Image_Accordion extends Base {
                     'isLinked' => true,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .your-class' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions span' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1070,37 +1204,37 @@ class Image_Accordion extends Base {
         );
 
         $this->add_control(
-			'action_popup_icon_color',
-			[
-				'label' => __( 'Popup Icon Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
+            'action_popup_icon_color',
+            [
+                'label' => __('Popup Icon Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-popup i' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->add_control(
-			'action_link_icon_color',
-			[
-				'label' => __( 'Link Icon Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
+            'action_link_icon_color',
+            [
+                'label' => __('Link Icon Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-link i' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->add_control(
-			'action_icon_background_color',
-			[
-				'label' => __( 'Background Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
+            'action_icon_background_color',
+            [
+                'label' => __('Background Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions span' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -1113,51 +1247,51 @@ class Image_Accordion extends Base {
         );
 
         $this->add_control(
-			'action_popup_icon_color_hover',
-			[
-				'label' => __( 'Popup Icon Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
+            'action_popup_icon_color_hover',
+            [
+                'label' => __('Popup Icon Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-popup:hover i' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->add_control(
-			'action_link_icon_color_hover',
-			[
-				'label' => __( 'Link Icon Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
+            'action_link_icon_color_hover',
+            [
+                'label' => __('Link Icon Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-link:hover i' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->add_control(
-			'action_icon_background_color_hover',
-			[
-				'label' => __( 'Background Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
+            'action_icon_background_color_hover',
+            [
+                'label' => __('Background Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions span:hover' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->add_control(
-			'action_icon_border_color_hover',
-			[
-				'label' => __( 'Border Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
+            'action_icon_border_color_hover',
+            [
+                'label' => __('Border Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
                 'condition' => [
                     'action_icon_border_border!' => ''
                 ],
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions span:hover' => 'border-color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->end_controls_tab();
 
