@@ -761,7 +761,8 @@ class Image_Accordion extends Base {
                     'size' => 10,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title i + span' => 'margin-left: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title.ha-ia-icon-left i + span' => 'margin-left: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title.ha-ia-icon-right i + span' => 'margin-right: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
