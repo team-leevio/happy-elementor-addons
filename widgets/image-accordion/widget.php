@@ -314,7 +314,7 @@ class Image_Accordion extends Base {
         $this->add_control(
             'active_behavior',
             [
-                'label'         => esc_html__('Active Behavoir', 'happy-elementor-addons'),
+                'label'         => esc_html__('Active Behavior', 'happy-elementor-addons'),
                 'type'          => Controls_Manager::SELECT,
                 'options'       => [
                     'click' => esc_html__('Click', 'happy-elementor-addons'),
