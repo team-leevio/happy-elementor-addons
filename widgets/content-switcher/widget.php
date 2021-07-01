@@ -373,7 +373,7 @@ class Content_Switcher extends Base {
 						'default' => 'Bold',
 					],
 				],
-				'selector' => '{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button, {{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch',
+				'selector' => '{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button span, {{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch',
 
 			]
 		);
@@ -984,6 +984,18 @@ class Content_Switcher extends Base {
 					],
 				],
 				'selector' => '{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-content-section',
+			]
+		);
+
+		
+		$this->add_control(
+			'content_color',
+			[
+				'label'     => __('Color', 'happy-elementor-addons'),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-cs-content-container .ha-cs-content-wrapper .ha-cs-content-section' => 'color: {{VALUE}}',
+				],
 			]
 		);
 
