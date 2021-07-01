@@ -439,55 +439,6 @@ class Image_Accordion extends Base {
         );
 
         $this->add_responsive_control(
-            'image_gutter',
-            [
-                'label' => __('Image Gutter', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                    'em' => [
-                        'min' => 0,
-                        'max' => 16,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 0,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}}.ha-image-accordion-horizontal .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-image-accordion-tablet-horizontal .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-image-accordion-mobile-horizontal .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
-
-                    '{{WRAPPER}}.ha-image-accordion-vertical .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-image-accordion-tablet-vertical .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.ha-image-accordion-mobile-vertical .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'image_radius',
-            [
-                'label' => __('Image Radius', 'happy-elementor-addons'),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ia-gallery-wrap .ha-ia-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
             'common_height',
             [
                 'label' => __('Height', 'happy-elementor-addons'),
@@ -583,6 +534,72 @@ class Image_Accordion extends Base {
             ]
         );
 
+        $this->add_control(
+			'common_image_control_heading',
+			[
+				'label' => __( 'Image Controls', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+        $this->add_responsive_control(
+            'image_gutter',
+            [
+                'label' => __('Gutter', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                    'em' => [
+                        'min' => 0,
+                        'max' => 16,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 0,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}}.ha-image-accordion-horizontal .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-image-accordion-tablet-horizontal .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-image-accordion-mobile-horizontal .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
+
+                    '{{WRAPPER}}.ha-image-accordion-vertical .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-image-accordion-tablet-vertical .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.ha-image-accordion-mobile-vertical .ha-ia-item' => '--ha-ia-gutter-margin: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_radius',
+            [
+                'label' => __('Radius', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-gallery-wrap .ha-ia-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+			'common_overlay_color_heading',
+			[
+				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+			]
+		);
+
         $this->start_controls_tabs('common_color');
 
         $this->start_controls_tab(
@@ -593,16 +610,26 @@ class Image_Accordion extends Base {
             ],
         );
 
-        $this->add_control(
-            'common_overlay_color',
-            [
-                'label' => __('Overlay Color', 'happy-elementor-addons'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ia-item .ha-overlay' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
+        $this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'common_overlay_color',
+				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .ha-ia-item .ha-overlay',
+			]
+		);
+
+        // $this->add_control(
+        //     'common_overlay_color',
+        //     [
+        //         'label' => __('Overlay Color', 'happy-elementor-addons'),
+        //         'type' => Controls_Manager::COLOR,
+        //         'selectors' => [
+        //             '{{WRAPPER}} .ha-ia-item .ha-overlay' => 'background-color: {{VALUE}}',
+        //         ],
+        //     ]
+        // );
 
         $this->end_controls_tab();
 
@@ -614,27 +641,23 @@ class Image_Accordion extends Base {
             ],
         );
 
-        $this->add_control(
-            'common_overlay_color_hover',
-            [
-                'label' => __('Overlay Color', 'happy-elementor-addons'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ia-item:hover .ha-overlay' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
+        $this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'common_overlay_color_hover',
+				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .ha-ia-item:hover .ha-overlay',
+			]
+		);
 
         // $this->add_control(
-        //     'common_border_color_hover',
+        //     'common_overlay_color_hover',
         //     [
-        //         'label' => __('Border Color', 'happy-elementor-addons'),
+        //         'label' => __('Overlay Color', 'happy-elementor-addons'),
         //         'type' => Controls_Manager::COLOR,
         //         'selectors' => [
-        //             '{{WRAPPER}} .title' => 'color: {{VALUE}}',
-        //         ],
-        //         'condition' => [
-        //             'common_border_border!' => '',
+        //             '{{WRAPPER}} .ha-ia-item:hover .ha-overlay' => 'background-color: {{VALUE}}',
         //         ],
         //     ]
         // );
@@ -649,27 +672,24 @@ class Image_Accordion extends Base {
             ],
         );
 
-        $this->add_control(
-            'common_overlay_color_active',
-            [
-                'label' => __('Overlay Color', 'happy-elementor-addons'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ia-item.active .ha-overlay' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
+        
+        $this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'common_overlay_color_active',
+				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .ha-ia-item.active .ha-overlay',
+			]
+		);
 
         // $this->add_control(
-        //     'common_border_color_active',
+        //     'common_overlay_color_active',
         //     [
-        //         'label' => __('Border Color', 'happy-elementor-addons'),
+        //         'label' => __('Overlay Color', 'happy-elementor-addons'),
         //         'type' => Controls_Manager::COLOR,
         //         'selectors' => [
-        //             '{{WRAPPER}} .title' => 'color: {{VALUE}}',
-        //         ],
-        //         'condition' => [
-        //             'common_border_border!' => '',
+        //             '{{WRAPPER}} .ha-ia-item.active .ha-overlay' => 'background-color: {{VALUE}}',
         //         ],
         //     ]
         // );
@@ -1216,10 +1236,36 @@ class Image_Accordion extends Base {
         );
 
         $this->add_control(
+            'action_popup_icon_background_color',
+            [
+                'label' => __('Popup Background Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-popup' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'action_popup_icon_border_color',
+            [
+                'label' => __('Popup Border Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'condition' => [
+                    'action_icon_border_border!' => ''
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-popup' => 'border-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
             'action_link_icon_color',
             [
                 'label' => __('Link Icon Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
+                'separator' => 'before',
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-link i' => 'color: {{VALUE}}',
                 ],
@@ -1227,12 +1273,26 @@ class Image_Accordion extends Base {
         );
 
         $this->add_control(
-            'action_icon_background_color',
+            'action_link_icon_background_color',
             [
-                'label' => __('Background Color', 'happy-elementor-addons'),
+                'label' => __('Link Background Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions span' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-link' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'action_link_icon_border_color',
+            [
+                'label' => __('Link Border Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'condition' => [
+                    'action_icon_border_border!' => ''
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-link' => 'border-color: {{VALUE}}',
                 ],
             ]
         );
@@ -1258,11 +1318,38 @@ class Image_Accordion extends Base {
             ]
         );
 
+        
+        $this->add_control(
+            'action_popup_icon_background_color_hover',
+            [
+                'label' => __('Popup Background Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-popup:hover' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'action_popup_icon_border_color_hover',
+            [
+                'label' => __('Popup Border Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'condition' => [
+                    'action_icon_border_border!' => ''
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-popup:hover' => 'border-color: {{VALUE}}',
+                ],
+            ]
+        );
+
         $this->add_control(
             'action_link_icon_color_hover',
             [
                 'label' => __('Link Icon Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
+                'separator' => 'before',
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-link:hover i' => 'color: {{VALUE}}',
                 ],
@@ -1270,26 +1357,26 @@ class Image_Accordion extends Base {
         );
 
         $this->add_control(
-            'action_icon_background_color_hover',
+            'action_link_icon_background_color_hover',
             [
-                'label' => __('Background Color', 'happy-elementor-addons'),
+                'label' => __('Link Background Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions span:hover' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-link:hover' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
 
         $this->add_control(
-            'action_icon_border_color_hover',
+            'action_link_icon_border_color_hover',
             [
-                'label' => __('Border Color', 'happy-elementor-addons'),
+                'label' => __('Link Border Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
                 'condition' => [
                     'action_icon_border_border!' => ''
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions span:hover' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-link:hover' => 'border-color: {{VALUE}}',
                 ],
             ]
         );
