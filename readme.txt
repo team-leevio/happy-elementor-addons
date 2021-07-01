@@ -148,6 +148,7 @@ _Introducing Happy Addons Pro (Check What You Will Get in the Pro Version of Hap
 
 If you are still craving for more widgets, then the following premium widgets are there to quench your thirst. The best part is that you can copy and paste the design source code so you won't have to make any design from scratch. Let's explore the world of Happy Addons Pro Widgets:
 
+- [**Advanced Slider**](https://demo.happyaddons.com/elementor-advanced-slider-widget-demo/) – Bored with your typical sliders? Try our advanced slider for Elementor. Create mesmerizing slides within your Elementor Sites using our Advanced Slider.
 - [**Happy Mega Menu**](https://demo.happyaddons.com/elementor-happy-mega-menu-widget-demo/) – Struggling with large-scale menu items? Happy Mega Menu is the best solution to your problems. You can create mega menus lik Adidas, Dribbble, Puma, Invision etc.
 - [**Feature List**](https://demo.happyaddons.com/elementor-feature-list-widget-demo/) – You can display your product features using different styles using this widget. As a bonus, you can also customize each and every predefined design.
 - [**Pricing Table**](https://demo.happyaddons.com/elementor-pricing-table-widget-demo/) – This one of a kind widget will allow you to create any kind of pricing table under the sun. As a surprise, you can use gradient background, oval-shaped button, font awesome icons, background fill color, different heights, dark mood and so on.
