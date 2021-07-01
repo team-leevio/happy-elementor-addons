@@ -188,6 +188,21 @@
 	}
 }
 
+.ha_noAnimation {
+	animation-name: noAnimation;
+	animation-duration: 0.3s;
+}
+@keyframes noAnimation {
+	from {
+		opacity: 0;
+		visibility: visible;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
 /* On screens that are 768px or less, set the background color to blue */
 @media screen and (max-width: 768px) {
 

@@ -1413,7 +1413,7 @@ class Image_Accordion extends Base {
 
     protected function render() {
         $settings = $this->get_settings_for_display();
-        $animation_class = ( ($settings['content_animation'] == 'yes')? 'ha_fadeInUp': '' );
+        $animation_class = ( ($settings['content_animation'] == 'yes')? 'ha_fadeInUp': 'ha_noAnimation' );
 ?>
         <div class="ha-image-accordion-wrapper">
             <div class="ha-ia-container">
