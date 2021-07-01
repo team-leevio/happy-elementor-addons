@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.25.0
+Version: 2.26.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, sayedulsayem, obiplabon
@@ -347,6 +347,13 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.26.0 - 1 July 2021 =
+
+- New: Prefix and Suffix option for the Fun Factor widget
+- New: Link Target option added to Twitter Feed widget
+- Tweak: Added Tag for subscriber lists in mailchimp widget
+- Fix: Mailchimp integration instruction improved
 
 = 2.25.0 - 16 June 2021 =
 

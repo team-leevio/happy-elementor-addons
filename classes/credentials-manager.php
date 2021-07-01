@@ -105,13 +105,16 @@ class Credentials_Manager {
 				'icon' => 'hm hm-mail-chimp',
 				'fiels' => [
 					[
-						'label' => esc_html__('Enter API Key', 'happy-elementor-addons'),
+						'label' => esc_html__('Enter API Key. ', 'happy-elementor-addons'),
 						'type' => 'text',
 						'name' => 'api',
+						'help' => [
+							'instruction' => esc_html__('Get your api key here', 'happy-elementor-addons'),
+							'link' => 'https://admin.mailchimp.com/account/api/'
+						],
 					],
 				],
 				'demo' => 'https://happyaddons.com/mailchimp/',
-				'help' => 'https://happyaddons.com/mailchimp/',
 				'is_pro' => false,
 			],
 			// 'instagram' => [
@@ -119,22 +122,31 @@ class Credentials_Manager {
 			// 	'icon' => 'hm hm-instagram',
 			// 	'fiels' => [
 			// 		[
-			// 			'label' => esc_html__('User Name', 'happy-elementor-addons'),
+			// 			'label' => esc_html__('User Name. ', 'happy-elementor-addons'),
 			// 			'type' => 'text',
 			// 			'name' => 'username',
+			// 			'help' => [
+			// 				'instruction' => esc_html__('Get your username here', 'happy-elementor-addons'),
+			// 				'link' => 'https://example.com/url'
+			// 			],
 			// 		],
 			// 		[
-			// 			'label' => esc_html__('Public Key', 'happy-elementor-addons'),
+			// 			'label' => esc_html__('Public Key. ', 'happy-elementor-addons'),
 			// 			'type' => 'text',
 			// 			'name' => 'public_key',
+			// 			'help' => [],
 			// 		],
 			// 		[
-			// 			'label' => esc_html__('Secret Key', 'happy-elementor-addons'),
+			// 			'label' => esc_html__('Secret Key. ', 'happy-elementor-addons'),
 			// 			'type' => 'text',
 			// 			'name' => 'secret_key',
+			// 			'help' => [
+			// 				'instruction' => esc_html__('Get your secret_key here', 'happy-elementor-addons'),
+			// 				'link' => 'https://example.com/url'
+			// 			],
 			// 		],
 			// 	],
-			// 	'help' => 'https://happyaddons.com/mailchimp/',
+			// 	'demo' => 'https://happyaddons.com/instagram/',
 			// 	'is_pro' => false,
 			// ],
 		];

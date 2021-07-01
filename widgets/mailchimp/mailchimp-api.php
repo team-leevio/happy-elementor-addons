@@ -39,10 +39,17 @@ class Mailchimp_api {
 
         $widget_settings = ha_get_ele_widget_settings($_POST['post_id'], $_POST['widget_id']);
 
+        $str_tags = $widget_settings['mailchimp_list_tags'];
+        $tags = explode(',', str_replace(' ', '',$str_tags));
+
         $auth = [
             'api_key' => self::$apiKey,
-            'list_id' => $_POST['list_id']
+            'list_id' => $_POST['list_id'],
         ];
+
+        if(!empty($str_tags)) {
+            $auth['tags'] = $tags;
+        }
 
         if($widget_settings['mailchimp_api_choose'] == 'custom') {
             $auth['api_key'] = $widget_settings['mailchimp_api'];
@@ -69,7 +76,6 @@ class Mailchimp_api {
         $auth = [
             'api_key' => ($settings['api_key'] != '') ? $settings['api_key'] : null,
             'list_id' => ($settings['list_id'] != '') ? $settings['list_id'] : null,
-
         ];
 
         $data = [
@@ -82,6 +88,10 @@ class Mailchimp_api {
                 'PHONE' => (isset($submitted_data['phone']) ? $submitted_data['phone'] : ''),
             ],
         ];
+
+        if(isset($settings['tags'])) {
+            $data['tags'] = $settings['tags'];
+        }
 
         $server = explode('-', $auth['api_key']);
 

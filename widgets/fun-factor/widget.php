@@ -179,6 +179,30 @@ class Fun_Factor extends Base {
 		);
 
 		$this->add_control(
+			'fun_factor_number_prefix',
+			[
+				'label'     => __('Number Prefix', 'happy-elementor-addons'),
+				'type'      => Controls_Manager::TEXT,
+				'placeholder'   => '1',
+				'dynamic'   => [
+					'active' => true,
+				],
+			]
+		);
+
+		$this->add_control(
+			'fun_factor_number_suffix',
+			[
+				'label'     => __('Number Suffix', 'happy-elementor-addons'),
+				'type'      => Controls_Manager::TEXT,
+				'placeholder'   => '+',
+				'dynamic'   => [
+					'active' => true,
+				],
+			]
+		);
+
+		$this->add_control(
 			'fun_factor_title',
 			[
 				'label'   => __('Title', 'happy-elementor-addons'),
@@ -264,17 +288,33 @@ class Fun_Factor extends Base {
 						'title' => __('Right', 'happy-elementor-addons'),
 						'icon'  => 'eicon-text-align-right',
 					],
-					'justify'  => [
-						'title' => __('Justify', 'happy-elementor-addons'),
-						'icon'  => 'eicon-text-align-justify',
-					],
+					// 'justify'  => [
+					// 	'title' => __('Justify', 'happy-elementor-addons'),
+					// 	'icon'  => 'eicon-text-align-justify',
+					// ],
 				],
-				'toggle'      => true,
+				'toggle'      => false,
+				// 'selectors_dictionary' => [
+                //     'left' => 'text-align: left; justify-content: flex-start;',
+                //     'center' => 'text-align: center; justify-content: center;',
+                //     'right' => 'text-align: right; justify-content: flex-end;',
+                // ],
+				'selectors_dictionary' => [
+                    'left' => '--ha-ff-align: left; --ha-ff-number-align: flex-start;',
+                    'center' => '--ha-ff-align: center; --ha-ff-number-align: center;',
+                    'right' => '--ha-ff-align: right; --ha-ff-number-align: flex-end;',
+                ],
 				'selectors'   => [
-					'{{WRAPPER}} .ha-fun-factor__wrap, {{WRAPPER}} .ha-fun-factor__media--image' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}}.ha-fun-factor ' => '{{VALUE}};',
+					'{{WRAPPER}} .ha-fun-factor__wrap, {{WRAPPER}} .ha-fun-factor__media--image, {{WRAPPER}} .ha-fun-factor__content, {{WRAPPER}} .ha-fun-factor__content' => 'text-align:var(--ha-ff-align);',
+					'{{WRAPPER}} .ha-fun-factor__content-number-wrap' => 'justify-content:var(--ha-ff-number-align);',
 				],
+				// 'selectors'   => [
+				// 	'{{WRAPPER}} .ha-fun-factor__wrap, {{WRAPPER}} .ha-fun-factor__media--image, {{WRAPPER}} .ha-fun-factor__content, {{WRAPPER}} .ha-fun-factor__content-number-wrap' => '{{VALUE}};',
+				// ],
 				'default'     => 'center',
-				'render_type' => 'template',
+				// 'render_type' => 'template',
+				// 'prefix_class' => 'ha-fun-factor-align-',
 			]
 		);
 
@@ -592,7 +632,7 @@ class Fun_Factor extends Base {
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => ['px', '%', 'em'],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-fun-factor__content-number' => 'margin-bottom: {{SIZE}}{{UNIT}};'
+					'{{WRAPPER}} .ha-fun-factor__content-number-wrap' => 'margin-bottom: {{SIZE}}{{UNIT}};'
 				]
 			]
 		);
@@ -603,7 +643,9 @@ class Fun_Factor extends Base {
 				'label'     => __('Color', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
+					'{{WRAPPER}} .ha-fun-factor__content-number-prefix' => 'color: {{VALUE}} !important;',
 					'{{WRAPPER}} .ha-fun-factor__content-number' => 'color: {{VALUE}} !important;',
+					'{{WRAPPER}} .ha-fun-factor__content-number-suffix' => 'color: {{VALUE}} !important;',
 				],
 			]
 		);
@@ -614,7 +656,7 @@ class Fun_Factor extends Base {
 				'name'     => 'number_typography',
 				'label'    => __('Typography', 'happy-elementor-addons'),
 				'scheme'   => Typography::TYPOGRAPHY_3,
-				'selector' => '{{WRAPPER}} .ha-fun-factor__content-number',
+				'selector' => '{{WRAPPER}} .ha-fun-factor__content-number-prefix, {{WRAPPER}} .ha-fun-factor__content-number, {{WRAPPER}} .ha-fun-factor__content-number-suffix',
 			]
 		);
 
@@ -623,7 +665,7 @@ class Fun_Factor extends Base {
 			[
 				'name'     => 'fun_factor_number_shadow',
 				'label'    => __('Text Shadow', 'happy-elementor-addons'),
-				'selector' => '{{WRAPPER}} .ha-fun-factor__content-number',
+				'selector' => '{{WRAPPER}} .ha-fun-factor__content-number-prefix, {{WRAPPER}} .ha-fun-factor__content-number, {{WRAPPER}} .ha-fun-factor__content-number-suffix',
 			]
 		);
 
@@ -800,7 +842,15 @@ class Fun_Factor extends Base {
             <?php endif; ?>
 
             <div class="ha-fun-factor__content">
-                <p <?php $this->print_render_attribute_string( 'fun_factor_number' ); ?> ><?php echo esc_html( $number ); ?></p>
+				<div class="ha-fun-factor__content-number-wrap">
+					<?php if ( $settings['fun_factor_number_prefix'] ) : ?>
+						<span class="ha-fun-factor__content-number-prefix"><?php esc_html_e( $settings['fun_factor_number_prefix'] ); ?></span>
+					<?php endif; ?>
+	                <span <?php $this->print_render_attribute_string( 'fun_factor_number' ); ?> ><?php echo esc_html( $number ); ?></span>
+					<?php if ( $settings['fun_factor_number_suffix'] ) : ?>
+						<span class="ha-fun-factor__content-number-suffix"><?php esc_html_e( $settings['fun_factor_number_suffix'] ); ?></span>
+					<?php endif; ?>
+				</div>
                 <?php if ( 'yes' === $settings['divider_show_hide'] ) : ?>
                     <span class="ha-fun-factor__divider ha-fun-factor__divider-align-<?php echo esc_attr( $settings['text_align'] ); ?>"></span>
                 <?php endif; ?>
