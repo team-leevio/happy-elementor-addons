@@ -67,7 +67,7 @@
 	background-position: center center;
 	background-size: cover;
 	background-repeat: no-repeat;
-	transition: all 0.4s ease;
+	transition: all 0.3s ease;
 	overflow: hidden;
 	cursor: pointer;
 	justify-content: center;
@@ -85,7 +85,6 @@
 
 	&:hover {
 		flex: 3;
-		transition: all 0.3s ease-in;
 	}
 
 	&:not(:hover) {
@@ -99,7 +98,6 @@
 
 	&.active {
 		flex: 3;
-		transition: all 0.3s ease-in;
 	}
 
 	&:not(.active) {
@@ -170,6 +168,23 @@
 	&:hover {
 		color: #000;
 		background-color: darkgrey;
+	}
+}
+
+.ha_fadeInUp {
+	animation-name: fadeInUp;
+	animation-duration: 1.25s;
+}
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translate3d(0, 110%, 0);
+		visibility: visible;
+	}
+
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
 	}
 }
 

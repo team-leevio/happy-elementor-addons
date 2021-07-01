@@ -419,6 +419,18 @@ class Image_Accordion extends Base {
             ]
         );
 
+        $this->add_control(
+            'content_animation',
+            [
+                'label'        => __('Enable Content Animation?', 'happy-elementor-addons'),
+                'type'         => Controls_Manager::SWITCHER,
+                'label_on'     => __('Yes', 'happy-elementor-addons'),
+                'label_off'    => __('No', 'happy-elementor-addons'),
+                'return_value' => 'yes',
+                'default'      => 'yes',
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -1401,6 +1413,7 @@ class Image_Accordion extends Base {
 
     protected function render() {
         $settings = $this->get_settings_for_display();
+        $animation_class = ( ($settings['content_animation'] == 'yes')? 'ha_fadeInUp': '' );
 ?>
         <div class="ha-image-accordion-wrapper">
             <div class="ha-ia-container">
@@ -1408,7 +1421,7 @@ class Image_Accordion extends Base {
                     <?php foreach ($settings['accordion_items'] as $inx => $item) : ?>
                         <div style="background-image: url('<?php echo esc_url($item['background_image']['url']); ?>');" class="ha-ia-item <?php echo esc_attr(($item['active'] == 'yes') ? 'active' : ''); ?>">
                             <div class="ha-overlay">
-                                <div class="ha-ia-content-wrapper">
+                                <div class="ha-ia-content-wrapper <?php echo esc_attr($animation_class); ?>">
                                     <?php if ($item['enable_popup'] == 'yes' || $item['enable_link'] == 'yes') : ?>
                                         <div class="ha-ia-actions">
                                             <?php if ($item['enable_popup'] == 'yes') : ?>
