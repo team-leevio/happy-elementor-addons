@@ -132,9 +132,13 @@ class Image_Accordion extends Base {
             'description',
             [
                 'label' => __('Description', 'happy-elementor-addons'),
-                'type' => Controls_Manager::WYSIWYG,
+                'type' => Controls_Manager::TEXTAREA,
+                'description' => ha_get_allowed_html_desc( 'intermediate' ),
                 'default' => __('Image accordion content.', 'happy-elementor-addons'),
                 'placeholder' => __('Type your description here', 'happy-elementor-addons'),
+                'dynamic' => [
+                    'active' => true,
+                ],
             ]
         );
 
@@ -1452,7 +1456,7 @@ class Image_Accordion extends Base {
                                         <span class="ha-ia-content-title"><?php echo esc_html($item['title']); ?></span>
                                     </div>
                                     <?php if (!empty($item['description'])) :
-                                        printf('<div class="ha-ia-content-description">%s</div>', $this->parse_text_editor($item['description']));
+                                        printf('<div class="ha-ia-content-description">%s</div>', ha_kses_intermediate( $item['description'] ));
                                     endif; ?>
                                     <?php if ($item['enable_button'] == 'yes') : ?>
                                         <a class="ha-ia-content-button" href="<?php echo esc_attr($item['button_url']['url']); ?>" <?php echo esc_attr($item['button_url']['is_external'] ? 'target=_blank' : ''); ?> <?php echo esc_attr($item['button_url']['nofollow'] ? 'rel=nofollow' : ''); ?>>
