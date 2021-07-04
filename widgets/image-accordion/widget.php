@@ -279,20 +279,28 @@ class Image_Accordion extends Base {
                 'prevent_empty' => true,
                 'default'       => [
                     [
+                        'label'         => __('Accordion Label', 'happy-elementor-addons'),
                         'title'         => __('Image Accordion 1', 'happy-elementor-addons'),
+                        'description'         => __('Image accordion content.', 'happy-elementor-addons'),
                         'enable_button'  => 'yes',
                         'active'        => 'yes',
                     ],
                     [
+                        'label'         => __('Accordion Label', 'happy-elementor-addons'),
                         'title'         => __('Image Accordion 2', 'happy-elementor-addons'),
+                        'description'         => __('Image accordion content.', 'happy-elementor-addons'),
                         'enable_button'  => 'yes',
                     ],
                     [
+                        'label'         => __('Accordion Label', 'happy-elementor-addons'),
                         'title'         => __('Image Accordion 3', 'happy-elementor-addons'),
+                        'description'         => __('Image accordion content.', 'happy-elementor-addons'),
                         'enable_button'  => 'yes',
                     ],
                     [
+                        'label'         => __('Accordion Label', 'happy-elementor-addons'),
                         'title'         => __('Image Accordion 4', 'happy-elementor-addons'),
+                        'description'         => __('Image accordion content.', 'happy-elementor-addons'),
                         'enable_button'  => 'yes',
                     ],
                 ],
@@ -745,6 +753,7 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
+                'default' => '#FFFFFF',
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title' => 'color: {{VALUE}}',
                 ],
@@ -765,12 +774,6 @@ class Image_Accordion extends Base {
                     ],
                     'font_weight' => [
                         'default' => 'bold', // 100, 200, 300, 400, 500, 600, 700, 800, 900, normal, bold
-                    ],
-                    'font_size' => [
-                        'default' => [
-                            'unit' => 'px', // px, em, rem, vh
-                            'size' => '30', // any number
-                        ],
                     ],
                 ],
                 'selector' => '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title',
@@ -868,6 +871,7 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
+                'default' => '#FFFFFF',
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-container .ha-ia-content-wrapper .ha-ia-content-label' => 'color: {{VALUE}}',
                 ],
@@ -888,12 +892,6 @@ class Image_Accordion extends Base {
                     ],
                     'font_weight' => [
                         'default' => '400', // 100, 200, 300, 400, 500, 600, 700, 800, 900, normal, bold
-                    ],
-                    'font_size' => [
-                        'default' => [
-                            'unit' => 'px', // px, em, rem, vh
-                            'size' => '16', // any number
-                        ],
                     ],
                 ],
                 'selector' => '{{WRAPPER}} .ha-ia-container .ha-ia-content-wrapper .ha-ia-content-label',
@@ -927,6 +925,7 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
+                'default' => '#FFFFFF',
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-container .ha-ia-content-wrapper .ha-ia-content-description' => 'color: {{VALUE}}',
                 ],
@@ -947,12 +946,6 @@ class Image_Accordion extends Base {
                     ],
                     'font_weight' => [
                         'default' => '500', // 100, 200, 300, 400, 500, 600, 700, 800, 900, normal, bold
-                    ],
-                    'font_size' => [
-                        'default' => [
-                            'unit' => 'px', // px, em, rem, vh
-                            'size' => '20', // any number
-                        ],
                     ],
                 ],
                 'selector' => '{{WRAPPER}} .ha-ia-container .ha-ia-content-wrapper .ha-ia-content-description',
@@ -978,9 +971,9 @@ class Image_Accordion extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'default' => [
-                    'top' => '5',
+                    'top' => '8',
                     'right' => '15',
-                    'bottom' => '5',
+                    'bottom' => '8',
                     'left' => '15',
                     'isLinked' => false,
                 ],
@@ -1004,12 +997,6 @@ class Image_Accordion extends Base {
                     ],
                     'font_weight' => [
                         'default' => '400', // 100, 200, 300, 400, 500, 600, 700, 800, 900, normal, bold
-                    ],
-                    'font_size' => [
-                        'default' => [
-                            'unit' => 'px', // px, em, rem, vh
-                            'size' => '16', // any number
-                        ],
                     ],
                 ],
                 'selector' => '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button',
@@ -1052,6 +1039,7 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
+                'default' => '#FFFFFF',
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button' => 'color: {{VALUE}}',
                 ],
@@ -1084,6 +1072,7 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
+                'default' => '#FFFFFF',
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button:hover' => 'color: {{VALUE}}',
                 ],

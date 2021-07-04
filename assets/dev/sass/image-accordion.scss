@@ -85,6 +85,10 @@
 
 	&:hover {
 		flex: 3;
+
+		.ha-overlay {
+			background-color: rgba(0, 0, 0, 0.29);
+		}
 	}
 
 	&:not(:hover) {
@@ -98,6 +102,10 @@
 
 	&.active {
 		flex: 3;
+
+		.ha-overlay {
+			background-color: rgba(0, 0, 0, 0.29);
+		}
 	}
 
 	&:not(.active) {
@@ -151,22 +159,31 @@
 	&.ha-ia-icon-right {
 		flex-direction: row-reverse;
 	}
+}
 
-	.ha-ia-content-title {
-		font-weight: bold;
-	}
+.ha-ia-content-title {
+	font-size: 30px;
+}
+
+.ha-ia-content-label {
+	font-size: 16px;
+}
+
+.ha-ia-content-description {
+	font-size: 20px;
 }
 
 .ha-ia-content-button {
 	margin: 10px 0;
 	padding: 5px 15px;
 	border-radius: 5px;
-	color: #fff;
-	background-color: rgb(75, 75, 223);
+	color: #FFF;
+	background-color: #6D39EF;
+	font-size: 16px;
 
 	&:hover {
-		color: #000;
-		background-color: darkgrey;
+		color: #FFF;
+		background-color: #E2498A;
 	}
 }
 
@@ -232,6 +249,23 @@
 		}
 
 	}
+
+	.ha-ia-content-title {
+		font-size: 28px;
+	}
+	
+	.ha-ia-content-label {
+		font-size: 14px;
+	}
+	
+	.ha-ia-content-description {
+		font-size: 18px;
+	}
+	
+	.ha-ia-content-button {
+		font-size: 14px;
+	}
+
 }
 
 /* On screens that are 480px or less, set the background color to olive */
@@ -263,4 +297,21 @@
 			}
 		}
 	}
+
+	.ha-ia-content-title {
+		font-size: 20px;
+	}
+	
+	.ha-ia-content-label {
+		font-size: 12px;
+	}
+	
+	.ha-ia-content-description {
+		font-size: 16px;
+	}
+	
+	.ha-ia-content-button {
+		font-size: 12px;
+	}
+
 }
