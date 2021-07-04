@@ -14,7 +14,6 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Happy_Addons\Elementor\Widget\MailChimp\Mailchimp_api;
 use Happy_Addons\Elementor\Controls\Select2;
 use \Happy_Addons\Elementor\Credentials_Manager;
 
@@ -75,7 +74,7 @@ class Mailchimp extends Base {
         $this->add_control(
             'mailchimp_api_check',
             [
-                'raw' => '<strong>' . esc_html__('Please note!', 'happy-elementor-addons') . '</strong> ' . esc_html__('Please set API Key in Happy Addons Dashboard - Credentials - MailChimp and Create Audience.', 'happy-elementor-addons'),
+                'raw' => '<strong>' . esc_html__('Please note!', 'happy-elementor-addons') . '</strong> ' . esc_html__('Please set API Key in Happy Addons Dashboard - ', 'happy-elementor-addons') . '<a style="border-bottom-color: inherit;" href="'. esc_url(admin_url('admin.php?page=happy-addons#credentials')) . '" target="_blank" >'. esc_html__('Credentials', 'happy-elementor-addons') .'</a>' . esc_html__(' - MailChimp and Create Audience.', 'happy-elementor-addons'),
                 'type' => Controls_Manager::RAW_HTML,
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
                 'render_type' => 'ui',
@@ -139,20 +138,20 @@ class Mailchimp extends Base {
 			]
 		);
 
-        // next plan to include tag
-        // $this->add_control(
-        //     'mailchimp_list_tags',
-        //     [
-        //         'label' => __('Tags', 'happy-elementor-addons'),
-        //         'type' => Controls_Manager::TEXT,
-        //         'label_block' => true,
-        //         'placeholder' => __('Enter tags here. Ex: Tag-1, Tag-2', 'happy-elementor-addons'),
-        //         'condition' => [
-        //             'mailchimp_lists!' => '',
-        //         ],
-        //         'dynamic' => [ 'active' => true]
-        //     ]
-        // );
+        $this->add_control(
+            'mailchimp_list_tags',
+            [
+                'label' => __('Tags', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'label_block' => true,
+                'placeholder' => __('Tag-1, Tag-2', 'happy-elementor-addons'),
+                'description' => __('Enter tag here to separate your subscribers. Use comma separator to use multiple tags. Example: Tag-1, Tag-2, Tag-3', 'happy-elementor-addons'),
+                'condition' => [
+                    'mailchimp_lists!' => '',
+                ],
+                'dynamic' => [ 'active' => true]
+            ]
+        );
 
         $this->end_controls_section();
 
@@ -1548,6 +1547,8 @@ class Mailchimp extends Base {
         $settings = $this->get_settings_for_display();
 
         $form_fields = (($settings['enable_name'] == 'yes' || $settings['enable_phone'] == 'yes') ? 'multiple_form_fields' : '');
+        $list_id = ((is_array($settings['mailchimp_lists']))? (isset($settings['mailchimp_lists'][0])? ltrim($settings['mailchimp_lists'][0]): ''): (ltrim($settings['mailchimp_lists'])));
+
 ?>
         <div class="ha-mailchimp-wrapper" data-post-id="<?php echo esc_attr(get_the_id()); ?>" data-widget-id="<?php echo esc_attr($this->get_id()); ?>">
             <?php if (\Elementor\Plugin::$instance->editor->is_edit_mode() && $settings['mailchimp_success_message_show_in_editor'] == 'yes') : ?>
@@ -1557,7 +1558,7 @@ class Mailchimp extends Base {
                 <div class="ha-mc-response-message error"><?php esc_html_e('This is a dummy message for error. This won\'t show in preview', 'happy-elementor-addons'); ?></div>
             <?php endif; ?>
             <div class="ha-mc-response-message"></div>
-            <form class="ha-mailchimp-form <?php echo esc_attr($settings['form_alignment']); ?> <?php echo esc_attr($form_fields); ?>" data-list-id="<?php echo esc_attr(isset($settings['mailchimp_lists']) ? ltrim($settings['mailchimp_lists']) : ''); ?>" data-success-message="<?php echo esc_attr($settings['mailchimp_success_message']); ?>">
+            <form class="ha-mailchimp-form <?php echo esc_attr($settings['form_alignment']); ?> <?php echo esc_attr($form_fields); ?>" data-list-id="<?php echo esc_attr($list_id); ?>" data-success-message="<?php echo esc_attr($settings['mailchimp_success_message']); ?>">
                 <?php if ($settings['enable_name'] == 'yes') : ?>
                     <div class="ha-mc-input-wrapper">
                         <?php if (!empty($settings['fname_label'])) : ?>
