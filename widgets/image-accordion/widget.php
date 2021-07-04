@@ -839,6 +839,13 @@ class Image_Accordion extends Base {
                 'label' => __('Padding', 'happy-elementor-addons'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
+                'default' => [
+                    'top' => '15',
+                    'right' => '15',
+                    'bottom' => '15',
+                    'left' => '15',
+                    'unit' => 'px',
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-container .ha-ia-content-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
