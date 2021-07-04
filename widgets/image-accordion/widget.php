@@ -82,6 +82,7 @@ class Image_Accordion extends Base {
             [
                 'label'   => __('Label', 'happy-elementor-addons'),
                 'type'    => Controls_Manager::TEXT,
+                'label_block' => true,
                 'default' => __('Accordion Label', 'happy-elementor-addons'),
                 'dynamic' => [
                     'active' => true,
@@ -93,7 +94,9 @@ class Image_Accordion extends Base {
             'title',
             [
                 'label'   => __('Title', 'happy-elementor-addons'),
-                'type'    => Controls_Manager::TEXT,
+                'type'    => Controls_Manager::TEXTAREA,
+                'rows' => 5,
+                'label_block' => true,
                 'default' => __('Image Accordion', 'happy-elementor-addons'),
                 'dynamic' => [
                     'active' => true,
@@ -628,6 +631,7 @@ class Image_Accordion extends Base {
 				'name' => 'common_overlay_color',
 				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient' ],
+                'exclude' => [ 'image' ],
 				'selector' => '{{WRAPPER}} .ha-ia-item .ha-overlay',
 			]
 		);
@@ -659,6 +663,7 @@ class Image_Accordion extends Base {
 				'name' => 'common_overlay_color_hover',
 				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient' ],
+                'exclude' => [ 'image' ],
 				'selector' => '{{WRAPPER}} .ha-ia-item:hover .ha-overlay',
 			]
 		);
@@ -691,6 +696,7 @@ class Image_Accordion extends Base {
 				'name' => 'common_overlay_color_active',
 				'label' => __( 'Overlay Color', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient' ],
+                'exclude' => [ 'image' ],
 				'selector' => '{{WRAPPER}} .ha-ia-item.active .ha-overlay',
 			]
 		);
@@ -1058,6 +1064,7 @@ class Image_Accordion extends Base {
                 'name' => 'button_background',
                 'label' => __('Background', 'happy-elementor-addons'),
                 'types' => ['classic', 'gradient'],
+                'exclude' => [ 'image' ],
                 'selector' => '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button',
             ]
         );
@@ -1089,6 +1096,7 @@ class Image_Accordion extends Base {
                 'name' => 'button_background_hover',
                 'label' => __('Background', 'happy-elementor-addons'),
                 'types' => ['classic', 'gradient'],
+                'exclude' => [ 'image' ],
                 'selector' => '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-button:hover',
             ]
         );
