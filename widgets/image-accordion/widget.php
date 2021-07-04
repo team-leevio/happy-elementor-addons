@@ -1430,7 +1430,7 @@ class Image_Accordion extends Base {
                                             <?php endif; ?>
                                             <?php if ($item['enable_link'] == 'yes') : ?>
                                                 <span class="ha-ia-link">
-                                                    <a href="<?php echo esc_url($item['link_url']['url']); ?>" <?php echo esc_attr($item['link_url']['is_external'] ? 'target="_blank"' : ''); ?> <?php echo esc_attr($item['link_url']['nofollow'] ? 'rel="nofollow"' : ''); ?>>
+                                                    <a href="<?php echo esc_url($item['link_url']['url']); ?>" <?php echo esc_attr($item['link_url']['is_external'] ? 'target=_blank' : ''); ?> <?php echo esc_attr($item['link_url']['nofollow'] ? 'rel=nofollow' : ''); ?>>
                                                         <?php ha_render_icon($item, null, 'link_icon'); ?>
                                                     </a>
                                                 </span>
@@ -1448,7 +1448,7 @@ class Image_Accordion extends Base {
                                         printf('<div class="ha-ia-content-description">%s</div>', $this->parse_text_editor($item['description']));
                                     endif; ?>
                                     <?php if ($item['enable_button'] == 'yes') : ?>
-                                        <a class="ha-ia-content-button" href="<?php echo esc_attr($item['button_url']['url']); ?>" <?php echo esc_attr($item['button_url']['is_external'] ? 'target="_blank"' : ''); ?> <?php echo esc_attr($item['button_url']['nofollow'] ? 'rel="nofollow"' : ''); ?>>
+                                        <a class="ha-ia-content-button" href="<?php echo esc_attr($item['button_url']['url']); ?>" <?php echo esc_attr($item['button_url']['is_external'] ? 'target=_blank' : ''); ?> <?php echo esc_attr($item['button_url']['nofollow'] ? 'rel=nofollow' : ''); ?>>
                                             <?php echo esc_html($item['button_label']); ?>
                                         </a>
                                     <?php endif; ?>

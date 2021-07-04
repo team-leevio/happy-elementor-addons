@@ -820,7 +820,7 @@
 				var items = $scope.find('.ha-ia-item');
 				items.each(function (inx, btn){
 					$(this).on('click', function(e) {
-						e.preventDefault();
+						// e.preventDefault();
 						if($(this).hasClass('active')) {
 							return;
 						}else {
