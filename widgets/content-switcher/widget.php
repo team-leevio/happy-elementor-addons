@@ -146,7 +146,7 @@ class Content_Switcher extends Base {
 				'label'   => __('Type', 'happy-elementor-addons'),
 				'type'    => Controls_Manager::SELECT,
 				'options' => [
-					'plain_content' => __('WYSIWYG', 'happy-elementor-addons'),
+					'plain_content' => __('Plain/ HTML Text', 'happy-elementor-addons'),
 					'saved_section' => __('Saved Section', 'happy-elementor-addons'),
 					'saved_page'    => __('Saved Page', 'happy-elementor-addons'),
 				],
@@ -156,8 +156,10 @@ class Content_Switcher extends Base {
 		$repeater->add_control(
 			'plain_content',
 			[
-				'label'     => __('Type', 'happy-elementor-addons'),
-				'type'      => Controls_Manager::WYSIWYG,
+				'label'     => __('Plain/ HTML Text', 'happy-elementor-addons'),
+				'type'      => Controls_Manager::TEXTAREA,
+				'description' => ha_get_allowed_html_desc( 'intermediate' ),
+				'rows' => 20,
 				'condition' => [
 					'content_type' => 'plain_content',
 				],
@@ -1117,7 +1119,7 @@ class Content_Switcher extends Base {
 							<div id="<?php echo esc_attr($item['_id']); ?>" class="ha-cs-content-section <?php echo esc_attr(($item['active'] == 'yes') ? 'active' : ''); ?>">
 								<?php
 								if ($item['content_type'] == 'plain_content') {
-									echo do_shortcode($item['plain_content']);
+									echo ha_kses_intermediate( $item['plain_content'] );
 								} else if ($item['content_type'] == 'saved_section') {
 									echo ha_elementor()->frontend->get_builder_content_for_display($item['saved_section']);
 								} else if ($item['content_type'] == 'saved_page') {
@@ -1131,7 +1133,7 @@ class Content_Switcher extends Base {
 						<div id="<?php echo esc_attr($primary['_id']); ?>" class="ha-cs-content-section primary <?php echo esc_attr(($primary['active'] == 'yes') ? 'active' : ''); ?>">
 							<?php
 							if ($primary['content_type'] == 'plain_content') {
-								echo do_shortcode($primary['plain_content']);
+								echo ha_kses_intermediate( $primary['plain_content'] );
 							} else if ($primary['content_type'] == 'saved_section') {
 								echo ha_elementor()->frontend->get_builder_content_for_display($primary['saved_section']);
 							} else if ($primary['content_type'] == 'saved_page') {
@@ -1143,7 +1145,7 @@ class Content_Switcher extends Base {
 						<div id="<?php echo esc_attr($secondary['_id']); ?>" class="ha-cs-content-section secondary <?php echo esc_attr(($secondary['active'] == 'yes') ? 'active' : ''); ?>">
 							<?php
 							if ($secondary['content_type'] == 'plain_content') {
-								echo do_shortcode($secondary['plain_content']);
+								echo ha_kses_intermediate( $secondary['plain_content'] );
 							} else if ($secondary['content_type'] == 'saved_section') {
 								echo ha_elementor()->frontend->get_builder_content_for_display($secondary['saved_section']);
 							} else if ($secondary['content_type'] == 'saved_page') {
