@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Happy Elementor Addons
  * Plugin URI: https://happyaddons.com/
- * Description: <a href="https://happyaddons.com/">HappyAddons</a> is a collection of slick, powerful widgets that works seamlessly with Elementor page builder. It’s trendy look with detail customization features allows to create extraordinary designs instantly. <a href="https://happyaddons.com/">HappyAddons</a> is free, rapidly growing and comes with great support.
- * Version: 2.26.0
+ * Description: <a href="https://happyaddons.com/">Happy Addons for Elementor</a> Is the Best Elementor Addons Comes With 44+ Free Elementor Widgets Including Table Builder, Testimonial, Event Calendar,Slider,News Ticker, Image Grid, etc & Features Like Elementor Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Elementor Icons, 450+ Template Packs & More.
+ * Version: 2.27.0
  * Author: weDevs
  * Author URI: https://happyaddons.com/
  * Elementor tested up to: 3.2.5
@@ -36,7 +36,7 @@ Copyright 2019 HappyMonster <http://happymonster.me>
 
 defined( 'ABSPATH' ) || die();
 
-define( 'HAPPY_ADDONS_VERSION', '2.26.0' );
+define( 'HAPPY_ADDONS_VERSION', '2.27.0' );
 define( 'HAPPY_ADDONS__FILE__', __FILE__ );
 define( 'HAPPY_ADDONS_DIR_PATH', plugin_dir_path( HAPPY_ADDONS__FILE__ ) );
 define( 'HAPPY_ADDONS_DIR_URL', plugin_dir_url( HAPPY_ADDONS__FILE__ ) );

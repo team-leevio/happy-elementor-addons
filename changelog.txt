@@ -1,4 +1,4 @@
-= 5 July 2021 =
+= 2.27.0 - 5 July 2021 =
 
 - New: Content Switcher Widget
 
