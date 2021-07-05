@@ -18,7 +18,7 @@ use Happy_Addons\Elementor\Icons_Manager;
 
 defined( 'ABSPATH' ) || die();
 
-class Circle_Image_Group extends Base {
+class Image_Stack_Group extends Base {
 
 	/**
 	 * Get widget title.
