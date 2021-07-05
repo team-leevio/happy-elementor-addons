@@ -419,11 +419,11 @@ class Twitter_Feed extends Base {
 		$this->add_control(
 			'link_target',
 			[
-				'label' => __( 'Link Target', 'happy-addons-pro' ),
+				'label' => __( 'Link Target', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'_self' => __( 'Open in same window', 'happy-addons-pro' ),
-					'_blank' => __( 'Open in new window', 'happy-addons-pro' ),
+					'_self' => __( 'Open in same window', 'happy-elementor-addons' ),
+					'_blank' => __( 'Open in new window', 'happy-elementor-addons' ),
 				],
 				'default' => '_blank',
 			]

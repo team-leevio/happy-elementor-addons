@@ -1,3 +1,7 @@
+= 2.27.0 - 5 July 2021 =
+
+- New: Content Switcher Widget
+
 = 2.26.0 - 1 July 2021 =
 
 - New: Prefix and Suffix option for the Fun Factor widget

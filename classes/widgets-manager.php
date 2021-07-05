@@ -629,6 +629,16 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'content-switcher' => [
+				'title' => __( 'Content Switcher', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-switcher',
+				'css' => ['content-switcher'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
         ];
     }
 
