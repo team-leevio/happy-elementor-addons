@@ -29,11 +29,11 @@ class Circle_Image_Group extends Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Circle Image Group', 'happy-elementor-addons' );
+		return __( 'Image Stack Group', 'happy-elementor-addons' );
 	}
 
 	public function get_custom_help_url() {
-		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/icon-box/';
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/image-stack-group/';
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Circle_Image_Group extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'info', 'box', 'icon' ];
+		return [ 'image', 'stack', 'icon', 'group' ];
 	}
 
 	protected function register_content_controls() {
@@ -163,6 +163,7 @@ class Circle_Image_Group extends Base {
 						'icon' => 'eicon-h-align-right'
 					],
 				],
+				'default' => 'up',
 				'toggle' => true,
 			]
 		);
@@ -211,7 +212,7 @@ class Circle_Image_Group extends Base {
 				'show_label' => false,
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
-				'title_field' => '<# print(tooltip || "Circle Image Group Item"); #>',
+				'title_field' => '<# print(tooltip || "Image Group Item"); #>',
 				'default' => array_fill( 0, 4, $placeholder )
 			]
 		);

@@ -629,8 +629,8 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
-			'circle-image-group' => [
-				'title' => __( 'Circle Image Group', 'happy-elementor-addons' ),
+			'image-stack-group' => [
+				'title' => __( 'Image Stack Group', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-icon-box',
 				'css' => ['circle-image-group'],
 				'js' => [],
