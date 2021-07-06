@@ -163,7 +163,6 @@ class Image_Stack_Group extends Base {
 						'icon' => 'eicon-h-align-right'
 					],
 				],
-				'default' => 'up',
 				'toggle' => true,
 			]
 		);
