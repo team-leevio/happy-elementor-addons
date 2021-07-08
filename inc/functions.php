@@ -860,3 +860,7 @@ function ha_get_ele_widget_settings($post_id, $widget_id) {
 
 include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
 Mailchimp_api::set_ajax_call();
+
+function ha_get_credentials() {
+	return Happy_Addons\Elementor\Credentials_Manager::get_saved_credentials();
+}
