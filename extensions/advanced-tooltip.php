@@ -233,11 +233,11 @@ class Advanced_Tooltip {
                 'label' => __('Background Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#000000',
-                // 'frontend_available' => true,
-                'selectors' => [
-                    '.tipso_bubble.ha-tooltip-wrapper-{{ID}}' => 'background: {{VALUE}} !important;',
-                    '.tipso_bubble.ha-tooltip-wrapper-{{ID}} .tipso_arrow' => 'border-left-color: {{VALUE}} !important;',
-                ],
+                'frontend_available' => true,
+                // 'selectors' => [
+                //     '.tipso_bubble.ha-tooltip-wrapper-{{ID}}' => 'background: {{VALUE}} !important;',
+                //     '.tipso_bubble.ha-tooltip-wrapper-{{ID}} .tipso_arrow' => 'border-left-color: {{VALUE}} !important;',
+                // ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
                 ],
@@ -250,10 +250,10 @@ class Advanced_Tooltip {
                 'label' => __('Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#ffffff',
-                // 'frontend_available' => true,
-                'selectors' => [
-                    '.tipso_bubble.ha-tooltip-wrapper-{{ID}}' => 'color: {{VALUE}} !important;',
-                ],
+                'frontend_available' => true,
+                // 'selectors' => [
+                //     '.tipso_bubble.ha-tooltip-wrapper-{{ID}}' => 'color: {{VALUE}} !important;',
+                // ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
                 ],

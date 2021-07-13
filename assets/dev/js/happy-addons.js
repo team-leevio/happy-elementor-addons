@@ -1076,7 +1076,7 @@
 			});
 		});
 
-		var GlobalWidgetBase = elementorModules.frontend.handlers.Base.extend({
+		var AdvancedTooltip = elementorModules.frontend.handlers.Base.extend({
 
 			onInit: function () {
 				elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
@@ -1092,8 +1092,8 @@
 						content: this.getElementSettings('ha_a_tooltip_section_content'),
 						speed: this.getElementSettings('ha_a_tooltip_section_duration') || 300,
 						size: this.getElementSettings('ha_a_tooltip_section_size') || 'default',
-						background: '#FFFFFF00',
-						color: '#FFFFFF00',
+						background: this.getElementSettings('ha_a_tooltip_section_background_color') || '',
+						color: this.getElementSettings('ha_a_tooltip_section_color') || '',
 						showArrow: this.getElementSettings('ha_a_tooltip_section_arrow') || false,
 						position: this.getElementSettings('ha_a_tooltip_section_position'),
 						// width: this.getElementSettings('null') || 100,
@@ -1116,28 +1116,29 @@
 						// onHide: this.getElementSettings('null') || null
 					};
 					return $.extend({}, settings);
+					// return settings;
 				}
 			},
 			onElementChange: function (e) {
 				console.log(e);
-				var style_controls = ['ha_a_tooltip_section_typography', 'ha_a_tooltip_section_border_color', 'ha_a_tooltip_section_border_radius', 'ha_a_tooltip_section_padding', 'ha_a_tooltip_section_box_shadow', 'ha_a_tooltip_section_width', 'ha_a_tooltip_section_background_color', 'ha_a_tooltip_section_color'];
+				var style_controls = ['ha_advanced_tooltip_enable', 'ha_a_tooltip_section_content', 'ha_a_tooltip_section_position', 'ha_a_tooltip_section_arrow', 'ha_a_tooltip_section_duration', 'ha_a_tooltip_section_delay', 'ha_a_tooltip_section_size', 'ha_a_tooltip_section_background_color', 'ha_a_tooltip_section_color'];
 				var $currentTooltip = '.elementor-element-' + this.$element.data('id');
-				if(!style_controls.includes(e)) {
+				if(style_controls.includes(e)) {
 					if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
+						// Destroy tipso tooltip
+						this.$element.tipso('destroy');
 						this.run();
 					}
 					else {
 						// Destroy tipso tooltip
-						$($currentTooltip).tipso('destroy');
+						this.$element.tipso('destroy');
 					}
 				}
 			},
 			run: function () {
 				var $currentTooltip = '.elementor-element-' + this.$element.data('id');
 				if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
-					console.log(this.getReadySettings());
-					// Run tipso tooltip
-					$($currentTooltip).tipso(this.getReadySettings());
+					this.$element.tipso(this.getReadySettings());
 					this.$element.removeClass('tipso_style');
 				}
 			}
@@ -1146,7 +1147,7 @@
 		elementorFrontend.hooks.addAction(
 			'frontend/element_ready/widget',
 			function ($scope) {
-				elementorFrontend.elementsHandler.addHandler(GlobalWidgetBase, {
+				elementorFrontend.elementsHandler.addHandler(AdvancedTooltip, {
 					$element: $scope,
 				});
 			}
