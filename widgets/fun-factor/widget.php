@@ -49,7 +49,16 @@ class Fun_Factor extends Base {
 		return ['fun', 'factor', 'animation', 'info', 'box', 'number', 'animated'];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__content_controls();
+		$this->__option_content_controls();
+	}
+
+	protected function __content_controls() {
+
 		$this->start_controls_section(
 			'_section_contents',
 			[
@@ -247,6 +256,9 @@ class Fun_Factor extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __option_content_controls() {
 
 		// options section in contents tab
 
@@ -357,7 +369,17 @@ class Fun_Factor extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__icon_image_style_controls();
+		$this->__number_title_style_controls();
+		$this->__divider_style_controls();
+	}
+
+	protected function __icon_image_style_controls() {
+
 		$this->start_controls_section(
 			'_section_style_icon_image',
 			[
@@ -593,10 +615,9 @@ class Fun_Factor extends Base {
 		$this->end_popover();
 
 		$this->end_controls_section();
+	}
 
-		/*
-		 * Number section styling
-		 */
+	protected function __number_title_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_number_title',
@@ -725,10 +746,10 @@ class Fun_Factor extends Base {
 		);
 
 		$this->end_controls_section();
+	}
 
-		/*
-		 * Divider style section
-		 */
+	protected function __divider_style_controls() {
+
 		$this->start_controls_section(
 			'_section_divider',
 			[
