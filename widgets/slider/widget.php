@@ -52,7 +52,18 @@ class Slider extends Base {
 		return [ 'slider', 'image', 'gallery', 'carousel' ];
 	}
 
+	/**
+	 * Register Content Control
+	 *
+	 * @return void
+	 */
 	protected function register_content_controls() {
+		$this->slider_content_controls();
+		$this->slider_settings_content_controls();
+	}
+
+	protected function slider_content_controls() {
+
 		$this->start_controls_section(
 			'_section_slides',
 			[
@@ -145,7 +156,31 @@ class Slider extends Base {
 			]
 		);
 
+		$this->add_control(
+			'title_tag',
+			[
+				'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				// 'separator' => 'before',
+				'options' => [
+					'h1' => 'H1',
+					'h2' => 'H2',
+					'h3' => 'H3',
+					'h4' => 'H4',
+					'h5' => 'H5',
+					'h6' => 'H6',
+					'div' => 'div',
+					'span' => 'span',
+					'p' => 'p',
+				],
+				'default' => 'h2',
+			]
+		);
+
 		$this->end_controls_section();
+	}
+
+	protected function slider_settings_content_controls() {
 
 		$this->start_controls_section(
 			'_section_settings',
@@ -285,7 +320,19 @@ class Slider extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+	 * Register Style Control
+	 *
+	 * @return void
+	 */
 	protected function register_style_controls() {
+		$this->slider_item_style_controls();
+		$this->slider_content_style_controls();
+		$this->slider_arrow_style_controls();
+		$this->slider_dot_style_controls();
+	}
+	protected function slider_item_style_controls() {
+
 		$this->start_controls_section(
 			'_section_style_item',
 			[
@@ -315,6 +362,9 @@ class Slider extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function slider_content_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_content',
@@ -430,6 +480,9 @@ class Slider extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function slider_arrow_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_arrow',
@@ -618,7 +671,9 @@ class Slider extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
 
+	protected function slider_dot_style_controls() {
 		$this->start_controls_section(
 			'_section_style_dots',
 			[
@@ -813,9 +868,14 @@ class Slider extends Base {
 
 						<?php if ( $slide['title'] || $slide['subtitle'] ) : ?>
 							<div class="ha-slick-content">
-								<?php if ( $slide['title'] ) : ?>
-									<h2 class="ha-slick-title"><?php echo ha_kses_basic( $slide['title'] ); ?></h2>
-								<?php endif; ?>
+								<?php
+									if ( $slide['title'] ) {
+										printf( '<%1$s class="ha-slick-title">%2$s</%1$s>',
+											ha_escape_tags( $settings['title_tag'], 'h2' ),
+											ha_kses_basic( $slide['title'] )
+										);
+									}
+								?>
 								<?php if ( $slide['subtitle'] ) : ?>
 									<p class="ha-slick-subtitle"><?php echo ha_kses_basic( $slide['subtitle'] ); ?></p>
 								<?php endif; ?>
