@@ -187,15 +187,39 @@ class Image_Stack_Group extends Base {
 				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'condition' => [ 'media_type' => 'icon' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-cig-item{{CURRENT_ITEM}} i' => 'color: {{VALUE}}'
+				]
+			]
+		);
+
+		$repeater->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' => 'icon_bg_color',
+				'label' => __( 'Background', 'plugin-domain' ),
+				'types' => [ 'classic', 'gradient' ],
+				'exclude' => [ 'image' ],
+				'selector' => '{{WRAPPER}} {{CURRENT_ITEM}}.ha-cig-item i'
 			]
 		);
 
 		$repeater->add_control(
-			'icon_bg_color',
+			'hr',
 			[
-				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+			]
+		);
+
+
+		$repeater->add_control(
+			'border_color',
+			[
+				'label' => __( 'Border Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
-				'condition' => [ 'media_type' => 'icon' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-cig-item{{CURRENT_ITEM}} i,{{WRAPPER}} .ha-cig-item{{CURRENT_ITEM}} img' => 'border-color: {{VALUE}};',
+				],
 			]
 		);
 
@@ -376,11 +400,14 @@ class Image_Stack_Group extends Base {
 			]
 		);
 
-		$this->add_control(
-			'icon_bg_color',
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
 			[
-				'label' => __( 'Icon Background Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
+				'name' => 'icon_bg_color',
+				'label' => __( 'Background', 'plugin-domain' ),
+				'types' => [ 'classic', 'gradient' ],
+				'exclude' => [ 'image' ],
+				'selector' => '{{WRAPPER}} .ha-cig-item i'
 			]
 		);
 
@@ -527,11 +554,27 @@ class Image_Stack_Group extends Base {
 			<?php foreach ( $settings['images'] as $item ) : 
 				$media_type = $item['media_type'];
 
-				if($media_type == "icon"){
-					$color = $item['icon_color']?$item['icon_color']:$settings['icon_color'];
-					$bg = $item['icon_bg_color']?$item['icon_bg_color']:$settings['icon_bg_color'];
 
-					$attr['style'] = "background: ".$bg."; color: ".$color;
+				$item_id = 'elementor-repeater-item-'.$item['_id'];
+				
+				if($media_type == "icon"){
+					$bgType = $item['icon_bg_color_background'];
+					$bg = $item['icon_bg_color_color'];
+					$bgGlobal = $item['__globals__']['icon_bg_color_color'];
+
+					if($bgGlobal){
+						$bgGlobal = explode("=",$bgGlobal);
+						$bgGlobal = $bgGlobal[1];
+						$bgGlobal = 'var(--e-global-color-'.$bgGlobal.')';
+					}
+
+					$backGround = $bg?$bg:$bgGlobal;
+					
+					if($bgType == 'classic'){
+						$attr['style'] = "background:".$backGround." !important";
+					}else{
+						$attr['style'] = "";
+					}
 
 					ob_start();
 					ha_render_icon( $item, 'icon', 'selected_icon', $attr);
@@ -559,10 +602,10 @@ class Image_Stack_Group extends Base {
 
 				if(!empty($link['url'])){
 					$this->add_link_attributes( $id, $item['link'] );
-					$wrap_start = '<a '.$this->get_render_attribute_string( $id ).' class="ha-cig-item ha-cig-item-outline" '.$tooltip_data.'>';
+					$wrap_start = '<a '.$this->get_render_attribute_string( $id ).' class="ha-cig-item ha-cig-item-outline '.$item_id.'" '.$tooltip_data.'>';
 					$wrap_end   = '</a>';
 				}else{
-					$wrap_start = '<span class="ha-cig-item ha-cig-item-outline" '.$tooltip_data.'>';
+					$wrap_start = '<span class="ha-cig-item ha-cig-item-outline '.$item_id.'" '.$tooltip_data.'>';
 					$wrap_end   = '</span>';
 				}
 
