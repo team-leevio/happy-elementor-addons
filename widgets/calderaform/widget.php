@@ -564,6 +564,7 @@ class CalderaForm extends Base {
 
     protected function render() {
         if ( ! ha_is_calderaforms_activated() ) {
+			ha_show_plugin_missing_alert( __( 'Caldera Form', 'happy-elementor-addons' ) );
             return;
         }
 

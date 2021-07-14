@@ -549,6 +549,7 @@ class CF7 extends Base {
 
     protected function render() {
         if ( ! ha_is_cf7_activated() ) {
+			ha_show_plugin_missing_alert(__( 'Contact Forms 7', 'happy-elementor-addons' ) );
             return;
         }
 

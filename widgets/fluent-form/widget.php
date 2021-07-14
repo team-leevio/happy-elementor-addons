@@ -699,12 +699,13 @@ class Fluent_Form extends Base {
 
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
-		
+
 		$this->end_controls_section();
     }
 
     protected function render() {
         if ( ! ha_is_fluent_form_activated() ) {
+			ha_show_plugin_missing_alert(__( 'Fluent Form', 'happy-elementor-addons' ) );
             return;
         }
 

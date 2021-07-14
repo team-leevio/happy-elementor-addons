@@ -71,7 +71,16 @@ class Taxonomy_List extends Base {
 		return $list;
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__list_content_controls();
+		$this->__settings_content_controls();
+	}
+
+	protected function __list_content_controls() {
+
 		$this->start_controls_section(
 			'_section_taxonomy_list',
 			[
@@ -194,8 +203,10 @@ class Taxonomy_List extends Base {
 		}
 
 		$this->end_controls_section();
+	}
 
-		//Settings
+	protected function __settings_content_controls() {
+
 		$this->start_controls_section(
 			'_section_settings',
 			[
@@ -355,7 +366,16 @@ class Taxonomy_List extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__list_style_controls();
+		$this->__title_style_controls();
+		$this->__icon_image_style_controls();
+	}
+
+	protected function __list_style_controls() {
 
 		$this->start_controls_section(
 			'_section_taxonomy_list_style',
@@ -528,7 +548,10 @@ class Taxonomy_List extends Base {
 		);
 
 		$this->end_controls_section();
-		//Title Style
+	}
+
+	protected function __title_style_controls() {
+
 		$this->start_controls_section(
 			'_section_taxonomy_list_title_style',
 			[
@@ -588,7 +611,10 @@ class Taxonomy_List extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
-		//List Icon Style
+	}
+
+	protected function __icon_image_style_controls() {
+
 		$this->start_controls_section(
 			'_section_icon_style',
 			[

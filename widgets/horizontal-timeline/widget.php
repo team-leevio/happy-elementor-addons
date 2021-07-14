@@ -44,10 +44,19 @@ class Horizontal_Timeline extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'horizontal', 'timeline' ];
+		return [ 'horizontal', 'timeline', 'slider', 'carousel', 'scroll' ];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__timeline_content_controls();
+		$this->__settings_content_controls();
+	}
+
+	protected function __timeline_content_controls() {
+
 		$this->start_controls_section(
 			'_section_timeline',
 			[
@@ -240,6 +249,9 @@ class Horizontal_Timeline extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __settings_content_controls() {
 
 		$this->start_controls_section(
 			'_section_settings',
@@ -426,7 +438,17 @@ class Horizontal_Timeline extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__timeline_style_controls();
+		$this->__arrow_style_controls();
+		$this->__content_style_controls();
+	}
+
+	protected function __timeline_style_controls() {
+
 		$this->start_controls_section(
 			'_section_style_timeline',
 			[
@@ -608,6 +630,9 @@ class Horizontal_Timeline extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __arrow_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_arrows',
@@ -775,6 +800,9 @@ class Horizontal_Timeline extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
+
+	protected function __content_style_controls() {
 
 		$this->start_controls_section(
 			'_section_content_style',

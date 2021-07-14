@@ -83,16 +83,14 @@ class Post_Tab extends Base {
 	}
 
 	/**
-	 * Register Content Control
-	 *
-	 * @return void
-	 */
+     * Register widget content controls
+     */
 	protected function register_content_controls () {
-		$this->query_content_controls();
-		$this->settings_content_controls();
+		$this->__query_content_controls();
+		$this->__settings_content_controls();
 	}
 
-	protected function query_content_controls () {
+	protected function __query_content_controls () {
 
 		$this->start_controls_section(
 			'_section_post_tab_query',
@@ -167,8 +165,7 @@ class Post_Tab extends Base {
 
 	}
 
-	//Settings
-	protected function settings_content_controls () {
+	protected function __settings_content_controls () {
 
 		$this->start_controls_section(
 			'_section_settings',
@@ -312,19 +309,16 @@ class Post_Tab extends Base {
 		$this->end_controls_section();
 	}
 
-
 	/**
-	 * Register Style Control
-	 *
-	 * @return void
-	 */
+     * Register widget style controls
+     */
 	protected function register_style_controls () {
-		$this->tab_style_controls();
-		$this->tab_column_style_controls();
-		$this->content_style_controls();
+		$this->__tab_style_controls();
+		$this->__tab_column_style_controls();
+		$this->__content_style_controls();
 	}
 
-	protected function tab_style_controls () {
+	protected function __tab_style_controls () {
 
 		$this->start_controls_section(
 			'_section_post_tab_filter',
@@ -514,7 +508,7 @@ class Post_Tab extends Base {
 	}
 
 	//Column
-	protected function tab_column_style_controls () {
+	protected function __tab_column_style_controls () {
 
 		$this->start_controls_section(
 			'_section_post_tab_column',
@@ -610,7 +604,7 @@ class Post_Tab extends Base {
 	}
 
 	//Content Style
-	protected function content_style_controls () {
+	protected function __content_style_controls () {
 
 		$this->start_controls_section(
 			'_section_post_tab_content',

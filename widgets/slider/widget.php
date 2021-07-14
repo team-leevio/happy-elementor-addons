@@ -53,16 +53,14 @@ class Slider extends Base {
 	}
 
 	/**
-	 * Register Content Control
-	 *
-	 * @return void
-	 */
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
-		$this->slider_content_controls();
-		$this->slider_settings_content_controls();
+		$this->__slider_content_controls();
+		$this->__slider_settings_content_controls();
 	}
 
-	protected function slider_content_controls() {
+	protected function __slider_content_controls() {
 
 		$this->start_controls_section(
 			'_section_slides',
@@ -180,7 +178,7 @@ class Slider extends Base {
 		$this->end_controls_section();
 	}
 
-	protected function slider_settings_content_controls() {
+	protected function __slider_settings_content_controls() {
 
 		$this->start_controls_section(
 			'_section_settings',
@@ -321,17 +319,16 @@ class Slider extends Base {
 	}
 
 	/**
-	 * Register Style Control
-	 *
-	 * @return void
-	 */
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
-		$this->slider_item_style_controls();
-		$this->slider_content_style_controls();
-		$this->slider_arrow_style_controls();
-		$this->slider_dot_style_controls();
+		$this->__slider_item_style_controls();
+		$this->__slider_content_style_controls();
+		$this->__slider_arrow_style_controls();
+		$this->__slider_dot_style_controls();
 	}
-	protected function slider_item_style_controls() {
+
+	protected function __slider_item_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_item',
@@ -364,7 +361,7 @@ class Slider extends Base {
 		$this->end_controls_section();
 	}
 
-	protected function slider_content_style_controls() {
+	protected function __slider_content_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_content',
@@ -482,7 +479,7 @@ class Slider extends Base {
 		$this->end_controls_section();
 	}
 
-	protected function slider_arrow_style_controls() {
+	protected function __slider_arrow_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_arrow',
@@ -673,7 +670,7 @@ class Slider extends Base {
 		$this->end_controls_section();
 	}
 
-	protected function slider_dot_style_controls() {
+	protected function __slider_dot_style_controls() {
 		$this->start_controls_section(
 			'_section_style_dots',
 			[

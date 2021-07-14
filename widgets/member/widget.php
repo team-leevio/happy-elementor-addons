@@ -108,9 +108,16 @@ class Member extends Base {
 	}
 
 	/**
-	 * Register content related controls
-	 */
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__info_content_controls();
+		$this->__social_profile_content_controls();
+		$this->__button_content_controls();
+	}
+
+	protected function __info_content_controls() {
+
 		$this->start_controls_section(
 			'_section_info',
 			[
@@ -253,6 +260,9 @@ class Member extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __social_profile_content_controls() {
 
 		$this->start_controls_section(
 			'_section_social',
@@ -450,6 +460,9 @@ class Member extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __button_content_controls() {
 
 		$this->start_controls_section(
 			'_section_button',
@@ -588,6 +601,14 @@ class Member extends Base {
 	 * Register styles related controls
 	 */
 	protected function register_style_controls() {
+		$this->__image_style_controls();
+		$this->__meta_style_controls();
+		$this->__social_icon_style_controls();
+		$this->__button_style_controls();
+	}
+
+	protected function __image_style_controls() {
+
 		$this->start_controls_section(
 			'_section_style_image',
 			[
@@ -703,6 +724,9 @@ class Member extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __meta_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_content',
@@ -872,6 +896,9 @@ class Member extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __social_icon_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_social',
@@ -1015,6 +1042,9 @@ class Member extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
+
+	protected function __button_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_button',

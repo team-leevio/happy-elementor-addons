@@ -48,9 +48,10 @@ class Link_Hover extends Base {
 	}
 
 	/**
-	 * Register content related controls
-	 */
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		
 		$this->start_controls_section(
 			'_section_title',
 			array(
@@ -151,9 +152,10 @@ class Link_Hover extends Base {
 	}
 
 	/**
-	 * Register styles related controls
-	 */
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+
 		$this->start_controls_section(
 			'_section_media_style',
 			array(

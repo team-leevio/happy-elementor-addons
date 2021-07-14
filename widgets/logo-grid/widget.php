@@ -49,7 +49,16 @@ class Logo_Grid extends Base {
         return ['logo', 'grid', 'brand', 'client'];
     }
 
+	/**
+     * Register widget content controls
+     */
     protected function register_content_controls() {
+		$this->__logo_content_controls();
+		$this->__settings_content_controls();
+	}
+
+    protected function __logo_content_controls() {
+
         $this->start_controls_section(
             '_section_logo',
             [
@@ -193,6 +202,9 @@ class Logo_Grid extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __settings_content_controls() {
 
         $this->start_controls_section(
             '_section_settings',
@@ -253,7 +265,11 @@ class Logo_Grid extends Base {
         $this->end_controls_section();
     }
 
+	/**
+     * Register widget style controls
+     */
     protected function register_style_controls() {
+
         $this->start_controls_section(
             '_section_style_grid',
             [
