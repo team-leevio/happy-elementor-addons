@@ -1138,6 +1138,8 @@
 			run: function () {
 				var $currentTooltip = '.elementor-element-' + this.$element.data('id');
 				if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
+					// need to change library
+					// https://www.heteroclito.fr/modules/tooltipster/
 					this.$element.tipso(this.getReadySettings());
 					this.$element.removeClass('tipso_style');
 				}
@@ -1147,9 +1149,11 @@
 		elementorFrontend.hooks.addAction(
 			'frontend/element_ready/widget',
 			function ($scope) {
-				elementorFrontend.elementsHandler.addHandler(AdvancedTooltip, {
-					$element: $scope,
-				});
+				if($scope.hasClass('ha-advanced-tooltip-enable')) {
+					elementorFrontend.elementsHandler.addHandler(AdvancedTooltip, {
+						$element: $scope,
+					});
+				}
 			}
 		);
 
