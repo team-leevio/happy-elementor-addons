@@ -188,7 +188,7 @@ class Image_Stack_Group extends Base {
 				'type' => Controls_Manager::COLOR,
 				'condition' => [ 'media_type' => 'icon' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-cig-item{{CURRENT_ITEM}} i' => 'color: {{VALUE}}'
+					'{{WRAPPER}} {{CURRENT_ITEM}} i' => 'color: {{VALUE}}'
 				]
 			]
 		);
@@ -200,7 +200,7 @@ class Image_Stack_Group extends Base {
 				'label' => __( 'Background', 'plugin-domain' ),
 				'types' => [ 'classic', 'gradient' ],
 				'exclude' => [ 'image' ],
-				'selector' => '{{WRAPPER}} {{CURRENT_ITEM}}.ha-cig-item i'
+				'selector' => '{{WRAPPER}} .ha-cig-item{{CURRENT_ITEM}} i'
 			]
 		);
 
@@ -213,12 +213,13 @@ class Image_Stack_Group extends Base {
 
 
 		$repeater->add_control(
-			'border_color',
+			'border_color_item',
 			[
 				'label' => __( 'Border Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-cig-item{{CURRENT_ITEM}} i,{{WRAPPER}} .ha-cig-item{{CURRENT_ITEM}} img' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} {{CURRENT_ITEM}} i' => 'border-color: {{VALUE}} !important;',
+					'{{WRAPPER}} {{CURRENT_ITEM}} img' => 'border-color: {{VALUE}} !important;',
 				],
 			]
 		);
@@ -368,7 +369,8 @@ class Image_Stack_Group extends Base {
 				'label' => __( 'Border Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-cig-item i,{{WRAPPER}} .ha-cig-item img' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-cig-item i' => 'border-color: {{VALUE}} !important;',
+					'{{WRAPPER}} .ha-cig-item img' => 'border-color: {{VALUE}} !important;',
 				],
 			]
 		);
@@ -570,6 +572,7 @@ class Image_Stack_Group extends Base {
 
 					$backGround = $bg?$bg:$bgGlobal;
 					
+					var_dump($backGround);
 					if($bgType == 'classic'){
 						$attr['style'] = "background:".$backGround." !important";
 					}else{
