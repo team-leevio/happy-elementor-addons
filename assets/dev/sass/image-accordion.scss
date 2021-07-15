@@ -67,7 +67,8 @@
 	background-position: center center;
 	background-size: cover;
 	background-repeat: no-repeat;
-	transition: all 0.3s ease;
+	// transition: all 0.3s ease;
+	transition: flex .4s;
 	overflow: hidden;
 	cursor: pointer;
 	justify-content: center;
@@ -82,7 +83,7 @@
 }
 
 .ha-image-accordion-hover .ha-ia-item {
-	transition: all 0.3s ease 0.2s;
+	// transition: all 0.3s ease 0.2s;
 
 	&:hover {
 		flex: 3;
@@ -100,7 +101,8 @@
 }
 
 .ha-image-accordion-click .ha-ia-item {
-	transition: all 0.3s ease 0.1s;
+	// transition: all 0.3s ease 0.1s;
+
 	&.active {
 		flex: 3;
 
