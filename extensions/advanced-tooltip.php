@@ -108,8 +108,8 @@ class Advanced_Tooltip {
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __('Show', 'happy-elementor-addons'),
                 'label_off' => __('Hide', 'happy-elementor-addons'),
-                'return_value' => true,
-                'default' => true,
+                'return_value' => 'true',
+                'default' => 'true',
                 'frontend_available' => true,
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
@@ -181,10 +181,10 @@ class Advanced_Tooltip {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-top .ha-advanced-tooltip-content' => 'bottom: calc(150% + {{SIZE}}{{UNIT}});',
-                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-bottom .ha-advanced-tooltip-content' => 'top: calc(150% + {{SIZE}}{{UNIT}});',
-                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-left .ha-advanced-tooltip-content' => 'right: calc(110% + {{SIZE}}{{UNIT}});',
-                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-right .ha-advanced-tooltip-content' => 'left: calc(110% + {{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-top .ha-advanced-tooltip-content' => 'bottom: calc(101% + {{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-bottom .ha-advanced-tooltip-content' => 'top: calc(101% + {{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-left .ha-advanced-tooltip-content' => 'right: calc(101% + {{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-right .ha-advanced-tooltip-content' => 'left: calc(101% + {{SIZE}}{{UNIT}});',
                 ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
