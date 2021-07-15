@@ -44,10 +44,19 @@ class Horizontal_Timeline extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'horizontal', 'timeline' ];
+		return [ 'horizontal', 'timeline', 'slider', 'carousel', 'scroll' ];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__timeline_content_controls();
+		$this->__settings_content_controls();
+	}
+
+	protected function __timeline_content_controls() {
+
 		$this->start_controls_section(
 			'_section_timeline',
 			[
@@ -240,12 +249,36 @@ class Horizontal_Timeline extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __settings_content_controls() {
 
 		$this->start_controls_section(
 			'_section_settings',
 			[
 				'label' => __( 'Settings', 'happy-elementor-addons' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_control(
+			'title_tag',
+			[
+				'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				// 'separator' => 'before',
+				'options' => [
+					'h1' => 'H1',
+					'h2' => 'H2',
+					'h3' => 'H3',
+					'h4' => 'H4',
+					'h5' => 'H5',
+					'h6' => 'H6',
+					'div' => 'div',
+					'span' => 'span',
+					'p' => 'p',
+				],
+				'default' => 'h2',
 			]
 		);
 
@@ -405,7 +438,17 @@ class Horizontal_Timeline extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__timeline_style_controls();
+		$this->__arrow_style_controls();
+		$this->__content_style_controls();
+	}
+
+	protected function __timeline_style_controls() {
+
 		$this->start_controls_section(
 			'_section_style_timeline',
 			[
@@ -587,6 +630,9 @@ class Horizontal_Timeline extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __arrow_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_arrows',
@@ -754,6 +800,9 @@ class Horizontal_Timeline extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
+
+	protected function __content_style_controls() {
 
 		$this->start_controls_section(
 			'_section_content_style',
@@ -1090,7 +1139,14 @@ class Horizontal_Timeline extends Base {
 								</div>
 							<?php endif; ?>
 
-							<h2 class="ha-horizontal-timeline-title"><?php echo esc_html( $timeline['event_title'] ); ?></h2>
+							<?php
+								if ( $timeline['event_title'] ) {
+									printf( '<%1$s class="ha-horizontal-timeline-title">%2$s</%1$s>',
+										ha_escape_tags( $settings['title_tag'], 'h2' ),
+										esc_html( $timeline['event_title'] )
+									);
+								}
+							?>
 
 							<?php if ( !empty( $timeline['event_subtitle'] ) ) : ?>
 								<span class="ha-horizontal-timeline-subtitle"><?php echo esc_html( $timeline['event_subtitle'] ); ?></span>

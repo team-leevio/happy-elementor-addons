@@ -48,7 +48,11 @@ class WPForm extends Base {
         return [ 'wpf', 'wpform', 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
     }
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+
 		$this->start_controls_section(
 			'_section_wpforms',
 			[
@@ -59,6 +63,7 @@ class WPForm extends Base {
 		);
 
         if ( ! ha_is_wpforms_activated() ) {
+
             $this->add_control(
                 '_wpforms_missing_notice',
                 [
@@ -79,24 +84,35 @@ class WPForm extends Base {
                     'raw' => '<a href="'.esc_url( admin_url( 'plugin-install.php?s=WPForms&tab=search&type=term' ) ).'" target="_blank" rel="noopener">Click to install or activate WPForms</a>',
                 ]
             );
-            $this->end_controls_section();
-            return;
-        }
 
-        $this->add_control(
-            'form_id',
-            [
-                'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SELECT,
-				'label_block' => true,
-				'options' => ['' => __( 'Select a WPForm', 'happy-elementor-addons' ) ] + \ha_get_wpforms(),
-            ]
-        );
+        }else {
+
+			$this->add_control(
+				'form_id',
+				[
+					'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::SELECT,
+					'label_block' => true,
+					'options' => ['' => __( 'Select a WPForm', 'happy-elementor-addons' ) ] + \ha_get_wpforms(),
+				]
+			);
+
+		}
 
         $this->end_controls_section();
     }
 
+	/**
+     * Register widget style controls
+     */
     protected function register_style_controls() {
+		$this->__fields_style_controls();
+		$this->__label_style_controls();
+		$this->__submit_style_controls();
+	}
+
+    protected function __fields_style_controls() {
+
         $this->start_controls_section(
             '_section_fields_style',
             [
@@ -256,6 +272,9 @@ class WPForm extends Base {
 		$this->end_controls_tabs();
 
         $this->end_controls_section();
+	}
+
+    protected function __label_style_controls() {
 
         $this->start_controls_section(
             'wpf-form-label',
@@ -399,6 +418,9 @@ class WPForm extends Base {
         $this->end_popover();
 
         $this->end_controls_section();
+	}
+
+    protected function __submit_style_controls() {
 
         $this->start_controls_section(
             'submit',
@@ -632,6 +654,7 @@ class WPForm extends Base {
 
     protected function render() {
         if ( ! ha_is_wpforms_activated() ) {
+			ha_show_plugin_missing_alert( __( 'WPForms', 'happy-elementor-addons' ) );
             return;
         }
 

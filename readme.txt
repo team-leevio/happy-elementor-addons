@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.26.0
+Version: 2.27.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, sayedulsayem, obiplabon
@@ -12,11 +12,11 @@ Requires PHP: 5.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-[Happy Addons for Elementor](https://happyaddons.com/) Comes With 43 Free Elementor Widgets: Table Builder, Testimonial, Event Calendar, Slider, News Ticker, Elementor Templates & More. Features Like Elementor Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Elementor Icons, & More.
+[Happy Addons for Elementor](https://happyaddons.com/) Is the Best Elementor Addons Comes With 44+ Free Elementor Widgets Including Table Builder, Testimonial, Event Calendar,Slider,News Ticker, Image Grid, etc & Features Like Elementor Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Elementor Icons, 450+ Template Packs & More.
 
 == Description ==
 
-[Happy Addons for Elementor page builder](https://happyaddons.com/)Is One of the Best Elementor Addons That Comes With **88 Elementor Free & Pro Widgets and 16+ Problem-Solving Elementor Features**.
+[Happy Addons for Elementor page builder](https://happyaddons.com/)Is One of the Best Elementor Addons That Comes With **89+ Elementor Free & Pro Widgets and 16+ Problem-Solving Elementor Features**.
 
 ### **Why Should You Choose HappyAddons?**
 HappyAddons is the pioneer of adding exclusive problem-solving features. Also we have added premium quality Widgets in the Elementor Library. Reasons for choosing Happyaddons over any other Elementor Addons:
@@ -38,7 +38,7 @@ HappyAddons is the pioneer of adding exclusive problem-solving features. Also we
 
 ### **What You will Get in HappyAddons Free Version**
 
-**43 Free Elementor Widgets Are Available in the HappyAddons Free**
+**44 Free Elementor Widgets Are Available in the HappyAddons Free**
 HappyAddons comes with plenty of Elementor Widgets in the free version. And all of the widgets are full of customization. Also we have created design inspiration for our each and every single widgets. Let’s have a look what you will get in our free version:
 
 - [**Card**](https://demo.happyaddons.com/elementor-card-widget-demo/) – Incredibly powerful widget to demonstrate your products, articles, news, creative posts using a beautiful combination of texts, links, badge, and image. Using built-in positioning and offset features you can create eye-candy designs in a twist.
@@ -77,6 +77,7 @@ HappyAddons comes with plenty of Elementor Widgets in the free version. And all 
 - [**Image Hover Effect**](https://demo.happyaddons.com/elementor-image-hover-effect-widget-demo/) – If you want to add lucrative hover effects to your website’s images, you can try HappyAddons Image Hover Effect Widget. It allows you to add 20+ stunning hover effects to your photos. Start adding attention grabbing images easily.
 - [**Animated Link**](https://demo.happyaddons.com/elementor-animated-link-widget-demo/) – Are you wondering about increasing the click-through rate of your website’s links? Grab your visitor’s attention by adding different effects to your links using the Happy Animated Link widget.
 - [**Mailchimp Widget**](https://demo.happyaddons.com/elementor-mailchimp-widget-demo/) – Now you can create lucrative Mailchimp forms with HappyAddons Mailchimp Widget for Elementor.
+- [**Content Switcher**](https://demo.happyaddons.com/elementor-content-switcher-demo/) – Happy Content Switcher Elementor widget allows you to toggle Elementor sections, pages, or texts easily.
 - [**Contact Form 7**](https://demo.happyaddons.com/elementor-contact-form-7-widget-demo/) – This utility widget helps you to integrate existing forms built using CF7 plugin across your web pages without spending too much time.
 - [**Caldera Forms**](https://demo.happyaddons.com/elementor-caldera-forms-widget-demo/) – This widget can help you to display your caldera forms to display on your web pages designed with Elementor.
 - [**weForms**](https://demo.happyaddons.com/elementor-we-forms-widget-demo/) – Designed forms using weForms plugin and looking for a way to display those on your Elementor powered pages? This is the answer to that.
@@ -348,6 +349,10 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 2.27.0 - 5 July 2021 =
+
+- New: Content Switcher Widget
 
 = 2.26.0 - 1 July 2021 =
 

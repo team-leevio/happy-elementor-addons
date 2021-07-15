@@ -50,7 +50,19 @@ class Pricing_Table extends Base {
         return [ 'pricing', 'price', 'table', 'package', 'product', 'plan' ];
     }
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__header_content_controls();
+		$this->__price_content_controls();
+		$this->__features_content_controls();
+		$this->__footer_content_controls();
+		$this->__badge_content_controls();
+	}
+
+	protected function __header_content_controls() {
+
 		$this->start_controls_section(
 			'_section_header',
 			[
@@ -73,6 +85,9 @@ class Pricing_Table extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+	protected function __price_content_controls() {
 
         $this->start_controls_section(
             '_section_pricing',
@@ -153,6 +168,9 @@ class Pricing_Table extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+	protected function __features_content_controls() {
 
         $this->start_controls_section(
             '_section_features',
@@ -257,6 +275,9 @@ class Pricing_Table extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+	protected function __footer_content_controls() {
 
         $this->start_controls_section(
             '_section_footer',
@@ -297,6 +318,9 @@ class Pricing_Table extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+	protected function __badge_content_controls() {
 
         $this->start_controls_section(
             '_section_badge',
@@ -362,7 +386,20 @@ class Pricing_Table extends Base {
         $this->end_controls_section();
     }
 
+	/**
+     * Register widget style controls
+     */
     protected function register_style_controls() {
+		$this->__general_style_controls();
+		$this->__header_style_controls();
+		$this->__price_style_controls();
+		$this->__feature_style_controls();
+		$this->__footer_style_controls();
+		$this->__badge_style_controls();
+	}
+
+    protected function __general_style_controls() {
+
         $this->start_controls_section(
             '_section_style_general',
             [
@@ -388,6 +425,9 @@ class Pricing_Table extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __header_style_controls() {
 
         $this->start_controls_section(
             '_section_style_header',
@@ -438,6 +478,9 @@ class Pricing_Table extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __price_style_controls() {
 
         $this->start_controls_section(
             '_section_style_pricing',
@@ -570,6 +613,9 @@ class Pricing_Table extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __feature_style_controls() {
 
         $this->start_controls_section(
             '_section_style_features',
@@ -674,6 +720,9 @@ class Pricing_Table extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __footer_style_controls() {
 
         $this->start_controls_section(
             '_section_style_footer',
@@ -826,7 +875,11 @@ class Pricing_Table extends Base {
 
         $this->end_controls_tab();
         $this->end_controls_tabs();
+
         $this->end_controls_section();
+	}
+
+    protected function __badge_style_controls() {
 
         $this->start_controls_section(
             '_section_style_badge',

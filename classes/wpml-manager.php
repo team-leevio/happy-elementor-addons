@@ -48,7 +48,11 @@ class WPML_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/social-icons.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/data-table.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/horizontal-timeline.php' );
+<<<<<<< HEAD
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-accordion.php' );
+=======
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/content-switcher.php' );
+>>>>>>> dev
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -620,6 +624,7 @@ class WPML_Manager {
 			],
 
 			/**
+<<<<<<< HEAD
 			 * Image Accordion
 			 */
 			'image-accordion' => [
@@ -630,6 +635,14 @@ class WPML_Manager {
 			],
 
 
+=======
+			 * Content Switcher
+			 */
+			'content-switcher' => [
+				'fields' => [],
+				'integration-class' => __NAMESPACE__ . '\\WPML_Content_Switcher',
+			],
+>>>>>>> dev
 		];
 
 		foreach ( $widgets_map as $key => $data ) {

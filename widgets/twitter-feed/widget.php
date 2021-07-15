@@ -47,10 +47,18 @@ class Twitter_Feed extends Base {
 	}
 
 
+
 	/**
-	 * Register content related controls
-	 */
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__twitter_content_controls();
+		$this->__twitter_settings_content_controls();
+		$this->__general_settings_content_controls();
+	}
+
+	protected function __twitter_content_controls() {
+
 		$this->start_controls_section(
 			'_section_twitter',
 			[
@@ -94,6 +102,9 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __twitter_settings_content_controls() {
 
 		$this->start_controls_section(
 			'_section_twitter_settings',
@@ -297,6 +308,9 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __general_settings_content_controls() {
 
 		$this->start_controls_section(
 			'_section_general_settings',
@@ -432,11 +446,18 @@ class Twitter_Feed extends Base {
 		$this->end_controls_section();
 	}
 
-
 	/**
-	 * Register styles related controls
-	 */
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__common_style_controls();
+		$this->__user_info_style_controls();
+		$this->__content_style_controls();
+		$this->__footer_style_controls();
+	}
+
+	protected function __common_style_controls() {
+
 		$this->start_controls_section(
 			'_section_twitter_style',
 			[
@@ -535,6 +556,9 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __user_info_style_controls() {
 
 		$this->start_controls_section(
 			'_section_twitter_user_info',
@@ -823,6 +847,9 @@ class Twitter_Feed extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
+
+	protected function __content_style_controls() {
 
 		$this->start_controls_section(
 			'_section_twitter_content',
@@ -997,6 +1024,9 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __footer_style_controls() {
 
 		$this->start_controls_section(
 			'_section_twitter_footer_button',
@@ -1211,7 +1241,6 @@ class Twitter_Feed extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
-
 	}
 
 	protected function render() {

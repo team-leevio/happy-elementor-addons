@@ -53,7 +53,11 @@ class GravityForms extends Base {
 		return true;
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+
 		$this->start_controls_section(
 			'_section_gravityforms',
 			[
@@ -64,6 +68,7 @@ class GravityForms extends Base {
 		);
 
 		if ( ! ha_is_gravityforms_activated() ) {
+
 			$this->add_control(
 				'_gravityforms_missing_notice',
 				[
@@ -76,48 +81,51 @@ class GravityForms extends Base {
 				]
 			);
 
-			$this->end_controls_section();
-			return;
+		}else{
+
+			$this->add_control(
+				'form_id',
+				[
+					'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::SELECT,
+					'label_block' => true,
+					'options' => ['' => __( '', 'happy-elementor-addons' ) ] + \ha_get_gravity_forms(),
+				]
+			);
+
+			$this->add_control(
+				'form_title_show',
+				[
+					'label' => __( 'Form Title', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::SWITCHER,
+					'separator' => 'before',
+					'label_on' => __( 'Show', 'happy-elementor-addons' ),
+					'label_off' => __( 'Hide', 'happy-elementor-addons' ),
+					'return_value' => 'yes',
+					'default' => 'yes',
+				]
+			);
+
+			$this->add_control(
+				'ajax',
+				[
+					'label' => __( 'Enable Ajax Submit', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::SWITCHER,
+					'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+					'label_off' => __( 'No', 'happy-elementor-addons' ),
+					'return_value' => 'yes',
+					'default' => 'no',
+				]
+			);
+
 		}
-
-		$this->add_control(
-			'form_id',
-			[
-				'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SELECT,
-				'label_block' => true,
-				'options' => ['' => __( '', 'happy-elementor-addons' ) ] + \ha_get_gravity_forms(),
-			]
-		);
-
-		$this->add_control(
-			'form_title_show',
-			[
-				'label' => __( 'Form Title', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SWITCHER,
-				'separator' => 'before',
-				'label_on' => __( 'Show', 'happy-elementor-addons' ),
-				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-			]
-		);
-
-		$this->add_control(
-			'ajax',
-			[
-				'label' => __( 'Enable Ajax Submit', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
-				'label_off' => __( 'No', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-				'default' => 'no',
-			]
-		);
 
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
 		$this->__form_fields_style_controls();
 		$this->__form_fields_label_style_controls();
@@ -127,6 +135,7 @@ class GravityForms extends Base {
 	}
 
 	protected function __form_fields_style_controls() {
+
 		$this->start_controls_section(
 			'_section_fields_style',
 			[
@@ -339,6 +348,7 @@ class GravityForms extends Base {
 	}
 
 	protected function __form_fields_label_style_controls() {
+
 		$this->start_controls_section(
 			'form_fields_label_section',
 			[
@@ -444,6 +454,7 @@ class GravityForms extends Base {
 	}
 
 	protected function __form_fields_submit_style_controls() {
+
 		$this->start_controls_section(
 			'form_fields_submit_sectionsubmit',
 			[
@@ -668,6 +679,7 @@ class GravityForms extends Base {
 	}
 
 	protected function __form_fields_break_style_controls() {
+
 		$this->start_controls_section(
 			'form_fields_break_section',
 			[
@@ -911,6 +923,7 @@ class GravityForms extends Base {
 	}
 
 	protected function __form_fields_list_style_controls() {
+
 		$this->start_controls_section(
 			'form_fields_list_section',
 			[
@@ -968,7 +981,7 @@ class GravityForms extends Base {
 
 	protected function render() {
 		if ( ! ha_is_gravityforms_activated() ) {
-			self::show_gravityforms_missing_alert();
+			ha_show_plugin_missing_alert( __( 'Gravity Forms', 'happy-elementor-addons' ) );
 			return;
 		}
 
@@ -979,16 +992,6 @@ class GravityForms extends Base {
 		}
 		if ( ! empty( $settings['form_id'] ) ) {
 			gravity_form( $settings['form_id'], $settings['form_title_show'], true, false, null, $ajax );
-		}
-	}
-
-	public static function show_gravityforms_missing_alert() {
-		if ( current_user_can( 'activate_plugins' ) ) {
-			printf(
-				'<div %s>%s</div>',
-				'style="margin: 1rem;padding: 1rem 1.25rem;border-left: 5px solid #f5c848;color: #856404;background-color: #fff3cd;"',
-				__( 'Gravity Forms is missing! Please install and activate Gravity Forms.', 'happy-elementor-addons' )
-				);
 		}
 	}
 }

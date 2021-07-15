@@ -629,10 +629,17 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+<<<<<<< HEAD
 			'image-accordion' => [
 				'title' => __( 'Image Accordion', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-image-accordion',
 				'css' => ['image-accordion'],
+=======
+			'content-switcher' => [
+				'title' => __( 'Content Switcher', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-switcher',
+				'css' => ['content-switcher'],
+>>>>>>> dev
 				'js' => [],
 				'vendor' => [
 					'css' => [],
