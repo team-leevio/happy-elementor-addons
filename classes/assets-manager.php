@@ -258,22 +258,6 @@ class Assets_Manager {
 			true
 		);
 
-		// Tipso: tooltip plugin
-		wp_register_style(
-			'tipso',
-			HAPPY_ADDONS_ASSETS . 'vendor/tipso/tipso' . $suffix . '.css',
-			[],
-			HAPPY_ADDONS_VERSION
-		);
-
-		wp_register_script(
-			'jquery-tipso',
-			HAPPY_ADDONS_ASSETS . 'vendor/tipso/tipso' . $suffix . '.js',
-			['jquery'],
-			HAPPY_ADDONS_VERSION,
-			true
-		);
-
 		// Main assets
 		wp_register_style(
 			'happy-elementor-addons',

@@ -5,7 +5,6 @@ namespace Happy_Addons\Elementor\Extension;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Color;
 use \Elementor\Core\Schemes\Typography;
 
 defined('ABSPATH') || die();
@@ -14,8 +13,6 @@ class Advanced_Tooltip {
 
     public static function init() {
         add_action('elementor/element/common/_section_style/after_section_end', [__CLASS__, 'add_controls_section'], 1);
-        wp_enqueue_style('tipso');
-        wp_enqueue_script('jquery-tipso');
     }
 
     public static function add_controls_section($element) {
@@ -51,7 +48,7 @@ class Advanced_Tooltip {
         ]);
 
         $element->add_control(
-            'ha_tooltip_section_content',
+            'ha_advanced_tooltip_content',
             [
                 'label' => __('Content', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
@@ -65,7 +62,7 @@ class Advanced_Tooltip {
         );
 
         $element->add_control(
-            'ha_tooltip_section_position',
+            'ha_advanced_tooltip_position',
             [
                 'label' => __('Position', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
@@ -85,7 +82,7 @@ class Advanced_Tooltip {
         );
 
         // $element->add_control(
-        //     'ha_tooltip_section_animation',
+        //     'ha_advanced_tooltip_animation',
         //     [
         //         'label' => __('Animation', 'happy-elementor-addons'),
         //         'type' => Controls_Manager::SELECT,
@@ -105,7 +102,7 @@ class Advanced_Tooltip {
         // );
 
         $element->add_control(
-            'ha_tooltip_section_arrow',
+            'ha_advanced_tooltip_arrow',
             [
                 'label' => __('Arrow', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SWITCHER,
@@ -120,26 +117,8 @@ class Advanced_Tooltip {
             ]
         );
 
-        // $element->add_control(
-        //     'ha_tooltip_section_arrow_type',
-        //     [
-        //         'label' => __('Arrow Type', 'happy-elementor-addons'),
-        //         'type' => Controls_Manager::SELECT,
-        //         'default' => 'sharp',
-        //         'options' => [
-        //             'sharp' => __('Sharp', 'happy-elementor-addons'),
-        //             'round' => __('Round', 'happy-elementor-addons'),
-        //         ],
-        //         'frontend_available' => true,
-        //         'condition' => [
-        //             'ha_advanced_tooltip_enable!' => '',
-        //             'ha_tooltip_section_arrow!' => '',
-        //         ],
-        //     ]
-        // );
-
         $element->add_control(
-            'ha_tooltip_section_trigger',
+            'ha_advanced_tooltip_trigger',
             [
                 'label' => __('Trigger', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
@@ -156,14 +135,14 @@ class Advanced_Tooltip {
         );
 
         $element->add_control(
-            'ha_tooltip_section_duration',
+            'ha_advanced_tooltip_duration',
             [
-                'label' => __('Duration', 'happy-elementor-addons'),
+                'label' => __('Duration (ms)', 'happy-elementor-addons'),
                 'type' => Controls_Manager::NUMBER,
                 'min' => 100,
-                'max' => 1000,
-                'step' => 10,
-                'default' => 300,
+                'max' => 5000,
+                'step' => 50,
+                'default' => 500,
                 'frontend_available' => true,
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
@@ -172,9 +151,9 @@ class Advanced_Tooltip {
         );
 
         $element->add_control(
-            'ha_tooltip_section_delay',
+            'ha_advanced_tooltip_delay',
             [
-                'label' => __('Delay out (s)', 'happy-elementor-addons'),
+                'label' => __('Delay (ms)', 'happy-elementor-addons'),
                 'type' => Controls_Manager::NUMBER,
                 'min' => 100,
                 'max' => 1000,
@@ -187,19 +166,26 @@ class Advanced_Tooltip {
             ]
         );
 
-        $element->add_control(
-            'ha_tooltip_section_size',
+        $element->add_responsive_control(
+            'ha_advanced_tooltip_distance',
             [
-                'label' => __('Size', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'default',
-                'options' => [
-                    'tiny' => __('Tiny', 'happy-elementor-addons'),
-                    'small' => __('Small', 'happy-elementor-addons'),
-                    'default' => __('Default', 'happy-elementor-addons'),
-                    'large' => __('Large', 'happy-elementor-addons'),
+                'label' => __('Distance', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => '0',
                 ],
-                'frontend_available' => true,
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 500,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-top .ha-advanced-tooltip-content' => 'bottom: calc(150% + {{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-bottom .ha-advanced-tooltip-content' => 'top: calc(150% + {{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-left .ha-advanced-tooltip-content' => 'right: calc(110% + {{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-right .ha-advanced-tooltip-content' => 'left: calc(110% + {{SIZE}}{{UNIT}});',
+                ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
                 ],
@@ -208,37 +194,52 @@ class Advanced_Tooltip {
 
         $element->end_controls_tab();
 
-        $element->start_controls_tab('ha_tooltip_section_styles', [
+        $element->start_controls_tab('ha_advanced_tooltip_styles', [
             'label' => __('Styles', 'happy-elementor-addons'),
             'condition' => [
                 'ha_advanced_tooltip_enable!' => '',
             ],
         ]);
 
-        // $element->add_group_control(
-        //     Group_Control_Typography::get_type(),
-        //     [
-        //         'name' => 'ha_tooltip_section_typography',
-        //         'selector' => '.tipso_bubble.ha-tooltip-wrapper-{{ID}} .ha-tooltip-content-{{ID}}',
-        //         'scheme' => Typography::TYPOGRAPHY_3,
-        //         'separator' => 'after',
-        //         'condition' => [
-        //             'ha_advanced_tooltip_enable!' => '',
-        //         ],
-        //     ]
-        // );
-        
+        $element->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'ha_advanced_tooltip_typography',
+                'separator' => 'after',
+                'fields_options' => [
+                    'typography' => [
+                        'default' => 'yes'
+                    ],
+                    'font_family' => [
+                        'default' => 'Nunito',
+                    ],
+                    'font_weight' => [
+                        'default' => '500', // 100, 200, 300, 400, 500, 600, 700, 800, 900, normal, bold
+                    ],
+                    'font_size' => [
+                        'default' => [
+                            'unit' => 'px', // px, em, rem, vh
+                            'size' => '14', // any number
+                        ],
+                    ],
+                ],
+                'selector' => '{{WRAPPER}} .ha-advanced-tooltip-content',
+                'condition' => [
+                    'ha_advanced_tooltip_enable!' => '',
+                ],
+            ]
+        );
+
         $element->add_control(
-            'ha_tooltip_section_background_color',
+            'ha_advanced_tooltip_background_color',
             [
                 'label' => __('Background Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#000000',
-                'frontend_available' => true,
-                // 'selectors' => [
-                //     '.tipso_bubble.ha-tooltip-wrapper-{{ID}}' => 'background: {{VALUE}} !important;',
-                //     '.tipso_bubble.ha-tooltip-wrapper-{{ID}} .tipso_arrow' => 'border-left-color: {{VALUE}} !important;',
-                // ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-advanced-tooltip-content' => 'background: {{VALUE}};',
+                    '{{WRAPPER}} .ha-advanced-tooltip-content::after' => '--ha-tooltip-arrow-color: {{VALUE}}',
+                ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
                 ],
@@ -246,45 +247,37 @@ class Advanced_Tooltip {
         );
 
         $element->add_control(
-            'ha_tooltip_section_color',
+            'ha_advanced_tooltip_color',
             [
                 'label' => __('Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#ffffff',
-                'frontend_available' => true,
-                // 'selectors' => [
-                //     '.tipso_bubble.ha-tooltip-wrapper-{{ID}}' => 'color: {{VALUE}} !important;',
-                // ],
-                'condition' => [
-                    'ha_advanced_tooltip_enable!' => '',
-                ],
-            ]
-        );
-
-        $element->add_control(
-            'ha_tooltip_section_border_color',
-            [
-                'label' => __('Border Color', 'happy-elementor-addons'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '',
                 'selectors' => [
-                    '.tipso_bubble.ha-tooltip-wrapper-{{ID}}' => 'border: 1px solid {{VALUE}};',
+                    '{{WRAPPER}} .ha-advanced-tooltip-content' => 'color: {{VALUE}};',
                 ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
-                    'ha_tooltip_section_arrow' => '',
                 ],
             ]
         );
 
+        // $element->add_group_control(
+        // 	Group_Control_Border::get_type(),
+        // 	[
+        // 		'name' => 'border',
+        // 		'label' => __( 'Border', 'happy-elementor-addons' ),
+        // 		'selector' => '{{WRAPPER}} .ha-advanced-tooltip-content',
+        // 	]
+        // );
+
         $element->add_control(
-            'ha_tooltip_section_border_radius',
+            'ha_advanced_tooltip_border_radius',
             [
                 'label' => __('Border Radius', 'happy-elementor-addons'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '.tipso_bubble.ha-tooltip-wrapper-{{ID}}' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-advanced-tooltip-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
@@ -292,30 +285,14 @@ class Advanced_Tooltip {
             ]
         );
 
-        // $element->add_control(
-        //     'ha_tooltip_section_distance',
-        //     [
-        //         'label' => __('Distance', 'happy-elementor-addons'),
-        //         'type' => Controls_Manager::NUMBER,
-        //         'min' => 05,
-        //         'max' => 50,
-        //         'step' => 2,
-        //         'default' => 10,
-        //         'label_block' => false,
-        //         'condition' => [
-        //             'ha_advanced_tooltip_enable!' => '',
-        //         ],
-        //     ]
-        // );
-
         $element->add_control(
-            'ha_tooltip_section_padding',
+            'ha_advanced_tooltip_padding',
             [
                 'label' => __('Padding', 'happy-elementor-addons'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '.tipso_bubble.ha-tooltip-wrapper-{{ID}} .ha-tooltip-content-{{ID}}' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-advanced-tooltip-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
@@ -326,8 +303,8 @@ class Advanced_Tooltip {
         $element->add_group_control(
             Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'ha_tooltip_section_box_shadow',
-                'selector' => '.tipso_bubble.ha-tooltip-wrapper-{{ID}}',
+                'name' => 'ha_advanced_tooltip_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-advanced-tooltip-content',
                 'separator' => '',
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
@@ -336,22 +313,21 @@ class Advanced_Tooltip {
         );
 
         $element->add_control(
-            'ha_tooltip_section_width',
+            'ha_advanced_tooltip_width',
             [
-                'label' => __('Max Width', 'happy-elementor-addons'),
+                'label' => __('Width', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
-                    'size' => '350',
+                    'size' => '120',
                 ],
                 'range' => [
                     'px' => [
-                        'min' => 0,
+                        'min' => 1,
                         'max' => 500,
                     ],
                 ],
-                'label_block' => false,
                 'selectors' => [
-                    '.tipso_bubble.ha-tooltip-wrapper-{{ID}}' => 'max-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-advanced-tooltip-content' => 'width: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',

@@ -1076,76 +1076,6 @@
 			});
 		});
 
-		// var AdvancedTooltip = elementorModules.frontend.handlers.Base.extend({
-
-		// 	onInit: function () {
-		// 		elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
-		// 		if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
-		// 			this.run();
-		// 		}
-		// 	},
-		// 	getReadySettings: function () {
-		// 		if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
-		// 			var $tooltipUnqId = this.$element.data('id');
-
-		// 			var settings = {
-		// 				content: this.getElementSettings('ha_tooltip_section_content'),
-		// 				speed: this.getElementSettings('ha_tooltip_section_duration') || 300,
-		// 				size: this.getElementSettings('ha_tooltip_section_size') || 'default',
-		// 				background: this.getElementSettings('ha_tooltip_section_background_color') || '',
-		// 				color: this.getElementSettings('ha_tooltip_section_color') || '',
-		// 				showArrow: this.getElementSettings('ha_tooltip_section_arrow') || false,
-		// 				position: this.getElementSettings('ha_tooltip_section_position'),
-		// 				// width: this.getElementSettings('null') || 100,
-		// 				width: 100,
-		// 				// maxWidth: this.getElementSettings('null') || '',
-		// 				delay: this.getElementSettings('ha_tooltip_section_delay') || 100,
-		// 				hideDelay: this.getElementSettings('ha_tooltip_section_delay') || 100,
-		// 				// animationIn: this.getElementSettings('ha_tooltip_section_animation') || '',
-		// 				// animationOut: this.getElementSettings('ha_tooltip_section_animation') || '',
-		// 				// offsetX: this.getElementSettings('null') || 0,
-		// 				// offsetY: this.getElementSettings('null') || 0,
-		// 				tooltipHover: true,
-		// 				templateEngineFunc: function(content){
-		// 					return '<span class="ha-tooltip-content-'+$tooltipUnqId+'">' + content + '</span>';
-		// 				},
-		// 				useTitle: false,
-		// 				onShow: function ($element, element) {
-		// 					$('.ha-tooltip-content-'+ $tooltipUnqId ).parent().parent().addClass('ha-tooltip-wrapper-' + $tooltipUnqId);
-		// 				},
-		// 				// onHide: this.getElementSettings('null') || null
-		// 			};
-		// 			return $.extend({}, settings);
-		// 			// return settings;
-		// 		}
-		// 	},
-		// 	onElementChange: function (e) {
-		// 		console.log(e);
-		// 		var style_controls = ['ha_advanced_tooltip_enable', 'ha_tooltip_section_content', 'ha_tooltip_section_position', 'ha_tooltip_section_arrow', 'ha_tooltip_section_duration', 'ha_tooltip_section_delay', 'ha_tooltip_section_size', 'ha_tooltip_section_background_color', 'ha_tooltip_section_color'];
-		// 		var $currentTooltip = '.elementor-element-' + this.$element.data('id');
-		// 		if(style_controls.includes(e)) {
-		// 			if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
-		// 				// Destroy tipso tooltip
-		// 				this.$element.tipso('destroy');
-		// 				this.run();
-		// 			}
-		// 			else {
-		// 				// Destroy tipso tooltip
-		// 				this.$element.tipso('destroy');
-		// 			}
-		// 		}
-		// 	},
-		// 	run: function () {
-		// 		var $currentTooltip = '.elementor-element-' + this.$element.data('id');
-		// 		if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
-		// 			// need to change library
-		// 			// https://www.heteroclito.fr/modules/tooltipster/
-		// 			this.$element.tipso(this.getReadySettings());
-		// 			this.$element.removeClass('tipso_style');
-		// 		}
-		// 	}
-		// });
-
 		var AdvancedTooltip = elementorModules.frontend.handlers.Base.extend({
 
 			onInit: function () {
@@ -1159,27 +1089,23 @@
 				if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
 
 					var settings = {
-						trigger: this.getElementSettings('ha_tooltip_section_trigger'),
-						content: this.getElementSettings('ha_tooltip_section_content'),
-						speed: this.getElementSettings('ha_tooltip_section_duration') || 300,
-						size: this.getElementSettings('ha_tooltip_section_size') || 'default',
-						showArrow: this.getElementSettings('ha_tooltip_section_arrow') || false,
-						position: this.getElementSettings('ha_tooltip_section_position'),
-						width: 100,
-						delay: this.getElementSettings('ha_tooltip_section_delay') || 100,
-						hideDelay: this.getElementSettings('ha_tooltip_section_delay') || 100,
+						trigger: this.getElementSettings('ha_advanced_tooltip_trigger'),
+						content: this.getElementSettings('ha_advanced_tooltip_content'),
+						duration: this.getElementSettings('ha_advanced_tooltip_duration') || 500,
+						showArrow: this.getElementSettings('ha_advanced_tooltip_arrow') || false,
+						position: this.getElementSettings('ha_advanced_tooltip_position'),
+						delay: this.getElementSettings('ha_advanced_tooltip_delay') || 100,
 					};
+
 					return $.extend({}, settings);
 				}
 			},
 			onElementChange: function (e) {
-				console.log(e);
-				var style_controls = ['ha_advanced_tooltip_enable', 'ha_tooltip_section_content', 'ha_tooltip_section_position', 'ha_tooltip_section_arrow', 'ha_tooltip_section_duration', 'ha_tooltip_section_delay', 'ha_tooltip_section_size', 'ha_tooltip_section_background_color', 'ha_tooltip_section_color'];
+				var style_controls = ['ha_advanced_tooltip_enable', 'ha_advanced_tooltip_content', 'ha_advanced_tooltip_position', 'ha_advanced_tooltip_arrow', 'ha_advanced_tooltip_duration', 'ha_advanced_tooltip_delay', 'ha_advanced_tooltip_size', 'ha_advanced_tooltip_background_color', 'ha_advanced_tooltip_color'];
+
 				if(style_controls.includes(e)) {
-					if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
+					if ( (e == 'ha_advanced_tooltip_enable') && ( this.$element.find('.ha-advanced-tooltip-content').length <= 0 ) ) {
 						this.$element.append("<span class='ha-advanced-tooltip-content'></span>");
-					}else {
-						this.$element.find('.ha-advanced-tooltip-content').remove();
 					}
 					this.run();
 				}
@@ -1190,11 +1116,11 @@
 					var settings = this.getReadySettings();
 					var content = $scope.find('.ha-advanced-tooltip-content');
 					content.text(settings.content);
+					content.css('transition', 'opacity '+settings.duration+'ms ease '+settings.delay+'ms');
 					
-					console.log($scope.find('.ha-advanced-tooltip-content::after'));
-					// if( !settings.showArrow) {
-					// 	content.find('::after').hide();
-					// }
+					if( !settings.showArrow) {
+						content.addClass('no-arrow');
+					}
 
 					if (settings.trigger == 'click') {
 						this.$element.on('click', function() {
@@ -1212,6 +1138,8 @@
 							content.removeClass('show');
 						});
 					}
+				}else {
+					this.$element.find('.ha-advanced-tooltip-content').remove();
 				}
 			}
 		});

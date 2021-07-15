@@ -96,23 +96,21 @@
 	position: relative;
 	cursor: pointer;
 
-	// &:hover {
-	// 	.ha-advanced-tooltip-content {
-	// 		visibility: visible;
-	// 	}
-	// }
 	--ha-tooltip-arrow-color: black;
 
 	.ha-advanced-tooltip-content {
 		visibility: hidden;
 		width: 120px;
+		height: auto;
 		background-color: black;
 		color: #fff;
 		text-align: center;
 		border-radius: 6px;
 		padding: 5px 0;
 		position: absolute;
-		z-index: 1;
+		z-index: 999;
+		opacity: 0;
+		// transition: opacity 1s;
 
 		&::after {
 			content: "";
@@ -122,8 +120,15 @@
 			// border-color: black transparent transparent transparent;
 		}
 
+		&.no-arrow{
+			&::after {
+				visibility: hidden;
+			}
+		}
+
 		&.show {
 			visibility: visible;
+			opacity: 1;
 		}
 	}
 
@@ -159,7 +164,7 @@
 
 	&.ha-advanced-tooltip-left {
 		.ha-advanced-tooltip-content {
-			right: 110%;
+			right: 101%;
 			top: 50%;
 			transform: translateY(-50%);
 
@@ -174,7 +179,7 @@
 
 	&.ha-advanced-tooltip-right {
 		.ha-advanced-tooltip-content {
-			left: 110%;
+			left: 101%;
 			top: 50%;
 			transform: translateY(-50%);
 
