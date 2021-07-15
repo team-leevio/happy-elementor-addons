@@ -3,24 +3,14 @@
 
 .ha-css-transform-yes {
 	transform:
-		translate(var(--ha-tfx-translate-x, 0), var(--ha-tfx-translate-y, 0))
-		scale(var(--ha-tfx-scale-x, 1), var(--ha-tfx-scale-y, 1))
-		skew(var(--ha-tfx-skew-x, 0), var(--ha-tfx-skew-y, 0))
-		rotateX(var(--ha-tfx-rotate-x, 0))
-		rotateY(var(--ha-tfx-rotate-y, 0))
-		rotateZ(var(--ha-tfx-rotate-z, 0));
+		translate(var(--ha-tfx-translate-x, 0), var(--ha-tfx-translate-y, 0)) scale(var(--ha-tfx-scale-x, 1), var(--ha-tfx-scale-y, 1)) skew(var(--ha-tfx-skew-x, 0), var(--ha-tfx-skew-y, 0)) rotateX(var(--ha-tfx-rotate-x, 0)) rotateY(var(--ha-tfx-rotate-y, 0)) rotateZ(var(--ha-tfx-rotate-z, 0));
 
 	transition-property: transform;
 	transition-duration: var(--ha-tfx-transition-duration, .2s);
 
 	&:hover {
 		transform:
-			translate(var(--ha-tfx-translate-x-hover, var(--ha-tfx-translate-x, 0)), var(--ha-tfx-translate-y-hover, var(--ha-tfx-translate-y, 0)))
-			scale(var(--ha-tfx-scale-x-hover, var(--ha-tfx-scale-x, 1)), var(--ha-tfx-scale-y-hover, var(--ha-tfx-scale-y, 1)))
-			skew(var(--ha-tfx-skew-x-hover, var(--ha-tfx-skew-x, 0)), var(--ha-tfx-skew-y-hover, var(--ha-tfx-skew-y, 0)))
-			rotateX(var(--ha-tfx-rotate-x-hover, var(--ha-tfx-rotate-x, 0)))
-			rotateY(var(--ha-tfx-rotate-y-hover, var(--ha-tfx-rotate-y, 0)))
-			rotateZ(var(--ha-tfx-rotate-z-hover, var(--ha-tfx-rotate-z, 0)));
+			translate(var(--ha-tfx-translate-x-hover, var(--ha-tfx-translate-x, 0)), var(--ha-tfx-translate-y-hover, var(--ha-tfx-translate-y, 0))) scale(var(--ha-tfx-scale-x-hover, var(--ha-tfx-scale-x, 1)), var(--ha-tfx-scale-y-hover, var(--ha-tfx-scale-y, 1))) skew(var(--ha-tfx-skew-x-hover, var(--ha-tfx-skew-x, 0)), var(--ha-tfx-skew-y-hover, var(--ha-tfx-skew-y, 0))) rotateX(var(--ha-tfx-rotate-x-hover, var(--ha-tfx-rotate-x, 0))) rotateY(var(--ha-tfx-rotate-y-hover, var(--ha-tfx-rotate-y, 0))) rotateZ(var(--ha-tfx-rotate-z-hover, var(--ha-tfx-rotate-z, 0)));
 	}
 }
 
@@ -29,7 +19,8 @@
 		word-wrap: break-word;
 		overflow-wrap: break-word;
 
-		&, * {
+		&,
+		* {
 			box-sizing: border-box;
 		}
 	}
@@ -81,19 +72,118 @@
 
 .ha-popup--is-enabled {
 	.ha-js-popup {
-		&, & img {
+
+		&,
+		& img {
 			cursor: zoom-in !important;
 		}
 	}
 }
 
 .mfp-wrap {
+
 	.mfp-close,
 	.mfp-arrow {
 		background-color: transparent;
 
 		&:focus {
 			outline-width: thin;
+		}
+	}
+}
+
+.ha-advanced-tooltip-enable {
+	position: relative;
+	cursor: pointer;
+
+	// &:hover {
+	// 	.ha-advanced-tooltip-content {
+	// 		visibility: visible;
+	// 	}
+	// }
+	--ha-tooltip-arrow-color: black;
+
+	.ha-advanced-tooltip-content {
+		visibility: hidden;
+		width: 120px;
+		background-color: black;
+		color: #fff;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px 0;
+		position: absolute;
+		z-index: 1;
+
+		&::after {
+			content: "";
+			position: absolute;
+			border-width: 5px;
+			border-style: solid;
+			// border-color: black transparent transparent transparent;
+		}
+
+		&.show {
+			visibility: visible;
+		}
+	}
+
+	&.ha-advanced-tooltip-top {
+		.ha-advanced-tooltip-content {
+			bottom: 150%;
+			left: 50%;
+			transform: translateX(-50%);
+
+			&::after {
+				top: 100%;
+				left: 50%;
+				transform: translateX(-50%);
+				border-color: var(--ha-tooltip-arrow-color) transparent transparent transparent;
+			}
+		}
+	}
+
+	&.ha-advanced-tooltip-bottom {
+		.ha-advanced-tooltip-content {
+			top: 150%;
+			left: 50%;
+			transform: translateX(-50%);
+
+			&::after {
+				bottom: 100%;
+				left: 50%;
+				transform: translateX(-50%);
+				border-color: transparent transparent var(--ha-tooltip-arrow-color) transparent;
+			}
+		}
+	}
+
+	&.ha-advanced-tooltip-left {
+		.ha-advanced-tooltip-content {
+			right: 110%;
+			top: 50%;
+			transform: translateY(-50%);
+
+			&::after {
+				left: 100%;
+				top: 50%;
+				transform: translateY(-50%);
+				border-color: transparent transparent transparent var(--ha-tooltip-arrow-color);
+			}
+		}
+	}
+
+	&.ha-advanced-tooltip-right {
+		.ha-advanced-tooltip-content {
+			left: 110%;
+			top: 50%;
+			transform: translateY(-50%);
+
+			&::after {
+				right: 100%;
+				top: 50%;
+				transform: translateY(-50%);
+				border-color: transparent var(--ha-tooltip-arrow-color) transparent transparent;
+			}
 		}
 	}
 }

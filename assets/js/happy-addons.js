@@ -1076,72 +1076,142 @@
 			});
 		});
 
+		// var AdvancedTooltip = elementorModules.frontend.handlers.Base.extend({
+
+		// 	onInit: function () {
+		// 		elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+		// 		if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
+		// 			this.run();
+		// 		}
+		// 	},
+		// 	getReadySettings: function () {
+		// 		if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
+		// 			var $tooltipUnqId = this.$element.data('id');
+
+		// 			var settings = {
+		// 				content: this.getElementSettings('ha_tooltip_section_content'),
+		// 				speed: this.getElementSettings('ha_tooltip_section_duration') || 300,
+		// 				size: this.getElementSettings('ha_tooltip_section_size') || 'default',
+		// 				background: this.getElementSettings('ha_tooltip_section_background_color') || '',
+		// 				color: this.getElementSettings('ha_tooltip_section_color') || '',
+		// 				showArrow: this.getElementSettings('ha_tooltip_section_arrow') || false,
+		// 				position: this.getElementSettings('ha_tooltip_section_position'),
+		// 				// width: this.getElementSettings('null') || 100,
+		// 				width: 100,
+		// 				// maxWidth: this.getElementSettings('null') || '',
+		// 				delay: this.getElementSettings('ha_tooltip_section_delay') || 100,
+		// 				hideDelay: this.getElementSettings('ha_tooltip_section_delay') || 100,
+		// 				// animationIn: this.getElementSettings('ha_tooltip_section_animation') || '',
+		// 				// animationOut: this.getElementSettings('ha_tooltip_section_animation') || '',
+		// 				// offsetX: this.getElementSettings('null') || 0,
+		// 				// offsetY: this.getElementSettings('null') || 0,
+		// 				tooltipHover: true,
+		// 				templateEngineFunc: function(content){
+		// 					return '<span class="ha-tooltip-content-'+$tooltipUnqId+'">' + content + '</span>';
+		// 				},
+		// 				useTitle: false,
+		// 				onShow: function ($element, element) {
+		// 					$('.ha-tooltip-content-'+ $tooltipUnqId ).parent().parent().addClass('ha-tooltip-wrapper-' + $tooltipUnqId);
+		// 				},
+		// 				// onHide: this.getElementSettings('null') || null
+		// 			};
+		// 			return $.extend({}, settings);
+		// 			// return settings;
+		// 		}
+		// 	},
+		// 	onElementChange: function (e) {
+		// 		console.log(e);
+		// 		var style_controls = ['ha_advanced_tooltip_enable', 'ha_tooltip_section_content', 'ha_tooltip_section_position', 'ha_tooltip_section_arrow', 'ha_tooltip_section_duration', 'ha_tooltip_section_delay', 'ha_tooltip_section_size', 'ha_tooltip_section_background_color', 'ha_tooltip_section_color'];
+		// 		var $currentTooltip = '.elementor-element-' + this.$element.data('id');
+		// 		if(style_controls.includes(e)) {
+		// 			if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
+		// 				// Destroy tipso tooltip
+		// 				this.$element.tipso('destroy');
+		// 				this.run();
+		// 			}
+		// 			else {
+		// 				// Destroy tipso tooltip
+		// 				this.$element.tipso('destroy');
+		// 			}
+		// 		}
+		// 	},
+		// 	run: function () {
+		// 		var $currentTooltip = '.elementor-element-' + this.$element.data('id');
+		// 		if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
+		// 			// need to change library
+		// 			// https://www.heteroclito.fr/modules/tooltipster/
+		// 			this.$element.tipso(this.getReadySettings());
+		// 			this.$element.removeClass('tipso_style');
+		// 		}
+		// 	}
+		// });
+
 		var AdvancedTooltip = elementorModules.frontend.handlers.Base.extend({
 
 			onInit: function () {
 				elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
 				if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
+					this.$element.append("<span class='ha-advanced-tooltip-content'></span>");
 					this.run();
 				}
 			},
 			getReadySettings: function () {
 				if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
-					var $tooltipUnqId = this.$element.data('id');
 
 					var settings = {
-						content: this.getElementSettings('ha_a_tooltip_section_content'),
-						speed: this.getElementSettings('ha_a_tooltip_section_duration') || 300,
-						size: this.getElementSettings('ha_a_tooltip_section_size') || 'default',
-						background: this.getElementSettings('ha_a_tooltip_section_background_color') || '',
-						color: this.getElementSettings('ha_a_tooltip_section_color') || '',
-						showArrow: this.getElementSettings('ha_a_tooltip_section_arrow') || false,
-						position: this.getElementSettings('ha_a_tooltip_section_position'),
-						// width: this.getElementSettings('null') || 100,
+						trigger: this.getElementSettings('ha_tooltip_section_trigger'),
+						content: this.getElementSettings('ha_tooltip_section_content'),
+						speed: this.getElementSettings('ha_tooltip_section_duration') || 300,
+						size: this.getElementSettings('ha_tooltip_section_size') || 'default',
+						showArrow: this.getElementSettings('ha_tooltip_section_arrow') || false,
+						position: this.getElementSettings('ha_tooltip_section_position'),
 						width: 100,
-						// maxWidth: this.getElementSettings('null') || '',
-						delay: this.getElementSettings('ha_a_tooltip_section_delay') || 100,
-						hideDelay: this.getElementSettings('ha_a_tooltip_section_delay') || 100,
-						// animationIn: this.getElementSettings('ha_a_tooltip_section_animation') || '',
-						// animationOut: this.getElementSettings('ha_a_tooltip_section_animation') || '',
-						// offsetX: this.getElementSettings('null') || 0,
-						// offsetY: this.getElementSettings('null') || 0,
-						tooltipHover: true,
-						templateEngineFunc: function(content){
-							return '<span class="ha-tooltip-content-'+$tooltipUnqId+'">' + content + '</span>';
-						},
-						useTitle: false,
-						onShow: function ($element, element) {
-							$('.ha-tooltip-content-'+ $tooltipUnqId ).parent().parent().addClass('ha-tooltip-wrapper-' + $tooltipUnqId);
-						},
-						// onHide: this.getElementSettings('null') || null
+						delay: this.getElementSettings('ha_tooltip_section_delay') || 100,
+						hideDelay: this.getElementSettings('ha_tooltip_section_delay') || 100,
 					};
 					return $.extend({}, settings);
-					// return settings;
 				}
 			},
 			onElementChange: function (e) {
 				console.log(e);
-				var style_controls = ['ha_advanced_tooltip_enable', 'ha_a_tooltip_section_content', 'ha_a_tooltip_section_position', 'ha_a_tooltip_section_arrow', 'ha_a_tooltip_section_duration', 'ha_a_tooltip_section_delay', 'ha_a_tooltip_section_size', 'ha_a_tooltip_section_background_color', 'ha_a_tooltip_section_color'];
-				var $currentTooltip = '.elementor-element-' + this.$element.data('id');
+				var style_controls = ['ha_advanced_tooltip_enable', 'ha_tooltip_section_content', 'ha_tooltip_section_position', 'ha_tooltip_section_arrow', 'ha_tooltip_section_duration', 'ha_tooltip_section_delay', 'ha_tooltip_section_size', 'ha_tooltip_section_background_color', 'ha_tooltip_section_color'];
 				if(style_controls.includes(e)) {
 					if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
-						// Destroy tipso tooltip
-						this.$element.tipso('destroy');
-						this.run();
+						this.$element.append("<span class='ha-advanced-tooltip-content'></span>");
+					}else {
+						this.$element.find('.ha-advanced-tooltip-content').remove();
 					}
-					else {
-						// Destroy tipso tooltip
-						this.$element.tipso('destroy');
-					}
+					this.run();
 				}
 			},
 			run: function () {
-				var $currentTooltip = '.elementor-element-' + this.$element.data('id');
+				var $scope = this.$element;
 				if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
-					// need to change library
-					// https://www.heteroclito.fr/modules/tooltipster/
-					this.$element.tipso(this.getReadySettings());
-					this.$element.removeClass('tipso_style');
+					var settings = this.getReadySettings();
+					var content = $scope.find('.ha-advanced-tooltip-content');
+					content.text(settings.content);
+					
+					console.log($scope.find('.ha-advanced-tooltip-content::after'));
+					// if( !settings.showArrow) {
+					// 	content.find('::after').hide();
+					// }
+
+					if (settings.trigger == 'click') {
+						this.$element.on('click', function() {
+							if ( content.hasClass('show')){
+								content.removeClass('show');
+							}else {
+								content.addClass('show');
+							}
+						});
+					}else if (settings.trigger == 'hover') {
+						this.$element.on('mouseenter', function() {
+							content.addClass('show');
+						});
+						this.$element.on('mouseleave', function() {
+							content.removeClass('show');
+						});
+					}
 				}
 			}
 		});

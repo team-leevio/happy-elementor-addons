@@ -41,9 +41,9 @@ class Advanced_Tooltip {
             ]
         );
 
-        $element->start_controls_tabs('ha_a_tooltip_tabs');
+        $element->start_controls_tabs('ha_tooltip_tabs');
 
-        $element->start_controls_tab('ha_a_tooltip_settings', [
+        $element->start_controls_tab('ha_tooltip_settings', [
             'label' => __('Settings', 'happy-elementor-addons'),
             'condition' => [
                 'ha_advanced_tooltip_enable!' => '',
@@ -51,7 +51,7 @@ class Advanced_Tooltip {
         ]);
 
         $element->add_control(
-            'ha_a_tooltip_section_content',
+            'ha_tooltip_section_content',
             [
                 'label' => __('Content', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
@@ -65,7 +65,7 @@ class Advanced_Tooltip {
         );
 
         $element->add_control(
-            'ha_a_tooltip_section_position',
+            'ha_tooltip_section_position',
             [
                 'label' => __('Position', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
@@ -77,6 +77,7 @@ class Advanced_Tooltip {
                     'right' => __('Right', 'happy-elementor-addons'),
                 ],
                 'frontend_available' => true,
+                'prefix_class' => 'ha-advanced-tooltip-',
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
                 ],
@@ -84,7 +85,7 @@ class Advanced_Tooltip {
         );
 
         // $element->add_control(
-        //     'ha_a_tooltip_section_animation',
+        //     'ha_tooltip_section_animation',
         //     [
         //         'label' => __('Animation', 'happy-elementor-addons'),
         //         'type' => Controls_Manager::SELECT,
@@ -104,7 +105,7 @@ class Advanced_Tooltip {
         // );
 
         $element->add_control(
-            'ha_a_tooltip_section_arrow',
+            'ha_tooltip_section_arrow',
             [
                 'label' => __('Arrow', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SWITCHER,
@@ -120,7 +121,7 @@ class Advanced_Tooltip {
         );
 
         // $element->add_control(
-        //     'ha_a_tooltip_section_arrow_type',
+        //     'ha_tooltip_section_arrow_type',
         //     [
         //         'label' => __('Arrow Type', 'happy-elementor-addons'),
         //         'type' => Controls_Manager::SELECT,
@@ -132,30 +133,30 @@ class Advanced_Tooltip {
         //         'frontend_available' => true,
         //         'condition' => [
         //             'ha_advanced_tooltip_enable!' => '',
-        //             'ha_a_tooltip_section_arrow!' => '',
-        //         ],
-        //     ]
-        // );
-
-        // $element->add_control(
-        //     'ha_a_tooltip_section_trigger',
-        //     [
-        //         'label' => __('Trigger', 'happy-elementor-addons'),
-        //         'type' => Controls_Manager::SELECT,
-        //         'default' => 'mouseenter',
-        //         'options' => [
-        //             'click' => __('Click', 'happy-elementor-addons'),
-        //             'mouseenter' => __('Hover', 'happy-elementor-addons'),
-        //         ],
-        //         'frontend_available' => true,
-        //         'condition' => [
-        //             'ha_advanced_tooltip_enable!' => '',
+        //             'ha_tooltip_section_arrow!' => '',
         //         ],
         //     ]
         // );
 
         $element->add_control(
-            'ha_a_tooltip_section_duration',
+            'ha_tooltip_section_trigger',
+            [
+                'label' => __('Trigger', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'hover',
+                'options' => [
+                    'click' => __('Click', 'happy-elementor-addons'),
+                    'hover' => __('Hover', 'happy-elementor-addons'),
+                ],
+                'frontend_available' => true,
+                'condition' => [
+                    'ha_advanced_tooltip_enable!' => '',
+                ],
+            ]
+        );
+
+        $element->add_control(
+            'ha_tooltip_section_duration',
             [
                 'label' => __('Duration', 'happy-elementor-addons'),
                 'type' => Controls_Manager::NUMBER,
@@ -171,7 +172,7 @@ class Advanced_Tooltip {
         );
 
         $element->add_control(
-            'ha_a_tooltip_section_delay',
+            'ha_tooltip_section_delay',
             [
                 'label' => __('Delay out (s)', 'happy-elementor-addons'),
                 'type' => Controls_Manager::NUMBER,
@@ -187,7 +188,7 @@ class Advanced_Tooltip {
         );
 
         $element->add_control(
-            'ha_a_tooltip_section_size',
+            'ha_tooltip_section_size',
             [
                 'label' => __('Size', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
@@ -207,7 +208,7 @@ class Advanced_Tooltip {
 
         $element->end_controls_tab();
 
-        $element->start_controls_tab('ha_a_tooltip_section_styles', [
+        $element->start_controls_tab('ha_tooltip_section_styles', [
             'label' => __('Styles', 'happy-elementor-addons'),
             'condition' => [
                 'ha_advanced_tooltip_enable!' => '',
@@ -217,7 +218,7 @@ class Advanced_Tooltip {
         // $element->add_group_control(
         //     Group_Control_Typography::get_type(),
         //     [
-        //         'name' => 'ha_a_tooltip_section_typography',
+        //         'name' => 'ha_tooltip_section_typography',
         //         'selector' => '.tipso_bubble.ha-tooltip-wrapper-{{ID}} .ha-tooltip-content-{{ID}}',
         //         'scheme' => Typography::TYPOGRAPHY_3,
         //         'separator' => 'after',
@@ -228,7 +229,7 @@ class Advanced_Tooltip {
         // );
         
         $element->add_control(
-            'ha_a_tooltip_section_background_color',
+            'ha_tooltip_section_background_color',
             [
                 'label' => __('Background Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
@@ -245,7 +246,7 @@ class Advanced_Tooltip {
         );
 
         $element->add_control(
-            'ha_a_tooltip_section_color',
+            'ha_tooltip_section_color',
             [
                 'label' => __('Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
@@ -261,7 +262,7 @@ class Advanced_Tooltip {
         );
 
         $element->add_control(
-            'ha_a_tooltip_section_border_color',
+            'ha_tooltip_section_border_color',
             [
                 'label' => __('Border Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
@@ -271,13 +272,13 @@ class Advanced_Tooltip {
                 ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
-                    'ha_a_tooltip_section_arrow' => '',
+                    'ha_tooltip_section_arrow' => '',
                 ],
             ]
         );
 
         $element->add_control(
-            'ha_a_tooltip_section_border_radius',
+            'ha_tooltip_section_border_radius',
             [
                 'label' => __('Border Radius', 'happy-elementor-addons'),
                 'type' => Controls_Manager::DIMENSIONS,
@@ -292,7 +293,7 @@ class Advanced_Tooltip {
         );
 
         // $element->add_control(
-        //     'ha_a_tooltip_section_distance',
+        //     'ha_tooltip_section_distance',
         //     [
         //         'label' => __('Distance', 'happy-elementor-addons'),
         //         'type' => Controls_Manager::NUMBER,
@@ -308,7 +309,7 @@ class Advanced_Tooltip {
         // );
 
         $element->add_control(
-            'ha_a_tooltip_section_padding',
+            'ha_tooltip_section_padding',
             [
                 'label' => __('Padding', 'happy-elementor-addons'),
                 'type' => Controls_Manager::DIMENSIONS,
@@ -325,7 +326,7 @@ class Advanced_Tooltip {
         $element->add_group_control(
             Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'ha_a_tooltip_section_box_shadow',
+                'name' => 'ha_tooltip_section_box_shadow',
                 'selector' => '.tipso_bubble.ha-tooltip-wrapper-{{ID}}',
                 'separator' => '',
                 'condition' => [
@@ -335,7 +336,7 @@ class Advanced_Tooltip {
         );
 
         $element->add_control(
-            'ha_a_tooltip_section_width',
+            'ha_tooltip_section_width',
             [
                 'label' => __('Max Width', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SLIDER,
