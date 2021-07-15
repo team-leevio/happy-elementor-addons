@@ -400,17 +400,15 @@
 				}
 			},
 			run: function () {
+				if( 0 == this.wrapper.length){
+					return;
+				}
 				var wrapper_height = this.wrapper.innerHeight(),
 					wrapper_width = this.wrapper.innerWidth(),
 					container = this.wrapper.find('.ha-news-ticker-container'),
 					single_item = container.find('.ha-news-ticker-item'),
 					scroll_direction = this.wrapper.data('scroll-direction'),
-					//scroll = 'scroll'+scroll_direction+wrapper_height+wrapper_width,
-					scroll =
-						"scroll" +
-						scroll_direction +
-						parseInt(wrapper_height) +
-						parseInt(wrapper_width),
+					scroll = "scroll" + scroll_direction + parseInt(wrapper_height) + parseInt(wrapper_width),
 					duration = this.wrapper.data('duration'),
 					direction = 'normal',
 					all_title_width = 10;
@@ -585,16 +583,13 @@
 			var glass_on = $scope.find('.ha-threesixty-rotation-magnify');
 			var t360 = $scope.find('.ha-threesixty-rotation-360img');
 			var zoom = glass_on.data('zoom');
-			//console.log(autoplay);
+
 			var playb = $scope.find('.ha-threesixty-rotation-play');
 
 			var crl = circlr(cls, {
 				play : true,
-				// vertical : true,
-				// scroll : true,
-				//interval : 340,
 			});
-			//console.log(crl);
+
 			if( 'on' ===autoplay ){
 				var autoplay_btn = $scope.find('.ha-threesixty-rotation-autoplay');
 				autoplay_btn.on('click', function(el) {
@@ -823,7 +818,7 @@
 		var Content_Switcher = function($scope) {
 			var parent = $scope.find('.ha-content-switcher-wrapper'),
 				designType = parent.data('design-type');
-			
+
 			if(designType == 'button') {
 				var buttons = parent.find('.ha-cs-button'),
 					contents = parent.find('.ha-cs-content-section');
@@ -850,9 +845,9 @@
 					secondarySwitcher = parent.find('.ha-cs-switch.secondary'),
 					primaryContent = parent.find('.ha-cs-content-section.primary'),
 					secondaryContent = parent.find('.ha-cs-content-section.secondary');
-				
+
 				toggleSwitch.on('click', function(e){
-					console.log('toggle click');
+
 					if(input.is(':checked')){
 						primarySwitcher.removeClass('active');
 						primaryContent.removeClass('active');
@@ -869,7 +864,7 @@
 			}
 
 		};
-		
+
 		var MailChimp = elementorModules.frontend.handlers.Base.extend({
 
 			onInit: function () {
@@ -914,7 +909,7 @@
 						data: data,
 						success: function(response) {
 							elForm.trigger('reset');
-							console.log(response);
+
 							if(response.status){
 								elMessage.removeClass('error');
 								elMessage.addClass('success');
@@ -924,10 +919,10 @@
 								elMessage.removeClass('success');
 								elMessage.text(response.msg);
 							}
-							// console.log(response);
+
 						},
 						error: function(error) {
-							// console.log(error);
+
 						}
 					});
 
@@ -937,7 +932,7 @@
 				var tabletWidth = elementorFrontendConfig.breakpoints.md;
 
 				function responsiveClass(){
-					// console.log(settings);
+
 					var windowWidth = $(window).width();
 
 					if (windowWidth > tabletWidth) {
@@ -999,7 +994,7 @@
 				});
 				var img_wrap = $scope.find(".ha-horizontal-timeline-image");
 				var magnific_popup = img_wrap.data("mfp-src");
-				// console.log(magnific_popup);
+
 				if( undefined !== magnific_popup ){
 					img_wrap.magnificPopup({
 						type: "image",
