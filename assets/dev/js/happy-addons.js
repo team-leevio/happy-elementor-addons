@@ -961,6 +961,36 @@
 			}
 		});
 
+
+
+		//Team Member
+		var Team_Member = function($scope) {
+			var btn = $scope.find('.ha-btn');
+			var lightBox = $scope.find('.ha-member-lightbox');
+			if( lightBox.length > 0 ){
+
+				var close = lightBox.find('.ha-member-lightbox-close');
+
+				btn.on('click', function(){
+					lightBox.addClass('ha-member-lightbox-show');
+				});
+
+				lightBox.on('click', function(e){
+					if( lightBox.hasClass('ha-member-lightbox-show') ) {
+						if( e.target == lightBox[0] ) {
+							lightBox.removeClass('ha-member-lightbox-show');
+						}
+						else if( e.target == close[0] ) {
+							lightBox.removeClass('ha-member-lightbox-show');
+						}
+						else if( e.target == close.find('i.eicon-editor-close')[0] ) {
+							lightBox.removeClass('ha-member-lightbox-show');
+						}
+					}
+				});
+			}
+		};
+
 		// Slider
 		elementorFrontend.hooks.addAction(
 			'frontend/element_ready/ha-slider.default',
@@ -1057,6 +1087,7 @@
 			'widget'                        : BackgroundOverlay,
 			'ha-event-calendar.default'		: Event_Calendar,
 			'ha-content-switcher.default'	: Content_Switcher,
+			'ha-member.default'		        : Team_Member,
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {

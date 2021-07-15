@@ -14,8 +14,10 @@ use Elementor\Control_Media;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
+use Elementor\Group_Control_Css_Filter;
 use Happy_Addons\Elementor\Traits\Button_Renderer;
 
 defined( 'ABSPATH' ) || die();
@@ -112,8 +114,9 @@ class Member extends Base {
      */
 	protected function register_content_controls() {
 		$this->__info_content_controls();
-		$this->__social_profile_content_controls();
-		$this->__button_content_controls();
+		$this->__social_content_controls();
+		$this->__details_content_controls();
+		$this->__lightbox_content_controls();
 	}
 
 	protected function __info_content_controls() {
@@ -126,10 +129,20 @@ class Member extends Base {
 			]
 		);
 
+		$this->start_controls_tabs( '_tabs_photo' );
+
+		$this->start_controls_tab(
+			'_tab_photo_normal',
+			[
+				'label' => __( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
 		$this->add_control(
 			'image',
 			[
 				'label' => __( 'Photo', 'happy-elementor-addons' ),
+				'show_label' => false,
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
@@ -139,6 +152,43 @@ class Member extends Base {
 				]
 			]
 		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'_tab_photo_hover',
+			[
+				'label' => __( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'image2',
+			[
+				'label' => __( 'Photo 2', 'happy-elementor-addons' ),
+				'show_label' => false,
+				'type' => Controls_Manager::MEDIA,
+				'dynamic' => [
+					'active' => true,
+				],
+			]
+		);
+
+		$this->add_control(
+			'extra_hover_cls',
+			[
+				'label' => __( 'Extra class added', 'plugin-domain' ),
+				'type' => Controls_Manager::HIDDEN,
+				'default' => 'on',
+				'prefix_class' => 'ha-member-hover-image-',
+				'condition' => [
+					'image2[url]!' => '',
+				]
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
 
 		$this->add_group_control(
 			Group_Control_Image_Size::get_type(),
@@ -262,7 +312,7 @@ class Member extends Base {
 		$this->end_controls_section();
 	}
 
-	protected function __social_profile_content_controls() {
+	protected function __social_content_controls() {
 
 		$this->start_controls_section(
 			'_section_social',
@@ -462,7 +512,7 @@ class Member extends Base {
 		$this->end_controls_section();
 	}
 
-	protected function __button_content_controls() {
+	protected function __details_content_controls() {
 
 		$this->start_controls_section(
 			'_section_button',
@@ -482,6 +532,22 @@ class Member extends Base {
 				'return_value' => 'yes',
 				'default' => '',
 				'style_transfer' => true,
+			]
+		);
+
+		$this->add_control(
+			'show_lightbox',
+			[
+				'label' => __( 'Show Lightbox', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Show', 'happy-elementor-addons' ),
+				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => '',
+				'style_transfer' => true,
+				'condition' => [
+					'show_details_button' => 'yes',
+				]
 			]
 		);
 
@@ -528,21 +594,24 @@ class Member extends Base {
 				'dynamic' => [
 					'active' => true,
 				],
-				'condition' => [
-					'show_details_button' => 'yes',
-				],
 				'default' => [
 					'url' => '#',
-				]
+				],
+				'condition' => [
+					'show_details_button' => 'yes',
+					'show_lightbox!' => 'yes'
+				],
 			]
 		);
 
 		$this->add_control(
 			'button_icon',
 			[
+				'label' => __( 'Icon', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::ICONS,
-				'label_block' => true,
-				'show_label' => false,
+				'label_block' => false,
+				'show_label' => true,
+				'skin' => 'inline',
 				'condition' => [
 					'show_details_button' => 'yes',
 				]
@@ -597,17 +666,81 @@ class Member extends Base {
 		$this->end_controls_section();
 	}
 
-	/**
-	 * Register styles related controls
-	 */
-	protected function register_style_controls() {
-		$this->__image_style_controls();
-		$this->__meta_style_controls();
-		$this->__social_icon_style_controls();
-		$this->__button_style_controls();
+	protected function __lightbox_content_controls() {
+
+		$this->start_controls_section(
+			'_section_lightbox',
+			[
+				'label' => __( 'Lightbox', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_CONTENT,
+				'condition' => [
+					'show_details_button' => 'yes',
+					'show_lightbox' => 'yes'
+				],
+			]
+		);
+
+		$this->add_control(
+			'saved_template_list',
+			[
+				'label' => __( 'Content Source', 'happy-addons-pro' ),
+				'description' => __( 'Select a saveed section to show in popup window.', 'happy-addons-pro' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => $this->get_saved_content( ['page','section'] ),
+				'default' => '0',
+			]
+		);
+
+		$this->add_control(
+			'show_lightbox_preview',
+			[
+				'label' => __( 'Show Lightbox Preview', 'happy-elementor-addons' ),
+				'description' => __( 'This option only works on edit mode.', 'happy-addons-pro' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Show', 'happy-elementor-addons' ),
+				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				// 'style_transfer' => true,
+				'default' => '',
+
+			]
+		);
+
+		$this->add_control(
+			'close_position',
+			[
+				'label' => __( 'Close Icon Position', 'happy-addons-pro' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'top-left' => __( 'Top Left', 'happy-addons-pro' ),
+					'top-right' => __( 'Top Right', 'happy-addons-pro' ),
+				],
+				'default' => 'top-right',
+				'selectors_dictionary' => [
+                    'top-left' => 'top:0; left:0;',
+                    'top-right' => 'top:0; right:0;',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-lightbox.ha-member-lightbox-show .ha-member-lightbox-close' => '{{VALUE}}',
+                ],
+			]
+		);
+
+		$this->end_controls_section();
 	}
 
-	protected function __image_style_controls() {
+	/**
+     * Register widget style controls
+     */
+	protected function register_style_controls() {
+		$this->__photo_style_controls();
+		$this->__body_content_style_controls();
+		$this->__social_style_controls();
+		$this->__details_style_controls();
+		$this->__lightbox_style_controls();
+	}
+
+	protected function __photo_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_image',
@@ -723,10 +856,109 @@ class Member extends Base {
 			]
 		);
 
+		$this->start_controls_tabs(
+			'_tabs_img_effects',[
+				'condition' => [
+					'image2[url]' => '',
+				]
+			]
+		 );
+
+		$this->start_controls_tab(
+			'_tab_img_effects_normal',
+			[
+				'label' => __( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'img_opacity',
+			[
+				'label' => __( 'Opacity', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'max' => 1,
+						'min' => 0.10,
+						'step' => 0.01,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-member-figure img' => 'opacity: {{SIZE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Css_Filter::get_type(),
+			[
+				'name' => 'img_css_filters',
+				'selector' => '{{WRAPPER}} .ha-member-figure img',
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'_tab_img_effects_hover',
+			[
+				'label' => __( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'img_hover_opacity',
+			[
+				'label' => __( 'Opacity', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'max' => 1,
+						'min' => 0.10,
+						'step' => 0.01,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-member-figure:hover img' => 'opacity: {{SIZE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Css_Filter::get_type(),
+			[
+				'name' => 'img_hover_css_filters',
+				'selector' => '{{WRAPPER}} .ha-member-figure:hover img',
+			]
+		);
+
+		$this->add_control(
+			'img_hover_transition',
+			[
+				'label' => __( 'Transition Duration', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'max' => 3,
+						'step' => 0.1,
+					],
+				],
+				'default' => [
+					'size' => .2
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-member-figure img' => 'transition-duration: {{SIZE}}s;',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
 		$this->end_controls_section();
 	}
 
-	protected function __meta_style_controls() {
+	protected function __body_content_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_content',
@@ -898,7 +1130,7 @@ class Member extends Base {
 		$this->end_controls_section();
 	}
 
-	protected function __social_icon_style_controls() {
+	protected function __social_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_social',
@@ -1044,7 +1276,7 @@ class Member extends Base {
 		$this->end_controls_section();
 	}
 
-	protected function __button_style_controls() {
+	protected function __details_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_button',
@@ -1124,7 +1356,6 @@ class Member extends Base {
 		);
 
 		$this->start_controls_tabs( '_tabs_button' );
-
 		$this->start_controls_tab(
 			'_tab_button_normal',
 			[
@@ -1206,6 +1437,218 @@ class Member extends Base {
 		$this->end_controls_section();
 	}
 
+	protected function __lightbox_style_controls() {
+
+		$this->start_controls_section(
+			'_section_style_lightbox',
+			[
+				'label' => __( 'LightBox', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'show_details_button' => 'yes',
+					'show_lightbox' => 'yes'
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'lightbox_padding',
+			[
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-member-lightbox.ha-member-lightbox-show' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'lightbox_background',
+				'selector' => '{{WRAPPER}} .ha-member-lightbox.ha-member-lightbox-show',
+			]
+		);
+
+		$this->add_control(
+            'close_button_heading',
+            [
+                'label' => __( 'Close Button', 'happy-addons-pro' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'close_button_border',
+				'selector' => '{{WRAPPER}} .ha-member-lightbox-close',
+			]
+		);
+
+		$this->add_control(
+			'close_button_border_radius',
+			[
+				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-member-lightbox-close' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'close_button_box_shadow',
+				'selector' => '{{WRAPPER}} .ha-member-lightbox-close',
+			]
+		);
+
+		$this->add_responsive_control(
+            'close_icon_size',
+            [
+                'label' => __( 'Size', 'happy-addons-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 2,
+                        'max' => 200,
+                    ]
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-member-lightbox-close' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+		);
+
+		$this->start_controls_tabs( '_tabs_close_button' );
+		$this->start_controls_tab(
+			'_tab_close_button_normal',
+			[
+				'label' => __( 'Normal', 'happy-addons-pro' )
+			]
+		);
+
+		$this->add_control(
+			'close_button_color',
+			[
+				'label' => __( 'Color', 'happy-addons-pro' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-member-lightbox-close' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'close_button_bg_color',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-member-lightbox-close' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'_tab_close_button_hover',
+			[
+				'label' => __( 'Hover', 'happy-addons-pro' ),
+			]
+		);
+
+		$this->add_control(
+			'close_button_hover_color',
+			[
+				'label' => __( 'Color', 'happy-addons-pro' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-member-lightbox-close:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'close_button_hover_bg_color',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-member-lightbox-close:hover' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'close_button_hover_border_color',
+			[
+				'label' => __( 'Border Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'close_button_border_border!' => '',
+				],
+				'selectors' => [
+					'{{WRAPPER}} ..ha-member-lightbox-close:hover' => 'border-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+	}
+
+	protected function get_post_template( $term = 'page' ) {
+		$posts = get_posts(
+			[
+				'post_type'      => 'elementor_library',
+				'orderby'        => 'title',
+				'order'          => 'ASC',
+				'posts_per_page' => '-1',
+				'tax_query'      => [
+					[
+						'taxonomy' => 'elementor_library_type',
+						'field'    => 'slug',
+						'terms'    => $term,
+					],
+				],
+			]
+		);
+
+		$templates = [];
+		foreach ( $posts as $post ) {
+			$templates[] = [
+				'id'   => $post->ID,
+				'name' => $post->post_title,
+			];
+		}
+		return $templates;
+	}
+
+	protected function get_saved_content( $term = 'section' ) {
+		$saved_contents = $this->get_post_template( $term );
+
+		if ( count( $saved_contents ) > 0 ) {
+			$options['0'] = __( 'None', 'happy-addons-pro' );
+			foreach ( $saved_contents as $saved_content ) {
+				$content_id             = $saved_content['id'];
+				$options[ $content_id ] = $saved_content['name'];
+			}
+		} else {
+			$options['no_template'] = __( 'Nothing Found', 'happy-addons-pro' );
+		}
+		return $options;
+	}
+
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
@@ -1230,7 +1673,11 @@ class Member extends Base {
 			$settings['hover_animation'] = 'disable-animation'; // hack to prevent image hover animation
 			?>
 			<figure class="ha-member-figure">
-				<?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
+				<?php
+					echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' );
+					if($settings['image2']['url'] || $settings['image2']['id'] )
+					echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image2' );
+				?>
 			</figure>
 		<?php endif; ?>
 
@@ -1291,78 +1738,29 @@ class Member extends Base {
 			?>
 		</div>
 		<?php
+		// render lightbox
+		$this->render_lightbox();
 	}
 
-	public function _content_template() {
-		return '';
-		?>
-		<#
-		view.addInlineEditingAttributes( 'title', 'basic' );
-		view.addRenderAttribute( 'title', 'class', 'ha-member-name' );
-
-		view.addInlineEditingAttributes( 'job_title', 'basic' );
-		view.addRenderAttribute( 'job_title', 'class', 'ha-member-position' );
-
-		view.addInlineEditingAttributes( 'bio', 'intermediate' );
-		view.addRenderAttribute( 'bio', 'class', 'ha-member-bio' );
-
-		if ( settings.image.url || settings.image.id ) {
-			var image = {
-				id: settings.image.id,
-				url: settings.image.url,
-				size: settings.thumbnail_size,
-				dimension: settings.thumbnail_custom_dimension,
-				model: view.getEditModel()
-			};
-
-			var image_url = elementor.imagesManager.getImageUrl( image );
-			#>
-			<figure class="ha-member-figure">
-				<img src="{{ image_url }}">
-			</figure>
-		<# } #>
-		<div class="ha-member-body">
-			<# if (settings.title) { #>
-				<{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
-			<# } #>
-			<# if (settings.job_title) { #>
-				<div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{ settings.job_title }}</div>
-			<# } #>
-			<# if (settings.bio) { #>
-				<div {{{ view.getRenderAttributeString( 'bio' ) }}}>
-					<p>{{{ settings.bio }}}</p>
+	protected function render_lightbox() {
+		$settings = $this->get_settings_for_display();
+		$template = false;
+		if ( ! empty( $settings['saved_template_list'] ) && '0' != $settings['saved_template_list'] && 'no_template' != $settings['saved_template_list'] ) {
+			$template = true;
+		}
+		if ( $settings['show_lightbox'] && 'yes' === $settings['show_lightbox'] && $template ) :
+			$this->add_render_attribute( 'lightbox', 'class', 'ha-member-lightbox' );
+			if ( $settings['show_lightbox_preview'] == 'yes' && ha_elementor()->editor->is_edit_mode() ) {
+				$this->add_render_attribute( 'lightbox', 'class', 'ha-member-lightbox-show' );
+			}
+				?>
+				<div <?php $this->print_render_attribute_string( 'lightbox' ); ?>>
+					<div class="ha-member-lightbox-close"><i aria-hidden="true" class="eicon-editor-close"></i></div>
+					<div class="ha-member-lightbox-inner">
+						<?php echo \Elementor\Plugin::$instance->frontend->get_builder_content_for_display( $settings['saved_template_list'] ); ?>
+					</div>
 				</div>
-			<# } #>
-
-			<# if ( !_.isUndefined( settings['button_position'] ) && settings['button_position'] === 'before' ) {
-				print( haGetButtonWithIcon( view, {newIcon: 'button_icon', oldIcon: ''} ) );
-			} #>
-
-			<# if (settings.show_profiles && _.isArray(settings.profiles)) { #>
-				<div class="ha-member-links">
-					<# _.each(settings.profiles, function(profile, index) {
-						var icon = profile.name,
-							url = profile.link.url,
-							linkKey = view.getRepeaterSettingKey( 'profile', 'profiles', index);
-
-						if (profile.name === 'website') {
-							icon = 'globe';
-						} else if (profile.name === 'email') {
-							icon = 'envelope'
-							url = 'mailto:' + profile.email;
-						}
-
-						view.addRenderAttribute( linkKey, 'class', 'elementor-repeater-item-' + profile._id );
-						view.addRenderAttribute( linkKey, 'href', url ); #>
-						<a {{{view.getRenderAttributeString( linkKey )}}}><i class="fa fab fa-{{{icon}}}"></i></a>
-					<# }); #>
-				</div>
-			<# } #>
-
-			<# if ( !_.isUndefined( settings['button_position'] ) && settings['button_position'] === 'after' ) {
-				print( haGetButtonWithIcon( view, {newIcon: 'button_icon', oldIcon: ''} ) );
-			} #>
-		</div>
-		<?php
+			<?php
+		endif;
 	}
 }
