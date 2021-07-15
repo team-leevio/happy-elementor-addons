@@ -55,9 +55,10 @@ class Number extends Base {
 	}
 
 	/**
-	 * Register content related controls
-	 */
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+
 		$this->start_controls_section(
 			'_section_number',
 			[
@@ -114,6 +115,12 @@ class Number extends Base {
 	 * Register styles related controls
 	 */
 	protected function register_style_controls() {
+		$this->__number_bg_style_controls();
+		$this->__text_style_controls();
+	}
+
+	protected function __number_bg_style_controls() {
+
 		$this->start_controls_section(
 			'number_background_style',
 			[
@@ -283,6 +290,9 @@ class Number extends Base {
         );
 
 		$this->end_controls_section();
+	}
+
+	protected function __text_style_controls() {
 
         $this->start_controls_section(
             '_section_style_text',

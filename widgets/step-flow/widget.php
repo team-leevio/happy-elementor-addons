@@ -48,7 +48,11 @@ class Step_Flow extends Base {
 		return [ 'step', 'flow' ];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+
 		$this->start_controls_section(
 			'_section_step',
 			[
@@ -206,6 +210,9 @@ class Step_Flow extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
 		$this->__icon_style_controls();
 		$this->__badge_style_controls();
@@ -214,6 +221,7 @@ class Step_Flow extends Base {
 	}
 
 	protected function __icon_style_controls() {
+
 		$this->start_controls_section(
 			'_section_icon_style',
 			[
@@ -337,6 +345,7 @@ class Step_Flow extends Base {
 	}
 
 	protected function __badge_style_controls() {
+
 		$this->start_controls_section(
 			'_section_badge_style',
 			[
@@ -434,6 +443,7 @@ class Step_Flow extends Base {
 	}
 
 	protected function __title_desc_style_controls() {
+
 		$this->start_controls_section(
 			'_section_title_style',
 			[
@@ -559,6 +569,7 @@ class Step_Flow extends Base {
 	}
 
 	protected function __direction_style_controls() {
+
 		$this->start_controls_section(
 			'_section_direction_style',
 			[

@@ -53,9 +53,15 @@ class Data_Table extends Base {
 
 
 	/**
-	 * Register content related controls
-	 */
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__table_head_content_controls();
+		$this->__table_row_content_controls();
+	}
+
+	protected function __table_head_content_controls() {
+
 		$this->start_controls_section(
 			'_section_table_column',
 			[
@@ -271,11 +277,14 @@ class Data_Table extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __table_row_content_controls() {
 
 		$this->start_controls_section(
 			'_section_table_row',
 			[
-				'label' => __( 'Row', 'happy-elementor-addons' ),
+				'label' => __( 'Table Row', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -618,9 +627,14 @@ class Data_Table extends Base {
 
 
 	/**
-	 * Register styles related controls
-	 */
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__table_head_style_controls();
+		$this->__table_row_style_controls();
+	}
+
+	protected function __table_head_style_controls() {
 
 		$this->start_controls_section(
 			'_section_table_head',
@@ -768,6 +782,9 @@ class Data_Table extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __table_row_style_controls() {
 
 		$this->start_controls_section(
 			'_section_table_row_style',
@@ -1036,10 +1053,7 @@ class Data_Table extends Base {
 	}
 
 	protected function render() {
-		$this->data_table_render();
-	}
-
-	protected function data_table_render() {
+		
 		$settings = $this->get_settings_for_display();
 
 		$table_row  = [];

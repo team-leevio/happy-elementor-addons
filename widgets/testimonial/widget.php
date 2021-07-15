@@ -51,7 +51,16 @@ class Testimonial extends Base {
 		return [ 'testimonial', 'review', 'feedback' ];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__testimonial_content_controls();
+		$this->__reviewer_content_controls();
+	}
+
+	protected function __testimonial_content_controls() {
+
 		$this->start_controls_section(
 			'_section_testimonial',
 			[
@@ -120,6 +129,9 @@ class Testimonial extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __reviewer_content_controls() {
 
 		$this->start_controls_section(
 			'_section_reviewer',
@@ -184,7 +196,18 @@ class Testimonial extends Base {
 		$this->end_controls_section();
 	}
 
+
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__testimonial_style_controls();
+		$this->__image_style_controls();
+		$this->__reviewer_style_controls();
+	}
+
+	protected function __testimonial_style_controls() {
+
 		$this->start_controls_section(
 			'_section_style_testimonial',
 			[
@@ -271,6 +294,9 @@ class Testimonial extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __image_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_image',
@@ -367,6 +393,9 @@ class Testimonial extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __reviewer_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_reviewer',
