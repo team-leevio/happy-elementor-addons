@@ -113,11 +113,6 @@ class News_Ticker extends Base {
 			[
 				'label' => __( 'Select Posts', 'happy-elementor-addons' ),
 				'label_block' => true,
-				// 'type' => Controls_Manager::SELECT2,
-				// 'default' => '',
-				// 'options' => $this->ha_get_posts(),
-				// 'multiple' => true,
-
 				'type' => Select2::TYPE,
 				'multiple' => true,
 				'placeholder' => 'Search Post',
@@ -398,7 +393,7 @@ class News_Ticker extends Base {
 	}
 
 	protected function title_style_controls () {
-		
+
 		$this->start_controls_section(
 			'_style_news_ticker_title',
 			[
