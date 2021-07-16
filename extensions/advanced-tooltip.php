@@ -355,6 +355,29 @@ class Advanced_Tooltip {
             ]
         );
 
+        $element->add_responsive_control(
+            'ha_advanced_tooltip_arrow_size',
+            [
+                'label' => __('Tooltip Arrow Size (px)', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => '5',
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-advanced-tooltip-content::after' => 'border-width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'ha_advanced_tooltip_enable!' => '',
+                ],
+            ]
+        );
+
         $element->end_controls_tab();
 
         $element->end_controls_tabs();

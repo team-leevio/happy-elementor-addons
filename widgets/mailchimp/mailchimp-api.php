@@ -10,10 +10,6 @@ namespace Happy_Addons\Elementor\Widget\Mailchimp;
 
 defined('ABSPATH') || die();
 
-use \Happy_Addons\Elementor\Credentials_Manager;
-
-// use Happy_Addons\Elementor\Widget\Mailchimp;
-
 class Mailchimp_api {
 
     private static $apiKey;
@@ -22,10 +18,9 @@ class Mailchimp_api {
 
     public static function set_ajax_call() {
 
-        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
-        self::$credentials = Credentials_Manager::get_saved_credentials();
+        self::$credentials = ha_get_credentials('mailchimp');;
 
-        self::$apiKey  = isset(self::$credentials['mailchimp']['api'])? self::$credentials['mailchimp']['api']: '';
+        self::$apiKey  = isset(self::$credentials['api'])? self::$credentials['api']: '';
 
         add_action('wp_ajax_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);
         add_action('wp_ajax_nopriv_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);

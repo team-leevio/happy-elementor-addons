@@ -1079,7 +1079,12 @@ class Post_List extends Base {
 
 			if ( ! empty( $lists ) ) {
 				foreach ( $lists as $index => $value ) {
-					$post_id = ! empty($value['post_id'][0]) ? trim($value['post_id'][0]) : '';
+					//trim function to remove extra space before post ID
+					if( is_array($value['post_id']) ){
+						$post_id = ! empty($value['post_id'][0]) ? trim($value['post_id'][0]) : '';
+					}else{
+						$post_id = ! empty($value['post_id']) ? trim($value['post_id']) : '';
+					}
 					$ids[] = $post_id;
 					if ( $value['title'] ) $customize_title[$post_id] = $value['title'];
 				}
