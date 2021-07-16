@@ -114,27 +114,35 @@ class Credentials_Manager {
 				'demo' => 'https://happyaddons.com/mailchimp/',
 				'is_pro' => false,
 			],
-			'twitter' => [
-				'title' => __('Twitter', 'happy-elementor-addons'),
-				'icon' => 'hm hm-twitter-bird',
+			'twitter_feed' => [
+				'title' => __('Twitter Feed', 'happy-elementor-addons'),
+				'icon' => 'hm hm-twitter-feed',
 				'fiels' => [
 					[
-						'label' => esc_html__('User Name', 'happy-elementor-addons'),
+						'label' => esc_html__('User Name. (Use @ sign with your Twitter user name)', 'happy-elementor-addons'),
 						'type' => 'text',
-						'name' => 'username',
+						'name' => 'user_name',
 					],
 					[
-						'label' => esc_html__('Public Key', 'happy-elementor-addons'),
+						'label' => esc_html__('Consumer Key', 'happy-elementor-addons'),
 						'type' => 'text',
-						'name' => 'public_key',
+						'name' => 'consumer_key',
+						'help' => [
+							'instruction' => esc_html__('Get Consumer Key', 'happy-elementor-addons'),
+							'link' => 'https://apps.twitter.com/app/'
+						],
 					],
 					[
-						'label' => esc_html__('Secret Key', 'happy-elementor-addons'),
+						'label' => esc_html__('Consumer Secret', 'happy-elementor-addons'),
 						'type' => 'text',
-						'name' => 'secret_key',
+						'name' => 'consumer_secret',
+						'help' => [
+							'instruction' => esc_html__('Get Consumer Secret', 'happy-elementor-addons'),
+							'link' => 'https://apps.twitter.com/app/'
+						],
 					],
 				],
-				'help' => 'https://happyaddons.com/mailchimp/',
+				// 'help' => 'https://happyaddons.com/mailchimp/',
 				'is_pro' => false,
 			],
 		];
