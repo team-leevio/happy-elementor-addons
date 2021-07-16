@@ -52,7 +52,17 @@ class Flip_Box extends Base {
         return [ 'flip', 'box', 'flip', 'info', 'content', 'animation' ];
     }
 
+	/**
+     * Register widget content controls
+     */
     protected function register_content_controls() {
+		$this->__front_side_content_controls();
+		$this->__back_side_content_controls();
+		$this->__settings_content_controls();
+	}
+
+    protected function __front_side_content_controls() {
+
         $this->start_controls_section(
             '_section_front',
             [
@@ -209,6 +219,9 @@ class Flip_Box extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __back_side_content_controls() {
 
         $this->start_controls_section(
             '_section_back',
@@ -366,6 +379,9 @@ class Flip_Box extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __settings_content_controls() {
 
         $this->start_controls_section(
             '_section_settings',
@@ -401,7 +417,17 @@ class Flip_Box extends Base {
 
     }
 
+	/**
+     * Register widget style controls
+     */
     protected function register_style_controls() {
+		$this->__common_style_controls();
+		$this->__front_side_style_controls();
+		$this->__back_side_style_controls();
+	}
+
+    protected function __common_style_controls() {
+
         $this->start_controls_section(
             '_section_common_style',
             [
@@ -446,6 +472,9 @@ class Flip_Box extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __front_side_style_controls() {
 
         // front side
         $this->start_controls_section(
@@ -790,6 +819,9 @@ class Flip_Box extends Base {
         $this->end_controls_tabs();
 
         $this->end_controls_section();
+	}
+
+    protected function __back_side_style_controls() {
 
         // back side
         $this->start_controls_section(

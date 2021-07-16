@@ -77,12 +77,20 @@ class Content_Switcher extends Base {
 		return $items;
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__switcher_content_controls();
+		$this->__settings_content_controls();
+	}
+
+	protected function __switcher_content_controls() {
 
 		$this->start_controls_section(
-			'_section_design',
+			'_section_content',
 			[
-				'label' => __('Design', 'happy-elementor-addons'),
+				'label' => __('Content Switcher', 'happy-elementor-addons'),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -100,16 +108,6 @@ class Content_Switcher extends Base {
 					'button'    => __('Button', 'happy-elementor-addons'),
 				],
 				'default' => 'round',
-			]
-		);
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
-			'_section_content',
-			[
-				'label' => __('Content', 'happy-elementor-addons'),
-				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
@@ -239,7 +237,7 @@ class Content_Switcher extends Base {
 		$this->add_control(
 			'content_list',
 			[
-				'label'         => __('List', 'happy-elementor-addons'),
+				'label'         => __('Contents', 'happy-elementor-addons'),
 				'type'          => Controls_Manager::REPEATER,
 				'fields'        => $repeater->get_controls(),
 				'prevent_empty' => true,
@@ -266,6 +264,9 @@ class Content_Switcher extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __settings_content_controls() {
 
 		$this->start_controls_section(
 			'_section_display_settings',
@@ -352,7 +353,17 @@ class Content_Switcher extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__switch_style_controls();
+		$this->__switcher_control_style_controls();
+		$this->__switch_bar_style_controls();
+		$this->__content_style_controls();
+	}
+
+	protected function __switch_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_switch',
@@ -779,6 +790,9 @@ class Content_Switcher extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __switcher_control_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_switcher_control',
@@ -887,6 +901,9 @@ class Content_Switcher extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
+
+	protected function __switch_bar_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_switch_bar',
@@ -949,6 +966,9 @@ class Content_Switcher extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __content_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_content',
@@ -989,7 +1009,7 @@ class Content_Switcher extends Base {
 			]
 		);
 
-		
+
 		$this->add_control(
 			'content_color',
 			[

@@ -864,3 +864,19 @@ Mailchimp_api::set_ajax_call();
 function ha_get_credentials() {
 	return Happy_Addons\Elementor\Credentials_Manager::get_saved_credentials();
 }
+
+/**
+ * Get plugin missing notice
+ *
+ * @param string $plugin
+ * @return void
+ */
+function ha_show_plugin_missing_alert( $plugin ) {
+	if ( current_user_can( 'activate_plugins' ) && $plugin ) {
+		printf(
+			'<div %s>%s</div>',
+			'style="margin: 1rem;padding: 1rem 1.25rem;border-left: 5px solid #f5c848;color: #856404;background-color: #fff3cd;"',
+			$plugin . __( ' is missing! Please install and activate ', 'happy-elementor-addons' ) . $plugin . '.'
+			);
+	}
+}

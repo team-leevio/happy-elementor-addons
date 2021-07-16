@@ -400,12 +400,15 @@
 				}
 			},
 			run: function () {
+				if( 0 == this.wrapper.length){
+					return;
+				}
 				var wrapper_height = this.wrapper.innerHeight(),
 					wrapper_width = this.wrapper.innerWidth(),
 					container = this.wrapper.find('.ha-news-ticker-container'),
 					single_item = container.find('.ha-news-ticker-item'),
 					scroll_direction = this.wrapper.data('scroll-direction'),
-					scroll = 'scroll'+scroll_direction+wrapper_height+wrapper_width,
+					scroll = "scroll" + scroll_direction + parseInt(wrapper_height) + parseInt(wrapper_width),
 					duration = this.wrapper.data('duration'),
 					direction = 'normal',
 					all_title_width = 10;
@@ -426,7 +429,7 @@
 				}]);
 				container.playKeyframe({
 					name: scroll,
-					duration: duration+'ms',
+					duration: duration.toString() + "ms",
 					timingFunction: 'linear',
 					delay: '0s',
 					iterationCount: 'infinite',
@@ -580,16 +583,13 @@
 			var glass_on = $scope.find('.ha-threesixty-rotation-magnify');
 			var t360 = $scope.find('.ha-threesixty-rotation-360img');
 			var zoom = glass_on.data('zoom');
-			//console.log(autoplay);
+
 			var playb = $scope.find('.ha-threesixty-rotation-play');
 
 			var crl = circlr(cls, {
 				play : true,
-				// vertical : true,
-				// scroll : true,
-				//interval : 340,
 			});
-			//console.log(crl);
+
 			if( 'on' ===autoplay ){
 				var autoplay_btn = $scope.find('.ha-threesixty-rotation-autoplay');
 				autoplay_btn.on('click', function(el) {
@@ -818,7 +818,7 @@
 		var Content_Switcher = function($scope) {
 			var parent = $scope.find('.ha-content-switcher-wrapper'),
 				designType = parent.data('design-type');
-			
+
 			if(designType == 'button') {
 				var buttons = parent.find('.ha-cs-button'),
 					contents = parent.find('.ha-cs-content-section');
@@ -845,9 +845,9 @@
 					secondarySwitcher = parent.find('.ha-cs-switch.secondary'),
 					primaryContent = parent.find('.ha-cs-content-section.primary'),
 					secondaryContent = parent.find('.ha-cs-content-section.secondary');
-				
+
 				toggleSwitch.on('click', function(e){
-					console.log('toggle click');
+
 					if(input.is(':checked')){
 						primarySwitcher.removeClass('active');
 						primaryContent.removeClass('active');
@@ -864,7 +864,7 @@
 			}
 
 		};
-		
+
 		var MailChimp = elementorModules.frontend.handlers.Base.extend({
 
 			onInit: function () {
@@ -902,14 +902,14 @@
 						post_id: elForm.parent().data('post-id'),
 						widget_id: elForm.parent().data('widget-id'),
 					};
-			
+
 					$.ajax({
 						type: 'post',
 						url: HappyLocalize.ajax_url,
 						data: data,
 						success: function(response) {
 							elForm.trigger('reset');
-							console.log(response);
+
 							if(response.status){
 								elMessage.removeClass('error');
 								elMessage.addClass('success');
@@ -919,10 +919,10 @@
 								elMessage.removeClass('success');
 								elMessage.text(response.msg);
 							}
-							// console.log(response);
+
 						},
 						error: function(error) {
-							// console.log(error);
+
 						}
 					});
 
@@ -932,7 +932,7 @@
 				var tabletWidth = elementorFrontendConfig.breakpoints.md;
 
 				function responsiveClass(){
-					// console.log(settings);
+
 					var windowWidth = $(window).width();
 
 					if (windowWidth > tabletWidth) {
@@ -952,7 +952,7 @@
 							elForm.addClass(settings.formAlignMobile);
 						}
 					}
-					
+
 				};
 
 				responsiveClass();
@@ -960,6 +960,36 @@
 
 			}
 		});
+
+
+
+		//Team Member
+		var Team_Member = function($scope) {
+			var btn = $scope.find('.ha-btn');
+			var lightBox = $scope.find('.ha-member-lightbox');
+			if( lightBox.length > 0 ){
+
+				var close = lightBox.find('.ha-member-lightbox-close');
+
+				btn.on('click', function(){
+					lightBox.addClass('ha-member-lightbox-show');
+				});
+
+				lightBox.on('click', function(e){
+					if( lightBox.hasClass('ha-member-lightbox-show') ) {
+						if( e.target == lightBox[0] ) {
+							lightBox.removeClass('ha-member-lightbox-show');
+						}
+						else if( e.target == close[0] ) {
+							lightBox.removeClass('ha-member-lightbox-show');
+						}
+						else if( e.target == close.find('i.eicon-editor-close')[0] ) {
+							lightBox.removeClass('ha-member-lightbox-show');
+						}
+					}
+				});
+			}
+		};
 
 		// Slider
 		elementorFrontend.hooks.addAction(
@@ -994,7 +1024,7 @@
 				});
 				var img_wrap = $scope.find(".ha-horizontal-timeline-image");
 				var magnific_popup = img_wrap.data("mfp-src");
-				// console.log(magnific_popup);
+
 				if( undefined !== magnific_popup ){
 					img_wrap.magnificPopup({
 						type: "image",
@@ -1057,6 +1087,7 @@
 			'widget'                        : BackgroundOverlay,
 			'ha-event-calendar.default'		: Event_Calendar,
 			'ha-content-switcher.default'	: Content_Switcher,
+			'ha-member.default'		        : Team_Member,
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {

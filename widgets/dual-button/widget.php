@@ -48,7 +48,11 @@ class Dual_Button extends Base {
         return [ 'button', 'btn', 'dual', 'advance', 'link' ];
     }
 
+	/**
+     * Register widget content controls
+     */
     protected function register_content_controls() {
+
         $this->start_controls_section(
             '_section_button',
             [
@@ -375,7 +379,18 @@ class Dual_Button extends Base {
         $this->end_controls_section();
     }
 
+	/**
+     * Register widget style controls
+     */
     protected function register_style_controls() {
+		$this->__common_style_controls();
+		$this->__primary_btn_style_controls();
+		$this->__connector_style_controls();
+		$this->__secondary_btn_style_controls();
+	}
+
+    protected function __common_style_controls() {
+
         $this->start_controls_section(
             '_section_style_common',
             [
@@ -465,6 +480,9 @@ class Dual_Button extends Base {
         );
 
 		$this->end_controls_section();
+	}
+
+    protected function __primary_btn_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_left_button',
@@ -604,6 +622,9 @@ class Dual_Button extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
+
+    protected function __connector_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_connector',
@@ -666,6 +687,9 @@ class Dual_Button extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+    protected function __secondary_btn_style_controls() {
 
         $this->start_controls_section(
             '_section_style_right_button',

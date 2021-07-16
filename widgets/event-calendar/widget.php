@@ -164,6 +164,9 @@ class Event_Calendar extends Base {
         ];
     }
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls () {
 
 		$this->event_content_controls();
@@ -757,9 +760,10 @@ class Event_Calendar extends Base {
 	}
 
 
-	/*
-	* Register Style control
-	*/
+
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls () {
 
 		$this->calendar_style_controls();
