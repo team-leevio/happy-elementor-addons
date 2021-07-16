@@ -930,7 +930,7 @@ class Content_Switcher extends Base {
 			[
 				'name'     => 'title_section_bg_color',
 				'label'    => __('Background', 'happy-elementor-addons'),
-				'types'    => ['classic', 'gradient', 'video'],
+				'types'    => ['classic', 'gradient'],
 				'selector' => '{{WRAPPER}} .ha-content-switcher-wrapper .ha-cs-switch-container',
 			]
 		);
