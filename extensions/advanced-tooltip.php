@@ -265,7 +265,7 @@ class Advanced_Tooltip {
         $element->add_control(
             'ha_advanced_tooltip_color',
             [
-                'label' => __('Color', 'happy-elementor-addons'),
+                'label' => __('Text Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#ffffff',
                 'selectors' => [
@@ -343,11 +343,34 @@ class Advanced_Tooltip {
                 'range' => [
                     'px' => [
                         'min' => 1,
-                        'max' => 500,
+                        'max' => 800,
                     ],
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-advanced-tooltip-content' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'ha_advanced_tooltip_enable!' => '',
+                ],
+            ]
+        );
+
+        $element->add_responsive_control(
+            'ha_advanced_tooltip_height',
+            [
+                'label' => __('Height', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => '40',
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 500,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-advanced-tooltip-content' => 'height: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
@@ -374,6 +397,7 @@ class Advanced_Tooltip {
                 ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
+                    'ha_advanced_tooltip_arrow' => 'true',
                 ],
             ]
         );
