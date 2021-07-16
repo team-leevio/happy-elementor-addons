@@ -5,7 +5,8 @@ namespace Happy_Addons\Elementor\Extension;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use \Elementor\Core\Schemes\Typography;
+use \Elementor\Group_Control_Background;
+use \Elementor\Group_Control_Border;
 
 defined('ABSPATH') || die();
 
@@ -230,6 +231,20 @@ class Advanced_Tooltip {
             ]
         );
 
+        $element->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name'     => 'title_section_bg_color',
+				'label'    => __('Background', 'happy-elementor-addons'),
+				'types'    => ['classic', 'gradient'],
+				'selector' => '{{WRAPPER}} .ha-advanced-tooltip-content',
+                'condition' => [
+                    'ha_advanced_tooltip_enable!' => '',
+                    'ha_advanced_tooltip_arrow!' => 'true',
+                ],
+			]
+		);
+
         $element->add_control(
             'ha_advanced_tooltip_background_color',
             [
@@ -242,6 +257,7 @@ class Advanced_Tooltip {
                 ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
+                    'ha_advanced_tooltip_arrow' => 'true',
                 ],
             ]
         );
@@ -261,14 +277,18 @@ class Advanced_Tooltip {
             ]
         );
 
-        // $element->add_group_control(
-        // 	Group_Control_Border::get_type(),
-        // 	[
-        // 		'name' => 'border',
-        // 		'label' => __( 'Border', 'happy-elementor-addons' ),
-        // 		'selector' => '{{WRAPPER}} .ha-advanced-tooltip-content',
-        // 	]
-        // );
+        $element->add_group_control(
+        	Group_Control_Border::get_type(),
+        	[
+        		'name' => 'border',
+        		'label' => __( 'Border', 'happy-elementor-addons' ),
+        		'selector' => '{{WRAPPER}} .ha-advanced-tooltip-content',
+                'condition' => [
+                    'ha_advanced_tooltip_enable!' => '',
+                    'ha_advanced_tooltip_arrow!' => 'true',
+                ],
+        	]
+        );
 
         $element->add_control(
             'ha_advanced_tooltip_border_radius',
@@ -285,7 +305,7 @@ class Advanced_Tooltip {
             ]
         );
 
-        $element->add_control(
+        $element->add_responsive_control(
             'ha_advanced_tooltip_padding',
             [
                 'label' => __('Padding', 'happy-elementor-addons'),
@@ -312,7 +332,7 @@ class Advanced_Tooltip {
             ]
         );
 
-        $element->add_control(
+        $element->add_responsive_control(
             'ha_advanced_tooltip_width',
             [
                 'label' => __('Width', 'happy-elementor-addons'),
