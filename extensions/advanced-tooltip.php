@@ -290,7 +290,7 @@ class Advanced_Tooltip {
         	]
         );
 
-        $element->add_control(
+        $element->add_responsive_control(
             'ha_advanced_tooltip_border_radius',
             [
                 'label' => __('Border Radius', 'happy-elementor-addons'),
