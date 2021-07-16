@@ -55,7 +55,17 @@ class Card extends Base {
 		return [ 'card', 'blurb', 'infobox', 'content', 'block', 'box' ];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__image_badge_content_controls();
+		$this->__title_desc_content_controls();
+		$this->__button_content_controls();
+	}
+
+	protected function __image_badge_content_controls() {
+
 		$this->start_controls_section(
 			'_section_image',
 			[
@@ -142,6 +152,9 @@ class Card extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __title_desc_content_controls() {
 
 		$this->start_controls_section(
 			'_section_title',
@@ -247,6 +260,9 @@ class Card extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __button_content_controls() {
 
 		$this->start_controls_section(
 			'_section_button',
@@ -397,7 +413,18 @@ class Card extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__image_style_controls();
+		$this->__badge_style_controls();
+		$this->__title_desc_style_controls();
+		$this->__button_style_controls();
+	}
+
+	protected function __image_style_controls() {
+
 		$this->start_controls_section(
 			'_section_style_image',
 			[
@@ -662,6 +689,9 @@ class Card extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
+
+	protected function __badge_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_badge',
@@ -829,6 +859,9 @@ class Card extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __title_desc_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_content',
@@ -935,6 +968,9 @@ class Card extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __button_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_button',

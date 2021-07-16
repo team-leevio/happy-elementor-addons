@@ -860,3 +860,36 @@ function ha_get_ele_widget_settings($post_id, $widget_id) {
 
 include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
 Mailchimp_api::set_ajax_call();
+
+/**
+ * get credentials function
+ *
+ * @param string $key
+ *
+ * @return void
+ * @since 1.0.0
+ */
+function ha_get_credentials($key = '') {
+	include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
+	$creds = Happy_Addons\Elementor\Credentials_Manager::get_saved_credentials();
+	if(!empty($key)) {
+		return isset($creds[$key])? $creds[$key]: [esc_html__('invalid key', 'happy-elementor-addons')];
+	}
+	return $creds;
+}
+
+/**
+ * Get plugin missing notice
+ *
+ * @param string $plugin
+ * @return void
+ */
+function ha_show_plugin_missing_alert( $plugin ) {
+	if ( current_user_can( 'activate_plugins' ) && $plugin ) {
+		printf(
+			'<div %s>%s</div>',
+			'style="margin: 1rem;padding: 1rem 1.25rem;border-left: 5px solid #f5c848;color: #856404;background-color: #fff3cd;"',
+			$plugin . __( ' is missing! Please install and activate ', 'happy-elementor-addons' ) . $plugin . '.'
+			);
+	}
+}

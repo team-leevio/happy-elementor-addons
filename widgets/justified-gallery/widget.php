@@ -43,7 +43,16 @@ class Justified_Gallery extends Base {
 		return [ 'gallery', 'image', 'justified', 'filter', 'lightbox' ];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__gallery_content_controls();
+		$this->__advance_content_controls();
+	}
+
+	protected function __gallery_content_controls() {
+
 		$this->start_controls_section(
 			'_section_gallery',
 			[
@@ -118,6 +127,9 @@ class Justified_Gallery extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __advance_content_controls() {
 
 		$this->start_controls_section(
 			'_section_advance',
@@ -300,7 +312,17 @@ class Justified_Gallery extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__image_style_controls();
+		$this->__caption_style_controls();
+		$this->__filter_menu_style_controls();
+	}
+
+	protected function __image_style_controls() {
+
 		$this->start_controls_section(
 			'_section_style_image',
 			[
@@ -452,6 +474,10 @@ class Justified_Gallery extends Base {
 
 		$this->end_controls_section();
 
+	}
+
+	protected function __caption_style_controls() {
+
 		$this->start_controls_section(
 			'_section_style_caption',
 			[
@@ -505,6 +531,9 @@ class Justified_Gallery extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __filter_menu_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_menu',

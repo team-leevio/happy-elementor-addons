@@ -7,7 +7,8 @@
 defined('ABSPATH') || die();
 
 $credential_list = self::get_credentials();
-$credential_data = \Happy_Addons\Elementor\Credentials_Manager::get_saved_credentials();
+// $credential_data = \Happy_Addons\Elementor\Credentials_Manager::get_saved_credentials();
+$credential_data = ha_get_credentials();
 $has_pro = ha_has_pro();
 
 ?>

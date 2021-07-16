@@ -1,13 +1,13 @@
 <?php
-	
+
 	/**
 	 * Social Share widget class
 	 *
 	 * @package Happy_Addons
 	 */
-	
+
 	namespace Happy_Addons\Elementor\Widget;
-	
+
 	use Elementor\Controls_Manager;
 	use Elementor\Core\Schemes\Typography;
 	use Elementor\Element_Base;
@@ -16,12 +16,12 @@
 	use Elementor\Group_Control_Typography;
 	use Elementor\Repeater;
 	use Elementor\Utils;
-	
-	
+
+
 	defined( 'ABSPATH' ) || die();
-	
+
 	class Social_Share extends Base {
-		
+
 		/**
 		 * Get widget title.
 		 *
@@ -33,7 +33,7 @@
 		public function get_title () {
 			return __( 'Social Share', 'happy-elementor-addons' );
 		}
-		
+
 		/**
 		 * Get widget icon.
 		 *
@@ -45,12 +45,16 @@
 		public function get_icon () {
 			return 'hm hm-share';
 		}
-		
+
 		public function get_keywords () {
 			return [ 'social', 'share', 'facebook', 'twitter', 'instagram', 'linkedin' ];
 		}
-		
+
+		/**
+		 * Register widget content controls
+		 */
 		protected function register_content_controls () {
+
 			$this->start_controls_section(
 				'_section_content',
 				[
@@ -58,9 +62,9 @@
 					'tab'   => Controls_Manager::TAB_CONTENT,
 				]
 			);
-			
+
 			$repeater = new Repeater();
-			
+
 			$repeater->add_control(
 				'share_network',
 				[
@@ -89,7 +93,7 @@
 					'default' => 'facebook',
 				]
 			);
-			
+
 			$repeater->add_control(
 				'custom_link',
 				[
@@ -102,7 +106,7 @@
 					],
 				]
 			);
-			
+
 			$repeater->add_control(
 				'hashtags',
 				[
@@ -155,7 +159,7 @@
 					]
 				]
 			);
-			
+
 			$repeater->add_control(
 				'share_title',
 				[
@@ -250,7 +254,7 @@
 					]
 				]
 			);
-			
+
 			$repeater->add_control(
 				'share_text',
 				[
@@ -259,10 +263,10 @@
 					'placeholder' => __( 'Share on Facebook', 'happy-elementor-addons' ),
 					'dynamic'     => [
 						'active' => true,
-					]				
+					]
 				]
 			);
-			
+
 			$repeater->add_control(
 				'customize',
 				[
@@ -274,7 +278,7 @@
 					'separator'      => 'before'
 				]
 			);
-			
+
 			$repeater->start_controls_tabs(
 				'_tab_share_colors',
 				[
@@ -288,14 +292,14 @@
 					'label' => __( 'Normal', 'happy-elementor-addons' ),
 				]
 			);
-			
+
 			$repeater->add_control(
 				'single_color',
 				[
 					'label' => __( 'Color', 'happy-elementor-addons' ),
 					'type'  => Controls_Manager::COLOR,
-					'condition'      => [ 
-						'customize' => 'yes' 
+					'condition'      => [
+						'customize' => 'yes'
 					],
 					'selectors'      => [
 						'{{WRAPPER}} {{CURRENT_ITEM}} .ha-share-network' => 'color: {{VALUE}};',
@@ -309,29 +313,29 @@
 				[
 					'label' => __( 'Background Color', 'happy-elementor-addons' ),
 					'type'  => Controls_Manager::COLOR,
-					'condition'      => [ 
-						'customize' => 'yes' 
+					'condition'      => [
+						'customize' => 'yes'
 					],
 					'selectors'      => [
 						'{{WRAPPER}} {{CURRENT_ITEM}} .ha-share-network' => 'background-color: {{VALUE}};',
 					]
 				]
 			);
-			
+
 			$repeater->add_control(
 				'single_border_color',
 				[
 					'label'          => __( 'Border Color', 'happy-elementor-addons' ),
 					'type'           => Controls_Manager::COLOR,
-					'condition'      => [ 
-						'customize' => 'yes' 
+					'condition'      => [
+						'customize' => 'yes'
 					],
 					'selectors'      => [
 						'{{WRAPPER}} {{CURRENT_ITEM}} .ha-share-network' => 'border-color: {{VALUE}};',
 					]
 				]
 			);
-			
+
 			$repeater->end_controls_tab();
 			$repeater->start_controls_tab(
 				'_tab_hover',
@@ -339,14 +343,14 @@
 					'label' => __( 'Hover', 'happy-elementor-addons' ),
 				]
 			);
-			
+
 			$repeater->add_control(
 				'signle_hover_color',
 				[
 					'label'          => __( 'Color', 'happy-elementor-addons' ),
 					'type'           => Controls_Manager::COLOR,
-					'condition'      => [ 
-						'customize' => 'yes' 
+					'condition'      => [
+						'customize' => 'yes'
 					],
 					'selectors'      => [
 						'{{WRAPPER}} {{CURRENT_ITEM}} .ha-share-network:hover' => 'color: {{VALUE}};'
@@ -359,8 +363,8 @@
 				[
 					'label'          => __( 'Background Color', 'happy-elementor-addons' ),
 					'type'           => Controls_Manager::COLOR,
-					'condition'      => [ 
-						'customize' => 'yes' 
+					'condition'      => [
+						'customize' => 'yes'
 					],
 					'selectors'      => [
 						'{{WRAPPER}} {{CURRENT_ITEM}} .ha-share-network:hover' => 'background-color: {{VALUE}};',
@@ -373,18 +377,18 @@
 				[
 					'label'          => __( 'Border Color', 'happy-elementor-addons' ),
 					'type'           => Controls_Manager::COLOR,
-					'condition'      => [ 
-						'customize' => 'yes' 
+					'condition'      => [
+						'customize' => 'yes'
 					],
 					'selectors'      => [
 						'{{WRAPPER}} {{CURRENT_ITEM}} .ha-share-network:hover' => 'border-color: {{VALUE}};',
 					]
 				]
 			);
-			
+
 			$repeater->end_controls_tab();
 			$repeater->end_controls_tabs();
-			
+
 			$this->add_control(
 				'icon_list',
 				[
@@ -417,7 +421,7 @@
 					]
 				]
 			);
-			
+
 			$this->add_control(
 				'network_view',
 				[
@@ -474,7 +478,7 @@
 					],
 				]
 			);
-			
+
 			$this->add_responsive_control(
 				'alignment',
 				[
@@ -500,12 +504,15 @@
 					],
 				]
 			);
-			
+
 			$this->end_controls_section();
 		}
-		
+
+		/**
+		 * Register widget style controls
+		 */
 		protected function register_style_controls () {
-			
+
 			$this->start_controls_section(
 				'_section_button_style',
 				[
@@ -525,7 +532,7 @@
 					]
 				]
 			);
-			
+
 			$this->add_responsive_control(
 				'button_spacing',
 				[
@@ -556,7 +563,7 @@
 					'selector'  => '{{WRAPPER}} .ha-share-network',
 				]
 			);
-			
+
 			$this->add_group_control(
 				Group_Control_Box_Shadow::get_type(),
 				[
@@ -582,7 +589,7 @@
 					],
 				]
 			);
-			
+
 			$this->add_responsive_control(
 				'icon_spacing',
 				[
@@ -614,22 +621,22 @@
 					'selector' => '{{WRAPPER}} .ha-share-network .ha-share-label'
 				]
 			);
-			
+
 			$this->start_controls_tabs( '_tab_icons_colors' );
-			
+
 			$this->start_controls_tab(
 				'_tab_normal_color',
 				[
 					'label' => __( 'Normal', 'happy-elementor-addons' ),
 				]
 			);
-			
+
 			$this->add_control(
 				'color',
 				[
 					'label' => __( 'Color', 'happy-elementor-addons' ),
 					'type'  => Controls_Manager::COLOR,
-					
+
 					'selectors'      => [
 						'{{WRAPPER}} .ha-share-network ' => 'color: {{VALUE}};'
 					]
@@ -657,7 +664,7 @@
 					]
 				]
 			);
-			
+
 			$this->end_controls_tab();
 			$this->start_controls_tab(
 				'_tab_common_hover',
@@ -665,7 +672,7 @@
 					'label' => __( 'Hover', 'happy-elementor-addons' ),
 				]
 			);
-			
+
 			$this->add_control(
 				'common_hover_color',
 				[
@@ -687,7 +694,7 @@
 					]
 				]
 			);
-			
+
 			$this->add_control(
 				'common_hover_border_color',
 				[
@@ -709,14 +716,13 @@
 					]
 				]
 			);
-			
+
 			$this->end_controls_tab();
 			$this->end_controls_tabs();
-			
+
 			$this->end_controls_section();
-			
 		}
-		
+
 		protected function render () {
 			$settings = $this->get_settings_for_display();
 			$social_icons = $settings['icon_list'];
@@ -735,15 +741,15 @@
 					$twitter_handle = $icon['twitter_handle'];
 					$email_to = $icon['email_to'];
 					$email_subject = $icon['email_subject'];
-					
+
 					$share_on_text = $share_text ? $share_text : $default_share_text;
-					
+
 					$hashtags = $icon['hashtags'];
 					$url = get_the_permalink();
-					
+
 					$custom_share_url = $icon['custom_link']['url'];
 					$share_url        = $custom_share_url ? $custom_share_url : $url;
-					
+
 					$this->set_render_attribute( 'list_classes', 'class', [
 						'ha-share-button',
 						'elementor-repeater-item-' . $icon['_id']
@@ -765,12 +771,12 @@
 					?>
 					<li <?php $this->print_render_attribute_string( 'list_classes' ); ?>>
 						<a <?php $this->print_render_attribute_string( 'link_classes' ); ?>>
-							<?php 
+							<?php
 							if ( 'icon_and_text' == $network_view ) {
 								$social_media_name = $social_media_name == 'email' ? 'envelope' : $social_media_name;
 								?>
 								<i class="fa fa-<?php echo esc_attr( $social_media_name ); ?>" aria-hidden="true"></i>
-								<?php 
+								<?php
 								if ( ! empty( $share_on_text ) && '' != $share_on_text ) {
 									printf( "<span class='ha-share-label'>%s</span>", $share_on_text );
 								}
@@ -792,10 +798,10 @@
 					<?php
 				endforeach;
 				?>
-			
+
 			</ul>
 			<?php
-			
+
 		}
-		
+
 	}
