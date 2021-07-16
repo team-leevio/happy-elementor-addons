@@ -870,6 +870,7 @@ Mailchimp_api::set_ajax_call();
  * @since 1.0.0
  */
 function ha_get_credentials($key = '') {
+	include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
 	$creds = Happy_Addons\Elementor\Credentials_Manager::get_saved_credentials();
 	if(!empty($key)) {
 		return isset($creds[$key])? $creds[$key]: [esc_html__('invalid key', 'happy-elementor-addons')];
