@@ -52,7 +52,9 @@ class Advanced_Tooltip {
             'ha_advanced_tooltip_content',
             [
                 'label' => __('Content', 'happy-elementor-addons'),
-                'type' => Controls_Manager::TEXT,
+                'type'      => Controls_Manager::TEXTAREA,
+				'description' => ha_get_allowed_html_desc( 'intermediate' ),
+				'rows' => 5,
                 'default' => __('I am a tooltip', 'happy-elementor-addons'),
                 'dynamic' => ['active' => true],
                 'frontend_available' => true,
@@ -192,6 +194,36 @@ class Advanced_Tooltip {
                 ],
             ]
         );
+
+        $element->add_responsive_control(
+			'ha_advanced_tooltip_align',
+			[
+				'label' => __( 'Text Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+                'default' => 'center',
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .ha-advanced-tooltip-content' => 'text-align: {{VALUE}};'
+                ],
+                'condition' => [
+                    'ha_advanced_tooltip_enable!' => '',
+                ],
+			]
+		);
 
         $element->end_controls_tab();
 
@@ -348,29 +380,6 @@ class Advanced_Tooltip {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-advanced-tooltip-content' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'ha_advanced_tooltip_enable!' => '',
-                ],
-            ]
-        );
-
-        $element->add_responsive_control(
-            'ha_advanced_tooltip_height',
-            [
-                'label' => __('Height', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'size' => '40',
-                ],
-                'range' => [
-                    'px' => [
-                        'min' => 1,
-                        'max' => 500,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-advanced-tooltip-content' => 'height: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',

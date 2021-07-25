@@ -1148,7 +1148,7 @@
 				if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
 					var settings = this.getReadySettings();
 					var content = $scope.find('.ha-advanced-tooltip-content');
-					content.text(settings.content);
+					content.html($.parseHTML(settings.content));
 					content.css('transition', 'opacity '+settings.duration+'ms ease '+settings.delay+'ms');
 					
 					if( !settings.showArrow) {
