@@ -12,8 +12,47 @@ defined('ABSPATH') || die();
 
 class Advanced_Tooltip {
 
+    static $should_script_enqueue = false;
+
     public static function init() {
         add_action('elementor/element/common/_section_style/after_section_end', [__CLASS__, 'add_controls_section'], 1);
+
+        add_action('elementor/frontend/widget/before_render', [__CLASS__, 'should_script_enqueue']);
+
+        add_action('elementor/preview/enqueue_scripts', [__CLASS__, 'enqueue_scripts']);
+    }
+
+    public static function enqueue_scripts() {
+        $suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
+
+        $extension_js = HAPPY_ADDONS_DIR_PATH . 'assets/js/extension-advanced-tooltip' . $suffix . 'js';
+
+        if (file_exists($extension_js)) {
+            wp_add_inline_script(
+                'elementor-frontend',
+                file_get_contents($extension_js)
+            );
+        }
+    }
+
+    /**
+     * Set should_script_enqueue based extension settings
+     *
+     * @param Element_Base $section
+     * @return void
+     */
+    public static function should_script_enqueue($section) {
+        if (self::$should_script_enqueue) {
+            return;
+        }
+
+        if ('enable' == $section->get_settings_for_display('ha_advanced_tooltip_enable')) {
+            self::$should_script_enqueue = true;
+
+            self::enqueue_scripts();
+
+            remove_action('elementor/frontend/section/before_render', [__CLASS__, 'should_script_enqueue']);
+        }
     }
 
     public static function add_controls_section($element) {
@@ -53,8 +92,8 @@ class Advanced_Tooltip {
             [
                 'label' => __('Content', 'happy-elementor-addons'),
                 'type'      => Controls_Manager::TEXTAREA,
-				'description' => ha_get_allowed_html_desc( 'intermediate' ),
-				'rows' => 5,
+                'description' => ha_get_allowed_html_desc('intermediate'),
+                'rows' => 5,
                 'default' => __('I am a tooltip', 'happy-elementor-addons'),
                 'dynamic' => ['active' => true],
                 'frontend_available' => true,
@@ -196,34 +235,34 @@ class Advanced_Tooltip {
         );
 
         $element->add_responsive_control(
-			'ha_advanced_tooltip_align',
-			[
-				'label' => __( 'Text Alignment', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::CHOOSE,
-				'options' => [
-					'left' => [
-						'title' => __( 'Left', 'happy-elementor-addons' ),
-						'icon' => 'eicon-text-align-left',
-					],
-					'center' => [
-						'title' => __( 'Center', 'happy-elementor-addons' ),
-						'icon' => 'eicon-text-align-center',
-					],
-					'right' => [
-						'title' => __( 'Right', 'happy-elementor-addons' ),
-						'icon' => 'eicon-text-align-right',
-					],
-				],
+            'ha_advanced_tooltip_align',
+            [
+                'label' => __('Text Alignment', 'happy-elementor-addons'),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __('Left', 'happy-elementor-addons'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => __('Center', 'happy-elementor-addons'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => __('Right', 'happy-elementor-addons'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
                 'default' => 'center',
-				'toggle' => true,
-				'selectors' => [
-					'{{WRAPPER}} .ha-advanced-tooltip-content' => 'text-align: {{VALUE}};'
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-advanced-tooltip-content' => 'text-align: {{VALUE}};'
                 ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
                 ],
-			]
-		);
+            ]
+        );
 
         $element->end_controls_tab();
 
@@ -264,18 +303,18 @@ class Advanced_Tooltip {
         );
 
         $element->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name'     => 'title_section_bg_color',
-				'label'    => __('Background', 'happy-elementor-addons'),
-				'types'    => ['classic', 'gradient'],
-				'selector' => '{{WRAPPER}} .ha-advanced-tooltip-content',
+            Group_Control_Background::get_type(),
+            [
+                'name'     => 'title_section_bg_color',
+                'label'    => __('Background', 'happy-elementor-addons'),
+                'types'    => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .ha-advanced-tooltip-content',
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
                     'ha_advanced_tooltip_arrow!' => 'true',
                 ],
-			]
-		);
+            ]
+        );
 
         $element->add_control(
             'ha_advanced_tooltip_background_color',
@@ -310,16 +349,16 @@ class Advanced_Tooltip {
         );
 
         $element->add_group_control(
-        	Group_Control_Border::get_type(),
-        	[
-        		'name' => 'border',
-        		'label' => __( 'Border', 'happy-elementor-addons' ),
-        		'selector' => '{{WRAPPER}} .ha-advanced-tooltip-content',
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'border',
+                'label' => __('Border', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-advanced-tooltip-content',
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
                     'ha_advanced_tooltip_arrow!' => 'true',
                 ],
-        	]
+            ]
         );
 
         $element->add_responsive_control(
