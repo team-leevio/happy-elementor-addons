@@ -324,7 +324,7 @@
 	    -ms-transform: rotate(-45deg);
 	        transform: rotate(-45deg);
 }
-.ha-dashboard-credentials__item-toggle {
+.ha-dashboard-credentials__item-input {
 	right: 20px;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -338,10 +338,10 @@
 	margin-left: 15px;
 	width: 33%;
 }
-.ha-dashboard-credentials__item-toggle input {
+.ha-dashboard-credentials__item-input input {
 	border-color: #e1e5e8;
 }
-.ha-dashboard-credentials__item-toggle label {
+.ha-dashboard-credentials__item-input label {
 	margin-bottom: 5px;
 }
 .ha-dashboard .ha-toggle {

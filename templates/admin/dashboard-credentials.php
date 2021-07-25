@@ -58,7 +58,7 @@ $has_pro = ha_has_pro();
                     </label>
                 </h3>
                 <?php foreach ($fields as $key => $value) : ?>
-                    <div class="ha-dashboard-credentials__item-toggle">
+                    <div class="ha-dashboard-credentials__item-input">
                         <label for="ha-widget-<?php echo $cred_key.'-'.$value['name']; ?>">
                             <?php echo esc_html($value['label']); ?>
                             <?php if (!empty($value['help'])) : ?>
