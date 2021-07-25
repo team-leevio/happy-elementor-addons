@@ -12,6 +12,10 @@ class Ajax_Handler {
 
 		add_action('wp_ajax_ha_post_tab_action', [ __CLASS__, 'post_tab' ]);
 		add_action('wp_ajax_nopriv_ha_post_tab_action', [ __CLASS__, 'post_tab' ]);
+
+		add_action('wp_ajax_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);
+        add_action('wp_ajax_nopriv_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);
+
     }
 
 	/**
@@ -273,6 +277,28 @@ class Ajax_Handler {
 		endif;
 		wp_die();
 	}
+
+	/**
+	 * Mailchimp subscriber handler Ajax call
+	 */
+	public static function mailchimp_prepare_ajax() {
+
+        $security = check_ajax_referer('happy_addons_nonce', 'security');
+
+        if (!$security) return;
+
+        parse_str(isset($_POST['subscriber_info']) ? $_POST['subscriber_info'] : '', $subsciber);
+
+		if(!class_exists('Happy_Addons\Elementor\Widget\Mailchimp\Mailchimp_api')) {
+			include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
+		}
+
+        $response = Widget\Mailchimp\Mailchimp_api::insert_subscriber_to_mailchimp($subsciber);
+
+        echo wp_send_json($response);
+
+        wp_die();
+    }
 }
 
 Ajax_Handler::init();

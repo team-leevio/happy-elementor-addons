@@ -7,8 +7,6 @@
  */
 defined('ABSPATH') || die();
 
-use Happy_Addons\Elementor\Widget\Mailchimp\Mailchimp_api;
-
 /**
  * Call a shortcode function by tag name.
  *
@@ -593,9 +591,6 @@ function ha_get_ele_widget_settings($post_id, $widget_id) {
 
 	return false;
 }
-
-include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
-Mailchimp_api::set_ajax_call();
 
 /**
  * get credentials function

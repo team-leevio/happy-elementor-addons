@@ -4,7 +4,6 @@ namespace Happy_Addons\Elementor;
 defined( 'ABSPATH' ) || die();
 
 use Exception;
-use Happy_Addons\Elementor\Widget\MailChimp\Mailchimp_api;
 
 class Select2_Handler {
 
@@ -156,7 +155,11 @@ class Select2_Handler {
             $current_api = $custom_api;
         }
 
-		$options = Mailchimp_api::get_mailchimp_lists($current_api);
+		if(!class_exists('Happy_Addons\Elementor\Widget\Mailchimp\Mailchimp_api')) {
+			include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
+		}
+
+		$options = Widget\Mailchimp\Mailchimp_api::get_mailchimp_lists($current_api);
 
 		if ( $saved_values  ){
 			return (array_key_exists($saved_values[0], $options)? [ $saved_values[0] => $options[ $saved_values[0] ] ]: [] );
