@@ -59,7 +59,7 @@ $has_pro = ha_has_pro();
                 </h3>
                 <?php foreach ($fields as $key => $value) : ?>
                     <div class="ha-dashboard-credentials__item-toggle">
-                        <label for="">
+                        <label for="ha-widget-<?php echo $cred_key.'-'.$value['name']; ?>">
                             <?php echo esc_html($value['label']); ?>
                             <?php if (!empty($value['help'])) : ?>
                                 <a href="<?php echo esc_url($value['help']['link']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($value['help']['instruction']); ?></a>
@@ -68,7 +68,7 @@ $has_pro = ha_has_pro();
                         <?php if ($value['type'] == 'textarea') : ?>
                             <textarea id="ha-widget-<?php echo $cred_key; ?>" <?php echo $checked; ?> class="ha-credential" name="credentials[<?php echo esc_attr($cred_key); ?>][<?php echo esc_attr($value['name']); ?>]" cols="30" rows="10"><?php echo esc_attr(isset($credential_data[$cred_key][$value['name']]) ? $credential_data[$cred_key][$value['name']] : ''); ?></textarea>
                         <?php else : ?>
-                            <input id="ha-widget-<?php echo $cred_key; ?>" <?php echo $checked; ?> type="<?php echo esc_attr($value['type']); ?>" class="ha-credential" name="credentials[<?php echo esc_attr($cred_key); ?>][<?php echo esc_attr($value['name']); ?>]" value="<?php echo esc_attr(isset($credential_data[$cred_key][$value['name']]) ? $credential_data[$cred_key][$value['name']] : ''); ?>">
+                            <input id="ha-widget-<?php echo $cred_key.'-'.$value['name']; ?>" <?php echo $checked; ?> type="<?php echo esc_attr($value['type']); ?>" class="ha-credential" name="credentials[<?php echo esc_attr($cred_key); ?>][<?php echo esc_attr($value['name']); ?>]" value="<?php echo esc_attr(isset($credential_data[$cred_key][$value['name']]) ? $credential_data[$cred_key][$value['name']] : ''); ?>">
                         <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
