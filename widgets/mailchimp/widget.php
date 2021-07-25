@@ -9,23 +9,18 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Group_Control_Text_Shadow;
-use Elementor\Repeater;
-use Elementor\Core\Schemes\Typography;
-use Elementor\Utils;
-use Elementor\Control_Media;
 use Elementor\Controls_Manager;
-use Elementor\Icons_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Happy_Addons\Elementor\Traits\Button_Renderer;
-use Happy_Addons\Elementor\Widget\MailChimp\Mailchimp_api;
+use Happy_Addons\Elementor\Controls\Select2;
 
 defined('ABSPATH') || die();
 
 class Mailchimp extends Base {
+
+    private $settings;
 
     /**
      * Get widget title.
@@ -39,6 +34,12 @@ class Mailchimp extends Base {
         return __('MailChimp', 'happy-elementor-addons');
     }
 
+	public function __construct($data = [], $args = null) {
+		parent::__construct($data, $args);
+
+        $this->settings = ha_get_credentials('mailchimp');
+	}
+
     /**
      * Get widget icon.
      *
@@ -48,29 +49,23 @@ class Mailchimp extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'hm hm-mail-open';
+        return 'hm hm-mail-chimp';
     }
 
     public function get_keywords() {
         return ['email', 'mail chimp', 'mail', 'subscription'];
     }
 
-    public function __get_lists() {
-        include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
-
-        $list_option = ['01' => esc_html__('Select a List', 'happy-elementor-addons')];
-
-        if (Mailchimp_api::get_mailchimp_lists()) {
-            $list_option = $list_option + Mailchimp_api::get_mailchimp_lists();
-        }
-
-        return $list_option;
-    }
-
-    /**
-     * Register content related controls
+	/**
+     * Register widget content controls
      */
     protected function register_content_controls() {
+		$this->__mailchimp_content_controls();
+		$this->__mailchimp_form_content_controls();
+		$this->__success_error_content_controls();
+	}
+
+    protected function __mailchimp_content_controls() {
 
         $this->start_controls_section(
             '_section_mailchimp',
@@ -83,12 +78,12 @@ class Mailchimp extends Base {
         $this->add_control(
             'mailchimp_api_check',
             [
-                'raw' => '<strong>' . esc_html__('Please note!', 'happy-elementor-addons') . '</strong> ' . esc_html__('Please set API Key in Happy Addons Dashboard - Credentials - MailChimp and Create Campaign..', 'happy-elementor-addons'),
+                'raw' => '<strong>' . esc_html__('Please note!', 'happy-elementor-addons') . '</strong> ' . esc_html__('Please set API Key in Happy Addons Dashboard - ', 'happy-elementor-addons') . '<a style="border-bottom-color: inherit;" href="'. esc_url(admin_url('admin.php?page=happy-addons#credentials')) . '" target="_blank" >'. esc_html__('Credentials', 'happy-elementor-addons') .'</a>' . esc_html__(' - MailChimp and Create Audience.', 'happy-elementor-addons'),
                 'type' => Controls_Manager::RAW_HTML,
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
                 'render_type' => 'ui',
                 'condition' => [
-                    'mailchimp_lists' => '01',
+                    'mailchimp_api_choose' => 'global',
                 ],
             ]
         );
@@ -96,30 +91,76 @@ class Mailchimp extends Base {
         /*
         * Need to solve api get issue from controller to controller
         */
-        // $this->add_control(
-        //     'mailchimp_api',
-        //     [
-        //         'label' => __('MailChimp API', 'happy-elementor-addons'),
-        //         'type' => Controls_Manager::TEXT,
-        //         'label_block' => true,
-        //         'placeholder' => __('Enter your mailchimp api here', 'happy-elementor-addons'),
-        //     ]
-        // );
-
-        
 
         $this->add_control(
-            'mailchimp_lists',
+            'mailchimp_api_choose',
             [
-                'label' => __('Lists', 'happy-elementor-addons'),
+                'label' => __('Choose API from', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
-                'default' => '01',
-                'options' =>  $this->__get_lists(),
-                'description' => esc_html__('Create a campaign in mailchimp account ', 'happy-elementor-addons') . '<a href="https://mailchimp.com/help/create-a-regular-email-campaign/#Create_a_campaign" target="_blank"> ' . esc_html__('Create Campaign', 'happy-elementor-addons') . '</a>',
+                'default' => 'global',
+                'options' =>  [
+                    'global' => __('Global', 'happy-elementor-addons'),
+                    'custom' => __('Custom', 'happy-elementor-addons'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mailchimp_api',
+            [
+                'label' => __('MailChimp API', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'label_block' => true,
+                'placeholder' => __('Enter your mailchimp api here', 'happy-elementor-addons'),
+                'condition' => [
+                    'mailchimp_api_choose' => 'custom',
+                ],
+                'dynamic' => [ 'active' => true]
+            ]
+        );
+
+        $this->add_control(
+			'mailchimp_lists',
+			[
+				'label' => __( 'Audience', 'happy-elementor-addons' ),
+				'label_block' => true,
+				'type' => Select2::TYPE,
+				'multiple' => false,
+				'placeholder' => 'Choose your created audience ',
+				'dynamic_params' => [
+					'object_type' => 'mailchimp_list',
+					'global_api'   => isset($this->settings['api'])? $this->settings['api']: '',
+					'control_dependency' => [
+						'mailchimp_api_choose' => 'mailchimp_api_choose',
+						'mailchimp_api' => 'mailchimp_api',
+					]
+				],
+				'select2options' => [
+					'minimumInputLength' => 0,
+				],
+                'description' => esc_html__('Create a audience/ list in mailchimp account ', 'happy-elementor-addons') . '<a href="https://mailchimp.com/help/create-audience/" target="_blank"> ' . esc_html__('Create Audience', 'happy-elementor-addons') . '</a>',
+			]
+		);
+
+        $this->add_control(
+            'mailchimp_list_tags',
+            [
+                'label' => __('Tags', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'label_block' => true,
+                'placeholder' => __('Tag-1, Tag-2', 'happy-elementor-addons'),
+                'description' => __('Enter tag here to separate your subscribers. Use comma separator to use multiple tags. Example: Tag-1, Tag-2, Tag-3', 'happy-elementor-addons'),
+                'condition' => [
+                    'mailchimp_lists!' => '',
+                ],
+                'dynamic' => [ 'active' => true]
             ]
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __mailchimp_form_content_controls() {
 
         $this->start_controls_section(
             '_section_mailchimp_form',
@@ -129,16 +170,17 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'form_alignment',
             [
-                'label' => __('Form Aligment', 'happy-elementor-addons'),
+                'label' => __('Form Alignment', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'horizontal',
                 'options' => [
                     'horizontal' => esc_html__('Horizontal', 'happy-elementor-addons'),
                     'vertical' => esc_html__('Vertical', 'happy-elementor-addons'),
                 ],
+                'frontend_available' => true,
             ]
         );
 
@@ -175,6 +217,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_name' => 'yes',
                 ],
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -183,10 +226,12 @@ class Mailchimp extends Base {
             [
                 'label' => __('Placeholder', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
+                'default' => __('First Name', 'happy-elementor-addons'),
                 'placeholder' => __('First Name input placeholder', 'happy-elementor-addons'),
                 'condition' => [
                     'enable_name' => 'yes',
                 ],
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -259,6 +304,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_name' => 'yes',
                 ],
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -267,10 +313,12 @@ class Mailchimp extends Base {
             [
                 'label' => __('Placeholder', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
+                'default' => __('Last Name', 'happy-elementor-addons'),
                 'placeholder' => __('Last Name input placeholder', 'happy-elementor-addons'),
                 'condition' => [
                     'enable_name' => 'yes',
                 ],
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -355,6 +403,7 @@ class Mailchimp extends Base {
                 'condition' => [
                     'enable_phone' => 'yes',
                 ],
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -363,10 +412,12 @@ class Mailchimp extends Base {
             [
                 'label' => __('Placeholder', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
+                'default' => __('Phone', 'happy-elementor-addons'),
                 'placeholder' => __('Phone input placeholder', 'happy-elementor-addons'),
                 'condition' => [
                     'enable_phone' => 'yes',
                 ],
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -433,6 +484,7 @@ class Mailchimp extends Base {
                 'label' => __('Label', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
                 'placeholder' => __('Email input label', 'happy-elementor-addons'),
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -441,7 +493,9 @@ class Mailchimp extends Base {
             [
                 'label' => __('Placeholder', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
+                'default' => __('Email', 'happy-elementor-addons'),
                 'placeholder' => __('Email input placeholder', 'happy-elementor-addons'),
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -502,7 +556,8 @@ class Mailchimp extends Base {
             [
                 'label' => __('Text', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
-                'default' => 'Subscribe',
+                'default' => esc_html__('Subscribe', 'happy-elementor-addons'),
+                'dynamic' => ['active' => true]
             ]
         );
 
@@ -550,12 +605,69 @@ class Mailchimp extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __success_error_content_controls() {
+
+        $this->start_controls_section(
+            '_section_success_error_label',
+            [
+                'label' => esc_html__('Success & Error', 'happy-elementor-addons'),
+                'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_control(
+            'mailchimp_success_message',
+            [
+                'label' => __('Success Message', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'label_block' => true,
+                'default' => __('Your data inserted on Mailchimp.', 'happy-elementor-addons'),
+                'placeholder' => __('Type your success message here', 'happy-elementor-addons'),
+                'dynamic' => ['active' => true]
+            ]
+        );
+
+        $this->add_control(
+            'mailchimp_success_message_show_in_editor',
+            [
+                'label' => __('Success Message Show in Editor?', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'happy-elementor-addons'),
+                'label_off' => __('No', 'happy-elementor-addons'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
+            'mailchimp_error_message_show_in_editor',
+            [
+                'label' => __('Error Message Show in Editor?', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'happy-elementor-addons'),
+                'label_off' => __('No', 'happy-elementor-addons'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->end_controls_section();
     }
 
     /**
      * Register styles related controls
      */
     protected function register_style_controls() {
+		$this->__mailchimp_label_style_controls();
+		$this->__input_style_controls();
+		$this->__input_icon_style_controls();
+		$this->__button_style_controls();
+		$this->__success_error_style_controls();
+	}
+
+    protected function __mailchimp_label_style_controls() {
 
         $this->start_controls_section(
             '_section_style_mailchimp_label',
@@ -574,7 +686,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'input_label_color',
             [
                 'label' => esc_html__('Color', 'happy-elementor-addons'),
@@ -599,6 +711,9 @@ class Mailchimp extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __input_style_controls() {
 
         // input style
         $this->start_controls_section(
@@ -610,28 +725,49 @@ class Mailchimp extends Base {
         );
 
         $this->add_responsive_control(
-			'space_between_input',
-			[
-				'label' => __( 'Space Between Input (px)', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 500,
-						'step' => 1,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 30,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-mailchimp-form.vertical .ha-mc-input-wrapper' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-mailchimp-form.horizontal .ha-mc-input-wrapper' => 'margin-right: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
+            'space_between_input',
+            [
+                'label' => __('Space Between Input (px)', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
+                    'unit' => 'px',
+                    'size' => 30,
+                ],
+                'tablet_default' => [
+                    'size' => 10,
+                    'unit' => 'px',
+                ],
+                'mobile_default' => [
+                    'size' => 5,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mailchimp-form.vertical .ha-mc-input-wrapper' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mailchimp-form.horizontal .ha-mc-input-wrapper' => 'margin-right: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'input_style_inputted_value_color',
+            [
+                'label' => esc_html__('Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#000000',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-input input' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->add_group_control(
             Group_Control_Typography::get_type(),
@@ -662,7 +798,7 @@ class Mailchimp extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-mc-input input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-input input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
                 ],
             ]
         );
@@ -822,7 +958,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'input_style_placeholder_color',
             [
                 'label' => esc_html__('Placeholder Color', 'happy-elementor-addons'),
@@ -864,6 +1000,9 @@ class Mailchimp extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __input_icon_style_controls() {
 
         $this->start_controls_section(
             'input_icon_style_holder',
@@ -893,7 +1032,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'input_icon_color',
             [
                 'label' => esc_html__('Color', 'happy-elementor-addons'),
@@ -925,7 +1064,8 @@ class Mailchimp extends Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'font-size: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper svg'    => 'max-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper svg'    => 'max-width: {{SIZE}}{{UNIT}}; max-height: {{SIZE}}{{UNIT}};',
+                    // '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper svg'    => 'height: 1em, width: auto;',
                 ],
             ]
         );
@@ -959,12 +1099,15 @@ class Mailchimp extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-input .ha-mc-icon-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;;',
                 ],
             ]
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __button_style_controls() {
 
         $this->start_controls_section(
             'button_style_holder',
@@ -996,16 +1139,35 @@ class Mailchimp extends Base {
         );
 
         $this->add_responsive_control(
-            'button_border_padding',
+            'button_padding',
             [
                 'label' => esc_html__('Padding', 'happy-elementor-addons'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
-                'default'    => [
-                    'top'        => 8,
-                    'right'        => 20,
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
+                    'top'       => 8,
+                    'right'     => 20,
                     'bottom'    => 8,
-                    'left'        => 20
+                    'left'      => 20,
+                    'unit'      => 'px',
+                    'isLinked'  => ''
+                ],
+                'tablet_default' => [
+                    'top'       => 8,
+                    'right'     => 15,
+                    'bottom'    => 8,
+                    'left'      => 15,
+                    'unit'      => 'px',
+                    'isLinked'  => ''
+                ],
+                'mobile_default' => [
+                    'top'       => 8,
+                    'right'     => 10,
+                    'bottom'    => 8,
+                    'left'      => 10,
+                    'unit'      => 'px',
+                    'isLinked'  => ''
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .ha-mc-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1104,7 +1266,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'button_color',
             [
                 'label' => esc_html__('Color', 'happy-elementor-addons'),
@@ -1138,7 +1300,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'button_color_hover',
             [
                 'label' => esc_html__('Color', 'happy-elementor-addons'),
@@ -1163,6 +1325,22 @@ class Mailchimp extends Base {
                 ]
             ]
         );
+
+        $this->add_control(
+            'button_border_color_hover',
+            [
+                'label' => esc_html__('Border Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-mc-button:hover' => 'border-color: {{VALUE}};',
+                ],
+                'condition' => [
+                    'button_border_border!' => ''
+                ]
+            ]
+        );
+
+
 
         $this->end_controls_tab();
 
@@ -1246,19 +1424,28 @@ class Mailchimp extends Base {
                         'max' => 100,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i' => 'font-size: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > svg' => 'max-width: {{SIZE}}{{UNIT}}; height: auto',
+                    //     '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    //     '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > i, {{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper > svg' => 'max-width: {{SIZE}}{{UNIT}}; height: auto',
+                    '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-button .ha-mc-icon-wrapper svg' => 'max-width: {{SIZE}}{{UNIT}}; max-height: {{SIZE}}{{UNIT}}',
                 ],
             ]
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __success_error_style_controls() {
 
         $this->start_controls_section(
             'success_error',
             [
-                'label' => esc_html__('Sucess & Error message', 'happy-elementor-addons'),
+                'label' => esc_html__('Success & Error Message', 'happy-elementor-addons'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -1315,7 +1502,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'success_color',
             [
                 'label'         => esc_html__('Color', 'happy-elementor-addons'),
@@ -1352,7 +1539,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'error_color',
             [
                 'label'         => esc_html__('Color', 'happy-elementor-addons'),
@@ -1381,33 +1568,26 @@ class Mailchimp extends Base {
             ]
         );
 
-
         $this->end_controls_section();
     }
 
-    // public function get_widget_settings(){
-    //     return $this->get_settings_for_display();
-    // }
-
     protected function render() {
-
-        // add_action('wp_ajax_ha_mailchimp_ajax', [$this, 'mailchimp_ajax_handler']);
-        // add_action('wp_ajax_nopriv_ha_mailchimp_ajax', [$this, 'mailchimp_ajax_handler']);
 
         $settings = $this->get_settings_for_display();
 
         $form_fields = (($settings['enable_name'] == 'yes' || $settings['enable_phone'] == 'yes') ? 'multiple_form_fields' : '');
-        // echo "<pre>";
-        // print_r($settings);
-        // echo "</pre>";
+        $list_id = ((is_array($settings['mailchimp_lists']))? (isset($settings['mailchimp_lists'][0])? ltrim($settings['mailchimp_lists'][0]): ''): (ltrim($settings['mailchimp_lists'])));
+
 ?>
-        <div class="ha-mailchimp-wrapper">
-            <?php if (\Elementor\Plugin::$instance->editor->is_edit_mode()) : ?>
+        <div class="ha-mailchimp-wrapper" data-post-id="<?php echo esc_attr(get_the_id()); ?>" data-widget-id="<?php echo esc_attr($this->get_id()); ?>">
+            <?php if (\Elementor\Plugin::$instance->editor->is_edit_mode() && $settings['mailchimp_success_message_show_in_editor'] == 'yes') : ?>
                 <div class="ha-mc-response-message success"><?php esc_html_e('This is a dummy message for success. This won\'t show in preview', 'happy-elementor-addons'); ?></div>
+            <?php endif; ?>
+            <?php if (\Elementor\Plugin::$instance->editor->is_edit_mode() && $settings['mailchimp_error_message_show_in_editor'] == 'yes') : ?>
                 <div class="ha-mc-response-message error"><?php esc_html_e('This is a dummy message for error. This won\'t show in preview', 'happy-elementor-addons'); ?></div>
             <?php endif; ?>
             <div class="ha-mc-response-message"></div>
-            <form class="ha-mailchimp-form <?php echo esc_attr($settings['form_alignment']); ?> <?php echo esc_attr($form_fields); ?>" data-list-id="<?php echo esc_attr(isset($settings['mailchimp_lists']) ? $settings['mailchimp_lists'] : ''); ?>">
+            <form class="ha-mailchimp-form <?php echo esc_attr($settings['form_alignment']); ?> <?php echo esc_attr($form_fields); ?>" data-list-id="<?php echo esc_attr($list_id); ?>" data-success-message="<?php echo esc_attr($settings['mailchimp_success_message']); ?>">
                 <?php if ($settings['enable_name'] == 'yes') : ?>
                     <div class="ha-mc-input-wrapper">
                         <?php if (!empty($settings['fname_label'])) : ?>
@@ -1462,7 +1642,7 @@ class Mailchimp extends Base {
                         <?php if ($settings['email_enable_icon'] == 'yes' && $settings['email_icon_position'] == 'before') : ?>
                             <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>
                         <?php endif; ?>
-                        <input type="email" name="email" placeholder="<?php echo esc_attr($settings['email_placeholder']); ?>">
+                        <input type="email" name="email" placeholder="<?php echo esc_attr($settings['email_placeholder']); ?>" required>
                         <?php if ($settings['email_enable_icon'] == 'yes' && $settings['email_icon_position'] == 'after') : ?>
                             <div class="ha-mc-icon-wrapper"><?php ha_render_icon($settings, null, 'email_icon'); ?></div>
                         <?php endif; ?>

@@ -10,10 +10,6 @@ namespace Happy_Addons\Elementor\Widget\Mailchimp;
 
 defined('ABSPATH') || die();
 
-use \Happy_Addons\Elementor\Credentials_Manager;
-
-// use Happy_Addons\Elementor\Widget\Mailchimp;
-
 class Mailchimp_api {
 
     private static $apiKey;
@@ -22,10 +18,9 @@ class Mailchimp_api {
 
     public static function set_ajax_call() {
 
-        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
-        self::$credentials = Credentials_Manager::get_saved_credentials();
+        self::$credentials = ha_get_credentials('mailchimp');;
 
-        self::$apiKey  = isset(self::$credentials['mailchimp']['api'])? self::$credentials['mailchimp']['api']: '';
+        self::$apiKey  = isset(self::$credentials['api'])? self::$credentials['api']: '';
 
         add_action('wp_ajax_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);
         add_action('wp_ajax_nopriv_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);
@@ -37,14 +32,25 @@ class Mailchimp_api {
 
         if (!$security) return;
 
-        $subscriber_data = $_POST;
+        $widget_settings = ha_get_ele_widget_settings($_POST['post_id'], $_POST['widget_id']);
+
+        $str_tags = $widget_settings['mailchimp_list_tags'];
+        $tags = explode(',', str_replace(' ', '',$str_tags));
 
         $auth = [
             'api_key' => self::$apiKey,
-            'list_id' => $subscriber_data['list_id']
+            'list_id' => $_POST['list_id'],
         ];
 
-        parse_str(isset($subscriber_data['subscriber_info']) ? $subscriber_data['subscriber_info'] : '', $subsciber);
+        if(!empty($str_tags)) {
+            $auth['tags'] = $tags;
+        }
+
+        if($widget_settings['mailchimp_api_choose'] == 'custom') {
+            $auth['api_key'] = $widget_settings['mailchimp_api'];
+        }
+
+        parse_str(isset($_POST['subscriber_info']) ? $_POST['subscriber_info'] : '', $subsciber);
 
         $response = self::insert_subscriber_to_mailchimp($auth, $subsciber);
 
@@ -65,7 +71,6 @@ class Mailchimp_api {
         $auth = [
             'api_key' => ($settings['api_key'] != '') ? $settings['api_key'] : null,
             'list_id' => ($settings['list_id'] != '') ? $settings['list_id'] : null,
-
         ];
 
         $data = [
@@ -78,6 +83,10 @@ class Mailchimp_api {
                 'PHONE' => (isset($submitted_data['phone']) ? $submitted_data['phone'] : ''),
             ],
         ];
+
+        if(isset($settings['tags'])) {
+            $data['tags'] = $settings['tags'];
+        }
 
         $server = explode('-', $auth['api_key']);
 
@@ -125,9 +134,13 @@ class Mailchimp_api {
      *
      * @return array all list
      */
-    public static function get_mailchimp_lists() {
+    public static function get_mailchimp_lists($api = null) {
 
         $options = [];
+
+        if($api != null) {
+            self::$apiKey = $api;
+        }
 
         $server = explode('-', self::$apiKey);
 
@@ -158,7 +171,8 @@ class Mailchimp_api {
             if (is_array($listed) && sizeof($listed) > 0) {
 
                 $options = array_reduce($listed, function ($result, $item) {
-                    $result[$item->id] = $item->name;
+                    // extra space is needed to maintain order in elementor control
+                    $result[' '.$item->id] = $item->name;
                     return $result;
                 }, array());
             }

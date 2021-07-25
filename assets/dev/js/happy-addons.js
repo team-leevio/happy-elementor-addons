@@ -400,12 +400,15 @@
 				}
 			},
 			run: function () {
+				if( 0 == this.wrapper.length){
+					return;
+				}
 				var wrapper_height = this.wrapper.innerHeight(),
 					wrapper_width = this.wrapper.innerWidth(),
 					container = this.wrapper.find('.ha-news-ticker-container'),
 					single_item = container.find('.ha-news-ticker-item'),
 					scroll_direction = this.wrapper.data('scroll-direction'),
-					scroll = 'scroll'+scroll_direction+wrapper_height+wrapper_width,
+					scroll = "scroll" + scroll_direction + parseInt(wrapper_height) + parseInt(wrapper_width),
 					duration = this.wrapper.data('duration'),
 					direction = 'normal',
 					all_title_width = 10;
@@ -426,7 +429,7 @@
 				}]);
 				container.playKeyframe({
 					name: scroll,
-					duration: duration+'ms',
+					duration: duration.toString() + "ms",
 					timingFunction: 'linear',
 					delay: '0s',
 					iterationCount: 'infinite',
@@ -580,16 +583,13 @@
 			var glass_on = $scope.find('.ha-threesixty-rotation-magnify');
 			var t360 = $scope.find('.ha-threesixty-rotation-360img');
 			var zoom = glass_on.data('zoom');
-			//console.log(autoplay);
+
 			var playb = $scope.find('.ha-threesixty-rotation-play');
 
 			var crl = circlr(cls, {
 				play : true,
-				// vertical : true,
-				// scroll : true,
-				//interval : 340,
 			});
-			//console.log(crl);
+
 			if( 'on' ===autoplay ){
 				var autoplay_btn = $scope.find('.ha-threesixty-rotation-autoplay');
 				autoplay_btn.on('click', function(el) {
@@ -814,50 +814,182 @@
 
 		};
 
-		var MailChimp = function($scope) {
+		//Content Switcher
+		var Content_Switcher = function($scope) {
+			var parent = $scope.find('.ha-content-switcher-wrapper'),
+				designType = parent.data('design-type');
 
-			var elMessage = $scope.find('.ha-mc-response-message');
-			var elForm = $scope.find('.ha-mailchimp-form');
-			var elButton = elForm.find('.ha-button-wrapper button');
-
-			elForm.on('submit', function(e){
-				e.preventDefault();
-
-				// console.log(HappyLocalize.ajax_url);
-
-				var data = {
-					action: 'ha_mailchimp_ajax',
-					security: HappyLocalize.nonce,
-					subscriber_info: elForm.serialize(),
-					list_id: elForm.data('list-id'),
-				};
-		
-				$.ajax({
-					type: 'post',
-					url: HappyLocalize.ajax_url,
-					data: data,
-					success: function(response) {
-						elForm.trigger('reset');
-						console.log(response);
-						if(response.status){
-							elMessage.removeClass('error');
-							elMessage.addClass('success');
-							// elMessage.show();
-							elMessage.text(response.msg);
+			if(designType == 'button') {
+				var buttons = parent.find('.ha-cs-button'),
+					contents = parent.find('.ha-cs-content-section');
+				buttons.each(function (inx, btn){
+					$(this).on('click', function(e) {
+						e.preventDefault();
+						if($(this).hasClass('active')) {
+							return;
 						}else {
-							elMessage.addClass('error');
-							elMessage.removeClass('success');
-							// elMessage.show();
-							elMessage.text(response.msg);
+							buttons.removeClass('active');
+							$(this).addClass('active');
+
+							contents.removeClass('active');
+							var contentId = $(this).data('content-id');
+							parent.find('#'+contentId).addClass('active');
 						}
-						// console.log(response);
-					},
-					error: function(error) {
-						// console.log(error);
+					} );
+				});
+
+			}else{
+				var toggleSwitch = parent.find('.ha-cs-switch.ha-input-label'),
+					input = parent.find('input.ha-cs-toggle-switch'),
+					primarySwitcher = parent.find('.ha-cs-switch.primary'),
+					secondarySwitcher = parent.find('.ha-cs-switch.secondary'),
+					primaryContent = parent.find('.ha-cs-content-section.primary'),
+					secondaryContent = parent.find('.ha-cs-content-section.secondary');
+
+				toggleSwitch.on('click', function(e){
+
+					if(input.is(':checked')){
+						primarySwitcher.removeClass('active');
+						primaryContent.removeClass('active');
+						secondarySwitcher.addClass('active');
+						secondaryContent.addClass('active');
+					}else {
+						secondarySwitcher.removeClass('active');
+						secondaryContent.removeClass('active');
+						primarySwitcher.addClass('active');
+						primaryContent.addClass('active');
 					}
 				});
-			});
-		}
+
+			}
+
+		};
+
+		var MailChimp = elementorModules.frontend.handlers.Base.extend({
+
+			onInit: function () {
+				elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+				this.elForm = this.$element.find('.ha-mailchimp-form');
+				this.elMessage = this.$element.find('.ha-mc-response-message');
+				this.successMessage = this.elForm.data('success-message');
+				this.run();
+			},
+			getReadySettings: function () {
+				var settings = {
+					formAlign: this.getElementSettings('form_alignment'),
+					formAlignTablet: this.getElementSettings('form_alignment_tablet') || this.getElementSettings('form_alignment'),
+					formAlignMobile: this.getElementSettings('form_alignment_mobile') || this.getElementSettings('form_alignment_tablet') || this.getElementSettings('form_alignment'),
+				};
+				return $.extend({}, settings);
+			},
+			onElementChange: function () {
+				this.run();
+			},
+			run: function () {
+				var settings = this.getReadySettings();
+				var elForm = this.elForm;
+				var elMessage = this.elMessage;
+				var successMessage = this.successMessage;
+
+				elForm.on('submit', function(e){
+					e.preventDefault();
+
+					var data = {
+						action: 'ha_mailchimp_ajax',
+						security: HappyLocalize.nonce,
+						subscriber_info: elForm.serialize(),
+						list_id: elForm.data('list-id'),
+						post_id: elForm.parent().data('post-id'),
+						widget_id: elForm.parent().data('widget-id'),
+					};
+
+					$.ajax({
+						type: 'post',
+						url: HappyLocalize.ajax_url,
+						data: data,
+						success: function(response) {
+							elForm.trigger('reset');
+
+							if(response.status){
+								elMessage.removeClass('error');
+								elMessage.addClass('success');
+								elMessage.text(successMessage);
+							}else {
+								elMessage.addClass('error');
+								elMessage.removeClass('success');
+								elMessage.text(response.msg);
+							}
+
+						},
+						error: function(error) {
+
+						}
+					});
+
+				});
+
+				var mobileWidth = elementorFrontendConfig.breakpoints.sm;
+				var tabletWidth = elementorFrontendConfig.breakpoints.md;
+
+				function responsiveClass(){
+
+					var windowWidth = $(window).width();
+
+					if (windowWidth > tabletWidth) {
+						elForm.removeClass('vertical');
+						elForm.removeClass('horizontal');
+						elForm.addClass(settings.formAlign);
+					}else if(windowWidth > mobileWidth && windowWidth <= tabletWidth) {
+						elForm.removeClass('vertical');
+						elForm.removeClass('horizontal');
+						elForm.addClass(settings.formAlignTablet);
+					}else if ( windowWidth <= mobileWidth ) {
+						elForm.removeClass('vertical');
+						elForm.removeClass('horizontal');
+						if ( elForm.hasClass('multiple_form_fields') ){
+							elForm.addClass('vertical');
+						}else {
+							elForm.addClass(settings.formAlignMobile);
+						}
+					}
+
+				};
+
+				responsiveClass();
+				$(window).on('load, resize', responsiveClass);
+
+			}
+		});
+
+
+
+		//Team Member
+		var Team_Member = function($scope) {
+			var btn = $scope.find('.ha-btn');
+			var lightBox = $scope.find('.ha-member-lightbox');
+			if( lightBox.length > 0 ){
+
+				var close = lightBox.find('.ha-member-lightbox-close');
+
+				btn.on('click', function(){
+					lightBox.addClass('ha-member-lightbox-show');
+				});
+
+				lightBox.on('click', function(e){
+					if( lightBox.hasClass('ha-member-lightbox-show') ) {
+						if( e.target == lightBox[0] ) {
+							lightBox.removeClass('ha-member-lightbox-show');
+						}
+						else if( e.target == close[0] ) {
+							lightBox.removeClass('ha-member-lightbox-show');
+						}
+						else if( e.target == close.find('i.eicon-editor-close')[0] ) {
+							lightBox.removeClass('ha-member-lightbox-show');
+						}
+					}
+				});
+			}
+		};
 
 		// Slider
 		elementorFrontend.hooks.addAction(
@@ -892,7 +1024,7 @@
 				});
 				var img_wrap = $scope.find(".ha-horizontal-timeline-image");
 				var magnific_popup = img_wrap.data("mfp-src");
-				// console.log(magnific_popup);
+
 				if( undefined !== magnific_popup ){
 					img_wrap.magnificPopup({
 						type: "image",
@@ -901,6 +1033,15 @@
 						}
 					});
 				}
+			}
+		);
+
+		elementorFrontend.hooks.addAction(
+			'frontend/element_ready/ha-mailchimp.default',
+			function ($scope) {
+				elementorFrontend.elementsHandler.addHandler(MailChimp, {
+					$element: $scope,
+				});
 			}
 		);
 
@@ -945,7 +1086,8 @@
 			'ha-data-table.default'         : DataTable,
 			'widget'                        : BackgroundOverlay,
 			'ha-event-calendar.default'		: Event_Calendar,
-			'ha-mailchimp.default'			: MailChimp,
+			'ha-content-switcher.default'	: Content_Switcher,
+			'ha-member.default'		        : Team_Member,
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {
@@ -964,5 +1106,7 @@
 				elementorFrontend.elementsHandler.addHandler( handlerClass, { $element: $scope });
 			});
 		});
+
 	});
+
 } (jQuery));

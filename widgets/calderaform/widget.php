@@ -47,7 +47,11 @@ class CalderaForm extends Base {
         return [ 'caldera', 'wpf', 'wpform' , 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
     }
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+
 		$this->start_controls_section(
 			'_section_calderaf',
 			[
@@ -77,24 +81,34 @@ class CalderaForm extends Base {
                 ]
             );
 
-            $this->end_controls_section();
-            return;
-        }
+        }else{
 
-        $this->add_control(
-            'form_id',
-            [
-                'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SELECT,
-                'label_block' => true,
-				'options' => ['' => __( '', 'happy-elementor-addons' ) ] + \ha_get_caldera_form(),
-            ]
-        );
+			$this->add_control(
+				'form_id',
+				[
+					'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::SELECT,
+					'label_block' => true,
+					'options' => ['' => __( '', 'happy-elementor-addons' ) ] + \ha_get_caldera_form(),
+				]
+			);
+
+		}
 
         $this->end_controls_section();
     }
 
+	/**
+     * Register widget style controls
+     */
     protected function register_style_controls() {
+		$this->__fields_style_controls();
+		$this->__fields_label_style_controls();
+		$this->__submit_style_controls();
+	}
+
+    protected function __fields_style_controls() {
+
         $this->start_controls_section(
             '_section_fields_style',
             [
@@ -251,7 +265,9 @@ class CalderaForm extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
 
+    protected function __fields_label_style_controls() {
 
         $this->start_controls_section(
             'caldera-form-label',
@@ -345,6 +361,9 @@ class CalderaForm extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __submit_style_controls() {
 
         $this->start_controls_section(
             'submit',
@@ -545,6 +564,7 @@ class CalderaForm extends Base {
 
     protected function render() {
         if ( ! ha_is_calderaforms_activated() ) {
+			ha_show_plugin_missing_alert( __( 'Caldera Form', 'happy-elementor-addons' ) );
             return;
         }
 

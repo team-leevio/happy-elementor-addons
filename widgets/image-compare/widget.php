@@ -51,7 +51,16 @@ class Image_Compare extends Base {
         return [ 'compare', 'image', 'before', 'after' ];
     }
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__image_content_controls();
+		$this->__settings_content_controls();
+	}
+
+	protected function __image_content_controls() {
+
 		$this->start_controls_section(
 			'_section_images',
 			[
@@ -146,6 +155,9 @@ class Image_Compare extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+	protected function __settings_content_controls() {
 
         $this->start_controls_section(
             '_section_settings',
@@ -228,7 +240,16 @@ class Image_Compare extends Base {
         $this->end_controls_section();
     }
 
+	/**
+     * Register widget style controls
+     */
     protected function register_style_controls() {
+		$this->__handle_style_controls();
+		$this->__label_style_controls();
+	}
+
+    protected function __handle_style_controls() {
+
         $this->start_controls_section(
             '_section_style_handle',
             [
@@ -353,6 +374,9 @@ class Image_Compare extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __label_style_controls() {
 
         $this->start_controls_section(
             '_section_style_label',

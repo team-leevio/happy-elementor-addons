@@ -29,28 +29,16 @@ class Credentials_Manager {
 		// }
 
 		// $credentials = self::get_credentials();
-
-		// foreach (self::get_local_credentials_map() as $feature_key => $data) {
-		// 	if (!in_array($feature_key, $credentials)) {
-		// 		self::enable_feature($feature_key);
-		// 	}
-		// }
-
-		// foreach (self::get_pro_credentials_map() as $feature_key => $data) {
-		// 	if (in_array($feature_key, $credentials)) {
-		// 		self::disable_pro_feature($feature_key);
-		// 	}
-		// }
 	}
 
-	// public static function get_credentials_map() {
-	// 	$credentials_map = [];
+	public static function get_credentials_map() {
+		$credentials_map = [];
 
-	// 	$local_credentials_map = self::get_local_credentials_map();
-	// 	$credentials_map = array_merge($credentials_map, $local_credentials_map);
+		$local_credentials_map = self::get_local_credentials_map();
+		$credentials_map = array_merge($credentials_map, $local_credentials_map);
 
-	// 	return apply_filters('happyaddons_get_credentials_map', $credentials_map);
-	// }
+		return apply_filters('happyaddons_get_credentials_map', $credentials_map);
+	}
 
 	public static function get_saved_credentials() {
 		return get_option(self::CREDENTIALS_DB_KEY, []);
@@ -67,30 +55,38 @@ class Credentials_Manager {
 	 */
 	public static function get_pro_credentials_map() {
 		return [
-			'twitter' => [
-				'title' => __('Twitter', 'happy-elementor-addons'),
-				'icon' => 'hm hm-layer',
-				'fiels' => [
-					[
-						'label' => esc_html__('UserName', 'happy-elementor-addons'),
-						'type' => 'text',
-						'name' => 'username',
-					],
-					[
-						'label' => esc_html__('Public Key', 'happy-elementor-addons'),
-						'type' => 'text',
-						'name' => 'public_key',
-					],
-					[
-						'label' => esc_html__('Secret Key', 'happy-elementor-addons'),
-						'type' => 'text',
-						'name' => 'secret_key',
-					],
-				],
-				'demo' => 'https://happyaddons.com/mailchimp/',
-				'help' => 'https://happyaddons.com/mailchimp/',
-				'is_pro' => true,
-			],
+			// 'instagram' => [
+			// 	'title' => __('Instagram', 'happy-elementor-addons'),
+			// 	'icon' => 'hm hm-instagram',
+			// 	'fiels' => [
+			// 		[
+			// 			'label' => esc_html__('User Name. ', 'happy-elementor-addons'),
+			// 			'type' => 'text',
+			// 			'name' => 'username',
+			// 			'help' => [
+			// 				'instruction' => esc_html__('Get your username here', 'happy-elementor-addons'),
+			// 				'link' => 'https://example.com/url'
+			// 			],
+			// 		],
+			// 		[
+			// 			'label' => esc_html__('Public Key. ', 'happy-elementor-addons'),
+			// 			'type' => 'text',
+			// 			'name' => 'public_key',
+			// 			'help' => [],
+			// 		],
+			// 		[
+			// 			'label' => esc_html__('Secret Key. ', 'happy-elementor-addons'),
+			// 			'type' => 'text',
+			// 			'name' => 'secret_key',
+			// 			'help' => [
+			// 				'instruction' => esc_html__('Get your secret_key here', 'happy-elementor-addons'),
+			// 				'link' => 'https://example.com/url'
+			// 			],
+			// 		],
+			// 	],
+			// 	'demo' => 'https://happyaddons.com/instagram/',
+			// 	'is_pro' => true,
+			// ],
 		];
 	}
 
@@ -103,68 +99,54 @@ class Credentials_Manager {
 		return [
 			'mailchimp' => [
 				'title' => __('MailChimp', 'happy-elementor-addons'),
-				'icon' => 'hm hm-layer',
+				'icon' => 'hm hm-mail-chimp',
 				'fiels' => [
 					[
-						'label' => esc_html__('API', 'happy-elementor-addons'),
+						'label' => esc_html__('Enter API Key. ', 'happy-elementor-addons'),
 						'type' => 'text',
 						'name' => 'api',
+						'help' => [
+							'instruction' => esc_html__('Get your api key here', 'happy-elementor-addons'),
+							'link' => 'https://admin.mailchimp.com/account/api/'
+						],
 					],
 				],
 				'demo' => 'https://happyaddons.com/mailchimp/',
-				'help' => 'https://happyaddons.com/mailchimp/',
 				'is_pro' => false,
 			],
-			'instagram' => [
-				'title' => __('Instagram', 'happy-elementor-addons'),
-				'icon' => 'hm hm-layer',
+			'twitter_feed' => [
+				'title' => __('Twitter Feed', 'happy-elementor-addons'),
+				'icon' => 'hm hm-twitter-feed',
 				'fiels' => [
 					[
-						'label' => esc_html__('UserName', 'happy-elementor-addons'),
+						'label' => esc_html__('User Name. (Use @ sign with your Twitter user name)', 'happy-elementor-addons'),
 						'type' => 'text',
-						'name' => 'username',
+						'name' => 'user_name',
 					],
 					[
-						'label' => esc_html__('Public Key', 'happy-elementor-addons'),
+						'label' => esc_html__('Consumer Key', 'happy-elementor-addons'),
 						'type' => 'text',
-						'name' => 'public_key',
+						'name' => 'consumer_key',
+						'help' => [
+							'instruction' => esc_html__('Get Consumer Key', 'happy-elementor-addons'),
+							'link' => 'https://apps.twitter.com/app/'
+						],
 					],
 					[
-						'label' => esc_html__('Secret Key', 'happy-elementor-addons'),
+						'label' => esc_html__('Consumer Secret', 'happy-elementor-addons'),
 						'type' => 'text',
-						'name' => 'secret_key',
+						'name' => 'consumer_secret',
+						'help' => [
+							'instruction' => esc_html__('Get Consumer Secret', 'happy-elementor-addons'),
+							'link' => 'https://apps.twitter.com/app/'
+						],
 					],
 				],
-				'demo' => 'https://happyaddons.com/mailchimp/',
-				'help' => 'https://happyaddons.com/mailchimp/',
+				// 'help' => 'https://happyaddons.com/mailchimp/',
 				'is_pro' => false,
 			],
 		];
 	}
-
-	// protected static function enable_feature($feature_key) {
-	// 	$feature_file = HAPPY_ADDONS_DIR_PATH . 'extensions/' . $feature_key . '.php';
-
-	// 	if (is_readable($feature_file)) {
-	// 		include_once($feature_file);
-	// 	}
-	// }
-
-	// protected static function disable_pro_feature($feature_key) {
-	// 	switch ($feature_key) {
-	// 		case 'display-conditions':
-	// 			add_filter('happyaddons/extensions/display_condition', '__return_false');
-	// 			break;
-
-	// 		case 'image-masking':
-	// 			add_filter('happyaddons/extensions/image_masking', '__return_false');
-	// 			break;
-
-	// 		case 'happy-particle-effects':
-	// 			add_filter('happyaddons/extensions/happy_particle_effects', '__return_false');
-	// 			break;
-	// 	}
-	// }
 }
 
 Credentials_Manager::init();

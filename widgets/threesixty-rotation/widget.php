@@ -52,7 +52,16 @@ class Threesixty_Rotation extends Base {
 		return ['360 deg view', 'threesixty-rotation', '360', 'slider', 'slider'];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__threesixty_rotation_content_controls();
+		$this->__settings_content_controls();
+	}
+
+	protected function __threesixty_rotation_content_controls() {
+
 		$this->start_controls_section(
 			'_section_threesixty_rotation',
 			[
@@ -78,6 +87,9 @@ class Threesixty_Rotation extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __settings_content_controls() {
 
 		$this->start_controls_section(
 			'_section_threesixty_rotation_setting',
@@ -187,7 +199,16 @@ class Threesixty_Rotation extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__wrapper_style_controls();
+		$this->__magnify_style_controls();
+		$this->__autoplay_btn_style_controls();
+	}
+
+	protected function __wrapper_style_controls() {
 
 		$this->start_controls_section(
 			'_style_threesixty_rotation_wrapper',
@@ -309,8 +330,10 @@ class Threesixty_Rotation extends Base {
 		);
 
 		$this->end_controls_section();
+	}
 
-		//Magnify Glass
+	protected function __magnify_style_controls() {
+
 		$this->start_controls_section(
 			'_style_threesixty_rotation_magnify',
 			[
@@ -390,8 +413,10 @@ class Threesixty_Rotation extends Base {
 		);
 
 		$this->end_controls_section();
+	}
 
-		//AutoPlay Button
+	protected function __autoplay_btn_style_controls() {
+
 		$this->start_controls_section(
 			'_style_threesixty_rotation_button',
 			[

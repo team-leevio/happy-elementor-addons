@@ -1,4 +1,5 @@
 <?php
+
 namespace Happy_Addons\Elementor;
 
 use Elementor\Core\Files\CSS\Post as Post_CSS;
@@ -13,18 +14,18 @@ class Assets_Manager {
 	 */
 	public static function init() {
 		// Frontend scripts
-		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_register' ] );
-		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_enqueue' ], 100 );
-		add_action( 'elementor/css-file/post/enqueue', [ __CLASS__, 'frontend_enqueue_exceptions' ] );
+		add_action('wp_enqueue_scripts', [__CLASS__, 'frontend_register']);
+		add_action('wp_enqueue_scripts', [__CLASS__, 'frontend_enqueue'], 100);
+		add_action('elementor/css-file/post/enqueue', [__CLASS__, 'frontend_enqueue_exceptions']);
 
 		// Edit and preview enqueue
-		add_action( 'elementor/preview/enqueue_styles', [ __CLASS__, 'enqueue_preview_styles' ] );
+		add_action('elementor/preview/enqueue_styles', [__CLASS__, 'enqueue_preview_styles']);
 
 		// Enqueue editor scripts
-		add_action( 'elementor/editor/after_enqueue_scripts', [ __CLASS__, 'editor_enqueue' ] );
+		add_action('elementor/editor/after_enqueue_scripts', [__CLASS__, 'editor_enqueue']);
 
 		// Paragraph toolbar registration
-		add_filter( 'elementor/editor/localize_settings', [ __CLASS__, 'add_inline_editing_intermediate_toolbar' ] );
+		add_filter('elementor/editor/localize_settings', [__CLASS__, 'add_inline_editing_intermediate_toolbar']);
 
 		/**
 		 * @see self::fix_pro_assets_loading
@@ -38,8 +39,8 @@ class Assets_Manager {
 	 * @param array $config
 	 * @return array
 	 */
-	public static function add_inline_editing_intermediate_toolbar( $config ) {
-		if ( ! isset( $config['inlineEditing'] ) ) {
+	public static function add_inline_editing_intermediate_toolbar($config) {
+		if (!isset($config['inlineEditing'])) {
 			return $config;
 		}
 
@@ -50,7 +51,7 @@ class Assets_Manager {
 			'createlink',
 		];
 
-		if ( isset( $config['inlineEditing']['toolbar'] ) ) {
+		if (isset($config['inlineEditing']['toolbar'])) {
 			$config['inlineEditing']['toolbar']['intermediate'] = $tools;
 		} else {
 			$config['inlineEditing'] = [
@@ -92,7 +93,7 @@ class Assets_Manager {
 		wp_register_script(
 			'jquery-event-move',
 			HAPPY_ADDONS_ASSETS . 'vendor/twentytwenty/js/jquery.event.move.js',
-			[ 'jquery' ],
+			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
@@ -100,7 +101,7 @@ class Assets_Manager {
 		wp_register_script(
 			'jquery-twentytwenty',
 			HAPPY_ADDONS_ASSETS . 'vendor/twentytwenty/js/jquery.twentytwenty.js',
-			[ 'jquery-event-move' ],
+			['jquery-event-move'],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
@@ -116,7 +117,7 @@ class Assets_Manager {
 		wp_register_script(
 			'jquery-justifiedGallery',
 			HAPPY_ADDONS_ASSETS . 'vendor/justifiedGallery/js/jquery.justifiedGallery.min.js',
-			[ 'jquery' ],
+			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
@@ -139,7 +140,7 @@ class Assets_Manager {
 		wp_register_script(
 			'jquery-slick',
 			HAPPY_ADDONS_ASSETS . 'vendor/slick/slick.min.js',
-			[ 'jquery' ],
+			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
@@ -148,7 +149,7 @@ class Assets_Manager {
 		wp_register_script(
 			'jquery-isotope',
 			HAPPY_ADDONS_ASSETS . 'vendor/jquery.isotope.js',
-			[ 'jquery' ],
+			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
@@ -157,7 +158,7 @@ class Assets_Manager {
 		wp_register_script(
 			'jquery-numerator',
 			HAPPY_ADDONS_ASSETS . 'vendor/jquery-numerator/jquery-numerator.min.js',
-			[ 'jquery' ],
+			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
@@ -182,7 +183,7 @@ class Assets_Manager {
 		wp_register_script(
 			'jquery-keyframes',
 			HAPPY_ADDONS_ASSETS . 'vendor/keyframes/jquery.keyframes.min.js',
-			[ 'jquery' ],
+			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
@@ -277,9 +278,10 @@ class Assets_Manager {
 		//Localize scripts
 		wp_localize_script(
 			'happy-elementor-addons',
-			'HappyLocalize', [
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'nonce'    => wp_create_nonce( 'happy_addons_nonce' ),
+			'HappyLocalize',
+			[
+				'ajax_url' => admin_url('admin-ajax.php'),
+				'nonce'    => wp_create_nonce('happy_addons_nonce'),
 			]
 		);
 	}
@@ -291,20 +293,20 @@ class Assets_Manager {
 	 *
 	 * @return void
 	 */
-	public static function frontend_enqueue_exceptions( Post_CSS $file ) {
+	public static function frontend_enqueue_exceptions(Post_CSS $file) {
 		$post_id = $file->get_post_id();
 
-		if ( get_queried_object_id() === $post_id ) {
+		if (get_queried_object_id() === $post_id) {
 			return;
 		}
 
-		$template_type = get_post_meta( $post_id, '_elementor_template_type', true );
+		$template_type = get_post_meta($post_id, '_elementor_template_type', true);
 
-		if ( $template_type === 'kit' ) {
+		if ($template_type === 'kit') {
 			return;
 		}
 
-		self::enqueue( $post_id );
+		self::enqueue($post_id);
 	}
 
 	/**
@@ -313,11 +315,11 @@ class Assets_Manager {
 	 * @return void
 	 */
 	public static function frontend_enqueue() {
-		if ( ! is_singular() ) {
+		if (!is_singular()) {
 			return;
 		}
 
-		self::enqueue( get_the_ID() );
+		self::enqueue(get_the_ID());
 	}
 
 	/**
@@ -330,13 +332,13 @@ class Assets_Manager {
 	 *
 	 * @return void
 	 */
-	public static function enqueue( $post_id ) {
-		if ( Cache_Manager::should_enqueue( $post_id ) ) {
-			Cache_Manager::enqueue( $post_id );
+	public static function enqueue($post_id) {
+		if (Cache_Manager::should_enqueue($post_id)) {
+			Cache_Manager::enqueue($post_id);
 		}
 
-		if ( Cache_Manager::should_enqueue_raw( $post_id ) ) {
-			Cache_Manager::enqueue_raw( $post_id );
+		if (Cache_Manager::should_enqueue_raw($post_id)) {
+			Cache_Manager::enqueue_raw($post_id);
 		}
 	}
 
@@ -345,12 +347,12 @@ class Assets_Manager {
 	}
 
 	public static function enqueue_dark_stylesheet() {
-		$theme = SettingsManager::get_settings_managers( 'editorPreferences' )->get_model()->get_settings( 'ui_theme' );
+		$theme = SettingsManager::get_settings_managers('editorPreferences')->get_model()->get_settings('ui_theme');
 
-		if ( 'light' !== $theme ) {
+		if ('light' !== $theme) {
 			$media_queries = 'all';
 
-			if ( 'auto' === $theme ) {
+			if ('auto' === $theme) {
 				$media_queries = '(prefers-color-scheme: dark)';
 			}
 
@@ -405,19 +407,19 @@ class Assets_Manager {
 		$localize_data = [
 			'placeholder_widgets' => [],
 			'hasPro'                  => ha_has_pro(),
-			'editor_nonce'            => wp_create_nonce( 'ha_editor_nonce' ),
+			'editor_nonce'            => wp_create_nonce('ha_editor_nonce'),
 			'dark_stylesheet_url'     => self::get_dark_stylesheet_url(),
 			'i18n' => [
-				'promotionDialogHeader'     => esc_html__( '%s Widget', 'happy-elementor-addons' ),
-				'promotionDialogMessage'    => esc_html__( 'Use %s widget with other exclusive pro widgets and 100% unique features to extend your toolbox and build sites faster and better.', 'happy-elementor-addons' ),
-				'templatesEmptyTitle'       => esc_html__( 'No Templates Found', 'happy-elementor-addons' ),
-				'templatesEmptyMessage'     => esc_html__( 'Try different category or sync for new templates.', 'happy-elementor-addons' ),
-				'templatesNoResultsTitle'   => esc_html__( 'No Results Found', 'happy-elementor-addons' ),
-				'templatesNoResultsMessage' => esc_html__( 'Please make sure your search is spelled correctly or try a different words.', 'happy-elementor-addons' ),
+				'promotionDialogHeader'     => esc_html__('%s Widget', 'happy-elementor-addons'),
+				'promotionDialogMessage'    => esc_html__('Use %s widget with other exclusive pro widgets and 100% unique features to extend your toolbox and build sites faster and better.', 'happy-elementor-addons'),
+				'templatesEmptyTitle'       => esc_html__('No Templates Found', 'happy-elementor-addons'),
+				'templatesEmptyMessage'     => esc_html__('Try different category or sync for new templates.', 'happy-elementor-addons'),
+				'templatesNoResultsTitle'   => esc_html__('No Results Found', 'happy-elementor-addons'),
+				'templatesNoResultsMessage' => esc_html__('Please make sure your search is spelled correctly or try a different words.', 'happy-elementor-addons'),
 			],
 		];
 
-		if ( ! ha_has_pro() && ha_is_elementor_version( '>=', '2.9.0' ) ) {
+		if (!ha_has_pro() && ha_is_elementor_version('>=', '2.9.0')) {
 			$localize_data['placeholder_widgets'] = Widgets_Manager::get_pro_widget_map();
 		}
 
@@ -435,7 +437,7 @@ class Assets_Manager {
 	 * @return void
 	 */
 	public static function enqueue_preview_styles() {
-		if ( ha_is_weforms_activated() ) {
+		if (ha_is_weforms_activated()) {
 			wp_enqueue_style(
 				'happy-addons-weform',
 				plugins_url('/weforms/assets/wpuf/css/frontend-forms.css', 'weforms'),
@@ -444,7 +446,7 @@ class Assets_Manager {
 			);
 		}
 
-		if ( ha_is_wpforms_activated() && defined( 'WPFORMS_PLUGIN_SLUG' ) ) {
+		if (ha_is_wpforms_activated() && defined('WPFORMS_PLUGIN_SLUG')) {
 			wp_enqueue_style(
 				'happy-addons-wpform',
 				plugins_url('/' . WPFORMS_PLUGIN_SLUG . '/assets/css/wpforms-full.css', WPFORMS_PLUGIN_SLUG),
@@ -453,7 +455,7 @@ class Assets_Manager {
 			);
 		}
 
-		if ( ha_is_calderaforms_activated() ) {
+		if (ha_is_calderaforms_activated()) {
 			wp_enqueue_style(
 				'happy-addons-caldera-forms',
 				plugins_url('/caldera-forms/assets/css/caldera-forms-front.css', 'caldera-forms'),
@@ -462,7 +464,7 @@ class Assets_Manager {
 			);
 		}
 
-		if ( ha_is_gravityforms_activated() ) {
+		if (ha_is_gravityforms_activated()) {
 			wp_enqueue_style(
 				'happy-addons-gravity-forms',
 				plugins_url('/gravityforms/css/formsmain.min.css', 'gravityforms'),
@@ -479,9 +481,9 @@ class Assets_Manager {
 			vertical-align: bottom;
 		}
 		';
-		wp_add_inline_style( 'happy-elementor-addons', $data );
+		wp_add_inline_style('happy-elementor-addons', $data);
 
-		if ( ha_is_fluent_form_activated() ) {
+		if (ha_is_fluent_form_activated()) {
 			wp_enqueue_style(
 				'happy-addons-fluent-forms',
 				plugins_url('/fluentform/public/css/fluent-forms-public.css', 'fluentform'),
@@ -502,10 +504,10 @@ class Assets_Manager {
 	 * @return void
 	 */
 	public static function fix_pro_assets_loading() {
-		if ( ha_has_pro() && version_compare( HAPPY_ADDONS_PRO_VERSION, '1.9.0', '<=' ) ) {
-			$callback = [ '\Happy_Addons_Pro\Assets_Manager', 'frontend_register' ];
-			remove_action( 'wp_enqueue_scripts', $callback );
-			add_action( 'wp_enqueue_scripts', $callback, 0 );
+		if (ha_has_pro() && version_compare(HAPPY_ADDONS_PRO_VERSION, '1.9.0', '<=')) {
+			$callback = ['\Happy_Addons_Pro\Assets_Manager', 'frontend_register'];
+			remove_action('wp_enqueue_scripts', $callback);
+			add_action('wp_enqueue_scripts', $callback, 0);
 		}
 	}
 }

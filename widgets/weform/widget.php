@@ -54,7 +54,11 @@ class WeForm extends Base {
         return true;
     }
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+
 		$this->start_controls_section(
 			'_section_weforms',
 			[
@@ -65,6 +69,7 @@ class WeForm extends Base {
 		);
 
         if ( ! ha_is_weforms_activated() ) {
+
             $this->add_control(
                 '_weforms_missing_notice',
                 [
@@ -85,24 +90,36 @@ class WeForm extends Base {
                     'raw' => '<a href="'.esc_url( admin_url( 'plugin-install.php?s=weForms&tab=search&type=term' ) ).'" target="_blank" rel="noopener">Click to install or activate weForms</a>',
                 ]
             );
-            $this->end_controls_section();
-            return;
-        }
 
-        $this->add_control(
-            'form_id',
-            [
-                'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SELECT,
-                'label_block' => true,
-				'options' => ['' => __( '', 'happy-elementor-addons' ) ] + \ha_get_we_forms(),
-            ]
-        );
+        } else{
+
+			$this->add_control(
+				'form_id',
+				[
+					'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::SELECT,
+					'label_block' => true,
+					'options' => ['' => __( '', 'happy-elementor-addons' ) ] + \ha_get_we_forms(),
+				]
+			);
+
+		}
 
         $this->end_controls_section();
     }
 
+	/**
+     * Register widget style controls
+     */
     protected function register_style_controls() {
+		$this->__fields_style_controls();
+		$this->__label_style_controls();
+		$this->__submit_style_controls();
+		$this->__section_break_style_controls();
+	}
+
+    protected function __fields_style_controls() {
+
         $this->start_controls_section(
             '_section_fields_style',
             [
@@ -289,7 +306,9 @@ class WeForm extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
 
+    protected function __label_style_controls() {
 
         $this->start_controls_section(
             'we-form-label',
@@ -385,6 +404,9 @@ class WeForm extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __submit_style_controls() {
 
         $this->start_controls_section(
             'submit',
@@ -621,6 +643,9 @@ class WeForm extends Base {
         $this->end_controls_tabs();
 
         $this->end_controls_section();
+	}
+
+    protected function __section_break_style_controls() {
 
 		$this->start_controls_section(
 			'section_break',
@@ -694,11 +719,11 @@ class WeForm extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
-
 	}
 
     protected function render() {
         if ( ! ha_is_weforms_activated() ) {
+			ha_show_plugin_missing_alert(__( 'Weforms', 'happy-elementor-addons' ) );
             return;
         }
 

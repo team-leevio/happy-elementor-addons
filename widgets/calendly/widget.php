@@ -47,9 +47,10 @@ class Calendly extends Base {
 	}
 
 	/**
-	 * Register content related controls
-	 */
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		
 		$this->start_controls_section(
 			'_section_calendly',
 			[
@@ -127,7 +128,7 @@ class Calendly extends Base {
 	}
 
 	/**
-	 * Register styles related controls
+	 * Register widget style controls
 	 */
 	protected function register_style_controls() {
 		$this->start_controls_section(

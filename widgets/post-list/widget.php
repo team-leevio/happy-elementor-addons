@@ -64,7 +64,16 @@ class Post_List extends Base {
 		return $post_types;
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls () {
+		$this->__post_list_content_controls();
+		$this->__settings_content_controls();
+	}
+
+	protected function __post_list_content_controls () {
+
 		$this->start_controls_section(
 			'_section_post_list',
 			[
@@ -160,8 +169,10 @@ class Post_List extends Base {
 		}
 
 		$this->end_controls_section();
+	}
 
-		//Settings
+	protected function __settings_content_controls () {
+
 		$this->start_controls_section(
 			'_section_settings',
 			[
@@ -490,7 +501,18 @@ class Post_List extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls () {
+		$this->__post_list_style_controls();
+		$this->__title_style_controls();
+		$this->__icon_image_style_controls();
+		$this->__excerpt_style_controls();
+		$this->__meta_style_controls();
+	}
+
+	protected function __post_list_style_controls () {
 
 		$this->start_controls_section(
 			'_section_post_list_style',
@@ -663,7 +685,10 @@ class Post_List extends Base {
 		);
 
 		$this->end_controls_section();
-		//Title Style
+	}
+
+	protected function __title_style_controls () {
+
 		$this->start_controls_section(
 			'_section_post_list_title_style',
 			[
@@ -723,7 +748,10 @@ class Post_List extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
-		//List Icon Style
+	}
+
+	protected function __icon_image_style_controls () {
+
 		$this->start_controls_section(
 			'_section_list_icon_feature_iamge_style',
 			[
@@ -879,8 +907,10 @@ class Post_List extends Base {
 		);
 
 		$this->end_controls_section();
+	}
 
-		//List Content Style
+	protected function __excerpt_style_controls () {
+
 		$this->start_controls_section(
 			'_section_list_excerpt_style',
 			[
@@ -926,8 +956,10 @@ class Post_List extends Base {
 		);
 
 		$this->end_controls_section();
+	}
 
-		//List Meta Style
+	protected function __meta_style_controls () {
+
 		$this->start_controls_section(
 			'_section_list_meta_style',
 			[
@@ -1047,8 +1079,14 @@ class Post_List extends Base {
 
 			if ( ! empty( $lists ) ) {
 				foreach ( $lists as $index => $value ) {
-					$ids[] = $value['post_id'];
-					if ( $value['title'] ) $customize_title[$value['post_id']] = $value['title'];
+					//trim function to remove extra space before post ID
+					if( is_array($value['post_id']) ){
+						$post_id = ! empty($value['post_id'][0]) ? trim($value['post_id'][0]) : '';
+					}else{
+						$post_id = ! empty($value['post_id']) ? trim($value['post_id']) : '';
+					}
+					$ids[] = $post_id;
+					if ( $value['title'] ) $customize_title[$post_id] = $value['title'];
 				}
 			}
 

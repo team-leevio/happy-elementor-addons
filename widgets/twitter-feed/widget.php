@@ -47,10 +47,18 @@ class Twitter_Feed extends Base {
 	}
 
 
+
 	/**
-	 * Register content related controls
-	 */
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__twitter_content_controls();
+		$this->__twitter_settings_content_controls();
+		$this->__general_settings_content_controls();
+	}
+
+	protected function __twitter_content_controls() {
+
 		$this->start_controls_section(
 			'_section_twitter',
 			[
@@ -58,6 +66,32 @@ class Twitter_Feed extends Base {
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
+
+        $this->add_control(
+            'credentials',
+            [
+                'label' => __('Credentials from', 'happy-addons-pro'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'custom',
+                'options' =>  [
+                    'global' => __('Global', 'happy-addons-pro'),
+                    'custom' => __('Custom', 'happy-addons-pro'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'credentials_set_notice',
+            [
+                'raw' => '<strong>' . esc_html__('Note!', 'happy-addons-pro') . '</strong> ' . esc_html__('Please set credentials in Happy Addons Dashboard - ', 'happy-addons-pro') . '<a style="border-bottom-color: inherit;" href="'. esc_url(admin_url('admin.php?page=happy-addons#credentials')) . '" target="_blank" >'. esc_html__('Credentials', 'happy-addons-pro') .'</a>',
+                'type' => Controls_Manager::RAW_HTML,
+                'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+                'render_type' => 'ui',
+                'condition' => [
+                    'credentials' => 'global',
+                ],
+            ]
+        );
 
 		$this->add_control(
 			'user_name',
@@ -67,6 +101,9 @@ class Twitter_Feed extends Base {
 				'default' => '@HappyAddons',
 				'label_block' => false,
 				'description' => esc_html__('Use @ sign with your Twitter user name.', 'happy-elementor-addons' ),
+                'condition' => [
+                    'credentials' => 'custom',
+                ],
 
 			]
 		);
@@ -79,6 +116,9 @@ class Twitter_Feed extends Base {
 				'label_block' => true,
 				'default' => 'eNoxL16kBQYcJ3u6NafUmv6NZ',
 				'description' => '<a href="https://apps.twitter.com/app/" target="_blank">Get Consumer Key.</a>',
+                'condition' => [
+                    'credentials' => 'custom',
+                ],
 			]
 		);
 
@@ -90,10 +130,16 @@ class Twitter_Feed extends Base {
 				'label_block' => true,
 				'default' => 'wnwKqdRkkJzPJ8bZIWPRBKjGYEU4PBWAUYiyShArQQJV6VaPBY',
 				'description' => '<a href="https://apps.twitter.com/app/" target="_blank">Get Consumer Secret key.</a>',
+                'condition' => [
+                    'credentials' => 'custom',
+                ],
 			]
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __twitter_settings_content_controls() {
 
 		$this->start_controls_section(
 			'_section_twitter_settings',
@@ -297,6 +343,9 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __general_settings_content_controls() {
 
 		$this->start_controls_section(
 			'_section_general_settings',
@@ -416,14 +465,34 @@ class Twitter_Feed extends Base {
 			]
 		);
 
+		$this->add_control(
+			'link_target',
+			[
+				'label' => __( 'Link Target', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'_self' => __( 'Open in same window', 'happy-elementor-addons' ),
+					'_blank' => __( 'Open in new window', 'happy-elementor-addons' ),
+				],
+				'default' => '_blank',
+			]
+		);
+
 		$this->end_controls_section();
 	}
 
-
 	/**
-	 * Register styles related controls
-	 */
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__common_style_controls();
+		$this->__user_info_style_controls();
+		$this->__content_style_controls();
+		$this->__footer_style_controls();
+	}
+
+	protected function __common_style_controls() {
+
 		$this->start_controls_section(
 			'_section_twitter_style',
 			[
@@ -522,6 +591,9 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __user_info_style_controls() {
 
 		$this->start_controls_section(
 			'_section_twitter_user_info',
@@ -810,6 +882,9 @@ class Twitter_Feed extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
+
+	protected function __content_style_controls() {
 
 		$this->start_controls_section(
 			'_section_twitter_content',
@@ -984,6 +1059,9 @@ class Twitter_Feed extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __footer_style_controls() {
 
 		$this->start_controls_section(
 			'_section_twitter_footer_button',
@@ -1198,7 +1276,6 @@ class Twitter_Feed extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
-
 	}
 
 	protected function render() {
@@ -1215,13 +1292,23 @@ class Twitter_Feed extends Base {
 		$ha_tweets_cash = '_' . $id . '_tweet_cash';
 
 		$messages = [];
-		$user_name = trim($settings['user_name']);
+
+		if( 'global' == $settings['credentials'] && is_array( ha_get_credentials('twitter_feed') ) ){
+			$credentials = ha_get_credentials('twitter_feed');
+			$user_name = trim($credentials['user_name']);
+			$consumer_key = $credentials['consumer_key'];
+			$consumer_secret = $credentials['consumer_secret'];
+		}else {
+			$user_name = trim($settings['user_name']);
+			$consumer_key = $settings['consumer_key'];
+			$consumer_secret = $settings['consumer_secret'];
+		}
 
 		if ( empty( $user_name ) ) {
 			$messages[] = __( 'Add user Name', 'happy-elementor-addons' );
-		} elseif ( empty( $settings['consumer_key'] ) ) {
+		} elseif ( empty( $consumer_key ) ) {
 			$messages[] = __( 'Add Consumer Key', 'happy-elementor-addons' );
-		} elseif ( empty( $settings['consumer_secret'] ) ) {
+		} elseif ( empty( $consumer_secret ) ) {
 			$messages[] = __( 'Add Consumer Secret Key', 'happy-elementor-addons' );
 		}
 
@@ -1232,7 +1319,7 @@ class Twitter_Feed extends Base {
 
 		$transient_key = $user_name . $ha_tweets_cash;
 		$twitter_data = get_transient($transient_key);
-		$credentials = base64_encode($settings['consumer_key'] . ':' . $settings['consumer_secret']);
+		$credentials = base64_encode($consumer_key . ':' . $consumer_secret);
 
 		if ( $twitter_data === false ) {
 			$auth_url = 'https://api.twitter.com/oauth2/token';
@@ -1337,6 +1424,10 @@ class Twitter_Feed extends Base {
 		if ( empty( $settings['tweets_limit'] ) ) {
 			$items = $twitter_data;
 		}
+		$link_target = 'target="_blank"';
+		if ( !empty( $settings['link_target'] ) && '_self' == $settings['link_target'] ) {
+			$link_target = 'target="_self"';
+		}
 		?>
 		<div class="ha-tweet-items">
 			<?php
@@ -1367,7 +1458,7 @@ class Twitter_Feed extends Base {
 
 						<div class="ha-tweet-author">
 							<?php if ( $settings['show_user_image'] == 'yes' ) : ?>
-								<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>">
+								<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" <?php echo $link_target;?>>
 									<img
 										src="<?php echo esc_url( $item['user']['profile_image_url_https'] ); ?>"
 										alt="<?php echo esc_attr( $item['user']['name'] ); ?>"
@@ -1378,13 +1469,13 @@ class Twitter_Feed extends Base {
 
 							<div class="ha-tweet-user">
 								<?php if ( $settings['show_name'] == 'yes' ) : ?>
-									<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-author-name">
+									<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-author-name" <?php echo $link_target;?>>
 										<?php echo esc_html( $item['user']['name'] ); ?>
 									</a>
 								<?php endif; ?>
 
 								<?php if ( $settings['show_user_name'] == 'yes' ) : ?>
-									<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-username">
+									<a href="<?php echo esc_url( 'https://twitter.com/'.$user_name ); ?>" class="ha-tweet-username" <?php echo $link_target;?>>
 										<?php echo esc_html( $settings['user_name'] ); ?>
 									</a>
 								<?php endif; ?>
@@ -1396,7 +1487,7 @@ class Twitter_Feed extends Base {
 								<?php echo esc_html( $description ); ?>
 
 								<?php if ( $settings['read_more'] == 'yes' ) : ?>
-									<a href="<?php echo esc_url( '//twitter.com/' . $item['user']['screen_name'] . '/status/' . $item['id'] ); ?>" target="_blank">
+									<a href="<?php echo esc_url( '//twitter.com/' . $item['user']['screen_name'] . '/status/' . $item['id'] ); ?>" <?php echo $link_target;?>>
 										<?php echo esc_html( $settings['read_more_text'] ); ?>
 									</a>
 								<?php endif; ?>

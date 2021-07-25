@@ -326,6 +326,23 @@
 }
 .ha-dashboard-credentials__item-toggle {
 	right: 20px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	margin-left: 15px;
+	width: 33%;
+}
+.ha-dashboard-credentials__item-toggle input {
+	border-color: #e1e5e8;
+}
+.ha-dashboard-credentials__item-toggle label {
+	margin-bottom: 5px;
 }
 .ha-dashboard .ha-toggle {
 	position: relative;

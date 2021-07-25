@@ -54,9 +54,16 @@ class InfoBox extends Base {
 	}
 
 	/**
-	 * Register content related controls
-	 */
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__media_content_controls();
+		$this->__title_desc_content_controls();
+		$this->__button_content_controls();
+	}
+
+	protected function __media_content_controls() {
+
 		$this->start_controls_section(
 			'_section_media',
 			[
@@ -214,6 +221,9 @@ class InfoBox extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __title_desc_content_controls() {
 
 		$this->start_controls_section(
 			'_section_title',
@@ -322,6 +332,9 @@ class InfoBox extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __button_content_controls() {
 
 		$this->start_controls_section(
 			'_section_button',
@@ -428,9 +441,16 @@ class InfoBox extends Base {
 	}
 
 	/**
-	 * Register styles related controls
-	 */
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__media_style_controls();
+		$this->__title_style_controls();
+		$this->__button_style_controls();
+	}
+
+	protected function __media_style_controls() {
+
 		$this->start_controls_section(
 			'_section_media_style',
 			[
@@ -672,6 +692,9 @@ class InfoBox extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __title_style_controls() {
 
 		$this->start_controls_section(
 			'_section_title_style',
@@ -778,6 +801,9 @@ class InfoBox extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __button_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_button',

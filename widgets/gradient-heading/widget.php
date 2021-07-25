@@ -48,7 +48,11 @@ class Gradient_Heading extends Base {
 		return [ 'gradient', 'advanced', 'heading', 'title', 'colorful' ];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+
 		$this->start_controls_section(
 			'_section_title',
 			[
@@ -152,7 +156,11 @@ class Gradient_Heading extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		
 		$this->start_controls_section(
 			'_section_style_title',
 			[

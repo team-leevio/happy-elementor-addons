@@ -45,6 +45,7 @@ class WPML_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/social-icons.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/data-table.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/horizontal-timeline.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/content-switcher.php' );
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -607,7 +608,20 @@ class WPML_Manager {
 						'type'        => __( 'MailChimp: Button Text', 'happy-elementor-addons' ),
 						'editor_type' => 'LINE',
 					],
+					[
+						'field'       => 'mailchimp_success_message',
+						'type'        => __( 'MailChimp: Success Message', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
 				],
+			],
+
+			/**
+			 * Content Switcher
+			 */
+			'content-switcher' => [
+				'fields' => [],
+				'integration-class' => __NAMESPACE__ . '\\WPML_Content_Switcher',
 			],
 		];
 

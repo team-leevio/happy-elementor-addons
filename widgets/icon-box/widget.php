@@ -50,7 +50,11 @@ class Icon_Box extends Base {
 		return [ 'info', 'box', 'icon' ];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+
 		$this->start_controls_section(
 			'_section_icon',
 			[
@@ -197,7 +201,17 @@ class Icon_Box extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__icon_style_controls();
+		$this->__title_style_controls();
+		$this->__badge_style_controls();
+	}
+
+	protected function __icon_style_controls() {
+
 		$this->start_controls_section(
 			'_section_style_icon',
 			[
@@ -414,6 +428,9 @@ class Icon_Box extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
+
+	protected function __title_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_title',
@@ -484,6 +501,9 @@ class Icon_Box extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
+
+	protected function __badge_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_badge',

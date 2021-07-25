@@ -49,8 +49,12 @@ class Skills extends Base {
         return [ 'progress', 'skill', 'bar', 'chart' ];
     }
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
-        $this->start_controls_section(
+
+		$this->start_controls_section(
             '_section_skills',
             [
                 'label' => __( 'Skills', 'happy-elementor-addons' ),
@@ -193,8 +197,17 @@ class Skills extends Base {
         $this->end_controls_section();
     }
 
+	/**
+     * Register widget style controls
+     */
     protected function register_style_controls() {
-        $this->start_controls_section(
+		$this->__bars_style_controls();
+		$this->__content_style_controls();
+	}
+
+    protected function __bars_style_controls() {
+
+		$this->start_controls_section(
             '_section_style_bars',
             [
                 'label' => __( 'Skill Bars', 'happy-elementor-addons' ),
@@ -264,6 +277,9 @@ class Skills extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __content_style_controls() {
 
         $this->start_controls_section(
             '_section_content',
@@ -322,6 +338,8 @@ class Skills extends Base {
                 'selector' => '{{WRAPPER}} .ha-skill-info',
             ]
         );
+
+		$this->end_controls_section();
     }
 
 	protected function render() {

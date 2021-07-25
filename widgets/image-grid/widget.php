@@ -51,7 +51,16 @@ class Image_Grid extends Base {
 		return [ 'gallery', 'image', 'masonry', 'even', 'portfolio', 'filterable', 'grid' ];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__gallery_content_controls();
+		$this->__advance_content_controls();
+	}
+
+	protected function __gallery_content_controls() {
+
 		$this->start_controls_section(
 			'_section_gallery',
 			[
@@ -126,6 +135,9 @@ class Image_Grid extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __advance_content_controls() {
 
 		$this->start_controls_section(
 			'_section_advance',
@@ -276,7 +288,16 @@ class Image_Grid extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__image_style_controls();
+		$this->__menu_style_controls();
+	}
+
+	protected function __image_style_controls() {
+
 		$this->start_controls_section(
 			'_section_style_image',
 			[
@@ -438,6 +459,9 @@ class Image_Grid extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
+
+	protected function __menu_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_menu',

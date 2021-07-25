@@ -43,7 +43,16 @@ class Bar_Chart extends Base {
 		return [ 'chart', 'bar', 'statistic', 'graph' ];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__barchart_content_controls();
+		$this->__barchart_settings_content_controls();
+	}
+
+	protected function __barchart_content_controls() {
+
 		$this->start_controls_section(
 			'_section_chart',
 			[
@@ -178,6 +187,9 @@ class Bar_Chart extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __barchart_settings_content_controls() {
 
 		$this->start_controls_section(
 			'settings',
@@ -391,7 +403,18 @@ class Bar_Chart extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__barchart_common_style_controls();
+		$this->__barchart_legend_style_controls();
+		$this->__barchart_label_style_controls();
+		$this->__barchart_tooltip_style_controls();
+	}
+
+	protected function __barchart_common_style_controls() {
+
 		$this->start_controls_section(
 			'_section_style_common',
 			[
@@ -573,6 +596,9 @@ class Bar_Chart extends Base {
 		$this->end_popover();
 
 		$this->end_controls_section();
+	}
+
+	protected function __barchart_legend_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_legend',
@@ -713,6 +739,9 @@ class Bar_Chart extends Base {
 		$this->end_popover();
 
 		$this->end_controls_section();
+	}
+
+	protected function __barchart_label_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_label',
@@ -957,6 +986,9 @@ class Bar_Chart extends Base {
 		$this->end_popover();
 
 		$this->end_controls_section();
+	}
+
+	protected function __barchart_tooltip_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_tooltip',

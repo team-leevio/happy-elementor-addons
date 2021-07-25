@@ -1,0 +1,282 @@
+.ha-cs-design-round {
+	.ha-cs-switch.active {
+		span {
+			color: #562DD4;
+		}
+	}
+}
+
+.ha-cs-design-round-2 {
+	.ha-cs-switch.active {
+		span {
+			color: #E2498A;
+		}
+	}
+}
+
+.ha-cs-design-square {
+	.ha-cs-switch.active {
+		span {
+			color: #61CE70;
+		}
+	}
+}
+
+.ha-cs-design-square-2 {
+	.ha-cs-switch.active {
+		span {
+			color: #F67C21;
+		}
+	}
+}
+
+.ha-cs-design-button {
+	.ha-cs-switch-wrapper {
+		box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+	}
+}
+
+.ha-cs-switch-container {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.ha-cs-switch-wrapper {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+
+	.ha-cs-switch {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		font-family: "Nunito", Sans-serif;
+		font-size: 18px;
+		font-weight: bold;
+
+		&.primary {
+			margin-right: 20px;
+		}
+
+		&.secondary {
+			margin-left: 20px;
+		}
+
+		&.active {
+			color: #2196F3;
+		}
+	}
+
+	.ha-cs-button {
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #333333;
+		background-color: #FFF;
+		border: none;
+
+		span {
+			font-family: "Nunito", Sans-serif;
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		&:not(:last-of-type) {
+			margin-right: 20px;
+		}
+
+		&.active {
+			color: #FFF;
+			background-color: #562DD4;
+		}
+
+		&:focus {
+			outline: 0;
+			color: #FFF;
+			background-color: #562DD4;
+		}
+	}
+
+	.ha-cs-icon-wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 1em;
+		width: 1em;
+	}
+
+	.ha-cs-icon-left {
+
+		.ha-cs-icon-wrapper {
+			margin-right: 10px;
+		}
+	}
+
+	.ha-cs-icon-right {
+		flex-direction: row-reverse;
+
+		.ha-cs-icon-wrapper {
+			margin-left: 10px;
+		}
+	}
+}
+
+.ha-input-label {
+	position: relative;
+	display: inline-block;
+	width: 5em;
+	height: 2.5em;
+	margin: unset;
+
+	.ha-cs-slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #ccc;
+		transition: .4s;
+		border-style: solid;
+		border-width: 0;
+
+		&:before {
+			position: absolute;
+			content: "";
+			height: 2em;
+			width: 2em;
+			left: 0.2em;
+			bottom: 0.25em;
+			background-color: white;
+			transition: .4s;
+			border-style: solid;
+			border-width: 0;
+		}
+
+		&.ha-cs-square {
+			background-color: #175EB3;
+			border-radius: 0;
+
+			&:before {
+				background-color: #61CE70;
+				border-radius: 0;
+			}
+		}
+
+		&.ha-cs-round {
+			background-color: #562DD4;
+			border-radius: 2em;
+
+			&:before {
+				background-color: #FFFFFF;
+				border-radius: 50%;
+			}
+		}
+
+		&.ha-cs-round-2 {
+			top: 50%;
+			border-radius: 2em;
+			height: 1em;
+			transform: translateY(-50%);
+			background-color: #E2498A5C;
+
+			&:before {
+				border-radius: 50%;
+				left: -0.1em;
+				bottom: -50%;
+				background-color: #E2498A;
+			}
+		}
+
+		&.ha-cs-square-2 {
+			top: 50%;
+			border-radius: 0;
+			height: 1em;
+			transform: translateY(-50%);
+			background-color: #FFEC6B;
+
+			&:before {
+				border-radius: 0;
+				left: -0.1em;
+				bottom: -50%;
+				background-color: #F67C21;
+			}
+		}
+	}
+
+	input {
+		opacity: 0;
+		width: 0;
+		height: 0;
+
+		&:checked {
+
+			&+.ha-cs-square {
+
+				&:before {
+					left: 0.8em;
+					transform: translateX(100%);
+				}
+			}
+
+			&+.ha-cs-round {
+
+				&:before {
+					left: 0.8em;
+					transform: translateX(100%);
+				}
+			}
+
+			&+.ha-cs-round-2 {
+
+				&:before {
+					left: 1.1em;
+					transform: translateX(100%);
+				}
+			}
+
+			&+.ha-cs-square-2 {
+
+				&:before {
+					left: 1.1em;
+					transform: translateX(100%);
+				}
+			}
+		}
+
+		&:focus {
+
+			&+.ha-cs-square {
+				box-shadow: unset;
+			}
+
+			&+.ha-cs-round {
+				box-shadow: unset;
+			}
+
+			&+.ha-cs-round-2 {
+				box-shadow: unset;
+			}
+
+			&+.ha-cs-square-2 {
+				box-shadow: unset;
+			}
+		}
+	}
+}
+
+.ha-cs-content-container {
+	.ha-cs-content-wrapper {
+		.ha-cs-content-section {
+			font-family: "Nunito", Sans-serif;
+			font-weight: 600;
+
+			&:not(.active) {
+				display: none;
+			}
+		}
+	}
+}

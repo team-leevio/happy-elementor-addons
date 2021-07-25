@@ -71,7 +71,16 @@ class Taxonomy_List extends Base {
 		return $list;
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__list_content_controls();
+		$this->__settings_content_controls();
+	}
+
+	protected function __list_content_controls() {
+
 		$this->start_controls_section(
 			'_section_taxonomy_list',
 			[
@@ -114,6 +123,7 @@ class Taxonomy_List extends Base {
 				[
 					'label' => __( 'Icon', 'happy-elementor-addons' ),
 					'type' => Controls_Manager::CHOOSE,
+					'description' => __( 'If you want to use individual icon disable common icon.', 'happy-elementor-addons' ),
 					'options' => [
 						'icon' => [
 							'title' => __( 'Icon', 'happy-elementor-addons' ),
@@ -193,8 +203,10 @@ class Taxonomy_List extends Base {
 		}
 
 		$this->end_controls_section();
+	}
 
-		//Settings
+	protected function __settings_content_controls() {
+
 		$this->start_controls_section(
 			'_section_settings',
 			[
@@ -225,10 +237,31 @@ class Taxonomy_List extends Base {
 		);
 
 		$this->add_control(
+			'title_tag',
+			[
+				'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				// 'separator' => 'before',
+				'options' => [
+					'h1' => 'H1',
+					'h2' => 'H2',
+					'h3' => 'H3',
+					'h4' => 'H4',
+					'h5' => 'H5',
+					'h6' => 'H6',
+					'div' => 'div',
+					'span' => 'span',
+					'p' => 'p',
+				],
+				'default' => 'h2',
+			]
+		);
+
+		$this->add_control(
 			'common_icon_enable',
 			[
 				'label' => __( 'Common icon enable?', 'happy-elementor-addons' ),
-				'description' => __( 'If you want to use individual icon disable common icon.', 'happy-elementor-addons' ),
+				'description' => __( 'Common icon will overwrite all individual icon.', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default' => 'yes',
@@ -333,7 +366,16 @@ class Taxonomy_List extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__list_style_controls();
+		$this->__title_style_controls();
+		$this->__icon_image_style_controls();
+	}
+
+	protected function __list_style_controls() {
 
 		$this->start_controls_section(
 			'_section_taxonomy_list_style',
@@ -506,7 +548,10 @@ class Taxonomy_List extends Base {
 		);
 
 		$this->end_controls_section();
-		//Title Style
+	}
+
+	protected function __title_style_controls() {
+
 		$this->start_controls_section(
 			'_section_taxonomy_list_title_style',
 			[
@@ -566,7 +611,10 @@ class Taxonomy_List extends Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
-		//List Icon Style
+	}
+
+	protected function __icon_image_style_controls() {
+
 		$this->start_controls_section(
 			'_section_icon_style',
 			[
@@ -680,8 +728,16 @@ class Taxonomy_List extends Base {
 		$lists = $settings['selected_list_' . $settings['taxonomy_type']];
 		if ( !empty( $lists ) ) {
 			foreach ( $lists as $index => $value ) {
-				$ids[] = $value['tax_id'];
-				if ( $value['title'] ) $customize_title[$value['tax_id']] = $value['title'];
+				//trim function to remove extra space before taxonomy ID
+				if( is_array($value['tax_id']) ){
+					$tax_id = ! empty($value['tax_id'][0]) ? trim($value['tax_id'][0]) : '';
+				}else{
+					$tax_id = ! empty($value['tax_id']) ? trim($value['tax_id']) : '';
+				}
+				$ids[] = $tax_id;
+				if ( $value['title'] ){
+					$customize_title[$tax_id] = $value['title'];
+				}
 			}
 		}
 		$terms = [];
@@ -733,7 +789,7 @@ class Taxonomy_List extends Base {
 							}
 							if ( $title ) {
 								printf( '<%1$s %2$s>%3$s</%1$s>',
-									'h4',
+									ha_escape_tags( $settings['title_tag'], 'h2' ),
 									'class="ha-taxonomy-list-title"',
 									esc_html( $title )
 								);
