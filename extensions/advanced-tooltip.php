@@ -75,6 +75,7 @@ class Advanced_Tooltip {
                 'return_value' => 'enable',
                 'prefix_class' => 'ha-advanced-tooltip-',
                 'default' => '',
+                'frontend_available' => true,
             ]
         );
 
