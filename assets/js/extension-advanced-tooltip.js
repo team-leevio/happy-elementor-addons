@@ -38,10 +38,11 @@
 				var settings = {
 					trigger: this.getElementSettings('ha_advanced_tooltip_trigger'),
 					content: this.getElementSettings('ha_advanced_tooltip_content'),
+					animation: this.getElementSettings('ha_advanced_tooltip_animation'),
 					duration: this.getElementSettings('ha_advanced_tooltip_duration') || 500,
 					showArrow: this.getElementSettings('ha_advanced_tooltip_arrow') || false,
 					position: this.getElementSettings('ha_advanced_tooltip_position'),
-					delay: this.getElementSettings('ha_advanced_tooltip_delay') || 100,
+					// delay: this.getElementSettings('ha_advanced_tooltip_delay') || 100,
 				};
 
 				return $.extend({}, settings);
@@ -66,7 +67,8 @@
 					var settings = this.getReadySettings();
 					var content = $scope.find('.ha-advanced-tooltip-content');
 					content.html($.parseHTML(settings.content));
-					content.css('transition', 'opacity '+settings.duration+'ms ease '+settings.delay+'ms');
+					content.css('animation-duration', settings.duration+'ms');
+					content.addClass('animated '+settings.animation);
 					
 					if( !settings.showArrow) {
 						content.addClass('no-arrow');
