@@ -16,26 +16,23 @@ class Mailchimp_api {
     private static $credentials;
     public static $list_id;
 
-    public static function set_ajax_call() {
+    /**
+     * request
+     *
+     * @param array $submitted_data
+     * @return array | int error
+     */
+    public static function insert_subscriber_to_mailchimp($submitted_data) {
+        $return = [];
 
         self::$credentials = ha_get_credentials('mailchimp');;
 
         self::$apiKey  = isset(self::$credentials['api'])? self::$credentials['api']: '';
 
-        add_action('wp_ajax_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);
-        add_action('wp_ajax_nopriv_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);
-    }
-
-    public static function mailchimp_prepare_ajax() {
-
-        $security = check_ajax_referer('happy_addons_nonce', 'security');
-
-        if (!$security) return;
-
         $widget_settings = ha_get_ele_widget_settings($_POST['post_id'], $_POST['widget_id']);
 
-        $str_tags = $widget_settings['mailchimp_list_tags'];
-        $tags = explode(',', str_replace(' ', '',$str_tags));
+        $str_tags = isset($widget_settings['mailchimp_list_tags'])? $widget_settings['mailchimp_list_tags']: '';
+        $tags = explode(', ', $str_tags);
 
         $auth = [
             'api_key' => self::$apiKey,
@@ -49,29 +46,6 @@ class Mailchimp_api {
         if($widget_settings['mailchimp_api_choose'] == 'custom') {
             $auth['api_key'] = $widget_settings['mailchimp_api'];
         }
-
-        parse_str(isset($_POST['subscriber_info']) ? $_POST['subscriber_info'] : '', $subsciber);
-
-        $response = self::insert_subscriber_to_mailchimp($auth, $subsciber);
-
-        echo wp_send_json($response);
-
-        wp_die();
-    }
-
-    /**
-     * request
-     *
-     * @param array $settings
-     * @param array $submitted_data
-     * @return array | int error
-     */
-    protected static function insert_subscriber_to_mailchimp($settings, $submitted_data) {
-        $return = [];
-        $auth = [
-            'api_key' => ($settings['api_key'] != '') ? $settings['api_key'] : null,
-            'list_id' => ($settings['list_id'] != '') ? $settings['list_id'] : null,
-        ];
 
         $data = [
             'email_address' => (isset($submitted_data['email']) ? $submitted_data['email'] : ''),
@@ -135,6 +109,8 @@ class Mailchimp_api {
      * @return array all list
      */
     public static function get_mailchimp_lists($api = null) {
+
+        self::$apiKey  = isset(self::$credentials['api'])? self::$credentials['api']: '';
 
         $options = [];
 

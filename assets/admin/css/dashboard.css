@@ -254,14 +254,8 @@
 	display: -ms-flexbox;
 	display:         flex;
 	overflow: hidden; 
-	-webkit-box-align: center;
-	-webkit-align-items: center;
-	        align-items: center;
-	-ms-flex-align: center;
-	margin-right: 10px;
 	margin-bottom: 20px;
-	margin-left: 10px;
-	padding: 30px 20px;
+	padding: 20px 20px;
 	width: calc(100% - 20px);
 	border: 1px solid #e8e8e8;
 	border-radius: 5px;
@@ -285,10 +279,28 @@
 }
 .ha-dashboard-credentials__item-title {
 	display: inline-block;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 100px;
+	    -ms-flex: 0 0 100px;
+	        flex: 0 0 100px; 
 	margin: 0;
 	color: #444;
-	font-weight: 400; 
+	font-weight: 400;
 	font-size: 13px;
+}
+.ha-dashboard-credentials__item-title-wrap {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex; 
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-ms-flex-align: center;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 150px;
+	    -ms-flex: 0 0 150px;
+	        flex: 0 0 150px;
 }
 .ha-dashboard-credentials__item-title > label {
 	font-weight: 700;
@@ -324,24 +336,46 @@
 	    -ms-transform: rotate(-45deg);
 	        transform: rotate(-45deg);
 }
-.ha-dashboard-credentials__item-toggle {
+.ha-dashboard-credentials__item-input {
 	right: 20px;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display:         flex;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	    -ms-flex: 1 1 auto;
+	        flex: 1 1 auto;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;
 	    -ms-flex-direction: column;
 	        flex-direction: column;
+	margin-top: 7px;
+	margin-bottom: 7px; 
 	margin-left: 15px;
-	width: 33%;
 }
-.ha-dashboard-credentials__item-toggle input {
+.ha-dashboard-credentials__item-input-wrap {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-align: end;
+	-webkit-align-items: flex-end;
+	        align-items: flex-end;
+	-ms-flex-align: end;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 calc(100% - 150px);
+	    -ms-flex: 0 0 calc(100% - 150px);
+	        flex: 0 0 calc(100% - 150px);
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+.ha-dashboard-credentials__item-input input {
 	border-color: #e1e5e8;
 }
-.ha-dashboard-credentials__item-toggle label {
+.ha-dashboard-credentials__item-input label {
 	margin-bottom: 5px;
 }
 .ha-dashboard .ha-toggle {
