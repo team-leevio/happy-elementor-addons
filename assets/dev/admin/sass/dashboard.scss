@@ -200,11 +200,7 @@
 			}
 
 			&:hover &-icon {
-				background-image: linear-gradient(
-					135deg,
-					$secondary-color 25%,
-					$primary-color 100%
-				);
+				background-image: linear-gradient(135deg, $secondary-color 25%, $primary-color 100%);
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
 			}
@@ -269,13 +265,13 @@
 		&__item {
 			position: relative;
 			display: flex;
-			align-items: center;
+			// align-items: flex-end;
 			width: calc(100% - 20px);
-			margin-left: 10px;
-			margin-right: 10px;
+			// margin-left: 10px;
+			// margin-right: 10px;
 			margin-bottom: 20px;
 			// float: left;
-			padding: 30px 20px;
+			padding: 20px 20px;
 			border: 1px solid #e8e8e8;
 			border-radius: 5px;
 			overflow: hidden;
@@ -305,11 +301,7 @@
 			}
 
 			&:hover &-icon {
-				background-image: linear-gradient(
-					135deg,
-					$secondary-color 25%,
-					$primary-color 100%
-				);
+				background-image: linear-gradient(135deg, $secondary-color 25%, $primary-color 100%);
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
 			}
@@ -320,6 +312,13 @@
 				font-size: 13px;
 				color: #444;
 				font-weight: 400;
+				flex: 0 0 100px;
+
+				&-wrap {
+					flex: 0 0 150px;
+					align-items: center;
+					display: flex;
+				}
 
 				> label {
 					font-weight: 700;
@@ -357,16 +356,27 @@
 				transform: rotate(-45deg);
 			}
 
-			&-toggle {
+			&-input {
 				// position: absolute !important;
 				right: 20px;
 				display: flex;
 				flex-direction: column;
 				margin-left: 15px;
-				width: 33%;
+				flex: 1 1 auto;
+				// max-width: 33%;
+				margin-top: 7px;
+				margin-bottom: 7px;
+
+				&-wrap {
+					flex: 0 0 calc(100% - 150px);
+					display: flex;
+					align-items: flex-end;
+					// margin-left: 15px;
+					flex-wrap: wrap;
+				}
 
 				input {
-					border-color: #E1E5E8;
+					border-color: #e1e5e8;
 				}
 
 				label {
@@ -548,8 +558,7 @@
 // #home-tab
 .ha-home-banner {
 	padding-top: 25.2%;
-	background: url("../../imgs/admin/dashboard-header.png") no-repeat center
-		center/cover;
+	background: url("../../imgs/admin/dashboard-header.png") no-repeat center center/cover;
 	border-radius: 5px;
 	position: relative;
 

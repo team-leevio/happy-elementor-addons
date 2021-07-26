@@ -48,30 +48,34 @@ $has_pro = ha_has_pro();
             }
         ?>
             <div class="<?php echo $class_attr; ?>">
-                <?php if ($is_pro) : ?>
-                    <span class="ha-dashboard-credentials__item-badge"><?php esc_html_e('Pro', 'happy-elementor-addons'); ?></span>
-                <?php endif; ?>
-                <span class="ha-dashboard-credentials__item-icon"><i class="<?php echo $icon; ?>"></i></span>
-                <h3 class="ha-dashboard-credentials__item-title">
-                    <label for="ha-widget-<?php echo $cred_key; ?>" <?php echo $is_placeholder ? 'data-tooltip="Get pro"' : ''; ?>>
-                        <?php echo $title; ?>
-                    </label>
-                </h3>
-                <?php foreach ($fields as $key => $value) : ?>
-                    <div class="ha-dashboard-credentials__item-toggle">
-                        <label for="">
-                            <?php echo esc_html($value['label']); ?>
-                            <?php if (!empty($value['help'])) : ?>
-                                <a href="<?php echo esc_url($value['help']['link']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($value['help']['instruction']); ?></a>
-                            <?php endif; ?>
+                <div class="ha-dashboard-credentials__item-title-wrap">
+                    <?php if ($is_pro) : ?>
+                        <span class="ha-dashboard-credentials__item-badge"><?php esc_html_e('Pro', 'happy-elementor-addons'); ?></span>
+                    <?php endif; ?>
+                    <span class="ha-dashboard-credentials__item-icon"><i class="<?php echo $icon; ?>"></i></span>
+                    <h3 class="ha-dashboard-credentials__item-title">
+                        <label for="ha-widget-<?php echo $cred_key; ?>" <?php echo $is_placeholder ? 'data-tooltip="Get pro"' : ''; ?>>
+                            <?php echo $title; ?>
                         </label>
-                        <?php if ($value['type'] == 'textarea') : ?>
-                            <textarea id="ha-widget-<?php echo $cred_key; ?>" <?php echo $checked; ?> class="ha-credential" name="credentials[<?php echo esc_attr($cred_key); ?>][<?php echo esc_attr($value['name']); ?>]" cols="30" rows="10"><?php echo esc_attr(isset($credential_data[$cred_key][$value['name']]) ? $credential_data[$cred_key][$value['name']] : ''); ?></textarea>
-                        <?php else : ?>
-                            <input id="ha-widget-<?php echo $cred_key; ?>" <?php echo $checked; ?> type="<?php echo esc_attr($value['type']); ?>" class="ha-credential" name="credentials[<?php echo esc_attr($cred_key); ?>][<?php echo esc_attr($value['name']); ?>]" value="<?php echo esc_attr(isset($credential_data[$cred_key][$value['name']]) ? $credential_data[$cred_key][$value['name']] : ''); ?>">
-                        <?php endif; ?>
-                    </div>
-                <?php endforeach; ?>
+                    </h3>
+                </div>
+                <div class="ha-dashboard-credentials__item-input-wrap">
+                    <?php foreach ($fields as $key => $value) : ?>
+                        <div class="ha-dashboard-credentials__item-input">
+                            <label for="ha-widget-<?php echo $cred_key . '-' . $value['name']; ?>">
+                                <?php echo esc_html($value['label']); ?>
+                                <?php if (!empty($value['help'])) : ?>
+                                    <a href="<?php echo esc_url($value['help']['link']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($value['help']['instruction']); ?></a>
+                                <?php endif; ?>
+                            </label>
+                            <?php if ($value['type'] == 'textarea') : ?>
+                                <textarea id="ha-widget-<?php echo $cred_key; ?>" <?php echo $checked; ?> class="ha-credential" name="credentials[<?php echo esc_attr($cred_key); ?>][<?php echo esc_attr($value['name']); ?>]" cols="30" rows="10"><?php echo esc_attr(isset($credential_data[$cred_key][$value['name']]) ? $credential_data[$cred_key][$value['name']] : ''); ?></textarea>
+                            <?php else : ?>
+                                <input id="ha-widget-<?php echo $cred_key . '-' . $value['name']; ?>" <?php echo $checked; ?> type="<?php echo esc_attr($value['type']); ?>" class="ha-credential" name="credentials[<?php echo esc_attr($cred_key); ?>][<?php echo esc_attr($value['name']); ?>]" value="<?php echo esc_attr(isset($credential_data[$cred_key][$value['name']]) ? $credential_data[$cred_key][$value['name']] : ''); ?>">
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
         <?php
         endforeach;
