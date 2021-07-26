@@ -1,5 +1,6 @@
 @import "variables";
 @import "mixins";
+@import "animations";
 
 .ha-css-transform-yes {
 	transform:
@@ -139,6 +140,8 @@
 			left: 0;
 			right: 0;
 			margin: 0 auto;
+			// left: 50%;
+			// transform: translateX(-50%);
 
 			&::after {
 				top: 100%;
@@ -155,6 +158,8 @@
 			left: 0;
 			right: 0;
 			margin: 0 auto;
+			// left: 50%;
+			// transform: translateX(-50%);
 
 			&::after {
 				bottom: 100%;
@@ -168,9 +173,8 @@
 	&.ha-advanced-tooltip-left {
 		.ha-advanced-tooltip-content {
 			right: 101%;
-			top: 0;
-			bottom: 0;
-			margin: auto 0;
+			top: 50%;
+			transform: translateY(-50%);
 
 			&::after {
 				left: 100%;
@@ -184,9 +188,8 @@
 	&.ha-advanced-tooltip-right {
 		.ha-advanced-tooltip-content {
 			left: 101%;
-			top: 0;
-			bottom: 0;
-			margin: auto 0;
+			top: 50%;
+			transform: translateY(-50%);
 
 			&::after {
 				right: 100%;

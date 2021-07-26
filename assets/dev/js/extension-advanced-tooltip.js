@@ -49,7 +49,7 @@
 			},
 			onElementChange: function (e) {
 				if(this.$element.hasClass('ha-advanced-tooltip-enable')) {					
-					var style_controls = ['ha_advanced_tooltip_enable', 'ha_advanced_tooltip_content', 'ha_advanced_tooltip_position', 'ha_advanced_tooltip_arrow', 'ha_advanced_tooltip_duration', 'ha_advanced_tooltip_delay', 'ha_advanced_tooltip_size', 'ha_advanced_tooltip_background_color', 'ha_advanced_tooltip_color'];
+					var style_controls = ['ha_advanced_tooltip_enable', 'ha_advanced_tooltip_content', 'ha_advanced_tooltip_position', 'ha_advanced_tooltip_arrow', 'ha_advanced_tooltip_duration', 'ha_advanced_tooltip_size', 'ha_advanced_tooltip_animation'];
 	
 					if(style_controls.includes(e)) {
 						if ( (e == 'ha_advanced_tooltip_enable') && ( this.$element.find('.ha-advanced-tooltip-content').length <= 0 ) ) {
@@ -68,7 +68,7 @@
 					var content = $scope.find('.ha-advanced-tooltip-content');
 					content.html($.parseHTML(settings.content));
 					content.css('animation-duration', settings.duration+'ms');
-					content.addClass('animated '+settings.animation);
+					content.addClass(settings.animation);
 					
 					if( !settings.showArrow) {
 						content.addClass('no-arrow');
