@@ -277,6 +277,53 @@ class Advanced_Tooltip {
             ],
         ]);
 
+        $element->add_responsive_control(
+            'ha_advanced_tooltip_width',
+            [
+                'label' => __('Width', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => '120',
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 800,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-advanced-tooltip-content' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'ha_advanced_tooltip_enable!' => '',
+                ],
+            ]
+        );
+
+        $element->add_responsive_control(
+            'ha_advanced_tooltip_arrow_size',
+            [
+                'label' => __('Tooltip Arrow Size (px)', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => '5',
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-advanced-tooltip-content::after' => 'border-width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'ha_advanced_tooltip_enable!' => '',
+                    'ha_advanced_tooltip_arrow' => 'true',
+                ],
+            ]
+        );
+
         $element->add_group_control(
             Group_Control_Typography::get_type(),
             [
@@ -403,53 +450,6 @@ class Advanced_Tooltip {
                 'separator' => '',
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
-                ],
-            ]
-        );
-
-        $element->add_responsive_control(
-            'ha_advanced_tooltip_width',
-            [
-                'label' => __('Width', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'size' => '120',
-                ],
-                'range' => [
-                    'px' => [
-                        'min' => 1,
-                        'max' => 800,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-advanced-tooltip-content' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'ha_advanced_tooltip_enable!' => '',
-                ],
-            ]
-        );
-
-        $element->add_responsive_control(
-            'ha_advanced_tooltip_arrow_size',
-            [
-                'label' => __('Tooltip Arrow Size (px)', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'size' => '5',
-                ],
-                'range' => [
-                    'px' => [
-                        'min' => 1,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-advanced-tooltip-content::after' => 'border-width: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'ha_advanced_tooltip_enable!' => '',
-                    'ha_advanced_tooltip_arrow' => 'true',
                 ],
             ]
         );
