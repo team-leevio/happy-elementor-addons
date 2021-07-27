@@ -129,8 +129,9 @@ class Advanced_Tooltip {
             [
                 'label' => __('Animation', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
-                'default' => 'fadeIn',
+                'default' => '',
                 'options' => [
+                    '' => __('None', 'happy-elementor-addons'),
                     'ha_fadeIn' => __('fadeIn', 'happy-elementor-addons'),
                     'ha_zoomIn' => __('zoomIn', 'happy-elementor-addons'),
                     'ha_rollIn' => __('rollIn', 'happy-elementor-addons'),
