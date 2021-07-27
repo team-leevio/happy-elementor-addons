@@ -101,7 +101,6 @@
 
 	.ha-advanced-tooltip-content {
 		display: none;
-		// visibility: hidden;
 		width: 120px;
 		height: auto;
 		background-color: black;
@@ -112,7 +111,6 @@
 		position: absolute;
 		z-index: 999;
 		opacity: 0;
-		// transition: opacity 1s;
 
 		&::after {
 			content: "";
@@ -129,7 +127,6 @@
 
 		&.show {
 			display: inline-block;
-			// visibility: visible;
 			opacity: 1;
 		}
 	}
@@ -140,8 +137,6 @@
 			left: 0;
 			right: 0;
 			margin: 0 auto;
-			// left: 50%;
-			// transform: translateX(-50%);
 
 			&::after {
 				top: 100%;
@@ -158,8 +153,6 @@
 			left: 0;
 			right: 0;
 			margin: 0 auto;
-			// left: 50%;
-			// transform: translateX(-50%);
 
 			&::after {
 				bottom: 100%;

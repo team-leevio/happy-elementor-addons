@@ -60,7 +60,7 @@ class Advanced_Tooltip {
         $element->start_controls_section(
             '_section_ha_advanced_tooltip',
             [
-                'label' => __('Advanced Tooltip', 'happy-elementor-addons') . ha_get_section_icon(),
+                'label' => __('Happy Tooltip', 'happy-elementor-addons') . ha_get_section_icon(),
                 'tab'   => Controls_Manager::TAB_ADVANCED,
             ]
         );
@@ -135,10 +135,6 @@ class Advanced_Tooltip {
                     'ha_zoomIn' => __('zoomIn', 'happy-elementor-addons'),
                     'ha_rollIn' => __('rollIn', 'happy-elementor-addons'),
                     'ha_bounce' => __('bounce', 'happy-elementor-addons'),
-                    'ha_bounceIn' => __('bounceIn', 'happy-elementor-addons'),
-                    'ha_flipInX' => __('flipInX', 'happy-elementor-addons'),
-                    'ha_flipInY' => __('flipInY', 'happy-elementor-addons'),
-                    'ha_swing' => __('swing', 'happy-elementor-addons'),
                     'ha_slideInDown' => __('slideInDown', 'happy-elementor-addons'),
                     'ha_slideInLeft' => __('slideInLeft', 'happy-elementor-addons'),
                     'ha_slideInRight' => __('slideInRight', 'happy-elementor-addons'),
@@ -214,22 +210,6 @@ class Advanced_Tooltip {
                 ],
             ]
         );
-
-        // $element->add_control(
-        //     'ha_advanced_tooltip_delay',
-        //     [
-        //         'label' => __('Delay (ms)', 'happy-elementor-addons'),
-        //         'type' => Controls_Manager::NUMBER,
-        //         'min' => 100,
-        //         'max' => 1000,
-        //         'step' => 5,
-        //         'default' => 100,
-        //         'frontend_available' => true,
-        //         'condition' => [
-        //             'ha_advanced_tooltip_enable!' => '',
-        //         ],
-        //     ]
-        // );
 
         $element->add_responsive_control(
             'ha_advanced_tooltip_distance',
