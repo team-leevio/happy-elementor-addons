@@ -60,7 +60,7 @@ class Advanced_Tooltip {
         $element->start_controls_section(
             '_section_ha_advanced_tooltip',
             [
-                'label' => __('Happy Tooltip', 'happy-elementor-addons') . ha_get_section_icon(),
+                'label' => __('Happy Elementor Tooltip', 'happy-elementor-addons') . ha_get_section_icon(),
                 'tab'   => Controls_Manager::TAB_ADVANCED,
             ]
         );
@@ -104,7 +104,7 @@ class Advanced_Tooltip {
             ]
         );
 
-        $element->add_control(
+        $element->add_responsive_control(
             'ha_advanced_tooltip_position',
             [
                 'label' => __('Position', 'happy-elementor-addons'),
@@ -117,7 +117,7 @@ class Advanced_Tooltip {
                     'right' => __('Right', 'happy-elementor-addons'),
                 ],
                 'frontend_available' => true,
-                'prefix_class' => 'ha-advanced-tooltip-',
+                'prefix_class' => 'ha-advanced-tooltip%s-',
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
                 ],
@@ -186,7 +186,7 @@ class Advanced_Tooltip {
             [
                 'raw' => '<strong>' . esc_html__('Please note!', 'happy-elementor-addons') . '</strong> ' . esc_html__('By toggling Arrow to "HIDE" you get access to more background control.', 'happy-elementor-addons'),
                 'type' => Controls_Manager::RAW_HTML,
-                'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+                'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
                 'render_type' => 'ui',
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',
@@ -227,10 +227,10 @@ class Advanced_Tooltip {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-top .ha-advanced-tooltip-content' => 'bottom: calc(101% + {{SIZE}}{{UNIT}});',
-                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-bottom .ha-advanced-tooltip-content' => 'top: calc(101% + {{SIZE}}{{UNIT}});',
-                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-left .ha-advanced-tooltip-content' => 'right: calc(101% + {{SIZE}}{{UNIT}});',
-                    '{{WRAPPER}}.ha-advanced-tooltip-enable.ha-advanced-tooltip-right .ha-advanced-tooltip-content' => 'left: calc(101% + {{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-advanced-tooltip-enable .ha-advanced-tooltip-content' => '--ha-tooltip-arrow-distance: {{SIZE}}{{UNIT}};',
+                    // '{{WRAPPER}}.ha-advanced-tooltip-enable .ha-advanced-tooltip-content' => '--ha-tooltip-arrow-distance: {{SIZE}}{{UNIT}};',
+                    // '{{WRAPPER}}.ha-advanced-tooltip-enable .ha-advanced-tooltip-content' => '--ha-tooltip-arrow-distance: {{SIZE}}{{UNIT}};',
+                    // '{{WRAPPER}}.ha-advanced-tooltip-enable .ha-advanced-tooltip-content' => '--ha-tooltip-arrow-distance: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'ha_advanced_tooltip_enable!' => '',

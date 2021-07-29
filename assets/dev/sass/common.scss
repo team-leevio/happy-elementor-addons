@@ -3,15 +3,29 @@
 @import "animations";
 
 .ha-css-transform-yes {
-	transform:
-		translate(var(--ha-tfx-translate-x, 0), var(--ha-tfx-translate-y, 0)) scale(var(--ha-tfx-scale-x, 1), var(--ha-tfx-scale-y, 1)) skew(var(--ha-tfx-skew-x, 0), var(--ha-tfx-skew-y, 0)) rotateX(var(--ha-tfx-rotate-x, 0)) rotateY(var(--ha-tfx-rotate-y, 0)) rotateZ(var(--ha-tfx-rotate-z, 0));
+	transform: translate(var(--ha-tfx-translate-x, 0), var(--ha-tfx-translate-y, 0))
+		scale(var(--ha-tfx-scale-x, 1), var(--ha-tfx-scale-y, 1)) skew(var(--ha-tfx-skew-x, 0), var(--ha-tfx-skew-y, 0))
+		rotateX(var(--ha-tfx-rotate-x, 0)) rotateY(var(--ha-tfx-rotate-y, 0)) rotateZ(var(--ha-tfx-rotate-z, 0));
 
 	transition-property: transform;
-	transition-duration: var(--ha-tfx-transition-duration, .2s);
+	transition-duration: var(--ha-tfx-transition-duration, 0.2s);
 
 	&:hover {
-		transform:
-			translate(var(--ha-tfx-translate-x-hover, var(--ha-tfx-translate-x, 0)), var(--ha-tfx-translate-y-hover, var(--ha-tfx-translate-y, 0))) scale(var(--ha-tfx-scale-x-hover, var(--ha-tfx-scale-x, 1)), var(--ha-tfx-scale-y-hover, var(--ha-tfx-scale-y, 1))) skew(var(--ha-tfx-skew-x-hover, var(--ha-tfx-skew-x, 0)), var(--ha-tfx-skew-y-hover, var(--ha-tfx-skew-y, 0))) rotateX(var(--ha-tfx-rotate-x-hover, var(--ha-tfx-rotate-x, 0))) rotateY(var(--ha-tfx-rotate-y-hover, var(--ha-tfx-rotate-y, 0))) rotateZ(var(--ha-tfx-rotate-z-hover, var(--ha-tfx-rotate-z, 0)));
+		transform: translate(
+				var(--ha-tfx-translate-x-hover, var(--ha-tfx-translate-x, 0)),
+				var(--ha-tfx-translate-y-hover, var(--ha-tfx-translate-y, 0))
+			)
+			scale(
+				var(--ha-tfx-scale-x-hover, var(--ha-tfx-scale-x, 1)),
+				var(--ha-tfx-scale-y-hover, var(--ha-tfx-scale-y, 1))
+			)
+			skew(
+				var(--ha-tfx-skew-x-hover, var(--ha-tfx-skew-x, 0)),
+				var(--ha-tfx-skew-y-hover, var(--ha-tfx-skew-y, 0))
+			)
+			rotateX(var(--ha-tfx-rotate-x-hover, var(--ha-tfx-rotate-x, 0)))
+			rotateY(var(--ha-tfx-rotate-y-hover, var(--ha-tfx-rotate-y, 0)))
+			rotateZ(var(--ha-tfx-rotate-z-hover, var(--ha-tfx-rotate-z, 0)));
 	}
 }
 
@@ -73,7 +87,6 @@
 
 .ha-popup--is-enabled {
 	.ha-js-popup {
-
 		&,
 		& img {
 			cursor: zoom-in !important;
@@ -82,7 +95,6 @@
 }
 
 .mfp-wrap {
-
 	.mfp-close,
 	.mfp-arrow {
 		background-color: transparent;
@@ -98,6 +110,7 @@
 	cursor: pointer;
 
 	--ha-tooltip-arrow-color: black;
+	--ha-tooltip-arrow-distance: 0px;
 
 	.ha-advanced-tooltip-content {
 		display: none;
@@ -119,7 +132,7 @@
 			border-style: solid;
 		}
 
-		&.no-arrow{
+		&.no-arrow {
 			&::after {
 				visibility: hidden;
 			}
@@ -133,14 +146,17 @@
 
 	&.ha-advanced-tooltip-top {
 		.ha-advanced-tooltip-content {
-			bottom: 101%;
+			top: unset;
+			bottom: calc(101% + var(--ha-tooltip-arrow-distance));
 			left: 0;
 			right: 0;
 			margin: 0 auto;
 
 			&::after {
 				top: 100%;
+				bottom: unset;
 				left: 50%;
+				right: unset;
 				transform: translateX(-50%);
 				border-color: var(--ha-tooltip-arrow-color) transparent transparent transparent;
 			}
@@ -149,14 +165,17 @@
 
 	&.ha-advanced-tooltip-bottom {
 		.ha-advanced-tooltip-content {
-			top: 101%;
+			top: calc(101% + var(--ha-tooltip-arrow-distance));
+			bottom: unset;
 			left: 0;
 			right: 0;
 			margin: 0 auto;
 
 			&::after {
+				top: unset;
 				bottom: 100%;
 				left: 50%;
+				right: unset;
 				transform: translateX(-50%);
 				border-color: transparent transparent var(--ha-tooltip-arrow-color) transparent;
 			}
@@ -165,13 +184,17 @@
 
 	&.ha-advanced-tooltip-left {
 		.ha-advanced-tooltip-content {
-			right: 101%;
+			right: calc(101% + var(--ha-tooltip-arrow-distance));
+			left: unset;
 			top: 50%;
+			bottom: unset;
 			transform: translateY(-50%);
 
 			&::after {
-				left: 100%;
 				top: 50%;
+				bottom: unset;
+				left: 100%;
+				right: unset;
 				transform: translateY(-50%);
 				border-color: transparent transparent transparent var(--ha-tooltip-arrow-color);
 			}
@@ -180,15 +203,179 @@
 
 	&.ha-advanced-tooltip-right {
 		.ha-advanced-tooltip-content {
-			left: 101%;
+			left: calc(101% + var(--ha-tooltip-arrow-distance));
+			right: unset;
 			top: 50%;
+			bottom: unset;
 			transform: translateY(-50%);
 
 			&::after {
-				right: 100%;
 				top: 50%;
+				bottom: unset;
+				left: unset;
+				right: 100%;
 				transform: translateY(-50%);
 				border-color: transparent var(--ha-tooltip-arrow-color) transparent transparent;
+			}
+		}
+	}
+}
+
+body[data-elementor-device-mode="tablet"] {
+	.ha-advanced-tooltip-enable {
+		&.ha-advanced-tooltip-tablet-top {
+			.ha-advanced-tooltip-content {
+				top: unset;
+				bottom: calc(101% + var(--ha-tooltip-arrow-distance));
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+
+				&::after {
+					top: 100%;
+					bottom: unset;
+					left: 50%;
+					right: unset;
+					transform: translateX(-50%);
+					border-color: var(--ha-tooltip-arrow-color) transparent transparent transparent;
+				}
+			}
+		}
+
+		&.ha-advanced-tooltip-tablet-bottom {
+			.ha-advanced-tooltip-content {
+				top: calc(101% + var(--ha-tooltip-arrow-distance));
+				bottom: unset;
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+
+				&::after {
+					top: unset;
+					bottom: 100%;
+					left: 50%;
+					right: unset;
+					transform: translateX(-50%);
+					border-color: transparent transparent var(--ha-tooltip-arrow-color) transparent;
+				}
+			}
+		}
+
+		&.ha-advanced-tooltip-tablet-left {
+			.ha-advanced-tooltip-content {
+				right: calc(101% + var(--ha-tooltip-arrow-distance));
+				left: unset;
+				top: 50%;
+				bottom: unset;
+				transform: translateY(-50%);
+
+				&::after {
+					top: 50%;
+					bottom: unset;
+					left: 100%;
+					right: unset;
+					transform: translateY(-50%);
+					border-color: transparent transparent transparent var(--ha-tooltip-arrow-color);
+				}
+			}
+		}
+
+		&.ha-advanced-tooltip-tablet-right {
+			.ha-advanced-tooltip-content {
+				left: calc(101% + var(--ha-tooltip-arrow-distance));
+				right: unset;
+				top: 50%;
+				bottom: unset;
+				transform: translateY(-50%);
+
+				&::after {
+					top: 50%;
+					bottom: unset;
+					left: unset;
+					right: 100%;
+					transform: translateY(-50%);
+					border-color: transparent var(--ha-tooltip-arrow-color) transparent transparent;
+				}
+			}
+		}
+	}
+}
+
+body[data-elementor-device-mode="mobile"] {
+	.ha-advanced-tooltip-enable {
+		&.ha-advanced-tooltip-mobile-top {
+			.ha-advanced-tooltip-content {
+				top: unset;
+				bottom: calc(101% + var(--ha-tooltip-arrow-distance));
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+
+				&::after {
+					top: 100%;
+					bottom: unset;
+					left: 50%;
+					right: unset;
+					transform: translateX(-50%);
+					border-color: var(--ha-tooltip-arrow-color) transparent transparent transparent;
+				}
+			}
+		}
+
+		&.ha-advanced-tooltip-mobile-bottom {
+			.ha-advanced-tooltip-content {
+				top: calc(101% + var(--ha-tooltip-arrow-distance));
+				bottom: unset;
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+
+				&::after {
+					top: unset;
+					bottom: 100%;
+					left: 50%;
+					right: unset;
+					transform: translateX(-50%);
+					border-color: transparent transparent var(--ha-tooltip-arrow-color) transparent;
+				}
+			}
+		}
+
+		&.ha-advanced-tooltip-mobile-left {
+			.ha-advanced-tooltip-content {
+				right: calc(101% + var(--ha-tooltip-arrow-distance));
+				left: unset;
+				top: 50%;
+				bottom: unset;
+				transform: translateY(-50%);
+
+				&::after {
+					top: 50%;
+					bottom: unset;
+					left: 100%;
+					right: unset;
+					transform: translateY(-50%);
+					border-color: transparent transparent transparent var(--ha-tooltip-arrow-color);
+				}
+			}
+		}
+
+		&.ha-advanced-tooltip-mobile-right {
+			.ha-advanced-tooltip-content {
+				left: calc(101% + var(--ha-tooltip-arrow-distance));
+				right: unset;
+				top: 50%;
+				bottom: unset;
+				transform: translateY(-50%);
+
+				&::after {
+					top: 50%;
+					bottom: unset;
+					left: unset;
+					right: 100%;
+					transform: translateY(-50%);
+					border-color: transparent var(--ha-tooltip-arrow-color) transparent transparent;
+				}
 			}
 		}
 	}
