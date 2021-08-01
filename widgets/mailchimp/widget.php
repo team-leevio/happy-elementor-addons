@@ -15,7 +15,6 @@ use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Happy_Addons\Elementor\Controls\Select2;
-use \Happy_Addons\Elementor\Credentials_Manager;
 
 defined('ABSPATH') || die();
 
@@ -38,8 +37,7 @@ class Mailchimp extends Base {
 	public function __construct($data = [], $args = null) {
 		parent::__construct($data, $args);
 
-        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
-        $this->settings = Credentials_Manager::get_saved_credentials();
+        $this->settings = ha_get_credentials('mailchimp');
 	}
 
     /**
@@ -58,10 +56,16 @@ class Mailchimp extends Base {
         return ['email', 'mail chimp', 'mail', 'subscription'];
     }
 
-    /**
-     * Register content related controls
+	/**
+     * Register widget content controls
      */
     protected function register_content_controls() {
+		$this->__mailchimp_content_controls();
+		$this->__mailchimp_form_content_controls();
+		$this->__success_error_content_controls();
+	}
+
+    protected function __mailchimp_content_controls() {
 
         $this->start_controls_section(
             '_section_mailchimp',
@@ -125,7 +129,7 @@ class Mailchimp extends Base {
 				'placeholder' => 'Choose your created audience ',
 				'dynamic_params' => [
 					'object_type' => 'mailchimp_list',
-					'global_api'   => isset($this->settings['mailchimp']['api'])? $this->settings['mailchimp']['api']: '',
+					'global_api'   => isset($this->settings['api'])? $this->settings['api']: '',
 					'control_dependency' => [
 						'mailchimp_api_choose' => 'mailchimp_api_choose',
 						'mailchimp_api' => 'mailchimp_api',
@@ -154,6 +158,9 @@ class Mailchimp extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __mailchimp_form_content_controls() {
 
         $this->start_controls_section(
             '_section_mailchimp_form',
@@ -603,6 +610,9 @@ class Mailchimp extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __success_error_content_controls() {
 
         $this->start_controls_section(
             '_section_success_error_label',
@@ -655,6 +665,14 @@ class Mailchimp extends Base {
      * Register styles related controls
      */
     protected function register_style_controls() {
+		$this->__mailchimp_label_style_controls();
+		$this->__input_style_controls();
+		$this->__input_icon_style_controls();
+		$this->__button_style_controls();
+		$this->__success_error_style_controls();
+	}
+
+    protected function __mailchimp_label_style_controls() {
 
         $this->start_controls_section(
             '_section_style_mailchimp_label',
@@ -698,6 +716,9 @@ class Mailchimp extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __input_style_controls() {
 
         // input style
         $this->start_controls_section(
@@ -996,6 +1017,9 @@ class Mailchimp extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __input_icon_style_controls() {
 
         $this->start_controls_section(
             'input_icon_style_holder',
@@ -1098,6 +1122,9 @@ class Mailchimp extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __button_style_controls() {
 
         $this->start_controls_section(
             'button_style_holder',
@@ -1225,7 +1252,7 @@ class Mailchimp extends Base {
                     'size' => 50,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-mc-button' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-button-wrapper' => 'width: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'button_style_use_width_height' => 'yes'
@@ -1330,7 +1357,7 @@ class Mailchimp extends Base {
             ]
         );
 
-        
+
 
         $this->end_controls_tab();
 
@@ -1428,6 +1455,9 @@ class Mailchimp extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __success_error_style_controls() {
 
         $this->start_controls_section(
             'success_error',
@@ -1554,7 +1584,6 @@ class Mailchimp extends Base {
                 'selector' => '{{WRAPPER}} .ha-mc-response-message.error',
             ]
         );
-
 
         $this->end_controls_section();
     }

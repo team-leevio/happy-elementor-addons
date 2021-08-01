@@ -48,7 +48,11 @@ class NinjaForm extends Base {
         return [ 'wpf','wpform' , 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
     }
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+
 		$this->start_controls_section(
 			'_section_ninjaforms',
 			[
@@ -58,6 +62,7 @@ class NinjaForm extends Base {
 		);
 
         if ( ! ha_is_ninjaforms_activated() ) {
+
             $this->add_control(
                 '_ninjaforms_missing_notice',
                 [
@@ -78,24 +83,35 @@ class NinjaForm extends Base {
                     'raw' => '<a href="'.esc_url( admin_url( 'plugin-install.php?s=Ninja+Forms&tab=search&type=term' ) ).'" target="_blank" rel="noopener">Click to install or activate Ninja Forms</a>',
                 ]
             );
-            $this->end_controls_section();
-            return;
-        }
 
-        $this->add_control(
-            'form_id',
-            [
-                'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::SELECT,
-                'label_block' => true,
-				'options' => ['' => __( '', 'happy-elementor-addons' ) ] + \ha_get_ninjaform(),
-            ]
-        );
+        }else {
+
+			$this->add_control(
+				'form_id',
+				[
+					'label' => __( 'Select Your Form', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::SELECT,
+					'label_block' => true,
+					'options' => ['' => __( '', 'happy-elementor-addons' ) ] + \ha_get_ninjaform(),
+				]
+			);
+
+		}
 
         $this->end_controls_section();
     }
 
+	/**
+     * Register widget style controls
+     */
     protected function register_style_controls() {
+		$this->__fields_style_controls();
+		$this->__label_style_controls();
+		$this->__submit_style_controls();
+	}
+
+    protected function __fields_style_controls() {
+
         $this->start_controls_section(
             '_section_fields_style',
             [
@@ -252,8 +268,10 @@ class NinjaForm extends Base {
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
 
-
         $this->end_controls_section();
+	}
+
+    protected function __label_style_controls() {
 
         $this->start_controls_section(
             'ninjaf-form-label',
@@ -349,6 +367,9 @@ class NinjaForm extends Base {
         );
 
         $this->end_controls_section();
+	}
+
+    protected function __submit_style_controls() {
 
         $this->start_controls_section(
             'submit',
@@ -537,6 +558,7 @@ class NinjaForm extends Base {
 
     protected function render() {
         if ( ! ha_is_ninjaforms_activated() ) {
+			ha_show_plugin_missing_alert(__( 'Ninja Form', 'happy-elementor-addons' ) );
             return;
         }
 

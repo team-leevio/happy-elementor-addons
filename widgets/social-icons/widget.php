@@ -47,7 +47,11 @@ class Social_Icons extends Base {
 		return ['social', 'icons', 'media', 'facebook', 'fb', 'twitter', 'linkedin'];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+
 		$this->start_controls_section(
 			'_section_ha_social_icons_contents',
 			[
@@ -243,6 +247,7 @@ class Social_Icons extends Base {
 		);
 
 		$repeater->end_controls_tab();
+
 		$repeater->start_controls_tab(
 			'_tab_social_icon_hover',
 			[
@@ -442,11 +447,22 @@ class Social_Icons extends Base {
 				'separator'    => 'before',
 			]
 		);
-		$this->end_controls_section();
 
+		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__common_style_controls();
+		$this->__icon_style_controls();
+		$this->__social_name_style_controls();
+		$this->__separator_style_controls();
+	}
+
+	protected function __common_style_controls() {
+
 		$this->start_controls_section(
 			'_section_common_style',
 			[
@@ -625,12 +641,15 @@ class Social_Icons extends Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name'     => 'icons_box_shadow',
-//				'selector'      => '{{WRAPPER}} .ha-social-icon, {{WRAPPER}} .ha-social-icon-separator',
+				//'selector'      => '{{WRAPPER}} .ha-social-icon, {{WRAPPER}} .ha-social-icon-separator',
 				'selector' => '{{WRAPPER}} .ha-social-icon',
 			]
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __icon_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_ha_icon',
@@ -784,6 +803,9 @@ class Social_Icons extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __social_name_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_custom_label',
@@ -816,6 +838,9 @@ class Social_Icons extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __separator_style_controls() {
 
 		$this->start_controls_section(
 			'_section_social_icon_separator',
@@ -850,7 +875,6 @@ class Social_Icons extends Base {
 		);
 
 		$this->end_controls_section();
-
 	}
 
 	protected function render() {

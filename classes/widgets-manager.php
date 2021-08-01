@@ -629,6 +629,31 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'image-accordion' => [
+				'title' => __( 'Image Accordion', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-image-accordion',
+				'css' => ['image-accordion'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'content-switcher' => [
+				'title' => __( 'Content Switcher', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-switcher',
+				'css' => ['content-switcher'],
+			],
+			'image-stack-group' => [
+				'title' => __( 'Image Stack Group', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-lens',
+				'css' => ['circle-image-group'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
         ];
     }
 

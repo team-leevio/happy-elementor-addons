@@ -40,7 +40,10 @@ trait Button_Renderer {
         $this->add_render_attribute( $args['text'], 'class', $args['text_class'] );
 
         $this->add_render_attribute( 'button', 'class', $args['class'] );
-		$this->add_link_attributes( 'button', $settings[ $args['link'] ] );
+		
+		if( ! empty($settings[ $args['link'] ]) ){
+			$this->add_link_attributes( 'button', $settings[ $args['link'] ] );
+		}
 
 		if ( $button_text && ( empty( $has_new_icon ) && empty( $has_old_icon ) ) ) :
 			printf( '<a %1$s>%2$s</a>',

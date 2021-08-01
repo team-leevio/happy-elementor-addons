@@ -29,28 +29,16 @@ class Credentials_Manager {
 		// }
 
 		// $credentials = self::get_credentials();
-
-		// foreach (self::get_local_credentials_map() as $feature_key => $data) {
-		// 	if (!in_array($feature_key, $credentials)) {
-		// 		self::enable_feature($feature_key);
-		// 	}
-		// }
-
-		// foreach (self::get_pro_credentials_map() as $feature_key => $data) {
-		// 	if (in_array($feature_key, $credentials)) {
-		// 		self::disable_pro_feature($feature_key);
-		// 	}
-		// }
 	}
 
-	// public static function get_credentials_map() {
-	// 	$credentials_map = [];
+	public static function get_credentials_map() {
+		$credentials_map = [];
 
-	// 	$local_credentials_map = self::get_local_credentials_map();
-	// 	$credentials_map = array_merge($credentials_map, $local_credentials_map);
+		$local_credentials_map = self::get_local_credentials_map();
+		$credentials_map = array_merge($credentials_map, $local_credentials_map);
 
-	// 	return apply_filters('happyaddons_get_credentials_map', $credentials_map);
-	// }
+		return apply_filters('happyaddons_get_credentials_map', $credentials_map);
+	}
 
 	public static function get_saved_credentials() {
 		return get_option(self::CREDENTIALS_DB_KEY, []);
@@ -67,56 +55,6 @@ class Credentials_Manager {
 	 */
 	public static function get_pro_credentials_map() {
 		return [
-			// 'twitter' => [
-			// 	'title' => __('Twitter', 'happy-elementor-addons'),
-			// 	'icon' => 'hm hm-twitter-bird',
-			// 	'fiels' => [
-			// 		[
-			// 			'label' => esc_html__('User Name', 'happy-elementor-addons'),
-			// 			'type' => 'text',
-			// 			'name' => 'username',
-			// 		],
-			// 		[
-			// 			'label' => esc_html__('Public Key', 'happy-elementor-addons'),
-			// 			'type' => 'text',
-			// 			'name' => 'public_key',
-			// 		],
-			// 		[
-			// 			'label' => esc_html__('Secret Key', 'happy-elementor-addons'),
-			// 			'type' => 'text',
-			// 			'name' => 'secret_key',
-			// 		],
-			// 	],
-			// 	'help' => 'https://happyaddons.com/mailchimp/',
-			// 	'is_pro' => true,
-			// ],
-		];
-	}
-
-	/**
-	 * Get the free credentials map
-	 *
-	 * @return array
-	 */
-	public static function get_local_credentials_map() {
-		return [
-			'mailchimp' => [
-				'title' => __('MailChimp', 'happy-elementor-addons'),
-				'icon' => 'hm hm-mail-chimp',
-				'fiels' => [
-					[
-						'label' => esc_html__('Enter API Key. ', 'happy-elementor-addons'),
-						'type' => 'text',
-						'name' => 'api',
-						'help' => [
-							'instruction' => esc_html__('Get your api key here', 'happy-elementor-addons'),
-							'link' => 'https://admin.mailchimp.com/account/api/'
-						],
-					],
-				],
-				'demo' => 'https://happyaddons.com/mailchimp/',
-				'is_pro' => false,
-			],
 			// 'instagram' => [
 			// 	'title' => __('Instagram', 'happy-elementor-addons'),
 			// 	'icon' => 'hm hm-instagram',
@@ -147,34 +85,68 @@ class Credentials_Manager {
 			// 		],
 			// 	],
 			// 	'demo' => 'https://happyaddons.com/instagram/',
-			// 	'is_pro' => false,
+			// 	'is_pro' => true,
 			// ],
 		];
 	}
 
-	// protected static function enable_feature($feature_key) {
-	// 	$feature_file = HAPPY_ADDONS_DIR_PATH . 'extensions/' . $feature_key . '.php';
-
-	// 	if (is_readable($feature_file)) {
-	// 		include_once($feature_file);
-	// 	}
-	// }
-
-	// protected static function disable_pro_feature($feature_key) {
-	// 	switch ($feature_key) {
-	// 		case 'display-conditions':
-	// 			add_filter('happyaddons/extensions/display_condition', '__return_false');
-	// 			break;
-
-	// 		case 'image-masking':
-	// 			add_filter('happyaddons/extensions/image_masking', '__return_false');
-	// 			break;
-
-	// 		case 'happy-particle-effects':
-	// 			add_filter('happyaddons/extensions/happy_particle_effects', '__return_false');
-	// 			break;
-	// 	}
-	// }
+	/**
+	 * Get the free credentials map
+	 *
+	 * @return array
+	 */
+	public static function get_local_credentials_map() {
+		return [
+			'mailchimp' => [
+				'title' => __('MailChimp', 'happy-elementor-addons'),
+				'icon' => 'hm hm-mail-chimp',
+				'fiels' => [
+					[
+						'label' => esc_html__('Enter API Key. ', 'happy-elementor-addons'),
+						'type' => 'text',
+						'name' => 'api',
+						'help' => [
+							'instruction' => esc_html__('Get your api key here', 'happy-elementor-addons'),
+							'link' => 'https://admin.mailchimp.com/account/api/'
+						],
+					],
+				],
+				'demo' => 'https://happyaddons.com/mailchimp/',
+				'is_pro' => false,
+			],
+			'twitter_feed' => [
+				'title' => __('Twitter Feed', 'happy-elementor-addons'),
+				'icon' => 'hm hm-twitter-feed',
+				'fiels' => [
+					[
+						'label' => esc_html__('User Name. (Use @ sign with your Twitter user name)', 'happy-elementor-addons'),
+						'type' => 'text',
+						'name' => 'user_name',
+					],
+					[
+						'label' => esc_html__('Consumer Key', 'happy-elementor-addons'),
+						'type' => 'text',
+						'name' => 'consumer_key',
+						'help' => [
+							'instruction' => esc_html__('Get Consumer Key', 'happy-elementor-addons'),
+							'link' => 'https://apps.twitter.com/app/'
+						],
+					],
+					[
+						'label' => esc_html__('Consumer Secret', 'happy-elementor-addons'),
+						'type' => 'text',
+						'name' => 'consumer_secret',
+						'help' => [
+							'instruction' => esc_html__('Get Consumer Secret', 'happy-elementor-addons'),
+							'link' => 'https://apps.twitter.com/app/'
+						],
+					],
+				],
+				// 'help' => 'https://happyaddons.com/mailchimp/',
+				'is_pro' => false,
+			],
+		];
+	}
 }
 
 Credentials_Manager::init();

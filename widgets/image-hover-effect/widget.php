@@ -45,7 +45,11 @@ class Image_Hover_Effect extends Base {
 		return ['hover', 'image', 'effect'];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+
 		$this->start_controls_section(
 			'_section_image_content',
 			[
@@ -179,7 +183,16 @@ class Image_Hover_Effect extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__common_style_controls();
+		$this->__overlay_style_controls();
+	}
+
+	protected function __common_style_controls() {
+
 		$this->start_controls_section(
 			'_section_common_style',
 			[
@@ -358,10 +371,12 @@ class Image_Hover_Effect extends Base {
 		);
 
 		$this->end_controls_tab();
-
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+	}
+
+	protected function __overlay_style_controls() {
 
 		$this->start_controls_section(
 			'_section_overlay_style',
@@ -372,7 +387,6 @@ class Image_Hover_Effect extends Base {
 		);
 
 		$this->start_controls_tabs('_tabs_overlay_style');
-
 		$this->start_controls_tab(
 			'_tab_overlay_normal',
 			[
@@ -419,7 +433,6 @@ class Image_Hover_Effect extends Base {
 		);
 
 		$this->end_controls_tab();
-
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();

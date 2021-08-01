@@ -57,7 +57,16 @@ class Review extends Base {
 		];
 	}
 
+	/**
+     * Register widget content controls
+     */
 	protected function register_content_controls() {
+		$this->__review_content_controls();
+		$this->__reviewer_content_controls();
+	}
+
+	protected function __review_content_controls() {
+
 		$this->start_controls_section(
 			'_section_review',
 			[
@@ -133,6 +142,9 @@ class Review extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __reviewer_content_controls() {
 
 		$this->start_controls_section(
 			'_section_reviewer',
@@ -291,7 +303,17 @@ class Review extends Base {
 		$this->end_controls_section();
 	}
 
+	/**
+     * Register widget style controls
+     */
 	protected function register_style_controls() {
+		$this->__ratting_style_controls();
+		$this->__review_reviewer_style_controls();
+		$this->__photo_style_controls();
+	}
+
+	protected function __ratting_style_controls() {
+
 		$this->start_controls_section(
 			'_section_ratting_style',
 			[
@@ -379,6 +401,9 @@ class Review extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __review_reviewer_style_controls() {
 
 		$this->start_controls_section(
 			'_section_review_style',
@@ -524,6 +549,9 @@ class Review extends Base {
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function __photo_style_controls() {
 
 		$this->start_controls_section(
 			'_section_photo_style',

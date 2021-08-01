@@ -34,6 +34,9 @@ class WPML_Manager {
 	}
 
 	public static function load_integration_files() {
+		// Load repeatable module class
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-module-with-items.php' );
+
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/bar-chart.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/carousel.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-grid.php' );
@@ -45,6 +48,8 @@ class WPML_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/social-icons.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/data-table.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/horizontal-timeline.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-accordion.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/content-switcher.php' );
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -613,6 +618,24 @@ class WPML_Manager {
 						'editor_type' => 'LINE',
 					],
 				],
+			],
+
+			/**
+			 * Image Accordion
+			 */
+			'image-accordion' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Image_Accordion',
+				]
+			],
+
+			/*
+			 * Content Switcher
+			 */
+			'content-switcher' => [
+				'fields' => [],
+				'integration-class' => __NAMESPACE__ . '\\WPML_Content_Switcher',
 			],
 		];
 
