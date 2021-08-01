@@ -643,6 +643,11 @@ class Widgets_Manager {
 				'title' => __( 'Content Switcher', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-switcher',
 				'css' => ['content-switcher'],
+			],
+			'image-stack-group' => [
+				'title' => __( 'Image Stack Group', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-lens',
+				'css' => ['circle-image-group'],
 				'js' => [],
 				'vendor' => [
 					'css' => [],

@@ -280,9 +280,9 @@
 .ha-dashboard-credentials__item-title {
 	display: inline-block;
 	-webkit-box-flex: 0;
-	-webkit-flex: 0 0 100px;
-	    -ms-flex: 0 0 100px;
-	        flex: 0 0 100px; 
+	-webkit-flex: 0 0 130px;
+	    -ms-flex: 0 0 130px;
+	        flex: 0 0 130px; 
 	margin: 0;
 	color: #444;
 	font-weight: 400;
@@ -298,9 +298,9 @@
 	        align-items: center;
 	-ms-flex-align: center;
 	-webkit-box-flex: 0;
-	-webkit-flex: 0 0 150px;
-	    -ms-flex: 0 0 150px;
-	        flex: 0 0 150px;
+	-webkit-flex: 0 0 160px;
+	    -ms-flex: 0 0 160px;
+	        flex: 0 0 160px;
 }
 .ha-dashboard-credentials__item-title > label {
 	font-weight: 700;
@@ -365,9 +365,9 @@
 	        align-items: flex-end;
 	-ms-flex-align: end;
 	-webkit-box-flex: 0;
-	-webkit-flex: 0 0 calc(100% - 150px);
-	    -ms-flex: 0 0 calc(100% - 150px);
-	        flex: 0 0 calc(100% - 150px);
+	-webkit-flex: 0 0 calc(100% - 160px);
+	    -ms-flex: 0 0 calc(100% - 160px);
+	        flex: 0 0 calc(100% - 160px);
 	-webkit-flex-wrap: wrap;
 	    -ms-flex-wrap: wrap;
 	        flex-wrap: wrap;
