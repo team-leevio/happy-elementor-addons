@@ -15,7 +15,6 @@ use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Happy_Addons\Elementor\Controls\Select2;
-use \Happy_Addons\Elementor\Credentials_Manager;
 
 defined('ABSPATH') || die();
 
@@ -38,8 +37,7 @@ class Mailchimp extends Base {
 	public function __construct($data = [], $args = null) {
 		parent::__construct($data, $args);
 
-        include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
-        $this->settings = Credentials_Manager::get_saved_credentials();
+        $this->settings = ha_get_credentials('mailchimp');
 	}
 
     /**
@@ -131,7 +129,7 @@ class Mailchimp extends Base {
 				'placeholder' => 'Choose your created audience ',
 				'dynamic_params' => [
 					'object_type' => 'mailchimp_list',
-					'global_api'   => isset($this->settings['mailchimp']['api'])? $this->settings['mailchimp']['api']: '',
+					'global_api'   => isset($this->settings['api'])? $this->settings['api']: '',
 					'control_dependency' => [
 						'mailchimp_api_choose' => 'mailchimp_api_choose',
 						'mailchimp_api' => 'mailchimp_api',
@@ -1237,7 +1235,7 @@ class Mailchimp extends Base {
                     'size' => 50,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-mc-button' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-button-wrapper' => 'width: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'button_style_use_width_height' => 'yes'

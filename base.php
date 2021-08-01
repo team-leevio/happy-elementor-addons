@@ -81,6 +81,8 @@ class Base {
 	public function include_files() {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-forms.php' );
 
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/ajax-handler.php' );
+
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );

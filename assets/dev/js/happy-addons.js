@@ -1125,5 +1125,7 @@
 				elementorFrontend.elementsHandler.addHandler( handlerClass, { $element: $scope });
 			});
 		});
+
 	});
+
 } (jQuery));

@@ -225,17 +225,11 @@ class Dashboard {
         return $widgets_map;
     }
 
-    private static function get_real_credentials_map() {
-        $credentail_map = Credentials_Manager::get_local_credentials_map();
-        return $credentail_map;
-    }
-
     public static function get_credentials() {
-        $credentail_map = self::get_real_credentials_map();
 
-        //if ( ! ha_has_pro() ) {
-            $credentail_map = array_merge( $credentail_map, Credentials_Manager::get_pro_credentials_map() );
-        //}
+        $credentail_map = Credentials_Manager::get_credentials_map();
+
+        $credentail_map = array_merge( $credentail_map, Credentials_Manager::get_pro_credentials_map() );
 
         return $credentail_map;
     }

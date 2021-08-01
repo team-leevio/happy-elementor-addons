@@ -1,149 +1,32 @@
 @import "variables";
 @import "mixins";
 
-.ha-member {
-	@include widgetContainer {
-		padding: 25px;
-		@include widgetContainerBaseStyle;
-	}
-
-	&-figure {
-		display: inline-block;
-		margin: 0 0 25px !important;
-		position: relative;
-
-		img {
-			width: 100%;
-			height: 100%;
-			vertical-align: bottom;
-			object-fit: cover;
-		}
-	}
-
-	&.ha-member-hover-image-on &-figure {
-		img:nth-of-type(2) {
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: -1;
-			opacity: 0;
-		}
-
-		&:hover img:nth-of-type(1) {
-			z-index: -1;
-			opacity: 0;
-		}
-
-		&:hover img:nth-of-type(2) {
-			z-index: 2;
-			opacity: 1;
-		}
-	}
-
-	&-name {
-		margin-top: 0;
-		margin-bottom: 10px;
-		color: #151515;
-		font-size: 18px;
-	}
-
-	&-position {
-		color: #7f7f7f;
-		font-size: 14px;
-		margin-bottom: 25px;
-	}
-
-	&-bio {
-		font-size: 14px;
-		line-height: 1.6;
-		margin-bottom: 25px;
-	}
-
-	&-links {
-		> a {
-			color: #9895ad;
-			transition: all 0.2s;
-			text-align: center;
-			display: inline-block;
-			line-height: 1;
-
-			&:hover,
-			&:focus {
-				color: #222;
-			}
-
-			> i {
-				width: 1em;
-				height: 1em;
-			}
-
-			&:not(:last-child) {
-				margin-right: 10px;
-			}
-		}
-	}
-
-	.ha-btn {
-		margin-bottom: 15px;
-		cursor: pointer;
-	}
-
-	&-body .ha-btn:last-child {
-		margin-top: 15px;
-		margin-bottom: 0;
-	}
-
-	&-lightbox {
-		display: none;
-		visibility: hidden;
-		width: 0;
-		height: 0;
-		position: fixed;
-		z-index: -999999;
-		left: 0;
-		top: 0;
-
-		&.ha-member-lightbox-show {
-			z-index: 999999;
-			visibility: visible;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, 0.6);
-			overflow: auto;
-			display: flex;
-			justify-content: center;
-			align-items: flex-start;
-
-			.ha-member-lightbox-close {
-				position: absolute;
-				z-index: 99999;
-				display: inline-flex;
-				color: #9ec8f0;
-				font-size: 30px;
-				cursor: pointer;
-				transition: transform 0.3s;
-				transition: transform 0.3s;
-				transition-delay: 0.5s;
-				transform: scale(1);
-			}
-			.ha-member-lightbox-inner {
-				width: 100%;
-				// animation-delay: .5s;
-				animation-duration: 1s;
-				animation-fill-mode: both;
-				animation-name: ha-member-lightbox-zoomIn;
-			}
-		}
-	}
+.ha-number-body {
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  border-radius: 100%;
+  background-color: $primary-color;
+  font-size: 20px;
+  text-align: center;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
-@keyframes ha-member-lightbox-zoomIn {
-	0% {
-		opacity: 0;
-		transform: scale3d(0.3, 0.3, 0.3);
-	}
-
-	50% {
-		opacity: 1;
-	}
+.ha-number-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
+
+.ha-number-text {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+// {"mode":"full","isActive":false}
