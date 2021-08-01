@@ -184,11 +184,11 @@ class Image_Stack_Group extends Base {
 		$repeater->add_control(
 			'icon_color',
 			[
-				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'label' => __( 'Icon Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'condition' => [ 'media_type' => 'icon' ],
 				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}} i' => 'color: {{VALUE}}'
+					'{{WRAPPER}} .ha-cig-item{{CURRENT_ITEM}} i' => 'color: {{VALUE}}'
 				]
 			]
 		);
@@ -369,8 +369,8 @@ class Image_Stack_Group extends Base {
 				'label' => __( 'Border Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-cig-item i' => 'border-color: {{VALUE}} !important;',
-					'{{WRAPPER}} .ha-cig-item img' => 'border-color: {{VALUE}} !important;',
+					'{{WRAPPER}} .ha-cig-item i' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-cig-item img' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -399,6 +399,9 @@ class Image_Stack_Group extends Base {
 			[
 				'label' => __( 'Icon Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-cig-item i' => 'color: {{VALUE}}'
+				]
 			]
 		);
 
@@ -572,7 +575,6 @@ class Image_Stack_Group extends Base {
 
 					$backGround = $bg?$bg:$bgGlobal;
 					
-					var_dump($backGround);
 					if($bgType == 'classic'){
 						$attr['style'] = "background:".$backGround." !important";
 					}else{
