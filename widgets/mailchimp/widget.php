@@ -1235,7 +1235,7 @@ class Mailchimp extends Base {
                     'size' => 50,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-mc-button' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-mc-button-wrapper' => 'width: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'button_style_use_width_height' => 'yes'

@@ -312,10 +312,10 @@
 				font-size: 13px;
 				color: #444;
 				font-weight: 400;
-				flex: 0 0 100px;
+				flex: 0 0 130px;
 
 				&-wrap {
-					flex: 0 0 150px;
+					flex: 0 0 160px;
 					align-items: center;
 					display: flex;
 				}
@@ -368,7 +368,7 @@
 				margin-bottom: 7px;
 
 				&-wrap {
-					flex: 0 0 calc(100% - 150px);
+					flex: 0 0 calc(100% - 160px);
 					display: flex;
 					align-items: flex-end;
 					// margin-left: 15px;
