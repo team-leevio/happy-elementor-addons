@@ -1,3 +1,76 @@
+.ha-mailchimp {
+	&-horizontal {
+		flex-wrap: wrap;
+
+		.ha-mc-input-wrapper {
+			margin-right: 30px;
+			flex: 1;
+		}
+
+		.ha-mc-button-wrapper {
+			align-self: flex-end;
+		}
+	}
+
+	&-vertical {
+		flex-direction: column;
+
+		.ha-mc-input-wrapper {
+			margin-bottom: 30px;
+		}
+	}
+}
+
+body[data-elementor-device-mode="tablet"] {
+	.ha-mailchimp-tablet {
+		&-horizontal {
+			flex-wrap: wrap;
+	
+			.ha-mc-input-wrapper {
+				margin-right: 30px;
+				flex: 1;
+			}
+	
+			.ha-mc-button-wrapper {
+				align-self: flex-end;
+			}
+		}
+	
+		&-vertical {
+			flex-direction: column;
+	
+			.ha-mc-input-wrapper {
+				margin-bottom: 30px;
+			}
+		}
+	}
+}
+
+body[data-elementor-device-mode="mobile"] {
+	.ha-mailchimp-mobile {
+		&-horizontal {
+			flex-wrap: wrap;
+	
+			.ha-mc-input-wrapper {
+				margin-right: 30px;
+				flex: 1;
+			}
+	
+			.ha-mc-button-wrapper {
+				align-self: flex-end;
+			}
+		}
+	
+		&-vertical {
+			flex-direction: column;
+	
+			.ha-mc-input-wrapper {
+				margin-bottom: 30px;
+			}
+		}
+	}
+}
+
 .ha-mailchimp-wrapper {
 	.ha-mc-response-message {
 		display: none;
@@ -23,26 +96,26 @@
 	.ha-mailchimp-form {
 		display: flex;
 
-		&.horizontal {
-			flex-wrap: wrap;
+		// &.horizontal {
+		// 	flex-wrap: wrap;
 
-			.ha-mc-input-wrapper {
-				margin-right: 30px;
-				flex: 1;
-			}
+		// 	.ha-mc-input-wrapper {
+		// 		margin-right: 30px;
+		// 		flex: 1;
+		// 	}
 
-			.ha-mc-button-wrapper {
-				align-self: flex-end;
-			}
-		}
+		// 	.ha-mc-button-wrapper {
+		// 		align-self: flex-end;
+		// 	}
+		// }
 
-		&.vertical {
-			flex-direction: column;
+		// &.vertical {
+		// 	flex-direction: column;
 
-			.ha-mc-input-wrapper {
-				margin-bottom: 30px;
-			}
-		}
+		// 	.ha-mc-input-wrapper {
+		// 		margin-bottom: 30px;
+		// 	}
+		// }
 
 		.ha-mc-input-label {
 			color: #000000;
