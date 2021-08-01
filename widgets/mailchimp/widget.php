@@ -176,11 +176,19 @@ class Mailchimp extends Base {
                 'label' => __('Form Alignment', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'horizontal',
+                'devices' => ['desktop', 'tablet', 'mobile'],
+				'desktop_default' => 'horizontal',
+				'tablet_default' => 'horizontal',
+				'mobile_default' => 'vertical',
+				// 'desktop_default' => ['horizontal'],
+				// 'tablet_default' => ['horizontal'],
+				// 'mobile_default' => ['vertical'],
                 'options' => [
                     'horizontal' => esc_html__('Horizontal', 'happy-elementor-addons'),
                     'vertical' => esc_html__('Vertical', 'happy-elementor-addons'),
                 ],
-                'frontend_available' => true,
+                'prefix_class' => 'ha-mailchimp%s-',
+                // 'frontend_available' => true,
             ]
         );
 
@@ -751,8 +759,14 @@ class Mailchimp extends Base {
                     'unit' => 'px',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-mailchimp-form.vertical .ha-mc-input-wrapper' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-mailchimp-form.horizontal .ha-mc-input-wrapper' => 'margin-right: {{SIZE}}{{UNIT}};',
+                    'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-mailchimp-vertical .ha-mailchimp-form .ha-mc-input-wrapper' => 'margin-bottom: {{SIZE}}{{UNIT}}; margin-right: unset;',
+                    'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-mailchimp-horizontal .ha-mailchimp-form .ha-mc-input-wrapper' => 'margin-right: {{SIZE}}{{UNIT}}; margin-bottom: unset;',
+                    'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-mailchimp-tablet-vertical .ha-mailchimp-form .ha-mc-input-wrapper' => 'margin-bottom: {{SIZE}}{{UNIT}}; margin-right: unset;',
+                    'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-mailchimp-tablet-horizontal .ha-mailchimp-form .ha-mc-input-wrapper' => 'margin-right: {{SIZE}}{{UNIT}}; margin-bottom: unset;',
+                    'body[data-elementor-device-mode="mobile"] {{WRAPPER}}.ha-mailchimp-mobile-vertical .ha-mailchimp-form .ha-mc-input-wrapper' => 'margin-bottom: {{SIZE}}{{UNIT}}; margin-right: unset;',
+                    'body[data-elementor-device-mode="mobile"] {{WRAPPER}}.ha-mailchimp-mobile-horizontal .ha-mailchimp-form .ha-mc-input-wrapper' => 'margin-right: {{SIZE}}{{UNIT}}; margin-bottom: unset;',
+                    // '{{WRAPPER}} .ha-mailchimp-form.vertical .ha-mc-input-wrapper' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    // '{{WRAPPER}} .ha-mailchimp-form.horizontal .ha-mc-input-wrapper' => 'margin-right: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -881,73 +895,79 @@ class Mailchimp extends Base {
             ]
         );
 
-        $this->add_responsive_control(
-            'input_style_margin_bottom',
-            [
-                'label' => esc_html__('Margin Bottom', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 20,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-mc-input-wrapper:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'form_style_switcher!' => 'yes'
-                ]
-            ]
-        );
+        // $this->add_responsive_control(
+        //     'input_style_margin_bottom',
+        //     [
+        //         'label' => esc_html__('Margin Bottom', 'happy-elementor-addons'),
+        //         'type' => Controls_Manager::SLIDER,
+        //         'size_units' => ['px'],
+        //         'range' => [
+        //             'px' => [
+        //                 'min' => 0,
+        //                 'max' => 100,
+        //                 'step' => 1,
+        //             ],
+        //         ],
+        //         'default' => [
+        //             'unit' => 'px',
+        //             'size' => 20,
+        //         ],
+        //         'selectors' => [
+        //             '{{WRAPPER}} .ha-mc-input-wrapper:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+        //         ],
+        //         'condition' => [
+        //             'form_style_switcher!' => 'yes'
+        //         ]
+        //     ]
+        // );
 
-        $this->add_responsive_control(
-            'input_style_margin_right',
-            [
-                'label' => esc_html__('Margin Right', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px',],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 30,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-mailchimp-form.horizontal .ha-mc-input-wrapper:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'form_style_switcher' => 'yes'
-                ]
-            ]
-        );
+        // $this->add_responsive_control(
+        //     'input_style_margin_right',
+        //     [
+        //         'label' => esc_html__('Margin Right', 'happy-elementor-addons'),
+        //         'type' => Controls_Manager::SLIDER,
+        //         'size_units' => ['px',],
+        //         'range' => [
+        //             'px' => [
+        //                 'min' => 0,
+        //                 'max' => 100,
+        //                 'step' => 1,
+        //             ],
+        //         ],
+        //         'default' => [
+        //             'unit' => 'px',
+        //             'size' => 30,
+        //         ],
+        //         'selectors' => [
+        //             // 'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-mailchimp-vertical .ha-mc-input-wrapper:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+        //             'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-mailchimp-horizontal .ha-mc-input-wrapper:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
+        //             // 'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-mailchimp-tablet-vertical .ha-mc-input-wrapper:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+        //             'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-mailchimp-tablet-horizontal .ha-mc-input-wrapper:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
+        //             // 'body[data-elementor-device-mode="mobile"] {{WRAPPER}}.ha-mailchimp-mobile-vertical .ha-mc-input-wrapper:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+        //             'body[data-elementor-device-mode="mobile"] {{WRAPPER}}.ha-mailchimp-mobile-horizontal .ha-mc-input-wrapper:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
+        //             // '{{WRAPPER}} .ha-mailchimp-form.horizontal .ha-mc-input-wrapper:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
+        //         ],
+        //         'condition' => [
+        //             'form_style_switcher' => 'yes'
+        //         ]
+        //     ]
+        // );
 
-        $this->add_responsive_control(
-            'inline_margin_bottom',
-            [
-                'label'        => esc_html__('Margin Bottom', 'happy-elementor-addons'),
-                'type'        => Controls_Manager::SLIDER,
-                'devices'    => ['mobile'],
-                'selectors' => [
-                    '{{WRAPPER}} .multiple_form_fields > .ha-mc-input-wrapper:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'form_style_switcher' => 'yes', // Inline Style
-                    'section_form_name_show' => 'yes', // Show Names
-                ]
-            ]
-        );
+        // $this->add_responsive_control(
+        //     'inline_margin_bottom',
+        //     [
+        //         'label'        => esc_html__('Margin Bottom', 'happy-elementor-addons'),
+        //         'type'        => Controls_Manager::SLIDER,
+        //         'devices'    => ['mobile'],
+        //         'selectors' => [
+        //             '{{WRAPPER}} .multiple_form_fields > .ha-mc-input-wrapper:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+        //         ],
+        //         'condition' => [
+        //             'form_style_switcher' => 'yes', // Inline Style
+        //             'section_form_name_show' => 'yes', // Show Names
+        //         ]
+        //     ]
+        // );
 
         $this->add_control(
             'input_style_placeholder_heading',
@@ -1587,7 +1607,7 @@ class Mailchimp extends Base {
                 <div class="ha-mc-response-message error"><?php esc_html_e('This is a dummy message for error. This won\'t show in preview', 'happy-elementor-addons'); ?></div>
             <?php endif; ?>
             <div class="ha-mc-response-message"></div>
-            <form class="ha-mailchimp-form <?php echo esc_attr($settings['form_alignment']); ?> <?php echo esc_attr($form_fields); ?>" data-list-id="<?php echo esc_attr($list_id); ?>" data-success-message="<?php echo esc_attr($settings['mailchimp_success_message']); ?>">
+            <form class="ha-mailchimp-form <?php //echo esc_attr($settings['form_alignment']); ?> <?php echo esc_attr($form_fields); ?>" data-list-id="<?php echo esc_attr($list_id); ?>" data-success-message="<?php echo esc_attr($settings['mailchimp_success_message']); ?>">
                 <?php if ($settings['enable_name'] == 'yes') : ?>
                     <div class="ha-mc-input-wrapper">
                         <?php if (!empty($settings['fname_label'])) : ?>
