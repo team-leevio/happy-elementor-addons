@@ -1,3 +1,7 @@
+= NEW ERA - 6 July 2021 =
+
+- New: Image Stack Widget.
+
 = 2.27.0 - 6 July 2021 =
 
 - Fix: Improve some style for compatibility on the content switcher.
