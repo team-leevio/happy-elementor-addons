@@ -631,7 +631,7 @@ class Widgets_Manager {
 			],
 			'image-accordion' => [
 				'title' => __( 'Image Accordion', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-image-accordion',
+				'icon' => 'hm hm-slider-image',
 				'css' => ['image-accordion'],
 				'js' => [],
 				'vendor' => [

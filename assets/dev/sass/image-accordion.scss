@@ -221,8 +221,7 @@
 	}
 }
 
-/* On screens that are 768px or less, set the background color to blue */
-@media screen and (max-width: 768px) {
+body[data-elementor-device-mode="tablet"] {
 
 	.ha-image-accordion-tablet {
 
@@ -270,8 +269,7 @@
 
 }
 
-/* On screens that are 480px or less, set the background color to olive */
-@media screen and (max-width: 480px) {
+body[data-elementor-device-mode="mobile"] {
 
 	.ha-image-accordion-mobile {
 
