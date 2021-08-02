@@ -60,7 +60,7 @@ class Advanced_Tooltip {
         $element->start_controls_section(
             '_section_ha_advanced_tooltip',
             [
-                'label' => __('Happy Elementor Tooltip', 'happy-elementor-addons') . ha_get_section_icon(),
+                'label' => __('Happy Tooltip', 'happy-elementor-addons') . ha_get_section_icon(),
                 'tab'   => Controls_Manager::TAB_ADVANCED,
             ]
         );
@@ -68,7 +68,7 @@ class Advanced_Tooltip {
         $element->add_control(
             'ha_advanced_tooltip_enable',
             [
-                'label'       => __('Enable Advanced Tooltip?', 'happy-elementor-addons'),
+                'label'       => __('Enable Happy Tooltip?', 'happy-elementor-addons'),
                 'type'        => Controls_Manager::SWITCHER,
                 'label_on' => __('On', 'happy-elementor-addons'),
                 'label_off' => __('Off', 'happy-elementor-addons'),
