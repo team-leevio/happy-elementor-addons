@@ -45,7 +45,7 @@ class Image_Accordion extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'hm hm-image-accordion';
+        return 'hm hm-slider-image';
     }
 
     public function get_keywords() {
