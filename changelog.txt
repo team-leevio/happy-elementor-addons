@@ -10,7 +10,7 @@
 - New: Added News Ticker widget Post Title HTML Tag control option
 - New: Added Carousel Widget Title & Subtitle HTML Tag control option
 - New: Added Sliders Widget Title & Subtitle HTML Tag control option
-- New: All API related widget sync with Dashboard Credentials Settings. User can set credentials in settings pannel and use it globally (Mailchimp Widget, Twitter Feed Widget)
+- New: Added Global API key dashboard. User can set credentials in settings pannel and use it globally (Mailchimp Widget, Twitter Feed Widget)
 - Update: Image Hover Effect Title HTML Tag control
 - Update: All widgets Coding stractrue update
 - Update: Happy sellect 2 control update

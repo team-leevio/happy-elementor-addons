@@ -360,16 +360,17 @@ For a more detailed explanation check out the following documentation
 - New: Image Accordion Widget
 - New: Happy Tooltip feature
 - New: Added  Member widget Ligthbox option
-- New: Added Horizontal Timeline Title HTML Tag control
-- New: Added Taxonomy List HTML Tag control
-- New: Added Post Tab Title HTML Tag control
-- New: Added News Ticker widget Post Title HTML Tag control
-- New: Added Carousel Widget Title/Subtitle HTML tag control
-- New: Added Sliders Widget Title/Subtitle HTML tag control
-- New: All API related widget sync with Dashboard Credentials Settings. User can set credentials in settings pannel and use it globally (Mailchimp Widget, Twitter Feed Widget)
+- New: Added Horizontal Timeline Title HTML Tag control option
+- New: Added Taxonomy List HTML Tag control option
+- New: Added Post Tab Title HTML Tag control option
+- New: Added News Ticker widget Post Title HTML Tag control option
+- New: Added Carousel Widget Title & Subtitle HTML Tag control option
+- New: Added Sliders Widget Title & Subtitle HTML Tag control option
+- New: Added Global credential key dashboard. User can set credentials in settings pannel and use it globally (Mailchimp Widget, Twitter Feed Widget)
 - Update: Image Hover Effect Title HTML Tag control
 - Update: All widgets Coding stractrue update
 - Update: Happy sellect 2 control update
+- Update: Mailchimp form alignment improved and optimized with some coding updates.
 - Fix: Taxonomy List Sellect2 issue
 - Fix: Post tab Sellect2 issue
 - Fix: Post list Sellect2 issue
