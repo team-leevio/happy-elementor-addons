@@ -13,6 +13,10 @@ class Extensions_Manager {
 		include_once HAPPY_ADDONS_DIR_PATH . 'extensions/column-extended.php';
 		include_once HAPPY_ADDONS_DIR_PATH . 'extensions/widgets-extended.php';
 
+		if ( is_user_logged_in() ) {
+			include_once HAPPY_ADDONS_DIR_PATH . 'classes/review.php';
+		}
+
 		if ( is_user_logged_in() && ha_is_adminbar_menu_enabled() ) {
 			include_once HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php';
 		}
