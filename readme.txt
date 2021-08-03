@@ -359,7 +359,7 @@ For a more detailed explanation check out the following documentation
 - New: Image Stack Group Widget
 - New: Image Accordion Widget
 - New: Happy Tooltip feature
-- New: Added  Member widget Ligthbox option
+- New: Added Team Member widget Ligthbox option
 - New: Added Horizontal Timeline Title HTML Tag control option
 - New: Added Taxonomy List HTML Tag control option
 - New: Added Post Tab Title HTML Tag control option
