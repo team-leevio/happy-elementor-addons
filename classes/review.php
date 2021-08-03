@@ -29,11 +29,10 @@ class Review_Us {
             $past_date    = strtotime( '-10 days' );
 
             $remind_time = get_option( 'ha__remind_me' );
-            $remind_date = date( "m/d/Y", $remind_time );
-            $remind_due  = strtotime( '+15 days', $remind_date );
+            $remind_due  = strtotime( '+15 days', $remind_time );
             $now         = strtotime( "now" );
 
-            if (  ( $past_date >= $install_date ) || ( $now >= $remind_due ) ) {
+            if ( ( $past_date >= $install_date ) || ( $now >= $remind_due ) ) {
                 add_action( 'admin_notices', [__CLASS__, 'ha_void_grid_display_admin_notice']);
             }
         }
@@ -42,7 +41,7 @@ class Review_Us {
     /**
      * Display Admin Notice, asking for a review
      **/
-    public function ha_void_grid_display_admin_notice() {
+    public static function ha_void_grid_display_admin_notice() {
         // wordpress global variable
         global $pagenow;
 
