@@ -48,10 +48,8 @@ class Review_Us {
         $exclude = [ 'themes.php', 'users.php', 'tools.php', 'options-general.php', 'options-writing.php', 'options-reading.php', 'options-discussion.php', 'options-media.php', 'options-permalink.php', 'options-privacy.php', 'edit-comments.php', 'upload.php', 'media-new.php', 'admin.php', 'import.php', 'export.php', 'site-health.php', 'export-personal-data.php', 'erase-personal-data.php' ];
 
         if ( ! in_array( $pagenow, $exclude ) ) {
-            // $dont_disturb = esc_url( self::ha_current_admin_url() . '?spare_me=1' );
-            // $remind_me    = esc_url( self::ha_current_admin_url() . '?remind_me=1' );
             $dont_disturb = esc_url( add_query_arg( 'spare_me', '1', self::ha_current_admin_url() ) );
-            $remind_me    = esc_url( add_query_arg( 'remind_me', '1', self::ha_current_admin_url() ) );
+            $remind_me = esc_url( add_query_arg( 'remind_me', '1', self::ha_current_admin_url() ) );
             $reviewurl    = esc_url( 'https://wordpress.org/support/plugin/happy-elementor-addons/reviews/?filter=5' );
 
             printf( __( '<div class="notice ha-notice ha-notice--extended">
