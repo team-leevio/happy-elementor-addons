@@ -57,7 +57,7 @@
 
 
 
-.ha-notice {
+.ha-review-notice {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -207,7 +207,7 @@
   }
 }
 
-.ha-button {
+.ha-review-button {
 	display: inline-block;
 	font-weight: var(--e-button-font-weight);
 	text-align: center;
@@ -272,29 +272,29 @@
 		}
 	}
 }
-.ha-button.focus {
+.ha-review-button.focus {
 	outline: 0;
 	-webkit-box-shadow: 0 0 0 2px var(--e-focus-color);
 	box-shadow: 0 0 0 2px var(--e-focus-color);
 }
-.ha-button.disabled {
+.ha-review-button.disabled {
 	opacity: .5;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-.ha-button--cta {
+.ha-review-button--cta {
 	--e-button-context-color: #5e3bc4;
 	--e-button-context-color-dark: #4b2f9d;
 	--e-button-context-tint: rgb(75 47 157 / 4%);
 	--e-focus-color: rgb(75 47 157 / 40%);
 }
-.ha-button--error {
+.ha-review-button--error {
   --e-button-context-color: var(--e-context-error-color);
   --e-button-context-color-dark: var(--e-context-error-color-dark);
   --e-button-context-tint: var(--e-context-error-tint-1);
   --e-focus-color: var(--e-context-error-tint-4)
 }
-.ha-button.ha-button--outline {
+.ha-review-button.ha-review-button--outline {
 	color: var(--e-button-context-color);
 	background: none;
 	border: 1px solid;
@@ -311,7 +311,7 @@
 		background: #818a91;
 	}
 }
-.ha-button.ha-button--outline.disabled {
+.ha-review-button.ha-review-button--outline.disabled {
 	color: var(--e-button-context-color-dark);
 	background: #818a91;
 }
