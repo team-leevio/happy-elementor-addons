@@ -14,6 +14,7 @@
 - Update: Image Hover Effect Title HTML Tag control
 - Update: All widgets Coding stractrue update
 - Update: Happy sellect 2 control update
+- Update: Mailchimp form alignment improved and optimized with some coding updates.
 - Fix: Taxonomy List Sellect2 issue
 - Fix: Post tab Sellect2 issue
 - Fix: Post list Sellect2 issue
