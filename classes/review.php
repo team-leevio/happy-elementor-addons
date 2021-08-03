@@ -12,13 +12,13 @@ class Review_Us {
     }
 
     // add plugin activation time
-    public function ha_void_activation_time() {
+    public static function ha_void_activation_time() {
         $get_activation_time = strtotime( "now" );
         add_option( 'ha__plugin_activation_time', $get_activation_time ); // replace your_plugin with Your plugin name
     }
 
     //check if review notice should be shown or not
-    public function ha_void_check_installation_time() {
+    public static function ha_void_check_installation_time() {
 
         // Added Lines Start
         $nobug = "";
@@ -71,7 +71,7 @@ class Review_Us {
     }
 
     // remove the notice for the user if review already done or if the user does not want to
-    public function ha_void_spare_me() {
+    public static function ha_void_spare_me() {
         if ( isset( $_GET['spare_me'] ) && ! empty( $_GET['spare_me'] ) ) {
             $spare_me = $_GET['spare_me'];
             if ( 1 == $spare_me ) {
