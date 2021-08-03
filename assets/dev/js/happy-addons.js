@@ -814,6 +814,24 @@
 
 		};
 
+		//Image Accordion
+		var Image_Accordion = function($scope) {
+			if($scope.hasClass('ha-image-accordion-click')) {
+				var items = $scope.find('.ha-ia-item');
+				items.each(function (inx, btn){
+					$(this).on('click', function(e) {
+						// e.preventDefault();
+						if($(this).hasClass('active')) {
+							return;
+						}else {
+							items.removeClass('active');
+							$(this).addClass('active');
+						}
+					} );
+				});
+			}
+		};
+		
 		//Content Switcher
 		var Content_Switcher = function($scope) {
 			var parent = $scope.find('.ha-content-switcher-wrapper'),
@@ -1086,6 +1104,7 @@
 			'ha-data-table.default'         : DataTable,
 			'widget'                        : BackgroundOverlay,
 			'ha-event-calendar.default'		: Event_Calendar,
+			'ha-image-accordion.default'	: Image_Accordion,
 			'ha-content-switcher.default'	: Content_Switcher,
 			'ha-member.default'		        : Team_Member,
 		};
@@ -1106,5 +1125,7 @@
 				elementorFrontend.elementsHandler.addHandler( handlerClass, { $element: $scope });
 			});
 		});
+
 	});
+
 } (jQuery));

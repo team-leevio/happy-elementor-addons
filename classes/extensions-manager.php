@@ -136,7 +136,13 @@ class Extensions_Manager {
 				'icon' => 'hm hm-minus-large',
 				'demo' => '#',
 				'is_pro' => false,
-			]
+			],
+			'advanced-tooltip' => [
+				'title' => __( 'Happy Tooltip', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-comment-square',
+				// 'demo' => 'https://happyaddons.com/placeholder-demo/',
+				'is_pro' => false,
+			],
 		];
 	}
 

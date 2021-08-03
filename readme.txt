@@ -1,12 +1,12 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 2.27.0
+Version: 3.0.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, sayedulsayem, obiplabon
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Elements
 Requires at least: 4.7
-Tested up to: 5.7
+Tested up to: 5.8
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -16,7 +16,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-[Happy Addons for Elementor page builder](https://happyaddons.com/)Is One of the Best Elementor Addons That Comes With **89+ Elementor Free & Pro Widgets and 16+ Problem-Solving Elementor Features**.
+[Happy Addons for Elementor page builder](https://happyaddons.com/) Is One of the Best Elementor Addons That Comes With **90+ Elementor Free & Pro Widgets and 20+ Problem-Solving Elementor Features**.
 
 ### **Why Should You Choose HappyAddons?**
 HappyAddons is the pioneer of adding exclusive problem-solving features. Also we have added premium quality Widgets in the Elementor Library. Reasons for choosing Happyaddons over any other Elementor Addons:
@@ -78,6 +78,8 @@ HappyAddons comes with plenty of Elementor Widgets in the free version. And all 
 - [**Animated Link**](https://demo.happyaddons.com/elementor-animated-link-widget-demo/) – Are you wondering about increasing the click-through rate of your website’s links? Grab your visitor’s attention by adding different effects to your links using the Happy Animated Link widget.
 - [**Mailchimp Widget**](https://demo.happyaddons.com/elementor-mailchimp-widget-demo/) – Now you can create lucrative Mailchimp forms with HappyAddons Mailchimp Widget for Elementor.
 - [**Content Switcher**](https://demo.happyaddons.com/elementor-content-switcher-demo/) – Happy Content Switcher Elementor widget allows you to toggle Elementor sections, pages, or texts easily.
+- [**Image Stack Group**](https://demo.happyaddons.com/elementor-image-stack-group-demo/) – Sometimes we have to show images in a stack group format to create an eye-catchy look. But it’s so tough to create a single stack group of images with Elementor. But with our Elementor  Image Stack Group widget, you can easily create an image stacked group within Elementor. You can get the Elementor Image Stack Group widget in the free version of HappyAddons.
+- [**Image Accordion**](https://demo.happyaddons.com/elementor-image-accordion-demo/) – HappyAddons Image Accordion widget for Elementor comes with interactive design looks. You can create unique accordions for images. It will help you keep your users longer on the website. Try HappyAddons Image Accordion Elementor Widget now.
 - [**Contact Form 7**](https://demo.happyaddons.com/elementor-contact-form-7-widget-demo/) – This utility widget helps you to integrate existing forms built using CF7 plugin across your web pages without spending too much time.
 - [**Caldera Forms**](https://demo.happyaddons.com/elementor-caldera-forms-widget-demo/) – This widget can help you to display your caldera forms to display on your web pages designed with Elementor.
 - [**weForms**](https://demo.happyaddons.com/elementor-we-forms-widget-demo/) – Designed forms using weForms plugin and looking for a way to display those on your Elementor powered pages? This is the answer to that.
@@ -86,14 +88,16 @@ HappyAddons comes with plenty of Elementor Widgets in the free version. And all 
 - [**Gravity Forms**](https://demo.happyaddons.com/elementor-gravity-form-widget-demo/) – While using Gravity forms, you may want to change the appearance of the form fields. With the Happy Addons, you can spruce up your Gravity forms like a pro.
 - [**WP Fluent Forms**](https://demo.happyaddons.com/elementor-fluent-form-widget-demo/) - Easily customize and use Fluent Forms using this super intuitive widget.
 
-**16+ Free Elementor Enhancement Features Are Available in the HappyAddons Free**
+**20+ Free Elementor Enhancement Features Are Available in the HappyAddons Free**
 
-HappyAddons not only comes with extendable elementor widgets but also it has some cool features which help you to increase your web designing skill. You will get 16+ exclusive Elementor features in HappyAddons Free.
+HappyAddons not only comes with extendable elementor widgets but also it has some cool features which help you to increase your web designing skill. You will get 20+ exclusive Elementor features in HappyAddons Free.
 
 
 [**Happy Templates**](https://happyaddons.com/template-importer/) - Finally, we are happy to announce that we are introducing the Happy Template import feature within our HappyAddons. Initially, it comes with almost 500 readymade elementor templates. We will continuously improve our template library. Both of our Free and Pro users can use happy templates. Templates are labeled in two tags, Pro and Free. To import premium templates you will need the [HappyAddons Pro](https://happyaddons.com/pricing). Template import feature works as like Elementor Template importing feature. Additionally, you can check the previews in three device viewport; Desktop, Tab, Mobile.
 
 [**Happy Shape Dividers**](https://happyaddons.com/happy-shape-divider/) - If you want to get some unique shape dividers within your elementor shape divider you can use our HappyAddons Shape Dividers for Elementor. Initially you will get 18+ new shape dividers.
+
+[**Happy Tooltip**](https://happyaddons.com/happy-tooltip/) - You can add tooltips to any elements of your Elementor website with the HappyAddons Elementor advanced tooltip feature. Add images, GIFs, Background images to your Elementor tooltips with the help of the Happy Elementor Advance Tooltip feature.
 
 [**Elementor Equal Heights**](https://happyaddons.com/equal-height-feature/) - From now you can set equal heights to your Elementor Columns, widgets without using zero coding knowledge.
 
@@ -349,6 +353,30 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.0.0 - 3 August 2021 =
+
+- New: Image Stack Group Widget
+- New: Image Accordion Widget
+- New: Happy Tooltip feature
+- New: Added  Member widget Ligthbox option
+- New: Added Horizontal Timeline Title HTML Tag control option
+- New: Added Taxonomy List HTML Tag control option
+- New: Added Post Tab Title HTML Tag control option
+- New: Added News Ticker widget Post Title HTML Tag control option
+- New: Added Carousel Widget Title & Subtitle HTML Tag control option
+- New: Added Sliders Widget Title & Subtitle HTML Tag control option
+- New: Added Global credential key dashboard. User can set credentials in settings pannel and use it globally (Mailchimp Widget, Twitter Feed Widget)
+- Update: Image Hover Effect Title HTML Tag control
+- Update: All widgets Coding stractrue update
+- Update: Happy sellect 2 control update
+- Update: Mailchimp form alignment improved and optimized with some coding updates.
+- Fix: Taxonomy List Sellect2 issue
+- Fix: Post tab Sellect2 issue
+- Fix: Post list Sellect2 issue
+- Fix: News ticker Sellect2 issue
+- Fix: Mailchimp Sellect2 issue
+- Fix: Improve some style for compatibility on the content switcher
 
 = 2.27.0 - 5 July 2021 =
 
