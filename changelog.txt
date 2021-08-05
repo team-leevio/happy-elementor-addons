@@ -1,5 +1,10 @@
 = 3.0.0 - 3 August 2021 =
 
+- Improve: Review Banner Logic
+- Fix: Image Stack group default image missing issue
+
+= 3.0.0 - 3 August 2021 =
+
 - New: Image Stack Group Widget
 - New: Image Accordion Widget
 - New: Happy Tooltip feature
