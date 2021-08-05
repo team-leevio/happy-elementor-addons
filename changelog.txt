@@ -1,4 +1,4 @@
-= 3.0.0 - 3 August 2021 =
+= 3.0.1 - 5 August 2021 =
 
 - Improve: Review Banner Logic
 - Fix: Image Stack group default image missing issue
