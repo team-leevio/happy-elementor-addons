@@ -4,7 +4,7 @@ Version: 3.0.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, sayedulsayem, obiplabon
-Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Elements
+Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Mega Menu
 Requires at least: 4.7
 Tested up to: 5.8
 Stable tag: trunk
@@ -20,6 +20,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 ### **Why Should You Choose HappyAddons?**
 HappyAddons is the pioneer of adding exclusive problem-solving features. Also we have added premium quality Widgets in the Elementor Library. Reasons for choosing Happyaddons over any other Elementor Addons:
+
+From now on, you can create a mega menu, simple navigation menu, Horizontal Nav Menu with our Happy Menu Widget.
+
+Create off canvas contents/menu for your site with HappyAddons off-canvas widget
+
+Manage one page navigation menu with the help of HappyAddons One Page Navigation widget
 
 - You Can Create Advanced Data Table,
 - Facility to Add Text Stroke or Outline to Elementor Typography
@@ -155,6 +161,8 @@ If you are still craving for more widgets, then the following premium widgets ar
 
 - [**Advanced Slider**](https://demo.happyaddons.com/elementor-advanced-slider-widget-demo/) – Bored with your typical sliders? Try our advanced slider for Elementor. Create mesmerizing slides within your Elementor Sites using our Advanced Slider.
 - [**Happy Mega Menu**](https://demo.happyaddons.com/elementor-happy-mega-menu-widget-demo/) – Struggling with large-scale menu items? Happy Mega Menu is the best solution to your problems. You can create mega menus lik Adidas, Dribbble, Puma, Invision etc.
+- [**One Page Navigation Widget**](https://demo.happyaddons.com/elementor-one-page-navigation-widget-demo/) - HappyAddons one page navigation widget will help you create lucrative one page nav contents for your site. It has 9 design controls with a smooth scrolling option. You can show any kind of design within it.
+- [**Off-Canvas Content or Menu Widget**](https://demo.happyaddons.com/elementor-off-canvas-content-demo/) - HappyAddons off canvas navigation content will give you the freedom to create any kind of off canvas contents or offcanvas menu items for your Elementor websites. 
 - [**Feature List**](https://demo.happyaddons.com/elementor-feature-list-widget-demo/) – You can display your product features using different styles using this widget. As a bonus, you can also customize each and every predefined design.
 - [**Pricing Table**](https://demo.happyaddons.com/elementor-pricing-table-widget-demo/) – This one of a kind widget will allow you to create any kind of pricing table under the sun. As a surprise, you can use gradient background, oval-shaped button, font awesome icons, background fill color, different heights, dark mood and so on.
 - [**Flip Box**](https://demo.happyaddons.com/elementor-flip-box-widget-demo-2/) – This exquisite widget will help you show different messages or texts at the time before and after a user hover on a certain element. Just like the other widgets, you can customize this with background image, gutter and circular arrow navigation on both sides.
@@ -204,6 +212,23 @@ If you are still craving for more widgets, then the following premium widgets ar
 ### **Unique Pro Features of Happy Addons to Watch Out For**
 
 The premium (PRO) features of Happy Addons truly make it stand out from all the other Elementor add-ons out there right now. You will get the below mentioned much talked about standout premium features in the PRO version of Happy Addons:
+
+### **Happy Mega Menu Builder For Elementor:**
+
+Happy Addons brings an amazing mega menu builder for Elementor. With this MegaMenu builder, you can create mega menus like Dribble, Adidas, Puma, weDevs, and more. Our Happy Menu widget will help you show any kind of element to your mega menu items. Like you can show posts, categories, pages, list items, social links, menu icons, and more. Not only that but also you will get a blank Elementor canvas to design your mega menu items. 
+
+What Extra Will You Get in the Mega Menu Builder of HappyAddons?
+
+With this Happy mega menu builder widget, you can create any kind of menus. 
+
+- **Simple Navigation Menu For Elementor:** You can create a simple nav menu for your Elementor site. You can show and design your WordPress Nav menu items as well.
+- **Icon for menu items or megamenu items:** Flexibility to add different types of icons to menu items. 
+- **Menu Badges for Mega Menu or Simple Nav Menus:** Create a customized badge for your megamenu or simple menu items.
+- **Mobile Responsive Mega Menus:** You can create mobile responsive menus, as it has different styling options for mobiles and tablets. 
+
+Want to learn How to Create MegaMenu for Elementor? Watch this detailed tutorial of creating mega menus within Elementor,
+
+https://www.youtube.com/watch?v=7qmCZFsDkmg&t=548s&ab_channel=HappyAddons
 
 ### **Cross-Domain Copy-Paste: Apply the Same Design to Multiple Domains With a Single Click**
 
