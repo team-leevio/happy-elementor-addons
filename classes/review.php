@@ -67,7 +67,7 @@ class Review_Us {
                     <h3>Enjoying Happy Addons?</h3>
                     <p>Thank you for choosing Happy Addons. If you have found our plugin useful and makes you smile, please consider giving us a 5-star rating on WordPress.org. It would mean the world to us.</p>
                     <div class="ha-review-notice__actions">
-                        <a href="%s" class="ha-review-button ha-review-button--cta"><span>👍 Yes, You Deserve It!</span></a>
+                        <a href="%s" class="ha-review-button ha-review-button--cta" target="_blank"><span>👍 Yes, You Deserve It!</span></a>
                         <a href="%s" class="ha-review-button ha-review-button--cta ha-review-button--outline"><span>🙌 Already Rated!</span></a>
                         <a href="%s" class="ha-review-button ha-review-button--cta ha-review-button--outline"><span>🔔 Remind Me Later</span></a>
                         <a href="%s" class="ha-review-button ha-review-button--cta ha-review-button--error ha-review-button--outline"><span>💔 No Thanks</span></a>
