@@ -356,7 +356,7 @@ class Advanced_Tooltip {
         $element->add_group_control(
             Group_Control_Background::get_type(),
             [
-                'name'     => 'title_section_bg_color',
+                'name'     => 'ha_advanced_tooltip_title_section_bg_color',
                 'label'    => __('Background', 'happy-elementor-addons'),
                 'types'    => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .ha-advanced-tooltip-content',
@@ -402,7 +402,7 @@ class Advanced_Tooltip {
         $element->add_group_control(
             Group_Control_Border::get_type(),
             [
-                'name' => 'border',
+                'name' => 'ha_advanced_tooltip_border',
                 'label' => __('Border', 'happy-elementor-addons'),
                 'selector' => '{{WRAPPER}} .ha-advanced-tooltip-content',
                 'condition' => [

@@ -565,7 +565,7 @@ class Image_Stack_Group extends Base {
 				if($media_type == "icon"){
 					$bgType = $item['icon_bg_color_background'];
 					$bg = $item['icon_bg_color_color'];
-					$bgGlobal = $item['__globals__']['icon_bg_color_color'];
+					$bgGlobal = isset($item['__globals__'])?$item['__globals__']['icon_bg_color_color']:'';
 
 					if($bgGlobal){
 						$bgGlobal = explode("=",$bgGlobal);
@@ -585,7 +585,14 @@ class Image_Stack_Group extends Base {
 					ha_render_icon( $item, 'icon', 'selected_icon', $attr);
 					$content = ob_get_clean();
 				}else{
-					$content = '<img src="'.$item['image']['url'].'" alt="">';
+
+					if(isset($item['image']) && $item['image']['url'] != ''){
+						$img_url = $item['image']['url'];
+					}else{
+						$img_url = Utils::get_placeholder_image_src();
+					}
+
+					$content = '<img src="'.$img_url.'" alt="">';
 				}
 
 				$tooltip_data = '';

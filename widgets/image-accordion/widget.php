@@ -634,7 +634,7 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Normal', 'happy-elementor-addons'),
 
-            ],
+            ]
         );
 
         $this->add_group_control(
@@ -666,7 +666,7 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Hover', 'happy-elementor-addons'),
 
-            ],
+            ]
         );
 
         $this->add_group_control(
@@ -698,10 +698,10 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Active', 'happy-elementor-addons'),
 
-            ],
+            ]
         );
 
-        
+
         $this->add_group_control(
 			Group_Control_Background::get_type(),
 			[
@@ -1042,7 +1042,7 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Normal', 'happy-elementor-addons'),
 
-            ],
+            ]
         );
 
         $this->add_control(
@@ -1075,7 +1075,7 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Hover', 'happy-elementor-addons'),
 
-            ],
+            ]
         );
 
         $this->add_control(
@@ -1241,7 +1241,7 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Normal', 'happy-elementor-addons'),
 
-            ],
+            ]
         );
 
         $this->add_control(
@@ -1324,7 +1324,7 @@ class Image_Accordion extends Base {
             [
                 'label' => __('Hover', 'happy-elementor-addons'),
 
-            ],
+            ]
         );
 
         $this->add_control(
@@ -1338,7 +1338,7 @@ class Image_Accordion extends Base {
             ]
         );
 
-        
+
         $this->add_control(
             'action_popup_icon_background_color_hover',
             [

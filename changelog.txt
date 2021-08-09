@@ -1,12 +1,32 @@
-= NEW ERA - 1 August 2021 =
+= 3.0.1 - 8 August 2021 =
 
-- New: Image Stack Widget.
-- New: Image Accordion Widget.
-- New: Happy Tooltip feature.
+- Improve: Review Banner Logic
+- Fix: Image Stack group default image missing issue
+- Fix: Conflicts with Elementor "Border Type" style control
 
-= 2.27.0 - 6 July 2021 =
+= 3.0.0 - 3 August 2021 =
 
-- Fix: Improve some style for compatibility on the content switcher.
+- New: Image Stack Group Widget
+- New: Image Accordion Widget
+- New: Happy Tooltip feature
+- New: Added Team Member widget Ligthbox option
+- New: Added Horizontal Timeline Title HTML Tag control option
+- New: Added Taxonomy List HTML Tag control option
+- New: Added Post Tab Title HTML Tag control option
+- New: Added News Ticker widget Post Title HTML Tag control option
+- New: Added Carousel Widget Title & Subtitle HTML Tag control option
+- New: Added Sliders Widget Title & Subtitle HTML Tag control option
+- New: Added Global credential key dashboard. User can set credentials in settings pannel and use it globally (Mailchimp Widget, Twitter Feed Widget)
+- Update: Image Hover Effect Title HTML Tag control
+- Update: All widgets Coding stractrue update
+- Update: Happy sellect 2 control update
+- Update: Mailchimp form alignment improved and optimized with some coding updates.
+- Fix: Taxonomy List Sellect2 issue
+- Fix: Post tab Sellect2 issue
+- Fix: Post list Sellect2 issue
+- Fix: News ticker Sellect2 issue
+- Fix: Mailchimp Sellect2 issue
+- Fix: Improve some style for compatibility on the content switcher
 
 = 2.27.0 - 5 July 2021 =
 
