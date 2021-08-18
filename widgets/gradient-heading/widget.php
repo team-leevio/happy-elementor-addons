@@ -249,7 +249,7 @@ class Gradient_Heading extends Base {
 		);
 	}
 
-	public function _content_template() {
+	public function content_template() {
 		?>
 		<#
 		view.addInlineEditingAttributes( 'title', 'basic' );
