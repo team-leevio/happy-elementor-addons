@@ -737,7 +737,7 @@
 					$custom_share_title = esc_html( $icon['share_title'] );
 					$share_text         = esc_html( $icon['share_text'] );
 					$default_share_text = ucfirst( $social_media_name );
-					$image = $icon['image']['url'];
+					$image = isset($icon['image']['url'])? $icon['image']['url']: '';
 					$twitter_handle = $icon['twitter_handle'];
 					$email_to = $icon['email_to'];
 					$email_subject = $icon['email_subject'];
