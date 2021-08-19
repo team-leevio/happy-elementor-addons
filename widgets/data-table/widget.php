@@ -1075,7 +1075,7 @@ class Data_Table extends Base {
 
 				$table_cell[] = [
 					'repeater_id'        => $row['_id'],
-					'row_id'             => $table_row[$cell_key]['id'],
+					'row_id'             => isset($table_row[$cell_key]['id'])? $table_row[$cell_key]['id']: '',
 					'title'              => $row['cell_name'],
 					'row_span'           => $row['row_span'],
 					'row_column_span'    => $row['row_column_span'],
@@ -1113,7 +1113,7 @@ class Data_Table extends Base {
 									<?php endif; ?>
 
 									<?php
-									if ( $column_cell['column_image']['url'] || $column_cell['column_image']['id'] ) :
+									if ( !empty($column_cell['column_image']['url']) || !empty($column_cell['column_image']['id']) ) :
 										$this->add_render_attribute( 'column_image', 'src', $column_cell['column_image']['url'] );
 										$this->add_render_attribute( 'column_image', 'alt', Control_Media::get_image_alt( $column_cell['column_image'] ) );
 										$this->add_render_attribute( 'column_image', 'title', Control_Media::get_image_title( $column_cell['column_image'] ) );
@@ -1170,7 +1170,7 @@ class Data_Table extends Base {
 										<?php endif; ?>
 
 										<?php
-										if ( $table_cell[$j]['row_image']['url'] || $table_cell[$j]['row_image']['id'] ) :
+										if ( !empty($table_cell[$j]['row_image']['url']) || !empty($table_cell[$j]['row_image']['id']) ) :
 											$image = wp_get_attachment_image_url( $table_cell[$j]['row_image']['id'], $table_cell[$j]['row_thumbnail_size'] );
 											if ( ! $image ) {
 												$image = $table_cell[$j]['row_image']['url'];
