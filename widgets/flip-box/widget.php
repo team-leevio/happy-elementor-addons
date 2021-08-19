@@ -1191,7 +1191,7 @@ class Flip_Box extends Base {
         $settings = $this->get_settings_for_display();
 
         // icon/image
-        if ( $settings['front_icon_image']['id'] && isset( $settings['front_icon_image']['url'] ) ) {
+        if ( isset( $settings['front_icon_image']['id'] ) && isset( $settings['front_icon_image']['url'] ) ) {
             $this->add_render_attribute( 'front_icon_image', 'src', $settings['front_icon_image']['url'] );
             $this->add_render_attribute( 'front_icon_image', 'alt', Control_Media::get_image_alt( $settings['front_icon_image'] ) );
             $this->add_render_attribute( 'front_icon_image', 'title', Control_Media::get_image_title( $settings['front_icon_image'] ) );

@@ -768,9 +768,9 @@ class Taxonomy_List extends Base {
 							<?php
 							$icon_settings = 'yes' === $settings['common_icon_enable'] && !empty( $settings['common_icon'] ) ? $settings['common_icon'] : $value['individual_icon'];
 
-							$icon = 'yes' === $settings['common_icon_enable'] && !empty( $settings['icon'] ) ? $settings['icon'] : $value['icon'];
+							$icon = 'yes' === $settings['common_icon_enable'] && !empty( $settings['icon'] ) ? $settings['icon'] : (isset($value['icon'])? $value['icon']: '');
 
-							$image_url = 'yes' === $settings['common_icon_enable'] && !empty( $settings['image']['url'] ) ? $settings['image']['url'] : $value['image']['url'];
+							$image_url = 'yes' === $settings['common_icon_enable'] && !empty( $settings['image']['url'] ) ? $settings['image']['url'] : (isset($value['image']['url'])? $value['image']['url']: '') ;
 							?>
 							<?php if ( $icon_settings ) :
 								echo '<span class="ha-taxonomy-list-' . esc_attr( $icon_settings ) . '">';
