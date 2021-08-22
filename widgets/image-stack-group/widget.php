@@ -79,7 +79,7 @@ class Image_Stack_Group extends Base {
 					],
 				],
 				'default' => 'img',
-				'toggle' => true,
+				'toggle' => false,
 			]
 		);
 

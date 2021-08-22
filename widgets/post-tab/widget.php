@@ -892,7 +892,8 @@ class Post_Tab extends Base {
 				array(
 					'taxonomy' => $taxonomy,
 					'field' => 'term_id',
-					'terms' => $terms_ids ? $filter_list[0]->term_id : '',
+					// 'terms' => $terms_ids ? $filter_list[0]->term_id : '',
+					'terms' => isset($filter_list[0]->term_id) ? $filter_list[0]->term_id : '',
 				),
 			),
 		];
