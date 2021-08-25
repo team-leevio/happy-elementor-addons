@@ -1034,7 +1034,7 @@ class InfoBox extends Base {
 		<?php
 	}
 
-	public function content_template() {
+	public function _content_template() {
 		?>
 		<#
 		var iconHTML, migrated;

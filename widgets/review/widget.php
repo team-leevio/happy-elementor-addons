@@ -774,7 +774,7 @@ class Review extends Base {
 		<?php
 	}
 
-	public function content_template() {
+	public function _content_template() {
 		?>
 		<#
 		view.addInlineEditingAttributes( 'title', 'basic' );

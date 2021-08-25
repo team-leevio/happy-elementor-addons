@@ -363,7 +363,7 @@ class Skills extends Base {
         endforeach;
     }
 
-    protected function content_template() {
+    protected function _content_template() {
         ?>
         <#
         if (_.isArray(settings.skills)) {

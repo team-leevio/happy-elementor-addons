@@ -564,7 +564,7 @@ class Image_Compare extends Base {
     }
 
 
-    public function content_template() {
+    public function _content_template() {
         ?>
         <#
         view.addRenderAttribute( 'container', 'class', [
