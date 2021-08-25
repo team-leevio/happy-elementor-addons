@@ -63,7 +63,6 @@ class Extensions_Manager {
 	 * @return array
 	 */
 	public static function get_pro_features_map() {
-		error_log(print_r(get_option('happyaddons_inactive_features'),1));
 		return [
 			'display-conditions' => [
 				'title' => __( 'Display Condition', 'happy-elementor-addons' ),
