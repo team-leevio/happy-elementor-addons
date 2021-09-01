@@ -10,7 +10,46 @@ $credential_list = self::get_credentials();
 // $credential_data = \Happy_Addons\Elementor\Credentials_Manager::get_saved_credentials();
 $credential_data = ha_get_credentials();
 $has_pro = ha_has_pro();
+// $widgets = self::get_widgets();
+// $inactive_widgets = \Happy_Addons\Elementor\Widgets_Manager::get_inactive_widgets();
+// function get_raw_usage() {
+// 	/** @var Module $module */
+// 	$module = Elementor\Modules\Usage\Module::instance();
+// 	$usage = PHP_EOL;
+// 	$widgets_list = [];
+// 	foreach ( $module->get_formatted_usage( 'raw' ) as $doc_type => $data ) {
+// 		$usage .= "\t{$data['title']} : " . $data['count'] . PHP_EOL;
 
+// 		foreach ( $data['elements'] as $element => $count ) {
+// 			$usage .= "\t\t{$element} : {$count}" . PHP_EOL;
+
+// 			if( strpos( $element , "ha-") !== false ) {
+// 				// print_r( $element );
+// 				// $widgets_list[ $element ] = $count;
+// 				$widgets_list[ str_replace('ha-','',$element) ] = $count;
+// 			}
+// 		}
+// 	}
+// 	return $widgets_list;
+// 	// return [
+// 	// 	'RAW' => $module->get_formatted_usage('raw'),
+// 	// 	'HTML' => $module->get_formatted_usage()
+// 	// ];
+// 	// return [
+// 	// 	'value' => $usage,
+// 	// ];
+// }
+
+echo '<pre>';
+// print_r(get_option( 'elementor_controls_usage', [] ));
+// print_r(self::get_raw_usage());
+// print_r($inactive_widgets);
+// print_r(array_keys($widgets));
+// print_r(self::get_un_usage());
+// print_r( array_diff( array_keys($widgets), array_keys(self::get_raw_usage()) ) );
+echo '</pre>';
+// $unuse_widget = array_diff(array_keys($widgets),array_keys(get_raw_usage()));
+// update_option( 'happyaddons_inactive_widgets', array_merge($unuse_widget,$inactive_widgets) );
 ?>
 <div class="ha-dashboard-panel">
     <div class="ha-dashboard-panel__header">

@@ -279,6 +279,40 @@ class Dashboard {
         $submenu[ self::PAGE_SLUG ] = $menu;
     }
 
+	public static function get_raw_usage( $format = 'raw' ) {
+		/** @var Module $module */
+		$module = \Elementor\Modules\Usage\Module::instance();
+		$usage = PHP_EOL;
+		$widgets_list = [];
+		foreach ( $module->get_formatted_usage( $format ) as $doc_type => $data ) {
+			$usage .= "\t{$data['title']} : " . $data['count'] . PHP_EOL;
+
+			foreach ( $data['elements'] as $element => $count ) {
+				$usage .= "\t\t{$element} : {$count}" . PHP_EOL;
+
+				if( strpos( $element , "ha-") !== false ) {
+					// print_r( $element );
+					// $widgets_list[ $element ] = $count;
+					$widgets_list[ str_replace('ha-','',$element) ] = $count;
+				}
+			}
+		}
+		return $widgets_list;
+		// return [
+		// 	'RAW' => $module->get_formatted_usage('raw'),
+		// 	'HTML' => $module->get_formatted_usage()
+		// ];
+		// return [
+		// 	'value' => $usage,
+		// ];
+	}
+
+	public static function get_un_usage() {
+		$all_widgets = self::get_widgets();
+		$used_widgets = self::get_raw_usage();
+		return array_diff( array_keys( $all_widgets ), array_keys( $used_widgets ) );
+	}
+
     public static function get_tabs() {
         $tabs = [
             'home' => [
@@ -296,6 +330,10 @@ class Dashboard {
             'credentials' => [
                 'title' => esc_html__( 'Credentials', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_credentials' ],
+            ],
+            'analytics' => [
+                'title' => esc_html__( 'Analytics', 'happy-elementor-addons' ),
+                'renderer' => [ __CLASS__, 'render_analytics' ],
             ],
             'pro' => [
                 'title' => esc_html__( 'Get Pro', 'happy-elementor-addons' ),
@@ -331,6 +369,10 @@ class Dashboard {
 
     public static function render_credentials() {
         self::load_template( 'credentials' );
+    }
+
+    public static function render_analytics() {
+        self::load_template( 'analytics' );
     }
 
     public static function render_pro() {
