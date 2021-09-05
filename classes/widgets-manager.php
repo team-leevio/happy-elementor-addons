@@ -58,12 +58,13 @@ class Widgets_Manager {
 
 	public static function get_widget_map_catwise() {
 		$widgets = Dashboard::get_widgets();
-		
+
 		array_walk($widgets, function($item, $key){
-		    self::$catwise_widget_map[$item["cat"]][] = [
+		    self::$catwise_widget_map[$item["cat"]][$key] = [
+		        'demo' => isset($item["demo"])? $item["demo"]: '',
 		        'title' => $item["title"],
-		        'slug' => $key,
 		        'icon' => $item["icon"],
+		        'is_pro' => isset($item["is_pro"])? $item["is_pro"]: false,
 		    ];
 		});
 		
