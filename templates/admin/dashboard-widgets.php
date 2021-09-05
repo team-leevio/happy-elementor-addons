@@ -9,6 +9,11 @@ $widgets = self::get_widgets();
 $inactive_widgets = \Happy_Addons\Elementor\Widgets_Manager::get_inactive_widgets();
 
 $total_widgets_count = count( $widgets );
+$cat = \Happy_Addons\Elementor\Widgets_Manager::get_widget_map_catwise();
+
+echo '<pre>';
+print_r($cat);
+echo '</pre>';
 ?>
 <div class="ha-dashboard-panel">
     <div class="ha-dashboard-panel__header">
