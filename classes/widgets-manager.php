@@ -2,14 +2,14 @@
 namespace Happy_Addons\Elementor;
 
 use Elementor\Element_Base;
-use Happy_Addons\Elementor\Dashboard;
+// use Happy_Addons\Elementor\Dashboard;
 
 defined( 'ABSPATH' ) || die();
 
 class Widgets_Manager {
 
 	const WIDGETS_DB_KEY = 'happyaddons_inactive_widgets';
-	public static $catwise_widget_map = [];
+	// public static $catwise_widget_map = [];
 
 	/**
 	 * Initialize
@@ -56,20 +56,20 @@ class Widgets_Manager {
 		return apply_filters( 'happyaddons_get_widgets_map', $widgets_map );
 	}
 
-	public static function get_widget_map_catwise() {
-		$widgets = Dashboard::get_widgets();
+	// public static function get_widget_map_catwise() {
+	// 	$widgets = Dashboard::get_widgets();
 
-		array_walk($widgets, function($item, $key){
-		    self::$catwise_widget_map[$item["cat"]][$key] = [
-		        'demo' => isset($item["demo"])? $item["demo"]: '',
-		        'title' => $item["title"],
-		        'icon' => $item["icon"],
-		        'is_pro' => isset($item["is_pro"])? $item["is_pro"]: false,
-		    ];
-		});
+	// 	array_walk($widgets, function($item, $key){
+	// 	    self::$catwise_widget_map[$item["cat"]][$key] = [
+	// 	        'demo' => isset($item["demo"])? $item["demo"]: '',
+	// 	        'title' => $item["title"],
+	// 	        'icon' => $item["icon"],
+	// 	        'is_pro' => isset($item["is_pro"])? $item["is_pro"]: false,
+	// 	    ];
+	// 	});
 		
-		return self::$catwise_widget_map;
-	}
+	// 	return self::$catwise_widget_map;
+	// }
 
 	/**
 	 * Get the pro widgets map for dashboard only

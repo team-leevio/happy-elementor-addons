@@ -18,6 +18,8 @@ class Dashboard {
     const WIDGETS_NONCE = 'ha_save_dashboard';
 
     static $menu_slug = '';
+    
+    public static $catwise_widget_map = [];
 
     public static function init() {
         add_action( 'admin_menu', [ __CLASS__, 'add_menu' ], 21 );
@@ -208,6 +210,22 @@ class Dashboard {
         uksort( $widgets_map, [ __CLASS__, 'sort_widgets' ] );
         return $widgets_map;
     }
+
+    
+	public static function get_widget_map_catwise() {
+		$widgets = self::get_widgets();
+
+		array_walk($widgets, function($item, $key){
+		    self::$catwise_widget_map[$item["cat"]][$key] = [
+		        'demo' => isset($item["demo"])? $item["demo"]: '',
+		        'title' => $item["title"],
+		        'icon' => $item["icon"],
+		        'is_pro' => isset($item["is_pro"])? $item["is_pro"]: false,
+		    ];
+		});
+		
+		return self::$catwise_widget_map;
+	}
 
     private static function get_real_features_map() {
         $widgets_map = Extensions_Manager::get_features_map();
