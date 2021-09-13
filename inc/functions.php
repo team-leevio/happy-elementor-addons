@@ -633,3 +633,12 @@ function ha_show_plugin_missing_alert( $plugin ) {
 			);
 	}
 }
+
+/**
+ * Get inactive happy feature list
+ *
+ * @return array
+ */
+function ha_get_inactive_features() {
+	return get_option( 'happyaddons_inactive_features', [] );
+}

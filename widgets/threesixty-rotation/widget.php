@@ -169,7 +169,7 @@ class Threesixty_Rotation extends Base {
 			]
 		);
 
-		$this->add_control(
+		/* $this->add_control(
 			'wrapper_align',
 			[
 				'label' => __( 'Alignment', 'happy-elementor-addons' ),
@@ -194,7 +194,7 @@ class Threesixty_Rotation extends Base {
 				],
 				'style_transfer' => true,
 			]
-		);
+		); */
 
 		$this->end_controls_section();
 	}
