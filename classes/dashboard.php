@@ -13,11 +13,15 @@ class Dashboard {
 
     const PAGE_SLUG = 'happy-addons';
 
+    const WIZARD_PAGE_SLUG = 'happy-addons-setup-wizard';
+
     const LICENSE_PAGE_SLUG = 'happy-addons-license';
 
     const WIDGETS_NONCE = 'ha_save_dashboard';
 
     static $menu_slug = '';
+
+    static $wizard_slug = '';
 
     public static function init() {
         add_action( 'admin_menu', [ __CLASS__, 'add_menu' ], 21 );
@@ -33,6 +37,10 @@ class Dashboard {
         add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_credentials_data' ] );
 
         add_action( 'in_admin_header', [ __CLASS__, 'remove_all_notices' ], PHP_INT_MAX );
+
+        add_action( 'admin_init', function() {
+            remove_menu_page( self::WIZARD_PAGE_SLUG );
+        }, 999);
     }
 
     public static function is_page() {
@@ -128,6 +136,31 @@ class Dashboard {
     }
 
     public static function enqueue_scripts( $hook ) {
+        if ( self::$wizard_slug == $hook || current_user_can( 'manage_options' ) ) {
+            wp_enqueue_style(
+                'happy-elementor-addons-wizard',
+                HAPPY_ADDONS_ASSETS . 'admin/css/wizard.min.css',
+                null,
+                HAPPY_ADDONS_VERSION
+            );
+
+            wp_enqueue_script(
+                'vue-js-3',
+                HAPPY_ADDONS_ASSETS . 'vendor/vue3/vue.global.prod.js',
+                null,
+                '3',
+                true
+            );
+
+            wp_enqueue_script(
+                'happy-elementor-addons-wizard',
+                HAPPY_ADDONS_ASSETS . 'admin/js/wizard.min.js',
+                [ 'jquery', 'vue-js-3' ],
+                HAPPY_ADDONS_VERSION,
+                true
+            );
+        }
+
         if ( self::$menu_slug !== $hook || ! current_user_can( 'manage_options' ) ) {
             return;
         }
@@ -249,6 +282,16 @@ class Dashboard {
             58.5
         );
 
+        self::$wizard_slug =  add_menu_page(
+            __( 'Setup Wizard', 'happy-elementor-addons' ),
+            __( 'Setup Wizard', 'happy-elementor-addons' ),
+            'manage_options',
+            self::WIZARD_PAGE_SLUG,
+            [ __CLASS__, 'wizard_page_wrapper'],
+            '',
+            null
+        );
+
         $tabs = self::get_tabs();
         if ( is_array( $tabs ) ) {
             foreach ( $tabs as $key => $data ) {
@@ -313,6 +356,13 @@ class Dashboard {
         }
     }
 
+    private static function load_wizard_template( $template ) {
+        $file = HAPPY_ADDONS_DIR_PATH . 'templates/wizard/wizard-' . $template . '.php';
+        if ( is_readable( $file ) ) {
+            include( $file );
+        }
+    }
+
     public static function render_main() {
         self::load_template( 'main' );
     }
@@ -336,6 +386,58 @@ class Dashboard {
     public static function render_pro() {
         self::load_template( 'pro' );
     }
+
+    /**
+	 * Set up a div for the app to render into.
+	 */
+	public static function wizard_page_wrapper() {
+		?>
+		<div class="wrap" id="ha-setup-wizard">
+			<div id="wizard-root">
+                <div class="ha-setup-wizard__header">
+                    <div class="ha-stepper">
+                        <div class="ha-stepper__steps">
+                            <ha-step 
+                                v-for="(step, index) in steps" 
+                                :active="currentPage"
+                                :complete="step.isComplete" 
+                                :step="step.key"
+                                :title="step.name"
+                                :index="index+1"
+                                @set-tab="setTab">
+                            </ha-step>
+                        </div>
+                    </div>
+                </div>
+                <div class="ha-setup-wizard__container">
+                    <div class="ha-setup-wizard__container_content">
+                        <div class="ha-step-content ha-step-welcome welcome-step-bg" v-if="currentPage == 'welcome'">
+                            <?php self::load_wizard_template( 'welcome' ); ?>
+                        </div>
+                        <div class="ha-step-content ha-step-widgets" v-if="currentPage == 'widgets'">
+                            <?php self::load_wizard_template( 'widgets' ); ?>
+                        </div>
+                        <div class="ha-step-content ha-step-features" v-if="currentPage == 'features'">
+                            <span>Current Tab is {{currentPage}}</span>
+                            <?php self::load_wizard_template( 'features' ); ?>
+                        </div>
+                        <div class="ha-step-content ha-step-bepro" v-if="currentPage == 'bepro'">
+                            <span>Current Tab is {{currentPage}}</span>
+                            <?php self::load_wizard_template( 'bepro' ); ?>
+                        </div>
+                        <div class="ha-step-content ha-step-contribute" v-if="currentPage == 'contribute'">
+                            <span>Current Tab is {{currentPage}}</span>
+                            <?php self::load_wizard_template( 'contribute' ); ?>
+                        </div>
+                        <div class="ha-step-content ha-step-congrats congrats-step-bg" v-if="currentPage == 'congrats'">
+                            <?php self::load_wizard_template( 'congrats' ); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<?php
+	}
 }
 
 Dashboard::init();
