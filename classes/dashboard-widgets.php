@@ -29,14 +29,13 @@ class Dashboard_Widgets {
 
         // Get the regular dashboard widgets array 
         // (which already has our new widget but appended at the end).
-        $default_dashboard = $wp_meta_boxes['dashboard']['normal']['core'];
+        $existing_dwidgets = $wp_meta_boxes['dashboard']['normal']['core'];
 
         // Backup and delete our new dashboard widget from the end of the array.
-        $example_widget_backup = ['happy_addons_news_update' => $default_dashboard['happy_addons_news_update']];
-        // unset( $default_dashboard['happy_addons_news_update'] );
+        $happy_dashboard_widget = ['happy_addons_news_update' => $existing_dwidgets['happy_addons_news_update']];
 
         // Merge the two arrays together so our widget is at the beginning.
-        $sorted_dashboard = array_merge($example_widget_backup, $default_dashboard);
+        $sorted_dashboard = array_merge($happy_dashboard_widget, $existing_dwidgets);
 
         // Save the sorted array back into the original metaboxes. 
         $wp_meta_boxes['dashboard']['normal']['core'] = $sorted_dashboard;
@@ -70,8 +69,6 @@ class Dashboard_Widgets {
                     <?php if ($maxitems == 0) : ?>
                         <li class="ha-overview__post"><?php _e('No items', 'happy-elementor-addons'); ?></li>
                     <?php else : ?>
-                        <?php // Loop through each feed item and display each item as a hyperlink. 
-                        ?>
                         <?php foreach ($rss_items as $item) : ?>
                             <li class="ha-overview__post">
                                 <a href="<?php echo esc_url($item->get_permalink()); ?>" title="<?php printf(__('Posted %s', 'happy-elementor-addons'), $item->get_date('j F Y | g:i a')); ?>" class="ha-overview__post-link" target="_blank"><?php echo esc_html($item->get_title()); ?></a>
@@ -83,20 +80,20 @@ class Dashboard_Widgets {
             <div class="ha-overview__footer ha-divider-top">
                 <ul>
                     <li class="ha-overview__blog">
-                        <a href="https://happyaddons.com/blog/" target="_blank">Blog<span aria-hidden="true" class="dashicons dashicons-external"></span></a>
+                        <a href="https://happyaddons.com/blog/" target="_blank"><?php esc_html_e('Blog', 'happy-elementor-addons'); ?> <span aria-hidden="true" class="dashicons dashicons-external"></span></a>
                     </li>
                     <li class="ha-overview__help">
-                        <a href="https://happyaddons.com/docs/" target="_blank">Help <span aria-hidden="true" class="dashicons dashicons-external"></span></a>
+                        <a href="https://happyaddons.com/docs/" target="_blank"><?php esc_html_e('Help', 'happy-elementor-addons'); ?> <span aria-hidden="true" class="dashicons dashicons-external"></span></a>
                     </li>
                     <li class="ha-overview__go-pro">
-                        <a href="https://happyaddons.com/pricing/" target="_blank">Go Pro <span aria-hidden="true" class="dashicons dashicons-external"></span>
+                        <a href="https://happyaddons.com/pricing/" target="_blank"><?php esc_html_e('Go Pro', 'happy-elementor-addons'); ?> <span aria-hidden="true" class="dashicons dashicons-external"></span>
                         </a>
                     </li>
                     <li class="ha-overview__community">
-                        <a href="https://www.facebook.com/groups/HappyAddonsCommunity" target="_blank">Community <span aria-hidden="true" class="dashicons dashicons-external"></span></a>
+                        <a href="https://www.facebook.com/groups/HappyAddonsCommunity" target="_blank"><?php esc_html_e('Community', 'happy-elementor-addons'); ?> <span aria-hidden="true" class="dashicons dashicons-external"></span></a>
                     </li>
                     <li class="ha-overview__whats-new">
-                        <a href="https://happyaddons.com/whats-new-in-happyaddons/" target="_blank">What’s New <span aria-hidden="true" class="dashicons dashicons-external"></span></a>
+                        <a href="https://happyaddons.com/whats-new-in-happyaddons/" target="_blank"><?php esc_html_e('What’s New', 'happy-elementor-addons'); ?> <span aria-hidden="true" class="dashicons dashicons-external"></span></a>
                     </li>
                 </ul>
             </div>

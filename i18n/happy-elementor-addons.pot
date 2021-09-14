@@ -154,16 +154,36 @@ msgstr ""
 msgid "HappyAddons News & Updates"
 msgstr ""
 
-#: classes/dashboard-widgets.php:67
+#: classes/dashboard-widgets.php:66
 msgid "HappyAddons Banner"
 msgstr ""
 
-#: classes/dashboard-widgets.php:77
+#: classes/dashboard-widgets.php:74
 msgid "Posted %s"
 msgstr ""
 
-#: classes/dashboard-widgets.php:71
+#: classes/dashboard-widgets.php:70
 msgid "No items"
+msgstr ""
+
+#: classes/dashboard-widgets.php:83
+msgid "Blog"
+msgstr ""
+
+#: classes/dashboard-widgets.php:86, inc/functions.php:106
+msgid "Help"
+msgstr ""
+
+#: classes/dashboard-widgets.php:89
+msgid "Go Pro"
+msgstr ""
+
+#: classes/dashboard-widgets.php:93
+msgid "Community"
+msgstr ""
+
+#: classes/dashboard-widgets.php:96
+msgid "What’s New"
 msgstr ""
 
 #: classes/dashboard.php:64, extensions/advanced-tooltip.php:85, widgets/bar-chart/widget.php:197, widgets/carousel/widget.php:188, widgets/event-calendar/widget.php:631, widgets/flip-box/widget.php:389, widgets/horizontal-timeline/widget.php:259, widgets/image-compare/widget.php:165, widgets/logo-grid/widget.php:212, widgets/post-list/widget.php:179, widgets/post-tab/widget.php:173, widgets/slider/widget.php:186, widgets/taxonomy-list/widget.php:213, widgets/threesixty-rotation/widget.php:97
@@ -1572,10 +1592,6 @@ msgstr ""
 
 #: inc/functions.php:105
 msgid "Grabbing"
-msgstr ""
-
-#: inc/functions.php:106
-msgid "Help"
 msgstr ""
 
 #: inc/functions.php:107
