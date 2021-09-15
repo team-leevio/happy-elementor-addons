@@ -67,7 +67,7 @@ class Widgets_Manager {
 	// 	        'is_pro' => isset($item["is_pro"])? $item["is_pro"]: false,
 	// 	    ];
 	// 	});
-		
+
 	// 	return self::$catwise_widget_map;
 	// }
 
@@ -392,6 +392,7 @@ class Widgets_Manager {
 		return [
 			'infobox' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-info-box',
 				'title' => __( 'Info Box', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-blog-content',
@@ -404,6 +405,7 @@ class Widgets_Manager {
 			],
 			'card' => [
 				'cat' => 'creative',
+				'is_active' => false,
 				'demo' => 'https://happyaddons.com/go/demo-card',
 				'title' => __( 'Card', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-card',
@@ -416,6 +418,7 @@ class Widgets_Manager {
 			],
 			'cf7' => [
 				'cat' => 'forms',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-contact-form7',
 				'title' => __( 'Contact Form 7', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-form',
@@ -428,6 +431,7 @@ class Widgets_Manager {
 			],
 			'icon-box' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-icon-box',
 				'title' => __( 'Icon Box', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-icon-box',
@@ -440,6 +444,7 @@ class Widgets_Manager {
 			],
 			'member' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-team-member',
 				'title' => __( 'Team Member', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-team-member',
@@ -452,6 +457,7 @@ class Widgets_Manager {
 			],
 			'review' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-review',
 				'title' => __( 'Review', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-review',
@@ -464,6 +470,7 @@ class Widgets_Manager {
 			],
 			'image-compare' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-image-compare',
 				'title' => __( 'Image Compare', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-image-compare',
@@ -476,6 +483,7 @@ class Widgets_Manager {
 			],
 			'justified-gallery' => [
 				'cat' => 'creative',
+				'is_active' => false,
 				'demo' => 'https://happyaddons.com/go/demo-justified-grid',
 				'title' => __( 'Justified Grid', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-brick-wall',
@@ -488,6 +496,7 @@ class Widgets_Manager {
 			],
 			'image-grid' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-image-grid',
 				'title' => __( 'Image Grid', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-grid-even',
@@ -500,6 +509,7 @@ class Widgets_Manager {
 			],
 			'slider' => [
 				'cat' => 'slider-and-carousel',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-slider',
 				'title' => __( 'Slider', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-image-slider',
@@ -512,6 +522,7 @@ class Widgets_Manager {
 			],
 			'carousel' => [
 				'cat' => 'slider-and-carousel',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-image-carousel',
 				'title' => __( 'Carousel', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-carousal',
@@ -524,6 +535,7 @@ class Widgets_Manager {
 			],
 			'skills' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-skill-bar',
 				'title' => __( 'Skill Bars', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-progress-bar',
@@ -536,6 +548,7 @@ class Widgets_Manager {
 			],
 			'gradient-heading' => [
 				'cat' => 'creative',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-gradient-heading',
 				'title' => __( 'Gradient Heading', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-drag',
@@ -548,6 +561,7 @@ class Widgets_Manager {
 			],
 			'wpform' => [
 				'cat' => 'forms',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-wpforms',
 				'title' => __( 'WPForms', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-form',
@@ -560,6 +574,7 @@ class Widgets_Manager {
 			],
 			'ninjaform' => [
 				'cat' => 'forms',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-ninja-forms',
 				'title' => __( 'Ninja Forms', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-form',
@@ -572,6 +587,7 @@ class Widgets_Manager {
 			],
 			'calderaform' => [
 				'cat' => 'forms',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-caldera-forms',
 				'title' => __( 'Caldera Forms', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-form',
@@ -584,6 +600,7 @@ class Widgets_Manager {
 			],
 			'weform' => [
 				'cat' => 'forms',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-weforms',
 				'title' => __( 'weForms', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-form',
@@ -596,6 +613,7 @@ class Widgets_Manager {
 			],
 			'logo-grid' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-logo-grid',
 				'title' => __('Logo Grid', 'happy-elementor-addons'),
 				'icon' => 'hm hm-logo-grid',
@@ -608,6 +626,7 @@ class Widgets_Manager {
 			],
 			'dual-button' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-dual-button',
 				'title' => __( 'Dual Button', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-accordion-horizontal',
@@ -620,6 +639,7 @@ class Widgets_Manager {
 			],
 			'testimonial' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-testimonial',
 				'title' => __( 'Testimonial', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-testimonial',
@@ -632,6 +652,7 @@ class Widgets_Manager {
 			],
 			'number' => [
 				'cat' => 'creative',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-number-widget',
 				'title' => __( 'Number', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-madel',
@@ -644,6 +665,7 @@ class Widgets_Manager {
 			],
 			'flip-box' => [
 				'cat' => 'creative',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/gp/demo-flip-box',
 				'title' => __( 'Flip Box', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-flip-card1',
@@ -656,6 +678,7 @@ class Widgets_Manager {
 			],
 			'calendly' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-calendly',
 				'title' => __( 'Calendly', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-calendar',
@@ -668,6 +691,7 @@ class Widgets_Manager {
 			],
 			'pricing-table' => [
 				'cat' => 'marketing',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-pricing-table',
 				'title' => __( 'Pricing Table', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-file-cabinet',
@@ -680,6 +704,7 @@ class Widgets_Manager {
 			],
 			'step-flow' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-step-flow',
 				'title' => __( 'Step Flow', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-step-flow',
@@ -692,6 +717,7 @@ class Widgets_Manager {
 			],
 			'gravityforms' => [
 				'cat' => 'forms',
+				'is_active' => true,
 				'title' => __( 'Gravity Forms', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-form',
 				'css' => [],
@@ -703,6 +729,7 @@ class Widgets_Manager {
 			],
 			'news-ticker' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'title' => __( 'News Ticker', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-slider',
 				'css' => ['news-ticker'],
@@ -714,6 +741,7 @@ class Widgets_Manager {
 			],
 			'fun-factor' => [
 				'cat' => 'creative',
+				'is_active' => true,
 				'title' => __( 'Fun Factor', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-slider',
 				'css' => ['fun-factor'],
@@ -725,6 +753,7 @@ class Widgets_Manager {
 			],
 			'bar-chart' => [
 				'cat' => 'chart',
+				'is_active' => true,
 				'demo' => '',
 				'title' => __( 'Bar Chart', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-graph-bar',
@@ -737,6 +766,7 @@ class Widgets_Manager {
 			],
 			'social-icons' => [
 				'cat' => 'social-media',
+				'is_active' => true,
 				'title' => __( 'Social Icons', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-bond2',
 				'css' => ['social-icons'],
@@ -748,6 +778,7 @@ class Widgets_Manager {
 			],
 			'twitter-feed' => [
 				'cat' => 'social-media',
+				'is_active' => true,
 				'title' => __( 'Twitter Feed', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-twitter-feed',
 				'css' => ['twitter-feed'],
@@ -759,6 +790,7 @@ class Widgets_Manager {
 			],
 			'post-list' => [
 				'cat' => 'post',
+				'is_active' => true,
 				'title' => __( 'Post List', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-post-list',
 				'css' => ['post-list'],
@@ -770,6 +802,7 @@ class Widgets_Manager {
 			],
 			'post-tab' => [
 				'cat' => 'post',
+				'is_active' => true,
 				'title' => __( 'Post Tab', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-post-tab',
 				'css' => ['post-tab'],
@@ -781,6 +814,7 @@ class Widgets_Manager {
 			],
 			'taxonomy-list' => [
 				'cat' => 'post',
+				'is_active' => true,
 				'title' => __( 'Taxonomy List', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-clip-board',
 				'css' => ['taxonomy-list'],
@@ -792,6 +826,7 @@ class Widgets_Manager {
 			],
 			'threesixty-rotation' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'title' => __( 'Threesixty Rotation', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-3d-rotate',
 				'css' => ['threesixty-rotation'],
@@ -803,6 +838,7 @@ class Widgets_Manager {
 			],
 			'fluent-form' => [
 				'cat' => 'forms',
+				'is_active' => true,
 		        'title' => __( 'Fluent Form', 'happy-elementor-addons' ),
 		        'icon' => 'hm hm-form',
 		        'css' => [],
@@ -814,6 +850,7 @@ class Widgets_Manager {
 	        ],
 			'data-table' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'title' => __( 'Data Table', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-data-table',
 				'css' => ['data-table'],
@@ -825,6 +862,7 @@ class Widgets_Manager {
 			],
 			'horizontal-timeline' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'title' => __( 'Horizontal Timeline', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-timeline',
 				'css' => ['horizontal-timeline'],
@@ -836,6 +874,7 @@ class Widgets_Manager {
 			],
 			'social-share' => [
 				'cat' => 'social-media',
+				'is_active' => true,
 				'title' => __( 'Social Share', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-share',
 				'css' => ['social-share'],
@@ -847,6 +886,7 @@ class Widgets_Manager {
 			],
 			'image-hover-effect' => [
 				'cat' => 'creative',
+				'is_active' => true,
 				'title' => __( 'Image Hover Effect', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-cursor-hover-click',
 				'css' => ['image-hover-effect'],
@@ -858,6 +898,7 @@ class Widgets_Manager {
 			],
 			'event-calendar' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'title' => __( 'Event Calendar', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-event-calendar',
 				'css' => ['event-calendar'],
@@ -869,6 +910,7 @@ class Widgets_Manager {
 			],
 			'link-hover' => [
 				'cat' => 'creative',
+				'is_active' => true,
 				'title' => __( 'Animated Link', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-cursor-hover-click',
 				'css' => ['link-hover'],
@@ -880,6 +922,7 @@ class Widgets_Manager {
 			],
 			'mailchimp' => [
 				'cat' => 'forms',
+				'is_active' => true,
 				'title' => __( 'MailChimp', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-mail-chimp',
 				'css' => ['mailchimp'],
@@ -891,6 +934,7 @@ class Widgets_Manager {
 			],
 			'image-accordion' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'title' => __( 'Image Accordion', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-slider-image',
 				'css' => ['image-accordion'],
@@ -902,6 +946,7 @@ class Widgets_Manager {
 			],
 			'content-switcher' => [
 				'cat' => 'general',
+				'is_active' => true,
 				'title' => __( 'Content Switcher', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-switcher',
 				'css' => ['content-switcher'],
@@ -913,6 +958,7 @@ class Widgets_Manager {
 			],
 			'image-stack-group' => [
 				'cat' => 'creative',
+				'is_active' => true,
 				'title' => __( 'Image Stack Group', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-lens',
 				'css' => ['circle-image-group'],
@@ -927,6 +973,13 @@ class Widgets_Manager {
 
 	public static function get_base_widget_key() {
 		return apply_filters( 'happyaddons_get_base_widget_key', '_happyaddons_base' );
+	}
+
+	public static function get_default_active_widget() {
+		$default_active = array_filter( self::get_local_widgets_map(), function($var){
+			return $var['is_active'] === true;
+		});
+		return $default_active;
 	}
 
 	/**

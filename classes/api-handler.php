@@ -8,11 +8,13 @@ use function PHPSTORM_META\type;
 
 defined('ABSPATH') || die();
 
-class Api_Handler 
+class Api_Handler
 {
     public static $catwise_free_widget_map = [];
 
     public static $disabled_widgets = [];
+
+    public static $active_widgets = [];
 
     public static function init()
     {
@@ -102,7 +104,11 @@ class Api_Handler
 
     public static function ha_wizard_get_widgets($disabled=true){
         self::$disabled_widgets = Widgets_Manager::get_inactive_widgets();
-        
+
+		$default_active = Widgets_Manager::get_default_active_widget();
+
+		self::$active_widgets = array_intersect($default_active,self::$disabled_widgets);
+
         $widgets = Widgets_Manager::get_widgets_map();
         unset( $widgets[ Widgets_Manager::get_base_widget_key() ] );
 
@@ -113,7 +119,8 @@ class Api_Handler
 		        'title' => $item["title"],
 		        'icon' => $item["icon"],
 		        'is_pro' => isset($item["is_pro"])? $item["is_pro"]: false,
-                'is_active' => (!in_array($key, self::$disabled_widgets))?true:false
+                // 'is_active' => (!in_array($key, self::$disabled_widgets))?true:false
+                'is_active' => (!in_array($key, self::$active_widgets))?true:false
 		    ];
 
             sort(self::$catwise_free_widget_map[$item["cat"]]);
