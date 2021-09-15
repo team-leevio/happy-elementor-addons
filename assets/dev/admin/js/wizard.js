@@ -2,61 +2,115 @@ const Wizard = {
 	data() {
 		return {
 			screen: 0,
-			currentPage: 'widgets',
+			currentPage: "welcome",
+			userType: 'normal',
 			steps: [
 				{
-					key: 'welcome',
-					name: 'Welcome',
-					isComplete: true,
-				},
-				{
-					key: 'widgets',
-					name: 'Widgets',
+					key: "welcome",
+					name: "Welcome",
 					isComplete: false,
 				},
 				{
-					key: 'features',
-					name: 'Features',
+					key: "widgets",
+					name: "Widgets",
 					isComplete: false,
 				},
 				{
-					key: 'bepro',
-					name: 'Be a pro!',
+					key: "features",
+					name: "Features",
 					isComplete: false,
 				},
 				{
-					key: 'contribute',
-					name: 'Contribute',
+					key: "bepro",
+					name: "Be a pro!",
 					isComplete: false,
 				},
 				{
-					key: 'congrats',
-					name: 'Congrats',
+					key: "contribute",
+					name: "Contribute",
 					isComplete: false,
-				}
+				},
+				{
+					key: "congrats",
+					name: "Congrats",
+					isComplete: false,
+				},
 			],
-			settings:{
-				welcome:{
-					userType: null
+
+			widgetList: [],
+			disabledWidgets: [],
+
+			settings: {
+				welcome: {
+					userType: null,
 				},
-				widgets:null,
+				widgets: [],
 				features: null,
 				contribute: false,
-			}
+				all: [],
+				checkedWidgets: [],
+			},
+
+			widgetMore: true,
 		};
 	},
-	mounted(){
+	mounted() {
 		this.getCurrentPage();
+		this.fetchWidgetData();
 	},
 	methods: {
+		async fetchWidgetData() {
+			const url = window.HappyWizard.apiBase+"/widgets/all/";
+
+			await fetch(url, {
+				method: "GET",
+				headers: { "X-WP-Nonce": window.HappyWizard.nonce },
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					if (data) {
+						this.widgetList = data.all;
+						this.disabledWidgets = data.disabled;
+					}
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		},
+
+		async fetchPreset(userType) {
+			const url = window.HappyWizard.apiBase+"/wizard/preset/"+userType;
+
+			await fetch(url, {
+				method: "GET",
+				headers: { "X-WP-Nonce": window.HappyWizard.nonce },
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					if (data) {
+						console.log(data)
+					}
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		},
+
+		setUserType(type){
+			this.userType = type
+
+			this.fetchPreset(type)
+		},
 		setTab(screen) {
 			this.currentPage = screen;
 			this.screen = screen;
 		},
-
-		getCurrentPage(){
+		revealWidgetList() {
+			this.widgetMore = false;
+		},
+		getCurrentPage() {
 			for (let elem of this.steps) {
-				if(elem.isComplete == false){
+				if (elem.isComplete == false) {
 					this.currentPage = elem.key;
 					break;
 				}
@@ -64,20 +118,109 @@ const Wizard = {
 			return this.currentPage;
 		},
 
-		goNext(screen){
-			this.setTab(screen)
+		goNext(screen) {
+			this.setTab(screen);
+		},
+
+		allAdd(key) {
+			// this.settings.all.filter(f => f !== key).push(key)
+			const modified = this.widgetList[key];
+
+			const localThis = this;
+			Object.keys(modified).forEach(function (item) {
+				modified[item].is_active = true;
+				localThis.isActive(modified[item].slug, false);
+			});
+
+			if (this.settings.all.indexOf(key) === -1) {
+				this.settings.all.push(key);
+			}
+			return modified;
+		},
+
+		allRemove(key) {
+			const modified = this.widgetList[key];
+			const localThis = this;
+
+			Object.keys(modified).forEach(function (item) {
+				modified[item].is_active = false;
+				localThis.isActive(modified[item].slug, true);
+			});
+
+			this.settings.all = this.settings.all.filter(function (
+				value,
+				index,
+				arr
+			) {
+				return value != key;
+			});
+			return modified;
+
+			//console.log(JSON.stringify(this.settings.all));
+		},
+
+		isActive(key, stat) {
+			console.log(key + ":" + stat);
+			if (stat === true) {
+				console.log("hit true");
+				if (this.disabledWidgets.indexOf(key) === -1) {
+					this.disabledWidgets.push(key);
+				}
+			} else {
+				console.log("hit false");
+				this.disabledWidgets = this.disabledWidgets.filter(function (
+					value,
+					index,
+					arr
+				) {
+					return value != key;
+				});
+			}
+			console.log(this.disabledWidgets);
+		},
+
+		makeTitle(slug) {
+			var title = slug.replace(/-/g, " ").replace("and", "&");
+			return title.charAt(0).toUpperCase() + title.slice(1);
+		},
+	},
+
+	watch: {
+		"settings.checkedWidgets": function (val) {
+			console.log(this.settings.checkedWidgets);
+			//this.log();
+		},
+
+		"settings.all": function (val) {
+			//console.log(this.settings.all);
+
+			console.log(JSON.stringify(this.settings.all));
+			//this.isWidgetActive();
+		},
+
+		currentPage : function(val){
+			console.log(val);
 		}
 	},
+
+	computed: {},
 };
 const app = Vue.createApp(Wizard);
+app.config.globalProperties.window = window;
 
 app.component("ha-step", {
-	props: { active: String, complete: Boolean, step: String, title: String, index: Number },
+	props: {
+		active: String,
+		complete: Boolean,
+		step: String,
+		title: String,
+		index: Number,
+	},
 	emits: ["setTab"],
 	computed: {
 		isActive() {
-		  return this.active == this.step ? true : false
-		}
+			return this.active == this.step ? true : false;
+		},
 	},
 	template: `<div class="ha-stepper__step" :class="{ 'is-complete': this.complete, 'is-active': this.isActive }">
 	<button class="ha-stepper__step-label-wrapper" @click="$emit('setTab',step)">
@@ -99,8 +242,8 @@ app.component("ha-step", {
 </div>`,
 });
 
-app.component("ha-nav",{
-	props: {prev: String,next: String,done: String},
+app.component("ha-nav", {
+	props: { prev: String, next: String, done: String },
 	emits: ["setTab"],
 	template: `<div class="ha-setup-wizard__nav">
         <button class="ha-setup-wizard__nav_prev" v-if="prev" @click="$emit('setTab',prev)">
@@ -112,41 +255,6 @@ app.component("ha-nav",{
         <button class="ha-setup-wizard__nav_next" v-if="next" @click="$emit('setTab',next)"><span>Next</span></button>
         <button class="ha-setup-wizard__nav_done" v-if="done" @click="$emit('setTab','done')"><span>Done</span></button>
     </div>
-	`
+	`,
 });
-
-app.component('ha-item',{
-	props: {type: String, title: String, key: String, isActive: Boolean},
-	emits: [],
-	template: `<div class="ha_item_widget">
-	<fieldset>
-	<legend>{{type}}</legend>
-	<div class="widget_inner">
-	<div class="widget-title">{{title}}</div>
-	<div class="ha-dashboard-widgets__item-toggle ha-toggle">
-		<input id="ha-widget-{{key}}" type="checkbox" class="ha-toggle__check ha-widget" :checked="this.isActive">
-		<b class="ha-toggle__switch"></b>
-		<b class="ha-toggle__track"></b>
-	</div>
-	</div>
-	</fieldset>
-	</div>
-	`
-})
-
 app.mount("#ha-setup-wizard");
-
-
-;(function($) {
-	'use strict';
-
-	var widgetList = $("#wizard-root .widget-container.list.masked");
-	// var widgetListContainer = $("body .list.masked");
-
-	if(widgetList){
-		widgetList.on("click",function(){
-			console.log('hit');
-			widgetList.removeClass('list masked');
-		});
-	}
-}(jQuery));

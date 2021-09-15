@@ -18,14 +18,20 @@
     <?php } ?>
 
     <div class="welcome-buttongroup">
-        <div class="switch active">
+        <div 
+            class="switch"
+            :class="{ active: userType==='normal' }"
+            @click="setUserType('normal')">
             <span class="radio"></span>
             <div class="switch-data">
                 <span class="title">I’m a regular User</span>
                 <span class="description">Config the widget for me</span>
             </div>
         </div>
-        <div class="switch">
+        <div 
+            class ="switch"
+            :class="{ active: userType==='pro' }"
+            @click="setUserType('pro')">
             <span class="radio"></span>
             <div class="switch-data">
                 <span class="title">I’m a power User</span>

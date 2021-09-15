@@ -35,8 +35,8 @@
     </div>
     
     <ha-nav
-    prev=""
-    next="widgets"
+    prev="features"
+    next="contribute"
     done=""
     @set-tab="setTab"
     ></ha-nav>

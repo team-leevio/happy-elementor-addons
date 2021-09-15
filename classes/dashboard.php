@@ -19,9 +19,12 @@ class Dashboard {
 
     const WIDGETS_NONCE = 'ha_save_dashboard';
 
+    const WIZARD_NONCE = 'wp_rest';
+
     static $menu_slug = '';
     
     public static $catwise_widget_map = [];
+    public static $catwise_free_widget_map = [];
 
     static $wizard_slug = '';
 
@@ -154,13 +157,25 @@ class Dashboard {
                 true
             );
 
-            wp_enqueue_script(
+            wp_register_script(
                 'happy-elementor-addons-wizard',
                 HAPPY_ADDONS_ASSETS . 'admin/js/wizard.min.js',
                 [ 'jquery', 'vue-js-3' ],
                 HAPPY_ADDONS_VERSION,
                 true
             );
+
+            wp_localize_script(
+                'happy-elementor-addons-wizard',
+                'HappyWizard',
+                [
+                    'nonce'   => wp_create_nonce( self::WIZARD_NONCE ),
+                    'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+                    'apiBase' => get_rest_url( null, 'happy/v1' )
+                ]
+            );
+
+            wp_enqueue_script( 'happy-elementor-addons-wizard' );
         }
 
         if ( self::$menu_slug !== $hook || ! current_user_can( 'manage_options' ) ) {
@@ -258,6 +273,20 @@ class Dashboard {
 		});
 		
 		return self::$catwise_widget_map;
+	}
+
+    public static function get_free_widget_map_catwise() {
+		$widgets = self::get_real_widgets_map();
+		array_walk($widgets, function($item, $key){
+		    self::$catwise_free_widget_map[$item["cat"]][$key] = [
+		        'demo' => isset($item["demo"])? $item["demo"]: '',
+		        'title' => $item["title"],
+		        'icon' => $item["icon"],
+		        'is_pro' => isset($item["is_pro"])? $item["is_pro"]: false,
+		    ];
+		});
+		
+		return self::$catwise_free_widget_map;
 	}
 
     private static function get_real_features_map() {

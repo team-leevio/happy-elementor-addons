@@ -16,28 +16,10 @@
         <?php endif; ?>
     </div>
     <?php } ?>
-
-    <div class="welcome-buttongroup">
-        <div class="switch active">
-            <span class="radio"></span>
-            <div class="switch-data">
-                <span class="title">I’m a regular User</span>
-                <span class="description">Config the widget for me</span>
-            </div>
-        </div>
-        <div class="switch">
-            <span class="radio"></span>
-            <div class="switch-data">
-                <span class="title">I’m a power User</span>
-                <span class="description">I can config myself</span>
-            </div>
-        </div>
-    </div>
     
     <ha-nav
-    prev=""
-    next="widgets"
-    done=""
+    prev="widgets"
+    next="bepro"
     @set-tab="setTab"
     ></ha-nav>
 </div>
