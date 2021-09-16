@@ -62,7 +62,11 @@ class Dashboard {
     public static function activation_redirect() {
         if ( get_option( HAPPY_ADDONS_REDIRECTION_FLAG, false ) && ! isset( $_GET['activate-multi'] ) ) {
             delete_option( HAPPY_ADDONS_REDIRECTION_FLAG );
-            die( wp_redirect( ha_get_dashboard_link() ) );
+            if(!get_option( HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG, false )){
+                die( wp_redirect( ha_get_setup_wizard_link() ) );
+            }else{
+                die( wp_redirect( ha_get_dashboard_link() ) );
+            }
         }
     }
 
@@ -171,7 +175,8 @@ class Dashboard {
                 [
                     'nonce'   => wp_create_nonce( self::WIZARD_NONCE ),
                     'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-                    'apiBase' => get_rest_url( null, 'happy/v1' )
+                    'apiBase' => get_rest_url( null, 'happy/v1' ),
+                    'haAdmin' => admin_url( 'admin.php?page=happy-addons' ),
                 ]
             );
 
@@ -465,15 +470,12 @@ class Dashboard {
                             <?php self::load_wizard_template( 'widgets' ); ?>
                         </div>
                         <div class="ha-step-content ha-step-features" v-if="currentPage == 'features'">
-                            <span>Current Tab is {{currentPage}}</span>
                             <?php self::load_wizard_template( 'features' ); ?>
                         </div>
                         <div class="ha-step-content ha-step-bepro" v-if="currentPage == 'bepro'">
-                            <span>Current Tab is {{currentPage}}</span>
                             <?php self::load_wizard_template( 'bepro' ); ?>
                         </div>
                         <div class="ha-step-content ha-step-contribute" v-if="currentPage == 'contribute'">
-                            <span>Current Tab is {{currentPage}}</span>
                             <?php self::load_wizard_template( 'contribute' ); ?>
                         </div>
                         <div class="ha-step-content ha-step-congrats congrats-step-bg" v-if="currentPage == 'congrats'">

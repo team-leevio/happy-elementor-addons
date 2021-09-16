@@ -71,12 +71,20 @@ function makeBackendJS() {
 		.pipe(plumberNotifier())
 		.pipe(
 			babel({
-				presets: ['@babel/env'],
+				presets: ["@babel/env"],
 			})
 		)
 		.pipe(uglify())
 		.pipe(rename({ suffix: ".min" }))
-		.pipe(dest("assets/admin/js"));
+		.pipe(dest("assets/admin/js"))
+		.on("error", swallowError);
+}
+
+function swallowError(error) {
+	// If you want details of the error in the console
+	console.log(error.toString());
+
+	this.emit("end");
 }
 
 function startWatching() {

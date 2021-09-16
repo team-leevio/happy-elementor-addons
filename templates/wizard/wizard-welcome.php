@@ -46,4 +46,6 @@
     done=""
     @set-tab="setTab"
     ></ha-nav>
+    
+    <span class="skip-setup" @click="endWizard()">Skip Setup & Go to Dashboard</span>
 </div>

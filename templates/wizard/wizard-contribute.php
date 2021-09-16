@@ -1,35 +1,27 @@
 <div class="inner-content">
-    <img src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/congrats.svg" alt="">
-    <h2 class="title-big color-purple">Welcome to HappyAddons</h2>
-    <?php 
-    if(function_exists('ini_get')) { 
-        $memory = ini_get('memory_limit');
-        $hasLowMem = (str_replace("M",'',$memory) < 256)?true:false;
-    ?>
-    <div class="php-info">Your Current PHP Memory limit is: <strong><?=$memory?></strong>
-        <?php if($hasLowMem): ?>
-        <p>( Please increase your memory limit or disable unused widgets to get better performance )</p>
-        <?php endif; ?>
-    </div>
-    <?php } ?>
-
-    <div class="welcome-buttongroup">
-        <div class="switch active">
-            <span class="radio"></span>
-            <div class="switch-data">
-                <span class="title">I’m a regular User</span>
-                <span class="description">Config the widget for me</span>
-            </div>
-        </div>
-        <div class="switch">
-            <span class="radio"></span>
-            <div class="switch-data">
-                <span class="title">I’m a power User</span>
-                <span class="description">I can config myself</span>
-            </div>
-        </div>
-    </div>
+    <h2 class="title-big color-purple">Be our proud contributor!</h2>
+    <div class="details">Are you interested in contributing to making this plugin more awesome?</div>
     
+    <div class="consent-terms">
+        <textarea rows="10" disabled placeholder="You can easily contribute by sharing non-sensitive diagnostic data and usage information to make sure optimum compatibility. You’ll be sharing - Server environment details (PHP, MySQL, server, WordPress versions), Number of users on your site, Site language, Number of active and inactive plugins, Site name and URL, Your name, and email address.
+
+We are using Appsero to collect these data. Learn more about how Appsero collects and handles your data.
+
+Additionally we also collect plugin, widget, extension usage and other installed plugin info. This data is never sold to a third party or shared with Appsero. This analytics is used to enhance and improve the user experience and R&D new features."></textarea>
+    </div>
+    <div class="consent-check">
+        <div class="ha-dashboard-widgets__item-toggle ha-toggle">
+            <input 
+            type="checkbox"
+            class="ha-toggle__check ha-widget" 
+            v-model="hasConsent"
+            >
+            <b class="ha-toggle__switch"></b>
+            <b class="ha-toggle__track"></b>
+        </div>
+        <span v-if="hasConsent">I agree to share data</span>
+        <span v-else>I don't agree to share data</span>
+    </div>
     <ha-nav
     prev="bepro"
     next="congrats"

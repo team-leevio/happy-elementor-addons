@@ -1,8 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
 body.toplevel_page_happy-addons-setup-wizard {
 	margin-top: -32px;
 	background: #a89cfc;
 	color: #50575e;
-	font-family: "Nunito";
+	font-family: "Nunito", sans-serif;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
 }
 body.toplevel_page_happy-addons-setup-wizard #wpwrap {
 	top: 0;
@@ -35,6 +41,18 @@ body.toplevel_page_happy-addons-setup-wizard #wpcontent {
 body.toplevel_page_happy-addons-setup-wizard #wpcontent > #wpbody {
 	display: block;
 	margin-top: 0 !important;
+}
+body.toplevel_page_happy-addons-setup-wizard .skip-setup {
+	position: absolute;
+	right: 0;
+	bottom: -32px;
+	left: 0;
+	color: #c4c4c4; 
+	font-weight: 600;
+	cursor: pointer;
+}
+body.toplevel_page_happy-addons-setup-wizard .skip-setup:hover {
+	text-decoration: underline;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__header {
 	position: -webkit-sticky;
@@ -199,6 +217,7 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__header .ha-steppe
 	color: #222;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__header .ha-stepper__step.is-active .ha-stepper__step-icon {
+	background: #e2498a;
 	font-weight: 600;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__header .ha-stepper__step.is-active .ha-stepper__step-label {
@@ -237,6 +256,7 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-ste
 	box-shadow: 0 10px 10px rgba(0, 0, 0, .05);
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-content .inner-content {
+	position: relative; 
 	text-align: center;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-content .title-big {
@@ -548,6 +568,283 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-ste
 	line-height: 1;
 	cursor: pointer;
 }
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-features .preadvise {
+	margin: 34px auto 55px;
+	padding: 20px 8px;
+	max-width: 733px;
+	border-radius: 20px;
+	background: rgba(254, 194, 117, .2);
+	color: #db7b00; 
+	text-align: center;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 16px;
+	font-family: Nunito;
+	line-height: 22px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-features .feature-container {
+	margin-bottom: 42px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-features .feature-container .feature-group {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap; 
+	-webkit-column-gap: 19px;
+	   -moz-column-gap: 19px;
+	        column-gap: 19px;
+
+	row-gap: 11px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-features .feature-container .ha_item_feature {
+	width: 275px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-features .feature-container .ha_item_feature fieldset {
+	padding: 18px; 
+	border: 1px solid #e1e1e1;
+	border-radius: 8px;
+	background: #fff;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-features .feature-container .ha_item_feature fieldset legend {
+	box-sizing: border-box;
+	margin-right: auto; 
+	padding: 3px 7px;
+	width: 40px;
+	border: 1px solid #e1e1e1;
+	border-radius: 10.5px;
+	background: #f2f2f2;
+	color: #828282;
+	text-align: center;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 10px;
+	line-height: 1;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-features .feature-container .ha_item_feature fieldset .feature_inner {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-ms-flex-align: center;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-features .feature-container .ha_item_feature fieldset .feature_inner .feature-title {
+	color: #000; 
+	font-weight: 600;
+	font-style: normal;
+	font-size: 14px;
+	line-height: 23px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-features .feature-container .ha-feature-cat-heading {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	margin-top: 40px; 
+	margin-bottom: 20px;
+	width: 100%;
+	border-bottom: 1px solid #e1e1e1;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-features .feature-container .ha-feature-cat-heading .title {
+	margin-bottom: 4px; 
+	color: #000;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 18px;
+	line-height: 22px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-features .feature-container .ha-feature-cat-heading .action {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-transform: translateY(50%);
+	    -ms-transform: translateY(50%);
+	        transform: translateY(50%);
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-features .feature-container .ha-feature-cat-heading .action span {
+	box-sizing: border-box;
+	margin-left: 4px; 
+	padding: 6px 15px;
+	border: 1px solid #e1e1e1;
+	border-radius: 38px;
+	background: #fff;
+	color: #000;
+	font-weight: 600;
+	font-style: normal;
+	font-size: 12px;
+	line-height: 1;
+	cursor: pointer;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .description {
+	margin-top: 48px;
+	color: #000; 
+	text-align: center;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 21px;
+	font-family: Nunito;
+	line-height: 29px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .description .big {
+	font-weight: 800;
+	font-size: 28px;
+	line-height: 38px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro h3 {
+	margin: 0; 
+	color: #a89cfc;
+	text-align: center;
+	font-weight: 800;
+	font-style: normal;
+	font-size: 28px;
+	font-family: Nunito;
+	line-height: 38px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .flex-list {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	-ms-flex-pack: distribute;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+	margin-top: 20px; 
+	-webkit-column-gap: 20px;
+	   -moz-column-gap: 20px;
+	        column-gap: 20px;
+
+	row-gap: 20px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .flex-list .promo-item {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	box-sizing: border-box;
+	padding: 16px 16px 13px; 
+	border: 1px solid rgba(90, 46, 210, .1);
+	border-radius: 10px;
+	background: rgba(168, 156, 252, .1);
+	font-family: "Montserrat", sans-serif;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .flex-list .promo-item.more {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center; 
+	-ms-flex-align: center;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .flex-list .promo-item img {
+	margin-bottom: 16px; 
+	width: auto;
+	height: 36px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .flex-list .promo-item .item-title {
+	color: #717791;
+	text-align: center;
+	text-transform: uppercase; 
+	font-size: 14px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .flex-list .promo-item .item-title .red {
+	color: #e2498a;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .flex-list .promo-item .item-title .blue {
+	color: #a89cfc;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .feature-wrap {
+	margin-top: 43px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .widget-wrap {
+	margin-top: 43px;
+	margin-bottom: 60px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .widget-wrap h3 {
+	color: #717791;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .widget-wrap .promo-item {
+	border: 1px solid rgba(34, 34, 34, .1); 
+	background: rgba(196, 196, 196, .1);
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .widget-wrap .promo-item p {
+	margin: 8px 0 0;
+	color: rgba(113, 119, 145, .7); 
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 10px;
+	line-height: 12px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-contribute .details {
+	color: #828282; 
+	text-align: center;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 21px;
+	font-family: Nunito;
+	line-height: 29px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-contribute .consent-terms {
+	box-sizing: border-box;
+	margin: auto;
+	margin-top: 65px;
+	margin-bottom: 30px;
+	padding: 32px 48px;
+	max-width: 628px;
+	border: 1px solid #e1e1e1;
+	border-radius: 20px; 
+	background: #f2f2f2;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-contribute .consent-terms textarea {
+	width: 100%;
+	outline: none;
+	border: none;
+	background: transparent;
+	box-shadow: none; 
+	resize: none;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-contribute .consent-check {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-ms-flex-align: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	-webkit-justify-content: flex-start;
+	        justify-content: flex-start;
+	margin: auto;
+	margin-bottom: 50px;
+	width: 240px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-contribute .consent-check .ha-toggle {
+	margin-right: 10px;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-contribute .consent-check span {
+	font-size: 16px;
+}
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -598,6 +895,12 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_next {
 	color: #fff;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_done {
+	border-color: #e2498a !important; 
+	background: #e2498a;
+	color: #fff;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_bepro {
+	width: 200px !important;
 	border-color: #e2498a !important; 
 	background: #e2498a;
 	color: #fff;

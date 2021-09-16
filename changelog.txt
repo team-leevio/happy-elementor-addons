@@ -1,3 +1,8 @@
+= 16 September 2021 =
+
+- New: Setup Wizard for guided plugin configuration
+- New: Widget Group in Dashboard
+
 = 3.1.0 - 25 August 2021 =
 
 - New: Added disbale option for Column Extended feature

@@ -21,7 +21,7 @@ $all_widgets_cats = self::get_free_widget_map_catwise();
             <div class="ha_item_widget"
                 v-for="(widget,key) in cat" :key="widget.slug">
                 <fieldset>
-                <legend>{{widget.is_pro}}</legend>
+                <legend>{{makeLabel(widget.is_pro)}}</legend>
                     <div class="widget_inner">
                         <div class="widget-title">{{widget.title}}</div>
                         <div class="ha-dashboard-widgets__item-toggle ha-toggle">

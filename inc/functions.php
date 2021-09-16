@@ -443,8 +443,8 @@ function ha_get_dashboard_link($suffix = '#home') {
 /**
  * @param $suffix
  */
-function ha_get_setup_wizard_link($suffix = '#home') {
-	return add_query_arg(['page' => 'happy-addons-setup-wizard' . $suffix], admin_url('admin.php'));
+function ha_get_setup_wizard_link() {
+	return add_query_arg(['page' => 'happy-addons-setup-wizard'], admin_url('admin.php'));
 }
 
 /**

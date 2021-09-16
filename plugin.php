@@ -42,6 +42,7 @@ define( 'HAPPY_ADDONS_DIR_PATH', plugin_dir_path( HAPPY_ADDONS__FILE__ ) );
 define( 'HAPPY_ADDONS_DIR_URL', plugin_dir_url( HAPPY_ADDONS__FILE__ ) );
 define( 'HAPPY_ADDONS_ASSETS', trailingslashit( HAPPY_ADDONS_DIR_URL . 'assets' ) );
 define( 'HAPPY_ADDONS_REDIRECTION_FLAG', 'happyaddons_do_activation_direct' );
+define( 'HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG', 'happyaddons_do_wizard_direct' );
 
 define( 'HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION', '2.9.0' );
 define( 'HAPPY_ADDONS_MINIMUM_PHP_VERSION', '5.4' );

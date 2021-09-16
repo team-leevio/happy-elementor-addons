@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
 $primary-color: #562dd4;
 $secondary-color: #e2498a;
 
@@ -5,7 +8,10 @@ body.toplevel_page_happy-addons-setup-wizard {
     background: #A89CFC;
     color: #50575e;
     margin-top: -32px;
-    font-family: "Nunito";
+    font-family: 'Nunito', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 
     #wpwrap {
         top: 0
@@ -42,6 +48,20 @@ body.toplevel_page_happy-addons-setup-wizard {
         &>#wpbody {
             display: block;
             margin-top: 0 !important
+        }
+    }
+
+    .skip-setup{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -32px;
+        font-weight: 600;
+        cursor: pointer;
+        color: #c4c4c4;
+
+        &:hover{
+            text-decoration: underline;
         }
     }
 
@@ -182,6 +202,7 @@ body.toplevel_page_happy-addons-setup-wizard {
                 &.is-active {
                     .ha-stepper__step {
                         &-icon {
+                            background: $secondary-color;
                             font-weight: 600;
                         }
 
@@ -240,6 +261,7 @@ body.toplevel_page_happy-addons-setup-wizard {
 
                 .inner-content{
                     text-align: center;
+                    position: relative;
                 }
 
                 .title-big{
@@ -540,6 +562,268 @@ body.toplevel_page_happy-addons-setup-wizard {
                     }
                 }
             }
+
+            &-features{
+                .preadvise{
+                    background: rgba(254, 194, 117, 0.2);
+                    border-radius: 20px;
+                    padding: 20px 8px;
+                    max-width: 733px;
+                    margin: 34px auto 55px;
+                    font-family: Nunito;
+                    font-style: italic;
+                    font-weight: bold;
+                    font-size: 16px;
+                    line-height: 22px;
+                    text-align: center;
+                    color: #DB7B00;
+                }
+                .feature-container{
+                    margin-bottom: 42px;
+
+                    .feature-group{
+                        display: flex;
+                        row-gap: 11px;
+                        column-gap: 19px;
+                        flex-wrap: wrap;
+                    }
+
+                    .ha_item_feature{
+                        width: 275px;
+
+                        fieldset{
+                            background: #FFFFFF;
+                            border: 1px solid #E1E1E1;
+                            border-radius: 8px;
+                            padding: 18px;
+
+                            legend{
+                                box-sizing: border-box;
+                                border: 1px solid #e1e1e1;
+                                border-radius: 10.5px;
+                                background: #f2f2f2;
+                                color: #828282;
+                                font-weight: 700;
+                                font-style: normal;
+                                font-size: 10px;
+                                padding: 3px 7px;
+                                line-height: 1;
+                                width: 40px;
+                                text-align: center;
+                                margin-right: auto;
+                            }
+
+                            .feature_inner{
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+
+                                .feature-title{
+                                    font-style: normal;
+                                    font-weight: 600;
+                                    font-size: 14px;
+                                    line-height: 23px;
+                                    color: #000000;
+                                }
+                            }
+                        }
+                    }
+
+                    .ha-feature-cat-heading{
+                        display: flex;
+                        width: 100%;
+                        justify-content: space-between;
+                        border-bottom: 1px solid #E1E1E1;
+                        margin-bottom: 20px;
+                        margin-top: 40px;
+
+                        // &:first-child{
+                        //     margin-top: 0px;
+                        // }
+
+                        .title{
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 18px;
+                            line-height: 22px;
+                            color: #000000;
+                            margin-bottom: 4px;
+                        }
+
+                        .action{
+                            display: flex;
+                            transform: translateY(50%);
+
+                            span{
+                                padding: 6px 15px;
+                                border: 1px solid #E1E1E1;
+                                box-sizing: border-box;
+                                border-radius: 38px;
+                                cursor: pointer;
+                                font-style: normal;
+                                font-weight: 600;
+                                font-size: 12px;
+                                line-height: 1;
+                                color: #000000;
+                                background: #FFFFFF;
+                                margin-left: 4px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &-bepro{
+                .description{
+                    margin-top: 48px;
+                    font-family: Nunito;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 21px;
+                    line-height: 29px;
+                    text-align: center;
+                    color: #000000;
+
+                    .big{
+                        font-weight: 800;
+                        font-size: 28px;
+                        line-height: 38px;
+                    }
+                }
+
+                h3{
+                    font-family: Nunito;
+                    font-style: normal;
+                    font-weight: 800;
+                    font-size: 28px;
+                    line-height: 38px;
+                    text-align: center;
+                    color: #A89CFC;
+                    margin: 0;
+                }
+
+                .flex-list{
+                    display: flex;
+                    justify-content: space-around;
+                    column-gap: 20px;
+                    row-gap: 20px;
+                    flex-wrap: wrap;
+                    margin-top: 20px;
+
+                    .promo-item{
+                        font-family: 'Montserrat', sans-serif;
+                        flex:1;
+                        background: rgba($color: #A89CFC, $alpha: 0.1);
+                        border: 1px solid rgba($color: #5A2ED2, $alpha: 0.1);;
+                        box-sizing: border-box;
+                        border-radius: 10px;
+                        padding: 16px 16px 13px;
+
+                        &.more{
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        img{
+                            height: 36px;
+                            width: auto;
+                            margin-bottom: 16px;
+                        }
+
+                        .item-title{
+                            font-size: 14px;
+                            text-align: center;
+                            color: #717791;
+                            text-transform: uppercase;
+
+                            .red{
+                                color: $secondary-color;
+                            }
+
+                            .blue{
+                                color: #A89CFC;
+                            }
+                        }
+                    }
+                }
+                .feature-wrap{
+                    margin-top: 43px;
+                }
+
+                .widget-wrap{
+                    margin-top: 43px;
+                    margin-bottom: 60px;
+
+                    h3{
+                        color: #717791;
+                    }
+
+                    .promo-item{
+                        background: rgba($color: #C4C4C4, $alpha: 0.1);
+                        border: 1px solid rgba($color: #222222, $alpha: 0.1);
+
+                        p{
+                            font-weight: 500;
+                            font-size: 10px;
+                            line-height: 12px;
+                            text-align: center;
+                            text-transform: uppercase;
+                            margin: 8px 0 0;
+                            color: rgba($color: #717791, $alpha: 0.7);
+                        }
+                    }
+                }
+            }
+
+            &-contribute{
+                .details{
+                    font-family: Nunito;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 21px;
+                    line-height: 29px;
+                    text-align: center;
+                    color: #828282;
+                }
+
+                .consent-terms{
+                    margin: auto;
+                    margin-top: 65px;
+                    margin-bottom: 30px;
+                    padding: 32px 48px;
+                    max-width: 628px;
+                    background: #F2F2F2;
+                    border: 1px solid #E1E1E1;
+                    box-sizing: border-box;
+                    border-radius: 20px;    
+
+                    textarea{
+                        resize: none;
+                        width: 100%;
+                        background: transparent;
+                        border: none;
+                        outline: none;
+                        box-shadow: none;
+                    }
+                }
+
+                .consent-check{
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    margin: auto;
+                    margin-bottom: 50px;
+                    width: 240px;
+
+                    .ha-toggle{
+                        margin-right: 10px;
+                    }
+
+                    span{
+                        font-size: 16px;
+                    }
+                }
+            }
         }
     }
 
@@ -581,6 +865,13 @@ body.toplevel_page_happy-addons-setup-wizard {
 
         &_done{
             color: #FFFFFF;
+            background: $secondary-color;
+            border-color: $secondary-color !important;
+        }
+
+        &_bepro{
+            color: #FFFFFF;
+            width: 200px !important;
             background: $secondary-color;
             border-color: $secondary-color !important;
         }

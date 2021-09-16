@@ -1,5 +1,5 @@
 <div class="inner-content">
-    <img src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/congrats.svg" alt="" style="max-height:300px">
+    <img src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/wizard/congrats.svg" alt="" style="max-height:300px">
     <h2 class="congrats-info">You have completed your setup for HappyAddons…</h2>
     <div class="details">Add more creativity to your design!</div>
     <ha-nav

@@ -2,8 +2,10 @@ const Wizard = {
 	data() {
 		return {
 			screen: 0,
+			hasCache: false,
 			currentPage: "welcome",
-			userType: 'normal',
+			userType: "normal",
+			hasConsent: true,
 			steps: [
 				{
 					key: "welcome",
@@ -40,6 +42,9 @@ const Wizard = {
 			widgetList: [],
 			disabledWidgets: [],
 
+			featureList: [],
+			disabledFeatures: [],
+
 			settings: {
 				welcome: {
 					userType: null,
@@ -56,12 +61,12 @@ const Wizard = {
 	},
 	mounted() {
 		this.getCurrentPage();
-		this.fetchWidgetData();
+		this.fetchPreset(this.userType);
+		this.fetchCache();
 	},
 	methods: {
 		async fetchWidgetData() {
-			const url = window.HappyWizard.apiBase+"/widgets/all/";
-
+			const url = window.HappyWizard.apiBase + "/widgets/all/";
 			await fetch(url, {
 				method: "GET",
 				headers: { "X-WP-Nonce": window.HappyWizard.nonce },
@@ -78,17 +83,29 @@ const Wizard = {
 				});
 		},
 
-		async fetchPreset(userType) {
-			const url = window.HappyWizard.apiBase+"/wizard/preset/"+userType;
-
+		async fetchCache() {
+			const url =
+				window.HappyWizard.apiBase + "/wizard/cache";
 			await fetch(url, {
 				method: "GET",
 				headers: { "X-WP-Nonce": window.HappyWizard.nonce },
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					if (data) {
-						console.log(data)
+					if (data.data) {
+						if(data.data.widgets){
+							this.widgetList = data.data.widgets;
+						}
+						if(data.data.widgets_disabled){
+							this.disabledWidgets = data.data.widgets_disabled;
+						}
+						if(data.data.features){
+							this.featureList = data.data.features;
+						}
+						if(data.data.features_disabled){
+							this.disabledFeatures = data.data.features_disabled;
+						}
+						console.log(data);
 					}
 				})
 				.catch((error) => {
@@ -96,14 +113,119 @@ const Wizard = {
 				});
 		},
 
-		setUserType(type){
-			this.userType = type
+		async fetchPreset(userType) {
+			const url =
+				window.HappyWizard.apiBase + "/wizard/preset/" + userType;
+			await fetch(url, {
+				method: "GET",
+				headers: { "X-WP-Nonce": window.HappyWizard.nonce },
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					if (data) {
+						this.widgetList = data.widgets.all;
+						this.disabledWidgets = data.widgets.disabled;
 
-			this.fetchPreset(type)
+						this.featureList = data.features.all;
+						this.disabledFeatures = data.features.disabled;
+						console.log(data);
+					}
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		},
+
+
+		async saveWizardData(mode = '') {
+			let url =
+				window.HappyWizard.apiBase + "/wizard/save";
+
+			let data = {
+				'widget' : this.disabledWidgets,
+				'features' : this.disabledFeatures,
+				'consent' : (this.consent)?'yes':'no'
+			}
+
+			if(mode == "cache"){
+				url = window.HappyWizard.apiBase + "/wizard/save-cache";
+				
+				data = {
+					'widgets' 			: this.widgetList,
+					'widgets_disabled' 	: this.disabledWidgets,
+					'features' 			: this.featureList,
+					'features_disabled' : this.disabledFeatures,
+					'consent' 			: (this.hasConsent)?'yes':'no'
+				}
+			}
+
+			await fetch(url, {
+				method: "POST",
+				headers: { "X-WP-Nonce": window.HappyWizard.nonce },
+				body: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8"
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					if (data && data.status === 200) {
+						if(mode === "cache"){
+							console.log("Cache Saved");
+						}else{
+							window.open(window.HappyWizard.haAdmin,"_self");
+						}
+						// console.log(data);
+					}
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		},
+
+		async endWizard() {
+			let url =
+				window.HappyWizard.apiBase + "/wizard/skip";
+
+			await fetch(url, {
+				method: "POST",
+				headers: { "X-WP-Nonce": window.HappyWizard.nonce },
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					if (data && data.status === 200) {
+						window.open(window.HappyWizard.haAdmin,"_self");
+					}
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		},
+
+		setUserType(type) {
+			this.userType = type;
+
+			this.fetchPreset(type);
 		},
 		setTab(screen) {
-			this.currentPage = screen;
-			this.screen = screen;
+
+			if(screen == 'buypro'){
+				window.open('https://happyaddons.com/go/get-pro', '_blank').focus();
+			}else if(screen == 'done'){
+				this.saveWizardData()
+			}else{
+				this.setStepComplete(this.currentPage)
+				this.currentPage = screen;
+				this.screen = screen;
+			}
+
+			this.saveWizardData("cache");
+		},
+		setStepComplete(step){
+			for (let elem of this.steps) {
+				if (elem.key == step) {
+					elem.isComplete = true;
+					break;
+				}
+			}
 		},
 		revealWidgetList() {
 			this.widgetMore = false;
@@ -123,9 +245,7 @@ const Wizard = {
 		},
 
 		allAdd(key) {
-			// this.settings.all.filter(f => f !== key).push(key)
 			const modified = this.widgetList[key];
-
 			const localThis = this;
 			Object.keys(modified).forEach(function (item) {
 				modified[item].is_active = true;
@@ -155,8 +275,6 @@ const Wizard = {
 				return value != key;
 			});
 			return modified;
-
-			//console.log(JSON.stringify(this.settings.all));
 		},
 
 		isActive(key, stat) {
@@ -179,10 +297,35 @@ const Wizard = {
 			console.log(this.disabledWidgets);
 		},
 
+		isFeatureActive(key, stat) {
+			if (stat === true) {
+				if (this.disabledFeatures.indexOf(key) === -1) {
+					this.disabledFeatures.push(key);
+				}
+			} else {
+				this.disabledFeatures = this.disabledFeatures.filter(function (
+					value,
+					index,
+					arr
+				) {
+					return value != key;
+				});
+			}
+			console.log(this.disabledFeatures);
+		},
+
 		makeTitle(slug) {
 			var title = slug.replace(/-/g, " ").replace("and", "&");
 			return title.charAt(0).toUpperCase() + title.slice(1);
 		},
+
+		makeLabel(isPro){
+			if(isPro){
+				return "PRO"
+			}
+
+			return "FREE"
+		}
 	},
 
 	watch: {
@@ -198,9 +341,9 @@ const Wizard = {
 			//this.isWidgetActive();
 		},
 
-		currentPage : function(val){
+		hasConsent: function (val) {
 			console.log(val);
-		}
+		},
 	},
 
 	computed: {},
@@ -222,8 +365,15 @@ app.component("ha-step", {
 			return this.active == this.step ? true : false;
 		},
 	},
-	template: `<div class="ha-stepper__step" :class="{ 'is-complete': this.complete, 'is-active': this.isActive }">
-	<button class="ha-stepper__step-label-wrapper" @click="$emit('setTab',step)">
+	methods:{
+		handleClick(step){
+			if(this.complete){
+				this.$emit('setTab',step)
+			}
+		}
+	},
+	template: `<div class="ha-stepper__step" :class="{ 'is-complete': this.complete, 'is-active': this.isActive }" @click="handleClick(step)">
+	<button class="ha-stepper__step-label-wrapper">
 		<div class="ha-stepper__step-icon">
 			<span class="ha-stepper__step-number">{{index}}</span>
 			<svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -243,7 +393,7 @@ app.component("ha-step", {
 });
 
 app.component("ha-nav", {
-	props: { prev: String, next: String, done: String },
+	props: { prev: String, next: String, done: String, bepro: String },
 	emits: ["setTab"],
 	template: `<div class="ha-setup-wizard__nav">
         <button class="ha-setup-wizard__nav_prev" v-if="prev" @click="$emit('setTab',prev)">
@@ -252,6 +402,12 @@ app.component("ha-nav", {
             </svg>
             <span>Back</span>
         </button>
+		<button class="ha-setup-wizard__nav_bepro" v-if="bepro" @click="$emit('setTab','buypro')">
+			<svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M19.8347 5.42149C19.8347 6.21488 19.1736 6.87603 18.3802 6.87603C18.2479 6.87603 18.2479 6.87603 18.1157 6.87603L15.8678 12.9587H3.96694L1.71901 6.87603C1.58678 6.87603 1.58678 6.87603 1.45455 6.87603C0.661157 6.87603 0 6.21488 0 5.42149C0 4.6281 0.661157 3.96694 1.45455 3.96694C2.24793 3.96694 2.90909 4.6281 2.90909 5.42149C2.90909 5.68595 2.90909 5.81818 2.77686 6.08264L5.02479 7.40496C5.55372 7.66942 6.08264 7.53719 6.34711 7.00826L8.99174 2.64463C8.59504 2.38017 8.46281 1.98347 8.46281 1.45455C8.46281 0.661157 9.12397 0 9.91736 0C10.7107 0 11.3719 0.661157 11.3719 1.45455C11.3719 1.98347 11.1074 2.38017 10.843 2.64463L13.3554 7.00826C13.6198 7.53719 14.281 7.66942 14.6777 7.40496L16.9256 6.08264C16.7934 5.95041 16.7934 5.68595 16.7934 5.42149C16.7934 4.6281 17.4545 3.96694 18.2479 3.96694C19.0413 3.96694 19.8347 4.6281 19.8347 5.42149ZM16.9256 14.4132V15.4711C16.9256 15.7355 16.6612 16 16.3967 16H3.43802C3.17355 16 2.90909 15.7355 2.90909 15.4711V14.4132C2.90909 14.1488 3.17355 13.8843 3.43802 13.8843H16.3967C16.6612 13.8843 16.9256 14.1488 16.9256 14.4132Z" fill="#FFC5C5"/>
+			</svg>		
+			<span>Be A Pro</span>
+		</button>
         <button class="ha-setup-wizard__nav_next" v-if="next" @click="$emit('setTab',next)"><span>Next</span></button>
         <button class="ha-setup-wizard__nav_done" v-if="done" @click="$emit('setTab','done')"><span>Done</span></button>
     </div>
