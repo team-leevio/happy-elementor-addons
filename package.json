@@ -1,11 +1,11 @@
 {
-  "name": "happy-addons-markup",
-  "version": "1.0.0",
+  "name": "happy-elementor-addons",
+  "version": "3.1.0--beta-1",
   "description": "addons collection",
   "main": "index.html",
   "scripts": {
     "dev": "gulp",
-    "zip": "cd ../ && zip -r happy-elementor-addons.zip happy-elementor-addons -x '*/.*' -x '*.zip*' -x '*.git*' -x '*/.editorconfig/*' -x '*/gulpfile.js' -x '*/yarn.lock' -x '*/package.json' -x '*/package-lock.json' -x '*/node_modules/*' -x '*/assets/dev/*' && cd happy-elementor-addons"
+    "zip": "cd ../ && zip -r $npm_package_name.zip $npm_package_name -x '*/.*' -x '*.zip*' -x '*.git*' -x '*/.editorconfig/*' -x '*/gulpfile.js' -x '*/yarn.lock' -x '*/package.json' -x '*/package-lock.json' -x '*/node_modules/*' -x '*/assets/dev/*' && mv $npm_package_name.zip $npm_package_name-v$npm_package_version.zip && cd happy-elementor-addons"
   },
   "author": "HappyMonster",
   "license": "MIT",

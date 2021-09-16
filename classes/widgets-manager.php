@@ -977,9 +977,9 @@ class Widgets_Manager {
 
 	public static function get_default_active_widget() {
 		$default_active = array_filter( self::get_local_widgets_map(), function($var){
-			return $var['is_active'] === true;
+			return $var['is_active'] == true;
 		});
-		return $default_active;
+		return array_keys($default_active);
 	}
 
 	/**
