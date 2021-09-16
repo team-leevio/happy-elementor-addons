@@ -479,7 +479,8 @@ body.toplevel_page_happy-addons-setup-wizard {
                     }
 
                     .ha_item_widget{
-                        width: 275px;
+                        max-width: 275px;
+                        width: calc((100% - 40px)/3);
 
                         fieldset{
                             background: #FFFFFF;
@@ -589,7 +590,8 @@ body.toplevel_page_happy-addons-setup-wizard {
                     }
 
                     .ha_item_feature{
-                        width: 275px;
+                        max-width: 275px;
+                        width: calc((100% - 40px)/3);
 
                         fieldset{
                             background: #FFFFFF;
