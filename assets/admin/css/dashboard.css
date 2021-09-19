@@ -386,57 +386,54 @@
 	display:         flex;
 	-webkit-flex-wrap: wrap;
 	    -ms-flex-wrap: wrap;
-	        flex-wrap: wrap; 
+	        flex-wrap: wrap;
 	margin-right: -10px;
 	margin-left: -10px;
+	-webkit-column-gap: 11px;
+	   -moz-column-gap: 11px;
+	        column-gap: 11px; 
+
+	row-gap: 11px;
 }
 .ha-dashboard-analytics__item {
-	position: relative;
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display:         flex;
-	overflow: hidden; 
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-webkit-flex-direction: column;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
-	margin-right: 10px;
-	margin-bottom: 20px;
-	margin-left: 10px;
-	padding: 10px;
-	width: calc(100% - 20px);
-	border: 1px solid #e8e8e8;
-	border-radius: 5px;
-}
-@media (min-width: 650px) {
-	.ha-dashboard-analytics__item {
-		width: calc(50% - 20px);
-	}
-}
-@media (min-width: 1350px) {
-	.ha-dashboard-analytics__item {
-		width: calc(20% - 20px);
-	}
-}
-.ha-dashboard-analytics__item-title {
-	display: inline-block;
-	margin: 0;
-	margin-bottom: 5px; 
-	color: #444;
-	vertical-align: middle;
-	text-transform: capitalize;
-	font-weight: 700;
-	font-size: 13px;
+	max-width: 275px;
+	width: calc((100% - 44px)/5);
 }
 .ha-dashboard-analytics__item-total-count {
-	display: inline-block;
+	display: block;
 	margin: 0;
 	color: #828282;
 	vertical-align: middle;
 	text-transform: capitalize; 
 	font-size: 13px;
+}
+.ha-dashboard-analytics__item fieldset {
+	padding: 3px 15px 12px; 
+	border: 1px solid #e1e1e1;
+	border-radius: 8px;
+	background: #fff;
+}
+.ha-dashboard-analytics__item fieldset legend {
+	box-sizing: border-box;
+	margin-right: auto; 
+	padding: 3px 7px;
+	width: 40px;
+	border: 1px solid #e1e1e1;
+	border-radius: 10.5px;
+	background: #f2f2f2;
+	color: #828282;
+	text-align: center;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 10px;
+	line-height: 1;
+}
+.ha-dashboard-analytics__item fieldset .widget_inner .widget-title {
+	color: #000; 
+	font-weight: 600;
+	font-style: normal;
+	font-size: 14px;
+	line-height: 23px;
 }
 .ha-dashboard .ha-toggle {
 	position: relative;
@@ -506,6 +503,16 @@
 	box-shadow: inset 0 0 0 2px rgba(0, 0, 0, .01);
 	-webkit-transition: .35s cubic-bezier(.785, .135, .15, .86);
 	        transition: .35s cubic-bezier(.785, .135, .15, .86);
+}
+.ha-dashboard .flex-content {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
 }
 
 @-webkit-keyframes animateTextIndent {

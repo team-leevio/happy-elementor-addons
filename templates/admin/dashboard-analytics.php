@@ -24,10 +24,16 @@ echo '</pre>';
 <div class="ha-dashboard-panel">
 
 	<!-- Used Widget Analytics -->
-	<div class="ha-dashboard-panel__header" style="padding-bottom: 25px;">
+	<div class="ha-dashboard-panel__header flex-content" style="padding-bottom: 25px;">
         <div class="ha-dashboard-panel__header-content">
             <h2 style="margin: 0 0 10px;"><?php esc_html_e( 'Used Widgets', 'happy-elementor-addons' ); ?></h2>
             <p class="f16" style="margin: 0 0;"><?php printf( esc_html__( 'You are yousing only %s %s widgets. %s', 'happy-elementor-addons' ), '<strong style="color:#562dd4;">', $total_used_widget_count,  '</strong>' ); ?></p>
+        </div>
+
+        <div class="ha-dashboard-panel__header-summary">
+            <div class="data"> Total Widget: 94</div>
+            <div class="data"> Used : 12</div>
+            <div class="data"> Unused: 82</div>
         </div>
     </div>
 
@@ -35,10 +41,19 @@ echo '</pre>';
 		<?php
         foreach ($used_widget as $key => $data) :
 			?>
-			<div class="ha-dashboard-analytics__item">
+			<!-- <div class="ha-dashboard-analytics__item">
                 <h3 class="ha-dashboard-analytics__item-title"><?php echo $widgets[$key]['title'];?></h3>
 				<span class="ha-dashboard-analytics__item-total-count">total use: <?php echo $data;?></span>
-        	</div>
+        	</div> -->
+            <div class="ha-dashboard-analytics__item">
+                <fieldset>
+                <legend>FREE</legend>
+                    <div class="widget_inner">
+                        <div class="widget-title"><?php echo $widgets[$key]['title'];?></div>
+                        <span class="ha-dashboard-analytics__item-total-count">total use: <?php echo $data;?></span>
+                    </div>
+                </fieldset>
+            </div>
         <?php
         endforeach;
         ?>
@@ -52,11 +67,12 @@ echo '</pre>';
 
 
 	<!-- Unused Widget Analytics -->
-	<div class="ha-dashboard-panel__header" style="padding-bottom: 25px;">
+	<div class="ha-dashboard-panel__header flex-content" style="padding-bottom: 25px;">
         <div class="ha-dashboard-panel__header-content">
             <h2 style="margin: 0 0 10px;"><?php esc_html_e( 'Unused Widgets', 'happy-elementor-addons' ); ?></h2>
             <p class="f16" style="margin: 0 0;"><?php printf( esc_html__( '%s %s widgets %s are unused right now. You can disable this to make the site faster.', 'happy-elementor-addons' ), '<strong style="color:#e2498a;">', $total_unuse_widget_count,  '</strong>' ); ?></p>
         </div>
+        <a class="ha-btn ha-btn-secondary" target="_blank" rel="noopener" href="https://www.youtube.com/channel/UC1-e7ewkKB1Dao1U90QFQFA">View more videos</a>
     </div>
 
 	<?php if( !empty($unuse_widget) ) :?>
@@ -64,10 +80,15 @@ echo '</pre>';
 		<?php
         foreach ($unuse_widget as $key => $data) :
 			?>
-			<div class="ha-dashboard-analytics__item">
-                <h3 class="ha-dashboard-analytics__item-title"><?php echo $widgets[$data]['title'];?></h3>
-				<span class="ha-dashboard-analytics__item-total-count">total use: 0</span>
-        	</div>
+            <div class="ha-dashboard-analytics__item">
+                <fieldset>
+                <legend>FREE</legend>
+                    <div class="widget_inner">
+                        <div class="widget-title"><?php echo $widgets[$data]['title'];?></div>
+                        <span class="ha-dashboard-analytics__item-total-count">total use: 0</span>
+                    </div>
+                </fieldset>
+            </div>
         <?php
         endforeach;
         ?>
