@@ -15,25 +15,30 @@ $total_widgets_count = count( $widgets );
 $total_used_widget_count = count( $used_widget );
 $total_unuse_widget_count = count( $unuse_widget );
 echo '<pre>';
-// var_dump($widgets);
+var_dump(implode(',',$unuse_widget));
+var_dump($inactive_widgets);
 // var_dump($total_widgets_count);
 // var_dump($total_used_widget_count);
 // var_dump($total_unuse_widget_count);
 echo '</pre>';
 ?>
-<div class="ha-dashboard-panel">
+<div class="ha-dashboard-panel ha-dashboard-panel-analytics">
 
 	<!-- Used Widget Analytics -->
-	<div class="ha-dashboard-panel__header flex-content" style="padding-bottom: 25px;">
+	<div class="ha-dashboard-panel__header flex-content used-widgets">
         <div class="ha-dashboard-panel__header-content">
-            <h2 style="margin: 0 0 10px;"><?php esc_html_e( 'Used Widgets', 'happy-elementor-addons' ); ?></h2>
-            <p class="f16" style="margin: 0 0;"><?php printf( esc_html__( 'You are yousing only %s %s widgets. %s', 'happy-elementor-addons' ), '<strong style="color:#562dd4;">', $total_used_widget_count,  '</strong>' ); ?></p>
+            <h2><?php esc_html_e( 'Used Widgets', 'happy-elementor-addons' ); ?></h2>
+			<?php if( !$total_used_widget_count ): ?>
+				<p class="f16" style="margin: 0 0;"><?php printf( esc_html__( 'You are using only %s %s widgets. %s', 'happy-elementor-addons' ), '<strong>', $total_used_widget_count,  '</strong>' ); ?></p>
+			<?php else: ?>
+				<p class="f16"><?php printf( esc_html__( 'No used widget found!.', 'happy-elementor-addons' ) ); ?></p>
+			<?php endif; ?>
         </div>
 
         <div class="ha-dashboard-panel__header-summary">
-            <div class="data"> Total Widget: 94</div>
-            <div class="data"> Used : 12</div>
-            <div class="data"> Unused: 82</div>
+            <div class="data"><?php printf( esc_html__('Total Widget: %s', 'happy-elementor-addons' ), $total_widgets_count);?></div>
+            <div class="data"><?php printf( esc_html__('Used: %s', 'happy-elementor-addons' ), $total_used_widget_count);?></div>
+            <div class="data"><?php printf( esc_html__('Unused: %s', 'happy-elementor-addons' ), $total_unuse_widget_count);?></div>
         </div>
     </div>
 
@@ -47,7 +52,13 @@ echo '</pre>';
         	</div> -->
             <div class="ha-dashboard-analytics__item">
                 <fieldset>
-                <legend>FREE</legend>
+				<?php
+					if( isset( $widgets[$key]['is_pro'] ) && $widgets[$key]['is_pro'] ){
+						printf( esc_html__('%sFREE%s', 'happy-elementor-addons' ), '<legend class="free">', '</legend>');
+					}else{
+						printf( esc_html__('%sPRO%s', 'happy-elementor-addons' ), '<legend class="pro">', '</legend>');
+					}
+				?>
                     <div class="widget_inner">
                         <div class="widget-title"><?php echo $widgets[$key]['title'];?></div>
                         <span class="ha-dashboard-analytics__item-total-count">total use: <?php echo $data;?></span>
@@ -66,13 +77,19 @@ echo '</pre>';
     </div>
 
 
+
 	<!-- Unused Widget Analytics -->
-	<div class="ha-dashboard-panel__header flex-content" style="padding-bottom: 25px;">
+	<div class="ha-dashboard-panel__header flex-content unused-widgets">
         <div class="ha-dashboard-panel__header-content">
-            <h2 style="margin: 0 0 10px;"><?php esc_html_e( 'Unused Widgets', 'happy-elementor-addons' ); ?></h2>
-            <p class="f16" style="margin: 0 0;"><?php printf( esc_html__( '%s %s widgets %s are unused right now. You can disable this to make the site faster.', 'happy-elementor-addons' ), '<strong style="color:#e2498a;">', $total_unuse_widget_count,  '</strong>' ); ?></p>
+			<h2><?php esc_html_e( 'Unused Widgets', 'happy-elementor-addons' ); ?></h2>
+			<?php if( $total_unuse_widget_count ): ?>
+            	<p class="f16"><?php printf( esc_html__( '%s %s widgets %s are unused right now. You can disable this to make the site faster.', 'happy-elementor-addons' ), '<strong>', $total_unuse_widget_count,  '</strong>' ); ?></p>
+			<?php else: ?>
+				<p class="f16"><?php printf( esc_html__( 'No unused widget found!.', 'happy-elementor-addons' ) ); ?></p>
+			<?php endif; ?>
         </div>
-        <a class="ha-btn ha-btn-secondary" target="_blank" rel="noopener" href="https://www.youtube.com/channel/UC1-e7ewkKB1Dao1U90QFQFA">View more videos</a>
+        <button class="ha-dashboard-btn ha-dashboard-analytics__unused_disable" type="submit"><?php echo esc_html__( 'Disable all unused widget', 'happy-elementor-addons' ); ?></button>
+		<input type="hidden" name="disable-unused-widgets" value="true<?php //echo $widget_key; ?>">
     </div>
 
 	<?php if( !empty($unuse_widget) ) :?>
@@ -82,10 +99,16 @@ echo '</pre>';
 			?>
             <div class="ha-dashboard-analytics__item">
                 <fieldset>
-                <legend>FREE</legend>
+				<?php
+					if( isset( $widgets[$data]['is_pro'] ) && $widgets[$data]['is_pro'] ){
+						printf( esc_html__('%sFREE%s', 'happy-elementor-addons' ), '<legend class="free">', '</legend>');
+					}else{
+						printf( esc_html__('%sPRO%s', 'happy-elementor-addons' ), '<legend class="pro">', '</legend>');
+					}
+				?>
                     <div class="widget_inner">
                         <div class="widget-title"><?php echo $widgets[$data]['title'];?></div>
-                        <span class="ha-dashboard-analytics__item-total-count">total use: 0</span>
+                        <span class="ha-dashboard-analytics__item-total-count"><?php echo esc_html('total use: 0');?></span>
                     </div>
                 </fieldset>
             </div>
@@ -95,6 +118,13 @@ echo '</pre>';
     </div>
 	<?php endif;?>
 
+
+
+
+
+
+
+	<!--
 	<hr>
 	<hr>
 	<h2><?php esc_html_e('Un-used Widgets', 'happy-elementor-addons'); ?></h2>
@@ -125,7 +155,7 @@ echo '</pre>';
         endforeach;
         ?>
 		</ul>
-    </div>
+    </div> -->
 
 
 </div>

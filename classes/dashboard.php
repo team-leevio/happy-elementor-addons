@@ -31,6 +31,7 @@ class Dashboard {
         add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_widgets_data' ] );
         add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_features_data' ] );
         add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_credentials_data' ] );
+        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'disable_unused_widget' ] );
 
         add_action( 'in_admin_header', [ __CLASS__, 'remove_all_notices' ], PHP_INT_MAX );
     }
@@ -125,6 +126,18 @@ class Dashboard {
         // $inactive_features = array_values( array_diff( array_keys( $widgets_map ), $features ) );
 
         Credentials_Manager::save_credentials( $credentials );
+    }
+
+    public static function disable_unused_widget( $data ) {
+        $disable_unused_widgets = ! empty( $data['disable-unused-widgets'] ) && 'true' == $data['disable-unused-widgets'] ? true : false;
+		
+		if( $disable_unused_widgets ){
+			$inactive_widgets = \Happy_Addons\Elementor\Widgets_Manager::get_inactive_widgets();
+			$unuse_widget = self::get_un_usage();
+			update_option( 'happyaddons_inactive_widgets', array_merge($unuse_widget,$inactive_widgets) );
+		}else{
+			return false;
+		}
     }
 
     public static function enqueue_scripts( $hook ) {

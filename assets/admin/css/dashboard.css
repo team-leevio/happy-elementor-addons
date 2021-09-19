@@ -2,7 +2,7 @@
 .ha-dashboard-tabs__content-item:after,
 .ha-dashboard-widgets:after,
 .ha-dashboard-credentials:after,
-.ha-dashboard-analytics:after {
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics:after {
 	display: block;
 	clear: both; 
 	content: "";
@@ -379,7 +379,40 @@
 .ha-dashboard-credentials__item-input label {
 	margin-bottom: 5px;
 }
-.ha-dashboard-analytics {
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-panel__header {
+	padding-bottom: 25px;
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-panel__header .ha-dashboard-panel__header-summary .data {
+	display: block;
+	margin-bottom: 5px; 
+	font-weight: 700;
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-panel__header .ha-dashboard-panel__header-summary .data:last-child {
+	margin-bottom: 0;
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-panel__header .ha-dashboard-panel__header-content {
+	padding-right: 15px;
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-panel__header .ha-dashboard-panel__header-content h2 {
+	margin: 0 0 10px;
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-panel__header .ha-dashboard-panel__header-content p {
+	margin: 0 0;
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-panel__header.used-widgets h2,
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-panel__header.used-widgets strong {
+	color: #562dd4;
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-panel__header.unused-widgets h2,
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-panel__header.unused-widgets strong {
+	color: #e2498a;
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-panel__header.unused-widgets .ha-dashboard-analytics__unused_disable {
+	padding: 15px 18px; 
+	background: #e2498a;
+	color: #fff;
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -389,17 +422,31 @@
 	        flex-wrap: wrap;
 	margin-right: -10px;
 	margin-left: -10px;
-	-webkit-column-gap: 11px;
-	   -moz-column-gap: 11px;
-	        column-gap: 11px; 
+	-webkit-column-gap: 15px;
+	   -moz-column-gap: 15px;
+	        column-gap: 15px; 
 
-	row-gap: 11px;
+	row-gap: 6px;
 }
-.ha-dashboard-analytics__item {
-	max-width: 275px;
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item {
 	width: calc((100% - 44px)/5);
 }
-.ha-dashboard-analytics__item-total-count {
+@media (min-width: 650px) {
+	.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item {
+		width: calc((100% - 15px)/2);
+	}
+}
+@media (min-width: 960px) {
+	.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item {
+		width: calc((100% - 30px)/3);
+	}
+}
+@media (min-width: 1350px) {
+	.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item {
+		width: calc((100% - 60px)/5);
+	}
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item-total-count {
 	display: block;
 	margin: 0;
 	color: #828282;
@@ -407,13 +454,13 @@
 	text-transform: capitalize; 
 	font-size: 13px;
 }
-.ha-dashboard-analytics__item fieldset {
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item fieldset {
 	padding: 3px 15px 12px; 
 	border: 1px solid #e1e1e1;
 	border-radius: 8px;
 	background: #fff;
 }
-.ha-dashboard-analytics__item fieldset legend {
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item fieldset legend {
 	box-sizing: border-box;
 	margin-right: auto; 
 	padding: 3px 7px;
@@ -428,7 +475,12 @@
 	font-size: 10px;
 	line-height: 1;
 }
-.ha-dashboard-analytics__item fieldset .widget_inner .widget-title {
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item fieldset legend.pro {
+	border-color: rgba(226, 73, 138, .4);
+	background: rgba(226, 73, 138, .1);
+	color: #e2498a;
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item fieldset .widget_inner .widget-title {
 	color: #000; 
 	font-weight: 600;
 	font-style: normal;
