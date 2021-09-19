@@ -7,8 +7,7 @@
     <h2 class="title-small color-red">Unlock the premium vault</h2>
     <div class="description">
         You can ease your web development by unlocking</br> 
-        <span class="big">7+ premium features</span> and <span class="big">50+ widgets.</span> </br> 
-        Our features are designed to save your valuable time & effort. 
+        <span class="big">7+ premium features</span> and <span class="big">50+ widgets.</span>
     </div>
     
     <div class="feature-wrap">
@@ -35,7 +34,7 @@
                 <div class="item-title">happy<br><span class="red">particle</span><span class="blue">effect</span></div>
             </div>
             <div class="promo-item more">
-                <div class="item-title">2+ More Features...</div>
+                <div class="item-title">2+ More...</div>
             </div>
         </div>
     </div>
@@ -65,7 +64,7 @@
                 <div class="item-title">advanced<br>tab</div>
             </div>
             <div class="promo-item more">
-                <div class="item-title">45+ More Widgets...</div>
+                <div class="item-title">45+ More...</div>
             </div>
         </div>
     </div>

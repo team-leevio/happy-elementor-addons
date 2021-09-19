@@ -692,7 +692,7 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-ste
 	cursor: pointer;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .description {
-	margin-top: 48px;
+	margin-top: 30px;
 	color: #000; 
 	text-align: center;
 	font-weight: normal;
@@ -753,8 +753,12 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-ste
 	display:         flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	        align-items: center; 
+	        align-items: center;
 	-ms-flex-align: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .flex-list .promo-item img {
 	margin-bottom: 16px; 
@@ -777,7 +781,7 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-ste
 	margin-top: 43px;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .widget-wrap {
-	margin-top: 43px;
+	margin-top: 65px;
 	margin-bottom: 60px;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-bepro .widget-wrap h3 {
@@ -891,21 +895,33 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_prev {
 	background: #fff; 
 	color: #222;
 }
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_prev:hover {
+	box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+}
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_next {
 	border-color: #5a2ed2 !important; 
 	background: #5a2ed2;
 	color: #fff;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_next:hover {
+	box-shadow: 0 3px 6px rgba(90, 46, 210, .2);
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_done {
 	border-color: #e2498a !important; 
 	background: #e2498a;
 	color: #fff;
 }
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_done:hover {
+	box-shadow: 0 3px 6px rgba(226, 73, 138, .16);
+}
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_bepro {
 	width: 200px !important;
 	border-color: #e2498a !important; 
 	background: #e2498a;
 	color: #fff;
+}
+body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_bepro:hover {
+	box-shadow: 0 3px 6px rgba(226, 73, 138, .16);
 }
 body.toplevel_page_happy-addons-setup-wizard #thumb-cloud-1 {
 	-webkit-animation: clouds 4s infinite;

@@ -677,7 +677,7 @@ body.toplevel_page_happy-addons-setup-wizard {
 
             &-bepro{
                 .description{
-                    margin-top: 48px;
+                    margin-top: 30px;
                     font-family: Nunito;
                     font-style: normal;
                     font-weight: normal;
@@ -724,6 +724,7 @@ body.toplevel_page_happy-addons-setup-wizard {
                         &.more{
                             display: flex;
                             align-items: center;
+                            justify-content: center;
                         }
 
                         img{
@@ -753,7 +754,7 @@ body.toplevel_page_happy-addons-setup-wizard {
                 }
 
                 .widget-wrap{
-                    margin-top: 43px;
+                    margin-top: 65px;
                     margin-bottom: 60px;
 
                     h3{
@@ -858,17 +859,28 @@ body.toplevel_page_happy-addons-setup-wizard {
         &_prev{
             color: #222222;
             background: #FFFFFF;
+
+            &:hover{
+                box-shadow: 0 3px 6px rgba($color: #000000, $alpha: 0.16);
+            }
         }
         &_next{
             color: #FFFFFF;
             background: #5A2ED2;
             border-color: #5A2ED2 !important;
-        }
 
+            &:hover{
+                box-shadow: 0 3px 6px rgba($color: #5A2ED2, $alpha: 0.2);
+            }
+        }
         &_done{
             color: #FFFFFF;
             background: $secondary-color;
             border-color: $secondary-color !important;
+
+            &:hover{
+                box-shadow: 0 3px 6px rgba($color: $secondary-color, $alpha: 0.16);
+            }
         }
 
         &_bepro{
@@ -876,6 +888,10 @@ body.toplevel_page_happy-addons-setup-wizard {
             width: 200px !important;
             background: $secondary-color;
             border-color: $secondary-color !important;
+
+            &:hover{
+                box-shadow: 0 3px 6px rgba($color: $secondary-color, $alpha: 0.16);
+            }
         }
     }
 
