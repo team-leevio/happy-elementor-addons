@@ -328,6 +328,9 @@
     padding: 10px 10px;
   }
   .ha-overview__post {
+    &:hover {
+      text-decoration: underline;
+    }
     margin-bottom: 10px;
   }
   .ha-overview__post-link {

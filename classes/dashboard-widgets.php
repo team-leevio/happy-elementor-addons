@@ -45,26 +45,30 @@ class Dashboard_Widgets {
      * Create the function to output the content of our Dashboard Widget.
      */
     public function happy_addons_news_update_function() {
-        // Get RSS Feed(s)
+        $promotion_banner = $this->get_banner_info();
+
         include_once(ABSPATH . WPINC . '/feed.php');
 
-        // Get a SimplePie feed object from the specified feed source.
         $rss = fetch_feed('https://happyaddons.com/feed/');
 
-        if (!is_wp_error($rss)) : // Checks that the object is created correctly
-
-            // Figure out how many total items there are, but limit it to 5. 
+        if (!is_wp_error($rss)) :
+ 
             $maxitems = $rss->get_item_quantity(5);
 
-            // Build an array of all the items, starting with element 0 (first element).
             $rss_items = $rss->get_items(0, $maxitems);
 
         endif;
 ?>
         <div class="ha-dashboard-widget">
             <div class="ha-overview__feed">
-                <img class="ha-overview--banner" src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80" alt="<?php esc_attr_e('HappyAddons Banner', 'happy-elementor-addons'); ?>">
-                <p class="ha-instruction ha-divider-bottom">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima dolores rerum consequuntur harum assumenda blanditiis nulla quam iure nisi commodi nesciunt dolor doloremque, sint incidunt eum odio, deleniti ipsa iusto!</p>
+                <?php if (!empty($promotion_banner['image_id'])) : ?>
+                    <a href="<?php echo esc_url( (!empty($promotion_banner['image_click_url']))? $promotion_banner['image_click_url']: ''); ?>" target="_blank">
+                        <img class="ha-overview--banner" src="<?php echo esc_url($promotion_banner['image_id']); ?>" alt="<?php esc_attr_e('HappyAddons Banner', 'happy-elementor-addons'); ?>">
+                    </a>
+                <?php endif; ?>
+                <?php if (!empty($promotion_banner['promotion_text'])) : ?>
+                    <div class="ha-instruction ha-divider-bottom"><?php echo $promotion_banner['promotion_text']; ?></div>
+                <?php endif; ?>
                 <ul class="ha-overview__posts">
                     <?php if ($maxitems == 0) : ?>
                         <li class="ha-overview__post"><?php _e('No items', 'happy-elementor-addons'); ?></li>
@@ -99,6 +103,23 @@ class Dashboard_Widgets {
             </div>
         </div>
 <?php
+    }
+
+    public function get_banner_info() {
+        $domain = 'https://happyaddons.com/';
+        $end_point = 'wp-json/happy-banner/v1/banner_info';
+
+        $request = wp_remote_get($domain . $end_point);
+
+        if (is_wp_error($request)) {
+            return false;
+        }
+
+        $body = wp_remote_retrieve_body($request);
+
+        $data = json_decode($body, true);
+
+        return $data;
     }
 
     public static function instance() {

@@ -345,6 +345,9 @@ p + .ha-review-notice__actions {
 #happy_addons_news_update .ha-overview__post {
 	margin-bottom: 10px;
 }
+#happy_addons_news_update .ha-overview__post:hover {
+	text-decoration: underline;
+}
 
 #happy_addons_news_update .ha-overview__post-link {
 	font-weight: 500;
