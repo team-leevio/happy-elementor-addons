@@ -408,9 +408,12 @@
 	color: #e2498a;
 }
 .ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-panel__header.unused-widgets .ha-dashboard-analytics__unused_disable {
-	padding: 15px 18px; 
+	padding: 15px 18px;
+	width: 219px; 
 	background: #e2498a;
 	color: #fff;
+	text-transform: uppercase;
+	font-size: 12px;
 }
 .ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics {
 	display: -webkit-box;

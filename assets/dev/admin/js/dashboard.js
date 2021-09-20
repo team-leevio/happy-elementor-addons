@@ -99,7 +99,7 @@
 		$dashboardForm.on('change keyup paste', 'input', function () {
 			$saveButton.attr('disabled', false).text(HappyDashboard.saveChangesLabel);
 		});
-		
+
 		$('.ha-action--btn').on('click', function (event) {
 			event.preventDefault();
 
@@ -159,5 +159,40 @@
 			event.preventDefault();
 			$(this).next().show();
 		});
+
+
+		// Analytics
+		var $dashboardAnalytics = $('#ha-dashboard-analytics-disable');
+
+		$dashboardAnalytics.on('click', function (event) {
+			event.preventDefault();
+
+			$.post({
+				url: HappyDashboard.ajaxUrl,
+				data: {
+					nonce: HappyDashboard.nonce,
+					action: HappyDashboard.action,
+					data: 'disable-unused-widgets=true',
+				},
+				beforeSend: function () {
+					$dashboardAnalytics
+						.text('.....')
+						.css('animation', 'animateTextIndent infinite 2.5s');
+				},
+				success: function (response) {
+					if (response.success) {
+						location.reload();
+						// var t = setTimeout(function () {
+						// 	$dashboardAnalytics
+						// 		.css('animation', '')
+						// 		.attr('disabled', true)
+						// 		.text(HappyDashboard.savedLabel);
+						// 	clearTimeout(t);
+						// }, 500);
+					}
+				}
+			});
+		});
+
 	});
 }(jQuery, window.HappyDashboard));

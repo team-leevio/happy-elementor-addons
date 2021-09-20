@@ -14,13 +14,14 @@ $unuse_widget = self::get_un_usage();
 $total_widgets_count = count( $widgets );
 $total_used_widget_count = count( $used_widget );
 $total_unuse_widget_count = count( $unuse_widget );
-echo '<pre>';
-var_dump(implode(',',$unuse_widget));
-var_dump($inactive_widgets);
+// echo '<pre>';
+// var_dump(implode(',',$unuse_widget));
+// var_dump($unuse_widget);
+// var_dump($inactive_widgets);
 // var_dump($total_widgets_count);
 // var_dump($total_used_widget_count);
 // var_dump($total_unuse_widget_count);
-echo '</pre>';
+// echo '</pre>';
 ?>
 <div class="ha-dashboard-panel ha-dashboard-panel-analytics">
 
@@ -28,7 +29,7 @@ echo '</pre>';
 	<div class="ha-dashboard-panel__header flex-content used-widgets">
         <div class="ha-dashboard-panel__header-content">
             <h2><?php esc_html_e( 'Used Widgets', 'happy-elementor-addons' ); ?></h2>
-			<?php if( !$total_used_widget_count ): ?>
+			<?php if( $total_used_widget_count ): ?>
 				<p class="f16" style="margin: 0 0;"><?php printf( esc_html__( 'You are using only %s %s widgets. %s', 'happy-elementor-addons' ), '<strong>', $total_used_widget_count,  '</strong>' ); ?></p>
 			<?php else: ?>
 				<p class="f16"><?php printf( esc_html__( 'No used widget found!.', 'happy-elementor-addons' ) ); ?></p>
@@ -88,8 +89,8 @@ echo '</pre>';
 				<p class="f16"><?php printf( esc_html__( 'No unused widget found!.', 'happy-elementor-addons' ) ); ?></p>
 			<?php endif; ?>
         </div>
-        <button class="ha-dashboard-btn ha-dashboard-analytics__unused_disable" type="submit"><?php echo esc_html__( 'Disable all unused widget', 'happy-elementor-addons' ); ?></button>
-		<input type="hidden" name="disable-unused-widgets" value="true<?php //echo $widget_key; ?>">
+        <button id="ha-dashboard-analytics-disable" class="ha-dashboard-btn ha-dashboard-analytics__unused_disable" type="submit"><?php echo esc_html__( 'Disable all unused widget', 'happy-elementor-addons' ); ?></button>
+		<!-- <input type="hidden" name="disable-unused-widgets" value="true<?php //echo $widget_key; ?>"> -->
     </div>
 
 	<?php if( !empty($unuse_widget) ) :?>
