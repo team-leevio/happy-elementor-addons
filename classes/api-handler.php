@@ -27,6 +27,14 @@ class Api_Handler
     public static function ha_wizard_routes()
     {
         /* Get Ends */
+        register_rest_route('happy/v1', '/wizard/dummy', array(
+            'methods' => 'GET',
+            'callback' => [__CLASS__,'ha_wizard_get_dummy_data'],
+            // 'permission_callback' => function () {
+            //     return current_user_can( 'edit_others_posts' );
+            // }
+        ));
+
         register_rest_route('happy/v1', '/wizard/cache', array(
             'methods' => 'GET',
             'callback' => [__CLASS__,'ha_wizard_get_cache_data'],
@@ -78,11 +86,31 @@ class Api_Handler
         ));
     }
 
+    public static function ha_wizard_get_dummy_data(){
+
+        $widgets = Extensions_Manager::get_local_features_map();
+        $widgets = array_keys($widgets);
+
+        $skip = [
+        'background-overlay',
+        'floating-effects',
+        'css-transform',
+        'column-extended',
+        'equal-height',
+        'shape-divider',
+        'wrapper-link'
+        ];
+
+        $response = array_diff($widgets,$skip);
+
+        return false;
+    }
+
     public static function ha_wizard_get_preset(){
-        self::$disabled_widgets = ['icon-box'];
+        self::$disabled_widgets = ["image-compare","justified-gallery","carousel","skills","gradient-heading","wpform","ninjaform","calderaform","weform","dual-button","number","flip-box","calendly","pricing-table","step-flow","gravityforms","news-ticker","bar-chart","twitter-feed","post-tab","taxonomy-list","threesixty-rotation","fluent-form","data-table","social-share","image-hover-effect","event-calendar","link-hover","mailchimp","content-switcher","image-stack-group"];
         self::haGetWidgetList();
 
-        self::$disabled_features = [];
+        self::$disabled_features = ["grid-layer","advanced-tooltip","text-stroke"];
         self::haGetFeatureList();
 
         $response = [
@@ -101,10 +129,10 @@ class Api_Handler
     }
 
     public static function ha_wizard_get_preset_pro(){
-        self::$disabled_widgets = ['icon-box','logo-grid'];
+        self::$disabled_widgets = ["image-compare","carousel","skills","gradient-heading","wpform","ninjaform","calderaform","weform","number","flip-box","calendly","pricing-table","news-ticker","bar-chart","twitter-feed","post-tab","taxonomy-list","threesixty-rotation","fluent-form","data-table","social-share","event-calendar","link-hover","mailchimp","image-stack-group"];
         self::haGetWidgetList();
 
-        self::$disabled_features = [];
+        self::$disabled_features = ["grid-layer","advanced-tooltip","text-stroke"];
         self::haGetFeatureList();
 
         $response = [
