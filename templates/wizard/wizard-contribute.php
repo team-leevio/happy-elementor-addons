@@ -3,11 +3,11 @@
     <div class="details">Are you interested in contributing to making this plugin more awesome?</div>
     
     <div class="consent-terms">
-        <textarea rows="10" disabled placeholder="You can easily contribute by sharing non-sensitive diagnostic data and usage information to make sure optimum compatibility. You’ll be sharing - Server environment details (PHP, MySQL, server, WordPress versions), Number of users on your site, Site language, Number of active and inactive plugins, Site name and URL, Your name, and email address.
-
-We are using Appsero to collect these data. Learn more about how Appsero collects and handles your data.
-
-Additionally we also collect plugin, widget, extension usage and other installed plugin info. This data is never sold to a third party or shared with Appsero. This analytics is used to enhance and improve the user experience and R&D new features."></textarea>
+        <div disabled>
+            <p>You can easily contribute by sharing non-sensitive diagnostic data and usage information to make sure optimum compatibility. You’ll be sharing - Server environment details (PHP, MySQL, server, WordPress versions), Number of users on your site, Site language, Number of active and inactive plugins, Site name and URL, Your name, and email address.</p>
+            <p>We are using Appsero to collect these data. Learn more about how Appsero collects and handles your data.</p>
+            <p>Additionally we also collect plugin, widget, extension usage and other installed plugin info. This data is never sold to a third party or shared with Appsero. This analytics is used to enhance and improve the user experience and R&D new features.</p>
+        </div>
     </div>
     <div class="consent-check">
         <div class="ha-dashboard-widgets__item-toggle ha-toggle">
@@ -19,8 +19,8 @@ Additionally we also collect plugin, widget, extension usage and other installed
             <b class="ha-toggle__switch"></b>
             <b class="ha-toggle__track"></b>
         </div>
-        <span v-if="hasConsent">I agree to share data</span>
-        <span v-else>I don't agree to share data</span>
+        <span v-if="hasConsent">I like to contribute</span>
+        <span v-else>I don't like to contribute</span>
     </div>
     <ha-nav
     prev="bepro"

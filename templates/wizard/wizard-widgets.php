@@ -4,8 +4,8 @@ $all_widgets_cats = self::get_free_widget_map_catwise();
 
 ?>
 <div class="inner-content">
-    <h2 class="title-small color-purple">Choose which widget you want</h2>
-    <p>You can always Enable/Disable widgets later from your dashboard</p>
+    <h2 class="title-small color-purple">Choose which widgets you need</h2>
+    <p>You can enable/disable them anytime from the dashboard.</p>
 
     <div class="widget-container" :class="{ 'list masked': this.widgetMore }">
         <div class="widget-group"
@@ -19,7 +19,7 @@ $all_widgets_cats = self::get_free_widget_map_catwise();
             </div>
 
             <div class="ha_item_widget"
-                v-for="(widget,key) in cat" :key="widget.slug">
+                v-for="(widget,key) in sortByTitle(cat)" :key="widget.slug">
                 <fieldset>
                 <legend>{{makeLabel(widget.is_pro)}}</legend>
                     <div class="widget_inner">
