@@ -89,7 +89,9 @@ $total_unuse_widget_count = count( $unuse_widget );
 				<p class="f16"><?php printf( esc_html__( 'No unused widget found!', 'happy-elementor-addons' ) ); ?></p>
 			<?php endif; ?>
         </div>
-        <button id="ha-dashboard-analytics-disable" class="ha-dashboard-btn ha-dashboard-analytics__unused_disable" type="submit"><?php echo esc_html__( 'Disable all unused widget', 'happy-elementor-addons' ); ?></button>
+		<?php if( !empty($unuse_widget) ) :?>
+			<button id="ha-dashboard-analytics-disable" class="ha-dashboard-btn ha-dashboard-analytics__unused_disable" type="submit"><?php echo esc_html__( 'Disable all unused widget', 'happy-elementor-addons' ); ?></button>
+		<?php endif;?>
 		<!-- <input type="hidden" name="disable-unused-widgets" value="true<?php //echo $widget_key; ?>"> -->
     </div>
 
