@@ -328,3 +328,53 @@ p + .ha-review-notice__actions {
 	background: #818a91; 
 	color: var(--e-button-context-color-dark);
 }
+
+#happy_addons_news_update .ha-overview--banner {
+	width: 100%;
+}
+
+#happy_addons_news_update .ha-divider-bottom {
+	margin: 0 -12px; 
+	border-bottom: 1px solid #eee;
+}
+
+#happy_addons_news_update .ha-instruction {
+	padding: 10px 10px;
+}
+
+#happy_addons_news_update .ha-overview__post {
+	margin-bottom: 10px;
+}
+#happy_addons_news_update .ha-overview__post:hover {
+	text-decoration: underline;
+}
+
+#happy_addons_news_update .ha-overview__post-link {
+	font-weight: 500;
+}
+
+#happy_addons_news_update .ha-divider-top {
+	margin: 0 -12px; 
+	border-top: 1px solid #eee;
+}
+
+#happy_addons_news_update .ha-overview__footer {
+	padding: 10px 6px 0 8px;
+}
+
+#happy_addons_news_update .ha-overview__footer ul {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	margin: 0; 
+	list-style: none;
+}
+#happy_addons_news_update .ha-overview__footer ul li:not(:first-of-type) {
+	margin-right: 4px; 
+	padding-left: 4px;
+	border-left: 1px solid #ddd;
+}
+#happy_addons_news_update .ha-overview__footer ul li:first-of-type {
+	margin-right: 4px;
+}

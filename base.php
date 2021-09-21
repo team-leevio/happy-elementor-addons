@@ -97,6 +97,7 @@ class Base {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/attention-seeker.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
+			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard-widgets.php' );
 		}
 		
 		if ( is_user_logged_in() ) {
