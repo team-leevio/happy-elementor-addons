@@ -167,6 +167,7 @@ class Api_Handler
             }
 
             update_option(HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG,1);
+            delete_option(self::CACHE_DB_KEY);
         }
 
         $response = [

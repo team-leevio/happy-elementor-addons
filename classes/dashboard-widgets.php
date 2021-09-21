@@ -58,8 +58,25 @@ class Dashboard_Widgets {
             $rss_items = $rss->get_items(0, $maxitems);
 
         endif;
+
+        $shouldSetup = get_option( 'happy-elementor-addons_wizard_cache', '' );
 ?>
         <div class="ha-dashboard-widget">
+            <?php if($shouldSetup):?>
+            <div class="ha-setup--wrap">
+                <div class="setup-wizard-finish-setup">
+                    <div class="description">
+                        <div>
+                            <h4>Please complete the setup wizard!</h4>
+                            <p>You're not done yet with the setup wizard. Please finish the wizard to get the maximum out of HappyAddons.</p>
+                            <a href="admin.php?page=happy-addons-setup-wizard" class="button button-primary">Resume Setup</a>
+                        </div>
+                        <img src="<?=HAPPY_ADDONS_ASSETS?>/imgs/admin/complete_steps.svg">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <?php endif; ?>
             <div class="ha-overview__feed">
                 <?php if (!empty($promotion_banner['image_id'])) : ?>
                     <a href="<?php echo esc_url( (!empty($promotion_banner['image_click_url']))? $promotion_banner['image_click_url']: ''); ?>" target="_blank">
