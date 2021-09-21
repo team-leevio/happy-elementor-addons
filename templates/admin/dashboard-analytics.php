@@ -32,7 +32,7 @@ $total_unuse_widget_count = count( $unuse_widget );
 			<?php if( $total_used_widget_count ): ?>
 				<p class="f16" style="margin: 0 0;"><?php printf( esc_html__( 'You are using only %s %s widgets. %s', 'happy-elementor-addons' ), '<strong>', $total_used_widget_count,  '</strong>' ); ?></p>
 			<?php else: ?>
-				<p class="f16"><?php printf( esc_html__( 'No used widget found!.', 'happy-elementor-addons' ) ); ?></p>
+				<p class="f16"><?php printf( esc_html__( 'No used widget found!', 'happy-elementor-addons' ) ); ?></p>
 			<?php endif; ?>
         </div>
 
@@ -55,9 +55,9 @@ $total_unuse_widget_count = count( $unuse_widget );
                 <fieldset>
 				<?php
 					if( isset( $widgets[$key]['is_pro'] ) && $widgets[$key]['is_pro'] ){
-						printf( esc_html__('%sFREE%s', 'happy-elementor-addons' ), '<legend class="free">', '</legend>');
-					}else{
 						printf( esc_html__('%sPRO%s', 'happy-elementor-addons' ), '<legend class="pro">', '</legend>');
+					}else{
+						printf( esc_html__('%sFREE%s', 'happy-elementor-addons' ), '<legend class="free">', '</legend>');
 					}
 				?>
                     <div class="widget_inner">
@@ -86,7 +86,7 @@ $total_unuse_widget_count = count( $unuse_widget );
 			<?php if( $total_unuse_widget_count ): ?>
             	<p class="f16"><?php printf( esc_html__( '%s %s widgets %s are unused right now. You can disable this to make the site faster.', 'happy-elementor-addons' ), '<strong>', $total_unuse_widget_count,  '</strong>' ); ?></p>
 			<?php else: ?>
-				<p class="f16"><?php printf( esc_html__( 'No unused widget found!.', 'happy-elementor-addons' ) ); ?></p>
+				<p class="f16"><?php printf( esc_html__( 'No unused widget found!', 'happy-elementor-addons' ) ); ?></p>
 			<?php endif; ?>
         </div>
         <button id="ha-dashboard-analytics-disable" class="ha-dashboard-btn ha-dashboard-analytics__unused_disable" type="submit"><?php echo esc_html__( 'Disable all unused widget', 'happy-elementor-addons' ); ?></button>
@@ -102,9 +102,9 @@ $total_unuse_widget_count = count( $unuse_widget );
                 <fieldset>
 				<?php
 					if( isset( $widgets[$data]['is_pro'] ) && $widgets[$data]['is_pro'] ){
-						printf( esc_html__('%sFREE%s', 'happy-elementor-addons' ), '<legend class="free">', '</legend>');
-					}else{
 						printf( esc_html__('%sPRO%s', 'happy-elementor-addons' ), '<legend class="pro">', '</legend>');
+					}else{
+						printf( esc_html__('%sFREE%s', 'happy-elementor-addons' ), '<legend class="free">', '</legend>');
 					}
 				?>
                     <div class="widget_inner">
