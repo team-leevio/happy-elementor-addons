@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Dashboard credentials tab template
+ * Dashboard analytics tab template
  */
 
 defined('ABSPATH') || die();
@@ -14,14 +14,6 @@ $unuse_widget = self::get_un_usage();
 $total_widgets_count = count( $widgets );
 $total_used_widget_count = count( $used_widget );
 $total_unuse_widget_count = count( $unuse_widget );
-// echo '<pre>';
-// var_dump(implode(',',$unuse_widget));
-// var_dump($unuse_widget);
-// var_dump($inactive_widgets);
-// var_dump($total_widgets_count);
-// var_dump($total_used_widget_count);
-// var_dump($total_unuse_widget_count);
-// echo '</pre>';
 ?>
 <div class="ha-dashboard-panel ha-dashboard-panel-analytics">
 
@@ -47,10 +39,6 @@ $total_unuse_widget_count = count( $unuse_widget );
 		<?php
         foreach ($used_widget as $key => $data) :
 			?>
-			<!-- <div class="ha-dashboard-analytics__item">
-                <h3 class="ha-dashboard-analytics__item-title"><?php echo $widgets[$key]['title'];?></h3>
-				<span class="ha-dashboard-analytics__item-total-count">total use: <?php echo $data;?></span>
-        	</div> -->
             <div class="ha-dashboard-analytics__item">
                 <fieldset>
 				<?php
@@ -69,12 +57,6 @@ $total_unuse_widget_count = count( $unuse_widget );
         <?php
         endforeach;
         ?>
-		<?php //for ($i=0; $i < 10; $i++) { ?>
-			<!-- <div class="ha-dashboard-analytics__item">
-                <h3 class="ha-dashboard-analytics__item-title">Happy Tooltip</h3>
-				<span class="ha-dashboard-analytics__item-total-count">total use: 3</span>
-        	</div> -->
-		<?php //} ?>
     </div>
 
 
@@ -92,7 +74,6 @@ $total_unuse_widget_count = count( $unuse_widget );
 		<?php if( !empty($unuse_widget) ) :?>
 			<button id="ha-dashboard-analytics-disable" class="ha-dashboard-btn ha-dashboard-analytics__unused_disable" type="submit"><?php echo esc_html__( 'Disable all unused widget', 'happy-elementor-addons' ); ?></button>
 		<?php endif;?>
-		<!-- <input type="hidden" name="disable-unused-widgets" value="true<?php //echo $widget_key; ?>"> -->
     </div>
 
 	<?php if( !empty($unuse_widget) ) :?>
@@ -120,45 +101,5 @@ $total_unuse_widget_count = count( $unuse_widget );
         ?>
     </div>
 	<?php endif;?>
-
-
-
-
-
-
-
-	<!--
-	<hr>
-	<hr>
-	<h2><?php esc_html_e('Un-used Widgets', 'happy-elementor-addons'); ?></h2>
-    <div class="ha-dashboard-analytics">
-		<ul>
-
-		<?php
-        foreach ($unuse_widget as $key => $data) :
-
-			?>
-			<li> <?php echo $data; ?></li>
-        <?php
-        endforeach;
-        ?>
-		</ul>
-    </div>
-
-	<h2><?php esc_html_e('Used Widgets', 'happy-elementor-addons'); ?></h2>
-    <div class="ha-dashboard-credentials">
-		<ul>
-
-		<?php
-        foreach ($used_widget as $key => $data) :
-
-			?>
-			<li> <?php echo $key .' => '. $data; ?></li>
-        <?php
-        endforeach;
-        ?>
-		</ul>
-    </div> -->
-
 
 </div>

@@ -163,10 +163,8 @@
 
 		// Analytics
 		var $dashboardAnalytics = $('#ha-dashboard-analytics-disable');
-
 		$dashboardAnalytics.on('click', function (event) {
 			event.preventDefault();
-
 			$.post({
 				url: HappyDashboard.ajaxUrl,
 				data: {
@@ -182,13 +180,6 @@
 				success: function (response) {
 					if (response.success) {
 						location.reload();
-						// var t = setTimeout(function () {
-						// 	$dashboardAnalytics
-						// 		.css('animation', '')
-						// 		.attr('disabled', true)
-						// 		.text(HappyDashboard.savedLabel);
-						// 	clearTimeout(t);
-						// }, 500);
 					}
 				}
 			});

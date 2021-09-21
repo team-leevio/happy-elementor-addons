@@ -224,9 +224,7 @@ class Dashboard {
     public static function get_features() {
         $widgets_map = self::get_real_features_map();
 
-        //if ( ! ha_has_pro() ) {
-            $widgets_map = array_merge( $widgets_map, Extensions_Manager::get_pro_features_map() );
-        //}
+        $widgets_map = array_merge( $widgets_map, Extensions_Manager::get_pro_features_map() );
 
         uksort( $widgets_map, [ __CLASS__, 'sort_widgets' ] );
         return $widgets_map;
@@ -298,20 +296,12 @@ class Dashboard {
 				$usage .= "\t\t{$element} : {$count}" . PHP_EOL;
 
 				if( strpos( $element , "ha-") !== false ) {
-					// print_r( $element );
-					// $widgets_list[ $element ] = $count;
+
 					$widgets_list[ str_replace('ha-','',$element) ] = $count;
 				}
 			}
 		}
 		return $widgets_list;
-		// return [
-		// 	'RAW' => $module->get_formatted_usage('raw'),
-		// 	'HTML' => $module->get_formatted_usage()
-		// ];
-		// return [
-		// 	'value' => $usage,
-		// ];
 	}
 
 	public static function get_un_usage() {
