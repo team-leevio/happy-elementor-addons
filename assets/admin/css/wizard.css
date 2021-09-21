@@ -39,6 +39,18 @@ body.toplevel_page_happy-addons-setup-wizard .woocommerce-message,
 body.toplevel_page_happy-addons-setup-wizard .woocommerce-store-alerts {
 	display: none;
 }
+body.toplevel_page_happy-addons-setup-wizard #ha-setup-wizard {
+	position: relative;
+}
+body.toplevel_page_happy-addons-setup-wizard #wizard-root {
+	visibility: hidden;
+}
+body.toplevel_page_happy-addons-setup-wizard #wizard-root.visible {
+	visibility: visible;
+}
+body.toplevel_page_happy-addons-setup-wizard .hidden {
+	display: none !important;
+}
 body.toplevel_page_happy-addons-setup-wizard #wpcontent {
 	margin-left: 0 !important;
 	padding-left: 0 !important;
@@ -263,7 +275,7 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-ste
 }
 @media (max-width: 782px) {
 	body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-content {
-		width: calc( 90% - 82px);
+		width: calc(90% - 82px);
 	}
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__container .ha-step-content .inner-content {
@@ -1087,7 +1099,7 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav button {
 	border-radius: 8px;
 	font-weight: bold;
 	font-style: normal;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 25px;
 	cursor: pointer;
 }
@@ -1107,6 +1119,7 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_next {
 	color: #fff;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_next:hover {
+	background: #5129be;
 	box-shadow: 0 3px 6px rgba(90, 46, 210, .2);
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_done {
@@ -1115,6 +1128,7 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_done {
 	color: #fff;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_done:hover {
+	background: #de337c;
 	box-shadow: 0 3px 6px rgba(226, 73, 138, .16);
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_bepro {
@@ -1124,6 +1138,7 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_bepro {
 	color: #fff;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_bepro:hover {
+	background: #de337c;
 	box-shadow: 0 3px 6px rgba(226, 73, 138, .16);
 }
 body.toplevel_page_happy-addons-setup-wizard #thumb-cloud-1 {
@@ -1191,7 +1206,7 @@ body.toplevel_page_happy-addons-setup-wizard .list .reveal-more {
 	font-style: normal;
 	font-size: 16px;
 	line-height: 22px;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#ffffff",GradientType=1);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#ffffff", GradientType=1);
 	cursor: pointer;
 	-webkit-transition: all 300ms ease;
 	        transition: all 300ms ease;
@@ -1335,5 +1350,176 @@ body.toplevel_page_happy-addons-setup-wizard .list .reveal-more {
 	}
 	100% {
 		-webkit-transform: translateX(20px);
+	}
+}
+
+#loader-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center; 
+	-ms-flex-align: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+}
+
+.loader {
+	display: -ms-grid;
+	display:     grid;
+	width: 70px;
+	height: 70px;
+
+	-ms-grid-columns: 1fr 1fr 1fr;
+	grid-gap: 5px; 
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.loader div {
+	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-ms-flex-align: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%; 
+	background-color: #562dd4;
+}
+
+.loader div:before,
+.loader div:after {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%; 
+	content: "";
+}
+
+.loader div:before {
+	background-color: #e2498a;
+	-webkit-animation: scale-1 2400ms linear infinite;
+	        animation: scale-1 2400ms linear infinite;
+}
+
+.loader div:after {
+	background-color: #562dd4;
+	-webkit-animation: scale-2 2400ms linear infinite;
+	        animation: scale-2 2400ms linear infinite;
+}
+
+.loader div:nth-child(2):before,
+.loader div:nth-child(2):after {
+	-webkit-animation-delay: 300ms;
+	        animation-delay: 300ms;
+}
+
+.loader div:nth-child(3):before,
+.loader div:nth-child(3):after {
+	-webkit-animation-delay: 600ms;
+	        animation-delay: 600ms;
+}
+
+.loader div:nth-child(4):before,
+.loader div:nth-child(4):after {
+	-webkit-animation-delay: 900ms;
+	        animation-delay: 900ms;
+}
+
+.loader div:nth-child(5):before,
+.loader div:nth-child(5):after {
+	-webkit-animation-delay: 1200ms;
+	        animation-delay: 1200ms;
+}
+
+.loader div:nth-child(6):before,
+.loader div:nth-child(6):after {
+	-webkit-animation-delay: 1500ms;
+	        animation-delay: 1500ms;
+}
+
+.loader div:nth-child(7):before,
+.loader div:nth-child(7):after {
+	-webkit-animation-delay: 1800ms;
+	        animation-delay: 1800ms;
+}
+
+.loader div:nth-child(8):before,
+.loader div:nth-child(8):after {
+	-webkit-animation-delay: 2100ms;
+	        animation-delay: 2100ms;
+}
+
+.loader div:nth-child(9):before,
+.loader div:nth-child(9):after {
+	-webkit-animation-delay: 2400ms;
+	        animation-delay: 2400ms;
+}
+
+@-webkit-keyframes scale-1 {
+	0% {
+		z-index: 2; 
+		-webkit-transform: scale(0);
+		        transform: scale(0);
+	}
+	50%,
+	100% {
+		-webkit-transform: scale(1);
+		        transform: scale(1);
+	}
+}
+
+@keyframes scale-1 {
+	0% {
+		z-index: 2; 
+		-webkit-transform: scale(0);
+		        transform: scale(0);
+	}
+	50%,
+	100% {
+		-webkit-transform: scale(1);
+		        transform: scale(1);
+	}
+}
+
+@-webkit-keyframes scale-2 {
+	0%,
+	50% {
+		-webkit-transform: scale(0);
+		        transform: scale(0);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		        transform: scale(1);
+	}
+}
+
+@keyframes scale-2 {
+	0%,
+	50% {
+		-webkit-transform: scale(0);
+		        transform: scale(0);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		        transform: scale(1);
 	}
 }

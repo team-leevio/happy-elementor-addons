@@ -445,7 +445,20 @@ class Dashboard {
 	public static function wizard_page_wrapper() {
 		?>
 		<div class="wrap" id="ha-setup-wizard">
-			<div id="wizard-root">
+            <div id="loader-wrap" v-if="!loaded">
+                <div class="loader">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+			<div id="wizard-root" :class="{ visible: loaded }">
                 <div class="ha-setup-wizard__header">
                     <div class="ha-stepper">
                         <div class="ha-stepper__steps">

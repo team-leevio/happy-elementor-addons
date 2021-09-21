@@ -1,6 +1,7 @@
 const Wizard = {
 	data() {
 		return {
+			loaded: false,
 			screen: 0,
 			hasCache: false,
 			currentPage: "welcome",
@@ -63,6 +64,7 @@ const Wizard = {
 		this.getCurrentPage();
 		this.fetchPreset(this.userType);
 		this.fetchCache();
+		this.loaded = true;
 	},
 	methods: {
 		async fetchWidgetData() {
