@@ -496,6 +496,22 @@
 							font-size: 14px;
 							line-height: 23px;
 							color: #000000;
+							position: relative;
+							width: fit-content;
+							span.enabled,
+							span.disable {
+								display: block;
+								position: absolute;
+								top: 8px;
+								right: -10px;
+								width: 7px;
+								height: 7px;
+								border-radius: 100%;
+								background: rgba(#5db429, 0.8);
+							}
+							span.disable {
+								background: #cccccc;
+							}
 						}
 					}
 				}

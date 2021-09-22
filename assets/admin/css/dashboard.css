@@ -484,11 +484,29 @@
 	color: #e2498a;
 }
 .ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item fieldset .widget_inner .widget-title {
-	color: #000; 
+	position: relative;
+	width: -webkit-fit-content;
+	width:    -moz-fit-content;
+	width:         fit-content; 
+	color: #000;
 	font-weight: 600;
 	font-style: normal;
 	font-size: 14px;
 	line-height: 23px;
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item fieldset .widget_inner .widget-title span.enabled,
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item fieldset .widget_inner .widget-title span.disable {
+	position: absolute;
+	top: 8px;
+	right: -10px;
+	display: block;
+	width: 7px;
+	height: 7px;
+	border-radius: 100%;
+	background: rgba(93, 180, 41, .8);
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item fieldset .widget_inner .widget-title span.disable {
+	background: #ccc;
 }
 .ha-dashboard .ha-toggle {
 	position: relative;
