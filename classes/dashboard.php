@@ -384,15 +384,22 @@ class Dashboard {
 		$module = \Elementor\Modules\Usage\Module::instance();
 		$usage = PHP_EOL;
 		$widgets_list = [];
+		if( ha_has_pro() ){
+			$all_widgets = self::get_widgets();
+		}else{
+			$all_widgets = Widgets_Manager::get_local_widgets_map();
+		}
 		foreach ( $module->get_formatted_usage( $format ) as $doc_type => $data ) {
 			$usage .= "\t{$data['title']} : " . $data['count'] . PHP_EOL;
 
 			foreach ( $data['elements'] as $element => $count ) {
 				$usage .= "\t\t{$element} : {$count}" . PHP_EOL;
+				$is_happy_widget = strpos( $element , "ha-") !== false;
+				$widget_key = str_replace('ha-','',$element);
 
-				if( strpos( $element , "ha-") !== false ) {
+				if( $is_happy_widget && array_key_exists( $widget_key, $all_widgets ) ) {
 
-					$widgets_list[ str_replace('ha-','',$element) ] = $count;
+					$widgets_list[ $widget_key ] = $count;
 				}
 			}
 		}
@@ -400,7 +407,11 @@ class Dashboard {
 	}
 
 	public static function get_un_usage() {
-		$all_widgets = self::get_widgets();
+		if( ha_has_pro() ){
+			$all_widgets = self::get_widgets();
+		}else{
+			$all_widgets = Widgets_Manager::get_local_widgets_map();
+		}
 		$used_widgets = self::get_raw_usage();
 		$get_diff = array_diff( array_keys( $all_widgets ), array_keys( $used_widgets ) );
 		// return $get_diff;
