@@ -62,7 +62,6 @@ const Wizard = {
 	},
 	mounted() {
 		this.fetchCache();
-		this.loaded = true;
 		this.getCurrentPage();
 	},
 	methods: {
@@ -115,7 +114,8 @@ const Wizard = {
 						if(data.data.features_disabled){
 							this.disabledFeatures = data.data.features_disabled;
 						}
-						console.log(data);
+						//console.log(data);
+						this.loaded = true;
 					}else{
 						this.fetchPreset(this.userType);
 					}
@@ -140,8 +140,9 @@ const Wizard = {
 
 						this.featureList = data.features.all;
 						this.disabledFeatures = data.features.disabled;
-						console.log(data);
+						//console.log(data);
 					}
+					this.loaded = true;
 				})
 				.catch((error) => {
 					console.error("Error:", error);
@@ -184,11 +185,11 @@ const Wizard = {
 				.then((data) => {
 					if (data && data.status === 200) {
 						if(mode === "cache"){
-							console.log("Cache Saved");
+							//console.log("Cache Saved");
 						}else{
 							window.open(window.HappyWizard.haAdmin,"_self");
 						}
-						// console.log(data);
+						// //console.log(data);
 					}
 				})
 				.catch((error) => {
@@ -222,7 +223,7 @@ const Wizard = {
 		},
 		setTab(screen) {
 			if(screen){
-				console.log(screen);
+				//console.log(screen);
 				if(screen == 'buypro'){
 					window.open('https://happyaddons.com/go/get-pro', '_blank').focus();
 				}else if(screen == 'done'){
@@ -294,14 +295,14 @@ const Wizard = {
 		},
 
 		isActive(key, stat) {
-			console.log(key + ":" + stat);
+			//console.log(key + ":" + stat);
 			if (stat === true) {
-				console.log("hit true");
+				//console.log("hit true");
 				if (this.disabledWidgets.indexOf(key) === -1) {
 					this.disabledWidgets.push(key);
 				}
 			} else {
-				console.log("hit false");
+				//console.log("hit false");
 				this.disabledWidgets = this.disabledWidgets.filter(function (
 					value,
 					index,
@@ -310,7 +311,7 @@ const Wizard = {
 					return value != key;
 				});
 			}
-			console.log(this.disabledWidgets);
+			//console.log(this.disabledWidgets);
 		},
 
 		isFeatureActive(key, stat) {
@@ -327,7 +328,7 @@ const Wizard = {
 					return value != key;
 				});
 			}
-			console.log(this.disabledFeatures);
+			//console.log(this.disabledFeatures);
 		},
 
 		makeTitle(slug) {
@@ -350,19 +351,19 @@ const Wizard = {
 
 	watch: {
 		"settings.checkedWidgets": function (val) {
-			console.log(this.settings.checkedWidgets);
+			//console.log(this.settings.checkedWidgets);
 			//this.log();
 		},
 
 		"settings.all": function (val) {
-			//console.log(this.settings.all);
+			////console.log(this.settings.all);
 
-			console.log(JSON.stringify(this.settings.all));
+			//console.log(JSON.stringify(this.settings.all));
 			//this.isWidgetActive();
 		},
 
 		hasConsent: function (val) {
-			console.log(val);
+			//console.log(val);
 		},
 	},
 
@@ -389,7 +390,7 @@ app.component("ha-step", {
 		handleClick(step){
 			if(this.complete){
 				this.$emit('setTab',step)
-				console.log(step);
+				//console.log(step);
 			}
 		}
 	},
