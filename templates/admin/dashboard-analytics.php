@@ -14,6 +14,9 @@ $unuse_widget = self::get_un_usage();
 $total_widgets_count = count( $widgets );
 $total_used_widget_count = count( $used_widget );
 $total_unuse_widget_count = count( $unuse_widget );
+echo '<pre>';
+var_dump($inactive_widgets);
+echo '</pre>';
 ?>
 <div class="ha-dashboard-panel ha-dashboard-panel-analytics">
 
@@ -91,7 +94,14 @@ $total_unuse_widget_count = count( $unuse_widget );
 					}
 				?>
                     <div class="widget_inner">
-                        <div class="widget-title"><?php echo $widgets[$data]['title'];?></div>
+                        <div class="widget-title">
+							<?php echo $widgets[$data]['title'];?>
+							<?php if( in_array( $data, $inactive_widgets ) ) : ?>
+								<span class="disable" title="disable"></span>
+							<?php else:?>
+								<span class="enabled" title="enabled"></span>
+							<?php endif;?>
+						</div>
                         <span class="ha-dashboard-analytics__item-total-count"><?php echo esc_html('total use: 0');?></span>
                     </div>
                 </fieldset>
@@ -101,5 +111,4 @@ $total_unuse_widget_count = count( $unuse_widget );
         ?>
     </div>
 	<?php endif;?>
-
 </div>
