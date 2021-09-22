@@ -14,9 +14,6 @@ $unuse_widget = self::get_un_usage();
 $total_widgets_count = count( $widgets );
 $total_used_widget_count = count( $used_widget );
 $total_unuse_widget_count = count( $unuse_widget );
-echo '<pre>';
-var_dump($inactive_widgets);
-echo '</pre>';
 ?>
 <div class="ha-dashboard-panel ha-dashboard-panel-analytics">
 
