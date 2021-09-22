@@ -198,22 +198,27 @@ const Wizard = {
 		},
 
 		async endWizard() {
-			let url =
-				window.HappyWizard.apiBase + "/wizard/skip";
+			let agee = confirm('Head’s up. This action is non reversible and you won\’t be able to see this wizard again. Proceed?');
+			if(agee){
+				//console.log(agee);
+			
+				let url =
+					window.HappyWizard.apiBase + "/wizard/skip";
 
-			await fetch(url, {
-				method: "POST",
-				headers: { "X-WP-Nonce": window.HappyWizard.nonce },
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					if (data && data.status === 200) {
-						window.open(window.HappyWizard.haAdmin,"_self");
-					}
+				await fetch(url, {
+					method: "POST",
+					headers: { "X-WP-Nonce": window.HappyWizard.nonce },
 				})
-				.catch((error) => {
-					console.error("Error:", error);
-				});
+					.then((response) => response.json())
+					.then((data) => {
+						if (data && data.status === 200) {
+							window.open(window.HappyWizard.haAdmin,"_self");
+						}
+					})
+					.catch((error) => {
+						console.error("Error:", error);
+					});
+			}
 		},
 
 		setUserType(type) {
