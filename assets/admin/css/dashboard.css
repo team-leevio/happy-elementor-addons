@@ -498,10 +498,10 @@
 .ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item fieldset .widget_inner .widget-title span.disable {
 	position: absolute;
 	top: 8px;
-	right: -10px;
+	right: -12px;
 	display: block;
-	width: 7px;
-	height: 7px;
+	width: 8px;
+	height: 8px;
 	border-radius: 100%;
 	background: rgba(93, 180, 41, .8);
 }

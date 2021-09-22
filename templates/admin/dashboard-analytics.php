@@ -94,9 +94,9 @@ $total_unuse_widget_count = count( $unuse_widget );
                         <div class="widget-title">
 							<?php echo $widgets[$data]['title'];?>
 							<?php if( in_array( $data, $inactive_widgets ) ) : ?>
-								<span class="disable" title="disable"></span>
+								<span class="disable" title="Disable"></span>
 							<?php else:?>
-								<span class="enabled" title="enabled"></span>
+								<span class="enabled" title="Enabled"></span>
 							<?php endif;?>
 						</div>
                         <span class="ha-dashboard-analytics__item-total-count"><?php echo esc_html('total use: 0');?></span>
