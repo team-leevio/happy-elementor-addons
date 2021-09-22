@@ -3,6 +3,7 @@
 - New: Setup Wizard for guided plugin configuration
 - New: Widget Group in Dashboard
 - New: Dashboard to show latest offer & news
+- New: Widget uses analytics
 
 = 3.1.0 - 25 August 2021 =
 
