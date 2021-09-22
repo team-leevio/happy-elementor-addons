@@ -61,10 +61,9 @@ const Wizard = {
 		};
 	},
 	mounted() {
-		this.getCurrentPage();
-		this.fetchPreset(this.userType);
 		this.fetchCache();
 		this.loaded = true;
+		this.getCurrentPage();
 	},
 	methods: {
 		async fetchWidgetData() {
@@ -95,6 +94,15 @@ const Wizard = {
 				.then((response) => response.json())
 				.then((data) => {
 					if (data.data) {
+						if(data.data.steps){
+							this.steps = data.data.steps
+						}
+						if(data.data.currentPage){
+							this.currentPage = data.data.currentPage
+						}
+						if(data.data.userType){
+							this.userType = data.data.userType
+						}
 						if(data.data.widgets){
 							this.widgetList = data.data.widgets;
 						}
@@ -108,6 +116,8 @@ const Wizard = {
 							this.disabledFeatures = data.data.features_disabled;
 						}
 						console.log(data);
+					}else{
+						this.fetchPreset(this.userType);
 					}
 				})
 				.catch((error) => {
@@ -153,6 +163,9 @@ const Wizard = {
 				url = window.HappyWizard.apiBase + "/wizard/save-cache";
 				
 				data = {
+					'currentPage'		: this.currentPage,
+					'userType'			: this.userType,
+					'steps'				: this.steps,
 					'widgets' 			: this.widgetList,
 					'widgets_disabled' 	: this.disabledWidgets,
 					'features' 			: this.featureList,
@@ -208,18 +221,19 @@ const Wizard = {
 			this.fetchPreset(type);
 		},
 		setTab(screen) {
-
-			if(screen == 'buypro'){
-				window.open('https://happyaddons.com/go/get-pro', '_blank').focus();
-			}else if(screen == 'done'){
-				this.saveWizardData()
-			}else{
-				this.setStepComplete(this.currentPage)
-				this.currentPage = screen;
-				this.screen = screen;
+			if(screen){
+				console.log(screen);
+				if(screen == 'buypro'){
+					window.open('https://happyaddons.com/go/get-pro', '_blank').focus();
+				}else if(screen == 'done'){
+					this.saveWizardData()
+				}else{
+					this.setStepComplete(this.currentPage)
+					this.currentPage = screen;
+					this.screen = screen;
+				}
+				this.saveWizardData("cache");
 			}
-
-			this.saveWizardData("cache");
 		},
 		setStepComplete(step){
 			for (let elem of this.steps) {
@@ -375,6 +389,7 @@ app.component("ha-step", {
 		handleClick(step){
 			if(this.complete){
 				this.$emit('setTab',step)
+				console.log(step);
 			}
 		}
 	},

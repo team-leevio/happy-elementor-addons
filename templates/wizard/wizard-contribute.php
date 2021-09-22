@@ -19,8 +19,8 @@
             <b class="ha-toggle__switch"></b>
             <b class="ha-toggle__track"></b>
         </div>
-        <span v-if="hasConsent">I like to contribute</span>
-        <span v-else>I don't like to contribute</span>
+        <span v-if="hasConsent">I'd like to contribute</span>
+        <span v-else>I don't want to contribute</span>
     </div>
     <ha-nav
     prev="bepro"

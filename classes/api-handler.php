@@ -30,9 +30,9 @@ class Api_Handler
         register_rest_route('happy/v1', '/wizard/dummy', array(
             'methods' => 'GET',
             'callback' => [__CLASS__,'ha_wizard_get_dummy_data'],
-            // 'permission_callback' => function () {
-            //     return current_user_can( 'edit_others_posts' );
-            // }
+            'permission_callback' => function () {
+                return true;
+            }
         ));
 
         register_rest_route('happy/v1', '/wizard/cache', array(

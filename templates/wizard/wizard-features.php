@@ -2,7 +2,7 @@
     <h2 class="title-small color-purple">Choose the features you need right now!</h2>
     <p>You can always enable/disable any features later from the dashboard.</p>
 
-    <div class="preadvise">“We all love having as many features as possible. But it might impact Elementor editor loading time. So we suggest you disable the unused features to keep everything super optimized.”</div>
+    <div class="preadvise">We all love having as many features as possible. But it might impact Elementor editor loading time. So we suggest you disable the unused features to keep everything super optimized.</div>
 
     <div class="feature-container">
         <div class="feature-group">

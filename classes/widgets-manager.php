@@ -827,7 +827,7 @@ class Widgets_Manager {
 			'threesixty-rotation' => [
 				'cat' => 'general',
 				'is_active' => true,
-				'title' => __( 'Threesixty Rotation', 'happy-elementor-addons' ),
+				'title' => __( '360° Rotation', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-3d-rotate',
 				'css' => ['threesixty-rotation'],
 				'js' => [],
