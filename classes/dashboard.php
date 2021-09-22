@@ -40,6 +40,7 @@ class Dashboard {
         add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_widgets_data' ] );
         add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_features_data' ] );
         add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_credentials_data' ] );
+        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'disable_unused_widget' ] );
 
         add_action( 'in_admin_header', [ __CLASS__, 'remove_all_notices' ], PHP_INT_MAX );
 
@@ -111,12 +112,14 @@ class Dashboard {
     }
 
     public static function save_widgets_data( $data ) {
+		if( !isset($data['widgets'])) { return; }
         $widgets = ! empty( $data['widgets'] ) ? $data['widgets'] : [];
         $inactive_widgets = array_values( array_diff( array_keys( self::get_real_widgets_map() ), $widgets ) );
         Widgets_Manager::save_inactive_widgets( $inactive_widgets );
     }
 
     public static function save_features_data( $data ) {
+		if( !isset($data['features'])) { return; }
         $features = ! empty( $data['features'] ) ? $data['features'] : [];
 
         /* Check whether Pro is available and allow to disable pro features */
@@ -131,17 +134,21 @@ class Dashboard {
     }
 
     public static function save_credentials_data( $data ) {
+		if( !isset($data['credentials'])) { return; }
         $credentials = ! empty( $data['credentials'] ) ? $data['credentials'] : [];
-
-        /* Check whether Pro is available and allow to disable pro features */
-        // $widgets_map = self::get_real_features_map();
-        // if ( ha_has_pro() ) {
-        //     $widgets_map = array_merge( $widgets_map, Extensions_Manager::get_pro_features_map() );
-        // }
-
-        // $inactive_features = array_values( array_diff( array_keys( $widgets_map ), $features ) );
-
         Credentials_Manager::save_credentials( $credentials );
+    }
+
+    public static function disable_unused_widget( $data ) {
+		if( !isset($data['disable-unused-widgets'])) { return; }
+        $disable_unused_widgets = ! empty( $data['disable-unused-widgets'] ) && 'true' == $data['disable-unused-widgets'] ? true : false;
+
+		if( $disable_unused_widgets ){
+			$inactive_widgets = \Happy_Addons\Elementor\Widgets_Manager::get_inactive_widgets();
+			$unuse_widget = self::get_un_usage();
+			$disable = array_unique(array_merge( $inactive_widgets, $unuse_widget ));
+			update_option( 'happyaddons_inactive_widgets', $disable );
+		}
     }
 
     public static function enqueue_scripts( $hook ) {
@@ -302,9 +309,7 @@ class Dashboard {
     public static function get_features() {
         $widgets_map = self::get_real_features_map();
 
-        //if ( ! ha_has_pro() ) {
-            $widgets_map = array_merge( $widgets_map, Extensions_Manager::get_pro_features_map() );
-        //}
+        $widgets_map = array_merge( $widgets_map, Extensions_Manager::get_pro_features_map() );
 
         uksort( $widgets_map, [ __CLASS__, 'sort_widgets' ] );
         return $widgets_map;
@@ -374,6 +379,34 @@ class Dashboard {
         $submenu[ self::PAGE_SLUG ] = $menu;
     }
 
+	public static function get_raw_usage( $format = 'raw' ) {
+		/** @var Module $module */
+		$module = \Elementor\Modules\Usage\Module::instance();
+		$usage = PHP_EOL;
+		$widgets_list = [];
+		foreach ( $module->get_formatted_usage( $format ) as $doc_type => $data ) {
+			$usage .= "\t{$data['title']} : " . $data['count'] . PHP_EOL;
+
+			foreach ( $data['elements'] as $element => $count ) {
+				$usage .= "\t\t{$element} : {$count}" . PHP_EOL;
+
+				if( strpos( $element , "ha-") !== false ) {
+
+					$widgets_list[ str_replace('ha-','',$element) ] = $count;
+				}
+			}
+		}
+		return $widgets_list;
+	}
+
+	public static function get_un_usage() {
+		$all_widgets = self::get_widgets();
+		$used_widgets = self::get_raw_usage();
+		$get_diff = array_diff( array_keys( $all_widgets ), array_keys( $used_widgets ) );
+		// return $get_diff;
+		return array_values($get_diff);
+	}
+
     public static function get_tabs() {
         $tabs = [
             'home' => [
@@ -391,6 +424,10 @@ class Dashboard {
             'credentials' => [
                 'title' => esc_html__( 'Credentials', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_credentials' ],
+            ],
+            'analytics' => [
+                'title' => esc_html__( 'Analytics', 'happy-elementor-addons' ),
+                'renderer' => [ __CLASS__, 'render_analytics' ],
             ],
             'pro' => [
                 'title' => esc_html__( 'Get Pro', 'happy-elementor-addons' ),
@@ -433,6 +470,10 @@ class Dashboard {
 
     public static function render_credentials() {
         self::load_template( 'credentials' );
+    }
+
+    public static function render_analytics() {
+        self::load_template( 'analytics' );
     }
 
     public static function render_pro() {
