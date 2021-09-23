@@ -263,9 +263,12 @@ class Dashboard {
     public static function get_widgets() {
         $widgets_map = self::get_real_widgets_map();
 
-        // if ( ! ha_has_pro() ) {
-        //     $widgets_map = array_merge( $widgets_map, Widgets_Manager::get_pro_widget_map() );
-        // }
+        if ( ! ha_has_pro() ) {
+            $widgets_map = array_merge( $widgets_map, Widgets_Manager::get_pro_widget_map() );
+        }
+        elseif( ha_has_pro() && version_compare( HAPPY_ADDONS_PRO_VERSION, '2.1.0', '<=' ) ) {
+			$widgets_map = array_merge( $widgets_map, Widgets_Manager::get_pro_widget_map() );
+		}
 
         uksort( $widgets_map, [ __CLASS__, 'sort_widgets' ] );
         return $widgets_map;
