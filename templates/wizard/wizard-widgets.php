@@ -1,8 +1,8 @@
 <?php
 // $all_widgets = self::get_real_widgets_map();
 $all_widgets_cats = self::get_free_widget_map_catwise();
-
 ?>
+
 <div class="inner-content">
     <h2 class="title-small color-purple">Choose which widgets you need</h2>
     <p>You can enable/disable them anytime from the dashboard.</p>

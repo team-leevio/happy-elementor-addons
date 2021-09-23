@@ -18,6 +18,7 @@ class Api_Handler
     const WIDGETS_DB_KEY = 'happyaddons_inactive_widgets'; 
     const CONSENT_DB_KEY = 'happy-elementor-addons_allow_tracking'; 
     const CACHE_DB_KEY = 'happy-elementor-addons_wizard_cache_key'; 
+    const WIZARD_CACHE_FIX  = "happy-elementor-x98237938759348573";
 
     public static function init()
     {
@@ -27,6 +28,13 @@ class Api_Handler
         }
 
         add_action('rest_api_init', [__CLASS__, 'ha_wizard_routes']);
+
+
+        if(!get_option(self::WIZARD_CACHE_FIX)){
+            delete_option(self::CACHE_DB_KEY);
+            update_option(self::WIZARD_CACHE_FIX,1);
+            die();
+        }
     }
 
     public static function ha_wizard_routes()
