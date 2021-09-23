@@ -1,4 +1,4 @@
-= 3.2.0 - 22 September 2021 =
+= 3.2.0 - 23 September 2021 =
 
 - New: Setup Wizard for guided plugin configuration
 - New: Widget Group in Dashboard
