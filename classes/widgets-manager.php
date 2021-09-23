@@ -53,23 +53,14 @@ class Widgets_Manager {
 		$local_widgets_map = self::get_local_widgets_map();
 		$widgets_map = array_merge( $widgets_map, $local_widgets_map );
 
-		return apply_filters( 'happyaddons_get_widgets_map', $widgets_map );
+		// This will be remove after march/2022 pro relese
+		$pro_widget_map = array_replace_recursive(self::get_pro_widget_map(), apply_filters( 'happyaddons_get_widgets_map', [] ));
+
+		// This will be used after march/2022 pro relese
+		// $pro_widget_map = apply_filters( 'happyaddons_get_widgets_map', self::get_pro_widget_map() );
+
+		return array_merge($widgets_map, $pro_widget_map);
 	}
-
-	// public static function get_widget_map_catwise() {
-	// 	$widgets = Dashboard::get_widgets();
-
-	// 	array_walk($widgets, function($item, $key){
-	// 	    self::$catwise_widget_map[$item["cat"]][$key] = [
-	// 	        'demo' => isset($item["demo"])? $item["demo"]: '',
-	// 	        'title' => $item["title"],
-	// 	        'icon' => $item["icon"],
-	// 	        'is_pro' => isset($item["is_pro"])? $item["is_pro"]: false,
-	// 	    ];
-	// 	});
-
-	// 	return self::$catwise_widget_map;
-	// }
 
 	/**
 	 * Get the pro widgets map for dashboard only
