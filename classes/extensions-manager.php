@@ -147,7 +147,7 @@ class Extensions_Manager {
 				'is_pro' => false,
 			],
 			'column-extended' => [
-				'title' => __( 'Column Extended', 'happy-elementor-addons' ),
+				'title' => __( 'Column Order & Extension', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-flip-card2',
 				'demo' => 'https://happyaddons.com/happy-column-control/',
 				'is_pro' => false,

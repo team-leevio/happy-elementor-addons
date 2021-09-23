@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.1.0
+Version: 3.2.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, sayedulsayem, obiplabon
@@ -378,6 +378,13 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.2.0 - 23 September 2021 =
+
+- New: Setup Wizard for guided plugin configuration
+- New: Widget Group in Dashboard
+- New: Dashboard to show latest offer & news
+- New: Widget uses analytics in Dashboard
 
 = 3.1.0 - 25 August 2021 =
 
