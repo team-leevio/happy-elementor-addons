@@ -14,6 +14,8 @@ $unuse_widget = self::get_un_usage();
 $total_widgets_count = count( $widgets );
 $total_used_widget_count = count( $used_widget );
 $total_unuse_widget_count = count( $unuse_widget );
+
+$disable_btn = count( $unuse_widget ) == count( array_intersect( $unuse_widget, $inactive_widgets ) );
 ?>
 <div class="ha-dashboard-panel ha-dashboard-panel-analytics">
 
@@ -35,7 +37,7 @@ $total_unuse_widget_count = count( $unuse_widget );
         </div>
     </div>
 
-    <div class="ha-dashboard-analytics" style="margin-bottom: 40px;">
+    <div class="ha-dashboard-analytics" style="margin-bottom: 80px;">
 		<?php
         foreach ($used_widget as $key => $data) :
 			?>
@@ -72,7 +74,9 @@ $total_unuse_widget_count = count( $unuse_widget );
 			<?php endif; ?>
         </div>
 		<?php if( !empty($unuse_widget) ) :?>
-			<button id="ha-dashboard-analytics-disable" class="ha-dashboard-btn ha-dashboard-analytics__unused_disable" type="submit"><?php echo esc_html__( 'Disable all unused widget', 'happy-elementor-addons' ); ?></button>
+			<button id="ha-dashboard-analytics-disable" class="ha-dashboard-btn ha-dashboard-analytics__unused_disable" type="submit" <?php echo $disable_btn ? 'disabled' : ''; ?>>
+				<?php echo esc_html__( 'Disable all unused widget', 'happy-elementor-addons' ); ?>
+			</button>
 		<?php endif;?>
     </div>
 

@@ -427,6 +427,12 @@
 					padding: 15px 18px;
 					width: 219px;
 				}
+				.ha-dashboard-analytics__unused_disable:disabled{
+					background-color: #b3b3b3;
+					box-shadow: none;
+					opacity: .7;
+					cursor: not-allowed;
+				}
 			}
 		}
 		.ha-dashboard-analytics {

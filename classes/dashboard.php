@@ -22,7 +22,7 @@ class Dashboard {
     const WIZARD_NONCE = 'wp_rest';
 
     static $menu_slug = '';
-    
+
     public static $catwise_widget_map = [];
     public static $catwise_free_widget_map = [];
 
@@ -266,24 +266,36 @@ class Dashboard {
         if ( ! ha_has_pro() ) {
             $widgets_map = array_merge( $widgets_map, Widgets_Manager::get_pro_widget_map() );
         }
+		elseif( ha_has_pro() && version_compare( HAPPY_ADDONS_PRO_VERSION, '2.1.0', '<=' ) ) {
+			$widgets_map = array_merge( $widgets_map, Widgets_Manager::get_pro_widget_map() );
+		}
+		// this code will be remove after next 2 release
+		// elseif( ha_has_pro() && version_compare( HAPPY_ADDONS_PRO_VERSION, '2.1.0', '<=' ) ) {
+		// 	$pro_widget_map = array_merge( \Happy_Addons_Pro\Widgets_Manager::get_local_widgets_map(), Widgets_Manager::get_pro_widget_map() );
+		// 	$widgets_map = array_merge( $widgets_map, $pro_widget_map );
+		// }
 
         uksort( $widgets_map, [ __CLASS__, 'sort_widgets' ] );
         return $widgets_map;
     }
 
-    
+
 	public static function get_widget_map_catwise() {
 		$widgets = self::get_widgets();
-
+		// // if(!isset($item["cat"])){
+		// 	error_log(print_r($widgets,1));
+		// // }
 		array_walk($widgets, function($item, $key){
+			$item["cat"] = isset($item["cat"]) ? $item["cat"] : 'general'; // this code will be remove after next 2 release
 		    self::$catwise_widget_map[$item["cat"]][$key] = [
 		        'demo' => isset($item["demo"])? $item["demo"]: '',
 		        'title' => $item["title"],
 		        'icon' => $item["icon"],
 		        'is_pro' => isset($item["is_pro"])? $item["is_pro"]: false,
-		    ];
-		});
-		
+		    	];
+			}
+		);
+
 		return self::$catwise_widget_map;
 	}
 
@@ -297,7 +309,6 @@ class Dashboard {
 		        'is_pro' => isset($item["is_pro"])? $item["is_pro"]: false,
 		    ];
 		});
-		
 		return self::$catwise_free_widget_map;
 	}
 
@@ -514,10 +525,10 @@ class Dashboard {
                 <div class="ha-setup-wizard__header">
                     <div class="ha-stepper">
                         <div class="ha-stepper__steps">
-                            <ha-step 
-                                v-for="(step, index) in steps" 
+                            <ha-step
+                                v-for="(step, index) in steps"
                                 :active="currentPage"
-                                :complete="step.isComplete" 
+                                :complete="step.isComplete"
                                 :step="step.key"
                                 :title="step.name"
                                 :index="index+1"

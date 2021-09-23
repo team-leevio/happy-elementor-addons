@@ -85,6 +85,7 @@
 								.css('animation', '')
 								.attr('disabled', true)
 								.text(HappyDashboard.savedLabel);
+								location.reload();
 							clearTimeout(t);
 						}, 500);
 					}
