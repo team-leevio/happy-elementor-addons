@@ -33,7 +33,6 @@ class Api_Handler
         if(!get_option(self::WIZARD_CACHE_FIX)){
             delete_option(self::CACHE_DB_KEY);
             update_option(self::WIZARD_CACHE_FIX,1);
-            die();
         }
     }
 
