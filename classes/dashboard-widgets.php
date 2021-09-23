@@ -59,7 +59,7 @@ class Dashboard_Widgets {
 
         endif;
 
-        $shouldSetup = get_option( 'happy-elementor-addons_wizard_cache', '' );
+        $shouldSetup = get_option( 'happy-elementor-addons_wizard_cache_key', '' );
 ?>
         <div class="ha-dashboard-widget">
             <?php if($shouldSetup):?>

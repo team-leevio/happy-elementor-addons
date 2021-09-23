@@ -17,10 +17,15 @@ class Api_Handler
     const FEATURES_DB_KEY = 'happyaddons_inactive_features';
     const WIDGETS_DB_KEY = 'happyaddons_inactive_widgets'; 
     const CONSENT_DB_KEY = 'happy-elementor-addons_allow_tracking'; 
-    const CACHE_DB_KEY = 'happy-elementor-addons_wizard_cache'; 
+    const CACHE_DB_KEY = 'happy-elementor-addons_wizard_cache_key'; 
 
     public static function init()
     {
+        // need to delete after 1/2 release
+        if(get_option('happy-elementor-addons_wizard_cache')){
+            delete_option('happy-elementor-addons_wizard_cache');
+        }
+
         add_action('rest_api_init', [__CLASS__, 'ha_wizard_routes']);
     }
 
