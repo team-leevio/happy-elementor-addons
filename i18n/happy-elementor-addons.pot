@@ -14,39 +14,8 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: base.php:126, classes/dashboard.php:334, widgets/bar-chart/widget.php:170, widgets/data-table/widget.php:215
+#: base.php:126, classes/dashboard.php:337, widgets/bar-chart/widget.php:170, widgets/data-table/widget.php:215
 msgid "Happy Addons"
-msgstr ""
-
-#. translators: 1: Plugin name 2: PHP 3: Required PHP version
-#. translators: 1: Plugin name 2: Elementor 3: Required Elementor version
-#: plugin.php:90, plugin.php:133
-msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
-msgstr ""
-
-#: plugin.php:91, plugin.php:117, plugin.php:134, templates/admin/dashboard-main.php:9
-msgid "Happy Elementor Addons"
-msgstr ""
-
-#: plugin.php:92
-msgid "PHP"
-msgstr ""
-
-#: plugin.php:110
-msgid "Install Elementor"
-msgstr ""
-
-#: plugin.php:107
-msgid "Activate Elementor"
-msgstr ""
-
-#. translators: 1: Plugin name 2: Elementor 3: Elementor installation link
-#: plugin.php:116
-msgid "%1$s requires %2$s to be installed and activated to function properly. %3$s"
-msgstr ""
-
-#: plugin.php:118, plugin.php:135, widgets/data-table/widget.php:212
-msgid "Elementor"
 msgstr ""
 
 #: classes/admin-bar.php:78
@@ -97,7 +66,7 @@ msgstr ""
 msgid "%s - [Cloned #%d]"
 msgstr ""
 
-#: classes/credentials-manager.php:59, classes/widgets-manager.php:314
+#: classes/credentials-manager.php:59, classes/widgets-manager.php:315
 msgid "Advanced Data Table"
 msgstr ""
 
@@ -117,7 +86,7 @@ msgstr ""
 msgid "Google Sheets Range. Ex: A1:D5 "
 msgstr ""
 
-#: classes/credentials-manager.php:87, classes/widgets-manager.php:206
+#: classes/credentials-manager.php:87, classes/widgets-manager.php:207
 msgid "Facebook Feed"
 msgstr ""
 
@@ -145,7 +114,7 @@ msgstr ""
 msgid "Get Access Token"
 msgstr ""
 
-#: classes/credentials-manager.php:138, classes/widgets-manager.php:917, widgets/mailchimp/widget.php:34, widgets/mailchimp/widget.php:73
+#: classes/credentials-manager.php:138, classes/widgets-manager.php:918, widgets/mailchimp/widget.php:34, widgets/mailchimp/widget.php:73
 msgid "MailChimp"
 msgstr ""
 
@@ -157,7 +126,7 @@ msgstr ""
 msgid "Get your api key here"
 msgstr ""
 
-#: classes/credentials-manager.php:155, classes/widgets-manager.php:773, widgets/twitter-feed/widget.php:30, widgets/twitter-feed/widget.php:65
+#: classes/credentials-manager.php:155, classes/widgets-manager.php:774, widgets/twitter-feed/widget.php:30, widgets/twitter-feed/widget.php:65
 msgid "Twitter Feed"
 msgstr ""
 
@@ -221,7 +190,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: classes/dashboard.php:89, classes/dashboard.php:444, templates/template-library/templates.php:69
+#: classes/dashboard.php:89, classes/dashboard.php:447, templates/template-library/templates.php:69
 msgid "Get Pro"
 msgstr ""
 
@@ -233,35 +202,35 @@ msgstr ""
 msgid "Changes Saved"
 msgstr ""
 
-#: classes/dashboard.php:333
+#: classes/dashboard.php:336
 msgid "Happy Elementor Addons Dashboard"
 msgstr ""
 
-#: classes/dashboard.php:343, classes/dashboard.php:344
+#: classes/dashboard.php:346, classes/dashboard.php:347
 msgid "Setup Wizard"
 msgstr ""
 
-#: classes/dashboard.php:361
+#: classes/dashboard.php:364
 msgid "%s - Happy Elementor Addons"
 msgstr ""
 
-#: classes/dashboard.php:424
+#: classes/dashboard.php:427
 msgid "Home"
 msgstr ""
 
-#: classes/dashboard.php:428, extensions/equal-height.php:88, templates/admin/dashboard-widgets.php:40
+#: classes/dashboard.php:431, extensions/equal-height.php:88, templates/admin/dashboard-widgets.php:40
 msgid "Widgets"
 msgstr ""
 
-#: classes/dashboard.php:432, widgets/pricing-table/widget.php:178, widgets/pricing-table/widget.php:187, widgets/pricing-table/widget.php:623
+#: classes/dashboard.php:435, widgets/pricing-table/widget.php:178, widgets/pricing-table/widget.php:187, widgets/pricing-table/widget.php:623
 msgid "Features"
 msgstr ""
 
-#: classes/dashboard.php:436, widgets/mailchimp/widget.php:81
+#: classes/dashboard.php:439, widgets/mailchimp/widget.php:81
 msgid "Credentials"
 msgstr ""
 
-#: classes/dashboard.php:440
+#: classes/dashboard.php:443
 msgid "Analytics"
 msgstr ""
 
@@ -357,371 +326,371 @@ msgstr ""
 msgid "Template does not have any content"
 msgstr ""
 
-#: classes/widgets-manager.php:74
+#: classes/widgets-manager.php:75
 msgid "Advanced Heading"
 msgstr ""
 
-#: classes/widgets-manager.php:80
+#: classes/widgets-manager.php:81
 msgid "List Group"
 msgstr ""
 
-#: classes/widgets-manager.php:86
+#: classes/widgets-manager.php:87
 msgid "Hover Box"
 msgstr ""
 
-#: classes/widgets-manager.php:92
+#: classes/widgets-manager.php:93
 msgid "Countdown"
 msgstr ""
 
-#: classes/widgets-manager.php:98
+#: classes/widgets-manager.php:99
 msgid "Team Carousel"
 msgstr ""
 
-#: classes/widgets-manager.php:104
+#: classes/widgets-manager.php:105
 msgid "Logo Carousel"
 msgstr ""
 
-#: classes/widgets-manager.php:110
+#: classes/widgets-manager.php:111
 msgid "Source Code"
 msgstr ""
 
-#: classes/widgets-manager.php:116
+#: classes/widgets-manager.php:117
 msgid "Feature List"
 msgstr ""
 
-#: classes/widgets-manager.php:122
+#: classes/widgets-manager.php:123
 msgid "Testimonial Carousel"
 msgstr ""
 
-#: classes/widgets-manager.php:128
+#: classes/widgets-manager.php:129
 msgid "Advanced Tabs"
 msgstr ""
 
-#: classes/widgets-manager.php:134
+#: classes/widgets-manager.php:135
 msgid "Advanced Flip Box"
 msgstr ""
 
-#: classes/widgets-manager.php:140
+#: classes/widgets-manager.php:141
 msgid "Animated Text"
 msgstr ""
 
-#: classes/widgets-manager.php:146, widgets/horizontal-timeline/widget.php:63, widgets/horizontal-timeline/widget.php:455
+#: classes/widgets-manager.php:147, widgets/horizontal-timeline/widget.php:63, widgets/horizontal-timeline/widget.php:455
 msgid "Timeline"
 msgstr ""
 
-#: classes/widgets-manager.php:152
+#: classes/widgets-manager.php:153
 msgid "Instagram Feed"
 msgstr ""
 
-#: classes/widgets-manager.php:158
+#: classes/widgets-manager.php:159
 msgid "Scrolling Image"
 msgstr ""
 
-#: classes/widgets-manager.php:164
+#: classes/widgets-manager.php:165
 msgid "Advanced Pricing Table"
 msgstr ""
 
-#: classes/widgets-manager.php:170
+#: classes/widgets-manager.php:171
 msgid "Business Hour"
 msgstr ""
 
-#: classes/widgets-manager.php:176
+#: classes/widgets-manager.php:177
 msgid "Advanced Accordion"
 msgstr ""
 
-#: classes/widgets-manager.php:182
+#: classes/widgets-manager.php:183
 msgid "Advanced Toggle"
 msgstr ""
 
-#: classes/widgets-manager.php:188
+#: classes/widgets-manager.php:189
 msgid "Promo Box"
 msgstr ""
 
-#: classes/widgets-manager.php:194
+#: classes/widgets-manager.php:195
 msgid "Hotspots"
 msgstr ""
 
-#: classes/widgets-manager.php:200
+#: classes/widgets-manager.php:201
 msgid "Price Menu"
 msgstr ""
 
-#: classes/widgets-manager.php:212
+#: classes/widgets-manager.php:213
 msgid "Line Chart"
 msgstr ""
 
-#: classes/widgets-manager.php:218
+#: classes/widgets-manager.php:219
 msgid "Pie & Doughnut Chart"
 msgstr ""
 
-#: classes/widgets-manager.php:224
+#: classes/widgets-manager.php:225
 msgid "Polar area Chart"
 msgstr ""
 
-#: classes/widgets-manager.php:230
+#: classes/widgets-manager.php:231
 msgid "Radar Chart"
 msgstr ""
 
-#: classes/widgets-manager.php:236
+#: classes/widgets-manager.php:237
 msgid "Post Tiles"
 msgstr ""
 
-#: classes/widgets-manager.php:242
+#: classes/widgets-manager.php:243
 msgid "Post Carousel"
 msgstr ""
 
-#: classes/widgets-manager.php:248
+#: classes/widgets-manager.php:249
 msgid "Smart Post List"
 msgstr ""
 
-#: classes/widgets-manager.php:254
+#: classes/widgets-manager.php:255
 msgid "Breadcrumbs"
 msgstr ""
 
-#: classes/widgets-manager.php:260
+#: classes/widgets-manager.php:261
 msgid "Twitter Feed Carousel"
 msgstr ""
 
-#: classes/widgets-manager.php:266
+#: classes/widgets-manager.php:267
 msgid "Author List"
 msgstr ""
 
-#: classes/widgets-manager.php:272
+#: classes/widgets-manager.php:273
 msgid "Post Grid"
 msgstr ""
 
-#: classes/widgets-manager.php:278
+#: classes/widgets-manager.php:279
 msgid "Sticky Video"
 msgstr ""
 
-#: classes/widgets-manager.php:284
+#: classes/widgets-manager.php:285
 msgid "Product Carousel"
 msgstr ""
 
-#: classes/widgets-manager.php:290
+#: classes/widgets-manager.php:291
 msgid "Product Category Carousel"
 msgstr ""
 
-#: classes/widgets-manager.php:296
+#: classes/widgets-manager.php:297
 msgid "Product Grid"
 msgstr ""
 
-#: classes/widgets-manager.php:302
+#: classes/widgets-manager.php:303
 msgid "Product Category Grid"
 msgstr ""
 
-#: classes/widgets-manager.php:308
+#: classes/widgets-manager.php:309
 msgid "Single Product"
 msgstr ""
 
-#: classes/widgets-manager.php:320
+#: classes/widgets-manager.php:321
 msgid "Modal Popup"
 msgstr ""
 
-#: classes/widgets-manager.php:326
+#: classes/widgets-manager.php:327
 msgid "One Page Nav"
 msgstr ""
 
-#: classes/widgets-manager.php:332
+#: classes/widgets-manager.php:333
 msgid "Advanced Slider"
 msgstr ""
 
-#: classes/widgets-manager.php:338
+#: classes/widgets-manager.php:339
 msgid "Mini Cart"
 msgstr ""
 
-#: classes/widgets-manager.php:344
+#: classes/widgets-manager.php:345
 msgid "WooCommerce Cart"
 msgstr ""
 
-#: classes/widgets-manager.php:350
+#: classes/widgets-manager.php:351
 msgid "WooCommerce Checkout"
 msgstr ""
 
-#: classes/widgets-manager.php:356
+#: classes/widgets-manager.php:357
 msgid "Single Image Scroll"
 msgstr ""
 
-#: classes/widgets-manager.php:362
+#: classes/widgets-manager.php:363
 msgid "Happy Menu"
 msgstr ""
 
-#: classes/widgets-manager.php:368
+#: classes/widgets-manager.php:369
 msgid "Off Canvas"
 msgstr ""
 
-#: classes/widgets-manager.php:388, widgets/infobox/widget.php:33
+#: classes/widgets-manager.php:389, widgets/infobox/widget.php:33
 msgid "Info Box"
 msgstr ""
 
-#: classes/widgets-manager.php:401, widgets/card/widget.php:35
+#: classes/widgets-manager.php:402, widgets/card/widget.php:35
 msgid "Card"
 msgstr ""
 
-#: classes/widgets-manager.php:414, widgets/cf7/widget.php:28, widgets/cf7/widget.php:59
+#: classes/widgets-manager.php:415, widgets/cf7/widget.php:28, widgets/cf7/widget.php:59
 msgid "Contact Form 7"
 msgstr ""
 
-#: classes/widgets-manager.php:427, widgets/icon-box/widget.php:30
+#: classes/widgets-manager.php:428, widgets/icon-box/widget.php:30
 msgid "Icon Box"
 msgstr ""
 
-#: classes/widgets-manager.php:440, widgets/member/widget.php:38
+#: classes/widgets-manager.php:441, widgets/member/widget.php:38
 msgid "Team Member"
 msgstr ""
 
-#: classes/widgets-manager.php:453, widgets/review/widget.php:30, widgets/review/widget.php:73, widgets/review/widget.php:118, widgets/review/widget.php:514
+#: classes/widgets-manager.php:454, widgets/review/widget.php:30, widgets/review/widget.php:73, widgets/review/widget.php:118, widgets/review/widget.php:514
 msgid "Review"
 msgstr ""
 
-#: classes/widgets-manager.php:466, widgets/image-compare/widget.php:31
+#: classes/widgets-manager.php:467, widgets/image-compare/widget.php:31
 msgid "Image Compare"
 msgstr ""
 
-#: classes/widgets-manager.php:479, widgets/justified-gallery/widget.php:31
+#: classes/widgets-manager.php:480, widgets/justified-gallery/widget.php:31
 msgid "Justified Grid"
 msgstr ""
 
-#: classes/widgets-manager.php:492, widgets/image-grid/widget.php:31
+#: classes/widgets-manager.php:493, widgets/image-grid/widget.php:31
 msgid "Image Grid"
 msgstr ""
 
-#: classes/widgets-manager.php:505, widgets/slider/widget.php:32
+#: classes/widgets-manager.php:506, widgets/slider/widget.php:32
 msgid "Slider"
 msgstr ""
 
-#: classes/widgets-manager.php:518, widgets/carousel/widget.php:32
+#: classes/widgets-manager.php:519, widgets/carousel/widget.php:32
 msgid "Carousel"
 msgstr ""
 
-#: classes/widgets-manager.php:531, widgets/skills/widget.php:29, widgets/skills/widget.php:213
+#: classes/widgets-manager.php:532, widgets/skills/widget.php:29, widgets/skills/widget.php:213
 msgid "Skill Bars"
 msgstr ""
 
-#: classes/widgets-manager.php:544, widgets/gradient-heading/widget.php:28
+#: classes/widgets-manager.php:545, widgets/gradient-heading/widget.php:28
 msgid "Gradient Heading"
 msgstr ""
 
-#: classes/widgets-manager.php:557, widgets/wpform/widget.php:28, widgets/wpform/widget.php:59, widgets/wpform/widget.php:657
+#: classes/widgets-manager.php:558, widgets/wpform/widget.php:28, widgets/wpform/widget.php:59, widgets/wpform/widget.php:657
 msgid "WPForms"
 msgstr ""
 
-#: classes/widgets-manager.php:570, widgets/ninjaform/widget.php:28, widgets/ninjaform/widget.php:59
+#: classes/widgets-manager.php:571, widgets/ninjaform/widget.php:28, widgets/ninjaform/widget.php:59
 msgid "Ninja Forms"
 msgstr ""
 
-#: classes/widgets-manager.php:583, widgets/calderaform/widget.php:27, widgets/calderaform/widget.php:58
+#: classes/widgets-manager.php:584, widgets/calderaform/widget.php:27, widgets/calderaform/widget.php:58
 msgid "Caldera Forms"
 msgstr ""
 
-#: classes/widgets-manager.php:596, widgets/weform/widget.php:29, widgets/weform/widget.php:65
+#: classes/widgets-manager.php:597, widgets/weform/widget.php:29, widgets/weform/widget.php:65
 msgid "weForms"
 msgstr ""
 
-#: classes/widgets-manager.php:609, widgets/logo-grid/widget.php:29, widgets/logo-grid/widget.php:65
+#: classes/widgets-manager.php:610, widgets/logo-grid/widget.php:29, widgets/logo-grid/widget.php:65
 msgid "Logo Grid"
 msgstr ""
 
-#: classes/widgets-manager.php:622, widgets/dual-button/widget.php:28
+#: classes/widgets-manager.php:623, widgets/dual-button/widget.php:28
 msgid "Dual Button"
 msgstr ""
 
-#: classes/widgets-manager.php:635, widgets/testimonial/widget.php:31, widgets/testimonial/widget.php:67, widgets/testimonial/widget.php:75, widgets/testimonial/widget.php:214
+#: classes/widgets-manager.php:636, widgets/testimonial/widget.php:31, widgets/testimonial/widget.php:67, widgets/testimonial/widget.php:75, widgets/testimonial/widget.php:214
 msgid "Testimonial"
 msgstr ""
 
-#: classes/widgets-manager.php:648, widgets/fun-factor/widget.php:180, widgets/fun-factor/widget.php:644, widgets/number/widget.php:34, widgets/number/widget.php:65, widgets/review/widget.php:108
+#: classes/widgets-manager.php:649, widgets/fun-factor/widget.php:180, widgets/fun-factor/widget.php:644, widgets/number/widget.php:34, widgets/number/widget.php:65, widgets/review/widget.php:108
 msgid "Number"
 msgstr ""
 
-#: classes/widgets-manager.php:661, widgets/flip-box/widget.php:32
+#: classes/widgets-manager.php:662, widgets/flip-box/widget.php:32
 msgid "Flip Box"
 msgstr ""
 
-#: classes/widgets-manager.php:674, widgets/calendly/widget.php:26, widgets/calendly/widget.php:57, widgets/calendly/widget.php:137
+#: classes/widgets-manager.php:675, widgets/calendly/widget.php:26, widgets/calendly/widget.php:57, widgets/calendly/widget.php:137
 msgid "Calendly"
 msgstr ""
 
-#: classes/widgets-manager.php:687, widgets/pricing-table/widget.php:30
+#: classes/widgets-manager.php:688, widgets/pricing-table/widget.php:30
 msgid "Pricing Table"
 msgstr ""
 
-#: classes/widgets-manager.php:700, widgets/step-flow/widget.php:28, widgets/step-flow/widget.php:59
+#: classes/widgets-manager.php:701, widgets/step-flow/widget.php:28, widgets/step-flow/widget.php:59
 msgid "Step Flow"
 msgstr ""
 
-#: classes/widgets-manager.php:712, widgets/gravityforms/widget.php:28, widgets/gravityforms/widget.php:64, widgets/gravityforms/widget.php:984
+#: classes/widgets-manager.php:713, widgets/gravityforms/widget.php:28, widgets/gravityforms/widget.php:64, widgets/gravityforms/widget.php:984
 msgid "Gravity Forms"
 msgstr ""
 
-#: classes/widgets-manager.php:724, widgets/news-ticker/widget.php:32, widgets/news-ticker/widget.php:63
+#: classes/widgets-manager.php:725, widgets/news-ticker/widget.php:32, widgets/news-ticker/widget.php:63
 msgid "News Ticker"
 msgstr ""
 
-#: classes/widgets-manager.php:736, widgets/fun-factor/widget.php:33
+#: classes/widgets-manager.php:737, widgets/fun-factor/widget.php:33
 msgid "Fun Factor"
 msgstr ""
 
-#: classes/widgets-manager.php:749, widgets/bar-chart/widget.php:27, widgets/bar-chart/widget.php:59
+#: classes/widgets-manager.php:750, widgets/bar-chart/widget.php:27, widgets/bar-chart/widget.php:59
 msgid "Bar Chart"
 msgstr ""
 
-#: classes/widgets-manager.php:761, widgets/member/widget.php:1138, widgets/social-icons/widget.php:31, widgets/social-icons/widget.php:301
+#: classes/widgets-manager.php:762, widgets/member/widget.php:1138, widgets/social-icons/widget.php:31, widgets/social-icons/widget.php:301
 msgid "Social Icons"
 msgstr ""
 
-#: classes/widgets-manager.php:785, widgets/post-list/widget.php:34
+#: classes/widgets-manager.php:786, widgets/post-list/widget.php:34
 msgid "Post List"
 msgstr ""
 
-#: classes/widgets-manager.php:797, widgets/post-tab/widget.php:31
+#: classes/widgets-manager.php:798, widgets/post-tab/widget.php:31
 msgid "Post Tab"
 msgstr ""
 
-#: classes/widgets-manager.php:809, widgets/taxonomy-list/widget.php:35
+#: classes/widgets-manager.php:810, widgets/taxonomy-list/widget.php:35
 msgid "Taxonomy List"
 msgstr ""
 
-#: classes/widgets-manager.php:821
+#: classes/widgets-manager.php:822
 msgid "360° Rotation"
 msgstr ""
 
-#: classes/widgets-manager.php:833, widgets/fluent-form/widget.php:28, widgets/fluent-form/widget.php:55, widgets/fluent-form/widget.php:708
+#: classes/widgets-manager.php:834, widgets/fluent-form/widget.php:28, widgets/fluent-form/widget.php:55, widgets/fluent-form/widget.php:708
 msgid "Fluent Form"
 msgstr ""
 
-#: classes/widgets-manager.php:845, widgets/data-table/widget.php:35
+#: classes/widgets-manager.php:846, widgets/data-table/widget.php:35
 msgid "Data Table"
 msgstr ""
 
-#: classes/widgets-manager.php:857, widgets/horizontal-timeline/widget.php:31
+#: classes/widgets-manager.php:858, widgets/horizontal-timeline/widget.php:31
 msgid "Horizontal Timeline"
 msgstr ""
 
-#: classes/widgets-manager.php:869, widgets/social-share/widget.php:34
+#: classes/widgets-manager.php:870, widgets/social-share/widget.php:34
 msgid "Social Share"
 msgstr ""
 
-#: classes/widgets-manager.php:881, widgets/image-hover-effect/widget.php:29
+#: classes/widgets-manager.php:882, widgets/image-hover-effect/widget.php:29
 msgid "Image Hover Effect"
 msgstr ""
 
-#: classes/widgets-manager.php:893, widgets/event-calendar/widget.php:34
+#: classes/widgets-manager.php:894, widgets/event-calendar/widget.php:34
 msgid "Event Calendar"
 msgstr ""
 
-#: classes/widgets-manager.php:905, widgets/link-hover/widget.php:27, widgets/link-hover/widget.php:95
+#: classes/widgets-manager.php:906, widgets/link-hover/widget.php:27, widgets/link-hover/widget.php:95
 msgid "Animated Link"
 msgstr ""
 
-#: classes/widgets-manager.php:929, widgets/image-accordion/widget.php:32, widgets/image-accordion/widget.php:100
+#: classes/widgets-manager.php:930, widgets/image-accordion/widget.php:32, widgets/image-accordion/widget.php:100
 msgid "Image Accordion"
 msgstr ""
 
-#: classes/widgets-manager.php:941, widgets/content-switcher/widget.php:31, widgets/content-switcher/widget.php:93
+#: classes/widgets-manager.php:942, widgets/content-switcher/widget.php:31, widgets/content-switcher/widget.php:93
 msgid "Content Switcher"
 msgstr ""
 
-#: classes/widgets-manager.php:953, widgets/image-stack-group/widget.php:32
+#: classes/widgets-manager.php:954, widgets/image-stack-group/widget.php:32
 msgid "Image Stack Group"
 msgstr ""
 
@@ -1781,124 +1750,35 @@ msgstr ""
 msgid " is missing! Please install and activate "
 msgstr ""
 
-#: wpml/bar-chart.php:33
-msgid "Bar Chart: Label Text"
+#. translators: 1: Plugin name 2: PHP 3: Required PHP version
+#. translators: 1: Plugin name 2: Elementor 3: Required Elementor version
+#: plugin.php:90, plugin.php:133
+msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
 msgstr ""
 
-#: wpml/carousel.php:37
-msgid "Carousel: Title"
+#: plugin.php:91, plugin.php:117, plugin.php:134, templates/admin/dashboard-main.php:9
+msgid "Happy Elementor Addons"
 msgstr ""
 
-#: wpml/carousel.php:39
-msgid "Carousel: Subtitle"
+#: plugin.php:92
+msgid "PHP"
 msgstr ""
 
-#: wpml/carousel.php:41
-msgid "Carousel: Link"
+#: plugin.php:110
+msgid "Install Elementor"
 msgstr ""
 
-#: wpml/content-switcher.php:36
-msgid "Content Switcher: Title"
+#: plugin.php:107
+msgid "Activate Elementor"
 msgstr ""
 
-#: wpml/content-switcher.php:38
-msgid "Content Switcher: Plain/ HTML Text"
+#. translators: 1: Plugin name 2: Elementor 3: Elementor installation link
+#: plugin.php:116
+msgid "%1$s requires %2$s to be installed and activated to function properly. %3$s"
 msgstr ""
 
-#: wpml/data-table.php:35
-msgid "Data Table: Column Name"
-msgstr ""
-
-#: wpml/data-table.php:83
-msgid "Data Table: Cell Title"
-msgstr ""
-
-#: wpml/data-table.php:85
-msgid "Data Table: Cell Link"
-msgstr ""
-
-#: wpml/horizontal-timeline.php:37
-msgid "Horizontal Timeline: Date"
-msgstr ""
-
-#: wpml/horizontal-timeline.php:41
-msgid "Horizontal Timeline: Title"
-msgstr ""
-
-#: wpml/horizontal-timeline.php:45
-msgid "Horizontal Timeline: Subtitle"
-msgstr ""
-
-#: wpml/horizontal-timeline.php:49
-msgid "Horizontal Timeline: Description"
-msgstr ""
-
-#: wpml/image-accordion.php:40
-msgid "Image Accordion: Label"
-msgstr ""
-
-#: wpml/image-accordion.php:42
-msgid "Image Accordion: Title"
-msgstr ""
-
-#: wpml/image-accordion.php:44
-msgid "Image Accordion: Description"
-msgstr ""
-
-#: wpml/image-accordion.php:46
-msgid "Image Accordion: Button Label"
-msgstr ""
-
-#: wpml/image-accordion.php:48
-msgid "Image Accordion: Button URL"
-msgstr ""
-
-#: wpml/image-accordion.php:50
-msgid "Image Accordion: Link URL"
-msgstr ""
-
-#: wpml/image-grid.php:33
-msgid "Image Grid: Filter Name"
-msgstr ""
-
-#: wpml/justified-gallery.php:33
-msgid "Justified Grid: Filter Name"
-msgstr ""
-
-#: wpml/logo-grid.php:36
-msgid "Logo Grid: Brand Name"
-msgstr ""
-
-#: wpml/logo-grid.php:38
-msgid "Logo Grid: Link"
-msgstr ""
-
-#: wpml/pricing-table.php:33
-msgid "Pricing Table: Feature Text"
-msgstr ""
-
-#: wpml/skills.php:33
-msgid "Skills: Skill Name"
-msgstr ""
-
-#: wpml/slider.php:37
-msgid "Slider: Title"
-msgstr ""
-
-#: wpml/slider.php:39
-msgid "Slider: Subtitle"
-msgstr ""
-
-#: wpml/slider.php:41
-msgid "Slider: Link"
-msgstr ""
-
-#: wpml/social-icons.php:36
-msgid "Social Icons: Title"
-msgstr ""
-
-#: wpml/social-icons.php:38
-msgid "Social Icons: Link"
+#: plugin.php:118, plugin.php:135, widgets/data-table/widget.php:212
+msgid "Elementor"
 msgstr ""
 
 #: templates/admin/dashboard-analytics.php:25
@@ -2058,7 +1938,6 @@ msgid "Click here"
 msgstr ""
 
 #: widgets/bar-chart/widget.php:67, widgets/calderaform/widget.php:92, widgets/cf7/widget.php:96, widgets/gravityforms/widget.php:92, widgets/ninjaform/widget.php:95, widgets/weform/widget.php:102, widgets/wpform/widget.php:354
-msgid ""
 msgstr ""
 
 #: widgets/bar-chart/widget.php:71
@@ -6088,4 +5967,124 @@ msgstr ""
 
 #: widgets/wpform/widget.php:352
 msgid "Colors"
+msgstr ""
+
+#: wpml/bar-chart.php:33
+msgid "Bar Chart: Label Text"
+msgstr ""
+
+#: wpml/carousel.php:37
+msgid "Carousel: Title"
+msgstr ""
+
+#: wpml/carousel.php:39
+msgid "Carousel: Subtitle"
+msgstr ""
+
+#: wpml/carousel.php:41
+msgid "Carousel: Link"
+msgstr ""
+
+#: wpml/content-switcher.php:36
+msgid "Content Switcher: Title"
+msgstr ""
+
+#: wpml/content-switcher.php:38
+msgid "Content Switcher: Plain/ HTML Text"
+msgstr ""
+
+#: wpml/data-table.php:35
+msgid "Data Table: Column Name"
+msgstr ""
+
+#: wpml/data-table.php:83
+msgid "Data Table: Cell Title"
+msgstr ""
+
+#: wpml/data-table.php:85
+msgid "Data Table: Cell Link"
+msgstr ""
+
+#: wpml/horizontal-timeline.php:37
+msgid "Horizontal Timeline: Date"
+msgstr ""
+
+#: wpml/horizontal-timeline.php:41
+msgid "Horizontal Timeline: Title"
+msgstr ""
+
+#: wpml/horizontal-timeline.php:45
+msgid "Horizontal Timeline: Subtitle"
+msgstr ""
+
+#: wpml/horizontal-timeline.php:49
+msgid "Horizontal Timeline: Description"
+msgstr ""
+
+#: wpml/image-accordion.php:40
+msgid "Image Accordion: Label"
+msgstr ""
+
+#: wpml/image-accordion.php:42
+msgid "Image Accordion: Title"
+msgstr ""
+
+#: wpml/image-accordion.php:44
+msgid "Image Accordion: Description"
+msgstr ""
+
+#: wpml/image-accordion.php:46
+msgid "Image Accordion: Button Label"
+msgstr ""
+
+#: wpml/image-accordion.php:48
+msgid "Image Accordion: Button URL"
+msgstr ""
+
+#: wpml/image-accordion.php:50
+msgid "Image Accordion: Link URL"
+msgstr ""
+
+#: wpml/image-grid.php:33
+msgid "Image Grid: Filter Name"
+msgstr ""
+
+#: wpml/justified-gallery.php:33
+msgid "Justified Grid: Filter Name"
+msgstr ""
+
+#: wpml/logo-grid.php:36
+msgid "Logo Grid: Brand Name"
+msgstr ""
+
+#: wpml/logo-grid.php:38
+msgid "Logo Grid: Link"
+msgstr ""
+
+#: wpml/pricing-table.php:33
+msgid "Pricing Table: Feature Text"
+msgstr ""
+
+#: wpml/skills.php:33
+msgid "Skills: Skill Name"
+msgstr ""
+
+#: wpml/slider.php:37
+msgid "Slider: Title"
+msgstr ""
+
+#: wpml/slider.php:39
+msgid "Slider: Subtitle"
+msgstr ""
+
+#: wpml/slider.php:41
+msgid "Slider: Link"
+msgstr ""
+
+#: wpml/social-icons.php:36
+msgid "Social Icons: Title"
+msgstr ""
+
+#: wpml/social-icons.php:38
+msgid "Social Icons: Link"
 msgstr ""

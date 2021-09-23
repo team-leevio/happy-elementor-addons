@@ -1,3 +1,7 @@
+= 3.2.1 - 23 September 2021 =
+
+- Fix: Setup wizard improvement and cache issue resolved.
+
 = 3.2.0 - 23 September 2021 =
 
 - New: Setup Wizard for guided plugin configuration
