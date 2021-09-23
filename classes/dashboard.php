@@ -63,7 +63,7 @@ class Dashboard {
     public static function activation_redirect() {
         if ( get_option( HAPPY_ADDONS_REDIRECTION_FLAG, false ) && ! isset( $_GET['activate-multi'] ) ) {
             delete_option( HAPPY_ADDONS_REDIRECTION_FLAG );
-            if(!get_option( HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG, false )){
+            if(!get_option( HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG, false ) || !ha_has_pro()){
                 die( wp_redirect( ha_get_setup_wizard_link() ) );
             }else{
                 die( wp_redirect( ha_get_dashboard_link() ) );
