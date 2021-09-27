@@ -52,7 +52,7 @@ $disable_btn = count( $unuse_widget ) == count( array_intersect( $unuse_widget, 
 				?>
                     <div class="widget_inner">
                         <div class="widget-title"><?php echo $widgets[$key]['title'];?></div>
-                        <span class="ha-dashboard-analytics__item-total-count">total use: <?php echo $data;?></span>
+                        <span class="ha-dashboard-analytics__item-total-count"><?php esc_html_e('total use: ', 'happy-elementor-addons'); ?><?php echo $data;?></span>
                     </div>
                 </fieldset>
             </div>
