@@ -136,7 +136,7 @@ defined( 'ABSPATH' ) || die();
                 <h3 class="ha-feature-title">Missing Any Feature?</h3>
                 <p class="f16">Are you in need of a feature that’s not available in our plugin? Feel free to do a
                     feature request from here,</p>
-                <a class="ha-btn ha-btn-primary" target="_blank" rel="noopener" href="https://happyaddons.com/go/contact-support">Request Feature</a>
+                <a class="ha-btn ha-btn-primary" target="_blank" rel="noopener" href="https://happyaddons.com/roadmaps/#ideas">Request Feature</a>
             </div>
         </div>
 
