@@ -46,7 +46,7 @@ class Dashboard {
 
         add_action( 'admin_init', function() {
             remove_menu_page( self::WIZARD_PAGE_SLUG );
-        }, 999);
+        });
     }
 
     public static function is_page() {
