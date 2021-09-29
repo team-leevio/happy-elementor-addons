@@ -44,9 +44,9 @@ class Dashboard {
 
         add_action( 'in_admin_header', [ __CLASS__, 'remove_all_notices' ], PHP_INT_MAX );
 
-        add_action( 'admin_init', function() {
-            remove_menu_page( self::WIZARD_PAGE_SLUG );
-        });
+        add_action( 'admin_menu', function() {
+            remove_menu_page( 'happy-addons-setup-wizard' );
+        }, 100 );
     }
 
     public static function is_page() {
@@ -392,20 +392,24 @@ class Dashboard {
 		}else{
 			$all_widgets = Widgets_Manager::get_local_widgets_map();
 		}
-		foreach ( $module->get_formatted_usage( $format ) as $doc_type => $data ) {
-			$usage .= "\t{$data['title']} : " . $data['count'] . PHP_EOL;
+        if($module->get_formatted_usage( $format )){
+            foreach ( $module->get_formatted_usage( $format ) as $doc_type => $data ) {
+                $usage .= "\t{$data['title']} : " . $data['count'] . PHP_EOL;
 
-			foreach ( $data['elements'] as $element => $count ) {
-				$usage .= "\t\t{$element} : {$count}" . PHP_EOL;
-				$is_happy_widget = strpos( $element , "ha-") !== false;
-				$widget_key = str_replace('ha-','',$element);
+                if($data['elements']){
+                    foreach ( $data['elements'] as $element => $count ) {
+                        $usage .= "\t\t{$element} : {$count}" . PHP_EOL;
+                        $is_happy_widget = strpos( $element , "ha-") !== false;
+                        $widget_key = str_replace('ha-','',$element);
 
-				if( $is_happy_widget && array_key_exists( $widget_key, $all_widgets ) ) {
+                        if( $is_happy_widget && array_key_exists( $widget_key, $all_widgets ) ) {
 
-					$widgets_list[ $widget_key ] = $count;
-				}
-			}
-		}
+                            $widgets_list[ $widget_key ] = $count;
+                        }
+                    }
+                }
+            }
+        }
 		return $widgets_list;
 	}
 
