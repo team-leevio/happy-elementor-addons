@@ -12,6 +12,6 @@
     <div class="quick-links">
         <a href="https://www.facebook.com/groups/HappyAddonsCommunity" target="_blank">Join our Official Facebook Group</a>
         <a href="https://happyaddons.com/happy-support/" target="_blank">Bookmark our support ticket creation page</a>
-        <a href="https://www.youtube.com/channel/UC1-e7ewkKB1Dao1U90QFQFA/featured" target="_blank">Subscribe to our Youtube Channel</a>
+        <a href="https://www.youtube.com/channel/UC1-e7ewkKB1Dao1U90QFQFA/featured/?sub_confirmation=1" target="_blank">Subscribe to our Youtube Channel</a>
     </div>
 </div>
