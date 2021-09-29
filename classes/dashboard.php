@@ -152,7 +152,7 @@ class Dashboard {
     }
 
     public static function enqueue_scripts( $hook ) {
-        if ( self::$wizard_slug == $hook || current_user_can( 'manage_options' ) ) {
+        if ( self::$wizard_slug == $hook && current_user_can( 'manage_options' ) ) {
             wp_enqueue_style(
                 'happy-elementor-addons-wizard',
                 HAPPY_ADDONS_ASSETS . 'admin/css/wizard.min.css',
