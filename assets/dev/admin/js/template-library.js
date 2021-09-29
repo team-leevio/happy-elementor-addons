@@ -300,7 +300,7 @@
 
 		setTemplatesFoundText: function() {
 			var type = ha.library.getFilter('type'),
-				len = this.children.length;
+				len = this.children.length,
 				text = '<b>' + len + '</b>';
 
 			text += ( type === 'section' ? ' block' : ' ' + type );
@@ -415,7 +415,7 @@
 		},
 
 		getTemplateActionButton: function getTemplateActionButton(templateData) {
-			var templateName = (templateData.isPro && !HappyAddonsEditor.hasPro) ? 'pro-button' : 'insert-button';
+			var templateName = (templateData.isPro && !HappyAddonsEditor.hasPro) ? 'pro-button' : 'insert-button',
 			viewId = '#tmpl-haTemplateLibrary__' + templateName,
 				template = Marionette.TemplateCache.get(viewId);
 
@@ -466,7 +466,7 @@
 			typeTags,
 			self = this,
 			templatesCollection,
-			errorDialog
+			errorDialog,
 			FIND_SELECTOR = '.elementor-add-new-section .elementor-add-section-drag-title',
 			$openLibraryButton = '<div class="elementor-add-section-area-button elementor-add-ha-button"> <i class="hm hm-happyaddons"></i> </div>',
 			devicesResponsiveMap = {
@@ -616,7 +616,7 @@
 		}
 
 		this.getTabs = function () {
-			var type = this.getFilter('type');
+			var type = this.getFilter('type'),
 				tabs = {
 				section: {
 					title: 'Blocks',

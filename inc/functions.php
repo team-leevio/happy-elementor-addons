@@ -441,6 +441,13 @@ function ha_get_dashboard_link($suffix = '#home') {
 }
 
 /**
+ * @param $suffix
+ */
+function ha_get_setup_wizard_link() {
+	return add_query_arg(['page' => 'happy-addons-setup-wizard'], admin_url('admin.php'));
+}
+
+/**
  * @return mixed
  */
 function ha_get_current_user_display_name() {
@@ -625,4 +632,13 @@ function ha_show_plugin_missing_alert( $plugin ) {
 			$plugin . __( ' is missing! Please install and activate ', 'happy-elementor-addons' ) . $plugin . '.'
 			);
 	}
+}
+
+/**
+ * Get inactive happy feature list
+ *
+ * @return array
+ */
+function ha_get_inactive_features() {
+	return get_option( 'happyaddons_inactive_features', [] );
 }
