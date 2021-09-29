@@ -384,7 +384,7 @@ For a more detailed explanation check out the following documentation
 - Fix: Setup wizard asset loading
 - Fix: Resolved an unexpected warning in admin area while debugging is enabled.
 - Fix: Missing Template Engine icon in Elementor Editor.
-- Fix: InfoBox widget Badge z-index reduced 
+- Fix: Icon Box widget Badge z-index reduced 
 
 = 3.2.1 - 23 September 2021 =
 
