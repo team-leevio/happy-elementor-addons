@@ -141,7 +141,7 @@ class Api_Handler
     }
 
     public static function ha_wizard_get_preset_pro(){
-        self::$disabled_widgets = ["image-compare","carousel","skills","gradient-heading","wpform","ninjaform","calderaform","weform","number","flip-box","calendly","pricing-table","news-ticker","bar-chart","twitter-feed","post-tab","taxonomy-list","threesixty-rotation","fluent-form","data-table","social-share","event-calendar","link-hover","mailchimp","image-stack-group"];
+        self::$disabled_widgets = ["image-compare","carousel","skills","gradient-heading","wpform","ninjaform","calderaform","weform","number","flip-box","calendly","pricing-table","gravityforms","news-ticker","bar-chart","twitter-feed","post-tab","taxonomy-list","threesixty-rotation","fluent-form","data-table","social-share","event-calendar","link-hover","image-stack-group"];
         self::haGetWidgetList();
 
         self::$disabled_features = ["grid-layer","advanced-tooltip","text-stroke"];

@@ -1,7 +1,9 @@
-= 3.2.2 - 29 September 2021 = (Projected)
+= 3.2.2 - 29 September 2021 =
 
 - Fix: Setup wizard asset loading
-- Fix: Resolved an unexpected warning in admin area while debuggin is enabled.
+- Fix: Resolved an unexpected warning in admin area while debugging is enabled.
+- Fix: Missing Template Engine icon in Elementor Editor.
+- Fix: Icon Box widget Badge z-index reduced 
 
 = 3.2.1 - 23 September 2021 =
 

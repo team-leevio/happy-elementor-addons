@@ -1,9 +1,9 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.2.1
+Version: 3.2.2
 Author: weDevs
 Author URI: https://happyaddons.com/
-Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, sourav926, wedevs, iqbalrony, mrokon, shshouvo, sayedulsayem, obiplabon
+Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, wedevs, iqbalrony, shshouvo, sayedulsayem
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Mega Menu
 Requires at least: 4.7
 Tested up to: 5.8
@@ -378,6 +378,13 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.2.2 - 29 September 2021 =
+
+- Fix: Setup wizard asset loading
+- Fix: Resolved an unexpected warning in admin area while debugging is enabled.
+- Fix: Missing Template Engine icon in Elementor Editor.
+- Fix: Icon Box widget Badge z-index reduced 
 
 = 3.2.1 - 23 September 2021 =
 

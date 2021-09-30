@@ -9,7 +9,7 @@ class Dashboard_Widgets {
     private static $instance;
 
     public function init() {
-        add_action('wp_dashboard_setup', [$this, 'add_dashboard_widgets'], 999);
+        add_action('wp_dashboard_setup', [$this, 'add_dashboard_widgets'], 9999);
     }
 
     /**

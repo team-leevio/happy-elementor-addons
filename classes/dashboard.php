@@ -392,11 +392,11 @@ class Dashboard {
 		}else{
 			$all_widgets = Widgets_Manager::get_local_widgets_map();
 		}
-        if($module->get_formatted_usage( $format )){
+        if(is_array($module->get_formatted_usage( $format ))||is_object($module->get_formatted_usage( $format ))){
             foreach ( $module->get_formatted_usage( $format ) as $doc_type => $data ) {
                 $usage .= "\t{$data['title']} : " . $data['count'] . PHP_EOL;
 
-                if($data['elements']){
+                if(is_array($data['elements'])||is_object($data['elements'])){
                     foreach ( $data['elements'] as $element => $count ) {
                         $usage .= "\t\t{$element} : {$count}" . PHP_EOL;
                         $is_happy_widget = strpos( $element , "ha-") !== false;
