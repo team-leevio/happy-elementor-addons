@@ -2,6 +2,7 @@
 
 - Fix: Dashboard widget broken style
 - Fix: Happy Tooltip JS optimization
+- Fix: Privacy policy missing link in setup wizard
 
 = 3.2.2 - 29 September 2021 =
 

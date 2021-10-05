@@ -3,7 +3,7 @@ Plugin Name: Happy Addons for Elementor
 Version: 3.2.2
 Author: weDevs
 Author URI: https://happyaddons.com/
-Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, wedevs, iqbalrony, shshouvo, sayedulsayem
+Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, wedevs, iqbalrony, sabbirshouvo, sayedulsayem
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Mega Menu
 Requires at least: 4.7
 Tested up to: 5.8
