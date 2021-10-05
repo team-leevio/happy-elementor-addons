@@ -9,6 +9,17 @@ class Dashboard_Widgets {
     private static $instance;
 
     public function init() {
+        // add_action('after_theme_setup', [$this, 'dashboard_widget_hook_call']);
+        // if(ha_has_pro()) {
+        //     add_action('after_theme_setup', [$this, 'dashboard_widget_hook_call']);
+        // }else {
+        //     add_action('wp_dashboard_setup', [$this, 'add_dashboard_widgets'], 9999);
+        // }
+
+        // $is_show_dashboard_widget = apply_filters('happy_elementor_addons_dashboard_widget', '_return_true');
+        // if($is_show_dashboard_widget == '_return_true') {
+        //     add_action('wp_dashboard_setup', [$this, 'add_dashboard_widgets'], 9999);
+        // }
         add_action('wp_dashboard_setup', [$this, 'add_dashboard_widgets'], 9999);
     }
 
