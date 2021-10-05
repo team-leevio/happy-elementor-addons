@@ -984,6 +984,14 @@ class Creative_Button extends Base {
             ]
         );
 
+		$this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'button_hover_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-creative-btn:hover'
+            ]
+		);
+
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
 	}
