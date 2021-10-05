@@ -1,0 +1,12 @@
+@import "variables";
+@import "mixins";
+
+.ha-photo-stack-wrapper{
+	position: relative;
+	
+	.ha-photo-stack-item{
+		position: absolute;
+	}
+
+}
+	
