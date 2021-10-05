@@ -1,20 +1,20 @@
 ; (function ($) {
-    'use strict';
+	'use strict';
 
-    var $window = $(window)
+	var $window = $(window)
 
-    $window.on('elementor/frontend/init', function () {
+	$window.on('elementor/frontend/init', function () {
 
 		var gloablAdvancedTooltipOptions = '';
 		var AdvancedTooltip = elementorModules.frontend.handlers.Base.extend({
 
 			onInit: function () {
 				elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
-				if(this.$element.hasClass('ha-advanced-tooltip-enable')) {					
+				if (this.$element.hasClass('ha-advanced-tooltip-enable')) {
 					this.$element.append("<span class='ha-advanced-tooltip-content'></span>");
 					this.run();
 				}
-				
+
 			},
 			getReadySettings: function () {
 				var settings = {
@@ -29,46 +29,49 @@
 				return $.extend({}, settings);
 			},
 			onElementChange: function (e) {
-				if(this.$element.hasClass('ha-advanced-tooltip-enable')) {					
+				if (this.$element.hasClass('ha-advanced-tooltip-enable')) {
 					var style_controls = ['ha_advanced_tooltip_enable', 'ha_advanced_tooltip_content', 'ha_advanced_tooltip_position', 'ha_advanced_tooltip_arrow', 'ha_advanced_tooltip_duration', 'ha_advanced_tooltip_size', 'ha_advanced_tooltip_animation'];
-	
-					if(style_controls.includes(e)) {
-						if ( (e == 'ha_advanced_tooltip_enable') && ( this.$element.find('.ha-advanced-tooltip-content').length <= 0 ) ) {
+
+					if (style_controls.includes(e)) {
+						if ((e == 'ha_advanced_tooltip_enable') && (this.$element.find('.ha-advanced-tooltip-content').length <= 0)) {
 							this.$element.append("<span class='ha-advanced-tooltip-content'></span>");
+							this.run();
 						}
-						// this.run();
 						gloablAdvancedTooltipOptions = this.getReadySettings();
 					}
-				}else {
+				} else {
 					this.$element.find('.ha-advanced-tooltip-content').remove();
 				}
 			},
 			run: function () {
 				var $scope = this.$element;
-				if ( this.$element.hasClass( "ha-advanced-tooltip-enable" ) ) {
+
+				if (this.$element.hasClass("ha-advanced-tooltip-enable")) {
+
 					gloablAdvancedTooltipOptions = this.getReadySettings();
+
 					var content = $scope.find('.ha-advanced-tooltip-content');
 					content.html($.parseHTML(gloablAdvancedTooltipOptions.content));
-					content.css('animation-duration', gloablAdvancedTooltipOptions.duration+'ms');
+					content.css('animation-duration', gloablAdvancedTooltipOptions.duration + 'ms');
 					content.addClass(gloablAdvancedTooltipOptions.animation);
-					
-					if( !gloablAdvancedTooltipOptions.showArrow) {
+
+					if (!gloablAdvancedTooltipOptions.showArrow) {
 						content.addClass('no-arrow');
 					}
 
 					if (gloablAdvancedTooltipOptions.trigger == 'click') {
-						this.$element.on('click', function() {
-							if ( content.hasClass('show')){
+						this.$element.on('click', function () {
+							if (content.hasClass('show')) {
 								content.removeClass('show');
-							}else {
+							} else {
 								content.addClass('show');
 							}
 						});
-					}else if (gloablAdvancedTooltipOptions.trigger == 'hover') {
-						this.$element.on('mouseenter', function() {
+					} else if (gloablAdvancedTooltipOptions.trigger == 'hover') {
+						this.$element.on('mouseenter', function () {
 							content.addClass('show');
 						});
-						this.$element.on('mouseleave', function() {
+						this.$element.on('mouseleave', function () {
 							content.removeClass('show');
 						});
 					}
@@ -85,6 +88,6 @@
 			}
 		);
 
-    });
+	});
 
 }(jQuery));
