@@ -430,3 +430,120 @@ p + .ha-review-notice__actions {
 #happy_addons_news_update .ha-overview__footer ul li:first-of-type {
 	margin-right: 4px;
 }
+
+#ha-admin-top-bar-root {
+	position: absolute;
+	top: 0;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	width: calc(100% - 160px);
+	border-bottom: 1px solid #c3c4c7; 
+	background: #fff;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, .04);
+}
+
+.ha-admin-top-bar {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	padding: 0 16px; 
+	height: 50px;
+}
+.ha-admin-top-bar__main-area,
+.ha-admin-top-bar__heading {
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display:         inline-flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center; 
+	-ms-flex-align: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+}
+.ha-admin-top-bar__heading {
+	-webkit-margin-end: 40px;
+	   -moz-margin-end: 40px;
+	margin-inline-end: 40px;
+}
+.ha-admin-top-bar__main-area-buttons .page-title-action {
+	display: inline-block;
+	box-sizing: border-box;
+	margin: 0 4px;
+	padding: 0 10px;
+	min-height: 30px;
+	border: 1px solid #0275d8;
+	border-radius: 3px;
+	background: #f7f7f7;
+	color: #0275d8;
+	text-decoration: none; 
+	line-height: 30px;
+	cursor: pointer;
+}
+.ha-admin-top-bar__main-area-buttons .page-title-action:hover {
+	border-color: #1b607f;
+	background: #eceeef;
+	color: #1b607f;
+}
+.ha-admin-top-bar__heading-logo {
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display:         inline-flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-ms-flex-align: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	width: 30px;
+	width: 1.875rem; 
+	height: 1.875rem;
+	border-radius: 15px;
+	background: -webkit-linear-gradient(45deg, #c84993 0%, #6939c6 100%);
+	background:         linear-gradient(45deg, #c84993 0%, #6939c6 100%);
+	color: #fff;
+	text-align: center;
+	font-size: .875rem;
+	line-height: 1.875rem;
+}
+.ha-admin-top-bar__heading-logo svg {
+	width: auto; 
+	height: 20px;
+}
+.ha-admin-top-bar__heading-title {
+	padding: 0 8px;
+	color: #495157;
+	font-weight: 600;
+	font-size: 15px;
+	font-family: Roboto, Arial, Helvetica, Verdana, sans-serif;
+	line-height: normal;
+}
+
+.post-type-ha_library #wpbody-content {
+	margin-top: 50px;
+}
+
+.post-type-ha_library #wpbody .wrap {
+	clear: both;
+	padding-top: 10px;
+}
+
+.post-type-ha_library #wpbody .wrap h1 {
+	display: none;
+}
+
+.post-type-ha_library .wrap .wp-heading-inline + .page-title-action {
+	display: none;
+}

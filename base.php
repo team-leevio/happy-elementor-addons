@@ -105,7 +105,7 @@ class Base {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-source.php' );
 		}
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/api-handler.php' );
-		
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/theme-builder.php' );
 	}
 
 	public function include_on_init() {

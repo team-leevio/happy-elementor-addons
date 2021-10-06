@@ -1,0 +1,86 @@
+<?php
+
+use Happy_Addons\Elementor\Theme_Builder;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+$types = Theme_Builder::TEMPLATE_TYPE;
+$selected = get_query_var( 'ha_library_type' );
+
+?>
+<script type="text/template" id="tmpl-elementor-new-template">
+	<div id="elementor-new-template__description">
+		<div id="elementor-new-template__description__title"><?php
+			printf(
+				/* translators: %1$s Span open tag, %2$s: Span close tag. */
+				esc_html__( 'Templates Help You %1$sWork Efficiently%2$s', 'elementor' ),
+				'<span>',
+				'</span>'
+			);
+			?></div>
+		<div id="elementor-new-template__description__content"><?php echo esc_html__( 'Use templates to create the different pieces of your site, and reuse them with one click whenever needed.', 'elementor' ); ?></div>
+		<?php
+		/*
+		<div id="elementor-new-template__take_a_tour">
+			<i class="eicon-play-o"></i>
+			<a href="#"><?php echo esc_html__( 'Take The Video Tour', 'elementor\' ); ?></a>
+		</div>
+		*/
+		?>
+	</div>
+	<form id="elementor-new-template__form" action="<?php esc_url( admin_url( '/edit.php' ) ); ?>">
+		<input type="hidden" name="post_type" value="ha_library">
+		<input type="hidden" name="action" value="ha_library_new_post">
+		<?php // PHPCS - a nonce doesn't have to be escaped. ?>
+		<input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce( 'ha_library_new_post_action' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
+		<div id="elementor-new-template__form__title"><?php echo esc_html__( 'Choose Template Type', 'elementor' ); ?></div>
+		<div id="elementor-new-template__form__template-type__wrapper" class="elementor-form-field">
+			<label for="elementor-new-template__form__template-type" class="elementor-form-field__label"><?php echo esc_html__( 'Select the type of template you want to work on', 'elementor' ); ?></label>
+			<div class="elementor-form-field__select__wrapper">
+				<select id="elementor-new-template__form__template-type" class="elementor-form-field__select" name="template_type" required>
+					<option value=""><?php echo esc_html__( 'Select', 'elementor' ); ?>...</option>
+					<?php
+					foreach ( $types as $value => $type_title ) {
+						printf( '<option value="%1$s" %2$s>%3$s</option>', esc_attr( $value ), selected( $selected, $value, false ), esc_html( $type_title ) );
+					}
+					?>
+				</select>
+			</div>
+		</div>
+
+		<div id="elementor-new-template__form__post-title__wrapper" class="elementor-form-field">
+			<label for="elementor-new-template__form__post-title" class="elementor-form-field__label">
+				<?php echo esc_html__( 'Name your template', 'elementor' ); ?>
+			</label>
+			<div class="elementor-form-field__text__wrapper">
+				<input type="text" placeholder="<?php echo esc_attr__( 'Enter template name (optional)', 'elementor' ); ?>" id="elementor-new-template__form__post-title" class="elementor-form-field__text" name="post_data[post_title]">
+			</div>
+		</div>
+		<button id="elementor-new-template__form__submit" class="elementor-button elementor-button-success"><?php echo esc_html__( 'Create Template', 'elementor' ); ?></button>
+	</form>
+</script>
+
+<script type="text/template" id="tmpl-ha-templates-modal__header__logo">
+	<span class="elementor-templates-modal__header__logo__icon-wrapper e-logo-wrapper">
+		<!-- <i class="eicon-elementor"></i> -->
+		<svg version="1.1" x="0px" y="0px" viewBox="0 0 110 118" enable-background="new 0 0 110 118" xml:space="preserve">
+			<g>
+				<g>
+					<path fill="#ffffff" d="M101.1,27.8c1,0,1.9-0.2,2.9-0.2c1.9-0.2,3.1-1.9,2.9-3.6c-0.2-1.9-1.9-3.2-3.5-2.9
+c-12.8,1.5-24.9-6.3-28.8-18.7c-0.6-1.7-2.5-2.7-4.1-2.1c-1.6,0.6-2.7,2.5-2.1,4.2C72.9,18.7,86.5,28.4,101.1,27.8z" />
+					<path fill="#ffffff" d="M105.9,40.6c-1-2.3-3.3-3.8-5.8-3.8c-3.3,0.2-6.8,0-10.3-0.8C75.4,33,64.5,22.7,59.5,9.7
+c-0.8-2.3-3.3-4-5.8-3.8C27,6.5,3.7,26.9,0.4,55.5c-2.9,26.3,13,51.5,37.5,59.7c31.7,10.5,64.5-9.5,71.1-42.1
+C111.2,61.8,109.8,50.5,105.9,40.6z M63.9,44.8c0.4-1.7,2.1-2.9,3.9-2.5l13.6,2.9c1.6,0.4,2.9,2.1,2.5,4c-0.4,1.7-2.1,2.9-3.9,2.5
+l-13.6-2.9C64.7,48.2,63.4,46.5,63.9,44.8z M33.8,40.4c0.8-4.2,4.9-6.9,9.1-6.1c4.1,0.8,6.8,5,6,9.3c-0.8,4.2-4.9,6.9-9.1,6.1
+C35.6,48.8,33,44.6,33.8,40.4z M86.5,79.3C79.7,95.7,61.6,105,43.9,99.1c-13.2-4.4-22.5-16.8-23.7-30.5C20,65,22.9,62,26.4,62.7
+l56,9.3C85.7,72.6,87.8,76.1,86.5,79.3z" />
+					<path fill="#ffffff" d="M58.9,83.9c-6.8-1.5-13.4,1.3-17.1,6.3c-0.8,1.1-0.4,2.7,0.8,3.2c2.1,1.1,4.5,1.9,7,2.5
+c6.6,1.5,13.2,0.2,18.5-2.7c1.2-0.6,1.4-2.3,0.6-3.4C66.3,86.9,62.8,84.8,58.9,83.9z" />
+				</g>
+			</g>
+		</svg>
+	</span>
+	<span class="elementor-templates-modal__header__logo__title">{{{ title }}}</span>
+</script>

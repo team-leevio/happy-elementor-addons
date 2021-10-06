@@ -385,7 +385,7 @@
       border: none;
     }
 
-    .setup-wizard-finish-setup .description a:hover{
+    .setup-wizard-finish-setup .description a:hover {
       background: #d6226e;
     }
   }
@@ -440,5 +440,110 @@
         margin-right: 4px;
       }
     }
+  }
+}
+
+#ha-admin-top-bar-root {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba($color: #000000, $alpha: 0.04);
+  top: 0;
+  width: calc(100% - 160px);
+  z-index: 1;
+  border-bottom: 1px solid #c3c4c7;
+}
+
+.ha-admin-top-bar {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+
+  &__main-area,
+  &__heading {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__heading {
+    margin-inline-end: 40px;
+  }
+
+  &__main-area-buttons {
+    .page-title-action {
+      background: #f7f7f7;
+      border: 1px solid #0275d8;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      color: #0275d8;
+      cursor: pointer;
+      display: inline-block;
+      line-height: 30px;
+      margin: 0 4px;
+      min-height: 30px;
+      padding: 0 10px;
+      text-decoration: none;
+
+      &:hover {
+        background: #eceeef;
+        border-color: #1b607f;
+        color: #1b607f;
+      }
+    }
+  }
+
+  &__heading-logo {
+    width: 30px;
+    background: linear-gradient(45deg, rgba(200, 73, 147, 1) 0%, rgba(105, 57, 198, 1) 100%);
+    ;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .875rem;
+    height: 1.875rem;
+    line-height: 1.875rem;
+    text-align: center;
+    width: 1.875rem;
+
+    svg {
+      height: 20px;
+      width: auto;
+    }
+  }
+
+  &__heading-title {
+    color: #495157;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: Roboto, Arial, Helvetica, Verdana, sans-serif;
+    padding: 0 8px;
+    line-height: normal;
+  }
+}
+
+.post-type-ha_library {
+  #wpbody-content {
+    margin-top: 50px;
+  }
+
+  #wpbody .wrap {
+    clear: both;
+    padding-top: 10px;
+  }
+
+  #wpbody .wrap h1 {
+    display: none;
+  }
+
+  .wrap .wp-heading-inline+.page-title-action {
+    display: none;
   }
 }
