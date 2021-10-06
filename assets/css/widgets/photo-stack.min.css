@@ -1,1 +1,1 @@
-.ha-photo-stack-wrapper{position:relative}.ha-photo-stack-wrapper .ha-photo-stack-item{position:absolute}
+.ha-photo-stack-wrapper{position:relative;height:-webkit-max-content;height:-moz-max-content;height:max-content}.ha-photo-stack-wrapper .ha-photo-stack-item{position:absolute;border-radius:10px}.ha-photo-stack-wrapper .ha-photo-stack-item img{border-radius:10px}

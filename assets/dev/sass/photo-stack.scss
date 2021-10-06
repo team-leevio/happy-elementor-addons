@@ -3,10 +3,17 @@
 
 .ha-photo-stack-wrapper{
 	position: relative;
+	height: max-content;
 	
 	.ha-photo-stack-item{
 		position: absolute;
+		border-radius: 10px;
+
+		img{
+			border-radius: 10px;
+		}
 	}
+	
 
 }
 	

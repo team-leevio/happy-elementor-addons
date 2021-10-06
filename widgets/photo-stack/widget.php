@@ -61,6 +61,7 @@ class Photo_Stack extends Base {
 	protected function register_content_controls() {
 		// $this->__image_badge_content_controls();
 		$this->__photo_stack_content_controls();
+		$this->__photo_stack_effect_controls();
 	}
 
 	protected function __photo_stack_content_controls(){
@@ -168,10 +169,7 @@ class Photo_Stack extends Base {
 					'body:not(.rtl) {{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}' => 'top: {{SIZE}}{{UNIT}}',
 					'body.rtl {{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}' => 'top: {{SIZE}}{{UNIT}}',
 				],
-				// 'condition' => [
-				// 	'_offset_orientation_h!' => 'end',
-				// 	'_position!' => '',
-				// ],
+				
 			]
 		);
 		$repeater->add_responsive_control(
@@ -180,6 +178,8 @@ class Photo_Stack extends Base {
 				'label' => esc_html__( 'Z-Index', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::NUMBER,
 				'min' => 0,
+				'max' => 1000,
+				'step' => 1,
 				'selectors' => [
 					'{{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}' => 'z-index: {{VALUE}};',
 				],
@@ -206,16 +206,57 @@ class Photo_Stack extends Base {
 
 		$this->end_controls_section();
 	}
+	protected function __photo_stack_effect_controls() {
+		$this->start_controls_section(
+            '_section_photo_stack_animation',
+            [
+                'label' => __( 'Aniamtion', 'happy-elementor-addons' ),
+                'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+		$this->add_control(
+			'_ps_infinite_animation',
+			[
+				'label' => __( 'Infinite Animation', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					' ' => __( 'Description', 'happy-elementor-addons' ),
+				],
+				'default' => '',
+			]
+		);
+
+		$this->end_controls_section();
+	}
 
 	/**
      * Register widget style controls
      */
 	protected function register_style_controls() {
-		// $this->__image_style_controls();
+		$this->__photo_stack_style_controls();
 	}
 
+	protected function __photo_stack_style_controls(){
+		$this->start_controls_section(
+            '_section_photo_stack_style',
+            [
+                'label' => __( 'Image Style', 'happy-elementor-addons' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
 
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'box_shadow',
+				'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-photo-stack-item',
+			]
+		);
 
+		$this->end_controls_section();
+	}
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		// print_r($settings['image_list']);
@@ -241,7 +282,7 @@ class Photo_Stack extends Base {
 						echo Group_Control_Image_Size::get_attachment_image_html($item, 'thumbnail', 'image' );
 
                         else :
-							printf( '<img class="ha-photo-stack-img elementor-animation-%s" src="%s" alt="%s">',
+							printf( '<img class="ha-photo-stack-img" src="%s" alt="%s">',
 							esc_attr( '' ),
 							Utils::get_placeholder_image_src(),
 							esc_attr( $item['name'] )
