@@ -3,16 +3,525 @@
 
 .ha-photo-stack-wrapper{
 	position: relative;
-	height: max-content;
+	box-sizing: border-box;
 	
 	.ha-photo-stack-item{
-		position: absolute;
+		position: relative;
 		border-radius: 10px;
 
 		img{
 			border-radius: 10px;
 		}
 	}
+
+	@-webkit-keyframes ha_rotating {
+		from {
+		  -webkit-transform: rotate(0deg);
+				  transform: rotate(0deg);
+		}
+		to {
+		  -webkit-transform: rotate(360deg);
+				  transform: rotate(360deg);
+		}
+	  }
+	  @keyframes ha_rotating {
+		from {
+		  -webkit-transform: rotate(0deg);
+				  transform: rotate(0deg);
+		}
+		to {
+		  -webkit-transform: rotate(360deg);
+				  transform: rotate(360deg);
+		}
+	  }
+	  .ha-rotating {
+		-webkit-animation: ha_rotating 50s linear infinite;
+				animation: ha_rotating 50s linear infinite;
+	  }
+	  .ha-rotating {
+		-webkit-animation-name: ha_rotating;
+				animation-name: ha_rotating;
+		-webkit-animation-duration: 50s;
+				animation-duration: 50s;
+		-webkit-animation-timing-function: linear;
+				animation-timing-function: linear;
+		-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+		-webkit-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+		will-change: transform;
+	  }
+	  
+	  @-webkit-keyframes ha_rotating_inverse {
+		from {
+		  -webkit-transform: rotate(0deg);
+				  transform: rotate(0deg);
+		}
+		to {
+		  -webkit-transform: rotate(-360deg);
+				  transform: rotate(-360deg);
+		}
+	  }
+	  
+	  @keyframes ha_rotating_inverse {
+		from {
+		  -webkit-transform: rotate(0deg);
+				  transform: rotate(0deg);
+		}
+		to {
+		  -webkit-transform: rotate(-360deg);
+				  transform: rotate(-360deg);
+		}
+	  }
+	  .ha-rotating-inverse {
+		  will-change: transform;
+		-webkit-animation-name: ha_rotating_inverse;
+				animation-name: ha_rotating_inverse;
+		-webkit-animation-duration: 50s;
+				animation-duration: 50s;
+		-webkit-animation-timing-function: linear;
+				animation-timing-function: linear;
+		-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+		-webkit-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+	  }
+	  .ha-rotating-inverse, .ha-rotating {
+		  &.ha-duration-fast {
+			  -webkit-animation-duration: 20s;
+					  animation-duration: 20s;
+		  }
+		  &.ha-duration-md {
+			  -webkit-animation-duration: 50s;
+					  animation-duration: 50s;
+		  }
+		  &.ha-duration-slow {
+			  -webkit-animation-duration: 80s;
+					  animation-duration: 80s;
+		  }
+	  }
+	  
+	  @-webkit-keyframes ha_bounce_sm {
+		0% {
+			-webkit-transform: translateY(0);
+					transform: translateY(0);
+		}
+		50% {
+			-webkit-transform: translateY(10%);
+					transform: translateY(10%);
+		}
+		100% {
+			-webkit-transform: translateY(0);
+					transform: translateY(0);
+		}
+	  }
+	  
+	  @keyframes ha_bounce_sm {
+		0% {
+			-webkit-transform: translateY(0);
+					transform: translateY(0);
+		}
+		50% {
+			-webkit-transform: translateY(10%);
+					transform: translateY(10%);
+		}
+		100% {
+			-webkit-transform: translateY(0);
+					transform: translateY(0);
+		}
+	  }
+	  @-webkit-keyframes ha_bounce_md {
+		0% {
+			-webkit-transform: translateY(0);
+					transform: translateY(0);
+		}
+		50% {
+			-webkit-transform: translateY(20%);
+					transform: translateY(20%);
+		}
+		100% {
+			-webkit-transform: translateY(0);
+					transform: translateY(0);
+		}
+	  }
+	  @keyframes ha_bounce_md {
+		0% {
+			-webkit-transform: translateY(0);
+					transform: translateY(0);
+		}
+		50% {
+			-webkit-transform: translateY(20%);
+					transform: translateY(20%);
+		}
+		100% {
+			-webkit-transform: translateY(0);
+					transform: translateY(0);
+		}
+	  }
+	  @-webkit-keyframes ha_bounce_lg {
+		0% {
+			-webkit-transform: translateY(0);
+					transform: translateY(0);
+		}
+		50% {
+			-webkit-transform: translateY(40%);
+					transform: translateY(40%);
+		}
+		100% {
+			-webkit-transform: translateY(0);
+					transform: translateY(0);
+		}
+	  }
+	  @keyframes ha_bounce_lg {
+		0% {
+			-webkit-transform: translateY(0);
+					transform: translateY(0);
+		}
+		50% {
+			-webkit-transform: translateY(40%);
+					transform: translateY(40%);
+		}
+		100% {
+			-webkit-transform: translateY(0);
+					transform: translateY(0);
+		}
+	  }
+	  
+	  .ha-bounce-fast {
+		  will-change: transform;
+		-webkit-animation: ha_bounce 6s ease infinite;
+				animation: ha_bounce 6s ease infinite;
+	  }
+	  
+	  .ha-bounce {
+		  will-change: transform;
+		-webkit-animation: ha_bounce 3s ease-in-out infinite;
+				animation: ha_bounce 3s ease-in-out infinite;
+	  }
+	  
+	  .ha-bounce-sm {
+		  will-change: transform;
+		-webkit-animation-name: ha_bounce_sm;
+				animation-name: ha_bounce_sm;
+		-webkit-animation-duration: 5s;
+				animation-duration: 5s;
+		-webkit-animation-timing-function: ease-in-out;
+				animation-timing-function: ease-in-out;
+		-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+		-webkit-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+	  }
+	  .ha-bounce-md {
+		  will-change: transform;
+		-webkit-animation-name: ha_bounce_md;
+				animation-name: ha_bounce_md;
+		-webkit-animation-duration: 5s;
+				animation-duration: 5s;
+		-webkit-animation-timing-function: ease-in-out;
+				animation-timing-function: ease-in-out;
+		-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+		-webkit-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+	  }
+	  .ha-bounce-lg {
+		  will-change: transform;
+		-webkit-animation-name: ha_bounce_lg;
+				animation-name: ha_bounce_lg;
+		-webkit-animation-duration: 5s;
+				animation-duration: 5s;
+		-webkit-animation-timing-function: ease-in-out;
+				animation-timing-function: ease-in-out;
+		-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+		-webkit-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+	  }
+	  
+	  
+	  @-webkit-keyframes ha_fade {
+		0% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.6;
+		}
+		100% {
+			opacity: 1;
+		}
+	  }
+	  
+	  
+	  @keyframes ha_fade {
+		0% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.6;
+		}
+		100% {
+			opacity: 1;
+		}
+	  }
+	  @-webkit-keyframes ha_scale_sm {
+		0% {
+			-webkit-transform: scale(1);
+					transform: scale(1);
+		}
+		50% {
+			-webkit-transform: scale(1.1);
+					transform: scale(1.1);
+		}
+		100% {
+			-webkit-transform: scale(1);
+					transform: scale(1);
+		}
+	  }
+	  @keyframes ha_scale_sm {
+		0% {
+			-webkit-transform: scale(1);
+					transform: scale(1);
+		}
+		50% {
+			-webkit-transform: scale(1.1);
+					transform: scale(1.1);
+		}
+		100% {
+			-webkit-transform: scale(1);
+					transform: scale(1);
+		}
+	  }
+	  @-webkit-keyframes ha_scale_md {
+		0% {
+			-webkit-transform: scale(1);
+					transform: scale(1);
+		}
+		50% {
+			-webkit-transform: scale(1.4);
+					transform: scale(1.4);
+		}
+		100% {
+			-webkit-transform: scale(1);
+					transform: scale(1);
+		}
+	  }
+	  @keyframes ha_scale_md {
+		0% {
+			-webkit-transform: scale(1);
+					transform: scale(1);
+		}
+		50% {
+			-webkit-transform: scale(1.4);
+					transform: scale(1.4);
+		}
+		100% {
+			-webkit-transform: scale(1);
+					transform: scale(1);
+		}
+	  }
+	  @-webkit-keyframes ha_scale_lg {
+		0% {
+			-webkit-transform: scale(1);
+					transform: scale(1);
+		}
+		50% {
+			-webkit-transform: scale(1.8);
+					transform: scale(1.8);
+		}
+		100% {
+			-webkit-transform: scale(1);
+					transform: scale(1);
+		}
+	  }
+	  @keyframes ha_scale_lg {
+		0% {
+			-webkit-transform: scale(1);
+					transform: scale(1);
+		}
+		50% {
+			-webkit-transform: scale(1.8);
+					transform: scale(1.8);
+		}
+		100% {
+			-webkit-transform: scale(1);
+					transform: scale(1);
+		}
+	  }
+	  .ha-scale-sm {
+		  will-change: transform;
+		-webkit-animation-name: ha_scale_sm;
+				animation-name: ha_scale_sm;
+		-webkit-animation-duration: 5s;
+				animation-duration: 5s;
+		-webkit-animation-timing-function: ease-in-out;
+				animation-timing-function: ease-in-out;
+		-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+		-webkit-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+	  }
+	  .ha-scale-md {
+		  will-change: transform;
+		-webkit-animation-name: ha_scale_md;
+				animation-name: ha_scale_md;
+		-webkit-animation-duration: 5s;
+				animation-duration: 5s;
+		-webkit-animation-timing-function: ease-in-out;
+				animation-timing-function: ease-in-out;
+		-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+		-webkit-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+	  }
+	  .ha-scale-lg {
+		  will-change: transform;
+		-webkit-animation-name: ha_scale_lg;
+				animation-name: ha_scale_lg;
+		-webkit-animation-duration: 5s;
+				animation-duration: 5s;
+		-webkit-animation-timing-function: ease-in-out;
+				animation-timing-function: ease-in-out;
+		-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+		-webkit-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+	  }
+	  .ha-fade {
+		  will-change: transform;
+		-webkit-animation-name: ha_fade;
+				animation-name: ha_fade;
+		-webkit-animation-duration: 5s;
+				animation-duration: 5s;
+		-webkit-animation-timing-function: ease-in-out;
+				animation-timing-function: ease-in-out;
+		-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+		-webkit-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+	  }
+	  
+	  
+	  .ha-bounce-sm, .ha-bounce-md, .ha-bounce-lg,
+	  .ha-scale-sm, .ha-scale-md, .ha-scale-lg, .ha-fade {
+		  &.ha-duration-fast {
+			  -webkit-animation-duration: 2s;
+					  animation-duration: 2s;
+		  }
+		  &.ha-duration-md {
+			  -webkit-animation-duration: 5s;
+					  animation-duration: 5s;
+		  }
+		  &.ha-duration-slow {
+			  -webkit-animation-duration: 10s;
+					  animation-duration: 10s;
+		  }
+	  }
+	  
+	  .ha-bg-slide-left {
+		  -webkit-animation-name: ha_scroll_left;
+				  animation-name: ha_scroll_left;
+	  }
+	  .ha-bg-slide-right {
+		  -webkit-animation-name: ha_scroll_right;
+				  animation-name: ha_scroll_right;
+	  }
+	  .ha-bg-slide-up {
+		  -webkit-animation-name: ha_scroll_up;
+				  animation-name: ha_scroll_up;
+	  }
+	  .ha-bg-slide-down {
+		  -webkit-animation-name: ha_scroll_down;
+				  animation-name: ha_scroll_down;
+	  }
+	  .ha-bg-slide-left , .ha-bg-slide-right,
+	  .ha-bg-slide-up, .ha-bg-slide-down {
+		  background-repeat: repeat;
+		  -webkit-animation-timing-function: linear;
+				  animation-timing-function: linear;
+		  -webkit-animation-fill-mode: both;
+				  animation-fill-mode: both;
+		  -webkit-animation-iteration-count: infinite;
+				  animation-iteration-count: infinite;
+		  will-change: transform;
+		  &.ha-duration-fast {
+			  -webkit-animation-duration: 15s;
+					  animation-duration: 15s;
+		  }
+		  &.ha-duration-md {
+			  -webkit-animation-duration: 30s;
+					  animation-duration: 30s;
+		  }
+		  &.ha-duration-slow {
+			  -webkit-animation-duration: 60s;
+					  animation-duration: 60s;
+		  }
+	  }
+	  @-webkit-keyframes ha_scroll_left {
+		  0%{
+			background-position: 0 0;
+		  }
+		  100%{
+			background-position: -300vw 0;
+		  }
+	  }
+	  @keyframes ha_scroll_left {
+		  0%{
+			background-position: 0 0;
+		  }
+		  100%{
+			background-position: -300vw 0;
+		  }
+	  }
+	  @-webkit-keyframes ha_scroll_right {
+		  0%{
+			background-position: 0 0;
+		  }
+		  100%{
+			background-position: 300vw 0;
+		  }
+	  }
+	  @keyframes ha_scroll_right {
+		  0%{
+			background-position: 0 0;
+		  }
+		  100%{
+			background-position: 300vw 0;
+		  }
+	  }
+	  @-webkit-keyframes ha_scroll_up {
+		  0%{
+			background-position: 0 0;
+		  }
+		  100%{
+			background-position: 0 -300vw;
+		  }
+	  }
+	  @keyframes ha_scroll_up {
+		  0%{
+			background-position: 0 0;
+		  }
+		  100%{
+			background-position: 0 -300vw;
+		  }
+	  }
+	  @-webkit-keyframes ha_scroll_down {
+		  0%{
+			background-position: 0 0;
+		  }
+		  100%{
+			background-position: 0 300vw;
+		  }
+	  }
+	  @keyframes ha_scroll_down {
+		  0%{
+			background-position: 0 0;
+		  }
+		  100%{
+			background-position: 0 300vw;
+		  }
+	  }
+	  
 	
 
 }
