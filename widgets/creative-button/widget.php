@@ -600,14 +600,6 @@ class Creative_Button extends Base {
             ]
 		);
 
-		$this->add_group_control(
-            Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'button_box_shadow',
-                'selector' => '{{WRAPPER}} .ha-creative-btn'
-            ]
-		);
-
         $this->add_group_control(
             Group_Control_Border::get_type(),
             [
@@ -873,6 +865,14 @@ class Creative_Button extends Base {
 				]
             ]
         );
+
+		$this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'button_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-creative-btn'
+            ]
+		);
 
 		$this->end_controls_tab();
 
