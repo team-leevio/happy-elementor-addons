@@ -39,10 +39,6 @@ class Mailchimp_api {
             'list_id' => $_POST['list_id'],
         ];
 
-        if(!empty($str_tags)) {
-            $auth['tags'] = $tags;
-        }
-
         if($widget_settings['mailchimp_api_choose'] == 'custom') {
             $auth['api_key'] = $widget_settings['mailchimp_api'];
         }
@@ -58,13 +54,15 @@ class Mailchimp_api {
             ],
         ];
 
-        if(isset($settings['tags'])) {
-            $data['tags'] = $settings['tags'];
+        if(!empty($str_tags)) {
+            $data['tags'] = $tags;
         }
 
         $server = explode('-', $auth['api_key']);
 
-        if(!isset($server[1])) return ['status' => 0, 'msg' => esc_html__('Invalid API key.', 'happy-elementor-addons')];
+        if(!isset($server[1])) {
+            return ['status' => 0, 'msg' => esc_html__('Invalid API key.', 'happy-elementor-addons')];
+        }
 
         $url = 'https://' . $server[1] . '.api.mailchimp.com/3.0/lists/' . $auth['list_id'] . '/members/';
 

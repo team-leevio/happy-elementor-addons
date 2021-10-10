@@ -1,8 +1,9 @@
-= *** - 05 October 2021 =
+= *** - 21 October 2021 =
 
 - Fix: Dashboard widget broken style
 - Fix: Happy Tooltip JS optimization
 - Fix: Privacy policy missing link in setup wizard
+- Fix: MailChimp audience tags issue solve
 
 = 3.2.2 - 29 September 2021 =
 
