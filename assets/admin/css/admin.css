@@ -1,3 +1,37 @@
+.ha-btn {
+	display: inline-block;
+	padding: .95rem 1.5rem;
+	border-radius: 4px;
+	text-decoration: none;
+	font-weight: bold; 
+	font-size: 14px;
+}
+.ha-btn:hover,
+.ha-btn:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.ha-btn-primary {
+	background: #5e3bc4;
+	color: #fff;
+}
+.ha-btn-primary:hover,
+.ha-btn-primary:focus {
+	background: #4b2f9d; 
+	color: #fff;
+}
+
+.ha-btn-secondary {
+	background: #e2498a;
+	color: #fff;
+}
+.ha-btn-secondary:hover,
+.ha-btn-secondary:focus {
+	background: #d6226e; 
+	color: #fff;
+}
+
 #wp-admin-bar-happy-addons > .ab-item > img {
 	margin-top: -4px; 
 	width: 18px;
@@ -529,6 +563,35 @@ p + .ha-review-notice__actions {
 	font-size: 15px;
 	font-family: Roboto, Arial, Helvetica, Verdana, sans-serif;
 	line-height: normal;
+}
+
+.ha-logo-wrapper {
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display:         inline-flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-ms-flex-align: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	width: 30px;
+	width: 1.875rem; 
+	height: 1.875rem;
+	border-radius: 15px;
+	background: -webkit-linear-gradient(45deg, #c84993 0%, #6939c6 100%);
+	background:         linear-gradient(45deg, #c84993 0%, #6939c6 100%);
+	color: #fff;
+	text-align: center;
+	font-size: .875rem;
+	line-height: 1.875rem;
+}
+.ha-logo-wrapper svg {
+	width: auto; 
+	height: 20px;
 }
 
 .post-type-ha_library #wpbody-content {

@@ -1,3 +1,37 @@
+.ha-btn {
+	padding: 0.95rem 1.5rem;
+	border-radius: 4px;
+	text-decoration: none;
+	font-size: 14px;
+	display: inline-block;
+	font-weight: bold;
+	&:hover,
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
+}
+
+.ha-btn-primary {
+	background: #5e3bc4;
+	color: #fff;
+	&:hover,
+	&:focus {
+		color: #fff;
+		background: darken(#5e3bc4, 10%);
+	}
+}
+
+.ha-btn-secondary {
+	background: #e2498a;
+	color: #fff;
+	&:hover,
+	&:focus {
+		color: #fff;
+		background: darken(#e2498a, 10%);
+	}
+}
+
 #wp-admin-bar-happy-addons>.ab-item>img {
   width: 18px;
   height: 18px;
@@ -500,7 +534,6 @@
   &__heading-logo {
     width: 30px;
     background: linear-gradient(45deg, rgba(200, 73, 147, 1) 0%, rgba(105, 57, 198, 1) 100%);
-    ;
     -webkit-border-radius: 15px;
     border-radius: 15px;
     color: #fff;
@@ -526,6 +559,27 @@
     font-family: Roboto, Arial, Helvetica, Verdana, sans-serif;
     padding: 0 8px;
     line-height: normal;
+  }
+}
+
+.ha-logo-wrapper{
+  width: 30px;
+  background: linear-gradient(45deg, rgba(200, 73, 147, 1) 0%, rgba(105, 57, 198, 1) 100%);
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .875rem;
+  height: 1.875rem;
+  line-height: 1.875rem;
+  text-align: center;
+  width: 1.875rem;
+
+  svg {
+    height: 20px;
+    width: auto;
   }
 }
 

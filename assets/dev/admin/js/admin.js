@@ -36,32 +36,32 @@
 
 var Logo = Marionette.ItemView.extend({
 	getTemplate() {
-		return '#tmpl-ha-templates-modal__header__logo';
+		return "#tmpl-ha-templates-modal__header__logo";
 	},
 
 	className() {
-		return 'elementor-templates-modal__header__logo';
+		return "elementor-templates-modal__header__logo";
 	},
 
 	events() {
 		return {
-			click: 'onClick',
+			click: "onClick",
 		};
 	},
 
 	templateHelpers() {
 		return {
-			title: this.getOption( 'title' ),
+			title: this.getOption("title"),
 		};
 	},
 
 	onClick() {
-		const clickCallback = this.getOption( 'click' );
+		const clickCallback = this.getOption("click");
 
-		if ( clickCallback ) {
+		if (clickCallback) {
 			clickCallback();
 		}
-	}
+	},
 });
 var NewTemplateView = Marionette.ItemView.extend({
 	id: "elementor-new-template-dialog-content",
@@ -74,6 +74,8 @@ var NewTemplateView = Marionette.ItemView.extend({
 
 	onRender: function () {},
 });
+
+window.newTemplateStep = 1;
 
 var NewTemplateLayout = elementorModules.common.views.modal.Layout.extend({
 	getModalOptions: function () {
@@ -101,17 +103,31 @@ var NewTemplateLayout = elementorModules.common.views.modal.Layout.extend({
 		this.modalContent.show(new NewTemplateView());
 	},
 
-    showLogo: function () {
-		this.getHeaderView().logoArea.show( new Logo( this.getLogoOptions() ) );
-	}
+	showLogo: function () {
+		this.getHeaderView().logoArea.show(new Logo(this.getLogoOptions()));
+	},
+
+	showModal() {
+		this.getModal().show();
+		console.log("Show");
+	},
+
+	hideModal() {
+		this.getModal().hide();
+		console.log("Hide");
+		this.resetForm();
+	},
+
+	resetForm() {
+		document.getElementById("newViewGroup").__x.$data.step = 1;
+	},
 });
 
 var NewTemplateModule = elementorModules.ViewModule.extend({
 	getDefaultSettings: function () {
 		return {
 			selectors: {
-				addButton:
-					"#ha-template-library-add-new",
+				addButton: "#ha-template-library-add-new",
 			},
 		};
 	},
@@ -159,3 +175,119 @@ var NewTemplateModule = elementorModules.ViewModule.extend({
 jQuery(function () {
 	window.haNewTemplate = new NewTemplateModule();
 });
+
+function newTemplateForm() {
+	return {
+		loading: true,
+		step: 1,
+		conditionType: {
+			general: "Entire Website",
+			singular: "Sigular",
+			archive: "Archive",
+		},
+		singularData: {
+			all: "All Singular",
+			"front-page": "Front Page",
+			posts: "All Posts",
+			pages: "All Pages",
+			selective: "Selective Pages",
+			404: "404 Pages",
+		},
+		selectedType: "singular",
+		selectedSingular: null,
+		selectedSingularData: null,
+		selectiveData: {
+			2: {
+				id: 2,
+				title: {
+					rendered: "Sample Page",
+				},
+			},
+			6: {
+				id: 6,
+				title: {
+					rendered: "List group",
+				},
+			},
+			234: {
+				id: 234,
+				title: {
+					rendered: "Shop",
+				},
+			},
+			235: {
+				id: 235,
+				title: {
+					rendered: "Cart",
+				},
+			},
+			236: {
+				id: 236,
+				title: {
+					rendered: "Checkout",
+				},
+			},
+			237: {
+				id: 237,
+				title: {
+					rendered: "My account",
+				},
+			},
+			466: {
+				id: 466,
+				title: {
+					rendered: "Off Canvas",
+				},
+			},
+			742: {
+				id: 742,
+				title: {
+					rendered: "MultiScroll",
+				},
+			},
+		},
+		getSelective() {
+			var localThis = this;
+			this.loading = true;
+			console.log(this.selectedSingular);
+			if(this.selectedSingular == 'selective'){
+				var pageCollection = new wp.api.collections.Pages();
+				pageCollection
+					.fetch({
+						data: {
+							_fields: "id,title",
+							filter: {
+								posts_per_page: -1,
+								orderby: "title",
+								order: "ASC",
+							},
+						},
+					})
+					.done(function (data) {
+						if(data){
+							localThis.selectiveData = data.reduce((obj, item) => ((obj[[item['id']]] = item), obj), {});
+						}
+						console.log(localThis.selectiveData);
+						localThis.loading = false;
+					});
+			}else{
+				localThis.selectiveData = null;
+				console.log(localThis.selectiveData);
+			}
+		},
+	};
+}
+
+function newTemplateFormInit(){
+	// console.log(this.$refs);
+	// var selectContainer = document.getElementById("elementor-new-template__display_type_selected");
+	// if(selectContainer){
+	// 	this.select2 = this.selectContainer.select2();
+	// 	this.select2.on("select2:select", (event) => {
+	// 		this.selectedSingularData = event.target.value;
+	// 	});
+	// 	this.$watch("selectedSingularData", (value) => {
+	// 		this.select2.val(value).trigger("change");
+	// 	});
+	// }
+}

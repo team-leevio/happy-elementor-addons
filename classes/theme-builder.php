@@ -180,7 +180,7 @@ class Theme_Builder
                                 </g>
                             </svg>
                         </div>
-                        <h1 class="ha-admin-top-bar__heading-title">Template Library</h1>
+                        <h1 class="ha-admin-top-bar__heading-title">Theme Builder</h1>
                     </div>
                     <div class="ha-admin-top-bar__main-area-buttons">
                         <a class="page-title-action" id="ha-template-library-add-new" href="http://ha.test/wp-admin/post-new.php?post_type=elementor_library">Add New</a>

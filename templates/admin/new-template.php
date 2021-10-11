@@ -2,25 +2,28 @@
 
 use Happy_Addons\Elementor\Theme_Builder;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
 $types = Theme_Builder::TEMPLATE_TYPE;
-$selected = get_query_var( 'ha_library_type' );
+$selected = get_query_var('ha_library_type');
 
 ?>
 <script type="text/template" id="tmpl-elementor-new-template">
 	<div id="elementor-new-template__description">
-		<div id="elementor-new-template__description__title"><?php
+		<div id="elementor-new-template__description__title">
+			<?php
 			printf(
-				/* translators: %1$s Span open tag, %2$s: Span close tag. */
-				esc_html__( 'Templates Help You %1$sWork Efficiently%2$s', 'elementor' ),
+				esc_html__('%1$s Happy Addon %2$s Theme Builder Helps You %3$sWork Efficiently%4$s', 'elementor'),
+				'<span>',
+				'</span>',
 				'<span>',
 				'</span>'
 			);
-			?></div>
-		<div id="elementor-new-template__description__content"><?php echo esc_html__( 'Use templates to create the different pieces of your site, and reuse them with one click whenever needed.', 'elementor' ); ?></div>
+			?>
+	    </div>
+		<div id="elementor-new-template__description__content"><?php echo esc_html__('Use templates to create the different pieces of your site, and reuse them with one click whenever needed.', 'elementor'); ?></div>
 		<?php
 		/*
 		<div id="elementor-new-template__take_a_tour">
@@ -30,40 +33,104 @@ $selected = get_query_var( 'ha_library_type' );
 		*/
 		?>
 	</div>
-	<form id="elementor-new-template__form" action="<?php esc_url( admin_url( '/edit.php' ) ); ?>">
+	<form id="elementor-new-template__form" action="<?php esc_url(admin_url('/edit.php')); ?>">
 		<input type="hidden" name="post_type" value="ha_library">
 		<input type="hidden" name="action" value="ha_library_new_post">
-		<?php // PHPCS - a nonce doesn't have to be escaped. ?>
-		<input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce( 'ha_library_new_post_action' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
-		<div id="elementor-new-template__form__title"><?php echo esc_html__( 'Choose Template Type', 'elementor' ); ?></div>
-		<div id="elementor-new-template__form__template-type__wrapper" class="elementor-form-field">
-			<label for="elementor-new-template__form__template-type" class="elementor-form-field__label"><?php echo esc_html__( 'Select the type of template you want to work on', 'elementor' ); ?></label>
-			<div class="elementor-form-field__select__wrapper">
-				<select id="elementor-new-template__form__template-type" class="elementor-form-field__select" name="template_type" required>
-					<option value=""><?php echo esc_html__( 'Select', 'elementor' ); ?>...</option>
-					<?php
-					foreach ( $types as $value => $type_title ) {
-						printf( '<option value="%1$s" %2$s>%3$s</option>', esc_attr( $value ), selected( $selected, $value, false ), esc_html( $type_title ) );
-					}
-					?>
-				</select>
-			</div>
-		</div>
+		<?php // PHPCS - a nonce doesn't have to be escaped. 
+		?>
+		<input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce('ha_library_new_post_action'); ?>">
+		
+		<div id="newViewGroup" x-data="newTemplateForm()" x-init="newTemplateFormInit()">
 
-		<div id="elementor-new-template__form__post-title__wrapper" class="elementor-form-field">
-			<label for="elementor-new-template__form__post-title" class="elementor-form-field__label">
-				<?php echo esc_html__( 'Name your template', 'elementor' ); ?>
-			</label>
-			<div class="elementor-form-field__text__wrapper">
-				<input type="text" placeholder="<?php echo esc_attr__( 'Enter template name (optional)', 'elementor' ); ?>" id="elementor-new-template__form__post-title" class="elementor-form-field__text" name="post_data[post_title]">
-			</div>
+			<template x-if="step == 1">
+				<div>
+					<div id="elementor-new-template__form__title"><?php echo esc_html__('Choose Template Type', 'elementor'); ?></div>
+					<div id="elementor-new-template__form__template-type__wrapper" class="elementor-form-field">
+						<label for="elementor-new-template__form__template-type" class="elementor-form-field__label"><?php echo esc_html__('Select the type of template you want to work on', 'elementor'); ?></label>
+						<div class="elementor-form-field__select__wrapper">
+							<select id="elementor-new-template__form__template-type" class="elementor-form-field__select" name="template_type" required>
+								<option value=""><?php echo esc_html__('Select', 'elementor'); ?>...</option>
+								<?php
+								foreach ($types as $value => $type_title) {
+									printf('<option value="%1$s" %2$s>%3$s</option>', esc_attr($value), selected($selected, $value, false), esc_html($type_title));
+								}
+								?>
+							</select>
+						</div>
+					</div>
+
+					<div id="elementor-new-template__form__post-title__wrapper" class="elementor-form-field">
+						<label for="elementor-new-template__form__post-title" class="elementor-form-field__label">
+							<?php echo esc_html__('Name your template', 'elementor'); ?>
+						</label>
+						<div class="elementor-form-field__text__wrapper">
+							<input type="text" placeholder="<?php echo esc_attr__('Enter template name (optional)', 'elementor'); ?>" id="elementor-new-template__form__post-title" class="elementor-form-field__text" name="post_data[post_title]">
+						</div>
+					</div>
+
+					<button @click="step = 2" id="elementor-new-template__form__submit" class="elementor-button ha-btn ha-btn-primary"><?php echo esc_html__('Next', 'elementor'); ?></button>
+				</div>
+			</template>
+
+			<template x-if="step == 2">
+				<div>
+					<div id="elementor-new-template__form__title"><?php echo esc_html__('Choose Display Condition', 'elementor'); ?></div>
+					<div id="elementor-new-template__form__post-title__wrapper" class="elementor-form-field">
+						<div class="elementor-form-field__select__wrapper">
+							<label class="elementor-form-field__label"> </label>
+							<select id="elementor-new-template__display_type" x-model="selectedType" class="elementor-form-field__select" name="template_display_type" required>
+								<template x-for="[key,value] in Object.entries(conditionType)">
+									<option
+										x-bind:value="key" 
+										x-text="value"
+										x-bind:selected="key === selectedType"
+									></option>
+								</template>
+							</select>
+						</div>
+					</div>
+					<template x-if="selectedType === 'singular'">
+						<div id="elementor-new-template__form__post-title__wrapper" class="elementor-form-field">
+							<div class="elementor-form-field__select__wrapper">
+							<label class="elementor-form-field__label"> </label>
+								<select x-model="selectedSingular" @change="getSelective()" id="elementor-new-template__display_type_singular" class="elementor-form-field__select" name="template_display_type_singular">
+									<template x-for="[key,value] in Object.entries(singularData)">
+										<option
+											x-bind:value="key" 
+											x-text="value"
+											x-bind:selected="key === selectedSingular"
+										></option>
+									</template>
+								</select>
+							</div>
+						</div>
+					</template>
+					<template x-if="selectedSingular == 'selective'">
+						<div id="elementor-new-template__form__post-title__wrapper" class="elementor-form-field">
+							<div class="elementor-form-field__select__wrapper">
+							<label class="elementor-form-field__label"> </label>
+								<select x-ref="pagesSelector" id="elementor-new-template__display_type_selected" class="elementor-form-field__select" name="template__display_type_selected" multiple>
+									<template x-if="!loading">
+										<template x-for="[key,value] in Object.entries(selectiveData)">
+											<option
+												:value="value.id" 
+												x-text="value.title.rendered"
+											></option>
+										</template>
+									</template>
+								</select>
+							</div>
+						</div>
+					</template>
+					<button id="elementor-new-template__form__submit" class="elementor-button ha-btn ha-btn-primary"><?php echo esc_html__('Create Template', 'elementor'); ?></button>
+				</div>
+			</template>
 		</div>
-		<button id="elementor-new-template__form__submit" class="elementor-button elementor-button-success"><?php echo esc_html__( 'Create Template', 'elementor' ); ?></button>
 	</form>
 </script>
 
 <script type="text/template" id="tmpl-ha-templates-modal__header__logo">
-	<span class="elementor-templates-modal__header__logo__icon-wrapper e-logo-wrapper">
+	<span class="elementor-templates-modal__header__logo__icon-wrapper ha-logo-wrapper">
 		<!-- <i class="eicon-elementor"></i> -->
 		<svg version="1.1" x="0px" y="0px" viewBox="0 0 110 118" enable-background="new 0 0 110 118" xml:space="preserve">
 			<g>
