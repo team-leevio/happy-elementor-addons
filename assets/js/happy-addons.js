@@ -1009,6 +1009,54 @@
 			}
 		};
 
+
+
+		//Photo Stack
+		var Photo_Stack = function($scope) {
+			var wrapper = $scope.find('.ha-photo-stack-wrapper'),
+				items = wrapper.find('.ha-photo-stack-item');
+
+				items.each(function(){
+					var self = jQuery(this),
+					top = self[0].offsetTop,
+					height = self.outerHeight(true);
+					//console.log(self);
+					console.log('item Top = '+ top+ ' height ' + height);
+				});
+			
+		};
+
+		var Photo_Stack2 = elementorModules.frontend.handlers.Base.extend({
+
+			onInit: function () { 
+				elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+				// this.elForm = this.$element.find('.ha-mailchimp-form');
+				// this.elMessage = this.$element.find('.ha-mc-response-message');
+				// this.successMessage = this.elForm.data('success-message');
+				this.run();
+			},
+			getReadySettings: function () {
+				var settings = {
+					formAlign: this.getElementSettings('form_alignment'),
+					formAlignTablet: this.getElementSettings('form_alignment_tablet') || this.getElementSettings('form_alignment'),
+					formAlignMobile: this.getElementSettings('form_alignment_mobile') || this.getElementSettings('form_alignment_tablet') || this.getElementSettings('form_alignment'),
+				};
+				return $.extend({}, settings);
+			},
+			onElementChange: function () {
+				// console.log('works');
+				// console.log(this.getElementSettings());
+				
+				// this.run();
+			},
+			run: function () {
+				// var settings = this.getReadySettings();
+				// var elForm = this.elForm;
+				// var elMessage = this.elMessage;
+
+			}
+		});
+
 		// Slider
 		elementorFrontend.hooks.addAction(
 			'frontend/element_ready/ha-slider.default',
@@ -1107,6 +1155,7 @@
 			'ha-image-accordion.default'	: Image_Accordion,
 			'ha-content-switcher.default'	: Content_Switcher,
 			'ha-member.default'		        : Team_Member,
+			'ha-photo-stack.default'		: Photo_Stack,
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {
@@ -1125,6 +1174,15 @@
 				elementorFrontend.elementsHandler.addHandler( handlerClass, { $element: $scope });
 			});
 		});
+
+		// elementorFrontend.hooks.addAction(
+		// 	'frontend/element_ready/ha-photo-stack.default',
+		// 	function ($scope) {
+		// 		elementorFrontend.elementsHandler.addHandler(Photo_Stack2, {
+		// 			$element: $scope,
+		// 		});
+		// 	}
+		// );
 
 	});
 

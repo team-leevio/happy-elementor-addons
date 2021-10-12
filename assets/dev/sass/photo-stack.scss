@@ -4,9 +4,10 @@
 .ha-photo-stack-wrapper{
 	position: relative;
 	box-sizing: border-box;
-	
+	width: 100%;
+
 	.ha-photo-stack-item{
-		position: relative;
+		position: absolute;
 		border-radius: 10px;
 
 		img{
