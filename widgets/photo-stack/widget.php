@@ -418,14 +418,14 @@ class Photo_Stack extends Base {
             $this->add_render_attribute($repeater_key, 'class', $dynamic_class);
             $this->add_render_attribute($repeater_key, 'class', $settings['_ps_infinite_animation']);
             $this->add_render_attribute($repeater_key, 'class', $settings['_ps_animation_speed']);
-            $this->add_render_attribute( $repeater_key, 'class', $settings['_shadow_style'] );
-            $this->add_render_attribute( $repeater_key, 'class', $settings['_shadow_hover_style'] );
-            $this->add_render_attribute( $repeater_key, 'class', $settings['_hover_animation_style'] );
+            $this->add_render_attribute($repeater_key . '_img', 'class', $settings['_shadow_style'] );
+            $this->add_render_attribute($repeater_key . '_img', 'class', $settings['_shadow_hover_style'] );
+            $this->add_render_attribute($repeater_key . '_img', 'class', $settings['_hover_animation_style'] );
             ?>
 			<<?php echo $tag; ?> <?php $this->print_render_attribute_string($repeater_key);?>>
 				<?php if ($image):
-
-                	echo Group_Control_Image_Size::get_attachment_image_html($item, 'thumbnail', 'image');
+                    printf('<img src="%s" alt="%s" %s>', $image,  esc_attr(''), $this->get_render_attribute_string($repeater_key . '_img'));
+                	// echo Group_Control_Image_Size::get_attachment_image_html($item, 'thumbnail', 'image');
 
             	else:
                 // printf('<img class="ha-photo-stack-img" src="%s" alt="%s">',
