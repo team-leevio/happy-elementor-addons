@@ -41,19 +41,16 @@ $selected = get_query_var('ha_library_type');
 		<input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce('ha_library_new_post_action'); ?>">
 		
 		<div id="newViewGroup" x-data="newTemplateForm()" x-init="
-		$watch('loading', value => {
-			$nextTick(() => {
-				if(!value){
-					var selectContainer = jQuery('elementor-new-template__display_type_selected');
-					if(selectContainer){
-						this.select2 = selectContainer.select2();
-					}
+			$watch('selectedSingular', value => {
+				if(value == 'selective'){
+					jQuery('#elementor-new-template__display_type_selected').select2({
+						dropdownParent: jQuery('#elementor-new-template-modal')
+					});
 				}
 			});
-		});
 		">
 
-			<template x-if="step == 1">
+			<div x-show="step == 1">
 				<div>
 					<div id="elementor-new-template__form__title"><?php echo esc_html__('Choose Template Type', 'elementor'); ?></div>
 					<div id="elementor-new-template__form__template-type__wrapper" class="elementor-form-field">
@@ -79,11 +76,11 @@ $selected = get_query_var('ha_library_type');
 						</div>
 					</div>
 
-					<button @click="step = 2" id="elementor-new-template__form__submit" class="elementor-button ha-btn ha-btn-primary"><?php echo esc_html__('Next', 'elementor'); ?></button>
+					<button @click.prevent="step = 2" id="elementor-new-template__form__submit" class="elementor-button ha-btn ha-btn-primary"><?php echo esc_html__('Next', 'elementor'); ?></button>
 				</div>
-			</template>
+			</div>
 
-			<template x-if="step == 2">
+			<div x-show="step == 2">
 				<div>
 					<div id="elementor-new-template__form__title"><?php echo esc_html__('Choose Display Condition', 'elementor'); ?></div>
 					<div id="elementor-new-template__form__post-title__wrapper" class="elementor-form-field">
@@ -100,7 +97,7 @@ $selected = get_query_var('ha_library_type');
 							</select>
 						</div>
 					</div>
-					<template x-if="selectedType === 'singular'">
+					<div x-show="selectedType === 'singular'">
 						<div id="elementor-new-template__form__post-title__wrapper" class="elementor-form-field">
 							<div class="elementor-form-field__select__wrapper">
 							<label class="elementor-form-field__label"> </label>
@@ -115,27 +112,28 @@ $selected = get_query_var('ha_library_type');
 								</select>
 							</div>
 						</div>
-					</template>
-					<template x-if="selectedSingular == 'selective'">
+					</div>
+					<div x-show="selectedSingular == 'selective'">
 						<div id="elementor-new-template__form__post-title__wrapper" class="elementor-form-field">
 							<div class="elementor-form-field__select__wrapper">
 							<label class="elementor-form-field__label"> </label>
-								<select x-ref="pagesSelector" id="elementor-new-template__display_type_selected" class="elementor-form-field__select" name="template__display_type_selected" multiple>
-									<template x-if="!loading">
-										<template x-for="[key,value] in Object.entries(selectiveData)">
-											<option
-												:value="value.id" 
-												x-text="value.title.rendered"
-											></option>
-										</template>
-									</template>
+								<select id="elementor-new-template__display_type_selected" class="elementor-form-field__select" name="template__display_type_selected" multiple>
+								<?php 
+									$pages = get_pages(); 
+									foreach ( $pages as $page ) {
+										$option = '<option value="' . $page->ID . '">';
+										$option .= $page->post_title;
+										$option .= '</option>';
+										echo $option;
+									}
+								?>
 								</select>
 							</div>
 						</div>
-					</template>
+					</div>
 					<button id="elementor-new-template__form__submit" class="elementor-button ha-btn ha-btn-primary"><?php echo esc_html__('Create Template', 'elementor'); ?></button>
 				</div>
-			</template>
+			</div>
 		</div>
 	</form>
 </script>

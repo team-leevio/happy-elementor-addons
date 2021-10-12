@@ -97,11 +97,6 @@ var NewTemplateLayout = elementorModules.common.views.modal.Layout.extend({
 		);
 		this.showLogo();
 		this.showContentView();
-
-		// var selectContainer = jQuery('#elementor-new-template__display_type_selected');
-		// if(selectContainer){
-		// 	selectContainer.select2();
-		// }
 	},
 
 	showContentView: function () {
@@ -271,7 +266,14 @@ function newTemplateForm() {
 					})
 					.done(function (data) {
 						if(data){
-							localThis.selectiveData = data.reduce((obj, item) => ((obj[[item['id']]] = item), obj), {});
+							// localThis.selectiveData = data.reduce((obj, item) => ((obj[[item['id']]] = item), obj), {});
+							var formatted = data.map(item => {
+								const container = {};
+								container.id  = item.id;
+								container.text = item.title.rendered;
+								return container;
+							});
+							localThis.selectiveData = formatted;
 						}
 						console.log(localThis.selectiveData);
 						localThis.loading = false;

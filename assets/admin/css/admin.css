@@ -610,3 +610,24 @@ p + .ha-review-notice__actions {
 .post-type-ha_library .wrap .wp-heading-inline + .page-title-action {
 	display: none;
 }
+
+#elementor-new-template__form .elementor-form-field .select2:not(:focus) {
+	border-color: #d5dadf;
+}
+
+.elementor-form-field__select__wrapper .select2 {
+	padding: 5px 0;
+	min-height: 50px;
+	max-width: 330px !important;
+	width: 100% !important;
+	outline: none; 
+	border: 1px solid;
+	border-radius: 3px;
+	background: none;
+	box-shadow: none;
+	color: #495157;
+	font-size: 14px;
+}
+.elementor-form-field__select__wrapper .select2 .select2-selection--multiple {
+	border: none !important;
+}

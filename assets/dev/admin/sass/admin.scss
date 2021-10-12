@@ -601,3 +601,29 @@
     display: none;
   }
 }
+
+#elementor-new-template__form .elementor-form-field .select2:not(:focus) {
+  border-color: #d5dadf;
+}
+
+.elementor-form-field__select__wrapper{
+  .select2{
+    width: 100% !important;
+    max-width: 330px !important;
+    min-height: 50px;
+    padding: 5px 0px;
+    font-size: 14px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background: none;
+    color: #495157;
+    border: 1px solid;
+    outline: none;
+
+    .select2-selection--multiple{
+      border: none !important;
+    }
+  }
+}
