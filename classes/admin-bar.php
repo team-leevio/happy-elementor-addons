@@ -65,7 +65,7 @@ class Admin_Bar {
 		wp_enqueue_script(
 			'happy-elementor-addons-select2',
 			'//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
-			[],
+			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
@@ -74,7 +74,7 @@ class Admin_Bar {
 		
 		wp_enqueue_script(
 			'happy-elementor-addons-alpine',
-			'//cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js',
+			'//unpkg.com/alpinejs',
 			[],
 			HAPPY_ADDONS_VERSION,
 			true

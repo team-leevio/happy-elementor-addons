@@ -40,7 +40,18 @@ $selected = get_query_var('ha_library_type');
 		?>
 		<input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce('ha_library_new_post_action'); ?>">
 		
-		<div id="newViewGroup" x-data="newTemplateForm()" x-init="newTemplateFormInit()">
+		<div id="newViewGroup" x-data="newTemplateForm()" x-init="
+		$watch('loading', value => {
+			$nextTick(() => {
+				if(!value){
+					var selectContainer = jQuery('elementor-new-template__display_type_selected');
+					if(selectContainer){
+						this.select2 = selectContainer.select2();
+					}
+				}
+			});
+		});
+		">
 
 			<template x-if="step == 1">
 				<div>

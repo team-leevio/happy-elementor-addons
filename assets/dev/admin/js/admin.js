@@ -97,6 +97,11 @@ var NewTemplateLayout = elementorModules.common.views.modal.Layout.extend({
 		);
 		this.showLogo();
 		this.showContentView();
+
+		// var selectContainer = jQuery('#elementor-new-template__display_type_selected');
+		// if(selectContainer){
+		// 	selectContainer.select2();
+		// }
 	},
 
 	showContentView: function () {
@@ -119,7 +124,8 @@ var NewTemplateLayout = elementorModules.common.views.modal.Layout.extend({
 	},
 
 	resetForm() {
-		document.getElementById("newViewGroup").__x.$data.step = 1;
+		// document.getElementById("newViewGroup").__x.$data.step = 1;
+		document.getElementById('newViewGroup')._x_dataStack[0].step = 1;
 	},
 });
 
@@ -279,15 +285,15 @@ function newTemplateForm() {
 }
 
 function newTemplateFormInit(){
-	// console.log(this.$refs);
-	// var selectContainer = document.getElementById("elementor-new-template__display_type_selected");
-	// if(selectContainer){
-	// 	this.select2 = this.selectContainer.select2();
-	// 	this.select2.on("select2:select", (event) => {
-	// 		this.selectedSingularData = event.target.value;
-	// 	});
-	// 	this.$watch("selectedSingularData", (value) => {
-	// 		this.select2.val(value).trigger("change");
-	// 	});
-	// }
+	console.log(this.$refs);
+	var selectContainer = document.getElementById("elementor-new-template__display_type_selected");
+	if(selectContainer){
+		this.select2 = this.selectContainer.select2();
+		this.select2.on("select2:select", (event) => {
+			this.selectedSingularData = event.target.value;
+		});
+		this.$watch("selectedSingularData", (value) => {
+			this.select2.val(value).trigger("change");
+		});
+	}
 }
