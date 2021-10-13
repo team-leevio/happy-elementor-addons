@@ -259,7 +259,7 @@ class Photo_Stack extends Base {
                 'label'     => __('Hover Animation', 'happy-elementor-addons'),
                 'type'      => Controls_Manager::SELECT,
                 'options'   => [
-                    'none'             => __('Default', 'happy-elementor-addons'),
+                    'none'             => __('None', 'happy-elementor-addons'),
                     'fly-sm'           => __('Fly Small', 'happy-elementor-addons'),
                     'fly'              => __('Fly Medium', 'happy-elementor-addons'),
                     'fly-lg'           => __('Fly Large', 'happy-elementor-addons'),
@@ -356,6 +356,13 @@ class Photo_Stack extends Base {
                 'separator' => 'after',
             ]
         );
+        $this->start_controls_tabs( 'tabs_hover_style' );
+        $this->start_controls_tab(
+            'tab_button_normal',
+            [
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
+            ]
+        );
 
         $this->add_group_control(
             Group_Control_Box_Shadow::get_type(),
@@ -366,6 +373,25 @@ class Photo_Stack extends Base {
 
             ]
         );
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'tab_button_hover',
+            [
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name'     => 'box_shadow_hover',
+                'label'    => __('Box Shadow Hover', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-photo-stack-item img:hover',
+
+            ]
+        );
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
 
         $this->add_group_control(
             Group_Control_Box_Shadow::get_type(),
@@ -383,6 +409,7 @@ class Photo_Stack extends Base {
                 'name'     => 'border',
                 'label'    => __('Border', 'happy-elementor-addons'),
                 'selector' => '{{WRAPPER}} .ha-photo-stack-item img',
+                'separator' => 'before'
             ]
         );
 
@@ -423,7 +450,7 @@ class Photo_Stack extends Base {
             $this->add_render_attribute($repeater_key, 'class', 'ha-photo-stack-item');
             $this->add_render_attribute($repeater_key, 'class', $dynamic_class);
             $this->add_render_attribute($repeater_key, 'class', $settings['image_infinite_animation']);
-            $this->add_render_attribute($item, 'class', $settings['hover_animation_style']);
+            $this->add_render_attribute($repeater_key, 'class', $settings['hover_animation_style']);
             // $this->add_render_attribute($repeater_key . '_img', 'class', 'ha-photo-stack-img');
             // $this->add_render_attribute($repeater_key . '_img', 'class', $settings['_shadow_style'] );
             // $this->add_render_attribute($repeater_key . '_img', 'class', $settings['_shadow_hover_style'] );
