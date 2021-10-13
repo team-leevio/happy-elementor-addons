@@ -94,7 +94,17 @@ class Photo_Stack extends Base {
                 ],
             ]
         );
-
+        
+        if (ha_has_pro() && !in_array('image-masking', get_option('happyaddons_inactive_features', []))) {
+            $repeater->add_group_control(
+                \Happy_Addons_Pro\Controls\Group_Control_Mask_Image::get_type(),
+                [
+                    'name'     => 'image_masking',
+                    'selector' => '{{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}',
+                    // 'condition' => $args['condition'],
+                ]
+            );
+        }
         $repeater->add_responsive_control(
 			'image_offset_y',
 			[
@@ -165,16 +175,7 @@ class Photo_Stack extends Base {
             ]
         );
 
-        if (ha_has_pro() && !in_array('image-masking', get_option('happyaddons_inactive_features', []))) {
-            $repeater->add_group_control(
-                \Happy_Addons_Pro\Controls\Group_Control_Mask_Image::get_type(),
-                [
-                    'name'     => 'image_masking',
-                    'selector' => '{{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}',
-                    // 'condition' => $args['condition'],
-                ]
-            );
-        }
+        
 
         $this->add_control(
             'image_list',
