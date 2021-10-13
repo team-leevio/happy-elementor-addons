@@ -7,6 +7,7 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
+use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Repeater;
@@ -52,18 +53,17 @@ class Photo_Stack extends Base {
      * Register widget content controls
      */
     protected function register_content_controls() {
-        // $this->__image_badge_content_controls();
         $this->__photo_stack_content_controls();
-        $this->__photo_stack_animation_controls();
-        $this->__photo_stack_effect_controls();
-        $this->__photo_stack_container_controls();
+        // $this->__photo_stack_animation_controls();
+        // $this->__photo_stack_effect_controls();
+        // $this->__photo_stack_container_controls();
     }
 
     protected function __photo_stack_content_controls() {
         $this->start_controls_section(
             '_section_photo_stack',
             [
-                'label' => __('Content', 'happy-elementor-addons'),
+                'label' => __('Image Stack', 'happy-elementor-addons'),
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -78,77 +78,80 @@ class Photo_Stack extends Base {
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
-                // 'dynamic' => [
-                //     'active' => true,
-                // ],
+                'dynamic' => [
+                    'active' => true,
+                ],
             ]
         );
         $repeater->add_group_control(
             Group_Control_Image_Size::get_type(),
             [
                 'name'      => 'thumbnail',
-                'default'   => 'thumbnail',
+                'default'   => 'medium',
                 'separator' => 'before',
+                'dynamic'   => [
+                    'active' => true,
+                ],
             ]
         );
 
         $repeater->add_responsive_control(
-            '_offset_y',
-            [
-                'label'      => esc_html__('Offset Y', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::SLIDER,
-                'range'      => [
-                    'px' => [
-                        'min'  => -1000,
-                        'max'  => 1000,
-                        'step' => 1,
-                    ],
-                    '%'  => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                ],
-                'default'    => [
-                    'size' => '0',
-                ],
-                'size_units' => ['px', '%'],
-                'selectors' => [
-                    'body:not(.rtl) {{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}' => 'top: {{SIZE}}{{UNIT}}',
-                    'body.rtl {{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}' => 'top: {{SIZE}}{{UNIT}}',
-                ],
-
-            ]
-        );
+			'image_offset_y',
+			[
+				'label' => __( 'Offset Y', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => -1000,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 0,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}' => 'top: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
 
         $repeater->add_responsive_control(
-            '_offset_x',
-            [
-                'label'      => esc_html__('Offset X', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::SLIDER,
-                'range'      => [
-                    'px' => [
-                        'min'  => -1000,
-                        'max'  => 1000,
-                        'step' => 1,
-                    ],
-                    '%'  => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                ],
-                'default'    => [
-                    'size' => '0',
-                ],
-                'size_units' => ['px', '%'],
-                'selectors' => [
-                    'body:not(.rtl) {{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}' => 'left: {{SIZE}}{{UNIT}}',
-                    'body.rtl {{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}' => 'right: {{SIZE}}{{UNIT}}',
-                ],
+			'image_offset_x',
+			[
+				'label' => __( 'Offset X', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => -1000,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 0,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}' => 'left: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
 
-            ]
-        );
+
         $repeater->add_responsive_control(
-            '_ps_z_index',
+            'image_z_index',
             [
                 'label'     => esc_html__('Z-Index', 'happy-elementor-addons'),
                 'type'      => Controls_Manager::NUMBER,
@@ -162,10 +165,22 @@ class Photo_Stack extends Base {
             ]
         );
 
+        if (ha_has_pro() && !in_array('image-masking', get_option('happyaddons_inactive_features', []))) {
+            $repeater->add_group_control(
+                \Happy_Addons_Pro\Controls\Group_Control_Mask_Image::get_type(),
+                [
+                    'name'     => 'image_masking',
+                    'selector' => '{{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}',
+                    // 'condition' => $args['condition'],
+                ]
+            );
+        }
+
         $this->add_control(
             'image_list',
             [
-                'show_label'  => false,
+                'show_label'  => true,
+                'label'       => __('Items', 'happy-elementor-addons'),
                 'type'        => Controls_Manager::REPEATER,
                 'fields'      => $repeater->get_controls(),
                 'title_field' => '{{{ name }}}',
@@ -174,31 +189,57 @@ class Photo_Stack extends Base {
                         'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
+                        'thumbnail_size'=> 'medium',
+                        'image_offset_x'=>[
+                            'size' => 20,
+                            'unit' => 'px'
+                        ],
+                        'image_offset_y'=>[
+                            'size' => 20,
+                            'unit' => 'px'
+                        ]
+                    ],
+                    [
+                        'image' => [
+                            'url' => Utils::get_placeholder_image_src(),
+                        ],
+                        'thumbnail_size'=> 'thumbnail',
+                        'image_offset_x'=>[
+                            'size' => 200,
+                            'unit' => 'px'
+                        ],
+                        'image_offset_y'=>[
+                            'size' => 20,
+                            'unit' => 'px'
+                        ]
+                    ],
+                    [
+                        'image' => [
+                            'url' => Utils::get_placeholder_image_src(),
+                        ],
+                        'thumbnail_size'=> 'thumbnail',
+                        'image_offset_x'=>[
+                            'size' => 600,
+                            'unit' => 'px'
+                        ],
+                        'image_offset_y'=>[
+                            'size' => 20,
+                            'unit' => 'px'
+                        ]
                     ],
                 ],
             ]
         );
 
-        $this->end_controls_section();
-    }
-    protected function __photo_stack_animation_controls() {
-        $this->start_controls_section(
-            '_section_photo_stack_animation',
-            [
-                'label' => __('Aniamtion', 'happy-elementor-addons'),
-                'tab'   => Controls_Manager::TAB_CONTENT,
-            ]
-        );
-
         $this->add_control(
-            '_ps_infinite_animation',
+            'image_infinite_animation',
             [
-                'label'   => __('Infinite Animation', 'happy-elementor-addons'),
-                'type'    => Controls_Manager::SELECT,
-                'options' => [
+                'label'     => __('Infinite Animation', 'happy-elementor-addons'),
+                'type'      => Controls_Manager::SELECT,
+                'options'   => [
                     ''                    => __('None', 'happy-elementor-addons'),
                     'ha-rotating'         => __('Rotating', 'happy-elementor-addons'),
-                    'ha-rotating-inverse' => __('rotating-inverse', 'happy-elementor-addons'),
+                    'ha-rotating-inverse' => __('Rotating inverse', 'happy-elementor-addons'),
                     'ha-fade'             => __('Fade', 'happy-elementor-addons'),
                     'ha-bounce-sm'        => __('Bounce Small', 'happy-elementor-addons'),
                     'ha-bounce-md'        => __('Bounce Medium', 'happy-elementor-addons'),
@@ -207,152 +248,46 @@ class Photo_Stack extends Base {
                     'ha-scale-md'         => __('Scale Medium', 'happy-elementor-addons'),
                     'ha-scale-lg'         => __('Scale Large', 'happy-elementor-addons'),
                 ],
-                'default' => '',
+                'default'   => '',
+                'separator' => 'before',
             ]
         );
 
         $this->add_control(
-            '_ps_animation_speed',
+            'hover_animation_style',
             [
-                'label'   => __('Infinite Animation Speed', 'happy-elementor-addons'),
-                'type'    => Controls_Manager::SELECT,
-                'options' => [
-                    'ha-duration-fast' => __('Fast', 'happy-elementor-addons'),
-                    'ha-duration-md'   => __('Medium', 'happy-elementor-addons'),
-                    'ha-duration-sl'   => __('Slow', 'happy-elementor-addons'),
-                ],
-                'default' => 'ha-duration-md',
-            ]
-        );
-
-        $this->end_controls_section();
-    }
-
-    protected function __photo_stack_effect_controls() {
-        $this->start_controls_section(
-            '_section_photo_stack_effect',
-            [
-                'label' => __('Effects', 'happy-elementor-addons'),
-                'tab'   => Controls_Manager::SECTION,
-            ]
-        );
-        $this->add_control(
-            '_shadow_style',
-            [
-                'label'   => __('Shadow Style', 'happy-elementor-addons'),
-                'type'    => Controls_Manager::SELECT,
-                'options' => [
-                    "shadow-0"  => "Default",
-                    "shadow-sm" => "Small shadow",
-                    "shadow" => "Medium shadow",
-                    "shadow-lg" => "Large shadow",
-                    "shadow-inverse-sm" => "Inverse Small shadow",
-                    "shadow-inverse" => "Inverse Medium shadow",
-                    "shadow-inverse-lg" => "Inverse Large shadow",
-                ],
-                'default' => 'shadow-0',
-            ]
-        );
-
-        $this->add_control(
-            '_shadow_hover_style',
-            [
-                'label'   => __('Shadow Hover Style', 'happy-elementor-addons'),
-                'type'    => Controls_Manager::SELECT,
-                'options' => [
-                    "shadow-0"  => __('Default', 'happy-elementor-addons'),
-                    "shadow-hover-sm" => __('Small Hover shadow', 'happy-elementor-addons'),
-                    "shadow-hover" => __('Medium Hover shadow', 'happy-elementor-addons'),
-                    "shadow-hover-lg" => __('Large Hover shadow', 'happy-elementor-addons'),
-                    "shadow-inverse-sm" => __('Inverse Small Hover shadow', 'happy-elementor-addons'),
-                    "shadow-inverse" => __('Inverse Medium Hover shadow', 'happy-elementor-addons'),
-                    "shadow-inverse-sm" => __('Inverse Large Hover shadow', 'happy-elementor-addons'),
-                ],
-                'default' => 'shadow-0',
-            ]
-        );
-
-        $this->add_control(
-            '_hover_animation_style',
-            [
-                'label'   => __('Hover Animation', 'happy-elementor-addons'),
-                'type'    => Controls_Manager::SELECT,
-                'options' => [
-                    'none' => __('Default', 'happy-elementor-addons'),
-                    'fly-sm' => __('Fly Small', 'happy-elementor-addons'),
-                    'fly' => __('Fly Medium', 'happy-elementor-addons'),
-                    'fly-lg' => __('Fly Large', 'happy-elementor-addons'),
-                    'scale-sm' => __('Scale Small', 'happy-elementor-addons'),
-                    'scale' => __('Scale Medium', 'happy-elementor-addons'),
-                    'scale-lg' => __('Scale Large', 'happy-elementor-addons'),
+                'label'     => __('Hover Animation', 'happy-elementor-addons'),
+                'type'      => Controls_Manager::SELECT,
+                'options'   => [
+                    'none'             => __('Default', 'happy-elementor-addons'),
+                    'fly-sm'           => __('Fly Small', 'happy-elementor-addons'),
+                    'fly'              => __('Fly Medium', 'happy-elementor-addons'),
+                    'fly-lg'           => __('Fly Large', 'happy-elementor-addons'),
+                    'scale-sm'         => __('Scale Small', 'happy-elementor-addons'),
+                    'scale'            => __('Scale Medium', 'happy-elementor-addons'),
+                    'scale-lg'         => __('Scale Large', 'happy-elementor-addons'),
                     'scale-inverse-sm' => __('Scale Inverse Small', 'happy-elementor-addons'),
-                    'scale-inverse' => __('Scale Inverse Medium', 'happy-elementor-addons'),
+                    'scale-inverse'    => __('Scale Inverse Medium', 'happy-elementor-addons'),
                     'scale-inverse-lg' => __('Scale Inverse Large', 'happy-elementor-addons'),
                 ],
-                'default' => 'none',
+                'default'   => 'none',
+                'separator' => 'before',
             ]
         );
-
-        $this->end_controls_section();
-    }
-
-    protected function __photo_stack_container_controls(){
-        $this->start_controls_section(
-            '_section_photo_stack_container',
-            [
-                'label' => __('Container', 'happy-elementor-addons'),
-                'tab'   => Controls_Manager::TAB_CONTENT,
-            ]
-        );
-
-        $this->add_responsive_control(
-			'_container_height',
+        $this->add_control(
+			'animation_speed',
 			[
-				'label' => __( 'Minimum Height', 'happy-elementor-addons' ),
-				'type'       => Controls_Manager::SLIDER,
-                'size_units' => ['px', 'vh', 'em'],
-                'range'      => [
-                    'px' => [
-                        'min'  => 0,
-                        'max'  => 1000,
-                        'step' => 1,
-                    ],
-                    'em'  => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                    'vh'  => [
-                        'min' => 0,
-                        'max' => 100,
-                    ]
-                ],
-                'default'    => [
-                    'size' => '0',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-photo-stack-wrapper' => 'min-height: {{SIZE}}{{UNIT}}',
-                ],
+				'label' => __( 'Animation speed', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::NUMBER,
+                'min' => 0,
+				'max' => 100,
+				'step' => 1,
+				'default' => 5,
+				'selectors' => [
+					'{{WRAPPER}} .ha-photo-stack-wrapper' => '--animation_speed:{{SIZE}}s',
+				],
 			]
 		);
-
-        $this->add_responsive_control(
-			'_img_layers_overflow',
-			array(
-				'label'     => __( 'Overflow', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::SELECT,
-				'options'   => array(
-					'auto'    => __( 'Auto', 'happy-elementor-addons' ),
-					'visible' => __( 'Visible', 'happy-elementor-addons' ),
-					'hidden'  => __( 'Hidden', 'happy-elementor-addons' ),
-					'scroll'  => __( 'Scroll', 'happy-elementor-addons' ),
-				),
-				'default'   => 'visible',
-				'selectors' => array(
-					'{{WRAPPER}} .ha-photo-stack-wrapper'   => 'overflow: {{VALUE}}',
-				),
-			)
-		);
-
 
         $this->end_controls_section();
     }
@@ -368,29 +303,99 @@ class Photo_Stack extends Base {
         $this->start_controls_section(
             '_section_photo_stack_style',
             [
-                'label' => __('Image Style', 'happy-elementor-addons'),
+                'label' => __('Common', 'happy-elementor-addons'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
 
-        // $this->add_group_control(
-        //     Group_Control_Box_Shadow::get_type(),
-        //     [
-        //         'name'     => 'box_shadow',
-        //         'label'    => __('Box Shadow', 'happy-elementor-addons'),
-        //         'selector' => '{{WRAPPER}} .ha-photo-stack-item',
-        //     ]
-        // );
         $this->add_responsive_control(
-            '_img_border_radius',
+            'image_container_height',
             [
-                'label' => __( 'Border Radius', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
-                'selectors' => [
-					'{{WRAPPER}} .ha-photo-stack-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .ha-photo-stack-item img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
+                'label'      => __('Minimum Height', 'happy-elementor-addons'),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => ['px', 'vh', 'em'],
+                'range'      => [
+                    'px' => [
+                        'min'  => 0,
+                        'max'  => 1000,
+                        'step' => 1,
+                    ],
+                    'em' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                    'vh' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default'    => [
+                    'size' => 300,
+                    'unit' => 'px',
+                ],
+                'selectors'  => [
+                    '{{WRAPPER}} .ha-photo-stack-wrapper' => 'min-height: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_layers_overflow',
+            [
+                'label'     => __('Overflow', 'happy-elementor-addons'),
+                'type'      => Controls_Manager::SELECT,
+                'options'   => array(
+                    'visible' => __('Visible', 'happy-elementor-addons'),
+                    'hidden'  => __('Hidden', 'happy-elementor-addons'),
+                    'scroll'  => __('Scroll', 'happy-elementor-addons'),
+                ),
+                'default'   => 'visible',
+                'selectors' => array(
+                    '{{WRAPPER}} .ha-photo-stack-wrapper' => 'overflow: {{VALUE}}',
+                ),
+                'separator' => 'after',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name'     => 'box_shadow',
+                'label'    => __('Box Shadow', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-photo-stack-item img',
+
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name'     => 'box_shadow',
+                'label'    => __('Hover Box Shadow', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-photo-stack-item img:hover',
+
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name'     => 'border',
+                'label'    => __('Border', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-photo-stack-item img',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_border_radius',
+            [
+                'label'      => __('Border Radius', 'happy-elementor-addons'),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors'  => [
+                    '{{WRAPPER}} .ha-photo-stack-item'     => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-photo-stack-item img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -410,38 +415,42 @@ class Photo_Stack extends Base {
 
         <div class="ha-photo-stack-wrapper">
 			<?php foreach ($settings['image_list'] as $index => $item):
+            // var_dump($item);
             $image         = wp_get_attachment_image_url($item['image']['id'], $item['thumbnail_size']);
             $repeater_key  = 'ha_ps_item' . $index;
             $dynamic_class = 'elementor-repeater-item-' . $item['_id'];
             $tag           = 'div';
             $this->add_render_attribute($repeater_key, 'class', 'ha-photo-stack-item');
             $this->add_render_attribute($repeater_key, 'class', $dynamic_class);
-            $this->add_render_attribute($repeater_key, 'class', $settings['_ps_infinite_animation']);
-            $this->add_render_attribute($repeater_key, 'class', $settings['_ps_animation_speed']);
-            $this->add_render_attribute($repeater_key . '_img', 'class', 'ha-photo-stack-img');
-            $this->add_render_attribute($repeater_key . '_img', 'class', $settings['_shadow_style'] );
-            $this->add_render_attribute($repeater_key . '_img', 'class', $settings['_shadow_hover_style'] );
-            $this->add_render_attribute($repeater_key . '_img', 'class', $settings['_hover_animation_style'] );
+            $this->add_render_attribute($repeater_key, 'class', $settings['image_infinite_animation']);
+            $this->add_render_attribute($item, 'class', $settings['hover_animation_style']);
+            // $this->add_render_attribute($repeater_key . '_img', 'class', 'ha-photo-stack-img');
+            // $this->add_render_attribute($repeater_key . '_img', 'class', $settings['_shadow_style'] );
+            // $this->add_render_attribute($repeater_key . '_img', 'class', $settings['_shadow_hover_style'] );
+            // $this->add_render_attribute($repeater_key, 'class', $settings['_hover_animation_style']);
             ?>
 			<<?php echo $tag; ?> <?php $this->print_render_attribute_string($repeater_key);?>>
 				<?php if ($image):
-                    printf('<img src="%s" alt="%s" %s>', $image,  esc_attr(''), $this->get_render_attribute_string($repeater_key . '_img'));
-                	// echo Group_Control_Image_Size::get_attachment_image_html($item, 'thumbnail', 'image');
+                    echo Group_Control_Image_Size::get_attachment_image_html($item, 'thumbnail', 'image');
 
-            	else:
-                    printf('<img class="ha-photo-stack-img" src="%s" alt="%s">',
-                    Utils::get_placeholder_image_src(),
-                    esc_attr($item['alt'])
-                );
-            	endif;
-            ?>
-			</<?php echo $tag; ?>>
+                else:
+                    echo $this->image_placeholder($item);
+                endif;
+                ?>
+            </<?php echo $tag; ?>>
 
-			<?php endforeach;?>
+            <?php endforeach;?>
         </div>
 
 
-		<?php
+		<?php    
 }
+
+    protected function image_placeholder($item){
+        $width =  get_option($item['thumbnail_size'].'_size_w');
+        $height =  get_option($item['thumbnail_size'].'_size_h');
+        $height =  '0' == $height ? 'auto' : $height.'px';
+        echo '<img src="'.$item['image']['url'].'" style="width: '.$width.'px; height: '.$height.';">';
+    }
 
 }

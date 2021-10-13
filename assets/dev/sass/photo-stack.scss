@@ -1,29 +1,6 @@
 @import "variables";
 @import "mixins";
-@mixin fly() {
-	-webkit-transition: $transition-base;
-	transition: $transition-base;
-	&:hover {
-		-webkit-transform: $fly !important;
-		transform: $fly !important;
-	}
-}
-@mixin fly-sm() {
-	-webkit-transition: $transition-base;
-	transition: $transition-base;
-	&:hover {
-		-webkit-transform: $fly-sm !important;
-		transform: $fly-sm !important;
-	}
-}
-@mixin fly-lg() {
-	-webkit-transition: $transition-base;
-	transition: $transition-base;
-	&:hover {
-		-webkit-transform: $fly-lg !important;
-		transform: $fly-lg !important;
-	}
-}
+
 
 $black: #000 !default;
 $box-shadow-sm: 0 1px 5px 0 rgba(0, 0, 0, 0.15) !default;
@@ -53,6 +30,31 @@ $fly: translate(0, -6px) !default;
 $fly-lg: translate(0, -9px) !default;
 
 $transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
+
+@mixin fly() {
+	-webkit-transition: $transition-base;
+	transition: $transition-base;
+	&:hover {
+		-webkit-transform: $fly !important;
+		transform: $fly !important;
+	}
+}
+@mixin fly-sm() {
+	-webkit-transition: $transition-base;
+	transition: $transition-base;
+	&:hover {
+		-webkit-transform: $fly-sm !important;
+		transform: $fly-sm !important;
+	}
+}
+@mixin fly-lg() {
+	-webkit-transition: $transition-base;
+	transition: $transition-base;
+	&:hover {
+		-webkit-transform: $fly-lg !important;
+		transform: $fly-lg !important;
+	}
+}
 
 .ha-photo-stack-wrapper {
 	position: relative;
@@ -91,8 +93,8 @@ $transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
 .ha-rotating {
 	-webkit-animation-name: ha_rotating;
 	animation-name: ha_rotating;
-	-webkit-animation-duration: 50s;
-	animation-duration: 50s;
+	-webkit-animation-duration: var(--animation_speed, 5s);
+	animation-duration: var(--animation_speed, 5s);
 	-webkit-animation-timing-function: linear;
 	animation-timing-function: linear;
 	-webkit-animation-fill-mode: both;
@@ -127,8 +129,8 @@ $transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
 	will-change: transform;
 	-webkit-animation-name: ha_rotating_inverse;
 	animation-name: ha_rotating_inverse;
-	-webkit-animation-duration: 50s;
-	animation-duration: 50s;
+	-webkit-animation-duration: var(--animation_speed, 5s);
+	animation-duration: var(--animation_speed, 5s);
 	-webkit-animation-timing-function: linear;
 	animation-timing-function: linear;
 	-webkit-animation-fill-mode: both;
@@ -138,18 +140,9 @@ $transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
 }
 .ha-rotating-inverse,
 .ha-rotating {
-	&.ha-duration-fast {
-		-webkit-animation-duration: 20s;
-		animation-duration: 20s;
-	}
-	&.ha-duration-md {
-		-webkit-animation-duration: 50s;
-		animation-duration: 50s;
-	}
-	&.ha-duration-slow {
-		-webkit-animation-duration: 80s;
-		animation-duration: 80s;
-	}
+	-webkit-animation-duration: var(--animation_speed, 5s);
+	animation-duration: var(--animation_speed, 5s);
+	
 }
 
 @-webkit-keyframes ha_bounce_sm {
@@ -254,8 +247,8 @@ $transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
 	will-change: transform;
 	-webkit-animation-name: ha_bounce_sm;
 	animation-name: ha_bounce_sm;
-	-webkit-animation-duration: 5s;
-	animation-duration: 5s;
+	-webkit-animation-duration: var(--animation_speed, 5s);
+	animation-duration: var(--animation_speed, 5s);
 	-webkit-animation-timing-function: ease-in-out;
 	animation-timing-function: ease-in-out;
 	-webkit-animation-fill-mode: both;
@@ -267,8 +260,8 @@ $transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
 	will-change: transform;
 	-webkit-animation-name: ha_bounce_md;
 	animation-name: ha_bounce_md;
-	-webkit-animation-duration: 5s;
-	animation-duration: 5s;
+	-webkit-animation-duration: var(--animation_speed, 5s);
+	animation-duration: var(--animation_speed, 5s);
 	-webkit-animation-timing-function: ease-in-out;
 	animation-timing-function: ease-in-out;
 	-webkit-animation-fill-mode: both;
@@ -280,8 +273,8 @@ $transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
 	will-change: transform;
 	-webkit-animation-name: ha_bounce_lg;
 	animation-name: ha_bounce_lg;
-	-webkit-animation-duration: 5s;
-	animation-duration: 5s;
+	-webkit-animation-duration: var(--animation_speed, 5s);
+	animation-duration: var(--animation_speed, 5s);
 	-webkit-animation-timing-function: ease-in-out;
 	animation-timing-function: ease-in-out;
 	-webkit-animation-fill-mode: both;
@@ -401,8 +394,8 @@ $transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
 	will-change: transform;
 	-webkit-animation-name: ha_scale_sm;
 	animation-name: ha_scale_sm;
-	-webkit-animation-duration: 5s;
-	animation-duration: 5s;
+	-webkit-animation-duration: var(--animation_speed, 5s);
+	animation-duration: var(--animation_speed, 5s);
 	-webkit-animation-timing-function: ease-in-out;
 	animation-timing-function: ease-in-out;
 	-webkit-animation-fill-mode: both;
@@ -414,8 +407,8 @@ $transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
 	will-change: transform;
 	-webkit-animation-name: ha_scale_md;
 	animation-name: ha_scale_md;
-	-webkit-animation-duration: 5s;
-	animation-duration: 5s;
+	-webkit-animation-duration: var(--animation_speed, 5s);
+	animation-duration: var(--animation_speed, 5s);
 	-webkit-animation-timing-function: ease-in-out;
 	animation-timing-function: ease-in-out;
 	-webkit-animation-fill-mode: both;
@@ -427,8 +420,8 @@ $transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
 	will-change: transform;
 	-webkit-animation-name: ha_scale_lg;
 	animation-name: ha_scale_lg;
-	-webkit-animation-duration: 5s;
-	animation-duration: 5s;
+	-webkit-animation-duration: var(--animation_speed, 5s);
+	animation-duration: var(--animation_speed, 5s);
 	-webkit-animation-timing-function: ease-in-out;
 	animation-timing-function: ease-in-out;
 	-webkit-animation-fill-mode: both;
@@ -440,8 +433,8 @@ $transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
 	will-change: transform;
 	-webkit-animation-name: ha_fade;
 	animation-name: ha_fade;
-	-webkit-animation-duration: 5s;
-	animation-duration: 5s;
+	-webkit-animation-duration: var(--animation_speed, 5s);
+	animation-duration: var(--animation_speed, 5s);
 	-webkit-animation-timing-function: ease-in-out;
 	animation-timing-function: ease-in-out;
 	-webkit-animation-fill-mode: both;
@@ -457,86 +450,11 @@ $transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
 .ha-scale-md,
 .ha-scale-lg,
 .ha-fade {
-	&.ha-duration-fast {
-		-webkit-animation-duration: 2s;
-		animation-duration: 2s;
-	}
-	&.ha-duration-md {
-		-webkit-animation-duration: 5s;
-		animation-duration: 5s;
-	}
-	&.ha-duration-slow {
-		-webkit-animation-duration: 10s;
-		animation-duration: 10s;
-	}
+	
+	-webkit-animation-duration: var(--animation_speed, 5s);
+	animation-duration: var(--animation_speed, 5s);
 }
 
-.shadow-sm,
-.shadow,
-.shadow-lg,
-.shadow-hover-sm,
-.shadow-hover,
-.shadow-hover-lg,
-.shadow-inverse-sm,
-.shadow-inverse,
-.shadow-inverse-lg {
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-	-webkit-transition: $box-shadow-transition;
-	transition: $box-shadow-transition;
-}
-.shadow-0 {
-	box-shadow: none !important;
-}
-.shadow-sm {
-	box-shadow: $box-shadow-sm !important;
-}
-.shadow-hover-sm:hover {
-	box-shadow: $box-shadow-hover-sm !important;
-}
-
-.shadow {
-	box-shadow: $box-shadow !important;
-}
-.shadow-hover:hover {
-	box-shadow: $box-shadow-hover !important;
-}
-
-.shadow-lg {
-	box-shadow: $box-shadow-lg !important;
-}
-.shadow-hover-lg:hover {
-	box-shadow: $box-shadow-hover-lg !important;
-}
-
-.shadow-inverse-sm {
-	box-shadow: $box-shadow-hover-sm !important;
-}
-.shadow-inverse-hover-sm:hover {
-	box-shadow: $box-shadow-sm !important;
-}
-
-.shadow-inverse {
-	box-shadow: $box-shadow-hover !important;
-}
-.shadow-inverse-hover:hover {
-	box-shadow: $box-shadow !important;
-}
-
-.shadow-inverse-lg {
-	box-shadow: $box-shadow-hover-lg !important;
-}
-.shadow-inverse-hover-lg:hover {
-	box-shadow: $box-shadow-lg !important;
-}
-
-.shadow-none {
-	box-shadow: none !important;
-}
-
-.inner-shadow-b {
-	box-shadow: inset 0px -73px 0px -41px red;
-}
 
 .scale-sm,
 .scale,
