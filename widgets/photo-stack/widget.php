@@ -244,12 +244,12 @@ class Photo_Stack extends Base {
                 'type'      => Controls_Manager::SELECT,
                 'options'   => [
                     ''                    => __('None', 'happy-elementor-addons'),
-                    'ha-rotating'         => __('Rotating', 'happy-elementor-addons'),
-                    'ha-rotating-inverse' => __('Rotating inverse', 'happy-elementor-addons'),
-                    'ha-fade'             => __('Fade', 'happy-elementor-addons'),
                     'ha-bounce-sm'        => __('Bounce Small', 'happy-elementor-addons'),
                     'ha-bounce-md'        => __('Bounce Medium', 'happy-elementor-addons'),
                     'ha-bounce-lg'        => __('Bounce Large', 'happy-elementor-addons'),
+                    'ha-fade'             => __('Fade', 'happy-elementor-addons'),
+                    'ha-rotating'         => __('Rotating', 'happy-elementor-addons'),
+                    'ha-rotating-inverse' => __('Rotating inverse', 'happy-elementor-addons'),
                     'ha-scale-sm'         => __('Scale Small', 'happy-elementor-addons'),
                     'ha-scale-md'         => __('Scale Medium', 'happy-elementor-addons'),
                     'ha-scale-lg'         => __('Scale Large', 'happy-elementor-addons'),
@@ -276,7 +276,7 @@ class Photo_Stack extends Base {
                     'scale-inverse'    => __('Scale Inverse Medium', 'happy-elementor-addons'),
                     'scale-inverse-lg' => __('Scale Inverse Large', 'happy-elementor-addons'),
                 ],
-                'default'   => 'scale-lg',
+                'default'   => 'scale-sm',
                 'separator' => 'before',
             ]
         );
@@ -424,7 +424,6 @@ class Photo_Stack extends Base {
                 'selectors' => array(
                     '{{WRAPPER}} .ha-photo-stack-wrapper' => 'overflow: {{VALUE}}',
                 ),
-                'separator' => 'after',
             ]
         );
         $this->add_control(
