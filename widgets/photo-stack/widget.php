@@ -193,11 +193,11 @@ class Photo_Stack extends Base {
                         'thumbnail_size'=> 'medium',
                         'image_offset_x'=>[
                             'size' => 20,
-                            'unit' => 'px'
+                            'unit' => '%'
                         ],
                         'image_offset_y'=>[
                             'size' => 20,
-                            'unit' => 'px'
+                            'unit' => '%'
                         ]
                     ],
                     [
@@ -289,6 +289,33 @@ class Photo_Stack extends Base {
 				],
 			]
 		);
+        $this->add_responsive_control(
+			'image_container_align',
+			[
+				'label' => __( 'Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'toggle' => true,
+                'default' => 'center',
+                'separator'      => 'before',
+				'selectors' => [
+					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};'
+				]
+			]
+		);
 
         $this->end_controls_section();
     }
@@ -339,6 +366,40 @@ class Photo_Stack extends Base {
                 ],
             ]
         );
+        $this->add_responsive_control(
+			'image_container_width',
+			[
+				'label' => esc_html__( 'Width', 'elementor' ),
+				'type' => Controls_Manager::SLIDER,
+				'default' => [
+					'unit' => '%',
+				],
+				'tablet_default' => [
+					'unit' => '%',
+				],
+				'mobile_default' => [
+					'unit' => '%',
+				],
+				'size_units' => [ '%', 'px', 'vw' ],
+				'range' => [
+					'%' => [
+						'min' => 1,
+						'max' => 100,
+					],
+					'px' => [
+						'min' => 1,
+						'max' => 2000,
+					],
+					'vw' => [
+						'min' => 1,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-photo-stack-wrapper' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
 
         $this->add_responsive_control(
             'image_layers_overflow',

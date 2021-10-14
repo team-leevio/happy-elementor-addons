@@ -59,8 +59,8 @@ $transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
 .ha-photo-stack-wrapper {
 	position: relative;
 	box-sizing: border-box;
-	width: 100%;
-
+	display: inline-block;
+	
 	.ha-photo-stack-item {
 		position: absolute;
 	}
