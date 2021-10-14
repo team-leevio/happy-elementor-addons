@@ -254,7 +254,7 @@ class Photo_Stack extends Base {
                     'ha-scale-md'         => __('Scale Medium', 'happy-elementor-addons'),
                     'ha-scale-lg'         => __('Scale Large', 'happy-elementor-addons'),
                 ],
-                'default'   => '',
+                'default'   => 'ha-bounce-sm',
                 'separator' => 'before',
             ]
         );
@@ -276,7 +276,7 @@ class Photo_Stack extends Base {
                     'scale-inverse'    => __('Scale Inverse Medium', 'happy-elementor-addons'),
                     'scale-inverse-lg' => __('Scale Inverse Large', 'happy-elementor-addons'),
                 ],
-                'default'   => 'none',
+                'default'   => 'scale-lg',
                 'separator' => 'before',
             ]
         );
@@ -427,6 +427,12 @@ class Photo_Stack extends Base {
                 'separator' => 'after',
             ]
         );
+        $this->add_control(
+			'hr',
+			[
+				'type' => Controls_Manager::DIVIDER,
+			]
+		);
         $this->start_controls_tabs('tabs_hover_style');
         $this->start_controls_tab(
             'tab_button_normal',
