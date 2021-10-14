@@ -64,7 +64,15 @@ class PDF_View extends Base {
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
-
+        $this->add_control(
+			'pdf_view_type',
+			[
+				'label'        => __( 'PDF View Type', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'no',
+				'return_value' => 'yes',
+			]
+		);
 		$this->add_control(
 			'file_type',
 			[
