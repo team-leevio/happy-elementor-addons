@@ -54,9 +54,6 @@ class Photo_Stack extends Base {
      */
     protected function register_content_controls() {
         $this->__photo_stack_content_controls();
-        // $this->__photo_stack_animation_controls();
-        // $this->__photo_stack_effect_controls();
-        // $this->__photo_stack_container_controls();
     }
 
     protected function __photo_stack_content_controls() {
@@ -101,7 +98,6 @@ class Photo_Stack extends Base {
                 [
                     'name'     => 'image_masking',
                     'selector' => '{{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}',
-                    // 'condition' => $args['condition'],
                 ]
             );
         }
@@ -190,43 +186,55 @@ class Photo_Stack extends Base {
                         'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'thumbnail_size'=> 'medium',
-                        'image_offset_x'=>[
-                            'size' => 20,
-                            'unit' => '%'
+                        'thumbnail_size'=> 'custom',
+                        'thumbnail_custom_dimension' => [
+                            'width' => 250,
+                            'height' => 200,
                         ],
                         'image_offset_y'=>[
-                            'size' => 20,
-                            'unit' => '%'
-                        ]
+                            'size' => 0,
+                            'unit' => 'px'
+                        ],
+                        'image_offset_x'=>[
+                            'size' => 35,
+                            'unit' => 'px'
+                        ],
                     ],
                     [
                         'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'thumbnail_size'=> 'thumbnail',
-                        'image_offset_x'=>[
-                            'size' => 200,
-                            'unit' => 'px'
+                        'thumbnail_size'=> 'custom',
+                        'thumbnail_custom_dimension' => [
+                            'width' => 300,
+                            'height' => 300,
                         ],
                         'image_offset_y'=>[
-                            'size' => 20,
+                            'size' => 250,
                             'unit' => 'px'
-                        ]
+                        ],
+                        'image_offset_x'=>[
+                            'size' => 0,
+                            'unit' => 'px'
+                        ],
                     ],
                     [
                         'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'thumbnail_size'=> 'thumbnail',
-                        'image_offset_x'=>[
-                            'size' => 600,
-                            'unit' => 'px'
+                        'thumbnail_size'=> 'custom',
+                        'thumbnail_custom_dimension' => [
+                            'width' => 500,
+                            'height' => 500,
                         ],
                         'image_offset_y'=>[
-                            'size' => 20,
+                            'size' => 100,
                             'unit' => 'px'
-                        ]
+                        ],
+                        'image_offset_x'=>[
+                            'size' => 180,
+                            'unit' => 'px'
+                        ],
                     ],
                 ],
             ]
@@ -403,7 +411,7 @@ class Photo_Stack extends Base {
                     ],
                 ],
                 'default'    => [
-                    'size' => 300,
+                    'size' => 550,
                     'unit' => 'px',
                 ],
                 'selectors'  => [
@@ -541,9 +549,15 @@ class Photo_Stack extends Base {
 }
 
     protected function image_placeholder($item, $attr = null){
-        $width =  get_option($item['thumbnail_size'].'_size_w');
-        $height =  get_option($item['thumbnail_size'].'_size_h');
-        $height =  '0' == $height ? 'auto' : $height.'px';
+        if('custom' !== $item['thumbnail_size']){
+            $width =  get_option($item['thumbnail_size'].'_size_w');
+            $height =  get_option($item['thumbnail_size'].'_size_h');
+            $height =  '0' == $height ? 'auto' : $height.'px';
+        }else{
+            $width = $item['thumbnail_custom_dimension']['width'];
+            $height = $item['thumbnail_custom_dimension']['height'];
+            $height =  '0' == $height ? 'auto' : $height.'px';
+        }
         echo '<img src="'.$item['image']['url'].'" style="width: '.$width.'px; height: '.$height.';" '. $attr  .'/>';
     }
 
