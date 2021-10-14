@@ -289,6 +289,15 @@ class Photo_Stack extends Base {
 				],
 			]
 		);
+        $this->add_control(
+			'animation_speed_note',
+			[
+				'label' => false,
+				'type' => Controls_Manager::RAW_HTML,
+				'raw' => __( 'Please set your animation speed in seconds. Default value is 5s.', 'happy-elementor-addons' ),
+				
+			]
+		);
         $this->add_responsive_control(
 			'image_container_align',
 			[
@@ -337,6 +346,42 @@ class Photo_Stack extends Base {
         );
 
         $this->add_responsive_control(
+			'image_container_width',
+			[
+				'label' => esc_html__( 'Width', 'elementor' ),
+				'type' => Controls_Manager::SLIDER,
+				'default' => [
+                    'size' => 550,
+					'unit' => 'px',
+				],
+				'tablet_default' => [
+					'unit' => '%',
+				],
+				'mobile_default' => [
+					'unit' => '%',
+				],
+				'size_units' => [  'px', '%', 'vw' ],
+				'range' => [
+					'%' => [
+						'min' => 1,
+						'max' => 100,
+					],
+					'px' => [
+						'min' => 1,
+						'max' => 2000,
+					],
+					'vw' => [
+						'min' => 1,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-photo-stack-wrapper' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->add_responsive_control(
             'image_container_height',
             [
                 'label'      => __('Minimum Height', 'happy-elementor-addons'),
@@ -366,40 +411,7 @@ class Photo_Stack extends Base {
                 ],
             ]
         );
-        $this->add_responsive_control(
-			'image_container_width',
-			[
-				'label' => esc_html__( 'Width', 'elementor' ),
-				'type' => Controls_Manager::SLIDER,
-				'default' => [
-					'unit' => '%',
-				],
-				'tablet_default' => [
-					'unit' => '%',
-				],
-				'mobile_default' => [
-					'unit' => '%',
-				],
-				'size_units' => [ '%', 'px', 'vw' ],
-				'range' => [
-					'%' => [
-						'min' => 1,
-						'max' => 100,
-					],
-					'px' => [
-						'min' => 1,
-						'max' => 2000,
-					],
-					'vw' => [
-						'min' => 1,
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-photo-stack-wrapper' => 'width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
+       
 
         $this->add_responsive_control(
             'image_layers_overflow',
@@ -495,16 +507,13 @@ class Photo_Stack extends Base {
      */
     protected function render() {
         $settings = $this->get_settings_for_display();
-        // print_r($settings['image_list']);
         if (empty($settings['image_list'])) {
             return;
         }
-
         ?>
 
         <div class="ha-photo-stack-wrapper">
 			<?php foreach ($settings['image_list'] as $index => $item):
-            // var_dump($item);
             $image         = wp_get_attachment_image_url($item['image']['id'], $item['thumbnail_size']);
             $repeater_key  = 'ha_ps_item' . $index;
             $dynamic_class = 'elementor-repeater-item-' . $item['_id'];
@@ -512,18 +521,14 @@ class Photo_Stack extends Base {
             $this->add_render_attribute($repeater_key, 'class', 'ha-photo-stack-item');
             $this->add_render_attribute($repeater_key, 'class', $dynamic_class);
             $this->add_render_attribute($repeater_key, 'class', $settings['image_infinite_animation']);
-            $this->add_render_attribute($repeater_key, 'class', $settings['hover_animation_style']);
-            // $this->add_render_attribute($repeater_key . '_img', 'class', 'ha-photo-stack-img');
-            // $this->add_render_attribute($repeater_key . '_img', 'class', $settings['_shadow_style'] );
-            // $this->add_render_attribute($repeater_key . '_img', 'class', $settings['_shadow_hover_style'] );
-            // $this->add_render_attribute($repeater_key, 'class', $settings['_hover_animation_style']);
+            $this->add_render_attribute('image', 'class', $settings['hover_animation_style']);
+            $this->add_render_attribute('image', 'class', 'ha-photo-stack-img');
             ?>
 			<<?php echo $tag; ?> <?php $this->print_render_attribute_string($repeater_key);?>>
 				<?php if ($image):
-                    echo Group_Control_Image_Size::get_attachment_image_html($item, 'thumbnail', 'image');
-
+                    echo '<img src="'.Group_Control_Image_Size::get_attachment_image_src($item['image']['id'], 'thumbnail', $item).'" '. $this->get_render_attribute_string('image') .'/>';
                 else:
-                    echo $this->image_placeholder($item);
+                    echo $this->image_placeholder( $item, $this->get_render_attribute_string('image') );
                 endif;
                 ?>
             </<?php echo $tag; ?>>
@@ -535,11 +540,11 @@ class Photo_Stack extends Base {
 		<?php    
 }
 
-    protected function image_placeholder($item){
+    protected function image_placeholder($item, $attr = null){
         $width =  get_option($item['thumbnail_size'].'_size_w');
         $height =  get_option($item['thumbnail_size'].'_size_h');
         $height =  '0' == $height ? 'auto' : $height.'px';
-        echo '<img src="'.$item['image']['url'].'" style="width: '.$width.'px; height: '.$height.';">';
+        echo '<img src="'.$item['image']['url'].'" style="width: '.$width.'px; height: '.$height.';" '. $attr  .'/>';
     }
 
 }
