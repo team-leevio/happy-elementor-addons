@@ -225,7 +225,7 @@ class Photo_Stack extends Base {
                         'thumbnail_size'=> 'custom',
                         'thumbnail_custom_dimension' => [
                             'width' => 500,
-                            'height' => 500,
+                            'height' => 400,
                         ],
                         'image_offset_y'=>[
                             'size' => 100,
