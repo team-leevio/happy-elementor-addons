@@ -287,25 +287,18 @@ class Photo_Stack extends Base {
 			'animation_speed',
 			[
 				'label' => __( 'Animation speed', 'happy-elementor-addons' ),
+                'description' => __( 'Please set your animation speed in seconds. Default value is 6s.', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::NUMBER,
                 'min' => 0,
 				'max' => 100,
 				'step' => 1,
-				'default' => 5,
+				'default' => 6,
 				'selectors' => [
 					'{{WRAPPER}} .ha-photo-stack-wrapper' => '--animation_speed:{{SIZE}}s',
 				],
 			]
 		);
-        $this->add_control(
-			'animation_speed_note',
-			[
-				'label' => false,
-				'type' => Controls_Manager::RAW_HTML,
-				'raw' => __( 'Please set your animation speed in seconds. Default value is 5s.', 'happy-elementor-addons' ),
-				
-			]
-		);
+        
         $this->add_responsive_control(
 			'image_container_align',
 			[
@@ -501,6 +494,12 @@ class Photo_Stack extends Base {
                 'label'      => __('Border Radius', 'happy-elementor-addons'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
+                'default'   => [
+                    'top' => 10,
+                    'right' => 10,
+                    'bottom' => 10,
+                    'left' => 10,
+                ],
                 'selectors'  => [
                     '{{WRAPPER}} .ha-photo-stack-item'     => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     '{{WRAPPER}} .ha-photo-stack-item img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
