@@ -196,11 +196,11 @@ class Image_Compare extends Base {
                 'options' => [
                     'horizontal' => [
                         'title' => __( 'Horizontal', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-arrows-h',
+                        'icon' => 'eicon-h-align-stretch',
                     ],
                     'vertical' => [
                         'title' => __( 'Vertical', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-arrows-v',
+                        'icon' => 'eicon-v-align-stretch',
                     ],
                 ],
                 'default' => 'horizontal',

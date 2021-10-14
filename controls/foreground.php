@@ -61,11 +61,11 @@ class Group_Control_Foreground extends Group_Control_Base {
             'options' => [
                 'classic' => [
                     'title' => _x( 'Classic', 'Text Color Control', 'happy-elementor-addons' ),
-                    'icon' => 'fa fa-paint-brush',
+                    'icon' => 'eicon-paint-brush',
                 ],
                 'gradient' => [
                     'title' => _x( 'Gradient', 'Text Color Control', 'happy-elementor-addons' ),
-                    'icon' => 'fa fa-barcode',
+                    'icon' => 'eicon-barcode',
                 ],
             ],
             'default' => 'classic'
