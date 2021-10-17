@@ -61,7 +61,7 @@ function makeFrontendJS() {
 	return src(frontendJSFiles)
 		.pipe(plumberNotifier())
 		.pipe(dest("assets/js"))
-		.pipe(uglify())
+		//.pipe(uglify())
 		.pipe(rename({ suffix: ".min" }))
 		.pipe(dest("assets/js"));
 }

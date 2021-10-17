@@ -67,7 +67,7 @@ class PDF_View extends Base {
         $this->add_control(
 			'pdf_view_type',
 			[
-				'label'        => __( 'PDF View Type', 'happy-elementor-addons' ),
+				'label'        => __( 'PDFjs View', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => 'no',
 				'return_value' => 'yes',
@@ -82,7 +82,9 @@ class PDF_View extends Base {
 					'url' => __('URL', 'happy-elementor-addons'),
 					'upload_file' => __('Upload File', 'happy-elementor-addons'),
 				],
-				'default' => 'url',
+                'condition' => [
+					'pdf_view_type' => 'no',
+				]
 			]
 		);
 
@@ -96,10 +98,22 @@ class PDF_View extends Base {
 				'dynamic' => [
 					'active' => false,
 				],
-				'condition' => [
-					'file_type' => 'url',
-				]
-			]
+				'conditions' => [
+					'relation' => 'and',
+					'terms' => [
+						[
+							'name' => 'pdf_view_type',
+							'operator' => '==',
+							'value' => '',
+						],
+						[
+							'name' => 'file_type',
+							'operator' => '==',
+							'value' => 'url',
+						],
+					],
+				],
+            ]
 		);
 
 		$this->add_control(
@@ -111,11 +125,54 @@ class PDF_View extends Base {
 				'dynamic' => [
 					'active' => true,
 				],
-				'condition' => [
-					'file_type' => 'upload_file',
+				'conditions' => [
+					'relation' => 'or',
+					'terms' => [
+						[
+							'name' => 'pdf_view_type',
+							'operator' => '==',
+							'value' => 'yes',
+						],
+						[
+							'name' => 'file_type',
+							'operator' => '==',
+							'value' => 'upload_file',
+						],
+					],
 				],
 			]
 		);
+
+        $this->add_responsive_control(
+            'image_container_height',
+            [
+                'label'      => __('Minimum Height', 'happy-elementor-addons'),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => ['px', 'vh', 'em'],
+                'range'      => [
+                    'px' => [
+                        'min'  => 0,
+                        'max'  => 1000,
+                        'step' => 1,
+                    ],
+                    'em' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                    'vh' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default'    => [
+                    'size' => 600,
+                    'unit' => 'px',
+                ],
+                'selectors'  => [
+                    '{{WRAPPER}} .pdf_viewer_container iframe' => 'min-height: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
 
         
         $this->end_controls_section();
@@ -134,16 +191,25 @@ class PDF_View extends Base {
      */
     protected function render() {
         $settings = $this->get_settings_for_display();
-
+        $unique_id = wp_unique_id('viewer-');
 		$file_type = $settings['file_type'];
 
-		$pdf_url = ('url' == $file_type) ? $settings['pdf_url']['url'] : '';
-
+		// $pdf_url = ('url' == $file_type) ? $settings['pdf_url']['url'] : '';
+		$pdf_url = ('yes' == $settings['pdf_view_type'] && is_array($settings['pdf_file'])) ? $settings['pdf_file']['url'] : '';
+        $json_settings = [
+            'unique_id' => $unique_id,
+            'pdf_url' => $pdf_url
+        ];
+        $this->add_render_attribute( 'pdf_viewer_container', 'data-pdf-settings', wp_json_encode( $json_settings ) );
 		
-		if('url' == $file_type && !empty($pdf_url)) {
-			echo '<iframe src="https://docs.google.com/viewer?url=' . $pdf_url . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen></iframe>';
-		}
-
+		// if('url' == $file_type && !empty($pdf_url)) {
+		// 	echo '<iframe src="https://docs.google.com/viewer?url=' . $pdf_url . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen></iframe>';
+		// }
+        ?>
+        <div class="pdf_viewer_container" <?php echo $this->print_render_attribute_string('pdf_viewer_container'); ?>>
+            <div id="<?php echo $unique_id; ?>" style='width: 1024px; height: 600px; margin: 0 auto;'></div>
+        </div>
+        <?php
 	}
 
     
