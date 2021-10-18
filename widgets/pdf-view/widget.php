@@ -174,7 +174,7 @@ class PDF_View extends Base {
                     'unit' => 'px',
                 ],
                 'selectors'  => [
-                    '{{WRAPPER}} .pdf_viewer_container iframe' => 'min-height: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .pdf_viewer_container' => 'min-height: {{SIZE}}{{UNIT}}',
                 ],
             ]
         );
