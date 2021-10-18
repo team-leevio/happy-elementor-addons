@@ -69,7 +69,7 @@ class PDF_View extends Base {
 			[
 				'label'        => __( 'PDFjs View', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
-				'default'      => 'no',
+				'default'      => '',
 				'return_value' => 'yes',
 			]
 		);
@@ -83,7 +83,7 @@ class PDF_View extends Base {
 					'upload_file' => __('Upload File', 'happy-elementor-addons'),
 				],
                 'condition' => [
-					'pdf_view_type' => 'no',
+					'pdf_view_type' => '',
 				]
 			]
 		);
@@ -169,7 +169,7 @@ class PDF_View extends Base {
                     'unit' => 'px',
                 ],
                 'selectors'  => [
-                    '{{WRAPPER}} .pdf_viewer_container iframe' => 'min-height: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .pdf_viewer_container' => 'min-height: {{SIZE}}{{UNIT}}',
                 ],
             ]
         );
