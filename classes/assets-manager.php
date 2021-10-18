@@ -258,6 +258,15 @@ class Assets_Manager {
 			true
 		);
 
+		// Happy addons script
+		wp_register_script(
+			'pdf-js',
+			HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/lib/webviewer.min.js',
+			[],
+			HAPPY_ADDONS_VERSION,
+			false
+		);
+
 		// Main assets
 		wp_register_style(
 			'happy-elementor-addons',
@@ -282,6 +291,7 @@ class Assets_Manager {
 			[
 				'ajax_url' => admin_url('admin-ajax.php'),
 				'nonce'    => wp_create_nonce('happy_addons_nonce'),
+				'pdf_js_lib' => HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/lib'
 			]
 		);
 	}

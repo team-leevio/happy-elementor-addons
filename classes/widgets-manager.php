@@ -972,6 +972,18 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'pdf-view' => [
+				'cat' => 'creative',
+				'is_active' => true,
+				'title' => __( 'PDF View', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-lens',
+				'css' => [],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => ['pdf-js'],
+				],
+			],
         ];
     }
 

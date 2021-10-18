@@ -1009,6 +1009,53 @@
 			}
 		};
 
+		//Team Member
+		var PDF_View = function($scope) {
+			// console.log($scope);
+			var viewer_container = $scope.find('.pdf_viewer_container');
+			var settings = viewer_container.data('pdf-settings');
+			// console.log(viewer_container);
+			// console.log(settings);
+			WebViewer({
+				path: HappyLocalize.pdf_js_lib, // path to the PDF.js Express'lib' folder on your server
+				licenseKey: 'YXqd65j6tHv0Dg6i5fx4',
+				initialDoc: settings.pdf_url,
+				// initialDoc: '/path/to/my/file.pdf',  // You can also use documents on your server
+			  },
+			  document.getElementById(settings.unique_id))
+			  .then(instance => {
+				const docViewer = instance.Core.documentViewer;
+				const annotManager = instance.Core.annotationManager;
+
+				instance.setHeaderItems((header) => {
+					header.push({
+					  type: 'actionButton',
+					  img: '',
+					  onClick: async () => {
+						const xfdf = await annotManager.exportAnnotations({ links: false, widgets: false });
+						const fileData = await docViewer.getDocument().getFileData({});
+						const resp = await utils.setFile(fileData).setXFDF(xfdf).merge();
+						const mergedBlob = await resp.getBlob();
+						saveAs(mergedBlob, settings.pdf_url)
+						await resp.deleteFile();
+					  }
+					});
+				});
+				// docViewer.removeWatermark();
+				
+				// call methods from instance, documentViewer and annotationManager as needed
+			
+				// you can also access major namespaces from the instance as follows:
+				// const Tools = instance.Core.Tools;
+				// const Annotations = instance.Core.Annotations;
+			
+				docViewer.addEventListener('documentLoaded', () => {
+				  // call methods relating to the loaded document
+				 
+				});
+			  });
+		};
+		
 
 
 		
@@ -1114,6 +1161,7 @@
 			'ha-content-switcher.default'	: Content_Switcher,
 			'ha-member.default'		        : Team_Member,
 			// 'ha-photo-stack.default'		: Photo_Stack,
+			'ha-pdf-view.default'			: PDF_View,
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {
