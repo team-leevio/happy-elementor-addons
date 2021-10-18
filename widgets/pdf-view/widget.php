@@ -64,15 +64,19 @@ class PDF_View extends Base {
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
+        
         $this->add_control(
 			'pdf_view_type',
 			[
 				'label'        => __( 'PDFjs View', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
-				'default'      => 'no',
+				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => __( 'No', 'happy-elementor-addons' ),
 				'return_value' => 'yes',
+				'default'      => '',
 			]
 		);
+
 		$this->add_control(
 			'file_type',
 			[
@@ -82,8 +86,9 @@ class PDF_View extends Base {
 					'url' => __('URL', 'happy-elementor-addons'),
 					'upload_file' => __('Upload File', 'happy-elementor-addons'),
 				],
+                'default' => 'url',
                 'condition' => [
-					'pdf_view_type' => 'no',
+					'pdf_view_type' => '',
 				]
 			]
 		);
@@ -207,6 +212,7 @@ class PDF_View extends Base {
 		// }
         ?>
         <div class="pdf_viewer_container" <?php echo $this->print_render_attribute_string('pdf_viewer_container'); ?>>
+            <a href="<?php echo esc_url($pdf_url); ?>" class="button" download="true">Download</a>
             <div id="<?php echo $unique_id; ?>" style='width: 1024px; height: 600px; margin: 0 auto;'></div>
         </div>
         <?php
