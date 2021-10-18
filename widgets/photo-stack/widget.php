@@ -60,7 +60,7 @@ class Photo_Stack extends Base {
         $this->start_controls_section(
             '_section_photo_stack',
             [
-                'label' => __('Image Stack', 'happy-elementor-addons'),
+                'label' => __('Photo Stack', 'happy-elementor-addons'),
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -101,6 +101,18 @@ class Photo_Stack extends Base {
                 ]
             );
         }
+        $repeater->add_control(
+			'link',
+			[
+				'label' => __( 'Link', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::URL,
+				'label_block' => true,
+				'placeholder' => 'https://example.com',
+				'dynamic' => [
+					'active' => true,
+				]
+			]
+		);
         $repeater->add_responsive_control(
             'image_offset_y',
             [
@@ -433,6 +445,7 @@ class Photo_Stack extends Base {
 			]
 		);
         $this->start_controls_tabs('tabs_hover_style');
+
         $this->start_controls_tab(
             'tab_button_normal',
             [
@@ -443,7 +456,7 @@ class Photo_Stack extends Base {
         $this->add_group_control(
             Group_Control_Box_Shadow::get_type(),
             [
-                'name'     => 'box_shadow',
+                'name'     => 'img_box_shadow',
                 'label'    => __('Box Shadow', 'happy-elementor-addons'),
                 'selector' => '{{WRAPPER}} .ha-photo-stack-item img',
 
@@ -460,24 +473,15 @@ class Photo_Stack extends Base {
         $this->add_group_control(
             Group_Control_Box_Shadow::get_type(),
             [
-                'name'     => 'box_shadow_hover',
+                'name'     => 'img_box_shadow_hover',
                 'label'    => __('Box Shadow Hover', 'happy-elementor-addons'),
                 'selector' => '{{WRAPPER}} .ha-photo-stack-item img:hover',
 
             ]
         );
         $this->end_controls_tab();
+
         $this->end_controls_tabs();
-
-        $this->add_group_control(
-            Group_Control_Box_Shadow::get_type(),
-            [
-                'name'     => 'box_shadow',
-                'label'    => __('Hover Box Shadow', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .ha-photo-stack-item img:hover',
-
-            ]
-        );
 
         $this->add_group_control(
             Group_Control_Border::get_type(),
@@ -531,14 +535,26 @@ class Photo_Stack extends Base {
             $this->add_render_attribute($repeater_key, 'class', $settings['image_infinite_animation']);
             $this->add_render_attribute('image', 'class', $settings['hover_animation_style']);
             $this->add_render_attribute('image', 'class', 'ha-photo-stack-img');
+            if ( isset( $item['link'] ) && ! empty( $item['link']['url'] ) ) {
+                $anchor_tag = 'a';
+                $this->add_link_attributes( 'link_tag', $item['link'] );
+            }
             ?>
 				<<?php echo $tag; ?> <?php $this->print_render_attribute_string($repeater_key);?>>
 					<?php if ($image):
+                   if (  !empty( $item['link']['url'] ) ) : ?>
+                        <<?php echo $anchor_tag; ?> <?php $this->print_render_attribute_string('link_tag');?>>
+                   <?php
+                    endif; // end of anchor_tag
                 echo '<img src="' . Group_Control_Image_Size::get_attachment_image_src($item['image']['id'], 'thumbnail', $item) . '" ' . $this->get_render_attribute_string('image') . '/>';
             else:
                 echo $this->image_placeholder($item, $this->get_render_attribute_string('image'));
             endif;
-            ?>
+            if ( ! empty( $item['link']['url'] ) ) :
+            ?>  
+            
+	            </<?php echo $anchor_tag; ?>>
+                <?php endif; ?>
 	            </<?php echo $tag; ?>>
 
 	            <?php endforeach;?>
