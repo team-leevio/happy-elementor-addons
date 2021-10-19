@@ -77,6 +77,7 @@ $disable_btn = count( $unuse_widget ) == count( array_intersect( $unuse_widget, 
 			<button id="ha-dashboard-analytics-disable" class="ha-dashboard-btn ha-dashboard-analytics__unused_disable" type="submit" <?php echo $disable_btn ? 'disabled' : ''; ?>>
 				<?php echo esc_html__( 'Disable all unused widget', 'happy-elementor-addons' ); ?>
 			</button>
+			<input type="hidden" name="disable-unused-widgets" value="false">
 		<?php endif;?>
     </div>
 
