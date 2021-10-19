@@ -2,7 +2,6 @@
   "action": {
     "apply": "Toepassen",
     "applyAll": "Alles toepassen",
-    "calendar": "Kalender",
     "calibrate": "Ijken",
     "cancel": "Annuleren",
     "clear": "Legen",
@@ -78,7 +77,6 @@
     "callout": "Opmerking met pijl",
     "crop": "Pagina bijsnijden",
     "caret": "Dakje",
-    "dateFreeText": "Kalender",
     "formFillCheckmark": "Kruis aan",
     "formFillCross": "Kruis",
     "distanceMeasurement": "Afstandsmeting",

@@ -2,7 +2,6 @@
   "action": {
     "apply": "Aplicar",
     "applyAll": "Aplicar todos",
-    "calendar": "Calendário",
     "calibrate": "Calibrar",
     "cancel": "Cancelar",
     "clear": "Limpar",
@@ -78,7 +77,6 @@
     "callout": "Texto explicativo",
     "crop": "Cortar página",
     "caret": "Cursor",
-    "dateFreeText": "Calendário",
     "formFillCheckmark": "Carraça",
     "formFillCross": "Cruzar",
     "distanceMeasurement": "Medição de distância",

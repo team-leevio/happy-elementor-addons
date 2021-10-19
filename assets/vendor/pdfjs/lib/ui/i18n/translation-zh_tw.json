@@ -2,7 +2,6 @@
   "action": {
     "apply": "套用",
     "applyAll": "全部套用",
-    "calendar": "日曆",
     "calibrate": "校準",
     "cancel": "取消",
     "clear": "清除",
@@ -78,7 +77,6 @@
     "callout": "圖說文字",
     "crop": "裁剪頁面",
     "caret": "插入號",
-    "dateFreeText": "日曆",
     "formFillCheckmark": "打鉤",
     "formFillCross": "叉",
     "distanceMeasurement": "測量距離",
