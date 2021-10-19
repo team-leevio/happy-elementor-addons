@@ -149,7 +149,7 @@ class PDF_View extends Base {
 		);
 
         $this->add_responsive_control(
-            'image_container_height',
+            'pdf_container_height',
             [
                 'label'      => __('Minimum Height', 'happy-elementor-addons'),
                 'type'       => Controls_Manager::SLIDER,
@@ -199,23 +199,30 @@ class PDF_View extends Base {
         $unique_id = wp_unique_id('viewer-');
 		$file_type = $settings['file_type'];
 
-		// $pdf_url = ('url' == $file_type) ? $settings['pdf_url']['url'] : '';
 		$pdf_url = ('yes' == $settings['pdf_view_type'] && is_array($settings['pdf_file'])) ? $settings['pdf_file']['url'] : '';
+        $pdf_url_i = '';
+        if('url' == $file_type){
+            $pdf_url_i =  $settings['pdf_url']['url'];
+        }else{
+            $pdf_url_i =  $settings['pdf_file']['url'];
+        }
         $json_settings = [
             'unique_id' => $unique_id,
             'pdf_url' => $pdf_url
         ];
         $this->add_render_attribute( 'pdf_viewer_container', 'data-pdf-settings', wp_json_encode( $json_settings ) );
 		
-		// if('url' == $file_type && !empty($pdf_url)) {
-		// 	echo '<iframe src="https://docs.google.com/viewer?url=' . $pdf_url . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen></iframe>';
-		// }
+		if('yes' ==  $settings['pdf_view_type']) :
+			
         ?>
         <div class="pdf_viewer_container" <?php echo $this->print_render_attribute_string('pdf_viewer_container'); ?>>
             <a href="<?php echo esc_url($pdf_url); ?>" class="button" download="true">Download</a>
-            <div id="<?php echo $unique_id; ?>" style='width: 1024px; height: 600px; margin: 0 auto;'></div>
+            <div id="<?php echo $unique_id; ?>" style='width: 1024px; height: <?php echo esc_attr($settings['pdf_container_height']['size']); ?>px; margin: 0 auto;'></div>
         </div>
         <?php
+        else:
+            echo '<iframe src="https://docs.google.com/viewer?url=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_container_height']['size'].'px" allowfullscreen></iframe>';
+        endif;
 	}
 
     

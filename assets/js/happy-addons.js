@@ -1013,9 +1013,11 @@
 		var PDF_View = function($scope) {
 			// console.log($scope);
 			var viewer_container = $scope.find('.pdf_viewer_container');
+			
 			var settings = viewer_container.data('pdf-settings');
-			// console.log(viewer_container);
-			// console.log(settings);
+			if(typeof settings == "undefined") {
+				return;
+			}
 			WebViewer({
 				path: HappyLocalize.pdf_js_lib, // path to the PDF.js Express'lib' folder on your server
 				licenseKey: 'YXqd65j6tHv0Dg6i5fx4',
@@ -1025,22 +1027,9 @@
 			  document.getElementById(settings.unique_id))
 			  .then(instance => {
 				const docViewer = instance.Core.documentViewer;
-				const annotManager = instance.Core.annotationManager;
+				// const annotManager = instance.Core.annotationManager;
+				instance.setFitMode(instance.FitMode.FitWidth);
 
-				instance.setHeaderItems((header) => {
-					header.push({
-					  type: 'actionButton',
-					  img: '',
-					  onClick: async () => {
-						const xfdf = await annotManager.exportAnnotations({ links: false, widgets: false });
-						const fileData = await docViewer.getDocument().getFileData({});
-						const resp = await utils.setFile(fileData).setXFDF(xfdf).merge();
-						const mergedBlob = await resp.getBlob();
-						saveAs(mergedBlob, settings.pdf_url)
-						await resp.deleteFile();
-					  }
-					});
-				});
 				// docViewer.removeWatermark();
 				
 				// call methods from instance, documentViewer and annotationManager as needed
