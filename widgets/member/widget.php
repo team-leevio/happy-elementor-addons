@@ -10,7 +10,6 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Repeater;
 use Elementor\Core\Schemes\Typography;
 use Elementor\Utils;
-use Elementor\Control_Media;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;

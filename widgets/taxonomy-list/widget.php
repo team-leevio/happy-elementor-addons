@@ -127,11 +127,11 @@ class Taxonomy_List extends Base {
 					'options' => [
 						'icon' => [
 							'title' => __( 'Icon', 'happy-elementor-addons' ),
-							'icon' => 'fas fa-star',
+							'icon' => 'eicon-star',
 						],
 						'image' => [
 							'title' => __( 'Image', 'happy-elementor-addons' ),
-							'icon' => 'fas fa-image',
+							'icon' => 'eicon-image',
 						],
 					],
 					'toggle' => true,
@@ -276,11 +276,11 @@ class Taxonomy_List extends Base {
 				'options' => [
 					'icon' => [
 						'title' => __( 'Icon', 'happy-elementor-addons' ),
-						'icon' => 'fas fa-star',
+						'icon' => 'eicon-star',
 					],
 					'image' => [
 						'title' => __( 'Image', 'happy-elementor-addons' ),
-						'icon' => 'fas fa-image',
+						'icon' => 'eicon-image',
 					],
 				],
 				'condition' => [
@@ -337,15 +337,15 @@ class Taxonomy_List extends Base {
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
 				'toggle' => true,

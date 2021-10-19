@@ -9,12 +9,8 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Repeater;
 use Elementor\Utils;
-use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
-use Happy_Addons\Elementor\Icons_Manager;
 
 defined( 'ABSPATH' ) || die();
 
@@ -71,11 +67,11 @@ class Image_Stack_Group extends Base {
 				'options' => [
 					'img' => [
 						'title' => __( 'Image', 'happy-elementor-addons' ),
-						'icon' => 'far fa-image',
+						'icon' => 'eicon-image',
 					],
 					'icon' => [
 						'title' => __( 'Icon', 'happy-elementor-addons' ),
-						'icon' => 'fas fa-icons',
+						'icon' => 'eicon-star',
 					],
 				],
 				'default' => 'img',
@@ -556,12 +552,12 @@ class Image_Stack_Group extends Base {
 		?>
 
 		<div class="ha-cig">
-			<?php foreach ( $settings['images'] as $item ) : 
+			<?php foreach ( $settings['images'] as $item ) :
 				$media_type = $item['media_type'];
 
 
 				$item_id = 'elementor-repeater-item-'.$item['_id'];
-				
+
 				if($media_type == "icon"){
 					$bgType = $item['icon_bg_color_background'];
 					$bg = $item['icon_bg_color_color'];
@@ -574,7 +570,7 @@ class Image_Stack_Group extends Base {
 					}
 
 					$backGround = $bg?$bg:$bgGlobal;
-					
+
 					if($bgType == 'classic'){
 						$attr['style'] = "background:".$backGround." !important";
 					}else{
@@ -622,9 +618,9 @@ class Image_Stack_Group extends Base {
 				}
 
 				echo $wrap_start, $content, $wrap_end;
-			
+
 			endforeach; ?>
-			
+
 		</div>
 
 		<?php
