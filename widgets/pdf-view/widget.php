@@ -77,6 +77,34 @@ class PDF_View extends Base {
 			]
 		);
 
+        $this->add_control(
+			'important_note',
+			[
+				'label' => __( 'Important Note', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::RAW_HTML,
+				'raw' => __( 'To remove watermark in PDFjs.express. please signup and get free license key. <a href="https://pdfjs.express/signup">Sign up</a>', 'happy-elementor-addons' ),
+				'content_classes' => 'elementor-control-field-description',
+                'condition' => [
+					'pdf_view_type' => 'yes',
+				]
+
+			]
+		);
+
+        $this->add_control(
+			'pdf_license',
+			[
+				'label' => __( 'PDFjs.express License', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::TEXT,
+				'label_block' => true,
+				'placeholder' => __( 'MBgnIWi14J', 'happy-elementor-addons' ),
+				'condition' => [
+					'pdf_view_type' => 'yes',
+				]
+
+			]
+		);
+
 		$this->add_control(
 			'file_type',
 			[
@@ -99,6 +127,9 @@ class PDF_View extends Base {
 				'label' => __('PDF URL', 'happy-elementor-addons'),
 				'type' => Controls_Manager::URL,
 				'placeholder' => __( 'http://www.example.com/sample.pdf', 'happy-elementor-addons'),
+                'default' => [
+                    'url' =>  'http://www.africau.edu/images/default/sample.pdf'
+                ],
 				'show_external' => false,
 				'dynamic' => [
 					'active' => false,
@@ -127,6 +158,9 @@ class PDF_View extends Base {
 				'label' => __( 'Choose PDF',  'happy-elementor-addons' ),
 				'type' => Controls_Manager::MEDIA,
 				'media_type' => 'application/pdf',
+                'default' => [
+                    'url' => HAPPY_ADDONS_ASSETS . '/vendor/pdfjs/sample.pdf'
+                ],
 				'dynamic' => [
 					'active' => true,
 				],
@@ -147,11 +181,36 @@ class PDF_View extends Base {
 				],
 			]
 		);
+        
+        $this->add_control(
+			'pdf_title',
+			[
+				'label' => __( 'PDF Title', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::TEXT,
+				'label_block' => true,
+				'default' => __( 'PDF Title', 'happy-elementor-addons' ),
+				'placeholder' => __( 'Type PDF title', 'happy-elementor-addons' ),
+				'separator' => 'before',
+				'dynamic' => [
+					'active' => true,
+				]
+			]
+		);
+
+        $this->add_control(
+			'enable_download',
+			[
+				'label'        => __( 'Download', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => '',
+				'return_value' => 'yes',
+			]
+		);
 
         $this->add_responsive_control(
-            'pdf_container_height',
+            'pdf_height',
             [
-                'label'      => __('Minimum Height', 'happy-elementor-addons'),
+                'label'      => __('Height', 'happy-elementor-addons'),
                 'type'       => Controls_Manager::SLIDER,
                 'size_units' => ['px', 'vh', 'em'],
                 'range'      => [
@@ -173,8 +232,29 @@ class PDF_View extends Base {
                     'size' => 600,
                     'unit' => 'px',
                 ],
-                'selectors'  => [
-                    '{{WRAPPER}} .pdf_viewer_container' => 'min-height: {{SIZE}}{{UNIT}}',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'pdf_width',
+            [
+                'label'      => __('Width', 'happy-elementor-addons'),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => ['%','px',],
+                'range'      => [
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min'  => 0,
+                        'max'  => 2000,
+                        'step' => 1,
+                    ],
+                ],
+                'default'    => [
+                    'size' => 100,
+                    'unit' => '%',
                 ],
             ]
         );
@@ -199,7 +279,7 @@ class PDF_View extends Base {
         $unique_id = wp_unique_id('viewer-');
 		$file_type = $settings['file_type'];
 
-		$pdf_url = ('yes' == $settings['pdf_view_type'] && is_array($settings['pdf_file'])) ? $settings['pdf_file']['url'] : '';
+		// $pdf_url = ('yes' == $settings['pdf_view_type'] && is_array($settings['pdf_file'])) ? $settings['pdf_file']['url'] : '';
         $pdf_url_i = '';
         if('url' == $file_type){
             $pdf_url_i =  $settings['pdf_url']['url'];
@@ -208,21 +288,40 @@ class PDF_View extends Base {
         }
         $json_settings = [
             'unique_id' => $unique_id,
-            'pdf_url' => $pdf_url
+            'pdf_url' => $pdf_url_i,
+            'license' => (! empty($settings['pdf_license']) ) ? $settings['pdf_license'] : ''
         ];
         $this->add_render_attribute( 'pdf_viewer_container', 'data-pdf-settings', wp_json_encode( $json_settings ) );
-		
-		if('yes' ==  $settings['pdf_view_type']) :
-			
         ?>
         <div class="pdf_viewer_container" <?php echo $this->print_render_attribute_string('pdf_viewer_container'); ?>>
-            <a href="<?php echo esc_url($pdf_url); ?>" class="button" download="true">Download</a>
-            <div id="<?php echo $unique_id; ?>" style='width: 1024px; height: <?php echo esc_attr($settings['pdf_container_height']['size']); ?>px; margin: 0 auto;'></div>
+            <div class="pdf_viewer_options">
+            <?php if($settings['pdf_title']){
+                printf( '<h2>%s</h2>',
+                    esc_html( $settings['pdf_title'] )
+                );
+            }
+             if('yes' == $settings['enable_download']){
+                printf( '<a href="%1$s" class="ha-btn" download title="%2$s">%3$s</a>',
+                    esc_url($pdf_url_i),
+                    esc_html( $settings['pdf_title'] ),
+                    __('Download', 'happy-elementor-addons')
+                );
+            }
+
+            ?>
+            </div>
+            <?php if('yes' ==  $settings['pdf_view_type']) : 
+                printf( '<div id="%1$s" style="height:%2$s; width:%3$s"></div>',
+                        esc_attr( $unique_id ),
+                        esc_attr($settings['pdf_height']['size'].$settings['pdf_height']['unit']),
+                        esc_attr($settings['pdf_width']['size'].$settings['pdf_width']['unit']),
+
+                );
+            else:
+                echo '<iframe src="//docs.google.com/viewer?url=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_height']['size'].$settings['pdf_height']['unit'].'" allowfullscreen></iframe>';
+            endif; ?>
         </div>
         <?php
-        else:
-            echo '<iframe src="https://docs.google.com/viewer?url=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_container_height']['size'].'px" allowfullscreen></iframe>';
-        endif;
 	}
 
     

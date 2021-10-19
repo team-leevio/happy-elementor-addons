@@ -1018,9 +1018,11 @@
 			if(typeof settings == "undefined") {
 				return;
 			}
+			console.log(settings.license);
+
 			WebViewer({
 				path: HappyLocalize.pdf_js_lib, // path to the PDF.js Express'lib' folder on your server
-				licenseKey: 'YXqd65j6tHv0Dg6i5fx4',
+				licenseKey: settings.license ?? settings.license,
 				initialDoc: settings.pdf_url,
 				// initialDoc: '/path/to/my/file.pdf',  // You can also use documents on your server
 			  },
