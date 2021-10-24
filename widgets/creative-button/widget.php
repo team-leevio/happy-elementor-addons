@@ -998,59 +998,13 @@ class Creative_Button extends Base {
 
     protected function render() {
 		$settings = $this->get_settings_for_display();
-		// echo '<pre>';
-		// var_dump($settings);
-		// echo '</pre>';
 		$this->add_render_attribute( 'wrap', 'data-magnetic', $settings['magnetic_enable'] ? $settings['magnetic_enable'] : 'no' );
 		if( 'yes' === $settings['magnetic_enable'] ){
 			$this->add_render_attribute( 'wrap', 'id', $this->get_ID() );
-			// $this->add_render_attribute( 'button', [
-			// 	'data-threshold' => $settings['threshold'] ? : '60',
-			// 	'data-ratio' => $settings['ratio'] ? : '7.5',
-			// 	'data-max' => $settings['max'] ? : '100',
-			// 	'data-scale' => $settings['scale'] ? : '1',
-			// 	'data-ease' => '0.225',
-			// ] );
+
 		}
 		$this->{'render_' . $settings['btn_style'] . '_markup'}();
 
 	}
 
-
-    protected function render33333() {
-        $settings = $this->get_settings_for_display();
-
-
-        $this->add_render_attribute( 'wrap', 'class', 'ha-creative-btn-wrap' );
-        $this->add_render_attribute( 'button', 'class', ['ha-creative-btn', 'ha-stl--' . $settings['btn_style']] );
-        // $this->add_render_attribute( 'button', 'href', '#' );
-        $this->add_link_attributes( 'button', $settings['button_link'] );
-        // $this->add_inline_editing_attributes( 'right_button_text', 'none' );
-		if( 'estilo' == $settings['btn_style'] ){
-			$this->add_render_attribute( 'button', 'class',  'ha-eft--' .$settings['estilo_effect'] );
-		}elseif ( 'symbolab' == $settings['btn_style'] ) {
-			$this->add_render_attribute( 'button', 'class',  'ha-eft--' .$settings['symbolab_effect'] );
-		}elseif ( 'iconica' == $settings['btn_style'] ) {
-			$this->add_render_attribute( 'button', 'class',  'ha-eft--' .$settings['iconica_effect'] );
-		}elseif ( 'montino' == $settings['btn_style'] ) {
-			$this->add_render_attribute( 'button', 'class',  'ha-eft--' .$settings['montino_effect'] );
-		}elseif ( 'hermosa' == $settings['btn_style'] ) {
-			$this->add_render_attribute( 'button', 'class',  'ha-eft--' .$settings['hermosa_effect'] );
-		}
-
-        ?>
-		<div class="ha-creative-btn-wrap">
-			<a <?php $this->get_render_attribute_string( 'button' ); ?>>
-				<?php
-				// self::{'render_' . $settings['animation_style'] . '_markup'}( $settings );
-					$this->{'render_' . $settings['btn_style'] . '_markup'}();
-				?>
-			</a>
-		</div>
-        <?php
-		// $base = 0.045;
-		// for($i=0; $i<10; $i++){
-		// 	echo $base * ($i+1) . "<br>";
-		// }
-    }
 }
