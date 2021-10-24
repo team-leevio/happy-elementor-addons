@@ -960,6 +960,18 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'creative-button' => [
+				'cat' => 'creative',
+				'is_active' => true,
+				'title' => __( 'Creative Button', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-motion-button',
+				'css' => ['creative-button'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
         ];
     }
 
@@ -987,6 +999,7 @@ class Widgets_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'traits/button-renderer.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'traits/link-hover-markup.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'traits/creative-button-markup.php' );
 
 		$inactive_widgets = self::get_inactive_widgets();
 
