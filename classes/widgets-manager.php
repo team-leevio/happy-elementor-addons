@@ -977,7 +977,7 @@ class Widgets_Manager {
 				'is_active' => true,
 				'title' => __( 'PDF View', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-lens',
-				'css' => [],
+				'css' => ['pdf'],
 				'js' => [],
 				'vendor' => [
 					'css' => [],

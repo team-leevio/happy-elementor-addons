@@ -1033,6 +1033,10 @@
 				// UI.openElements(['menuOverlay','downloadButton']);
 				// UI.openElements(['menuOverlay','fullScreenButton']);
 				instance.setFitMode(UI.FitMode.FitWidth);
+
+				// UI.disableElements([ 'leftPanel', 'leftPanelButton' ]);
+				UI.enableElements([ 'textPopup', 'copyTextButton' ]);
+				UI.enableElements([ 'textPopup', 'textHighlightToolButton' ]);
 				// adding an event listener for when a document is loaded
 				Core.documentViewer.addEventListener('documentLoaded', () => {
 				  console.log('document loaded');

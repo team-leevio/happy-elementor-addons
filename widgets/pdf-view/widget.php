@@ -9,9 +9,9 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
-use Elementor\Repeater;
-use Elementor\Utils;
+use Elementor\Group_Control_Typography;
+use Elementor\Core\Schemes\Typography;
+use Elementor\Icons_Manager;
 
 defined('ABSPATH') || die();
 
@@ -207,6 +207,54 @@ class PDF_View extends Base {
 			]
 		);
 
+        $this->add_control(
+			'enable_icon',
+			[
+				'label'        => __( 'Icon', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => '',
+				'return_value' => 'yes',
+			]
+		);
+
+        $this->add_control(
+			'icon',
+			[
+				'label' => __( 'Icon', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::ICONS,
+				'default' => [
+					'value' => 'fas fa-file-pdf',
+					'library' => 'solid',
+				],
+                'condition' => [
+                    'enable_icon' => 'yes'
+                ]
+			]
+		);
+        $this->add_responsive_control(
+            'pdf_width',
+            [
+                'label'      => __('Width', 'happy-elementor-addons'),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => ['%','px',],
+                'range'      => [
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min'  => 0,
+                        'max'  => 2000,
+                        'step' => 1,
+                    ],
+                ],
+                'default'    => [
+                    'size' => 100,
+                    'unit' => '%',
+                ],
+            ]
+        );
+
         $this->add_responsive_control(
             'pdf_height',
             [
@@ -234,31 +282,6 @@ class PDF_View extends Base {
                 ],
             ]
         );
-
-        $this->add_responsive_control(
-            'pdf_width',
-            [
-                'label'      => __('Width', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::SLIDER,
-                'size_units' => ['%','px',],
-                'range'      => [
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                    'px' => [
-                        'min'  => 0,
-                        'max'  => 2000,
-                        'step' => 1,
-                    ],
-                ],
-                'default'    => [
-                    'size' => 100,
-                    'unit' => '%',
-                ],
-            ]
-        );
-
         
         $this->end_controls_section();
     }
@@ -267,9 +290,227 @@ class PDF_View extends Base {
      * Register widget style controls
      */
     protected function register_style_controls() {
-        // $this->__photo_stack_style_controls();
+        $this->__title_desc_style_controls();
+        $this->__button_style_controls();
     }
 
+    protected function __title_desc_style_controls() {
+
+		$this->start_controls_section(
+			'_section_style_content',
+			[
+				'label' => __( 'Title', 'happy-elementor-addons' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'content_padding',
+			[
+				'label' => __( 'Content Padding', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-pdf-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'_heading_title',
+			[
+				'type' => Controls_Manager::HEADING,
+				'label' => __( 'Title', 'happy-elementor-addons' ),
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_responsive_control(
+			'title_spacing',
+			[
+				'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'selectors' => [
+					'{{WRAPPER}} .ha-pdf-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'title_color',
+			[
+				'label' => __( 'Text Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-pdf-title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-pdf-title',
+				'scheme' => Typography::TYPOGRAPHY_2,
+			]
+		);
+
+
+		$this->end_controls_section();
+	}
+
+	protected function __button_style_controls() {
+
+		$this->start_controls_section(
+			'_section_style_button',
+			[
+				'label' => __( 'Button', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'button_padding',
+			[
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'button_typography',
+				'selector' => '{{WRAPPER}} .ha-btn',
+				'scheme' => Typography::TYPOGRAPHY_4,
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'button_border',
+				'selector' => '{{WRAPPER}} .ha-btn',
+			]
+		);
+
+		$this->add_control(
+			'button_border_radius',
+			[
+				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'button_box_shadow',
+				'selector' => '{{WRAPPER}} .ha-btn',
+			]
+		);
+
+		$this->add_control(
+			'hr',
+			[
+				'type' => Controls_Manager::DIVIDER,
+				'style' => 'thick',
+			]
+		);
+
+		$this->start_controls_tabs( '_tabs_button' );
+
+		$this->start_controls_tab(
+			'_tab_button_normal',
+			[
+				'label' => __( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'button_color',
+			[
+				'label' => __( 'Text Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .ha-btn' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'button_bg_color',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-btn' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'_tab_button_hover',
+			[
+				'label' => __( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'button_hover_color',
+			[
+				'label' => __( 'Text Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-btn:hover, {{WRAPPER}} .ha-btn:focus' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'button_hover_bg_color',
+			[
+				'label' => __( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-btn:hover, {{WRAPPER}} .ha-btn:focus' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'button_hover_border_color',
+			[
+				'label' => __( 'Border Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'button_border_border!' => '',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-btn:hover, {{WRAPPER}} .ha-btn:focus' => 'border-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+	}
    
     /**
      * @return null
@@ -296,20 +537,29 @@ class PDF_View extends Base {
         ?>
         <div class="pdf_viewer_container" <?php echo $this->print_render_attribute_string('pdf_viewer_container'); ?>>
             <div class="pdf_viewer_options">
-            <?php if($settings['pdf_title']){
-                printf( '<h2>%s</h2>',
-                    esc_html( $settings['pdf_title'] )
-                );
-            }
-             if('yes' == $settings['enable_download']){
-                printf( '<a href="%1$s" class="ha-btn" download title="%2$s">%3$s</a>',
-                    esc_url($pdf_url_i),
-                    esc_html( $settings['pdf_title'] ),
-                    __('Download', 'happy-elementor-addons')
-                );
-            }
+                <div class="ha-title-flex">
+                    <span class="pdf-icon">
+                        <?php ha_render_icon($settings); ?>
+                    </span>
+                    <?php if($settings['pdf_title']){
+                        printf( '<h2 class="ha-pdf-title">%s</h2>',
+                        esc_html( $settings['pdf_title'] ),
+                        );
+                    }
+                ?>
+                </div>
+                <div class="pdf-button">
+                <?php
+                    if('yes' == $settings['enable_download']){
+                        printf( '<a href="%1$s" class="ha-btn" download title="%2$s">%3$s</a>',
+                            esc_url($pdf_url_i),
+                            esc_html( $settings['pdf_title'] ),
+                            __('Download', 'happy-elementor-addons')
+                        );
+                    }
 
-            ?>
+                ?>
+                </div>
             </div>
             <?php if('yes' ==  $settings['pdf_view_type']) : 
 
