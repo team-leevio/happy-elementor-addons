@@ -6,6 +6,7 @@
 - Fix: Privacy policy missing link in setup wizard
 - Fix: MailChimp audience tags issue solve
 - Fix: Dashboard widgets and featues disable all issues.
+- Tweak: Removed `_content_template` deprecated function.
 
 = 3.2.2 - 29 September 2021 =
 
