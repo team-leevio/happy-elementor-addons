@@ -1015,21 +1015,24 @@
 			var viewer_container = $scope.find('.pdf_viewer_container');
 			
 			var settings = viewer_container.data('pdf-settings');
-			if(typeof settings == "undefined") {
-				return;
-			}
-			console.log(settings.license);
+			if(settings.pdfjs_expres == "yes" && settings.license) {
+
 			WebViewer({
 				path: HappyLocalize.pdf_js_lib, // path to the PDF.js Express'lib' folder on your server
+				// licenseKey: settings.license,
 				licenseKey: settings.license,
 				// initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/webviewer-demo.pdf',
+				// initialDoc: 'http://www.africau.edu/images/default/sample.pdf',
 				initialDoc: settings.pdf_url,
 				// initialDoc: '/path/to/my/file.pdf',  // You can also use documents on your server
 			  }, document.getElementById(settings.unique_id))
 			  .then(instance => {
 				// now you can access APIs through the WebViewer instance
 				const { Core, UI } = instance;
-			
+				console.log(UI);
+				// UI.openElements(['menuOverlay','downloadButton']);
+				// UI.openElements(['menuOverlay','fullScreenButton']);
+				instance.setFitMode(UI.FitMode.FitWidth);
 				// adding an event listener for when a document is loaded
 				Core.documentViewer.addEventListener('documentLoaded', () => {
 				  console.log('document loaded');
@@ -1040,32 +1043,7 @@
 				  console.log(`Page number is: ${pageNumber}`);
 				});
 			  });
-
-			// WebViewer({
-			// 	path: HappyLocalize.pdf_js_lib, // path to the PDF.js Express'lib' folder on your server
-			// 	licenseKey: settings.license ?? settings.license,
-			// 	initialDoc: settings.pdf_url,
-			// 	// initialDoc: '/path/to/my/file.pdf',  // You can also use documents on your server
-			//   },
-			//   document.getElementById(settings.unique_id))
-			//   .then(instance => {
-			// 	const docViewer = instance.Core.documentViewer;
-			// 	// const annotManager = instance.Core.annotationManager;
-			// 	instance.setFitMode(instance.FitMode.FitWidth);
-
-			// 	// docViewer.removeWatermark();
-				
-			// 	// call methods from instance, documentViewer and annotationManager as needed
-			
-			// 	// you can also access major namespaces from the instance as follows:
-			// 	// const Tools = instance.Core.Tools;
-			// 	// const Annotations = instance.Core.Annotations;
-			
-			// 	docViewer.addEventListener('documentLoaded', () => {
-			// 	  // call methods relating to the loaded document
-				 
-			// 	});
-			//   });
+			}
 		};
 		
 

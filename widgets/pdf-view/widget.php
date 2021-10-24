@@ -128,7 +128,7 @@ class PDF_View extends Base {
 				'type' => Controls_Manager::URL,
 				'placeholder' => __( 'http://www.example.com/sample.pdf', 'happy-elementor-addons'),
                 'default' => [
-                    'url' =>  'http://www.africau.edu/images/default/sample.pdf'
+                    'url' =>  ''
                 ],
 				'show_external' => false,
 				'dynamic' => [
@@ -289,7 +289,8 @@ class PDF_View extends Base {
         $json_settings = [
             'unique_id' => $unique_id,
             'pdf_url' => $pdf_url_i,
-            'license' => (! empty($settings['pdf_license']) ) ? $settings['pdf_license'] : ''
+            'license' => (! empty($settings['pdf_license']) ) ? $settings['pdf_license'] : '',
+            'pdfjs_expres' => $settings['pdf_view_type']
         ];
         $this->add_render_attribute( 'pdf_viewer_container', 'data-pdf-settings', wp_json_encode( $json_settings ) );
         ?>
@@ -311,12 +312,17 @@ class PDF_View extends Base {
             ?>
             </div>
             <?php if('yes' ==  $settings['pdf_view_type']) : 
-                printf( '<div id="%1$s" style="height:%2$s; width:%3$s"></div>',
-                        esc_attr( $unique_id ),
-                        esc_attr($settings['pdf_height']['size'].$settings['pdf_height']['unit']),
-                        esc_attr($settings['pdf_width']['size'].$settings['pdf_width']['unit']),
 
-                );
+                if(! empty($settings['pdf_license']) ){
+                    printf( '<div id="%1$s" style="height:%2$s; width:%3$s"></div>',
+                            esc_attr( $unique_id ),
+                            esc_attr($settings['pdf_height']['size'].$settings['pdf_height']['unit']),
+                            esc_attr($settings['pdf_width']['size'].$settings['pdf_width']['unit']),
+
+                    );
+                }else{
+                    printf( '<h1>%1$s</h1>', __('Please set your PDFjs.express License', 'happy-elementor-addons'));
+                }
             else:
                 echo '<iframe src="//docs.google.com/viewer?url=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_height']['size'].$settings['pdf_height']['unit'].'" allowfullscreen></iframe>';
             endif; ?>
