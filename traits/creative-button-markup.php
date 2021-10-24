@@ -12,19 +12,19 @@ defined('ABSPATH') || exit;
 
 trait Creative_Button_Markup {
 
-	public $magnatic_data = 'data-threshold="60" data-ratio="7.5" data-max="100" data-scale="1" data-ease="0.225"';
+	// public $magnatic_data = 'data-threshold="60" data-ratio="7.5" data-max="100" data-scale="1" data-ease="0.225"';
 
-	public function is_magnetic_enable($settings) {
-		$magnatic_data = 'data-threshold="60" data-ratio="7.5" data-max="100" data-scale="1" data-ease="0.225"';
-		// $settings['estilo_effect']
-		$this->add_render_attribute( 'button', [
-			'data-threshold' => '60',
-			'data-ratio' => '7.5',
-			'data-max' => '100',
-			'data-scale' => '1',
-			'data-ease' => '0.225',
-		] );
-	}
+	// public function is_magnetic_enable($settings) {
+	// 	$magnatic_data = 'data-threshold="60" data-ratio="7.5" data-max="100" data-scale="1" data-ease="0.225"';
+	// 	// $settings['estilo_effect']
+	// 	$this->add_render_attribute( 'button', [
+	// 		'data-threshold' => '60',
+	// 		'data-ratio' => '7.5',
+	// 		'data-max' => '100',
+	// 		'data-scale' => '1',
+	// 		'data-ease' => '0.225',
+	// 	] );
+	// }
 
     public function render_estilo_markup() {
 		$settings = $this->get_settings_for_display();
@@ -150,10 +150,10 @@ EOF;
         echo $markup;
     }
 
-	public function render_styleName_markup(){
-		$settings = $this->get_settings_for_display();
-		echo $settings['btn_style'];
-	}
+	// public function render_styleName_markup(){
+	// 	$settings = $this->get_settings_for_display();
+	// 	echo $settings['btn_style'];
+	// }
 
     public function split_word( $text ){
 		$text_array = str_split($text);
