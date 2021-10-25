@@ -292,6 +292,7 @@ class PDF_View extends Base {
     protected function register_style_controls() {
         $this->__title_desc_style_controls();
         $this->__button_style_controls();
+        $this->__icon_style_controls();
     }
 
     protected function __title_desc_style_controls() {
@@ -509,6 +510,42 @@ class PDF_View extends Base {
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
 
+		$this->end_controls_section();
+	}
+
+	protected function __icon_style_controls() {
+
+		$this->start_controls_section(
+			'_section_icon_content',
+			[
+				'label' => __( 'Icon', 'happy-elementor-addons' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_spacing',
+			[
+				'label' => __( 'Spacing', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .pdf-icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_size',
+			[
+				'label' => __( 'Icon Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .pdf-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .pdf-icon svg' => 'width: {{SIZE}}{{UNIT}};'
+				],
+			]
+		);
 		$this->end_controls_section();
 	}
    
