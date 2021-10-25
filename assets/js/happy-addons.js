@@ -1014,18 +1014,21 @@
 			var btn_wrap = $scope.find('.ha-creative-btn-wrap');
 			var magnetic = btn_wrap.data('magnetic');
 			var btn = btn_wrap.find('a.ha-creative-btn');
+			var mousemove = 'mousemove.haCreativeBtn_'+$scope.data('id');
+			var mouseout = 'mouseout.haCreativeBtn_'+$scope.data('id');
 			if( 'yes' == magnetic ){
-				btn_wrap.on('mousemove', function(e) {
-					const position = e.currentTarget.getBoundingClientRect();
-					const x = e.pageX - position.left - position.width / 2;
-					const y = e.pageY - position.top - position.height / 2;
-					btn[0].style.transform = "translate(" + x * 0.3 + "px, " + y * 0.5 + "px)";
+				btn_wrap.on( mousemove, function(e) {
+					var position = e.currentTarget.getBoundingClientRect();
+					var x = e.pageX - position.left - position.width / 2;
+					var y = e.pageY - position.top - position.height / 2;
+					e.currentTarget.querySelector('a.ha-creative-btn').style.transform = "translate(" + x * 0.3 + "px, " + y * 0.5 + "px)";
 				});
-				btn_wrap.on('mouseout', function(e){
-					btn[0].style.transform = "translate(0px, 0px)";
+				btn_wrap.on( mouseout, function(e){
+					e.currentTarget.querySelector('a.ha-creative-btn').style.transform = "translate(0px, 0px)";
 				});
 			}
 
+			//For expandable button style only
 			var expandable = $scope.find('.ha-eft--expandable');
 			var text = expandable.find('.text');
 			if ( expandable.length > 0 && text.length > 0 ) {

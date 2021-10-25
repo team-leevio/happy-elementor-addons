@@ -305,51 +305,6 @@ class Creative_Button extends Base {
 			]
 		);
 
-		// $this->add_control(
-		// 	'ratio',
-		// 	[
-		// 		'label' => __( 'Ratio', 'happy-elementor-addons'),
-		// 		'type' => Controls_Manager::NUMBER,
-		// 		'min' => 1,
-		// 		'max' => 50,
-		// 		'step' => .1,
-		// 		'default' => 7.5,
-		// 		'condition' => [
-        //             'magnetic_enable' => 'yes'
-		// 		],
-		// 	]
-		// );
-
-		// $this->add_control(
-		// 	'max',
-		// 	[
-		// 		'label' => __( 'Max', 'happy-elementor-addons'),
-		// 		'type' => Controls_Manager::NUMBER,
-		// 		'min' => 20,
-		// 		'max' => 500,
-		// 		'step' => 5,
-		// 		'default' => 100,
-		// 		'condition' => [
-        //             'magnetic_enable' => 'yes'
-		// 		],
-		// 	]
-		// );
-
-		// $this->add_control(
-		// 	'scale',
-		// 	[
-		// 		'label' => __( 'Scale', 'happy-elementor-addons'),
-		// 		'type' => Controls_Manager::NUMBER,
-		// 		'min' => 1,
-		// 		'max' => 5,
-		// 		'step' => .1,
-		// 		'default' => 1,
-		// 		'condition' => [
-        //             'magnetic_enable' => 'yes'
-		// 		],
-		// 	]
-		// );
-
         $this->end_controls_section();
     }
 
@@ -446,26 +401,6 @@ class Creative_Button extends Base {
             [
                 'label' => __( 'Common', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
-				/* 'conditions' => [
-					'relation' => 'or',
-					'terms' => [
-						[
-							'name' => 'btn_style',
-							'operator' => '==',
-							'value' => 'estilo',
-						],
-						[
-							'name' => 'btn_style',
-							'operator' => '==',
-							'value' => 'symbolab',
-						],
-						[
-							'name' => 'btn_style',
-							'operator' => '==',
-							'value' => 'iconica',
-						],
-					],
-				], */
             ]
 		);
 
@@ -508,7 +443,6 @@ class Creative_Button extends Base {
 								[
 									'name' => 'btn_style',
 									'operator' => '==',
-									// 'operator' => '!=',
 									'value' => 'hermosa',
 								],
 							],
@@ -572,21 +506,6 @@ class Creative_Button extends Base {
 						]
 					]
 				],
-				// 'conditions' => [
-				// 	'relation' => 'or',
-				// 	'terms' => [
-				// 		[
-				// 			'name' => 'btn_style',
-				// 			'operator' => '==',
-				// 			'value' => 'symbolab',
-				// 		],
-				// 		[
-				// 			'name' => 'btn_style',
-				// 			'operator' => '==',
-				// 			'value' => 'iconica',
-				// 		],
-				// 	],
-				// ],
 			]
 		);
 
@@ -616,11 +535,6 @@ class Creative_Button extends Base {
 									'operator' => '!=',
 									'value' => 'roundup',
 								],
-								// [
-								// 	'name' => 'hermosa_effect',
-								// 	'operator' => '!=',
-								// 	'value' => 'downhill',
-								// ],
 							],
 						],
 						[
@@ -793,9 +707,6 @@ class Creative_Button extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-creative-btn-wrap .ha-creative-btn' => '--ha-ctv-btn-border-clr: {{VALUE}}',
                 ],
-                // 'condition' => [
-                //     'button_border_border!' => ''
-				// ],
                 'conditions' => [
 					'terms' => [
 						[
@@ -806,11 +717,6 @@ class Creative_Button extends Base {
 									'operator' => '!=',
 									'value' => 'roundup',
 								],
-								// [
-								// 	'name' => 'hermosa_effect',
-								// 	'operator' => '!=',
-								// 	'value' => 'downhill',
-								// ],
 							],
 						],
 						[
@@ -924,11 +830,6 @@ class Creative_Button extends Base {
 									'operator' => '!=',
 									'value' => 'roundup',
 								],
-								// [
-								// 	'name' => 'hermosa_effect',
-								// 	'operator' => '!=',
-								// 	'value' => 'downhill',
-								// ],
 							],
 						],
 						[
@@ -999,11 +900,7 @@ class Creative_Button extends Base {
     protected function render() {
 		$settings = $this->get_settings_for_display();
 		$this->add_render_attribute( 'wrap', 'data-magnetic', $settings['magnetic_enable'] ? $settings['magnetic_enable'] : 'no' );
-		if( 'yes' === $settings['magnetic_enable'] ){
-			$this->add_render_attribute( 'wrap', 'id', $this->get_ID() );
-
-		}
-		$this->{'render_' . $settings['btn_style'] . '_markup'}();
+		$this->{'render_' . $settings['btn_style'] . '_markup'}($settings);
 
 	}
 

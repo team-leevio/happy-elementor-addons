@@ -1,4 +1,4 @@
-= *** - 24 October 2021 =
+= 3.3.0 - 26 October 2021 =
 
 - New: Creative Button Widget
 - Fix: Dashboard widget broken style
@@ -6,7 +6,7 @@
 - Fix: Privacy policy missing link in setup wizard
 - Fix: MailChimp audience tags issue solve
 - Fix: Dashboard widgets and featues disable all issues.
-- Tweak: Removed `_content_template` deprecated function.
+- Tweak: Replace `_content_template` function with `content_template`.
 
 = 3.2.2 - 29 September 2021 =
 

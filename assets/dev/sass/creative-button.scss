@@ -7,18 +7,15 @@
 
 	--ha-ctv-btn-bg-clr: #ffffff;
 	--ha-ctv-btn-bg-hvr-clr: #ff067d;
-	// --ha-ctv-btn-bg-hvr-clr: #562dd4;
 
 	--ha-ctv-btn-border-clr: #ff067d;
 	--ha-ctv-btn-border-hvr-clr: #ff067d;
-	// --ha-ctv-btn-border-hvr-clr: #e2498a;
 
 	display: inline-block;
 
 	.ha-creative-btn {
 		display: inline-block;
 		max-width: 100%;
-		// vertical-align: middle;
 		text-align: center;
 		text-decoration: none;
 		line-height: 1;
@@ -48,7 +45,6 @@
 		letter-spacing: 1px;
 		font-weight: 700;
 		outline: none;
-		// background: none;
 		background: var(--ha-ctv-btn-bg-clr);
 		border-width: 3px;
 		border-style: solid;
@@ -66,7 +62,6 @@
 		&:hover,
 		&:active {
 			color: var(--ha-ctv-btn-txt-hvr-clr);
-			// background: none;
 			background: var(--ha-ctv-btn-bg-clr);
 		}
 
@@ -210,7 +205,6 @@
 		// back-in-right effect
 		&.ha-eft--back-in-right i {
 			left: 130%;
-			// top: auto;
 		}
 		&.ha-eft--back-in-right:hover i,
 		&.ha-eft--back-in-right:active i {
@@ -220,7 +214,6 @@
 		// back-in-left effect
 		&.ha-eft--back-in-left i {
 			left: -50%;
-			// top: auto;
 		}
 		&.ha-eft--back-in-left:hover i,
 		&.ha-eft--back-in-left:active i {
@@ -231,7 +224,6 @@
 		&.ha-eft--back-out-right i {
 			left: 70%;
 			opacity: 0;
-			// top: auto;
 		}
 		&.ha-eft--back-out-right:hover i,
 		&.ha-eft--back-out-right:active i {
@@ -243,7 +235,6 @@
 		&.ha-eft--back-out-left i {
 			left: 30%;
 			opacity: 0;
-			// top: auto;
 		}
 		&.ha-eft--back-out-left:hover i,
 		&.ha-eft--back-out-left:active i {
@@ -267,11 +258,6 @@
 		border-width: 3px;
 		border-style: solid;
 		border-color: var(--ha-ctv-btn-border-clr);
-
-		// height: 70px;
-		// min-width: 260px;
-		// line-height: 24px;
-		// font-size: 16px;
 		overflow: hidden;
 		backface-visibility: hidden;
 
@@ -284,8 +270,6 @@
 		> span {
 			display: inline-block;
 			padding: 25px 80px;
-			//   width: 100%;
-			//   height: 100%;
 			transition: all 0.3s;
 			backface-visibility: hidden;
 		}
@@ -296,8 +280,6 @@
 			position: absolute;
 			height: 100%;
 			width: 100%;
-			//   line-height: 2.5;
-			//   font-size: 180%;
 			transition: all 0.3s;
 		}
 
@@ -371,7 +353,6 @@
 			outline: none;
 			z-index: 1;
 			background: var(--ha-ctv-btn-bg-clr);
-			// color: var(--ha-ctv-btn-txt-clr);
 
 			> span,
 			&::after {
@@ -413,7 +394,6 @@
 			outline: none;
 			z-index: 1;
 			background: var(--ha-ctv-btn-bg-clr);
-			// color: var(--ha-ctv-btn-txt-clr);
 
 			&:hover,
 			&:active {
@@ -456,7 +436,6 @@
 			outline: none;
 			z-index: 1;
 			background: var(--ha-ctv-btn-bg-clr);
-			// color: var(--ha-ctv-btn-txt-clr);
 
 			&::before,
 			&::after {
@@ -503,7 +482,6 @@
 			outline: none;
 			z-index: 1;
 			background: var(--ha-ctv-btn-bg-clr);
-			// color: var(--ha-ctv-btn-txt-clr);
 			border-width: 0;
 
 			&::before {
@@ -515,7 +493,6 @@
 				height: 100%;
 				border-style: solid;
 				border-width: 2px;
-				// border: 2px solid var(--ha-ctv-btn-clr-purple);
 				z-index: -1;
 				border-radius: inherit;
 				opacity: 0;
@@ -572,36 +549,6 @@
 				transform: translate3d(0, 0, 0);
 				transition-delay: var(--delay, 0.045s);
 			}
-			// &:hover > span:nth-child(1) {
-			//   transition-delay: 0.045s;
-			// }
-			// &:hover > span:nth-child(2) {
-			//   transition-delay: 0.090s;
-			// }
-			// &:hover > span:nth-child(3) {
-			//   transition-delay: 0.135s;
-			// }
-			// &:hover > span:nth-child(4) {
-			//   transition-delay: 0.18s;
-			// }
-			// &:hover > span:nth-child(5) {
-			//   transition-delay: 0.225s;
-			// }
-			// &:hover > span:nth-child(6) {
-			//   transition-delay: 0.27s;
-			// }
-			// &:hover > span:nth-child(7) {
-			//   transition-delay: 0.315s;
-			// }
-			// &:hover > span:nth-child(8) {
-			//   transition-delay: 0.36s;
-			// }
-			// &:hover > span:nth-child(9) {
-			//   transition-delay: 0.405s;
-			// }
-			// &:hover > span:nth-child(10) {
-			//   transition-delay: 0.45s;
-			// }
 		}
 
 		// antiman effect
@@ -614,8 +561,6 @@
 			--ha-ctv-btn-border-hvr-clr: #ff067d;
 			padding: 25px 80px;
 			background: var(--ha-ctv-btn-bg-hvr-clr);
-			// color: var(--ha-ctv-btn-txt-clr);
-			// overflow: hidden;
 			border-width: 0;
 
 			&::before,
@@ -631,8 +576,6 @@
 				transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
 			}
 			&::before {
-				// width: calc(100% - 4px);
-				// height: calc(100% - 4px);
 				width: 100%;
 				height: 100%;
 				border-style: solid;
@@ -661,8 +604,6 @@
 		&.ha-eft--sacnite {
 			padding: 25px 80px;
 			background: var(--ha-ctv-btn-bg-clr);
-			// background: var(--ha-ctv-btn-bg-hvr-clr);
-			// color: var(--ha-ctv-btn-txt-clr);
 			overflow: hidden;
 
 			&::before {
@@ -675,14 +616,10 @@
 				border-radius: inherit;
 				z-index: -1;
 				background: var(--ha-ctv-btn-bg-hvr-clr);
-				// box-shadow: inset 0 0 0 35px var(--ha-ctv-btn-bg-clr);
-				//   transform: scale3d(0.9, 0.9, 1);
 				transform: scale3d(0, 0, 0);
 				transition: transform 0.3s;
-				// transition: box-shadow 0.3s, transform 0.3s;
 			}
 			&:hover::before {
-				// box-shadow: inset 0 0 0 0px var(--ha-ctv-btn-bg-clr);
 				transform: scale3d(1.1, 1.1, 1.1);
 			}
 			> span {
@@ -733,12 +670,10 @@
 			span.text {
 				white-space: nowrap;
 				width: 0;
-				// margin-right: 10px;
 				transition: width 0.2s;
 			}
 
-			&:hover span.text{
-				// white-space: normal;
+			&:hover span.text {
 				margin-right: 10px;
 				width: auto;
 			}
@@ -751,7 +686,6 @@
 			border-style: solid;
 			border-radius: 3em;
 			overflow: hidden;
-			// color: var(--ha-ctv-btn-txt-clr);
 
 			span {
 				position: relative;
@@ -775,7 +709,6 @@
 			border-width: 2px;
 			border-style: solid;
 			overflow: hidden;
-			// color: var(--ha-ctv-btn-txt-clr);
 
 			span {
 				display: block;
@@ -812,7 +745,6 @@
 		&.ha-eft--render {
 			border-radius: 0.5em;
 			overflow: hidden;
-			// color: var(--ha-ctv-btn-txt-clr);
 			background: var(--ha-ctv-btn-bg-hvr-clr);
 			border-width: 2px;
 			border-style: solid;
@@ -820,7 +752,6 @@
 
 			> span {
 				position: relative;
-				// mix-blend-mode: difference;
 			}
 
 			&::before {
@@ -851,7 +782,6 @@
 
 			width: 175px;
 			height: 120px;
-			// color: var(--ha-ctv-btn-txt-clr);
 			background: none;
 			padding: 1.5em 3em;
 			box-sizing: border-box;
@@ -912,7 +842,6 @@
 			overflow: hidden;
 			border-radius: 0.85em;
 			background: var(--ha-ctv-btn-bg-clr);
-			// color: var(--ha-ctv-btn-txt-clr);
 			border-width: 2px;
 			border-style: solid;
 			border-color: var(--ha-ctv-btn-border-clr);
@@ -967,8 +896,6 @@
 		&.ha-eft--downhill {
 			overflow: hidden;
 			border-radius: 50%;
-			// background: var(--ha-ctv-btn-bg-clr);
-			// color: var(--ha-ctv-btn-txt-clr);
 			width: 100px;
 			height: 100px;
 			padding: 0;
@@ -1026,7 +953,6 @@
 			--ha-ctv-btn-bg-clr: #ff067d;
 			--ha-ctv-btn-bg-hvr-clr: #ffffff;
 
-			// color: var(--ha-ctv-btn-txt-clr);
 			background: none;
 			padding: 0 !important;
 			border-width: 0 !important;
@@ -1108,7 +1034,6 @@
 			width: 120px;
 			height: 120px;
 			font-weight: 700;
-			// color: var(--ha-ctv-btn-txt-clr);
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
@@ -1118,9 +1043,6 @@
 				position: absolute;
 				width: calc(120px - ((120px / 100) * 20));
 				height: calc(120px - ((120px / 100) * 20));
-				// top: calc(120px - ((120px / 100) * 20) );
-				// top: calc(50% - 40px);
-				// left: calc(50% - 40px);
 				top: 50%;
 				left: 50%;
 				transform: translate(-50%, -50%);

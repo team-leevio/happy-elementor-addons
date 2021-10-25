@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.2.2
+Version: 3.3.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, wedevs, iqbalrony, sabbirshouvo, sayedulsayem
@@ -379,12 +379,22 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.3.0 - 26 October 2021 =
+
+- New: Creative Button Widget
+- Fix: Dashboard widget broken style
+- Fix: Happy Tooltip JS optimization
+- Fix: Privacy policy missing link in setup wizard
+- Fix: MailChimp audience tags issue solve
+- Fix: Dashboard widgets and featues disable all issues.
+- Tweak: Replace `_content_template` function with `content_template`.
+
 = 3.2.2 - 29 September 2021 =
 
 - Fix: Setup wizard asset loading
 - Fix: Resolved an unexpected warning in admin area while debugging is enabled.
 - Fix: Missing Template Engine icon in Elementor Editor.
-- Fix: Icon Box widget Badge z-index reduced 
+- Fix: Icon Box widget Badge z-index reduced
 
 = 3.2.1 - 23 September 2021 =
 

@@ -12,23 +12,7 @@ defined('ABSPATH') || exit;
 
 trait Creative_Button_Markup {
 
-	// public $magnatic_data = 'data-threshold="60" data-ratio="7.5" data-max="100" data-scale="1" data-ease="0.225"';
-
-	// public function is_magnetic_enable($settings) {
-	// 	$magnatic_data = 'data-threshold="60" data-ratio="7.5" data-max="100" data-scale="1" data-ease="0.225"';
-	// 	// $settings['estilo_effect']
-	// 	$this->add_render_attribute( 'button', [
-	// 		'data-threshold' => '60',
-	// 		'data-ratio' => '7.5',
-	// 		'data-max' => '100',
-	// 		'data-scale' => '1',
-	// 		'data-ease' => '0.225',
-	// 	] );
-	// }
-
-    public function render_estilo_markup() {
-		$settings = $this->get_settings_for_display();
-
+    public function render_estilo_markup($settings) {
         $this->add_render_attribute( 'wrap', 'class', 'ha-creative-btn-wrap' );
         $this->add_render_attribute( 'button', 'class', [ 'ha-creative-btn', 'ha-stl--' . $settings['btn_style'], 'ha-eft--' .$settings['estilo_effect'] ] );
 
@@ -47,9 +31,7 @@ EOF;
         echo $markup;
     }
 
-    public function render_symbolab_markup(){
-		$settings = $this->get_settings_for_display();
-
+    public function render_symbolab_markup($settings){
         $this->add_render_attribute( 'wrap', 'class', 'ha-creative-btn-wrap' );
         $this->add_render_attribute( 'button', 'class', [ 'ha-creative-btn', 'ha-stl--' . $settings['btn_style'], 'ha-eft--' .$settings['symbolab_effect'] ] );
 
@@ -68,10 +50,8 @@ EOF;
         echo $markup;
     }
 
-    public function render_iconica_markup(){
-		$settings = $this->get_settings_for_display();
-
-        $this->add_render_attribute( 'wrap', 'class', 'ha-creative-btn-wrap' );
+    public function render_iconica_markup($settings){
+		$this->add_render_attribute( 'wrap', 'class', 'ha-creative-btn-wrap' );
         $this->add_render_attribute( 'button', 'class', [ 'ha-creative-btn', 'ha-stl--' . $settings['btn_style'], 'ha-eft--' .$settings['iconica_effect'] ] );
 
         $this->add_link_attributes( 'button', $settings['button_link'] );
@@ -89,10 +69,8 @@ EOF;
         echo $markup;
     }
 
-    public function render_montino_markup(){
-		$settings = $this->get_settings_for_display();
-
-        $this->add_render_attribute( 'wrap', 'class', 'ha-creative-btn-wrap' );
+    public function render_montino_markup($settings){
+		$this->add_render_attribute( 'wrap', 'class', 'ha-creative-btn-wrap' );
         $this->add_render_attribute( 'button', 'class', [ 'ha-creative-btn', 'ha-stl--' . $settings['btn_style'], 'ha-eft--' .$settings['montino_effect'] ] );
         $this->add_link_attributes( 'button', $settings['button_link'] );
 
@@ -118,10 +96,8 @@ EOF;
         echo $markup;
     }
 
-    public function render_hermosa_markup(){
-		$settings = $this->get_settings_for_display();
-
-        $this->add_render_attribute( 'wrap', 'class', 'ha-creative-btn-wrap' );
+    public function render_hermosa_markup($settings){
+		$this->add_render_attribute( 'wrap', 'class', 'ha-creative-btn-wrap' );
         $this->add_render_attribute( 'button', 'class', [ 'ha-creative-btn', 'ha-stl--' . $settings['btn_style'], 'ha-eft--' .$settings['hermosa_effect'] ] );
         $this->add_link_attributes( 'button', $settings['button_link'] );
 
@@ -149,11 +125,6 @@ EOF;
 EOF;
         echo $markup;
     }
-
-	// public function render_styleName_markup(){
-	// 	$settings = $this->get_settings_for_display();
-	// 	echo $settings['btn_style'];
-	// }
 
     public function split_word( $text ){
 		$text_array = str_split($text);
