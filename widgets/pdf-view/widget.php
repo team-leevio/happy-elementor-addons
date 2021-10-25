@@ -475,6 +475,9 @@ class PDF_View extends Base {
 				'label' => __( 'Icon Spacing', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
+				'default' => [
+					'size' => 10
+				],
 				'selectors' => [
 					'{{WRAPPER}} .pdf-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
 				],
