@@ -475,6 +475,9 @@ class PDF_View extends Base {
 				'label' => __( 'Icon Spacing', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
+				'default' => [
+					'size' => 10
+				],
 				'selectors' => [
 					'{{WRAPPER}} .pdf-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
 				],
@@ -637,22 +640,6 @@ class PDF_View extends Base {
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
 
-		$this->end_controls_section();
-	}
-
-	protected function __icon_style_controls() {
-
-		$this->start_controls_section(
-			'_section_icon_content',
-			[
-				'label' => __( 'Icon', 'happy-elementor-addons' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		
-
-		
 		$this->end_controls_section();
 	}
    
