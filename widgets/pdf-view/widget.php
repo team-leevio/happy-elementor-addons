@@ -675,7 +675,7 @@ class PDF_View extends Base {
             <div class="pdf_viewer_options">
                     <span class="ha-title-flex">
 						<span class="pdf-icon">
-							<?php ha_render_icon($settings, 'icon', 'selected_icon');  ?>
+							<?php Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']);  ?>
 						</span>
 						<?php
 						if($settings['pdf_title']){
@@ -712,8 +712,10 @@ class PDF_View extends Base {
                 }else{
                     printf( '<h1>%1$s</h1>', __('Please set your PDFjs.express License', 'happy-elementor-addons'));
                 }
-            else:
-				echo '<iframe class="ha-google-iframe" src="'. HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/mozila/web/viewer.html?file=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_height']['size'].$settings['pdf_height']['unit'].'" allowfullscreen></iframe>';
+            elseif('yes' !=  $settings['pdf_view_type'] && 'upload_file' == $file_type):
+				echo '<iframe class="ha-google-iframe" src="'. HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/mozila/web/viewer.html?file=' . $pdf_url_i . '&embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_height']['size'].$settings['pdf_height']['unit'].'" allowfullscreen></iframe>';
+			else:
+				echo '<iframe class="ha-google-iframe" src="https://docs.google.com/viewer?url=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_height']['size'].$settings['pdf_height']['unit'].'" allowfullscreen></iframe>';
             endif; ?>
         </div>
         <?php
