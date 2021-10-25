@@ -130,7 +130,7 @@ class PDF_View extends Base {
 				'type' => Controls_Manager::URL,
 				'placeholder' => __( 'http://www.example.com/sample.pdf', 'happy-elementor-addons'),
                 'default' => [
-                    'url' =>  'http://www.pdf995.com/samples/pdf.pdf'
+                    'url' =>  'https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf'
                 ],
 				'show_external' => false,
 				'dynamic' => [
@@ -729,7 +729,7 @@ class PDF_View extends Base {
                     printf( '<h1>%1$s</h1>', __('Please set your PDFjs.express License', 'happy-elementor-addons'));
                 }
             else:
-				echo '<iframe class="ha-google-iframe" src="//docs.google.com/viewer?url=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_height']['size'].$settings['pdf_height']['unit'].'" allowfullscreen></iframe>';
+				echo '<iframe class="ha-google-iframe" src="'. HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/mozila/web/viewer.html?file=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_height']['size'].$settings['pdf_height']['unit'].'" allowfullscreen></iframe>';
             endif; ?>
         </div>
         <?php
