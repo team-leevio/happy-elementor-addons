@@ -161,7 +161,7 @@ class PDF_View extends Base {
 				'type' => Controls_Manager::MEDIA,
 				'media_type' => 'application/pdf',
                 'default' => [
-                    'url' => HAPPY_ADDONS_ASSETS . '/vendor/pdfjs/sample.pdf'
+                    'url' => HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/sample.pdf'
                 ],
 				'dynamic' => [
 					'active' => true,
@@ -674,6 +674,11 @@ class PDF_View extends Base {
         }else{
             $pdf_url_i =  $settings['pdf_file']['url'];
         }
+
+		if(empty($pdf_url_i)){
+			$pdf_url_i = HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/sample.pdf';
+		}
+
         $json_settings = [
             'unique_id' => $unique_id,
             'pdf_url' => $pdf_url_i,
@@ -724,14 +729,10 @@ class PDF_View extends Base {
                     printf( '<h1>%1$s</h1>', __('Please set your PDFjs.express License', 'happy-elementor-addons'));
                 }
             else:
-				if(!empty($pdf_url_i)){
-                	echo '<iframe class="ha-google-iframe" src="//docs.google.com/viewer?url=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_height']['size'].$settings['pdf_height']['unit'].'" allowfullscreen></iframe>';
-				}
+				echo '<iframe class="ha-google-iframe" src="//docs.google.com/viewer?url=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_height']['size'].$settings['pdf_height']['unit'].'" allowfullscreen></iframe>';
             endif; ?>
         </div>
         <?php
 	}
-
-    
 
 }
