@@ -12,6 +12,7 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Core\Schemes\Typography;
 use Elementor\Icons_Manager;
+use Elementor\Group_Control_Background;
 
 defined('ABSPATH') || die();
 
@@ -54,11 +55,12 @@ class PDF_View extends Base {
      */
     protected function register_content_controls() {
         $this->__pdf_content_controls();
+        $this->__pdf_settings_controls();
     }
 
     protected function __pdf_content_controls() {
         $this->start_controls_section(
-            '_section_photo_stack',
+            '_section_pdf_content',
             [
                 'label' => __('PDF Source', 'happy-elementor-addons'),
                 'tab'   => Controls_Manager::TAB_CONTENT,
@@ -82,7 +84,7 @@ class PDF_View extends Base {
 			[
 				'label' => __( 'Important Note', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::RAW_HTML,
-				'raw' => __( 'To remove watermark in PDFjs.express. please signup and get free license key. <a href="https://pdfjs.express/signup">Sign up</a>', 'happy-elementor-addons' ),
+				'raw' => __( 'To show PDF file in PDFjs.express. please signup and get free license key. <a target="_blank" href="https://pdfjs.express/signup">Sign up</a>', 'happy-elementor-addons' ),
 				'content_classes' => 'elementor-control-field-description',
                 'condition' => [
 					'pdf_view_type' => 'yes',
@@ -128,7 +130,7 @@ class PDF_View extends Base {
 				'type' => Controls_Manager::URL,
 				'placeholder' => __( 'http://www.example.com/sample.pdf', 'happy-elementor-addons'),
                 'default' => [
-                    'url' =>  ''
+                    'url' =>  'http://www.pdf995.com/samples/pdf.pdf'
                 ],
 				'show_external' => false,
 				'dynamic' => [
@@ -196,13 +198,23 @@ class PDF_View extends Base {
 				]
 			]
 		);
-
-        $this->add_control(
+        
+        $this->end_controls_section();
+    }
+	protected function __pdf_settings_controls(){
+		$this->start_controls_section(
+            '_section_pdf_settings',
+            [
+                'label' => __('Settings', 'happy-elementor-addons'),
+                'tab'   => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+		$this->add_control(
 			'enable_download',
 			[
-				'label'        => __( 'Download', 'happy-elementor-addons' ),
+				'label'        => __( 'Download Button', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
-				'default'      => '',
+				'default'      => 'yes',
 				'return_value' => 'yes',
 			]
 		);
@@ -210,9 +222,9 @@ class PDF_View extends Base {
         $this->add_control(
 			'enable_icon',
 			[
-				'label'        => __( 'Icon', 'happy-elementor-addons' ),
+				'label'        => __( 'Icon Show', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
-				'default'      => '',
+				'default'      => 'yes',
 				'return_value' => 'yes',
 			]
 		);
@@ -252,6 +264,10 @@ class PDF_View extends Base {
                     'size' => 100,
                     'unit' => '%',
                 ],
+				'selectors' => [
+					'{{WRAPPER}} .pdf_viewer_container iframe' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-google-iframe' => 'width: {{SIZE}}{{UNIT}};'
+				]
             ]
         );
 
@@ -282,9 +298,35 @@ class PDF_View extends Base {
                 ],
             ]
         );
+
+		$this->add_responsive_control(
+			'align',
+			[
+				'label' => __( 'Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};'
+				]
+			]
+		);
         
         $this->end_controls_section();
-    }
+	}
 
     /**
      * Register widget style controls
@@ -292,7 +334,7 @@ class PDF_View extends Base {
     protected function register_style_controls() {
         $this->__title_desc_style_controls();
         $this->__button_style_controls();
-        $this->__icon_style_controls();
+        // $this->__icon_style_controls();
     }
 
     protected function __title_desc_style_controls() {
@@ -305,17 +347,7 @@ class PDF_View extends Base {
 			]
 		);
 
-		$this->add_responsive_control(
-			'content_padding',
-			[
-				'label' => __( 'Content Padding', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', 'em', '%' ],
-				'selectors' => [
-					'{{WRAPPER}} .ha-pdf-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+		
 
 		$this->add_control(
 			'_heading_title',
@@ -325,6 +357,7 @@ class PDF_View extends Base {
 				'separator' => 'before'
 			]
 		);
+		
 
 		$this->add_responsive_control(
 			'title_spacing',
@@ -333,7 +366,7 @@ class PDF_View extends Base {
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'selectors' => [
-					'{{WRAPPER}} .ha-pdf-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-title-flex' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -359,6 +392,94 @@ class PDF_View extends Base {
 			]
 		);
 
+		$this->add_control(
+			'_heading_title_bar',
+			[
+				'type' => Controls_Manager::HEADING,
+				'label' => __( 'Title Bar', 'happy-elementor-addons' ),
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'title_background',
+				'label' => __( 'Background', 'happy-elementor-addons' ),
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .pdf_viewer_options',
+			]
+		);
+
+		$this->add_responsive_control(
+			'title_bar_padding',
+			[
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .pdf_viewer_options' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'title_bar_radius',
+			[
+				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .pdf_viewer_options' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'icon_heading',
+			[
+				'label' => __( 'Icon', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'icon_color',
+			[
+				'label' => __( 'Icon Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .pdf-icon' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_size',
+			[
+				'label' => __( 'Icon Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .pdf-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .pdf-icon svg' => 'width: {{SIZE}}{{UNIT}};'
+				],
+				'default' => [
+					'size' => 30
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_spacing',
+			[
+				'label' => __( 'Icon Spacing', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'selectors' => [
+					'{{WRAPPER}} .pdf-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
 
 		$this->end_controls_section();
 	}
@@ -414,14 +535,6 @@ class PDF_View extends Base {
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			[
-				'name' => 'button_box_shadow',
-				'selector' => '{{WRAPPER}} .ha-btn',
-			]
-		);
-
 		$this->add_control(
 			'hr',
 			[
@@ -459,6 +572,13 @@ class PDF_View extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-btn' => 'background-color: {{VALUE}};',
 				],
+			]
+		);
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'button_box_shadow',
+				'selector' => '{{WRAPPER}} .ha-btn',
 			]
 		);
 
@@ -506,6 +626,13 @@ class PDF_View extends Base {
 				],
 			]
 		);
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'button_box_shadow_hover',
+				'selector' => '{{WRAPPER}} .ha-btn:hover',
+			]
+		);
 
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
@@ -523,29 +650,9 @@ class PDF_View extends Base {
 			]
 		);
 
-		$this->add_responsive_control(
-			'icon_spacing',
-			[
-				'label' => __( 'Spacing', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
-				'selectors' => [
-					'{{WRAPPER}} .pdf-icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+		
 
-		$this->add_responsive_control(
-			'icon_size',
-			[
-				'label' => __( 'Icon Size', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'selectors' => [
-					'{{WRAPPER}} .pdf-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .pdf-icon svg' => 'width: {{SIZE}}{{UNIT}};'
-				],
-			]
-		);
+		
 		$this->end_controls_section();
 	}
    
@@ -558,7 +665,7 @@ class PDF_View extends Base {
 		$file_type = $settings['file_type'];
 
 		// $pdf_url = ('yes' == $settings['pdf_view_type'] && is_array($settings['pdf_file'])) ? $settings['pdf_file']['url'] : '';
-        $pdf_url_i = '';
+        // $pdf_url_i = '';
         if('url' == $file_type){
             $pdf_url_i =  $settings['pdf_url']['url'];
         }else{
@@ -601,17 +708,19 @@ class PDF_View extends Base {
             <?php if('yes' ==  $settings['pdf_view_type']) : 
 
                 if(! empty($settings['pdf_license']) ){
-                    printf( '<div id="%1$s" style="height:%2$s; width:%3$s"></div>',
+                    printf( '<div id="%1$s" style="height:%2$s;"></div>',
                             esc_attr( $unique_id ),
                             esc_attr($settings['pdf_height']['size'].$settings['pdf_height']['unit']),
-                            esc_attr($settings['pdf_width']['size'].$settings['pdf_width']['unit']),
+                            // esc_attr($settings['pdf_width']['size'].$settings['pdf_width']['unit']),
 
                     );
                 }else{
                     printf( '<h1>%1$s</h1>', __('Please set your PDFjs.express License', 'happy-elementor-addons'));
                 }
             else:
-                echo '<iframe src="//docs.google.com/viewer?url=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_height']['size'].$settings['pdf_height']['unit'].'" allowfullscreen></iframe>';
+				if(!empty($pdf_url_i)){
+                	echo '<iframe class="ha-google-iframe" src="//docs.google.com/viewer?url=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_height']['size'].$settings['pdf_height']['unit'].'" allowfullscreen></iframe>';
+				}
             endif; ?>
         </div>
         <?php
