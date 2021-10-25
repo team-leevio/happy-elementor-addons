@@ -681,17 +681,20 @@ class PDF_View extends Base {
         ?>
         <div class="pdf_viewer_container" <?php echo $this->print_render_attribute_string('pdf_viewer_container'); ?>>
             <div class="pdf_viewer_options">
-                <div class="ha-title-flex">
-                    <span class="pdf-icon">
-                        <?php ha_render_icon($settings); ?>
+                    <span class="ha-title-flex">
+						<span class="pdf-icon">
+							<?php ha_render_icon($settings, 'icon', 'selected_icon');  ?>
+						</span>
+						<?php
+						if($settings['pdf_title']){
+							echo sprintf( '<h2 class="ha-pdf-title">%s</h2>',
+							esc_html( $settings['pdf_title'] ),
+							);
+						}
+						?>
                     </span>
-                    <?php if($settings['pdf_title']){
-                        printf( '<h2 class="ha-pdf-title">%s</h2>',
-                        esc_html( $settings['pdf_title'] ),
-                        );
-                    }
+                    <?php 
                 ?>
-                </div>
                 <div class="pdf-button">
                 <?php
                     if('yes' == $settings['enable_download']){
