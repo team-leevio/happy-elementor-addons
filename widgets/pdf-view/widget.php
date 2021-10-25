@@ -130,7 +130,7 @@ class PDF_View extends Base {
 				'type' => Controls_Manager::URL,
 				'placeholder' => __( 'http://www.example.com/sample.pdf', 'happy-elementor-addons'),
                 'default' => [
-                    'url' =>  'https://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf'
+                    'url' =>  'http://www.pdf995.com/samples/pdf.pdf'
                 ],
 				'show_external' => false,
 				'dynamic' => [
