@@ -659,6 +659,13 @@ class PDF_View extends Base {
             $pdf_url_i =  $settings['pdf_file']['url'];
         }
 
+		if (isset($settings['pdf_width'])) {
+			$width = ' width: ' . $settings['pdf_width']['size'] . $settings['pdf_width']['unit'] . ';';
+		}
+		if (isset($settings['pdf_height'])) {
+			$height = ' height: ' . $settings['pdf_height']['size'] . $settings['pdf_height']['unit'] . ';';
+		}
+
 		if(empty($pdf_url_i)){
 			$pdf_url_i = HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/sample.pdf';
 		}
@@ -715,7 +722,7 @@ class PDF_View extends Base {
             elseif('yes' !=  $settings['pdf_view_type'] && 'upload_file' == $file_type):
 				echo '<iframe class="ha-google-iframe" src="'. HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/mozila/web/viewer.html?file=' . $pdf_url_i . '&embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_height']['size'].$settings['pdf_height']['unit'].'" allowfullscreen></iframe>';
 			else:
-				echo '<iframe class="ha-google-iframe" src="https://docs.google.com/viewer?url=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" height="'.$settings['pdf_height']['size'].$settings['pdf_height']['unit'].'" allowfullscreen></iframe>';
+				echo '<iframe class="ha-google-iframe" src="https://docs.google.com/viewer?url=' . $pdf_url_i . '&amp;embedded=true" frameborder="1" style="' . $width . $height . '" marginheight="0px" marginwidth="0px" allowfullscreen></iframe>';
             endif; ?>
         </div>
         <?php
