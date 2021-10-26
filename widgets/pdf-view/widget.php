@@ -212,7 +212,7 @@ class PDF_View extends Base {
 		$this->add_control(
 			'enable_download',
 			[
-				'label'        => __( 'Download Button', 'happy-elementor-addons' ),
+				'label'        => __( 'Show Download?', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => 'yes',
 				'return_value' => 'yes',
@@ -347,30 +347,6 @@ class PDF_View extends Base {
 			]
 		);
 
-		
-
-		$this->add_control(
-			'_heading_title',
-			[
-				'type' => Controls_Manager::HEADING,
-				'label' => __( 'Title', 'happy-elementor-addons' ),
-				'separator' => 'before'
-			]
-		);
-		
-
-		$this->add_responsive_control(
-			'title_spacing',
-			[
-				'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'selectors' => [
-					'{{WRAPPER}} .ha-title-flex' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
 		$this->add_control(
 			'title_color',
 			[
@@ -398,6 +374,18 @@ class PDF_View extends Base {
 				'type' => Controls_Manager::HEADING,
 				'label' => __( 'Title Bar', 'happy-elementor-addons' ),
 				'separator' => 'before'
+			]
+		);
+		
+		$this->add_responsive_control(
+			'title_spacing',
+			[
+				'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'selectors' => [
+					'{{WRAPPER}} .pdf_viewer_options' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
