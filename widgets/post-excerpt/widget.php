@@ -1,6 +1,6 @@
 <?php
 /**
- * Post Title widget class
+ * Page_Title widget class
  *
  * @package Happy_Addons
  */
@@ -20,7 +20,7 @@ use Happy_Addons\Elementor\Controls\Group_Control_Foreground;
 
 defined( 'ABSPATH' ) || die();
 
-class Post_Title extends Base {
+class Post_Excerpt extends Base {
 
 	/**
 	 * Get widget title.
@@ -31,11 +31,11 @@ class Post_Title extends Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Post Title', 'happy-elementor-addons' );
+		return __( 'Post Excerpt', 'happy-elementor-addons' );
 	}
 
 	public function get_custom_help_url() {
-		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/post-title/';
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/post-excerpt/';
 	}
 
 	/**
@@ -51,71 +51,19 @@ class Post_Title extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'post title', 'Title', 'text' ];
+		return [ 'excerpt', 'text' ];
 	}
 
 	/**
-     * Register widget content controls
+     * Register widget excerpt controls
      */
 	protected function register_content_controls() {
 
 		$this->start_controls_section(
-			'_section_post_title',
+			'_section_post_excerpt',
 			[
-				'label' => __( 'Post Title', 'happy-elementor-addons' ),
+				'label' => __( 'Post Excerpt', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
-			]
-		);
-
-		$this->add_control(
-			'post_title_tag',
-			[
-				'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::CHOOSE,
-				'options' => [
-					'h1'  => [
-						'title' => __( 'H1', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-h1'
-					],
-					'h2'  => [
-						'title' => __( 'H2', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-h2'
-					],
-					'h3'  => [
-						'title' => __( 'H3', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-h3'
-					],
-					'h4'  => [
-						'title' => __( 'H4', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-h4'
-					],
-					'h5'  => [
-						'title' => __( 'H5', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-h5'
-					],
-					'h6'  => [
-						'title' => __( 'H6', 'happy-elementor-addons' ),
-						'icon' => 'eicon-editor-h6'
-					]
-				],
-				'default' => 'h2',
-				'toggle' => false,
-			]
-		);
-        $this->add_control(
-			'size',
-			[
-				'label' => esc_html__( 'Size', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'default',
-				'options' => [
-					'default' => esc_html__( 'Default', 'happy-elementor-addons' ),
-					'small' => esc_html__( 'Small', 'happy-elementor-addons' ),
-					'medium' => esc_html__( 'Medium', 'happy-elementor-addons' ),
-					'large' => esc_html__( 'Large', 'happy-elementor-addons' ),
-					'xl' => esc_html__( 'XL', 'happy-elementor-addons' ),
-					'xxl' => esc_html__( 'XXL', 'happy-elementor-addons' ),
-				],
 			]
 		);
 
@@ -179,7 +127,7 @@ class Post_Title extends Base {
 					// 'default' => Global_Colors::COLOR_PRIMARY,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-heading-title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} p' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -191,29 +139,22 @@ class Post_Title extends Base {
 				'global' => [
 					// 'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				],
-				'selector' => '{{WRAPPER}} .elementor-heading-title',
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Text_Shadow::get_type(),
-			[
-				'name' => 'text_shadow',
-				'selector' => '{{WRAPPER}} .elementor-heading-title',
+				'selector' => '{{WRAPPER}} p',
 			]
 		);
         
-
         $this->end_controls_section();
 	}
 
 	protected function render() {
+        $post = get_post();
+
 		$settings = $this->get_settings_for_display();
 
-        if ( ! empty( $settings['size'] ) ) {
-            $this->add_render_attribute('title', 'class', 'elementor-size-' . $settings['size']);
-        }
-
-        printf('<%1$s %2$s>%3$s</%1$s>', $settings['post_title_tag'], $this->get_render_attribute_string('title'), get_the_title() );
+		if ( post_password_required( $post->ID ) ) {
+			echo get_the_password_form( $post->ID );
+			return;
+		}
+		echo apply_filters( 'the_excerpt', get_the_excerpt() );
 	}
 }

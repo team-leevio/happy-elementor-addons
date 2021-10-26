@@ -1,6 +1,6 @@
 <?php
 /**
- * Post Title widget class
+ * Site Title widget class
  *
  * @package Happy_Addons
  */
@@ -20,7 +20,7 @@ use Happy_Addons\Elementor\Controls\Group_Control_Foreground;
 
 defined( 'ABSPATH' ) || die();
 
-class Post_Title extends Base {
+class Site_Title extends Base {
 
 	/**
 	 * Get widget title.
@@ -31,11 +31,11 @@ class Post_Title extends Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Post Title', 'happy-elementor-addons' );
+		return __( 'Site Title', 'happy-elementor-addons' );
 	}
 
 	public function get_custom_help_url() {
-		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/post-title/';
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/site-title/';
 	}
 
 	/**
@@ -51,7 +51,7 @@ class Post_Title extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'post title', 'Title', 'text' ];
+		return [ 'site title', 'Title', 'text' ];
 	}
 
 	/**
@@ -60,15 +60,15 @@ class Post_Title extends Base {
 	protected function register_content_controls() {
 
 		$this->start_controls_section(
-			'_section_post_title',
+			'_section_site_title',
 			[
-				'label' => __( 'Post Title', 'happy-elementor-addons' ),
+				'label' => __( 'Site Title', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
 		$this->add_control(
-			'post_title_tag',
+			'site_title_tag',
 			[
 				'label' => __( 'Title HTML Tag', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
@@ -214,6 +214,6 @@ class Post_Title extends Base {
             $this->add_render_attribute('title', 'class', 'elementor-size-' . $settings['size']);
         }
 
-        printf('<%1$s %2$s>%3$s</%1$s>', $settings['post_title_tag'], $this->get_render_attribute_string('title'), get_the_title() );
+        printf('<%1$s %2$s>%3$s</%1$s>', $settings['site_title_tag'], $this->get_render_attribute_string('title'), get_bloginfo('name') );
 	}
 }

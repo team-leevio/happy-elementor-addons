@@ -1020,18 +1020,6 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
-			'' => [
-				'cat' => 'theme',
-				'is_active' => true,
-				'title' => __( '', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-lens',
-				'css' => [''],
-				'js' => [],
-				'vendor' => [
-					'css' => [],
-					'js' => [],
-				],
-			],
 			'site-logo' => [
 				'cat' => 'theme',
 				'is_active' => true,
@@ -1061,7 +1049,7 @@ class Widgets_Manager {
 				'is_active' => true,
 				'title' => __( 'Author Meta', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-lens',
-				'css' => [''],
+				'css' => ['author'],
 				'js' => [],
 				'vendor' => [
 					'css' => [],
