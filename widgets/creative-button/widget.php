@@ -900,6 +900,9 @@ class Creative_Button extends Base {
     protected function render() {
 		$settings = $this->get_settings_for_display();
 		$this->add_render_attribute( 'wrap', 'data-magnetic', $settings['magnetic_enable'] ? $settings['magnetic_enable'] : 'no' );
+		// if( 'yes' === $settings['magnetic_enable'] ){
+		// 	$this->add_render_attribute( 'wrap', 'data-magnetic-threshold', $settings['threshold'] ? $settings['threshold'] : 30 );
+		// }
 		$this->{'render_' . $settings['btn_style'] . '_markup'}($settings);
 
 	}

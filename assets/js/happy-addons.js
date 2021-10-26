@@ -1014,20 +1014,25 @@
 			var btn_wrap = $scope.find('.ha-creative-btn-wrap');
 			var magnetic = btn_wrap.data('magnetic');
 			var btn = btn_wrap.find('a.ha-creative-btn');
-			var mousemove = 'mousemove.haCreativeBtn_'+$scope.data('id');
-			var mouseout = 'mouseout.haCreativeBtn_'+$scope.data('id');
 			if( 'yes' == magnetic ){
-				btn_wrap.on( mousemove, function(e) {
-					var position = e.currentTarget.getBoundingClientRect();
-					var x = e.pageX - position.left - position.width / 2;
-					var y = e.pageY - position.top - position.height / 2;
-					e.currentTarget.querySelector('a.ha-creative-btn').style.transform = "translate(" + x * 0.3 + "px, " + y * 0.5 + "px)";
+				// var threshold = btn_wrap.data('magnetic-threshold');
+				btn_wrap.on('mousemove', function(e) {
+					// var position = e.currentTarget.getBoundingClientRect();
+					// console.log(e);
+					// console.log( $(this).offset().top);
+					// console.log(btn_wrap.offset().top);
+					// console.log('threshold = ' + threshold);
+					// console.log('offset = ' + btn_wrap.offset().left);
+					// console.log(e.pageY);
+
+					var x = e.pageX - ( btn_wrap.offset().left + ( btn_wrap.outerWidth() / 2 ) );
+					var y = e.pageY - ( btn_wrap.offset().top + ( btn_wrap.outerHeight() / 2 ) );
+					btn.css("transform", "translate(" + x * 0.3 + "px, " + y * 0.5 + "px)");
 				});
-				btn_wrap.on( mouseout, function(e){
-					e.currentTarget.querySelector('a.ha-creative-btn').style.transform = "translate(0px, 0px)";
+				btn_wrap.on('mouseout', function(e){
+					btn.css("transform", "translate(0px, 0px)");
 				});
 			}
-
 			//For expandable button style only
 			var expandable = $scope.find('.ha-eft--expandable');
 			var text = expandable.find('.text');
