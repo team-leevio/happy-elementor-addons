@@ -1015,16 +1015,7 @@
 			var magnetic = btn_wrap.data('magnetic');
 			var btn = btn_wrap.find('a.ha-creative-btn');
 			if( 'yes' == magnetic ){
-				// var threshold = btn_wrap.data('magnetic-threshold');
 				btn_wrap.on('mousemove', function(e) {
-					// var position = e.currentTarget.getBoundingClientRect();
-					// console.log(e);
-					// console.log( $(this).offset().top);
-					// console.log(btn_wrap.offset().top);
-					// console.log('threshold = ' + threshold);
-					// console.log('offset = ' + btn_wrap.offset().left);
-					// console.log(e.pageY);
-
 					var x = e.pageX - ( btn_wrap.offset().left + ( btn_wrap.outerWidth() / 2 ) );
 					var y = e.pageY - ( btn_wrap.offset().top + ( btn_wrap.outerHeight() / 2 ) );
 					btn.css("transform", "translate(" + x * 0.3 + "px, " + y * 0.5 + "px)");
