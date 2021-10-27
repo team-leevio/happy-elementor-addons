@@ -85,6 +85,7 @@ HappyAddons comes with plenty of Elementor Widgets in the free version. And all 
 - [**Mailchimp Widget**](https://demo.happyaddons.com/elementor-mailchimp-widget-demo/) – Now you can create lucrative Mailchimp forms with HappyAddons Mailchimp Widget for Elementor.
 - [**Content Switcher**](https://demo.happyaddons.com/elementor-content-switcher-demo/) – Happy Content Switcher Elementor widget allows you to toggle Elementor sections, pages, or texts easily.
 - [**Image Stack Group**](https://demo.happyaddons.com/elementor-image-stack-group-demo/) – Sometimes we have to show images in a stack group format to create an eye-catchy look. But it’s so tough to create a single stack group of images with Elementor. But with our Elementor  Image Stack Group widget, you can easily create an image stacked group within Elementor. You can get the Elementor Image Stack Group widget in the free version of HappyAddons.
+- [**Creative Button**](https://demo.happyaddons.com/elementor-creative-button-demo/) – Are you wondering about creating an outstanding, eye-catching look by adding exclusive button styles & effects to your website? Create a marvelous Call To Action through HappyAddons Creative Buttons Elementor Widget and redirect visitors to the right place.
 - [**Image Accordion**](https://demo.happyaddons.com/elementor-image-accordion-demo/) – HappyAddons Image Accordion widget for Elementor comes with interactive design looks. You can create unique accordions for images. It will help you keep your users longer on the website. Try HappyAddons Image Accordion Elementor Widget now.
 - [**Contact Form 7**](https://demo.happyaddons.com/elementor-contact-form-7-widget-demo/) – This utility widget helps you to integrate existing forms built using CF7 plugin across your web pages without spending too much time.
 - [**Caldera Forms**](https://demo.happyaddons.com/elementor-caldera-forms-widget-demo/) – This widget can help you to display your caldera forms to display on your web pages designed with Elementor.
@@ -379,7 +380,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.3.0 - 26 October 2021 =
+= 3.3.0 - 27 October 2021 =
 
 - New: Creative Button Widget
 - Fix: Dashboard widget broken style
