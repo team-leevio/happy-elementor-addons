@@ -166,12 +166,13 @@
 		var $dashboardAnalytics = $('#ha-dashboard-analytics-disable');
 		$dashboardAnalytics.on('click', function (event) {
 			event.preventDefault();
+			$(this).next().val('true');
 			$.post({
 				url: HappyDashboard.ajaxUrl,
 				data: {
 					nonce: HappyDashboard.nonce,
 					action: HappyDashboard.action,
-					data: 'disable-unused-widgets=true',
+					data: $dashboardForm.serialize(),
 				},
 				beforeSend: function () {
 					$dashboardAnalytics

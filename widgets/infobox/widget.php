@@ -81,11 +81,11 @@ class InfoBox extends Base {
 				'options' => [
 					'icon' => [
 						'title' => __( 'Icon', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-smile-o',
+						'icon' => 'eicon-star',
 					],
 					'image' => [
 						'title' => __( 'Image', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-image',
+						'icon' => 'eicon-image',
 					],
 				],
 				'default' => 'icon',
@@ -1034,7 +1034,7 @@ class InfoBox extends Base {
 		<?php
 	}
 
-	public function _content_template() {
+	public function content_template() {
 		?>
 		<#
 		var iconHTML, migrated;

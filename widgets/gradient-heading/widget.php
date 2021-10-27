@@ -160,7 +160,7 @@ class Gradient_Heading extends Base {
      * Register widget style controls
      */
 	protected function register_style_controls() {
-		
+
 		$this->start_controls_section(
 			'_section_style_title',
 			[
@@ -249,7 +249,7 @@ class Gradient_Heading extends Base {
 		);
 	}
 
-	public function _content_template() {
+	public function content_template() {
 		?>
 		<#
 		view.addInlineEditingAttributes( 'title', 'basic' );

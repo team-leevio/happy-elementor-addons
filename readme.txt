@@ -1,9 +1,9 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.2.2
+Version: 3.3.0
 Author: weDevs
 Author URI: https://happyaddons.com/
-Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, wedevs, iqbalrony, sabbirshouvo, sayedulsayem
+Contributors: happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Mega Menu
 Requires at least: 4.7
 Tested up to: 5.8
@@ -85,6 +85,7 @@ HappyAddons comes with plenty of Elementor Widgets in the free version. And all 
 - [**Mailchimp Widget**](https://demo.happyaddons.com/elementor-mailchimp-widget-demo/) – Now you can create lucrative Mailchimp forms with HappyAddons Mailchimp Widget for Elementor.
 - [**Content Switcher**](https://demo.happyaddons.com/elementor-content-switcher-demo/) – Happy Content Switcher Elementor widget allows you to toggle Elementor sections, pages, or texts easily.
 - [**Image Stack Group**](https://demo.happyaddons.com/elementor-image-stack-group-demo/) – Sometimes we have to show images in a stack group format to create an eye-catchy look. But it’s so tough to create a single stack group of images with Elementor. But with our Elementor  Image Stack Group widget, you can easily create an image stacked group within Elementor. You can get the Elementor Image Stack Group widget in the free version of HappyAddons.
+- [**Creative Button**](https://demo.happyaddons.com/elementor-creative-button-demo/) – Are you wondering about creating an outstanding, eye-catching look by adding exclusive button styles & effects to your website? Create a marvelous Call To Action through HappyAddons Creative Buttons Elementor Widget and redirect visitors to the right place.
 - [**Image Accordion**](https://demo.happyaddons.com/elementor-image-accordion-demo/) – HappyAddons Image Accordion widget for Elementor comes with interactive design looks. You can create unique accordions for images. It will help you keep your users longer on the website. Try HappyAddons Image Accordion Elementor Widget now.
 - [**Contact Form 7**](https://demo.happyaddons.com/elementor-contact-form-7-widget-demo/) – This utility widget helps you to integrate existing forms built using CF7 plugin across your web pages without spending too much time.
 - [**Caldera Forms**](https://demo.happyaddons.com/elementor-caldera-forms-widget-demo/) – This widget can help you to display your caldera forms to display on your web pages designed with Elementor.
@@ -162,6 +163,7 @@ If you are still craving for more widgets, then the following premium widgets ar
 - [**Advanced Slider**](https://demo.happyaddons.com/elementor-advanced-slider-widget-demo/) – Bored with your typical sliders? Try our advanced slider for Elementor. Create mesmerizing slides within your Elementor Sites using our Advanced Slider.
 - [**Happy Mega Menu**](https://demo.happyaddons.com/elementor-happy-mega-menu-widget-demo/) – Struggling with large-scale menu items? Happy Mega Menu is the best solution to your problems. You can create mega menus lik Adidas, Dribbble, Puma, Invision etc.
 - [**One Page Navigation Widget**](https://demo.happyaddons.com/elementor-one-page-navigation-widget-demo/) - HappyAddons one page navigation widget will help you create lucrative one page nav contents for your site. It has 9 design controls with a smooth scrolling option. You can show any kind of design within it.
+- [**Unfold Widget**](https://demo.happyaddons.com/elementor-unfold-widget-demo/) - You can organize and save space on your webpage with HappyAddons Unfold Widget. It will help you create interactive content along with neat and clean Elementor web pages. Moreover, you can unfold the content with click or mouse hover action.
 - [**Off-Canvas Content or Menu Widget**](https://demo.happyaddons.com/elementor-off-canvas-content-demo/) - HappyAddons off canvas navigation content will give you the freedom to create any kind of off canvas contents or offcanvas menu items for your Elementor websites.
 - [**Feature List**](https://demo.happyaddons.com/elementor-feature-list-widget-demo/) – You can display your product features using different styles using this widget. As a bonus, you can also customize each and every predefined design.
 - [**Pricing Table**](https://demo.happyaddons.com/elementor-pricing-table-widget-demo/) – This one of a kind widget will allow you to create any kind of pricing table under the sun. As a surprise, you can use gradient background, oval-shaped button, font awesome icons, background fill color, different heights, dark mood and so on.
@@ -379,12 +381,22 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.3.0 - 27 October 2021 =
+
+- New: Creative Button Widget
+- Fix: Dashboard widget broken style
+- Fix: Happy Tooltip JS optimization
+- Fix: Privacy policy missing link in setup wizard
+- Fix: MailChimp audience tags issue solve
+- Fix: Dashboard widgets and features disable all issues.
+- Tweak: Replace `_content_template` function with `content_template`.
+
 = 3.2.2 - 29 September 2021 =
 
 - Fix: Setup wizard asset loading
 - Fix: Resolved an unexpected warning in admin area while debugging is enabled.
 - Fix: Missing Template Engine icon in Elementor Editor.
-- Fix: Icon Box widget Badge z-index reduced 
+- Fix: Icon Box widget Badge z-index reduced
 
 = 3.2.1 - 23 September 2021 =
 
