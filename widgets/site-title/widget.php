@@ -166,23 +166,20 @@ class Site_Title extends Base {
 	protected function __page_title_style_controls() {
 
         $this->start_controls_section(
-            '_section_style_text',
+            '_section_style_site_title',
             [
-                'label' => __( 'Text', 'happy-elementor-addons' ),
+                'label' => __( 'Site Title', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_control(
-			'title_color',
+			'st_color',
 			[
-				'label' => esc_html__( 'Text Color', 'happy-elementor-addons' ),
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
-				'global' => [
-					// 'default' => Global_Colors::COLOR_PRIMARY,
-				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-heading-title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-site-title' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -190,19 +187,18 @@ class Site_Title extends Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'typography',
-				'global' => [
-					// 'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
-				'selector' => '{{WRAPPER}} .elementor-heading-title',
+				'name' => 'site_title_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-site-title',
+				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
 
 		$this->add_group_control(
 			Group_Control_Text_Shadow::get_type(),
 			[
-				'name' => 'text_shadow',
-				'selector' => '{{WRAPPER}} .elementor-heading-title',
+				'name' => 'site_text_shadow',
+				'selector' => '{{WRAPPER}} .ha-site-title',
 			]
 		);
         
@@ -212,6 +208,7 @@ class Site_Title extends Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$this->add_render_attribute('title', 'class', 'ha-site-title');
 
         if ( ! empty( $settings['size'] ) ) {
             $this->add_render_attribute('title', 'class', 'elementor-size-' . $settings['size']);

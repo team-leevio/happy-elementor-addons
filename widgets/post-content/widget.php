@@ -114,21 +114,18 @@ class Post_Content extends Base {
 	protected function __page_title_style_controls() {
 
         $this->start_controls_section(
-            '_section_style_text',
+            '_section_style_content',
             [
-                'label' => __( 'Text', 'happy-elementor-addons' ),
+                'label' => __( 'Content', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_control(
-			'title_color',
+			'content_color',
 			[
-				'label' => esc_html__( 'Text Color', 'happy-elementor-addons' ),
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
-				'global' => [
-					// 'default' => Global_Colors::COLOR_PRIMARY,
-				],
 				'selectors' => [
 					'{{WRAPPER}} p' => 'color: {{VALUE}};',
 				],
@@ -138,11 +135,10 @@ class Post_Content extends Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'typography',
-				'global' => [
-					// 'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
+				'name' => 'content_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} p',
+				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
         

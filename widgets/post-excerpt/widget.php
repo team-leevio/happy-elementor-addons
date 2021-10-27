@@ -107,28 +107,25 @@ class Post_Excerpt extends Base {
 	 * Register styles related controls
 	 */
 	protected function register_style_controls() {
-		$this->__page_title_style_controls();
+		$this->__excerpt_style_controls();
 	}
 
 	
-	protected function __page_title_style_controls() {
+	protected function __excerpt_style_controls() {
 
         $this->start_controls_section(
-            '_section_style_text',
+            '_section_style_excerpt',
             [
-                'label' => __( 'Text', 'happy-elementor-addons' ),
+                'label' => __( 'Excerpt Style', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_control(
-			'title_color',
+			'excerpt_color',
 			[
-				'label' => esc_html__( 'Text Color', 'happy-elementor-addons' ),
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
-				'global' => [
-					// 'default' => Global_Colors::COLOR_PRIMARY,
-				],
 				'selectors' => [
 					'{{WRAPPER}} p' => 'color: {{VALUE}};',
 				],
@@ -138,11 +135,10 @@ class Post_Excerpt extends Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'typography',
-				'global' => [
-					// 'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
+				'name' => 'excerpt_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} p',
+				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
         

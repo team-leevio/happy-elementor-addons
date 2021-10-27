@@ -206,15 +206,12 @@ class Author_Meta extends Base {
         );
 
         $this->add_control(
-			'title_color',
+			'author_color',
 			[
 				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
-				'global' => [
-					// 'default' => Global_Colors::COLOR_PRIMARY,
-				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-heading-title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-author-title' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -222,19 +219,18 @@ class Author_Meta extends Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'typography',
-				'global' => [
-					// 'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
-				'selector' => '{{WRAPPER}} .elementor-heading-title',
+				'name' => 'author_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-author-title',
+				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
 
 		$this->add_group_control(
 			Group_Control_Text_Shadow::get_type(),
 			[
-				'name' => 'text_shadow',
-				'selector' => '{{WRAPPER}} .elementor-heading-title',
+				'name' => 'author_text_shadow',
+				'selector' => '{{WRAPPER}} .ha-author-title',
 			]
 		);
         
@@ -257,11 +253,8 @@ class Author_Meta extends Base {
 			[
 				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
-				'global' => [
-					// 'default' => Global_Colors::COLOR_PRIMARY,
-				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-heading-title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-desc p' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -270,18 +263,9 @@ class Author_Meta extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'bio_typography',
-				'global' => [
-					// 'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
-				'selector' => '{{WRAPPER}} .elementor-heading-title',
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Text_Shadow::get_type(),
-			[
-				'name' => 'bio_shadow',
-				'selector' => '{{WRAPPER}} .elementor-heading-title',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-desc p',
+				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
         
@@ -317,7 +301,7 @@ class Author_Meta extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .your-class' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-avatar' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -329,7 +313,7 @@ class Author_Meta extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .your-class' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-avatar' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -339,7 +323,7 @@ class Author_Meta extends Base {
 			[
 				'name' => 'avatar_border',
 				'label' => __( 'Border', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .wrapper',
+				'selector' => '{{WRAPPER}} .ha-avatar img',
 			]
 		);
 
@@ -350,7 +334,7 @@ class Author_Meta extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .your-class' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-avatar img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -360,6 +344,41 @@ class Author_Meta extends Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		
+		$user_id = get_the_author_meta( 'ID' );
+		$avatar = get_avatar($user_id, $settings['avatar_size']);
+		$display_name = get_the_author_meta( 'display_name' );
+		$bio = get_the_author_meta( 'description' );
+		$post_url = get_author_posts_url( $user_id );
+		$user_url =  get_the_author_meta( 'user_url' );
+		$this->add_render_attribute('author', 'class', 'ha-author');
+		$this->add_render_attribute('avatar', 'class', 'ha-avatar');
+		if( $settings['avatar_image_position'] ){
+			$this->add_render_attribute('avatar', 'class', 'avatar-position-' . $settings['avatar_image_position']);
+		}
+
+		if( $settings['show_author'] ){
+			$this->add_render_attribute('author-title', 'class', 'ha-author-title');
+		}
+
+		?>
+
+		<div <?php $this->print_render_attribute_string('author'); ?>>
+			<div <?php $this->print_render_attribute_string('avatar'); ?>>
+				<?php echo $avatar; ?>
+			</div>
+			<div class="ha-desc">
+				<?php 
+				if('yes' === $settings['show_author']){
+					printf('<%1$s %2$s>%3$s</%1$s>', esc_attr($settings['author_meta_tag']), $this->get_render_attribute_string('author-title'), esc_html($display_name)); 
+				}
+				if('yes' === $settings['show_bio']){
+					printf('<p>%1$s</p>', esc_html($bio));
+				}
+				?>
+			</div>
+		</div>
+
+
+		<?php
 	}
 }
