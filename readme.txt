@@ -3,7 +3,7 @@ Plugin Name: Happy Addons for Elementor
 Version: 3.3.0
 Author: weDevs
 Author URI: https://happyaddons.com/
-Contributors: thehappymonster, happyaddons, hasinhayder, mosaddek73, tareq1988, wedevs, iqbalrony, sabbirshouvo, sayedulsayem
+Contributors: happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Mega Menu
 Requires at least: 4.7
 Tested up to: 5.8
@@ -388,7 +388,7 @@ For a more detailed explanation check out the following documentation
 - Fix: Happy Tooltip JS optimization
 - Fix: Privacy policy missing link in setup wizard
 - Fix: MailChimp audience tags issue solve
-- Fix: Dashboard widgets and featues disable all issues.
+- Fix: Dashboard widgets and features disable all issues.
 - Tweak: Replace `_content_template` function with `content_template`.
 
 = 3.2.2 - 29 September 2021 =
