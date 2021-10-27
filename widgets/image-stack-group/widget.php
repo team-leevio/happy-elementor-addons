@@ -484,7 +484,7 @@ class Image_Stack_Group extends Base {
 		);
 
 		$this->add_control(
-			'hr',
+			'hr2',
 			[
 				'type' => \Elementor\Controls_Manager::DIVIDER,
 			]
