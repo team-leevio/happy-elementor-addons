@@ -58,7 +58,10 @@ class Site_Title extends Base {
      * Register widget content controls
      */
 	protected function register_content_controls() {
+		$this->__site_title_content_control();
+	}
 
+	protected function __site_title_content_control(){
 		$this->start_controls_section(
 			'_section_site_title',
 			[

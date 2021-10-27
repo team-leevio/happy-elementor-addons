@@ -58,7 +58,10 @@ class Post_Excerpt extends Base {
      * Register widget excerpt controls
      */
 	protected function register_content_controls() {
+		$this->__post_excerpt_controls();
+	}
 
+	protected function __post_excerpt_controls() {
 		$this->start_controls_section(
 			'_section_post_excerpt',
 			[

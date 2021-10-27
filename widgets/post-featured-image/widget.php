@@ -113,25 +113,68 @@ class Post_Featured_Image extends Base {
 	 * Register styles related controls
 	 */
 	protected function register_style_controls() {
-		$this->__page_title_style_controls();
+		$this->__thumbnail_style_controls();
 	}
 
 	
-	protected function __page_title_style_controls() {
+	protected function __thumbnail_style_controls() {
 
         $this->start_controls_section(
-            '_section_style_thumbnail',
+            '_section_thumbnail_style',
             [
-                'label' => __( 'Post Thumbnail', 'happy-elementor-addons' ),
+                'label' => __( 'Thumbnail Style', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
+        $this->add_control(
+			'thumbnail_margin',
+			[
+				'label' => __( 'Margin', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .your-class' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->add_control(
+			'thumbnail_padding',
+			[
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .your-class' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
         
-        
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'thumbnail_border',
+				'label' => __( 'Border', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .wrapper',
+			]
+		);
+
+		$this->add_control(
+			'thumbnail_radius',
+			[
+				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .your-class' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
 
         $this->end_controls_section();
 	}
+
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();

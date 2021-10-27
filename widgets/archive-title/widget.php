@@ -58,7 +58,10 @@ class Archive_Title extends Base {
      * Register widget content controls
      */
 	protected function register_content_controls() {
+		$this->__archive_title_controls();
+	}
 
+	protected function __archive_title_controls(){
 		$this->start_controls_section(
 			'_section_archive_title',
 			[
@@ -151,16 +154,15 @@ class Archive_Title extends Base {
 
         $this->end_controls_section();
 	}
-
 	/**
 	 * Register styles related controls
 	 */
 	protected function register_style_controls() {
-		$this->__page_title_style_controls();
+		$this->__archive_title_style_controls();
 	}
 
 	
-	protected function __page_title_style_controls() {
+	protected function __archive_title_style_controls() {
 
         $this->start_controls_section(
             '_section_style_text',

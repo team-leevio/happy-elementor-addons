@@ -58,7 +58,10 @@ class Page_Title extends Base {
      * Register widget content controls
      */
 	protected function register_content_controls() {
-
+		$this->__page_title_content_control();
+		
+	}
+	protected function __page_title_content_control() {
 		$this->start_controls_section(
 			'_section_page_tile',
 			[

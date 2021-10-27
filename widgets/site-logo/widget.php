@@ -161,11 +161,11 @@ class Site_Logo extends Base {
 	 * Register styles related controls
 	 */
 	protected function register_style_controls() {
-		$this->__page_title_style_controls();
+		$this->__site_logo_style_controls();
 	}
 
 	
-	protected function __page_title_style_controls() {
+	protected function __site_logo_style_controls() {
 
         $this->start_controls_section(
             '_section_style_thumbnail',
@@ -190,7 +190,7 @@ class Site_Logo extends Base {
 			[
 				'label' => __( 'Border Radius', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
+				'size_units' => [ 'px', '%'],
 				'selectors' => [
 					'{{WRAPPER}}' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -203,7 +203,7 @@ class Site_Logo extends Base {
 			[
 				'label' => __( 'Padding', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
+				'size_units' => [ 'px', '%'],
 				'selectors' => [
 					'{{WRAPPER}}' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -216,7 +216,7 @@ class Site_Logo extends Base {
 			[
 				'label' => __( 'Margin', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
+				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}}' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],

@@ -58,7 +58,10 @@ class Post_Content extends Base {
      * Register widget content controls
      */
 	protected function register_content_controls() {
+		$this->__post_content_control();
+	}
 
+	protected function __post_content_control(){
 		$this->start_controls_section(
 			'_section_post_content',
 			[

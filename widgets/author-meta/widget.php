@@ -58,7 +58,11 @@ class Author_Meta extends Base {
      * Register widget content controls
      */
 	protected function register_content_controls() {
+		$this->__author_content_controls();
+		
+	}
 
+	protected function __author_content_controls() {
 		$this->start_controls_section(
 			'_section_author_meta',
 			[
