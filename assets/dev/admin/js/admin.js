@@ -181,6 +181,8 @@ function newTemplateForm() {
 	return {
 		loading: true,
 		step: 1,
+		postTitle: '',
+		templateType: '',
 		conditionType: {
 			general: "Entire Website",
 			singular: "Sigular",
@@ -283,6 +285,13 @@ function newTemplateForm() {
 				console.log(localThis.selectiveData);
 			}
 		},
+		buttonDisabled(){
+			if( this.postTitle && this.templateType){
+				return false
+			}
+
+			return true;
+		}
 	};
 }
 

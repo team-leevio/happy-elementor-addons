@@ -11,6 +11,12 @@
 	outline: none;
 	box-shadow: none;
 }
+.ha-btn:disabled {
+	background-color: #b3b3b3;
+	box-shadow: none;
+	opacity: .7;
+	cursor: not-allowed;
+}
 
 .ha-btn-primary {
 	background: #5e3bc4;
@@ -611,6 +617,11 @@ p + .ha-review-notice__actions {
 	display: none;
 }
 
+.post-type-ha_library .wp-heading-inline,
+.post-type-ha_library .wp-heading-inline + a {
+	display: none !important;
+}
+
 #elementor-new-template__form .elementor-form-field .select2:not(:focus) {
 	border-color: #d5dadf;
 }
@@ -629,5 +640,63 @@ p + .ha-review-notice__actions {
 	font-size: 14px;
 }
 .elementor-form-field__select__wrapper .select2 .select2-selection--multiple {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex; 
 	border: none !important;
+}
+
+.elementor-form-field__select__wrapper .select2-container
+.select2-selection--multiple
+.select2-selection__rendered {
+	margin: 0;
+}
+
+.elementor-form-field__select__wrapper .select2-container
+.select2-search--inline
+.select2-search__field {
+	height: 21px;
+	border-radius: 0;
+}
+
+.elementor-form-field__select__wrapper .select2-container--default
+.select2-selection--multiple
+.select2-selection__choice {
+	padding-left: 0; 
+	border: none;
+	background-color: #e3e3e3;
+}
+.elementor-form-field__select__wrapper .select2-container--default
+.select2-selection--multiple
+.select2-selection__choice:hover .select2-selection__choice__remove {
+	display: block;
+}
+
+.elementor-form-field__select__wrapper .select2-container--default
+.select2-selection--multiple
+.select2-selection__choice__remove {
+	left: 0;
+	display: none; 
+	width: 21px;
+	height: 21px;
+	border: none;
+	border-radius: 4px;
+	background: #999;
+	color: #fff;
+	line-height: 1;
+}
+.elementor-form-field__select__wrapper .select2-container--default
+.select2-selection--multiple
+.select2-selection__choice__remove:hover {
+	background-color: #6a6a6a;
+	color: #fff;
+}
+
+.elementor-form-field__select__wrapper .select2-container--default
+.select2-selection--multiple
+.select2-selection__choice__display {
+	padding-right: 8px;
+	padding-left: 8px;
+	font-size: 12px;
 }

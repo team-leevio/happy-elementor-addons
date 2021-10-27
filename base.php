@@ -106,6 +106,14 @@ class Base {
 		}
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/api-handler.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/theme-builder.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/astra.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/bbtheme.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/generatepress.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/genesis.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/my-listing.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/oceanwp.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/twenty-nineteen.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/theme-support.php');
 	}
 
 	public function include_on_init() {

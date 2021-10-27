@@ -56,7 +56,7 @@ $selected = get_query_var('ha_library_type');
 					<div id="elementor-new-template__form__template-type__wrapper" class="elementor-form-field">
 						<label for="elementor-new-template__form__template-type" class="elementor-form-field__label"><?php echo esc_html__('Select the type of template you want to work on', 'elementor'); ?></label>
 						<div class="elementor-form-field__select__wrapper">
-							<select id="elementor-new-template__form__template-type" class="elementor-form-field__select" name="template_type" required>
+							<select id="elementor-new-template__form__template-type" class="elementor-form-field__select" x-model="templateType" name="template_type" required>
 								<option value=""><?php echo esc_html__('Select', 'elementor'); ?>...</option>
 								<?php
 								foreach ($types as $value => $type_title) {
@@ -72,11 +72,11 @@ $selected = get_query_var('ha_library_type');
 							<?php echo esc_html__('Name your template', 'elementor'); ?>
 						</label>
 						<div class="elementor-form-field__text__wrapper">
-							<input type="text" placeholder="<?php echo esc_attr__('Enter template name (optional)', 'elementor'); ?>" id="elementor-new-template__form__post-title" class="elementor-form-field__text" name="post_data[post_title]">
+							<input type="text" x-model="postTitle" placeholder="<?php echo esc_attr__('Enter template name (optional)', 'elementor'); ?>" id="elementor-new-template__form__post-title" class="elementor-form-field__text" name="post_data[post_title]">
 						</div>
 					</div>
 
-					<button @click.prevent="step = 2" id="elementor-new-template__form__submit" class="elementor-button ha-btn ha-btn-primary"><?php echo esc_html__('Next', 'elementor'); ?></button>
+					<button @click.prevent="step = 2" x-bind:disabled="buttonDisabled()" id="elementor-new-template__form__submit" class="elementor-button ha-btn ha-btn-primary"><?php echo esc_html__('Next', 'elementor'); ?></button>
 				</div>
 			</div>
 
@@ -117,7 +117,7 @@ $selected = get_query_var('ha_library_type');
 						<div id="elementor-new-template__form__post-title__wrapper" class="elementor-form-field">
 							<div class="elementor-form-field__select__wrapper">
 							<label class="elementor-form-field__label"> </label>
-								<select id="elementor-new-template__display_type_selected" class="elementor-form-field__select" name="template__display_type_selected" multiple>
+								<select id="elementor-new-template__display_type_selected" class="elementor-form-field__select" name="template_display_type_selected[]" multiple>
 								<?php 
 									$pages = get_pages(); 
 									foreach ( $pages as $page ) {
