@@ -352,8 +352,8 @@ class Author_Meta extends Base {
 		$user_url =  get_the_author_meta( 'user_url' );
 		$this->add_render_attribute('author', 'class', 'ha-author');
 		$this->add_render_attribute('avatar', 'class', 'ha-avatar');
-		if( $settings['avatar_image_position'] ){
-			$this->add_render_attribute('avatar', 'class', 'avatar-position-' . $settings['avatar_image_position']);
+		if( $settings['avatar_image_position'] && 'yes' === $settings['show_avatar']){
+			$this->add_render_attribute('author', 'class', 'avatar-position-' . $settings['avatar_image_position']);
 		}
 
 		if( $settings['show_author'] ){
@@ -363,9 +363,12 @@ class Author_Meta extends Base {
 		?>
 
 		<div <?php $this->print_render_attribute_string('author'); ?>>
+			<?php if('yes' === $settings['show_avatar']) : ?>
 			<div <?php $this->print_render_attribute_string('avatar'); ?>>
 				<?php echo $avatar; ?>
 			</div>
+			<?php endif; ?>
+			
 			<div class="ha-desc">
 				<?php 
 				if('yes' === $settings['show_author']){

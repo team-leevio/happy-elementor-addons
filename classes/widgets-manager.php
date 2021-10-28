@@ -1056,6 +1056,18 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'post-info' => [
+				'cat' => 'theme',
+				'is_active' => true,
+				'title' => __( 'Post Meta', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-lens',
+				'css' => ['post-info'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
 			'archive-title' => [
 				'cat' => 'theme',
 				'is_active' => true,

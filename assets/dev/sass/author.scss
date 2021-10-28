@@ -1,3 +1,20 @@
 .ha-author {
     display: flex;
 }
+.ha-author.avatar-position-bottom {
+    flex-direction: column-reverse;
+}
+.ha-author.avatar-position-top {
+    flex-direction: column;
+}
+.ha-author.avatar-position-right .ha-avatar {
+    order: 1;
+}
+.ha-author.avatar-position-left .ha-avatar {
+    order: 0;
+}
+
+// .ha-author .ha-avatar {
+//     width: 100%;
+// }
+

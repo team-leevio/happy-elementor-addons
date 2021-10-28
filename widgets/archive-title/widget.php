@@ -179,7 +179,7 @@ class Archive_Title extends Base {
 				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-post-title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-archive-title' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -189,7 +189,7 @@ class Archive_Title extends Base {
 			[
 				'name' => 'archive_title_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-post-title',
+				'selector' => '{{WRAPPER}} .ha-archive-title',
 				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
@@ -198,7 +198,7 @@ class Archive_Title extends Base {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'archive_text_shadow',
-				'selector' => '{{WRAPPER}} .ha-post-title',
+				'selector' => '{{WRAPPER}} .ha-archive-title',
 			]
 		);
         
@@ -208,7 +208,7 @@ class Archive_Title extends Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		$this->add_render_attribute('title', 'class', 'ha-post-title');
+		$this->add_render_attribute('title', 'class', 'ha-archive-title');
 
         if ( ! empty( $settings['size'] ) ) {
             $this->add_render_attribute('title', 'class', 'elementor-size-' . $settings['size']);
