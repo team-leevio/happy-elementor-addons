@@ -868,9 +868,6 @@ class Post_Tab extends Base {
 	protected function render () {
 
 		$settings = $this->get_settings_for_display();
-		echo '<pre>';
-		var_dump($settings);
-		echo '</pre>';
 		if ( ! $settings['post_type'] )
 			return;
 
