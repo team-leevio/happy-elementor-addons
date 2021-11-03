@@ -916,8 +916,8 @@ class Post_Tab extends Base {
 			'ha-post-tab',
 			'ha-post-tab-' . $settings['filter_pos'],
 			'ha-post-tab-grid-' . $settings['column'],
-			'ha-post-tab-grid-tablet-' . isset($settings['column_tablet']) ? $settings['column_tablet'] : '3',
-			'ha-post-tab-grid-mobile-' . isset($settings['column_mobile']) ? $settings['column_mobile'] : '1',
+			isset($settings['column_tablet']) ? 'ha-post-tab-grid-tablet-' . $settings['column_tablet'] : 'ha-post-tab-grid-tablet-3',
+			isset($settings['column_mobile']) ? 'ha-post-tab-grid-mobile-' . $settings['column_mobile'] : 'ha-post-tab-grid-mobile-1',
 		];
 		$this->add_render_attribute( 'wrapper', 'class', $wrapper_class );
 		$this->add_render_attribute( 'wrapper', 'data-query-args', $query_settings );
