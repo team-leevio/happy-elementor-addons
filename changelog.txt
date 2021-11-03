@@ -1,6 +1,7 @@
 = 3.3.* - 02 November 2021 =
 
 - Fix: Mixed Content issue solve for SSL
+- Fix: Post Tab widget undefined warning issue
 
 = 3.3.0 - 27 October 2021 =
 
