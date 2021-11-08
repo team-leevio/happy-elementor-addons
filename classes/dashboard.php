@@ -152,6 +152,17 @@ class Dashboard {
     }
 
     public static function enqueue_scripts( $hook ) {
+        // css for dashboard widget
+		$screen = \get_current_screen();
+		if($screen->id == 'dashboard') {
+			wp_enqueue_style(
+				'happy-elementor-addons-wp-dashboard',
+				HAPPY_ADDONS_ASSETS . 'admin/css/wp-dashboard.min.css',
+				null,
+				HAPPY_ADDONS_VERSION
+			);
+		}
+
         if ( self::$wizard_slug == $hook && current_user_can( 'manage_options' ) ) {
             wp_enqueue_style(
                 'happy-elementor-addons-wizard',
