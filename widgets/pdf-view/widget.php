@@ -193,9 +193,6 @@ class PDF_View extends Base {
 				'default' => __( 'PDF Title', 'happy-elementor-addons' ),
 				'placeholder' => __( 'Type PDF title', 'happy-elementor-addons' ),
 				'separator' => 'before',
-				'dynamic' => [
-					'active' => true,
-				]
 			]
 		);
         
