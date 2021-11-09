@@ -193,6 +193,9 @@ class PDF_View extends Base {
 				'default' => __( 'PDF Title', 'happy-elementor-addons' ),
 				'placeholder' => __( 'Type PDF title', 'happy-elementor-addons' ),
 				'separator' => 'before',
+				'dynamic' => [
+					'active' => true,
+				]
 			]
 		);
         
@@ -446,7 +449,7 @@ class PDF_View extends Base {
 				'type' => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .pdf-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .pdf-icon svg' => 'width: {{SIZE}}{{UNIT}};'
+					'{{WRAPPER}} .pdf-icon svg' => 'width: {{SIZE}}{{UNIT}}; height: auto;'
 				],
 				'default' => [
 					'size' => 30
