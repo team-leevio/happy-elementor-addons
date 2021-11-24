@@ -1,0 +1,33 @@
+@import "variables";
+@import "mixins";
+
+.pdf_viewer_options {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+.ha-title-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
+.pdf-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ha-title-flex h2{
+    margin-bottom: 5px;
+}
+.pdf-button a {
+    padding: 15px 25px;
+    border-radius: 5px;
+    background-color: #562dd4;
+    color: #fff;
+}
