@@ -960,18 +960,6 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
-			'photo-stack' => [
-				'cat' => 'creative',
-				'is_active' => true,
-				'title' => __( 'Photo Stack', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-lens',
-				'css' => ['photo-stack'],
-				'js' => [],
-				'vendor' => [
-					'css' => [],
-					'js' => [],
-				],
-			],
 			'pdf-view' => [
 				'cat' => 'creative',
 				'is_active' => true,
