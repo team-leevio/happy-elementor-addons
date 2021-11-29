@@ -89,7 +89,7 @@ class Comparison_Table extends Base {
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
 				'placeholder' => __( 'Column Name', 'happy-elementor-addons' ),
-				'default' => __( 'Column One', 'happy-elementor-addons' ),
+				'default' => __( 'Column %s', 'happy-elementor-addons' ),
 				'dynamic' => [
 					'active' => true,
 				]
@@ -99,7 +99,7 @@ class Comparison_Table extends Base {
 		$repeater->add_control(
 			'column_span',
 			[
-				'label' => __( 'Column Widthd', 'happy-elementor-addons' ),
+				'label' => __( 'Column Width', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::NUMBER,
 				'min' => 0,
 				'max' => 50,
@@ -198,6 +198,9 @@ class Comparison_Table extends Base {
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'title_field' => '{{{ column_name }}}',
+				'item_actions' => [
+					'sort' => false,
+				],
 				'default' => [
 					[
 						'column_name' => __( 'Features', 'happy-elementor-addons' )
@@ -286,6 +289,19 @@ class Comparison_Table extends Base {
 		$repeater = new Repeater();
 
 		$repeater->add_control(
+			'row_column_type',
+			[
+				'label'   => __( 'Row/Column', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'row',
+				'options' => [
+					'row' => __( 'Row', 'happy-elementor-addons' ),
+					'column' => __( 'Column', 'happy-elementor-addons' ),
+				],
+			]
+		);
+
+		$repeater->add_control(
 			'column_content_type',
 			[
 				'label'   => __( 'Column Content Type', 'happy-elementor-addons' ),
@@ -294,6 +310,9 @@ class Comparison_Table extends Base {
 				'options' => [
 					'text' => __( 'Text', 'happy-elementor-addons' ),
 					'icon' => __( 'Icon', 'happy-elementor-addons' ),
+				],
+				'condition' => [
+					'row_column_type!' => 'row'
 				],
 			]
 		);
@@ -309,7 +328,8 @@ class Comparison_Table extends Base {
 					'active' => true,
 				],
 				'condition' => [
-					'column_content_type' => 'text'
+					'column_content_type' => 'text',
+					'row_column_type!' => 'row'
 				],
 			]
 		);
@@ -325,7 +345,8 @@ class Comparison_Table extends Base {
 					'library' => 'happy-icons',
 				],
 				'condition' => [
-					'column_content_type' => 'icon'
+					'column_content_type' => 'icon',
+					'row_column_type' => 'column'
 				],
 			]
 		);
@@ -336,7 +357,13 @@ class Comparison_Table extends Base {
 			[
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
+				'item_actions' => [
+					'sort' => false,
+				],
 				'default' => [
+					[
+						'row_column_type' => 'row',
+					],
 					[
 						'column_content_type' => 'text',
 						'column_text' => __( 'Ready Blocks', 'happy-elementor-addons' )
@@ -354,6 +381,9 @@ class Comparison_Table extends Base {
 							'value' => 'hm hm-tick-circle',
 							'library' => 'happy-icons',
 						]
+					],
+					[
+						'row_column_type' => 'row',
 					],
 					[
 						'column_content_type' => 'text',
@@ -374,7 +404,9 @@ class Comparison_Table extends Base {
 						]
 					],
 				],
-				'title_field' => '{{{ column_content_type == "text"  ? column_text : elementor.helpers.renderIcon( this, column_icon, {}, "i", "panel" ) || \'<i class="{{ icon }}" aria-hidden="true"></i>\' Icon }}}',
+				'title_field' => '{{{ column_content_type == "text"  ? column_text : elementor.helpers.renderIcon( this, column_icon, {}, "i", "panel" ) || \'<i class="{{ column_icon }}" aria-hidden="true"></i>\' }}} 
+				{{{ column_content_type == "icon" ? " Icon" : "" }}}
+				{{{ row_column_type == "row" ? "Row Starts" : column_text }}}',
 			]
 		);
 
@@ -450,7 +482,30 @@ class Comparison_Table extends Base {
     }
 
     protected function render() {
-        
+        $settings = $this->get_settings_for_display();
+		$columns_data = is_array($settings['columns_data'] ) ? $settings['columns_data'] : [];
+		$rows_data = is_array($settings['rows_data'] ) ? $settings['rows_data'] : [];
+		?>
+		
+		<div class="ha-comparison-table">
+			<div class="ha-comparison-table__head">
+				<?php if ($columns_data): foreach ( $columns_data as $head):  ?>
+				<div class="ha-comparison-table__head_item">
+					<?php echo $head['column_name']; ?>
+				</div>
+				<?php endforeach; endif; ?>
+			</div>
+			<div class="ha-comparison-table__row">
+				<div class="ha-comparison-table__row_item">
+					row
+				</div>
+				
+			</div>
+		</div>
+		
+		
+
+		<?php
     }
 }
 
