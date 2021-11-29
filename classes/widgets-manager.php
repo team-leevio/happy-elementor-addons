@@ -303,7 +303,7 @@ class Widgets_Manager
 			'product-grid' => [
 				'cat' => 'woocommerce',
 				'title' => __('Product Grid', 'happy-elementor-addons'),
-				'icon' => 'hm hm-product-grid',
+				'icon' => 'hm hm-Product-Grid',
 				'is_pro' => true,
 			],
 			'product-category-grid' => [

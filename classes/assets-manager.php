@@ -488,7 +488,6 @@ class Assets_Manager {
 			background-color: #5636d1;
 			margin-left: 5px;
 			font-size: 18px;
-			vertical-align: bottom;
 		}
 		';
 		wp_add_inline_style('happy-elementor-addons', $data);
