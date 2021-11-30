@@ -13,10 +13,10 @@
         flex-wrap: wrap;
 	}
 	&__head_item {
-        flex: 10 0 auto;
+        flex-grow: 1;
 
         &:first-child{
-            flex-grow: 1;
+            flex-grow: 10;
         }
         // &:nth-child(2){
         //     width: 10%;

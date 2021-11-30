@@ -404,9 +404,8 @@ class Comparison_Table extends Base {
 						]
 					],
 				],
-				'title_field' => '{{{ column_content_type == "text"  ? column_text : elementor.helpers.renderIcon( this, column_icon, {}, "i", "panel" ) || \'<i class="{{ column_icon }}" aria-hidden="true"></i>\' }}} 
-				{{{ column_content_type == "icon" ? " Icon" : "" }}}
-				{{{ row_column_type == "row" ? "Row Starts" : column_text }}}',
+				'title_field' => '{{{ row_column_type == "row" ? "Row Starts" : "" || column_content_type == "text"  ? column_text : elementor.helpers.renderIcon( this, column_icon, {}, "i", "panel" ) || \'<i class="{{ column_icon }}" aria-hidden="true"></i>\' || column_content_type == "icon" ? " Icon" : "" }}}'
+
 			]
 		);
 
