@@ -2,19 +2,21 @@
 @import "mixins";
 
 .ha-comparison-table {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-direction: column;
+    // flex-wrap: wrap;
     
 
 	&__head {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        align-content: center;
+        align-items: center;
 	}
-	&__head_item {
+	&__head-item {
         flex-grow: 1;
-
+        display: flex;
         &:first-child{
             flex-grow: 10;
         }
@@ -26,9 +28,25 @@
         // }
 	}
 	&__row {
+    }
+    &__row-item {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        // align-content: center;
+        // align-items: center;
+    }
+    &__row-item-cell {
+        flex-grow: 1;
 
-	}
-	&__row_item {
-
-	}
+        &:first-child{
+            flex-grow: 10;
+        }
+    }
+    &__row-item-cell-title {
+        font-size: 20px;
+    }
+    &__row-cell-icon {
+        font-size: 20px;
+    }
 }
