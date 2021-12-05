@@ -6,15 +6,8 @@ defined( 'ABSPATH' ) || die();
 class Review_Us {
 
     public static function init() {
-        register_activation_hook( __FILE__, [__CLASS__, 'ha_void_activation_time'] );
         add_action( 'admin_init', [__CLASS__, 'ha_void_check_installation_time'] );
         add_action( 'admin_init', [__CLASS__, 'ha_void_spare_me'], 5 );
-    }
-
-    // add plugin activation time
-    public static function ha_void_activation_time() {
-        $get_activation_time = strtotime( "now" );
-        add_option( 'ha__plugin_activation_time', $get_activation_time ); // replace your_plugin with Your plugin name
     }
 
     //check if review notice should be shown or not
@@ -30,16 +23,23 @@ class Review_Us {
             return;
         }
 
-        $install_date = get_option( 'ha__plugin_activation_time' );
+        $install_date = get_option( 'happy_addons_activation_time', strtotime("now") );
         $past_date    = strtotime( '-10 days' );
-
-        $remind_time = get_option( 'ha__remind_me' );
+        
+        $remind_time = get_option( 'ha__remind_me', strtotime("now"));
         $remind_due  = strtotime( '+15 days', $remind_time );
         $now         = strtotime( "now" );
+        
+        // echo "<pre>";
+        // var_dump( $install_date );
+        // var_dump( $past_date );
+        // var_dump( $remind_due );
+        // echo "</pre>";
 
         if ($now >= $remind_due) {
             add_action( 'admin_notices', [__CLASS__, 'ha_void_grid_display_admin_notice']);
-        }else if (($past_date >= $install_date) &&  $nobug !== "2") {
+        }
+        else if (($past_date >= $install_date) &&  $nobug !== "2") {
             add_action( 'admin_notices', [__CLASS__, 'ha_void_grid_display_admin_notice']);
         }
     }
