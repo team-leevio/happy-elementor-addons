@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor (Mega Menu, Testimonial, Tooltip, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget)
-Version: 3.3.0
+Version: 3.3.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
@@ -434,6 +434,14 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.3.1 - 6 December 2021 =
+
+- New: Pdf Viewer
+- Fix: Image Stack Group icon size overflow issue
+- Fix: Review Banner logic
+- Fix: Post Tab widget undefined warning issue
+- Tweak: Code improvement
 
 = 3.3.0 - 27 October 2021 =
 

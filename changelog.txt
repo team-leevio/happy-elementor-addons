@@ -1,6 +1,8 @@
-= 3.3.1 - 24 November 2021 =
+= 3.3.1 - 6 December 2021 =
 
 - New: Pdf Viewer
+- Fix: Image Stack Group icon size overflow issue
+- Fix: Review Banner logic
 - Fix: Post Tab widget undefined warning issue
 - Tweak: Code improvement
 
