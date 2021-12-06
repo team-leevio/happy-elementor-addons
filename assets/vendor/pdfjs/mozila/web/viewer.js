@@ -14148,7 +14148,7 @@ document.webL10n = function (window, document, undefined) {
     }, failureCallback);
   }
 
-  function loadLocale(lang, callback) {
+  /* function loadLocale(lang, callback) {
     if (lang) {
       lang = lang.toLowerCase();
     }
@@ -14220,7 +14220,7 @@ document.webL10n = function (window, document, undefined) {
       var resource = new L10nResourceLink(langLinks[i]);
       resource.load(lang, onResourceLoaded);
     }
-  }
+  } */
 
   function clear() {
     gL10nData = {};
@@ -14753,9 +14753,9 @@ document.webL10n = function (window, document, undefined) {
       return gLanguage;
     },
     setLanguage: function (lang, callback) {
-      loadLocale(lang, function () {
-        if (callback) callback();
-      });
+      // loadLocale(lang, function () {
+      //   if (callback) callback();
+      // });
     },
     getDirection: function () {
       var rtlList = ['ar', 'he', 'fa', 'ps', 'ur'];

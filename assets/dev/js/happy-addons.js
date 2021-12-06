@@ -1029,7 +1029,7 @@
 			  .then(instance => {
 				// now you can access APIs through the WebViewer instance
 				const { Core, UI } = instance;
-				console.log(UI);
+				// console.log(UI);
 				// UI.openElements(['menuOverlay','downloadButton']);
 				// UI.openElements(['menuOverlay','fullScreenButton']);
 				instance.setFitMode(UI.FitMode.FitWidth);
