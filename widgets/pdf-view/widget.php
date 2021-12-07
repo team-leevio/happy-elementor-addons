@@ -675,7 +675,7 @@ class PDF_View extends Base {
 						<?php
 						if($settings['pdf_title']){
 							echo sprintf( '<h2 class="ha-pdf-title">%s</h2>',
-							esc_html( $settings['pdf_title'] ),
+							esc_html( $settings['pdf_title'] )
 							);
 						}
 						?>
@@ -691,7 +691,6 @@ class PDF_View extends Base {
                             __('Download', 'happy-elementor-addons')
                         );
                     }
-
                 ?>
                 </div>
             </div>
@@ -700,9 +699,7 @@ class PDF_View extends Base {
                 if(! empty($settings['pdf_license']) ){
                     printf( '<div id="%1$s" style="height:%2$s;"></div>',
                             esc_attr( $unique_id ),
-                            esc_attr($settings['pdf_height']['size'].$settings['pdf_height']['unit']),
-                            // esc_attr($settings['pdf_width']['size'].$settings['pdf_width']['unit']),
-
+                            esc_attr($settings['pdf_height']['size'].$settings['pdf_height']['unit'])
                     );
                 }else{
                     printf( '<h1>%1$s</h1>', __('Please set your PDFjs.express License', 'happy-elementor-addons'));
