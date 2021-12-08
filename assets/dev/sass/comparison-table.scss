@@ -27,6 +27,7 @@
 	&__head-item {
         flex-grow: 1;
         display: flex;
+        align-items: center;
 
         &:first-child{
             flex-grow: 10;
@@ -43,6 +44,7 @@
 	}
     
 	&__row {
+        margin-bottom: 25px;
     }
     &__row-item {
         display: flex;
@@ -78,4 +80,25 @@
         line-height: 1;
         font-size: 20px;
     }
+    &__btns {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    &__btns-item {
+        text-align: center;
+
+        a {
+            background-color:#5636d1;
+            color: #fff;
+            padding: 10px 15px;
+            font-family: var( --e-global-typography-accent-font-family ), Sans-serif;
+            font-weight: var( --e-global-typography-accent-font-weight );
+            border-radius: 5px;
+        }
+    }
+    
 }
