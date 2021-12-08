@@ -67,45 +67,7 @@ class PDF_View extends Base {
             ]
         );
         
-        // $this->add_control(
-		// 	'pdf_view_type',
-		// 	[
-		// 		'label'        => __( 'PDFjs View', 'happy-elementor-addons' ),
-		// 		'type'         => Controls_Manager::SWITCHER,
-		// 		'label_on' => __( 'Yes', 'happy-elementor-addons' ),
-		// 		'label_off' => __( 'No', 'happy-elementor-addons' ),
-		// 		'return_value' => 'yes',
-		// 		'default'      => '',
-		// 	]
-		// );
-
-        // $this->add_control(
-		// 	'important_note',
-		// 	[
-		// 		'label' => __( 'Important Note', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::RAW_HTML,
-		// 		'raw' => __( 'To show PDF file in PDFjs.express. please signup and get free license key. <a target="_blank" href="https://pdfjs.express/signup">Sign up</a>', 'happy-elementor-addons' ),
-		// 		'content_classes' => 'elementor-control-field-description',
-        //         'condition' => [
-		// 			'pdf_view_type' => 'yes',
-		// 		]
-
-		// 	]
-		// );
-
-        // $this->add_control(
-		// 	'pdf_license',
-		// 	[
-		// 		'label' => __( 'PDFjs.express License', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::TEXT,
-		// 		'label_block' => true,
-		// 		'placeholder' => __( 'MBgnIWi14J', 'happy-elementor-addons' ),
-		// 		'condition' => [
-		// 			'pdf_view_type' => 'yes',
-		// 		]
-
-		// 	]
-		// );
+        
 
 		$this->add_control(
 			'file_type',
@@ -612,8 +574,8 @@ class PDF_View extends Base {
         $unique_id = wp_unique_id('viewer-');
 		$file_type = $settings['file_type'];
 
-		// $pdf_url = ('yes' == $settings['pdf_view_type'] && is_array($settings['pdf_file'])) ? $settings['pdf_file']['url'] : '';
-        // $pdf_url_i = '';
+        $pdf_url_i = '';
+
         if('url' == $file_type){
             $pdf_url_i =  $settings['pdf_url']['url'];
         }else{
@@ -669,7 +631,7 @@ class PDF_View extends Base {
 						type='application/pdf' 
 						width='<?php echo esc_attr( $width ); ?>' 
 						height='<?php echo esc_attr( $height ); ?>'>
-				<p><?php esc_html('This browser does not support inline PDFs. Please download the PDF to view it:', 'happy-elementor-addons'); ?></p>a href="<?php echo esc_url( $pdf_url_i ); ?>"><?php echo esc_html('Download PDF', 'happy-elementor-addons'); ?></a></p>
+				<p><?php esc_html('This browser does not support inline PDFs. Please download the PDF to view it:', 'happy-elementor-addons'); ?></p><a href="<?php echo esc_url( $pdf_url_i ); ?>"><?php echo esc_html('Download PDF', 'happy-elementor-addons'); ?></a></p>
 				</object>
 				<?php
 			else:
