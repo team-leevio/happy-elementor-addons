@@ -258,18 +258,11 @@ class Assets_Manager {
 			true
 		);
 
-		// Happy addons script
-		// wp_register_script(
-		// 	'pdf-js',
-		// 	HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/lib/webviewer.min.js',
-		// 	[],
-		// 	HAPPY_ADDONS_VERSION,
-		// 	false
-		// );
-		// Happy addons PDF JS Express
+		
+		// Happy addons PDF JS 
 		wp_register_script(
 			'pdf-js',
-			'https://cdn.jsdelivr.net/npm/@pdftron/pdfjs-express@8.1.1/webviewer.min.js',
+			'//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js',
 			[],
 			HAPPY_ADDONS_VERSION,
 			false

@@ -1058,6 +1058,7 @@
 			
 			var settings = viewer_container.data('pdf-settings');
 			if(settings.pdfjs_expres == "yes" && settings.license) {
+				console.log(settings.pdf_url);
 
 			WebViewer({
 				path: HappyLocalize.pdf_js_lib, // path to the PDF.js Express'lib' folder on your server
@@ -1069,9 +1070,10 @@
 				// initialDoc: '/path/to/my/file.pdf',  // You can also use documents on your server
 			  }, document.getElementById(settings.unique_id))
 			  .then(instance => {
+				  console.log(instance);
 				// now you can access APIs through the WebViewer instance
 				const { Core, UI } = instance;
-				console.log(UI);
+				// console.log(UI);
 				// UI.openElements(['menuOverlay','downloadButton']);
 				// UI.openElements(['menuOverlay','fullScreenButton']);
 				instance.setFitMode(UI.FitMode.FitWidth);
