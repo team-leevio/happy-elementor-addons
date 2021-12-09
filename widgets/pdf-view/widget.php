@@ -1,6 +1,6 @@
 <?php
 /**
- * Photo Stack widget class
+ * PDF View widget class
  *
  * @package Happy_Addons
  */
@@ -207,12 +207,7 @@ class PDF_View extends Base {
                 'default'    => [
                     'size' => 100,
                     'unit' => '%',
-                ],
-				'selectors' => [
-					'{{WRAPPER}} .pdf_viewer_container iframe' => 'width: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .pdf_viewer_container object' => 'width: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-google-iframe' => 'width: {{SIZE}}{{UNIT}};'
-				]
+                ]
             ]
         );
 
@@ -605,12 +600,12 @@ class PDF_View extends Base {
 		}
 
 		$json_settings = [
-            'unique_id' => $unique_id,
-            'pdf_url' => $pdf_url_i,
-			'file_type' => $file_type,
-			'page_number' => $settings['page_number'],
-			'width' => $width,
-			'height' => $height,
+            'unique_id' 	=> $unique_id,
+            'pdf_url' 		=> $pdf_url_i,
+			'file_type' 	=> $file_type,
+			'page_number' 	=> $settings['page_number'],
+			'width' 		=> $width,
+			'height' 		=> $height,
         ];
 
 
