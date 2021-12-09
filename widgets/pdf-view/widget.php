@@ -374,6 +374,7 @@ class PDF_View extends Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .pdf-icon' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .pdf-icon svg' => 'fill: {{VALUE}}',
 				],
 			]
 		);
