@@ -89,7 +89,7 @@ class PDF_View extends Base {
 				'type' => Controls_Manager::URL,
 				'placeholder' => __( 'http://www.example.com/sample.pdf', 'happy-elementor-addons'),
                 'default' => [
-                    'url' =>  'http://www.pdf995.com/samples/pdf.pdf'
+                    'url' =>  'https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf'
                 ],
 				'show_external' => false,
 				'dynamic' => [
@@ -613,6 +613,8 @@ class PDF_View extends Base {
 			'height' => $height,
         ];
 
+
+
 		$this->add_render_attribute( 'pdf_settings', 'data-pdf-settings', wp_json_encode( $json_settings ) );
         
         ?>
@@ -644,23 +646,11 @@ class PDF_View extends Base {
                 ?>
                 </div>
             </div>
-            <?php 
-				if( 'upload_file' == $file_type):
-				?>
-				<div>
-					<div id="pdf-container"></div>
-				</div>
-				<!-- <object data='<?php echo $pdf_url_i; ?>' 
-						type='application/pdf' 
-						width='<?php echo esc_attr( $width ); ?>' 
-						height='<?php echo esc_attr( $height ); ?>'>
-				<p><?php esc_html('This browser does not support inline PDFs. Please download the PDF to view it:', 'happy-elementor-addons'); ?></p><a href="<?php echo esc_url( $pdf_url_i ); ?>"><?php echo esc_html('Download PDF', 'happy-elementor-addons'); ?></a></p>
-				</object> -->
-				<?php
-			else:
-				echo '<iframe class="ha-google-iframe" src="https://docs.google.com/viewer?url='. $pdf_url_i .'&amp;embedded=true" frameborder="1" style="height:'. $height .';" marginheight="0px" marginwidth="0px" allowfullscreen></iframe>';
-            endif; 
-			?>
+            
+			<div>
+				<div id="pdf-container"></div>
+			</div>
+			
         </div>
         <?php
 	}

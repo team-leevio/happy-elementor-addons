@@ -1054,16 +1054,14 @@
 		var PDF_View = function($scope){
 			var $pdf_viewer_options = $scope.find(".pdf_viewer_options");
 			var $settings = $pdf_viewer_options.data('pdf-settings');
-			if( $settings !== undefined && $settings.file_type == 'upload_file'){
+			// if( $settings !== undefined && $settings.file_type == 'upload_file'){
 				var options = {
 					width: $settings.width,
 					height: $settings.height,
 					page: $settings.page_number
 				};
 				PDFObject.embed($settings.pdf_url, "#pdf-container", options);
-
-				console.log( $settings );
-			}
+			// }
 		};
 		
 
