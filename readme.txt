@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor (Mega Menu, Testimonial, Tooltip, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget)
-Version: 3.3.1
+Version: 3.3.3
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
@@ -434,6 +434,15 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.3.3 - 9 December 2021 =
+
+- Fix: Social icon missing for viber
+- Tweak: Pdf view add support for page selection
+
+= 3.3.2 - 8 December 2021 =
+
+- Code improvement
 
 = 3.3.1 - 6 December 2021 =
 
