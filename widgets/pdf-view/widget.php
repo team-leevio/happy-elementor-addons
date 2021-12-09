@@ -118,6 +118,15 @@ class PDF_View extends Base {
 				],
 			]
 		);
+
+		$this->add_control(
+			'page_number',
+			[
+				'label' => __( 'Page Number', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::NUMBER,
+				'default' => '1',
+			]
+		);
         
         $this->add_control(
 			'pdf_title',
@@ -595,10 +604,20 @@ class PDF_View extends Base {
 			$pdf_url_i = HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/sample.pdf';
 		}
 
+		$json_settings = [
+            'unique_id' => $unique_id,
+            'pdf_url' => $pdf_url_i,
+			'file_type' => $file_type,
+			'page_number' => $settings['page_number'],
+			'width' => $width,
+			'height' => $height,
+        ];
+
+		$this->add_render_attribute( 'pdf_settings', 'data-pdf-settings', wp_json_encode( $json_settings ) );
         
         ?>
         <div class="pdf_viewer_container">
-            <div class="pdf_viewer_options">
+            <div class="pdf_viewer_options" <?php $this->print_render_attribute_string( 'pdf_settings' ) ?>>
 				<span class="ha-title-flex">
 					<span class="pdf-icon">
 						<?php Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']);  ?>
@@ -628,12 +647,15 @@ class PDF_View extends Base {
             <?php 
 				if( 'upload_file' == $file_type):
 				?>
-				<object data='<?php echo $pdf_url_i; ?>' 
+				<div>
+					<div id="pdf-container"></div>
+				</div>
+				<!-- <object data='<?php echo $pdf_url_i; ?>' 
 						type='application/pdf' 
 						width='<?php echo esc_attr( $width ); ?>' 
 						height='<?php echo esc_attr( $height ); ?>'>
 				<p><?php esc_html('This browser does not support inline PDFs. Please download the PDF to view it:', 'happy-elementor-addons'); ?></p><a href="<?php echo esc_url( $pdf_url_i ); ?>"><?php echo esc_html('Download PDF', 'happy-elementor-addons'); ?></a></p>
-				</object>
+				</object> -->
 				<?php
 			else:
 				echo '<iframe class="ha-google-iframe" src="https://docs.google.com/viewer?url='. $pdf_url_i .'&amp;embedded=true" frameborder="1" style="height:'. $height .';" marginheight="0px" marginwidth="0px" allowfullscreen></iframe>';
