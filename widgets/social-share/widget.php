@@ -770,19 +770,20 @@ class Social_Share extends Base {
 				<li <?php $this->print_render_attribute_string( 'list_classes' ); ?>>
 					<a <?php $this->print_render_attribute_string( 'link_classes' ); ?>>
 						<?php
+						$social_media_name = $social_media_name == 'email' ? 'envelope' : $social_media_name;
+						$ico_library = $social_media_name == 'envelope' ? 'fa' : 'fab';
+						
 						if ( 'icon_and_text' == $network_view ) {
-							$social_media_name = $social_media_name == 'email' ? 'envelope' : $social_media_name;
 							?>
-							<i class="fa fa-<?php echo esc_attr( $social_media_name ); ?>" aria-hidden="true"></i>
+							<i class="<?=$ico_library?> fa-<?php echo esc_attr( $social_media_name ); ?>" aria-hidden="true"></i>
 							<?php
 							if ( ! empty( $share_on_text ) && '' != $share_on_text ) {
 								printf( "<span class='ha-share-label'>%s</span>", $share_on_text );
 							}
 						}
 						if ( 'icon_only' == $network_view ) {
-							$social_media_name = $social_media_name == 'email' ? 'envelope' : $social_media_name;
 							?>
-							<i class="fa fa-<?php echo esc_attr( $social_media_name ); ?>" aria-hidden="true"></i>
+							<i class="<?=$ico_library?> fa-<?php echo esc_attr( $social_media_name ); ?>" aria-hidden="true"></i>
 							<?php
 						}
 						if ( 'text_only' == $network_view ) {

@@ -621,7 +621,6 @@ class PDF_View extends Base {
                             __('Download', 'happy-elementor-addons')
                         );
                     }
-
                 ?>
                 </div>
             </div>
