@@ -43,7 +43,7 @@ class PDF_View extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'hm hm-slider-doc';
+        return 'hm hm-file';
     }
 
     public function get_keywords() {
