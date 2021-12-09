@@ -67,45 +67,7 @@ class PDF_View extends Base {
             ]
         );
         
-        $this->add_control(
-			'pdf_view_type',
-			[
-				'label'        => __( 'PDFjs View', 'happy-elementor-addons' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
-				'label_off' => __( 'No', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-				'default'      => '',
-			]
-		);
-
-        $this->add_control(
-			'important_note',
-			[
-				'label' => __( 'Important Note', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::RAW_HTML,
-				'raw' => __( 'To show PDF file in PDFjs.express. please signup and get free license key. <a target="_blank" href="https://pdfjs.express/signup">Sign up</a>', 'happy-elementor-addons' ),
-				'content_classes' => 'elementor-control-field-description',
-                'condition' => [
-					'pdf_view_type' => 'yes',
-				]
-
-			]
-		);
-
-        $this->add_control(
-			'pdf_license',
-			[
-				'label' => __( 'PDFjs.express License', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'placeholder' => __( 'MBgnIWi14J', 'happy-elementor-addons' ),
-				'condition' => [
-					'pdf_view_type' => 'yes',
-				]
-
-			]
-		);
+        
 
 		$this->add_control(
 			'file_type',
@@ -116,10 +78,7 @@ class PDF_View extends Base {
 					'url' => __('URL', 'happy-elementor-addons'),
 					'upload_file' => __('Upload File', 'happy-elementor-addons'),
 				],
-                'default' => 'url',
-                'condition' => [
-					'pdf_view_type' => '',
-				]
+                'default' => 'url'
 			]
 		);
 
@@ -136,20 +95,8 @@ class PDF_View extends Base {
 				'dynamic' => [
 					'active' => false,
 				],
-				'conditions' => [
-					'relation' => 'and',
-					'terms' => [
-						[
-							'name' => 'pdf_view_type',
-							'operator' => '==',
-							'value' => '',
-						],
-						[
-							'name' => 'file_type',
-							'operator' => '==',
-							'value' => 'url',
-						],
-					],
+				'condition' => [
+					'file_type' => 'url'
 				],
             ]
 		);
@@ -166,20 +113,8 @@ class PDF_View extends Base {
 				'dynamic' => [
 					'active' => true,
 				],
-				'conditions' => [
-					'relation' => 'or',
-					'terms' => [
-						[
-							'name' => 'pdf_view_type',
-							'operator' => '==',
-							'value' => 'yes',
-						],
-						[
-							'name' => 'file_type',
-							'operator' => '==',
-							'value' => 'upload_file',
-						],
-					],
+				'condition' => [
+					'file_type' => 'upload_file'
 				],
 			]
 		);
@@ -266,6 +201,7 @@ class PDF_View extends Base {
                 ],
 				'selectors' => [
 					'{{WRAPPER}} .pdf_viewer_container iframe' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .pdf_viewer_container object' => 'width: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .ha-google-iframe' => 'width: {{SIZE}}{{UNIT}};'
 				]
             ]
@@ -639,8 +575,8 @@ class PDF_View extends Base {
         $unique_id = wp_unique_id('viewer-');
 		$file_type = $settings['file_type'];
 
-		// $pdf_url = ('yes' == $settings['pdf_view_type'] && is_array($settings['pdf_file'])) ? $settings['pdf_file']['url'] : '';
-        // $pdf_url_i = '';
+        $pdf_url_i = '';
+
         if('url' == $file_type){
             $pdf_url_i =  $settings['pdf_url']['url'];
         }else{
@@ -648,39 +584,33 @@ class PDF_View extends Base {
         }
 
 		if (isset($settings['pdf_width'])) {
-			$width = ' width: ' . $settings['pdf_width']['size'] . $settings['pdf_width']['unit'] . ';';
+			$width = $settings['pdf_width']['size'] . $settings['pdf_width']['unit'];
 		}
 		if (isset($settings['pdf_height'])) {
-			$height = ' height: ' . $settings['pdf_height']['size'] . $settings['pdf_height']['unit'] . ';';
+			$height = $settings['pdf_height']['size'] . $settings['pdf_height']['unit'];
 		}
 
 		if(empty($pdf_url_i)){
 			$pdf_url_i = HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/sample.pdf';
 		}
 
-        $json_settings = [
-            'unique_id' => $unique_id,
-            'pdf_url' => $pdf_url_i,
-            'license' => (! empty($settings['pdf_license']) ) ? $settings['pdf_license'] : '',
-            'pdfjs_expres' => $settings['pdf_view_type']
-        ];
-        $this->add_render_attribute( 'pdf_viewer_container', 'data-pdf-settings', wp_json_encode( $json_settings ) );
+        
         ?>
-        <div class="pdf_viewer_container" <?php echo $this->print_render_attribute_string('pdf_viewer_container'); ?>>
+        <div class="pdf_viewer_container">
             <div class="pdf_viewer_options">
-                    <span class="ha-title-flex">
-						<span class="pdf-icon">
-							<?php Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']);  ?>
-						</span>
-						<?php
-						if($settings['pdf_title']){
-							echo sprintf( '<h2 class="ha-pdf-title">%s</h2>',
-							esc_html( $settings['pdf_title'] )
-							);
-						}
-						?>
-                    </span>
-                    <?php 
+				<span class="ha-title-flex">
+					<span class="pdf-icon">
+						<?php Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']);  ?>
+					</span>
+					<?php
+					if($settings['pdf_title']){
+						echo sprintf( '<h2 class="ha-pdf-title">%s</h2>',
+						esc_html( $settings['pdf_title'] )
+						);
+					}
+					?>
+				</span>
+				<?php 
                 ?>
                 <div class="pdf-button">
                 <?php
@@ -694,21 +624,20 @@ class PDF_View extends Base {
                 ?>
                 </div>
             </div>
-            <?php if('yes' ==  $settings['pdf_view_type']) : 
-
-                if(! empty($settings['pdf_license']) ){
-                    printf( '<div id="%1$s" style="height:%2$s;"></div>',
-                            esc_attr( $unique_id ),
-                            esc_attr($settings['pdf_height']['size'].$settings['pdf_height']['unit'])
-                    );
-                }else{
-                    printf( '<h1>%1$s</h1>', __('Please set your PDFjs.express License', 'happy-elementor-addons'));
-                }
-            elseif('yes' !=  $settings['pdf_view_type'] && 'upload_file' == $file_type):
-				echo '<iframe class="ha-google-iframe" src="'. HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/mozila/web/viewer.html?file=' . $pdf_url_i . '&embedded=true" frameborder="1" marginheight="0px" marginwidth="0px" style="'. $height . '" allowfullscreen></iframe>';
+            <?php 
+				if( 'upload_file' == $file_type):
+				?>
+				<object data='<?php echo $pdf_url_i; ?>' 
+						type='application/pdf' 
+						width='<?php echo esc_attr( $width ); ?>' 
+						height='<?php echo esc_attr( $height ); ?>'>
+				<p><?php esc_html('This browser does not support inline PDFs. Please download the PDF to view it:', 'happy-elementor-addons'); ?></p><a href="<?php echo esc_url( $pdf_url_i ); ?>"><?php echo esc_html('Download PDF', 'happy-elementor-addons'); ?></a></p>
+				</object>
+				<?php
 			else:
-				echo '<iframe class="ha-google-iframe" src="https://docs.google.com/viewer?url='. $pdf_url_i .'&amp;embedded=true" frameborder="1" style="'. $height .'" marginheight="0px" marginwidth="0px" allowfullscreen></iframe>';
-            endif; ?>
+				echo '<iframe class="ha-google-iframe" src="https://docs.google.com/viewer?url='. $pdf_url_i .'&amp;embedded=true" frameborder="1" style="height:'. $height .';" marginheight="0px" marginwidth="0px" allowfullscreen></iframe>';
+            endif; 
+			?>
         </div>
         <?php
 	}

@@ -1051,46 +1051,7 @@
 			}
 		};
 
-		//PDF View
-		var PDF_View = function($scope) {
-			// console.log($scope);
-			var viewer_container = $scope.find('.pdf_viewer_container');
-			
-			var settings = viewer_container.data('pdf-settings');
-			if(settings.pdfjs_expres == "yes" && settings.license) {
-
-			WebViewer({
-				path: HappyLocalize.pdf_js_lib, // path to the PDF.js Express'lib' folder on your server
-				// licenseKey: settings.license,
-				licenseKey: settings.license,
-				// initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/webviewer-demo.pdf',
-				// initialDoc: 'http://www.africau.edu/images/default/sample.pdf',
-				initialDoc: settings.pdf_url,
-				// initialDoc: '/path/to/my/file.pdf',  // You can also use documents on your server
-			  }, document.getElementById(settings.unique_id))
-			  .then(instance => {
-				// now you can access APIs through the WebViewer instance
-				const { Core, UI } = instance;
-				// console.log(UI);
-				// UI.openElements(['menuOverlay','downloadButton']);
-				// UI.openElements(['menuOverlay','fullScreenButton']);
-				instance.setFitMode(UI.FitMode.FitWidth);
-
-				// UI.disableElements([ 'leftPanel', 'leftPanelButton' ]);
-				UI.enableElements([ 'textPopup', 'copyTextButton' ]);
-				UI.enableElements([ 'textPopup', 'textHighlightToolButton' ]);
-				// adding an event listener for when a document is loaded
-				Core.documentViewer.addEventListener('documentLoaded', () => {
-				  console.log('document loaded');
-				});
-			
-				// adding an event listener for when the page number has changed
-				Core.documentViewer.addEventListener('pageNumberUpdated', (pageNumber) => {
-				  console.log(`Page number is: ${pageNumber}`);
-				});
-			  });
-			}
-		};
+		
 		
 
 		// Slider
@@ -1192,7 +1153,6 @@
 			'ha-content-switcher.default'	: Content_Switcher,
 			'ha-member.default'		        : Team_Member,
 			'ha-creative-button.default'	: Creative_Button,
-			'ha-pdf-view.default'			: PDF_View,
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {
