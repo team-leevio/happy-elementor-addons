@@ -9,6 +9,13 @@
     justify-content: space-between;
     align-items: center;
 }
+.pdf_viewer_options {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+}
 .ha-title-flex {
     display: flex;
     flex-direction: row;
