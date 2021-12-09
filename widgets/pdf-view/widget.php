@@ -596,12 +596,12 @@ class PDF_View extends Base {
 
         
         ?>
-        <div class="pdf-viewer-container">
-            <div class="pdf-viewer-options">
-				<div class="ha-title-flex">
-					<div class="pdf-icon">
+        <div class="pdf_viewer_container">
+            <div class="pdf_viewer_options">
+				<span class="ha-title-flex">
+					<span class="pdf-icon">
 						<?php Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']);  ?>
-					</div>
+					</span>
 					<?php
 					if($settings['pdf_title']){
 						echo sprintf( '<h2 class="ha-pdf-title">%s</h2>',
@@ -609,7 +609,7 @@ class PDF_View extends Base {
 						);
 					}
 					?>
-				</div>
+				</span>
 				<?php 
                 ?>
                 <div class="pdf-button">

@@ -1,18 +1,10 @@
 @import "variables";
 @import "mixins";
 
-.pdf-viewer-container {
-    // display: flex;
-    // flex-direction: row;
-    // flex-wrap: wrap;
-    // align-content: center;
-    // justify-content: space-between;
-    // align-items: center;
-}
-.pdf-viewer-options{
+.pdf_viewer_container {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-content: center;
     justify-content: space-between;
     align-items: center;
