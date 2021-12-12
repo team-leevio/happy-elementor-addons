@@ -13,6 +13,7 @@ use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Typography;
+use Elementor\Group_Control_Box_Shadow;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
 
@@ -119,6 +120,11 @@ class Comparison_Table extends Base {
                 'default'    => [
                     'unit' => '%',
                 ],
+                'selectors' => [
+                    // '{{WRAPPER}} {{CURRENT_ITEM}}' => '--col-width: {{SIZE}}{{UNIT}}'
+                    '{{WRAPPER}} {{CURRENT_ITEM}}' => 'width: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub' => 'width: {{SIZE}}{{UNIT}}',
+                ]
             ]
         );
 
@@ -171,6 +177,18 @@ class Comparison_Table extends Base {
             ]
         );
 
+        $repeater->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'box_shadow',
+				'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
+				'selectors' => [
+                    '{{WRAPPER}} .ha-comparison-table__head-item{{CURRENT_ITEM}}',
+                    '{{WRAPPER}} .ha-comparison-table__row-item-cell{{CURRENT_ITEM}}-sub',
+                ],
+			]
+		);
+
         $this->add_control(
             'columns_data',
             [
@@ -183,12 +201,24 @@ class Comparison_Table extends Base {
                 'default'       => [
                     [
                         'column_name' => __( 'Features', 'happy-elementor-addons' ),
+                        // 'column_width' => [
+                        //     'size' => 60,
+                        //     'unit'  => '%',
+                        // ]
                     ],
                     [
                         'column_name' => __( 'Free', 'happy-elementor-addons' ),
+                        // 'column_width' => [
+                        //     'size' => 20,
+                        //     'unit'  => '%',
+                        // ]
                     ],
                     [
                         'column_name' => __( 'Pro', 'happy-elementor-addons' ),
+                        // 'column_width' => [
+                        //     'size' => 20,
+                        //     'unit'  => '%',
+                        // ]
                     ],
                 ],
                 'prevent_empty' => false,
@@ -502,32 +532,32 @@ class Comparison_Table extends Base {
 			]
 		);
 
-        $repeater->add_responsive_control(
-			'btn_width',
-			[
-				'label' => __( 'Width', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'unit' => '%',
-					'size' => 15,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-comparison-table__btns-item' => 'width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
+        // $repeater->add_responsive_control(
+		// 	'btn_width',
+		// 	[
+		// 		'label' => __( 'Width', 'happy-elementor-addons' ),
+		// 		'type' => Controls_Manager::SLIDER,
+		// 		'size_units' => [ 'px', '%' ],
+		// 		'range' => [
+		// 			'px' => [
+		// 				'min' => 0,
+		// 				'max' => 1000,
+		// 				'step' => 5,
+		// 			],
+		// 			'%' => [
+		// 				'min' => 0,
+		// 				'max' => 100,
+		// 			],
+		// 		],
+		// 		'default' => [
+		// 			'unit' => '%',
+		// 			'size' => 15,
+		// 		],
+		// 		// 'selectors' => [
+		// 		// 	'{{WRAPPER}} .ha-comparison-table__btns-item' => 'width: {{SIZE}}{{UNIT}}',
+		// 		// ],
+		// 	]
+		// );
 
         $this->add_control(
 			'table_btns',
@@ -989,6 +1019,7 @@ class Comparison_Table extends Base {
         $settings     = $this->get_settings_for_display();
         $columns_data = is_array( $settings['columns_data'] ) ? $settings['columns_data'] : [];
         $rows_data    = is_array( $settings['rows_data'] ) ? $settings['rows_data'] : [];
+        $sticky       = !empty( $settings['sticky_table_header'] ) ? $settings['sticky_table_header'] : 'no';
 
         $table_row  = [];
         $table_cell = [];
@@ -1017,18 +1048,20 @@ class Comparison_Table extends Base {
         }
 
         $column_width = [];
+        $sub_id = [];
         ?>
 
 		<div class="ha-comparison-table-wrapper">
-			<div class="ha-comparison-table__head" data-sticky-header="<?php echo esc_attr( $settings['sticky_table_header'] ); ?>">
+			<div class="ha-comparison-table__head" data-sticky-header="<?php echo esc_attr( $sticky ); ?>">
 				<?php if ( $columns_data ): foreach ( $columns_data as $index => $head ):
 
                 $column_width[]      = $head['column_width'];
+                $sub_id[]            = $head['_id']. '-sub';
                 $column_repeater_key = $this->get_repeater_setting_key( 'column_span', 'columns_data', $index );
                 $this->add_render_attribute( $column_repeater_key, [
                     'class' => ['ha-comparison-table__head-item',
                         'elementor-repeater-item-' . $head['_id']],
-                    'style' => 'width: ' . $head['column_width']['size'] . $head['column_width']['unit']. ';'
+                    // 'style' => 'width: ' . $head['column_width']['size'] . $head['column_width']['unit']. ';'
                 ] );
 
                 ?>
@@ -1054,9 +1087,10 @@ class Comparison_Table extends Base {
                    
             		if ( $table_row[$i]['id'] == $table_cell[$j]['row_id'] ):
                         $row_repeater_key = $this->get_repeater_setting_key( 'column_span', 'rows_data', $index );
-                        $this->add_render_attribute( 'row_repeater_key', 'style', 'width: ' . $column_width[$index]['size'] . $column_width[$index]['unit'] );
+                        // $this->add_render_attribute( 'row_repeater_key', 'style', 'width: ' . $column_width[$index]['size'] . $column_width[$index]['unit'] );
+                        $this->add_render_attribute( 'row_repeater_key', 'class', [ 'ha-comparison-table__row-item-cell', 'elementor-repeater-item-' . $sub_id[$index] ] );
 					?>
-					<div class="ha-comparison-table__row-item-cell" <?php $this->print_render_attribute_string( 'row_repeater_key' ); ?>>
+					<div <?php $this->print_render_attribute_string( 'row_repeater_key' ); ?>>
 						<?php if ( !empty( $table_cell[$j]['title'] ) ): ?>
 							<div class="ha-comparison-table__row-item-cell-title">
 								<?php echo ha_kses_basic( $table_cell[$j]['title'] ); ?>
@@ -1078,21 +1112,23 @@ class Comparison_Table extends Base {
             <div class="ha-comparison-table__btns">
                 <?php 
                     $btns = $settings['table_btns'];
-                    $this->add_render_attribute( 'wrapper', 'class', 'ha-comparison-table__btns-item' );
-
+                    
                     if( is_array( $btns ) ) {
-                        foreach( $btns as $btn){
+                        foreach( $btns as $index => $btn){
+                            $column_repeater_key = $this->get_repeater_setting_key( '', 'table_btns', $index );
+                            $this->add_render_attribute( $column_repeater_key, 'class', ['ha-comparison-table__btns-item', 'elementor-repeater-item-'. $sub_id[$index+1]] );
                             if($btn['link']['url']){
                                 $this->add_link_attributes( 'button', $btn['link'] );
                             }
 
                             ?>
-                            <div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
+                            <div <?php $this->print_render_attribute_string( $column_repeater_key ); ?>>
                                 <a <?php $this->print_render_attribute_string( 'button' ); ?>>
                                     <?php echo $btn['btn_title']; ?>
                                 </a>
                             </div>
                         <?php
+                         $this->remove_render_attribute( $column_repeater_key );
                         }
                     }
                 ?>
