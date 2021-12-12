@@ -835,7 +835,7 @@ class Justified_Gallery extends Base {
 			printf(
 				'<div %s>%s</div>',
 				'style="margin: 1rem;padding: 1rem 1.25rem;border-left: 5px solid #f5c848;color: #856404;background-color: #fff3cd;"',
-				__( 'Please select an image first to render the gallery properly', 'happy-elementor-addons' )
+				__( 'Please select an image first to render the grid properly', 'happy-elementor-addons' )
 			);
 		}
 	}
@@ -847,7 +847,7 @@ class Justified_Gallery extends Base {
 		if ( empty( $gallery ) ) {
 			return;
 		}
-		
+
 		if ( count( $gallery['items'] ) <= 0 ) {
 			$this->image_missing_alert();
 			return;
