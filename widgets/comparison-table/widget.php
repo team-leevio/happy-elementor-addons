@@ -333,6 +333,7 @@ class Comparison_Table extends Base {
                 'options'   => [
                     'text' => __( 'Text', 'happy-elementor-addons' ),
                     'icon' => __( 'Icon', 'happy-elementor-addons' ),
+                    'blank' => __( 'Blank', 'happy-elementor-addons' ),
                 ],
                 'condition' => [
                     'row_column_type!' => 'row',
