@@ -67,7 +67,15 @@ class PDF_View extends Base {
             ]
         );
         
-        
+        $this->add_control(
+			'unique_id',
+			[
+				'label' => __( 'View', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HIDDEN,
+				'default' =>  'viewer-' . rand(1, 99),
+				'frontend_available' => true,
+			]
+		);
 
 		$this->add_control(
 			'file_type',
@@ -577,7 +585,9 @@ class PDF_View extends Base {
      */
     protected function render() {
         $settings = $this->get_settings_for_display();
-        $unique_id = wp_unique_id('viewer-');
+        // var_dump($settings);
+        $unique_id = 'viewer-' . $this->get_id();
+        // $unique_id =$settings['unique_id'];
 		$file_type = $settings['file_type'];
 
         $pdf_url_i = '';
@@ -614,7 +624,7 @@ class PDF_View extends Base {
         
         ?>
         <div class="pdf_viewer_container">
-            <div class="pdf_viewer_options" <?php $this->print_render_attribute_string( 'pdf_settings' ) ?>>
+            <div class="pdf_viewer_options <?php echo esc_attr($unique_id); ?>" <?php $this->print_render_attribute_string( 'pdf_settings' ) ?>>
 				<span class="ha-title-flex">
 					<span class="pdf-icon">
 						<?php Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']);  ?>
@@ -643,7 +653,7 @@ class PDF_View extends Base {
             </div>
             
 			<div>
-				<div id="pdf-container"></div>
+				<div id="<?php echo esc_attr( $unique_id ); ?>"></div>
 			</div>
 			
         </div>
