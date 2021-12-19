@@ -632,6 +632,7 @@ class Comparison_Table extends Base {
     protected function register_style_controls() {
         $this->__table_head_style_controls();
         $this->__table_row_style_controls();
+        $this->__table_btn_style_controls();
     }
 
     protected function __table_head_style_controls() {
@@ -1016,6 +1017,139 @@ class Comparison_Table extends Base {
         $this->end_controls_section();
     }
 
+    protected function __table_btn_style_controls(){
+
+        $this->start_controls_section(
+            '_section_table_btn_style',
+            [
+                'label' => __( 'Table Button', 'happy-elementor-addons' ),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name'     => 'btn_text_typography',
+                'label'      => __('Typography','happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-comparison-table__btns-item--btn',
+                'scheme'     => Typography::TYPOGRAPHY_3,
+            ]
+        );
+
+        $this->add_control(
+            'btn_border_radius',
+            [
+                'label'     => __( 'Border Radius', 'happy-elementor-addons' ),
+                'type'      => Controls_Manager::SLIDER,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-comparison-table__btns-item--btn'  => 'border-radius: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'btn_padding',
+            [
+                'label'     => __( 'Padding', 'happy-elementor-addons' ),
+                'type'      => Controls_Manager::SLIDER,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-comparison-table__btns-item--btn'  => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'btn_border',
+				'selector' => '{{WRAPPER}} .ha-comparison-table__btns-item--btn',
+			]
+		);
+
+        $this->start_controls_tabs( '_tabs_button' );
+        $this->start_controls_tab(
+            '_tab_button_normal',
+            [
+                'label' => __( 'Normal', 'happy-elementor-addons' ),
+            ]
+		);
+
+        $this->add_control(
+            'button_text_color',
+            [
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-comparison-table__btns-item--btn' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+		$this->add_control(
+            'button_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-comparison-table__btns-item--btn' => 'background: {{VALUE}}',
+                ],
+            ]
+        );
+
+		$this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'button_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-comparison-table__btns-item--btn'
+            ]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+            '_tabs_button_hover',
+            [
+                'label' => __( 'Hover', 'happy-elementor-addons' ),
+            ]
+		);
+
+		$this->add_control(
+            'button_hover_text_color',
+            [
+                'label' => __( 'Text Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-comparison-table__btns-item--btn:hover' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_hover_bg_color',
+            [
+                'label' => __( 'Background Color', 'happy-elementor-addons' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-comparison-table__btns-item--btn:hover' => 'background: {{VALUE}}',
+                ],
+            ]
+        );
+
+		$this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'button_hover_box_shadow',
+                'selector' => '{{WRAPPER}} .ha-comparison-table__btns-item--btn:hover'
+            ]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+        $this->end_controls_section();
+    }
+
     protected function render() {
         $settings     = $this->get_settings_for_display();
         $columns_data = is_array( $settings['columns_data'] ) ? $settings['columns_data'] : [];
@@ -1118,6 +1252,7 @@ class Comparison_Table extends Base {
                         foreach( $btns as $index => $btn){
                             $column_repeater_key = $this->get_repeater_setting_key( '', 'table_btns', $index );
                             $this->add_render_attribute( $column_repeater_key, 'class', ['ha-comparison-table__btns-item', 'elementor-repeater-item-'. $sub_id[$index+1]] );
+                            $this->add_render_attribute( 'button', 'class', ['ha-comparison-table__btns-item--btn']);
                             if($btn['link']['url']){
                                 $this->add_link_attributes( 'button', $btn['link'] );
                             }
