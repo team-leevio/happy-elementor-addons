@@ -67,16 +67,6 @@ class PDF_View extends Base {
             ]
         );
         
-        $this->add_control(
-			'unique_id',
-			[
-				'label' => __( 'View', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::HIDDEN,
-				'default' =>  'viewer-' . rand(1, 99),
-				'frontend_available' => true,
-			]
-		);
-
 		$this->add_control(
 			'file_type',
 			[
@@ -585,9 +575,7 @@ class PDF_View extends Base {
      */
     protected function render() {
         $settings = $this->get_settings_for_display();
-        // var_dump($settings);
         $unique_id = 'viewer-' . $this->get_id();
-        // $unique_id =$settings['unique_id'];
 		$file_type = $settings['file_type'];
 
         $pdf_url_i = '';
