@@ -180,11 +180,11 @@ class Comparison_Table extends Base {
         $repeater->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			[
-				'name' => 'box_shadow',
+				'name' => 'col_box_shadow',
 				'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
 				'selectors' => [
-                    '{{WRAPPER}} .ha-comparison-table__head-item{{CURRENT_ITEM}}',
-                    '{{WRAPPER}} .ha-comparison-table__row-item-cell{{CURRENT_ITEM}}-sub',
+                    '{{WRAPPER}} {{CURRENT_ITEM}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub',
                 ],
 			]
 		);
@@ -367,6 +367,22 @@ class Comparison_Table extends Base {
                 'default'     => [
                     'value'   => 'fas fa-check-circle',
                     'library' => 'fa-solid',
+                ],
+                'condition'   => [
+                    'column_content_type' => 'icon',
+                    'row_column_type'     => 'column',
+                ],
+            ]
+        );
+
+        $repeater->add_control(
+            'row_icon_color',
+            [
+                'label'     => __( 'Color', 'happy-elementor-addons' ),
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub i'   => 'color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub svg' => 'fill: {{VALUE}}',
                 ],
                 'condition'   => [
                     'column_content_type' => 'icon',
@@ -764,7 +780,9 @@ class Comparison_Table extends Base {
             'column_color_notice',
             [
                 'type' => Controls_Manager::RAW_HTML,
-                'raw'  => 'If you\'ve added <strong>Custom Style</strong> then Icon Color will be over written for that cell.',
+                'raw'  => __( 'If you\'ve added <strong>Custom Style</strong> then Icon Color will be over written for that cell.', 'happy-elementor-addons' ),
+                'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+                'render_type' => 'ui',
             ]
         );
 
@@ -1010,7 +1028,9 @@ class Comparison_Table extends Base {
             [
                 'type'      => Controls_Manager::RAW_HTML,
                 'separator' => 'before',
-                'raw'       => 'If you\'ve added <strong>Custom Style</strong> then Background Color, Color, Icon Size, Icon Color will be over written for that cell.',
+                'raw'       => __( 'If you\'ve added <strong>Custom Style</strong> then Background Color, Color, Icon Size, Icon Color will be over written for that cell.', 'happy-elementor-addons'),
+                'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+                'render_type' => 'ui',
             ]
         );
 

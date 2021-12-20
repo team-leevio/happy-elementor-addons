@@ -15,7 +15,7 @@
         align-content: center;
         align-items: center;
 
-        padding: 20px;
+       
         // border: 1px solid;
         // border-color: #5636d1 #320ebd #5636d1 #5636d1;
         background-color: #5636d1;
@@ -37,6 +37,7 @@
         display: flex;
         align-items: center;
         width: 15%;
+        padding: 15px;
 
         &:first-child{
             flex-grow: 1;
@@ -62,8 +63,7 @@
         align-content: center;
         align-items: center;
         
-        padding: 15px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #e7e7e9;
         background-color: transparent;
         vertical-align: middle;
 
@@ -75,6 +75,7 @@
         }
     }
     &__row-item-cell {
+        padding: 15px;
         flex-grow: 0;
         width: 15%;
 
@@ -111,6 +112,7 @@
             font-family: var( --e-global-typography-accent-font-family ), Sans-serif;
             font-weight: var( --e-global-typography-accent-font-weight );
             border-radius: 5px;
+            display: inline-flex;
         }
     }
     
