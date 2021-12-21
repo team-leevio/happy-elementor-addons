@@ -177,17 +177,17 @@ class Comparison_Table extends Base {
             ]
         );
 
-        $repeater->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			[
-				'name' => 'col_box_shadow',
-				'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
-				'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}}',
-                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub',
-                ],
-			]
-		);
+        // $repeater->add_group_control(
+		// 	Group_Control_Box_Shadow::get_type(),
+		// 	[
+		// 		'name' => 'col_box_shadow',
+		// 		'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
+		// 		'selectors' => [
+        //             '{{WRAPPER}} {{CURRENT_ITEM}}',
+        //             '{{WRAPPER}} {{CURRENT_ITEM}}-sub',
+        //         ],
+		// 	]
+		// );
 
         $this->add_control(
             'columns_data',
@@ -248,29 +248,29 @@ class Comparison_Table extends Base {
                 'label'        => __( 'Icon Position', 'happy-elementor-addons' ),
                 'type'         => Controls_Manager::CHOOSE,
                 'options'      => [
-                    'row'   => [
+                    'left'   => [
                         'title' => __( 'Left', 'happy-elementor-addons' ),
                         'icon'  => 'eicon-h-align-left',
                     ],
-                    'row-reverse'  => [
+                    'right'  => [
                         'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon'  => 'eicon-h-align-right',
                     ],
-                    'column'    => [
+                    'top'    => [
                         'title' => __( 'Top', 'happy-elementor-addons' ),
                         'icon'  => 'eicon-v-align-top',
                     ],
-                    'column-reverse' => [
+                    'bottom' => [
                         'title' => __( 'Bottom', 'happy-elementor-addons' ),
                         'icon'  => 'eicon-v-align-bottom',
                     ],
                 ],
-                'default'      => 'right',
+                'default'      => 'left',
                 'toggle'       => false,
-                'prefix_class' => 'ha-comparison-icon-',
-                'selectors'    => [
-                    '{{WRAPPER}} .ha-comparison-table__head-item' => 'flex-direction: {{VALUE}}',
-                ],
+                // 'prefix_class' => 'ha-comparison-icon-',
+                // 'selectors'    => [
+                //     '{{WRAPPER}} .ha-comparison-table__head-item' => 'flex-direction: {{VALUE}}',
+                // ],
             ]
         );
 
@@ -369,8 +369,8 @@ class Comparison_Table extends Base {
                 'label'     => __( 'Color', 'happy-elementor-addons' ),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub i'   => 'color: {{VALUE}}',
-                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub svg' => 'fill: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub .ha-comparison-table__row-cell-icon i'   => 'color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub .ha-comparison-table__row-cell-icon svg' => 'fill: {{VALUE}}',
                 ],
                 'condition'   => [
                     'column_content_type' => 'icon',
@@ -431,7 +431,7 @@ class Comparison_Table extends Base {
                         'column_text'         => __( '250', 'happy-elementor-addons' ),
                     ],
                 ],
-                'title_field'  => '{{{ row_column_type == "row" ? "Row Starts" : "" || column_content_type == "text"  ? column_text : elementor.helpers.renderIcon( this, column_icon, {}, "i", "panel" ) || \'<i class="{{ column_icon }}" aria-hidden="true"></i>\' || column_content_type == "icon" ? " Icon" : "" }}}',
+                'title_field'  => '{{{ row_column_type == "row" ? "Row Starts" : (column_content_type == "text"  ? column_text : "" || column_content_type == "icon" ? elementor.helpers.renderIcon( this, column_icon, {}, "i", "panel" ) +" Icon" : "" || column_content_type == "blank" ? "Blank" : "") }}}',
 
             ]
         );
@@ -458,7 +458,6 @@ class Comparison_Table extends Base {
                 ],
                 'default'      => 'center',
                 'toggle'       => false,
-                'prefix_class' => 'ha-row-alignment-',
                 'selectors'    => [
                     '(desktop){{WRAPPER}} .ha-comparison-table__row-item-cell:not(:first-child)' => 'text-align: {{VALUE}}',
                     '(tablet){{WRAPPER}} .ha-comparison-table__row-item-cell:not(:first-child)'  => 'text-align: {{VALUE}}',
@@ -1203,7 +1202,9 @@ class Comparison_Table extends Base {
                 $column_repeater_key = $this->get_repeater_setting_key( 'column_span', 'columns_data', $index );
                 $this->add_render_attribute( $column_repeater_key, [
                     'class' => ['ha-comparison-table__head-item',
-                        'elementor-repeater-item-' . $head['_id']],
+                        'elementor-repeater-item-' . $head['_id'],
+                        'icon-'.$settings['icon_position']
+                    ],
                     // 'style' => 'width: ' . $head['column_width']['size'] . $head['column_width']['unit']. ';'
                 ] );
 
@@ -1230,7 +1231,6 @@ class Comparison_Table extends Base {
                    
             		if ( $table_row[$i]['id'] == $table_cell[$j]['row_id'] ):
                         $row_repeater_key = $this->get_repeater_setting_key( 'column_span', 'rows_data', $index );
-                        // $this->add_render_attribute( 'row_repeater_key', 'style', 'width: ' . $column_width[$index]['size'] . $column_width[$index]['unit'] );
                         $this->add_render_attribute( 'row_repeater_key', 'class', [ 'ha-comparison-table__row-item-cell', 'elementor-repeater-item-' . $sub_id[$index] ] );
 					?>
 					<div <?php $this->print_render_attribute_string( 'row_repeater_key' ); ?>>
