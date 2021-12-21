@@ -201,24 +201,12 @@ class Comparison_Table extends Base {
                 'default'       => [
                     [
                         'column_name' => __( 'Features', 'happy-elementor-addons' ),
-                        // 'column_width' => [
-                        //     'size' => 60,
-                        //     'unit'  => '%',
-                        // ]
                     ],
                     [
                         'column_name' => __( 'Free', 'happy-elementor-addons' ),
-                        // 'column_width' => [
-                        //     'size' => 20,
-                        //     'unit'  => '%',
-                        // ]
                     ],
                     [
                         'column_name' => __( 'Pro', 'happy-elementor-addons' ),
-                        // 'column_width' => [
-                        //     'size' => 20,
-                        //     'unit'  => '%',
-                        // ]
                     ],
                 ],
                 'prevent_empty' => false,
