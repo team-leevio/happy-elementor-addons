@@ -243,7 +243,7 @@ class Widgets_Manager
 			'post-tiles' => [
 				'cat' => 'post',
 				'title' => __('Post Tiles', 'happy-elementor-addons'),
-				'icon' => 'hm hm-graph-pie',
+				'icon' => 'hm hm-article',
 				'is_pro' => true,
 			],
 			'post-carousel' => [
@@ -363,7 +363,7 @@ class Widgets_Manager
 			'image-scroller' => [
 				'cat' => 'creative',
 				'title' => __('Single Image Scroll', 'happy-elementor-addons'),
-				'icon' => 'hm hm-scrolling-image',
+				'icon' => 'hm hm-image-scroll',
 				'is_pro' => true,
 			],
 			'nav-menu' => [
@@ -396,7 +396,7 @@ class Widgets_Manager
 				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-info-box',
 				'title' => __('Info Box', 'happy-elementor-addons'),
-				'icon' => 'hm hm-blog-content',
+				'icon' => 'hm hm-info',
 				'css' => ['btn', 'infobox',],
 				'js' => [],
 				'vendor' => [
@@ -985,7 +985,7 @@ class Widgets_Manager
 				'cat' => 'creative',
 				'is_active' => true,
 				'title' => __('PDF View', 'happy-elementor-addons'),
-				'icon' => 'hm hm-file',
+				'icon' => 'hm hm-pdf2',
 				'css' => ['pdf'],
 				'js' => [],
 				'vendor' => [
