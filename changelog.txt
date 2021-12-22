@@ -3,6 +3,7 @@
 - New: Happy Icons v6 (New 53 icons)
 - New: Two new shape dividers added ( christmas, christmas 2 )
 - Tweak: Pdf Viewer multiple viewer support in same page
+- Fix: Happy Clone issue with template type
 
 = 3.3.3 - 12 December 2021 =
 
