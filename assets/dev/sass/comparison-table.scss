@@ -34,7 +34,7 @@
     }
 	&__head-item {
         flex-grow: 0;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         width: 15%;
         padding: 15px;
@@ -48,10 +48,14 @@
         // &:nth-child(3){
         //     width: 10%;
         // }
-        &__head-column-cell-title{
-            
-        }
+        
 	}
+    &__head-item.icon-right{
+        
+        .ha-comparison-table__head-column-cell-icon{
+            order: 1;
+        }
+    }
     
 	&__row {
         margin-bottom: 25px;

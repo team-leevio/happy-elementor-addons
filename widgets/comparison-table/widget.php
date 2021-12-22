@@ -256,14 +256,14 @@ class Comparison_Table extends Base {
                         'title' => __( 'Right', 'happy-elementor-addons' ),
                         'icon'  => 'eicon-h-align-right',
                     ],
-                    'top'    => [
-                        'title' => __( 'Top', 'happy-elementor-addons' ),
-                        'icon'  => 'eicon-v-align-top',
-                    ],
-                    'bottom' => [
-                        'title' => __( 'Bottom', 'happy-elementor-addons' ),
-                        'icon'  => 'eicon-v-align-bottom',
-                    ],
+                    // 'top'    => [
+                    //     'title' => __( 'Top', 'happy-elementor-addons' ),
+                    //     'icon'  => 'eicon-v-align-top',
+                    // ],
+                    // 'bottom' => [
+                    //     'title' => __( 'Bottom', 'happy-elementor-addons' ),
+                    //     'icon'  => 'eicon-v-align-bottom',
+                    // ],
                 ],
                 'default'      => 'left',
                 'toggle'       => false,
