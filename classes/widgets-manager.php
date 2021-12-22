@@ -913,7 +913,7 @@ class Widgets_Manager
 				'cat' => 'creative',
 				'is_active' => true,
 				'title' => __('Animated Link', 'happy-elementor-addons'),
-				'icon' => 'hm hm-cursor-hover-click',
+				'icon' => 'hm hm-animated-link',
 				'css' => ['link-hover'],
 				'js' => [],
 				'vendor' => [
