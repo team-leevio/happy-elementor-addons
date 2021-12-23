@@ -372,8 +372,8 @@ class Comparison_Table extends Base {
                     'row_column_type'     => 'column',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub .ha-comparison-table__row-cell-icon i'   => 'color: {{VALUE}}',
-                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub .ha-comparison-table__row-cell-icon svg' => 'fill: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .ha-comparison-table__row-cell-icon i'   => 'color: {{VALUE}} !important;',
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .ha-comparison-table__row-cell-icon svg' => 'fill: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1221,7 +1221,8 @@ class Comparison_Table extends Base {
                    
             		if ( $table_row[$i]['id'] == $table_cell[$j]['row_id'] ):
                         $row_repeater_key = $this->get_repeater_setting_key( 'column_span', 'rows_data', $index );
-                        $this->add_render_attribute( 'row_repeater_key', 'class', [ 'ha-comparison-table__row-item-cell', 'elementor-repeater-item-' . $sub_id[$index] ] );
+                        $this->add_render_attribute( 'row_repeater_key', 'class', [ 'ha-comparison-table__row-item-cell', 'elementor-repeater-item-' .$table_cell[$j]['repeater_id'] , 'elementor-repeater-item-' . $sub_id[$index] ] );
+                        // var_dump($table_cell[$j]);
 					?>
 					<div <?php $this->print_render_attribute_string( 'row_repeater_key' ); ?>>
 						<?php if ( !empty( $table_cell[$j]['title'] ) ): ?>
