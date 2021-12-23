@@ -465,26 +465,6 @@ class Comparison_Table extends Base {
             ]
         );
 
-        // $this->add_responsive_control(
-        //     'row_icon_position',
-        //     [
-        //         'label'        => __( 'Icon Position', 'happy-elementor-addons' ),
-        //         'type'         => Controls_Manager::CHOOSE,
-        //         'options'      => [
-        //             'left'   => [
-        //                 'title' => __( 'Left', 'happy-elementor-addons' ),
-        //                 'icon'  => 'eicon-h-align-left',
-        //             ],
-        //             'right'  => [
-        //                 'title' => __( 'Right', 'happy-elementor-addons' ),
-        //                 'icon'  => 'eicon-h-align-right',
-        //             ],
-        //         ],
-        //         'default'      => 'right',
-        //         'toggle'       => false,
-        //     ]
-        // );
-
         $this->end_controls_section();
 
     }
@@ -525,33 +505,6 @@ class Comparison_Table extends Base {
 				],
 			]
 		);
-
-        // $repeater->add_responsive_control(
-		// 	'btn_width',
-		// 	[
-		// 		'label' => __( 'Width', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::SLIDER,
-		// 		'size_units' => [ 'px', '%' ],
-		// 		'range' => [
-		// 			'px' => [
-		// 				'min' => 0,
-		// 				'max' => 1000,
-		// 				'step' => 5,
-		// 			],
-		// 			'%' => [
-		// 				'min' => 0,
-		// 				'max' => 100,
-		// 			],
-		// 		],
-		// 		'default' => [
-		// 			'unit' => '%',
-		// 			'size' => 15,
-		// 		],
-		// 		// 'selectors' => [
-		// 		// 	'{{WRAPPER}} .ha-comparison-table__btns-item' => 'width: {{SIZE}}{{UNIT}}',
-		// 		// ],
-		// 	]
-		// );
 
         $this->add_control(
 			'table_btns',
@@ -976,18 +929,6 @@ class Comparison_Table extends Base {
             ]
         );
 
-        // $this->add_control(
-        //     'row_image_border_radius',
-        //     [
-        //         'label' => __( 'Icon Border Radius', 'happy-elementor-addons' ),
-        //         'type' => Controls_Manager::SLIDER,
-        //         'selectors' => [
-        //             '{{WRAPPER}} .ha-comparison-table__row-cell-icon' => 'border-radius: {{SIZE}}{{UNIT}};',
-        //             '{{WRAPPER}} .ha-comparison-table__row-cell-icon svg' => 'border-radius: {{SIZE}}{{UNIT}};'
-        //         ],
-        //     ]
-        // );
-
         $this->add_control(
             'row_icon_color',
             [
@@ -1222,7 +1163,6 @@ class Comparison_Table extends Base {
             		if ( $table_row[$i]['id'] == $table_cell[$j]['row_id'] ):
                         $row_repeater_key = $this->get_repeater_setting_key( 'column_span', 'rows_data', $index );
                         $this->add_render_attribute( 'row_repeater_key', 'class', [ 'ha-comparison-table__row-item-cell', 'elementor-repeater-item-' .$table_cell[$j]['repeater_id'] , 'elementor-repeater-item-' . $sub_id[$index] ] );
-                        // var_dump($table_cell[$j]);
 					?>
 					<div <?php $this->print_render_attribute_string( 'row_repeater_key' ); ?>>
 						<?php if ( !empty( $table_cell[$j]['title'] ) ): ?>
