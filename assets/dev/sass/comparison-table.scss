@@ -117,6 +117,9 @@
             font-weight: var( --e-global-typography-accent-font-weight );
             border-radius: 5px;
             display: inline-flex;
+            &:hover {
+                background-color: #d6226e;
+            }
         }
     }
     
