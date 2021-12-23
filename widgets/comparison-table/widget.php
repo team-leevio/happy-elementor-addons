@@ -121,7 +121,6 @@ class Comparison_Table extends Base {
                     'unit' => '%',
                 ],
                 'selectors' => [
-                    // '{{WRAPPER}} {{CURRENT_ITEM}}' => '--col-width: {{SIZE}}{{UNIT}}'
                     '{{WRAPPER}} {{CURRENT_ITEM}}' => 'width: {{SIZE}}{{UNIT}}',
                     '{{WRAPPER}} {{CURRENT_ITEM}}-sub' => 'width: {{SIZE}}{{UNIT}}',
                 ]
@@ -364,17 +363,17 @@ class Comparison_Table extends Base {
         );
 
         $repeater->add_control(
-            'row_icon_color',
+            'row_indv_icon_color',
             [
                 'label'     => __( 'Color', 'happy-elementor-addons' ),
                 'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub .ha-comparison-table__row-cell-icon i'   => 'color: {{VALUE}}',
-                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub .ha-comparison-table__row-cell-icon svg' => 'fill: {{VALUE}}',
-                ],
                 'condition'   => [
                     'column_content_type' => 'icon',
                     'row_column_type'     => 'column',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub .ha-comparison-table__row-cell-icon i'   => 'color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}}-sub .ha-comparison-table__row-cell-icon svg' => 'fill: {{VALUE}}',
                 ],
             ]
         );
@@ -466,34 +465,25 @@ class Comparison_Table extends Base {
             ]
         );
 
-        $this->add_responsive_control(
-            'row_icon_position',
-            [
-                'label'        => __( 'Icon Position', 'happy-elementor-addons' ),
-                'type'         => Controls_Manager::CHOOSE,
-                'options'      => [
-                    'left'   => [
-                        'title' => __( 'Left', 'happy-elementor-addons' ),
-                        'icon'  => 'eicon-h-align-left',
-                    ],
-                    'right'  => [
-                        'title' => __( 'Right', 'happy-elementor-addons' ),
-                        'icon'  => 'eicon-h-align-right',
-                    ],
-                    'top'    => [
-                        'title' => __( 'Top', 'happy-elementor-addons' ),
-                        'icon'  => 'eicon-v-align-top',
-                    ],
-                    'bottom' => [
-                        'title' => __( 'Bottom', 'happy-elementor-addons' ),
-                        'icon'  => 'eicon-v-align-bottom',
-                    ],
-                ],
-                'default'      => 'right',
-                'toggle'       => false,
-                'prefix_class' => 'ha-row-icon-',
-            ]
-        );
+        // $this->add_responsive_control(
+        //     'row_icon_position',
+        //     [
+        //         'label'        => __( 'Icon Position', 'happy-elementor-addons' ),
+        //         'type'         => Controls_Manager::CHOOSE,
+        //         'options'      => [
+        //             'left'   => [
+        //                 'title' => __( 'Left', 'happy-elementor-addons' ),
+        //                 'icon'  => 'eicon-h-align-left',
+        //             ],
+        //             'right'  => [
+        //                 'title' => __( 'Right', 'happy-elementor-addons' ),
+        //                 'icon'  => 'eicon-h-align-right',
+        //             ],
+        //         ],
+        //         'default'      => 'right',
+        //         'toggle'       => false,
+        //     ]
+        // );
 
         $this->end_controls_section();
 
@@ -1059,7 +1049,7 @@ class Comparison_Table extends Base {
             'btn_padding',
             [
                 'label'     => __( 'Padding', 'happy-elementor-addons' ),
-                'type'      => Controls_Manager::SLIDER,
+                'type'      => Controls_Manager::DIMENSIONS,
                 'selectors' => [
                     '{{WRAPPER}} .ha-comparison-table__btns-item--btn'  => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
