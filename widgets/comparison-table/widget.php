@@ -430,7 +430,7 @@ class Comparison_Table extends Base {
                         'column_text'         => __( '250', 'happy-elementor-addons' ),
                     ],
                 ],
-                'title_field'  => '{{{ row_column_type == "row" ? "Row Starts" : (column_content_type == "text"  ? column_text : "" || column_content_type == "icon" ? elementor.helpers.renderIcon( this, column_icon, {}, "i", "panel" ) +" Icon" : "" || column_content_type == "blank" ? "Blank" : "") }}}',
+                'title_field'  => '{{{ row_column_type == "row" ? "Row Start" : (column_content_type == "text"  ? column_text : "" || column_content_type == "icon" ? elementor.helpers.renderIcon( this, column_icon, {}, "i", "panel" ) +" Icon" : "" || column_content_type == "blank" ? "Blank" : "") }}}',
 
             ]
         );
