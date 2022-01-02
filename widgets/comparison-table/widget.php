@@ -200,12 +200,27 @@ class Comparison_Table extends Base {
                 'default'       => [
                     [
                         'column_name' => __( 'Features', 'happy-elementor-addons' ),
+                        'column_media' => 'icon',
+                        'column_icons' =>  [
+                            'value'   => 'fas fa-clipboard-list',
+                            'library' => 'fa-solid',
+                        ]
                     ],
                     [
                         'column_name' => __( 'Free', 'happy-elementor-addons' ),
+                        'column_media' => 'icon',
+                        'column_icons' =>  [
+                            'value'   => 'far fa-hand-pointer',
+                            'library' => 'fa-regular',
+                        ]
                     ],
                     [
                         'column_name' => __( 'Pro', 'happy-elementor-addons' ),
+                        'column_media' => 'icon',
+                        'column_icons' =>  [
+                            'value'   => 'far fa-hand-spock',
+                            'library' => 'fa-regular',
+                        ]
                     ],
                 ],
                 'prevent_empty' => false,
@@ -402,6 +417,7 @@ class Comparison_Table extends Base {
                             'value'   => 'fas fa-times-circle',
                             'library' => 'fa-solid',
                         ],
+                        'row_indv_icon_color' => '#F86363'
                     ],
                     [
                         'row_column_type'     => 'column',
@@ -410,6 +426,7 @@ class Comparison_Table extends Base {
                             'value'   => 'fas fa-check-circle',
                             'library' => 'fa-solid',
                         ],
+                        'row_indv_icon_color' => '#12B34C'
                     ],
                     [
                         'row_column_type' => 'row',
@@ -514,7 +531,7 @@ class Comparison_Table extends Base {
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[   
-                        'btn_title'     => __( 'Buy Now', 'happy-elementor-addons'),
+                        'btn_title'     => __( 'Download', 'happy-elementor-addons'),
 						'link' => [
                             'url' => '#',
                             'is_external' => true,

@@ -48,6 +48,9 @@
         // &:nth-child(3){
         //     width: 10%;
         // }
+        .ha-comparison-table__head-column-cell-icon{
+            margin: 0px 10px 0px 0px;
+        }
         
 	}
     &__head-item.icon-right{
@@ -110,7 +113,7 @@
         flex-shrink: 0;
 
         a {
-            background-color:#5636d1;
+            background-color:#151515;
             color: #fff;
             padding: 10px 15px;
             font-family: var( --e-global-typography-accent-font-family ), Sans-serif;
