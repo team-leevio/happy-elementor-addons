@@ -72,6 +72,7 @@ class Comparison_Table extends Base {
         $this->__table_head_content_controls();
         $this->__table_row_content_controls();
         $this->__table_btn_content_controls();
+        $this->__settings_content_controls();
     }
 
     protected function __table_head_content_controls() {
@@ -113,11 +114,17 @@ class Comparison_Table extends Base {
                     ],
                     'px' => [
                         'min'  => 0,
-                        'max'  => 1000,
+                        'max'  => 2000,
                         'step' => 1,
                     ],
                 ],
                 'default'    => [
+                    'unit' => '%',
+                ],
+                'mobile_default' => [
+                    'unit' => '%',
+                ],
+                'tablet_default' => [
                     'unit' => '%',
                 ],
                 'selectors' => [
@@ -585,6 +592,49 @@ class Comparison_Table extends Base {
                 'selectors' => ['{{WRAPPER}} .ha-comparison-table__btns' => 'justify-content: {{VALUE}}']
 			]
 		);
+
+        $this->end_controls_section();
+    }
+
+    protected function __settings_content_controls() {
+        $this->start_controls_section(
+            '__settings_content',
+            [
+                'label' => __( 'Table Settings', 'happy-elementor-addons' ),
+                'tab'   => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'table_width',
+            [
+                'label' => __( 'Table Width', 'happy-elementor-addons'),
+                'type'  => Controls_Manager::SLIDER,
+                'size_units' => ['%', 'px'],
+                'range'      => [
+                    '%'  => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min'  => 0,
+                        'max'  => 1000,
+                        'step' => 1,
+                    ],
+                ],
+                'default'    => [
+                    'unit' => '%',
+                    'size' => 100
+                ],
+                'mobile_default'    => [
+                    'unit' => 'px',
+                    'size' => 400
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-comparison-table-wrapper' => 'width: {{SIZE}}{{UNIT}};'
+                ]
+            ]
+        );
 
         $this->end_controls_section();
     }
