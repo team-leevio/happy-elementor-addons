@@ -1094,6 +1094,18 @@
 			}
 		};
 
+		var PDF_View = function($scope){
+			var $id = $scope.data('id');
+			var $settings = $scope.find(".viewer-"+$id).data('pdf-settings');
+			var options = {
+				width: $settings.width,
+				height: $settings.height,
+				page: $settings.page_number
+			};
+			PDFObject.embed($settings.pdf_url, "#"+$settings.unique_id, options);
+		};
+		
+
 		// Slider
 		elementorFrontend.hooks.addAction(
 			'frontend/element_ready/ha-slider.default',
@@ -1194,6 +1206,7 @@
 			'ha-content-switcher.default'	: Content_Switcher,
 			'ha-member.default'		        : Team_Member,
 			'ha-creative-button.default'	: Creative_Button,
+			'ha-pdf-view.default'			: PDF_View
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {

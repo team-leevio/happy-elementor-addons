@@ -75,6 +75,11 @@
 	font-weight: 700; 
 	font-size: 14px;
 }
+@media screen and (min-width: 1200px) and (max-width: 1340px) {
+	.ha-dashboard-tabs__nav-item {
+		padding: 15px 25px;
+	}
+}
 .ha-dashboard-tabs__nav-item--pro {
 	border-color: #d6226e; 
 	background-color: #e2498a;

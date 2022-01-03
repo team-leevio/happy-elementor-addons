@@ -258,6 +258,16 @@ class Assets_Manager {
 			true
 		);
 
+		
+		// Happy addons PDF JS 
+		wp_register_script(
+			'pdf-js',
+			'//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js',
+			[],
+			HAPPY_ADDONS_VERSION,
+			false
+		);
+
 		// Main assets
 		wp_register_style(
 			'happy-elementor-addons',
@@ -282,6 +292,7 @@ class Assets_Manager {
 			[
 				'ajax_url' => admin_url('admin-ajax.php'),
 				'nonce'    => wp_create_nonce('happy_addons_nonce'),
+				'pdf_js_lib' => HAPPY_ADDONS_ASSETS . 'vendor/pdfjs/lib'
 			]
 		);
 	}
@@ -478,7 +489,6 @@ class Assets_Manager {
 			background-color: #5636d1;
 			margin-left: 5px;
 			font-size: 18px;
-			vertical-align: bottom;
 		}
 		';
 		wp_add_inline_style('happy-elementor-addons', $data);

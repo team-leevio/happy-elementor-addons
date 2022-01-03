@@ -6,40 +6,30 @@ defined( 'ABSPATH' ) || die();
 class Review_Us {
 
     public static function init() {
-        register_activation_hook( __FILE__, [__CLASS__, 'ha_void_activation_time'] );
         add_action( 'admin_init', [__CLASS__, 'ha_void_check_installation_time'] );
         add_action( 'admin_init', [__CLASS__, 'ha_void_spare_me'], 5 );
-    }
-
-    // add plugin activation time
-    public static function ha_void_activation_time() {
-        $get_activation_time = strtotime( "now" );
-        add_option( 'ha__plugin_activation_time', $get_activation_time ); // replace your_plugin with Your plugin name
     }
 
     //check if review notice should be shown or not
     public static function ha_void_check_installation_time() {
 
-        // Added Lines Start
-        //$nobug = "";
         $nobug = get_option( 'ha__spare_me', "0");
-
-        // var_dump($nobug);
 
         if ($nobug == "1" || $nobug == "3") {
             return;
         }
 
-        $install_date = get_option( 'ha__plugin_activation_time' );
+        $install_date = get_option( 'happy_addons_activation_time', strtotime("now") );
         $past_date    = strtotime( '-10 days' );
-
-        $remind_time = get_option( 'ha__remind_me' );
+        
+        $remind_time = get_option( 'ha__remind_me', strtotime("now"));
         $remind_due  = strtotime( '+15 days', $remind_time );
         $now         = strtotime( "now" );
 
         if ($now >= $remind_due) {
             add_action( 'admin_notices', [__CLASS__, 'ha_void_grid_display_admin_notice']);
-        }else if (($past_date >= $install_date) &&  $nobug !== "2") {
+        }
+        else if (($past_date >= $install_date) &&  $nobug !== "2") {
             add_action( 'admin_notices', [__CLASS__, 'ha_void_grid_display_admin_notice']);
         }
     }
@@ -57,7 +47,7 @@ class Review_Us {
             $dont_disturb = esc_url( add_query_arg( 'spare_me', '1', self::ha_current_admin_url() ) );
             $remind_me    = esc_url( add_query_arg( 'remind_me', '1', self::ha_current_admin_url() ) );
             $rated        = esc_url( add_query_arg( 'ha_rated', '1', self::ha_current_admin_url() ) );
-            $reviewurl    = esc_url( 'https://wordpress.org/support/plugin/happy-elementor-addons/reviews/?filter=5' );
+            $reviewurl    = esc_url( 'https://wordpress.org/support/plugin/happy-elementor-addons/reviews/?rate=5#new-post' );
 
             printf( __( '<div class="notice ha-review-notice ha-review-notice--extended">
                 <div class="ha-review-notice__aside">

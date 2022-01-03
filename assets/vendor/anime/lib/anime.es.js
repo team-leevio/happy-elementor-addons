@@ -1,6 +1,6 @@
 /*
- * anime.js v3.0.1
- * (c) 2019 Julian Garnier
+ * anime.js v3.2.1
+ * (c) 2020 Julian Garnier
  * Released under the MIT license
  * animejs.com
  */
@@ -30,7 +30,7 @@ var defaultTweenSettings = {
   round: 0
 };
 
-var validTransforms = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY', 'perspective'];
+var validTransforms = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY', 'perspective', 'matrix', 'matrix3d'];
 
 // Caching
 
@@ -63,11 +63,12 @@ var is = {
   str: function (a) { return typeof a === 'string'; },
   fnc: function (a) { return typeof a === 'function'; },
   und: function (a) { return typeof a === 'undefined'; },
+  nil: function (a) { return is.und(a) || a === null; },
   hex: function (a) { return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(a); },
   rgb: function (a) { return /^rgb/.test(a); },
   hsl: function (a) { return /^hsl/.test(a); },
   col: function (a) { return (is.hex(a) || is.rgb(a) || is.hsl(a)); },
-  key: function (a) { return !defaultInstanceSettings.hasOwnProperty(a) && !defaultTweenSettings.hasOwnProperty(a) && a !== 'targets' && a !== 'keyframes'; }
+  key: function (a) { return !defaultInstanceSettings.hasOwnProperty(a) && !defaultTweenSettings.hasOwnProperty(a) && a !== 'targets' && a !== 'keyframes'; },
 };
 
 // Easings
@@ -127,26 +128,12 @@ function spring(string, duration) {
 
 }
 
-// Elastic easing adapted from jQueryUI http://api.jqueryui.com/easings/
-
-function elastic(amplitude, period) {
-  if ( amplitude === void 0 ) amplitude = 1;
-  if ( period === void 0 ) period = .5;
-
-  var a = minMax(amplitude, 1, 10);
-  var p = minMax(period, .1, 2);
-  return function (t) {
-    return (t === 0 || t === 1) ? t : 
-      -a * Math.pow(2, 10 * (t - 1)) * Math.sin((((t - 1) - (p / (Math.PI * 2) * Math.asin(1 / a))) * (Math.PI * 2)) / p);
-  }
-}
-
 // Basic steps easing implementation https://developer.mozilla.org/fr/docs/Web/CSS/transition-timing-function
 
 function steps(steps) {
   if ( steps === void 0 ) steps = 10;
 
-  return function (t) { return Math.round(t * steps) * (1 / steps); };
+  return function (t) { return Math.ceil((minMax(t, 0.000001, 1)) * steps) * (1 / steps); };
 }
 
 // BezierEasing https://github.com/gre/bezier-easing
@@ -234,57 +221,47 @@ var bezier = (function () {
 
 var penner = (function () {
 
-  var names = ['Quad', 'Cubic', 'Quart', 'Quint', 'Sine', 'Expo', 'Circ', 'Back', 'Elastic'];
+  // Based on jQuery UI's implemenation of easing equations from Robert Penner (http://www.robertpenner.com/easing)
 
-  // Approximated Penner equations http://matthewlein.com/ceaser/
+  var eases = { linear: function () { return function (t) { return t; }; } };
 
-  var curves = {
-    In: [
-      [0.550, 0.085, 0.680, 0.530], /* inQuad */
-      [0.550, 0.055, 0.675, 0.190], /* inCubic */
-      [0.895, 0.030, 0.685, 0.220], /* inQuart */
-      [0.755, 0.050, 0.855, 0.060], /* inQuint */
-      [0.470, 0.000, 0.745, 0.715], /* inSine */
-      [0.950, 0.050, 0.795, 0.035], /* inExpo */
-      [0.600, 0.040, 0.980, 0.335], /* inCirc */
-      [0.600,-0.280, 0.735, 0.045], /* inBack */
-      elastic /* inElastic */
-    ],
-    Out: [
-      [0.250, 0.460, 0.450, 0.940], /* outQuad */
-      [0.215, 0.610, 0.355, 1.000], /* outCubic */
-      [0.165, 0.840, 0.440, 1.000], /* outQuart */
-      [0.230, 1.000, 0.320, 1.000], /* outQuint */
-      [0.390, 0.575, 0.565, 1.000], /* outSine */
-      [0.190, 1.000, 0.220, 1.000], /* outExpo */
-      [0.075, 0.820, 0.165, 1.000], /* outCirc */
-      [0.175, 0.885, 0.320, 1.275], /* outBack */
-      function (a, p) { return function (t) { return 1 - elastic(a, p)(1 - t); }; } /* outElastic */
-    ],
-    InOut: [
-      [0.455, 0.030, 0.515, 0.955], /* inOutQuad */
-      [0.645, 0.045, 0.355, 1.000], /* inOutCubic */
-      [0.770, 0.000, 0.175, 1.000], /* inOutQuart */
-      [0.860, 0.000, 0.070, 1.000], /* inOutQuint */
-      [0.445, 0.050, 0.550, 0.950], /* inOutSine */
-      [1.000, 0.000, 0.000, 1.000], /* inOutExpo */
-      [0.785, 0.135, 0.150, 0.860], /* inOutCirc */
-      [0.680,-0.550, 0.265, 1.550], /* inOutBack */
-      function (a, p) { return function (t) { return t < .5 ? elastic(a, p)(t * 2) / 2 : 1 - elastic(a, p)(t * -2 + 2) / 2; }; } /* inOutElastic */
-    ]
+  var functionEasings = {
+    Sine: function () { return function (t) { return 1 - Math.cos(t * Math.PI / 2); }; },
+    Circ: function () { return function (t) { return 1 - Math.sqrt(1 - t * t); }; },
+    Back: function () { return function (t) { return t * t * (3 * t - 2); }; },
+    Bounce: function () { return function (t) {
+      var pow2, b = 4;
+      while (t < (( pow2 = Math.pow(2, --b)) - 1) / 11) {}
+      return 1 / Math.pow(4, 3 - b) - 7.5625 * Math.pow(( pow2 * 3 - 2 ) / 22 - t, 2)
+    }; },
+    Elastic: function (amplitude, period) {
+      if ( amplitude === void 0 ) amplitude = 1;
+      if ( period === void 0 ) period = .5;
+
+      var a = minMax(amplitude, 1, 10);
+      var p = minMax(period, .1, 2);
+      return function (t) {
+        return (t === 0 || t === 1) ? t : 
+          -a * Math.pow(2, 10 * (t - 1)) * Math.sin((((t - 1) - (p / (Math.PI * 2) * Math.asin(1 / a))) * (Math.PI * 2)) / p);
+      }
+    }
   };
 
-  var eases = { 
-    linear: [0.250, 0.250, 0.750, 0.750]
-  };
+  var baseEasings = ['Quad', 'Cubic', 'Quart', 'Quint', 'Expo'];
 
-  var loop = function ( coords ) {
-    curves[coords].forEach(function (ease, i) {
-      eases['ease'+coords+names[i]] = ease;
-    });
-  };
+  baseEasings.forEach(function (name, i) {
+    functionEasings[name] = function () { return function (t) { return Math.pow(t, i + 2); }; };
+  });
 
-  for (var coords in curves) loop( coords );
+  Object.keys(functionEasings).forEach(function (name) {
+    var easeIn = functionEasings[name];
+    eases['easeIn' + name] = easeIn;
+    eases['easeOut' + name] = function (a, b) { return function (t) { return 1 - easeIn(a, b)(1 - t); }; };
+    eases['easeInOut' + name] = function (a, b) { return function (t) { return t < 0.5 ? easeIn(a, b)(t * 2) / 2 : 
+      1 - easeIn(a, b)(t * -2 + 2) / 2; }; };
+    eases['easeOutIn' + name] = function (a, b) { return function (t) { return t < 0.5 ? (1 - easeIn(a, b)(1 - t * 2)) / 2 : 
+      (easeIn(a, b)(t * 2 - 1) + 1) / 2; }; };
+  });
 
   return eases;
 
@@ -299,7 +276,7 @@ function parseEasings(easing, duration) {
     case 'spring' : return spring(easing, duration);
     case 'cubicBezier' : return applyArguments(bezier, args);
     case 'steps' : return applyArguments(steps, args);
-    default : return is.fnc(ease) ? applyArguments(ease, args) : applyArguments(bezier, ease);
+    default : return applyArguments(ease, args);
   }
 }
 
@@ -419,8 +396,8 @@ function colorToRgb(val) {
 // Units
 
 function getUnit(val) {
-  var split = /([\+\-]?[0-9#\.]+)(%|px|pt|em|rem|in|cm|mm|ex|ch|pc|vw|vh|vmin|vmax|deg|rad|turn)?$/.exec(val);
-  if (split) { return split[2]; }
+  var split = /[+-]?\d*\.?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?(%|px|pt|em|rem|in|cm|mm|ex|ch|pc|vw|vh|vmin|vmax|deg|rad|turn)?$/.exec(val);
+  if (split) { return split[1]; }
 }
 
 function getTransformUnit(propName) {
@@ -466,7 +443,7 @@ function getCSSValue(el, prop, unit) {
 }
 
 function getAnimationType(el, prop) {
-  if (is.dom(el) && !is.inp(el) && (getAttribute(el, prop) || (is.svg(el) && el[prop]))) { return 'attribute'; }
+  if (is.dom(el) && !is.inp(el) && (!is.nil(getAttribute(el, prop)) || (is.svg(el) && el[prop]))) { return 'attribute'; }
   if (is.dom(el) && arrayContains(validTransforms, prop)) { return 'transform'; }
   if (is.dom(el) && (prop !== 'transform' && getCSSValue(el, prop))) { return 'css'; }
   if (el[prop] != null) { return 'object'; }
@@ -515,9 +492,11 @@ function getRelativeValue(to, from) {
 
 function validateValue(val, unit) {
   if (is.col(val)) { return colorToRgb(val); }
+  if (/\s/g.test(val)) { return val; }
   var originalUnit = getUnit(val);
   var unitLess = originalUnit ? val.substr(0, val.length - originalUnit.length) : val;
-  return unit && !/\s/g.test(val) ? unitLess + unit : unitLess;
+  if (unit) { return unitLess + unit; }
+  return unitLess;
 }
 
 // getTotalLength() equivalent for circle, rect, polyline, polygon and line shapes
@@ -583,8 +562,8 @@ function setDashoffset(el) {
 function getParentSvgEl(el) {
   var parentEl = el.parentNode;
   while (is.svg(parentEl)) {
-    parentEl = parentEl.parentNode;
     if (!is.svg(parentEl.parentNode)) { break; }
+    parentEl = parentEl.parentNode;
   }
   return parentEl;
 }
@@ -602,8 +581,10 @@ function getParentSvg(pathEl, svgData) {
     viewBox: viewBox,
     x: viewBox[0] / 1,
     y: viewBox[1] / 1,
-    w: width / viewBox[2],
-    h: height / viewBox[3]
+    w: width,
+    h: height,
+    vW: viewBox[2],
+    vH: viewBox[3]
   }
 }
 
@@ -620,7 +601,7 @@ function getPath(path, percent) {
   }
 }
 
-function getPathProgress(path, progress) {
+function getPathProgress(path, progress, isPathTargetInsideSVG) {
   function point(offset) {
     if ( offset === void 0 ) offset = 0;
 
@@ -631,9 +612,11 @@ function getPathProgress(path, progress) {
   var p = point();
   var p0 = point(-1);
   var p1 = point(+1);
+  var scaleX = isPathTargetInsideSVG ? 1 : svg.w / svg.vW;
+  var scaleY = isPathTargetInsideSVG ? 1 : svg.h / svg.vH;
   switch (path.property) {
-    case 'x': return (p.x - svg.x) * svg.w;
-    case 'y': return (p.y - svg.y) * svg.h;
+    case 'x': return (p.x - svg.x) * scaleX;
+    case 'y': return (p.y - svg.y) * scaleY;
     case 'angle': return Math.atan2(p1.y - p0.y, p1.x - p0.x) * 180 / Math.PI;
   }
 }
@@ -641,7 +624,9 @@ function getPathProgress(path, progress) {
 // Decompose value
 
 function decomposeValue(val, unit) {
-  var rgx = /-?\d*\.?\d+/g;
+  // const rgx = /-?\d*\.?\d+/g; // handles basic numbers
+  // const rgx = /[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g; // handles exponents notation
+  var rgx = /[+-]?\d*\.?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g; // handles exponents notation
   var value = validateValue((is.pth(val) ? val.totalLength : val), unit) + '';
   return {
     original: value,
@@ -767,6 +752,7 @@ function normalizeTweens(prop, animatable) {
     tween.end = tween.start + tween.delay + tween.duration + tween.endDelay;
     tween.easing = parseEasings(tween.easing, tween.duration);
     tween.isPath = is.pth(tweenValue);
+    tween.isPathTargetInsideSVG = tween.isPath && is.svg(animatable.target);
     tween.isColor = is.col(tween.from.original);
     if (tween.isColor) { tween.round = 1; }
     previousTween = tween;
@@ -872,50 +858,57 @@ function createNewInstance(params) {
 // Core
 
 var activeInstances = [];
-var pausedInstances = [];
-var raf;
 
 var engine = (function () {
-  function play() { 
-    raf = requestAnimationFrame(step);
-  }
-  function step(t) {
-    var activeInstancesLength = activeInstances.length;
-    if (activeInstancesLength) {
-      var i = 0;
-      while (i < activeInstancesLength) {
-        var activeInstance = activeInstances[i];
-        if (!activeInstance.paused) {
-          activeInstance.tick(t);
-        } else {
-          var instanceIndex = activeInstances.indexOf(activeInstance);
-          if (instanceIndex > -1) {
-            activeInstances.splice(instanceIndex, 1);
-            activeInstancesLength = activeInstances.length;
-          }
-        }
-        i++;
-      }
-      play();
-    } else {
-      raf = cancelAnimationFrame(raf);
+  var raf;
+
+  function play() {
+    if (!raf && (!isDocumentHidden() || !anime.suspendWhenDocumentHidden) && activeInstances.length > 0) {
+      raf = requestAnimationFrame(step);
     }
   }
+  function step(t) {
+    // memo on algorithm issue:
+    // dangerous iteration over mutable `activeInstances`
+    // (that collection may be updated from within callbacks of `tick`-ed animation instances)
+    var activeInstancesLength = activeInstances.length;
+    var i = 0;
+    while (i < activeInstancesLength) {
+      var activeInstance = activeInstances[i];
+      if (!activeInstance.paused) {
+        activeInstance.tick(t);
+        i++;
+      } else {
+        activeInstances.splice(i, 1);
+        activeInstancesLength--;
+      }
+    }
+    raf = i > 0 ? requestAnimationFrame(step) : undefined;
+  }
+
+  function handleVisibilityChange() {
+    if (!anime.suspendWhenDocumentHidden) { return; }
+
+    if (isDocumentHidden()) {
+      // suspend ticks
+      raf = cancelAnimationFrame(raf);
+    } else { // is back to active tab
+      // first adjust animations to consider the time that ticks were suspended
+      activeInstances.forEach(
+        function (instance) { return instance ._onDocumentVisibility(); }
+      );
+      engine();
+    }
+  }
+  if (typeof document !== 'undefined') {
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+  }
+
   return play;
 })();
 
-function handleVisibilityChange() {
-  if (document.hidden) {
-    activeInstances.forEach(function (ins) { return ins.pause(); });
-    pausedInstances = activeInstances.slice(0);
-    activeInstances = [];
-  } else {
-    pausedInstances.forEach(function (ins) { return ins.play(); });
-  }
-}
-
-if (typeof document !== 'undefined') {
-  document.addEventListener('visibilitychange', handleVisibilityChange);
+function isDocumentHidden() {
+  return !!document && document.hidden;
 }
 
 // Public Instance
@@ -955,15 +948,15 @@ function anime(params) {
     lastTime = adjustTime(instance.currentTime) * (1 / anime.speed);
   }
 
-  function seekCild(time, child) {
+  function seekChild(time, child) {
     if (child) { child.seek(time - child.timelineOffset); }
   }
 
   function syncInstanceChildren(time) {
     if (!instance.reversePlayback) {
-      for (var i = 0; i < childrenLength; i++) { seekCild(time, children[i]); }
+      for (var i = 0; i < childrenLength; i++) { seekChild(time, children[i]); }
     } else {
-      for (var i$1 = childrenLength; i$1--;) { seekCild(time, children[i$1]); }
+      for (var i$1 = childrenLength; i$1--;) { seekChild(time, children[i$1]); }
     }
   }
 
@@ -993,7 +986,7 @@ function anime(params) {
         if (!tween.isPath) {
           value = fromNumber + (eased * (toNumber - fromNumber));
         } else {
-          value = getPathProgress(tween.value, eased * toNumber);
+          value = getPathProgress(tween.value, eased * toNumber, tween.isPathTargetInsideSVG);
         }
         if (round) {
           if (!(tween.isColor && n > 2)) {
@@ -1048,6 +1041,9 @@ function anime(params) {
     if (!instance.began && instance.currentTime > 0) {
       instance.began = true;
       setCallback('begin');
+    }
+    if (!instance.loopBegan && instance.currentTime > 0) {
+      instance.loopBegan = true;
       setCallback('loopBegin');
     }
     if (insTime <= insDelay && instance.currentTime !== 0) {
@@ -1076,12 +1072,7 @@ function anime(params) {
     if (engineTime >= insDuration) {
       lastTime = 0;
       countIteration();
-      if (instance.remaining) {
-        startTime = now;
-        setCallback('loopComplete');
-        setCallback('loopBegin');
-        if (instance.direction === 'alternate') { toggleInstanceDirection(); }
-      } else {
+      if (!instance.remaining) {
         instance.paused = true;
         if (!instance.completed) {
           instance.completed = true;
@@ -1091,6 +1082,13 @@ function anime(params) {
             resolve();
             promise = makePromise(instance);
           }
+        }
+      } else {
+        startTime = now;
+        setCallback('loopComplete');
+        instance.loopBegan = false;
+        if (instance.direction === 'alternate') {
+          toggleInstanceDirection();
         }
       }
     }
@@ -1103,6 +1101,7 @@ function anime(params) {
     instance.progress = 0;
     instance.paused = true;
     instance.began = false;
+    instance.loopBegan = false;
     instance.changeBegan = false;
     instance.completed = false;
     instance.changeCompleted = false;
@@ -1113,8 +1112,11 @@ function anime(params) {
     childrenLength = children.length;
     for (var i = childrenLength; i--;) { instance.children[i].reset(); }
     if (instance.reversed && instance.loop !== true || (direction === 'alternate' && instance.loop === 1)) { instance.remaining++; }
-    setAnimationsProgress(0);
+    setAnimationsProgress(instance.reversed ? instance.duration : 0);
   };
+
+  // internal method (for engine) to adjust animation timings before restoring engine ticks (rAF)
+  instance._onDocumentVisibility = resetTime;
 
   // Set Value helper
 
@@ -1144,17 +1146,23 @@ function anime(params) {
     instance.paused = false;
     activeInstances.push(instance);
     resetTime();
-    if (!raf) { engine(); }
+    engine();
   };
 
   instance.reverse = function() {
     toggleInstanceDirection();
+    instance.completed = instance.reversed ? false : true;
     resetTime();
   };
 
   instance.restart = function() {
     instance.reset();
     instance.play();
+  };
+
+  instance.remove = function(targets) {
+    var targetsArray = parseTargets(targets);
+    removeTargetsFromInstance(targetsArray, instance);
   };
 
   instance.reset();
@@ -1175,20 +1183,24 @@ function removeTargetsFromAnimations(targetsArray, animations) {
   }
 }
 
-function removeTargets(targets) {
+function removeTargetsFromInstance(targetsArray, instance) {
+  var animations = instance.animations;
+  var children = instance.children;
+  removeTargetsFromAnimations(targetsArray, animations);
+  for (var c = children.length; c--;) {
+    var child = children[c];
+    var childAnimations = child.animations;
+    removeTargetsFromAnimations(targetsArray, childAnimations);
+    if (!childAnimations.length && !child.children.length) { children.splice(c, 1); }
+  }
+  if (!animations.length && !children.length) { instance.pause(); }
+}
+
+function removeTargetsFromActiveInstances(targets) {
   var targetsArray = parseTargets(targets);
   for (var i = activeInstances.length; i--;) {
     var instance = activeInstances[i];
-    var animations = instance.animations;
-    var children = instance.children;
-    removeTargetsFromAnimations(targetsArray, animations);
-    for (var c = children.length; c--;) {
-      var child = children[c];
-      var childAnimations = child.animations;
-      removeTargetsFromAnimations(targetsArray, childAnimations);
-      if (!childAnimations.length && !child.children.length) { children.splice(c, 1); }
-    }
-    if (!animations.length && !children.length) { instance.pause(); }
+    removeTargetsFromInstance(targetsArray, instance);
   }
 }
 
@@ -1278,10 +1290,12 @@ function timeline(params) {
   return tl;
 }
 
-anime.version = '3.0.1';
+anime.version = '3.2.1';
 anime.speed = 1;
+// TODO:#review: naming, documentation
+anime.suspendWhenDocumentHidden = true;
 anime.running = activeInstances;
-anime.remove = removeTargets;
+anime.remove = removeTargetsFromActiveInstances;
 anime.get = getOriginalTargetValue;
 anime.set = setTargetsValue;
 anime.convertPx = convertPxToUnit;
