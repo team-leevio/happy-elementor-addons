@@ -1,3 +1,7 @@
+= v#.#.# - 03 January 2022 =
+
+- New: Double Opt In support for mailchimp widget.
+
 = 3.4.0 - 22 December 2021 =
 
 - New: Happy Icons v6 (New 53 icons)

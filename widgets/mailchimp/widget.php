@@ -157,6 +157,18 @@ class Mailchimp extends Base {
             ]
         );
 
+        $this->add_control(
+            'enable_double_opt_in',
+            [
+                'label' => __('Enable Double Opt In?', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'happy-elementor-addons'),
+                'label_off' => __('No', 'happy-elementor-addons'),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
+
         $this->end_controls_section();
 	}
 
@@ -1607,7 +1619,7 @@ class Mailchimp extends Base {
                 <div class="ha-mc-response-message error"><?php esc_html_e('This is a dummy message for error. This won\'t show in preview', 'happy-elementor-addons'); ?></div>
             <?php endif; ?>
             <div class="ha-mc-response-message"></div>
-            <form class="ha-mailchimp-form <?php //echo esc_attr($settings['form_alignment']); ?> <?php echo esc_attr($form_fields); ?>" data-list-id="<?php echo esc_attr($list_id); ?>" data-success-message="<?php echo esc_attr($settings['mailchimp_success_message']); ?>">
+            <form class="ha-mailchimp-form <?php echo esc_attr($form_fields); ?>" data-list-id="<?php echo esc_attr($list_id); ?>">
                 <?php if ($settings['enable_name'] == 'yes') : ?>
                     <div class="ha-mc-input-wrapper">
                         <?php if (!empty($settings['fname_label'])) : ?>

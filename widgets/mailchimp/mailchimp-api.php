@@ -45,8 +45,8 @@ class Mailchimp_api {
 
         $data = [
             'email_address' => (isset($submitted_data['email']) ? $submitted_data['email'] : ''),
-            'status' => 'subscribed',
-            'status_if_new' => 'subscribed',
+            'status' => ( ($widget_settings['enable_double_opt_in'] == 'yes')? 'pending': 'subscribed' ),
+            'status_if_new' => ( ($widget_settings['enable_double_opt_in'] == 'yes')? 'pending': 'subscribed' ),
             'merge_fields' => [
                 'FNAME' => (isset($submitted_data['fname']) ? $submitted_data['fname'] : ''),
                 'LNAME' => (isset($submitted_data['lname']) ? $submitted_data['lname'] : ''),
@@ -86,12 +86,16 @@ class Mailchimp_api {
             $return['msg'] = "Something went wrong: " . esc_html($error_message);
         } else {
             $body = (array) json_decode($response['body']);
+            $return['body'] = $body;
             if ($body['status'] > 399 && $body['status'] < 600) {
                 $return['status'] = 0;
                 $return['msg'] = $body['title'];
             } else if($body['status'] == 'subscribed') {
                 $return['status'] = 1;
-                $return['msg'] = esc_html__('Your data inserted on Mailchimp.', 'happy-elementor-addons');
+                $return['msg'] = $widget_settings['mailchimp_success_message'];
+            }else if($body['status'] == 'pending') {
+                $return['status'] = 1;
+                $return['msg'] = esc_html__('Confirm your subscription from your email.', 'happy-elementor-addons');
             }else {
                 $return['status'] = 0;
                 $return['msg'] = esc_html__('Something went wrong. Try again later.', 'happy-elementor-addons');
