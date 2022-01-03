@@ -14,7 +14,6 @@ use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Background;
-use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Utils;
 use Elementor\Control_Media;
@@ -227,15 +226,15 @@ class Data_Table extends Base {
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					]
 				],
 				'default' => 'center',
@@ -570,15 +569,15 @@ class Data_Table extends Base {
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					]
 				],
 				'default' => 'left',
@@ -1053,7 +1052,7 @@ class Data_Table extends Base {
 	}
 
 	protected function render() {
-		
+
 		$settings = $this->get_settings_for_display();
 
 		$table_row  = [];
@@ -1075,7 +1074,7 @@ class Data_Table extends Base {
 
 				$table_cell[] = [
 					'repeater_id'        => $row['_id'],
-					'row_id'             => $table_row[$cell_key]['id'],
+					'row_id'             => isset($table_row[$cell_key]['id'])? $table_row[$cell_key]['id']: '',
 					'title'              => $row['cell_name'],
 					'row_span'           => $row['row_span'],
 					'row_column_span'    => $row['row_column_span'],
@@ -1113,7 +1112,7 @@ class Data_Table extends Base {
 									<?php endif; ?>
 
 									<?php
-									if ( $column_cell['column_image']['url'] || $column_cell['column_image']['id'] ) :
+									if ( !empty($column_cell['column_image']['url']) || !empty($column_cell['column_image']['id']) ) :
 										$this->add_render_attribute( 'column_image', 'src', $column_cell['column_image']['url'] );
 										$this->add_render_attribute( 'column_image', 'alt', Control_Media::get_image_alt( $column_cell['column_image'] ) );
 										$this->add_render_attribute( 'column_image', 'title', Control_Media::get_image_title( $column_cell['column_image'] ) );
@@ -1170,7 +1169,7 @@ class Data_Table extends Base {
 										<?php endif; ?>
 
 										<?php
-										if ( $table_cell[$j]['row_image']['url'] || $table_cell[$j]['row_image']['id'] ) :
+										if ( !empty($table_cell[$j]['row_image']['url']) || !empty($table_cell[$j]['row_image']['id']) ) :
 											$image = wp_get_attachment_image_url( $table_cell[$j]['row_image']['id'], $table_cell[$j]['row_thumbnail_size'] );
 											if ( ! $image ) {
 												$image = $table_cell[$j]['row_image']['url'];

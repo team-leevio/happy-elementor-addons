@@ -1,17 +1,21 @@
 {
-  "name": "happy-addons-markup",
-  "version": "1.0.0",
+  "name": "happy-elementor-addons",
+  "version": "3.4.0",
   "description": "addons collection",
   "main": "index.html",
   "scripts": {
     "dev": "gulp",
-    "zip": "cd ../ && zip -r happy-elementor-addons.zip happy-elementor-addons -x '*/.*' -x '*.zip*' -x '*.git*' -x '*/.editorconfig/*' -x '*/gulpfile.js' -x '*/yarn.lock' -x '*/package.json' -x '*/package-lock.json' -x '*/node_modules/*' -x '*/assets/dev/*' && cd happy-elementor-addons"
+    "translate": "gulp pot",
+    "zip": "cd ../ && zip -r $npm_package_name.zip $npm_package_name -x '*/.*' -x '*.zip*' -x '*.git*' -x '*/.editorconfig/*' -x '*/gulpfile.js' -x '*/yarn.lock' -x '*/package.json' -x '*/package-lock.json' -x '**/node_modules/*' -x '*/.vscode/*' -x '*/assets/dev/*' && mv $npm_package_name.zip $npm_package_name-v$npm_package_version.zip && cd happy-elementor-addons"
   },
   "author": "HappyMonster",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.4",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^8.0.0",
     "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.6.1",
     "gulp-csscomb": "^3.1.0",

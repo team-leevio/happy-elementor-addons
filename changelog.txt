@@ -1,12 +1,92 @@
-= NEW ERA - 1 August 2021 =
+= 3.4.0 - 22 December 2021 =
 
-- New: Image Stack Widget.
-- New: Image Accordion Widget.
-- New: Happy Elementor Tooltip feature.
+- New: Happy Icons v6 (New 53 icons)
+- New: Two new shape dividers added ( christmas, christmas 2 )
+- Tweak: Pdf Viewer multiple viewer support in same page
+- Fix: Happy Clone issue with template type
 
-= 2.27.0 - 6 July 2021 =
+= 3.3.3 - 12 December 2021 =
 
-- Fix: Improve some style for compatibility on the content switcher.
+- Fix: Social icon missing for viber
+- Tweak: Pdf view add support for page selection
+
+= 3.3.2 - 8 December 2021 =
+
+- Code improvement
+
+= 3.3.1 - 6 December 2021 =
+
+- New: Pdf Viewer
+- Fix: Image Stack Group icon size overflow issue
+- Fix: Review Banner logic
+- Fix: Post Tab widget undefined warning issue
+- Tweak: Code improvement
+
+= 3.3.0 - 27 October 2021 =
+
+- New: Creative Button Widget
+- Fix: Dashboard widget broken style
+- Fix: Happy Tooltip JS optimization
+- Fix: Privacy policy missing link in setup wizard
+- Fix: MailChimp audience tags issue solve
+- Fix: Dashboard widgets and features disable all issues.
+- Tweak: Replace `_content_template` function with `content_template`.
+
+= 3.2.2 - 29 September 2021 =
+
+- Fix: Setup wizard asset loading
+- Fix: Resolved an unexpected warning in admin area while debugging is enabled.
+- Fix: Missing Template Engine icon in Elementor Editor.
+- Fix: Icon Box widget Badge z-index reduced
+
+= 3.2.1 - 23 September 2021 =
+
+- Fix: Setup wizard improvement and cache issue resolved.
+
+= 3.2.0 - 23 September 2021 =
+
+- New: Setup Wizard for guided plugin configuration
+- New: Widget Group in Dashboard
+- New: Dashboard to show latest offer & news
+- New: Widget uses analytics in Dashboard
+
+= 3.1.0 - 25 August 2021 =
+
+- New: Added disbale option for Column Extended feature
+- New: Added disbale option for Text Stroke feature
+- New: Added compatibility with PHP 8.0
+- Fix: Icon Box badge z-index issue
+- Remove: Alignment option from 360deg widget
+
+= 3.0.1 - 8 August 2021 =
+
+- Improve: Review Banner Logic
+- Fix: Image Stack group default image missing issue
+- Fix: Conflicts with Elementor "Border Type" style control
+
+= 3.0.0 - 3 August 2021 =
+
+- New: Image Stack Group Widget
+- New: Image Accordion Widget
+- New: Happy Tooltip feature
+- New: Added Team Member widget Ligthbox option
+- New: Added Horizontal Timeline Title HTML Tag control option
+- New: Added Taxonomy List HTML Tag control option
+- New: Added Post Tab Title HTML Tag control option
+- New: Added News Ticker widget Post Title HTML Tag control option
+- New: Added Carousel Widget Title & Subtitle HTML Tag control option
+- New: Added Sliders Widget Title & Subtitle HTML Tag control option
+- New: Added Global credential key dashboard. User can set credentials in settings pannel and use it globally (Mailchimp Widget, Twitter Feed Widget)
+- Update: Image Hover Effect Title HTML Tag control
+- Update: All widgets Coding stractrue update
+- Update: Happy sellect 2 control update
+- Update: Mailchimp form alignment improved and optimized with some coding updates.
+- Fix: Taxonomy List Sellect2 issue
+- Fix: Post tab Sellect2 issue
+- Fix: Post list Sellect2 issue
+- Fix: News ticker Sellect2 issue
+- Fix: Mailchimp Sellect2 issue
+- Fix: Improve some style for compatibility on the content switcher
 
 = 2.27.0 - 5 July 2021 =
 

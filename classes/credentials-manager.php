@@ -55,38 +55,75 @@ class Credentials_Manager {
 	 */
 	public static function get_pro_credentials_map() {
 		return [
-			// 'instagram' => [
-			// 	'title' => __('Instagram', 'happy-elementor-addons'),
-			// 	'icon' => 'hm hm-instagram',
-			// 	'fiels' => [
-			// 		[
-			// 			'label' => esc_html__('User Name. ', 'happy-elementor-addons'),
-			// 			'type' => 'text',
-			// 			'name' => 'username',
-			// 			'help' => [
-			// 				'instruction' => esc_html__('Get your username here', 'happy-elementor-addons'),
-			// 				'link' => 'https://example.com/url'
-			// 			],
-			// 		],
-			// 		[
-			// 			'label' => esc_html__('Public Key. ', 'happy-elementor-addons'),
-			// 			'type' => 'text',
-			// 			'name' => 'public_key',
-			// 			'help' => [],
-			// 		],
-			// 		[
-			// 			'label' => esc_html__('Secret Key. ', 'happy-elementor-addons'),
-			// 			'type' => 'text',
-			// 			'name' => 'secret_key',
-			// 			'help' => [
-			// 				'instruction' => esc_html__('Get your secret_key here', 'happy-elementor-addons'),
-			// 				'link' => 'https://example.com/url'
-			// 			],
-			// 		],
-			// 	],
-			// 	'demo' => 'https://happyaddons.com/instagram/',
-			// 	'is_pro' => true,
-			// ],
+			'advanced_data_table' => [
+				'title' => __('Advanced Data Table', 'happy-elementor-addons'),
+				'icon' => 'hm hm-data-table',
+				'fiels' => [
+					[
+						'label' => esc_html__('Google API Key. ', 'happy-elementor-addons'),
+						'type' => 'text',
+						'name' => 'api_key',
+						'help' => [
+							'instruction' => esc_html__('Get API Key', 'happy-elementor-addons'),
+							'link' => 'https://console.developers.google.com/'
+						],
+					],
+					[
+						'label' => esc_html__('Google Sheet ID. ', 'happy-elementor-addons'),
+						'type' => 'text',
+						'name' => 'sheet_id',
+						'help' => [],
+					],
+					[
+						'label' => esc_html__('Google Sheets Range. Ex: A1:D5 ', 'happy-elementor-addons'),
+						'type' => 'text',
+						'name' => 'sheet_range',
+						'help' => [],
+					],
+				],
+				'is_pro' => true,
+			],
+			'facebook_feed' => [
+				'title' => __('Facebook Feed', 'happy-elementor-addons'),
+				'icon' => 'hm hm-facebook',
+				'fiels' => [
+					[
+						'label' => esc_html__('Page ID. ', 'happy-elementor-addons'),
+						'type' => 'text',
+						'name' => 'page_id',
+						'help' => [
+							'instruction' => esc_html__('Get Page ID', 'happy-elementor-addons'),
+							'link' => 'https://developers.facebook.com/apps/'
+						],
+					],
+					[
+						'label' => esc_html__('Access Token. ', 'happy-elementor-addons'),
+						'type' => 'text',
+						'name' => 'access_token',
+						'help' => [
+							'instruction' => esc_html__('Get Access Token.', 'happy-elementor-addons'),
+							'link' => 'https://developers.facebook.com/apps/'
+						],
+					],
+				],
+				'is_pro' => true,
+			],
+			'instagram' => [
+				'title' => __('Instagram', 'happy-elementor-addons'),
+				'icon' => 'hm hm-instagram',
+				'fiels' => [
+					[
+						'label' => esc_html__('Access Token. ', 'happy-elementor-addons'),
+						'type' => 'text',
+						'name' => 'access_token',
+						'help' => [
+							'instruction' => esc_html__('Get Access Token', 'happy-elementor-addons'),
+							'link' => 'https://developers.facebook.com/docs/instagram-basic-display-api/getting-started'
+						],
+					],
+				],
+				'is_pro' => true,
+			],
 		];
 	}
 

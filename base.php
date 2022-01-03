@@ -91,18 +91,21 @@ class Base {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
-
+		
 		if ( is_admin() ) {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/attention-seeker.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
+			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard-widgets.php' );
 		}
-
+		
 		if ( is_user_logged_in() ) {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-manager.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-source.php' );
 		}
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/api-handler.php' );
+		
 	}
 
 	public function include_on_init() {

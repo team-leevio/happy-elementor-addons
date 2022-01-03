@@ -758,11 +758,26 @@ class Image_Grid extends Base {
 		return compact( 'menu', 'items' );
 	}
 
+	protected function image_missing_alert() {
+		if( ha_elementor()->editor ){
+			printf(
+				'<div %s>%s</div>',
+				'style="margin: 1rem;padding: 1rem 1.25rem;border-left: 5px solid #f5c848;color: #856404;background-color: #fff3cd;"',
+				__( 'Please select an image first to render the grid properly', 'happy-elementor-addons' )
+			);
+		}
+	}
+
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$gallery = $this->get_gallery_data();
 
 		if ( empty( $gallery ) ) {
+			return;
+		}
+
+		if ( count( $gallery['items'] ) <= 0 ) {
+			$this->image_missing_alert();
 			return;
 		}
 

@@ -257,6 +257,22 @@ class Shape_Divider {
 				'has_flip' => true,
 				'has_negative' => false,
 				'ha_shape' => true,
+			],
+			'christmas' => [
+				'title' => _x( 'Christmas', 'Shapes', 'happy-elementor-addons' ),
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/christmas.svg',
+				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/christmas.svg',
+				'has_flip' => true,
+				'has_negative' => true,
+				'ha_shape' => true,
+			],
+			'christmas2' => [
+				'title' => _x( 'Christmas 2', 'Shapes', 'happy-elementor-addons' ),
+				'path' => HAPPY_ADDONS_DIR_PATH . 'assets/imgs/shape-divider/christmas2.svg',
+				'url' => HAPPY_ADDONS_ASSETS . 'imgs/shape-divider/christmas2.svg',
+				'has_flip' => true,
+				'has_negative' => true,
+				'ha_shape' => true,
 			]
 		];
 
