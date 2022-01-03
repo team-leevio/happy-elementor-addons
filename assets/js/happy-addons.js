@@ -913,9 +913,8 @@
 		
 		var MailChimp = function($scope){
 
-			elForm = $scope.find('.ha-mailchimp-form');
-			elMessage = $scope.find('.ha-mc-response-message');
-			successMessage = elForm.data('success-message');
+			var elForm = $scope.find('.ha-mailchimp-form'),
+				elMessage = $scope.find('.ha-mc-response-message');
 
 			elForm.on('submit', function(e){
 				e.preventDefault();
@@ -939,13 +938,12 @@
 						if(response.status){
 							elMessage.removeClass('error');
 							elMessage.addClass('success');
-							elMessage.text(successMessage);
+							elMessage.text(response.msg);
 						}else {
 							elMessage.addClass('error');
 							elMessage.removeClass('success');
 							elMessage.text(response.msg);
 						}
-						// console.log(response);
 					},
 					error: function(error) {
 						// console.log(error);
