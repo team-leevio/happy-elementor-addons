@@ -996,7 +996,7 @@ class Widgets_Manager
 				'cat' => 'creative',
 				'is_active' => true,
 				'title' => __('Comparison Table', 'happy-elementor-addons'),
-				'icon' => 'hm hm-table-lamp',
+				'icon' => 'hm hm-scale',
 				'css' => ['comparison-table'],
 				'js' => [],
 				'vendor' => [

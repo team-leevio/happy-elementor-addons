@@ -14,8 +14,10 @@ use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Image_Size;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
+use Elementor\Utils;
 
 defined( 'ABSPATH' ) || die();
 
@@ -47,7 +49,7 @@ class Comparison_Table extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-table-lamp';
+		return 'hm hm-scale';
 	}
 
 	/**
@@ -182,18 +184,6 @@ class Comparison_Table extends Base {
 				],
 			]
 		);
-
-		// $repeater->add_group_control(
-		// 	Group_Control_Box_Shadow::get_type(),
-		// 	[
-		// 		'name' => 'col_box_shadow',
-		// 		'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
-		// 		'selectors' => [
-		//             '{{WRAPPER}} {{CURRENT_ITEM}}',
-		//             '{{WRAPPER}} {{CURRENT_ITEM}}-sub',
-		//         ],
-		// 	]
-		// );
 
 		$this->add_control(
 			'columns_data',
@@ -357,19 +347,48 @@ class Comparison_Table extends Base {
 			]
 		);
 
+		// $repeater->add_control(
+		// 	'column_content_type',
+		// 	[
+		// 		'label'     => __( 'Column Content Type', 'happy-elementor-addons' ),
+		// 		'type'      => Controls_Manager::SELECT,
+		// 		'default'   => 'text',
+		// 		'options'   => [
+		// 			'text' => __( 'Text', 'happy-elementor-addons' ),
+		// 			'icon' => __( 'Icon', 'happy-elementor-addons' ),
+		// 			'blank' => __( 'Blank', 'happy-elementor-addons' ),
+		// 		],
+		// 		'condition' => [
+		// 			'row_column_type!' => 'row',
+		// 		],
+		// 	]
+		// );
+
 		$repeater->add_control(
 			'column_content_type',
 			[
-				'label'     => __( 'Column Content Type', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => 'text',
-				'options'   => [
-					'text' => __( 'Text', 'happy-elementor-addons' ),
-					'icon' => __( 'Icon', 'happy-elementor-addons' ),
-					'blank' => __( 'Blank', 'happy-elementor-addons' ),
-				],
-				'condition' => [
-					'row_column_type!' => 'row',
+				'label'       => __( 'Content Type', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'label_block' => false,
+				'toggle'      => false,
+				'default'     => 'blank',
+				'options'     => [
+					'blank' => [
+						'title' => __( 'Blank', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-editor-close',
+					],
+					'text' => [
+						'title' => __( 'Text', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-heading',
+					],
+					'icon' => [
+						'title' => __( 'Icon', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-info-circle',
+					],
+					'image' => [
+						'title' => __( 'Image', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-image',
+					],
 				],
 			]
 		);
@@ -388,6 +407,35 @@ class Comparison_Table extends Base {
 					'column_content_type' => 'text',
 					'row_column_type!'    => 'row',
 				],
+			]
+		);
+
+		$repeater->add_control(
+			'column_image',
+			[
+				'label'       => __( 'Image', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::MEDIA,
+				'label_block' => true,
+				'dynamic'     => [
+					'active' => true,
+				],
+				'default' => [
+					'url' => Utils::get_placeholder_image_src(),
+				],
+				'condition'   => [
+					'column_content_type' => 'image',
+					'row_column_type!'    => 'row',
+				],
+			]
+		);
+
+		$repeater->add_group_control(
+			Group_Control_Image_Size::get_type(),
+			[
+				'name' => 'thumbnail',
+				'exclude' => [ 'custom' ],
+				'include' => [],
+				'default' => 'thumbnail',
 			]
 		);
 
@@ -478,7 +526,7 @@ class Comparison_Table extends Base {
 						'column_text'         => __( '250', 'happy-elementor-addons' ),
 					],
 				],
-				'title_field'  => '{{{ row_column_type == "row" ? "Row Start" : (column_content_type == "text"  ? column_text : "" || column_content_type == "icon" ? elementor.helpers.renderIcon( this, column_icon, {}, "i", "panel" ) +" Icon" : "" || column_content_type == "blank" ? "Blank" : "") }}}',
+				'title_field'  => '{{{ row_column_type == "row" ? "Row Start" : (column_content_type == "text"  ? column_text : "" || column_content_type == "icon" ? elementor.helpers.renderIcon( this, column_icon, {}, "i", "panel" ) +" Icon" : "" || column_content_type == "blank" ? "Blank" : ""|| column_content_type == "image" ? "Image" : "") }}}',
 
 			]
 		);
@@ -986,6 +1034,57 @@ class Comparison_Table extends Base {
 		);
 
 		$this->add_control(
+			'_row_image',
+			[
+				'type'      => Controls_Manager::HEADING,
+				'label'     => __( 'Image', 'happy-elementor-addons' ),
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_responsive_control(
+			'row_image_width',
+			[
+				'label'     => __( 'Width', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'vw'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 2000,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-comparison-table__row-cell-image img'     => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'row_image_height',
+			[
+				'label'     => __( 'Height', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 2000,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-comparison-table__row-cell-image img'     => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
 			'_row_icon',
 			[
 				'type'      => Controls_Manager::HEADING,
@@ -1190,14 +1289,14 @@ class Comparison_Table extends Base {
 		foreach ( $rows_data as $index => $row ) {
 			$row_id = uniqid();
 
-			if ( 'row' == $row[ 'row_column_type' ] ) {
+			if ( 'row' == $row['row_column_type'] ) {
 				$table_row[] = [
 					'id'   => $row_id,
 					'type' => $row['row_column_type'],
 				];
 			}
 
-			if ( 'column' == $row[ 'row_column_type' ] ) {
+			if ( 'column' == $row['row_column_type'] ) {
 				$table_row_keys = array_keys( $table_row );
 				$cell_key       = end( $table_row_keys );
 
@@ -1206,6 +1305,8 @@ class Comparison_Table extends Base {
 					'row_id'      => isset( $table_row[ $cell_key ]['id'] ) ? $table_row[ $cell_key ]['id'] : '',
 					'title'       => $row['column_text'],
 					'row_icons'   => ! empty( $row['column_icon']['value'] ) ? $row['column_icon'] : '',
+					'row_image'   => ! empty( $row['column_image'] ) ? $row['column_image'] : '',
+					'image_size'   => ! empty( $row['thumbnail_size'] ) ? $row['thumbnail_size'] : '',
 				];
 			}
 		}
@@ -1227,7 +1328,6 @@ class Comparison_Table extends Base {
 							'elementor-repeater-item-' . $head['_id'],
 							'icon-' . $settings['icon_position'],
 							],
-							// 'style' => 'width: ' . $head['column_width']['size'] . $head['column_width']['unit']. ';'
 						] );
 
 						?>
@@ -1244,7 +1344,7 @@ class Comparison_Table extends Base {
 						</div>
 						<?php endif; ?>
 					</div>
-									<?php endforeach;
+					<?php endforeach;
 endif; ?>
 			</div>
 			<div class="ha-comparison-table__row">
@@ -1268,13 +1368,20 @@ endif; ?>
 								<?php Icons_Manager::render_icon( $table_cell[ $j ]['row_icons'] ); ?>
 							</div>
 						<?php endif; ?>
+							<?php if ( ! empty( $table_cell[ $j ]['row_image'] ) ) : ?>
+							<div class="ha-comparison-table__row-cell-image">	
+								<?php
+									echo wp_get_attachment_image( $table_cell[ $j ]['row_image']['id'], $table_cell[ $j ]['image_size'] );
+								?>
+							</div>
+						<?php endif; ?>
 					</div>
 
 							<?php
-							$this->remove_render_attribute( 'row_repeater_key' );
-							$index++;
-endif;
-endfor;?>
+								$this->remove_render_attribute( 'row_repeater_key' );
+								$index++;
+							endif;
+						endfor;?>
 				</div>
 				<?php endfor; ?>
 			</div>
@@ -1303,7 +1410,6 @@ endfor;?>
 				}
 				?>
 			</div>
-			
 		</div>
 
 		<?php
