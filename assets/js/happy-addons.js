@@ -837,7 +837,6 @@
 					data: data,
 					success: function(response) {
 						elForm.trigger('reset');
-						console.log(response);
 						if(response.status){
 							elMessage.removeClass('error');
 							elMessage.addClass('success');
@@ -847,6 +846,12 @@
 							elMessage.removeClass('success');
 							elMessage.text(response.msg);
 						}
+
+						const hideMsg = setTimeout(function() {
+							elMessage.removeClass('error');
+							elMessage.removeClass('success');
+							clearTimeout(hideMsg);
+						}, 5000);
 					},
 					error: function(error) {
 						// console.log(error);
