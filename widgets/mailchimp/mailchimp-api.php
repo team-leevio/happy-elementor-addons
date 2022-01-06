@@ -10,9 +10,9 @@ namespace Happy_Addons\Elementor\Widget\Mailchimp;
 
 defined( 'ABSPATH' ) || die();
 
-class Mailchimp_api {
+class Mailchimp_Api {
 
-	private static $apiKey;
+	private static $api_key;
 	private static $credentials;
 	public static $list_id;
 
@@ -27,7 +27,7 @@ class Mailchimp_api {
 
 		self::$credentials = ha_get_credentials( 'mailchimp' );
 
-		self::$apiKey = isset( self::$credentials['api'] ) ? self::$credentials['api'] : '';
+		self::$api_key = isset( self::$credentials['api'] ) ? self::$credentials['api'] : '';
 
 		$widget_settings = ha_get_ele_widget_settings( $_POST['post_id'], $_POST['widget_id'] );
 
@@ -35,7 +35,7 @@ class Mailchimp_api {
 		$tags     = explode( ', ', $str_tags );
 
 		$auth = [
-			'api_key' => self::$apiKey,
+			'api_key' => self::$api_key,
 			'list_id' => $_POST['list_id'],
 		];
 
@@ -112,15 +112,15 @@ class Mailchimp_api {
 	 */
 	public static function get_mailchimp_lists( $api = null ) {
 
-		self::$apiKey = isset( self::$credentials['api'] ) ? self::$credentials['api'] : '';
+		self::$api_key = isset( self::$credentials['api'] ) ? self::$credentials['api'] : '';
 
 		$options = [];
 
 		if ( $api != null ) {
-			self::$apiKey = $api;
+			self::$api_key = $api;
 		}
 
-		$server = explode( '-', self::$apiKey );
+		$server = explode( '-', self::$api_key );
 
 		if ( ! isset( $server[1] ) ) {
 			return 0;
@@ -136,7 +136,7 @@ class Mailchimp_api {
 				'timeout'     => 45,
 				'headers'     => [
 
-					'Authorization' => 'apikey ' . self::$apiKey,
+					'Authorization' => 'apikey ' . self::$api_key,
 					'Content-Type'  => 'application/json; charset=utf-8',
 				],
 				'body'        => '',
@@ -148,7 +148,7 @@ class Mailchimp_api {
 			$body   = (array) json_decode( $response['body'] );
 			$listed = isset( $body['lists'] ) ? $body['lists'] : [];
 
-			if ( is_array( $listed ) && sizeof( $listed ) > 0 ) {
+			if ( is_array( $listed ) && count( $listed ) > 0 ) {
 
 				$options = array_reduce(
 					$listed,
