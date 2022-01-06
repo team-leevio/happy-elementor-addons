@@ -155,11 +155,11 @@ class Select2_Handler {
             $current_api = $custom_api;
         }
 
-		if(!class_exists('Happy_Addons\Elementor\Widget\Mailchimp\Mailchimp_api')) {
+		if(!class_exists('Happy_Addons\Elementor\Widget\Mailchimp\Mailchimp_Api')) {
 			include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
 		}
 
-		$options = Widget\Mailchimp\Mailchimp_api::get_mailchimp_lists($current_api);
+		$options = Widget\Mailchimp\Mailchimp_Api::get_mailchimp_lists($current_api);
 
 		if ( $saved_values  ){
 			return (array_key_exists($saved_values[0], $options)? [ $saved_values[0] => $options[ $saved_values[0] ] ]: [] );
