@@ -60,6 +60,11 @@ function makeBackendCSS() {
 function makeFrontendJS() {
 	return src(frontendJSFiles)
 		.pipe(plumberNotifier())
+		.pipe(
+			babel({
+				presets: ["@babel/env"],
+			})
+		)
 		.pipe(dest("assets/js"))
 		//.pipe(uglify())
 		.pipe(rename({ suffix: ".min" }))

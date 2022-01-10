@@ -1,120 +1,117 @@
-;(function( $ ) {
-	'use strict';
-	var $window = $(window),
-		debounce = function(func, wait, immediate) {
-			var timeout;
-			return function() {
-				var context = this, args = arguments;
-				var later = function() {
-					timeout = null;
-					if (!immediate) func.apply(context, args);
-				};
-				var callNow = immediate && !timeout;
-				clearTimeout(timeout);
-				timeout = setTimeout(later, wait);
-				if (callNow) func.apply(context, args);
-			};
-		};
+"use strict";
 
-	$window.on('elementor/frontend/init', function() {
-		var ModuleHandler = elementorModules.frontend.handlers.Base,
-			EqualHeightHandler;
+;
 
-		EqualHeightHandler = ModuleHandler.extend({
-			CACHED_ELEMENTS: [],
+(function ($) {
+  'use strict';
 
-			isEqhEnabled: function() {
-				return (
-					this.getElementSettings( '_ha_eqh_enable' ) === 'yes' &&
-					$.fn.matchHeight
-				);
-			},
+  var $window = $(window),
+      debounce = function debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+      var context = this,
+          args = arguments;
 
-			isDisabledOnDevice: function() {
-				var windowWidth = $window.outerWidth(),
-					mobileWidth = elementorFrontendConfig.breakpoints.md,
-					tabletWidth = elementorFrontendConfig.breakpoints.lg;
+      var later = function later() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
 
-				if (this.getElementSettings('_ha_eqh_disable_on_mobile') && windowWidth < mobileWidth) {
-					return true;
-				}
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  };
 
-				if (this.getElementSettings('_ha_eqh_disable_on_tablet') && windowWidth >= mobileWidth && windowWidth < tabletWidth) {
-					return true;
-				}
+  $window.on('elementor/frontend/init', function () {
+    var ModuleHandler = elementorModules.frontend.handlers.Base,
+        EqualHeightHandler;
+    EqualHeightHandler = ModuleHandler.extend({
+      CACHED_ELEMENTS: [],
+      isEqhEnabled: function isEqhEnabled() {
+        return this.getElementSettings('_ha_eqh_enable') === 'yes' && $.fn.matchHeight;
+      },
+      isDisabledOnDevice: function isDisabledOnDevice() {
+        var windowWidth = $window.outerWidth(),
+            mobileWidth = elementorFrontendConfig.breakpoints.md,
+            tabletWidth = elementorFrontendConfig.breakpoints.lg;
 
-				return false;
-			},
+        if (this.getElementSettings('_ha_eqh_disable_on_mobile') && windowWidth < mobileWidth) {
+          return true;
+        }
 
-			getEqhTo: function() {
-				return this.getElementSettings('_ha_eqh_to') || 'widget';
-			},
+        if (this.getElementSettings('_ha_eqh_disable_on_tablet') && windowWidth >= mobileWidth && windowWidth < tabletWidth) {
+          return true;
+        }
 
-			getEqhWidgets: function() {
-				return this.getElementSettings('_ha_eqh_widget') || [];
-			},
+        return false;
+      },
+      getEqhTo: function getEqhTo() {
+        return this.getElementSettings('_ha_eqh_to') || 'widget';
+      },
+      getEqhWidgets: function getEqhWidgets() {
+        return this.getElementSettings('_ha_eqh_widget') || [];
+      },
+      getTargetElements: function getTargetElements() {
+        var _this = this;
 
-			getTargetElements: function() {
-				var _this = this;
+        return this.getEqhWidgets().map(function (widget) {
+          return _this.$element.find('.elementor-widget-' + widget + ' .elementor-widget-container');
+        });
+      },
+      bindEvents: function bindEvents() {
+        if (this.isEqhEnabled()) {
+          this.run();
+          $window.on('resize orientationchange', debounce(this.run.bind(this), 80));
+        }
+      },
+      onElementChange: debounce(function (prop, ele) {
+        if (prop.indexOf('_ha_eqh') === -1) {
+          return;
+        }
 
-				return this.getEqhWidgets().map(function(widget) {
-					return _this.$element.find('.elementor-widget-'+widget + ' .elementor-widget-container');
-				});
-			},
+        this.unbindMatchHeight(true);
+        this.run();
+      }, 100),
+      unbindMatchHeight: function unbindMatchHeight(isCachedOnly) {
+        if (isCachedOnly) {
+          this.CACHED_ELEMENTS.forEach(function ($el) {
+            $el.matchHeight({
+              remove: true
+            });
+          });
+          this.CACHED_ELEMENTS = [];
+        } else {
+          this.getTargetElements().forEach(function ($el) {
+            $el && $el.matchHeight({
+              remove: true
+            });
+          });
+        }
+      },
+      run: function run() {
+        var _this = this;
 
-			bindEvents: function () {
-				if (this.isEqhEnabled()) {
-					this.run();
+        if (this.isDisabledOnDevice()) {
+          this.unbindMatchHeight();
+        } else {
+          this.getTargetElements().forEach(function ($el) {
+            if ($el.length) {
+              $el.matchHeight({
+                byRow: false
+              });
 
-					$window.on('resize orientationchange', debounce(this.run.bind(this), 80));
-				}
-			},
-
-			onElementChange: debounce(function(prop, ele) {
-				if (prop.indexOf('_ha_eqh') === -1) {
-					return;
-				}
-
-				this.unbindMatchHeight(true);
-				this.run();
-			}, 100),
-
-			unbindMatchHeight: function(isCachedOnly) {
-				if (isCachedOnly) {
-					this.CACHED_ELEMENTS.forEach(function($el) {
-						$el.matchHeight({remove: true});
-					});
-
-					this.CACHED_ELEMENTS = [];
-				} else {
-					this.getTargetElements().forEach(function($el) {
-						$el && $el.matchHeight({remove: true});
-					});
-				}
-			},
-
-			run: function() {
-				var _this = this;
-
-				if (this.isDisabledOnDevice()) {
-					this.unbindMatchHeight();
-				} else {
-					this.getTargetElements().forEach(function($el) {
-						if ($el.length) {
-							$el.matchHeight({
-								byRow: false
-							});
-
-							_this.CACHED_ELEMENTS.push($el);
-						}
-					});
-				}
-			},
-		});
-
-		elementorFrontend.hooks.addAction( 'frontend/element_ready/section', function( $scope ) {
-			elementorFrontend.elementsHandler.addHandler( EqualHeightHandler, { $element: $scope });
-		});
-	});
-
-}( jQuery ));
+              _this.CACHED_ELEMENTS.push($el);
+            }
+          });
+        }
+      }
+    });
+    elementorFrontend.hooks.addAction('frontend/element_ready/section', function ($scope) {
+      elementorFrontend.elementsHandler.addHandler(EqualHeightHandler, {
+        $element: $scope
+      });
+    });
+  });
+})(jQuery);
