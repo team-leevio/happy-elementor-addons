@@ -50,6 +50,13 @@
 	background: #d6226e;
 }
 
+#happy_addons_news_update .ha-overview__feed > a {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+}
+
 #happy_addons_news_update .ha-overview--banner {
 	width: 100%;
 }
