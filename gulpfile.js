@@ -1,5 +1,5 @@
 const { src, watch, dest, series } = require("gulp");
-const sass = require("gulp-sass");
+const sass = require('gulp-sass')(require('sass'));
 const csso = require("gulp-csso");
 const rename = require("gulp-rename");
 const babel = require("gulp-babel");
