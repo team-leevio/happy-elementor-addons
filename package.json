@@ -25,6 +25,6 @@
     "gulp-sass": "^3.2.1",
     "gulp-uglify": "^2.1.2",
     "gulp-wp-pot": "^2.5.0",
-    "node-sass": "^4.14.1"
+    "sass": "^1.45.0"
   }
 }

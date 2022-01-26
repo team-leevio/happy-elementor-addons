@@ -28,6 +28,11 @@
 			width: 100%;
 			object-fit: cover;
 		}
+
+		.ha-badge {
+			position: absolute;
+		}
+
 	}
 
 	&-body {
@@ -237,9 +242,4 @@
 			}
 		}
 	}
-}
-
-// Card label
-.ha-card .ha-badge {
-	position: absolute;
 }
