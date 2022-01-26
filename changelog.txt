@@ -1,6 +1,7 @@
 = #.#.# - 26 January 2022 =
 
 - Fix: Card widget alignment issue as gloabl widget
+- Fix: Dashboard Analytics Page issue
 
 = 3.4.0 - 22 December 2021 =
 

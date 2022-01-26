@@ -527,6 +527,19 @@
 				}
 			}
 		}
+		.ha-dashboard-analytics-notice {
+			p.step {
+				margin: 0 0 20px;
+				strong {
+					display: block;
+					margin: 0 0 10px;
+					font-size: 20px;
+				}
+				a {
+					color: #562dd4;
+				}
+			}
+		}
 	}
 
 	// IOS Style toggle

@@ -519,6 +519,17 @@
 .ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics__item fieldset .widget_inner .widget-title span.disable {
 	background: #ccc;
 }
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics-notice p.step {
+	margin: 0 0 20px;
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics-notice p.step strong {
+	display: block;
+	margin: 0 0 10px;
+	font-size: 20px;
+}
+.ha-dashboard .ha-dashboard-panel-analytics .ha-dashboard-analytics-notice p.step a {
+	color: #562dd4;
+}
 .ha-dashboard .ha-toggle {
 	position: relative;
 	display: block;
