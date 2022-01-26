@@ -1,4 +1,4 @@
-= #.#.# - 26 January 2022 =
+= 3.4.1 - 27 January 2022 =
 
 - Fix: Card widget alignment issue as gloabl widget
 - Fix: Dashboard Analytics Page issue
