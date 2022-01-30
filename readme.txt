@@ -437,7 +437,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.4.1 - 27 January 2022 =
+= 3.4.1 - 31 January 2022 =
 
 - Fix: Card widget alignment issue as gloabl widget
 - Fix: Dashboard Analytics Page issue
