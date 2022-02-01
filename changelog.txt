@@ -1,7 +1,7 @@
 = 3.4.1 - 31 January 2022 =
 
 - New: Comparison Table Widget
-- Fix: Card widget alignment issue as gloabl widget
+- Fix: Card widget alignment issue as global widget
 - Fix: Dashboard Analytics Page issue
 
 = 3.4.0 - 22 December 2021 =
