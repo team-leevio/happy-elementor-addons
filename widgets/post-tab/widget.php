@@ -269,15 +269,15 @@ class Post_Tab extends Base {
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'happy-elementor-addons' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
 				'condition' => [
@@ -916,8 +916,8 @@ class Post_Tab extends Base {
 			'ha-post-tab',
 			'ha-post-tab-' . $settings['filter_pos'],
 			'ha-post-tab-grid-' . $settings['column'],
-			'ha-post-tab-grid-tablet-' . $settings['column_tablet'],
-			'ha-post-tab-grid-mobile-' . $settings['column_mobile'],
+			isset($settings['column_tablet']) ? 'ha-post-tab-grid-tablet-' . $settings['column_tablet'] : 'ha-post-tab-grid-tablet-3',
+			isset($settings['column_mobile']) ? 'ha-post-tab-grid-mobile-' . $settings['column_mobile'] : 'ha-post-tab-grid-mobile-1',
 		];
 		$this->add_render_attribute( 'wrapper', 'class', $wrapper_class );
 		$this->add_render_attribute( 'wrapper', 'data-query-args', $query_settings );

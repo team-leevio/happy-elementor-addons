@@ -12,7 +12,6 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Core\Schemes\Typography;
-use Happy_Addons\Elementor\Icons_Manager;
 
 defined( 'ABSPATH' ) || die();
 
@@ -763,7 +762,7 @@ class Icon_Box extends Base {
 		endif;
 	}
 
-	public function _content_template() {
+	public function content_template() {
 		?>
 		<#
 		var iconHTML = migrated = '';

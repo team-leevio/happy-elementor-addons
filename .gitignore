@@ -219,3 +219,5 @@ npm-shrinkwrap.json
 
 .vscode/
 assets/designs/list-group-backup.json
+package-lock.json
+yarn.lock

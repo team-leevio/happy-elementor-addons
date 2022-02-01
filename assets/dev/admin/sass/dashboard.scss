@@ -79,6 +79,10 @@
 				border-top: 3px solid #bbb;
 				font-weight: 700;
 
+				@media screen and (min-width:1200px) and (max-width: 1340px) {
+					padding: 15px 25px;
+				}
+
 				&--pro {
 					background-color: $secondary-color;
 					color: #fff;
@@ -520,6 +524,19 @@
 							}
 						}
 					}
+				}
+			}
+		}
+		.ha-dashboard-analytics-notice {
+			p.step {
+				margin: 0 0 20px;
+				strong {
+					display: block;
+					margin: 0 0 10px;
+					font-size: 20px;
+				}
+				a {
+					color: #562dd4;
 				}
 			}
 		}

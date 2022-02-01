@@ -37,10 +37,10 @@ class Dashboard {
         add_action( 'admin_init', [ __CLASS__, 'activation_redirect' ] );
         add_filter( 'plugin_action_links_' . plugin_basename( HAPPY_ADDONS__FILE__ ), [ __CLASS__, 'add_action_links' ] );
 
-        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_widgets_data' ] );
+        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_widgets_data' ], 1);
         add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_features_data' ] );
         add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_credentials_data' ] );
-        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'disable_unused_widget' ] );
+        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'disable_unused_widget' ], 10);
 
         add_action( 'in_admin_header', [ __CLASS__, 'remove_all_notices' ], PHP_INT_MAX );
 
@@ -112,14 +112,12 @@ class Dashboard {
     }
 
     public static function save_widgets_data( $data ) {
-		if( !isset($data['widgets'])) { return; }
         $widgets = ! empty( $data['widgets'] ) ? $data['widgets'] : [];
         $inactive_widgets = array_values( array_diff( array_keys( self::get_real_widgets_map() ), $widgets ) );
         Widgets_Manager::save_inactive_widgets( $inactive_widgets );
     }
 
     public static function save_features_data( $data ) {
-		if( !isset($data['features'])) { return; }
         $features = ! empty( $data['features'] ) ? $data['features'] : [];
 
         /* Check whether Pro is available and allow to disable pro features */
@@ -134,20 +132,18 @@ class Dashboard {
     }
 
     public static function save_credentials_data( $data ) {
-		if( !isset($data['credentials'])) { return; }
         $credentials = ! empty( $data['credentials'] ) ? $data['credentials'] : [];
         Credentials_Manager::save_credentials( $credentials );
     }
 
     public static function disable_unused_widget( $data ) {
-		if( !isset($data['disable-unused-widgets'])) { return; }
-        $disable_unused_widgets = ! empty( $data['disable-unused-widgets'] ) && 'true' == $data['disable-unused-widgets'] ? true : false;
+        $disable_unused_widgets = ( ( ! empty( $data['disable-unused-widgets'] ) ) && ( 'true' == $data['disable-unused-widgets'] ) ) ? true : false;
 
 		if( $disable_unused_widgets ){
 			$inactive_widgets = \Happy_Addons\Elementor\Widgets_Manager::get_inactive_widgets();
 			$unuse_widget = self::get_un_usage();
 			$disable = array_unique(array_merge( $inactive_widgets, $unuse_widget ));
-			update_option( 'happyaddons_inactive_widgets', $disable );
+            Widgets_Manager::save_inactive_widgets( $disable );
 		}
     }
 

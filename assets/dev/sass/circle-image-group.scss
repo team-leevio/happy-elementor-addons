@@ -20,6 +20,7 @@
       box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
     }
 
+    .fw-svg-wrap,
     img,
     i {
       max-width: 100%;
@@ -33,6 +34,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
     }
 
     &:not(:first-child) {

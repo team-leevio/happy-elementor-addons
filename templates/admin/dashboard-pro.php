@@ -71,7 +71,7 @@ defined( 'ABSPATH' ) || die();
                 $icon = isset( $widget['icon'] ) ? $widget['icon'] : 'hm hm-happyaddons';
                 $demo = isset( $widget['demo'] ) ? $widget['demo'] : 'https://happyaddons.com/go/get-pro';
                 ?>
-                <div class="ha-col ha-col-3">
+                <div class="ha-col ha-col-4">
                     <a class="ha-pro-widget" href="<?php echo esc_url( $demo ); ?>" target="_blank" rel="noopener"><i class="<?php echo $icon; ?>"></i> <?php echo $title; ?></a>
                 </div>
                 <?php

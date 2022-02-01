@@ -9,12 +9,8 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Repeater;
 use Elementor\Utils;
-use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
-use Happy_Addons\Elementor\Icons_Manager;
 
 defined( 'ABSPATH' ) || die();
 
@@ -71,11 +67,11 @@ class Image_Stack_Group extends Base {
 				'options' => [
 					'img' => [
 						'title' => __( 'Image', 'happy-elementor-addons' ),
-						'icon' => 'far fa-image',
+						'icon' => 'eicon-image',
 					],
 					'icon' => [
 						'title' => __( 'Icon', 'happy-elementor-addons' ),
-						'icon' => 'fas fa-icons',
+						'icon' => 'eicon-star',
 					],
 				],
 				'default' => 'img',
@@ -102,7 +98,9 @@ class Image_Stack_Group extends Base {
 					'label' => 'Icon',
 					'type' => Controls_Manager::ICONS,
 					'fa4compatibility' => 'icon',
-					'label_block' => true,
+					'label_block' => false,
+					'skin' => 'inline',
+					'exclude_inline_options' => ['svg'],
 					'default' => [
 						'value' => 'fas fa-smile-wink',
 						'library' => 'fa-solid',
@@ -220,6 +218,7 @@ class Image_Stack_Group extends Base {
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} i' => 'border-color: {{VALUE}} !important;',
 					'{{WRAPPER}} {{CURRENT_ITEM}} img' => 'border-color: {{VALUE}} !important;',
+					'{{WRAPPER}} {{CURRENT_ITEM}} .fw-svg-wrap' => 'border-color: {{VALUE}} !important;',
 				],
 			]
 		);
@@ -298,6 +297,7 @@ class Image_Stack_Group extends Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-cig-item i,{{WRAPPER}} .ha-cig-item img' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-cig-item i,{{WRAPPER}} .ha-cig-item .fw-svg-wrap' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -320,6 +320,7 @@ class Image_Stack_Group extends Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-cig-item i' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-cig-item svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -358,7 +359,7 @@ class Image_Stack_Group extends Base {
 					'size' => 3,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-cig-item i,{{WRAPPER}} .ha-cig-item img' => 'border-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-cig-item i,{{WRAPPER}} .ha-cig-item img,{{WRAPPER}} .ha-cig-item .fw-svg-wrap' => 'border-width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -371,6 +372,7 @@ class Image_Stack_Group extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-cig-item i' => 'border-color: {{VALUE}};',
 					'{{WRAPPER}} .ha-cig-item img' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-cig-item .fw-svg-wrap' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -382,7 +384,7 @@ class Image_Stack_Group extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-cig-item,{{WRAPPER}}  .ha-cig-item i, {{WRAPPER}} .ha-cig-item img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-cig-item,{{WRAPPER}}  .ha-cig-item i, {{WRAPPER}} .ha-cig-item img, {{WRAPPER}} .ha-cig-item .fw-svg-wrap' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
 		);
@@ -488,7 +490,7 @@ class Image_Stack_Group extends Base {
 		);
 
 		$this->add_control(
-			'hr',
+			'hr3',
 			[
 				'type' => \Elementor\Controls_Manager::DIVIDER,
 			]
@@ -553,19 +555,25 @@ class Image_Stack_Group extends Base {
 		if ( empty( $settings['images'] ) ) {
 			return;
 		}
+		
+		$fs_inline_fw = ha_elementor()->experiments->is_feature_active( 'e_font_icon_svg' );
 		?>
 
 		<div class="ha-cig">
-			<?php foreach ( $settings['images'] as $item ) : 
+			<?php foreach ( $settings['images'] as $item ) :
 				$media_type = $item['media_type'];
 
 
 				$item_id = 'elementor-repeater-item-'.$item['_id'];
-				
+
 				if($media_type == "icon"){
 					$bgType = $item['icon_bg_color_background'];
 					$bg = $item['icon_bg_color_color'];
 					$bgGlobal = isset($item['__globals__'])?$item['__globals__']['icon_bg_color_color']:'';
+
+					$library = $item['selected_icon']['library'];
+					$library = explode('-', $library);
+					$library = $library[0];
 
 					if($bgGlobal){
 						$bgGlobal = explode("=",$bgGlobal);
@@ -574,7 +582,7 @@ class Image_Stack_Group extends Base {
 					}
 
 					$backGround = $bg?$bg:$bgGlobal;
-					
+
 					if($bgType == 'classic'){
 						$attr['style'] = "background:".$backGround." !important";
 					}else{
@@ -584,6 +592,10 @@ class Image_Stack_Group extends Base {
 					ob_start();
 					ha_render_icon( $item, 'icon', 'selected_icon', $attr);
 					$content = ob_get_clean();
+
+					if($fs_inline_fw && $library == "fa"){
+						$content = '<span class="fw-svg-wrap">'.$content.'</span>';
+					}
 				}else{
 
 					if(isset($item['image']) && $item['image']['url'] != ''){
@@ -622,9 +634,9 @@ class Image_Stack_Group extends Base {
 				}
 
 				echo $wrap_start, $content, $wrap_end;
-			
+
 			endforeach; ?>
-			
+
 		</div>
 
 		<?php

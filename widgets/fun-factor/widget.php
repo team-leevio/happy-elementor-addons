@@ -76,11 +76,11 @@ class Fun_Factor extends Base {
 				'options'        => [
 					'icon'  => [
 						'title' => __('Icon', 'happy-elementor-addons'),
-						'icon'  => 'fa fa-smile-o',
+						'icon'  => 'eicon-star',
 					],
 					'image' => [
 						'title' => __('Image', 'happy-elementor-addons'),
-						'icon'  => 'fa fa-image',
+						'icon'  => 'eicon-image',
 					],
 				],
 				'default'        => 'icon',

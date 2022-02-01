@@ -142,7 +142,7 @@ class Extensions_Manager {
 			],
 			'shape-divider' => [
 				'title' => __( 'Shape Divider', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-minus-large',
+				'icon' => 'hm hm-map',
 				'demo' => 'https://happyaddons.com/happy-shape-divider/',
 				'is_pro' => false,
 			],

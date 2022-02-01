@@ -1169,7 +1169,7 @@ class Card extends Base {
 		<?php
 	}
 
-	public function _content_template() {
+	public function content_template() {
 		?>
 		<#
 		view.addInlineEditingAttributes( 'badge_text', 'none' );

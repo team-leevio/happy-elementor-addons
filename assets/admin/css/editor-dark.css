@@ -15,7 +15,8 @@
 }
 
 .haTemplateLibrary__responsive-menu-item.elementor-active {
-	border-bottom-color: #e8357c; 
+	border-bottom-color: #e8357c;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#26292c), to(#34383c));
 	background-image: -webkit-linear-gradient(top, #26292c, #34383c);
 	background-image:         linear-gradient(to bottom, #26292c, #34383c);
 }

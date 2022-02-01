@@ -186,11 +186,11 @@ class Dual_Button extends Base {
                 'options' => [
                     'text' => [
                         'title' => __( 'Text', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-text-width',
+                        'icon' => 'eicon-t-letter-bold',
                     ],
                     'icon' => [
                         'title' => __( 'Icon', 'happy-elementor-addons' ),
-                        'icon' => 'fa fa-star',
+                        'icon' => 'eicon-star',
                     ]
                 ],
                 'toggle' => false,

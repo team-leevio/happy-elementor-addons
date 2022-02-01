@@ -201,6 +201,11 @@ class Clone_Handler {
 			}
 			$query .= implode( ', ', $_records ) . ';';
 			$wpdb->query( $query  );
+
+			// Fix Template Type Wrong issue
+			$source_type = get_post_meta($post->ID, '_elementor_template_type', true);
+			delete_post_meta($duplicated_post_id, '_elementor_template_type');
+			update_post_meta($duplicated_post_id, '_elementor_template_type', $source_type);
 		}
 	}
 

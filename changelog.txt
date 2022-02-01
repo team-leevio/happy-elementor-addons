@@ -1,9 +1,49 @@
+= 3.4.1 - 31 January 2022 =
+
+- New: Comparison Table Widget
+- Fix: Card widget alignment issue as global widget
+- Fix: Dashboard Analytics Page issue
+
+= 3.4.0 - 22 December 2021 =
+
+- New: Happy Icons v6 (New 53 icons)
+- New: Two new shape dividers added ( christmas, christmas 2 )
+- Tweak: Pdf Viewer multiple viewer support in same page
+- Fix: Happy Clone issue with template type
+
+= 3.3.3 - 12 December 2021 =
+
+- Fix: Social icon missing for viber
+- Tweak: Pdf view add support for page selection
+
+= 3.3.2 - 8 December 2021 =
+
+- Code improvement
+
+= 3.3.1 - 6 December 2021 =
+
+- New: Pdf Viewer
+- Fix: Image Stack Group icon size overflow issue
+- Fix: Review Banner logic
+- Fix: Post Tab widget undefined warning issue
+- Tweak: Code improvement
+
+= 3.3.0 - 27 October 2021 =
+
+- New: Creative Button Widget
+- Fix: Dashboard widget broken style
+- Fix: Happy Tooltip JS optimization
+- Fix: Privacy policy missing link in setup wizard
+- Fix: MailChimp audience tags issue solve
+- Fix: Dashboard widgets and features disable all issues.
+- Tweak: Replace `_content_template` function with `content_template`.
+
 = 3.2.2 - 29 September 2021 =
 
 - Fix: Setup wizard asset loading
 - Fix: Resolved an unexpected warning in admin area while debugging is enabled.
 - Fix: Missing Template Engine icon in Elementor Editor.
-- Fix: Icon Box widget Badge z-index reduced 
+- Fix: Icon Box widget Badge z-index reduced
 
 = 3.2.1 - 23 September 2021 =
 
