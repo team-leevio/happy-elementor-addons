@@ -1004,6 +1004,18 @@ class Widgets_Manager
 					'js' => [],
 				],
 			],
+			'lordicon' => [
+				'cat' => 'creative',
+				'is_active' => true,
+				'title' => __('LordIcon', 'happy-elementor-addons'),
+				'icon' => 'hm hm-icon-box',
+				'css' => [ 'lordicon' ],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [ 'lord-icon' ],
+				],
+			],
 		];
 	}
 
