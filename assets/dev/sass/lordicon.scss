@@ -1,6 +1,12 @@
+@import "variables";
+@import "mixins";
 
+.pulse_effect lord-icon {
+    animation: pulse_animation 1.5s infinite;
+    box-shadow: 0 0 0 0 var( --pulse-color );
+}
 
-@keyframes pulse {
+@keyframes pulse_animation {
     0% {
        transform: scale(0.95);
        box-shadow: 0 0 0 0 var( --pulse-color );
