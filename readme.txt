@@ -1,6 +1,6 @@
 === Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget) ===
 Plugin Name: Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget)
-Version: 3.4.1
+Version: 3.4.2
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
@@ -435,6 +435,10 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.4.2 - 6 February 2022 =
+
+- Tweak: Setup Wizard Performance Improvement
 
 = 3.4.1 - 31 January 2022 =
 

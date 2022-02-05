@@ -1,3 +1,7 @@
+= 3.4.2 - 6 February 2022 =
+
+- Tweak: Setup Wizard Performance Improvement
+
 = 3.4.1 - 31 January 2022 =
 
 - New: Comparison Table Widget
