@@ -109,12 +109,12 @@ var NewTemplateLayout = elementorModules.common.views.modal.Layout.extend({
 
 	showModal() {
 		this.getModal().show();
-		console.log("Show");
+		//console.log("Show");
 	},
 
 	hideModal() {
 		this.getModal().hide();
-		console.log("Hide");
+		//console.log("Hide");
 		this.resetForm();
 	},
 
@@ -246,7 +246,7 @@ jQuery(function ($) {
 					}
 					if(data.cond){
 						var parts = data.cond.split("/");
-						console.log(parts);
+						//console.log(parts);
 						if(parts[0]){
 							htf_display_type.val(parts[0]).change();
 						}
@@ -260,7 +260,7 @@ jQuery(function ($) {
 						}
 					}
 				}
-				console.log(data);
+				//console.log(data);
 			},
 		});
 
@@ -270,7 +270,7 @@ jQuery(function ($) {
 	$("#ha-template-edit").on("click", function (e) {
 		e.preventDefault();
 		window.location.href = htf_post_elementor;
-		console.log(htf_post_elementor);
+		//console.log(htf_post_elementor);
 	});
 
 	$("#ha-template-save-data").on("click", function (e) {
@@ -293,10 +293,10 @@ jQuery(function ($) {
 			},
 			success: function (data) {
 				if(htf_template_active.is(":checked")){
-					console.log('hit1');
+					//console.log('hit1');
 					$("#htlt-"+htf_post_id).html(" - <b>Active</b>");
 				}else{
-					console.log('hit2');
+					//console.log('hit2');
 					$("#htlt-"+htf_post_id).html('');
 				}
 			},
@@ -318,7 +318,7 @@ jQuery(function ($) {
 			processResults: function (data) {
 				var options = [];
 				if (data) {
-					console.log(data);
+					//console.log(data);
 					// data is the array of arrays, and each of them contains ID and the Label of the option
 					$.each(data, function (index, text) {
 						// do not forget that "index" is just auto incremented value
@@ -417,7 +417,7 @@ function newTemplateForm() {
 		getSelective() {
 			var localThis = this;
 			this.loading = true;
-			console.log(this.selectedSingular);
+			//console.log(this.selectedSingular);
 			if (this.selectedSingular == "selective") {
 				var pageCollection = new wp.api.collections.Pages();
 				pageCollection
@@ -442,12 +442,12 @@ function newTemplateForm() {
 							});
 							localThis.selectiveData = formatted;
 						}
-						console.log(localThis.selectiveData);
+						//console.log(localThis.selectiveData);
 						localThis.loading = false;
 					});
 			} else {
 				localThis.selectiveData = null;
-				console.log(localThis.selectiveData);
+				//console.log(localThis.selectiveData);
 			}
 		},
 		buttonDisabled() {
@@ -461,7 +461,7 @@ function newTemplateForm() {
 }
 
 function newTemplateFormInit() {
-	console.log(this.$refs);
+	//.log(this.$refs);
 	var selectContainer = document.getElementById(
 		"elementor-new-template__display_type_selected"
 	);
