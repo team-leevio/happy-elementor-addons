@@ -193,6 +193,7 @@ jQuery(function ($) {
 	var htf_display_singular = $("#condition_singular");
 	var htf_display_singular_id = $("#ha-template-singular-select2");
 	var htf_post_id = 0;
+	var htf_post_elementor = "";
 
 	htf_display_singular.parent().parent().hide();
 	htf_display_singular_id.parent().parent().hide();
@@ -222,7 +223,7 @@ jQuery(function ($) {
 		e.preventDefault();
 		var editUrl = $(this).attr("href");
 		htf_post_id = getParameterByName(editUrl, "post");
-		var elementorUrl = editUrl.replace("edit", "elementor");
+		htf_post_elementor = editUrl.replace("edit", "elementor");
 		var tplTypeView = $("#edit-template-type");
 
 		jQuery.ajax({
@@ -264,6 +265,12 @@ jQuery(function ($) {
 		});
 
 		MicroModal.show("modal-login");
+	});
+
+	$("#ha-template-edit").on("click", function (e) {
+		e.preventDefault();
+		window.location.href = htf_post_elementor;
+		console.log(htf_post_elementor);
 	});
 
 	$("#ha-template-save-data").on("click", function (e) {
