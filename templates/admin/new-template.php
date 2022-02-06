@@ -24,14 +24,6 @@ $selected = get_query_var('ha_library_type');
 			?>
 	    </div>
 		<div id="elementor-new-template__description__content"><?php echo esc_html__('Use templates to create the different pieces of your site, and reuse them with one click whenever needed.', 'elementor'); ?></div>
-		<?php
-		/*
-		<div id="elementor-new-template__take_a_tour">
-			<i class="eicon-play-o"></i>
-			<a href="#"><?php echo esc_html__( 'Take The Video Tour', 'elementor\' ); ?></a>
-		</div>
-		*/
-		?>
 	</div>
 	<form id="elementor-new-template__form" action="<?php esc_url(admin_url('/edit.php')); ?>">
 		<input type="hidden" name="post_type" value="ha_library">

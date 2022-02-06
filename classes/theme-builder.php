@@ -4,8 +4,7 @@ namespace Happy_Addons\Elementor;
 
 defined('ABSPATH') || die();
 
-class Theme_Builder
-{
+class Theme_Builder {
     public static $instance = null;
 
     protected $templates;
@@ -21,8 +20,7 @@ class Theme_Builder
     public $single_template;
 
 
-    public function __construct()
-    {
+    public function __construct() {
         add_action('wp', array($this, 'hooks'));
         add_filter('query_vars', [$this, 'add_query_vars_filter']);
         add_filter('views_edit-' . self::CPT, [$this, 'admin_print_tabs']);
@@ -43,6 +41,7 @@ class Theme_Builder
                 $this->render_admin_top_bar();
             });
             add_action('admin_head', [$this, 'add_new_template_template']);
+            add_action('in_admin_footer', [$this, 'edit_template_template'], 10, 2);
         });
 
         add_action('manage_' . self::CPT . '_posts_columns', [__CLASS__, 'admin_columns_headers']);
@@ -53,15 +52,13 @@ class Theme_Builder
         add_action('happyaddons_theme_builder_render', array($this, 'single_blog_content_elementor'), 999);
     }
 
-    public function add_query_vars_filter($vars)
-    {
+    public function add_query_vars_filter($vars) {
         $vars[] = "ha_library_type";
         return $vars;
     }
 
     // Register Custom Post Type Theme Builder
-    public function create_themebuilder_cpt()
-    {
+    public function create_themebuilder_cpt() {
 
         $labels = array(
             'name' => _x('Theme Builder', 'Post Type General Name', 'textdomain'),
@@ -113,8 +110,7 @@ class Theme_Builder
     }
 
 
-    public function modify_menu()
-    {
+    public function modify_menu() {
         add_submenu_page(
             Dashboard::PAGE_SLUG, // Parent slug
             'Theme Builder', // Page title
@@ -125,8 +121,7 @@ class Theme_Builder
         );
     }
 
-    public function add_role_filter_to_posts_query($query)
-    {
+    public function add_role_filter_to_posts_query($query) {
         /**
          * No use on front
          * pre get posts runs everywhere
@@ -157,8 +152,7 @@ class Theme_Builder
         }
     }
 
-    private function render_admin_top_bar()
-    {
+    private function render_admin_top_bar() {
 ?>
         <div id="ha-admin-top-bar-root">
             <div class="ha-admin-top-bar">
@@ -193,8 +187,7 @@ class Theme_Builder
     <?php
     }
 
-    public static function admin_columns_headers($posts_columns)
-    {
+    public static function admin_columns_headers($posts_columns) {
         $offset = 2;
 
         $posts_columns = array_slice($posts_columns, 0, $offset, true) + [
@@ -205,27 +198,39 @@ class Theme_Builder
         return $posts_columns;
     }
 
-    public static function admin_columns_content($column_name, $post_id)
-    {
+    public static function admin_columns_content($column_name, $post_id) {
         if ('type' === $column_name) {
             $type = get_post_meta($post_id, '_ha_library_type', true);
+            $isActive = get_post_meta($post_id, '_ha_template_active', true);
 
             echo ucfirst($type);
+
+            echo "<span id='htlt-",$post_id,"'>";
+            if($isActive) {
+                echo " - <b>Active</b>";
+            }
+            echo "</span>";
+
         }
         if ('condition' === $column_name) {
             //return;
-            $instances = [];
+            $instances = get_post_meta($post_id, '_ha_display_cond', true);
+            $instances = explode('/', $instances);
 
             if (!empty($instances)) {
-                echo implode('<br />', $instances);
+                if (isset($instances[0])) {
+                    echo self::lang($instances[0]);
+                }
+                if (isset($instances[1])) {
+                    echo self::lang($instances[1]);
+                }
             } else {
                 echo __('None', 'elementor-pro');
             }
         }
     }
 
-    public function admin_print_tabs($views)
-    {
+    public function admin_print_tabs($views) {
         $getActive = get_query_var('ha_library_type');
         // var_dump($getActive);
     ?>
@@ -248,14 +253,19 @@ class Theme_Builder
      * @since 2.3.0
      * @access public
      */
-    public function add_new_template_template()
-    {
+    public function add_new_template_template() {
         ob_start();
         include(HAPPY_ADDONS_DIR_PATH . 'templates/admin/new-template.php');
         $template = ob_get_clean();
         echo $template;
     }
 
+    public function edit_template_template() {
+        ob_start();
+        include(HAPPY_ADDONS_DIR_PATH . 'templates/admin/edit-template.php');
+        $template = ob_get_clean();
+        echo $template;
+    }
 
     /**
      * Admin action new post.
@@ -267,8 +277,7 @@ class Theme_Builder
      * @since 1.9.0
      * @access public
      */
-    public function admin_action_new_post()
-    {
+    public function admin_action_new_post() {
 
         // echo '<pre>';
         // var_dump($_REQUEST);
@@ -344,8 +353,7 @@ class Theme_Builder
         die;
     }
 
-    protected function create_template_document($type, $post_data, $meta)
-    {
+    protected function create_template_document($type, $post_data, $meta) {
         if (empty($post_data['post_title'])) {
             $post_data['post_title'] = esc_html__('Elementor', 'elementor');
             $update_title = true;
@@ -375,8 +383,7 @@ class Theme_Builder
         return $post_id;
     }
 
-    public function get_edit_url($id)
-    {
+    public function get_edit_url($id) {
         $url = add_query_arg(
             [
                 'post' => $id,
@@ -389,8 +396,7 @@ class Theme_Builder
     }
 
 
-    public function hooks()
-    {
+    public function hooks() {
         $this->current_template = basename(get_page_template_slug());
         if ($this->current_template == 'elementor_canvas') {
             return;
@@ -438,8 +444,7 @@ class Theme_Builder
         }
     }
 
-    public static function template_ids()
-    {
+    public static function template_ids() {
         $cached = wp_cache_get('ha_template_ids');
         if (false !== $cached) {
             return $cached;
@@ -472,21 +477,13 @@ class Theme_Builder
     }
 
 
-    protected function the_filter()
-    {
+    protected function the_filter() {
         $arg = [
             'posts_per_page'   => -1,
             'orderby'          => 'id',
             'order'            => 'DESC',
             'post_status'      => 'publish',
-            'post_type'        => self::CPT,
-            // 'meta_query' => [
-            //     [
-            //         'key'     => 'elementskit_template_activation',
-            //         'value'   => 'yes',
-            //         'compare' => '=',
-            //     ],
-            // ],
+            'post_type'        => self::CPT
         ];
 
         $this->templates = get_posts($arg);
@@ -603,8 +600,7 @@ class Theme_Builder
         }
     }
 
-    public function ha_theme_builder_content($template)
-    {
+    public function ha_theme_builder_content($template) {
         if (is_singular('post')  && !empty($this->single_template)) {
             $templateType = get_post_meta($this->single_template, '_wp_page_template', true);
             switch ($templateType) {
@@ -628,8 +624,7 @@ class Theme_Builder
     /* 
     * Render Elementor single blog content
     */
-    public function single_blog_content_elementor($post)
-    {
+    public function single_blog_content_elementor($post) {
         $templateid = $this->single_template;
         if (!empty($templateid)) {
             echo self::render_builder_data($templateid);
@@ -638,8 +633,7 @@ class Theme_Builder
         }
     }
 
-    protected function get_header_footer($filters)
-    {
+    protected function get_header_footer($filters) {
         $template_id = array();
 
         // echo "<pre>";
@@ -694,8 +688,7 @@ class Theme_Builder
         }
     }
 
-    protected function get_full_data($post)
-    {
+    protected function get_full_data($post) {
         if ($post != null) {
             $tpl_type = get_post_meta($post->ID, '_ha_library_type', true);
             $tpl_cond = get_post_meta($post->ID, '_ha_display_cond', true);
@@ -710,14 +703,12 @@ class Theme_Builder
         }
     }
 
-    protected function parse_condition($condition)
-    {
+    protected function parse_condition($condition) {
         list($name, $sub_name, $sub_id) = array_pad(explode('/', $condition), 3, '');
         return compact('name', 'sub_name', 'sub_id');
     }
 
-    public static function render_builder_data($content_id)
-    {
+    public static function render_builder_data($content_id) {
         $_elementor = \Elementor\Plugin::instance();
         $has_css = false;
 
@@ -727,13 +718,42 @@ class Theme_Builder
         return $_elementor->frontend->get_builder_content_for_display($content_id, $has_css);
     }
 
-    public static function instance()
-    {
+    public static function instance() {
         if (is_null(self::$instance)) {
             self::$instance = new self();
         }
 
         return self::$instance;
+    }
+
+    private static function lang($string) {
+        switch ($string) {
+            case "general":
+                $lang = 'Entire Website';
+                break;
+            case "archive":
+                $lang = 'All Archives';
+                break;
+            case "singular":
+                $lang = 'Singular: ';
+                break;
+            case "singular-selective":
+                $lang = 'Pages: ';
+                break;
+            case "all_pages":
+                $lang = 'All Pages';
+                break;
+            case "all":
+                $lang = 'All';
+                break;
+            case "posts":
+                $lang = 'All Posts';
+                break;
+            default:
+                $lang = '-';
+                break;
+        }
+        return $lang;
     }
 }
 

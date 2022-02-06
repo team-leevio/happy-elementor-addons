@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: Happy Elementor Addons
+ * Plugin Name: Happy Elementor Addons - Template Elements
  * Plugin URI: https://happyaddons.com/
  * Description: <a href="https://happyaddons.com/">Happy Addons for Elementor</a> Is the Best Elementor Addons Comes With 44+ Free Elementor Widgets Including Table Builder, Testimonial, Event Calendar,Slider,News Ticker, Image Grid, etc & Features Like Elementor Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Elementor Icons, 450+ Template Packs & More.
  * Version: 3.4.1

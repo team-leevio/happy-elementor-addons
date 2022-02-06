@@ -55,6 +55,14 @@ class Admin_Bar {
 
 		// wp_enqueue_script( 'select2' );
 
+		wp_enqueue_script(
+			'happy-elementor-addons-micromodal',
+			'//unpkg.com/micromodal/dist/micromodal.min.js',
+			[],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
 		wp_enqueue_style(
 			'happy-elementor-addons-select2',
 			'//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
