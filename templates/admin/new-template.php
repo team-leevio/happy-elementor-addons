@@ -79,12 +79,23 @@ $selected = get_query_var('ha_library_type');
 						<div class="elementor-form-field__select__wrapper">
 							<label class="elementor-form-field__label"> </label>
 							<select id="elementor-new-template__display_type" x-model="selectedType" class="elementor-form-field__select" name="template_display_type" required>
-								<template x-for="[key,value] in Object.entries(conditionType)">
-									<option
-										x-bind:value="key" 
-										x-text="value"
-										x-bind:selected="key === selectedType"
-									></option>
+								<template x-if="templateType != 'single'">
+									<template x-for="[key,value] in Object.entries(conditionType)">
+										<option
+											x-bind:value="key" 
+											x-text="value"
+											x-bind:selected="key === selectedType"
+										></option>
+									</template>
+								</template>
+								<template x-if="templateType == 'single'">
+									<template x-for="[key,value] in Object.entries(singularData)">
+										<option
+											x-bind:value="key" 
+											x-text="value"
+											x-bind:selected="key === selectedType"
+										></option>
+									</template>
 								</template>
 							</select>
 						</div>
@@ -110,7 +121,7 @@ $selected = get_query_var('ha_library_type');
 							<div class="elementor-form-field__select__wrapper">
 							<label class="elementor-form-field__label"> </label>
 								<select id="elementor-new-template__display_type_selected" class="elementor-form-field__select" name="template_display_type_selected[]" multiple>
-								<?php 
+								<?php
 									$pages = get_pages(); 
 									foreach ( $pages as $page ) {
 										$option = '<option value="' . $page->ID . '">';

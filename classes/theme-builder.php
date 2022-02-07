@@ -12,7 +12,7 @@ class Theme_Builder {
     protected $current_template;
 
     const CPT = 'ha_library';
-    const TEMPLATE_TYPE = ['header' => 'Header', 'footer' => 'Footer', 'single' => 'Single Post'];
+    const TEMPLATE_TYPE = ['header' => 'Header', 'footer' => 'Footer', 'single' => 'Single'];
     const TAB_BASE = "edit.php?post_type=ha_library";
 
     public $header_template;
@@ -205,12 +205,11 @@ class Theme_Builder {
 
             echo ucfirst($type);
 
-            echo "<span id='htlt-",$post_id,"'>";
-            if($isActive) {
+            echo "<span id='htlt-", $post_id, "'>";
+            if ($isActive) {
                 echo " - <b>Active</b>";
             }
             echo "</span>";
-
         }
         if ('condition' === $column_name) {
             //return;
@@ -456,6 +455,7 @@ class Theme_Builder {
         $ids = [
             $instance->header_template,
             $instance->footer_template,
+            $instance->single_template
         ];
 
         if ($instance->header_template != null) {
@@ -499,31 +499,7 @@ class Theme_Builder {
                 'key'     => 'condition_a',
                 'value'   => 'general',
             ]];
-            $this->get_header_footer($filters);
-        }
-
-        // all archive
-        if (is_archive()) {
-            $filters = [[
-                'key'     => 'condition_a',
-                'value'   => 'archive',
-            ]];
-            $this->get_header_footer($filters);
-        }
-
-        // all singular
-        if (is_page() || is_single() || is_404()) {
-            $filters = [
-                [
-                    'key'     => 'condition_a',
-                    'value'   => 'singular',
-                ],
-                [
-                    'key'     => 'condition_singular',
-                    'value'   => 'all',
-                ]
-            ];
-            $this->get_header_footer($filters);
+            $this->load_template_element($filters);
         }
 
         // all pages, all posts, 404 page
@@ -538,19 +514,15 @@ class Theme_Builder {
                     'value'   => 'all_pages',
                 ]
             ];
-            $this->get_header_footer($filters);
+            $this->load_template_element($filters);
         } elseif (is_single()) {
             $filters = [
                 [
                     'key'     => 'condition_a',
-                    'value'   => 'singular',
-                ],
-                [
-                    'key'     => 'condition_singular',
                     'value'   => 'posts',
                 ]
             ];
-            $this->get_header_footer($filters);
+            $this->load_template_element($filters);
         } elseif (is_404()) {
             $filters = [
                 [
@@ -562,42 +534,9 @@ class Theme_Builder {
                     'value'   => '404page',
                 ]
             ];
-            $this->get_header_footer($filters);
+            $this->load_template_element($filters);
         }
 
-        // singular selective
-        if (is_page() || is_single()) {
-            $filters = [
-                [
-                    'key'     => 'condition_a',
-                    'value'   => 'singular',
-                ],
-                [
-                    'key'     => 'condition_singular',
-                    'value'   => 'selective',
-                ],
-                [
-                    'key'     => 'condition_singular_id',
-                    'value'   => get_the_ID(),
-                ]
-            ];
-            $this->get_header_footer($filters);
-        }
-
-        // homepage
-        if (is_home() || is_front_page()) {
-            $filters = [
-                [
-                    'key'     => 'condition_a',
-                    'value'   => 'singular',
-                ],
-                [
-                    'key'     => 'condition_singular',
-                    'value'   => 'front_page',
-                ]
-            ];
-            $this->get_header_footer($filters);
-        }
     }
 
     public function ha_theme_builder_content($template) {
@@ -633,21 +572,12 @@ class Theme_Builder {
         }
     }
 
-    protected function get_header_footer($filters) {
+    protected function load_template_element($filters) {
         $template_id = array();
-
-        // echo "<pre>";
-        // var_dump($filters);
-        // echo "</pre>";
 
         if ($this->templates != null) {
             foreach ($this->templates as $template) {
                 $template = $this->get_full_data($template);
-
-                // echo "<pre>";
-                // var_dump($template['type']);
-                // echo "</pre>";
-
                 $match_found = true;
 
                 // WPML Language Check
@@ -674,6 +604,7 @@ class Theme_Builder {
                 }
 
                 if ($match_found == true) {
+
                     if ($template['type'] == 'header') {
                         $this->header_template = isset($template_id['header']) ? $template_id['header'] : $template['ID'];
                     }
@@ -684,8 +615,10 @@ class Theme_Builder {
                         $this->single_template = isset($template_id['single']) ? $template_id['single'] : $template['ID'];
                     }
                 }
+
             }
         }
+        
     }
 
     protected function get_full_data($post) {

@@ -20,6 +20,7 @@ class Ajax_Handler {
 		add_action('wp_ajax_ha_template_singulars', [__CLASS__, 'get_singular_list']);
 		add_action('wp_ajax_ha_template_save_data', [__CLASS__, 'save_template_data']);
 		add_action('wp_ajax_ha_template_get_data', [__CLASS__, 'get_template_data']);
+		add_action('wp_ajax_ha_template_get_conditions', [__CLASS__, 'get_available_conditions']);
 	}
 
 	/**
@@ -342,14 +343,14 @@ class Ajax_Handler {
 	public static function get_template_data() {
 		$postID = $_REQUEST['post_id'];
 
-		$templateType   = get_post_meta($postID,'_ha_library_type',true);
-		$templateCond   = get_post_meta($postID,'_ha_display_cond',true);
-		$templateActive = get_post_meta($postID,'_ha_template_active',true);
+		$templateType   = get_post_meta($postID, '_ha_library_type', true);
+		$templateCond   = get_post_meta($postID, '_ha_display_cond', true);
+		$templateActive = get_post_meta($postID, '_ha_template_active', true);
 
 		echo wp_json_encode([
 			'type'  => $templateType,
 			'cond'  => $templateCond,
-			'active'=> $templateActive
+			'active' => $templateActive
 		]);
 
 		die();
@@ -383,14 +384,71 @@ class Ajax_Handler {
 			}
 		}
 
-		update_post_meta($postID, '_ha_display_cond',$condition);
-		update_post_meta($postID, '_ha_template_active',$enabled);
+		update_post_meta($postID, '_ha_display_cond', $condition);
+		update_post_meta($postID, '_ha_template_active', $enabled);
 
 		echo wp_json_encode([
 			'success'  => true,
 		]);
-		
+
 		die();
+	}
+
+	public static function get_available_conditions() {
+		$templateType = $_REQUEST['templateType'];
+		
+		$condition_a = [];
+		$condition_b = [];
+		switch ($templateType) {
+			case "header":
+				$condition_a = [
+					'general' => "Entire Website",
+					'singular' => "Sigular (Only Pro)",
+					'archive' => "Archive (Only Pro)"
+				];
+				$condition_b = [
+					'all' => "All Singulars (Only Pro)",
+					'front_page' => "Front Page (Only Pro)",
+					'posts' => "All Posts (Only Pro)",
+					'pages' => "All Pages (Only Pro)",
+					'selective' => "Selective Singular (Only Pro)",
+					'404page' => "404 Page (Only Pro)",
+				];
+				break;
+			case "footer":
+				$condition_a = [
+					'general' => "Entire Website",
+					'singular' => "Sigular (Only Pro)",
+					'archive' => "Archive (Only Pro)"
+				];
+				$condition_b = [
+					'all' => "All Singulars (Only Pro)",
+					'front_page' => "Front Page (Only Pro)",
+					'posts' => "All Posts (Only Pro)",
+					'pages' => "All Pages (Only Pro)",
+					'selective' => "Selective Singular (Only Pro)",
+					'404page' => "404 Page (Only Pro)",
+				];
+				break;
+			case "single":
+				$condition_a = [
+					'posts' => "All Posts",
+					'all' => "All Singulars (Only Pro)",
+					'front_page' => "Front Page (Only Pro)",
+					'pages' => "All Pages (Only Pro)",
+					'selective' => "Selective Singular (Only Pro)",
+					'404page' => "404 Page (Only Pro)",
+				];
+				$condition_b = [];
+				break;
+		}
+
+		echo wp_json_encode([
+			'condition_a'  => $condition_a,
+			'condition_b'  => $condition_b,
+		]);
+
+		die(); 
 	}
 }
 

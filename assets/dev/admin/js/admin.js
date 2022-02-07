@@ -194,6 +194,7 @@ jQuery(function ($) {
 	var htf_display_singular_id = $("#ha-template-singular-select2");
 	var htf_post_id = 0;
 	var htf_post_elementor = "";
+	var htf_tplTypeView = $("#edit-template-type");
 
 	htf_display_singular.parent().parent().hide();
 	htf_display_singular_id.parent().parent().hide();
@@ -203,7 +204,7 @@ jQuery(function ($) {
 			// htf_display_type.parent().parent().show();
 			htf_display_singular.parent().parent().hide();
 			htf_display_singular_id.parent().parent().hide();
-		} else {
+		} else if (this.value == "singular") {
 			htf_display_singular.parent().parent().show();
 			if (htf_display_singular.val() == "selective") {
 				htf_display_singular_id.parent().parent().show();
@@ -224,7 +225,6 @@ jQuery(function ($) {
 		var editUrl = $(this).attr("href");
 		htf_post_id = getParameterByName(editUrl, "post");
 		htf_post_elementor = editUrl.replace("edit", "elementor");
-		var tplTypeView = $("#edit-template-type");
 
 		jQuery.ajax({
 			url: ajaxurl,
@@ -235,30 +235,8 @@ jQuery(function ($) {
 				post_id: htf_post_id,
 			},
 			success: function (data) {
-				if(data){
-					if(data.active){
-						htf_template_active.prop( "checked", true );
-					}else{
-						htf_template_active.prop( "checked", false );
-					}
-					if(data.type){
-						tplTypeView.text(ucwords(data.type)+" ");
-					}
-					if(data.cond){
-						var parts = data.cond.split("/");
-						//console.log(parts);
-						if(parts[0]){
-							htf_display_type.val(parts[0]).change();
-						}
-
-						if(parts[1]){
-							htf_display_singular.val(parts[1]).change();
-						}
-
-						if(parts[2]){
-							htf_display_singular_id.val(parts[2]).change();
-						}
-					}
+				if (data) {
+					fetchConditions(data);
 				}
 				//console.log(data);
 			},
@@ -266,6 +244,86 @@ jQuery(function ($) {
 
 		MicroModal.show("modal-login");
 	});
+
+	function fetchConditions(templateData) {
+		jQuery.ajax({
+			url: ajaxurl,
+			type: "get",
+			dataType: "json",
+			data: {
+				action: "ha_template_get_conditions", // AJAX action for admin-ajax.php
+				templateType: templateData.type,
+			},
+			success: function (conditionData) {
+				if (conditionData) {
+					console.log(conditionData);
+
+					htf_display_type.html("");
+					htf_display_singular.html("");
+
+					if (conditionData.condition_a) {
+						$.each(
+							conditionData.condition_a,
+							function (key, value) {
+								console.log(key + ": " + value);
+								htf_display_type.append(
+									'<option value="' +
+										key +
+										'">' +
+										value +
+										"</option>"
+								);
+							}
+						);
+					}
+
+					if (conditionData.condition_b) {
+						$.each(
+							conditionData.condition_b,
+							function (key, value) {
+								console.log(key + ": " + value);
+								htf_display_singular.append(
+									'<option value="' +
+										key +
+										'">' +
+										value +
+										"</option>"
+								);
+							}
+						);
+					}
+
+					if (templateData.active) {
+						htf_template_active.prop("checked", true);
+					} else {
+						htf_template_active.prop("checked", false);
+					}
+					if (templateData.type) {
+						if (templateData.type == "single") {
+							htf_display_singular.parent().parent().hide();
+							htf_display_singular_id.parent().parent().hide();
+						}
+						htf_tplTypeView.text(ucwords(templateData.type) + " ");
+					}
+					if (templateData.cond) {
+						var parts = templateData.cond.split("/");
+						//console.log(parts);
+						if (parts[0]) {
+							htf_display_type.val(parts[0]).change();
+						}
+
+						if (parts[1]) {
+							htf_display_singular.val(parts[1]).change();
+						}
+
+						if (parts[2]) {
+							htf_display_singular_id.val(parts[2]).change();
+						}
+					}
+				}
+			},
+		});
+	}
 
 	$("#ha-template-edit").on("click", function (e) {
 		e.preventDefault();
@@ -292,18 +350,18 @@ jQuery(function ($) {
 				settings: JSON.stringify(formData),
 			},
 			success: function (data) {
-				if(htf_template_active.is(":checked")){
+				if (htf_template_active.is(":checked")) {
 					//console.log('hit1');
-					$("#htlt-"+htf_post_id).html(" - <b>Active</b>");
-				}else{
+					$("#htlt-" + htf_post_id).html(" - <b>Active</b>");
+				} else {
 					//console.log('hit2');
-					$("#htlt-"+htf_post_id).html('');
+					$("#htlt-" + htf_post_id).html("");
 				}
 			},
 		});
 	});
 
-	$("#ha-template-singular-select2").select2({
+	htf_display_singular_id.select2({
 		ajax: {
 			url: ajaxurl, // AJAX URL is predefined in WordPress admin
 			dataType: "json",
@@ -335,11 +393,10 @@ jQuery(function ($) {
 	});
 });
 
-
-function ucwords (str) {
-    return (str + '').replace(/^([a-z])|\s+([a-z])/g, function ($1) {
-        return $1.toUpperCase();
-    });
+function ucwords(str) {
+	return (str + "").replace(/^([a-z])|\s+([a-z])/g, function ($1) {
+		return $1.toUpperCase();
+	});
 }
 
 function newTemplateForm() {
@@ -350,69 +407,23 @@ function newTemplateForm() {
 		templateType: "",
 		conditionType: {
 			general: "Entire Website",
-			singular: "Sigular",
-			archive: "Archive",
+			singular: "Sigular (Only Pro)",
+			archive: "Archive (Only Pro)",
 		},
 		singularData: {
-			all: "All Singular",
-			"front-page": "Front Page",
-			posts: "All Posts",
-			pages: "All Pages",
-			selective: "Selective Pages",
-			404: "404 Pages",
+			"posts": "All Posts",
+			"all": "All Singular (Only Pro)",
+			"front-page": "Front Page (Only Pro)",
+			"pages": "All Pages (Only Pro)",
+			"selective": "Selective Pages (Only Pro)",
+			"error404": "404 Pages (Only Pro)",
 		},
-		selectedType: "singular",
+		selectedType: "general",
 		selectedSingular: null,
 		selectedSingularData: null,
-		selectiveData: {
-			2: {
-				id: 2,
-				title: {
-					rendered: "Sample Page",
-				},
-			},
-			6: {
-				id: 6,
-				title: {
-					rendered: "List group",
-				},
-			},
-			234: {
-				id: 234,
-				title: {
-					rendered: "Shop",
-				},
-			},
-			235: {
-				id: 235,
-				title: {
-					rendered: "Cart",
-				},
-			},
-			236: {
-				id: 236,
-				title: {
-					rendered: "Checkout",
-				},
-			},
-			237: {
-				id: 237,
-				title: {
-					rendered: "My account",
-				},
-			},
-			466: {
-				id: 466,
-				title: {
-					rendered: "Off Canvas",
-				},
-			},
-			742: {
-				id: 742,
-				title: {
-					rendered: "MultiScroll",
-				},
-			},
+		selectiveData: null,
+		getTemplateType(){
+			this.templateType;
 		},
 		getSelective() {
 			var localThis = this;
