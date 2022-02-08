@@ -267,7 +267,14 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			false
 		);
-
+		// Happy addons LordIcon JS 
+		wp_register_script(
+			'lord-icon',
+			HAPPY_ADDONS_ASSETS . 'vendor/lord-icon/lord-icon-2.1.0.js',
+			[],
+			HAPPY_ADDONS_VERSION,
+			false
+		);
 		// Main assets
 		wp_register_style(
 			'happy-elementor-addons',

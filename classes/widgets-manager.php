@@ -439,7 +439,7 @@ class Widgets_Manager
 				'js' => [],
 				'vendor' => [
 					'css' => [],
-					'js' => [],
+					'js' => [ 'lord-icon' ],
 				],
 			],
 			'member' => [
