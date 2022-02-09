@@ -346,7 +346,7 @@ class LordIcon extends Base
         } else {
             $target_class = '.ha-lordicon-wrapper';
         }
-        $pulse_effect = ( 'yes' == $settings['pulse_effect'] ) ? 'pulse_effect' : '';
+        $pulse_effect = ( 'yes' == $settings['pulse_effect'] ) ? ' pulse_effect' : '';
 
         ?>
             <div class="ha-lordicon-wrapper<?php echo esc_attr($pulse_effect); ?>">
