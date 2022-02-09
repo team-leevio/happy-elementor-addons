@@ -137,8 +137,8 @@ class Icon_Box extends Base {
                 ),
                 'default'     => 'https://cdn.lordicon.com/lupuorrc.json',
                 'condition'   => [
+					'icon_method' => 'cdn',
 					'icon_type' => 'lordicon',
-                    'icon_method' => 'cdn',
                 ],
             ]
         );
@@ -153,8 +153,8 @@ class Icon_Box extends Base {
                     'url' => HAPPY_ADDONS_ASSETS . 'vendor/lord-icon/placeholder.json',
                 ],
                 'condition'   => [
-					'icon_type' => 'lordicon',
                     'icon_method' => 'file',
+					'icon_type' => 'lordicon',
                 ],
             ]
         );
@@ -1002,7 +1002,7 @@ class Icon_Box extends Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		var_dump($settings);
+
 		$this->add_inline_editing_attributes( 'title', 'basic' );
 		$this->add_render_attribute( 'title', 'class', 'ha-icon-box-title' );
 
@@ -1068,51 +1068,5 @@ class Icon_Box extends Base {
 				ha_kses_basic( $settings['title' ] )
 				);
 		endif;
-	}
-
-	public function content_template() {
-		?>
-		<#
-		var iconHTML = migrated = '';
-
-		if ( haHasIconLibrary() ) {
-			iconHTML = elementor.helpers.renderIcon( view, settings.selected_icon, { 'aria-hidden': true }, 'i' , 'object' ),
-			migrated = elementor.helpers.isIconMigrated( settings, 'selected_icon' );
-		}
-
-		view.addInlineEditingAttributes( 'title', 'basic' );
-		view.addRenderAttribute( 'title', 'class', 'ha-icon-box-title' );
-
-		view.addInlineEditingAttributes( 'badge_text', 'none' );
-		view.addRenderAttribute( 'badge_text', 'class', 'ha-badge ha-badge--top-right' );
-
-		if (settings.link.url) {
-			view.addRenderAttribute( 'link', 'class', 'ha-icon-box-link' );
-			view.addRenderAttribute( 'link', 'href', settings.link.url );
-			print( '<a ' + view.getRenderAttributeString( 'link' ) + '>' );
-		} #>
-
-		<# if (settings.badge_text) { #>
-			<span {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{ settings.badge_text }}</span>
-		<# } #>
-
-		<# if ( settings.icon || settings.selected_icon.value ) { #>
-			<span class="ha-icon-box-icon">
-				<# if ( haHasIconLibrary() && iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
-					{{{ iconHTML.value }}}
-				<# } else { #>
-					<i class="{{ settings.icon }}" aria-hidden="true"></i>
-				<# } #>
-			</span>
-		<# } #>
-
-		<# if (settings.title) { #>
-			<{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ settings.title_tag }}>
-		<# } #>
-
-		<# if (settings.link.url) {
-			print( '</a>' );
-		} #>
-		<?php
 	}
 }
