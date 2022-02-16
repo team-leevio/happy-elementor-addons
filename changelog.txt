@@ -1,5 +1,6 @@
-= 3.4.3 - 14 February 2022 =
+= 3.4.3 - 17 February 2022 =
 - Tweak: Pdf Viewer Dynamic Link tag support
+- Fix: Calendly Width fix
 
 = 3.4.2 - 6 February 2022 =
 
