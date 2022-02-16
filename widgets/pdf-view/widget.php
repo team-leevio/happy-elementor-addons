@@ -91,7 +91,7 @@ class PDF_View extends Base {
                 ],
 				'show_external' => false,
 				'dynamic' => [
-					'active' => false,
+					'active' => true,
 				],
 				'condition' => [
 					'file_type' => 'url'

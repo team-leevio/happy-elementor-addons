@@ -184,7 +184,7 @@ The Happy Elementor Addons ships not only with some unique premium features but 
 _Introducing Happy Addons Pro (Check What You Will Get in the Pro Version of Happyaddons)_
 
 
-### 46 PREMIUM ELEMENTOR WIDGETS OF HAPPY ADDONS FOR ELEMENTOR (PRO)
+### 50 PREMIUM ELEMENTOR WIDGETS OF HAPPY ADDONS FOR ELEMENTOR (PRO)
 
 If you are still craving more Elementor widgets, then the following premium elementor widgets are there to quench your thirst. The best part is that you can copy and paste the design source code so you won’t have to make any design from scratch. Let’s explore the world of Happy Elementor Addons Pro Widgets:
 
@@ -239,6 +239,7 @@ If you are still craving more Elementor widgets, then the following premium elem
 * **[WooCommerce Product Category Carousel](https://demo.happyaddons.com/elementor-product-category-carousel-widget-demo/)** – From now you can display WooCommerce products in carousels based on specific categories with the help of Happy elementor Addons Pro Product Category Carousel elementor Widget to make them more lucrative
 * **[WooCommerce Single Product](https://demo.happyaddons.com/elementor-single-product-demo/)** – Are you looking for a design element to design your single WooCommerce products in various designs within your elementor website? No worries, Happy elementor Addons Single WooCommerce Product elementor Widget will fulfill your desired goal. Check out the demos here.
 * **[WooCommerce Mini Cart](https://demo.happyaddons.com/elementor-mini-cart-widget-demo/)** – Want to increase your WooCommerce/eCommerce store’s customer experience? Use the elementor mini cart widget of Happy elementor Addons to boost your conversion rate swiftly.
+* **[Advanced Google Map](https://demo.happyaddons.com/elementor-advanced-google-map-widget-demo/)** – Copy needs to be updated here.
 
 
 ### **UNIQUE PRO FEATURES OF HAPPY ELEMENTOR ADDONS TO WATCH OUT FOR**
@@ -435,6 +436,11 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.4.3 - 17 February 2022 =
+
+- Tweak: Pdf Viewer Dynamic Link tag support
+- Fix: Calendly Width fix
 
 = 3.4.2 - 6 February 2022 =
 
