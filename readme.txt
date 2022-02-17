@@ -441,6 +441,7 @@ For a more detailed explanation check out the following documentation
 = 3.4.3 - 17 February 2022 =
 
 - Tweak: Pdf Viewer Dynamic Link tag support
+- Tweak: Creative Button Dynamic Link tag support for url
 - Fix: Calendly Width fix
 
 = 3.4.2 - 6 February 2022 =
