@@ -1,5 +1,7 @@
-= v#.#.# - 03 January 2022 =
+= # v#.#.# - 24 February 2022
 - New: Double Opt In support for mailchimp widget.
+- Tweak: Improve Slider on load behavior
+- Tweak: Improve Image Carousel on load behavior
 
 = 3.4.3 - 17 February 2022 =
 
