@@ -1,6 +1,21 @@
 = v#.#.# - 03 January 2022 =
-
 - New: Double Opt In support for mailchimp widget.
+
+= 3.4.3 - 17 February 2022 =
+
+- Tweak: Pdf Viewer Dynamic Link tag support
+- Tweak: Creative Button Dynamic Link tag support for url
+- Fix: Calendly Width fix
+
+= 3.4.2 - 6 February 2022 =
+
+- Tweak: Setup Wizard Performance Improvement
+
+= 3.4.1 - 31 January 2022 =
+
+- New: Comparison Table Widget
+- Fix: Card widget alignment issue as global widget
+- Fix: Dashboard Analytics Page issue
 
 = 3.4.0 - 22 December 2021 =
 

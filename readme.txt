@@ -1,12 +1,12 @@
 === Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget) ===
 Plugin Name: Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget)
-Version: 3.4.0
+Version: 3.4.2
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Mega Menu
 Requires at least: 4.7
-Tested up to: 5.8
+Tested up to: 5.9
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -102,16 +102,15 @@ Our elementor card widget will help you to create mesmerizing card items within 
 * **[Image Stack Group](https://demo.happyaddons.com/elementor-image-stack-group-demo/)** – Sometimes we have to show images in a stack group format to create an eye-catchy look. But it’s so tough to create a single stack group of images with Elementor. But with our Elementor Image Stack Group widget, you can easily create an image stacked group within Elementor. You can get the Elementor Image Stack Group widget in the free version of Happy Elementor Addons. Check the demo of the elementor image stack group widget created by the happy elementor addons. 
 * **[Creative Button](https://demo.happyaddons.com/elementor-creative-button-demo/)** – Are you wondering about creating an outstanding, eye-catching look by adding exclusive button styles & effects to your website? Create a marvelous Call To Action through HappyAddons Creative Buttons Elementor Widget and redirect visitors to the right place. There is now a limitation to creating amazing buttons for your Elementor website. Also, the team happy elementor addons added the magnetic effect to the elementor creative button. So that you can grab your elementor website’s visitor’s attention to click the elementor creative button. And don’t forget to check the demo of the elementor creative button widget, created by the team happy elementor addons. 
 * **[Image Accordion](https://demo.happyaddons.com/elementor-image-accordion-demo/)** – HappyAddons Image Accordion widget for Elementor comes with interactive design looks. You can create unique accordions for images. It will help you keep your users longer on the website. Sometimes you will need to show some amazing interactive image accordions to your elementor website to create a wow effect for the visitors, then the Happy Elementor addons image accordion elementor widget will be the life savior for you. As you can add an amazing effect to the images by using the happy elementor addons image accordion elementor widget. Don’t forget to check the demos of the Elementor Image Accordion, created by the team Happy Elementor Addons.  And after that try Happy Elementor Addons Image Accordion Elementor Widget.
+* **[PDF View Elementor Widget](https://demo.happyaddons.com/elementor-pdf-view-widget-demo/)** - If you are looking for a PDF embedder or PDF Viewer WordPress plugin for your website to embed your PDF files, you are in the right place. Happy Elementor Addons comes with the ultimate PDF embedder solution for you. We have added Elementor PDF View Widget, a new Elementor widget in the Happy Elementor Free Version 3.3.1. We are the pioneer in the Elementor Addons community who have added a PDF view Elementor widget in the Elementor Widget Library. Using the Happy Elementor Addons PDF View widget for Elementor, you can embed or view PDF files from external links or upload them directly to your website as PDF Media File. Also, in this Elementor PDF View widget, you will get plenty of customization options. Now you can show Resume PDF, Invoice PDF, Ebook PDF version, Magazine PDF version, and more with the help of the PDF View Elementor Widget by Happy Elementor Addons. 
 * **[Contact Form 7](https://demo.happyaddons.com/elementor-contact-form-7-widget-demo/)** – This utility widget helps you to integrate existing forms built using the CF7 plugin across your web pages without spending too much time. It’s tough to manage the default contact form 7 without using any CSS. But Team Happy elementor Addons added all kinds of designing facilities to the contact form 7. Happy Addons for elementor added a free elementor contact form 7 widget to the elementor widget library. You can easily embed your contact form 7 at any place on your Elementor website. Also, you have the facility to customize the contact form 7 elementor widget. You don’t need the knowledge of CSS to customize your contact form 7 forms if you use the Happy Elementor Addons contact form 7 widget. And it comes in the free version of the HappyAddons for elementor. 
-* **[PDF View Elementor Widget](https://demo.happyaddons.com/elementor-pdf-view-widget-demo/)** - If you are looking for a PDF embedder or PDF Viewer WordPress plugin for your website to embed your PDF files, you are in the right place. Happy Elementor Addons comes with the ultimate PDF embedder solution for you. We have added Elementor PDF View Widget, a new Elementor widget in the Happy Elementor Free Version 3.3.1. We are the pioneer in the Elementor Addons community who have added a PDF view Elementor widget in the Elementor Widget Library.  \
- \
-Using the Happy Elementor Addons PDF View widget for Elementor, you can embed or view PDF files from external links or upload them directly to your website as PDF Media File. Also, in this Elementor PDF View widget, you will get plenty of customization options. Now you can show Resume PDF, Invoice PDF, Ebook PDF version, Magazine PDF version, and more with the help of the PDF View Elementor Widget by Happy Elementor Addons. 
 * **[Caldera Forms](https://demo.happyaddons.com/elementor-caldera-forms-widget-demo/)** – This widget can help you to display your caldera forms to display on your web pages designed with Elementor. By default, the design customization of the caldera form is quite tough. You have to be an expert in CSS. But team Happy Elementor Addons solve the problem. Now you can customize your caldera form by using the Happy Addons caldera form elementor widget. It’s free to use. Before using elementor caldera form widget you can check the demos created by team Happy Elementor Addons. 
 * **[weForms](https://demo.happyaddons.com/elementor-we-forms-widget-demo/)** – Designed forms using the weForms plugin and looking for a way to display those on your Elementor powered pages? This is the answer to that. You can now use the Happy elementor addons weForms widget for elementor to customize your weForms forms without leaving your elementor website. Check the demos of the Elementor weForms widget created by the team Happy Elementor Addons. 
 * **[Ninja Forms](https://demo.happyaddons.com/elementor-ninja-form-widget-demo/)** – Use this widget to embed forms created using Ninja Forms to display seamlessly on your web pages. Various styling options will help you to look at them even better. Ninja Forms is one of the popular form builder plugins. But you have to pay extra for having the customization feature in the default version of Ninja forms. But the team Happy Elementor Addons comes with an easy solution for Ninja Forms users. You will get a Ninja form elementor widget for free in the Happy Addons for elementor. We have added every possible customization facility to the Elementor Ninja Forms widget. You can check the demo from the happy elementor addons demo page. 
 * **[WPForms](https://demo.happyaddons.com/elementor-wpform-widget-demo/)** – Use this widget to embed forms created using WPForms to display seamlessly on your web pages. Various styling options will help you to look at them even better. WP Forms has now become the most popular form builder in the WordPress Community. The WPforms became popular due to its vast feature and customization facility. But the design customization is also a limitation for the WP Forms users. But the team happy elementor addons bring a free solution for the WP forms users. You will get a free WP forms elementor widget in the free version of the Happy Addons for elementor. This Elementor WPforms widget will help you to design your forms to the next level. Don’t forget to check the demos of the WPforms elementor widget created by the team Happy Elementor Addons. 
 * **[Gravity Forms](https://demo.happyaddons.com/elementor-gravity-form-widget-demo/)** – While using Gravity forms, you may want to change the appearance of the form fields. With the Happy Addons, you can spruce up your Gravity forms like a pro. But it’s already a premium plugin. But the design customization is also challenging. That’s why the happy elementor addons bring a free solution to help the Gravity forms user base. You can use the Gravity forms elementor widget created by team Happy Elementor Addons. This elementor gravity form widget will help you to reshape your default form widget without any hassle. You can check the demos for Gravity Forms Elementor Widget created by the team Happy Elementor Addons. You will get an idea of what you will get in the free version of the HappyAddons Gravity forms elementor widget. 
 * **[WP Fluent Forms](https://demo.happyaddons.com/elementor-fluent-form-widget-demo/)** – Easily customize and use Fluent Forms using this super intuitive widget. The WP Fluent Forms are now becoming very popular in the WordPress community. But the customization of the fluent forms is also difficult. You have to be an expert in CSS as well. But Team Happy Elementor Addons also brings light to this issue. You can customize your WP fluent forms with the free elementor widget of the WP Fluent Forms. No need to be an expert to customize the Elementor Fluent Form widget of Happy elementor addons. We have also made demos for the Fluent Forms Elementor widget. Check the demos of the WP Fluent Forms Elementor widget. 
+* **[Comparison Table](https://demo.happyaddons.com/elementor-comparison-table-widget-demo/)** - The comparison table will help your site visitors to buy your product, sign up for membership, contact, or just request a quote. Are you wondering about creating comparison tables for your affiliated products, gadgets, features, services, or anything related to your website? Try HappyAddons new comparison table widget for Elementor. It’s available in the free version of HappyAddons for Elementor.
 
 **20+ Free Elementor Enhancement Features Are Available in the Happy Elementor Addons Free**
 
@@ -185,7 +184,7 @@ The Happy Elementor Addons ships not only with some unique premium features but 
 _Introducing Happy Addons Pro (Check What You Will Get in the Pro Version of Happyaddons)_
 
 
-### 46 PREMIUM ELEMENTOR WIDGETS OF HAPPY ADDONS FOR ELEMENTOR (PRO)
+### 50 PREMIUM ELEMENTOR WIDGETS OF HAPPY ADDONS FOR ELEMENTOR (PRO)
 
 If you are still craving more Elementor widgets, then the following premium elementor widgets are there to quench your thirst. The best part is that you can copy and paste the design source code so you won’t have to make any design from scratch. Let’s explore the world of Happy Elementor Addons Pro Widgets:
 
@@ -240,6 +239,8 @@ If you are still craving more Elementor widgets, then the following premium elem
 * **[WooCommerce Product Category Carousel](https://demo.happyaddons.com/elementor-product-category-carousel-widget-demo/)** – From now you can display WooCommerce products in carousels based on specific categories with the help of Happy elementor Addons Pro Product Category Carousel elementor Widget to make them more lucrative
 * **[WooCommerce Single Product](https://demo.happyaddons.com/elementor-single-product-demo/)** – Are you looking for a design element to design your single WooCommerce products in various designs within your elementor website? No worries, Happy elementor Addons Single WooCommerce Product elementor Widget will fulfill your desired goal. Check out the demos here.
 * **[WooCommerce Mini Cart](https://demo.happyaddons.com/elementor-mini-cart-widget-demo/)** – Want to increase your WooCommerce/eCommerce store’s customer experience? Use the elementor mini cart widget of Happy elementor Addons to boost your conversion rate swiftly.
+* **[Advanced Google Map Widget for Elementor](https://demo.happyaddons.com/elementor-google-map-widget-demo/)** – Are you looking to add a map to your elementor website but not the traditional google map? Yes, if you use the Happy Addons Elementor Google Map widget, you can achieve that quickly. You can customize your Elementor Google Map Widget based on your theme color. Also, in HappyAddons Advance Google Map Elementor Widget, you can add your custom label, map marker, legend, and more. 
+Happy Addons for Elementor  also brings the Snazzy Map styling within Advanced Google Map Elementor Widget. We have added four built-in styles and also added support for custom JSON input from the official Snazzy Map. So, you can now design your Google Map according to your theme.
 
 
 ### **UNIQUE PRO FEATURES OF HAPPY ELEMENTOR ADDONS TO WATCH OUT FOR**
@@ -436,6 +437,21 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.4.3 - 17 February 2022 =
+
+- Tweak: Pdf Viewer Dynamic Link tag support
+- Fix: Calendly Width fix
+
+= 3.4.2 - 6 February 2022 =
+
+- Tweak: Setup Wizard Performance Improvement
+
+= 3.4.1 - 31 January 2022 =
+
+- New: Comparison Table Widget
+- Fix: Card widget alignment issue as gloabl widget
+- Fix: Dashboard Analytics Page issue
 
 = 3.4.0 - 22 December 2021 =
 

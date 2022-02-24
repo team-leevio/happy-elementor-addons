@@ -1,6 +1,6 @@
 {
   "name": "happy-elementor-addons",
-  "version": "3.4.0",
+  "version": "3.4.3",
   "description": "addons collection",
   "main": "index.html",
   "scripts": {
@@ -11,20 +11,21 @@
   "author": "HappyMonster",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.4",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^3.1.1",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.6.1",
     "gulp-csscomb": "^3.1.0",
-    "gulp-csso": "^2.0.0",
-    "gulp-plumber-notifier": "0.0.3",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.2.1",
-    "gulp-uglify": "^2.1.2",
+    "gulp-csso": "^4.0.1",
+    "gulp-plumber-notifier": "0.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.0.0",
+    "gulp-uglify": "^3.0.2",
     "gulp-wp-pot": "^2.5.0",
-    "node-sass": "^4.14.1"
+    "gulp-zip": "^5.1.0",
+    "sass": "^1.45.0"
   }
 }

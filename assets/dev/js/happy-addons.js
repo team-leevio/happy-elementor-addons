@@ -1009,8 +1009,30 @@
 				page: $settings.page_number
 			};
 			PDFObject.embed($settings.pdf_url, "#"+$settings.unique_id, options);
-		};
+		}
 		
+		var Comparison_Table = function($scope){
+			var $table = $scope.find('.ha-comparison-table-wrapper');
+			var $table_head = $scope.find('.ha-comparison-table__head');
+			var $sticky_header = $table_head.data('sticky-header');
+			var $section_height = $scope.height();
+			var $table_height = $table.innerHeight();
+			var $tableOffsetTop = $table.offset().top;
+
+			if( $sticky_header === 'yes' ){
+				$window.scroll(function(){
+
+					var offset = $(this).scrollTop();
+
+					if ( offset >= $tableOffsetTop ) {
+						$table_head.addClass('table-sticky');
+
+					} else if( offset > $table_height ) {
+						$table_head.removeClass('table-sticky');
+					}
+				});
+			}	
+		};
 
 		// Slider
 		elementorFrontend.hooks.addAction(
@@ -1112,7 +1134,8 @@
 			'ha-content-switcher.default'	: Content_Switcher,
 			'ha-member.default'		        : Team_Member,
 			'ha-creative-button.default'	: Creative_Button,
-			'ha-pdf-view.default'			: PDF_View
+			'ha-pdf-view.default'			: PDF_View,
+			'ha-comparison-table.default'	: Comparison_Table
 		};
 
 		$.each( fnHanlders, function( widgetName, handlerFn ) {

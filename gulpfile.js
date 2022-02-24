@@ -1,5 +1,5 @@
 const { src, watch, dest, series } = require("gulp");
-const sass = require("gulp-sass");
+const sass = require('gulp-sass')(require('sass'));
 const csso = require("gulp-csso");
 const rename = require("gulp-rename");
 const babel = require("gulp-babel");
@@ -60,6 +60,11 @@ function makeBackendCSS() {
 function makeFrontendJS() {
 	return src(frontendJSFiles)
 		.pipe(plumberNotifier())
+		.pipe(
+			babel({
+				presets: ["@babel/env"],
+			})
+		)
 		.pipe(dest("assets/js"))
 		//.pipe(uglify())
 		.pipe(rename({ suffix: ".min" }))

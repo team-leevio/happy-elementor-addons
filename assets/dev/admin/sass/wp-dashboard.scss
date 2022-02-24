@@ -54,6 +54,12 @@
         }
     }
 
+    .ha-overview__feed {
+        & > a {
+            display: flex;
+        }
+    }
+
     .ha-overview--banner {
         width: 100%;
     }

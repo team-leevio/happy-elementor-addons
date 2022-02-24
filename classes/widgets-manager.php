@@ -75,8 +75,7 @@ class Widgets_Manager
 	 *
 	 * @return array
 	 */
-	public static function get_pro_widget_map()
-	{
+	public static function get_pro_widget_map(){
 		return [
 			'advanced-heading' => [
 				'cat' => 'general',
@@ -991,6 +990,18 @@ class Widgets_Manager
 				'vendor' => [
 					'css' => [],
 					'js' => ['pdf-js'],
+				],
+			],
+			'comparison-table' => [
+				'cat' => 'creative',
+				'is_active' => true,
+				'title' => __('Comparison Table', 'happy-elementor-addons'),
+				'icon' => 'hm hm-scale',
+				'css' => ['comparison-table'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
 				],
 			],
 		];
