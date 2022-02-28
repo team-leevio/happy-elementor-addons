@@ -1617,7 +1617,7 @@ class Comparison_Table extends Base {
 							?>
 							<div class="ha-comparison-table__head-column-cell-content">
 								<?php if ( $head['head_show_content'] == 'yes' ) {
-									echo ha_kses_intermediate( $head['head_content'] );
+									echo wp_kses_post( $head['head_content'] );
 								}
 								?>
 							</div>
@@ -1658,7 +1658,7 @@ class Comparison_Table extends Base {
 						<?php endif; ?>
 						<div class="ha-comparison-table__row-item-cell-content">
 							<?php if ( $table_cell[ $j ]['show_content'] == 'yes' ) {
-									echo ha_kses_intermediate( $table_cell[ $j ]['row_content'] );
+									echo wp_kses_post( $table_cell[ $j ]['row_content'] );
 								}
 							?>
 						</div>
