@@ -1,7 +1,10 @@
-= # v#.#.# - 24 February 2022
+= 3.4.4 - 28 February 2022 =
+
 - New: Double Opt In support for mailchimp widget.
 - Tweak: Improve Slider on load behavior
 - Tweak: Improve Image Carousel on load behavior
+- Tweak: Comparison Table description field
+- Tweak: Comparison Table add button style control for individual item
 
 = 3.4.3 - 17 February 2022 =
 
