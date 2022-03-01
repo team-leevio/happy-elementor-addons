@@ -771,6 +771,48 @@
           popup.addClass("ha-ec-popup-removing").removeClass("ha-ec-popup-ready");
         }
       });
+    };
+
+    var MailChimp = function MailChimp($scope) {
+      var elForm = $scope.find('.ha-mailchimp-form'),
+          elMessage = $scope.find('.ha-mc-response-message');
+      elForm.on('submit', function (e) {
+        e.preventDefault();
+        var data = {
+          action: 'ha_mailchimp_ajax',
+          security: HappyLocalize.nonce,
+          subscriber_info: elForm.serialize(),
+          list_id: elForm.data('list-id'),
+          post_id: elForm.parent().data('post-id'),
+          widget_id: elForm.parent().data('widget-id')
+        };
+        $.ajax({
+          type: 'post',
+          url: HappyLocalize.ajax_url,
+          data: data,
+          success: function success(response) {
+            elForm.trigger('reset');
+
+            if (response.status) {
+              elMessage.removeClass('error');
+              elMessage.addClass('success');
+              elMessage.text(response.msg);
+            } else {
+              elMessage.addClass('error');
+              elMessage.removeClass('success');
+              elMessage.text(response.msg);
+            }
+
+            var hideMsg = setTimeout(function () {
+              elMessage.removeClass('error');
+              elMessage.removeClass('success');
+              clearTimeout(hideMsg);
+            }, 5000);
+          },
+          error: function error(_error3) {// console.log(error);
+          }
+        });
+      });
     }; //Image Accordion
 
 
@@ -835,93 +877,8 @@
           }
         });
       }
-    };
+    }; //Team Member
 
-    var MailChimp = elementorModules.frontend.handlers.Base.extend({
-      onInit: function onInit() {
-        elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
-        this.elForm = this.$element.find('.ha-mailchimp-form');
-        this.elMessage = this.$element.find('.ha-mc-response-message');
-        this.successMessage = this.elForm.data('success-message');
-        this.run();
-      },
-      getReadySettings: function getReadySettings() {
-        var settings = {
-          formAlign: this.getElementSettings('form_alignment'),
-          formAlignTablet: this.getElementSettings('form_alignment_tablet') || this.getElementSettings('form_alignment'),
-          formAlignMobile: this.getElementSettings('form_alignment_mobile') || this.getElementSettings('form_alignment_tablet') || this.getElementSettings('form_alignment')
-        };
-        return $.extend({}, settings);
-      },
-      onElementChange: function onElementChange() {
-        this.run();
-      },
-      run: function run() {
-        var settings = this.getReadySettings();
-        var elForm = this.elForm;
-        var elMessage = this.elMessage;
-        var successMessage = this.successMessage;
-        elForm.on('submit', function (e) {
-          e.preventDefault();
-          var data = {
-            action: 'ha_mailchimp_ajax',
-            security: HappyLocalize.nonce,
-            subscriber_info: elForm.serialize(),
-            list_id: elForm.data('list-id'),
-            post_id: elForm.parent().data('post-id'),
-            widget_id: elForm.parent().data('widget-id')
-          };
-          $.ajax({
-            type: 'post',
-            url: HappyLocalize.ajax_url,
-            data: data,
-            success: function success(response) {
-              elForm.trigger('reset');
-
-              if (response.status) {
-                elMessage.removeClass('error');
-                elMessage.addClass('success');
-                elMessage.text(successMessage);
-              } else {
-                elMessage.addClass('error');
-                elMessage.removeClass('success');
-                elMessage.text(response.msg);
-              }
-            },
-            error: function error(_error3) {}
-          });
-        });
-        var mobileWidth = elementorFrontendConfig.breakpoints.sm;
-        var tabletWidth = elementorFrontendConfig.breakpoints.md;
-
-        function responsiveClass() {
-          var windowWidth = $(window).width();
-
-          if (windowWidth > tabletWidth) {
-            elForm.removeClass('vertical');
-            elForm.removeClass('horizontal');
-            elForm.addClass(settings.formAlign);
-          } else if (windowWidth > mobileWidth && windowWidth <= tabletWidth) {
-            elForm.removeClass('vertical');
-            elForm.removeClass('horizontal');
-            elForm.addClass(settings.formAlignTablet);
-          } else if (windowWidth <= mobileWidth) {
-            elForm.removeClass('vertical');
-            elForm.removeClass('horizontal');
-
-            if (elForm.hasClass('multiple_form_fields')) {
-              elForm.addClass('vertical');
-            } else {
-              elForm.addClass(settings.formAlignMobile);
-            }
-          }
-        }
-
-        ;
-        responsiveClass();
-        $(window).on('load, resize', responsiveClass);
-      }
-    }); //Team Member
 
     var Team_Member = function Team_Member($scope) {
       var btn = $scope.find('.ha-btn');
@@ -1054,12 +1011,15 @@
           }
         });
       }
-    });
-    elementorFrontend.hooks.addAction('frontend/element_ready/ha-mailchimp.default', function ($scope) {
-      elementorFrontend.elementsHandler.addHandler(MailChimp, {
-        $element: $scope
-      });
-    });
+    }); // elementorFrontend.hooks.addAction(
+    // 	'frontend/element_ready/ha-mailchimp.default',
+    // 	function ($scope) {
+    // 		elementorFrontend.elementsHandler.addHandler(MailChimp, {
+    // 			$element: $scope,
+    // 		});
+    // 	}
+    // );
+
     $('body').on('click.onWrapperLink', '[data-ha-element-link]', function () {
       var $wrapper = $(this),
           data = $wrapper.data('ha-element-link'),
@@ -1096,6 +1056,7 @@
       'ha-data-table.default': DataTable,
       'widget': BackgroundOverlay,
       'ha-event-calendar.default': Event_Calendar,
+      'ha-mailchimp.default': MailChimp,
       'ha-image-accordion.default': Image_Accordion,
       'ha-content-switcher.default': Content_Switcher,
       'ha-member.default': Team_Member,

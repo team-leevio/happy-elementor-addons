@@ -1,6 +1,6 @@
 === Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget) ===
 Plugin Name: Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget)
-Version: 3.4.2
+Version: 3.4.4
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
@@ -437,6 +437,14 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.4.4 - 28 February 2022 =
+
+- New: Double Opt In support for mailchimp widget.
+- Tweak: Improve Slider on load behavior
+- Tweak: Improve Image Carousel on load behavior
+- Tweak: Comparison Table description field
+- Tweak: Comparison Table add button style control for individual item
 
 = 3.4.3 - 17 February 2022 =
 
