@@ -223,7 +223,7 @@ class Comparison_Table extends Base {
 		$repeater->add_control(
 			'head_show_content',
 			[
-				'label'        => esc_html__( 'Content?', 'happy-elementor-addons' ),
+				'label'        => esc_html__( 'Description', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'label_on'     => esc_html__( 'Show', 'happy-elementor-addons' ),
 				'label_off'    => esc_html__( 'Hide', 'happy-elementor-addons' ),
@@ -542,7 +542,7 @@ class Comparison_Table extends Base {
 		$repeater->add_control(
 			'show_content',
 			[
-				'label'        => esc_html__( 'Content?', 'happy-elementor-addons' ),
+				'label'        => esc_html__( 'Description', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'label_on'     => esc_html__( 'Show', 'happy-elementor-addons' ),
 				'label_off'    => esc_html__( 'Hide', 'happy-elementor-addons' ),
