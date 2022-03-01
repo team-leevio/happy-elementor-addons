@@ -438,7 +438,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.4.4 - 28 February 2022 =
+= 3.4.4 - 1 March 2022 =
 
 - New: Double Opt In support for mailchimp widget.
 - Tweak: Improve Slider on load behavior
