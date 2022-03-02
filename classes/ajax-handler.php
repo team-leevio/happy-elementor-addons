@@ -8,37 +8,33 @@ class Ajax_Handler {
 
 	public static function init() {
 
-		add_action('wp_ajax_ha_twitter_feed_action', [__CLASS__, 'twitter_feed_ajax']);
-		add_action('wp_ajax_nopriv_ha_twitter_feed_action', [__CLASS__, 'twitter_feed_ajax']);
+		add_action( 'wp_ajax_ha_twitter_feed_action', [ __CLASS__, 'twitter_feed_ajax' ] );
+		add_action( 'wp_ajax_nopriv_ha_twitter_feed_action', [ __CLASS__, 'twitter_feed_ajax' ] );
 
-		add_action('wp_ajax_ha_post_tab_action', [__CLASS__, 'post_tab']);
-		add_action('wp_ajax_nopriv_ha_post_tab_action', [__CLASS__, 'post_tab']);
+		add_action( 'wp_ajax_ha_post_tab_action', [ __CLASS__, 'post_tab' ] );
+		add_action( 'wp_ajax_nopriv_ha_post_tab_action', [ __CLASS__, 'post_tab' ] );
 
-		add_action('wp_ajax_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);
-		add_action('wp_ajax_nopriv_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax']);
+		add_action( 'wp_ajax_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax'] );
+		add_action( 'wp_ajax_nopriv_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax'] );
 
-		add_action('wp_ajax_ha_template_singulars', [__CLASS__, 'get_singular_list']);
-		add_action('wp_ajax_ha_template_save_data', [__CLASS__, 'save_template_data']);
-		add_action('wp_ajax_ha_template_get_data', [__CLASS__, 'get_template_data']);
-		add_action('wp_ajax_ha_template_get_conditions', [__CLASS__, 'get_available_conditions']);
 	}
 
 	/**
-	 * Twitter Feed Ajax call
-	 */
+	* Twitter Feed Ajax call
+	*/
 	public static function twitter_feed_ajax() {
 
-		$security = check_ajax_referer('happy_addons_nonce', 'security');
+		$security = check_ajax_referer( 'happy_addons_nonce', 'security' );
 
-		if (true == $security && isset($_POST['query_settings'])) :
+		if ( true == $security && isset( $_POST['query_settings'] ) ) :
 			$settings    = $_POST['query_settings'];
 			$loaded_item = $_POST['loaded_item'];
 
-			$user_name      = trim($settings['user_name']);
+			$user_name      = trim( $settings['user_name'] );
 			$ha_tweets_cash = '_' . $settings['id'] . '_tweet_cash';
 
 			$transient_key = $user_name . $ha_tweets_cash;
-			$twitter_data  = get_transient($transient_key);
+			$twitter_data  = get_transient( $transient_key );
 			$credentials   = $settings['credentials'];
 
 			$auth_response = wp_remote_post(
@@ -55,9 +51,9 @@ class Ajax_Handler {
 				]
 			);
 
-			$body = json_decode(wp_remote_retrieve_body($auth_response));
+			$body = json_decode( wp_remote_retrieve_body( $auth_response ) );
 
-			if (!empty($body)) {
+			if ( ! empty( $body ) ) {
 				$token           = $body->access_token;
 				$tweets_response = wp_remote_get(
 					'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $settings['user_name'] . '&count=999&tweet_mode=extended',
@@ -68,67 +64,76 @@ class Ajax_Handler {
 					]
 				);
 
-				if (!is_wp_error($tweets_response)) {
-					$twitter_data = json_decode(wp_remote_retrieve_body($tweets_response), true);
-					set_transient($transient_key, $twitter_data, 0);
+				if ( ! is_wp_error( $tweets_response ) ) {
+					$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
+					set_transient( $transient_key, $twitter_data, 0 );
 				}
 			}
-			if ('yes' == $settings['remove_cache']) {
-				delete_transient($transient_key);
+			if ( 'yes' == $settings['remove_cache'] ) {
+				delete_transient( $transient_key );
 			}
 
-			switch ($settings['sort_by']) {
+			switch ( $settings['sort_by'] ) {
 				case 'old-posts':
-					usort($twitter_data, function ($a, $b) {
-						if ($a['created_at'] == $b['created_at']) {
-							return 0;
-						}
+					usort(
+						$twitter_data,
+						function ( $a, $b ) {
+							if ( $a['created_at'] == $b['created_at'] ) {
+								return 0;
+							}
 
-						return ($a['created_at'] < $b['created_at']) ? -1 : 1;
-					});
+							return ( $a['created_at'] < $b['created_at'] ) ? -1 : 1;
+						}
+					);
 					break;
 				case 'favorite_count':
-					usort($twitter_data, function ($a, $b) {
-						if ($a['favorite_count'] == $b['favorite_count']) {
-							return 0;
-						}
+					usort(
+						$twitter_data,
+						function ( $a, $b ) {
+							if ( $a['favorite_count'] == $b['favorite_count'] ) {
+								return 0;
+							}
 
-						return ($a['favorite_count'] > $b['favorite_count']) ? -1 : 1;
-					});
+							return ( $a['favorite_count'] > $b['favorite_count'] ) ? -1 : 1;
+						}
+					);
 					break;
 				case 'retweet_count':
-					usort($twitter_data, function ($a, $b) {
-						if ($a['retweet_count'] == $b['retweet_count']) {
-							return 0;
-						}
+					usort(
+						$twitter_data,
+						function ( $a, $b ) {
+							if ( $a['retweet_count'] == $b['retweet_count'] ) {
+								return 0;
+							}
 
-						return ($a['retweet_count'] > $b['retweet_count']) ? -1 : 1;
-					});
+							return ( $a['retweet_count'] > $b['retweet_count'] ) ? -1 : 1;
+						}
+					);
 					break;
 				default:
 					$twitter_data;
 			}
 
-			$items = array_splice($twitter_data, $loaded_item, $settings['tweets_limit']);
+			$items = array_splice( $twitter_data, $loaded_item, $settings['tweets_limit'] );
 
-			foreach ($items as $item) :
-				if (!empty($item['entities']['urls'])) {
-					$content = str_replace($item['entities']['urls'][0]['url'], '', $item['full_text']);
+			foreach ( $items as $item ) :
+				if ( ! empty( $item['entities']['urls'] ) ) {
+					$content = str_replace( $item['entities']['urls'][0]['url'], '', $item['full_text'] );
 				} else {
 					$content = $item['full_text'];
 				}
 
-				$description = explode(' ', $content);
-				if (!empty($settings['content_word_count']) && count($description) > $settings['content_word_count']) {
-					$description_shorten = array_slice($description, 0, $settings['content_word_count']);
-					$description         = implode(' ', $description_shorten) . '...';
+				$description = explode( ' ', $content );
+				if ( ! empty( $settings['content_word_count'] ) && count( $description ) > $settings['content_word_count'] ) {
+					$description_shorten = array_slice( $description, 0, $settings['content_word_count'] );
+					$description         = implode( ' ', $description_shorten ) . '...';
 				} else {
 					$description = $content;
 				}
-?>
+				?>
 				<div class="ha-tweet-item">
 
-					<?php if ('yes' == $settings['show_twitter_logo']) : ?>
+					<?php if ( 'yes' == $settings['show_twitter_logo'] ) : ?>
 						<div class="ha-tweeter-feed-icon">
 							<i class="fa fa-twitter"></i>
 						</div>
@@ -137,22 +142,22 @@ class Ajax_Handler {
 					<div class="ha-tweet-inner-wrapper">
 
 						<div class="ha-tweet-author">
-							<?php if ('yes' == $settings['show_user_image']) : ?>
-								<a href="<?php echo esc_url('https://twitter.com/' . $user_name); ?>">
-									<img src="<?php echo esc_url($item['user']['profile_image_url_https']); ?>" alt="<?php echo esc_attr($item['user']['name']); ?>" class="ha-tweet-avatar">
+							<?php if ( 'yes' == $settings['show_user_image'] ) : ?>
+								<a href="<?php echo esc_url( 'https://twitter.com/' . $user_name ); ?>">
+									<img src="<?php echo esc_url( $item['user']['profile_image_url_https'] ); ?>" alt="<?php echo esc_attr( $item['user']['name'] ); ?>" class="ha-tweet-avatar">
 								</a>
 							<?php endif; ?>
 
 							<div class="ha-tweet-user">
-								<?php if ('yes' == $settings['show_name']) : ?>
-									<a href="<?php echo esc_url('https://twitter.com/' . $user_name); ?>" class="ha-tweet-author-name">
-										<?php echo esc_html($item['user']['name']); ?>
+								<?php if ( 'yes' == $settings['show_name'] ) : ?>
+									<a href="<?php echo esc_url( 'https://twitter.com/' . $user_name ); ?>" class="ha-tweet-author-name">
+										<?php echo esc_html( $item['user']['name'] ); ?>
 									</a>
 								<?php endif; ?>
 
-								<?php if ('yes' == $settings['show_user_name']) : ?>
-									<a href="<?php echo esc_url('https://twitter.com/' . $user_name); ?>" class="ha-tweet-username">
-										<?php echo esc_html($settings['user_name']); ?>
+								<?php if ( 'yes' == $settings['show_user_name'] ) : ?>
+									<a href="<?php echo esc_url( 'https://twitter.com/' . $user_name ); ?>" class="ha-tweet-username">
+										<?php echo esc_html( $settings['user_name'] ); ?>
 									</a>
 								<?php endif; ?>
 							</div>
@@ -160,38 +165,38 @@ class Ajax_Handler {
 
 						<div class="ha-tweet-content">
 							<p>
-								<?php echo esc_html($description); ?>
+								<?php echo esc_html( $description ); ?>
 
-								<?php if ('yes' == $settings['read_more']) : ?>
-									<a href="<?php echo esc_url('//twitter.com/' . $item['user']['screen_name'] . '/status/' . $item['id']); ?>" target="_blank">
-										<?php echo esc_html($settings['read_more_text']); ?>
+								<?php if ( 'yes' == $settings['read_more'] ) : ?>
+									<a href="<?php echo esc_url( '//twitter.com/' . $item['user']['screen_name'] . '/status/' . $item['id'] ); ?>" target="_blank">
+										<?php echo esc_html( $settings['read_more_text'] ); ?>
 									</a>
 								<?php endif; ?>
 							</p>
 
-							<?php if ('yes' == $settings['show_date']) : ?>
+							<?php if ( 'yes' == $settings['show_date'] ) : ?>
 								<div class="ha-tweet-date">
-									<?php echo esc_html(date("M d Y", strtotime($item['created_at']))); ?>
+									<?php echo esc_html( date( 'M d Y', strtotime( $item['created_at'] ) ) ); ?>
 								</div>
 							<?php endif; ?>
 						</div>
 
 					</div>
 
-					<?php if ('yes' == $settings['show_favorite'] || 'yes' == $settings['show_retweet']) : ?>
+					<?php if ( 'yes' == $settings['show_favorite'] || 'yes' == $settings['show_retweet'] ) : ?>
 						<div class="ha-tweet-footer-wrapper">
 							<div class="ha-tweet-footer">
 
-								<?php if ('yes' == $settings['show_favorite']) : ?>
+								<?php if ( 'yes' == $settings['show_favorite'] ) : ?>
 									<div class="ha-tweet-favorite">
-										<?php echo esc_html($item['favorite_count']); ?>
+										<?php echo esc_html( $item['favorite_count'] ); ?>
 										<i class="fa fa-heart-o"></i>
 									</div>
 								<?php endif; ?>
 
-								<?php if ('yes' == $settings['show_retweet']) : ?>
+								<?php if ( 'yes' == $settings['show_retweet'] ) : ?>
 									<div class="ha-tweet-retweet">
-										<?php echo esc_html($item['retweet_count']); ?>
+										<?php echo esc_html( $item['retweet_count'] ); ?>
 										<i class="fa fa-retweet"></i>
 									</div>
 								<?php endif; ?>
@@ -201,7 +206,7 @@ class Ajax_Handler {
 					<?php endif; ?>
 
 				</div>
-			<?php
+				<?php
 			endforeach;
 		endif;
 		wp_die();
@@ -212,9 +217,9 @@ class Ajax_Handler {
 	 */
 	public static function post_tab() {
 
-		$security = check_ajax_referer('happy_addons_nonce', 'security');
+		$security = check_ajax_referer( 'happy_addons_nonce', 'security' );
 
-		if (true == $security) :
+		if ( true == $security ) :
 			$settings   = $_POST['post_tab_query'];
 			$post_type  = $settings['post_type'];
 			$taxonomy   = $settings['taxonomy'];
@@ -236,47 +241,47 @@ class Ajax_Handler {
 				],
 			];
 
-			$posts = get_posts($args);
+			$posts = get_posts( $args );
 
-			if (count($posts) !== 0) :
-			?>
-				<div class="ha-post-tab-item-wrapper active" data-term="<?php echo esc_attr($term_id); ?>">
-					<?php foreach ($posts as $post) : ?>
+			if ( count( $posts ) !== 0 ) :
+				?>
+				<div class="ha-post-tab-item-wrapper active" data-term="<?php echo esc_attr( $term_id ); ?>">
+					<?php foreach ( $posts as $post ) : ?>
 						<div class="ha-post-tab-item">
 							<div class="ha-post-tab-item-inner">
-								<?php if (has_post_thumbnail($post->ID)) : ?>
-									<a href="<?php echo esc_url(get_the_permalink($post->ID)); ?>" class="ha-post-tab-thumb">
-										<?php echo get_the_post_thumbnail($post->ID, 'full'); ?>
+								<?php if ( has_post_thumbnail( $post->ID ) ) : ?>
+									<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>" class="ha-post-tab-thumb">
+										<?php echo get_the_post_thumbnail( $post->ID, 'full' ); ?>
 									</a>
 								<?php endif; ?>
 								<h2 class="ha-post-tab-title">
-									<a href="<?php echo esc_url(get_the_permalink($post->ID)); ?>"> <?php echo esc_html($post->post_title); ?></a>
+									<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>"> <?php echo esc_html( $post->post_title ); ?></a>
 								</h2>
 								<div class="ha-post-tab-meta">
 									<span class="ha-post-tab-meta-author">
 										<i class="fa fa-user-o"></i>
-										<a href="<?php echo esc_url(get_author_posts_url($post->post_author)); ?>"><?php echo esc_html(get_the_author_meta('display_name', $post->post_author)); ?></a>
+										<a href="<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
 									</span>
 									<?php
-									$archive_year  = get_the_time('Y', $post->ID);
-									$archive_month = get_the_time('m', $post->ID);
-									$archive_day   = get_the_time('d', $post->ID);
+									$archive_year  = get_the_time( 'Y', $post->ID );
+									$archive_month = get_the_time( 'm', $post->ID );
+									$archive_day   = get_the_time( 'd', $post->ID );
 									?>
 									<span class="ha-post-tab-meta-date">
 										<i class="fa fa-calendar-o"></i>
-										<a href="<?php echo esc_url(get_day_link($archive_year, $archive_month, $archive_day)); ?>"><?php echo get_the_date("M d, Y", $post->ID); ?></a>
+										<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>"><?php echo get_the_date( 'M d, Y', $post->ID ); ?></a>
 									</span>
 								</div>
-								<?php if ('yes' === $excerpt && !empty($post->post_excerpt)) : ?>
+								<?php if ( 'yes' === $excerpt && ! empty( $post->post_excerpt ) ) : ?>
 									<div class="ha-post-tab-excerpt">
-										<p><?php echo esc_html($post->post_excerpt); ?></p>
+										<p><?php echo esc_html( $post->post_excerpt ); ?></p>
 									</div>
 								<?php endif; ?>
 							</div>
 						</div>
 					<?php endforeach; ?>
 				</div>
-<?php
+				<?php
 
 			endif;
 		endif;
@@ -288,167 +293,23 @@ class Ajax_Handler {
 	 */
 	public static function mailchimp_prepare_ajax() {
 
-		$security = check_ajax_referer('happy_addons_nonce', 'security');
+		$security = check_ajax_referer( 'happy_addons_nonce', 'security' );
 
-		if (!$security) return;
+		if ( ! $security ) {
+			return;
+		}
 
-		parse_str(isset($_POST['subscriber_info']) ? $_POST['subscriber_info'] : '', $subsciber);
+		parse_str( isset( $_POST['subscriber_info'] ) ? $_POST['subscriber_info'] : '', $subsciber );
 
-		if (!class_exists('Happy_Addons\Elementor\Widget\Mailchimp\Mailchimp_api')) {
+		if ( ! class_exists( 'Happy_Addons\Elementor\Widget\Mailchimp\Mailchimp_Api' ) ) {
 			include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
 		}
 
-		$response = Widget\Mailchimp\Mailchimp_api::insert_subscriber_to_mailchimp($subsciber);
+		$response = Widget\Mailchimp\Mailchimp_Api::insert_subscriber_to_mailchimp( $subsciber );
 
-		echo wp_send_json($response);
+		echo wp_send_json( $response );
 
 		wp_die();
-	}
-
-
-	/**
-	 * Get all Singulars
-	 */
-	public static function get_singular_list() {
-
-		$return = array();
-
-		$query_args = [
-			'post_status'       => 'publish',
-			'posts_per_page'    => 15,
-			'post_type' => 'any'
-		];
-
-		if (isset($_REQUEST['s'])) {
-			$query_args['s'] = $_REQUEST['s'];
-		}
-
-		$query = new \WP_Query($query_args);
-		$options = [];
-		if ($query->have_posts()) :
-			while ($query->have_posts()) {
-				$query->the_post();
-				$title = (mb_strlen($query->post->post_title) > 50) ? mb_substr($query->post->post_title, 0, 49) . '...' : $query->post->post_title;
-				$return[] = array($query->post->ID, $title);
-			}
-		endif;
-		echo json_encode($return);
-		wp_reset_postdata();
-		wp_die();
-	}
-
-	/**
-	 * Ha Template Edit Data
-	 */
-	public static function get_template_data() {
-		$postID = $_REQUEST['post_id'];
-
-		$templateType   = get_post_meta($postID, '_ha_library_type', true);
-		$templateCond   = get_post_meta($postID, '_ha_display_cond', true);
-		$templateActive = get_post_meta($postID, '_ha_template_active', true);
-
-		echo wp_json_encode([
-			'type'  => $templateType,
-			'cond'  => $templateCond,
-			'active' => $templateActive
-		]);
-
-		die();
-	}
-
-
-	/**
-	 * Ha Template Edit Data
-	 */
-	public static function save_template_data() {
-		$settings = $_REQUEST['settings'];
-		$settings = stripslashes($settings);
-		$settings = json_decode($settings);
-
-		$postID = $settings->post_id;
-		$enabled = isset($settings->template_active) ? $settings->template_active : '';
-		$condition_a = isset($settings->template_display_type) ? $settings->template_display_type : '';
-		$condition_b = isset($settings->condition_singular) ? $settings->condition_singular : '';
-		$condition_c = isset($settings->condition_singular_id) ? $settings->condition_singular_id : [];
-
-		$condition = "";
-		if ($condition_a) {
-			$condition .= $condition_a;
-			if ($condition_a == "singular" && $condition_b) {
-				$condition .= "/" . $condition_b;
-				if ($condition_b == "selective") {
-					if (!empty($condition_c)) {
-						$condition .= "/" . implode(',', $condition_c);
-					}
-				}
-			}
-		}
-
-		update_post_meta($postID, '_ha_display_cond', $condition);
-		update_post_meta($postID, '_ha_template_active', $enabled);
-
-		echo wp_json_encode([
-			'success'  => true,
-		]);
-
-		die();
-	}
-
-	public static function get_available_conditions() {
-		$templateType = $_REQUEST['templateType'];
-		
-		$condition_a = [];
-		$condition_b = [];
-		switch ($templateType) {
-			case "header":
-				$condition_a = [
-					'general' => "Entire Website",
-					'singular' => "Sigular (Only Pro)",
-					'archive' => "Archive (Only Pro)"
-				];
-				$condition_b = [
-					'all' => "All Singulars (Only Pro)",
-					'front_page' => "Front Page (Only Pro)",
-					'posts' => "All Posts (Only Pro)",
-					'pages' => "All Pages (Only Pro)",
-					'selective' => "Selective Singular (Only Pro)",
-					'404page' => "404 Page (Only Pro)",
-				];
-				break;
-			case "footer":
-				$condition_a = [
-					'general' => "Entire Website",
-					'singular' => "Sigular (Only Pro)",
-					'archive' => "Archive (Only Pro)"
-				];
-				$condition_b = [
-					'all' => "All Singulars (Only Pro)",
-					'front_page' => "Front Page (Only Pro)",
-					'posts' => "All Posts (Only Pro)",
-					'pages' => "All Pages (Only Pro)",
-					'selective' => "Selective Singular (Only Pro)",
-					'404page' => "404 Page (Only Pro)",
-				];
-				break;
-			case "single":
-				$condition_a = [
-					'posts' => "All Posts",
-					'all' => "All Singulars (Only Pro)",
-					'front_page' => "Front Page (Only Pro)",
-					'pages' => "All Pages (Only Pro)",
-					'selective' => "Selective Singular (Only Pro)",
-					'404page' => "404 Page (Only Pro)",
-				];
-				$condition_b = [];
-				break;
-		}
-
-		echo wp_json_encode([
-			'condition_a'  => $condition_a,
-			'condition_b'  => $condition_b,
-		]);
-
-		die(); 
 	}
 }
 

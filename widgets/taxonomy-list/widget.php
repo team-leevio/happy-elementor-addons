@@ -631,6 +631,7 @@ class Taxonomy_List extends Base {
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}} span.ha-taxonomy-list-icon' => 'color: {{VALUE}};',
+					'{{WRAPPER}} span.ha-taxonomy-list-icon svg' => 'fill: {{VALUE}};',
 				],
 			]
 		);
