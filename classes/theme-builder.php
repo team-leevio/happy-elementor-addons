@@ -29,6 +29,10 @@ class Theme_Builder {
 
         add_action('pre_get_posts', [$this, 'add_role_filter_to_posts_query']);
 
+        add_action('elementor/documents/register_controls', [$this, 'register_document_controls']);
+
+        add_action('elementor/editor/after_enqueue_scripts', [$this, 'ha_templace_element_scripts']);
+
         // Admin Actions
         add_action('admin_action_ha_library_new_post', [$this, 'admin_action_new_post']);
 
@@ -536,7 +540,6 @@ class Theme_Builder {
             ];
             $this->load_template_element($filters);
         }
-
     }
 
     public function ha_theme_builder_content($template) {
@@ -615,10 +618,8 @@ class Theme_Builder {
                         $this->single_template = isset($template_id['single']) ? $template_id['single'] : $template['ID'];
                     }
                 }
-
             }
         }
-        
     }
 
     protected function get_full_data($post) {
@@ -687,6 +688,53 @@ class Theme_Builder {
                 break;
         }
         return $lang;
+    }
+
+
+    function ha_templace_element_scripts() {
+        error_log(get_post_type());
+        if ( self::CPT === get_post_type() ) {
+            wp_enqueue_script(
+                'happy-addons-template-elements',
+                HAPPY_ADDONS_ASSETS . 'admin/js/template-elements.min.js',
+                [],
+                HAPPY_ADDONS_ASSETS,
+                true
+            );
+        }
+    }
+
+    /**
+     * Register additional document controls.
+     *
+     * @param \Elementor\Core\DocumentTypes\PageBase $document The PageBase document instance.
+     */
+    function register_document_controls($document) {
+
+        if ($document->get_post()->post_type !== self::CPT) {
+            return;
+        }
+
+        $document->start_controls_section(
+            'test_section',
+            [
+                'label' => esc_html__('Happy Theme Elements', 'plugin-name'),
+                'tab' => \Elementor\Controls_Manager::TAB_SETTINGS,
+            ]
+        );
+
+        $document->add_control(
+            'test_color',
+            [
+                'label' => esc_html__('Test Color', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}}' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $document->end_controls_section();
     }
 }
 

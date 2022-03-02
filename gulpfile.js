@@ -25,10 +25,10 @@ const AUTOPREFIXER_BROWSERS = [
 	"bb >= 10",
 ];
 
-const frontendSassFiles = "assets/dev/sass/*.scss";
-const backendSassFiles = "assets/dev/admin/sass/*.scss";
-const frontendJSFiles = "assets/dev/js/*.js";
-const backendJSFiles = "assets/dev/admin/js/*.js";
+const frontendSassFiles = "assets/dev/sass/**/*.scss";
+const backendSassFiles = "assets/dev/admin/sass/**/*.scss";
+const frontendJSFiles = "assets/dev/js/**/*.js";
+const backendJSFiles = "assets/dev/admin/js/**/*.js";
 
 function makeFrontendCSS() {
 	return src(frontendSassFiles)
