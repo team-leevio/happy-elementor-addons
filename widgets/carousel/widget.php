@@ -29,7 +29,7 @@ class Carousel extends Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Carousel', 'happy-elementor-addons' );
+		return __( 'Image Carousel', 'happy-elementor-addons' );
 	}
 
 	public function get_custom_help_url() {

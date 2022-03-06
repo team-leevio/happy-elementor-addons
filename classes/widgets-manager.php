@@ -102,13 +102,13 @@ class Widgets_Manager
 				'is_pro' => true,
 			],
 			'team-carousel' => [
-				'cat' => 'slider-and-carousel',
+				'cat' => 'slider-&-carousel',
 				'title' => __('Team Carousel', 'happy-elementor-addons'),
 				'icon' => 'hm hm-team-carousel',
 				'is_pro' => true,
 			],
 			'logo-carousel' => [
-				'cat' => 'slider-and-carousel',
+				'cat' => 'slider-&-carousel',
 				'title' => __('Logo Carousel', 'happy-elementor-addons'),
 				'icon' => 'hm hm-logo-carousel',
 				'is_pro' => true,
@@ -126,7 +126,7 @@ class Widgets_Manager
 				'is_pro' => true,
 			],
 			'testimonial-carousel' => [
-				'cat' => 'slider-and-carousel',
+				'cat' => 'slider-&-carousel',
 				'title' => __('Testimonial Carousel', 'happy-elementor-addons'),
 				'icon' => 'hm hm-testimonial-carousel',
 				'is_pro' => true,
@@ -336,7 +336,7 @@ class Widgets_Manager
 				'is_pro' => true,
 			],
 			'advanced-slider' => [
-				'cat' => 'slider-and-carousel',
+				'cat' => 'slider-&-carousel',
 				'title' => __('Advanced Slider', 'happy-elementor-addons'),
 				'icon' => 'hm hm-slider',
 				'is_pro' => true,
@@ -508,7 +508,7 @@ class Widgets_Manager
 				],
 			],
 			'slider' => [
-				'cat' => 'slider-and-carousel',
+				'cat' => 'slider-&-carousel',
 				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-slider',
 				'title' => __('Slider', 'happy-elementor-addons'),
@@ -521,10 +521,10 @@ class Widgets_Manager
 				],
 			],
 			'carousel' => [
-				'cat' => 'slider-and-carousel',
+				'cat' => 'slider-&-carousel',
 				'is_active' => true,
 				'demo' => 'https://happyaddons.com/go/demo-image-carousel',
-				'title' => __('Carousel', 'happy-elementor-addons'),
+				'title' => __('Image Carousel', 'happy-elementor-addons'),
 				'icon' => 'hm hm-carousal',
 				'css' => ['slider-carousel'],
 				'js' => [],
