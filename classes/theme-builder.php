@@ -30,8 +30,8 @@ class Theme_Builder {
         add_action('pre_get_posts', [$this, 'add_role_filter_to_posts_query']);
 
         add_action('elementor/documents/register_controls', [$this, 'register_document_controls']);
-
-        add_action('elementor/editor/after_enqueue_scripts', [$this, 'ha_templace_element_scripts']);
+        add_action('elementor/editor/after_enqueue_scripts', [$this, 'ha_template_element_scripts']);
+        add_action('elementor/editor/after_enqueue_scripts', [$this, 'edit_template_condition_modal'], 10, 2);
 
         // Admin Actions
         add_action('admin_action_ha_library_new_post', [$this, 'admin_action_new_post']);
@@ -268,6 +268,15 @@ class Theme_Builder {
         include(HAPPY_ADDONS_DIR_PATH . 'templates/admin/edit-template.php');
         $template = ob_get_clean();
         echo $template;
+    }
+
+    public function edit_template_condition_modal() {
+        if (self::CPT === get_post_type()) {
+            ob_start();
+            include(HAPPY_ADDONS_DIR_PATH . 'templates/admin/edit-template-condition.php');
+            $template = ob_get_clean();
+            echo $template;
+        }
     }
 
     /**
@@ -691,12 +700,20 @@ class Theme_Builder {
     }
 
 
-    function ha_templace_element_scripts() {
+    function ha_template_element_scripts() {
         error_log(get_post_type());
-        if ( self::CPT === get_post_type() ) {
+        if (self::CPT === get_post_type()) {
             wp_enqueue_script(
                 'happy-addons-template-elements',
                 HAPPY_ADDONS_ASSETS . 'admin/js/template-elements.min.js',
+                [],
+                HAPPY_ADDONS_ASSETS,
+                true
+            );
+
+            wp_enqueue_script(
+                'happy-addons-micromodal',
+                'https://unpkg.com/micromodal@0.4.10/dist/micromodal.js',
                 [],
                 HAPPY_ADDONS_ASSETS,
                 true
