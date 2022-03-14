@@ -29,7 +29,7 @@ class Theme_Builder {
 
         add_action('pre_get_posts', [$this, 'add_role_filter_to_posts_query']);
 
-        add_action('elementor/documents/register_controls', [$this, 'register_document_controls']);
+        // add_action('elementor/documents/register_controls', [$this, 'register_document_controls']);
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'ha_template_element_scripts']);
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'edit_template_condition_modal'], 10, 2);
 
@@ -54,6 +54,9 @@ class Theme_Builder {
         //Override Single Post Template
         add_filter('template_include', [$this, 'ha_theme_builder_content'], 99);
         add_action('happyaddons_theme_builder_render', array($this, 'single_blog_content_elementor'), 999);
+
+        // Register Ajax Handles
+        // add_action( 'wp_ajax_ha_cond_template_type', [$this, 'ha_get_template_type'] );
     }
 
     public function add_query_vars_filter($vars) {
@@ -706,7 +709,7 @@ class Theme_Builder {
             wp_enqueue_script(
                 'happy-addons-template-elements',
                 HAPPY_ADDONS_ASSETS . 'admin/js/template-elements.min.js',
-                [],
+                ['jquery','happy-elementor-addons-editor'],
                 HAPPY_ADDONS_ASSETS,
                 true
             );
@@ -718,6 +721,17 @@ class Theme_Builder {
                 HAPPY_ADDONS_ASSETS,
                 true
             );
+
+            // $localize_data = [
+            //     'hasPro'                  => ha_has_pro(),
+            //     'editor_nonce'            => wp_create_nonce('ha_editor_nonce'),
+            // ];
+    
+            // wp_localize_script(
+            //     'happy-elementor-addons-editor',
+            //     'HappyAddonsEditor',
+            //     $localize_data
+            // );
         }
     }
 

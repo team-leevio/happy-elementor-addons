@@ -12,7 +12,7 @@ $selected = get_query_var('ha_library_type');
 ?>
 
 <script type="text/template" id="tmpl-modal-template-condition">
-<div class="modal micromodal-slide modal-template-condition" id="modal-template-condition" aria-hidden="false">
+    <div class="modal micromodal-slide modal-template-condition" id="modal-template-condition" aria-hidden="false">
     <div class="modal__overlay" tabindex="-1">
         <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-login-title">
             <header class="modal__header">
@@ -36,7 +36,7 @@ $selected = get_query_var('ha_library_type');
             </div>
             <footer class="modal__footer">
                 <button class="modal__close" aria-label="Close modal" data-micromodal-close="">Cancel</button>
-                <button id="ha-template-save-data" class="modal__btn modal__btn-primary">Save Settings</button>
+                <button id="ha-template-save-data" class="modal__btn modal__btn-primary">Save & Close</button>
             </footer>
         </div>
     </div>
@@ -44,16 +44,16 @@ $selected = get_query_var('ha_library_type');
 </script>
 
 <script type="text/template" id="tmpl-elementor-new-template">
-    <div class="ha-template-condition-item">
+    <div id="ha-template-condition-item-{{uniqeID}}" class="ha-template-condition-item">
         <div class="ha-template-condition-item-row">
             <div class="ha-tce-type">
-                <select id="elementor-control-default-{{id}}" data-setting="type">
+                <select data-id="type-{{uniqeID}}" data-parent="{{uniqeID}}" data-setting="type">
                     <option value="include">Include</option>
                     <option value="exclude">Exclude</option>
                 </select>
             </div>
             <div class="ha-tce-name">
-                <select id="elementor-control-default-{{id}}" data-setting="name">
+                <select data-id="name-{{uniqeID}}" data-parent="{{uniqeID}}" data-setting="name">
                     <optgroup label="General">
                         <option value="general">Entire Site</option>
                         <option value="archive">Archives</option>
@@ -61,35 +61,18 @@ $selected = get_query_var('ha_library_type');
                     </optgroup>
                 </select>
             </div>
-            <div class="ha-tce-sub_name">
-                <select id="elementor-control-default-{{id}}" data-setting="sub_name">
-                    <option value="">Entire Site</option>
-                    <optgroup label="Archives">
-                        <option value="archive">All Archives</option>
-                        <option value="author">Author Archive</option>
-                        <option value="date">Date Archive</option>
-                        <option value="search">Search Results</option>
-                        <option value="post_archive">Posts Archive</option>
-                    </optgroup>
-                    <optgroup label="Singular">
-                        <option value="singular">All Singular</option>
-                        <option value="front_page">Front Page</option>
-                        <option value="post">Post</option>
-                        <option value="page">Page</option>
-                        <option value="e-landing-page">Landing Page</option>
-                        <option value="attachment">Media</option>
-                        <option value="child_of">Direct Child Of</option>
-                        <option value="any_child_of">Any Child Of</option>
-                        <option value="by_author">By Author</option>
-                        <option value="not_found404">404 Page</option>
-                    </optgroup>
+            <div class="ha-tce-sub_name" style="display:none">
+                <select data-id="sub_name-{{uniqeID}}" data-parent="{{uniqeID}}" data-setting="sub_name">
                 </select>
             </div>
-            <div class="ha-tce-sub_id">
-                <select id="elementor-control-default-{{id}}" data-setting="sub_id">
-                    <option value="">All</option>
+            <div class="ha-tce-sub_id" style="display:none">
+                <select data-id="sub_id-{{uniqeID}}" data-parent="{{uniqeID}}" data-setting="sub_id">
                 </select>
             </div>
+        </div>
+        <div class="ha-template-condition-remove">
+            <i class="eicon-trash-o" aria-hidden="true"></i>
+            <span class="elementor-screen-only">Remove this item</span>
         </div>
     </div>
 </script>

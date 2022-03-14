@@ -64,7 +64,7 @@
 
     .modal__container {
         background-color: #fff;
-        max-width: 800px;
+        max-width: 960px;
         width: 100%;
         max-height: 100vh;
         border-radius: 4px;
@@ -81,11 +81,11 @@
         align-items: center;
         background-color: #fff;
         box-sizing: border-box;
-        padding: 30px 0;
+        padding: 20px 0;
     }
 
     .modal__title {
-        margin-top: 0;
+        margin-top: 0; 
         margin-bottom: 0;
         font-weight: 500;
         font-size: 18px;
@@ -107,12 +107,14 @@
     }
 
     .modal__content {
-        padding: 30px 0px;
+        padding: 30px 20px;
         line-height: 1.5;
         box-sizing: border-box;
-        height: 550px;
-        max-height: 85vh;
+        width: 800px;
+        max-height: 65vh;
+        height: 750px;
         overflow: scroll;
+        margin: auto;
     }
 
     .modal__information {
@@ -120,12 +122,12 @@
         text-align: center;
 
         .info-title {
-            font-size: 30px;
-            margin-top: 40px;
+            font-size: 24px;
+            margin: 0;
         }
 
         .info-message {
-            font-size: 18px;
+            font-size: 14px;
             color: #a4afb7;
             margin-top: 15px;
             font-weight: 300;
@@ -230,30 +232,77 @@
 }
 
 #ha-template-edit-form {
-    margin: 40px 0 60px;
+    margin: 40px 0 30px;
     border-bottom: 2px solid #6939c6;
     position: relative;
 
     .ha-template-condition-wrap {
-        min-height: 100px;
+        min-height: 20vh;
         display: flex;
         flex-direction: column;
         gap: 10px;
+        margin-bottom: 20px;
 
         .ha-template-condition-item {
             background: #faf9fc;
             padding: 8px 24px;
+            padding-left: 8px;
             border-radius: 4px;
+            margin-right: 16px;
+            position: relative;
             border: 1px solid rgb(104 56 198 / 10%);
 
-            &:hover {
-                border-color: #6939c6;
-            }
+            // &:hover {
+            //     border-color: #6939c6;
+            // }
         }
 
         .ha-template-condition-item-row {
             display: flex;
             justify-content: space-between;
+            gap: 8px;
+
+            .ha-tce-type{
+                flex-grow: 0;
+            }
+            .ha-tce-name,
+            .ha-tce-sub_name,
+            .ha-tce-sub_id{
+                flex-grow: 1;
+            }
+
+            .ha-tce-sub_name{
+                max-width: 45%;
+            }
+
+            .ha-tce-sub_id{
+                width: 100px;
+            }
+
+            select{
+                background: #fff;
+            }
+        }
+
+        .ha-template-condition-remove{
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translate(50%, -50%);
+            height: 32px;
+            width: 32px;
+            background: #e91e63;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            box-shadow: 0 1px 9px rgba($color: #e91e63, $alpha: 0.16);
+            cursor: pointer;
+
+            &:hover{
+                box-shadow: 0 1px 9px rgba($color: #e91e63, $alpha: 0.46);
+            }
         }
     }
 
