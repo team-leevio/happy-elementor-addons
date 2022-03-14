@@ -4,12 +4,17 @@ namespace Happy_Addons\Elementor;
 
 defined('ABSPATH') || die();
 
+
+use Happy_Addons\Elementor\Conditions_Cache;
+
 class Theme_Builder {
     public static $instance = null;
 
     protected $templates;
     protected $current_theme;
     protected $current_template;
+
+    private $cache;
 
     const CPT = 'ha_library';
     const TEMPLATE_TYPE = ['header' => 'Header', 'footer' => 'Footer', 'single' => 'Single'];
@@ -22,14 +27,13 @@ class Theme_Builder {
 
     public function __construct() {
         add_action('wp', array($this, 'hooks'));
+        $this->cache = new Conditions_Cache();
+
         add_filter('query_vars', [$this, 'add_query_vars_filter']);
         add_filter('views_edit-' . self::CPT, [$this, 'admin_print_tabs']);
         add_action('init', [$this, 'create_themebuilder_cpt'], 0);
         add_action('admin_menu', [$this, 'modify_menu'], 90);
-
         add_action('pre_get_posts', [$this, 'add_role_filter_to_posts_query']);
-
-        // add_action('elementor/documents/register_controls', [$this, 'register_document_controls']);
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'ha_template_element_scripts']);
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'edit_template_condition_modal'], 10, 2);
 
@@ -186,7 +190,7 @@ class Theme_Builder {
                         <h1 class="ha-admin-top-bar__heading-title">Theme Builder</h1>
                     </div>
                     <div class="ha-admin-top-bar__main-area-buttons">
-                        <a class="page-title-action" id="ha-template-library-add-new" href="http://ha.test/wp-admin/post-new.php?post_type=elementor_library">Add New</a>
+                        <a class="page-title-action" id="ha-template-library-add-new" href="http://ha.test/wp-admin/post-new.php?post_type=ha_library">Add New</a>
                     </div>
                 </div>
             </div>
@@ -220,19 +224,19 @@ class Theme_Builder {
         }
         if ('condition' === $column_name) {
             //return;
-            $instances = get_post_meta($post_id, '_ha_display_cond', true);
-            $instances = explode('/', $instances);
+            // $instances = get_post_meta($post_id, '_ha_display_cond', true);
+            // $instances = explode('/', $instances);
 
-            if (!empty($instances)) {
-                if (isset($instances[0])) {
-                    echo self::lang($instances[0]);
-                }
-                if (isset($instances[1])) {
-                    echo self::lang($instances[1]);
-                }
-            } else {
+            // if (!empty($instances)) {
+            //     if (isset($instances[0])) {
+            //         echo self::lang($instances[0]);
+            //     }
+            //     if (isset($instances[1])) {
+            //         echo self::lang($instances[1]);
+            //     }
+            // } else {
                 echo __('None', 'elementor-pro');
-            }
+            // }
         }
     }
 
@@ -504,6 +508,8 @@ class Theme_Builder {
 
         $this->templates = get_posts($arg);
 
+        $this->templates = null;
+
         // more conditions can be triggered at once
         // don't use switch case
         // may impliment and callable by dynamic class in future
@@ -733,39 +739,6 @@ class Theme_Builder {
             //     $localize_data
             // );
         }
-    }
-
-    /**
-     * Register additional document controls.
-     *
-     * @param \Elementor\Core\DocumentTypes\PageBase $document The PageBase document instance.
-     */
-    function register_document_controls($document) {
-
-        if ($document->get_post()->post_type !== self::CPT) {
-            return;
-        }
-
-        $document->start_controls_section(
-            'test_section',
-            [
-                'label' => esc_html__('Happy Theme Elements', 'plugin-name'),
-                'tab' => \Elementor\Controls_Manager::TAB_SETTINGS,
-            ]
-        );
-
-        $document->add_control(
-            'test_color',
-            [
-                'label' => esc_html__('Test Color', 'plugin-name'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}}' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $document->end_controls_section();
     }
 }
 

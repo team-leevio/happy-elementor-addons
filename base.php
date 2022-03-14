@@ -82,7 +82,6 @@ class Base {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-forms.php' );
 
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/ajax-handler.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
 
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
@@ -106,7 +105,10 @@ class Base {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-source.php' );
 		}
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/api-handler.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/conditions-cache.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/theme-builder.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
+
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/astra.php');
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/bbtheme.php');
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/generatepress.php');

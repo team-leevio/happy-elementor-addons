@@ -5,10 +5,14 @@ namespace Happy_Addons\Elementor;
 defined('ABSPATH') || die();
 
 use Exception;
-
+use Happy_Addons\Elementor\Conditions_Cache;
 class Condition_Manager {
 
+    private static $cache;
+
     public static function init() {
+        self::$cache = new Conditions_Cache();
+        
         add_action('wp_ajax_ha_condition_autocomplete', [__CLASS__, 'process_autocomplete']);
         add_action('wp_ajax_ha_condition_update', [__CLASS__, 'process_condition_update']);
         add_action('wp_ajax_ha_cond_template_type', [__CLASS__, 'ha_get_template_type']);
@@ -136,8 +140,6 @@ class Condition_Manager {
     protected static function validate_reqeust() {
         $nonce = !empty($_REQUEST['nonce']) ? $_REQUEST['nonce'] : '';
 
-        error_log($nonce);
-
         if (!wp_verify_nonce($nonce, 'ha_editor_nonce')) {
             throw new Exception('Invalid request');
         }
@@ -168,15 +170,16 @@ class Condition_Manager {
     public static function process_condition_update() {
         try {
             self::validate_reqeust();
-            $templateID = isset($_REQUEST['ha_template_cond']) ? $_REQUEST['ha_template_cond'] : null;
-            $conditions = isset($_REQUEST['ha_template_cond']) ? $_REQUEST['ha_template_cond'] : [];
+            $templateID = isset($_REQUEST['template_id']) ? $_REQUEST['template_id'] : null;
+            $conditions = isset($_REQUEST['conds']) ? $_REQUEST['conds'] : [];
 
             if ($templateID) {
-                $oldConds = get_post_meta($templateID, '_ha_display_cond');
-                $cond = update_post_meta($templateID, '_ha_display_cond', $conditions, $oldConds);
+                $cond = update_post_meta($templateID, '_ha_display_cond', $conditions);
+                $updates = get_post_meta($templateID, '_ha_display_cond');
 
                 if ($cond) {
-                    wp_send_json_success($cond);
+                    self::$cache->regenerate();
+                    wp_send_json_success($updates);
                 } else {
                     wp_send_json_error();
                 }
@@ -281,7 +284,6 @@ class Condition_Manager {
 
         if ($query_term) {
             $args['search'] = $query_term;
-            // $args['count'] = true;
         }
 
         $terms = get_terms($args);

@@ -9,6 +9,7 @@
 
 	var templateType = "";
 	var postId = 0;
+	var newConditions = [];
 
 	if (typeof elementor !== "undefined") {
 		elementor.on("panel:init", function ($e) {
@@ -23,8 +24,6 @@
 					title: "Template Conditions",
 					callback: function callback() {
 						return elementor.trigger("ha:templateCondition");
-						// return $e.route('theme-builder-publish/conditions');
-						// return $e.route(component.getTabRoute(type));
 					},
 				});
 		});
@@ -51,16 +50,18 @@
 
 	$(document).on("click", ".ha-cond-repeater-add", function () {
 		var conditionContainer = $(".ha-template-condition-wrap");
-		// console.log(conditionTemplate);
 		var uniqify = generateUniqeDom(conditionTemplate.innerHTML);
 		conditionContainer.append(uniqify);
 		elementor.trigger("ha:templateConditionChange");
 	});
 
 	$(document).on("click", ".ha-template-condition-remove", function () {
-		// var conditionContainer = $(".ha-template-condition-wrap");
 		$(this).parent().remove();
 		elementor.trigger("ha:templateConditionChange");
+	});
+
+	$(document).on("click", "#ha-template-save-data", function () {
+		saveConditionData();
 	});
 
 	$(document).on(
@@ -79,16 +80,10 @@
 	}
 
 	function handleAssignEvent(event) {
-		console.log(event);
-		// console.log(event.target.localName);
-
 		if (event.target.localName == "select") {
 			var parentID = event.target.dataset.parent;
 			var selectedType = event.target.dataset.setting;
 			var selected = event.target.value;
-
-			console.log(parentID);
-			console.log(selected);
 
 			var type = $("[data-id='type-" + parentID + "']");
 			var name = $("[data-id='name-" + parentID + "']");
@@ -96,6 +91,7 @@
 			var sub_id = $("[data-id='sub_id-" + parentID + "']");
 
 			if (selectedType == "type") {
+				//TODO: Add prefix icon later on
 			}
 
 			if (selectedType == "name") {
@@ -122,7 +118,7 @@
 					by_author: "author",
 				};
 				if (dataPair.hasOwnProperty(selected)) {
-					console.log(dataPair[selected]);
+					// Toggle Visibility
 					sub_id.parent().show();
 
 					var dataType = dataPair[selected];
@@ -151,7 +147,6 @@
 									object_type: dataType,
 									object_term: dataVal,
 								};
-								// Query parameters will be ?search=[term]&type=public
 								return query;
 							},
 							processResults: function (response) {
@@ -186,7 +181,7 @@
 						},
 						minimumInputLength: 2,
 						cache: true,
-						placeholder: 'All',
+						placeholder: "All",
 						allowClear: true,
 					});
 				} else {
@@ -201,13 +196,9 @@
 
 	function handleHaTemplateCondition() {
 		var conditions = [];
-		// console.log("Condition Updated");
-		// console.log(elementor.config.document.id);
 		var conditionItems = $(".ha-template-condition-wrap").find(
 			".ha-template-condition-item"
 		);
-
-		// console.log(conditionItems);
 		conditionItems.each(function () {
 			var type = $(this).find(".ha-tce-type select").val();
 			var name = $(this).find(".ha-tce-name select").val();
@@ -226,8 +217,8 @@
 
 			conditions.push(localCond);
 		});
-
-		console.log(conditions);
+		newConditions = conditions;
+		// console.log(newConditions);
 	}
 
 	function handleHaTemplateType(id) {
@@ -240,11 +231,10 @@
 				action: "ha_cond_template_type", // AJAX action for admin-ajax.php
 				post_id: id,
 			},
-			success: function (data) {
-				if (data) {
-					//fetchConditions(data);
+			success: function (response) {
+				if (response && response.data) {
+					templateType = response.data;
 				}
-				console.log(data);
 			},
 		});
 	}
@@ -261,29 +251,6 @@
 			},
 			success: function (data) {
 				if (data) {
-					console.log(typeof data);
-					if (data.data) {
-						var optionHTML = populate_option(data.data);
-						target.html(optionHTML);
-					}
-				}
-			},
-		});
-	}
-
-	function add_sub_id(target, dataType) {
-		jQuery.ajax({
-			url: ajaxurl,
-			type: "get",
-			dataType: "json",
-			data: {
-				nonce: HappyAddonsEditor.editor_nonce,
-				action: "ha_condition_autocomplete", // AJAX action for admin-ajax.php
-				object_type: dataType,
-			},
-			success: function (data) {
-				if (data) {
-					console.log(typeof data);
 					if (data.data) {
 						var optionHTML = populate_option(data.data);
 						target.html(optionHTML);
@@ -345,19 +312,23 @@
 		return optionHTML;
 	}
 
-	function get_autoload_data(dataType) {
+	function saveConditionData() {
+		postId = elementor.config.document.id;
+
 		jQuery.ajax({
 			url: ajaxurl,
-			type: "get",
+			type: "post",
 			dataType: "json",
 			data: {
-				action: "ha_condition_autocomplete", // AJAX action for admin-ajax.php
-				object_type: dataType,
+				nonce: HappyAddonsEditor.editor_nonce,
+				action: "ha_condition_update", // AJAX action for admin-ajax.php
+				conds: newConditions,
+				template_id: postId
 			},
-			success: function (data) {
-				return data;
-				if (data) {
-					//fetchConditions(data);
+			success: function (response) {
+				if (response) {
+					// console.log(response);
+					MicroModal.close("modal-template-condition");
 				}
 			},
 		});
