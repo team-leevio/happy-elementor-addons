@@ -323,7 +323,7 @@
 				nonce: HappyAddonsEditor.editor_nonce,
 				action: "ha_condition_update", // AJAX action for admin-ajax.php
 				conds: newConditions,
-				template_id: postId
+				template_id: postId,
 			},
 			success: function (response) {
 				if (response) {

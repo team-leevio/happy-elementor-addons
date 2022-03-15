@@ -12,6 +12,7 @@ class Condition_Manager {
 
     private $cache;
     private $all_conds;
+    private $all_conds_list;
     private $location_cache = [];
 
     public function __construct() {
@@ -22,6 +23,9 @@ class Condition_Manager {
         add_action('wp_ajax_ha_cond_template_type', [$this, 'ha_get_template_type']);
 
         $this->process_condition();
+
+        // error_log(print_r($this->all_conds, true));
+        // error_log(print_r($this->all_conds_list, true));
     }
 
     public static function instance() {
@@ -36,15 +40,17 @@ class Condition_Manager {
         $conditions = [
             'general' => [
                 'title' => __('General', 'happy-elementor-addons'),
-                'all_label' => __('',''),
+                'all_label' => __('All Archives', 'happy-elementor-addons'),
                 'is_pro' => false,
             ],
             'archive' => [
                 'title' => __('Archives', 'happy-elementor-addons'),
+                'all_label' => __('Entire Site', 'happy-elementor-addons'),
                 'is_pro' => false,
             ],
             'singular' => [
                 'title' => __('Singular', 'happy-elementor-addons'),
+                'all_label' => __('All Singular', 'happy-elementor-addons'),
                 'is_pro' => false,
             ],
         ];
@@ -161,6 +167,16 @@ class Condition_Manager {
             )
         );
 
+        $tmp_singular = $this->singular_conditions();
+        $tmp_post = $tmp_singular['post_group']['conditions'];
+        $tmp_page = $tmp_singular['page_group']['conditions'];
+
+        unset($tmp_singular['post_group']);
+        unset($tmp_singular['page_group']);
+
+        $all_cond_list = $this->initial_conditions() + $this->archive_conditions() + $tmp_post + $tmp_page;
+
+        $this->all_conds_list = $all_cond_list;
         $this->all_conds = $conditions;
     }
 
@@ -534,13 +550,13 @@ class Condition_Manager {
             return $this->location_cache[$location];
         }
 
-        $theme_templates_ids = $this->get_theme_templates_ids( $location );
+        $theme_templates_ids = $this->get_theme_templates_ids($location);
 
         $documents = [];
 
-        foreach ( $theme_templates_ids as $theme_template_id => $priority ) {
-            $documents[ ] = $theme_template_id;
-		}
+        foreach ($theme_templates_ids as $theme_template_id => $priority) {
+            $documents[] = $theme_template_id;
+        }
 
         return $documents;
     }

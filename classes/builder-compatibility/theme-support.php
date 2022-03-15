@@ -29,7 +29,7 @@ class Theme_Support {
 		$footers = Condition_Manager::instance()->get_documents_for_location('footer');
 
 		// error_log("Header \n".print_r($headers,true));
-		error_log("Footer \n".print_r($footers,true));
+		// error_log("Footer \n".print_r($footers,true));
 
 		if (!empty($headers)) {
 			add_action('get_header', [$this, 'get_header']);

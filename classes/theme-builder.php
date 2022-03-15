@@ -510,10 +510,10 @@ class Theme_Builder {
 
                 $condition_name = !empty($document_condition['sub_name']) ? $document_condition['sub_name'] : $document_condition['name'];
 
-                $condition = $this->get_condition($condition_name);
-                if (!$condition) {
-                    continue;
-                }
+                // $condition = $this->get_condition($condition_name);
+                // if (!$condition) {
+                //     continue;
+                // }
 
                 if (!empty($document_condition['sub_id'])) {
                     $instance_label = $condition->get_label() . " #{$document_condition['sub_id']}";
@@ -630,13 +630,33 @@ class Theme_Builder {
             $location = 'archive';
         }
 
+        if (is_plugin_active('elementor-pro/elementor-pro.php')) {
+            $document = \ElementorPro\Plugin::elementor()->documents->get_doc_for_frontend(get_the_ID());
+            $page_templates_module = \ElementorPro\Plugin::elementor()->modules_manager->get_modules('page-templates');
+            
+            if ($document && $document instanceof \ElementorPro\Modules\ThemeBuilder\Documents\Theme_Document) {
+                // For editor preview iframe.
+                $location = $document->get_location();
+
+                if ('header' === $location || 'footer' === $location) {
+                    $page_template = $page_templates_module::TEMPLATE_HEADER_FOOTER;
+                    $template_path = $page_templates_module->get_template_path($page_template);
+                    $page_templates_module->set_print_callback(function () use ($location) {
+                        \ElementorPro\Modules\ThemeBuilder\Module::instance()->get_locations_manager()->do_location($location);
+                    });
+                    $template = $template_path;
+                    error_log("TAG 0: " . $template);
+                    return $template;
+                }
+            }
+        }
         if ($location) {
             $location_documents = Condition_Manager::instance()->get_documents_for_location($location);
 
             if (empty($location_documents)) {
                 return $template;
             }
-
+            error_log("TAG 0: " . $template);
             if ('single' === $location || 'archive' === $location) {
 
                 $first_key = key($location_documents);
@@ -649,20 +669,24 @@ class Theme_Builder {
 
                 $this->singular_template = $theme_document;
 
-                switch ($templateType) {
-                    case "elementor_canvas":
-                        $template = HAPPY_ADDONS_DIR_PATH . 'templates/builder/singular/canvas.php';
-                        break;
-                    case "elementor_header_footer":
-                        $template = HAPPY_ADDONS_DIR_PATH . 'templates/builder/singular/fullwidth.php';
-                        break;
-                    default:
-                        $template = HAPPY_ADDONS_DIR_PATH . 'templates/builder/singular/fullwidth.php';
-                        break;
+                if ($theme_document) {
+                    switch ($templateType) {
+                        case "elementor_canvas":
+                            $template = HAPPY_ADDONS_DIR_PATH . 'templates/builder/singular/canvas.php';
+                            break;
+                        case "elementor_header_footer":
+                            $template = HAPPY_ADDONS_DIR_PATH . 'templates/builder/singular/fullwidth.php';
+                            break;
+                        default:
+                            // $template = $template;
+                            $template = HAPPY_ADDONS_DIR_PATH . 'templates/builder/singular/fullwidth.php';
+                            break;
+                    }
                 }
             }
         }
 
+        error_log("TAG 0: " . $template);
         // error_log("Single Template: ".print_r($template,true));
 
         return $template;
@@ -852,6 +876,13 @@ class Theme_Builder {
         $valid_template = $teplates[$first_key];
 
         return $this->render_builder_data($valid_template);
+    }
+
+    function _is_elementor_pro() {
+        $file_path = 'elementor/elementor.php';
+        $installed_plugins = get_plugins();
+
+        return isset($installed_plugins[$file_path]);
     }
 }
 

@@ -34,6 +34,35 @@
 	});
 })(jQuery);
 
+jQuery(document).ready(function ($) {
+	jQuery("[id^=wp-admin-bar-elementor_edit_doc_]").each(function (index) {
+		var _long_id = $(this).attr("id");
+		var _id = _long_id.replace("wp-admin-bar-elementor_edit_doc_", "");
+		var _label = $("#" + _long_id + " .elementor-edit-link-type");
+
+		jQuery.ajax({
+			url: ajax_url,
+			type: "get",
+			dataType: "json",
+			data: {
+				nonce: HappyAddonsEditor.nonce,
+				action: "ha_cond_template_type", // AJAX action for admin-ajax.php
+				post_id: _id,
+			},
+			success: function (response) {
+				if (response && response.data) {
+					templateType = response.data;
+					if(templateType){
+						_label.text(templateType);
+					}
+				}
+			},
+		});
+
+		// console.log(_id);
+	});
+});
+
 var Logo = Marionette.ItemView.extend({
 	getTemplate() {
 		return "#tmpl-ha-templates-modal__header__logo";
@@ -411,18 +440,18 @@ function newTemplateForm() {
 			archive: "Archive (Only Pro)",
 		},
 		singularData: {
-			"posts": "All Posts",
-			"all": "All Singular (Only Pro)",
+			posts: "All Posts",
+			all: "All Singular (Only Pro)",
 			"front-page": "Front Page (Only Pro)",
-			"pages": "All Pages (Only Pro)",
-			"selective": "Selective Pages (Only Pro)",
-			"error404": "404 Pages (Only Pro)",
+			pages: "All Pages (Only Pro)",
+			selective: "Selective Pages (Only Pro)",
+			error404: "404 Pages (Only Pro)",
 		},
 		selectedType: "general",
 		selectedSingular: null,
 		selectedSingularData: null,
 		selectiveData: null,
-		getTemplateType(){
+		getTemplateType() {
 			this.templateType;
 		},
 		getSelective() {
