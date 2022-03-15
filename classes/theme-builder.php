@@ -13,7 +13,7 @@ class Theme_Builder {
     protected $templates;
     protected $current_theme;
     protected $current_template;
-	protected $current_location;
+    protected $current_location;
 
     private $cache;
     private $location_cache;
@@ -237,7 +237,7 @@ class Theme_Builder {
             //         echo self::lang($instances[1]);
             //     }
             // } else {
-                echo __('None', 'elementor-pro');
+            echo __('None', 'elementor-pro');
             // }
         }
     }
@@ -498,7 +498,55 @@ class Theme_Builder {
         return $ids;
     }
 
-    private function get_template_by_location($location){
+
+    public function get_document_instances($post_id) {
+        $document_conditions = $this->get_document_conditions($post_id);
+
+        if (!empty($document_conditions)) {
+            foreach ($document_conditions as $document_condition) {
+                if ('exclude' === $document_condition['type']) {
+                    continue;
+                }
+
+                $condition_name = !empty($document_condition['sub_name']) ? $document_condition['sub_name'] : $document_condition['name'];
+
+                $condition = $this->get_condition($condition_name);
+                if (!$condition) {
+                    continue;
+                }
+
+                if (!empty($document_condition['sub_id'])) {
+                    $instance_label = $condition->get_label() . " #{$document_condition['sub_id']}";
+                } else {
+                    $instance_label = $condition->get_all_label();
+                }
+
+                $summary[$condition->get_name()] = $instance_label;
+            }
+        }
+
+        return $summary;
+    }
+    /**
+     * @param Theme_Document $document
+     *
+     * @return array
+     */
+    public function get_document_conditions($post_id) {
+        $saved_conditions = get_post_meta($post_id, '_ha_display_cond', true);
+
+        $conditions = [];
+
+        if (is_array($saved_conditions)) {
+            foreach ($saved_conditions as $condition) {
+                $conditions[] = $this->parse_condition($condition);
+            }
+        }
+
+        return $conditions;
+    }
+
+    private function get_template_by_location($location) {
         $templates = $this->cache->get_by_location($location);
 
         return $templates;
@@ -574,26 +622,25 @@ class Theme_Builder {
     public function ha_theme_builder_content($template) {
         $location = '';
 
-        if (is_singular() || is_404() ) {
+        if (is_singular() || is_404()) {
             $location = 'single';
-            
-        }elseif( function_exists( 'is_shop' ) && is_shop() ){
+        } elseif (function_exists('is_shop') && is_shop()) {
             $location = 'archive';
-        }elseif( is_archive() || is_tax() || is_home() || is_search() ){
+        } elseif (is_archive() || is_tax() || is_home() || is_search()) {
             $location = 'archive';
         }
 
-        if ( $location ) {
+        if ($location) {
             $location_documents = Condition_Manager::instance()->get_documents_for_location($location);
 
-            if ( empty( $location_documents ) ) {
-				return $template;
-			}
+            if (empty($location_documents)) {
+                return $template;
+            }
 
-            if ( 'single' === $location || 'archive' === $location ) {
+            if ('single' === $location || 'archive' === $location) {
 
-                $first_key = key( $location_documents );
-				$theme_document = $location_documents[ $first_key ];
+                $first_key = key($location_documents);
+                $theme_document = $location_documents[$first_key];
 
                 // error_log(print_r($first_key,true));
                 // error_log(print_r($theme_document,true));
@@ -685,14 +732,14 @@ class Theme_Builder {
         if ($post != null) {
             $tpl_type = get_post_meta($post->ID, '_ha_library_type', true);
             $tpl_cond = get_post_meta($post->ID, '_ha_display_cond', true);
-            
+
             //$parsed_cond = $this->parse_condition($tpl_cond);
 
             $conditions = [];
 
-            if ( is_array( $tpl_cond ) ) {
-                foreach ( $tpl_cond as $condition ) {
-                    $conditions[] = $this->parse_condition( $condition );
+            if (is_array($tpl_cond)) {
+                foreach ($tpl_cond as $condition) {
+                    $conditions[] = $this->parse_condition($condition);
                 }
             }
 
@@ -709,13 +756,13 @@ class Theme_Builder {
     protected function parse_condition($condition) {
         // list($name, $sub_name, $sub_id) = array_pad(explode('/', $condition), 3, '');
         // return compact('name', 'sub_name', 'sub_id');
-        
-        list ( $type, $name, $sub_name, $sub_id ) = array_pad( explode( '/', $condition ), 4, '' );
-		return compact( 'type', 'name', 'sub_name', 'sub_id' );
+
+        list($type, $name, $sub_name, $sub_id) = array_pad(explode('/', $condition), 4, '');
+        return compact('type', 'name', 'sub_name', 'sub_id');
     }
 
     public static function render_builder_data($content_id) {
-        error_log("Render:".print_r($content_id,true));
+        error_log("Render:" . print_r($content_id, true));
         $_elementor = \Elementor\Plugin::instance();
         $has_css = false;
 
@@ -770,7 +817,7 @@ class Theme_Builder {
             wp_enqueue_script(
                 'happy-addons-template-elements',
                 HAPPY_ADDONS_ASSETS . 'admin/js/template-elements.min.js',
-                ['jquery','happy-elementor-addons-editor'],
+                ['jquery', 'happy-elementor-addons-editor'],
                 HAPPY_ADDONS_ASSETS,
                 true
             );
@@ -787,7 +834,7 @@ class Theme_Builder {
             //     'hasPro'                  => ha_has_pro(),
             //     'editor_nonce'            => wp_create_nonce('ha_editor_nonce'),
             // ];
-    
+
             // wp_localize_script(
             //     'happy-elementor-addons-editor',
             //     'HappyAddonsEditor',
@@ -796,16 +843,16 @@ class Theme_Builder {
         }
     }
 
-    public function render_builder_data_location($location){
+    public function render_builder_data_location($location) {
         // $teplates = Condition_Manager::instance()->get_location_templates($location);
         // error_log(print_r($teplates, true));
 
-		$teplates = Condition_Manager::instance()->get_documents_for_location($location);
-        $first_key = key( $teplates );
-        $valid_template = $teplates[ $first_key ];
-        
+        $teplates = Condition_Manager::instance()->get_documents_for_location($location);
+        $first_key = key($teplates);
+        $valid_template = $teplates[$first_key];
+
         return $this->render_builder_data($valid_template);
-	}
+    }
 }
 
 Theme_Builder::instance();

@@ -35,7 +35,8 @@ class Condition_Manager {
     private function initial_conditions() {
         $conditions = [
             'general' => [
-                'title' => __('Entire Site', 'happy-elementor-addons'),
+                'title' => __('General', 'happy-elementor-addons'),
+                'all_label' => __('',''),
                 'is_pro' => false,
             ],
             'archive' => [
