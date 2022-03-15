@@ -15,6 +15,7 @@ class Theme_Builder {
     protected $current_template;
 
     private $cache;
+    private $location_cache;
 
     const CPT = 'ha_library';
     const TEMPLATE_TYPE = ['header' => 'Header', 'footer' => 'Footer', 'single' => 'Single'];
@@ -224,7 +225,7 @@ class Theme_Builder {
         }
         if ('condition' === $column_name) {
             //return;
-            // $instances = get_post_meta($post_id, '_ha_display_cond', true);
+            // $instances = get_post_meta($post_id, '_ha_displday_cond', true);
             // $instances = explode('/', $instances);
 
             // if (!empty($instances)) {
@@ -496,6 +497,11 @@ class Theme_Builder {
         return $ids;
     }
 
+    private function get_template_by_location($location){
+        $templates = $this->cache->get_by_location($location);
+
+        return $templates;
+    }
 
     protected function the_filter() {
         $arg = [
@@ -509,6 +515,10 @@ class Theme_Builder {
         $this->templates = get_posts($arg);
 
         $this->templates = null;
+
+        error_log(print_r($this->get_template_by_location('header'),true));
+        error_log(print_r($this->get_template_by_location('footer'),true));
+        error_log(print_r($this->get_template_by_location('single'),true));
 
         // more conditions can be triggered at once
         // don't use switch case
@@ -644,7 +654,17 @@ class Theme_Builder {
         if ($post != null) {
             $tpl_type = get_post_meta($post->ID, '_ha_library_type', true);
             $tpl_cond = get_post_meta($post->ID, '_ha_display_cond', true);
-            $parsed_cond = $this->parse_condition($tpl_cond);
+            
+            //$parsed_cond = $this->parse_condition($tpl_cond);
+
+            $conditions = [];
+
+            if ( is_array( $tpl_cond ) ) {
+                foreach ( $tpl_cond as $condition ) {
+                    $conditions[] = $this->parse_condition( $condition );
+                }
+            }
+
 
             return array_merge((array)$post, [
                 'type' => $tpl_type,
@@ -656,8 +676,11 @@ class Theme_Builder {
     }
 
     protected function parse_condition($condition) {
-        list($name, $sub_name, $sub_id) = array_pad(explode('/', $condition), 3, '');
-        return compact('name', 'sub_name', 'sub_id');
+        // list($name, $sub_name, $sub_id) = array_pad(explode('/', $condition), 3, '');
+        // return compact('name', 'sub_name', 'sub_id');
+        
+        list ( $type, $name, $sub_name, $sub_id ) = array_pad( explode( '/', $condition ), 4, '' );
+		return compact( 'type', 'name', 'sub_name', 'sub_id' );
     }
 
     public static function render_builder_data($content_id) {
