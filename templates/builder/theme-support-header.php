@@ -25,10 +25,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     <?php do_action('happyaddons/template/before_header'); ?>
 
-    <div class="ekit-template-content-markup ekit-template-content-header ekit-template-content-theme-support">
+    <div class="ha-template-content-markup ha-template-content-header ha-template-content-theme-support">
         <?php
-        $template = \Happy_Addons\Elementor\Theme_Builder::template_ids();
-        echo \Happy_Addons\Elementor\Theme_Builder::render_builder_data($template[0]);
+        // $template = \Happy_Addons\Elementor\Theme_Builder::template_ids();
+        // echo \Happy_Addons\Elementor\Theme_Builder::render_builder_data($template[0]);
+
+        // $template = \Happy_Addons\Elementor\Condition_Manager::instance()->get_location_templates('header');
+        echo \Happy_Addons\Elementor\Theme_Builder::instance()->render_builder_data_location('header');
+        // error_log("header:".print_r($template,true));
         ?>
     </div>
     <?php do_action('happyaddons/template/after_header'); ?>

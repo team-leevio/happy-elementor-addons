@@ -24,8 +24,8 @@ class Conditions_Cache {
      */
     public function add($location, $post_id, array $conditions) {
 
-        error_log(print_r($this->conditions,true));
-        error_log(print_r($location,true));
+        // error_log(print_r($this->conditions,true));
+        // error_log(print_r($location,true));
 
         if ($location) {
             if (is_array($this->conditions) && !isset($this->conditions[$location])) {

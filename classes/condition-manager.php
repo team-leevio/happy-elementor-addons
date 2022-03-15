@@ -12,13 +12,14 @@ class Condition_Manager {
 
     private $cache;
     private $all_conds;
+    private $location_cache = [];
 
     public function __construct() {
         $this->cache = new Conditions_Cache();
 
-        add_action('wp_ajax_ha_condition_autocomplete', [__CLASS__, 'process_autocomplete']);
-        add_action('wp_ajax_ha_condition_update', [__CLASS__, 'process_condition_update']);
-        add_action('wp_ajax_ha_cond_template_type', [__CLASS__, 'ha_get_template_type']);
+        add_action('wp_ajax_ha_condition_autocomplete', [$this, 'process_autocomplete']);
+        add_action('wp_ajax_ha_condition_update', [$this, 'process_condition_update']);
+        add_action('wp_ajax_ha_cond_template_type', [$this, 'ha_get_template_type']);
 
         $this->process_condition();
     }
@@ -438,7 +439,7 @@ class Condition_Manager {
     }
 
     private function get_priority_by_key($key) {
-        $priority = 0;
+        $priority = 100;
         switch ($key) {
             case 'archive':
                 return 80;
@@ -531,6 +532,16 @@ class Condition_Manager {
         if (isset($this->location_cache[$location])) {
             return $this->location_cache[$location];
         }
+
+        $theme_templates_ids = $this->get_theme_templates_ids( $location );
+
+        $documents = [];
+
+        foreach ( $theme_templates_ids as $theme_template_id => $priority ) {
+            $documents[ ] = $theme_template_id;
+		}
+
+        return $documents;
     }
 }
 

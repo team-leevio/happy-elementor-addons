@@ -13,6 +13,7 @@ class Theme_Builder {
     protected $templates;
     protected $current_theme;
     protected $current_template;
+	protected $current_location;
 
     private $cache;
     private $location_cache;
@@ -23,7 +24,7 @@ class Theme_Builder {
 
     public $header_template;
     public $footer_template;
-    public $single_template;
+    public $singular_template;
 
 
     public function __construct() {
@@ -57,7 +58,7 @@ class Theme_Builder {
         add_action('manage_' . self::CPT . '_posts_custom_column', [__CLASS__, 'admin_columns_content'], 10, 2);
 
         //Override Single Post Template
-        add_filter('template_include', [$this, 'ha_theme_builder_content'], 99);
+        add_filter('template_include', [$this, 'ha_theme_builder_content'], 999);
         add_action('happyaddons_theme_builder_render', array($this, 'single_blog_content_elementor'), 999);
 
         // Register Ajax Handles
@@ -459,7 +460,7 @@ class Theme_Builder {
                 break;
 
             default:
-                new Theme_Hooks\Theme_Support(self::template_ids());
+                new Theme_Hooks\Theme_Support();
                 break;
         }
     }
@@ -476,7 +477,7 @@ class Theme_Builder {
         $ids = [
             $instance->header_template,
             $instance->footer_template,
-            $instance->single_template
+            $instance->singular_template
         ];
 
         if ($instance->header_template != null) {
@@ -516,9 +517,9 @@ class Theme_Builder {
 
         $this->templates = null;
 
-        error_log(print_r($this->get_template_by_location('header'),true));
-        error_log(print_r($this->get_template_by_location('footer'),true));
-        error_log(print_r($this->get_template_by_location('single'),true));
+        // error_log(print_r($this->get_template_by_location('header'),true));
+        // error_log(print_r($this->get_template_by_location('footer'),true));
+        // error_log(print_r($this->get_template_by_location('single'),true));
 
         // more conditions can be triggered at once
         // don't use switch case
@@ -571,23 +572,52 @@ class Theme_Builder {
     }
 
     public function ha_theme_builder_content($template) {
-        if (is_singular('post')  && !empty($this->single_template)) {
-            $templateType = get_post_meta($this->single_template, '_wp_page_template', true);
-            switch ($templateType) {
-                case "elementor_canvas":
-                    $new_template = HAPPY_ADDONS_DIR_PATH . 'templates/builder/singular/canvas.php';
-                    break;
-                case "elementor_header_footer":
-                    $new_template = HAPPY_ADDONS_DIR_PATH . 'templates/builder/singular/fullwidth.php';
-                    break;
-                default:
-                    $new_template = HAPPY_ADDONS_DIR_PATH . 'templates/builder/singular/fullwidth.php';
-                    break;
-            }
-            if ('' != $new_template) {
-                return $new_template;
+        $location = '';
+
+        if (is_singular() || is_404() ) {
+            $location = 'single';
+            
+        }elseif( function_exists( 'is_shop' ) && is_shop() ){
+            $location = 'archive';
+        }elseif( is_archive() || is_tax() || is_home() || is_search() ){
+            $location = 'archive';
+        }
+
+        if ( $location ) {
+            $location_documents = Condition_Manager::instance()->get_documents_for_location($location);
+
+            if ( empty( $location_documents ) ) {
+				return $template;
+			}
+
+            if ( 'single' === $location || 'archive' === $location ) {
+
+                $first_key = key( $location_documents );
+				$theme_document = $location_documents[ $first_key ];
+
+                // error_log(print_r($first_key,true));
+                // error_log(print_r($theme_document,true));
+
+                $templateType = get_post_meta($theme_document, '_wp_page_template', true);
+
+                $this->singular_template = $theme_document;
+
+                switch ($templateType) {
+                    case "elementor_canvas":
+                        $template = HAPPY_ADDONS_DIR_PATH . 'templates/builder/singular/canvas.php';
+                        break;
+                    case "elementor_header_footer":
+                        $template = HAPPY_ADDONS_DIR_PATH . 'templates/builder/singular/fullwidth.php';
+                        break;
+                    default:
+                        $template = HAPPY_ADDONS_DIR_PATH . 'templates/builder/singular/fullwidth.php';
+                        break;
+                }
             }
         }
+
+        // error_log("Single Template: ".print_r($template,true));
+
         return $template;
     }
 
@@ -595,9 +625,10 @@ class Theme_Builder {
     * Render Elementor single blog content
     */
     public function single_blog_content_elementor($post) {
-        $templateid = $this->single_template;
-        if (!empty($templateid)) {
-            echo self::render_builder_data($templateid);
+        $templates = $this->singular_template;
+        // $firstKey = key($templates);
+        if (!empty($templates)) {
+            echo self::render_builder_data($templates);
         } else {
             the_content();
         }
@@ -684,6 +715,7 @@ class Theme_Builder {
     }
 
     public static function render_builder_data($content_id) {
+        error_log("Render:".print_r($content_id,true));
         $_elementor = \Elementor\Plugin::instance();
         $has_css = false;
 
@@ -733,7 +765,7 @@ class Theme_Builder {
 
 
     function ha_template_element_scripts() {
-        error_log(get_post_type());
+        // error_log(get_post_type());
         if (self::CPT === get_post_type()) {
             wp_enqueue_script(
                 'happy-addons-template-elements',
@@ -763,6 +795,17 @@ class Theme_Builder {
             // );
         }
     }
+
+    public function render_builder_data_location($location){
+        // $teplates = Condition_Manager::instance()->get_location_templates($location);
+        // error_log(print_r($teplates, true));
+
+		$teplates = Condition_Manager::instance()->get_documents_for_location($location);
+        $first_key = key( $teplates );
+        $valid_template = $teplates[ $first_key ];
+        
+        return $this->render_builder_data($valid_template);
+	}
 }
 
 Theme_Builder::instance();
