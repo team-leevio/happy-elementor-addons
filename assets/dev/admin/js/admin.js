@@ -41,19 +41,20 @@ jQuery(document).ready(function ($) {
 		var _label = $("#" + _long_id + " .elementor-edit-link-type");
 
 		jQuery.ajax({
-			url: ajax_url,
+			url: HappyAdmin.ajax_url,
 			type: "get",
 			dataType: "json",
 			data: {
-				nonce: HappyAddonsEditor.nonce,
+				nonce: HappyAdmin.nonce,
 				action: "ha_cond_template_type", // AJAX action for admin-ajax.php
 				post_id: _id,
 			},
 			success: function (response) {
 				if (response && response.data) {
-					templateType = response.data;
-					if(templateType){
-						_label.text(templateType);
+					var templateType = response.data;
+					console.log(templateType);
+					if(templateType && ['header','footer','single'].includes(templateType)){
+						_label.text("HA: "+templateType.toLowerCase().replace(/(?<= )[^\s]|^./g, a=>a.toUpperCase()));
 					}
 				}
 			},

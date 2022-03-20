@@ -10,11 +10,13 @@
 	var templateType = "";
 	var postId = 0;
 	var newConditions = [];
+	var oldConditionCache = "";
 
 	if (typeof elementor !== "undefined") {
 		elementor.on("panel:init", function ($e) {
 			postId = elementor.config.document.id;
 			handleHaTemplateType(postId);
+			getHaTemplateConds(postId);
 			elementor
 				.getPanelView()
 				.footer.currentView.addSubMenuItem("saver-options", {
@@ -39,11 +41,18 @@
 
 	if (typeof elementor !== "undefined") {
 		elementor.on("ha:templateCondition", function ($e) {
+			//oldConditionCache
+			var conditionContainer = $(".ha-template-condition-wrap");
+			console.log(conditionContainer.html());
+			if (conditionContainer.html() == "") {
+				conditionContainer.append(oldConditionCache);
+				conditionContainer.find("select").trigger("change");
+				// elementor.trigger("ha:templateConditionChange");
+			}
 			MicroModal.show("modal-template-condition");
 		});
 
 		elementor.on("ha:templateConditionChange", function ($e) {
-			//
 			handleHaTemplateCondition();
 		});
 	}
@@ -100,7 +109,11 @@
 					sub_id.parent().hide();
 				} else {
 					sub_name.parent().show();
-					add_sub_name(sub_name, name.val());
+					var selectedVal = sub_name.data("selected")
+						? sub_name.data("selected")
+						: "";
+
+					add_sub_name(sub_name, name.val(), selectedVal);
 				}
 			}
 
@@ -239,7 +252,25 @@
 		});
 	}
 
-	function add_sub_name(target, dataType) {
+	function getHaTemplateConds(id) {
+		jQuery.ajax({
+			url: ajaxurl,
+			type: "get",
+			dataType: "json",
+			data: {
+				nonce: HappyAddonsEditor.editor_nonce,
+				action: "ha_cond_get_current", // AJAX action for admin-ajax.php
+				template_id: id,
+			},
+			success: function (response) {
+				if (response && response.data) {
+					oldConditionCache = response.data;
+				}
+			},
+		});
+	}
+
+	function add_sub_name(target, dataType, selectedVal) {
 		jQuery.ajax({
 			url: ajaxurl,
 			type: "get",
@@ -252,7 +283,10 @@
 			success: function (data) {
 				if (data) {
 					if (data.data) {
-						var optionHTML = populate_option(data.data);
+						var optionHTML = populate_option(
+							data.data,
+							selectedVal
+						);
 						target.html(optionHTML);
 					}
 				}
@@ -260,7 +294,7 @@
 		});
 	}
 
-	function populate_option(optionData) {
+	function populate_option(optionData, selectedVal) {
 		var optionHTML = "";
 		for (const [key, option] of Object.entries(optionData)) {
 			if (option.hasOwnProperty("type")) {
@@ -272,6 +306,8 @@
 					var optionTitle = suboption.title;
 					var optionKey = subkey;
 					var isDisabled = "";
+					var isSelected =
+						selectedVal == optionKey ? " selected" : "";
 					if (isPro) {
 						optionTitle = optionTitle + " [Pro]";
 						isDisabled = " disabled";
@@ -282,6 +318,7 @@
 						optionKey +
 						"' " +
 						isDisabled +
+						isSelected +
 						">" +
 						optionTitle +
 						"</option>";
@@ -292,6 +329,7 @@
 				var optionTitle = option.title;
 				var optionKey = key;
 				var isDisabled = "";
+				var isSelected = selectedVal == optionKey ? " selected" : "";
 
 				if (isPro) {
 					optionTitle = optionTitle + " [Pro]";
@@ -303,6 +341,7 @@
 					optionKey +
 					"' " +
 					isDisabled +
+					isSelected +
 					">" +
 					optionTitle +
 					"</option>";

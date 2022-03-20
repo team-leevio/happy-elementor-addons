@@ -645,7 +645,7 @@ class Theme_Builder {
                         \ElementorPro\Modules\ThemeBuilder\Module::instance()->get_locations_manager()->do_location($location);
                     });
                     $template = $template_path;
-                    error_log("TAG 0: " . $template);
+                    // error_log("TAG 0: " . $template);
                     return $template;
                 }
             }
@@ -656,7 +656,7 @@ class Theme_Builder {
             if (empty($location_documents)) {
                 return $template;
             }
-            error_log("TAG 0: " . $template);
+            // error_log("TAG 0: " . $template);
             if ('single' === $location || 'archive' === $location) {
 
                 $first_key = key($location_documents);
@@ -686,7 +686,7 @@ class Theme_Builder {
             }
         }
 
-        error_log("TAG 0: " . $template);
+        // error_log("TAG 0: " . $template);
         // error_log("Single Template: ".print_r($template,true));
 
         return $template;
@@ -853,17 +853,6 @@ class Theme_Builder {
                 HAPPY_ADDONS_ASSETS,
                 true
             );
-
-            // $localize_data = [
-            //     'hasPro'                  => ha_has_pro(),
-            //     'editor_nonce'            => wp_create_nonce('ha_editor_nonce'),
-            // ];
-
-            // wp_localize_script(
-            //     'happy-elementor-addons-editor',
-            //     'HappyAddonsEditor',
-            //     $localize_data
-            // );
         }
     }
 

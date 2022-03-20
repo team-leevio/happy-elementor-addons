@@ -21,6 +21,7 @@ class Condition_Manager {
         add_action('wp_ajax_ha_condition_autocomplete', [$this, 'process_autocomplete']);
         add_action('wp_ajax_ha_condition_update', [$this, 'process_condition_update']);
         add_action('wp_ajax_ha_cond_template_type', [$this, 'ha_get_template_type']);
+        add_action('wp_ajax_ha_cond_get_current', [$this, 'ha_get_current_condition']);
 
         $this->process_condition();
 
@@ -207,7 +208,7 @@ class Condition_Manager {
 
     public function ha_get_template_type() {
         try {
-            $this->validate_reqeust();
+            //$this->validate_reqeust();
 
             $id = isset($_REQUEST['post_id']) ? $_REQUEST['post_id'] : null;
             if ($id) {
@@ -247,6 +248,91 @@ class Condition_Manager {
         } catch (Exception $e) {
             wp_send_json_error($e->getMessage());
         }
+    }
+
+    public function ha_get_current_condition() {
+        try {
+            // $this->validate_reqeust();
+            $templateID = isset($_REQUEST['template_id']) ? $_REQUEST['template_id'] : null;
+            // wp_send_json_success($templateID);
+            if ($templateID) {
+                $cond = get_post_meta($templateID, '_ha_display_cond', true);
+                if ($cond) {
+                    ob_start();
+                    $this->cond_to_html($cond);
+                    $html = ob_get_contents();
+                    ob_end_clean();
+                    wp_send_json_success($html);
+                } else {
+                    wp_send_json_error();
+                }
+            } else {
+                wp_send_json_error();
+            }
+        } catch (Exception $e) {
+            wp_send_json_error($e->getMessage());
+        }
+    }
+
+    private function cond_to_html($cond) {
+        $html = "";
+        foreach ($cond as $condition) {
+            $parsed_condition = $this->parse_condition($condition);
+
+            $include = $parsed_condition['type'];
+            $name = $parsed_condition['name'];
+            $sub_name = $parsed_condition['sub_name'];
+            $sub_id = $parsed_condition['sub_id'];
+
+            $sub_name_html = ($sub_name) ? '<option value="' . $sub_name . '" selected="selected">' . $this->all_conds_list[$sub_name]['title'] . '</option>' : '';
+
+            $sub_id_html = ($sub_id) ? '<option value="' . $sub_id . '" selected="selected">' . $sub_id . '</option>' : '';
+
+            $uuid = uniqid();
+            $if = function ($condition, $true, $false) {
+                return $condition ? $true : $false;
+            };
+
+            $sub_name_visibility = ($sub_name)?'':'style="display:none"';
+            $sub_id_visibility = ($sub_id)?'':'style="display:none"';
+
+            $html .= <<<EOF
+<div id="ha-template-condition-item-$uuid" class="ha-template-condition-item">
+    <div class="ha-template-condition-item-row">
+        <div class="ha-tce-type">
+            <select data-id="type-$uuid" data-parent="$uuid" data-setting="type" data-selected="$include">
+                <option value="include" {$if($include == 'include', "selected", "")}>Include</option>
+                <option value="exclude" {$if($include == 'exclude', "selected", "")}>Exclude</option>
+            </select>
+        </div>
+        <div class="ha-tce-name">
+            <select data-id="name-$uuid" data-parent="$uuid" data-setting="name" data-selected="$name">
+                <optgroup label="General">
+                    <option value="general" {$if($name == 'general', "selected", "")}>Entire Site</option>
+                    <option value="archive" {$if($name == 'archive', "selected", "")}>Archives</option>
+                    <option value="singular" {$if($name == 'singular', "selected", "")}>Singular</option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="ha-tce-sub_name" $sub_name_visibility>
+            <select data-id="sub_name-$uuid" data-parent="$uuid" data-setting="sub_name" data-selected="$sub_name">
+            $sub_name_html
+            </select>
+        </div>
+        <div class="ha-tce-sub_id" $sub_id_visibility>
+            <select data-id="sub_id-$uuid" data-parent="$uuid" data-setting="sub_id" data-selected="$sub_id">
+            $sub_id_html
+            </select>
+        </div>
+    </div>
+    <div class="ha-template-condition-remove">
+        <i class="eicon-trash-o" aria-hidden="true"></i>
+        <span class="elementor-screen-only">Remove this item</span>
+    </div>
+</div>
+EOF;
+        }
+        echo $html;
     }
 
     public function process_autocomplete() {
@@ -375,43 +461,41 @@ class Condition_Manager {
         foreach ($conditions_groups as $template_id => $conditions) {
 
             foreach ($conditions as $condition) {
-                foreach ($conditions as $condition) {
-                    $parsed_condition = $this->parse_condition($condition);
+                $parsed_condition = $this->parse_condition($condition);
 
-                    $include = $parsed_condition['type'];
-                    $name = $parsed_condition['name'];
-                    $sub_name = $parsed_condition['sub_name'];
-                    $sub_id = $parsed_condition['sub_id'];
+                $include = $parsed_condition['type'];
+                $name = $parsed_condition['name'];
+                $sub_name = $parsed_condition['sub_name'];
+                $sub_id = $parsed_condition['sub_id'];
 
-                    $is_include = 'include' === $include;
-                    // $condition_instance = $this->get_condition($name);
+                $is_include = 'include' === $include;
+                // $condition_instance = $this->get_condition($name);
 
-                    // if (!$condition_instance) {
-                    //     continue;
-                    // }
+                // if (!$condition_instance) {
+                //     continue;
+                // }
 
-                    $condition_pass = $this->check_cond_name($name);
-                    $sub_condition_instance = null;
+                $condition_pass = $this->check_cond_name($name);
+                $sub_condition_instance = null;
 
-                    if ($condition_pass && $sub_name) {
-                        $condition_pass = $this->check_cond_sub_name($sub_name, $parsed_condition);
+                if ($condition_pass && $sub_name) {
+                    $condition_pass = $this->check_cond_sub_name($sub_name, $parsed_condition);
+                }
+
+                if ($condition_pass) {
+
+                    $post_status = get_post_status($template_id);
+
+                    if ('publish' !== $post_status) {
+                        continue;
                     }
 
-                    if ($condition_pass) {
-
-                        $post_status = get_post_status($template_id);
-
-                        if ('publish' !== $post_status) {
-                            continue;
-                        }
-
-                        if ($is_include) {
-                            $tpl_priority[$template_id] = $this->get_condition_priority($name, $sub_name, $sub_id);
-                        } else {
-                            $excludes[] = $template_id;
-                        }
+                    if ($is_include) {
+                        $tpl_priority[$template_id] = $this->get_condition_priority($name, $sub_name, $sub_id);
+                    } else {
+                        $excludes[] = $template_id;
                     }
-                } // End foreach().
+                }
             }
         }
 

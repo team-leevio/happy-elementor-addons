@@ -99,12 +99,6 @@ class Conditions_Cache {
             Theme_Builder::CPT,
         ];
 
-        // foreach ($document_types as $document_type) {
-        //     if ($document_type::get_property('support_conditions') && $document_type::get_property('cpt')) {
-        //         $post_types = array_merge($post_types, $document_type::get_property('cpt'));
-        //     }
-        // }
-
         $query = new \WP_Query([
             'posts_per_page' => -1,
             'post_type' => $post_types,
