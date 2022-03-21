@@ -41,12 +41,12 @@ class Condition_Manager {
         $conditions = [
             'general' => [
                 'title' => __('General', 'happy-elementor-addons'),
-                'all_label' => __('All Archives', 'happy-elementor-addons'),
+                'all_label' => __('Entire Site', 'happy-elementor-addons'),
                 'is_pro' => false,
             ],
             'archive' => [
                 'title' => __('Archives', 'happy-elementor-addons'),
-                'all_label' => __('Entire Site', 'happy-elementor-addons'),
+                'all_label' => __('All Archives', 'happy-elementor-addons'),
                 'is_pro' => false,
             ],
             'singular' => [
@@ -59,26 +59,39 @@ class Condition_Manager {
         return $conditions;
     }
 
+    public function get_name($cond){
+        return $this->all_conds_list[$cond]['title'];
+    }
+
+    public function get_all_name($cond){
+        return $this->all_conds_list[$cond]['all_label'];
+    }
+
     private function archive_conditions() {
         $conditions = [
             'all' => [
                 'title' => __('All Archives', 'happy-elementor-addons'),
+                'all_label' => __('All Archives', 'happy-elementor-addons'),
                 'is_pro' => false,
             ],
             'author' => [
                 'title' => __('Author Archive', 'happy-elementor-addons'),
+                'all_label' => __('Author Archive', 'happy-elementor-addons'),
                 'is_pro' => true,
             ],
             'date' => [
                 'title' => __('Date Archive', 'happy-elementor-addons'),
+                'all_label' => __('Date Archive', 'happy-elementor-addons'),
                 'is_pro' => true,
             ],
             'search' => [
                 'title' => __('Search Results', 'happy-elementor-addons'),
+                'all_label' => __('Search Results', 'happy-elementor-addons'),
                 'is_pro' => true,
             ],
             'post_archive' => [
                 'title' => __('Posts Archive', 'happy-elementor-addons'),
+                'all_label' => __('Posts Archive', 'happy-elementor-addons'),
                 'is_pro' => true,
             ],
         ];
@@ -91,72 +104,88 @@ class Condition_Manager {
         $conditions = [
             'all' => [
                 'title' => __('All Singular', 'happy-elementor-addons'),
+                'all_label' => __('All Singular', 'happy-elementor-addons'),
                 'is_pro' => false,
             ],
             'front_page' => [
                 'title' => __('Front Page', 'happy-elementor-addons'),
+                'all_label' => __('Front Page', 'happy-elementor-addons'),
                 'is_pro' => true,
             ],
             'post_group' => [
                 'title' => __('Posts', 'happy-elementor-addons'),
+                'all_label' => __('Posts', 'happy-elementor-addons'),
                 'type' => 'condition-group',
                 'conditions' => [
                     'post' => [
                         'title' => __('Posts', 'happy-elementor-addons'),
-                        'is_pro' => false,
+                        'all_label' => __('All Posts', 'happy-elementor-addons'),
+                        'is_pro' => true,
                     ],
                     'in_category' => [
                         'title' => __('In Category', 'happy-elementor-addons'),
-                        'is_pro' => false,
+                        'all_label' => __('Site', 'happy-elementor-addons'),
+                        'is_pro' => true,
                     ],
                     'in_category_children' => [
-                        'title' => __('In Child Categories', 'happy-elementor-addons'),
-                        'is_pro' => false,
+                        'title' => __('In Category', 'happy-elementor-addons'),
+                        'all_label' => __('Site', 'happy-elementor-addons'),
+                        'is_pro' => true,
                     ],
                     'in_post_tag' => [
                         'title' => __('In Tag', 'happy-elementor-addons'),
-                        'is_pro' => false,
+                        'all_label' => __('Site', 'happy-elementor-addons'),
+                        'is_pro' => true,
                     ],
                     'post_by_author' => [
                         'title' => __('Posts By Author', 'happy-elementor-addons'),
-                        'is_pro' => false,
+                        'all_label' => __('Posts By Author', 'happy-elementor-addons'),
+                        'is_pro' => true,
                     ],
                 ]
             ],
             'page_group' => [
                 'title' => __('Page', 'happy-elementor-addons'),
+                'all_label' => __('Site', 'happy-elementor-addons'),
                 'type' => 'condition-group',
                 'is_pro' => true,
                 'conditions' => [
                     'page' => [
                         'title' => __('Pages', 'happy-elementor-addons'),
-                        'is_pro' => false,
+                        'all_label' => __('All Pages', 'happy-elementor-addons'),
+                        'is_pro' => true,
                     ],
                     'page_by_author' => [
                         'title' => __('Pages By Author', 'happy-elementor-addons'),
-                        'is_pro' => false,
+                        'all_label' => __('Pages By Author', 'happy-elementor-addons'),
+                        'is_pro' => true,
                     ],
                 ]
             ],
             'child_of' => [
                 'title' => __('Direct Child Of', 'happy-elementor-addons'),
+                'all_label' => __('Direct Child Of', 'happy-elementor-addons'),
                 'is_pro' => true,
             ],
             'any_child_of' => [
                 'title' => __('Any Child Of', 'happy-elementor-addons'),
+                'all_label' => __('Any Child Of', 'happy-elementor-addons'),
                 'is_pro' => true,
             ],
             'by_author' => [
                 'title' => __('By Author', 'happy-elementor-addons'),
+                'all_label' => __('By Author', 'happy-elementor-addons'),
                 'is_pro' => true,
             ],
             'not_found404' => [
                 'title' => __('404 Page', 'happy-elementor-addons'),
+                'all_label' => __('404 Page', 'happy-elementor-addons'),
                 'is_pro' => true,
             ],
         ];
 
-        return $conditions;
+
+        return apply_filters('happyaddons/conditions/singular', $conditions);
     }
 
     protected function process_condition() {
@@ -578,30 +607,6 @@ EOF;
 
     private function check_cond_sub_name($sub_name, $parsed_condition) {
         $name = $parsed_condition['name'];
-
-        // if ($name == 'archive') {
-        //     if ($sub_name == 'all') {
-        //         $is_archive = is_archive() || is_home() || is_search();
-        //         // WooCommerce is handled by `woocommerce` module.
-        //         if ($is_archive && class_exists('woocommerce') && is_woocommerce()) {
-        //             $is_archive = false;
-        //         }
-
-        //         return $is_archive;
-        //     } else {
-        //         return apply_filters('happyaddons/conditions/check/cond_sub_id', $sub_id, $parsed_condition);
-        //     }
-        // }
-
-        // if ($name == 'singular') {
-
-        //     if ($sub_name == 'all') {
-        //         return true;
-        //     } else {
-        //         return apply_filters('happyaddons/conditions/check/cond_sub_id', $sub_id, $parsed_condition);
-        //     }
-        // }
-
 
         if ($sub_name == 'all') {
             if ($name == 'archive') {

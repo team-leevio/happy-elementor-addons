@@ -212,6 +212,8 @@ class Theme_Builder {
     }
 
     public static function admin_columns_content($column_name, $post_id) {
+        $instance = self::instance();
+
         if ('type' === $column_name) {
             $type = get_post_meta($post_id, '_ha_library_type', true);
             $isActive = get_post_meta($post_id, '_ha_template_active', true);
@@ -225,20 +227,15 @@ class Theme_Builder {
             echo "</span>";
         }
         if ('condition' === $column_name) {
-            //return;
-            // $instances = get_post_meta($post_id, '_ha_displday_cond', true);
-            // $instances = explode('/', $instances);
 
-            // if (!empty($instances)) {
-            //     if (isset($instances[0])) {
-            //         echo self::lang($instances[0]);
-            //     }
-            //     if (isset($instances[1])) {
-            //         echo self::lang($instances[1]);
-            //     }
-            // } else {
-            echo __('None', 'elementor-pro');
-            // }
+            $instances = $instance->get_document_instances($post_id);
+
+            if (!empty($instances)) {
+                // PHPCS - the method get_document_instances is safe.
+                echo implode('<br />', $instances); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            } else {
+                echo esc_html__('None', 'elementor-pro');
+            }
         }
     }
 
@@ -502,11 +499,15 @@ class Theme_Builder {
     public function get_document_instances($post_id) {
         $document_conditions = $this->get_document_conditions($post_id);
 
+        $summary = [];
+
         if (!empty($document_conditions)) {
             foreach ($document_conditions as $document_condition) {
                 if ('exclude' === $document_condition['type']) {
                     continue;
                 }
+
+                // print_r($document_condition);
 
                 $condition_name = !empty($document_condition['sub_name']) ? $document_condition['sub_name'] : $document_condition['name'];
 
@@ -516,12 +517,13 @@ class Theme_Builder {
                 // }
 
                 if (!empty($document_condition['sub_id'])) {
-                    $instance_label = $condition->get_label() . " #{$document_condition['sub_id']}";
+                    $instance_label = Condition_Manager::instance()->get_name($condition_name) . " #{$document_condition['sub_id']}";
                 } else {
-                    $instance_label = $condition->get_all_label();
+                    // $instance_label = $condition_name->get_all_label();
+                    $instance_label = Condition_Manager::instance()->get_all_name($condition_name);
                 }
 
-                $summary[$condition->get_name()] = $instance_label;
+                $summary[$condition_name] = $instance_label;
             }
         }
 
@@ -619,11 +621,55 @@ class Theme_Builder {
         }
     }
 
+    private function check_elementor_content($post_id) {
+        $elContent = get_post_meta($post_id, '_elementor_data', true);
+
+        if ($elContent) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function get_public_post_types() {
+        $post_type_args = [
+            // Default is the value $public.
+            'show_in_nav_menus' => true,
+        ];
+
+        // Keep for backwards compatibility
+        if (!empty($args['post_type'])) {
+            $post_type_args['name'] = $args['post_type'];
+            unset($args['post_type']);
+        }
+
+        $post_type_args = wp_parse_args($post_type_args);
+
+        $_post_types = get_post_types($post_type_args, 'objects');
+
+        $post_types = [];
+
+        foreach ($_post_types as $post_type => $object) {
+            $post_types[$post_type] = $object->label;
+        }
+
+        return $post_types;
+    }
+
     public function ha_theme_builder_content($template) {
         $location = '';
 
-        if (is_singular() || is_404()) {
+        // error_log("TAG 0: " . print_r($this->get_public_post_types(), true));
+
+        if (is_singular(array_keys($this->get_public_post_types())) || is_404()) {
             $location = 'single';
+
+            $isBuiltWithElementor = $this->check_elementor_content(get_the_ID());
+
+            if ($isBuiltWithElementor) {
+                // error_log("TAG 1: " . $template);
+                return $template;
+            }
         } elseif (function_exists('is_shop') && is_shop()) {
             $location = 'archive';
         } elseif (is_archive() || is_tax() || is_home() || is_search()) {
@@ -633,7 +679,7 @@ class Theme_Builder {
         if (is_plugin_active('elementor-pro/elementor-pro.php')) {
             $document = \ElementorPro\Plugin::elementor()->documents->get_doc_for_frontend(get_the_ID());
             $page_templates_module = \ElementorPro\Plugin::elementor()->modules_manager->get_modules('page-templates');
-            
+
             if ($document && $document instanceof \ElementorPro\Modules\ThemeBuilder\Documents\Theme_Document) {
                 // For editor preview iframe.
                 $location = $document->get_location();
@@ -645,7 +691,7 @@ class Theme_Builder {
                         \ElementorPro\Modules\ThemeBuilder\Module::instance()->get_locations_manager()->do_location($location);
                     });
                     $template = $template_path;
-                    // error_log("TAG 0: " . $template);
+                    error_log("TAG 2: " . $template);
                     return $template;
                 }
             }
@@ -786,7 +832,7 @@ class Theme_Builder {
     }
 
     public static function render_builder_data($content_id) {
-        error_log("Render:" . print_r($content_id, true));
+        // error_log("Render:" . print_r($content_id, true));
         $_elementor = \Elementor\Plugin::instance();
         $has_css = false;
 
