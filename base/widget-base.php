@@ -70,7 +70,7 @@ abstract class Base extends Widget_Base {
     /**
      * Register widget controls
      */
-    protected function _register_controls() {
+    protected function register_controls() {
         do_action( 'happyaddons_start_register_controls', $this );
 
         $this->register_content_controls();
