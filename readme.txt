@@ -438,6 +438,14 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.5.0 - 24 March 2022
+
+- Tweak: Removed `_register_controls` deprecated method.
+- Tweak: Replace `register_controls` with `register`.
+- Tweak: Change default url for PDF Viewer.
+- Fix: Miscellaneous deprecations.
+- Improve: Elementor 3.6.1 compatibility.
+
 = 3.4.4 - 1 March 2022 =
 
 - New: Double Opt In support for mailchimp widget.

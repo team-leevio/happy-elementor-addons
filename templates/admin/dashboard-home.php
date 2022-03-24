@@ -92,7 +92,7 @@ defined( 'ABSPATH' ) || die();
                                 <h3 class="ha-feature-title"><?php esc_html_e('Call for Contributors', 'happy-elementor-addons'); ?></h3>
                                 <p class="f16"><?php esc_html_e('Are you interested to contribute to making this plugin more awesome?', 'happy-elementor-addons'); ?></p>
                                 <a class="link btn-how-to-contribute" href="#"><?php esc_html_e('How am I going to contribute?', 'happy-elementor-addons'); ?></a>
-                                <p class="ha-mb-0" style="display: none;"><?php esc_html_e('By allow Happy Elementor Addons to collect non-sensitive diagnostic data and usage information so that we can make sure optimum compatibility.
+                                <p class="ha-mb-0" style="display: none;"><?php esc_html_e('By allowing Happy Elementor Addons to collect non-sensitive diagnostic data and usage information so that we can make sure optimum compatibility.
                                     Happy Elementor Addons collect - Server environment details (php, mysql, server, WordPress versions), Number of users in your site, Site language, Number of active and inactive plugins, Site name and url, Your name and email address. We are using Appsero to collect your data. ', 'happy-elementor-addons'); ?><a href="https://appsero.com/privacy-policy/" target="_blank" style="color:#fff"><?php esc_html_e('Learn more', 'happy-elementor-addons'); ?></a><?php esc_html_e(' about how Appsero collects and handle your data.', 'happy-elementor-addons'); ?></p>
                             </div>
                             <div class="ha-cta-action ha-col-4 ha-align-right">
