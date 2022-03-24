@@ -444,6 +444,7 @@ For a more detailed explanation check out the following documentation
 - Tweak: Replace `register_controls` with `register`.
 - Tweak: Change default url for PDF Viewer.
 - Fix: Miscellaneous deprecations.
+- Fix: Setup Wizard redirection issue.
 - Improve: Elementor 3.6.1 compatibility.
 
 = 3.4.4 - 1 March 2022 =
