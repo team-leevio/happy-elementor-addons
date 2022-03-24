@@ -32,22 +32,25 @@ const backendSassFiles = "assets/dev/admin/sass/*.scss";
 const frontendJSFiles = "assets/dev/js/*.js";
 const backendJSFiles = "assets/dev/admin/js/*.js";
 
+const packageName = packageJSON.name;
+const packageVersion = packageJSON.version;
+
 const buildSrcFiles = [
-    './**/*',
-    '!./**/_*/',
-    '!./node_modules/**',
-    '!./.csscomb.json',
-    '!./.distignore',
-    '!./.editorconfig',
-    '!./.vscode/**',
-    '!./.gitattributes',
-    '!./.gitignore',
-    '!./assets/dev/**',
-    '!./package-lock.json',
-    '!./package.json',
-    '!./gulpfile.js',
-    '!./yarn.lock',
-    '!./README.md'
+	"./**/*",
+	"!./**/_*/",
+	"!./node_modules/**",
+	"!./.csscomb.json",
+	"!./.distignore",
+	"!./.editorconfig",
+	"!./.vscode/**",
+	"!./.gitattributes",
+	"!./.gitignore",
+	"!./assets/dev/**",
+	"!./package-lock.json",
+	"!./package.json",
+	"!./gulpfile.js",
+	"!./yarn.lock",
+	"!./README.md",
 ];
 
 function makeFrontendCSS() {
@@ -140,10 +143,13 @@ function makePot() {
 }
 
 function buildZip() {
-	return src(buildSrcFiles)
+	return src(buildSrcFiles, { base: "./" })
 		.pipe(
-			zip("happy-elementor-addons-v" + packageJSON.version + ".zip")
+			rename(function (file) {
+				file.dirname = packageName + "/" + file.dirname;
+			})
 		)
+		.pipe(zip(packageName + "-v" + packageVersion + ".zip"))
 		.pipe(dest("../"));
 }
 
