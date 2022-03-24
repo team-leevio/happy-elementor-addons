@@ -7,8 +7,7 @@
     "dev": "gulp",
     "translate": "gulp pot",
     "zip": "gulp zip",
-    "build": "gulp build",
-    "oldzip": "cd ../ && zip -r $npm_package_name.zip $npm_package_name -x '*/.*' -x '*.zip*' -x '*.git*' -x '*/.editorconfig/*' -x '*/gulpfile.js' -x '*/yarn.lock' -x '*/package.json' -x '*/package-lock.json' -x '**/node_modules/*' -x '*/.vscode/*' -x '*/assets/dev/*' && mv $npm_package_name.zip $npm_package_name-v$npm_package_version.zip && cd happy-elementor-addons"
+    "build": "gulp build"
   },
   "author": "HappyMonster",
   "license": "MIT",
