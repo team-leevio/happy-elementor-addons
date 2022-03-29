@@ -644,7 +644,7 @@
 				}
 			});
 
-			ha_circlr.on('mouseup mousedown', function (e) {
+			ha_circlr.on('mouseup mousedown touchstart touchend', function (e) {
 				t360.remove();
 			});
 
@@ -813,7 +813,7 @@
 			});
 
 		};
-		
+
 		var MailChimp = function($scope){
 
 			var elForm = $scope.find('.ha-mailchimp-form'),
@@ -830,7 +830,7 @@
 					post_id: elForm.parent().data('post-id'),
 					widget_id: elForm.parent().data('widget-id'),
 				};
-		
+
 				$.ajax({
 					type: 'post',
 					url: HappyLocalize.ajax_url,
@@ -1010,7 +1010,7 @@
 			};
 			PDFObject.embed($settings.pdf_url, "#"+$settings.unique_id, options);
 		}
-		
+
 		var Comparison_Table = function($scope){
 			var $table = $scope.find('.ha-comparison-table-wrapper');
 			var $table_head = $scope.find('.ha-comparison-table__head');
@@ -1031,7 +1031,7 @@
 						$table_head.removeClass('table-sticky');
 					}
 				});
-			}	
+			}
 		};
 
 		// Slider
