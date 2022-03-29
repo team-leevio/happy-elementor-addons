@@ -1,4 +1,4 @@
-= #.#.# - 29 March 2022
+= 3.5.1 - 29 March 2022
 
 - Fix: Image Compare widget white space issue
 - Fix: 360-degree widget mobile overlay issue
