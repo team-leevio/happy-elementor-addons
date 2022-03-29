@@ -607,7 +607,7 @@
           t360.remove();
         }
       });
-      ha_circlr.on('mouseup mousedown', function (e) {
+      ha_circlr.on('mouseup mousedown touchstart touchend', function (e) {
         t360.remove();
       });
     }; //Event Calendar
