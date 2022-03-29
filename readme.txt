@@ -438,12 +438,12 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.5.1 - 29 March 2022
+= 3.5.1 - 29 March 2022 =
 
 - Fix: Image Compare widget white space issue
 - Fix: 360-degree widget mobile overlay issue
 
-= 3.5.0 - 24 March 2022
+= 3.5.0 - 24 March 2022 =
 
 - Tweak: Removed `_register_controls` deprecated method.
 - Tweak: Replace `register_controls` with `register`.
