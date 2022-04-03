@@ -328,6 +328,7 @@
 			getDefaultSettings: function() {
 				return {
 					rowHeight: +this.getElementSettings('row_height.size') || 150,
+					maxRowHeight: +this.getElementSettings('row_height.size') || 150,
 					lastRow: this.getElementSettings('last_row'),
 					margins: +this.getElementSettings('margins.size'),
 					captions: !!this.getElementSettings('show_caption')
