@@ -300,6 +300,7 @@
       getDefaultSettings: function getDefaultSettings() {
         return {
           rowHeight: +this.getElementSettings('row_height.size') || 150,
+          maxRowHeight: +this.getElementSettings('row_height.size') || 150,
           lastRow: this.getElementSettings('last_row'),
           margins: +this.getElementSettings('margins.size'),
           captions: !!this.getElementSettings('show_caption')
@@ -607,7 +608,7 @@
           t360.remove();
         }
       });
-      ha_circlr.on('mouseup mousedown', function (e) {
+      ha_circlr.on('mouseup mousedown touchstart touchend', function (e) {
         t360.remove();
       });
     }; //Event Calendar

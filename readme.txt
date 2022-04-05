@@ -1,6 +1,6 @@
 === Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget) ===
 Plugin Name: Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget)
-Version: 3.4.4
+Version: 3.5.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
@@ -437,6 +437,20 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.5.1 - 29 March 2022 =
+
+- Fix: Image Compare widget white space issue
+- Fix: 360-degree widget mobile overlay issue
+
+= 3.5.0 - 24 March 2022 =
+
+- Tweak: Removed `_register_controls` deprecated method.
+- Tweak: Replace `register_controls` with `register`.
+- Tweak: Change default url for PDF Viewer.
+- Fix: Miscellaneous deprecations.
+- Fix: Setup Wizard redirection issue.
+- Improve: Elementor 3.6.1 compatibility.
 
 = 3.4.4 - 1 March 2022 =
 

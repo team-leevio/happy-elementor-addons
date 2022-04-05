@@ -1,5 +1,6 @@
+const packageJSON = require("./package.json");
 const { src, watch, dest, series } = require("gulp");
-const sass = require('gulp-sass')(require('sass'));
+const sass = require("gulp-sass")(require("sass"));
 const csso = require("gulp-csso");
 const rename = require("gulp-rename");
 const babel = require("gulp-babel");
@@ -10,6 +11,7 @@ const plumberNotifier = require("gulp-plumber-notifier");
 const concat = require("gulp-concat");
 const clean = require("gulp-clean");
 const wpPot = require("gulp-wp-pot");
+const zip = require("gulp-zip");
 
 const AUTOPREFIXER_BROWSERS = [
 	"last 2 version",
@@ -29,6 +31,27 @@ const frontendSassFiles = "assets/dev/sass/**/*.scss";
 const backendSassFiles = "assets/dev/admin/sass/**/*.scss";
 const frontendJSFiles = "assets/dev/js/**/*.js";
 const backendJSFiles = "assets/dev/admin/js/**/*.js";
+
+const packageName = packageJSON.name;
+const packageVersion = packageJSON.version;
+
+const buildSrcFiles = [
+	"./**/*",
+	"!./**/_*/",
+	"!./node_modules/**",
+	"!./.csscomb.json",
+	"!./.distignore",
+	"!./.editorconfig",
+	"!./.vscode/**",
+	"!./.gitattributes",
+	"!./.gitignore",
+	"!./assets/dev/**",
+	"!./package-lock.json",
+	"!./package.json",
+	"!./gulpfile.js",
+	"!./yarn.lock",
+	"!./README.md",
+];
 
 function makeFrontendCSS() {
 	return src(frontendSassFiles)
@@ -58,17 +81,19 @@ function makeBackendCSS() {
 }
 
 function makeFrontendJS() {
-	return src(frontendJSFiles)
-		.pipe(plumberNotifier())
-		.pipe(
-			babel({
-				presets: ["@babel/env"],
-			})
-		)
-		.pipe(dest("assets/js"))
-		//.pipe(uglify())
-		.pipe(rename({ suffix: ".min" }))
-		.pipe(dest("assets/js"));
+	return (
+		src(frontendJSFiles)
+			.pipe(plumberNotifier())
+			.pipe(
+				babel({
+					presets: ["@babel/env"],
+				})
+			)
+			.pipe(dest("assets/js"))
+			//.pipe(uglify())
+			.pipe(rename({ suffix: ".min" }))
+			.pipe(dest("assets/js"))
+	);
 }
 
 function makeBackendJS() {
@@ -116,6 +141,38 @@ function makePot() {
 		)
 		.pipe(dest("i18n/happy-elementor-addons.pot"));
 }
+
+function buildZip() {
+	return src(buildSrcFiles, { base: "./" })
+		.pipe(
+			rename(function (file) {
+				file.dirname = packageName + "/" + file.dirname;
+			})
+		)
+		.pipe(zip(packageName + "-v" + packageVersion + ".zip"))
+		.pipe(dest("../"));
+}
+
+function buildRelease() {
+	return src(buildSrcFiles).pipe(dest("../happy-elementor-addons-build"));
+}
+
+function deleteBuild() {
+	return src(["../happy-elementor-addons-build"], {
+		read: false,
+		allowEmpty: true,
+	}).pipe(clean({ force: true }));
+}
+
+function deleteZip() {
+	return src(["../happy-elementor-addons.zip"], {
+		read: false,
+		allowEmpty: true,
+	}).pipe(clean({ force: true }));
+}
+
+exports.build = series(deleteBuild, buildRelease);
+exports.zip = series(deleteZip, buildZip);
 
 exports.pot = makePot;
 exports.clean = deleteOld;
