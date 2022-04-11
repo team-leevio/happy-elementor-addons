@@ -1,6 +1,7 @@
 = 3.#.# - 3 April 2022 =
 
 - Fix: Justified Grid row height issue
+- Tweak: Added vertical and horizontal direction for Content switcher 
 
 = 3.5.1 - 29 March 2022 =
 
