@@ -195,7 +195,7 @@ class Carousel extends Base {
 			[
 				'label' => __( 'Animation Speed', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::NUMBER,
-				'min' => 100,
+				'min' => 0,
 				'step' => 10,
 				'max' => 10000,
 				'default' => 300,
