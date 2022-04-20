@@ -2,45 +2,48 @@
 
 use Happy_Addons\Elementor\Theme_Builder;
 
-if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
 }
 
-$types = Theme_Builder::TEMPLATE_TYPE;
-$selected = get_query_var('ha_library_type');
+$types    = Theme_Builder::TEMPLATE_TYPE;
+$selected = get_query_var( 'ha_library_type' );
 
 ?>
 
 <script type="text/template" id="tmpl-modal-template-condition">
-    <div class="modal micromodal-slide modal-template-condition" id="modal-template-condition" aria-hidden="false">
-    <div class="modal__overlay" tabindex="-1">
-        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-login-title">
-            <header class="modal__header">
-                <h3 class="modal__title" id="modal-2-title">
-                    Template Elements Condition
-                </h3>
-            </header>
-            <div class="modal__content" id="modal-2-content">
-                <div class="modal__information">
-                    <div class="info-title">Where Do You Want to Display Your Template?</div>
-                    <div class="info-message">
-                        Set the conditions that determine where your Template is used throughout your site.
-                        <br>
-                        For example, choose 'Entire Site' to display the template across your site.
+    <div class="modal micromodal-slide modal-template-condition ha-template-element-modal" id="modal-template-condition" aria-hidden="false">
+        <div class="modal__overlay" tabindex="-1">
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-login-title">
+                <header class="modal__header">
+                    <h3 class="modal__title" id="modal-2-title">
+                        Template Elements Condition
+                    </h3>
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close=""></button>
+                </header>
+                <div class="modal__content" id="modal-2-content">
+                    <div class="form-data">
+                        <div class="modal__information">
+                            <div class="info-title">Where do you want to display your template?</div>
+                            <div class="info-message">
+                                Set the conditions that determine where your Template is used throughout your site.
+                                <br>
+                                For example, choose 'Entire Site' to display the template across your site.
+                            </div>
+                        </div>
+                        <form id="ha-template-edit-form">
+                            <div class="ha-template-condition-wrap"></div>
+                            <button class="ha-cond-repeater-add" type="button">+ Add Condition</button>
+                        </form>
                     </div>
                 </div>
-                <form id="ha-template-edit-form">
-                    <div class="ha-template-condition-wrap"></div>
-                    <button class="ha-cond-repeater-add" type="button">Add Condition</button>
-                </form>
+                <footer class="modal__footer">
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close="">Cancel</button>
+                    <button id="ha-template-save-data" class="modal__btn modal__btn-primary">Save & Close</button>
+                </footer>
             </div>
-            <footer class="modal__footer">
-                <button class="modal__close" aria-label="Close modal" data-micromodal-close="">Cancel</button>
-                <button id="ha-template-save-data" class="modal__btn modal__btn-primary">Save & Close</button>
-            </footer>
         </div>
-    </div>
-</div>
+        </div>
 </script>
 
 <script type="text/template" id="tmpl-elementor-new-template">
@@ -71,7 +74,7 @@ $selected = get_query_var('ha_library_type');
             </div>
         </div>
         <div class="ha-template-condition-remove">
-            <i class="eicon-trash-o" aria-hidden="true"></i>
+            <i class="eicon-trash" aria-hidden="true"></i>
             <span class="elementor-screen-only">Remove this item</span>
         </div>
     </div>

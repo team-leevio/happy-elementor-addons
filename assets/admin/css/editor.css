@@ -163,10 +163,10 @@
 		        transform: translateY(-10%);
 	}
 }
-.modal-template-condition {
-	font-family: "Lato", -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+.ha-template-element-modal {
+	font-family: "Roboto", -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
 }
-.modal-template-condition .modal__overlay {
+.ha-template-element-modal .modal__overlay {
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -187,21 +187,19 @@
 	        justify-content: center;
 	background: rgba(0, 0, 0, .8);
 }
-.modal-template-condition .modal__container {
+.ha-template-element-modal .modal__container {
 	overflow-y: auto;
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
-	padding: 0 40px;
-	max-width: 960px;
+	max-width: 1202px;
 	max-height: 100vh;
-	width: 100%;
-	border-radius: 4px;
-	background-color: #fff;
-	-webkit-box-shadow: 2px 8px 23px 3px rgba(0, 0, 0, .2);
-	        box-shadow: 2px 8px 23px 3px rgba(0, 0, 0, .2);
+	width: 960%;
+	border-radius: 10px;
+	background-color: #f7f7fa;
+	-webkit-box-shadow: 0 4px 100px rgba(0, 0, 0, .05);
+	        box-shadow: 0 4px 100px rgba(0, 0, 0, .05);
 }
-.modal-template-condition .modal__header,
-.modal-template-condition .modal__footer {
+.ha-template-element-modal .modal__header {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -216,55 +214,97 @@
 	        justify-content: space-between;
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
-	padding: 20px 0;
-	background-color: #fff;
+	padding: 26px 33px;
+	padding-left: 48px;
+	height: 72px;
+	border-radius: 10px 10px 0 0;
+	background: #fff;
+	-webkit-box-shadow: 0 4px 40px rgba(0, 0, 0, .1);
+	        box-shadow: 0 4px 40px rgba(0, 0, 0, .1);
 }
-.modal-template-condition .modal__title {
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+.ha-template-element-modal .modal__footer {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	height: 72px;
+}
+.ha-template-element-modal .modal__title {
 	margin-top: 0;
 	margin-bottom: 0;
-	color: #495157;
-	font-weight: 500;
-	font-size: 18px;
-	line-height: 1.25;
+	color: #101028;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 16px;
+	font-family: "Roboto";
+	line-height: 19px;
 }
-.modal-template-condition .modal__close {
+.ha-template-element-modal .modal__header .modal__close {
+	border: 0;
+	background: transparent;
+	color: #000;
+	cursor: pointer;
+}
+.ha-template-element-modal .modal__header .modal__close:before {
+	padding-right: 0;
+	content: "✕";
+	font-weight: 700;
+	font-size: 18.5px;
+}
+.ha-template-element-modal .modal__close {
 	border: 0;
 	background: transparent;
 	color: #93003c;
 	cursor: pointer;
 }
-.modal-template-condition .modal__close:before {
+.ha-template-element-modal .modal__close:before {
 	padding-right: 6px;
 	content: "✕";
 }
-.modal-template-condition .modal__content {
+.ha-template-element-modal .modal__content {
 	overflow: scroll;
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
 	margin: auto;
 	padding: 30px 20px;
 	max-height: 65vh;
-	width: 800px;
+	width: 100%;
 	height: 750px;
 	line-height: 1.5;
 }
-.modal-template-condition .modal__information {
+.ha-template-element-modal .modal__content .form-data {
+	margin: auto;
+	max-width: 781px;
+}
+.ha-template-element-modal .modal__information {
 	padding-bottom: 20px;
 	text-align: center;
 }
-.modal-template-condition .modal__information .info-title {
+.ha-template-element-modal .modal__information .info-title {
 	margin: 0;
-	font-size: 24px;
+	margin-bottom: 15px;
+	color: #101028;
+	text-align: center;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 32px;
+	font-family: "Montserrat";
+	line-height: 39px;
 }
-.modal-template-condition .modal__information .info-message {
-	margin-top: 15px;
-	color: #a4afb7;
-	font-weight: 300;
-	font-size: 14px;
+.ha-template-element-modal .modal__information .info-message {
+	color: #6d757a;
+	text-align: center;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	font-family: "Roboto";
+	line-height: 32px;
 }
-.modal-template-condition .modal__content .settings_title {
+.ha-template-element-modal .modal__content .settings_title {
 	margin-top: 0;
 	margin-bottom: 8px;
 	color: #495157;
@@ -272,7 +312,7 @@
 	font-size: 15px;
 	line-height: 1.25;
 }
-.modal-template-condition .modal__btn {
+.ha-template-element-modal .modal__btn {
 	overflow: visible;
 	margin: 0;
 	padding-top: .5rem;
@@ -301,23 +341,23 @@
 	-moz-osx-font-smoothing: grayscale;
 	will-change: transform;
 }
-.modal-template-condition .modal__btn.save {
+.ha-template-element-modal .modal__btn.save {
 	background-color: #39b54a;
 }
-.modal-template-condition .modal__btn-primary {
-	background-color: #39b54a;
+.ha-template-element-modal .modal__btn-primary {
+	background-color: #27ae60;
 	color: #fff;
 }
-.modal-template-condition .modal__btn-primary:hover,
-.modal-template-condition .modal__btn-primary:focus {
+.ha-template-element-modal .modal__btn-primary:hover,
+.ha-template-element-modal .modal__btn-primary:focus {
 	background-color: #2d8e3a;
 }
-.modal-template-condition .modal__btn-secondary {
+.ha-template-element-modal .modal__btn-secondary {
 	background-color: #562dd4;
 	color: #fff;
 }
-.modal-template-condition .modal__btn-secondary:hover,
-.modal-template-condition .modal__btn-secondary:focus {
+.ha-template-element-modal .modal__btn-secondary:hover,
+.ha-template-element-modal .modal__btn-secondary:focus {
 	background-color: #e2498a;
 }
 
@@ -351,7 +391,6 @@
 #ha-template-edit-form {
 	position: relative;
 	margin: 40px 0 30px;
-	border-bottom: 2px solid #6939c6;
 }
 #ha-template-edit-form .ha-template-condition-wrap {
 	display: -webkit-box;
@@ -364,18 +403,14 @@
 	    -ms-flex-direction: column;
 	        flex-direction: column;
 	margin-bottom: 20px;
-	min-height: 20vh;
 
 	gap: 10px;
 }
 #ha-template-edit-form .ha-template-condition-wrap .ha-template-condition-item {
 	position: relative;
-	margin-right: 16px;
-	padding: 8px 24px;
-	padding-left: 8px;
-	border: 1px solid rgba(104, 56, 198, .1);
-	border-radius: 4px;
-	background: #faf9fc;
+	padding: 10px;
+	border-radius: 10px;
+	background: rgba(51, 51, 51, .1);
 }
 #ha-template-edit-form .ha-template-condition-wrap .ha-template-condition-item-row {
 	display: -webkit-box;
@@ -410,12 +445,30 @@
 	width: 100px;
 }
 #ha-template-edit-form .ha-template-condition-wrap .ha-template-condition-item-row select {
+	padding: 12px 20px;
+	padding-right: 33px;
+	height: 56px;
+	border: 0 !important;
+	border-radius: 6px;
 	background: #fff;
+	background-image: url("data:image/svg+xml;utf8,<svg fill='%23999999' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+	background-position-x: calc(100% - 13px);
+	background-position-y: 50%;
+	background-repeat: no-repeat;
+	color: rgba(51, 51, 51, .5);
+	font-weight: 400;
+	font-style: normal;
+	font-size: 14px;
+	font-family: "Roboto";
+	line-height: 32px;
+
+	-webkit-appearance: none;
+	   -moz-appearance: none;
 }
 #ha-template-edit-form .ha-template-condition-wrap .ha-template-condition-remove {
 	position: absolute;
 	top: 50%;
-	right: 0;
+	right: -29.5px;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -428,42 +481,42 @@
 	-ms-flex-pack: center;
 	-webkit-justify-content: center;
 	        justify-content: center;
-	width: 32px;
-	height: 32px;
-	border-radius: 100%;
-	background: #e91e63;
-	-webkit-box-shadow: 0 1px 9px rgba(233, 30, 99, .16);
-	        box-shadow: 0 1px 9px rgba(233, 30, 99, .16);
-	color: #fff;
+	color: #eb5757;
+	font-size: 18px;
 	cursor: pointer;
 	-webkit-transform: translate(50%, -50%);
 	    -ms-transform: translate(50%, -50%);
 	        transform: translate(50%, -50%);
 }
 #ha-template-edit-form .ha-template-condition-wrap .ha-template-condition-remove:hover {
-	-webkit-box-shadow: 0 1px 9px rgba(233, 30, 99, .46);
-	        box-shadow: 0 1px 9px rgba(233, 30, 99, .46);
+	color: red;
 }
 #ha-template-edit-form .ha-cond-repeater-add {
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	margin: auto;
-	padding: 7px 21px;
-	outline: none;
-	border: none;
-	border-radius: 3px;
-	background: #6939c6;
-	color: #fff;
-	text-transform: uppercase;
-	font-weight: 500;
-	font-size: 11px;
-	font-family: Roboto, Arial, Helvetica, Verdana, sans-serif;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-ms-flex-align: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	        box-sizing: border-box;
+	width: 100%;
+	height: 56px;
+	border: 1px dashed #bdbdbd;
+	border-radius: 6px;
+	background: transparent;
+	color: #333;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 14px;
+	font-family: "Roboto";
+	line-height: 32px;
 	cursor: pointer;
-	-webkit-transition-duration: .3s;
-	        transition-duration: .3s;
-	transition-property: background, color, box-shadow, opacity, -webkit-box-shadow;
-	-webkit-transform: translate(-50%, 50%);
-	    -ms-transform: translate(-50%, 50%);
-	        transform: translate(-50%, 50%);
 }

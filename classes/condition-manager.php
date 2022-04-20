@@ -355,7 +355,7 @@ class Condition_Manager {
         </div>
     </div>
     <div class="ha-template-condition-remove">
-        <i class="eicon-trash-o" aria-hidden="true"></i>
+        <i class="eicon-trash" aria-hidden="true"></i>
         <span class="elementor-screen-only">Remove this item</span>
     </div>
 </div>
