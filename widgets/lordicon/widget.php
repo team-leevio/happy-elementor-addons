@@ -265,7 +265,7 @@ class LordIcon extends Base
             [
                 'label'   => __('Tertiary Color', 'happy-elementor-addons'),
                 'type'    => Controls_Manager::COLOR,
-                'default' => '#08a88a',
+                'default' => '#0816A8',
             ]
         );
 
@@ -274,7 +274,7 @@ class LordIcon extends Base
             [
                 'label'   => __('Quaternary Color', 'happy-elementor-addons'),
                 'type'    => Controls_Manager::COLOR,
-                'default' => '#08a88a',
+                'default' => '#2CA808',
             ]
         );
 
