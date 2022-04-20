@@ -87,11 +87,11 @@ class PDF_View extends Base {
 				'type' => Controls_Manager::URL,
 				'placeholder' => __( 'http://www.example.com/sample.pdf', 'happy-elementor-addons'),
                 'default' => [
-                    'url' =>  'https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf'
+                    'url' =>  'https://demo.happyaddons.com/wp-content/uploads/2022/03/file-sample.pdf'
                 ],
 				'show_external' => false,
 				'dynamic' => [
-					'active' => false,
+					'active' => true,
 				],
 				'condition' => [
 					'file_type' => 'url'

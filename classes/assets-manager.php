@@ -493,10 +493,19 @@ class Assets_Manager {
 		}
 
 		$data = '
+		.elementor-add-new-section{
+			display: inline-flex !important;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: center;
+		}
+		.elementor-add-section-drag-title{
+			flex-basis: 100%;
+		}
 		.elementor-add-new-section .elementor-add-ha-button {
 			background-color: #5636d1;
 			margin-left: 5px;
-			font-size: 18px;
+			font-size: 20px;
 		}
 		';
 		wp_add_inline_style('happy-elementor-addons', $data);

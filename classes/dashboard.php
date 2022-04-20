@@ -61,14 +61,15 @@ class Dashboard {
     }
 
     public static function activation_redirect() {
-        if ( get_option( HAPPY_ADDONS_REDIRECTION_FLAG, false ) && ! isset( $_GET['activate-multi'] ) ) {
-            delete_option( HAPPY_ADDONS_REDIRECTION_FLAG );
-            if(!get_option( HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG, false ) || !ha_has_pro()){
-                die( wp_redirect( ha_get_setup_wizard_link() ) );
-            }else{
-                die( wp_redirect( ha_get_dashboard_link() ) );
-            }
-        }
+        if ( get_option( HAPPY_ADDONS_REDIRECTION_FLAG, false ) ) {
+			delete_option( HAPPY_ADDONS_REDIRECTION_FLAG );
+			exit( esc_url( wp_safe_redirect( ha_get_dashboard_link() ) ) );
+		}
+
+		if ( get_option( HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG, false ) == 'initiate' ) {
+			update_option( HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG, 'running' );
+			exit( esc_url( wp_safe_redirect( ha_get_setup_wizard_link() ) ) );
+		}
     }
 
     public static function add_action_links( $links ) {

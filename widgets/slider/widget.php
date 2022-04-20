@@ -857,7 +857,7 @@ class Slider extends Base {
 				}
 				?>
 
-				<div class="ha-slick-slide">
+				<div class="ha-slick-slide slick-slide">
 					<<?php echo $item_tag; ?> <?php $this->print_render_attribute_string( $id ); ?>>
 						<?php if ( $image ) : ?>
 							<img class="ha-slick-img" src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $slide['title'] ); ?>">
