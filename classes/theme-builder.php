@@ -19,7 +19,7 @@ class Theme_Builder {
     private $location_cache;
 
     const CPT = 'ha_library';
-    const TEMPLATE_TYPE = ['header' => 'Header', 'footer' => 'Footer', 'single' => 'Single'];
+    const TEMPLATE_TYPE = ['header' => 'Header', 'footer' => 'Footer', 'single' => 'Single', 'archive' => 'Archive'];
     const TAB_BASE = "edit.php?post_type=ha_library";
 
     public $header_template;
@@ -50,8 +50,8 @@ class Theme_Builder {
             add_action('in_admin_header', function () {
                 $this->render_admin_top_bar();
             });
-            add_action('admin_head', [$this, 'add_new_template_template']);
-            add_action('in_admin_footer', [$this, 'edit_template_template'], 10, 2);
+            // add_action('admin_head', [$this, 'add_new_template_template']);
+            add_action('in_admin_footer', [$this, 'add_new_template_template'], 10, 2);
         });
 
         add_action('manage_' . self::CPT . '_posts_columns', [__CLASS__, 'admin_columns_headers']);
@@ -269,12 +269,12 @@ class Theme_Builder {
         echo $template;
     }
 
-    public function edit_template_template() {
-        ob_start();
-        include(HAPPY_ADDONS_DIR_PATH . 'templates/admin/edit-template.php');
-        $template = ob_get_clean();
-        echo $template;
-    }
+    // public function edit_template_template() {
+    //     ob_start();
+    //     include(HAPPY_ADDONS_DIR_PATH . 'templates/admin/edit-template.php');
+    //     $template = ob_get_clean();
+    //     echo $template;
+    // }
 
     public function edit_template_condition_modal() {
         if (self::CPT === get_post_type()) {
@@ -325,22 +325,22 @@ class Theme_Builder {
 
         $post_data = isset($_GET['post_data']) ? $_GET['post_data'] : [];
 
-        $template_display_type = isset($_GET['template_display_type']) ? $_GET['template_display_type'] : '';
-        $template_display_type_singular = isset($_GET['template_display_type_singular']) ? $_GET['template_display_type_singular'] : '';
-        $template_display_type_selected = isset($_GET['template_display_type_selected']) ? $_GET['template_display_type_selected'] : [];
+        // $template_display_type = isset($_GET['template_display_type']) ? $_GET['template_display_type'] : '';
+        // $template_display_type_singular = isset($_GET['template_display_type_singular']) ? $_GET['template_display_type_singular'] : '';
+        // $template_display_type_selected = isset($_GET['template_display_type_selected']) ? $_GET['template_display_type_selected'] : [];
 
-        $conditions = '';
+        $conditions = [];
 
-        if (!empty($template_display_type)) {
-            $conditions .= $template_display_type;
-            if ($template_display_type == 'singular') {
-                $conditions .= '/' . $template_display_type_singular;
-                if ($template_display_type_singular == 'selective') {
-                    $vals = implode(',', $template_display_type_selected);
-                    $conditions .= '/' . $vals;
-                }
-            }
-        }
+        // if (!empty($template_display_type)) {
+        //     $conditions .= $template_display_type;
+        //     if ($template_display_type == 'singular') {
+        //         $conditions .= '/' . $template_display_type_singular;
+        //         if ($template_display_type_singular == 'selective') {
+        //             $vals = implode(',', $template_display_type_selected);
+        //             $conditions .= '/' . $vals;
+        //         }
+        //     }
+        // }
 
         $meta = [];
 

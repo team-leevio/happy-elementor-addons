@@ -53,8 +53,18 @@ jQuery(document).ready(function ($) {
 				if (response && response.data) {
 					var templateType = response.data;
 					console.log(templateType);
-					if(templateType && ['header','footer','single'].includes(templateType)){
-						_label.text("HA: "+templateType.toLowerCase().replace(/(?<= )[^\s]|^./g, a=>a.toUpperCase()));
+					if (
+						templateType &&
+						["header", "footer", "single"].includes(templateType)
+					) {
+						_label.text(
+							"HA: " +
+								templateType
+									.toLowerCase()
+									.replace(/(?<= )[^\s]|^./g, (a) =>
+										a.toUpperCase()
+									)
+						);
 					}
 				}
 			},
@@ -62,145 +72,6 @@ jQuery(document).ready(function ($) {
 
 		// console.log(_id);
 	});
-});
-
-var Logo = Marionette.ItemView.extend({
-	getTemplate() {
-		return "#tmpl-ha-templates-modal__header__logo";
-	},
-
-	className() {
-		return "elementor-templates-modal__header__logo";
-	},
-
-	events() {
-		return {
-			click: "onClick",
-		};
-	},
-
-	templateHelpers() {
-		return {
-			title: this.getOption("title"),
-		};
-	},
-
-	onClick() {
-		const clickCallback = this.getOption("click");
-
-		if (clickCallback) {
-			clickCallback();
-		}
-	},
-});
-var NewTemplateView = Marionette.ItemView.extend({
-	id: "elementor-new-template-dialog-content",
-
-	template: "#tmpl-elementor-new-template",
-
-	ui: {},
-
-	events: {},
-
-	onRender: function () {},
-});
-
-window.newTemplateStep = 1;
-
-var NewTemplateLayout = elementorModules.common.views.modal.Layout.extend({
-	getModalOptions: function () {
-		return {
-			id: "elementor-new-template-modal",
-		};
-	},
-
-	getLogoOptions: function () {
-		return {
-			title: "New Template",
-		};
-	},
-
-	initialize: function () {
-		elementorModules.common.views.modal.Layout.prototype.initialize.apply(
-			this,
-			arguments
-		);
-		this.showLogo();
-		this.showContentView();
-	},
-
-	showContentView: function () {
-		this.modalContent.show(new NewTemplateView());
-	},
-
-	showLogo: function () {
-		this.getHeaderView().logoArea.show(new Logo(this.getLogoOptions()));
-	},
-
-	showModal() {
-		this.getModal().show();
-		//console.log("Show");
-	},
-
-	hideModal() {
-		this.getModal().hide();
-		//console.log("Hide");
-		this.resetForm();
-	},
-
-	resetForm() {
-		// document.getElementById("newViewGroup").__x.$data.step = 1;
-		document.getElementById("newViewGroup")._x_dataStack[0].step = 1;
-	},
-});
-
-var NewTemplateModule = elementorModules.ViewModule.extend({
-	getDefaultSettings: function () {
-		return {
-			selectors: {
-				addButton: "#ha-template-library-add-new",
-			},
-		};
-	},
-
-	getDefaultElements: function () {
-		var selectors = this.getSettings("selectors");
-
-		return {
-			$addButton: jQuery(selectors.addButton),
-		};
-	},
-
-	bindEvents: function () {
-		this.elements.$addButton.on("click", this.onAddButtonClick);
-
-		elementorCommon.elements.$window.on(
-			"hashchange",
-			this.showModalByHash.bind(this)
-		);
-	},
-
-	showModalByHash: function () {
-		if ("#add_new" === location.hash) {
-			this.layout.showModal();
-
-			location.hash = "";
-		}
-	},
-
-	onInit: function () {
-		elementorModules.ViewModule.prototype.onInit.apply(this, arguments);
-
-		this.layout = new NewTemplateLayout();
-
-		this.showModalByHash();
-	},
-
-	onAddButtonClick: function (event) {
-		event.preventDefault();
-
-		this.layout.showModal();
-	},
 });
 
 function getParameterByName(url, name) {
@@ -215,304 +86,32 @@ function getParameterByName(url, name) {
 }
 
 jQuery(function ($) {
+	var newTemplateModal = document.getElementById("tmpl-modal-new-template");
+	$("body").append(newTemplateModal.innerHTML);
+
 	MicroModal.init();
-	window.haNewTemplate = new NewTemplateModule();
 
-	var htf_template_active = $("#ha-template-activate");
-	var htf_display_type = $("#template_display_type");
-	var htf_display_singular = $("#condition_singular");
-	var htf_display_singular_id = $("#ha-template-singular-select2");
-	var htf_post_id = 0;
-	var htf_post_elementor = "";
-	var htf_tplTypeView = $("#edit-template-type");
+	var templateType = document.getElementById("ha-new-template-form__template-type");
+	var templateName = document.getElementById("ha-new-template-form__post-title");
+	var templateButton = document.getElementById("ha-new-template-form__submit");
 
-	htf_display_singular.parent().parent().hide();
-	htf_display_singular_id.parent().parent().hide();
+	templateType.addEventListener('change',checkButtonDisabled);
+	templateName.addEventListener('input',checkButtonDisabled);
 
-	htf_display_type.on("change", function () {
-		if (this.value == "general" || this.value == "archive") {
-			// htf_display_type.parent().parent().show();
-			htf_display_singular.parent().parent().hide();
-			htf_display_singular_id.parent().parent().hide();
-		} else if (this.value == "singular") {
-			htf_display_singular.parent().parent().show();
-			if (htf_display_singular.val() == "selective") {
-				htf_display_singular_id.parent().parent().show();
-			}
+	function checkButtonDisabled(){
+		var typeVal = templateType.value;
+		var nameVal = templateName.value;
+
+		console.log(nameVal);
+		if(typeVal && nameVal){
+			templateButton.disabled = false;
+		}else{
+			templateButton.disabled = true;
 		}
-	});
-
-	htf_display_singular.on("change", function () {
-		if (this.value == "selective") {
-			htf_display_singular_id.parent().parent().show();
-		} else {
-			htf_display_singular_id.parent().parent().hide();
-		}
-	});
-
-	$(".row-actions .edit a, .row-title").on("click", function (e) {
-		e.preventDefault();
-		var editUrl = $(this).attr("href");
-		htf_post_id = getParameterByName(editUrl, "post");
-		htf_post_elementor = editUrl.replace("edit", "elementor");
-
-		jQuery.ajax({
-			url: ajaxurl,
-			type: "get",
-			dataType: "json",
-			data: {
-				action: "ha_template_get_data", // AJAX action for admin-ajax.php
-				post_id: htf_post_id,
-			},
-			success: function (data) {
-				if (data) {
-					fetchConditions(data);
-				}
-				//console.log(data);
-			},
-		});
-
-		MicroModal.show("modal-login");
-	});
-
-	function fetchConditions(templateData) {
-		jQuery.ajax({
-			url: ajaxurl,
-			type: "get",
-			dataType: "json",
-			data: {
-				action: "ha_template_get_conditions", // AJAX action for admin-ajax.php
-				templateType: templateData.type,
-			},
-			success: function (conditionData) {
-				if (conditionData) {
-					console.log(conditionData);
-
-					htf_display_type.html("");
-					htf_display_singular.html("");
-
-					if (conditionData.condition_a) {
-						$.each(
-							conditionData.condition_a,
-							function (key, value) {
-								console.log(key + ": " + value);
-								htf_display_type.append(
-									'<option value="' +
-										key +
-										'">' +
-										value +
-										"</option>"
-								);
-							}
-						);
-					}
-
-					if (conditionData.condition_b) {
-						$.each(
-							conditionData.condition_b,
-							function (key, value) {
-								console.log(key + ": " + value);
-								htf_display_singular.append(
-									'<option value="' +
-										key +
-										'">' +
-										value +
-										"</option>"
-								);
-							}
-						);
-					}
-
-					if (templateData.active) {
-						htf_template_active.prop("checked", true);
-					} else {
-						htf_template_active.prop("checked", false);
-					}
-					if (templateData.type) {
-						if (templateData.type == "single") {
-							htf_display_singular.parent().parent().hide();
-							htf_display_singular_id.parent().parent().hide();
-						}
-						htf_tplTypeView.text(ucwords(templateData.type) + " ");
-					}
-					if (templateData.cond) {
-						var parts = templateData.cond.split("/");
-						//console.log(parts);
-						if (parts[0]) {
-							htf_display_type.val(parts[0]).change();
-						}
-
-						if (parts[1]) {
-							htf_display_singular.val(parts[1]).change();
-						}
-
-						if (parts[2]) {
-							htf_display_singular_id.val(parts[2]).change();
-						}
-					}
-				}
-			},
-		});
 	}
 
-	$("#ha-template-edit").on("click", function (e) {
+	$("#ha-template-library-add-new").on("click", function (e) {
 		e.preventDefault();
-		window.location.href = htf_post_elementor;
-		//console.log(htf_post_elementor);
-	});
-
-	$("#ha-template-save-data").on("click", function (e) {
-		e.preventDefault();
-		var formData = {
-			post_id: htf_post_id,
-			template_active: htf_template_active.is(":checked"),
-			template_display_type: htf_display_type.val(),
-			condition_singular: htf_display_singular.val(),
-			condition_singular_id: htf_display_singular_id.val(),
-		};
-
-		jQuery.ajax({
-			url: ajaxurl,
-			type: "post",
-			dataType: "json",
-			data: {
-				action: "ha_template_save_data", // AJAX action for admin-ajax.php
-				settings: JSON.stringify(formData),
-			},
-			success: function (data) {
-				if (htf_template_active.is(":checked")) {
-					//console.log('hit1');
-					$("#htlt-" + htf_post_id).html(" - <b>Active</b>");
-				} else {
-					//console.log('hit2');
-					$("#htlt-" + htf_post_id).html("");
-				}
-			},
-		});
-	});
-
-	htf_display_singular_id.select2({
-		ajax: {
-			url: ajaxurl, // AJAX URL is predefined in WordPress admin
-			dataType: "json",
-			delay: 250, // delay in ms while typing when to perform a AJAX search
-			data: function (params) {
-				return {
-					s: params.term, // search query
-					action: "ha_template_singulars", // AJAX action for admin-ajax.php
-				};
-			},
-			placeholder: "--",
-			processResults: function (data) {
-				var options = [];
-				if (data) {
-					//console.log(data);
-					// data is the array of arrays, and each of them contains ID and the Label of the option
-					$.each(data, function (index, text) {
-						// do not forget that "index" is just auto incremented value
-						options.push({ id: text[0], text: text[1] });
-					});
-				}
-				return {
-					results: options,
-				};
-			},
-			cache: true,
-		},
-		minimumInputLength: 3, // the minimum of symbols to input before perform a search
+		MicroModal.show("modal-new-template");
 	});
 });
-
-function ucwords(str) {
-	return (str + "").replace(/^([a-z])|\s+([a-z])/g, function ($1) {
-		return $1.toUpperCase();
-	});
-}
-
-function newTemplateForm() {
-	return {
-		loading: true,
-		step: 1,
-		postTitle: "",
-		templateType: "",
-		conditionType: {
-			general: "Entire Website",
-			singular: "Sigular (Only Pro)",
-			archive: "Archive (Only Pro)",
-		},
-		singularData: {
-			posts: "All Posts",
-			all: "All Singular (Only Pro)",
-			"front-page": "Front Page (Only Pro)",
-			pages: "All Pages (Only Pro)",
-			selective: "Selective Pages (Only Pro)",
-			error404: "404 Pages (Only Pro)",
-		},
-		selectedType: "general",
-		selectedSingular: null,
-		selectedSingularData: null,
-		selectiveData: null,
-		getTemplateType() {
-			this.templateType;
-		},
-		getSelective() {
-			var localThis = this;
-			this.loading = true;
-			//console.log(this.selectedSingular);
-			if (this.selectedSingular == "selective") {
-				var pageCollection = new wp.api.collections.Pages();
-				pageCollection
-					.fetch({
-						data: {
-							_fields: "id,title",
-							filter: {
-								posts_per_page: -1,
-								orderby: "title",
-								order: "ASC",
-							},
-						},
-					})
-					.done(function (data) {
-						if (data) {
-							// localThis.selectiveData = data.reduce((obj, item) => ((obj[[item['id']]] = item), obj), {});
-							var formatted = data.map((item) => {
-								const container = {};
-								container.id = item.id;
-								container.text = item.title.rendered;
-								return container;
-							});
-							localThis.selectiveData = formatted;
-						}
-						//console.log(localThis.selectiveData);
-						localThis.loading = false;
-					});
-			} else {
-				localThis.selectiveData = null;
-				//console.log(localThis.selectiveData);
-			}
-		},
-		buttonDisabled() {
-			if (this.postTitle && this.templateType) {
-				return false;
-			}
-
-			return true;
-		},
-	};
-}
-
-function newTemplateFormInit() {
-	//.log(this.$refs);
-	var selectContainer = document.getElementById(
-		"elementor-new-template__display_type_selected"
-	);
-	if (selectContainer) {
-		this.select2 = this.selectContainer.select2();
-		this.select2.on("select2:select", (event) => {
-			this.selectedSingularData = event.target.value;
-		});
-		this.$watch("selectedSingularData", (value) => {
-			this.select2.val(value).trigger("change");
-		});
-	}
-}

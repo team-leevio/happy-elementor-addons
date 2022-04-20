@@ -12,7 +12,7 @@ $selected = get_query_var( 'ha_library_type' );
 ?>
 
 <script type="text/template" id="tmpl-modal-template-condition">
-    <div class="modal micromodal-slide modal-template-condition ha-template-element-modal" id="modal-template-condition" aria-hidden="false">
+    <div class="modal micromodal-slide modal-template-condition ha-template-element-modal" id="modal-new-template-condition" aria-hidden="false">
         <div class="modal__overlay" tabindex="-1">
             <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-login-title">
                 <header class="modal__header">
@@ -38,12 +38,12 @@ $selected = get_query_var( 'ha_library_type' );
                     </div>
                 </div>
                 <footer class="modal__footer">
-                    <button class="modal__close" aria-label="Close modal" data-micromodal-close="">Cancel</button>
+                    <button class="modal__close modal__btn" aria-label="Close modal" data-micromodal-close="">Cancel</button>
                     <button id="ha-template-save-data" class="modal__btn modal__btn-primary">Save & Close</button>
                 </footer>
             </div>
         </div>
-        </div>
+    </div>
 </script>
 
 <script type="text/template" id="tmpl-elementor-new-template">

@@ -262,7 +262,7 @@ class Condition_Manager {
                 $cond = update_post_meta($templateID, '_ha_display_cond', $conditions);
                 $updates = get_post_meta($templateID, '_ha_display_cond');
 
-                if ($cond) {
+                if ($cond != null) {
                     $this->cache->regenerate();
                     wp_send_json_success($updates);
                 } else {

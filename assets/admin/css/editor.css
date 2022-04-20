@@ -232,6 +232,8 @@
 	-webkit-justify-content: center;
 	        justify-content: center;
 	height: 72px;
+
+	gap: 10px;
 }
 .ha-template-element-modal .modal__title {
 	margin-top: 0;
@@ -242,6 +244,10 @@
 	font-size: 16px;
 	font-family: "Roboto";
 	line-height: 19px;
+}
+.ha-template-element-modal .modal__header {
+	position: relative;
+	z-index: 999;
 }
 .ha-template-element-modal .modal__header .modal__close {
 	border: 0;
@@ -279,6 +285,130 @@
 .ha-template-element-modal .modal__content .form-data {
 	margin: auto;
 	max-width: 781px;
+}
+.ha-template-element-modal .modal__content.new-template {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-ms-flex-align: center;
+	padding: 0;
+	background: #fff;
+}
+.ha-template-element-modal .modal__content.new-template > * {
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.ha-template-element-modal .modal__content.new-template .modal__information {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	padding: 47px;
+	padding-left: 66px;
+	width: 43%;
+	height: 100%;
+	background: #f7f7fa;
+}
+.ha-template-element-modal .modal__content.new-template .modal__information .info-title {
+	margin-bottom: 26px;
+	color: #101028;
+	text-align: left;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 32px;
+	font-family: "Montserrat";
+	line-height: 39px;
+}
+.ha-template-element-modal .modal__content.new-template .modal__information .info-message {
+	color: #6d757a;
+	text-align: left;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	font-family: "Roboto";
+	line-height: 32px;
+}
+.ha-template-element-modal .modal__content.new-template #ha-new-template-form {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 442px;
+	width: 57%;
+}
+.ha-template-element-modal .modal__content.new-template #ha-new-template-form__title {
+	margin-bottom: 35px;
+	color: #101028;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 24px;
+	font-family: "Montserrat";
+	line-height: 29px;
+}
+.ha-template-element-modal .modal__content.new-template #ha-new-template-form__template-type {
+	margin-bottom: 19px;
+	padding: 12px 20px;
+	padding-right: 33px;
+	max-width: unset;
+	width: 100%;
+	height: 56px;
+	border: 1px solid #e0e0e0 !important;
+	border-radius: 6px;
+	background-image: url("data:image/svg+xml;utf8,<svg fill='%23999999' height='32' viewBox='0 0 24 24' width='32' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+	background-position-x: calc(100% - 13px);
+	background-position-y: 50%;
+	background-size: 24px;
+	background-repeat: no-repeat;
+	color: rgba(51, 51, 51, .5);
+	font-weight: 400;
+	font-style: normal;
+	font-size: 14px;
+	font-family: "Roboto";
+	line-height: 32px;
+
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+}
+.ha-template-element-modal .modal__content.new-template #ha-new-template-form__post-title {
+	padding: 12px 20px;
+	padding-right: 33px;
+	max-width: unset;
+	width: 100%;
+	height: 56px;
+	border: 1px solid #e0e0e0 !important;
+	border-radius: 6px;
+	background: #fff;
+}
+.ha-template-element-modal .modal__content.new-template #ha-new-template-form__submit {
+	margin-top: 19px;
+	padding: 20px;
+	width: 100%;
+	border: none;
+	border-radius: 6px;
+	background: #5e41c1;
+	cursor: pointer;
+}
+.ha-template-element-modal .modal__content.new-template #ha-new-template-form__submit:hover {
+	background: #4b339c;
+}
+.ha-template-element-modal .modal__content.new-template #ha-new-template-form__submit:disabled {
+	background: #cacaca;
+	opacity: 1;
+}
+.ha-template-element-modal .modal__content.new-template #ha-new-template-form__submit:disabled:hover {
+	background: #cacaca;
+	cursor: not-allowed;
 }
 .ha-template-element-modal .modal__information {
 	padding-bottom: 20px;
@@ -319,14 +449,20 @@
 	padding-right: 1rem;
 	padding-bottom: .5rem;
 	padding-left: 1rem;
+	min-width: 163px;
+	height: 56px;
 	border-width: 0;
 	border-style: none;
-	border-radius: .25rem;
-	background-color: #e6e6e6;
-	color: rgba(0, 0, 0, .8);
+	border-radius: 6px;
+	background-color: #828282;
+	color: #fff;
 	text-transform: none;
-	font-size: .875rem;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 14px;
+	font-family: "Montserrat";
 	line-height: 1.15;
+	line-height: 17px;
 	cursor: pointer;
 	-webkit-transition: -webkit-transform .25s ease-out;
 	        transition: -webkit-transform .25s ease-out;
@@ -448,7 +584,7 @@
 	padding: 12px 20px;
 	padding-right: 33px;
 	height: 56px;
-	border: 0 !important;
+	border: 1px solid #e3e3e5 !important;
 	border-radius: 6px;
 	background: #fff;
 	background-image: url("data:image/svg+xml;utf8,<svg fill='%23999999' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
@@ -464,6 +600,33 @@
 
 	-webkit-appearance: none;
 	   -moz-appearance: none;
+}
+#ha-template-edit-form .ha-template-condition-wrap .ha-template-condition-item-row .select2-container.select2-container--default.select2-container--open .select2-selection--single {
+	border-bottom: none !important;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+#ha-template-edit-form .ha-template-condition-wrap .ha-template-condition-item-row .select2-container.select2-container--default .select2-selection--single {
+	padding: 12px 20px;
+	height: 56px;
+	border: 1px solid #e3e3e5 !important;
+	border-radius: 6px;
+	background: #fff;
+}
+#ha-template-edit-form .ha-template-condition-wrap .ha-template-condition-item-row .select2-container.select2-container--default .select2-selection--single .select2-selection__rendered {
+	color: rgba(51, 51, 51, .5);
+	font-weight: 400;
+	font-style: normal;
+	font-size: 14px;
+	font-family: "Roboto";
+	line-height: 32px;
+}
+#ha-template-edit-form .ha-template-condition-wrap .ha-template-condition-item-row .select2-container.select2-container--default .select2-selection--single .select2-selection__arrow {
+	top: 50%;
+	right: 13px;
+	-webkit-transform: translateY(-50%);
+	    -ms-transform: translateY(-50%);
+	        transform: translateY(-50%);
 }
 #ha-template-edit-form .ha-template-condition-wrap .ha-template-condition-remove {
 	position: absolute;
@@ -519,4 +682,8 @@
 	font-family: "Roboto";
 	line-height: 32px;
 	cursor: pointer;
+}
+
+.select2-dropdown.ha-template-condition-dropdown {
+	border-color: #e3e3e5 !important;
 }

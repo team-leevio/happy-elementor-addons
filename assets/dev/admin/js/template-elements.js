@@ -49,7 +49,7 @@
 				conditionContainer.find("select").trigger("change");
 				// elementor.trigger("ha:templateConditionChange");
 			}
-			MicroModal.show("modal-template-condition");
+			MicroModal.show("modal-new-template-condition");
 		});
 
 		elementor.on("ha:templateConditionChange", function ($e) {
@@ -196,6 +196,7 @@
 						cache: true,
 						placeholder: "All",
 						allowClear: true,
+						dropdownCssClass: "ha-template-condition-dropdown"
 					});
 				} else {
 					sub_id.parent().hide();
@@ -367,7 +368,7 @@
 			success: function (response) {
 				if (response) {
 					// console.log(response);
-					MicroModal.close("modal-template-condition");
+					MicroModal.close("modal-new-template-condition");
 				}
 			},
 		});
