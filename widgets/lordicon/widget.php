@@ -260,6 +260,23 @@ class LordIcon extends Base
                 'default' => '#08a88a',
             ]
         );
+        $this->add_control(
+            'tertiary_color',
+            [
+                'label'   => __('Tertiary Color', 'happy-elementor-addons'),
+                'type'    => Controls_Manager::COLOR,
+                'default' => '#08a88a',
+            ]
+        );
+
+        $this->add_control(
+            'quaternary_color',
+            [
+                'label'   => __('Quaternary Color', 'happy-elementor-addons'),
+                'type'    => Controls_Manager::COLOR,
+                'default' => '#08a88a',
+            ]
+        );
 
         $this->add_control(
             'icon_stroke',
@@ -355,7 +372,7 @@ class LordIcon extends Base
                 trigger="<?php echo esc_attr($settings['animation_trigger']); ?>"
                 stroke="<?php echo esc_attr($icon_stroke['size']); ?>"
                 target="<?php echo esc_attr($target_class); ?>"
-                colors="primary:<?php echo esc_attr($settings['primary_color']) ?>,secondary:<?php echo esc_attr($settings['secondary_color']) ?>"
+                colors="primary:<?php echo esc_attr($settings['primary_color']); ?>,secondary:<?php echo esc_attr($settings['secondary_color']); ?>,tertiary:<?php echo esc_attr($settings['tertiary_color']); ?>,quaternary:<?php echo esc_attr($settings['quaternary_color']); ?>"
                 style="width:<?php echo esc_attr($icon_size['size']); ?>px;height:<?php echo esc_attr($icon_size['size']); ?>px">
             </lord-icon>
             </div>
