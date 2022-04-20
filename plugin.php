@@ -4,11 +4,11 @@
  * Plugin Name: Happy Elementor Addons
  * Plugin URI: https://happyaddons.com/
  * Description: <a href="https://happyaddons.com/">Happy Addons for Elementor</a> Is the Best Elementor Addons Comes With 44+ Free Elementor Widgets Including Table Builder, Testimonial, Event Calendar,Slider,News Ticker, Image Grid, etc & Features Like Elementor Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Elementor Icons, 450+ Template Packs & More.
- * Version: 3.4.2
+ * Version: 3.5.1
  * Author: weDevs
  * Author URI: https://happyaddons.com/
- * Elementor tested up to: 3.5.4
- * Elementor Pro tested up to: 3.5.2
+ * Elementor tested up to: 3.6.1
+ * Elementor Pro tested up to: 3.6.4
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: happy-elementor-addons
@@ -37,7 +37,7 @@ Copyright 2019 HappyMonster <http://happymonster.me>
 
 defined('ABSPATH') || die();
 
-define('HAPPY_ADDONS_VERSION', '3.4.2');
+define('HAPPY_ADDONS_VERSION', '3.5.1');
 define('HAPPY_ADDONS__FILE__', __FILE__);
 define('HAPPY_ADDONS_DIR_PATH', plugin_dir_path(HAPPY_ADDONS__FILE__));
 define('HAPPY_ADDONS_DIR_URL', plugin_dir_url(HAPPY_ADDONS__FILE__));
@@ -53,8 +53,7 @@ define('HAPPY_ADDONS_MINIMUM_PHP_VERSION', '5.4');
  *
  * @return void Some voids are not really void, you have to explore to figure out why not!
  */
-function ha_let_the_journey_begin()
-{
+function ha_let_the_journey_begin() {
     require(HAPPY_ADDONS_DIR_PATH . 'inc/functions.php');
 
     // Check for required PHP version
@@ -86,8 +85,7 @@ add_action('plugins_loaded', 'ha_let_the_journey_begin');
  *
  * @return void
  */
-function ha_required_php_version_missing_notice()
-{
+function ha_required_php_version_missing_notice() {
     $notice = sprintf(
         /* translators: 1: Plugin name 2: PHP 3: Required PHP version */
         esc_html__('"%1$s" requires "%2$s" version %3$s or greater.', 'happy-elementor-addons'),
@@ -104,8 +102,7 @@ function ha_required_php_version_missing_notice()
  *
  * @return void
  */
-function ha_elementor_missing_notice()
-{
+function ha_elementor_missing_notice() {
 
     if (file_exists(WP_PLUGIN_DIR . '/elementor/elementor.php')) {
         $notice_title = __('Activate Elementor', 'happy-elementor-addons');
@@ -131,8 +128,7 @@ function ha_elementor_missing_notice()
  *
  * @return void
  */
-function ha_required_elementor_version_missing_notice()
-{
+function ha_required_elementor_version_missing_notice() {
     $notice = sprintf(
         /* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
         esc_html__('"%1$s" requires "%2$s" version %3$s or greater.', 'happy-elementor-addons'),
@@ -149,13 +145,16 @@ function ha_required_elementor_version_missing_notice()
  *
  * @return void
  */
-function ha_register_activation_hook()
-{
+function ha_register_activation_hook() {
     add_option(HAPPY_ADDONS_REDIRECTION_FLAG, true);
 
     // add plugin activation time
     $get_activation_time = strtotime("now");
     add_option('happy_addons_activation_time', $get_activation_time);
+
+    if (!get_option(HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG, false)) {
+        add_option(HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG, 'initiate');
+    }
 }
 
 register_activation_hook(HAPPY_ADDONS__FILE__, 'ha_register_activation_hook');

@@ -26,6 +26,9 @@ $medium: 900px;
         line-height: 20px;
         vertical-align: middle;
         border-bottom: 0;
+        &-column-cell-title-tag {
+            margin: 0;
+        }
 	}
     &__head.table-sticky{
         position: sticky;
@@ -42,7 +45,7 @@ $medium: 900px;
         // @media screen and (min-width: $small) and (max-width: $medium) {
         //    width: 25%;
         // }
-
+        
         &:first-child{
             flex-grow: 1;
         }
@@ -97,9 +100,10 @@ $medium: 900px;
             flex-grow: 10;
         }
     }
-    &__row-item-cell-title {
+    &__row-item-cell-title-tag {
         font-family: var( --e-global-typography-text-font-family ), Sans-serif;
         font-weight: var( --e-global-typography-text-font-weight );
+        margin: 0;
     }
     &__row-cell-icon {
         line-height: 1;

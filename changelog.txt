@@ -1,3 +1,37 @@
+= 3.#.# - 3 April 2022 =
+
+- Fix: Justified Grid row height issue
+- Tweak: Added vertical and horizontal direction for Content switcher 
+- Tweak: Lower animation speed input option enable for all carousel widgets
+
+= 3.5.1 - 29 March 2022 =
+
+- Fix: Image Compare widget white space issue
+- Fix: 360-degree widget mobile overlay issue
+
+= 3.5.0 - 24 March 2022 =
+
+- Tweak: Removed `_register_controls` deprecated method.
+- Tweak: Replace `register_controls` with `register`.
+- Tweak: Change default url for PDF Viewer.
+- Fix: Miscellaneous deprecations.
+- Fix: Setup Wizard redirection issue.
+- Improve: Elementor 3.6.1 compatibility.
+
+= 3.4.4 - 1 March 2022 =
+
+- New: Double Opt In support for mailchimp widget.
+- Tweak: Improve Slider on load behavior
+- Tweak: Improve Image Carousel on load behavior
+- Tweak: Comparison Table description field
+- Tweak: Comparison Table add button style control for individual item
+
+= 3.4.3 - 17 February 2022 =
+
+- Tweak: Pdf Viewer Dynamic Link tag support
+- Tweak: Creative Button Dynamic Link tag support for url
+- Fix: Calendly Width fix
+
 = 3.4.2 - 6 February 2022 =
 
 - Tweak: Setup Wizard Performance Improvement
