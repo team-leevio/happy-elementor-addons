@@ -282,7 +282,7 @@ class LordIcon extends Base
                 'label'     => __('Background Color', 'happy-elementor-addons'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-lordicon-wrapper lord-icon' => 'background: {{VALUE}};',
+                    '{{WRAPPER}} .ha-lordicon-wrapper' => 'background: {{VALUE}};',
                 ],
             ]
         );
@@ -291,7 +291,7 @@ class LordIcon extends Base
             Group_Control_Border::get_type(),
             [
                 'name'     => 'icon_border',
-                'selector' => '{{WRAPPER}} .ha-lordicon-wrapper lord-icon',
+                'selector' => '{{WRAPPER}} .ha-lordicon-wrapper',
             ]
         );
 
@@ -302,7 +302,7 @@ class LordIcon extends Base
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [
-                    '{{WRAPPER}} .ha-lordicon-wrapper lord-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-lordicon-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -314,7 +314,7 @@ class LordIcon extends Base
                 'exclude'  => [
                     'box_shadow_position',
                 ],
-                'selector' => '{{WRAPPER}} .ha-lordicon-wrapper lord-icon',
+                'selector' => '{{WRAPPER}} .ha-lordicon-wrapper',
             ]
         );
 
