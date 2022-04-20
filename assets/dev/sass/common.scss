@@ -380,3 +380,12 @@ body[data-elementor-device-mode="mobile"] {
 		}
 	}
 }
+
+// Gravity form show on editor
+body.elementor-editor-active {
+	.happy-addon.ha-gravityforms {
+		.gform_wrapper {
+			display: block !important;
+		}
+	}
+}
