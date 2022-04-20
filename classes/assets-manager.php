@@ -275,7 +275,6 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			false
 		);
-
 		// Main assets
 		wp_register_style(
 			'happy-elementor-addons',

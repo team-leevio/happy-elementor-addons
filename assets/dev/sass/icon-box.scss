@@ -60,3 +60,25 @@
 		z-index: 10;
 	}
 }
+
+.pulse_effect {
+    animation: pulse_animation 1.5s infinite;
+    box-shadow: 0 0 0 0 var( --icon-pulse-color );
+}
+
+@keyframes pulse_animation {
+    0% {
+       transform: scale(0.95);
+       box-shadow: 0 0 0 0 var( --icon-pulse-color );
+   }
+   
+   70% {
+       transform: scale(1);
+       box-shadow: 0 0 0 20px var( --icon-pulse-color );
+   }
+   
+   100% {
+       transform: scale(0.95);
+       box-shadow: 0 0 0 0 var( --icon-pulse-color );
+   }
+}
