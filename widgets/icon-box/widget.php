@@ -70,7 +70,7 @@ class Icon_Box extends Base {
 				'default' => 'default',
 				'options' => [
 					'default'  => esc_html__( 'Elementor Default', 'happy-elementor-addons' ),
-					'lordicon' => esc_html__( 'Lord Icon', 'happy-elementor-addons' ),
+					'lordicon' => esc_html__( 'LordIcon', 'happy-elementor-addons' ),
 				],
 			]
 		);
