@@ -1607,7 +1607,7 @@ class Mailchimp extends Base {
 		$list_id     = ( ( is_array( $settings['mailchimp_lists'] ) ) ? ( isset( $settings['mailchimp_lists'][0] ) ? ltrim( $settings['mailchimp_lists'][0] ) : '' ) : ( ltrim( $settings['mailchimp_lists'] ) ) );
 
 		?>
-		<div class="ha-mailchimp-wrapper" data-post-id="<?php echo esc_attr( get_the_id() ); ?>" data-widget-id="<?php echo esc_attr( $this->get_id() ); ?>">
+		<div class="ha-mailchimp-wrapper" data-post-id="<?php echo esc_attr( get_the_ID() ); ?>" data-widget-id="<?php echo esc_attr( $this->get_id() ); ?>">
 			<?php if ( \Elementor\Plugin::$instance->editor->is_edit_mode() && $settings['mailchimp_success_message_show_in_editor'] == 'yes' ) : ?>
 				<div class="ha-mc-response-message success"><?php esc_html_e( 'This is a dummy message for success. This won\'t show in preview', 'happy-elementor-addons' ); ?></div>
 			<?php endif; ?>
@@ -1615,7 +1615,7 @@ class Mailchimp extends Base {
 				<div class="ha-mc-response-message error"><?php esc_html_e( 'This is a dummy message for error. This won\'t show in preview', 'happy-elementor-addons' ); ?></div>
 			<?php endif; ?>
 			<div class="ha-mc-response-message"></div>
-			<form class="ha-mailchimp-form <?php echo esc_attr( $form_fields ); ?>" data-list-id="<?php echo esc_attr( $list_id ); ?>">
+			<form class="ha-mailchimp-form <?php echo esc_attr( $form_fields ); ?>" data-list-id="<?php echo esc_attr( $list_id ); ?>" data-success-message="<?php echo esc_attr($settings['mailchimp_success_message']); ?>">
 				<?php if ( $settings['enable_name'] == 'yes' ) : ?>
 					<div class="ha-mc-input-wrapper">
 						<?php if ( ! empty( $settings['fname_label'] ) ) : ?>

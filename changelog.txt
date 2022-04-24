@@ -3,6 +3,8 @@
 - Fix: Justified Grid row height issue
 - Tweak: Added vertical and horizontal direction for Content switcher 
 - Tweak: Lower animation speed input option enable for all carousel widgets
+- Fix: Gravity form display issue on editor
+- Fix: Mailchimp success message show on corner case
 
 = 3.5.1 - 29 March 2022 =
 
