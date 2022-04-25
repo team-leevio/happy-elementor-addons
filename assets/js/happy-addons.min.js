@@ -776,7 +776,8 @@
 
     var MailChimp = function MailChimp($scope) {
       var elForm = $scope.find('.ha-mailchimp-form'),
-          elMessage = $scope.find('.ha-mc-response-message');
+          elMessage = $scope.find('.ha-mc-response-message'),
+          successMessage = elForm.data('success-message');
       elForm.on('submit', function (e) {
         e.preventDefault();
         var data = {
@@ -797,7 +798,7 @@
             if (response.status) {
               elMessage.removeClass('error');
               elMessage.addClass('success');
-              elMessage.text(response.msg);
+              elMessage.text(successMessage);
             } else {
               elMessage.addClass('error');
               elMessage.removeClass('success');

@@ -277,6 +277,29 @@ class Content_Switcher extends Base {
 		);
 
 		$this->add_responsive_control(
+			'switch_direction',
+			[
+				'label'     => __('Switch Direction', 'happy-elementor-addons'),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => [
+					'row' => [
+						'title' => __('Horizontal', 'happy-elementor-addons'),
+						'icon'  => 'eicon-h-align-center',
+					],
+					'column' => [
+						'title' => __('Vertical', 'happy-elementor-addons'),
+						'icon'  => 'eicon-v-align-middle',
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-cs-switch-container .ha-cs-switch-wrapper' => 'flex-direction : {{VALUE}}',
+				],
+				'default'   => 'row',
+				'toggle'    => false,
+			]
+		);
+
+		$this->add_responsive_control(
 			'switch_align',
 			[
 				'label'     => __('Switch Alignment', 'happy-elementor-addons'),
