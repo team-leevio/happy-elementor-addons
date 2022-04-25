@@ -36,14 +36,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 */
 	do_action( 'elementor/page_templates/canvas/before_content' );
 
-	while ( have_posts() ) :
-        the_post();
-        if( !\Elementor\Plugin::$instance->preview->is_preview_mode() ){
-            do_action( 'happyaddons_theme_builder_render' );
-        }else{
-            the_content();
-        }
-    endwhile; // end of the loop.
+	if( !\Elementor\Plugin::$instance->preview->is_preview_mode() ){
+		do_action( 'happyaddons_theme_builder_render' );
+	}else{
+		the_content();
+	}
 
 	/**
 	 * After canvas page template content.

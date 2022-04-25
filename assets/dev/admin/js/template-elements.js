@@ -35,6 +35,11 @@
 				handleHaTemplateType(postId);
 			}
 		);
+
+		//elementor.getPanelView().getHeaderView().setTitle('a');
+		elementor.on("set:page", function ($e) {
+			console.log($e);
+		});
 	}
 
 	$("body").append(modalTemplate.innerHTML);

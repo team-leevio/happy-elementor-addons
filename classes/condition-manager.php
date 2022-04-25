@@ -204,7 +204,7 @@ class Condition_Manager {
         unset($tmp_singular['post_group']);
         unset($tmp_singular['page_group']);
 
-        $all_cond_list = $this->initial_conditions() + $this->archive_conditions() + $tmp_post + $tmp_page;
+        $all_cond_list = $this->initial_conditions() + $this->archive_conditions() + $tmp_singular + $tmp_post + $tmp_page;
 
         $this->all_conds_list = $all_cond_list;
         $this->all_conds = $conditions;

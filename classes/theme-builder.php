@@ -39,6 +39,8 @@ class Theme_Builder {
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'ha_template_element_scripts']);
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'edit_template_condition_modal'], 10, 2);
 
+        add_filter('elementor/document/config', [$this, 'ha_template_document_title'], 10, 2);
+
         // Admin Actions
         add_action('admin_action_ha_library_new_post', [$this, 'admin_action_new_post']);
 
@@ -918,6 +920,33 @@ class Theme_Builder {
         $installed_plugins = get_plugins();
 
         return isset($installed_plugins[$file_path]);
+    }
+
+    public function ha_template_document_title($config, $post_id){
+        $tpl_type = get_post_meta($post_id, '_ha_library_type', true);
+
+        if (self::CPT === get_post_type($post_id)) {
+            $title = "";
+            switch ($tpl_type){
+                case "header":
+                    $title = "Header Settings";
+                    break;
+
+                case "footer":
+                    $title = "Footer Settings";
+                    break;
+
+                case "single":
+                    $title = "Singular Settings";
+                    break;
+
+                case "archive":
+                    $title = "Archive Settings";
+                    break;
+            }
+            $config['settings']['panelPage']['title'] = $title;
+        }
+        return $config;
     }
 }
 
