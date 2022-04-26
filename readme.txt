@@ -1,6 +1,6 @@
 === Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget) ===
 Plugin Name: Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget)
-Version: 3.5.1
+Version: 3.5.2
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
@@ -437,6 +437,15 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.5.2 - 26 April 2022 =
+
+- New: Photo Stack widget
+- Tweak: Added vertical and horizontal direction for Content switcher 
+- Tweak: Lower animation speed input option enable for all carousel widgets
+- Fix: Justified Grid row height issue
+- Fix: Gravity form display issue on editor
+- Fix: Mailchimp success message show on corner case
 
 = 3.5.1 - 29 March 2022 =
 
