@@ -31,22 +31,25 @@ class Mailchimp_Api {
 
 		$widget_settings = ha_get_ele_widget_settings( $_POST['post_id'], $_POST['widget_id'] );
 
-		$str_tags = isset( $widget_settings['mailchimp_list_tags'] ) ? $widget_settings['mailchimp_list_tags'] : '';
-		$tags     = explode( ', ', $str_tags );
+		$tags = '';
+		if( !empty($widget_settings) ) {
+			$str_tags = isset( $widget_settings['mailchimp_list_tags'] ) ? $widget_settings['mailchimp_list_tags'] : '';
+			$tags     = explode( ', ', $str_tags );
+		}
 
 		$auth = [
 			'api_key' => self::$api_key,
 			'list_id' => $_POST['list_id'],
 		];
 
-		if ( $widget_settings['mailchimp_api_choose'] == 'custom' ) {
+		if ( isset($widget_settings['mailchimp_api_choose']) && $widget_settings['mailchimp_api_choose'] == 'custom' ) {
 			$auth['api_key'] = $widget_settings['mailchimp_api'];
 		}
 
 		$data = [
 			'email_address' => ( isset( $submitted_data['email'] ) ? $submitted_data['email'] : '' ),
-			'status'        => ( ( $widget_settings['enable_double_opt_in'] == 'yes' ) ? 'pending' : 'subscribed' ),
-			'status_if_new' => ( ( $widget_settings['enable_double_opt_in'] == 'yes' ) ? 'pending' : 'subscribed' ),
+			'status'        => ( ( isset( $widget_settings['enable_double_opt_in'] ) && $widget_settings['enable_double_opt_in'] == 'yes' ) ? 'pending' : 'subscribed' ),
+			'status_if_new' => ( ( isset( $widget_settings['enable_double_opt_in'] ) && $widget_settings['enable_double_opt_in'] == 'yes' ) ? 'pending' : 'subscribed' ),
 			'merge_fields'  => [
 				'FNAME' => ( isset( $submitted_data['fname'] ) ? $submitted_data['fname'] : '' ),
 				'LNAME' => ( isset( $submitted_data['lname'] ) ? $submitted_data['lname'] : '' ),
@@ -92,7 +95,7 @@ class Mailchimp_Api {
 				$return['msg']    = $body['title'];
 			} elseif ( $body['status'] == 'subscribed' ) {
 				$return['status'] = 1;
-				$return['msg']    = $widget_settings['mailchimp_success_message'];
+				$return['msg']    = isset($widget_settings['mailchimp_success_message']) ? $widget_settings['mailchimp_success_message']: "";
 			} elseif ( $body['status'] == 'pending' ) {
 				$return['status'] = 1;
 				$return['msg']    = esc_html__( 'Confirm your subscription from your email.', 'happy-elementor-addons' );
