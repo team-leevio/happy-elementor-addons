@@ -284,11 +284,11 @@ class Content_Switcher extends Base {
 				'options'   => [
 					'horizontal' => [
 						'title' => __('Horizontal', 'happy-elementor-addons'),
-						'icon'  => 'eicon-h-align-center',
+						'icon'  => 'eicon-navigation-horizontal',
 					],
 					'vertical' => [
 						'title' => __('Vertical', 'happy-elementor-addons'),
-						'icon'  => 'eicon-v-align-middle',
+						'icon'  => 'eicon-navigation-vertical',
 					],
 				],
 				'default'   => 'horizontal',
