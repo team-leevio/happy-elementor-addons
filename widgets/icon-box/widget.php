@@ -115,8 +115,8 @@ class Icon_Box extends Base {
                 'label'       => __('Icon Method', 'happy-elementor-addons'),
                 'description' => sprintf('<a target="_blank" href="%1$s">Learn how to use the Lordicon widget</a>', esc_url('https://happyaddons.com/')),
                 'options'     => [
-                    'cdn'  => esc_html__('Paste Lordicon URL', 'happy-elementor-addons'),
-                    'file' => esc_html__('Upload Lordicon file', 'happy-elementor-addons'),
+                    'cdn'  => esc_html__('Paste LordIcon URL', 'happy-elementor-addons'),
+                    'file' => esc_html__('Upload LordIcon file', 'happy-elementor-addons'),
                 ],
                 'default'     => 'cdn',
                 'label_block' => true,
