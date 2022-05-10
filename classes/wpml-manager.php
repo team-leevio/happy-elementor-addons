@@ -561,7 +561,7 @@ class WPML_Manager {
 				]
 			],
 
-			
+
 			/**
 			 * Mailchimp
 			 */
@@ -636,6 +636,24 @@ class WPML_Manager {
 			'content-switcher' => [
 				'fields' => [],
 				'integration-class' => __NAMESPACE__ . '\\WPML_Content_Switcher',
+			],
+
+			/**
+			 * Creative Button
+			 */
+			'creative-_button' => [
+				'fields' => [
+					[
+						'field'       => 'button_text',
+						'type'        => __( 'Creative Button: Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					'button_link' => [
+						'field'       => 'button_link',
+						'type'        => __( 'Creative Button: Link', 'happy-elementor-addons' ),
+						'editor_type' => 'LINK',
+					],
+				],
 			],
 		];
 

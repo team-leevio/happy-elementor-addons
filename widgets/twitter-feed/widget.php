@@ -70,12 +70,12 @@ class Twitter_Feed extends Base {
         $this->add_control(
             'credentials',
             [
-                'label' => __('Credentials from', 'happy-addons-pro'),
+                'label' => __('Credentials from', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'custom',
                 'options' =>  [
-                    'global' => __('Global', 'happy-addons-pro'),
-                    'custom' => __('Custom', 'happy-addons-pro'),
+                    'global' => __('Global', 'happy-elementor-addons'),
+                    'custom' => __('Custom', 'happy-elementor-addons'),
                 ],
             ]
         );
@@ -83,7 +83,7 @@ class Twitter_Feed extends Base {
         $this->add_control(
             'credentials_set_notice',
             [
-                'raw' => '<strong>' . esc_html__('Note!', 'happy-addons-pro') . '</strong> ' . esc_html__('Please set credentials in Happy Addons Dashboard - ', 'happy-addons-pro') . '<a style="border-bottom-color: inherit;" href="'. esc_url(admin_url('admin.php?page=happy-addons#credentials')) . '" target="_blank" >'. esc_html__('Credentials', 'happy-addons-pro') .'</a>',
+                'raw' => '<strong>' . esc_html__('Note!', 'happy-elementor-addons') . '</strong> ' . esc_html__('Please set credentials in Happy Addons Dashboard - ', 'happy-elementor-addons') . '<a style="border-bottom-color: inherit;" href="'. esc_url(admin_url('admin.php?page=happy-addons#credentials')) . '" target="_blank" >'. esc_html__('Credentials', 'happy-elementor-addons') .'</a>',
                 'type' => Controls_Manager::RAW_HTML,
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
                 'render_type' => 'ui',

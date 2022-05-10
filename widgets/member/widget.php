@@ -176,7 +176,7 @@ class Member extends Base {
 		$this->add_control(
 			'extra_hover_cls',
 			[
-				'label' => __( 'Extra class added', 'plugin-domain' ),
+				'label' => __( 'Extra class added', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HIDDEN,
 				'default' => 'on',
 				'prefix_class' => 'ha-member-hover-image-',
@@ -682,8 +682,8 @@ class Member extends Base {
 		$this->add_control(
 			'saved_template_list',
 			[
-				'label' => __( 'Content Source', 'happy-addons-pro' ),
-				'description' => __( 'Select a saveed section to show in popup window.', 'happy-addons-pro' ),
+				'label' => __( 'Content Source', 'happy-elementor-addons' ),
+				'description' => __( 'Select a saveed section to show in popup window.', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => $this->get_saved_content( ['page','section'] ),
 				'default' => '0',
@@ -694,7 +694,7 @@ class Member extends Base {
 			'show_lightbox_preview',
 			[
 				'label' => __( 'Show Lightbox Preview', 'happy-elementor-addons' ),
-				'description' => __( 'This option only works on edit mode.', 'happy-addons-pro' ),
+				'description' => __( 'This option only works on edit mode.', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
 				'label_on' => __( 'Show', 'happy-elementor-addons' ),
 				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
@@ -708,11 +708,11 @@ class Member extends Base {
 		$this->add_control(
 			'close_position',
 			[
-				'label' => __( 'Close Icon Position', 'happy-addons-pro' ),
+				'label' => __( 'Close Icon Position', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'top-left' => __( 'Top Left', 'happy-addons-pro' ),
-					'top-right' => __( 'Top Right', 'happy-addons-pro' ),
+					'top-left' => __( 'Top Left', 'happy-elementor-addons' ),
+					'top-right' => __( 'Top Right', 'happy-elementor-addons' ),
 				],
 				'default' => 'top-right',
 				'selectors_dictionary' => [
@@ -1473,7 +1473,7 @@ class Member extends Base {
 		$this->add_control(
             'close_button_heading',
             [
-                'label' => __( 'Close Button', 'happy-addons-pro' ),
+                'label' => __( 'Close Button', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1510,7 +1510,7 @@ class Member extends Base {
 		$this->add_responsive_control(
             'close_icon_size',
             [
-                'label' => __( 'Size', 'happy-addons-pro' ),
+                'label' => __( 'Size', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'range' => [
@@ -1529,14 +1529,14 @@ class Member extends Base {
 		$this->start_controls_tab(
 			'_tab_close_button_normal',
 			[
-				'label' => __( 'Normal', 'happy-addons-pro' )
+				'label' => __( 'Normal', 'happy-elementor-addons' )
 			]
 		);
 
 		$this->add_control(
 			'close_button_color',
 			[
-				'label' => __( 'Color', 'happy-addons-pro' ),
+				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-member-lightbox-close' => 'color: {{VALUE}}',
@@ -1560,14 +1560,14 @@ class Member extends Base {
 		$this->start_controls_tab(
 			'_tab_close_button_hover',
 			[
-				'label' => __( 'Hover', 'happy-addons-pro' ),
+				'label' => __( 'Hover', 'happy-elementor-addons' ),
 			]
 		);
 
 		$this->add_control(
 			'close_button_hover_color',
 			[
-				'label' => __( 'Color', 'happy-addons-pro' ),
+				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-member-lightbox-close:hover' => 'color: {{VALUE}}',
@@ -1637,13 +1637,13 @@ class Member extends Base {
 		$saved_contents = $this->get_post_template( $term );
 
 		if ( count( $saved_contents ) > 0 ) {
-			$options['0'] = __( 'None', 'happy-addons-pro' );
+			$options['0'] = __( 'None', 'happy-elementor-addons' );
 			foreach ( $saved_contents as $saved_content ) {
 				$content_id             = $saved_content['id'];
 				$options[ $content_id ] = $saved_content['name'];
 			}
 		} else {
-			$options['no_template'] = __( 'Nothing Found', 'happy-addons-pro' );
+			$options['no_template'] = __( 'Nothing Found', 'happy-elementor-addons' );
 		}
 		return $options;
 	}

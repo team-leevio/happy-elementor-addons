@@ -409,7 +409,7 @@ class Creative_Button extends Base {
 		$this->add_responsive_control(
 			'button_item_width',
 			[
-				'label'      => __( 'Size', 'happy-addons-pro' ),
+				'label'      => __( 'Size', 'happy-elementor-addons' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range'      => [
@@ -457,7 +457,7 @@ class Creative_Button extends Base {
 		$this->add_responsive_control(
 			'button_icon_size',
 			[
-				'label'      => __( 'Icon Size', 'happy-addons-pro' ),
+				'label'      => __( 'Icon Size', 'happy-elementor-addons' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range'      => [
@@ -569,7 +569,7 @@ class Creative_Button extends Base {
 		$this->add_responsive_control(
 			'button_hermosa_roundup_stroke_width',
 			[
-				'label'      => __( 'Stroke Width', 'happy-addons-pro' ),
+				'label'      => __( 'Stroke Width', 'happy-elementor-addons' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range'      => [

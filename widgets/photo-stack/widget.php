@@ -358,7 +358,7 @@ class Photo_Stack extends Base {
         $this->add_responsive_control(
             'image_container_width',
             [
-                'label'          => esc_html__('Width', 'elementor'),
+                'label'          => esc_html__('Width', 'happy-elementor-addons'),
                 'type'           => Controls_Manager::SLIDER,
                 'default'        => [
                     'size' => 550,
