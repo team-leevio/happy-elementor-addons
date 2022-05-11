@@ -1,3 +1,7 @@
+= *.*.* - * * 2022 =
+
+- Fix: Mixed content issue solve
+
 = 3.5.2 - 26 April 2022 =
 
 - New: Photo Stack widget
