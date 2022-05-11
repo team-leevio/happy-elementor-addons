@@ -641,7 +641,7 @@ class WPML_Manager {
 			/**
 			 * Creative Button
 			 */
-			'creative-_button' => [
+			'creative-button' => [
 				'fields' => [
 					[
 						'field'       => 'button_text',
