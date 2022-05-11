@@ -34,6 +34,8 @@ class Assets_Cache {
 		$upload_dir = wp_upload_dir();
 		$this->upload_path = trailingslashit( $upload_dir['basedir'] );
 		$this->upload_url = trailingslashit( $upload_dir['baseurl'] );
+		// Mixed content issue overcome when using ssl
+		$this->upload_url = ( is_ssl()? str_replace( 'http://', 'https://', $this->upload_url ): $this->upload_url );
 	}
 
 	public function get_widgets_cache() {
