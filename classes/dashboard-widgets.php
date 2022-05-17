@@ -9,17 +9,6 @@ class Dashboard_Widgets {
 	private static $instance;
 
 	public function init() {
-		// add_action('after_theme_setup', [$this, 'dashboard_widget_hook_call']);
-		// if(ha_has_pro()) {
-		//     add_action('after_theme_setup', [$this, 'dashboard_widget_hook_call']);
-		// }else {
-		//     add_action('wp_dashboard_setup', [$this, 'add_dashboard_widgets'], 9999);
-		// }
-
-		// $is_show_dashboard_widget = apply_filters('happy_elementor_addons_dashboard_widget', '_return_true');
-		// if($is_show_dashboard_widget == '_return_true') {
-		//     add_action('wp_dashboard_setup', [$this, 'add_dashboard_widgets'], 9999);
-		// }
 		add_action( 'wp_dashboard_setup', [$this, 'add_dashboard_widgets'], 9999 );
 	}
 
@@ -92,18 +81,24 @@ class Dashboard_Widgets {
 				<?php if ( ! empty( $promotion_banner['image_id'] ) ) : ?>
 					<?php
 					$banner_url = ( ( ! empty( $promotion_banner['image_click_url'] ) ) ? $promotion_banner['image_click_url'] : '' );
-					$banner_url = add_query_arg(
-						array(
-							'utm_source' => 'userwpdashboard',
-							'utm_medium' => 'bannernotice',
-							'utm_campaign' => 'usertrack',
-						),
-						$banner_url
-					);
+					if( ! empty($banner_url)) {
+						$banner_url = add_query_arg(
+							array(
+								'utm_source' => 'userwpdashboard',
+								'utm_medium' => 'bannernotice',
+								'utm_campaign' => 'usertrack',
+							),
+							$banner_url
+						);
+					}
 					?>
-					<a href="<?php echo esc_url( $banner_url ); ?>" target="_blank">
+					<?php if(!empty($banner_url)) : ?>
+						<a href="<?php echo esc_url( $banner_url ); ?>" target="_blank">
+					<?php endif; ?>
 						<img class="ha-overview--banner" src="<?php echo esc_url( $promotion_banner['image_id'] ); ?>" alt="<?php esc_attr_e( 'HappyAddons Banner', 'happy-elementor-addons' ); ?>">
-					</a>
+					<?php if(!empty($banner_url)) : ?>
+						</a>
+					<?php endif; ?>
 				<?php endif; ?>
 				<?php if ( ! empty( $promotion_banner['promotion_text'] ) ) : ?>
 					<div class="ha-instruction ha-divider-bottom"><?php echo $promotion_banner['promotion_text']; ?></div>
