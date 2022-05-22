@@ -1,6 +1,7 @@
 = *.*.* - * * 2022 =
 
 - Fix: Mixed content issue solve
+- Fix: Team Member PHP warning notice
 - Tweak: Dynamic date format set for post list and post tab widget
 
 = 3.5.2 - 26 April 2022 =
