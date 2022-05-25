@@ -390,7 +390,6 @@
 				this.elements
 					.$container
 					.justifiedGallery(this.getDefaultSettings());
-				console.log(this.getDefaultSettings());
 
 				initPopupGallery(this.getLightBoxSettings());
 			}
