@@ -219,6 +219,22 @@ class Justified_Gallery extends Base {
 		);
 
 		$this->add_control(
+			'max_row_height',
+			[
+				'label' => __( 'Max row height enable?', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => '',
+				// 'description' => __( 'Enable to display filter menu.', 'happy-elementor-addons' ),
+				'style_transfer' => true,
+				'frontend_available' => true,
+				'render_type' => 'template',
+			]
+		);
+
+		$this->add_control(
 			'margins',
 			[
 				'label' => __( 'Margins', 'happy-elementor-addons' ),

@@ -28,5 +28,8 @@
     "gulp-wp-pot": "^2.5.0",
     "gulp-zip": "^5.1.0",
     "sass": "^1.45.0"
+  },
+  "dependencies": {
+    "gulp-install": "^1.1.0"
   }
 }
