@@ -439,7 +439,7 @@ class Widgets_Manager
 				'js' => [],
 				'vendor' => [
 					'css' => [],
-					'js' => [],
+					'js' => [ 'lord-icon' ],
 				],
 			],
 			'member' => [
@@ -1014,6 +1014,18 @@ class Widgets_Manager
 				'vendor' => [
 					'css' => [],
 					'js' => [],
+				],
+			],
+			'lordicon' => [
+				'cat' => 'creative',
+				'is_active' => true,
+				'title' => __('LordIcon', 'happy-elementor-addons'),
+				'icon' => 'hm hm-icon-box',
+				'css' => [ 'lordicon' ],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [ 'lord-icon' ],
 				],
 			],
 		];
