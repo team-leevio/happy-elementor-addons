@@ -270,7 +270,7 @@ class Widgets_Manager {
 				'icon'   => 'hm hm-user-male',
 				'is_pro' => true,
 			],
-			'post-grid'                 => [
+			'post-grid-new'                 => [
 				'cat'    => 'post',
 				'title'  => __( 'Post Grid', 'happy-elementor-addons' ),
 				'icon'   => 'hm hm-post-grid',
@@ -282,31 +282,31 @@ class Widgets_Manager {
 				'icon'   => 'hm hm-sticky-video',
 				'is_pro' => true,
 			],
-			'product-carousel'          => [
+			'product-carousel-new'          => [
 				'cat'    => 'woocommerce',
 				'title'  => __( 'Product Carousel', 'happy-elementor-addons' ),
 				'icon'   => 'hm hm-Product-Carousel',
 				'is_pro' => true,
 			],
-			'product-category-carousel' => [
+			'product-category-carousel-new' => [
 				'cat'    => 'woocommerce',
 				'title'  => __( 'Product Category Carousel', 'happy-elementor-addons' ),
 				'icon'   => 'hm hm-Category-Carousel',
 				'is_pro' => true,
 			],
-			'product-grid'              => [
+			'product-grid-new'              => [
 				'cat'    => 'woocommerce',
 				'title'  => __( 'Product Grid', 'happy-elementor-addons' ),
 				'icon'   => 'hm hm-Product-Grid',
 				'is_pro' => true,
 			],
-			'product-category-grid'     => [
+			'product-category-grid-new'     => [
 				'cat'    => 'woocommerce',
 				'title'  => __( 'Product Category Grid', 'happy-elementor-addons' ),
 				'icon'   => 'hm hm-Category-Carousel',
 				'is_pro' => true,
 			],
-			'single-product'            => [
+			'single-product-new'            => [
 				'cat'    => 'woocommerce',
 				'title'  => __( 'Single Product', 'happy-elementor-addons' ),
 				'icon'   => 'hm hm-Category-Carousel',
