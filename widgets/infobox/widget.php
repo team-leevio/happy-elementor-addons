@@ -104,7 +104,7 @@ class InfoBox extends Base {
             [
                 'type'        => Controls_Manager::SELECT,
                 'label'       => __('Icon Method', 'happy-elementor-addons'),
-                'description' => sprintf('<a target="_blank" href="%1$s">Learn how to use the Lordicon widget</a>', esc_url('https://happyaddons.com/')),
+                'description' => sprintf('<a target="_blank" href="%1$s">Learn how to use the Lordicon widget</a>', esc_url('https://happyaddons.com/docs/happy-addons-for-elementor/widgets/lord-icon')),
                 'options'     => [
                     'cdn'  => esc_html__('Paste LordIcon URL', 'happy-elementor-addons'),
                     'file' => esc_html__('Upload LordIcon file', 'happy-elementor-addons'),
@@ -124,7 +124,7 @@ class InfoBox extends Base {
                 'label_block' => true,
                 'description' => sprintf(
                     'Paste icon code from <a target="_blank" href="%1$s">lordicon.com</a> <br /><br /> <a target="_blank" href="%2$s">Learn how to get Lordicon CDN</a><br><br>
-                Example: https://cdn.lordicon.com/lupuorrc.json', esc_url('https://lordicon.com/'), esc_url('https://happyaddons.com/docs') 
+                Example: https://cdn.lordicon.com/lupuorrc.json', esc_url('https://lordicon.com/'), esc_url('https://happyaddons.com/docs/happy-addons-for-elementor/widgets/lord-icon')
                 ),
                 'default'     => 'https://cdn.lordicon.com/lupuorrc.json',
                 'condition'   => [
@@ -1323,5 +1323,5 @@ class InfoBox extends Base {
 		<?php
 	}
 
-	
+
 }
