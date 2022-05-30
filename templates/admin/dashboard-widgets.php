@@ -11,6 +11,10 @@ $inactive_widgets = \Happy_Addons\Elementor\Widgets_Manager::get_inactive_widget
 
 $total_widgets_count = count( $widgets );
 
+if ( ! ha_has_pro() && ! empty( $total_widgets_count ) ) {
+	$total_widgets_count = ( $total_widgets_count - 2 );
+}
+
 ?>
 <div class="ha-dashboard-panel">
     <div class="ha-dashboard-panel__header">
