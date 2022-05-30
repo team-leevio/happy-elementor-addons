@@ -1,12 +1,12 @@
 === Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget) ===
 Plugin Name: Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget)
-Version: 3.5.3
+Version: 3.6.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Mega Menu
 Requires at least: 4.7
-Tested up to: 5.9
+Tested up to: 6.0
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -438,12 +438,13 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.5.3 - 30 May 2022 =
+= 3.6.0 - 30 May 2022 =
 
 - New: LordIcon widget
 - Fix: Mixed content issue solve
 - Fix: Team Member PHP warning notice
 - Fix: Justified Grid row height issue
+- Tweak: Added LordIcon support in Info Box & Icon Box widget
 - Tweak: Dynamic date format set for post list and post tab widget
 - Tweak: wpml support for creative button widget
 

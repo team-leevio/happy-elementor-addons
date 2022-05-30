@@ -1,9 +1,10 @@
-= 3.5.3 - 30 May 2022 =
+= 3.6.0 - 30 May 2022 =
 
 - New: LordIcon widget
 - Fix: Mixed content issue solve
 - Fix: Team Member PHP warning notice
 - Fix: Justified Grid row height issue
+- Tweak: Added LordIcon support in Info Box & Icon Box widget
 - Tweak: Dynamic date format set for post list and post tab widget
 - Tweak: wpml support for creative button widget
 
