@@ -5,10 +5,10 @@ namespace Happy_Addons\Elementor;
 use Elementor\Element_Base;
 // use Happy_Addons\Elementor\Dashboard;
 
-defined('ABSPATH') || die();
+defined( 'ABSPATH' ) || die();
 
-class Widgets_Manager
-{
+class Widgets_Manager {
+
 
 	const WIDGETS_DB_KEY = 'happyaddons_inactive_widgets';
 	// public static $catwise_widget_map = [];
@@ -16,17 +16,15 @@ class Widgets_Manager
 	/**
 	 * Initialize
 	 */
-	public static function init()
-	{
-		add_action('elementor/widgets/widgets_registered', [__CLASS__, 'register']);
-		add_action('elementor/frontend/before_render', [__CLASS__, 'add_global_widget_render_attributes']);
+	public static function init() {
+		 add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register'] );
+		add_action( 'elementor/frontend/before_render', [__CLASS__, 'add_global_widget_render_attributes'] );
 	}
 
-	public static function add_global_widget_render_attributes(Element_Base $widget)
-	{
-		if ($widget->get_data('widgetType') === 'global' && method_exists($widget, 'get_original_element_instance')) {
+	public static function add_global_widget_render_attributes( Element_Base $widget ) {
+		if ( $widget->get_data( 'widgetType' ) === 'global' && method_exists( $widget, 'get_original_element_instance' ) ) {
 			$original_instance = $widget->get_original_element_instance();
-			if (method_exists($original_instance, 'get_html_wrapper_class') && strpos($original_instance->get_data('widgetType'), 'ha-') !== false) {
+			if ( method_exists( $original_instance, 'get_html_wrapper_class' ) && strpos( $original_instance->get_data( 'widgetType' ), 'ha-' ) !== false ) {
 				$widget->add_render_attribute('_wrapper', [
 					'class' => $original_instance->get_html_wrapper_class(),
 				]);
@@ -34,31 +32,28 @@ class Widgets_Manager
 		}
 	}
 
-	public static function get_inactive_widgets()
-	{
-		return get_option(self::WIDGETS_DB_KEY, []);
+	public static function get_inactive_widgets() {
+		 return get_option( self::WIDGETS_DB_KEY, [] );
 	}
 
-	public static function save_inactive_widgets($widgets = [])
-	{
-		update_option(self::WIDGETS_DB_KEY, $widgets);
+	public static function save_inactive_widgets( $widgets = [] ) {
+		update_option( self::WIDGETS_DB_KEY, $widgets );
 	}
 
-	public static function get_widgets_map()
-	{
+	public static function get_widgets_map() {
 		$widgets_map = [
 			self::get_base_widget_key() => [
-				'css' => ['common'],
-				'js' => [],
+				'css'    => ['common'],
+				'js'     => [],
 				'vendor' => [
-					'js' => [],
-					'css' => ['happy-icons', 'font-awesome']
-				]
+					'js'  => [],
+					'css' => ['happy-icons', 'font-awesome'],
+				],
 			],
 		];
 
 		$local_widgets_map = self::get_local_widgets_map();
-		$widgets_map = array_merge($widgets_map, $local_widgets_map);
+		$widgets_map       = array_merge( $widgets_map, $local_widgets_map );
 
 		// This will be remove after march/2022 pro relese
 		// $pro_widget_map = array_replace_recursive(self::get_pro_widget_map(), apply_filters( 'happyaddons_get_widgets_map', [] ));
@@ -67,7 +62,7 @@ class Widgets_Manager
 		// $pro_widget_map = apply_filters( 'happyaddons_get_widgets_map', self::get_pro_widget_map() );
 
 		// return array_merge($widgets_map, $pro_widget_map);
-		return apply_filters('happyaddons_get_widgets_map', $widgets_map);
+		return apply_filters( 'happyaddons_get_widgets_map', $widgets_map );
 	}
 
 	/**
@@ -75,307 +70,391 @@ class Widgets_Manager
 	 *
 	 * @return array
 	 */
-	public static function get_pro_widget_map(){
+	public static function get_pro_widget_map() {
 		return [
-			'advanced-heading' => [
-				'cat' => 'general',
-				'title' => __('Advanced Heading', 'happy-elementor-addons'),
-				'icon' => 'hm hm-advanced-heading',
+			'advanced-heading'          => [
+				'cat'    => 'general',
+				'title'  => __( 'Advanced Heading', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-advanced-heading',
 				'is_pro' => true,
 			],
-			'list-group' => [
-				'cat' => 'general',
-				'title' => __('List Group', 'happy-elementor-addons'),
-				'icon' => 'hm hm-list-group',
+			'list-group'                => [
+				'cat'    => 'general',
+				'title'  => __( 'List Group', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-list-group',
 				'is_pro' => true,
 			],
-			'hover-box' => [
-				'cat' => 'creative',
-				'title' => __('Hover Box', 'happy-elementor-addons'),
-				'icon' => 'hm hm-finger-point',
+			'hover-box'                 => [
+				'cat'    => 'creative',
+				'title'  => __( 'Hover Box', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-finger-point',
 				'is_pro' => true,
 			],
-			'countdown' => [
-				'cat' => 'general',
-				'title' => __('Countdown', 'happy-elementor-addons'),
-				'icon' => 'hm hm-refresh-time',
+			'countdown'                 => [
+				'cat'    => 'general',
+				'title'  => __( 'Countdown', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-refresh-time',
 				'is_pro' => true,
 			],
-			'team-carousel' => [
-				'cat' => 'slider-&-carousel',
-				'title' => __('Team Carousel', 'happy-elementor-addons'),
-				'icon' => 'hm hm-team-carousel',
+			'team-carousel'             => [
+				'cat'    => 'slider-&-carousel',
+				'title'  => __( 'Team Carousel', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-team-carousel',
 				'is_pro' => true,
 			],
-			'logo-carousel' => [
-				'cat' => 'slider-&-carousel',
-				'title' => __('Logo Carousel', 'happy-elementor-addons'),
-				'icon' => 'hm hm-logo-carousel',
+			'logo-carousel'             => [
+				'cat'    => 'slider-&-carousel',
+				'title'  => __( 'Logo Carousel', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-logo-carousel',
 				'is_pro' => true,
 			],
-			'source-code' => [
-				'cat' => 'general',
-				'title' => __('Source Code', 'happy-elementor-addons'),
-				'icon' => 'hm hm-code-browser',
+			'source-code'               => [
+				'cat'    => 'general',
+				'title'  => __( 'Source Code', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-code-browser',
 				'is_pro' => true,
 			],
-			'feature-list' => [
-				'cat' => 'general',
-				'title' => __('Feature List', 'happy-elementor-addons'),
-				'icon' => 'hm hm-list-2',
+			'feature-list'              => [
+				'cat'    => 'general',
+				'title'  => __( 'Feature List', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-list-2',
 				'is_pro' => true,
 			],
-			'testimonial-carousel' => [
-				'cat' => 'slider-&-carousel',
-				'title' => __('Testimonial Carousel', 'happy-elementor-addons'),
-				'icon' => 'hm hm-testimonial-carousel',
+			'testimonial-carousel'      => [
+				'cat'    => 'slider-&-carousel',
+				'title'  => __( 'Testimonial Carousel', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-testimonial-carousel',
 				'is_pro' => true,
 			],
-			'advanced-tabs' => [
-				'cat' => 'general',
-				'title' => __('Advanced Tabs', 'happy-elementor-addons'),
-				'icon' => 'hm hm-tab',
+			'advanced-tabs'             => [
+				'cat'    => 'general',
+				'title'  => __( 'Advanced Tabs', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-tab',
 				'is_pro' => true,
 			],
-			'advanced-flip-box' => [
-				'cat' => 'creative',
-				'title' => __('Advanced Flip Box', 'happy-elementor-addons'),
-				'icon' => 'hm hm-flip-card1',
+			'advanced-flip-box'         => [
+				'cat'    => 'creative',
+				'title'  => __( 'Advanced Flip Box', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-flip-card1',
 				'is_pro' => true,
 			],
-			'animated-text' => [
-				'cat' => 'creative',
-				'title' => __('Animated Text', 'happy-elementor-addons'),
-				'icon' => 'hm hm-text-animation',
+			'animated-text'             => [
+				'cat'    => 'creative',
+				'title'  => __( 'Animated Text', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-text-animation',
 				'is_pro' => true,
 			],
-			'timeline' => [
-				'cat' => 'general',
-				'title' => __('Timeline', 'happy-elementor-addons'),
-				'icon' => 'hm hm-timeline',
+			'timeline'                  => [
+				'cat'    => 'general',
+				'title'  => __( 'Timeline', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-timeline',
 				'is_pro' => true,
 			],
-			'instagram-feed' => [
-				'cat' => 'social-media',
-				'title' => __('Instagram Feed', 'happy-elementor-addons'),
-				'icon' => 'hm hm-instagram',
+			'instagram-feed'            => [
+				'cat'    => 'social-media',
+				'title'  => __( 'Instagram Feed', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-instagram',
 				'is_pro' => true,
 			],
-			'scrolling-image' => [
-				'cat' => 'creative',
-				'title' => __('Scrolling Image', 'happy-elementor-addons'),
-				'icon' => 'hm hm-scrolling-image',
+			'scrolling-image'           => [
+				'cat'    => 'creative',
+				'title'  => __( 'Scrolling Image', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-scrolling-image',
 				'is_pro' => true,
 			],
-			'advanced-pricing-table' => [
-				'cat' => 'marketing',
-				'title' => __('Advanced Pricing Table', 'happy-elementor-addons'),
-				'icon' => 'hm hm-file-cabinet',
+			'advanced-pricing-table'    => [
+				'cat'    => 'marketing',
+				'title'  => __( 'Advanced Pricing Table', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-file-cabinet',
 				'is_pro' => true,
 			],
-			'business-hour' => [
-				'cat' => 'general',
-				'title' => __('Business Hour', 'happy-elementor-addons'),
-				'icon' => 'hm hm-hand-watch',
+			'business-hour'             => [
+				'cat'    => 'general',
+				'title'  => __( 'Business Hour', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-hand-watch',
 				'is_pro' => true,
 			],
-			'accordion' => [
-				'cat' => 'general',
-				'title' => __('Advanced Accordion', 'happy-elementor-addons'),
-				'icon' => 'hm hm-accordion-vertical',
+			'accordion'                 => [
+				'cat'    => 'general',
+				'title'  => __( 'Advanced Accordion', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-accordion-vertical',
 				'is_pro' => true,
 			],
-			'toggle' => [
-				'cat' => 'general',
-				'title' => __('Advanced Toggle', 'happy-elementor-addons'),
-				'icon' => 'hm hm-accordion-vertical',
+			'toggle'                    => [
+				'cat'    => 'general',
+				'title'  => __( 'Advanced Toggle', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-accordion-vertical',
 				'is_pro' => true,
 			],
-			'promo-box' => [
-				'cat' => 'marketing',
-				'title' => __('Promo Box', 'happy-elementor-addons'),
-				'icon' => 'hm hm-promo',
+			'promo-box'                 => [
+				'cat'    => 'marketing',
+				'title'  => __( 'Promo Box', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-promo',
 				'is_pro' => true,
 			],
-			'hotspots' => [
-				'cat' => 'creative',
-				'title' => __('Hotspots', 'happy-elementor-addons'),
-				'icon' => 'hm hm-accordion-vertical',
+			'hotspots'                  => [
+				'cat'    => 'creative',
+				'title'  => __( 'Hotspots', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-accordion-vertical',
 				'is_pro' => true,
 			],
-			'price-menu' => [
-				'cat' => 'marketing',
-				'title' => __('Price Menu', 'happy-elementor-addons'),
-				'icon' => 'hm hm-menu-price',
+			'price-menu'                => [
+				'cat'    => 'marketing',
+				'title'  => __( 'Price Menu', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-menu-price',
 				'is_pro' => true,
 			],
-			'facebook-feed' => [
-				'cat' => 'social-media',
-				'title' => __('Facebook Feed', 'happy-elementor-addons'),
-				'icon' => 'hm hm-facebook',
+			'facebook-feed'             => [
+				'cat'    => 'social-media',
+				'title'  => __( 'Facebook Feed', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-facebook',
 				'is_pro' => true,
 			],
-			'line-chart' => [
-				'cat' => 'chart',
-				'title' => __('Line Chart', 'happy-elementor-addons'),
-				'icon' => 'hm hm-line-graph-pointed',
+			'line-chart'                => [
+				'cat'    => 'chart',
+				'title'  => __( 'Line Chart', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-line-graph-pointed',
 				'is_pro' => true,
 			],
-			'pie-chart' => [
-				'cat' => 'chart',
-				'title' => __('Pie & Doughnut Chart', 'happy-elementor-addons'),
-				'icon' => 'hm hm-graph-pie',
+			'pie-chart'                 => [
+				'cat'    => 'chart',
+				'title'  => __( 'Pie & Doughnut Chart', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-graph-pie',
 				'is_pro' => true,
 			],
-			'polar-chart' => [
-				'cat' => 'chart',
-				'title' => __('Polar area Chart', 'happy-elementor-addons'),
-				'icon' => 'hm hm-graph-pie',
+			'polar-chart'               => [
+				'cat'    => 'chart',
+				'title'  => __( 'Polar area Chart', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-graph-pie',
 				'is_pro' => true,
 			],
-			'radar-chart' => [
-				'cat' => 'chart',
-				'title' => __('Radar Chart', 'happy-elementor-addons'),
-				'icon' => 'hm hm-graph-pie',
+			'radar-chart'               => [
+				'cat'    => 'chart',
+				'title'  => __( 'Radar Chart', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-graph-pie',
 				'is_pro' => true,
 			],
-			'post-tiles' => [
-				'cat' => 'post',
-				'title' => __('Post Tiles', 'happy-elementor-addons'),
-				'icon' => 'hm hm-article',
+			'post-tiles'                => [
+				'cat'    => 'post',
+				'title'  => __( 'Post Tiles', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-article',
 				'is_pro' => true,
 			],
-			'post-carousel' => [
-				'cat' => 'post',
-				'title' => __('Post Carousel', 'happy-elementor-addons'),
-				'icon' => 'hm hm-graph-pie',
+			'post-carousel'             => [
+				'cat'    => 'post',
+				'title'  => __( 'Post Carousel', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-graph-pie',
 				'is_pro' => true,
 			],
-			'smart-post-list' => [
-				'cat' => 'post',
-				'title' => __('Smart Post List', 'happy-elementor-addons'),
-				'icon' => 'hm hm-post-list',
+			'smart-post-list'           => [
+				'cat'    => 'post',
+				'title'  => __( 'Smart Post List', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-post-list',
 				'is_pro' => true,
 			],
-			'breadcrumbs' => [
-				'cat' => 'general',
-				'title' => __('Breadcrumbs', 'happy-elementor-addons'),
-				'icon' => 'hm hm-breadcrumbs',
+			'breadcrumbs'               => [
+				'cat'    => 'general',
+				'title'  => __( 'Breadcrumbs', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-breadcrumbs',
 				'is_pro' => true,
 			],
-			'twitter-carousel' => [
-				'cat' => 'social-media',
-				'title' => __('Twitter Feed Carousel', 'happy-elementor-addons'),
-				'icon' => 'hm hm-twitter',
+			'twitter-carousel'          => [
+				'cat'    => 'social-media',
+				'title'  => __( 'Twitter Feed Carousel', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-twitter',
 				'is_pro' => true,
 			],
-			'author-list' => [
-				'cat' => 'post',
-				'title' => __('Author List', 'happy-elementor-addons'),
-				'icon' => 'hm hm-user-male',
+			'author-list'               => [
+				'cat'    => 'post',
+				'title'  => __( 'Author List', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-user-male',
 				'is_pro' => true,
 			],
-			'post-grid' => [
-				'cat' => 'post',
-				'title' => __('Post Grid', 'happy-elementor-addons'),
-				'icon' => 'hm hm-post-grid',
+			'post-grid'                 => [
+				'cat'    => 'post',
+				'title'  => __( 'Post Grid', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-post-grid',
 				'is_pro' => true,
 			],
-			'sticky-video' => [
-				'cat' => 'general',
-				'title' => __('Sticky Video', 'happy-elementor-addons'),
-				'icon' => 'hm hm-sticky-video',
+			'sticky-video'              => [
+				'cat'    => 'general',
+				'title'  => __( 'Sticky Video', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-sticky-video',
 				'is_pro' => true,
 			],
-			'product-carousel' => [
-				'cat' => 'woocommerce',
-				'title' => __('Product Carousel', 'happy-elementor-addons'),
-				'icon' => 'hm hm-Product-Carousel',
+			'product-carousel'          => [
+				'cat'    => 'woocommerce',
+				'title'  => __( 'Product Carousel', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-Product-Carousel',
 				'is_pro' => true,
 			],
 			'product-category-carousel' => [
-				'cat' => 'woocommerce',
-				'title' => __('Product Category Carousel', 'happy-elementor-addons'),
-				'icon' => 'hm hm-Category-Carousel',
+				'cat'    => 'woocommerce',
+				'title'  => __( 'Product Category Carousel', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-Category-Carousel',
 				'is_pro' => true,
 			],
-			'product-grid' => [
-				'cat' => 'woocommerce',
-				'title' => __('Product Grid', 'happy-elementor-addons'),
-				'icon' => 'hm hm-Product-Grid',
+			'product-grid'              => [
+				'cat'    => 'woocommerce',
+				'title'  => __( 'Product Grid', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-Product-Grid',
 				'is_pro' => true,
 			],
-			'product-category-grid' => [
-				'cat' => 'woocommerce',
-				'title' => __('Product Category Grid', 'happy-elementor-addons'),
-				'icon' => 'hm hm-Category-Carousel',
+			'product-category-grid'     => [
+				'cat'    => 'woocommerce',
+				'title'  => __( 'Product Category Grid', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-Category-Carousel',
 				'is_pro' => true,
 			],
-			'single-product' => [
-				'cat' => 'woocommerce',
-				'title' => __('Single Product', 'happy-elementor-addons'),
-				'icon' => 'hm hm-Category-Carousel',
+			'single-product'            => [
+				'cat'    => 'woocommerce',
+				'title'  => __( 'Single Product', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-Category-Carousel',
 				'is_pro' => true,
 			],
-			'advanced-data-table' => [
-				'cat' => 'general',
-				'title' => __('Advanced Data Table', 'happy-elementor-addons'),
-				'icon' => 'hm hm-data-table',
+			'advanced-data-table'       => [
+				'cat'    => 'general',
+				'title'  => __( 'Advanced Data Table', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-data-table',
 				'is_pro' => true,
 			],
-			'modal-popup' => [
-				'cat' => 'general',
-				'title' => __('Modal Popup', 'happy-elementor-addons'),
-				'icon' => 'hm hm-popup',
+			'modal-popup'               => [
+				'cat'    => 'general',
+				'title'  => __( 'Modal Popup', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-popup',
 				'is_pro' => true,
 			],
-			'one-page-nav' => [
-				'cat' => 'creative',
-				'title' => __('One Page Nav', 'happy-elementor-addons'),
-				'icon' => 'hm hm-dot-navigation',
+			'one-page-nav'              => [
+				'cat'    => 'creative',
+				'title'  => __( 'One Page Nav', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-dot-navigation',
 				'is_pro' => true,
 			],
-			'advanced-slider' => [
-				'cat' => 'slider-&-carousel',
-				'title' => __('Advanced Slider', 'happy-elementor-addons'),
-				'icon' => 'hm hm-slider',
+			'advanced-slider'           => [
+				'cat'    => 'slider-&-carousel',
+				'title'  => __( 'Advanced Slider', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-slider',
 				'is_pro' => true,
 			],
-			'mini-cart' => [
-				'cat' => 'woocommerce',
-				'title' => __('Mini Cart', 'happy-elementor-addons'),
-				'icon' => 'hm hm-mini-cart',
+			'mini-cart'                 => [
+				'cat'    => 'woocommerce',
+				'title'  => __( 'Mini Cart', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-mini-cart',
 				'is_pro' => true,
 			],
-			'wc-cart' => [
-				'cat' => 'woocommerce',
-				'title' => __('WooCommerce Cart', 'happy-elementor-addons'),
-				'icon' => 'hm hm-cart',
+			'wc-cart'                   => [
+				'cat'    => 'woocommerce',
+				'title'  => __( 'WooCommerce Cart', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-cart',
 				'is_pro' => true,
 			],
-			'wc-checkout' => [
-				'cat' => 'woocommerce',
-				'title' => __('WooCommerce Checkout', 'happy-elementor-addons'),
-				'icon' => 'hm hm-cart',
+			'wc-checkout'               => [
+				'cat'    => 'woocommerce',
+				'title'  => __( 'WooCommerce Checkout', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-cart',
 				'is_pro' => true,
 			],
-			'image-scroller' => [
-				'cat' => 'creative',
-				'title' => __('Single Image Scroll', 'happy-elementor-addons'),
-				'icon' => 'hm hm-image-scroll',
+			'image-scroller'            => [
+				'cat'    => 'creative',
+				'title'  => __( 'Single Image Scroll', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-image-scroll',
 				'is_pro' => true,
 			],
-			'nav-menu' => [
-				'cat' => 'general',
-				'title' => __('Happy Menu', 'happy-elementor-addons'),
-				'icon' => 'hm hm-mega-menu',
+			'nav-menu'                  => [
+				'cat'    => 'general',
+				'title'  => __( 'Happy Menu', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-mega-menu',
 				'is_pro' => true,
 			],
-			'off-canvas' => [
-				'cat' => 'creative',
-				'title' => __('Off Canvas', 'happy-elementor-addons'),
-				'icon' => 'hm hm-offcanvas-menu',
+			'off-canvas'                => [
+				'cat'    => 'creative',
+				'title'  => __( 'Off Canvas', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-offcanvas-menu',
 				'is_pro' => true,
+			],
+			'unfold'                    => [
+				'cat'    => 'general',
+				'title'  => __( 'Unfold', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-unfold-paper',
+				'is_pro' => true,
+				'css'    => ['unfold'],
+				'js'     => [],
+				'vendor' => [
+					'css' => [],
+					'js'  => [],
+				],
+			],
+			'edd-product-grid'          => [
+				'cat'    => 'happy-elementor-addons',
+				'title'  => __( 'EDD Product Grid', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-product-grid',
+				'is_pro' => true,
+				'css'    => ['edd-product-grid', 'edd-quick-view'],
+				'js'     => [],
+				'vendor' => [
+					'css' => ['elementor-icons-fa-solid', 'magnific-popup'],
+					'js'  => ['jquery-magnific-popup'],
+				],
+			],
+			'edd-product-carousel'      => [
+				'cat'    => 'happy-elementor-addons',
+				'title'  => __( 'EDD Product Carousel', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-Product-Carousel',
+				'is_pro' => true,
+				'css'    => ['edd-product-carousel', 'edd-quick-view'],
+				'js'     => [],
+				'vendor' => [
+					'css' => ['slick', 'slick-theme', 'magnific-popup'],
+					'js'  => ['jquery-slick', 'jquery-magnific-popup'],
+				],
+			],
+			'edd-single-product'        => [
+				'cat'    => 'happy-elementor-addons',
+				'title'  => __( 'EDD Single Product', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-Category-Carousel',
+				'is_pro' => true,
+				'css'    => ['edd-single-product', 'edd-quick-view'],
+				'js'     => [],
+				'vendor' => [
+					'css' => ['elementor-icons-fa-solid', 'magnific-popup'],
+					'js'  => ['jquery-magnific-popup'],
+				],
+			],
+			'edd-category-grid'         => [
+				'cat'    => 'happy-elementor-addons',
+				'title'  => __( 'EDD Category Grid', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-Category-Carousel',
+				'is_pro' => true,
+				'css'    => ['product-category-grid'],
+				'js'     => [],
+				'vendor' => [
+					'css' => [],
+					'js'  => [],
+				],
+			],
+			'edd-category-carousel'     => [
+				'cat'    => 'happy-elementor-addons',
+				'title'  => __( 'EDD Category Carousel', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-Category-Carousel',
+				'is_pro' => true,
+				'css'    => ['edd-category-carousel'],
+				'js'     => [],
+				'vendor' => [
+					'css' => ['slick', 'slick-theme'],
+					'js'  => ['jquery-slick'],
+				],
+			],
+			'google-map'                => [
+				'cat'    => 'general',
+				'title'  => __( 'Advanced Google Map', 'happy-elementor-addons' ),
+				'icon'   => 'hm hm-map-marker',
+				'is_pro' => true,
+				'css'    => ['advanced-google-maps'],
+				'js'     => [],
+				'vendor' => [
+					'css' => [],
+					'js'  => ['ha-google-maps'],
+				],
 			],
 		];
 	}
@@ -385,663 +464,660 @@ class Widgets_Manager
 	 *
 	 * @return array
 	 */
-	public static function get_local_widgets_map()
-	{
+	public static function get_local_widgets_map() {
 		// All the widgets are listed below with respective map
 
 		return [
-			'infobox' => [
-				'cat' => 'general',
+			'infobox'             => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-info-box',
-				'title' => __('Info Box', 'happy-elementor-addons'),
-				'icon' => 'hm hm-info',
-				'css' => ['btn', 'infobox',],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-info-box',
+				'title'     => __( 'Info Box', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-info',
+				'css'       => ['btn', 'infobox'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'card' => [
-				'cat' => 'creative',
+			'card'                => [
+				'cat'       => 'creative',
 				'is_active' => false,
-				'demo' => 'https://happyaddons.com/go/demo-card',
-				'title' => __('Card', 'happy-elementor-addons'),
-				'icon' => 'hm hm-card',
-				'css' => ['btn', 'badge', 'card'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-card',
+				'title'     => __( 'Card', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-card',
+				'css'       => ['btn', 'badge', 'card'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'cf7' => [
-				'cat' => 'forms',
+			'cf7'                 => [
+				'cat'       => 'forms',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-contact-form7',
-				'title' => __('Contact Form 7', 'happy-elementor-addons'),
-				'icon' => 'hm hm-form',
-				'css' => [],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-contact-form7',
+				'title'     => __( 'Contact Form 7', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-form',
+				'css'       => [],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'icon-box' => [
-				'cat' => 'general',
+			'icon-box'            => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-icon-box',
-				'title' => __('Icon Box', 'happy-elementor-addons'),
-				'icon' => 'hm hm-icon-box',
-				'css' => ['badge', 'icon-box'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-icon-box',
+				'title'     => __( 'Icon Box', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-icon-box',
+				'css'       => ['badge', 'icon-box'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [ 'lord-icon' ],
+					'js'  => [ 'lord-icon' ],
 				],
 			],
-			'member' => [
-				'cat' => 'general',
+			'member'              => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-team-member',
-				'title' => __('Team Member', 'happy-elementor-addons'),
-				'icon' => 'hm hm-team-member',
-				'css' => ['btn', 'member'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-team-member',
+				'title'     => __( 'Team Member', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-team-member',
+				'css'       => ['btn', 'member'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'review' => [
-				'cat' => 'general',
+			'review'              => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-review',
-				'title' => __('Review', 'happy-elementor-addons'),
-				'icon' => 'hm hm-review',
-				'css' => ['review'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-review',
+				'title'     => __( 'Review', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-review',
+				'css'       => ['review'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'image-compare' => [
-				'cat' => 'general',
+			'image-compare'       => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-image-compare',
-				'title' => __('Image Compare', 'happy-elementor-addons'),
-				'icon' => 'hm hm-image-compare',
-				'css' => ['image-comparison'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-image-compare',
+				'title'     => __( 'Image Compare', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-image-compare',
+				'css'       => ['image-comparison'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => ['twentytwenty'],
-					'js' => ['jquery-event-move', 'jquery-twentytwenty', 'imagesloaded'],
+					'js'  => ['jquery-event-move', 'jquery-twentytwenty', 'imagesloaded'],
 				],
 			],
-			'justified-gallery' => [
-				'cat' => 'creative',
+			'justified-gallery'   => [
+				'cat'       => 'creative',
 				'is_active' => false,
-				'demo' => 'https://happyaddons.com/go/demo-justified-grid',
-				'title' => __('Justified Grid', 'happy-elementor-addons'),
-				'icon' => 'hm hm-brick-wall',
-				'css' => ['justified-gallery', 'gallery-filter'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-justified-grid',
+				'title'     => __( 'Justified Grid', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-brick-wall',
+				'css'       => ['justified-gallery', 'gallery-filter'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => ['justifiedGallery', 'magnific-popup'],
-					'js' => ['jquery-justifiedGallery', 'jquery-magnific-popup'],
+					'js'  => ['jquery-justifiedGallery', 'jquery-magnific-popup'],
 				],
 			],
-			'image-grid' => [
-				'cat' => 'general',
+			'image-grid'          => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-image-grid',
-				'title' => __('Image Grid', 'happy-elementor-addons'),
-				'icon' => 'hm hm-grid-even',
-				'css' => ['image-grid', 'gallery-filter'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-image-grid',
+				'title'     => __( 'Image Grid', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-grid-even',
+				'css'       => ['image-grid', 'gallery-filter'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => ['magnific-popup'],
-					'js' => ['jquery-isotope', 'jquery-magnific-popup', 'imagesloaded'],
+					'js'  => ['jquery-isotope', 'jquery-magnific-popup', 'imagesloaded'],
 				],
 			],
-			'slider' => [
-				'cat' => 'slider-&-carousel',
+			'slider'              => [
+				'cat'       => 'slider-&-carousel',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-slider',
-				'title' => __('Slider', 'happy-elementor-addons'),
-				'icon' => 'hm hm-image-slider',
-				'css' => ['slider-carousel'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-slider',
+				'title'     => __( 'Slider', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-image-slider',
+				'css'       => ['slider-carousel'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => ['slick', 'slick-theme'],
-					'js' => ['jquery-slick'],
+					'js'  => ['jquery-slick'],
 				],
 			],
-			'carousel' => [
-				'cat' => 'slider-&-carousel',
+			'carousel'            => [
+				'cat'       => 'slider-&-carousel',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-image-carousel',
-				'title' => __('Image Carousel', 'happy-elementor-addons'),
-				'icon' => 'hm hm-carousal',
-				'css' => ['slider-carousel'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-image-carousel',
+				'title'     => __( 'Image Carousel', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-carousal',
+				'css'       => ['slider-carousel'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => ['slick', 'slick-theme'],
-					'js' => ['jquery-slick'],
+					'js'  => ['jquery-slick'],
 				],
 			],
-			'skills' => [
-				'cat' => 'general',
+			'skills'              => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-skill-bar',
-				'title' => __('Skill Bars', 'happy-elementor-addons'),
-				'icon' => 'hm hm-progress-bar',
-				'css' => ['skills'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-skill-bar',
+				'title'     => __( 'Skill Bars', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-progress-bar',
+				'css'       => ['skills'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => ['elementor-waypoints', 'jquery-numerator'],
+					'js'  => ['elementor-waypoints', 'jquery-numerator'],
 				],
 			],
-			'gradient-heading' => [
-				'cat' => 'creative',
+			'gradient-heading'    => [
+				'cat'       => 'creative',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-gradient-heading',
-				'title' => __('Gradient Heading', 'happy-elementor-addons'),
-				'icon' => 'hm hm-drag',
-				'css' => ['gradient-heading'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-gradient-heading',
+				'title'     => __( 'Gradient Heading', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-drag',
+				'css'       => ['gradient-heading'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'wpform' => [
-				'cat' => 'forms',
+			'wpform'              => [
+				'cat'       => 'forms',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-wpforms',
-				'title' => __('WPForms', 'happy-elementor-addons'),
-				'icon' => 'hm hm-form',
-				'css' => [],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-wpforms',
+				'title'     => __( 'WPForms', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-form',
+				'css'       => [],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'ninjaform' => [
-				'cat' => 'forms',
+			'ninjaform'           => [
+				'cat'       => 'forms',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-ninja-forms',
-				'title' => __('Ninja Forms', 'happy-elementor-addons'),
-				'icon' => 'hm hm-form',
-				'css' => [],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-ninja-forms',
+				'title'     => __( 'Ninja Forms', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-form',
+				'css'       => [],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'calderaform' => [
-				'cat' => 'forms',
+			'calderaform'         => [
+				'cat'       => 'forms',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-caldera-forms',
-				'title' => __('Caldera Forms', 'happy-elementor-addons'),
-				'icon' => 'hm hm-form',
-				'css' => [],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-caldera-forms',
+				'title'     => __( 'Caldera Forms', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-form',
+				'css'       => [],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'weform' => [
-				'cat' => 'forms',
+			'weform'              => [
+				'cat'       => 'forms',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-weforms',
-				'title' => __('weForms', 'happy-elementor-addons'),
-				'icon' => 'hm hm-form',
-				'css' => [],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-weforms',
+				'title'     => __( 'weForms', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-form',
+				'css'       => [],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'logo-grid' => [
-				'cat' => 'general',
+			'logo-grid'           => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-logo-grid',
-				'title' => __('Logo Grid', 'happy-elementor-addons'),
-				'icon' => 'hm hm-logo-grid',
-				'css' => ['logo-grid'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-logo-grid',
+				'title'     => __( 'Logo Grid', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-logo-grid',
+				'css'       => ['logo-grid'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'dual-button' => [
-				'cat' => 'general',
+			'dual-button'         => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-dual-button',
-				'title' => __('Dual Button', 'happy-elementor-addons'),
-				'icon' => 'hm hm-accordion-horizontal',
-				'css' => ['dual-btn'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-dual-button',
+				'title'     => __( 'Dual Button', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-accordion-horizontal',
+				'css'       => ['dual-btn'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'testimonial' => [
-				'cat' => 'general',
+			'testimonial'         => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-testimonial',
-				'title' => __('Testimonial', 'happy-elementor-addons'),
-				'icon' => 'hm hm-testimonial',
-				'css' => ['testimonial'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-testimonial',
+				'title'     => __( 'Testimonial', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-testimonial',
+				'css'       => ['testimonial'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'number' => [
-				'cat' => 'creative',
+			'number'              => [
+				'cat'       => 'creative',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-number-widget',
-				'title' => __('Number', 'happy-elementor-addons'),
-				'icon' => 'hm hm-madel',
-				'css' => ['number'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-number-widget',
+				'title'     => __( 'Number', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-madel',
+				'css'       => ['number'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => ['elementor-waypoints', 'jquery-numerator'],
+					'js'  => ['elementor-waypoints', 'jquery-numerator'],
 				],
 			],
-			'flip-box' => [
-				'cat' => 'creative',
+			'flip-box'            => [
+				'cat'       => 'creative',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/gp/demo-flip-box',
-				'title' => __('Flip Box', 'happy-elementor-addons'),
-				'icon' => 'hm hm-flip-card1',
-				'css' => ['flip-box'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/gp/demo-flip-box',
+				'title'     => __( 'Flip Box', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-flip-card1',
+				'css'       => ['flip-box'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'calendly' => [
-				'cat' => 'general',
+			'calendly'            => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-calendly',
-				'title' => __('Calendly', 'happy-elementor-addons'),
-				'icon' => 'hm hm-calendar',
-				'css' => [],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-calendly',
+				'title'     => __( 'Calendly', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-calendar',
+				'css'       => [],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'pricing-table' => [
-				'cat' => 'marketing',
+			'pricing-table'       => [
+				'cat'       => 'marketing',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-pricing-table',
-				'title' => __('Pricing Table', 'happy-elementor-addons'),
-				'icon' => 'hm hm-file-cabinet',
-				'css' => ['pricing-table'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-pricing-table',
+				'title'     => __( 'Pricing Table', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-file-cabinet',
+				'css'       => ['pricing-table'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'step-flow' => [
-				'cat' => 'general',
+			'step-flow'           => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'demo' => 'https://happyaddons.com/go/demo-step-flow',
-				'title' => __('Step Flow', 'happy-elementor-addons'),
-				'icon' => 'hm hm-step-flow',
-				'css' => ['steps-flow'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => 'https://happyaddons.com/go/demo-step-flow',
+				'title'     => __( 'Step Flow', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-step-flow',
+				'css'       => ['steps-flow'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'gravityforms' => [
-				'cat' => 'forms',
+			'gravityforms'        => [
+				'cat'       => 'forms',
 				'is_active' => true,
-				'title' => __('Gravity Forms', 'happy-elementor-addons'),
-				'icon' => 'hm hm-form',
-				'css' => [],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Gravity Forms', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-form',
+				'css'       => [],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'news-ticker' => [
-				'cat' => 'general',
+			'news-ticker'         => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'title' => __('News Ticker', 'happy-elementor-addons'),
-				'icon' => 'hm hm-slider',
-				'css' => ['news-ticker'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'News Ticker', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-slider',
+				'css'       => ['news-ticker'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => ['jquery-keyframes'],
+					'js'  => ['jquery-keyframes'],
 				],
 			],
-			'fun-factor' => [
-				'cat' => 'creative',
+			'fun-factor'          => [
+				'cat'       => 'creative',
 				'is_active' => true,
-				'title' => __('Fun Factor', 'happy-elementor-addons'),
-				'icon' => 'hm hm-slider',
-				'css' => ['fun-factor'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Fun Factor', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-slider',
+				'css'       => ['fun-factor'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => ['elementor-waypoints', 'jquery-numerator'],
+					'js'  => ['elementor-waypoints', 'jquery-numerator'],
 				],
 			],
-			'bar-chart' => [
-				'cat' => 'chart',
+			'bar-chart'           => [
+				'cat'       => 'chart',
 				'is_active' => true,
-				'demo' => '',
-				'title' => __('Bar Chart', 'happy-elementor-addons'),
-				'icon' => 'hm hm-graph-bar',
-				'css' => ['chart'],
-				'js' => [],
-				'vendor' => [
+				'demo'      => '',
+				'title'     => __( 'Bar Chart', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-graph-bar',
+				'css'       => ['chart'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => ['chart-js'],
+					'js'  => ['chart-js'],
 				],
 			],
-			'social-icons' => [
-				'cat' => 'social-media',
+			'social-icons'        => [
+				'cat'       => 'social-media',
 				'is_active' => true,
-				'title' => __('Social Icons', 'happy-elementor-addons'),
-				'icon' => 'hm hm-bond2',
-				'css' => ['social-icons'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Social Icons', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-bond2',
+				'css'       => ['social-icons'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => ['hover-css'],
-					'js' => [],
-				]
-			],
-			'twitter-feed' => [
-				'cat' => 'social-media',
-				'is_active' => true,
-				'title' => __('Twitter Feed', 'happy-elementor-addons'),
-				'icon' => 'hm hm-twitter-feed',
-				'css' => ['twitter-feed'],
-				'js' => [],
-				'vendor' => [
-					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'post-list' => [
-				'cat' => 'post',
+			'twitter-feed'        => [
+				'cat'       => 'social-media',
 				'is_active' => true,
-				'title' => __('Post List', 'happy-elementor-addons'),
-				'icon' => 'hm hm-post-list',
-				'css' => ['post-list'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Twitter Feed', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-twitter-feed',
+				'css'       => ['twitter-feed'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'post-tab' => [
-				'cat' => 'post',
+			'post-list'           => [
+				'cat'       => 'post',
 				'is_active' => true,
-				'title' => __('Post Tab', 'happy-elementor-addons'),
-				'icon' => 'hm hm-post-tab',
-				'css' => ['post-tab'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Post List', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-post-list',
+				'css'       => ['post-list'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'taxonomy-list' => [
-				'cat' => 'post',
+			'post-tab'            => [
+				'cat'       => 'post',
 				'is_active' => true,
-				'title' => __('Taxonomy List', 'happy-elementor-addons'),
-				'icon' => 'hm hm-clip-board',
-				'css' => ['taxonomy-list'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Post Tab', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-post-tab',
+				'css'       => ['post-tab'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
+				],
+			],
+			'taxonomy-list'       => [
+				'cat'       => 'post',
+				'is_active' => true,
+				'title'     => __( 'Taxonomy List', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-clip-board',
+				'css'       => ['taxonomy-list'],
+				'js'        => [],
+				'vendor'    => [
+					'css' => [],
+					'js'  => [],
 				],
 			],
 			'threesixty-rotation' => [
-				'cat' => 'general',
+				'cat'       => 'general',
 				'is_active' => true,
-				'title' => __('360° Rotation', 'happy-elementor-addons'),
-				'icon' => 'hm hm-3d-rotate',
-				'css' => ['threesixty-rotation'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( '360° Rotation', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-3d-rotate',
+				'css'       => ['threesixty-rotation'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => ['circlr', 'ha-simple-magnify'],
+					'js'  => ['circlr', 'ha-simple-magnify'],
 				],
 			],
-			'fluent-form' => [
-				'cat' => 'forms',
+			'fluent-form'         => [
+				'cat'       => 'forms',
 				'is_active' => true,
-				'title' => __('Fluent Form', 'happy-elementor-addons'),
-				'icon' => 'hm hm-form',
-				'css' => [],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Fluent Form', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-form',
+				'css'       => [],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'data-table' => [
-				'cat' => 'general',
+			'data-table'          => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'title' => __('Data Table', 'happy-elementor-addons'),
-				'icon' => 'hm hm-data-table',
-				'css' => ['data-table'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Data Table', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-data-table',
+				'css'       => ['data-table'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
 			'horizontal-timeline' => [
-				'cat' => 'general',
+				'cat'       => 'general',
 				'is_active' => true,
-				'title' => __('Horizontal Timeline', 'happy-elementor-addons'),
-				'icon' => 'hm hm-timeline',
-				'css' => ['horizontal-timeline'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Horizontal Timeline', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-timeline',
+				'css'       => ['horizontal-timeline'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => ['slick', 'slick-theme', 'magnific-popup'],
-					'js' => ['jquery-slick', 'jquery-magnific-popup'],
+					'js'  => ['jquery-slick', 'jquery-magnific-popup'],
 				],
 			],
-			'social-share' => [
-				'cat' => 'social-media',
+			'social-share'        => [
+				'cat'       => 'social-media',
 				'is_active' => true,
-				'title' => __('Social Share', 'happy-elementor-addons'),
-				'icon' => 'hm hm-share',
-				'css' => ['social-share'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Social Share', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-share',
+				'css'       => ['social-share'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => ['sharer-js'],
-				]
+					'js'  => ['sharer-js'],
+				],
 			],
-			'image-hover-effect' => [
-				'cat' => 'creative',
+			'image-hover-effect'  => [
+				'cat'       => 'creative',
 				'is_active' => true,
-				'title' => __('Image Hover Effect', 'happy-elementor-addons'),
-				'icon' => 'hm hm-cursor-hover-click',
-				'css' => ['image-hover-effect'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Image Hover Effect', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-cursor-hover-click',
+				'css'       => ['image-hover-effect'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
-				]
+					'js'  => [],
+				],
 			],
-			'event-calendar' => [
-				'cat' => 'general',
+			'event-calendar'      => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'title' => __('Event Calendar', 'happy-elementor-addons'),
-				'icon' => 'hm hm-event-calendar',
-				'css' => ['event-calendar'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Event Calendar', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-event-calendar',
+				'css'       => ['event-calendar'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => ['ha-fullcalendar'],
-					'js' => ['ha-fullcalendar', 'ha-fullcalendar-locales'],
+					'js'  => ['ha-fullcalendar', 'ha-fullcalendar-locales'],
 				],
 			],
-			'link-hover' => [
-				'cat' => 'creative',
+			'link-hover'          => [
+				'cat'       => 'creative',
 				'is_active' => true,
-				'title' => __('Animated Link', 'happy-elementor-addons'),
-				'icon' => 'hm hm-animated-link',
-				'css' => ['link-hover'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Animated Link', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-animated-link',
+				'css'       => ['link-hover'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'mailchimp' => [
-				'cat' => 'forms',
+			'mailchimp'           => [
+				'cat'       => 'forms',
 				'is_active' => true,
-				'title' => __('MailChimp', 'happy-elementor-addons'),
-				'icon' => 'hm hm-mail-chimp',
-				'css' => ['mailchimp'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'MailChimp', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-mail-chimp',
+				'css'       => ['mailchimp'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'image-accordion' => [
-				'cat' => 'general',
+			'image-accordion'     => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'title' => __('Image Accordion', 'happy-elementor-addons'),
-				'icon' => 'hm hm-slider-image',
-				'css' => ['image-accordion'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Image Accordion', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-slider-image',
+				'css'       => ['image-accordion'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'content-switcher' => [
-				'cat' => 'general',
+			'content-switcher'    => [
+				'cat'       => 'general',
 				'is_active' => true,
-				'title' => __('Content Switcher', 'happy-elementor-addons'),
-				'icon' => 'hm hm-switcher',
-				'css' => ['content-switcher'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Content Switcher', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-switcher',
+				'css'       => ['content-switcher'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'image-stack-group' => [
-				'cat' => 'creative',
+			'image-stack-group'   => [
+				'cat'       => 'creative',
 				'is_active' => true,
-				'title' => __('Image Stack Group', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
-				'css' => ['circle-image-group'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Image Stack Group', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-lens',
+				'css'       => ['circle-image-group'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'creative-button' => [
-				'cat' => 'creative',
+			'creative-button'     => [
+				'cat'       => 'creative',
 				'is_active' => true,
-				'title' => __('Creative Button', 'happy-elementor-addons'),
-				'icon' => 'hm hm-motion-button',
-				'css' => ['creative-button'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Creative Button', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-motion-button',
+				'css'       => ['creative-button'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
-				]
-			],
-			'pdf-view' => [
-				'cat' => 'creative',
-				'is_active' => true,
-				'title' => __('PDF View', 'happy-elementor-addons'),
-				'icon' => 'hm hm-pdf2',
-				'css' => ['pdf'],
-				'js' => [],
-				'vendor' => [
-					'css' => [],
-					'js' => ['pdf-js'],
+					'js'  => [],
 				],
 			],
-			'comparison-table' => [
-				'cat' => 'creative',
+			'pdf-view'            => [
+				'cat'       => 'creative',
 				'is_active' => true,
-				'title' => __('Comparison Table', 'happy-elementor-addons'),
-				'icon' => 'hm hm-scale',
-				'css' => ['comparison-table'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'PDF View', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-pdf2',
+				'css'       => ['pdf'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => ['pdf-js'],
 				],
 			],
-			'photo-stack' => [
-				'cat' => 'creative',
+			'comparison-table'    => [
+				'cat'       => 'creative',
 				'is_active' => true,
-				'title' => __( 'Photo Stack', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-lens',
-				'css' => ['photo-stack'],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Comparison Table', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-scale',
+				'css'       => ['comparison-table'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [],
+					'js'  => [],
 				],
 			],
-			'lordicon' => [
-				'cat' => 'creative',
+			'photo-stack'         => [
+				'cat'       => 'creative',
 				'is_active' => true,
-				'title' => __('LordIcon', 'happy-elementor-addons'),
-				'icon' => 'hm hm-icon-box',
-				'css' => [ 'lordicon' ],
-				'js' => [],
-				'vendor' => [
+				'title'     => __( 'Photo Stack', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-lens',
+				'css'       => ['photo-stack'],
+				'js'        => [],
+				'vendor'    => [
 					'css' => [],
-					'js' => [ 'lord-icon' ],
+					'js'  => [],
+				],
+			],
+			'lordicon'            => [
+				'cat'       => 'creative',
+				'is_active' => true,
+				'title'     => __( 'LordIcon', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-icon-box',
+				'css'       => [ 'lordicon' ],
+				'js'        => [],
+				'vendor'    => [
+					'css' => [],
+					'js'  => [ 'lord-icon' ],
 				],
 			],
 		];
 	}
 
-	public static function get_base_widget_key()
-	{
-		return apply_filters('happyaddons_get_base_widget_key', '_happyaddons_base');
+	public static function get_base_widget_key() {
+		return apply_filters( 'happyaddons_get_base_widget_key', '_happyaddons_base' );
 	}
 
-	public static function get_default_active_widget()
-	{
-		$default_active = array_filter(self::get_local_widgets_map(), function ($var) {
+	public static function get_default_active_widget() {
+		$default_active = array_filter(self::get_local_widgets_map(), function ( $var ) {
 			return $var['is_active'] == true;
 		});
-		return array_keys($default_active);
+		return array_keys( $default_active );
 	}
 
 	/**
@@ -1053,33 +1129,31 @@ class Widgets_Manager
 	 *
 	 * @access public
 	 */
-	public static function register()
-	{
-		include_once(HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php');
-		include_once(HAPPY_ADDONS_DIR_PATH . 'traits/button-renderer.php');
-		include_once(HAPPY_ADDONS_DIR_PATH . 'traits/link-hover-markup.php');
-		include_once(HAPPY_ADDONS_DIR_PATH . 'traits/creative-button-markup.php');
+	public static function register() {
+		 include_once HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php';
+		include_once HAPPY_ADDONS_DIR_PATH . 'traits/button-renderer.php';
+		include_once HAPPY_ADDONS_DIR_PATH . 'traits/link-hover-markup.php';
+		include_once HAPPY_ADDONS_DIR_PATH . 'traits/creative-button-markup.php';
 
 		$inactive_widgets = self::get_inactive_widgets();
 
-		foreach (self::get_local_widgets_map() as $widget_key => $data) {
-			if (!in_array($widget_key, $inactive_widgets)) {
-				self::register_widget($widget_key);
+		foreach ( self::get_local_widgets_map() as $widget_key => $data ) {
+			if ( ! in_array( $widget_key, $inactive_widgets ) ) {
+				self::register_widget( $widget_key );
 			}
 		}
 	}
 
-	protected static function register_widget($widget_key)
-	{
+	protected static function register_widget( $widget_key ) {
 		$widget_file = HAPPY_ADDONS_DIR_PATH . 'widgets/' . $widget_key . '/widget.php';
 
-		if (is_readable($widget_file)) {
+		if ( is_readable( $widget_file ) ) {
 
-			include_once($widget_file);
+			include_once $widget_file;
 
-			$widget_class = '\Happy_Addons\Elementor\Widget\\' . str_replace('-', '_', $widget_key);
-			if (class_exists($widget_class)) {
-				ha_elementor()->widgets_manager->register_widget_type(new $widget_class);
+			$widget_class = '\Happy_Addons\Elementor\Widget\\' . str_replace( '-', '_', $widget_key );
+			if ( class_exists( $widget_class ) ) {
+				ha_elementor()->widgets_manager->register_widget_type( new $widget_class() );
 			}
 		}
 	}
