@@ -1210,7 +1210,7 @@ class Horizontal_Timeline extends Base {
 								if ( ! empty( $timeline['event_link']['url'] ) ) {
 									$this->add_link_attributes( 'event_link', $timeline['event_link'] );
 									if ( $timeline['event_title'] ) {
-										printf( '<a %1$s><%2$s class="ha-horizontal-timeline-title-link">%3$s</%2$s></a>',
+										printf( '<%2$s class="ha-horizontal-timeline-title-link"><a %1$s>%3$s</a></%2$s>',
 											$this->get_render_attribute_string( 'event_link' ),
 											ha_escape_tags( $settings['title_tag'], 'h2' ),
 											esc_html( $timeline['event_title'] )
