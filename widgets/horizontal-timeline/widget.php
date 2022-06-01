@@ -126,6 +126,19 @@ class Horizontal_Timeline extends Base {
 		);
 
 		$repeater->add_control(
+			'event_link',
+			[
+				'label' => esc_html__( 'Link', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::URL,
+				'placeholder' => esc_html__( 'https://your-link.com', 'happy-elementor-addons' ),
+				'default' => [
+					'url' => '',
+				],
+				'label_block' => true,
+			]
+		);
+
+		$repeater->add_control(
 			'event_subtitle',
 			[
 				'label' => __( 'Sub Title', 'happy-elementor-addons' ),
@@ -1017,6 +1030,59 @@ class Horizontal_Timeline extends Base {
 		);
 
 		$this->add_control(
+			'link_heading',
+			[
+				'label' => __( 'Link', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before'
+			]
+		);
+
+		$this->add_responsive_control(
+			'link_spacing',
+			[
+				'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'selectors' => [
+					'{{WRAPPER}} .ha-horizontal-timeline-title-link' => 'margin-bottom: {{SIZE}}{{UNIT}};'
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'link_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-horizontal-timeline-title-link',
+				'scheme' => Typography::TYPOGRAPHY_2
+			]
+		);
+
+		$this->add_control(
+			'link_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-horizontal-timeline-title-link' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'link_color_hover',
+			[
+				'label' => __( 'Hover Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-horizontal-timeline-title-link:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
 			'subtitle_heading',
 			[
 				'label' => __( 'Sub Title', 'happy-elementor-addons' ),
@@ -1140,12 +1206,27 @@ class Horizontal_Timeline extends Base {
 							<?php endif; ?>
 
 							<?php
-								if ( $timeline['event_title'] ) {
-									printf( '<%1$s class="ha-horizontal-timeline-title">%2$s</%1$s>',
-										ha_escape_tags( $settings['title_tag'], 'h2' ),
-										esc_html( $timeline['event_title'] )
-									);
-								}
+
+								if ( ! empty( $timeline['event_link']['url'] ) ) {
+									$this->add_link_attributes( 'event_link', $timeline['event_link'] );
+									if ( $timeline['event_title'] ) {
+										printf( '<a %1$s><%2$s class="ha-horizontal-timeline-title-link">%3$s</%2$s></a>',
+											$this->get_render_attribute_string( 'event_link' ),
+											ha_escape_tags( $settings['title_tag'], 'h2' ),
+											esc_html( $timeline['event_title'] )
+										);
+									}
+									$this->remove_render_attribute( 'event_link');
+								}else{
+								
+									if ( $timeline['event_title'] ) {
+										printf( '<%1$s class="ha-horizontal-timeline-title">%2$s</%1$s>',
+											ha_escape_tags( $settings['title_tag'], 'h2' ),
+											esc_html( $timeline['event_title'] )
+										);
+									}
+							}
+							
 							?>
 
 							<?php if ( !empty( $timeline['event_subtitle'] ) ) : ?>
