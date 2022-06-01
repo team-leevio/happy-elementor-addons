@@ -1909,3 +1909,45 @@
 .hm-traveller:before {
 	content: "\eb75";
 }
+.hm-tb-archieve-content:before {
+	content: "\eb76";
+}
+.hm-tb-archieve-title:before {
+	content: "\eb77";
+}
+.hm-tb-author-meta:before {
+	content: "\eb78";
+}
+.hm-tb-comments:before {
+	content: "\eb79";
+}
+.hm-tb-featured-image:before {
+	content: "\eb7a";
+}
+.hm-tb-page-title:before {
+	content: "\eb7b";
+}
+.hm-tb-post-content:before {
+	content: "\eb7c";
+}
+.hm-tb-post-excerpt:before {
+	content: "\eb7d";
+}
+.hm-tb-post-grid:before {
+	content: "\eb7e";
+}
+.hm-tb-post-info:before {
+	content: "\eb7f";
+}
+.hm-tb-post-list:before {
+	content: "\eb80";
+}
+.hm-tb-post-title:before {
+	content: "\eb81";
+}
+.hm-tb-site-logo:before {
+	content: "\eb82";
+}
+.hm-tb-site-title:before {
+	content: "\eb83";
+}
