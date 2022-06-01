@@ -99,18 +99,14 @@
 		cursor: pointer;
 	}
 
-	.ha-horizontal-timeline-title {
+	.ha-horizontal-timeline-title,
+	.ha-horizontal-timeline-title a {
 		font-size: 22px;
 		margin-top: 0;
 		margin-bottom: 10px;
 		color: #3c3c3c;
 	}
-	.ha-horizontal-timeline-title-link {
-		font-size: 22px;
-		margin-top: 0;
-		margin-bottom: 10px;
-		color: #3c3c3c;
-	}
+	
 	.ha-horizontal-timeline-subtitle {
 		display: block;
 		color: #999;

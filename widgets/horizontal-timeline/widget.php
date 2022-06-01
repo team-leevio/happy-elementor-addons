@@ -201,6 +201,36 @@ class Horizontal_Timeline extends Base {
 			]
 		);
 
+
+		$repeater->add_control(
+			'custom_title_color',
+			[
+				'label' => __( 'Title Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'custom_look' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content .ha-horizontal-timeline-title' => 'color: {{VALUE}}',
+					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content .ha-horizontal-timeline-title a' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'custom_link_hover_color',
+			[
+				'label' => __( 'Title Color Hover', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'condition' => [
+					'custom_look' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content .ha-horizontal-timeline-title a:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
 		$repeater->add_control(
 			'custom_content_background_color',
 			[
@@ -226,8 +256,7 @@ class Horizontal_Timeline extends Base {
 					'custom_look' => 'yes'
 				],
 				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content .ha-horizontal-timeline-title' => 'color: {{VALUE}}',
-					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content .ha-horizontal-timeline-subtitle' => 'color: {{VALUE}}',
+					// '{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content .ha-horizontal-timeline-subtitle' => 'color: {{VALUE}}',
 					'{{WRAPPER}} {{CURRENT_ITEM}}.ha-horizontal-timeline-block .ha-horizontal-timeline-content .ha-horizontal-timeline-description' => 'color: {{VALUE}}'
 				],
 			]
@@ -1025,62 +1054,22 @@ class Horizontal_Timeline extends Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-horizontal-timeline-title' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-horizontal-timeline-title a' => 'color: {{VALUE}}',
 				],
 			]
 		);
 
 		$this->add_control(
-			'link_heading',
-			[
-				'label' => __( 'Link', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before'
-			]
-		);
-
-		$this->add_responsive_control(
-			'link_spacing',
-			[
-				'label' => __( 'Bottom Spacing', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'selectors' => [
-					'{{WRAPPER}} .ha-horizontal-timeline-title-link' => 'margin-bottom: {{SIZE}}{{UNIT}};'
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'link_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-horizontal-timeline-title-link',
-				'scheme' => Typography::TYPOGRAPHY_2
-			]
-		);
-
-		$this->add_control(
-			'link_color',
-			[
-				'label' => __( 'Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-horizontal-timeline-title-link' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->add_control(
-			'link_color_hover',
+			'title_color_hover',
 			[
 				'label' => __( 'Hover Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-horizontal-timeline-title-link:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-horizontal-timeline-title a:hover' => 'color: {{VALUE}}',
 				],
 			]
 		);
+
 
 		$this->add_control(
 			'subtitle_heading',
@@ -1210,7 +1199,7 @@ class Horizontal_Timeline extends Base {
 								if ( ! empty( $timeline['event_link']['url'] ) ) {
 									$this->add_link_attributes( 'event_link', $timeline['event_link'] );
 									if ( $timeline['event_title'] ) {
-										printf( '<%2$s class="ha-horizontal-timeline-title-link"><a %1$s>%3$s</a></%2$s>',
+										printf( '<%2$s class="ha-horizontal-timeline-title"><a %1$s>%3$s</a></%2$s>',
 											$this->get_render_attribute_string( 'event_link' ),
 											ha_escape_tags( $settings['title_tag'], 'h2' ),
 											esc_html( $timeline['event_title'] )
