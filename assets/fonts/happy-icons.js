@@ -642,6 +642,8 @@
 		"tb-post-list",
 		"tb-post-title",
 		"tb-site-logo",
-		"tb-site-title"
+		"tb-site-title",
+		"lordicon",
+		"vault"
 	]
 }

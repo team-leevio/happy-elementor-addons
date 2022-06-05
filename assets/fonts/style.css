@@ -1951,3 +1951,9 @@
 .hm-tb-site-title:before {
 	content: "\eb83";
 }
+.hm-lordicon:before {
+	content: "\eb84";
+}
+.hm-vault:before {
+	content: "\eb85";
+}
