@@ -1,3 +1,9 @@
+= 3.*.* - * 2022 =
+
+
+- Fix: Team Member URL issue
+
+
 = 3.6.0 - 30 May 2022 =
 
 - New: LordIcon widget
