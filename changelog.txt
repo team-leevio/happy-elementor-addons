@@ -1,8 +1,7 @@
 = 3.*.* - * 2022 =
 
-
+- Update: Happy Icon pack (added new 16 icons)
 - Fix: Team Member URL issue
-
 
 = 3.6.0 - 30 May 2022 =
 
