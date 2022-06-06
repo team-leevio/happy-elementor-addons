@@ -47,7 +47,7 @@ class Post_Content extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-advanced-heading';
+		return 'hm hm-tb-post-content';
 	}
 
 	public function get_keywords() {
@@ -110,7 +110,7 @@ class Post_Content extends Base {
 		$this->__page_title_style_controls();
 	}
 
-	
+
 	protected function __page_title_style_controls() {
 
         $this->start_controls_section(
@@ -141,7 +141,7 @@ class Post_Content extends Base {
 				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
-        
+
         $this->end_controls_section();
 	}
 

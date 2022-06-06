@@ -47,7 +47,7 @@ class Post_Excerpt extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-advanced-heading';
+		return 'hm hm-tb-post-excerpt';
 	}
 
 	public function get_keywords() {
@@ -110,7 +110,7 @@ class Post_Excerpt extends Base {
 		$this->__excerpt_style_controls();
 	}
 
-	
+
 	protected function __excerpt_style_controls() {
 
         $this->start_controls_section(
@@ -141,7 +141,7 @@ class Post_Excerpt extends Base {
 				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
-        
+
         $this->end_controls_section();
 	}
 

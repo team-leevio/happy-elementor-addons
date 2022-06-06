@@ -47,7 +47,7 @@ class Site_Logo extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-advanced-heading';
+		return 'hm hm-tb-site-logo';
 	}
 
 	public function get_keywords() {
@@ -90,7 +90,7 @@ class Site_Logo extends Base {
 						'title' => __( 'Custom', 'happy-elementor-addons' ),
 						'icon' => 'eicon-image-rollover',
 					]
-					
+
 				],
 				'default' => 'default',
 				'toggle' => true,
@@ -164,7 +164,7 @@ class Site_Logo extends Base {
 		$this->__site_logo_style_controls();
 	}
 
-	
+
 	protected function __site_logo_style_controls() {
 
         $this->start_controls_section(
@@ -222,7 +222,7 @@ class Site_Logo extends Base {
 				],
 			]
 		);
-        
+
 
         $this->end_controls_section();
 	}

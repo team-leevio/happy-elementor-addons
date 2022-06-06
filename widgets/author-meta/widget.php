@@ -47,7 +47,7 @@ class Author_Meta extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-advanced-heading';
+		return 'hm hm-tb-author-meta';
 	}
 
 	public function get_keywords() {
@@ -59,7 +59,7 @@ class Author_Meta extends Base {
      */
 	protected function register_content_controls() {
 		$this->__author_content_controls();
-		
+
 	}
 
 	protected function __author_content_controls() {
@@ -120,7 +120,7 @@ class Author_Meta extends Base {
 				]
 			]
 		);
-        
+
 		$this->add_control(
 			'show_avatar',
 			[
@@ -194,7 +194,7 @@ class Author_Meta extends Base {
 		$this->__author_short_bio_controls();
 	}
 
-	
+
 	protected function __author_style_controls() {
 
         $this->start_controls_section(
@@ -233,11 +233,11 @@ class Author_Meta extends Base {
 				'selector' => '{{WRAPPER}} .ha-author-title',
 			]
 		);
-        
+
 
         $this->end_controls_section();
 	}
-	
+
 	protected function __author_short_bio_controls() {
 
         $this->start_controls_section(
@@ -268,11 +268,11 @@ class Author_Meta extends Base {
 				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
-        
+
 
         $this->end_controls_section();
 	}
-		
+
 	protected function __avatar_style_controls() {
 
         $this->start_controls_section(
@@ -317,7 +317,7 @@ class Author_Meta extends Base {
 				],
 			]
 		);
-        
+
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
@@ -368,11 +368,11 @@ class Author_Meta extends Base {
 				<?php echo $avatar; ?>
 			</div>
 			<?php endif; ?>
-			
+
 			<div class="ha-desc">
-				<?php 
+				<?php
 				if('yes' === $settings['show_author']){
-					printf('<%1$s %2$s>%3$s</%1$s>', esc_attr($settings['author_meta_tag']), $this->get_render_attribute_string('author-title'), esc_html($display_name)); 
+					printf('<%1$s %2$s>%3$s</%1$s>', esc_attr($settings['author_meta_tag']), $this->get_render_attribute_string('author-title'), esc_html($display_name));
 				}
 				if('yes' === $settings['show_bio']){
 					printf('<p>%1$s</p>', esc_html($bio));

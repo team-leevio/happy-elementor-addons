@@ -47,7 +47,7 @@ class Post_Title extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-advanced-heading';
+		return 'hm hm-tb-post-title';
 	}
 
 	public function get_keywords() {
@@ -162,7 +162,7 @@ class Post_Title extends Base {
 		$this->__post_title_style_controls();
 	}
 
-	
+
 	protected function __post_title_style_controls() {
 
         $this->start_controls_section(
@@ -201,7 +201,7 @@ class Post_Title extends Base {
 				'selector' => '{{WRAPPER}} .ha-post-title',
 			]
 		);
-        
+
 
         $this->end_controls_section();
 	}

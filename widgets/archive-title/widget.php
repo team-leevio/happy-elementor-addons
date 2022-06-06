@@ -47,7 +47,7 @@ class Archive_Title extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-advanced-heading';
+		return 'hm hm-tb-archieve-title';
 	}
 
 	public function get_keywords() {
@@ -161,7 +161,7 @@ class Archive_Title extends Base {
 		$this->__archive_title_style_controls();
 	}
 
-	
+
 	protected function __archive_title_style_controls() {
 
         $this->start_controls_section(
@@ -172,7 +172,7 @@ class Archive_Title extends Base {
             ]
         );
 
-        
+
         $this->add_control(
 			'archive_color',
 			[
@@ -201,7 +201,7 @@ class Archive_Title extends Base {
 				'selector' => '{{WRAPPER}} .ha-archive-title',
 			]
 		);
-        
+
 
         $this->end_controls_section();
 	}

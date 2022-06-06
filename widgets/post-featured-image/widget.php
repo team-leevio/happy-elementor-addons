@@ -47,7 +47,7 @@ class Post_Featured_Image extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-advanced-heading';
+		return 'hm hm-tb-featured-image';
 	}
 
 	public function get_keywords() {
@@ -116,7 +116,7 @@ class Post_Featured_Image extends Base {
 		$this->__thumbnail_style_controls();
 	}
 
-	
+
 	protected function __thumbnail_style_controls() {
 
         $this->start_controls_section(
@@ -150,7 +150,7 @@ class Post_Featured_Image extends Base {
 				],
 			]
 		);
-        
+
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
@@ -184,8 +184,8 @@ class Post_Featured_Image extends Base {
 			if( $settings['post_feature_image_size'] == 'custom' ){
 				the_post_thumbnail( array( $settings['post_feature_image_custom_dimension']['width'], $settings['post_feature_image_custom_dimension']['height'] ) );
 			}else{
-				the_post_thumbnail( $settings['post_feature_image_size'] ); 
+				the_post_thumbnail( $settings['post_feature_image_size'] );
 			}
-		}  
+		}
 	}
 }

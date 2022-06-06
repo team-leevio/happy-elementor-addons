@@ -44,7 +44,7 @@ class Post_Info extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-advanced-heading';
+		return 'hm hm-tb-post-info';
 	}
 
 	public function get_keywords() {
@@ -56,7 +56,7 @@ class Post_Info extends Base {
      */
 	protected function register_content_controls() {
 		$this->__post_meta_content_controls();
-		
+
 	}
 
 	protected function __post_meta_content_controls() {
@@ -394,7 +394,7 @@ class Post_Info extends Base {
 				'title_field' => '{{{ elementor.helpers.renderIcon( this, selected_icon, {}, "i", "panel" ) || \'<i class="{{ icon }}" aria-hidden="true"></i>\' }}} <span style="text-transform: capitalize;">{{{ type }}}</span>',
 			]
 		);
-		
+
 
         $this->end_controls_section();
 	}
@@ -406,10 +406,10 @@ class Post_Info extends Base {
 		$this->__list_style_controls();
 		$this->__icon_style_controls();
 		$this->__text_style_controls();
-		
+
 	}
 
-	
+
 	protected function __list_style_controls() {
 
         $this->start_controls_section(
@@ -713,8 +713,8 @@ class Post_Info extends Base {
 
 		return $options;
 	}
-	
-	
+
+
 
 	protected function get_meta_data( $repeater_item ) {
 		$item_data = [];
@@ -1041,5 +1041,5 @@ class Post_Info extends Base {
 		<?php
 	}
 
-	
+
 }

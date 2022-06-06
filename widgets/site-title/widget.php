@@ -47,7 +47,7 @@ class Site_Title extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-advanced-heading';
+		return 'hm hm-tb-site-title';
 	}
 
 	public function get_keywords() {
@@ -162,7 +162,7 @@ class Site_Title extends Base {
 		$this->__page_title_style_controls();
 	}
 
-	
+
 	protected function __page_title_style_controls() {
 
         $this->start_controls_section(
@@ -201,7 +201,7 @@ class Site_Title extends Base {
 				'selector' => '{{WRAPPER}} .ha-site-title',
 			]
 		);
-        
+
 
         $this->end_controls_section();
 	}
