@@ -6,11 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Content-Transfer-Econdig: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Language-Team: HappyMonster <happyaddons@gmail.com>\n"
-"MIME-Version: 1.0\n"
-"Project-Id-Version: Happy Addons\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -18,8 +14,39 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: base.php:126, classes/dashboard.php:344, widgets/bar-chart/widget.php:169, widgets/data-table/widget.php:214
+#: base.php:126, classes/dashboard.php:345, widgets/bar-chart/widget.php:169, widgets/data-table/widget.php:214
 msgid "Happy Addons"
+msgstr ""
+
+#. translators: 1: Plugin name 2: PHP 3: Required PHP version
+#. translators: 1: Plugin name 2: Elementor 3: Required Elementor version
+#: plugin.php:91, plugin.php:134
+msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
+msgstr ""
+
+#: plugin.php:92, plugin.php:118, plugin.php:135, templates/admin/dashboard-main.php:9
+msgid "Happy Elementor Addons"
+msgstr ""
+
+#: plugin.php:93
+msgid "PHP"
+msgstr ""
+
+#: plugin.php:111
+msgid "Install Elementor"
+msgstr ""
+
+#: plugin.php:108
+msgid "Activate Elementor"
+msgstr ""
+
+#. translators: 1: Plugin name 2: Elementor 3: Elementor installation link
+#: plugin.php:117
+msgid "%1$s requires %2$s to be installed and activated to function properly. %3$s"
+msgstr ""
+
+#: plugin.php:119, plugin.php:136, widgets/data-table/widget.php:211
+msgid "Elementor"
 msgstr ""
 
 #: classes/admin-bar.php:78, templates/admin/dashboard-home.php:115
@@ -190,51 +217,51 @@ msgstr ""
 msgid "What’s New"
 msgstr ""
 
-#: classes/dashboard.php:82, extensions/advanced-tooltip.php:85, widgets/bar-chart/widget.php:196, widgets/carousel/widget.php:188, widgets/event-calendar/widget.php:628, widgets/flip-box/widget.php:389, widgets/horizontal-timeline/widget.php:259, widgets/image-compare/widget.php:165, widgets/logo-grid/widget.php:212, widgets/pdf-view/widget.php:150, widgets/post-list/widget.php:178, widgets/post-tab/widget.php:173, widgets/slider/widget.php:186, widgets/taxonomy-list/widget.php:213, widgets/threesixty-rotation/widget.php:94
+#: classes/dashboard.php:83, extensions/advanced-tooltip.php:85, widgets/bar-chart/widget.php:196, widgets/carousel/widget.php:188, widgets/event-calendar/widget.php:628, widgets/flip-box/widget.php:389, widgets/horizontal-timeline/widget.php:259, widgets/image-compare/widget.php:165, widgets/logo-grid/widget.php:212, widgets/pdf-view/widget.php:150, widgets/post-list/widget.php:178, widgets/post-tab/widget.php:173, widgets/slider/widget.php:186, widgets/taxonomy-list/widget.php:213, widgets/threesixty-rotation/widget.php:94
 msgid "Settings"
 msgstr ""
 
-#: classes/dashboard.php:89, classes/dashboard.php:458, templates/template-library/templates.php:69
+#: classes/dashboard.php:90, classes/dashboard.php:459, templates/template-library/templates.php:69
 msgid "Get Pro"
 msgstr ""
 
-#: classes/dashboard.php:258
+#: classes/dashboard.php:259
 msgid "Save Changes"
 msgstr ""
 
-#: classes/dashboard.php:259
+#: classes/dashboard.php:260
 msgid "Changes Saved"
 msgstr ""
 
-#: classes/dashboard.php:343
+#: classes/dashboard.php:344
 msgid "Happy Elementor Addons Dashboard"
 msgstr ""
 
-#: classes/dashboard.php:353, classes/dashboard.php:354
+#: classes/dashboard.php:354, classes/dashboard.php:355
 msgid "Setup Wizard"
 msgstr ""
 
-#: classes/dashboard.php:371
+#: classes/dashboard.php:372
 msgid "%s - Happy Elementor Addons"
 msgstr ""
 
-#: classes/dashboard.php:438
+#: classes/dashboard.php:439
 msgid "Home"
 msgstr ""
 
-#: classes/dashboard.php:442, extensions/equal-height.php:88, templates/admin/dashboard-pro.php:61, templates/admin/dashboard-widgets.php:40
+#: classes/dashboard.php:443, extensions/equal-height.php:88, templates/admin/dashboard-pro.php:61, templates/admin/dashboard-widgets.php:40
 msgid "Widgets"
 msgstr ""
 
-#: classes/dashboard.php:446, templates/admin/dashboard-pro.php:20, widgets/comparison-table/widget.php:199, widgets/pricing-table/widget.php:178, widgets/pricing-table/widget.php:187, widgets/pricing-table/widget.php:623
+#: classes/dashboard.php:447, templates/admin/dashboard-pro.php:20, widgets/comparison-table/widget.php:263, widgets/pricing-table/widget.php:178, widgets/pricing-table/widget.php:187, widgets/pricing-table/widget.php:623
 msgid "Features"
 msgstr ""
 
-#: classes/dashboard.php:450, widgets/mailchimp/widget.php:81
+#: classes/dashboard.php:451, widgets/mailchimp/widget.php:81
 msgid "Credentials"
 msgstr ""
 
-#: classes/dashboard.php:454
+#: classes/dashboard.php:455
 msgid "Analytics"
 msgstr ""
 
@@ -248,10 +275,6 @@ msgstr ""
 
 #: classes/extensions-manager.php:80
 msgid "Happy Particle Effects"
-msgstr ""
-
-#: classes/extensions-manager.php:86, templates/admin/dashboard-pro.php:42
-msgid "Preset"
 msgstr ""
 
 #: classes/extensions-manager.php:102, extensions/background-overlay.php:44, widgets/flip-box/widget.php:528, widgets/flip-box/widget.php:875, widgets/image-hover-effect/widget.php:384, widgets/twitter-feed/widget.php:567
@@ -563,7 +586,7 @@ msgid "Slider"
 msgstr ""
 
 #: classes/widgets-manager.php:527, widgets/carousel/widget.php:32
-msgid "Carousel"
+msgid "Image Carousel"
 msgstr ""
 
 #: classes/widgets-manager.php:540, widgets/skills/widget.php:29, widgets/skills/widget.php:213
@@ -708,6 +731,10 @@ msgstr ""
 
 #: classes/widgets-manager.php:998, widgets/comparison-table/widget.php:35
 msgid "Comparison Table"
+msgstr ""
+
+#: classes/widgets-manager.php:1010, widgets/photo-stack/widget.php:29, widgets/photo-stack/widget.php:63
+msgid "Photo Stack"
 msgstr ""
 
 #: classes/wpml-manager.php:66
@@ -1093,7 +1120,7 @@ msgstr ""
 msgid "Off"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:94, widgets/bar-chart/widget.php:94, widgets/content-switcher/widget.php:134, widgets/content-switcher/widget.php:976, widgets/data-table/widget.php:79, widgets/data-table/widget.php:311, widgets/event-calendar/widget.php:210, widgets/horizontal-timeline/widget.php:810, widgets/icon-box/widget.php:60, widgets/image-accordion/widget.php:59, widgets/image-accordion/widget.php:823, widgets/post-list/widget.php:916, widgets/post-tab/widget.php:612, widgets/skills/widget.php:287, widgets/twitter-feed/widget.php:892
+#: extensions/advanced-tooltip.php:94, widgets/bar-chart/widget.php:94, widgets/comparison-table/widget.php:1003, widgets/comparison-table/widget.php:1276, widgets/content-switcher/widget.php:134, widgets/content-switcher/widget.php:999, widgets/data-table/widget.php:79, widgets/data-table/widget.php:311, widgets/event-calendar/widget.php:210, widgets/horizontal-timeline/widget.php:810, widgets/icon-box/widget.php:60, widgets/image-accordion/widget.php:59, widgets/image-accordion/widget.php:823, widgets/post-list/widget.php:916, widgets/post-tab/widget.php:612, widgets/skills/widget.php:287, widgets/twitter-feed/widget.php:892
 msgid "Content"
 msgstr ""
 
@@ -1113,11 +1140,11 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:116, extensions/advanced-tooltip.php:248, extensions/widgets-extended.php:137, widgets/bar-chart/widget.php:342, widgets/card/widget.php:109, widgets/card/widget.php:239, widgets/card/widget.php:325, widgets/carousel/widget.php:761, widgets/comparison-table/widget.php:271, widgets/comparison-table/widget.php:299, widgets/comparison-table/widget.php:542, widgets/comparison-table/widget.php:650, widgets/content-switcher/widget.php:218, widgets/content-switcher/widget.php:286, widgets/content-switcher/widget.php:1041, widgets/creative-button/widget.php:261, widgets/data-table/widget.php:228, widgets/data-table/widget.php:256, widgets/data-table/widget.php:571, widgets/data-table/widget.php:601, widgets/dual-button/widget.php:465, widgets/flip-box/widget.php:202, widgets/flip-box/widget.php:362, widgets/fun-factor/widget.php:154, widgets/fun-factor/widget.php:292, widgets/gradient-heading/widget.php:133, widgets/gravityforms/widget.php:514, widgets/horizontal-timeline/widget.php:293, widgets/icon-box/widget.php:176, widgets/image-accordion/widget.php:125, widgets/image-accordion/widget.php:363, widgets/image-accordion/widget.php:390, widgets/image-grid/widget.php:575, widgets/image-stack-group/widget.php:148, widgets/image-stack-group/widget.php:250, widgets/image-stack-group/widget.php:447, widgets/infobox/widget.php:173, widgets/infobox/widget.php:308, widgets/justified-gallery/widget.php:647, widgets/link-hover/widget.php:110, widgets/member/widget.php:288, widgets/news-ticker/widget.php:87, widgets/news-ticker/widget.php:157, widgets/ninjaform/widget.php:389, widgets/number/widget.php:195, widgets/pdf-view/widget.php:247, widgets/post-list/widget.php:225, widgets/post-list/widget.php:472, widgets/post-tab/widget.php:246, widgets/post-tab/widget.php:271, widgets/pricing-table/widget.php:353, widgets/review/widget.php:188, widgets/review/widget.php:243, widgets/slider/widget.php:724, widgets/social-icons/widget.php:420, widgets/social-share/widget.php:487, widgets/step-flow/widget.php:174, widgets/taxonomy-list/widget.php:339, widgets/testimonial/widget.php:93, widgets/threesixty-rotation/widget.php:120, widgets/twitter-feed/widget.php:365, widgets/twitter-feed/widget.php:394, widgets/twitter-feed/widget.php:420, widgets/weform/widget.php:467, widgets/wpform/widget.php:481
+#: extensions/advanced-tooltip.php:116, extensions/advanced-tooltip.php:248, extensions/widgets-extended.php:137, widgets/bar-chart/widget.php:342, widgets/card/widget.php:109, widgets/card/widget.php:239, widgets/card/widget.php:325, widgets/carousel/widget.php:761, widgets/comparison-table/widget.php:335, widgets/comparison-table/widget.php:363, widgets/comparison-table/widget.php:639, widgets/comparison-table/widget.php:846, widgets/content-switcher/widget.php:218, widgets/content-switcher/widget.php:309, widgets/content-switcher/widget.php:1064, widgets/creative-button/widget.php:261, widgets/data-table/widget.php:228, widgets/data-table/widget.php:256, widgets/data-table/widget.php:571, widgets/data-table/widget.php:601, widgets/dual-button/widget.php:465, widgets/flip-box/widget.php:202, widgets/flip-box/widget.php:362, widgets/fun-factor/widget.php:154, widgets/fun-factor/widget.php:292, widgets/gradient-heading/widget.php:133, widgets/gravityforms/widget.php:514, widgets/horizontal-timeline/widget.php:293, widgets/icon-box/widget.php:176, widgets/image-accordion/widget.php:125, widgets/image-accordion/widget.php:363, widgets/image-accordion/widget.php:390, widgets/image-grid/widget.php:575, widgets/image-stack-group/widget.php:148, widgets/image-stack-group/widget.php:250, widgets/image-stack-group/widget.php:447, widgets/infobox/widget.php:173, widgets/infobox/widget.php:308, widgets/justified-gallery/widget.php:647, widgets/link-hover/widget.php:110, widgets/member/widget.php:288, widgets/news-ticker/widget.php:87, widgets/news-ticker/widget.php:157, widgets/ninjaform/widget.php:389, widgets/number/widget.php:195, widgets/pdf-view/widget.php:247, widgets/photo-stack/widget.php:318, widgets/post-list/widget.php:225, widgets/post-list/widget.php:472, widgets/post-tab/widget.php:246, widgets/post-tab/widget.php:271, widgets/pricing-table/widget.php:353, widgets/review/widget.php:188, widgets/review/widget.php:243, widgets/slider/widget.php:724, widgets/social-icons/widget.php:420, widgets/social-share/widget.php:487, widgets/step-flow/widget.php:174, widgets/taxonomy-list/widget.php:339, widgets/testimonial/widget.php:93, widgets/threesixty-rotation/widget.php:120, widgets/twitter-feed/widget.php:365, widgets/twitter-feed/widget.php:394, widgets/twitter-feed/widget.php:420, widgets/weform/widget.php:467, widgets/wpform/widget.php:481
 msgid "Left"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:117, extensions/advanced-tooltip.php:256, extensions/widgets-extended.php:145, extensions/widgets-extended.php:180, widgets/bar-chart/widget.php:344, widgets/card/widget.php:117, widgets/card/widget.php:247, widgets/card/widget.php:333, widgets/carousel/widget.php:769, widgets/comparison-table/widget.php:279, widgets/comparison-table/widget.php:303, widgets/comparison-table/widget.php:550, widgets/comparison-table/widget.php:658, widgets/content-switcher/widget.php:219, widgets/content-switcher/widget.php:294, widgets/content-switcher/widget.php:1049, widgets/creative-button/widget.php:269, widgets/data-table/widget.php:236, widgets/data-table/widget.php:260, widgets/data-table/widget.php:579, widgets/data-table/widget.php:605, widgets/dual-button/widget.php:473, widgets/flip-box/widget.php:210, widgets/flip-box/widget.php:370, widgets/fun-factor/widget.php:162, widgets/fun-factor/widget.php:300, widgets/gradient-heading/widget.php:141, widgets/gravityforms/widget.php:522, widgets/horizontal-timeline/widget.php:301, widgets/icon-box/widget.php:184, widgets/image-accordion/widget.php:126, widgets/image-accordion/widget.php:371, widgets/image-accordion/widget.php:398, widgets/image-grid/widget.php:583, widgets/image-stack-group/widget.php:160, widgets/image-stack-group/widget.php:258, widgets/image-stack-group/widget.php:459, widgets/infobox/widget.php:316, widgets/justified-gallery/widget.php:655, widgets/link-hover/widget.php:118, widgets/member/widget.php:296, widgets/news-ticker/widget.php:91, widgets/news-ticker/widget.php:161, widgets/ninjaform/widget.php:397, widgets/number/widget.php:203, widgets/pdf-view/widget.php:255, widgets/post-list/widget.php:480, widgets/post-tab/widget.php:254, widgets/post-tab/widget.php:279, widgets/pricing-table/widget.php:357, widgets/review/widget.php:196, widgets/review/widget.php:251, widgets/slider/widget.php:732, widgets/social-icons/widget.php:428, widgets/social-share/widget.php:495, widgets/step-flow/widget.php:182, widgets/taxonomy-list/widget.php:347, widgets/testimonial/widget.php:101, widgets/threesixty-rotation/widget.php:128, widgets/twitter-feed/widget.php:373, widgets/twitter-feed/widget.php:402, widgets/twitter-feed/widget.php:428, widgets/weform/widget.php:475, widgets/wpform/widget.php:489
+#: extensions/advanced-tooltip.php:117, extensions/advanced-tooltip.php:256, extensions/widgets-extended.php:145, extensions/widgets-extended.php:180, widgets/bar-chart/widget.php:344, widgets/card/widget.php:117, widgets/card/widget.php:247, widgets/card/widget.php:333, widgets/carousel/widget.php:769, widgets/comparison-table/widget.php:343, widgets/comparison-table/widget.php:367, widgets/comparison-table/widget.php:647, widgets/comparison-table/widget.php:854, widgets/content-switcher/widget.php:219, widgets/content-switcher/widget.php:317, widgets/content-switcher/widget.php:1072, widgets/creative-button/widget.php:269, widgets/data-table/widget.php:236, widgets/data-table/widget.php:260, widgets/data-table/widget.php:579, widgets/data-table/widget.php:605, widgets/dual-button/widget.php:473, widgets/flip-box/widget.php:210, widgets/flip-box/widget.php:370, widgets/fun-factor/widget.php:162, widgets/fun-factor/widget.php:300, widgets/gradient-heading/widget.php:141, widgets/gravityforms/widget.php:522, widgets/horizontal-timeline/widget.php:301, widgets/icon-box/widget.php:184, widgets/image-accordion/widget.php:126, widgets/image-accordion/widget.php:371, widgets/image-accordion/widget.php:398, widgets/image-grid/widget.php:583, widgets/image-stack-group/widget.php:160, widgets/image-stack-group/widget.php:258, widgets/image-stack-group/widget.php:459, widgets/infobox/widget.php:316, widgets/justified-gallery/widget.php:655, widgets/link-hover/widget.php:118, widgets/member/widget.php:296, widgets/news-ticker/widget.php:91, widgets/news-ticker/widget.php:161, widgets/ninjaform/widget.php:397, widgets/number/widget.php:203, widgets/pdf-view/widget.php:255, widgets/photo-stack/widget.php:326, widgets/post-list/widget.php:480, widgets/post-tab/widget.php:254, widgets/post-tab/widget.php:279, widgets/pricing-table/widget.php:357, widgets/review/widget.php:196, widgets/review/widget.php:251, widgets/slider/widget.php:732, widgets/social-icons/widget.php:428, widgets/social-share/widget.php:495, widgets/step-flow/widget.php:182, widgets/taxonomy-list/widget.php:347, widgets/testimonial/widget.php:101, widgets/threesixty-rotation/widget.php:128, widgets/twitter-feed/widget.php:373, widgets/twitter-feed/widget.php:402, widgets/twitter-feed/widget.php:428, widgets/weform/widget.php:475, widgets/wpform/widget.php:489
 msgid "Right"
 msgstr ""
 
@@ -1125,7 +1152,7 @@ msgstr ""
 msgid "Animation"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:134, extensions/shape-divider.php:40, extensions/shape-divider.php:63, inc/functions.php:128, widgets/bar-chart/widget.php:501, widgets/bar-chart/widget.php:644, widgets/bar-chart/widget.php:778, widgets/bar-chart/widget.php:891, widgets/bar-chart/widget.php:1096, widgets/bar-chart/widget.php:1197, widgets/card/widget.php:492, widgets/card/widget.php:729, widgets/carousel/widget.php:283, widgets/carousel/widget.php:537, widgets/comparison-table/widget.php:149, widgets/data-table/widget.php:118, widgets/data-table/widget.php:398, widgets/flip-box/widget.php:83, widgets/flip-box/widget.php:243, widgets/icon-box/widget.php:520, widgets/image-compare/widget.php:406, widgets/infobox/widget.php:534, widgets/logo-grid/widget.php:317, widgets/pricing-table/widget.php:107, widgets/review/widget.php:609, widgets/slider/widget.php:272, widgets/slider/widget.php:497, widgets/social-icons/widget.php:710, widgets/step-flow/widget.php:649, widgets/threesixty-rotation/widget.php:108
+#: extensions/advanced-tooltip.php:134, extensions/shape-divider.php:40, extensions/shape-divider.php:63, inc/functions.php:128, widgets/bar-chart/widget.php:501, widgets/bar-chart/widget.php:644, widgets/bar-chart/widget.php:778, widgets/bar-chart/widget.php:891, widgets/bar-chart/widget.php:1096, widgets/bar-chart/widget.php:1197, widgets/card/widget.php:492, widgets/card/widget.php:729, widgets/carousel/widget.php:283, widgets/carousel/widget.php:537, widgets/comparison-table/widget.php:185, widgets/data-table/widget.php:118, widgets/data-table/widget.php:398, widgets/flip-box/widget.php:83, widgets/flip-box/widget.php:243, widgets/icon-box/widget.php:520, widgets/image-compare/widget.php:406, widgets/infobox/widget.php:534, widgets/logo-grid/widget.php:317, widgets/photo-stack/widget.php:258, widgets/photo-stack/widget.php:280, widgets/pricing-table/widget.php:107, widgets/review/widget.php:609, widgets/slider/widget.php:272, widgets/slider/widget.php:497, widgets/social-icons/widget.php:710, widgets/step-flow/widget.php:649, widgets/threesixty-rotation/widget.php:108
 msgid "None"
 msgstr ""
 
@@ -1169,11 +1196,11 @@ msgstr ""
 msgid "Arrow"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:172, widgets/dual-button/widget.php:175, widgets/fun-factor/widget.php:278, widgets/gravityforms/widget.php:102, widgets/mailchimp/widget.php:873, widgets/mailchimp/widget.php:1240, widgets/member/widget.php:502, widgets/member/widget.php:529, widgets/member/widget.php:542, widgets/member/widget.php:699, widgets/post-list/widget.php:209, widgets/post-list/widget.php:267, widgets/post-list/widget.php:299, widgets/post-list/widget.php:311, widgets/post-list/widget.php:323, widgets/post-list/widget.php:354, widgets/post-list/widget.php:385, widgets/post-tab/widget.php:230, widgets/pricing-table/widget.php:335, widgets/pricing-table/widget.php:337
+#: extensions/advanced-tooltip.php:172, widgets/comparison-table/widget.php:228, widgets/comparison-table/widget.php:547, widgets/dual-button/widget.php:175, widgets/fun-factor/widget.php:278, widgets/gravityforms/widget.php:102, widgets/mailchimp/widget.php:873, widgets/mailchimp/widget.php:1240, widgets/member/widget.php:502, widgets/member/widget.php:529, widgets/member/widget.php:542, widgets/member/widget.php:699, widgets/post-list/widget.php:209, widgets/post-list/widget.php:267, widgets/post-list/widget.php:299, widgets/post-list/widget.php:311, widgets/post-list/widget.php:323, widgets/post-list/widget.php:354, widgets/post-list/widget.php:385, widgets/post-tab/widget.php:230, widgets/pricing-table/widget.php:335, widgets/pricing-table/widget.php:337
 msgid "Show"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:173, widgets/dual-button/widget.php:174, widgets/fun-factor/widget.php:279, widgets/gravityforms/widget.php:103, widgets/justified-gallery/widget.php:253, widgets/mailchimp/widget.php:874, widgets/mailchimp/widget.php:1241, widgets/member/widget.php:503, widgets/member/widget.php:530, widgets/member/widget.php:543, widgets/member/widget.php:700, widgets/post-list/widget.php:210, widgets/post-list/widget.php:268, widgets/post-list/widget.php:300, widgets/post-list/widget.php:312, widgets/post-list/widget.php:324, widgets/post-list/widget.php:355, widgets/post-list/widget.php:386, widgets/post-tab/widget.php:231, widgets/pricing-table/widget.php:338
+#: extensions/advanced-tooltip.php:173, widgets/comparison-table/widget.php:229, widgets/comparison-table/widget.php:548, widgets/dual-button/widget.php:174, widgets/fun-factor/widget.php:279, widgets/gravityforms/widget.php:103, widgets/justified-gallery/widget.php:253, widgets/mailchimp/widget.php:874, widgets/mailchimp/widget.php:1241, widgets/member/widget.php:503, widgets/member/widget.php:530, widgets/member/widget.php:543, widgets/member/widget.php:700, widgets/post-list/widget.php:210, widgets/post-list/widget.php:268, widgets/post-list/widget.php:300, widgets/post-list/widget.php:312, widgets/post-list/widget.php:324, widgets/post-list/widget.php:355, widgets/post-list/widget.php:386, widgets/post-tab/widget.php:231, widgets/pricing-table/widget.php:338
 msgid "Hide"
 msgstr ""
 
@@ -1193,7 +1220,7 @@ msgstr ""
 msgid "Click"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:206, extensions/background-overlay.php:128, extensions/css-transform.php:389, widgets/calderaform/widget.php:522, widgets/card/widget.php:632, widgets/card/widget.php:1077, widgets/carousel/widget.php:667, widgets/carousel/widget.php:816, widgets/cf7/widget.php:507, widgets/comparison-table/widget.php:957, widgets/comparison-table/widget.php:1240, widgets/creative-button/widget.php:789, widgets/data-table/widget.php:896, widgets/dual-button/widget.php:581, widgets/dual-button/widget.php:788, widgets/event-calendar/widget.php:1147, widgets/fluent-form/widget.php:579, widgets/gravityforms/widget.php:635, widgets/gravityforms/widget.php:873, widgets/horizontal-timeline/widget.php:759, widgets/icon-box/widget.php:361, widgets/icon-box/widget.php:484, widgets/image-accordion/widget.php:336, widgets/image-accordion/widget.php:667, widgets/image-accordion/widget.php:1076, widgets/image-accordion/widget.php:1325, widgets/image-grid/widget.php:401, widgets/image-grid/widget.php:632, widgets/image-hover-effect/widget.php:343, widgets/image-hover-effect/widget.php:416, widgets/infobox/widget.php:927, widgets/justified-gallery/widget.php:401, widgets/justified-gallery/widget.php:704, widgets/logo-grid/widget.php:551, widgets/mailchimp/widget.php:1329, widgets/member/widget.php:160, widgets/member/widget.php:427, widgets/member/widget.php:904, widgets/member/widget.php:1232, widgets/member/widget.php:1393, widgets/news-ticker/widget.php:430, widgets/ninjaform/widget.php:516, widgets/pdf-view/widget.php:520, widgets/post-list/widget.php:732, widgets/post-tab/widget.php:446, widgets/post-tab/widget.php:718, widgets/post-tab/widget.php:778, widgets/pricing-table/widget.php:836, widgets/slider/widget.php:627, widgets/slider/widget.php:779, widgets/social-icons/widget.php:254, widgets/social-icons/widget.php:525, widgets/social-share/widget.php:341, widgets/social-share/widget.php:670, widgets/taxonomy-list/widget.php:596, widgets/threesixty-rotation/widget.php:463, widgets/twitter-feed/widget.php:849, widgets/twitter-feed/widget.php:1235, widgets/weform/widget.php:605, widgets/wpform/widget.php:612
+#: extensions/advanced-tooltip.php:206, extensions/background-overlay.php:128, extensions/css-transform.php:389, widgets/calderaform/widget.php:522, widgets/card/widget.php:632, widgets/card/widget.php:1077, widgets/carousel/widget.php:667, widgets/carousel/widget.php:816, widgets/cf7/widget.php:507, widgets/comparison-table/widget.php:763, widgets/comparison-table/widget.php:1182, widgets/comparison-table/widget.php:1505, widgets/creative-button/widget.php:789, widgets/data-table/widget.php:896, widgets/dual-button/widget.php:581, widgets/dual-button/widget.php:788, widgets/event-calendar/widget.php:1147, widgets/fluent-form/widget.php:579, widgets/gravityforms/widget.php:635, widgets/gravityforms/widget.php:873, widgets/horizontal-timeline/widget.php:759, widgets/icon-box/widget.php:361, widgets/icon-box/widget.php:484, widgets/image-accordion/widget.php:336, widgets/image-accordion/widget.php:667, widgets/image-accordion/widget.php:1076, widgets/image-accordion/widget.php:1325, widgets/image-grid/widget.php:401, widgets/image-grid/widget.php:632, widgets/image-hover-effect/widget.php:343, widgets/image-hover-effect/widget.php:416, widgets/infobox/widget.php:927, widgets/justified-gallery/widget.php:401, widgets/justified-gallery/widget.php:704, widgets/logo-grid/widget.php:551, widgets/mailchimp/widget.php:1329, widgets/member/widget.php:160, widgets/member/widget.php:427, widgets/member/widget.php:904, widgets/member/widget.php:1232, widgets/member/widget.php:1393, widgets/news-ticker/widget.php:430, widgets/ninjaform/widget.php:516, widgets/pdf-view/widget.php:520, widgets/photo-stack/widget.php:470, widgets/post-list/widget.php:732, widgets/post-tab/widget.php:446, widgets/post-tab/widget.php:718, widgets/post-tab/widget.php:778, widgets/pricing-table/widget.php:836, widgets/slider/widget.php:627, widgets/slider/widget.php:779, widgets/social-icons/widget.php:254, widgets/social-icons/widget.php:525, widgets/social-share/widget.php:341, widgets/social-share/widget.php:670, widgets/taxonomy-list/widget.php:596, widgets/threesixty-rotation/widget.php:463, widgets/twitter-feed/widget.php:849, widgets/twitter-feed/widget.php:1235, widgets/weform/widget.php:605, widgets/wpform/widget.php:612
 msgid "Hover"
 msgstr ""
 
@@ -1205,7 +1232,7 @@ msgstr ""
 msgid "Text Alignment"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:252, extensions/widgets-extended.php:141, extensions/widgets-extended.php:176, widgets/card/widget.php:243, widgets/card/widget.php:329, widgets/carousel/widget.php:765, widgets/comparison-table/widget.php:275, widgets/comparison-table/widget.php:546, widgets/comparison-table/widget.php:654, widgets/content-switcher/widget.php:290, widgets/content-switcher/widget.php:1045, widgets/creative-button/widget.php:265, widgets/data-table/widget.php:232, widgets/data-table/widget.php:575, widgets/dual-button/widget.php:469, widgets/flip-box/widget.php:206, widgets/flip-box/widget.php:366, widgets/fun-factor/widget.php:296, widgets/gradient-heading/widget.php:137, widgets/gravityforms/widget.php:518, widgets/horizontal-timeline/widget.php:297, widgets/icon-box/widget.php:180, widgets/image-accordion/widget.php:367, widgets/image-accordion/widget.php:394, widgets/image-accordion/widget.php:421, widgets/image-grid/widget.php:579, widgets/image-stack-group/widget.php:254, widgets/infobox/widget.php:199, widgets/infobox/widget.php:312, widgets/justified-gallery/widget.php:651, widgets/link-hover/widget.php:114, widgets/member/widget.php:292, widgets/ninjaform/widget.php:393, widgets/number/widget.php:199, widgets/pdf-view/widget.php:251, widgets/post-list/widget.php:476, widgets/post-tab/widget.php:275, widgets/review/widget.php:247, widgets/slider/widget.php:728, widgets/social-icons/widget.php:424, widgets/social-share/widget.php:491, widgets/step-flow/widget.php:178, widgets/taxonomy-list/widget.php:343, widgets/testimonial/widget.php:97, widgets/threesixty-rotation/widget.php:124, widgets/twitter-feed/widget.php:369, widgets/twitter-feed/widget.php:398, widgets/twitter-feed/widget.php:424, widgets/weform/widget.php:471, widgets/wpform/widget.php:485
+#: extensions/advanced-tooltip.php:252, extensions/widgets-extended.php:141, extensions/widgets-extended.php:176, widgets/card/widget.php:243, widgets/card/widget.php:329, widgets/carousel/widget.php:765, widgets/comparison-table/widget.php:339, widgets/comparison-table/widget.php:643, widgets/comparison-table/widget.php:850, widgets/content-switcher/widget.php:313, widgets/content-switcher/widget.php:1068, widgets/creative-button/widget.php:265, widgets/data-table/widget.php:232, widgets/data-table/widget.php:575, widgets/dual-button/widget.php:469, widgets/flip-box/widget.php:206, widgets/flip-box/widget.php:366, widgets/fun-factor/widget.php:296, widgets/gradient-heading/widget.php:137, widgets/gravityforms/widget.php:518, widgets/horizontal-timeline/widget.php:297, widgets/icon-box/widget.php:180, widgets/image-accordion/widget.php:367, widgets/image-accordion/widget.php:394, widgets/image-accordion/widget.php:421, widgets/image-grid/widget.php:579, widgets/image-stack-group/widget.php:254, widgets/infobox/widget.php:199, widgets/infobox/widget.php:312, widgets/justified-gallery/widget.php:651, widgets/link-hover/widget.php:114, widgets/member/widget.php:292, widgets/ninjaform/widget.php:393, widgets/number/widget.php:199, widgets/pdf-view/widget.php:251, widgets/photo-stack/widget.php:322, widgets/post-list/widget.php:476, widgets/post-tab/widget.php:275, widgets/review/widget.php:247, widgets/slider/widget.php:728, widgets/social-icons/widget.php:424, widgets/social-share/widget.php:491, widgets/step-flow/widget.php:178, widgets/taxonomy-list/widget.php:343, widgets/testimonial/widget.php:97, widgets/threesixty-rotation/widget.php:124, widgets/twitter-feed/widget.php:369, widgets/twitter-feed/widget.php:398, widgets/twitter-feed/widget.php:424, widgets/weform/widget.php:471, widgets/wpform/widget.php:485
 msgid "Center"
 msgstr ""
 
@@ -1213,7 +1240,7 @@ msgstr ""
 msgid "Styles"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:283, extensions/widgets-extended.php:109, widgets/card/widget.php:439, widgets/cf7/widget.php:137, widgets/comparison-table/widget.php:1048, widgets/event-calendar/widget.php:1310, widgets/event-calendar/widget.php:1387, widgets/fun-factor/widget.php:394, widgets/fun-factor/widget.php:767, widgets/horizontal-timeline/widget.php:912, widgets/image-hover-effect/widget.php:219, widgets/infobox/widget.php:486, widgets/mailchimp/widget.php:883, widgets/mailchimp/widget.php:1250, widgets/member/widget.php:755, widgets/pdf-view/widget.php:191, widgets/review/widget.php:567, widgets/step-flow/widget.php:602, widgets/testimonial/widget.php:311, widgets/threesixty-rotation/widget.php:221, widgets/threesixty-rotation/widget.php:378
+#: extensions/advanced-tooltip.php:283, extensions/widgets-extended.php:109, widgets/card/widget.php:439, widgets/cf7/widget.php:137, widgets/comparison-table/widget.php:1313, widgets/event-calendar/widget.php:1310, widgets/event-calendar/widget.php:1387, widgets/fun-factor/widget.php:394, widgets/fun-factor/widget.php:767, widgets/horizontal-timeline/widget.php:912, widgets/image-hover-effect/widget.php:219, widgets/infobox/widget.php:486, widgets/mailchimp/widget.php:883, widgets/mailchimp/widget.php:1250, widgets/member/widget.php:755, widgets/pdf-view/widget.php:191, widgets/review/widget.php:567, widgets/step-flow/widget.php:602, widgets/testimonial/widget.php:311, widgets/threesixty-rotation/widget.php:221, widgets/threesixty-rotation/widget.php:378
 msgid "Width"
 msgstr ""
 
@@ -1221,31 +1248,31 @@ msgstr ""
 msgid "Tooltip Arrow Size (px)"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:360, widgets/content-switcher/widget.php:932, widgets/content-switcher/widget.php:1028, widgets/event-calendar/widget.php:381, widgets/event-calendar/widget.php:801, widgets/event-calendar/widget.php:909, widgets/event-calendar/widget.php:1003, widgets/event-calendar/widget.php:1123, widgets/event-calendar/widget.php:1166, widgets/event-calendar/widget.php:1260, widgets/event-calendar/widget.php:1346, widgets/event-calendar/widget.php:1597, widgets/image-accordion/widget.php:1064, widgets/image-accordion/widget.php:1097, widgets/image-hover-effect/widget.php:401, widgets/image-hover-effect/widget.php:425, widgets/mailchimp/widget.php:811, widgets/mailchimp/widget.php:1051, widgets/mailchimp/widget.php:1316, widgets/mailchimp/widget.php:1350, widgets/news-ticker/widget.php:230, widgets/news-ticker/widget.php:352, widgets/number/widget.php:222, widgets/number/widget.php:250, widgets/pdf-view/widget.php:334, widgets/post-list/widget.php:560, widgets/post-tab/widget.php:435, widgets/post-tab/widget.php:467, widgets/post-tab/widget.php:567, widgets/taxonomy-list/widget.php:424, widgets/threesixty-rotation/widget.php:245, widgets/threesixty-rotation/widget.php:452, widgets/threesixty-rotation/widget.php:482
+#: extensions/advanced-tooltip.php:360, widgets/content-switcher/widget.php:955, widgets/content-switcher/widget.php:1051, widgets/event-calendar/widget.php:381, widgets/event-calendar/widget.php:801, widgets/event-calendar/widget.php:909, widgets/event-calendar/widget.php:1003, widgets/event-calendar/widget.php:1123, widgets/event-calendar/widget.php:1166, widgets/event-calendar/widget.php:1260, widgets/event-calendar/widget.php:1346, widgets/event-calendar/widget.php:1597, widgets/image-accordion/widget.php:1064, widgets/image-accordion/widget.php:1097, widgets/image-hover-effect/widget.php:401, widgets/image-hover-effect/widget.php:425, widgets/mailchimp/widget.php:811, widgets/mailchimp/widget.php:1051, widgets/mailchimp/widget.php:1316, widgets/mailchimp/widget.php:1350, widgets/news-ticker/widget.php:230, widgets/news-ticker/widget.php:352, widgets/number/widget.php:222, widgets/number/widget.php:250, widgets/pdf-view/widget.php:334, widgets/post-list/widget.php:560, widgets/post-tab/widget.php:435, widgets/post-tab/widget.php:467, widgets/post-tab/widget.php:567, widgets/taxonomy-list/widget.php:424, widgets/threesixty-rotation/widget.php:245, widgets/threesixty-rotation/widget.php:452, widgets/threesixty-rotation/widget.php:482
 msgid "Background"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:373, widgets/bar-chart/widget.php:130, widgets/bar-chart/widget.php:1072, widgets/calderaform/widget.php:217, widgets/calderaform/widget.php:256, widgets/calderaform/widget.php:509, widgets/calderaform/widget.php:540, widgets/calendly/widget.php:175, widgets/card/widget.php:806, widgets/card/widget.php:1064, widgets/card/widget.php:1095, widgets/carousel/widget.php:654, widgets/carousel/widget.php:685, widgets/cf7/widget.php:278, widgets/cf7/widget.php:317, widgets/cf7/widget.php:494, widgets/cf7/widget.php:525, widgets/comparison-table/widget.php:1219, widgets/comparison-table/widget.php:1258, widgets/content-switcher/widget.php:492, widgets/content-switcher/widget.php:589, widgets/content-switcher/widget.php:860, widgets/content-switcher/widget.php:891, widgets/creative-button/widget.php:694, widgets/creative-button/widget.php:807, widgets/data-table/widget.php:465, widgets/dual-button/widget.php:568, widgets/dual-button/widget.php:599, widgets/dual-button/widget.php:663, widgets/dual-button/widget.php:775, widgets/dual-button/widget.php:806, widgets/flip-box/widget.php:709, widgets/flip-box/widget.php:1075, widgets/fluent-form/widget.php:233, widgets/fluent-form/widget.php:272, widgets/fluent-form/widget.php:452, widgets/fluent-form/widget.php:566, widgets/fluent-form/widget.php:597, widgets/fun-factor/widget.php:539, widgets/gravityforms/widget.php:286, widgets/gravityforms/widget.php:334, widgets/gravityforms/widget.php:622, widgets/gravityforms/widget.php:654, widgets/gravityforms/widget.php:859, widgets/gravityforms/widget.php:894, widgets/horizontal-timeline/widget.php:613, widgets/horizontal-timeline/widget.php:746, widgets/horizontal-timeline/widget.php:777, widgets/horizontal-timeline/widget.php:890, widgets/icon-box/widget.php:323, widgets/icon-box/widget.php:379, widgets/icon-box/widget.php:603, widgets/image-accordion/widget.php:556, widgets/image-compare/widget.php:496, widgets/image-grid/widget.php:619, widgets/image-grid/widget.php:650, widgets/image-grid/widget.php:695, widgets/image-stack-group/widget.php:521, widgets/infobox/widget.php:659, widgets/infobox/widget.php:897, widgets/infobox/widget.php:945, widgets/justified-gallery/widget.php:349, widgets/justified-gallery/widget.php:515, widgets/justified-gallery/widget.php:691, widgets/justified-gallery/widget.php:722, widgets/justified-gallery/widget.php:767, widgets/logo-grid/widget.php:402, widgets/mailchimp/widget.php:1548, widgets/mailchimp/widget.php:1585, widgets/member/widget.php:413, widgets/member/widget.php:447, widgets/member/widget.php:850, widgets/member/widget.php:1220, widgets/member/widget.php:1250, widgets/member/widget.php:1380, widgets/member/widget.php:1411, widgets/member/widget.php:1550, widgets/member/widget.php:1581, widgets/ninjaform/widget.php:221, widgets/ninjaform/widget.php:260, widgets/ninjaform/widget.php:503, widgets/ninjaform/widget.php:534, widgets/pdf-view/widget.php:500, widgets/pdf-view/widget.php:538, widgets/pricing-table/widget.php:823, widgets/pricing-table/widget.php:854, widgets/pricing-table/widget.php:918, widgets/review/widget.php:375, widgets/slider/widget.php:614, widgets/slider/widget.php:645, widgets/social-icons/widget.php:225, widgets/social-icons/widget.php:273, widgets/social-icons/widget.php:500, widgets/social-icons/widget.php:545, widgets/social-share/widget.php:312, widgets/social-share/widget.php:362, widgets/social-share/widget.php:647, widgets/social-share/widget.php:688, widgets/step-flow/widget.php:336, widgets/step-flow/widget.php:419, widgets/testimonial/widget.php:256, widgets/twitter-feed/widget.php:1211, widgets/twitter-feed/widget.php:1242, widgets/weform/widget.php:258, widgets/weform/widget.php:297, widgets/weform/widget.php:592, widgets/weform/widget.php:623, widgets/wpform/widget.php:224, widgets/wpform/widget.php:263, widgets/wpform/widget.php:599, widgets/wpform/widget.php:630
+#: extensions/advanced-tooltip.php:373, widgets/bar-chart/widget.php:130, widgets/bar-chart/widget.php:1072, widgets/calderaform/widget.php:217, widgets/calderaform/widget.php:256, widgets/calderaform/widget.php:509, widgets/calderaform/widget.php:540, widgets/calendly/widget.php:175, widgets/card/widget.php:806, widgets/card/widget.php:1064, widgets/card/widget.php:1095, widgets/carousel/widget.php:654, widgets/carousel/widget.php:685, widgets/cf7/widget.php:278, widgets/cf7/widget.php:317, widgets/cf7/widget.php:494, widgets/cf7/widget.php:525, widgets/comparison-table/widget.php:742, widgets/comparison-table/widget.php:781, widgets/comparison-table/widget.php:1484, widgets/comparison-table/widget.php:1523, widgets/content-switcher/widget.php:515, widgets/content-switcher/widget.php:612, widgets/content-switcher/widget.php:883, widgets/content-switcher/widget.php:914, widgets/creative-button/widget.php:694, widgets/creative-button/widget.php:807, widgets/data-table/widget.php:465, widgets/dual-button/widget.php:568, widgets/dual-button/widget.php:599, widgets/dual-button/widget.php:663, widgets/dual-button/widget.php:775, widgets/dual-button/widget.php:806, widgets/flip-box/widget.php:709, widgets/flip-box/widget.php:1075, widgets/fluent-form/widget.php:233, widgets/fluent-form/widget.php:272, widgets/fluent-form/widget.php:452, widgets/fluent-form/widget.php:566, widgets/fluent-form/widget.php:597, widgets/fun-factor/widget.php:539, widgets/gravityforms/widget.php:286, widgets/gravityforms/widget.php:334, widgets/gravityforms/widget.php:622, widgets/gravityforms/widget.php:654, widgets/gravityforms/widget.php:859, widgets/gravityforms/widget.php:894, widgets/horizontal-timeline/widget.php:613, widgets/horizontal-timeline/widget.php:746, widgets/horizontal-timeline/widget.php:777, widgets/horizontal-timeline/widget.php:890, widgets/icon-box/widget.php:323, widgets/icon-box/widget.php:379, widgets/icon-box/widget.php:603, widgets/image-accordion/widget.php:556, widgets/image-compare/widget.php:496, widgets/image-grid/widget.php:619, widgets/image-grid/widget.php:650, widgets/image-grid/widget.php:695, widgets/image-stack-group/widget.php:521, widgets/infobox/widget.php:659, widgets/infobox/widget.php:897, widgets/infobox/widget.php:945, widgets/justified-gallery/widget.php:349, widgets/justified-gallery/widget.php:515, widgets/justified-gallery/widget.php:691, widgets/justified-gallery/widget.php:722, widgets/justified-gallery/widget.php:767, widgets/logo-grid/widget.php:402, widgets/mailchimp/widget.php:1548, widgets/mailchimp/widget.php:1585, widgets/member/widget.php:413, widgets/member/widget.php:447, widgets/member/widget.php:850, widgets/member/widget.php:1220, widgets/member/widget.php:1250, widgets/member/widget.php:1380, widgets/member/widget.php:1411, widgets/member/widget.php:1550, widgets/member/widget.php:1581, widgets/ninjaform/widget.php:221, widgets/ninjaform/widget.php:260, widgets/ninjaform/widget.php:503, widgets/ninjaform/widget.php:534, widgets/pdf-view/widget.php:500, widgets/pdf-view/widget.php:538, widgets/pricing-table/widget.php:823, widgets/pricing-table/widget.php:854, widgets/pricing-table/widget.php:918, widgets/review/widget.php:375, widgets/slider/widget.php:614, widgets/slider/widget.php:645, widgets/social-icons/widget.php:225, widgets/social-icons/widget.php:273, widgets/social-icons/widget.php:500, widgets/social-icons/widget.php:545, widgets/social-share/widget.php:312, widgets/social-share/widget.php:362, widgets/social-share/widget.php:647, widgets/social-share/widget.php:688, widgets/step-flow/widget.php:336, widgets/step-flow/widget.php:419, widgets/testimonial/widget.php:256, widgets/twitter-feed/widget.php:1211, widgets/twitter-feed/widget.php:1242, widgets/weform/widget.php:258, widgets/weform/widget.php:297, widgets/weform/widget.php:592, widgets/weform/widget.php:623, widgets/wpform/widget.php:224, widgets/wpform/widget.php:263, widgets/wpform/widget.php:599, widgets/wpform/widget.php:630
 msgid "Background Color"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:390, widgets/calderaform/widget.php:497, widgets/calderaform/widget.php:529, widgets/calendly/widget.php:158, widgets/card/widget.php:795, widgets/card/widget.php:910, widgets/card/widget.php:952, widgets/card/widget.php:1052, widgets/card/widget.php:1084, widgets/carousel/widget.php:459, widgets/carousel/widget.php:501, widgets/cf7/widget.php:229, widgets/cf7/widget.php:380, widgets/cf7/widget.php:482, widgets/cf7/widget.php:514, widgets/comparison-table/widget.php:1208, widgets/comparison-table/widget.php:1247, widgets/creative-button/widget.php:683, widgets/creative-button/widget.php:796, widgets/data-table/widget.php:479, widgets/dual-button/widget.php:557, widgets/dual-button/widget.php:588, widgets/dual-button/widget.php:652, widgets/dual-button/widget.php:764, widgets/dual-button/widget.php:795, widgets/event-calendar/widget.php:364, widgets/fluent-form/widget.php:184, widgets/fluent-form/widget.php:335, widgets/fluent-form/widget.php:554, widgets/fluent-form/widget.php:586, widgets/gravityforms/widget.php:610, widgets/gravityforms/widget.php:642, widgets/gravityforms/widget.php:846, widgets/gravityforms/widget.php:880, widgets/horizontal-timeline/widget.php:734, widgets/horizontal-timeline/widget.php:766, widgets/icon-box/widget.php:471, widgets/icon-box/widget.php:491, widgets/icon-box/widget.php:592, widgets/image-grid/widget.php:607, widgets/image-grid/widget.php:639, widgets/image-grid/widget.php:684, widgets/infobox/widget.php:743, widgets/infobox/widget.php:785, widgets/infobox/widget.php:885, widgets/infobox/widget.php:934, widgets/justified-gallery/widget.php:504, widgets/justified-gallery/widget.php:679, widgets/justified-gallery/widget.php:711, widgets/justified-gallery/widget.php:756, widgets/member/widget.php:400, widgets/member/widget.php:434, widgets/member/widget.php:1006, widgets/member/widget.php:1055, widgets/member/widget.php:1104, widgets/member/widget.php:1209, widgets/member/widget.php:1239, widgets/member/widget.php:1368, widgets/member/widget.php:1400, widgets/ninjaform/widget.php:491, widgets/ninjaform/widget.php:523, widgets/number/widget.php:304, widgets/pdf-view/widget.php:291, widgets/pdf-view/widget.php:488, widgets/pdf-view/widget.php:527, widgets/pricing-table/widget.php:414, widgets/pricing-table/widget.php:516, widgets/pricing-table/widget.php:557, widgets/pricing-table/widget.php:598, widgets/pricing-table/widget.php:664, widgets/pricing-table/widget.php:705, widgets/pricing-table/widget.php:812, widgets/pricing-table/widget.php:843, widgets/pricing-table/widget.php:907, widgets/review/widget.php:364, widgets/review/widget.php:452, widgets/review/widget.php:493, widgets/review/widget.php:534, widgets/skills/widget.php:115, widgets/skills/widget.php:295, widgets/slider/widget.php:421, widgets/slider/widget.php:462, widgets/slider/widget.php:602, widgets/slider/widget.php:634, widgets/testimonial/widget.php:245, widgets/testimonial/widget.php:418, widgets/testimonial/widget.php:460, widgets/weform/widget.php:580, widgets/weform/widget.php:612, widgets/wpform/widget.php:587, widgets/wpform/widget.php:619
+#: extensions/advanced-tooltip.php:390, widgets/calderaform/widget.php:497, widgets/calderaform/widget.php:529, widgets/calendly/widget.php:158, widgets/card/widget.php:795, widgets/card/widget.php:910, widgets/card/widget.php:952, widgets/card/widget.php:1052, widgets/card/widget.php:1084, widgets/carousel/widget.php:459, widgets/carousel/widget.php:501, widgets/cf7/widget.php:229, widgets/cf7/widget.php:380, widgets/cf7/widget.php:482, widgets/cf7/widget.php:514, widgets/comparison-table/widget.php:731, widgets/comparison-table/widget.php:770, widgets/comparison-table/widget.php:1473, widgets/comparison-table/widget.php:1512, widgets/creative-button/widget.php:683, widgets/creative-button/widget.php:796, widgets/data-table/widget.php:479, widgets/dual-button/widget.php:557, widgets/dual-button/widget.php:588, widgets/dual-button/widget.php:652, widgets/dual-button/widget.php:764, widgets/dual-button/widget.php:795, widgets/event-calendar/widget.php:364, widgets/fluent-form/widget.php:184, widgets/fluent-form/widget.php:335, widgets/fluent-form/widget.php:554, widgets/fluent-form/widget.php:586, widgets/gravityforms/widget.php:610, widgets/gravityforms/widget.php:642, widgets/gravityforms/widget.php:846, widgets/gravityforms/widget.php:880, widgets/horizontal-timeline/widget.php:734, widgets/horizontal-timeline/widget.php:766, widgets/icon-box/widget.php:471, widgets/icon-box/widget.php:491, widgets/icon-box/widget.php:592, widgets/image-grid/widget.php:607, widgets/image-grid/widget.php:639, widgets/image-grid/widget.php:684, widgets/infobox/widget.php:743, widgets/infobox/widget.php:785, widgets/infobox/widget.php:885, widgets/infobox/widget.php:934, widgets/justified-gallery/widget.php:504, widgets/justified-gallery/widget.php:679, widgets/justified-gallery/widget.php:711, widgets/justified-gallery/widget.php:756, widgets/member/widget.php:400, widgets/member/widget.php:434, widgets/member/widget.php:1006, widgets/member/widget.php:1055, widgets/member/widget.php:1104, widgets/member/widget.php:1209, widgets/member/widget.php:1239, widgets/member/widget.php:1368, widgets/member/widget.php:1400, widgets/ninjaform/widget.php:491, widgets/ninjaform/widget.php:523, widgets/number/widget.php:304, widgets/pdf-view/widget.php:291, widgets/pdf-view/widget.php:488, widgets/pdf-view/widget.php:527, widgets/pricing-table/widget.php:414, widgets/pricing-table/widget.php:516, widgets/pricing-table/widget.php:557, widgets/pricing-table/widget.php:598, widgets/pricing-table/widget.php:664, widgets/pricing-table/widget.php:705, widgets/pricing-table/widget.php:812, widgets/pricing-table/widget.php:843, widgets/pricing-table/widget.php:907, widgets/review/widget.php:364, widgets/review/widget.php:452, widgets/review/widget.php:493, widgets/review/widget.php:534, widgets/skills/widget.php:115, widgets/skills/widget.php:295, widgets/slider/widget.php:421, widgets/slider/widget.php:462, widgets/slider/widget.php:602, widgets/slider/widget.php:634, widgets/testimonial/widget.php:245, widgets/testimonial/widget.php:418, widgets/testimonial/widget.php:460, widgets/weform/widget.php:580, widgets/weform/widget.php:612, widgets/wpform/widget.php:587, widgets/wpform/widget.php:619
 msgid "Text Color"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:406, widgets/content-switcher/widget.php:507, widgets/content-switcher/widget.php:604, widgets/content-switcher/widget.php:752, widgets/content-switcher/widget.php:942, widgets/content-switcher/widget.php:1064, widgets/event-calendar/widget.php:1093, widgets/event-calendar/widget.php:1370, widgets/horizontal-timeline/widget.php:874, widgets/image-accordion/widget.php:527, widgets/image-accordion/widget.php:1021, widgets/image-accordion/widget.php:1212, widgets/image-hover-effect/widget.php:255, widgets/logo-grid/widget.php:236, widgets/mailchimp/widget.php:836, widgets/mailchimp/widget.php:1109, widgets/mailchimp/widget.php:1222, widgets/mailchimp/widget.php:1557, widgets/mailchimp/widget.php:1594, widgets/news-ticker/widget.php:240, widgets/news-ticker/widget.php:362, widgets/number/widget.php:162, widgets/post-list/widget.php:579, widgets/post-list/widget.php:639, widgets/post-list/widget.php:678, widgets/post-list/widget.php:848, widgets/post-tab/widget.php:374, widgets/post-tab/widget.php:489, widgets/post-tab/widget.php:586, widgets/post-tab/widget.php:644, widgets/step-flow/widget.php:297, widgets/step-flow/widget.php:379, widgets/taxonomy-list/widget.php:443, widgets/taxonomy-list/widget.php:503, widgets/taxonomy-list/widget.php:542, widgets/taxonomy-list/widget.php:690, widgets/threesixty-rotation/widget.php:255, widgets/threesixty-rotation/widget.php:398, widgets/threesixty-rotation/widget.php:495
+#: extensions/advanced-tooltip.php:406, widgets/content-switcher/widget.php:530, widgets/content-switcher/widget.php:627, widgets/content-switcher/widget.php:775, widgets/content-switcher/widget.php:965, widgets/content-switcher/widget.php:1087, widgets/event-calendar/widget.php:1093, widgets/event-calendar/widget.php:1370, widgets/horizontal-timeline/widget.php:874, widgets/image-accordion/widget.php:527, widgets/image-accordion/widget.php:1021, widgets/image-accordion/widget.php:1212, widgets/image-hover-effect/widget.php:255, widgets/logo-grid/widget.php:236, widgets/mailchimp/widget.php:836, widgets/mailchimp/widget.php:1109, widgets/mailchimp/widget.php:1222, widgets/mailchimp/widget.php:1557, widgets/mailchimp/widget.php:1594, widgets/news-ticker/widget.php:240, widgets/news-ticker/widget.php:362, widgets/number/widget.php:162, widgets/photo-stack/widget.php:490, widgets/post-list/widget.php:579, widgets/post-list/widget.php:639, widgets/post-list/widget.php:678, widgets/post-list/widget.php:848, widgets/post-tab/widget.php:374, widgets/post-tab/widget.php:489, widgets/post-tab/widget.php:586, widgets/post-tab/widget.php:644, widgets/step-flow/widget.php:297, widgets/step-flow/widget.php:379, widgets/taxonomy-list/widget.php:443, widgets/taxonomy-list/widget.php:503, widgets/taxonomy-list/widget.php:542, widgets/taxonomy-list/widget.php:691, widgets/threesixty-rotation/widget.php:255, widgets/threesixty-rotation/widget.php:398, widgets/threesixty-rotation/widget.php:495
 msgid "Border"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:418, widgets/bar-chart/widget.php:1031, widgets/calderaform/widget.php:147, widgets/calderaform/widget.php:460, widgets/card/widget.php:567, widgets/card/widget.php:825, widgets/card/widget.php:1015, widgets/carousel/widget.php:390, widgets/carousel/widget.php:621, widgets/cf7/widget.php:199, widgets/cf7/widget.php:445, widgets/comparison-table/widget.php:746, widgets/comparison-table/widget.php:1170, widgets/content-switcher/widget.php:518, widgets/content-switcher/widget.php:615, widgets/content-switcher/widget.php:763, widgets/content-switcher/widget.php:950, widgets/content-switcher/widget.php:1072, widgets/creative-button/widget.php:559, widgets/data-table/widget.php:661, widgets/dual-button/widget.php:518, widgets/dual-button/widget.php:725, widgets/event-calendar/widget.php:1193, widgets/event-calendar/widget.php:1357, widgets/event-calendar/widget.php:1410, widgets/flip-box/widget.php:461, widgets/flip-box/widget.php:668, widgets/flip-box/widget.php:1034, widgets/fluent-form/widget.php:154, widgets/fluent-form/widget.php:397, widgets/fluent-form/widget.php:517, widgets/fun-factor/widget.php:508, widgets/fun-factor/widget.php:803, widgets/gravityforms/widget.php:200, widgets/gravityforms/widget.php:580, widgets/horizontal-timeline/widget.php:593, widgets/horizontal-timeline/widget.php:713, widgets/horizontal-timeline/widget.php:818, widgets/horizontal-timeline/widget.php:960, widgets/icon-box/widget.php:280, widgets/icon-box/widget.php:622, widgets/image-accordion/widget.php:535, widgets/image-accordion/widget.php:1029, widgets/image-accordion/widget.php:1220, widgets/image-compare/widget.php:367, widgets/image-compare/widget.php:473, widgets/image-grid/widget.php:348, widgets/image-grid/widget.php:538, widgets/image-hover-effect/widget.php:263, widgets/image-stack-group/widget.php:383, widgets/image-stack-group/widget.php:483, widgets/infobox/widget.php:621, widgets/infobox/widget.php:848, widgets/justified-gallery/widget.php:337, widgets/justified-gallery/widget.php:610, widgets/logo-grid/widget.php:413, widgets/mailchimp/widget.php:823, widgets/mailchimp/widget.php:1129, widgets/mailchimp/widget.php:1163, widgets/mailchimp/widget.php:1508, widgets/member/widget.php:827, widgets/member/widget.php:1189, widgets/member/widget.php:1332, widgets/member/widget.php:1493, widgets/news-ticker/widget.php:248, widgets/news-ticker/widget.php:370, widgets/ninjaform/widget.php:150, widgets/ninjaform/widget.php:454, widgets/number/widget.php:170, widgets/pdf-view/widget.php:354, widgets/pdf-view/widget.php:459, widgets/post-list/widget.php:587, widgets/post-list/widget.php:859, widgets/post-tab/widget.php:497, widgets/post-tab/widget.php:594, widgets/post-tab/widget.php:652, widgets/pricing-table/widget.php:766, widgets/pricing-table/widget.php:937, widgets/review/widget.php:394, widgets/review/widget.php:683, widgets/skills/widget.php:259, widgets/slider/widget.php:352, widgets/slider/widget.php:581, widgets/social-icons/widget.php:631, widgets/social-share/widget.php:548, widgets/step-flow/widget.php:305, widgets/step-flow/widget.php:390, widgets/taxonomy-list/widget.php:451, widgets/taxonomy-list/widget.php:698, widgets/testimonial/widget.php:278, widgets/testimonial/widget.php:377, widgets/threesixty-rotation/widget.php:263, widgets/threesixty-rotation/widget.php:503, widgets/twitter-feed/widget.php:538, widgets/twitter-feed/widget.php:1170, widgets/weform/widget.php:187, widgets/weform/widget.php:535, widgets/wpform/widget.php:152, widgets/wpform/widget.php:550
+#: extensions/advanced-tooltip.php:418, widgets/bar-chart/widget.php:1031, widgets/calderaform/widget.php:147, widgets/calderaform/widget.php:460, widgets/card/widget.php:567, widgets/card/widget.php:825, widgets/card/widget.php:1015, widgets/carousel/widget.php:390, widgets/carousel/widget.php:621, widgets/cf7/widget.php:199, widgets/cf7/widget.php:445, widgets/comparison-table/widget.php:942, widgets/comparison-table/widget.php:1435, widgets/content-switcher/widget.php:541, widgets/content-switcher/widget.php:638, widgets/content-switcher/widget.php:786, widgets/content-switcher/widget.php:973, widgets/content-switcher/widget.php:1095, widgets/creative-button/widget.php:559, widgets/data-table/widget.php:661, widgets/dual-button/widget.php:518, widgets/dual-button/widget.php:725, widgets/event-calendar/widget.php:1193, widgets/event-calendar/widget.php:1357, widgets/event-calendar/widget.php:1410, widgets/flip-box/widget.php:461, widgets/flip-box/widget.php:668, widgets/flip-box/widget.php:1034, widgets/fluent-form/widget.php:154, widgets/fluent-form/widget.php:397, widgets/fluent-form/widget.php:517, widgets/fun-factor/widget.php:508, widgets/fun-factor/widget.php:803, widgets/gravityforms/widget.php:200, widgets/gravityforms/widget.php:580, widgets/horizontal-timeline/widget.php:593, widgets/horizontal-timeline/widget.php:713, widgets/horizontal-timeline/widget.php:818, widgets/horizontal-timeline/widget.php:960, widgets/icon-box/widget.php:280, widgets/icon-box/widget.php:622, widgets/image-accordion/widget.php:535, widgets/image-accordion/widget.php:1029, widgets/image-accordion/widget.php:1220, widgets/image-compare/widget.php:367, widgets/image-compare/widget.php:473, widgets/image-grid/widget.php:348, widgets/image-grid/widget.php:538, widgets/image-hover-effect/widget.php:263, widgets/image-stack-group/widget.php:383, widgets/image-stack-group/widget.php:483, widgets/infobox/widget.php:621, widgets/infobox/widget.php:848, widgets/justified-gallery/widget.php:337, widgets/justified-gallery/widget.php:610, widgets/logo-grid/widget.php:413, widgets/mailchimp/widget.php:823, widgets/mailchimp/widget.php:1129, widgets/mailchimp/widget.php:1163, widgets/mailchimp/widget.php:1508, widgets/member/widget.php:827, widgets/member/widget.php:1189, widgets/member/widget.php:1332, widgets/member/widget.php:1493, widgets/news-ticker/widget.php:248, widgets/news-ticker/widget.php:370, widgets/ninjaform/widget.php:150, widgets/ninjaform/widget.php:454, widgets/number/widget.php:170, widgets/pdf-view/widget.php:354, widgets/pdf-view/widget.php:459, widgets/photo-stack/widget.php:499, widgets/post-list/widget.php:587, widgets/post-list/widget.php:859, widgets/post-tab/widget.php:497, widgets/post-tab/widget.php:594, widgets/post-tab/widget.php:652, widgets/pricing-table/widget.php:766, widgets/pricing-table/widget.php:937, widgets/review/widget.php:394, widgets/review/widget.php:683, widgets/skills/widget.php:259, widgets/slider/widget.php:352, widgets/slider/widget.php:581, widgets/social-icons/widget.php:631, widgets/social-share/widget.php:548, widgets/step-flow/widget.php:305, widgets/step-flow/widget.php:390, widgets/taxonomy-list/widget.php:451, widgets/taxonomy-list/widget.php:699, widgets/testimonial/widget.php:278, widgets/testimonial/widget.php:377, widgets/threesixty-rotation/widget.php:263, widgets/threesixty-rotation/widget.php:503, widgets/twitter-feed/widget.php:538, widgets/twitter-feed/widget.php:1170, widgets/weform/widget.php:187, widgets/weform/widget.php:535, widgets/wpform/widget.php:152, widgets/wpform/widget.php:550
 msgid "Border Radius"
 msgstr ""
 
-#: extensions/advanced-tooltip.php:433, widgets/bar-chart/widget.php:428, widgets/bar-chart/widget.php:756, widgets/bar-chart/widget.php:1003, widgets/calderaform/widget.php:135, widgets/calderaform/widget.php:295, widgets/calderaform/widget.php:432, widgets/card/widget.php:547, widgets/card/widget.php:783, widgets/card/widget.php:986, widgets/cf7/widget.php:187, widgets/cf7/widget.php:416, widgets/comparison-table/widget.php:734, widgets/comparison-table/widget.php:1181, widgets/content-switcher/widget.php:654, widgets/content-switcher/widget.php:984, widgets/creative-button/widget.php:615, widgets/data-table/widget.php:649, widgets/data-table/widget.php:799, widgets/dual-button/widget.php:405, widgets/dual-button/widget.php:498, widgets/dual-button/widget.php:705, widgets/event-calendar/widget.php:860, widgets/event-calendar/widget.php:1333, widgets/flip-box/widget.php:491, widgets/flip-box/widget.php:642, widgets/flip-box/widget.php:838, widgets/flip-box/widget.php:1008, widgets/fluent-form/widget.php:142, widgets/fluent-form/widget.php:377, widgets/fluent-form/widget.php:488, widgets/fun-factor/widget.php:487, widgets/fun-factor/widget.php:633, widgets/gravityforms/widget.php:185, widgets/gravityforms/widget.php:551, widgets/horizontal-timeline/widget.php:557, widgets/horizontal-timeline/widget.php:849, widgets/icon-box/widget.php:243, widgets/icon-box/widget.php:580, widgets/image-accordion/widget.php:514, widgets/image-accordion/widget.php:843, widgets/image-accordion/widget.php:981, widgets/image-compare/widget.php:392, widgets/image-grid/widget.php:335, widgets/image-grid/widget.php:506, widgets/image-stack-group/widget.php:471, widgets/infobox/widget.php:601, widgets/infobox/widget.php:819, widgets/justified-gallery/widget.php:492, widgets/justified-gallery/widget.php:578, widgets/logo-grid/widget.php:284, widgets/mailchimp/widget.php:853, widgets/mailchimp/widget.php:1117, widgets/mailchimp/widget.php:1175, widgets/mailchimp/widget.php:1484, widgets/member/widget.php:807, widgets/member/widget.php:1157, widgets/member/widget.php:1303, widgets/member/widget.php:1456, widgets/news-ticker/widget.php:269, widgets/news-ticker/widget.php:382, widgets/ninjaform/widget.php:138, widgets/ninjaform/widget.php:299, widgets/ninjaform/widget.php:425, widgets/number/widget.php:149, widgets/pdf-view/widget.php:343, widgets/pdf-view/widget.php:430, widgets/post-list/widget.php:547, widgets/post-tab/widget.php:352, widgets/post-tab/widget.php:403, widgets/post-tab/widget.php:554, widgets/pricing-table/widget.php:746, widgets/pricing-table/widget.php:895, widgets/review/widget.php:352, widgets/review/widget.php:663, widgets/social-icons/widget.php:571, widgets/social-icons/widget.php:681, widgets/social-share/widget.php:525, widgets/step-flow/widget.php:259, widgets/step-flow/widget.php:363, widgets/taxonomy-list/widget.php:411, widgets/testimonial/widget.php:221, widgets/threesixty-rotation/widget.php:284, widgets/threesixty-rotation/widget.php:524, widgets/twitter-feed/widget.php:518, widgets/twitter-feed/widget.php:900, widgets/weform/widget.php:174, widgets/weform/widget.php:336, widgets/weform/widget.php:506, widgets/wpform/widget.php:139, widgets/wpform/widget.php:302, widgets/wpform/widget.php:521
+#: extensions/advanced-tooltip.php:433, widgets/bar-chart/widget.php:428, widgets/bar-chart/widget.php:756, widgets/bar-chart/widget.php:1003, widgets/calderaform/widget.php:135, widgets/calderaform/widget.php:295, widgets/calderaform/widget.php:432, widgets/card/widget.php:547, widgets/card/widget.php:783, widgets/card/widget.php:986, widgets/cf7/widget.php:187, widgets/cf7/widget.php:416, widgets/comparison-table/widget.php:930, widgets/comparison-table/widget.php:1446, widgets/content-switcher/widget.php:677, widgets/content-switcher/widget.php:1007, widgets/creative-button/widget.php:615, widgets/data-table/widget.php:649, widgets/data-table/widget.php:799, widgets/dual-button/widget.php:405, widgets/dual-button/widget.php:498, widgets/dual-button/widget.php:705, widgets/event-calendar/widget.php:860, widgets/event-calendar/widget.php:1333, widgets/flip-box/widget.php:491, widgets/flip-box/widget.php:642, widgets/flip-box/widget.php:838, widgets/flip-box/widget.php:1008, widgets/fluent-form/widget.php:142, widgets/fluent-form/widget.php:377, widgets/fluent-form/widget.php:488, widgets/fun-factor/widget.php:487, widgets/fun-factor/widget.php:633, widgets/gravityforms/widget.php:185, widgets/gravityforms/widget.php:551, widgets/horizontal-timeline/widget.php:557, widgets/horizontal-timeline/widget.php:849, widgets/icon-box/widget.php:243, widgets/icon-box/widget.php:580, widgets/image-accordion/widget.php:514, widgets/image-accordion/widget.php:843, widgets/image-accordion/widget.php:981, widgets/image-compare/widget.php:392, widgets/image-grid/widget.php:335, widgets/image-grid/widget.php:506, widgets/image-stack-group/widget.php:471, widgets/infobox/widget.php:601, widgets/infobox/widget.php:819, widgets/justified-gallery/widget.php:492, widgets/justified-gallery/widget.php:578, widgets/logo-grid/widget.php:284, widgets/mailchimp/widget.php:853, widgets/mailchimp/widget.php:1117, widgets/mailchimp/widget.php:1175, widgets/mailchimp/widget.php:1484, widgets/member/widget.php:807, widgets/member/widget.php:1157, widgets/member/widget.php:1303, widgets/member/widget.php:1456, widgets/news-ticker/widget.php:269, widgets/news-ticker/widget.php:382, widgets/ninjaform/widget.php:138, widgets/ninjaform/widget.php:299, widgets/ninjaform/widget.php:425, widgets/number/widget.php:149, widgets/pdf-view/widget.php:343, widgets/pdf-view/widget.php:430, widgets/post-list/widget.php:547, widgets/post-tab/widget.php:352, widgets/post-tab/widget.php:403, widgets/post-tab/widget.php:554, widgets/pricing-table/widget.php:746, widgets/pricing-table/widget.php:895, widgets/review/widget.php:352, widgets/review/widget.php:663, widgets/social-icons/widget.php:571, widgets/social-icons/widget.php:681, widgets/social-share/widget.php:525, widgets/step-flow/widget.php:259, widgets/step-flow/widget.php:363, widgets/taxonomy-list/widget.php:411, widgets/testimonial/widget.php:221, widgets/threesixty-rotation/widget.php:284, widgets/threesixty-rotation/widget.php:524, widgets/twitter-feed/widget.php:518, widgets/twitter-feed/widget.php:900, widgets/weform/widget.php:174, widgets/weform/widget.php:336, widgets/weform/widget.php:506, widgets/wpform/widget.php:139, widgets/wpform/widget.php:302, widgets/wpform/widget.php:521
 msgid "Padding"
 msgstr ""
 
-#: extensions/background-overlay.php:57, extensions/background-overlay.php:106, extensions/css-transform.php:51, inc/functions.php:134, widgets/bar-chart/widget.php:550, widgets/bar-chart/widget.php:572, widgets/bar-chart/widget.php:693, widgets/bar-chart/widget.php:715, widgets/bar-chart/widget.php:827, widgets/bar-chart/widget.php:849, widgets/bar-chart/widget.php:940, widgets/bar-chart/widget.php:962, widgets/bar-chart/widget.php:1145, widgets/bar-chart/widget.php:1167, widgets/bar-chart/widget.php:1246, widgets/bar-chart/widget.php:1268, widgets/calderaform/widget.php:194, widgets/calderaform/widget.php:490, widgets/card/widget.php:598, widgets/card/widget.php:1045, widgets/carousel/widget.php:635, widgets/carousel/widget.php:784, widgets/cf7/widget.php:255, widgets/cf7/widget.php:475, widgets/comparison-table/widget.php:894, widgets/comparison-table/widget.php:1201, widgets/content-switcher/widget.php:458, widgets/content-switcher/widget.php:842, widgets/creative-button/widget.php:676, widgets/data-table/widget.php:822, widgets/dual-button/widget.php:550, widgets/dual-button/widget.php:757, widgets/event-calendar/widget.php:1105, widgets/fluent-form/widget.php:210, widgets/fluent-form/widget.php:547, widgets/gradient-heading/widget.php:204, widgets/gravityforms/widget.php:255, widgets/gravityforms/widget.php:603, widgets/gravityforms/widget.php:839, widgets/horizontal-timeline/widget.php:727, widgets/icon-box/widget.php:305, widgets/icon-box/widget.php:464, widgets/image-accordion/widget.php:635, widgets/image-accordion/widget.php:1043, widgets/image-accordion/widget.php:1242, widgets/image-grid/widget.php:367, widgets/image-grid/widget.php:600, widgets/image-hover-effect/widget.php:308, widgets/image-hover-effect/widget.php:393, widgets/infobox/widget.php:878, widgets/justified-gallery/widget.php:367, widgets/justified-gallery/widget.php:672, widgets/logo-grid/widget.php:517, widgets/mailchimp/widget.php:1295, widgets/member/widget.php:136, widgets/member/widget.php:393, widgets/member/widget.php:869, widgets/member/widget.php:1202, widgets/member/widget.php:1361, widgets/news-ticker/widget.php:410, widgets/ninjaform/widget.php:198, widgets/ninjaform/widget.php:484, widgets/pdf-view/widget.php:481, widgets/post-list/widget.php:713, widgets/post-tab/widget.php:416, widgets/post-tab/widget.php:699, widgets/post-tab/widget.php:758, widgets/pricing-table/widget.php:805, widgets/slider/widget.php:595, widgets/slider/widget.php:747, widgets/social-icons/widget.php:205, widgets/social-icons/widget.php:479, widgets/social-share/widget.php:290, widgets/social-share/widget.php:628, widgets/taxonomy-list/widget.php:577, widgets/threesixty-rotation/widget.php:433, widgets/twitter-feed/widget.php:813, widgets/twitter-feed/widget.php:1204, widgets/weform/widget.php:235, widgets/weform/widget.php:573, widgets/wpform/widget.php:580
+#: extensions/background-overlay.php:57, extensions/background-overlay.php:106, extensions/css-transform.php:51, inc/functions.php:134, widgets/bar-chart/widget.php:550, widgets/bar-chart/widget.php:572, widgets/bar-chart/widget.php:693, widgets/bar-chart/widget.php:715, widgets/bar-chart/widget.php:827, widgets/bar-chart/widget.php:849, widgets/bar-chart/widget.php:940, widgets/bar-chart/widget.php:962, widgets/bar-chart/widget.php:1145, widgets/bar-chart/widget.php:1167, widgets/bar-chart/widget.php:1246, widgets/bar-chart/widget.php:1268, widgets/calderaform/widget.php:194, widgets/calderaform/widget.php:490, widgets/card/widget.php:598, widgets/card/widget.php:1045, widgets/carousel/widget.php:635, widgets/carousel/widget.php:784, widgets/cf7/widget.php:255, widgets/cf7/widget.php:475, widgets/comparison-table/widget.php:724, widgets/comparison-table/widget.php:1119, widgets/comparison-table/widget.php:1466, widgets/content-switcher/widget.php:481, widgets/content-switcher/widget.php:865, widgets/creative-button/widget.php:676, widgets/data-table/widget.php:822, widgets/dual-button/widget.php:550, widgets/dual-button/widget.php:757, widgets/event-calendar/widget.php:1105, widgets/fluent-form/widget.php:210, widgets/fluent-form/widget.php:547, widgets/gradient-heading/widget.php:204, widgets/gravityforms/widget.php:255, widgets/gravityforms/widget.php:603, widgets/gravityforms/widget.php:839, widgets/horizontal-timeline/widget.php:727, widgets/icon-box/widget.php:305, widgets/icon-box/widget.php:464, widgets/image-accordion/widget.php:635, widgets/image-accordion/widget.php:1043, widgets/image-accordion/widget.php:1242, widgets/image-grid/widget.php:367, widgets/image-grid/widget.php:600, widgets/image-hover-effect/widget.php:308, widgets/image-hover-effect/widget.php:393, widgets/infobox/widget.php:878, widgets/justified-gallery/widget.php:367, widgets/justified-gallery/widget.php:672, widgets/logo-grid/widget.php:517, widgets/mailchimp/widget.php:1295, widgets/member/widget.php:136, widgets/member/widget.php:393, widgets/member/widget.php:869, widgets/member/widget.php:1202, widgets/member/widget.php:1361, widgets/news-ticker/widget.php:410, widgets/ninjaform/widget.php:198, widgets/ninjaform/widget.php:484, widgets/pdf-view/widget.php:481, widgets/photo-stack/widget.php:452, widgets/post-list/widget.php:713, widgets/post-tab/widget.php:416, widgets/post-tab/widget.php:699, widgets/post-tab/widget.php:758, widgets/pricing-table/widget.php:805, widgets/slider/widget.php:595, widgets/slider/widget.php:747, widgets/social-icons/widget.php:205, widgets/social-icons/widget.php:479, widgets/social-share/widget.php:290, widgets/social-share/widget.php:628, widgets/taxonomy-list/widget.php:577, widgets/threesixty-rotation/widget.php:433, widgets/twitter-feed/widget.php:813, widgets/twitter-feed/widget.php:1204, widgets/weform/widget.php:235, widgets/weform/widget.php:573, widgets/wpform/widget.php:580
 msgid "Normal"
 msgstr ""
 
@@ -1417,7 +1444,7 @@ msgstr ""
 msgid "Gutter"
 msgstr ""
 
-#: extensions/grid-layer.php:198
+#: extensions/grid-layer.php:198, widgets/photo-stack/widget.php:173
 msgid "Z-Index"
 msgstr ""
 
@@ -1560,7 +1587,7 @@ msgstr ""
 msgid "Fixed Size"
 msgstr ""
 
-#: extensions/widgets-extended.php:87, widgets/calendly/widget.php:102, widgets/card/widget.php:472, widgets/comparison-table/widget.php:1071, widgets/flip-box/widget.php:442, widgets/fun-factor/widget.php:423, widgets/fun-factor/widget.php:788, widgets/horizontal-timeline/widget.php:930, widgets/image-accordion/widget.php:471, widgets/image-grid/widget.php:312, widgets/infobox/widget.php:511, widgets/justified-gallery/widget.php:204, widgets/logo-grid/widget.php:296, widgets/member/widget.php:777, widgets/pdf-view/widget.php:215, widgets/review/widget.php:589, widgets/skills/widget.php:221, widgets/testimonial/widget.php:337
+#: extensions/widgets-extended.php:87, widgets/calendly/widget.php:102, widgets/card/widget.php:472, widgets/comparison-table/widget.php:1336, widgets/flip-box/widget.php:442, widgets/fun-factor/widget.php:423, widgets/fun-factor/widget.php:788, widgets/horizontal-timeline/widget.php:930, widgets/image-accordion/widget.php:471, widgets/image-grid/widget.php:312, widgets/infobox/widget.php:511, widgets/justified-gallery/widget.php:204, widgets/logo-grid/widget.php:296, widgets/member/widget.php:777, widgets/pdf-view/widget.php:215, widgets/review/widget.php:589, widgets/skills/widget.php:221, widgets/testimonial/widget.php:337
 msgid "Height"
 msgstr ""
 
@@ -1572,7 +1599,7 @@ msgstr ""
 msgid "Vertical Align"
 msgstr ""
 
-#: extensions/wrapper-link.php:37, widgets/card/widget.php:292, widgets/carousel/widget.php:120, widgets/comparison-table/widget.php:593, widgets/creative-button/widget.php:187, widgets/data-table/widget.php:337, widgets/dual-button/widget.php:89, widgets/dual-button/widget.php:278, widgets/gradient-heading/widget.php:80, widgets/image-stack-group/widget.php:171, widgets/infobox/widget.php:364, widgets/link-hover/widget.php:139, widgets/member/widget.php:590, widgets/pricing-table/widget.php:307, widgets/slider/widget.php:118, widgets/social-icons/widget.php:141, widgets/step-flow/widget.php:137
+#: extensions/wrapper-link.php:37, widgets/card/widget.php:292, widgets/carousel/widget.php:120, widgets/comparison-table/widget.php:690, widgets/creative-button/widget.php:187, widgets/data-table/widget.php:337, widgets/dual-button/widget.php:89, widgets/dual-button/widget.php:278, widgets/gradient-heading/widget.php:80, widgets/image-stack-group/widget.php:171, widgets/infobox/widget.php:364, widgets/link-hover/widget.php:139, widgets/member/widget.php:590, widgets/photo-stack/widget.php:107, widgets/pricing-table/widget.php:307, widgets/slider/widget.php:118, widgets/social-icons/widget.php:141, widgets/step-flow/widget.php:137
 msgid "Link"
 msgstr ""
 
@@ -1688,7 +1715,7 @@ msgstr ""
 msgid "SW-resize"
 msgstr ""
 
-#: inc/functions.php:122, widgets/card/widget.php:278, widgets/comparison-table/widget.php:381, widgets/creative-button/widget.php:174, widgets/dual-button/widget.php:76, widgets/dual-button/widget.php:188, widgets/dual-button/widget.php:208, widgets/dual-button/widget.php:265, widgets/infobox/widget.php:350, widgets/mailchimp/widget.php:577, widgets/member/widget.php:573, widgets/number/widget.php:69, widgets/number/widget.php:296, widgets/pricing-table/widget.php:201, widgets/social-share/widget.php:433
+#: inc/functions.php:122, widgets/card/widget.php:278, widgets/comparison-table/widget.php:445, widgets/creative-button/widget.php:174, widgets/dual-button/widget.php:76, widgets/dual-button/widget.php:188, widgets/dual-button/widget.php:208, widgets/dual-button/widget.php:265, widgets/infobox/widget.php:350, widgets/mailchimp/widget.php:577, widgets/member/widget.php:573, widgets/number/widget.php:69, widgets/number/widget.php:296, widgets/pricing-table/widget.php:201, widgets/social-share/widget.php:433
 msgid "Text"
 msgstr ""
 
@@ -1756,7 +1783,7 @@ msgstr ""
 msgid "Hue"
 msgstr ""
 
-#: inc/functions.php:146, widgets/bar-chart/widget.php:586, widgets/bar-chart/widget.php:729, widgets/bar-chart/widget.php:863, widgets/bar-chart/widget.php:976, widgets/bar-chart/widget.php:1181, widgets/bar-chart/widget.php:1282, widgets/carousel/widget.php:642, widgets/carousel/widget.php:674, widgets/carousel/widget.php:803, widgets/carousel/widget.php:823, widgets/carousel/widget.php:855, widgets/comparison-table/widget.php:462, widgets/comparison-table/widget.php:795, widgets/comparison-table/widget.php:1124, widgets/content-switcher/widget.php:849, widgets/content-switcher/widget.php:880, widgets/content-switcher/widget.php:1016, widgets/data-table/widget.php:712, widgets/data-table/widget.php:1034, widgets/event-calendar/widget.php:897, widgets/event-calendar/widget.php:954, widgets/event-calendar/widget.php:1035, widgets/event-calendar/widget.php:1112, widgets/event-calendar/widget.php:1154, widgets/event-calendar/widget.php:1245, widgets/event-calendar/widget.php:1462, widgets/event-calendar/widget.php:1513, widgets/event-calendar/widget.php:1547, widgets/event-calendar/widget.php:1586, widgets/event-calendar/widget.php:1674, widgets/event-calendar/widget.php:1729, widgets/event-calendar/widget.php:1763, widgets/flip-box/widget.php:695, widgets/flip-box/widget.php:740, widgets/flip-box/widget.php:791, widgets/flip-box/widget.php:890, widgets/flip-box/widget.php:1061, widgets/flip-box/widget.php:1118, widgets/flip-box/widget.php:1157, widgets/fluent-form/widget.php:430, widgets/fluent-form/widget.php:672, widgets/fluent-form/widget.php:692, widgets/fun-factor/widget.php:664, widgets/fun-factor/widget.php:721, widgets/fun-factor/widget.php:814, widgets/gravityforms/widget.php:730, widgets/gravityforms/widget.php:750, widgets/horizontal-timeline/widget.php:489, widgets/horizontal-timeline/widget.php:537, widgets/horizontal-timeline/widget.php:1011, widgets/horizontal-timeline/widget.php:1053, widgets/horizontal-timeline/widget.php:1083, widgets/icon-box/widget.php:312, widgets/icon-box/widget.php:368, widgets/image-accordion/widget.php:758, widgets/image-accordion/widget.php:883, widgets/image-accordion/widget.php:937, widgets/image-accordion/widget.php:1051, widgets/image-accordion/widget.php:1084, widgets/image-compare/widget.php:264, widgets/image-compare/widget.php:485, widgets/image-stack-group/widget.php:510, widgets/infobox/widget.php:645, widgets/mailchimp/widget.php:712, widgets/mailchimp/widget.php:789, widgets/mailchimp/widget.php:1070, widgets/mailchimp/widget.php:1302, widgets/mailchimp/widget.php:1336, widgets/mailchimp/widget.php:1536, widgets/mailchimp/widget.php:1573, widgets/post-list/widget.php:720, widgets/post-list/widget.php:739, widgets/post-list/widget.php:780, widgets/post-list/widget.php:937, widgets/post-list/widget.php:986, widgets/post-list/widget.php:1031, widgets/post-tab/widget.php:423, widgets/post-tab/widget.php:453, widgets/post-tab/widget.php:706, widgets/post-tab/widget.php:725, widgets/post-tab/widget.php:765, widgets/post-tab/widget.php:785, widgets/post-tab/widget.php:836, widgets/slider/widget.php:766, widgets/slider/widget.php:786, widgets/slider/widget.php:818, widgets/social-icons/widget.php:212, widgets/social-icons/widget.php:261, widgets/social-icons/widget.php:384, widgets/social-icons/widget.php:486, widgets/social-icons/widget.php:532, widgets/social-icons/widget.php:856, widgets/social-share/widget.php:297, widgets/social-share/widget.php:348, widgets/social-share/widget.php:635, widgets/social-share/widget.php:677, widgets/step-flow/widget.php:325, widgets/step-flow/widget.php:405, widgets/step-flow/widget.php:478, widgets/step-flow/widget.php:543, widgets/step-flow/widget.php:713, widgets/taxonomy-list/widget.php:584, widgets/taxonomy-list/widget.php:603, widgets/twitter-feed/widget.php:656, widgets/twitter-feed/widget.php:943, widgets/twitter-feed/widget.php:988, widgets/twitter-feed/widget.php:1050, widgets/twitter-feed/widget.php:1114, widgets/twitter-feed/widget.php:1222, widgets/twitter-feed/widget.php:1253, widgets/weform/widget.php:690, widgets/weform/widget.php:710
+#: inc/functions.php:146, widgets/bar-chart/widget.php:586, widgets/bar-chart/widget.php:729, widgets/bar-chart/widget.php:863, widgets/bar-chart/widget.php:976, widgets/bar-chart/widget.php:1181, widgets/bar-chart/widget.php:1282, widgets/carousel/widget.php:642, widgets/carousel/widget.php:674, widgets/carousel/widget.php:803, widgets/carousel/widget.php:823, widgets/carousel/widget.php:855, widgets/comparison-table/widget.php:530, widgets/comparison-table/widget.php:991, widgets/comparison-table/widget.php:1020, widgets/comparison-table/widget.php:1293, widgets/comparison-table/widget.php:1389, widgets/content-switcher/widget.php:872, widgets/content-switcher/widget.php:903, widgets/content-switcher/widget.php:1039, widgets/data-table/widget.php:712, widgets/data-table/widget.php:1034, widgets/event-calendar/widget.php:897, widgets/event-calendar/widget.php:954, widgets/event-calendar/widget.php:1035, widgets/event-calendar/widget.php:1112, widgets/event-calendar/widget.php:1154, widgets/event-calendar/widget.php:1245, widgets/event-calendar/widget.php:1462, widgets/event-calendar/widget.php:1513, widgets/event-calendar/widget.php:1547, widgets/event-calendar/widget.php:1586, widgets/event-calendar/widget.php:1674, widgets/event-calendar/widget.php:1729, widgets/event-calendar/widget.php:1763, widgets/flip-box/widget.php:695, widgets/flip-box/widget.php:740, widgets/flip-box/widget.php:791, widgets/flip-box/widget.php:890, widgets/flip-box/widget.php:1061, widgets/flip-box/widget.php:1118, widgets/flip-box/widget.php:1157, widgets/fluent-form/widget.php:430, widgets/fluent-form/widget.php:672, widgets/fluent-form/widget.php:692, widgets/fun-factor/widget.php:664, widgets/fun-factor/widget.php:721, widgets/fun-factor/widget.php:814, widgets/gravityforms/widget.php:730, widgets/gravityforms/widget.php:750, widgets/horizontal-timeline/widget.php:489, widgets/horizontal-timeline/widget.php:537, widgets/horizontal-timeline/widget.php:1011, widgets/horizontal-timeline/widget.php:1053, widgets/horizontal-timeline/widget.php:1083, widgets/icon-box/widget.php:312, widgets/icon-box/widget.php:368, widgets/image-accordion/widget.php:758, widgets/image-accordion/widget.php:883, widgets/image-accordion/widget.php:937, widgets/image-accordion/widget.php:1051, widgets/image-accordion/widget.php:1084, widgets/image-compare/widget.php:264, widgets/image-compare/widget.php:485, widgets/image-stack-group/widget.php:510, widgets/infobox/widget.php:645, widgets/mailchimp/widget.php:712, widgets/mailchimp/widget.php:789, widgets/mailchimp/widget.php:1070, widgets/mailchimp/widget.php:1302, widgets/mailchimp/widget.php:1336, widgets/mailchimp/widget.php:1536, widgets/mailchimp/widget.php:1573, widgets/post-list/widget.php:720, widgets/post-list/widget.php:739, widgets/post-list/widget.php:780, widgets/post-list/widget.php:937, widgets/post-list/widget.php:986, widgets/post-list/widget.php:1031, widgets/post-tab/widget.php:423, widgets/post-tab/widget.php:453, widgets/post-tab/widget.php:706, widgets/post-tab/widget.php:725, widgets/post-tab/widget.php:765, widgets/post-tab/widget.php:785, widgets/post-tab/widget.php:836, widgets/slider/widget.php:766, widgets/slider/widget.php:786, widgets/slider/widget.php:818, widgets/social-icons/widget.php:212, widgets/social-icons/widget.php:261, widgets/social-icons/widget.php:384, widgets/social-icons/widget.php:486, widgets/social-icons/widget.php:532, widgets/social-icons/widget.php:856, widgets/social-share/widget.php:297, widgets/social-share/widget.php:348, widgets/social-share/widget.php:635, widgets/social-share/widget.php:677, widgets/step-flow/widget.php:325, widgets/step-flow/widget.php:405, widgets/step-flow/widget.php:478, widgets/step-flow/widget.php:543, widgets/step-flow/widget.php:713, widgets/taxonomy-list/widget.php:584, widgets/taxonomy-list/widget.php:603, widgets/twitter-feed/widget.php:656, widgets/twitter-feed/widget.php:943, widgets/twitter-feed/widget.php:988, widgets/twitter-feed/widget.php:1050, widgets/twitter-feed/widget.php:1114, widgets/twitter-feed/widget.php:1222, widgets/twitter-feed/widget.php:1253, widgets/weform/widget.php:690, widgets/weform/widget.php:710
 msgid "Color"
 msgstr ""
 
@@ -1776,35 +1803,124 @@ msgstr ""
 msgid " is missing! Please install and activate "
 msgstr ""
 
-#. translators: 1: Plugin name 2: PHP 3: Required PHP version
-#. translators: 1: Plugin name 2: Elementor 3: Required Elementor version
-#: plugin.php:93, plugin.php:138
-msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
+#: wpml/bar-chart.php:33
+msgid "Bar Chart: Label Text"
 msgstr ""
 
-#: plugin.php:94, plugin.php:121, plugin.php:139, templates/admin/dashboard-main.php:9
-msgid "Happy Elementor Addons"
+#: wpml/carousel.php:37
+msgid "Carousel: Title"
 msgstr ""
 
-#: plugin.php:95
-msgid "PHP"
+#: wpml/carousel.php:39
+msgid "Carousel: Subtitle"
 msgstr ""
 
-#: plugin.php:114
-msgid "Install Elementor"
+#: wpml/carousel.php:41
+msgid "Carousel: Link"
 msgstr ""
 
-#: plugin.php:111
-msgid "Activate Elementor"
+#: wpml/content-switcher.php:36
+msgid "Content Switcher: Title"
 msgstr ""
 
-#. translators: 1: Plugin name 2: Elementor 3: Elementor installation link
-#: plugin.php:120
-msgid "%1$s requires %2$s to be installed and activated to function properly. %3$s"
+#: wpml/content-switcher.php:38
+msgid "Content Switcher: Plain/ HTML Text"
 msgstr ""
 
-#: plugin.php:122, plugin.php:140, widgets/data-table/widget.php:211
-msgid "Elementor"
+#: wpml/data-table.php:35
+msgid "Data Table: Column Name"
+msgstr ""
+
+#: wpml/data-table.php:83
+msgid "Data Table: Cell Title"
+msgstr ""
+
+#: wpml/data-table.php:85
+msgid "Data Table: Cell Link"
+msgstr ""
+
+#: wpml/horizontal-timeline.php:37
+msgid "Horizontal Timeline: Date"
+msgstr ""
+
+#: wpml/horizontal-timeline.php:41
+msgid "Horizontal Timeline: Title"
+msgstr ""
+
+#: wpml/horizontal-timeline.php:45
+msgid "Horizontal Timeline: Subtitle"
+msgstr ""
+
+#: wpml/horizontal-timeline.php:49
+msgid "Horizontal Timeline: Description"
+msgstr ""
+
+#: wpml/image-accordion.php:40
+msgid "Image Accordion: Label"
+msgstr ""
+
+#: wpml/image-accordion.php:42
+msgid "Image Accordion: Title"
+msgstr ""
+
+#: wpml/image-accordion.php:44
+msgid "Image Accordion: Description"
+msgstr ""
+
+#: wpml/image-accordion.php:46
+msgid "Image Accordion: Button Label"
+msgstr ""
+
+#: wpml/image-accordion.php:48
+msgid "Image Accordion: Button URL"
+msgstr ""
+
+#: wpml/image-accordion.php:50
+msgid "Image Accordion: Link URL"
+msgstr ""
+
+#: wpml/image-grid.php:33
+msgid "Image Grid: Filter Name"
+msgstr ""
+
+#: wpml/justified-gallery.php:33
+msgid "Justified Grid: Filter Name"
+msgstr ""
+
+#: wpml/logo-grid.php:36
+msgid "Logo Grid: Brand Name"
+msgstr ""
+
+#: wpml/logo-grid.php:38
+msgid "Logo Grid: Link"
+msgstr ""
+
+#: wpml/pricing-table.php:33
+msgid "Pricing Table: Feature Text"
+msgstr ""
+
+#: wpml/skills.php:33
+msgid "Skills: Skill Name"
+msgstr ""
+
+#: wpml/slider.php:37
+msgid "Slider: Title"
+msgstr ""
+
+#: wpml/slider.php:39
+msgid "Slider: Subtitle"
+msgstr ""
+
+#: wpml/slider.php:41
+msgid "Slider: Link"
+msgstr ""
+
+#: wpml/social-icons.php:36
+msgid "Social Icons: Title"
+msgstr ""
+
+#: wpml/social-icons.php:38
+msgid "Social Icons: Link"
 msgstr ""
 
 #: templates/admin/dashboard-analytics.php:57
@@ -1899,7 +2015,7 @@ msgstr ""
 msgid "Here is the list of our all credentials. You can input credentials from here. %sAfter changing any input make sure to click the Save Changes button.%s"
 msgstr ""
 
-#: templates/admin/dashboard-credentials.php:53, templates/admin/dashboard-features.php:23, templates/admin/dashboard-features.php:58, templates/admin/dashboard-widgets.php:24, templates/admin/dashboard-widgets.php:67, templates/template-library/templates.php:126, widgets/comparison-table/widget.php:239
+#: templates/admin/dashboard-credentials.php:53, templates/admin/dashboard-features.php:23, templates/admin/dashboard-features.php:58, templates/admin/dashboard-widgets.php:24, templates/admin/dashboard-widgets.php:67, templates/template-library/templates.php:126, widgets/comparison-table/widget.php:303
 msgid "Pro"
 msgstr ""
 
@@ -1919,7 +2035,7 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: templates/admin/dashboard-features.php:22, templates/admin/dashboard-widgets.php:23, widgets/comparison-table/widget.php:219
+#: templates/admin/dashboard-features.php:22, templates/admin/dashboard-widgets.php:23, widgets/comparison-table/widget.php:283
 msgid "Free"
 msgstr ""
 
@@ -2021,7 +2137,7 @@ msgstr ""
 
 #: templates/admin/dashboard-home.php:95
 msgid ""
-"By allow Happy Elementor Addons to collect non-sensitive diagnostic data and usage information so that we can make sure optimum compatibility.\n"
+"By allowing Happy Elementor Addons to collect non-sensitive diagnostic data and usage information so that we can make sure optimum compatibility.\n"
 "                                    Happy Elementor Addons collect - Server environment details (php, mysql, server, WordPress versions), Number of users in your site, Site language, Number of active and inactive plugins, Site name and url, Your name and email address. We are using Appsero to collect your data. "
 msgstr ""
 
@@ -2119,6 +2235,10 @@ msgstr ""
 msgid ""
 "Do Cross-Domain Widget Copy Paste within different websites!\n"
 "                    You can easily copy any widgets from your previously designed website and paste it to your newly created website."
+msgstr ""
+
+#: templates/admin/dashboard-pro.php:42
+msgid "Preset"
 msgstr ""
 
 #: templates/admin/dashboard-pro.php:43
@@ -2289,7 +2409,7 @@ msgstr ""
 msgid "Show Title"
 msgstr ""
 
-#: widgets/bar-chart/widget.php:284, widgets/card/widget.php:170, widgets/card/widget.php:890, widgets/carousel/widget.php:96, widgets/carousel/widget.php:439, widgets/comparison-table/widget.php:95, widgets/comparison-table/widget.php:399, widgets/comparison-table/widget.php:402, widgets/comparison-table/widget.php:583, widgets/comparison-table/widget.php:778, widgets/comparison-table/widget.php:1022, widgets/content-switcher/widget.php:132, widgets/data-table/widget.php:86, widgets/data-table/widget.php:321, widgets/data-table/widget.php:695, widgets/data-table/widget.php:972, widgets/event-calendar/widget.php:217, widgets/event-calendar/widget.php:1014, widgets/event-calendar/widget.php:1422, widgets/flip-box/widget.php:168, widgets/flip-box/widget.php:328, widgets/flip-box/widget.php:733, widgets/flip-box/widget.php:1099, widgets/fluent-form/widget.php:665, widgets/fun-factor/widget.php:217, widgets/fun-factor/widget.php:700, widgets/gradient-heading/widget.php:59, widgets/gradient-heading/widget.php:67, widgets/gradient-heading/widget.php:167, widgets/gravityforms/widget.php:723, widgets/horizontal-timeline/widget.php:121, widgets/horizontal-timeline/widget.php:980, widgets/icon-box/widget.php:95, widgets/icon-box/widget.php:437, widgets/image-accordion/widget.php:96, widgets/image-accordion/widget.php:738, widgets/image-hover-effect/widget.php:89, widgets/infobox/widget.php:239, widgets/infobox/widget.php:723, widgets/link-hover/widget.php:92, widgets/news-ticker/widget.php:400, widgets/pdf-view/widget.php:283, widgets/post-list/widget.php:130, widgets/post-list/widget.php:694, widgets/post-tab/widget.php:664, widgets/pricing-table/widget.php:77, widgets/pricing-table/widget.php:185, widgets/pricing-table/widget.php:644, widgets/slider/widget.php:94, widgets/slider/widget.php:401, widgets/step-flow/widget.php:108, widgets/step-flow/widget.php:111, widgets/step-flow/widget.php:459, widgets/taxonomy-list/widget.php:558, widgets/testimonial/widget.php:184, widgets/testimonial/widget.php:451, widgets/weform/widget.php:683
+#: widgets/bar-chart/widget.php:284, widgets/card/widget.php:170, widgets/card/widget.php:890, widgets/carousel/widget.php:96, widgets/carousel/widget.php:439, widgets/comparison-table/widget.php:95, widgets/comparison-table/widget.php:463, widgets/comparison-table/widget.php:466, widgets/comparison-table/widget.php:680, widgets/comparison-table/widget.php:974, widgets/comparison-table/widget.php:1247, widgets/content-switcher/widget.php:132, widgets/data-table/widget.php:86, widgets/data-table/widget.php:321, widgets/data-table/widget.php:695, widgets/data-table/widget.php:972, widgets/event-calendar/widget.php:217, widgets/event-calendar/widget.php:1014, widgets/event-calendar/widget.php:1422, widgets/flip-box/widget.php:168, widgets/flip-box/widget.php:328, widgets/flip-box/widget.php:733, widgets/flip-box/widget.php:1099, widgets/fluent-form/widget.php:665, widgets/fun-factor/widget.php:217, widgets/fun-factor/widget.php:700, widgets/gradient-heading/widget.php:59, widgets/gradient-heading/widget.php:67, widgets/gradient-heading/widget.php:167, widgets/gravityforms/widget.php:723, widgets/horizontal-timeline/widget.php:121, widgets/horizontal-timeline/widget.php:980, widgets/icon-box/widget.php:95, widgets/icon-box/widget.php:437, widgets/image-accordion/widget.php:96, widgets/image-accordion/widget.php:738, widgets/image-hover-effect/widget.php:89, widgets/infobox/widget.php:239, widgets/infobox/widget.php:723, widgets/link-hover/widget.php:92, widgets/news-ticker/widget.php:400, widgets/pdf-view/widget.php:283, widgets/post-list/widget.php:130, widgets/post-list/widget.php:694, widgets/post-tab/widget.php:664, widgets/pricing-table/widget.php:77, widgets/pricing-table/widget.php:185, widgets/pricing-table/widget.php:644, widgets/slider/widget.php:94, widgets/slider/widget.php:401, widgets/step-flow/widget.php:108, widgets/step-flow/widget.php:111, widgets/step-flow/widget.php:459, widgets/taxonomy-list/widget.php:558, widgets/testimonial/widget.php:184, widgets/testimonial/widget.php:451, widgets/weform/widget.php:683
 msgid "Title"
 msgstr ""
 
@@ -2345,7 +2465,7 @@ msgstr ""
 msgid "Ease In Bounce"
 msgstr ""
 
-#: widgets/bar-chart/widget.php:420, widgets/creative-button/widget.php:404, widgets/dual-button/widget.php:397, widgets/flip-box/widget.php:434, widgets/image-accordion/widget.php:463, widgets/image-hover-effect/widget.php:199, widgets/post-list/widget.php:527, widgets/social-icons/widget.php:469, widgets/taxonomy-list/widget.php:391, widgets/twitter-feed/widget.php:499
+#: widgets/bar-chart/widget.php:420, widgets/creative-button/widget.php:404, widgets/dual-button/widget.php:397, widgets/flip-box/widget.php:434, widgets/image-accordion/widget.php:463, widgets/image-hover-effect/widget.php:199, widgets/photo-stack/widget.php:353, widgets/post-list/widget.php:527, widgets/social-icons/widget.php:469, widgets/taxonomy-list/widget.php:391, widgets/twitter-feed/widget.php:499
 msgid "Common"
 msgstr ""
 
@@ -2421,7 +2541,7 @@ msgstr ""
 msgid "Box Width"
 msgstr ""
 
-#: widgets/bar-chart/widget.php:642, widgets/calderaform/widget.php:160, widgets/card/widget.php:849, widgets/card/widget.php:922, widgets/card/widget.php:964, widgets/carousel/widget.php:471, widgets/carousel/widget.php:513, widgets/cf7/widget.php:220, widgets/cf7/widget.php:371, widgets/comparison-table/widget.php:1161, widgets/creative-button/widget.php:518, widgets/dual-button/widget.php:443, widgets/dual-button/widget.php:531, widgets/dual-button/widget.php:675, widgets/dual-button/widget.php:738, widgets/event-calendar/widget.php:1024, widgets/event-calendar/widget.php:1081, widgets/event-calendar/widget.php:1451, widgets/event-calendar/widget.php:1502, widgets/event-calendar/widget.php:1536, widgets/event-calendar/widget.php:1718, widgets/event-calendar/widget.php:1752, widgets/flip-box/widget.php:752, widgets/flip-box/widget.php:803, widgets/flip-box/widget.php:1130, widgets/flip-box/widget.php:1169, widgets/fluent-form/widget.php:175, widgets/fluent-form/widget.php:326, widgets/fluent-form/widget.php:410, widgets/fun-factor/widget.php:678, widgets/fun-factor/widget.php:733, widgets/gravityforms/widget.php:215, widgets/horizontal-timeline/widget.php:528, widgets/horizontal-timeline/widget.php:1002, widgets/horizontal-timeline/widget.php:1044, widgets/horizontal-timeline/widget.php:1074, widgets/icon-box/widget.php:646, widgets/image-accordion/widget.php:771, widgets/image-accordion/widget.php:896, widgets/image-accordion/widget.php:950, widgets/image-accordion/widget.php:1001, widgets/image-stack-group/widget.php:502, widgets/infobox/widget.php:755, widgets/infobox/widget.php:797, widgets/justified-gallery/widget.php:527, widgets/link-hover/widget.php:205, widgets/mailchimp/widget.php:704, widgets/mailchimp/widget.php:802, widgets/mailchimp/widget.php:1155, widgets/news-ticker/widget.php:342, widgets/news-ticker/widget.php:452, widgets/ninjaform/widget.php:163, widgets/number/widget.php:316, widgets/pdf-view/widget.php:303, widgets/post-list/widget.php:703, widgets/post-list/widget.php:928, widgets/post-list/widget.php:977, widgets/post-tab/widget.php:479, widgets/post-tab/widget.php:689, widgets/post-tab/widget.php:748, widgets/post-tab/widget.php:824, widgets/pricing-table/widget.php:958, widgets/social-icons/widget.php:822, widgets/social-icons/widget.php:872, widgets/social-share/widget.php:617, widgets/taxonomy-list/widget.php:567, widgets/testimonial/widget.php:269, widgets/testimonial/widget.php:430, widgets/testimonial/widget.php:472, widgets/twitter-feed/widget.php:934, widgets/twitter-feed/widget.php:976, widgets/twitter-feed/widget.php:1038, widgets/weform/widget.php:200, widgets/wpform/widget.php:166
+#: widgets/bar-chart/widget.php:642, widgets/calderaform/widget.php:160, widgets/card/widget.php:849, widgets/card/widget.php:922, widgets/card/widget.php:964, widgets/carousel/widget.php:471, widgets/carousel/widget.php:513, widgets/cf7/widget.php:220, widgets/cf7/widget.php:371, widgets/comparison-table/widget.php:1426, widgets/creative-button/widget.php:518, widgets/dual-button/widget.php:443, widgets/dual-button/widget.php:531, widgets/dual-button/widget.php:675, widgets/dual-button/widget.php:738, widgets/event-calendar/widget.php:1024, widgets/event-calendar/widget.php:1081, widgets/event-calendar/widget.php:1451, widgets/event-calendar/widget.php:1502, widgets/event-calendar/widget.php:1536, widgets/event-calendar/widget.php:1718, widgets/event-calendar/widget.php:1752, widgets/flip-box/widget.php:752, widgets/flip-box/widget.php:803, widgets/flip-box/widget.php:1130, widgets/flip-box/widget.php:1169, widgets/fluent-form/widget.php:175, widgets/fluent-form/widget.php:326, widgets/fluent-form/widget.php:410, widgets/fun-factor/widget.php:678, widgets/fun-factor/widget.php:733, widgets/gravityforms/widget.php:215, widgets/horizontal-timeline/widget.php:528, widgets/horizontal-timeline/widget.php:1002, widgets/horizontal-timeline/widget.php:1044, widgets/horizontal-timeline/widget.php:1074, widgets/icon-box/widget.php:646, widgets/image-accordion/widget.php:771, widgets/image-accordion/widget.php:896, widgets/image-accordion/widget.php:950, widgets/image-accordion/widget.php:1001, widgets/image-stack-group/widget.php:502, widgets/infobox/widget.php:755, widgets/infobox/widget.php:797, widgets/justified-gallery/widget.php:527, widgets/link-hover/widget.php:205, widgets/mailchimp/widget.php:704, widgets/mailchimp/widget.php:802, widgets/mailchimp/widget.php:1155, widgets/news-ticker/widget.php:342, widgets/news-ticker/widget.php:452, widgets/ninjaform/widget.php:163, widgets/number/widget.php:316, widgets/pdf-view/widget.php:303, widgets/post-list/widget.php:703, widgets/post-list/widget.php:928, widgets/post-list/widget.php:977, widgets/post-tab/widget.php:479, widgets/post-tab/widget.php:689, widgets/post-tab/widget.php:748, widgets/post-tab/widget.php:824, widgets/pricing-table/widget.php:958, widgets/social-icons/widget.php:822, widgets/social-icons/widget.php:872, widgets/social-share/widget.php:617, widgets/taxonomy-list/widget.php:567, widgets/testimonial/widget.php:269, widgets/testimonial/widget.php:430, widgets/testimonial/widget.php:472, widgets/twitter-feed/widget.php:934, widgets/twitter-feed/widget.php:976, widgets/twitter-feed/widget.php:1038, widgets/weform/widget.php:200, widgets/wpform/widget.php:166
 msgid "Typography"
 msgstr ""
 
@@ -2513,7 +2633,7 @@ msgstr ""
 msgid "Form Fields Label"
 msgstr ""
 
-#: widgets/calderaform/widget.php:283, widgets/calderaform/widget.php:420, widgets/cf7/widget.php:404, widgets/content-switcher/widget.php:678, widgets/fluent-form/widget.php:476, widgets/gravityforms/widget.php:363, widgets/gravityforms/widget.php:539, widgets/image-accordion/widget.php:502, widgets/image-accordion/widget.php:746, widgets/image-accordion/widget.php:831, widgets/image-accordion/widget.php:871, widgets/image-accordion/widget.php:924, widgets/image-accordion/widget.php:1137, widgets/image-grid/widget.php:485, widgets/justified-gallery/widget.php:557, widgets/mailchimp/widget.php:724, widgets/mailchimp/widget.php:1280, widgets/mailchimp/widget.php:1496, widgets/member/widget.php:1291, widgets/ninjaform/widget.php:287, widgets/ninjaform/widget.php:413, widgets/post-list/widget.php:535, widgets/post-list/widget.php:623, widgets/post-list/widget.php:662, widgets/post-list/widget.php:1010, widgets/post-tab/widget.php:391, widgets/post-tab/widget.php:799, widgets/taxonomy-list/widget.php:399, widgets/taxonomy-list/widget.php:487, widgets/taxonomy-list/widget.php:526, widgets/weform/widget.php:324, widgets/weform/widget.php:494, widgets/wpform/widget.php:290, widgets/wpform/widget.php:509
+#: widgets/calderaform/widget.php:283, widgets/calderaform/widget.php:420, widgets/cf7/widget.php:404, widgets/content-switcher/widget.php:701, widgets/fluent-form/widget.php:476, widgets/gravityforms/widget.php:363, widgets/gravityforms/widget.php:539, widgets/image-accordion/widget.php:502, widgets/image-accordion/widget.php:746, widgets/image-accordion/widget.php:831, widgets/image-accordion/widget.php:871, widgets/image-accordion/widget.php:924, widgets/image-accordion/widget.php:1137, widgets/image-grid/widget.php:485, widgets/justified-gallery/widget.php:557, widgets/mailchimp/widget.php:724, widgets/mailchimp/widget.php:1280, widgets/mailchimp/widget.php:1496, widgets/member/widget.php:1291, widgets/ninjaform/widget.php:287, widgets/ninjaform/widget.php:413, widgets/post-list/widget.php:535, widgets/post-list/widget.php:623, widgets/post-list/widget.php:662, widgets/post-list/widget.php:1010, widgets/post-tab/widget.php:391, widgets/post-tab/widget.php:799, widgets/taxonomy-list/widget.php:399, widgets/taxonomy-list/widget.php:487, widgets/taxonomy-list/widget.php:526, widgets/weform/widget.php:324, widgets/weform/widget.php:494, widgets/wpform/widget.php:290, widgets/wpform/widget.php:509
 msgid "Margin"
 msgstr ""
 
@@ -2609,7 +2729,7 @@ msgstr ""
 msgid "Image & Badge"
 msgstr ""
 
-#: widgets/card/widget.php:80, widgets/card/widget.php:431, widgets/carousel/widget.php:81, widgets/comparison-table/widget.php:389, widgets/comparison-table/widget.php:416, widgets/comparison-table/widget.php:1040, widgets/data-table/widget.php:126, widgets/data-table/widget.php:149, widgets/data-table/widget.php:394, widgets/data-table/widget.php:422, widgets/event-calendar/widget.php:1378, widgets/flip-box/widget.php:91, widgets/flip-box/widget.php:135, widgets/flip-box/widget.php:251, widgets/flip-box/widget.php:263, widgets/fun-factor/widget.php:82, widgets/fun-factor/widget.php:95, widgets/horizontal-timeline/widget.php:96, widgets/horizontal-timeline/widget.php:903, widgets/image-compare/widget.php:83, widgets/image-compare/widget.php:120, widgets/image-grid/widget.php:304, widgets/image-hover-effect/widget.php:64, widgets/image-stack-group/widget.php:69, widgets/image-stack-group/widget.php:117, widgets/infobox/widget.php:87, widgets/infobox/widget.php:100, widgets/justified-gallery/widget.php:329, widgets/post-tab/widget.php:620, widgets/slider/widget.php:79, widgets/taxonomy-list/widget.php:133, widgets/taxonomy-list/widget.php:161, widgets/taxonomy-list/widget.php:282, widgets/taxonomy-list/widget.php:315, widgets/testimonial/widget.php:146, widgets/testimonial/widget.php:303
+#: widgets/card/widget.php:80, widgets/card/widget.php:431, widgets/carousel/widget.php:81, widgets/comparison-table/widget.php:453, widgets/comparison-table/widget.php:480, widgets/comparison-table/widget.php:1305, widgets/data-table/widget.php:126, widgets/data-table/widget.php:149, widgets/data-table/widget.php:394, widgets/data-table/widget.php:422, widgets/event-calendar/widget.php:1378, widgets/flip-box/widget.php:91, widgets/flip-box/widget.php:135, widgets/flip-box/widget.php:251, widgets/flip-box/widget.php:263, widgets/fun-factor/widget.php:82, widgets/fun-factor/widget.php:95, widgets/horizontal-timeline/widget.php:96, widgets/horizontal-timeline/widget.php:903, widgets/image-compare/widget.php:83, widgets/image-compare/widget.php:120, widgets/image-grid/widget.php:304, widgets/image-hover-effect/widget.php:64, widgets/image-stack-group/widget.php:69, widgets/image-stack-group/widget.php:117, widgets/infobox/widget.php:87, widgets/infobox/widget.php:100, widgets/justified-gallery/widget.php:329, widgets/photo-stack/widget.php:73, widgets/post-tab/widget.php:620, widgets/slider/widget.php:79, widgets/taxonomy-list/widget.php:133, widgets/taxonomy-list/widget.php:161, widgets/taxonomy-list/widget.php:282, widgets/taxonomy-list/widget.php:315, widgets/testimonial/widget.php:146, widgets/testimonial/widget.php:303
 msgid "Image"
 msgstr ""
 
@@ -2645,7 +2765,7 @@ msgstr ""
 msgid "Type Card Title"
 msgstr ""
 
-#: widgets/card/widget.php:184, widgets/card/widget.php:932, widgets/event-calendar/widget.php:414, widgets/event-calendar/widget.php:421, widgets/event-calendar/widget.php:1473, widgets/flip-box/widget.php:183, widgets/flip-box/widget.php:188, widgets/flip-box/widget.php:343, widgets/flip-box/widget.php:348, widgets/flip-box/widget.php:772, widgets/flip-box/widget.php:1150, widgets/fluent-form/widget.php:685, widgets/gravityforms/widget.php:743, widgets/horizontal-timeline/widget.php:141, widgets/horizontal-timeline/widget.php:1064, widgets/image-accordion/widget.php:134, widgets/image-accordion/widget.php:915, widgets/image-hover-effect/widget.php:123, widgets/infobox/widget.php:253, widgets/infobox/widget.php:765, widgets/step-flow/widget.php:123, widgets/step-flow/widget.php:126, widgets/step-flow/widget.php:535, widgets/twitter-feed/widget.php:912, widgets/weform/widget.php:703
+#: widgets/card/widget.php:184, widgets/card/widget.php:932, widgets/comparison-table/widget.php:226, widgets/comparison-table/widget.php:545, widgets/event-calendar/widget.php:414, widgets/event-calendar/widget.php:421, widgets/event-calendar/widget.php:1473, widgets/flip-box/widget.php:183, widgets/flip-box/widget.php:188, widgets/flip-box/widget.php:343, widgets/flip-box/widget.php:348, widgets/flip-box/widget.php:772, widgets/flip-box/widget.php:1150, widgets/fluent-form/widget.php:685, widgets/gravityforms/widget.php:743, widgets/horizontal-timeline/widget.php:141, widgets/horizontal-timeline/widget.php:1064, widgets/image-accordion/widget.php:134, widgets/image-accordion/widget.php:915, widgets/image-hover-effect/widget.php:123, widgets/infobox/widget.php:253, widgets/infobox/widget.php:765, widgets/step-flow/widget.php:123, widgets/step-flow/widget.php:126, widgets/step-flow/widget.php:535, widgets/twitter-feed/widget.php:912, widgets/weform/widget.php:703
 msgid "Description"
 msgstr ""
 
@@ -2657,35 +2777,35 @@ msgstr ""
 msgid "Type card description"
 msgstr ""
 
-#: widgets/card/widget.php:199, widgets/carousel/widget.php:162, widgets/fun-factor/widget.php:336, widgets/gradient-heading/widget.php:93, widgets/horizontal-timeline/widget.php:267, widgets/icon-box/widget.php:135, widgets/image-hover-effect/widget.php:102, widgets/infobox/widget.php:268, widgets/member/widget.php:247, widgets/post-list/widget.php:432, widgets/post-tab/widget.php:207, widgets/slider/widget.php:160, widgets/step-flow/widget.php:149, widgets/taxonomy-list/widget.php:242
+#: widgets/card/widget.php:199, widgets/carousel/widget.php:162, widgets/comparison-table/widget.php:109, widgets/fun-factor/widget.php:336, widgets/gradient-heading/widget.php:93, widgets/horizontal-timeline/widget.php:267, widgets/icon-box/widget.php:135, widgets/image-hover-effect/widget.php:102, widgets/infobox/widget.php:268, widgets/member/widget.php:247, widgets/post-list/widget.php:432, widgets/post-tab/widget.php:207, widgets/slider/widget.php:160, widgets/step-flow/widget.php:149, widgets/taxonomy-list/widget.php:242
 msgid "Title HTML Tag"
 msgstr ""
 
-#: widgets/card/widget.php:203, widgets/fun-factor/widget.php:340, widgets/gradient-heading/widget.php:97, widgets/icon-box/widget.php:140, widgets/infobox/widget.php:272, widgets/member/widget.php:251, widgets/post-list/widget.php:436, widgets/review/widget.php:274
+#: widgets/card/widget.php:203, widgets/comparison-table/widget.php:113, widgets/fun-factor/widget.php:340, widgets/gradient-heading/widget.php:97, widgets/icon-box/widget.php:140, widgets/infobox/widget.php:272, widgets/member/widget.php:251, widgets/post-list/widget.php:436, widgets/review/widget.php:274
 msgid "H1"
 msgstr ""
 
-#: widgets/card/widget.php:207, widgets/fun-factor/widget.php:344, widgets/gradient-heading/widget.php:101, widgets/icon-box/widget.php:144, widgets/infobox/widget.php:276, widgets/member/widget.php:255, widgets/post-list/widget.php:440, widgets/review/widget.php:278
+#: widgets/card/widget.php:207, widgets/comparison-table/widget.php:117, widgets/fun-factor/widget.php:344, widgets/gradient-heading/widget.php:101, widgets/icon-box/widget.php:144, widgets/infobox/widget.php:276, widgets/member/widget.php:255, widgets/post-list/widget.php:440, widgets/review/widget.php:278
 msgid "H2"
 msgstr ""
 
-#: widgets/card/widget.php:211, widgets/fun-factor/widget.php:348, widgets/gradient-heading/widget.php:105, widgets/icon-box/widget.php:148, widgets/infobox/widget.php:280, widgets/member/widget.php:259, widgets/post-list/widget.php:444, widgets/review/widget.php:282
+#: widgets/card/widget.php:211, widgets/comparison-table/widget.php:121, widgets/fun-factor/widget.php:348, widgets/gradient-heading/widget.php:105, widgets/icon-box/widget.php:148, widgets/infobox/widget.php:280, widgets/member/widget.php:259, widgets/post-list/widget.php:444, widgets/review/widget.php:282
 msgid "H3"
 msgstr ""
 
-#: widgets/card/widget.php:215, widgets/fun-factor/widget.php:352, widgets/gradient-heading/widget.php:109, widgets/icon-box/widget.php:152, widgets/infobox/widget.php:284, widgets/member/widget.php:263, widgets/post-list/widget.php:448, widgets/review/widget.php:286
+#: widgets/card/widget.php:215, widgets/comparison-table/widget.php:125, widgets/fun-factor/widget.php:352, widgets/gradient-heading/widget.php:109, widgets/icon-box/widget.php:152, widgets/infobox/widget.php:284, widgets/member/widget.php:263, widgets/post-list/widget.php:448, widgets/review/widget.php:286
 msgid "H4"
 msgstr ""
 
-#: widgets/card/widget.php:219, widgets/fun-factor/widget.php:356, widgets/gradient-heading/widget.php:113, widgets/icon-box/widget.php:156, widgets/infobox/widget.php:288, widgets/member/widget.php:267, widgets/post-list/widget.php:452, widgets/review/widget.php:290
+#: widgets/card/widget.php:219, widgets/comparison-table/widget.php:129, widgets/fun-factor/widget.php:356, widgets/gradient-heading/widget.php:113, widgets/icon-box/widget.php:156, widgets/infobox/widget.php:288, widgets/member/widget.php:267, widgets/post-list/widget.php:452, widgets/review/widget.php:290
 msgid "H5"
 msgstr ""
 
-#: widgets/card/widget.php:223, widgets/fun-factor/widget.php:360, widgets/gradient-heading/widget.php:117, widgets/icon-box/widget.php:160, widgets/infobox/widget.php:292, widgets/member/widget.php:271, widgets/post-list/widget.php:456, widgets/review/widget.php:294
+#: widgets/card/widget.php:223, widgets/comparison-table/widget.php:133, widgets/fun-factor/widget.php:360, widgets/gradient-heading/widget.php:117, widgets/icon-box/widget.php:160, widgets/infobox/widget.php:292, widgets/member/widget.php:271, widgets/post-list/widget.php:456, widgets/review/widget.php:294
 msgid "H6"
 msgstr ""
 
-#: widgets/card/widget.php:235, widgets/card/widget.php:321, widgets/carousel/widget.php:756, widgets/comparison-table/widget.php:266, widgets/comparison-table/widget.php:537, widgets/comparison-table/widget.php:646, widgets/content-switcher/widget.php:1037, widgets/creative-button/widget.php:256, widgets/data-table/widget.php:223, widgets/data-table/widget.php:566, widgets/dual-button/widget.php:460, widgets/flip-box/widget.php:198, widgets/flip-box/widget.php:358, widgets/gradient-heading/widget.php:129, widgets/icon-box/widget.php:172, widgets/image-grid/widget.php:570, widgets/image-stack-group/widget.php:246, widgets/infobox/widget.php:304, widgets/justified-gallery/widget.php:642, widgets/link-hover/widget.php:106, widgets/member/widget.php:284, widgets/number/widget.php:191, widgets/pdf-view/widget.php:243, widgets/post-list/widget.php:468, widgets/review/widget.php:239, widgets/slider/widget.php:719, widgets/social-icons/widget.php:416, widgets/social-share/widget.php:483, widgets/step-flow/widget.php:170, widgets/taxonomy-list/widget.php:335, widgets/testimonial/widget.php:88, widgets/twitter-feed/widget.php:361
+#: widgets/card/widget.php:235, widgets/card/widget.php:321, widgets/carousel/widget.php:756, widgets/comparison-table/widget.php:330, widgets/comparison-table/widget.php:634, widgets/comparison-table/widget.php:842, widgets/content-switcher/widget.php:1060, widgets/creative-button/widget.php:256, widgets/data-table/widget.php:223, widgets/data-table/widget.php:566, widgets/dual-button/widget.php:460, widgets/flip-box/widget.php:198, widgets/flip-box/widget.php:358, widgets/gradient-heading/widget.php:129, widgets/icon-box/widget.php:172, widgets/image-grid/widget.php:570, widgets/image-stack-group/widget.php:246, widgets/infobox/widget.php:304, widgets/justified-gallery/widget.php:642, widgets/link-hover/widget.php:106, widgets/member/widget.php:284, widgets/number/widget.php:191, widgets/pdf-view/widget.php:243, widgets/photo-stack/widget.php:314, widgets/post-list/widget.php:468, widgets/review/widget.php:239, widgets/slider/widget.php:719, widgets/social-icons/widget.php:416, widgets/social-share/widget.php:483, widgets/step-flow/widget.php:170, widgets/taxonomy-list/widget.php:335, widgets/testimonial/widget.php:88, widgets/twitter-feed/widget.php:361
 msgid "Alignment"
 msgstr ""
 
@@ -2709,11 +2829,11 @@ msgstr ""
 msgid "Stretch"
 msgstr ""
 
-#: widgets/card/widget.php:362, widgets/comparison-table/widget.php:153, widgets/comparison-table/widget.php:163, widgets/comparison-table/widget.php:385, widgets/comparison-table/widget.php:445, widgets/comparison-table/widget.php:807, widgets/comparison-table/widget.php:1091, widgets/content-switcher/widget.php:206, widgets/creative-button/widget.php:205, widgets/data-table/widget.php:122, widgets/data-table/widget.php:136, widgets/data-table/widget.php:390, widgets/data-table/widget.php:408, widgets/dual-button/widget.php:116, widgets/dual-button/widget.php:105, widgets/dual-button/widget.php:192, widgets/dual-button/widget.php:238, widgets/dual-button/widget.php:225, widgets/dual-button/widget.php:305, widgets/dual-button/widget.php:294, widgets/flip-box/widget.php:87, widgets/flip-box/widget.php:117, widgets/flip-box/widget.php:104, widgets/flip-box/widget.php:247, widgets/flip-box/widget.php:310, widgets/flip-box/widget.php:297, widgets/fun-factor/widget.php:78, widgets/horizontal-timeline/widget.php:81, widgets/horizontal-timeline/widget.php:548, widgets/icon-box/widget.php:217, widgets/image-stack-group/widget.php:73, widgets/infobox/widget.php:83, widgets/infobox/widget.php:138, widgets/infobox/widget.php:380, widgets/mailchimp/widget.php:276, widgets/mailchimp/widget.php:363, widgets/mailchimp/widget.php:462, widgets/mailchimp/widget.php:537, widgets/mailchimp/widget.php:599, widgets/mailchimp/widget.php:1380, widgets/member/widget.php:609, widgets/pdf-view/widget.php:177, widgets/pdf-view/widget.php:366, widgets/post-list/widget.php:280, widgets/pricing-table/widget.php:229, widgets/pricing-table/widget.php:214, widgets/social-icons/widget.php:58, widgets/social-icons/widget.php:67, widgets/social-icons/widget.php:657, widgets/social-share/widget.php:432, widgets/step-flow/widget.php:79, widgets/step-flow/widget.php:68, widgets/step-flow/widget.php:228, widgets/taxonomy-list/widget.php:124, widgets/taxonomy-list/widget.php:129, widgets/taxonomy-list/widget.php:145, widgets/taxonomy-list/widget.php:278, widgets/taxonomy-list/widget.php:297
+#: widgets/card/widget.php:362, widgets/comparison-table/widget.php:189, widgets/comparison-table/widget.php:199, widgets/comparison-table/widget.php:449, widgets/comparison-table/widget.php:513, widgets/comparison-table/widget.php:1032, widgets/comparison-table/widget.php:1356, widgets/content-switcher/widget.php:206, widgets/creative-button/widget.php:205, widgets/data-table/widget.php:122, widgets/data-table/widget.php:136, widgets/data-table/widget.php:390, widgets/data-table/widget.php:408, widgets/dual-button/widget.php:116, widgets/dual-button/widget.php:105, widgets/dual-button/widget.php:192, widgets/dual-button/widget.php:238, widgets/dual-button/widget.php:225, widgets/dual-button/widget.php:305, widgets/dual-button/widget.php:294, widgets/flip-box/widget.php:87, widgets/flip-box/widget.php:117, widgets/flip-box/widget.php:104, widgets/flip-box/widget.php:247, widgets/flip-box/widget.php:310, widgets/flip-box/widget.php:297, widgets/fun-factor/widget.php:78, widgets/horizontal-timeline/widget.php:81, widgets/horizontal-timeline/widget.php:548, widgets/icon-box/widget.php:217, widgets/image-stack-group/widget.php:73, widgets/infobox/widget.php:83, widgets/infobox/widget.php:138, widgets/infobox/widget.php:380, widgets/mailchimp/widget.php:276, widgets/mailchimp/widget.php:363, widgets/mailchimp/widget.php:462, widgets/mailchimp/widget.php:537, widgets/mailchimp/widget.php:599, widgets/mailchimp/widget.php:1380, widgets/member/widget.php:609, widgets/pdf-view/widget.php:177, widgets/pdf-view/widget.php:366, widgets/post-list/widget.php:280, widgets/pricing-table/widget.php:229, widgets/pricing-table/widget.php:214, widgets/social-icons/widget.php:58, widgets/social-icons/widget.php:67, widgets/social-icons/widget.php:657, widgets/social-share/widget.php:432, widgets/step-flow/widget.php:79, widgets/step-flow/widget.php:68, widgets/step-flow/widget.php:228, widgets/taxonomy-list/widget.php:124, widgets/taxonomy-list/widget.php:129, widgets/taxonomy-list/widget.php:145, widgets/taxonomy-list/widget.php:278, widgets/taxonomy-list/widget.php:297
 msgid "Icon"
 msgstr ""
 
-#: widgets/card/widget.php:386, widgets/comparison-table/widget.php:295, widgets/content-switcher/widget.php:214, widgets/data-table/widget.php:252, widgets/data-table/widget.php:597, widgets/dual-button/widget.php:127, widgets/dual-button/widget.php:317, widgets/image-accordion/widget.php:121, widgets/infobox/widget.php:404, widgets/mailchimp/widget.php:292, widgets/mailchimp/widget.php:379, widgets/mailchimp/widget.php:478, widgets/mailchimp/widget.php:552, widgets/mailchimp/widget.php:614, widgets/member/widget.php:623
+#: widgets/card/widget.php:386, widgets/comparison-table/widget.php:359, widgets/content-switcher/widget.php:214, widgets/data-table/widget.php:252, widgets/data-table/widget.php:597, widgets/dual-button/widget.php:127, widgets/dual-button/widget.php:317, widgets/image-accordion/widget.php:121, widgets/infobox/widget.php:404, widgets/mailchimp/widget.php:292, widgets/mailchimp/widget.php:379, widgets/mailchimp/widget.php:478, widgets/mailchimp/widget.php:552, widgets/mailchimp/widget.php:614, widgets/member/widget.php:623
 msgid "Icon Position"
 msgstr ""
 
@@ -2725,7 +2845,7 @@ msgstr ""
 msgid "After Text"
 msgstr ""
 
-#: widgets/card/widget.php:403, widgets/content-switcher/widget.php:397, widgets/dual-button/widget.php:150, widgets/dual-button/widget.php:340, widgets/infobox/widget.php:427, widgets/mailchimp/widget.php:1389, widgets/mailchimp/widget.php:1415, widgets/member/widget.php:649, widgets/pdf-view/widget.php:402
+#: widgets/card/widget.php:403, widgets/content-switcher/widget.php:420, widgets/dual-button/widget.php:150, widgets/dual-button/widget.php:340, widgets/infobox/widget.php:427, widgets/mailchimp/widget.php:1389, widgets/mailchimp/widget.php:1415, widgets/member/widget.php:649, widgets/pdf-view/widget.php:402
 msgid "Icon Spacing"
 msgstr ""
 
@@ -2737,7 +2857,7 @@ msgstr ""
 msgid "Offset Top"
 msgstr ""
 
-#: widgets/card/widget.php:682, widgets/image-grid/widget.php:451, widgets/justified-gallery/widget.php:451, widgets/logo-grid/widget.php:601, widgets/social-icons/widget.php:707
+#: widgets/card/widget.php:682, widgets/image-grid/widget.php:451, widgets/justified-gallery/widget.php:451, widgets/logo-grid/widget.php:601, widgets/photo-stack/widget.php:277, widgets/social-icons/widget.php:707
 msgid "Hover Animation"
 msgstr ""
 
@@ -2805,7 +2925,7 @@ msgstr ""
 msgid "Type subtitle here"
 msgstr ""
 
-#: widgets/carousel/widget.php:196, widgets/content-switcher/widget.php:337, widgets/horizontal-timeline/widget.php:344, widgets/slider/widget.php:194
+#: widgets/carousel/widget.php:196, widgets/content-switcher/widget.php:360, widgets/horizontal-timeline/widget.php:344, widgets/slider/widget.php:194
 msgid "Animation Speed"
 msgstr ""
 
@@ -2905,15 +3025,15 @@ msgstr ""
 msgid "Navigation :: Arrow"
 msgstr ""
 
-#: widgets/carousel/widget.php:548, widgets/image-accordion/widget.php:322, widgets/image-compare/widget.php:202, widgets/image-compare/widget.php:417, widgets/mailchimp/widget.php:200, widgets/slider/widget.php:508
+#: widgets/carousel/widget.php:548, widgets/content-switcher/widget.php:290, widgets/image-accordion/widget.php:322, widgets/image-compare/widget.php:202, widgets/image-compare/widget.php:417, widgets/mailchimp/widget.php:200, widgets/slider/widget.php:508
 msgid "Vertical"
 msgstr ""
 
-#: widgets/carousel/widget.php:573, widgets/image-accordion/widget.php:321, widgets/image-compare/widget.php:198, widgets/image-compare/widget.php:440, widgets/mailchimp/widget.php:199, widgets/slider/widget.php:533
+#: widgets/carousel/widget.php:573, widgets/content-switcher/widget.php:286, widgets/image-accordion/widget.php:321, widgets/image-compare/widget.php:198, widgets/image-compare/widget.php:440, widgets/mailchimp/widget.php:199, widgets/slider/widget.php:533
 msgid "Horizontal"
 msgstr ""
 
-#: widgets/carousel/widget.php:601, widgets/carousel/widget.php:791, widgets/carousel/widget.php:843, widgets/comparison-table/widget.php:1111, widgets/data-table/widget.php:1010, widgets/fun-factor/widget.php:451, widgets/horizontal-timeline/widget.php:575, widgets/horizontal-timeline/widget.php:693, widgets/icon-box/widget.php:225, widgets/image-compare/widget.php:289, widgets/infobox/widget.php:465, widgets/number/widget.php:131, widgets/review/widget.php:328, widgets/slider/widget.php:561, widgets/slider/widget.php:754, widgets/slider/widget.php:806, widgets/social-icons/widget.php:664, widgets/step-flow/widget.php:236, widgets/twitter-feed/widget.php:642, widgets/twitter-feed/widget.php:691
+#: widgets/carousel/widget.php:601, widgets/carousel/widget.php:791, widgets/carousel/widget.php:843, widgets/comparison-table/widget.php:1376, widgets/data-table/widget.php:1010, widgets/fun-factor/widget.php:451, widgets/horizontal-timeline/widget.php:575, widgets/horizontal-timeline/widget.php:693, widgets/icon-box/widget.php:225, widgets/image-compare/widget.php:289, widgets/infobox/widget.php:465, widgets/number/widget.php:131, widgets/review/widget.php:328, widgets/slider/widget.php:561, widgets/slider/widget.php:754, widgets/slider/widget.php:806, widgets/social-icons/widget.php:664, widgets/step-flow/widget.php:236, widgets/twitter-feed/widget.php:642, widgets/twitter-feed/widget.php:691
 msgid "Size"
 msgstr ""
 
@@ -2925,11 +3045,11 @@ msgstr ""
 msgid "Vertical Position"
 msgstr ""
 
-#: widgets/carousel/widget.php:744, widgets/comparison-table/widget.php:815, widgets/comparison-table/widget.php:1099, widgets/data-table/widget.php:732, widgets/data-table/widget.php:998, widgets/flip-box/widget.php:779, widgets/image-grid/widget.php:518, widgets/image-stack-group/widget.php:331, widgets/infobox/widget.php:588, widgets/justified-gallery/widget.php:590, widgets/slider/widget.php:707, widgets/social-icons/widget.php:832, widgets/social-share/widget.php:537, widgets/testimonial/widget.php:355, widgets/twitter-feed/widget.php:706
+#: widgets/carousel/widget.php:744, widgets/comparison-table/widget.php:1040, widgets/comparison-table/widget.php:1364, widgets/data-table/widget.php:732, widgets/data-table/widget.php:998, widgets/flip-box/widget.php:779, widgets/image-grid/widget.php:518, widgets/image-stack-group/widget.php:331, widgets/infobox/widget.php:588, widgets/justified-gallery/widget.php:590, widgets/slider/widget.php:707, widgets/social-icons/widget.php:832, widgets/social-share/widget.php:537, widgets/testimonial/widget.php:355, widgets/twitter-feed/widget.php:706
 msgid "Spacing"
 msgstr ""
 
-#: widgets/carousel/widget.php:836, widgets/content-switcher/widget.php:227, widgets/content-switcher/widget.php:555, widgets/content-switcher/widget.php:873, widgets/image-accordion/widget.php:266, widgets/image-accordion/widget.php:699, widgets/image-grid/widget.php:677, widgets/justified-gallery/widget.php:749, widgets/slider/widget.php:799
+#: widgets/carousel/widget.php:836, widgets/content-switcher/widget.php:227, widgets/content-switcher/widget.php:578, widgets/content-switcher/widget.php:896, widgets/image-accordion/widget.php:266, widgets/image-accordion/widget.php:699, widgets/image-grid/widget.php:677, widgets/justified-gallery/widget.php:749, widgets/slider/widget.php:799
 msgid "Active"
 msgstr ""
 
@@ -2953,7 +3073,7 @@ msgstr ""
 msgid "Contact Forms 7"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:85, widgets/comparison-table/widget.php:727, widgets/data-table/widget.php:67, widgets/data-table/widget.php:641
+#: widgets/comparison-table/widget.php:85, widgets/comparison-table/widget.php:923, widgets/data-table/widget.php:67, widgets/data-table/widget.php:641
 msgid "Table Head"
 msgstr ""
 
@@ -2961,127 +3081,139 @@ msgstr ""
 msgid "Column Name"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:99, widgets/comparison-table/widget.php:345, widgets/data-table/widget.php:301, widgets/post-tab/widget.php:181, widgets/post-tab/widget.php:516
+#: widgets/comparison-table/widget.php:99, widgets/comparison-table/widget.php:409, widgets/data-table/widget.php:301, widgets/post-tab/widget.php:181, widgets/post-tab/widget.php:516
 msgid "Column"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:109
+#: widgets/comparison-table/widget.php:145
 msgid "Column Width"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:142, widgets/data-table/widget.php:111, widgets/data-table/widget.php:380
+#: widgets/comparison-table/widget.php:178, widgets/data-table/widget.php:111, widgets/data-table/widget.php:380
 msgid "Media"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:176, widgets/comparison-table/widget.php:839, widgets/content-switcher/widget.php:477, widgets/content-switcher/widget.php:575, widgets/data-table/widget.php:186, widgets/data-table/widget.php:493, widgets/data-table/widget.php:767, widgets/fluent-form/widget.php:419, widgets/fun-factor/widget.php:473, widgets/horizontal-timeline/widget.php:165, widgets/horizontal-timeline/widget.php:624, widgets/image-stack-group/widget.php:185, widgets/image-stack-group/widget.php:402, widgets/pdf-view/widget.php:375, widgets/taxonomy-list/widget.php:629, widgets/threesixty-rotation/widget.php:367, widgets/twitter-feed/widget.php:1126
+#: widgets/comparison-table/widget.php:212, widgets/comparison-table/widget.php:1064, widgets/content-switcher/widget.php:500, widgets/content-switcher/widget.php:598, widgets/data-table/widget.php:186, widgets/data-table/widget.php:493, widgets/data-table/widget.php:767, widgets/fluent-form/widget.php:419, widgets/fun-factor/widget.php:473, widgets/horizontal-timeline/widget.php:165, widgets/horizontal-timeline/widget.php:624, widgets/image-stack-group/widget.php:185, widgets/image-stack-group/widget.php:402, widgets/pdf-view/widget.php:375, widgets/taxonomy-list/widget.php:629, widgets/threesixty-rotation/widget.php:367, widgets/twitter-feed/widget.php:1126
 msgid "Icon Color"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:315
+#: widgets/comparison-table/widget.php:243, widgets/comparison-table/widget.php:562, widgets/post-list/widget.php:297
+msgid "Show Content"
+msgstr ""
+
+#: widgets/comparison-table/widget.php:245, widgets/comparison-table/widget.php:564, widgets/image-accordion/widget.php:138, widgets/image-hover-effect/widget.php:127
+msgid "Type your description here"
+msgstr ""
+
+#: widgets/comparison-table/widget.php:379
 msgid "Sticky Header?"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:330, widgets/comparison-table/widget.php:864, widgets/data-table/widget.php:286, widgets/data-table/widget.php:791
+#: widgets/comparison-table/widget.php:394, widgets/comparison-table/widget.php:1089, widgets/data-table/widget.php:286, widgets/data-table/widget.php:791
 msgid "Table Row"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:340, widgets/data-table/widget.php:296
+#: widgets/comparison-table/widget.php:404, widgets/data-table/widget.php:296
 msgid "Row/Column"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:344, widgets/data-table/widget.php:300
+#: widgets/comparison-table/widget.php:408, widgets/data-table/widget.php:300
 msgid "Row"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:370
+#: widgets/comparison-table/widget.php:434
 msgid "Content Type"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:377
+#: widgets/comparison-table/widget.php:441
 msgid "Blank"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:490
+#: widgets/comparison-table/widget.php:587
 msgid "Ready Blocks"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:516
+#: widgets/comparison-table/widget.php:613
 msgid "Ready Pages"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:521
+#: widgets/comparison-table/widget.php:618
 msgid "150"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:526
+#: widgets/comparison-table/widget.php:623
 msgid "250"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:573, widgets/comparison-table/widget.php:1152
+#: widgets/comparison-table/widget.php:670, widgets/comparison-table/widget.php:1417
 msgid "Table Button"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:585, widgets/comparison-table/widget.php:621
+#: widgets/comparison-table/widget.php:682, widgets/comparison-table/widget.php:817
 msgid "Buy Now"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:586, widgets/image-hover-effect/widget.php:94
+#: widgets/comparison-table/widget.php:683, widgets/image-hover-effect/widget.php:94
 msgid "Type your title here"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:595, widgets/creative-button/widget.php:189, widgets/image-hover-effect/widget.php:140, widgets/link-hover/widget.php:141
+#: widgets/comparison-table/widget.php:692, widgets/creative-button/widget.php:189, widgets/image-hover-effect/widget.php:140, widgets/link-hover/widget.php:141
 msgid "https://your-link.com"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:608, widgets/social-share/widget.php:59
+#: widgets/comparison-table/widget.php:705
+msgid "Custom Style?"
+msgstr ""
+
+#: widgets/comparison-table/widget.php:804, widgets/social-share/widget.php:59
 msgid "Buttons"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:613, widgets/pdf-view/widget.php:636
+#: widgets/comparison-table/widget.php:809, widgets/pdf-view/widget.php:636
 msgid "Download"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:637
+#: widgets/comparison-table/widget.php:833
 msgid "Button Settings"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:675
+#: widgets/comparison-table/widget.php:871
 msgid "Table Settings"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:683
+#: widgets/comparison-table/widget.php:879
 msgid "Table Width"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:827, widgets/data-table/widget.php:744, widgets/event-calendar/widget.php:1567, widgets/event-calendar/widget.php:1653, widgets/flip-box/widget.php:617, widgets/flip-box/widget.php:983, widgets/image-accordion/widget.php:1156, widgets/image-stack-group/widget.php:308, widgets/mailchimp/widget.php:1441, widgets/member/widget.php:1169, widgets/pdf-view/widget.php:387, widgets/social-share/widget.php:576, widgets/taxonomy-list/widget.php:641, widgets/threesixty-rotation/widget.php:348
+#: widgets/comparison-table/widget.php:1052, widgets/data-table/widget.php:744, widgets/event-calendar/widget.php:1567, widgets/event-calendar/widget.php:1653, widgets/flip-box/widget.php:617, widgets/flip-box/widget.php:983, widgets/image-accordion/widget.php:1156, widgets/image-stack-group/widget.php:308, widgets/mailchimp/widget.php:1441, widgets/member/widget.php:1169, widgets/pdf-view/widget.php:387, widgets/social-share/widget.php:576, widgets/taxonomy-list/widget.php:642, widgets/threesixty-rotation/widget.php:348
 msgid "Icon Size"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:851
+#: widgets/comparison-table/widget.php:1076
 msgid "If you've added <strong>Custom Style</strong> then Icon Color will be over written for that cell."
 msgstr ""
 
-#: widgets/comparison-table/widget.php:871
+#: widgets/comparison-table/widget.php:1096
 msgid "Row Padding"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:901, widgets/comparison-table/widget.php:964, widgets/data-table/widget.php:829, widgets/data-table/widget.php:903, widgets/gravityforms/widget.php:960
+#: widgets/comparison-table/widget.php:1126, widgets/comparison-table/widget.php:1189, widgets/data-table/widget.php:829, widgets/data-table/widget.php:903, widgets/gravityforms/widget.php:960
 msgid "Background Color (Even)"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:915, widgets/comparison-table/widget.php:978, widgets/data-table/widget.php:843, widgets/data-table/widget.php:917, widgets/gravityforms/widget.php:971
+#: widgets/comparison-table/widget.php:1140, widgets/comparison-table/widget.php:1203, widgets/data-table/widget.php:843, widgets/data-table/widget.php:917, widgets/gravityforms/widget.php:971
 msgid "Background Color (Odd)"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:929, widgets/comparison-table/widget.php:992, widgets/data-table/widget.php:857, widgets/data-table/widget.php:931
+#: widgets/comparison-table/widget.php:1154, widgets/comparison-table/widget.php:1217, widgets/data-table/widget.php:857, widgets/data-table/widget.php:931
 msgid "Color (Even)"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:942, widgets/comparison-table/widget.php:1005, widgets/data-table/widget.php:870, widgets/data-table/widget.php:944
+#: widgets/comparison-table/widget.php:1167, widgets/comparison-table/widget.php:1230, widgets/data-table/widget.php:870, widgets/data-table/widget.php:944
 msgid "Color (Odd)"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:1138
+#: widgets/comparison-table/widget.php:1403
 msgid "If you've added <strong>Custom Style</strong> then Background Color, Color, Icon Size, Icon Color will be over written for that cell."
 msgstr ""
 
@@ -3178,62 +3310,66 @@ msgid "Display Settings"
 msgstr ""
 
 #: widgets/content-switcher/widget.php:282
+msgid "Switch Direction"
+msgstr ""
+
+#: widgets/content-switcher/widget.php:305
 msgid "Switch Alignment"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:309
+#: widgets/content-switcher/widget.php:332
 msgid "Space"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:310
+#: widgets/content-switcher/widget.php:333
 msgid "Set Space between switcher and content section"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:339
+#: widgets/content-switcher/widget.php:362
 msgid "Set Animation Duration in Millisecond"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:371
+#: widgets/content-switcher/widget.php:394
 msgid "Switch"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:423
+#: widgets/content-switcher/widget.php:446
 msgid "Title Spacing"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:465, widgets/content-switcher/widget.php:562, widgets/image-hover-effect/widget.php:315, widgets/image-hover-effect/widget.php:350, widgets/news-ticker/widget.php:330, widgets/news-ticker/widget.php:417, widgets/news-ticker/widget.php:437, widgets/pricing-table/widget.php:455, widgets/threesixty-rotation/widget.php:440, widgets/threesixty-rotation/widget.php:470
+#: widgets/content-switcher/widget.php:488, widgets/content-switcher/widget.php:585, widgets/image-hover-effect/widget.php:315, widgets/image-hover-effect/widget.php:350, widgets/news-ticker/widget.php:330, widgets/news-ticker/widget.php:417, widgets/news-ticker/widget.php:437, widgets/pricing-table/widget.php:455, widgets/threesixty-rotation/widget.php:440, widgets/threesixty-rotation/widget.php:470
 msgid "Title Color"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:542, widgets/content-switcher/widget.php:639, widgets/content-switcher/widget.php:787, widgets/content-switcher/widget.php:963, widgets/content-switcher/widget.php:1085, widgets/event-calendar/widget.php:830, widgets/event-calendar/widget.php:1609, widgets/image-accordion/widget.php:548, widgets/image-stack-group/widget.php:424, widgets/image-stack-group/widget.php:533, widgets/mailchimp/widget.php:845, widgets/mailchimp/widget.php:1213, widgets/news-ticker/widget.php:261, widgets/number/widget.php:183, widgets/post-list/widget.php:570, widgets/post-tab/widget.php:365, widgets/post-tab/widget.php:577, widgets/taxonomy-list/widget.php:434, widgets/threesixty-rotation/widget.php:276, widgets/threesixty-rotation/widget.php:407, widgets/threesixty-rotation/widget.php:516
+#: widgets/content-switcher/widget.php:565, widgets/content-switcher/widget.php:662, widgets/content-switcher/widget.php:810, widgets/content-switcher/widget.php:986, widgets/content-switcher/widget.php:1108, widgets/event-calendar/widget.php:830, widgets/event-calendar/widget.php:1609, widgets/image-accordion/widget.php:548, widgets/image-stack-group/widget.php:424, widgets/image-stack-group/widget.php:533, widgets/mailchimp/widget.php:845, widgets/mailchimp/widget.php:1213, widgets/news-ticker/widget.php:261, widgets/number/widget.php:183, widgets/photo-stack/widget.php:460, widgets/post-list/widget.php:570, widgets/post-tab/widget.php:365, widgets/post-tab/widget.php:577, widgets/taxonomy-list/widget.php:434, widgets/threesixty-rotation/widget.php:276, widgets/threesixty-rotation/widget.php:407, widgets/threesixty-rotation/widget.php:516
 msgid "Box Shadow"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:701
+#: widgets/content-switcher/widget.php:724
 msgid "Box Style"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:713
+#: widgets/content-switcher/widget.php:736
 msgid "Box Color"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:728
+#: widgets/content-switcher/widget.php:751
 msgid "Box Padding"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:800
+#: widgets/content-switcher/widget.php:823
 msgid "Switcher Control"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:811
+#: widgets/content-switcher/widget.php:834
 msgid "Switch Size (px)"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:911
+#: widgets/content-switcher/widget.php:934
 msgid "Switch Bar"
 msgstr ""
 
-#: widgets/content-switcher/widget.php:919
+#: widgets/content-switcher/widget.php:942
 msgid "Section Padding"
 msgstr ""
 
@@ -4137,10 +4273,6 @@ msgstr ""
 msgid "Image accordion content."
 msgstr ""
 
-#: widgets/image-accordion/widget.php:138, widgets/image-hover-effect/widget.php:127
-msgid "Type your description here"
-msgstr ""
-
 #: widgets/image-accordion/widget.php:148
 msgid "Enable Button"
 msgstr ""
@@ -4173,7 +4305,7 @@ msgstr ""
 msgid "Link Icon"
 msgstr ""
 
-#: widgets/image-accordion/widget.php:280, widgets/image-stack-group/widget.php:55
+#: widgets/image-accordion/widget.php:280, widgets/image-stack-group/widget.php:55, widgets/photo-stack/widget.php:189
 msgid "Items"
 msgstr ""
 
@@ -5412,6 +5544,110 @@ msgstr ""
 msgid "Title Bar"
 msgstr ""
 
+#: widgets/photo-stack/widget.php:119, widgets/review/widget.php:641
+msgid "Offset Y"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:146, widgets/review/widget.php:620
+msgid "Offset X"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:255
+msgid "Infinite Animation"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:259
+msgid "Bounce Small"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:260
+msgid "Bounce Medium"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:261
+msgid "Bounce Large"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:262, widgets/social-icons/widget.php:758
+msgid "Fade"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:263
+msgid "Rotating"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:264
+msgid "Rotating inverse"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:265, widgets/photo-stack/widget.php:284
+msgid "Scale Small"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:266, widgets/photo-stack/widget.php:285
+msgid "Scale Medium"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:267, widgets/photo-stack/widget.php:286
+msgid "Scale Large"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:281
+msgid "Fly Small"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:282
+msgid "Fly Medium"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:283
+msgid "Fly Large"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:287
+msgid "Scale Inverse Small"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:288
+msgid "Scale Inverse Medium"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:289
+msgid "Scale Inverse Large"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:298
+msgid "Animation speed"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:299
+msgid "Please set your animation speed in seconds. Default value is 6s."
+msgstr ""
+
+#: widgets/photo-stack/widget.php:397
+msgid "Minimum Height"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:428
+msgid "Overflow"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:431
+msgid "Visible"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:432
+msgid "Hidden"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:433
+msgid "Scroll"
+msgstr ""
+
+#: widgets/photo-stack/widget.php:477
+msgid "Box Shadow Hover"
+msgstr ""
+
 #: widgets/post-list/widget.php:97
 msgid "Show post by:"
 msgstr ""
@@ -5446,10 +5682,6 @@ msgstr ""
 
 #: widgets/post-list/widget.php:265
 msgid "List Icon"
-msgstr ""
-
-#: widgets/post-list/widget.php:297
-msgid "Show Content"
 msgstr ""
 
 #: widgets/post-list/widget.php:309
@@ -5500,11 +5732,11 @@ msgstr ""
 msgid "Line Height"
 msgstr ""
 
-#: widgets/post-list/widget.php:826, widgets/taxonomy-list/widget.php:663
+#: widgets/post-list/widget.php:826, widgets/taxonomy-list/widget.php:664
 msgid "Image Width"
 msgstr ""
 
-#: widgets/post-list/widget.php:874, widgets/taxonomy-list/widget.php:710
+#: widgets/post-list/widget.php:874, widgets/taxonomy-list/widget.php:711
 msgid "Margin Right"
 msgstr ""
 
@@ -5512,7 +5744,7 @@ msgstr ""
 msgid "Space Top"
 msgstr ""
 
-#: widgets/post-list/widget.php:1205, widgets/taxonomy-list/widget.php:807
+#: widgets/post-list/widget.php:1205, widgets/taxonomy-list/widget.php:808
 msgid "No "
 msgstr ""
 
@@ -5798,14 +6030,6 @@ msgstr ""
 msgid "Text Box Padding"
 msgstr ""
 
-#: widgets/review/widget.php:620
-msgid "Offset X"
-msgstr ""
-
-#: widgets/review/widget.php:641
-msgid "Offset Y"
-msgstr ""
-
 #: widgets/skills/widget.php:60
 msgid "Skills"
 msgstr ""
@@ -5976,10 +6200,6 @@ msgstr ""
 
 #: widgets/social-icons/widget.php:744
 msgid "Buzz Out"
-msgstr ""
-
-#: widgets/social-icons/widget.php:758
-msgid "Fade"
 msgstr ""
 
 #: widgets/social-icons/widget.php:759
@@ -6242,11 +6462,11 @@ msgstr ""
 msgid "Icon & Image"
 msgstr ""
 
-#: widgets/taxonomy-list/widget.php:652
+#: widgets/taxonomy-list/widget.php:653
 msgid "Icon Line Height"
 msgstr ""
 
-#: widgets/taxonomy-list/widget.php:809
+#: widgets/taxonomy-list/widget.php:810
 msgid "found"
 msgstr ""
 
@@ -6528,124 +6748,4 @@ msgstr ""
 
 #: widgets/wpform/widget.php:352
 msgid "Colors"
-msgstr ""
-
-#: wpml/bar-chart.php:33
-msgid "Bar Chart: Label Text"
-msgstr ""
-
-#: wpml/carousel.php:37
-msgid "Carousel: Title"
-msgstr ""
-
-#: wpml/carousel.php:39
-msgid "Carousel: Subtitle"
-msgstr ""
-
-#: wpml/carousel.php:41
-msgid "Carousel: Link"
-msgstr ""
-
-#: wpml/content-switcher.php:36
-msgid "Content Switcher: Title"
-msgstr ""
-
-#: wpml/content-switcher.php:38
-msgid "Content Switcher: Plain/ HTML Text"
-msgstr ""
-
-#: wpml/data-table.php:35
-msgid "Data Table: Column Name"
-msgstr ""
-
-#: wpml/data-table.php:83
-msgid "Data Table: Cell Title"
-msgstr ""
-
-#: wpml/data-table.php:85
-msgid "Data Table: Cell Link"
-msgstr ""
-
-#: wpml/horizontal-timeline.php:37
-msgid "Horizontal Timeline: Date"
-msgstr ""
-
-#: wpml/horizontal-timeline.php:41
-msgid "Horizontal Timeline: Title"
-msgstr ""
-
-#: wpml/horizontal-timeline.php:45
-msgid "Horizontal Timeline: Subtitle"
-msgstr ""
-
-#: wpml/horizontal-timeline.php:49
-msgid "Horizontal Timeline: Description"
-msgstr ""
-
-#: wpml/image-accordion.php:40
-msgid "Image Accordion: Label"
-msgstr ""
-
-#: wpml/image-accordion.php:42
-msgid "Image Accordion: Title"
-msgstr ""
-
-#: wpml/image-accordion.php:44
-msgid "Image Accordion: Description"
-msgstr ""
-
-#: wpml/image-accordion.php:46
-msgid "Image Accordion: Button Label"
-msgstr ""
-
-#: wpml/image-accordion.php:48
-msgid "Image Accordion: Button URL"
-msgstr ""
-
-#: wpml/image-accordion.php:50
-msgid "Image Accordion: Link URL"
-msgstr ""
-
-#: wpml/image-grid.php:33
-msgid "Image Grid: Filter Name"
-msgstr ""
-
-#: wpml/justified-gallery.php:33
-msgid "Justified Grid: Filter Name"
-msgstr ""
-
-#: wpml/logo-grid.php:36
-msgid "Logo Grid: Brand Name"
-msgstr ""
-
-#: wpml/logo-grid.php:38
-msgid "Logo Grid: Link"
-msgstr ""
-
-#: wpml/pricing-table.php:33
-msgid "Pricing Table: Feature Text"
-msgstr ""
-
-#: wpml/skills.php:33
-msgid "Skills: Skill Name"
-msgstr ""
-
-#: wpml/slider.php:37
-msgid "Slider: Title"
-msgstr ""
-
-#: wpml/slider.php:39
-msgid "Slider: Subtitle"
-msgstr ""
-
-#: wpml/slider.php:41
-msgid "Slider: Link"
-msgstr ""
-
-#: wpml/social-icons.php:36
-msgid "Social Icons: Title"
-msgstr ""
-
-#: wpml/social-icons.php:38
-msgid "Social Icons: Link"
 msgstr ""

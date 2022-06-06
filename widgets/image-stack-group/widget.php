@@ -195,7 +195,7 @@ class Image_Stack_Group extends Base {
 			\Elementor\Group_Control_Background::get_type(),
 			[
 				'name' => 'icon_bg_color',
-				'label' => __( 'Background', 'plugin-domain' ),
+				'label' => __( 'Background', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient' ],
 				'exclude' => [ 'image' ],
 				'selector' => '{{WRAPPER}} .ha-cig-item{{CURRENT_ITEM}} i'
@@ -411,7 +411,7 @@ class Image_Stack_Group extends Base {
 			\Elementor\Group_Control_Background::get_type(),
 			[
 				'name' => 'icon_bg_color',
-				'label' => __( 'Background', 'plugin-domain' ),
+				'label' => __( 'Background', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient' ],
 				'exclude' => [ 'image' ],
 				'selector' => '{{WRAPPER}} .ha-cig-item i'
@@ -555,7 +555,7 @@ class Image_Stack_Group extends Base {
 		if ( empty( $settings['images'] ) ) {
 			return;
 		}
-		
+
 		$fs_inline_fw = ha_elementor()->experiments->is_feature_active( 'e_font_icon_svg' );
 		?>
 

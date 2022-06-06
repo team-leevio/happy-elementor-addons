@@ -1,8 +1,24 @@
-= 3.#.# - 3 April 2022 =
+= 3.*.* - * 2022 =
 
+- Update: Happy Icon pack (added new 16 icons)
+- Fix: Team Member URL issue
+
+= 3.6.0 - 30 May 2022 =
+
+- New: LordIcon widget
+- Fix: Mixed content issue solve
+- Fix: Team Member PHP warning notice
 - Fix: Justified Grid row height issue
-- Tweak: Added vertical and horizontal direction for Content switcher 
+- Tweak: Added LordIcon support in Info Box & Icon Box widget
+- Tweak: Dynamic date format set for post list and post tab widget
+- Tweak: wpml support for creative button widget
+
+= 3.5.2 - 26 April 2022 =
+
+- New: Photo Stack widget
+- Tweak: Added vertical and horizontal direction for Content switcher
 - Tweak: Lower animation speed input option enable for all carousel widgets
+- Fix: Justified Grid row height issue
 - Fix: Gravity form display issue on editor
 - Fix: Mailchimp success message show on corner case
 

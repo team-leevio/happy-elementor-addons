@@ -1151,7 +1151,7 @@ class Post_List extends Base {
 													<?php if ( $settings['date_icon'] ):
 														Icons_Manager::render_icon( $settings['date_icon'], [ 'aria-hidden' => 'true' ] );
 													endif;
-													echo get_the_date( "d M Y", $post->ID );
+													echo get_the_date( get_option( 'date_format' ), $post->ID );
 													?>
 												</span>
 											<?php endif; ?>

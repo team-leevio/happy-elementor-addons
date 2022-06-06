@@ -298,13 +298,21 @@
         $window.on('resize', debounce(this.run.bind(this), 100));
       },
       getDefaultSettings: function getDefaultSettings() {
-        return {
+        var $defaultSettings = {
           rowHeight: +this.getElementSettings('row_height.size') || 150,
-          maxRowHeight: +this.getElementSettings('row_height.size') || 150,
           lastRow: this.getElementSettings('last_row'),
           margins: +this.getElementSettings('margins.size'),
           captions: !!this.getElementSettings('show_caption')
         };
+        var $maxRowHeight = {};
+
+        if ('yes' == this.getElementSettings('max_row_height')) {
+          $maxRowHeight = {
+            maxRowHeight: +this.getElementSettings('row_height.size') || 150
+          };
+        }
+
+        return $.extend($defaultSettings, $maxRowHeight);
       },
       getDefaultElements: function getDefaultElements() {
         return {
@@ -339,7 +347,7 @@
         });
       },
       onElementChange: function onElementChange(changedProp) {
-        if (['row_height', 'last_row', 'margins', 'show_caption', 'enable_popup'].indexOf(changedProp) !== -1) {
+        if (['row_height', 'max_row_height', 'last_row', 'margins', 'show_caption', 'enable_popup'].indexOf(changedProp) !== -1) {
           this.run();
         }
       },

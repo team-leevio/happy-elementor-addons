@@ -47,6 +47,14 @@
 	justify-content: center;
 	align-items: center;
 
+	&.horizontal {
+		flex-direction: row;
+	}
+
+	&.vertical {
+		flex-direction: column;
+	}
+
 	.ha-cs-switch {
 		display: flex;
 		justify-content: center;

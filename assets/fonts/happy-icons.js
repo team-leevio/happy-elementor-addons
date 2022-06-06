@@ -628,6 +628,22 @@
 		"sub-list",
 		"swap-left",
 		"tooltips",
-		"traveller"
+		"traveller",
+		"tb-archieve-content",
+		"tb-archieve-title",
+		"tb-author-meta",
+		"tb-comments",
+		"tb-featured-image",
+		"tb-page-title",
+		"tb-post-content",
+		"tb-post-excerpt",
+		"tb-post-grid",
+		"tb-post-info",
+		"tb-post-list",
+		"tb-post-title",
+		"tb-site-logo",
+		"tb-site-title",
+		"lordicon",
+		"vault"
 	]
 }
