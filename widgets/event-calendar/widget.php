@@ -1898,14 +1898,15 @@ class Event_Calendar extends Base {
         if( false === $data ){
 			$data = wp_remote_retrieve_body(wp_remote_get(add_query_arg($arg, $base_url)));
 
-			if( is_object( json_decode($data) ) && !array_key_exists('error', json_decode($data) ) ){
+			// if( is_object( json_decode($data) ) && !array_key_exists('error', json_decode($data) ) )
+			if( is_object( json_decode($data) ) && !property_exists( json_decode($data),'error' ) ) {
 				// echo 'cacheeed';
 				// set_transient($transient_key, $data, 1 * HOUR_IN_SECONDS);
 				set_transient($transient_key, $data, 10 * MINUTE_IN_SECONDS);
 			}
         }
 
-		if( is_object( json_decode( $data ) ) && array_key_exists('error', json_decode( $data ) ) ){
+		if( is_object( json_decode( $data ) ) && property_exists( json_decode($data),'error' ) ){
 			$message = __('Please input valid API key & Calendar ID.', 'happy-elementor-addons');
 			printf('<span class="ha-ec-error-message">%1$s</span>', esc_html( $message ));
 			return [];
