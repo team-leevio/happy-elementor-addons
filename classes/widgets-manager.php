@@ -22,7 +22,7 @@ class Widgets_Manager {
 	}
 
 	public static function add_global_widget_render_attributes( Element_Base $widget ) {
-		if ( $widget->get_data( 'widgetType' ) === 'global' && method_exists( $widget, 'get_original_element_instance' ) ) {
+		if ( $widget->get_name() === 'global' && method_exists( $widget, 'get_original_element_instance' ) ) {
 			$original_instance = $widget->get_original_element_instance();
 			if ( method_exists( $original_instance, 'get_html_wrapper_class' ) && strpos( $original_instance->get_data( 'widgetType' ), 'ha-' ) !== false ) {
 				$widget->add_render_attribute('_wrapper', [
