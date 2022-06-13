@@ -385,7 +385,7 @@ class Widgets_Manager {
 				],
 			],
 			'edd-product-grid'          => [
-				'cat'    => 'happy-elementor-addons',
+				'cat'    => 'Easy Digital Downloads',
 				'title'  => __( 'EDD Product Grid', 'happy-elementor-addons' ),
 				'icon'   => 'hm hm-product-grid',
 				'is_pro' => true,
@@ -397,7 +397,7 @@ class Widgets_Manager {
 				],
 			],
 			'edd-product-carousel'      => [
-				'cat'    => 'happy-elementor-addons',
+				'cat'    => 'Easy Digital Downloads',
 				'title'  => __( 'EDD Product Carousel', 'happy-elementor-addons' ),
 				'icon'   => 'hm hm-Product-Carousel',
 				'is_pro' => true,
@@ -409,7 +409,7 @@ class Widgets_Manager {
 				],
 			],
 			'edd-single-product'        => [
-				'cat'    => 'happy-elementor-addons',
+				'cat'    => 'Easy Digital Downloads',
 				'title'  => __( 'EDD Single Product', 'happy-elementor-addons' ),
 				'icon'   => 'hm hm-Category-Carousel',
 				'is_pro' => true,
@@ -421,7 +421,7 @@ class Widgets_Manager {
 				],
 			],
 			'edd-category-grid'         => [
-				'cat'    => 'happy-elementor-addons',
+				'cat'    => 'Easy Digital Downloads',
 				'title'  => __( 'EDD Category Grid', 'happy-elementor-addons' ),
 				'icon'   => 'hm hm-Category-Carousel',
 				'is_pro' => true,
@@ -433,7 +433,7 @@ class Widgets_Manager {
 				],
 			],
 			'edd-category-carousel'     => [
-				'cat'    => 'happy-elementor-addons',
+				'cat'    => 'Easy Digital Downloads',
 				'title'  => __( 'EDD Category Carousel', 'happy-elementor-addons' ),
 				'icon'   => 'hm hm-Category-Carousel',
 				'is_pro' => true,
