@@ -714,19 +714,19 @@
 
           if (title) {
             titleWrap.removeAttr("style");
-            titleWrap.html(title);
+            titleWrap.text(title);
           } // guest markup
 
 
           if (guest) {
             guestWrap.removeAttr("style");
-            guestWrap.find('span.ha-ec-event-guest').html(guest);
+            guestWrap.find('span.ha-ec-event-guest').text(guest);
           } // location markup
 
 
           if (location) {
             locationWrap.removeAttr("style");
-            locationWrap.find('span.ha-ec-event-location').html(location);
+            locationWrap.find('span.ha-ec-event-location').text(location);
           } // description markup
 
 
@@ -747,10 +747,10 @@
               endTimeText = timeFormat(getTheDate(endDate));
             }
 
-            timeWrap.find('span.ha-ec-event-time').html(startTimeText + ' - ' + endTimeText);
+            timeWrap.find('span.ha-ec-event-time').text(startTimeText + ' - ' + endTimeText);
           } else {
             timeWrap.removeAttr("style");
-            timeWrap.find('span.ha-ec-event-time').html(allday_text);
+            timeWrap.find('span.ha-ec-event-time').text(allday_text);
           } // read more markup
 
 

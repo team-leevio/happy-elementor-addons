@@ -1711,7 +1711,7 @@ class Member extends Base {
 					<?php
 					foreach ( $settings['profiles'] as $profile ) :
 						$icon = $profile['name'];
-						$url  = isset( $profile['link']['url'] );
+						$url  = isset( $profile['link']['url'] ) ? $profile['link']['url'] : '';
 
 						if ( $profile['name'] === 'website' ) {
 							$icon = 'globe far';
@@ -1723,7 +1723,7 @@ class Member extends Base {
 						}
 
 						printf( '<a target="_blank" rel="noopener" href="%s" class="elementor-repeater-item-%s"><i class="fa fa-%s" aria-hidden="true"></i></a>',
-							$url,
+							esc_url( $url ),
 							esc_attr( $profile['_id'] ),
 							esc_attr( $icon )
 						);

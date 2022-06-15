@@ -1797,12 +1797,12 @@ class Event_Calendar extends Base {
 				'id' => 'ha-ec-' . $this->get_id(),
 				'class' => 'ha-ec',
 				'data-cal-id' => $this->get_id(),
-				'data-locale' => $local,
-				'data-initialview' => $default_view,
+				'data-locale' => esc_attr( $local ),
+				'data-initialview' => esc_attr( $default_view ),
 				'data-firstday' => $settings['event_calendar_first_day'],
 				'data-events' => htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8'),
 				'data-show-popup' => !empty( $settings['show_event_popup'] ) ? esc_attr( $settings['show_event_popup'] ) : '',
-				'data-allday-text' => !empty($settings['allday_text']) ? esc_html($settings['allday_text']) : '',
+				'data-allday-text' => !empty($settings['allday_text']) ? esc_html( $settings['allday_text'] ) : '',
 			]
 		);
 
@@ -1845,18 +1845,18 @@ class Event_Calendar extends Base {
 				}
 
                 $data[] = [
-                    'id' => $i,
-                    'classNames' => 'elementor-repeater-item-'.$event["_id"],
-                    'title' => !empty($event["title"]) ? $event["title"] : '',
-                    'description' => $event["description"],
-                    'start' => $start,
-                    'end' => $end,
-                    'url' => !empty($event["details_link"]["url"]) ? $event["details_link"]["url"] : '',
-                    'allDay' => $event['all_day'],
-                    'external' => $event['details_link']['is_external'],
-					'nofollow' => $event['details_link']['nofollow'],
-					'guest' => $event['guest'],
-					'location' => $event['location'],
+                    'id' => esc_attr( $i ),
+                    'classNames' => 'elementor-repeater-item-'.esc_attr( $event["_id"] ),
+                    'title' => !empty($event["title"]) ? esc_html( $event["title"] ) : '',
+                    'description' => ha_kses_intermediate( $event["description"] ),
+                    'start' => esc_html( $start ),
+                    'end' => esc_html( $end ),
+                    'url' => !empty($event["details_link"]["url"]) ? esc_url( $event["details_link"]["url"] ) : '',
+                    'allDay' => esc_html( $event['all_day'] ),
+                    'external' => esc_attr( $event['details_link']['is_external'] ),
+					'nofollow' => esc_attr( $event['details_link']['nofollow'] ),
+					'guest' => esc_html( $event['guest'] ),
+					'location' => esc_html( $event['location'] ),
 					'image' => $image,
                 ];
 
@@ -1898,14 +1898,15 @@ class Event_Calendar extends Base {
         if( false === $data ){
 			$data = wp_remote_retrieve_body(wp_remote_get(add_query_arg($arg, $base_url)));
 
-			if( is_object( json_decode($data) ) && !array_key_exists('error', json_decode($data) ) ){
+			// if( is_object( json_decode($data) ) && !array_key_exists('error', json_decode($data) ) )
+			if( is_object( json_decode($data) ) && !property_exists( json_decode($data),'error' ) ) {
 				// echo 'cacheeed';
 				// set_transient($transient_key, $data, 1 * HOUR_IN_SECONDS);
 				set_transient($transient_key, $data, 10 * MINUTE_IN_SECONDS);
 			}
         }
 
-		if( is_object( json_decode( $data ) ) && array_key_exists('error', json_decode( $data ) ) ){
+		if( is_object( json_decode( $data ) ) && property_exists( json_decode($data),'error' ) ){
 			$message = __('Please input valid API key & Calendar ID.', 'happy-elementor-addons');
 			printf('<span class="ha-ec-error-message">%1$s</span>', esc_html( $message ));
 			return [];
@@ -1934,17 +1935,17 @@ class Event_Calendar extends Base {
 				}
 
                 $calendar_data[] = [
-                    'id' => ++$key,
-                    'title' => !empty( $item->summary ) ? $item->summary : 'No Title',
-                    'description' => isset( $item->description ) ? $item->description : '',
-                    'start' => $ev_start_date,
-					'end' => $ev_end_date,
-					'url'         => !empty( $item->htmlLink ) ? $item->htmlLink : '',
-                    'allDay' => $all_day,
+                    'id' => esc_attr( ++$key ),
+                    'title' => !empty( $item->summary ) ? esc_html( $item->summary ) : 'No Title',
+                    'description' => isset( $item->description ) ? ha_kses_intermediate( $item->description ) : '',
+                    'start' => esc_html( $ev_start_date ),
+					'end' => esc_html( $ev_end_date ),
+					'url' => !empty( $item->htmlLink ) ? esc_url( $item->htmlLink ) : '',
+                    'allDay' => esc_html( $all_day ),
                     'external' => 'on',
 					'nofollow' => 'on',
-					'guest' => !empty( $item->creator->displayName ) ? $item->creator->displayName : '',
-					'location' => !empty( $item->location ) ? $item->location : '',
+					'guest' => !empty( $item->creator->displayName ) ? esc_html( $item->creator->displayName ) : '',
+					'location' => !empty( $item->location ) ? esc_html( $item->location ) : '',
                 ];
             }
 
@@ -2001,18 +2002,18 @@ class Event_Calendar extends Base {
 			$image = get_the_post_thumbnail_url( $event->ID );
 
             $calendar_data[] = [
-                'id' => ++$key,
-                'title' => !empty($event->post_title) ? $event->post_title :'',
-                'description' => $event->post_content,
-                'start' => tribe_get_start_date($event->ID, true, $date_format),
-				'end' => tribe_get_end_date($event->ID, true, $date_format),
-                'url' => !empty( get_the_permalink( $event->ID ) ) ? get_the_permalink( $event->ID ) : '',
-                'allDay' => $all_day,
+                'id' => esc_attr( ++$key ),
+                'title' => !empty($event->post_title) ? esc_html( $event->post_title ) :'',
+                'description' => ha_kses_intermediate( $event->post_content ),
+                'start' => esc_html( tribe_get_start_date($event->ID, true, $date_format) ),
+				'end' => esc_html( tribe_get_end_date($event->ID, true, $date_format) ),
+                'url' => !empty( get_the_permalink( $event->ID ) ) ? esc_url( get_the_permalink( $event->ID ) ) : '',
+                'allDay' => esc_html( $all_day ),
                 'external' => 'on',
 				'nofollow' => 'on',
-				'guest' => tribe_get_organizer( $event->ID ),
-				'location' => !empty( tribe_get_venue( $event->ID ) ) ? tribe_get_venue( $event->ID ) : '',
-				'image' => $image ? $image : '',
+				'guest' => esc_html( tribe_get_organizer( $event->ID ) ),
+				'location' => !empty( tribe_get_venue( $event->ID ) ) ? esc_html( tribe_get_venue( $event->ID ) ) : '',
+				'image' => $image ? esc_url( $image ) : '',
             ];
         }
 		return $calendar_data;
