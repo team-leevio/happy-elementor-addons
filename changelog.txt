@@ -1,3 +1,6 @@
+= 3.6.* -  =
+- Tweak: Horizontal Timeline Title Link
+
 = 3.6.1 - 13 June 2022 =
 
 - Update: Happy Icon pack (added new 16 icons)
