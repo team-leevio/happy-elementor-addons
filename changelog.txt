@@ -1,5 +1,6 @@
 = 3.6.* -  =
 - Tweak: Horizontal Timeline Title Link
+- Fix: Event Calendar link issue
 
 = 3.6.1 - 13 June 2022 =
 

@@ -763,11 +763,27 @@
                 detailsWrap.attr("rel", "nofollow");
               }
             }
-          } else {// if (info.event.url) {
-            // 	console.log('i am in');
-            // 	window.open(info.event.url,"_blank");
-            // 	return false;
-            // }
+          } else {
+            if (info.event.url && info.event.extendedProps.external) {
+              info.jsEvent.preventDefault();
+              var id = $scope.data('id'),
+                  anchor = document.createElement('a'),
+                  anchorReal,
+                  timeout;
+              anchor.id = 'happy-even-calender-link-' + id;
+              anchor.href = info.event.url;
+              anchor.target = info.event.extendedProps.external ? '_blank' : '_self';
+              anchor.rel = info.event.extendedProps.nofollow ? 'nofollow noreferer' : '';
+              anchor.style.display = 'none';
+              document.body.appendChild(anchor);
+              anchorReal = document.getElementById(anchor.id);
+              anchorReal.click();
+              timeout = setTimeout(function () {
+                document.body.removeChild(anchorReal);
+                clearTimeout(timeout);
+              });
+              return false;
+            }
           }
         },
         dateClick: function dateClick(arg) {
