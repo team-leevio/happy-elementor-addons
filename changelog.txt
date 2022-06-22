@@ -1,5 +1,6 @@
 = 3.6.* -  =
 - Tweak: Horizontal Timeline Title Link
+- Tweak: Added category support for product in the Post List widget
 - Fix: Event Calendar link issue
 - Fix: Logo Grid Insert Media From URL issue
 
