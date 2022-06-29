@@ -282,16 +282,19 @@ class Content_Switcher extends Base {
 				'label'     => __('Switch Direction', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => [
-					'horizontal' => [
+					'row' => [
 						'title' => __('Horizontal', 'happy-elementor-addons'),
 						'icon'  => 'eicon-navigation-horizontal',
 					],
-					'vertical' => [
+					'column' => [
 						'title' => __('Vertical', 'happy-elementor-addons'),
 						'icon'  => 'eicon-navigation-vertical',
 					],
 				],
-				'default'   => 'horizontal',
+				'selectors' => [
+					'{{WRAPPER}} .ha-cs-switch-container .ha-cs-switch-wrapper' => 'flex-direction : {{VALUE}}',
+				],
+				'default'   => 'row',
 				'toggle'    => false,
 			]
 		);
@@ -1120,7 +1123,7 @@ class Content_Switcher extends Base {
 ?>
 		<div class="ha-content-switcher-wrapper ha-cs-design-<?php echo esc_attr($settings['select_design']); ?>" data-design-type="<?php echo esc_attr($settings['select_design']); ?>">
 			<div class="ha-cs-switch-container">
-				<div class="ha-cs-switch-wrapper <?php echo esc_attr($settings['switch_direction']); ?>">
+				<div class="ha-cs-switch-wrapper">
 					<?php if ($settings['select_design'] == 'button') : ?>
 						<?php foreach ($settings['content_list'] as $i => $item) : ?>
 							<button class="ha-cs-button <?php echo esc_attr(($item['active'] == 'yes') ? 'active' : ''); ?> ha-cs-icon-<?php echo esc_attr($item['icon_align']); ?>" data-content-id="<?php echo esc_attr($item['_id']); ?>">
