@@ -11,15 +11,15 @@ use Elementor\Core\Kits\Documents\Tabs\Tab_Base;
 class Scroll_To_Top_Kit_Setings extends Tab_Base {
 
 	public function get_id() {
-		return 'hello-settings-header-2';
+		return 'ha-scroll-to-top-kit-settings';
 	}
 
 	public function get_title() {
-		return __( 'Scroll to Top', 'happy-elementor-addons' ) . ha_get_section_icon();
+		return __( 'Scroll to Top', 'happy-elementor-addons' ) . '<span style="margin: 0 15px 0 0;display: inline-block;float: right;">'.ha_get_section_icon().'</spna>';
 	}
 
 	public function get_icon() {
-		return 'hm hm-happyaddons';
+		return 'hm hm-scroll-top';
 	}
 
 	public function get_help_url() {
@@ -32,10 +32,21 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 
 	protected function register_tab_controls() {
 		$this->start_controls_section(
-			'hello_header_section_2',
+			'ha_scroll_to_top_kit_section',
 			[
-				'tab' => 'hello-settings-header-2',
+				'tab' => 'ha-scroll-to-top-kit-settings',
 				'label' => __( 'Scroll to Top', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_global',
+			[
+				'type' => Controls_Manager::SWITCHER,
+				'label' => __( 'Enable Scroll To Top', 'happy-elementor-addons' ),
+				'default' => 'no',
+				'label_on' => __( 'Show', 'happy-elementor-addons' ),
+				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
 			]
 		);
 
@@ -69,6 +80,365 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 
 				'selectors' => [
 					'{{WRAPPER}} .eael-ext-scroll-to-top-wrap.scroll-to-top-hide span.eael-ext-scroll-to-top-button' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_position_text',
+			[
+				'label'       => esc_html__( 'Position', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::SELECT,
+				'default'     => 'bottom-right',
+				'label_block' => false,
+				'options'     => [
+					'bottom-left'  => esc_html__( 'Bottom Left', 'happy-elementor-addons' ),
+					'bottom-right' => esc_html__( 'Bottom Right', 'happy-elementor-addons' ),
+				],
+				'separator'   => 'before',
+				'condition'   => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_position_bottom',
+			[
+				'label'      => __( 'Bottom', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => ['px', 'em', '%'],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 1000,
+						'step' => 1,
+					],
+					'em' => [
+						'min'  => 0,
+						'max'  => 50,
+						'step' => 1,
+					],
+					'%'  => [
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					],
+				],
+				'default'    => [
+					'unit' => 'px',
+					'size' => 15,
+				],
+				'selectors'  => [
+					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'bottom: {{SIZE}}{{UNIT}}',
+				],
+				'condition'  => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_position_left',
+			[
+				'label'      => __( 'Left', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => ['px', 'em', '%'],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 1000,
+						'step' => 1,
+					],
+					'em' => [
+						'min'  => 0,
+						'max'  => 50,
+						'step' => 1,
+					],
+					'%'  => [
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					],
+				],
+				'default'    => [
+					'unit' => 'px',
+					'size' => 15,
+				],
+				'selectors'  => [
+					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'left: {{SIZE}}{{UNIT}}',
+				],
+				'condition'  => [
+					'ha_scroll_to_top_global'               => 'yes',
+					'ha_scroll_to_top_position_text' => 'bottom-left',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_position_right',
+			[
+				'label'      => __( 'Right', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => ['px', 'em', '%'],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 1000,
+						'step' => 1,
+					],
+					'em' => [
+						'min'  => 0,
+						'max'  => 50,
+						'step' => 1,
+					],
+					'%'  => [
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					],
+				],
+				'default'    => [
+					'unit' => 'px',
+					'size' => 15,
+				],
+				'selectors'  => [
+					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'right: {{SIZE}}{{UNIT}}',
+				],
+				'condition'  => [
+					'ha_scroll_to_top_global'               => 'yes',
+					'ha_scroll_to_top_position_text' => 'bottom-right',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_width',
+			[
+				'label'      => __( 'Width', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 1000,
+						'step' => 1,
+					],
+				],
+				'default'    => [
+					'unit' => 'px',
+					'size' => 50,
+				],
+				'selectors'  => [
+					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'width: {{SIZE}}{{UNIT}};',
+				],
+				'separator'  => 'before',
+				'condition'  => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_height',
+			[
+				'label'      => __( 'Height', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 1000,
+						'step' => 1,
+					],
+				],
+				'default'    => [
+					'unit' => 'px',
+					'size' => 50,
+				],
+				'selectors'  => [
+					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'height: {{SIZE}}{{UNIT}};',
+				],
+				'condition'  => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_z_index',
+			[
+				'label'      => __( 'Z Index', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 9999,
+						'step' => 10,
+					],
+				],
+				'default'    => [
+					'unit' => 'px',
+					'size' => 9999,
+				],
+				'selectors'  => [
+					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'z-index: {{SIZE}}',
+				],
+				'condition'  => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_opacity',
+			[
+				'label'     => __( 'Opacity', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 1,
+						'step' => 0.01,
+					],
+				],
+				'default'   => [
+					'unit' => 'px',
+					'size' => 0.7,
+				],
+				'selectors' => [
+					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'opacity: {{SIZE}};',
+				],
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_icon_image',
+			[
+				'label'     => esc_html__( 'Icon', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::ICONS,
+				'default'   => [
+					'value'   => 'fas fa-chevron-up',
+					'library' => 'fa-solid',
+				],
+				'skin' => 'inline',
+				'exclude_inline_options' => [ 'svg' ],
+				'separator' => 'before',
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_icon_size',
+			[
+				'label'      => __( 'Icon Size', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'default'    => [
+					'size' => 16,
+					'unit' => 'px',
+				],
+				'size_units' => ['px'],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					],
+				],
+				'selectors'  => [
+					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button i' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+				'condition'  => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_icon_svg_size',
+			[
+				'label'      => __( 'SVG Size', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'default'    => [
+					'size' => 32,
+					'unit' => 'px',
+				],
+				'size_units' => ['px'],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 500,
+						'step' => 1,
+					],
+				],
+				'selectors'  => [
+					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				],
+				'condition'  => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_icon_color',
+			[
+				'label'     => __( 'Icon Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#ffffff',
+				'selectors' => [
+					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button i' => 'color: {{VALUE}}',
+					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button svg' => 'fill: {{VALUE}}',
+				],
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_bg_color',
+			[
+				'label'     => __( 'Background Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#000000',
+				'selectors' => [
+					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'background-color: {{VALUE}}',
+				],
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_border_radius',
+			[
+				'label'      => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 50,
+						'step' => 1,
+					],
+				],
+				'default'    => [
+					'unit' => 'px',
+					'size' => 5,
+				],
+				'selectors'  => [
+					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'border-radius: {{SIZE}}{{UNIT}}',
+				],
+				'condition'  => [
+					'ha_scroll_to_top_global' => 'yes',
 				],
 			]
 		);

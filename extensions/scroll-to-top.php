@@ -11,7 +11,7 @@ class Scroll_To_Top {
 		$feature_file = HAPPY_ADDONS_DIR_PATH . 'extensions/scroll-to-top-kit-settings.php';
 
 		if ( is_readable( $feature_file ) ) {
-			include_once( $feature_file );
+			include_once $feature_file;
 		}
 
 		add_action( 'elementor/kit/register_tabs', [ $this, 'init_site_settings' ], 1, 40 );
@@ -492,12 +492,95 @@ class Scroll_To_Top {
 
 	public function render_global_html() {
 
-		$post_id         = get_the_ID();
-		$html            = '';
-		$global_settings = $settings_data = $document = [];
+		$post_id                = get_the_ID();
+		$html                   = '';
+		$global_settings        = $settings_data = $document = [];
 		$document_settings_data = '';
 
-		$document        = \Elementor\Plugin::$instance->documents->get( $post_id, false );
+		$document = \Elementor\Plugin::$instance->documents->get( $post_id, false );
+		if ( isset( $document ) && is_object( $document ) ) {
+			$document_settings_data = $document->get_settings();
+		}
+
+		// error_log( print_r( $document , 1 ) );
+		// error_log( print_r( $document_settings_data , 1 ) );
+		$scroll_to_top_global = $this->elementor_get_setting( 'ha_scroll_to_top_global' );
+		error_log( print_r( $this->elementor_get_setting( 'ha_scroll_to_top_global' ), 1 ) );
+
+		if ( 'yes' !== $scroll_to_top_global ) {
+			return;
+		}
+
+		$scroll_to_top_icon_image = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_icon_image' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_icon_image' )['value'] : '';
+		$scroll_to_top_icon_html  = "<i class='$scroll_to_top_icon_image'></i>";
+
+		$scroll_to_top_html = "<div class='ha-scroll-to-top-wrap scroll-to-top-hide'><span class='ha-scroll-to-top-button'>$scroll_to_top_icon_html</span></div>";
+		printf( $scroll_to_top_html );
+		return;
+
+		//Scroll to Top
+		// if ( $this->get_settings( 'scroll-to-top' ) == true ) {
+
+			$scroll_to_top_status = $scroll_to_top_status_global = false;
+
+		if ( isset( $document_settings_data['ha_ext_scroll_to_top'] ) && $document_settings_data['ha_ext_scroll_to_top'] == 'yes' ) {
+			$scroll_to_top_status        = true;
+			$settings_data_scroll_to_top = $document_settings_data;
+		} elseif ( isset( $global_settings['ha_ext_scroll_to_top']['enabled'] ) && $global_settings['ha_ext_scroll_to_top']['enabled'] ) {
+			$scroll_to_top_status        = true;
+			$scroll_to_top_status_global = true;
+			$settings_data_scroll_to_top = $global_settings['ha_ext_scroll_to_top'];
+		}
+
+		if ( $scroll_to_top_status ) {
+			if ( $scroll_to_top_status_global ) {
+				//global status is true only when locally scroll to top is disabled.
+				$this->scroll_to_top_global_css( $global_settings );
+			}
+			$scroll_to_top_icon_image = ! empty( $settings_data_scroll_to_top['ha_ext_scroll_to_top_button_icon_image'] )
+										? $settings_data_scroll_to_top['ha_ext_scroll_to_top_button_icon_image']['value'] : '';
+
+			if ( isset( $scroll_to_top_icon_image['url'] ) ) {
+				ob_start();
+				Icons_Manager::render_icon( $settings_data_scroll_to_top['ha_ext_scroll_to_top_button_icon_image'], [ 'aria-hidden' => 'true' ] );
+				$scroll_to_top_icon_html = ob_get_clean();
+			} else {
+				$scroll_to_top_icon_html = "<i class='$scroll_to_top_icon_image'></i>";
+			}
+
+			$scroll_to_top_html = "<div class='eael-ext-scroll-to-top-wrap scroll-to-top-hide'><span class='eael-ext-scroll-to-top-button'>$scroll_to_top_icon_html</span></div>";
+
+			$scroll_to_top_global_display_condition = isset( $settings_data_scroll_to_top['ha_ext_scroll_to_top_global_display_condition'] ) ? $settings_data_scroll_to_top['ha_ext_scroll_to_top_global_display_condition'] : 'all';
+
+			if ( isset( $settings_data_scroll_to_top['post_id'] ) && $settings_data_scroll_to_top['post_id'] != get_the_ID() ) {
+				if ( get_post_status( $settings_data_scroll_to_top['post_id'] ) != 'publish' ) {
+					$scroll_to_top_html = '';
+				} elseif ( $scroll_to_top_global_display_condition == 'pages' && ! is_page() ) {
+						$scroll_to_top_html = '';
+				} elseif ( $scroll_to_top_global_display_condition == 'posts' && ! is_single() ) {
+						$scroll_to_top_html = '';
+				}
+			}
+
+			if ( ! empty( $scroll_to_top_html ) ) {
+				// wp_enqueue_script( 'eael-scroll-to-top' );
+				// wp_enqueue_style( 'eael-scroll-to-top' );
+
+				$html .= $scroll_to_top_html;
+			}
+		}
+		// }
+		printf( '%1$s', $html );
+	}
+
+	public function render_global_html_backup() {
+
+		$post_id                = get_the_ID();
+		$html                   = '';
+		$global_settings        = $settings_data = $document = [];
+		$document_settings_data = '';
+
+		$document = \Elementor\Plugin::$instance->documents->get( $post_id, false );
 		if ( isset( $document ) && is_object( $document ) ) {
 			$document_settings_data = $document->get_settings();
 		}
@@ -513,52 +596,52 @@ class Scroll_To_Top {
 
 			$scroll_to_top_status = $scroll_to_top_status_global = false;
 
-			if ( isset( $document_settings_data['ha_ext_scroll_to_top'] ) && $document_settings_data['ha_ext_scroll_to_top'] == 'yes' ) {
-				$scroll_to_top_status        = true;
-				$settings_data_scroll_to_top = $document_settings_data;
-			} elseif ( isset( $global_settings['ha_ext_scroll_to_top']['enabled'] ) && $global_settings['ha_ext_scroll_to_top']['enabled'] ) {
-				$scroll_to_top_status        = true;
-				$scroll_to_top_status_global = true;
-				$settings_data_scroll_to_top = $global_settings['ha_ext_scroll_to_top'];
+		if ( isset( $document_settings_data['ha_ext_scroll_to_top'] ) && $document_settings_data['ha_ext_scroll_to_top'] == 'yes' ) {
+			$scroll_to_top_status        = true;
+			$settings_data_scroll_to_top = $document_settings_data;
+		} elseif ( isset( $global_settings['ha_ext_scroll_to_top']['enabled'] ) && $global_settings['ha_ext_scroll_to_top']['enabled'] ) {
+			$scroll_to_top_status        = true;
+			$scroll_to_top_status_global = true;
+			$settings_data_scroll_to_top = $global_settings['ha_ext_scroll_to_top'];
+		}
+
+		if ( $scroll_to_top_status ) {
+			if ( $scroll_to_top_status_global ) {
+				//global status is true only when locally scroll to top is disabled.
+				$this->scroll_to_top_global_css( $global_settings );
+			}
+			$scroll_to_top_icon_image = ! empty( $settings_data_scroll_to_top['ha_ext_scroll_to_top_button_icon_image'] )
+										? $settings_data_scroll_to_top['ha_ext_scroll_to_top_button_icon_image']['value'] : '';
+
+			if ( isset( $scroll_to_top_icon_image['url'] ) ) {
+				ob_start();
+				Icons_Manager::render_icon( $settings_data_scroll_to_top['ha_ext_scroll_to_top_button_icon_image'], [ 'aria-hidden' => 'true' ] );
+				$scroll_to_top_icon_html = ob_get_clean();
+			} else {
+				$scroll_to_top_icon_html = "<i class='$scroll_to_top_icon_image'></i>";
 			}
 
-			if ( $scroll_to_top_status ) {
-				if ( $scroll_to_top_status_global ) {
-					//global status is true only when locally scroll to top is disabled.
-					$this->scroll_to_top_global_css( $global_settings );
-				}
-				$scroll_to_top_icon_image = ! empty( $settings_data_scroll_to_top['ha_ext_scroll_to_top_button_icon_image'] )
-											? $settings_data_scroll_to_top['ha_ext_scroll_to_top_button_icon_image']['value'] : '';
+			$scroll_to_top_html = "<div class='eael-ext-scroll-to-top-wrap scroll-to-top-hide'><span class='eael-ext-scroll-to-top-button'>$scroll_to_top_icon_html</span></div>";
 
-				if ( isset( $scroll_to_top_icon_image['url'] ) ) {
-					ob_start();
-					Icons_Manager::render_icon( $settings_data_scroll_to_top['ha_ext_scroll_to_top_button_icon_image'], [ 'aria-hidden' => 'true' ] );
-					$scroll_to_top_icon_html = ob_get_clean();
-				} else {
-					$scroll_to_top_icon_html = "<i class='$scroll_to_top_icon_image'></i>";
-				}
+			$scroll_to_top_global_display_condition = isset( $settings_data_scroll_to_top['ha_ext_scroll_to_top_global_display_condition'] ) ? $settings_data_scroll_to_top['ha_ext_scroll_to_top_global_display_condition'] : 'all';
 
-				$scroll_to_top_html = "<div class='eael-ext-scroll-to-top-wrap scroll-to-top-hide'><span class='eael-ext-scroll-to-top-button'>$scroll_to_top_icon_html</span></div>";
-
-				$scroll_to_top_global_display_condition = isset( $settings_data_scroll_to_top['ha_ext_scroll_to_top_global_display_condition'] ) ? $settings_data_scroll_to_top['ha_ext_scroll_to_top_global_display_condition'] : 'all';
-
-				if ( isset( $settings_data_scroll_to_top['post_id'] ) && $settings_data_scroll_to_top['post_id'] != get_the_ID() ) {
-					if ( get_post_status( $settings_data_scroll_to_top['post_id'] ) != 'publish' ) {
+			if ( isset( $settings_data_scroll_to_top['post_id'] ) && $settings_data_scroll_to_top['post_id'] != get_the_ID() ) {
+				if ( get_post_status( $settings_data_scroll_to_top['post_id'] ) != 'publish' ) {
+					$scroll_to_top_html = '';
+				} elseif ( $scroll_to_top_global_display_condition == 'pages' && ! is_page() ) {
 						$scroll_to_top_html = '';
-					} elseif ( $scroll_to_top_global_display_condition == 'pages' && ! is_page() ) {
-							$scroll_to_top_html = '';
-					} elseif ( $scroll_to_top_global_display_condition == 'posts' && ! is_single() ) {
-							$scroll_to_top_html = '';
-					}
-				}
-
-				if ( ! empty( $scroll_to_top_html ) ) {
-					// wp_enqueue_script( 'eael-scroll-to-top' );
-					// wp_enqueue_style( 'eael-scroll-to-top' );
-
-					$html .= $scroll_to_top_html;
+				} elseif ( $scroll_to_top_global_display_condition == 'posts' && ! is_single() ) {
+						$scroll_to_top_html = '';
 				}
 			}
+
+			if ( ! empty( $scroll_to_top_html ) ) {
+				// wp_enqueue_script( 'eael-scroll-to-top' );
+				// wp_enqueue_style( 'eael-scroll-to-top' );
+
+				$html .= $scroll_to_top_html;
+			}
+		}
 		// }
 		printf( '%1$s', $html );
 	}
@@ -569,7 +652,7 @@ class Scroll_To_Top {
 		$return = '';
 
 		if ( ! isset( $hello_elementor_settings['kit_settings'] ) ) {
-			$kit = \Elementor\Plugin::$instance->documents->get( \Elementor\Plugin::$instance->kits_manager->get_active_id(), false );
+			$kit                                      = \Elementor\Plugin::$instance->documents->get( \Elementor\Plugin::$instance->kits_manager->get_active_id(), false );
 			$hello_elementor_settings['kit_settings'] = $kit->get_settings();
 		}
 
@@ -581,7 +664,7 @@ class Scroll_To_Top {
 	}
 
 	public function init_site_settings( \Elementor\Core\Kits\Documents\Kit $kit ) {
-		$kit->register_tab( 'hello-settings-header-2', Scroll_To_Top_Kit_Setings::class );
+		$kit->register_tab( 'ha-scroll-to-top-kit-settings', Scroll_To_Top_Kit_Setings::class );
 	}
 
 }
