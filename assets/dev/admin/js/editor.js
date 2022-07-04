@@ -145,6 +145,15 @@
 				.addClass('is-ha-widget');
 		}, 100));
 
+		$('#elementor-panel-inner').on('change','input[data-setting=ha_scroll_to_top_global]', _.debounce(function(e) {
+			console.log($(this));
+			console.log($(this)[0].checked);
+			elementor.saver.update.apply().then(function () {elementor.reloadPreview();});
+			// if( $(this)[0].checked ){
+				// elementor.reloadPreview();
+			// }
+		}, 2000));
+
 		/**
 		 * Register grid layer shortcut
 		 */
