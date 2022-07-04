@@ -146,13 +146,29 @@
 		}, 100));
 
 		$('#elementor-panel-inner').on('change','input[data-setting=ha_scroll_to_top_global]', _.debounce(function(e) {
-			console.log($(this));
-			console.log($(this)[0].checked);
-			elementor.saver.update.apply().then(function () {elementor.reloadPreview();});
+			// console.log($(this));
+			// console.log($(this)[0].checked);
+			elementor.saver.update.apply().then(function () {
+				elementor.reloadPreview();
+			});
 			// if( $(this)[0].checked ){
-				// elementor.reloadPreview();
+			// 	elementor.reloadPreview();
 			// }
 		}, 2000));
+
+		elementor.settings.page.addChangeCallback("ha_scroll_to_top_button_icon_image", function (newValue) {
+			console.log(newValue);
+
+			// elementor.saver.update.apply().then(function () {
+			// 	elementor.reloadPreview();
+			// });
+			$e.run( 'document/save/update' ).then(function () {
+				elementor.reloadPreview();
+			});
+			// $e.run( 'document/save/publish' ).then(function () {
+			// 	elementor.reloadPreview();
+			// });
+		});
 
 		/**
 		 * Register grid layer shortcut

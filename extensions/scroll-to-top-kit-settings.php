@@ -51,40 +51,6 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 		);
 
 		$this->add_control(
-			'site_name_____5',
-			[
-				'label' => esc_html__( 'BG', 'happy-elementor-addons' ),
-				'placeholder' => esc_html__( 'Choose name', 'happy-elementor-addons' ),
-				'label_block' => true,
-			]
-		);
-
-		$this->add_control(
-			'test_kit_switcher',
-			[
-				'type' => Controls_Manager::SWITCHER,
-				'label' => __( 'Test Switcher', 'happy-elementor-addons' ),
-				'default' => 'yes',
-				'label_on' => __( 'Show', 'happy-elementor-addons' ),
-				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
-			]
-		);
-
-		$this->add_control(
-			'color_test',
-			[
-				'label' => esc_html__( 'color test', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'separator' => 'before',
-				// 'selector' => '{{WRAPPER}} .eael-ext-scroll-to-top-wrap.scroll-to-top-hide span.eael-ext-scroll-to-top-button',
-
-				'selectors' => [
-					'{{WRAPPER}} .eael-ext-scroll-to-top-wrap.scroll-to-top-hide span.eael-ext-scroll-to-top-button' => 'background-color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_control(
 			'ha_scroll_to_top_position_text',
 			[
 				'label'       => esc_html__( 'Position', 'happy-elementor-addons' ),
@@ -130,7 +96,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'size' => 15,
 				],
 				'selectors'  => [
-					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'bottom: {{SIZE}}{{UNIT}}',
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'bottom: {{SIZE}}{{UNIT}}',
 				],
 				'condition'  => [
 					'ha_scroll_to_top_global' => 'yes',
@@ -166,7 +132,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'size' => 15,
 				],
 				'selectors'  => [
-					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'left: {{SIZE}}{{UNIT}}',
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'left: {{SIZE}}{{UNIT}}',
 				],
 				'condition'  => [
 					'ha_scroll_to_top_global'               => 'yes',
@@ -203,7 +169,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'size' => 15,
 				],
 				'selectors'  => [
-					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'right: {{SIZE}}{{UNIT}}',
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'right: {{SIZE}}{{UNIT}}',
 				],
 				'condition'  => [
 					'ha_scroll_to_top_global'               => 'yes',
@@ -230,7 +196,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'size' => 50,
 				],
 				'selectors'  => [
-					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'width: {{SIZE}}{{UNIT}};',
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'width: {{SIZE}}{{UNIT}};',
 				],
 				'separator'  => 'before',
 				'condition'  => [
@@ -257,7 +223,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'size' => 50,
 				],
 				'selectors'  => [
-					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'height: {{SIZE}}{{UNIT}};',
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'height: {{SIZE}}{{UNIT}};',
 				],
 				'condition'  => [
 					'ha_scroll_to_top_global' => 'yes',
@@ -283,7 +249,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'size' => 9999,
 				],
 				'selectors'  => [
-					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'z-index: {{SIZE}}',
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'z-index: {{SIZE}}',
 				],
 				'condition'  => [
 					'ha_scroll_to_top_global' => 'yes',
@@ -308,7 +274,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'size' => 0.7,
 				],
 				'selectors' => [
-					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'opacity: {{SIZE}};',
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'opacity: {{SIZE}};',
 				],
 				'condition' => [
 					'ha_scroll_to_top_global' => 'yes',
@@ -352,33 +318,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					],
 				],
 				'selectors'  => [
-					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button i' => 'font-size: {{SIZE}}{{UNIT}};',
-				],
-				'condition'  => [
-					'ha_scroll_to_top_global' => 'yes',
-				],
-			]
-		);
-
-		$this->add_control(
-			'ha_scroll_to_top_button_icon_svg_size',
-			[
-				'label'      => __( 'SVG Size', 'happy-elementor-addons' ),
-				'type'       => Controls_Manager::SLIDER,
-				'default'    => [
-					'size' => 32,
-					'unit' => 'px',
-				],
-				'size_units' => ['px'],
-				'range'      => [
-					'px' => [
-						'min'  => 0,
-						'max'  => 500,
-						'step' => 1,
-					],
-				],
-				'selectors'  => [
-					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button i' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
 				'condition'  => [
 					'ha_scroll_to_top_global' => 'yes',
@@ -393,8 +333,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ffffff',
 				'selectors' => [
-					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button i' => 'color: {{VALUE}}',
-					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button svg' => 'fill: {{VALUE}}',
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button i' => 'color: {{VALUE}}',
 				],
 				'condition' => [
 					'ha_scroll_to_top_global' => 'yes',
@@ -407,9 +346,9 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 			[
 				'label'     => __( 'Background Color', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#000000',
+				'default'   => '#5636d1',
 				'selectors' => [
-					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'background-color: {{VALUE}}',
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'background-color: {{VALUE}}',
 				],
 				'condition' => [
 					'ha_scroll_to_top_global' => 'yes',
@@ -435,7 +374,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'size' => 5,
 				],
 				'selectors'  => [
-					'.eael-ext-scroll-to-top-wrap .eael-ext-scroll-to-top-button' => 'border-radius: {{SIZE}}{{UNIT}}',
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'border-radius: {{SIZE}}{{UNIT}}',
 				],
 				'condition'  => [
 					'ha_scroll_to_top_global' => 'yes',
