@@ -1,4 +1,5 @@
-= 3.6.* -  =
+= 3.6.2 - 5 July 2022 =
+
 - Tweak: Horizontal Timeline Title Link
 - Tweak: Added category support for product in the Post List widget
 - Fix: Event Calendar link issue

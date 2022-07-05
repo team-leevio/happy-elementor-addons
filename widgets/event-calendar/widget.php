@@ -1842,6 +1842,10 @@ class Event_Calendar extends Base {
 				if ( ! empty( $event['image']['id'] ) ) {
 					$image = esc_url( wp_get_attachment_image_url( $event['image']['id'], $event['thumbnail_size'] ) );
 				}
+				$details_link = ! empty( $event['details_link']['url'] ) ? esc_url( $event['details_link']['url'] ) : '';
+				if ( 'yes' === $settings['show_event_popup'] && empty( $details_link ) ) {
+					$details_link = '#';
+				}
 
 				$data[] = [
 					'id'          => esc_attr( $i ),
@@ -1850,7 +1854,7 @@ class Event_Calendar extends Base {
 					'description' => ha_kses_intermediate( $event['description'] ),
 					'start'       => esc_html( $start ),
 					'end'         => esc_html( $end ),
-					'url'         => ! empty( $event['details_link']['url'] ) ? esc_url( $event['details_link']['url'] ) : '',
+					'url'         => $details_link,
 					'allDay'      => esc_html( $event['all_day'] ),
 					'external'    => esc_attr( $event['details_link']['is_external'] ),
 					'nofollow'    => esc_attr( $event['details_link']['nofollow'] ),
