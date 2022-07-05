@@ -1,35 +1,36 @@
 {
-  "name": "happy-elementor-addons",
-  "version": "3.6.2",
-  "description": "addons collection",
-  "main": "index.html",
-  "scripts": {
-    "dev": "gulp",
-    "translate": "gulp pot",
-    "zip": "gulp zip",
-    "build": "gulp build"
-  },
-  "author": "HappyMonster",
-  "license": "MIT",
-  "devDependencies": {
-    "@babel/core": "^7.18.6",
-    "@babel/preset-env": "^7.18.6",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^8.0.0",
-    "gulp-babel": "^8.0.0",
-    "gulp-clean": "^0.4.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-csscomb": "^3.1.0",
-    "gulp-csso": "^4.0.1",
-    "gulp-plumber-notifier": "0.1.0",
-    "gulp-rename": "^2.0.0",
-    "gulp-sass": "^5.1.0",
-    "gulp-uglify": "^3.0.2",
-    "gulp-wp-pot": "^2.5.0",
-    "gulp-zip": "^5.1.0",
-    "sass": "^1.53.0"
-  },
-  "dependencies": {
-    "gulp-install": "^1.1.0"
-  }
+    "name": "happy-elementor-addons",
+    "version": "3.6.2",
+    "description": "addons collection",
+    "main": "index.html",
+    "scripts": {
+        "dev": "gulp",
+        "dev2": "gulp dev",
+        "translate": "gulp pot",
+        "zip": "gulp zip",
+        "build": "gulp build"
+    },
+    "author": "HappyMonster",
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/core": "^7.18.6",
+        "@babel/preset-env": "^7.18.6",
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "^8.0.0",
+        "gulp-babel": "^8.0.0",
+        "gulp-clean": "^0.4.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-csscomb": "^3.1.0",
+        "gulp-csso": "^4.0.1",
+        "gulp-plumber-notifier": "0.1.0",
+        "gulp-rename": "^2.0.0",
+        "gulp-sass": "^5.1.0",
+        "gulp-uglify": "^3.0.2",
+        "gulp-wp-pot": "^2.5.0",
+        "gulp-zip": "^5.1.0",
+        "sass": "^1.53.0"
+    },
+    "dependencies": {
+        "gulp-install": "^1.1.0"
+    }
 }
