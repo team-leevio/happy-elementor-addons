@@ -5,6 +5,7 @@ use Elementor\Plugin;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Typography;
+use Elementor\Group_Control_Border;
 use Elementor\Core\Responsive\Responsive;
 use Elementor\Core\Kits\Documents\Tabs\Tab_Base;
 
@@ -283,7 +284,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 		);
 
 		$this->add_control(
-			'ha_scroll_to_top_button_icon_image',
+			'ha_scroll_to_top_button_icon',
 			[
 				'label'     => esc_html__( 'Icon', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::ICONS,
@@ -326,6 +327,35 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name'       => 'ha_scroll_to_top_button_border',
+				'exclude'    => ['color'], //remove border color
+				'selector'   => '{{WRAPPER}} .ha-scroll-to-top-wrap .ha-scroll-to-top-button',
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->start_controls_tabs(
+			'ha_scroll_to_top_tabs',
+			[
+				'separator' => 'before',
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->start_controls_tab(
+			'ha_scroll_to_top_tab_normal',
+			[
+				'label' => __( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
 		$this->add_control(
 			'ha_scroll_to_top_button_icon_color',
 			[
@@ -357,6 +387,77 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 		);
 
 		$this->add_control(
+			'ha_scroll_to_top_button_border_color',
+			[
+				'label'     => __( 'Border Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'border-color: {{VALUE}}',
+				],
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+					'ha_scroll_to_top_button_border_border!' => '',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab( 'ha_scroll_to_top_tab_hover',
+			[
+				'label' => __( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_icon_hvr_color',
+			[
+				'label'     => __( 'Icon Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#ffffff',
+				'selectors' => [
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button:hover i' => 'color: {{VALUE}}',
+				],
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_bg_hvr_color',
+			[
+				'label'     => __( 'Background Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#5636d1',
+				'selectors' => [
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button:hover' => 'background-color: {{VALUE}}',
+				],
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_hvr_border_color',
+			[
+				'label'     => __( 'Border Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button:hover' => 'border-color: {{VALUE}}',
+				],
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+					'ha_scroll_to_top_button_border_border!' => '',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_control(
 			'ha_scroll_to_top_button_border_radius',
 			[
 				'label'      => __( 'Border Radius', 'happy-elementor-addons' ),
@@ -365,13 +466,13 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 				'range'      => [
 					'px' => [
 						'min'  => 0,
-						'max'  => 50,
+						'max'  => 100,
 						'step' => 1,
 					],
 				],
 				'default'    => [
 					'unit' => 'px',
-					'size' => 5,
+					'size' => 50,
 				],
 				'selectors'  => [
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'border-radius: {{SIZE}}{{UNIT}}',
