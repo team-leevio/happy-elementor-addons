@@ -145,48 +145,17 @@
 				.addClass('is-ha-widget');
 		}, 100));
 
-		$('#elementor-panel-inner').on('change','input[data-setting=ha_scroll_to_top_global]', _.debounce(function(e) {
-			// console.log($(this));
-			// console.log($(this)[0].checked);
-			// elementor.saver.update.apply().then(function () {
-			// 	elementor.reloadPreview();
-			// });
-			$e.run( 'document/save/update' ).then(function () {
+		function scroll_to_top_reloadPreview (newValue) {
+			// console.log(newValue);
+			// $e.run( 'document/save/publish' )
+			$e.run( 'document/save/update' ).then( _.debounce( function () {
 				elementor.reloadPreview();
 				// location.reload();
-			});
-			// if( $(this)[0].checked ){
-			// 	elementor.reloadPreview();
-			// }
-		}, 2000));
-
-		elementor.settings.page.addChangeCallback("ha_scroll_to_top_button_icon", function (newValue) {
-			// console.log(newValue);
-
-			// elementor.saver.update.apply().then(function () {
-			// 	elementor.reloadPreview();
-			// });
-			// $e.run( 'document/save/update' ).then(function () {
-			// 	elementor.reloadPreview();
-			// });
-			$e.run( 'document/save/publish' ).then(function () {
-				elementor.reloadPreview();
-			});
-		});
-
-		elementor.settings.page.addChangeCallback("ha_scroll_to_top_single_disable", function (newValue) {
-			console.log(newValue);
-
-			// elementor.saver.update.apply().then(function () {
-			// 	elementor.reloadPreview();
-			// });
-			// $e.run( 'document/save/update' ).then(function () {
-			// 	elementor.reloadPreview();
-			// });
-			$e.run( 'document/save/publish' ).then(function () {
-				elementor.reloadPreview();
-			});
-		});
+			}, 1500));
+		}
+		elementor.settings.page.addChangeCallback("ha_scroll_to_top_global", scroll_to_top_reloadPreview);
+		elementor.settings.page.addChangeCallback("ha_scroll_to_top_button_icon", scroll_to_top_reloadPreview);
+		elementor.settings.page.addChangeCallback("ha_scroll_to_top_single_disable", scroll_to_top_reloadPreview);
 
 		/**
 		 * Register grid layer shortcut

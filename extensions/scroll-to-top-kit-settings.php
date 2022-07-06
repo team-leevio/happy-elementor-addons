@@ -45,7 +45,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 			[
 				'type' => Controls_Manager::SWITCHER,
 				'label' => __( 'Enable Scroll To Top', 'happy-elementor-addons' ),
-				'default' => 'no',
+				'default' => '',
 				'label_on' => __( 'Show', 'happy-elementor-addons' ),
 				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
 			]
@@ -353,6 +353,9 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 			'ha_scroll_to_top_tab_normal',
 			[
 				'label' => __( 'Normal', 'happy-elementor-addons' ),
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
 			]
 		);
 
@@ -403,9 +406,13 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 
 		$this->end_controls_tab();
 
-		$this->start_controls_tab( 'ha_scroll_to_top_tab_hover',
+		$this->start_controls_tab(
+			'ha_scroll_to_top_tab_hover',
 			[
 				'label' => __( 'Hover', 'happy-elementor-addons' ),
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
 			]
 		);
 

@@ -15,12 +15,16 @@ class Scroll_To_Top {
 		}
 
 		add_action( 'elementor/kit/register_tabs', [ $this, 'init_site_settings' ], 1, 40 );
-		add_action( 'elementor/documents/register_controls', [$this, 'register_controls'], 10 );
-		// add_action( 'elementor/documents/register_controls', [$this, 'register_hide_title_control'] );
-		add_action( 'wp_footer', [$this, 'render_global_html'] );
+		add_action( 'elementor/documents/register_controls', [$this, 'scroll_to_top_controls'], 10 );
+		add_action( 'wp_footer', [$this, 'render_scroll_to_top_html'] );
 	}
 
-	public function register_controls( $element ) {
+	public function scroll_to_top_controls( $element ) {
+
+		$scroll_to_top_global = $this->elementor_get_setting( 'ha_scroll_to_top_global' );
+		if ( 'yes' !== $scroll_to_top_global ) {
+			return;
+		}
 
 		$element->start_controls_section(
 			'ha_scroll_to_top_single_section',
@@ -46,38 +50,10 @@ class Scroll_To_Top {
 		$element->end_controls_section();
 	}
 
-
-	public function register_hide_title_control( $document ) {
-		$document->start_injection(
-			[
-				'of'       => 'post_status',
-				'fallback' => [
-					'of' => 'post_title',
-				],
-			]
-		);
-
-		$document->add_control(
-			'ha_scroll_to_top_single_disable',
-			[
-				'label'        => __( 'Disable Scroll to Top', 'happy-elementor-addons' ). ha_get_section_icon(),
-				'description'        => __( 'Disable Scroll to Top For This Page', 'happy-elementor-addons' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'default'      => '',
-				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
-				'label_off'    => __( 'No', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-			]
-		);
-
-		$document->end_injection();
-	}
-
-	public function render_global_html() {
+	public function render_scroll_to_top_html() {
 
 		$post_id                = get_the_ID();
-		$html                   = '';
-		$global_settings        = $settings_data = $document = [];
+		$document = [];
 		$document_settings_data = [];
 
 		$document = \Elementor\Plugin::$instance->documents->get( $post_id, false );
@@ -85,11 +61,6 @@ class Scroll_To_Top {
 			$document_settings_data = $document->get_settings();
 		}
 
-		// error_log( print_r( $document , 1 ) );
-		// error_log( print_r( $document_settings_data , 1 ) );
-		// if ( isset( $document_settings_data['ha_scroll_to_top_single_disable'] ) && $document_settings_data['ha_scroll_to_top_single_disable'] == 'yes' ) {
-
-		// }
 		$scroll_to_top_global = $this->elementor_get_setting( 'ha_scroll_to_top_global' );
 		// error_log( print_r( $this->elementor_get_setting( 'ha_scroll_to_top_global' ), 1 ) );
 
@@ -103,7 +74,7 @@ class Scroll_To_Top {
 			$scroll_to_top = false;
 		}
 
-		error_log( print_r( $scroll_to_top , 1 ) );
+		//error_log( print_r( $scroll_to_top , 1 ) );
 
 		if ( $scroll_to_top ) {
 
@@ -116,112 +87,9 @@ class Scroll_To_Top {
 
 			wp_add_inline_script(
 				'happy-elementor-addons',
-				';(function ($) {
-					"use strict";
-					$(function () {
-					  var offset = 100;
-					  var speed = 300;
-					  var duration = 300;
-					  if ($(this).scrollTop() > offset) {
-						$(".ha-scroll-to-top-wrap").removeClass("ha-scroll-to-top-hide");
-					  }
-					  $(window).scroll(function () {
-						if ($(this).scrollTop() < offset) {
-						  $(".ha-scroll-to-top-wrap").fadeOut(duration);
-						} else {
-						  $(".ha-scroll-to-top-wrap").fadeIn(duration);
-						}
-					  });
-					  $(".ha-scroll-to-top-wrap").on("click", function () {
-						$("html, body").animate({ scrollTop: 0 }, speed);
-						return false;
-					  });
-					});
-				  })(jQuery);
-				'
+				'!function(o){"use strict";o((function(){o(this).scrollTop()>100&&o(".ha-scroll-to-top-wrap").removeClass("ha-scroll-to-top-hide"),o(window).scroll((function(){o(this).scrollTop()<100?o(".ha-scroll-to-top-wrap").fadeOut(300):o(".ha-scroll-to-top-wrap").fadeIn(300)})),o(".ha-scroll-to-top-wrap").on("click",(function(){return o("html, body").animate({scrollTop:0},300),!1}))}))}(jQuery);'
 			);
-
-			// wp_enqueue_script(
-			// 	'happy-scroll-to-top',
-			// 	HAPPY_ADDONS_ASSETS . 'js/scroll-to-top.js',
-			// 	['happy-elementor-addons'],
-			// 	HAPPY_ADDONS_VERSION,
-			// 	true
-			// );
 		}
-	}
-
-	public function render_global_html_backup() {
-
-		$post_id                = get_the_ID();
-		$html                   = '';
-		$global_settings        = $settings_data = $document = [];
-		$document_settings_data = '';
-
-		$document = \Elementor\Plugin::$instance->documents->get( $post_id, false );
-		if ( isset( $document ) && is_object( $document ) ) {
-			$document_settings_data = $document->get_settings();
-		}
-
-		// error_log( print_r( $document , 1 ) );
-		// error_log( print_r( $document_settings_data , 1 ) );
-		// error_log( print_r( $this->elementor_get_setting('hello_header_logo_display') , 1 ) );
-
-		return;
-
-		//Scroll to Top
-		// if ( $this->get_settings( 'scroll-to-top' ) == true ) {
-
-			$scroll_to_top_status = $scroll_to_top_status_global = false;
-
-		if ( isset( $document_settings_data['ha_ext_scroll_to_top'] ) && $document_settings_data['ha_ext_scroll_to_top'] == 'yes' ) {
-			$scroll_to_top_status        = true;
-			$settings_data_scroll_to_top = $document_settings_data;
-		} elseif ( isset( $global_settings['ha_ext_scroll_to_top']['enabled'] ) && $global_settings['ha_ext_scroll_to_top']['enabled'] ) {
-			$scroll_to_top_status        = true;
-			$scroll_to_top_status_global = true;
-			$settings_data_scroll_to_top = $global_settings['ha_ext_scroll_to_top'];
-		}
-
-		if ( $scroll_to_top_status ) {
-			if ( $scroll_to_top_status_global ) {
-				//global status is true only when locally scroll to top is disabled.
-				$this->scroll_to_top_global_css( $global_settings );
-			}
-			$scroll_to_top_icon_image = ! empty( $settings_data_scroll_to_top['ha_ext_scroll_to_top_button_icon_image'] )
-										? $settings_data_scroll_to_top['ha_ext_scroll_to_top_button_icon_image']['value'] : '';
-
-			if ( isset( $scroll_to_top_icon_image['url'] ) ) {
-				ob_start();
-				Icons_Manager::render_icon( $settings_data_scroll_to_top['ha_ext_scroll_to_top_button_icon_image'], [ 'aria-hidden' => 'true' ] );
-				$scroll_to_top_icon_html = ob_get_clean();
-			} else {
-				$scroll_to_top_icon_html = "<i class='$scroll_to_top_icon_image'></i>";
-			}
-
-			$scroll_to_top_html = "<div class='eael-ext-scroll-to-top-wrap scroll-to-top-hide'><span class='eael-ext-scroll-to-top-button'>$scroll_to_top_icon_html</span></div>";
-
-			$scroll_to_top_global_display_condition = isset( $settings_data_scroll_to_top['ha_ext_scroll_to_top_global_display_condition'] ) ? $settings_data_scroll_to_top['ha_ext_scroll_to_top_global_display_condition'] : 'all';
-
-			if ( isset( $settings_data_scroll_to_top['post_id'] ) && $settings_data_scroll_to_top['post_id'] != get_the_ID() ) {
-				if ( get_post_status( $settings_data_scroll_to_top['post_id'] ) != 'publish' ) {
-					$scroll_to_top_html = '';
-				} elseif ( $scroll_to_top_global_display_condition == 'pages' && ! is_page() ) {
-						$scroll_to_top_html = '';
-				} elseif ( $scroll_to_top_global_display_condition == 'posts' && ! is_single() ) {
-						$scroll_to_top_html = '';
-				}
-			}
-
-			if ( ! empty( $scroll_to_top_html ) ) {
-				// wp_enqueue_script( 'eael-scroll-to-top' );
-				// wp_enqueue_style( 'eael-scroll-to-top' );
-
-				$html .= $scroll_to_top_html;
-			}
-		}
-		// }
-		printf( '%1$s', $html );
 	}
 
 	public function elementor_get_setting( $setting_id ) {
