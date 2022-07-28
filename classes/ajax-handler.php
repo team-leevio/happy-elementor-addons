@@ -224,6 +224,7 @@ class Ajax_Handler {
 			$taxonomy   = $settings['taxonomy'];
 			$item_limit = $settings['item_limit'];
 			$excerpt    = $settings['excerpt'];
+			$title_tag    = $settings['title_tag'];
 			$term_id    = $_POST['term_id'];
 
 			$args = [
@@ -253,9 +254,14 @@ class Ajax_Handler {
 										<?php echo get_the_post_thumbnail( $post->ID, 'full' ); ?>
 									</a>
 								<?php endif; ?>
-								<h2 class="ha-post-tab-title">
-									<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>"> <?php echo esc_html( $post->post_title ); ?></a>
-								</h2>
+								<?php
+									printf(
+										'<%1$s class="ha-post-tab-title"><a href="%2$s">%3$s</a></%1$s>',
+										ha_escape_tags( $title_tag, 'h2' ),
+										esc_url( get_the_permalink( $post->ID ) ),
+										esc_html( $post->post_title )
+									);
+								?>
 								<div class="ha-post-tab-meta">
 									<span class="ha-post-tab-meta-author">
 										<i class="fa fa-user-o"></i>
