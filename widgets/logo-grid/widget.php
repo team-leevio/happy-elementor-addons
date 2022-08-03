@@ -621,7 +621,7 @@ class Logo_Grid extends Base {
         <div class="ha-logo-grid-wrapper">
             <?php
             foreach ( $settings['logo_list'] as $index => $item ) :
-                $image = wp_get_attachment_image_url( $item['image']['id'], $settings['thumbnail_size'] );
+                $image = $item['image'];
                 $repeater_key = 'grid_item' . $index;
                 $tag = 'div';
                 $this->add_render_attribute( $repeater_key, 'class', 'ha-logo-grid-item' );
@@ -634,19 +634,20 @@ class Logo_Grid extends Base {
                 ?>
                 <<?php echo $tag; ?> <?php $this->print_render_attribute_string( $repeater_key ); ?>>
                     <figure class="ha-logo-grid-figure">
-                    <?php if ( $image ) :
-                            echo wp_get_attachment_image(
-                                $item['image']['id'],
-                                $settings['thumbnail_size'],
-                                false,
-                                [
-                                    'class' => 'ha-logo-grid-img elementor-animation-' . esc_attr( $settings['hover_animation'] )
-                                ]
-                            );
+                    <?php if ( isset( $image['source'] ) && $image['id'] ) :
+							echo wp_get_attachment_image(
+								$image['id'],
+								$settings['thumbnail_size'],
+								false,
+								[
+									'class' => 'ha-logo-grid-img elementor-animation-' . esc_attr( $settings['hover_animation'] )
+								]
+							);
                         else :
+							$url = $image['url'] ? $image['url'] : Utils::get_placeholder_image_src();
                             printf( '<img class="ha-logo-grid-img elementor-animation-%s" src="%s" alt="%s">',
                                 esc_attr( $settings['hover_animation'] ),
-                                Utils::get_placeholder_image_src(),
+                                esc_url( $url ),
                                 esc_attr( $item['name'] )
                                 );
                         endif; ?>

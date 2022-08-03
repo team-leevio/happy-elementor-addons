@@ -27,7 +27,7 @@ class Event_Calendar extends Base {
 	 * @access public
 	 *
 	 */
-	public function get_title () {
+	public function get_title() {
 		return __( 'Event Calendar', 'happy-elementor-addons' );
 	}
 
@@ -43,11 +43,11 @@ class Event_Calendar extends Base {
 	 * @access public
 	 *
 	 */
-	public function get_icon () {
+	public function get_icon() {
 		return 'hm hm-event-calendar';
 	}
 
-	public function get_keywords () {
+	public function get_keywords() {
 		return [ 'event-calendar', 'event', 'calender', 'time', 'shedule', 'google-calender' ];
 	}
 
@@ -56,10 +56,10 @@ class Event_Calendar extends Base {
 	 *
 	 * @return array
 	 */
-	public static function get_events () {
-		if (!function_exists('tribe_get_events')) {
-            return [];
-        }
+	public static function get_events() {
+		if ( ! function_exists( 'tribe_get_events' ) ) {
+			return [];
+		}
 		$posts = [];
 
 		$_posts = tribe_get_events();
@@ -77,25 +77,25 @@ class Event_Calendar extends Base {
 	 * @return array
 	 */
 	public static function get_the_event_calendar_cat() {
-		if (!function_exists('tribe_get_events')) {
-            return [];
-        }
-		$args = [
-			'taxonomy' => 'tribe_events_cat',
-			'hide_empty' => false
+		if ( ! function_exists( 'tribe_get_events' ) ) {
+			return [];
+		}
+		$args    = [
+			'taxonomy'   => 'tribe_events_cat',
+			'hide_empty' => false,
 		];
-        $options = [];
-        $tags = get_tags($args);
+		$options = [];
+		$tags    = get_tags( $args );
 
-        if (is_wp_error($tags)) {
-            return [];
-        }
+		if ( is_wp_error( $tags ) ) {
+			return [];
+		}
 
-        foreach ($tags as $tag) {
-            $options[$tag->term_id] = $tag->name;
-        }
-        return $options;
-    }
+		foreach ( $tags as $tag ) {
+			$options[ $tag->term_id ] = $tag->name;
+		}
+		return $options;
+	}
 
 	/**
 	 * Get a language code
@@ -103,68 +103,68 @@ class Event_Calendar extends Base {
 	 * @return array
 	 */
 	protected function language_code_list() {
-        return [
-            'af' => 'Afrikaans',
-            'sq' => 'Albanian',
-            'ar' => 'Arabic',
-            'eu' => 'Basque',
-            'bn' => 'Bengali',
-            'bs' => 'Bosnian',
-            'bg' => 'Bulgarian',
-            'ca' => 'Catalan',
-            'zh-cn' => 'Chinese',
-            'zh-tw' => 'Chinese-tw',
-            'hr' => 'Croatian',
-            'cs' => 'Czech',
-            'da' => 'Danish',
-            'nl' => 'Dutch',
-            'en' => 'English',
-            'et' => 'Estonian',
-            'fi' => 'Finnish',
-            'fr' => 'French',
-            'gl' => 'Galician',
-            'ka' => 'Georgian',
-            'de' => 'German',
-            'el' => 'Greek (Modern)',
-            'he' => 'Hebrew',
-            'hi' => 'Hindi',
-            'hu' => 'Hungarian',
-            'is' => 'Icelandic',
-            'io' => 'Ido',
-            'id' => 'Indonesian',
-            'it' => 'Italian',
-            'ja' => 'Japanese',
-            'kk' => 'Kazakh',
-            'ko' => 'Korean',
-            'lv' => 'Latvian',
-            'lb' => 'Letzeburgesch',
-            'lt' => 'Lithuanian',
-            'lu' => 'Luba-Katanga',
-            'mk' => 'Macedonian',
-            'mg' => 'Malagasy',
-            'ms' => 'Malay',
-            'ro' => 'Moldovan, Moldavian, Romanian',
-            'nb' => 'Norwegian Bokmål',
-            'nn' => 'Norwegian Nynorsk',
-            'fa' => 'Persian',
-            'pl' => 'Polish',
-            'pt' => 'Portuguese',
-            'ru' => 'Russian',
-            'sr' => 'Serbian',
-            'sk' => 'Slovak',
-            'sl' => 'Slovenian',
-            'es' => 'Spanish',
-            'sv' => 'Swedish',
-            'tr' => 'Turkish',
-            'uk' => 'Ukrainian',
-            'vi' => 'Vietnamese',
-        ];
-    }
+		return [
+			'af'    => 'Afrikaans',
+			'sq'    => 'Albanian',
+			'ar'    => 'Arabic',
+			'eu'    => 'Basque',
+			'bn'    => 'Bengali',
+			'bs'    => 'Bosnian',
+			'bg'    => 'Bulgarian',
+			'ca'    => 'Catalan',
+			'zh-cn' => 'Chinese',
+			'zh-tw' => 'Chinese-tw',
+			'hr'    => 'Croatian',
+			'cs'    => 'Czech',
+			'da'    => 'Danish',
+			'nl'    => 'Dutch',
+			'en'    => 'English',
+			'et'    => 'Estonian',
+			'fi'    => 'Finnish',
+			'fr'    => 'French',
+			'gl'    => 'Galician',
+			'ka'    => 'Georgian',
+			'de'    => 'German',
+			'el'    => 'Greek (Modern)',
+			'he'    => 'Hebrew',
+			'hi'    => 'Hindi',
+			'hu'    => 'Hungarian',
+			'is'    => 'Icelandic',
+			'io'    => 'Ido',
+			'id'    => 'Indonesian',
+			'it'    => 'Italian',
+			'ja'    => 'Japanese',
+			'kk'    => 'Kazakh',
+			'ko'    => 'Korean',
+			'lv'    => 'Latvian',
+			'lb'    => 'Letzeburgesch',
+			'lt'    => 'Lithuanian',
+			'lu'    => 'Luba-Katanga',
+			'mk'    => 'Macedonian',
+			'mg'    => 'Malagasy',
+			'ms'    => 'Malay',
+			'ro'    => 'Moldovan, Moldavian, Romanian',
+			'nb'    => 'Norwegian Bokmål',
+			'nn'    => 'Norwegian Nynorsk',
+			'fa'    => 'Persian',
+			'pl'    => 'Polish',
+			'pt'    => 'Portuguese',
+			'ru'    => 'Russian',
+			'sr'    => 'Serbian',
+			'sk'    => 'Slovak',
+			'sl'    => 'Slovenian',
+			'es'    => 'Spanish',
+			'sv'    => 'Swedish',
+			'tr'    => 'Turkish',
+			'uk'    => 'Ukrainian',
+			'vi'    => 'Vietnamese',
+		];
+	}
 
 	/**
-     * Register widget content controls
-     */
-	protected function register_content_controls () {
+	 * Register widget content controls
+	 */
+	protected function register_content_controls() {
 
 		$this->event_content_controls();
 
@@ -175,86 +175,86 @@ class Event_Calendar extends Base {
 		$this->event_settings_content_controls();
 	}
 
-	protected function event_content_controls () {
+	protected function event_content_controls() {
 
 		$this->start_controls_section(
 			'_section_event',
 			[
 				'label' => __( 'Event', 'happy-elementor-addons' ),
-				'tab' => Controls_Manager::TAB_CONTENT,
+				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
 		$this->add_control(
 			'event_calendar_type',
 			[
-				'label' => __( 'Source', 'happy-elementor-addons' ),
+				'label'       => __( 'Source', 'happy-elementor-addons' ),
 				'label_block' => false,
-				'type' => Controls_Manager::SELECT,
-				'default' => 'manual',
-				'options' => [
-					'manual' =>  __( 'Manual', 'happy-elementor-addons' ),
-					'google_calendar' =>  __( 'Google Calendar', 'happy-elementor-addons' ),
-					'the_events_calendar' =>  __( 'The Event Calendar', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::SELECT,
+				'default'     => 'manual',
+				'options'     => [
+					'manual'              => __( 'Manual', 'happy-elementor-addons' ),
+					'google_calendar'     => __( 'Google Calendar', 'happy-elementor-addons' ),
+					'the_events_calendar' => __( 'The Event Calendar', 'happy-elementor-addons' ),
 				],
 				// 'multiple' => true,
 			]
 		);
 
 		$repeater = new Repeater();
-		$repeater->start_controls_tabs('event_calendar_tabs');
+		$repeater->start_controls_tabs( 'event_calendar_tabs' );
 
-        $repeater->start_controls_tab(
-            'event_calendar_content_tab',
-            [
-                'label' => __('Content', 'happy-elementor-addons'),
-            ]
+		$repeater->start_controls_tab(
+			'event_calendar_content_tab',
+			[
+				'label' => __( 'Content', 'happy-elementor-addons' ),
+			]
 		);
 
 		$repeater->add_control(
 			'title',
 			[
-				'label' => __('Title', 'happy-elementor-addons'),
-				'type' => Controls_Manager::TEXT,
+				'label'       => __( 'Title', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => __('Event Title', 'happy-elementor-addons'),
-				'dynamic' => [
+				'default'     => __( 'Event Title', 'happy-elementor-addons' ),
+				'dynamic'     => [
 					'active' => true,
-				]
+				],
 			]
 		);
 
 		$repeater->add_control(
 			'guest',
 			[
-				'label' => __('Guest/Speaker', 'happy-elementor-addons'),
-				'type' => Controls_Manager::TEXT,
+				'label'       => __( 'Guest/Speaker', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => __('John Doe', 'happy-elementor-addons'),
-				'dynamic' => [
+				'default'     => __( 'John Doe', 'happy-elementor-addons' ),
+				'dynamic'     => [
 					'active' => true,
-				]
+				],
 			]
 		);
 
 		$repeater->add_control(
 			'location',
 			[
-				'label' => __('Location', 'happy-elementor-addons'),
-				'type' => Controls_Manager::TEXT,
+				'label'       => __( 'Location', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => __('4382 Roosevelt Road, KS, Kansas', 'happy-elementor-addons'),
-				'dynamic' => [
+				'default'     => __( '4382 Roosevelt Road, KS, Kansas', 'happy-elementor-addons' ),
+				'dynamic'     => [
 					'active' => true,
-				]
+				],
 			]
 		);
 
 		$repeater->add_control(
 			'image',
 			[
-				'label' => __( 'Choose Image', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::MEDIA,
+				'label'   => __( 'Choose Image', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
 				],
@@ -262,175 +262,176 @@ class Event_Calendar extends Base {
 		);
 
 		$repeater->add_group_control(
-            Group_Control_Image_Size::get_type(),
-            [
-                'name' => 'thumbnail',
-                'label' => 'Thumbnail Size',
-                'default' => 'thumbnail',
-                'separator' => 'before',
-                'exclude' => [
-                    'custom'
-				]
-            ]
+			Group_Control_Image_Size::get_type(),
+			[
+				'name'      => 'thumbnail',
+				'label'     => 'Thumbnail Size',
+				'default'   => 'thumbnail',
+				'separator' => 'before',
+				'exclude'   => [
+					'custom',
+				],
+			]
 		);
 
 		$repeater->add_control(
-            'details_link',
-            [
-                'label'         => __('Details Link', 'happy-elementor-addons'),
-                'type'          => Controls_Manager::URL,
-                'placeholder'   => __('https://example.com', 'happy-elementor-addons'),
-                'show_external' => true,
-            ]
+			'details_link',
+			[
+				'label'         => __( 'Details Link', 'happy-elementor-addons' ),
+				'type'          => Controls_Manager::URL,
+				'placeholder'   => __( 'https://example.com', 'happy-elementor-addons' ),
+				'options'       => [ 'is_external', 'nofollow', 'custom_attributes' ],
+				'show_external' => true,
+				// 'custom_attributes' => false,
+			]
 		);
 
-        $repeater->add_control(
-            'all_day',
-            [
-                'label'        => __('All Day', 'happy-elementor-addons'),
-                'type'         => Controls_Manager::SWITCHER,
-                'label_block'  => false,
-                'return_value' => 'yes',
-            ]
-        );
+		$repeater->add_control(
+			'all_day',
+			[
+				'label'        => __( 'All Day', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_block'  => false,
+				'return_value' => 'yes',
+			]
+		);
 
-        $repeater->add_control(
-            'start_date',
-            [
-                'label'     => __('Start Date', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::DATE_TIME,
-                'default'   => date('Y-m-d H:i', current_time('timestamp', 0)),
-                'condition' => [
-                    'all_day' => '',
-                ],
-            ]
-        );
+		$repeater->add_control(
+			'start_date',
+			[
+				'label'     => __( 'Start Date', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::DATE_TIME,
+				'default'   => date( 'Y-m-d H:i', current_time( 'timestamp', 0 ) ),
+				'condition' => [
+					'all_day' => '',
+				],
+			]
+		);
 
-        $repeater->add_control(
-            'end_date',
-            [
-                'label'     => __('End Date', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::DATE_TIME,
-                'default'   => date('Y-m-d H:i', strtotime("+59 minute", current_time('timestamp', 0))),
-                'condition' => [
-                    'all_day' => '',
-                ],
-            ]
-        );
+		$repeater->add_control(
+			'end_date',
+			[
+				'label'     => __( 'End Date', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::DATE_TIME,
+				'default'   => date( 'Y-m-d H:i', strtotime( '+59 minute', current_time( 'timestamp', 0 ) ) ),
+				'condition' => [
+					'all_day' => '',
+				],
+			]
+		);
 
-        $repeater->add_control(
-            'start_date_allday',
-            [
-                'label'          => __('Start Date', 'happy-elementor-addons'),
-                'type'           => Controls_Manager::DATE_TIME,
-                'picker_options' => ['enableTime' => false],
-                'default'        => date('Y-m-d', current_time('timestamp', 0)),
-                'condition'      => [
-                    'all_day' => 'yes',
-                ],
-            ]
-        );
+		$repeater->add_control(
+			'start_date_allday',
+			[
+				'label'          => __( 'Start Date', 'happy-elementor-addons' ),
+				'type'           => Controls_Manager::DATE_TIME,
+				'picker_options' => ['enableTime' => false],
+				'default'        => date( 'Y-m-d', current_time( 'timestamp', 0 ) ),
+				'condition'      => [
+					'all_day' => 'yes',
+				],
+			]
+		);
 
-        $repeater->add_control(
-            'end_date_allday',
-            [
-                'label'          => __('End Date', 'happy-elementor-addons'),
-                'type'           => Controls_Manager::DATE_TIME,
-                'picker_options' => ['enableTime' => false],
-                'default'        => date('Y-m-d', current_time('timestamp', 0)),
-                'condition'      => [
-                    'all_day' => 'yes',
-                ],
-            ]
+		$repeater->add_control(
+			'end_date_allday',
+			[
+				'label'          => __( 'End Date', 'happy-elementor-addons' ),
+				'type'           => Controls_Manager::DATE_TIME,
+				'picker_options' => ['enableTime' => false],
+				'default'        => date( 'Y-m-d', current_time( 'timestamp', 0 ) ),
+				'condition'      => [
+					'all_day' => 'yes',
+				],
+			]
 		);
 
 		$repeater->add_control(
 			'individual_style',
 			[
-				'label' => __('Individual Style?', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __('Yes', 'happy-elementor-addons'),
-				'label_off' => __('No', 'happy-elementor-addons'),
-				'return_value' => 'yes',
-				'default' => 'no',
-                'style_transfer' => true,
-				'separator' => 'after',
+				'label'          => __( 'Individual Style?', 'happy-elementor-addons' ),
+				'type'           => Controls_Manager::SWITCHER,
+				'label_on'       => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off'      => __( 'No', 'happy-elementor-addons' ),
+				'return_value'   => 'yes',
+				'default'        => 'no',
+				'style_transfer' => true,
+				'separator'      => 'after',
 			]
 		);
 
 		$repeater->add_control(
 			'text_color',
 			[
-				'label' => __('Text Color', 'happy-elementor-addons'),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
+				'label'          => __( 'Text Color', 'happy-elementor-addons' ),
+				'type'           => Controls_Manager::COLOR,
+				'selectors'      => [
 					'{{WRAPPER}} .ha-ec-wrapper {{CURRENT_ITEM}}' => 'color: {{VALUE}}!important;',
 					'{{WRAPPER}} .ha-ec-wrapper {{CURRENT_ITEM}} .fc-event-main' => 'color: {{VALUE}}!important;',
 				],
-				'condition' => [
+				'condition'      => [
 					'individual_style' => 'yes',
 				],
-                'style_transfer' => true,
-                // 'render_type' => 'template',
+				'style_transfer' => true,
+				// 'render_type' => 'template',
 			]
 		);
 
 		$repeater->add_control(
 			'bg_color',
 			[
-				'label' => __('Background', 'happy-elementor-addons'),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
+				'label'          => __( 'Background', 'happy-elementor-addons' ),
+				'type'           => Controls_Manager::COLOR,
+				'selectors'      => [
 					'{{WRAPPER}} .ha-ec-wrapper {{CURRENT_ITEM}}' => 'background-color: {{VALUE}}!important;',
 				],
-				'condition' => [
+				'condition'      => [
 					'individual_style' => 'yes',
 				],
-                'style_transfer' => true,
+				'style_transfer' => true,
 			]
 		);
 
 		$repeater->add_control(
 			'border_color',
 			[
-				'label' => __('Dot Color', 'happy-elementor-addons'),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
+				'label'          => __( 'Dot Color', 'happy-elementor-addons' ),
+				'type'           => Controls_Manager::COLOR,
+				'selectors'      => [
 					'{{WRAPPER}} .ha-ec-wrapper {{CURRENT_ITEM}} .fc-daygrid-event-dot' => 'border-color: {{VALUE}}!important;',
 					'{{WRAPPER}} .ha-ec-wrapper {{CURRENT_ITEM}} .fc-list-event-dot' => 'border-color: {{VALUE}}!important;',
 				],
-				'condition' => [
-					'individual_style' => 'yes'
+				'condition'      => [
+					'individual_style' => 'yes',
 				],
-                'style_transfer' => true,
+				'style_transfer' => true,
 			]
 		);
 
 		$repeater->end_controls_tab();
 
-        $repeater->start_controls_tab(
-            'event_calendar_description_tab',
-            [
-                'label' => __('Description', 'happy-elementor-addons'),
-            ]
+		$repeater->start_controls_tab(
+			'event_calendar_description_tab',
+			[
+				'label' => __( 'Description', 'happy-elementor-addons' ),
+			]
 		);
 
-        $repeater->add_control(
-            'description',
-            [
-                'label' => __('Description', 'happy-elementor-addons'),
-                'show_label' => true,
-				'type'  => Controls_Manager::WYSIWYG,
-				'default' => sprintf(
+		$repeater->add_control(
+			'description',
+			[
+				'label'      => __( 'Description', 'happy-elementor-addons' ),
+				'show_label' => true,
+				'type'       => Controls_Manager::WYSIWYG,
+				'default'    => sprintf(
 					'<strong>%s</strong> %s',
-					__('Lorem Ipsum', 'happy-elementor-addons'),
-					__('is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries', 'happy-elementor-addons')
+					__( 'Lorem Ipsum', 'happy-elementor-addons' ),
+					__( 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries', 'happy-elementor-addons' )
 				),
 
-                'default' => __('<strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries', 'happy-elementor-addons'),
-            ]
-        );
-
+				'default'    => __( '<strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries', 'happy-elementor-addons' ),
+			]
+		);
 
 		$repeater->end_controls_tab();
 		$repeater->end_controls_tabs();
@@ -438,17 +439,17 @@ class Event_Calendar extends Base {
 		$this->add_control(
 			'manual_event_list',
 			[
-				'show_label' => false,
-				'type' => Controls_Manager::REPEATER,
-				'fields' => $repeater->get_controls(),
+				'show_label'  => false,
+				'type'        => Controls_Manager::REPEATER,
+				'fields'      => $repeater->get_controls(),
 				'title_field' => '{{{ title }}}',
-				'default' => [
+				'default'     => [
 					[
-						'title' => __('Event Title', 'happy-elementor-addons'),
+						'title' => __( 'Event Title', 'happy-elementor-addons' ),
 					],
 				],
-				'condition' => [
-					'event_calendar_type' => 'manual'
+				'condition'   => [
+					'event_calendar_type' => 'manual',
 				],
 			]
 		);
@@ -457,13 +458,13 @@ class Event_Calendar extends Base {
 			$this->add_control(
 				'the_event_calendar_warning_text',
 				[
-					'type'            => Controls_Manager::RAW_HTML,
-					'raw'             => sprintf(
+					'type'      => Controls_Manager::RAW_HTML,
+					'raw'       => sprintf(
 						'<strong>%s</strong> %s <a href="plugin-install.php?s=the-events-calendar&tab=search&type=term" target="_blank">%s</a> %s',
-						__('The Events Calendar', 'happy-elementor-addons'),
-						__('is not installed/activated on your site. Please install and activate.', 'happy-elementor-addons'),
-						__('The Events Calendar', 'happy-elementor-addons'),
-						__(' first.', 'happy-elementor-addons')
+						__( 'The Events Calendar', 'happy-elementor-addons' ),
+						__( 'is not installed/activated on your site. Please install and activate.', 'happy-elementor-addons' ),
+						__( 'The Events Calendar', 'happy-elementor-addons' ),
+						__( ' first.', 'happy-elementor-addons' )
 					),
 					// 'content_classes' => 'ha-warning',
 					'condition' => [
@@ -475,81 +476,81 @@ class Event_Calendar extends Base {
 		$this->end_controls_section();
 	}
 
-	protected function event_google_content_controls () {
+	protected function event_google_content_controls() {
 
 		$this->start_controls_section(
-            '_section_event_google_calendar',
-            [
-                'label'     => __('Google Calendar', 'happy-elementor-addons'),
-                'tab'       => Controls_Manager::TAB_CONTENT,
-                'condition' => [
-                    'event_calendar_type' => 'google_calendar',
-                ],
-            ]
-        );
+			'_section_event_google_calendar',
+			[
+				'label'     => __( 'Google Calendar', 'happy-elementor-addons' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => [
+					'event_calendar_type' => 'google_calendar',
+				],
+			]
+		);
 
-        $this->add_control(
-            'google_calendar_api_key',
-            [
-                'label'       => __('API Key', 'happy-elementor-addons'),
-                'label_block' => true,
-                'type'        => Controls_Manager::TEXT,
-                'default' => '',
-                'description' => sprintf(__('<a href="https://docs.simplecalendar.io/google-api-key/" target="_blank">%s</a>','happy-elementor-addons'), 'Get API Key'),
-            ]
-        );
+		$this->add_control(
+			'google_calendar_api_key',
+			[
+				'label'       => __( 'API Key', 'happy-elementor-addons' ),
+				'label_block' => true,
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'description' => sprintf( __( '<a href="https://docs.simplecalendar.io/google-api-key/" target="_blank">%s</a>', 'happy-elementor-addons' ), 'Get API Key' ),
+			]
+		);
 
-        $this->add_control(
-            'google_calendar_id',
-            [
-                'label'       => __('Calendar ID', 'happy-elementor-addons'),
-                'label_block' => true,
-                'type'        => Controls_Manager::TEXT,
-                'default' => '',
-                //'description' => sprintf(__('<a href="#" target="_blank">%s</a>','happy-elementor-addons'), 'Get calendar ID'),
-            ]
-        );
+		$this->add_control(
+			'google_calendar_id',
+			[
+				'label'       => __( 'Calendar ID', 'happy-elementor-addons' ),
+				'label_block' => true,
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				//'description' => sprintf(__('<a href="#" target="_blank">%s</a>','happy-elementor-addons'), 'Get calendar ID'),
+			]
+		);
 
-        $this->add_control(
-            'google_calendar_start_date',
-            [
-                'label'   => __('Start Date', 'happy-elementor-addons'),
-                'type'    => Controls_Manager::DATE_TIME,
-                'default' => date('Y-m-d H:i', current_time('timestamp', 0)),
-            ]
-        );
+		$this->add_control(
+			'google_calendar_start_date',
+			[
+				'label'   => __( 'Start Date', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::DATE_TIME,
+				'default' => date( 'Y-m-d H:i', current_time( 'timestamp', 0 ) ),
+			]
+		);
 
-        $this->add_control(
-            'google_calendar_end_date',
-            [
-                'label'   => __('End Date', 'happy-elementor-addons'),
-                'type'    => Controls_Manager::DATE_TIME,
-                'default' => date('Y-m-d H:i', strtotime("+6 months", current_time('timestamp', 0))),
-            ]
-        );
+		$this->add_control(
+			'google_calendar_end_date',
+			[
+				'label'   => __( 'End Date', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::DATE_TIME,
+				'default' => date( 'Y-m-d H:i', strtotime( '+6 months', current_time( 'timestamp', 0 ) ) ),
+			]
+		);
 
-        $this->add_control(
-            'google_calendar_max_item',
-            [
-                'label'   => __('Number Of Events', 'happy-elementor-addons'),
-                'type'    => Controls_Manager::NUMBER,
-                'min'     => 1,
-                'default' => 100,
-            ]
-        );
+		$this->add_control(
+			'google_calendar_max_item',
+			[
+				'label'   => __( 'Number Of Events', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::NUMBER,
+				'min'     => 1,
+				'default' => 100,
+			]
+		);
 
-        $this->end_controls_section();
+		$this->end_controls_section();
 	}
 
-	protected function the_event_calendar_content_controls () {
+	protected function the_event_calendar_content_controls() {
 
 		//the events calendar
-        if ( class_exists( 'Tribe__Events__Main' ) ) {
+		if ( class_exists( 'Tribe__Events__Main' ) ) {
 
 			$this->start_controls_section(
 				'_section_the_events_calendar',
 				[
-					'label'     => __('The Event Calendar', 'happy-elementor-addons'),
+					'label'     => __( 'The Event Calendar', 'happy-elementor-addons' ),
 					'tab'       => Controls_Manager::TAB_CONTENT,
 					'condition' => [
 						'event_calendar_type' => 'the_events_calendar',
@@ -560,29 +561,28 @@ class Event_Calendar extends Base {
 			$this->add_control(
 				'the_events_calendar_source',
 				[
-					'label'       => __('Get Events By', 'happy-elementor-addons'),
+					'label'       => __( 'Get Events By', 'happy-elementor-addons' ),
 					'type'        => Controls_Manager::SELECT,
 					'label_block' => true,
 					'default'     => ['all'],
 					'options'     => [
-						'all'        => __('All Event', 'happy-elementor-addons'),
-						'category'        => __('By Category', 'happy-elementor-addons'),
-						'selected_event' => __('Selected Event', 'happy-elementor-addons'),
+						'all'            => __( 'All Event', 'happy-elementor-addons' ),
+						'category'       => __( 'By Category', 'happy-elementor-addons' ),
+						'selected_event' => __( 'Selected Event', 'happy-elementor-addons' ),
 					],
 					// 'render_type' => 'none',
 				]
 			);
 
-
 			$this->add_control(
 				'the_events_calendar_category',
 				[
-					'label'       => __('Event Category', 'happy-elementor-addons'),
+					'label'       => __( 'Event Category', 'happy-elementor-addons' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::SELECT2,
 					'multiple'    => true,
 					'options'     => self::get_the_event_calendar_cat(),
-					'condition' => [
+					'condition'   => [
 						'the_events_calendar_source' => 'category',
 					],
 				]
@@ -591,12 +591,12 @@ class Event_Calendar extends Base {
 			$this->add_control(
 				'the_events_calendar_selected',
 				[
-					'label'       => __('Select Events', 'happy-elementor-addons'),
+					'label'       => __( 'Select Events', 'happy-elementor-addons' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::SELECT2,
 					'multiple'    => true,
 					'options'     => self::get_events(),
-					'condition' => [
+					'condition'   => [
 						'the_events_calendar_source' => 'selected_event',
 					],
 				]
@@ -605,10 +605,10 @@ class Event_Calendar extends Base {
 			$this->add_control(
 				'the_events_calendar_item',
 				[
-					'label'   => __('Event Item', 'happy-elementor-addons'),
-					'type'    => Controls_Manager::NUMBER,
-					'min'     => 1,
-					'default' => 12,
+					'label'     => __( 'Event Item', 'happy-elementor-addons' ),
+					'type'      => Controls_Manager::NUMBER,
+					'min'       => 1,
+					'default'   => 12,
 					'condition' => [
 						'the_events_calendar_source!' => 'selected_event',
 					],
@@ -620,137 +620,137 @@ class Event_Calendar extends Base {
 
 	}
 
-	protected function event_settings_content_controls () {
+	protected function event_settings_content_controls() {
 
 		$this->start_controls_section(
 			'_section_event_settings',
 			[
 				'label' => __( 'Settings', 'happy-elementor-addons' ),
-				'tab' => Controls_Manager::TAB_CONTENT,
+				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
 		$this->add_control(
-            'language',
-            [
-                'label'   => __('Language', 'happy-elementor-addons'),
-                'type'    => Controls_Manager::SELECT,
+			'language',
+			[
+				'label'   => __( 'Language', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
 				'options' => [
-					'manual' =>  __( 'Manual', 'happy-elementor-addons' ),
-					'google_calendar' =>  __( 'Google Calendar', 'happy-elementor-addons' ),
+					'manual'          => __( 'Manual', 'happy-elementor-addons' ),
+					'google_calendar' => __( 'Google Calendar', 'happy-elementor-addons' ),
 				],
 				'options' => $this->language_code_list(),
-                'default' => 'en'
-            ]
-        );
-
-        $this->add_control(
-            'default_view',
-            [
-                'label'   => __('Calendar Default View', 'happy-elementor-addons'),
-                'type'    => Controls_Manager::SELECT,
-                'options' => [
-                    'timeGridDay'  => __('Day', 'happy-elementor-addons'),
-                    'timeGridWeek' => __('Week', 'happy-elementor-addons'),
-                    'dayGridMonth' => __('Month', 'happy-elementor-addons'),
-                    'listMonth'    => __('List', 'happy-elementor-addons'),
-                ],
-                'default' => 'dayGridMonth',
-            ]
-        );
-
-        $this->add_control(
-            'event_calendar_first_day',
-            [
-                'label'   => __('First Day of Week', 'happy-elementor-addons'),
-                'type'    => Controls_Manager::SELECT,
-                'options' => [
-                    '0' => __('Sunday', 'happy-elementor-addons'),
-                    '1' => __('Monday', 'happy-elementor-addons'),
-                    '2' => __('Tuesday', 'happy-elementor-addons'),
-                    '3' => __('Wednesday', 'happy-elementor-addons'),
-                    '4' => __('Thursday', 'happy-elementor-addons'),
-                    '5' => __('Friday', 'happy-elementor-addons'),
-                    '6' => __('Saturday', 'happy-elementor-addons'),
-                ],
-                'default' => '0',
-            ]
+				'default' => 'en',
+			]
 		);
 
 		$this->add_control(
-            'show_event_popup',
-            [
-                'label'        => __('Show Event Popup', 'happy-elementor-addons'),
-                'label_block'  => false,
-                'type'         => Controls_Manager::SWITCHER,
+			'default_view',
+			[
+				'label'   => __( 'Calendar Default View', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => [
+					'timeGridDay'  => __( 'Day', 'happy-elementor-addons' ),
+					'timeGridWeek' => __( 'Week', 'happy-elementor-addons' ),
+					'dayGridMonth' => __( 'Month', 'happy-elementor-addons' ),
+					'listMonth'    => __( 'List', 'happy-elementor-addons' ),
+				],
+				'default' => 'dayGridMonth',
+			]
+		);
+
+		$this->add_control(
+			'event_calendar_first_day',
+			[
+				'label'   => __( 'First Day of Week', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => [
+					'0' => __( 'Sunday', 'happy-elementor-addons' ),
+					'1' => __( 'Monday', 'happy-elementor-addons' ),
+					'2' => __( 'Tuesday', 'happy-elementor-addons' ),
+					'3' => __( 'Wednesday', 'happy-elementor-addons' ),
+					'4' => __( 'Thursday', 'happy-elementor-addons' ),
+					'5' => __( 'Friday', 'happy-elementor-addons' ),
+					'6' => __( 'Saturday', 'happy-elementor-addons' ),
+				],
+				'default' => '0',
+			]
+		);
+
+		$this->add_control(
+			'show_event_popup',
+			[
+				'label'        => __( 'Show Event Popup', 'happy-elementor-addons' ),
+				'label_block'  => false,
+				'type'         => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
-				'default' => 'yes',
-            ]
+				'default'      => 'yes',
+			]
 		);
 
 		$this->add_control(
-            'allday_text',
-            [
-                'label'        => __('All Day Text', 'happy-elementor-addons'),
-                'label_block'  => false,
-                'type'         => Controls_Manager::TEXT,
-				'default' 	   => __('All Day', 'happy-elementor-addons'),
-                'condition' => [
-                    'show_event_popup' => 'yes',
-                ],
-            ]
+			'allday_text',
+			[
+				'label'       => __( 'All Day Text', 'happy-elementor-addons' ),
+				'label_block' => false,
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'All Day', 'happy-elementor-addons' ),
+				'condition'   => [
+					'show_event_popup' => 'yes',
+				],
+			]
 		);
 
 		$this->add_control(
-            'readmore_text',
-            [
-                'label'        => __('Read More Text', 'happy-elementor-addons'),
-                'label_block'  => false,
-                'type'         => Controls_Manager::TEXT,
-				'default' 	   => __('Read More', 'happy-elementor-addons'),
-                'condition' => [
-                    'show_event_popup' => 'yes',
-                ],
-            ]
+			'readmore_text',
+			[
+				'label'       => __( 'Read More Text', 'happy-elementor-addons' ),
+				'label_block' => false,
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'Read More', 'happy-elementor-addons' ),
+				'condition'   => [
+					'show_event_popup' => 'yes',
+				],
+			]
 		);
 
 		$this->add_control(
-            'time_title',
-            [
-                'label'        => __('Time Title', 'happy-elementor-addons'),
-                'label_block'  => false,
-                'type'         => Controls_Manager::TEXT,
-				'default' 	   => __('Timezone UTC+6', 'happy-elementor-addons'),
-                'condition' => [
-                    'show_event_popup' => 'yes',
-                ],
-            ]
+			'time_title',
+			[
+				'label'       => __( 'Time Title', 'happy-elementor-addons' ),
+				'label_block' => false,
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'Timezone UTC+6', 'happy-elementor-addons' ),
+				'condition'   => [
+					'show_event_popup' => 'yes',
+				],
+			]
 		);
 
 		$this->add_control(
-            'speaker_title',
-            [
-                'label'        => __('Speaker Title', 'happy-elementor-addons'),
-                'label_block'  => false,
-                'type'         => Controls_Manager::TEXT,
-				'default' 	   => __('Speaker', 'happy-elementor-addons'),
-                'condition' => [
-                    'show_event_popup' => 'yes',
-                ],
-            ]
+			'speaker_title',
+			[
+				'label'       => __( 'Speaker Title', 'happy-elementor-addons' ),
+				'label_block' => false,
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'Speaker', 'happy-elementor-addons' ),
+				'condition'   => [
+					'show_event_popup' => 'yes',
+				],
+			]
 		);
 
 		$this->add_control(
-            'location_title',
-            [
-                'label'        => __('Location Title', 'happy-elementor-addons'),
-                'label_block'  => false,
-                'type'         => Controls_Manager::TEXT,
-				'default' 	   => __('Address', 'happy-elementor-addons'),
-                'condition' => [
-                    'show_event_popup' => 'yes',
-                ],
-            ]
+			'location_title',
+			[
+				'label'       => __( 'Location Title', 'happy-elementor-addons' ),
+				'label_block' => false,
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'Address', 'happy-elementor-addons' ),
+				'condition'   => [
+					'show_event_popup' => 'yes',
+				],
+			]
 		);
 
 		$this->end_controls_section();
@@ -759,9 +759,9 @@ class Event_Calendar extends Base {
 
 
 	/**
-     * Register widget style controls
-     */
-	protected function register_style_controls () {
+	 * Register widget style controls
+	 */
+	protected function register_style_controls() {
 
 		$this->calendar_style_controls();
 
@@ -773,70 +773,70 @@ class Event_Calendar extends Base {
 
 	}
 
-	protected function calendar_style_controls () {
+	protected function calendar_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_calendar_wrapper',
 			[
 				'label' => __( 'Calendar', 'happy-elementor-addons' ),
-				'tab' => Controls_Manager::TAB_STYLE,
+				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
 
 		$this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'calendar_typography',
-				'label'    => __('Calendar Font Family', 'happy-elementor-addons'),
-				'include' => [
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'calendar_typography',
+				'label'    => __( 'Calendar Font Family', 'happy-elementor-addons' ),
+				'include'  => [
 					'font_family',
 				],
-                'selector' => '{{WRAPPER}} .ha-ec-wrapper * :not(i),{{WRAPPER}} .ha-ec-popup-wrapper * :not(i)',
-            ]
+				'selector' => '{{WRAPPER}} .ha-ec-wrapper * :not(i),{{WRAPPER}} .ha-ec-popup-wrapper * :not(i)',
+			]
 		);
 
 		$this->add_control(
-            'calendar_background_color',
-            [
-                'label'     => __('Background', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-wrapper .fc-view > table'=> 'background-color: {{VALUE}}',
-                    '{{WRAPPER}} .ha-ec-wrapper .fc-view table.fc-list-table'=> 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
+			'calendar_background_color',
+			[
+				'label'     => __( 'Background', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-wrapper .fc-view > table' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .ha-ec-wrapper .fc-view table.fc-list-table' => 'background-color: {{VALUE}}',
+				],
+			]
+		);
 
-        $this->add_control(
-            'calendar_border_color',
-            [
-                'label'     => __('Border Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'default'   => '#CFCFDA',
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-wrapper table thead:first-child tr:first-child th,
+		$this->add_control(
+			'calendar_border_color',
+			[
+				'label'     => __( 'Border Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#CFCFDA',
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-wrapper table thead:first-child tr:first-child th,
 					{{WRAPPER}} .ha-ec-wrapper .fc-theme-standard .fc-scrollgrid,
 					{{WRAPPER}} .ha-ec-wrapper .fc-theme-standard .fc-list,
 					{{WRAPPER}} .ha-ec-wrapper .fc-theme-standard td,
 					{{WRAPPER}} .ha-ec-wrapper .fc-theme-standard th' => 'border-color: {{VALUE}}',
-                ],
-            ]
-        );
+				],
+			]
+		);
 
-        $this->add_group_control(
-            Group_Control_Box_Shadow::get_type(),
-            [
-                'name'     => 'calendar_box_shadow',
-                'label'    => __('Box Shadow', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .ha-ec-wrapper .fc-view table.fc-scrollgrid,
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name'     => 'calendar_box_shadow',
+				'label'    => __( 'Box Shadow', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-ec-wrapper .fc-view table.fc-scrollgrid,
 				{{WRAPPER}} .ha-ec-wrapper .fc-view table.fc-list-table',
-            ]
+			]
 		);
 
 		$this->add_control(
 			'calendar_todays_background',
 			[
-				'label'     => __('Today\'s Background', 'happy-elementor-addons'),
+				'label'     => __( 'Today\'s Background', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-ec-wrapper .fc .fc-daygrid-day.fc-day-today' => 'background-color: {{VALUE}};',
@@ -848,99 +848,99 @@ class Event_Calendar extends Base {
 		$this->add_control(
 			'calendar_heading_heading',
 			[
-				'label' => __('Calendar Heading', 'happy-elementor-addons'),
-				'type'  => Controls_Manager::HEADING,
+				'label'     => __( 'Calendar Heading', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
 
 		$this->add_responsive_control(
-            'calendar_heading_padding',
-            [
-                'label'      => __('Padding', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors'  => [
-                    '{{WRAPPER}} .ha-ec-wrapper th.fc-col-header-cell.fc-day' => 'Padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-ec-wrapper .fc .fc-list-table th .fc-list-day-cushion' => 'Padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+			'calendar_heading_padding',
+			[
+				'label'      => __( 'Padding', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-ec-wrapper th.fc-col-header-cell.fc-day' => 'Padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-ec-wrapper .fc .fc-list-table th .fc-list-day-cushion' => 'Padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
 
-        $this->add_responsive_control(
+		$this->add_responsive_control(
 			'calendar_heading_font_size',
 			[
-				'label' => __( 'Font Size', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
+				'label'      => __( 'Font Size', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
-				'range' => [
+				'range'      => [
 					'px' => [
-						'min' => 0,
-						'max' => 200,
+						'min'  => 0,
+						'max'  => 200,
 						'step' => 1,
 					],
-					'%' => [
+					'%'  => [
 						'min' => 0,
 						'max' => 100,
 					],
 				],
-				'selectors' => [
+				'selectors'  => [
 					'{{WRAPPER}} .ha-ec-wrapper .fc .fc-list-table th .fc-list-day-cushion' => 'font-size: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .ha-ec-wrapper th.fc-col-header-cell.fc-day' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
 
-        $this->add_control(
-            'calendar_heading_color',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-wrapper .fc .fc-list-table th .fc-list-day-cushion' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .ha-ec-wrapper th.fc-col-header-cell.fc-day' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
+		$this->add_control(
+			'calendar_heading_color',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-wrapper .fc .fc-list-table th .fc-list-day-cushion' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-ec-wrapper th.fc-col-header-cell.fc-day' => 'color: {{VALUE}};',
+				],
+			]
+		);
 
 		$this->add_control(
 			'calendar_heading_background',
 			[
-				'label'     => __('Background', 'happy-elementor-addons'),
+				'label'     => __( 'Background', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-wrapper th.fc-col-header-cell.fc-day' => 'background-color: {{VALUE}};',
-                ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-wrapper th.fc-col-header-cell.fc-day' => 'background-color: {{VALUE}};',
+				],
 			]
 		);
 
 		$this->add_control(
 			'calendar_date_and_time_heading',
 			[
-				'label' => __('Date&Time', 'happy-elementor-addons'),
-				'type'  => Controls_Manager::HEADING,
+				'label'     => __( 'Date&Time', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
 
-        $this->add_responsive_control(
+		$this->add_responsive_control(
 			'calendar_date_and_time_font_size',
 			[
-				'label' => __( 'Font Size', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
+				'label'      => __( 'Font Size', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
-				'range' => [
+				'range'      => [
 					'px' => [
-						'min' => 0,
-						'max' => 200,
+						'min'  => 0,
+						'max'  => 200,
 						'step' => 1,
 					],
-					'%' => [
+					'%'  => [
 						'min' => 0,
 						'max' => 100,
 					],
 				],
-				'selectors' => [
+				'selectors'  => [
 					'{{WRAPPER}} .ha-ec-wrapper span.fc-timegrid-axis-cushion.fc-scrollgrid-shrink-cushion.fc-scrollgrid-sync-inner' => 'font-size: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .ha-ec-wrapper .fc-timegrid-slot-label-cushion.fc-scrollgrid-shrink-cushion' => 'font-size: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .ha-ec-wrapper .fc .fc-daygrid-day-top' => 'font-size: {{SIZE}}{{UNIT}};',
@@ -948,50 +948,50 @@ class Event_Calendar extends Base {
 			]
 		);
 
-        $this->add_control(
-            'calendar_text_color',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-wrapper span.fc-timegrid-axis-cushion.fc-scrollgrid-shrink-cushion.fc-scrollgrid-sync-inner' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .ha-ec-wrapper .fc-timegrid-slot-label-cushion.fc-scrollgrid-shrink-cushion' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .ha-ec-wrapper .fc .fc-daygrid-day-top' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
+		$this->add_control(
+			'calendar_text_color',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-wrapper span.fc-timegrid-axis-cushion.fc-scrollgrid-shrink-cushion.fc-scrollgrid-sync-inner' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-ec-wrapper .fc-timegrid-slot-label-cushion.fc-scrollgrid-shrink-cushion' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-ec-wrapper .fc .fc-daygrid-day-top' => 'color: {{VALUE}};',
+				],
+			]
+		);
 
 		$this->end_controls_section();
 	}
 
-	protected function topbar_style_controls () {
+	protected function topbar_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_calendar_topbar',
 			[
 				'label' => __( 'Top Bar', 'happy-elementor-addons' ),
-				'tab' => Controls_Manager::TAB_STYLE,
+				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
 
 		$this->add_responsive_control(
 			'topbar_margin_bottom',
 			[
-				'label'      => __('Margin Bottom', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SLIDER,
+				'label'      => __( 'Margin Bottom', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
-				'range' => [
+				'range'      => [
 					'px' => [
-						'min' => 0,
-						'max' => 1000,
+						'min'  => 0,
+						'max'  => 1000,
 						'step' => 1,
 					],
-					'%' => [
+					'%'  => [
 						'min' => 0,
 						'max' => 100,
 					],
 				],
-				'selectors' => [
+				'selectors'  => [
 					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
@@ -1000,7 +1000,7 @@ class Event_Calendar extends Base {
 		$this->add_control(
 			'topbar_background',
 			[
-				'label'     => __('Background', 'happy-elementor-addons'),
+				'label'     => __( 'Background', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar' => 'background-color: {{VALUE}};',
@@ -1011,172 +1011,172 @@ class Event_Calendar extends Base {
 		$this->add_control(
 			'topbar_title_heading',
 			[
-				'label' => __('Title', 'happy-elementor-addons'),
-				'type'  => Controls_Manager::HEADING,
+				'label'     => __( 'Title', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
-        );
+		);
 
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'topbar_title_typography',
-				'label'    => __('Typography', 'happy-elementor-addons'),
-				'exclude' => [
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'topbar_title_typography',
+				'label'    => __( 'Typography', 'happy-elementor-addons' ),
+				'exclude'  => [
 					'font_family',
 				],
-                'selector' => '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar h2.fc-toolbar-title',
-            ]
-        );
+				'selector' => '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar h2.fc-toolbar-title',
+			]
+		);
 
-        $this->add_control(
-            'topbar_title_color',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar h2.fc-toolbar-title' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
+		$this->add_control(
+			'topbar_title_color',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar h2.fc-toolbar-title' => 'color: {{VALUE}};',
+				],
+			]
+		);
 
-        // Buttons style
-        $this->add_control(
-            'topbar_buttons_heading',
-            [
-                'label'     => __('Button', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
+		// Buttons style
+		$this->add_control(
+			'topbar_buttons_heading',
+			[
+				'label'     => __( 'Button', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
 		);
 
 		$this->add_responsive_control(
 			'topbar_buttons_space',
 			[
-				'label'      => __('Space Between', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SLIDER,
+				'label'      => __( 'Space Between', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
-				'range' => [
+				'range'      => [
 					'px' => [
-						'min' => 0,
-						'max' => 1000,
+						'min'  => 0,
+						'max'  => 1000,
 						'step' => 1,
 					],
-					'%' => [
+					'%'  => [
 						'min' => 0,
 						'max' => 100,
 					],
 				],
-				'selectors' => [
+				'selectors'  => [
 					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-today-button' => 'margin-left: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar .fc-button-group button:not(:first-child)' => 'margin-left: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
 
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'topbar_buttons_typography',
-				'label'    => __('Typography', 'happy-elementor-addons'),
-				'exclude' => [
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'topbar_buttons_typography',
+				'label'    => __( 'Typography', 'happy-elementor-addons' ),
+				'exclude'  => [
 					'font_family',
 				],
-                'selector' => '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button',
-            ]
+				'selector' => '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button',
+			]
 		);
 
 		$this->add_group_control(
-            Group_Control_Border::get_type(),
-            [
-                'name'     => 'topbar_buttons_border',
-                'label'    => __('Border', 'happy-elementor-addons'),
-				'exclude' => ['color'], //remove border color
-                'selector' => '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button',
-            ]
+			Group_Control_Border::get_type(),
+			[
+				'name'     => 'topbar_buttons_border',
+				'label'    => __( 'Border', 'happy-elementor-addons' ),
+				'exclude'  => ['color'], //remove border color
+				'selector' => '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button',
+			]
 		);
 
-        $this->start_controls_tabs('calendar_buttons_style');
+		$this->start_controls_tabs( 'calendar_buttons_style' );
 
-        // Normal
-        $this->start_controls_tab(
-            'topbar_buttons_normal_state',
-            [
-                'label' => __('Normal', 'happy-elementor-addons'),
-            ]
-        );
+		// Normal
+		$this->start_controls_tab(
+			'topbar_buttons_normal_state',
+			[
+				'label' => __( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
 
-        $this->add_control(
-            'topbar_buttons_color_normal',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
+		$this->add_control(
+			'topbar_buttons_color_normal',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button' => 'color: {{VALUE}};',
+				],
+			]
+		);
 
-        $this->add_control(
-            'topbar_buttons_background_normal',
-            [
-                'label'     => __('Background', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
+		$this->add_control(
+			'topbar_buttons_background_normal',
+			[
+				'label'     => __( 'Background', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
 
 		$this->add_control(
 			'topbar_buttons_border_color_normal',
 			[
-				'label' => __( 'Border Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
+				'label'     => __( 'Border Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button' => 'border-color: {{VALUE}}',
 				],
 			]
 		);
-        $this->end_controls_tab();
+		$this->end_controls_tab();
 
-        // Hover
-        $this->start_controls_tab(
-            'topbar_buttons_hover_state',
-            [
-                'label' => __('Hover', 'happy-elementor-addons'),
-            ]
-        );
+		// Hover
+		$this->start_controls_tab(
+			'topbar_buttons_hover_state',
+			[
+				'label' => __( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
 
-        $this->add_control(
-            'topbar_buttons_color_hover',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button:hover' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button.fc-button-active' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
+		$this->add_control(
+			'topbar_buttons_color_hover',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button.fc-button-active' => 'color: {{VALUE}};',
+				],
+			]
+		);
 
-        $this->add_control(
-            'topbar_buttons_background_hover',
-            [
-                'label'     => __('Background', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button:hover' => 'background-color: {{VALUE}};',
-                    '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button.fc-button-active' => 'background-color: {{VALUE}};',
-                ],
-            ]
+		$this->add_control(
+			'topbar_buttons_background_hover',
+			[
+				'label'     => __( 'Background', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button.fc-button-active' => 'background-color: {{VALUE}};',
+				],
+			]
 		);
 
 		$this->add_control(
 			'topbar_buttons_border_color_hover',
 			[
-				'label' => __( 'Border Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
+				'label'     => __( 'Border Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button:hover' => 'border-color: {{VALUE}}',
 					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button.fc-button-active' => 'border-color: {{VALUE}}',
@@ -1184,52 +1184,52 @@ class Event_Calendar extends Base {
 			]
 		);
 
-        $this->end_controls_tab();
+		$this->end_controls_tab();
 		$this->end_controls_tabs();
 
-        $this->add_responsive_control(
-            'topbar_buttons_border_radius_normal',
-            [
-                'label'      => __('Border Radius', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors'  => [
-                    '{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+		$this->add_responsive_control(
+			'topbar_buttons_border_radius_normal',
+			[
+				'label'      => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-ec-wrapper .fc-toolbar.fc-header-toolbar button.fc-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
 
 		$this->end_controls_section();
 	}
 
-	protected function event_style_controls () {
+	protected function event_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_event',
 			[
 				'label' => __( 'Event', 'happy-elementor-addons' ),
-				'tab' => Controls_Manager::TAB_STYLE,
+				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
 
 		$this->add_responsive_control(
 			'event_item_font_size',
 			[
-				'label'      => __('Font Size', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SLIDER,
+				'label'      => __( 'Font Size', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
-				'range' => [
+				'range'      => [
 					'px' => [
-						'min' => 0,
-						'max' => 200,
+						'min'  => 0,
+						'max'  => 200,
 						'step' => 1,
 					],
-					'%' => [
+					'%'  => [
 						'min' => 0,
 						'max' => 100,
 					],
 				],
-				'selectors' => [
+				'selectors'  => [
 					'{{WRAPPER}} .ha-ec-wrapper .fc-daygrid-event' => 'font-size: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .ha-ec-wrapper .fc-daygrid-event .fc-event-main' => 'font-size: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .ha-ec-wrapper .fc-timegrid-event' => 'font-size: {{SIZE}}{{UNIT}};',
@@ -1239,11 +1239,11 @@ class Event_Calendar extends Base {
 			]
 		);
 
-        $this->add_control(
-            'event_item_color',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
+		$this->add_control(
+			'event_item_color',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-ec-wrapper .fc-daygrid-event' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .ha-ec-wrapper .fc-daygrid-event .fc-event-main' => 'color: {{VALUE}};',
@@ -1251,13 +1251,13 @@ class Event_Calendar extends Base {
 					'{{WRAPPER}} .ha-ec-wrapper .fc-timegrid-event .fc-event-main' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .ha-ec-wrapper .fc-list-event' => 'color: {{VALUE}};',
 				],
-            ]
-        );
+			]
+		);
 
 		$this->add_control(
 			'event_item_background',
 			[
-				'label'     => __('Background', 'happy-elementor-addons'),
+				'label'     => __( 'Background', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-ec-wrapper .fc-daygrid-event' => 'background-color: {{VALUE}};',
@@ -1270,7 +1270,7 @@ class Event_Calendar extends Base {
 		$this->add_control(
 			'event_item_dot_color',
 			[
-				'label'     => __('Dot Color', 'happy-elementor-addons'),
+				'label'     => __( 'Dot Color', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-ec-wrapper .fc-daygrid-event .fc-daygrid-event-dot' => 'border-color: {{VALUE}};',
@@ -1282,527 +1282,526 @@ class Event_Calendar extends Base {
 		$this->end_controls_section();
 	}
 
-	protected function popup_style_controls () {
+	protected function popup_style_controls() {
 
 		$this->start_controls_section(
 			'_section_style_event_popup',
 			[
 				'label' => __( 'Event Popup', 'happy-elementor-addons' ),
-				'tab' => Controls_Manager::TAB_STYLE,
+				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
 
-        $this->add_control(
-            'event_popup_wrapper_background',
-            [
-                'label'     => __('Wrapper Background', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper.ha-ec-popup-ready:before' => 'background: {{VALUE}}',
-                ],
-                'separator'  => 'after',
-            ]
-        );
+		$this->add_control(
+			'event_popup_wrapper_background',
+			[
+				'label'     => __( 'Wrapper Background', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper.ha-ec-popup-ready:before' => 'background: {{VALUE}}',
+				],
+				'separator' => 'after',
+			]
+		);
 
 		$this->add_responsive_control(
 			'event_popup_width',
 			[
-				'label'      => __('Width', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SLIDER,
+				'label'      => __( 'Width', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
-				'range' => [
+				'range'      => [
 					'px' => [
-						'min' => 0,
-						'max' => 1200,
+						'min'  => 0,
+						'max'  => 1200,
 						'step' => 1,
 					],
-					'%' => [
+					'%'  => [
 						'min' => 0,
 						'max' => 100,
 					],
 				],
-				'selectors' => [
+				'selectors'  => [
 					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
 
 		$this->add_responsive_control(
-            'event_popup_padding',
-            [
-                'label'      => __('Padding', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors'  => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-                'separator'  => 'after',
-            ]
+			'event_popup_padding',
+			[
+				'label'      => __( 'Padding', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'separator'  => 'after',
+			]
 		);
 
-        $this->add_control(
-            'event_popup_background',
-            [
-                'label'     => __('Background', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
+		$this->add_control(
+			'event_popup_background',
+			[
+				'label'     => __( 'Background', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup' => 'background-color: {{VALUE}}',
+				],
+			]
+		);
 
 		$this->add_responsive_control(
-            'event_popup_border_radius',
-            [
-                'label'      => __('Border Radius', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors'  => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
+			'event_popup_border_radius',
+			[
+				'label'      => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
 		);
 
 		$this->add_group_control(
-            Group_Control_Border::get_type(),
-            [
-                'name'     => 'event_popup_border',
-                'label'    => __('Border', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup',
-            ]
+			Group_Control_Border::get_type(),
+			[
+				'name'     => 'event_popup_border',
+				'label'    => __( 'Border', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup',
+			]
 		);
 
-        $this->add_control(
-            'event_popup_image_heading',
-            [
-                'label' => __('Image', 'happy-elementor-addons'),
-                'type'  => Controls_Manager::HEADING,
-                'separator'  => 'before',
-            ]
+		$this->add_control(
+			'event_popup_image_heading',
+			[
+				'label'     => __( 'Image', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
 		);
 
 		$this->add_control(
 			'event_popup_image_width',
 			[
-				'label'      => __('Width', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SLIDER,
+				'label'      => __( 'Width', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
-				'range' => [
+				'range'      => [
 					'px' => [
-						'min' => 0,
-						'max' => 500,
+						'min'  => 0,
+						'max'  => 500,
 						'step' => 1,
 					],
-					'%' => [
+					'%'  => [
 						'min' => 0,
 						'max' => 100,
 					],
 				],
-				'selectors' => [
+				'selectors'  => [
 					'{{WRAPPER}} .ha-ec-popup-wrapper' => '--ha-ec-popup-image-width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
 
 		$this->add_control(
-            'event_popup_image_border_radius',
-            [
-                'label'      => __('Border Radius', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors'  => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup .ha-ec-popup-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
+			'event_popup_image_border_radius',
+			[
+				'label'      => __( 'Border Radius', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup .ha-ec-popup-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
 		);
 
-        $this->add_control(
-            'event_popup_title_heading',
-            [
-                'label' => __('Title', 'happy-elementor-addons'),
-                'type'  => Controls_Manager::HEADING,
-                'separator'  => 'before',
-            ]
-        );
+		$this->add_control(
+			'event_popup_title_heading',
+			[
+				'label'     => __( 'Title', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
 
-        $this->add_responsive_control(
+		$this->add_responsive_control(
 			'event_popup_title_margin_bottom',
 			[
-				'label' => __( 'Margin Bottom', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
+				'label'      => __( 'Margin Bottom', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
-				'range' => [
+				'range'      => [
 					'px' => [
-						'min' => 0,
-						'max' => 100,
+						'min'  => 0,
+						'max'  => 100,
 						'step' => 1,
 					],
 				],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content h3' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content h3' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'event_popup_title_typography',
-				'label'    => __('Typography', 'happy-elementor-addons'),
-				'exclude' => [
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'event_popup_title_typography',
+				'label'    => __( 'Typography', 'happy-elementor-addons' ),
+				'exclude'  => [
 					'font_family',
 				],
-                'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content h3',
-            ]
-        );
+				'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content h3',
+			]
+		);
 
-        $this->add_control(
-            'event_popup_title_color',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content h3' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
+		$this->add_control(
+			'event_popup_title_color',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content h3' => 'color: {{VALUE}}',
+				],
+			]
+		);
 
-        $this->add_control(
-            'event_popup_desc_heading',
-            [
-                'label' => __('Description', 'happy-elementor-addons'),
-                'type'  => Controls_Manager::HEADING,
-                'separator'  => 'before',
-            ]
-        );
+		$this->add_control(
+			'event_popup_desc_heading',
+			[
+				'label'     => __( 'Description', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
 
-        $this->add_responsive_control(
+		$this->add_responsive_control(
 			'event_popup_desc__margin_bottom',
 			[
-				'label' => __( 'Margin Bottom', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
+				'label'      => __( 'Margin Bottom', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
-				'range' => [
+				'range'      => [
 					'px' => [
-						'min' => 0,
-						'max' => 100,
+						'min'  => 0,
+						'max'  => 100,
 						'step' => 1,
 					],
 				],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper p.ha-ec-popup-desc' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper p.ha-ec-popup-desc' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'event_popup_desc_typography',
-				'label'    => __('Typography', 'happy-elementor-addons'),
-				'exclude' => [
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'event_popup_desc_typography',
+				'label'    => __( 'Typography', 'happy-elementor-addons' ),
+				'exclude'  => [
 					'font_family',
 				],
-                'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper p.ha-ec-popup-desc',
-            ]
-        );
+				'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper p.ha-ec-popup-desc',
+			]
+		);
 
-        $this->add_control(
-            'event_popup_desc_color',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper p.ha-ec-popup-desc' => 'color: {{VALUE}}',
-                ],
-            ]
+		$this->add_control(
+			'event_popup_desc_color',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper p.ha-ec-popup-desc' => 'color: {{VALUE}}',
+				],
+			]
 		);
 
 		$this->popup_meta_style_controls();
 
-        $this->add_control(
-            'event_popup_readmore_heading',
-            [
-                'label' => __('Read More', 'happy-elementor-addons'),
-                'type'  => Controls_Manager::HEADING,
-                'separator'  => 'before',
-            ]
-        );
+		$this->add_control(
+			'event_popup_readmore_heading',
+			[
+				'label'     => __( 'Read More', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
 
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'event_popup_readmore_typography',
-				'label'    => __('Typography', 'happy-elementor-addons'),
-				'exclude' => [
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'event_popup_readmore_typography',
+				'label'    => __( 'Typography', 'happy-elementor-addons' ),
+				'exclude'  => [
 					'font_family',
 				],
-                'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper a.ha-ec-popup-readmore-link',
-            ]
-        );
+				'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper a.ha-ec-popup-readmore-link',
+			]
+		);
 
-        $this->add_control(
-            'event_popup_readmore_color',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper a.ha-ec-popup-readmore-link' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
+		$this->add_control(
+			'event_popup_readmore_color',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper a.ha-ec-popup-readmore-link' => 'color: {{VALUE}}',
+				],
+			]
+		);
 
-        $this->add_control(
-            'event_popup_close_btn_heading',
-            [
-                'label' => __('Close Button', 'happy-elementor-addons'),
-                'type'  => Controls_Manager::HEADING,
-                'separator'  => 'before',
-            ]
-        );
+		$this->add_control(
+			'event_popup_close_btn_heading',
+			[
+				'label'     => __( 'Close Button', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
 
-        $this->add_responsive_control(
+		$this->add_responsive_control(
 			'event_popup_close_btn_font_size',
 			[
-				'label' => __( 'Icon Size', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
+				'label'      => __( 'Icon Size', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
-				'range' => [
+				'range'      => [
 					'px' => [
-						'min' => 0,
-						'max' => 200,
+						'min'  => 0,
+						'max'  => 200,
 						'step' => 1,
 					],
 				],
-				'selectors' => [
+				'selectors'  => [
 					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-close' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
 
-        $this->add_control(
-            'event_popup_close_btn_color',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-close' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'event_popup_close_btn_background',
-            [
-                'label'     => __('Background', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-close' => 'background: {{VALUE}}',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Box_Shadow::get_type(),
-            [
-                'name'     => 'event_popup_close_btn_box_shadow',
-                'label'    => __('Box Shadow', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-close',
-            ]
+		$this->add_control(
+			'event_popup_close_btn_color',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-close' => 'color: {{VALUE}}',
+				],
+			]
 		);
 
-        $this->end_controls_section();
+		$this->add_control(
+			'event_popup_close_btn_background',
+			[
+				'label'     => __( 'Background', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-close' => 'background: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name'     => 'event_popup_close_btn_box_shadow',
+				'label'    => __( 'Box Shadow', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-close',
+			]
+		);
+
+		$this->end_controls_section();
 	}
 
-	protected function popup_meta_style_controls () {
+	protected function popup_meta_style_controls() {
 
-        $this->add_control(
-            'event_popup_meta_heading',
-            [
-                'label' => __('Meta', 'happy-elementor-addons'),
-                'type'  => Controls_Manager::HEADING,
-                'separator'  => 'before',
-            ]
-        );
+		$this->add_control(
+			'event_popup_meta_heading',
+			[
+				'label'     => __( 'Meta', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
 
 		$this->add_responsive_control(
-            'event_popup_meta_item_margin',
-            [
-                'label'      => __('Item Margin', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors'  => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li:last-child' => 'margin-right: 0;',
-                ],
-            ]
+			'event_popup_meta_item_margin',
+			[
+				'label'      => __( 'Item Margin', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li:last-child' => 'margin-right: 0;',
+				],
+			]
 		);
 
-        $this->add_control(
-            'event_popup_meta_icon_heading',
-            [
-                'label' => __('Meta Icon', 'happy-elementor-addons'),
-                'type'  => Controls_Manager::HEADING,
-                'separator'  => 'before',
-            ]
-        );
+		$this->add_control(
+			'event_popup_meta_icon_heading',
+			[
+				'label'     => __( 'Meta Icon', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
 
-        $this->add_responsive_control(
+		$this->add_responsive_control(
 			'event_popup_meta_icon_font_size',
 			[
-				'label' => __( 'Icon Size', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
+				'label'      => __( 'Icon Size', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
-				'range' => [
+				'range'      => [
 					'px' => [
-						'min' => 0,
-						'max' => 200,
+						'min'  => 0,
+						'max'  => 200,
 						'step' => 1,
 					],
 				],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-                ],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
-        $this->add_control(
-            'event_popup_meta_icon_color',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-icon' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-icon' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-icon' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
+		$this->add_control(
+			'event_popup_meta_icon_color',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-icon' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-icon' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-icon' => 'color: {{VALUE}}',
+				],
+			]
+		);
 
-        $this->add_control(
-            'event_popup_meta_title_heading',
-            [
-                'label' => __('Meta Title', 'happy-elementor-addons'),
-                'type'  => Controls_Manager::HEADING,
-                'separator'  => 'before',
-            ]
-        );
+		$this->add_control(
+			'event_popup_meta_title_heading',
+			[
+				'label'     => __( 'Meta Title', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
 
-        $this->add_responsive_control(
+		$this->add_responsive_control(
 			'event_popup_meta_title_margin_bottom',
 			[
-				'label' => __( 'Margin Bottom', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
+				'label'      => __( 'Margin Bottom', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
-				'range' => [
+				'range'      => [
 					'px' => [
-						'min' => 0,
-						'max' => 100,
+						'min'  => 0,
+						'max'  => 100,
 						'step' => 1,
 					],
 				],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'event_popup_meta_title_typography',
-				'label'    => __('Typography', 'happy-elementor-addons'),
-				'exclude' => [
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'event_popup_meta_title_typography',
+				'label'    => __( 'Typography', 'happy-elementor-addons' ),
+				'exclude'  => [
 					'font_family',
 				],
-                'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-title,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-title,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-title',
-            ]
-        );
+				'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-title,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-title,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-title',
+			]
+		);
 
-        $this->add_control(
-            'event_popup_meta_title_color',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-title' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-title' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-title' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
+		$this->add_control(
+			'event_popup_meta_title_color',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-time-title' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-guest-title' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-location-title' => 'color: {{VALUE}}',
+				],
+			]
+		);
 
-        $this->add_control(
-            'event_popup_meta_content_heading',
-            [
-                'label' => __('Meta Content', 'happy-elementor-addons'),
-                'type'  => Controls_Manager::HEADING,
-                'separator'  => 'before',
-            ]
-        );
+		$this->add_control(
+			'event_popup_meta_content_heading',
+			[
+				'label'     => __( 'Meta Content', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
 
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'event_popup_meta_content_typography',
-				'label'    => __('Typography', 'happy-elementor-addons'),
-				'exclude' => [
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'event_popup_meta_content_typography',
+				'label'    => __( 'Typography', 'happy-elementor-addons' ),
+				'exclude'  => [
 					'font_family',
 				],
-                'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-time,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-guest,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-location',
-            ]
-        );
+				'selector' => '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-time,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-guest,{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-location',
+			]
+		);
 
-        $this->add_control(
-            'event_popup_meta_content_color',
-            [
-                'label'     => __('Color', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-time' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-guest' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-location' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-
+		$this->add_control(
+			'event_popup_meta_content_color',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-time' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-guest' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-ec-popup-wrapper .ha-ec-popup-content ul li .ha-ec-event-location' => 'color: {{VALUE}}',
+				],
+			]
+		);
 
 	}
 
 
-	protected function render () {
+	protected function render() {
 
 		$settings = $this->get_settings_for_display();
 
-		if ($settings['event_calendar_type'] == 'google_calendar') {
-            $data = $this->get_google_calendar_events($settings);
-        } elseif ($settings['event_calendar_type'] == 'the_events_calendar') {
-            $data = $this->get_the_events_calendar_events($settings);
-        } else {
-            $data = $this->get_manual_calendar_events($settings);
-        }
+		if ( $settings['event_calendar_type'] == 'google_calendar' ) {
+			$data = $this->get_google_calendar_events( $settings );
+		} elseif ( $settings['event_calendar_type'] == 'the_events_calendar' ) {
+			$data = $this->get_the_events_calendar_events( $settings );
+		} else {
+			$data = $this->get_manual_calendar_events( $settings );
+		}
 
-        $local = $settings['language'];
-        $default_view = $settings['default_view'];
+		$local        = $settings['language'];
+		$default_view = $settings['default_view'];
 
 		$this->add_render_attribute( 'wrapper', 'class', 'ha-ec-wrapper' );
 
 		$this->add_render_attribute(
 			'event-calendar',
 			[
-				'id' => 'ha-ec-' . $this->get_id(),
-				'class' => 'ha-ec',
-				'data-cal-id' => $this->get_id(),
-				'data-locale' => $local,
-				'data-initialview' => $default_view,
-				'data-firstday' => $settings['event_calendar_first_day'],
-				'data-events' => htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8'),
-				'data-show-popup' => !empty( $settings['show_event_popup'] ) ? esc_attr( $settings['show_event_popup'] ) : '',
-				'data-allday-text' => !empty($settings['allday_text']) ? esc_html($settings['allday_text']) : '',
+				'id'               => 'ha-ec-' . $this->get_id(),
+				'class'            => 'ha-ec',
+				'data-cal-id'      => $this->get_id(),
+				'data-locale'      => esc_attr( $local ),
+				'data-initialview' => esc_attr( $default_view ),
+				'data-firstday'    => $settings['event_calendar_first_day'],
+				'data-events'      => htmlspecialchars( json_encode( $data ), ENT_QUOTES, 'UTF-8' ),
+				'data-show-popup'  => ! empty( $settings['show_event_popup'] ) ? esc_attr( $settings['show_event_popup'] ) : '',
+				'data-allday-text' => ! empty( $settings['allday_text'] ) ? esc_html( $settings['allday_text'] ) : '',
 			]
 		);
 
@@ -1811,220 +1810,223 @@ class Event_Calendar extends Base {
 				<div <?php $this->print_render_attribute_string( 'event-calendar' ); ?>></div>
 			</div>
 
-		<?php
-		if( 'yes' === $settings['show_event_popup'] ){
-			$this->get_popup_markup($settings);
-		}
+			<?php
+			if ( 'yes' === $settings['show_event_popup'] ) {
+				$this->get_popup_markup( $settings );
+			}
 		endif;
 	}
 
-	public function get_manual_calendar_events ($settings) {
+	public function get_manual_calendar_events( $settings ) {
 		$events = $settings['manual_event_list'];
 
-        $data = [];
-        if ($events) {
-            $i = 0;
+		$data = [];
+		if ( $events ) {
+			$i = 0;
 
-            foreach ($events as $event) {
+			foreach ( $events as $event ) {
 
-                if ( $event['all_day'] == 'yes' ) {
-                    $start = $event["start_date_allday"];
-					$end = date('Y-m-d', strtotime("+1 days", strtotime($event["end_date_allday"])));
+				if ( $event['all_day'] == 'yes' ) {
+					$start = $event['start_date_allday'];
+					$end   = date( 'Y-m-d', strtotime( '+1 days', strtotime( $event['end_date_allday'] ) ) );
 
-					$colors["textColor"] = !empty($event['text_color']) ? $event['text_color'] : '';
-					$colors["backgroundColor"] = !empty($event['bg_color']) ? $event['bg_color'] : '';
+					$colors['textColor']       = ! empty( $event['text_color'] ) ? $event['text_color'] : '';
+					$colors['backgroundColor'] = ! empty( $event['bg_color'] ) ? $event['bg_color'] : '';
 
-                } else {
-                    $start = $event["start_date"];
-                    $end = date('Y-m-d H:i', strtotime($event["end_date"])).":01";
+				} else {
+					$start = $event['start_date'];
+					$end   = date( 'Y-m-d H:i', strtotime( $event['end_date'] ) ) . ':01';
 				}
 
-				$image = !empty( $event['image']['url'] ) ? esc_url( $event['image']['url'] ) : '' ;
-				if( !empty( $event['image']['id'] ) ){
+				$image = ! empty( $event['image']['url'] ) ? esc_url( $event['image']['url'] ) : '';
+				if ( ! empty( $event['image']['id'] ) ) {
 					$image = esc_url( wp_get_attachment_image_url( $event['image']['id'], $event['thumbnail_size'] ) );
 				}
+				$details_link = ! empty( $event['details_link']['url'] ) ? esc_url( $event['details_link']['url'] ) : '';
+				if ( 'yes' === $settings['show_event_popup'] && empty( $details_link ) ) {
+					$details_link = '#';
+				}
 
-                $data[] = [
-                    'id' => $i,
-                    'classNames' => 'elementor-repeater-item-'.$event["_id"],
-                    'title' => !empty($event["title"]) ? $event["title"] : '',
-                    'description' => $event["description"],
-                    'start' => $start,
-                    'end' => $end,
-                    'url' => !empty($event["details_link"]["url"]) ? $event["details_link"]["url"] : '',
-                    'allDay' => $event['all_day'],
-                    'external' => $event['details_link']['is_external'],
-					'nofollow' => $event['details_link']['nofollow'],
-					'guest' => $event['guest'],
-					'location' => $event['location'],
-					'image' => $image,
-                ];
+				$data[] = [
+					'id'          => esc_attr( $i ),
+					'classNames'  => 'elementor-repeater-item-' . esc_attr( $event['_id'] ),
+					'title'       => ! empty( $event['title'] ) ? esc_html( $event['title'] ) : '',
+					'description' => ha_kses_intermediate( $event['description'] ),
+					'start'       => esc_html( $start ),
+					'end'         => esc_html( $end ),
+					'url'         => $details_link,
+					'allDay'      => esc_html( $event['all_day'] ),
+					'external'    => esc_attr( $event['details_link']['is_external'] ),
+					'nofollow'    => esc_attr( $event['details_link']['nofollow'] ),
+					'guest'       => esc_html( $event['guest'] ),
+					'location'    => esc_html( $event['location'] ),
+					'image'       => $image,
+				];
 
-                $i++;
-            }
-        }
-        return $data;
+				$i++;
+			}
+		}
+		return $data;
 	}
 
 
-    public function get_google_calendar_events ($settings) {
+	public function get_google_calendar_events( $settings ) {
 
-        if ( empty( $settings['google_calendar_api_key'] ) && empty( $settings['google_calendar_id'] ) ) {
-			$message = __('Please input API key & Calendar ID.', 'happy-elementor-addons');
-			printf('<span class="ha-ec-error-message">%1$s</span>', esc_html( $message ) );
-            return [];
+		if ( empty( $settings['google_calendar_api_key'] ) && empty( $settings['google_calendar_id'] ) ) {
+			$message = __( 'Please input API key & Calendar ID.', 'happy-elementor-addons' );
+			printf( '<span class="ha-ec-error-message">%1$s</span>', esc_html( $message ) );
+			return [];
 		}
 
-        $calendar_id = urlencode($settings['google_calendar_id']);
-        $base_url = "https://www.googleapis.com/calendar/v3/calendars/" . $calendar_id . "/events";
+		$calendar_id = urlencode( $settings['google_calendar_id'] );
+		$base_url    = 'https://www.googleapis.com/calendar/v3/calendars/' . $calendar_id . '/events';
 
-        $start_date = strtotime( $settings['google_calendar_start_date'] );
-        $end_date = strtotime( $settings['google_calendar_end_date'] );
+		$start_date = strtotime( $settings['google_calendar_start_date'] );
+		$end_date   = strtotime( $settings['google_calendar_end_date'] );
 
-        $arg = [
-            'key' => $settings['google_calendar_api_key'],
-            'maxResults' => $settings['google_calendar_max_item'],
-            'timeMin' => urlencode( date( 'c', $start_date ) ),
-            'singleEvents' => 'true',
-        ];
+		$arg = [
+			'key'          => $settings['google_calendar_api_key'],
+			'maxResults'   => $settings['google_calendar_max_item'],
+			'timeMin'      => urlencode( date( 'c', $start_date ) ),
+			'singleEvents' => 'true',
+		];
 
-        if ( ! empty( $end_date ) && $end_date > $start_date ) {
-            $arg['timeMax'] = urlencode( date( 'c', $end_date ) );
-        }
+		if ( ! empty( $end_date ) && $end_date > $start_date ) {
+			$arg['timeMax'] = urlencode( date( 'c', $end_date ) );
+		}
 
-        $transient_key = 'ha_ec_google_calendar_'.md5( urlencode($settings['google_calendar_id']) . implode('', $arg) );
-        $data = get_transient($transient_key);
+		$transient_key = 'ha_ec_google_calendar_' . md5( urlencode( $settings['google_calendar_id'] ) . implode( '', $arg ) );
+		$data          = get_transient( $transient_key );
 
-        if( false === $data ){
-			$data = wp_remote_retrieve_body(wp_remote_get(add_query_arg($arg, $base_url)));
+		if ( false === $data ) {
+			$data = wp_remote_retrieve_body( wp_remote_get( add_query_arg( $arg, $base_url ) ) );
 
-			if( is_object( json_decode($data) ) && !array_key_exists('error', json_decode($data) ) ){
+			// if( is_object( json_decode($data) ) && !array_key_exists('error', json_decode($data) ) )
+			if ( is_object( json_decode( $data ) ) && ! property_exists( json_decode( $data ), 'error' ) ) {
 				// echo 'cacheeed';
 				// set_transient($transient_key, $data, 1 * HOUR_IN_SECONDS);
-				set_transient($transient_key, $data, 10 * MINUTE_IN_SECONDS);
+				set_transient( $transient_key, $data, 10 * MINUTE_IN_SECONDS );
 			}
-        }
+		}
 
-		if( is_object( json_decode( $data ) ) && array_key_exists('error', json_decode( $data ) ) ){
-			$message = __('Please input valid API key & Calendar ID.', 'happy-elementor-addons');
-			printf('<span class="ha-ec-error-message">%1$s</span>', esc_html( $message ));
+		if ( is_object( json_decode( $data ) ) && property_exists( json_decode( $data ), 'error' ) ) {
+			$message = __( 'Please input valid API key & Calendar ID.', 'happy-elementor-addons' );
+			printf( '<span class="ha-ec-error-message">%1$s</span>', esc_html( $message ) );
 			return [];
 		}
 
 		$data = false !== $data ? json_decode( $data ) : '';
 
 		$calendar_data = [];
-        if ( isset ( $data->items ) ) {
+		if ( isset( $data->items ) ) {
 
-            foreach ( $data->items as $key => $item ) {
+			foreach ( $data->items as $key => $item ) {
 
-                if ( $item->status !== 'confirmed' ) {
-                    continue;
+				if ( $item->status !== 'confirmed' ) {
+					continue;
 				}
 
 				$all_day = '';
 
-                if ( isset( $item->start->date ) ) {
-                    $all_day = 'yes';
-                    $ev_start_date = $item->start->date;
-                    $ev_end_date = $item->end->date;
-                } else {
-                    $ev_start_date = $item->start->dateTime;
-                    $ev_end_date = $item->end->dateTime;
+				if ( isset( $item->start->date ) ) {
+					$all_day       = 'yes';
+					$ev_start_date = $item->start->date;
+					$ev_end_date   = $item->end->date;
+				} else {
+					$ev_start_date = $item->start->dateTime;
+					$ev_end_date   = $item->end->dateTime;
 				}
 
-                $calendar_data[] = [
-                    'id' => ++$key,
-                    'title' => !empty( $item->summary ) ? $item->summary : 'No Title',
-                    'description' => isset( $item->description ) ? $item->description : '',
-                    'start' => $ev_start_date,
-					'end' => $ev_end_date,
-					'url'         => !empty( $item->htmlLink ) ? $item->htmlLink : '',
-                    'allDay' => $all_day,
-                    'external' => 'on',
-					'nofollow' => 'on',
-					'guest' => !empty( $item->creator->displayName ) ? $item->creator->displayName : '',
-					'location' => !empty( $item->location ) ? $item->location : '',
-                ];
-            }
+				$calendar_data[] = [
+					'id'          => esc_attr( ++$key ),
+					'title'       => ! empty( $item->summary ) ? esc_html( $item->summary ) : 'No Title',
+					'description' => isset( $item->description ) ? ha_kses_intermediate( $item->description ) : '',
+					'start'       => esc_html( $ev_start_date ),
+					'end'         => esc_html( $ev_end_date ),
+					'url'         => ! empty( $item->htmlLink ) ? esc_url( $item->htmlLink ) : '',
+					'allDay'      => esc_html( $all_day ),
+					'external'    => 'on',
+					'nofollow'    => 'on',
+					'guest'       => ! empty( $item->creator->displayName ) ? esc_html( $item->creator->displayName ) : '',
+					'location'    => ! empty( $item->location ) ? esc_html( $item->location ) : '',
+				];
+			}
+		}
+
+		return $calendar_data;
+	}
 
 
-        }
+	public function get_the_events_calendar_events( $settings ) {
 
-        return $calendar_data;
-    }
-
-
-    public function get_the_events_calendar_events ( $settings ) {
-
-        if ( ! function_exists('tribe_get_events') ) {
-            return [];
+		if ( ! function_exists( 'tribe_get_events' ) ) {
+			return [];
 		}
 
 		if ( 'selected_event' !== $settings['the_events_calendar_source'] ) {
-            $arg = [
+			$arg = [
 				'posts_per_page' => $settings['the_events_calendar_item'],
 			];
 		}
 
-        if ( 'category' == $settings['the_events_calendar_source'] && !empty( $settings['the_events_calendar_category'] ) ) {
-            $arg['tax_query'] = [
-                [
-                    'taxonomy' => 'tribe_events_cat',
-                    'field' => 'id',
-                    'terms' => $settings['the_events_calendar_category']
-                ]
-            ];
+		if ( 'category' == $settings['the_events_calendar_source'] && ! empty( $settings['the_events_calendar_category'] ) ) {
+			$arg['tax_query'] = [
+				[
+					'taxonomy' => 'tribe_events_cat',
+					'field'    => 'id',
+					'terms'    => $settings['the_events_calendar_category'],
+				],
+			];
 		}
 
-        if ( 'selected_event' == $settings['the_events_calendar_source'] && !empty( $settings['the_events_calendar_selected'] ) ) {
-            $arg['post__in'] = $settings['the_events_calendar_selected'];
+		if ( 'selected_event' == $settings['the_events_calendar_source'] && ! empty( $settings['the_events_calendar_selected'] ) ) {
+			$arg['post__in'] = $settings['the_events_calendar_selected'];
 		}
 
 		$events = tribe_get_events( $arg );
 
-        if ( empty( $events ) ) {
-            return [];
+		if ( empty( $events ) ) {
+			return [];
 		}
 
-        $calendar_data = [];
-        foreach ($events as $key => $event) {
+		$calendar_data = [];
+		foreach ( $events as $key => $event ) {
 
-            $date_format = 'Y-m-d';
-			$all_day = 'yes';
+			$date_format = 'Y-m-d';
+			$all_day     = 'yes';
 
-            if (!tribe_event_is_all_day($event->ID)) {
-                $date_format .= ' H:i';
-                $all_day = '';
+			if ( ! tribe_event_is_all_day( $event->ID ) ) {
+				$date_format .= ' H:i';
+				$all_day      = '';
 			}
 
 			$image = get_the_post_thumbnail_url( $event->ID );
 
-            $calendar_data[] = [
-                'id' => ++$key,
-                'title' => !empty($event->post_title) ? $event->post_title :'',
-                'description' => $event->post_content,
-                'start' => tribe_get_start_date($event->ID, true, $date_format),
-				'end' => tribe_get_end_date($event->ID, true, $date_format),
-                'url' => !empty( get_the_permalink( $event->ID ) ) ? get_the_permalink( $event->ID ) : '',
-                'allDay' => $all_day,
-                'external' => 'on',
-				'nofollow' => 'on',
-				'guest' => tribe_get_organizer( $event->ID ),
-				'location' => !empty( tribe_get_venue( $event->ID ) ) ? tribe_get_venue( $event->ID ) : '',
-				'image' => $image ? $image : '',
-            ];
-        }
+			$calendar_data[] = [
+				'id'          => esc_attr( ++$key ),
+				'title'       => ! empty( $event->post_title ) ? esc_html( $event->post_title ) : '',
+				'description' => ha_kses_intermediate( $event->post_content ),
+				'start'       => esc_html( tribe_get_start_date( $event->ID, true, $date_format ) ),
+				'end'         => esc_html( tribe_get_end_date( $event->ID, true, $date_format ) ),
+				'url'         => ! empty( get_the_permalink( $event->ID ) ) ? esc_url( get_the_permalink( $event->ID ) ) : '',
+				'allDay'      => esc_html( $all_day ),
+				'external'    => 'on',
+				'nofollow'    => 'on',
+				'guest'       => esc_html( tribe_get_organizer( $event->ID ) ),
+				'location'    => ! empty( tribe_get_venue( $event->ID ) ) ? esc_html( tribe_get_venue( $event->ID ) ) : '',
+				'image'       => $image ? esc_url( $image ) : '',
+			];
+		}
 		return $calendar_data;
 
-    }
+	}
 
-	public function get_popup_markup ( $settings ) {
-	   $readmore_text = !empty($settings['readmore_text']) ? esc_html($settings['readmore_text']) : '';
-	   $time_title = !empty($settings['time_title']) ? esc_html($settings['time_title']) : '';
-	   $speaker_title = !empty($settings['speaker_title']) ? esc_html($settings['speaker_title']) : '';
-	   $location_title = !empty($settings['location_title']) ? esc_html($settings['location_title']) : '';
-       $popup = '<div class="ha-ec-popup-wrapper">
+	public function get_popup_markup( $settings ) {
+		$readmore_text  = ! empty( $settings['readmore_text'] ) ? esc_html( $settings['readmore_text'] ) : '';
+		$time_title     = ! empty( $settings['time_title'] ) ? esc_html( $settings['time_title'] ) : '';
+		$speaker_title  = ! empty( $settings['speaker_title'] ) ? esc_html( $settings['speaker_title'] ) : '';
+		$location_title = ! empty( $settings['location_title'] ) ? esc_html( $settings['location_title'] ) : '';
+		$popup          = '<div class="ha-ec-popup-wrapper">
 					<div class="ha-ec-popup">
 
 						<span class="ha-ec-popup-close"><i class="eicon-editor-close"></i></span>
@@ -2036,23 +2038,23 @@ class Event_Calendar extends Base {
 							<div class="ha-ec-popup-content">
 								<ul>
 									<li class="ha-ec-event-time-wrap">
-										<div class="ha-ec-time-icon">'.$this->render_svg_icon('clock').'</div>
+										<div class="ha-ec-time-icon">' . $this->render_svg_icon( 'clock' ) . '</div>
 										<div class="ha-ec-time-content">
-											<span class="ha-ec-time-title">'.$time_title.'</span>
+											<span class="ha-ec-time-title">' . $time_title . '</span>
 											<span class="ha-ec-event-time"></span>
 										</div>
 									</li>
 									<li class="ha-ec-event-guest-wrap">
-										<div class="ha-ec-guest-icon">'.$this->render_svg_icon('speaker').'</div>
+										<div class="ha-ec-guest-icon">' . $this->render_svg_icon( 'speaker' ) . '</div>
 										<div class="ha-ec-guest-content">
-											<span class="ha-ec-guest-title">'.$speaker_title.'</span>
+											<span class="ha-ec-guest-title">' . $speaker_title . '</span>
 											<span class="ha-ec-event-guest"></span>
 										</div>
 									</li>
 									<li class="ha-ec-event-location-wrap">
-										<div class="ha-ec-location-icon">'.$this->render_svg_icon('map').'</div>
+										<div class="ha-ec-location-icon">' . $this->render_svg_icon( 'map' ) . '</div>
 										<div class="ha-ec-location-content">
-											<span class="ha-ec-location-title">'.$location_title.'</span>
+											<span class="ha-ec-location-title">' . $location_title . '</span>
 											<span class="ha-ec-event-location"></span>
 										</div>
 									</li>
@@ -2060,7 +2062,7 @@ class Event_Calendar extends Base {
 								<h3 class="ha-ec-event-title"></h3>
 								<p class="ha-ec-popup-desc"></p>
 								<div class="ha-ec-popup-readmore">
-									<a class="ha-ec-popup-readmore-link" href="">'.$readmore_text.'</a>
+									<a class="ha-ec-popup-readmore-link" href="">' . $readmore_text . '</a>
 								</div>
 							</div>
 						</div>
@@ -2068,7 +2070,7 @@ class Event_Calendar extends Base {
 
 					</div>
 				</div>';
-        echo $popup;
+		echo $popup;
 	}
 
 	public function render_svg_icon( $icon_name ) {

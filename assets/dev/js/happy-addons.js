@@ -695,114 +695,143 @@
 				height: 'auto',
 
 				eventClick: function (info) {
-					info.jsEvent.preventDefault(); // don't let the browser navigate
 
-					if( 'yes' != showPopup){
-						return;
-					}
+					if( 'yes' == showPopup ){
 
-					function getTheDate(timeString) {
-						return new Date(timeString);
-					}
+						info.jsEvent.preventDefault(); // don't let the browser navigate
 
-					function timeFormat(date) {
-						var hours = date.getHours();
-						var minutes = date.getMinutes();
-						var ampm = hours >= 12 ? 'pm' : 'am';
-						hours = hours % 12;
-						hours = hours ? hours : 12; // the hour '0' should be '12'
-						minutes = minutes < 10 ? '0' + minutes : minutes;
-						var strTime = hours + ':' + minutes + '' + ampm;
-						return strTime;
-					}
-
-					var todayDateString = info.view.calendar.currentData.currentDate.toString(),
-						allDay = info.event.allDay,
-						title = info.event.title,
-						startDate = info.event.startStr,
-						endDate = info.event.endStr,
-						guest = info.event.extendedProps.guest,
-						location = info.event.extendedProps.location,
-						description = info.event.extendedProps.description,
-						detailsUrl = info.event.url,
-						imageUrl = info.event.extendedProps.image;
-
-					var titleWrap = popup.find('.ha-ec-event-title'),
-						timeWrap = popup.find('.ha-ec-event-time-wrap'),
-						guestWrap = popup.find('.ha-ec-event-guest-wrap'),
-						locationWrap = popup.find('.ha-ec-event-location-wrap'),
-						descWrap = popup.find('.ha-ec-popup-desc'),
-						detailsWrap = popup.find('.ha-ec-popup-readmore-link'),
-						imageWrap = popup.find('.ha-ec-popup-image');
-
-					// display none
-					imageWrap.css('display', 'none');
-					titleWrap.css('display', 'none');
-					timeWrap.css('display', 'none');
-					guestWrap.css('display', 'none');
-					locationWrap.css('display', 'none');
-					descWrap.css('display', 'none');
-					detailsWrap.css('display', 'none');
-
-					popup.addClass("ha-ec-popup-ready");
-
-					// image markup
-					if (imageUrl) {
-						imageWrap.removeAttr("style");
-						imageWrap.find('img').attr("src", imageUrl );
-						imageWrap.find('img').attr("alt", title );
-					}
-
-					// title markup
-					if (title) {
-						titleWrap.removeAttr("style");
-						titleWrap.html(title);
-					}
-
-					// guest markup
-					if (guest) {
-						guestWrap.removeAttr("style");
-						guestWrap.find('span.ha-ec-event-guest').html( guest );
-					}
-
-					// location markup
-					if (location) {
-						locationWrap.removeAttr("style");
-						locationWrap.find('span.ha-ec-event-location').html( location );
-					}
-
-					// description markup
-					if (description) {
-						descWrap.removeAttr("style");
-						descWrap.html(description);
-					}
-
-					// time markup
-					if (allDay !== true) {
-						timeWrap.removeAttr("style");
-						startDate = Date.parse(getTheDate(startDate));
-						endDate = Date.parse(getTheDate(endDate));
-						var startTimeText = timeFormat(getTheDate(startDate));
-						var endTimeText = 'Invalid Data';
-						if (startDate < endDate) {
-							endTimeText = timeFormat(getTheDate(endDate));
+						function getTheDate(timeString) {
+							return new Date(timeString);
 						}
-						timeWrap.find('span.ha-ec-event-time').html(startTimeText + ' - ' + endTimeText);
-					}else{
-						timeWrap.removeAttr("style");
-						timeWrap.find('span.ha-ec-event-time').html(allday_text);
-					}
 
-					// read more markup
-					if (detailsUrl) {
-						detailsWrap.removeAttr("style");
-						detailsWrap.attr("href", detailsUrl);
-						if ("on" === info.event.extendedProps.external) {
-							detailsWrap.attr("target", "_blank");
+						function timeFormat(date) {
+							var hours = date.getHours();
+							var minutes = date.getMinutes();
+							var ampm = hours >= 12 ? 'pm' : 'am';
+							hours = hours % 12;
+							hours = hours ? hours : 12; // the hour '0' should be '12'
+							minutes = minutes < 10 ? '0' + minutes : minutes;
+							var strTime = hours + ':' + minutes + '' + ampm;
+							return strTime;
 						}
-						if ("on" === info.event.extendedProps.nofollow) {
-							detailsWrap.attr("rel", "nofollow");
+
+						var todayDateString = info.view.calendar.currentData.currentDate.toString(),
+							allDay = info.event.allDay,
+							title = info.event.title,
+							startDate = info.event.startStr,
+							endDate = info.event.endStr,
+							guest = info.event.extendedProps.guest,
+							location = info.event.extendedProps.location,
+							description = info.event.extendedProps.description,
+							detailsUrl = info.event.url,
+							imageUrl = info.event.extendedProps.image;
+
+						var titleWrap = popup.find('.ha-ec-event-title'),
+							timeWrap = popup.find('.ha-ec-event-time-wrap'),
+							guestWrap = popup.find('.ha-ec-event-guest-wrap'),
+							locationWrap = popup.find('.ha-ec-event-location-wrap'),
+							descWrap = popup.find('.ha-ec-popup-desc'),
+							detailsWrap = popup.find('.ha-ec-popup-readmore-link'),
+							imageWrap = popup.find('.ha-ec-popup-image');
+
+						// display none
+						imageWrap.css('display', 'none');
+						titleWrap.css('display', 'none');
+						timeWrap.css('display', 'none');
+						guestWrap.css('display', 'none');
+						locationWrap.css('display', 'none');
+						descWrap.css('display', 'none');
+						detailsWrap.css('display', 'none');
+
+						popup.addClass("ha-ec-popup-ready");
+
+						// image markup
+						if (imageUrl) {
+							imageWrap.removeAttr("style");
+							imageWrap.find('img').attr("src", imageUrl );
+							imageWrap.find('img').attr("alt", title );
 						}
+
+						// title markup
+						if (title) {
+							titleWrap.removeAttr("style");
+							titleWrap.text(title);
+						}
+
+						// guest markup
+						if (guest) {
+							guestWrap.removeAttr("style");
+							guestWrap.find('span.ha-ec-event-guest').text( guest );
+						}
+
+						// location markup
+						if (location) {
+							locationWrap.removeAttr("style");
+							locationWrap.find('span.ha-ec-event-location').text( location );
+						}
+
+						// description markup
+						if (description) {
+							descWrap.removeAttr("style");
+							descWrap.html(description);
+						}
+
+						// time markup
+						if (allDay !== true) {
+							timeWrap.removeAttr("style");
+							startDate = Date.parse(getTheDate(startDate));
+							endDate = Date.parse(getTheDate(endDate));
+							var startTimeText = timeFormat(getTheDate(startDate));
+							var endTimeText = 'Invalid Data';
+							if (startDate < endDate) {
+								endTimeText = timeFormat(getTheDate(endDate));
+							}
+							timeWrap.find('span.ha-ec-event-time').text(startTimeText + ' - ' + endTimeText);
+						}else{
+							timeWrap.removeAttr("style");
+							timeWrap.find('span.ha-ec-event-time').text(allday_text);
+						}
+
+						// read more markup
+						if (detailsUrl) {
+							detailsWrap.removeAttr("style");
+							detailsWrap.attr("href", detailsUrl);
+							if ("on" === info.event.extendedProps.external) {
+								detailsWrap.attr("target", "_blank");
+							}
+							if ("on" === info.event.extendedProps.nofollow) {
+								detailsWrap.attr("rel", "nofollow");
+							}
+						}
+					} else {
+
+						if ( info.event.url && info.event.extendedProps.external ) {
+							info.jsEvent.preventDefault();
+
+							var id       = $scope.data('id'),
+							anchor   = document.createElement('a'),
+							anchorReal,
+							timeout;
+
+							anchor.id            = 'happy-even-calender-link-' + id;
+							anchor.href          = info.event.url;
+							anchor.target        = info.event.extendedProps.external ? '_blank' : '_self';
+							anchor.rel           = info.event.extendedProps.nofollow ? 'nofollow noreferer' : '';
+							anchor.style.display = 'none';
+
+							document.body.appendChild(anchor);
+
+							anchorReal = document.getElementById(anchor.id);
+							anchorReal.click();
+
+							timeout = setTimeout(function() {
+								document.body.removeChild(anchorReal);
+								clearTimeout(timeout);
+							});
+
+							return false;
+						}
+
 					}
 				},
 				dateClick: function (arg) {

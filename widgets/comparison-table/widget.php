@@ -696,7 +696,9 @@ class Comparison_Table extends Base {
 					'is_external' => true,
 					'nofollow'    => true,
 				],
-				'dynamic',
+				'dynamic' => [
+					'active' => true,
+				],
 			]
 		);
 		$repeater->add_control(

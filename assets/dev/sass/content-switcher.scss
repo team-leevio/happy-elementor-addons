@@ -42,6 +42,62 @@
 	margin-bottom: 20px;
 }
 
+body[data-elementor-device-mode="widescreen"] .ha-cs-switch-wrapper.widescreen-horizontal {
+	flex-direction: row;
+}
+
+body[data-elementor-device-mode="widescreen"] .ha-cs-switch-wrapper.widescreen-vertical {
+	flex-direction: column;
+}
+
+body[data-elementor-device-mode="desktop"] .ha-cs-switch-wrapper.desktop-horizontal {
+	flex-direction: row;
+}
+
+body[data-elementor-device-mode="desktop"] .ha-cs-switch-wrapper.desktop-vertical {
+	flex-direction: column;
+}
+
+body[data-elementor-device-mode="laptop"] .ha-cs-switch-wrapper.laptop-horizontal {
+	flex-direction: row;
+}
+
+body[data-elementor-device-mode="laptop"] .ha-cs-switch-wrapper.laptop-vertical {
+	flex-direction: column;
+}
+
+body[data-elementor-device-mode="tablet_extra"] .ha-cs-switch-wrapper.tablet-extra-horizontal {
+	flex-direction: row;
+}
+
+body[data-elementor-device-mode="tablet_extra"] .ha-cs-switch-wrapper.tablet-extra-vertical {
+	flex-direction: column;
+}
+
+body[data-elementor-device-mode="tablet"] .ha-cs-switch-wrapper.tablet-horizontal {
+	flex-direction: row;
+}
+
+body[data-elementor-device-mode="tablet"] .ha-cs-switch-wrapper.tablet-vertical {
+	flex-direction: column;
+}
+
+body[data-elementor-device-mode="mobile_extra"] .ha-cs-switch-wrapper.mobile-extra-horizontal {
+	flex-direction: row;
+}
+
+body[data-elementor-device-mode="mobile_extra"] .ha-cs-switch-wrapper.mobile-extra-vertical {
+	flex-direction: column;
+}
+
+body[data-elementor-device-mode="mobile"] .ha-cs-switch-wrapper.mobile-horizontal {
+	flex-direction: row;
+}
+
+body[data-elementor-device-mode="mobile"] .ha-cs-switch-wrapper.mobile-vertical {
+	flex-direction: column;
+}
+
 .ha-cs-switch-wrapper {
 	display: inline-flex;
 	justify-content: center;
