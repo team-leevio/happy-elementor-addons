@@ -372,8 +372,14 @@
 			},
 			success: function (response) {
 				if (response) {
-					// console.log(response);
-					MicroModal.close("modal-new-template-condition");
+					console.log(response);
+					if(response.success) {
+						MicroModal.close("modal-new-template-condition");
+					}else {
+						// console.log(MicroModal);
+						$('.ha-template-notice').addClass('error').text(response.data.msg);
+						console.log(response.data.msg);
+					}
 				}
 			},
 		});

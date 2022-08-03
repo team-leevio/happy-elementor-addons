@@ -297,6 +297,19 @@
 	margin: auto;
 	max-width: 781px;
 }
+.ha-template-element-modal .modal__content .ha-template-notice {
+	display: none;
+	color: #000;
+	text-align: center;
+}
+.ha-template-element-modal .modal__content .ha-template-notice.error {
+	display: block;
+	color: #f00;
+}
+.ha-template-element-modal .modal__content .ha-template-notice.success {
+	display: block;
+	color: #008000;
+}
 .ha-template-element-modal .modal__content.new-template {
 	display: -webkit-box;
 	display: -webkit-flex;

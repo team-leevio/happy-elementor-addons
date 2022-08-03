@@ -31,6 +31,7 @@ $selected = get_query_var( 'ha_library_type' );
                                 For example, choose 'Entire Site' to display the template across your site.
                             </div>
                         </div>
+                        <p class="ha-template-notice">Error</p>
                         <form id="ha-template-edit-form">
                             <div class="ha-template-condition-wrap"></div>
                             <button class="ha-cond-repeater-add" type="button">+ Add Condition</button>

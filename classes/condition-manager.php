@@ -59,11 +59,11 @@ class Condition_Manager {
         return $conditions;
     }
 
-    public function get_name($cond){
+    public function get_name($cond) {
         return $this->all_conds_list[$cond]['title'];
     }
 
-    public function get_all_name($cond){
+    public function get_all_name($cond) {
         return $this->all_conds_list[$cond]['all_label'];
     }
 
@@ -258,13 +258,38 @@ class Condition_Manager {
             $templateID = isset($_REQUEST['template_id']) ? $_REQUEST['template_id'] : null;
             $conditions = isset($_REQUEST['conds']) ? $_REQUEST['conds'] : [];
 
+            $existed_conditions = get_post_meta($templateID, '_ha_display_cond');
+
+            $unique_condition = array_unique(array_merge_recursive($conditions, $existed_conditions));
+
             if ($templateID) {
-                $cond = update_post_meta($templateID, '_ha_display_cond', $conditions);
-                $updates = get_post_meta($templateID, '_ha_display_cond');
+                $all_cond = $this->ha_get_all_conditions();
+                $tbl_type = get_post_meta($templateID, '_ha_library_type', true);
+
+                $duplicate = false;
+                foreach ($unique_condition as $key => $value) {
+                    if (in_array($value, $all_cond[$tbl_type])) {
+                        $duplicate = true;
+                        break;
+                    }
+                }
+
+                // $cond = update_post_meta($templateID, '_ha_display_cond', $conditions);
+                // $updates = get_post_meta($templateID, '_ha_display_cond');
+                $cond = null;
+                $updates = null;
+
+                if (!$duplicate) {
+                    $cond = update_post_meta($templateID, '_ha_display_cond', $conditions);
+                    $updates = get_post_meta($templateID, '_ha_display_cond');
+                    wp_send_json_success([$updates, 'msg' => 'unique condition', 'conditions' => $conditions, 'all' => $all_cond[$tbl_type], 'type' => $tbl_type, 'duplicate' => $duplicate]);
+                } else {
+                    wp_send_json_error(['msg' => 'Condition already exist', 'conditions' => $conditions, 'all' => $all_cond[$tbl_type], 'type' => $tbl_type, 'duplicate' => $duplicate]);
+                }
 
                 if ($cond != null) {
                     $this->cache->regenerate();
-                    wp_send_json_success($updates);
+                    wp_send_json_success([$updates, $all_cond[$tbl_type], $tbl_type, $duplicate]);
                 } else {
                     wp_send_json_error();
                 }
@@ -277,6 +302,54 @@ class Condition_Manager {
         } catch (Exception $e) {
             wp_send_json_error($e->getMessage());
         }
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function ha_get_all_conditions() {
+
+        $conditions = [];
+
+        // WP_Query arguments
+        $args = array(
+            'post_type'              => array('ha_library'), // use any for any kind of post type, custom post type slug for custom post type
+            'post_status'            => array('publish'), // Also support: pending, draft, auto-draft, future, private, inherit, trash, any
+            'posts_per_page'         => -1, // use -1 for all post
+            'order'                  => 'DESC', // Also support: ASC
+            'orderby'                => 'date', // Also support: none, rand, id, title, slug, modified, parent, menu_order, comment_count
+            'meta_query'             => array(
+                array(
+                    'key' => '_ha_display_cond',
+                    'compare' => 'EXISTS'
+                ),
+            ),
+        );
+
+        // The Query
+        $query = new \WP_Query($args);
+
+        // The Loop
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+
+                $saved_conditions = get_post_meta(get_the_ID(), '_ha_display_cond', true);
+                $tpl_type = get_post_meta(get_the_ID(), '_ha_library_type', true);
+
+                if (is_array($saved_conditions)) {
+                    foreach ($saved_conditions as $condition) {
+                        $conditions[$tpl_type][] = $condition;
+                    }
+                }
+            }
+        }
+
+        // Restore original Post Data
+        wp_reset_postdata();
+
+        return $conditions;
     }
 
     public function ha_get_current_condition() {
@@ -315,15 +388,15 @@ class Condition_Manager {
 
             $sub_name_html = ($sub_name) ? '<option value="' . $sub_name . '" selected="selected">' . $this->all_conds_list[$sub_name]['title'] . '</option>' : '';
 
-            $sub_id_html = ($sub_id) ? '<option value="' . $sub_id . '" selected="selected">' . $sub_id . '</option>' : '';
+            $sub_id_html = ($sub_id) ? '<option value="' . $sub_id . '" selected="selected">' . get_the_title($sub_id) . '</option>' : '';
 
             $uuid = uniqid();
             $if = function ($condition, $true, $false) {
                 return $condition ? $true : $false;
             };
 
-            $sub_name_visibility = ($sub_name)?'':'style="display:none"';
-            $sub_id_visibility = ($sub_id)?'':'style="display:none"';
+            $sub_name_visibility = ($sub_name) ? '' : 'style="display:none"';
+            $sub_id_visibility = ($sub_id) ? '' : 'style="display:none"';
 
             $html .= <<<EOF
 <div id="ha-template-condition-item-$uuid" class="ha-template-condition-item">
