@@ -1,6 +1,7 @@
 = 3.#.# -  2022 =
 
 - Fix: Post tab title tag issue
+- Fix: Infobox lord icon render issue
 
 = 3.6.2 - 5 July 2022 =
 
