@@ -54,6 +54,10 @@
 				conditionContainer.find("select").trigger("change");
 				// elementor.trigger("ha:templateConditionChange");
 			}
+
+			// notice remove
+			$('.ha-template-notice').removeClass('error').text('');
+
 			MicroModal.show("modal-new-template-condition");
 		});
 
@@ -376,8 +380,9 @@
 					if(response.success) {
 						MicroModal.close("modal-new-template-condition");
 					}else {
-						// console.log(MicroModal);
+						// show notice
 						$('.ha-template-notice').addClass('error').text(response.data.msg);
+						
 						console.log(response.data.msg);
 					}
 				}

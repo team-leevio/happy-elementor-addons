@@ -258,16 +258,16 @@ class Condition_Manager {
             $templateID = isset($_REQUEST['template_id']) ? $_REQUEST['template_id'] : null;
             $conditions = isset($_REQUEST['conds']) ? $_REQUEST['conds'] : [];
 
-            $existed_conditions = get_post_meta($templateID, '_ha_display_cond');
+            $existed_conditions = get_post_meta($templateID, '_ha_display_cond', true);
 
-            $unique_condition = array_unique(array_merge_recursive($conditions, $existed_conditions));
+            $new_conditions = array_diff($conditions, $existed_conditions);
 
             if ($templateID) {
                 $all_cond = $this->ha_get_all_conditions();
                 $tbl_type = get_post_meta($templateID, '_ha_library_type', true);
 
                 $duplicate = false;
-                foreach ($unique_condition as $key => $value) {
+                foreach ($new_conditions as $key => $value) {
                     if (in_array($value, $all_cond[$tbl_type])) {
                         $duplicate = true;
                         break;
@@ -276,23 +276,26 @@ class Condition_Manager {
 
                 // $cond = update_post_meta($templateID, '_ha_display_cond', $conditions);
                 // $updates = get_post_meta($templateID, '_ha_display_cond');
-                $cond = null;
-                $updates = null;
+                // $cond = null;
+                // $updates = null;
 
                 if (!$duplicate) {
                     $cond = update_post_meta($templateID, '_ha_display_cond', $conditions);
                     $updates = get_post_meta($templateID, '_ha_display_cond');
-                    wp_send_json_success([$updates, 'msg' => 'unique condition', 'conditions' => $conditions, 'all' => $all_cond[$tbl_type], 'type' => $tbl_type, 'duplicate' => $duplicate]);
+                    // wp_send_json_success([$updates, 'msg' => 'unique condition', 'new' => $new_conditions, 'existed' => $existed_conditions, 'conditions' => $conditions, 'all' => $all_cond[$tbl_type], 'type' => $tbl_type, 'duplicate' => $duplicate]);
+                    wp_send_json_success($updates);
                 } else {
-                    wp_send_json_error(['msg' => 'Condition already exist', 'conditions' => $conditions, 'all' => $all_cond[$tbl_type], 'type' => $tbl_type, 'duplicate' => $duplicate]);
+                    // wp_send_json_error(['msg' => 'Condition already exist', 'new' => $new_conditions, 'existed' => $existed_conditions, 'conditions' => $conditions, 'all' => $all_cond[$tbl_type], 'type' => $tbl_type, 'duplicate' => $duplicate]);
+                    wp_send_json_error(['msg' => 'Condition already exist']);
                 }
 
-                if ($cond != null) {
-                    $this->cache->regenerate();
-                    wp_send_json_success([$updates, $all_cond[$tbl_type], $tbl_type, $duplicate]);
-                } else {
-                    wp_send_json_error();
-                }
+                // if ($cond != null) {
+                //     $this->cache->regenerate();
+                //     // wp_send_json_success([$updates, $all_cond[$tbl_type], $tbl_type, $duplicate]);
+                //     wp_send_json_success($updates);
+                // } else {
+                //     wp_send_json_error();
+                // }
             } else {
 
                 wp_send_json_error();
