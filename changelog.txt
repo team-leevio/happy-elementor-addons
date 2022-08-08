@@ -1,5 +1,6 @@
 = 3.#.# -  2022 =
 
+- Tweak: Removed `Elementor\DB::is_built_with_elementor` deprecated method.
 - Fix: Post tab title tag issue
 - Fix: Infobox lord icon render issue
 
