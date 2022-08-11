@@ -672,7 +672,7 @@ class Theme_Builder {
                 // error_log("TAG 1: " . $template);
                 return $template;
             }
-        } elseif (function_exists('is_shop') && is_shop()) {
+        } elseif (function_exists('is_shop') && \is_shop()) {
             $location = 'archive';
         } elseif (is_archive() || is_tax() || is_home() || is_search()) {
             $location = 'archive';

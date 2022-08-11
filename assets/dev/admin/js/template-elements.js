@@ -376,14 +376,15 @@
 			},
 			success: function (response) {
 				if (response) {
-					console.log(response);
 					if(response.success) {
 						MicroModal.close("modal-new-template-condition");
 					}else {
 						// show notice
-						$('.ha-template-notice').addClass('error').text(response.data.msg);
-						
-						console.log(response.data.msg);
+						if(response.hasOwnProperty('data') && response.data.hasOwnProperty('msg')) {
+							$('.ha-template-notice').addClass('error').text(response.data.msg);
+						}else {
+							MicroModal.close("modal-new-template-condition");
+						}
 					}
 				}
 			},
