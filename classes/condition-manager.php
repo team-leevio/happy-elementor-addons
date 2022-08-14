@@ -290,7 +290,7 @@ class Condition_Manager {
                     // wp_send_json_success([$updates, 'msg' => 'unique condition', 'new' => $new_conditions, 'existed' => $existed_conditions, 'conditions' => $conditions, 'all' => $all_cond[$tbl_type], 'type' => $tbl_type, 'duplicate' => $duplicate]);
                 } else {
                     // wp_send_json_error(['msg' => 'Condition already exist', 'new' => $new_conditions, 'existed' => $existed_conditions, 'conditions' => $conditions, 'all' => $all_cond[$tbl_type], 'type' => $tbl_type, 'duplicate' => $duplicate]);
-                    wp_send_json_error(['msg' => esc_html__('Condition already exist', 'happy-elementor-addons')]);
+                    wp_send_json_error(['msg' => esc_html__('Unable to save because condition already exists', 'happy-elementor-addons')]);
                 }
 
                 // if ($cond != null) {
