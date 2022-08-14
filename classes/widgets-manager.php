@@ -1238,6 +1238,30 @@ class Widgets_Manager {
 					'js' => ['pdf-js'],
 				],
 			],
+			// 'post-comments' => [
+			// 	'cat' => 'theme',
+			// 	'is_active' => true,
+			// 	'title' => __('Post Comments', 'happy-elementor-addons'),
+			// 	'icon' => 'hm hm-lens',
+			// 	'css' => [''],
+			// 	'js' => [],
+			// 	'vendor' => [
+			// 		'css' => [],
+			// 		'js' => [],
+			// 	],
+			// ],
+			'post-navigation' => [
+				'cat' => 'theme',
+				'is_active' => true,
+				'title' => __('Post Navigation', 'happy-elementor-addons'),
+				'icon' => 'hm hm-lens',
+				'css' => [''],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
 		];
 	}
 

@@ -274,9 +274,6 @@ class Condition_Manager {
                     }
                 }
 
-                // $cond = update_post_meta($templateID, '_ha_display_cond', $conditions);
-                // $updates = get_post_meta($templateID, '_ha_display_cond');
-
                 if (!$duplicate) {
                     $cond = update_post_meta($templateID, '_ha_display_cond', $conditions);
                     $updates = get_post_meta($templateID, '_ha_display_cond');
@@ -287,19 +284,10 @@ class Condition_Manager {
                     }else {
                         wp_send_json_error();
                     }
-                    // wp_send_json_success([$updates, 'msg' => 'unique condition', 'new' => $new_conditions, 'existed' => $existed_conditions, 'conditions' => $conditions, 'all' => $all_cond[$tbl_type], 'type' => $tbl_type, 'duplicate' => $duplicate]);
                 } else {
-                    // wp_send_json_error(['msg' => 'Condition already exist', 'new' => $new_conditions, 'existed' => $existed_conditions, 'conditions' => $conditions, 'all' => $all_cond[$tbl_type], 'type' => $tbl_type, 'duplicate' => $duplicate]);
                     wp_send_json_error(['msg' => esc_html__('Unable to save because condition already exists', 'happy-elementor-addons')]);
                 }
 
-                // if ($cond != null) {
-                //     $this->cache->regenerate();
-                //     // wp_send_json_success([$updates, $all_cond[$tbl_type], $tbl_type, $duplicate]);
-                //     wp_send_json_success($updates);
-                // } else {
-                //     wp_send_json_error();
-                // }
             } else {
 
                 wp_send_json_error();
