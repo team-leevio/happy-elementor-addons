@@ -1254,8 +1254,8 @@ class Widgets_Manager {
 				'cat' => 'theme',
 				'is_active' => true,
 				'title' => __('Post Navigation', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
-				'css' => [''],
+				'icon' => 'hm hm-navigation2',
+				'css' => ['post-navigation'],
 				'js' => [],
 				'vendor' => [
 					'css' => [],

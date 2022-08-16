@@ -8,19 +8,8 @@
 
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Core\Schemes\Typography;
-use Elementor\Utils;
-use Elementor\Control_Media;
 use Elementor\Controls_Manager;
-use Elementor\Group_Control_Border;
-use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Elementor\Group_Control_Background;
-use Elementor\Group_Control_Text_Shadow;
-use Happy_Addons\Elementor\Controls\Group_Control_Foreground;
-use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
-use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 
 defined('ABSPATH') || die();
 
@@ -39,7 +28,7 @@ class Post_Navigation extends Base {
     }
 
     public function get_custom_help_url() {
-        return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/post_navigation-title/';
+        return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/post-navigation/';
     }
 
     /**
@@ -51,7 +40,7 @@ class Post_Navigation extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'hm hm-tb-archieve-title';
+        return 'hm hm-navigation2';
     }
 
     public function get_keywords() {
@@ -306,9 +295,6 @@ class Post_Navigation extends Base {
             [
                 'label' => esc_html__('Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
-                'global' => [
-                    'default' => Global_Colors::COLOR_TEXT,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} span.post-navigation__prev--label' => 'color: {{VALUE}};',
                     '{{WRAPPER}} span.post-navigation__next--label' => 'color: {{VALUE}};',
@@ -345,9 +331,6 @@ class Post_Navigation extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'label_typography',
-                'global' => [
-                    'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
-                ],
                 'selector' => '{{WRAPPER}} span.post-navigation__prev--label, {{WRAPPER}} span.post-navigation__next--label',
                 'exclude' => ['line_height'],
             ]
@@ -380,9 +363,6 @@ class Post_Navigation extends Base {
             [
                 'label' => esc_html__('Color', 'happy-elementor-addons'),
                 'type' => Controls_Manager::COLOR,
-                'global' => [
-                    'default' => Global_Colors::COLOR_SECONDARY,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} span.post-navigation__prev--title, {{WRAPPER}} span.post-navigation__next--title' => 'color: {{VALUE}};',
                 ],
@@ -417,9 +397,6 @@ class Post_Navigation extends Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'global' => [
-                    'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
-                ],
                 'selector' => '{{WRAPPER}} span.post-navigation__prev--title, {{WRAPPER}} span.post-navigation__next--title',
                 'exclude' => ['line_height'],
             ]
