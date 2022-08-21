@@ -905,6 +905,7 @@ class Post_Tab extends Base {
 			'taxonomy'   => $taxonomy,
 			'item_limit' => $settings['item_limit'],
 			'excerpt'    => $settings['excerpt'] ? $settings['excerpt'] : 'no',
+			'title_tag'    => $settings['title_tag'],
 		];
 		$query_settings = json_encode( $query_settings, true );
 

@@ -1,6 +1,6 @@
 === Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget) ===
 Plugin Name: Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget)
-Version: 3.6.2
+Version: 3.6.3
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
@@ -548,6 +548,12 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.6.3 - 10 August 2022 =
+
+- Tweak: Removed `Elementor\DB::is_built_with_elementor` deprecated method from Elementor 3.7.0.
+- Fix: Post tab title tag issue
+- Fix: Infobox lord icon render issue
 
 = 3.6.2 - 5 July 2022 =
 
