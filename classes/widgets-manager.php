@@ -1231,11 +1231,11 @@ class Widgets_Manager {
 				'is_active' => true,
 				'title' => __('Archive Posts', 'happy-elementor-addons'),
 				'icon' => 'hm hm-lens',
-				'css' => [''],
+				'css' => ['archive-posts'],
 				'js' => [],
 				'vendor' => [
 					'css' => [],
-					'js' => ['pdf-js'],
+					'js' => [],
 				],
 			],
 			'post-comments' => [
