@@ -180,11 +180,15 @@ class Post_Featured_Image extends Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		if ( has_post_thumbnail() ){
-			if( $settings['post_feature_image_size'] == 'custom' ){
-				the_post_thumbnail( array( $settings['post_feature_image_custom_dimension']['width'], $settings['post_feature_image_custom_dimension']['height'] ) );
-			}else{
-				the_post_thumbnail( $settings['post_feature_image_size'] );
+		if (ha_elementor()->editor->is_edit_mode() || is_preview()) {
+			echo '<img src="'.Utils::get_placeholder_image_src().'" alt="place holder image">';
+		}else {
+			if ( has_post_thumbnail() ){
+				if( $settings['post_feature_image_size'] == 'custom' ){
+					the_post_thumbnail( array( $settings['post_feature_image_custom_dimension']['width'], $settings['post_feature_image_custom_dimension']['height'] ) );
+				}else{
+					the_post_thumbnail( $settings['post_feature_image_size'] );
+				}
 			}
 		}
 	}
