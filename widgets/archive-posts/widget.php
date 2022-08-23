@@ -506,7 +506,7 @@ class Archive_Posts extends Base {
                 'label' => esc_html__('Alignment', 'happy-elementor-addons'),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
-                    'left' => [
+                    'flex-start' => [
                         'title' => esc_html__('Left', 'happy-elementor-addons'),
                         'icon' => 'eicon-text-align-left',
                     ],
@@ -514,14 +514,14 @@ class Archive_Posts extends Base {
                         'title' => esc_html__('Center', 'happy-elementor-addons'),
                         'icon' => 'eicon-text-align-center',
                     ],
-                    'right' => [
+                    'flex-end' => [
                         'title' => esc_html__('Right', 'happy-elementor-addons'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
                 'default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} .ha-archive-posts-pagination' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .ha-archive-posts-pagination' => 'justify-content: {{VALUE}};',
                 ],
                 'condition' => [
                     'pagination_type!' => [
@@ -787,20 +787,460 @@ class Archive_Posts extends Base {
      * Register styles related controls
      */
     protected function register_style_controls() {
-        $this->__archive_title_style_controls();
+        $this->__archive_layout_style_controls();
+        $this->__archive_image_style_controls();
+        $this->__archive_content_style_controls();
+        $this->__archive_pagination_style_controls();
     }
 
 
-    protected function __archive_title_style_controls() {
+    protected function __archive_layout_style_controls() {
 
         $this->start_controls_section(
-            '_section_style_archive',
+            '_section_style_layout',
             [
-                'label' => __('Text', 'happy-elementor-addons'),
+                'label' => __('Layout', 'happy-elementor-addons'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
+        $this->add_control(
+            'column_gap',
+            [
+                'label' => esc_html__('Column Gap (px)', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-archive-posts-container' => 'column-gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'row_gap',
+            [
+                'label' => esc_html__('Row Gap (px)', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-archive-posts-container' => 'row-gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'content_align',
+            [
+                'label' => esc_html__('Alignment', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'plugin-name'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'plugin-name'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'plugin-name'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'left',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts__text' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+    }
+
+    protected function __archive_image_style_controls() {
+
+        $this->start_controls_section(
+            '_section_style_image',
+            [
+                'label' => __('Image', 'happy-elementor-addons'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+			'image_border_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'plugin-name' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts__thumbnail img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->add_control(
+            'image_spacing',
+            [
+                'label' => esc_html__('Spacing (px)', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-archive-posts-container .ha-archive-post' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+    }
+
+    protected function __archive_content_style_controls() {
+
+        $this->start_controls_section(
+            '_section_style_content',
+            [
+                'label' => __('Content', 'happy-elementor-addons'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+			'content_title',
+			[
+				'label' => esc_html__( 'Title', 'plugin-name' ),
+				'type' => Controls_Manager::HEADING,
+			]
+		);
+
+        $this->add_control(
+			'title_color',
+			[
+				'label' => esc_html__( 'Color', 'plugin-name' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+        $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography',
+				'selector' => '{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-title',
+			]
+		);
+
+        $this->add_control(
+            'title_spacing',
+            [
+                'label' => esc_html__('Spacing (px)', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+			'content_meta',
+			[
+				'label' => esc_html__( 'Meta', 'plugin-name' ),
+				'type' => Controls_Manager::HEADING,
+                'separator' => 'before'
+			]
+		);
+
+        $this->add_control(
+			'meta_color',
+			[
+				'label' => esc_html__( 'Color', 'plugin-name' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-meta-wrap' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+        $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'meta_typography',
+				'selector' => '{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-meta-wrap',
+			]
+		);
+
+        $this->add_control(
+            'meta_spacing',
+            [
+                'label' => esc_html__('Spacing (px)', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-meta-wrap' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+			'content_excerpt',
+			[
+				'label' => esc_html__( 'Excerpt', 'plugin-name' ),
+				'type' => Controls_Manager::HEADING,
+                'separator' => 'before'
+			]
+		);
+
+        $this->add_control(
+			'excerpt_color',
+			[
+				'label' => esc_html__( 'Color', 'plugin-name' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-excerpt' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+        $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'excerpt_typography',
+				'selector' => '{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-excerpt',
+			]
+		);
+
+        $this->add_control(
+            'excerpt_spacing',
+            [
+                'label' => esc_html__('Spacing (px)', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-excerpt' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+			'content_readmore',
+			[
+				'label' => esc_html__( 'Read More', 'plugin-name' ),
+				'type' => Controls_Manager::HEADING,
+                'separator' => 'before'
+			]
+		);
+
+        $this->add_control(
+			'readmore_color',
+			[
+				'label' => esc_html__( 'Color', 'plugin-name' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-readmore' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+        $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'readmore_typography',
+				'selector' => '{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-readmore',
+			]
+		);
+
+        $this->add_control(
+            'readmore_spacing',
+            [
+                'label' => esc_html__('Spacing (px)', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-readmore' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+    }
+
+    protected function __archive_pagination_style_controls() {
+
+        $this->start_controls_section(
+            '_section_style_pagination',
+            [
+                'label' => __('Pagination', 'happy-elementor-addons'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->start_controls_tabs(
+            'pagination_color_tabs'
+        );
+        
+        $this->start_controls_tab(
+            'pagination_normal_color_tab',
+            [
+                'label' => esc_html__( 'Normal', 'plugin-name' ),
+            ]
+        );
+
+        $this->add_control(
+			'pagination_color',
+			[
+				'label' => esc_html__( 'Color', 'plugin-name' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-pagination .page-numbers' => 'color: {{VALUE}}',
+				],
+			]
+		);
+        
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'pagination_hover_color_tab',
+            [
+                'label' => esc_html__( 'Hover', 'plugin-name' ),
+            ]
+        );
+
+        $this->add_control(
+			'pagination_color_hover',
+			[
+				'label' => esc_html__( 'Color', 'plugin-name' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-pagination .page-numbers:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+        
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'pagination_active_color_tab',
+            [
+                'label' => esc_html__( 'Active', 'plugin-name' ),
+            ]
+        );
+
+        $this->add_control(
+			'pagination_color_active',
+			[
+				'label' => esc_html__( 'Color', 'plugin-name' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-pagination .page-numbers.current' => 'color: {{VALUE}}',
+				],
+			]
+		);
+        
+        $this->end_controls_tab();
+        
+        $this->end_controls_tabs();
+
+        $this->add_control(
+            'pagination_space_between',
+            [
+                'label' => esc_html__('Space Between (px)', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-archive-posts-pagination' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'pagination_spacing',
+            [
+                'label' => esc_html__('Spacing (px)', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-archive-posts-pagination' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_section();
     }
@@ -821,19 +1261,21 @@ class Archive_Posts extends Base {
             $this->query = $wp_query;
         }
 
-        // need to remove this after task done
-        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-        $args = array(
-            'post_type'              => array('post'),
-            'post_status'            => array('publish'),
-            'paged'                  => $paged,
-            'offset'                 => 1,
-            'posts_per_page'         => 10,
-            'order'                  => 'DESC',
-            'orderby'                => 'date',
+        if (ha_elementor()->editor->is_edit_mode() || is_preview()) {
+            // need to remove this after task done
+            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+            $args = array(
+                'post_type'              => array('post'),
+                'post_status'            => array('publish'),
+                'paged'                  => $paged,
+                'offset'                 => 1,
+                'posts_per_page'         => 10,
+                'order'                  => 'DESC',
+                'orderby'                => 'date',
 
-        );
-        $this->query = new \WP_Query($args);
+            );
+            $this->query = new \WP_Query($args);
+        }
 
         $this->add_to_avoid_list(wp_list_pluck($this->query->posts, 'ID'));
 
@@ -982,13 +1424,13 @@ class Archive_Posts extends Base {
             <?php foreach ($active_meta as $meta) : ?>
                 <span class="ha-archive-posts-<?php echo esc_attr($meta); ?>">
                     <?php
-                    if('author' == $meta) {
+                    if ('author' == $meta) {
                         $this->render_author();
                     }
-                    if('date' == $meta) {
+                    if ('date' == $meta) {
                         $this->render_date();
                     }
-                    if('comments' == $meta) {
+                    if ('comments' == $meta) {
                         $this->render_comments();
                     }
                     ?>
