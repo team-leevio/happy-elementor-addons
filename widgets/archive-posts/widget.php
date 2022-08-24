@@ -8,11 +8,9 @@
 
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Core\Schemes\Typography;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Elementor\Group_Control_Text_Shadow;
 
 defined('ABSPATH') || die();
 
@@ -37,7 +35,7 @@ class Archive_Posts extends Base {
     }
 
     public function get_custom_help_url() {
-        return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/archive-title/';
+        return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/archive-posts/';
     }
 
     /**
@@ -807,8 +805,8 @@ class Archive_Posts extends Base {
         $this->add_control(
             'column_gap',
             [
-                'label' => esc_html__('Column Gap (px)', 'plugin-name'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label' => esc_html__('Column Gap (px)', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
                     'px' => [
@@ -830,8 +828,8 @@ class Archive_Posts extends Base {
         $this->add_control(
             'row_gap',
             [
-                'label' => esc_html__('Row Gap (px)', 'plugin-name'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label' => esc_html__('Row Gap (px)', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
                     'px' => [
@@ -853,19 +851,19 @@ class Archive_Posts extends Base {
         $this->add_control(
             'content_align',
             [
-                'label' => esc_html__('Alignment', 'plugin-name'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'label' => esc_html__('Alignment', 'happy-elementor-addons'),
+                'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'plugin-name'),
+                        'title' => esc_html__('Left', 'happy-elementor-addons'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'plugin-name'),
+                        'title' => esc_html__('Center', 'happy-elementor-addons'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'plugin-name'),
+                        'title' => esc_html__('Right', 'happy-elementor-addons'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -893,8 +891,8 @@ class Archive_Posts extends Base {
         $this->add_control(
 			'image_border_radius',
 			[
-				'label' => esc_html__( 'Border Radius', 'plugin-name' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'label' => esc_html__( 'Border Radius', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
 					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts__thumbnail img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -905,8 +903,8 @@ class Archive_Posts extends Base {
         $this->add_control(
             'image_spacing',
             [
-                'label' => esc_html__('Spacing (px)', 'plugin-name'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label' => esc_html__('Spacing (px)', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
                     'px' => [
@@ -941,7 +939,7 @@ class Archive_Posts extends Base {
         $this->add_control(
 			'content_title',
 			[
-				'label' => esc_html__( 'Title', 'plugin-name' ),
+				'label' => esc_html__( 'Title', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
 			]
 		);
@@ -949,8 +947,8 @@ class Archive_Posts extends Base {
         $this->add_control(
 			'title_color',
 			[
-				'label' => esc_html__( 'Color', 'plugin-name' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-title' => 'color: {{VALUE}}',
 				],
@@ -958,7 +956,7 @@ class Archive_Posts extends Base {
 		);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography',
 				'selector' => '{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-title',
@@ -968,8 +966,8 @@ class Archive_Posts extends Base {
         $this->add_control(
             'title_spacing',
             [
-                'label' => esc_html__('Spacing (px)', 'plugin-name'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label' => esc_html__('Spacing (px)', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
                     'px' => [
@@ -987,7 +985,7 @@ class Archive_Posts extends Base {
         $this->add_control(
 			'content_meta',
 			[
-				'label' => esc_html__( 'Meta', 'plugin-name' ),
+				'label' => esc_html__( 'Meta', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
                 'separator' => 'before'
 			]
@@ -996,8 +994,8 @@ class Archive_Posts extends Base {
         $this->add_control(
 			'meta_color',
 			[
-				'label' => esc_html__( 'Color', 'plugin-name' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-meta-wrap' => 'color: {{VALUE}}',
 				],
@@ -1005,7 +1003,7 @@ class Archive_Posts extends Base {
 		);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'meta_typography',
 				'selector' => '{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-meta-wrap',
@@ -1015,8 +1013,8 @@ class Archive_Posts extends Base {
         $this->add_control(
             'meta_spacing',
             [
-                'label' => esc_html__('Spacing (px)', 'plugin-name'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label' => esc_html__('Spacing (px)', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
                     'px' => [
@@ -1034,7 +1032,7 @@ class Archive_Posts extends Base {
         $this->add_control(
 			'content_excerpt',
 			[
-				'label' => esc_html__( 'Excerpt', 'plugin-name' ),
+				'label' => esc_html__( 'Excerpt', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
                 'separator' => 'before'
 			]
@@ -1043,8 +1041,8 @@ class Archive_Posts extends Base {
         $this->add_control(
 			'excerpt_color',
 			[
-				'label' => esc_html__( 'Color', 'plugin-name' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-excerpt' => 'color: {{VALUE}}',
 				],
@@ -1052,7 +1050,7 @@ class Archive_Posts extends Base {
 		);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'excerpt_typography',
 				'selector' => '{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-excerpt',
@@ -1062,8 +1060,8 @@ class Archive_Posts extends Base {
         $this->add_control(
             'excerpt_spacing',
             [
-                'label' => esc_html__('Spacing (px)', 'plugin-name'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label' => esc_html__('Spacing (px)', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
                     'px' => [
@@ -1081,7 +1079,7 @@ class Archive_Posts extends Base {
         $this->add_control(
 			'content_readmore',
 			[
-				'label' => esc_html__( 'Read More', 'plugin-name' ),
+				'label' => esc_html__( 'Read More', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
                 'separator' => 'before'
 			]
@@ -1090,8 +1088,8 @@ class Archive_Posts extends Base {
         $this->add_control(
 			'readmore_color',
 			[
-				'label' => esc_html__( 'Color', 'plugin-name' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-readmore' => 'color: {{VALUE}}',
 				],
@@ -1099,7 +1097,7 @@ class Archive_Posts extends Base {
 		);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'readmore_typography',
 				'selector' => '{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-readmore',
@@ -1109,8 +1107,8 @@ class Archive_Posts extends Base {
         $this->add_control(
             'readmore_spacing',
             [
-                'label' => esc_html__('Spacing (px)', 'plugin-name'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label' => esc_html__('Spacing (px)', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
                     'px' => [
@@ -1145,15 +1143,15 @@ class Archive_Posts extends Base {
         $this->start_controls_tab(
             'pagination_normal_color_tab',
             [
-                'label' => esc_html__( 'Normal', 'plugin-name' ),
+                'label' => esc_html__( 'Normal', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
 			'pagination_color',
 			[
-				'label' => esc_html__( 'Color', 'plugin-name' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-archive-posts-pagination .page-numbers' => 'color: {{VALUE}}',
 				],
@@ -1165,15 +1163,15 @@ class Archive_Posts extends Base {
         $this->start_controls_tab(
             'pagination_hover_color_tab',
             [
-                'label' => esc_html__( 'Hover', 'plugin-name' ),
+                'label' => esc_html__( 'Hover', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
 			'pagination_color_hover',
 			[
-				'label' => esc_html__( 'Color', 'plugin-name' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-archive-posts-pagination .page-numbers:hover' => 'color: {{VALUE}}',
 				],
@@ -1185,15 +1183,15 @@ class Archive_Posts extends Base {
         $this->start_controls_tab(
             'pagination_active_color_tab',
             [
-                'label' => esc_html__( 'Active', 'plugin-name' ),
+                'label' => esc_html__( 'Active', 'happy-elementor-addons' ),
             ]
         );
 
         $this->add_control(
 			'pagination_color_active',
 			[
-				'label' => esc_html__( 'Color', 'plugin-name' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-archive-posts-pagination .page-numbers.current' => 'color: {{VALUE}}',
 				],
@@ -1207,8 +1205,8 @@ class Archive_Posts extends Base {
         $this->add_control(
             'pagination_space_between',
             [
-                'label' => esc_html__('Space Between (px)', 'plugin-name'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label' => esc_html__('Space Between (px)', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
                     'px' => [
@@ -1226,8 +1224,8 @@ class Archive_Posts extends Base {
         $this->add_control(
             'pagination_spacing',
             [
-                'label' => esc_html__('Spacing (px)', 'plugin-name'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label' => esc_html__('Spacing (px)', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
                     'px' => [
