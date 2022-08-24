@@ -17,7 +17,11 @@ class Widgets_Manager {
 	 * Initialize
 	 */
 	public static function init() {
-		 add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register'] );
+		if(version_compare(ELEMENTOR_VERSION, '3.5.0', '>=')) {
+			add_action( 'elementor/widgets/register', [__CLASS__, 'register'] );
+		}else {
+			add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register'] );
+		}
 		add_action( 'elementor/frontend/before_render', [__CLASS__, 'add_global_widget_render_attributes'] );
 	}
 
@@ -1129,7 +1133,7 @@ class Widgets_Manager {
 	 *
 	 * @access public
 	 */
-	public static function register() {
+	public static function register( $widgets_manager = null ) {
 		 include_once HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php';
 		include_once HAPPY_ADDONS_DIR_PATH . 'traits/button-renderer.php';
 		include_once HAPPY_ADDONS_DIR_PATH . 'traits/link-hover-markup.php';
@@ -1139,12 +1143,12 @@ class Widgets_Manager {
 
 		foreach ( self::get_local_widgets_map() as $widget_key => $data ) {
 			if ( ! in_array( $widget_key, $inactive_widgets ) ) {
-				self::register_widget( $widget_key );
+				self::register_widget( $widget_key, $widgets_manager );
 			}
 		}
 	}
 
-	protected static function register_widget( $widget_key ) {
+	protected static function register_widget( $widget_key, $widgets_manager = null ) {
 		$widget_file = HAPPY_ADDONS_DIR_PATH . 'widgets/' . $widget_key . '/widget.php';
 
 		if ( is_readable( $widget_file ) ) {
@@ -1153,7 +1157,11 @@ class Widgets_Manager {
 
 			$widget_class = '\Happy_Addons\Elementor\Widget\\' . str_replace( '-', '_', $widget_key );
 			if ( class_exists( $widget_class ) ) {
-				ha_elementor()->widgets_manager->register_widget_type( new $widget_class() );
+				if(version_compare(ELEMENTOR_VERSION, '3.5.0', '>=')) {
+					$widgets_manager->register( new $widget_class() );
+				}else {
+					ha_elementor()->widgets_manager->register_widget_type( new $widget_class() );
+				}
 			}
 		}
 	}
