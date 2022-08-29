@@ -217,11 +217,12 @@ class Clone_Handler {
 	public static function register_finder( Categories_Manager $categories_manager ) {
 		include_once HAPPY_ADDONS_DIR_PATH . 'classes/finder-edit.php';
 
+		$categories_manager->register( new Finder_Edit() );
 		if(version_compare(ELEMENTOR_VERSION, '3.5.0', '>=')) {
-			$categories_manager->register( new Finder_Edit() );
-		}else {
-			$categories_manager->add_category( 'edit', new Finder_Edit() );
-		}
+		// 	$categories_manager->register( new Finder_Edit() );
+		// }else {
+		// 	$categories_manager->add_category( 'edit', new Finder_Edit() );
+		// }
 
 	}
 

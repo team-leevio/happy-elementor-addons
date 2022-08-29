@@ -146,13 +146,15 @@ class Base {
 		$Select2 = __NAMESPACE__ . '\Controls\Select2';
 		$Widget_List = __NAMESPACE__ . '\Controls\Widget_List';
 		
-		if(version_compare(ELEMENTOR_VERSION, '3.5.0', '>=')) {
-			ha_elementor()->controls_manager->register( new $Select2() );
-			ha_elementor()->controls_manager->register( new $Widget_List() );
-		}else {
-			ha_elementor()->controls_manager->register_control( $Select2::TYPE, new $Select2() );
-			ha_elementor()->controls_manager->register_control( $Widget_List::TYPE, new $Widget_List() );
-		}
+		ha_elementor()->controls_manager->register( new $Select2() );
+		ha_elementor()->controls_manager->register( new $Widget_List() );
+		// if(version_compare(ELEMENTOR_VERSION, '3.5.0', '>=')) {
+		// 	ha_elementor()->controls_manager->register( new $Select2() );
+		// 	ha_elementor()->controls_manager->register( new $Widget_List() );
+		// }else {
+		// 	ha_elementor()->controls_manager->register_control( $Select2::TYPE, new $Select2() );
+		// 	ha_elementor()->controls_manager->register_control( $Widget_List::TYPE, new $Widget_List() );
+		// }
 
 		$Text_Stroke = __NAMESPACE__ . '\Controls\Group_Control_Text_Stroke';
 		$controls_Manager->add_group_control( $Text_Stroke::get_type(), new $Text_Stroke() );

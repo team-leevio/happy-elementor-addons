@@ -17,11 +17,12 @@ class Widgets_Manager {
 	 * Initialize
 	 */
 	public static function init() {
-		if(version_compare(ELEMENTOR_VERSION, '3.5.0', '>=')) {
-			add_action( 'elementor/widgets/register', [__CLASS__, 'register'] );
-		}else {
-			add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register'] );
-		}
+		add_action( 'elementor/widgets/register', [__CLASS__, 'register'] );
+		// if(version_compare(ELEMENTOR_VERSION, '3.5.0', '>=')) {
+		// 	add_action( 'elementor/widgets/register', [__CLASS__, 'register'] );
+		// }else {
+		// 	add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register'] );
+		// }
 		add_action( 'elementor/frontend/before_render', [__CLASS__, 'add_global_widget_render_attributes'] );
 	}
 
@@ -1157,11 +1158,12 @@ class Widgets_Manager {
 
 			$widget_class = '\Happy_Addons\Elementor\Widget\\' . str_replace( '-', '_', $widget_key );
 			if ( class_exists( $widget_class ) ) {
-				if(version_compare(ELEMENTOR_VERSION, '3.5.0', '>=')) {
-					$widgets_manager->register( new $widget_class() );
-				}else {
-					ha_elementor()->widgets_manager->register_widget_type( new $widget_class() );
-				}
+				$widgets_manager->register( new $widget_class() );
+				// if(version_compare(ELEMENTOR_VERSION, '3.5.0', '>=')) {
+				// 	$widgets_manager->register( new $widget_class() );
+				// }else {
+				// 	ha_elementor()->widgets_manager->register_widget_type( new $widget_class() );
+				// }
 			}
 		}
 	}
