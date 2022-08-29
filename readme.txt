@@ -1,12 +1,12 @@
 === Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget) ===
 Plugin Name: Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget)
-Version: 3.6.3
+Version: 3.7.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Mega Menu
 Requires at least: 4.7
-Tested up to: 6.0
+Tested up to: 6.0.1
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -548,6 +548,11 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.7.0 - 29 August 2022 =
+
+- New: Scroll To Top - Feature
+- Tweak: Compatiable with elementor 3.7.x
 
 = 3.6.3 - 10 August 2022 =
 
