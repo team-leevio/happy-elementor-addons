@@ -19,7 +19,7 @@ class Widgets_Manager {
 	public static function init() {
 		// for preventing error from happy addons pro
 		// TODO: Need to remove it in our future release. for elementor 4.3.x
-		add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register'] );
+		// add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register'] );
 		// original hook for register widgets
 		add_action( 'elementor/widgets/register', [__CLASS__, 'register'] );
 		// if(version_compare(ELEMENTOR_VERSION, '3.5.0', '>=')) {
