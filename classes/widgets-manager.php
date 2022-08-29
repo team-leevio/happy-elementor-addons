@@ -17,6 +17,10 @@ class Widgets_Manager {
 	 * Initialize
 	 */
 	public static function init() {
+		// for preventing error from happy addons pro
+		// TODO: Need to remove it in our future release. for elementor 4.3.x
+		add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register'] );
+		// original hook for register widgets
 		add_action( 'elementor/widgets/register', [__CLASS__, 'register'] );
 		// if(version_compare(ELEMENTOR_VERSION, '3.5.0', '>=')) {
 		// 	add_action( 'elementor/widgets/register', [__CLASS__, 'register'] );
@@ -1135,7 +1139,7 @@ class Widgets_Manager {
 	 * @access public
 	 */
 	public static function register( $widgets_manager = null ) {
-		 include_once HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php';
+		include_once HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php';
 		include_once HAPPY_ADDONS_DIR_PATH . 'traits/button-renderer.php';
 		include_once HAPPY_ADDONS_DIR_PATH . 'traits/link-hover-markup.php';
 		include_once HAPPY_ADDONS_DIR_PATH . 'traits/creative-button-markup.php';
