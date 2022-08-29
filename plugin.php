@@ -134,11 +134,16 @@ function ha_elementor_missing_notice() {
  * @return void
  */
 function ha_required_elementor_version_missing_notice() {
+
+    $notice_title = __('Update Elementor', 'happy-elementor-addons');
+    $notice_url = wp_nonce_url(self_admin_url('update.php?action=upgrade-plugin&plugin=elementor/elementor.php'), 'upgrade-plugin_elementor/elementor.php');
+
     $notice = sprintf(
         /* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
-        esc_html__('"%1$s" requires "%2$s" version %3$s or greater.', 'happy-elementor-addons'),
+        esc_html__('"%1$s" requires "%2$s" version %4$s or greater. %3$s', 'happy-elementor-addons'),
         '<strong>' . esc_html__('Happy Elementor Addons', 'happy-elementor-addons') . '</strong>',
         '<strong>' . esc_html__('Elementor', 'happy-elementor-addons') . '</strong>',
+        '<a href="' . esc_url($notice_url) . '">' . $notice_title . '</a>',
         HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION
     );
 
