@@ -1,4 +1,4 @@
-= 3.7.0 - 29 August 2022 =
+= 3.7.0 - 30 August 2022 =
 
 - New: Scroll To Top - Feature
 - Tweak: Introduce `elementor/widgets/register` hook for making it compatiable with elementor 3.7.x
