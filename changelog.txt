@@ -1,3 +1,10 @@
+= 3.7.* - 01 September 2022 =
+
+- Fix: Threesixty rotation & Taxonomy List are not working as template.
+
+- New: Scroll To Top - Feature
+- Tweak: Introduce `elementor/widgets/register` hook for making it compatible with elementor 3.7.x
+
 = 3.7.0 - 30 August 2022 =
 
 - New: Scroll To Top - Feature

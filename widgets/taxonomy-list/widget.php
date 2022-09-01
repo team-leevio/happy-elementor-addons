@@ -583,6 +583,7 @@ class Taxonomy_List extends Base {
 			[
 				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
+				'default' => '#000000',
 				'selectors' => [
 					'{{WRAPPER}} .ha-taxonomy-list-title' => 'color: {{VALUE}}',
 				],
@@ -628,7 +629,7 @@ class Taxonomy_List extends Base {
 			[
 				'label' => __( 'Icon Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
-				'default' => '',
+				'default' => '#000000',
 				'selectors' => [
 					'{{WRAPPER}} span.ha-taxonomy-list-icon' => 'color: {{VALUE}};',
 					'{{WRAPPER}} span.ha-taxonomy-list-icon svg' => 'fill: {{VALUE}};',
