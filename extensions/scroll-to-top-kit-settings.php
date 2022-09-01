@@ -6,6 +6,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Box_Shadow;
 use Elementor\Core\Responsive\Responsive;
 use Elementor\Core\Kits\Documents\Tabs\Tab_Base;
 
@@ -16,7 +17,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 	}
 
 	public function get_title() {
-		return __( 'Scroll to Top', 'happy-elementor-addons' ) . '<span style="margin: 0 15px 0 0;display: inline-block;float: right;">'.ha_get_section_icon().'</spna>';
+		return __( 'Scroll to Top', 'happy-elementor-addons' ) . '<span style="margin: 0 15px 0 0;display: inline-block;float: right;">' . ha_get_section_icon() . '</spna>';
 	}
 
 	public function get_icon() {
@@ -35,7 +36,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 		$this->start_controls_section(
 			'ha_scroll_to_top_kit_section',
 			[
-				'tab' => 'ha-scroll-to-top-kit-settings',
+				'tab'   => 'ha-scroll-to-top-kit-settings',
 				'label' => __( 'Scroll to Top', 'happy-elementor-addons' ),
 			]
 		);
@@ -43,10 +44,10 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 		$this->add_control(
 			'ha_scroll_to_top_global',
 			[
-				'type' => Controls_Manager::SWITCHER,
-				'label' => __( 'Enable Scroll To Top', 'happy-elementor-addons' ),
-				'default' => '',
-				'label_on' => __( 'Show', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => __( 'Enable Scroll To Top', 'happy-elementor-addons' ),
+				'default'   => '',
+				'label_on'  => __( 'Show', 'happy-elementor-addons' ),
 				'label_off' => __( 'Hide', 'happy-elementor-addons' ),
 			]
 		);
@@ -136,7 +137,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'left: {{SIZE}}{{UNIT}}',
 				],
 				'condition'  => [
-					'ha_scroll_to_top_global'               => 'yes',
+					'ha_scroll_to_top_global'        => 'yes',
 					'ha_scroll_to_top_position_text' => 'bottom-left',
 				],
 			]
@@ -173,7 +174,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'right: {{SIZE}}{{UNIT}}',
 				],
 				'condition'  => [
-					'ha_scroll_to_top_global'               => 'yes',
+					'ha_scroll_to_top_global'        => 'yes',
 					'ha_scroll_to_top_position_text' => 'bottom-right',
 				],
 			]
@@ -284,19 +285,78 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 		);
 
 		$this->add_control(
+			'ha_scroll_to_top_media_type',
+			[
+				'label'          => __( 'Media Type', 'happy-elementor-addons' ),
+				'type'           => Controls_Manager::CHOOSE,
+				'label_block'    => false,
+				'options'        => [
+					'icon'  => [
+						'title' => __( 'Icon', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-star',
+					],
+					'image' => [
+						'title' => __( 'Image', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-image',
+					],
+					'text'  => [
+						'title' => __( 'Text', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-animation-text',
+					],
+				],
+				'default'        => 'icon',
+				'separator'      => 'before',
+				'toggle'         => false,
+				'style_transfer' => true,
+			]
+		);
+
+		$this->add_control(
 			'ha_scroll_to_top_button_icon',
 			[
-				'label'     => esc_html__( 'Icon', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::ICONS,
-				'default'   => [
+				'label'                  => esc_html__( 'Icon', 'happy-elementor-addons' ),
+				'type'                   => Controls_Manager::ICONS,
+				'show_label'             => false,
+				'default'                => [
 					'value'   => 'fas fa-chevron-up',
 					'library' => 'fa-solid',
 				],
-				'skin' => 'inline',
+				'skin'                   => 'inline',
 				'exclude_inline_options' => [ 'svg' ],
-				'separator' => 'before',
-				'condition' => [
-					'ha_scroll_to_top_global' => 'yes',
+				'condition'              => [
+					'ha_scroll_to_top_global'     => 'yes',
+					'ha_scroll_to_top_media_type' => 'icon',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_image',
+			[
+				'label'      => __( 'Image', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::MEDIA,
+				'show_label' => false,
+				'dynamic'    => [
+					'active' => true,
+				],
+				'condition'  => [
+					'ha_scroll_to_top_global'     => 'yes',
+					'ha_scroll_to_top_media_type' => 'image',
+				],
+			]
+		);
+
+		$this->add_control(
+			'ha_scroll_to_top_button_text',
+			[
+				'label'       => __( 'Text', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::TEXT,
+				'show_label'  => false,
+				'label_block' => true,
+				'default'     => 'Top',
+				'condition'   => [
+					'ha_scroll_to_top_global'     => 'yes',
+					'ha_scroll_to_top_media_type' => 'text',
 				],
 			]
 		);
@@ -330,9 +390,9 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
-				'name'       => 'ha_scroll_to_top_button_border',
-				'exclude'    => ['color'], //remove border color
-				'selector'   => '{{WRAPPER}} .ha-scroll-to-top-wrap .ha-scroll-to-top-button',
+				'name'      => 'ha_scroll_to_top_button_border',
+				'exclude'   => ['color'], //remove border color
+				'selector'  => '{{WRAPPER}} .ha-scroll-to-top-wrap .ha-scroll-to-top-button',
 				'condition' => [
 					'ha_scroll_to_top_global' => 'yes',
 				],
@@ -352,7 +412,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 		$this->start_controls_tab(
 			'ha_scroll_to_top_tab_normal',
 			[
-				'label' => __( 'Normal', 'happy-elementor-addons' ),
+				'label'     => __( 'Normal', 'happy-elementor-addons' ),
 				'condition' => [
 					'ha_scroll_to_top_global' => 'yes',
 				],
@@ -374,15 +434,13 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 			]
 		);
 
-		$this->add_control(
-			'ha_scroll_to_top_button_bg_color',
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
 			[
-				'label'     => __( 'Background Color', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '#5636d1',
-				'selectors' => [
-					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'background-color: {{VALUE}}',
-				],
+				'name'      => 'ha_scroll_to_top_button_bg_color',
+				'types'     => [ 'classic', 'gradient' ],
+				'exclude'   => [ 'image' ],
+				'selector'  => '.ha-scroll-to-top-wrap .ha-scroll-to-top-button',
 				'condition' => [
 					'ha_scroll_to_top_global' => 'yes',
 				],
@@ -409,7 +467,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 		$this->start_controls_tab(
 			'ha_scroll_to_top_tab_hover',
 			[
-				'label' => __( 'Hover', 'happy-elementor-addons' ),
+				'label'     => __( 'Hover', 'happy-elementor-addons' ),
 				'condition' => [
 					'ha_scroll_to_top_global' => 'yes',
 				],
@@ -446,6 +504,19 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name'      => 'ha_scroll_to_top_button_bg_hvr_color',
+				'types'     => [ 'classic', 'gradient' ],
+				'exclude'   => [ 'image' ],
+				'selector'  => '.ha-scroll-to-top-wrap .ha-scroll-to-top-button:hover',
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
 		$this->add_control(
 			'ha_scroll_to_top_button_hvr_border_color',
 			[
@@ -468,23 +539,26 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 			'ha_scroll_to_top_button_border_radius',
 			[
 				'label'      => __( 'Border Radius', 'happy-elementor-addons' ),
-				'type'       => Controls_Manager::SLIDER,
+				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px'],
-				'range'      => [
-					'px' => [
-						'min'  => 0,
-						'max'  => 100,
-						'step' => 1,
-					],
-				],
-				'default'    => [
-					'unit' => 'px',
-					'size' => 50,
-				],
 				'selectors'  => [
-					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'border-radius: {{SIZE}}{{UNIT}}',
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'condition'  => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name'      => 'ha_scroll_to_top_button_box_shadow',
+				'exclude'   => [
+					'box_shadow_position',
+				],
+				'selector'  => '.ha-scroll-to-top-wrap .ha-scroll-to-top-button',
+				'condition' => [
 					'ha_scroll_to_top_global' => 'yes',
 				],
 			]

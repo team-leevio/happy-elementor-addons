@@ -75,10 +75,17 @@ class Scroll_To_Top {
 		}
 
 		//error_log( print_r( $scroll_to_top , 1 ) );
+		echo '<pre>';
+		var_dump( ha_elementor()->preview->is_preview_mode() );
+		echo '</pre>';
 
-		if ( $scroll_to_top ) {
+
+		if ( ! ha_elementor()->preview->is_preview_mode() && $scroll_to_top ) {
 
 			$scroll_to_top_icon = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_icon' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_icon' )['value'] : '';
+			echo '<pre>';
+			var_dump($scroll_to_top_icon);
+			echo '</pre>';
 			$scroll_to_top_icon_html  = "<i class='$scroll_to_top_icon'></i>";
 
 			$scroll_to_top_html = "<div class='ha-scroll-to-top-wrap ha-scroll-to-top-hide'><span class='ha-scroll-to-top-button'>$scroll_to_top_icon_html</span></div>";
@@ -90,6 +97,30 @@ class Scroll_To_Top {
 				'!function(o){"use strict";o((function(){o(this).scrollTop()>100&&o(".ha-scroll-to-top-wrap").removeClass("ha-scroll-to-top-hide"),o(window).scroll((function(){o(this).scrollTop()<100?o(".ha-scroll-to-top-wrap").fadeOut(300):o(".ha-scroll-to-top-wrap").fadeIn(300)})),o(".ha-scroll-to-top-wrap").on("click",(function(){return o("html, body").animate({scrollTop:0},300),!1}))}))}(jQuery);'
 			);
 		}
+
+		if ( ha_elementor()->preview->is_preview_mode() ) {
+			?>
+			<script>
+				var markup = '<div class="ha-scroll-to-top-wrap"><span class="ha-scroll-to-top-button"><i class="fas fa-chevron-up"></i></span></div>';
+                window.addEventListener('message',function(e){
+					var data = e.data;
+					var changeValue = data.changeValue;
+
+                    console.log(data);
+					if( 'sttMessage' == data.check ){
+						console.log('Icon Changed');
+						var stt = jQuery('.ha-scroll-to-top-wrap');
+						if ( ! stt.length ) {
+							jQuery('body').append(markup);
+						}
+						//jQuery('.ha-scroll-to-top-button i').remove();
+						//jQuery('body').append(markup);
+					}
+                })
+            </script>
+            <?php
+        }
+
 	}
 
 	public function elementor_get_setting( $setting_id ) {

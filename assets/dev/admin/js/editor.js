@@ -145,13 +145,20 @@
 				.addClass('is-ha-widget');
 		}, 100));
 
-		function scroll_to_top_reloadPreview (newValue) {
+		function scroll_to_top_reloadPreview (newValue,agfasd) {
 			// console.log(newValue);
 			// $e.run( 'document/save/publish' )
-			$e.run( 'document/save/update' ).then( _.debounce( function () {
-				elementor.reloadPreview();
-				// location.reload();
-			}, 1500));
+			// $e.run( 'document/save/update' ).then( _.debounce( function () {
+			// 	elementor.reloadPreview();
+			// 	// location.reload();
+			// }, 1500));
+			var message = {
+				'check' : 'sttMessage',
+				'changeValue' : newValue
+			};
+			console.log(message,agfasd);
+
+			$("#elementor-preview-iframe")[0].contentWindow.postMessage(message);
 		}
 		elementor.settings.page.addChangeCallback("ha_scroll_to_top_global", scroll_to_top_reloadPreview);
 		elementor.settings.page.addChangeCallback("ha_scroll_to_top_button_icon", scroll_to_top_reloadPreview);
