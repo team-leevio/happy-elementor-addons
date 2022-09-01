@@ -75,17 +75,17 @@ class Scroll_To_Top {
 		}
 
 		//error_log( print_r( $scroll_to_top , 1 ) );
-		echo '<pre>';
-		var_dump( ha_elementor()->preview->is_preview_mode() );
-		echo '</pre>';
+		// echo '<pre>';
+		// var_dump( ha_elementor()->preview->is_preview_mode() );
+		// echo '</pre>';
 
 
 		if ( ! ha_elementor()->preview->is_preview_mode() && $scroll_to_top ) {
 
 			$scroll_to_top_icon = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_icon' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_icon' )['value'] : '';
-			echo '<pre>';
-			var_dump($scroll_to_top_icon);
-			echo '</pre>';
+			// echo '<pre>';
+			// var_dump($scroll_to_top_icon);
+			// echo '</pre>';
 			$scroll_to_top_icon_html  = "<i class='$scroll_to_top_icon'></i>";
 
 			$scroll_to_top_html = "<div class='ha-scroll-to-top-wrap ha-scroll-to-top-hide'><span class='ha-scroll-to-top-button'>$scroll_to_top_icon_html</span></div>";
