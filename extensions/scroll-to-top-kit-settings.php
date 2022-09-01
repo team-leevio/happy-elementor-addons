@@ -321,8 +321,8 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'value'   => 'fas fa-chevron-up',
 					'library' => 'fa-solid',
 				],
-				'skin'                   => 'inline',
-				'exclude_inline_options' => [ 'svg' ],
+				// 'skin'                   => 'inline',
+				// 'exclude_inline_options' => [ 'svg' ],
 				'condition'              => [
 					'ha_scroll_to_top_global'     => 'yes',
 					'ha_scroll_to_top_media_type' => 'icon',
