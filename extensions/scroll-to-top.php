@@ -38,7 +38,7 @@ class Scroll_To_Top {
 			'ha_scroll_to_top_single_disable',
 			[
 				'label'        => __( 'Disable Scroll to Top', 'happy-elementor-addons' ),
-				'description'        => __( 'Disable Scroll to Top For This Page', 'happy-elementor-addons' ),
+				'description'  => __( 'Disable Scroll to Top For This Page', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => '',
 				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
@@ -53,7 +53,7 @@ class Scroll_To_Top {
 	public function render_scroll_to_top_html() {
 
 		$post_id                = get_the_ID();
-		$document = [];
+		$document               = [];
 		$document_settings_data = [];
 
 		$document = \Elementor\Plugin::$instance->documents->get( $post_id, false );
@@ -78,15 +78,13 @@ class Scroll_To_Top {
 		// echo '<pre>';
 		// var_dump( ha_elementor()->preview->is_preview_mode() );
 		// echo '</pre>';
-
-
 		if ( ! ha_elementor()->preview->is_preview_mode() && $scroll_to_top ) {
 
 			$scroll_to_top_icon = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_icon' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_icon' )['value'] : '';
 			// echo '<pre>';
 			// var_dump($scroll_to_top_icon);
 			// echo '</pre>';
-			$scroll_to_top_icon_html  = "<i class='$scroll_to_top_icon'></i>";
+			$scroll_to_top_icon_html = "<i class='$scroll_to_top_icon'></i>";
 
 			$scroll_to_top_html = "<div class='ha-scroll-to-top-wrap ha-scroll-to-top-hide'><span class='ha-scroll-to-top-button'>$scroll_to_top_icon_html</span></div>";
 
@@ -102,11 +100,11 @@ class Scroll_To_Top {
 			?>
 			<script>
 				var markup = '<div class="ha-scroll-to-top-wrap"><span class="ha-scroll-to-top-button"><i class="fas fa-chevron-up"></i></span></div>';
-                window.addEventListener('message',function(e){
+				window.addEventListener('message',function(e){
 					var data = e.data;
 					var changeValue = data.changeValue;
 
-                    console.log(data);
+					console.log(data);
 					if( 'sttMessage' == data.check ){
 						console.log('Icon Changed');
 						var stt = jQuery('.ha-scroll-to-top-wrap');
@@ -116,10 +114,10 @@ class Scroll_To_Top {
 						//jQuery('.ha-scroll-to-top-button i').remove();
 						//jQuery('body').append(markup);
 					}
-                })
-            </script>
-            <?php
-        }
+				})
+			</script>
+			<?php
+		}
 
 	}
 
