@@ -394,6 +394,10 @@ body.elementor-editor-active {
     display: none;
 }
 
+.ha-scroll-to-top-wrap.edit-mode {
+    display: none!important;
+}
+
 .ha-scroll-to-top-button {
     position: fixed;
     cursor: pointer;

@@ -308,6 +308,9 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 				'separator'      => 'before',
 				'toggle'         => false,
 				'style_transfer' => true,
+				'condition' => [
+					'ha_scroll_to_top_global' => 'yes',
+				],
 			]
 		);
 
@@ -427,6 +430,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 				'default'   => '#ffffff',
 				'selectors' => [
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button i' => 'color: {{VALUE}}',
+					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button span' => 'color: {{VALUE}}',
 				],
 				'condition' => [
 					'ha_scroll_to_top_global' => 'yes',
