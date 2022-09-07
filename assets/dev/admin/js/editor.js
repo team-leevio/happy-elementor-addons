@@ -166,7 +166,7 @@
 					'text' : settings.ha_scroll_to_top_button_text,
 				};
 
-				console.log(stt_data);
+				// console.log(stt_data);
 				// this.save();
 
 			// var message = {
@@ -176,18 +176,6 @@
 			// console.log(message);
 
 			console.log(this);
-			// console.log(this.onModelChange('ha_scroll_to_top_global'));
-			// console.log(this.getDataToSave());
-			// console.log(this.getContainerId());
-			// console.log(this.getContainerType());
-			// console.log(this.getConstructorID());
-			//console.log(this.model.changed);
-			// console.log(this.getItems('ha_scroll_to_top_button_icon'));
-			// console.log(this.getSettings());
-			// console.log(this.getSettings().settings('ha_scroll_to_top_button_icon'));
-			// console.log(this.getSettings().settings('ha_scroll_to_top_single_disable'));
-			// console.log(this.getSettings().settings);
-			// console.log(this.getSettings().settings.ha_scroll_to_top_media_type);
 
 			$("#elementor-preview-iframe")[0].contentWindow.postMessage(stt_data);
 		}

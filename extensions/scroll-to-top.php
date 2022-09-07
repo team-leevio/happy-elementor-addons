@@ -21,10 +21,10 @@ class Scroll_To_Top {
 
 	public function scroll_to_top_controls( $element ) {
 
-		$scroll_to_top_global = $this->elementor_get_setting( 'ha_scroll_to_top_global' );
-		if ( 'yes' !== $scroll_to_top_global ) {
-			return;
-		}
+		// $scroll_to_top_global = $this->elementor_get_setting( 'ha_scroll_to_top_global' );
+		// if ( 'yes' !== $scroll_to_top_global ) {
+		// 	return;
+		// }
 
 		$element->start_controls_section(
 			'ha_scroll_to_top_single_section',
@@ -75,26 +75,29 @@ class Scroll_To_Top {
 		}
 
 		//error_log( print_r( $scroll_to_top , 1 ) );
-		// echo '<pre>';
-		// var_dump( ha_elementor()->preview->is_preview_mode() );
-		// echo '</pre>';
+		echo '<pre>';
+		var_dump( $scroll_to_top_global );
+		var_dump( $this->elementor_get_setting( 'site_name' ) );
+		var_dump( $document_settings_data['ha_scroll_to_top_single_disable'] );
+		echo '</pre>';
 		if ( ! ha_elementor()->preview->is_preview_mode() && $scroll_to_top ) {
 
 			$stt_media_type = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_media_type' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_media_type' ) : 'icon';
-			$stt_icon = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_icon' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_icon' )['value'] : 'fas fa-chevron-up';
-			$stt_image = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_image' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_image' )['url'] : '';
-			$stt_text = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_text' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_text' )['url'] : '';
+			$stt_icon_html = '';
+			if ( 'icon' == $stt_media_type ) {
+				$stt_icon      = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_icon' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_icon' )['value'] : 'fas fa-chevron-up';
+				$stt_icon_html = "<i class='$stt_icon'></i>";
+			} elseif ( 'image' == $stt_media_type ) {
+				$stt_image = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_image' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_image' )['url'] : '';
+				$stt_icon_html = "<img src='$stt_image'>";
+			} elseif ( 'text' == $stt_media_type ) {
+				$stt_text      = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_text' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_text' )['url'] : '';
+				$stt_icon_html = "<span>'$stt_text'</span>";
+			}
+
 			// echo '<pre>';
 			// var_dump($stt_icon);
 			// echo '</pre>';
-
-			if( 'icon' == $stt_media_type ) {
-				$stt_icon_html = "<i class='$stt_icon'></i>";
-			} elseif( 'image' == $stt_media_type ) {
-				$stt_icon_html == "<img src='$stt_image'>";
-			} elseif( 'text' == $stt_media_type ) {
-				$stt_icon_html = "<span>'$stt_text'</span>";
-			}
 
 			$scroll_to_top_html = "<div class='ha-scroll-to-top-wrap ha-scroll-to-top-hide'><span class='ha-scroll-to-top-button'>$stt_icon_html</span></div>";
 
@@ -110,7 +113,7 @@ class Scroll_To_Top {
 			// echo '<pre>';
 			// var_dump($scroll_to_top);
 			// echo '</pre>';
-			if( $scroll_to_top ){
+			if ( $scroll_to_top ) {
 				$scroll_to_top_icon = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_icon' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_icon' )['value'] : 'fas fa-chevron-up';
 				// echo '<pre>';
 				// var_dump($scroll_to_top_icon);
@@ -132,6 +135,8 @@ class Scroll_To_Top {
 					'use strict';
 					var markup = '<div class="ha-scroll-to-top-wrap edit-mode ha-scroll-to-top-hide"><span class="ha-scroll-to-top-button"><i class="fas fa-chevron-up"></i></span></div>';
 					var stt = jQuery('.ha-scroll-to-top-wrap');
+					console.log(stt);
+
 					if ( ! stt.length ) {
 						jQuery('body').append(markup);
 					}
@@ -143,12 +148,12 @@ class Scroll_To_Top {
 							var button = sttWrap.find('.ha-scroll-to-top-button');
 							var changeValue = data.changeValue;
 							var changeItem = data.changeItem;
-							var isObject = (typeof changeValue === 'object' && changeValue !== nul);
+							//var isObject = (typeof changeValue === 'object' && changeValue !== nul);
 							var icon = '';
 							var image = '';
 							var text = '';
 
-							console.log(changeItem[0]);
+							// console.log(changeItem[0]);
 							var items = {
 								'enable_global_stt' : ('ha_scroll_to_top_global' == changeItem[0]) ? changeValue : data.enable_global_stt,
 								'media_type' : ('ha_scroll_to_top_media_type' == changeItem[0]) ? changeValue : data.media_type,
@@ -157,6 +162,15 @@ class Scroll_To_Top {
 								'text' : ('ha_scroll_to_top_button_text' == changeItem[0]) ? changeValue : data.text,
 							};
 							console.log(items);
+
+
+							if( 'ha_scroll_to_top_button_icon' == changeItem[0] ) {
+								items.media_type = 'icon';
+							} else if( 'ha_scroll_to_top_button_image' == changeItem[0] ) {
+								items.media_type = 'image';
+							} else if( 'ha_scroll_to_top_button_text' == changeItem[0] ) {
+								items.media_type = 'text';
+							}
 
 
 							if( 'icon' == items.media_type ) {
