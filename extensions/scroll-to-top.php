@@ -78,7 +78,7 @@ class Scroll_To_Top {
 		echo '<pre>';
 		var_dump( $scroll_to_top_global );
 		var_dump( $this->elementor_get_setting( 'site_name' ) );
-		var_dump( $document_settings_data['ha_scroll_to_top_single_disable'] );
+		// var_dump( $document_settings_data['ha_scroll_to_top_single_disable'] );
 		echo '</pre>';
 		if ( ! ha_elementor()->preview->is_preview_mode() && $scroll_to_top ) {
 
@@ -91,7 +91,7 @@ class Scroll_To_Top {
 				$stt_image = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_image' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_image' )['url'] : '';
 				$stt_icon_html = "<img src='$stt_image'>";
 			} elseif ( 'text' == $stt_media_type ) {
-				$stt_text      = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_text' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_text' )['url'] : '';
+				$stt_text      = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_text' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_text' ) : '';
 				$stt_icon_html = "<span>'$stt_text'</span>";
 			}
 
@@ -206,7 +206,7 @@ class Scroll_To_Top {
 		$return = '';
 
 		if ( ! isset( $hello_elementor_settings['kit_settings'] ) ) {
-			$kit                                      = \Elementor\Plugin::$instance->documents->get( \Elementor\Plugin::$instance->kits_manager->get_active_id(), false );
+			$kit  = \Elementor\Plugin::$instance->documents->get( \Elementor\Plugin::$instance->kits_manager->get_active_id(), false );
 			$hello_elementor_settings['kit_settings'] = $kit->get_settings();
 		}
 
