@@ -153,18 +153,27 @@
 			// 	elementor.reloadPreview();
 			// 	// location.reload();
 			// }, 1500));
-			var settings = this.getSettings().settings,
-				stt_data = {
-					'check' : 'sttMessage',
-					'changeValue' : newValue,
-					'changeItem' : Object.entries( this.model.changed )[0],
-					// 'changeItem' : Object.keys(this.model.changed)[0],
+			var settings = this.getSettings().settings;
+			var changeItem = Object.entries( this.model.changed )[0];
+
+			var stt_data = {
+				'check' : 'sttMessage',
+				'changeValue' : newValue,
+				'changeItem' : changeItem
+			};
+
+			if( 'ha_scroll_to_top_single_disable' != changeItem[0] ) {
+				var data = {
 					'enable_global_stt' : settings.ha_scroll_to_top_global,
 					'media_type' : settings.ha_scroll_to_top_media_type,
 					'icon' : settings.ha_scroll_to_top_button_icon,
 					'image' : settings.ha_scroll_to_top_button_image,
 					'text' : settings.ha_scroll_to_top_button_text,
 				};
+				stt_data = Object.assign(stt_data, data);
+			}
+
+			console.log( stt_data );
 
 				// console.log(stt_data);
 				// this.save();
@@ -175,7 +184,7 @@
 			// };
 			// console.log(message);
 
-			console.log(this);
+			//console.log(this);
 
 			$("#elementor-preview-iframe")[0].contentWindow.postMessage(stt_data);
 		}
