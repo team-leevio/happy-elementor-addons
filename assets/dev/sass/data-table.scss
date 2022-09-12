@@ -177,6 +177,12 @@
 
 @media(max-width:767px) {
 
+	.ha-data-table-responsive-scroll-yes .ha-table {
+		width: 100%;
+		overflow-x: auto;
+		display: block;
+	}
+
 	.ha-data-table {
 		.ha-table__head {
 			display: none;
@@ -252,6 +258,25 @@
 				justify-content: center;
 			}
 		}
+	}
+	
+	.ha-data-table-responsive-scroll-yes .ha-table .ha-table__head {
+		display: revert;
+	}
+	
+	.ha-data-table-responsive-scroll-yes .ha-table__body .ha-table__body-row {
+		display: revert;
+		flex-direction: unset;
+	}
+	
+	.ha-data-table-responsive-scroll-yes .ha-table__body .ha-table__head-column-cell {
+		display: none;
+	}
+
+	.ha-data-table-responsive-scroll-yes .ha-table__body .ha-table__body-row-cell {
+		display: revert;
+		justify-content: unset;
+		padding: 20px !important;
 	}
 
 }

@@ -275,6 +275,19 @@ class Data_Table extends Base {
 			]
 		);
 
+		$this->add_control(
+			'show_title',
+			[
+				'label' => esc_html__( 'Enable Responsive Scroll View', 'happy-elementor-addons' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => esc_html__( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+				'prefix_class' => 'ha-data-table-responsive-scroll-',
+			]
+		);
+
 		$this->end_controls_section();
 	}
 
