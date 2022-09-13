@@ -278,13 +278,14 @@ class Data_Table extends Base {
 		$this->add_control(
 			'show_responsive_scroll_view',
 			[
-				'label' => esc_html__( 'Enable Responsive Scroll View', 'happy-elementor-addons' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'happy-elementor-addons' ),
-				'label_off' => esc_html__( 'No', 'happy-elementor-addons' ),
+				'label' => __( 'Enable Scroll View', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => __( 'No', 'happy-elementor-addons' ),
 				'return_value' => 'yes',
 				'default' => 'no',
 				'prefix_class' => 'ha-data-table-responsive-scroll-',
+				'description' => __('Enable the switch to activate horizontal scrolling on responsive view.', 'happy-elementor-addons'),
 			]
 		);
 
