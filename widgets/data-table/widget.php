@@ -276,7 +276,7 @@ class Data_Table extends Base {
 		);
 
 		$this->add_control(
-			'show_title',
+			'show_responsive_scroll_view',
 			[
 				'label' => esc_html__( 'Enable Responsive Scroll View', 'happy-elementor-addons' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
