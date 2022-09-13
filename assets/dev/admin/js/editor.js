@@ -153,9 +153,10 @@
 			// 	elementor.reloadPreview();
 			// 	// location.reload();
 			// }, 1500));
-			var settings = this.getSettings().settings;
 			var changeItem = Object.entries( this.model.changed )[0];
-
+			var settings = this.getSettings().settings;
+			var attributes = this.model.attributes;
+			// this.model.setExternalChange('ha_grid', 'yes')
 			var stt_data = {
 				'check' : 'sttMessage',
 				'changeValue' : newValue,
@@ -164,16 +165,33 @@
 
 			if( 'ha_scroll_to_top_single_disable' != changeItem[0] ) {
 				var data = {
-					'enable_global_stt' : settings.ha_scroll_to_top_global,
-					'media_type' : settings.ha_scroll_to_top_media_type,
-					'icon' : settings.ha_scroll_to_top_button_icon,
-					'image' : settings.ha_scroll_to_top_button_image,
-					'text' : settings.ha_scroll_to_top_button_text,
+					'enable_global_stt' : attributes.ha_scroll_to_top_global,
+					'media_type' : attributes.ha_scroll_to_top_media_type,
+					'icon' : attributes.ha_scroll_to_top_button_icon,
+					'image' : attributes.ha_scroll_to_top_button_image,
+					'text' : attributes.ha_scroll_to_top_button_text,
 				};
 				stt_data = Object.assign(stt_data, data);
 			}
 
+			// if( 'ha_scroll_to_top_single_disable' != changeItem[0] ) {
+			// 	var data = {
+			// 		'enable_global_stt' : settings.ha_scroll_to_top_global,
+			// 		'media_type' : settings.ha_scroll_to_top_media_type,
+			// 		'icon' : settings.ha_scroll_to_top_button_icon,
+			// 		'image' : settings.ha_scroll_to_top_button_image,
+			// 		'text' : settings.ha_scroll_to_top_button_text,
+			// 	};
+			// 	stt_data = Object.assign(stt_data, data);
+			// }
+
 			console.log( stt_data );
+
+			// console.log(this);
+			// console.log(attributes);
+			// console.log(this.model.controls);
+			// console.log(this.model.getControl('ha_scroll_to_top_button_text'));
+			//console.log(this.setSetting());
 
 				// console.log(stt_data);
 				// this.save();
@@ -183,8 +201,6 @@
 			//
 			// };
 			// console.log(message);
-
-			//console.log(this);
 
 			$("#elementor-preview-iframe")[0].contentWindow.postMessage(stt_data);
 		}
