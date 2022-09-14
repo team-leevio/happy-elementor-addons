@@ -71,11 +71,39 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'label_on'  => __( 'Show', 'happy-elementor-addons' ),
 					'label_off' => __( 'Hide', 'happy-elementor-addons' ),
 					'selectors_dictionary' => [
-						'' => 'display: none!important;',
-						'yes' => '',
+						'' => 'visibility: hidden; opacity: 0;',
+						'yes' => 'visibility: visible; opacity: 1;',
+						// '' => 'display: none!important;',
+						// 'yes' => '',
 					],
 					'selectors'  => [
-						'.ha-scroll-to-top-wrap, .ha-scroll-to-top-wrap.edit-mode, .ha-scroll-to-top-wrap.single-page-off' => '{{VALUE}}',
+						'body[data-elementor-device-mode="widescreen"] .ha-scroll-to-top-wrap,
+						body[data-elementor-device-mode="widescreen"] .ha-scroll-to-top-wrap.edit-mode,
+						body[data-elementor-device-mode="widescreen"] .ha-scroll-to-top-wrap.single-page-off' => '{{VALUE}}',
+
+						'body[data-elementor-device-mode="desktop"] .ha-scroll-to-top-wrap,
+						body[data-elementor-device-mode="desktop"] .ha-scroll-to-top-wrap.edit-mode,
+						body[data-elementor-device-mode="desktop"] .ha-scroll-to-top-wrap.single-page-off' => '{{VALUE}}',
+
+						'body[data-elementor-device-mode="laptop"] .ha-scroll-to-top-wrap,
+						body[data-elementor-device-mode="laptop"] .ha-scroll-to-top-wrap.edit-mode,
+						body[data-elementor-device-mode="laptop"] .ha-scroll-to-top-wrap.single-page-off' => '{{VALUE}}',
+
+						'body[data-elementor-device-mode="tablet_extra"] .ha-scroll-to-top-wrap,
+						body[data-elementor-device-mode="tablet_extra"] .ha-scroll-to-top-wrap.edit-mode,
+						body[data-elementor-device-mode="tablet_extra"] .ha-scroll-to-top-wrap.single-page-off' => '{{VALUE}}',
+
+						'body[data-elementor-device-mode="tablet"] .ha-scroll-to-top-wrap,
+						body[data-elementor-device-mode="tablet"] .ha-scroll-to-top-wrap.edit-mode,
+						body[data-elementor-device-mode="tablet"] .ha-scroll-to-top-wrap.single-page-off' => '{{VALUE}}',
+
+						'body[data-elementor-device-mode="mobile_extra"] .ha-scroll-to-top-wrap,
+						body[data-elementor-device-mode="mobile_extra"] .ha-scroll-to-top-wrap.edit-mode,
+						body[data-elementor-device-mode="mobile_extra"] .ha-scroll-to-top-wrap.single-page-off' => '{{VALUE}}',
+
+						'body[data-elementor-device-mode="mobile"] .ha-scroll-to-top-wrap,
+						body[data-elementor-device-mode="mobile"] .ha-scroll-to-top-wrap.edit-mode,
+						body[data-elementor-device-mode="mobile"] .ha-scroll-to-top-wrap.single-page-off' => '{{VALUE}}',
 					],
 					// 'selectors'  => [
 					// 	'.ha-scroll-to-top-wrap, .ha-scroll-to-top-wrap.edit-mode, .ha-scroll-to-top-wrap.single-page-off' => 'display: {{VALUE}}!important;',

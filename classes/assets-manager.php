@@ -392,7 +392,7 @@ class Assets_Manager {
 	 * @return void
 	 */
 	public static function editor_enqueue() {
-		$suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
+
 		wp_enqueue_style(
 			'happy-icons',
 			HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
@@ -409,7 +409,7 @@ class Assets_Manager {
 
 		wp_enqueue_script(
 			'happy-elementor-addons-editor',
-			HAPPY_ADDONS_ASSETS . 'admin/js/editor' . $suffix . 'js',
+			HAPPY_ADDONS_ASSETS . 'admin/js/editor.min.js',
 			['elementor-editor', 'jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
