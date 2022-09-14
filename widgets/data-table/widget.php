@@ -288,6 +288,20 @@ class Data_Table extends Base {
 				'description' => __('Enable the switch to activate horizontal scrolling on responsive view.', 'happy-elementor-addons'),
 			]
 		);
+		
+		$this->add_control(
+			'disable_word_wrap',
+			[
+				'label' => __( 'Disable Word Wrap', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+				'prefix_class' => 'ha-data-table-disable-wordwrap-',
+				'condition' => [ 'show_responsive_scroll_view' => 'yes' ],
+			]
+		);
 
 		$this->end_controls_section();
 	}
