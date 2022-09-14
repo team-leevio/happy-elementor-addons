@@ -157,10 +157,6 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 						'step' => 1,
 					],
 				],
-				'default'    => [
-					'unit' => 'px',
-					'size' => 15,
-				],
 				'selectors'  => [
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'bottom: {{SIZE}}{{UNIT}}',
 				],
@@ -193,11 +189,8 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 						'step' => 1,
 					],
 				],
-				'default'    => [
-					'unit' => 'px',
-					'size' => 15,
-				],
 				'selectors'  => [
+					'.ha-scroll-to-top-button' => 'left: 15px',
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'left: {{SIZE}}{{UNIT}}',
 				],
 				'condition'  => [
@@ -230,10 +223,6 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 						'step' => 1,
 					],
 				],
-				'default'    => [
-					'unit' => 'px',
-					'size' => 15,
-				],
 				'selectors'  => [
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'right: {{SIZE}}{{UNIT}}',
 				],
@@ -256,10 +245,6 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 						'max'  => 1000,
 						'step' => 1,
 					],
-				],
-				'default'    => [
-					'unit' => 'px',
-					'size' => 50,
 				],
 				'selectors'  => [
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'width: {{SIZE}}{{UNIT}};',
@@ -284,10 +269,6 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 						'step' => 1,
 					],
 				],
-				'default'    => [
-					'unit' => 'px',
-					'size' => 50,
-				],
 				'selectors'  => [
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'height: {{SIZE}}{{UNIT}};',
 				],
@@ -310,10 +291,6 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 						'step' => 10,
 					],
 				],
-				'default'    => [
-					'unit' => 'px',
-					'size' => 9999,
-				],
 				'selectors'  => [
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'z-index: {{SIZE}}',
 				],
@@ -334,10 +311,6 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 						'max'  => 1,
 						'step' => 0.01,
 					],
-				],
-				'default'   => [
-					'unit' => 'px',
-					'size' => 0.7,
 				],
 				'selectors' => [
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'opacity: {{SIZE}};',
@@ -433,10 +406,6 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 			[
 				'label'      => __( 'Size', 'happy-elementor-addons' ),
 				'type'       => Controls_Manager::SLIDER,
-				'default'    => [
-					'size' => 16,
-					'unit' => 'px',
-				],
 				'size_units' => ['px'],
 				'range'      => [
 					'px' => [
@@ -506,7 +475,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 			[
 				'label'     => __( 'Color', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#ffffff',
+				'default'   => '',
 				'selectors' => [
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button i' => 'color: {{VALUE}}',
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button span' => 'color: {{VALUE}}',
@@ -563,7 +532,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 			[
 				'label'     => __( 'Color', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#ffffff',
+				'default'   => '',
 				'selectors' => [
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button:hover i' => 'color: {{VALUE}}',
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button:hover span' => 'color: {{VALUE}}',
@@ -571,21 +540,6 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 				'condition' => [
 					'ha_scroll_to_top_global' => 'yes',
 					'ha_scroll_to_top_media_type!' => 'image',
-				],
-			]
-		);
-
-		$this->add_control(
-			'ha_scroll_to_top_button_bg_hvr_color',
-			[
-				'label'     => __( 'Background Color', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '#5636d1',
-				'selectors' => [
-					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button:hover' => 'background-color: {{VALUE}}',
-				],
-				'condition' => [
-					'ha_scroll_to_top_global' => 'yes',
 				],
 			]
 		);
