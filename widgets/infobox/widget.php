@@ -273,7 +273,10 @@ class InfoBox extends Base {
 				'selectors' => [
 					'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-infobox-media-dir-left .ha-infobox-figure' => '{{VALUE}};',
 					'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-infobox-media-dir-tablet-left .ha-infobox-figure' => '{{VALUE}};',
-					'body[data-elementor-device-mode="mobile"] {{WRAPPER}}.ha-infobox-media-dir-mobile-left .ha-infobox-figure' => '{{VALUE}};'
+					'body[data-elementor-device-mode="mobile"] {{WRAPPER}}.ha-infobox-media-dir-mobile-left .ha-infobox-figure' => '{{VALUE}};',
+					'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-infobox-media-dir-left .ha-info-box-icon' => '{{VALUE}};',
+					'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-infobox-media-dir-tablet-left .ha-info-box-icon' => '{{VALUE}};',
+					'body[data-elementor-device-mode="mobile"] {{WRAPPER}}.ha-infobox-media-dir-mobile-left .ha-info-box-icon' => '{{VALUE}};',
 				]
 			]
 		);
