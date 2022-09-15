@@ -237,7 +237,7 @@ class Data_Table extends Base {
 						'icon' => 'eicon-text-align-right',
 					]
 				],
-				'default' => 'center',
+				'default' => 'left',
 				'toggle' => false,
 				'prefix_class' => 'ha-column-alignment-',
 				'selectors' => [
@@ -292,7 +292,7 @@ class Data_Table extends Base {
 		$this->add_control(
 			'disable_word_wrap',
 			[
-				'label' => __( 'Disable Word Wrap', 'happy-elementor-addons' ),
+				'label' => __( 'Disable Word Break', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
 				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
 				'label_off' => __( 'No', 'happy-elementor-addons' ),

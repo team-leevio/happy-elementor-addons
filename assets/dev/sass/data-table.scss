@@ -260,7 +260,8 @@
 		}
 	}
 	
-	.ha-data-table-disable-wordwrap-yes .ha-table__body-row-cell {
+	.ha-data-table-disable-wordwrap-yes .ha-table__body-row-cell,
+	.ha-data-table-disable-wordwrap-yes .ha-table__head-column-cell {
 		white-space: nowrap;
 	}
 	
