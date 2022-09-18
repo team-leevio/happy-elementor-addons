@@ -224,6 +224,30 @@ class Post_Tab extends Base {
 		);
 
 		$this->add_control(
+			'show_user_meta',
+			[
+				'label'        => __( 'Show User Meta', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __( 'Show', 'happy-elementor-addons' ),
+				'label_off'    => __( 'Hide', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default'      => 'yes',
+			]
+		);
+		
+		$this->add_control(
+			'show_date_meta',
+			[
+				'label'        => __( 'Show Date Meta', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __( 'Show', 'happy-elementor-addons' ),
+				'label_off'    => __( 'Hide', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default'      => 'yes',
+			]
+		);
+
+		$this->add_control(
 			'excerpt',
 			[
 				'label'        => __( 'Show Excerpt', 'happy-elementor-addons' ),
@@ -963,23 +987,39 @@ class Post_Tab extends Base {
 											esc_html( $post->post_title )
 										);
 									?>
-									<div class="ha-post-tab-meta">
-										<span class="ha-post-tab-meta-author">
-											<i class="fa fa-user-o"></i>
-											<a href="<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
-										</span>
-										<?php
-										$archive_year  = get_the_time( 'Y', $post->ID );
-										$archive_month = get_the_time( 'm', $post->ID );
-										$archive_day   = get_the_time( 'd', $post->ID );
-										?>
-										<span class="ha-post-tab-meta-date">
-											<i class="fa fa-calendar-o"></i>
-											<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>">
-											<?php echo get_the_date( get_option( 'date_format' ), $post->ID ); ?>
-										</a>
-										</span>
-									</div>
+
+									<?php 
+										if( ( 'yes' == $settings['show_user_meta'] ) || ( 'yes' == $settings['show_date_meta'] ) ) { ?>
+											<div class="ha-post-tab-meta">
+												<?php 
+													if( 'yes' == $settings['show_user_meta'] ) { ?>
+														<span class="ha-post-tab-meta-author">
+															<i class="fa fa-user-o"></i>
+															<a href="<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
+														</span>
+												<?php } ?>
+												
+												
+												<?php
+													if( 'yes' == $settings['show_date_meta'] ) {
+
+													$archive_year  = get_the_time( 'Y', $post->ID );
+													$archive_month = get_the_time( 'm', $post->ID );
+													$archive_day   = get_the_time( 'd', $post->ID );
+												?>
+
+													<span class="ha-post-tab-meta-date">
+														<i class="fa fa-calendar-o"></i>
+														<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>">
+															<?php echo get_the_date( get_option( 'date_format' ), $post->ID ); ?>
+														</a>
+													</span>
+
+												<?php } ?>
+
+											</div>
+									<?php } ?>
+
 									<?php if ( 'yes' === $settings['excerpt'] && ! empty( $post->post_excerpt ) ) : ?>
 										<div class="ha-post-tab-excerpt">
 											<p><?php echo esc_html( $post->post_excerpt ); ?></p>
