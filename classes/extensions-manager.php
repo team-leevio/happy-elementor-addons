@@ -164,6 +164,12 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/text-stroke/',
 				'is_pro' => false,
 			],
+			'scroll-to-top' => [
+				'title' => __( 'Scroll To Top', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-scroll-top',
+				// 'demo' => 'https://happyaddons.com/text-stroke/',
+				'is_pro' => false,
+			],
 		];
 	}
 

@@ -232,6 +232,10 @@ class Threesixty_Rotation extends Base {
 						'max' => 100,
 					],
 				],
+				'default' => [
+					'unit' => '%',
+					'size' => 100,
+				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-threesixty-rotation-wrapper' => 'width: {{SIZE}}{{UNIT}};',
 				],

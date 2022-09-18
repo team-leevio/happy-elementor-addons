@@ -389,3 +389,29 @@ body.elementor-editor-active {
 		}
 	}
 }
+
+.ha-scroll-to-top-wrap.ha-scroll-to-top-hide {
+    display: none;
+}
+
+.ha-scroll-to-top-button {
+    position: fixed;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    z-index: 9999;
+    opacity: 0.7;
+    background-color: #5636d1;
+    border-radius: 50px;
+	transition: all 0.3s;
+}
+
+.ha-scroll-to-top-button i {
+    font-size: 16px;
+    color: #ffffff;
+}

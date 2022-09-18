@@ -73,7 +73,7 @@ class Widgets_Extended {
 		$widget->add_control(
 			'ha_fixed_size_toggle',
 			[
-				'label' => __( 'Fixed Size', 'happy-elementor-addons' ),
+				'label' => __( 'Fixed Size', 'happy-elementor-addons' ) . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
 				'type' => Controls_Manager::POPOVER_TOGGLE,
 				'return_value' => 'yes',
 			]
