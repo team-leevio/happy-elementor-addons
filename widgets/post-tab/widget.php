@@ -163,7 +163,7 @@ class Post_Tab extends Base {
 		);
 		
 		$this->add_control(
-			'post_tab_query_id',
+			'query_id',
 			[
 				'label'   => __( 'Query ID', 'happy-elementor-addons' ),
 				'type'    => Controls_Manager::TEXT,
@@ -931,8 +931,8 @@ class Post_Tab extends Base {
 		];
 
 		//define ha post tab custom query filter hook
-		if ( !empty( $settings['post_tab_query_id'] ) ) {
-			$args = apply_filters( "ha/elementor/post-tab/query_{$settings['post_tab_query_id']}", $args );
+		if ( !empty( $settings['query_id'] ) ) {
+			$args = apply_filters( "happyaddons/post-tab/query_{$settings['query_id']}", $args );
 		}
 
 		$posts = get_posts( $args );
