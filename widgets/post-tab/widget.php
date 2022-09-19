@@ -932,7 +932,7 @@ class Post_Tab extends Base {
 
 		//define ha post tab custom query filter hook
 		if ( !empty( $settings['post_tab_query_id'] ) ) {
-			$args = apply_filters( "ha/elementor/post-tab/query_{$settings['post_tab_query_id']}", $args, $this );
+			$args = apply_filters( "ha/elementor/post-tab/query_{$settings['post_tab_query_id']}", $args );
 		}
 
 		$posts = get_posts( $args );
