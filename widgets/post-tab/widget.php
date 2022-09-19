@@ -923,7 +923,7 @@ class Post_Tab extends Base {
 		$args['posts_per_page'] = $settings['item_limit'];
 		$args['suppress_filters'] = false;
 
-		$args['tax_query'][] = [
+		$args['tax_query'] = [
 			'taxonomy' => $taxonomy,
 			'field'    => 'term_id',
 			// 'terms' => $terms_ids ? $filter_list[0]->term_id : '',
@@ -932,7 +932,7 @@ class Post_Tab extends Base {
 
 		//define ha post tab custom query filter hook
 		if ( !empty( $settings['query_id'] ) ) {
-			$args = apply_filters( "happyaddons/post-tab/query_{$settings['query_id']}", $args );
+			$args = apply_filters( "happyaddons/post-tab/{$settings['query_id']}", $args );
 		}
 
 		$posts = get_posts( $args );
