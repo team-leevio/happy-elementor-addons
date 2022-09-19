@@ -161,6 +161,17 @@ class Post_Tab extends Base {
 				'dynamic' => [ 'active' => true ],
 			]
 		);
+		
+		$this->add_control(
+			'post_tab_query_id',
+			[
+				'label'   => __( 'Query ID', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::TEXT,
+				'default' => '',
+				'dynamic' => [ 'active' => true ],
+				'description' => __( 'Give your Query a custom unique id to allow server side filtering.', 'happy-elementor-addons' ),
+			]
+		);
 
 		$this->end_controls_section();
 
@@ -907,22 +918,24 @@ class Post_Tab extends Base {
 
 		$filter_list = get_terms( $terms_args );
 
-		$post_args = [
-			'post_status'      => 'publish',
-			'post_type'        => $settings['post_type'],
-			'posts_per_page'   => $settings['item_limit'],
-			'suppress_filters' => false,
-			'tax_query'        => array(
-				array(
-					'taxonomy' => $taxonomy,
-					'field'    => 'term_id',
-					// 'terms' => $terms_ids ? $filter_list[0]->term_id : '',
-					'terms'    => isset( $filter_list[0]->term_id ) ? $filter_list[0]->term_id : '',
-				),
-			),
+		$args['post_status'] = 'publish';
+		$args['post_type'] = $settings['post_type'];
+		$args['posts_per_page'] = $settings['item_limit'];
+		$args['suppress_filters'] = false;
+
+		$args['tax_query'][] = [
+			'taxonomy' => $taxonomy,
+			'field'    => 'term_id',
+			// 'terms' => $terms_ids ? $filter_list[0]->term_id : '',
+			'terms'    => isset( $filter_list[0]->term_id ) ? $filter_list[0]->term_id : '',
 		];
 
-		$posts = get_posts( $post_args );
+		//define ha post tab custom query filter hook
+		if ( !empty( $settings['post_tab_query_id'] ) ) {
+			$args = apply_filters( "ha/elementor/post-tab/query_{$settings['post_tab_query_id']}", $args, $this );
+		}
+
+		$posts = get_posts( $args );
 
 		$query_settings = [
 			'post_type'  => $settings['post_type'],
