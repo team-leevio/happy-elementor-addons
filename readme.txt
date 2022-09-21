@@ -360,19 +360,19 @@ Here are the **[Doc](https://happyaddons.com/docs/happy-addons-for-elementor-pro
 * **EDD Category Carousel Elementor Widget** - If you are wondering about adding EDD product carousels within Elementor, it will be impossible as there is no default support of Elementor for the Easy Digital Download plugin. But if you use Happy Addons for Elementor, you will get the opportunity to add category carousels for your EDD stores. You can create lucrative category carousels for your EDD stores using the EDD category carousel elementor widget.
 Check **[Doc](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-category-carousel/)** and **[Video](https://www.youtube.com/watch?v=-CgXyA-g9q0&feature=youtu.be&ab_channel=HappyAddons)** Documentation for EDD Category Carousel Elementor Widget.
 
-* **[EDD Cart Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-cart/):** If you are using Easy Digital Downloads to manage your sale now, you can design your EDD cart page using HappyAddons EDD Cart Widget for Elementor.
+* **[EDD Cart Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-cart/)** - If you are using Easy Digital Downloads to manage your sale now, you can design your EDD cart page using HappyAddons EDD Cart Widget for Elementor.
 
-* **[EDD Checkout Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-checkout/):** Manage your Easy Digital Downloads Checkout pages by using HappyAddons EDD Checkout Widget. A limitless customization facility has been added to this EDD checkout elementor widget.
+* **[EDD Checkout Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-checkout/)** - Manage your Easy Digital Downloads Checkout pages by using HappyAddons EDD Checkout Widget. A limitless customization facility has been added to this EDD checkout elementor widget.
 
-* **[EDD login Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-login/):** You can customize your EDD store’s login page by using HappyAddons Easy Digital Download Login Widget within Elementor website builder.
+* **[EDD login Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-login/)** - You can customize your EDD store’s login page by using HappyAddons Easy Digital Download Login Widget within Elementor website builder.
 
-* **[EDD Registration Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-register/):** HappyAddons EDD Registration Widget allows you to customize the registration form of the Easy Digital Downloads. You can manage it from your Elementor Editing Panel. 
+* **[EDD Registration Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-register/)** - HappyAddons EDD Registration Widget allows you to customize the registration form of the Easy Digital Downloads. You can manage it from your Elementor Editing Panel. 
 
-* **[EDD Purchase WIdget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-purchase/):** EDD purchase widget of HappyAddons gives you the flexibility to stylize your Easy Digital Download store’s purchase page within Elementor.
+* **[EDD Purchase WIdget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-purchase/)** - EDD purchase widget of HappyAddons gives you the flexibility to stylize your Easy Digital Download store’s purchase page within Elementor.
 
-* **[EDD Download Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-download/):** If you want to customize your EDD store’s download page with Elementor, then use HappyAddons EDD Download Widget. 
+* **[EDD Download Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-download/)** - If you want to customize your EDD store’s download page with Elementor, then use HappyAddons EDD Download Widget. 
 
-* **[Image Swap Widget](https://demo.happyaddons.com/elementor-image-swap-widget-demo/):** If you are looking for an Elementor Widget which can help you to alter the lower image to the top without any hassle, then you can use HappyAddons Image Swap Widget. It will help you to create an actionable section for your users on your Elementor Website. 
+* **[Image Swap Widget](https://demo.happyaddons.com/elementor-image-swap-widget-demo/)** - If you are looking for an Elementor Widget which can help you to alter the lower image to the top without any hassle, then you can use HappyAddons Image Swap Widget. It will help you to create an actionable section for your users on your Elementor Website. 
 
 ### **UNIQUE PRO FEATURES OF HAPPY ELEMENTOR ADDONS TO WATCH OUT FOR**
 
@@ -571,13 +571,13 @@ For a more detailed explanation check out the following documentation
 
 = 3.7.1 - 21 September 2022 =
 
-- Tweak: Scroll To Top feature enhancements like custom icon, text support, control for disable it based on devices and disable autoload on setting change.
+- Tweak: Scroll To Top feature enhancements like customizing the icon, text, and image, and enable or disable the feature for different devices. Plus, we've fixed the page refresh issue when making changes to the settings
 - Tweak: Horizontal scrolling on Data Table mobile responsive view.
 - Tweak: Word Break Option Introduce on Data Table mobile responsive view.
 - Tweak: Meta items Removal option in Post Tab Widget.
 - Tweak: Advance Post Queries & Query ID integration with the Post Tab Widgets.
 - Tweak: Info Box Widget, media position responsive control.
-- Fix: Threesixty rotation & Taxonomy List are not working as template.
+- Fix: Threesixty rotation & Taxonomy List are not working as a template.
 
 = 3.7.0 - 30 August 2022 =
 
