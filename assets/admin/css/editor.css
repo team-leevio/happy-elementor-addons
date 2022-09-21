@@ -82,3 +82,11 @@
 .elementor-button.ha-btn--promotion:not([disabled]) {
 	background-color: #e04d8b !important;
 }
+
+.elementor-control.elementor-control-ha_scroll_to_top_button_icon.elementor-control-type-icons label.elementor-choices-label.tooltip-target.elementor-control-icons--inline__none {
+	display: none;
+}
+
+.elementor-control.elementor-control-ha_scroll_to_top_button_icon.elementor-control-type-icons .elementor-control-media__tools.elementor-control-dynamic-switcher-wrapper {
+	display: none;
+}

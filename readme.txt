@@ -1,12 +1,12 @@
 === Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget) ===
 Plugin Name: Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget)
-Version: 3.7.0
+Version: 3.7.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Mega Menu
 Requires at least: 4.7
-Tested up to: 6.0.1
+Tested up to: 6.0.2
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -160,9 +160,9 @@ Our elementor card widget will help you to create mesmerizing card items within 
 
 * **[Comparison Table](https://demo.happyaddons.com/elementor-comparison-table-widget-demo/)** - The comparison table will help your site visitors to buy your product, sign up for membership, contact, or just request a quote. Are you wondering about creating comparison tables for your affiliated products, gadgets, features, services, or anything related to your website? Try HappyAddons new comparison table widget for Elementor. It’s available in the free version of HappyAddons for Elementor.
 
-* **[Photo Stack](https://demo.happyaddons.com/elementor-photo-stack-widget-demo/): **Happy Elementor Adsdons Photo Stack Elementor Widget will help you achieve a critical layout of Images where you don’t have to use multiple columns and intersections to achieve that. With the help of the Photo Stack Elementor widget, you can easily achieve the layered image style without any technical knowledge. Showcase multiple layered images within the Elementor website by using the photo stack widget for Elementor by team HappyAddons.
+* **[Photo Stack](https://demo.happyaddons.com/elementor-photo-stack-widget-demo/)** - Happy Elementor Adsdons Photo Stack Elementor Widget will help you achieve a critical layout of Images where you don’t have to use multiple columns and intersections to achieve that. With the help of the Photo Stack Elementor widget, you can easily achieve the layered image style without any technical knowledge. Showcase multiple layered images within the Elementor website by using the photo stack widget for Elementor by team HappyAddons.
 
-* **[Lord Icon](https://demo-x.happyaddons.com/elementor-lordicon-widget-demo/)**: Lord icon is a very much popular element in the web development industry. We often use this feature to add an animated icon to our websites. But previously, it was not that much easy to add and customize the lord icons to the elementor website. But from now on, you can add the lord icon to your Elementor websites by using the HappyAddons lord Icon widget for ELementor. You can customize the color and other options directly from your elementor editing panel. Lord Icon Elementor WIdget can be used separately in any place on the website; also, we have added support to the lord icons in our Info Box Elementor Widget and Icon Box Elementor Widget. Use the Lord Icon Elementor Widget.
+* **[Lord Icon](https://demo-x.happyaddons.com/elementor-lordicon-widget-demo/)** - Lord icon is a very much popular element in the web development industry. We often use this feature to add an animated icon to our websites. But previously, it was not that much easy to add and customize the lord icons to the elementor website. But from now on, you can add the lord icon to your Elementor websites by using the HappyAddons lord Icon widget for ELementor. You can customize the color and other options directly from your elementor editing panel. Lord Icon Elementor WIdget can be used separately in any place on the website; also, we have added support to the lord icons in our Info Box Elementor Widget and Icon Box Elementor Widget. Use the Lord Icon Elementor Widget.
 
 **20+ Free Elementor Enhancement Features Are Available in the Happy Elementor Addons Free**
 
@@ -226,7 +226,7 @@ With the help of the Happy elementor addons floating effect extension, you can c
 
 **[CSS Transform](https://happyaddons.com/elementor-css-transform-demo-3/)** – Another missing piece, a great enhancement over core Elementor that works seamlessly with every widget. You can now apply various CSS transforms like translate, rotate, scale and skew without any limitations within any Elementor Widget also with any other third-party elementor addons. It’s a global feature of elementor created by Happy Addons for elementor. Don’t miss the chance to use the Happy Elementor addons CSS transform elementor module to create an extraordinary look for your elementor website.
 
-**[Scroll To Top Feature:](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/scroll-to-top-button/)**  Scroll to top feature is a commonly used feature in websites. We often use scroll-to-top plugins or use different methods to add that option to the web pages. But don’t worry, you can add this option to your websites within Elementor Editing Panel by using Happy Addons Scroll to the top feature. You can set the scroll to the top button for all pages or can set a condition for any specific page not to show the scroll to top button. Use happy addons for elementor’s scroll-to-top feature for free.
+**[Scroll To Top Feature:](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/scroll-to-top-button/)** - Scroll to top feature is a commonly used feature in websites. We often use scroll-to-top plugins or use different methods to add that option to the web pages. But don’t worry, you can add this option to your websites within Elementor Editing Panel by using Happy Addons Scroll to the top feature. You can set the scroll to the top button for all pages or can set a condition for any specific page not to show the scroll to top button. Use happy addons for elementor’s scroll-to-top feature for free.
 
 
 ### **PRESENTING THE ALL-EXCLUSIVE ElEMENTOR WIDGETS & FEATURES HAPPY ELEMENTOR ADDONS PRO**
@@ -568,6 +568,16 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.7.1 - 21 September 2022 =
+
+- Tweak: Scroll To Top feature enhancements like custom icon, text support, control for disable it based on devices and disable autoload on setting change.
+- Tweak: Horizontal scrolling on Data Table mobile responsive view.
+- Tweak: Word Break Option Introduce on Data Table mobile responsive view.
+- Tweak: Meta items Removal option in Post Tab Widget.
+- Tweak: Advance Post Queries & Query ID integration with the Post Tab Widgets.
+- Tweak: Info Box Widget, media position responsive control.
+- Fix: Threesixty rotation & Taxonomy List are not working as template.
 
 = 3.7.0 - 30 August 2022 =
 
