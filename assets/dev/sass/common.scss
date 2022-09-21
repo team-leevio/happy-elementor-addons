@@ -390,10 +390,10 @@ body.elementor-editor-active {
 	}
 }
 
+/* Scroll To Top css start */
 .ha-scroll-to-top-wrap.ha-scroll-to-top-hide {
     display: none;
 }
-
 .ha-scroll-to-top-wrap.edit-mode {
     display: none!important;
 }
@@ -401,7 +401,6 @@ body.elementor-editor-active {
 .ha-scroll-to-top-wrap.single-page-off {
     display: none!important;
 }
-
 .ha-scroll-to-top-button {
     position: fixed;
     cursor: pointer;
@@ -420,7 +419,6 @@ body.elementor-editor-active {
     border-radius: 50px;
 	transition: all 0.3s;
 }
-
 .ha-scroll-to-top-button i {
     font-size: 16px;
     color: #ffffff;
@@ -428,3 +426,4 @@ body.elementor-editor-active {
 .ha-scroll-to-top-button:hover {
     background-color: #E2498A;
 }
+/* Scroll To Top css End */

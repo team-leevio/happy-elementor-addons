@@ -145,18 +145,14 @@
 				.addClass('is-ha-widget');
 		}, 100));
 
-		function scroll_to_top_reloadPreview (newValue,agfasd) {
-			// console.log(newValue);
-			// $e.run( 'document/save/publish' );
-			//$e.run( 'document/save/update' );
+		function scrollToTop ( newValue ) {
 			// $e.run( 'document/save/update' ).then( _.debounce( function () {
 			// 	elementor.reloadPreview();
-			// 	// location.reload();
 			// }, 1500));
+
 			var changeItem = Object.entries( this.model.changed )[0];
-			var settings = this.getSettings().settings;
+			var settings = this.getSettings().settings; //get saved value
 			var attributes = this.model.attributes;
-			// this.model.setExternalChange('ha_grid', 'yes')
 			var stt_data = {
 				'check' : 'sttMessage',
 				'changeValue' : newValue,
@@ -172,44 +168,21 @@
 					'text' : attributes.ha_scroll_to_top_button_text,
 				};
 				stt_data = Object.assign(stt_data, data);
+			} else {
+				$e.run( 'document/save/update' ).then( _.debounce( function () {
+					elementor.reloadPreview();
+				}, 1500));
 			}
 
-			// if( 'ha_scroll_to_top_single_disable' != changeItem[0] ) {
-			// 	var data = {
-			// 		'enable_global_stt' : settings.ha_scroll_to_top_global,
-			// 		'media_type' : settings.ha_scroll_to_top_media_type,
-			// 		'icon' : settings.ha_scroll_to_top_button_icon,
-			// 		'image' : settings.ha_scroll_to_top_button_image,
-			// 		'text' : settings.ha_scroll_to_top_button_text,
-			// 	};
-			// 	stt_data = Object.assign(stt_data, data);
-			// }
-
-			console.log( stt_data );
-
-			// console.log(this);
-			// console.log(attributes);
-			// console.log(this.model.controls);
-			// console.log(this.model.getControl('ha_scroll_to_top_button_text'));
-			//console.log(this.setSetting());
-
-				// console.log(stt_data);
-				// this.save();
-
-			// var message = {
-			// 	'check' : 'sttMessage',
-			//
-			// };
-			// console.log(message);
-
+			//console.log( stt_data );
 			$("#elementor-preview-iframe")[0].contentWindow.postMessage(stt_data);
 		}
-		elementor.settings.page.addChangeCallback("ha_scroll_to_top_global", scroll_to_top_reloadPreview);
-		elementor.settings.page.addChangeCallback("ha_scroll_to_top_media_type", scroll_to_top_reloadPreview);
-		elementor.settings.page.addChangeCallback("ha_scroll_to_top_button_icon", scroll_to_top_reloadPreview);
-		elementor.settings.page.addChangeCallback("ha_scroll_to_top_button_image", scroll_to_top_reloadPreview);
-		elementor.settings.page.addChangeCallback("ha_scroll_to_top_button_text", scroll_to_top_reloadPreview);
-		elementor.settings.page.addChangeCallback("ha_scroll_to_top_single_disable", scroll_to_top_reloadPreview);
+
+		var changeHandler = [ "ha_scroll_to_top_global","ha_scroll_to_top_media_type","ha_scroll_to_top_button_icon","ha_scroll_to_top_button_image","ha_scroll_to_top_button_text","ha_scroll_to_top_single_disable" ];
+
+		$.each( changeHandler, function( index, value ) {
+			elementor.settings.page.addChangeCallback(value, scrollToTop);
+		});
 
 		/**
 		 * Register grid layer shortcut

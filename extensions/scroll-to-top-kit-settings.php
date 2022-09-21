@@ -1,14 +1,12 @@
 <?php
 namespace Happy_Addons\Elementor\Extension;
 
-use Elementor\Plugin;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Core\Schemes\Typography;
-use Elementor\Core\Responsive\Responsive;
 use Elementor\Core\Kits\Documents\Tabs\Tab_Base;
 
 class Scroll_To_Top_Kit_Setings extends Tab_Base {
@@ -54,7 +52,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 		);
 
 		// TODO: For Pro 3.6.0, convert this to the breakpoints utility method introduced in core 3.5.0.
-		$breakpoints = ha_elementor()->breakpoints->get_active_breakpoints();
+		$breakpoints    = ha_elementor()->breakpoints->get_active_breakpoints();
 		$device_default = [];
 		foreach ( $breakpoints as $breakpoint_key => $breakpoint ) {
 			$device_default[ $breakpoint_key . '_default' ] = 'yes';
@@ -64,19 +62,17 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 			'ha_scroll_to_top_responsive_visibility',
 			array_merge(
 				[
-					'type'      => Controls_Manager::SWITCHER,
-					'label'     => __( 'Responsive Visibility', 'happy-elementor-addons' ),
-					'default'   => 'yes',
-					'return_value'       => 'yes',
-					'label_on'  => __( 'Show', 'happy-elementor-addons' ),
-					'label_off' => __( 'Hide', 'happy-elementor-addons' ),
+					'type'                 => Controls_Manager::SWITCHER,
+					'label'                => __( 'Responsive Visibility', 'happy-elementor-addons' ),
+					'default'              => 'yes',
+					'return_value'         => 'yes',
+					'label_on'             => __( 'Show', 'happy-elementor-addons' ),
+					'label_off'            => __( 'Hide', 'happy-elementor-addons' ),
 					'selectors_dictionary' => [
-						'' => 'visibility: hidden; opacity: 0;',
+						''    => 'visibility: hidden; opacity: 0;',
 						'yes' => 'visibility: visible; opacity: 1;',
-						// '' => 'display: none!important;',
-						// 'yes' => '',
 					],
-					'selectors'  => [
+					'selectors'            => [
 						'body[data-elementor-device-mode="widescreen"] .ha-scroll-to-top-wrap,
 						body[data-elementor-device-mode="widescreen"] .ha-scroll-to-top-wrap.edit-mode,
 						body[data-elementor-device-mode="widescreen"] .ha-scroll-to-top-wrap.single-page-off' => '{{VALUE}}',
@@ -105,10 +101,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 						body[data-elementor-device-mode="mobile"] .ha-scroll-to-top-wrap.edit-mode,
 						body[data-elementor-device-mode="mobile"] .ha-scroll-to-top-wrap.single-page-off' => '{{VALUE}}',
 					],
-					// 'selectors'  => [
-					// 	'.ha-scroll-to-top-wrap, .ha-scroll-to-top-wrap.edit-mode, .ha-scroll-to-top-wrap.single-page-off' => 'display: {{VALUE}}!important;',
-					// ],
-					'condition'   => [
+					'condition'            => [
 						'ha_scroll_to_top_global' => 'yes',
 					],
 				],
@@ -345,7 +338,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 				'separator'      => 'before',
 				'toggle'         => false,
 				'style_transfer' => true,
-				'condition' => [
+				'condition'      => [
 					'ha_scroll_to_top_global' => 'yes',
 				],
 			]
@@ -354,16 +347,14 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 		$this->add_control(
 			'ha_scroll_to_top_button_icon',
 			[
-				'label'                  => esc_html__( 'Icon', 'happy-elementor-addons' ),
-				'type'                   => Controls_Manager::ICONS,
-				'show_label'             => false,
-				'default'                => [
+				'label'      => esc_html__( 'Icon', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::ICONS,
+				'show_label' => false,
+				'default'    => [
 					'value'   => 'fas fa-chevron-up',
 					'library' => 'fa-solid',
 				],
-				// 'skin'                   => 'inline',
-				// 'exclude_inline_options' => [ 'svg' ],
-				'condition'              => [
+				'condition'  => [
 					'ha_scroll_to_top_global'     => 'yes',
 					'ha_scroll_to_top_media_type' => 'icon',
 				],
@@ -419,7 +410,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button img' => 'height: {{SIZE}}{{UNIT}};width: {{SIZE}}{{UNIT}};',
 				],
 				'condition'  => [
-					'ha_scroll_to_top_global' => 'yes',
+					'ha_scroll_to_top_global'      => 'yes',
 					'ha_scroll_to_top_media_type!' => 'text',
 				],
 			]
@@ -428,11 +419,11 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'ha_scroll_to_top_button_text_typo',
-				'scheme' => Typography::TYPOGRAPHY_3,
-				'selector' => '.ha-scroll-to-top-wrap .ha-scroll-to-top-button span',
-				'condition'  => [
-					'ha_scroll_to_top_global' => 'yes',
+				'name'      => 'ha_scroll_to_top_button_text_typo',
+				'scheme'    => Typography::TYPOGRAPHY_3,
+				'selector'  => '.ha-scroll-to-top-wrap .ha-scroll-to-top-button span',
+				'condition' => [
+					'ha_scroll_to_top_global'     => 'yes',
 					'ha_scroll_to_top_media_type' => 'text',
 				],
 			]
@@ -481,7 +472,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button span' => 'color: {{VALUE}}',
 				],
 				'condition' => [
-					'ha_scroll_to_top_global' => 'yes',
+					'ha_scroll_to_top_global'      => 'yes',
 					'ha_scroll_to_top_media_type!' => 'image',
 				],
 			]
@@ -538,7 +529,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button:hover span' => 'color: {{VALUE}}',
 				],
 				'condition' => [
-					'ha_scroll_to_top_global' => 'yes',
+					'ha_scroll_to_top_global'      => 'yes',
 					'ha_scroll_to_top_media_type!' => 'image',
 				],
 			]
@@ -584,7 +575,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 				'selectors'  => [
 					'.ha-scroll-to-top-wrap .ha-scroll-to-top-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
-				'separator'   => 'before',
+				'separator'  => 'before',
 				'condition'  => [
 					'ha_scroll_to_top_global' => 'yes',
 				],
