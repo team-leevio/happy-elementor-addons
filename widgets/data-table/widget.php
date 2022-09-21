@@ -656,7 +656,7 @@ class Data_Table extends Base {
 				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
 				'label_off' => __( 'No', 'happy-elementor-addons' ),
 				'return_value' => 'yes',
-				'default' => 'no',
+				'default' => 'yes',
 				'prefix_class' => 'ha-data-table-disable-wordwrap-',
 				'condition' => [ 'show_responsive_scroll_view' => 'yes' ],
 				'description' => __('The word break option effective only mobile screen view.', 'happy-elementor-addons'),
@@ -841,6 +841,13 @@ class Data_Table extends Base {
 				'label' => __( 'Padding', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
+				'default' => [
+					'top' => 10,
+					'right' => 10,
+					'bottom' => 10,
+					'left' => 10,
+					'unit' => 'px',
+				],
 				'selectors' => [
 					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
