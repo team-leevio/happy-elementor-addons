@@ -258,8 +258,8 @@ class Assets_Manager {
 			true
 		);
 
-		
-		// Happy addons PDF JS 
+
+		// Happy addons PDF JS
 		wp_register_script(
 			'pdf-js',
 			'//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js',
@@ -267,7 +267,7 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			false
 		);
-		// Happy addons LordIcon JS 
+		// Happy addons LordIcon JS
 		wp_register_script(
 			'lord-icon',
 			HAPPY_ADDONS_ASSETS . 'vendor/lord-icon/lord-icon-2.1.0.js',
@@ -392,6 +392,7 @@ class Assets_Manager {
 	 * @return void
 	 */
 	public static function editor_enqueue() {
+
 		wp_enqueue_style(
 			'happy-icons',
 			HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
