@@ -1,6 +1,6 @@
 === Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget) ===
 Plugin Name: Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget)
-Version: 3.7.0
+Version: 3.7.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
@@ -568,6 +568,16 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.7.1 - 21 September 2022 =
+
+- Tweak: Scroll To Top feature enhancements like custom icon, text support, control for disable it based on devices and disable autoload on setting change.
+- Tweak: Horizontal scrolling on Data Table mobile responsive view.
+- Tweak: Word Break Option Introduce on Data Table mobile responsive view.
+- Tweak: Meta items Removal option in Post Tab Widget.
+- Tweak: Advance Post Queries & Query ID integration with the Post Tab Widgets.
+- Tweak: Info Box Widget, media position responsive control.
+- Fix: Threesixty rotation & Taxonomy List are not working as template.
 
 = 3.7.0 - 30 August 2022 =
 
