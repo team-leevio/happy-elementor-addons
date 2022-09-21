@@ -1,4 +1,4 @@
-= 3.7.* - 01 September 2022 =
+= 3.7.* - 21 September 2022 =
 
 - Tweak: Horizontal scrolling on Data Table mobile responsive view.
 - Tweak: Word Break Option Introduce on Data Table mobile responsive view.
