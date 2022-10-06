@@ -6,6 +6,7 @@
 - Tweak: Meta items Removal option in Post Tab Widget.
 - Tweak: Advance Post Queries & Query ID integration with the Post Tab Widgets.
 - Tweak: Info Box Widget, media position responsive control.
+- Tweak: Price Table widget's title tag changing option added.
 - Fix: Threesixty rotation & Taxonomy List are not working as a template.
 - Fix: Post list excerpt not showing.
 

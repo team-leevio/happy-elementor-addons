@@ -84,6 +84,42 @@ class Pricing_Table extends Base {
             ]
         );
 
+		$this->add_control(
+			'title_tag',
+			[
+				'label'   => __( 'Title HTML Tag', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::CHOOSE,
+				'options' => [
+					'h1' => [
+						'title' => __( 'H1', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-editor-h1',
+					],
+					'h2' => [
+						'title' => __( 'H2', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-editor-h2',
+					],
+					'h3' => [
+						'title' => __( 'H3', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-editor-h3',
+					],
+					'h4' => [
+						'title' => __( 'H4', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-editor-h4',
+					],
+					'h5' => [
+						'title' => __( 'H5', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-editor-h5',
+					],
+					'h6' => [
+						'title' => __( 'H6', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-editor-h6',
+					],
+				],
+				'default' => 'h2',
+				'toggle'  => false,
+			]
+		);
+
         $this->end_controls_section();
 	}
 
@@ -193,58 +229,77 @@ class Pricing_Table extends Base {
             ]
         );
 
-        $repeater = new Repeater();
+		$this->add_control(
+			'features_title_tag',
+			[
+				'label'   => __( 'Title HTML Tag', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::CHOOSE,
+				'options' => [
+					'h1' => [
+						'title' => __( 'H1', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-editor-h1',
+					],
+					'h2' => [
+						'title' => __( 'H2', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-editor-h2',
+					],
+					'h3' => [
+						'title' => __( 'H3', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-editor-h3',
+					],
+					'h4' => [
+						'title' => __( 'H4', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-editor-h4',
+					],
+					'h5' => [
+						'title' => __( 'H5', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-editor-h5',
+					],
+					'h6' => [
+						'title' => __( 'H6', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-editor-h6',
+					],
+				],
+				'default' => 'h4',
+				'toggle'  => false,
+			]
+		);
 
-        $repeater->add_control(
-            'text',
-            [
-                'label' => __( 'Text', 'happy-elementor-addons' ),
-                'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Exciting Feature', 'happy-elementor-addons' ),
-                'dynamic' => [
-                    'active' => true
-                ]
-            ]
-        );
+		$repeater = new Repeater();
 
-        if ( ha_is_elementor_version( '<', '2.6.0' ) ) {
-            $repeater->add_control(
-                'icon',
-                [
-                    'label' => __( 'Icon', 'happy-elementor-addons' ),
-                    'type' => Controls_Manager::ICON,
-                    'label_block' => false,
-                    'options' => ha_get_happy_icons(),
-                    'default' => 'fa fa-check',
-                    'include' => [
-                        'fa fa-check',
-                        'fa fa-close',
-                    ]
-                ]
-            );
-        } else {
-            $repeater->add_control(
-                'selected_icon',
-                [
-                    'label' => __( 'Icon', 'happy-elementor-addons' ),
-                    'type' => Controls_Manager::ICONS,
-                    'fa4compatibility' => 'icon',
-                    'default' => [
-                        'value' => 'fas fa-check',
-                        'library' => 'fa-solid',
-                    ],
-                    'recommended' => [
-                        'fa-regular' => [
-                            'check-square',
-                            'window-close',
-                        ],
-                        'fa-solid' => [
-                            'check',
-                        ]
-                    ]
-                ]
-            );
-        }
+		$repeater->add_control(
+			'text',
+			[
+				'label' => __( 'Text', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::TEXTAREA,
+				'default' => __( 'Exciting Feature', 'happy-elementor-addons' ),
+				'dynamic' => [
+					'active' => true
+				]
+			]
+		);
+
+		$repeater->add_control(
+			'selected_icon',
+			[
+				'label' => __( 'Icon', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::ICONS,
+				'fa4compatibility' => 'icon',
+				'default' => [
+					'value' => 'fas fa-check',
+					'library' => 'fa-solid',
+				],
+				'recommended' => [
+					'fa-regular' => [
+						'check-square',
+						'window-close',
+					],
+					'fa-solid' => [
+						'check',
+					]
+				]
+			]
+		);
 
         $this->add_control(
             'features_list',
@@ -1029,7 +1084,14 @@ class Pricing_Table extends Base {
 
         <div class="ha-pricing-table-header">
             <?php if ( $settings['title'] ) : ?>
-                <h2 <?php $this->print_render_attribute_string( 'title' ); ?>><?php echo ha_kses_basic( $settings['title'] ); ?></h2>
+				<?php
+					printf(
+						'<%1$s %2$s>%3$s</%1$s>',
+						ha_escape_tags( $settings['title_tag'] ),
+						$this->get_render_attribute_string( 'title' ),
+						esc_html( ha_kses_basic( $settings['title'] ) )
+					);
+				?>
             <?php endif; ?>
         </div>
         <div class="ha-pricing-table-price">
@@ -1040,7 +1102,14 @@ class Pricing_Table extends Base {
         </div>
         <div class="ha-pricing-table-body">
             <?php if ( $settings['features_title'] ) : ?>
-                <h3 <?php $this->print_render_attribute_string( 'features_title' ); ?>><?php echo ha_kses_basic( $settings['features_title'] ); ?></h3>
+				<?php
+					printf(
+						'<%1$s %2$s>%3$s</%1$s>',
+						ha_escape_tags( $settings['features_title_tag'] ),
+						$this->get_render_attribute_string( 'features_title' ),
+						esc_html( ha_kses_basic( $settings['features_title'] ) )
+					);
+				?>
             <?php endif; ?>
 
             <?php if ( is_array( $settings['features_list'] ) ) : ?>
