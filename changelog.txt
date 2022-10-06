@@ -7,6 +7,7 @@
 - Tweak: Advance Post Queries & Query ID integration with the Post Tab Widgets.
 - Tweak: Info Box Widget, media position responsive control.
 - Fix: Threesixty rotation & Taxonomy List are not working as a template.
+- Fix: Post list excerpt not showing.
 
 = 3.7.0 - 30 August 2022 =
 

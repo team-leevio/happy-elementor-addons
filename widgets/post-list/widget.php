@@ -1201,7 +1201,7 @@ class Post_List extends Base {
 									<?php if ( 'yes' === $settings['content'] ) : ?>
 										<div class="ha-post-list-excerpt">
 											<?php
-											if ( 'post' !== $settings['post_type'] && has_excerpt( $post->ID ) ) {
+											if ( has_excerpt( $post->ID ) ) {
 												printf(
 													'<p>%1$s</p>',
 													wp_trim_words( get_the_excerpt( $post->ID ) )
