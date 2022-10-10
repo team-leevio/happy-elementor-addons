@@ -325,7 +325,7 @@ function ha_get_allowed_html_tags($level = 'basic') {
 		],
 	];
 
-	if ('intermediate' === $level) {
+	if ( 'intermediate' === $level || 'all' === $level ) {
 		$tags = [
 			'a'       => [
 				'href'  => [],
