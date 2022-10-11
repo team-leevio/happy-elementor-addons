@@ -7,6 +7,7 @@
 - Tweak: Advance Post Queries & Query ID integration with the Post Tab Widgets.
 - Tweak: Info Box Widget, media position responsive control.
 - Tweak: Price Table widget's title tag changing option added.
+- Tweak: Add Phone Number field on the Team Member widget's social profile section.
 - Fix: Threesixty rotation & Taxonomy List are not working as a template.
 - Fix: Post list excerpt not showing.
 
