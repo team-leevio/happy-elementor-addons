@@ -659,6 +659,36 @@ class Fun_Factor extends Base {
 		);
 
 		$this->add_control(
+			'fun_factor_number_prefix_spacing',
+			[
+				'label'      => __('Prefix Spacing', 'happy-elementor-addons'),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'em'],
+				'condition'  => [
+					'fun_factor_number_prefix!' => ''
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-fun-factor__content-number-prefix' => 'margin-right: {{SIZE}}{{UNIT}};'
+				]
+			]
+		);
+
+		$this->add_control(
+			'fun_factor_number_suffix_spacing',
+			[
+				'label'      => __('Suffix Spacing', 'happy-elementor-addons'),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'em'],
+				'condition'  => [
+					'fun_factor_number_suffix!' => ''
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-fun-factor__content-number-suffix' => 'margin-left: {{SIZE}}{{UNIT}};'
+				]
+			]
+		);
+
+		$this->add_control(
 			'fun_factor_number_color',
 			[
 				'label'     => __('Color', 'happy-elementor-addons'),
