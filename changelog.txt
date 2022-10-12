@@ -9,6 +9,7 @@
 - Tweak: Price Table widget's title tag changing option added.
 - Tweak: Add Phone Number field on the Team Member widget's social profile section.
 - Tweak: Add Prefix & Suffix Spacing control in the Fun Factor widget.
+- Tweak: Add Post ordering option with the Post Tab widget.
 - Fix: Threesixty rotation & Taxonomy List are not working as a template.
 - Fix: Post list excerpt not showing.
 

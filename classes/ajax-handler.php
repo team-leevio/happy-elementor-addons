@@ -224,13 +224,17 @@ class Ajax_Handler {
 			$taxonomy   = $settings['taxonomy'];
 			$item_limit = $settings['item_limit'];
 			$excerpt    = $settings['excerpt'];
-			$title_tag    = $settings['title_tag'];
+			$title_tag  = $settings['title_tag'];
 			$term_id    = $_POST['term_id'];
+			$orderby    = $_POST['orderby'];
+			$order      = $_POST['order'];
 
 			$args = [
 				'post_status'      => 'publish',
 				'post_type'        => $post_type,
 				'posts_per_page'   => $item_limit,
+				'orderby'          => $orderby,
+				'order'            => $order,
 				'suppress_filters' => false,
 				'tax_query'        => [
 					[
