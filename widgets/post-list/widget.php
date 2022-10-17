@@ -1181,7 +1181,7 @@ class Post_List extends Base {
 												if ( $settings['category_icon'] ) :
 													Icons_Manager::render_icon( $settings['category_icon'], [ 'aria-hidden' => 'true' ] );
 												endif;
-												echo esc_html( $categories[0]->name );
+												echo ( ! empty( $categories ) ) ? esc_html( $categories[0]->name ) : '';
 												?>
 												</span>
 											<?php endif; ?>
