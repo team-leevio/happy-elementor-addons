@@ -584,16 +584,6 @@ For a more detailed explanation check out the following documentation
 - Fix: Threesixty rotation & Taxonomy List are not working as a template.
 - Fix: Post list excerpt not showing.
 
-= 3.7.1 - 21 September 2022 =
-
-- Tweak: Scroll To Top feature enhancements like customizing the icon, text, and image, and enable or disable the feature for different devices. Plus, we've fixed the page refresh issue when making changes to the settings
-- Tweak: Horizontal scrolling on Data Table mobile responsive view.
-- Tweak: Word Break Option Introduce on Data Table mobile responsive view.
-- Tweak: Meta items Removal option in Post Tab Widget.
-- Tweak: Advance Post Queries & Query ID integration with the Post Tab Widgets.
-- Tweak: Info Box Widget, media position responsive control.
-- Fix: Threesixty rotation & Taxonomy List are not working as a template.
-
 = 3.7.0 - 30 August 2022 =
 
 - New: Scroll To Top - Feature
