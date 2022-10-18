@@ -1,4 +1,4 @@
-= 3.7.1 -  18 October 2022 =
+= 3.7.1 - 18 October 2022 =
 
 - Tweak: Scroll To Top feature enhancements like customize the icon, text, and image, and enable or disable the feature for different devices. Plus, we've fixed the page refresh issue when making changes to the settings
 - Tweak: Horizontal scrolling on Data Table mobile responsive view.
