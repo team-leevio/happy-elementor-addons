@@ -274,6 +274,7 @@ class InfoBox extends Base {
 				'selectors' => [
 					'body[data-elementor-device-mode="widescreen"] {{WRAPPER}}.ha-infobox-media-dir-widescreen-left .ha-infobox-figure' => '{{VALUE}};',
 					'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-infobox-media-dir-left .ha-infobox-figure' => '{{VALUE}};',
+					'body[data-elementor-device-mode="laptop"] {{WRAPPER}}.ha-infobox-media-dir-laptop-left .ha-infobox-figure' => '{{VALUE}};',
 					'body[data-elementor-device-mode="tablet_extra"] {{WRAPPER}}.ha-infobox-media-dir-tablet_extra-left .ha-infobox-figure' => '{{VALUE}};',
 					'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-infobox-media-dir-tablet-left .ha-infobox-figure' => '{{VALUE}};',
 					'body[data-elementor-device-mode="mobile_extra"] {{WRAPPER}}.ha-infobox-media-dir-mobile_extra-left .ha-infobox-figure' => '{{VALUE}};',
@@ -281,6 +282,7 @@ class InfoBox extends Base {
 
 					'body[data-elementor-device-mode="widescreen"] {{WRAPPER}}.ha-infobox-media-dir-left .ha-info-box-icon' => '{{VALUE}};',
 					'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-infobox-media-dir-left .ha-info-box-icon' => '{{VALUE}};',
+					'body[data-elementor-device-mode="laptop"] {{WRAPPER}}.ha-infobox-media-dir-laptop-left .ha-info-box-icon' => '{{VALUE}};',
 					'body[data-elementor-device-mode="tablet_extra"] {{WRAPPER}}.ha-infobox-media-dir-tablet_extra-left .ha-info-box-icon' => '{{VALUE}};',
 					'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-infobox-media-dir-tablet-left .ha-info-box-icon' => '{{VALUE}};',
 					'body[data-elementor-device-mode="mobile_extra"] {{WRAPPER}}.ha-infobox-media-dir-mobile_extra-left .ha-info-box-icon' => '{{VALUE}};',
@@ -748,6 +750,7 @@ class InfoBox extends Base {
 				'selectors' => [
 					'body[data-elementor-device-mode="widescreen"] {{WRAPPER}}.ha-infobox-media-dir-widescreen-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-infobox-media-dir-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+					'body[data-elementor-device-mode="laptop"] {{WRAPPER}}.ha-infobox-media-dir-laptop-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="tablet_extra"] {{WRAPPER}}.ha-infobox-media-dir-tablet_extra-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-infobox-media-dir-tablet-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="mobile_extra"] {{WRAPPER}}.ha-infobox-media-dir-mobile_extra-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
@@ -755,6 +758,7 @@ class InfoBox extends Base {
 					
 					'body[data-elementor-device-mode="widescreen"] {{WRAPPER}}.ha-infobox-media-dir-widescreen-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-infobox-media-dir-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
+					'body[data-elementor-device-mode="laptop"] {{WRAPPER}}.ha-infobox-media-dir-laptop-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="tablet_extra"] {{WRAPPER}}.ha-infobox-media-dir-tablet_extra-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-infobox-media-dir-tablet-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="mobile_extra"] {{WRAPPER}}.ha-infobox-media-dir-mobile_extra-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
