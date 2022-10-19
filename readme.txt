@@ -6,7 +6,7 @@ Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Mega Menu
 Requires at least: 4.7
-Tested up to: 6.0.2
+Tested up to: 6.0
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -569,15 +569,20 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.7.1 - 21 September 2022 =
+= 3.7.1 - 18 October 2022 =
 
-- Tweak: Scroll To Top feature enhancements like customizing the icon, text, and image, and enable or disable the feature for different devices. Plus, we've fixed the page refresh issue when making changes to the settings
+- Tweak: Scroll To Top feature enhancements like customize the icon, text, and image, and enable or disable the feature for different devices. Plus, we've fixed the page refresh issue when making changes to the settings
 - Tweak: Horizontal scrolling on Data Table mobile responsive view.
 - Tweak: Word Break Option Introduce on Data Table mobile responsive view.
 - Tweak: Meta items Removal option in Post Tab Widget.
 - Tweak: Advance Post Queries & Query ID integration with the Post Tab Widgets.
 - Tweak: Info Box Widget, media position responsive control.
+- Tweak: Price Table widget's title tag changing option added.
+- Tweak: Add Phone Number field on the Team Member widget's social profile section.
+- Tweak: Add Prefix & Suffix Spacing control in the Fun Factor widget.
+- Tweak: Add Post ordering option with the Post Tab widget.
 - Fix: Threesixty rotation & Taxonomy List are not working as a template.
+- Fix: Post list excerpt not showing.
 
 = 3.7.0 - 30 August 2022 =
 

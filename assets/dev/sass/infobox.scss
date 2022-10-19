@@ -12,6 +12,27 @@
 	}
 }
 
+body[data-elementor-device-mode="widescreen"] {
+	.ha-infobox {
+		&.ha-infobox-media-dir-widescreen-left {
+
+			.elementor-widget-container {
+				display: flex;
+
+				.ha-infobox-figure {
+					margin: 0 25px 0 0 !important;
+					align-self: flex-start;
+				}
+			}
+		}
+
+		&.ha-infobox-media-dir-widescreen-top
+		&-body {
+			margin-top: var(--ha-infobox-media-offset-y);
+		}
+	}
+}
+
 body[data-elementor-device-mode="desktop"] {
 	.ha-infobox {
 		&.ha-infobox-media-dir-left {
@@ -33,6 +54,48 @@ body[data-elementor-device-mode="desktop"] {
 	}
 }
 
+body[data-elementor-device-mode="laptop"] {
+	.ha-infobox {
+		&.ha-infobox-media-dir-laptop-left {
+
+			.elementor-widget-container {
+				display: flex;
+
+				.ha-infobox-figure {
+					margin: 0 25px 0 0 !important;
+					align-self: flex-start;
+				}
+			}
+		}
+
+		&.ha-infobox-media-dir-laptop-top
+		&-body {
+			margin-top: var(--ha-infobox-media-offset-y);
+		}
+	}
+}
+
+body[data-elementor-device-mode="tablet_extra"] {
+	.ha-infobox {
+		&.ha-infobox-media-dir-tablet_extra-left {
+
+			.elementor-widget-container {
+				display: flex;
+
+				.ha-infobox-figure {
+					margin: 0 25px 0 0 !important;
+					align-self: flex-start;
+				}
+			}
+		}
+
+		&.ha-infobox-media-dir-tablet_extra-top
+		&-body {
+			margin-top: var(--ha-infobox-media-offset-y);
+		}
+	}
+}
+
 body[data-elementor-device-mode="tablet"] {
 	.ha-infobox {
 		&.ha-infobox-media-dir-tablet-left {
@@ -48,6 +111,27 @@ body[data-elementor-device-mode="tablet"] {
 		}
 
 		&.ha-infobox-media-dir-tablet-top
+		&-body {
+			margin-top: var(--ha-infobox-media-offset-y);
+		}
+	}
+}
+
+body[data-elementor-device-mode="mobile_extra"] {
+	.ha-infobox {
+		&.ha-infobox-media-dir-mobile_extra-left {
+
+			.elementor-widget-container {
+				display: flex;
+
+				.ha-infobox-figure {
+					margin: 0 25px 0 0 !important;
+					align-self: flex-start;
+				}
+			}
+		}
+
+		&.ha-infobox-media-dir-mobile_extra-top
 		&-body {
 			margin-top: var(--ha-infobox-media-offset-y);
 		}

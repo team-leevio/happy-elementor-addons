@@ -7,7 +7,7 @@
  * Version: 3.7.1
  * Author: weDevs
  * Author URI: https://happyaddons.com/
- * Elementor tested up to: 3.7.7
+ * Elementor tested up to: 3.7.8
  * Elementor Pro tested up to: 3.7.7
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html

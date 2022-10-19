@@ -267,15 +267,25 @@ class InfoBox extends Base {
 				],
                 'style_transfer' => true,
 				'selectors_dictionary' => [
-                    'center' => '    -webkit-align-self: center; -ms-flex-item-align: center; align-self: center;',
-                    'bottom' => '    -webkit-align-self: flex-end; -ms-flex-item-align: end; align-self: flex-end;',
+                    'top' => ' -webkit-align-self: flex-start; -ms-flex-item-align: flex-start; align-self: flex-start;',
+                    'center' => ' -webkit-align-self: center; -ms-flex-item-align: center; align-self: center;',
+                    'bottom' => ' -webkit-align-self: flex-end; -ms-flex-item-align: end; align-self: flex-end;',
                 ],
 				'selectors' => [
+					'body[data-elementor-device-mode="widescreen"] {{WRAPPER}}.ha-infobox-media-dir-widescreen-left .ha-infobox-figure' => '{{VALUE}};',
 					'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-infobox-media-dir-left .ha-infobox-figure' => '{{VALUE}};',
+					'body[data-elementor-device-mode="laptop"] {{WRAPPER}}.ha-infobox-media-dir-laptop-left .ha-infobox-figure' => '{{VALUE}};',
+					'body[data-elementor-device-mode="tablet_extra"] {{WRAPPER}}.ha-infobox-media-dir-tablet_extra-left .ha-infobox-figure' => '{{VALUE}};',
 					'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-infobox-media-dir-tablet-left .ha-infobox-figure' => '{{VALUE}};',
+					'body[data-elementor-device-mode="mobile_extra"] {{WRAPPER}}.ha-infobox-media-dir-mobile_extra-left .ha-infobox-figure' => '{{VALUE}};',
 					'body[data-elementor-device-mode="mobile"] {{WRAPPER}}.ha-infobox-media-dir-mobile-left .ha-infobox-figure' => '{{VALUE}};',
+
+					'body[data-elementor-device-mode="widescreen"] {{WRAPPER}}.ha-infobox-media-dir-left .ha-info-box-icon' => '{{VALUE}};',
 					'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-infobox-media-dir-left .ha-info-box-icon' => '{{VALUE}};',
+					'body[data-elementor-device-mode="laptop"] {{WRAPPER}}.ha-infobox-media-dir-laptop-left .ha-info-box-icon' => '{{VALUE}};',
+					'body[data-elementor-device-mode="tablet_extra"] {{WRAPPER}}.ha-infobox-media-dir-tablet_extra-left .ha-info-box-icon' => '{{VALUE}};',
 					'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-infobox-media-dir-tablet-left .ha-info-box-icon' => '{{VALUE}};',
+					'body[data-elementor-device-mode="mobile_extra"] {{WRAPPER}}.ha-infobox-media-dir-mobile_extra-left .ha-info-box-icon' => '{{VALUE}};',
 					'body[data-elementor-device-mode="mobile"] {{WRAPPER}}.ha-infobox-media-dir-mobile-left .ha-info-box-icon' => '{{VALUE}};',
 				]
 			]
@@ -738,11 +748,20 @@ class InfoBox extends Base {
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'selectors' => [
+					'body[data-elementor-device-mode="widescreen"] {{WRAPPER}}.ha-infobox-media-dir-widescreen-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-infobox-media-dir-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+					'body[data-elementor-device-mode="laptop"] {{WRAPPER}}.ha-infobox-media-dir-laptop-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+					'body[data-elementor-device-mode="tablet_extra"] {{WRAPPER}}.ha-infobox-media-dir-tablet_extra-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-infobox-media-dir-tablet-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+					'body[data-elementor-device-mode="mobile_extra"] {{WRAPPER}}.ha-infobox-media-dir-mobile_extra-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="mobile"] {{WRAPPER}}.ha-infobox-media-dir-mobile-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+					
+					'body[data-elementor-device-mode="widescreen"] {{WRAPPER}}.ha-infobox-media-dir-widescreen-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-infobox-media-dir-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
+					'body[data-elementor-device-mode="laptop"] {{WRAPPER}}.ha-infobox-media-dir-laptop-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
+					'body[data-elementor-device-mode="tablet_extra"] {{WRAPPER}}.ha-infobox-media-dir-tablet_extra-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-infobox-media-dir-tablet-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
+					'body[data-elementor-device-mode="mobile_extra"] {{WRAPPER}}.ha-infobox-media-dir-mobile_extra-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="mobile"] {{WRAPPER}}.ha-infobox-media-dir-mobile-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
 				],
 			]
