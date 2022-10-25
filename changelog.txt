@@ -1,3 +1,7 @@
+= 3.#.# -  2022 =
+
+- Fix: Equal Height is not working on Tablet.
+
 = 3.7.1 - 18 October 2022 =
 
 - Tweak: Scroll To Top feature enhancements like customize the icon, text, and image, and enable or disable the feature for different devices. Plus, we've fixed the page refresh issue when making changes to the settings

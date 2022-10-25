@@ -35,11 +35,11 @@
 					mobileWidth = elementorFrontendConfig.breakpoints.md,
 					tabletWidth = elementorFrontendConfig.breakpoints.lg;
 
-				if (this.getElementSettings('_ha_eqh_disable_on_mobile') && windowWidth < mobileWidth) {
+				if ( 'yes' == this.getElementSettings('_ha_eqh_disable_on_mobile') && windowWidth < mobileWidth) {
 					return true;
 				}
 
-				if (this.getElementSettings('_ha_eqh_disable_on_tablet') && windowWidth >= mobileWidth && windowWidth < tabletWidth) {
+				if ( 'yes' == this.getElementSettings('_ha_eqh_disable_on_tablet') && windowWidth >= mobileWidth && windowWidth < tabletWidth) {
 					return true;
 				}
 
