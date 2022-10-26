@@ -66,7 +66,7 @@
 				if (this.isEqhEnabled()) {
 					this.run();
 
-					$window.on('resize orientationchange', debounce(this.run.bind(this), 80));
+					$window.on('resize scroll orientationchange', debounce(this.run.bind(this), 80));
 				}
 			},
 
