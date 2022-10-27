@@ -557,8 +557,8 @@ p + .ha-review-notice__actions {
 	width: 1.875rem;
 	height: 1.875rem;
 	border-radius: 15px;
-	background: -webkit-linear-gradient(45deg, #c84993 0%, #6939c6 100%);
-	background:         linear-gradient(45deg, #c84993 0%, #6939c6 100%);
+	background: -webkit-linear-gradient(45deg, rgb(200, 73, 147) 0%, rgb(105, 57, 198) 100%);
+	background:         linear-gradient(45deg, rgb(200, 73, 147) 0%, rgb(105, 57, 198) 100%);
 	color: #fff;
 	text-align: center;
 	font-size: .875rem;
@@ -594,8 +594,8 @@ p + .ha-review-notice__actions {
 	width: 1.875rem;
 	height: 1.875rem;
 	border-radius: 15px;
-	background: -webkit-linear-gradient(45deg, #c84993 0%, #6939c6 100%);
-	background:         linear-gradient(45deg, #c84993 0%, #6939c6 100%);
+	background: -webkit-linear-gradient(45deg, rgb(200, 73, 147) 0%, rgb(105, 57, 198) 100%);
+	background:         linear-gradient(45deg, rgb(200, 73, 147) 0%, rgb(105, 57, 198) 100%);
 	color: #fff;
 	text-align: center;
 	font-size: .875rem;

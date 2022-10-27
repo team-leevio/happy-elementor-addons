@@ -57,7 +57,7 @@ class Theme_Builder {
         });
 
         add_action('manage_' . self::CPT . '_posts_columns', [__CLASS__, 'admin_columns_headers']);
-        add_action('manage_' . self::CPT . '_posts_custom_column', [__CLASS__, 'admin_columns_content'], 10, 2);
+        add_action('manage_' . self::CPT . '_posts_custom_column', [$this, 'admin_columns_content'], 10, 2);
 
         //Override Single Post Template
         add_filter('template_include', [$this, 'ha_theme_builder_content'], 999);
@@ -213,8 +213,8 @@ class Theme_Builder {
         return $posts_columns;
     }
 
-    public static function admin_columns_content($column_name, $post_id) {
-        $instance = self::instance();
+    public function admin_columns_content($column_name, $post_id) {
+        // $instance = self::instance();
 
         if ('type' === $column_name) {
             $type = get_post_meta($post_id, '_ha_library_type', true);
@@ -230,14 +230,26 @@ class Theme_Builder {
         }
         if ('condition' === $column_name) {
 
-            $instances = $instance->get_document_instances($post_id);
+            $columnData = $this->get_document_instances($post_id);
+            $include_cname = '-';
+            $exclude_cname = '-';
+            
+            if ( !empty($columnData) ) {
+                foreach( $columnData as $key => $val ) {
+                    
+                    if( $val['condition_type'] === 'include') {
+                        $include_cname = !empty($val['condition_sub_name']) && ($val['condition_sub_name'] == 'all') ? ucfirst( $val['condition_name'] ) : ucfirst( str_replace(array('_'), ' ', $val['condition_sub_name'] ) );
+                    }
+                    
+                    if( $val['condition_type'] === 'exclude') {
+                        $exclude_cname = !empty($val['condition_sub_name']) && ($val['condition_sub_name'] !== 'all') ? ucfirst( str_replace(array('_'), ' ', $val['condition_sub_name'] ) ) :  ucfirst( $val['condition_name'] );
+                    }
 
-            if (!empty($instances)) {
-                // PHPCS - the method get_document_instances is safe.
-                echo implode('<br />', $instances); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            } else {
-                echo esc_html__('None', 'elementor-pro');
-            }
+                }
+
+                echo 'Include : ' . $include_cname . '<br/>' . 'Exlude : ' . $exclude_cname;
+            } 
+
         }
     }
 
@@ -499,19 +511,22 @@ class Theme_Builder {
 
 
     public function get_document_instances($post_id) {
-        $document_conditions = $this->get_document_conditions($post_id);
-
+        
         $summary = [];
 
+        $document_conditions = $this->get_document_conditions($post_id);
+
         if (!empty($document_conditions)) {
-            foreach ($document_conditions as $document_condition) {
-                if ('exclude' === $document_condition['type']) {
-                    continue;
-                }
 
-                // print_r($document_condition);
+            foreach ($document_conditions as $key => $document_condition) {
+                
 
-                $condition_name = !empty($document_condition['sub_name']) ? $document_condition['sub_name'] : $document_condition['name'];
+                // if ('exclude' === $document_condition['type']) {
+                //     continue;
+                // }
+
+                $condition_name = ('exclude' === $document_condition['type']) && ($document_condition['name'] !== 'general') && !empty($document_condition['sub_name']) ? $document_condition['sub_name'] : $document_condition['name'];
+                
 
                 // $condition = $this->get_condition($condition_name);
                 // if (!$condition) {
@@ -525,7 +540,11 @@ class Theme_Builder {
                     $instance_label = Condition_Manager::instance()->get_all_name($condition_name);
                 }
 
-                $summary[$condition_name] = $instance_label;
+                $summary[] = [
+                    'condition_type' => $document_condition['type'],
+                    'condition_name' => $instance_label,
+                    'condition_sub_name' => $document_condition['sub_name']
+                ];
             }
         }
 
@@ -858,7 +877,7 @@ class Theme_Builder {
                 $lang = 'Entire Website';
                 break;
             case "archive":
-                $lang = 'All Archives';
+                $lang = 'All Archives--';
                 break;
             case "singular":
                 $lang = 'Singular: ';
@@ -947,6 +966,13 @@ class Theme_Builder {
             $config['settings']['panelPage']['title'] = $title;
         }
         return $config;
+    }
+
+    public function pr($data=[])
+    {
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
     }
 }
 
