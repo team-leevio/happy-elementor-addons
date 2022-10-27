@@ -230,6 +230,10 @@ class Theme_Builder {
         }
         if ('condition' === $column_name) {
 
+            $document_conditions = $this->get_document_conditions($post_id);
+
+            // $this->pr($document_conditions);
+
             $columnData = $this->get_document_instances($post_id);
             $include_cname = '-';
             $exclude_cname = '-';
