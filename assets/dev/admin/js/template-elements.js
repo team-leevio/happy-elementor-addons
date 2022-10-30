@@ -359,7 +359,6 @@
 
 	function saveConditionData() {
 		postId = elementor.config.document.id;
-
 		jQuery.ajax({
 			url: ajaxurl,
 			type: "post",
@@ -372,9 +371,19 @@
 			},
 			success: function (response) {
 				if (response) {
-					// console.log(response);
-					MicroModal.close("modal-new-template-condition");
-				}
+                    if(response.success) {
+                        MicroModal.close("modal-new-template-condition");
+						$('.ha-template-notice').removeClass('error').text('');
+                    } else {
+                        // show notice
+                        if(response.hasOwnProperty('data') && response.data.hasOwnProperty('msg')) {
+                            $('.ha-template-notice').addClass('error').text(response.data.msg);
+                        } else {
+                            MicroModal.close("modal-new-template-condition");
+							$('.ha-template-notice').removeClass('error').text('');
+                        }
+                    }
+                }
 			},
 		});
 	}

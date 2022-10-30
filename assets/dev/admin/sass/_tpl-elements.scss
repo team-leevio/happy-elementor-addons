@@ -156,6 +156,20 @@
             margin: auto;
         }
 
+        .ha-template-notice {
+            display: none;
+            color: #000;
+            text-align: center;
+            &.error {
+                display: block;
+                color: #f00;
+            }
+            &.success {
+                display: block;
+                color: #008000;
+            }
+        }
+
         &.new-template {
             display: flex;
             background: #fff;

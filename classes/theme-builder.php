@@ -213,46 +213,55 @@ class Theme_Builder {
         return $posts_columns;
     }
 
-    public function admin_columns_content($column_name, $post_id) {
+    public function admin_columns_content( $column_name, $post_id ) {
+        
         // $instance = self::instance();
 
         if ('type' === $column_name) {
-            $type = get_post_meta($post_id, '_ha_library_type', true);
-            $isActive = get_post_meta($post_id, '_ha_template_active', true);
+
+            $type       = get_post_meta($post_id, '_ha_library_type', true);
+            $isActive   = get_post_meta($post_id, '_ha_template_active', true);
 
             echo ucfirst($type);
 
             echo "<span id='htlt-", $post_id, "'>";
+
             if ($isActive) {
+
                 echo " - <b>Active</b>";
+
             }
+
             echo "</span>";
         }
-        if ('condition' === $column_name) {
 
-            $document_conditions = $this->get_document_conditions($post_id);
+        if ( 'condition' === $column_name ) {
 
-            // $this->pr($document_conditions);
+            // generate display condition from document conditions
+            $includeConditions     = [];
+            $exludeConditions      = [];
 
-            $columnData = $this->get_document_instances($post_id);
-            $include_cname = '-';
-            $exclude_cname = '-';
-            
-            if ( !empty($columnData) ) {
-                foreach( $columnData as $key => $val ) {
-                    
-                    if( $val['condition_type'] === 'include') {
-                        $include_cname = !empty($val['condition_sub_name']) && ($val['condition_sub_name'] == 'all') ? ucfirst( $val['condition_name'] ) : ucfirst( str_replace(array('_'), ' ', $val['condition_sub_name'] ) );
+            // get doc conditions
+            $documentConditions    = $this->get_document_conditions($post_id);
+
+            if( !empty( $documentConditions ) ) {
+                foreach( $documentConditions AS $key => $condition ) {
+                    if( 'include' === $condition['type'] ) {
+                        $sub_page_id            = !empty( $condition['sub_id'] ) ? '#' . get_the_title( $condition['sub_id'] ) : '';
+                        $con_label              = !empty( $condition['sub_name'] ) && 'all' !== $condition['sub_name'] ? Condition_Manager::instance()->get_name($condition['sub_name']) . $sub_page_id : Condition_Manager::instance()->get_all_name($condition['name']);  
+                        $includeConditions[]    = $con_label;
+                    } else if ( 'exclude' === $condition['type'] ) {
+                        $sub_page_id        = !empty( $condition['sub_id'] ) ? '#' . get_the_title( $condition['sub_id'] ) : '';
+                        $con_label          =  !empty( $condition['sub_name'] ) && 'all' !== $condition['sub_name'] ? Condition_Manager::instance()->get_name($condition['sub_name']) . $sub_page_id : Condition_Manager::instance()->get_all_name($condition['name']);  
+                        $exludeConditions[] = $con_label;
+                    } else {
+                        // not use this..
                     }
                     
-                    if( $val['condition_type'] === 'exclude') {
-                        $exclude_cname = !empty($val['condition_sub_name']) && ($val['condition_sub_name'] !== 'all') ? ucfirst( str_replace(array('_'), ' ', $val['condition_sub_name'] ) ) :  ucfirst( $val['condition_name'] );
-                    }
-
                 }
+            }
 
-                echo 'Include : ' . $include_cname . '<br/>' . 'Exlude : ' . $exclude_cname;
-            } 
+            echo '<b>Include : </b> ' . implode( ', ', $includeConditions ) . '<br/>' . '<b>Exlude : </b> ' . implode( ', ', $exludeConditions );
 
         }
     }
@@ -520,17 +529,17 @@ class Theme_Builder {
 
         $document_conditions = $this->get_document_conditions($post_id);
 
+        $summary = [];
+
         if (!empty($document_conditions)) {
+            foreach ($document_conditions as $document_condition) {
+                if ('exclude' === $document_condition['type']) {
+                    // continue;
+                }
 
-            foreach ($document_conditions as $key => $document_condition) {
-                
+                // print_r($document_condition);
 
-                // if ('exclude' === $document_condition['type']) {
-                //     continue;
-                // }
-
-                $condition_name = ('exclude' === $document_condition['type']) && ($document_condition['name'] !== 'general') && !empty($document_condition['sub_name']) ? $document_condition['sub_name'] : $document_condition['name'];
-                
+                $condition_name = !empty($document_condition['sub_name']) ? $document_condition['sub_name'] : $document_condition['name'];
 
                 // $condition = $this->get_condition($condition_name);
                 // if (!$condition) {
@@ -544,11 +553,7 @@ class Theme_Builder {
                     $instance_label = Condition_Manager::instance()->get_all_name($condition_name);
                 }
 
-                $summary[] = [
-                    'condition_type' => $document_condition['type'],
-                    'condition_name' => $instance_label,
-                    'condition_sub_name' => $document_condition['sub_name']
-                ];
+                $summary[$condition_name] = $instance_label;
             }
         }
 
@@ -695,7 +700,7 @@ class Theme_Builder {
                 // error_log("TAG 1: " . $template);
                 return $template;
             }
-        } elseif (function_exists('is_shop') && is_shop()) {
+        } elseif (function_exists('is_shop') && \is_shop()) {
             $location = 'archive';
         } elseif (is_archive() || is_tax() || is_home() || is_search()) {
             $location = 'archive';

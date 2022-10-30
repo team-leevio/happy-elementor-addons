@@ -258,16 +258,36 @@ class Condition_Manager {
             $templateID = isset($_REQUEST['template_id']) ? $_REQUEST['template_id'] : null;
             $conditions = isset($_REQUEST['conds']) ? $_REQUEST['conds'] : [];
 
-            if ($templateID) {
-                $cond = update_post_meta($templateID, '_ha_display_cond', $conditions);
-                $updates = get_post_meta($templateID, '_ha_display_cond');
+            $existed_conditions = get_post_meta($templateID, '_ha_display_cond', true);
 
-                if ($cond != null) {
-                    $this->cache->regenerate();
-                    wp_send_json_success($updates);
-                } else {
-                    wp_send_json_error();
+            $new_conditions = array_diff($conditions, $existed_conditions);
+
+            if ($templateID) {
+                $all_cond = $this->ha_get_all_conditions();
+                $tbl_type = get_post_meta($templateID, '_ha_library_type', true);
+
+                $duplicate = false;
+                foreach ($new_conditions as $key => $value) {
+                    if (in_array($value, $all_cond[$tbl_type])) {
+                        $duplicate = true;
+                        break;
+                    }
                 }
+
+                if (!$duplicate) {
+                    $cond = update_post_meta($templateID, '_ha_display_cond', $conditions);
+                    $updates = get_post_meta($templateID, '_ha_display_cond');
+
+                    if($cond != null) {
+                        $this->cache->regenerate();
+                        wp_send_json_success($updates);
+                    }else {
+                        wp_send_json_error();
+                    }
+                } else {
+                    wp_send_json_error(['msg' => esc_html__('Unable to save because condition already exists', 'happy-elementor-addons')]);
+                }
+
             } else {
 
                 wp_send_json_error();
@@ -277,6 +297,54 @@ class Condition_Manager {
         } catch (Exception $e) {
             wp_send_json_error($e->getMessage());
         }
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function ha_get_all_conditions() {
+
+        $conditions = [];
+
+        // WP_Query arguments
+        $args = array(
+            'post_type'              => array('ha_library'), // use any for any kind of post type, custom post type slug for custom post type
+            'post_status'            => array('publish'), // Also support: pending, draft, auto-draft, future, private, inherit, trash, any
+            'posts_per_page'         => -1, // use -1 for all post
+            'order'                  => 'DESC', // Also support: ASC
+            'orderby'                => 'date', // Also support: none, rand, id, title, slug, modified, parent, menu_order, comment_count
+            'meta_query'             => array(
+                array(
+                    'key' => '_ha_display_cond',
+                    'compare' => 'EXISTS'
+                ),
+            ),
+        );
+
+        // The Query
+        $query = new \WP_Query($args);
+
+        // The Loop
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+
+                $saved_conditions = get_post_meta(get_the_ID(), '_ha_display_cond', true);
+                $tpl_type = get_post_meta(get_the_ID(), '_ha_library_type', true);
+
+                if (is_array($saved_conditions)) {
+                    foreach ($saved_conditions as $condition) {
+                        $conditions[$tpl_type][] = $condition;
+                    }
+                }
+            }
+        }
+
+        // Restore original Post Data
+        wp_reset_postdata();
+
+        return $conditions;
     }
 
     public function ha_get_current_condition() {
