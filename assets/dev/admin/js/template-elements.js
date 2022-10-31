@@ -54,6 +54,10 @@
 				conditionContainer.find("select").trigger("change");
 				// elementor.trigger("ha:templateConditionChange");
 			}
+
+			// notice remove
+			$('.ha-template-notice').removeClass('error').text('');
+
 			MicroModal.show("modal-new-template-condition");
 		});
 

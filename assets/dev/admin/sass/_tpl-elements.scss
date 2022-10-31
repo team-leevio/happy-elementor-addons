@@ -193,7 +193,7 @@
 
                 .info-title {
                     text-align: left;
-                    font-family: 'Montserrat';
+                    font-family: sans-serif;
                     font-style: normal;
                     font-weight: 700;
                     font-size: 32px;
@@ -221,7 +221,7 @@
                 margin-right: auto;
 
                 &__title {
-                    font-family: 'Montserrat';
+                    font-family: sans-serif;
                     font-style: normal;
                     font-weight: 700;
                     font-size: 24px;
@@ -297,7 +297,7 @@
         text-align: center;
 
         .info-title {
-            font-family: 'Montserrat';
+            font-family: sans-serif;
             font-style: normal;
             font-weight: 700;
             font-size: 32px;
@@ -355,7 +355,7 @@
         transition: -webkit-transform 0.25s ease-out;
         transition: transform 0.25s ease-out;
         transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
-        font-family: 'Montserrat';
+        font-family: sans-serif;
         font-style: normal;
         font-weight: 700;
         font-size: 14px;

@@ -59,11 +59,11 @@ class Condition_Manager {
         return $conditions;
     }
 
-    public function get_name($cond){
+    public function get_name($cond) {
         return $this->all_conds_list[$cond]['title'];
     }
 
-    public function get_all_name($cond){
+    public function get_all_name($cond) {
         return $this->all_conds_list[$cond]['all_label'];
     }
 
@@ -383,15 +383,15 @@ class Condition_Manager {
 
             $sub_name_html = ($sub_name) ? '<option value="' . $sub_name . '" selected="selected">' . $this->all_conds_list[$sub_name]['title'] . '</option>' : '';
 
-            $sub_id_html = ($sub_id) ? '<option value="' . $sub_id . '" selected="selected">' . $sub_id . '</option>' : '';
+            $sub_id_html = ($sub_id) ? '<option value="' . $sub_id . '" selected="selected">' . get_the_title($sub_id) . '</option>' : '';
 
             $uuid = uniqid();
             $if = function ($condition, $true, $false) {
                 return $condition ? $true : $false;
             };
 
-            $sub_name_visibility = ($sub_name)?'':'style="display:none"';
-            $sub_id_visibility = ($sub_id)?'':'style="display:none"';
+            $sub_name_visibility = ($sub_name) ? '' : 'style="display:none"';
+            $sub_id_visibility = ($sub_id) ? '' : 'style="display:none"';
 
             $html .= <<<EOF
 <div id="ha-template-condition-item-$uuid" class="ha-template-condition-item">
@@ -680,7 +680,7 @@ EOF;
             if ($name == 'archive') {
                 $is_archive = is_archive() || is_home() || is_search();
                 // WooCommerce is handled by `woocommerce` module.
-                if ($is_archive && class_exists('woocommerce') && is_woocommerce()) {
+                if ($is_archive && class_exists('woocommerce') && \is_woocommerce()) {
                     $is_archive = false;
                 }
                 return $is_archive;

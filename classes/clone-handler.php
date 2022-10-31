@@ -218,6 +218,7 @@ class Clone_Handler {
 		include_once HAPPY_ADDONS_DIR_PATH . 'classes/finder-edit.php';
 
 		$categories_manager->register( new Finder_Edit() );
+
 	}
 
 }

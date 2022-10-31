@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Plugin Name: Happy Elementor Addons - Template Elements
+ * Plugin Name: Happy Elementor Addons
  * Plugin URI: https://happyaddons.com/
  * Description: <a href="https://happyaddons.com/">Happy Addons for Elementor</a> Is the Best Elementor Addons Comes With 44+ Free Elementor Widgets Including Table Builder, Testimonial, Event Calendar,Slider,News Ticker, Image Grid, etc & Features Like Elementor Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Elementor Icons, 450+ Template Packs & More.
- * Version: 3.6.2
+ * Version: 3.7.0
  * Author: weDevs
  * Author URI: https://happyaddons.com/
- * Elementor tested up to: 3.6.7
- * Elementor Pro tested up to: 3.7.2
+ * Elementor tested up to: 3.7.3
+ * Elementor Pro tested up to: 3.7.4
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: happy-elementor-addons
- * Domain Path: /languages/
+ * Domain Path: /i18n/
  *
  * @package Happy_Addons
  */
@@ -41,7 +41,7 @@ defined('ABSPATH') || die();
 if ( defined( 'HAPPY_ADDONS_DEV' ) && true == HAPPY_ADDONS_DEV ) {
 	define('HAPPY_ADDONS_VERSION', time() );
 } else {
-	define('HAPPY_ADDONS_VERSION', '3.6.2');
+	define('HAPPY_ADDONS_VERSION', '3.7.0');
 }
 define('HAPPY_ADDONS__FILE__', __FILE__);
 define('HAPPY_ADDONS_DIR_PATH', plugin_dir_path(HAPPY_ADDONS__FILE__));
@@ -50,7 +50,7 @@ define('HAPPY_ADDONS_ASSETS', trailingslashit(HAPPY_ADDONS_DIR_URL . 'assets'));
 define('HAPPY_ADDONS_REDIRECTION_FLAG', 'happyaddons_do_activation_direct');
 define('HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG', 'happyaddons_do_wizard_direct');
 
-define('HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION', '2.9.0');
+define('HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION', '3.5.0');
 define('HAPPY_ADDONS_MINIMUM_PHP_VERSION', '5.4');
 
 /**
@@ -134,11 +134,16 @@ function ha_elementor_missing_notice() {
  * @return void
  */
 function ha_required_elementor_version_missing_notice() {
+
+    $notice_title = __('Update Elementor', 'happy-elementor-addons');
+    $notice_url = wp_nonce_url(self_admin_url('update.php?action=upgrade-plugin&plugin=elementor/elementor.php'), 'upgrade-plugin_elementor/elementor.php');
+
     $notice = sprintf(
         /* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
-        esc_html__('"%1$s" requires "%2$s" version %3$s or greater.', 'happy-elementor-addons'),
+        esc_html__('"%1$s" requires "%2$s" version %4$s or greater. %3$s', 'happy-elementor-addons'),
         '<strong>' . esc_html__('Happy Elementor Addons', 'happy-elementor-addons') . '</strong>',
         '<strong>' . esc_html__('Elementor', 'happy-elementor-addons') . '</strong>',
+        '<a href="' . esc_url($notice_url) . '">' . $notice_title . '</a>',
         HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION
     );
 

@@ -1,6 +1,20 @@
-= 3.#.# -  2022 =
+= 3.7.* - 01 September 2022 =
 
+- Fix: Threesixty rotation & Taxonomy List are not working as template.
+
+- New: Scroll To Top - Feature
+- Tweak: Introduce `elementor/widgets/register` hook for making it compatible with elementor 3.7.x
+
+= 3.7.0 - 30 August 2022 =
+
+- New: Scroll To Top - Feature
+- Tweak: Introduce `elementor/widgets/register` hook for making it compatible with elementor 3.7.x
+
+= 3.6.3 - 10 August 2022 =
+
+- Tweak: Removed `Elementor\DB::is_built_with_elementor` deprecated method from Elementor 3.7.0.
 - Fix: Post tab title tag issue
+- Fix: Infobox lord icon render issue
 
 = 3.6.2 - 5 July 2022 =
 

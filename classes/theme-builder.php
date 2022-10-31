@@ -950,12 +950,12 @@ class Theme_Builder {
         return isset($installed_plugins[$file_path]);
     }
 
-    public function ha_template_document_title($config, $post_id){
+    public function ha_template_document_title($config, $post_id) {
         $tpl_type = get_post_meta($post_id, '_ha_library_type', true);
 
         if (self::CPT === get_post_type($post_id)) {
             $title = "";
-            switch ($tpl_type){
+            switch ($tpl_type) {
                 case "header":
                     $title = "Header Settings";
                     break;
