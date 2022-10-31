@@ -1089,7 +1089,7 @@ class Pricing_Table extends Base {
 						'<%1$s %2$s>%3$s</%1$s>',
 						ha_escape_tags( $settings['title_tag'] ),
 						$this->get_render_attribute_string( 'title' ),
-						esc_html( ha_kses_basic( $settings['title'] ) )
+						ha_kses_basic( $settings['title'] )
 					);
 				?>
             <?php endif; ?>
