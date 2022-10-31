@@ -447,7 +447,7 @@ class Post_Info extends Base {
 				'label' => __( 'Alignment', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
-					'left' => [
+					'flex-start' => [
 						'title' => __( 'Start', 'happy-elementor-addons' ),
 						'icon' => 'eicon-h-align-left',
 					],
@@ -455,12 +455,14 @@ class Post_Info extends Base {
 						'title' => __( 'Center', 'happy-elementor-addons' ),
 						'icon' => 'eicon-h-align-center',
 					],
-					'right' => [
+					'flex-end' => [
 						'title' => __( 'End', 'happy-elementor-addons' ),
 						'icon' => 'eicon-h-align-right',
 					],
 				],
-				'prefix_class' => 'elementor%s-align-',
+				'selectors' => [
+					'{{WRAPPER}} ul.ha-inline-items.ha-icon-list-items' => 'justify-content:{{VALUE}};'
+				]
 			]
 		);
 

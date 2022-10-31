@@ -1188,7 +1188,7 @@ class Widgets_Manager {
 				'is_active' => true,
 				'title' => __('Site Title', 'happy-elementor-addons'),
 				'icon' => 'hm hm-lens',
-				'css' => [''],
+				'css' => ['site-title'],
 				'js' => [],
 				'vendor' => [
 					'css' => [],

@@ -116,12 +116,49 @@ class Post_Content extends Base {
         $this->start_controls_section(
             '_section_style_content',
             [
-                'label' => __( 'Content', 'happy-elementor-addons' ),
+                'label' => __( 'Post Content', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
+		$this->add_control(
+			'ha_ps_title_style',
+			[
+				'label' => __( 'Title', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				// 'separator' => 'after',
+			]
+		);
         $this->add_control(
+			'title_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} h2' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} h2',
+				'scheme' => Typography::TYPOGRAPHY_2,
+			]
+		);
+        
+		$this->add_control(
+			'ha_ps_content_style',
+			[
+				'label' => __( 'Content', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'after',
+			]
+		);
+		$this->add_control(
 			'content_color',
 			[
 				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),

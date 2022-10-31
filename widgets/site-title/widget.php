@@ -110,7 +110,6 @@ class Site_Title extends Base {
 			[
 				'label' => esc_html__( 'Size', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
-				'default' => 'default',
 				'options' => [
 					'default' => esc_html__( 'Default', 'happy-elementor-addons' ),
 					'small' => esc_html__( 'Small', 'happy-elementor-addons' ),
@@ -119,6 +118,7 @@ class Site_Title extends Base {
 					'xl' => esc_html__( 'XL', 'happy-elementor-addons' ),
 					'xxl' => esc_html__( 'XXL', 'happy-elementor-addons' ),
 				],
+				'default' => 'default',
 			]
 		);
 
@@ -211,7 +211,7 @@ class Site_Title extends Base {
 		$this->add_render_attribute('title', 'class', 'ha-site-title');
 
         if ( ! empty( $settings['size'] ) ) {
-            $this->add_render_attribute('title', 'class', 'elementor-size-' . $settings['size']);
+            $this->add_render_attribute('title', 'class', 'ha-site-title-' . $settings['size']);
         }
 
         printf('<%1$s %2$s>%3$s</%1$s>', $settings['site_title_tag'], $this->get_render_attribute_string('title'), get_bloginfo('name') );
