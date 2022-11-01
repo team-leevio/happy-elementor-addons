@@ -362,6 +362,8 @@
 	}
 
 	function saveConditionData() {
+		let $elBtn = document.getElementById("elementor-panel-saver-button-publish");
+			$elBtn.classList.add("elementor-button-state");
 		postId = elementor.config.document.id;
 		jQuery.ajax({
 			url: ajaxurl,
@@ -390,5 +392,10 @@
                 }
 			},
 		});
+
+		setTimeout( function(){
+			$elBtn.classList.remove("elementor-button-state");
+		}, 500 );
+		
 	}
 })(jQuery);

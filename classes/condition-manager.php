@@ -252,7 +252,94 @@ class Condition_Manager {
         }
     }
 
+    // update template conditions
     public function process_condition_update() {
+        try {
+            $this->validate_reqeust();
+            $templateID = isset($_REQUEST['template_id']) ? $_REQUEST['template_id'] : null;
+            $requestConditions = isset($_REQUEST['conds']) ? $_REQUEST['conds'] : [];
+
+            $exitsConditions = get_post_meta($templateID, '_ha_display_cond', true);
+
+            $mergedConditions = !empty( $exitsConditions ) ? array_diff($requestConditions, $exitsConditions) : $requestConditions;
+
+            if ($templateID) {
+
+                $allExtitsCondition = $this->ha_get_all_conditions();
+                $templateType = get_post_meta($templateID, '_ha_library_type', true);
+                
+                $duplicate = $this->ha_check_template_conditions($templateType, $requestConditions, $mergedConditions, $allExtitsCondition);
+
+                if (!$duplicate) {
+                    $cond = update_post_meta($templateID, '_ha_display_cond', array_unique($requestConditions));
+                    $updates = get_post_meta($templateID, '_ha_display_cond');
+
+                    if($cond != null) {
+                        $this->cache->regenerate();
+                        wp_send_json_success($updates);
+                    }else {
+                        wp_send_json_error();
+                    }
+                } else {
+                    wp_send_json_error(['msg' => esc_html__('Unable to save, conflicting include exclude condition detected. Please change the conditions accordingly.', 'happy-elementor-addons')]);
+                }
+
+            } else {
+
+                wp_send_json_error();
+            }
+
+            //_ha_display_cond;
+        } catch (Exception $e) {
+            wp_send_json_error($e->getMessage());
+        }
+    }
+
+    /*
+     * check template conditions
+     * @param string $template_type
+     * @param Array $requestConditions
+     * @param Array $exitsConditions
+     * 
+     * @return boolean
+     */
+    private function ha_check_template_conditions($template_type = '', $requestConditions = [], $mergedConditions=[], $exitsConditions = []) {
+        $result = false;
+        if( ! $template_type && !$requestConditions && ! $mergedConditions && ! $exitsConditions ) {
+            return $result;
+        }
+
+        
+        $newRequests = [];
+        foreach ( $requestConditions AS $val ) {
+            $newRequests[] = substr(strstr( $val, '/'), strlen('/') );
+        }
+
+        if( count($newRequests) != count(array_unique($newRequests)) ) {
+            return $result = true;
+        }
+
+        $generatedConditions = [];
+        foreach ($mergedConditions as $key => $value) {
+            $generatedConditions[] = substr(strstr( $value, '/'), strlen('/') );
+        }
+        
+        $filteredConditions = [];
+        foreach ($exitsConditions[$template_type] as $key => $value) {
+            $filteredConditions[] =  substr(strstr( $value, '/'), strlen('/') );
+        }
+        
+        foreach ($generatedConditions as $key => $value) {
+            if ( in_array($value, $filteredConditions) ) {
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
+    }
+    
+    public function process_condition_update_old() {
         try {
             $this->validate_reqeust();
             $templateID = isset($_REQUEST['template_id']) ? $_REQUEST['template_id'] : null;

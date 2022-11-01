@@ -239,7 +239,7 @@ class Theme_Builder {
 
             // generate display condition from document conditions
             $includeConditions     = [];
-            $exludeConditions      = [];
+            $excludeConditions      = [];
 
             // get doc conditions
             $documentConditions    = $this->get_document_conditions($post_id);
@@ -253,7 +253,7 @@ class Theme_Builder {
                     } else if ( 'exclude' === $condition['type'] ) {
                         $sub_page_id        = !empty( $condition['sub_id'] ) ? '#' . get_the_title( $condition['sub_id'] ) : '';
                         $con_label          =  !empty( $condition['sub_name'] ) && 'all' !== $condition['sub_name'] ? Condition_Manager::instance()->get_name($condition['sub_name']) . $sub_page_id : Condition_Manager::instance()->get_all_name($condition['name']);  
-                        $exludeConditions[] = $con_label;
+                        $excludeConditions[] = $con_label;
                     } else {
                         // not use this..
                     }
@@ -261,7 +261,7 @@ class Theme_Builder {
                 }
             }
 
-            echo '<b>Include : </b> ' . implode( ', ', $includeConditions ) . '<br/>' . '<b>Exlude : </b> ' . implode( ', ', $exludeConditions );
+            echo '<b>Include : </b> ' . implode( ', ', $includeConditions ) . '<br/>' . '<b>Exclude : </b> ' . implode( ', ', $excludeConditions );
 
         }
     }
