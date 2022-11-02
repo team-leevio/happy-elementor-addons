@@ -1159,18 +1159,6 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
-			'post-featured-image' => [
-				'cat' => 'theme',
-				'is_active' => true,
-				'title' => __('Post featured image', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
-				'css' => [''],
-				'js' => [],
-				'vendor' => [
-					'css' => [],
-					'js' => [],
-				],
-			],
 			'site-logo' => [
 				'cat' => 'theme',
 				'is_active' => true,
