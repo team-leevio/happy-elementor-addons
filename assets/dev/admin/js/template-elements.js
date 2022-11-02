@@ -71,6 +71,7 @@
 		var uniqify = generateUniqeDom(conditionTemplate.innerHTML);
 		conditionContainer.append(uniqify);
 		elementor.trigger("ha:templateConditionChange");
+		// ha_check_contradictory_condition();
 	});
 
 	$(document).on("click", ".ha-template-condition-remove", function () {
@@ -239,6 +240,9 @@
 			}
 
 			conditions.push(localCond);
+			// let haTc = ( localCond.match("include/") ) ? localCond.replace("include/", "") : localCond.replace("exclude/", "");
+			// console.log('haTc ', haTc);
+			// $(this).attr('data-ha_temp_cond', haTc);
 		});
 		newConditions = conditions;
 		// console.log(newConditions);
@@ -398,4 +402,13 @@
 		}, 500 );
 		
 	}
+
+	function ha_check_contradictory_condition() {
+		let $citems = document.querySelectorAll('.ha-template-condition-item');
+		$citems.forEach(function(item) {
+			let haTc = item.getAttribute( "data-ha_temp_cond" );
+
+		});
+	}
+
 })(jQuery);
