@@ -240,12 +240,12 @@
 			}
 
 			conditions.push(localCond);
-			// let haTc = ( localCond.match("include/") ) ? localCond.replace("include/", "") : localCond.replace("exclude/", "");
-			// console.log('haTc ', haTc);
-			// $(this).attr('data-ha_temp_cond', haTc);
+
 		});
+
 		newConditions = conditions;
 		// console.log(newConditions);
+		
 	}
 
 	function handleHaTemplateType(id) {
@@ -401,14 +401,6 @@
 			$elBtn.classList.remove("elementor-button-state");
 		}, 500 );
 		
-	}
-
-	function ha_check_contradictory_condition() {
-		let $citems = document.querySelectorAll('.ha-template-condition-item');
-		$citems.forEach(function(item) {
-			let haTc = item.getAttribute( "data-ha_temp_cond" );
-
-		});
 	}
 
 })(jQuery);
