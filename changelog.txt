@@ -2,6 +2,7 @@
 
 - Fix: Equal Height is not working on Tablet.
 - Fix: Pricing Table's Feature title is not working with <br> tag.
+- Fix: The Post Tab widget is showing all posts on the page load.
 
 = 3.7.1 - 18 October 2022 =
 

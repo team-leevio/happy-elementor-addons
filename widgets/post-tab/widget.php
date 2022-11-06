@@ -957,10 +957,12 @@ class Post_Tab extends Base {
 		$args['order']            = $settings['posts_order'] ? $settings['posts_order'] : 'DESC';
 
 		$args['tax_query'] = [
-			'taxonomy' => $taxonomy,
-			'field'    => 'term_id',
-			// 'terms' => $terms_ids ? $filter_list[0]->term_id : '',
-			'terms'    => isset( $filter_list[0]->term_id ) ? $filter_list[0]->term_id : '',
+			[
+				'taxonomy' => $taxonomy,
+				'field'    => 'term_id',
+				// 'terms' => $terms_ids ? $filter_list[0]->term_id : '',
+				'terms'    => isset( $filter_list[0]->term_id ) ? $filter_list[0]->term_id : '',
+			],
 		];
 
 		//define ha post tab custom query filter hook
