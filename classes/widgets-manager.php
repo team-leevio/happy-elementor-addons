@@ -1183,6 +1183,18 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'site-tagline' => [
+				'cat' => 'theme',
+				'is_active' => true,
+				'title' => __('Site Tagline', 'happy-elementor-addons'),
+				'icon' => 'hm hm-tb-site-title',
+				'css' => ['site-tagline'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
 			'author-meta' => [
 				'cat' => 'theme',
 				'is_active' => true,
