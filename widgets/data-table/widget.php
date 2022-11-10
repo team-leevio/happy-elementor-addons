@@ -57,6 +57,7 @@ class Data_Table extends Base {
 	protected function register_content_controls() {
 		$this->__table_head_content_controls();
 		$this->__table_row_content_controls();
+		$this->__table_settings_controls();
 	}
 
 	protected function __table_head_content_controls() {
@@ -237,7 +238,7 @@ class Data_Table extends Base {
 						'icon' => 'eicon-text-align-right',
 					]
 				],
-				'default' => 'center',
+				'default' => 'left',
 				'toggle' => false,
 				'prefix_class' => 'ha-column-alignment-',
 				'selectors' => [
@@ -624,6 +625,47 @@ class Data_Table extends Base {
 
 	}
 
+	protected function __table_settings_controls() {
+		$this->start_controls_section(
+			'_section_table_settings',
+			[
+				'label' => __( 'Settings', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_control(
+			'show_responsive_scroll_view',
+			[
+				'label' => __( 'Enable Scroll View', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+				'prefix_class' => 'ha-data-table-responsive-scroll-',
+				'description' => __('Enable the switch to activate horizontal scrolling on responsive view.', 'happy-elementor-addons'),
+			]
+		);
+		
+		$this->add_control(
+			'disable_word_wrap',
+			[
+				'label' => __( 'Disable Word Break', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => 'yes',
+				'prefix_class' => 'ha-data-table-disable-wordwrap-',
+				'condition' => [ 'show_responsive_scroll_view' => 'yes' ],
+				'description' => __('The word break option effective only mobile screen view.', 'happy-elementor-addons'),
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
 
 	/**
      * Register widget style controls
@@ -799,6 +841,13 @@ class Data_Table extends Base {
 				'label' => __( 'Padding', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
+				'default' => [
+					'top' => 10,
+					'right' => 10,
+					'bottom' => 10,
+					'left' => 10,
+					'unit' => 'px',
+				],
 				'selectors' => [
 					'(desktop){{WRAPPER}} .ha-table__body .ha-table__body-row-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'(tablet){{WRAPPER}} .ha-table__body .ha-table__body-row-cell' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',

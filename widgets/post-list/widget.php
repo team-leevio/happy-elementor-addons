@@ -1181,7 +1181,7 @@ class Post_List extends Base {
 												if ( $settings['category_icon'] ) :
 													Icons_Manager::render_icon( $settings['category_icon'], [ 'aria-hidden' => 'true' ] );
 												endif;
-												echo esc_html( $categories[0]->name );
+												echo ( ! empty( $categories ) ) ? esc_html( $categories[0]->name ) : '';
 												?>
 												</span>
 											<?php endif; ?>
@@ -1201,7 +1201,7 @@ class Post_List extends Base {
 									<?php if ( 'yes' === $settings['content'] ) : ?>
 										<div class="ha-post-list-excerpt">
 											<?php
-											if ( 'post' !== $settings['post_type'] && has_excerpt( $post->ID ) ) {
+											if ( has_excerpt( $post->ID ) ) {
 												printf(
 													'<p>%1$s</p>',
 													wp_trim_words( get_the_excerpt( $post->ID ) )

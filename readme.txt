@@ -1,12 +1,12 @@
 === Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget) ===
 Plugin Name: Happy Addons for Elementor (Mega Menu, Post Grid, Woocommerce Product Grid, Table, Event Calendar, Slider Elementor Widget)
-Version: 3.7.0
+Version: 3.7.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Mega Menu
 Requires at least: 4.7
-Tested up to: 6.0.1
+Tested up to: 6.0
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -160,9 +160,9 @@ Our elementor card widget will help you to create mesmerizing card items within 
 
 * **[Comparison Table](https://demo.happyaddons.com/elementor-comparison-table-widget-demo/)** - The comparison table will help your site visitors to buy your product, sign up for membership, contact, or just request a quote. Are you wondering about creating comparison tables for your affiliated products, gadgets, features, services, or anything related to your website? Try HappyAddons new comparison table widget for Elementor. It’s available in the free version of HappyAddons for Elementor.
 
-* **[Photo Stack](https://demo.happyaddons.com/elementor-photo-stack-widget-demo/): **Happy Elementor Adsdons Photo Stack Elementor Widget will help you achieve a critical layout of Images where you don’t have to use multiple columns and intersections to achieve that. With the help of the Photo Stack Elementor widget, you can easily achieve the layered image style without any technical knowledge. Showcase multiple layered images within the Elementor website by using the photo stack widget for Elementor by team HappyAddons.
+* **[Photo Stack](https://demo.happyaddons.com/elementor-photo-stack-widget-demo/)** - Happy Elementor Adsdons Photo Stack Elementor Widget will help you achieve a critical layout of Images where you don’t have to use multiple columns and intersections to achieve that. With the help of the Photo Stack Elementor widget, you can easily achieve the layered image style without any technical knowledge. Showcase multiple layered images within the Elementor website by using the photo stack widget for Elementor by team HappyAddons.
 
-* **[Lord Icon](https://demo-x.happyaddons.com/elementor-lordicon-widget-demo/)**: Lord icon is a very much popular element in the web development industry. We often use this feature to add an animated icon to our websites. But previously, it was not that much easy to add and customize the lord icons to the elementor website. But from now on, you can add the lord icon to your Elementor websites by using the HappyAddons lord Icon widget for ELementor. You can customize the color and other options directly from your elementor editing panel. Lord Icon Elementor WIdget can be used separately in any place on the website; also, we have added support to the lord icons in our Info Box Elementor Widget and Icon Box Elementor Widget. Use the Lord Icon Elementor Widget.
+* **[Lord Icon](https://demo-x.happyaddons.com/elementor-lordicon-widget-demo/)** - Lord icon is a very much popular element in the web development industry. We often use this feature to add an animated icon to our websites. But previously, it was not that much easy to add and customize the lord icons to the elementor website. But from now on, you can add the lord icon to your Elementor websites by using the HappyAddons lord Icon widget for ELementor. You can customize the color and other options directly from your elementor editing panel. Lord Icon Elementor WIdget can be used separately in any place on the website; also, we have added support to the lord icons in our Info Box Elementor Widget and Icon Box Elementor Widget. Use the Lord Icon Elementor Widget.
 
 **20+ Free Elementor Enhancement Features Are Available in the Happy Elementor Addons Free**
 
@@ -226,7 +226,7 @@ With the help of the Happy elementor addons floating effect extension, you can c
 
 **[CSS Transform](https://happyaddons.com/elementor-css-transform-demo-3/)** – Another missing piece, a great enhancement over core Elementor that works seamlessly with every widget. You can now apply various CSS transforms like translate, rotate, scale and skew without any limitations within any Elementor Widget also with any other third-party elementor addons. It’s a global feature of elementor created by Happy Addons for elementor. Don’t miss the chance to use the Happy Elementor addons CSS transform elementor module to create an extraordinary look for your elementor website.
 
-**[Scroll To Top Feature:](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/scroll-to-top-button/)**  Scroll to top feature is a commonly used feature in websites. We often use scroll-to-top plugins or use different methods to add that option to the web pages. But don’t worry, you can add this option to your websites within Elementor Editing Panel by using Happy Addons Scroll to the top feature. You can set the scroll to the top button for all pages or can set a condition for any specific page not to show the scroll to top button. Use happy addons for elementor’s scroll-to-top feature for free.
+**[Scroll To Top Feature:](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/scroll-to-top-button/)** - Scroll to top feature is a commonly used feature in websites. We often use scroll-to-top plugins or use different methods to add that option to the web pages. But don’t worry, you can add this option to your websites within Elementor Editing Panel by using Happy Addons Scroll to the top feature. You can set the scroll to the top button for all pages or can set a condition for any specific page not to show the scroll to top button. Use happy addons for elementor’s scroll-to-top feature for free.
 
 
 ### **PRESENTING THE ALL-EXCLUSIVE ElEMENTOR WIDGETS & FEATURES HAPPY ELEMENTOR ADDONS PRO**
@@ -360,19 +360,19 @@ Here are the **[Doc](https://happyaddons.com/docs/happy-addons-for-elementor-pro
 * **EDD Category Carousel Elementor Widget** - If you are wondering about adding EDD product carousels within Elementor, it will be impossible as there is no default support of Elementor for the Easy Digital Download plugin. But if you use Happy Addons for Elementor, you will get the opportunity to add category carousels for your EDD stores. You can create lucrative category carousels for your EDD stores using the EDD category carousel elementor widget.
 Check **[Doc](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-category-carousel/)** and **[Video](https://www.youtube.com/watch?v=-CgXyA-g9q0&feature=youtu.be&ab_channel=HappyAddons)** Documentation for EDD Category Carousel Elementor Widget.
 
-* **[EDD Cart Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-cart/):** If you are using Easy Digital Downloads to manage your sale now, you can design your EDD cart page using HappyAddons EDD Cart Widget for Elementor.
+* **[EDD Cart Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-cart/)** - If you are using Easy Digital Downloads to manage your sale now, you can design your EDD cart page using HappyAddons EDD Cart Widget for Elementor.
 
-* **[EDD Checkout Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-checkout/):** Manage your Easy Digital Downloads Checkout pages by using HappyAddons EDD Checkout Widget. A limitless customization facility has been added to this EDD checkout elementor widget.
+* **[EDD Checkout Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-checkout/)** - Manage your Easy Digital Downloads Checkout pages by using HappyAddons EDD Checkout Widget. A limitless customization facility has been added to this EDD checkout elementor widget.
 
-* **[EDD login Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-login/):** You can customize your EDD store’s login page by using HappyAddons Easy Digital Download Login Widget within Elementor website builder.
+* **[EDD login Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-login/)** - You can customize your EDD store’s login page by using HappyAddons Easy Digital Download Login Widget within Elementor website builder.
 
-* **[EDD Registration Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-register/):** HappyAddons EDD Registration Widget allows you to customize the registration form of the Easy Digital Downloads. You can manage it from your Elementor Editing Panel. 
+* **[EDD Registration Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-register/)** - HappyAddons EDD Registration Widget allows you to customize the registration form of the Easy Digital Downloads. You can manage it from your Elementor Editing Panel. 
 
-* **[EDD Purchase WIdget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-purchase/):** EDD purchase widget of HappyAddons gives you the flexibility to stylize your Easy Digital Download store’s purchase page within Elementor.
+* **[EDD Purchase WIdget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-purchase/)** - EDD purchase widget of HappyAddons gives you the flexibility to stylize your Easy Digital Download store’s purchase page within Elementor.
 
-* **[EDD Download Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-download/):** If you want to customize your EDD store’s download page with Elementor, then use HappyAddons EDD Download Widget. 
+* **[EDD Download Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-download/)** - If you want to customize your EDD store’s download page with Elementor, then use HappyAddons EDD Download Widget. 
 
-* **[Image Swap Widget](https://demo.happyaddons.com/elementor-image-swap-widget-demo/):** If you are looking for an Elementor Widget which can help you to alter the lower image to the top without any hassle, then you can use HappyAddons Image Swap Widget. It will help you to create an actionable section for your users on your Elementor Website. 
+* **[Image Swap Widget](https://demo.happyaddons.com/elementor-image-swap-widget-demo/)** - If you are looking for an Elementor Widget which can help you to alter the lower image to the top without any hassle, then you can use HappyAddons Image Swap Widget. It will help you to create an actionable section for your users on your Elementor Website. 
 
 ### **UNIQUE PRO FEATURES OF HAPPY ELEMENTOR ADDONS TO WATCH OUT FOR**
 
@@ -568,6 +568,21 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.7.1 - 18 October 2022 =
+
+- Tweak: Scroll To Top feature enhancements like customize the icon, text, and image, and enable or disable the feature for different devices. Plus, we've fixed the page refresh issue when making changes to the settings
+- Tweak: Horizontal scrolling on Data Table mobile responsive view.
+- Tweak: Word Break Option Introduce on Data Table mobile responsive view.
+- Tweak: Meta items Removal option in Post Tab Widget.
+- Tweak: Advance Post Queries & Query ID integration with the Post Tab Widgets.
+- Tweak: Info Box Widget, media position responsive control.
+- Tweak: Price Table widget's title tag changing option added.
+- Tweak: Add Phone Number field on the Team Member widget's social profile section.
+- Tweak: Add Prefix & Suffix Spacing control in the Fun Factor widget.
+- Tweak: Add Post ordering option with the Post Tab widget.
+- Fix: Threesixty rotation & Taxonomy List are not working as a template.
+- Fix: Post list excerpt not showing.
 
 = 3.7.0 - 30 August 2022 =
 

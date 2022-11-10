@@ -76,6 +76,7 @@ class Member extends Base {
 			'digg'           => __( 'Digg', 'happy-elementor-addons' ),
 			'dribbble'       => __( 'Dribbble', 'happy-elementor-addons' ),
 			'email'          => __( 'Email', 'happy-elementor-addons' ),
+			'phone'          => __( 'Phone', 'happy-elementor-addons' ),
 			'facebook'       => __( 'Facebook', 'happy-elementor-addons' ),
 			'flickr'         => __( 'Flicker', 'happy-elementor-addons' ),
 			'foursquare'     => __( 'FourSquare', 'happy-elementor-addons' ),
@@ -345,7 +346,7 @@ class Member extends Base {
 				'autocomplete'  => false,
 				'show_external' => false,
 				'condition'     => [
-					'name!' => 'email',
+					'name!' => ['email','phone'],
 				],
 				'dynamic'       => [
 					'active' => true,
@@ -358,10 +359,26 @@ class Member extends Base {
 				'label'       => __( 'Email Address', 'happy-elementor-addons' ),
 				'placeholder' => __( 'Add your email address', 'happy-elementor-addons' ),
 				'type'        => Controls_Manager::TEXT,
-				'label_block' => false,
+				'label_block' => true,
 				'input_type'  => 'email',
 				'condition'   => [
 					'name' => 'email',
+				],
+				'dynamic'     => [
+					'active' => true,
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'phone', [
+				'label'       => __( 'Phone Number', 'happy-elementor-addons' ),
+				'placeholder' => __( 'Add your phone number', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::TEXT,
+				'label_block' => true,
+				'input_type'  => 'text',
+				'condition'   => [
+					'name' => 'phone',
 				],
 				'dynamic'     => [
 					'active' => true,
@@ -1713,11 +1730,14 @@ class Member extends Base {
 						$icon = $profile['name'];
 						$url  = isset( $profile['link']['url'] ) ? $profile['link']['url'] : '';
 
-						if ( $profile['name'] === 'website' ) {
+						if ( 'website' === $profile['name'] ) {
 							$icon = 'globe far';
-						} elseif ( $profile['name'] === 'email' ) {
+						} elseif ( 'email' === $profile['name'] ) {
 							$icon = 'envelope far';
 							$url  = 'mailto:' . antispambot( $profile['email'] );
+						} elseif ( 'phone' === $profile['name'] ) {
+							$icon = 'phone-alt fas';
+							$url  = 'tel:' . esc_html( $profile['phone'] );
 						} else {
 							$icon .= ' fab';
 						}

@@ -162,6 +162,48 @@ class Post_Tab extends Base {
 			]
 		);
 
+		$this->add_control(
+			'posts_orderby',
+			[
+				'label'   => __( 'Order By', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'date',
+				'options' => [
+					'author'        => __( 'Author', 'happy-elementor-addons' ),
+					'comment_count' => __( 'Comment Count', 'happy-elementor-addons' ),
+					'date'          => __( 'Date', 'happy-elementor-addons' ),
+					'ID'            => __( 'ID', 'happy-elementor-addons' ),
+					'menu_order'    => __( 'Menu Order', 'happy-elementor-addons' ),
+					'rand'          => __( 'Random', 'happy-elementor-addons' ),
+					'title'         => __( 'Title', 'happy-elementor-addons' ),
+				],
+			]
+		);
+
+		$this->add_control(
+			'posts_order',
+			[
+				'label'   => __( 'Order', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'desc',
+				'options' => [
+					'asc'  => __( 'ASC', 'happy-elementor-addons' ),
+					'desc' => __( 'DESC', 'happy-elementor-addons' ),
+				],
+			]
+		);
+
+		$this->add_control(
+			'query_id',
+			[
+				'label'       => __( 'Query ID', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'dynamic'     => [ 'active' => true ],
+				'description' => __( 'Give your Query a custom unique id to allow server side filtering.', 'happy-elementor-addons' ),
+			]
+		);
+
 		$this->end_controls_section();
 
 	}
@@ -220,6 +262,30 @@ class Post_Tab extends Base {
 					'p'    => 'p',
 				],
 				'default' => 'h2',
+			]
+		);
+
+		$this->add_control(
+			'show_user_meta',
+			[
+				'label'        => __( 'Show User Meta', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __( 'Show', 'happy-elementor-addons' ),
+				'label_off'    => __( 'Hide', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default'      => 'yes',
+			]
+		);
+
+		$this->add_control(
+			'show_date_meta',
+			[
+				'label'        => __( 'Show Date Meta', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __( 'Show', 'happy-elementor-addons' ),
+				'label_off'    => __( 'Hide', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default'      => 'yes',
 			]
 		);
 
@@ -883,29 +949,37 @@ class Post_Tab extends Base {
 
 		$filter_list = get_terms( $terms_args );
 
-		$post_args = [
-			'post_status'      => 'publish',
-			'post_type'        => $settings['post_type'],
-			'posts_per_page'   => $settings['item_limit'],
-			'suppress_filters' => false,
-			'tax_query'        => array(
-				array(
-					'taxonomy' => $taxonomy,
-					'field'    => 'term_id',
-					// 'terms' => $terms_ids ? $filter_list[0]->term_id : '',
-					'terms'    => isset( $filter_list[0]->term_id ) ? $filter_list[0]->term_id : '',
-				),
-			),
+		$args['post_status']      = 'publish';
+		$args['post_type']        = $settings['post_type'];
+		$args['posts_per_page']   = $settings['item_limit'];
+		$args['suppress_filters'] = false;
+		$args['orderby']          = $settings['posts_orderby'] ? $settings['posts_orderby'] : 'date';
+		$args['order']            = $settings['posts_order'] ? $settings['posts_order'] : 'DESC';
+
+		$args['tax_query'] = [
+			[
+				'taxonomy' => $taxonomy,
+				'field'    => 'term_id',
+				// 'terms' => $terms_ids ? $filter_list[0]->term_id : '',
+				'terms'    => isset( $filter_list[0]->term_id ) ? $filter_list[0]->term_id : '',
+			],
 		];
 
-		$posts = get_posts( $post_args );
+		//define ha post tab custom query filter hook
+		if ( ! empty( $settings['query_id'] ) ) {
+			$args = apply_filters( "happyaddons/post-tab/{$settings['query_id']}", $args );
+		}
+
+		$posts = get_posts( $args );
 
 		$query_settings = [
 			'post_type'  => $settings['post_type'],
 			'taxonomy'   => $taxonomy,
 			'item_limit' => $settings['item_limit'],
+			'orderby'    => $settings['posts_orderby'] ? $settings['posts_orderby'] : 'date',
+			'order'      => $settings['posts_order'] ? $settings['posts_order'] : 'DESC',
 			'excerpt'    => $settings['excerpt'] ? $settings['excerpt'] : 'no',
-			'title_tag'    => $settings['title_tag'],
+			'title_tag'  => $settings['title_tag'],
 		];
 		$query_settings = json_encode( $query_settings, true );
 
@@ -963,23 +1037,41 @@ class Post_Tab extends Base {
 											esc_html( $post->post_title )
 										);
 									?>
-									<div class="ha-post-tab-meta">
-										<span class="ha-post-tab-meta-author">
-											<i class="fa fa-user-o"></i>
-											<a href="<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
-										</span>
-										<?php
-										$archive_year  = get_the_time( 'Y', $post->ID );
-										$archive_month = get_the_time( 'm', $post->ID );
-										$archive_day   = get_the_time( 'd', $post->ID );
+
+									<?php
+									if ( ( 'yes' == $settings['show_user_meta'] ) || ( 'yes' == $settings['show_date_meta'] ) ) {
 										?>
-										<span class="ha-post-tab-meta-date">
-											<i class="fa fa-calendar-o"></i>
-											<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>">
-											<?php echo get_the_date( get_option( 'date_format' ), $post->ID ); ?>
-										</a>
-										</span>
-									</div>
+											<div class="ha-post-tab-meta">
+												<?php
+												if ( 'yes' == $settings['show_user_meta'] ) {
+													?>
+														<span class="ha-post-tab-meta-author">
+															<i class="fa fa-user-o"></i>
+															<a href="<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
+														</span>
+												<?php } ?>
+
+
+												<?php
+												if ( 'yes' == $settings['show_date_meta'] ) {
+
+													$archive_year  = get_the_time( 'Y', $post->ID );
+													$archive_month = get_the_time( 'm', $post->ID );
+													$archive_day   = get_the_time( 'd', $post->ID );
+													?>
+
+													<span class="ha-post-tab-meta-date">
+														<i class="fa fa-calendar-o"></i>
+														<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>">
+														<?php echo get_the_date( get_option( 'date_format' ), $post->ID ); ?>
+														</a>
+													</span>
+
+												<?php } ?>
+
+											</div>
+									<?php } ?>
+
 									<?php if ( 'yes' === $settings['excerpt'] && ! empty( $post->post_excerpt ) ) : ?>
 										<div class="ha-post-tab-excerpt">
 											<p><?php echo esc_html( $post->post_excerpt ); ?></p>

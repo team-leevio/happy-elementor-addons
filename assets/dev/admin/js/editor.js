@@ -209,17 +209,44 @@
 			}, 100)
 		);
 
-		function scroll_to_top_reloadPreview (newValue) {
-			// console.log(newValue);
-			// $e.run( 'document/save/publish' )
-			$e.run( 'document/save/update' ).then( _.debounce( function () {
-				elementor.reloadPreview();
-				// location.reload();
-			}, 1500));
+		function scrollToTop ( newValue ) {
+			// $e.run( 'document/save/update' ).then( _.debounce( function () {
+			// 	elementor.reloadPreview();
+			// }, 1500));
+
+			var changeItem = Object.entries( this.model.changed )[0];
+			var settings = this.getSettings().settings; //get saved value
+			var attributes = this.model.attributes;
+			var stt_data = {
+				'check' : 'sttMessage',
+				'changeValue' : newValue,
+				'changeItem' : changeItem
+			};
+
+			if( 'ha_scroll_to_top_single_disable' != changeItem[0] ) {
+				var data = {
+					'enable_global_stt' : attributes.ha_scroll_to_top_global,
+					'media_type' : attributes.ha_scroll_to_top_media_type,
+					'icon' : attributes.ha_scroll_to_top_button_icon,
+					'image' : attributes.ha_scroll_to_top_button_image,
+					'text' : attributes.ha_scroll_to_top_button_text,
+				};
+				stt_data = Object.assign(stt_data, data);
+			} else {
+				$e.run( 'document/save/update' ).then( _.debounce( function () {
+					elementor.reloadPreview();
+				}, 1500));
+			}
+
+			//console.log( stt_data );
+			$("#elementor-preview-iframe")[0].contentWindow.postMessage(stt_data);
 		}
-		elementor.settings.page.addChangeCallback("ha_scroll_to_top_global", scroll_to_top_reloadPreview);
-		elementor.settings.page.addChangeCallback("ha_scroll_to_top_button_icon", scroll_to_top_reloadPreview);
-		elementor.settings.page.addChangeCallback("ha_scroll_to_top_single_disable", scroll_to_top_reloadPreview);
+
+		var changeHandler = [ "ha_scroll_to_top_global","ha_scroll_to_top_media_type","ha_scroll_to_top_button_icon","ha_scroll_to_top_button_image","ha_scroll_to_top_button_text","ha_scroll_to_top_single_disable" ];
+
+		$.each( changeHandler, function( index, value ) {
+			elementor.settings.page.addChangeCallback(value, scrollToTop);
+		});
 
 		/**
 		 * Register grid layer shortcut
