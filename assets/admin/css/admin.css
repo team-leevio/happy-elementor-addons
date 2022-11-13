@@ -1165,9 +1165,7 @@ p + .ha-review-notice__actions {
 }
 #ha-template-edit-form .ha-template-condition-wrap .ha-template-condition-item {
 	position: relative;
-	padding: 10px;
 	border-radius: 10px;
-	background: rgba(51, 51, 51, .1);
 }
 #ha-template-edit-form .ha-template-condition-wrap .ha-template-condition-item-row {
 	display: -webkit-box;

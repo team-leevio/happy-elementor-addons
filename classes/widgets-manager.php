@@ -1267,6 +1267,18 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'navigation-menu' => [
+				'cat' => 'theme',
+				'is_active' => true,
+				'title' => __('Nav Menu', 'happy-elementor-addons'),
+				'icon' => 'hm hm-mega-menu',
+				'css' => ['nav-menu'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
 		];
 	}
 
