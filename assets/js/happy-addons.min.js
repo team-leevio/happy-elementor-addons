@@ -1108,7 +1108,7 @@
           $element: $scope
         });
       });
-    });
+    }); //nav menu
 
     var NavigationMenu = function __init($scope) {
       var navMenu = $scope.find('.ha-nav-menu');
@@ -1116,43 +1116,44 @@
       humBurgerBtn.on('click', function (e) {
         var humberger = $(this).data('humberger');
         var $pel = navMenu.find('ul.menu');
-        console.log('pel ', $pel);
 
         if ('open' == humberger) {
           $('.ha-menu-open-icon').addClass('hide-icon');
           $('.ha-menu-close-icon').removeClass('hide-icon');
           $('.ha-menu-close-icon').addClass('show-icon');
-          console.log('open'); // $pel.show();
-
           $pel.slideDown();
         } else {
-          console.log('close');
           $('.ha-menu-close-icon').addClass('hide-icon');
           $('.ha-menu-open-icon').removeClass('hide-icon');
-          $('.ha-menu-open-icon').addClass('show-icon'); // $pel.hide();
-
+          $('.ha-menu-open-icon').addClass('show-icon');
           $pel.slideUp();
         }
       });
 
       function burgerClsAdd() {
-        console.log('resize');
-        console.log(jQuery(window).width());
-
         if (jQuery(window).width() < 768) {
           navMenu.removeClass('ha-navigation-menu-wrapper');
           navMenu.addClass('ha-navigation-burger-menu');
+          var humBurgerSubMenuBtn = navMenu.find('.ha-submenu-indicator-wrap');
+          humBurgerSubMenuBtn.on('click', function (e) {
+            e.preventDefault();
+            var $parentEl = $(this).parent('li.menu-item-has-children');
+
+            if ($parentEl) {
+              $parentEl.children('ul.sub-menu').slideToggle();
+            }
+          });
         } else {
           navMenu.addClass('ha-navigation-menu-wrapper');
           navMenu.removeClass('ha-navigation-burger-menu');
           navMenu.find('ul.menu').removeAttr('style');
+          navMenu.find('ul.sub-menu').removeAttr('style');
         }
       }
 
       burgerClsAdd();
       $window.on('resize', debounce(burgerClsAdd, 100));
-    }; //nav menu
-
+    };
 
     elementorFrontend.hooks.addAction("frontend/element_ready/ha-navigation-menu.default", NavigationMenu);
   });
