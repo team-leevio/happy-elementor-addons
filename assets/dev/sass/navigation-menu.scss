@@ -63,7 +63,7 @@
                     ul.sub-menu {
                         position: absolute;
                         top: 0;
-                        left: 90%;
+                        left: 95%;
                         padding: 0;
                         min-width: 150px;
                         background: #fff;
@@ -191,4 +191,9 @@
     }
 
     
+}
+
+/*for hello elementor*/
+.site-navigation ul.menu li.menu-item-has-children:after {
+    display: none;
 }
