@@ -123,6 +123,11 @@
                 border-bottom-width: 1px;
             }
 
+            li.menu-item {
+                padding-right: 0 !important;
+                margin-right: 0 !important;
+            }
+
             li.menu-item-has-children {
                 display: flex;
                 justify-content: space-between;
