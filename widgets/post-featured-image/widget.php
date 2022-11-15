@@ -66,7 +66,7 @@ class Post_Featured_Image extends Base {
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
-
+		
 		$this->add_group_control(
 			Group_Control_Image_Size::get_type(),
 			[
@@ -103,6 +103,18 @@ class Post_Featured_Image extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};'
 				]
+			]
+		);
+
+		$this->add_control(
+			'image_caption',
+			[
+				'label' => __( 'Show Caption', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => __( 'no', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => 'no',
 			]
 		);
 
@@ -183,12 +195,17 @@ class Post_Featured_Image extends Base {
 		if (ha_elementor()->editor->is_edit_mode() || is_preview()) {
 			echo '<img src="'.Utils::get_placeholder_image_src().'" alt="place holder image">';
 		}else {
-			if ( has_post_thumbnail() ){
-				if( $settings['post_feature_image_size'] == 'custom' ){
-					the_post_thumbnail( array( $settings['post_feature_image_custom_dimension']['width'], $settings['post_feature_image_custom_dimension']['height'] ) );
-				}else{
-					the_post_thumbnail( $settings['post_feature_image_size'] );
-				}
+			if ( has_post_thumbnail() ){ 
+
+					if( $settings['post_feature_image_size'] == 'custom' ){
+						the_post_thumbnail( array( $settings['post_feature_image_custom_dimension']['width'], $settings['post_feature_image_custom_dimension']['height'] ) );
+					}else{
+						the_post_thumbnail( $settings['post_feature_image_size'] );
+					} 
+
+					if( 'yes' == $settings['image_caption'] ) { ?>
+						<figcaption class="ha-image-caption" style="color:#7A7A7A;font-size: 16px;line-height: 0.5;"><?php echo wp_kses_post( get_the_post_thumbnail_caption() );?></figcaption>
+				<?php } 
 			}
 		}
 	}

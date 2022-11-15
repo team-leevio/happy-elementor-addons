@@ -1267,6 +1267,30 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'post-featured-image' => [
+				'cat' => 'theme',
+				'is_active' => true,
+				'title' => __('Post featured image', 'happy-elementor-addons'),
+				'icon' => 'hm hm-lens',
+				'css' => [''],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'navigation-menu' => [
+				'cat' => 'theme',
+				'is_active' => true,
+				'title' => __('Nav Menu', 'happy-elementor-addons'),
+				'icon' => 'hm hm-mega-menu',
+				'css' => ['navigation-menu'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
 		];
 	}
 

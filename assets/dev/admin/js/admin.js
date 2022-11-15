@@ -59,11 +59,11 @@ jQuery(document).ready(function ($) {
 					) {
 						_label.text(
 							"HA: " +
-								templateType
-									.toLowerCase()
-									.replace(/(?<= )[^\s]|^./g, (a) =>
-										a.toUpperCase()
-									)
+							templateType
+								.toLowerCase()
+								.replace(/(?<= )[^\s]|^./g, (a) =>
+									a.toUpperCase()
+								)
 						);
 					}
 				}
@@ -87,7 +87,9 @@ function getParameterByName(url, name) {
 
 jQuery(function ($) {
 	var newTemplateModal = document.getElementById("tmpl-modal-new-template");
-	$("body").append(newTemplateModal.innerHTML);
+	if (newTemplateModal != null) {
+		$("body").append(newTemplateModal.innerHTML);
+	}
 
 	MicroModal.init();
 
@@ -95,17 +97,22 @@ jQuery(function ($) {
 	var templateName = document.getElementById("ha-new-template-form__post-title");
 	var templateButton = document.getElementById("ha-new-template-form__submit");
 
-	templateType.addEventListener('change',checkButtonDisabled);
-	templateName.addEventListener('input',checkButtonDisabled);
+	if (templateType != null) {
+		templateType.addEventListener('change', checkButtonDisabled);
+	}
 
-	function checkButtonDisabled(){
+	if (templateName != null) {
+		templateName.addEventListener('input', checkButtonDisabled);
+	}
+
+	function checkButtonDisabled() {
 		var typeVal = templateType.value;
 		var nameVal = templateName.value;
 
 		console.log(nameVal);
-		if(typeVal && nameVal){
+		if (typeVal && nameVal) {
 			templateButton.disabled = false;
-		}else{
+		} else {
 			templateButton.disabled = true;
 		}
 	}
