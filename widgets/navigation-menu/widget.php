@@ -886,7 +886,7 @@ class Navigation_Menu extends Base {
 		<?php } 
 		
         if ($settings['nav_menu_list'] != '' && wp_get_nav_menu_items($settings['nav_menu_list']) !== false && count(wp_get_nav_menu_items($settings['nav_menu_list'])) > 0) {
-            echo '<nav class="ha-nav-menu site-navigation ha-navigation-menu-wrapper">';
+            echo '<nav class="ha-nav-menu ha-navigation-menu-wrapper">';
             $this->render_raw();
             echo '</nav>';
         }
