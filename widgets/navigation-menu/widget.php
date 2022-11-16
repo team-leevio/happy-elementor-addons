@@ -155,7 +155,7 @@ class Navigation_Menu extends Base {
 					],
 				],
 				'toggle' => true,
-				'default' => 'flex-end',
+				'default' => 'center',
 				'selectors' => [
 					'{{WRAPPER}} .ha-navigation-burger-menu .ha-nav-humberger-wrapper' => 'justify-content: {{VALUE}};',
 				]
