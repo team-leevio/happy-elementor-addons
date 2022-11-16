@@ -123,10 +123,15 @@
 
         ul.menu {
             display: none;
+            background: #fff;
+            z-index: 99999;
             margin-left: 0;
             margin-right: 0;
-            width: 100%;
             text-align: left;
+            position: absolute;
+            height: auto;
+            right: 0;
+            width: 100vw;
 
             li.menu-item:not(:last-child) {
                 border-bottom-style: solid;
