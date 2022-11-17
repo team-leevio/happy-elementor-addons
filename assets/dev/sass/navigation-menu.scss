@@ -5,11 +5,13 @@
 
         li {
 
+            cursor: pointer;
+
             a {
                 display: block;
-                padding: 8px 15px;
-                color: #000;
-                font-size: 15px;
+                padding: 8px 0px;
+                color: #333333;
+                font-size: 14px;
                 font-weight: 500;
                 text-decoration: none;
                 width: 100%;
@@ -24,7 +26,6 @@
 }
 
 .ha-navigation-menu-wrapper {
-    // .ha-nav-menu
     grid-area: nav-menu;
     display: flex;
     align-items: center;
@@ -49,8 +50,8 @@
             display: flex;
             justify-content: space-between;
 
-            a:hover {
-                color: #707070;
+            &:hover {
+                color: #E2498A;
             }
 
             ul.sub-menu {
@@ -62,11 +63,14 @@
                 background: #fff;
 
                 li {
-                    padding: 5px 15px;
-
                     .ha-submenu-indicator-wrap {
                         transform: rotate(270deg);
-                        margin: auto 0;
+                        width: 14px;
+                        height: 14px;
+                        text-align: center;
+                        font-size: 14px;
+                        cursor: pointer;
+                        display: inline-block;
                     }
                 }
 
@@ -85,14 +89,18 @@
 
         }
 
+        li.menu-item-has-children a {
+            margin-right: 5px;
+        }
+        
         li.menu-item-has-children .ha-submenu-indicator-wrap {
+            width: 14px;
+            height: 14px;
             text-align: center;
-            height: 18px;
-            width: 15px;
-            margin-top: 13px;
-            margin-left: -10px;
-            font-size: 18px;
+            font-size: 14px;
             cursor: pointer;
+            display: inline-block;
+            margin: auto 0;
         }
 
         li.menu-item-has-children > ul.sub-menu {
@@ -109,6 +117,15 @@
             box-shadow: 0 4px 10px -2px #0000001a;
         }
 
+        li.menu-item-has-children:hover {
+            color: #E2498A;
+        }
+
+    }
+
+    ul.sub-menu > li > a span.menu-item-title {
+        display: inline-block;
+        width: 89%;
     }
 
 }
@@ -161,7 +178,7 @@
             li.menu-item-has-children .ha-submenu-indicator-wrap {
                 text-align: center;
                 flex: 0 0 10%;
-                font-size: 18px;
+                font-size: 14px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
