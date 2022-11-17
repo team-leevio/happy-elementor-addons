@@ -105,7 +105,7 @@ class Navigation_Menu extends Base {
 					],
 				],
 				'toggle' => true,
-				'default' => 'flex-start',
+				'default' => 'flex-end',
 				'selectors' => [
 					'{{WRAPPER}} .ha-navigation-menu-wrapper' => 'justify-content: {{VALUE}};',
 				]
@@ -208,12 +208,12 @@ class Navigation_Menu extends Base {
                 'size_units' => ['px', '%'],
                 'range' => [
 					'px' => [
-						'min' => -400,
+						'min' => 0,
 						'max' => 400,
 						'step' => 1,
 					],
 					'%' => [
-						'min' => -100,
+						'min' => 0,
 						'max' => 100,
 					],
 				],
@@ -236,12 +236,12 @@ class Navigation_Menu extends Base {
                 'size_units' => ['px', '%'],
                 'range' => [
 					'px' => [
-						'min' => -400,
+						'min' => 0,
 						'max' => 400,
 						'step' => 1,
 					],
 					'%' => [
-						'min' => -100,
+						'min' => 0,
 						'max' => 100,
 					],
 				],
@@ -250,7 +250,7 @@ class Navigation_Menu extends Base {
 					'size' => 15,
 				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-nav-menu .menu li.menu-item a' => 'padding-top: {{SIZE}}{{UNIT}}; padding-bottom: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu > li.menu-item > a' => 'padding-top: {{SIZE}}{{UNIT}}; padding-bottom: {{SIZE}}{{UNIT}}',
                 ],
             ]
         );
@@ -263,12 +263,12 @@ class Navigation_Menu extends Base {
                 'size_units' => ['px', '%'],
                 'range' => [
 					'px' => [
-						'min' => -400,
+						'min' => 0,
 						'max' => 400,
 						'step' => 1,
 					],
 					'%' => [
-						'min' => -100,
+						'min' => 0,
 						'max' => 100,
 					],
 				],
@@ -314,12 +314,12 @@ class Navigation_Menu extends Base {
                         'default' => 'Nunito',
                     ],
                     'font_weight' => [
-                        'default' => '600',
+                        'default' => 'bold',
                     ],
                     'font_size' => [
                         'default' => [
                             'unit' => 'px',
-                            'size' => '14',
+                            'size' => '16',
                         ],
                     ],
                 ],
@@ -580,9 +580,9 @@ class Navigation_Menu extends Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'default' => [
-                    'top' => '',
+                    'top' => 15,
                     'right' => '',
-                    'bottom' => '',
+                    'bottom' => 15,
                     'left' => '',
                     'unit' => 'px',
                 ],
@@ -600,12 +600,12 @@ class Navigation_Menu extends Base {
 				'size_units' => [ 'px', '%' ],
 				'range' => [
 					'px' => [
-						'min' => -100,
+						'min' => 0,
 						'max' => 100,
 						'step' => 1,
 					],
 					'%' => [
-						'min' => -100,
+						'min' => 0,
 						'max' => 100,
 						'step' => 1,
 					],
@@ -615,7 +615,7 @@ class Navigation_Menu extends Base {
 					'size' => '',
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu' => 'margin-top: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu > li.menu-item > ul.sub-menu' => 'margin-top: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
