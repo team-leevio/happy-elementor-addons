@@ -226,8 +226,8 @@ class Ajax_Handler {
 			$excerpt    = $settings['excerpt'];
 			$title_tag  = $settings['title_tag'];
 			$term_id    = $_POST['term_id'];
-			$orderby    = $_POST['orderby'];
-			$order      = $_POST['order'];
+			$orderby    = $settings['orderby'];
+			$order      = $settings['order'];
 
 			$args = [
 				'post_status'      => 'publish',
