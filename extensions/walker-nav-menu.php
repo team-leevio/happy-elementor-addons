@@ -100,7 +100,7 @@ class HANav_Menu_Walker extends \Walker_Nav_Menu {
             // $manual_class = array_values($classes)[0] . ' ' . 'dropdown-item';
             // $atts['class'] = $manual_class;
         }
-        if (is_array($item->classes) && in_array('current-menu-item', $item->classes)&& array_key_exists('class', $atts)) {
+        if (is_array($item->classes) && in_array('current-menu-item', $item->classes) && array_key_exists('class', $atts)) {
             $atts['class'] .= ' active';
         }
 
