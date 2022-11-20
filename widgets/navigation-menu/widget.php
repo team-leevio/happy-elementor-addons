@@ -629,7 +629,7 @@ class Navigation_Menu extends Base {
 		$this->start_controls_section(
             '_nav_menu_responsive_style_control',
             [
-                'label' => __('Responsive Nav', 'happy-elementor-addons'),
+                'label' => __('Responsive Navigation', 'happy-elementor-addons'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
