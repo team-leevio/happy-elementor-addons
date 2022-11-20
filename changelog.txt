@@ -1,4 +1,4 @@
-= 3.#.# -  2022 =
+= 3.7.2 - 20 November 2022 =
 
 - Fix: Equal Height is not working on Tablet.
 - Fix: Pricing Table's Feature title is not working with <br> tag.
