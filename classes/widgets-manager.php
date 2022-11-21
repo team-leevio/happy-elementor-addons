@@ -1283,7 +1283,7 @@ class Widgets_Manager {
 				'cat' => 'theme',
 				'is_active' => true,
 				'title' => __('Nav Menu', 'happy-elementor-addons'),
-				'icon' => 'hm hm-mega-menu',
+				'icon' => 'hm hm-tb-archieve-content',
 				'css' => ['navigation-menu'],
 				'js' => [],
 				'vendor' => [

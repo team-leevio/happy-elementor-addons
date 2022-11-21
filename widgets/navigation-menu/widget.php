@@ -37,7 +37,7 @@ class Navigation_Menu extends Base {
 	 * Get widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-mega-menu';
+		return 'hm hm-tb-archieve-content';
 	}
 
 	public function get_keywords() {
