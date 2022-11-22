@@ -1,3 +1,7 @@
+= 3.7.3 - #### 2022 =
+- Tweak: Integrate Margin Control on Infobox Widget.
+
+
 = 3.7.2 - 20 November 2022 =
 
 - Fix: Equal Height is not working on Tablet.

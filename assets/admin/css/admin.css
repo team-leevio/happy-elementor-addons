@@ -71,9 +71,9 @@
 	padding: 15px 20px;
 	border: none;
 	border-radius: 2px;
-	background: -webkit-gradient(linear, left top, right top, from(#c84993), to(#6939c6));
-	background: -webkit-linear-gradient(left, #c84993 0%, #6939c6 100%);
-	background:         linear-gradient(90deg, #c84993 0%, #6939c6 100%);
+	background: -webkit-gradient(linear, left top, right top, from(rgb(200, 73, 147)), to(rgb(105, 57, 198)));
+	background: -webkit-linear-gradient(left, rgb(200, 73, 147) 0%, rgb(105, 57, 198) 100%);
+	background:         linear-gradient(90deg, rgb(200, 73, 147) 0%, rgb(105, 57, 198) 100%);
 	background-position: top;
 	color: #fff;
 }
@@ -103,9 +103,9 @@
 	left: -4px;
 	display: block;
 	width: 4px;
-	background: -webkit-gradient(linear, left bottom, left top, from(#c84993), to(#6939c6));
-	background: -webkit-linear-gradient(bottom, #c84993 0%, #6939c6 100%);
-	background:         linear-gradient(0deg, #c84993 0%, #6939c6 100%);
+	background: -webkit-gradient(linear, left bottom, left top, from(rgb(200, 73, 147)), to(rgb(105, 57, 198)));
+	background: -webkit-linear-gradient(bottom, rgb(200, 73, 147) 0%, rgb(105, 57, 198) 100%);
+	background:         linear-gradient(0deg, rgb(200, 73, 147) 0%, rgb(105, 57, 198) 100%);
 	content: "";
 }
 .ha-review-notice--extended {
