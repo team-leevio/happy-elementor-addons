@@ -1,5 +1,6 @@
 = 3.7.3 - #### 2022 =
 - Tweak: Integrate Margin Control on Infobox Widget.
+- Fix: Post Tab date format is not properly works.
 
 
 = 3.7.2 - 20 November 2022 =
