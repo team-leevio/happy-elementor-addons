@@ -9,8 +9,10 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
+use Elementor\Group_Control_Base;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
+use Elementor\Group_Control_Box_Shadow;
 
 defined('ABSPATH') || die();
 
@@ -537,6 +539,18 @@ class Archive_Posts extends Base {
         );
 
         $this->add_control(
+			'content_padding',
+			[
+				'label' => esc_html__( 'Padding', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-post' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->add_control(
             'content_align',
             [
                 'label' => esc_html__('Alignment', 'happy-elementor-addons'),
@@ -562,6 +576,38 @@ class Archive_Posts extends Base {
                 ],
             ]
         );
+
+        $this->add_control(
+			'content_bg_color',
+			[
+				'label' => esc_html__( 'Background Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+                'separator' => 'before',
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-post' => 'background: {{VALUE}}',
+				],
+			]
+		);
+
+        $this->add_control(
+			'content_border_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-post' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'content_box_shadow',
+				'selector' => '{{WRAPPER}} .ha-archive-posts-container .ha-archive-post',
+			]
+		);
 
         $this->end_controls_section();
     }
