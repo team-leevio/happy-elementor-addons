@@ -139,6 +139,33 @@ class Post_Featured_Image extends Base {
             ]
         );
 
+		$this->add_control(
+			'thumbnail_width',
+			[
+				'label' => esc_html__('Size', 'happy-elementor-addons'),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'vw'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+					'vw' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} img' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
         $this->add_control(
 			'thumbnail_margin',
 			[

@@ -173,7 +173,7 @@ class Site_Logo extends Base {
 		$this->add_control(
 			'logo_width',
 			[
-				'label' => esc_html__('Size', 'textdomain'),
+				'label' => esc_html__('Size', 'happy-elementor-addons'),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => ['px', '%', 'vw'],
 				'range' => [
