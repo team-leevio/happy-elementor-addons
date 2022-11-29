@@ -62,14 +62,14 @@ class Site_Logo extends Base {
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Image_Size::get_type(),
-			[
-				'name' => 'post_feature_image',
-				'default' => 'full',
-				'separator' => 'none',
-			]
-		);
+		// $this->add_group_control(
+		// 	Group_Control_Image_Size::get_type(),
+		// 	[
+		// 		'name' => 'post_feature_image',
+		// 		'default' => 'full',
+		// 		'separator' => 'none',
+		// 	]
+		// );
 
 		$this->add_control(
 			'logo_type',
