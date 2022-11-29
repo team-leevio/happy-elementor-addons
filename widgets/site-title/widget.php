@@ -214,6 +214,8 @@ class Site_Title extends Base {
             $this->add_render_attribute('title', 'class', 'ha-site-title-' . $settings['size']);
         }
 
+		echo '<a href="' . esc_url(home_url('/')) . '">';
         printf('<%1$s %2$s>%3$s</%1$s>', $settings['site_title_tag'], $this->get_render_attribute_string('title'), get_bloginfo('name') );
+		echo '</a>';
 	}
 }
