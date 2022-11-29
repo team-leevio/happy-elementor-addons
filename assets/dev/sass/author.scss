@@ -14,7 +14,18 @@
     order: 0;
 }
 
-// .ha-author .ha-avatar {
-//     width: 100%;
-// }
+.ha-avatar {
+    display: flex;
+    height: fit-content;
+    margin-right: 25px;
+    align-self: flex-start;
+}
+
+.ha-desc .ha-author-posts {
+    display: inline-block;
+    color: #555;
+    font-weight: 500;
+    border: 2px solid #333;
+    padding: 7px 15px;
+}
 

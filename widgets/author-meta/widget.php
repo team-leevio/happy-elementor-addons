@@ -140,6 +140,16 @@ class Author_Meta extends Base {
 				'return_value' => 'yes',
 			]
 		);
+		
+		$this->add_control(
+			'show_archive_btn',
+			[
+				'label'        => __( 'Show Archive Button', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'no',
+				'return_value' => 'yes',
+			]
+		);
 
 		$this->add_control(
 			'author_link_to',
@@ -152,6 +162,18 @@ class Author_Meta extends Base {
 					'admin_archive' => __( 'Admin Posts', 'happy-elementor-addons' ),
 				],
 				'description'       => __( 'Link for the Author Name and Image', 'happy-elementor-addons' ),
+			]
+		);
+
+		$this->add_control(
+			'avatar_size',
+			[
+				'label' => __( 'Avatar Size', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::NUMBER,
+				'min' => 0,
+				'max' => 500,
+				'step' => 1,
+				'default' => 96,
 			]
 		);
 
@@ -282,19 +304,56 @@ class Author_Meta extends Base {
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
-		$this->add_control(
-			'avatar_size',
-			[
-				'label' => __( 'Avatar Size', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::NUMBER,
-				'min' => 0,
-				'max' => 500,
-				'step' => 1,
-				'default' => 96,
-			]
-		);
 
         $this->add_control(
+			'avatar_vertical_lign',
+			[
+				'label'   => __( 'Vertical Align', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::CHOOSE,
+				'options' => [
+					'flex-start' => [
+						'title' => __( 'Top', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-v-align-top',
+					],
+					'center' => [
+						'title' => __( 'Middle', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-v-align-middle',
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-avatar' => 'align-self:{{UNIT}};',
+				],
+			]
+		);
+        
+		$this->add_responsive_control(
+			'avatar_width',
+			[
+				'label' => __( 'Avatar Wdth', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 250,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 96,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-avatar img' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+        
+		$this->add_control(
 			'avatar_margin',
 			[
 				'label' => __( 'Avatar Margin', 'happy-elementor-addons' ),
@@ -333,6 +392,13 @@ class Author_Meta extends Base {
 				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
+				'default' => [
+					'top' => '50',
+					'right' => '50',
+					'bottom' => '50',
+					'left' => '50',
+					'unit' => '%',
+				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-avatar img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -344,10 +410,15 @@ class Author_Meta extends Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		$user_id = get_the_author_meta( 'ID' );
+		// $user_id = get_the_author_meta( 'ID' );
+		// $avatar = get_avatar($user_id, $settings['avatar_size']);
+		// $display_name = get_the_author_meta( 'display_name' );
+		// $bio = get_the_author_meta( 'description' );
+		$user_id = get_post_field( 'post_author', get_the_ID() );
 		$avatar = get_avatar($user_id, $settings['avatar_size']);
-		$display_name = get_the_author_meta( 'display_name' );
-		$bio = get_the_author_meta( 'description' );
+		$display_name = get_the_author_meta( 'display_name', $user_id );
+		$bio = get_the_author_meta( 'description', $user_id );
+
 		$post_url = get_author_posts_url( $user_id );
 		$user_url =  get_the_author_meta( 'user_url' );
 		$this->add_render_attribute('author', 'class', 'ha-author');
@@ -364,9 +435,9 @@ class Author_Meta extends Base {
 
 		<div <?php $this->print_render_attribute_string('author'); ?>>
 			<?php if('yes' === $settings['show_avatar']) : ?>
-			<div <?php $this->print_render_attribute_string('avatar'); ?>>
-				<?php echo $avatar; ?>
-			</div>
+				<div <?php $this->print_render_attribute_string('avatar'); ?>>
+					<?php echo $avatar; ?>
+				</div>
 			<?php endif; ?>
 
 			<div class="ha-desc">
@@ -377,6 +448,10 @@ class Author_Meta extends Base {
 				if('yes' === $settings['show_bio']){
 					printf('<p>%1$s</p>', esc_html($bio));
 				}
+
+				if( 'yes' == $settings['show_archive_btn'] ) { ?>
+					<a class="ha-author-posts" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">All Posts</a>
+				<?php }
 				?>
 			</div>
 		</div>

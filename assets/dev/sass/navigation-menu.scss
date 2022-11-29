@@ -21,8 +21,15 @@
                 list-style: none;
                 padding: 0;
             }
+
+            &.active {
+                a {
+                    color:green;
+                }
+            }
         }
     }
+    
 }
 
 .ha-navigation-menu-wrapper {

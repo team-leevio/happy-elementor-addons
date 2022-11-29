@@ -401,6 +401,39 @@ class Navigation_Menu extends Base {
         );
 		$this->end_controls_tab();
 
+        $this->start_controls_tab(
+            'nav_menu_active_tab',
+            [
+                'label'    => __('Active', 'happy-elementor-addons')
+            ]
+        );
+
+		$this->add_control(
+            'nav_menu_item_active_color',
+            [
+                'label' => __('Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#cf005c',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-nav-menu ul.menu li.active a' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-nav-menu ul.menu li.active > .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
+                ],
+
+            ]
+        );
+		
+		$this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'nav_menu_item_active_background',
+                'label' => __('Background', 'happy-elementor-addons'),
+                'types' => ['classic', 'gradient'],
+                'exclude' => ['image'],
+                'selector' => '{{WRAPPER}} .ha-nav-menu ul.menu li.active',
+            ]
+        );
+		$this->end_controls_tab();
+
 		$this->end_controls_tabs();
 
         $this->end_controls_section();
@@ -718,6 +751,32 @@ class Navigation_Menu extends Base {
 				],
 			]
 		);
+
+        $this->add_control(
+            'nav_menu_res_icon_color',
+            [
+                'label' => __('Icon Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#7a7a7a',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-navigation-burger-menu .ha-nav-humberger-wrapper .ha-menu-toggler' => 'color: {{VALUE}}',
+                ],
+
+            ]
+        );
+        
+        $this->add_control(
+            'nav_menu_res_border_color',
+            [
+                'label' => __('Border Color', 'happy-elementor-addons'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#7a7a7a',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-navigation-burger-menu .ha-nav-humberger-wrapper .ha-menu-toggler' => 'border-color: {{VALUE}}',
+                ],
+
+            ]
+        );
 
         $this->add_control(
             'nav_menu_res_seperator_color',
