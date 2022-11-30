@@ -16,6 +16,13 @@ ul.ha-inline-items.ha-icon-list-items {
 }
 
 li.ha-icon-list-item {
+
+    &>a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

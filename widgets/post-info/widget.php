@@ -723,7 +723,8 @@ class Post_Info extends Base {
 
 		switch ( $repeater_item['type'] ) {
 			case 'author':
-				$item_data['text'] = get_the_author_meta( 'display_name' );
+				$user_id = get_post_field( 'post_author', get_the_ID() );
+				$item_data['text'] = get_the_author_meta( 'display_name', $user_id );
 				$item_data['icon'] = 'fa fa-user-circle-o'; // Default icon.
 				$item_data['selected_icon'] = [
 					'value' => 'far fa-user-circle',
@@ -733,12 +734,12 @@ class Post_Info extends Base {
 
 				if ( 'yes' === $repeater_item['link'] ) {
 					$item_data['url'] = [
-						'url' => get_author_posts_url( get_the_author_meta( 'ID' ) ),
+						'url' => get_author_posts_url( $user_id ),
 					];
 				}
 
 				if ( 'yes' === $repeater_item['show_avatar'] ) {
-					$item_data['image'] = get_avatar_url( get_the_author_meta( 'ID' ), 96 );
+					$item_data['image'] = get_avatar_url( $user_id, 96 );
 				}
 
 				break;
@@ -889,7 +890,7 @@ class Post_Info extends Base {
 		$this->add_render_attribute( $item_key, 'class',
 			[
 				'ha-icon-list-item',
-				'ha-repeater-item-' . $repeater_item['_id'],
+				'elementor-repeater-item-' . $repeater_item['_id'],
 			]
 		);
 
