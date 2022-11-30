@@ -480,6 +480,7 @@ class News_Ticker extends Base {
 			'post_status'         => 'publish',
 			'ignore_sticky_posts' => 1,
 			'post__in'            => (array) $settings['selected_posts'],
+			'posts_per_page'      => -1,
 			'suppress_filters'    => false,
 		];
 
