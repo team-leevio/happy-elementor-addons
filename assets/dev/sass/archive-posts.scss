@@ -33,6 +33,7 @@
         grid-template-columns: repeat(var(--grid_columns), 1fr);
     }
     .ha-archive-post {
+        overflow: hidden;
         display: flex;
         gap: 5px;
     }

@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Post Feature_Image widget class
  *
  * @package Happy_Addons
  */
+
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Utils;
@@ -11,7 +13,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Image_Size;
 
-defined( 'ABSPATH' ) || die();
+defined('ABSPATH') || die();
 
 class Site_Logo extends Base {
 
@@ -24,7 +26,7 @@ class Site_Logo extends Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Site Logo', 'happy-elementor-addons' );
+		return __('Site Logo', 'happy-elementor-addons');
 	}
 
 	public function get_custom_help_url() {
@@ -44,43 +46,43 @@ class Site_Logo extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'logo', ' image'];
+		return ['logo', ' image'];
 	}
 
 	/**
-     * Register widget content controls
-     */
+	 * Register widget content controls
+	 */
 	protected function register_content_controls() {
 
 		$this->start_controls_section(
 			'_section_site_logo',
 			[
-				'label' => __( 'Logo', 'happy-elementor-addons' ),
+				'label' => __('Logo', 'happy-elementor-addons'),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Image_Size::get_type(),
-			[
-				'name' => 'post_feature_image',
-				'default' => 'full',
-				'separator' => 'none',
-			]
-		);
+		// $this->add_group_control(
+		// 	Group_Control_Image_Size::get_type(),
+		// 	[
+		// 		'name' => 'post_feature_image',
+		// 		'default' => 'full',
+		// 		'separator' => 'none',
+		// 	]
+		// );
 
 		$this->add_control(
 			'logo_type',
 			[
-				'label' => __( 'Logo', 'happy-elementor-addons' ),
+				'label' => __('Logo', 'happy-elementor-addons'),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'default' => [
-						'title' => __( 'Default', 'happy-elementor-addons' ),
+						'title' => __('Default', 'happy-elementor-addons'),
 						'icon' => 'eicon-site-logo',
 					],
 					'custom' => [
-						'title' => __( 'Custom', 'happy-elementor-addons' ),
+						'title' => __('Custom', 'happy-elementor-addons'),
 						'icon' => 'eicon-image-rollover',
 					]
 
@@ -93,12 +95,12 @@ class Site_Logo extends Base {
 		$this->add_control(
 			'sitelogo_image',
 			[
-				'label' => __( 'Site Logo', 'happy-elementor-addons' ),
+				'label' => __('Site Logo', 'happy-elementor-addons'),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
 				],
-				'condition' =>[
+				'condition' => [
 					'logo_type' => 'custom',
 				],
 			]
@@ -110,33 +112,33 @@ class Site_Logo extends Base {
 				'name' => 'logosize',
 				'default' => 'large',
 				'separator' => 'none',
-				'condition' =>[
+				'condition' => [
 					'logo_type' => 'custom',
 				],
 			]
 		);
 
 
-        $this->add_responsive_control(
+		$this->add_responsive_control(
 			'align',
 			[
-				'label' => __( 'Alignment', 'happy-elementor-addons' ),
+				'label' => __('Alignment', 'happy-elementor-addons'),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'title' => __('Left', 'happy-elementor-addons'),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'title' => __('Center', 'happy-elementor-addons'),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'title' => __('Right', 'happy-elementor-addons'),
 						'icon' => 'eicon-text-align-right',
 					],
 					'justify' => [
-						'title' => __( 'Justify', 'happy-elementor-addons' ),
+						'title' => __('Justify', 'happy-elementor-addons'),
 						'icon' => 'eicon-text-align-justify',
 					],
 				],
@@ -147,7 +149,7 @@ class Site_Logo extends Base {
 			]
 		);
 
-        $this->end_controls_section();
+		$this->end_controls_section();
 	}
 
 	/**
@@ -160,19 +162,46 @@ class Site_Logo extends Base {
 
 	protected function __site_logo_style_controls() {
 
-        $this->start_controls_section(
-            '_section_style_thumbnail',
-            [
-                'label' => __( 'Logo style', 'happy-elementor-addons' ),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
+		$this->start_controls_section(
+			'_section_style_thumbnail',
+			[
+				'label' => __('Logo style', 'happy-elementor-addons'),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
 
-        $this->add_group_control(
+		$this->add_control(
+			'logo_width',
+			[
+				'label' => esc_html__('Size', 'happy-elementor-addons'),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'vw'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+					'vw' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} img' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'logo_border',
-				'label' => __( 'Border', 'happy-elementor-addons'),
+				'label' => __('Border', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}}',
 				'separator' => 'before',
 			]
@@ -181,9 +210,9 @@ class Site_Logo extends Base {
 		$this->add_responsive_control(
 			'logo_border_radius',
 			[
-				'label' => __( 'Border Radius', 'happy-elementor-addons'),
+				'label' => __('Border Radius', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%'],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}}' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -194,9 +223,9 @@ class Site_Logo extends Base {
 		$this->add_responsive_control(
 			'logo_padding',
 			[
-				'label' => __( 'Padding', 'happy-elementor-addons'),
+				'label' => __('Padding', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%'],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}}' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -207,9 +236,9 @@ class Site_Logo extends Base {
 		$this->add_responsive_control(
 			'logo_margin',
 			[
-				'label' => __( 'Margin', 'happy-elementor-addons'),
+				'label' => __('Margin', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}}' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -217,16 +246,18 @@ class Site_Logo extends Base {
 		);
 
 
-        $this->end_controls_section();
+		$this->end_controls_section();
 	}
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		if( $settings['logo_type'] == 'default' ){
-            if( has_custom_logo() ){ the_custom_logo(); }
-        }else{
-            echo '<a href="'.esc_url( home_url( '/' ) ).'">'.Group_Control_Image_Size::get_attachment_image_html( $settings, 'logosize', 'sitelogo_image' ).'</a>';
-        }
+		if ($settings['logo_type'] == 'default') {
+			if (has_custom_logo()) {
+				the_custom_logo();
+			}
+		} else {
+			echo '<a href="' . esc_url(home_url('/')) . '">' . Group_Control_Image_Size::get_attachment_image_html($settings, 'logosize', 'sitelogo_image') . '</a>';
+		}
 	}
 }
