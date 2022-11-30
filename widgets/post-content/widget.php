@@ -135,7 +135,12 @@ class Post_Content extends Base {
 				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
+					'{{WRAPPER}} h1' => 'color: {{VALUE}};',
 					'{{WRAPPER}} h2' => 'color: {{VALUE}};',
+					'{{WRAPPER}} h3' => 'color: {{VALUE}};',
+					'{{WRAPPER}} h4' => 'color: {{VALUE}};',
+					'{{WRAPPER}} h5' => 'color: {{VALUE}};',
+					'{{WRAPPER}} h6' => 'color: {{VALUE}};',
 				],
 			]
 		);
