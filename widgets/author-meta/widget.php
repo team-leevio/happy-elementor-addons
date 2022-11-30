@@ -637,7 +637,8 @@ class Author_Meta extends Base {
 		$bio = get_the_author_meta( 'description', $user_id );
 
 		$post_url = get_author_posts_url( $user_id );
-		$user_url =  get_the_author_meta( 'user_url' );
+		$user_url =  get_the_author_meta( 'user_url', $user_id );
+
 		$this->add_render_attribute('author', 'class', 'ha-author');
 		$this->add_render_attribute('avatar', 'class', 'ha-avatar');
 		if( $settings['avatar_image_position'] && 'yes' === $settings['show_avatar']){
@@ -667,7 +668,7 @@ class Author_Meta extends Base {
 				}
 
 				if( 'yes' == $settings['show_archive_btn'] ) { ?>
-					<a class="ha-author-posts" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">All Posts</a>
+					<a class="ha-author-posts" href="<?php echo esc_url( $post_url ); ?>">All Posts</a>
 				<?php }
 				?>
 			</div>
