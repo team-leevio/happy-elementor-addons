@@ -141,43 +141,6 @@ class Archive_Posts extends Base {
             ]
         );
 
-        $this->add_responsive_control(
-            'image_width',
-            [
-                'label' => esc_html__('Image Width', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SLIDER,
-                'range' => [
-                    '%' => [
-                        'min' => 10,
-                        'max' => 100,
-                    ],
-                    'px' => [
-                        'min' => 10,
-                        'max' => 600,
-                    ],
-                ],
-                'default' => [
-                    'size' => 100,
-                    'unit' => '%',
-                ],
-                'tablet_default' => [
-                    'size' => '',
-                    'unit' => '%',
-                ],
-                'mobile_default' => [
-                    'size' => 100,
-                    'unit' => '%',
-                ],
-                'size_units' => ['%', 'px'],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-archive-posts__thumbnail__link' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'thumbnail!' => 'none',
-                ],
-            ]
-        );
-
         $this->add_control(
             'show_title',
             [
@@ -657,7 +620,43 @@ class Archive_Posts extends Base {
             ]
         );
 
-
+        $this->add_responsive_control(
+            'image_width',
+            [
+                'label' => esc_html__('Image Width', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min' => 10,
+                        'max' => 600,
+                    ],
+                ],
+                'default' => [
+                    'size' => 100,
+                    'unit' => '%',
+                ],
+                'tablet_default' => [
+                    'size' => '',
+                    'unit' => '%',
+                ],
+                'mobile_default' => [
+                    'size' => 100,
+                    'unit' => '%',
+                ],
+                'size_units' => ['%', 'px'],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-archive-posts__thumbnail__link' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'thumbnail!' => 'none',
+                ],
+            ]
+        );
+        
         $this->add_control(
             'image_align',
             [
