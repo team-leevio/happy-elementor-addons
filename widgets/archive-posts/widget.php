@@ -623,7 +623,7 @@ class Archive_Posts extends Base {
         $this->add_responsive_control(
             'image_width',
             [
-                'label' => esc_html__('Image Width', 'happy-elementor-addons'),
+                'label' => esc_html__('Width', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
                     '%' => [

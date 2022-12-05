@@ -22,73 +22,73 @@ defined('ABSPATH') || die();
 
 class Post_Comments extends Base {
 
-    /**
-     * Get widget title.
-     *
-     * @since 1.0.0
-     * @access public
-     *
-     * @return string Widget title.
-     */
-    public function get_title() {
-        return __('Post Comments', 'happy-elementor-addons');
-    }
+	/**
+	 * Get widget title.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return string Widget title.
+	 */
+	public function get_title() {
+		return __('Post Comments', 'happy-elementor-addons');
+	}
 
-    public function get_custom_help_url() {
-        return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/post-navigation/';
-    }
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/post-navigation/';
+	}
 
-    /**
-     * Get widget icon.
-     *
-     * @since 1.0.0
-     * @access public
-     *
-     * @return string Widget icon.
-     */
-    public function get_icon() {
-        return 'hm hm-comment-square';
-    }
+	/**
+	 * Get widget icon.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return string Widget icon.
+	 */
+	public function get_icon() {
+		return 'hm hm-comment-square';
+	}
 
-    public function get_keywords() {
-        return ['comments', 'post', 'response', 'form'];
-    }
+	public function get_keywords() {
+		return ['comments', 'post', 'response', 'form'];
+	}
 
-    /**
-     * Register widget content controls
-     */
-    protected function register_content_controls() {
-        $this->__post_comments_controls();
-    }
+	/**
+	 * Register widget content controls
+	 */
+	protected function register_content_controls() {
+		$this->__post_comments_controls();
+	}
 
-    protected function __post_comments_controls() {
-        $this->start_controls_section(
-            '_section_post_comments',
-            [
-                'label' => __('Post Comments', 'happy-elementor-addons'),
-                'tab' => Controls_Manager::TAB_CONTENT,
-            ]
-        );
+	protected function __post_comments_controls() {
+		$this->start_controls_section(
+			'_section_post_comments',
+			[
+				'label' => __('Post Comments', 'happy-elementor-addons'),
+				'tab' => Controls_Manager::TAB_CONTENT,
+			]
+		);
 
-        $this->add_control(
-            'source_type',
-            [
-                'label' => esc_html__('Source', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    'current_post' => esc_html__('Current Post', 'happy-elementor-addons'),
-                    'custom' => esc_html__('Custom', 'happy-elementor-addons'),
-                ],
-                'default' => 'current_post',
-                'separator' => 'before',
-            ]
-        );
+		$this->add_control(
+			'source_type',
+			[
+				'label' => esc_html__('Source', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'current_post' => esc_html__('Current Post', 'happy-elementor-addons'),
+					'custom' => esc_html__('Custom', 'happy-elementor-addons'),
+				],
+				'default' => 'current_post',
+				'separator' => 'before',
+			]
+		);
 
-        $this->add_control(
-            'source_custom',
-            [
-                'label' => esc_html__('Search & Select', 'happy-elementor-addons'),
-                'type' => Select2::TYPE,
+		$this->add_control(
+			'source_custom',
+			[
+				'label' => esc_html__('Search & Select', 'happy-elementor-addons'),
+				'type' => Select2::TYPE,
 				'multiple' => false,
 				'placeholder' => 'Search Post',
 				'dynamic_params' => [
@@ -98,48 +98,48 @@ class Post_Comments extends Base {
 				'select2options' => [
 					'minimumInputLength' => 2,
 				],
-                'label_block' => true,
-                'condition' => [
-                    'source_type' => 'custom',
-                ],
-            ]
-        );
+				'label_block' => true,
+				'condition' => [
+					'source_type' => 'custom',
+				],
+			]
+		);
 
 
-        $this->end_controls_section();
-    }
-    /**
-     * Register styles related controls
-     */
-    protected function register_style_controls() {
-        $this->__post_comments_style_controls();
-        $this->__post_comments_textarea_style_controls();
-        $this->__post_comments_button_style_controls();
-    }
+		$this->end_controls_section();
+	}
+	/**
+	 * Register styles related controls
+	 */
+	protected function register_style_controls() {
+		$this->__post_comments_style_controls();
+		$this->__post_comments_textarea_style_controls();
+		$this->__post_comments_button_style_controls();
+	}
 
 
-    protected function __post_comments_style_controls() {
+	protected function __post_comments_style_controls() {
 
-        $this->start_controls_section(
-            'label_style',
-            [
-                'label' => esc_html__('Comments', 'happy-elementor-addons'),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
+		$this->start_controls_section(
+			'label_style',
+			[
+				'label' => esc_html__('Comments', 'happy-elementor-addons'),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
 
-        $this->add_control(
+		$this->add_control(
 			'ha_pc_title_style',
 			[
-				'label' => __( 'Title', 'happy-elementor-addons' ),
+				'label' => __('Title', 'happy-elementor-addons'),
 				'type' => Controls_Manager::HEADING,
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_title_color',
 			[
-				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'label' => esc_html__('Color', 'happy-elementor-addons'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} h2' => 'color: {{VALUE}};',
@@ -151,49 +151,49 @@ class Post_Comments extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'pc_title_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'label' => __('Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} h2',
 				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_title_padding',
 			[
-				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'label' => __('Padding', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} h2' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
-        
-        $this->add_control(
+
+		$this->add_control(
 			'pc_title_margin',
 			[
-				'label' => __( 'Margin', 'happy-elementor-addons' ),
+				'label' => __('Margin', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} h2' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'ha_pc_desc_style',
 			[
-				'label' => __( 'Description', 'happy-elementor-addons' ),
+				'label' => __('Description', 'happy-elementor-addons'),
 				'type' => Controls_Manager::HEADING,
-                'separator' => 'after',
+				'separator' => 'after',
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_desc_color',
 			[
-				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'label' => __('Color', 'happy-elementor-addons'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} p.logged-in-as' => 'color: {{VALUE}};',
@@ -205,59 +205,59 @@ class Post_Comments extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'pc_desc_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'label' => __('Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} p.logged-in-as',
 				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_desc_padding',
 			[
-				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'label' => __('Padding', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} p.logged-in-as' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
-        
-        $this->add_control(
+
+		$this->add_control(
 			'pc_desc_margin',
 			[
-				'label' => __( 'Margin', 'happy-elementor-addons' ),
+				'label' => __('Margin', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} p.logged-in-as' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'ha_pc_desc_link',
 			[
-				'label' => __( 'Description Link', 'happy-elementor-addons' ),
+				'label' => __('Description Link', 'happy-elementor-addons'),
 				'type' => Controls_Manager::HEADING,
 			]
 		);
 
-        $this->start_controls_tabs(
-            'pc_desc_link_tabs'
-        );
+		$this->start_controls_tabs(
+			'pc_desc_link_tabs'
+		);
 
-        $this->start_controls_tab(
-            'pc_desc_link_normal_tab',
-            [
-                'label'    => __('Normal', 'happy-elementor-addons')
-            ]
-        );
+		$this->start_controls_tab(
+			'pc_desc_link_normal_tab',
+			[
+				'label'    => __('Normal', 'happy-elementor-addons')
+			]
+		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_desc_link_color',
 			[
-				'label' => __( 'Link Color', 'happy-elementor-addons' ),
+				'label' => __('Link Color', 'happy-elementor-addons'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} p.logged-in-as a' => 'color: {{VALUE}};',
@@ -269,24 +269,24 @@ class Post_Comments extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'pc_desc_link_typography',
-				'label' => __( 'Link Typography', 'happy-elementor-addons' ),
+				'label' => __('Link Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} p.logged-in-as a',
 				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
-        $this->end_controls_tab();
+		$this->end_controls_tab();
 
-        $this->start_controls_tab(
-            'pc_desc_link_hover_tab',
-            [
-                'label'    => __('Hover', 'happy-elementor-addons')
-            ]
-        );
+		$this->start_controls_tab(
+			'pc_desc_link_hover_tab',
+			[
+				'label'    => __('Hover', 'happy-elementor-addons')
+			]
+		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_desc_link_hover_color',
 			[
-				'label' => __( 'Link Color', 'happy-elementor-addons' ),
+				'label' => __('Link Color', 'happy-elementor-addons'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} p.logged-in-as a:hover' => 'color: {{VALUE}};',
@@ -298,40 +298,40 @@ class Post_Comments extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'pc_desc_link_hover_typography',
-				'label' => __( 'Link Typography', 'happy-elementor-addons' ),
+				'label' => __('Link Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} p.logged-in-as a:hover',
 				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
-        $this->end_controls_tab();
+		$this->end_controls_tab();
 
 
-        $this->end_controls_tabs();
+		$this->end_controls_tabs();
 
-        $this->end_controls_section();
-    }
+		$this->end_controls_section();
+	}
 
-    protected function __post_comments_textarea_style_controls() {
-        $this->start_controls_section(
-            'textarea_style',
-            [
-                'label' => esc_html__('Textarea', 'happy-elementor-addons'),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
+	protected function __post_comments_textarea_style_controls() {
+		$this->start_controls_section(
+			'textarea_style',
+			[
+				'label' => esc_html__('Textarea', 'happy-elementor-addons'),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
 
-        $this->add_control(
+		$this->add_control(
 			'ha_pc_textarea_label_style',
 			[
-				'label' => __( 'Label', 'happy-elementor-addons' ),
+				'label' => __('Label', 'happy-elementor-addons'),
 				'type' => Controls_Manager::HEADING,
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_textarea_label_color',
 			[
-				'label' => esc_html__( 'Label Color', 'happy-elementor-addons' ),
+				'label' => esc_html__('Label Color', 'happy-elementor-addons'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} label' => 'color: {{VALUE}};',
@@ -343,48 +343,48 @@ class Post_Comments extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'pc_textarea_label_typography',
-				'label' => __( 'Label Typography', 'happy-elementor-addons' ),
+				'label' => __('Label Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} label',
 				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'ha_pc_textarea_input_style',
 			[
-				'label' => __( 'Textarea Input', 'happy-elementor-addons' ),
+				'label' => __('Textarea Input', 'happy-elementor-addons'),
 				'type' => Controls_Manager::HEADING,
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_textarea_input_padding',
 			[
-				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'label' => __('Padding', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} textarea' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
-        
-        $this->add_control(
+
+		$this->add_control(
 			'pc_textarea_input_margin',
 			[
-				'label' => __( 'Margin', 'happy-elementor-addons' ),
+				'label' => __('Margin', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} textarea' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_textarea_text_color',
 			[
-				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'label' => esc_html__('Color', 'happy-elementor-addons'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} textarea' => 'color: {{VALUE}};',
@@ -396,18 +396,18 @@ class Post_Comments extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'pc_textarea_text_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'label' => __('Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} textarea',
 				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_textarea_input_border_width',
 			[
-				'label' => __( 'Border Wdth', 'happy-elementor-addons' ),
+				'label' => __('Border Wdth', 'happy-elementor-addons'),
 				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px' ],
+				'size_units' => ['px'],
 				'range' => [
 					'px' => [
 						'min' => 0,
@@ -425,46 +425,46 @@ class Post_Comments extends Base {
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_textarea_input_border_radius',
 			[
-				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+				'label' => __('Border Radius', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} textarea' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
 
-        $this->end_controls_section();
-    }
+		$this->end_controls_section();
+	}
 
-    protected function __post_comments_button_style_controls() {
+	protected function __post_comments_button_style_controls() {
 
-        $this->start_controls_section(
-            'pc_button_style',
-            [
-                'label' => esc_html__('Submit Button', 'happy-elementor-addons'),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
+		$this->start_controls_section(
+			'pc_button_style',
+			[
+				'label' => esc_html__('Submit Button', 'happy-elementor-addons'),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
 
-        $this->start_controls_tabs(
-            'pc_submit_button_tabs'
-        );
+		$this->start_controls_tabs(
+			'pc_submit_button_tabs'
+		);
 
-        $this->start_controls_tab(
-            'pc_button_normal_tab',
-            [
-                'label'    => __('Normal', 'happy-elementor-addons')
-            ]
-        );
+		$this->start_controls_tab(
+			'pc_button_normal_tab',
+			[
+				'label'    => __('Normal', 'happy-elementor-addons')
+			]
+		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_button_color',
 			[
-				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'label' => __('Color', 'happy-elementor-addons'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} p.form-submit .submit' => 'color: {{VALUE}};',
@@ -476,30 +476,30 @@ class Post_Comments extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'pc_button_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'label' => __('Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} p.form-submit .submit',
 				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
 
-        $this->add_group_control(
-            Group_Control_Background::get_type(),
-            [
-                'name' => 'pc_button_background',
-                'label' => __('Background', 'happy-elementor-addons'),
-                'types' => ['classic', 'gradient'],
-                'exclude' => ['image'],
-                'selector' => '{{WRAPPER}} p.form-submit .submit',
-            ]
-        );
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'pc_button_background',
+				'label' => __('Background', 'happy-elementor-addons'),
+				'types' => ['classic', 'gradient'],
+				'exclude' => ['image'],
+				'selector' => '{{WRAPPER}} p.form-submit .submit',
+			]
+		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_button_border_width',
 			[
-				'label' => __( 'Border Wdth', 'happy-elementor-addons' ),
+				'label' => __('Border Wdth', 'happy-elementor-addons'),
 				'type' => Controls_Manager::SLIDER,
 				'separator' => 'before',
-				'size_units' => [ 'px' ],
+				'size_units' => ['px'],
 				'range' => [
 					'px' => [
 						'min' => 0,
@@ -517,55 +517,55 @@ class Post_Comments extends Base {
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_button_border_radius',
 			[
-				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+				'label' => __('Border Radius', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} p.form-submit .submit' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_button_padding',
 			[
-				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'label' => __('Padding', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} p.form-submit .submit' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
-        
-        $this->add_control(
+
+		$this->add_control(
 			'pc_button_margin',
 			[
-				'label' => __( 'Margin', 'happy-elementor-addons' ),
+				'label' => __('Margin', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} p.form-submit .submit' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
-        $this->end_controls_tab();
+		$this->end_controls_tab();
 
 
-        $this->start_controls_tab(
-            'pc_button_hover_tab',
-            [
-                'label'    => __('Hover', 'happy-elementor-addons')
-            ]
-        );
+		$this->start_controls_tab(
+			'pc_button_hover_tab',
+			[
+				'label'    => __('Hover', 'happy-elementor-addons')
+			]
+		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_button_hover_color',
 			[
-				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'label' => __('Color', 'happy-elementor-addons'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} p.form-submit .submit:hover' => 'color: {{VALUE}};',
@@ -577,30 +577,30 @@ class Post_Comments extends Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'pc_button_hover_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'label' => __('Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} p.form-submit .submit:hover',
 				'scheme' => Typography::TYPOGRAPHY_2,
 			]
 		);
 
-        $this->add_group_control(
-            Group_Control_Background::get_type(),
-            [
-                'name' => 'pc_button_hover_background',
-                'label' => __('Background', 'happy-elementor-addons'),
-                'types' => ['classic', 'gradient'],
-                'exclude' => ['image'],
-                'selector' => '{{WRAPPER}} p.form-submit .submit:hover',
-            ]
-        );
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'pc_button_hover_background',
+				'label' => __('Background', 'happy-elementor-addons'),
+				'types' => ['classic', 'gradient'],
+				'exclude' => ['image'],
+				'selector' => '{{WRAPPER}} p.form-submit .submit:hover',
+			]
+		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_button_hover_border_width',
 			[
-				'label' => __( 'Border Wdth', 'happy-elementor-addons' ),
+				'label' => __('Border Wdth', 'happy-elementor-addons'),
 				'type' => Controls_Manager::SLIDER,
 				'separator' => 'before',
-				'size_units' => [ 'px' ],
+				'size_units' => ['px'],
 				'range' => [
 					'px' => [
 						'min' => 0,
@@ -618,74 +618,78 @@ class Post_Comments extends Base {
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_button_hover_border_radius',
 			[
-				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
+				'label' => __('Border Radius', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} p.form-submit .submit:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'pc_button_hover_padding',
 			[
-				'label' => __( 'Padding', 'happy-elementor-addons' ),
+				'label' => __('Padding', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} p.form-submit .submit:hover' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
-        
-        $this->add_control(
+
+		$this->add_control(
 			'pc_button_hover_margin',
 			[
-				'label' => __( 'Margin', 'happy-elementor-addons' ),
+				'label' => __('Margin', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} p.form-submit .submit:hover' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
-        $this->end_controls_tab();
+		$this->end_controls_tab();
 
-        $this->end_controls_tabs();
+		$this->end_controls_tabs();
 
-        $this->end_controls_section();
+		$this->end_controls_section();
+	}
 
-    }
+	protected function render() {
+		$settings = $this->get_settings();
 
-    protected function render() {
-        $settings = $this->get_settings();
+		if ('custom' === $settings['source_type']) {
+			$post_id = (int) $settings['source_custom'];
+			ha_elementor()->db->switch_to_post($post_id);
+		}
 
-        if ('custom' === $settings['source_type']) {
-            $post_id = (int) $settings['source_custom'];
-            ha_elementor()->db->switch_to_post($post_id);
-        }
-
-        if (!comments_open() && (ha_elementor()->preview->is_preview_mode() || ha_elementor()->editor->is_edit_mode())) :
+		if (!comments_open() && (ha_elementor()->preview->is_preview_mode() || ha_elementor()->editor->is_edit_mode())) :
 ?>
-            <div class="elementor-alert elementor-alert-danger" role="alert">
-                <span class="elementor-alert-title">
-                    <?php esc_html_e('Comments are closed.', 'elementor-pro'); ?>
-                </span>
-                <span class="elementor-alert-description">
-                    <?php esc_html_e('Switch on comments from either the discussion box on the WordPress post edit screen or from the WordPress discussion settings.', 'elementor-pro'); ?>
-                </span>
-            </div>
+			<section id="comments" class="comments-area">
+				<div id="respond" class="comment-respond">
+					<h2 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="#" style="display:none;">Cancel reply</a></small></h2>
+					<form action="#" method="post" id="commentform" class="comment-form" novalidate="">
+						<p class="logged-in-as">Logged in as admin. <a href="#">Edit your profile</a>. <a href="#">Log out?</a> <span class="required-field-message">Required fields are marked <span class="required">*</span></span></p>
+						<p class="comment-form-comment"><label for="comment">Comment <span class="required">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required=""></textarea></p>
+						<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="4551" id="comment_post_ID">
+							<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p><input type="hidden" id="_wp_unfiltered_html_comment_disabled" name="_wp_unfiltered_html_comment" value="3eb31e94e8">
+						
+					</form>
+				</div>
+			</section>
 <?php
-        else :
-            comments_template();
-        endif;
+		else :
+			comments_template();
+		endif;
 
-        if ('custom' === $settings['source_type']) {
-            ha_elementor()->db->restore_current_post();
-        }
-    }
+		if ('custom' === $settings['source_type']) {
+			ha_elementor()->db->restore_current_post();
+		}
+	}
 }
