@@ -573,6 +573,12 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+		
+= 3.7.2 - 20 November 2022 =	
+- Fix: Equal Height is not working on Tablet.	
+- Fix: Pricing Table's Feature title is not working with <br> tag.	
+- Fix: The Post Tab widget is showing all posts on the page load.	
+- Fix: The News Ticker widget display only 5 posts.
 
 = 3.7.1 - 18 October 2022 =
 
