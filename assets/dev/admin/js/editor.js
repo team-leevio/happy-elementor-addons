@@ -656,4 +656,5 @@
 	});
 
 	elementor.addControlView("ha_advanced_select2", AdvancedSelect2);
+
 })(jQuery);

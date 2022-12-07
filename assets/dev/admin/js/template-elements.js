@@ -403,4 +403,11 @@
 		
 	}
 
+	elementor.saver.on(
+		'after:save',
+		function( data ) {
+			// elementor.trigger("ha:templateCondition")
+		}
+	);
+
 })(jQuery);
