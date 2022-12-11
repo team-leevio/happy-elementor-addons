@@ -918,7 +918,7 @@ class Theme_Builder {
                 'happy-addons-template-elements',
                 HAPPY_ADDONS_ASSETS . 'admin/js/template-elements.min.js',
                 ['jquery', 'happy-elementor-addons-editor'],
-                HAPPY_ADDONS_ASSETS,
+                HAPPY_ADDONS_VERSION,
                 true
             );
 
@@ -926,7 +926,7 @@ class Theme_Builder {
                 'happy-addons-micromodal',
                 'https://unpkg.com/micromodal@0.4.10/dist/micromodal.js',
                 [],
-                HAPPY_ADDONS_ASSETS,
+                HAPPY_ADDONS_VERSION,
                 true
             );
         }

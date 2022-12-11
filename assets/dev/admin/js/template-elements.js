@@ -403,11 +403,9 @@
 		
 	}
 
-	elementor.saver.on(
-		'after:save',
-		function( data ) {
-			// elementor.trigger("ha:templateCondition")
-		}
-	);
+	elementor.saver.on('after:save', function( data ) {
+			console.log('after save');
+			elementor.trigger("ha:templateCondition")
+	});
 
 })(jQuery);
