@@ -354,7 +354,7 @@ class Author_Meta extends Base {
 			]
 		);
         
-		$this->add_control(
+		$this->add_responsive_control(
 			'avatar_margin',
 			[
 				'label' => __( 'Avatar Margin', 'happy-elementor-addons' ),
@@ -366,7 +366,7 @@ class Author_Meta extends Base {
 			]
 		);
 
-        $this->add_control(
+        $this->add_responsive_control(
 			'avatar_padding',
 			[
 				'label' => __( 'Avatar Padding', 'happy-elementor-addons' ),
@@ -419,87 +419,7 @@ class Author_Meta extends Base {
             ]
         );
 
-		$this->start_controls_tabs(
-            'author_info_button_active_tabs'
-        );
-
-		$this->start_controls_tab(
-            'author_info_button_normal_tab',
-            [
-                'label'    => __('Normal', 'happy-elementor-addons')
-            ]
-        );
-
-        $this->add_control(
-			'author_info_button_text_color',
-			[
-				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '#555555',
-				'selectors' => [
-					'{{WRAPPER}} .ha-author-posts' => 'color: {{VALUE}}; border-color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_group_control(
-            Group_Control_Background::get_type(),
-            [
-                'name' => 'author_info_button_background',
-                'label' => __('Background', 'happy-elementor-addons'),
-                'types' => ['classic', 'gradient'],
-                'exclude' => ['image'],
-                'selector' => '{{WRAPPER}} .ha-author-posts',
-            ]
-        );
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'author_info_button_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-author-posts',
-				'scheme' => Typography::TYPOGRAPHY_2,
-			]
-		);
-
 		$this->add_responsive_control(
-			'author_info_button_border_width',
-			[
-				'label' => __( 'Border Wdth', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'separator' => 'before',
-				'size_units' => [ 'px' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 20,
-						'step' => 1,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 2,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-author-posts' => 'border-width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'author_info_button_border_radius',
-			[
-				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
-				'selectors' => [
-					'{{WRAPPER}} .ha-author-posts' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_control(
 			'author_info_button_padding',
 			[
 				'label' => __( 'Padding', 'happy-elementor-addons' ),
@@ -519,6 +439,66 @@ class Author_Meta extends Base {
 			]
 		);
 
+		// $this->add_group_control(
+		// 	Group_Control_Border::get_type(),
+		// 	[
+		// 		'name' => 'author_info_button_border',
+		// 		'selector' => '{{WRAPPER}} .ha-desc .ha-author-posts',
+		// 	]
+		// );
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'author_info_button_hover_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-author-posts',
+				'scheme' => Typography::TYPOGRAPHY_2,
+			]
+		);
+
+		$this->start_controls_tabs(
+            'author_info_button_active_tabs'
+        );
+
+		$this->start_controls_tab(
+            'author_info_button_normal_tab',
+            [
+                'label'    => __('Normal', 'happy-elementor-addons')
+            ]
+        );
+
+        $this->add_control(
+			'author_info_button_text_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#555555',
+				'selectors' => [
+					'{{WRAPPER}} .ha-author-posts-btn' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'author_info_button_background',
+                'label' => __('Background', 'happy-elementor-addons'),
+                'types' => ['classic', 'gradient'],
+                'exclude' => ['image'],
+                'selector' => '{{WRAPPER}} .ha-author-posts-btn',
+            ]
+        );
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'author_info_button_border',
+				'selector' => '{{WRAPPER}} .ha-desc .ha-author-posts',
+			]
+		);
+
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
@@ -535,8 +515,7 @@ class Author_Meta extends Base {
 				'type' => Controls_Manager::COLOR,
 				'default' => '#555555',
 				'selectors' => [
-					'{{WRAPPER}} .ha-author-posts:hover' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-author-posts:hover' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-author-posts-btn:hover' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -548,73 +527,15 @@ class Author_Meta extends Base {
                 'label' => __('Background', 'happy-elementor-addons'),
                 'types' => ['classic', 'gradient'],
                 'exclude' => ['image'],
-                'selector' => '{{WRAPPER}} .ha-author-posts:hover',
+                'selector' => '{{WRAPPER}} .ha-author-posts-btn:hover',
             ]
         );
 
 		$this->add_group_control(
-			Group_Control_Typography::get_type(),
+			Group_Control_Border::get_type(),
 			[
-				'name' => 'author_info_button_hover_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-author-posts:hover',
-				'scheme' => Typography::TYPOGRAPHY_2,
-			]
-		);
-
-		$this->add_responsive_control(
-			'author_info_button_hover_border_width',
-			[
-				'label' => __( 'Border Wdth', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'separator' => 'before',
-				'size_units' => [ 'px' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 20,
-						'step' => 1,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 2,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-author-posts:hover' => 'border-width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'author_info_button_hover_border_radius',
-			[
-				'label' => __( 'Border Radius', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
-				'selectors' => [
-					'{{WRAPPER}} .ha-author-posts:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'author_info_button_hover_padding',
-			[
-				'label' => __( 'Padding', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'separator' => 'before',
-				'size_units' => [ 'px', '%' ],
-				'default' => [
-					'top' => '7',
-					'right' => '15',
-					'bottom' => '7',
-					'left' => '15',
-					'unit' => 'px',
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-author-posts:hover' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
+				'name' => 'author_info_button_border_hover',
+				'selector' => '{{WRAPPER}} .ha-desc .ha-author-posts:hover',
 			]
 		);
 
@@ -668,7 +589,7 @@ class Author_Meta extends Base {
 				}
 
 				if( 'yes' == $settings['show_archive_btn'] ) { ?>
-					<a class="ha-author-posts" href="<?php echo esc_url( $post_url ); ?>">All Posts</a>
+					<a class="ha-author-posts ha-author-posts-btn" href="<?php echo esc_url( $post_url ); ?>">All Posts</a>
 				<?php }
 				?>
 			</div>

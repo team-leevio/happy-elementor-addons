@@ -250,7 +250,8 @@ class Navigation_Menu extends Base {
 					'size' => 15,
 				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu > li.menu-item > a' => 'padding-top: {{SIZE}}{{UNIT}}; padding-bottom: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .ha-nav-menu ul.menu li a' => 'padding-top: {{SIZE}}{{UNIT}}; padding-bottom: {{SIZE}}{{UNIT}}',
+                    // '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu > li.menu-item > a' => 'padding-top: {{SIZE}}{{UNIT}}; padding-bottom: {{SIZE}}{{UNIT}}',
                 ],
             ]
         );
@@ -278,6 +279,7 @@ class Navigation_Menu extends Base {
 				],
                 'selectors' => [
                     '{{WRAPPER}} .ha-nav-menu .menu li.menu-item:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .ha-navigation-burger-menu ul.menu li.menu-item' => 'margin-top: {{SIZE}}{{UNIT}}; margin-bottom: {{SIZE}}{{UNIT}}',
                 ],
             ]
         );
@@ -671,7 +673,7 @@ class Navigation_Menu extends Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'nav_menu_res_item_hover_background',
-                'label' => __('Background', 'happy-elementor-addons'),
+                'label' => __('Icon Background', 'happy-elementor-addons'),
                 'types' => ['classic', 'gradient'],
                 'exclude' => ['image'],
                 'selector' => '{{WRAPPER}} .ha-navigation-burger-menu .ha-menu-toggler',
@@ -790,6 +792,25 @@ class Navigation_Menu extends Base {
 
             ]
         );		
+        
+        $this->add_control(
+            '_heading_nav_res_bg',
+            [
+                'label' => __('Menu Item', 'happy-elementor-addons'),
+                'type' => Controls_Manager::HEADING,
+                // 'separator' => 'before',
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'nav_menu_res_item_background',
+                'label' => __('Background', 'happy-elementor-addons'),
+                'types' => ['classic', 'gradient'],
+                'exclude' => ['image'],
+                'selector' => '{{WRAPPER}} .ha-navigation-burger-menu ul.menu li.menu-item',
+            ]
+        );
 
         $this->end_controls_section();
 
