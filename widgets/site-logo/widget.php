@@ -170,7 +170,7 @@ class Site_Logo extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'logo_width',
 			[
 				'label' => esc_html__('Size', 'happy-elementor-addons'),

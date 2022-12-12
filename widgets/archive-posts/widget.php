@@ -999,7 +999,7 @@ class Archive_Posts extends Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-archive-posts-pagination' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-archive-posts-pagination' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1041,9 +1041,9 @@ class Archive_Posts extends Base {
 
         $this->add_to_avoid_list(wp_list_pluck($this->query->posts, 'ID'));
 
-        if (!$this->query->found_posts) {
-            return;
-        }
+        // if (!$this->query->found_posts) {
+        //     return;
+        // }
 ?>
         <div class="ha-archive-posts-wrapper ha-ap-skin-<?php echo esc_attr($this->settings['skin']); ?>">
             <?php

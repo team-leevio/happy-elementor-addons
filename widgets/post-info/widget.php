@@ -435,8 +435,7 @@ class Post_Info extends Base {
 					'{{WRAPPER}} .ha-icon-list-items:not(.ha-inline-items) .ha-icon-list-item:not(:first-child)' => 'margin-top: calc({{SIZE}}{{UNIT}}/2)',
 					'{{WRAPPER}} .ha-icon-list-items.ha-inline-items .ha-icon-list-item' => 'margin-right: calc({{SIZE}}{{UNIT}}/2); margin-left: calc({{SIZE}}{{UNIT}}/2)',
 					'{{WRAPPER}} .ha-icon-list-items.ha-inline-items' => 'margin-right: calc(-{{SIZE}}{{UNIT}}/2); margin-left: calc(-{{SIZE}}{{UNIT}}/2)',
-					'body.rtl {{WRAPPER}} .ha-icon-list-items.ha-inline-items .ha-icon-list-item:after' => 'left: calc(-{{SIZE}}{{UNIT}}/2)',
-					'body:not(.rtl) {{WRAPPER}} .ha-icon-list-items.ha-inline-items .ha-icon-list-item:after' => 'right: calc(-{{SIZE}}{{UNIT}}/2)',
+					'{{WRAPPER}} .ha-icon-list-items.ha-inline-items .ha-icon-list-item::after' => 'margin-left: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -667,6 +666,10 @@ class Post_Info extends Base {
 					'px' => [
 						'max' => 50,
 					],
+				],
+				'default' => [
+					'size' => 10,
+					'unit' => 'px',
 				],
 				'selectors' => [
 					'body:not(.rtl) {{WRAPPER}} .ha-icon-list-text' => 'padding-left: {{SIZE}}{{UNIT}}',

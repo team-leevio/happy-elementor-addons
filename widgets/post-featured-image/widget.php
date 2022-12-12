@@ -142,7 +142,7 @@ class Post_Featured_Image extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'thumbnail_width',
 			[
 				'label' => esc_html__('Size', 'happy-elementor-addons'),

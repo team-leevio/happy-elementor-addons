@@ -476,7 +476,7 @@ class Post_Navigation extends Base {
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'arrow_padding',
             [
                 'label' => esc_html__('Gap', 'happy-elementor-addons'),
@@ -542,7 +542,7 @@ class Post_Navigation extends Base {
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'borders_spacing',
             [
                 'label' => esc_html__('Spacing', 'happy-elementor-addons'),
