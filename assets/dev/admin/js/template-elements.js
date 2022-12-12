@@ -405,7 +405,10 @@
 
 	elementor.saver.on('after:save', function( data ) {
 			console.log('after save');
-			elementor.trigger("ha:templateCondition")
+			console.log(data);
+			if(data.status != "inherit") {
+				elementor.trigger("ha:templateCondition")
+			}
 	});
 
 })(jQuery);
