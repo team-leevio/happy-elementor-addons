@@ -499,6 +499,18 @@ class Author_Meta extends Base {
 			]
 		);
 
+		$this->add_control(
+			'author_info_button_border_radius',
+			[
+				'label' => __('Border Radius', 'happy-elementor-addons'),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .ha-desc .ha-author-posts' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
@@ -536,6 +548,18 @@ class Author_Meta extends Base {
 			[
 				'name' => 'author_info_button_border_hover',
 				'selector' => '{{WRAPPER}} .ha-desc .ha-author-posts:hover',
+			]
+		);
+
+		$this->add_control(
+			'author_info_button_border_radius_hover',
+			[
+				'label' => __('Border Radius', 'happy-elementor-addons'),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .ha-desc .ha-author-posts:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
 			]
 		);
 
