@@ -157,7 +157,7 @@ class Post_Comments extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'pc_title_padding',
 			[
 				'label' => __('Padding', 'happy-elementor-addons'),
@@ -169,7 +169,7 @@ class Post_Comments extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'pc_title_margin',
 			[
 				'label' => __('Margin', 'happy-elementor-addons'),
@@ -211,7 +211,7 @@ class Post_Comments extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'pc_desc_padding',
 			[
 				'label' => __('Padding', 'happy-elementor-addons'),
@@ -223,7 +223,7 @@ class Post_Comments extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'pc_desc_margin',
 			[
 				'label' => __('Margin', 'happy-elementor-addons'),
@@ -357,7 +357,7 @@ class Post_Comments extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'pc_textarea_input_padding',
 			[
 				'label' => __('Padding', 'happy-elementor-addons'),
@@ -369,7 +369,7 @@ class Post_Comments extends Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'pc_textarea_input_margin',
 			[
 				'label' => __('Margin', 'happy-elementor-addons'),
@@ -402,26 +402,11 @@ class Post_Comments extends Base {
 			]
 		);
 
-		$this->add_control(
-			'pc_textarea_input_border_width',
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
 			[
-				'label' => __('Border Wdth', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 20,
-						'step' => 1,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 1,
-				],
-				'selectors' => [
-					'{{WRAPPER}} textarea' => 'border-width: {{SIZE}}{{UNIT}};',
-				],
+				'name' => 'pc_textarea_input_border',
+				'selector' => '{{WRAPPER}} textarea',
 			]
 		);
 
@@ -450,6 +435,40 @@ class Post_Comments extends Base {
 			]
 		);
 
+		$this->add_responsive_control(
+			'pc_button_hover_padding',
+			[
+				'label' => __('Padding', 'happy-elementor-addons'),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} p.form-submit .submit' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'pc_button_hover_margin',
+			[
+				'label' => __('Margin', 'happy-elementor-addons'),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} p.form-submit .submit' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'pc_button_typography',
+				'label' => __('Typography', 'happy-elementor-addons'),
+				'selector' => '{{WRAPPER}} p.form-submit .submit',
+				'scheme' => Typography::TYPOGRAPHY_2,
+			]
+		);
+
 		$this->start_controls_tabs(
 			'pc_submit_button_tabs'
 		);
@@ -473,16 +492,6 @@ class Post_Comments extends Base {
 		);
 
 		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'pc_button_typography',
-				'label' => __('Typography', 'happy-elementor-addons'),
-				'selector' => '{{WRAPPER}} p.form-submit .submit',
-				'scheme' => Typography::TYPOGRAPHY_2,
-			]
-		);
-
-		$this->add_group_control(
 			Group_Control_Background::get_type(),
 			[
 				'name' => 'pc_button_background',
@@ -493,31 +502,15 @@ class Post_Comments extends Base {
 			]
 		);
 
-		$this->add_control(
-			'pc_button_border_width',
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
 			[
-				'label' => __('Border Wdth', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SLIDER,
-				'separator' => 'before',
-				'size_units' => ['px'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 50,
-						'step' => 1,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 1,
-				],
-				'selectors' => [
-					'{{WRAPPER}} p.form-submit .submit' => 'border-width: {{SIZE}}{{UNIT}};',
-				],
+				'name' => 'pc_button_border',
+				'selector' => '{{WRAPPER}} p.form-submit .submit',
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'pc_button_border_radius',
 			[
 				'label' => __('Border Radius', 'happy-elementor-addons'),
@@ -529,29 +522,7 @@ class Post_Comments extends Base {
 			]
 		);
 
-		$this->add_control(
-			'pc_button_padding',
-			[
-				'label' => __('Padding', 'happy-elementor-addons'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => ['px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} p.form-submit .submit' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'pc_button_margin',
-			[
-				'label' => __('Margin', 'happy-elementor-addons'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => ['px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} p.form-submit .submit' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+		
 		$this->end_controls_tab();
 
 
@@ -574,16 +545,6 @@ class Post_Comments extends Base {
 		);
 
 		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'pc_button_hover_typography',
-				'label' => __('Typography', 'happy-elementor-addons'),
-				'selector' => '{{WRAPPER}} p.form-submit .submit:hover',
-				'scheme' => Typography::TYPOGRAPHY_2,
-			]
-		);
-
-		$this->add_group_control(
 			Group_Control_Background::get_type(),
 			[
 				'name' => 'pc_button_hover_background',
@@ -594,32 +555,16 @@ class Post_Comments extends Base {
 			]
 		);
 
-		$this->add_control(
-			'pc_button_hover_border_width',
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
 			[
-				'label' => __('Border Wdth', 'happy-elementor-addons'),
-				'type' => Controls_Manager::SLIDER,
-				'separator' => 'before',
-				'size_units' => ['px'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 50,
-						'step' => 1,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 1,
-				],
-				'selectors' => [
-					'{{WRAPPER}} p.form-submit .submit:hover' => 'border-width: {{SIZE}}{{UNIT}};',
-				],
+				'name' => 'pc_button_hover_border',
+				'selector' => '{{WRAPPER}} p.form-submit .submit:hover',
 			]
 		);
 
-		$this->add_control(
-			'pc_button_hover_border_radius',
+		$this->add_responsive_control(
+			'pc_button_border_radius_hover',
 			[
 				'label' => __('Border Radius', 'happy-elementor-addons'),
 				'type' => Controls_Manager::DIMENSIONS,
@@ -630,29 +575,6 @@ class Post_Comments extends Base {
 			]
 		);
 
-		$this->add_control(
-			'pc_button_hover_padding',
-			[
-				'label' => __('Padding', 'happy-elementor-addons'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => ['px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} p.form-submit .submit:hover' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'pc_button_hover_margin',
-			[
-				'label' => __('Margin', 'happy-elementor-addons'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => ['px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} p.form-submit .submit:hover' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
 		$this->end_controls_tab();
 
 		$this->end_controls_tabs();
