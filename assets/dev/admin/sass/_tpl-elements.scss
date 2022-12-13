@@ -71,6 +71,22 @@
         overflow-y: auto;
         box-sizing: border-box;
         box-shadow: 0px 4px 100px rgba(0, 0, 0, 0.05);
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f7f7fa; 
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888888a8; 
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5555558f; 
+        }
     }
 
     .modal__header {
@@ -148,8 +164,9 @@
         width: 100%;
         max-height: 65vh;
         height: 750px;
-        overflow: scroll;
+        overflow: auto;
         margin: auto;
+        scrollbar-color: red yellow;
 
         .form-data {
             max-width: 781px;
