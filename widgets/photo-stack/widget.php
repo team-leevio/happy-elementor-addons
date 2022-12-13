@@ -533,8 +533,9 @@ class Photo_Stack extends Base {
             $this->add_render_attribute($repeater_key, 'class', 'ha-photo-stack-item');
             $this->add_render_attribute($repeater_key, 'class', $dynamic_class);
             $this->add_render_attribute($repeater_key, 'class', $settings['image_infinite_animation']);
-            $this->add_render_attribute('image', 'class', $settings['hover_animation_style']);
-            $this->add_render_attribute('image', 'class', 'ha-photo-stack-img');
+			$attr = [
+				'class' => $settings['hover_animation_style'] . ' ha-photo-stack-img',
+			];
             if ( isset( $item['link'] ) && ! empty( $item['link']['url'] ) ) {
                 $anchor_tag = 'a';
                 $this->add_link_attributes( 'link_tag', $item['link'] );
@@ -546,7 +547,7 @@ class Photo_Stack extends Base {
                         <<?php echo $anchor_tag; ?> <?php $this->print_render_attribute_string('link_tag');?>>
                    <?php
                     endif; // end of anchor_tag
-                echo '<img src="' . Group_Control_Image_Size::get_attachment_image_src($item['image']['id'], 'thumbnail', $item) . '" ' . $this->get_render_attribute_string('image') . '/>';
+				echo wp_get_attachment_image( $item['image']['id'], 'thumbnail', false, $attr );
             else:
                 echo $this->image_placeholder($item, $this->get_render_attribute_string('image'));
             endif;
