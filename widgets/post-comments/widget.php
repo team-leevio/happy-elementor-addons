@@ -469,6 +469,26 @@ class Post_Comments extends Base {
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'pc_button_border',
+				'selector' => '{{WRAPPER}} p.form-submit .submit',
+			]
+		);
+
+		$this->add_control(
+			'pc_button_border_radius',
+			[
+				'label' => __('Border Radius', 'happy-elementor-addons'),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} p.form-submit .submit' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
 		$this->start_controls_tabs(
 			'pc_submit_button_tabs'
 		);
@@ -501,27 +521,6 @@ class Post_Comments extends Base {
 				'selector' => '{{WRAPPER}} p.form-submit .submit',
 			]
 		);
-
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			[
-				'name' => 'pc_button_border',
-				'selector' => '{{WRAPPER}} p.form-submit .submit',
-			]
-		);
-
-		$this->add_responsive_control(
-			'pc_button_border_radius',
-			[
-				'label' => __('Border Radius', 'happy-elementor-addons'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => ['px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} p.form-submit .submit' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
 		
 		$this->end_controls_tab();
 
@@ -555,22 +554,14 @@ class Post_Comments extends Base {
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
+		$this->add_control(
+			'pc_button_border_color_hover',
 			[
-				'name' => 'pc_button_hover_border',
-				'selector' => '{{WRAPPER}} p.form-submit .submit:hover',
-			]
-		);
-
-		$this->add_responsive_control(
-			'pc_button_border_radius_hover',
-			[
-				'label' => __('Border Radius', 'happy-elementor-addons'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => ['px', '%'],
+				'label' => esc_html__( 'Border Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#555555',
 				'selectors' => [
-					'{{WRAPPER}} p.form-submit .submit:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} p.form-submit .submit:hover' => 'border-color: {{VALUE}};',
 				],
 			]
 		);

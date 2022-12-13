@@ -330,7 +330,7 @@ class Author_Meta extends Base {
 		$this->add_responsive_control(
 			'avatar_width',
 			[
-				'label' => __( 'Avatar Wdth', 'happy-elementor-addons' ),
+				'label' => __( 'Wdth', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
 				'range' => [
@@ -354,22 +354,22 @@ class Author_Meta extends Base {
 			]
 		);
         
-		$this->add_responsive_control(
-			'avatar_margin',
-			[
-				'label' => __( 'Avatar Margin', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
-				'selectors' => [
-					'{{WRAPPER}} .ha-avatar' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+		// $this->add_responsive_control(
+		// 	'avatar_margin',
+		// 	[
+		// 		'label' => __( 'Avatar Margin', 'happy-elementor-addons' ),
+		// 		'type' => Controls_Manager::DIMENSIONS,
+		// 		'size_units' => [ 'px', '%' ],
+		// 		'selectors' => [
+		// 			'{{WRAPPER}} .ha-avatar' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+		// 		],
+		// 	]
+		// );
 
         $this->add_responsive_control(
 			'avatar_padding',
 			[
-				'label' => __( 'Avatar Padding', 'happy-elementor-addons' ),
+				'label' => __( 'Padding', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -439,14 +439,6 @@ class Author_Meta extends Base {
 			]
 		);
 
-		// $this->add_group_control(
-		// 	Group_Control_Border::get_type(),
-		// 	[
-		// 		'name' => 'author_info_button_border',
-		// 		'selector' => '{{WRAPPER}} .ha-desc .ha-author-posts',
-		// 	]
-		// );
-
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
@@ -454,6 +446,26 @@ class Author_Meta extends Base {
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-author-posts',
 				'scheme' => Typography::TYPOGRAPHY_2,
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'author_info_button_border',
+				'selector' => '{{WRAPPER}} .ha-desc .ha-author-posts',
+			]
+		);
+
+		$this->add_control(
+			'author_info_button_border_radius',
+			[
+				'label' => __('Border Radius', 'happy-elementor-addons'),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .ha-desc .ha-author-posts' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -491,26 +503,6 @@ class Author_Meta extends Base {
             ]
         );
 
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			[
-				'name' => 'author_info_button_border',
-				'selector' => '{{WRAPPER}} .ha-desc .ha-author-posts',
-			]
-		);
-
-		$this->add_control(
-			'author_info_button_border_radius',
-			[
-				'label' => __('Border Radius', 'happy-elementor-addons'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => ['px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} .ha-desc .ha-author-posts' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
@@ -543,22 +535,14 @@ class Author_Meta extends Base {
             ]
         );
 
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			[
-				'name' => 'author_info_button_border_hover',
-				'selector' => '{{WRAPPER}} .ha-desc .ha-author-posts:hover',
-			]
-		);
-
 		$this->add_control(
-			'author_info_button_border_radius_hover',
+			'author_info_button_border_color_hover',
 			[
-				'label' => __('Border Radius', 'happy-elementor-addons'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => ['px', '%'],
+				'label' => esc_html__( 'Border Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#555555',
 				'selectors' => [
-					'{{WRAPPER}} .ha-desc .ha-author-posts:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-author-posts-btn:hover' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
