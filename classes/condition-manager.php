@@ -325,7 +325,8 @@ class Condition_Manager {
         }
         
         $filteredConditions = [];
-        foreach ($exitsConditions[$template_type] as $key => $value) {
+        $existing_type_condition = isset($exitsConditions[$template_type])? $exitsConditions[$template_type]: [];
+        foreach ($existing_type_condition as $key => $value) {
             $filteredConditions[] =  substr(strstr( $value, '/'), strlen('/') );
         }
         
