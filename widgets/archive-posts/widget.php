@@ -1014,7 +1014,7 @@ class Archive_Posts extends Base {
         $query_vars = $wp_query->query_vars;
 
         if ($this->settings['query_id']) {
-            $query_vars = apply_filters("happyaddons/elementor/archive_posts/{$this->settings['query_id']}", $query_vars);
+            $query_vars = apply_filters("happyaddons/archive_posts/{$this->settings['query_id']}", $query_vars);
         }
 
         if ($query_vars !== $wp_query->query_vars) {
