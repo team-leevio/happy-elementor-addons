@@ -377,7 +377,8 @@ class Insights {
             $is_local = true;
         }
 
-        return apply_filters( 'appsero_is_local', $is_local );
+        return false;
+        // return apply_filters( 'appsero_is_local', $is_local );
     }
 
     /**
