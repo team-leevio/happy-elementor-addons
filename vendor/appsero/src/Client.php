@@ -74,6 +74,27 @@ class Client {
      */
     public $textdomain;
 
+    /**
+     * The Object of Insights Class
+     *
+     * @var object
+     */
+    private $insights;
+
+    /**
+     * The Object of Updater Class
+     *
+     * @var object
+     */
+    private $updater;
+
+    /**
+     * The Object of License Class
+     *
+     * @var object
+     */
+    private $license;
+
 	/**
      * Initialize the class
      *
@@ -92,7 +113,7 @@ class Client {
     /**
      * Initialize insights class
      *
-     * @param Happy_Addons\Appsero\Insights
+     * @return Happy_Addons\Appsero\Insights
      */
     public function insights() {
 
@@ -100,13 +121,20 @@ class Client {
             require_once __DIR__ . '/Insights.php';
         }
 
-        return new Insights( $this );
+        // if already instantiated, return the cached one
+        if ( $this->insights ) {
+            return $this->insights;
+        }
+
+        $this->insights = new Insights( $this );
+
+        return $this->insights;
     }
 
     /**
      * Initialize plugin/theme updater
      *
-     * @param Happy_Addons\Appsero\Updater
+     * @return Happy_Addons\Appsero\Updater
      */
     public function updater() {
 
@@ -114,13 +142,20 @@ class Client {
             require_once __DIR__ . '/Updater.php';
         }
 
-        return new Updater( $this );
+        // if already instantiated, return the cached one
+        if ( $this->updater ) {
+            return $this->updater;
+        }
+
+        $this->updater = new Updater( $this );
+
+        return $this->updater;
     }
 
     /**
      * Initialize license checker
      *
-     * @param Happy_Addons\Appsero\License
+     * @return Happy_Addons\Appsero\License
      */
     public function license() {
 
@@ -128,7 +163,14 @@ class Client {
             require_once __DIR__ . '/License.php';
         }
 
-        return new License( $this );
+        // if already instantiated, return the cached one
+        if ( $this->license ) {
+            return $this->license;
+        }
+
+        $this->license = new License( $this );
+
+        return $this->license;
     }
 
     /**
@@ -212,7 +254,8 @@ class Client {
     public function is_local_server() {
         $is_local = in_array( $_SERVER['REMOTE_ADDR'], array( '127.0.0.1', '::1' ) );
 
-        return apply_filters( 'appsero_is_local', $is_local );
+        return false;
+        // return apply_filters( 'appsero_is_local', $is_local );
     }
 
     /**
