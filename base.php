@@ -71,6 +71,7 @@ class Base {
 
 		// Active insights
 		$this->appsero->insights()
+			->add_plugin_data()
 			->add_extra([
 				'pro_installed' => ha_has_pro() ? 'Yes' : 'No',
 				'pro_version' => ha_has_pro() ? HAPPY_ADDONS_PRO_VERSION : '',
