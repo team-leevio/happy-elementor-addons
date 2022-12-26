@@ -1,14 +1,17 @@
 <?php
+
 /**
  * Happy Addons widget base
  *
  * @package Happy_Addons
  */
+
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Widget_Base;
+// use Elementor\Controls_Stack;
 
-defined( 'ABSPATH' ) || die();
+defined('ABSPATH') || die();
 
 abstract class Base extends Widget_Base {
 
@@ -27,9 +30,9 @@ abstract class Base extends Widget_Base {
          * Card will be card
          * Blog_Card will be blog-card
          */
-        $name = str_replace( strtolower(__NAMESPACE__), '', strtolower($this->get_class_name()) );
-        $name = str_replace( '_', '-', $name );
-        $name = ltrim( $name, '\\' );
+        $name = str_replace(strtolower(__NAMESPACE__), '', strtolower($this->get_class_name()));
+        $name = str_replace('_', '-', $name);
+        $name = ltrim($name, '\\');
         return 'ha-' . $name;
     }
 
@@ -42,7 +45,7 @@ abstract class Base extends Widget_Base {
      * @return array Widget categories.
      */
     public function get_categories() {
-        return [ 'happy_addons_category' ];
+        return ['happy_addons_category'];
     }
 
     /**
@@ -64,7 +67,7 @@ abstract class Base extends Widget_Base {
         $html_class .= ' happy-addon';
         $html_class .= ' ' . $this->get_name();
         $html_class .= ' ' . $this->get_custom_wrapper_class();
-        return rtrim( $html_class );
+        return rtrim($html_class);
     }
 
     /**
@@ -77,8 +80,8 @@ abstract class Base extends Widget_Base {
 
         $this->register_style_controls();
 
-        do_action( 'happyaddons_end_register_controls', $this );
-	}
+        do_action('happyaddons_end_register_controls', $this);
+    }
 
     /**
      * Register content controls
@@ -100,7 +103,7 @@ abstract class Base extends Widget_Base {
      * In 2.6.0 Elementor removed render_edit_tools method.
      */
     protected function render_edit_tools() {
-        if ( ha_is_elementor_version( '<=', '2.5.16' ) ) {
+        if (ha_is_elementor_version('<=', '2.5.16')) {
             parent::render_edit_tools();
         }
     }
@@ -130,24 +133,24 @@ abstract class Base extends Widget_Base {
      *                        `basic`.
      * @param string $setting_key Additional settings key in case $key != $setting_key
      */
-    protected function add_inline_editing_attributes( $key, $toolbar = 'basic', $setting_key = '' ) {
-        if ( ! ha_elementor()->editor->is_edit_mode() ) {
+    protected function add_inline_editing_attributes($key, $toolbar = 'basic', $setting_key = '') {
+        if (!ha_elementor()->editor->is_edit_mode()) {
             return;
         }
 
-        if ( empty( $setting_key ) ) {
+        if (empty($setting_key)) {
             $setting_key = $key;
         }
 
-        $this->add_render_attribute( $key, [
+        $this->add_render_attribute($key, [
             'class' => 'elementor-inline-editing',
             'data-elementor-setting-key' => $setting_key,
-        ] );
+        ]);
 
-        if ( 'basic' !== $toolbar ) {
-            $this->add_render_attribute( $key, [
+        if ('basic' !== $toolbar) {
+            $this->add_render_attribute($key, [
                 'data-elementor-inline-editing-toolbar' => $toolbar,
-            ] );
+            ]);
         }
     }
 
@@ -174,50 +177,50 @@ abstract class Base extends Widget_Base {
      * @return \Elementor\Element_Base instance
      */
 
-    public function add_link_attributes( $element, array $url_control, $overwrite = false ) {
+    public function add_link_attributes($element, array $url_control, $overwrite = false) {
         /**
          * add_link_attributes is only available form 2.8.0
          */
-        if ( ha_is_elementor_version( '>=', '2.8.0' ) ) {
-            return parent::add_link_attributes( $element, $url_control, $overwrite );
+        if (ha_is_elementor_version('>=', '2.8.0')) {
+            return parent::add_link_attributes($element, $url_control, $overwrite);
         }
 
         $attributes = [];
 
-        if ( ! empty( $url_control['url'] ) ) {
+        if (!empty($url_control['url'])) {
             $attributes['href'] = $url_control['url'];
         }
 
-        if ( ! empty( $url_control['is_external'] ) ) {
+        if (!empty($url_control['is_external'])) {
             $attributes['target'] = '_blank';
         }
 
-        if ( ! empty( $url_control['nofollow'] ) ) {
+        if (!empty($url_control['nofollow'])) {
             $attributes['rel'] = 'nofollow';
         }
 
-        if ( ! empty( $url_control['custom_attributes'] ) ) {
+        if (!empty($url_control['custom_attributes'])) {
             // Custom URL attributes should come as a string of comma-delimited key|value pairs
-            $custom_attributes = explode( ',', $url_control['custom_attributes'] );
-            $blacklist = [ 'onclick', 'onfocus', 'onblur', 'onchange', 'onresize', 'onmouseover', 'onmouseout', 'onkeydown', 'onkeyup' ];
+            $custom_attributes = explode(',', $url_control['custom_attributes']);
+            $blacklist = ['onclick', 'onfocus', 'onblur', 'onchange', 'onresize', 'onmouseover', 'onmouseout', 'onkeydown', 'onkeyup'];
 
-            foreach ( $custom_attributes as $attribute ) {
+            foreach ($custom_attributes as $attribute) {
                 // Trim in case users inserted unwanted spaces
-                list( $attr_key, $attr_value ) = explode( '|', $attribute );
+                list($attr_key, $attr_value) = explode('|', $attribute);
 
                 // Cover cases where key/value have spaces both before and/or after the actual value
-                $attr_key = trim( $attr_key );
-                $attr_value = trim( $attr_value );
+                $attr_key = trim($attr_key);
+                $attr_value = trim($attr_value);
 
                 // Implement attribute blacklist
-                if ( ! in_array( strtolower( $attr_key ), $blacklist, true ) ) {
-                    $attributes[ $attr_key ] = $attr_value;
+                if (!in_array(strtolower($attr_key), $blacklist, true)) {
+                    $attributes[$attr_key] = $attr_value;
                 }
             }
         }
 
-        if ( $attributes ) {
-            $this->add_render_attribute( $element, $attributes, $overwrite );
+        if ($attributes) {
+            $this->add_render_attribute($element, $attributes, $overwrite);
         }
 
         return $this;

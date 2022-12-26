@@ -51,7 +51,43 @@ class Admin_Bar {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
+		// wp_enqueue_style('select2');
 
+		// wp_enqueue_script( 'select2' );
+
+		wp_enqueue_script(
+			'happy-elementor-addons-micromodal',
+			'//unpkg.com/micromodal/dist/micromodal.min.js',
+			[],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
+		wp_enqueue_style(
+			'happy-elementor-addons-select2',
+			'//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
+			null,
+			HAPPY_ADDONS_VERSION
+		);
+
+		wp_enqueue_script(
+			'happy-elementor-addons-select2',
+			'//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
+			['jquery'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
+		wp_enqueue_script( 'wp-api' );
+		
+		wp_enqueue_script(
+			'happy-elementor-addons-alpine',
+			'//unpkg.com/alpinejs',
+			[],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+		
 		wp_localize_script(
 			'happy-elementor-addons-admin',
 			'HappyAdmin',

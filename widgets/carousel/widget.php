@@ -71,6 +71,35 @@ class Carousel extends Base {
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
+		
+		if( ha_has_pro() ){
+			$this->add_control(
+				'ha_image_carousel_layout_type',
+				[
+					'label' => __( 'Layout', 'happy-elementor-addons' ),
+					'label_block' => true,
+					'type' => Controls_Manager::SELECT,
+					'default' => 'carousel',
+					'options' => [
+						'carousel' => __('Carousel', 'happy-elementor-addons'),
+						'remote_carousel' => __('Remote Carousel', 'happy-elementor-addons'),
+					],
+					'description' => __('Select layout type', 'happy-elementor-addons')
+				]
+			);
+			$this->add_control(
+				'ha_image_carousel_rcc_unique_id',
+				[
+					'label' => __( 'Unique ID', 'happy-elementor-addons' ),
+					'label_block' => true,
+					'type' => Controls_Manager::TEXT,
+					'default' => '',
+					'placeholder' => __( 'Enter remote carousel unique id', 'happy-elementor-addons' ),
+					'description' => __('Input carousel ID that you want to remotely connect', 'happy-elementor-addons'),
+					'condition' => [ 'ha_image_carousel_layout_type' => 'remote_carousel' ]
+				]
+			);
+		}
 
 		$repeater = new Repeater();
 
@@ -872,9 +901,11 @@ class Carousel extends Base {
 		if ( empty( $settings['slides'] ) ) {
 			return;
 		}
+
+		$harcc_uid = !empty($settings['ha_image_carousel_rcc_unique_id']) && $settings['ha_image_carousel_layout_type'] == 'remote_carousel' ? 'harccuid_' . $settings['ha_image_carousel_rcc_unique_id'] : '';
 		?>
 
-		<div class="hajs-slick ha-slick ha-slick--carousel">
+		<div data-ha_rcc_uid="<?php echo esc_attr( $harcc_uid ); ?>" class="hajs-slick ha-slick ha-slick--carousel">
 
 			<?php foreach ( $settings['slides'] as $slide ) :
 				$image = wp_get_attachment_image_url( $slide['image']['id'], $settings['thumbnail_size'] );

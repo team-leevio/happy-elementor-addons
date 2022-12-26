@@ -1,7 +1,8 @@
 <?php
+
 namespace Happy_Addons\Elementor;
 
-defined( 'ABSPATH' ) || die();
+defined('ABSPATH') || die();
 
 class Ajax_Handler {
 
@@ -266,21 +267,27 @@ class Ajax_Handler {
 										esc_html( $post->post_title )
 									);
 								?>
-								<div class="ha-post-tab-meta">
-									<span class="ha-post-tab-meta-author">
-										<i class="fa fa-user-o"></i>
-										<a href="<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
-									</span>
-									<?php
-									$archive_year  = get_the_time( 'Y', $post->ID );
-									$archive_month = get_the_time( 'm', $post->ID );
-									$archive_day   = get_the_time( 'd', $post->ID );
-									?>
-									<span class="ha-post-tab-meta-date">
-										<i class="fa fa-calendar-o"></i>
-										<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>"><?php echo get_the_date( 'M d, Y', $post->ID ); ?></a>
-									</span>
-								</div>
+								<?php if ( ( 'yes' == $settings['show_user_meta'] ) || ( 'yes' == $settings['show_date_meta'] ) ) : ?>
+									<div class="ha-post-tab-meta">
+										<?php if ( 'yes' == $settings['show_user_meta'] ) : ?>
+											<span class="ha-post-tab-meta-author">
+												<i class="fa fa-user-o"></i>
+												<a href="<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
+											</span>
+										<?php endif; ?>
+										<?php if ( 'yes' == $settings['show_date_meta'] ) : ?>
+											<?php
+											$archive_year  = get_the_time( 'Y', $post->ID );
+											$archive_month = get_the_time( 'm', $post->ID );
+											$archive_day   = get_the_time( 'd', $post->ID );
+											?>
+											<span class="ha-post-tab-meta-date">
+												<i class="fa fa-calendar-o"></i>
+												<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>"><?php echo get_the_date( get_option( 'date_format' ), $post->ID ); ?></a>
+											</span>
+										<?php endif; ?>
+									</div>
+								<?php endif; ?>
 								<?php if ( 'yes' === $excerpt && ! empty( $post->post_excerpt ) ) : ?>
 									<div class="ha-post-tab-excerpt">
 										<p><?php echo esc_html( $post->post_excerpt ); ?></p>
