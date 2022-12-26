@@ -12,7 +12,7 @@ Requires PHP: 5.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-[Happy Addons for Elementor](https://happyaddons.com/) come with 500+ templates, 114+ free & pro essential widgets - Mega Menu, Testimonial, Slider, News Ticker, Blog Post Grid, Gallery, WooCommerce Products widgets, Modal Popup, Tooltip Google maps, Carousels & more. Features Like Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, EDD Widgets,500+ Icons, etc.
+[Happy Addons for Elementor](https://happyaddons.com/) come with 500+ templates, 130+ free & pro essential widgets - Mega Menu, Testimonial, Slider, News Ticker, Blog Post Grid, Gallery, WooCommerce Products widgets, Modal Popup, Tooltip Google maps, Carousels & more. Features Like Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, EDD Widgets,500+ Icons, etc.
 
 == Description ==
 
