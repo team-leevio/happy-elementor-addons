@@ -19,7 +19,7 @@
 - Tweak: Compatibility tag added for Elementor 3.9.x
 - Tweak: Integrate Margin Control on Infobox Widget.
 - Tweak: Photo Stack Group widgets images alt support added.
-- Fix: Post Tab date format is not properly works.
+- Fix: Post Tab date format is not properly working.
 
 
 = 3.7.2 - 20 November 2022 =
