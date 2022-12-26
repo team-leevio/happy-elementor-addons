@@ -11,7 +11,6 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 
 defined('ABSPATH') || die();
@@ -43,7 +42,7 @@ class Site_Tagline extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-tb-site-title';
+		return 'hm hm-tag';
 	}
 
 	public function get_keywords() {

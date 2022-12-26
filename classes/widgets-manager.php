@@ -1091,7 +1091,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => false,
 				'title' => __('Page Title', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
+				'icon' => 'hm hm-tb-page-title',
 				'css' => [''],
 				'js' => [],
 				'vendor' => [
@@ -1103,7 +1103,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => true,
 				'title' => __('Post Title', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
+				'icon' => 'hm hm-tb-page-title',
 				'css' => [''],
 				'js' => [],
 				'vendor' => [
@@ -1115,7 +1115,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => true,
 				'title' => __('Post Content', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
+				'icon' => 'hm hm-tb-post-content',
 				'css' => [''],
 				'js' => [],
 				'vendor' => [
@@ -1127,7 +1127,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => false,
 				'title' => __('Post Excerpt', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
+				'icon' => 'hm hm-tb-post-excerpt',
 				'css' => [''],
 				'js' => [],
 				'vendor' => [
@@ -1139,7 +1139,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => true,
 				'title' => __('Site Logo', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
+				'icon' => 'hm hm-tb-site-logo',
 				'css' => [''],
 				'js' => [],
 				'vendor' => [
@@ -1151,7 +1151,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => true,
 				'title' => __('Site Title', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
+				'icon' => 'hm hm-tb-site-title',
 				'css' => ['site-title'],
 				'js' => [],
 				'vendor' => [
@@ -1163,7 +1163,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => false,
 				'title' => __('Site Tagline', 'happy-elementor-addons'),
-				'icon' => 'hm hm-tb-site-title',
+				'icon' => 'hm hm-tag',
 				'css' => ['site-tagline'],
 				'js' => [],
 				'vendor' => [
@@ -1175,7 +1175,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => true,
 				'title' => __('Author Meta', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
+				'icon' => 'hm hm-tb-author-meta',
 				'css' => ['author'],
 				'js' => [],
 				'vendor' => [
@@ -1187,7 +1187,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => true,
 				'title' => __('Post Meta', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
+				'icon' => 'hm hm-tb-post-info',
 				'css' => ['post-info'],
 				'js' => [],
 				'vendor' => [
@@ -1199,7 +1199,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => true,
 				'title' => __('Archive Title', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
+				'icon' => 'hm hm-tb-archieve-title',
 				'css' => [''],
 				'js' => [],
 				'vendor' => [
@@ -1211,7 +1211,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => true,
 				'title' => __('Archive Posts', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
+				'icon' => 'hm hm-tb-archieve-content',
 				'css' => ['archive-posts'],
 				'js' => [],
 				'vendor' => [
@@ -1235,7 +1235,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => true,
 				'title' => __('Post Navigation', 'happy-elementor-addons'),
-				'icon' => 'hm hm-navigation2',
+				'icon' => 'hm hm-breadcrumbs',
 				'css' => ['post-navigation'],
 				'js' => [],
 				'vendor' => [
@@ -1247,7 +1247,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => true,
 				'title' => __('Post featured image', 'happy-elementor-addons'),
-				'icon' => 'hm hm-lens',
+				'icon' => 'hm hm-tb-featured-image',
 				'css' => [''],
 				'js' => [],
 				'vendor' => [
@@ -1259,7 +1259,7 @@ class Widgets_Manager {
 				'cat' => 'theme-builder',
 				'is_active' => true,
 				'title' => __('Nav Menu', 'happy-elementor-addons'),
-				'icon' => 'hm hm-tb-archieve-content',
+				'icon' => 'hm hm-clip-board',
 				'css' => ['navigation-menu'],
 				'js' => [],
 				'vendor' => [

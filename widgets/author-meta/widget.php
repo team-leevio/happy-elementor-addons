@@ -7,16 +7,11 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Core\Schemes\Typography;
-use Elementor\Utils;
-use Elementor\Control_Media;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
-use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Text_Shadow;
-use Happy_Addons\Elementor\Controls\Group_Control_Foreground;
 
 defined( 'ABSPATH' ) || die();
 
