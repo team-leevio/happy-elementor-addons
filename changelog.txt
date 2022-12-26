@@ -1,22 +1,22 @@
 = 3.8.0 - #### 2022 =
 
 - New: Theme Builder feature
-- New: Site Logo widget
-- New: Site Title widget
-- New: Site Tagline widget
-- New: Nav Menu widget
-- New: Page Title widget
-- New: Post Title widget
-- New: Post Excerpt widget
-- New: Post Content widget
-- New: Featured Image widget
-- New: Author Box widget
-- New: Post Comments widget
-- New: Post Navigation widget
-- New: Post Info widget
-- New: Archive Title widget
-- New: Archive Posts widget
-- Tweak: Compatibility tag added for Elementor 3.9.x
+- New: Site Logo widget.
+- New: Site Title widget.
+- New: Site Tagline widget.
+- New: Nav Menu widget.
+- New: Page Title widget.
+- New: Post Title widget.
+- New: Post Excerpt widget.
+- New: Post Content widget.
+- New: Featured Image widget.
+- New: Author Box widget.
+- New: Post Comments widget.
+- New: Post Navigation widget.
+- New: Post Info widget.
+- New: Archive Title widget.
+- New: Archive Posts widget.
+- Tweak: Compatibility tag added for Elementor 3.9.x.
 - Tweak: Integrate Margin Control on Infobox Widget.
 - Tweak: Photo Stack Group widgets images alt support added.
 - Fix: Post Tab date format is not properly working.
