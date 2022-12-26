@@ -1,6 +1,6 @@
 = 3.8.0 - #### 2022 =
 
-- New: Theme Builder feature
+- New: Theme Builder feature.
 - New: Site Logo widget.
 - New: Site Title widget.
 - New: Site Tagline widget.
