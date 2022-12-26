@@ -14,22 +14,21 @@ $selected = get_query_var( 'ha_library_type' );
 	<div id="elementor-new-template__description">
 		<div id="elementor-new-template__description__title">
 			<?php
-printf(
-	esc_html__( '%1$s Happy Addon %2$s Theme Builder Helps You %3$sWork Efficiently%4$s', 'elementor' ),
-	'<span>',
-	'</span>',
-	'<span>',
-	'</span>'
-);
-?>
+			printf(
+				esc_html__( '%1$s Happy Addon %2$s Theme Builder Helps You %3$sWork Efficiently%4$s', 'elementor' ),
+				'<span>',
+				'</span>',
+				'<span>',
+				'</span>'
+			);
+			?>
 	    </div>
-		<div id="elementor-new-template__description__content"><?php echo esc_html__( 'Use templates to create the different pieces of your site, and reuse them with one click whenever needed.', 'elementor' ); ?></div>
+		<div id="elementor-new-template__description__content"><?php echo esc_html__( 'Create various bits and pieces (e.g: Header, Footer etc) of your site and then later reuse them when needed.', 'elementor' ); ?></div>
 	</div>
 	<form id="elementor-new-template__form" action="<?php esc_url( admin_url( '/edit.php' ) );?>">
 		<input type="hidden" name="post_type" value="ha_library">
 		<input type="hidden" name="action" value="ha_library_new_post">
-		<?php // PHPCS - a nonce doesn't have to be escaped.
-?>
+		<?php // PHPCS - a nonce doesn't have to be escaped. ?>
 		<input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce( 'ha_library_new_post_action' ); ?>">
 
 		<div id="newViewGroup" x-data="newTemplateForm()" x-init="
@@ -194,7 +193,7 @@ c6.6,1.5,13.2,0.2,18.5-2.7c1.2-0.6,1.4-2.3,0.6-3.4C66.3,86.9,62.8,84.8,58.9,83.9
                 <div class="modal__content new-template" id="modal-2-content">
 					<div class="modal__information">
 						<div class="info-title">HappyAddons Theme Builder helps you work efficiently</div>
-                        <div class="info-message">Use templates to create the different pieces of your site and reuse theme with one click whenever needed.</div>
+                        <div class="info-message">Create various bits and pieces (e.g: Header, Footer etc) of your site and then later reuse them when needed.</div>
 					</div>
 					<form id="ha-new-template-form" action="<?php esc_url( admin_url( '/edit.php' ) );?>">
 						<input type="hidden" name="post_type" value="ha_library">
