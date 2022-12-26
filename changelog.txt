@@ -1,4 +1,4 @@
-= 3.8.0 - #### 2022 =
+= 3.8.0 - 26 December 2022 =
 
 - New: Theme Builder feature.
 - New: Site Logo widget.
