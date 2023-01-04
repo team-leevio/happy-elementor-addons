@@ -1,3 +1,6 @@
+= 3.#.# - ### 2023 =
+- Fix: Image Sizing is not working on the Photo Stack widget
+
 = 3.8.0 - 26 December 2022 =
 
 - New: Theme Builder feature.
