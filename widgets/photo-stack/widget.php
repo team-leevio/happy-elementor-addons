@@ -548,6 +548,7 @@ class Photo_Stack extends Base {
 									Group_Control_Image_Size::get_attachment_image_src($item['image']['id'], 'thumbnail', $item),
 									$this->get_render_attribute_string('image')
 								);
+								$this->remove_render_attribute( 'image' );
 							} else {
 								echo $this->get_placeholder($item, $this->get_render_attribute_string('image'));
 						}?>
