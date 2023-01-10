@@ -24,9 +24,6 @@ class Conditions_Cache {
      */
     public function add($location, $post_id, array $conditions) {
 
-        // error_log(print_r($this->conditions,true));
-        // error_log(print_r($location,true));
-
         if ($location) {
             if (is_array($this->conditions) && !isset($this->conditions[$location])) {
                 $this->conditions[$location] = [];
@@ -109,7 +106,7 @@ class Conditions_Cache {
         foreach ($query->posts as $post_id) {
             $conditions = get_post_meta($post_id,'_ha_display_cond',true);
             $location = get_post_meta($post_id,'_ha_library_type',true);
-        
+
             $this->add($location, $post_id, $conditions);
         }
 

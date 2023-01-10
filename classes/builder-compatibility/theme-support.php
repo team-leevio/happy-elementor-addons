@@ -28,9 +28,6 @@ class Theme_Support {
 		$headers = Condition_Manager::instance()->get_documents_for_location('header');
 		$footers = Condition_Manager::instance()->get_documents_for_location('footer');
 
-		// error_log("Header \n".print_r($headers,true));
-		// error_log("Footer \n".print_r($footers,true));
-
 		if (!empty($headers)) {
 			add_action('get_header', [$this, 'get_header']);
 			add_filter('show_admin_bar', [$this, 'filter_admin_bar_from_body_open']);
@@ -42,7 +39,7 @@ class Theme_Support {
 
 	public function init() {
 
-		
+
 	}
 
 	public function get_header($name) {

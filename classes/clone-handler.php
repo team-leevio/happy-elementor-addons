@@ -21,7 +21,8 @@ class Clone_Handler {
 		add_filter( 'post_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
 		add_filter( 'page_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
 
-		add_action( 'elementor/finder/categories/init', [ __CLASS__, 'register_finder' ] );
+		// add_action( 'elementor/finder/categories/init', [ __CLASS__, 'register_finder' ] );
+		add_action( 'elementor/finder/register', [ __CLASS__, 'register_finder' ] );
 	}
 
 	/**

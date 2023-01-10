@@ -1,4 +1,6 @@
 = 3.#.# - ### 2023 =
+- Tweak: Removed `elementor/finder/categories/init` deprecated hook
+- Tweak: Removed `elementor/widgets/widgets_registered` deprecated hook
 - Fix: Image Sizing is not working on the Photo Stack widget
 
 = 3.8.0 - 26 December 2022 =

@@ -32,7 +32,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         // $template = \Happy_Addons\Elementor\Condition_Manager::instance()->get_location_templates('header');
         echo \Happy_Addons\Elementor\Theme_Builder::instance()->render_builder_data_location('header');
-        // error_log("header:".print_r($template,true));
         ?>
     </div>
     <?php do_action('happyaddons/template/after_header'); ?>
