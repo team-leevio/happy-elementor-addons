@@ -4,7 +4,7 @@ Version: 3.8.0
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
-Tags: Elementor, Elementor Addons, Elementor Widget, Elementor Addon, Mega Menu
+Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget, Elementor Addon, 
 Requires at least: 4.7
 Tested up to: 6.1
 Stable tag: trunk
@@ -12,11 +12,13 @@ Requires PHP: 5.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-[Happy Addons for Elementor](https://happyaddons.com/) come with 500+ templates, 130+ free & pro essential widgets - Mega Menu, Testimonial, Slider, News Ticker, Blog Post Grid, Gallery, WooCommerce Products widgets, Modal Popup, Tooltip Google maps, Carousels & more. Features Like Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, EDD Widgets,500+ Icons, etc.
+[Happy Addons for Elementor](https://happyaddons.com/) come with Header Footer Builder, 500+ templates, 143+ free & essential pro widgets - Theme Builder, Mega Menu, Testimonial, Slider, News Ticker, Blog Post Grid, Gallery, WooCommerce Products widgets, Modal Popup, Tooltip Google maps, Carousels & more. Features Like Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Icons, etc.
 
 == Description ==
 
-[Happy Addons for Elementor](https://happyaddons.com/) is One of the Best Addons That Comes With **114+** Free & Pro Widgets and **22+** Problem-Solving Features to enhance [Elementor](https://wordpress.org/plugins/elementor/) Free & Pro. And Our widgets are not limited to customizations. All the widgets stand out from other third-party Elementor addons widgets in terms of flexibility of customizations. It will broaden your design skills. Our 70+ full-page Templates and 500+ readymade design blocks will help you to kickstart your work swiftly.
+[Happy Addons for Elementor](https://happyaddons.com/) is One of the Best Addons That Comes Theme Builder that covers **Header Footer Builder**, **Single Post Template Builder**, and **Archive Page Template Builder for free**, along with **143+** Free & Pro Widgets and **23+** Problem-Solving Features to enhance [Elementor](https://wordpress.org/plugins/elementor/) Free & Pro. And Our widgets are not limited to customizations. All the widgets stand out from other third-party Elementor addons widgets in terms of flexibility of customizations. 
+
+It will broaden your design skills. Our 70+ full-page Templates and 500+ readymade design blocks will help you to kickstart your work swiftly. 
 
 ### Useful Links
 
@@ -186,7 +188,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 * Floating Effects
 * CSS Transform
 * Scroll To Top
-* Theme Builder
+* Header Footer Builder
+* Single Page/post Template Builder 
+* Archive Page Template Builder
+* Theme Builder With Basic Templating Conditions
 
 **Premium Features of Happy Addons**
 
@@ -199,6 +204,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 * Image Masking
 * Particle Effect
 * Display Condition
+* Theme Builder Advance Templating Conditions
 
 ### Why Should You Choose Happy Addons?
 
@@ -206,7 +212,7 @@ Happy Addons is the pioneer of adding exclusive problem-solving features. Also, 
 
 
 
-1. From now on, you can create a mega menu, simple navigation menu, and horizontal nav menu with our happy menu widget.
+1. From now on, you will get **Header Footer Builder** with template conditions; also, we have introduced our own Theme Builder for you with advanced templating conditions. You can create single-page templates and archive page templates for free. 
 2. Create off-canvas content or a menu for your site with an off-canvas widget.
 3. Manage the one-page navigation menu with the help of our one-page navigation widget.
 4. You can create an advanced data table and the option to add a Google sheet to your website.
@@ -235,7 +241,7 @@ Happy Addons is the pioneer of adding exclusive problem-solving features. Also, 
 ### What You Will Get In Happy Addons Free Version
 
 
-**49** Free Widgets Are Available in the Happy Addons Free
+**63** Free Widgets Are Available in the Happy Addons Free
 
 It comes with plenty of Widgets in the free version. And all of the widgets are full of customization. Also, we have created design inspiration for each and every single widget. Let’s have a look at what you will get in our free version:
 
@@ -295,8 +301,32 @@ With the Free version and the free version of the Happy addons, you can easily c
 * **[Comparison Table](https://demo.happyaddons.com/elementor-comparison-table-widget-demo/)** – The comparison table will help your site visitors to buy your product, sign up for membership, contact, or just request a quote. Are you wondering about creating comparison tables for your affiliated products, gadgets, features, services, or anything related to your website? Try Happy Addons new comparison table widget. It’s available in our free version.
 * **[Photo Stack](https://demo.happyaddons.com/elementor-photo-stack-widget-demo/)** – Our Photo Stack Widget will help you achieve a critical layout of Images where you don’t have to use multiple columns and intersections to achieve that. With the help of the Photo Stack widget, you can easily achieve the layered image style without any technical knowledge. Showcase multiple layered images within the website by using the photo stack widget.
 * **[Lord Icon](https://demo-x.happyaddons.com/elementor-lordicon-widget-demo/)** – Lord icon is a very much popular element in the web development industry. We often use this feature to add an animated icon to our websites. But previously, it was not that easy to add and customize the lord icons to the website. But from now on, you can add the lord icon to your websites by using the our lord Icon widget. You can customize the color and other options directly from your editing panel. Lord Icon WIdget can be used separately in any place on the website; also, we have added support to the lord icons in our Info Box Widget and Icon Box Widget. Use the Lord Icon Widget.
+* **[Site Logo](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/site-logo/)** - If you use our Site Logo, You can either use the default site logo of your WordPress site, or you can choose your custom logo. 
+* **[Site Title](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/site-title/)** - You will have the ability to add a site title and design it as per your requirement. You can change the header type from H1 to H6. Besides, you can set the alignment and size of the Site Title. 
+* **[Site Tagline ](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/site-tagline/)**- By using site tagline, you can change the default site Tag Line’s color, typography, and alignment. In addition, you can add a custom icon or SVG for the site’s Tag Line. 
+* **[Nav Menu](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/nav-menu/)** - Using Nav Menu WIdget, you can customize your site navbar. From the content editor, select a menu. You can set the alignment of the Nav bar for both desktop and responsive devices. You can also set menu icons as well as icons for opening and closing. 
+* **[Page Title](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/page-title/)** - You can customize the Page Title of your site and also can set the HTML Tag, Size, and Alignment with the page title widget. For styling, you can change the Color, Typography, and Text Shadow.
+* **[Post Excerpt](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-excerpt/)** - You can customize the Post Excerpt with our HappyAddons Theme Builder. Just drag and drop the Post Excerpt widget. You can control the alignment of the Excerpt text. It will help you to create a single blog post template. On the Style tab, you can change the text color and typography as well.
+* **[Post Content](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-content/) **- On the Post Content widget content setting, you can change alignment and make the necessary changes to the style section. Just drag and drop the Post Excerpt widget on the editor panel. You can change the color and typography for both the Post Title and Post Content by navigating the Style tab. The Post Content widget is the main element in creating a single blog page template. You can use it for free. 
+* **[Post Featured Image](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-featured-image/) **- With the Post feature image widget of our Theme Builder, you can set the Feature Image style and position for your single post page. Depending on the image, you can change the image size and alignment and enable or disable the caption for the image. It’s another essential widget for single blog post template creation, which comes in the free version of our addon. 
+* **[Post Info](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-info/)** - A must-needed and amazing feature is post info. Your users should be able to see the post meta, like author name, date, time, etc. In the style tab, you can change the spaces, alignment, color, height & weight of the divider, list icon, text, etc. 
+* **[Author Meta](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/author-boxmeta/)** - In the author meta widget of the our theme builder, you can enable/disable the author name, avatar, short bio, and archive button. It is also possible to change the size and position of the Author Meta. People used to call it Author Box. It’s available for free. 
+* **[Post Comments](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-comments/)** - With our post comment widget, you can choose your post comment source from Current Post or Custom. If you choose a custom post then you can choose specific posts that will display as per the design. The Post Comment widget comes with a wide range of styling options. There is a choice of color, typography, margin & padding, and link design. Your post comments title, color, text color, short description color, size, Text area label, and Border will appear on the frontend as per your design. There is no cost to use it.
+* **[Post Navigation](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-navigation/)** - You can customize the Post Navigation according to your needs. In addition to allowing/disallowing the label of the navigation, you can change the text of the label as well. As for arrows, you can allow or disallow them. Our predefined navigation arrow list allows you to change the type of arrow. Post Navigation Labels, Titles, Arrows, and Borders can be customized. Each term can be customized in terms of color and typography. 
+* **[Archive Title](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-title/)** - Our theme builder includes an Archive title widget for styling archive pages. In the Archive Title, you can select the Heading Tag (H1-H6), Size, and Alignment. It is possible to change the color, typography, and shadow of the Archive Title. 
+* **[Archive Post](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-post/)** - There are some amazing options for the Archive Post widget of the HappyAddons Theme Builder. From Content > Layout,
+    * There is a choice of skins for archive posts, 
+    * The number of columns the posts will display can be set,
+    * It is possible to set the image position as Top, Left, or Right. 
+    * The size of the post's image can be customized,
+    * You can enable/disable the post title & excerpt. Even you can apply to custom excerpts,
+    * You have the ability to control the metadata and their separator,
+    * The Read More button and its text can be enabled or disabled. 
+    * There will be an option to enable or disable open in a new window.
+    * On the other hand, on Content > Pagination, you will have the ability to customize your pagination for the Archive Post. For example, you can choose pagination type, page limit, and alignment. 
+    * The previous and next label button text can be customized. 
 
-### 20+ Free Features Are Available in the Happy Addons
+### 24+ Free Features Are Available in the Happy Addons
 
 Happy Addons not only comes with extendable widgets but also has some cool features which help you to increase your web designing skill. You will get 20+ exclusive features for Free.
 
@@ -339,6 +369,27 @@ With the help of our floating effect extension, you can create this kind of amaz
 
 * **[CSS Transform](https://happyaddons.com/elementor-css-transform-demo-3/)** – You can apply various CSS transforms like translate, rotate, scale, and skew without any limitations within any Widget with any other third-party addons. It’s a global feature. Don’t miss the chance to use the CSS transform module to create an extraordinary look for your website.
 * **[Scroll To Top Feature:](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/scroll-to-top-button/)** – Scroll to top feature is commonly used in websites. We often use scroll-to-top plugins or different methods to add that option to the web pages. But don’t worry; you can add this option to your websites within Editing Panel by using our Scroll to the top feature. You can set the scroll to the top button for all pages or can set a condition for any specific page not to show the scroll to the top button.
+* **Header Footer Builder** - HappyAddons now offering an advanced header footer builder for free within our theme builder feature for free. You can create an amazing header with our dedicated header widgets. For the footer, there are no dedicated widgets. You can use any widgets from the element library as per your need. Also, you can create separate footer menu and use our Nav Menu widget to display your footer menu within our Header Footer Builder feature.  By using our template condition, you can set different types of conditions for your header and footer. \
+Here are those header elements:
+    * Site Logo 
+    * Site Title 
+    * Site Tagline 
+    * Navigation Menu
+* **Single Blog Post Template Builder** - HappyAddons free offers the single post template creation feature within the theme builder feature for free. This covers all the necessary blog post design elements. Here are the single blog post design elements -
+    * Page Title
+    * Post Title
+    * Post Excerpt
+    * Post Content
+    * Featured Image
+    * Author Box
+    * Post Comments
+    * Post Navigation
+    * Post Info
+* **Archive Page Builder** - We are now offering the Archive Page Builder feature within the Theme Builder of HappyAddons for free. Now it’s easy to design any archive page of your site like blog archive page, blog category archive, or tag archive page with the archive page builder options. We also have dedicated widgets to design the archive pages within Elementor. Here is the Archive page Builder Widgets - 
+    * Archive Title 
+    * Archive Post
+* **[Template Conditioning Feature For Theme Builder (Basic)](https://happyaddons.com/docs/happy-theme-builder/how-to-set-conditions-to-display-templates-pro/)**: Free users can set the template condition for the Entire site, All Singular, or All Archive pages. To set different nested conditions for different pages or archives, you will be needed our pro version. 
+
 
 ### Presenting The All-Exclusive Widgets & Features Happy Addons Pro
 
@@ -348,7 +399,7 @@ It ships not only with some unique premium features but also with premium widget
 
 _Introducing Happy Addons Pro (Check What You Will Get in the Pro Version of it)_
 
-### 50+ Premium Widgets Of Happy Addons (Pro)
+### 51+ Premium Widgets Of Happy Addons (Pro)
 
 If you are still craving more widgets, then the following premium widgets are there to quench your thirst. The best part is that you can copy and paste the design source code, so you won’t have to make any design from scratch. Let’s explore the world of our Pro Widgets:
 
@@ -422,6 +473,18 @@ Check **[Doc](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-wi
 * **[EDD Purchase WIdget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-purchase/)** – EDD purchase widget gives you the flexibility to stylize your Easy Digital Download store’s purchase page.
 * **[EDD Download Widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-download/)** – If you want to customize your EDD store’s download page, then use EDD Download Widget.
 * **[Image Swap Widget](https://demo.happyaddons.com/elementor-image-swap-widget-demo/)** – If you are looking for a Widget which can help you to alter the lower image to the top without any hassle, then you can use Image Swap Widget. It will help you to create an actionable section for your users on your Website.
+* **[Remote Carousel widget](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/remote-carousel/)** - With the “Remote Carousel” widget, you can create an amazing carousel with the next/prev button. It will allow you to collaborate with other available carousels. For example, you have an image carousel. You can add the Remote Carousel to make it more functional. This is a Pro widget of happyAddons.  \
+Almost all the carousels (both free and pro of HappyAddons) have the support of a Remote carousel. For your acknowledgment, we have enabled the Remote Carousel for the following carousel widgets: 
+    * Image Carousel
+    * Team Carousel
+    * Testimonial Carousel
+    * Logo Carousel
+    * Twitter Feed Carousel
+    * Post Carousel
+    * Product Carousel
+    * Product Category Carousel
+    * EDD Product Carousel
+    * EDD Product Category Carousel
 
 
 ### **Unique Pro Features Of Happy Addons To Watch Out For**
@@ -485,6 +548,8 @@ We have added three predefined particle effects, which are commonly used, Polygo
 This feature will help you to display your content depending on different kinds of conditions like Browser, Operating System, Date Range, Time, and many more. We are the inventor of the Conditional display or display condition feature.
 [Check Demo](https://happyaddons.com/display-condition/)
 [youtube https://www.youtube.com/watch?v=kiGj1ZyX6T4&ab_channel=HappyAddons]
+
+* ** Advanced Template Conditioning of Theme Builder**: If you are using our theme builder to design your site with HappyAddons pro you will get an advanced template conditioning option. You can include and exclude any page or posts, or archive pages to set conditions for your templates. 
 
 
 ### **Enjoy Extra Benefits From Happy Addons!**
