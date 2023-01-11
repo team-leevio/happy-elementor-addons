@@ -1166,7 +1166,9 @@
 			'ha-twitter-feed.default'       : TwitterFeed,
 			'ha-threesixty-rotation.default': Threesixty_Rotation,
 			'ha-data-table.default'         : DataTable,
-			'widget'                        : BackgroundOverlay,
+			// 'widget'                        : BackgroundOverlay,
+			'section'                        : BackgroundOverlay,
+			'column'                        : BackgroundOverlay,
 			'ha-event-calendar.default'		: Event_Calendar,
 			'ha-mailchimp.default'			: MailChimp,
 			'ha-image-accordion.default'	: Image_Accordion,
@@ -1223,14 +1225,14 @@
 			});
 
 			function burgerClsAdd() {
-				
+
 				if( jQuery(window).width() < 768 ) {
 
 					navMenu.removeClass('ha-navigation-menu-wrapper');
 					navMenu.addClass('ha-navigation-burger-menu');
 
 					var humBurgerSubMenuBtn = navMenu.find('.ha-submenu-indicator-wrap');
-					
+
 					humBurgerSubMenuBtn.on('click', function(e) {
 						e.preventDefault();
 						let $parentEl = $(this).parent('li.menu-item-has-children');
@@ -1251,9 +1253,9 @@
 			burgerClsAdd();
 
 			$window.on('resize', debounce( burgerClsAdd, 100));
-			
+
 		};
-		
+
 		elementorFrontend.hooks.addAction("frontend/element_ready/ha-navigation-menu.default", NavigationMenu);
 
 	});

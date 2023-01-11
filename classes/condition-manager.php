@@ -24,9 +24,6 @@ class Condition_Manager {
         add_action('wp_ajax_ha_cond_get_current', [$this, 'ha_get_current_condition']);
 
         $this->process_condition();
-
-        // error_log(print_r($this->all_conds, true));
-        // error_log(print_r($this->all_conds_list, true));
     }
 
     public static function instance() {
@@ -267,7 +264,7 @@ class Condition_Manager {
 
                 $allExtitsCondition = $this->ha_get_all_conditions();
                 $templateType = get_post_meta($templateID, '_ha_library_type', true);
-                
+
                 $duplicate = $this->ha_check_template_conditions($templateType, $requestConditions, $mergedConditions, $allExtitsCondition);
 
                 if (!$duplicate) {
@@ -300,7 +297,7 @@ class Condition_Manager {
      * @param string $template_type
      * @param Array $requestConditions
      * @param Array $exitsConditions
-     * 
+     *
      * @return boolean
      */
     private function ha_check_template_conditions($template_type = '', $requestConditions = [], $mergedConditions=[], $exitsConditions = []) {
@@ -309,7 +306,7 @@ class Condition_Manager {
             return $result;
         }
 
-        
+
         $newRequests = [];
         foreach ( $requestConditions AS $val ) {
             $newRequests[] = substr(strstr( $val, '/'), strlen('/') );
@@ -323,13 +320,13 @@ class Condition_Manager {
         foreach ($mergedConditions as $key => $value) {
             $generatedConditions[] = substr(strstr( $value, '/'), strlen('/') );
         }
-        
+
         $filteredConditions = [];
         $existing_type_condition = isset($exitsConditions[$template_type])? $exitsConditions[$template_type]: [];
         foreach ($existing_type_condition as $key => $value) {
             $filteredConditions[] =  substr(strstr( $value, '/'), strlen('/') );
         }
-        
+
         foreach ($generatedConditions as $key => $value) {
             if ( in_array($value, $filteredConditions) ) {
                 $result = true;
@@ -339,7 +336,7 @@ class Condition_Manager {
 
         return $result;
     }
-    
+
     public function process_condition_update_old() {
         try {
             $this->validate_reqeust();

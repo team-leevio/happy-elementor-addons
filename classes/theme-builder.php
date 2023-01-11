@@ -214,7 +214,7 @@ class Theme_Builder {
     }
 
     public function admin_columns_content( $column_name, $post_id ) {
-        
+
         // $instance = self::instance();
 
         if ('type' === $column_name) {
@@ -248,16 +248,16 @@ class Theme_Builder {
                 foreach( $documentConditions AS $key => $condition ) {
                     if( 'include' === $condition['type'] ) {
                         $sub_page_id            = !empty( $condition['sub_id'] ) ? '#' . get_the_title( $condition['sub_id'] ) : '';
-                        $con_label              = !empty( $condition['sub_name'] ) && 'all' !== $condition['sub_name'] ? Condition_Manager::instance()->get_name($condition['sub_name']) . $sub_page_id : Condition_Manager::instance()->get_all_name($condition['name']);  
+                        $con_label              = !empty( $condition['sub_name'] ) && 'all' !== $condition['sub_name'] ? Condition_Manager::instance()->get_name($condition['sub_name']) . $sub_page_id : Condition_Manager::instance()->get_all_name($condition['name']);
                         $includeConditions[]    = $con_label;
                     } else if ( 'exclude' === $condition['type'] ) {
                         $sub_page_id        = !empty( $condition['sub_id'] ) ? '#' . get_the_title( $condition['sub_id'] ) : '';
-                        $con_label          =  !empty( $condition['sub_name'] ) && 'all' !== $condition['sub_name'] ? Condition_Manager::instance()->get_name($condition['sub_name']) . $sub_page_id : Condition_Manager::instance()->get_all_name($condition['name']);  
+                        $con_label          =  !empty( $condition['sub_name'] ) && 'all' !== $condition['sub_name'] ? Condition_Manager::instance()->get_name($condition['sub_name']) . $sub_page_id : Condition_Manager::instance()->get_all_name($condition['name']);
                         $excludeConditions[] = $con_label;
                     } else {
                         // not use this..
                     }
-                    
+
                 }
             }
 
@@ -524,7 +524,7 @@ class Theme_Builder {
 
 
     public function get_document_instances($post_id) {
-        
+
         $summary = [];
 
         $document_conditions = $this->get_document_conditions($post_id);
@@ -596,10 +596,6 @@ class Theme_Builder {
         $this->templates = get_posts($arg);
 
         $this->templates = null;
-
-        // error_log(print_r($this->get_template_by_location('header'),true));
-        // error_log(print_r($this->get_template_by_location('footer'),true));
-        // error_log(print_r($this->get_template_by_location('single'),true));
 
         // more conditions can be triggered at once
         // don't use switch case
@@ -689,15 +685,12 @@ class Theme_Builder {
     public function ha_theme_builder_content($template) {
         $location = '';
 
-        // error_log("TAG 0: " . print_r($this->get_public_post_types(), true));
-
         if (is_singular(array_keys($this->get_public_post_types())) || is_404()) {
             $location = 'single';
 
             $isBuiltWithElementor = $this->check_elementor_content(get_the_ID());
 
             if ($isBuiltWithElementor) {
-                // error_log("TAG 1: " . $template);
                 return $template;
             }
         } elseif (function_exists('is_shop') && \is_shop()) {
@@ -721,7 +714,6 @@ class Theme_Builder {
                         \ElementorPro\Modules\ThemeBuilder\Module::instance()->get_locations_manager()->do_location($location);
                     });
                     $template = $template_path;
-                    error_log("TAG 2: " . $template);
                     return $template;
                 }
             }
@@ -732,14 +724,11 @@ class Theme_Builder {
             if (empty($location_documents)) {
                 return $template;
             }
-            // error_log("TAG 0: " . $template);
+
             if ('single' === $location || 'archive' === $location) {
 
                 $first_key = key($location_documents);
                 $theme_document = $location_documents[$first_key];
-
-                // error_log(print_r($first_key,true));
-                // error_log(print_r($theme_document,true));
 
                 $templateType = get_post_meta($theme_document, '_wp_page_template', true);
 
@@ -762,13 +751,10 @@ class Theme_Builder {
             }
         }
 
-        // error_log("TAG 0: " . $template);
-        // error_log("Single Template: ".print_r($template,true));
-
         return $template;
     }
 
-    /* 
+    /*
     * Render Elementor single blog content
     */
     public function single_blog_content_elementor($post) {
@@ -862,7 +848,6 @@ class Theme_Builder {
     }
 
     public static function render_builder_data($content_id) {
-        // error_log("Render:" . print_r($content_id, true));
         $_elementor = \Elementor\Plugin::instance();
         $has_css = false;
 
@@ -912,7 +897,6 @@ class Theme_Builder {
 
 
     function ha_template_element_scripts() {
-        // error_log(get_post_type());
         if (self::CPT === get_post_type()) {
             wp_enqueue_script(
                 'happy-addons-template-elements',
@@ -934,7 +918,6 @@ class Theme_Builder {
 
     public function render_builder_data_location($location) {
         // $teplates = Condition_Manager::instance()->get_location_templates($location);
-        // error_log(print_r($teplates, true));
 
         $teplates = Condition_Manager::instance()->get_documents_for_location($location);
         $first_key = key($teplates);
