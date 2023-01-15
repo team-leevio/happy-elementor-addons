@@ -81,7 +81,7 @@ class Admin_Bar {
 		wp_enqueue_script( 'wp-api' );
 		
 		wp_enqueue_script(
-			'happy-elementor-addons-alpine',
+			'alpine.js',
 			'//unpkg.com/alpinejs',
 			[],
 			HAPPY_ADDONS_VERSION,
