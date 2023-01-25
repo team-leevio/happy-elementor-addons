@@ -1,8 +1,12 @@
+= 3.8.2 - 25 January 2023 =
+
+- Fix: Minor Fixes.
+
 = 3.8.1 - 11 January 2023 =
 
-- Tweak: Removed `elementor/finder/categories/init` deprecated hook
-- Tweak: Removed `elementor/widgets/widgets_registered` deprecated hook
-- Fix: Image Sizing is not working on the Photo Stack widget
+- Tweak: Removed `elementor/finder/categories/init` deprecated hook.
+- Tweak: Removed `elementor/widgets/widgets_registered` deprecated hook.
+- Fix: Image Sizing is not working on the Photo Stack widget.
 
 = 3.8.0 - 26 December 2022 =
 
@@ -36,7 +40,7 @@
 
 = 3.7.1 - 18 October 2022 =
 
-- Tweak: Scroll To Top feature enhancements like customize the icon, text, and image, and enable or disable the feature for different devices. Plus, we've fixed the page refresh issue when making changes to the settings
+- Tweak: Scroll To Top feature enhancements like customize the icon, text, and image, and enable or disable the feature for different devices. Plus, we've fixed the page refresh issue when making changes to the settings.
 - Tweak: Horizontal scrolling on Data Table mobile responsive view.
 - Tweak: Word Break Option Introduce on Data Table mobile responsive view.
 - Tweak: Meta items Removal option in Post Tab Widget.

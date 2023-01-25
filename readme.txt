@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.8.1
+Version: 3.8.2
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
@@ -656,11 +656,15 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.8.2 - 25 January 2023 =
+
+- Fix: Minor Fixes.
+
 = 3.8.1 - 11 January 2023 =
 
-- Tweak: Removed `elementor/finder/categories/init` deprecated hook
-- Tweak: Removed `elementor/widgets/widgets_registered` deprecated hook
-- Fix: Image Sizing is not working on the Photo Stack widget
+- Tweak: Removed `elementor/finder/categories/init` deprecated hook.
+- Tweak: Removed `elementor/widgets/widgets_registered` deprecated hook.
+- Fix: Image Sizing is not working on the Photo Stack widget.
 
 = 3.8.0 - 26 December 2022 =
 
@@ -692,7 +696,7 @@ For a more detailed explanation check out the following documentation
 
 = 3.7.1 - 18 October 2022 =
 
-- Tweak: Scroll To Top feature enhancements like customize the icon, text, and image, and enable or disable the feature for different devices. Plus, we've fixed the page refresh issue when making changes to the settings
+- Tweak: Scroll To Top feature enhancements like customize the icon, text, and image, and enable or disable the feature for different devices. Plus, we've fixed the page refresh issue when making changes to the settings.
 - Tweak: Horizontal scrolling on Data Table mobile responsive view.
 - Tweak: Word Break Option Introduce on Data Table mobile responsive view.
 - Tweak: Meta items Removal option in Post Tab Widget.
@@ -707,40 +711,40 @@ For a more detailed explanation check out the following documentation
 
 = 3.7.0 - 30 August 2022 =
 
-- New: Scroll To Top - Feature
-- Tweak: Introduce `elementor/widgets/register` hook for making it compatible with elementor 3.7.x
+- New: Scroll To Top - Feature.
+- Tweak: Introduce `elementor/widgets/register` hook for making it compatible with elementor 3.7.x.
 
 = 3.6.3 - 10 August 2022 =
 
 - Tweak: Removed `Elementor\DB::is_built_with_elementor` deprecated method from Elementor 3.7.0.
-- Fix: Post tab title tag issue
-- Fix: Infobox lord icon render issue
+- Fix: Post tab title tag issue.
+- Fix: Infobox lord icon render issue.
 
 = 3.6.2 - 5 July 2022 =
 
-- Tweak: Horizontal Timeline Title Link
-- Tweak: Added category support for product in the Post List widget
-- Fix: Event Calendar link issue
-- Fix: Logo Grid Insert Media From URL issue
-- Fix: Content switcher switch direction responsive issue
+- Tweak: Horizontal Timeline Title Link.
+- Tweak: Added category support for product in the Post List widget.
+- Fix: Event Calendar link issue.
+- Fix: Logo Grid Insert Media From URL issue.
+- Fix: Content switcher switch direction responsive issue.
 
 = 3.6.1 - 13 June 2022 =
 
-- Update: Happy Icon pack (added new 16 icons)
-- Fix: Team Member URL issue
-- Fix: Event Calendar issue
-- Fix: Global Widget frontend broken issue
-- Tweak: Added dynamic tag in Comparison Table
+- Update: Happy Icon pack (added new 16 icons).
+- Fix: Team Member URL issue.
+- Fix: Event Calendar issue.
+- Fix: Global Widget frontend broken issue.
+- Tweak: Added dynamic tag in Comparison Table.
 
 = 3.6.0 - 30 May 2022 =
 
-- New: LordIcon widget
-- Fix: Mixed content issue solve
-- Fix: Team Member PHP warning notice
-- Fix: Justified Grid row height issue
-- Tweak: Added LordIcon support in Info Box & Icon Box widget
-- Tweak: Dynamic date format set for post list and post tab widget
-- Tweak: wpml support for creative button widget
+- New: LordIcon widget.
+- Fix: Mixed content issue solve.
+- Fix: Team Member PHP warning notice.
+- Fix: Justified Grid row height issue.
+- Tweak: Added LordIcon support in Info Box & Icon Box widget.
+- Tweak: Dynamic date format set for post list and post tab widget.
+- Tweak: wpml support for creative button widget.
 
 = 3.5.2 - 26 April 2022 =
 
