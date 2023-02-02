@@ -19,7 +19,7 @@ class Widgets_Manager {
 	public static function init() {
 
 		// legacy support hook
-		if( HAPPY_ADDONS_PRO_VERSION <= '2.7.0' ){
+		if( defined('HAPPY_ADDONS_PRO_VERSION') && HAPPY_ADDONS_PRO_VERSION <= '2.7.0' ){
 			add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register']);
 		}
 
