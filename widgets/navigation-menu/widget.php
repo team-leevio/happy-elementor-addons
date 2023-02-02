@@ -676,7 +676,7 @@ class Navigation_Menu extends Base {
                 'label' => __('Icon Background', 'happy-elementor-addons'),
                 'types' => ['classic', 'gradient'],
                 'exclude' => ['image'],
-                'selector' => '{{WRAPPER}} .ha-navigation-burger-menu .ha-menu-toggler',
+                'selector' => '{{WRAPPER}} .ha-navigation-burger-menu .ha-menu-toggler, {{WRAPPER}} .ha-nav-humberger-wrapper',
             ]
         );
 
