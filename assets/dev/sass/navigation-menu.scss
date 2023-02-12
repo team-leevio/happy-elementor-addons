@@ -140,7 +140,9 @@
 
 //start media here
 @media screen and (max-width: 767px) {
-    
+    .ha-navigation-menu {
+        position: static;
+    }
     .ha-navigation-burger-menu {
 
         background-color: #fff;
