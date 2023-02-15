@@ -347,7 +347,7 @@ class Navigation_Menu extends Base {
                 'type' => Controls_Manager::COLOR,
                 'default' => '#333333',
                 'selectors' => [
-                    '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu li a' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu > li > a' => 'color: {{VALUE}}',
                     '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu li .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
                     '{{WRAPPER}} .ha-navigation-burger-menu ul.menu li a' => 'color: {{VALUE}}',
                     '{{WRAPPER}} .ha-navigation-burger-menu ul.menu li .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
@@ -363,7 +363,7 @@ class Navigation_Menu extends Base {
                 'label' => __('Background', 'happy-elementor-addons'),
                 'types' => ['classic', 'gradient'],
                 'exclude' => ['image'],
-                'selector' => '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu li, {{WRAPPER}} .ha-navigation-burger-menu ul.menu li',
+                'selector' => '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu > li, {{WRAPPER}} .ha-navigation-burger-menu ul.menu li',
             ]
         );
 		$this->end_controls_tab();
@@ -382,8 +382,8 @@ class Navigation_Menu extends Base {
                 'type' => Controls_Manager::COLOR,
                 'default' => '#E2498A',
                 'selectors' => [
-                    '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu li a:hover' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu li .ha-submenu-indicator-wrap:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu > li:hover > a' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu > li:hover .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
                     '{{WRAPPER}} .ha-navigation-burger-menu ul.menu li a:hover' => 'color: {{VALUE}}',
                     '{{WRAPPER}} .ha-navigation-burger-menu ul.menu li .ha-submenu-indicator-wrap:hover' => 'color: {{VALUE}}',
                 ],
@@ -398,7 +398,7 @@ class Navigation_Menu extends Base {
                 'label' => __('Background', 'happy-elementor-addons'),
                 'types' => ['classic', 'gradient'],
                 'exclude' => ['image'],
-                'selector' => '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu li:hover, {{WRAPPER}} .ha-navigation-burger-menu ul.menu li:hover',
+                'selector' => '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu > li:hover, {{WRAPPER}} .ha-navigation-burger-menu ul.menu li:hover',
             ]
         );
 		$this->end_controls_tab();
@@ -417,8 +417,8 @@ class Navigation_Menu extends Base {
                 'type' => Controls_Manager::COLOR,
                 'default' => '#cf005c',
                 'selectors' => [
-                    '{{WRAPPER}} .ha-nav-menu ul.menu li.active a' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .ha-nav-menu ul.menu li.active > .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-nav-menu ul.menu > li.active > a' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-nav-menu ul.menu > li.active > .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
                 ],
 
             ]
@@ -431,7 +431,7 @@ class Navigation_Menu extends Base {
                 'label' => __('Background', 'happy-elementor-addons'),
                 'types' => ['classic', 'gradient'],
                 'exclude' => ['image'],
-                'selector' => '{{WRAPPER}} .ha-nav-menu ul.menu li.active',
+                'selector' => '{{WRAPPER}} .ha-nav-menu ul.menu > li.active',
             ]
         );
 		$this->end_controls_tab();
@@ -510,16 +510,16 @@ class Navigation_Menu extends Base {
             ]
         );
 		
-		$this->add_group_control(
-            Group_Control_Background::get_type(),
-            [
-                'name' => 'nav_submenu_item_hover_background',
-                'label' => __('Background', 'happy-elementor-addons'),
-                'types' => ['classic', 'gradient'],
-                'exclude' => ['image'],
-                'selector' => '{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu > li',
-            ]
-        );
+		// $this->add_group_control(
+        //     Group_Control_Background::get_type(),
+        //     [
+        //         'name' => 'nav_submenu_item_hover_background',
+        //         'label' => __('Background', 'happy-elementor-addons'),
+        //         'types' => ['classic', 'gradient'],
+        //         'exclude' => ['image'],
+        //         'selector' => '{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu',
+        //     ]
+        // );
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
 
@@ -539,7 +539,7 @@ class Navigation_Menu extends Base {
             [
                 'name' => 'nav_submenu_box_shadow',
                 'label' => __('Box Shadow', 'happy-elementor-addons'),
-                'selector' => '{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu > li',
+                'selector' => '{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu',
             ]
         );
 
@@ -547,7 +547,7 @@ class Navigation_Menu extends Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'nav_submenu_border',
-				'selector' => '{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu > li',
+				'selector' => '{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu',
 			]
 		);
 
@@ -575,7 +575,7 @@ class Navigation_Menu extends Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu' => 'border-radius: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu > li' => 'border-radius: {{SIZE}}{{UNIT}};',
+					// '{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu > li' => 'border-radius: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -603,7 +603,7 @@ class Navigation_Menu extends Base {
 					'size' => 220,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu > li' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);

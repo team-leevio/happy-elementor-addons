@@ -111,17 +111,16 @@
         }
 
         li.menu-item-has-children > ul.sub-menu {
+            width: 220px;
+            background-color: #FFF;
+            box-shadow: 0 4px 10px -2px #0000001a;
             visibility: hidden;
-            transition: all 500ms ease-out;
+            transition: all 50ms ease-out;
         }
 
         li.menu-item-has-children:hover > .sub-menu {
             visibility: visible;
             opacity: 1;
-            transition: all 500ms ease-out;
-            width: 220px;
-            background-color: #FFF;
-            box-shadow: 0 4px 10px -2px #0000001a;
         }
 
         li.menu-item-has-children:hover {
