@@ -349,8 +349,8 @@ class Navigation_Menu extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu > li > a' => 'color: {{VALUE}}',
 					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu li .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .ha-navigation-burger-menu ul.menu li a' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .ha-navigation-burger-menu ul.menu li .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
+					// '{{WRAPPER}} .ha-navigation-burger-menu ul.menu li a' => 'color: {{VALUE}}',
+					// '{{WRAPPER}} .ha-navigation-burger-menu ul.menu li .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
 				],
 
 			]
@@ -384,8 +384,8 @@ class Navigation_Menu extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu > li:hover > a' => 'color: {{VALUE}}',
 					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu > li:hover > .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .ha-navigation-burger-menu ul.menu li a:hover' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .ha-navigation-burger-menu ul.menu li:hover .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
+					// '{{WRAPPER}} .ha-navigation-burger-menu ul.menu li a:hover' => 'color: {{VALUE}}',
+					// '{{WRAPPER}} .ha-navigation-burger-menu ul.menu li:hover .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
 				],
 
 			]
@@ -419,6 +419,8 @@ class Navigation_Menu extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-nav-menu ul.menu > li.active > a' => 'color: {{VALUE}}',
 					'{{WRAPPER}} .ha-nav-menu ul.menu > li.active > .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-nav-menu ul.menu > li.current-menu-ancestor > a' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-nav-menu ul.menu > li.current-menu-ancestor > .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
 				],
 
 			]
@@ -706,6 +708,24 @@ class Navigation_Menu extends Base {
 
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
+
+        /*Divider*/
+        $this->add_control(
+			'_nav_menu_dropdown_divider_heading',
+			[
+				'label' => __( 'Divider', 'happy-elementor-addons' ),
+				'type'  => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+        $this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name'     => 'nav_menu_dropdown_divider_border',
+				'selector' => '{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu > li:not(:last-child)',
+			]
+		);
 
 		$this->end_controls_section();
 
