@@ -1113,7 +1113,20 @@
     }); //nav menu
 
     var NavigationMenu = function __init($scope) {
-      var navMenu = $scope.find('.ha-nav-menu');
+      var navMenu = $scope.find('.ha-nav-menu'); //for tablet only
+
+      if (jQuery(window).width() < 1025 && jQuery(window).width() > 767) {
+        var indicator = navMenu.find('.ha-submenu-indicator-wrap');
+        indicator.on('click', function (e) {
+          e.preventDefault();
+          var $parentEl = $(this).parent('li.menu-item-has-children');
+
+          if ($parentEl) {
+            $parentEl.children('ul.sub-menu').slideToggle();
+          }
+        });
+      }
+
       var humBurgerBtn = navMenu.find('.ha-menu-toggler');
       humBurgerBtn.on('click', function (e) {
         var humberger = $(this).data('humberger');
