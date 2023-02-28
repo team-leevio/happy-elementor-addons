@@ -146,7 +146,7 @@
     }
     .ha-navigation-burger-menu {
 
-        background-color: #fff;
+        background-color: transparent;
 
         ul.menu {
             display: none;
@@ -214,6 +214,7 @@
             color: #7A7A7A;
             font-weight: 400;
             cursor: pointer;
+            z-index: 999;
         }
 
         .ha-nav-humberger-wrapper .ha-menu-close-icon {
@@ -224,6 +225,7 @@
             color: #7A7A7A;
             font-weight: 400;
             cursor: pointer;
+            z-index: 999;
         }
 
         .show-icon {
