@@ -514,8 +514,8 @@ class Navigation_Menu extends Base {
 				],
 				'selectors'  => [
 					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu' => 'border-radius: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu li:first-child' => 'border-top-left-radius: {{SIZE}}{{UNIT}};border-top-right-radius: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu li:last-child' => 'border-bottom-left-radius: {{SIZE}}{{UNIT}};border-bottom-right-radius: {{SIZE}}{{UNIT}};',
+					// '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu li:first-child' => 'border-top-left-radius: {{SIZE}}{{UNIT}};border-top-right-radius: {{SIZE}}{{UNIT}};',
+					// '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu li:last-child' => 'border-bottom-left-radius: {{SIZE}}{{UNIT}};border-bottom-right-radius: {{SIZE}}{{UNIT}};',
 					// '{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu li:last-child' => 'border-radius:  0 0 {{SIZE}}{{UNIT}} {{SIZE}}{{UNIT}};',
 					// '{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu > li' => 'border-radius: {{SIZE}}{{UNIT}};',
 				],
