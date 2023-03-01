@@ -133,7 +133,7 @@ abstract class Base extends Widget_Base {
      *                        `basic`.
      * @param string $setting_key Additional settings key in case $key != $setting_key
      */
-    protected function add_inline_editing_attributes($key, $toolbar = 'basic', $setting_key = '') {
+    public function add_inline_editing_attributes($key, $toolbar = 'basic', $setting_key = '') {
         if (!ha_elementor()->editor->is_edit_mode()) {
             return;
         }
