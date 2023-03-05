@@ -145,6 +145,58 @@ class Post_Title extends Base {
 			]
 		);
 
+		$this->add_control(
+			'enable_link',
+			[
+				'label' => esc_html__( 'Enable Link', 'happy-elementor-addons' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => esc_html__( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => '',
+			]
+		);
+
+		$this->add_control(
+			'link_type',
+			[
+				'label' => esc_html__( 'Link Type', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'dynamic',
+				'options' => [
+					'dynamic' => esc_html__( 'Dynamic', 'happy-elementor-addons' ),
+					'custom' => esc_html__( 'Custom', 'happy-elementor-addons' )
+				],
+				'condition' => [
+					'enable_link!' => ''
+				]
+			]
+		);
+
+		$this->add_control(
+			'custom_link',
+			[
+				'label' => esc_html__( 'Custom Link', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::URL,
+				'placeholder' => esc_html__( 'https://your-link.com', 'happy-elementor-addons' ),
+				'options' => [ 'url', 'is_external', 'nofollow' ],
+				'default' => [
+					'url' => '',
+					'is_external' => true,
+					'nofollow' => true,
+					// 'custom_attributes' => '',
+				],
+				'label_block' => true,
+				'dynamic' => [
+                    'active' => true,
+                ],
+				'condition' => [
+					'enable_link!' => '',
+					'link_type' => 'custom'
+				]
+			]
+		);
+
         $this->end_controls_section();
 	}
 
