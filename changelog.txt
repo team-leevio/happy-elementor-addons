@@ -2,6 +2,7 @@
 
 - Fix: Nav Menu widget various bug fixes.
 - Fix: Specific fixes for Elementor cloud.
+- Fix: Safary compatibility
 
 = 3.8.2 - 25 January 2023 =
 

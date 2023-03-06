@@ -75,14 +75,8 @@ jQuery(document).ready(function ($) {
 });
 
 function getParameterByName(url, name) {
-	var regexS = "[\\?&]" + name + "=([^&#]*)",
-		regex = new RegExp(regexS),
-		results = regex.exec(url);
-	if (results == null) {
-		return "";
-	} else {
-		return decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
+	const formatUrl = new URL(url);
+	return formatUrl.searchParams.get(name);
 }
 
 jQuery(function ($) {
