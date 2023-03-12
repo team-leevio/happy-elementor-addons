@@ -226,12 +226,6 @@ class Post_Title extends Base {
 				'type' => Controls_Manager::URL,
 				'placeholder' => esc_html__('https://your-link.com', 'happy-elementor-addons'),
 				'options' => ['url', 'is_external', 'nofollow'],
-				'default' => [
-					'url' => '',
-					'is_external' => true,
-					'nofollow' => true,
-					// 'custom_attributes' => '',
-				],
 				'label_block' => true,
 				'dynamic' => [
 					'active' => true,
