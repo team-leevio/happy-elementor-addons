@@ -278,8 +278,8 @@ class Navigation_Menu extends Base {
 					'size' => 0,
 				],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-nav-menu .menu li.menu-item:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}}',
-					'{{WRAPPER}} .ha-navigation-burger-menu ul.menu li.menu-item' => 'margin-top: {{SIZE}}{{UNIT}}; margin-bottom: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .ha-nav-menu .menu > li.menu-item:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .ha-navigation-burger-menu ul.menu > li.menu-item' => 'margin-top: {{SIZE}}{{UNIT}}; margin-bottom: {{SIZE}}{{UNIT}}',
 				],
 			]
 		);
