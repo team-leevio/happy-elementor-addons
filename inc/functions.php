@@ -642,3 +642,38 @@ function ha_show_plugin_missing_alert( $plugin ) {
 function ha_get_inactive_features() {
 	return get_option( 'happyaddons_inactive_features', [] );
 }
+
+/**
+ * Get post date link
+ *
+ * @param int $post_id
+ * @return string
+ */
+function ha_get_date_link($post_id = null)
+{
+	if (empty($post_id)) {
+		$post_id = get_the_ID();
+	}
+
+	$year = get_the_date('Y', $post_id);
+	$month = get_the_time('m', $post_id);
+	$day = get_the_time('d', $post_id);
+	$url = get_day_link($year, $month, $day);
+
+	return $url;
+}
+
+/**
+ * Get post excerpt by length
+ *
+ * @param integer $length
+ * @return string
+ */
+function ha_get_excerpt($post_id = null, $length = 15)
+{
+	if (empty($post_id)) {
+		$post_id = get_the_ID();
+	}
+
+	return wp_trim_words(get_the_excerpt($post_id), $length);
+}
