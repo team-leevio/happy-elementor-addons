@@ -14,6 +14,7 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Happy_Addons\Elementor\Traits\Button_Renderer;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 
 defined( 'ABSPATH' ) || die();
 
@@ -913,6 +914,8 @@ class InfoBox extends Base {
                 'label'   => __('Primary Color', 'happy-elementor-addons'),
                 'type'    => Controls_Manager::COLOR,
                 'default' => '#121331',
+				'render_type' => 'template',
+				'frontend_available' => true,
             ]
         );
 
@@ -1302,6 +1305,36 @@ class InfoBox extends Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
+		//for manage loard icon global colors only
+		$primary_color = $settings['primary_color'];
+		if( isset($settings['__globals__']) && !empty($settings['__globals__']['primary_color']) ) { 
+			$color_id = explode('=', $settings['__globals__']['primary_color']);
+			$get_id = end($color_id);
+			$primary_color = $this->get_golobal_color($get_id);
+		} 
+		
+		$secondary_color = $settings['secondary_color'];
+		if( isset($settings['__globals__']) && !empty($settings['__globals__']['secondary_color']) ) { 
+			$color_id = explode('=', $settings['__globals__']['secondary_color']);
+			$get_id = end($color_id);
+			$secondary_color = $this->get_golobal_color($get_id);
+		} 
+		
+		$tertiary_color = $settings['tertiary_color'];
+		if( isset($settings['__globals__']) && !empty($settings['__globals__']['tertiary_color']) ) { 
+			$color_id = explode('=', $settings['__globals__']['tertiary_color']);
+			$get_id = end($color_id);
+			$tertiary_color = $this->get_golobal_color($get_id);
+		} 
+		
+		$quaternary_color = $settings['quaternary_color'];
+		if( isset($settings['__globals__']) && !empty($settings['__globals__']['quaternary_color']) ) { 
+			$color_id = explode('=', $settings['__globals__']['quaternary_color']);
+			$get_id = end($color_id);
+			$quaternary_color = $this->get_golobal_color($get_id);
+		} 
+				
+
 		$this->add_inline_editing_attributes( 'title', 'basic' );
 		$this->add_render_attribute( 'title', 'class', 'ha-infobox-title' );
 
@@ -1331,7 +1364,7 @@ class InfoBox extends Base {
 				trigger="<?php echo esc_attr($settings['animation_trigger'] ); ?>"
 				stroke="<?php echo esc_attr( $settings['lord_icon_stroke']['size']); ?>"
 				target="<?php echo esc_attr( $settings['target'] ); ?>"
-				colors="primary:<?php echo esc_attr($settings['primary_color']); ?>,secondary:<?php echo esc_attr($settings['secondary_color']); ?>,tertiary:<?php echo esc_attr($settings['tertiary_color']); ?>,quaternary:<?php echo esc_attr($settings['quaternary_color']); ?>"
+				colors="primary:<?php echo esc_attr($primary_color); ?>,secondary:<?php echo esc_attr($secondary_color); ?>,tertiary:<?php echo esc_attr($tertiary_color); ?>,quaternary:<?php echo esc_attr($quaternary_color); ?>"
 				style="width:<?php echo esc_attr($settings['lord_icon_size']['size']); ?>px;height:<?php echo esc_attr($settings['lord_icon_size']['size']); ?>px">
 			</lord-icon>
 		</span>
@@ -1361,6 +1394,33 @@ class InfoBox extends Base {
 			<?php $this->render_icon_button(); ?>
 		</div>
 		<?php
+	}
+
+	private function get_golobal_color($id) {
+		$global_color = '';
+
+		if( ! $id ) {
+			return $global_color;
+		}
+		
+		$el_page_settings 	= [];
+
+		$ekit_id = get_option('elementor_active_kit', true);
+
+		if ( $ekit_id ) {
+			$el_page_settings = get_post_meta($ekit_id, '_elementor_page_settings', true);
+
+			if( !empty( $el_page_settings ) && isset($el_page_settings['system_colors']) ) {
+				foreach( $el_page_settings['system_colors'] as $key => $val ) {
+					if( $val['_id'] == $id ) {
+						$global_color = $val['color'];
+					}
+				}
+			}
+
+		}
+
+		return $global_color;
 	}
 
 

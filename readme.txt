@@ -658,6 +658,7 @@ For a more detailed explanation check out the following documentation
 
 = 3.8.3 - 06 March 2023 =
 
+- Fix: Global color issue fixed with Info Box, LordIcon & Icon Box widget.
 - Fix: Nav Menu widget various bug fixes.
 - Fix: Specific fixes for elementor cloud.
 
