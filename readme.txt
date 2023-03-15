@@ -6,7 +6,7 @@ Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget, Elementor Addon,
 Requires at least: 4.7
-Tested up to: 6.2
+Tested up to: 6.1
 Stable tag: trunk
 Requires PHP: 5.4
 License: GPLv2
@@ -656,11 +656,13 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.8.3 - 06 March 2023 =
+= 3.8.3 - 16 March 2023 =
 
 - Fix: Global color issue fixed with Info Box, LordIcon & Icon Box widget.
 - Fix: Nav Menu widget various bug fixes.
-- Fix: Specific fixes for elementor cloud.
+- Fix: Specific fixes for Elementor cloud.
+- Fix: Themebuilder widget compatible with Elementor experimental featues.
+- Fix: Safary compatibility.
 
 = 3.8.2 - 25 January 2023 =
 
