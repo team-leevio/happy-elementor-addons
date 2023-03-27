@@ -1,6 +1,7 @@
 "use strict";
 
 ;
+
 (function ($) {
   'use strict';
 
@@ -10,6 +11,7 @@
     var AdvancedTooltip = elementorModules.frontend.handlers.Base.extend({
       onInit: function onInit() {
         elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+
         if (this.$element.hasClass('ha-advanced-tooltip-enable')) {
           this.$element.append("<span class='ha-advanced-tooltip-content'></span>");
           this.run();
@@ -29,11 +31,13 @@
       onElementChange: function onElementChange(e) {
         if (this.$element.hasClass('ha-advanced-tooltip-enable')) {
           var style_controls = ['ha_advanced_tooltip_enable', 'ha_advanced_tooltip_content', 'ha_advanced_tooltip_position', 'ha_advanced_tooltip_arrow', 'ha_advanced_tooltip_duration', 'ha_advanced_tooltip_size', 'ha_advanced_tooltip_animation'];
+
           if (style_controls.includes(e)) {
             if (e == 'ha_advanced_tooltip_enable' && this.$element.find('.ha-advanced-tooltip-content').length <= 0) {
               this.$element.append("<span class='ha-advanced-tooltip-content'></span>");
               this.run();
             }
+
             gloablTooltipOptions = this.getReadySettings();
           }
         } else {
@@ -42,15 +46,18 @@
       },
       run: function run() {
         var $scope = this.$element;
+
         if (this.$element.hasClass("ha-advanced-tooltip-enable")) {
           gloablTooltipOptions = this.getReadySettings();
           var content = $scope.find('.ha-advanced-tooltip-content');
           content.html($.parseHTML(gloablTooltipOptions.content));
           content.css('animation-duration', gloablTooltipOptions.duration + 'ms');
           content.addClass(gloablTooltipOptions.animation);
+
           if (!gloablTooltipOptions.showArrow) {
             content.addClass('no-arrow');
           }
+
           if (gloablTooltipOptions.trigger == 'click') {
             this.$element.on('click', function () {
               if (content.hasClass('show')) {
