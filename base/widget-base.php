@@ -126,14 +126,14 @@ abstract class Base extends Widget_Base {
      *    echo '<div ' . $this->get_render_attribute_string( 'text' ) . '>' . $this->get_settings( 'text' ) . '</div>';
      *
      * @since 1.8.0
-     * @access protected
+     * @access public
      *
      * @param string $key     Element key.
      * @param string $toolbar Optional. Toolbar type. Accepted values are `advanced`, `basic` or `none`. Default is
      *                        `basic`.
      * @param string $setting_key Additional settings key in case $key != $setting_key
      */
-    protected function add_inline_editing_attributes($key, $toolbar = 'basic', $setting_key = '') {
+    public function add_inline_editing_attributes($key, $toolbar = 'basic', $setting_key = '') {
         if (!ha_elementor()->editor->is_edit_mode()) {
             return;
         }

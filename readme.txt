@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.8.2
+Version: 3.8.3
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
@@ -655,6 +655,11 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.8.3 - 27 March 2023 =
+
+- Update: Appsero client updated to `v1.2.3`.
+- Fix: Specific fixes for Elementor cloud.
 
 = 3.8.2 - 25 January 2023 =
 
