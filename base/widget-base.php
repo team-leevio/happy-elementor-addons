@@ -126,7 +126,7 @@ abstract class Base extends Widget_Base {
      *    echo '<div ' . $this->get_render_attribute_string( 'text' ) . '>' . $this->get_settings( 'text' ) . '</div>';
      *
      * @since 1.8.0
-     * @access protected
+     * @access public
      *
      * @param string $key     Element key.
      * @param string $toolbar Optional. Toolbar type. Accepted values are `advanced`, `basic` or `none`. Default is
