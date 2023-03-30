@@ -22,11 +22,23 @@ class Finder_Edit extends Finder_Category {
      *
      * @access public
      *
+	 * @since 3.7.0
+	 *
      * @return string
      */
     public function get_title() {
         return __( 'Edit + Happy Clone', 'happy-elementor-addons' );
     }
+/**
+     * Get Id.
+     *
+     * @access public
+     *
+     * @return string
+     */
+	public function get_id() {
+		return 'happy-finder';
+	}
 
     /**
      * Set category as dynamic

@@ -957,10 +957,12 @@ class Post_Tab extends Base {
 		$args['order']            = $settings['posts_order'] ? $settings['posts_order'] : 'DESC';
 
 		$args['tax_query'] = [
-			'taxonomy' => $taxonomy,
-			'field'    => 'term_id',
-			// 'terms' => $terms_ids ? $filter_list[0]->term_id : '',
-			'terms'    => isset( $filter_list[0]->term_id ) ? $filter_list[0]->term_id : '',
+			[
+				'taxonomy' => $taxonomy,
+				'field'    => 'term_id',
+				// 'terms' => $terms_ids ? $filter_list[0]->term_id : '',
+				'terms'    => isset( $filter_list[0]->term_id ) ? $filter_list[0]->term_id : '',
+			],
 		];
 
 		//define ha post tab custom query filter hook
@@ -976,6 +978,8 @@ class Post_Tab extends Base {
 			'item_limit' => $settings['item_limit'],
 			'orderby'    => $settings['posts_orderby'] ? $settings['posts_orderby'] : 'date',
 			'order'      => $settings['posts_order'] ? $settings['posts_order'] : 'DESC',
+			'show_user_meta'    => $settings['show_user_meta'] ? $settings['show_user_meta'] : 'no',
+			'show_date_meta'    => $settings['show_date_meta'] ? $settings['show_date_meta'] : 'no',
 			'excerpt'    => $settings['excerpt'] ? $settings['excerpt'] : 'no',
 			'title_tag'  => $settings['title_tag'],
 		];

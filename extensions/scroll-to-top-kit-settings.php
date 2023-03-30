@@ -106,7 +106,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 					],
 				],
 				$device_default
-			),
+			)
 		);
 
 		$this->add_control(

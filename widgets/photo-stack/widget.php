@@ -526,49 +526,48 @@ class Photo_Stack extends Base {
 
         <div class="ha-photo-stack-wrapper">
 			<?php foreach ($settings['image_list'] as $index => $item):
-            $image         = wp_get_attachment_image_url($item['image']['id'], $item['thumbnail_size']);
             $repeater_key  = 'ha_ps_item' . $index;
             $dynamic_class = 'elementor-repeater-item-' . $item['_id'];
             $tag           = 'div';
             $this->add_render_attribute($repeater_key, 'class', 'ha-photo-stack-item');
             $this->add_render_attribute($repeater_key, 'class', $dynamic_class);
             $this->add_render_attribute($repeater_key, 'class', $settings['image_infinite_animation']);
-            $this->add_render_attribute('image', 'class', $settings['hover_animation_style']);
+			$this->add_render_attribute('image', 'class', $settings['hover_animation_style']);
             $this->add_render_attribute('image', 'class', 'ha-photo-stack-img');
+
             if ( isset( $item['link'] ) && ! empty( $item['link']['url'] ) ) {
                 $anchor_tag = 'a';
                 $this->add_link_attributes( 'link_tag', $item['link'] );
             }
             ?>
-				<<?php echo $tag; ?> <?php $this->print_render_attribute_string($repeater_key);?>>
-					<?php if ($image):
-                   if (  !empty( $item['link']['url'] ) ) : ?>
-                        <<?php echo $anchor_tag; ?> <?php $this->print_render_attribute_string('link_tag');?>>
-                   <?php
-                    endif; // end of anchor_tag
-                echo '<img src="' . Group_Control_Image_Size::get_attachment_image_src($item['image']['id'], 'thumbnail', $item) . '" ' . $this->get_render_attribute_string('image') . '/>';
-            else:
-                echo $this->image_placeholder($item, $this->get_render_attribute_string('image'));
-            endif;
-            if ( ! empty( $item['link']['url'] ) ) :
-            ?>
-
-	            </<?php echo $anchor_tag; ?>>
-                <?php endif; ?>
-	            </<?php echo $tag; ?>>
-
+				<?php printf( '<%s %s>', $tag, $this->get_render_attribute_string($repeater_key) ); ?>
+					<?php !empty( $item['link']['url'] ) && printf( '<%s %s>', $anchor_tag, $this->get_render_attribute_string('link_tag') ); //start of anchor_tag ?>
+						<?php if ($item['image']['id']) {
+								$this->add_render_attribute('image', 'alt', $item['image']['alt'] );
+								printf( '<img src="%s" %s/>',
+									Group_Control_Image_Size::get_attachment_image_src($item['image']['id'], 'thumbnail', $item),
+									$this->get_render_attribute_string('image')
+								);
+								$this->remove_render_attribute( 'image' );
+							} else {
+								echo $this->get_placeholder($item, $this->get_render_attribute_string('image'));
+						}?>
+					<?php !empty( $item['link']['url'] ) && printf( '</%s>', $anchor_tag ); // end of anchor_tag ?>
+				<?php printf( '</%s>', $tag ); ?>
 	            <?php endforeach;?>
         </div>
 
 
 		<?php
 }
-
-    /**
-     * @param $item
-     * @param $attr
-     */
-    protected function image_placeholder($item, $attr = null) {
+	 /**
+	  * Get placeholder image HTML.
+	  *
+	  * @param array $item
+	  * @param array|null $attr
+	  * @return void
+	  */
+    protected function get_placeholder($item, $attr = null) {
         if ('custom' !== $item['thumbnail_size']) {
             $width  = get_option($item['thumbnail_size'] . '_size_w');
             $height = get_option($item['thumbnail_size'] . '_size_h');

@@ -17,9 +17,12 @@ class Widgets_Manager {
 	 * Initialize
 	 */
 	public static function init() {
-		// for preventing error from happy addons pro
-		// TODO: Need to remove it in our future release. for elementor 4.3.x
-		add_action('elementor/widgets/widgets_registered', [__CLASS__, 'register']);
+
+		// legacy support hook
+		if( defined('HAPPY_ADDONS_PRO_VERSION') && HAPPY_ADDONS_PRO_VERSION <= '2.7.0' ){
+			add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register']);
+		}
+
 		// original hook for register widgets
 		add_action('elementor/widgets/register', [__CLASS__, 'register']);
 
@@ -369,98 +372,74 @@ class Widgets_Manager {
 				'cat'    => 'general',
 				'title'  => __('Happy Menu', 'happy-elementor-addons'),
 				'icon'   => 'hm hm-mega-menu',
-				'is_pro' => true,
+				'is_pro' => true
 			],
 			'off-canvas'                => [
 				'cat'    => 'creative',
 				'title'  => __('Off Canvas', 'happy-elementor-addons'),
 				'icon'   => 'hm hm-offcanvas-menu',
-				'is_pro' => true,
+				'is_pro' => true
 			],
 			'unfold'                    => [
 				'cat'    => 'general',
 				'title'  => __('Unfold', 'happy-elementor-addons'),
 				'icon'   => 'hm hm-unfold-paper',
-				'is_pro' => true,
-				'css'    => ['unfold'],
-				'js'     => [],
-				'vendor' => [
-					'css' => [],
-					'js'  => [],
-				],
+				'is_pro' => true
 			],
 			'edd-product-grid'          => [
 				'cat'    => 'Easy Digital Downloads',
 				'title'  => __('EDD Product Grid', 'happy-elementor-addons'),
 				'icon'   => 'hm hm-product-grid',
-				'is_pro' => true,
-				'css'    => ['edd-product-grid', 'edd-quick-view'],
-				'js'     => [],
-				'vendor' => [
-					'css' => ['elementor-icons-fa-solid', 'magnific-popup'],
-					'js'  => ['jquery-magnific-popup'],
-				],
+				'is_pro' => true
 			],
 			'edd-product-carousel'      => [
 				'cat'    => 'Easy Digital Downloads',
 				'title'  => __('EDD Product Carousel', 'happy-elementor-addons'),
 				'icon'   => 'hm hm-Product-Carousel',
-				'is_pro' => true,
-				'css'    => ['edd-product-carousel', 'edd-quick-view'],
-				'js'     => [],
-				'vendor' => [
-					'css' => ['slick', 'slick-theme', 'magnific-popup'],
-					'js'  => ['jquery-slick', 'jquery-magnific-popup'],
-				],
+				'is_pro' => true
 			],
 			'edd-single-product'        => [
 				'cat'    => 'Easy Digital Downloads',
 				'title'  => __('EDD Single Product', 'happy-elementor-addons'),
 				'icon'   => 'hm hm-Category-Carousel',
-				'is_pro' => true,
-				'css'    => ['edd-single-product', 'edd-quick-view'],
-				'js'     => [],
-				'vendor' => [
-					'css' => ['elementor-icons-fa-solid', 'magnific-popup'],
-					'js'  => ['jquery-magnific-popup'],
-				],
+				'is_pro' => true
 			],
 			'edd-category-grid'         => [
 				'cat'    => 'Easy Digital Downloads',
 				'title'  => __('EDD Category Grid', 'happy-elementor-addons'),
 				'icon'   => 'hm hm-Category-Carousel',
-				'is_pro' => true,
-				'css'    => ['product-category-grid'],
-				'js'     => [],
-				'vendor' => [
-					'css' => [],
-					'js'  => [],
-				],
+				'is_pro' => true
 			],
 			'edd-category-carousel'     => [
 				'cat'    => 'Easy Digital Downloads',
 				'title'  => __('EDD Category Carousel', 'happy-elementor-addons'),
 				'icon'   => 'hm hm-Category-Carousel',
-				'is_pro' => true,
-				'css'    => ['edd-category-carousel'],
-				'js'     => [],
-				'vendor' => [
-					'css' => ['slick', 'slick-theme'],
-					'js'  => ['jquery-slick'],
-				],
+				'is_pro' => true
 			],
 			'google-map'                => [
 				'cat'    => 'general',
 				'title'  => __('Advanced Google Map', 'happy-elementor-addons'),
 				'icon'   => 'hm hm-map-marker',
-				'is_pro' => true,
-				'css'    => ['advanced-google-maps'],
-				'js'     => [],
-				'vendor' => [
-					'css' => [],
-					'js'  => ['ha-google-maps'],
-				],
+				'is_pro' => true
 			],
+			'image-swap' => [
+				'cat' => 'general',
+				'title' => __( 'Image Swap', 'happy-addons-pro' ),
+				'icon' => 'hm hm-image-scroll',
+				'is_pro' => true,
+			],
+			'remote-carousel' => [
+				'cat' => 'slider-&-carousel',
+				'title' => __('Remote Carousel', 'happy-addons-pro'),
+				'icon' => 'hm hm-remote_carousel',
+				'is_pro' => true,
+			],
+			'table-of-contents' => [
+				'cat' => 'general',
+				'title' => __('Table of Contents', 'happy-addons-pro'),
+				'icon' => 'hm hm-list-2',
+				'is_pro' => true,
+			]
 		];
 	}
 
@@ -1111,6 +1090,186 @@ class Widgets_Manager {
 					'js'  => ['lord-icon'],
 				],
 			],
+			'page-title' => [
+				'cat' => 'theme-builder',
+				'is_active' => false,
+				'title' => __('Page Title', 'happy-elementor-addons'),
+				'icon' => 'hm hm-tb-page-title',
+				'css' => [''],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'post-title' => [
+				'cat' => 'theme-builder',
+				'is_active' => true,
+				'title' => __('Post Title', 'happy-elementor-addons'),
+				'icon' => 'hm hm-tb-page-title',
+				'css' => [''],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'post-content' => [
+				'cat' => 'theme-builder',
+				'is_active' => true,
+				'title' => __('Post Content', 'happy-elementor-addons'),
+				'icon' => 'hm hm-tb-post-content',
+				'css' => [''],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'post-excerpt' => [
+				'cat' => 'theme-builder',
+				'is_active' => false,
+				'title' => __('Post Excerpt', 'happy-elementor-addons'),
+				'icon' => 'hm hm-tb-post-excerpt',
+				'css' => [''],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'site-logo' => [
+				'cat' => 'theme-builder',
+				'is_active' => true,
+				'title' => __('Site Logo', 'happy-elementor-addons'),
+				'icon' => 'hm hm-tb-site-logo',
+				'css' => [''],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'site-title' => [
+				'cat' => 'theme-builder',
+				'is_active' => true,
+				'title' => __('Site Title', 'happy-elementor-addons'),
+				'icon' => 'hm hm-tb-site-title',
+				'css' => ['site-title'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'site-tagline' => [
+				'cat' => 'theme-builder',
+				'is_active' => false,
+				'title' => __('Site Tagline', 'happy-elementor-addons'),
+				'icon' => 'hm hm-tag',
+				'css' => ['site-tagline'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'author-meta' => [
+				'cat' => 'theme-builder',
+				'is_active' => true,
+				'title' => __('Author Meta', 'happy-elementor-addons'),
+				'icon' => 'hm hm-tb-author-meta',
+				'css' => ['author'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'post-info' => [
+				'cat' => 'theme-builder',
+				'is_active' => true,
+				'title' => __('Post Meta', 'happy-elementor-addons'),
+				'icon' => 'hm hm-tb-post-info',
+				'css' => ['post-info'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'archive-title' => [
+				'cat' => 'theme-builder',
+				'is_active' => true,
+				'title' => __('Archive Title', 'happy-elementor-addons'),
+				'icon' => 'hm hm-tb-archieve-title',
+				'css' => [''],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'archive-posts' => [
+				'cat' => 'theme-builder',
+				'is_active' => true,
+				'title' => __('Archive Posts', 'happy-elementor-addons'),
+				'icon' => 'hm hm-tb-archieve-content',
+				'css' => ['archive-posts'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'post-comments' => [
+				'cat' => 'theme-builder',
+				'is_active' => true,
+				'title' => __('Post Comments', 'happy-elementor-addons'),
+				'icon' => 'hm hm-comment-square',
+				'css' => [''],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'post-navigation' => [
+				'cat' => 'theme-builder',
+				'is_active' => true,
+				'title' => __('Post Navigation', 'happy-elementor-addons'),
+				'icon' => 'hm hm-breadcrumbs',
+				'css' => ['post-navigation'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'post-featured-image' => [
+				'cat' => 'theme-builder',
+				'is_active' => true,
+				'title' => __('Post featured image', 'happy-elementor-addons'),
+				'icon' => 'hm hm-tb-featured-image',
+				'css' => [''],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'navigation-menu' => [
+				'cat' => 'theme-builder',
+				'is_active' => true,
+				'title' => __('Nav Menu', 'happy-elementor-addons'),
+				'icon' => 'hm hm-clip-board',
+				'css' => ['navigation-menu'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
 		];
 	}
 
@@ -1153,7 +1312,7 @@ class Widgets_Manager {
 		 *
 		 * Fires after HappyAddons widgets are registered.
 		 *
-		 * @since 3.7.0
+		 * @since 3.8.0
 		 *
 		 * @param Widgets_Manager $widgets_manager The widgets manager.
 		 */

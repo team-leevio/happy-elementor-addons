@@ -392,6 +392,7 @@ class Dashboard {
 
 	public static function get_raw_usage( $format = 'raw' ) {
 		/** @var Module $module */
+        
 		$module = \Elementor\Modules\Usage\Module::instance();
 		$usage = PHP_EOL;
 		$widgets_list = [];

@@ -71,6 +71,7 @@ class Base {
 
 		// Active insights
 		$this->appsero->insights()
+			->add_plugin_data()
 			->add_extra([
 				'pro_installed' => ha_has_pro() ? 'Yes' : 'No',
 				'pro_version' => ha_has_pro() ? HAPPY_ADDONS_PRO_VERSION : '',
@@ -105,7 +106,18 @@ class Base {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-source.php' );
 		}
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/api-handler.php' );
-		
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/conditions-cache.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/theme-builder.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
+
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/astra.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/bbtheme.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/generatepress.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/genesis.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/my-listing.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/oceanwp.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/twenty-nineteen.php');
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/theme-support.php');
 	}
 
 	public function include_on_init() {
