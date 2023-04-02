@@ -1,3 +1,6 @@
+= 3.8.4 - ### 2023 =
+- Fix: Nav Menu widget humberger issues fixes.
+
 = 3.8.3 - 16 March 2023 =
 
 - Fix: Global color issue fixed with Info Box, LordIcon & Icon Box widget.

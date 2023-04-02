@@ -748,7 +748,8 @@ class Navigation_Menu extends Base {
 				'label'    => __( 'Icon Background', 'happy-elementor-addons' ),
 				'types'    => ['classic', 'gradient'],
 				'exclude'  => ['image'],
-				'selector' => '{{WRAPPER}} .ha-navigation-burger-menu .ha-menu-toggler, {{WRAPPER}} .ha-nav-humberger-wrapper',
+				// 'selector' => '{{WRAPPER}} .ha-navigation-burger-menu .ha-menu-toggler, {{WRAPPER}} .ha-nav-humberger-wrapper',
+				'selector' => '{{WRAPPER}} .ha-navigation-burger-menu .ha-menu-toggler',
 			]
 		);
 
@@ -822,6 +823,25 @@ class Navigation_Menu extends Base {
 				],
 				'selectors'  => [
 					'{{WRAPPER}} .ha-navigation-burger-menu .ha-nav-humberger-wrapper .ha-menu-toggler' => 'border-radius: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'nav_res_menu_border_padding',
+			[
+				'label'      => __( 'Padding', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'default'    => [
+					'top'    => '',
+					'right'  => '',
+					'bottom' => '',
+					'left'   => '',
+					'unit'   => 'px',
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-navigation-burger-menu .ha-menu-toggler' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
