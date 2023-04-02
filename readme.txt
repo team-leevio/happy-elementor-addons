@@ -656,13 +656,10 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.8.3 - 16 March 2023 =
+= 3.8.3 - 27 March 2023 =
 
-- Fix: Global color issue fixed with Info Box, LordIcon & Icon Box widget.
-- Fix: Nav Menu widget various bug fixes.
+- Update: Appsero client updated to `v1.2.3`.
 - Fix: Specific fixes for Elementor cloud.
-- Fix: Themebuilder widget compatible with Elementor experimental featues.
-- Fix: Safary compatibility.
 
 = 3.8.2 - 25 January 2023 =
 
