@@ -1,10 +1,10 @@
-= 3.8.* - 28 March 2023 =
+= 3.8.4 - 5 April 2023 =
 
 - Fix: Global color issue fixed with Info Box, LordIcon & Icon Box widget.
-- Fix: Nav Menu widget various bug fixes.
 - Fix: Themebuilder widget compatible with Elementor experimental featues.
-- Fix: Safary compatibility.
+- Fix: Safary compatibility for specific js.
 - Fix: Nav Menu widget humberger issues fixes.
+- Fix: Minor bug fixes.
 
 = 3.8.3 - 27 March 2023 =
 
