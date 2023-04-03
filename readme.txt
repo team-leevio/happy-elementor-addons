@@ -658,6 +658,7 @@ For a more detailed explanation check out the following documentation
 
 = 3.8.4 - 5 April 2023 =
 
+- New: Live copy paste, cross domain copy paste and section features compatibility with container.
 - Fix: Global color issue fixed with Info Box, LordIcon & Icon Box widget.
 - Fix: Themebuilder widget compatible with Elementor experimental featues.
 - Fix: Safary compatibility for specific js.
