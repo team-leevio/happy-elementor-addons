@@ -78,6 +78,8 @@ abstract class Base extends Widget_Base {
 
         $this->register_content_controls();
 
+		do_action( 'happyaddons_after_register_content_controls', $this );
+
         $this->register_style_controls();
 
         do_action('happyaddons_end_register_controls', $this);
