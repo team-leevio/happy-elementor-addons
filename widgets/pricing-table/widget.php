@@ -1116,7 +1116,7 @@ class Pricing_Table extends Base {
 				<ul class="ha-pricing-table-features-list">
 					<?php foreach ( $settings['features_list'] as $index => $feature ) :
 						$name_key = $this->get_repeater_setting_key( 'text', 'features_list', $index );
-						$this->add_inline_editing_attributes( $name_key, 'intermediate' );
+						// $this->add_inline_editing_attributes( $name_key, 'intermediate' );
 						$this->add_render_attribute( $name_key, 'class', 'ha-pricing-table-feature-text' );
 						?>
 						<li class="<?php echo esc_attr( 'elementor-repeater-item-' . $feature['_id'] ); ?>">

@@ -351,7 +351,7 @@ class Skills extends Base {
 
         foreach ( $settings['skills'] as $index => $skill ) :
             $name_key = $this->get_repeater_setting_key( 'name', 'bars', $index );
-            $this->add_inline_editing_attributes( $name_key, 'none' );
+            // $this->add_inline_editing_attributes( $name_key, 'none' );
             $this->add_render_attribute( $name_key, 'class', 'ha-skill-name' );
             ?>
             <div class="ha-skill ha-skill--<?php echo esc_attr( $settings['view'] ); ?> elementor-repeater-item-<?php echo $skill['_id']; ?>">
@@ -369,7 +369,7 @@ class Skills extends Base {
         if (_.isArray(settings.skills)) {
             _.each(settings.skills, function(skill, index) {
             var nameKey = view.getRepeaterSettingKey( 'name', 'skills', index);
-            view.addInlineEditingAttributes( nameKey, 'none' );
+            //view.addInlineEditingAttributes( nameKey, 'none' );
             view.addRenderAttribute( nameKey, 'class', 'ha-skill-name' );
             #>
             <div class="ha-skill ha-skill--{{settings.view}} elementor-repeater-item-{{skill._id}}">
