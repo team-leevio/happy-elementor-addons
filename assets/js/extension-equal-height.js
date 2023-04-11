@@ -1,28 +1,32 @@
 "use strict";
 
 ;
+
 (function ($) {
   'use strict';
 
   var $window = $(window),
-    debounce = function debounce(func, wait, immediate) {
-      var timeout;
-      return function () {
-        var context = this,
+      debounce = function debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+      var context = this,
           args = arguments;
-        var later = function later() {
-          timeout = null;
-          if (!immediate) func.apply(context, args);
-        };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
+
+      var later = function later() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
       };
+
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
     };
+  };
+
   $window.on('elementor/frontend/init', function () {
     var ModuleHandler = elementorModules.frontend.handlers.Base,
-      EqualHeightHandler;
+        EqualHeightHandler;
     EqualHeightHandler = ModuleHandler.extend({
       CACHED_ELEMENTS: [],
       isEqhEnabled: function isEqhEnabled() {
@@ -30,14 +34,17 @@
       },
       isDisabledOnDevice: function isDisabledOnDevice() {
         var windowWidth = $window.outerWidth(),
-          mobileWidth = elementorFrontendConfig.breakpoints.md,
-          tabletWidth = elementorFrontendConfig.breakpoints.lg;
+            mobileWidth = elementorFrontendConfig.breakpoints.md,
+            tabletWidth = elementorFrontendConfig.breakpoints.lg;
+
         if ('yes' == this.getElementSettings('_ha_eqh_disable_on_mobile') && windowWidth < mobileWidth) {
           return true;
         }
+
         if ('yes' == this.getElementSettings('_ha_eqh_disable_on_tablet') && windowWidth >= mobileWidth && windowWidth < tabletWidth) {
           return true;
         }
+
         return false;
       },
       getEqhTo: function getEqhTo() {
@@ -48,6 +55,7 @@
       },
       getTargetElements: function getTargetElements() {
         var _this = this;
+
         return this.getEqhWidgets().map(function (widget) {
           return _this.$element.find('.elementor-widget-' + widget + ' .elementor-widget-container');
         });
@@ -62,6 +70,7 @@
         if (prop.indexOf('_ha_eqh') === -1) {
           return;
         }
+
         this.unbindMatchHeight(true);
         this.run();
       }, 100),
@@ -83,6 +92,7 @@
       },
       run: function run() {
         var _this = this;
+
         if (this.isDisabledOnDevice()) {
           this.unbindMatchHeight();
         } else {
@@ -91,6 +101,7 @@
               $el.matchHeight({
                 byRow: false
               });
+
               _this.CACHED_ELEMENTS.push($el);
             }
           });
