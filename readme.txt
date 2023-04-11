@@ -656,7 +656,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.8.4 - 5 April 2023 =
+= 3.8.4 - 11 April 2023 =
 
 - New: Section features compatibility with container.
 - Fix: Global color issue fixed with Info Box, LordIcon & Icon Box widget.
