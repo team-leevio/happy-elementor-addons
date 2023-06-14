@@ -656,7 +656,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.8.5 - 12 June 2023 =
+= 3.8.5 - 14 June 2023 =
 
 - Fix: Minor Fixes.
 - Fix: Elementor compatibility tag added.
