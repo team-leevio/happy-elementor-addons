@@ -656,9 +656,9 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.8.6 - ### 2023 =
+= 3.8.6 - 7 August 2023 =
 
-- Update: Elementor compatibility tag updated.
+- Update: Made Compatible with Elementor Free 3.15.1 & Elementor Pro 3.15.0.
 
 = 3.8.5 - 14 June 2023 =
 

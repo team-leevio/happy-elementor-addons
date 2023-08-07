@@ -1,6 +1,6 @@
 = 3.8.6 - 7 August 2023 =
 
-- Fix: Made Compatible with Elementor Free 3.15.1 & Elementor Pro 3.15.0.
+- Update: Made Compatible with Elementor Free 3.15.1 & Elementor Pro 3.15.0.
 
 = 3.8.5 - 14 June 2023 =
 
