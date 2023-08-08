@@ -49,6 +49,28 @@
       getTargetElements: function getTargetElements() {
         var _this = this;
         return this.getEqhWidgets().map(function (widget) {
+          // console.log(widget);
+          // console.log(_this.$element);
+          // console.log(_this.$element.data("element_type"));
+          if (_this.$element.data("element_type") === "container") {
+            var $container = _this.$element;
+
+            // console.group(_this.$element.data("element_type"));
+            // console.log($container);
+            if ($container.find(' > div[data-element_type="container"]').length == 0) {
+              //if has immidiate widget
+              // console.log('if has immidiate widget');
+              // console.log( $container.find(' > div.e-con-inner > .elementor-widget-'+widget + ' .elementor-widget-container') );
+              return $container.find(' > div.e-con-inner > .elementor-widget-' + widget + ' .elementor-widget-container');
+            } else {
+              // else it has immidiate container
+              // console.log('if has immidiate container');
+              // console.log($container.find(' > div[data-element_type="container"] > div.e-con-inner > .elementor-widget-'+widget + ' .elementor-widget-container'));
+              return $container.find(' > div[data-element_type="container"] > div.e-con-inner > .elementor-widget-' + widget + ' .elementor-widget-container');
+            }
+            // console.groupEnd();
+          }
+
           return _this.$element.find('.elementor-widget-' + widget + ' .elementor-widget-container');
         });
       },
@@ -98,6 +120,11 @@
       }
     });
     elementorFrontend.hooks.addAction('frontend/element_ready/section', function ($scope) {
+      elementorFrontend.elementsHandler.addHandler(EqualHeightHandler, {
+        $element: $scope
+      });
+    });
+    elementorFrontend.hooks.addAction('frontend/element_ready/container', function ($scope) {
       elementorFrontend.elementsHandler.addHandler(EqualHeightHandler, {
         $element: $scope
       });
