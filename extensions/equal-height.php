@@ -17,6 +17,8 @@ class Equal_Height {
 
 		add_action( 'elementor/element/section/section_advanced/after_section_end', [ __CLASS__, 'register' ], 1 );
 
+		add_action( 'elementor/frontend/container/before_render', [ __CLASS__, 'should_script_enqueue' ] );
+
 		add_action( 'elementor/frontend/section/before_render', [ __CLASS__, 'should_script_enqueue' ] );
 
 		add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'enqueue_scripts' ] );
@@ -58,6 +60,8 @@ class Equal_Height {
 			self::enqueue_scripts();
 
 			remove_action( 'elementor/frontend/section/before_render', [ __CLASS__, 'should_script_enqueue' ] );
+
+			remove_action( 'elementor/frontend/container/before_render', [ __CLASS__, 'should_script_enqueue' ] );
 		}
 	}
 
