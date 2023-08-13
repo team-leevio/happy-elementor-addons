@@ -54,19 +54,34 @@
           // console.log(_this.$element.data("element_type"));
           if (_this.$element.data("element_type") === "container") {
             var $container = _this.$element;
+            var cls = '.elementor-widget-' + widget + ' .elementor-widget-container';
 
+            /*
+            Container > e-con-inner > conteiner > widget
+            Container > widget
+            Container > e-con-inner > widget
+            */
             // console.group(_this.$element.data("element_type"));
-            // console.log($container);
-            if ($container.find(' > div[data-element_type="container"]').length == 0) {
-              //if has immidiate widget
-              // console.log('if has immidiate widget');
-              // console.log( $container.find(' > div.e-con-inner > .elementor-widget-'+widget + ' .elementor-widget-container') );
-              return $container.find(' > div.e-con-inner > .elementor-widget-' + widget + ' .elementor-widget-container');
-            } else {
-              // else it has immidiate container
-              // console.log('if has immidiate container');
-              // console.log($container.find(' > div[data-element_type="container"] > div.e-con-inner > .elementor-widget-'+widget + ' .elementor-widget-container'));
-              return $container.find(' > div[data-element_type="container"] > div.e-con-inner > .elementor-widget-' + widget + ' .elementor-widget-container');
+            console.log($container);
+            console.log($container.find(' > .e-con-inner > div[data-element_type="container"] > ' + cls).length);
+            console.log($container.find(' > ' + cls).length);
+            console.log($container.find(' > .e-con-inner > ' + cls).length);
+            // console.log($container.find(' > div[data-element_type="container"]').length);
+            if ($container.find(' > .e-con-inner > div[data-element_type="container"] > ' + cls).length > 0) {
+              //if has 3 level inner widget
+              console.log('if has immidiate widget');
+              // console.log( $container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls) );
+              return $container.find(' > .e-con-inner > div[data-element_type="container"] > ' + cls);
+            } else if ($container.find(' > ' + cls).length > 0) {
+              //else if it has 1 level inner widget
+              console.log('if has immidiate widget');
+              // console.log( $container.find(' > '+cls) );
+              return $container.find(' > ' + cls);
+            } else if ($container.find(' > .e-con-inner > ' + cls).length > 0) {
+              //else if it has 2 level inner widget
+              console.log('if has immidiate container');
+              // console.log( $container.find(' > .e-con-inner > '+cls) );
+              return $container.find(' > .e-con-inner > ' + cls);
             }
             // console.groupEnd();
           }
@@ -77,7 +92,9 @@
       bindEvents: function bindEvents() {
         if (this.isEqhEnabled()) {
           this.run();
-          $window.on('resize scroll orientationchange', debounce(this.run.bind(this), 80));
+
+          // $window.on('resize scroll orientationchange', debounce(this.run.bind(this), 80));
+          $window.on('resize orientationchange', debounce(this.run.bind(this), 80));
         }
       },
       onElementChange: debounce(function (prop, ele) {
