@@ -886,7 +886,7 @@ class Fun_Factor extends Base {
                 <div class="ha-fun-factor__media ha-fun-factor__media--icon">
                     <?php Icons_Manager::render_icon( $settings['icons'], ['aria-hidden' => 'true'] ); ?>
                 </div>
-            <?php elseif ( $settings['image']['url'] || $settings['image']['id'] ) : ?>
+            <?php elseif ( isset($settings['image']) && isset($settings['image']['url']) && isset($settings['image']['id']) ) : ?>
                 <div class="ha-fun-factor__media ha-fun-factor__media--image">
                     <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
                 </div>
