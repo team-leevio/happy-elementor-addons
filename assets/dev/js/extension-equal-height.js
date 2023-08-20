@@ -62,21 +62,152 @@
 					// console.log(_this.$element);
 					// console.log(_this.$element.data("element_type"));
 					if ( _this.$element.data("element_type") === "container" ) {
+						var $key = 0;
+						var $widgets = {};
 						var $container = _this.$element;
 						let cls = '.elementor-widget-'+widget + ' .elementor-widget-container';
 
 						/*
 						Container > e-con-inner > conteiner > widget
+						Container > conteiner > widget
+						Container > e-con-inner > conteiner > e-con-inner  > widget
+						Container > conteiner > e-con-inner  > widget
 						Container > widget
 						Container > e-con-inner > widget
 						*/
 						// console.group(_this.$element.data("element_type"));
-						console.log($container);
-						console.log($container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls).length);
-						console.log($container.find(' > '+cls).length);
-						console.log($container.find(' > .e-con-inner > '+cls).length);
+
+						// console.log($container);
+						console.log($container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls));
+						console.log($container.find(' > div[data-element_type="container"] > '+cls));
+
+						console.log($container.find(' > .e-con-inner > div[data-element_type="container"] > .e-con-inner > '+cls));
+						console.log($container.find(' > div[data-element_type="container"] > .e-con-inner > '+cls));
+
+						console.log($container.find(' > .e-con-inner > '+cls));
+						console.log($container.find(' > '+cls));
 						// console.log($container.find(' > div[data-element_type="container"]').length);
-						if( $container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls).length > 0 ) {
+
+						if($container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls).length){
+							$widgets = $container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls);
+							// $container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls).each(function(){
+							// 	// console.log($(this));
+							// 	let id = $(this).parent().data('id');
+							// 	// $widgets.push($(this)[0]);
+							// 	if( ! $widgets.hasOwnProperty(id) ){
+							// 		$widgets[id] = $(this)[0];
+							// 	}
+							// 	$key += 1;
+							//   });
+						}
+
+						if($container.find(' > div[data-element_type="container"] > '+cls).length){
+
+							if( $widgets.length ) {
+								let $key = $widgets.length;
+							$container.find(' > div[data-element_type="container"] > '+cls).each(function(){
+								// console.log($(this).parent().data('id'));
+								let id = $(this).parent().data('id');
+								// $widgets.push($(this)[0]);
+								if( ! $widgets.hasOwnProperty($key) ){
+									$widgets[$key] = $(this)[0];
+
+								}
+								$key += 1;
+								});
+								$widgets.length = $key;
+							} else {
+								$widgets = $container.find(' > div[data-element_type="container"] > '+cls);
+							}
+						}
+
+						if($container.find(' > .e-con-inner > div[data-element_type="container"] > .e-con-inner > '+cls).length){
+							if( $widgets.length ) {
+								let $key = $widgets.length;
+								$container.find(' > .e-con-inner > div[data-element_type="container"] > .e-con-inner > '+cls).each(function(){
+									// console.log($(this));
+									let id = $(this).parent().data('id');
+									// $widgets.push($(this)[0]);
+									if( ! $widgets.hasOwnProperty($key) ){
+										$widgets[$key] = $(this)[0];
+									}
+									$key += 1;
+								  });
+								  $widgets.length = $key;
+							} else{
+								$widgets = $container.find(' > .e-con-inner > div[data-element_type="container"] > .e-con-inner > '+cls);
+							}
+						}
+
+						if($container.find(' > div[data-element_type="container"] > .e-con-inner > '+cls).length){
+
+							if( $widgets.length ) {
+								let $key = $widgets.length;
+								$container.find(' > div[data-element_type="container"] > .e-con-inner > '+cls).each(function(){
+									// console.log($(this));
+									let id = $(this).parent().data('id');
+									// $widgets.push($(this)[0]);
+									if( ! $widgets.hasOwnProperty($key) ){
+										$widgets[$key] = $(this)[0];
+									}
+									$key += 1;
+								  });
+								  $widgets.length = $key;
+
+							} else{
+								$widgets = $container.find(' > div[data-element_type="container"] > .e-con-inner > '+cls);
+							}
+						}
+
+						if($container.find(' > .e-con-inner > '+cls).length){
+
+							if( $widgets.length ) {
+								let $key = $widgets.length;
+								$container.find(' > .e-con-inner > '+cls).each(function(){
+									let id = $(this).parent().data('id');
+									// $widgets.push($(this)[0]);
+									if( ! $widgets.hasOwnProperty($key) ){
+										$widgets[$key] = $(this)[0];
+									}
+									$key += 1;
+								});
+								$widgets.length = $key;
+
+							} else{
+								$widgets = $container.find(' > .e-con-inner > '+cls);
+							}
+						}
+
+						if($container.find(' > '+cls).length){
+
+							if( $widgets.length ) {
+								let $key = $widgets.length;
+								$container.find(' > '+cls).each(function(){
+									let id = $(this).parent().data('id');
+									// $widgets.push($(this)[0]);
+									if( ! $widgets.hasOwnProperty($key) ){
+										$widgets[$key] = $(this)[0];
+									}
+									$key += 1;
+								});
+								$widgets.length = $key;
+
+							} else{
+								$widgets = $container.find(' > '+cls);
+							}
+						}
+
+						console.log({...$widgets});
+						// console.log( Object.assign({}, $widgets) );
+						return $widgets;
+						// if($widgets.length){
+							// return $widgets;
+							// return Object.assign({}, $widgets);
+						// }
+
+
+
+						/* if( $container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls).length > 0 ) {
 							//if has 3 level inner widget
 							console.log('if has immidiate widget');
 							// console.log( $container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls) );
@@ -96,9 +227,12 @@
 							// console.log( $container.find(' > .e-con-inner > '+cls) );
 							return $container.find(' > .e-con-inner > '+cls);
 						}
+						*/
 						// console.groupEnd();
 
 					}
+					//console.log(_this.$element.find('.elementor-widget-'+widget + ' .elementor-widget-container'));
+
 					return _this.$element.find('.elementor-widget-'+widget + ' .elementor-widget-container');
 				});
 			},
