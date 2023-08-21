@@ -61,7 +61,7 @@
 					// console.log(widget);
 					// console.log(_this.$element);
 					// console.log(_this.$element.data("element_type"));
-					if ( _this.$element.data("element_type") === "container" ) {
+					if ( false && _this.$element.data("element_type") === "container" ) {
 						var $key = 0;
 						var $widgets = {};
 						var $container = _this.$element;
@@ -77,15 +77,15 @@
 						*/
 						// console.group(_this.$element.data("element_type"));
 
-						// console.log($container);
-						console.log($container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls));
+						console.log($container);
+						/* console.log($container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls));
 						console.log($container.find(' > div[data-element_type="container"] > '+cls));
 
 						console.log($container.find(' > .e-con-inner > div[data-element_type="container"] > .e-con-inner > '+cls));
 						console.log($container.find(' > div[data-element_type="container"] > .e-con-inner > '+cls));
 
 						console.log($container.find(' > .e-con-inner > '+cls));
-						console.log($container.find(' > '+cls));
+						console.log($container.find(' > '+cls)); */
 						// console.log($container.find(' > div[data-element_type="container"]').length);
 
 						if($container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls).length){
@@ -231,7 +231,9 @@
 						// console.groupEnd();
 
 					}
-					//console.log(_this.$element.find('.elementor-widget-'+widget + ' .elementor-widget-container'));
+					console.group(_this.$element.data("element_type"));
+					console.log(_this.$element.find('.elementor-widget-'+widget + ' .elementor-widget-container'));
+					console.groupEnd();
 
 					return _this.$element.find('.elementor-widget-'+widget + ' .elementor-widget-container');
 				});
@@ -241,8 +243,8 @@
 				if (this.isEqhEnabled()) {
 					this.run();
 
-					// $window.on('resize scroll orientationchange', debounce(this.run.bind(this), 80));
-					$window.on('resize orientationchange', debounce(this.run.bind(this), 80));
+					$window.on('resize scroll orientationchange', debounce(this.run.bind(this), 80));
+					// $window.on('resize orientationchange', debounce(this.run.bind(this), 80));
 				}
 			},
 

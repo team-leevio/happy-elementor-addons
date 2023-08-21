@@ -437,17 +437,18 @@
 						}
 						return (column.view.children.length == 0);
 					});
-					console.log($has_widget);
+					// console.log($has_widget);
 					this.container.children.forEach(function (column) {
 						console.log(column.view);
 
-						var $widgets = $has_widget ? column.view.$el : column.view.$childViewContainer.children( "[data-widget_type]" );
-
-						console.log($widgets);
+						// let $widgets = $has_widget ? column.view.$el : column.view.$childViewContainer.children( "[data-widget_type]" );
+						// console.log($widgets);
+						let $widgets = column.view.$el.find('div[data-element_type="widget"]');
+						// console.log(column.view.$el.find('div[data-element_type="widget"]'))
 
 
 						$widgets.each(function (index, widget) {
-							console.log($(widget).data("element_type"));
+							// console.log($(widget).data("element_type"));
 
 							if( $(widget).data("element_type") == 'widget' ) {
 								var name = $(widget).data("widget_type"),
