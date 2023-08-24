@@ -208,10 +208,10 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
             */
             // console.groupEnd();
           }
+          // console.group(_this.$element.data("element_type"));
+          // console.log(_this.$element.find('.elementor-widget-'+widget + ' .elementor-widget-container'));
+          // console.groupEnd();
 
-          console.group(_this.$element.data("element_type"));
-          console.log(_this.$element.find('.elementor-widget-' + widget + ' .elementor-widget-container'));
-          console.groupEnd();
           return _this.$element.find('.elementor-widget-' + widget + ' .elementor-widget-container');
         });
       },

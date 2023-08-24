@@ -443,8 +443,9 @@
 
 						// let $widgets = $has_widget ? column.view.$el : column.view.$childViewContainer.children( "[data-widget_type]" );
 						// console.log($widgets);
-						let $widgets = column.view.$el.find('div[data-element_type="widget"]');
-						// console.log(column.view.$el.find('div[data-element_type="widget"]'))
+						let $widgets = column.view.$el.data("element_type") == 'widget' ? column.view.$el : column.view.$el.find('div[data-element_type="widget"]');
+
+						console.log($widgets);
 
 
 						$widgets.each(function (index, widget) {
