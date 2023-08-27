@@ -1,5 +1,6 @@
 = 3.8.7 - ## ## #### =
 
+- Tweak: Remove "Edit + Happy Clone" finder category due to deprecations.
 - Fix: PHP Warning issue fixed with Fun Factor widget.
 - Fix: Use Global Primary Typhography for controls.
 // TODO: Need to update minimum required elementor version.
