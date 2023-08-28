@@ -616,7 +616,7 @@ class Social_Share extends Base {
 				'name'     => 'text_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 				'selector' => '{{WRAPPER}} .ha-share-network .ha-share-label'
 			]

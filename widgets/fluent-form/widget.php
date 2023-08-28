@@ -175,7 +175,7 @@ class Fluent_Form extends Base {
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ff-el-form-control',
                 'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
             ]
         );
@@ -328,7 +328,7 @@ class Fluent_Form extends Base {
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .ff-el-input--label label',
                 'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
             ]
         );
@@ -414,7 +414,7 @@ class Fluent_Form extends Base {
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ff-el-tooltip:before',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				],
 			]
 		);
@@ -506,7 +506,7 @@ class Fluent_Form extends Base {
                 'name' => 'submit_typography',
                 'selector' => '{{WRAPPER}} .ff-btn-submit',
                 'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				],
             ]
         );
@@ -652,7 +652,7 @@ class Fluent_Form extends Base {
 				'label' => __( 'Title Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ff-el-section-break .ff-el-section-title',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -664,7 +664,7 @@ class Fluent_Form extends Base {
 				'label' => __( 'Description Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ff-el-section-break .ff-section_break_desk',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				],
 			]
 		);

@@ -421,7 +421,7 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 			[
 				'name'      => 'ha_scroll_to_top_button_text_typo',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 				'selector'  => '.ha-scroll-to-top-wrap .ha-scroll-to-top-button span',
 				'condition' => [

@@ -1034,7 +1034,7 @@ class Member extends Base {
 				'name'     => 'title_typography',
 				'selector' => '{{WRAPPER}} .ha-member-name',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);
@@ -1085,7 +1085,7 @@ class Member extends Base {
 				'name'     => 'job_title_typography',
 				'selector' => '{{WRAPPER}} .ha-member-position',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -1136,7 +1136,7 @@ class Member extends Base {
 				'name'     => 'bio_typography',
 				'selector' => '{{WRAPPER}} .ha-member-bio',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -1338,7 +1338,7 @@ class Member extends Base {
 				'name'     => 'button_typography',
 				'selector' => '{{WRAPPER}} .ha-btn',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				],
 			]
 		);

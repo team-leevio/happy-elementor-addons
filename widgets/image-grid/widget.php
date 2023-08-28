@@ -561,7 +561,7 @@ class Image_Grid extends Base {
 				'name' => 'button_typography',
 				'selector' => '{{WRAPPER}} .ha-filter__item',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);

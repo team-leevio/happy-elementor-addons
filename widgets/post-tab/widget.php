@@ -543,7 +543,7 @@ class Post_Tab extends Base {
 				'name'     => 'tab_item_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 				'selector' => '{{WRAPPER}} .ha-post-tab .ha-post-tab-filter li',
 			]
@@ -755,7 +755,7 @@ class Post_Tab extends Base {
 				'name'     => 'title_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 				'selector' => '{{WRAPPER}} .ha-post-tab .ha-post-tab-item-inner .ha-post-tab-title',
 			]
@@ -816,7 +816,7 @@ class Post_Tab extends Base {
 				'name'     => 'meta_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 				'selector' => '{{WRAPPER}} .ha-post-tab .ha-post-tab-meta span',
 			]
@@ -894,7 +894,7 @@ class Post_Tab extends Base {
 				'name'      => 'excerpt_typography',
 				'label'     => __( 'Typography', 'happy-elementor-addons' ),
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 				'selector'  => '{{WRAPPER}} .ha-post-tab .ha-post-tab-excerpt p',
 				'condition' => [

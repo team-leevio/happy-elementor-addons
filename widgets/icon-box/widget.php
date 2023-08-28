@@ -730,7 +730,7 @@ class Icon_Box extends Base {
 				'name' => 'title',
 				'selector' => '{{WRAPPER}} .ha-icon-box-title',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);
@@ -940,7 +940,7 @@ class Icon_Box extends Base {
 				],
 				'selector' => '{{WRAPPER}} .ha-badge',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);

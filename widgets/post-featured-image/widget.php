@@ -263,7 +263,7 @@ class Post_Featured_Image extends Base {
 				'label' => __('Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} .ha-image-caption',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);

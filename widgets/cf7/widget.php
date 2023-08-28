@@ -220,7 +220,7 @@ class CF7 extends Base {
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpcf7-form-control:not(.wpcf7-submit)',
                 'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
             ]
         );
@@ -373,7 +373,7 @@ class CF7 extends Base {
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} label',
                 'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
             ]
         );
@@ -432,7 +432,7 @@ class CF7 extends Base {
                 'name' => 'submit_typography',
                 'selector' => '{{WRAPPER}} .wpcf7-submit',
                 'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				],
             ]
         );

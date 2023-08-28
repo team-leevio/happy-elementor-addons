@@ -166,7 +166,7 @@ class WPForm extends Base {
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea',
                 'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
             ]
         );
@@ -325,7 +325,7 @@ class WPForm extends Base {
                 'label' => __( 'Label Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field-container label.wpforms-field-label',
                 'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
             ]
         );
@@ -337,7 +337,7 @@ class WPForm extends Base {
                 'label' => __( 'Sub Label Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field-sublabel',
                 'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
             ]
         );
@@ -349,7 +349,7 @@ class WPForm extends Base {
                 'label' => __( 'Description Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field-description',
                 'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
             ]
         );
@@ -541,7 +541,7 @@ class WPForm extends Base {
                 'name' => 'submit_typography',
                 'selector' => '{{WRAPPER}} .wpforms-submit',
                 'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				],
             ]
         );

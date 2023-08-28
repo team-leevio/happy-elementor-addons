@@ -433,7 +433,7 @@ class Step_Flow extends Base {
 				'name' => 'badge_typography',
 				'selector' => '{{WRAPPER}} .ha-steps-label',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				],
 				'condition' => [
 					'badge!' => '',
@@ -527,7 +527,7 @@ class Step_Flow extends Base {
 				'name' => 'title_typography',
 				'selector' => '{{WRAPPER}} .ha-steps-title',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -566,7 +566,7 @@ class Step_Flow extends Base {
 				'name' => 'description_typography',
 				'selector' => '{{WRAPPER}} .ha-step-description',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);

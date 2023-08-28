@@ -215,7 +215,7 @@ class GravityForms extends Base {
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .gfield .ginput_container > input, {{WRAPPER}} .gform_body .gfield textarea, {{WRAPPER}} .gfield .ginput_container.ginput_complex input',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -404,7 +404,7 @@ class GravityForms extends Base {
 				'label' => __( 'Label Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .gform_body .gfield .gfield_label, {{WRAPPER}} table.gfield_list thead th',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -416,7 +416,7 @@ class GravityForms extends Base {
 				'label' => __( 'Sub Label Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .gform_body .gfield .gfield_description',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -569,7 +569,7 @@ class GravityForms extends Base {
 				'name' => 'submit_typography',
 				'selector' => '{{WRAPPER}} .gform_wrapper .gform_button',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				],
 			]
 		);
@@ -711,7 +711,7 @@ class GravityForms extends Base {
 				'label' => __( 'Title Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .gsection .gsection_title',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);
@@ -723,7 +723,7 @@ class GravityForms extends Base {
 				'label' => __( 'Description Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .gsection .gsection_description',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				],
 			]
 		);
@@ -840,7 +840,7 @@ class GravityForms extends Base {
 				'label' => __( 'Button Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .gform_next_button.button, {{WRAPPER}} .gform_previous_button.button',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				],
 			]
 		);

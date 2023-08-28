@@ -984,7 +984,7 @@ class Comparison_Table extends Base {
 				'name'     => 'head_typography',
 				'selector' => '{{WRAPPER}} .ha-comparison-table-wrapper .ha-comparison-table__head-column-cell-title-tag',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -1015,7 +1015,7 @@ class Comparison_Table extends Base {
 				'name'     => 'content_typography',
 				'selector' => '{{WRAPPER}} .ha-comparison-table-wrapper .ha-comparison-table__head-column-cell-content',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -1261,7 +1261,7 @@ class Comparison_Table extends Base {
 				'name'     => 'row_text_typography',
 				'selector' => '{{WRAPPER}} .ha-comparison-table__row-item-cell-title',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -1292,7 +1292,7 @@ class Comparison_Table extends Base {
 				'name'     => 'row_content_typography',
 				'selector' => '{{WRAPPER}} .ha-comparison-table__row-item-cell-content',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -1385,6 +1385,10 @@ class Comparison_Table extends Base {
 			[
 				'label'     => __( 'Size', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::SLIDER,
+				'default' => [
+					'unit' => 'px',
+					'size' => 30,
+				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-comparison-table__row-cell-icon'     => 'font-size: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .ha-comparison-table__row-cell-icon i'   => 'font-size: {{SIZE}}{{UNIT}};',
@@ -1436,7 +1440,7 @@ class Comparison_Table extends Base {
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-comparison-table__btns-item--btn',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);

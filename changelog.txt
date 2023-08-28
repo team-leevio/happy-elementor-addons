@@ -2,9 +2,7 @@
 
 - Tweak: Remove "Edit + Happy Clone" finder category due to deprecations.
 - Fix: PHP Warning issue fixed with Fun Factor widget.
-- Fix: Use Global Primary Typhography for controls.
-// TODO: Need to update minimum required elementor version.
-
+- Fix: Use Global Typhography for controls.
 
 = 3.8.6 - 7 August 2023 =
 

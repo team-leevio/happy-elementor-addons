@@ -702,7 +702,7 @@ class Post_List extends Base {
 				'name'     => 'title_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 				'selector' => '{{WRAPPER}} .ha-post-list-title',
 			]
@@ -929,7 +929,7 @@ class Post_List extends Base {
 				'name'     => 'excerpt_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 				'selector' => '{{WRAPPER}} .ha-post-list-excerpt p',
 			]
@@ -980,7 +980,7 @@ class Post_List extends Base {
 				'name'     => 'meta_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 				'selector' => '{{WRAPPER}} .ha-post-list-meta-wrap span',
 			]

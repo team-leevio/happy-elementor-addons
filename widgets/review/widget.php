@@ -463,7 +463,7 @@ class Review extends Base {
 				'name' => 'name_typography',
 				'selector' => '{{WRAPPER}} .ha-review-reviewer',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);
@@ -506,7 +506,7 @@ class Review extends Base {
 				'name' => 'job_title_typography',
 				'selector' => '{{WRAPPER}} .ha-review-position',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -549,7 +549,7 @@ class Review extends Base {
 				'name' => 'review_typography',
 				'selector' => '{{WRAPPER}} .ha-review-desc',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);

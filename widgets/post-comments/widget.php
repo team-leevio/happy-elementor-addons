@@ -151,7 +151,7 @@ class Post_Comments extends Base {
 				'label' => __('Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} h2',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);
@@ -207,7 +207,7 @@ class Post_Comments extends Base {
 				'label' => __('Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} p.logged-in-as',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);
@@ -273,7 +273,7 @@ class Post_Comments extends Base {
 				'label' => __('Link Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} p.logged-in-as a',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);
@@ -304,7 +304,7 @@ class Post_Comments extends Base {
 				'label' => __('Link Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} p.logged-in-as a:hover',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);
@@ -351,7 +351,7 @@ class Post_Comments extends Base {
 				'label' => __('Label Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} label',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);
@@ -406,7 +406,7 @@ class Post_Comments extends Base {
 				'label' => __('Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} textarea',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);
@@ -475,7 +475,7 @@ class Post_Comments extends Base {
 				'label' => __('Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} p.form-submit .submit',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);

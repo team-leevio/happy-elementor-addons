@@ -768,7 +768,7 @@ class Twitter_Feed extends Base {
 				'label' => __( 'Name Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-author-name',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 				'condition' => [
 					'show_name' => 'yes'
@@ -783,7 +783,7 @@ class Twitter_Feed extends Base {
 				'label' => __( 'User Name Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-username',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 				'condition' => [
 					'show_user_name' => 'yes'
@@ -938,7 +938,7 @@ class Twitter_Feed extends Base {
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-content p',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -982,7 +982,7 @@ class Twitter_Feed extends Base {
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-content p a',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 				'condition' => [
 					'read_more' => 'yes'
@@ -1046,7 +1046,7 @@ class Twitter_Feed extends Base {
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-date',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 				'condition' => [
 					'show_date' => 'yes'

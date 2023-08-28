@@ -745,7 +745,7 @@ class Data_Table extends Base {
 				'name' => 'head_typography',
 				'selector' => '{{WRAPPER}} .ha-table .ha-table__head-column-cell-text',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -1031,7 +1031,7 @@ class Data_Table extends Base {
 				'name' => 'row_text_typography',
 				'selector' => '{{WRAPPER}} .ha-table__body .ha-table__body-row-cell-text',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);

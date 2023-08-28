@@ -432,7 +432,7 @@ class Slider extends Base {
 				'name' => 'title',
 				'selector' => '{{WRAPPER}} .ha-slick-title',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);
@@ -475,7 +475,7 @@ class Slider extends Base {
 				'name' => 'subtitle',
 				'selector' => '{{WRAPPER}} .ha-slick-subtitle',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);

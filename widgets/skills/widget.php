@@ -328,7 +328,7 @@ class Skills extends Base {
                 'name' => 'info_typography',
                 'selector' => '{{WRAPPER}} .ha-skill-info',
                 'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
             ]
         );

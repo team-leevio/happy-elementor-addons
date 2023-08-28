@@ -707,7 +707,7 @@ class Fun_Factor extends Base {
 				'name'     => 'number_typography',
 				'label'    => __('Typography', 'happy-elementor-addons'),
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 				'selector' => '{{WRAPPER}} .ha-fun-factor__content-number-prefix, {{WRAPPER}} .ha-fun-factor__content-number, {{WRAPPER}} .ha-fun-factor__content-number-suffix',
 			]
@@ -764,7 +764,7 @@ class Fun_Factor extends Base {
 				'name'     => 'content_typography',
 				'label'    => __('Typography', 'happy-elementor-addons'),
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 				'selector' => '{{WRAPPER}} .ha-fun-factor__content-text',
 			]

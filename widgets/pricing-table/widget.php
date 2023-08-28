@@ -521,7 +521,7 @@ class Pricing_Table extends Base {
 				'name'     => 'title_typography',
 				'selector' => '{{WRAPPER}} .ha-pricing-table-title',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);
@@ -584,7 +584,7 @@ class Pricing_Table extends Base {
 				'name'     => 'price_typography',
 				'selector' => '{{WRAPPER}} .ha-pricing-table-price-text',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -627,7 +627,7 @@ class Pricing_Table extends Base {
 				'name'     => 'currency_typography',
 				'selector' => '{{WRAPPER}} .ha-pricing-table-currency',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -670,7 +670,7 @@ class Pricing_Table extends Base {
 				'name'     => 'period_typography',
 				'selector' => '{{WRAPPER}} .ha-pricing-table-period',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -738,7 +738,7 @@ class Pricing_Table extends Base {
 				'name'     => 'features_title_typography',
 				'selector' => '{{WRAPPER}} .ha-pricing-table-features-title',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
 			]
 		);
@@ -781,7 +781,7 @@ class Pricing_Table extends Base {
 				'name'     => 'features_list_typography',
 				'selector' => '{{WRAPPER}} .ha-pricing-table-features-list > li',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
@@ -853,7 +853,7 @@ class Pricing_Table extends Base {
 				'name'     => 'button_typography',
 				'selector' => '{{WRAPPER}} .ha-pricing-table-btn',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				],
 			]
 		);
@@ -1027,7 +1027,7 @@ class Pricing_Table extends Base {
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-pricing-table-badge',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
