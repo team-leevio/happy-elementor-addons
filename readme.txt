@@ -660,7 +660,7 @@ For a more detailed explanation check out the following documentation
 
 - Tweak: Remove "Edit + Happy Clone" finder category due to deprecations.
 - Fix: PHP Warning issue fixed with Fun Factor widget.
-- Fix: Use Global Typhography for controls.
+- Fix: Use Global Typography for controls.
 
 = 3.8.6 - 7 August 2023 =
 
