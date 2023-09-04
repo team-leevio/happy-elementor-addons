@@ -1,4 +1,4 @@
-= 3.8.7 - ## ## #### =
+= 3.8.7 - 4 September 2023 =
 
 - Tweak: Remove "Edit + Happy Clone" finder category due to deprecations.
 - Fix: PHP Warning issue fixed with Fun Factor widget.

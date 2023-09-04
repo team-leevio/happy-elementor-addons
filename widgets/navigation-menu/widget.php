@@ -926,7 +926,7 @@ class Navigation_Menu extends Base {
 
 			<div class="ha-editor-placeholder">
 				<h4 class="ha-editor-placeholder-title">
-					<?php esc_html_e( 'Navigation Menu', 'happy-addons-pro' ); ?>
+					<?php esc_html_e( 'Navigation Menu', 'happy-elementor-addons' ); ?>
 				</h4>
 				<div class="ha-editor-placeholder-content">
 					<?php echo $placeholder_msg; ?>

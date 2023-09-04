@@ -424,19 +424,19 @@ class Widgets_Manager {
 			],
 			'image-swap' => [
 				'cat' => 'general',
-				'title' => __( 'Image Swap', 'happy-addons-pro' ),
+				'title' => __( 'Image Swap', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-image-scroll',
 				'is_pro' => true,
 			],
 			'remote-carousel' => [
 				'cat' => 'slider-&-carousel',
-				'title' => __('Remote Carousel', 'happy-addons-pro'),
+				'title' => __('Remote Carousel', 'happy-elementor-addons'),
 				'icon' => 'hm hm-remote_carousel',
 				'is_pro' => true,
 			],
 			'table-of-contents' => [
 				'cat' => 'general',
-				'title' => __('Table of Contents', 'happy-addons-pro'),
+				'title' => __('Table of Contents', 'happy-elementor-addons'),
 				'icon' => 'hm hm-list-2',
 				'is_pro' => true,
 			]
