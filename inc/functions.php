@@ -325,7 +325,7 @@ function ha_get_allowed_html_tags($level = 'basic') {
 		],
 	];
 
-	if ( 'intermediate' === $level || 'all' === $level ) {
+	if ('intermediate' === $level || 'all' === $level) {
 		$tags = [
 			'a'       => [
 				'href'  => [],
@@ -593,7 +593,7 @@ function ha_get_ele_widget_settings($post_id, $widget_id) {
 
 	if ($elementor_data) {
 		$element = ha_get_ele_widget_element_settings($elementor_data, $widget_id);
-		return isset($element['settings'])? $element['settings']: '';
+		return isset($element['settings']) ? $element['settings'] : '';
 	}
 
 	return false;
@@ -608,12 +608,12 @@ function ha_get_ele_widget_settings($post_id, $widget_id) {
  * @since 1.0.0
  */
 function ha_get_credentials($key = '') {
-	if ( ! class_exists( 'Happy_Addons\Elementor\Credentials_Manager' ) ) {
-    	include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
+	if (!class_exists('Happy_Addons\Elementor\Credentials_Manager')) {
+		include_once(HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php');
 	}
 	$creds = Happy_Addons\Elementor\Credentials_Manager::get_saved_credentials();
-	if(!empty($key)) {
-		return isset($creds[$key])? $creds[$key]: esc_html__('invalid key', 'happy-elementor-addons');
+	if (!empty($key)) {
+		return isset($creds[$key]) ? $creds[$key] : esc_html__('invalid key', 'happy-elementor-addons');
 	}
 	return $creds;
 }
@@ -624,13 +624,13 @@ function ha_get_credentials($key = '') {
  * @param string $plugin
  * @return void
  */
-function ha_show_plugin_missing_alert( $plugin ) {
-	if ( current_user_can( 'activate_plugins' ) && $plugin ) {
+function ha_show_plugin_missing_alert($plugin) {
+	if (current_user_can('activate_plugins') && $plugin) {
 		printf(
 			'<div %s>%s</div>',
 			'style="margin: 1rem;padding: 1rem 1.25rem;border-left: 5px solid #f5c848;color: #856404;background-color: #fff3cd;"',
-			$plugin . __( ' is missing! Please install and activate ', 'happy-elementor-addons' ) . $plugin . '.'
-			);
+			$plugin . __(' is missing! Please install and activate ', 'happy-elementor-addons') . $plugin . '.'
+		);
 	}
 }
 
@@ -640,7 +640,7 @@ function ha_show_plugin_missing_alert( $plugin ) {
  * @return array
  */
 function ha_get_inactive_features() {
-	return get_option( 'happyaddons_inactive_features', [] );
+	return get_option('happyaddons_inactive_features', []);
 }
 
 /**
@@ -649,8 +649,7 @@ function ha_get_inactive_features() {
  * @param int $post_id
  * @return string
  */
-function ha_get_date_link($post_id = null)
-{
+function ha_get_date_link($post_id = null) {
 	if (empty($post_id)) {
 		$post_id = get_the_ID();
 	}
@@ -669,11 +668,23 @@ function ha_get_date_link($post_id = null)
  * @param integer $length
  * @return string
  */
-function ha_get_excerpt($post_id = null, $length = 15)
-{
+function ha_get_excerpt($post_id = null, $length = 15) {
 	if (empty($post_id)) {
 		$post_id = get_the_ID();
 	}
 
 	return wp_trim_words(get_the_excerpt($post_id), $length);
+}
+
+function ha_sanitize_array_recursively($array) {
+
+	foreach ($array as $key => &$value) {
+		if (is_array($value)) {
+			$value = ha_sanitize_array_recursively($value);
+		} else {
+			$value = sanitize_text_field($value);
+		}
+	}
+
+	return $array;
 }
