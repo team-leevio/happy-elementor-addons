@@ -21,8 +21,8 @@ class Admin_Bar {
 			wp_send_json_error();
 		}
 
-		$type = isset( $_POST['type'] ) ? $_POST['type'] : '';
-		$post_id = isset( $_POST['post_id'] ) ? $_POST['post_id'] : 0;
+		$type = isset( $_POST['type'] ) ? sanitize_text_field($_POST['type']) : '';
+		$post_id = isset( $_POST['post_id'] ) ? absint($_POST['post_id']) : 0;
 		$assets_cache = new Assets_Cache( $post_id );
 		if ( $type === 'page' ) {
 			$assets_cache->delete();

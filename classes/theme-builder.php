@@ -157,7 +157,7 @@ class Theme_Builder {
                 $meta_query = array(
                     array(
                         'key' => '_ha_library_type',
-                        'value' => $_GET['ha_library_type'],
+                        'value' => sanitize_text_field( $_GET['ha_library_type']),
                         'compare' => '=='
                     )
                 );
@@ -335,7 +335,7 @@ class Theme_Builder {
         if (empty($_GET['post_type'])) {
             $post_type = 'post';
         } else {
-            $post_type = $_GET['post_type'];
+            $post_type = sanitize_text_field($_GET['post_type']);
         }
 
         $post_type_object = get_post_type_object($post_type);
@@ -349,8 +349,8 @@ class Theme_Builder {
         } else {
             $type = sanitize_text_field($_GET['template_type']);
         }
-
-        $post_data = isset($_GET['post_data']) ? $_GET['post_data'] : [];
+        
+        $post_data = isset($_GET['post_data']) ? ha_sanitize_array_recursively($_GET['post_data']) : [];
 
         // $template_display_type = isset($_GET['template_display_type']) ? $_GET['template_display_type'] : '';
         // $template_display_type_singular = isset($_GET['template_display_type_singular']) ? $_GET['template_display_type_singular'] : '';

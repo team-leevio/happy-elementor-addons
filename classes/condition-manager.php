@@ -236,7 +236,7 @@ class Condition_Manager {
         try {
             //$this->validate_reqeust();
 
-            $id = isset($_REQUEST['post_id']) ? $_REQUEST['post_id'] : null;
+            $id = isset($_REQUEST['post_id']) ? absint($_REQUEST['post_id']) : null;
             if ($id) {
                 $tpl_type = get_post_meta($id, '_ha_library_type', true);
                 wp_send_json_success($tpl_type);
@@ -253,8 +253,11 @@ class Condition_Manager {
     public function process_condition_update() {
         try {
             $this->validate_reqeust();
-            $templateID = isset($_REQUEST['template_id']) ? $_REQUEST['template_id'] : null;
-            $requestConditions = isset($_REQUEST['conds']) ? $_REQUEST['conds'] : [];
+            $templateID = isset($_REQUEST['template_id']) ? absint($_REQUEST['template_id']) : null;
+            $requestConditions = isset($_REQUEST['conds']) ? ha_sanitize_array_recursively($_REQUEST['conds']) : [];
+
+            // error_log(print_r($templateID), true);
+            // error_log(print_r($requestConditions), true);
 
             $exitsConditions = get_post_meta($templateID, '_ha_display_cond', true);
 
@@ -521,7 +524,7 @@ EOF;
         try {
             $this->validate_reqeust();
 
-            $object_type = !empty($_REQUEST['object_type']) ? trim($_REQUEST['object_type']) : '';
+            $object_type = !empty($_REQUEST['object_type']) ? sanitize_text_field(trim($_REQUEST['object_type'])) : '';
 
             if (!in_array($object_type, ['post', 'tax', 'author', 'archive', 'singular'], true)) {
                 throw new Exception('Invalid object type');
@@ -552,9 +555,8 @@ EOF;
     }
 
     private function process_post() {
-        $post_type    = !empty($_REQUEST['object_term']) ? $_REQUEST['object_term'] : 'any';
+        $post_type    = !empty($_REQUEST['object_term']) ? sanitize_text_field($_REQUEST['object_term']) : 'any';
         $query_term   = !empty($_REQUEST['q']) ? $_REQUEST['q'] : '';
-
         $args = [
             'post_type'        => $post_type,
             'suppress_filters' => false,
@@ -584,7 +586,7 @@ EOF;
     }
 
     public function process_term() {
-        $term_taxonomy = !empty($_REQUEST['object_term']) ? $_REQUEST['object_term'] : '';
+        $term_taxonomy = !empty($_REQUEST['object_term']) ? sanitize_text_field($_REQUEST['object_term']) : '';
         $query_term    = !empty($_REQUEST['q']) ? $_REQUEST['q'] : '';
 
         $prefix = "Categories: ";

@@ -49,7 +49,7 @@ class Attention_Seeker {
 
     public static function process_ignore_request() {
         $nonce = isset( $_POST['nonce'] ) ? $_POST['nonce'] : '';
-        $id = isset( $_POST['id'] ) ? $_POST['id'] : '';
+        $id = isset( $_POST['id'] ) ? absint($_POST['id']) : '';
 
         if ( wp_verify_nonce( $nonce, 'ignore_attention_seeker' ) && $id ) {
             $seeker = wp_list_filter( self::get_attentions(), ['_id' => $id] );

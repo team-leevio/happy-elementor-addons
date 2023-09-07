@@ -27,7 +27,7 @@ class Select2_Handler {
 		try {
 			self::validate_reqeust();
 
-			$object_type = ! empty( $_REQUEST['object_type'] ) ? trim( $_REQUEST['object_type'] ) : '';
+			$object_type = ! empty( $_REQUEST['object_type'] ) ? sanitize_text_field(trim( $_REQUEST['object_type'] )) : '';
 
 			if ( ! in_array( $object_type, [ 'post', 'term', 'user', 'mailchimp_list' ], true ) ) {
 				throw new Exception( 'Invalid object type' );
@@ -54,7 +54,7 @@ class Select2_Handler {
 	}
 
 	public static function process_post() {
-		$post_type    = ! empty( $_REQUEST['post_type'] ) ? $_REQUEST['post_type'] : 'any';
+		$post_type    = ! empty( $_REQUEST['post_type'] ) ? sanitize_text_field($_REQUEST['post_type']) : 'any';
 		$query_term   = ! empty( $_REQUEST['query_term'] ) ? $_REQUEST['query_term'] : '';
 		$saved_values = ! empty( $_REQUEST['saved_values'] ) ? $_REQUEST['saved_values'] : 0;
 

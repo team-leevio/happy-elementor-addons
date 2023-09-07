@@ -39,7 +39,7 @@ jQuery(document).ready(function ($) {
 		var _long_id = $(this).attr("id");
 		var _id = _long_id.replace("wp-admin-bar-elementor_edit_doc_", "");
 		var _label = $("#" + _long_id + " .elementor-edit-link-type");
-
+		console.log('_id ', _id);
 		jQuery.ajax({
 			url: HappyAdmin.ajax_url,
 			type: "get",

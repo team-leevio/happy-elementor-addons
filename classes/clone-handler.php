@@ -80,7 +80,7 @@ class Clone_Handler {
 
 		$nonce = isset( $_GET['_wpnonce'] ) ? $_GET['_wpnonce'] : '';
 		$post_id = isset( $_GET['post_id'] ) ? absint( $_GET['post_id'] ) : 0;
-		$ref = isset( $_GET['ref'] ) ? $_GET['ref'] : '';
+		$ref = isset( $_GET['ref'] ) ? sanitize_text_field($_GET['ref']) : '';
 
 		if ( ! wp_verify_nonce( $nonce, self::ACTION ) ) {
 			return;

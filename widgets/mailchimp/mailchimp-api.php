@@ -29,7 +29,7 @@ class Mailchimp_Api {
 
 		self::$api_key = isset( self::$credentials['api'] ) ? self::$credentials['api'] : '';
 
-		$widget_settings = ha_get_ele_widget_settings( $_POST['post_id'], $_POST['widget_id'] );
+		$widget_settings = ha_get_ele_widget_settings( absint($_POST['post_id']), absint($_POST['widget_id']) );
 
 		$tags = '';
 		if( !empty($widget_settings) ) {
@@ -39,7 +39,7 @@ class Mailchimp_Api {
 
 		$auth = [
 			'api_key' => self::$api_key,
-			'list_id' => $_POST['list_id'],
+			'list_id' => absint($_POST['list_id']),
 		];
 
 		if ( isset($widget_settings['mailchimp_api_choose']) && $widget_settings['mailchimp_api_choose'] == 'custom' ) {
