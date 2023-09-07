@@ -524,7 +524,7 @@ EOF;
         try {
             $this->validate_reqeust();
 
-            $object_type = !empty($_REQUEST['object_type']) ? sanitize_text_field(trim($_REQUEST['object_type'])) : '';
+            $object_type = !empty($_REQUEST['object_type']) ? trim(sanitize_text_field($_REQUEST['object_type'])) : '';
 
             if (!in_array($object_type, ['post', 'tax', 'author', 'archive', 'singular'], true)) {
                 throw new Exception('Invalid object type');

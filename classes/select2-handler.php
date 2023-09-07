@@ -27,7 +27,7 @@ class Select2_Handler {
 		try {
 			self::validate_reqeust();
 
-			$object_type = ! empty( $_REQUEST['object_type'] ) ? sanitize_text_field(trim( $_REQUEST['object_type'] )) : '';
+			$object_type = ! empty( $_REQUEST['object_type'] ) ? trim( sanitize_text_field($_REQUEST['object_type']) ) : '';
 
 			if ( ! in_array( $object_type, [ 'post', 'term', 'user', 'mailchimp_list' ], true ) ) {
 				throw new Exception( 'Invalid object type' );
@@ -55,8 +55,8 @@ class Select2_Handler {
 
 	public static function process_post() {
 		$post_type    = ! empty( $_REQUEST['post_type'] ) ? sanitize_text_field($_REQUEST['post_type']) : 'any';
-		$query_term   = ! empty( $_REQUEST['query_term'] ) ? $_REQUEST['query_term'] : '';
-		$saved_values = ! empty( $_REQUEST['saved_values'] ) ? $_REQUEST['saved_values'] : 0;
+		$query_term   = ! empty( $_REQUEST['query_term'] ) ? sanitize_text_field($_REQUEST['query_term']) : '';
+		$saved_values = ! empty( $_REQUEST['saved_values'] ) ? ha_sanitize_array_recursively($_REQUEST['saved_values']) : 0;
 
 		$args = [
 			'post_type'        => $post_type,
@@ -95,8 +95,8 @@ class Select2_Handler {
 
 	public static function process_term() {
 		$term_taxonomy = ! empty( $_REQUEST['term_taxonomy'] ) ? $_REQUEST['term_taxonomy'] : '';
-		$query_term    = ! empty( $_REQUEST['query_term'] ) ? $_REQUEST['query_term'] : '';
-		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? $_REQUEST['saved_values'] : 0;
+		$query_term    = ! empty( $_REQUEST['query_term'] ) ? sanitize_text_field($_REQUEST['query_term']) : '';
+		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? ha_sanitize_array_recursively($_REQUEST['saved_values']) : 0;
 
 		if ( empty( $term_taxonomy ) ) {
 			throw new Exception( 'Invalid taxonomy' );
@@ -139,11 +139,11 @@ class Select2_Handler {
 	}
 
 	public static function process_mailchimp_list() {
-		$choose_api = ! empty( $_REQUEST['mailchimp_api_choose'] ) ? $_REQUEST['mailchimp_api_choose'] : '';
-		$global_api = ! empty( $_REQUEST['global_api'] ) ? $_REQUEST['global_api'] : '';
-		$custom_api = ! empty( $_REQUEST['mailchimp_api'] ) ? $_REQUEST['mailchimp_api'] : $global_api;
+		$choose_api = ! empty( $_REQUEST['mailchimp_api_choose'] ) ? sanitize_text_field($_REQUEST['mailchimp_api_choose']) : '';
+		$global_api = ! empty( $_REQUEST['global_api'] ) ? sanitize_text_field($_REQUEST['global_api']) : '';
+		$custom_api = ! empty( $_REQUEST['mailchimp_api'] ) ? sanitize_text_field($_REQUEST['mailchimp_api']) : $global_api;
 		
-		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? $_REQUEST['saved_values'] : 0;
+		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? ha_sanitize_array_recursively($_REQUEST['saved_values']) : 0;
 
 		if ( empty( $custom_api ) && empty( $global_api ) ) {
 			throw new Exception( 'Invalid taxonomy' );
