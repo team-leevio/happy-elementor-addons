@@ -218,11 +218,11 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       bindEvents: function bindEvents() {
         if (this.isEqhEnabled()) {
           this.run();
-          $window.on('resize scroll orientationchange', debounce(this.run.bind(this), 80));
-          // $window.on('resize orientationchange', debounce(this.run.bind(this), 80));
+
+          // $window.on('resize scroll orientationchange', debounce(this.run.bind(this), 500));
+          $window.on('resize orientationchange', debounce(this.run.bind(this), 500));
         }
       },
-
       onElementChange: debounce(function (prop, ele) {
         if (prop.indexOf('_ha_eqh') === -1) {
           return;
