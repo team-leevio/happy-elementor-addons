@@ -235,7 +235,6 @@ class Condition_Manager {
     public function ha_get_template_type() {
         try {
             //$this->validate_reqeust();
-
             $id = isset($_REQUEST['post_id']) ? absint($_REQUEST['post_id']) : null;
             if ($id) {
                 $tpl_type = get_post_meta($id, '_ha_library_type', true);
@@ -438,7 +437,7 @@ class Condition_Manager {
     public function ha_get_current_condition() {
         try {
             // $this->validate_reqeust();
-            $templateID = isset($_REQUEST['template_id']) ? $_REQUEST['template_id'] : null;
+            $templateID = isset($_REQUEST['template_id']) ? absint($_REQUEST['template_id']) : null;
             // wp_send_json_success($templateID);
             if ($templateID) {
                 $cond = get_post_meta($templateID, '_ha_display_cond', true);
@@ -556,7 +555,7 @@ EOF;
 
     private function process_post() {
         $post_type    = !empty($_REQUEST['object_term']) ? sanitize_text_field($_REQUEST['object_term']) : 'any';
-        $query_term   = !empty($_REQUEST['q']) ? $_REQUEST['q'] : '';
+        $query_term   = !empty($_REQUEST['q']) ? sanitize_text_field($_REQUEST['q']) : '';
         $args = [
             'post_type'        => $post_type,
             'suppress_filters' => false,
@@ -587,7 +586,7 @@ EOF;
 
     public function process_term() {
         $term_taxonomy = !empty($_REQUEST['object_term']) ? sanitize_text_field($_REQUEST['object_term']) : '';
-        $query_term    = !empty($_REQUEST['q']) ? $_REQUEST['q'] : '';
+        $query_term    = !empty($_REQUEST['q']) ? sanitize_text_field($_REQUEST['q']) : '';
 
         $prefix = "Categories: ";
 
