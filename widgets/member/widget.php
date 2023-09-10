@@ -8,7 +8,7 @@ namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Repeater;
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Utils;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
@@ -1033,7 +1033,9 @@ class Member extends Base {
 			[
 				'name'     => 'title_typography',
 				'selector' => '{{WRAPPER}} .ha-member-name',
-				'scheme'   => Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 			]
 		);
 
@@ -1082,7 +1084,9 @@ class Member extends Base {
 			[
 				'name'     => 'job_title_typography',
 				'selector' => '{{WRAPPER}} .ha-member-position',
-				'scheme'   => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -1131,7 +1135,9 @@ class Member extends Base {
 			[
 				'name'     => 'bio_typography',
 				'selector' => '{{WRAPPER}} .ha-member-bio',
-				'scheme'   => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -1331,7 +1337,9 @@ class Member extends Base {
 			[
 				'name'     => 'button_typography',
 				'selector' => '{{WRAPPER}} .ha-btn',
-				'scheme'   => Typography::TYPOGRAPHY_4,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
 			]
 		);
 

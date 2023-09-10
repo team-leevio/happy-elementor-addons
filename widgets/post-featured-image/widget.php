@@ -8,7 +8,7 @@
 
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Utils;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
@@ -262,7 +262,9 @@ class Post_Featured_Image extends Base {
 				'name' => 'caption_typography',
 				'label' => __('Typography', 'happy-elementor-addons'),
 				'selector' => '{{WRAPPER}} .ha-image-caption',
-				'scheme' => Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 			]
 		);
 

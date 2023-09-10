@@ -6,7 +6,7 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Utils;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
@@ -462,7 +462,9 @@ class Review extends Base {
 			[
 				'name' => 'name_typography',
 				'selector' => '{{WRAPPER}} .ha-review-reviewer',
-				'scheme' => Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 			]
 		);
 
@@ -503,7 +505,9 @@ class Review extends Base {
 			[
 				'name' => 'job_title_typography',
 				'selector' => '{{WRAPPER}} .ha-review-position',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -544,7 +548,9 @@ class Review extends Base {
 			[
 				'name' => 'review_typography',
 				'selector' => '{{WRAPPER}} .ha-review-desc',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 

@@ -1,3 +1,19 @@
+# v*.*.* - Day Month Year =
+- Fix: Security improvement for Twitter Feed widget.
+- Fix: Security improvement for Post Tab widget.
+- Fix: Security improvement for Mailchimp widget.
+- Fix: Security improvement for Review widget.
+- Fix: Security improvement for Happy Clone.
+- Fix: Security improvement for Theme Builder.
+
+
+
+= 3.8.7 - 4 September 2023 =
+
+- Tweak: Remove "Edit + Happy Clone" finder category due to deprecations.
+- Fix: PHP Warning issue fixed with Fun Factor widget.
+- Fix: Use Global Typography for controls.
+
 = 3.8.6 - 7 August 2023 =
 
 - Update: Made Compatible with Elementor Free 3.15.1 & Elementor Pro 3.15.0.

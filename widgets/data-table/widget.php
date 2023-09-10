@@ -10,13 +10,13 @@ namespace Happy_Addons\Elementor\Widget;
 use Elementor\Controls_Manager;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
-use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Utils;
 use Elementor\Control_Media;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 defined('ABSPATH') || die();
 
@@ -744,7 +744,9 @@ class Data_Table extends Base {
 			[
 				'name' => 'head_typography',
 				'selector' => '{{WRAPPER}} .ha-table .ha-table__head-column-cell-text',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -1028,7 +1030,9 @@ class Data_Table extends Base {
 			[
 				'name' => 'row_text_typography',
 				'selector' => '{{WRAPPER}} .ha-table__body .ha-table__body-row-cell-text',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 

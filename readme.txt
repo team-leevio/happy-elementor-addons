@@ -1,14 +1,14 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.8.6
+Version: 3.8.7
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget, Elementor Addon,
 Requires at least: 4.7
-Tested up to: 6.2
+Tested up to: 6.3.1
 Stable tag: trunk
-Requires PHP: 5.4
+Requires PHP: 5.6
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -655,6 +655,12 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.8.7 - 4 September 2023 =
+
+- Tweak: Remove "Edit + Happy Clone" finder category due to deprecations.
+- Fix: PHP Warning issue fixed with Fun Factor widget.
+- Fix: Use Global Typography for controls.
 
 = 3.8.6 - 7 August 2023 =
 

@@ -10,7 +10,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Background;
 use Elementor\Icons_Manager;
 
@@ -306,7 +306,9 @@ class Navigation_Menu extends Base {
 			[
 				'name'           => 'nav_menu_item_typography',
 				'label'          => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme'         => Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'separator'      => 'before',
 				'fields_options' => [
 					'typography'  => [
@@ -612,7 +614,9 @@ class Navigation_Menu extends Base {
 			[
 				'name'      => 'nav_submenu_item_typography',
 				'label'     => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme'    => Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'separator' => 'before',
 				'selector'  => '{{WRAPPER}} .ha-navigation-menu-wrapper ul.sub-menu > li > a',
 			]
@@ -922,7 +926,7 @@ class Navigation_Menu extends Base {
 
 			<div class="ha-editor-placeholder">
 				<h4 class="ha-editor-placeholder-title">
-					<?php esc_html_e( 'Navigation Menu', 'happy-addons-pro' ); ?>
+					<?php esc_html_e( 'Navigation Menu', 'happy-elementor-addons' ); ?>
 				</h4>
 				<div class="ha-editor-placeholder-content">
 					<?php echo $placeholder_msg; ?>

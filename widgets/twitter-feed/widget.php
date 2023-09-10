@@ -9,7 +9,7 @@ namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Background;
@@ -767,7 +767,9 @@ class Twitter_Feed extends Base {
 				'name' => 'name_typography',
 				'label' => __( 'Name Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-author-name',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'condition' => [
 					'show_name' => 'yes'
 				],
@@ -780,7 +782,9 @@ class Twitter_Feed extends Base {
 				'name' => 'user_name_typography',
 				'label' => __( 'User Name Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-username',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'condition' => [
 					'show_user_name' => 'yes'
 				],
@@ -933,7 +937,9 @@ class Twitter_Feed extends Base {
 				'name' => 'description_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-content p',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -975,7 +981,9 @@ class Twitter_Feed extends Base {
 				'name' => 'read_more_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-content p a',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'condition' => [
 					'read_more' => 'yes'
 				],
@@ -1037,7 +1045,9 @@ class Twitter_Feed extends Base {
 				'name' => 'date_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-tweet-date',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'condition' => [
 					'show_date' => 'yes'
 				],

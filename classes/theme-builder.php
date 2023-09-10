@@ -76,37 +76,37 @@ class Theme_Builder {
     public function create_themebuilder_cpt() {
 
         $labels = array(
-            'name' => _x('Theme Builder', 'Post Type General Name', 'textdomain'),
-            'singular_name' => _x('Theme Builder', 'Post Type Singular Name', 'textdomain'),
-            'menu_name' => _x('Theme Builder', 'Admin Menu text', 'textdomain'),
-            'name_admin_bar' => _x('Theme Builder', 'Add New on Toolbar', 'textdomain'),
-            'archives' => __('Theme Builder Archives', 'textdomain'),
-            'attributes' => __('Theme Builder Attributes', 'textdomain'),
-            'parent_item_colon' => __('Parent Theme Builder:', 'textdomain'),
-            'all_items' => __('All Theme Builder', 'textdomain'),
-            'add_new_item' => __('Add New Theme Builder', 'textdomain'),
-            'add_new' => __('Add New', 'textdomain'),
-            'new_item' => __('New Theme Builder', 'textdomain'),
-            'edit_item' => __('Edit Theme Builder', 'textdomain'),
-            'update_item' => __('Update Theme Builder', 'textdomain'),
-            'view_item' => __('View Theme Builder', 'textdomain'),
-            'view_items' => __('View Theme Builder', 'textdomain'),
-            'search_items' => __('Search Theme Builder', 'textdomain'),
-            'not_found' => __('Not found', 'textdomain'),
-            'not_found_in_trash' => __('Not found in Trash', 'textdomain'),
-            'featured_image' => __('Featured Image', 'textdomain'),
-            'set_featured_image' => __('Set featured image', 'textdomain'),
-            'remove_featured_image' => __('Remove featured image', 'textdomain'),
-            'use_featured_image' => __('Use as featured image', 'textdomain'),
-            'insert_into_item' => __('Insert into Theme Builder', 'textdomain'),
-            'uploaded_to_this_item' => __('Uploaded to this Theme Builder', 'textdomain'),
-            'items_list' => __('Theme Builder list', 'textdomain'),
-            'items_list_navigation' => __('Theme Builder list navigation', 'textdomain'),
-            'filter_items_list' => __('Filter Theme Builder list', 'textdomain'),
+            'name' => _x('Theme Builder', 'Post Type General Name', 'happy-elementor-addons'),
+            'singular_name' => _x('Theme Builder', 'Post Type Singular Name', 'happy-elementor-addons'),
+            'menu_name' => _x('Theme Builder', 'Admin Menu text', 'happy-elementor-addons'),
+            'name_admin_bar' => _x('Theme Builder', 'Add New on Toolbar', 'happy-elementor-addons'),
+            'archives' => __('Theme Builder Archives', 'happy-elementor-addons'),
+            'attributes' => __('Theme Builder Attributes', 'happy-elementor-addons'),
+            'parent_item_colon' => __('Parent Theme Builder:', 'happy-elementor-addons'),
+            'all_items' => __('All Theme Builder', 'happy-elementor-addons'),
+            'add_new_item' => __('Add New Theme Builder', 'happy-elementor-addons'),
+            'add_new' => __('Add New', 'happy-elementor-addons'),
+            'new_item' => __('New Theme Builder', 'happy-elementor-addons'),
+            'edit_item' => __('Edit Theme Builder', 'happy-elementor-addons'),
+            'update_item' => __('Update Theme Builder', 'happy-elementor-addons'),
+            'view_item' => __('View Theme Builder', 'happy-elementor-addons'),
+            'view_items' => __('View Theme Builder', 'happy-elementor-addons'),
+            'search_items' => __('Search Theme Builder', 'happy-elementor-addons'),
+            'not_found' => __('Not found', 'happy-elementor-addons'),
+            'not_found_in_trash' => __('Not found in Trash', 'happy-elementor-addons'),
+            'featured_image' => __('Featured Image', 'happy-elementor-addons'),
+            'set_featured_image' => __('Set featured image', 'happy-elementor-addons'),
+            'remove_featured_image' => __('Remove featured image', 'happy-elementor-addons'),
+            'use_featured_image' => __('Use as featured image', 'happy-elementor-addons'),
+            'insert_into_item' => __('Insert into Theme Builder', 'happy-elementor-addons'),
+            'uploaded_to_this_item' => __('Uploaded to this Theme Builder', 'happy-elementor-addons'),
+            'items_list' => __('Theme Builder list', 'happy-elementor-addons'),
+            'items_list_navigation' => __('Theme Builder list navigation', 'happy-elementor-addons'),
+            'filter_items_list' => __('Filter Theme Builder list', 'happy-elementor-addons'),
         );
         $args = array(
-            'label' => __('Theme Builder', 'textdomain'),
-            'description' => __('', 'textdomain'),
+            'label' => __('Theme Builder', 'happy-elementor-addons'),
+            'description' => __('', 'happy-elementor-addons'),
             'labels' => $labels,
             'supports' => array('title', 'elementor'),
             'taxonomies' => array(),
@@ -157,7 +157,7 @@ class Theme_Builder {
                 $meta_query = array(
                     array(
                         'key' => '_ha_library_type',
-                        'value' => $_GET['ha_library_type'],
+                        'value' => sanitize_text_field( $_GET['ha_library_type']),
                         'compare' => '=='
                     )
                 );
@@ -206,8 +206,8 @@ class Theme_Builder {
         $offset = 2;
 
         $posts_columns = array_slice($posts_columns, 0, $offset, true) + [
-            'type' => __('Type', 'elementor-pro'),
-            'condition' => __('Conditions', 'elementor-pro'),
+            'type' => __('Type', 'happy-elementor-addons'),
+            'condition' => __('Conditions', 'happy-elementor-addons'),
         ] + array_slice($posts_columns, $offset, null, true);
 
         return $posts_columns;
@@ -335,7 +335,7 @@ class Theme_Builder {
         if (empty($_GET['post_type'])) {
             $post_type = 'post';
         } else {
-            $post_type = $_GET['post_type'];
+            $post_type = sanitize_text_field($_GET['post_type']);
         }
 
         $post_type_object = get_post_type_object($post_type);
@@ -349,8 +349,8 @@ class Theme_Builder {
         } else {
             $type = sanitize_text_field($_GET['template_type']);
         }
-
-        $post_data = isset($_GET['post_data']) ? $_GET['post_data'] : [];
+        
+        $post_data = isset($_GET['post_data']) ? ha_sanitize_array_recursively($_GET['post_data']) : [];
 
         // $template_display_type = isset($_GET['template_display_type']) ? $_GET['template_display_type'] : '';
         // $template_display_type_singular = isset($_GET['template_display_type_singular']) ? $_GET['template_display_type_singular'] : '';
@@ -400,7 +400,7 @@ class Theme_Builder {
 
     protected function create_template_document($type, $post_data, $meta) {
         if (empty($post_data['post_title'])) {
-            $post_data['post_title'] = esc_html__('Elementor', 'elementor');
+            $post_data['post_title'] = esc_html__('Elementor', 'happy-elementor-addons');
             $update_title = true;
         }
 

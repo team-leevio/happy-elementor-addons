@@ -50,7 +50,7 @@ class Dashboard {
     }
 
     public static function is_page() {
-        return ( isset( $_GET['page'] ) && ( $_GET['page'] === self::PAGE_SLUG || $_GET['page'] === self::LICENSE_PAGE_SLUG ) );
+        return ( isset( $_GET['page'] ) && ( sanitize_text_field($_GET['page']) === self::PAGE_SLUG || sanitize_text_field($_GET['page']) === self::LICENSE_PAGE_SLUG ) );
     }
 
     public static function remove_all_notices() {
@@ -103,7 +103,7 @@ class Dashboard {
             wp_send_json_error();
         }
 
-        $posted_data = ! empty( $_POST['data'] ) ? $_POST['data'] : '';
+        $posted_data = ! empty( $_POST['data'] ) ? ha_sanitize_array_recursively($_POST['data']) : '';
         $data = [];
         parse_str( $posted_data, $data );
 

@@ -12,7 +12,7 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Background;
 use Happy_Addons\Elementor\Controls\Select2;
 
@@ -340,7 +340,9 @@ class News_Ticker extends Base {
 			[
 				'name' => 'sticky_title_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title',
 			]
 		);
@@ -450,7 +452,9 @@ class News_Ticker extends Base {
 			[
 				'name' => 'title_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper  li.ha-news-ticker-item .ha-news-ticker-title',
 			]
 		);

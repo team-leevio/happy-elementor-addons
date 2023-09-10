@@ -15,7 +15,7 @@ $selected = get_query_var( 'ha_library_type' );
 		<div id="elementor-new-template__description__title">
 			<?php
 			printf(
-				esc_html__( '%1$s Happy Addon %2$s Theme Builder Helps You %3$sWork Efficiently%4$s', 'elementor' ),
+				esc_html__( '%1$s Happy Addon %2$s Theme Builder Helps You %3$sWork Efficiently%4$s', 'happy-elementor-addons' ),
 				'<span>',
 				'</span>',
 				'<span>',
@@ -23,7 +23,7 @@ $selected = get_query_var( 'ha_library_type' );
 			);
 			?>
 	    </div>
-		<div id="elementor-new-template__description__content"><?php echo esc_html__( 'Create various bits and pieces (e.g: Header, Footer etc) of your site and then later reuse them when needed.', 'elementor' ); ?></div>
+		<div id="elementor-new-template__description__content"><?php echo esc_html__( 'Create various bits and pieces (e.g: Header, Footer etc) of your site and then later reuse them when needed.', 'happy-elementor-addons' ); ?></div>
 	</div>
 	<form id="elementor-new-template__form" action="<?php esc_url( admin_url( '/edit.php' ) );?>">
 		<input type="hidden" name="post_type" value="ha_library">
@@ -43,12 +43,12 @@ $selected = get_query_var( 'ha_library_type' );
 
 			<div x-show="step == 1">
 				<div>
-					<div id="elementor-new-template__form__title"><?php echo esc_html__( 'Choose Template Type', 'elementor' ); ?></div>
+					<div id="elementor-new-template__form__title"><?php echo esc_html__( 'Choose Template Type', 'happy-elementor-addons' ); ?></div>
 					<div id="elementor-new-template__form__template-type__wrapper" class="elementor-form-field">
-						<label for="elementor-new-template__form__template-type" class="elementor-form-field__label"><?php echo esc_html__( 'Select the type of template you want to work on', 'elementor' ); ?></label>
+						<label for="elementor-new-template__form__template-type" class="elementor-form-field__label"><?php echo esc_html__( 'Select the type of template you want to work on', 'happy-elementor-addons' ); ?></label>
 						<div class="elementor-form-field__select__wrapper">
 							<select id="elementor-new-template__form__template-type" class="elementor-form-field__select" x-model="templateType" name="template_type" required>
-								<option value=""><?php echo esc_html__( 'Select', 'elementor' ); ?>...</option>
+								<option value=""><?php echo esc_html__( 'Select', 'happy-elementor-addons' ); ?>...</option>
 								<?php
 foreach ( $types as $value => $type_title ) {
 	printf( '<option value="%1$s" %2$s>%3$s</option>', esc_attr( $value ), selected( $selected, $value, false ), esc_html( $type_title ) );
@@ -60,20 +60,20 @@ foreach ( $types as $value => $type_title ) {
 
 					<div id="elementor-new-template__form__post-title__wrapper" class="elementor-form-field">
 						<label for="elementor-new-template__form__post-title" class="elementor-form-field__label">
-							<?php echo esc_html__( 'Name your template', 'elementor' ); ?>
+							<?php echo esc_html__( 'Name your template', 'happy-elementor-addons' ); ?>
 						</label>
 						<div class="elementor-form-field__text__wrapper">
-							<input type="text" x-model="postTitle" placeholder="<?php echo esc_attr__( 'Enter template name (optional)', 'elementor' ); ?>" id="elementor-new-template__form__post-title" class="elementor-form-field__text" name="post_data[post_title]">
+							<input type="text" x-model="postTitle" placeholder="<?php echo esc_attr__( 'Enter template name (optional)', 'happy-elementor-addons' ); ?>" id="elementor-new-template__form__post-title" class="elementor-form-field__text" name="post_data[post_title]">
 						</div>
 					</div>
 
-					<button @click.prevent="step = 2" x-bind:disabled="buttonDisabled()" id="elementor-new-template__form__submit" class="elementor-button ha-btn ha-btn-primary"><?php echo esc_html__( 'Next', 'elementor' ); ?></button>
+					<button @click.prevent="step = 2" x-bind:disabled="buttonDisabled()" id="elementor-new-template__form__submit" class="elementor-button ha-btn ha-btn-primary"><?php echo esc_html__( 'Next', 'happy-elementor-addons' ); ?></button>
 				</div>
 			</div>
 
 			<div x-show="step == 2">
 				<div>
-					<div id="elementor-new-template__form__title"><?php echo esc_html__( 'Choose Display Condition', 'elementor' ); ?></div>
+					<div id="elementor-new-template__form__title"><?php echo esc_html__( 'Choose Display Condition', 'happy-elementor-addons' ); ?></div>
 					<div id="elementor-new-template__form__post-title__wrapper" class="elementor-form-field">
 						<div class="elementor-form-field__select__wrapper">
 							<label class="elementor-form-field__label"> </label>
@@ -133,7 +133,7 @@ foreach ( $types as $value => $type_title ) {
 							</div>
 						</div>
 					</div>
-					<button id="elementor-new-template__form__submit" class="elementor-button ha-btn ha-btn-primary"><?php echo esc_html__( 'Create Template', 'elementor' ); ?></button>
+					<button id="elementor-new-template__form__submit" class="elementor-button ha-btn ha-btn-primary"><?php echo esc_html__( 'Create Template', 'happy-elementor-addons' ); ?></button>
 				</div>
 			</div>
 		</div>
@@ -199,11 +199,11 @@ c6.6,1.5,13.2,0.2,18.5-2.7c1.2-0.6,1.4-2.3,0.6-3.4C66.3,86.9,62.8,84.8,58.9,83.9
 						<input type="hidden" name="post_type" value="ha_library">
 						<input type="hidden" name="action" value="ha_library_new_post">
 						<input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce( 'ha_library_new_post_action' ); ?>">
-						<div id="ha-new-template-form__title"><?php echo esc_html__( 'Choose Template Type', 'elementor' ); ?></div>
+						<div id="ha-new-template-form__title"><?php echo esc_html__( 'Choose Template Type', 'happy-elementor-addons' ); ?></div>
 							<div id="ha-new-template-form__template-type__wrapper" class="elementor-form-field">
 								<div class="ha-new-template-form__select__wrapper">
 									<select id="ha-new-template-form__template-type" class="elementor-form-field__select" name="template_type" required>
-										<option value=""><?php echo esc_html__( 'Select', 'elementor' ); ?>...</option>
+										<option value=""><?php echo esc_html__( 'Select', 'happy-elementor-addons' ); ?>...</option>
 										<?php
 											foreach ( $types as $value => $type_title ) {
 												printf( '<option value="%1$s" %2$s>%3$s</option>', esc_attr( $value ), selected( $selected, $value, false ), esc_html( $type_title ) );
@@ -215,11 +215,11 @@ c6.6,1.5,13.2,0.2,18.5-2.7c1.2-0.6,1.4-2.3,0.6-3.4C66.3,86.9,62.8,84.8,58.9,83.9
 
 							<div id="ha-new-template-form__post-title__wrapper" class="elementor-form-field">
 								<div class="ha-new-template-form__text__wrapper">
-									<input type="text" placeholder="<?php echo esc_attr__( 'Enter template name', 'elementor' ); ?>" id="ha-new-template-form__post-title" class="ha-new-template-form__field__text" name="post_data[post_title]" required>
+									<input type="text" placeholder="<?php echo esc_attr__( 'Enter template name', 'happy-elementor-addons' ); ?>" id="ha-new-template-form__post-title" class="ha-new-template-form__field__text" name="post_data[post_title]" required>
 								</div>
 							</div>
 
-							<button id="ha-new-template-form__submit" class="ha-btn ha-btn-primary" disabled><?php echo esc_html__( 'Create Template', 'elementor' ); ?></button>
+							<button id="ha-new-template-form__submit" class="ha-btn ha-btn-primary" disabled><?php echo esc_html__( 'Create Template', 'happy-elementor-addons' ); ?></button>
 						</div>
 					</form>
                 </div>

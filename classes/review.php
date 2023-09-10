@@ -70,14 +70,14 @@ class Review_Us {
     // remove the notice for the user if review already done or if the user does not want to
     public static function ha_void_spare_me() {
         if ( isset( $_GET['spare_me'] ) && ! empty( $_GET['spare_me'] ) ) {
-            $spare_me = $_GET['spare_me'];
+            $spare_me = absint($_GET['spare_me']);
             if ( 1 == $spare_me ) {
                 update_option( 'ha__spare_me', "1" );
             }
         }
 
         if ( isset( $_GET['remind_me'] ) && ! empty( $_GET['remind_me'] ) ) {
-            $remind_me = $_GET['remind_me'];
+            $remind_me = absint($_GET['remind_me']);
             if ( 1 == $remind_me ) {
                 $get_activation_time = strtotime( "now" );
                 update_option( 'ha__remind_me', $get_activation_time );
@@ -86,7 +86,7 @@ class Review_Us {
         }
 
         if ( isset( $_GET['ha_rated'] ) && ! empty( $_GET['ha_rated'] ) ) {
-            $ha_rated = $_GET['ha_rated'];
+            $ha_rated = absint($_GET['ha_rated']);
             if ( 1 == $ha_rated ) {
                 update_option( 'ha__rated', 'yes' );
                 update_option( 'ha__spare_me', "3" );

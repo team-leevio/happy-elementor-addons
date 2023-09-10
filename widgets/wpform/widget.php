@@ -10,7 +10,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -165,7 +165,9 @@ class WPForm extends Base {
                 'name' => 'field_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field input, {{WRAPPER}} .wpforms-field-textarea textarea',
-                'scheme' => Typography::TYPOGRAPHY_3
+                'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
             ]
         );
 
@@ -322,7 +324,9 @@ class WPForm extends Base {
                 'name' => 'label_typography',
                 'label' => __( 'Label Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field-container label.wpforms-field-label',
-                'scheme' => Typography::TYPOGRAPHY_3
+                'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
             ]
         );
 
@@ -332,7 +336,9 @@ class WPForm extends Base {
                 'name' => 'sublabel_typography',
                 'label' => __( 'Sub Label Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field-sublabel',
-                'scheme' => Typography::TYPOGRAPHY_3
+                'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
             ]
         );
 
@@ -342,7 +348,9 @@ class WPForm extends Base {
                 'name' => 'desc_typography',
                 'label' => __( 'Description Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpforms-field-description',
-                'scheme' => Typography::TYPOGRAPHY_3
+                'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
             ]
         );
 
@@ -532,7 +540,9 @@ class WPForm extends Base {
             [
                 'name' => 'submit_typography',
                 'selector' => '{{WRAPPER}} .wpforms-submit',
-                'scheme' => Typography::TYPOGRAPHY_4
+                'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
             ]
         );
 

@@ -12,7 +12,7 @@ use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Happy_Addons\Elementor\Controls\Select2;
 
 defined( 'ABSPATH' ) || die();
@@ -542,7 +542,9 @@ class Post_Tab extends Base {
 			[
 				'name'     => 'tab_item_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme'   => Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 				'selector' => '{{WRAPPER}} .ha-post-tab .ha-post-tab-filter li',
 			]
 		);
@@ -752,7 +754,9 @@ class Post_Tab extends Base {
 			[
 				'name'     => 'title_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme'   => Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 				'selector' => '{{WRAPPER}} .ha-post-tab .ha-post-tab-item-inner .ha-post-tab-title',
 			]
 		);
@@ -811,7 +815,9 @@ class Post_Tab extends Base {
 			[
 				'name'     => 'meta_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme'   => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector' => '{{WRAPPER}} .ha-post-tab .ha-post-tab-meta span',
 			]
 		);
@@ -887,7 +893,9 @@ class Post_Tab extends Base {
 			[
 				'name'      => 'excerpt_typography',
 				'label'     => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme'    => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector'  => '{{WRAPPER}} .ha-post-tab .ha-post-tab-excerpt p',
 				'condition' => [
 					'excerpt' => 'yes',

@@ -4,11 +4,11 @@
  * Plugin Name: Happy Elementor Addons
  * Plugin URI: https://happyaddons.com/
  * Description: <a href="https://happyaddons.com/">Happy Addons for Elementor</a> Is the Best Elementor Addons Comes With 44+ Free Elementor Widgets Including Table Builder, Testimonial, Event Calendar,Slider,News Ticker, Image Grid, etc & Features Like Elementor Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Elementor Icons, 450+ Template Packs & More.
- * Version: 3.8.6
+ * Version: 3.8.7
  * Author: weDevs
  * Author URI: https://happyaddons.com/
- * Elementor tested up to: 3.15.1
- * Elementor Pro tested up to: 3.15.0
+ * Elementor tested up to: 3.15.3
+ * Elementor Pro tested up to: 3.15.1
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: happy-elementor-addons
@@ -41,7 +41,7 @@ defined('ABSPATH') || die();
 if ( defined( 'HAPPY_ADDONS_DEV' ) && true == HAPPY_ADDONS_DEV ) {
 	define('HAPPY_ADDONS_VERSION', time() );
 } else {
-	define('HAPPY_ADDONS_VERSION', '3.8.6');
+	define('HAPPY_ADDONS_VERSION', '3.8.7');
 }
 define('HAPPY_ADDONS__FILE__', __FILE__);
 define('HAPPY_ADDONS_DIR_PATH', plugin_dir_path(HAPPY_ADDONS__FILE__));
@@ -51,7 +51,7 @@ define('HAPPY_ADDONS_REDIRECTION_FLAG', 'happyaddons_do_activation_direct');
 define('HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG', 'happyaddons_do_wizard_direct');
 
 define('HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION', '3.5.0');
-define('HAPPY_ADDONS_MINIMUM_PHP_VERSION', '5.4');
+define('HAPPY_ADDONS_MINIMUM_PHP_VERSION', '5.6');
 
 /**
  * The journey of a thousand miles starts here.

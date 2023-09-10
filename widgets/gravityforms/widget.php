@@ -10,7 +10,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -214,7 +214,9 @@ class GravityForms extends Base {
 				'name' => 'field_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .gfield .ginput_container > input, {{WRAPPER}} .gform_body .gfield textarea, {{WRAPPER}} .gfield .ginput_container.ginput_complex input',
-				'scheme' => Typography::TYPOGRAPHY_3
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -401,7 +403,9 @@ class GravityForms extends Base {
 				'name' => 'label_typography',
 				'label' => __( 'Label Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .gform_body .gfield .gfield_label, {{WRAPPER}} table.gfield_list thead th',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -411,7 +415,9 @@ class GravityForms extends Base {
 				'name' => 'sub_label_typography',
 				'label' => __( 'Sub Label Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .gform_body .gfield .gfield_description',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -562,7 +568,9 @@ class GravityForms extends Base {
 			[
 				'name' => 'submit_typography',
 				'selector' => '{{WRAPPER}} .gform_wrapper .gform_button',
-				'scheme' => Typography::TYPOGRAPHY_4
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
 			]
 		);
 
@@ -702,7 +710,9 @@ class GravityForms extends Base {
 				'name' => 'section_break_title_typography',
 				'label' => __( 'Title Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .gsection .gsection_title',
-				'scheme' => Typography::TYPOGRAPHY_2
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 			]
 		);
 
@@ -712,7 +722,9 @@ class GravityForms extends Base {
 				'name' => 'section_break_description_typography',
 				'label' => __( 'Description Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .gsection .gsection_description',
-				'scheme' => Typography::TYPOGRAPHY_4
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
 			]
 		);
 
@@ -827,7 +839,9 @@ class GravityForms extends Base {
 				'name' => 'page_break_button_typography',
 				'label' => __( 'Button Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .gform_next_button.button, {{WRAPPER}} .gform_previous_button.button',
-				'scheme' => Typography::TYPOGRAPHY_4
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
 			]
 		);
 
