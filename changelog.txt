@@ -5,6 +5,7 @@
 - Fix: Security improvement for Review widget.
 - Fix: Security improvement for Happy Clone.
 - Fix: Security improvement for Theme Builder.
+- Tweak: Worning notice for News Ticker widget.
 
 
 
