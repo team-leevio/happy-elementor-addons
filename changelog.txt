@@ -1,4 +1,5 @@
 # v*.*.* - Day Month Year =
+- Fix: Appsero SDK update to 1.2.4
 - Fix: Security improvement for Twitter Feed widget.
 - Fix: Security improvement for Post Tab widget.
 - Fix: Security improvement for Mailchimp widget.
