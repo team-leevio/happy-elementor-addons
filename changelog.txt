@@ -8,6 +8,9 @@
 - Fix: Security improvement for Theme Builder.
 - Tweak: Worning notice for News Ticker widget.
 
+= 3.8.9 - 13 September 2023 =
+
+- Update: Made Compatible with Elementor Free 3.16.x & Elementor Pro 3.16.x
 
 = 3.8.8 - 13 September 2023 =
 
