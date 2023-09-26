@@ -165,6 +165,7 @@
 			}, 200),
 
 			getSlickSettings: function() {
+				var $rtl = ( $('html[dir="rtl"]').length == 1 || $('body').hasClass('rtl') );
 				var settings = {
 					infinite: !! this.getElementSettings('loop'),
 					autoplay: !! this.getElementSettings('autoplay'),
@@ -173,6 +174,7 @@
 					centerMode: !! this.getElementSettings('center'),
 					vertical: !! this.getElementSettings('vertical'),
 					slidesToScroll: 1,
+					rtl: $rtl,
 				};
 
 				switch (this.getElementSettings('navigation')) {
@@ -1199,7 +1201,7 @@
 		//nav menu
 		let NavigationMenu = function __init($scope){
 			var navMenu = $scope.find('.ha-nav-menu');
-			
+
 			//for tablet only
 			if( jQuery(window).width() < 1025 && jQuery(window).width() > 767 ) {
 				let indicator = navMenu.find('.ha-submenu-indicator-wrap');
@@ -1208,7 +1210,7 @@
 					let $parentEl = $(this).parent('li.menu-item-has-children');
 					if( $parentEl ) {
 						$parentEl.children('ul.sub-menu').slideToggle();
-					} 
+					}
 				});
 			}
 

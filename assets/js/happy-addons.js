@@ -142,6 +142,7 @@
         this.run();
       }, 200),
       getSlickSettings: function getSlickSettings() {
+        var $rtl = $('html[dir="rtl"]').length == 1 || $('body').hasClass('rtl');
         var settings = {
           infinite: !!this.getElementSettings('loop'),
           autoplay: !!this.getElementSettings('autoplay'),
@@ -149,7 +150,8 @@
           speed: this.getElementSettings('animation_speed'),
           centerMode: !!this.getElementSettings('center'),
           vertical: !!this.getElementSettings('vertical'),
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          rtl: $rtl
         };
         switch (this.getElementSettings('navigation')) {
           case 'arrow':
