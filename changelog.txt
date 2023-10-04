@@ -6,6 +6,7 @@
 - Fix: Security improvement for Review widget.
 - Fix: Security improvement for Happy Clone.
 - Fix: Security improvement for Theme Builder.
+- Fix: Conflict seems to be with Events Tickets Plus.
 - Tweak: Worning notice for News Ticker widget.
 
 = 3.8.9 - 13 September 2023 =
