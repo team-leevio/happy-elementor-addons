@@ -4,9 +4,13 @@
  */
 
 defined( 'ABSPATH' ) || die();
+$attr = '';
+if ( ! ha_has_pro() ) {
+	$attr = 'style="background-image: url('.HAPPY_ADDONS_ASSETS.'imgs/admin/demo-pr.png)"';
+}
 ?>
 <div class="ha-dashboard-panel">
-    <div class="ha-home-banner">
+    <div class="ha-home-banner" <?php echo $attr; ?>>
         <div class="ha-home-banner__content">
             <img class="ha-home-banner__logo" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/halogo.svg" alt="">
             <span class="ha-home-banner__divider"></span>
