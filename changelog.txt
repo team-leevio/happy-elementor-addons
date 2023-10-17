@@ -1,3 +1,7 @@
+= 3.9.0 - 18 October 2023 =
+
+- New: Age Gate widget.
+
 = 3.8.9 - 13 September 2023 =
 
 - Update: Made Compatible with Elementor Free 3.16.x & Elementor Pro 3.16.x

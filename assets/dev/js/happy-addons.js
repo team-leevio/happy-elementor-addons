@@ -1199,7 +1199,7 @@
 		//nav menu
 		let NavigationMenu = function __init($scope){
 			var navMenu = $scope.find('.ha-nav-menu');
-			
+
 			//for tablet only
 			if( jQuery(window).width() < 1025 && jQuery(window).width() > 767 ) {
 				let indicator = navMenu.find('.ha-submenu-indicator-wrap');
@@ -1208,7 +1208,7 @@
 					let $parentEl = $(this).parent('li.menu-item-has-children');
 					if( $parentEl ) {
 						$parentEl.children('ul.sub-menu').slideToggle();
-					} 
+					}
 				});
 			}
 
@@ -1269,6 +1269,99 @@
 		};
 
 		elementorFrontend.hooks.addAction("frontend/element_ready/ha-navigation-menu.default", NavigationMenu);
+
+		
+		var AgeGate = function($scope, $) {
+
+			if(elementorFrontend.isEditMode()){
+				localStorage.removeItem("ha-age-gate-expire-time");
+			}else if(!elementorFrontend.isEditMode()){
+				var container = $scope.find('.ha-age-gate-wrapper'),
+				cookies_time  = container.data('age_gate_cookies_time'),
+				exd = localStorage.getItem("ha-age-gate-expire-time");
+				//container.closest("body").find("header").css("display","none");
+				container.closest("body").css("overflow","hidden");
+				var cdate = new Date();
+				var endDate = new Date();
+				endDate.setDate(cdate.getDate()+cookies_time);
+
+
+				if(exd!='' && exd!=undefined && (new Date(cdate) <= new Date(exd))){
+					$('.ha-age-gate-wrapper').hide();
+					container.closest("body").css("overflow","");
+				}else if(exd!='' && exd!=undefined && (new Date(cdate) > new Date(exd))){
+					localStorage.removeItem("ha-age-gate-expire-time");
+					$('.ha-age-gate-wrapper').show();
+				}else{
+					$('.ha-age-gate-wrapper').show();
+				}
+
+				/*confirm-age*/
+				if( $scope.find('.ha-age-gate-wrapper.ha-age-gate-confirm-age').length ){
+
+					$(".ha-age-gate-confirm-age-btn").on("click", function(){
+						localStorage.setItem("ha-age-gate-expire-time", endDate );
+						$(this).closest(".ha-age-gate-wrapper").hide();
+						//$(this).closest("body").find("header").css("display","block");
+						$(this).closest("body").css("overflow","");
+					});
+
+					/* $(".ha-age-gate-checkbox-input").on("change", function(){
+						if($(this).closest('.ha-age-gate-checkbox').find(".ha-age-gate-checkbox-input").is(":checked")) {
+							$('.ha-age-gate-btn-wrap').find(".ha-age-gate-confirm-age-btn").attr("disabled", false);
+							// $('.ha-age-gate-btn-wrap').find(".ha-age-gate-confirm-age-btn").css("opacity", "1");
+							$(".ha-age-gate-confirm-age-btn").on("click", function(){
+								localStorage.setItem("ha-age-gate-expire-time", endDate );
+								$(this).closest(".ha-age-gate-wrapper").hide();
+								//$(this).closest("body").find("header").css("display","block");
+								$(this).closest("body").css("overflow","");
+							});
+						}else{
+							$('.ha-age-gate-btn-wrap').find(".ha-age-gate-confirm-age-btn").attr("disabled", true);
+							// $('.ha-age-gate-btn-wrap').find(".ha-age-gate-confirm-age-btn").css("opacity", "0.5");
+						}
+					}); */
+				}
+				/*method 1*/
+
+				/*confirm-dob*/
+				if($scope.find('.ha-age-gate-wrapper.ha-age-gate-confirm-dob').length){
+
+					$(".ha-age-gate-confirm-dob-btn").on("click", function(){
+						var birthYear = new Date( Date.parse($(this).closest('.ha-age-gate-form-body').find('.ha-age-gate-date-input').val()) ),
+						agebirth = birthYear.getFullYear(),
+						currentYear = cdate.getFullYear(),
+						userage = currentYear - agebirth,
+						agelimit = $(this).closest('.ha-age-gate-wrapper').data("userbirth");
+						if(userage < agelimit){
+							$(this).closest('.ha-age-gate-boxes').find('.ha-age-gate-warning-msg').show();
+						}else{
+							localStorage.setItem("ha-age-gate-expire-time", endDate );
+							$(this).closest('.ha-age-gate-wrapper').hide();
+							//$(this).closest("body").find("header").css("display","block");
+							$(this).closest("body").css("overflow","");
+					   }
+					});
+				}
+				/*confirm-dob*/
+
+				/*confirm-by-boolean*/
+				if($scope.find('.ha-age-gate-wrapper.ha-age-gate-confirm-by-boolean').length){
+					$(".ha-age-gate-wrapper .ha-age-gate-confirm-yes-btn").on("click", function(){
+						localStorage.setItem("ha-age-gate-expire-time", endDate );
+						$(this).closest('.ha-age-gate-wrapper').hide();
+						//$(this).closest("body").find("header").css("display","block");
+						$(this).closest("body").css("overflow","");
+					});
+					$(".ha-age-gate-wrapper .ha-age-gate-confirm-no-btn").on("click", function(){
+						$(this).closest('.ha-age-gate-boxes').find('.ha-age-gate-warning-msg').show();
+					});
+				}
+				/*confirm-by-boolean*/
+			}
+		}
+
+		elementorFrontend.hooks.addAction("frontend/element_ready/ha-age-gate.default", AgeGate);
 
 	});
 
