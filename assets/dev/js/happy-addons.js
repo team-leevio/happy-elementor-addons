@@ -1270,7 +1270,7 @@
 
 		elementorFrontend.hooks.addAction("frontend/element_ready/ha-navigation-menu.default", NavigationMenu);
 
-		
+
 		var AgeGate = function($scope, $) {
 
 			if(elementorFrontend.isEditMode()){
@@ -1305,24 +1305,7 @@
 						//$(this).closest("body").find("header").css("display","block");
 						$(this).closest("body").css("overflow","");
 					});
-
-					/* $(".ha-age-gate-checkbox-input").on("change", function(){
-						if($(this).closest('.ha-age-gate-checkbox').find(".ha-age-gate-checkbox-input").is(":checked")) {
-							$('.ha-age-gate-btn-wrap').find(".ha-age-gate-confirm-age-btn").attr("disabled", false);
-							// $('.ha-age-gate-btn-wrap').find(".ha-age-gate-confirm-age-btn").css("opacity", "1");
-							$(".ha-age-gate-confirm-age-btn").on("click", function(){
-								localStorage.setItem("ha-age-gate-expire-time", endDate );
-								$(this).closest(".ha-age-gate-wrapper").hide();
-								//$(this).closest("body").find("header").css("display","block");
-								$(this).closest("body").css("overflow","");
-							});
-						}else{
-							$('.ha-age-gate-btn-wrap').find(".ha-age-gate-confirm-age-btn").attr("disabled", true);
-							// $('.ha-age-gate-btn-wrap').find(".ha-age-gate-confirm-age-btn").css("opacity", "0.5");
-						}
-					}); */
 				}
-				/*method 1*/
 
 				/*confirm-dob*/
 				if($scope.find('.ha-age-gate-wrapper.ha-age-gate-confirm-dob').length){
@@ -1343,7 +1326,6 @@
 					   }
 					});
 				}
-				/*confirm-dob*/
 
 				/*confirm-by-boolean*/
 				if($scope.find('.ha-age-gate-wrapper.ha-age-gate-confirm-by-boolean').length){
@@ -1357,7 +1339,6 @@
 						$(this).closest('.ha-age-gate-boxes').find('.ha-age-gate-warning-msg').show();
 					});
 				}
-				/*confirm-by-boolean*/
 			}
 		}
 

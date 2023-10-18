@@ -6,17 +6,12 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Group_Control_Css_Filter;
-use Elementor\Utils;
-use Elementor\Control_Media;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Background;
 use Elementor\Icons_Manager;
-use Happy_Addons\Elementor\Traits\Button_Renderer;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 defined( 'ABSPATH' ) || die();
@@ -63,7 +58,6 @@ class Age_Gate extends Base {
 		$this->__header_content_controls();
 		$this->__form_body_content_controls();
 		$this->__footer_content_controls();
-		// $this->__content_content_controls();
 		$this->__other_content_controls();
 	}
 
@@ -85,7 +79,6 @@ class Age_Gate extends Base {
 				'default' => 'yes',
 				'label_on' => esc_html__( 'Yes', 'happy-elementor-addons' ),
 				'label_off' => esc_html__( 'No', 'happy-elementor-addons' ),
-				//'description' => esc_html__( 'Note : Keep this disabled, If you do not want that to load on editor page. Either It will highjack your whole page.', 'happy-elementor-addons' ),
 				'separator' => 'before',
 			]
 		);
@@ -125,7 +118,6 @@ class Age_Gate extends Base {
 				'type' => Controls_Manager::MEDIA,
 				'dynamic' => ['active'   => true,],
 				'default' => [
-					// 'url' => \Elementor\Utils::get_placeholder_image_src(),
 					'url' => HAPPY_ADDONS_ASSETS . 'imgs/happy-logo.png',
 				],
 				'separator' => 'before',
@@ -150,8 +142,6 @@ class Age_Gate extends Base {
             	'label' => esc_html__( 'Description', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::TEXTAREA,
 				'default' => esc_html__( 'You must be 18 years of age to enter this website.', 'happy-elementor-addons' ),
-				//By entering this site you are agreeing to the Terms of use and Privacy Policy.
-				//You must be 18 years of age to use this website.
 				'placeholder' => esc_html__( 'Enter Description', 'happy-elementor-addons' ),
 				'dynamic' => ['active'   => true,],
             ]
@@ -198,22 +188,6 @@ class Age_Gate extends Base {
 			]
 		);
 
-        // $this->add_control(
-		// 	'confirm_text',
-		// 	[
-		// 		'label' => esc_html__( 'Confirm Text', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::TEXTAREA,
-		// 		'dynamic' => ['active'   => true,],
-		// 		'default' => esc_html__( 'I confirm that I am 18 years old or over', 'happy-elementor-addons' ),
-		// 		'placeholder' => esc_html__( 'Enter Text', 'happy-elementor-addons' ),
-		// 		'separator' => 'before',
-		// 		'condition' => [
-		// 			'age_gate_style' => 'confirm-age',
-		// 		],
-
-		// 	]
-		// );
-
 		$this->add_control(
 			'dob_limit',
 			[
@@ -258,7 +232,6 @@ class Age_Gate extends Base {
 				'render_type' => 'ui',
 				'selectors' => [
 					'{{WRAPPER}} .ha-age-gate-wrapper .ha-age-gate-form-body' => 'width: {{SIZE}}{{UNIT}};',
-					// '{{WRAPPER}} .ha-age-gate-wrapper .ha-age-gate-form-body' => 'max-width: {{SIZE}}%;',
 				],
 				'condition' => [
 					'age_gate_style' => ['confirm-dob','confirm-by-boolean'],
@@ -308,11 +281,6 @@ class Age_Gate extends Base {
                     'before' => esc_html__('Before', 'happy-elementor-addons'),
                      'after' => esc_html__('After', 'happy-elementor-addons'),
                 ],
-                // 'default' => 'ha-age-gate-icon_prefix',
-                // 'options' => [
-                //     'ha-age-gate-icon_prefix' => esc_html__('Prefix', 'happy-elementor-addons'),
-                //      'ha-age-gate-icon_postfix' => esc_html__('Postfix', 'happy-elementor-addons'),
-                // ],
                 'condition' => [
                 	'button_icon[value]!' => '',
 				],
@@ -351,10 +319,6 @@ class Age_Gate extends Base {
 				'label' => esc_html__( 'Icon', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::ICONS,
 				'skin' => 'inline',
-				// 'default' => [
-				// 	'value' => 'fas fa-book-reader',
-				// 	'library' => 'solid',
-				// ],
 				'condition' => [
 					'age_gate_style' => 'confirm-by-boolean',
 				],
@@ -403,7 +367,6 @@ class Age_Gate extends Base {
 					'{{WRAPPER}} .ha-age-gate-wrapper.ha-age-gate-confirm-age .ha-age-gate-form-body' => 'align-items: {{VALUE}};justify-content: {{VALUE}};',
 					'{{WRAPPER}} .ha-age-gate-wrapper.ha-age-gate-confirm-dob .ha-age-gate-boxes' => 'align-items: {{VALUE}};justify-content: {{VALUE}};',
 					'{{WRAPPER}} .ha-age-gate-wrapper.ha-age-gate-confirm-by-boolean .ha-age-gate-boxes' => 'align-items: {{VALUE}};justify-content: {{VALUE}};',
-					// '{{WRAPPER}} .ha-age-gate-wrapper .ha-age-gate-boxes .ha-age-gate-form-body *:not(button)' => 'align-items: {{VALUE}};justify-content: {{VALUE}};',
 				],
 			]
 		);
@@ -478,62 +441,6 @@ class Age_Gate extends Base {
 			]
 		);
 
-        // $this->add_responsive_control(
-		// 	'alignment',
-		// 	[
-		// 		'label' => esc_html__( 'Alignment', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::CHOOSE,
-		// 		'default' => 'center',
-		// 		'options' => [
-		// 			'flex-start' => [
-		// 				'title' => esc_html__( 'Left', 'happy-elementor-addons' ),
-		// 				'icon' => 'eicon-text-align-left',
-		// 			],
-		// 			'center' => [
-		// 				'title' => esc_html__( 'Center', 'happy-elementor-addons' ),
-		// 				'icon' => 'eicon-text-align-center',
-		// 			],
-		// 			'flex-end' => [
-		// 				'title' => esc_html__( 'Right', 'happy-elementor-addons' ),
-		// 				'icon' => 'eicon-text-align-right',
-		// 			],
-		// 		],
-		// 		'devices' => [ 'desktop', 'tablet', 'mobile' ],
-		// 		'separator' => 'before',
-		// 		'selectors' => [
-		// 			'{{WRAPPER}} .ha-age-gate-wrapper .ha-age-gate-inner-wrapper .ha-age-gate-boxes,
-		// 			{{WRAPPER}} .ha-age-gate-wrapper .ha-age-gate-inner-wrapper .ha-age-gate-boxes *:not(.ha-age-gate-btn-ex)' => 'align-items: {{VALUE}};justify-content: {{VALUE}};',
-		// 		],
-		// 	]
-		// );
-
-		// $this->add_control(
-		// 	'age_gate_align_txtera',
-		// 	[
-		// 		'label'   => esc_html__( 'Textarea Alignment', 'happy-elementor-addons' ),
-		// 		'type'    => Controls_Manager::CHOOSE,
-		// 		'default' => 'center',
-		// 		'options' => [
-		// 			'left'    => [
-		// 				'title' => esc_html__( 'Left', 'happy-elementor-addons' ),
-		// 				'icon'  => 'fa fa-align-left',
-		// 			],
-		// 			'center' => [
-		// 				'title' => esc_html__( 'Center', 'happy-elementor-addons' ),
-		// 				'icon'  => 'fa fa-align-center',
-		// 			],
-		// 			'right' => [
-		// 				'title' => esc_html__( 'Right', 'happy-elementor-addons' ),
-		// 				'icon'  => 'fa fa-align-right',
-		// 			],
-		// 		],
-		// 		'selectors'  => [
-		// 			'{{WRAPPER}} .ha-age-gate-wrapper .ha-age-gate-inner-wrapper .ha-age-gate-boxes,
-		// 			{{WRAPPER}} .ha-age-gate-wrapper .ha-age-gate-inner-wrapper .ha-age-gate-boxes *:not(.ha-age-gate-btn-ex)' => 'text-align: {{VALUE}};',
-		// 		],
-		// 	]
-		// );
-
 		$this->end_controls_section();
 	}
 
@@ -547,27 +454,12 @@ class Age_Gate extends Base {
 			]
 		);
 
-	    // $this->add_control(
-        //     'age_side_image_show',
-        //     [
-		// 		'label' => esc_html__( 'Right Side Image', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::SWITCHER,
-		// 		'label_on' => esc_html__( 'Enable', 'happy-elementor-addons' ),
-		// 		'label_off' => esc_html__( 'Disable', 'happy-elementor-addons' ),
-		// 		'default' => 'no',
-		// 		'separator' => 'before',
-		// 	]
-        // );
-
 		$this->add_control(
 			'side_img',
 			[
 				'label' => esc_html__( 'Side Image', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::MEDIA,
 				'dynamic' => ['active'   => true,],
-				// 'default' => [
-				// 	'url' => \Elementor\Utils::get_placeholder_image_src(),
-				// ],
 			]
 		);
 
@@ -628,7 +520,7 @@ class Age_Gate extends Base {
 			'age_gate_cookies_time',
 			[
 				'label' => esc_html__( 'Cookies Expiry Time', 'happy-elementor-addons' ),
-				// 'description' => esc_html__( 'Set The Number Of Days Cookies To Be Saved.', 'happy-elementor-addons' ),
+				'description' => '<p style="color: #f73333;">' .esc_html__( 'This is required. Otherwise the age gate will spawn on every refresh.', 'happy-elementor-addons' ) . '</p>',
 				'type' => Controls_Manager::NUMBER,
 				'dynamic' => [
 					'active' => true,
@@ -639,18 +531,6 @@ class Age_Gate extends Base {
 			]
 		);
 
-		// $this->add_control(
-		// 	'age_gate_cooki_note',
-		// 	[
-		// 		'type' => \Elementor\Controls_Manager::RAW_HTML,
-		// 		'raw' => esc_html__( 'Note : Set The Number Of Days Cookies To Be Saved.', 'happy-elementor-addons' ),
-		// 		'content_classes' => 'tp-widget-description',
-		// 		'condition' => [
-		// 			'age_cookies' => 'yes',
-		// 		],
-		// 	]
-		// );
-
 		$this->end_controls_section();
 	}
 
@@ -660,15 +540,10 @@ class Age_Gate extends Base {
 	protected function register_style_controls() {
 
 		$this->__box_style_controls();
-
 		$this->__header_style_controls();
-
-		// $this->__confirm_text_style_controls();
 		$this->__date_input_style_controls();
-
 		$this->__button_style_controls();
 		$this->__button_two_style_controls();
-
 		$this->__footer_style_controls();
 		$this->__warning_msg_style_controls();
 	}
@@ -730,10 +605,6 @@ class Age_Gate extends Base {
 						'step' => 1,
 					],
 				],
-				// 'default' => [
-				// 	'unit' => 'px',
-				// 	'size' => 400,
-				// ],
 				'selectors' => [
 					'{{WRAPPER}} .ha-age-gate-inner-wrapper' => 'min-height: {{SIZE}}{{UNIT}};',
 				],
@@ -842,17 +713,6 @@ class Age_Gate extends Base {
 
 	protected function __image_style_controls() {
 
-		// $this->start_controls_section(
-        //     'image_style_section',
-        //     [
-        //         'label' => esc_html__('Image', 'happy-elementor-addons'),
-        //         'tab' => Controls_Manager::TAB_STYLE,
-		// 		'condition' => [
-		// 			'header_img[url]!' => '',
-		// 		],
-        //     ]
-        // );
-
 		$this->add_control(
 			'image_heading',
 			[
@@ -905,21 +765,9 @@ class Age_Gate extends Base {
 			]
 		);
 
-        // $this->end_controls_section();
 	}
 
 	protected function __title_style_controls() {
-
-		// $this->start_controls_section(
-        //     'age_title_styling',
-        //     [
-        //         'label' => esc_html__('Title', 'happy-elementor-addons'),
-        //         'tab' => Controls_Manager::TAB_STYLE,
-        //          'condition' => [
-		// 			'age_gate_title_input!' => '',
-		// 		],
-        //     ]
-        // );
 
 		$this->add_control(
 			'title_heading',
@@ -978,22 +826,9 @@ class Age_Gate extends Base {
 				'separator' => 'after',
 			]
 		);
-
-        // $this->end_controls_section();
 	}
 
 	protected function __desc_style_controls() {
-
-		// $this->start_controls_section(
-        //     'age_desc_styling',
-        //     [
-        //         'label' => esc_html__('Description', 'happy-elementor-addons'),
-        //         'tab' => Controls_Manager::TAB_STYLE,
-        //         //  'condition' => [
-		// 		// 	'age_gate_description' => 'yes',
-		// 		// ],
-        //     ]
-        // );
 
 		$this->add_control(
 			'desc_heading',
@@ -1051,29 +886,7 @@ class Age_Gate extends Base {
 				'separator' => 'after',
 			]
 		);
-
-        // $this->end_controls_section();
 	}
-
-	/* protected function __form_body_style_controls() {
-
-		$this->start_controls_section(
-            'form_body_style_section',
-            [
-                'label' => esc_html__('Form Body', 'happy-elementor-addons'),
-                'tab' => Controls_Manager::TAB_STYLE,
-                //  'condition' => [
-				// 	'age_gate_style' => 'confirm-age',
-				// ],
-            ]
-        );
-
-        // $this->__checkbox_icon_text_style_controls();
-
-		// $this->__date_input_style_controls();
-
-        $this->end_controls_section();
-	} */
 
 	protected function __confirm_text_style_controls() {
 
@@ -1082,9 +895,6 @@ class Age_Gate extends Base {
             [
                 'label' => esc_html__('Confirm Text', 'happy-elementor-addons'),
                 'tab' => Controls_Manager::TAB_STYLE,
-                //  'condition' => [
-				// 	'age_gate_style' => 'confirm-age',
-				// ],
             ]
         );
 
@@ -1121,96 +931,6 @@ class Age_Gate extends Base {
 			]
 		);
 
-		// $this->add_responsive_control(
-		// 	'confirm_text_padding',
-		// 	[
-		// 		'label' => esc_html__( 'Padding', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::DIMENSIONS,
-		// 		'size_units' => [ 'px', 'em'],
-		// 		'selectors' => [
-		// 			'{{WRAPPER}} .ha-age-gate-boxes .ha-age-gate-form-body .ha-age-gate-checkbox' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-		// 		],
-		// 	]
-		// );
-
-		// $this->add_responsive_control(
-		// 	'confirm_text_margin',
-		// 	[
-		// 		'label' => esc_html__( 'Margin', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::DIMENSIONS,
-		// 		'size_units' => [ 'px', 'em'],
-		// 		'selectors' => [
-		// 			'{{WRAPPER}} .ha-age-gate-boxes .ha-age-gate-form-body .ha-age-gate-checkbox' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-		// 		],
-		// 		'separator' => 'after',
-		// 	]
-		// );
-
-		// $this->add_control(
-		// 	'check_marker_heading',
-		// 	[
-		// 		'label' => esc_html__( 'Check Marker', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::HEADING,
-		// 		'separator' => 'before',
-		// 		'condition' => [
-		// 			'age_gate_style' => 'confirm-age',
-		// 		],
-		// 	]
-		// );
-
-		// $this->add_responsive_control(
-		// 	'check_marker_width',
-		// 	[
-		// 		'label' => esc_html__( 'Size', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::SLIDER,
-		// 		'separator' => 'before',
-		// 		'range' => [
-		// 			'%' => [
-		// 				'min' => 1,
-		// 				'max' => 50,
-		// 				'step' => 1,
-		// 			],
-		// 		],
-		// 		'render_type' => 'ui',
-		// 		'selectors' => [
-		// 			'{{WRAPPER}} .ha-age-gate-wrapper.ha-age-gate-confirm-age .ha-age-gate-checkmark' => 'width: {{SIZE}}px; height: {{SIZE}}px;',
-		// 			// '{{WRAPPER}} .ha-age-gate-wrapper .ha-age-gate-form-body' => 'max-width: {{SIZE}}%;',
-		// 		],
-		// 		'condition' => [
-		// 			'age_gate_style' => 'confirm-age',
-		// 		],
-		// 	]
-		// );
-
-		// $this->add_control(
-        //     'check_marker_bg_color',
-        //     [
-        //         'label' => esc_html__('Background', 'happy-elementor-addons'),
-        //         'type' => Controls_Manager::COLOR,
-        //         'selectors' => [
-        //             '{{WRAPPER}} .ha-age-gate-wrapper.ha-age-gate-confirm-age .ha-age-gate-checkbox .ha-age-gate-checkmark' => 'background-color:{{VALUE}};',
-        //         ],
-		// 		'condition' => [
-		// 			'age_gate_style' => 'confirm-age',
-		// 		],
-        //     ]
-        // );
-
-		// $this->add_control(
-        //     'check_marker_checked_bg_color',
-        //     [
-        //         'label' => esc_html__('Checked Background', 'happy-elementor-addons'),
-        //         'type' => Controls_Manager::COLOR,
-        //         'selectors' => [
-        //             '{{WRAPPER}} .ha-age-gate-wrapper.ha-age-gate-confirm-age .ha-age-gate-checkbox input:checked~.ha-age-gate-checkmark' => 'background-color:{{VALUE}};',
-        //             '{{WRAPPER}} .ha-age-gate-wrapper.ha-age-gate-confirm-age .ha-age-gate-checkbox:hover input~.ha-age-gate-checkmark' => 'background-color:{{VALUE}};',
-        //         ],
-		// 		'condition' => [
-		// 			'age_gate_style' => 'confirm-age',
-		// 		],
-        //     ]
-        // );
-
         $this->end_controls_section();
 	}
 
@@ -1226,18 +946,6 @@ class Age_Gate extends Base {
 				],
             ]
         );
-
-		// $this->add_control(
-		// 	'date_input_heading',
-		// 	[
-		// 		'label' => esc_html__( 'Date Input', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::HEADING,
-		// 		'separator' => 'before',
-		// 		'condition' => [
-		// 			'age_gate_style' => 'confirm-dob',
-		// 		],
-		// 	]
-		// );
 
 		$this->add_responsive_control(
 			'date_input_padding',
@@ -1552,10 +1260,6 @@ class Age_Gate extends Base {
 
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
-
-
-
-
 
 		$this->add_control(
 			'btn_one_icon_heading',
@@ -2125,30 +1829,6 @@ class Age_Gate extends Base {
             ]
         );
 
-       /* $this->add_responsive_control(
-            'footer_text_size',
-            [
-                'type' => Controls_Manager::SLIDER,
-				'label' => esc_html__('Text Size', 'happy-elementor-addons'),
-				'size_units' => [ 'px' ],
-				'range' => [
-					'px' => [
-						'min' => 1,
-						'max' => 500,
-						'step' => 1,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 25,
-				],
-				'render_type' => 'ui',
-				'selectors' => [
-					'{{WRAPPER}} .ha-age-gate-boxes .ha-age-gate-footer-text' => 'font-size: {{SIZE}}{{UNIT}}',
-				],
-            ]
-        ); */
-
 		$this->add_control(
 			'footer_text_color',
 			[
@@ -2309,7 +1989,6 @@ class Age_Gate extends Base {
 		$settings = $this->get_settings_for_display();
 
 		$right_img_class='';
-		$age_cookies_days = !empty($settings['age_gate_cookies_time']) ? $settings['age_gate_cookies_time'] : '10';
 
 		$this->add_render_attribute(
 			'wrapper',
@@ -2320,11 +1999,7 @@ class Age_Gate extends Base {
 			]
 		);
 
-		// if( !empty($settings['age_sec_bg_image']['url']) ){
-		// 	$this->add_render_attribute( 'wrapper', 'style', 'background-image:url(' . $settings['age_sec_bg_image']['url'] . ');background-size:cover;background-attachment:inherit;background-position:center center;');
-		// }
-
-		if( $settings['age_gate_cookies_time'] != '0' ){
+		if( $settings['age_gate_cookies_time'] != '0' ) {
 			$this->add_render_attribute( 'wrapper', 'data-age_gate_cookies_time', $settings['age_gate_cookies_time']);
 		}
 
@@ -2445,56 +2120,6 @@ class Age_Gate extends Base {
 			</div>
 		</div>
 
-		<?php
-	}
-
-	protected function render2() {
-		$settings = $this->get_settings_for_display();
-
-		$this->add_inline_editing_attributes( 'badge_text', 'none' );
-		$this->add_render_attribute(
-			'badge_text',
-			'class',
-			//[ 'ha-badge', sprintf( 'ha-badge--%s', esc_attr( $settings['badge_position'] ) ) ]
-		);
-
-		$this->add_inline_editing_attributes( 'title', 'basic' );
-		$this->add_render_attribute( 'title', 'class', 'ha-card-title' );
-
-		$this->add_inline_editing_attributes( 'description', 'intermediate' );
-		$this->add_render_attribute( 'description', 'class', 'ha-card-text' );
-		return;
-		?>
-
-		<?php if ( $settings['image']['url'] || $settings['image']['id'] ) : ?>
-			<figure class="ha-card-figure">
-				<?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
-				<?php if ( $settings['badge_text'] ) : ?>
-					<div <?php echo $this->get_render_attribute_string( 'badge_text' ); ?>><?php echo ha_kses_intermediate( $settings['badge_text'] ); ?></div>
-				<?php endif; ?>
-			</figure>
-		<?php endif; ?>
-
-		<div class="ha-card-body">
-
-			<?php
-			if ( $settings['title' ] ) :
-				printf( '<%1$s %2$s>%3$s</%1$s>',
-					ha_escape_tags( $settings['title_tag'] ),
-					$this->get_render_attribute_string( 'title' ),
-					ha_kses_basic( $settings['title' ] )
-					);
-			endif;
-			?>
-
-			<?php if ( $settings['description'] ) : ?>
-				<div <?php echo $this->get_render_attribute_string( 'description' ); ?>>
-					<p><?php echo ha_kses_intermediate( $settings['description'] ); ?></p>
-				</div>
-			<?php endif; ?>
-
-			<?php $this->render_icon_button( [ 'class' => 'ha-btn' ] ); ?>
-		</div>
 		<?php
 	}
 

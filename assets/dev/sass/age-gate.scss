@@ -34,7 +34,6 @@
 		top: 50%;
 		transform: translateY(-50%);
 		background: #fff;
-		//border: 2px Solid #fff;
 		border-radius: 5px;
 		z-index: 10001;
 		max-width: 576px;
@@ -78,13 +77,11 @@
 		}
 
 		.ha-age-gate-image {
-			// display: inline-block;
 			display: block;
 			position: relative;
 
 			img {
 				position: relative;
-				// display: flex;
 				display: inline-flex;
 				max-width: 80px
 			}
@@ -108,8 +105,6 @@
 	}
 
 	.ha-age-gate-footer-text {
-		// position: relative;
-		// display: inline-flex;
 		width: 100%;
 		color: #818181;
 
@@ -136,7 +131,6 @@
 	&.ha-age-gate-confirm-age .ha-age-gate-form-body {
 		position: relative;
 		display: inline-flex;
-		// flex-direction: column;
 		margin-top: 30px;
 		align-items: center;
 
@@ -196,10 +190,7 @@
 		}
 
 		.ha-age-gate-confirm-age-btn {
-			// position: relative;
 			display: inline-flex;
-			// width: auto;
-			// height: 100%;
 			outline: none;
 
 			text-decoration: none;
