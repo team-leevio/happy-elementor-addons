@@ -6,7 +6,7 @@
 defined( 'ABSPATH' ) || die();
 $attr = '';
 if ( ! ha_has_pro() ) {
-	$attr = 'style="background-image: url('.HAPPY_ADDONS_ASSETS.'imgs/admin/demo-pr.png)"';
+	$attr = 'style="background-image: url('.HAPPY_ADDONS_ASSETS.'imgs/admin/placeholder.jpg)"';
 }
 ?>
 <div class="ha-dashboard-panel">
@@ -15,6 +15,9 @@ if ( ! ha_has_pro() ) {
             <img class="ha-home-banner__logo" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/halogo.svg" alt="">
             <span class="ha-home-banner__divider"></span>
             <h2><?php esc_html_e('Thanks a lot ', 'happy-elementor-addons'); ?><br><span><?php esc_html_e('for choosing HappyAddons', 'happy-elementor-addons'); ?></span></h2>
+			<?php if ( ! ha_has_pro() ) : ?>
+				<a href="https://happyaddons.com/pricing/" style="margin-left: auto;color: #ffffff;font-size: 16px;font-weight: 800;">Click Here</a>
+			<?php endif; ?>
         </div>
     </div>
     <div class="ha-home-body">
