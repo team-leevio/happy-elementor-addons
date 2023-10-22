@@ -656,7 +656,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.9.0 - 18 October 2023 =
+= 3.9.0 - 23 October 2023 =
 
 - New: Age Gate widget.
 - Fix: Conflict seems to be with Events Tickets Plus.
