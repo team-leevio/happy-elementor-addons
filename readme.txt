@@ -659,7 +659,9 @@ For a more detailed explanation check out the following documentation
 = 3.9.0 - 23 October 2023 =
 
 - New: Age Gate widget.
-- Fix: Conflict seems to be with Events Tickets Plus.
+- Fix: Conflict with Event Ticket Plus.
+- Fix : Made compatible with latest Elementor & WordPress versions.
+- Fix : Bug fixes and performance improvements.
 
 = 3.8.9 - 13 September 2023 =
 
