@@ -1,3 +1,7 @@
+= #.#.# - ********* 2023 =
+
+- Fix: Age gate preview mode issue.
+
 = 3.9.0 - 23 October 2023 =
 
 - New: Age Gate widget.

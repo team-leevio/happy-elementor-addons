@@ -2003,6 +2003,10 @@ class Age_Gate extends Base {
 			$this->add_render_attribute( 'wrapper', 'data-age_gate_cookies_time', $settings['age_gate_cookies_time']);
 		}
 
+		if( $settings["editor_mood"] != 'yes' ) {
+			$this->add_render_attribute( 'wrapper', 'data-editor_mood', 'no' );
+		}
+
 		if(!empty($settings['age_gate_style']) && $settings['age_gate_style']=='confirm-dob'){
 			$birthyears = !empty($settings['dob_limit']) ? $settings['dob_limit'] : '18';
 			$this->add_render_attribute( 'wrapper', 'data-userbirth', $birthyears);

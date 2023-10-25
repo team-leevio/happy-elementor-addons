@@ -1110,6 +1110,12 @@
     var AgeGate = function AgeGate($scope, $) {
       if (elementorFrontend.isEditMode()) {
         localStorage.removeItem("ha-age-gate-expire-time");
+        if ($scope.find('.ha-age-gate-wrapper').length) {
+          var editor_mood = $scope.find('.ha-age-gate-wrapper').data('editor_mood');
+          if ('no' == editor_mood) {
+            $scope.find('.ha-age-gate-wrapper').hide();
+          }
+        }
       } else if (!elementorFrontend.isEditMode()) {
         var container = $scope.find('.ha-age-gate-wrapper'),
           cookies_time = container.data('age_gate_cookies_time'),
