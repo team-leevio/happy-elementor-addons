@@ -1,6 +1,7 @@
-= #.#.# - ********* 2023 =
+= 3.9.1 - 2 November 2023 =
 
 - Fix: Age gate preview mode issue.
+- Update: Made Compatible with Elementor Free 3.17.x & Elementor Pro 3.17.x
 
 = 3.9.0 - 23 October 2023 =
 

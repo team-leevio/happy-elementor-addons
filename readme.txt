@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.9.0
+Version: 3.9.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
@@ -655,6 +655,11 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.9.1 - 2 November 2023 =
+
+- Fix: Age gate preview mode issue.
+- Update: Made Compatible with Elementor Free 3.17.x & Elementor Pro 3.17.x
 
 = 3.9.0 - 23 October 2023 =
 
