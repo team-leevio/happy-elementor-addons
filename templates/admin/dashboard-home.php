@@ -6,7 +6,7 @@
 defined( 'ABSPATH' ) || die();
 ?>
 <div class="ha-dashboard-panel">
-	<?php if ( ! ha_has_pro() ) : ?>
+	<?php if ( file_exists(HAPPY_ADDONS_DIR_PATH.'assets/imgs/admin/promo_banner.jpg') && ! ha_has_pro() ) : ?>
     <div class="ha-home-banner" style="<?php echo 'background-image: url('.HAPPY_ADDONS_ASSETS.'imgs/admin/promo_banner.jpg)'; ?>">
         <div class="ha-home-banner__content">
 			<style>
