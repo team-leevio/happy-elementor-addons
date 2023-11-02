@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.9.1
+Version: 3.9.1.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
@@ -655,6 +655,10 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.9.1.1 - 2 November 2023 =
+
+- Fix: Emergency hotfix.
 
 = 3.9.1 - 2 November 2023 =
 
