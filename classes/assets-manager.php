@@ -493,7 +493,7 @@ class Assets_Manager {
 		}
 
 		$data = '
-		.elementor-add-new-section{
+		.elementor-add-section[data-view=choose-action] .elementor-add-new-section {
 			display: inline-flex !important;
 			flex-wrap: wrap;
 			align-items: center;
@@ -506,6 +506,10 @@ class Assets_Manager {
 			background-color: #5636d1;
 			margin-left: 5px;
 			font-size: 20px;
+			color: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 		';
 		wp_add_inline_style('happy-elementor-addons', $data);

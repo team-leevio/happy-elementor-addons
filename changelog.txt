@@ -1,5 +1,6 @@
 = 3.#.# - #### 2023 =
 - Fix: WPForms submit button style issue
+- Fix: Issue in template icon in the container
 
 = 3.9.1.1 - 2 November 2023 =
 
