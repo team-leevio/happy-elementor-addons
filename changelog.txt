@@ -1,7 +1,9 @@
+= 3.#.# - #### 2023 =
+- Fix: WPForms submit button style issue
+
 = 3.9.1.1 - 2 November 2023 =
 
 - Fix: Emergency hotfix.
-
 
 = 3.9.1 - 2 November 2023 =
 
