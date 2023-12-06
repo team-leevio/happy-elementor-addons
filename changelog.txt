@@ -1,6 +1,7 @@
 = 3.#.# - #### 2023 =
 - Fix: WPForms submit button style issue
 - Fix: Issue in template icon in the container
+- Fix: WPML compatibility issue with Content Switcher widget
 
 = 3.9.1.1 - 2 November 2023 =
 
