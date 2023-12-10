@@ -1270,6 +1270,18 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'age-gate' => [
+				'cat' => 'general',
+				'is_active' => true,
+				'title' => __('Age Gate', 'happy-elementor-addons'),
+				'icon' => 'hm hm-age-gate',
+				'css' => ['age-gate'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
 		];
 	}
 

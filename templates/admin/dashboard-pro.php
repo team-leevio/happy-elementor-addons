@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die();
         <div class="ha-home-banner__content">
             <img class="ha-home-banner__logo" src="<?php echo HAPPY_ADDONS_ASSETS; ?>imgs/admin/halogo.svg" alt="">
             <span class="ha-home-banner__divider"></span>
-            <h2><span><?php esc_html_e('What\'s Inside ', 'happy-elementor-addons'); ?></span><br><?php esc_html_e('The HappyAddons Pro', 'happy-elementor-addons'); ?></h2>
+            <h2><span><?php esc_html_e('What\'s Inside ', 'happy-elementor-addons'); ?></span><br><?php esc_html_e('HappyAddons Pro', 'happy-elementor-addons'); ?></h2>
         </div>
     </div>
     <div class="ha-home-body">
