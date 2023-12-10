@@ -1,12 +1,12 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.8.9
+Version: 3.9.1.1
 Author: weDevs
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget, Elementor Addon,
 Requires at least: 4.7
-Tested up to: 6.3.1
+Tested up to: 6.3
 Stable tag: trunk
 Requires PHP: 5.6
 License: GPLv2
@@ -655,6 +655,22 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.9.1.1 - 2 November 2023 =
+
+- Fix: Emergency hotfix.
+
+= 3.9.1 - 2 November 2023 =
+
+- Fix: Age gate preview mode issue.
+- Update: Made Compatible with Elementor Free 3.17.x & Elementor Pro 3.17.x
+
+= 3.9.0 - 23 October 2023 =
+
+- New: Age Gate widget.
+- Fix: Conflict with Event Ticket Plus.
+- Fix : Made compatible with latest Elementor & WordPress versions.
+- Fix : Bug fixes and performance improvements.
 
 = 3.8.9 - 13 September 2023 =
 

@@ -50,10 +50,9 @@ class Cache_Manager {
 		if(!empty($post) && isset($post->ID)) {
 			// return ha_elementor()->db->is_built_with_elementor( $post_id );
 			return ha_elementor()->documents->get( $post->ID )->is_built_with_elementor();
-		} 
+		}
 
 		return;
-		
 	}
 
 	public static function should_enqueue( $post_id ) {

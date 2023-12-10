@@ -2628,7 +2628,7 @@ msgid "What's Inside "
 msgstr ""
 
 #: templates/admin/dashboard-pro.php:13
-msgid "The HappyAddons Pro"
+msgid "HappyAddons Pro"
 msgstr ""
 
 #: templates/admin/dashboard-pro.php:19, templates/admin/dashboard-pro.php:60

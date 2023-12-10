@@ -1,4 +1,4 @@
-# v*.*.* - Day Month Year =
+= 3.#.# - #### 2023 =
 - Fix: Appsero SDK update to 1.2.4
 - Fix: Security improvement for Twitter Feed widget.
 - Fix: Security improvement for Post Tab widget.
@@ -8,6 +8,26 @@
 - Fix: Security improvement for Theme Builder.
 - Fix: Conflict seems to be with Events Tickets Plus.
 - Tweak: Worning notice for News Ticker widget.
+
+- Fix: WPForms submit button style issue
+- Fix: Issue in template icon in the container
+- Fix: WPML compatibility issue with Content Switcher widget
+
+= 3.9.1.1 - 2 November 2023 =
+
+- Fix: Emergency hotfix.
+
+= 3.9.1 - 2 November 2023 =
+
+- Fix: Age gate preview mode issue.
+- Update: Made Compatible with Elementor Free 3.17.x & Elementor Pro 3.17.x
+
+= 3.9.0 - 23 October 2023 =
+
+- New: Age Gate widget.
+- Fix: Conflict with Event Ticket Plus.
+- Fix : Made compatible with latest Elementor & WordPress versions.
+- Fix : Bug fixes and performance improvements.
 
 = 3.8.9 - 13 September 2023 =
 
