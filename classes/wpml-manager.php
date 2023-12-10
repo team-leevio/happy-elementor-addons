@@ -57,6 +57,44 @@ class WPML_Manager {
 
 		$widgets_map = [
 			/**
+			 * Age Gate
+			 */
+			'age-gate' => [
+				'fields' => [
+					[
+						'field'       => 'title',
+						'type'        => __( 'Age Gate: Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'desc',
+						'type'        => __( 'Age Gate: Description', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+					[
+						'field'       => 'button_text',
+						'type'        => __( 'Age Gate: Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'btn_two_text',
+						'type'        => __( 'Age Gate: Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'footer_text',
+						'type'        => __( 'Age Gate: Footer Text', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+					[
+						'field'       => 'warning_message',
+						'type'        => __( 'Age Gate: Warning Message', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+				],
+			],
+
+			/**
 			 * Bar Chart
 			 */
 			'bar-chart' => [
