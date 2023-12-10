@@ -12,6 +12,7 @@
 - Fix: WPForms submit button style issue
 - Fix: Issue in template icon in the container
 - Fix: WPML compatibility issue with Content Switcher widget
+- New: Equal Height support to Container.
 
 = 3.9.1.1 - 2 November 2023 =
 
