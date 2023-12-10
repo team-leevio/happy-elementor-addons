@@ -141,7 +141,7 @@ class Select2_Handler {
 	public static function process_mailchimp_list() {
 		$choose_api = ! empty( $_REQUEST['mailchimp_api_choose'] ) ? sanitize_text_field($_REQUEST['mailchimp_api_choose']) : '';
 		$global_api = ! empty( $_REQUEST['global_api'] ) ? sanitize_text_field($_REQUEST['global_api']) : '';
-		$custom_api = ! empty( $_REQUEST['mailchimp_api'] ) ? sanitize_text_field($_REQUEST['mailchimp_api']) : $global_api;
+		$custom_api = ! empty( $_REQUEST['mailchimp_api'] ) ? sanitize_key($_REQUEST['mailchimp_api']) : $global_api;
 		
 		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? ha_sanitize_array_recursively($_REQUEST['saved_values']) : 0;
 
