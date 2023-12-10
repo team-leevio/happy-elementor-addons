@@ -252,7 +252,7 @@ class Archive_Posts extends Base {
             'show_read_more',
             [
                 'label' => esc_html__('Read More', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SWITCHER,
+                'type' => Controls_Manage::TEXTr::SWITCHER,
                 'label_on' => esc_html__('Show', 'happy-elementor-addons'),
                 'label_off' => esc_html__('Hide', 'happy-elementor-addons'),
                 'default' => 'yes',
@@ -655,7 +655,7 @@ class Archive_Posts extends Base {
                 ],
             ]
         );
-        
+
         $this->add_control(
             'image_align',
             [
@@ -902,7 +902,7 @@ class Archive_Posts extends Base {
         $this->start_controls_tabs(
             'pagination_color_tabs'
         );
-        
+
         $this->start_controls_tab(
             'pagination_normal_color_tab',
             [
@@ -920,7 +920,7 @@ class Archive_Posts extends Base {
 				],
 			]
 		);
-        
+
         $this->end_controls_tab();
 
         $this->start_controls_tab(
@@ -940,7 +940,7 @@ class Archive_Posts extends Base {
 				],
 			]
 		);
-        
+
         $this->end_controls_tab();
 
         $this->start_controls_tab(
@@ -960,9 +960,9 @@ class Archive_Posts extends Base {
 				],
 			]
 		);
-        
+
         $this->end_controls_tab();
-        
+
         $this->end_controls_tabs();
 
         $this->add_control(

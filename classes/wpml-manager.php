@@ -95,6 +95,24 @@ class WPML_Manager {
 			],
 
 			/**
+			 * Archive Posts
+			 */
+			'archive-posts' => [
+				'fields' => [
+					[
+						'field'       => 'read_more_text',
+						'type'        => __( 'Archive Posts: Read More Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'nothing_found_message',
+						'type'        => __( 'Archive Posts: Nothing Found Message', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+				],
+			],
+
+			/**
 			 * Bar Chart
 			 */
 			'bar-chart' => [
