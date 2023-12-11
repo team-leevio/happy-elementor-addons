@@ -1,6 +1,6 @@
 <?php
 /**
- * Comparison Table integration
+ * Photo Stack integration
  */
 namespace Happy_Addons\Elementor;
 

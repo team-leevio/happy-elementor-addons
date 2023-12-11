@@ -560,6 +560,16 @@ class WPML_Manager {
 			],
 
 			/**
+			 * Post Info
+			 */
+			'post-info' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Post_Info_Icon_List',
+				]
+			],
+
+			/**
 			 * Pricing Table
 			 */
 			'pricing-table' => [

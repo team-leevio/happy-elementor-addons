@@ -1,6 +1,6 @@
 <?php
 /**
- * Comparison Table integration
+ * Event Calendar integration
  */
 namespace Happy_Addons\Elementor;
 
