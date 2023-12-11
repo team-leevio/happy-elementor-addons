@@ -50,6 +50,7 @@ class WPML_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/horizontal-timeline.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-accordion.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/content-switcher.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/comparison-table.php' );
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -99,6 +100,11 @@ class WPML_Manager {
 			 */
 			'archive-posts' => [
 				'fields' => [
+					[
+						'field'       => 'meta_separator',
+						'type'        => __( 'Archive Posts: Separator Between', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
 					[
 						'field'       => 'read_more_text',
 						'type'        => __( 'Archive Posts: Read More Text', 'happy-elementor-addons' ),
@@ -173,6 +179,16 @@ class WPML_Manager {
 				'fields' => [],
 				'integration-class' => [
 					__NAMESPACE__ . '\\WPML_Carousel',
+				]
+			],
+
+			/**
+			 * Comparison Table
+			 */
+			'comparison-table' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Comparison_Table',
 				]
 			],
 
