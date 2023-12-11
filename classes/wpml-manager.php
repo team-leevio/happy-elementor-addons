@@ -51,6 +51,7 @@ class WPML_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-accordion.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/content-switcher.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/comparison-table.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/events-calendar.php' );
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -188,7 +189,9 @@ class WPML_Manager {
 			'comparison-table' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Comparison_Table',
+					__NAMESPACE__ . '\\WPML_Comparison_Table_Columns_Data',
+					__NAMESPACE__ . '\\WPML_Comparison_Table_Rows_Data',
+					__NAMESPACE__ . '\\WPML_Comparison_Table_Table_Btns',
 				]
 			],
 
@@ -223,6 +226,42 @@ class WPML_Manager {
 						'editor_type' => 'LINK',
 					],
 				],
+			],
+
+			/**
+			 * Event Calendar
+			 */
+			'events-calendar' => [
+				'fields' => [
+					[
+						'field'       => 'allday_text',
+						'type'        => __( 'Event Calendar: All Day Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'readmore_text',
+						'type'        => __( 'Event Calendar: Read More Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'time_title',
+						'type'        => __( 'Event Calendar: Time Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'speaker_title',
+						'type'        => __( 'Event Calendar: Speaker Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'location_title',
+						'type'        => __( 'Event Calendar: Location Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+				],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Event_Calendar_Manual_Event_List',
+				]
 			],
 
 			/**
