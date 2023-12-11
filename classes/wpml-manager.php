@@ -536,6 +536,19 @@ class WPML_Manager {
 			],
 
 			/**
+			 * PDF View
+			 */
+			'pdf-view' => [
+				'fields' => [
+					[
+						'field'       => 'pdf_title',
+						'type'        => __( 'PDF View: PDF Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+				],
+			],
+
+			/**
 			 * Pricing Table
 			 */
 			'pricing-table' => [
