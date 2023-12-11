@@ -570,6 +570,24 @@ class WPML_Manager {
 			],
 
 			/**
+			 * Post Navigation
+			 */
+			'post-navigation' => [
+				'fields' => [
+					[
+						'field'       => 'prev_label',
+						'type'        => __( 'Post Navigation: Previous Label', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'next_label',
+						'type'        => __( 'Post Navigation: Next Label', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+				],
+			],
+
+			/**
 			 * Pricing Table
 			 */
 			'pricing-table' => [
