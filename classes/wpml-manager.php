@@ -381,6 +381,29 @@ class WPML_Manager {
 			],
 
 			/**
+			 * Image Hover Effect
+			 */
+			'image-hover-effect' => [
+				'fields' => [
+					[
+						'field'       => 'hover_image_alt_tag',
+						'type'        => __( 'Image Hover Effect: Image ALT Tag', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'hover_title',
+						'type'        => __( 'Image Hover Effect: Title', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+					'hover_link' => [
+						'field'       => 'url',
+						'type'        => __( 'Image Hover Effect: Link URL', 'happy-elementor-addons' ),
+						'editor_type' => 'LINK',
+					],
+				]
+			],
+
+			/**
 			 * Info Box
 			 */
 			'infobox' => [
