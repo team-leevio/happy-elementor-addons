@@ -52,6 +52,7 @@ class WPML_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/content-switcher.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/comparison-table.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/events-calendar.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-stack-group.php' );
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -400,6 +401,16 @@ class WPML_Manager {
 						'type'        => __( 'Image Hover Effect: Link URL', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
 					],
+				]
+			],
+
+			/**
+			 * Image Stack Group
+			 */
+			'image-stack-group' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Image_Stack_Group_Images',
 				]
 			],
 
