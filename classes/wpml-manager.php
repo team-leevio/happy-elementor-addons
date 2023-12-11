@@ -53,6 +53,7 @@ class WPML_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/comparison-table.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/events-calendar.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-stack-group.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/photo-stack.php' );
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -546,6 +547,16 @@ class WPML_Manager {
 						'editor_type' => 'LINE',
 					],
 				],
+			],
+
+			/**
+			 * Photo Stack
+			 */
+			'photo-stack' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Photo_Stack_Image_List',
+				]
 			],
 
 			/**
