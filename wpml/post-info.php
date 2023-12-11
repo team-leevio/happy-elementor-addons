@@ -1,6 +1,6 @@
 <?php
 /**
- * Comparison Table integration
+ * Post Info integration
  */
 namespace Happy_Addons\Elementor;
 

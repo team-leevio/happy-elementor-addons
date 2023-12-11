@@ -687,6 +687,16 @@ class WPML_Manager {
 			],
 
 			/**
+			 * Social Share
+			 */
+			'social-share' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Social_Share',
+				]
+			],
+
+			/**
 			 * Step Flow
 			 */
 			'step-flow' => [
