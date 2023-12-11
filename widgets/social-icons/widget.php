@@ -214,6 +214,7 @@ class Social_Icons extends Base {
 
 				'selectors'      => [
 					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}}.ha-social-icon' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}}.ha-social-icon svg' => 'fill: {{VALUE}};',
 				],
 				'condition'      => ['customize' => 'yes'],
 				'style_transfer' => true,
@@ -262,6 +263,7 @@ class Social_Icons extends Base {
 				'type'           => Controls_Manager::COLOR,
 				'selectors'      => [
 					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}}.ha-social-icon:hover'     => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-social-icons-wrapper > {{CURRENT_ITEM}}.ha-social-icon:hover svg'     => 'fill: {{VALUE}};',
 				],
 				'condition'      => ['customize' => 'yes'],
 				'style_transfer' => true,
@@ -488,6 +490,7 @@ class Social_Icons extends Base {
 
 				'selectors'      => [
 					'{{WRAPPER}} .ha-social-icons-wrapper > .ha-social-icon'       => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-social-icons-wrapper > .ha-social-icon svg'   => 'fill: {{VALUE}};',
 					'{{WRAPPER}}.ha-separator--stroke .ha-social-icon-separator'   => 'background: {{VALUE}};',
 					'{{WRAPPER}}.ha-separator--custom .ha-social-icon-separator'   => 'color: {{VALUE}};',
 				],
@@ -533,6 +536,7 @@ class Social_Icons extends Base {
 				'type'           => Controls_Manager::COLOR,
 				'selectors'      => [
 					'{{WRAPPER}} .ha-social-icons-wrapper > .ha-social-icon:hover'     => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-social-icons-wrapper > .ha-social-icon:hover svg'   => 'fill: {{VALUE}};',
 					'{{WRAPPER}}.ha-separator--stroke .ha-social-icon-separator'       => 'background: {{VALUE}};',
 					'{{WRAPPER}}.ha-separator--custom .ha-social-icon-separator'       => 'color: {{VALUE}};',
 				],
@@ -938,6 +942,7 @@ class Social_Icons extends Base {
 				<a <?php echo $this->get_render_attribute_string($link_attr); ?>>
 					<?php
 					Icons_Manager::render_icon($icons['ha_social_icon']);
+					// Icons_Manager::render_icon( $icons['new_social_icons'], [ 'aria-hidden' => 'true' ] );
 					if (!empty($social_title) && '' != $social_title) {
 						echo "<span class='ha-social-icon-label'>" . $social_title . "</span>";
 					}
