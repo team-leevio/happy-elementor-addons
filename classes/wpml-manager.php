@@ -459,6 +459,24 @@ class WPML_Manager {
 			],
 
 			/**
+			 * Animated Link
+			 */
+			'link-hover' => [
+				'fields' => [
+					[
+						'field'       => 'link_text',
+						'type'        => __( 'Animated Link: Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					'link_url' => [
+						'field'       => 'url',
+						'type'        => __( 'Animated Link: Link', 'happy-elementor-addons' ),
+						'editor_type' => 'LINK',
+					],
+				]
+			],
+
+			/**
 			 * Logo Grid
 			 */
 			'logo-grid' => [
