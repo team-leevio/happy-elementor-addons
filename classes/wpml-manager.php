@@ -55,6 +55,7 @@ class WPML_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-stack-group.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/photo-stack.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/post-list.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/taxonomy-list.php' );
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -736,6 +737,21 @@ class WPML_Manager {
 						'editor_type' => 'LINK',
 					],
 				],
+			],
+
+			/**
+			 * Taxonomy List
+			 */
+			'taxonomy-list' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Category',
+					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Post_Tag',
+					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Post_Format',
+					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Product_Cat',
+					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Product_Tag',
+					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Product_Shipping_Class',
+				]
 			],
 
 			/**
