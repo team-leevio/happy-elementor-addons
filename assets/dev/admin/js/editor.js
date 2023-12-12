@@ -238,7 +238,6 @@
 				}, 1500));
 			}
 
-			//console.log( stt_data );
 			$("#elementor-preview-iframe")[0].contentWindow.postMessage(stt_data);
 		}
 
@@ -437,19 +436,11 @@
 						}
 						return (column.view.children.length == 0);
 					});
-					// console.log($has_widget);
 					this.container.children.forEach(function (column) {
-						console.log(column.view);
-
-						// let $widgets = $has_widget ? column.view.$el : column.view.$childViewContainer.children( "[data-widget_type]" );
-						// console.log($widgets);
 						let $widgets = column.view.$el.data("element_type") == 'widget' ? column.view.$el : column.view.$el.find('div[data-element_type="widget"]');
-
-						console.log($widgets);
 
 
 						$widgets.each(function (index, widget) {
-							// console.log($(widget).data("element_type"));
 
 							if( $(widget).data("element_type") == 'widget' ) {
 								var name = $(widget).data("widget_type"),
@@ -489,7 +480,6 @@
 			if (!_.isObject(args)) {
 				args = {};
 			}
-			// console.log(self.container.settings.get('post_type'));
 			if (
 				args.control_dependency &&
 				_.isObject(args.control_dependency)

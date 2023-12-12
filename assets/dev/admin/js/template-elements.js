@@ -38,7 +38,6 @@
 
 		//elementor.getPanelView().getHeaderView().setTitle('a');
 		elementor.on("set:page", function ($e) {
-			console.log($e);
 		});
 	}
 
@@ -48,7 +47,6 @@
 		elementor.on("ha:templateCondition", function ($e) {
 			//oldConditionCache
 			var conditionContainer = $(".ha-template-condition-wrap");
-			console.log(conditionContainer.html());
 			if (conditionContainer.html() == "") {
 				conditionContainer.append(oldConditionCache);
 				conditionContainer.find("select").trigger("change");
@@ -244,7 +242,6 @@
 		});
 
 		newConditions = conditions;
-		// console.log(newConditions);
 		
 	}
 
@@ -404,8 +401,6 @@
 	}
 
 	elementor.saver.on('after:save', function( data ) {
-			console.log('after save');
-			console.log(data);
 			if(data.status != "inherit") {
 				elementor.trigger("ha:templateCondition")
 			}
