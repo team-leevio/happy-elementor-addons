@@ -252,7 +252,7 @@ class Archive_Posts extends Base {
             'show_read_more',
             [
                 'label' => esc_html__('Read More', 'happy-elementor-addons'),
-                'type' => Controls_Manage::TEXTr::SWITCHER,
+                'type' => Controls_Manager::SWITCHER,
                 'label_on' => esc_html__('Show', 'happy-elementor-addons'),
                 'label_off' => esc_html__('Hide', 'happy-elementor-addons'),
                 'default' => 'yes',
