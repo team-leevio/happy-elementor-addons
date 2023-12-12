@@ -54,6 +54,7 @@ class WPML_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/events-calendar.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-stack-group.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/photo-stack.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/post-list.php' );
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -566,6 +567,19 @@ class WPML_Manager {
 				'fields' => [],
 				'integration-class' => [
 					__NAMESPACE__ . '\\WPML_Post_Info_Icon_List',
+				]
+			],
+
+			/**
+			 * Post List
+			 */
+			'post-list' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Post_List_Selected_List_Post',
+					__NAMESPACE__ . '\\WPML_Post_List_Selected_List_Page',
+					__NAMESPACE__ . '\\WPML_Post_List_Selected_List_Product',
+					__NAMESPACE__ . '\\WPML_Post_List_Selected_List_E_Landing_Page',
 				]
 			],
 
