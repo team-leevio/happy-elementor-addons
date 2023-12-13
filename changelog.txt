@@ -7,6 +7,7 @@
 - Fix: Security improvement for Happy Clone.
 - Fix: Security improvement for Theme Builder.
 - Fix: Conflict seems to be with Events Tickets Plus.
+- Fix: Scroll to top XSS security issue fix.
 - Tweak: Worning notice for News Ticker widget.
 
 - Fix: Photo Stack widget external link is not working properly.
