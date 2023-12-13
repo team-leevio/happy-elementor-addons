@@ -785,9 +785,7 @@
               clearTimeout(hideMsg);
             }, 5000);
           },
-          error: function error(_error3) {
-            // console.log(error);
-          }
+          error: function error(_error3) {}
         });
       });
     };
