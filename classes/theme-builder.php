@@ -854,6 +854,7 @@ class Theme_Builder {
         if (('internal' === get_option('elementor_css_print_method')) || \Elementor\Plugin::$instance->preview->is_preview_mode()) {
             $has_css = true;
         }
+		$content_id = apply_filters('wpml_object_id', $content_id, 'elementor_library');
         return $_elementor->frontend->get_builder_content_for_display($content_id, $has_css);
     }
 
