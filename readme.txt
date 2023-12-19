@@ -656,7 +656,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.10.0 - 18 December 2023 =
+= 3.10.0 - 19 December 2023 =
 
 - New: Support for Equal Height in Container.
 - Fix: Appsero SDK to version 1.2.5.
