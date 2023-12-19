@@ -550,7 +550,7 @@ class Photo_Stack extends Base
                 }
                 ?>
                 <?php if (isset($item['link']) && !empty($item['link']['url'])) { ?>
-                    <<?php echo $anchor_tag . ' ' . $this->get_render_attribute_string($repeater_key); ?>>
+                    <<?php echo ha_escape_tags($anchor_tag, 'span', ['a']) . ' ' . $this->get_render_attribute_string($repeater_key); ?>>
                     <?php } else { ?>
                         <<?php echo $tag . ' ' . $this->get_render_attribute_string($repeater_key); ?>>
                         <?php } ?>
@@ -567,7 +567,7 @@ class Photo_Stack extends Base
                         } ?>
 
                         <?php if (isset($item['link']) && !empty($item['link']['url'])) { ?>
-                        </<?php echo $anchor_tag; ?>>
+                        </<?php echo ha_escape_tags($anchor_tag, 'span', ['a']); ?>>
                     <?php } else { ?>
                     </<?php echo $tag; ?>>
                 <?php } ?>
