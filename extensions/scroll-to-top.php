@@ -104,7 +104,10 @@ class Scroll_To_Top {
 
 			$scroll_to_top_html = "<div class='ha-scroll-to-top-wrap ha-scroll-to-top-hide'><span class='ha-scroll-to-top-button'>$stt_icon_html</span></div>";
 
-			printf( '%1$s', $scroll_to_top_html );
+			$elementor_page = get_post_meta( get_the_ID(), '_elementor_edit_mode', true );
+			if( (bool)$elementor_page ) {
+				printf( '%1$s', $scroll_to_top_html );
+			}
 
 			wp_add_inline_script(
 				'happy-elementor-addons',
@@ -127,7 +130,11 @@ class Scroll_To_Top {
 					$stt_icon_html = "<span>$stt_text</span>";
 				}
 				$scroll_to_top_html = "<div class='ha-scroll-to-top-wrap ha-scroll-to-top-hide'><span class='ha-scroll-to-top-button'>$stt_icon_html</span></div>";
-				printf( '%1$s', $scroll_to_top_html );
+
+				$elementor_page = get_post_meta( get_the_ID(), '_elementor_edit_mode', true );
+				if( (bool)$elementor_page ) {
+					printf( '%1$s', $scroll_to_top_html );
+				}
 			}
 			?>
 			<script>
@@ -139,10 +146,31 @@ class Scroll_To_Top {
 					if ( ! stt.length ) {
 						jQuery('body').append(markup);
 					}
+
+					function haSanitizeString(input) {
+						var htmlTags = /<[^>]*>/g;
+						var sanitizedInput = input.replace(htmlTags, "");
+						return sanitizedInput;
+					}
+
+					function haSanitizeURL(url) {
+						var urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+						if (url.match(urlPattern)) {
+							return url;
+						} else {
+							return "";
+						}
+					}
+
 					window.addEventListener('message',function(e) {
 						var data = e.data;
-						// console.log(data);
 						if( 'sttMessage' == data.check ) {
+							if (e.origin != window.origin) {
+								return;
+							}
+							if (e.source.location.href != window.parent.location.href) {
+								return;
+							}
 							var sttWrap = jQuery('.ha-scroll-to-top-wrap');
 							var button = sttWrap.find('.ha-scroll-to-top-button');
 							var changeValue = data.changeValue;
@@ -168,14 +196,14 @@ class Scroll_To_Top {
 									items.media_type = 'text';
 								}
 
-								if( 'icon' == items.media_type ) {
-									icon = '<i class="'+items.icon.value+'"></i>';
+								if ('icon' == items.media_type) {
+									icon = '<i class="' + haSanitizeString(items.icon.value) + '"></i>';
 									button.html(icon);
-								} else if( 'image' == items.media_type ) {
-									image = '<img src="'+items.image.url+'">';
+								} else if ('image' == items.media_type) {
+									image = '<img src="' + haSanitizeURL(items.image.url) + '">';
 									button.html(image);
-								} else if( 'text' == items.media_type ) {
-									text = '<span>'+items.text+'</span>';
+								} else if ('text' == items.media_type) {
+									text = '<span>' + haSanitizeString(items.text) + '</span>';
 									button.html(text);
 								}
 
