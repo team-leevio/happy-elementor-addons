@@ -671,6 +671,14 @@
 			var showPopup = calendarEl.data('show-popup');
 			var allday_text = calendarEl.data('allday-text');
 
+			var ECjson = window['json'+$scope.data('id')];
+			// console.log(jsonfa9b3b8);
+			console.log(events);
+			// console.log( ECjson );
+			console.log( calendarEl[0].getAttribute("data-events") );
+
+			// events = window['json'+$scope.data('id')];
+
 			if( 'undefined' == typeof events){
 				return;
 			}

@@ -1807,6 +1807,13 @@ class Event_Calendar extends Base {
 
 		if ( $data ) :?>
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
+				<script>
+					var json<?php echo $this->get_id();?>;
+					<?php echo 'json'.$this->get_id().' = "'.htmlspecialchars( json_encode( $data ), ENT_QUOTES, 'UTF-8' ).'";'; ?>
+					<?php //echo 'console.log(json)'; ?>
+					window['json<?php echo $this->get_id();?>'] = "<?php echo htmlspecialchars( json_encode( $data, JSON_FORCE_OBJECT ), ENT_QUOTES, 'UTF-8' ); ?>";
+					//localStorage.setItem('email', '<?php echo htmlspecialchars( json_encode( $data ), ENT_QUOTES, 'UTF-8' );?>');
+				</script>
 				<div <?php $this->print_render_attribute_string( 'event-calendar' ); ?>></div>
 			</div>
 
@@ -1886,7 +1893,8 @@ class Event_Calendar extends Base {
 
 		$arg = [
 			'key'          => $settings['google_calendar_api_key'],
-			'maxResults'   => $settings['google_calendar_max_item'],
+			// 'maxResults'   => $settings['google_calendar_max_item'],
+			'maxResults'   => 930,
 			'timeMin'      => urlencode( date( 'c', $start_date ) ),
 			'singleEvents' => 'true',
 		];
