@@ -672,10 +672,6 @@
 			var allday_text = calendarEl.data('allday-text');
 
 			var ECjson = window['HaECjson'+$scope.data('id')];
-
-			console.log(events);
-			console.log( ECjson );
-
 			var events = ECjson;
 
 			if( 'undefined' == typeof events){

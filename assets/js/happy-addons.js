@@ -584,12 +584,14 @@
       var calendarEl = $scope.find('.ha-ec');
       var popup = $scope.find('.ha-ec-popup-wrapper');
       var popupClose = $scope.find(".ha-ec-popup-close");
-      var events = calendarEl.data('events');
+      // var events = calendarEl.data('events');
       var initialview = calendarEl.data('initialview');
       var firstday = calendarEl.data('firstday');
       var locale = calendarEl.data('locale');
       var showPopup = calendarEl.data('show-popup');
       var allday_text = calendarEl.data('allday-text');
+      var ECjson = window['HaECjson' + $scope.data('id')];
+      var events = ECjson;
       if ('undefined' == typeof events) {
         return;
       }

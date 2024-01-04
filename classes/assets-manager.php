@@ -286,8 +286,7 @@ class Assets_Manager {
 		// Happy addons script
 		wp_register_script(
 			'happy-elementor-addons',
-			// HAPPY_ADDONS_ASSETS . 'js/happy-addons' . $suffix . 'js',
-			HAPPY_ADDONS_ASSETS . 'dev/js/happy-addons.js',
+			HAPPY_ADDONS_ASSETS . 'js/happy-addons' . $suffix . 'js',
 			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
