@@ -535,6 +535,7 @@ class Event_Calendar extends Base {
 				'label'   => __( 'Number Of Events', 'happy-elementor-addons' ),
 				'type'    => Controls_Manager::NUMBER,
 				'min'     => 1,
+				'max'     => 2500,
 				'default' => 100,
 			]
 		);
@@ -1799,7 +1800,7 @@ class Event_Calendar extends Base {
 				'data-locale'      => esc_attr( $local ),
 				'data-initialview' => esc_attr( $default_view ),
 				'data-firstday'    => $settings['event_calendar_first_day'],
-				'data-events'      => htmlspecialchars( json_encode( $data ), ENT_QUOTES, 'UTF-8' ),
+				// 'data-events'      => htmlspecialchars( json_encode( $data ), ENT_QUOTES, 'UTF-8' ),
 				'data-show-popup'  => ! empty( $settings['show_event_popup'] ) ? esc_attr( $settings['show_event_popup'] ) : '',
 				'data-allday-text' => ! empty( $settings['allday_text'] ) ? esc_html( $settings['allday_text'] ) : '',
 			]
@@ -1810,9 +1811,7 @@ class Event_Calendar extends Base {
 				<script>
 					var json<?php echo $this->get_id();?>;
 					<?php echo 'json'.$this->get_id().' = "'.htmlspecialchars( json_encode( $data ), ENT_QUOTES, 'UTF-8' ).'";'; ?>
-					<?php //echo 'console.log(json)'; ?>
-					window['json<?php echo $this->get_id();?>'] = "<?php echo htmlspecialchars( json_encode( $data, JSON_FORCE_OBJECT ), ENT_QUOTES, 'UTF-8' ); ?>";
-					//localStorage.setItem('email', '<?php echo htmlspecialchars( json_encode( $data ), ENT_QUOTES, 'UTF-8' );?>');
+					window['HaECjson<?php echo $this->get_id();?>'] = <?php echo json_encode( $data ); ?>;
 				</script>
 				<div <?php $this->print_render_attribute_string( 'event-calendar' ); ?>></div>
 			</div>
@@ -1893,8 +1892,7 @@ class Event_Calendar extends Base {
 
 		$arg = [
 			'key'          => $settings['google_calendar_api_key'],
-			// 'maxResults'   => $settings['google_calendar_max_item'],
-			'maxResults'   => 930,
+			'maxResults'   => $settings['google_calendar_max_item'],
 			'timeMin'      => urlencode( date( 'c', $start_date ) ),
 			'singleEvents' => 'true',
 		];
