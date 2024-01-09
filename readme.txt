@@ -1,12 +1,12 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.9.1.1
-Author: weDevs
+Version: 3.10.1
+Author: Leevio
 Author URI: https://happyaddons.com/
-Contributors: happyaddons, thehappymonster, wedevs
+Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget, Elementor Addon,
 Requires at least: 4.7
-Tested up to: 6.3
+Tested up to: 6.4
 Stable tag: trunk
 Requires PHP: 5.6
 License: GPLv2
@@ -332,7 +332,7 @@ Happy Addons not only comes with extendable widgets but also has some cool featu
 
 * **[Happy Templates](https://happyaddons.com/template-importer/)** – Finally, we are happy to announce that we are introducing a Template import feature within our Happy Addons. Initially, it comes with almost 500 ready-made templates. We will continuously improve our template library. Both our Free and Pro users can use happy templates. Templates are labeled in two tags, Pro and Free. To import premium templates you will need the [Happy Addons Pro](https://happyaddons.com/pricing). The template import feature works like the Default Template importing feature. Additionally, you can check the previews in three device viewports; Desktop, Tab, and Mobile.
 
-   **Full Page Templates** -  You will now get plenty of Full page templates. It is easy to use. Just import the templates, use them within your site, and do some little bit of customizations. You will get business website page templates, contact page templates, Fitness Page Templates, Black Friday Deal Page templates, Cyber Monday Page Templates, Halloween Page Templates, and more misc full-page templates. We are planning to bring a Template kit pack in the future.
+**Full Page Templates** -  You will now get plenty of Full page templates. It is easy to use. Just import the templates, use them within your site, and do some little bit of customizations. You will get business website page templates, contact page templates, Fitness Page Templates, Black Friday Deal Page templates, Cyber Monday Page Templates, Halloween Page Templates, and more misc full-page templates. We are planning to bring a Template kit pack in the future.
 
 * **[Happy Shape Dividers](https://happyaddons.com/happy-shape-divider/)** – If you want to get some unique shape dividers within your default shape divider you can use our Shape Dividers. Initially, you will get 18+ new shape dividers. We are the pioneer in adding different shape dividers to the default shape dividers library to give the users some extra shape dividers. Reshape your Pages with the new shape dividers.
 * **[Happy Tooltip](https://happyaddons.com/happy-tooltip/)** – With our advanced tooltip feature, you can add tooltips to any element of your website. Add images, GIFs, and Background images to your tooltips. This tooltip module broadens a new way to create amazing tooltips. You don’t need any extra third-party tooltip plugin from the WordPress repository to add Tooltips. You don’t have to bother with the tooltip shortcuts to add tooltips to your website. You can add tooltips from the editing panel of your website. You don’t have to bother with back-and-forth challenges like other third-party tooltip plugins. Select the widget or section where you want to add your tooltip contents and do it from your editing panel with our Happy Tooltip feature.
@@ -655,6 +655,28 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.10.1 - 1 January 2024 =
+
+- Fix: Security improvement for Age Gate widget.
+
+= 3.10.0 - 19 December 2023 =
+
+- New: Support for Equal Height in Container.
+- Fix: Appsero SDK to version 1.2.5.
+- Fix: Security improvement for Twitter Feed widget.
+- Fix: Security improvement for Post Tab widget.
+- Fix: Security improvement for Mailchimp widget.
+- Fix: Security improvement for Review widget.
+- Fix: Security improvement for Happy Clone.
+- Fix: Security improvement for Theme Builder.
+- Fix: Conflict identified with Events Tickets Plus.
+- Fix: XSS security issue causing Scroll to Top issue.
+- Fix: External link not working in Photo Stack widget.
+- Fix: Styling issue with WPForms submit button.
+- Fix: Template icon display problem in the container.
+- Fix: Compatibility issue with WPML and Content Switcher widget.
+- Tweak: Warning notice for News Ticker widget.
 
 = 3.9.1.1 - 2 November 2023 =
 

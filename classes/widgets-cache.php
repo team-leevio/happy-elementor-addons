@@ -1,6 +1,8 @@
 <?php
 namespace Happy_Addons\Elementor;
 
+use Elementor\Core\DocumentTypes\Post;
+
 defined( 'ABSPATH' ) || die();
 
 class Widgets_Cache {

@@ -49,13 +49,98 @@
       getTargetElements: function getTargetElements() {
         var _this = this;
         return this.getEqhWidgets().map(function (widget) {
+          if (false && _this.$element.data("element_type") === "container") {
+            var $key = 0;
+            var $widgets = {};
+            var $container = _this.$element;
+            var cls = '.elementor-widget-' + widget + ' .elementor-widget-container';
+            if ($container.find(' > .e-con-inner > div[data-element_type="container"] > ' + cls).length) {
+              $widgets = $container.find(' > .e-con-inner > div[data-element_type="container"] > ' + cls);
+            }
+            if ($container.find(' > div[data-element_type="container"] > ' + cls).length) {
+              if ($widgets.length) {
+                var _$key = $widgets.length;
+                $container.find(' > div[data-element_type="container"] > ' + cls).each(function () {
+                  var id = $(this).parent().data('id');
+                  if (!$widgets.hasOwnProperty(_$key)) {
+                    $widgets[_$key] = $(this)[0];
+                  }
+                  _$key += 1;
+                });
+                $widgets.length = _$key;
+              } else {
+                $widgets = $container.find(' > div[data-element_type="container"] > ' + cls);
+              }
+            }
+            if ($container.find(' > .e-con-inner > div[data-element_type="container"] > .e-con-inner > ' + cls).length) {
+              if ($widgets.length) {
+                var _$key2 = $widgets.length;
+                $container.find(' > .e-con-inner > div[data-element_type="container"] > .e-con-inner > ' + cls).each(function () {
+                  var id = $(this).parent().data('id');
+                  if (!$widgets.hasOwnProperty(_$key2)) {
+                    $widgets[_$key2] = $(this)[0];
+                  }
+                  _$key2 += 1;
+                });
+                $widgets.length = _$key2;
+              } else {
+                $widgets = $container.find(' > .e-con-inner > div[data-element_type="container"] > .e-con-inner > ' + cls);
+              }
+            }
+            if ($container.find(' > div[data-element_type="container"] > .e-con-inner > ' + cls).length) {
+              if ($widgets.length) {
+                var _$key3 = $widgets.length;
+                $container.find(' > div[data-element_type="container"] > .e-con-inner > ' + cls).each(function () {
+                  var id = $(this).parent().data('id');
+                  if (!$widgets.hasOwnProperty(_$key3)) {
+                    $widgets[_$key3] = $(this)[0];
+                  }
+                  _$key3 += 1;
+                });
+                $widgets.length = _$key3;
+              } else {
+                $widgets = $container.find(' > div[data-element_type="container"] > .e-con-inner > ' + cls);
+              }
+            }
+            if ($container.find(' > .e-con-inner > ' + cls).length) {
+              if ($widgets.length) {
+                var _$key4 = $widgets.length;
+                $container.find(' > .e-con-inner > ' + cls).each(function () {
+                  var id = $(this).parent().data('id');
+                  if (!$widgets.hasOwnProperty(_$key4)) {
+                    $widgets[_$key4] = $(this)[0];
+                  }
+                  _$key4 += 1;
+                });
+                $widgets.length = _$key4;
+              } else {
+                $widgets = $container.find(' > .e-con-inner > ' + cls);
+              }
+            }
+            if ($container.find(' > ' + cls).length) {
+              if ($widgets.length) {
+                var _$key5 = $widgets.length;
+                $container.find(' > ' + cls).each(function () {
+                  var id = $(this).parent().data('id');
+                  if (!$widgets.hasOwnProperty(_$key5)) {
+                    $widgets[_$key5] = $(this)[0];
+                  }
+                  _$key5 += 1;
+                });
+                $widgets.length = _$key5;
+              } else {
+                $widgets = $container.find(' > ' + cls);
+              }
+            }
+            return $widgets;
+          }
           return _this.$element.find('.elementor-widget-' + widget + ' .elementor-widget-container');
         });
       },
       bindEvents: function bindEvents() {
         if (this.isEqhEnabled()) {
           this.run();
-          $window.on('resize scroll orientationchange', debounce(this.run.bind(this), 80));
+          $window.on('resize orientationchange', debounce(this.run.bind(this), 500));
         }
       },
       onElementChange: debounce(function (prop, ele) {
@@ -98,6 +183,11 @@
       }
     });
     elementorFrontend.hooks.addAction('frontend/element_ready/section', function ($scope) {
+      elementorFrontend.elementsHandler.addHandler(EqualHeightHandler, {
+        $element: $scope
+      });
+    });
+    elementorFrontend.hooks.addAction('frontend/element_ready/container', function ($scope) {
       elementorFrontend.elementsHandler.addHandler(EqualHeightHandler, {
         $element: $scope
       });

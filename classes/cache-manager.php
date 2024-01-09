@@ -48,8 +48,10 @@ class Cache_Manager {
 	public static function is_built_with_elementor( $post_id ) {
 		$post = get_post($post_id);
 		if(!empty($post) && isset($post->ID)) {
+			// return ha_elementor()->db->is_built_with_elementor( $post_id );
 			return ha_elementor()->documents->get( $post->ID )->is_built_with_elementor();
 		}
+
 		return;
 	}
 

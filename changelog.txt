@@ -1,7 +1,24 @@
-= 3.#.# - #### 2023 =
-- Fix: WPForms submit button style issue
-- Fix: Issue in template icon in the container
-- Fix: WPML compatibility issue with Content Switcher widget
+= 3.10.1 - 1 January 2024 =
+
+- Fix: Security improvement for Age Gate widget.
+
+= 3.10.0 - 19 December 2023 =
+
+- New: Support for Equal Height in Container.
+- Fix: Appsero SDK to version 1.2.5.
+- Fix: Security improvement for Twitter Feed widget.
+- Fix: Security improvement for Post Tab widget.
+- Fix: Security improvement for Mailchimp widget.
+- Fix: Security improvement for Review widget.
+- Fix: Security improvement for Happy Clone.
+- Fix: Security improvement for Theme Builder.
+- Fix: Conflict identified with Events Tickets Plus.
+- Fix: XSS security issue causing Scroll to Top issue.
+- Fix: External link not working in Photo Stack widget.
+- Fix: Styling issue with WPForms submit button.
+- Fix: Template icon display problem in the container.
+- Fix: Compatibility issue with WPML and Content Switcher widget.
+- Tweak: Warning notice for News Ticker widget.
 
 = 3.9.1.1 - 2 November 2023 =
 

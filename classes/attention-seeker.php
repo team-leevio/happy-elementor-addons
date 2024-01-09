@@ -28,6 +28,8 @@ class Attention_Seeker {
                     e.preventDefault();
                     var $seeker = $(e.delegateTarget);
 
+                    console.log('seeker ', $seeker);
+
                     $.post(
                         ajaxUrl,
                         {
@@ -49,8 +51,7 @@ class Attention_Seeker {
 
     public static function process_ignore_request() {
         $nonce = isset( $_POST['nonce'] ) ? $_POST['nonce'] : '';
-        $id = isset( $_POST['id'] ) ? $_POST['id'] : '';
-
+        $id = isset( $_POST['id'] ) ? sanitize_text_field($_POST['id']) : '';
         if ( wp_verify_nonce( $nonce, 'ignore_attention_seeker' ) && $id ) {
             $seeker = wp_list_filter( self::get_attentions(), ['_id' => $id] );
             $expire_date = $seeker[0]['end_date'] - time();
