@@ -87,11 +87,11 @@ class Clone_Handler {
 		}
 
 		if ( 'private' == get_post_status ( $post_id ) && ! current_user_can( 'publish_posts' ) ) {
-			return;
+			wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
 		}
 
 		if ( post_password_required( $post_id ) && ! current_user_can( 'publish_posts' ) ) {
-			return;
+			wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
 		}
 
 		if ( is_null( ( $post = get_post( $post_id ) ) ) ) {
