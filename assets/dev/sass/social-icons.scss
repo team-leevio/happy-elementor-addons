@@ -42,6 +42,12 @@ a.ha-social-icon:after {
 	height: 1em;
 }
 
+.ha-social-icon svg {
+	width: auto;
+    height: 1em;
+    fill: currentColor;
+}
+
 .ha-social-icon-label {
 	line-height: 1;
 	font-size: 18px;
