@@ -37,6 +37,12 @@
 
 	&-body {
 		padding: 25px;
+
+		.ha-btn svg {
+			width: auto;
+			height: 1em;
+			fill: currentColor;
+		}
 	}
 
 	&-title {
