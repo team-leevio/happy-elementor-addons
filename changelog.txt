@@ -1,7 +1,9 @@
 = 3.#.# - ###### 2024 =
 
-- Fix: Event Calendar(Google Calendar) page crashing and throwing Critical Error issue
-Fix: Security improvement for Happy Clone featues.
+- Fix: Event Calendar(Google Calendar) page crashing and throwing Critical Error issue.
+- Fix: Security improvement for Happy Clone feature.
+- Fix: Security improvement for Wrapper Link feature.
+- Fix: Security improvement for Animated Link widget.
 
 = 3.10.1 - 1 January 2024 =
 

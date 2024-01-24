@@ -13,9 +13,9 @@ defined('ABSPATH') || exit;
 trait Link_Hover_Markup
 {
     public static function render_metis_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -28,9 +28,9 @@ EOF;
     }
 
     public static function render_io_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -43,9 +43,9 @@ EOF;
     }
 
     public static function render_thebe_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -58,9 +58,9 @@ EOF;
     }
 
     public static function render_leda_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -75,9 +75,9 @@ EOF;
     }
 
     public static function render_ersa_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -92,9 +92,9 @@ EOF;
     }
 
     public static function render_elara_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -109,9 +109,9 @@ EOF;
     }
 
     public static function render_dia_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -124,9 +124,9 @@ EOF;
     }
 
     public static function render_kale_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -139,9 +139,9 @@ EOF;
     }
 
     public static function render_carpo_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -154,9 +154,9 @@ EOF;
     }
 
     public static function render_helike_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -169,9 +169,9 @@ EOF;
     }
 
     public static function render_mneme_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -184,9 +184,9 @@ EOF;
     }
 
     public static function render_iocaste_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -204,9 +204,9 @@ EOF;
     }
 
     public static function render_herse_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -222,9 +222,9 @@ EOF;
     }
 
     public static function render_carme_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
@@ -240,9 +240,9 @@ EOF;
     }
 
     public static function render_eirene_markup( $settings ){
-        $link_text = $settings['link_text'];
+        $link_text = esc_html( $settings['link_text'] );
 
-        $link_url = $settings['link_url']['url'];
+        $link_url = esc_url( $settings['link_url']['url'] );
         $target = $settings['link_url']['is_external'] ? ' target="_blank"' : '';
         $nofollow = $settings['link_url']['nofollow'] ? ' rel="nofollow"' : '';
 
