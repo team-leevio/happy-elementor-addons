@@ -1,6 +1,6 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.10.1
+Version: 3.10.2
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
@@ -655,6 +655,14 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.10.2 - 29 January 2024 =
+
+- Fix: Event Calendar(Google Calendar) page crashing and throwing Critical Error issue.
+- Fix: Security improvement for Happy Clone feature.
+- Fix: Security improvement for Wrapper Link feature.
+- Fix: Security improvement for Animated Link widget.
+- Fix: Security improvement for Age Gate widget.
 
 = 3.10.1 - 1 January 2024 =
 

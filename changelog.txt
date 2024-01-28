@@ -1,4 +1,4 @@
-= 3.10.2 - ###### 2024 =
+= 3.10.2 - 29 January 2024 =
 
 - Fix: Event Calendar(Google Calendar) page crashing and throwing Critical Error issue.
 - Fix: Security improvement for Happy Clone feature.
