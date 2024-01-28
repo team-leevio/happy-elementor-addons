@@ -2118,7 +2118,7 @@ class Age_Gate extends Base {
 				</div>
 
 				<?php if( !empty($settings['side_img']['url']) ): ?>
-					<div class="ha-age-gate-boxes ha-age-gate-side-image <?php echo $right_img_class; ?>" style="background-image:url(<?php echo $settings['side_img']['url']; ?>);background-size:cover;   background-attachment:inherit;"></div>
+					<div class="ha-age-gate-boxes ha-age-gate-side-image <?php echo esc_attr($right_img_class); ?>" style="background-image:url(<?php echo esc_url($settings['side_img']['url']); ?>);background-size:cover;   background-attachment:inherit;"></div>
 				<?php endif; ?>
 
 			</div>
