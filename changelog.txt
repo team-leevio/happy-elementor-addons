@@ -5,6 +5,8 @@
 - Fix: Security improvement for Wrapper Link feature.
 - Fix: Security improvement for Animated Link widget.
 - Fix: Security improvement for Age Gate widget.
+- Fix: Bug fixes and performance improvements.
+
 
 = 3.10.1 - 1 January 2024 =
 
