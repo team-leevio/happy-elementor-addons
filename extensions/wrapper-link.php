@@ -49,6 +49,8 @@ class Wrapper_Link {
 
 	public static function before_section_render( Element_Base $element ) {
 		$link_settings = $element->get_settings_for_display( 'ha_element_link' );
+		$link_settings['url'] = esc_url( $link_settings['url'] );
+		unset( $link_settings['custom_attributes'] );
 
 		if ( $link_settings && ! empty( $link_settings['url'] ) ) {
 			$element->add_render_attribute(
