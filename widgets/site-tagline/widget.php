@@ -12,6 +12,7 @@ use Elementor\Controls_Manager;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Typography;
+use Elementor\Icons_Manager;
 
 defined('ABSPATH') || die();
 
@@ -148,7 +149,7 @@ class Site_Tagline extends Base {
 				'global'   => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
-				'selector' => '{{WRAPPER}} .ha-site-tagline',
+				'selector' => '{{WRAPPER}} .ha-site-tagline, {{WRAPPER}} .ha-site-tagline .ha-st-icon',
 			]
 		);
 		$this->add_control(
@@ -195,7 +196,7 @@ class Site_Tagline extends Base {
 		<div class="ha-site-tagline ha-site-tagline-wrapper">
 			<?php if ('' !== $settings['icon']['value']) { ?>
 				<span class="ha-st-icon">
-					<?php \Elementor\Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']); ?>
+					<?php Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']); ?>
 				</span>
 			<?php } ?>
 			<span>

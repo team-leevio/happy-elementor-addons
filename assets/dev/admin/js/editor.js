@@ -238,7 +238,6 @@
 				}, 1500));
 			}
 
-			//console.log( stt_data );
 			$("#elementor-preview-iframe")[0].contentWindow.postMessage(stt_data);
 		}
 
@@ -401,30 +400,63 @@
 	// Widget List controller view
 	var WidgetList = elementor.modules.controls.Select2.extend({
 		onBeforeRender: function () {
-			if (this.container && this.container.type === "section") {
+			if (this.container && (this.container.type === "section" || this.container.type === "container") ) {
 				var widgetsConfig =
 						elementor.widgetsCache || elementor.config.widgets,
 					widgets = {};
 
-				this.container.children.forEach(function (column) {
-					var $widgets =
-						column.view.$childViewContainer.children(
-							"[data-widget_type]"
-						);
+				if ( this.container.type === "section" ) {
+					this.container.children.forEach(function (column) {
 
-					$widgets.each(function (index, widget) {
-						var name = $(widget).data("widget_type"),
-							name = name.slice(0, name.lastIndexOf(".")),
-							config = !_.isUndefined(widgetsConfig[name])
-								? widgetsConfig[name]
-								: false;
+						var $widgets =
+							column.view.$childViewContainer.children(
+								"[data-widget_type]"
+							);
 
-						if (config) {
-							widgets[config.widget_type] =
-								config.title + " (" + config.widget_type + ")";
-						}
+						$widgets.each(function (index, widget) {
+							var name = $(widget).data("widget_type"),
+								name = name.slice(0, name.lastIndexOf(".")),
+								config = !_.isUndefined(widgetsConfig[name])
+									? widgetsConfig[name]
+									: false;
+
+							if (config) {
+								widgets[config.widget_type] =
+									config.title + " (" + config.widget_type + ")";
+							}
+						});
 					});
-				});
+				};
+
+				if ( this.container.type === "container" ) {
+					var $has_widget = false;
+					this.container.children.some(function (column) {
+						if( column.view.children.length == 0 ){
+							$has_widget = ( column.view.children.length == 0 );
+						}
+						return (column.view.children.length == 0);
+					});
+					this.container.children.forEach(function (column) {
+						let $widgets = column.view.$el.data("element_type") == 'widget' ? column.view.$el : column.view.$el.find('div[data-element_type="widget"]');
+
+
+						$widgets.each(function (index, widget) {
+
+							if( $(widget).data("element_type") == 'widget' ) {
+								var name = $(widget).data("widget_type"),
+									name = name.slice(0, name.lastIndexOf(".")),
+									config = !_.isUndefined(widgetsConfig[name])
+										? widgetsConfig[name]
+										: false;
+
+								if (config) {
+									widgets[config.widget_type] =
+										config.title + " (" + config.widget_type + ")";
+								}
+							}
+						});
+					});
+				};
 
 				this.model.set("options", widgets);
 			}
@@ -448,7 +480,6 @@
 			if (!_.isObject(args)) {
 				args = {};
 			}
-			// console.log(self.container.settings.get('post_type'));
 			if (
 				args.control_dependency &&
 				_.isObject(args.control_dependency)

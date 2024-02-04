@@ -598,7 +598,7 @@ class WPForm extends Base {
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-submit' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .wpforms-container .wpforms-submit' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -609,7 +609,7 @@ class WPForm extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-submit' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .wpforms-container .wpforms-submit' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -629,7 +629,7 @@ class WPForm extends Base {
                 'label' => __( 'Text Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-submit:hover, {{WRAPPER}} .wpforms-submit:focus' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .wpforms-container .wpforms-submit:hover, {{WRAPPER}} .wpforms-container .wpforms-submit:focus' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -640,7 +640,7 @@ class WPForm extends Base {
                 'label' => __( 'Background Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-submit:hover, {{WRAPPER}} .wpforms-submit:focus' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .wpforms-container .wpforms-submit:hover, {{WRAPPER}} .wpforms-container .wpforms-submit:focus' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -651,7 +651,7 @@ class WPForm extends Base {
                 'label' => __( 'Border Color', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .wpforms-submit:hover, {{WRAPPER}} .wpforms-submit:focus' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .wpforms-container .wpforms-submit:hover, {{WRAPPER}} .wpforms-container .wpforms-submit:focus' => 'border-color: {{VALUE}};',
                 ],
             ]
         );

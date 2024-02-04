@@ -1,0 +1,326 @@
+@import "variables";
+@import "mixins";
+
+.elementor-editor-active .ha-age-gate-wrapper {
+	display: block;
+}
+
+.ha-age-gate-wrapper {
+	display: flex;
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background: #00000069;
+	z-index: 999;
+	display: none;
+
+	&:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, .5);
+	}
+
+	.ha-age-gate-inner-wrapper {
+		position: relative;
+		display: flex;
+		margin: 0 auto;
+		top: 50%;
+		transform: translateY(-50%);
+		background: #fff;
+		border-radius: 5px;
+		z-index: 10001;
+		max-width: 576px;
+		min-height: 300px;
+		overflow: hidden;
+	}
+
+	.ha-age-gate-boxes {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		justify-content: center;
+		padding: 50px;
+
+		&.ha-age-gate-equ-width-50 {
+			width: 50%
+		}
+	}
+
+	.ha-age-gate-header {
+		text-align: center;
+    	width: 100%;
+
+		.ha-age-gate-warning-msg {
+			position: absolute;
+			width: 100%;
+			height: auto;
+			font-size: 16px;
+			text-align: center;
+			color: #f1f7f1;
+			background-color: #111111e6;
+			overflow: hidden;
+			top: 0;
+			left: 0;
+			display: none;
+			z-index: 1;
+			padding: 10px 15px;
+			transition: all 0.3s linear;
+		}
+
+		.ha-age-gate-image {
+			display: block;
+			position: relative;
+
+			img {
+				position: relative;
+				display: inline-flex;
+				max-width: 80px
+			}
+		}
+
+		.ha-age-gate-title {
+			font-size: 22px;
+			margin-top: 15px;
+			color: #000;
+		}
+
+		.ha-age-gate-description {
+			margin-top: 15px;
+			width: 100%;
+			color: #000;
+
+			font-size: 14px;
+			line-height: 1.2;
+			letter-spacing: 0.8px;
+		}
+	}
+
+	.ha-age-gate-footer-text {
+		width: 100%;
+		color: #818181;
+
+		font-size: 14px;
+		margin-top: 15px;
+		text-align: center;
+		font-weight: 400;
+		p {
+			margin: 0;
+			font-size: inherit;
+			line-height: inherit;
+			font-weight: inherit;
+		}
+	}
+
+	.ha-age-gate-form-body {
+		position: relative;
+		display: block;
+		width: 100%;
+		margin: 15px 0;
+	}
+
+	/*confirm-age start*/
+	&.ha-age-gate-confirm-age .ha-age-gate-form-body {
+		position: relative;
+		display: inline-flex;
+		margin-top: 30px;
+		align-items: center;
+
+		.ha-age-gate-checkbox.remove-checkbox {
+			position: relative;
+			display: flex;
+			align-items: center;
+
+			label {
+				position: relative;
+				display: flex;
+				align-items: center;
+			}
+
+			.ha-age-gate-checkbox-input {
+				display: none;
+			}
+
+			.ha-age-gate-checkmark {
+				position: relative;
+				height: 20px;
+				width: 20px;
+				min-width: 20px;
+				background-color: #eee;
+				display: inline-table;
+				margin-right: 10px;
+				z-index: 111;
+				border-radius: 4px;
+				transition: all 0.3s linear;
+			}
+
+			&:hover input~.ha-age-gate-checkmark {
+				background-color: #c5c2c2;
+			}
+
+			input:checked~.ha-age-gate-checkmark {
+				background-color: #c5c2c2;
+			}
+
+			.ha-age-gate-checkmark:after {
+				content: "";
+				position: absolute;
+				display: none;
+
+				width: 5px;
+				height: 10px;
+				border: solid white;
+				border-width: 0 3px 3px 0;
+				top: 50%;
+				left: 50%;
+				transform: translateY(-50%) translateX(-50%) rotate(45deg);
+			}
+
+			input:checked~.ha-age-gate-checkmark:after {
+				display: flex;
+			}
+		}
+
+		.ha-age-gate-confirm-age-btn {
+			display: inline-flex;
+			outline: none;
+
+			text-decoration: none;
+			border: none;
+
+			padding: 15px 25px;
+			border-radius: 5px;
+			background: linear-gradient(93.69deg, #6830C8 -31.79%, #E2498A 121.43%),
+			linear-gradient(0deg, #D9D9D9, #D9D9D9);
+
+			color: #ffffff;
+
+			vertical-align: middle;
+			text-align: center;
+			text-decoration: none;
+			font-size: 14px;
+			line-height: 1;
+			transition: all .3s;
+
+			i {
+				margin: 0 0 0 10px;
+			}
+		}
+	}
+
+	/*confirm-dob start*/
+	&.ha-age-gate-confirm-dob .ha-age-gate-form-body {
+		margin-top: 15px;
+		max-width: max-content;
+
+		.ha-age-gate-date-input {
+			position: relative;
+			display: inline-flex;
+			padding: 12px;
+			border: 1px solid #000;
+			width: 100%;
+			font-size: 14px;
+			color: #000;
+			overflow: hidden;
+			border-radius: 4px;
+		}
+
+		.ha-age-gate-confirm-dob-btn {
+			position: relative;
+			display: inline-flex;
+			background: linear-gradient(93.69deg, #6830C8 -31.79%, #E2498A 121.43%),
+						linear-gradient(0deg, #D9D9D9, #D9D9D9);
+			border: none;
+			padding: 15px 15px;
+			outline: none;
+			overflow: hidden;
+			color: #ffffff;
+			font-size: 16px;
+			align-items: center;
+			justify-content: center;
+			top: 15px;
+			border-radius: 4px;
+
+			text-align: center;
+			text-decoration: none;
+			font-size: 14px;
+			line-height: 1;
+			width: 100%;
+
+			i {
+				margin: 0px 0px 0px 10px;
+			}
+		}
+	}
+
+	/*confirm-by-boolean start*/
+	&.ha-age-gate-confirm-by-boolean .ha-age-gate-form-body {
+		display: flex;
+		margin-top: 30px;
+		justify-content: center;
+
+		.ha-age-gate-confirm-yes-btn,
+		.ha-age-gate-confirm-no-btn {
+			position: relative;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			padding: 10px 15px;
+			outline: none;
+			font-size: 12px;
+			text-decoration: none;
+			border-radius: 4px;
+
+			i {
+				margin: 0 10px 0 10px;
+			}
+		}
+
+		.ha-age-gate-confirm-yes-btn {
+			color: #fff;
+			border: none;
+			background: linear-gradient(93.69deg, #6830C8 -31.79%, #E2498A 121.43%),
+						linear-gradient(0deg, #D9D9D9, #D9D9D9);
+			margin-right: 5px;
+		}
+
+		.ha-age-gate-confirm-no-btn {
+			color: #5C5C5C;
+			border: 1px solid #D7D7D7;
+			background: transparent;
+			margin-left: 5px;
+		}
+
+	}
+
+}
+
+
+/*confirm-by-boolean end*/
+@media (max-width:1024px) and (min-width:768px) {
+	.ha-age-gate-wrapper .ha-age-gate-boxes.ha-age-gate-equ-width-50 {
+		width: 100%;
+	}
+}
+
+@media (max-width:767px) and (min-width:375px) {
+	.ha-age-gate-wrapper .ha-age-gate-boxes.ha-age-gate-equ-width-50 {
+		width: 100%;
+		min-width: 100%;
+	}
+}
+
+.ha-age-gate-wrapper .ha-age-gate-boxes .ha-age-gate-form-body .ha-age-gate-confirm-yes-btn svg,
+.ha-age-gate-wrapper .ha-age-gate-boxes .ha-age-gate-form-body .ha-age-gate-confirm-no-btn svg {
+	width: 12px;
+	height: 12px;
+}

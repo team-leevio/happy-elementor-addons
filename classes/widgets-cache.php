@@ -1,6 +1,8 @@
 <?php
 namespace Happy_Addons\Elementor;
 
+use Elementor\Core\DocumentTypes\Post;
+
 defined( 'ABSPATH' ) || die();
 
 class Widgets_Cache {
@@ -18,7 +20,12 @@ class Widgets_Cache {
     protected $is_published = false;
 
     public function __construct( $post_id = 0, $data = null ) {
-        if ( ! $post_id || ! Cache_Manager::is_built_with_elementor( $post_id ) || ! Cache_Manager::is_published( $post_id ) ) {
+        if( ! $post_id ) {
+            return;
+        }
+        $post = get_post($post_id);
+        $postID = !empty($post) && isset($post->ID) ? $post->ID : 0;
+        if ( ! $postID || ! Cache_Manager::is_built_with_elementor( $postID ) || ! Cache_Manager::is_published( $postID ) ) {
             return;
         }
 

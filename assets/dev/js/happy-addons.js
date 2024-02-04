@@ -669,12 +669,15 @@
 			var calendarEl =  $scope.find('.ha-ec');
 			var popup = $scope.find('.ha-ec-popup-wrapper');
 			var popupClose = $scope.find(".ha-ec-popup-close");
-			var events = calendarEl.data('events');
+			// var events = calendarEl.data('events');
 			var initialview = calendarEl.data('initialview');
 			var firstday = calendarEl.data('firstday');
 			var locale = calendarEl.data('locale');
 			var showPopup = calendarEl.data('show-popup');
 			var allday_text = calendarEl.data('allday-text');
+
+			var ECjson = window['HaECjson'+$scope.data('id')];
+			var events = ECjson;
 
 			if( 'undefined' == typeof events){
 				return;
@@ -898,7 +901,6 @@
 						}, 5000);
 					},
 					error: function(error) {
-						// console.log(error);
 					}
 				});
 
@@ -1274,6 +1276,86 @@
 		};
 
 		elementorFrontend.hooks.addAction("frontend/element_ready/ha-navigation-menu.default", NavigationMenu);
+
+
+		var AgeGate = function($scope, $) {
+
+			if(elementorFrontend.isEditMode()) {
+				localStorage.removeItem("ha-age-gate-expire-time");
+				if( $scope.find('.ha-age-gate-wrapper').length ) {
+					var editor_mood = $scope.find('.ha-age-gate-wrapper').data('editor_mood');
+					if( 'no' == editor_mood ){
+						$scope.find('.ha-age-gate-wrapper').hide();
+					}
+				}
+			} else if(!elementorFrontend.isEditMode()) {
+				var container = $scope.find('.ha-age-gate-wrapper'),
+				cookies_time  = container.data('age_gate_cookies_time'),
+				exd = localStorage.getItem("ha-age-gate-expire-time");
+				//container.closest("body").find("header").css("display","none");
+				container.closest("body").css("overflow","hidden");
+				var cdate = new Date();
+				var endDate = new Date();
+				endDate.setDate(cdate.getDate()+cookies_time);
+
+
+				if(exd!='' && exd!=undefined && (new Date(cdate) <= new Date(exd))){
+					$('.ha-age-gate-wrapper').hide();
+					container.closest("body").css("overflow","");
+				}else if(exd!='' && exd!=undefined && (new Date(cdate) > new Date(exd))){
+					localStorage.removeItem("ha-age-gate-expire-time");
+					$('.ha-age-gate-wrapper').show();
+				}else{
+					$('.ha-age-gate-wrapper').show();
+				}
+
+				/*confirm-age*/
+				if( $scope.find('.ha-age-gate-wrapper.ha-age-gate-confirm-age').length ){
+
+					$(".ha-age-gate-confirm-age-btn").on("click", function(){
+						localStorage.setItem("ha-age-gate-expire-time", endDate );
+						$(this).closest(".ha-age-gate-wrapper").hide();
+						//$(this).closest("body").find("header").css("display","block");
+						$(this).closest("body").css("overflow","");
+					});
+				}
+
+				/*confirm-dob*/
+				if($scope.find('.ha-age-gate-wrapper.ha-age-gate-confirm-dob').length){
+
+					$(".ha-age-gate-confirm-dob-btn").on("click", function(){
+						var birthYear = new Date( Date.parse($(this).closest('.ha-age-gate-form-body').find('.ha-age-gate-date-input').val()) ),
+						agebirth = birthYear.getFullYear(),
+						currentYear = cdate.getFullYear(),
+						userage = currentYear - agebirth,
+						agelimit = $(this).closest('.ha-age-gate-wrapper').data("userbirth");
+						if(userage < agelimit){
+							$(this).closest('.ha-age-gate-boxes').find('.ha-age-gate-warning-msg').show();
+						}else{
+							localStorage.setItem("ha-age-gate-expire-time", endDate );
+							$(this).closest('.ha-age-gate-wrapper').hide();
+							//$(this).closest("body").find("header").css("display","block");
+							$(this).closest("body").css("overflow","");
+					   }
+					});
+				}
+
+				/*confirm-by-boolean*/
+				if($scope.find('.ha-age-gate-wrapper.ha-age-gate-confirm-by-boolean').length){
+					$(".ha-age-gate-wrapper .ha-age-gate-confirm-yes-btn").on("click", function(){
+						localStorage.setItem("ha-age-gate-expire-time", endDate );
+						$(this).closest('.ha-age-gate-wrapper').hide();
+						//$(this).closest("body").find("header").css("display","block");
+						$(this).closest("body").css("overflow","");
+					});
+					$(".ha-age-gate-wrapper .ha-age-gate-confirm-no-btn").on("click", function(){
+						$(this).closest('.ha-age-gate-boxes').find('.ha-age-gate-warning-msg').show();
+					});
+				}
+			}
+		}
+
+		elementorFrontend.hooks.addAction("frontend/element_ready/ha-age-gate.default", AgeGate);
 
 	});
 

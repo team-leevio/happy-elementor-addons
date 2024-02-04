@@ -66,6 +66,10 @@ class Mailchimp_Api {
 		if ( ! isset( $server[1] ) ) {
 			return ['status' => 0, 'msg' => esc_html__( 'Invalid API key.', 'happy-elementor-addons' )];
 		}
+		
+		if( strpos('us', $server[1]) === false ) {
+			return ['status' => 0, 'msg' => esc_html__( 'Invalid API key.', 'happy-elementor-addons' )];
+		}
 
 		$url = 'https://' . $server[1] . '.api.mailchimp.com/3.0/lists/' . $auth['list_id'] . '/members/';
 

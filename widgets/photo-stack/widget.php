@@ -15,7 +15,8 @@ use Elementor\Utils;
 
 defined('ABSPATH') || die();
 
-class Photo_Stack extends Base {
+class Photo_Stack extends Base
+{
 
     /**
      * Get widget title.
@@ -25,11 +26,13 @@ class Photo_Stack extends Base {
      *
      * @return string Widget title.
      */
-    public function get_title() {
+    public function get_title()
+    {
         return __('Photo Stack', 'happy-elementor-addons');
     }
 
-    public function get_custom_help_url() {
+    public function get_custom_help_url()
+    {
         return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/photo-stack/';
     }
 
@@ -41,27 +44,31 @@ class Photo_Stack extends Base {
      *
      * @return string Widget icon.
      */
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'hm hm-card';
     }
 
-    public function get_keywords() {
+    public function get_keywords()
+    {
         return ['photo', 'img-box', 'photo-gallery'];
     }
 
     /**
      * Register widget content controls
      */
-    protected function register_content_controls() {
+    protected function register_content_controls()
+    {
         $this->__photo_stack_content_controls();
     }
 
-    protected function __photo_stack_content_controls() {
+    protected function __photo_stack_content_controls()
+    {
         $this->start_controls_section(
             '_section_photo_stack',
             [
                 'label' => __('Photo Stack', 'happy-elementor-addons'),
-                'tab'   => Controls_Manager::TAB_CONTENT,
+                'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
 
@@ -70,8 +77,8 @@ class Photo_Stack extends Base {
         $repeater->add_control(
             'image',
             [
-                'label'   => __('Image', 'happy-elementor-addons'),
-                'type'    => Controls_Manager::MEDIA,
+                'label' => __('Image', 'happy-elementor-addons'),
+                'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],
@@ -83,10 +90,10 @@ class Photo_Stack extends Base {
         $repeater->add_group_control(
             Group_Control_Image_Size::get_type(),
             [
-                'name'      => 'thumbnail',
-                'default'   => 'medium',
+                'name' => 'thumbnail',
+                'default' => 'medium',
                 'separator' => 'before',
-                'dynamic'   => [
+                'dynamic' => [
                     'active' => true,
                 ],
             ]
@@ -96,45 +103,45 @@ class Photo_Stack extends Base {
             $repeater->add_group_control(
                 \Happy_Addons_Pro\Controls\Group_Control_Mask_Image::get_type(),
                 [
-                    'name'     => 'image_masking',
+                    'name' => 'image_masking',
                     'selector' => '{{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}',
                 ]
             );
         }
         $repeater->add_control(
-			'link',
-			[
-				'label' => __( 'Link', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::URL,
-				'label_block' => true,
-				'placeholder' => 'https://example.com',
-				'dynamic' => [
-					'active' => true,
-				]
-			]
-		);
+            'link',
+            [
+                'label' => __('Link', 'happy-elementor-addons'),
+                'type' => Controls_Manager::URL,
+                'label_block' => true,
+                'placeholder' => 'https://example.com',
+                'dynamic' => [
+                    'active' => true,
+                ]
+            ]
+        );
         $repeater->add_responsive_control(
             'image_offset_y',
             [
-                'label'      => __('Offset Y', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::SLIDER,
+                'label' => __('Offset Y', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
-                'range'      => [
+                'range' => [
                     'px' => [
-                        'min'  => -1000,
-                        'max'  => 1000,
+                        'min' => -1000,
+                        'max' => 1000,
                         'step' => 5,
                     ],
-                    '%'  => [
+                    '%' => [
                         'min' => -100,
                         'max' => 100,
                     ],
                 ],
-                'default'    => [
+                'default' => [
                     'unit' => 'px',
                     'size' => 0,
                 ],
-                'selectors'  => [
+                'selectors' => [
                     '{{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}' => 'top: {{SIZE}}{{UNIT}};',
                 ],
             ]
@@ -143,25 +150,25 @@ class Photo_Stack extends Base {
         $repeater->add_responsive_control(
             'image_offset_x',
             [
-                'label'      => __('Offset X', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::SLIDER,
+                'label' => __('Offset X', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
-                'range'      => [
+                'range' => [
                     'px' => [
-                        'min'  => -1000,
-                        'max'  => 1000,
+                        'min' => -1000,
+                        'max' => 1000,
                         'step' => 5,
                     ],
-                    '%'  => [
+                    '%' => [
                         'min' => -100,
                         'max' => 100,
                     ],
                 ],
-                'default'    => [
+                'default' => [
                     'unit' => 'px',
                     'size' => 0,
                 ],
-                'selectors'  => [
+                'selectors' => [
                     '{{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}' => 'left: {{SIZE}}{{UNIT}};',
                 ],
             ]
@@ -170,11 +177,11 @@ class Photo_Stack extends Base {
         $repeater->add_responsive_control(
             'image_z_index',
             [
-                'label'     => esc_html__('Z-Index', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::NUMBER,
-                'min'       => -1000,
-                'max'       => 1000,
-                'step'      => 1,
+                'label' => esc_html__('Z-Index', 'happy-elementor-addons'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => -1000,
+                'max' => 1000,
+                'step' => 1,
                 'selectors' => [
                     '{{WRAPPER}} .ha-photo-stack-item{{CURRENT_ITEM}}' => 'z-index: {{VALUE}};',
                 ],
@@ -185,62 +192,62 @@ class Photo_Stack extends Base {
         $this->add_control(
             'image_list',
             [
-                'show_label'  => true,
-                'label'       => __('Items', 'happy-elementor-addons'),
-                'type'        => Controls_Manager::REPEATER,
-                'fields'      => $repeater->get_controls(),
+                'show_label' => true,
+                'label' => __('Items', 'happy-elementor-addons'),
+                'type' => Controls_Manager::REPEATER,
+                'fields' => $repeater->get_controls(),
                 'title_field' => '{{{ name }}}',
-                'default'     => [
+                'default' => [
                     [
-                        'image'                      => [
+                        'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'thumbnail_size'             => 'custom',
+                        'thumbnail_size' => 'custom',
                         'thumbnail_custom_dimension' => [
-                            'width'  => 200,
+                            'width' => 200,
                             'height' => 200,
                         ],
-                        'image_offset_y'             => [
+                        'image_offset_y' => [
                             'size' => 0,
                             'unit' => 'px',
                         ],
-                        'image_offset_x'             => [
+                        'image_offset_x' => [
                             'size' => 35,
                             'unit' => 'px',
                         ],
                     ],
                     [
-                        'image'                      => [
+                        'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'thumbnail_size'             => 'custom',
+                        'thumbnail_size' => 'custom',
                         'thumbnail_custom_dimension' => [
-                            'width'  => 300,
+                            'width' => 300,
                             'height' => 300,
                         ],
-                        'image_offset_y'             => [
+                        'image_offset_y' => [
                             'size' => 250,
                             'unit' => 'px',
                         ],
-                        'image_offset_x'             => [
+                        'image_offset_x' => [
                             'size' => 0,
                             'unit' => 'px',
                         ],
                     ],
                     [
-                        'image'                      => [
+                        'image' => [
                             'url' => Utils::get_placeholder_image_src(),
                         ],
-                        'thumbnail_size'             => 'custom',
+                        'thumbnail_size' => 'custom',
                         'thumbnail_custom_dimension' => [
-                            'width'  => 500,
+                            'width' => 500,
                             'height' => 400,
                         ],
-                        'image_offset_y'             => [
+                        'image_offset_y' => [
                             'size' => 100,
                             'unit' => 'px',
                         ],
-                        'image_offset_x'             => [
+                        'image_offset_x' => [
                             'size' => 180,
                             'unit' => 'px',
                         ],
@@ -252,21 +259,21 @@ class Photo_Stack extends Base {
         $this->add_control(
             'image_infinite_animation',
             [
-                'label'     => __('Infinite Animation', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::SELECT,
-                'options'   => [
-                    ''                    => __('None', 'happy-elementor-addons'),
-                    'ha-bounce-sm'        => __('Bounce Small', 'happy-elementor-addons'),
-                    'ha-bounce-md'        => __('Bounce Medium', 'happy-elementor-addons'),
-                    'ha-bounce-lg'        => __('Bounce Large', 'happy-elementor-addons'),
-                    'ha-fade'             => __('Fade', 'happy-elementor-addons'),
-                    'ha-rotating'         => __('Rotating', 'happy-elementor-addons'),
+                'label' => __('Infinite Animation', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    '' => __('None', 'happy-elementor-addons'),
+                    'ha-bounce-sm' => __('Bounce Small', 'happy-elementor-addons'),
+                    'ha-bounce-md' => __('Bounce Medium', 'happy-elementor-addons'),
+                    'ha-bounce-lg' => __('Bounce Large', 'happy-elementor-addons'),
+                    'ha-fade' => __('Fade', 'happy-elementor-addons'),
+                    'ha-rotating' => __('Rotating', 'happy-elementor-addons'),
                     'ha-rotating-inverse' => __('Rotating inverse', 'happy-elementor-addons'),
-                    'ha-scale-sm'         => __('Scale Small', 'happy-elementor-addons'),
-                    'ha-scale-md'         => __('Scale Medium', 'happy-elementor-addons'),
-                    'ha-scale-lg'         => __('Scale Large', 'happy-elementor-addons'),
+                    'ha-scale-sm' => __('Scale Small', 'happy-elementor-addons'),
+                    'ha-scale-md' => __('Scale Medium', 'happy-elementor-addons'),
+                    'ha-scale-lg' => __('Scale Large', 'happy-elementor-addons'),
                 ],
-                'default'   => 'ha-bounce-sm',
+                'default' => 'ha-bounce-sm',
                 'separator' => 'before',
             ]
         );
@@ -274,35 +281,35 @@ class Photo_Stack extends Base {
         $this->add_control(
             'hover_animation_style',
             [
-                'label'     => __('Hover Animation', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::SELECT,
-                'options'   => [
-                    'none'             => __('None', 'happy-elementor-addons'),
-                    'fly-sm'           => __('Fly Small', 'happy-elementor-addons'),
-                    'fly'              => __('Fly Medium', 'happy-elementor-addons'),
-                    'fly-lg'           => __('Fly Large', 'happy-elementor-addons'),
-                    'scale-sm'         => __('Scale Small', 'happy-elementor-addons'),
-                    'scale'            => __('Scale Medium', 'happy-elementor-addons'),
-                    'scale-lg'         => __('Scale Large', 'happy-elementor-addons'),
+                'label' => __('Hover Animation', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'none' => __('None', 'happy-elementor-addons'),
+                    'fly-sm' => __('Fly Small', 'happy-elementor-addons'),
+                    'fly' => __('Fly Medium', 'happy-elementor-addons'),
+                    'fly-lg' => __('Fly Large', 'happy-elementor-addons'),
+                    'scale-sm' => __('Scale Small', 'happy-elementor-addons'),
+                    'scale' => __('Scale Medium', 'happy-elementor-addons'),
+                    'scale-lg' => __('Scale Large', 'happy-elementor-addons'),
                     'scale-inverse-sm' => __('Scale Inverse Small', 'happy-elementor-addons'),
-                    'scale-inverse'    => __('Scale Inverse Medium', 'happy-elementor-addons'),
+                    'scale-inverse' => __('Scale Inverse Medium', 'happy-elementor-addons'),
                     'scale-inverse-lg' => __('Scale Inverse Large', 'happy-elementor-addons'),
                 ],
-                'default'   => 'scale-sm',
+                'default' => 'scale-sm',
                 'separator' => 'before',
             ]
         );
         $this->add_control(
             'animation_speed',
             [
-                'label'       => __('Animation speed', 'happy-elementor-addons'),
+                'label' => __('Animation speed', 'happy-elementor-addons'),
                 'description' => __('Please set your animation speed in seconds. Default value is 6s.', 'happy-elementor-addons'),
-                'type'        => Controls_Manager::NUMBER,
-                'min'         => 0,
-                'max'         => 100,
-                'step'        => 1,
-                'default'     => 6,
-                'selectors'   => [
+                'type' => Controls_Manager::NUMBER,
+                'min' => 0,
+                'max' => 100,
+                'step' => 1,
+                'default' => 6,
+                'selectors' => [
                     '{{WRAPPER}} .ha-photo-stack-wrapper' => '--animation_speed:{{SIZE}}s',
                 ],
             ]
@@ -311,24 +318,24 @@ class Photo_Stack extends Base {
         $this->add_responsive_control(
             'image_container_align',
             [
-                'label'     => __('Alignment', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::CHOOSE,
-                'options'   => [
-                    'left'   => [
+                'label' => __('Alignment', 'happy-elementor-addons'),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
                         'title' => __('Left', 'happy-elementor-addons'),
-                        'icon'  => 'eicon-text-align-left',
+                        'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
                         'title' => __('Center', 'happy-elementor-addons'),
-                        'icon'  => 'eicon-text-align-center',
+                        'icon' => 'eicon-text-align-center',
                     ],
-                    'right'  => [
+                    'right' => [
                         'title' => __('Right', 'happy-elementor-addons'),
-                        'icon'  => 'eicon-text-align-right',
+                        'icon' => 'eicon-text-align-right',
                     ],
                 ],
-                'toggle'    => true,
-                'default'   => 'center',
+                'toggle' => true,
+                'default' => 'center',
                 'separator' => 'before',
                 'selectors' => [
                     '{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};',
@@ -342,25 +349,27 @@ class Photo_Stack extends Base {
     /**
      * Register widget style controls
      */
-    protected function register_style_controls() {
+    protected function register_style_controls()
+    {
         $this->__photo_stack_style_controls();
     }
 
-    protected function __photo_stack_style_controls() {
+    protected function __photo_stack_style_controls()
+    {
         $this->start_controls_section(
             '_section_photo_stack_style',
             [
                 'label' => __('Common', 'happy-elementor-addons'),
-                'tab'   => Controls_Manager::TAB_STYLE,
+                'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_responsive_control(
             'image_container_width',
             [
-                'label'          => esc_html__('Width', 'happy-elementor-addons'),
-                'type'           => Controls_Manager::SLIDER,
-                'default'        => [
+                'label' => esc_html__('Width', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
                     'size' => 550,
                     'unit' => 'px',
                 ],
@@ -370,9 +379,9 @@ class Photo_Stack extends Base {
                 'mobile_default' => [
                     'unit' => '%',
                 ],
-                'size_units'     => ['px', '%', 'vw'],
-                'range'          => [
-                    '%'  => [
+                'size_units' => ['px', '%', 'vw'],
+                'range' => [
+                    '%' => [
                         'min' => 1,
                         'max' => 100,
                     ],
@@ -385,7 +394,7 @@ class Photo_Stack extends Base {
                         'max' => 100,
                     ],
                 ],
-                'selectors'      => [
+                'selectors' => [
                     '{{WRAPPER}} .ha-photo-stack-wrapper' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
@@ -394,13 +403,13 @@ class Photo_Stack extends Base {
         $this->add_responsive_control(
             'image_container_height',
             [
-                'label'      => __('Minimum Height', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::SLIDER,
+                'label' => __('Minimum Height', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px', 'vh', 'em'],
-                'range'      => [
+                'range' => [
                     'px' => [
-                        'min'  => 0,
-                        'max'  => 1000,
+                        'min' => 0,
+                        'max' => 1000,
                         'step' => 1,
                     ],
                     'em' => [
@@ -412,11 +421,11 @@ class Photo_Stack extends Base {
                         'max' => 100,
                     ],
                 ],
-                'default'    => [
+                'default' => [
                     'size' => 550,
                     'unit' => 'px',
                 ],
-                'selectors'  => [
+                'selectors' => [
                     '{{WRAPPER}} .ha-photo-stack-wrapper' => 'min-height: {{SIZE}}{{UNIT}}',
                 ],
             ]
@@ -425,25 +434,25 @@ class Photo_Stack extends Base {
         $this->add_responsive_control(
             'image_layers_overflow',
             [
-                'label'     => __('Overflow', 'happy-elementor-addons'),
-                'type'      => Controls_Manager::SELECT,
-                'options'   => array(
+                'label' => __('Overflow', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SELECT,
+                'options' => array(
                     'visible' => __('Visible', 'happy-elementor-addons'),
-                    'hidden'  => __('Hidden', 'happy-elementor-addons'),
-                    'scroll'  => __('Scroll', 'happy-elementor-addons'),
+                    'hidden' => __('Hidden', 'happy-elementor-addons'),
+                    'scroll' => __('Scroll', 'happy-elementor-addons'),
                 ),
-                'default'   => 'visible',
+                'default' => 'visible',
                 'selectors' => array(
                     '{{WRAPPER}} .ha-photo-stack-wrapper' => 'overflow: {{VALUE}}',
                 ),
             ]
         );
         $this->add_control(
-			'hr',
-			[
-				'type' => Controls_Manager::DIVIDER,
-			]
-		);
+            'hr',
+            [
+                'type' => Controls_Manager::DIVIDER,
+            ]
+        );
         $this->start_controls_tabs('tabs_hover_style');
 
         $this->start_controls_tab(
@@ -456,8 +465,8 @@ class Photo_Stack extends Base {
         $this->add_group_control(
             Group_Control_Box_Shadow::get_type(),
             [
-                'name'     => 'img_box_shadow',
-                'label'    => __('Box Shadow', 'happy-elementor-addons'),
+                'name' => 'img_box_shadow',
+                'label' => __('Box Shadow', 'happy-elementor-addons'),
                 'selector' => '{{WRAPPER}} .ha-photo-stack-item img',
 
             ]
@@ -473,8 +482,8 @@ class Photo_Stack extends Base {
         $this->add_group_control(
             Group_Control_Box_Shadow::get_type(),
             [
-                'name'     => 'img_box_shadow_hover',
-                'label'    => __('Box Shadow Hover', 'happy-elementor-addons'),
+                'name' => 'img_box_shadow_hover',
+                'label' => __('Box Shadow Hover', 'happy-elementor-addons'),
                 'selector' => '{{WRAPPER}} .ha-photo-stack-item img:hover',
 
             ]
@@ -486,9 +495,9 @@ class Photo_Stack extends Base {
         $this->add_group_control(
             Group_Control_Border::get_type(),
             [
-                'name'      => 'border',
-                'label'     => __('Border', 'happy-elementor-addons'),
-                'selector'  => '{{WRAPPER}} .ha-photo-stack-item img',
+                'name' => 'border',
+                'label' => __('Border', 'happy-elementor-addons'),
+                'selector' => '{{WRAPPER}} .ha-photo-stack-item img',
                 'separator' => 'before',
             ]
         );
@@ -496,17 +505,17 @@ class Photo_Stack extends Base {
         $this->add_responsive_control(
             'image_border_radius',
             [
-                'label'      => __('Border Radius', 'happy-elementor-addons'),
-                'type'       => Controls_Manager::DIMENSIONS,
+                'label' => __('Border Radius', 'happy-elementor-addons'),
+                'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
-                'default'    => [
-                    'top'    => 5,
-                    'right'  => 5,
+                'default' => [
+                    'top' => 5,
+                    'right' => 5,
                     'bottom' => 5,
-                    'left'   => 5,
+                    'left' => 5,
                 ],
-                'selectors'  => [
-                    '{{WRAPPER}} .ha-photo-stack-item'     => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-photo-stack-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     '{{WRAPPER}} .ha-photo-stack-item img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
@@ -517,7 +526,8 @@ class Photo_Stack extends Base {
     /**
      * @return null
      */
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
         if (empty($settings['image_list'])) {
             return;
@@ -525,55 +535,63 @@ class Photo_Stack extends Base {
         ?>
 
         <div class="ha-photo-stack-wrapper">
-			<?php foreach ($settings['image_list'] as $index => $item):
-            $repeater_key  = 'ha_ps_item' . $index;
-            $dynamic_class = 'elementor-repeater-item-' . $item['_id'];
-            $tag           = 'div';
-            $this->add_render_attribute($repeater_key, 'class', 'ha-photo-stack-item');
-            $this->add_render_attribute($repeater_key, 'class', $dynamic_class);
-            $this->add_render_attribute($repeater_key, 'class', $settings['image_infinite_animation']);
-			$this->add_render_attribute('image', 'class', $settings['hover_animation_style']);
-            $this->add_render_attribute('image', 'class', 'ha-photo-stack-img');
+            <?php foreach ($settings['image_list'] as $index => $item):
+                $repeater_key = 'ha_ps_item' . $index;
+                $dynamic_class = 'elementor-repeater-item-' . $item['_id'];
+                $this->add_render_attribute($repeater_key, 'class', 'ha-photo-stack-item');
+                $this->add_render_attribute($repeater_key, 'class', $dynamic_class);
+                $this->add_render_attribute($repeater_key, 'class', $settings['image_infinite_animation']);
+                $this->add_render_attribute('image', 'class', $settings['hover_animation_style']);
+                $this->add_render_attribute('image', 'class', 'ha-photo-stack-img');
+                $tag = "div";
+                if (isset($item['link']) && !empty($item['link']['url'])) {
+                    $anchor_tag = 'a';
+                    $this->add_link_attributes($repeater_key, $item['link']);
+                }
+                ?>
+                <?php if (isset($item['link']) && !empty($item['link']['url'])) { ?>
+                    <<?php echo ha_escape_tags($anchor_tag, 'span', ['a']) . ' ' . $this->get_render_attribute_string($repeater_key); ?>>
+                    <?php } else { ?>
+                        <<?php echo $tag . ' ' . $this->get_render_attribute_string($repeater_key); ?>>
+                        <?php } ?>
 
-            if ( isset( $item['link'] ) && ! empty( $item['link']['url'] ) ) {
-                $anchor_tag = 'a';
-                $this->add_link_attributes( 'link_tag', $item['link'] );
-            }
-            ?>
-				<?php printf( '<%s %s>', $tag, $this->get_render_attribute_string($repeater_key) ); ?>
-					<?php !empty( $item['link']['url'] ) && printf( '<%s %s>', $anchor_tag, $this->get_render_attribute_string('link_tag') ); //start of anchor_tag ?>
-						<?php if ($item['image']['id']) {
-								$this->add_render_attribute('image', 'alt', $item['image']['alt'] );
-								printf( '<img src="%s" %s/>',
-									Group_Control_Image_Size::get_attachment_image_src($item['image']['id'], 'thumbnail', $item),
-									$this->get_render_attribute_string('image')
-								);
-								$this->remove_render_attribute( 'image' );
-							} else {
-								echo $this->get_placeholder($item, $this->get_render_attribute_string('image'));
-						}?>
-					<?php !empty( $item['link']['url'] ) && printf( '</%s>', $anchor_tag ); // end of anchor_tag ?>
-				<?php printf( '</%s>', $tag ); ?>
-	            <?php endforeach;?>
+                        <?php if ($item['image']['id']) {
+                            $this->add_render_attribute('image', 'alt', $item['image']['alt']);
+                            printf('<img src="%s" %s/>',
+                                Group_Control_Image_Size::get_attachment_image_src($item['image']['id'], 'thumbnail', $item),
+                                $this->get_render_attribute_string('image')
+                            );
+                            $this->remove_render_attribute('image');
+                        } else {
+                            echo $this->get_placeholder($item, $this->get_render_attribute_string('image'));
+                        } ?>
+
+                        <?php if (isset($item['link']) && !empty($item['link']['url'])) { ?>
+                        </<?php echo ha_escape_tags($anchor_tag, 'span', ['a']); ?>>
+                    <?php } else { ?>
+                    </<?php echo $tag; ?>>
+                <?php } ?>
+            <?php endforeach; ?>
         </div>
 
 
-		<?php
-}
-	 /**
-	  * Get placeholder image HTML.
-	  *
-	  * @param array $item
-	  * @param array|null $attr
-	  * @return void
-	  */
-    protected function get_placeholder($item, $attr = null) {
+        <?php
+    }
+    /**
+     * Get placeholder image HTML.
+     *
+     * @param array $item
+     * @param array|null $attr
+     * @return void
+     */
+    protected function get_placeholder($item, $attr = null)
+    {
         if ('custom' !== $item['thumbnail_size']) {
-            $width  = get_option($item['thumbnail_size'] . '_size_w');
+            $width = get_option($item['thumbnail_size'] . '_size_w');
             $height = get_option($item['thumbnail_size'] . '_size_h');
             $height = '0' == $height ? 'auto' : $height . 'px';
         } else {
-            $width  = $item['thumbnail_custom_dimension']['width'];
+            $width = $item['thumbnail_custom_dimension']['width'];
             $height = $item['thumbnail_custom_dimension']['height'];
             $height = '0' == $height ? 'auto' : $height . 'px';
         }

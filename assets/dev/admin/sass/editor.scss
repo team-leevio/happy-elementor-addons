@@ -115,3 +115,9 @@
 .elementor-control.elementor-control-ha_scroll_to_top_button_icon.elementor-control-type-icons .elementor-control-media__tools.elementor-control-dynamic-switcher-wrapper {
     display: none;
 }
+
+// wrapper link custom attributes option hide by css
+.elementor-control.elementor-control-ha_element_link .elementor-control-url__custom-attributes,
+.elementor-control.elementor-control-ha_element_link .elementor-control-field-description {
+	display: none;
+}
