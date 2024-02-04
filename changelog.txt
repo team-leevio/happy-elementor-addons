@@ -1,3 +1,7 @@
+= 3.##.# - ######## 2024 =
+
+- Update: RTL support added to Slider, Image Carousel and Horizontal Timeline widget.
+
 = 3.10.2 - 29 January 2024 =
 
 - Fix: Event Calendar(Google Calendar) page crashing and throwing Critical Error issue.
