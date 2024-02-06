@@ -172,7 +172,7 @@
 					speed: this.getElementSettings('animation_speed'),
 					centerMode: !! this.getElementSettings('center'),
 					vertical: !! this.getElementSettings('vertical'),
-					slidesToScroll: 1,
+					//slidesToScroll: 1,
 				};
 
 				switch (this.getElementSettings('navigation')) {
@@ -188,18 +188,22 @@
 						break;
 				}
 
+				var slides_to_scroll = !!this.getElementSettings('slides_to_scroll');
 				settings.slidesToShow = parseInt( this.getElementSettings('slides_to_show') ) || 1;
+				settings.slidesToScroll = slides_to_scroll ? (parseInt( this.getElementSettings('slides_to_show') ) || 1) : 1;
 				settings.responsive = [
 					{
 						breakpoint: elementorFrontend.config.breakpoints.lg,
 						settings: {
 							slidesToShow: (parseInt(this.getElementSettings('slides_to_show_tablet')) || settings.slidesToShow),
+							slidesToScroll: slides_to_scroll ? (parseInt(this.getElementSettings('slides_to_show_tablet')) || settings.slidesToShow) : 1,
 						}
 					},
 					{
 						breakpoint: elementorFrontend.config.breakpoints.md,
 						settings: {
 							slidesToShow: (parseInt(this.getElementSettings('slides_to_show_mobile')) || parseInt(this.getElementSettings('slides_to_show_tablet'))) || settings.slidesToShow,
+							slidesToScroll: slides_to_scroll ? ((parseInt(this.getElementSettings('slides_to_show_mobile')) || parseInt(this.getElementSettings('slides_to_show_tablet'))) || settings.slidesToShow) : 1,
 						}
 					}
 				];

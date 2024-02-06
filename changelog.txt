@@ -1,5 +1,11 @@
 = 3.10.2 - 29 January 2024 =
 
+- Tweak: Slide to Scroll option added in the Horizontal Timeline widget.
+- Tweak: Slide to Scroll option added in the Image Carousel widget.
+
+
+= 3.10.2 - 29 January 2024 =
+
 - Fix: Event Calendar(Google Calendar) page crashing and throwing Critical Error issue.
 - Fix: Security improvement for Happy Clone feature.
 - Fix: Security improvement for Wrapper Link feature.
