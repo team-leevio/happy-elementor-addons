@@ -452,8 +452,9 @@ class Horizontal_Timeline extends Base {
 		$this->add_control(
 			'slides_to_scroll',
 			[
-				'label' => __( 'Slides To Scroll', 'happy-elementor-addons' ),
+				'label' => __( 'Scroll As Shown Slides', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SWITCHER,
+				'description' => __( 'Scroll slide number will be same as Slides To Show.', 'happy-elementor-addons' ),
 				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
 				'label_off' => __( 'No', 'happy-elementor-addons' ),
 				'return_value' => 'yes',
