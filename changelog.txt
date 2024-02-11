@@ -1,3 +1,7 @@
+= 3.##.# - ####### 2024 =
+
+- Fix: The Data Table widget doesn't respect the scrolling option for Tablet mode issue.
+
 = 3.10.2 - 29 January 2024 =
 
 - Fix: Event Calendar(Google Calendar) page crashing and throwing Critical Error issue.
