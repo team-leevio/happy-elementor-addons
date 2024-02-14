@@ -2,6 +2,8 @@
 
 - Fix: The Data Table widget doesn't respect the scrolling option for Tablet mode issue.
 - Fix: Mailchimp invalid API key issue.
+- Fix: Security improvement for Archive Title widget.
+- Fix: Security improvement for Author Meta widget.
 
 = 3.10.2 - 29 January 2024 =
 
