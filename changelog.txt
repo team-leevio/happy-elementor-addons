@@ -4,6 +4,7 @@
 - Fix: Mailchimp invalid API key issue.
 - Fix: Security improvement for Archive Title widget.
 - Fix: Security improvement for Author Meta widget.
+- Update: Security improvement for Happy Clone feature.
 
 = 3.10.2 - 29 January 2024 =
 
