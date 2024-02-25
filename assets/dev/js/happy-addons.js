@@ -165,6 +165,10 @@
 			}, 200),
 
 			getSlickSettings: function() {
+				var $rtl = ( $('html[dir="rtl"]').length == 1 || $('body').hasClass('rtl') );
+				if( 'yes' == this.getElementSettings('vertical') ){
+					$rtl = false; // for vertical direction rtl is off
+				}
 				var settings = {
 					infinite: !! this.getElementSettings('loop'),
 					autoplay: !! this.getElementSettings('autoplay'),
@@ -172,7 +176,8 @@
 					speed: this.getElementSettings('animation_speed'),
 					centerMode: !! this.getElementSettings('center'),
 					vertical: !! this.getElementSettings('vertical'),
-					slidesToScroll: 1,
+					// slidesToScroll: 1,
+					rtl: $rtl,
 				};
 
 				switch (this.getElementSettings('navigation')) {
@@ -188,18 +193,22 @@
 						break;
 				}
 
+				var slides_to_scroll = !!this.getElementSettings('slides_to_scroll');
 				settings.slidesToShow = parseInt( this.getElementSettings('slides_to_show') ) || 1;
+				settings.slidesToScroll = slides_to_scroll ? (parseInt( this.getElementSettings('slides_to_show') ) || 1) : 1;
 				settings.responsive = [
 					{
 						breakpoint: elementorFrontend.config.breakpoints.lg,
 						settings: {
 							slidesToShow: (parseInt(this.getElementSettings('slides_to_show_tablet')) || settings.slidesToShow),
+							slidesToScroll: slides_to_scroll ? (parseInt(this.getElementSettings('slides_to_show_tablet')) || settings.slidesToShow) : 1,
 						}
 					},
 					{
 						breakpoint: elementorFrontend.config.breakpoints.md,
 						settings: {
 							slidesToShow: (parseInt(this.getElementSettings('slides_to_show_mobile')) || parseInt(this.getElementSettings('slides_to_show_tablet'))) || settings.slidesToShow,
+							slidesToScroll: slides_to_scroll ? ((parseInt(this.getElementSettings('slides_to_show_mobile')) || parseInt(this.getElementSettings('slides_to_show_tablet'))) || settings.slidesToShow) : 1,
 						}
 					}
 				];
