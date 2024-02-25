@@ -165,6 +165,10 @@
 			}, 200),
 
 			getSlickSettings: function() {
+				var $rtl = ( $('html[dir="rtl"]').length == 1 || $('body').hasClass('rtl') );
+				if( 'yes' == this.getElementSettings('vertical') ){
+					$rtl = false; // for vertical direction rtl is off
+				}
 				var settings = {
 					infinite: !! this.getElementSettings('loop'),
 					autoplay: !! this.getElementSettings('autoplay'),
@@ -172,7 +176,8 @@
 					speed: this.getElementSettings('animation_speed'),
 					centerMode: !! this.getElementSettings('center'),
 					vertical: !! this.getElementSettings('vertical'),
-					//slidesToScroll: 1,
+					// slidesToScroll: 1,
+					rtl: $rtl,
 				};
 
 				switch (this.getElementSettings('navigation')) {

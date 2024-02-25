@@ -1,3 +1,13 @@
+= 3.##.# - ######## 2024 =
+
+- Fix: The Data Table widget doesn't respect the scrolling option for Tablet mode issue.
+- Fix: Mailchimp invalid API key issue.
+- Fix: Security improvement for Archive Title widget.
+- Fix: Security improvement for Author Meta widget.
+- Fix: Security improvement for Photo Stack widget.
+- Update: RTL support added to Slider, Image Carousel and Horizontal Timeline widget.
+- Update: Security improvement for Happy Clone feature.
+
 = 3.10.2 - 29 January 2024 =
 
 - Tweak: Slide to Scroll option added in the Horizontal Timeline widget.

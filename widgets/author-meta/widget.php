@@ -135,7 +135,7 @@ class Author_Meta extends Base {
 				'return_value' => 'yes',
 			]
 		);
-		
+
 		$this->add_control(
 			'show_archive_btn',
 			[
@@ -325,7 +325,7 @@ class Author_Meta extends Base {
 				],
 			]
 		);
-        
+
 		$this->add_responsive_control(
 			'avatar_width',
 			[
@@ -352,7 +352,7 @@ class Author_Meta extends Base {
 				],
 			]
 		);
-        
+
 		// $this->add_responsive_control(
 		// 	'avatar_margin',
 		// 	[
@@ -591,7 +591,11 @@ class Author_Meta extends Base {
 			<div class="ha-desc">
 				<?php
 				if('yes' === $settings['show_author']){
-					printf('<%1$s %2$s>%3$s</%1$s>', esc_attr($settings['author_meta_tag']), $this->get_render_attribute_string('author-title'), esc_html($display_name));
+					printf('<%1$s %2$s>%3$s</%1$s>',
+					ha_escape_tags($settings['author_meta_tag']),
+					$this->get_render_attribute_string('author-title'),
+					esc_html($display_name)
+				);
 				}
 				if('yes' === $settings['show_bio']){
 					printf('<p>%1$s</p>', esc_html($bio));

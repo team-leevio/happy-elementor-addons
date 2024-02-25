@@ -142,7 +142,7 @@ class Select2_Handler {
 		$choose_api = ! empty( $_REQUEST['mailchimp_api_choose'] ) ? sanitize_text_field($_REQUEST['mailchimp_api_choose']) : '';
 		$global_api = ! empty( $_REQUEST['global_api'] ) ? sanitize_text_field($_REQUEST['global_api']) : '';
 		$custom_api = ! empty( $_REQUEST['mailchimp_api'] ) ? sanitize_key($_REQUEST['mailchimp_api']) : $global_api;
-		
+
 		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? ha_sanitize_array_recursively($_REQUEST['saved_values']) : 0;
 
 		if ( empty( $custom_api ) && empty( $global_api ) ) {
@@ -162,6 +162,7 @@ class Select2_Handler {
 		$options = Widget\Mailchimp\Mailchimp_Api::get_mailchimp_lists($current_api);
 
 		if ( $saved_values  ){
+			$saved_values[0] = ' '.$saved_values[0];
 			return (array_key_exists($saved_values[0], $options)? [ $saved_values[0] => $options[ $saved_values[0] ] ]: [] );
 		}else{
 			return $options;

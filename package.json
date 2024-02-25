@@ -5,7 +5,7 @@
     "main": "index.html",
     "scripts": {
         "dev": "gulp",
-        "dev2": "gulp dev",
+        "prod": "gulp production",
         "translate": "gulp pot",
         "zip": "gulp zip",
         "build": "gulp build"
