@@ -6,6 +6,7 @@
 - Fix: Security improvement for Archive Title widget.
 - Fix: Security improvement for Author Meta widget.
 - Fix: Security improvement for Photo Stack widget.
+- Update: Appsero SDK to version 2.0.0.
 - Update: RTL support added to Slider, Image Carousel and Horizontal Timeline widget.
 - Update: Security improvement for Happy Clone feature.
 
