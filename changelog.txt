@@ -6,17 +6,13 @@
 - Fix: Security improvement for Archive Title widget.
 - Fix: Security improvement for Author Meta widget.
 - Fix: Security improvement for Photo Stack widget.
+- Tweak: Slide to Scroll option added in the Horizontal Timeline widget.
+- Tweak: Slide to Scroll option added in the Image Carousel widget.
 - Update: Appsero SDK to version 2.0.0.
 - Update: RTL support added to the Slider widget.
 - Update: RTL support added to the Image Carousel widget.
 - Update: RTL support added to the Horizontal Timeline widget.
 - Update: Security improvement for Happy Clone feature.
-
-= 3.10.2 - 29 January 2024 =
-
-- Tweak: Slide to Scroll option added in the Horizontal Timeline widget.
-- Tweak: Slide to Scroll option added in the Image Carousel widget.
-
 
 = 3.10.2 - 29 January 2024 =
 

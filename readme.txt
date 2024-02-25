@@ -18,7 +18,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 [Happy Addons for Elementor](https://happyaddons.com/) is One of the Best Addons That Comes Theme Builder that covers **Header Footer Builder**, **Single Post Template Builder**, and **Archive Page Template Builder for free**, along with **143+** Free & Pro Widgets and **23+** Problem-Solving Features to enhance [Elementor](https://wordpress.org/plugins/elementor/) Free & Pro. And Our widgets are not limited to customizations. All the widgets stand out from other third-party Elementor addons widgets in terms of flexibility of customizations.
 
-It will broaden your design skills. Our 70+ full-page Templates and 500+ readymade design blocks will help you to kickstart your work swiftly.
+It will broaden your design skills. Our 70+ full-page Templates and 500+ ready made design blocks will help you to kickstart your work swiftly.
 
 ### Useful Links
 
@@ -27,8 +27,6 @@ It will broaden your design skills. Our 70+ full-page Templates and 500+ readyma
 ### At a glance of Happy Addons widgets and features
 
 **Widget List: available in the free version**
-
-
 
 * Card
 * Info Box
@@ -99,8 +97,6 @@ It will broaden your design skills. Our 70+ full-page Templates and 500+ readyma
 
 **Widget List: available in Happy Addons Pro**
 
-
-
 * Advanced Slider
 * Happy Mega Menu
 * One Page Navigation Widget
@@ -166,11 +162,9 @@ It will broaden your design skills. Our 70+ full-page Templates and 500+ readyma
 * Remote Carousel Widget
 
 
-### Happy Addons Features come extenions or modules
+### Happy Addons Features come extensions or modules
 
 **Free features of Happy Addons**
-
-
 
 * Happy Templates
 * Happy Shape Dividers
@@ -232,7 +226,7 @@ Happy Addons is the pioneer of adding exclusive problem-solving features. Also, 
 16. Toggle your content with the content switcher widget.
 17. Flexibility to design Easy Digital Download Sites using the EDD widgets.
 18. 500+ line icons for your sites.
-19. 450+ readymade template kits to use, along with 70+ full-page templates.
+19. 450+ ready made template kits to use, along with 70+ full-page templates.
 20. WPML READY: You can easily use Happy Addons to build multilingual websites, as our plugin is 100% compatible with WPML.
 21. You can copy our demo content directly from our [demo site](https://demo.happyaddons.com/).
 22. Officially recommended by elementor page builder! we are now listed on their [official addons page](https://elementor.com/addons/).
@@ -251,7 +245,7 @@ It comes with plenty of Widgets in the free version. And all of the widgets are 
 Our card widget will help you to create mesmerizing card items. You can add custom badge items to it. Also, you can add images and custom buttons to that. Check our card widget from our demo site. If you like the demo design, you can use the card items directly on your website with our live copy feature of Happy Addons Pro.
 * **[Info Box](https://demo.happyaddons.com/elementor-info-box-widget-demo/)** – Our Info Box widget will help you create beautiful information boxes using icons, links, and texts, making them slick using the built-in positioning features. This info box widget is different from our card widget. It will allow you to add an heading, descriptions, and button within it. Also, you can customize the heading, button, image, or icon of the info box widget. Check the demos of the info box widget.
 * **[Icon Box](https://demo.happyaddons.com/elementor-icon-box-widget-demo/)** – The icon Box widget is a simplified version of Infobox but has powerful display features. Perfect for showcasing interesting information to your users in various styles. Our icon box widget is easy to customize. Within this icon box, you will get ‘Icon‘ to set the icon size and add padding, border, and box-shadow. You can also add a hover effect to your icon of the icon box widget. Moreover, you will get the flexibility to add 'Title‘ so that you can set text type using typography, add text-shadow, and text color within the icon box widget. Check our icon box widget from our demo site. If you like the demo design,  you directly use the card items directly on your website with our live copy feature of our Pro version.
-* **[Skill Bars](https://demo.happyaddons.com/elementor-skill-bars-widget-demo/)** – This Skill Bar Widget is an essential building block to showcase user skills, task percentage, required tools, and other progressive information differently. Our skill bars widget comes with incredible customizing options to suit your needs. You can use the Team Skill Bars Widget to create beautiful designs. Text Color, Level Color, and Base Color are available in it. By using the coloring option of the Skill Bars widget,  you can stand out your skillset from others. This skill bar widget will help you showcase your skillset on your website. Also, help you to increase the credibility of your portfolio. Use the skill bars widget to stand out in the crowd, as there are no design limitations in the Skill bar widget.
+* **[Skill Bars](https://demo.happyaddons.com/elementor-skill-bars-widget-demo/)** – This Skill Bar Widget is an essential building block to showcase user skills, task percentage, required tools, and other progressive information differently. Our skill bars widget comes with incredible customizing options to suit your needs. You can use the Team Skill Bars Widget to create beautiful designs. Text Color, Level Color, and Base Color are available in it. By using the coloring option of the Skill Bars widget,  you can stand out your skill set from others. This skill bar widget will help you showcase your skill set on your website. Also, help you to increase the credibility of your portfolio. Use the skill bars widget to stand out in the crowd, as there are no design limitations in the Skill bar widget.
 * **[Review](https://demo.happyaddons.com/elementor-review-widget-demo/)** – Showcase your user feedback, reviews, and rating more easily than ever using our review widget. Display user photos, texts, and star ratings. Make them stand out using built-in offsets and positioning features. User reviews and testimonials are so important to build your user’s trust in your brand. Our Review widget will be the best option to show Reviews on the site without hassle. What are you getting in this review widget? You can style your reviews by clicking on the ‘Review’ option. It is possible to set a maximum rating a user can give, such as 4.8 or even 5. Users can give reviews in stars or numbers. You can also set the review position, whether it should be on top or bottom, within the Review Widget. Also, you can customize the Reviewer image in this Widget.
 * **[Image Compare](https://demo.happyaddons.com/elementor-image-compare-widget-demo/)** – Are you a photo editor, agency, or product designer who often needs to showcase your beautiful works in the form of a before and after slider? The Image compare widget is perfect for this job. And built-in styling options and vertical and horizontal orientation features can help you design these before-after sections with more creativity. Our image comparison widget will help you to compare your two product images Old Vs New in an amazing way. By maintaining a perfect image resolution, it will be able to detect major changes in the product. Get ready to showcase your product comparison exclusively by using this Image Compare widget.
 * **[Gradient Heading](https://demo.happyaddons.com/elementor-gradient-heading-widget-demo/)** – Another gem to create eye-catchy headings for your websites. With our Gradient Heading widget, you can apply different gradient styles, angles, opacity, and positions to make them look even better across different device screens. It is the easiest way to add a gradient to your headlines and titles inside the page builder. So don’t waste your time creating a custom-coded gradient heading within your site; use the Gradient Heading widget to make an amazing gradient Heading for your site.
@@ -284,7 +278,7 @@ Our card widget will help you to create mesmerizing card items. You can add cust
  Also, if you are managing your event calendar with your personal google calendar and want to embed it within your site, then you should try an event calendar widget to embed your google event calendar. Or, if you have plans to create your own custom event calendar, this widget will help you do that. It covers that custom event calendar creation feature too. Before testing this event calendar widget, check the demo created.
 * **[Image Hover Effect](https://demo.happyaddons.com/elementor-image-hover-effect-widget-demo/)** – If you want to add lucrative hover effects to your website’s images, you can try our Image Hover Effect Widget. This image hover effect widget allows you to add 20+ stunning hover effects to your photos. You have full freedom to customize the Image Hover Effect widget. If you want to grab visitor attention, the image hover effect widget will be essential for your widget toolkit. Before testing the image hover effect, you can check the demo of the Image hover effect widget.
 * **[Animated Link](https://demo.happyaddons.com/elementor-animated-link-widget-demo/)** – Are you wondering about increasing the click-through rate of your website’s links? Grab your visitor’s attention by adding different effects to your links using the Animated Link widget. This Animated link widget has plenty of hover effects for your website’s links. Choose the most suitable one and go. Before testing this widget, you can check our demos for the animated link widget.
-* **[Mailchimp Widget](https://demo.happyaddons.com/elementor-mailchimp-widget-demo/)** – Now you can create lucrative Mailchimp forms with Mailchimp Widget. Usually, you don’t have the opportunity to add Mailchimp form directly to your landing pages. But now our Mailchimp widget will help you to create an amazing MailChimp form within your landing pages. And you can set tags for your MailChimp subscribers. Also, you can select your premade MailChimp list. No bar in Mailchimp form widget customization.
+* **[Mailchimp Widget](https://demo.happyaddons.com/elementor-mailchimp-widget-demo/)** – Now you can create lucrative Mailchimp forms with Mailchimp Widget. Usually, you don’t have the opportunity to add Mailchimp form directly to your landing pages. But now our Mailchimp widget will help you to create an amazing MailChimp form within your landing pages. And you can set tags for your MailChimp subscribers. Also, you can select your pre-made MailChimp list. No bar in Mailchimp form widget customization.
 With the Free version and the free version of the Happy addons, you can easily create a newsletter subscribe form or newsletter subscribe bar for your site. No hassle in the API integration for the Mailchimp widget. We have added a dedicated page for integrating the API credential. Just paste your MailChimp form API key to the Mailchimp Widget’s API input field of the backend page of the Happy Addons Credential Page. And all set to use the Mailchimp form widget. Plenty of customization is available in the Mailchimp form. Before testing the Mailchimp form widget, please check our demos.
 * **[Content Switcher](https://demo.happyaddons.com/elementor-content-switcher-demo/)** – The content Switcher widget allows you to toggle sections, pages, or texts easily. The content switcher widget will help you to show any kind of toggle content within your website. You can even add any widgets or templates in the content switcher widget. It’s used to toggle two different types of content. Like if you have two types of pricing menus the annual pricing menu and the lifetime pricing menu, then you can use our content switcher widget to show the two different pricing tables within the same section of your website. As you have full freedom to add any kind of template within the content switcher widget, then there is no limitation of customization. And this content switcher widget is a unique addition to our free pack, which is missing in the other third-party Elementor addons free widget pack.
 * **[Image Stack Group](https://demo.happyaddons.com/elementor-image-stack-group-demo/)** – Sometimes, we have to show images in a stack group format to create an eye-catchy look. But it’s so tough to create a single stack group of images. But with our Image Stack Group widget, you can easily create an image-stacked group. You can get the Image Stack Group widget in the free version of ours.
@@ -405,7 +399,7 @@ If you are still craving more widgets, then the following premium widgets are th
 
 
 
-* **[Advanced Slider](https://demo.happyaddons.com/elementor-advanced-slider-widget-demo/)** – Bored with your typical sliders? Try our advanced slider. Create mesmerizing slides within your Sites using it. You can add premade sections to your slides of the advanced slider. So you have the full freedom to design any kind of design within the advanced slider widget.
+* **[Advanced Slider](https://demo.happyaddons.com/elementor-advanced-slider-widget-demo/)** – Bored with your typical sliders? Try our advanced slider. Create mesmerizing slides within your Sites using it. You can add pre-made sections to your slides of the advanced slider. So you have the full freedom to design any kind of design within the advanced slider widget.
 * **[Happy Mega Menu](https://demo.happyaddons.com/elementor-happy-mega-menu-widget-demo/)** – Struggling with large-scale menu items? Happy Mega Menu is the best solution to your problems. You can create mega menus like Adidas, Dribbble, Puma, Invision, etc. Mega Menus is a game-changing item for websites. You can create eye-catchy menu items with the megamenu. This Mega Menu widget will help you achieve any type of mega menu that is impossible with the default defalt menu items. Also, you can use our Mega Menu widget to design a simple nav menu for your website. So don’t miss the chance to have a powerful mega menu in your widget package. Before buying the happy addons to get the happy mega menu in your element pack, we request you to look into the demo designs for the mega menu widget.
 * **[One Page Navigation Widget](https://demo.happyaddons.com/elementor-one-page-navigation-widget-demo/)** – Our one-page navigation widget will help you create lucrative one page nav content for your site. It has 9 design controls with a smooth scrolling option. You can show any kind of design within the one page nav widget. This One Page Navigation Widget is usually used to show multiple contents within one page with a floating navigation menu.
 * **[Unfold Widget](https://demo.happyaddons.com/elementor-unfold-widget-demo/)** – You can organize and save space on your webpage with Happy Addons Unfold Widget. This widget will help you create interactive content along with neat and clean web pages. Moreover, you can unfold the content with a click or mouse hover action. We have created amazing unfold widget demos for you. So before trying the widget, we like to request you to check the demos.
@@ -418,7 +412,7 @@ If you are still craving more widgets, then the following premium widgets are th
 * **[Team Carousel](https://demo.happyaddons.com/elementor-team-carousel-widget-demo/)** – Present your team members with beautiful carousels that include social profile buttons, arrow icons, and great customizability by using the team carousel widget. You can do lots of design customization within the Team Carousel widget. Also, it’s the best possible way to show team members within a single section.
 * **[Scrolling Image](https://demo.happyaddons.com/elementor-scrolling-image-widget-demo/)** – Using the scrolling image widget, you can show your products or services in a way that slides horizontally or vertically. You can also create a stunning photo gallery with this awesome scrolling widget within your site. Check the demos created by us of the Scrolling image widget.
 * **[Advanced Tab](https://demo.happyaddons.com/elementor-advanced-tab-widget-demo/)** – This widget will enable you to show your content by creating advanced tabbed content sections using full-controlled customizations. You will get the option to add a custom-made section into the Advanced Tab widget. This Advanced Tab widget mainly shows tabbed contents within a single section. So don’t miss the chance to create tabbed content with the help of the Advanced Tab widget.
-* **[Advanced Accordion](https://demo.happyaddons.com/elementor-advanced-accordion-widget-demo/)** – Like the Advanced Tab widget, if you want to provide your user with extra information using a collapsing effect in different directions, this is the widget you should go for. In the Advanced Accordion widget, you can use any premade sections. Show advanced content within your Accordion widget. You don’t need any accordion plugin to create an accordion for your WordPress website. Use the Advanced Accordion Widget to add an accordion to your website.
+* **[Advanced Accordion](https://demo.happyaddons.com/elementor-advanced-accordion-widget-demo/)** – Like the Advanced Tab widget, if you want to provide your user with extra information using a collapsing effect in different directions, this is the widget you should go for. In the Advanced Accordion widget, you can use any pre-made sections. Show advanced content within your Accordion widget. You don’t need any accordion plugin to create an accordion for your WordPress website. Use the Advanced Accordion Widget to add an accordion to your website.
 * **[Testimonial Carousel](https://demo.happyaddons.com/elementor-testimonial-carousel-widget-demo/)** – The Testimonial Carousel widget will provide a great way to showcase your customers' recommendations. You can also control the carousel’s movement using flexible styles for your Website. We also have created amazing demos for the Testimonial Carousel widget.
 * **[Logo Carousel](https://demo.happyaddons.com/elementor-logo-carousel-widget-demo/)** – Unleash your design creativity with this beautiful logo carousel widget and showcase your partners and products using vertical or horizontal motion. This Logo carousel widget will help you in many ways to showcase your client's logo or product logo within your website. Check the demo designs of the logo carousel widget.
 * **[Animated Text](https://demo.happyaddons.com/elementor-animated-text-widget-demo/)** – This Animated text widget is useful for making your text stand apart from the crowd by applying smart animations to your website. You can customize the cool animation effects with various flexible styles of the Animated Text Widget. Try the demos of the Animated Text widget.
@@ -456,7 +450,7 @@ If you are still craving more widgets, then the following premium widgets are th
 * **[WooCommerce Mini Cart](https://demo.happyaddons.com/elementor-mini-cart-widget-demo/)** – Want to increase your WooCommerce/eCommerce store’s customer experience? Use the mini cart widget to boost your conversion rate swiftly.
 * **[Advanced Google Map Widget ](https://demo.happyaddons.com/elementor-google-map-widget-demo/)** – Are you looking to add a map to your website but not the traditional google map? You can achieve that quickly if you use our Advanced Google Map widget. You can customize your Google Map Widget based on your theme color. Also, in the Advance Google Map Widget, you can add your custom label, map marker, legend, and more.
 We also bring the Snazzy Map styling within Advanced Google Map Widget. We have added four built-in styles and also added support for custom JSON input from the official Snazzy Map. So, you can now design your Google Map according to your theme.
-* **[EDD Single Product Widget](https://demo.happyaddons.com/elementor-edd-single-product-widget-demo/)** – If you want to add a single product as your featured item on your website is tough for nontechies as there is no integration for Easy Digital Downloads. Don’t worry; team Happy Addons comes with seamless integration of EDD. You can easily add any product of your EDD store as your featured product at any place on your website by using the Easy Digital Downloads Single product widget. You can add two images on the EDD single product widget to make an eye-catchy effect to grab your visitors’ attention. Try EDD single-product widget.
+* **[EDD Single Product Widget](https://demo.happyaddons.com/elementor-edd-single-product-widget-demo/)** – If you want to add a single product as your featured item on your website is tough for non-techies as there is no integration for Easy Digital Downloads. Don’t worry; team Happy Addons comes with seamless integration of EDD. You can easily add any product of your EDD store as your featured product at any place on your website by using the Easy Digital Downloads Single product widget. You can add two images on the EDD single product widget to make an eye-catchy effect to grab your visitors’ attention. Try EDD single-product widget.
 **[Doc](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-single-product/)** & **[Video](https://www.youtube.com/watch?v=ytRb7WHq2v0&ab_channel=HappyAddons)** Tutorial for Easy Digital Downloads Single Product Widget.
 * **[EDD Product Grid Widget](https://demo.happyaddons.com/elementor-edd-product-grid-widget-demo/)** – Wondering to showcase multiple products of your EDD stores! Showcasing products in a grid style is the best possible way to display multiple products on an eCommerce site. Herewith the help of the EDD product grid widget, you can achieve that easily. You don’t have to do extra work to showcase your EDD store’s products in a grid style, just need to drag the EDD product grid widget, and then you can easily customize it.
 **[Doc](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-product-grid/)** and **[Video](https://www.youtube.com/watch?v=HJxVFK9TFoA&ab_channel=HappyAddons)** tutorial for EDD Product Grid widget.
@@ -621,7 +615,7 @@ Yes, undoubtedly.
 
 = Will Happy Addons break my site after an update? =
 
-No, It won't break your site or any page where you used our plugin. We put our best effort to make you happy. But we always recommend to keep back up of your site before updating our plugin. In case if anything happens you can revert back and contact our support team immidately.
+No, It won't break your site or any page where you used our plugin. We put our best effort to make you happy. But we always recommend to keep back up of your site before updating our plugin. In case if anything happens you can revert back and contact our support team immediately.
 
 
 == Installation ==
@@ -663,6 +657,7 @@ For a more detailed explanation check out the following documentation
 - Fix: Security improvement for Wrapper Link feature.
 - Fix: Security improvement for Animated Link widget.
 - Fix: Security improvement for Age Gate widget.
+- Fix: Bug fixes and performance improvements.
 
 = 3.10.1 - 1 January 2024 =
 
@@ -729,9 +724,9 @@ For a more detailed explanation check out the following documentation
 
 - New: Section features compatibility with container.
 - Fix: Global color issue fixed with Info Box, LordIcon & Icon Box widget.
-- Fix: Themebuilder widget compatible with Elementor experimental featues.
-- Fix: Safary compatibility for specific js.
-- Fix: Nav Menu widget humberger issues fixes.
+- Fix: Themebuilder widget compatible with Elementor experimental features.
+- Fix: Safari compatibility for specific js.
+- Fix: Nav Menu widget hamburger issues fixes.
 - Fix: Minor bug fixes.
 
 = 3.8.3 - 27 March 2023 =
@@ -772,6 +767,7 @@ For a more detailed explanation check out the following documentation
 - Fix: Post Tab date format is not properly working.
 
 = 3.7.2 - 20 November 2022 =
+
 - Fix: Equal Height is not working on Tablet.
 - Fix: Pricing Table's Feature title is not working with <br> tag.
 - Fix: The Post Tab widget is showing all posts on the page load.
@@ -789,45 +785,45 @@ For a more detailed explanation check out the following documentation
 - Tweak: Add Phone Number field on the Team Member widget's social profile section.
 - Tweak: Add Prefix & Suffix Spacing control in the Fun Factor widget.
 - Tweak: Add Post ordering option with the Post Tab widget.
-- Fix: Threesixty rotation & Taxonomy List are not working as a template.
+- Fix: Three sixty rotation & Taxonomy List are not working as a template.
 - Fix: Post list excerpt not showing.
 
 = 3.7.0 - 30 August 2022 =
 
-- New: Scroll To Top - Feature.
-- Tweak: Introduce `elementor/widgets/register` hook for making it compatible with elementor 3.7.x.
+- New: Scroll To Top - Feature
+- Tweak: Introduce `elementor/widgets/register` hook for making it compatible with elementor 3.7.x
 
 = 3.6.3 - 10 August 2022 =
 
 - Tweak: Removed `Elementor\DB::is_built_with_elementor` deprecated method from Elementor 3.7.0.
-- Fix: Post tab title tag issue.
-- Fix: Infobox lord icon render issue.
+- Fix: Post tab title tag issue
+- Fix: Infobox lord icon render issue
 
 = 3.6.2 - 5 July 2022 =
 
-- Tweak: Horizontal Timeline Title Link.
-- Tweak: Added category support for product in the Post List widget.
-- Fix: Event Calendar link issue.
-- Fix: Logo Grid Insert Media From URL issue.
-- Fix: Content switcher switch direction responsive issue.
+- Tweak: Horizontal Timeline Title Link
+- Tweak: Added category support for product in the Post List widget
+- Fix: Event Calendar link issue
+- Fix: Logo Grid Insert Media From URL issue
+- Fix: Content switcher switch direction responsive issue
 
 = 3.6.1 - 13 June 2022 =
 
-- Update: Happy Icon pack (added new 16 icons).
-- Fix: Team Member URL issue.
-- Fix: Event Calendar issue.
-- Fix: Global Widget frontend broken issue.
-- Tweak: Added dynamic tag in Comparison Table.
+- Update: Happy Icon pack (added new 16 icons)
+- Fix: Team Member URL issue
+- Fix: Event Calendar issue
+- Fix: Global Widget frontend broken issue
+- Tweak: Added dynamic tag in Comparison Table
 
 = 3.6.0 - 30 May 2022 =
 
-- New: LordIcon widget.
-- Fix: Mixed content issue solve.
-- Fix: Team Member PHP warning notice.
-- Fix: Justified Grid row height issue.
-- Tweak: Added LordIcon support in Info Box & Icon Box widget.
-- Tweak: Dynamic date format set for post list and post tab widget.
-- Tweak: wpml support for creative button widget.
+- New: LordIcon widget
+- Fix: Mixed content issue solve
+- Fix: Team Member PHP warning notice
+- Fix: Justified Grid row height issue
+- Tweak: Added LordIcon support in Info Box & Icon Box widget
+- Tweak: Dynamic date format set for post list and post tab widget
+- Tweak: WPML support for creative button widget
 
 = 3.5.2 - 26 April 2022 =
 
@@ -873,7 +869,7 @@ For a more detailed explanation check out the following documentation
 = 3.4.1 - 31 January 2022 =
 
 - New: Comparison Table Widget
-- Fix: Card widget alignment issue as gloabl widget
+- Fix: Card widget alignment issue as global widget
 - Fix: Dashboard Analytics Page issue
 
 = 3.4.0 - 22 December 2021 =
@@ -930,8 +926,8 @@ For a more detailed explanation check out the following documentation
 
 = 3.1.0 - 25 August 2021 =
 
-- New: Added disbale option for Column Extended feature
-- New: Added disbale option for Text Stroke feature
+- New: Added disable option for Column Extended feature
+- New: Added disable option for Text Stroke feature
 - New: Added compatibility with PHP 8.0
 - Fix: Icon Box badge z-index issue
 - Remove: Alignment option from 360deg widget
@@ -954,16 +950,16 @@ For a more detailed explanation check out the following documentation
 - New: Added News Ticker widget Post Title HTML Tag control option
 - New: Added Carousel Widget Title & Subtitle HTML Tag control option
 - New: Added Sliders Widget Title & Subtitle HTML Tag control option
-- New: Added Global credential key dashboard. User can set credentials in settings pannel and use it globally (Mailchimp Widget, Twitter Feed Widget)
+- New: Added Global credential key dashboard. User can set credentials in settings panel and use it globally (Mailchimp Widget, Twitter Feed Widget)
 - Update: Image Hover Effect Title HTML Tag control
-- Update: All widgets Coding stractrue update
-- Update: Happy sellect 2 control update
+- Update: All widgets Coding structure update
+- Update: Happy select 2 control update
 - Update: Mailchimp form alignment improved and optimized with some coding updates.
-- Fix: Taxonomy List Sellect2 issue
-- Fix: Post tab Sellect2 issue
-- Fix: Post list Sellect2 issue
-- Fix: News ticker Sellect2 issue
-- Fix: Mailchimp Sellect2 issue
+- Fix: Taxonomy List Select2 issue
+- Fix: Post tab Select2 issue
+- Fix: Post list Select2 issue
+- Fix: News ticker Select2 issue
+- Fix: Mailchimp Select2 issue
 - Fix: Improve some style for compatibility on the content switcher
 
 = 2.27.0 - 5 July 2021 =
@@ -1071,7 +1067,7 @@ For a more detailed explanation check out the following documentation
 - Tweak: Updated Horizontal timeline widget default style
 - Tweak: Added % unit in Slider arrow position controls
 - Tweak: Added % unit in Carousel arrow position controls
-- Tweak: Added % unit in Horizontal timline arrow position control
+- Tweak: Added % unit in Horizontal timeline arrow position control
 - Tweak: Separated Floating effects JS handler from main JS file
 - Fix: Slider arrow not hiding issue
 - Fix: Carousel arrow not hiding issue
@@ -1113,8 +1109,8 @@ For a more detailed explanation check out the following documentation
 = 2.14.3 - 12 October 2020 =
 
 - Update: Appsero client updated to `v1.2.0`
-- Tweak: Added Calendy pro feature notice
-- Tweak: Added Calendy default username "happyaddons"
+- Tweak: Added Calendly pro feature notice
+- Tweak: Added Calendly default username "happyaddons"
 - Tweak: Common cached files are loaded once as internal css
 - Fix: Card widget badge dynamic tag issue
 - Fix: Happy templates popup button auto duplicate issue
@@ -1157,7 +1153,7 @@ For a more detailed explanation check out the following documentation
 - Tweak: Removed assets loading hook priority
 - Tweak: Improved Dual Button default style
 - Fix: CSS Transform normal/hover mode not working on frontend issue
-- Fix: Color change doens't have any effect on SVG icon issue
+- Fix: Color change doesn't have any effect on SVG icon issue
 - Fix: Card widget image size issue on Firefox and responsive mode
 
 = 2.13.1 - 6 August 2020 =
@@ -1176,7 +1172,7 @@ For a more detailed explanation check out the following documentation
 - New: `happyaddons/extensions/css_transform` hook to control CSS Transform
 - New: `happyaddons/extensions/on_demand_cache` hook to control On Demand Assets Loading
 - Tweak: Added CSS Transform hover state support
-- Tweak: Added Stepflow direction arrow rotatation support
+- Tweak: Added Stepflow direction arrow rotation support
 - Tweak: Added Card button full width support
 - Tweak: Added Card responsive image positioning
 - Tweak: Restored justify alignment in all widgets
@@ -1206,7 +1202,7 @@ For a more detailed explanation check out the following documentation
 
 = 2.12.1 - 9 June 2020 =
 
-- Fix: GravityForms widget issue causing elementor editor continuous loding
+- Fix: GravityForms widget issue causing elementor editor continuous loading
 
 = 2.12.0 - 8 June 2020 =
 
@@ -1254,7 +1250,7 @@ For a more detailed explanation check out the following documentation
 = 2.7.3 - 31 March 2020 =
 
 - Tweak: Custom attribute output support for all links
-- Tweak: Added pro widgets awarness panel
+- Tweak: Added pro widgets awareness panel
 - Fix: Missing styles issue on page/post clone
 - Fix: Popup link not working with link issue
 - Fix: Twitter feed issue
