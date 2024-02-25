@@ -221,8 +221,7 @@ npm-shrinkwrap.json
 assets/designs/list-group-backup.json
 package-lock.json
 yarn.lock
-assets/admin/css/*.css
-assets/admin/js/*.js
-assets/css/*.css
-assets/css/widgets/*.css
-assets/js/*.js
+assets/admin/css/
+assets/admin/js/
+assets/css/
+assets/js/
