@@ -2,6 +2,9 @@
 
 - Fix: Compatible with Elementor 3.19.x and Elementor Pro 3.19.x
 - Fix: Elementor editor panel widget not showing up.
+- Tweak: Minimum required PHP version 7.4
+- Tweak: Minimum required Elementor version 3.7.0
+- Tweak: Minimum required WordPress version 5.0
 
 = 3.10.2 - 29 January 2024 =
 
