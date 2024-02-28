@@ -336,7 +336,8 @@
 						promotion: false
 					},
 					{
-						at: freeCategoryIndex + 1,
+						// at: freeCategoryIndex + 1,
+						at: 1,
 					}
 				);
 			}
@@ -375,8 +376,8 @@
 							blockStart: '-7'
 						},
 						actionButton: {
-							url: "https://demo.happyaddons.com/",
-							text: "Upgrade Now",
+							url: "https://happyaddons.com/pricing/",
+							text: elementor.config.promotion.elements.action_button.text,
 							classes: [ 'elementor-button', 'ha-btn--promotion', 'go-pro' ]
 						},
 					});
