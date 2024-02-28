@@ -416,6 +416,42 @@ class Widgets_Manager {
 				'icon'   => 'hm hm-Category-Carousel',
 				'is_pro' => true
 			],
+			'edd-cart' => [
+				'cat' => 'easy-digital-downloads',
+				'title' => __('EDD Cart', 'happy-addons-pro'),
+				'icon' => 'hm hm-cart',
+				'is_pro' => true,
+			],
+			'edd-checkout' => [
+				'cat' => 'easy-digital-downloads',
+				'title' => __('EDD Checkout', 'happy-addons-pro'),
+				'icon' => 'hm hm-checkout-2',
+				'is_pro' => true,
+			],
+			'edd-login' => [
+				'cat' => 'easy-digital-downloads',
+				'title' => __('EDD Login', 'happy-addons-pro'),
+				'icon' => 'hm hm-checkout-2',
+				'is_pro' => true,
+			],
+			'edd-register' => [
+				'cat' => 'easy-digital-downloads',
+				'title' => __('EDD Register', 'happy-addons-pro'),
+				'icon' => 'hm hm-user-plus',
+				'is_pro' => true,
+			],
+			'edd-purchase' => [
+				'cat' => 'easy-digital-downloads',
+				'title' => __('EDD Purchase', 'happy-addons-pro'),
+				'icon' => 'hm hm-user-plus',
+				'is_pro' => true,
+			],
+			'edd-download' => [
+				'cat' => 'easy-digital-downloads',
+				'title' => __('EDD Download', 'happy-addons-pro'),
+				'icon' => 'hm hm-Download-circle',
+				'is_pro' => true,
+			],
 			'google-map'                => [
 				'cat'    => 'general',
 				'title'  => __('Advanced Google Map', 'happy-elementor-addons'),
@@ -426,6 +462,12 @@ class Widgets_Manager {
 				'cat' => 'general',
 				'title' => __( 'Image Swap', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-image-scroll',
+				'is_pro' => true,
+			],
+			'shipping-bar' => [
+				'cat' => 'woocommerce',
+				'title' => __('Shipping Bar', 'happy-addons-pro'),
+				'icon' => 'hm hm-shipping-address',
 				'is_pro' => true,
 			],
 			'remote-carousel' => [
@@ -439,7 +481,13 @@ class Widgets_Manager {
 				'title' => __('Table of Contents', 'happy-elementor-addons'),
 				'icon' => 'hm hm-list-2',
 				'is_pro' => true,
-			]
+			],
+			'creative-slider' => [
+				'cat' => 'slider-&-carousel',
+				'title' => __('Creative Slider', 'happy-addons-pro'),
+				'icon' => 'hm hm-slider',
+				'is_pro' => true,
+			],
 		];
 	}
 
