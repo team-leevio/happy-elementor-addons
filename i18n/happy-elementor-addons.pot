@@ -78,18 +78,22 @@ msgid "Use %s widget with other exclusive pro widgets and 100% unique features t
 msgstr ""
 
 #: classes/assets-manager.php:434
-msgid "No Templates Found"
+msgid "Upgrade Now"
 msgstr ""
 
 #: classes/assets-manager.php:435
-msgid "Try different category or sync for new templates."
+msgid "No Templates Found"
 msgstr ""
 
 #: classes/assets-manager.php:436
-msgid "No Results Found"
+msgid "Try different category or sync for new templates."
 msgstr ""
 
 #: classes/assets-manager.php:437
+msgid "No Results Found"
+msgstr ""
+
+#: classes/assets-manager.php:438
 msgid "Please make sure your search is spelled correctly or try a different words."
 msgstr ""
 
