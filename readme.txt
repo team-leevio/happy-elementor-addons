@@ -1,14 +1,14 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.10.2
+Version: 3.10.3
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget, Elementor Addon,
-Requires at least: 4.7
+Requires at least: 5.0
 Tested up to: 6.4
 Stable tag: trunk
-Requires PHP: 5.6
+Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -649,6 +649,14 @@ For a more detailed explanation check out the following documentation
 
 
 == Changelog ==
+
+= 3.10.3 - 28 February 2024 =
+
+- Fix: Compatible with Elementor 3.19.x and Elementor Pro 3.19.x
+- Fix: Elementor editor panel widget not showing up.
+- Tweak: Minimum required PHP version 7.4
+- Tweak: Minimum required Elementor version 3.7.0
+- Tweak: Minimum required WordPress version 5.0
 
 = 3.10.2 - 29 January 2024 =
 

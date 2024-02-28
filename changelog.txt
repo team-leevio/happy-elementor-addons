@@ -14,6 +14,14 @@
 - Update: RTL support added to the Horizontal Timeline widget.
 - Update: Security improvement for Happy Clone feature.
 
+= 3.10.3 - 28 February 2024 =
+
+- Fix: Compatible with Elementor 3.19.x and Elementor Pro 3.19.x
+- Fix: Elementor editor panel widget not showing up.
+- Tweak: Minimum required PHP version 7.4
+- Tweak: Minimum required Elementor version 3.7.0
+- Tweak: Minimum required WordPress version 5.0
+
 = 3.10.2 - 29 January 2024 =
 
 - Fix: Event Calendar(Google Calendar) page crashing and throwing Critical Error issue.
@@ -22,7 +30,6 @@
 - Fix: Security improvement for Animated Link widget.
 - Fix: Security improvement for Age Gate widget.
 - Fix: Bug fixes and performance improvements.
-
 
 = 3.10.1 - 1 January 2024 =
 
