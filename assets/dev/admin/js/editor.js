@@ -336,8 +336,7 @@
 						promotion: false
 					},
 					{
-						// at: freeCategoryIndex + 1,
-						at: 1,
+						at: freeCategoryIndex + 1,
 					}
 				);
 			}
@@ -376,7 +375,7 @@
 							blockStart: '-7'
 						},
 						actionButton: {
-							url: "https://happyaddons.com/pricing/",
+							url: "https://happyaddons.com/pricing/?utm_source=ha-editor-pro-widgets&utm_medium=wp-elementor-editor&utm_campaign=ha-upgrade-pro",
 							text: elementor.config.promotion.elements.action_button.text,
 							classes: [ 'elementor-button', 'ha-btn--promotion', 'go-pro' ]
 						},
