@@ -376,7 +376,7 @@
 						},
 						actionButton: {
 							url: "https://happyaddons.com/pricing/?utm_source=ha-editor-pro-widgets&utm_medium=wp-elementor-editor&utm_campaign=ha-upgrade-pro",
-							text: elementor.config.promotion.elements.action_button.text,
+							text: HappyAddonsEditor.i18n.promotionDialogBtnTxt,
 							classes: [ 'elementor-button', 'ha-btn--promotion', 'go-pro' ]
 						},
 					});
