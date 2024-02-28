@@ -353,7 +353,8 @@
 				},
 
 				isHappyWidget: function () {
-					return this.model.get("name").indexOf("ha-") === 0;
+					const widgetName = this.model.get("name");
+					return widgetName != undefined && widgetName.indexOf("ha-") === 0;
 				},
 
 				onMouseDown: function () {
