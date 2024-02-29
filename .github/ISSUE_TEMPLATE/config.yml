@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+    - name: 🛟 Get Support
+      url: https://happyaddons.com/happy-support/
+      about: Need Help, Guidance, Assistance, or Support? Follow these instructions.
+    - name: 🚩 Happy Elementor Addons Roadmap
+      url: https://happyaddons.com/roadmaps/
+      about: Before submitting a request, visit the Happy Elementor Addons Roadmap and learn about the status of upcoming or newly-released features.
+    - name: 🚀 Feature Request
+      url: https://happyaddons.com/roadmaps/
+      about: Suggest new ideas, features, or enhancements for the Happy Elementor Addons plugin.
+    - name: 📑 Help Center
+      url: https://happyaddons.com/docs/
+      about: Visit our Help Center to find solutions to the most frequent problems or learn how to use Happy Elementor Addons's many features.
+    - name: 🗨️ Happy Elementor Addons Global Community
+      url: https://facebook.com/groups/HappyAddonsCommunity/
+      about: The main Facebook group is where all kinds of users come together to help each other.
