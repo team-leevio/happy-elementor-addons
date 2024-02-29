@@ -1,5 +1,5 @@
 name: "🐞 Bug Report"
-description: "Did you find a bug in the source code of Happy Elementor Addons, and can reproduce it consistently after troubleshooting it? Report it here."
+description: "Did you find a bug in Happy Elementor Addons, and can reproduce it consistently after troubleshooting it? Report it here."
 labels: ["status/awaiting_triage"]
 body:
     - type: markdown
@@ -19,8 +19,6 @@ body:
               - label: "I have searched for similar issues in open and closed tickets and cannot find a duplicate."
                 required: true
               - label: "I have troubleshooted my issue, and it still exists against the latest stable version of Elementor & Happy Elementor Addons."
-                required: true
-              - label: "I didn't contact support regarding my issue."
                 required: true
     - type: markdown
       attributes:
@@ -44,7 +42,7 @@ body:
               ### 👣 Steps to Reproduce
               Enumerate all the steps needed to reproduce the issue in detail so we can replicate it in our environment. 
               - Be thorough. We will only be able to reproduce your issue if you thoroughly explain all the steps to replicate it. 
-              - Please **share a screen recording**. It helps a lot!
+              - If Possible, please **share a screen recording**. It helps a lot!
     - type: textarea
       id: steps_to_reproduce
       validations:
@@ -82,8 +80,11 @@ body:
           label: "Isolating the problem"
           options:
               - label: "This bug happens when only the Elementor, Happy Elementor Addons (and Elementor Pro, Happy Elementor Addons Pro) plugins are active."
+                required: true
               - label: "This bug happens with the Hello Elementor theme active."
+                required: true
               - label: "I can reproduce this bug consistently by following the steps I described above."
+                required: true
     - type: markdown
       attributes:
           value: |
