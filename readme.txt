@@ -19,11 +19,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 [Happy Addons for Elementor](https://happyaddons.com/) is One of best Elementor Addons comes with **Theme Builder** that covers **free Header Footer**, **Single Post Template**, and **Archive Page Builder**, with **143+** Free & Pro Widgets & **24+** Features to enhance [Elementor](https://wordpress.org/plugins/elementor/). 
 Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 
-## **Useful Links**
+## Useful Links
 
 [Demo](https://happyaddons.com/elementor-widgets/) | [Docs](https://happyaddons.com/docs/) | [Videos](https://www.youtube.com/channel/UC1-e7ewkKB1Dao1U90QFQFA) | [Support](https://happyaddons.com/happy-support/) | [IdeaSharing](https://happyaddons.com/roadmaps/#ideas) | [FacebookGroup](https://www.facebook.com/groups/HappyAddonsCommunity) | [Get Pro](https://happyaddons.com/pricing/)
 
-## **Widgets In Free Version**
+## Widgets In Free Version
 
 * **[Card](https://demo.happyaddons.com/elementor-card-widget-demo/)**: Showcase products, articles, news.
 * **[Info Box](https://demo.happyaddons.com/elementor-info-box-widget-demo/)**: Create information boxes.
@@ -93,7 +93,7 @@ Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 * **[Archive Posts](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-post/)**: Create & style archive posts.
 * **[Age Gate](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/age-gate/)**:  Add age verification popup. 
 
-## **Widgets in HappyAddons Pro**
+## Widgets in HappyAddons Pro
 
 * **[Advanced Slider](https://demo.happyaddons.com/elementor-advanced-slider-widget-demo/)**: It’s a slider builder. 
 * **[Happy Mega Menu](https://demo.happyaddons.com/elementor-happy-mega-menu-widget-demo/)**: Create MegaMenu with Elementor. 
@@ -160,9 +160,9 @@ Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 * **[Remote Carousel](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/remote-carousel/)**: It’s remote button to control carousel widgets of HappyAddons.  
 * **[Table of content](https://demo-x.happyaddons.com/elementor-table-of-content-widget-demo/)**: Create TOC easily.
 
-## **Happy Addons Features/Extenions/Modules**
+## Happy Addons Features/Extenions/Modules
 
-### **Free Features of HappyAddons**:
+### Free Features of HappyAddons:
 * **[Happy Templates](https://happyaddons.com/template-importer/)**(**Freemium**): 500+ section templates & 70+ full page templates are available. 
 * **[Happy Shape Dividers](https://happyaddons.com/happy-shape-divider/)**: 18+ new shape dividers added within Elementor shape dividers. 
 * **[Happy Tooltip](https://happyaddons.com/happy-tooltip/)**: Add tooltips to any element. 
@@ -170,7 +170,7 @@ Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 * **[Text Outline](https://happyaddons.com/text-outline/)**: Add exterior border around heading & title widgets. 
 * **[Background Overlay](https://happyaddons.com/background-overlay-demo/)**: Allow to add images, colors, & icons behind any widget.
 * **[Happy Icons](https://happyaddons.com/happy-icon/)**: Get line icon library within elementor. 
-* **[Managing Column Order on Mobile Responsive Mood](https://happyaddons.com/happy-column-control/): **Rearrange the order of the column in small devices. 
+* **[Managing Column Order on Mobile Responsive Mood](https://happyaddons.com/happy-column-control/)**: Rearrange the order of the column in small devices. 
 * **[Manage Column Width by Adding Pixels](https://happyaddons.com/happy-column-control/)**: Control the column width of widgets with percentage parameters.
 * **[Happy Clone](https://happyaddons.com/happy-clone-demo/)**: It’s a post, page, template duplicator.
 * **[Fixed Size Controls in Elementor Button](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/fixed-size-controls-in-elementor-button-widget/)**:  Set a fixed size to Elementor Buttons to make perfect circular button. 
@@ -184,9 +184,9 @@ Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 * **[Archive Page Template Builder](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-post/)**: Design archive page. 
 * **[Theme Builder With Basic Templating Conditions](https://happyaddons.com/docs/happy-theme-builder/how-to-set-conditions-to-display-templates-pro/)**: Free users can set template condition for Entire site, All Singular/Archive pages.
 
-### **Premium Features of Happy Addons**
+### Premium Features of Happy Addons
 * **[Cross Domain Copy-Paste](https://demo.happyaddons.com/cross-domain-copy-paste/)**: You can copy & paste element from one domain to another. 
-* **[Preset](https://happyaddons.com/presets-demo/): **400+ preset designs available in HappyAddons. 
+* **[Preset](https://happyaddons.com/presets-demo/)**: 400+ preset designs available in HappyAddons. 
 * **[Unlimited Section Nesting](https://happyaddons.com/unlimited-section-nesting/)**: Add multiple nested containers & columns within one single columns or containers. 
 * **[Live Copy](https://happyaddons.com/live-copy/)**: Copy designs from our demo pages & paste it in your site!
 * **[Image Masking](https://happyaddons.com/image-masking-demo/)**: Give various shapes to images by using premade styles / uploading SVG. 
@@ -194,15 +194,15 @@ Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 * **[Display Condition](https://happyaddons.com/display-condition/)**: Show, hide, & schedule content to display on site & display content depending on conditions like browser, operating system, date range, time, & more.
 * **[Theme Builder Advance Templating Conditions](https://happyaddons.com/docs/happy-theme-builder/how-to-set-conditions-to-display-templates-pro/)**: Advanced template conditioning option, Include & exclude page/posts, or archive pages to set conditions.
 
-### **Privacy-Policy**
+### Privacy-Policy
 
 **Happy Addons** uses **Appsero-SDK** to collect some telemetry data upon the user’s confirmation. [Read-Policy](https://appsero.com/privacy-policy/).
 
-### **Missing-Anything?**
+### Missing-Anything?
 
 If you miss anything [Submit ideas.](https://happyaddons.com/roadmaps/#ideas)
 
-### **Happy-With-Our-Work?**
+### Happy-With-Our-Work?
 
 We are thankful to you. If it brings smile, please share happiness by giving us [5***** rating](https://wordpress.org/support/plugin/happy-elementor-addons/reviews/?filter=5). 
 
