@@ -16,18 +16,17 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-[Happy Addons for Elementor](https://happyaddons.com/) is One of the best Elementor Addons comes with **Theme Builder** that covers **free Header Footer**, **Single Post Template**, and **Archive Page Builder**, with **143+** Free & Pro Widgets & **24+** Features to enhance [Elementor](https://wordpress.org/plugins/elementor/). 
+[Happy Addons for Elementor](https://happyaddons.com/) is One of best Elementor Addons comes with **Theme Builder** that covers **free Header Footer**, **Single Post Template**, and **Archive Page Builder**, with **143+** Free & Pro Widgets & **24+** Features to enhance [Elementor](https://wordpress.org/plugins/elementor/). 
 Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 
-
 ## **Useful Links**
-[Demo](https://happyaddons.com/elementor-widgets/) | [Docs](https://happyaddons.com/docs/) | [Videos](https://www.youtube.com/channel/UC1-e7ewkKB1Dao1U90QFQFA) | [Support](https://happyaddons.com/happy-support/) | [IdeaSharing](https://happyaddons.com/roadmaps/#ideas) | [FacebookGroup](https://www.facebook.com/groups/HappyAddonsCommunity) | [Get Pro](https://happyaddons.com/pricing/)
 
+[Demo](https://happyaddons.com/elementor-widgets/) | [Docs](https://happyaddons.com/docs/) | [Videos](https://www.youtube.com/channel/UC1-e7ewkKB1Dao1U90QFQFA) | [Support](https://happyaddons.com/happy-support/) | [IdeaSharing](https://happyaddons.com/roadmaps/#ideas) | [FacebookGroup](https://www.facebook.com/groups/HappyAddonsCommunity) | [Get Pro](https://happyaddons.com/pricing/)
 
 ## **Widgets In Free Version**
 
 * **[Card](https://demo.happyaddons.com/elementor-card-widget-demo/)**: Showcase products, articles, news.
-* **[Info Box](https://demo.happyaddons.com/elementor-info-box-widget-demo/)**: Create beautiful information boxes.
+* **[Info Box](https://demo.happyaddons.com/elementor-info-box-widget-demo/)**: Create information boxes.
 * **[Icon Box](https://demo.happyaddons.com/elementor-icon-box-widget-demo/)**: Show info in iconic style.
 * **[Skill Bars](https://demo.happyaddons.com/elementor-skill-bars-widget-demo/)**: Showcase progressive information.
 * **[Review](https://demo.happyaddons.com/elementor-review-widget-demo/)**: Add feedback, reviews, & ratings.
@@ -38,37 +37,37 @@ Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 * **[Number](https://demo.happyaddons.com/elementor-number-widget-demo/)**: Create number blocks.
 * **[Justified Grid](https://demo.happyaddons.com/elementor-justified-grid-widget-demo/)**: Create isotope gallery.
 * **[Testimonial](https://demo.happyaddons.com/elementor-testimonial-widget-demo/)**: Add testimonial sections. 
-* **[Logo Grid](https://demo.happyaddons.com/elementor-logo-grid-widget-demo)**: Show logos in grid style.
-* **[Slider](https://demo.happyaddons.com/elementor-slider-widget-demo/)**: Create sliders with animations
+* **[Logo Grid](https://demo.happyaddons.com/elementor-logo-grid-widget-demo)**: Show logos in grid.
+* **[Slider](https://demo.happyaddons.com/elementor-slider-widget-demo/)**: Create sliders with animations.
 * **[Carousel](https://demo.happyaddons.com/elementor-carousel-widget-demo/)**: Create text/image carousels.
-* **[Image Grid](https://demo.happyaddons.com/elementor-image-grid-widget-demo/)**: You can create a simple image-grid.
+* **[Image Grid](https://demo.happyaddons.com/elementor-image-grid-widget-demo/)**: Create a simple image-grid.
 * **[Step Flow](https://demo.happyaddons.com/elementor-step-flow-widget-demo/)**: Step-by-step visual diagram & instructions.
-* **[Fun Factor](https://demo.happyaddons.com/elementor-fun-factor-widget-demo/)**: It’s a counter widget. 
+* **[Fun-Factor](https://demo.happyaddons.com/elementor-fun-factor-widget-demo/)**: It’s a counter widget. 
 * **[Calendly](https://demo.happyaddons.com/elementor-calendly-widget-demo/)**: Integrate Calendly within site. 
 * **[News Ticker](https://demo.happyaddons.com/elementor-news-ticker-widget-demo/)**: Showcase content like news websites.
 * **[Social Icon](https://demo.happyaddons.com/elementor-social-icon-widget-demo/)**: Add social links with it. 
 * **[Twitter Feed](https://demo.happyaddons.com/elementor-twitter-feed-widget-demo/)**: Bring Twitter-feed within site.
-* **[Bar Chart](https://demo.happyaddons.com/elementor-bar-chart-widget-demo/)**: Display stats in bar-charts.
+* **[Bar-Chart](https://demo.happyaddons.com/elementor-bar-chart-widget-demo/)**: Display stats in bar-charts.
 * **[360° Rotation](https://demo.happyaddons.com/elementor-360-rotation-widget-demo/)**: Create 360-Degree rotated images.
 * **[Data Table](https://demo.happyaddons.com/elementor-datatable-widget-demo/)**: Create data-table within Elementor Editor.
-* **[Pricing Table Lite](https://demo.happyaddons.com/elementor-pricing-table-widget-demo/)**: Add pricing table. 
+* **[Pricing Table Lite](https://demo.happyaddons.com/elementor-pricing-table-widget-demo/)**: Build pricing table. 
 * **[Flip Box Lite](https://demo.happyaddons.com/elementor-flip-box-widget-demo/)**: Create flipping items. 
 * **[Post Tab](https://demo.happyaddons.com/elementor-post-tab-widget-demo/)**: Showcase posts within tabs. 
 * **[Post List](https://demo.happyaddons.com/elementor-post-list-widget-demo/)**: List any posts. 
 * **[Taxonomy List](https://demo.happyaddons.com/elementor-taxonomy-widget-demo/)**: Create list of posts - sorting categories, tags. 
 * **[Horizontal TimeLine](https://demo.happyaddons.com/elementor-horizontal-timeline-widget-demo/)**: Design storyline horizontally.
-* **[Social Share](https://demo.happyaddons.com/elementor-social-share-widget-demo/)**: Add social share system in site. 
+* **[Social Share](https://demo.happyaddons.com/elementor-social-share-widget-demo/)**: Add social share system. 
 * **[Event Calendar](https://demo.happyaddons.com/elementor-event-calendar-widget-demo/)**: Add Google Calender, Event Calender Plugin’s Events. 
 * **[Image Hover Effect](https://demo.happyaddons.com/elementor-image-hover-effect-widget-demo/)**: Add 20+ hover effects to images.
 * **[Animated Link](https://demo.happyaddons.com/elementor-animated-link-widget-demo/)**: Add animated link hover effects. 
 * **[Mailchimp Widget](https://demo.happyaddons.com/elementor-mailchimp-widget-demo/)**: Create mailchimp forms. 
 * **[Content Switcher](https://demo.happyaddons.com/elementor-content-switcher-demo/)**: Toggle sections, pages, or texts. 
-* **[Image Stack Group](https://demo.happyaddons.com/elementor-image-stack-group-demo/)**: Show images in a stack group format.
-* **[Creative Button](https://demo.happyaddons.com/elementor-creative-button-demo/)**: Create marvelous buttons along with magnetic effect. 
-* **[Image Accordion](https://demo.happyaddons.com/elementor-image-accordion-demo/)**: Create unique accordions for images.
+* **[Image Stack Group](https://demo.happyaddons.com/elementor-image-stack-group-demo/)**: Show images in a stack group.
+* **[Creative Button](https://demo.happyaddons.com/elementor-creative-button-demo/)**: Create buttons along with magnetic effect. 
+* **[Image Accordion](https://demo.happyaddons.com/elementor-image-accordion-demo/)**: Create accordions for images.
 * **[PDF View](https://demo.happyaddons.com/elementor-pdf-view-widget-demo/)**: PDF Viewer widget. 
 * **[Contact Form 7](https://demo.happyaddons.com/elementor-contact-form-7-widget-demo/)**: Stylize CF7 forms. 
-* **[Caldera Forms](https://demo.happyaddons.com/elementor-caldera-forms-widget-demo/)**: Style Caldera forms with it. 
+* **[Caldera Forms](https://demo.happyaddons.com/elementor-caldera-forms-widget-demo/)**: Style Caldera forms. 
 * **[weForms](https://demo.happyaddons.com/elementor-we-forms-widget-demo/)**: Style weForms forms. 
 * **[Ninja Forms](https://demo.happyaddons.com/elementor-ninja-form-widget-demo/)**: Beautify Nina forms. 
 * **[WPForms](https://demo.happyaddons.com/elementor-wpform-widget-demo/)**: Style WPForms. 
@@ -87,30 +86,29 @@ Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 * **[Post Content](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-content/)**: Manage and style single post’s content. 
 * **[Featured Image](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-featured-image/)**: Add and customize post’s featured image. 
 * **[Author Box(Meta)](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/author-boxmeta/)**: Add & style author’s meta descriptions.
-* **[Post Comments](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-comments/)**: Customize the comment section. 
-* **[Post Navigation](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-navigation/)**: Add & stylize the post navigation. 
-* **[Post Info(Meta)](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-info/)**: Add post’s meta informations. 
+* **[Post Comments](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-comments/)**: Customize comment section. 
+* **[Post Navigation](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-navigation/)**: Add & stylize post navigation. 
+* **[Post Info(Meta)](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-info/)**: Add post’s meta information. 
 * **[Archive Title](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-title/)**: Add and style archive page’s title. 
-* **[Archive Posts](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-post/)**: Create and style archive posts.
-* **[Age Gate](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/age-gate/)**:  Add age verification notification popup to site. 
-
+* **[Archive Posts](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-post/)**: Create & style archive posts.
+* **[Age Gate](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/age-gate/)**:  Add age verification popup. 
 
 ## **Widgets in HappyAddons Pro**
 
 * **[Advanced Slider](https://demo.happyaddons.com/elementor-advanced-slider-widget-demo/)**: It’s a slider builder. 
 * **[Happy Mega Menu](https://demo.happyaddons.com/elementor-happy-mega-menu-widget-demo/)**: Create MegaMenu with Elementor. 
 * **[One Page Navigation](https://demo.happyaddons.com/elementor-one-page-navigation-widget-demo/)**: Create one-page navigation.
-* **[Unfold Widget](https://demo.happyaddons.com/elementor-unfold-widget-demo/)**: Create ufold items. 
-* **[Off-Canvas Content/Menu](https://demo.happyaddons.com/elementor-off-canvas-content-demo/)**: Add off-canvas content or menu items. 
+* **[Unfold Widget](https://demo.happyaddons.com/elementor-unfold-widget-demo/)**: Create unfold items. 
+* **[Off-Canvas Content/Menu](https://demo.happyaddons.com/elementor-off-canvas-content-demo/)**: Add off-canvas content/menu items. 
 * **[Feature List](https://demo.happyaddons.com/elementor-feature-list-widget-demo/)**: Create beautiful lists items. 
 * **[Pricing Table](https://demo.happyaddons.com/elementor-pricing-table-widget-demo/)**: Create advanced pricing table. 
 * **[Flip Box](https://demo.happyaddons.com/elementor-flip-box-widget-demo-2/)**: Create 3d-flipped items. 
 * **[Advanced Heading](https://demo.happyaddons.com/elementor-advanced-heading-widget-demo/)**: Add multi-layered headings. 
-* **[Hover Box](https://demo.happyaddons.com/elementor-image-hover-box-widget-demo/)**: Show animated items on mouse hovers. 
-* **[Team Carousel](https://demo.happyaddons.com/elementor-team-carousel-widget-demo/)**: Add multiple team members in carousel styles. 
+* **[Hover Box](https://demo.happyaddons.com/elementor-image-hover-box-widget-demo/)**: Show animated items on hovers. 
+* **[Team Carousel](https://demo.happyaddons.com/elementor-team-carousel-widget-demo/)**: Add multiple team members as carousel. 
 * **[Scrolling Image](https://demo.happyaddons.com/elementor-scrolling-image-widget-demo/)**: Add horizontally scrolling images & more. 
 * **[Advanced Tab](https://demo.happyaddons.com/elementor-advanced-tab-widget-demo/)**: It’s tabbed content builder widget. 
-* **[Advanced Accordion](https://demo.happyaddons.com/elementor-advanced-accordion-widget-demo/)**: It’s an accordion item builder. 
+* **[Advanced Accordion](https://demo.happyaddons.com/elementor-advanced-accordion-widget-demo/)**: It’s an accordion builder. 
 * **[Testimonial Carousel](https://demo.happyaddons.com/elementor-testimonial-carousel-widget-demo/)**: Showcase testimonials in carousel. 
 * **[Logo Carousel](https://demo.happyaddons.com/elementor-logo-carousel-widget-demo/)**: Add logos in carousel styles. 
 * **[Animated Text](https://demo.happyaddons.com/elementor-animated-text-widget-demo/)**: Animated headings/texts with it. 
@@ -127,7 +125,7 @@ Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 * **[Line Chart](https://demo.happyaddons.com/elementor-line-chart-widget-demo/)**: Showcase stats in line chart style. 
 * **[Pie & Doughnut Chart](https://demo.happyaddons.com/elementor-pie-doughnut-chart-widget-demo/)**: Crate animated pie charts. 
 * **[Polar Area Chart](https://demo.happyaddons.com/elementor-polar-area-chart-widget-demo/)**: Create polar area charts. 
-* **[Radar Chart](https://demo.happyaddons.com/elementor-radar-chart-widget-demo/)**: Display data in radar cahart styles. 
+* **[Radar Chart](https://demo.happyaddons.com/elementor-radar-chart-widget-demo/)**: Display data in radar chart styles. 
 * **[Facebook Feed](https://demo.happyaddons.com/elementor-facebook-feed-widget-demo/)**: Add facebook feed in site. 
 * **[Twitter Feed Carousel](https://demo.happyaddons.com/elementor-twitter-feed-carousel-widget-demo/)**: Create twitter feed carousels. 
 * **[Breadcrumbs](https://demo.happyaddons.com/elementor-breadcrumb-widget-demo/)**: Visualize site’s breadcrumbs. 
@@ -160,94 +158,83 @@ Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 * **[EDD Download](https://happyaddons.com/docs/happy-addons-for-elementor-pro/edd-widgets-features/edd-download/)**: Customize EDD Download Page. 
 * **[Image Swap](https://demo.happyaddons.com/elementor-image-swap-widget-demo/)**: Alter images on mouse action. 
 * **[Remote Carousel](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/remote-carousel/)**: It’s remote button to control carousel widgets of HappyAddons.  
-
+* **[Table of content](https://demo-x.happyaddons.com/elementor-table-of-content-widget-demo/)**: Create TOC easily.
 
 ## **Happy Addons Features/Extenions/Modules**
 
-
-### **Free features of HappyAddons**:
-
-* **[Happy Templates](https://happyaddons.com/template-importer/)**(**Freemium**): 500+ section templates and 70+ full page templates are available. 
+### **Free Features of HappyAddons**:
+* **[Happy Templates](https://happyaddons.com/template-importer/)**(**Freemium**): 500+ section templates & 70+ full page templates are available. 
 * **[Happy Shape Dividers](https://happyaddons.com/happy-shape-divider/)**: 18+ new shape dividers added within Elementor shape dividers. 
-* **[Happy Tooltip](https://happyaddons.com/happy-tooltip/)**: Add tooltips to any element of Elementor site. 
+* **[Happy Tooltip](https://happyaddons.com/happy-tooltip/)**: Add tooltips to any element. 
 * **[Equal Heights](https://happyaddons.com/equal-height-feature/)**: Set equal heights to columns/sections/containers/widgets. 
-* **[Text Outline](https://happyaddons.com/text-outline/)**: Add an exterior border around the heading & title widgets. 
-* **[Background Overlay](https://happyaddons.com/background-overlay-demo/)**: Allow to add images, colors, and icons behind any widget.
-* **[Happy Icons](https://happyaddons.com/happy-icon/)**: Get our own line icon library to use any elementor site. 
+* **[Text Outline](https://happyaddons.com/text-outline/)**: Add exterior border around heading & title widgets. 
+* **[Background Overlay](https://happyaddons.com/background-overlay-demo/)**: Allow to add images, colors, & icons behind any widget.
+* **[Happy Icons](https://happyaddons.com/happy-icon/)**: Get line icon library within elementor. 
 * **[Managing Column Order on Mobile Responsive Mood](https://happyaddons.com/happy-column-control/): **Rearrange the order of the column in small devices. 
 * **[Manage Column Width by Adding Pixels](https://happyaddons.com/happy-column-control/)**: Control the column width of widgets with percentage parameters.
-* **[Happy Clone](https://happyaddons.com/happy-clone-demo/)**: It’s a post, page, template duplicator feature.
+* **[Happy Clone](https://happyaddons.com/happy-clone-demo/)**: It’s a post, page, template duplicator.
 * **[Fixed Size Controls in Elementor Button](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/fixed-size-controls-in-elementor-button-widget/)**:  Set a fixed size to Elementor Buttons to make perfect circular button. 
-* **[Grid Layer](https://happyaddons.com/happy-grid-layout-demo/)**: Maintain proper alignment of your page’s elements using this tool
-* **[Wrapper Link](https://happyaddons.com/wrapper-link-feature-demo/)**: Hyperlinked to any section/container with this feature. 
-* **[Floating Effects](https://happyaddons.com/elementor-floating-effect-demo-2/):** Add animations to widgets like Translate, Rotate, or Scale. 
-* **[CSS Transform](https://happyaddons.com/elementor-css-transform-demo-3/)**: Add CSS transforms like translate, rotate, scale, and skew. 
-* **[Scroll To Top](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/scroll-to-top-button/)**: Add scroll to top button to site. 
-* **[Header Footer Builder](https://happyaddons.com/how-to-create-header-and-footer-in-elementor/)**: Create Elementor header and footer for free. 
+* **[Grid Layer](https://happyaddons.com/happy-grid-layout-demo/)**: Maintain proper alignment of page’s elements.
+* **[Wrapper Link](https://happyaddons.com/wrapper-link-feature-demo/)**: Hyperlinked to any section/container. 
+* **[Floating Effects](https://happyaddons.com/elementor-floating-effect-demo-2/):** Add animations to widgets- Translate, Rotate, or Scale. 
+* **[CSS Transform](https://happyaddons.com/elementor-css-transform-demo-3/)**: Add CSS transforms- translate, rotate, scale, and skew. 
+* **[Scroll To Top](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/scroll-to-top-button/)**: Add scroll to top button. 
+* **[Header Footer Builder](https://happyaddons.com/how-to-create-header-and-footer-in-elementor/)**: Create free Elementor header and footer. 
 * **[Single Page/post Template Builder](https://happyaddons.com/how-to-create-a-blog-post-template-in-elementor/)**: Design and create single blog post’s template for free. 
-* **[Archive Page Template Builder](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-post/)**: Design archive page with the archive builder. 
-* **[Theme Builder With Basic Templating Conditions](https://happyaddons.com/docs/happy-theme-builder/how-to-set-conditions-to-display-templates-pro/)**: Free users can set the template condition for the Entire site, All Singular, or All Archive pages.
-
+* **[Archive Page Template Builder](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-post/)**: Design archive page. 
+* **[Theme Builder With Basic Templating Conditions](https://happyaddons.com/docs/happy-theme-builder/how-to-set-conditions-to-display-templates-pro/)**: Free users can set template condition for Entire site, All Singular/Archive pages.
 
 ### **Premium Features of Happy Addons**
-
-* **[Cross Domain Copy Paste](https://demo.happyaddons.com/cross-domain-copy-paste/)**: You can copy & paste any element from one domain to another built-with Elementor & HappyAddons. 
-* **[Preset](https://happyaddons.com/presets-demo/): **400+ preset designs available in HappyAddons. Click previewed designs & get style. 
-* **[Unlimited Section Nesting](https://happyaddons.com/unlimited-section-nesting/)**: Add any amount nested containers & columns within one single columns or containers. 
+* **[Cross Domain Copy-Paste](https://demo.happyaddons.com/cross-domain-copy-paste/)**: You can copy & paste element from one domain to another. 
+* **[Preset](https://happyaddons.com/presets-demo/): **400+ preset designs available in HappyAddons. 
+* **[Unlimited Section Nesting](https://happyaddons.com/unlimited-section-nesting/)**: Add multiple nested containers & columns within one single columns or containers. 
 * **[Live Copy](https://happyaddons.com/live-copy/)**: Copy designs from our demo pages & paste it in your site!
 * **[Image Masking](https://happyaddons.com/image-masking-demo/)**: Give various shapes to images by using premade styles / uploading SVG. 
-* **[Particle Effect](https://happyaddons.com/happy-particle-effect/)**: Add particle effects like Polygon, NASA, Snow & more. 
-* **[Display Condition](https://happyaddons.com/display-condition/)**: Show, hide, & schedule content to display on site & display content depending on conditions like browser, operating system, date range, time, and many more.
-* **[Theme Builder Advance Templating Conditions](https://happyaddons.com/docs/happy-theme-builder/how-to-set-conditions-to-display-templates-pro/)**: Get an advanced template conditioning option. You can include and exclude any page/posts, or archive pages to set conditions for templates.
+* **[Particle Effect](https://happyaddons.com/happy-particle-effect/)**: Add particle effects - Polygon, NASA, Snow & more. 
+* **[Display Condition](https://happyaddons.com/display-condition/)**: Show, hide, & schedule content to display on site & display content depending on conditions like browser, operating system, date range, time, & more.
+* **[Theme Builder Advance Templating Conditions](https://happyaddons.com/docs/happy-theme-builder/how-to-set-conditions-to-display-templates-pro/)**: Advanced template conditioning option, Include & exclude page/posts, or archive pages to set conditions.
 
+### **Privacy-Policy**
 
-### **Privacy Policy**
+**Happy Addons** uses **Appsero-SDK** to collect some telemetry data upon the user’s confirmation. [Read-Policy](https://appsero.com/privacy-policy/).
 
-**Happy Addons** uses [Appsero](https://appsero.com/) SDK to collect some telemetry data upon the user’s confirmation. This helps us to troubleshoot problems faster & make product improvements.
+### **Missing-Anything?**
 
-Appsero SDK **does not gather any data by default.** The SDK only starts gathering basic telemetry data **when a user allows it via the admin notice**. We collect the data to ensure a great user experience for all our users.
+If you miss anything [Submit ideas.](https://happyaddons.com/roadmaps/#ideas)
 
-Integrating Appsero SDK **DOES NOT IMMEDIATELY** start gathering data, **without confirmation from users in any case.**
+### **Happy-With-Our-Work?**
 
-Learn more how [Appsero collects and uses this data](https://appsero.com/privacy-policy/). Additionally, read the weDevs [privacy policy](https://wedevs.com/privacy-policy/) for better knowledge on it.
-
-### **Missing Anything?**
-
-If you miss any item [Submit ideas here.](https://happyaddons.com/roadmaps/#ideas)
-
-
-### **Happy With Our Work?**
-
-We are thankful to you. If it brings smile, please share happiness by giving us a [5***** rating](https://wordpress.org/support/plugin/happy-elementor-addons/reviews/?filter=5). 
-
-
-### **About-The-Maker**
-
-It’s a new product lineup of [weDevs](https://wedevs.com/) & [Leevio](https://leevio.com/).
-
+We are thankful to you. If it brings smile, please share happiness by giving us [5***** rating](https://wordpress.org/support/plugin/happy-elementor-addons/reviews/?filter=5). 
 
 == Frequently Asked Questions ==
 
 = Can I use Happy Addons without Elementor? =
-
 I'm afraid, you cannot use **[Happy Addons](https://happyaddons.com/)** without Elementor.
 
-= Does it work along with other Elementor Addons? =
+= How to use Mega Menu in HappyAddons and Elementor? =
 
+Want to learn How to Create a MegaMenu? Watch this detailed tutorial of creating mega menus,
+[youtube https://www.youtube.com/watch?v=7qmCZFsDkmg&ab_channel=HappyAddons]
+
+= Does it work along with other Elementor Addons? =
 Yes, it does. And you'll get some cool and extra features like Happy Effects for other Addons or Extensions.
 
 = Does it work with any WordPress theme? =
-
 Yes, it works with any WordPress theme that works with Elementor. And it best works with [Hello Elementor](https://wordpress.org/themes/hello-elementor/).
 
 = Does it work with Elementor Pro? =
-
 Yes, undoubtedly.
 
 = Will Happy Addons break my site after an update? =
+No, It won't break your site or any page where you used our plugin. We put our best effort to make you happy. But we always recommend to keep back up of your site before updating our plugin. In case if anything happens you can revert back and contact our support team immediately.
 
-No, It won't break your site or any page where you used our plugin. We put our best effort to make you happy. But we always recommend to keep back up of your site before updating our plugin. In case if anything happens you can revert back and contact our support team immidately.
+= How to User Image Masking in HappyAddons? =
+You will be able to convert your square image into lovely custom shapes. No hassles, just upload your image and choose your shape. Boom! Just done. Very Easy. Here is tutorial.
+[youtube https://www.youtube.com/watch?v=0U3wq3oxy2k&t=2s&ab_channel=HappyAddons]
 
+= Can I use my own particle js effects within HappyAddons? =
+Yes, you can use particle effects form the Particle Js site. Here is tutorial - 
+[youtube https://www.youtube.com/watch?v=iD83Sr4pFSw&ab_channel=HappyAddons]
 
 == Installation ==
 
@@ -260,7 +247,6 @@ No, It won't break your site or any page where you used our plugin. We put our b
 For a more detailed explanation check out the following documentation
 
 ☞ [**How to Install Happy Addons For Elementor**](https://happyaddons.com/docs/happy-addons-for-elementor/getting-started-with-happy-elementor-addons/installation/)
-
 
 == Screenshots ==
 
@@ -277,7 +263,6 @@ For a more detailed explanation check out the following documentation
 11. Review widget - capsule design
 12. Card widget with Happy Effects (Floating Effects)
 13. Card widget - capsule design
-
 
 == Changelog ==
 
