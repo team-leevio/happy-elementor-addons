@@ -1,4 +1,4 @@
-= 3.##.# - ######## 2024 =
+= 3.10.4 - 4 March 2024 =
 
 - Fix: The Data Table widget doesn't respect the scrolling option for Tablet mode issue.
 - Fix: Mailchimp invalid API key issue.
@@ -7,8 +7,8 @@
 - Fix: Security improvement for Author Meta widget.
 - Fix: Security improvement for Photo Stack widget.
 - Fix: The Image Compare widget is not visible on Frontend.
-- Tweak: Slide to Scroll option added in the Horizontal Timeline widget.
-- Tweak: Slide to Scroll option added in the Image Carousel widget.
+- Tweak: Scroll As Shown Slides option added in the Horizontal Timeline widget.
+- Tweak: Scroll As Shown Slides option added in the Image Carousel widget.
 - Update: Appsero SDK to version 2.0.0.
 - Update: RTL support added to the Slider widget.
 - Update: RTL support added to the Image Carousel widget.
