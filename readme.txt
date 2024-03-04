@@ -276,6 +276,7 @@ For a more detailed explanation check out the following documentation
 - Fix: Security improvement for Author Meta widget.
 - Fix: Security improvement for Photo Stack widget.
 - Fix: The Image Compare widget is not visible on Frontend.
+- Fix: Bug fixes and performance improvements.
 - Tweak: Scroll As Shown Slides option added in the Horizontal Timeline widget.
 - Tweak: Scroll As Shown Slides option added in the Image Carousel widget.
 - Update: Appsero SDK to version 2.0.0.
