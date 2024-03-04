@@ -595,7 +595,7 @@ class Photo_Stack extends Base
             $height = $item['thumbnail_custom_dimension']['height'];
             $height = '0' == $height ? 'auto' : $height . 'px';
         }
-        echo '<img src="' . $item['image']['url'] . '" style="width: ' . $width . 'px; height: ' . $height . ';" ' . $attr . '/>';
+        echo '<img src="' . esc_url( $item['image']['url'] ) . '" style="width: ' . $width . 'px; height: ' . $height . ';" ' . $attr . '/>';
     }
 
 }

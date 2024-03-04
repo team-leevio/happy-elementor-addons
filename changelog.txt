@@ -1,3 +1,22 @@
+= 3.10.4 - 4 March 2024 =
+
+- Fix: Dual Button widget breaks on container direction change issue
+- Fix: The Data Table widget doesn't respect the scrolling option for Tablet mode issue.
+- Fix: Mailchimp invalid API key issue.
+- Fix: svg icon issue in Social Icon, Card and Image Stack Group widget.
+- Fix: Security improvement for Archive Title widget.
+- Fix: Security improvement for Author Meta widget.
+- Fix: Security improvement for Photo Stack widget.
+- Fix: The Image Compare widget is not visible on Frontend.
+- Fix: Bug fixes and performance improvements.
+- Tweak: Scroll As Shown Slides option added in the Horizontal Timeline widget.
+- Tweak: Scroll As Shown Slides option added in the Image Carousel widget.
+- Update: Appsero SDK to version 2.0.0.
+- Update: RTL support added to the Slider widget.
+- Update: RTL support added to the Image Carousel widget.
+- Update: RTL support added to the Horizontal Timeline widget.
+- Update: Security improvement for Happy Clone feature.
+
 = 3.10.3 - 28 February 2024 =
 
 - Fix: Compatible with Elementor 3.19.x and Elementor Pro 3.19.x
@@ -14,7 +33,6 @@
 - Fix: Security improvement for Animated Link widget.
 - Fix: Security improvement for Age Gate widget.
 - Fix: Bug fixes and performance improvements.
-
 
 = 3.10.1 - 1 January 2024 =
 
@@ -81,9 +99,9 @@
 
 - New: Section features compatibility with container.
 - Fix: Global color issue fixed with Info Box, LordIcon & Icon Box widget.
-- Fix: Themebuilder widget compatible with Elementor experimental featues.
-- Fix: Safary compatibility for specific js.
-- Fix: Nav Menu widget humberger issues fixes.
+- Fix: Themebuilder widget compatible with Elementor experimental features.
+- Fix: Safari compatibility for specific js.
+- Fix: Nav Menu widget hamburger issues fixes.
 - Fix: Minor bug fixes.
 
 = 3.8.3 - 27 March 2023 =
@@ -143,7 +161,7 @@
 - Tweak: Add Phone Number field on the Team Member widget's social profile section.
 - Tweak: Add Prefix & Suffix Spacing control in the Fun Factor widget.
 - Tweak: Add Post ordering option with the Post Tab widget.
-- Fix: Threesixty rotation & Taxonomy List are not working as a template.
+- Fix: Three sixty rotation & Taxonomy List are not working as a template.
 - Fix: Post list excerpt not showing.
 
 = 3.7.0 - 30 August 2022 =
@@ -181,7 +199,7 @@
 - Fix: Justified Grid row height issue
 - Tweak: Added LordIcon support in Info Box & Icon Box widget
 - Tweak: Dynamic date format set for post list and post tab widget
-- Tweak: wpml support for creative button widget
+- Tweak: WPML support for creative button widget
 
 = 3.5.2 - 26 April 2022 =
 
@@ -284,8 +302,8 @@
 
 = 3.1.0 - 25 August 2021 =
 
-- New: Added disbale option for Column Extended feature
-- New: Added disbale option for Text Stroke feature
+- New: Added disable option for Column Extended feature
+- New: Added disable option for Text Stroke feature
 - New: Added compatibility with PHP 8.0
 - Fix: Icon Box badge z-index issue
 - Remove: Alignment option from 360deg widget
@@ -308,16 +326,16 @@
 - New: Added News Ticker widget Post Title HTML Tag control option
 - New: Added Carousel Widget Title & Subtitle HTML Tag control option
 - New: Added Sliders Widget Title & Subtitle HTML Tag control option
-- New: Added Global credential key dashboard. User can set credentials in settings pannel and use it globally (Mailchimp Widget, Twitter Feed Widget)
+- New: Added Global credential key dashboard. User can set credentials in settings panel and use it globally (Mailchimp Widget, Twitter Feed Widget)
 - Update: Image Hover Effect Title HTML Tag control
-- Update: All widgets Coding stractrue update
-- Update: Happy sellect 2 control update
+- Update: All widgets Coding structure update
+- Update: Happy select 2 control update
 - Update: Mailchimp form alignment improved and optimized with some coding updates.
-- Fix: Taxonomy List Sellect2 issue
-- Fix: Post tab Sellect2 issue
-- Fix: Post list Sellect2 issue
-- Fix: News ticker Sellect2 issue
-- Fix: Mailchimp Sellect2 issue
+- Fix: Taxonomy List Select2 issue
+- Fix: Post tab Select2 issue
+- Fix: Post list Select2 issue
+- Fix: News ticker Select2 issue
+- Fix: Mailchimp Select2 issue
 - Fix: Improve some style for compatibility on the content switcher
 
 = 2.27.0 - 5 July 2021 =
@@ -425,7 +443,7 @@
 - Tweak: Updated Horizontal timeline widget default style
 - Tweak: Added % unit in Slider arrow position controls
 - Tweak: Added % unit in Carousel arrow position controls
-- Tweak: Added % unit in Horizontal timline arrow position control
+- Tweak: Added % unit in Horizontal timeline arrow position control
 - Tweak: Separated Floating effects JS handler from main JS file
 - Fix: Slider arrow not hiding issue
 - Fix: Carousel arrow not hiding issue
@@ -467,8 +485,8 @@
 = 2.14.3 - 12 October 2020 =
 
 - Update: Appsero client updated to `v1.2.0`
-- Tweak: Added Calendy pro feature notice
-- Tweak: Added Calendy default username "happyaddons"
+- Tweak: Added Calendly pro feature notice
+- Tweak: Added Calendly default username "happyaddons"
 - Tweak: Common cached files are loaded once as internal css
 - Fix: Card widget badge dynamic tag issue
 - Fix: Happy templates popup button auto duplicate issue
@@ -511,7 +529,7 @@
 - Tweak: Removed assets loading hook priority
 - Tweak: Improved Dual Button default style
 - Fix: CSS Transform normal/hover mode not working on frontend issue
-- Fix: Color change doens't have any effect on SVG icon issue
+- Fix: Color change doesn't have any effect on SVG icon issue
 - Fix: Card widget image size issue on Firefox and responsive mode
 
 = 2.13.1 - 6 August 2020 =
@@ -530,7 +548,7 @@
 - New: `happyaddons/extensions/css_transform` hook to control CSS Transform
 - New: `happyaddons/extensions/on_demand_cache` hook to control On Demand Assets Loading
 - Tweak: Added CSS Transform hover state support
-- Tweak: Added Stepflow direction arrow rotatation support
+- Tweak: Added Stepflow direction arrow rotation support
 - Tweak: Added Card button full width support
 - Tweak: Added Card responsive image positioning
 - Tweak: Restored justify alignment in all widgets
@@ -560,7 +578,7 @@
 
 = 2.12.1 - 9 June 2020 =
 
-- Fix: GravityForms widget issue causing elementor editor continuous loding
+- Fix: GravityForms widget issue causing elementor editor continuous loading
 
 = 2.12.0 - 8 June 2020 =
 
@@ -608,7 +626,7 @@
 = 2.7.3 - 31 March 2020 =
 
 - Tweak: Custom attribute output support for all links
-- Tweak: Added pro widgets awarness panel
+- Tweak: Added pro widgets awareness panel
 - Fix: Missing styles issue on page/post clone
 - Fix: Popup link not working with link issue
 - Fix: Twitter feed issue

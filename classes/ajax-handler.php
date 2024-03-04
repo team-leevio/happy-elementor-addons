@@ -315,13 +315,14 @@ class Ajax_Handler {
 			return;
 		}
 
-		parse_str( isset( $_POST['subscriber_info'] ) ? ha_sanitize_array_recursively($_POST['subscriber_info']) : '', $subsciber );
+		parse_str( isset( $_POST['subscriber_info'] ) ? $_POST['subscriber_info'] : '', $subscriber );
+		$subscriber = ha_sanitize_array_recursively( $subscriber );
 
 		if ( ! class_exists( 'Happy_Addons\Elementor\Widget\Mailchimp\Mailchimp_Api' ) ) {
 			include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
 		}
 
-		$response = Widget\Mailchimp\Mailchimp_Api::insert_subscriber_to_mailchimp( $subsciber );
+		$response = Widget\Mailchimp\Mailchimp_Api::insert_subscriber_to_mailchimp( $subscriber );
 
 		echo wp_send_json( $response );
 

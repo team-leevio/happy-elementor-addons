@@ -209,6 +209,10 @@ class Archive_Title extends Base {
             $this->add_render_attribute('title', 'class', 'elementor-size-' . $settings['size']);
         }
 
-        printf('<%1$s %2$s>%3$s</%1$s>', $settings['archive_title_tag'], $this->get_render_attribute_string('title'), get_the_archive_title() );
+        printf('<%1$s %2$s>%3$s</%1$s>',
+			ha_escape_tags($settings['archive_title_tag']),
+			$this->get_render_attribute_string('title'),
+			get_the_archive_title()
+		);
 	}
 }

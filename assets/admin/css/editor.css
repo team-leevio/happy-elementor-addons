@@ -737,3 +737,7 @@
 .elementor-control.elementor-control-ha_element_link .elementor-control-field-description {
 	display: none;
 }
+
+.elementor-control-type-number input.elementor-control-tag-area.elementor-control-unit-2 {
+	width: 70px;
+}

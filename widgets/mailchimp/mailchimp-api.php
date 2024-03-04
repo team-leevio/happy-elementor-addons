@@ -66,8 +66,8 @@ class Mailchimp_Api {
 		if ( ! isset( $server[1] ) ) {
 			return ['status' => 0, 'msg' => esc_html__( 'Invalid API key.', 'happy-elementor-addons' )];
 		}
-		
-		if( strpos('us', $server[1]) === false ) {
+
+		if( strpos( $server[1], 'us' ) === false ) {
 			return ['status' => 0, 'msg' => esc_html__( 'Invalid API key.', 'happy-elementor-addons' )];
 		}
 

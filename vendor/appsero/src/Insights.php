@@ -55,7 +55,7 @@ class Insights {
             $client = new Client($client, $name, $file);
         }
 
-        if (is_object($client) && is_a($client, 'Happy_Addons\Appsero\Client')) {
+		if (is_object($client) && is_a($client, 'Happy_Addons\Appsero\Client')) {
             $this->client = $client;
         }
     }
@@ -382,8 +382,8 @@ class Insights {
             $is_local = true;
         }
 
-        return false;
-        // return apply_filters( 'appsero_is_local', $is_local );
+        // return false;
+		return apply_filters( 'appsero_is_local', $is_local );
     }
 
     /**

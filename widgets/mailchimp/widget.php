@@ -78,7 +78,7 @@ class Mailchimp extends Base {
 		$this->add_control(
 			'mailchimp_api_check',
 			[
-				'raw'             => '<strong>' . esc_html__( 'Please note!', 'happy-elementor-addons' ) . '</strong> ' . esc_html__( 'Please set API Key in Happy Addons Dashboard - ', 'happy-elementor-addons' ) . '<a style="border-bottom-color: inherit;" href="' . esc_url( admin_url( 'admin.php?page=happy-addons#credentials' ) ) . '" target="_blank" >' . esc_html__( 'Credentials', 'happy-elementor-addons' ) . '</a>' . esc_html__( ' - MailChimp and Create Audience.', 'happy-elementor-addons' ),
+				'raw'             => '<strong>' . esc_html__( 'Please note!', 'happy-elementor-addons' ) . '</strong> ' . esc_html__( 'Please set API Key in Happy Addons Dashboard - ', 'happy-elementor-addons' ) . '<a style="border-bottom-color: inherit;" href="' . esc_url( admin_url( 'admin.php?page=happy-addons#credentials' ) ) . '" target="_blank" >' . esc_html__( 'Credentials', 'happy-elementor-addons' ) . '</a>' . esc_html__( ' - MailChimp and Create Audience. Ignore if you have already configured it.', 'happy-elementor-addons' ),
 				'type'            => Controls_Manager::RAW_HTML,
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
 				'render_type'     => 'ui',

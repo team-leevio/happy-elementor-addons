@@ -186,7 +186,7 @@ class Image_Stack_Group extends Base {
 				'type' => Controls_Manager::COLOR,
 				'condition' => [ 'media_type' => 'icon' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-cig-item{{CURRENT_ITEM}} i' => 'color: {{VALUE}}'
+					'{{WRAPPER}} .ha-cig-item{{CURRENT_ITEM}} i,{{WRAPPER}} .ha-cig-item{{CURRENT_ITEM}} .fw-svg-wrap' => 'color: {{VALUE}}'
 				]
 			]
 		);
@@ -402,7 +402,8 @@ class Image_Stack_Group extends Base {
 				'label' => __( 'Icon Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-cig-item i' => 'color: {{VALUE}}'
+					'{{WRAPPER}} .ha-cig-item i' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-cig-item .fw-svg-wrap' => 'color: {{VALUE}}'
 				]
 			]
 		);
@@ -414,7 +415,7 @@ class Image_Stack_Group extends Base {
 				'label' => __( 'Background', 'happy-elementor-addons' ),
 				'types' => [ 'classic', 'gradient' ],
 				'exclude' => [ 'image' ],
-				'selector' => '{{WRAPPER}} .ha-cig-item i'
+				'selector' => '{{WRAPPER}} .ha-cig-item i,{{WRAPPER}} .ha-cig-item .fw-svg-wrap'
 			]
 		);
 
