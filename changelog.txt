@@ -1,5 +1,6 @@
 = 3.10.4 - 4 March 2024 =
 
+- Fix: Dual Button widget breaks on container direction change issue
 - Fix: The Data Table widget doesn't respect the scrolling option for Tablet mode issue.
 - Fix: Mailchimp invalid API key issue.
 - Fix: svg icon issue in Social Icon, Card and Image Stack Group widget.
