@@ -38,12 +38,12 @@
 
 [📜 &nbsp; Documentation](https://happyaddons.com/docs/)
 
-[🧀 &nbsp; Hooks](https://github.com/weDevsOfficial/happy-elementor-addons/wiki/Hooks)
+[🧀 &nbsp; Hooks](https://github.com/team-leevio/happy-elementor-addons/wiki/Hooks)
 
 [⭐️ &nbsp; Support](https://happyaddons.com/happy-support/)
 
 [🛎 &nbsp; Contact](https://happyaddons.com/contact-us/)
 
-[🐞 &nbsp; Report bug or issue](https://github.com/weDevsOfficial/happy-elementor-addons/issues)
+[🐞 &nbsp; Report bug or issue](https://github.com/team-leevio/happy-elementor-addons/issues)
 
 Thank you 🙏
