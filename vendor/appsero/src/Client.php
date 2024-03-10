@@ -14,7 +14,7 @@ class Client {
      *
      * @var string
      */
-    public $version = '1.2.5';
+    public $version = '2.0.0';
 
     /**
      * Hash identifier of the plugin
@@ -258,7 +258,7 @@ class Client {
         $is_local = isset( $_SERVER['REMOTE_ADDR'] ) && in_array( $_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ], true );
 
         return false;
-        // return apply_filters( 'appsero_is_local', $is_local );
+        //return apply_filters( 'appsero_is_local', $is_local );
     }
 
     /**

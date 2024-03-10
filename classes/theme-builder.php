@@ -699,7 +699,7 @@ class Theme_Builder {
             $location = 'archive';
         }
 
-        if (is_plugin_active('elementor-pro/elementor-pro.php')) {
+        if (class_exists("\ElementorPro\Plugin")) {
             $document = \ElementorPro\Plugin::elementor()->documents->get_doc_for_frontend(get_the_ID());
             $page_templates_module = \ElementorPro\Plugin::elementor()->modules_manager->get_modules('page-templates');
 

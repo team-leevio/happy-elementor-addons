@@ -674,7 +674,8 @@ class Social_Icons extends Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-social-icon.ha-social-icon--network i'   => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-social-icon.ha-social-icon--network'   => 'font-size: {{SIZE}}{{UNIT}};',
+					// '{{WRAPPER}} .ha-social-icon.ha-social-icon--network i'   => 'font-size: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -922,7 +923,7 @@ class Social_Icons extends Base {
 				$link_attr    = 'link_' . $key;
 
 				if (!empty($icons['ha_social_icon'])) {
-					$social_name = str_replace(['fa fa-', 'fab fa-', 'far fa-'], '', $icon);
+					$social_name = str_replace(['fa fa-', 'fab fa-', 'far fa-', 'hm hm-', ' '], '', $icon);
 				}
 
 				$this->add_link_attributes( $link_attr, $icons['ha_social_link'] );

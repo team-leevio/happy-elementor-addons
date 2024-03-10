@@ -1,11 +1,11 @@
 {
     "name": "happy-elementor-addons",
-    "version": "3.10.1",
+    "version": "3.10.4",
     "description": "addons collection",
     "main": "index.html",
     "scripts": {
         "dev": "gulp",
-        "dev2": "gulp dev",
+        "prod": "gulp production",
         "translate": "gulp pot",
         "zip": "gulp zip",
         "build": "gulp build"

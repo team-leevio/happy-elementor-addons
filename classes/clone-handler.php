@@ -31,6 +31,17 @@ class Clone_Handler {
 	}
 
 	/**
+	 * Check if current user and post author are same
+	 *
+	 * @param int $post_id
+	 * @return boolean
+	 */
+	public static function is_the_same_author($post_id) {
+		$author_id = get_post_field( 'post_author', $post_id );
+		return ( get_current_user_id() === $author_id );
+	}
+
+	/**
 	 * Add clone link in row actions
 	 *
 	 * @param array $actions
@@ -38,7 +49,7 @@ class Clone_Handler {
 	 * @return array
 	 */
 	public static function add_row_actions( $actions, $post ) {
-		if ( self::can_clone() && post_type_supports( $post->post_type, 'elementor' ) ) {
+		if ( current_user_can( 'edit_post', $post->ID ) && post_type_supports( $post->post_type, 'elementor' ) ) {
 			$actions[ self::ACTION ] = sprintf(
 				'<a href="%1$s" title="%2$s"><span class="screen-reader-text">%2$s</span>%3$s</a>',
 				esc_url( self::get_url( $post->ID, 'list' ) ),
@@ -84,6 +95,14 @@ class Clone_Handler {
 
 		if ( ! wp_verify_nonce( $nonce, self::ACTION ) ) {
 			return;
+		}
+
+		if ( 'private' == get_post_status ( $post_id ) && ! self::is_the_same_author( $post_id ) ) {
+			wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
+		}
+
+		if ( post_password_required( $post_id ) && ! self::is_the_same_author( $post_id ) ) {
+			wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
 		}
 
 		if ( is_null( ( $post = get_post( $post_id ) ) ) ) {

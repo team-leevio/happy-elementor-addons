@@ -192,7 +192,7 @@ exports.zip = series(
 exports.pot = makePot;
 exports.clean = deleteOld;
 
-exports.dev = series(
+exports.production = series(
     makeFrontendCSS,
     makeBackendCSS,
     makeFrontendJS,
