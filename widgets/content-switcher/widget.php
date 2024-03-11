@@ -439,7 +439,7 @@ class Content_Switcher extends Base {
 						'default' => 'Bold',
 					],
 				],
-				'selector'       => '{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button span, {{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch',
+				'selector'       => '{{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button span, {{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-switch, {{WRAPPER}} .ha-cs-switch-wrapper .ha-cs-button',
 
 			]
 		);
