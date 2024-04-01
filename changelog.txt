@@ -4,7 +4,10 @@
 - Fix: Icon size and Icon spacing in Content Switcher Widget.
 - Fix: Security improvement for Calendly widget.
 - Fix: Security improvement for Page Title widget.
+- Fix: Security improvement for Post Title widget.
 - Fix: Security improvement for Card widget.
+- Fix: Security improvement for Gradient Heading widget.
+- Fix: Security improvement for Review widget.
 
 = 3.10.4 - 4 March 2024 =
 
