@@ -97,11 +97,14 @@ class Clone_Handler {
 			return;
 		}
 
-		if ( 'private' == get_post_status ( $post_id ) && ! self::is_the_same_author( $post_id ) ) {
+		$post_status = get_post_status ( $post_id );
+		$same_author = self::is_the_same_author( $post_id );
+
+		if ( ('private' == $post_status || 'draft' == $post_status) && ! $same_author ) {
 			wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
 		}
 
-		if ( post_password_required( $post_id ) && ! self::is_the_same_author( $post_id ) ) {
+		if ( post_password_required( $post_id ) && ! $same_author ) {
 			wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
 		}
 

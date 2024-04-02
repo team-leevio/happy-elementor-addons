@@ -8,6 +8,7 @@
 - Fix: Security improvement for Card widget.
 - Fix: Security improvement for Gradient Heading widget.
 - Fix: Security improvement for Review widget.
+- Update: Security improvement for Happy Clone feature.
 
 = 3.10.4 - 4 March 2024 =
 
