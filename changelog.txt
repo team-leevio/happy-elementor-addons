@@ -1,4 +1,4 @@
-= 3.*.* - * * 2024 =
+= 3.10.5 - 4 April 2024 =
 
 - Tweak: Container template support in Content Switcher Widget.
 - Fix: Icon size and Icon spacing in Content Switcher Widget.
