@@ -268,7 +268,6 @@ For a more detailed explanation check out the following documentation
 
 = 3.10.5 - 4 April 2024 =
 
-- Tweak: Container template support in Content Switcher Widget.
 - Fix: Icon size and Icon spacing in Content Switcher Widget.
 - Fix: Security improvement for Calendly widget.
 - Fix: Security improvement for Page Title widget.
@@ -276,7 +275,9 @@ For a more detailed explanation check out the following documentation
 - Fix: Security improvement for Card widget.
 - Fix: Security improvement for Gradient Heading widget.
 - Fix: Security improvement for Review widget.
+- Tweak: Container template support in Content Switcher Widget.
 - Update: Security improvement for Happy Clone feature.
+- Update: Compatible with WordPress 6.5.0 & Elementor 3.20
 
 = 3.10.4 - 4 March 2024 =
 
