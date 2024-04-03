@@ -277,7 +277,7 @@ For a more detailed explanation check out the following documentation
 - Fix: Security improvement for Review widget.
 - Tweak: Container template support in Content Switcher Widget.
 - Update: Security improvement for Happy Clone feature.
-- Update: Compatible with WordPress 6.5.0 & Elementor 3.20
+- Update: Compatible with WordPress 6.5 & Elementor 3.20
 
 = 3.10.4 - 4 March 2024 =
 
