@@ -208,7 +208,6 @@ class Page_Title extends Base {
         if ( ! empty( $settings['size'] ) ) {
             $this->add_render_attribute('title', 'class', 'elementor-size-' . $settings['size']);
         }
-
-        printf('<%1$s %2$s>%3$s</%1$s>', $settings['page_title_tag'], $this->get_render_attribute_string('title'), get_the_title() );
+        printf('<%1$s %2$s>%3$s</%1$s>', ha_escape_tags($settings['page_title_tag']), $this->get_render_attribute_string('title'), get_the_title() );
 	}
 }

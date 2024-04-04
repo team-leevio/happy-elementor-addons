@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.10.4
+Version: 3.10.5
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
-Tested up to: 6.4
-Stable tag: 3.10.4
+Tested up to: 6.5
+Stable tag: 3.10.5
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -266,6 +266,20 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.10.5 - 4 April 2024 =
+
+- Fix: Templates won't refresh on rare case.
+- Fix: Icon size and Icon spacing in Content Switcher Widget.
+- Fix: Security improvement for Calendly widget.
+- Fix: Security improvement for Page Title widget.
+- Fix: Security improvement for Post Title widget.
+- Fix: Security improvement for Card widget.
+- Fix: Security improvement for Gradient Heading widget.
+- Fix: Security improvement for Review widget.
+- Tweak: Container template support in Content Switcher Widget.
+- Update: Security improvement for Happy Clone feature.
+- Update: Made Compatible with WordPress 6.5 & Elementor 3.20
+
 = 3.10.4 - 4 March 2024 =
 
 - Fix: Dual Button widget breaks on container direction change issue
@@ -304,24 +318,5 @@ For a more detailed explanation check out the following documentation
 = 3.10.1 - 1 January 2024 =
 
 - Fix: Security improvement for Age Gate widget.
-
-= 3.10.0 - 19 December 2023 =
-
-- New: Support for Equal Height in Container.
-- Fix: Appsero SDK to version 1.2.5.
-- Fix: Security improvement for Twitter Feed widget.
-- Fix: Security improvement for Post Tab widget.
-- Fix: Security improvement for Mailchimp widget.
-- Fix: Security improvement for Review widget.
-- Fix: Security improvement for Happy Clone.
-- Fix: Security improvement for Theme Builder.
-- Fix: Conflict identified with Events Tickets Plus.
-- Fix: XSS security issue causing Scroll to Top issue.
-- Fix: External link not working in Photo Stack widget.
-- Fix: Styling issue with WPForms submit button.
-- Fix: Template icon display problem in the container.
-- Fix: Compatibility issue with WPML and Content Switcher widget.
-- Tweak: Warning notice for News Ticker widget.
-
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)

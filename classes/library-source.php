@@ -110,7 +110,7 @@ class Library_Source extends Source_Base {
 	private static function request_library_data( $force_update = false ) {
 		$data = get_option( self::LIBRARY_CACHE_KEY );
 
-		if ( $force_update || false === $data ) {
+		if ( $force_update || false === $data || empty($data) ) {
 			$timeout = ( $force_update ) ? 25 : 8;
 
 			$response = wp_remote_get( self::API_TEMPLATES_INFO_URL, [

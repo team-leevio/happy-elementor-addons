@@ -257,9 +257,10 @@ class Gradient_Heading extends Base {
 		view.addInlineEditingAttributes( 'title', 'basic' );
 		view.addRenderAttribute( 'title', 'class', 'ha-gradient-heading' );
 
-		var title = _.isEmpty(settings.link.url) ? settings.title : '<a href="'+settings.link.url+'">'+settings.title+'</a>';
+		var title = _.isEmpty(settings.link.url) ? settings.title : '<a href="' + _.escape( settings.link.url ) + '">'+settings.title+'</a>';
+		var title_tag = elementor.helpers.validateHTMLTag( settings.title_tag );
 		#>
-		<{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ title }}}</{{ settings.title_tag }}>
+		<{{ title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ title }}}</{{ title_tag }}>
 		<?php
 	}
 }

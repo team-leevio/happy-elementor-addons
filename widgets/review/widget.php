@@ -818,7 +818,8 @@ class Review extends Base {
 			<# } #>
 			<div class="ha-review-header">
 				<# if (settings.title) { #>
-					<{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ settings.title }}}</{{ settings.title_tag }}>
+					<# var title_tag = elementor.helpers.validateHTMLTag( settings.title_tag ); #>
+					<{{ title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ settings.title }}}</{{ title_tag }}>
 				<# } #>
 				<# if (settings.job_title) { #>
 					<div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{{ settings.job_title }}}</div>
