@@ -38,7 +38,7 @@ class Clone_Handler {
 	 */
 	public static function is_the_same_author($post_id) {
 		$author_id = get_post_field( 'post_author', $post_id );
-		return ( get_current_user_id() === $author_id );
+		return ( get_current_user_id() == $author_id );
 	}
 
 	/**
