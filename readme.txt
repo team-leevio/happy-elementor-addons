@@ -268,7 +268,7 @@ For a more detailed explanation check out the following documentation
 
 = 3.10.5 - 4 April 2024 =
 
-- Fix : Templates won't refresh on rare case.
+- Fix: Templates won't refresh on rare case.
 - Fix: Icon size and Icon spacing in Content Switcher Widget.
 - Fix: Security improvement for Calendly widget.
 - Fix: Security improvement for Page Title widget.
