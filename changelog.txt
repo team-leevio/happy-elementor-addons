@@ -1,3 +1,8 @@
+= 3.##.# - ###### 2024 =
+
+- Fix: Security improvement for Site Title widget.
+- Fix: Security improvement for Horizontal Timeline widget.
+
 = 3.10.5 - 4 April 2024 =
 
 - Fix: Templates won't refresh on rare case.
