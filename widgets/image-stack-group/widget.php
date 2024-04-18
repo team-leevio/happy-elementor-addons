@@ -565,7 +565,7 @@ class Image_Stack_Group extends Base {
 				$media_type = $item['media_type'];
 
 
-				$item_id = 'elementor-repeater-item-'.$item['_id'];
+				$item_id = 'elementor-repeater-item-' . esc_attr( $item['_id'] );
 
 				if($media_type == "icon"){
 					$bgType = $item['icon_bg_color_background'];
@@ -605,7 +605,7 @@ class Image_Stack_Group extends Base {
 						$img_url = Utils::get_placeholder_image_src();
 					}
 
-					$content = '<img src="'.$img_url.'" alt="">';
+					$content = '<img src="'.esc_url($img_url).'" alt="">';
 				}
 
 				$tooltip_data = '';
@@ -621,7 +621,7 @@ class Image_Stack_Group extends Base {
 					$tooltip_data = 'tooltip="'.$tooltip_txt.'" flow="'.$tooltip_position.'"';
 				}
 
-				$id = 'ha-cig-item-' . $item['_id'];
+				$id = 'ha-cig-item-' . esc_attr( $item['_id'] );
 
 				$link = $item['link'];
 

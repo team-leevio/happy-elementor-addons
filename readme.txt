@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.10.5
+Version: 3.10.6
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.5
-Stable tag: 3.10.5
+Stable tag: 3.10.6
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -265,6 +265,14 @@ For a more detailed explanation check out the following documentation
 13. Card widget - capsule design
 
 == Changelog ==
+
+= 3.10.6 - 18 April 2024 =
+
+- Fix: Security improvement for Site Title widget.
+- Fix: Security improvement for Horizontal Timeline widget.
+- Fix: Security improvement for Image Stack Group widget.
+- Fix: Security improvement for Photo Stack widget.
+- Update: Made Compatible with Elementor 3.21
 
 = 3.10.5 - 4 April 2024 =
 

@@ -1,3 +1,11 @@
+= 3.10.6 - 18 April 2024 =
+
+- Fix: Security improvement for Site Title widget.
+- Fix: Security improvement for Horizontal Timeline widget.
+- Fix: Security improvement for Image Stack Group widget.
+- Fix: Security improvement for Photo Stack widget.
+- Update: Made Compatible with Elementor 3.21
+
 = 3.10.5 - 4 April 2024 =
 
 - Fix: Templates won't refresh on rare case.

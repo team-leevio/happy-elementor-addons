@@ -1186,7 +1186,7 @@ class Horizontal_Timeline extends Base {
 		<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
 
 			<?php foreach ( $settings['timeline'] as $timeline ) : ?>
-				<div class="ha-horizontal-timeline-block elementor-repeater-item-<?php echo $timeline['_id']; ?>">
+				<div class="ha-horizontal-timeline-block elementor-repeater-item-<?php echo esc_attr( $timeline['_id'] ); ?>">
 					<div class="ha-horizontal-timeline-icon-box">
 
 						<span class="ha-horizontal-timeline-date"><?php echo esc_html( $timeline['event_date'] ); ?></span>
