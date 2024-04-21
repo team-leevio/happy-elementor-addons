@@ -236,6 +236,9 @@ You will be able to convert your square image into lovely custom shapes. No hass
 Yes, you can use particle effects form the Particle Js site. Here is tutorial -
 [youtube https://www.youtube.com/watch?v=iD83Sr4pFSw&ab_channel=HappyAddons]
 
+= How can I report security bugs? =
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/happy-elementor-addons)
+
 == Installation ==
 
 **Step 1:** Upload the plugin file to install by navigating through Plugins➔Add New➔Upload Plugin➔Choose File to Install from your WordPress dashboard or you can simply search for the Happy Addons plugin from the plugin directory by going to Plugins➔Add New and search for the plugin in the search tab to install it on your WordPress site.
