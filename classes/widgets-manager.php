@@ -1330,6 +1330,18 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'video-lightbox' => [
+				'cat' => 'general',
+				'is_active' => true,
+				'title' => __('Video Lightbox', 'happy-elementor-addons'),
+				'icon' => 'hm hm-age-gate',
+				'css' => ['video-lightbox'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
 		];
 	}
 
