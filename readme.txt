@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.10.6
+Version: 3.10.7
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.5
-Stable tag: 3.10.6
+Stable tag: 3.10.7
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -269,6 +269,10 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.10.7 - 25 April 2024 =
+
+- Fix: Security improvement for Calendly widget.
+
 = 3.10.6 - 18 April 2024 =
 
 - Fix: Security improvement for Site Title widget.
@@ -317,17 +321,5 @@ For a more detailed explanation check out the following documentation
 - Tweak: Minimum required PHP version 7.4
 - Tweak: Minimum required Elementor version 3.7.0
 - Tweak: Minimum required WordPress version 5.0
-
-= 3.10.2 - 29 January 2024 =
-
-- Fix: Event Calendar(Google Calendar) page crashing and throwing Critical Error issue.
-- Fix: Security improvement for Happy Clone feature.
-- Fix: Security improvement for Wrapper Link feature.
-- Fix: Security improvement for Animated Link widget.
-- Fix: Security improvement for Age Gate widget.
-
-= 3.10.1 - 1 January 2024 =
-
-- Fix: Security improvement for Age Gate widget.
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)

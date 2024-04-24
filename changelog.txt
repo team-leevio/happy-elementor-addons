@@ -1,3 +1,7 @@
+= 3.10.7 - 25 April 2024 =
+
+- Fix: Security improvement for Calendly widget.
+
 = 3.10.6 - 18 April 2024 =
 
 - Fix: Security improvement for Site Title widget.
