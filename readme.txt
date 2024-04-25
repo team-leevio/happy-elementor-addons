@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.10.6
+Version: 3.10.7
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.5
-Stable tag: 3.10.6
+Stable tag: 3.10.7
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -236,6 +236,9 @@ You will be able to convert your square image into lovely custom shapes. No hass
 Yes, you can use particle effects form the Particle Js site. Here is tutorial -
 [youtube https://www.youtube.com/watch?v=iD83Sr4pFSw&ab_channel=HappyAddons]
 
+= How can I report security bugs? =
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/happy-elementor-addons)
+
 == Installation ==
 
 **Step 1:** Upload the plugin file to install by navigating through Plugins➔Add New➔Upload Plugin➔Choose File to Install from your WordPress dashboard or you can simply search for the Happy Addons plugin from the plugin directory by going to Plugins➔Add New and search for the plugin in the search tab to install it on your WordPress site.
@@ -265,6 +268,10 @@ For a more detailed explanation check out the following documentation
 13. Card widget - capsule design
 
 == Changelog ==
+
+= 3.10.7 - 25 April 2024 =
+
+- Fix: Security improvement for Calendly widget.
 
 = 3.10.6 - 18 April 2024 =
 
@@ -314,17 +321,5 @@ For a more detailed explanation check out the following documentation
 - Tweak: Minimum required PHP version 7.4
 - Tweak: Minimum required Elementor version 3.7.0
 - Tweak: Minimum required WordPress version 5.0
-
-= 3.10.2 - 29 January 2024 =
-
-- Fix: Event Calendar(Google Calendar) page crashing and throwing Critical Error issue.
-- Fix: Security improvement for Happy Clone feature.
-- Fix: Security improvement for Wrapper Link feature.
-- Fix: Security improvement for Animated Link widget.
-- Fix: Security improvement for Age Gate widget.
-
-= 3.10.1 - 1 January 2024 =
-
-- Fix: Security improvement for Age Gate widget.
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)

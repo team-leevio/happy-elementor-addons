@@ -146,6 +146,7 @@
         if ('yes' == this.getElementSettings('vertical')) {
           $rtl = false; // for vertical direction rtl is off
         }
+
         var settings = {
           infinite: !!this.getElementSettings('loop'),
           autoplay: !!this.getElementSettings('autoplay'),
