@@ -1,4 +1,4 @@
-.ha-video-lightbox {
+.ha-lightbox {
 	&-trigger {
 		cursor: pointer;
 	}
@@ -6,7 +6,8 @@
 		color: #fff;
 	}
 	&-btn {
-		display: inline-block;
+		display: inline-flex;
+		align-items: center;
 		font-size: 14px;
 		padding: 15px 25px;
 		color: #fff;

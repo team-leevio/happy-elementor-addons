@@ -20,7 +20,7 @@ use Elementor\Group_Control_Css_Filter;
 
 defined( 'ABSPATH' ) || die();
 
-class Video_Lightbox extends Base {
+class Lightbox extends Base {
 
     /**
      * Get widget title.
@@ -31,11 +31,11 @@ class Video_Lightbox extends Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Video Lightbox', 'happy-elementor-addons' );
+        return __( 'Lightbox', 'happy-elementor-addons' );
     }
 
 	public function get_custom_help_url() {
-		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/video-lightbox/';
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/lightbox/';
 	}
 
     /**
@@ -63,15 +63,15 @@ class Video_Lightbox extends Base {
      * Register widget content controls
      */
 	protected function register_content_controls() {
-		$this->_section_button();
+		$this->_section_lightbox();
 	}
 
-    protected function _section_button() {
+    protected function _section_lightbox() {
 
         $this->start_controls_section(
-            '_section_video_lightbox',
+            '_section_lightbox',
             [
-                'label' => __( 'Video Lightbox', 'happy-elementor-addons' ),
+                'label' => __( 'Lightbox', 'happy-elementor-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -238,198 +238,6 @@ class Video_Lightbox extends Base {
 		$this->__image_style_controls();
 	}
 
-	protected function __btn_style_controls5() {
-
-		$this->start_controls_section(
-			'_section_btn_style',
-			[
-				'label' => __( 'Button', 'happy-elementor-addons' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name'     => 'btn_text_typography',
-				'label'    => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-video-lightbox-btn',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_TEXT,
-				],
-			]
-		);
-
-		$this->add_control(
-			'btn_border_radius',
-			[
-				'label'     => __( 'Border Radius', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::SLIDER,
-				// 'default' => [
-				// 	'unit' => 'px',
-				// 	'size' => 6,
-				// ],
-				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn'  => 'border-radius: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'btn_padding',
-			[
-				'label'     => __( 'Padding', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::DIMENSIONS,
-				// 'default' => [
-				// 	'top' => 5,
-				// 	'right' => 10,
-				// 	'bottom' => 5,
-				// 	'left' => 10,
-				// 	'unit' => 'px',
-				// 	'isLinked' => false,
-				// ],
-				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn'  => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			[
-				'name'     => 'btn_border',
-				'selector' => '{{WRAPPER}} .ha-video-lightbox-btn',
-			]
-		);
-
-		$this->start_controls_tabs( '_tabs_button' );
-		$this->start_controls_tab(
-			'_tab_button_normal',
-			[
-				'label' => __( 'Normal', 'happy-elementor-addons' ),
-			]
-		);
-
-		$this->add_control(
-			'button_text_color',
-			[
-				'label'     => __( 'Text Color', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->add_control(
-			'button_bg_color',
-			[
-				'label'     => __( 'Background Color', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn' => 'background: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			[
-				'name'     => 'button_box_shadow',
-				'selector' => '{{WRAPPER}} .ha-video-lightbox-btn',
-				'fields_options' => [
-					'box_shadow_type' => [
-						'default' => '', // turn on box shadow by default
-					],
-					'box_shadow' => [
-						'default' => [
-							'color' => '', // any color code
-							'horizontal' => '', // any number
-							'vertical' => '', // any number
-							'blur' => 0, // any number
-							'spread' => '', // any number
-						],
-					],
-					'box_shadow_position' => [
-						'default' => '', // '', inset
-					],
-				],
-			]
-		);
-
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'_tabs_button_hover',
-			[
-				'label' => __( 'Hover', 'happy-elementor-addons' ),
-			]
-		);
-
-		$this->add_control(
-			'button_hover_text_color',
-			[
-				'label'     => __( 'Text Color', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn:hover' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->add_control(
-			'button_hover_bg_color',
-			[
-				'label'     => __( 'Background Color', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn:hover' => 'background: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->add_control(
-			'button_border_hover_color',
-			[
-				'label'     => __( 'Border Color', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn:hover' => 'border-color: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			[
-				'name'     => 'button_hover_box_shadow',
-				'selector' => '{{WRAPPER}} .ha-video-lightbox-btn:hover',
-				'fields_options' => [
-					'box_shadow_type' => [
-						'default' => '', // turn on box shadow by default
-					],
-					'box_shadow' => [
-						'default' => [
-							'color' => '#000000', // any color code
-							'horizontal' => '', // any number
-							'vertical' => '', // any number
-							'blur' => '', // any number
-							'spread' => '', // any number
-						],
-					],
-					'box_shadow_position' => [
-						'default' => '', // '', inset
-					],
-				],
-			]
-		);
-
-		$this->end_controls_tab();
-		$this->end_controls_tabs();
-
-		$this->end_controls_section();
-	}
-
 	protected function __btn_style_controls() {
 
 		$this->start_controls_section(
@@ -450,7 +258,7 @@ class Video_Lightbox extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+					'{{WRAPPER}} .ha-lightbox-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
 				],
 			]
 		);
@@ -459,7 +267,7 @@ class Video_Lightbox extends Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'button_border',
-				'selector' => '{{WRAPPER}} .ha-video-lightbox-btn',
+				'selector' => '{{WRAPPER}} .ha-lightbox-btn',
 			]
 		);
 
@@ -470,7 +278,7 @@ class Video_Lightbox extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+					'{{WRAPPER}} .ha-lightbox-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
 				],
 			]
 		);
@@ -479,7 +287,7 @@ class Video_Lightbox extends Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'button_box_shadow',
-				'selector' => '{{WRAPPER}} .ha-video-lightbox-btn',
+				'selector' => '{{WRAPPER}} .ha-lightbox-btn',
 			]
 		);
 
@@ -488,7 +296,7 @@ class Video_Lightbox extends Base {
 			[
 				'name' => 'button_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-video-lightbox-btn',
+				'selector' => '{{WRAPPER}} .ha-lightbox-btn',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
@@ -513,8 +321,8 @@ class Video_Lightbox extends Base {
 				],
 				'render_type' => 'ui',
 				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn i' => 'font-size: {{SIZE}}{{UNIT}}',
-					'{{WRAPPER}} .ha-video-lightbox-btn svg' => 'height: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .ha-lightbox-btn i' => 'font-size: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .ha-lightbox-btn svg' => 'height: {{SIZE}}{{UNIT}}',
 				],
                 'condition' => [
 					'button_icon[value]!' => '',
@@ -533,8 +341,8 @@ class Video_Lightbox extends Base {
 				],
 				'render_type' => 'ui',
 				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn i' => 'margin-left: {{SIZE}}{{UNIT}}',
-					'{{WRAPPER}} .ha-video-lightbox-btn svg' => 'margin-left: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .ha-lightbox-btn i' => 'margin-left: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .ha-lightbox-btn svg' => 'margin-left: {{SIZE}}{{UNIT}}',
 				],
                 'condition' => [
 					'button_icon[value]!' => '',
@@ -555,8 +363,8 @@ class Video_Lightbox extends Base {
 				],
 				'render_type' => 'ui',
 				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn i' => 'margin-right: {{SIZE}}{{UNIT}}',
-					'{{WRAPPER}} .ha-video-lightbox-btn svg' => 'margin-right: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .ha-lightbox-btn i' => 'margin-right: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .ha-lightbox-btn svg' => 'margin-right: {{SIZE}}{{UNIT}}',
 				],
                 'condition' => [
 					'button_icon[value]!' => '',
@@ -580,7 +388,7 @@ class Video_Lightbox extends Base {
 				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-lightbox-btn' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -591,7 +399,7 @@ class Video_Lightbox extends Base {
 				'label' => __( 'Background Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .ha-lightbox-btn' => 'background-color: {{VALUE}}',
 				],
 			]
 		);
@@ -611,7 +419,7 @@ class Video_Lightbox extends Base {
 				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-lightbox-btn:hover' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -622,7 +430,7 @@ class Video_Lightbox extends Base {
 				'label' => __( 'Background Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-btn:hover' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .ha-lightbox-btn:hover' => 'background-color: {{VALUE}}',
 				],
 			]
 		);
@@ -636,7 +444,7 @@ class Video_Lightbox extends Base {
                      'button_border_border!' => ''
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-video-lightbox-btn:hover' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-lightbox-btn:hover' => 'border-color: {{VALUE}}',
                 ],
             ]
         );
@@ -678,7 +486,7 @@ class Video_Lightbox extends Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-image img' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-lightbox-image img' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -702,7 +510,7 @@ class Video_Lightbox extends Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-image img' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-lightbox-image img' => 'height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -713,7 +521,7 @@ class Video_Lightbox extends Base {
 			[
 				'name' => 'trigger_image_shadow',
 				'label' => __( 'Box Shadow', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-video-lightbox-image img',
+				'selector' => '{{WRAPPER}} .ha-lightbox-image img',
 			]
 		);
 
@@ -723,7 +531,7 @@ class Video_Lightbox extends Base {
 			[
 				'name' => 'trigger_image_border',
 				'label' => __( 'Border', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-video-lightbox-image img',
+				'selector' => '{{WRAPPER}} .ha-lightbox-image img',
 			]
 		);
 
@@ -736,7 +544,7 @@ class Video_Lightbox extends Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .ha-video-lightbox-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ha-lightbox-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -754,7 +562,7 @@ class Video_Lightbox extends Base {
             Group_Control_Css_Filter::get_type(),
             [
                 'name' => 'trigger_image_css_filters',
-                'selector' => '{{WRAPPER}} .ha-video-lightbox-image img',
+                'selector' => '{{WRAPPER}} .ha-lightbox-image img',
             ]
         );
 
@@ -771,7 +579,7 @@ class Video_Lightbox extends Base {
             Group_Control_Css_Filter::get_type(),
             [
                 'name' => 'trigger_image_hover_css_filters',
-                'selector' => '{{WRAPPER}} .ha-video-lightbox-image img:hover',
+                'selector' => '{{WRAPPER}} .ha-lightbox-image img:hover',
             ]
         );
 
@@ -784,12 +592,12 @@ class Video_Lightbox extends Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$widget_id = $this->get_id();
-		$trigger_type = ('image' == $settings['trigger_type'] ) ? 'ha-video-lightbox-image' : 'ha-video-lightbox-btn';
+		$trigger_type = ('image' == $settings['trigger_type'] ) ? 'ha-lightbox-image' : 'ha-lightbox-btn';
 
 		$this->add_render_attribute(
 			'anchor',
 			[
-				'class' => 'ha-video-lightbox-trigger ' . $trigger_type,
+				'class' => 'ha-lightbox-trigger ' . $trigger_type,
 				'data-id' => $widget_id,
 				// 'href' => '#',
 			]
