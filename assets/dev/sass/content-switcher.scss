@@ -172,6 +172,11 @@ body[data-elementor-device-mode="mobile"] .ha-cs-switch-wrapper.mobile-vertical 
 		align-items: center;
 		height: 1em;
 		width: 1em;
+
+		svg {
+			width: inherit;
+			height: inherit;
+		}
 	}
 
 	.ha-cs-icon-left {

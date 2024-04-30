@@ -1213,7 +1213,8 @@ class Card extends Base {
 
 		<div class="ha-card-body">
 			<# if (settings.title) { #>
-				<{{ settings.title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ settings.title }}}</{{ settings.title_tag }}>
+			<# var title_tag = elementor.helpers.validateHTMLTag( settings.title_tag ); #>
+				<{{ title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ settings.title }}}</{{ title_tag }}>
 			<# } #>
 
 			<# if (settings.description) { #>
