@@ -272,6 +272,7 @@ For a more detailed explanation check out the following documentation
 = 3.10.8 - 7 May 2024 =
 
 - Fix: Security improvement for Event Calendar widget.
+- Fix: Security improvement for Image Stack Group widget.
 - Fix: Bug fixes and performance improvements.
 
 = 3.10.7 - 25 April 2024 =

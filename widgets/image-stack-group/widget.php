@@ -618,7 +618,7 @@ class Image_Stack_Group extends Base {
 				}
 
 				if($tooltip_txt){
-					$tooltip_data = 'tooltip="'.$tooltip_txt.'" flow="'.$tooltip_position.'"';
+					$tooltip_data = 'tooltip="' . esc_attr( $tooltip_txt ) . '" flow="' . esc_attr( $tooltip_position ) . '"';
 				}
 
 				$id = 'ha-cig-item-' . esc_attr( $item['_id'] );
