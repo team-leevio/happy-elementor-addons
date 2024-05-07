@@ -1,6 +1,7 @@
-= 3.##.# - ## #### 2024 =
+= 3.10.8 - 7 May 2024 =
 
 - Fix: Security improvement for Event Calendar widget.
+- Fix: Bug fixes and performance improvements.
 
 = 3.10.7 - 25 April 2024 =
 
