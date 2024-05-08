@@ -269,7 +269,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.10.8 - 7 May 2024 =
+= 3.10.8 - 8 May 2024 =
 
 - Fix: Security improvement for Event Calendar widget.
 - Fix: Security improvement for Image Stack Group widget.
