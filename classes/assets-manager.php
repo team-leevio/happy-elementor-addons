@@ -393,6 +393,8 @@ class Assets_Manager {
 	 */
 	public static function editor_enqueue() {
 
+		$suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
+
 		wp_enqueue_style(
 			'happy-icons',
 			HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
@@ -402,14 +404,14 @@ class Assets_Manager {
 
 		wp_enqueue_style(
 			'happy-elementor-addons-editor',
-			HAPPY_ADDONS_ASSETS . 'admin/css/editor.min.css',
+			HAPPY_ADDONS_ASSETS . 'admin/css/editor'.$suffix.'css',
 			null,
 			HAPPY_ADDONS_VERSION
 		);
 
 		wp_enqueue_script(
 			'happy-elementor-addons-editor',
-			HAPPY_ADDONS_ASSETS . 'admin/js/editor.min.js',
+			HAPPY_ADDONS_ASSETS . 'admin/js/editor'.$suffix.'js',
 			['elementor-editor', 'jquery'],
 			HAPPY_ADDONS_VERSION,
 			true

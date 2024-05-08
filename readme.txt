@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.10.7
+Version: 3.10.8
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.5
-Stable tag: 3.10.7
+Stable tag: 3.10.8
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -269,6 +269,12 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.10.8 - 8 May 2024 =
+
+- Fix: Security improvement for Event Calendar widget.
+- Fix: Security improvement for Image Stack Group widget.
+- Fix: Bug fixes and performance improvements.
+
 = 3.10.7 - 25 April 2024 =
 
 - Fix: Security improvement for Calendly widget.
@@ -313,13 +319,5 @@ For a more detailed explanation check out the following documentation
 - Update: RTL support added to the Image Carousel widget.
 - Update: RTL support added to the Horizontal Timeline widget.
 - Update: Security improvement for Happy Clone feature.
-
-= 3.10.3 - 28 February 2024 =
-
-- Fix: Compatible with Elementor 3.19.x and Elementor Pro 3.19.x
-- Fix: Elementor editor panel widget not showing up.
-- Tweak: Minimum required PHP version 7.4
-- Tweak: Minimum required Elementor version 3.7.0
-- Tweak: Minimum required WordPress version 5.0
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)
