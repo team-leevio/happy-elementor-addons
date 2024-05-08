@@ -168,9 +168,9 @@ class Lightbox extends Base {
         );
 
 		$this->add_control(
-			'lightbox_item',
+			'lightbox_type',
 			[
-				'label'       => __( 'Lightbox item', 'happy-elementor-addons' ),
+				'label'       => __( 'Lightbox Type', 'happy-elementor-addons' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'label_block' => false,
 				'toggle'      => false,
@@ -204,7 +204,7 @@ class Lightbox extends Base {
 				],
 				'options' => false,
                 'condition' => [
-					'lightbox_item' => 'video',
+					'lightbox_type' => 'video',
 				],
 			]
 		);
@@ -222,7 +222,7 @@ class Lightbox extends Base {
 					'active' => true,
 				],
                 'condition' => [
-					'lightbox_item' => 'image',
+					'lightbox_type' => 'image',
 				],
 			]
 		);
@@ -615,17 +615,18 @@ class Lightbox extends Base {
 			);
 		}
 
-		if( 'image' == $settings['lightbox_item'] && $settings['lightbox_image_link']['url'] ) {
-			$this->add_lightbox_data_attributes( 'anchor', $settings['lightbox_image_link']['id'], 'yes', $widget_id );
+		if( 'image' == $settings['lightbox_type'] && $settings['lightbox_image_link']['url'] ) {
+			// $this->add_lightbox_data_attributes( 'anchor', $settings['lightbox_image_link']['id'], 'yes', $widget_id );
 			$this->add_render_attribute(
 				'anchor',
 				[
-					'href' => esc_url($settings['lightbox_image_link']['url'])
+					'href' => esc_url($settings['lightbox_image_link']['url']),
+					'data-mfp-src' => esc_url($settings['lightbox_image_link']['url']),
 				]
 			);
 		}
-		elseif ( 'video' == $settings['lightbox_item'] && $settings['lightbox_video_link']['url'] ) {
-			$this->add_lightbox_data_attributes( 'anchor', '', 'yes', $widget_id );
+		elseif ( 'video' == $settings['lightbox_type'] && $settings['lightbox_video_link']['url'] ) {
+			// $this->add_lightbox_data_attributes( 'anchor', '', 'yes', $widget_id );
 			$embed_url_params = [
 				'autoplay' => 1,
 				'rel' => 0,
