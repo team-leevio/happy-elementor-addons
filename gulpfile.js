@@ -90,7 +90,7 @@ function makeFrontendJS() {
             })
         )
         .pipe(dest("assets/js"))
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(rename({ suffix: ".min" }))
         .pipe(dest("assets/js"))
     );
@@ -104,6 +104,7 @@ function makeBackendJS() {
                 presets: ["@babel/env"],
             })
         )
+		.pipe(dest("assets/admin/js"))
         .pipe(uglify())
         .pipe(rename({ suffix: ".min" }))
         .pipe(dest("assets/admin/js"))
