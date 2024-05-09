@@ -1337,9 +1337,9 @@ class Widgets_Manager {
 				'icon' => 'hm hm-age-gate',
 				'css' => ['lightbox'],
 				'js' => [],
-				'vendor'    => [
-					'css' => ['magnific-popup'],
-					'js'  => ['jquery-magnific-popup'],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
 				],
 			],
 		];

@@ -193,11 +193,11 @@ class Lightbox extends Base {
 			'lightbox_video_link',
 			[
 				'label' => esc_html__( 'Video Link', 'happy-elementor-addons' ),
-				'description' => esc_html__( 'YouTube or Vimeo link', 'happy-elementor-addons' ),
+				// 'description' => esc_html__( 'YouTube or Vimeo link or Self hosted', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::URL,
 				'show_label' => false,
 				'dynamic' => [
-					'active' => true,
+					'active' => false,
 				],
 				'default' => [
 					'url' => 'https://www.youtube.com/watch?v=-GvB9xTNf_o',
@@ -663,7 +663,7 @@ class Lightbox extends Base {
 		<?php
 	}
 
-	protected function render() {
+	protected function renderOld2() {
 		$settings = $this->get_settings_for_display();
 		$widget_id = $this->get_id();
 		$trigger_type = ('image' == $settings['trigger_type'] ) ? 'ha-lightbox-image' : 'ha-lightbox-btn';
@@ -723,13 +723,13 @@ class Lightbox extends Base {
 			// http://localhost/happy-test/wp-content/uploads/2021/11/mixkit-bubbling-water-in-slow-motion-182-large.mp4
 			// http://localhost/happy-test/wp-content/uploads/2024/05/COWS_AT_THE_GRASS.mp4
 
-
+			$settings['lightbox_video_link']['url'] = 'https://vimeo.com/943423282';
 
 			$lightbox_options = [
 				'type' => 'video',
-				'videoType' => 'hosted',
-				// 'url' => Embed::get_embed_url( $settings['lightbox_video_link']['url'], $embed_url_params,[] ),
-				'url' => 'http://localhost/happy-test/wp-content/uploads/2024/05/COWS_AT_THE_GRASS.mp4',
+				'videoType' => 'vimeo',
+				'url' => Embed::get_embed_url( $settings['lightbox_video_link']['url'], $embed_url_params,[] ),
+				// 'url' => 'http://localhost/happy-test/wp-content/uploads/2024/05/COWS_AT_THE_GRASS.mp4',
 				'modalOptions' => [
 					'id' => 'elementor-lightbox-' . $this->get_id(),
 					// 'entranceAnimation' => $settings['lightbox_content_animation'],
@@ -740,16 +740,20 @@ class Lightbox extends Base {
 			];
 
 			// if ( 'hosted' === $settings['video_type'] ) {
-				$lightbox_options['videoParams'] = $this->get_hosted_params();
+				// $lightbox_options['videoParams'] = $this->get_hosted_params();
 			// }
 
+			$video_settings = $this->get_video_settings( $settings['lightbox_video_link']['url'] );
+
 			$this->add_render_attribute( 'anchor', [
-				// 'data-elementor-open-lightbox' => 'yes',
-				// 'data-elementor-lightbox-video' => Embed::get_embed_url( $settings['lightbox_video_link']['url'], $embed_url_params ),
-				'data-elementor-lightbox-video' => 'http://localhost/happy-test/wp-content/uploads/2024/05/COWS_AT_THE_GRASS.mp4',
+				'data-elementor-open-lightbox' => 'yes',
+				'data-elementor-lightbox-video' => Embed::get_embed_url( $settings['lightbox_video_link']['url'], $embed_url_params ),
+				// 'data-elementor-lightbox-video' => 'http://localhost/happy-test/wp-content/uploads/2024/05/COWS_AT_THE_GRASS.mp4',
 				'data-elementor-lightbox' => wp_json_encode( $lightbox_options ),
-				// 'data-e-action-hash' => \Elementor\Plugin::instance()->frontend->create_action_hash( 'lightbox', $lightbox_options ),
+				'data-e-action-hash' => \Elementor\Plugin::instance()->frontend->create_action_hash( 'lightbox', $lightbox_options ),
 			] );
+
+
 		}
 
 		?>
@@ -769,6 +773,126 @@ class Lightbox extends Base {
 			<?php endif; ?>
 		</a>
 		<?php
+	}
+
+	protected function render() {
+		$settings = $this->get_settings_for_display();
+		$widget_id = $this->get_id();
+		$trigger_type = ('image' == $settings['trigger_type'] ) ? 'ha-lightbox-image' : 'ha-lightbox-btn';
+
+		$this->add_render_attribute(
+			'anchor',
+			[
+				'class' => 'ha-lightbox-trigger ' . $trigger_type,
+			]
+		);
+
+		if( 'image' == $settings['trigger_type'] ) {
+			$this->add_render_attribute(
+				'image',
+				[
+					'data-id' => $widget_id,
+					'src' => Group_Control_Image_Size::get_attachment_image_src( $settings['image']['id'], '_image', $settings ) ? esc_url(Group_Control_Image_Size::get_attachment_image_src( $settings['image']['id'], '_image', $settings )) : esc_url($settings['image']['url']),
+					'title' => esc_attr(Control_Media::get_image_title( $settings['image'] )),
+					'alt' => esc_attr(Control_Media::get_image_alt( $settings['image'] )),
+				]
+			);
+		}
+
+		if( 'image' == $settings['lightbox_type'] && $settings['lightbox_image_link']['url'] ) {
+			$this->add_lightbox_data_attributes( 'anchor', $settings['lightbox_image_link']['id'], 'yes', $widget_id );
+			$this->add_render_attribute(
+				'anchor',
+				[
+					'href' => esc_url($settings['lightbox_image_link']['url']),
+					'data-mfp-src' => esc_url($settings['lightbox_image_link']['url']),
+				]
+			);
+		}
+		elseif ( 'video' == $settings['lightbox_type'] && $settings['lightbox_video_link']['url'] ) {
+			// https://vimeo.com/235215203
+			// https://vimeo.com/943423282
+			// https://www.youtube.com/watch?v=aiDYo6sBBWs
+			// http://localhost/happy-test/wp-content/uploads/2022/09/iceberg.mp4
+			// http://localhost/happy-test/wp-content/uploads/2021/11/mixkit-bubbling-water-in-slow-motion-182-large.mp4
+			// http://localhost/happy-test/wp-content/uploads/2024/05/COWS_AT_THE_GRASS.mp4
+
+			$video_settings = $this->get_video_settings( $settings['lightbox_video_link']['url'] );
+			$video_settings['modalOptions'] = [ 'id' => 'elementor-lightbox-' . $this->get_id() ];
+
+			if( 'hosted' == $video_settings['videoType'] ) {
+				$lightbox_url = $settings['lightbox_video_link']['url'];
+			} else {
+				$embed_url_params = [
+					// 'autoplay' => 1,
+					'rel' => 0,
+					'controls' => 1,
+				];
+				$lightbox_url = Embed::get_embed_url( $settings['lightbox_video_link']['url'], $embed_url_params );
+			}
+
+			$this->add_render_attribute( 'anchor', [
+				'href' => '#',
+				'data-elementor-open-lightbox' => 'yes',
+				'data-elementor-lightbox-video' => $lightbox_url,
+				'data-elementor-lightbox' => wp_json_encode( $video_settings ),
+				'data-e-action-hash' => \Elementor\Plugin::instance()->frontend->create_action_hash( 'lightbox', $video_settings ),
+			] );
+
+		}
+
+		?>
+		<a <?php echo $this->get_render_attribute_string( 'anchor' );?>>
+			<?php if( 'button' == $settings['trigger_type'] ) : ?>
+			<?php
+				if ( 'before' == $settings['icon_position'] && !empty($settings['button_icon']['value']) ) {
+					Icons_Manager::render_icon( $settings["button_icon"], [ 'aria-hidden' => 'true' ]);
+				}
+				echo esc_html( $settings['button'] );
+				if ( 'after' == $settings['icon_position'] && !empty($settings['button_icon']['value']) ) {
+					Icons_Manager::render_icon( $settings["button_icon"], [ 'aria-hidden' => 'true' ]);
+				}
+			?>
+			<?php elseif( 'image' == $settings['trigger_type'] ): ?>
+				<img <?php echo $this->get_render_attribute_string( 'image' )?> />
+			<?php endif; ?>
+		</a>
+		<?php
+	}
+
+	private function get_video_settings( $video_link ) {
+		$video_properties = Embed::get_video_properties( $video_link );
+		$video_url = null;
+		$video_settings = [
+			'type' => 'video'
+		];
+		if ( ! $video_properties ) {
+			$video_type = 'hosted';
+			$video_url = $video_link;
+			$video_settings['videoParams'] = [
+				'controls' => 'yes',
+				'preload' => 'metadata',
+				'muted' => 'muted',
+				'controlsList' => 'nodownload',
+			];
+		} else {
+			$embed_url_params = [
+				// 'autoplay' => 1,
+				'rel' => 0,
+				'controls' => 1,
+			];
+			$video_type = $video_properties['provider'];
+			$video_url = Embed::get_embed_url( $video_link, $embed_url_params );
+		}
+
+		if ( null === $video_url ) {
+			return '';
+		}
+
+		$video_settings['videoType'] = $video_type;
+		$video_settings['url'] = $video_url;
+
+		return $video_settings;
 	}
 
 	private function get_hosted_params() {
