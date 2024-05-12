@@ -47,7 +47,7 @@ class Lightbox extends Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'hm hm-accordion-horizontal';
+        return 'hm hm-video-gallery';
     }
 
     public function get_keywords() {

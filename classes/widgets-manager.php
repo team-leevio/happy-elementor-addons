@@ -1334,7 +1334,7 @@ class Widgets_Manager {
 				'cat' => 'general',
 				'is_active' => true,
 				'title' => __('Lightbox', 'happy-elementor-addons'),
-				'icon' => 'hm hm-age-gate',
+				'icon' => 'hm hm-video-gallery',
 				'css' => ['lightbox'],
 				'js' => [],
 				'vendor' => [
