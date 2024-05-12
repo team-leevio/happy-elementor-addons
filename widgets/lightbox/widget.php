@@ -193,7 +193,7 @@ class Lightbox extends Base {
 			'lightbox_video_link',
 			[
 				'label' => esc_html__( 'Video Link', 'happy-elementor-addons' ),
-				// 'description' => esc_html__( 'YouTube or Vimeo link or Self hosted', 'happy-elementor-addons' ),
+				'description' => esc_html__( 'YouTube or Vimeo link', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::URL,
 				'show_label' => false,
 				'dynamic' => [
