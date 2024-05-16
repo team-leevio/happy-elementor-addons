@@ -366,4 +366,23 @@ class Skills extends Base {
         endforeach;
     }
 
+	protected function content_template() {
+        ?>
+        <#
+        if (_.isArray(settings.skills)) {
+            _.each(settings.skills, function(skill, index) {
+            var nameKey = view.getRepeaterSettingKey( 'name', 'skills', index);
+            //view.addInlineEditingAttributes( nameKey, 'none' );
+            view.addRenderAttribute( nameKey, 'class', 'ha-skill-name' );
+            #>
+            <div class="ha-skill ha-skill--{{settings.view}} elementor-repeater-item-{{skill._id}}">
+                <div class="ha-skill-level" data-level="{{skill.level.size}}">
+                    <div class="ha-skill-info"><span {{{view.getRenderAttributeString( nameKey )}}}>{{skill.name}}</span><span class="ha-skill-level-text"></span></div>
+                </div>
+            </div>
+            <# });
+        } #>
+        <?php
+    }
+
 }
