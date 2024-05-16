@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.10.8
+Version: 3.10.9
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.5
-Stable tag: 3.10.8
+Stable tag: 3.10.9
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -269,11 +269,13 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.10.9 - 16 May 2024 =
+
+- Fix: Security improvement for Skill Bars widget.
+
 = 3.10.8 - 8 May 2024 =
 
-- Fix: Security improvement for Event Calendar widget.
-- Fix: Security improvement for Image Stack Group widget.
-- Fix: Bug fixes and performance improvements.
+- Fix: Security improvement for Event Calendar and Image Stack Group widget.
 
 = 3.10.7 - 25 April 2024 =
 
@@ -281,43 +283,16 @@ For a more detailed explanation check out the following documentation
 
 = 3.10.6 - 18 April 2024 =
 
-- Fix: Security improvement for Site Title widget.
-- Fix: Security improvement for Horizontal Timeline widget.
-- Fix: Security improvement for Image Stack Group widget.
-- Fix: Security improvement for Photo Stack widget.
+- Fix: Security improvement for Site Title, Horizontal Timeline, Image Stack Group and Photo Stack widget.
 - Update: Made Compatible with Elementor 3.21
 
 = 3.10.5 - 4 April 2024 =
 
 - Fix: Templates won't refresh on rare case.
 - Fix: Icon size and Icon spacing in Content Switcher Widget.
-- Fix: Security improvement for Calendly widget.
-- Fix: Security improvement for Page Title widget.
-- Fix: Security improvement for Post Title widget.
-- Fix: Security improvement for Card widget.
-- Fix: Security improvement for Gradient Heading widget.
-- Fix: Security improvement for Review widget.
+- Fix: Security improvement for Calendly, Page Title, Post Title, Card, Gradient Heading and Review widget.
 - Tweak: Container template support in Content Switcher Widget.
 - Update: Security improvement for Happy Clone feature.
 - Update: Made Compatible with WordPress 6.5 & Elementor 3.20
-
-= 3.10.4 - 4 March 2024 =
-
-- Fix: Dual Button widget breaks on container direction change issue
-- Fix: The Data Table widget doesn't respect the scrolling option for Tablet mode issue.
-- Fix: Mailchimp invalid API key issue.
-- Fix: svg icon issue in Social Icon, Card and Image Stack Group widget.
-- Fix: Security improvement for Archive Title widget.
-- Fix: Security improvement for Author Meta widget.
-- Fix: Security improvement for Photo Stack widget.
-- Fix: The Image Compare widget is not visible on Frontend.
-- Fix: Bug fixes and performance improvements.
-- Tweak: Scroll As Shown Slides option added in the Horizontal Timeline widget.
-- Tweak: Scroll As Shown Slides option added in the Image Carousel widget.
-- Update: Appsero SDK to version 2.0.0.
-- Update: RTL support added to the Slider widget.
-- Update: RTL support added to the Image Carousel widget.
-- Update: RTL support added to the Horizontal Timeline widget.
-- Update: Security improvement for Happy Clone feature.
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)

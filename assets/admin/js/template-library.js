@@ -1,6 +1,6 @@
 "use strict";
 
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 ;
 (function ($, elementor, ha) {
   var Library = {
@@ -273,7 +273,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           suppressScrollX: true
         }); // The RTL is buggy, so always keep it LTR.
       }
-
       this.perfectScrollbar.isRtl = false;
       this.perfectScrollbar.update();
     },
@@ -343,7 +342,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       headerView.menuArea.show(new Library.Views.Menu());
       // headerView.menuArea.reset();
     },
-
     showPreviewView: function showPreviewView(templateModel) {
       var headerView = this.getHeaderView();
       headerView.menuArea.show(new Library.Views.ResponsiveMenu());
