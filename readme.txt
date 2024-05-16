@@ -271,28 +271,28 @@ For a more detailed explanation check out the following documentation
 
 = 3.10.9 - 16 May 2024 =
 
-- Fix: Bug fixes and performance improvements in Skill Bars widget.
+- Fix: Security improvement for Skill Bars widget.
 
 = 3.10.8 - 8 May 2024 =
 
-- Fix: Bug fixes and performance improvements in Event Calendar and Image Stack Group widget.
+- Fix: Security improvement for Event Calendar and Image Stack Group widget.
 
 = 3.10.7 - 25 April 2024 =
 
-- Fix: Bug fixes and performance improvements in Calendly widget.
+- Fix: Security improvement for Calendly widget.
 
 = 3.10.6 - 18 April 2024 =
 
-- Fix: Bug fixes and performance improvements in Site Title, Horizontal Timeline, Image Stack Group and Photo Stack widget.
+- Fix: Security improvement for Site Title, Horizontal Timeline, Image Stack Group and Photo Stack widget.
 - Update: Made Compatible with Elementor 3.21
 
 = 3.10.5 - 4 April 2024 =
 
 - Fix: Templates won't refresh on rare case.
 - Fix: Icon size and Icon spacing in Content Switcher Widget.
-- Fix: Bug fixes and performance improvements in Calendly, Page Title, Post Title, Card, Gradient Heading and Review widget.
+- Fix: Security improvement for Calendly, Page Title, Post Title, Card, Gradient Heading and Review widget.
 - Tweak: Container template support in Content Switcher Widget.
-- Update: Bug fixes and performance improvements in Happy Clone feature.
+- Update: Security improvement for Happy Clone feature.
 - Update: Made Compatible with WordPress 6.5 & Elementor 3.20
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)
