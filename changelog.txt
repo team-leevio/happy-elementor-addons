@@ -1,3 +1,7 @@
+= 3.##.## - ###### 2024 =
+
+- Fix: GravityForms button style issue.
+
 = 3.10.9 - 16 May 2024 =
 
 - Fix: Security improvement for Skill Bars widget.
