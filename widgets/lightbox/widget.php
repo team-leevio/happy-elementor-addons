@@ -17,6 +17,7 @@ use Elementor\Control_Media;
 use Elementor\Icons_Manager;
 use Elementor\Embed;
 use Elementor\Group_Control_Css_Filter;
+use Elementor\Modules\DynamicTags\Module as TagsModule;
 
 defined( 'ABSPATH' ) || die();
 
@@ -190,26 +191,6 @@ class Lightbox extends Base {
 		);
 
 		$this->add_control(
-			'lightbox_video_link',
-			[
-				'label' => esc_html__( 'Video Link', 'happy-elementor-addons' ),
-				'description' => esc_html__( 'YouTube or Vimeo link', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::URL,
-				'show_label' => false,
-				'dynamic' => [
-					'active' => false,
-				],
-				'default' => [
-					'url' => 'https://www.youtube.com/watch?v=-GvB9xTNf_o',
-				],
-				'options' => false,
-                'condition' => [
-					'lightbox_type' => 'video',
-				],
-			]
-		);
-
-		$this->add_control(
 			'lightbox_image_link',
 			[
 				'label' => __( 'Image', 'happy-elementor-addons' ),
@@ -224,6 +205,113 @@ class Lightbox extends Base {
                 'condition' => [
 					'lightbox_type' => 'image',
 				],
+			]
+		);
+
+		$this->add_control(
+            'video_type', [
+                'type' => Controls_Manager::SELECT,
+                'label' => esc_html__('Source', 'happy-elementor-addons'),
+				'default'     => 'youtube',
+                'options' => [
+                    'youtube' => esc_html__('YouTube', 'happy-elementor-addons'),
+                     'vimeo' => esc_html__('Vimeo', 'happy-elementor-addons'),
+                     'hosted' => esc_html__('Self Hosted', 'happy-elementor-addons'),
+                ],
+                'condition' => [
+					'lightbox_type' => 'video',
+				],
+            ]
+        );
+
+		$this->add_control(
+			'youtube_link',
+			[
+				'label' => esc_html__( 'Link', 'happy-elementor-addons' ),
+				// 'description' => esc_html__( 'YouTube or Vimeo link', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::URL,
+				'show_label' => true,
+				'dynamic' => [
+					'active' => false,
+				],
+				'default' => [
+					'url' => 'https://www.youtube.com/watch?v=-GvB9xTNf_o',
+				],
+				'options' => false,
+                'condition' => [
+					'lightbox_type' => 'video',
+					'video_type' => 'youtube',
+				],
+			]
+		);
+
+		$this->add_control(
+			'vimeo_link',
+			[
+				'label' => esc_html__( 'Link', 'happy-elementor-addons' ),
+				// 'description' => esc_html__( 'YouTube or Vimeo link', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::URL,
+				'show_label' => true,
+				'dynamic' => [
+					'active' => false,
+				],
+				'default' => [
+					'url' => 'https://vimeo.com/235215203',
+				],
+				'options' => false,
+                'condition' => [
+					'lightbox_type' => 'video',
+					'video_type' => 'vimeo',
+				],
+			]
+		);
+
+		$this->add_control(
+			'hosted_link',
+			[
+				'label' => esc_html__( 'Choose Video File', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::MEDIA,
+				'dynamic' => [
+					'active' => true,
+					'categories' => [
+						TagsModule::MEDIA_CATEGORY,
+					],
+				],
+				'media_types' => [
+					'video',
+				],
+                'condition' => [
+					'lightbox_type' => 'video',
+					'video_type' => 'hosted',
+				],
+			]
+		);
+
+		$this->add_control(
+			'start',
+			[
+				'label' => esc_html__( 'Start Time', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::NUMBER,
+				'description' => esc_html__( 'Specify a start time (in seconds)', 'happy-elementor-addons' ),
+				'frontend_available' => false,
+				// 'separator' => 'before',
+                'condition' => [
+					'lightbox_type' => 'video',
+				],
+			]
+		);
+
+		$this->add_control(
+			'end',
+			[
+				'label' => esc_html__( 'End Time', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::NUMBER,
+				'description' => esc_html__( 'Specify an end time (in seconds)', 'happy-elementor-addons' ),
+				'condition' => [
+					'lightbox_type' => 'video',
+					'video_type' => [ 'youtube', 'hosted' ],
+				],
+				'frontend_available' => false,
 			]
 		);
 
@@ -809,7 +897,7 @@ class Lightbox extends Base {
 				]
 			);
 		}
-		elseif ( 'video' == $settings['lightbox_type'] && $settings['lightbox_video_link']['url'] ) {
+		elseif ( 'video' == $settings['lightbox_type'] ) {
 			// https://vimeo.com/235215203
 			// https://vimeo.com/943423282
 			// https://www.youtube.com/watch?v=aiDYo6sBBWs
@@ -817,19 +905,51 @@ class Lightbox extends Base {
 			// http://localhost/happy-test/wp-content/uploads/2021/11/mixkit-bubbling-water-in-slow-motion-182-large.mp4
 			// http://localhost/happy-test/wp-content/uploads/2024/05/COWS_AT_THE_GRASS.mp4
 
-			$video_settings = $this->get_video_settings( $settings['lightbox_video_link']['url'] );
-			$video_settings['modalOptions'] = [ 'id' => 'elementor-lightbox-' . $this->get_id() ];
+			// youtube_link
+			// vimeo_link
+			// hosted_link
 
-			if( 'hosted' == $video_settings['videoType'] ) {
-				$lightbox_url = $settings['lightbox_video_link']['url'];
-			} else {
+			$lightbox_url = '';
+			$video_settings = [];
+
+			if( 'hosted' === $settings['video_type'] && $settings['hosted_link']['url'] ) {
+				// $lightbox_url = $settings['hosted_link']['url'];
+				$lightbox_url = $this->get_hosted_video_url();
+				$video_settings = $this->get_video_settings( $lightbox_url );
+			}
+			elseif ( 'youtube' === $settings['video_type'] && $settings['youtube_link']['url'] ) {
 				$embed_url_params = [
-					// 'autoplay' => 1,
+					'start' => $settings['start'],
+					'end' => $settings['end'],
+					'autoplay' => 1,
 					'rel' => 0,
 					'controls' => 1,
 				];
-				$lightbox_url = Embed::get_embed_url( $settings['lightbox_video_link']['url'], $embed_url_params );
+				$embed_options = $this->get_embed_options();
+				$lightbox_url = Embed::get_embed_url( $settings['youtube_link']['url'], $embed_url_params, $embed_options );
+				// $video_settings = $this->get_video_settings( $settings['youtube_link']['url'] );
+				$video_settings = $this->get_video_settings( $lightbox_url );
+
 			}
+			elseif ( 'vimeo' === $settings['video_type'] && $settings['vimeo_link']['url'] ) {
+				$embed_url_params = [
+					'loop' => 0,
+					'dnt' => true,
+					'muted' => 0,
+					'title' => 1,
+					'portrait' => 1,
+					'byline' => 1,
+
+					'autoplay' => 1,
+					'rel' => 0,
+					'controls' => 1,
+				];
+				$embed_options = $this->get_embed_options();
+				$lightbox_url = Embed::get_embed_url( $settings['vimeo_link']['url'], $embed_url_params, $embed_options );
+				// $video_settings = $this->get_video_settings( $settings['vimeo_link']['url'] );
+				$video_settings = $this->get_video_settings( $lightbox_url );
+			}
+			$video_settings['modalOptions'] = [ 'id' => 'elementor-lightbox-' . $this->get_id() ];
 
 			$this->add_render_attribute( 'anchor', [
 				'href' => '#',
@@ -861,13 +981,16 @@ class Lightbox extends Base {
 	}
 
 	private function get_video_settings( $video_link ) {
-		$video_properties = Embed::get_video_properties( $video_link );
+		$settings = $this->get_settings_for_display();
+		$video_type = $settings['video_type'];
+		//$video_properties = Embed::get_video_properties( $video_link );
 		$video_url = null;
 		$video_settings = [
 			'type' => 'video'
 		];
-		if ( ! $video_properties ) {
-			$video_type = 'hosted';
+		// if ( ! $video_properties ) {
+		if ( 'hosted' == $video_type ) {
+			// $video_type = 'hosted';
 			$video_url = $video_link;
 			$video_settings['videoParams'] = [
 				'controls' => 'yes',
@@ -875,14 +998,34 @@ class Lightbox extends Base {
 				'muted' => 'muted',
 				'controlsList' => 'nodownload',
 			];
-		} else {
-			$embed_url_params = [
-				// 'autoplay' => 1,
-				'rel' => 0,
-				'controls' => 1,
-			];
-			$video_type = $video_properties['provider'];
-			$video_url = Embed::get_embed_url( $video_link, $embed_url_params );
+		} elseif ( 'youtube' == $video_type ) {
+			// $embed_url_params = [
+			// 	'start' => $settings['start'],
+			// 	'end' => $settings['end'],
+			// 	'autoplay' => 1,
+			// 	'rel' => 0,
+			// 	'controls' => 1,
+			// ];
+			// $video_type = $video_properties['provider'];
+			// $video_url = Embed::get_embed_url( $video_link, $embed_url_params );
+			$video_url = $video_link;
+		} elseif ( 'vimeo' == $video_type ) {
+			// $embed_url_params = [
+			// 	'loop' => 0,
+			// 	'dnt' => true,
+			// 	'muted' => 0,
+			// 	'title' => 1,
+			// 	'portrait' => 1,
+			// 	'byline' => 1,
+
+			// 	'autoplay' => 1,
+			// 	'rel' => 0,
+			// 	'controls' => 1,
+			// ];
+			// $video_type = $video_properties['provider'];
+			// $embed_options = $this->get_embed_options();
+			// $video_url = Embed::get_embed_url( $video_link, $embed_url_params, $embed_options );
+			$video_url = $video_link;
 		}
 
 		if ( null === $video_url ) {
@@ -893,6 +1036,45 @@ class Lightbox extends Base {
 		$video_settings['url'] = $video_url;
 
 		return $video_settings;
+	}
+
+	private function get_embed_options() {
+		$settings = $this->get_settings_for_display();
+
+		$embed_options = [];
+
+		if ( 'youtube' === $settings['video_type'] ) {
+			$embed_options['privacy'] = true;
+		} elseif ( 'vimeo' === $settings['video_type'] ) {
+			$embed_options['start'] = $settings['start'];
+		}
+
+		$embed_options['lazy_load'] = true;
+
+		return $embed_options;
+	}
+
+	private function get_hosted_video_url() {
+		$settings = $this->get_settings_for_display();
+		$video_url = $settings['hosted_link']['url'];
+
+		if ( empty( $video_url ) ) {
+			return '';
+		}
+
+		if ( $settings['start'] || $settings['end'] ) {
+			$video_url .= '#t=';
+		}
+
+		if ( $settings['start'] ) {
+			$video_url .= $settings['start'];
+		}
+
+		if ( $settings['end'] ) {
+			$video_url .= ',' . $settings['end'];
+		}
+
+		return $video_url;
 	}
 
 	private function get_hosted_params() {
