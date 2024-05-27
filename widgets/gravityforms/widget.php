@@ -534,8 +534,14 @@ class GravityForms extends Base {
 					'submit_btn_width' => ''
 				],
 				'default' => 'left',
+				'selectors_dictionary' => [
+					'left' => 'justify-content: flex-start; text-align: left;',
+					'center' => 'justify-content: center; text-align: center;',
+					'right' => 'justify-content: flex-end; text-align: right;',
+				],
 				'selectors' => [
-					'{{WRAPPER}} .gform_wrapper .gform_footer' => 'text-align: {{Value}};',
+					'{{WRAPPER}} .gform_wrapper .gform_footer' => '{{Value}};',
+					'{{WRAPPER}}.ha-gravityforms .gform_wrapper .gform_footer' => '{{Value}};',
 				],
 			]
 		);
