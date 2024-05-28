@@ -901,6 +901,7 @@ class Lightbox extends Base {
 			// https://vimeo.com/235215203
 			// https://vimeo.com/943423282
 			// https://www.youtube.com/watch?v=aiDYo6sBBWs
+			// https://youtu.be/ljrFPJvqzZY?t=136
 			// http://localhost/happy-test/wp-content/uploads/2022/09/iceberg.mp4
 			// http://localhost/happy-test/wp-content/uploads/2021/11/mixkit-bubbling-water-in-slow-motion-182-large.mp4
 			// http://localhost/happy-test/wp-content/uploads/2024/05/COWS_AT_THE_GRASS.mp4
@@ -918,8 +919,13 @@ class Lightbox extends Base {
 				$video_settings = $this->get_video_settings( $lightbox_url );
 			}
 			elseif ( 'youtube' === $settings['video_type'] && $settings['youtube_link']['url'] ) {
+				$start = $settings['start'];
+				if ( ! $settings['start'] ) {
+					$property = explode("t=", $settings['youtube_link']['url']);
+					$start = isset( $property[1] ) ? $property[1] : $start;
+				}
 				$embed_url_params = [
-					'start' => $settings['start'],
+					'start' => $start,
 					'end' => $settings['end'],
 					'autoplay' => 1,
 					'rel' => 0,
