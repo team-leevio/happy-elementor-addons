@@ -2,6 +2,7 @@
 
 - Fix: GravityForms button style issue.
 - Fix: Security improvement for Image Accordion widget.
+- Fix: Security improvement for Post Navigation widget.
 
 = 3.10.9 - 16 May 2024 =
 
