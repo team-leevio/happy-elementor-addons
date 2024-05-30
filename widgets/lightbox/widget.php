@@ -234,7 +234,7 @@ class Lightbox extends Base {
 					'active' => false,
 				],
 				'default' => [
-					'url' => 'https://www.youtube.com/watch?v=-GvB9xTNf_o',
+					'url' => 'https://www.youtube.com/watch?v=3U67Cw2YoeQ',
 				],
 				'options' => false,
                 'condition' => [
