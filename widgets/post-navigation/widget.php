@@ -585,8 +585,8 @@ class Post_Navigation extends Base {
                 $next_icon_class = str_replace('left', 'right', $settings['arrow']);
             }
 
-            $prev_arrow = '<span class="post-navigation__arrow-wrapper post-navigation__arrow-prev"><i class="' . $prev_icon_class . '" aria-hidden="true"></i><span class="elementor-screen-only">' . esc_html__('Prev', 'happy-elementor-addons') . '</span></span>';
-            $next_arrow = '<span class="post-navigation__arrow-wrapper post-navigation__arrow-next"><i class="' . $next_icon_class . '" aria-hidden="true"></i><span class="elementor-screen-only">' . esc_html__('Next', 'happy-elementor-addons') . '</span></span>';
+            $prev_arrow = '<span class="post-navigation__arrow-wrapper post-navigation__arrow-prev"><i class="' . esc_attr( $prev_icon_class ) . '" aria-hidden="true"></i><span class="elementor-screen-only">' . esc_html__('Prev', 'happy-elementor-addons') . '</span></span>';
+            $next_arrow = '<span class="post-navigation__arrow-wrapper post-navigation__arrow-next"><i class="' . esc_attr( $next_icon_class ) . '" aria-hidden="true"></i><span class="elementor-screen-only">' . esc_html__('Next', 'happy-elementor-addons') . '</span></span>';
         }
 
         $prev_title = '';

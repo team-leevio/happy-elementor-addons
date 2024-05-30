@@ -1,3 +1,10 @@
+= 3.11.0 - 30 May 2024 =
+
+- New: Lightbox Widget.
+- Fix: GravityForms style issue.
+- Fix: Security improvement for Image Accordion widget.
+- Fix: Security improvement for Post Navigation widget.
+
 = 3.10.9 - 16 May 2024 =
 
 - Fix: Security improvement for Skill Bars widget.

@@ -1459,7 +1459,7 @@ class Image_Accordion extends Base {
                                         printf('<div class="ha-ia-content-description">%s</div>', ha_kses_intermediate( $item['description'] ));
                                     endif; ?>
                                     <?php if ($item['enable_button'] == 'yes') : ?>
-                                        <a class="ha-ia-content-button" href="<?php echo esc_attr($item['button_url']['url']); ?>" <?php echo esc_attr($item['button_url']['is_external'] ? 'target=_blank' : ''); ?> <?php echo esc_attr($item['button_url']['nofollow'] ? 'rel=nofollow' : ''); ?>>
+                                        <a class="ha-ia-content-button" href="<?php echo esc_url($item['button_url']['url']); ?>" <?php echo esc_attr($item['button_url']['is_external'] ? 'target=_blank' : ''); ?> <?php echo esc_attr($item['button_url']['nofollow'] ? 'rel=nofollow' : ''); ?>>
                                             <?php echo esc_html($item['button_label']); ?>
                                         </a>
                                     <?php endif; ?>

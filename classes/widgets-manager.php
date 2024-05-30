@@ -1330,6 +1330,18 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'lightbox' => [
+				'cat' => 'general',
+				'is_active' => true,
+				'title' => __('Lightbox', 'happy-elementor-addons'),
+				'icon' => 'hm hm-video-gallery',
+				'css' => ['lightbox'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
 		];
 	}
 
