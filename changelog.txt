@@ -1,6 +1,7 @@
-= 3.##.## - ###### 2024 =
+= 3.11.0 - 30 May 2024 =
 
-- Fix: GravityForms button style issue.
+- New: Lightbox Widget.
+- Fix: GravityForms style issue.
 - Fix: Security improvement for Image Accordion widget.
 - Fix: Security improvement for Post Navigation widget.
 

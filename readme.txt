@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.10.9
+Version: 3.11.0
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.5
-Stable tag: 3.10.9
+Stable tag: 3.11.0
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -269,6 +269,13 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.11.0 - 30 May 2024 =
+
+- New: Lightbox Widget.
+- Fix: GravityForms style issue.
+- Fix: Security improvement for Image Accordion widget.
+- Fix: Security improvement for Post Navigation widget.
+
 = 3.10.9 - 16 May 2024 =
 
 - Fix: Security improvement for Skill Bars widget.
@@ -285,14 +292,5 @@ For a more detailed explanation check out the following documentation
 
 - Fix: Security improvement for Site Title, Horizontal Timeline, Image Stack Group and Photo Stack widget.
 - Update: Made Compatible with Elementor 3.21
-
-= 3.10.5 - 4 April 2024 =
-
-- Fix: Templates won't refresh on rare case.
-- Fix: Icon size and Icon spacing in Content Switcher Widget.
-- Fix: Security improvement for Calendly, Page Title, Post Title, Card, Gradient Heading and Review widget.
-- Tweak: Container template support in Content Switcher Widget.
-- Update: Security improvement for Happy Clone feature.
-- Update: Made Compatible with WordPress 6.5 & Elementor 3.20
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)
