@@ -1,3 +1,7 @@
+= 3.##.# - ## ## 2024 =
+
+- Fix: Fatal error with BuddyBoss Platform.
+
 = 3.11.0 - 30 May 2024 =
 
 - New: Lightbox Widget.
