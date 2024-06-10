@@ -1,0 +1,30 @@
+.ha-lightbox {
+	&-trigger {
+		cursor: pointer;
+	}
+	&-btn:not([href]):not([tabindex]){
+		color: #fff;
+	}
+	&-btn {
+		display: inline-flex;
+		align-items: center;
+		font-size: 14px;
+		padding: 15px 25px;
+		color: #fff;
+		background-color: #5636d1;
+		border-radius: 50px;
+		text-decoration: none;
+		line-height: 1;
+
+		svg {
+			width: auto;
+			height: 1em;
+			fill: currentColor;
+		}
+
+		&:hover {
+			color: #fff;
+			background-color: #e8357c;
+		}
+	}
+}
