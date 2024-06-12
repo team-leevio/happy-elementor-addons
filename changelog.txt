@@ -1,3 +1,8 @@
+= 3.11.1 - 12 June 2024 =
+
+- Tweak: Taxonomy List Widget Alignment option added for inline style.
+- Fix: Fatal error with BuddyBoss Platform.
+
 = 3.11.0 - 30 May 2024 =
 
 - New: Lightbox Widget.
