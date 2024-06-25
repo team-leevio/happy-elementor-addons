@@ -254,10 +254,25 @@ class Gradient_Heading extends Base {
 	public function content_template() {
 		?>
 		<#
+		function HA_gradient_heading_sanitizeURL(url) {
+			// Define a regex pattern to match valid URLs with http, https, or ftp protocols
+			const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+
+			// Test if the URL matches the pattern
+			if (urlPattern.test(url)) {
+			// Encode potentially unsafe characters in the URL
+			const sanitizedURL = url.replace(/[^\w-._~:/?#[\]@!$&'()*+,;=%]/g, encodeURIComponent);
+			return sanitizedURL;
+			} else {
+			return '';
+			}
+		}
 		view.addInlineEditingAttributes( 'title', 'basic' );
 		view.addRenderAttribute( 'title', 'class', 'ha-gradient-heading' );
+		console.log( HA_gradient_heading_sanitizeURL( settings.link.url ) );
 
-		var title = _.isEmpty(settings.link.url) ? settings.title : '<a href="' + _.escape( settings.link.url ) + '">'+settings.title+'</a>';
+		<!-- var title = _.isEmpty(settings.link.url) ? settings.title : '<a href="' + _.escape( settings.link.url ) + '">'+settings.title+'</a>'; -->
+		var title = _.isEmpty(settings.link.url) ? settings.title : '<a href="' + HA_gradient_heading_sanitizeURL( settings.link.url ) + '">'+settings.title+'</a>';
 		var title_tag = elementor.helpers.validateHTMLTag( settings.title_tag );
 		#>
 		<{{ title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ title }}}</{{ title_tag }}>
