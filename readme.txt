@@ -269,7 +269,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.11.2 - 26 June 2024 =
+= 3.11.2 - 27 June 2024 =
 
 - Tweak: Lightbox widget Alignment option added.
 - Fix: Security improvement for Gradient Heading widget.
