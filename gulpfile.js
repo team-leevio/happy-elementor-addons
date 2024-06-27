@@ -51,6 +51,14 @@ const buildSrcFiles = [
     "!./gulpfile.js",
     "!./yarn.lock",
     "!./README.md",
+	// "./vendor/**/*",
+	"!./vendor/bin/**",
+	"!./vendor/composer/**",
+	"!./vendor/dealerdirect/**",
+	"!./vendor/phpcsstandards/**",
+	"!./vendor/squizlabs/**",
+	"!./vendor/wp-coding-standards/**",
+	"!./vendor/autoload.php",
 ];
 
 function makeFrontendCSS() {
