@@ -1,3 +1,8 @@
+= 3.11.2 - 27 June 2024 =
+
+- Tweak: Lightbox widget Alignment option added.
+- Fix: Security improvement for Gradient Heading widget.
+
 = 3.11.1 - 12 June 2024 =
 
 - Tweak: Taxonomy List Widget Alignment option added for inline style.
