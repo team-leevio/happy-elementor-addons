@@ -52,6 +52,7 @@ const buildSrcFiles = [
     "!./yarn.lock",
     "!./README.md",
 	// "./vendor/**/*",
+	"!./composer.lock",
 	"!./vendor/bin/**",
 	"!./vendor/composer/**",
 	"!./vendor/dealerdirect/**",
