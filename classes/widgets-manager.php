@@ -770,7 +770,7 @@ class Widgets_Manager {
 				'js'        => [],
 				'vendor'    => [
 					'css' => [],
-					'js'  => ['elementor-waypoints', 'jquery-numerator'],
+					'js'  => ['jquery-numerator'],
 				],
 			],
 			'flip-box'            => [

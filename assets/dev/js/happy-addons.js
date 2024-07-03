@@ -22,6 +22,18 @@
 		};
 	}
 
+	function observeTarget(target, callback) {
+		const observer = new IntersectionObserver((entries, observer) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					callback(entry);
+				}
+			});
+		});
+
+		observer.observe(target);
+	}
+
 	function initFilterNav($scope, filterFn) {
 		var $filterNav = $scope.find('.hajs-filter'),
 			defaultFilter = $filterNav.data('default-filter');
@@ -222,7 +234,7 @@
 		});
 
 		var NumberHandler = function($scope) {
-			elementorFrontend.waypoint($scope, function () {
+			observeTarget($scope[0], function () {
 				var $number = $scope.find('.ha-number-text');
 				$number.numerator($number.data('animation'));
 			});
