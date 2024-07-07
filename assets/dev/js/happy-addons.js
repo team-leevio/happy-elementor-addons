@@ -241,12 +241,12 @@
 		};
 
 		var SkillHandler = function($scope) {
-			elementorFrontend.waypoint($scope, function () {
+			observeTarget($scope[0], function () {
 				$scope.find('.ha-skill-level').each(function() {
 					var $current = $(this),
 						$lt = $current.find('.ha-skill-level-text'),
 						lv = $current.data('level');
-
+	
 					$current.animate({
 						width: lv+'%'
 					}, 500);
@@ -473,23 +473,22 @@
 
 		// Fun factor
 		var FunFactor = function ($scope) {
-			elementorFrontend.waypoint($scope, function () {
+			observeTarget($scope[0], function () {
 				var $fun_factor = $scope.find('.ha-fun-factor__content-number');
 				$fun_factor.numerator($fun_factor.data('animation'));
 			});
 		};
 
 		var BarChart = function($scope) {
-			elementorFrontend.waypoint($scope, function () {
-				var $chart = $(this),
-					$container = $chart.find( '.ha-bar-chart-container' ),
-					$chart_canvas = $chart.find( '#ha-bar-chart' ),
+			observeTarget($scope[0], function () {
+				var $container = $scope.find( '.ha-bar-chart-container' ),
+					$chart_canvas = $scope.find( '#ha-bar-chart' ),
 					settings      = $container.data( 'settings' );
 
 				if ( $container.length ) {
 					new Chart( $chart_canvas, settings );
 				}
-			} );
+			});
 		};
 
 		//twitter Feed
