@@ -22,14 +22,14 @@
 		};
 	}
 
-	function observeTarget(target, callback) {
+	function observeTarget(target, callback, options = {}) {
 		const observer = new IntersectionObserver((entries, observer) => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {
 					callback(entry);
 				}
 			});
-		});
+		}, options);
 
 		observer.observe(target);
 	}
