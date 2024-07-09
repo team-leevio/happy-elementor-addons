@@ -1,3 +1,7 @@
+= 3.##.## - ## ## 2024 =
+
+- Fix: Background Overlay feature issue on editor panel.
+
 = 3.11.2 - 27 June 2024 =
 
 - Tweak: Lightbox widget Alignment option added.
