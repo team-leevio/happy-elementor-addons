@@ -1,4 +1,15 @@
-;(function ($) {
+; function haObserveTarget ( target, callback, options = {} ) {
+	const observer = new IntersectionObserver( ( entries, observer ) => {
+		entries.forEach( entry => {
+			if ( entry.isIntersecting ) {
+				callback( entry );
+			}
+		} );
+	}, options );
+
+	observer.observe( target );
+}
+(function ($) {
 	'use strict';
 
 	var $window = $(window)
@@ -20,18 +31,6 @@
 			timeout = setTimeout(later, wait);
 			if (callNow) func.apply(context, args);
 		};
-	}
-
-	function observeTarget(target, callback, options = {}) {
-		const observer = new IntersectionObserver((entries, observer) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					callback(entry);
-				}
-			});
-		}, options);
-
-		observer.observe(target);
 	}
 
 	function initFilterNav($scope, filterFn) {
@@ -234,14 +233,14 @@
 		});
 
 		var NumberHandler = function($scope) {
-			observeTarget($scope[0], function () {
+			haObserveTarget($scope[0], function () {
 				var $number = $scope.find('.ha-number-text');
 				$number.numerator($number.data('animation'));
 			});
 		};
 
 		var SkillHandler = function($scope) {
-			observeTarget($scope[0], function () {
+			haObserveTarget($scope[0], function () {
 				$scope.find('.ha-skill-level').each(function() {
 					var $current = $(this),
 						$lt = $current.find('.ha-skill-level-text'),
@@ -473,14 +472,14 @@
 
 		// Fun factor
 		var FunFactor = function ($scope) {
-			observeTarget($scope[0], function () {
+			haObserveTarget($scope[0], function () {
 				var $fun_factor = $scope.find('.ha-fun-factor__content-number');
 				$fun_factor.numerator($fun_factor.data('animation'));
 			});
 		};
 
 		var BarChart = function($scope) {
-			observeTarget($scope[0], function () {
+			haObserveTarget($scope[0], function () {
 				var $container = $scope.find( '.ha-bar-chart-container' ),
 					$chart_canvas = $scope.find( '#ha-bar-chart' ),
 					settings      = $container.data( 'settings' );
