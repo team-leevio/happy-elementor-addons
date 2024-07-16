@@ -1,8 +1,9 @@
-= 3.##.## - ## ## 2024 =
+= 3.11.3 - 16 July 2024 =
 
 - Update: Replaced waypoint.js with Intersection Observer for the following widgets: Number, Fun Factor, Skill Bars, Bar Chart
 - Fix: Background Overlay feature issue on editor panel.
 - Fix: Security improvement for PDF View widget.
+- Fix: PHP warning in post excerpt widget.
 
 = 3.11.2 - 27 June 2024 =
 
