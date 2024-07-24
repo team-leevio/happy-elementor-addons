@@ -12,29 +12,6 @@ class Background_Overlay {
 
 	public static function init() {
 		add_action( 'elementor/element/common/_section_background/after_section_end', [__CLASS__, 'add_section'] );
-		add_action( 'elementor/element/after_add_attributes', [__CLASS__, 'add_attributes'] );
-	}
-
-	public static function add_attributes( Element_Base $element ) {
-		if ( in_array( $element->get_name(), [ 'column', 'section' ] ) ) {
-			return;
-		}
-
-		if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
-			return;
-		}
-
-		$settings = $element->get_settings_for_display();
-
-		$overlay_bg = isset( $settings['_ha_background_overlay_background'] ) ? $settings['_ha_background_overlay_background'] : '';
-		$overlay_hover_bg = isset( $settings['_ha_background_overlay_hover_background'] ) ? $settings['_ha_background_overlay_hover_background'] : '';
-
-		$has_background_overlay = ( in_array( $overlay_bg, [ 'classic', 'gradient' ], true ) ||
-			in_array( $overlay_hover_bg, [ 'classic', 'gradient' ], true ) );
-
-		if ( $has_background_overlay ) {
-			$element->add_render_attribute( '_wrapper', 'class', 'ha-has-bg-overlay' );
-		}
 	}
 
 	public static function add_section( Element_Base $element ) {
@@ -46,6 +23,16 @@ class Background_Overlay {
 				'condition' => [
 					'_background_background' => [ 'classic', 'gradient' ],
 				],
+			]
+		);
+
+		$element->add_control(
+			'_ha_background_overlay_cls_added',
+			[
+				'label'        => __( 'Extra class added', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::HIDDEN,
+				'default'      => 'overlay',
+				'prefix_class' => 'ha-has-bg-',
 			]
 		);
 

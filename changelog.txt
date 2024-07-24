@@ -1,3 +1,10 @@
+= 3.11.3 - 24 July 2024 =
+
+- Update: Replaced waypoint.js with Intersection Observer for the following widgets: Number, Fun Factor, Skill Bars, Bar Chart
+- Fix: Background Overlay feature issue on editor panel.
+- Fix: Security improvement for PDF View widget.
+- Fix: PHP warning in post excerpt widget.
+
 = 3.11.2 - 27 June 2024 =
 
 - Tweak: Lightbox widget Alignment option added.
@@ -404,7 +411,7 @@
 - Tweak: Animated Link widget alignment control added
 - Fix: Security patches
 - Tweak: Removed `Elementor\Scheme_Typography` deprecated function
-- Tweak: Happy Elementor Addons not active when Elementor doesn’t meet minimum version requirements
+- Tweak: Happy Elementor Addons not active when Elementor doesn't meet minimum version requirements
 
 = 2.23.0 - 12 April 2021 =
 

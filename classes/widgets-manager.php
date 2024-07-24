@@ -653,7 +653,7 @@ class Widgets_Manager {
 				'js'        => [],
 				'vendor'    => [
 					'css' => [],
-					'js'  => ['elementor-waypoints', 'jquery-numerator'],
+					'js'  => ['jquery-numerator'],
 				],
 			],
 			'gradient-heading'    => [
@@ -770,7 +770,7 @@ class Widgets_Manager {
 				'js'        => [],
 				'vendor'    => [
 					'css' => [],
-					'js'  => ['elementor-waypoints', 'jquery-numerator'],
+					'js'  => ['jquery-numerator'],
 				],
 			],
 			'flip-box'            => [
@@ -858,7 +858,7 @@ class Widgets_Manager {
 				'js'        => [],
 				'vendor'    => [
 					'css' => [],
-					'js'  => ['elementor-waypoints', 'jquery-numerator'],
+					'js'  => ['jquery-numerator'],
 				],
 			],
 			'bar-chart'           => [

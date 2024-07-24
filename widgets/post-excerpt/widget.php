@@ -142,9 +142,7 @@ class Post_Excerpt extends Base {
 	protected function render() {
         $post = get_post();
 
-		$settings = $this->get_settings_for_display();
-
-		if ( post_password_required( $post->ID ) ) {
+		if ( $post->ID && !empty( $post->ID ) && post_password_required( $post->ID ) ) {
 			echo get_the_password_form( $post->ID );
 			return;
 		}

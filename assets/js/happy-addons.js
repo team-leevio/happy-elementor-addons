@@ -1,6 +1,17 @@
 "use strict";
 
 ;
+function haObserveTarget(target, callback) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var observer = new IntersectionObserver(function (entries, observer) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        callback(entry);
+      }
+    });
+  }, options);
+  observer.observe(target);
+}
 (function ($) {
   'use strict';
 
@@ -146,7 +157,6 @@
         if ('yes' == this.getElementSettings('vertical')) {
           $rtl = false; // for vertical direction rtl is off
         }
-
         var settings = {
           infinite: !!this.getElementSettings('loop'),
           autoplay: !!this.getElementSettings('autoplay'),
@@ -192,13 +202,13 @@
       }
     });
     var NumberHandler = function NumberHandler($scope) {
-      elementorFrontend.waypoint($scope, function () {
+      haObserveTarget($scope[0], function () {
         var $number = $scope.find('.ha-number-text');
         $number.numerator($number.data('animation'));
       });
     };
     var SkillHandler = function SkillHandler($scope) {
-      elementorFrontend.waypoint($scope, function () {
+      haObserveTarget($scope[0], function () {
         $scope.find('.ha-skill-level').each(function () {
           var $current = $(this),
             $lt = $current.find('.ha-skill-level-text'),
@@ -400,16 +410,15 @@
 
     // Fun factor
     var FunFactor = function FunFactor($scope) {
-      elementorFrontend.waypoint($scope, function () {
+      haObserveTarget($scope[0], function () {
         var $fun_factor = $scope.find('.ha-fun-factor__content-number');
         $fun_factor.numerator($fun_factor.data('animation'));
       });
     };
     var BarChart = function BarChart($scope) {
-      elementorFrontend.waypoint($scope, function () {
-        var $chart = $(this),
-          $container = $chart.find('.ha-bar-chart-container'),
-          $chart_canvas = $chart.find('#ha-bar-chart'),
+      haObserveTarget($scope[0], function () {
+        var $container = $scope.find('.ha-bar-chart-container'),
+          $chart_canvas = $scope.find('#ha-bar-chart'),
           settings = $container.data('settings');
         if ($container.length) {
           new Chart($chart_canvas, settings);

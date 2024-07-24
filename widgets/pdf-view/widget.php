@@ -66,7 +66,7 @@ class PDF_View extends Base {
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
-        
+
 		$this->add_control(
 			'file_type',
 			[
@@ -125,7 +125,7 @@ class PDF_View extends Base {
 				'default' => '1',
 			]
 		);
-        
+
         $this->add_control(
 			'pdf_title',
 			[
@@ -140,7 +140,7 @@ class PDF_View extends Base {
 				]
 			]
 		);
-        
+
         $this->end_controls_section();
     }
 	protected function __pdf_settings_controls(){
@@ -262,7 +262,7 @@ class PDF_View extends Base {
 				]
 			]
 		);
-        
+
         $this->end_controls_section();
 	}
 
@@ -316,7 +316,7 @@ class PDF_View extends Base {
 				'separator' => 'before'
 			]
 		);
-		
+
 		$this->add_responsive_control(
 			'title_spacing',
 			[
@@ -573,7 +573,7 @@ class PDF_View extends Base {
 
 		$this->end_controls_section();
 	}
-   
+
     /**
      * @return null
      */
@@ -602,21 +602,20 @@ class PDF_View extends Base {
 		}
 
 		$json_settings = [
-            'unique_id' 	=> $unique_id,
-            'pdf_url' 		=> $pdf_url_i,
-			'file_type' 	=> $file_type,
-			'page_number' 	=> $settings['page_number'],
-			'width' 		=> $width,
-			'height' 		=> $height,
-        ];
+			'unique_id'		=>	esc_attr( $unique_id ),
+			'pdf_url'		=>	esc_url( $pdf_url_i ),
+			'file_type'		=>	esc_attr( $file_type ),
+			'page_number'	=>	esc_attr( $settings['page_number'] ),
+			'width'			=>	esc_attr( $width ),
+			'height' 		=>	esc_attr( $height )
+		];
 
-
-
+		$this->add_render_attribute( 'pdf_settings', 'class', 'pdf_viewer_options ' . esc_attr($unique_id) );
 		$this->add_render_attribute( 'pdf_settings', 'data-pdf-settings', wp_json_encode( $json_settings ) );
-        
+
         ?>
         <div class="pdf_viewer_container">
-            <div class="pdf_viewer_options <?php echo esc_attr($unique_id); ?>" <?php $this->print_render_attribute_string( 'pdf_settings' ) ?>>
+            <div <?php $this->print_render_attribute_string( 'pdf_settings' ); ?>>
 				<span class="ha-title-flex">
 					<span class="pdf-icon">
 						<?php Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']);  ?>
@@ -629,7 +628,7 @@ class PDF_View extends Base {
 					}
 					?>
 				</span>
-				<?php 
+				<?php
                 ?>
                 <div class="pdf-button">
                 <?php
@@ -643,11 +642,11 @@ class PDF_View extends Base {
                 ?>
                 </div>
             </div>
-            
+
 			<div>
 				<div id="<?php echo esc_attr( $unique_id ); ?>"></div>
 			</div>
-			
+
         </div>
         <?php
 	}
