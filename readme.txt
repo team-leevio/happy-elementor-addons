@@ -6,7 +6,7 @@ Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
-Tested up to: 6.5
+Tested up to: 6.6
 Stable tag: 3.11.3
 Requires PHP: 7.4
 License: GPLv2
@@ -269,7 +269,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.11.3 - 16 July 2024 =
+= 3.11.3 - 24 July 2024 =
 
 - Update: Replaced waypoint.js with Intersection Observer for the following widgets: Number, Fun Factor, Skill Bars, Bar Chart
 - Fix: Background Overlay feature issue on editor panel.
