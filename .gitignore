@@ -228,3 +228,4 @@ assets/js/
 vendor/**/*
 !vendor/appsero
 composer.lock
+dist/*

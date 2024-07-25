@@ -152,22 +152,22 @@ function buildZip () {
 			} )
 		)
 		.pipe( gulpZip( packageName + "-v" + packageVersion + ".zip" ) )
-		.pipe( dest( "../" ) );
+		.pipe( dest( "./dist/" ) );
 }
 
 function buildRelease () {
-	return src( buildSrcFiles ).pipe( dest( "../happy-elementor-addons-build" ) );
+	return src( buildSrcFiles ).pipe( dest( "./dist/build" ) );
 }
 
 function deleteBuild () {
-	return src( [ "../happy-elementor-addons-build" ], {
+	return src( [ "./dist/build" ], {
 		read: false,
 		allowEmpty: true,
 	} ).pipe( gulpClean( { force: true } ) );
 }
 
 function deleteZip () {
-	return src( [ "../happy-elementor-addons.zip" ], {
+	return src( [ "./dist/" + packageName + "-v*.zip" ], {
 		read: false,
 		allowEmpty: true,
 	} ).pipe( gulpClean( { force: true } ) );
