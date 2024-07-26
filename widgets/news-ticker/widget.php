@@ -476,7 +476,7 @@ class News_Ticker extends Base {
 
 		$settings = $this->get_settings_for_display();
 		if ( empty( $settings['selected_posts'] ) ) { ?>
-			<div style="margin: 1rem;padding: 1rem 1.25rem;border-left: 5px solid #f5c848;color: #856404;background-color: #fff3cd;"><?php echo esc_html('Plese select news ticker posts.', 'happy-elementor-addons'); ?></div>
+			<div style="margin: 1rem;padding: 1rem 1.25rem;border-left: 5px solid #f5c848;color: #856404;background-color: #fff3cd;"><?php echo esc_html__('Please select news ticker posts.', 'happy-elementor-addons'); ?></div>
 		<?php }
 
 		$query_args = [
