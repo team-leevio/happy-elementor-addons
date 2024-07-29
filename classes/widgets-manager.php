@@ -416,6 +416,42 @@ class Widgets_Manager {
 				'icon'   => 'hm hm-Category-Carousel',
 				'is_pro' => true
 			],
+			'edd-cart' => [
+				'cat' => 'easy-digital-downloads',
+				'title' => __('EDD Cart', 'happy-addons-pro'),
+				'icon' => 'hm hm-cart',
+				'is_pro' => true,
+			],
+			'edd-checkout' => [
+				'cat' => 'easy-digital-downloads',
+				'title' => __('EDD Checkout', 'happy-addons-pro'),
+				'icon' => 'hm hm-checkout-2',
+				'is_pro' => true,
+			],
+			'edd-login' => [
+				'cat' => 'easy-digital-downloads',
+				'title' => __('EDD Login', 'happy-addons-pro'),
+				'icon' => 'hm hm-checkout-2',
+				'is_pro' => true,
+			],
+			'edd-register' => [
+				'cat' => 'easy-digital-downloads',
+				'title' => __('EDD Register', 'happy-addons-pro'),
+				'icon' => 'hm hm-user-plus',
+				'is_pro' => true,
+			],
+			'edd-purchase' => [
+				'cat' => 'easy-digital-downloads',
+				'title' => __('EDD Purchase', 'happy-addons-pro'),
+				'icon' => 'hm hm-user-plus',
+				'is_pro' => true,
+			],
+			'edd-download' => [
+				'cat' => 'easy-digital-downloads',
+				'title' => __('EDD Download', 'happy-addons-pro'),
+				'icon' => 'hm hm-Download-circle',
+				'is_pro' => true,
+			],
 			'google-map'                => [
 				'cat'    => 'general',
 				'title'  => __('Advanced Google Map', 'happy-elementor-addons'),
@@ -424,22 +460,34 @@ class Widgets_Manager {
 			],
 			'image-swap' => [
 				'cat' => 'general',
-				'title' => __( 'Image Swap', 'happy-addons-pro' ),
+				'title' => __( 'Image Swap', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-image-scroll',
+				'is_pro' => true,
+			],
+			'shipping-bar' => [
+				'cat' => 'woocommerce',
+				'title' => __('Shipping Bar', 'happy-addons-pro'),
+				'icon' => 'hm hm-shipping-address',
 				'is_pro' => true,
 			],
 			'remote-carousel' => [
 				'cat' => 'slider-&-carousel',
-				'title' => __('Remote Carousel', 'happy-addons-pro'),
+				'title' => __('Remote Carousel', 'happy-elementor-addons'),
 				'icon' => 'hm hm-remote_carousel',
 				'is_pro' => true,
 			],
 			'table-of-contents' => [
 				'cat' => 'general',
-				'title' => __('Table of Contents', 'happy-addons-pro'),
+				'title' => __('Table of Contents', 'happy-elementor-addons'),
 				'icon' => 'hm hm-list-2',
 				'is_pro' => true,
-			]
+			],
+			'creative-slider' => [
+				'cat' => 'slider-&-carousel',
+				'title' => __('Creative Slider', 'happy-addons-pro'),
+				'icon' => 'hm hm-slider',
+				'is_pro' => true,
+			],
 		];
 	}
 
@@ -605,7 +653,7 @@ class Widgets_Manager {
 				'js'        => [],
 				'vendor'    => [
 					'css' => [],
-					'js'  => ['elementor-waypoints', 'jquery-numerator'],
+					'js'  => ['jquery-numerator'],
 				],
 			],
 			'gradient-heading'    => [
@@ -722,7 +770,7 @@ class Widgets_Manager {
 				'js'        => [],
 				'vendor'    => [
 					'css' => [],
-					'js'  => ['elementor-waypoints', 'jquery-numerator'],
+					'js'  => ['jquery-numerator'],
 				],
 			],
 			'flip-box'            => [
@@ -810,7 +858,7 @@ class Widgets_Manager {
 				'js'        => [],
 				'vendor'    => [
 					'css' => [],
-					'js'  => ['elementor-waypoints', 'jquery-numerator'],
+					'js'  => ['jquery-numerator'],
 				],
 			],
 			'bar-chart'           => [
@@ -1264,6 +1312,30 @@ class Widgets_Manager {
 				'title' => __('Nav Menu', 'happy-elementor-addons'),
 				'icon' => 'hm hm-clip-board',
 				'css' => ['navigation-menu'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'age-gate' => [
+				'cat' => 'general',
+				'is_active' => true,
+				'title' => __('Age Gate', 'happy-elementor-addons'),
+				'icon' => 'hm hm-age-gate',
+				'css' => ['age-gate'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => [],
+				],
+			],
+			'lightbox' => [
+				'cat' => 'general',
+				'is_active' => true,
+				'title' => __('Lightbox', 'happy-elementor-addons'),
+				'icon' => 'hm hm-video-gallery',
+				'css' => ['lightbox'],
 				'js' => [],
 				'vendor' => [
 					'css' => [],

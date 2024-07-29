@@ -1,4 +1,15 @@
-;(function ($) {
+; function haObserveTarget ( target, callback, options = {} ) {
+	const observer = new IntersectionObserver( ( entries, observer ) => {
+		entries.forEach( entry => {
+			if ( entry.isIntersecting ) {
+				callback( entry );
+			}
+		} );
+	}, options );
+
+	observer.observe( target );
+}
+(function ($) {
 	'use strict';
 
 	var $window = $(window)
@@ -165,6 +176,10 @@
 			}, 200),
 
 			getSlickSettings: function() {
+				var $rtl = ( $('html[dir="rtl"]').length == 1 || $('body').hasClass('rtl') );
+				if( 'yes' == this.getElementSettings('vertical') ){
+					$rtl = false; // for vertical direction rtl is off
+				}
 				var settings = {
 					infinite: !! this.getElementSettings('loop'),
 					autoplay: !! this.getElementSettings('autoplay'),
@@ -172,7 +187,8 @@
 					speed: this.getElementSettings('animation_speed'),
 					centerMode: !! this.getElementSettings('center'),
 					vertical: !! this.getElementSettings('vertical'),
-					slidesToScroll: 1,
+					// slidesToScroll: 1,
+					rtl: $rtl,
 				};
 
 				switch (this.getElementSettings('navigation')) {
@@ -188,18 +204,22 @@
 						break;
 				}
 
+				var slides_to_scroll = !!this.getElementSettings('slides_to_scroll');
 				settings.slidesToShow = parseInt( this.getElementSettings('slides_to_show') ) || 1;
+				settings.slidesToScroll = slides_to_scroll ? (parseInt( this.getElementSettings('slides_to_show') ) || 1) : 1;
 				settings.responsive = [
 					{
 						breakpoint: elementorFrontend.config.breakpoints.lg,
 						settings: {
 							slidesToShow: (parseInt(this.getElementSettings('slides_to_show_tablet')) || settings.slidesToShow),
+							slidesToScroll: slides_to_scroll ? (parseInt(this.getElementSettings('slides_to_show_tablet')) || settings.slidesToShow) : 1,
 						}
 					},
 					{
 						breakpoint: elementorFrontend.config.breakpoints.md,
 						settings: {
 							slidesToShow: (parseInt(this.getElementSettings('slides_to_show_mobile')) || parseInt(this.getElementSettings('slides_to_show_tablet'))) || settings.slidesToShow,
+							slidesToScroll: slides_to_scroll ? ((parseInt(this.getElementSettings('slides_to_show_mobile')) || parseInt(this.getElementSettings('slides_to_show_tablet'))) || settings.slidesToShow) : 1,
 						}
 					}
 				];
@@ -213,19 +233,19 @@
 		});
 
 		var NumberHandler = function($scope) {
-			elementorFrontend.waypoint($scope, function () {
+			haObserveTarget($scope[0], function () {
 				var $number = $scope.find('.ha-number-text');
 				$number.numerator($number.data('animation'));
 			});
 		};
 
 		var SkillHandler = function($scope) {
-			elementorFrontend.waypoint($scope, function () {
+			haObserveTarget($scope[0], function () {
 				$scope.find('.ha-skill-level').each(function() {
 					var $current = $(this),
 						$lt = $current.find('.ha-skill-level-text'),
 						lv = $current.data('level');
-
+	
 					$current.animate({
 						width: lv+'%'
 					}, 500);
@@ -452,23 +472,22 @@
 
 		// Fun factor
 		var FunFactor = function ($scope) {
-			elementorFrontend.waypoint($scope, function () {
+			haObserveTarget($scope[0], function () {
 				var $fun_factor = $scope.find('.ha-fun-factor__content-number');
 				$fun_factor.numerator($fun_factor.data('animation'));
 			});
 		};
 
 		var BarChart = function($scope) {
-			elementorFrontend.waypoint($scope, function () {
-				var $chart = $(this),
-					$container = $chart.find( '.ha-bar-chart-container' ),
-					$chart_canvas = $chart.find( '#ha-bar-chart' ),
+			haObserveTarget($scope[0], function () {
+				var $container = $scope.find( '.ha-bar-chart-container' ),
+					$chart_canvas = $scope.find( '#ha-bar-chart' ),
 					settings      = $container.data( 'settings' );
 
 				if ( $container.length ) {
 					new Chart( $chart_canvas, settings );
 				}
-			} );
+			});
 		};
 
 		//twitter Feed
@@ -664,12 +683,15 @@
 			var calendarEl =  $scope.find('.ha-ec');
 			var popup = $scope.find('.ha-ec-popup-wrapper');
 			var popupClose = $scope.find(".ha-ec-popup-close");
-			var events = calendarEl.data('events');
+			// var events = calendarEl.data('events');
 			var initialview = calendarEl.data('initialview');
 			var firstday = calendarEl.data('firstday');
 			var locale = calendarEl.data('locale');
 			var showPopup = calendarEl.data('show-popup');
 			var allday_text = calendarEl.data('allday-text');
+
+			var ECjson = window['HaECjson'+$scope.data('id')];
+			var events = ECjson;
 
 			if( 'undefined' == typeof events){
 				return;
@@ -893,7 +915,6 @@
 						}, 5000);
 					},
 					error: function(error) {
-						// console.log(error);
 					}
 				});
 
@@ -1199,7 +1220,7 @@
 		//nav menu
 		let NavigationMenu = function __init($scope){
 			var navMenu = $scope.find('.ha-nav-menu');
-			
+
 			//for tablet only
 			if( jQuery(window).width() < 1025 && jQuery(window).width() > 767 ) {
 				let indicator = navMenu.find('.ha-submenu-indicator-wrap');
@@ -1208,7 +1229,7 @@
 					let $parentEl = $(this).parent('li.menu-item-has-children');
 					if( $parentEl ) {
 						$parentEl.children('ul.sub-menu').slideToggle();
-					} 
+					}
 				});
 			}
 
@@ -1269,6 +1290,86 @@
 		};
 
 		elementorFrontend.hooks.addAction("frontend/element_ready/ha-navigation-menu.default", NavigationMenu);
+
+
+		var AgeGate = function($scope, $) {
+
+			if(elementorFrontend.isEditMode()) {
+				localStorage.removeItem("ha-age-gate-expire-time");
+				if( $scope.find('.ha-age-gate-wrapper').length ) {
+					var editor_mood = $scope.find('.ha-age-gate-wrapper').data('editor_mood');
+					if( 'no' == editor_mood ){
+						$scope.find('.ha-age-gate-wrapper').hide();
+					}
+				}
+			} else if(!elementorFrontend.isEditMode()) {
+				var container = $scope.find('.ha-age-gate-wrapper'),
+				cookies_time  = container.data('age_gate_cookies_time'),
+				exd = localStorage.getItem("ha-age-gate-expire-time");
+				//container.closest("body").find("header").css("display","none");
+				container.closest("body").css("overflow","hidden");
+				var cdate = new Date();
+				var endDate = new Date();
+				endDate.setDate(cdate.getDate()+cookies_time);
+
+
+				if(exd!='' && exd!=undefined && (new Date(cdate) <= new Date(exd))){
+					$('.ha-age-gate-wrapper').hide();
+					container.closest("body").css("overflow","");
+				}else if(exd!='' && exd!=undefined && (new Date(cdate) > new Date(exd))){
+					localStorage.removeItem("ha-age-gate-expire-time");
+					$('.ha-age-gate-wrapper').show();
+				}else{
+					$('.ha-age-gate-wrapper').show();
+				}
+
+				/*confirm-age*/
+				if( $scope.find('.ha-age-gate-wrapper.ha-age-gate-confirm-age').length ){
+
+					$(".ha-age-gate-confirm-age-btn").on("click", function(){
+						localStorage.setItem("ha-age-gate-expire-time", endDate );
+						$(this).closest(".ha-age-gate-wrapper").hide();
+						//$(this).closest("body").find("header").css("display","block");
+						$(this).closest("body").css("overflow","");
+					});
+				}
+
+				/*confirm-dob*/
+				if($scope.find('.ha-age-gate-wrapper.ha-age-gate-confirm-dob').length){
+
+					$(".ha-age-gate-confirm-dob-btn").on("click", function(){
+						var birthYear = new Date( Date.parse($(this).closest('.ha-age-gate-form-body').find('.ha-age-gate-date-input').val()) ),
+						agebirth = birthYear.getFullYear(),
+						currentYear = cdate.getFullYear(),
+						userage = currentYear - agebirth,
+						agelimit = $(this).closest('.ha-age-gate-wrapper').data("userbirth");
+						if(userage < agelimit){
+							$(this).closest('.ha-age-gate-boxes').find('.ha-age-gate-warning-msg').show();
+						}else{
+							localStorage.setItem("ha-age-gate-expire-time", endDate );
+							$(this).closest('.ha-age-gate-wrapper').hide();
+							//$(this).closest("body").find("header").css("display","block");
+							$(this).closest("body").css("overflow","");
+					   }
+					});
+				}
+
+				/*confirm-by-boolean*/
+				if($scope.find('.ha-age-gate-wrapper.ha-age-gate-confirm-by-boolean').length){
+					$(".ha-age-gate-wrapper .ha-age-gate-confirm-yes-btn").on("click", function(){
+						localStorage.setItem("ha-age-gate-expire-time", endDate );
+						$(this).closest('.ha-age-gate-wrapper').hide();
+						//$(this).closest("body").find("header").css("display","block");
+						$(this).closest("body").css("overflow","");
+					});
+					$(".ha-age-gate-wrapper .ha-age-gate-confirm-no-btn").on("click", function(){
+						$(this).closest('.ha-age-gate-boxes').find('.ha-age-gate-warning-msg').show();
+					});
+				}
+			}
+		}
+
+		elementorFrontend.hooks.addAction("frontend/element_ready/ha-age-gate.default", AgeGate);
 
 	});
 

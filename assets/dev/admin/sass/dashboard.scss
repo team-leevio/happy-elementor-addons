@@ -2,13 +2,14 @@
 @import "../../sass/mixins";
 
 .ha-dashboard {
+	padding-top: 20px;
+
 	&,
 	* {
 		box-sizing: border-box;
 		font-family: "Nunito", sans-serif;
 	}
 
-	padding-top: 20px;
 
 	&-btn {
 		display: inline-block;
@@ -102,6 +103,7 @@
 				}
 
 				&--pro {
+
 					&:focus,
 					&:hover,
 					&:active,
@@ -138,13 +140,14 @@
 	&-panel {
 		&__header {
 			padding-bottom: 40px;
+
 			&-content {
-				> h2 {
+				>h2 {
 					margin: 0 0 20px;
 					font-size: 2em;
 				}
 
-				> p {
+				>p {
 					color: #8c8c8c;
 					margin: 0;
 				}
@@ -216,7 +219,7 @@
 				color: #444;
 				font-weight: 400;
 
-				> label {
+				>label {
 					font-weight: 700;
 				}
 			}
@@ -324,7 +327,7 @@
 					display: flex;
 				}
 
-				> label {
+				>label {
 					font-weight: 700;
 				}
 			}
@@ -393,45 +396,56 @@
 	.ha-dashboard-panel-analytics {
 		.ha-dashboard-panel__header {
 			padding-bottom: 25px;
+
 			.ha-dashboard-panel__header-summary {
-				.data{
+				.data {
 					display: block;
 					font-weight: 700;
 					margin-bottom: 5px;
 				}
+
 				.data:last-child {
 					margin-bottom: 0;
 				}
 			}
+
 			.ha-dashboard-panel__header-content {
 				padding-right: 15px;
+
 				h2 {
 					margin: 0 0 10px;
 				}
+
 				p {
 					margin: 0 0;
 				}
 			}
-			&.used-widgets{
+
+			&.used-widgets {
+
 				h2,
 				strong {
 					color: #562dd4;
 				}
 			}
-			&.unused-widgets{
+
+			&.unused-widgets {
+
 				h2,
 				strong {
-					color:#e2498a;
+					color: #e2498a;
 				}
-				.ha-dashboard-analytics__unused_disable{
-					background:#e2498a;
-					color:#ffffff;
+
+				.ha-dashboard-analytics__unused_disable {
+					background: #e2498a;
+					color: #ffffff;
 					text-transform: uppercase;
 					font-size: 12px;
 					padding: 15px 18px;
 					width: 219px;
 				}
-				.ha-dashboard-analytics__unused_disable:disabled{
+
+				.ha-dashboard-analytics__unused_disable:disabled {
 					background-color: #b3b3b3;
 					box-shadow: none;
 					opacity: .7;
@@ -439,6 +453,7 @@
 				}
 			}
 		}
+
 		.ha-dashboard-analytics {
 			@extend %clearfix;
 			margin-left: -10px;
@@ -472,13 +487,13 @@
 					text-transform: capitalize;
 				}
 
-				fieldset{
+				fieldset {
 					background: #FFFFFF;
 					border: 1px solid #E1E1E1;
 					border-radius: 8px;
 					padding: 3px 15px 12px;
 
-					legend{
+					legend {
 						box-sizing: border-box;
 						border: 1px solid #e1e1e1;
 						border-radius: 10.5px;
@@ -492,15 +507,16 @@
 						width: 40px;
 						text-align: center;
 						margin-right: auto;
-						&.pro{
+
+						&.pro {
 							border-color: rgba(#e2498a, 0.4);
 							background: rgba(#e2498a, 0.1);
 							color: #e2498a;
 						}
 					}
 
-					.widget_inner{
-						.widget-title{
+					.widget_inner {
+						.widget-title {
 							font-style: normal;
 							font-weight: 600;
 							font-size: 14px;
@@ -508,6 +524,7 @@
 							color: #000000;
 							position: relative;
 							width: fit-content;
+
 							span.enabled,
 							span.disable {
 								display: block;
@@ -519,6 +536,7 @@
 								border-radius: 100%;
 								background: rgba(#5db429, 0.8);
 							}
+
 							span.disable {
 								background: #cccccc;
 							}
@@ -527,14 +545,17 @@
 				}
 			}
 		}
+
 		.ha-dashboard-analytics-notice {
 			p.step {
 				margin: 0 0 20px;
+
 				strong {
 					display: block;
 					margin: 0 0 10px;
 					font-size: 20px;
 				}
+
 				a {
 					color: #562dd4;
 				}
@@ -576,11 +597,11 @@
 			}
 		}
 
-		&__check:checked ~ .ha-toggle__track {
+		&__check:checked~.ha-toggle__track {
 			box-shadow: inset 0 0 0 20px $primary-color;
 		}
 
-		&__check:checked ~ .ha-toggle__switch {
+		&__check:checked~.ha-toggle__switch {
 			right: 2px;
 			left: 18px;
 			transition: 0.35s cubic-bezier(0.785, 0.135, 0.15, 0.86);
@@ -613,7 +634,7 @@
 		}
 	}
 
-	.flex-content{
+	.flex-content {
 		display: flex;
 		justify-content: space-between;
 	}
@@ -623,9 +644,11 @@
 	0% {
 		letter-spacing: 15px;
 	}
+
 	50% {
 		letter-spacing: 0;
 	}
+
 	100% {
 		letter-spacing: 15px;
 	}
@@ -759,7 +782,7 @@
 		padding-left: 50px;
 		float: left;
 
-		> span {
+		>span {
 			font-weight: 400;
 		}
 	}
@@ -778,8 +801,8 @@
 	flex-wrap: wrap;
 	margin-right: -15px;
 	margin-left: -15px;
-	.ha-col {
-	}
+
+	.ha-col {}
 }
 
 .ha-feature-title {
@@ -791,6 +814,7 @@
 .ha-feature-sub-title-a {
 	text-decoration: none;
 	color: #242424;
+
 	&:hover {
 		color: #e2498a;
 	}
@@ -810,6 +834,7 @@
 	font-size: 14px;
 	display: inline-block;
 	font-weight: bold;
+
 	&:hover,
 	&:focus {
 		outline: none;
@@ -820,6 +845,7 @@
 .ha-btn-primary {
 	background: #5e3bc4;
 	color: #fff;
+
 	&:hover,
 	&:focus {
 		color: #fff;
@@ -830,6 +856,7 @@
 .ha-btn-secondary {
 	background: #e2498a;
 	color: #fff;
+
 	&:hover,
 	&:focus {
 		color: #fff;
@@ -840,6 +867,7 @@
 .ha-text-primary {
 	color: #5e3bc4;
 }
+
 .ha-text-secondary {
 	color: #e2498a;
 }
@@ -848,6 +876,7 @@
 	color: #e2498a;
 	font-size: 16px;
 	text-decoration: none;
+
 	&:hover {
 		color: #5e3bc4;
 	}
@@ -864,22 +893,27 @@
 	background: #e2498a;
 	background-image: linear-gradient(130deg, #e05da4 0%, #7249cf 100%);
 	color: #fff;
+
 	.ha-feature-title {
 		color: #fff;
 		margin-top: 0;
 	}
+
 	p {
 		color: #daacdd;
 		margin-bottom: 1rem;
 	}
+
 	.link {
 		font-size: 16px;
 		color: #fff;
 		text-decoration: underline;
+
 		&:hover {
 			text-decoration: none;
 		}
 	}
+
 	.btn-contribute {
 		background: #fff;
 		padding: 0.95rem 1.5rem;
@@ -888,6 +922,7 @@
 		font-size: 15px;
 		display: inline-block;
 		color: #7f4bca;
+
 		&:hover {
 			background: #e2498a;
 			color: #fff;
@@ -928,20 +963,24 @@
 .ha-media {
 	display: flex;
 	align-items: flex-start;
+
 	img {
 		width: 180px;
 		height: auto;
 	}
+
 	h3 {
 		a {
 			color: #242424;
 			text-decoration: none;
 			line-height: 1.4;
+
 			&:hover {
 				color: #e2498a;
 			}
 		}
 	}
+
 	.ha-date {
 		color: #8c8c8c;
 	}
@@ -962,11 +1001,13 @@
 	font-weight: bold;
 	text-decoration: none;
 	margin-bottom: 25px;
+
 	&:hover,
 	&:focus {
 		background: #df4b89;
 		color: #fff;
 	}
+
 	i {
 		padding-right: 15px;
 		font-size: 20px;
@@ -975,6 +1016,7 @@
 }
 
 .ha-dashboard {
+
 	//utility
 	.f18 {
 		font-size: 18px;
@@ -1020,6 +1062,7 @@
 	.ha-mt-0 {
 		margin-top: 0;
 	}
+
 	.ha-mb-0 {
 		margin-bottom: 0;
 	}
@@ -1097,10 +1140,12 @@
 		flex: 0 0 91.666667%;
 		max-width: 91.666667%;
 	}
+
 	.ha-col-10 {
 		flex: 0 0 83.333333%;
 		max-width: 83.333333%;
 	}
+
 	.ha-col-9 {
 		flex: 0 0 75%;
 		max-width: 75%;

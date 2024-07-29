@@ -10,8 +10,8 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
 use Happy_Addons\Elementor\Traits\Creative_Button_Markup;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -517,7 +517,9 @@ class Creative_Button extends Base {
 				'name'     => 'button_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-creative-btn',
-				'scheme'   => Typography::TYPOGRAPHY_4,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
 			]
 		);
 

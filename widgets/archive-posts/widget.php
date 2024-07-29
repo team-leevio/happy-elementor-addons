@@ -1222,7 +1222,7 @@ class Archive_Posts extends Base {
     }
 
     protected function render_date($has_icon = false) {
-        $link = ha_pro_get_date_link();
+        $link = ha_get_date_link();
     ?>
         <a class="ha-archive-posts-date-text" href="<?php echo esc_url($link); ?>">
             <?php echo esc_html(get_the_date(get_option('date_format'))); ?>
@@ -1244,7 +1244,7 @@ class Archive_Posts extends Base {
         }
     ?>
         <div class="ha-archive-posts-excerpt">
-            <?php printf('<p>%1$s</p>', ha_pro_get_excerpt(get_the_ID(), $excerpt_length)); ?>
+            <?php printf('<p>%1$s</p>', ha_get_excerpt(get_the_ID(), $excerpt_length)); ?>
         </div>
 <?php
     }

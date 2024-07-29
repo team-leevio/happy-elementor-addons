@@ -27,8 +27,8 @@ class Ajax_Handler {
 		$security = check_ajax_referer( 'happy_addons_nonce', 'security' );
 
 		if ( true == $security && isset( $_POST['query_settings'] ) ) :
-			$settings    = $_POST['query_settings'];
-			$loaded_item = $_POST['loaded_item'];
+			$settings    = ha_sanitize_array_recursively($_POST['query_settings']);
+			$loaded_item = absint($_POST['loaded_item']);
 
 			$user_name      = trim( $settings['user_name'] );
 			$ha_tweets_cash = '_' . $settings['id'] . '_tweet_cash';
@@ -220,13 +220,13 @@ class Ajax_Handler {
 		$security = check_ajax_referer( 'happy_addons_nonce', 'security' );
 
 		if ( true == $security ) :
-			$settings   = $_POST['post_tab_query'];
+			$settings   = ha_sanitize_array_recursively($_POST['post_tab_query']);
 			$post_type  = $settings['post_type'];
 			$taxonomy   = $settings['taxonomy'];
 			$item_limit = $settings['item_limit'];
 			$excerpt    = $settings['excerpt'];
 			$title_tag  = $settings['title_tag'];
-			$term_id    = $_POST['term_id'];
+			$term_id    = absint($_POST['term_id']);
 			$orderby    = $settings['orderby'];
 			$order      = $settings['order'];
 
@@ -315,13 +315,14 @@ class Ajax_Handler {
 			return;
 		}
 
-		parse_str( isset( $_POST['subscriber_info'] ) ? $_POST['subscriber_info'] : '', $subsciber );
+		parse_str( isset( $_POST['subscriber_info'] ) ? $_POST['subscriber_info'] : '', $subscriber );
+		$subscriber = ha_sanitize_array_recursively( $subscriber );
 
 		if ( ! class_exists( 'Happy_Addons\Elementor\Widget\Mailchimp\Mailchimp_Api' ) ) {
 			include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
 		}
 
-		$response = Widget\Mailchimp\Mailchimp_Api::insert_subscriber_to_mailchimp( $subsciber );
+		$response = Widget\Mailchimp\Mailchimp_Api::insert_subscriber_to_mailchimp( $subscriber );
 
 		echo wp_send_json( $response );
 

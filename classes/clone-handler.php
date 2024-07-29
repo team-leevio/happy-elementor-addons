@@ -4,7 +4,6 @@ namespace Happy_Addons\Elementor;
 defined( 'ABSPATH' ) || die();
 
 use Elementor\Core\Files\CSS\Post as Post_CSS;
-use Elementor\Core\Common\Modules\Finder\Categories_Manager;
 
 class Clone_Handler {
 
@@ -20,9 +19,6 @@ class Clone_Handler {
 		add_action( 'admin_action_' . self::ACTION, [ __CLASS__, 'duplicate_thing' ] );
 		add_filter( 'post_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
 		add_filter( 'page_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
-
-		// add_action( 'elementor/finder/categories/init', [ __CLASS__, 'register_finder' ] );
-		add_action( 'elementor/finder/register', [ __CLASS__, 'register_finder' ] );
 	}
 
 	/**
@@ -35,6 +31,17 @@ class Clone_Handler {
 	}
 
 	/**
+	 * Check if current user and post author are same
+	 *
+	 * @param int $post_id
+	 * @return boolean
+	 */
+	public static function is_the_same_author($post_id) {
+		$author_id = get_post_field( 'post_author', $post_id );
+		return ( get_current_user_id() == $author_id );
+	}
+
+	/**
 	 * Add clone link in row actions
 	 *
 	 * @param array $actions
@@ -42,7 +49,7 @@ class Clone_Handler {
 	 * @return array
 	 */
 	public static function add_row_actions( $actions, $post ) {
-		if ( self::can_clone() && post_type_supports( $post->post_type, 'elementor' ) ) {
+		if ( current_user_can( 'edit_post', $post->ID ) && post_type_supports( $post->post_type, 'elementor' ) ) {
 			$actions[ self::ACTION ] = sprintf(
 				'<a href="%1$s" title="%2$s"><span class="screen-reader-text">%2$s</span>%3$s</a>',
 				esc_url( self::get_url( $post->ID, 'list' ) ),
@@ -84,10 +91,21 @@ class Clone_Handler {
 
 		$nonce = isset( $_GET['_wpnonce'] ) ? $_GET['_wpnonce'] : '';
 		$post_id = isset( $_GET['post_id'] ) ? absint( $_GET['post_id'] ) : 0;
-		$ref = isset( $_GET['ref'] ) ? $_GET['ref'] : '';
+		$ref = isset( $_GET['ref'] ) ? sanitize_text_field($_GET['ref']) : '';
 
 		if ( ! wp_verify_nonce( $nonce, self::ACTION ) ) {
 			return;
+		}
+
+		$post_status = get_post_status ( $post_id );
+		$same_author = self::is_the_same_author( $post_id );
+
+		if ( ('private' == $post_status || 'draft' == $post_status) && ! $same_author ) {
+			wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
+		}
+
+		if ( post_password_required( $post_id ) && ! $same_author ) {
+			wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
 		}
 
 		if ( is_null( ( $post = get_post( $post_id ) ) ) ) {
@@ -208,18 +226,6 @@ class Clone_Handler {
 			delete_post_meta($duplicated_post_id, '_elementor_template_type');
 			update_post_meta($duplicated_post_id, '_elementor_template_type', $source_type);
 		}
-	}
-
-	/**
-	 * Register finder category and category items
-	 *
-	 * @param $categories_manager
-	 */
-	public static function register_finder( Categories_Manager $categories_manager ) {
-		include_once HAPPY_ADDONS_DIR_PATH . 'classes/finder-edit.php';
-
-		$categories_manager->register( new Finder_Edit() );
-
 	}
 
 }

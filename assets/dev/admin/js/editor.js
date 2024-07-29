@@ -49,17 +49,17 @@
 
 		settings = view.model.attributes.settings.toJSON();
 
-		var buttonText = !_.isUndefined(settings[args.text])
-				? settings[args.text]
-				: "",
+		var buttonText = !_.isUndefined(settings[ args.text ])
+			? settings[ args.text ]
+			: "",
 			hasOldIcon =
-				!_.isUndefined(settings[args.oldIcon]) && settings[args.oldIcon]
+				!_.isUndefined(settings[ args.oldIcon ]) && settings[ args.oldIcon ]
 					? true
 					: false,
 			hasNewIcon =
-				!_.isUndefined(settings[args.newIcon]) &&
-				_.isObject(settings[args.newIcon]) &&
-				settings[args.newIcon].value
+				!_.isUndefined(settings[ args.newIcon ]) &&
+					_.isObject(settings[ args.newIcon ]) &&
+					settings[ args.newIcon ].value
 					? true
 					: false;
 
@@ -70,7 +70,7 @@
 		if (haHasIconLibrary()) {
 			(btnIconHTML = elementor.helpers.renderIcon(
 				view,
-				settings[args.newIcon],
+				settings[ args.newIcon ],
 				{
 					"aria-hidden": true,
 					class: "ha-btn-icon",
@@ -88,7 +88,7 @@
 		view.addRenderAttribute(args.text, "class", args.textClass);
 
 		view.addRenderAttribute("button", "class", args.class);
-		view.addRenderAttribute("button", "href", settings[args.link].url);
+		view.addRenderAttribute("button", "href", settings[ args.link ].url);
 
 		if (hasNewIcon || hasOldIcon) {
 			if (
@@ -97,7 +97,7 @@
 				btnIconHTML.rendered &&
 				(!hasOldIcon || btnMigrated)
 			) {
-				if (settings[args.newIcon].library === "svg") {
+				if (settings[ args.newIcon ].library === "svg") {
 					btnIcon =
 						'<span class="ha-btn-icon ha-btn-icon--svg">' +
 						btnIconHTML.value +
@@ -128,7 +128,7 @@
 				"</a>",
 			];
 		} else if (buttonText && (hasNewIcon || hasOldIcon)) {
-			if (settings[args.iconPos] === "before") {
+			if (settings[ args.iconPos ] === "before") {
 				view.addRenderAttribute(
 					"button",
 					"class",
@@ -209,42 +209,41 @@
 			}, 100)
 		);
 
-		function scrollToTop ( newValue ) {
+		function scrollToTop(newValue) {
 			// $e.run( 'document/save/update' ).then( _.debounce( function () {
 			// 	elementor.reloadPreview();
 			// }, 1500));
 
-			var changeItem = Object.entries( this.model.changed )[0];
+			var changeItem = Object.entries(this.model.changed)[ 0 ];
 			var settings = this.getSettings().settings; //get saved value
 			var attributes = this.model.attributes;
 			var stt_data = {
-				'check' : 'sttMessage',
-				'changeValue' : newValue,
-				'changeItem' : changeItem
+				'check': 'sttMessage',
+				'changeValue': newValue,
+				'changeItem': changeItem
 			};
 
-			if( 'ha_scroll_to_top_single_disable' != changeItem[0] ) {
+			if ('ha_scroll_to_top_single_disable' != changeItem[ 0 ]) {
 				var data = {
-					'enable_global_stt' : attributes.ha_scroll_to_top_global,
-					'media_type' : attributes.ha_scroll_to_top_media_type,
-					'icon' : attributes.ha_scroll_to_top_button_icon,
-					'image' : attributes.ha_scroll_to_top_button_image,
-					'text' : attributes.ha_scroll_to_top_button_text,
+					'enable_global_stt': attributes.ha_scroll_to_top_global,
+					'media_type': attributes.ha_scroll_to_top_media_type,
+					'icon': attributes.ha_scroll_to_top_button_icon,
+					'image': attributes.ha_scroll_to_top_button_image,
+					'text': attributes.ha_scroll_to_top_button_text,
 				};
 				stt_data = Object.assign(stt_data, data);
 			} else {
-				$e.run( 'document/save/update' ).then( _.debounce( function () {
+				$e.run('document/save/update').then(_.debounce(function () {
 					elementor.reloadPreview();
 				}, 1500));
 			}
 
-			//console.log( stt_data );
-			$("#elementor-preview-iframe")[0].contentWindow.postMessage(stt_data);
+			$("#elementor-preview-iframe")[ 0 ].contentWindow.postMessage(stt_data);
 		}
 
-		var changeHandler = [ "ha_scroll_to_top_global","ha_scroll_to_top_media_type","ha_scroll_to_top_button_icon","ha_scroll_to_top_button_image","ha_scroll_to_top_button_text","ha_scroll_to_top_single_disable" ];
+		var changeHandler = [ "ha_scroll_to_top_global", "ha_scroll_to_top_media_type", "ha_scroll_to_top_button_icon", "ha_scroll_to_top_button_image", "ha_scroll_to_top_button_text", "ha_scroll_to_top_single_disable" ];
 
-		$.each( changeHandler, function( index, value ) {
+		$.each(changeHandler, function (index, value) {
 			elementor.settings.page.addChangeCallback(value, scrollToTop);
 		});
 
@@ -290,7 +289,7 @@
 				return regionViews;
 			}
 
-			var CATEGOERY_NAME = "happy_addons_pro",
+			var CATEGORY_NAME = "happy_addons_pro",
 				elementsView = regionViews.elements.view,
 				categoriesView = regionViews.categories.view,
 				elementsCollection = regionViews.elements.options.collection,
@@ -307,14 +306,14 @@
 						name: "ha-" + name,
 						title: widget.title,
 						icon: widget.icon,
-						categories: [CATEGOERY_NAME],
+						categories: [ CATEGORY_NAME ],
 						editable: false,
 					});
 				}
 			);
 
 			elementsCollection.each(function (element) {
-				if (element.get("categories")[0] === CATEGOERY_NAME) {
+				if (element.get("categories")[ 0 ] === CATEGORY_NAME) {
 					proWidgets.push(element);
 				}
 			});
@@ -324,13 +323,17 @@
 			});
 
 			if (freeCategoryIndex) {
+
 				categoriesCollection.add(
 					{
 						name: "happy_addons_pro_category",
 						title: "Happy Addons Pro",
 						icon: "hm hm-happyaddons",
 						defaultActive: false,
+						sort: true,
+						hideIfEmpty: true,
 						items: proWidgets,
+						promotion: false
 					},
 					{
 						at: freeCategoryIndex + 1,
@@ -350,33 +353,33 @@
 				},
 
 				isHappyWidget: function () {
-					return this.model.get("name").indexOf("ha-") === 0;
+					const widgetName = this.model.get("name");
+					return widgetName != undefined && widgetName.indexOf("ha-") === 0;
 				},
 
 				onMouseDown: function () {
 					if (!this.isHappyWidget()) {
-						elementor.promotion.dialog.buttons[0].removeClass(
-							"ha-btn--promotion"
-						);
 						this.constructor.__super__.onMouseDown.call(this);
 						return;
 					}
 
-					elementor.promotion.dialog.buttons[0].addClass(
-						"ha-btn--promotion"
-					);
-
 					elementor.promotion.showDialog({
-						headerMessage: haGetTranslated(
+						title: haGetTranslated(
 							"promotionDialogHeader",
-							[this.model.get("title")]
+							[ this.model.get("title") ]
 						),
-						message: haGetTranslated("promotionDialogMessage", [
+						content: haGetTranslated("promotionDialogMessage", [
 							this.model.get("title"),
 						]),
-						top: "-7",
-						element: this.el,
-						actionURL: "https://demo.happyaddons.com/",
+						targetElement: this.el,
+						position: {
+							blockStart: '-7'
+						},
+						actionButton: {
+							url: "https://happyaddons.com/pricing/?utm_source=ha-editor-pro-widgets&utm_medium=wp-elementor-editor&utm_campaign=ha-upgrade-pro",
+							text: HappyAddonsEditor.i18n.promotionDialogBtnTxt,
+							classes: [ 'elementor-button', 'ha-btn--promotion', 'go-pro' ]
+						},
 					});
 				},
 			};
@@ -401,30 +404,63 @@
 	// Widget List controller view
 	var WidgetList = elementor.modules.controls.Select2.extend({
 		onBeforeRender: function () {
-			if (this.container && this.container.type === "section") {
+			if (this.container && (this.container.type === "section" || this.container.type === "container")) {
 				var widgetsConfig =
-						elementor.widgetsCache || elementor.config.widgets,
+					elementor.widgetsCache || elementor.config.widgets,
 					widgets = {};
 
-				this.container.children.forEach(function (column) {
-					var $widgets =
-						column.view.$childViewContainer.children(
-							"[data-widget_type]"
-						);
+				if (this.container.type === "section") {
+					this.container.children.forEach(function (column) {
 
-					$widgets.each(function (index, widget) {
-						var name = $(widget).data("widget_type"),
-							name = name.slice(0, name.lastIndexOf(".")),
-							config = !_.isUndefined(widgetsConfig[name])
-								? widgetsConfig[name]
-								: false;
+						var $widgets =
+							column.view.$childViewContainer.children(
+								"[data-widget_type]"
+							);
 
-						if (config) {
-							widgets[config.widget_type] =
-								config.title + " (" + config.widget_type + ")";
-						}
+						$widgets.each(function (index, widget) {
+							var name = $(widget).data("widget_type"),
+								name = name.slice(0, name.lastIndexOf(".")),
+								config = !_.isUndefined(widgetsConfig[ name ])
+									? widgetsConfig[ name ]
+									: false;
+
+							if (config) {
+								widgets[ config.widget_type ] =
+									config.title + " (" + config.widget_type + ")";
+							}
+						});
 					});
-				});
+				};
+
+				if (this.container.type === "container") {
+					var $has_widget = false;
+					this.container.children.some(function (column) {
+						if (column.view.children.length == 0) {
+							$has_widget = (column.view.children.length == 0);
+						}
+						return (column.view.children.length == 0);
+					});
+					this.container.children.forEach(function (column) {
+						let $widgets = column.view.$el.data("element_type") == 'widget' ? column.view.$el : column.view.$el.find('div[data-element_type="widget"]');
+
+
+						$widgets.each(function (index, widget) {
+
+							if ($(widget).data("element_type") == 'widget') {
+								var name = $(widget).data("widget_type"),
+									name = name.slice(0, name.lastIndexOf(".")),
+									config = !_.isUndefined(widgetsConfig[ name ])
+										? widgetsConfig[ name ]
+										: false;
+
+								if (config) {
+									widgets[ config.widget_type ] =
+										config.title + " (" + config.widget_type + ")";
+								}
+							}
+						});
+					});
+				};
 
 				this.model.set("options", widgets);
 			}
@@ -448,13 +484,12 @@
 			if (!_.isObject(args)) {
 				args = {};
 			}
-			// console.log(self.container.settings.get('post_type'));
 			if (
 				args.control_dependency &&
 				_.isObject(args.control_dependency)
 			) {
 				_.each(args.control_dependency, function (prop, key) {
-					args[key] = self.container.settings.get(prop);
+					args[ key ] = self.container.settings.get(prop);
 				});
 			}
 
@@ -548,7 +583,7 @@
 			}
 
 			if (!_.isArray(savedValues)) {
-				savedValues = [savedValues];
+				savedValues = [ savedValues ];
 			}
 
 			var defaults = {

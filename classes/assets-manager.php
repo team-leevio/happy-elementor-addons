@@ -393,6 +393,8 @@ class Assets_Manager {
 	 */
 	public static function editor_enqueue() {
 
+		$suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
+
 		wp_enqueue_style(
 			'happy-icons',
 			HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
@@ -402,14 +404,14 @@ class Assets_Manager {
 
 		wp_enqueue_style(
 			'happy-elementor-addons-editor',
-			HAPPY_ADDONS_ASSETS . 'admin/css/editor.min.css',
+			HAPPY_ADDONS_ASSETS . 'admin/css/editor'.$suffix.'css',
 			null,
 			HAPPY_ADDONS_VERSION
 		);
 
 		wp_enqueue_script(
 			'happy-elementor-addons-editor',
-			HAPPY_ADDONS_ASSETS . 'admin/js/editor.min.js',
+			HAPPY_ADDONS_ASSETS . 'admin/js/editor'.$suffix.'js',
 			['elementor-editor', 'jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
@@ -431,6 +433,7 @@ class Assets_Manager {
 			'i18n' => [
 				'promotionDialogHeader'     => esc_html__('%s Widget', 'happy-elementor-addons'),
 				'promotionDialogMessage'    => esc_html__('Use %s widget with other exclusive pro widgets and 100% unique features to extend your toolbox and build sites faster and better.', 'happy-elementor-addons'),
+				'promotionDialogBtnTxt'    => esc_html__('Upgrade Now', 'happy-elementor-addons'),
 				'templatesEmptyTitle'       => esc_html__('No Templates Found', 'happy-elementor-addons'),
 				'templatesEmptyMessage'     => esc_html__('Try different category or sync for new templates.', 'happy-elementor-addons'),
 				'templatesNoResultsTitle'   => esc_html__('No Results Found', 'happy-elementor-addons'),
@@ -493,7 +496,7 @@ class Assets_Manager {
 		}
 
 		$data = '
-		.elementor-add-new-section{
+		.elementor-add-section[data-view=choose-action] .elementor-add-new-section {
 			display: inline-flex !important;
 			flex-wrap: wrap;
 			align-items: center;
@@ -506,6 +509,10 @@ class Assets_Manager {
 			background-color: #5636d1;
 			margin-left: 5px;
 			font-size: 20px;
+			color: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 		';
 		wp_add_inline_style('happy-elementor-addons', $data);

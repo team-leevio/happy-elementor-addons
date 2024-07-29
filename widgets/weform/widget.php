@@ -11,7 +11,7 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -199,7 +199,9 @@ class WeForm extends Base {
                 'name' => 'field_typography',
                 'label' => __( 'Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input:not(.weforms_submit_btn), .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields textarea',
-                'scheme' => Typography::TYPOGRAPHY_3
+                'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
             ]
         );
 
@@ -356,7 +358,9 @@ class WeForm extends Base {
                 'name' => 'label_typography',
                 'label' => __( 'Label Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpuf-label label, {{WRAPPER}} .wpuf-form-sub-label',
-                'scheme' => Typography::TYPOGRAPHY_3
+                'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
             ]
         );
 
@@ -366,7 +370,9 @@ class WeForm extends Base {
                 'name' => 'desc_typography',
                 'label' => __( 'Help Text Typography', 'happy-elementor-addons' ),
                 'selector' => '{{WRAPPER}} .wpuf-fields .wpuf-help',
-                'scheme' => Typography::TYPOGRAPHY_3
+                'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
             ]
         );
 
@@ -517,7 +523,9 @@ class WeForm extends Base {
             [
                 'name' => 'submit_typography',
                 'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]',
-                'scheme' => Typography::TYPOGRAPHY_4
+                'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
             ]
         );
 
@@ -661,7 +669,9 @@ class WeForm extends Base {
 				'name' => 'break_title_typography',
 				'label' => __( 'Title Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .section_break .wpuf-section-title',
-				'scheme' => Typography::TYPOGRAPHY_2
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 			]
 		);
 
@@ -671,7 +681,9 @@ class WeForm extends Base {
 				'name' => 'break_description_typography',
 				'label' => __( 'Description Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .section_break .wpuf-section-details',
-				'scheme' => Typography::TYPOGRAPHY_4
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
 			]
 		);
 

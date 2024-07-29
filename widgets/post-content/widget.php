@@ -6,7 +6,7 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
 
@@ -143,7 +143,9 @@ class Post_Content extends Base {
 				'name' => 'title_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} h2',
-				'scheme' => Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 			]
 		);
         
@@ -172,7 +174,9 @@ class Post_Content extends Base {
 				'name' => 'content_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} p',
-				'scheme' => Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 			]
 		);
 

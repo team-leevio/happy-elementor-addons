@@ -9,7 +9,6 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
-use Elementor\Core\Schemes\Typography;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Typography;
@@ -18,6 +17,7 @@ use Elementor\Group_Control_Image_Size;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
 use Elementor\Utils;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -983,7 +983,9 @@ class Comparison_Table extends Base {
 			[
 				'name'     => 'head_typography',
 				'selector' => '{{WRAPPER}} .ha-comparison-table-wrapper .ha-comparison-table__head-column-cell-title-tag',
-				'scheme'   => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -1012,7 +1014,9 @@ class Comparison_Table extends Base {
 			[
 				'name'     => 'content_typography',
 				'selector' => '{{WRAPPER}} .ha-comparison-table-wrapper .ha-comparison-table__head-column-cell-content',
-				'scheme'   => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -1256,7 +1260,9 @@ class Comparison_Table extends Base {
 			[
 				'name'     => 'row_text_typography',
 				'selector' => '{{WRAPPER}} .ha-comparison-table__row-item-cell-title',
-				'scheme'   => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 		
@@ -1285,7 +1291,9 @@ class Comparison_Table extends Base {
 			[
 				'name'     => 'row_content_typography',
 				'selector' => '{{WRAPPER}} .ha-comparison-table__row-item-cell-content',
-				'scheme'   => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -1377,6 +1385,10 @@ class Comparison_Table extends Base {
 			[
 				'label'     => __( 'Size', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::SLIDER,
+				'default' => [
+					'unit' => 'px',
+					'size' => 30,
+				],
 				'selectors' => [
 					'{{WRAPPER}} .ha-comparison-table__row-cell-icon'     => 'font-size: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .ha-comparison-table__row-cell-icon i'   => 'font-size: {{SIZE}}{{UNIT}};',
@@ -1427,7 +1439,9 @@ class Comparison_Table extends Base {
 				'name'     => 'btn_text_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-comparison-table__btns-item--btn',
-				'scheme'   => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 

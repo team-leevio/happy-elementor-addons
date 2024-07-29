@@ -9,7 +9,7 @@ namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Happy_Addons\Elementor\Traits\Link_Hover_Markup;
 
 class Link_Hover extends Base {
@@ -204,7 +204,9 @@ class Link_Hover extends Base {
 				'name'     => 'title_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-link',
-				'scheme'   => Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 			)
 		);
 		$this->end_controls_section();

@@ -82,12 +82,18 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/happy-particle-effect/',
 				'is_pro' => true,
 			],
-			// 'happy-preset' => [
-			// 	'title' => __( 'Preset', 'happy-elementor-addons' ),
-			// 	'icon' => 'hm hm-color-card',
-			// 	'demo' => 'https://happyaddons.com/presets-demo/',
-			// 	'is_pro' => true,
-			// ]
+			'happy-preset' => [
+				'title' => __( 'Preset', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-color-card',
+				'demo' => 'https://happyaddons.com/presets-demo/',
+				'is_pro' => true,
+			],
+			'global-badge' => [
+				'title' => __( 'Global Badge', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-global-badge',
+				'demo' => 'https://happyaddons.com/global-badge/',
+				'is_pro' => true,
+			],
 		];
 	}
 
@@ -193,6 +199,10 @@ class Extensions_Manager {
 
 			case 'happy-particle-effects':
 				add_filter( 'happyaddons/extensions/happy_particle_effects', '__return_false' );
+				break;
+
+			case 'global-badge':
+				add_filter( 'happyaddons/extensions/happy_global_badge', '__return_false' );
 				break;
 
 			// case 'happy-preset':

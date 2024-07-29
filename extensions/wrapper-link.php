@@ -9,6 +9,7 @@ defined('ABSPATH') || die();
 class Wrapper_Link {
 
 	public static function init() {
+		add_action( 'elementor/element/container/section_layout/after_section_end', [ __CLASS__, 'add_controls_section' ], 1 );
 		add_action( 'elementor/element/column/section_advanced/after_section_end', [ __CLASS__, 'add_controls_section' ], 1 );
 		add_action( 'elementor/element/section/section_advanced/after_section_end', [ __CLASS__, 'add_controls_section' ], 1 );
 		add_action( 'elementor/element/common/_section_style/after_section_end', [ __CLASS__, 'add_controls_section' ], 1 );
@@ -19,7 +20,7 @@ class Wrapper_Link {
 	public static function add_controls_section( Element_Base $element) {
 		$tabs = Controls_Manager::TAB_CONTENT;
 
-		if ( 'section' === $element->get_name() || 'column' === $element->get_name() ) {
+		if ( 'section' === $element->get_name() || 'column' === $element->get_name()  || 'container' === $element->get_name() ) {
 			$tabs = Controls_Manager::TAB_LAYOUT;
 		}
 
@@ -48,6 +49,8 @@ class Wrapper_Link {
 
 	public static function before_section_render( Element_Base $element ) {
 		$link_settings = $element->get_settings_for_display( 'ha_element_link' );
+		$link_settings['url'] = esc_url( $link_settings['url'] );
+		unset( $link_settings['custom_attributes'] );
 
 		if ( $link_settings && ! empty( $link_settings['url'] ) ) {
 			$element->add_render_attribute(

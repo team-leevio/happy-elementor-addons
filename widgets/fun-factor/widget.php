@@ -9,13 +9,13 @@ namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Icons_Manager;
-use Elementor\Core\Schemes\Typography;
 use Elementor\Utils;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 defined('ABSPATH') || die();
 
@@ -706,7 +706,9 @@ class Fun_Factor extends Base {
 			[
 				'name'     => 'number_typography',
 				'label'    => __('Typography', 'happy-elementor-addons'),
-				'scheme'   => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector' => '{{WRAPPER}} .ha-fun-factor__content-number-prefix, {{WRAPPER}} .ha-fun-factor__content-number, {{WRAPPER}} .ha-fun-factor__content-number-suffix',
 			]
 		);
@@ -761,7 +763,9 @@ class Fun_Factor extends Base {
 			[
 				'name'     => 'content_typography',
 				'label'    => __('Typography', 'happy-elementor-addons'),
-				'scheme'   => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector' => '{{WRAPPER}} .ha-fun-factor__content-text',
 			]
 		);
@@ -886,7 +890,7 @@ class Fun_Factor extends Base {
                 <div class="ha-fun-factor__media ha-fun-factor__media--icon">
                     <?php Icons_Manager::render_icon( $settings['icons'], ['aria-hidden' => 'true'] ); ?>
                 </div>
-            <?php elseif ( $settings['image']['url'] || $settings['image']['id'] ) : ?>
+            <?php elseif ( isset($settings['image']) && isset($settings['image']['url']) && isset($settings['image']['id']) ) : ?>
                 <div class="ha-fun-factor__media ha-fun-factor__media--image">
                     <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
                 </div>

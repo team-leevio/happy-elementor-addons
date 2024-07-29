@@ -6,8 +6,8 @@ use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Core\Schemes\Typography;
 use Elementor\Core\Kits\Documents\Tabs\Tab_Base;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 class Scroll_To_Top_Kit_Setings extends Tab_Base {
 
@@ -420,7 +420,9 @@ class Scroll_To_Top_Kit_Setings extends Tab_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name'      => 'ha_scroll_to_top_button_text_typo',
-				'scheme'    => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector'  => '.ha-scroll-to-top-wrap .ha-scroll-to-top-button span',
 				'condition' => [
 					'ha_scroll_to_top_global'     => 'yes',

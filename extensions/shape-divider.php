@@ -12,6 +12,7 @@ class Shape_Divider {
 	public static function init() {
 		add_filter( 'elementor/shapes/additional_shapes', [__CLASS__, 'additional_shape_divider'] );
 		add_action( 'elementor/element/section/section_shape_divider/before_section_end', [__CLASS__, 'update_shape_list'] );
+		add_action( 'elementor/element/container/section_shape_divider/before_section_end', [__CLASS__, 'update_shape_list'] );
 	}
 
 	public static function update_shape_list( Element_Base $element ) {

@@ -6,7 +6,7 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Text_Shadow;
@@ -183,7 +183,9 @@ class Site_Title extends Base {
 				'name' => 'site_title_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-site-title',
-				'scheme' => Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 			]
 		);
 
@@ -208,7 +210,11 @@ class Site_Title extends Base {
         }
 
 		echo '<a href="' . esc_url(home_url('/')) . '">';
-        printf('<%1$s %2$s>%3$s</%1$s>', $settings['site_title_tag'], $this->get_render_attribute_string('title'), get_bloginfo('name') );
+        printf('<%1$s %2$s>%3$s</%1$s>',
+			ha_escape_tags( $settings['site_title_tag'] ),
+			$this->get_render_attribute_string('title'),
+			get_bloginfo('name')
+		);
 		echo '</a>';
 	}
 }

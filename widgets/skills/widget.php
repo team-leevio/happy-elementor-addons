@@ -11,7 +11,7 @@ use Elementor\Repeater;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -327,7 +327,9 @@ class Skills extends Base {
             [
                 'name' => 'info_typography',
                 'selector' => '{{WRAPPER}} .ha-skill-info',
-                'scheme' => Typography::TYPOGRAPHY_3,
+                'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
             ]
         );
 
@@ -351,10 +353,10 @@ class Skills extends Base {
 
         foreach ( $settings['skills'] as $index => $skill ) :
             $name_key = $this->get_repeater_setting_key( 'name', 'bars', $index );
-            $this->add_inline_editing_attributes( $name_key, 'none' );
+            // $this->add_inline_editing_attributes( $name_key, 'none' );
             $this->add_render_attribute( $name_key, 'class', 'ha-skill-name' );
             ?>
-            <div class="ha-skill ha-skill--<?php echo esc_attr( $settings['view'] ); ?> elementor-repeater-item-<?php echo $skill['_id']; ?>">
+            <div class="ha-skill ha-skill--<?php echo esc_attr( $settings['view'] ); ?> elementor-repeater-item-<?php echo esc_attr( $skill['_id'] ); ?>">
                 <div class="ha-skill-level" data-level="<?php echo esc_attr( $skill['level']['size'] ); ?>">
                     <div class="ha-skill-info"><span <?php echo $this->get_render_attribute_string( $name_key ); ?>><?php echo esc_html( $skill['name'] ); ?></span><span class="ha-skill-level-text"></span></div>
                 </div>
@@ -363,13 +365,13 @@ class Skills extends Base {
         endforeach;
     }
 
-    protected function content_template() {
+	protected function content_template() {
         ?>
         <#
         if (_.isArray(settings.skills)) {
             _.each(settings.skills, function(skill, index) {
             var nameKey = view.getRepeaterSettingKey( 'name', 'skills', index);
-            view.addInlineEditingAttributes( nameKey, 'none' );
+            //view.addInlineEditingAttributes( nameKey, 'none' );
             view.addRenderAttribute( nameKey, 'class', 'ha-skill-name' );
             #>
             <div class="ha-skill ha-skill--{{settings.view}} elementor-repeater-item-{{skill._id}}">
@@ -381,4 +383,5 @@ class Skills extends Base {
         } #>
         <?php
     }
+
 }

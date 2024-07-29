@@ -9,7 +9,7 @@ namespace Happy_Addons\Elementor\Widget;
 defined( 'ABSPATH' ) || die();
 
 use Elementor\Controls_Manager;
-use Elementor\Core\Schemes;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
@@ -701,7 +701,9 @@ class Post_List extends Base {
 			[
 				'name'     => 'title_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme'   => Schemes\Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 				'selector' => '{{WRAPPER}} .ha-post-list-title',
 			]
 		);
@@ -926,7 +928,9 @@ class Post_List extends Base {
 			[
 				'name'     => 'excerpt_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme'   => Schemes\Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector' => '{{WRAPPER}} .ha-post-list-excerpt p',
 			]
 		);
@@ -975,7 +979,9 @@ class Post_List extends Base {
 			[
 				'name'     => 'meta_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme'   => Schemes\Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector' => '{{WRAPPER}} .ha-post-list-meta-wrap span',
 			]
 		);

@@ -46,8 +46,14 @@ class Cache_Manager {
 	}
 
 	public static function is_built_with_elementor( $post_id ) {
-		// return ha_elementor()->db->is_built_with_elementor( $post_id );
-		return ha_elementor()->documents->get( $post_id )->is_built_with_elementor();
+		$post = get_post($post_id);
+		if(!empty($post) && isset($post->ID)) {
+			$document = ha_elementor()->documents->get($post->ID);
+			if (is_object($document) && method_exists($document, 'is_built_with_elementor')) {
+				return $document->is_built_with_elementor();
+			}
+		}
+		return false;
 	}
 
 	public static function should_enqueue( $post_id ) {

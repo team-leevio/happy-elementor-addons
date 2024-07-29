@@ -1,114 +1,114 @@
 #happy_addons_news_update {
-    .ha-setup--wrap {
-        padding: 12px;
-        margin: -12px -12px 0;
-        border-bottom: 1px solid #eee;
+	.ha-setup--wrap {
+		padding: 12px;
+		margin: -12px -12px 0;
+		border-bottom: 1px solid #eee;
 
-        .setup-wizard-finish-setup .progress-wrapper {
-            border: 1px solid #757575;
-            border-radius: 16px;
-            font-size: 0.9em;
-            padding: 2px 8px 2px 8px;
-            display: inline-block;
-            box-sizing: border-box;
-        }
+		.setup-wizard-finish-setup .progress-wrapper {
+			border: 1px solid #757575;
+			border-radius: 16px;
+			font-size: 0.9em;
+			padding: 2px 8px 2px 8px;
+			display: inline-block;
+			box-sizing: border-box;
+		}
 
-        .setup-wizard-finish-setup .progress-wrapper span {
-            position: relative;
-            top: -3px;
-            color: #757575;
-        }
+		.setup-wizard-finish-setup .progress-wrapper span {
+			position: relative;
+			top: -3px;
+			color: #757575;
+		}
 
-        .setup-wizard-finish-setup .description {
-            display: flex;
-            align-items: center;
-        }
+		.setup-wizard-finish-setup .description {
+			display: flex;
+			align-items: center;
+		}
 
-        .setup-wizard-finish-setup .description h4 {
-            font-weight: bold;
-        }
+		.setup-wizard-finish-setup .description h4 {
+			font-weight: bold;
+		}
 
-        .setup-wizard-finish-setup .description p {
-            margin-top: 0px;
-        }
+		.setup-wizard-finish-setup .description p {
+			margin-top: 0px;
+		}
 
-        .setup-wizard-finish-setup .description div {
-            float: left;
-            width: 70%;
-        }
+		.setup-wizard-finish-setup .description div {
+			float: left;
+			width: 70%;
+		}
 
-        .setup-wizard-finish-setup .description img {
-            float: right;
-            padding-left: 26px;
-            width: 25%;
-        }
+		.setup-wizard-finish-setup .description img {
+			float: right;
+			padding-left: 26px;
+			width: 25%;
+		}
 
-        .setup-wizard-finish-setup .description a {
-            background: #e2498a;
-            color: #fff;
-            border: none;
-        }
+		.setup-wizard-finish-setup .description a {
+			background: #e2498a;
+			color: #fff;
+			border: none;
+		}
 
-        .setup-wizard-finish-setup .description a:hover {
-            background: #d6226e;
-        }
-    }
+		.setup-wizard-finish-setup .description a:hover {
+			background: #d6226e;
+		}
+	}
 
-    .ha-overview__feed {
-        & > a {
-            display: flex;
-        }
-    }
+	.ha-overview__feed {
+		&>a {
+			display: flex;
+		}
+	}
 
-    .ha-overview--banner {
-        width: 100%;
-    }
+	.ha-overview--banner {
+		width: 100%;
+	}
 
-    .ha-divider-bottom {
-        border-bottom: 1px solid #eee;
-        margin: 0 -12px;
-    }
+	.ha-divider-bottom {
+		border-bottom: 1px solid #eee;
+		margin: 0 -12px;
+	}
 
-    .ha-instruction {
-        padding: 10px 10px;
-    }
+	.ha-instruction {
+		padding: 10px 10px;
+	}
 
-    .ha-overview__post {
-        &:hover {
-            text-decoration: underline;
-        }
+	.ha-overview__post {
+		margin-bottom: 10px;
 
-        margin-bottom: 10px;
-    }
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 
-    .ha-overview__post-link {
-        font-weight: 500;
-    }
+	.ha-overview__post-link {
+		font-weight: 500;
+	}
 
-    .ha-divider-top {
-        border-top: 1px solid #eee;
-        margin: 0 -12px;
-    }
+	.ha-divider-top {
+		border-top: 1px solid #eee;
+		margin: 0 -12px;
+	}
 
-    .ha-overview__footer {
-        padding: 10px 6px 0 8px;
-    }
+	.ha-overview__footer {
+		padding: 10px 6px 0 8px;
+	}
 
-    .ha-overview__footer {
-        ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
+	.ha-overview__footer {
+		ul {
+			display: flex;
+			list-style: none;
+			margin: 0;
 
-            li:not(:first-of-type) {
-                border-left: 1px solid #ddd;
-                padding-left: 4px;
-                margin-right: 4px;
-            }
+			li:not(:first-of-type) {
+				border-left: 1px solid #ddd;
+				padding-left: 4px;
+				margin-right: 4px;
+			}
 
-            li:first-of-type {
-                margin-right: 4px;
-            }
-        }
-    }
+			li:first-of-type {
+				margin-right: 4px;
+			}
+		}
+	}
 }

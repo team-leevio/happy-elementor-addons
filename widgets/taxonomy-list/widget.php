@@ -8,7 +8,7 @@
 namespace Happy_Addons\Elementor\Widget;
 
 use Elementor\Controls_Manager;
-use Elementor\Core\Schemes;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
@@ -355,11 +355,12 @@ class Taxonomy_List extends Base {
 					'right' => 'justify-content: flex-end',
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-taxonomy-list .ha-taxonomy-list-item a' => '{{VALUE}};'
+					'{{WRAPPER}} .ha-taxonomy-list .ha-taxonomy-list-item a' => '{{VALUE}};',
+					'{{WRAPPER}} .ha-taxonomy-list.ha-taxonomy-list-inline' => '{{VALUE}};'
 				],
-				'condition' => [
-					'view' => 'list',
-				]
+				// 'condition' => [
+				// 	'view' => 'list',
+				// ]
 			]
 		);
 
@@ -565,7 +566,9 @@ class Taxonomy_List extends Base {
 			[
 				'name' => 'title_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme' => Schemes\Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 				'selector' => '{{WRAPPER}} .ha-taxonomy-list-title',
 			]
 		);
@@ -778,7 +781,7 @@ class Taxonomy_List extends Base {
 								echo '<span class="ha-taxonomy-list-' . esc_attr( $icon_settings ) . '">';
 								if ( 'icon' === $icon_settings && !empty( $icon ) ) :
 									Icons_Manager::render_icon( $icon, [ 'aria-hidden' => 'true' ] );
-											elseif ( 'image' === $icon_settings && !empty( $image_url ) ) :
+								elseif ( 'image' === $icon_settings && !empty( $image_url ) ) :
 									echo '<img src="' . esc_url( $image_url ) . '">';
 								endif;
 								echo '</span>';

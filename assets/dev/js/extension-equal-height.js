@@ -58,6 +58,106 @@
 				var _this = this;
 
 				return this.getEqhWidgets().map(function(widget) {
+					if ( false && _this.$element.data("element_type") === "container" ) {
+						var $key = 0;
+						var $widgets = {};
+						var $container = _this.$element;
+						let cls = '.elementor-widget-'+widget + ' .elementor-widget-container';
+
+						if($container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls).length){
+							$widgets = $container.find(' > .e-con-inner > div[data-element_type="container"] > '+cls);
+						}
+
+						if($container.find(' > div[data-element_type="container"] > '+cls).length){
+
+							if( $widgets.length ) {
+								let $key = $widgets.length;
+							$container.find(' > div[data-element_type="container"] > '+cls).each(function(){
+								let id = $(this).parent().data('id');
+								if( ! $widgets.hasOwnProperty($key) ){
+									$widgets[$key] = $(this)[0];
+
+								}
+								$key += 1;
+								});
+								$widgets.length = $key;
+							} else {
+								$widgets = $container.find(' > div[data-element_type="container"] > '+cls);
+							}
+						}
+
+						if($container.find(' > .e-con-inner > div[data-element_type="container"] > .e-con-inner > '+cls).length){
+							if( $widgets.length ) {
+								let $key = $widgets.length;
+								$container.find(' > .e-con-inner > div[data-element_type="container"] > .e-con-inner > '+cls).each(function(){
+									let id = $(this).parent().data('id');
+									if( ! $widgets.hasOwnProperty($key) ){
+										$widgets[$key] = $(this)[0];
+									}
+									$key += 1;
+								  });
+								  $widgets.length = $key;
+							} else{
+								$widgets = $container.find(' > .e-con-inner > div[data-element_type="container"] > .e-con-inner > '+cls);
+							}
+						}
+
+						if($container.find(' > div[data-element_type="container"] > .e-con-inner > '+cls).length){
+
+							if( $widgets.length ) {
+								let $key = $widgets.length;
+								$container.find(' > div[data-element_type="container"] > .e-con-inner > '+cls).each(function(){
+									let id = $(this).parent().data('id');
+									if( ! $widgets.hasOwnProperty($key) ){
+										$widgets[$key] = $(this)[0];
+									}
+									$key += 1;
+								  });
+								  $widgets.length = $key;
+
+							} else{
+								$widgets = $container.find(' > div[data-element_type="container"] > .e-con-inner > '+cls);
+							}
+						}
+
+						if($container.find(' > .e-con-inner > '+cls).length){
+
+							if( $widgets.length ) {
+								let $key = $widgets.length;
+								$container.find(' > .e-con-inner > '+cls).each(function(){
+									let id = $(this).parent().data('id');
+									if( ! $widgets.hasOwnProperty($key) ){
+										$widgets[$key] = $(this)[0];
+									}
+									$key += 1;
+								});
+								$widgets.length = $key;
+
+							} else{
+								$widgets = $container.find(' > .e-con-inner > '+cls);
+							}
+						}
+
+						if($container.find(' > '+cls).length){
+
+							if( $widgets.length ) {
+								let $key = $widgets.length;
+								$container.find(' > '+cls).each(function(){
+									let id = $(this).parent().data('id');
+									if( ! $widgets.hasOwnProperty($key) ){
+										$widgets[$key] = $(this)[0];
+									}
+									$key += 1;
+								});
+								$widgets.length = $key;
+
+							} else{
+								$widgets = $container.find(' > '+cls);
+							}
+						}
+						return $widgets;
+					}
+
 					return _this.$element.find('.elementor-widget-'+widget + ' .elementor-widget-container');
 				});
 			},
@@ -65,8 +165,7 @@
 			bindEvents: function () {
 				if (this.isEqhEnabled()) {
 					this.run();
-
-					$window.on('resize scroll orientationchange', debounce(this.run.bind(this), 80));
+					$window.on('resize orientationchange', debounce(this.run.bind(this), 500));
 				}
 			},
 
@@ -113,6 +212,10 @@
 		});
 
 		elementorFrontend.hooks.addAction( 'frontend/element_ready/section', function( $scope ) {
+			elementorFrontend.elementsHandler.addHandler( EqualHeightHandler, { $element: $scope });
+		});
+
+		elementorFrontend.hooks.addAction( 'frontend/element_ready/container', function( $scope ) {
 			elementorFrontend.elementsHandler.addHandler( EqualHeightHandler, { $element: $scope });
 		});
 	});

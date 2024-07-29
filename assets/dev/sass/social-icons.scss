@@ -35,11 +35,17 @@ a.ha-social-icon:after {
 	margin-right: 2px;
 }
 
-.ha-social-icon i {
+.ha-social-icon i, .ha-social-icon svg {
 	position: relative;
 	display: initial;
 	width: 1em;
 	height: 1em;
+}
+
+.ha-social-icon svg {
+	width: auto;
+    height: 1em;
+    fill: currentColor;
 }
 
 .ha-social-icon-label {

@@ -12,7 +12,7 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Background;
 use Happy_Addons\Elementor\Controls\Select2;
 
@@ -340,7 +340,9 @@ class News_Ticker extends Base {
 			[
 				'name' => 'sticky_title_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper  span.ha-news-ticker-sticky-title',
 			]
 		);
@@ -450,7 +452,9 @@ class News_Ticker extends Base {
 			[
 				'name' => 'title_typography',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector' => '{{WRAPPER}} .ha-news-ticker-wrapper  li.ha-news-ticker-item .ha-news-ticker-title',
 			]
 		);
@@ -471,9 +475,9 @@ class News_Ticker extends Base {
 	protected function render () {
 
 		$settings = $this->get_settings_for_display();
-		if ( empty( $settings['selected_posts'] ) ) {
-			return;
-		}
+		if ( empty( $settings['selected_posts'] ) ) { ?>
+			<div style="margin: 1rem;padding: 1rem 1.25rem;border-left: 5px solid #f5c848;color: #856404;background-color: #fff3cd;"><?php echo esc_html('Plese select news ticker posts.', 'happy-elementor-addons'); ?></div>
+		<?php }
 
 		$query_args = [
 			'post_type'           => 'post',
@@ -497,7 +501,7 @@ class News_Ticker extends Base {
 		$this->add_render_attribute( 'container', 'class', [ 'ha-news-ticker-container' ] );
 		$this->add_render_attribute( 'item', 'class', [ 'ha-news-ticker-item' ] );
 
-		if ( count( $news_posts ) !== 0 ) :?>
+		if ( count( $news_posts ) !== 0 && !empty( $settings['selected_posts'] ) ) :?>
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
 				<?php if ( $settings['sticky_title'] ): ?>
 					<span class="ha-news-ticker-sticky-title">

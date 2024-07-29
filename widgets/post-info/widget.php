@@ -791,9 +791,9 @@ class Post_Info extends Base {
 			case 'comments':
 				if ( comments_open() ) {
 					$default_strings = [
-						'string_no_comments' => __( 'No Comments', 'ha-pro' ),
-						'string_one_comment' => __( 'One Comment', 'ha-pro' ),
-						'string_comments' => __( '%s Comments', 'ha-pro' ),
+						'string_no_comments' => __( 'No Comments', 'happy-elementor-addons' ),
+						'string_one_comment' => __( 'One Comment', 'happy-elementor-addons' ),
+						'string_comments' => __( '%s Comments', 'happy-elementor-addons' ),
 					];
 
 					if ( 'yes' === $repeater_item['comments_custom_strings'] ) {
@@ -815,7 +815,7 @@ class Post_Info extends Base {
 					if ( 0 === $num_comments ) {
 						$item_data['text'] = $default_strings['string_no_comments'];
 					} else {
-						$item_data['text'] = sprintf( _n( $default_strings['string_one_comment'], $default_strings['string_comments'], $num_comments, 'ha-pro' ), $num_comments );
+						$item_data['text'] = sprintf( _n( $default_strings['string_one_comment'], $default_strings['string_comments'], $num_comments, 'happy-elementor-addons' ), $num_comments );
 					}
 
 					if ( 'yes' === $repeater_item['link'] ) {

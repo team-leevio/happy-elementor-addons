@@ -39,7 +39,6 @@ jQuery(document).ready(function ($) {
 		var _long_id = $(this).attr("id");
 		var _id = _long_id.replace("wp-admin-bar-elementor_edit_doc_", "");
 		var _label = $("#" + _long_id + " .elementor-edit-link-type");
-
 		jQuery.ajax({
 			url: HappyAdmin.ajax_url,
 			type: "get",
@@ -52,7 +51,6 @@ jQuery(document).ready(function ($) {
 			success: function (response) {
 				if (response && response.data) {
 					var templateType = response.data;
-					console.log(templateType);
 					if (
 						templateType &&
 						["header", "footer", "single"].includes(templateType)
@@ -69,8 +67,6 @@ jQuery(document).ready(function ($) {
 				}
 			},
 		});
-
-		// console.log(_id);
 	});
 });
 
@@ -102,8 +98,7 @@ jQuery(function ($) {
 	function checkButtonDisabled() {
 		var typeVal = templateType.value;
 		var nameVal = templateName.value;
-
-		console.log(nameVal);
+		
 		if (typeVal && nameVal) {
 			templateButton.disabled = false;
 		} else {

@@ -12,9 +12,9 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
 use Elementor\Utils;
 use Elementor\Icons_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 defined( 'ABSPATH' ) || die();
 
@@ -71,7 +71,7 @@ class Carousel extends Base {
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
-		
+
 		if( ha_has_pro() ){
 			$this->add_control(
 				'ha_image_carousel_layout_type',
@@ -342,6 +342,23 @@ class Carousel extends Base {
 		);
 
 		$this->add_control(
+			'slides_to_scroll',
+			[
+				'label' => __( 'Scroll As Shown Slides', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'description' => __( 'Scroll slide number will be same as Slides To Show.', 'happy-elementor-addons' ),
+				'label_on' => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'frontend_available' => true,
+				'render_type' => 'ui',
+				'condition' => [
+					'slides_to_show!' => '1'
+				],
+			]
+		);
+
+		$this->add_control(
 			'arrow_prev_icon',
 			[
 				'label' => __( 'Previous Icon', 'happy-elementor-addons' ),
@@ -499,7 +516,9 @@ class Carousel extends Base {
 				'name' => 'title',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-slick-title',
-				'scheme' => Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 			]
 		);
 
@@ -541,7 +560,9 @@ class Carousel extends Base {
 				'name' => 'subtitle',
 				'label' => __( 'Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-slick-subtitle',
-				'scheme' => Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 

@@ -29,7 +29,7 @@ class Mailchimp_Api {
 
 		self::$api_key = isset( self::$credentials['api'] ) ? self::$credentials['api'] : '';
 
-		$widget_settings = ha_get_ele_widget_settings( $_POST['post_id'], $_POST['widget_id'] );
+		$widget_settings = ha_get_ele_widget_settings( absint($_POST['post_id']), sanitize_text_field($_POST['widget_id']) );
 
 		$tags = '';
 		if( !empty($widget_settings) ) {
@@ -39,7 +39,7 @@ class Mailchimp_Api {
 
 		$auth = [
 			'api_key' => self::$api_key,
-			'list_id' => $_POST['list_id'],
+			'list_id' => sanitize_text_field($_POST['list_id']),
 		];
 
 		if ( isset($widget_settings['mailchimp_api_choose']) && $widget_settings['mailchimp_api_choose'] == 'custom' ) {
@@ -64,6 +64,10 @@ class Mailchimp_Api {
 		$server = explode( '-', $auth['api_key'] );
 
 		if ( ! isset( $server[1] ) ) {
+			return ['status' => 0, 'msg' => esc_html__( 'Invalid API key.', 'happy-elementor-addons' )];
+		}
+
+		if( strpos( $server[1], 'us' ) === false ) {
 			return ['status' => 0, 'msg' => esc_html__( 'Invalid API key.', 'happy-elementor-addons' )];
 		}
 
