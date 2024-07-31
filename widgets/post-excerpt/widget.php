@@ -211,7 +211,9 @@ class Post_Excerpt extends Base {
 			[
 				'name' => 'readmore_typography',
 				'label' => __('Typography', 'happy-elementor-addons'),
-				'scheme' => Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 				'selector' => '{{WRAPPER}} .ha-pe-readmore a',
 			]
 		);
