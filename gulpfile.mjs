@@ -41,6 +41,7 @@ const packageVersion = packageJSON.version;
 
 const buildSrcFiles = [
 	"./**/*",
+	"!./dist/*",
 	"!./**/_*/",
 	"!./node_modules/**",
 	"!./.csscomb.json",
@@ -160,34 +161,27 @@ function buildRelease () {
 }
 
 function deleteBuild () {
-	return src( [ "./dist/build" ], {
-		read: false,
-		allowEmpty: true,
-	} ).pipe( gulpClean( { force: true } ) );
-}
-
-function deleteZip () {
-	return src( [ "./dist/" + packageName + "-v*.zip" ], {
+	return src( [ "./dist" ], {
 		read: false,
 		allowEmpty: true,
 	} ).pipe( gulpClean( { force: true } ) );
 }
 
 export const build = series(
+	deleteBuild,
 	makeFrontendCSS,
 	makeBackendCSS,
 	makeFrontendJS,
 	makeBackendJS,
-	deleteBuild,
 	buildRelease
 );
 
 export const zip = series(
+	deleteBuild,
 	makeFrontendCSS,
 	makeBackendCSS,
 	makeFrontendJS,
 	makeBackendJS,
-	deleteZip,
 	buildZip
 );
 
