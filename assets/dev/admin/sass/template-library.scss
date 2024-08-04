@@ -9,17 +9,17 @@ $secondary-color: #e8357c;
 	transition: width .2s, height .2s;
 }
 
-.haTemplateLibrary__preview > iframe {
+.haTemplateLibrary__preview>iframe {
 	height: 150%;
 	width: 150%;
-    transform: scale(0.666) translateX(-25%) translateY(-25%);
+	transform: scale(0.666) translateX(-25%) translateY(-25%);
 }
 
 .haTemplateLibrary__logo-wrap {
 	margin-right: 10px;
 	display: inline-block;
 	width: 30px;
-    height: 30px;
+	height: 30px;
 	text-align: center;
 	line-height: 30px;
 	border-radius: 100%;
@@ -27,9 +27,9 @@ $secondary-color: #e8357c;
 	background-color: $primary-color;
 }
 
-.haTemplateLibrary__logo-wrap > i {
+.haTemplateLibrary__logo-wrap>i {
 	position: relative;
-    top: 1px;
+	top: 1px;
 }
 
 .haTemplateLibrary__logo-title {
@@ -38,8 +38,8 @@ $secondary-color: #e8357c;
 
 .haTemplateLibrary__responsive-menu-item {
 	display: inline-block;
-    padding: 15px 0;
-    width: 40px;
+	padding: 15px 0;
+	width: 40px;
 	cursor: pointer;
 
 	&.elementor-active {
@@ -61,15 +61,15 @@ $secondary-color: #e8357c;
 #haTemplateLibrary__toolbar-search,
 #haTemplateLibrary__toolbar-filter {
 	width: 200px;
-    position: relative;
+	position: relative;
 }
 
 #haTemplateLibrary__toolbar-search i,
 .haTemplateLibrary__filter-btn i {
 	position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
 }
 
 .haTemplateLibrary__filter-btn {
@@ -89,26 +89,26 @@ $secondary-color: #e8357c;
 
 #haTemplateLibrary__search,
 .haTemplateLibrary__filter-btn {
-    border-bottom: 1px solid #d5dadf;
-    border-radius: 0;
+	border-bottom: 1px solid #d5dadf;
+	border-radius: 0;
 	font-size: 12px;
-    padding: 8px 15px 8px 0;
+	padding: 8px 15px 8px 0;
 }
 
 #haTemplateLibrary__filter-tags {
 	padding: 10px;
 	margin-top: 10px;
 	position: absolute;
-    top: 100%;
-    left: 0;
-    width: 270%;
-    z-index: 999;
+	top: 100%;
+	left: 0;
+	width: 270%;
+	z-index: 999;
 	background-color: #fff;
 	border-radius: 0 2px 2px;
-	box-shadow: 0 4px 8px rgba(0,0,0,.05);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
 	display: none;
 
-	> li {
+	>li {
 		padding: 10px;
 		float: left;
 		text-align: left;
@@ -148,12 +148,19 @@ $secondary-color: #e8357c;
 }
 
 #haTemplateLibrary__templates-list {
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 	align-items: flex-start;
 }
 
 .haTemplateLibrary__template {
+	position: relative;
+	overflow: hidden;
+	margin: 15px;
+	background-color: #fff;
+	box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.07);
+	border-radius: 2px;
+
 	.haTemplateLibrary__templates--section & {
 		width: calc(33.333% - 30px);
 	}
@@ -162,12 +169,6 @@ $secondary-color: #e8357c;
 		width: calc(25% - 30px);
 	}
 
-	position: relative;
-    overflow: hidden;
-	margin: 15px;
-    background-color: #fff;
-    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.07);
-	border-radius: 2px;
 
 	&-body {
 		position: relative;
@@ -214,7 +215,7 @@ $secondary-color: #e8357c;
 
 	&-thumbnail {
 		display: block;
-    	width: 100%;
+		width: 100%;
 	}
 
 	&-footer {

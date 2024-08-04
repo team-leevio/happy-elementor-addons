@@ -2,13 +2,13 @@
 @import "mixins";
 
 .ha-review {
-	@include widgetContainerBase;
-
 	--ha-review-media-offset-x: calc(1px - 1px);
 	--ha-review-media-offset-y: calc(1px - 1px);
 
 	--ha-review-left-body-width: calc(100% - var(--ha-review-media-width) + (-1 * var(--ha-review-media-offset-x)));
 	--ha-review-right-body-width: calc(100% - var(--ha-review-media-width) + (var(--ha-review-media-offset-x)));
+
+	@include widgetContainerBase;
 
 	&-header {
 		margin-top: 25px;
@@ -86,12 +86,12 @@
 
 	&--left,
 	&--right {
+		--ha-review-media-width: 150px;
+
 		@include widgetContainer {
 			display: flex;
 			align-items: center;
 		}
-
-		--ha-review-media-width: 150px;
 
 		.ha-review {
 			&-figure {

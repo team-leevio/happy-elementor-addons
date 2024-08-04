@@ -2,12 +2,12 @@
 @import "mixins";
 
 .ha-step-flow {
+	--ha-stepflow-direction-origin-x: calc(-1 * ((var(--ha-stepflow-icon-size, 46px) / 2) + var(--ha-stepflow-icon-padding, 40px) + var(--ha-stepflow-direction-offset-x, 20px)));
+
 	@include widgetContainer {
 		text-align: center;
 		padding: 25px;
 	}
-
-	--ha-stepflow-direction-origin-x: calc(-1 * ((var(--ha-stepflow-icon-size, 46px) / 2) + var(--ha-stepflow-icon-padding, 40px) + var(--ha-stepflow-direction-offset-x, 20px)));
 }
 
 .ha-step-arrow {
