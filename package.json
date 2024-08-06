@@ -1,6 +1,6 @@
 {
 	"name": "happy-elementor-addons",
-	"version": "3.11.3",
+	"version": "3.12.0",
 	"description": "addons collection",
 	"main": "index.html",
 	"type": "module",
