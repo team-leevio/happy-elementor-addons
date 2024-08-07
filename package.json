@@ -15,23 +15,23 @@
 	"author": "HappyMonster",
 	"license": "MIT",
 	"devDependencies": {
-		"@babel/core": "^7.24",
-		"@babel/preset-env": "^7.24",
-		"gulp": "^5.0",
-		"gulp-autoprefixer": "^9.0",
-		"gulp-babel": "^8.0",
-		"gulp-clean": "^0.4",
-		"gulp-concat": "^2.6",
-		"gulp-csscomb": "^3.1",
-		"gulp-csso": "^4.0",
-		"gulp-plumber-notifier": "0.1",
-		"gulp-rename": "^2",
-		"gulp-sass": "^5.1",
-		"gulp-uglify": "^3.0",
-		"gulp-zip": "^6.0",
-		"sass": "^1.77"
+		"@babel/core": "^7.20.7",
+		"@babel/preset-env": "^7.20.2",
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^8.0.0",
+		"gulp-babel": "^8.0.0",
+		"gulp-clean": "^0.4.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-csscomb": "^3.1.0",
+		"gulp-csso": "^4.0.1",
+		"gulp-plumber-notifier": "0.1.0",
+		"gulp-rename": "^2.0.0",
+		"gulp-sass": "^5.1.0",
+		"gulp-uglify": "^3.0.2",
+		"gulp-zip": "^5.1.0",
+		"sass": "^1.57.1"
 	},
 	"dependencies": {
-		"gulp-install": "^1.1"
+		"gulp-install": "^1.1.0"
 	}
 }
