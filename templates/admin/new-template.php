@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-$types    = Theme_Builder::TEMPLATE_TYPE;
+$types    = Theme_Builder::get_template_types();
 $selected = get_query_var( 'ha_library_type' );
 
 ?>
