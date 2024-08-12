@@ -53,7 +53,7 @@ const buildSrcFiles = [
 	"!./assets/dev/**",
 	"!./package-lock.json",
 	"!./package.json",
-	"!./gulpfile.js",
+	"!./gulpfile.mjs",
 	"!./yarn.lock",
 	"!./README.md",
 	// "./vendor/**/*",
