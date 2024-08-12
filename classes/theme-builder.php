@@ -74,7 +74,8 @@ class Theme_Builder {
 			'archive' => esc_html__('Archive', 'happy-elementor-addons')
 		];
 
-		return apply_filters('happyaddons_theme_builder_template_types', $template_types);
+		// return apply_filters('happyaddons_theme_builder_template_types', $template_types);
+		return apply_filters('happyaddons/theme-builder/template-types', $template_types);
 	}
 
     public function add_query_vars_filter($vars) {
