@@ -269,7 +269,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.12.0 - 5 August 2024 =
+= 3.12.0 - 12 August 2024 =
 
 - New: Added WPML support for the following widgets: Age Gate, Archive Posts, Comparison Table, Event Calendar, Image Hover Effect, Image Stack Group, Animated Link, Photo Stack, Post Info, Post Navigation, Social Share, Post List, Taxonomy List.
 - Fix: Additional Bug Fixes and Performance Improvements.
