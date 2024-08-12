@@ -1,3 +1,8 @@
+= 3.12.0 - 12 August 2024 =
+
+- New: Added WPML support for the following widgets: Age Gate, Archive Posts, Comparison Table, Event Calendar, Image Hover Effect, Image Stack Group, Animated Link, Photo Stack, Post Info, Post Navigation, Social Share, Post List, Taxonomy List.
+- Fix: Additional Bug Fixes and Performance Improvements.
+
 = 3.11.3 - 24 July 2024 =
 
 - Update: Replaced waypoint.js with Intersection Observer for the following widgets: Number, Fun Factor, Skill Bars, Bar Chart

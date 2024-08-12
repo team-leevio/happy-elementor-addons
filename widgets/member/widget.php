@@ -1785,7 +1785,10 @@ class Member extends Base {
 				<div <?php $this->print_render_attribute_string( 'lightbox' ); ?>>
 					<div class="ha-member-lightbox-close"><i aria-hidden="true" class="eicon-editor-close"></i></div>
 					<div class="ha-member-lightbox-inner">
-						<?php echo \Elementor\Plugin::$instance->frontend->get_builder_content_for_display( $settings['saved_template_list'] ); ?>
+						<?php
+						$saved_template_list = apply_filters('wpml_object_id', $settings['saved_template_list'], 'elementor_library');
+						echo \Elementor\Plugin::$instance->frontend->get_builder_content_for_display( $saved_template_list );
+						?>
 					</div>
 				</div>
 			<?php
