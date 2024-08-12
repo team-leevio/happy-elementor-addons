@@ -50,12 +50,79 @@ class WPML_Manager {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/horizontal-timeline.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-accordion.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/content-switcher.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/comparison-table.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/events-calendar.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-stack-group.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/photo-stack.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/post-list.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/taxonomy-list.php' );
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
 		self::load_integration_files();
 
 		$widgets_map = [
+			/**
+			 * Age Gate
+			 */
+			'age-gate' => [
+				'fields' => [
+					[
+						'field'       => 'title',
+						'type'        => __( 'Age Gate: Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'desc',
+						'type'        => __( 'Age Gate: Description', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+					[
+						'field'       => 'button_text',
+						'type'        => __( 'Age Gate: Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'btn_two_text',
+						'type'        => __( 'Age Gate: Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'footer_text',
+						'type'        => __( 'Age Gate: Footer Text', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+					[
+						'field'       => 'warning_message',
+						'type'        => __( 'Age Gate: Warning Message', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+				],
+			],
+
+			/**
+			 * Archive Posts
+			 */
+			'archive-posts' => [
+				'fields' => [
+					[
+						'field'       => 'meta_separator',
+						'type'        => __( 'Archive Posts: Separator Between', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'read_more_text',
+						'type'        => __( 'Archive Posts: Read More Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'nothing_found_message',
+						'type'        => __( 'Archive Posts: Nothing Found Message', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+				],
+			],
+
 			/**
 			 * Bar Chart
 			 */
@@ -121,6 +188,18 @@ class WPML_Manager {
 			],
 
 			/**
+			 * Comparison Table
+			 */
+			'comparison-table' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Comparison_Table_Columns_Data',
+					__NAMESPACE__ . '\\WPML_Comparison_Table_Rows_Data',
+					__NAMESPACE__ . '\\WPML_Comparison_Table_Table_Btns',
+				]
+			],
+
+			/**
 			 * Dual Button
 			 */
 			'dual-button' => [
@@ -151,6 +230,42 @@ class WPML_Manager {
 						'editor_type' => 'LINK',
 					],
 				],
+			],
+
+			/**
+			 * Event Calendar
+			 */
+			'events-calendar' => [
+				'fields' => [
+					[
+						'field'       => 'allday_text',
+						'type'        => __( 'Event Calendar: All Day Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'readmore_text',
+						'type'        => __( 'Event Calendar: Read More Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'time_title',
+						'type'        => __( 'Event Calendar: Time Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'speaker_title',
+						'type'        => __( 'Event Calendar: Speaker Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'location_title',
+						'type'        => __( 'Event Calendar: Location Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+				],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Event_Calendar_Manual_Event_List',
+				]
 			],
 
 			/**
@@ -270,6 +385,39 @@ class WPML_Manager {
 			],
 
 			/**
+			 * Image Hover Effect
+			 */
+			'image-hover-effect' => [
+				'fields' => [
+					[
+						'field'       => 'hover_image_alt_tag',
+						'type'        => __( 'Image Hover Effect: Image ALT Tag', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'hover_title',
+						'type'        => __( 'Image Hover Effect: Title', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
+					'hover_link' => [
+						'field'       => 'url',
+						'type'        => __( 'Image Hover Effect: Link URL', 'happy-elementor-addons' ),
+						'editor_type' => 'LINK',
+					],
+				]
+			],
+
+			/**
+			 * Image Stack Group
+			 */
+			'image-stack-group' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Image_Stack_Group_Images',
+				]
+			],
+
+			/**
 			 * Info Box
 			 */
 			'infobox' => [
@@ -310,6 +458,24 @@ class WPML_Manager {
 				],
 				'integration-class' => [
 					__NAMESPACE__ . '\\WPML_Justified_Gallery',
+				]
+			],
+
+			/**
+			 * Animated Link
+			 */
+			'link-hover' => [
+				'fields' => [
+					[
+						'field'       => 'link_text',
+						'type'        => __( 'Animated Link: Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					'link_url' => [
+						'field'       => 'url',
+						'type'        => __( 'Animated Link: Link', 'happy-elementor-addons' ),
+						'editor_type' => 'LINK',
+					],
 				]
 			],
 
@@ -367,6 +533,70 @@ class WPML_Manager {
 					[
 						'field'       => 'number_text',
 						'type'        => __( 'Number: Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+				],
+			],
+
+			/**
+			 * PDF View
+			 */
+			'pdf-view' => [
+				'fields' => [
+					[
+						'field'       => 'pdf_title',
+						'type'        => __( 'PDF View: PDF Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+				],
+			],
+
+			/**
+			 * Photo Stack
+			 */
+			'photo-stack' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Photo_Stack_Image_List',
+				]
+			],
+
+			/**
+			 * Post Info
+			 */
+			'post-info' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Post_Info_Icon_List',
+				]
+			],
+
+			/**
+			 * Post List
+			 */
+			'post-list' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Post_List_Selected_List_Post',
+					__NAMESPACE__ . '\\WPML_Post_List_Selected_List_Page',
+					__NAMESPACE__ . '\\WPML_Post_List_Selected_List_Product',
+					__NAMESPACE__ . '\\WPML_Post_List_Selected_List_E_Landing_Page',
+				]
+			],
+
+			/**
+			 * Post Navigation
+			 */
+			'post-navigation' => [
+				'fields' => [
+					[
+						'field'       => 'prev_label',
+						'type'        => __( 'Post Navigation: Previous Label', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'next_label',
+						'type'        => __( 'Post Navigation: Next Label', 'happy-elementor-addons' ),
 						'editor_type' => 'LINE',
 					],
 				],
@@ -472,6 +702,16 @@ class WPML_Manager {
 			],
 
 			/**
+			 * Social Share
+			 */
+			'social-share' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Social_Share',
+				]
+			],
+
+			/**
 			 * Step Flow
 			 */
 			'step-flow' => [
@@ -497,6 +737,21 @@ class WPML_Manager {
 						'editor_type' => 'LINK',
 					],
 				],
+			],
+
+			/**
+			 * Taxonomy List
+			 */
+			'taxonomy-list' => [
+				'fields' => [],
+				'integration-class' => [
+					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Category',
+					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Post_Tag',
+					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Post_Format',
+					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Product_Cat',
+					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Product_Tag',
+					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Product_Shipping_Class',
+				]
 			],
 
 			/**

@@ -655,7 +655,7 @@ class Archive_Posts extends Base {
                 ],
             ]
         );
-        
+
         $this->add_control(
             'image_align',
             [
@@ -902,7 +902,7 @@ class Archive_Posts extends Base {
         $this->start_controls_tabs(
             'pagination_color_tabs'
         );
-        
+
         $this->start_controls_tab(
             'pagination_normal_color_tab',
             [
@@ -920,7 +920,7 @@ class Archive_Posts extends Base {
 				],
 			]
 		);
-        
+
         $this->end_controls_tab();
 
         $this->start_controls_tab(
@@ -940,7 +940,7 @@ class Archive_Posts extends Base {
 				],
 			]
 		);
-        
+
         $this->end_controls_tab();
 
         $this->start_controls_tab(
@@ -960,9 +960,9 @@ class Archive_Posts extends Base {
 				],
 			]
 		);
-        
+
         $this->end_controls_tab();
-        
+
         $this->end_controls_tabs();
 
         $this->add_control(

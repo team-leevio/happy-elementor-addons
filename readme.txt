@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.11.3
+Version: 3.12.0
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.6
-Stable tag: 3.11.3
+Stable tag: 3.12.0
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -268,6 +268,11 @@ For a more detailed explanation check out the following documentation
 13. Card widget - capsule design
 
 == Changelog ==
+
+= 3.12.0 - 12 August 2024 =
+
+- New: Added WPML support for the following widgets: Age Gate, Archive Posts, Comparison Table, Event Calendar, Image Hover Effect, Image Stack Group, Animated Link, Photo Stack, Post Info, Post Navigation, Social Share, Post List, Taxonomy List.
+- Fix: Additional Bug Fixes and Performance Improvements.
 
 = 3.11.3 - 24 July 2024 =
 
