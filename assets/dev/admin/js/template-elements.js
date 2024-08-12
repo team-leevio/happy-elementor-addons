@@ -1,4 +1,4 @@
-(function ($) {
+( function ( $ ) {
 	var modalTemplate = document.getElementById(
 		"tmpl-modal-template-condition"
 	);
@@ -7,125 +7,124 @@
 		"tmpl-elementor-new-template"
 	);
 
-	var templateType = "";
+	// var templateType = "";
 	var postId = 0;
 	var newConditions = [];
 	var oldConditionCache = "";
 
-	if (typeof elementor !== "undefined") {
-		elementor.on("panel:init", function ($e) {
+	if ( typeof elementor !== "undefined" ) {
+		elementor.on( "panel:init", function ( $e ) {
 			postId = elementor.config.document.id;
-			handleHaTemplateType(postId);
-			getHaTemplateConds(postId);
-			elementor
-				.getPanelView()
-				.footer.currentView.addSubMenuItem("saver-options", {
+			// handleHaTemplateType( postId );
+			getHaTemplateConds( postId );
+			if('loop-template' != haTemplateInfo.templateType) {
+				elementor.getPanelView().footer.currentView.addSubMenuItem( "saver-options", {
 					before: "save-draft",
 					name: "haconditions",
 					icon: "ha-template-elements",
 					title: "Template Conditions",
-					callback: function callback() {
-						return elementor.trigger("ha:templateCondition");
+					callback: function callback () {
+						return elementor.trigger( "ha:templateCondition" );
 					},
-				});
-		});
-		elementor.channels.editor.on(
-			"elementorThemeBuilder:ApplyPreview",
-			function ($e) {
-				handleHaTemplateType(postId);
+				} );
 			}
-		);
+		} );
+		// elementor.channels.editor.on(
+		// 	"elementorThemeBuilder:ApplyPreview",
+		// 	function ( $e ) {
+		// 		handleHaTemplateType( postId );
+		// 	}
+		// );
 
 		//elementor.getPanelView().getHeaderView().setTitle('a');
-		elementor.on("set:page", function ($e) {
-		});
+		elementor.on( "set:page", function ( $e ) { } );
 	}
 
-	$("body").append(modalTemplate.innerHTML);
+	$( "body" ).append( modalTemplate.innerHTML );
 
-	if (typeof elementor !== "undefined") {
-		elementor.on("ha:templateCondition", function ($e) {
+	if ( typeof elementor !== "undefined" ) {
+		elementor.on( "ha:templateCondition", function ( $e ) {
 			//oldConditionCache
-			var conditionContainer = $(".ha-template-condition-wrap");
-			if (conditionContainer.html() == "") {
-				conditionContainer.append(oldConditionCache);
-				conditionContainer.find("select").trigger("change");
+			var conditionContainer = $( ".ha-template-condition-wrap" );
+			if ( conditionContainer.html() == "" ) {
+				conditionContainer.append( oldConditionCache );
+				conditionContainer.find( "select" ).trigger( "change" );
 				// elementor.trigger("ha:templateConditionChange");
 			}
 
 			// notice remove
-			$('.ha-template-notice').removeClass('error').text('');
+			$( '.ha-template-notice' ).removeClass( 'error' ).text( '' );
 
-			MicroModal.show("modal-new-template-condition");
-		});
+			MicroModal.show( "modal-new-template-condition" );
+		} );
 
-		elementor.on("ha:templateConditionChange", function ($e) {
+		elementor.on( "ha:templateConditionChange", function ( $e ) {
 			handleHaTemplateCondition();
-		});
+		} );
 	}
 
-	$(document).on("click", ".ha-cond-repeater-add", function () {
-		var conditionContainer = $(".ha-template-condition-wrap");
-		var uniqify = generateUniqeDom(conditionTemplate.innerHTML);
-		conditionContainer.append(uniqify);
-		elementor.trigger("ha:templateConditionChange");
+	$( document ).on( "click", ".ha-cond-repeater-add", function () {
+		var conditionContainer = $( ".ha-template-condition-wrap" );
+		var uniqify = generateUniqeDom( conditionTemplate.innerHTML );
+		conditionContainer.append( uniqify );
+		elementor.trigger( "ha:templateConditionChange" );
 		// ha_check_contradictory_condition();
-	});
+	} );
 
-	$(document).on("click", ".ha-template-condition-remove", function () {
-		$(this).parent().remove();
-		elementor.trigger("ha:templateConditionChange");
-	});
+	$( document ).on( "click", ".ha-template-condition-remove", function () {
+		$( this ).parent().remove();
+		elementor.trigger( "ha:templateConditionChange" );
+	} );
 
-	$(document).on("click", "#ha-template-save-data", function () {
+	$( document ).on( "click", "#ha-template-save-data", function () {
 		saveConditionData();
-	});
+	} );
 
-	$(document).on(
+	$( document ).on(
 		"change",
 		".ha-template-condition-wrap select",
-		function (event) {
-			handleAssignEvent(event);
-			elementor.trigger("ha:templateConditionChange");
+		function ( event ) {
+			handleAssignEvent( event );
+			elementor.trigger( "ha:templateConditionChange" );
 		}
 	);
 
-	function generateUniqeDom(dom) {
-		const randomid = Math.random().toString(36).replace("0.", "");
-		dom = dom.replace(/{{([^{}]+)}}/g, randomid);
+	function generateUniqeDom ( dom ) {
+		const randomid = Math.random().toString( 36 ).replace( "0.", "" );
+		dom = dom.replace( /{{([^{}]+)}}/g, randomid );
 		return dom;
 	}
 
-	function handleAssignEvent(event) {
-		if (event.target.localName == "select") {
+	function handleAssignEvent ( event ) {
+		if ( event.target.localName == "select" ) {
 			var parentID = event.target.dataset.parent;
 			var selectedType = event.target.dataset.setting;
 			var selected = event.target.value;
 
-			var type = $("[data-id='type-" + parentID + "']");
-			var name = $("[data-id='name-" + parentID + "']");
-			var sub_name = $("[data-id='sub_name-" + parentID + "']");
-			var sub_id = $("[data-id='sub_id-" + parentID + "']");
+			var type = $( "[data-id='type-" + parentID + "']" );
+			var name = $( "[data-id='name-" + parentID + "']" );
+			var sub_name = $( "[data-id='sub_name-" + parentID + "']" );
+			var sub_id = $( "[data-id='sub_id-" + parentID + "']" );
 
-			if (selectedType == "type") {
+			if ( selectedType == "type" ) {
 				//TODO: Add prefix icon later on
 			}
 
-			if (selectedType == "name") {
-				if (selected == "general") {
+			if ( selectedType == "name" ) {
+				if ( selected == "general" ) {
 					sub_name.parent().hide();
 					sub_id.parent().hide();
 				} else {
 					sub_name.parent().show();
-					var selectedVal = sub_name.data("selected")
-						? sub_name.data("selected")
+					var selectedVal = sub_name.data( "selected" )
+						? sub_name.data( "selected" )
 						: "";
 
-					add_sub_name(sub_name, name.val(), selectedVal);
+					add_sub_name( sub_name, name.val(), selectedVal );
 				}
 			}
 
-			if (selectedType == "sub_name") {
+			if ( selectedType == "sub_name" ) {
 				var dataPair = {
 					post: "post",
 					in_category: "category",
@@ -138,29 +137,29 @@
 					any_child_of: "page",
 					by_author: "author",
 				};
-				if (dataPair.hasOwnProperty(selected)) {
+				if ( dataPair.hasOwnProperty( selected ) ) {
 					// Toggle Visibility
 					sub_id.parent().show();
 
-					var dataType = dataPair[selected];
+					var dataType = dataPair[ selected ];
 					var dataVal = selected;
 
-					if (["post", "page"].includes(dataType)) {
+					if ( [ "post", "page" ].includes( dataType ) ) {
 						dataVal = dataType;
 						dataType = "post";
 					}
 
-					if (["category", "post_tag"].includes(dataType)) {
+					if ( [ "category", "post_tag" ].includes( dataType ) ) {
 						dataVal = dataType;
 						dataType = "tax";
 					}
 
-					sub_id.select2({
+					sub_id.select2( {
 						ajax: {
 							url: ajaxurl,
 							dataType: "json",
 							delay: 250,
-							data: function (params) {
+							data: function ( params ) {
 								var query = {
 									nonce: HappyAddonsEditor.editor_nonce,
 									action: "ha_condition_autocomplete",
@@ -170,7 +169,7 @@
 								};
 								return query;
 							},
-							processResults: function (response) {
+							processResults: function ( response ) {
 								if (
 									!response.success ||
 									response.data.length === 0
@@ -188,12 +187,12 @@
 
 								var data = [];
 
-								_.each(response.data, function (title, id) {
-									data.push({
+								_.each( response.data, function ( title, id ) {
+									data.push( {
 										id: id,
 										text: title,
-									});
-								});
+									} );
+								} );
 
 								return {
 									results: data,
@@ -205,66 +204,64 @@
 						placeholder: "All",
 						allowClear: true,
 						dropdownCssClass: "ha-template-condition-dropdown"
-					});
+					} );
 				} else {
 					sub_id.parent().hide();
 				}
 			}
 
-			if (selectedType == "sub_id") {
+			if ( selectedType == "sub_id" ) {
 			}
 		}
 	}
 
-	function handleHaTemplateCondition() {
+	function handleHaTemplateCondition () {
 		var conditions = [];
-		var conditionItems = $(".ha-template-condition-wrap").find(
-			".ha-template-condition-item"
-		);
-		conditionItems.each(function () {
-			var type = $(this).find(".ha-tce-type select").val();
-			var name = $(this).find(".ha-tce-name select").val();
-			var sub_name = $(this).find(".ha-tce-sub_name select").val();
-			var sub_id = $(this).find(".ha-tce-sub_id select").val();
+		var conditionItems = $( ".ha-template-condition-wrap" ).find( ".ha-template-condition-item" );
+		conditionItems.each( function () {
+			var type = $( this ).find( ".ha-tce-type select" ).val();
+			var name = $( this ).find( ".ha-tce-name select" ).val();
+			var sub_name = $( this ).find( ".ha-tce-sub_name select" ).val();
+			var sub_id = $( this ).find( ".ha-tce-sub_id select" ).val();
 
 			var localCond = type + "/" + name;
 
-			if (sub_name) {
+			if ( sub_name ) {
 				localCond += "/" + sub_name;
 			}
 
-			if (sub_id) {
+			if ( sub_id ) {
 				localCond += "/" + sub_id.trim();
 			}
 
-			conditions.push(localCond);
+			conditions.push( localCond );
 
-		});
+		} );
 
 		newConditions = conditions;
-		
+
 	}
 
-	function handleHaTemplateType(id) {
-		jQuery.ajax({
-			url: ajaxurl,
-			type: "get",
-			dataType: "json",
-			data: {
-				nonce: HappyAddonsEditor.editor_nonce,
-				action: "ha_cond_template_type", // AJAX action for admin-ajax.php
-				post_id: id,
-			},
-			success: function (response) {
-				if (response && response.data) {
-					templateType = response.data;
-				}
-			},
-		});
-	}
+	// function handleHaTemplateType ( id ) {
+	// 	jQuery.ajax( {
+	// 		url: ajaxurl,
+	// 		type: "get",
+	// 		dataType: "json",
+	// 		data: {
+	// 			nonce: HappyAddonsEditor.editor_nonce,
+	// 			action: "ha_cond_template_type", // AJAX action for admin-ajax.php
+	// 			post_id: id,
+	// 		},
+	// 		success: function ( response ) {
+	// 			if ( response && response.data ) {
+	// 				templateType = response.data;
+	// 			}
+	// 		},
+	// 	} );
+	// }
 
-	function getHaTemplateConds(id) {
-		jQuery.ajax({
+	function getHaTemplateConds ( id ) {
+		jQuery.ajax( {
 			url: ajaxurl,
 			type: "get",
 			dataType: "json",
@@ -273,16 +270,16 @@
 				action: "ha_cond_get_current", // AJAX action for admin-ajax.php
 				template_id: id,
 			},
-			success: function (response) {
-				if (response && response.data) {
+			success: function ( response ) {
+				if ( response && response.data ) {
 					oldConditionCache = response.data;
 				}
 			},
-		});
+		} );
 	}
 
-	function add_sub_name(target, dataType, selectedVal) {
-		jQuery.ajax({
+	function add_sub_name ( target, dataType, selectedVal ) {
+		jQuery.ajax( {
 			url: ajaxurl,
 			type: "get",
 			dataType: "json",
@@ -291,48 +288,36 @@
 				action: "ha_condition_autocomplete", // AJAX action for admin-ajax.php
 				object_type: dataType,
 			},
-			success: function (data) {
-				if (data) {
-					if (data.data) {
-						var optionHTML = populate_option(
-							data.data,
-							selectedVal
-						);
-						target.html(optionHTML);
+			success: function ( data ) {
+				if ( data ) {
+					if ( data.data ) {
+						var optionHTML = populate_option( data.data, selectedVal );
+						target.html( optionHTML );
 					}
 				}
 			},
-		});
+		} );
 	}
 
-	function populate_option(optionData, selectedVal) {
+	function populate_option ( optionData, selectedVal ) {
 		var optionHTML = "";
-		for (const [key, option] of Object.entries(optionData)) {
-			if (option.hasOwnProperty("type")) {
+		for ( const [ key, option ] of Object.entries( optionData ) ) {
+			if ( option.hasOwnProperty( "type" ) ) {
 				optionHTML += "<optgroup label='" + option.title + "'>";
-				for (const [subkey, suboption] of Object.entries(
+				for ( const [ subkey, suboption ] of Object.entries(
 					option.conditions
-				)) {
+				) ) {
 					var isPro = suboption.is_pro;
 					var optionTitle = suboption.title;
 					var optionKey = subkey;
 					var isDisabled = "";
-					var isSelected =
-						selectedVal == optionKey ? " selected" : "";
-					if (isPro) {
+					var isSelected = selectedVal == optionKey ? " selected" : "";
+					if ( isPro ) {
 						optionTitle = optionTitle + " [Pro]";
 						isDisabled = " disabled";
 					}
 
-					optionHTML +=
-						"<option value='" +
-						optionKey +
-						"' " +
-						isDisabled +
-						isSelected +
-						">" +
-						optionTitle +
-						"</option>";
+					optionHTML += "<option value='" + optionKey + "' " + isDisabled + isSelected + ">" + optionTitle + "</option>";
 				}
 				optionHTML += "</optgroup>";
 			} else {
@@ -342,31 +327,23 @@
 				var isDisabled = "";
 				var isSelected = selectedVal == optionKey ? " selected" : "";
 
-				if (isPro) {
+				if ( isPro ) {
 					optionTitle = optionTitle + " [Pro]";
 					isDisabled = " disabled";
 				}
 
-				optionHTML +=
-					"<option value='" +
-					optionKey +
-					"' " +
-					isDisabled +
-					isSelected +
-					">" +
-					optionTitle +
-					"</option>";
+				optionHTML += "<option value='" + optionKey + "' " + isDisabled + isSelected + ">" + optionTitle + "</option>";
 			}
 		}
 
 		return optionHTML;
 	}
 
-	function saveConditionData() {
-		let $elBtn = document.getElementById("elementor-panel-saver-button-publish");
-			$elBtn.classList.add("elementor-button-state");
+	function saveConditionData () {
+		let $elBtn = document.getElementById( "elementor-panel-saver-button-publish" );
+		$elBtn.classList.add( "elementor-button-state" );
 		postId = elementor.config.document.id;
-		jQuery.ajax({
+		jQuery.ajax( {
 			url: ajaxurl,
 			type: "post",
 			dataType: "json",
@@ -376,34 +353,34 @@
 				conds: newConditions,
 				template_id: postId,
 			},
-			success: function (response) {
-				if (response) {
-                    if(response.success) {
-                        MicroModal.close("modal-new-template-condition");
-						$('.ha-template-notice').removeClass('error').text('');
-                    } else {
-                        // show notice
-                        if(response.hasOwnProperty('data') && response.data.hasOwnProperty('msg')) {
-                            $('.ha-template-notice').addClass('error').text(response.data.msg);
-                        } else {
-                            MicroModal.close("modal-new-template-condition");
-							$('.ha-template-notice').removeClass('error').text('');
-                        }
-                    }
-                }
+			success: function ( response ) {
+				if ( response ) {
+					if ( response.success ) {
+						MicroModal.close( "modal-new-template-condition" );
+						$( '.ha-template-notice' ).removeClass( 'error' ).text( '' );
+					} else {
+						// show notice
+						if ( response.hasOwnProperty( 'data' ) && response.data.hasOwnProperty( 'msg' ) ) {
+							$( '.ha-template-notice' ).addClass( 'error' ).text( response.data.msg );
+						} else {
+							MicroModal.close( "modal-new-template-condition" );
+							$( '.ha-template-notice' ).removeClass( 'error' ).text( '' );
+						}
+					}
+				}
 			},
-		});
+		} );
 
-		setTimeout( function(){
-			$elBtn.classList.remove("elementor-button-state");
+		setTimeout( function () {
+			$elBtn.classList.remove( "elementor-button-state" );
 		}, 500 );
-		
+
 	}
 
-	elementor.saver.on('after:save', function( data ) {
-			if(data.status != "inherit") {
-				elementor.trigger("ha:templateCondition")
-			}
-	});
+	elementor.saver.on( 'after:save', function ( data ) {
+		if ( data.status != "inherit" && 'loop-template' != haTemplateInfo.templateType ) {
+			elementor.trigger( "ha:templateCondition" );
+		}
+	} );
 
-})(jQuery);
+} )( jQuery );

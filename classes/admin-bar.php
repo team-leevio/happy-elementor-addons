@@ -57,7 +57,7 @@ class Admin_Bar {
 
 		wp_enqueue_script(
 			'micromodal',
-			'//unpkg.com/micromodal/dist/micromodal.min.js',
+			HAPPY_ADDONS_ASSETS . 'vendor/micromodal/micromodal.min.js',
 			[],
 			HAPPY_ADDONS_VERSION,
 			true

@@ -205,7 +205,7 @@ class Theme_Builder {
                         <h1 class="ha-admin-top-bar__heading-title">Theme Builder</h1>
                     </div>
                     <div class="ha-admin-top-bar__main-area-buttons">
-                        <a class="page-title-action" id="ha-template-library-add-new" href="http://ha.test/wp-admin/post-new.php?post_type=ha_library">Add New</a>
+                        <a class="page-title-action" id="ha-template-library-add-new" href="<?php echo admin_url(); ?>post-new.php?post_type=ha_library">Add New</a>
                     </div>
                 </div>
             </div>
@@ -921,9 +921,15 @@ class Theme_Builder {
                 true
             );
 
+			wp_localize_script('happy-addons-template-elements', 'haTemplateInfo', [
+				'postType' => self::CPT,
+				'templateType' => get_post_meta(get_the_ID(), '_ha_library_type', true),
+				'postId' => get_the_ID(),
+			]);
+
             wp_enqueue_script(
-                'happy-addons-micromodal',
-                'https://unpkg.com/micromodal@0.4.10/dist/micromodal.js',
+                'micromodal',
+				HAPPY_ADDONS_ASSETS . 'vendor/micromodal/micromodal.min.js',
                 [],
                 HAPPY_ADDONS_VERSION,
                 true
