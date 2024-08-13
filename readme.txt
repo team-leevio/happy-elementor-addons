@@ -16,7 +16,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-[Happy Addons for Elementor](https://happyaddons.com/) is One of best Elementor Addons comes with **Theme Builder** that covers **free Header Footer**, **Single Post Template**, and **Archive Page Builder**, with **143+** Free & Pro Widgets & **24+** Features to enhance [Elementor](https://wordpress.org/plugins/elementor/).
+[Happy Addons for Elementor](https://happyaddons.com/) is One of best Elementor Addons comes with **Theme Builder** that covers **free Header Footer**, **Single Post Template**, and **Archive Page Builder**, with **137** Free & Pro Widgets & **28** Features to enhance [Elementor](https://wordpress.org/plugins/elementor/).
 Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 
 ## Useful Links
