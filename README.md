@@ -1,9 +1,9 @@
 # Happy Elementor Addons
-[Happy Addons for Elementor](https://happyaddons.com/) come with Header Footer Builder, 500+ templates, 143+ free & essential pro widgets - Theme Builder, Mega Menu, Testimonial, Slider, News Ticker, Blog Post Grid, Gallery, WooCommerce Products widgets, Modal Popup, Tooltip Google maps, Carousels & more. Features Like Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Icons, etc.
+[Happy Addons for Elementor](https://happyaddons.com/) come with Header Footer Builder, 500+ templates, 137 free & essential pro widgets - Theme Builder, Mega Menu, Testimonial, Slider, News Ticker, Blog Post Grid, Gallery, WooCommerce Products widgets, Modal Popup, Tooltip Google maps, Carousels & more. Features Like Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Icons, etc.
 
 # Requirements
-- The required WordPress version is `4.7`
-- The required PHP version is `5.6`
+- The required WordPress version is `5.0`
+- The required PHP version is `7.4`
 
 # Installation
 ## Development Install
