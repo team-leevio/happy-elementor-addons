@@ -1778,6 +1778,8 @@ class Event_Calendar extends Base {
 
 		$settings = $this->get_settings_for_display();
 
+		$time_format = get_option('time_format');
+
 		if ( $settings['event_calendar_type'] == 'google_calendar' ) {
 			$data = $this->get_google_calendar_events( $settings );
 		} elseif ( $settings['event_calendar_type'] == 'the_events_calendar' ) {
@@ -1803,6 +1805,7 @@ class Event_Calendar extends Base {
 				// 'data-events'      => htmlspecialchars( json_encode( $data ), ENT_QUOTES, 'UTF-8' ),
 				'data-show-popup'  => ! empty( $settings['show_event_popup'] ) ? esc_attr( $settings['show_event_popup'] ) : '',
 				'data-allday-text' => ! empty( $settings['allday_text'] ) ? esc_html( $settings['allday_text'] ) : '',
+				'data-time-format' 	   => !empty ($time_format) ? $time_format : 'g:i a',
 			]
 		);
 

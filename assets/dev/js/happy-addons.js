@@ -689,6 +689,7 @@
 			var locale = calendarEl.data('locale');
 			var showPopup = calendarEl.data('show-popup');
 			var allday_text = calendarEl.data('allday-text');
+			var time_format = calendarEl.data('time-format');			
 
 			var ECjson = window['HaECjson'+$scope.data('id')];
 			var events = ECjson;
@@ -726,15 +727,35 @@
 							return new Date(timeString);
 						}
 
-						function timeFormat(date) {
+						function timeFormat(date, time_format='g:i a') {
+							// Parse the input time
 							var hours = date.getHours();
 							var minutes = date.getMinutes();
-							var ampm = hours >= 12 ? 'pm' : 'am';
-							hours = hours % 12;
-							hours = hours ? hours : 12; // the hour '0' should be '12'
-							minutes = minutes < 10 ? '0' + minutes : minutes;
-							var strTime = hours + ':' + minutes + '' + ampm;
-							return strTime;
+							
+							var date = new Date();
+							date.setHours(hours);
+							date.setMinutes(minutes);
+							
+							var options = {};
+							if (time_format.includes('H')) {
+								options.hour = '2-digit';
+								options.hour12 = false;
+							} else {
+								options.hour = 'numeric';
+								options.hour12 = true;
+								if (time_format.includes('a') || time_format.includes('A')) {
+									options.hour = 'numeric';
+								}
+							}
+							options.minute = '2-digit';
+							
+							var formattedTime = new Intl.DateTimeFormat('en-US', options).format(date);
+						
+							if (time_format.includes('a')) {
+								formattedTime = formattedTime.toLowerCase();
+							}
+							
+							return formattedTime;
 						}
 
 						var todayDateString = info.view.calendar.currentData.currentDate.toString(),
@@ -803,10 +824,10 @@
 							timeWrap.removeAttr("style");
 							startDate = Date.parse(getTheDate(startDate));
 							endDate = Date.parse(getTheDate(endDate));
-							var startTimeText = timeFormat(getTheDate(startDate));
+							var startTimeText = timeFormat(getTheDate(startDate), time_format);
 							var endTimeText = 'Invalid Data';
 							if (startDate < endDate) {
-								endTimeText = timeFormat(getTheDate(endDate));
+								endTimeText = timeFormat(getTheDate(endDate), time_format);
 							}
 							timeWrap.find('span.ha-ec-event-time').text(startTimeText + ' - ' + endTimeText);
 						}else{
