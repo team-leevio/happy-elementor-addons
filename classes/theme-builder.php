@@ -62,9 +62,22 @@ class Theme_Builder {
         add_filter('template_include', [$this, 'ha_theme_builder_content'], 999);
         add_action('happyaddons_theme_builder_render', array($this, 'single_blog_content_elementor'), 999);
 
+		add_action( 'elementor/elements/categories_registered', [$this, 'add_elementor_widget_categories'] );
+
         // Register Ajax Handles
         // add_action( 'wp_ajax_ha_cond_template_type', [$this, 'ha_get_template_type'] );
     }
+
+	public function add_elementor_widget_categories( $elements_manager ) {
+
+		$elements_manager->add_category(
+			'happy_addons_theme_builder',
+			[
+				'title' => esc_html__( 'Happy Theme Builder', 'textdomain' ),
+				'icon' => 'fa fa-plug',
+			]
+		);
+	}
 
 	public static function get_template_types() {
 		$template_types = [
