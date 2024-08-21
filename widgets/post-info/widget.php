@@ -47,6 +47,10 @@ class Post_Info extends Base {
 		return [ 'post', 'info', 'date', 'time', 'author', 'taxonomy', 'comments', 'terms', 'avatar' ];
 	}
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
 	/**
      * Register widget content controls
      */

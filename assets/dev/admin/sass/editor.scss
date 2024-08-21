@@ -125,3 +125,12 @@
 .elementor-control-type-number input.elementor-control-tag-area.elementor-control-unit-2 {
 	width: 70px;
 }
+
+#elementor-panel-categories:has(#elementor-panel-category-happy_addons_theme_builder) {
+	display: flex;
+	flex-direction: column;
+}
+
+#elementor-panel-categories #elementor-panel-category-happy_addons_theme_builder {
+	order: -2;
+}

@@ -55,6 +55,10 @@ class Archive_Posts extends Base {
         return ['archive posts', 'posts', 'post', 'recent post'];
     }
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
     public function add_to_avoid_list($ids) {
         $this->display_ids = array_unique(array_merge($this->display_ids, $ids));
     }

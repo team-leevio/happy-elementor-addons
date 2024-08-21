@@ -49,6 +49,10 @@ class Author_Meta extends Base {
 		return [ 'author', 'author_meta', 'author info' ];
 	}
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
 	/**
      * Register widget content controls
      */

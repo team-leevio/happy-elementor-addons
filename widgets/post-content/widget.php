@@ -46,6 +46,10 @@ class Post_Content extends Base {
 		return [ 'content', 'text' ];
 	}
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
 	/**
      * Register widget content controls
      */

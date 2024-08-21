@@ -46,6 +46,10 @@ class Post_Excerpt extends Base {
 		return [ 'excerpt', 'text' ];
 	}
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
 	/**
      * Register widget excerpt controls
      */

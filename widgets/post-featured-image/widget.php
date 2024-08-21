@@ -51,6 +51,10 @@ class Post_Featured_Image extends Base {
 		return ['post image', 'image'];
 	}
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
 	/**
 	 * Register widget content controls
 	 */

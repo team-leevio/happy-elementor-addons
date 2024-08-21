@@ -49,6 +49,10 @@ class Site_Logo extends Base {
 		return ['logo', ' image'];
 	}
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
 	/**
 	 * Register widget content controls
 	 */

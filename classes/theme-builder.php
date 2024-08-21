@@ -69,14 +69,15 @@ class Theme_Builder {
     }
 
 	public function add_elementor_widget_categories( $elements_manager ) {
-
-		$elements_manager->add_category(
-			'happy_addons_theme_builder',
-			[
-				'title' => esc_html__( 'Happy Theme Builder', 'textdomain' ),
-				'icon' => 'fa fa-plug',
-			]
-		);
+		if( self::CPT == get_post_type() ) {
+			$elements_manager->add_category(
+				'happy_addons_theme_builder',
+				[
+					'title' => esc_html__( 'Happy Theme Builder', 'happy-elementor-addons' ),
+					'icon' => 'fa fa-plug',
+				]
+			);
+		}
 	}
 
 	public static function get_template_types() {

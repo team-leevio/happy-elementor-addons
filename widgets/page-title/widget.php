@@ -47,6 +47,10 @@ class Page_Title extends Base {
 		return [ 'page title', 'Title', 'text' ];
 	}
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
 	/**
      * Register widget content controls
      */

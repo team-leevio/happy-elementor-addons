@@ -51,6 +51,10 @@ class Post_Comments extends Base {
 		return ['comments', 'post', 'response', 'form'];
 	}
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
 	/**
 	 * Register widget content controls
 	 */

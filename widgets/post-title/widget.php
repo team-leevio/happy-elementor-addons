@@ -49,6 +49,10 @@ class Post_Title extends Base {
 		return ['post title', 'Title', 'text'];
 	}
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
 	/**
 	 * Register widget content controls
 	 */

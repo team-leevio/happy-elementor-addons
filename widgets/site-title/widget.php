@@ -47,6 +47,10 @@ class Site_Title extends Base {
 		return [ 'site title', 'Title', 'text' ];
 	}
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
 	/**
      * Register widget content controls
      */

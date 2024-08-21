@@ -47,6 +47,10 @@ class Post_Navigation extends Base {
         return ['navigation', 'post', 'page', 'next', 'prev', 'previous'];
     }
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
     public function get_public_post_types($args = []) {
         $post_type_args = [
             // Default is the value $public.
