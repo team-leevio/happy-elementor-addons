@@ -51,7 +51,7 @@
 					gloablTooltipOptions = this.getReadySettings();
 
 					var content = $scope.find('.ha-advanced-tooltip-content');
-					content.html($.parseHTML(gloablTooltipOptions.content));
+					content.html($.parseHTML(DOMPurify.sanitize(gloablTooltipOptions.content)));
 					content.css('animation-duration', gloablTooltipOptions.duration + 'ms');
 					content.addClass(gloablTooltipOptions.animation);
 

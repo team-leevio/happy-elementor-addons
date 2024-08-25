@@ -1,6 +1,7 @@
 = ### - ## ## 2024 =
 
 - Fix: Event Calendar time format issue.
+- Fix: Security improvement for Happy Tooltip.
 
 = 3.12.0 - 12 August 2024 =
 
