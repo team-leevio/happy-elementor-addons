@@ -267,6 +267,7 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			false
 		);
+
 		// Happy addons LordIcon JS
 		wp_register_script(
 			'lord-icon',
@@ -275,6 +276,16 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			false
 		);
+
+		// dom-purify js to sanitize text
+		wp_register_script(
+			'dom-purify',
+			HAPPY_ADDONS_ASSETS . 'vendor/dom-purify/purify.min.js',
+			[],
+			'3.1.6',
+			false
+		);
+
 		// Main assets
 		wp_register_style(
 			'happy-elementor-addons',
@@ -336,6 +347,8 @@ class Assets_Manager {
 		if (!is_singular()) {
 			return;
 		}
+
+		wp_enqueue_script( 'dom-purify' );
 
 		self::enqueue(get_the_ID());
 	}

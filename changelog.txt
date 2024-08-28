@@ -1,3 +1,8 @@
+= 3.12.1 - 28 August 2024 =
+
+- Fix: Event Calendar time format issue.
+- Fix: Security improvement for Happy Tooltip.
+
 = 3.12.0 - 12 August 2024 =
 
 - New: Added WPML support for the following widgets: Age Gate, Archive Posts, Comparison Table, Event Calendar, Image Hover Effect, Image Stack Group, Animated Link, Photo Stack, Post Info, Post Navigation, Social Share, Post List, Taxonomy List.

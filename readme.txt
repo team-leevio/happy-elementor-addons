@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.12.0
+Version: 3.12.1
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.6
-Stable tag: 3.12.0
+Stable tag: 3.12.1
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -16,7 +16,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-[Happy Addons for Elementor](https://happyaddons.com/) is One of best Elementor Addons comes with **Theme Builder** that covers **free Header Footer**, **Single Post Template**, and **Archive Page Builder**, with **143+** Free & Pro Widgets & **24+** Features to enhance [Elementor](https://wordpress.org/plugins/elementor/).
+[Happy Addons for Elementor](https://happyaddons.com/) is One of best Elementor Addons comes with **Theme Builder** that covers **free Header Footer**, **Single Post Template**, and **Archive Page Builder**, with **137** Free & Pro Widgets & **28** Features to enhance [Elementor](https://wordpress.org/plugins/elementor/).
 Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 
 ## Useful Links
@@ -268,6 +268,11 @@ For a more detailed explanation check out the following documentation
 13. Card widget - capsule design
 
 == Changelog ==
+
+= 3.12.1 - 28 August 2024 =
+
+- Fix: Event Calendar time format issue.
+- Fix: Security improvement for Happy Tooltip.
 
 = 3.12.0 - 12 August 2024 =
 
