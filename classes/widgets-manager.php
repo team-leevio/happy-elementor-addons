@@ -1342,6 +1342,18 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
+			'liquid-hover' => [
+				'cat' => 'general',
+				'is_active' => true,
+				'title' => __('Liquid Hover', 'happy-elementor-addons'),
+				'icon' => 'hm hm-video-gallery',
+				'css' => ['liquid-hover'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => ['gsap','three','hover-effect'],
+				],
+			],
 		];
 	}
 

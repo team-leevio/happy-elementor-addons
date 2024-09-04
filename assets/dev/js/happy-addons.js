@@ -245,7 +245,7 @@
 					var $current = $(this),
 						$lt = $current.find('.ha-skill-level-text'),
 						lv = $current.data('level');
-	
+
 					$current.animate({
 						width: lv+'%'
 					}, 500);
@@ -689,7 +689,7 @@
 			var locale = calendarEl.data('locale');
 			var showPopup = calendarEl.data('show-popup');
 			var allday_text = calendarEl.data('allday-text');
-			var time_format = calendarEl.data('time-format');			
+			var time_format = calendarEl.data('time-format');
 
 			var ECjson = window['HaECjson'+$scope.data('id')];
 			var events = ECjson;
@@ -731,11 +731,11 @@
 							// Parse the input time
 							var hours = date.getHours();
 							var minutes = date.getMinutes();
-							
+
 							var date = new Date();
 							date.setHours(hours);
 							date.setMinutes(minutes);
-							
+
 							var options = {};
 							if (time_format.includes('H')) {
 								options.hour = '2-digit';
@@ -748,13 +748,13 @@
 								}
 							}
 							options.minute = '2-digit';
-							
+
 							var formattedTime = new Intl.DateTimeFormat('en-US', options).format(date);
-						
+
 							if (time_format.includes('a')) {
 								formattedTime = formattedTime.toLowerCase();
 							}
-							
+
 							return formattedTime;
 						}
 
@@ -1391,6 +1391,112 @@
 		}
 
 		elementorFrontend.hooks.addAction("frontend/element_ready/ha-age-gate.default", AgeGate);
+
+
+		var LiquidHover2 = function($scope, $) {
+
+			/* if(elementorFrontend.isEditMode()) {
+				localStorage.removeItem("ha-age-gate-expire-time");
+				if( $scope.find('.ha-age-gate-wrapper').length ) {
+					var editor_mood = $scope.find('.ha-age-gate-wrapper').data('editor_mood');
+					if( 'no' == editor_mood ){
+						$scope.find('.ha-age-gate-wrapper').hide();
+					}
+				}
+			} */
+			// var settings = JSON.parse($scope.find('.settings').text()),
+			var settings = JSON.parse($scope.find('.ha-liquid-image-area').attr("data-settings")),
+			liquidImage = $scope.find('.ha-liquid-image')
+
+			function init(){
+
+				var myAnimation = new hoverEffect({
+					parent: liquidImage[0],
+					intensity: settings.intensity,
+					image1: settings.first_image,
+					image2: settings.second_image,
+					displacementImage: settings.plugin_url + 'liquid-hover/' + settings.hover_effect,
+					imagesRatio: liquidImage.height()/liquidImage.width(),
+					angle1: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
+					angle2: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
+					speedIn: settings.speed,
+					speedOut: settings.speed,
+				})
+			}
+
+
+			function adjustWidth() {
+
+				if( $(window).width() > 1024 ){ liquidImage.css( 'width', settings.width.size + settings.width.unit ) }
+				if( $(window).width() <= 1024 ){ liquidImage.css( 'width', settings.width_tablet.size + settings.width_tablet.unit ) }
+				if( $(window).width() <= 767 ){ liquidImage.css( 'width', settings.width_mobile.size + settings.width_mobile.unit ) }
+			}
+
+			// adjustWidth()
+			// $(window).on('load resize', adjustWidth)
+
+			// init()
+			setTimeout(init, 500)
+		}
+
+		var LiquidHover = ModuleHandler.extend({
+			onInit: function () {
+				ModuleHandler.prototype.onInit.apply(this, arguments);
+				this.run();
+
+				// $window.on('resize', debounce(this.run.bind(this), 100));
+			},
+
+			onElementChange: debounce(function(changedProp) {
+				if (['width'].indexOf(changedProp) !== -1) {
+					this.run();
+				}
+			}, 300),
+
+			run: function() {
+				var self = this;
+				//console.log(self);
+
+				var settings = JSON.parse(self.$element.find('.ha-liquid-image-area').attr("data-settings")),
+				liquidImage = self.$element.find('.ha-liquid-image'),
+				canvas = self.$element.find('canvas')
+				console.log(canvas);
+
+				if(canvas){ canvas.remove()}
+				// function init(){
+					var myAnimation = new hoverEffect({
+						parent: liquidImage[0],
+						intensity: settings.intensity,
+						image1: settings.first_image,
+						image2: settings.second_image,
+						displacementImage: settings.plugin_url + 'liquid-hover/' + settings.hover_effect,
+						imagesRatio: liquidImage.height()/liquidImage.width(),
+						angle1: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
+						angle2: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
+						speedIn: settings.speed,
+						speedOut: settings.speed,
+					})
+				// }
+
+				// function adjustWidth() {
+
+				// 	if( $(window).width() > 1024 ){ liquidImage.css( 'width', settings.width.size + settings.width.unit ) }
+				// 	if( $(window).width() <= 1024 ){ liquidImage.css( 'width', settings.width_tablet.size + settings.width_tablet.unit ) }
+				// 	if( $(window).width() <= 767 ){ liquidImage.css( 'width', settings.width_mobile.size + settings.width_mobile.unit ) }
+				// }
+
+				// adjustWidth()
+				// $(window).on('load resize', adjustWidth)
+
+				// init()
+				// setTimeout(init, 500)
+			}
+		});
+
+		// elementorFrontend.hooks.addAction("frontend/element_ready/ha-liquid-hover.default", LiquidHover2);
+		elementorFrontend.hooks.addAction( 'frontend/element_ready/ha-liquid-hover.default', function( $scope ) {
+			elementorFrontend.elementsHandler.addHandler( LiquidHover, { $element: $scope });
+		});
 
 	});
 
