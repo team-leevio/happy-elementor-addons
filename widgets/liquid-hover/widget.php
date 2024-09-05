@@ -69,19 +69,10 @@ class Liquid_Hover extends Base {
 			]
 		);
 
-		$this->start_controls_tabs( '_tabs_images' );
-
-        $this->start_controls_tab(
-            '_tab_first_image',
-            [
-                'label' => __( 'First Image', 'happy-elementor-addons' ),
-            ]
-        );
-
 		$this->add_control(
 			'first_image',
 			[
-				'label' => __( 'First Image', 'happy-elementor-addons' ),
+				'label' => __( 'Initial Image', 'happy-elementor-addons' ),
 				'show_label' => false,
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
@@ -93,19 +84,10 @@ class Liquid_Hover extends Base {
 			]
 		);
 
-		$this->end_controls_tab();
-
-        $this->start_controls_tab(
-            '_tab_second_image',
-            [
-                'label' => __( 'Second Image', 'happy-elementor-addons' ),
-            ]
-        );
-
 		$this->add_control(
 			'second_image',
 			[
-				'label' => __( 'Second Image', 'happy-elementor-addons' ),
+				'label' => __( 'Hover Image', 'happy-elementor-addons' ),
 				'show_label' => false,
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
@@ -116,9 +98,6 @@ class Liquid_Hover extends Base {
 	            ],
             ],
 		);
-
-		$this->end_controls_tab();
-		$this->end_controls_tabs();
 
 		$this->add_control(
 			'link',
@@ -264,13 +243,14 @@ class Liquid_Hover extends Base {
 					],
 				],
 				'prefix_class' => 'content-align-%s',
-                'selectors_dictionary' => [
-                    'left' => 'justify-content: flex-start',
-                    'center' => 'justify-content: center',
-                    'right' => 'justify-content: flex-end',
-                ],
+                // 'selectors_dictionary' => [
+                //     'left' => 'justify-content: flex-start',
+                //     'center' => 'justify-content: center',
+                //     'right' => 'justify-content: flex-end',
+                // ],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-liquid-image-area' => '{{VALUE}}'
+                    // '{{WRAPPER}} .ha-liquid-image-area' => '{{VALUE}}'
+                    '{{WRAPPER}} .ha-liquid-image-area' => 'text-align:{{VALUE}}'
                 ]
 			]
 		);
@@ -401,7 +381,8 @@ class Liquid_Hover extends Base {
 		?>
 
     	<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
-	    	<div class="ha-liquid-image" <?php echo //$width; ?>>
+			<div class="ha-liquid-title"><h2>Olalla</h2></div>
+	    	<div class="ha-liquid-image">
 	    		<img src="<?php echo esc_url( $settings['first_image']['url'] ); ?>">
 	    		<?php if( $settings['link']['url'] != '' ) : ?>
 	    			<a href="<?php echo $settings['link']['url']; ?>"<?php echo $target . $nofollow; ?>></a>

@@ -1458,9 +1458,19 @@
 				//console.log(self);
 
 				var settings = JSON.parse(self.$element.find('.ha-liquid-image-area').attr("data-settings")),
+				liquid = self.$element.find('.ha-liquid-image-area'),
 				liquidImage = self.$element.find('.ha-liquid-image'),
+				title = self.$element.find('.ha-liquid-title'),
 				canvas = self.$element.find('canvas')
 				console.log(canvas);
+
+				gsap.to(title, {
+					duration: 1000,
+					value: 1,
+					ease: "expo.out",
+					// onUpdate: render,
+					// onComplete: render
+				  });
 
 				if(canvas){ canvas.remove()}
 				// function init(){
