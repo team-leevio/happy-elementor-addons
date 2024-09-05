@@ -347,6 +347,8 @@ p + .ha-review-notice__actions {
 	--e-button-context-color: #5e3bc4;
 	--e-button-context-color-dark: #4b2f9d;
 	--e-button-context-tint: rgb(75 47 157 / 4%);
+	--e-button-padding-x: 10px;
+	--e-button-padding-y: 5px;
 	--e-focus-color: rgb(75 47 157 / 40%);
 }
 

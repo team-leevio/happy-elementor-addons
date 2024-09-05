@@ -1,3 +1,7 @@
+= 3.12.2 - 5 September 2024 =
+
+- Tweak: Promotional material added.
+
 = 3.12.1 - 28 August 2024 =
 
 - Fix: Event Calendar time format issue.
