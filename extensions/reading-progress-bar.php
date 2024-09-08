@@ -45,7 +45,7 @@ class Reading_Progress_Bar {
     }
 
     public function enqueue_scripts_frontend () {
-        
+
 
         $suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
         $extension_js = HAPPY_ADDONS_ASSETS . 'js/extension-reading-progress-bar' . $suffix . 'js';
@@ -73,13 +73,43 @@ class Reading_Progress_Bar {
 		$element->add_control(
 			'ha_reading_progress_bar_disable',
 			[
-				'label'        => __( 'Disable Scroll to Top', 'happy-elementor-addons' ),
-				'description'  => __( 'Disable Scroll to Top For This Page', 'happy-elementor-addons' ),
+				'label'        => __( 'Disable ?', 'happy-elementor-addons' ),
+				'description'  => __( 'Disable Progress Bar For This Page', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'no',
+				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off'    => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+			]
+		);
+
+        $element->add_control(
+            'ha_reading_progress_bar_type',
+            [
+                'label' => __('Type', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'horizontal',
+                'options' => [
+                    'horizontal' => __('Horizontal', 'happy-elementor-addons'),
+                    'vertical' => __('Vertical', 'happy-elementor-addons'),
+                    'circle' => __('Circle', 'happy-elementor-addons'),
+                ],
+                'frontend_available' => true,
+                'condition' => [
+                    'ha_reading_progress_bar_disable!' => '',
+                ],
+            ]
+        );
+		
+        $element->add_control(
+			'ha_reading_progress_bar_enable_globaly',
+			[
+				'label'        => __( 'Enable Gobaly?', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => '',
 				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
 				'label_off'    => __( 'No', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
+				'return_value' => 'no',
 			]
 		);
 
@@ -87,9 +117,14 @@ class Reading_Progress_Bar {
 	}
 
 	public function render_reading_progress_bar_html() {
+        $post_id  = get_the_ID();
+		$document = Plugin::$instance->documents->get($post_id, false);
+        $ha_reading_progress_bar_disable = $document->get_settings('ha_reading_progress_bar_disable');
 
-		// $document = Plugin::$instance->documents->get($post_id, false);
-        // $document->get_settings('eael_ext_reading_progress_global') == 'yes' && $document->get_settings('eael_ext_reading_progress') == 'yes'
+        if( $ha_reading_progress_bar_disable === 'yes') {
+            return;
+        }
+        
         ?>
 
         <!-- Horizontal -->

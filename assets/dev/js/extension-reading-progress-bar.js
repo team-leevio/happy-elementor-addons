@@ -7,11 +7,11 @@
         // console.log('hmrpbsettings ', hmrpbsettings);
 
     $($window).scroll(function () {
-
-        let s = $($window).scrollTop(),
-            d = $(document).height(),
-            c = $($window).height();
-        let scrollPercent = (s / (d-c)) * 100;
+        let scrollPercent = 0;
+        let hmSt = $($window).scrollTop(),
+            hmDt = $(document).height(),
+            hmCt = $($window).height();
+        scrollPercent = ( hmSt / (hmDt - hmCt) ) * 100;
         let position = scrollPercent.toFixed(2);
         
         // Horizontal
@@ -34,7 +34,7 @@
         }**/
         $('.hm-vrp-bar').height(position + '%');
 
-        // Circular
+        // Circle
         if (scrollPercent > 100) {
             scrollPercent = 100;
         }
