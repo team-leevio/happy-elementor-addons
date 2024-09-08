@@ -7,29 +7,29 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use \Elementor\Group_Control_Background;
 use \Elementor\Group_Control_Border;
+use \Elementor\Plugin;
 
 defined('ABSPATH') || die();
 
 class Reading_Progress_Bar {
 
-    private static $instance = null;
+	private static $instance = null;
 
-    public static function instance() {
+	public static function instance() {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
 		}
 		 return self::$instance;
 	}
 
-    public function init() {
-        add_action('elementor/element/common/_section_style/after_section_end', [$this, 'add_controls_section'], 1);
+	public function init() {
+		add_action( 'elementor/documents/register_controls', [$this, 'reading_progress_bar_controls'], 10 );
         add_action('elementor/preview/enqueue_scripts', [$this, 'enqueue_scripts']);
         if ( !ha_elementor()->preview->is_preview_mode() ) {
             add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts_frontend']);
-        } 
-        add_action( 'wp_footer', [$this, 'render_reading_progress_bar_html'] );
-    }
-
+        }
+		add_action( 'wp_footer', [$this, 'render_reading_progress_bar_html'] );
+	}
 
     public function enqueue_scripts () {
         $suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
@@ -60,42 +60,60 @@ class Reading_Progress_Bar {
         
     }
 
-    public function add_controls_section ($element) {
-        $element->start_controls_section(
-            '_section_ha_reading_progres_bar',
-            [
-                'label' => __('Happy Reading Progress Bar', 'happy-elementor-addons') . ha_get_section_icon(),
-                'tab'   => Controls_Manager::TAB_ADVANCED,
-            ]
-        );
+	public function reading_progress_bar_controls( $element ) {
 
-        $element->add_control(
-            'ha_reading_progres_bar_enable',
-            [
-                'label'       => __('Enable Reading Progress Bar?', 'happy-elementor-addons'),
-                'type'        => Controls_Manager::SWITCHER,
-                'label_on' => __('On', 'happy-elementor-addons'),
-                'label_off' => __('Off', 'happy-elementor-addons'),
-                'return_value' => 'enable',
-                'prefix_class' => 'ha-reading-progress-bar-',
-                'default' => '',
-                'frontend_available' => true,
-            ]
-        );
-        $element->end_controls_tabs();
+		$element->start_controls_section(
+			'ha_reading_progress_bar_section',
+			[
+				'label' => __( 'Reading Progress Bar', 'happy-elementor-addons' ) . ha_get_section_icon(),
+				'tab'   => Controls_Manager::TAB_SETTINGS,
+			]
+		);
 
-        $element->end_controls_section();
-    }
+		$element->add_control(
+			'ha_reading_progress_bar_disable',
+			[
+				'label'        => __( 'Disable Scroll to Top', 'happy-elementor-addons' ),
+				'description'  => __( 'Disable Scroll to Top For This Page', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => '',
+				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off'    => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+			]
+		);
 
-    public function render_reading_progress_bar_html () {
+		$element->end_controls_section();
+	}
+
+	public function render_reading_progress_bar_html() {
+
+		// $document = Plugin::$instance->documents->get($post_id, false);
+        // $document->get_settings('eael_ext_reading_progress_global') == 'yes' && $document->get_settings('eael_ext_reading_progress') == 'yes'
         ?>
 
-        <div class="hm-reading-progress-bar-container">
-            <div class="hm-readin-progress-bar">Happy Reading Progress Bar..</div>
+        <!-- Horizontal -->
+        <div id="hm_hrp_bar_wrapper" class="hm-hrp-bar-container ha-reading-progress-bar">
+            <div class="hm-hrp-bar"></div>
+        </div>
+
+        <!-- Vertical -->
+        <div id="hm_vrp_bar_wrapper" class="hm-vrp-bar-container ha-reading-progress-bar">
+            <div class="hm-vrp-bar"></div>
+        </div>
+
+        <div class="hm-crp-wrapper ha-reading-progress-bar">
+            <svg class="hm-circular-progress" width="80" height="80" viewBox="0 0 100 100">
+                <circle class="hm-progress-background" cx="50" cy="50" r="45"></circle>
+                <circle class="hm-progress-circle" cx="50" cy="50" r="45"></circle>
+            </svg>
+            <div class="hm-progress-percent-text">0%</div>
         </div>
 
     <?php
-    }
+
+	}
+
 
 }
 

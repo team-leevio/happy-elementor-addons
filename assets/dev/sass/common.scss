@@ -427,3 +427,103 @@ body.elementor-editor-active {
     background-color: #E2498A;
 }
 /* Scroll To Top css End */
+
+/** Start reading progress bar **/
+#hm_hrp_bar_wrapper {
+	width: 100%;
+    background: #E2498A;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 15px;
+    max-height: 50px;
+
+    .hm-hrp-bar {
+        position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+		font-size: 14px;
+		font-weight: 500;
+		color: #FFFFFF;
+		display: none;
+		justify-content: center;
+		align-items: center;
+    }
+}
+
+
+#hm_vrp_bar_wrapper {
+	position: fixed;
+	top: 0;
+	right: 0;
+	background: #E2498A;
+	min-width: 15px;
+	height: 100%;
+	max-width: 50px;
+
+	.hm-vrp-bar {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: none;
+		max-height: 100%;
+		width: 100%;
+		background: linear-gradient(to top, #fcb045, #fd1d1d, #833ab4);
+		max-width: 50px;		
+	}
+}
+
+.hm-crp-wrapper {
+	position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+	max-width: 120;
+	max-height: 120px;
+    z-index: 999;
+
+	.hm-circular-progress {
+		transform: rotate(-90deg);
+		border-radius: 100%;
+
+		.hm-progress-background {
+			fill: none;
+			stroke: #e6e6e6;
+			stroke-width: 10;
+		}
+
+		.hm-progress-circle {
+			fill: none;
+			stroke: #4caf50;
+			stroke-width: 10;
+			stroke-dasharray: 283;
+			stroke-dashoffset: 283;
+			transition: stroke-dashoffset 0.4s ease;
+		}
+	}
+
+	.hm-progress-percent-text {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 16px;
+		font-weight: 500;
+	}
+}
+
+
+body.no-scroll {
+  	scrollbar-width: none;
+}
+
+body.no-scroll::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+
+/** End reading progress bar **/
