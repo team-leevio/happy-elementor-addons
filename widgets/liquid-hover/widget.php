@@ -56,15 +56,16 @@ class Liquid_Hover extends Base {
      * Register widget content controls
      */
 	protected function register_content_controls() {
-		$this->__liquid_hover_content_controls();
+		$this->__liquid_title_content_controls();
+		$this->__liquid_image_content_controls();
 	}
 
-	protected function __liquid_hover_content_controls() {
+	protected function __liquid_image_content_controls() {
 
         $this->start_controls_section(
-			'liquid_hover_content_section',
+			'liquid_image_content_section',
 			[
-				'label' => __( 'Liquid Hover', 'happy-elementor-addons' ),
+				'label' => __( 'Liquid Image', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -206,10 +207,64 @@ class Liquid_Hover extends Base {
 		$this->end_controls_section();
 	}
 
+	protected function __liquid_title_content_controls() {
+
+        $this->start_controls_section(
+			'liquid_title_content_section',
+			[
+				'label' => __( 'Liquid Title', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_control(
+			'title_hover_style',
+			[
+				'label' => __( 'Style', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'style-1',
+				'options' => [
+					'style-1'  => __( 'Style 1', 'happy-elementor-addons' ),
+					'style-2'  => __( 'Style 2', 'happy-elementor-addons' ),
+					'style-3'  => __( 'Style 3', 'happy-elementor-addons' ),
+					'style-4'  => __( 'Style 4', 'happy-elementor-addons' ),
+				],
+			]
+		);
+
+		$this->add_control(
+			'title',
+			[
+				'label' => __( 'Title', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::TEXT,
+				'label_block' => true,
+				'default' => __( 'OFFBEAT', 'happy-elementor-addons' ),
+				'dynamic' => [
+                    'active' => true,
+                ],
+			]
+		);
+
+		$this->add_control(
+			'sub_title',
+			[
+				'label' => __( 'Sub Title', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::TEXTAREA,
+				'default' => __( 'Lorem ipsum dolor sit amet', 'happy-elementor-addons' ),
+				'dynamic' => [
+                    'active' => true,
+                ],
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
 	/**
      * Register widget style controls
      */
 	protected function register_style_controls() {
+		$this->__title_style_controls();
 		$this->__image_style_controls();
 	}
 
@@ -340,6 +395,124 @@ class Liquid_Hover extends Base {
 		$this->end_controls_section();
 	}
 
+	protected function __title_style_controls() {
+
+		$this->start_controls_section(
+			'title_style',
+			[
+				'label' => __( 'Title & Subtitle', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'title_offset_toggle',
+			[
+				'label' => __( 'Offset', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::POPOVER_TOGGLE,
+				'label_off' => __( 'None', 'happy-elementor-addons' ),
+				'label_on' => __( 'Custom', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+			]
+		);
+
+		$this->start_popover();
+
+		$this->add_responsive_control(
+			'title_offset_x',
+			[
+				'label' => __( 'Offset Left', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'condition' => [
+					'title_offset_toggle' => 'yes'
+				],
+				'range' => [
+					'px' => [
+						'min' => -1000,
+						'max' => 1000,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-liquid-title' => '--ha-lh-title-translate-x: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'title_offset_y',
+			[
+				'label' => __( 'Offset Top', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'condition' => [
+					'title_offset_toggle' => 'yes'
+				],
+				'range' => [
+					'px' => [
+						'min' => -1000,
+						'max' => 1000,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-liquid-title' => '--ha-lh-title-translate-y: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+		$this->end_popover();
+
+		$this->add_responsive_control(
+			'title_area_width',
+			[
+				'label' => __( 'Width', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-liquid-title' => 'width: {{SIZE}}{{UNIT}}'
+				],
+				// 'render_type' => 'ui', //template
+			],
+		);
+
+		$this->add_responsive_control(
+			'title_align',
+			[
+				'label' => __( 'Alignment', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'happy-elementor-addons' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-liquid-title' => 'text-align:{{VALUE}}'
+                ]
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
@@ -373,21 +546,25 @@ class Liquid_Hover extends Base {
 		];
 
 		$this->add_render_attribute(
-			'wrapper',[
+			'img_wrap',[
 				'class' => ['ha-liquid-image-area'],
 				'data-settings' => [ json_encode($js_data) ]
 			]
 		);
 		?>
-
-    	<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
-			<div class="ha-liquid-title"><h2>Olalla</h2></div>
-	    	<div class="ha-liquid-image">
-	    		<img src="<?php echo esc_url( $settings['first_image']['url'] ); ?>">
-	    		<?php if( $settings['link']['url'] != '' ) : ?>
-	    			<a href="<?php echo $settings['link']['url']; ?>"<?php echo $target . $nofollow; ?>></a>
-	    		<?php endif; ?>
-	    	</div>
+		<div class="ha-liquid-hover-area style-2">
+			<div class="ha-liquid-title" data-style="<?php echo esc_attr( $settings['title_hover_style'] );?>">
+				<h2><?php echo esc_html($settings['title']); ?></h2>
+				<p class="letter"><?php echo esc_html($settings['sub_title']); ?></p>
+			</div>
+			<div <?php echo $this->get_render_attribute_string( 'img_wrap' ); ?>>
+				<div class="ha-liquid-image">
+					<img src="<?php echo esc_url( $settings['first_image']['url'] ); ?>">
+					<?php if( $settings['link']['url'] != '' ) : ?>
+						<a href="<?php echo $settings['link']['url']; ?>"<?php echo $target . $nofollow; ?>></a>
+					<?php endif; ?>
+				</div>
+			</div>
     	</div>
 		<?php
 	}

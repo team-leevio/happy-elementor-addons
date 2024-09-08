@@ -1458,23 +1458,27 @@
 				//console.log(self);
 
 				var settings = JSON.parse(self.$element.find('.ha-liquid-image-area').attr("data-settings")),
-				liquid = self.$element.find('.ha-liquid-image-area'),
+				liquidHoverArea = self.$element.find('.ha-liquid-hover-area'),
+				liquidImageArea = self.$element.find('.ha-liquid-image-area'),
 				liquidImage = self.$element.find('.ha-liquid-image'),
-				title = self.$element.find('.ha-liquid-title'),
-				canvas = self.$element.find('canvas')
+				title = self.$element.find('.ha-liquid-title h2'),
+				desc = self.$element.find('.ha-liquid-title p'),
+				canvas = self.$element.find('canvas'),
+				style = self.$element.find('.ha-liquid-title').attr("data-style")
 				console.log(canvas);
 
-				gsap.to(title, {
-					duration: 1000,
-					value: 1,
-					ease: "expo.out",
-					// onUpdate: render,
-					// onComplete: render
-				  });
+				// gsap.to(title[0], {
+				// 	duration: 1000,
+				// 	value: 1,
+				// 	ease: "expo.out",
+				// 	// onUpdate: render,
+				// 	// onComplete: render
+				//   });
 
 				if(canvas){ canvas.remove()}
 				// function init(){
 					var myAnimation = new hoverEffect({
+						// parent: liquidHoverArea[0],
 						parent: liquidImage[0],
 						intensity: settings.intensity,
 						image1: settings.first_image,
@@ -1500,6 +1504,65 @@
 
 				// init()
 				// setTimeout(init, 500)
+
+				title[0].innerHTML = title[0].textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+				// desc[0].innerHTML = desc[0].textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+				var HoverTranslateX, HoverOutTranslateX, HoverTranslateY, HoverOutTranslateY;
+
+				if( 'style-1' == style ) {
+					HoverTranslateX = [80,0],
+					HoverOutTranslateX = [0,-80],
+					HoverTranslateY = [0,0],
+					HoverOutTranslateY = [0,0];
+				} else if( 'style-2' == style ) {
+					HoverTranslateX = [0,80],
+					HoverOutTranslateX = [80,200],
+					HoverTranslateY = [0,0],
+					HoverOutTranslateY = [0,0];
+				} else if( 'style-3' == style ) {
+					HoverTranslateX = [0,0],
+					HoverOutTranslateX = [0,0],
+					HoverTranslateY = [80,0],
+					HoverOutTranslateY = [0,-80];
+				}
+
+				// $(document).ready(function() {
+
+					self.$element.hover(
+						function () {
+						anime.timeline({loop: false})
+						.add({
+						targets: '.ha-liquid-title .letter',
+						// translateX: [80,0],
+						// translateY: [80,0],
+						translateX: HoverTranslateX,
+						translateY: HoverTranslateY,
+						translateZ: 0,
+						opacity: [0,1],
+						easing: "easeOutExpo",
+						duration: 1400,
+						delay: (el, i) => 100 + 40 * i
+						})
+						},
+
+						function () {
+						anime.timeline({loop: false})
+						.add({
+						targets: '.ha-liquid-title .letter',
+						// translateX: [0,-80],
+						// translateY: [0,-80],
+						translateX: HoverOutTranslateX,
+						translateY: HoverOutTranslateY,
+						opacity: [1,0],
+						easing: "easeInExpo",
+						duration: 800,
+						delay: (el, i) => 40 * i
+						});
+						}
+					);
+
+				// });
 			}
 		});
 

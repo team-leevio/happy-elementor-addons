@@ -313,6 +313,14 @@ class Assets_Manager {
 			false
 		);
 
+		wp_register_script(
+			'anime',
+			HAPPY_ADDONS_ASSETS . 'vendor/anime/lib/anime.min.js',
+			[],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
 		// Main assets
 		wp_register_style(
 			'happy-elementor-addons',

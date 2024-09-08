@@ -1351,7 +1351,7 @@ class Widgets_Manager {
 				'js' => [],
 				'vendor' => [
 					'css' => [],
-					'js' => ['gsap','three','hover-effect'],
+					'js' => ['gsap','three','hover-effect','anime'],
 				],
 			],
 		];

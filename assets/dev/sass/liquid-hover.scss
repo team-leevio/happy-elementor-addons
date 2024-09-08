@@ -1,3 +1,23 @@
+.ha-liquid-hover-area {
+	position: relative;
+
+	.ha-liquid-title {
+		position: absolute;
+		top: 0%;
+		left: 0%;
+		// left: 30%;
+		transform: translate(var(--ha-lh-title-translate-x,-10%), var(--ha-lh-title-translate-y,50%));
+		// color: white;
+		z-index: 2;
+		// width: 100%;
+  }
+
+  .ha-liquid-title .letter {
+		display: inline-block;
+		opacity: 0;
+  }
+
+
 .ha-liquid-image-area {
 	// display: flex;
 	// align-items: center;
@@ -36,3 +56,4 @@
 	top: 0;
 	left: 0;
   }
+}
