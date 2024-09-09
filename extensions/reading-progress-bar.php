@@ -148,6 +148,7 @@ class Reading_Progress_Bar {
 				],
                 'condition' => [
                     'ha_reading_progress_bar_type' => 'circle',
+                    'ha_reading_progress_bar_enable' => 'yes',
                 ],
 			]
 		); 
@@ -510,6 +511,7 @@ class Reading_Progress_Bar {
 				],
                 'condition' => [
                     'ha_reading_progress_bar_type' => 'horizontal',
+                    'ha_reading_progress_bar_enable' => 'yes',
                 ],
 			]
 		);
@@ -543,6 +545,7 @@ class Reading_Progress_Bar {
 				],
                 'condition' => [
                     'ha_reading_progress_bar_type' => 'vertical',
+                    'ha_reading_progress_bar_enable' => 'yes',
                 ],
 			]
 		);

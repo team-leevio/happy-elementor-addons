@@ -454,14 +454,14 @@ body.elementor-editor-active {
 }
 
 
-.hm-hrp-bar-container {
+.hm-vrp-bar-container {
 	position: fixed;
 	top: 0;
 	right: 0;
-	background: #E2498A;
-	min-width: 15px;
+	background: transparent;
+	min-width: 10px;
 	height: 100%;
-	max-width: 50px;
+	max-width: 30px;
 
 	.hm-vrp-bar {
 		position: absolute;
@@ -471,7 +471,7 @@ body.elementor-editor-active {
 		max-height: 100%;
 		width: 100%;
 		background: linear-gradient(to top, #fcb045, #fd1d1d, #833ab4);
-		max-width: 50px;		
+		max-width: 30px;		
 	}
 }
 
