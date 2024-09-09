@@ -1455,7 +1455,7 @@
 
 			run: function() {
 				var self = this;
-				//console.log(self);
+				console.log(self.getID());
 
 				var settings = JSON.parse(self.$element.find('.ha-liquid-image-area').attr("data-settings")),
 				liquidHoverArea = self.$element.find('.ha-liquid-hover-area'),
@@ -1465,7 +1465,7 @@
 				desc = self.$element.find('.ha-liquid-title p'),
 				canvas = self.$element.find('canvas'),
 				style = self.$element.find('.ha-liquid-title').attr("data-style")
-				console.log(canvas);
+				// console.log(canvas);
 
 				// gsap.to(title[0], {
 				// 	duration: 1000,
@@ -1507,8 +1507,15 @@
 
 				title[0].innerHTML = title[0].textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 				// desc[0].innerHTML = desc[0].textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+				var letter = self.$element.find('.ha-liquid-title .letter');
+				var leterCount = letter.length * 40;
+				// console.log(letter);
 
 				var HoverTranslateX, HoverOutTranslateX, HoverTranslateY, HoverOutTranslateY;
+
+				function HoverOutDelay(el, i, a) {
+					return 'style-2' == style ? ((a - i) * 40) : (40 * i);
+				};
 
 				if( 'style-1' == style ) {
 					HoverTranslateX = [80,0],
@@ -1525,44 +1532,48 @@
 					HoverOutTranslateX = [0,0],
 					HoverTranslateY = [80,0],
 					HoverOutTranslateY = [0,-80];
+				} else if( 'style-4' == style ) {
+					HoverTranslateX = [0,0],
+					HoverOutTranslateX = [0,0],
+					HoverTranslateY = [-80,0],
+					HoverOutTranslateY = [0,80];
 				}
-
-				// $(document).ready(function() {
 
 					self.$element.hover(
 						function () {
-						anime.timeline({loop: false})
-						.add({
-						targets: '.ha-liquid-title .letter',
-						// translateX: [80,0],
-						// translateY: [80,0],
-						translateX: HoverTranslateX,
-						translateY: HoverTranslateY,
-						translateZ: 0,
-						opacity: [0,1],
-						easing: "easeOutExpo",
-						duration: 1400,
-						delay: (el, i) => 100 + 40 * i
-						})
+							anime.timeline({loop: false})
+							.add({
+							targets: '.elementor-element-'+self.getID()+' .ha-liquid-title .letter',
+							// translateX: [80,0],
+							// translateY: [-80,0],
+							translateX: HoverTranslateX,
+							translateY: HoverTranslateY,
+							translateZ: 0,
+							opacity: [0,1],
+							easing: "easeOutExpo",
+							duration: 1400,
+							delay: (el, i) => 100 + 40 * i
+							})
 						},
 
 						function () {
-						anime.timeline({loop: false})
-						.add({
-						targets: '.ha-liquid-title .letter',
-						// translateX: [0,-80],
-						// translateY: [0,-80],
-						translateX: HoverOutTranslateX,
-						translateY: HoverOutTranslateY,
-						opacity: [1,0],
-						easing: "easeInExpo",
-						duration: 800,
-						delay: (el, i) => 40 * i
-						});
+							anime.timeline({loop: false})
+							.add({
+							targets: '.elementor-element-'+self.getID()+' .ha-liquid-title .letter',
+							// translateX: [0,-80],
+							// translateY: [0,80],
+							translateX: HoverOutTranslateX,
+							translateY: HoverOutTranslateY,
+							opacity: [1,0],
+							easing: "easeInExpo",
+							duration: 800,
+							// delay: (el, i) => 40 * i
+							delay: function (el, i, a) {
+									return HoverOutDelay(el, i, a);
+								}
+							});
 						}
 					);
-
-				// });
 			}
 		});
 

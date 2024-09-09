@@ -228,6 +228,7 @@ class Liquid_Hover extends Base {
 					'style-2'  => __( 'Style 2', 'happy-elementor-addons' ),
 					'style-3'  => __( 'Style 3', 'happy-elementor-addons' ),
 					'style-4'  => __( 'Style 4', 'happy-elementor-addons' ),
+					'style-5'  => __( 'Style 5', 'happy-elementor-addons' ),
 				],
 			]
 		);
