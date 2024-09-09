@@ -429,9 +429,9 @@ body.elementor-editor-active {
 /* Scroll To Top css End */
 
 /** Start reading progress bar **/
-#hm_hrp_bar_wrapper {
+.hm-hrp-bar-container {
 	width: 100%;
-    background: #E2498A;
+    background: transparent;
     position: fixed;
     top: 0;
     left: 0;
@@ -454,7 +454,7 @@ body.elementor-editor-active {
 }
 
 
-#hm_vrp_bar_wrapper {
+.hm-hrp-bar-container {
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -477,11 +477,9 @@ body.elementor-editor-active {
 
 .hm-crp-wrapper {
 	position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 80px;
-    height: 80px;
-	max-width: 120;
+    width: 60px;
+    height: 60px;
+	max-width: 120px;
 	max-height: 120px;
     z-index: 999;
 
@@ -492,13 +490,13 @@ body.elementor-editor-active {
 		.hm-progress-background {
 			fill: none;
 			stroke: #e6e6e6;
-			stroke-width: 10;
+			stroke-width: 5;
 		}
 
 		.hm-progress-circle {
 			fill: none;
-			stroke: #4caf50;
-			stroke-width: 10;
+			stroke: #833ab4;
+			stroke-width: 5;
 			stroke-dasharray: 283;
 			stroke-dashoffset: 283;
 			transition: stroke-dashoffset 0.4s ease;
@@ -510,14 +508,31 @@ body.elementor-editor-active {
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		font-size: 16px;
+		font-size: 13px;
 		font-weight: 500;
 	}
 }
 
+.hm-crp-wrapper.hm-crp-top-right {
+	top: 20px;
+	right: 20px;
+}
+.hm-crp-wrapper.hm-crp-top-left {
+	top: 20px;
+	left: 20px;
+}
+.hm-crp-wrapper.hm-crp-bottom-right {
+	bottom: 20px;
+	right: 20px;
+}
+.hm-crp-wrapper.hm-crp-bottom-left {
+	bottom: 20px;
+	left: 20px;
+}
+
 
 body.no-scroll {
-  	scrollbar-width: none;
+  	scrollbar-width: 0px;
 }
 
 body.no-scroll::-webkit-scrollbar {
