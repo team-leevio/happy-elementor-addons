@@ -1454,98 +1454,74 @@
 			}, 300),
 
 			run: function() {
-				var self = this;
-				console.log(self.getID());
-
-				var settings = JSON.parse(self.$element.find('.ha-liquid-image-area').attr("data-settings")),
+				var self = this,
+				settings = JSON.parse(self.$element.find('.ha-liquid-image-area').attr("data-settings")),
 				liquidHoverArea = self.$element.find('.ha-liquid-hover-area'),
 				liquidImageArea = self.$element.find('.ha-liquid-image-area'),
 				liquidImage = self.$element.find('.ha-liquid-image'),
+				textWrap = self.$element.find('.ha-liquid-title'),
 				title = self.$element.find('.ha-liquid-title h2'),
-				desc = self.$element.find('.ha-liquid-title p'),
+				sub_title = self.$element.find('.ha-liquid-title p'),
 				canvas = self.$element.find('canvas'),
 				style = self.$element.find('.ha-liquid-title').attr("data-style")
-				// console.log(canvas);
 
-				// gsap.to(title[0], {
-				// 	duration: 1000,
-				// 	value: 1,
-				// 	ease: "expo.out",
-				// 	// onUpdate: render,
-				// 	// onComplete: render
-				//   });
+				if ( canvas ) { canvas.remove() }
+				var myAnimation = new hoverEffect({
+					// parent: liquidHoverArea[0],
+					parent: liquidImage[0],
+					intensity: settings.intensity,
+					image1: settings.first_image,
+					image2: settings.second_image,
+					displacementImage: settings.plugin_url + 'liquid-hover/' + settings.hover_effect,
+					imagesRatio: liquidImage.height()/liquidImage.width(),
+					angle1: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
+					angle2: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
+					speedIn: settings.speed,
+					speedOut: settings.speed,
+				});
 
-				if(canvas){ canvas.remove()}
-				// function init(){
-					var myAnimation = new hoverEffect({
-						// parent: liquidHoverArea[0],
-						parent: liquidImage[0],
-						intensity: settings.intensity,
-						image1: settings.first_image,
-						image2: settings.second_image,
-						displacementImage: settings.plugin_url + 'liquid-hover/' + settings.hover_effect,
-						imagesRatio: liquidImage.height()/liquidImage.width(),
-						angle1: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
-						angle2: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
-						speedIn: settings.speed,
-						speedOut: settings.speed,
-					})
-				// }
+				/* if title or subtitle enable */
+				if ( 'style-1' == style && (title.length || desc.length) ) {
+					var style_direction = settings.style_1_direction;
+					console.log(style_direction);
 
-				// function adjustWidth() {
+					if ( title.length ) {
+						title[0].innerHTML = title[0].textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+						// sub_title[0].innerHTML = sub_title[0].textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+						// var letter = self.$element.find('.ha-liquid-title .letter');
+					}
 
-				// 	if( $(window).width() > 1024 ){ liquidImage.css( 'width', settings.width.size + settings.width.unit ) }
-				// 	if( $(window).width() <= 1024 ){ liquidImage.css( 'width', settings.width_tablet.size + settings.width_tablet.unit ) }
-				// 	if( $(window).width() <= 767 ){ liquidImage.css( 'width', settings.width_mobile.size + settings.width_mobile.unit ) }
-				// }
+					if ( sub_title.length ) {
+						sub_title.addClass( "letter" );
+					}
 
-				// adjustWidth()
-				// $(window).on('load resize', adjustWidth)
-
-				// init()
-				// setTimeout(init, 500)
-
-				title[0].innerHTML = title[0].textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-				// desc[0].innerHTML = desc[0].textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-				var letter = self.$element.find('.ha-liquid-title .letter');
-				var leterCount = letter.length * 40;
-				// console.log(letter);
-
-				var HoverTranslateX, HoverOutTranslateX, HoverTranslateY, HoverOutTranslateY;
-
-				function HoverOutDelay(el, i, a) {
-					return 'style-2' == style ? ((a - i) * 40) : (40 * i);
-				};
-
-				if( 'style-1' == style ) {
-					HoverTranslateX = [80,0],
-					HoverOutTranslateX = [0,-80],
+					var HoverTranslateX = [0,0],
+					HoverOutTranslateX = [0,0],
 					HoverTranslateY = [0,0],
 					HoverOutTranslateY = [0,0];
-				} else if( 'style-2' == style ) {
-					HoverTranslateX = [0,80],
-					HoverOutTranslateX = [80,200],
-					HoverTranslateY = [0,0],
-					HoverOutTranslateY = [0,0];
-				} else if( 'style-3' == style ) {
-					HoverTranslateX = [0,0],
-					HoverOutTranslateX = [0,0],
-					HoverTranslateY = [80,0],
-					HoverOutTranslateY = [0,-80];
-				} else if( 'style-4' == style ) {
-					HoverTranslateX = [0,0],
-					HoverOutTranslateX = [0,0],
-					HoverTranslateY = [-80,0],
-					HoverOutTranslateY = [0,80];
-				}
+					function HoverOutDelay(el, i, a) {
+						return 'right' == style_direction ? ((a - i) * 40) : (40 * i);
+					};
+
+					if( 'left' == style_direction ) {
+						HoverTranslateX = [80,0],
+						HoverOutTranslateX = [0,-80]
+					} else if( 'right' == style_direction ) {
+						HoverTranslateX = [0,80],
+						HoverOutTranslateX = [80,200]
+					} else if( 'up' == style_direction ) {
+						HoverTranslateY = [80,0],
+						HoverOutTranslateY = [0,-80]
+					} else if( 'down' == style_direction ) {
+						HoverTranslateY = [-80,0],
+						HoverOutTranslateY = [0,80]
+					}
 
 					self.$element.hover(
 						function () {
 							anime.timeline({loop: false})
 							.add({
 							targets: '.elementor-element-'+self.getID()+' .ha-liquid-title .letter',
-							// translateX: [80,0],
-							// translateY: [-80,0],
 							translateX: HoverTranslateX,
 							translateY: HoverTranslateY,
 							translateZ: 0,
@@ -1560,20 +1536,94 @@
 							anime.timeline({loop: false})
 							.add({
 							targets: '.elementor-element-'+self.getID()+' .ha-liquid-title .letter',
-							// translateX: [0,-80],
-							// translateY: [0,80],
 							translateX: HoverOutTranslateX,
 							translateY: HoverOutTranslateY,
 							opacity: [1,0],
 							easing: "easeInExpo",
 							duration: 800,
-							// delay: (el, i) => 40 * i
 							delay: function (el, i, a) {
 									return HoverOutDelay(el, i, a);
 								}
 							});
 						}
 					);
+				}
+
+				if ( 'style-2' == style && ( title.length || desc.length ) ) {
+					// console.log(title);
+					// return
+					let elements = document.querySelectorAll('.ha-liquid-title h2');
+
+					self.$element.hover(
+						function() {
+							console.log('in');
+
+							title.addClass('play');
+							sub_title.addClass('play');
+						},
+						function() {
+							console.log('out');
+							title.removeClass('play');
+							sub_title.removeClass('play');
+						}
+					)
+
+					// elements.forEach(element => {
+					// element.addEventListener('mouseover', () => {
+					// 	element.classList.remove('play');
+					// });
+					// });
+				}
+
+
+
+
+
+				// gsap.to(".ha-liquid-title", {
+				// 	rotation: 360,
+				// 	duration: 5
+				// });
+				// gsap.timeline({ duration: 3 ,ease: "expo" })
+				// .form(".ha-liquid-title h2", {transform: "translateY(0%)"})
+				// .to(".ha-liquid-title h2", {transform: "translateY(100%)"})
+				// .from(target, 1.5, {transform: "translateX(-142px) translateY(180px)"}).to(target, 0.5, this.getTweenVal())
+				return;
+				textWrap[0].addEventListener("mouseenter", ( () => {
+					console.log( 'mouse Enter' );
+					// return;
+					gsap.timeline('.ha-liquid-title', {
+						defaults: {
+							duration: .6,
+							ease: "expo"
+						}
+					})
+					.addLabel("start", 0)
+					.set('.ha-liquid-title h2', {
+						transformOrigin: "0% 50%"
+					}, "start")
+					.to('.ha-liquid-title h2', {
+						startAt: {
+							filter: "blur(0px)"
+						},
+						duration: .2,
+						ease: "power1.in",
+						yPercent: -100,
+						rotation: -4,
+						filter: "blur(6px)"
+					}, "start")
+					.to('.ha-liquid-title h2', {
+						startAt: {
+							yPercent: 100,
+							rotation: 4,
+							filter: "blur(6px)"
+						},
+						yPercent: 0,
+						rotation: 0,
+						filter: "blur(0px)"
+					}, "start+=0.2")
+				}
+				));
+
 			}
 		});
 
