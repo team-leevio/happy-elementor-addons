@@ -11,7 +11,7 @@
     let hmrpbsettings = {};
         hmrpbsettings = JSON.parse(hmprbEl.attr('data-ha_rpbsettings')); 
     
-    if( hmrpbsettings.hasOwnProperty('progress_bar_type') && hmrpbsettings.progress_bar_type === 'vertical' ) {
+    if( hmrpbsettings.hasOwnProperty('progress_bar_type') && (hmrpbsettings.progress_bar_type === 'vertical') && hmrpbsettings.hasOwnProperty('rpb_vertical_position') && hmrpbsettings.rpb_vertical_position == 'right' ) {
         $('body').addClass('no-scroll'); 
     } else {
         $('body').removeClass('no-scroll');

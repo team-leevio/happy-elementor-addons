@@ -247,6 +247,17 @@
 			elementor.settings.page.addChangeCallback(value, scrollToTop);
 		});
 
+		// Reading Progress Bar
+		function readingProgressBarHandaler (settingsValue) {
+			$e.run('document/save/update').then(_.debounce(function () {
+				elementor.reloadPreview();
+			}, 1500));
+		};
+		let HmRPBHandler = ['ha_reading_progress_bar_enable', 'ha_reading_progress_bar_type', 'ha_rpb_enable_circle_percentage'];
+		$.each(HmRPBHandler, function (index, value) {
+			elementor.settings.page.addChangeCallback(value, readingProgressBarHandaler);
+		});
+
 		/**
 		 * Register grid layer shortcut
 		 */
