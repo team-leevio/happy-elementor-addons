@@ -1393,52 +1393,6 @@
 		elementorFrontend.hooks.addAction("frontend/element_ready/ha-age-gate.default", AgeGate);
 
 
-		var LiquidHover2 = function($scope, $) {
-
-			/* if(elementorFrontend.isEditMode()) {
-				localStorage.removeItem("ha-age-gate-expire-time");
-				if( $scope.find('.ha-age-gate-wrapper').length ) {
-					var editor_mood = $scope.find('.ha-age-gate-wrapper').data('editor_mood');
-					if( 'no' == editor_mood ){
-						$scope.find('.ha-age-gate-wrapper').hide();
-					}
-				}
-			} */
-			// var settings = JSON.parse($scope.find('.settings').text()),
-			var settings = JSON.parse($scope.find('.ha-liquid-image-area').attr("data-settings")),
-			liquidImage = $scope.find('.ha-liquid-image')
-
-			function init(){
-
-				var myAnimation = new hoverEffect({
-					parent: liquidImage[0],
-					intensity: settings.intensity,
-					image1: settings.first_image,
-					image2: settings.second_image,
-					displacementImage: settings.plugin_url + 'liquid-hover/' + settings.hover_effect,
-					imagesRatio: liquidImage.height()/liquidImage.width(),
-					angle1: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
-					angle2: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
-					speedIn: settings.speed,
-					speedOut: settings.speed,
-				})
-			}
-
-
-			function adjustWidth() {
-
-				if( $(window).width() > 1024 ){ liquidImage.css( 'width', settings.width.size + settings.width.unit ) }
-				if( $(window).width() <= 1024 ){ liquidImage.css( 'width', settings.width_tablet.size + settings.width_tablet.unit ) }
-				if( $(window).width() <= 767 ){ liquidImage.css( 'width', settings.width_mobile.size + settings.width_mobile.unit ) }
-			}
-
-			// adjustWidth()
-			// $(window).on('load resize', adjustWidth)
-
-			// init()
-			setTimeout(init, 500)
-		}
-
 		var LiquidHover = ModuleHandler.extend({
 			onInit: function () {
 				ModuleHandler.prototype.onInit.apply(this, arguments);
@@ -1448,7 +1402,19 @@
 			},
 
 			onElementChange: debounce(function(changedProp) {
-				if (['width'].indexOf(changedProp) !== -1) {
+				let $keys = [
+					'width',
+					'title_typography_typography',
+					'title_typography_font_size',
+					'title_typography_line_height',
+					'title_typography_font_weight',
+					'sub_title_typography_typography',
+					'sub_title_typography_font_size',
+					'sub_title_typography_line_height',
+					'sub_title_typography_font_weight'
+
+				];
+				if ($keys.indexOf(changedProp) !== -1) {
 					this.run();
 				}
 			}, 300),
@@ -1481,14 +1447,12 @@
 				});
 
 				/* if title or subtitle enable */
-				if ( 'style-1' == style && (title.length || desc.length) ) {
+				if ( 'style-1' == style && (title.length || sub_title.length) ) {
 					var style_direction = settings.style_1_direction;
 					console.log(style_direction);
 
 					if ( title.length ) {
 						title[0].innerHTML = title[0].textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-						// sub_title[0].innerHTML = sub_title[0].textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-						// var letter = self.$element.find('.ha-liquid-title .letter');
 					}
 
 					if ( sub_title.length ) {
@@ -1549,15 +1513,22 @@
 					);
 				}
 
-				if ( 'style-2' == style && ( title.length || desc.length ) ) {
-					// console.log(title);
-					// return
-					let elements = document.querySelectorAll('.ha-liquid-title h2');
+				if ( 'style-2' == style && ( title.length || sub_title.length ) ) {
+
+					if ( title.length ) {
+						var height = title.find('.normal').outerHeight();
+						title.height( height );
+					}
+
+					if ( sub_title.length ) {
+						var height = sub_title.find('.normal').outerHeight();
+						sub_title.height( height );
+					}
 
 					self.$element.hover(
 						function() {
-							console.log('in');
-
+							console.log(title.find('.normal').outerHeight());
+							console.log(sub_title.find('.normal').outerHeight());
 							title.addClass('play');
 							sub_title.addClass('play');
 						},
@@ -1567,67 +1538,11 @@
 							sub_title.removeClass('play');
 						}
 					)
-
-					// elements.forEach(element => {
-					// element.addEventListener('mouseover', () => {
-					// 	element.classList.remove('play');
-					// });
-					// });
 				}
-
-
-
-
-
-				// gsap.to(".ha-liquid-title", {
-				// 	rotation: 360,
-				// 	duration: 5
-				// });
-				// gsap.timeline({ duration: 3 ,ease: "expo" })
-				// .form(".ha-liquid-title h2", {transform: "translateY(0%)"})
-				// .to(".ha-liquid-title h2", {transform: "translateY(100%)"})
-				// .from(target, 1.5, {transform: "translateX(-142px) translateY(180px)"}).to(target, 0.5, this.getTweenVal())
-				return;
-				textWrap[0].addEventListener("mouseenter", ( () => {
-					console.log( 'mouse Enter' );
-					// return;
-					gsap.timeline('.ha-liquid-title', {
-						defaults: {
-							duration: .6,
-							ease: "expo"
-						}
-					})
-					.addLabel("start", 0)
-					.set('.ha-liquid-title h2', {
-						transformOrigin: "0% 50%"
-					}, "start")
-					.to('.ha-liquid-title h2', {
-						startAt: {
-							filter: "blur(0px)"
-						},
-						duration: .2,
-						ease: "power1.in",
-						yPercent: -100,
-						rotation: -4,
-						filter: "blur(6px)"
-					}, "start")
-					.to('.ha-liquid-title h2', {
-						startAt: {
-							yPercent: 100,
-							rotation: 4,
-							filter: "blur(6px)"
-						},
-						yPercent: 0,
-						rotation: 0,
-						filter: "blur(0px)"
-					}, "start+=0.2")
-				}
-				));
 
 			}
 		});
 
-		// elementorFrontend.hooks.addAction("frontend/element_ready/ha-liquid-hover.default", LiquidHover2);
 		elementorFrontend.hooks.addAction( 'frontend/element_ready/ha-liquid-hover.default', function( $scope ) {
 			elementorFrontend.elementsHandler.addHandler( LiquidHover, { $element: $scope });
 		});

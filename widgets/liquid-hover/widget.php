@@ -57,8 +57,8 @@ class Liquid_Hover extends Base {
      * Register widget content controls
      */
 	protected function register_content_controls() {
-		$this->__liquid_title_content_controls();
 		$this->__liquid_image_content_controls();
+		$this->__liquid_title_content_controls();
 	}
 
 	protected function __liquid_image_content_controls() {
@@ -224,7 +224,7 @@ class Liquid_Hover extends Base {
 				'label' => __( 'Title', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => __( 'OFFBEAT', 'happy-elementor-addons' ),
+				// 'default' => __( 'OFFBEAT', 'happy-elementor-addons' ),
 				'dynamic' => [
                     'active' => true,
                 ],
@@ -235,8 +235,9 @@ class Liquid_Hover extends Base {
 			'sub_title',
 			[
 				'label' => __( 'Sub Title', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::TEXTAREA,
-				'default' => __( 'Lorem ipsum dolor sit amet', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::TEXT,
+				'label_block' => true,
+				// 'default' => __( 'Lorem ipsum dolor sit amet', 'happy-elementor-addons' ),
 				'dynamic' => [
                     'active' => true,
                 ],
@@ -295,8 +296,8 @@ class Liquid_Hover extends Base {
      * Register widget style controls
      */
 	protected function register_style_controls() {
-		$this->__title_style_controls();
 		$this->__image_style_controls();
+		$this->__title_style_controls();
 	}
 
 	protected function __image_style_controls() {
@@ -588,17 +589,6 @@ class Liquid_Hover extends Base {
 			]
 		);
 
-		// $this->add_control(
-		// 	'title_text_shadow',
-		// 	[
-		// 		'label' => esc_html__( 'Text Shadow', 'happy-elementor-addons' ),
-		// 		'type' => Controls_Manager::TEXT_SHADOW,
-		// 		'selectors' => [
-		// 			'{{WRAPPER}} .ha-liquid-title h2' => 'text-shadow: {{HORIZONTAL}}px {{VERTICAL}}px {{BLUR}}px {{COLOR}};',
-		// 		],
-		// 	]
-		// );
-
 		$this->add_group_control(
 			Group_Control_Text_Shadow::get_type(),
 			[
@@ -641,18 +631,9 @@ class Liquid_Hover extends Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-
-		// $width = '';
-		// if( $settings['width']['size'] != '' ){
-		// 	$width = 'style="width:' . $settings['width']['size'] . $settings['width']['unit'] . ';"';
-		// }
-
 		$target = $settings['link']['is_external'] ? ' target="_blank"' : '';
 		$nofollow = $settings['link']['nofollow'] ? ' rel="nofollow"' : '';
 
-
-        // $width_tablet = isset($settings['width_tablet']) ? $settings['width_tablet'] : $settings['width'];
-        // $width_mobile = isset($settings['width_mobile']) ? $settings['width_mobile'] : $width_tablet;
         $intensity = isset($settings['intensity']['size']) ? $settings['intensity']['size'] : 0.3;
         $angle = isset($settings['angle']['size']) ? $settings['angle']['size'] : 45;
         $speed = isset($settings['speed']['size']) ? $settings['speed']['size'] : 1.5;
@@ -727,148 +708,6 @@ class Liquid_Hover extends Base {
 			</div>
 
     	</div>
-		<?php
-	}
-
-	protected function render2() {
-		$settings = $this->get_settings_for_display();
-
-		$right_img_class='';
-
-		$this->add_render_attribute(
-			'wrapper',
-			'class',
-			[
-				'ha-liquid-hover-wrapper',
-				'ha-liquid-hover-'.$settings['age_gate_style'],
-			]
-		);
-
-		if( $settings['age_gate_cookies_time'] != '0' ) {
-			$this->add_render_attribute( 'wrapper', 'data-age_gate_cookies_time', $settings['age_gate_cookies_time']);
-		}
-
-		if( $settings["editor_mood"] != 'yes' ) {
-			$this->add_render_attribute( 'wrapper', 'data-editor_mood', 'no' );
-		}
-
-		if(!empty($settings['age_gate_style']) && $settings['age_gate_style']=='confirm-dob'){
-			$birthyears = !empty($settings['dob_limit']) ? $settings['dob_limit'] : '18';
-			$this->add_render_attribute( 'wrapper', 'data-userbirth', $birthyears);
-		}
-
-		$right_img_class = !empty($settings['side_img']['url']) ? 'ha-liquid-hover-equ-width-50' : '';
-		$this->add_render_attribute( 'box', 'class', ['ha-liquid-hover-boxes',$right_img_class]);
-
-		if((\Elementor\Plugin::$instance->editor->is_edit_mode()) && $settings["editor_mood"] != 'yes') {
-			printf(
-				"<p>%s</p>",
-				esc_html__( 'Liquid Hover:- This is just a placeholder & will not be shown on the live page.', 'happy-elementor-addons' )
-			);
-			return;
-		}
-		?>
-
-		<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
-			<div class="ha-liquid-hover-inner-wrapper">
-
-				<div <?php echo $this->get_render_attribute_string( 'box' ); ?>>
-
-					<div class="ha-liquid-hover-header">
-						<?php if(!empty($settings['warning_message'])): ?>
-							<div class="ha-liquid-hover-warning-msg"><?php echo $settings['warning_message'] ?></div>
-						<?php endif; ?>
-
-						<?php if( !empty($settings['header_img']['url']) ): ?>
-							<?php if( !empty($settings['header_img']['id']) ): ?>
-								<?php $image_url = wp_get_attachment_image_url( $settings['header_img']['id'], 'full' ); ?>
-								<div class="ha-liquid-hover-image"><img src="<?php echo esc_url($image_url); ?>"></div>
-							<?php else: ?>
-								<div class="ha-liquid-hover-image"><img src="<?php echo esc_url($settings['header_img']['url']); ?>"></div>
-							<?php endif; ?>
-						<?php endif; ?>
-
-						<?php if( !empty($settings['title']) ): ?>
-							<div class="ha-liquid-hover-title"><?php echo esc_html($settings['title']); ?></div>
-						<?php endif; ?>
-
-						<?php if( !empty($settings['desc']) ): ?>
-							<div class="ha-liquid-hover-description"><?php $this->print_unescaped_setting( 'desc' ); ?></div>
-						<?php endif; ?>
-					</div>
-
-					<div class="ha-liquid-hover-form-body">
-						<?php if( !empty($settings['age_gate_style']) ): ?>
-
-							<?php if($settings['age_gate_style']=='confirm-age'): ?>
-								<button type="submit" class="ha-liquid-hover-confirm-age-btn ha-liquid-hover-btn-ex">
-									<?php
-										if ( $settings['icon_position'] == 'before' && !empty($settings['button_icon']['value']) ) {
-											Icons_Manager::render_icon( $settings["button_icon"], [ 'aria-hidden' => 'true' ]);
-										}
-										echo esc_html($settings['button_text']);
-										if ( $settings['icon_position'] == 'after' && !empty($settings['button_icon']['value']) ) {
-											Icons_Manager::render_icon( $settings["button_icon"], [ 'aria-hidden' => 'true' ]);
-										}
-									?>
-								</button>
-							<?php endif; ?>
-
-							<?php if($settings['age_gate_style']=='confirm-dob'): ?>
-								<input type="date" class="ha-liquid-hover-date-input" name="ha-liquid-hover-birth" value="<?php echo date('Y-m-d');?>" min="1900-01-01" max="2100-01-01">
-								<button type="submit" class="ha-liquid-hover-confirm-dob-btn ha-liquid-hover-btn-ex">
-									<?php
-										if ( $settings['icon_position'] == 'before' && !empty($settings['button_icon']['value']) ) {
-											Icons_Manager::render_icon( $settings["button_icon"], [ 'aria-hidden' => 'true' ]);
-										}
-										echo esc_html($settings['button_text']);
-										if ( $settings['icon_position'] == 'after' && !empty($settings['button_icon']['value']) ) {
-											Icons_Manager::render_icon( $settings["button_icon"], [ 'aria-hidden' => 'true' ]);
-										}
-									?>
-								</button>
-							<?php endif; ?>
-
-							<?php if($settings['age_gate_style']=='confirm-by-boolean'): ?>
-								<button type="submit" class="ha-liquid-hover-confirm-yes-btn ha-liquid-hover-btn-ex" name="ha-liquid-hover-confirm-yes-btn">
-									<?php
-										if ( $settings['icon_position'] == 'before' && !empty($settings['button_icon']['value']) ) {
-											Icons_Manager::render_icon( $settings["button_icon"], [ 'aria-hidden' => 'true' ]);
-										}
-										echo esc_html($settings['button_text']);
-										if ( $settings['icon_position'] == 'after' && !empty($settings['button_icon']['value']) ) {
-											Icons_Manager::render_icon( $settings["button_icon"], [ 'aria-hidden' => 'true' ]);
-										}
-									?>
-								</button>
-								<button type="submit" class="ha-liquid-hover-confirm-no-btn ha-liquid-hover-btn-ex" name="ha-liquid-hover-confirm-no-btn">
-									<?php
-										if ( $settings['btn_two_icon_position'] == 'second-icon-before' && !empty($settings['btn_two_icon']['value']) ) {
-											Icons_Manager::render_icon( $settings["second_button_icon"], [ 'aria-hidden' => 'true' ]);
-										}
-										echo esc_html($settings['btn_two_text']);
-										if ( $settings['btn_two_icon_position'] == 'second-icon-after' && !empty($settings['btn_two_icon']['value']) ) {
-											Icons_Manager::render_icon( $settings["second_button_icon"], [ 'aria-hidden' => 'true' ]);
-										}
-									?>
-								</button>
-							<?php endif; ?>
-
-						<?php endif; ?>
-					</div>
-
-					<?php if( !empty($settings['footer_text']) ): ?>
-						<div class="ha-liquid-hover-footer-text"><p><?php $this->print_unescaped_setting( 'footer_text' ); ?></p></div>
-					<?php endif; ?>
-				</div>
-
-				<?php if( !empty($settings['side_img']['url']) ): ?>
-					<div class="ha-liquid-hover-boxes ha-liquid-hover-side-image <?php echo esc_attr($right_img_class); ?>" style="background-image:url(<?php echo esc_url($settings['side_img']['url']); ?>);background-size:cover;   background-attachment:inherit;"></div>
-				<?php endif; ?>
-
-			</div>
-		</div>
-
 		<?php
 	}
 
