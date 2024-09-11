@@ -1503,7 +1503,7 @@
 							translateX: HoverOutTranslateX,
 							translateY: HoverOutTranslateY,
 							opacity: [1,0],
-							easing: "easeInExpo",
+							// easing: "easeInExpo",
 							duration: 800,
 							delay: function (el, i, a) {
 									return HoverOutDelay(el, i, a);
@@ -1527,13 +1527,10 @@
 
 					self.$element.hover(
 						function() {
-							console.log(title.find('.normal').outerHeight());
-							console.log(sub_title.find('.normal').outerHeight());
 							title.addClass('play');
 							sub_title.addClass('play');
 						},
 						function() {
-							console.log('out');
 							title.removeClass('play');
 							sub_title.removeClass('play');
 						}

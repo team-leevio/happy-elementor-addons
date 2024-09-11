@@ -20,10 +20,11 @@
 
   &.style-2 .ha-liquid-title h2,
   &.style-2 .ha-liquid-title p {
-	display: inline-block;
+	display: block;
 	text-decoration: none;
 	overflow: hidden;
 	color: #1a1a1a;
+	margin: 0;
 
 	&:hover .letter,
 	&.play .letter,
@@ -33,7 +34,7 @@
 		transform: translateY(-100%);
 	}
 	.hover:last-child {
-		color: #d3a13b;
+		// color: #d3a13b;
 	}
 	span.block {
 		display: block;

@@ -75,7 +75,7 @@ class Liquid_Hover extends Base {
 			'first_image',
 			[
 				'label' => __( 'Initial Image', 'happy-elementor-addons' ),
-				'show_label' => false,
+				'show_label' => true,
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
@@ -90,7 +90,7 @@ class Liquid_Hover extends Base {
 			'second_image',
 			[
 				'label' => __( 'Hover Image', 'happy-elementor-addons' ),
-				'show_label' => false,
+				'show_label' => true,
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
@@ -194,7 +194,7 @@ class Liquid_Hover extends Base {
 				'size_units' => [ 'px' ],
 				'range' => [
 					'px' => [
-						'min' => 0,
+						'min' => -360,
 						'max' => 360,
 						'step' => 1,
 					],
@@ -253,8 +253,6 @@ class Liquid_Hover extends Base {
 				'options' => [
 					'style-1'  => __( 'Style 1', 'happy-elementor-addons' ),
 					'style-2'  => __( 'Style 2', 'happy-elementor-addons' ),
-					'style-3'  => __( 'Style 3', 'happy-elementor-addons' ),
-					'style-4'  => __( 'Style 4', 'happy-elementor-addons' ),
 				],
 			]
 		);
@@ -598,6 +596,25 @@ class Liquid_Hover extends Base {
 		);
 
 		$this->add_control(
+			'title_bottom_space',
+			[
+				'label' => __( 'Bottom Space', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-liquid-title h2' => 'margin-bottom: {{SIZE}}px'
+				],
+			],
+		);
+
+		$this->add_control(
 			'sub_title_heading',
 			[
 				'label' => esc_html__( 'Subtitle', 'happy-elementor-addons' ),
@@ -669,7 +686,7 @@ class Liquid_Hover extends Base {
 		?>
 		<div <?php echo $this->get_render_attribute_string( 'liquid_hover_wrap' ); ?>>
 
-			<?php if ( $settings['title'] && $settings['sub_title'] ) : ?>
+			<?php if ( $settings['title'] || $settings['sub_title'] ) : ?>
 				<?php if ( 'style-1' == $settings['title_hover_style'] ) : ?>
 				<div class="ha-liquid-title" data-style="<?php echo esc_attr( $settings['title_hover_style'] );?>">
 					<?php if ( $settings['title'] ) : ?>
