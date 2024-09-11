@@ -23,9 +23,9 @@ class Reading_Progress_Bar {
 	}
 
 	public function init() {
-        if ($this->prevent_reading_progress_bar_rendering(get_the_ID())) {
-            return;
-        }
+        // if ($this->prevent_reading_progress_bar_rendering(get_the_ID())) {
+        //     return;
+        // }
 
 		add_action( 'elementor/documents/register_controls', [$this, 'reading_progress_bar_controls'], 10 );
         add_action('elementor/preview/enqueue_scripts', [$this, 'enqueue_scripts']);
@@ -102,7 +102,7 @@ class Reading_Progress_Bar {
 		);
 
         $element->add_control(
-            'ha_reading_progress_bar_global_display_condition',
+            'ha_rpb_global_display_condition',
             [
                 'label' => __('Display On', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT,
@@ -587,7 +587,7 @@ class Reading_Progress_Bar {
 		$element->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'hm_rpb_percentage_typography',
+				'name' => 'hm_rpb_circle_percentage_typography',
 				'label' => __('Typography', 'happy-elementor-addons'),
 				// 'global' => [
 				// 	'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
@@ -630,6 +630,7 @@ class Reading_Progress_Bar {
                     'bottom' => __('Bottom', 'happy-elementor-addons'),
                 ],
                 'frontend_available' => true,
+				'render_type' => 'template',
 				'selectors_dictionary' => [
 					'top' => 'top: 0; bottom: unset;',
 					'bottom' => 'bottom: 0; top: unset;',
@@ -747,7 +748,82 @@ class Reading_Progress_Bar {
                     'ha_reading_progress_bar_enable' => 'yes',
                 ],
 			]
-		); // End Horizontal
+		); 
+		
+		$element->add_control(
+			'hm_rpb_horizontal_percentage_heading',
+			[
+				'label' => __( 'Percentage Tool Tip', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'after',
+				'condition' => [
+                    'ha_reading_progress_bar_enable' => 'yes',
+                    'ha_reading_progress_bar_type' => 'horizontal',
+                ],
+			]
+		);
+		$element->add_control(
+			'ha_rpb_enable_horizontal_percentage',
+			[
+				'label'        => __( 'Disable Percentage Tool Tip?', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'yes',
+				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off'    => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+                'frontend_available' => true,
+				'condition' => [
+                    'ha_reading_progress_bar_enable' => 'yes',
+                    'ha_reading_progress_bar_type' => 'horizontal',
+                ],
+			]
+		);
+		$element->add_control(
+			'ha_rpb_horizontal_percentage_text_color',
+			[
+				'label' => __('Color', 'happy-elementor-addons'),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .hm-hrp-bar-container .hm-hrp-bar .hm-tool-tip' => 'color: {{VALUE}}',
+				],
+                'condition' => [
+                    'ha_reading_progress_bar_type' => 'horizontal',
+                    'ha_reading_progress_bar_enable' => 'yes',
+                    'ha_rpb_enable_horizontal_percentage' => 'yes',
+                ],
+			]
+		);
+		$element->add_control(
+			'ha_rpb_horizontal_percentage_bg_color',
+			[
+				'label' => __('Background Color', 'happy-elementor-addons'),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .hm-hrp-bar-container .hm-hrp-bar .hm-tool-tip' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .hm-hrp-bar-container .hm-hrp-bar .hm-tool-tip-top:after' => 'border-color: transparent transparent {{VALUE}} transparent;',
+					'{{WRAPPER}} .hm-hrp-bar-container .hm-hrp-bar .hm-tool-tip-bottom:after' => 'border-color: {{VALUE}} transparent transparent transparent',
+				],
+                'condition' => [
+                    'ha_reading_progress_bar_type' => 'horizontal',
+                    'ha_reading_progress_bar_enable' => 'yes',
+                    'ha_rpb_enable_horizontal_percentage' => 'yes',
+                ],
+			]
+		);
+		$element->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'ha_rpb_horizontal_percentage_typography',
+				'label' => __('Typography', 'happy-elementor-addons'),
+				'selector' => '{{WRAPPER}} .hm-hrp-bar-container .hm-hrp-bar .hm-tool-tip',
+				'condition' => [
+                    'ha_reading_progress_bar_type' => 'horizontal',
+                    'ha_reading_progress_bar_enable' => 'yes',
+                    'ha_rpb_enable_horizontal_percentage' => 'yes',
+                ],
+			]
+		);
+		// End Horizontal
 
         
         // Start vertical
@@ -892,27 +968,70 @@ class Reading_Progress_Bar {
 		$document_settings_data = [];
         $settings_data = [];
 
-        if ( ha_elementor()->preview->is_preview_mode() ) {
-			$document = Plugin::$instance->documents->get_doc_for_frontend( $post_id );
-		} else {
-			$document = Plugin::$instance->documents->get( $post_id, false );
-		}
-		if ( isset( $document ) && is_object( $document ) ) {
-			$document_settings_data = $document->get_settings();
-		}
-
-        if ( isset( $document_settings_data['ha_reading_progress_bar_enable'] ) && 'yes' !== $document_settings_data['ha_reading_progress_bar_enable'] ) {
+		if ( ! is_singular() && ! is_archive() ) {
 			return;
 		}
 
-        $progress_bar_type = $document_settings_data['ha_reading_progress_bar_type'];
-        $enable_circle_percentage = $document_settings_data['ha_rpb_enable_circle_percentage'];
+		$is_archive_template = $this->hm_is_theme_builder_archive_template();
+		if( ! empty ( $is_archive_template ) ){
+			$template_id = $this->hm_get_theme_builder_archive_template_id();
+			if ( ! empty( $template_id ) ) {
+				$post_id = $template_id;
+			}
+		}
+
+		$document = Plugin::$instance->documents->get( $post_id, false );
+
+		if ( is_object( $document ) ) {
+			$document_settings_data = $document->get_settings();
+		}
+
+		// if ( isset( $document_settings_data['ha_reading_progress_bar_enable'] ) && 'yes' !== $document_settings_data['ha_reading_progress_bar_enable'] ) {
+		// 	return;
+		// }
+
+		$reading_progress_is_enable = true;
+
+		if ( $document_settings_data['ha_reading_progress_bar_enable'] != 'yes' ) {
+			$display_condition = $document_settings_data['ha_rpb_global_display_condition'];
+			if ( get_post_status( $post_id ) != 'publish' ) {
+				$reading_progress_is_enable = false;
+			} else if ( $display_condition == 'pages' && ! is_page() ) {
+				$reading_progress_is_enable = false;
+			} else if ( $display_condition == 'posts' && ! is_single() ) {
+				$reading_progress_is_enable = false;
+			}
+		}
+
+		if( ! $reading_progress_is_enable ) {
+			return;
+		}
+
+        // if ( ha_elementor()->preview->is_preview_mode() ) {
+		// 	$document = Plugin::$instance->documents->get_doc_for_frontend( $post_id );
+		// } else {
+		// 	$document = Plugin::$instance->documents->get( $post_id, false );
+		// }
+		// if ( isset( $document ) && is_object( $document ) ) {
+		// 	$document_settings_data = $document->get_settings();
+		// }
+
+        // if ( isset( $document_settings_data['ha_reading_progress_bar_enable'] ) && 'yes' !== $document_settings_data['ha_reading_progress_bar_enable'] ) {
+		// 	return;
+		// }
+
+        $progress_bar_type = isset($document_settings_data['ha_reading_progress_bar_type']) ? $document_settings_data['ha_reading_progress_bar_type'] : '';
+        $horizontal_position = isset($document_settings_data['ha_rpb_horizontal_position']) ? $document_settings_data['ha_rpb_horizontal_position'] : 'top';
+        $enable_horizontal_percentage = isset($document_settings_data['ha_rpb_enable_horizontal_percentage']) ? $document_settings_data['ha_rpb_enable_horizontal_percentage'] : 'no';
+    	$enable_circle_percentage = isset($document_settings_data['ha_rpb_enable_circle_percentage']) ? $document_settings_data['ha_rpb_enable_circle_percentage'] : 'no';
+
+        $settings_data['reading_progress_is_enable'] = $document_settings_data['ha_reading_progress_bar_enable'];
         $settings_data['progress_bar_type'] = $progress_bar_type;
         $settings_data['rpb_vertical_position'] = !empty($document_settings_data['ha_rpb_vertical_position']) ? $document_settings_data['ha_rpb_vertical_position'] : '';
         
         
         if( 'circle' === $progress_bar_type ) { ?>
-            <div class="hm-crp-wrapper ha-reading-progress-bar " data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
+            <div class="hm-crp-wrapper ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
                 <svg class="hm-circular-progress" width="60" height="60" viewBox="0 0 100 100">
                     <circle class="hm-progress-background" cx="50" cy="50" r="45"></circle>
                     <circle class="hm-progress-circle" cx="50" cy="50" r="45"></circle>
@@ -927,7 +1046,11 @@ class Reading_Progress_Bar {
         </div>
         <?php } else { ?>
         <div id="hm_hrp_bar_wrapper" class="hm-hrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
-            <div class="hm-hrp-bar"></div>
+            <div class="hm-hrp-bar">
+				<?php if('yes' == $enable_horizontal_percentage) { ?>
+					<span class="hm-tool-tip hm-tool-tip-<?php echo esc_attr($horizontal_position); ?>">0%</span>
+				<?php } ?>
+			</div>
         </div>
     <?php } 
 
@@ -950,6 +1073,39 @@ class Reading_Progress_Bar {
 
         return in_array($get_template_name, $template_list);
     }
+
+	public function hm_is_theme_builder_archive_template( $type = 'archive' ): bool{
+		$is_archive_template = false;
+
+		if ( class_exists( 'ElementorPro\Modules\ThemeBuilder\Module' ) ) {
+			$conditions_manager = \ElementorPro\Plugin::instance()->modules_manager->get_modules( 'theme-builder' )->get_conditions_manager();
+		
+			if( ! empty( $conditions_manager->get_documents_for_location( 'archive') ) || ! empty( $conditions_manager->get_documents_for_location( 'single') ) ) {
+				$is_archive_template = true;
+			}
+		}
+
+		return $is_archive_template;
+	}
+
+	public function hm_get_theme_builder_archive_template_id(){
+		$template_id = 0;
+		if ( class_exists( 'ElementorPro\Modules\ThemeBuilder\Module' ) ) {
+			if ( $this->hm_is_theme_builder_archive_template() ) {
+				$page_body_classes = get_body_class();
+
+				if( is_array( $page_body_classes ) && count( $page_body_classes ) ){
+					foreach( $page_body_classes as $page_body_class){
+						if ( strpos( $page_body_class, 'elementor-page-' ) !== FALSE ) {
+							$template_id = intval( str_replace('elementor-page-', '', $page_body_class) );
+						} 
+					}
+				}
+			}
+		}
+
+		return $template_id;
+	}
 
 }
 

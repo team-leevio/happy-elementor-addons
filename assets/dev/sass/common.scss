@@ -437,11 +437,10 @@ body.elementor-editor-active {
     left: 0;
     height: 10px;
     max-height: 100px;
+	z-index: 99999;
 
     .hm-hrp-bar {
-        position: absolute;
-		top: 0;
-		left: 0;
+        position: relative;
 		height: 100%;
 		background-color: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
 		font-size: 14px;
@@ -450,6 +449,46 @@ body.elementor-editor-active {
 		display: none;
 		justify-content: center;
 		align-items: center;
+
+		.hm-tool-tip {
+			left: 95%;  
+			margin-left: 15px;
+			position: absolute;
+			padding: 3px 0;
+			width: 60px;
+			border-radius: 5px;
+			background: #444;
+			color: #fff;
+			font-size: 13px;
+			text-align: center;
+			opacity: 0;
+			transition: opacity 0.3s;
+			font-size: 13px;
+			font-weight: 500;
+			font-style: normal;
+		  }
+		.hm-tool-tip:after{
+			content: '';
+			border-width: 5px;
+			position: absolute;
+			border-style: solid;
+			right: 40%;
+		}
+
+		.hm-tool-tip-top {
+			bottom: -30px;
+		}
+		.hm-tool-tip-top:after {
+			bottom: 100%;
+			border-color: transparent transparent #444 transparent;
+		}
+		.hm-tool-tip-bottom {
+			bottom: 20px;
+		}
+		.hm-tool-tip-bottom:after {
+			bottom: -10px;
+			border-color: #444 transparent transparent transparent;
+		}
     }
 }
 
@@ -462,6 +501,7 @@ body.elementor-editor-active {
 	width: 10px;
 	height: 100%;
 	max-width: 100px;
+	z-index: 99999;
 
 	.hm-vrp-bar {
 		position: absolute;
@@ -483,7 +523,7 @@ body.elementor-editor-active {
     height: 60px;
 	max-width: 120px;
 	max-height: 120px;
-    z-index: 999;
+    z-index: 99999;
 
 	.hm-circular-progress {
 		transform: rotate(-90deg);

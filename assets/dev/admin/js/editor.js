@@ -253,7 +253,7 @@
 				elementor.reloadPreview();
 			}, 1500));
 		};
-		let HmRPBHandler = ['ha_reading_progress_bar_enable', 'ha_reading_progress_bar_type', 'ha_rpb_enable_circle_percentage'];
+		let HmRPBHandler = ['ha_reading_progress_bar_enable', 'ha_reading_progress_bar_type', 'ha_rpb_enable_circle_percentage', 'ha_rpb_horizontal_position', 'ha_rpb_enable_horizontal_percentage'];
 		$.each(HmRPBHandler, function (index, value) {
 			elementor.settings.page.addChangeCallback(value, readingProgressBarHandaler);
 		});

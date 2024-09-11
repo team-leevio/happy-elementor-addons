@@ -11,6 +11,8 @@
     let hmrpbsettings = {};
         hmrpbsettings = JSON.parse(hmprbEl.attr('data-ha_rpbsettings')); 
     
+    if(hmrpbsettings.reading_progress_is_enable !== 'yes') return;
+
     if( hmrpbsettings.hasOwnProperty('progress_bar_type') && (hmrpbsettings.progress_bar_type === 'vertical') && hmrpbsettings.hasOwnProperty('rpb_vertical_position') && hmrpbsettings.rpb_vertical_position == 'right' ) {
         $('body').addClass('no-scroll'); 
     } else {
@@ -23,7 +25,7 @@
             hmDt = $(document).height(),
             hmCt = $($window).height();
         scrollPercent = ( hmSt / (hmDt - hmCt) ) * 100;
-        let position = scrollPercent.toFixed(2);
+        let position = scrollPercent.toFixed(0);
 
         if (scrollPercent > 100) {
             scrollPercent = 100;
@@ -32,11 +34,17 @@
         // check progress bar type
         if(hmrpbsettings.hasOwnProperty('progress_bar_type') && hmrpbsettings.progress_bar_type === 'horizontal') {
             
-            $('.hm-hrp-bar').css({
-                'display': 'flex',
-                // 'transition': 'width 0.4s ease'
-            });
+            $('.hm-hrp-bar').css({'display': 'flex'});
             $('.hm-hrp-bar').width(position + '%');
+
+            if (position > 1) {
+                $('.hm-tool-tip').css({'opacity':1, 'transition':'opacity 0.3s'});
+                $('.hm-tool-tip').text(position + '%');
+            } else {
+                $('.hm-tool-tip').css({'opacity':0, 'transition':'opacity 0.3s'});
+                $('.hm-tool-tip').text('0%');
+            }
+            
 
         } else if( hmrpbsettings.hasOwnProperty('progress_bar_type') && hmrpbsettings.progress_bar_type === 'vertical' ) {
             
