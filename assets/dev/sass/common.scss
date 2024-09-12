@@ -431,7 +431,7 @@ body.elementor-editor-active {
 /** Start reading progress bar **/
 .hm-hrp-bar-container {
 	width: 100%;
-    background-color: none;
+    background: transparent;
     position: fixed;
     top: 0;
     left: 0;
@@ -442,7 +442,7 @@ body.elementor-editor-active {
     .hm-hrp-bar {
         position: relative;
 		height: 100%;
-		background-color: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+		background-color:#c871eb;
 		font-size: 14px;
 		font-weight: 500;
 		color: #FFFFFF;
@@ -510,7 +510,7 @@ body.elementor-editor-active {
 		display: none;
 		max-height: 100%;
 		width: 100%;
-		background-color: linear-gradient(to top, #fcb045, #fd1d1d, #833ab4);
+		background-color:#c871eb;
 		max-width: 100px;		
 	}
 }

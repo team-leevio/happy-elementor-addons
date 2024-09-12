@@ -23,9 +23,13 @@ class Reading_Progress_Bar {
 	}
 
 	public function init() {
-        // if ($this->prevent_reading_progress_bar_rendering(get_the_ID())) {
-        //     return;
-        // }
+		$feature_file = HAPPY_ADDONS_DIR_PATH . 'extensions/reading-progress-bar-kit-settings.php';
+
+		if ( is_readable( $feature_file ) ) {
+			include_once $feature_file;
+		}
+
+		add_action( 'elementor/kit/register_tabs', [ $this, 'init_site_settings' ], 1, 40 );
 
 		add_action( 'elementor/documents/register_controls', [$this, 'reading_progress_bar_controls'], 10 );
         add_action('elementor/preview/enqueue_scripts', [$this, 'enqueue_scripts']);
@@ -33,6 +37,7 @@ class Reading_Progress_Bar {
             add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts_frontend']);
         }
 		add_action( 'wp_footer', [$this, 'render_reading_progress_bar_html'] );
+
 	}
 
     public function enqueue_scripts () {
@@ -63,7 +68,7 @@ class Reading_Progress_Bar {
 	public function reading_progress_bar_controls( $element ) {
 
 		$element->start_controls_section(
-			'ha_reading_progress_bar_section',
+			'ha_rpb_single_section',
 			[
 				'label' => __( 'Reading Progress Bar', 'happy-elementor-addons' ) . ha_get_section_icon(),
 				'tab'   => Controls_Manager::TAB_SETTINGS,
@@ -71,890 +76,15 @@ class Reading_Progress_Bar {
 		);
 
 		$element->add_control(
-			'ha_reading_progress_bar_enable',
+			'ha_rpb_single_disable',
 			[
-				'label'        => __( 'Enable ?', 'happy-elementor-addons' ),
-				'description'  => __( 'Enable Progress Bar For This Page', 'happy-elementor-addons' ),
+				'label'        => __( 'Disable ?', 'happy-elementor-addons' ),
+				'description'  => __( 'Disable Reading Progress Bar For This Page', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => 'no',
 				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
 				'label_off'    => __( 'No', 'happy-elementor-addons' ),
 				'return_value' => 'yes',
-                'frontend_available' => true,
-                'render_type'  => 'ui',
-			]
-		);
-
-        $element->add_control(
-			'ha_reading_progress_bar_enable_globaly',
-			[
-				'label'        => __( 'Enable Gobally?', 'happy-elementor-addons' ),
-                'description' => __('Enabling progress bar on entire site.', 'happy-elementor-addons'),
-				'type'         => Controls_Manager::SWITCHER,
-				'default'      => 'no',
-				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
-				'label_off'    => __( 'No', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-                'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                ],
-			]
-		);
-
-        $element->add_control(
-            'ha_rpb_global_display_condition',
-            [
-                'label' => __('Display On', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'all',
-                'options' => [
-                    'posts' => __('All Posts', 'happy-elementor-addons'),
-                    'pages' => __('All Pages', 'happy-elementor-addons'),
-                    'all' => __('All Posts & Pages', 'happy-elementor-addons'),
-                ],
-                'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_enable_globaly' => 'yes',
-                ],
-            ]
-        );
-
-        $element->add_control(
-            'ha_reading_progress_bar_type',
-            [
-                'label' => __('Type', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'horizontal',
-                'options' => [
-                    'horizontal' => __('Horizontal', 'happy-elementor-addons'),
-                    'vertical' => __('Vertical', 'happy-elementor-addons'),
-                    'circle' => __('Circle', 'happy-elementor-addons'),
-                ],
-                'frontend_available' => true,
-                'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                ],
-            ]
-        );      
-
-        // Start circle
-		$element->add_control(
-            'ha_reading_progress_bar_circle_position',
-            [
-                'label' => __('Position', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'top-right',
-                'options' => [
-                    'top-right' => __('Top Right', 'happy-elementor-addons'),
-                    'top-left' => __('Top Left', 'happy-elementor-addons'),
-                    'bottom-right' => __('Bottom Right', 'happy-elementor-addons'),
-                    'bottom-left' => __('Bottom Left', 'happy-elementor-addons'),
-                ],
-                'frontend_available' => true,
-				'selectors_dictionary' => [
-					'top-right' => 'top: 20px; right:20px; bottom: unset; left:unset',
-					'top-left' => 'top: 20px; right: unset; bottom: unset; left:20px;',
-					'bottom-right' => 'top: unset; right: 20px; bottom: 20px; left:unset;',
-					'bottom-left' => 'top: unset; right: unset; bottom: 20px; left:20px;',
-				],
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper' => '{{VALUE}}',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'circle',
-                ],
-            ]
-        );
-
-		$element->add_responsive_control(
-            'ha_reading_progress_bar_circle_size',
-            [
-				'label' => __( 'Size', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-                'frontend_available' => true,
-				'size_units' => [ 'px' ],
-				'desktop_default' => [
-					'unit' => 'px'
-				],
-				'tablet_default' => [
-					'unit' => 'px',
-					'size' => 60
-				],
-				'mobile_default' => [
-					'unit' => 'px',
-					'size' => 60
-				],
-				'range' => [
-					'px' => [
-						'min' => 30,
-						'max' => 150,
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 60,
-				],
-				'selectors' => [
-                    '{{WRAPPER}} .hm-crp-wrapper, {{WRAPPER}} .hm-circular-progress' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'circle',
-                ],
-			]
-        );
-
-		$element->add_control(
-			'ha_reading_progress_bar_circle_offset',
-			[
-				'label' => __( 'Offset', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::POPOVER_TOGGLE,
-				'return_value' => 'yes',
-                'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'circle',
-                ],
-			]
-		);
-
-        $element->start_popover();
-		$element->add_responsive_control(
-			'ha_reading_progress_bar_circle_offset_x_tr',
-			[
-				'label' => __( 'Horizontal Align', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 500,
-						'step' => 1,
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 20,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper' => 'right: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'ha_reading_progress_bar_circle_offset' => 'yes',
-					'ha_reading_progress_bar_circle_position' => 'top-right',
-				]
-			]
-		);
-
-		$element->add_responsive_control(
-			'ha_reading_progress_bar_circle_offset_y_tr',
-			[
-				'label' => __( 'Vertical Align', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 500,
-						'step' => 1
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 20,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper' => 'top: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'ha_reading_progress_bar_circle_offset' => 'yes',
-                    'ha_reading_progress_bar_circle_position' => 'top-right',
-				]
-			]
-		); //end top-right
-
-        $element->add_responsive_control(
-			'ha_reading_progress_bar_circle_offset_x_tl',
-			[
-				'label' => __( 'Horizontal Align', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 500,
-						'step' => 1,
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 20,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper' => 'left: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'ha_reading_progress_bar_circle_offset' => 'yes',
-					'ha_reading_progress_bar_circle_position' => 'top-left',
-				]
-			]
-		);
-
-		$element->add_responsive_control(
-			'ha_reading_progress_bar_circle_offset_y_tl',
-			[
-				'label' => __( 'Vertical Align', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 500,
-						'step' => 1
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 20,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper' => 'top: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'ha_reading_progress_bar_circle_offset' => 'yes',
-                    'ha_reading_progress_bar_circle_position' => 'top-left',
-				]
-			]
-		); // end top-left
-        
-        $element->add_responsive_control(
-			'ha_reading_progress_bar_circle_offset_x_br',
-			[
-				'label' => __( 'Horizontal Align', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 500,
-						'step' => 1,
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 20,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper' => 'right: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'ha_reading_progress_bar_circle_offset' => 'yes',
-					'ha_reading_progress_bar_circle_position' => 'bottom-right',
-				]
-			]
-		);
-
-		$element->add_responsive_control(
-			'ha_reading_progress_bar_circle_offset_y_br',
-			[
-				'label' => __( 'Vertical Align', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 500,
-						'step' => 1
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 20,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper' => 'bottom: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'ha_reading_progress_bar_circle_offset' => 'yes',
-                    'ha_reading_progress_bar_circle_position' => 'bottom-right',
-				]
-			]
-		); // end bottom-right
-        
-        $element->add_responsive_control(
-			'ha_reading_progress_bar_circle_offset_x_bl',
-			[
-				'label' => __( 'Horizontal Align', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 500,
-						'step' => 1,
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 20,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper' => 'left: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'ha_reading_progress_bar_circle_offset' => 'yes',
-					'ha_reading_progress_bar_circle_position' => 'bottom-left',
-				]
-			]
-		);
-
-		$element->add_responsive_control(
-			'ha_reading_progress_bar_circle_offset_y_bl',
-			[
-				'label' => __( 'Vertical Align', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => ['px'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 500,
-						'step' => 1
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 20,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper' => 'bottom: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'ha_reading_progress_bar_circle_offset' => 'yes',
-                    'ha_reading_progress_bar_circle_position' => 'bottom-left',
-				]
-			]
-		); // end bottom-left
-		$element->end_popover();
-
-		$element->add_control(
-			'ha_reading_progress_bar_circle_bg_color',
-			[
-				'label' => __('Circle Inner Background ', 'happy-elementor-addons'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .hm-circular-progress' => 'background-color: {{VALUE}}',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_type' => 'circle',
-                    'ha_reading_progress_bar_enable' => 'yes',
-                ],
-			]
-		);
-		$element->add_control(
-			'ha_reading_progress_bar_circle_fill_color',
-			[
-				'label' => __('Circle Fill Color', 'happy-elementor-addons'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '#833ab4',
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper .hm-circular-progress .hm-progress-circle' => 'stroke: {{VALUE}}',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_type' => 'circle',
-                    'ha_reading_progress_bar_enable' => 'yes',
-                ],
-			]
-		);
-		$element->add_responsive_control(
-            'ha_reading_progress_bar_circle_fill_width',
-            [
-				'label' => __( 'Circle Fill Width', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-                'frontend_available' => true,
-				'size_units' => [ 'px' ],
-				'desktop_default' => [
-					'unit' => 'px'
-				],
-				'tablet_default' => [
-					'unit' => 'px',
-					'size' => 5
-				],
-				'mobile_default' => [
-					'unit' => 'px',
-					'size' => 5
-				],
-				'range' => [
-					'px' => [
-						'min' => 1,
-						'max' => 25,
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 5,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper .hm-circular-progress .hm-progress-circle' => 'stroke-width: {{SIZE}}{{UNIT}}',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'circle',
-                ],
-			]
-        );
-		$element->add_control(
-			'ha_reading_progress_bar_circle_tracker_color',
-			[
-				'label' => __('Circle Bar Color', 'happy-elementor-addons'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '#e6e6e6',
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper .hm-circular-progress .hm-progress-background' => 'stroke: {{VALUE}}',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_type' => 'circle',
-                    'ha_reading_progress_bar_enable' => 'yes',
-                ],
-			]
-		);
-		$element->add_responsive_control(
-            'ha_reading_progress_bar_circle_tracker_width',
-            [
-				'label' => __( 'Circle Bar Width', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-                'frontend_available' => true,
-				'size_units' => [ 'px' ],
-				'desktop_default' => [
-					'unit' => 'px'
-				],
-				'tablet_default' => [
-					'unit' => 'px',
-					'size' => 5
-				],
-				'mobile_default' => [
-					'unit' => 'px',
-					'size' => 5
-				],
-				'range' => [
-					'px' => [
-						'min' => 1,
-						'max' => 25,
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 5,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper .hm-circular-progress .hm-progress-background' => 'stroke-width: {{SIZE}}{{UNIT}}',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'circle',
-                ],
-			]
-        );
-
-		$element->add_control(
-			'hm_rpb_percentage_heading',
-			[
-				'label' => __( 'Percentage', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'after',
-				'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'circle',
-                ],
-			]
-		);
-		$element->add_control(
-			'ha_rpb_enable_circle_percentage',
-			[
-				'label'        => __( 'Disable Percentage ?', 'happy-elementor-addons' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'default'      => 'yes',
-				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
-				'label_off'    => __( 'No', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-                'frontend_available' => true,
-				'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'circle',
-                ],
-			]
-		);
-		$element->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'hm_rpb_circle_percentage_typography',
-				'label' => __('Typography', 'happy-elementor-addons'),
-				// 'global' => [
-				// 	'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
-				// ],
-				'selector' => '{{WRAPPER}} .hm-crp-wrapper .hm-progress-percent-text',
-				'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'circle',
-                    'ha_rpb_enable_circle_percentage' => 'yes',
-                ],
-			]
-		);
-		$element->add_control(
-			'chm_rpb_percentage_typography_color',
-			[
-				'label' => __('Color', 'happy-elementor-addons'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '#000000',
-				'selectors' => [
-					'{{WRAPPER}} .hm-crp-wrapper .hm-progress-percent-text' => 'color: {{VALUE}}',
-				],
-				'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'circle',
-					'ha_rpb_enable_circle_percentage' => 'yes',
-                ],
-			]
-		);
-        //End circle control
-
-        // Start horizontal
-        $element->add_control(
-            'ha_rpb_horizontal_position',
-            [
-                'label' => __('Position', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'top',
-                'options' => [
-                    'top' => __('Top', 'happy-elementor-addons'),
-                    'bottom' => __('Bottom', 'happy-elementor-addons'),
-                ],
-                'frontend_available' => true,
-				'render_type' => 'template',
-				'selectors_dictionary' => [
-					'top' => 'top: 0; bottom: unset;',
-					'bottom' => 'bottom: 0; top: unset;',
-				],
-				'selectors' => [
-					'{{WRAPPER}} .hm-hrp-bar-container' => '{{VALUE}}',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'horizontal',
-                ],
-            ]
-        );
-
-		$element->add_responsive_control(
-            'ha_rpb_horizontal_height',
-            [
-				'label' => __( 'Height', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-                'frontend_available' => true,
-				'size_units' => [ 'px' ],
-				'desktop_default' => [
-					'unit' => 'px'
-				],
-				'tablet_default' => [
-					'unit' => 'px',
-					'size' => 10
-				],
-				'mobile_default' => [
-					'unit' => 'px',
-					'size' => 10
-				],
-				'range' => [
-					'px' => [
-						'min' => 1,
-						'max' => 100,
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 10,
-				],
-				'selectors' => [
-                    '{{WRAPPER}} .hm-hrp-bar-container' => 'height: {{SIZE}}{{UNIT}};',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'horizontal',
-                ],
-			]
-        );
-
-		$element->add_control(
-			'hm_rpb_horizontal_fill_heading',
-			[
-				'label' => __( 'Fill Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'after',
-				'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'horizontal',
-                ],
-			]
-		);
-		$element->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name' => 'ha_rpb_horizontal_fill_color',
-				'label' => __('Fill Color', 'happy-elementor-addons'),
-				'types' => [ 'classic', 'gradient' ],
-				'exclude' => ['image'],
-				'selector' => '{{WRAPPER}} .hm-hrp-bar-container .hm-hrp-bar',
-                'condition' => [
-                    'ha_reading_progress_bar_type' => 'horizontal',
-                    'ha_reading_progress_bar_enable' => 'yes',
-                ],
-				// 'default' => [
-				// 	'background' => [
-				// 		'color' => '#833ab4',
-				// 		'gradient' => [
-				// 			'color' => '#833ab4',
-				// 			'location' => 0,
-				// 			'color_b' => '#fd1d1d',
-				// 			'location_b' => 100,
-				// 			'type' => 'linear',
-				// 			'angle' => 180,
-				// 		],
-				// 	],
-				// ],
-			]
-		);
-
-		$element->add_control(
-			'hm_rpb_horizontal_bar_heading',
-			[
-				'label' => __( 'Bar Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'after',
-				'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'horizontal',
-                ],
-			]
-		);
-        $element->add_control(
-			'ha_rpb_horizontal_bg_color',
-			[
-				'label' => __('Background Color', 'happy-elementor-addons'),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .hm-hrp-bar-container' => 'background-color: {{VALUE}}',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_type' => 'horizontal',
-                    'ha_reading_progress_bar_enable' => 'yes',
-                ],
-			]
-		); 
-		
-		$element->add_control(
-			'hm_rpb_horizontal_percentage_heading',
-			[
-				'label' => __( 'Percentage Tool Tip', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'after',
-				'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'horizontal',
-                ],
-			]
-		);
-		$element->add_control(
-			'ha_rpb_enable_horizontal_percentage',
-			[
-				'label'        => __( 'Disable Percentage Tool Tip?', 'happy-elementor-addons' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'default'      => 'yes',
-				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
-				'label_off'    => __( 'No', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-                'frontend_available' => true,
-				'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'horizontal',
-                ],
-			]
-		);
-		$element->add_control(
-			'ha_rpb_horizontal_percentage_text_color',
-			[
-				'label' => __('Color', 'happy-elementor-addons'),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .hm-hrp-bar-container .hm-hrp-bar .hm-tool-tip' => 'color: {{VALUE}}',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_type' => 'horizontal',
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_rpb_enable_horizontal_percentage' => 'yes',
-                ],
-			]
-		);
-		$element->add_control(
-			'ha_rpb_horizontal_percentage_bg_color',
-			[
-				'label' => __('Background Color', 'happy-elementor-addons'),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .hm-hrp-bar-container .hm-hrp-bar .hm-tool-tip' => 'background-color: {{VALUE}}',
-					'{{WRAPPER}} .hm-hrp-bar-container .hm-hrp-bar .hm-tool-tip-top:after' => 'border-color: transparent transparent {{VALUE}} transparent;',
-					'{{WRAPPER}} .hm-hrp-bar-container .hm-hrp-bar .hm-tool-tip-bottom:after' => 'border-color: {{VALUE}} transparent transparent transparent',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_type' => 'horizontal',
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_rpb_enable_horizontal_percentage' => 'yes',
-                ],
-			]
-		);
-		$element->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'ha_rpb_horizontal_percentage_typography',
-				'label' => __('Typography', 'happy-elementor-addons'),
-				'selector' => '{{WRAPPER}} .hm-hrp-bar-container .hm-hrp-bar .hm-tool-tip',
-				'condition' => [
-                    'ha_reading_progress_bar_type' => 'horizontal',
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_rpb_enable_horizontal_percentage' => 'yes',
-                ],
-			]
-		);
-		// End Horizontal
-
-        
-        // Start vertical
-		$element->add_control(
-            'ha_rpb_vertical_position',
-            [
-                'label' => __('Position', 'happy-elementor-addons'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'right',
-                'options' => [
-                    'right' => __('Right', 'happy-elementor-addons'),
-                    'left' => __('Left', 'happy-elementor-addons'),
-                ],
-                'frontend_available' => true,
-				'selectors_dictionary' => [
-					'right' => 'right: 0; top:0; left: unset;',
-					'left' => 'left: 0; top:0; right: unset;',
-				],
-				'selectors' => [
-					'{{WRAPPER}} .hm-vrp-bar-container' => '{{VALUE}}',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'vertical',
-                ],
-            ]
-        );
-		$element->add_responsive_control(
-            'ha_rpb_vertical_width',
-            [
-				'label' => __( 'Width', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-                'frontend_available' => true,
-				'size_units' => [ 'px' ],
-				'desktop_default' => [
-					'unit' => 'px'
-				],
-				'tablet_default' => [
-					'unit' => 'px',
-					'size' => 10
-				],
-				'mobile_default' => [
-					'unit' => 'px',
-					'size' => 10
-				],
-				'range' => [
-					'px' => [
-						'min' => 1,
-						'max' => 100,
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 10,
-				],
-				'selectors' => [
-                    '{{WRAPPER}} .hm-vrp-bar-container' => 'width: {{SIZE}}{{UNIT}};',
-				],
-                'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'vertical',
-                ],
-			]
-        );
-		$element->add_control(
-			'hm_rpb_vertical_fill_heading',
-			[
-				'label' => __( 'Fill Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'after',
-				'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'vertical',
-                ],
-			]
-		);
-		$element->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name' => 'ha_rpb_vertical_fill_color',
-				'label' => __('Fill Color', 'happy-elementor-addons'),
-				'types' => [ 'classic', 'gradient' ],
-				'exclude' => ['image'],
-				'selector' => '{{WRAPPER}} .hm-vrp-bar-container .hm-vrp-bar',
-                'condition' => [
-					'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'vertical',
-                ],
-				'fields_options' => [
-					'background' => [
-						'default' => 'classic',
-					],
-					'color' => [
-						'default' => '#ff0000',
-					],
-					'gradient' => [
-						'default' => [
-							'color' => '#ff0000',
-							'color_b' => '#00ff00',
-							'type' => 'linear',
-							'angle' => 180,
-						],
-					],
-				],
-			]
-		);
-
-		$element->add_control(
-			'hm_rpb_vertical_bar_heading',
-			[
-				'label' => __( 'Bar Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'after',
-				'condition' => [
-                    'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'vertical',
-                ],
-			]
-		);
-        $element->add_control(
-			'ha_rpb_vertical_bg_color',
-			[
-				'label' => __('Background Color', 'happy-elementor-addons'),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .hm-vrp-bar-container' => 'background-color: {{VALUE}}',
-				],
-                'condition' => [
-					'ha_reading_progress_bar_enable' => 'yes',
-                    'ha_reading_progress_bar_type' => 'vertical',
-                ],
 			]
 		);
 
@@ -980,25 +110,32 @@ class Reading_Progress_Bar {
 			}
 		}
 
+		if ($this->prevent_reading_progress_bar_rendering($post_id)) {
+			return;
+		}
+
 		$document = Plugin::$instance->documents->get( $post_id, false );
 
 		if ( is_object( $document ) ) {
 			$document_settings_data = $document->get_settings();
 		}
 
-		// if ( isset( $document_settings_data['ha_reading_progress_bar_enable'] ) && 'yes' !== $document_settings_data['ha_reading_progress_bar_enable'] ) {
-		// 	return;
-		// }
+		$page_enable = empty( $document_settings_data['ha_rpb_single_disable'] ) || $document_settings_data['ha_rpb_single_disable'] !== 'yes';
 
-		$reading_progress_is_enable = true;
+		$global_enable = $this->elementor_get_setting('ha_rpb_apply_globally');
 
-		if ( $document_settings_data['ha_reading_progress_bar_enable'] != 'yes' ) {
-			$display_condition = $document_settings_data['ha_rpb_global_display_condition'];
-			if ( get_post_status( $post_id ) != 'publish' ) {
+		$reading_progress_is_enable = $global_enable || $page_enable;
+
+		if ($global_enable) {
+			
+			$display_condition = $this->elementor_get_setting('ha_rpb_global_display_condition');
+			error_log(print_r($display_condition, true));
+
+			if ($display_condition === 'posts' && !is_single()) {
 				$reading_progress_is_enable = false;
-			} else if ( $display_condition == 'pages' && ! is_page() ) {
+			} elseif ($display_condition === 'pages' && !is_page()) {
 				$reading_progress_is_enable = false;
-			} else if ( $display_condition == 'posts' && ! is_single() ) {
+			} elseif (in_array($display_condition, array_keys($this->get_post_types())) && !is_singular($display_condition)) {
 				$reading_progress_is_enable = false;
 			}
 		}
@@ -1007,27 +144,16 @@ class Reading_Progress_Bar {
 			return;
 		}
 
-        // if ( ha_elementor()->preview->is_preview_mode() ) {
-		// 	$document = Plugin::$instance->documents->get_doc_for_frontend( $post_id );
-		// } else {
-		// 	$document = Plugin::$instance->documents->get( $post_id, false );
-		// }
-		// if ( isset( $document ) && is_object( $document ) ) {
-		// 	$document_settings_data = $document->get_settings();
-		// }
+        $progress_bar_type = $this->elementor_get_setting('ha_rpb_type');
+        $horizontal_position = $this->elementor_get_setting('ha_rpb_horizontal_position');
+        $enable_horizontal_percentage = $this->elementor_get_setting('ha_rpb_enable_horizontal_percentage');
+    	$enable_circle_percentage = $this->elementor_get_setting('ha_rpb_enable_circle_percentage');
 
-        // if ( isset( $document_settings_data['ha_reading_progress_bar_enable'] ) && 'yes' !== $document_settings_data['ha_reading_progress_bar_enable'] ) {
-		// 	return;
-		// }
-
-        $progress_bar_type = isset($document_settings_data['ha_reading_progress_bar_type']) ? $document_settings_data['ha_reading_progress_bar_type'] : '';
-        $horizontal_position = isset($document_settings_data['ha_rpb_horizontal_position']) ? $document_settings_data['ha_rpb_horizontal_position'] : 'top';
-        $enable_horizontal_percentage = isset($document_settings_data['ha_rpb_enable_horizontal_percentage']) ? $document_settings_data['ha_rpb_enable_horizontal_percentage'] : 'no';
-    	$enable_circle_percentage = isset($document_settings_data['ha_rpb_enable_circle_percentage']) ? $document_settings_data['ha_rpb_enable_circle_percentage'] : 'no';
-
-        $settings_data['reading_progress_is_enable'] = $document_settings_data['ha_reading_progress_bar_enable'];
-        $settings_data['progress_bar_type'] = $progress_bar_type;
-        $settings_data['rpb_vertical_position'] = !empty($document_settings_data['ha_rpb_vertical_position']) ? $document_settings_data['ha_rpb_vertical_position'] : '';
+        $settings_data = [
+			'ha_rpb_enable' => $this->elementor_get_setting('ha_rpb_enable'),
+			'progress_bar_type' => $progress_bar_type,
+			'rpb_vertical_position' => $this->elementor_get_setting('ha_rpb_vertical_position')
+		];
         
         
         if( 'circle' === $progress_bar_type ) { ?>
@@ -1056,6 +182,41 @@ class Reading_Progress_Bar {
 
 	}
 
+	private function get_post_types () {
+        $post_types = get_post_types( [ 'public' => true ], 'objects' );
+        $options = [];
+
+        foreach ( $post_types as $post_type ) {
+            $options[ $post_type->name ] = $post_type->label;
+        }
+
+        return $options;
+    }
+
+	public function init_site_settings( \Elementor\Core\Kits\Documents\Kit $kit ) {
+		$kit->register_tab( 'ha-reading-progress-bar-kit-settings', Reading_Progress_Bar_Kit_Setings::class );
+	}
+
+	public function elementor_get_setting( $setting_id ) {
+
+		$return = '';
+
+		if ( ! isset( $hello_elementor_settings['kit_settings'] ) ) {
+			if ( ha_elementor()->preview->is_preview_mode() ) {
+				// get auto save data
+				$kit = Plugin::$instance->documents->get_doc_for_frontend( Plugin::$instance->kits_manager->get_active_id() );
+			} else {
+				$kit = Plugin::$instance->documents->get( Plugin::$instance->kits_manager->get_active_id(), true );
+			}
+			$hello_elementor_settings['kit_settings'] = $kit->get_settings();
+		}
+
+		if ( isset( $hello_elementor_settings['kit_settings'][ $setting_id ] ) ) {
+			$return = $hello_elementor_settings['kit_settings'][ $setting_id ];
+		}
+
+		return $return;
+	}
 
     public function prevent_reading_progress_bar_rendering($post_id)
     {
