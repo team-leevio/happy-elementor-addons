@@ -290,6 +290,8 @@ class Theme_Builder {
 				}
 	
 				echo '<b>Include : </b> ' . implode( ', ', $includeConditions ) . '<br/>' . '<b>Exclude : </b> ' . implode( ', ', $excludeConditions );
+			} else {
+				echo '<b>N/A</b>';	
 			}
         }
     }
