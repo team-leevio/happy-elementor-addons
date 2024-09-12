@@ -42,13 +42,26 @@
 	}
   }
 
-//   &.style-2 .ha-liquid-title h2{
-// 	height: 38.5px;
-//   }
+  &.style-3 {
+	.ha-liquid-title h2 span:not(.empty) {
+		display: inline-block;
+		transform: rotate(45deg) translateY(-100px);
+	 	opacity: 0;
+	}
+	&:hover .ha-liquid-title h2 span {
+		animation: shadow .5s linear forwards;
+	}
+	.ha-liquid-title p {
+		transform: translateY(100px);
+		opacity: 0;
+		transition: normal .5s ease-in-out 0s all;
+	}
 
-//   &.style-2 .ha-liquid-title p{
-// 	height: 72px;
-//   }
+	&:hover .ha-liquid-title p {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+  }
 
 
 .ha-liquid-image-area {
@@ -76,6 +89,26 @@
 		width: 100%;
 		top: 0;
 		left: 0;
+	}
+  }
+
+  @keyframes shadow {
+	// 0% {
+	//   transform: rotate(0deg) translateY(0px);
+	//   opacity: 1;
+	//   filter: blur(1px);
+	// }
+
+	0% {
+	  transform: rotate(45deg) translateY(-100px);
+	  opacity: 0;
+	  filter: blur(20px);
+	}
+
+	100% {
+		transform: rotate(0deg) translateY(0px);
+		opacity: 1;
+		filter: blur(0px);
 	}
   }
 }

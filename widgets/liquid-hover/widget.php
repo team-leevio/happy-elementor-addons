@@ -253,6 +253,7 @@ class Liquid_Hover extends Base {
 				'options' => [
 					'style-1'  => __( 'Style 1', 'happy-elementor-addons' ),
 					'style-2'  => __( 'Style 2', 'happy-elementor-addons' ),
+					'style-3'  => __( 'Style 3', 'happy-elementor-addons' ),
 				],
 			]
 		);
@@ -710,6 +711,32 @@ class Liquid_Hover extends Base {
 							<span class="block normal"><?php echo esc_html( $settings['sub_title'] ); ?></span>
 							<span class="block hover"><?php echo esc_html( $settings['sub_title'] ); ?></span>
 						</p>
+					<?php endif;?>
+				</div>
+				<?php endif;?>
+
+				<?php if ( 'style-3' == $settings['title_hover_style'] ) : ?>
+				<div class="ha-liquid-title" data-style="<?php echo esc_attr( $settings['title_hover_style'] );?>">
+					<?php if ( $settings['title'] ) : ?>
+						<h2>
+							<?php
+							if( str_split( $settings['title'] ) ) {
+								foreach ( str_split( $settings['title'] ) as $key => $value) {
+									if( ' ' != $value ){
+										echo '<span style="animation-delay: '.(8 * $key).'0ms;">' . esc_html( $value ) . '</span>';
+									}else{
+										echo '<span class="empty">' . esc_html( $value ) . '</span>';
+									}
+
+								}
+							} else {
+								echo '<span>' . esc_html( $settings['title'] ) . '</span>';
+							}
+							?>
+						</h2>
+					<?php endif;?>
+					<?php if ( $settings['sub_title'] ) : ?>
+						<p><?php echo esc_html( $settings['sub_title'] ); ?></p>
 					<?php endif;?>
 				</div>
 				<?php endif;?>
