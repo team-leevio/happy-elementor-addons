@@ -21,9 +21,9 @@
 
     $($window).scroll(function () {
         let scrollPercent = 0;
-        let hmSt = $($window).scrollTop(),
-            hmDt = $(document).height(),
-            hmCt = $($window).height();
+        let hmSt = $($window).scrollTop() || 0,
+            hmDt = $(document).height() || 1,
+            hmCt = $($window).height() || 1;
         scrollPercent = ( hmSt / (hmDt - hmCt) ) * 100;
         let position = scrollPercent.toFixed(0);
 
@@ -37,7 +37,7 @@
             $('.hm-hrp-bar').css({'display': 'flex'});
             $('.hm-hrp-bar').width(position + '%');
 
-            if (position > 1) {
+            if (position > 1 && scrollPercent > 0 ) {
                 $('.hm-tool-tip').css({'opacity':1, 'transition':'opacity 0.3s'});
                 $('.hm-tool-tip').text(position + '%');
             } else {
@@ -52,13 +52,10 @@
                 'display': 'flex',
                 // 'transition': 'width 0.4s ease'
             });
-            // hide default scroll bar
-            // if (scrollPercent > 0) {
-            //     $('body').addClass('no-scroll');
-            // } else {
-            //     $('body').removeClass('no-scroll');
-            // }
-            $('.hm-vrp-bar').height(position + '%');
+
+            if( scrollPercent > 0 ) {
+                $('.hm-vrp-bar').height(position + '%');
+            }
 
         } else if ( hmrpbsettings.hasOwnProperty('progress_bar_type') && hmrpbsettings.progress_bar_type === 'circle' ) {
             
@@ -66,9 +63,13 @@
             let circumference = 2 * Math.PI * circleRadius;
     
             let offset = Math.round(circumference - (scrollPercent / 100) * circumference);
-    
-            $('.hm-progress-circle').css('stroke-dashoffset', offset.toFixed(2));
-            $('.hm-progress-percent-text').text(`${scrollPercent.toFixed(0)}%`);
+            
+            console.log('scrollPercent ', scrollPercent);
+
+            if( scrollPercent >= 0 ) {
+                $('.hm-progress-circle').css('stroke-dashoffset', offset.toFixed(2));
+                $('.hm-progress-percent-text').text(`${scrollPercent.toFixed(0)}%`);
+            }
 
         } else {
             //TODO::

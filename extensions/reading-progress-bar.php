@@ -55,7 +55,7 @@ class Reading_Progress_Bar {
     public function enqueue_scripts_frontend () {
         $suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
         $extension_js = HAPPY_ADDONS_ASSETS . 'js/extension-reading-progress-bar' . $suffix . 'js';
-        
+
         wp_enqueue_script(
             'happy-reading-progress-bar',
             $extension_js,
@@ -63,9 +63,12 @@ class Reading_Progress_Bar {
             HAPPY_ADDONS_VERSION,
             true
         ); 
+
     }
 
 	public function reading_progress_bar_controls( $element ) {
+
+		if($this->elementor_get_setting('ha_rpb_enable') !== 'yes') return;
 
 		$element->start_controls_section(
 			'ha_rpb_single_section',
@@ -75,18 +78,34 @@ class Reading_Progress_Bar {
 			]
 		);
 
-		$element->add_control(
-			'ha_rpb_single_disable',
-			[
-				'label'        => __( 'Disable ?', 'happy-elementor-addons' ),
-				'description'  => __( 'Disable Reading Progress Bar For This Page', 'happy-elementor-addons' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'default'      => 'no',
-				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
-				'label_off'    => __( 'No', 'happy-elementor-addons' ),
-				'return_value' => 'yes',
-			]
-		);
+		if($this->elementor_get_setting('ha_rpb_apply_globally') === 'globally') {
+			$element->add_control(
+				'ha_rpb_single_disable',
+				[
+					'label'        => __( 'Disable ?', 'happy-elementor-addons' ),
+					'description'  => __( 'Disable Reading Progress Bar For This Page', 'happy-elementor-addons' ),
+					'type'         => Controls_Manager::SWITCHER,
+					'default'      => 'no',
+					'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
+					'label_off'    => __( 'No', 'happy-elementor-addons' ),
+					'return_value' => 'yes',
+				]
+			);
+		} else {
+			$element->add_control(
+				'ha_rpb_single_enable',
+				[
+					'label'        => __( 'Enable ?', 'happy-elementor-addons' ),
+					'description'  => __( 'Enable Reading Progress Bar For This Page', 'happy-elementor-addons' ),
+					'type'         => Controls_Manager::SWITCHER,
+					'default'      => 'yes',
+					'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
+					'label_off'    => __( 'No', 'happy-elementor-addons' ),
+					'return_value' => 'yes',
+				]
+			);
+		}
+		
 
 		$element->end_controls_section();
 	}
@@ -120,25 +139,38 @@ class Reading_Progress_Bar {
 			$document_settings_data = $document->get_settings();
 		}
 
-		$page_enable = empty( $document_settings_data['ha_rpb_single_disable'] ) || $document_settings_data['ha_rpb_single_disable'] !== 'yes';
-
+		$rpb_enable = $this->elementor_get_setting('ha_rpb_enable');
 		$global_enable = $this->elementor_get_setting('ha_rpb_apply_globally');
 
-		$reading_progress_is_enable = $global_enable || $page_enable;
+		$single_enable = isset( $document_settings_data['ha_rpb_single_enable'] ) ? $document_settings_data['ha_rpb_single_enable'] : 'no' ;
+		$single_disable = isset( $document_settings_data['ha_rpb_single_disable'] ) ? $document_settings_data['ha_rpb_single_disable'] : 'no' ;
 
-		if ($global_enable) {
+		$page_enable = empty( $document_settings_data['ha_rpb_single_disable'] ) || $document_settings_data['ha_rpb_single_disable'] !== 'yes';
+
+		//render rbp
+		$reading_progress_is_enable = false;
+
+		if ($rpb_enable === 'yes') {
 			
-			$display_condition = $this->elementor_get_setting('ha_rpb_global_display_condition');
-			error_log(print_r($display_condition, true));
+			if ($global_enable === 'globally') {
+				$display_condition = $this->elementor_get_setting('ha_rpb_global_display_condition');
+				$current_post_type = get_post_type();
+				
+				if (is_array($display_condition) && in_array($current_post_type, $display_condition)) {
+					$reading_progress_is_enable = true;
+				}
 
-			if ($display_condition === 'posts' && !is_single()) {
-				$reading_progress_is_enable = false;
-			} elseif ($display_condition === 'pages' && !is_page()) {
-				$reading_progress_is_enable = false;
-			} elseif (in_array($display_condition, array_keys($this->get_post_types())) && !is_singular($display_condition)) {
-				$reading_progress_is_enable = false;
+				if ($single_disable === 'yes') {
+					$reading_progress_is_enable = false;
+				}
+			} elseif ($global_enable === 'individually') {
+				if ($single_enable === 'yes') {
+					$reading_progress_is_enable = true;
+				}
 			}
 		}
+
+		error_log(print_r($reading_progress_is_enable, true));
 
 		if( ! $reading_progress_is_enable ) {
 			return;
@@ -178,20 +210,149 @@ class Reading_Progress_Bar {
 				<?php } ?>
 			</div>
         </div>
-    <?php } 
+    <?php } ?>
+	<style>
+		.hm-hrp-bar-container {
+			width: 100%;
+			background: transparent;
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 10px;
+			max-height: 100px;
+			z-index: 99999;
+		}
 
-	}
+		.hm-hrp-bar {
+			position: relative;
+			height: 100%;
+			background-color: #c871eb;
+			font-size: 14px;
+			font-weight: 500;
+			color: #FFFFFF;
+			display: none;
+			justify-content: center;
+			align-items: center;
+		}
 
-	private function get_post_types () {
-        $post_types = get_post_types( [ 'public' => true ], 'objects' );
-        $options = [];
+		.hm-hrp-bar .hm-tool-tip {
+			left: 95%;
+			margin-left: 15px;
+			position: absolute;
+			padding: 3px 0;
+			width: 60px;
+			border-radius: 5px;
+			background: #444;
+			color: #fff;
+			font-size: 13px;
+			text-align: center;
+			opacity: 0;
+			transition: opacity 0.3s;
+			font-weight: 500;
+			font-style: normal;
+		}
 
-        foreach ( $post_types as $post_type ) {
-            $options[ $post_type->name ] = $post_type->label;
-        }
+		.hm-hrp-bar .hm-tool-tip:after {
+			content: '';
+			border-width: 5px;
+			position: absolute;
+			border-style: solid;
+			right: 40%;
+		}
 
-        return $options;
-    }
+		.hm-hrp-bar .hm-tool-tip-top {
+			bottom: -30px;
+		}
+
+		.hm-hrp-bar .hm-tool-tip-top:after {
+			bottom: 100%;
+			border-color: transparent transparent #444 transparent;
+		}
+
+		.hm-hrp-bar .hm-tool-tip-bottom {
+			bottom: 20px;
+		}
+
+		.hm-hrp-bar .hm-tool-tip-bottom:after {
+			bottom: -10px;
+			border-color: #444 transparent transparent transparent;
+		}
+
+		.hm-vrp-bar-container {
+			position: fixed;
+			top: 0;
+			right: 0;
+			background: transparent;
+			width: 10px;
+			height: 100%;
+			max-width: 100px;
+			z-index: 99999;
+		}
+
+		.hm-vrp-bar {
+			position: absolute;
+			top: 0;
+			right: 0;
+			display: none;
+			max-height: 100%;
+			width: 100%;
+			background-color: #c871eb;
+			max-width: 100px;
+		}
+
+		.hm-crp-wrapper {
+			position: fixed;
+			top: 20px;
+			right: 20px;
+			width: 60px;
+			height: 60px;
+			max-width: 120px;
+			max-height: 120px;
+			z-index: 99999;
+		}
+
+		.hm-crp-wrapper .hm-circular-progress {
+			transform: rotate(-90deg);
+			border-radius: 100%;
+		}
+
+		.hm-crp-wrapper .hm-circular-progress .hm-progress-background {
+			fill: none;
+			stroke: #e6e6e6;
+			stroke-width: 5;
+		}
+
+		.hm-crp-wrapper .hm-circular-progress .hm-progress-circle {
+			fill: none;
+			stroke: #833ab4;
+			stroke-width: 5;
+			stroke-dasharray: 283;
+			stroke-dashoffset: 283;
+			transition: stroke-dashoffset 0.4s ease;
+		}
+
+		.hm-crp-wrapper .hm-progress-percent-text {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 13px;
+			font-weight: 500;
+			color: #000000;
+		}
+
+		body.no-scroll {
+			scrollbar-width: 0px;
+		}
+
+		body.no-scroll::-webkit-scrollbar {
+			width: 0px;
+			background: transparent;
+		}
+
+	</style>
+
+	<?php }
 
 	public function init_site_settings( \Elementor\Core\Kits\Documents\Kit $kit ) {
 		$kit->register_tab( 'ha-reading-progress-bar-kit-settings', Reading_Progress_Bar_Kit_Setings::class );
