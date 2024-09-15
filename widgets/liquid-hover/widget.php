@@ -746,13 +746,28 @@ class Liquid_Hover extends Base {
 				<?php if ( 'style-4' == $settings['title_hover_style'] ) : ?>
 					<div class="ha-liquid-title">
 						<?php if ( $settings['title'] ) : ?>
-							<h2  data-buzz="<?php echo esc_attr( $settings['title'] ); ?>"><?php echo esc_html( $settings['title'] ); ?></h2>
+							<h2  data-text="<?php echo esc_attr( $settings['title'] ); ?>"><?php echo esc_html( $settings['title'] ); ?></h2>
 						<?php endif;?>
 						<?php if ( $settings['sub_title'] ) : ?>
 							<p><?php echo esc_html( $settings['sub_title'] ); ?></p>
 						<?php endif;?>
 					</div>
 				<?php endif;?>
+
+				<?php if ( 'style-5' == $settings['title_hover_style'] ) : ?>
+					<div class="ha-liquid-title">
+						<?php if ( $settings['title'] ) : ?>
+							<h2  data-text="<?php echo esc_attr( $settings['title'] ); ?>">
+								<span class="block normal"><?php echo esc_html( $settings['title'] ); ?></span>
+								<span class="block hover"><?php echo esc_html( $settings['title'] ); ?></span>
+							</h2>
+						<?php endif;?>
+						<?php if ( $settings['sub_title'] ) : ?>
+							<p><?php echo esc_html( $settings['sub_title'] ); ?></p>
+						<?php endif;?>
+					</div>
+				<?php endif;?>
+
 			<?php endif;?>
 
 			<div <?php echo $this->get_render_attribute_string( 'img_wrap' ); ?>>

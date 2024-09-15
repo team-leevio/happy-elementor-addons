@@ -80,7 +80,7 @@
 
 		.ha-liquid-title h2:before,
 		.ha-liquid-title h2:after {
-			content: attr(data-buzz);
+			content: attr(data-text);
 			position: absolute;
 			z-index: -1;
 			opacity: 0.5;
@@ -107,6 +107,35 @@
 			.ha-liquid-title h2:after {
 				transform: rotatey(-5deg) rotatex(15deg) scale(1.25);
 			}
+		}
+	}
+
+	&.style-5 {
+		.ha-liquid-title h2 span.block {
+			font-size: 50px;
+			font-weight: bold;
+			position: relative;
+			// -webkit-text-stroke: .3vw black;
+			color: #ede;
+		}
+
+		.ha-liquid-title h2 span.hover {
+			position: absolute;
+			left: 0;
+			// top: 0;
+			height: 0;
+			overflow: hidden;
+			color: red;
+			font-size: 50px;
+			transition: color .7s, height .5s;
+		  }
+
+		&:hover  {
+			.ha-liquid-title h2 span.hover {
+				height: var(--ha-liquid-hover-style-5-height);
+				color: black;
+				//bottom: calc(100% + 50px);
+			  }
 		}
 	}
 

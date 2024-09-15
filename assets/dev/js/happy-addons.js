@@ -1537,6 +1537,14 @@
 					)
 				}
 
+				if ( 'style-5' == style && ( title.length || sub_title.length ) ) {
+
+					if ( title.length ) {
+						var height = title.find('.normal').outerHeight();
+						title.attr('style','--ha-liquid-hover-style-5-height:'+height+'px')
+					}
+				}
+
 			}
 		});
 
