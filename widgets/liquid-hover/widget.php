@@ -254,6 +254,8 @@ class Liquid_Hover extends Base {
 					'style-1'  => __( 'Style 1', 'happy-elementor-addons' ),
 					'style-2'  => __( 'Style 2', 'happy-elementor-addons' ),
 					'style-3'  => __( 'Style 3', 'happy-elementor-addons' ),
+					'style-4'  => __( 'Style 4', 'happy-elementor-addons' ),
+					'style-5'  => __( 'Style 5', 'happy-elementor-addons' ),
 				],
 			]
 		);
@@ -689,7 +691,7 @@ class Liquid_Hover extends Base {
 
 			<?php if ( $settings['title'] || $settings['sub_title'] ) : ?>
 				<?php if ( 'style-1' == $settings['title_hover_style'] ) : ?>
-				<div class="ha-liquid-title" data-style="<?php echo esc_attr( $settings['title_hover_style'] );?>">
+				<div class="ha-liquid-title">
 					<?php if ( $settings['title'] ) : ?>
 						<h2><?php echo esc_html( $settings['title'] ); ?></h2>
 					<?php endif;?>
@@ -699,7 +701,7 @@ class Liquid_Hover extends Base {
 				</div>
 				<?php endif;?>
 				<?php if ( 'style-2' == $settings['title_hover_style'] ) : ?>
-				<div class="ha-liquid-title" data-style="<?php echo esc_attr( $settings['title_hover_style'] );?>">
+				<div class="ha-liquid-title">
 					<?php if ( $settings['title'] ) : ?>
 						<h2>
 							<span class="block normal"><?php echo esc_html( $settings['title'] ); ?></span>
@@ -716,7 +718,7 @@ class Liquid_Hover extends Base {
 				<?php endif;?>
 
 				<?php if ( 'style-3' == $settings['title_hover_style'] ) : ?>
-				<div class="ha-liquid-title" data-style="<?php echo esc_attr( $settings['title_hover_style'] );?>">
+				<div class="ha-liquid-title">
 					<?php if ( $settings['title'] ) : ?>
 						<h2>
 							<?php
@@ -739,6 +741,17 @@ class Liquid_Hover extends Base {
 						<p><?php echo esc_html( $settings['sub_title'] ); ?></p>
 					<?php endif;?>
 				</div>
+				<?php endif;?>
+
+				<?php if ( 'style-4' == $settings['title_hover_style'] ) : ?>
+					<div class="ha-liquid-title">
+						<?php if ( $settings['title'] ) : ?>
+							<h2  data-buzz="<?php echo esc_attr( $settings['title'] ); ?>"><?php echo esc_html( $settings['title'] ); ?></h2>
+						<?php endif;?>
+						<?php if ( $settings['sub_title'] ) : ?>
+							<p><?php echo esc_html( $settings['sub_title'] ); ?></p>
+						<?php endif;?>
+					</div>
 				<?php endif;?>
 			<?php endif;?>
 

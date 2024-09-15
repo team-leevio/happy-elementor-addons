@@ -1429,7 +1429,7 @@
 				title = self.$element.find('.ha-liquid-title h2'),
 				sub_title = self.$element.find('.ha-liquid-title p'),
 				canvas = self.$element.find('canvas'),
-				style = self.$element.find('.ha-liquid-title').attr("data-style")
+				style = settings.hover_style
 
 				if ( canvas ) { canvas.remove() }
 				var myAnimation = new hoverEffect({
