@@ -502,9 +502,9 @@ class Liquid_Hover extends Base {
 		);
 
 		$this->add_control(
-			'title_hover_item_two_color',
+			'title_secondary_hover_color',
 			[
-				'label' => __( 'Hover Item Two Color', 'happy-elementor-addons' ),
+				'label' => __( 'Secondary Hover Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .style-4 .ha-liquid-title h2:after' => 'color: {{VALUE}}',
