@@ -178,7 +178,7 @@ class Extensions_Manager {
 			],
 			'reading-progress-bar' => [
 				'title' => __( 'Reading Progress Bar', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-scroll-top',
+				'icon' => 'hm hm-reading-glass-alt',
 				// 'demo' => 'https://happyaddons.com/text-reading-progress-bar/',
 				'is_pro' => false,
 			],

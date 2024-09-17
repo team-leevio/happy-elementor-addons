@@ -19,7 +19,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 	}
 
 	public function get_icon() {
-		return 'hm hm-scroll-top';
+		return 'hm hm-reading-glass-alt';
 	}
 
 	public function get_help_url() {
@@ -51,7 +51,14 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 				'label_off'    => __( 'No', 'happy-elementor-addons' ),
 				'return_value' => 'yes',
                 'frontend_available' => true,
-                'render_type'  => 'ui',
+				'render_type' => 'template',
+                'selectors_dictionary' => [
+					''    => 'visibility: hidden; opacity: 0;',
+					'yes' => 'visibility: visible; opacity: 1;',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-reading-progress-bar' => '{{VALUE}}',
+				],
 			]
 		);
 
@@ -62,10 +69,11 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
                 'type' => Controls_Manager::SELECT,
                 'default' => 'globally',
                 'options' => [
-                    'globally' => __('Globally', 'happy-elementor-addons'),
-                    'individually' => __('Individually', 'happy-elementor-addons'),
+                    'globally' => __('Global', 'happy-elementor-addons'),
+                    'individually' => __('Individual', 'happy-elementor-addons'),
                 ],
                 'frontend_available' => true,
+				'render_type' => 'template',
                 'condition' => [
                     'ha_rpb_enable' => 'yes',
                 ],
@@ -91,7 +99,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
             'ha_rpb_individually_notice',
             [
                 'type' => Controls_Manager::RAW_HTML,
-                'raw' => '<div style="color: #fff;">'.__('Please note: You have selected the "Individually" option. You need to configure this manually for each post/page.', 'happy-elementor-addons').'</div>',
+                'raw' => '<div style="color: #fff;">'.__('Note: Please go to page settings and configure the feature settings individually.', 'happy-elementor-addons').'</div>',
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
                 'condition' => [
                     'ha_rpb_enable' => 'yes',
@@ -112,6 +120,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
                     'circle' => __('Circle', 'happy-elementor-addons'),
                 ],
                 'frontend_available' => true,
+				'render_type' => 'template',
                 'condition' => [
                     'ha_rpb_enable' => 'yes',
                 ],
@@ -132,6 +141,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
                     'bottom-left' => __('Bottom Left', 'happy-elementor-addons'),
                 ],
                 'frontend_available' => true,
+				'render_type' => 'template',
 				'selectors_dictionary' => [
 					'top-right' => 'top: 20px; right:20px; bottom: unset; left:unset',
 					'top-left' => 'top: 20px; right: unset; bottom: unset; left:20px;',
@@ -191,20 +201,21 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 			[
 				'label' => __( 'Offset', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
-                'separator' => 'after',
+                // 'separator' => 'before',
+				'content_classes' => 'ha-rpb-circle-offset-heading',
                 'condition' => [
                     'ha_rpb_enable' => 'yes',
                     'ha_rpb_type' => 'circle',
                 ],
 			]
 		);
-
-        // $this->start_popover();
+		// Start offset adjust
 		$this->add_responsive_control(
 			'ha_rpb_circle_offset_x_tr',
 			[
 				'label' => __( 'Horizontal Align', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
+				'separator' => 'before',
 				'size_units' => ['px'],
 				'range' => [
 					'px' => [
@@ -261,6 +272,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 			[
 				'label' => __( 'Horizontal Align', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
+				'separator' => 'before',
 				'size_units' => ['px'],
 				'range' => [
 					'px' => [
@@ -317,6 +329,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 			[
 				'label' => __( 'Horizontal Align', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
+				'separator' => 'before',
 				'size_units' => ['px'],
 				'range' => [
 					'px' => [
@@ -373,6 +386,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 			[
 				'label' => __( 'Horizontal Align', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
+				'separator' => 'before',
 				'size_units' => ['px'],
 				'range' => [
 					'px' => [
@@ -423,7 +437,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 				]
 			]
 		); // end bottom-left
-		// $this->end_popover();
+		// End offset adjust
 
 		$this->add_control(
 			'ha_rpb_circle_bg_color',
@@ -568,6 +582,13 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 				'label_off'    => __( 'No', 'happy-elementor-addons' ),
 				'return_value' => 'yes',
                 'frontend_available' => true,
+				'selectors_dictionary' => [
+					''    => 'visibility: hidden; opacity: 0;',
+					'yes' => 'visibility: visible; opacity: 1;',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-reading-progress-bar .hm-progress-percent-text' => '{{VALUE}}',
+				],
 				'condition' => [
                     'ha_rpb_enable' => 'yes',
                     'ha_rpb_type' => 'circle',
@@ -746,6 +767,13 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 				'label_off'    => __( 'No', 'happy-elementor-addons' ),
 				'return_value' => 'yes',
                 'frontend_available' => true,
+				'selectors_dictionary' => [
+					''    => 'visibility: hidden; opacity: 0;',
+					'yes' => 'visibility: visible; opacity: 1;',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-reading-progress-bar .hm-hrp-bar .hm-tool-tip' => '{{VALUE}}',
+				],
 				'condition' => [
                     'ha_rpb_enable' => 'yes',
                     'ha_rpb_type' => 'horizontal',

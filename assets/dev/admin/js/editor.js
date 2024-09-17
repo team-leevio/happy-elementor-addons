@@ -251,9 +251,16 @@
 		function readingProgressBarHandaler (settingsValue) {
 			$e.run('document/save/update').then(_.debounce(function () {
 				elementor.reloadPreview();
+				location.reload();
 			}, 1500));
 		};
-		let HmRPBHandler = ['ha_rpb_enable', 'ha_rpb_type', 'ha_rpb_enable_circle_percentage', 'ha_rpb_horizontal_position', 'ha_rpb_enable_horizontal_percentage'];
+		let HmRPBHandler = [
+			'ha_rpb_apply_globally', 
+			'ha_rpb_type', 
+			'ha_rpb_horizontal_position', 
+			'ha_rpb_single_disable', 
+			'ha_rpb_single_enable'
+		];
 		$.each(HmRPBHandler, function (index, value) {
 			elementor.settings.page.addChangeCallback(value, readingProgressBarHandaler);
 		});

@@ -40,6 +40,11 @@
             if (position > 1 && scrollPercent > 0 ) {
                 $('.hm-tool-tip').css({'opacity':1, 'transition':'opacity 0.3s'});
                 $('.hm-tool-tip').text(position + '%');
+                if( position >= 98 ) {
+                    $('.hm-tool-tip').css({'right':'5px'});
+                } else {
+                    $('.hm-tool-tip').css({'right':'-28px'});
+                }
             } else {
                 $('.hm-tool-tip').css({'opacity':0, 'transition':'opacity 0.3s'});
                 $('.hm-tool-tip').text('0%');
@@ -53,8 +58,10 @@
                 // 'transition': 'width 0.4s ease'
             });
 
-            if( scrollPercent > 0 ) {
+            if( scrollPercent > 0 && position > 1) {
                 $('.hm-vrp-bar').height(position + '%');
+            } else {
+                $('.hm-vrp-bar').height('0%');
             }
 
         } else if ( hmrpbsettings.hasOwnProperty('progress_bar_type') && hmrpbsettings.progress_bar_type === 'circle' ) {
@@ -63,8 +70,6 @@
             let circumference = 2 * Math.PI * circleRadius;
     
             let offset = Math.round(circumference - (scrollPercent / 100) * circumference);
-            
-            console.log('scrollPercent ', scrollPercent);
 
             if( scrollPercent >= 0 ) {
                 $('.hm-progress-circle').css('stroke-dashoffset', offset.toFixed(2));

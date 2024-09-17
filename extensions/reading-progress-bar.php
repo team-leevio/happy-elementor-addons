@@ -98,7 +98,7 @@ class Reading_Progress_Bar {
 					'label'        => __( 'Enable ?', 'happy-elementor-addons' ),
 					'description'  => __( 'Enable Reading Progress Bar For This Page', 'happy-elementor-addons' ),
 					'type'         => Controls_Manager::SWITCHER,
-					'default'      => 'yes',
+					'default'      => 'no',
 					'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
 					'label_off'    => __( 'No', 'happy-elementor-addons' ),
 					'return_value' => 'yes',
@@ -170,8 +170,6 @@ class Reading_Progress_Bar {
 			}
 		}
 
-		error_log(print_r($reading_progress_is_enable, true));
-
 		if( ! $reading_progress_is_enable ) {
 			return;
 		}
@@ -205,9 +203,10 @@ class Reading_Progress_Bar {
         <?php } else { ?>
         <div id="hm_hrp_bar_wrapper" class="hm-hrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
             <div class="hm-hrp-bar">
-				<?php if('yes' == $enable_horizontal_percentage) { ?>
-					<span class="hm-tool-tip hm-tool-tip-<?php echo esc_attr($horizontal_position); ?>">0%</span>
-				<?php } ?>
+			<span class="hm-tool-tip hm-tool-tip-<?php echo esc_attr($horizontal_position); ?>">0%</span>
+				<!-- <?php //if('yes' == $enable_horizontal_percentage) { ?>
+					<span class="hm-tool-tip hm-tool-tip-<?php //echo esc_attr($horizontal_position); ?>">0%</span>
+				<?php //} ?> -->
 			</div>
         </div>
     <?php } ?>
@@ -236,7 +235,7 @@ class Reading_Progress_Bar {
 		}
 
 		.hm-hrp-bar .hm-tool-tip {
-			left: 95%;
+			right: -28px;
 			margin-left: 15px;
 			position: absolute;
 			padding: 3px 0;
@@ -349,7 +348,6 @@ class Reading_Progress_Bar {
 			width: 0px;
 			background: transparent;
 		}
-
 	</style>
 
 	<?php }
