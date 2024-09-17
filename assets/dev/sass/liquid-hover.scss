@@ -26,16 +26,13 @@
 		color: #1a1a1a;
 		margin: 0;
 
-		&:hover .letter,
-		&.play .letter,
-
 		&:hover span.block,
 		&.play span.block {
 			transform: translateY(-100%);
 		}
 
 		.hover:last-child {
-			// color: #d3a13b;
+			color: #d3a13b;
 		}
 
 		span.block {
@@ -89,14 +86,16 @@
 
 		.ha-liquid-title h2:before {
 			color: #00d5ff;
-			top: 2px;
-			left: 2px;
+			// top: 2px;
+			left: 0px;
+			right: 0px;
 		}
 
 		.ha-liquid-title h2:after {
 			color: #ffaa00;
-			bottom: 2px;
-			right: 2px;
+			// bottom: 2px;
+			left: 0px;
+			right: 0px;
 		}
 
 		&:hover  {
@@ -112,11 +111,11 @@
 
 	&.style-5 {
 		.ha-liquid-title h2 span.block {
-			font-size: 50px;
-			font-weight: bold;
+			// font-size: 50px;
+			// font-weight: bold;
 			position: relative;
 			// -webkit-text-stroke: .3vw black;
-			color: #ede;
+			// color: #ede;
 		}
 
 		.ha-liquid-title h2 span.hover {
@@ -125,15 +124,15 @@
 			// top: 0;
 			height: 0;
 			overflow: hidden;
-			color: red;
-			font-size: 50px;
+			// color: red;
+			// font-size: 50px;
 			transition: color .7s, height .5s;
 		  }
 
 		&:hover  {
 			.ha-liquid-title h2 span.hover {
 				height: var(--ha-liquid-hover-style-5-height);
-				color: black;
+				color: red;
 				//bottom: calc(100% + 50px);
 			  }
 		}

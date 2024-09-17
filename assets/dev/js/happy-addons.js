@@ -1449,7 +1449,6 @@
 				/* if title or subtitle enable */
 				if ( 'style-1' == style && (title.length || sub_title.length) ) {
 					var style_direction = settings.style_1_direction;
-					console.log(style_direction);
 
 					if ( title.length ) {
 						title[0].innerHTML = title[0].textContent.replace(/\S/g, "<span class='letter'>$&</span>");

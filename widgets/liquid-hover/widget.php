@@ -247,7 +247,7 @@ class Liquid_Hover extends Base {
 		$this->add_control(
 			'title_hover_style',
 			[
-				'label' => __( 'Style', 'happy-elementor-addons' ),
+				'label' => __( 'Effects', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'style-1',
 				'options' => [
@@ -454,6 +454,138 @@ class Liquid_Hover extends Base {
 		);
 
 		$this->add_control(
+			'title_heading',
+			[
+				'label' => esc_html__( 'Title', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				//'separator' => 'before',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'title_typography',
+				'label'    => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-liquid-title h2',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+			]
+		);
+
+		$this->add_control(
+			'title_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-liquid-title h2' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'title_hover_color',
+			[
+				'label' => __( 'Hover Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .style-2 .ha-liquid-title h2 .hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .style-4 .ha-liquid-title h2:before' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .style-5 .ha-liquid-title h2 span.hover' => 'color: {{VALUE}}',
+				],
+				'condition' => [
+					'title_hover_style' => ['style-2','style-4','style-5'],
+				],
+			]
+		);
+
+		$this->add_control(
+			'title_hover_item_two_color',
+			[
+				'label' => __( 'Hover Item Two Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .style-4 .ha-liquid-title h2:after' => 'color: {{VALUE}}',
+				],
+				'condition' => [
+					'title_hover_style' => ['style-4'],
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Text_Shadow::get_type(),
+			[
+				'name' => 'title_text_shadow',
+				'selector' => '{{WRAPPER}} .ha-liquid-title h2',
+			]
+		);
+
+		$this->add_control(
+			'title_bottom_space',
+			[
+				'label' => __( 'Bottom Space', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-liquid-title h2' => 'margin-bottom: {{SIZE}}px'
+				],
+			],
+		);
+
+		$this->add_control(
+			'sub_title_heading',
+			[
+				'label' => esc_html__( 'Subtitle', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'sub_title_typography',
+				'label'    => __( 'Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-liquid-title p',
+			]
+		);
+
+		$this->add_control(
+			'sub_title_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-liquid-title p' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'sub_title_hover_color',
+			[
+				'label' => __( 'Hover Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .style-2 .ha-liquid-title p .hover' => 'color: {{VALUE}}',
+				],
+				'condition' => [
+					'title_hover_style' => ['style-2'],
+				],
+			]
+		);
+
+		$this->add_control(
 			'title_offset_toggle',
 			[
 				'label' => __( 'Offset', 'happy-elementor-addons' ),
@@ -461,6 +593,7 @@ class Liquid_Hover extends Base {
 				'label_off' => __( 'None', 'happy-elementor-addons' ),
 				'label_on' => __( 'Custom', 'happy-elementor-addons' ),
 				'return_value' => 'yes',
+				'separator' => 'before',
 			]
 		);
 
@@ -527,7 +660,7 @@ class Liquid_Hover extends Base {
 					],
 				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-liquid-title' => 'width: {{SIZE}}{{UNIT}}'
+                	'{{WRAPPER}} .ha-liquid-title' => 'width: {{SIZE}}{{UNIT}}'
 				],
 				// 'render_type' => 'ui', //template
 			],
@@ -555,94 +688,6 @@ class Liquid_Hover extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-liquid-title' => 'text-align:{{VALUE}}'
                 ]
-			]
-		);
-
-		$this->add_control(
-			'title_heading',
-			[
-				'label' => esc_html__( 'Title', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name'     => 'title_typography',
-				'label'    => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-liquid-title h2',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
-			]
-		);
-
-		$this->add_control(
-			'title_color',
-			[
-				'label' => __( 'Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-liquid-title h2' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Text_Shadow::get_type(),
-			[
-				'name' => 'title_text_shadow',
-				'selector' => '{{WRAPPER}} .ha-liquid-title h2',
-			]
-		);
-
-		$this->add_control(
-			'title_bottom_space',
-			[
-				'label' => __( 'Bottom Space', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 100,
-						'step' => 1,
-					],
-				],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-liquid-title h2' => 'margin-bottom: {{SIZE}}px'
-				],
-			],
-		);
-
-		$this->add_control(
-			'sub_title_heading',
-			[
-				'label' => esc_html__( 'Subtitle', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name'     => 'sub_title_typography',
-				'label'    => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-liquid-title p',
-			]
-		);
-
-		$this->add_control(
-			'sub_title_color',
-			[
-				'label' => __( 'Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-liquid-title p' => 'color: {{VALUE}}',
-				],
 			]
 		);
 
