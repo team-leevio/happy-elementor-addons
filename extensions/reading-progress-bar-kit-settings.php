@@ -43,7 +43,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
         $this->add_control(
 			'ha_rpb_enable',
 			[
-				'label'        => __( 'Enable ?', 'happy-elementor-addons' ),
+				'label'        => __( 'Enable', 'happy-elementor-addons' ),
 				'description'  => __( 'Enable Progress Bar For This Page', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => 'no',
@@ -86,7 +86,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
                 'label' => __('Display On', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT2,
                 'default' => 'post',
-                'options' => $this->get_post_types(),
+                'options' => $this->hm_get_post_types(),
                 'multiple' => true,
                 'condition' => [
                     'ha_rpb_enable' => 'yes',
@@ -575,7 +575,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 		$this->add_control(
 			'ha_rpb_enable_circle_percentage',
 			[
-				'label'        => __( 'Disable Percentage ?', 'happy-elementor-addons' ),
+				'label'        => __( 'Disable Percentage', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => 'yes',
 				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
@@ -760,7 +760,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 		$this->add_control(
 			'ha_rpb_enable_horizontal_percentage',
 			[
-				'label'        => __( 'Disable Percentage Tool Tip?', 'happy-elementor-addons' ),
+				'label'        => __( 'Disable Percentage Tool Tip', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => 'yes',
 				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
@@ -963,14 +963,16 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 		$this->end_controls_section();
     }
 
-    private function get_post_types () {
+    private function hm_get_post_types () {
         $post_types = get_post_types( [ 'public' => true ], 'objects' );
         $options = [];
 
         foreach ( $post_types as $post_type ) {
-            $options[ $post_type->name ] = $post_type->label;
+			if($post_type->name == 'post' || $post_type->name == 'page') {
+				$options[ $post_type->name ] = $post_type->label;
+			}
         }
-
-        return $options;
+	
+		return $options;
     }
 }

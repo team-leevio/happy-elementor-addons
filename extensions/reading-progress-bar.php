@@ -82,7 +82,7 @@ class Reading_Progress_Bar {
 			$element->add_control(
 				'ha_rpb_single_disable',
 				[
-					'label'        => __( 'Disable ?', 'happy-elementor-addons' ),
+					'label'        => __( 'Disable', 'happy-elementor-addons' ),
 					'description'  => __( 'Disable Reading Progress Bar For This Page', 'happy-elementor-addons' ),
 					'type'         => Controls_Manager::SWITCHER,
 					'default'      => 'no',
@@ -95,7 +95,7 @@ class Reading_Progress_Bar {
 			$element->add_control(
 				'ha_rpb_single_enable',
 				[
-					'label'        => __( 'Enable ?', 'happy-elementor-addons' ),
+					'label'        => __( 'Enable', 'happy-elementor-addons' ),
 					'description'  => __( 'Enable Reading Progress Bar For This Page', 'happy-elementor-addons' ),
 					'type'         => Controls_Manager::SWITCHER,
 					'default'      => 'no',
@@ -154,6 +154,7 @@ class Reading_Progress_Bar {
 			
 			if ($global_enable === 'globally') {
 				$display_condition = $this->elementor_get_setting('ha_rpb_global_display_condition');
+
 				$current_post_type = get_post_type();
 				
 				if (is_array($display_condition) && in_array($current_post_type, $display_condition)) {
@@ -170,10 +171,6 @@ class Reading_Progress_Bar {
 			}
 		}
 
-		if( ! $reading_progress_is_enable ) {
-			return;
-		}
-
         $progress_bar_type = $this->elementor_get_setting('ha_rpb_type');
         $horizontal_position = $this->elementor_get_setting('ha_rpb_horizontal_position');
         $enable_horizontal_percentage = $this->elementor_get_setting('ha_rpb_enable_horizontal_percentage');
@@ -185,170 +182,348 @@ class Reading_Progress_Bar {
 			'rpb_vertical_position' => $this->elementor_get_setting('ha_rpb_vertical_position')
 		];
         
-        
-        if( 'circle' === $progress_bar_type ) { ?>
-            <div class="hm-crp-wrapper ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
-                <svg class="hm-circular-progress" width="60" height="60" viewBox="0 0 100 100">
-                    <circle class="hm-progress-background" cx="50" cy="50" r="45"></circle>
-                    <circle class="hm-progress-circle" cx="50" cy="50" r="45"></circle>
-                </svg>
-				<?php if( 'yes' == $enable_circle_percentage){ ?> 
-					<div class="hm-progress-percent-text">0%</div>
-				<?php } ?>
-            </div>
-        <?php } else if ('vertical' === $progress_bar_type) { ?>
-        <div id="hm_vrp_bar_wrapper" class="hm-vrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
-            <div class="hm-vrp-bar"></div>
-        </div>
-        <?php } else { ?>
-        <div id="hm_hrp_bar_wrapper" class="hm-hrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
-            <div class="hm-hrp-bar">
-			<span class="hm-tool-tip hm-tool-tip-<?php echo esc_attr($horizontal_position); ?>">0%</span>
-				<!-- <?php //if('yes' == $enable_horizontal_percentage) { ?>
-					<span class="hm-tool-tip hm-tool-tip-<?php //echo esc_attr($horizontal_position); ?>">0%</span>
-				<?php //} ?> -->
+        if ( ha_elementor()->preview->is_preview_mode() ) { ?>
+				<div class="hm-crp-wrapper ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
+					<svg class="hm-circular-progress" width="60" height="60" viewBox="0 0 100 100">
+						<circle class="hm-progress-background" cx="50" cy="50" r="45"></circle>
+						<circle class="hm-progress-circle" cx="50" cy="50" r="45"></circle>
+					</svg>
+					<div class="hm-progress-percent-text">10%</div>
+				</div>
+			
+			<div id="hm_vrp_bar_wrapper" class="hm-vrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
+				<div class="hm-vrp-bar"></div>
 			</div>
-        </div>
-    <?php } ?>
-	<style>
-		.hm-hrp-bar-container {
-			width: 100%;
-			background: transparent;
-			position: fixed;
-			top: 0;
-			left: 0;
-			height: 10px;
-			max-height: 100px;
-			z-index: 99999;
+			
+			<div id="hm_hrp_bar_wrapper" class="hm-hrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
+				<div class="hm-hrp-bar">
+					<span class="hm-tool-tip hm-tool-tip-<?php echo esc_attr($horizontal_position); ?>">0%</span>
+				</div>
+			</div>
+
+			<script>
+				;(function($) {
+					'use strict';
+					
+					let rpbContainer = $('.ha-reading-progress-bar');
+
+					if(rpbContainer.rpbContainer <= 0) {
+						return;
+					}
+					
+					let rpbDefaultType = "<?php echo $progress_bar_type;  ?>";
+
+					if( rpbDefaultType == 'horizontal' ) {
+						$('.hm-hrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
+						$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+						$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
+					} else if ( rpbDefaultType == 'vertical' ) {
+						$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+						$('.hm-vrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
+						$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
+					} else if ( rpbDefaultType == 'circle' ) {
+						$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+						$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+						$('.hm-crp-wrapper').css({'opacity':1, 'transition':'opacity 0.3s'});
+					}
+					
+
+					window.addEventListener('message',function(e) {
+						let data = e.data;
+						
+						if( 'rpbMessage' == data.check ) {
+
+							if (e.origin != window.origin) {
+								return;
+							}
+							if (e.source.location.href != window.parent.location.href) {
+								return;
+							}
+							
+
+							let changeValue = data.changeValue;
+							let changeItem = data.changeItem;
+
+							// Check enable
+							if (changeItem[0] == 'ha_rpb_enable') {
+								if ( changeValue == 'yes' ) {
+									rpbContainer.css({'opacity':1, 'transition':'opacity 0.3s'});
+								} else {
+									rpbContainer.css({'opacity':0, 'transition':'opacity 0.3s'});
+								}
+							}
+
+							// Check type
+							if ( changeItem[0] == 'ha_rpb_type' ) {
+								if( changeValue == 'horizontal' ) {
+									$('.hm-hrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
+									$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+									$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
+								} else if ( changeValue == 'vertical' ) {
+									$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+									$('.hm-vrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
+									$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
+								} else if ( changeValue == 'circle' ) {
+									$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+									$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+									$('.hm-crp-wrapper').css({'opacity':1, 'transition':'opacity 0.3s'});
+								}
+
+								// Start scrolling
+								$(window).scroll(function () {
+									let scrollPercent = 0;
+									let hmSt = $(window).scrollTop() || 0,
+										hmDt = $(document).height() || 1,
+										hmCt = $(window).height() || 1;
+									scrollPercent = ( hmSt / (hmDt - hmCt) ) * 100;
+									let position = scrollPercent.toFixed(0);
+
+									if (scrollPercent > 100) {
+										scrollPercent = 100;
+									}
+
+									if( changeValue == 'horizontal' ) {
+										$('.hm-hrp-bar').css({'display': 'flex'});
+										$('.hm-hrp-bar').width(position + '%');
+
+										if (position > 1 && scrollPercent > 0 ) {
+											$('.hm-tool-tip').css({'opacity':1, 'transition':'opacity 0.3s'});
+											$('.hm-tool-tip').text(position + '%');
+											if( position >= 98 ) {
+												$('.hm-tool-tip').css({'right':'5px'});
+											} else {
+												$('.hm-tool-tip').css({'right':'-28px'});
+											}
+										} else {
+											$('.hm-tool-tip').css({'opacity':0, 'transition':'opacity 0.3s'});
+											$('.hm-tool-tip').text('0%');
+										}
+									} else if ( changeValue == 'vertical' ) {
+										$('.hm-vrp-bar').css({
+											'display': 'flex',
+										});
+
+										if( scrollPercent > 0 && position > 1) {
+											$('.hm-vrp-bar').height(position + '%');
+										} else {
+											$('.hm-vrp-bar').height('0%');
+										}
+									} else if (changeValue == 'circle') {
+										let circleRadius = 45;
+										let circumference = 2 * Math.PI * circleRadius;
+								
+										let offset = Math.round(circumference - (scrollPercent / 100) * circumference);
+
+										if( scrollPercent >= 0 ) {
+											$('.hm-progress-circle').css('stroke-dashoffset', offset.toFixed(2));
+											$('.hm-progress-percent-text').text(`${scrollPercent.toFixed(0)}%`);
+										}
+									}
+
+								});
+								
+							}
+
+							// check horizontal tool tip
+							if ( changeItem[0] == 'ha_rpb_horizontal_position' ) {
+								if ( changeValue == 'bottom' ) {
+									$('.hm-hrp-bar .hm-tool-tip').removeClass('hm-tool-tip-top');
+									$('.hm-hrp-bar .hm-tool-tip').addClass('hm-tool-tip-bottom');
+								} else if( changeValue == 'top' ) {
+									$('.hm-hrp-bar .hm-tool-tip').removeClass('hm-tool-tip-bottom');
+									$('.hm-hrp-bar .hm-tool-tip').addClass('hm-tool-tip-top');
+								}
+							}
+							
+							// Check vertical position
+							if ( changeItem[0] == 'ha_rpb_vertical_position' ) {
+								if ( changeValue == 'right' ) {
+									$('body').addClass('no-scroll'); 
+								} else if( changeValue == 'left' ) {
+									$('body').removeClass('no-scroll');
+								}
+							}
+
+						}
+
+					});
+					
+					
+				}(jQuery));
+			</script>
+
+		<?php }
+
+		if( ! $reading_progress_is_enable ) {
+			return;
 		}
 
-		.hm-hrp-bar {
-			position: relative;
-			height: 100%;
-			background-color: #c871eb;
-			font-size: 14px;
-			font-weight: 500;
-			color: #FFFFFF;
-			display: none;
-			justify-content: center;
-			align-items: center;
-		}
+		if ( ! ha_elementor()->preview->is_preview_mode() ) {
+			if( 'circle' === $progress_bar_type ) { ?>
+				<div class="hm-crp-wrapper ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
+					<svg class="hm-circular-progress" width="60" height="60" viewBox="0 0 100 100">
+						<circle class="hm-progress-background" cx="50" cy="50" r="45"></circle>
+						<circle class="hm-progress-circle" cx="50" cy="50" r="45"></circle>
+					</svg>
+					<?php if( 'yes' == $enable_circle_percentage){ ?> 
+						<div class="hm-progress-percent-text">0%</div>
+					<?php } ?>
+				</div>
+			<?php } else if ('vertical' === $progress_bar_type) { ?>
+			<div id="hm_vrp_bar_wrapper" class="hm-vrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
+				<div class="hm-vrp-bar"></div>
+			</div>
+			<?php } else { ?>
+			<div id="hm_hrp_bar_wrapper" class="hm-hrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
+				<div class="hm-hrp-bar">
+				<span class="hm-tool-tip hm-tool-tip-<?php echo esc_attr($horizontal_position); ?>">0%</span>
+					<!-- <?php //if('yes' == $enable_horizontal_percentage) { ?>
+						<span class="hm-tool-tip hm-tool-tip-<?php //echo esc_attr($horizontal_position); ?>">0%</span>
+					<?php //} ?> -->
+				</div>
+			</div>
+		<?php } 
+		} ?>
+        
+		<style>
+			.hm-hrp-bar-container {
+				width: 100%;
+				background: transparent;
+				position: fixed;
+				top: 0;
+				left: 0;
+				height: 10px;
+				max-height: 100px;
+				z-index: 999999;
+			}
 
-		.hm-hrp-bar .hm-tool-tip {
-			right: -28px;
-			margin-left: 15px;
-			position: absolute;
-			padding: 3px 0;
-			width: 60px;
-			border-radius: 5px;
-			background: #444;
-			color: #fff;
-			font-size: 13px;
-			text-align: center;
-			opacity: 0;
-			transition: opacity 0.3s;
-			font-weight: 500;
-			font-style: normal;
-		}
+			.hm-hrp-bar {
+				position: relative;
+				height: 100%;
+				background-color: #c871eb;
+				font-size: 14px;
+				font-weight: 500;
+				color: #FFFFFF;
+				display: none;
+				justify-content: center;
+				align-items: center;
+			}
 
-		.hm-hrp-bar .hm-tool-tip:after {
-			content: '';
-			border-width: 5px;
-			position: absolute;
-			border-style: solid;
-			right: 40%;
-		}
+			.hm-hrp-bar .hm-tool-tip {
+				right: -28px;
+				margin-left: 15px;
+				position: absolute;
+				padding: 3px 0;
+				width: 60px;
+				border-radius: 5px;
+				background: #444;
+				color: #fff;
+				font-size: 13px;
+				text-align: center;
+				opacity: 0;
+				transition: opacity 0.3s;
+				font-weight: 500;
+				font-style: normal;
+			}
 
-		.hm-hrp-bar .hm-tool-tip-top {
-			bottom: -30px;
-		}
+			.hm-hrp-bar .hm-tool-tip:after {
+				content: '';
+				border-width: 5px;
+				position: absolute;
+				border-style: solid;
+				right: 40%;
+			}
 
-		.hm-hrp-bar .hm-tool-tip-top:after {
-			bottom: 100%;
-			border-color: transparent transparent #444 transparent;
-		}
+			.hm-hrp-bar .hm-tool-tip-top {
+				bottom: -30px;
+			}
 
-		.hm-hrp-bar .hm-tool-tip-bottom {
-			bottom: 20px;
-		}
+			.hm-hrp-bar .hm-tool-tip-top:after {
+				bottom: 100%;
+				border-color: transparent transparent #444 transparent;
+			}
 
-		.hm-hrp-bar .hm-tool-tip-bottom:after {
-			bottom: -10px;
-			border-color: #444 transparent transparent transparent;
-		}
+			.hm-hrp-bar .hm-tool-tip-bottom {
+				bottom: 20px;
+			}
 
-		.hm-vrp-bar-container {
-			position: fixed;
-			top: 0;
-			right: 0;
-			background: transparent;
-			width: 10px;
-			height: 100%;
-			max-width: 100px;
-			z-index: 99999;
-		}
+			.hm-hrp-bar .hm-tool-tip-bottom:after {
+				bottom: -10px;
+				border-color: #444 transparent transparent transparent;
+			}
 
-		.hm-vrp-bar {
-			position: absolute;
-			top: 0;
-			right: 0;
-			display: none;
-			max-height: 100%;
-			width: 100%;
-			background-color: #c871eb;
-			max-width: 100px;
-		}
+			.hm-vrp-bar-container {
+				position: fixed;
+				top: 0;
+				right: 0;
+				background: transparent;
+				width: 10px;
+				height: 100%;
+				max-width: 100px;
+				z-index: 99999;
+			}
 
-		.hm-crp-wrapper {
-			position: fixed;
-			top: 20px;
-			right: 20px;
-			width: 60px;
-			height: 60px;
-			max-width: 120px;
-			max-height: 120px;
-			z-index: 99999;
-		}
+			.hm-vrp-bar {
+				position: absolute;
+				top: 0;
+				right: 0;
+				display: none;
+				max-height: 100%;
+				width: 100%;
+				background-color: #c871eb;
+				max-width: 100px;
+			}
 
-		.hm-crp-wrapper .hm-circular-progress {
-			transform: rotate(-90deg);
-			border-radius: 100%;
-		}
+			.hm-crp-wrapper {
+				position: fixed;
+				top: 20px;
+				right: 20px;
+				width: 60px;
+				height: 60px;
+				max-width: 150px;
+				max-height: 150px;
+				z-index: 99999;
+			}
 
-		.hm-crp-wrapper .hm-circular-progress .hm-progress-background {
-			fill: none;
-			stroke: #e6e6e6;
-			stroke-width: 5;
-		}
+			.hm-crp-wrapper .hm-circular-progress {
+				transform: rotate(-90deg);
+				border-radius: 100%;
+			}
 
-		.hm-crp-wrapper .hm-circular-progress .hm-progress-circle {
-			fill: none;
-			stroke: #833ab4;
-			stroke-width: 5;
-			stroke-dasharray: 283;
-			stroke-dashoffset: 283;
-			transition: stroke-dashoffset 0.4s ease;
-		}
+			.hm-crp-wrapper .hm-circular-progress .hm-progress-background {
+				fill: none;
+				stroke: #e6e6e6;
+				stroke-width: 5;
+			}
 
-		.hm-crp-wrapper .hm-progress-percent-text {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			font-size: 13px;
-			font-weight: 500;
-			color: #000000;
-		}
+			.hm-crp-wrapper .hm-circular-progress .hm-progress-circle {
+				fill: none;
+				stroke: #833ab4;
+				stroke-width: 5;
+				stroke-dasharray: 283;
+				stroke-dashoffset: 283;
+				transition: stroke-dashoffset 0.4s ease;
+			}
 
-		body.no-scroll {
-			scrollbar-width: 0px;
-		}
+			.hm-crp-wrapper .hm-progress-percent-text {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				font-size: 13px;
+				font-weight: 500;
+				color: #000000;
+			}
 
-		body.no-scroll::-webkit-scrollbar {
-			width: 0px;
-			background: transparent;
-		}
-	</style>
+			body.no-scroll {
+				scrollbar-width: 0px;
+			}
+
+			body.no-scroll::-webkit-scrollbar {
+				width: 0px;
+				background: transparent;
+			}
+		</style>
 
 	<?php }
 
@@ -383,9 +558,6 @@ class Reading_Progress_Bar {
         $template_list = [
             'header',
             'footer',
-            'single',
-            'post',
-            'page',
             'search-results',
             'error-404',
             'section',
