@@ -1,3 +1,7 @@
+= 3.##.# - 5 September 2024 =
+
+- Fix: Security improvement for Content Switcher widget.
+
 = 3.12.2 - 5 September 2024 =
 
 - Tweak: Promotional material added.
