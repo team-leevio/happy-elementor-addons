@@ -1346,7 +1346,7 @@ class Widgets_Manager {
 				'cat' => 'general',
 				'is_active' => true,
 				'title' => __('Liquid Hover', 'happy-elementor-addons'),
-				'icon' => 'hm hm-video-gallery',
+				'icon' => 'hm hm-image-masking',
 				'css' => ['liquid-hover'],
 				'js' => [],
 				'vendor' => [

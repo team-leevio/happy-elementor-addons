@@ -46,7 +46,7 @@ class Liquid_Hover extends Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'hm hm-liquid-hover';
+		return 'hm hm-image-masking';
 	}
 
 	public function get_keywords() {
