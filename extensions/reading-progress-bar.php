@@ -188,7 +188,7 @@ class Reading_Progress_Bar {
 						<circle class="hm-progress-background" cx="50" cy="50" r="45"></circle>
 						<circle class="hm-progress-circle" cx="50" cy="50" r="45"></circle>
 					</svg>
-					<div class="hm-progress-percent-text">10%</div>
+					<div class="hm-progress-percent-text">0%</div>
 				</div>
 			
 			<div id="hm_vrp_bar_wrapper" class="hm-vrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
@@ -354,11 +354,12 @@ class Reading_Progress_Bar {
 
 		<?php }
 
-		if( ! $reading_progress_is_enable ) {
-			return;
-		}
-
 		if ( ! ha_elementor()->preview->is_preview_mode() ) {
+			
+			if( ! $reading_progress_is_enable ) {
+				return;
+			}
+
 			if( 'circle' === $progress_bar_type ) { ?>
 				<div class="hm-crp-wrapper ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
 					<svg class="hm-circular-progress" width="60" height="60" viewBox="0 0 100 100">

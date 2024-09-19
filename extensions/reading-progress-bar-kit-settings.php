@@ -85,7 +85,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
             [
                 'label' => __('Display On', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SELECT2,
-                'default' => 'post',
+                'default' => ['post'],
                 'options' => $this->hm_get_post_types(),
                 'multiple' => true,
                 'condition' => [
