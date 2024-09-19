@@ -1,5 +1,6 @@
 = 3.12.3 - 19 September 2024 =
 
+- Update: Made Compatible with Elementor 3.24
 - Update: magnific-popup js updated to v1.2.0.
 - Fix: Security improvement for Content Switcher widget.
 
