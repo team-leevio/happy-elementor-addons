@@ -1,3 +1,10 @@
+= 3.12.3 - 19 September 2024 =
+
+- Update: Made Compatible with Elementor 3.24
+- Update: magnific-popup js updated to v1.2.0.
+- Update: Updated Appsero SDK.
+- Fix: Security improvement for Content Switcher widget.
+
 = 3.12.2 - 5 September 2024 =
 
 - Tweak: Promotional material added.

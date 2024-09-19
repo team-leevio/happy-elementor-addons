@@ -7,8 +7,8 @@ class Advance_Notice {
 
     public static function init() {
 		if ( !( in_array( 'happy-elementor-addons-pro/happy-elementors-addons-pro.php', (array) get_option( 'active_plugins', [] ), true ) ) ) {
-			add_action( 'admin_init', [__CLASS__, 'ha_void_check_installation_time'] );
-        	add_action( 'admin_init', [__CLASS__, 'ha_void_spare_me'], 5 );
+			// add_action( 'admin_init', [__CLASS__, 'ha_void_check_installation_time'] );
+        	// add_action( 'admin_init', [__CLASS__, 'ha_void_spare_me'], 5 );
 		}
     }
 
