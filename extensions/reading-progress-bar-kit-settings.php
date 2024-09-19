@@ -919,7 +919,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 						'default' => 'classic',
 					],
 					'color' => [
-						'default' => '#ff0000',
+						'default' => '#c871eb',
 					],
 					'gradient' => [
 						'default' => [

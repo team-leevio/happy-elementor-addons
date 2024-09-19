@@ -32,7 +32,7 @@ class Reading_Progress_Bar {
 		add_action( 'elementor/kit/register_tabs', [ $this, 'init_site_settings' ], 1, 40 );
 
 		add_action( 'elementor/documents/register_controls', [$this, 'reading_progress_bar_controls'], 10 );
-        add_action('elementor/preview/enqueue_scripts', [$this, 'enqueue_scripts']);
+        // add_action('elementor/preview/enqueue_scripts', [$this, 'enqueue_scripts']);
         if ( !ha_elementor()->preview->is_preview_mode() ) {
             add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts_frontend']);
         }
@@ -240,31 +240,35 @@ class Reading_Progress_Bar {
 
 							let changeValue = data.changeValue;
 							let changeItem = data.changeItem;
+							let rpbDefaultType = "<?php echo $progress_bar_type;  ?>";						
 
 							// Check enable
 							if (changeItem[0] == 'ha_rpb_enable') {
 								if ( changeValue == 'yes' ) {
-									let rpbDefaultType = "<?php echo $progress_bar_type;  ?>";
 									if( rpbDefaultType == 'horizontal' ) {
+										$('.ha-reading-progress-bar').css({'opacity':1, 'transition':'opacity 0.3s'});
 										$('.hm-hrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
 										$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
 										$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
 									} else if ( rpbDefaultType == 'vertical' ) {
+										$('.ha-reading-progress-bar').css({'opacity':1, 'transition':'opacity 0.3s'});
 										$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
 										$('.hm-vrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
 										$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
 									} else if ( rpbDefaultType == 'circle' ) {
+										$('.ha-reading-progress-bar').css({'opacity':1, 'transition':'opacity 0.3s'});
 										$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
 										$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
 										$('.hm-crp-wrapper').css({'opacity':1, 'transition':'opacity 0.3s'});
 									}
 								} else {
-									rpbContainer.css({'opacity':0, 'transition':'opacity 0.3s'});
+									$('.ha-reading-progress-bar').css({'opacity':0, 'transition':'opacity 0.3s'});
 								}
 							}
 
 							// Check type
 							if ( changeItem[0] == 'ha_rpb_type' ) {
+								rpbDefaultType = changeValue;
 								if( changeValue == 'horizontal' ) {
 									$('.hm-hrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
 									$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
@@ -284,61 +288,61 @@ class Reading_Progress_Bar {
 									$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
 									$('.hm-crp-wrapper').css({'opacity':1, 'transition':'opacity 0.3s'});
 								}
-
-								// Start scrolling
-								$(window).scroll(function () {
-									let scrollPercent = 0;
-									let hmSt = $(window).scrollTop() || 0,
-										hmDt = $(document).height() || 1,
-										hmCt = $(window).height() || 1;
-									scrollPercent = ( hmSt / (hmDt - hmCt) ) * 100;
-									let position = scrollPercent.toFixed(0);
-
-									if (scrollPercent > 100) {
-										scrollPercent = 100;
-									}
-
-									if( changeValue == 'horizontal' ) {
-										$('.hm-hrp-bar').css({'display': 'flex'});
-										$('.hm-hrp-bar').width(position + '%');
-
-										if (position > 1 && scrollPercent > 0 ) {
-											$('.hm-tool-tip').css({'opacity':1, 'transition':'opacity 0.3s'});
-											$('.hm-tool-tip').text(position + '%');
-											if( position >= 98 ) {
-												$('.hm-tool-tip').css({'right':'5px'});
-											} else {
-												$('.hm-tool-tip').css({'right':'-28px'});
-											}
-										} else {
-											$('.hm-tool-tip').css({'opacity':0, 'transition':'opacity 0.3s'});
-											$('.hm-tool-tip').text('0%');
-										}
-									} else if ( changeValue == 'vertical' ) {
-										$('.hm-vrp-bar').css({
-											'display': 'flex',
-										});
-
-										if( scrollPercent > 0 && position > 1) {
-											$('.hm-vrp-bar').height(position + '%');
-										} else {
-											$('.hm-vrp-bar').height('0%');
-										}
-									} else if (changeValue == 'circle') {
-										let circleRadius = 45;
-										let circumference = 2 * Math.PI * circleRadius;
-								
-										let offset = Math.round(circumference - (scrollPercent / 100) * circumference);
-
-										if( scrollPercent >= 0 ) {
-											$('.hm-progress-circle').css('stroke-dashoffset', offset.toFixed(2));
-											$('.hm-progress-percent-text').text(`${scrollPercent.toFixed(0)}%`);
-										}
-									}
-
-								});
 								
 							}
+
+							// Start scrolling
+							$(window).scroll(function () {
+								let scrollPercent = 0;
+								let hmSt = $(window).scrollTop() || 0,
+									hmDt = $(document).height() || 1,
+									hmCt = $(window).height() || 1;
+								scrollPercent = ( hmSt / (hmDt - hmCt) ) * 100;
+								let position = scrollPercent.toFixed(0);
+
+								if (scrollPercent > 100) {
+									scrollPercent = 100;
+								}
+								
+								if( rpbDefaultType == 'horizontal' ) {
+									$('.hm-hrp-bar').css({'display': 'flex'});
+									$('.hm-hrp-bar').width(position + '%');
+
+									if (position > 1 && scrollPercent > 0 ) {
+										$('.hm-tool-tip').css({'opacity':1, 'transition':'opacity 0.3s'});
+										$('.hm-tool-tip').text(position + '%');
+										if( position >= 98 ) {
+											$('.hm-tool-tip').css({'right':'5px'});
+										} else {
+											$('.hm-tool-tip').css({'right':'-28px'});
+										}
+									} else {
+										$('.hm-tool-tip').css({'opacity':0, 'transition':'opacity 0.3s'});
+										$('.hm-tool-tip').text('0%');
+									}
+								} else if ( rpbDefaultType == 'vertical' ) {
+									$('.hm-vrp-bar').css({
+										'display': 'flex',
+									});
+
+									if( scrollPercent > 0 && position > 1) {
+										$('.hm-vrp-bar').height(position + '%');
+									} else {
+										$('.hm-vrp-bar').height('0%');
+									}
+								} else if (rpbDefaultType == 'circle') {
+									let circleRadius = 45;
+									let circumference = 2 * Math.PI * circleRadius;
+							
+									let offset = Math.round(circumference - (scrollPercent / 100) * circumference);
+
+									if( scrollPercent >= 0 ) {
+										$('.hm-progress-circle').css('stroke-dashoffset', offset.toFixed(2));
+										$('.hm-progress-percent-text').text(`${scrollPercent.toFixed(0)}%`);
+									}
+								}
+
+							});
 
 							// check horizontal tool tip
 							if ( changeItem[0] == 'ha_rpb_horizontal_position' ) {
@@ -363,7 +367,6 @@ class Reading_Progress_Bar {
 						}
 
 					});
-					
 					
 				}(jQuery));
 			</script>
@@ -458,7 +461,7 @@ class Reading_Progress_Bar {
 			}
 
 			.hm-hrp-bar .hm-tool-tip-bottom {
-				bottom: 20px;
+				top: -31px;
 			}
 
 			.hm-hrp-bar .hm-tool-tip-bottom:after {
