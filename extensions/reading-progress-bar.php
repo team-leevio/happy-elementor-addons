@@ -175,15 +175,15 @@ class Reading_Progress_Bar {
         $horizontal_position = $this->elementor_get_setting('ha_rpb_horizontal_position');
         $enable_horizontal_percentage = $this->elementor_get_setting('ha_rpb_enable_horizontal_percentage');
     	$enable_circle_percentage = $this->elementor_get_setting('ha_rpb_enable_circle_percentage');
-
+		$rpb_vertical_position = $this->elementor_get_setting('ha_rpb_vertical_position');
         $settings_data = [
 			'ha_rpb_enable' => $this->elementor_get_setting('ha_rpb_enable'),
 			'progress_bar_type' => $progress_bar_type,
-			'rpb_vertical_position' => $this->elementor_get_setting('ha_rpb_vertical_position')
+			'rpb_vertical_position' => $rpb_vertical_position,
 		];
         
         if ( ha_elementor()->preview->is_preview_mode() ) { ?>
-				<div class="hm-crp-wrapper ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
+				<div class="hm-crp-wrapper ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>" style="opacity:0">
 					<svg class="hm-circular-progress" width="60" height="60" viewBox="0 0 100 100">
 						<circle class="hm-progress-background" cx="50" cy="50" r="45"></circle>
 						<circle class="hm-progress-circle" cx="50" cy="50" r="45"></circle>
@@ -191,11 +191,11 @@ class Reading_Progress_Bar {
 					<div class="hm-progress-percent-text">0%</div>
 				</div>
 			
-			<div id="hm_vrp_bar_wrapper" class="hm-vrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
+			<div id="hm_vrp_bar_wrapper" class="hm-vrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>" style="opacity:0">
 				<div class="hm-vrp-bar"></div>
 			</div>
 			
-			<div id="hm_hrp_bar_wrapper" class="hm-hrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
+			<div id="hm_hrp_bar_wrapper" class="hm-hrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>" style="opacity:0">
 				<div class="hm-hrp-bar">
 					<span class="hm-tool-tip hm-tool-tip-<?php echo esc_attr($horizontal_position); ?>">0%</span>
 				</div>
@@ -210,9 +210,8 @@ class Reading_Progress_Bar {
 					if(rpbContainer.rpbContainer <= 0) {
 						return;
 					}
-					
-					let rpbDefaultType = "<?php echo $progress_bar_type;  ?>";
 
+					let rpbDefaultType = "<?php echo $progress_bar_type;  ?>";
 					if( rpbDefaultType == 'horizontal' ) {
 						$('.hm-hrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
 						$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
@@ -227,7 +226,6 @@ class Reading_Progress_Bar {
 						$('.hm-crp-wrapper').css({'opacity':1, 'transition':'opacity 0.3s'});
 					}
 					
-
 					window.addEventListener('message',function(e) {
 						let data = e.data;
 						
@@ -239,7 +237,6 @@ class Reading_Progress_Bar {
 							if (e.source.location.href != window.parent.location.href) {
 								return;
 							}
-							
 
 							let changeValue = data.changeValue;
 							let changeItem = data.changeItem;
@@ -247,7 +244,20 @@ class Reading_Progress_Bar {
 							// Check enable
 							if (changeItem[0] == 'ha_rpb_enable') {
 								if ( changeValue == 'yes' ) {
-									rpbContainer.css({'opacity':1, 'transition':'opacity 0.3s'});
+									let rpbDefaultType = "<?php echo $progress_bar_type;  ?>";
+									if( rpbDefaultType == 'horizontal' ) {
+										$('.hm-hrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
+										$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+										$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
+									} else if ( rpbDefaultType == 'vertical' ) {
+										$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+										$('.hm-vrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
+										$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
+									} else if ( rpbDefaultType == 'circle' ) {
+										$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+										$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+										$('.hm-crp-wrapper').css({'opacity':1, 'transition':'opacity 0.3s'});
+									}
 								} else {
 									rpbContainer.css({'opacity':0, 'transition':'opacity 0.3s'});
 								}
@@ -263,6 +273,12 @@ class Reading_Progress_Bar {
 									$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
 									$('.hm-vrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
 									$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
+									let vertical_position = "<?php echo $rpb_vertical_position; ?>";
+									if(vertical_position == 'right') {
+										$('body').addClass('no-scroll');
+									} else {
+										$('body').removeClass('no-scroll');
+									}
 								} else if ( changeValue == 'circle' ) {
 									$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
 									$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
@@ -377,10 +393,7 @@ class Reading_Progress_Bar {
 			<?php } else { ?>
 			<div id="hm_hrp_bar_wrapper" class="hm-hrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
 				<div class="hm-hrp-bar">
-				<span class="hm-tool-tip hm-tool-tip-<?php echo esc_attr($horizontal_position); ?>">0%</span>
-					<!-- <?php //if('yes' == $enable_horizontal_percentage) { ?>
-						<span class="hm-tool-tip hm-tool-tip-<?php //echo esc_attr($horizontal_position); ?>">0%</span>
-					<?php //} ?> -->
+					<span class="hm-tool-tip hm-tool-tip-<?php echo esc_attr($horizontal_position); ?>">0%</span>
 				</div>
 			</div>
 		<?php } 
