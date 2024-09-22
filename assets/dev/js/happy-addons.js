@@ -1491,7 +1491,7 @@
 							opacity: [0,1],
 							easing: "easeOutExpo",
 							duration: 800,
-							delay: (el, i) => 100 + 40 * i
+							delay: (el, i) => 40 * i
 							})
 						},
 
