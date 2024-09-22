@@ -1490,7 +1490,7 @@
 							translateZ: 0,
 							opacity: [0,1],
 							easing: "easeOutExpo",
-							duration: 798,
+							duration: 800,
 							delay: (el, i) => 100 + 40 * i
 							})
 						},
@@ -1503,7 +1503,7 @@
 							translateY: HoverOutTranslateY,
 							opacity: [1,0],
 							// easing: "easeInExpo",
-							duration: 800,
+							duration: 850,
 							delay: function (el, i, a) {
 									return HoverOutDelay(el, i, a);
 								}
