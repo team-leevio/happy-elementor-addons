@@ -102,6 +102,15 @@ class Liquid_Hover extends Base {
 		);
 
 		$this->add_control(
+			'important_note',
+			[
+				'type' => Controls_Manager::RAW_HTML,
+				'raw' => esc_html__( 'Image 1 & Image 2 should have similar dimension for best effect.', 'happy-elementor-addons' ),
+				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+			]
+		);
+
+		$this->add_control(
 			'link',
 			[
 				'label' => __( 'Link', 'happy-elementor-addons' ),
@@ -168,9 +177,9 @@ class Liquid_Hover extends Base {
 		);
 
 		$this->add_control(
-			'speed',
+			'duration',
 			[
-				'label' => __( 'Speed', 'happy-elementor-addons' ),
+				'label' => __( 'Duration', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range' => [
@@ -586,6 +595,15 @@ class Liquid_Hover extends Base {
 		);
 
 		$this->add_control(
+			'general_heading',
+			[
+				'label' => esc_html__( 'General', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
 			'title_offset_toggle',
 			[
 				'label' => __( 'Offset', 'happy-elementor-addons' ),
@@ -593,7 +611,6 @@ class Liquid_Hover extends Base {
 				'label_off' => __( 'None', 'happy-elementor-addons' ),
 				'label_on' => __( 'Custom', 'happy-elementor-addons' ),
 				'return_value' => 'yes',
-				'separator' => 'before',
 			]
 		);
 
@@ -701,7 +718,7 @@ class Liquid_Hover extends Base {
 
         $intensity = isset($settings['intensity']['size']) ? $settings['intensity']['size'] : 0.3;
         $angle = isset($settings['angle']['size']) ? $settings['angle']['size'] : 45;
-        $speed = isset($settings['speed']['size']) ? $settings['speed']['size'] : 1.5;
+        $speed = isset($settings['duration']['size']) ? $settings['duration']['size'] : 1.5;
 
         $js_data = [
         	// 'plugin_url' => plugins_url( '', __FILE__ ),
