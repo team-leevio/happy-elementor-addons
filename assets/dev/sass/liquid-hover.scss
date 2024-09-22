@@ -67,6 +67,7 @@
 	&.style-4 {
 		.ha-liquid-title h2 {
 			display: inline-block;
+			text-wrap: nowrap;
 			position: relative;
 			color: inherit;
 			text-decoration: none;
@@ -110,6 +111,10 @@
 	}
 
 	&.style-5 {
+		.ha-liquid-title h2 {
+			display: inline-block;
+    		text-wrap: nowrap;
+		}
 		.ha-liquid-title h2 span.block {
 			// font-size: 50px;
 			// font-weight: bold;
