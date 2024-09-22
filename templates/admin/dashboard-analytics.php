@@ -32,7 +32,7 @@ $disable_btn = count( $unuse_widget ) == count( array_intersect( $unuse_widget, 
 					printf( '<strong>%s</strong> %s <a href="%s" target="_blank">%s</a> %s',
 						__( 'Step - 1:', 'happy-elementor-addons' ),
 						__( 'Go to dashboard>Elementor>Settings>Experiment tab and tick "Usage Data Sharing" (last option) then save the change.', 'happy-elementor-addons' ),
-						admin_url( 'admin.php?page=elementor#tab-experiments' ),
+						admin_url( 'admin.php?page=elementor-settings#tab-experiments' ),
 						__( 'Click here', 'happy-elementor-addons' ),
 						__( 'to go to the page.', 'happy-elementor-addons' )
 					);
