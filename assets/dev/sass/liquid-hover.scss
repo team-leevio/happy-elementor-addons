@@ -138,6 +138,32 @@
 		}
 	}
 
+	&.style-6 {
+		.ha-liquid-title h2 {
+			transform: translateY(0px);
+			opacity: 1;
+			transition: normal .5s ease-in-out 0s all;
+		}
+
+		.ha-liquid-title p {
+			transform: translateY(100px);
+			opacity: 0;
+			transition: normal .5s ease-in-out 0s all;
+		}
+
+		&:hover {
+			.ha-liquid-title h2 {
+				transform: translateY(100px);
+				opacity: 0;
+			}
+
+			.ha-liquid-title p {
+				opacity: 1;
+				transform: translateY(0px);
+			}
+		}
+	}
+
 
 	.ha-liquid-image-area {
 		text-align: center;

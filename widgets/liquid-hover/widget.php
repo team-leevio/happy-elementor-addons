@@ -265,6 +265,7 @@ class Liquid_Hover extends Base {
 					'style-3'  => __( 'Style 3', 'happy-elementor-addons' ),
 					'style-4'  => __( 'Style 4', 'happy-elementor-addons' ),
 					'style-5'  => __( 'Style 5', 'happy-elementor-addons' ),
+					'style-6'  => __( 'Style 6', 'happy-elementor-addons' ),
 				],
 			]
 		);
@@ -823,6 +824,17 @@ class Liquid_Hover extends Base {
 								<span class="block normal"><?php echo esc_html( $settings['title'] ); ?></span>
 								<span class="block hover"><?php echo esc_html( $settings['title'] ); ?></span>
 							</h2>
+						<?php endif;?>
+						<?php if ( $settings['sub_title'] ) : ?>
+							<p><?php echo esc_html( $settings['sub_title'] ); ?></p>
+						<?php endif;?>
+					</div>
+				<?php endif;?>
+
+				<?php if ( 'style-6' == $settings['title_hover_style'] ) : ?>
+					<div class="ha-liquid-title">
+						<?php if ( $settings['title'] ) : ?>
+							<h2><?php echo esc_html( $settings['title'] ); ?></h2>
 						<?php endif;?>
 						<?php if ( $settings['sub_title'] ) : ?>
 							<p><?php echo esc_html( $settings['sub_title'] ); ?></p>
