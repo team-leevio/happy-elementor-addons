@@ -1490,7 +1490,7 @@
 							translateZ: 0,
 							opacity: [0,1],
 							easing: "easeOutExpo",
-							duration: 1400,
+							duration: 798,
 							delay: (el, i) => 100 + 40 * i
 							})
 						},

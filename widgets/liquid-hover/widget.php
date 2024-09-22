@@ -105,7 +105,7 @@ class Liquid_Hover extends Base {
 			'important_note',
 			[
 				'type' => Controls_Manager::RAW_HTML,
-				'raw' => esc_html__( 'Image 1 & Image 2 should have similar dimension for best effect.', 'happy-elementor-addons' ),
+				'raw' => esc_html__( 'Initial & Hover Image should have similar dimension for best effect.', 'happy-elementor-addons' ),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			]
 		);
