@@ -44,7 +44,6 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 			'ha_rpb_enable',
 			[
 				'label'        => __( 'Enable', 'happy-elementor-addons' ),
-				'description'  => __( 'Enable Progress Bar For This Page', 'happy-elementor-addons' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => 'no',
 				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
@@ -70,7 +69,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
                 'default' => 'globally',
                 'options' => [
                     'globally' => __('Global', 'happy-elementor-addons'),
-                    'individually' => __('Individual', 'happy-elementor-addons'),
+                    'individually' => __('This Page Only', 'happy-elementor-addons'),
                 ],
                 'frontend_available' => true,
 				'render_type' => 'template',
@@ -99,7 +98,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
             'ha_rpb_individually_notice',
             [
                 'type' => Controls_Manager::RAW_HTML,
-                'raw' => '<div style="color: #fff;">'.__('Note: Please go to page settings and configure the feature settings individually.', 'happy-elementor-addons').'</div>',
+                'raw' => '<div style="color: #444;">'.__('Note: Please go to page settings and configure the feature settings individually.', 'happy-elementor-addons').'</div>',
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
                 'condition' => [
                     'ha_rpb_enable' => 'yes',
@@ -213,7 +212,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 		$this->add_responsive_control(
 			'ha_rpb_circle_offset_x_tr',
 			[
-				'label' => __( 'Horizontal Align', 'happy-elementor-addons' ),
+				'label' => __( 'Horizontal', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'separator' => 'before',
 				'size_units' => ['px'],
@@ -242,7 +241,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 		$this->add_responsive_control(
 			'ha_rpb_circle_offset_y_tr',
 			[
-				'label' => __( 'Vertical Align', 'happy-elementor-addons' ),
+				'label' => __( 'Vertical', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range' => [
@@ -270,7 +269,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
         $this->add_responsive_control(
 			'ha_rpb_circle_offset_x_tl',
 			[
-				'label' => __( 'Horizontal Align', 'happy-elementor-addons' ),
+				'label' => __( 'Horizontal', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'separator' => 'before',
 				'size_units' => ['px'],
@@ -299,7 +298,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 		$this->add_responsive_control(
 			'ha_rpb_circle_offset_y_tl',
 			[
-				'label' => __( 'Vertical Align', 'happy-elementor-addons' ),
+				'label' => __( 'Vertical', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range' => [
@@ -327,7 +326,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
         $this->add_responsive_control(
 			'ha_rpb_circle_offset_x_br',
 			[
-				'label' => __( 'Horizontal Align', 'happy-elementor-addons' ),
+				'label' => __( 'Horizontal', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'separator' => 'before',
 				'size_units' => ['px'],
@@ -356,7 +355,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 		$this->add_responsive_control(
 			'ha_rpb_circle_offset_y_br',
 			[
-				'label' => __( 'Vertical Align', 'happy-elementor-addons' ),
+				'label' => __( 'Vertical', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range' => [
@@ -384,7 +383,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
         $this->add_responsive_control(
 			'ha_rpb_circle_offset_x_bl',
 			[
-				'label' => __( 'Horizontal Align', 'happy-elementor-addons' ),
+				'label' => __( 'Horizontal', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'separator' => 'before',
 				'size_units' => ['px'],
@@ -413,7 +412,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 		$this->add_responsive_control(
 			'ha_rpb_circle_offset_y_bl',
 			[
-				'label' => __( 'Vertical Align', 'happy-elementor-addons' ),
+				'label' => __( 'Vertical', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range' => [
@@ -460,7 +459,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 			[
 				'label' => __('Circle Fill Color', 'happy-elementor-addons'),
 				'type' => Controls_Manager::COLOR,
-				'default' => '#833ab4',
+				'default' => '#e2498a',
 				'selectors' => [
 					'{{WRAPPER}} .hm-crp-wrapper .hm-circular-progress .hm-progress-circle' => 'stroke: {{VALUE}}',
 				],
@@ -665,11 +664,11 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 				],
 				'tablet_default' => [
 					'unit' => 'px',
-					'size' => 10
+					'size' => 8
 				],
 				'mobile_default' => [
 					'unit' => 'px',
-					'size' => 10
+					'size' => 8
 				],
 				'range' => [
 					'px' => [
@@ -679,7 +678,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 				],
                 'default' => [
 					'unit' => 'px',
-					'size' => 10,
+					'size' => 8,
 				],
 				'selectors' => [
                     '{{WRAPPER}} .hm-hrp-bar-container' => 'height: {{SIZE}}{{UNIT}};',
@@ -715,6 +714,22 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
                     'ha_rpb_type' => 'horizontal',
                     'ha_rpb_enable' => 'yes',
                 ],
+				'fields_options' => [
+					'background' => [
+						'default' => 'classic',
+					],
+					'color' => [
+						'default' => '#e2498a',
+					],
+					'gradient' => [
+						'default' => [
+							'color' => '#ff0000',
+							'color_b' => '#00ff00',
+							'type' => 'linear',
+							'angle' => 180,
+						],
+					],
+				],
 			]
 		);
 
@@ -865,11 +880,11 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 				],
 				'tablet_default' => [
 					'unit' => 'px',
-					'size' => 10
+					'size' => 8
 				],
 				'mobile_default' => [
 					'unit' => 'px',
-					'size' => 10
+					'size' => 8
 				],
 				'range' => [
 					'px' => [
@@ -879,7 +894,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 				],
                 'default' => [
 					'unit' => 'px',
-					'size' => 10,
+					'size' => 8,
 				],
 				'selectors' => [
                     '{{WRAPPER}} .hm-vrp-bar-container' => 'width: {{SIZE}}{{UNIT}};',
@@ -919,7 +934,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 						'default' => 'classic',
 					],
 					'color' => [
-						'default' => '#c871eb',
+						'default' => '#e2498a',
 					],
 					'gradient' => [
 						'default' => [

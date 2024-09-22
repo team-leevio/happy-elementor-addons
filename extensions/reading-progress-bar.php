@@ -409,7 +409,7 @@ class Reading_Progress_Bar {
 				position: fixed;
 				top: 0;
 				left: 0;
-				height: 10px;
+				height: 8px;
 				max-height: 100px;
 				z-index: 999999;
 			}
@@ -417,7 +417,7 @@ class Reading_Progress_Bar {
 			.hm-hrp-bar {
 				position: relative;
 				height: 100%;
-				background-color: #c871eb;
+				background-color: #e2498a;
 				font-size: 14px;
 				font-weight: 500;
 				color: #FFFFFF;
@@ -474,7 +474,7 @@ class Reading_Progress_Bar {
 				top: 0;
 				right: 0;
 				background: transparent;
-				width: 10px;
+				width: 8px;
 				height: 100%;
 				max-width: 100px;
 				z-index: 99999;
@@ -487,7 +487,7 @@ class Reading_Progress_Bar {
 				display: none;
 				max-height: 100%;
 				width: 100%;
-				background-color: #c871eb;
+				background-color: #e2498a;
 				max-width: 100px;
 			}
 
@@ -515,7 +515,7 @@ class Reading_Progress_Bar {
 
 			.hm-crp-wrapper .hm-circular-progress .hm-progress-circle {
 				fill: none;
-				stroke: #833ab4;
+				stroke: #e2498a;
 				stroke-width: 5;
 				stroke-dasharray: 283;
 				stroke-dashoffset: 283;
