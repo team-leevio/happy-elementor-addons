@@ -1,25 +1,25 @@
-.ha-liquid-hover-area {
+.ha-lhi-area {
 	position: relative;
-	--ha-lh-title-translate-x : 80px;
-	.ha-liquid-title {
+	--ha-lhi-title-translate-x : 80px;
+	.ha-lhi-title {
 		position: absolute;
 		top: 0%;
 		left: 0%;
 		// left: 30%;
-		transform: translate(var(--ha-lh-title-translate-x, 0%), var(--ha-lh-title-translate-y, 50%));
+		transform: translate(var(--ha-lhi-title-translate-x, 0%), var(--ha-lhi-title-translate-y, 50%));
 		// color: white;
 		z-index: 2;
 		// width: 100%;
 		text-shadow: none;
 	}
 
-	.ha-liquid-title .letter {
+	.ha-lhi-title .letter {
 		display: inline-block;
 		opacity: 0;
 	}
 
-	&.style-2 .ha-liquid-title h2,
-	&.style-2 .ha-liquid-title p {
+	&.style-2 .ha-lhi-title h2,
+	&.style-2 .ha-lhi-title p {
 		display: block;
 		text-decoration: none;
 		overflow: hidden;
@@ -42,30 +42,30 @@
 	}
 
 	&.style-3 {
-		.ha-liquid-title h2 span:not(.empty) {
+		.ha-lhi-title h2 span:not(.empty) {
 			display: inline-block;
 			transform: rotate(45deg) translateY(-100px);
 			opacity: 0;
 		}
 
-		&:hover .ha-liquid-title h2 span {
+		&:hover .ha-lhi-title h2 span {
 			animation: shadow .5s linear forwards;
 		}
 
-		.ha-liquid-title p {
+		.ha-lhi-title p {
 			transform: translateY(100px);
 			opacity: 0;
 			transition: normal .5s ease-in-out 0s all;
 		}
 
-		&:hover .ha-liquid-title p {
+		&:hover .ha-lhi-title p {
 			opacity: 1;
 			transform: translateY(0px);
 		}
 	}
 
 	&.style-4 {
-		.ha-liquid-title h2 {
+		.ha-lhi-title h2 {
 			display: inline-block;
 			text-wrap: nowrap;
 			position: relative;
@@ -76,8 +76,8 @@
 			perspective: 50px;
 		}
 
-		.ha-liquid-title h2:before,
-		.ha-liquid-title h2:after {
+		.ha-lhi-title h2:before,
+		.ha-lhi-title h2:after {
 			content: attr(data-text);
 			position: absolute;
 			z-index: -1;
@@ -85,14 +85,14 @@
 			transition: all 150ms ease;
 		}
 
-		.ha-liquid-title h2:before {
+		.ha-lhi-title h2:before {
 			color: #00d5ff;
 			// top: 2px;
 			left: 0px;
 			right: 0px;
 		}
 
-		.ha-liquid-title h2:after {
+		.ha-lhi-title h2:after {
 			color: #ffaa00;
 			// bottom: 2px;
 			left: 0px;
@@ -100,22 +100,22 @@
 		}
 
 		&:hover  {
-			.ha-liquid-title h2:before {
+			.ha-lhi-title h2:before {
 				transform: rotatex(-15deg) rotatey(5deg) scale(1.25);
 			}
 
-			.ha-liquid-title h2:after {
+			.ha-lhi-title h2:after {
 				transform: rotatey(-5deg) rotatex(15deg) scale(1.25);
 			}
 		}
 	}
 
 	&.style-5 {
-		.ha-liquid-title h2 {
+		.ha-lhi-title h2 {
 			display: inline-block;
     		text-wrap: nowrap;
 		}
-		.ha-liquid-title h2 span.block {
+		.ha-lhi-title h2 span.block {
 			// font-size: 50px;
 			// font-weight: bold;
 			position: relative;
@@ -123,7 +123,7 @@
 			// color: #ede;
 		}
 
-		.ha-liquid-title h2 span.hover {
+		.ha-lhi-title h2 span.hover {
 			position: absolute;
 			left: 0;
 			// top: 0;
@@ -135,8 +135,8 @@
 		  }
 
 		&:hover  {
-			.ha-liquid-title h2 span.hover {
-				height: var(--ha-liquid-hover-style-5-height);
+			.ha-lhi-title h2 span.hover {
+				height: var(--ha-lhi-style-5-height);
 				color: red;
 				//bottom: calc(100% + 50px);
 			  }
@@ -144,25 +144,25 @@
 	}
 
 	&.style-6 {
-		.ha-liquid-title h2 {
+		.ha-lhi-title h2 {
 			transform: translateY(0px);
 			opacity: 1;
 			transition: normal .5s ease-in-out 0s all;
 		}
 
-		.ha-liquid-title p {
+		.ha-lhi-title p {
 			transform: translateY(100px);
 			opacity: 0;
 			transition: normal .5s ease-in-out 0s all;
 		}
 
 		&:hover {
-			.ha-liquid-title h2 {
+			.ha-lhi-title h2 {
 				transform: translateY(100px);
 				opacity: 0;
 			}
 
-			.ha-liquid-title p {
+			.ha-lhi-title p {
 				opacity: 1;
 				transform: translateY(0px);
 			}
@@ -170,20 +170,20 @@
 	}
 
 
-	.ha-liquid-image-area {
+	.ha-lhi-image-area {
 		text-align: center;
 
-		.ha-liquid-image {
+		.ha-lhi-image {
 			position: relative;
 			display: inline-block;
 		}
 
-		.ha-liquid-image img {
+		.ha-lhi-image img {
 			opacity: 0;
 			width: 100%;
 		}
 
-		.ha-liquid-image a {
+		.ha-lhi-image a {
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -192,7 +192,7 @@
 			z-index: 1;
 		}
 
-		.ha-liquid-image canvas {
+		.ha-lhi-image canvas {
 			position: absolute;
 			height: 100%;
 			width: 100%;

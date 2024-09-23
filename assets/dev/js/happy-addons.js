@@ -1393,7 +1393,7 @@
 		elementorFrontend.hooks.addAction("frontend/element_ready/ha-age-gate.default", AgeGate);
 
 
-		var LiquidHover = ModuleHandler.extend({
+		var LiquidHoverImage = ModuleHandler.extend({
 			onInit: function () {
 				ModuleHandler.prototype.onInit.apply(this, arguments);
 				this.run();
@@ -1421,24 +1421,20 @@
 
 			run: function() {
 				var self = this,
-				settings = JSON.parse(self.$element.find('.ha-liquid-image-area').attr("data-settings")),
-				liquidHoverArea = self.$element.find('.ha-liquid-hover-area'),
-				liquidImageArea = self.$element.find('.ha-liquid-image-area'),
-				liquidImage = self.$element.find('.ha-liquid-image'),
-				textWrap = self.$element.find('.ha-liquid-title'),
-				title = self.$element.find('.ha-liquid-title h2'),
-				sub_title = self.$element.find('.ha-liquid-title p'),
+				settings = JSON.parse(self.$element.find('.ha-lhi-image-area').attr("data-settings")),
+				liquidImage = self.$element.find('.ha-lhi-image'),
+				title = self.$element.find('.ha-lhi-title h2'),
+				sub_title = self.$element.find('.ha-lhi-title p'),
 				canvas = self.$element.find('canvas'),
 				style = settings.hover_style
 
 				if ( canvas ) { canvas.remove() }
 				var myAnimation = new hoverEffect({
-					// parent: liquidHoverArea[0],
 					parent: liquidImage[0],
 					intensity: settings.intensity,
 					image1: settings.first_image,
 					image2: settings.second_image,
-					displacementImage: settings.plugin_url + 'liquid-hover/' + settings.hover_effect,
+					displacementImage: settings.plugin_url + 'liquid-hover-image/' + settings.hover_effect,
 					imagesRatio: liquidImage.height()/liquidImage.width(),
 					angle1: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
 					angle2: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
@@ -1484,7 +1480,7 @@
 						function () {
 							anime.timeline({loop: false})
 							.add({
-							targets: '.elementor-element-'+self.getID()+' .ha-liquid-title .letter',
+							targets: '.elementor-element-'+self.getID()+' .ha-lhi-title .letter',
 							translateX: HoverTranslateX,
 							translateY: HoverTranslateY,
 							translateZ: 0,
@@ -1498,7 +1494,7 @@
 						function () {
 							anime.timeline({loop: false})
 							.add({
-							targets: '.elementor-element-'+self.getID()+' .ha-liquid-title .letter',
+							targets: '.elementor-element-'+self.getID()+' .ha-lhi-title .letter',
 							translateX: HoverOutTranslateX,
 							translateY: HoverOutTranslateY,
 							opacity: [1,0],
@@ -1540,15 +1536,15 @@
 
 					if ( title.length ) {
 						var height = title.find('.normal').outerHeight();
-						title.attr('style','--ha-liquid-hover-style-5-height:'+height+'px')
+						title.attr('style','--ha-lhi-style-5-height:'+height+'px')
 					}
 				}
 
 			}
 		});
 
-		elementorFrontend.hooks.addAction( 'frontend/element_ready/ha-liquid-hover.default', function( $scope ) {
-			elementorFrontend.elementsHandler.addHandler( LiquidHover, { $element: $scope });
+		elementorFrontend.hooks.addAction( 'frontend/element_ready/ha-liquid-hover-image.default', function( $scope ) {
+			elementorFrontend.elementsHandler.addHandler( LiquidHoverImage, { $element: $scope });
 		});
 
 	});

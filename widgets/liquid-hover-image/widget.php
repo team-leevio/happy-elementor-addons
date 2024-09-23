@@ -1,6 +1,6 @@
 <?php
 /**
- * Liquid Hover class
+ * Liquid Hover Image class
  *
  * @package Happy_Addons
  */
@@ -19,7 +19,7 @@ use Elementor\Group_Control_Text_Shadow;
 
 defined( 'ABSPATH' ) || die();
 
-class Liquid_Hover extends Base {
+class Liquid_Hover_Image extends Base {
 
 	/**
 	 * Get widget title.
@@ -30,11 +30,11 @@ class Liquid_Hover extends Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Liquid Hover', 'happy-elementor-addons' );
+		return __( 'Liquid Hover Image', 'happy-elementor-addons' );
 	}
 
 	public function get_custom_help_url() {
-		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/liquid-hover/';
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/liquid-hover-image/';
 	}
 
 	/**
@@ -50,7 +50,7 @@ class Liquid_Hover extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'liquid-hover','liquid','hover' ];
+		return [ 'liquid-hover-image','liquid','hover','image' ];
 	}
 
 	/**
@@ -64,7 +64,7 @@ class Liquid_Hover extends Base {
 	protected function __liquid_image_content_controls() {
 
         $this->start_controls_section(
-			'liquid_image_content_section',
+			'lhi_content_section',
 			[
 				'label' => __( 'Image', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
@@ -220,7 +220,7 @@ class Liquid_Hover extends Base {
 	protected function __liquid_title_content_controls() {
 
         $this->start_controls_section(
-			'liquid_title_content_section',
+			'lhi_title_content_section',
 			[
 				'label' => __( 'Title & Subtitle', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
@@ -314,7 +314,7 @@ class Liquid_Hover extends Base {
 	protected function __image_style_controls() {
 
 		$this->start_controls_section(
-			'image_style',
+			'lhi_image_style',
 			[
 				'label' => __( 'Image', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -340,15 +340,15 @@ class Liquid_Hover extends Base {
 						'icon' => 'eicon-text-align-right',
 					],
 				],
-				'prefix_class' => 'content-align-%s',
+				//'prefix_class' => 'content-align-%s',
                 // 'selectors_dictionary' => [
                 //     'left' => 'justify-content: flex-start',
                 //     'center' => 'justify-content: center',
                 //     'right' => 'justify-content: flex-end',
                 // ],
                 'selectors' => [
-                    // '{{WRAPPER}} .ha-liquid-image-area' => '{{VALUE}}'
-                    '{{WRAPPER}} .ha-liquid-image-area' => 'text-align:{{VALUE}}'
+                    // '{{WRAPPER}} .ha-lhi-image-area' => '{{VALUE}}'
+                    '{{WRAPPER}} .ha-lhi-image-area' => 'text-align:{{VALUE}}'
                 ]
 			]
 		);
@@ -371,7 +371,7 @@ class Liquid_Hover extends Base {
 					],
 				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-liquid-image' => 'width: {{SIZE}}{{UNIT}}'
+                    '{{WRAPPER}} .ha-lhi-image' => 'width: {{SIZE}}{{UNIT}}'
 				],
 				'render_type' => 'ui', //template
 			],
@@ -441,7 +441,7 @@ class Liquid_Hover extends Base {
 	protected function __title_style_controls() {
 
 		$this->start_controls_section(
-			'title_style',
+			'lhi_title_style',
 			[
 				'label' => __( 'Title & Subtitle', 'happy-elementor-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -477,7 +477,7 @@ class Liquid_Hover extends Base {
 			[
 				'name'     => 'title_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-liquid-title h2',
+				'selector' => '{{WRAPPER}} .ha-lhi-title h2',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				],
@@ -490,7 +490,7 @@ class Liquid_Hover extends Base {
 				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-liquid-title h2' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-lhi-title h2' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -501,9 +501,9 @@ class Liquid_Hover extends Base {
 				'label' => __( 'Hover Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .style-2 .ha-liquid-title h2 .hover' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .style-4 .ha-liquid-title h2:before' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .style-5 .ha-liquid-title h2 span.hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .style-2 .ha-lhi-title h2 .hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .style-4 .ha-lhi-title h2:before' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .style-5 .ha-lhi-title h2 span.hover' => 'color: {{VALUE}}',
 				],
 				'condition' => [
 					'title_hover_style' => ['style-2','style-4','style-5'],
@@ -517,7 +517,7 @@ class Liquid_Hover extends Base {
 				'label' => __( 'Secondary Hover Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .style-4 .ha-liquid-title h2:after' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .style-4 .ha-lhi-title h2:after' => 'color: {{VALUE}}',
 				],
 				'condition' => [
 					'title_hover_style' => ['style-4'],
@@ -529,7 +529,7 @@ class Liquid_Hover extends Base {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'title_text_shadow',
-				'selector' => '{{WRAPPER}} .ha-liquid-title h2',
+				'selector' => '{{WRAPPER}} .ha-lhi-title h2',
 			]
 		);
 
@@ -547,7 +547,7 @@ class Liquid_Hover extends Base {
 					],
 				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-liquid-title h2' => 'margin-bottom: {{SIZE}}px'
+                    '{{WRAPPER}} .ha-lhi-title h2' => 'margin-bottom: {{SIZE}}px'
 				],
 			],
 		);
@@ -566,7 +566,7 @@ class Liquid_Hover extends Base {
 			[
 				'name'     => 'sub_title_typography',
 				'label'    => __( 'Typography', 'happy-elementor-addons' ),
-				'selector' => '{{WRAPPER}} .ha-liquid-title p',
+				'selector' => '{{WRAPPER}} .ha-lhi-title p',
 			]
 		);
 
@@ -576,7 +576,7 @@ class Liquid_Hover extends Base {
 				'label' => __( 'Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-liquid-title p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-lhi-title p' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -587,7 +587,7 @@ class Liquid_Hover extends Base {
 				'label' => __( 'Hover Color', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .style-2 .ha-liquid-title p .hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .style-2 .ha-lhi-title p .hover' => 'color: {{VALUE}}',
 				],
 				'condition' => [
 					'title_hover_style' => ['style-2'],
@@ -633,7 +633,7 @@ class Liquid_Hover extends Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-liquid-title' => '--ha-lh-title-translate-x: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-lhi-title' => '--ha-lh-title-translate-x: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -654,7 +654,7 @@ class Liquid_Hover extends Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-liquid-title' => '--ha-lh-title-translate-y: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-lhi-title' => '--ha-lh-title-translate-y: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -678,7 +678,7 @@ class Liquid_Hover extends Base {
 					],
 				],
                 'selectors' => [
-                	'{{WRAPPER}} .ha-liquid-title' => 'width: {{SIZE}}{{UNIT}}'
+                	'{{WRAPPER}} .ha-lhi-title' => 'width: {{SIZE}}{{UNIT}}'
 				],
 				// 'render_type' => 'ui', //template
 			],
@@ -704,7 +704,7 @@ class Liquid_Hover extends Base {
 					],
 				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-liquid-title' => 'text-align:{{VALUE}}'
+                    '{{WRAPPER}} .ha-lhi-title' => 'text-align:{{VALUE}}'
                 ]
 			]
 		);
@@ -738,23 +738,24 @@ class Liquid_Hover extends Base {
 		];
 
 		$this->add_render_attribute(
-			'liquid_hover_wrap',[
-				'class' => ['ha-liquid-hover-area',$settings['title_hover_style']],
+			'lhi_wrap',[
+				'class' => ['ha-lhi-area',$settings['title_hover_style']],
 			]
 		);
 
 		$this->add_render_attribute(
-			'img_wrap',[
-				'class' => ['ha-liquid-image-area'],
+			'lhi_img_wrap',[
+				'class' => ['ha-lhi-image-area'],
 				'data-settings' => [ json_encode($js_data) ]
 			]
 		);
+		// liquid-hover-image
 		?>
-		<div <?php echo $this->get_render_attribute_string( 'liquid_hover_wrap' ); ?>>
+		<div <?php echo $this->get_render_attribute_string( 'lhi_wrap' ); ?>>
 
 			<?php if ( $settings['title'] || $settings['sub_title'] ) : ?>
 				<?php if ( 'style-1' == $settings['title_hover_style'] ) : ?>
-				<div class="ha-liquid-title">
+				<div class="ha-lhi-title">
 					<?php if ( $settings['title'] ) : ?>
 						<h2><?php echo esc_html( $settings['title'] ); ?></h2>
 					<?php endif;?>
@@ -764,7 +765,7 @@ class Liquid_Hover extends Base {
 				</div>
 				<?php endif;?>
 				<?php if ( 'style-2' == $settings['title_hover_style'] ) : ?>
-				<div class="ha-liquid-title">
+				<div class="ha-lhi-title">
 					<?php if ( $settings['title'] ) : ?>
 						<h2>
 							<span class="block normal"><?php echo esc_html( $settings['title'] ); ?></span>
@@ -781,7 +782,7 @@ class Liquid_Hover extends Base {
 				<?php endif;?>
 
 				<?php if ( 'style-3' == $settings['title_hover_style'] ) : ?>
-				<div class="ha-liquid-title">
+				<div class="ha-lhi-title">
 					<?php if ( $settings['title'] ) : ?>
 						<h2>
 							<?php
@@ -807,7 +808,7 @@ class Liquid_Hover extends Base {
 				<?php endif;?>
 
 				<?php if ( 'style-4' == $settings['title_hover_style'] ) : ?>
-					<div class="ha-liquid-title">
+					<div class="ha-lhi-title">
 						<?php if ( $settings['title'] ) : ?>
 							<h2  data-text="<?php echo esc_attr( $settings['title'] ); ?>"><?php echo esc_html( $settings['title'] ); ?></h2>
 						<?php endif;?>
@@ -818,7 +819,7 @@ class Liquid_Hover extends Base {
 				<?php endif;?>
 
 				<?php if ( 'style-5' == $settings['title_hover_style'] ) : ?>
-					<div class="ha-liquid-title">
+					<div class="ha-lhi-title">
 						<?php if ( $settings['title'] ) : ?>
 							<h2  data-text="<?php echo esc_attr( $settings['title'] ); ?>">
 								<span class="block normal"><?php echo esc_html( $settings['title'] ); ?></span>
@@ -832,7 +833,7 @@ class Liquid_Hover extends Base {
 				<?php endif;?>
 
 				<?php if ( 'style-6' == $settings['title_hover_style'] ) : ?>
-					<div class="ha-liquid-title">
+					<div class="ha-lhi-title">
 						<?php if ( $settings['title'] ) : ?>
 							<h2><?php echo esc_html( $settings['title'] ); ?></h2>
 						<?php endif;?>
@@ -844,8 +845,8 @@ class Liquid_Hover extends Base {
 
 			<?php endif;?>
 
-			<div <?php echo $this->get_render_attribute_string( 'img_wrap' ); ?>>
-				<div class="ha-liquid-image">
+			<div <?php echo $this->get_render_attribute_string( 'lhi_img_wrap' ); ?>>
+				<div class="ha-lhi-image">
 					<img src="<?php echo esc_url( $settings['first_image']['url'] ); ?>">
 					<?php if( $settings['link']['url'] != '' ) : ?>
 						<a href="<?php echo esc_url( $settings['link']['url'] ); ?>"<?php echo $target . $nofollow; ?>></a>

@@ -1342,12 +1342,12 @@ class Widgets_Manager {
 					'js' => [],
 				],
 			],
-			'liquid-hover' => [
+			'liquid-hover-image' => [
 				'cat' => 'general',
 				'is_active' => true,
-				'title' => __('Liquid Hover', 'happy-elementor-addons'),
+				'title' => __('Liquid Hover Image', 'happy-elementor-addons'),
 				'icon' => 'hm hm-image-masking',
-				'css' => ['liquid-hover'],
+				'css' => ['liquid-hover-image'],
 				'js' => [],
 				'vendor' => [
 					'css' => [],
