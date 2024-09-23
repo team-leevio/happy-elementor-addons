@@ -633,7 +633,7 @@ class Liquid_Hover_Image extends Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-lhi-title' => '--ha-lh-title-translate-x: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-lhi-title' => '--ha-lhi-title-translate-x: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -654,7 +654,7 @@ class Liquid_Hover_Image extends Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ha-lhi-title' => '--ha-lh-title-translate-y: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-lhi-title' => '--ha-lhi-title-translate-y: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
