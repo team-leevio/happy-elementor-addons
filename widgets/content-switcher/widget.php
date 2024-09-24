@@ -1253,13 +1253,13 @@ class Content_Switcher extends Base {
 								<?php
 								if ( $item['content_type'] == 'plain_content' ) {
 									echo ha_kses_intermediate( $item['plain_content'] );
-								} elseif ( $item['content_type'] == 'saved_section' ) {
+								} elseif ( $item['content_type'] == 'saved_section' && 'publish' == get_post_status( $item['saved_section'] ) ) {
 									$item['saved_section'] = apply_filters('wpml_object_id', $item['saved_section'], 'elementor_library');
 									echo ha_elementor()->frontend->get_builder_content_for_display( $item['saved_section'] );
-								} elseif ( $item['content_type'] == 'saved_container' ) {
+								} elseif ( $item['content_type'] == 'saved_container' && 'publish' == get_post_status( $item['saved_container'] ) ) {
 									$item['saved_container'] = apply_filters('wpml_object_id', $item['saved_container'], 'elementor_library');
 									echo ha_elementor()->frontend->get_builder_content_for_display( $item['saved_container'] );
-								} elseif ( $item['content_type'] == 'saved_page' ) {
+								} elseif ( $item['content_type'] == 'saved_page' && 'publish' == get_post_status( $item['saved_pages'] ) ) {
 									$item['saved_pages'] = apply_filters('wpml_object_id', $item['saved_pages'], 'elementor_library');
 									echo ha_elementor()->frontend->get_builder_content_for_display( $item['saved_pages'] );
 								}
@@ -1273,10 +1273,10 @@ class Content_Switcher extends Base {
 							<?php
 							if ( $primary['content_type'] == 'plain_content' ) {
 								echo ha_kses_intermediate( $primary['plain_content'] );
-							} elseif ( $primary['content_type'] == 'saved_section' ) {
+							} elseif ( $primary['content_type'] == 'saved_section' && 'publish' == get_post_status( $primary['saved_section'] ) ) {
 								$primary['saved_section'] = apply_filters('wpml_object_id', $primary['saved_section'], 'elementor_library');
 								echo ha_elementor()->frontend->get_builder_content_for_display( $primary['saved_section'] );
-							} elseif ( $primary['content_type'] == 'saved_page' ) {
+							} elseif ( $primary['content_type'] == 'saved_page' && 'publish' == get_post_status( $primary['saved_pages'] ) ) {
 								$primary['saved_pages'] = apply_filters('wpml_object_id', $primary['saved_pages'], 'elementor_library');
 								echo ha_elementor()->frontend->get_builder_content_for_display( $primary['saved_pages'] );
 							}
@@ -1287,10 +1287,10 @@ class Content_Switcher extends Base {
 							<?php
 							if ( $secondary['content_type'] == 'plain_content' ) {
 								echo ha_kses_intermediate( $secondary['plain_content'] );
-							} elseif ( $secondary['content_type'] == 'saved_section' ) {
+							} elseif ( $secondary['content_type'] == 'saved_section' && 'publish' == get_post_status( $secondary['saved_section'] ) ) {
 								$secondary['saved_section'] = apply_filters('wpml_object_id', $secondary['saved_section'], 'elementor_library');
 								echo ha_elementor()->frontend->get_builder_content_for_display( $secondary['saved_section'] );
-							} elseif ( $secondary['content_type'] == 'saved_page' ) {
+							} elseif ( $secondary['content_type'] == 'saved_page' && 'publish' == get_post_status( $secondary['saved_pages'] ) ) {
 								$secondary['saved_pages'] = apply_filters('wpml_object_id', $secondary['saved_pages'], 'elementor_library');
 								echo ha_elementor()->frontend->get_builder_content_for_display( $secondary['saved_pages'] );
 							}

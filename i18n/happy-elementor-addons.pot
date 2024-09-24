@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Happy Elementor Addons 3.11.3\n"
+"Project-Id-Version: Happy Elementor Addons 3.12.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/happy-elementor-addons\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-07-25T13:30:38+06:00\n"
+"POT-Creation-Date: 2024-08-12T04:56:36+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: happy-elementor-addons\n"
@@ -1291,267 +1291,352 @@ msgstr ""
 msgid "Lightbox"
 msgstr ""
 
-#: classes/wpml-manager.php:66
-msgid "Bar Chart: Labels"
+#: classes/wpml-manager.php:72
+msgid "Age Gate: Title"
 msgstr ""
 
-#: classes/wpml-manager.php:71
-msgid "Bar Chart: Title"
+#: classes/wpml-manager.php:77
+msgid "Age Gate: Description"
 msgstr ""
 
+#: classes/wpml-manager.php:82
 #: classes/wpml-manager.php:87
-msgid "Card: Badge Text"
+msgid "Age Gate: Text"
 msgstr ""
 
 #: classes/wpml-manager.php:92
-msgid "Card: Title"
+msgid "Age Gate: Footer Text"
 msgstr ""
 
 #: classes/wpml-manager.php:97
+msgid "Age Gate: Warning Message"
+msgstr ""
+
+#: classes/wpml-manager.php:110
+msgid "Archive Posts: Separator Between"
+msgstr ""
+
+#: classes/wpml-manager.php:115
+msgid "Archive Posts: Read More Text"
+msgstr ""
+
+#: classes/wpml-manager.php:120
+msgid "Archive Posts: Nothing Found Message"
+msgstr ""
+
+#: classes/wpml-manager.php:133
+msgid "Bar Chart: Labels"
+msgstr ""
+
+#: classes/wpml-manager.php:138
+msgid "Bar Chart: Title"
+msgstr ""
+
+#: classes/wpml-manager.php:154
+msgid "Card: Badge Text"
+msgstr ""
+
+#: classes/wpml-manager.php:159
+msgid "Card: Title"
+msgstr ""
+
+#: classes/wpml-manager.php:164
 msgid "Card: Description"
 msgstr ""
 
-#: classes/wpml-manager.php:102
+#: classes/wpml-manager.php:169
 msgid "Card: Button Text"
 msgstr ""
 
-#: classes/wpml-manager.php:107
+#: classes/wpml-manager.php:174
 msgid "Card: Button Link"
 msgstr ""
 
-#: classes/wpml-manager.php:130
+#: classes/wpml-manager.php:209
 msgid "Dual Button: Primary Button Text"
 msgstr ""
 
-#: classes/wpml-manager.php:135
+#: classes/wpml-manager.php:214
 msgid "Dual Button: Primary Button Link"
 msgstr ""
 
-#: classes/wpml-manager.php:140
+#: classes/wpml-manager.php:219
 msgid "Dual Button: Connector Text"
 msgstr ""
 
-#: classes/wpml-manager.php:145
+#: classes/wpml-manager.php:224
 msgid "Dual Button: Secondary Button Text"
 msgstr ""
 
-#: classes/wpml-manager.php:150
+#: classes/wpml-manager.php:229
 msgid "Dual Button: Secondary Button Link"
 msgstr ""
 
-#: classes/wpml-manager.php:163
+#: classes/wpml-manager.php:242
+msgid "Event Calendar: All Day Text"
+msgstr ""
+
+#: classes/wpml-manager.php:247
+msgid "Event Calendar: Read More Text"
+msgstr ""
+
+#: classes/wpml-manager.php:252
+msgid "Event Calendar: Time Title"
+msgstr ""
+
+#: classes/wpml-manager.php:257
+msgid "Event Calendar: Speaker Title"
+msgstr ""
+
+#: classes/wpml-manager.php:262
+msgid "Event Calendar: Location Title"
+msgstr ""
+
+#: classes/wpml-manager.php:278
 msgid "Flip Box: Front Title"
 msgstr ""
 
-#: classes/wpml-manager.php:168
+#: classes/wpml-manager.php:283
 msgid "Flip Box: Front Description"
 msgstr ""
 
-#: classes/wpml-manager.php:173
+#: classes/wpml-manager.php:288
 msgid "Flip Box: Back Title"
 msgstr ""
 
-#: classes/wpml-manager.php:178
+#: classes/wpml-manager.php:293
 msgid "Flip Box: Back Description"
 msgstr ""
 
-#: classes/wpml-manager.php:191
+#: classes/wpml-manager.php:306
 msgid "Fun Factor: Title"
 msgstr ""
 
-#: classes/wpml-manager.php:204
+#: classes/wpml-manager.php:319
 msgid "Gradient_Heading: Title"
 msgstr ""
 
-#: classes/wpml-manager.php:209
+#: classes/wpml-manager.php:324
 msgid "Gradient_Heading: Link"
 msgstr ""
 
-#: classes/wpml-manager.php:222
+#: classes/wpml-manager.php:337
 msgid "Icon Box: Title"
 msgstr ""
 
-#: classes/wpml-manager.php:227
+#: classes/wpml-manager.php:342
 msgid "Icon Box: Badge Text"
 msgstr ""
 
-#: classes/wpml-manager.php:232
+#: classes/wpml-manager.php:347
 msgid "Icon Box: Link"
 msgstr ""
 
-#: classes/wpml-manager.php:245
+#: classes/wpml-manager.php:360
 msgid "Image Compare: Before Label"
 msgstr ""
 
-#: classes/wpml-manager.php:250
+#: classes/wpml-manager.php:365
 msgid "Image Compare: After Label"
 msgstr ""
 
-#: classes/wpml-manager.php:263
+#: classes/wpml-manager.php:378
 msgid "Image Grid: All Filter Label"
 msgstr ""
 
-#: classes/wpml-manager.php:279
+#: classes/wpml-manager.php:394
+msgid "Image Hover Effect: Image ALT Tag"
+msgstr ""
+
+#: classes/wpml-manager.php:399
+msgid "Image Hover Effect: Title"
+msgstr ""
+
+#: classes/wpml-manager.php:404
+msgid "Image Hover Effect: Link URL"
+msgstr ""
+
+#: classes/wpml-manager.php:427
 msgid "Info Box: Title"
 msgstr ""
 
-#: classes/wpml-manager.php:284
+#: classes/wpml-manager.php:432
 msgid "Info Box: Description"
 msgstr ""
 
-#: classes/wpml-manager.php:289
+#: classes/wpml-manager.php:437
 msgid "Info Box: Button Text"
 msgstr ""
 
-#: classes/wpml-manager.php:294
+#: classes/wpml-manager.php:442
 msgid "Info Box: Button Link"
 msgstr ""
 
-#: classes/wpml-manager.php:307
+#: classes/wpml-manager.php:455
 msgid "Justified Grid: All Filter Label"
 msgstr ""
 
-#: classes/wpml-manager.php:333
+#: classes/wpml-manager.php:471
+msgid "Animated Link: Title"
+msgstr ""
+
+#: classes/wpml-manager.php:476
+msgid "Animated Link: Link"
+msgstr ""
+
+#: classes/wpml-manager.php:499
 msgid "Team Member: Name"
 msgstr ""
 
-#: classes/wpml-manager.php:338
+#: classes/wpml-manager.php:504
 msgid "Team Member: Job Title"
 msgstr ""
 
-#: classes/wpml-manager.php:343
+#: classes/wpml-manager.php:509
 msgid "Team Member: Short Bio"
 msgstr ""
 
-#: classes/wpml-manager.php:356
+#: classes/wpml-manager.php:522
 msgid "News Ticker: Sticky Title"
 msgstr ""
 
-#: classes/wpml-manager.php:369
+#: classes/wpml-manager.php:535
 msgid "Number: Text"
 msgstr ""
 
-#: classes/wpml-manager.php:382
-msgid "Pricing Table: Title"
+#: classes/wpml-manager.php:548
+msgid "PDF View: PDF Title"
 msgstr ""
 
-#: classes/wpml-manager.php:387
-msgid "Pricing Table: Price"
+#: classes/wpml-manager.php:594
+msgid "Post Navigation: Previous Label"
 msgstr ""
 
-#: classes/wpml-manager.php:392
-msgid "Pricing Table: Period"
-msgstr ""
-
-#: classes/wpml-manager.php:397
-msgid "Pricing Table: Features Title"
-msgstr ""
-
-#: classes/wpml-manager.php:402
-msgid "Pricing Table: Button Text"
-msgstr ""
-
-#: classes/wpml-manager.php:407
-msgid "Pricing Table: Button Link"
-msgstr ""
-
-#: classes/wpml-manager.php:412
-msgid "Pricing Table: Badge Text"
-msgstr ""
-
-#: classes/wpml-manager.php:428
-msgid "Review: Review Text"
-msgstr ""
-
-#: classes/wpml-manager.php:433
-msgid "Review: Reviewer Name"
-msgstr ""
-
-#: classes/wpml-manager.php:438
-msgid "Review: Job Title"
-msgstr ""
-
-#: classes/wpml-manager.php:481
-msgid "Step Flow: Badge Text"
-msgstr ""
-
-#: classes/wpml-manager.php:486
-msgid "Step Flow: Title"
-msgstr ""
-
-#: classes/wpml-manager.php:491
-msgid "Step Flow: Description"
-msgstr ""
-
-#: classes/wpml-manager.php:496
-msgid "Step Flow: Link"
-msgstr ""
-
-#: classes/wpml-manager.php:509
-msgid "Testimonial: Testimonial Text"
-msgstr ""
-
-#: classes/wpml-manager.php:514
-msgid "Testimonial: Reviewer Name"
-msgstr ""
-
-#: classes/wpml-manager.php:519
-msgid "Testimonial: Job Title"
-msgstr ""
-
-#: classes/wpml-manager.php:532
-msgid "Twitter Feed: Read More Text"
-msgstr ""
-
-#: classes/wpml-manager.php:537
-msgid "Twitter Feed: Load More Text"
-msgstr ""
-
-#: classes/wpml-manager.php:572
-msgid "MailChimp: First Name Label"
-msgstr ""
-
-#: classes/wpml-manager.php:577
-msgid "MailChimp: First Name Place Holder"
-msgstr ""
-
-#: classes/wpml-manager.php:582
-msgid "MailChimp: Last Name Label"
-msgstr ""
-
-#: classes/wpml-manager.php:587
-msgid "MailChimp: Last Name Place Holder"
-msgstr ""
-
-#: classes/wpml-manager.php:592
-msgid "MailChimp: Phone Label"
-msgstr ""
-
-#: classes/wpml-manager.php:597
-msgid "MailChimp: Phone Place Holder"
-msgstr ""
-
-#: classes/wpml-manager.php:602
-msgid "MailChimp: Email Label"
-msgstr ""
-
-#: classes/wpml-manager.php:607
-msgid "MailChimp: Email Place Holder"
+#: classes/wpml-manager.php:599
+msgid "Post Navigation: Next Label"
 msgstr ""
 
 #: classes/wpml-manager.php:612
-msgid "MailChimp: Button Text"
+msgid "Pricing Table: Title"
 msgstr ""
 
 #: classes/wpml-manager.php:617
+msgid "Pricing Table: Price"
+msgstr ""
+
+#: classes/wpml-manager.php:622
+msgid "Pricing Table: Period"
+msgstr ""
+
+#: classes/wpml-manager.php:627
+msgid "Pricing Table: Features Title"
+msgstr ""
+
+#: classes/wpml-manager.php:632
+msgid "Pricing Table: Button Text"
+msgstr ""
+
+#: classes/wpml-manager.php:637
+msgid "Pricing Table: Button Link"
+msgstr ""
+
+#: classes/wpml-manager.php:642
+msgid "Pricing Table: Badge Text"
+msgstr ""
+
+#: classes/wpml-manager.php:658
+msgid "Review: Review Text"
+msgstr ""
+
+#: classes/wpml-manager.php:663
+msgid "Review: Reviewer Name"
+msgstr ""
+
+#: classes/wpml-manager.php:668
+msgid "Review: Job Title"
+msgstr ""
+
+#: classes/wpml-manager.php:721
+msgid "Step Flow: Badge Text"
+msgstr ""
+
+#: classes/wpml-manager.php:726
+msgid "Step Flow: Title"
+msgstr ""
+
+#: classes/wpml-manager.php:731
+msgid "Step Flow: Description"
+msgstr ""
+
+#: classes/wpml-manager.php:736
+msgid "Step Flow: Link"
+msgstr ""
+
+#: classes/wpml-manager.php:764
+msgid "Testimonial: Testimonial Text"
+msgstr ""
+
+#: classes/wpml-manager.php:769
+msgid "Testimonial: Reviewer Name"
+msgstr ""
+
+#: classes/wpml-manager.php:774
+msgid "Testimonial: Job Title"
+msgstr ""
+
+#: classes/wpml-manager.php:787
+msgid "Twitter Feed: Read More Text"
+msgstr ""
+
+#: classes/wpml-manager.php:792
+msgid "Twitter Feed: Load More Text"
+msgstr ""
+
+#: classes/wpml-manager.php:827
+msgid "MailChimp: First Name Label"
+msgstr ""
+
+#: classes/wpml-manager.php:832
+msgid "MailChimp: First Name Place Holder"
+msgstr ""
+
+#: classes/wpml-manager.php:837
+msgid "MailChimp: Last Name Label"
+msgstr ""
+
+#: classes/wpml-manager.php:842
+msgid "MailChimp: Last Name Place Holder"
+msgstr ""
+
+#: classes/wpml-manager.php:847
+msgid "MailChimp: Phone Label"
+msgstr ""
+
+#: classes/wpml-manager.php:852
+msgid "MailChimp: Phone Place Holder"
+msgstr ""
+
+#: classes/wpml-manager.php:857
+msgid "MailChimp: Email Label"
+msgstr ""
+
+#: classes/wpml-manager.php:862
+msgid "MailChimp: Email Place Holder"
+msgstr ""
+
+#: classes/wpml-manager.php:867
+msgid "MailChimp: Button Text"
+msgstr ""
+
+#: classes/wpml-manager.php:872
 msgid "MailChimp: Success Message"
 msgstr ""
 
-#: classes/wpml-manager.php:648
+#: classes/wpml-manager.php:903
 msgid "Creative Button: Text"
 msgstr ""
 
-#: classes/wpml-manager.php:653
+#: classes/wpml-manager.php:908
 msgid "Creative Button: Link"
 msgstr ""
 
@@ -11456,6 +11541,25 @@ msgstr ""
 msgid "Carousel: Link"
 msgstr ""
 
+#: wpml/comparison-table.php:36
+#: wpml/comparison-table.php:88
+#: wpml/comparison-table.php:140
+#: wpml/post-info.php:108
+#: wpml/post-info.php:160
+msgid "Comparison Table: Title"
+msgstr ""
+
+#: wpml/comparison-table.php:38
+#: wpml/comparison-table.php:90
+#: wpml/post-info.php:110
+msgid "Comparison Table: Show Content"
+msgstr ""
+
+#: wpml/comparison-table.php:142
+#: wpml/post-info.php:162
+msgid "Comparison Table: Link"
+msgstr ""
+
 #: wpml/content-switcher.php:36
 msgid "Content Switcher: Title"
 msgstr ""
@@ -11474,6 +11578,26 @@ msgstr ""
 
 #: wpml/data-table.php:85
 msgid "Data Table: Cell Link"
+msgstr ""
+
+#: wpml/events-calendar.php:39
+msgid "Event Calendar: Title"
+msgstr ""
+
+#: wpml/events-calendar.php:41
+msgid "Event Calendar: Guest/Speaker"
+msgstr ""
+
+#: wpml/events-calendar.php:43
+msgid "Event Calendar: Location"
+msgstr ""
+
+#: wpml/events-calendar.php:45
+msgid "Event Calendar: Details Link"
+msgstr ""
+
+#: wpml/events-calendar.php:47
+msgid "Event Calendar: Description"
 msgstr ""
 
 #: wpml/horizontal-timeline.php:37
@@ -11520,6 +11644,14 @@ msgstr ""
 msgid "Image Grid: Filter Name"
 msgstr ""
 
+#: wpml/image-stack-group.php:36
+msgid "Image Stack Group: Tooltip"
+msgstr ""
+
+#: wpml/image-stack-group.php:38
+msgid "Image Stack Group: Link"
+msgstr ""
+
 #: wpml/justified-gallery.php:33
 msgid "Justified Grid: Filter Name"
 msgstr ""
@@ -11530,6 +11662,41 @@ msgstr ""
 
 #: wpml/logo-grid.php:38
 msgid "Logo Grid: Link"
+msgstr ""
+
+#: wpml/photo-stack.php:35
+msgid "Photo Stack: Link"
+msgstr ""
+
+#: wpml/post-info.php:40
+msgid "Post Info: Before"
+msgstr ""
+
+#: wpml/post-info.php:42
+msgid "Post Info: No Comments"
+msgstr ""
+
+#: wpml/post-info.php:44
+msgid "Post Info: One Comment"
+msgstr ""
+
+#: wpml/post-info.php:46
+msgid "Post Info: Comments"
+msgstr ""
+
+#: wpml/post-info.php:48
+msgid "Post Info: Custom"
+msgstr ""
+
+#: wpml/post-info.php:50
+msgid "Post Info: Custom URL"
+msgstr ""
+
+#: wpml/post-list.php:35
+#: wpml/post-list.php:82
+#: wpml/post-list.php:129
+#: wpml/post-list.php:176
+msgid "Post List: Title"
 msgstr ""
 
 #: wpml/pricing-table.php:33
@@ -11558,4 +11725,33 @@ msgstr ""
 
 #: wpml/social-icons.php:38
 msgid "Social Icons: Link"
+msgstr ""
+
+#: wpml/social-share.php:39
+msgid "Social Share: Hashtags"
+msgstr ""
+
+#: wpml/social-share.php:41
+msgid "Social Share: Custom Title"
+msgstr ""
+
+#: wpml/social-share.php:43
+msgid "Social Share: Subject"
+msgstr ""
+
+#: wpml/social-share.php:45
+msgid "Social Share: Button Text"
+msgstr ""
+
+#: wpml/social-share.php:47
+msgid "Social Share: Custom Link"
+msgstr ""
+
+#: wpml/taxonomy-list.php:35
+#: wpml/taxonomy-list.php:82
+#: wpml/taxonomy-list.php:129
+#: wpml/taxonomy-list.php:176
+#: wpml/taxonomy-list.php:223
+#: wpml/taxonomy-list.php:270
+msgid "Taxonomy List: Title"
 msgstr ""
