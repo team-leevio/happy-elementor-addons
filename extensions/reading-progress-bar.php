@@ -145,8 +145,6 @@ class Reading_Progress_Bar {
 		$single_enable = isset( $document_settings_data['ha_rpb_single_enable'] ) ? $document_settings_data['ha_rpb_single_enable'] : 'no' ;
 		$single_disable = isset( $document_settings_data['ha_rpb_single_disable'] ) ? $document_settings_data['ha_rpb_single_disable'] : 'no' ;
 
-		$page_enable = empty( $document_settings_data['ha_rpb_single_disable'] ) || $document_settings_data['ha_rpb_single_disable'] !== 'yes';
-
 		//render rbp
 		$reading_progress_is_enable = false;
 
@@ -182,7 +180,19 @@ class Reading_Progress_Bar {
 			'rpb_vertical_position' => $rpb_vertical_position,
 		];
         
-        if ( ha_elementor()->preview->is_preview_mode() ) { ?>
+        if ( ha_elementor()->preview->is_preview_mode() ) {
+
+			if ($global_enable === 'globally') {
+				if($single_disable == 'yes') {
+					return;
+				}
+			} elseif ($global_enable === 'individually') {
+				if ($single_enable !== 'yes') {
+					return;
+				}
+			}
+
+			?>
 				<div class="hm-crp-wrapper ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>" style="opacity:0">
 					<svg class="hm-circular-progress" width="60" height="60" viewBox="0 0 100 100">
 						<circle class="hm-progress-background" cx="50" cy="50" r="45"></circle>

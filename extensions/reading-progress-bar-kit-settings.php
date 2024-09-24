@@ -69,7 +69,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
                 'default' => 'globally',
                 'options' => [
                     'globally' => __('Global', 'happy-elementor-addons'),
-                    'individually' => __('This Page Only', 'happy-elementor-addons'),
+                    'individually' => __('Individual', 'happy-elementor-addons'),
                 ],
                 'frontend_available' => true,
 				'render_type' => 'template',
