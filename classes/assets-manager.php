@@ -295,6 +295,15 @@ class Assets_Manager {
 			true
 		);
 
+		// Match Height
+		wp_register_script(
+			'jquery-match-height',
+			HAPPY_ADDONS_ASSETS . 'vendor/jquery-match-height/jquery.matchHeight-min.js',
+			[],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
 		// Main assets
 		wp_register_style(
 			'happy-elementor-addons',
