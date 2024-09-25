@@ -3,6 +3,7 @@
 - Fix: Floating Effects feature compatible with Element Caching of Elementor.
 - Fix: Happy Tooltip feature compatible with Element Caching of Elementor.
 - Fix: Equal Height feature compatible with Element Caching of Elementor.
+- Fix: Grid Layer feature compatible with latest Elementor 3.24.x
 
 = 3.12.3 - 19 September 2024 =
 

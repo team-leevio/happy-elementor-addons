@@ -53,10 +53,9 @@ class Grid_Layer {
 				'min'       => 1,
 				'max'       => 100,
 				'step'      => 1,
-				'devices' => [ 'desktop', 'tablet', 'mobile' ],
-				'desktop_default' => 12,
-				'tablet_default' => 12,
-				'mobile_default' => 12,
+				'default' 	=> 15,
+				'tablet_default' 	=> 12,
+				'mobile_default' 	=> 10,
 				'condition' => [
 					'ha_grid' => 'yes',
 				],
@@ -82,18 +81,9 @@ class Grid_Layer {
 						'step' => 0.1,
 					],
 				],
-				'devices' => [ 'desktop', 'tablet', 'mobile' ],
-				'desktop_default' => [
-					'size' => self::get_default_grid_value('desktop'),
-					'unit' => 'px',
-				],
-				'tablet_default' => [
-					'size' => self::get_default_grid_value('tablet'),
-					'unit' => 'px',
-				],
-				'mobile_default' => [
-					'size' => self::get_default_grid_value('mobile'),
-					'unit' => 'px',
+				'default' => [
+					'unit' => '%',
+					'size' => 100,
 				],
 				'condition' => [
 					'ha_grid' => 'yes',
@@ -107,16 +97,11 @@ class Grid_Layer {
 			[
 				'label'      => __( 'Offset', 'happy-elementor-addons' ),
 				'type'       => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', 'em', '%' ],
+				'size_units' => [ 'px', '%' ],
 				'range'      => [
 					'px' => [
 						'min'  => 0,
-						'max'  => 1000,
-						'step' => 1,
-					],
-					'em' => [
-						'min'  => 0,
-						'max'  => 100,
+						'max'  => 3000,
 						'step' => 1,
 					],
 					'%' => [
@@ -128,19 +113,6 @@ class Grid_Layer {
 				'default' => [
 					'unit' => 'px',
 					'size' => 0,
-				],
-				'devices' => [ 'desktop', 'tablet', 'mobile' ],
-				'desktop_default' => [
-					'size' => 0,
-					'unit' => 'px',
-				],
-				'tablet_default' => [
-					'size' => 0,
-					'unit' => 'px',
-				],
-				'mobile_default' => [
-					'size' => 0,
-					'unit' => 'px',
 				],
 				'condition' => [
 					'ha_grid' => 'yes',
@@ -154,16 +126,11 @@ class Grid_Layer {
 			[
 				'label'      => __( 'Gutter', 'happy-elementor-addons' ),
 				'type'       => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', 'em', '%' ],
+				'size_units' => [ 'px', '%' ],
 				'range'      => [
 					'px' => [
 						'min'  => 0,
 						'max'  => 200,
-						'step' => 1,
-					],
-					'em' => [
-						'min'  => 0,
-						'max'  => 20,
 						'step' => 1,
 					],
 					'%' => [
@@ -172,18 +139,17 @@ class Grid_Layer {
 						'step' => 0.1,
 					],
 				],
-				'devices' => [ 'desktop', 'tablet', 'mobile' ],
-				'desktop_default' => [
-					'size' => 15,
+				'default' => [
 					'unit' => 'px',
+					'size' => 15,
 				],
 				'tablet_default' => [
-					'size' => 10,
 					'unit' => 'px',
+					'size' => 10,
 				],
 				'mobile_default' => [
-					'size' => 8,
 					'unit' => 'px',
+					'size' => 5,
 				],
 				'condition' => [
 					'ha_grid' => 'yes',
