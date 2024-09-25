@@ -182,7 +182,7 @@ class Reading_Progress_Bar {
         
         if ( ha_elementor()->preview->is_preview_mode() ) {
 
-			if ($global_enable === 'globally') {
+			/*if ($global_enable === 'globally') {
 				if($single_disable == 'yes') {
 					return;
 				}
@@ -190,7 +190,7 @@ class Reading_Progress_Bar {
 				if ($single_enable !== 'yes') {
 					return;
 				}
-			}
+			}*/
 
 			?>
 				<div class="hm-crp-wrapper ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>" style="opacity:0">
@@ -222,6 +222,59 @@ class Reading_Progress_Bar {
 					}
 
 					let rpbDefaultType = "<?php echo $progress_bar_type;  ?>";
+
+					// Check display on
+					let global_enable = "<?php echo $global_enable; ?>";
+					let single_enable = "<?php echo $single_enable; ?>";
+					let single_disable = "<?php echo $single_disable; ?>";
+					
+					if( global_enable == 'globally' ) {
+						if( single_disable !== 'yes' ) {
+							if( rpbDefaultType == 'horizontal' ) {
+								$('.ha-reading-progress-bar').css({'opacity':1, 'transition':'opacity 0.3s'});
+								$('.hm-hrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
+								$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+								$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
+							} else if ( rpbDefaultType == 'vertical' ) {
+								$('.ha-reading-progress-bar').css({'opacity':1, 'transition':'opacity 0.3s'});
+								$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+								$('.hm-vrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
+								$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
+							} else if ( rpbDefaultType == 'circle' ) {
+								$('.ha-reading-progress-bar').css({'opacity':1, 'transition':'opacity 0.3s'});
+								$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+								$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+								$('.hm-crp-wrapper').css({'opacity':1, 'transition':'opacity 0.3s'});
+							}
+						} else {
+							$('.ha-reading-progress-bar').css({'opacity':0, 'transition':'opacity 0.3s'});
+							return;
+						}
+					} else if ( global_enable == 'individually' ) {
+						if ( single_enable !== 'yes' ) {
+							$('.ha-reading-progress-bar').css({'opacity':0, 'transition':'opacity 0.3s'});
+							return;
+						} else {
+							if( rpbDefaultType == 'horizontal' ) {
+								$('.ha-reading-progress-bar').css({'opacity':1, 'transition':'opacity 0.3s'});
+								$('.hm-hrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
+								$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+								$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
+							} else if ( rpbDefaultType == 'vertical' ) {
+								$('.ha-reading-progress-bar').css({'opacity':1, 'transition':'opacity 0.3s'});
+								$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+								$('.hm-vrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
+								$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
+							} else if ( rpbDefaultType == 'circle' ) {
+								$('.ha-reading-progress-bar').css({'opacity':1, 'transition':'opacity 0.3s'});
+								$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+								$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+								$('.hm-crp-wrapper').css({'opacity':1, 'transition':'opacity 0.3s'});
+							}
+						}
+					}
+
+					// check type
 					if( rpbDefaultType == 'horizontal' ) {
 						$('.hm-hrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
 						$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
@@ -274,6 +327,39 @@ class Reading_Progress_Bar {
 								} else {
 									$('.ha-reading-progress-bar').css({'opacity':0, 'transition':'opacity 0.3s'});
 								}
+							}
+
+							// Check display on
+							if ( changeItem[0] == 'ha_rpb_apply_globally' ) {
+								let single_enable = "<?php echo $single_enable; ?>";
+								let single_disable = "<?php echo $single_disable; ?>";
+								
+								if( changeValue == 'globally' ) {
+									if( single_disable !== 'yes' ) {
+										if( rpbDefaultType == 'horizontal' ) {
+											$('.ha-reading-progress-bar').css({'opacity':1, 'transition':'opacity 0.3s'});
+											$('.hm-hrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
+											$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+											$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
+										} else if ( rpbDefaultType == 'vertical' ) {
+											$('.ha-reading-progress-bar').css({'opacity':1, 'transition':'opacity 0.3s'});
+											$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+											$('.hm-vrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
+											$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
+										} else if ( rpbDefaultType == 'circle' ) {
+											$('.ha-reading-progress-bar').css({'opacity':1, 'transition':'opacity 0.3s'});
+											$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+											$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
+											$('.hm-crp-wrapper').css({'opacity':1, 'transition':'opacity 0.3s'});
+										}
+									}
+								} else if ( changeValue == 'individually' ) {
+									if ( single_enable !== 'yes' ) {
+										$('.ha-reading-progress-bar').css({'opacity':0, 'transition':'opacity 0.3s'});
+										return;
+									}
+								} 
+								
 							}
 
 							// Check type
