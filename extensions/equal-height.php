@@ -17,17 +17,14 @@ class Equal_Height {
 
 		add_action( 'elementor/element/section/section_advanced/after_section_end', [ __CLASS__, 'register' ], 1 );
 
-		// add_action( 'elementor/frontend/container/before_render', [ __CLASS__, 'should_script_enqueue' ] );
-		// add_action( 'elementor/frontend/section/before_render', [ __CLASS__, 'should_script_enqueue' ] );
 		add_action( 'elementor/frontend/before_register_scripts', [ __CLASS__, 'register_scripts' ] );
 
-		// add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'enqueue_scripts' ] );
 		add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'enqueue_preview_scripts' ] );
 	}
 
 	public static function enqueue_preview_scripts() {
 		wp_enqueue_script( 'jquery-match-height' );
-		wp_enqueue_script( 'happyaddons-equal-height' );
+		wp_enqueue_script( 'happy-equal-height' );
 	}
 
 
@@ -35,7 +32,7 @@ class Equal_Height {
 		$suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
 		// Equal Height
 		wp_register_script(
-			'happyaddons-equal-height',
+			'happy-equal-height',
 			HAPPY_ADDONS_ASSETS . 'js/extension-equal-height' . $suffix . 'js',
 			[ 'elementor-frontend' ],
 			HAPPY_ADDONS_VERSION,
@@ -75,7 +72,7 @@ class Equal_Height {
 							],
 						],
 						[
-							'name' => 'happyaddons-equal-height',
+							'name' => 'happy-equal-height',
 							'conditions' => [
 								'terms' => [
 									[

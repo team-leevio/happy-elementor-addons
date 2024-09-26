@@ -21,7 +21,7 @@ class Advanced_Tooltip {
     }
 
     public static function enqueue_preview_scripts() {
-		wp_enqueue_script('happyaddons-advanced-tooltip');
+		wp_enqueue_script('happy-advanced-tooltip');
     }
 
     /**
@@ -34,7 +34,7 @@ class Advanced_Tooltip {
 		$suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
 		// Advanced Tooltip
 		wp_register_script(
-			'happyaddons-advanced-tooltip',
+			'happy-advanced-tooltip',
 			HAPPY_ADDONS_ASSETS . 'js/extension-advanced-tooltip' . $suffix . 'js',
 			[ 'elementor-frontend' ],
 			HAPPY_ADDONS_VERSION,
@@ -65,7 +65,7 @@ class Advanced_Tooltip {
 				'assets' => [
 					'scripts' => [
 						[
-							'name' => 'happyaddons-advanced-tooltip',
+							'name' => 'happy-advanced-tooltip',
 							'conditions' => [
 								'terms' => [
 									[

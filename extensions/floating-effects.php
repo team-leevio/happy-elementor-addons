@@ -23,13 +23,13 @@ class Floating_Effects {
 
 	public static function preview_enqueue_scripts() {
 		wp_enqueue_script('anime');
-		wp_enqueue_script('happyaddons-floating-effects');
+		wp_enqueue_script('happy-floating-effects');
 	}
 
 	public static function register_scripts() {
 		// Floating effects
 		wp_register_script(
-			'happyaddons-floating-effects',
+			'happy-floating-effects',
 			HAPPY_ADDONS_ASSETS . 'js/extension-floating-effects.min.js',
 			[ 'elementor-frontend' ],
 			HAPPY_ADDONS_VERSION,
@@ -67,7 +67,7 @@ class Floating_Effects {
 							],
 						],
 						[
-							'name' => 'happyaddons-floating-effects',
+							'name' => 'happy-floating-effects',
 							'conditions' => [
 								'terms' => [
 									[
