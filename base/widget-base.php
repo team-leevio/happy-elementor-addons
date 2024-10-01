@@ -48,6 +48,10 @@ abstract class Base extends Widget_Base {
         return ['happy_addons_category'];
     }
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
     /**
      * Override from addon to add custom wrapper class.
      *
