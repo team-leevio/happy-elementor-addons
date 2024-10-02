@@ -51,6 +51,10 @@ class Image_Compare extends Base {
         return [ 'compare', 'image', 'before', 'after' ];
     }
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

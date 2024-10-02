@@ -49,6 +49,10 @@ class Fun_Factor extends Base {
 		return ['fun', 'factor', 'animation', 'info', 'box', 'number', 'animated'];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

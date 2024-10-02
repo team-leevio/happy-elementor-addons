@@ -48,6 +48,10 @@ class Dual_Button extends Base {
         return [ 'button', 'btn', 'dual', 'advance', 'link' ];
     }
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

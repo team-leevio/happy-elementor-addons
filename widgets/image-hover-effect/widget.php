@@ -45,6 +45,10 @@ class Image_Hover_Effect extends Base {
 		return ['hover', 'image', 'effect'];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

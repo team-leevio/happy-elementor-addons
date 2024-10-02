@@ -47,6 +47,10 @@ class Social_Icons extends Base {
 		return ['social', 'icons', 'media', 'facebook', 'fb', 'twitter', 'linkedin'];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

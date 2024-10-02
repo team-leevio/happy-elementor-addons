@@ -50,6 +50,10 @@ class Pricing_Table extends Base {
 		return [ 'pricing', 'price', 'table', 'package', 'product', 'plan' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
 	 * Register widget content controls
 	 */

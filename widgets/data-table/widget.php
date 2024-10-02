@@ -50,6 +50,9 @@ class Data_Table extends Base {
 		return ['data', 'table', 'statistics'];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
 
 	/**
      * Register widget content controls
@@ -647,7 +650,7 @@ class Data_Table extends Base {
 				'description' => __('Enable the switch to activate horizontal scrolling on responsive view.', 'happy-elementor-addons'),
 			]
 		);
-		
+
 		$this->add_control(
 			'disable_word_wrap',
 			[
