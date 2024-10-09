@@ -34,6 +34,11 @@ class Condition_Manager {
         return self::$instance;
     }
 
+	public static function is_the_same_author($post_id) {
+		$author_id = get_post_field( 'post_author', $post_id );
+		return ( get_current_user_id() == $author_id );
+	}
+
     private function initial_conditions() {
         $conditions = [
             'general' => [
@@ -222,6 +227,7 @@ class Condition_Manager {
 
     protected function validate_reqeust() {
         $nonce = !empty($_REQUEST['nonce']) ? $_REQUEST['nonce'] : '';
+		$template_id = isset( $_REQUEST['template_id'] ) ? absint( $_REQUEST['template_id'] ) : null;
 
         if (!wp_verify_nonce($nonce, 'ha_editor_nonce')) {
             throw new Exception('Invalid request');
@@ -230,6 +236,17 @@ class Condition_Manager {
         if (!current_user_can('edit_posts')) {
             throw new Exception('Unauthorized request');
         }
+
+		$post_status = get_post_status( $template_id );
+		$same_author = self::is_the_same_author( $template_id );
+
+		if ( ( 'private' == $post_status || 'draft' == $post_status ) && ! $same_author ) {
+			throw new Exception( 'Unauthorized request' );
+		}
+
+		if ( post_password_required( $template_id ) && ! $same_author ) {
+			throw new Exception( 'Unauthorized request' );
+		}
     }
 
     public function ha_get_template_type() {
