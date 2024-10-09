@@ -910,6 +910,29 @@ class WPML_Manager {
 					],
 				],
 			],
+
+			/**
+			 * Lightbox
+			 */
+			'lightbox' => [
+				'fields' => [
+					[
+						'field'       => 'button',
+						'type'        => __( 'Lightbox: Button', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					'youtube_link' => [
+						'field'       => 'youtube_link',
+						'type'        => __( 'Lightbox: Link', 'happy-elementor-addons' ),
+						'editor_type' => 'LINK',
+					],
+					'vimeo_link' => [
+						'field'       => 'vimeo_link',
+						'type'        => __( 'Lightbox: Link', 'happy-elementor-addons' ),
+						'editor_type' => 'LINK',
+					],
+				],
+			],
 		];
 
 		foreach ( $widgets_map as $key => $data ) {

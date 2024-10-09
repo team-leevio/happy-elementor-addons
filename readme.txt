@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.12.3
+Version: 3.12.4
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.6
-Stable tag: 3.12.3
+Stable tag: 3.12.4
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -268,6 +268,11 @@ For a more detailed explanation check out the following documentation
 13. Card widget - capsule design
 
 == Changelog ==
+
+= 3.12.4 - 9 October 2024 =
+
+- New: Added WPML support to Lightbox widget.
+- Fix: Security improvement for Theme builder.
 
 = 3.12.3 - 19 September 2024 =
 
