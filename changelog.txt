@@ -1,3 +1,8 @@
+= 3.12.4 - 9 October 2024 =
+
+- New: Added WPML support to Lightbox widget.
+- Fix: Security improvement for Theme builder.
+
 = 3.12.3 - 19 September 2024 =
 
 - Update: Made Compatible with Elementor 3.24
