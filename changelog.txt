@@ -1,10 +1,14 @@
-= 3.##.# - ####### 2024 =
+= 3.##.# - ###### 2024 =
 
-- New: Added WPML support to Lightbox widget.
 - Fix: Floating Effects feature compatible with Element Caching of Elementor.
 - Fix: Happy Tooltip feature compatible with Element Caching of Elementor.
 - Fix: Equal Height feature compatible with Element Caching of Elementor.
 - Fix: Grid Layer feature compatible with latest Elementor 3.24.x
+
+= 3.12.4 - 9 October 2024 =
+
+- New: Added WPML support to Lightbox widget.
+- Fix: Security improvement for Theme builder.
 
 = 3.12.3 - 19 September 2024 =
 
