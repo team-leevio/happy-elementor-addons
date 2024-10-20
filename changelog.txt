@@ -4,6 +4,7 @@
 - Fix: Happy Tooltip feature compatible with Element Caching of Elementor.
 - Fix: Equal Height feature compatible with Element Caching of Elementor.
 - Fix: Grid Layer feature compatible with latest Elementor 3.24.x
+- Fix: Fun Factor widget undefined variable issue.
 
 = 3.12.4 - 9 October 2024 =
 
