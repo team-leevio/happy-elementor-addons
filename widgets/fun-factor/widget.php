@@ -887,9 +887,9 @@ class Fun_Factor extends Base {
 			$this->add_render_attribute( 'fun_factor_number', 'data-animation', wp_json_encode( $data ) );
 			$number = 0;
 		}
-		$number_prefix = $settings['fun_factor_number_prefix'] ?? $settings['fun_factor_number_prefix'];
-		$number_suffix = $settings['fun_factor_number_suffix'] ?? $settings['fun_factor_number_suffix'];
-		$text_align = $settings['text_align'] ?? $settings['text_align'];
+		$number_prefix = $settings['fun_factor_number_prefix'] ?? '';
+		$number_suffix = $settings['fun_factor_number_suffix'] ?? '';
+		$text_align = $settings['text_align'] ?? '';
 		?>
 
 		<div class="ha-fun-factor__wrap">
