@@ -49,6 +49,10 @@ class Threesixty_Rotation extends Base {
 		return ['360 deg view', 'threesixty-rotation', '360', 'slider', 'slider'];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

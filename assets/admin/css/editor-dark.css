@@ -1,3 +1,28 @@
+.elementor-panel #elementor-panel-category-happy_addons_category .elementor-element:hover .icon,
+.elementor-panel #elementor-panel-category-happy_addons_category .elementor-element:hover .title,
+.elementor-panel #elementor-panel-category-happy_addons_category .elementor-element:focus .icon,
+.elementor-panel #elementor-panel-category-happy_addons_category .elementor-element:focus .title,
+.elementor-panel #elementor-panel-category-happy_addons_pro_category .elementor-element:hover .icon,
+.elementor-panel #elementor-panel-category-happy_addons_pro_category .elementor-element:hover .title,
+.elementor-panel #elementor-panel-category-happy_addons_pro_category .elementor-element:focus .icon,
+.elementor-panel #elementor-panel-category-happy_addons_pro_category .elementor-element:focus .title,
+.elementor-panel #elementor-panel-category-happy_addons_pro_category .is-ha-widget:hover .icon,
+.elementor-panel #elementor-panel-category-happy_addons_pro_category .is-ha-widget:hover .title,
+.elementor-panel #elementor-panel-category-happy_addons_pro_category .is-ha-widget:focus .icon,
+.elementor-panel #elementor-panel-category-happy_addons_pro_category .is-ha-widget:focus .title {
+	background-image: -webkit-linear-gradient(315deg, #a799ff 25%, #a799ff 100%);
+	background-image:         linear-gradient(135deg, #a799ff 25%, #a799ff 100%);
+}
+.elementor-panel .ha-section-icon {
+	background-image: -webkit-linear-gradient(315deg, #fff 25%, #fff 100%);
+	background-image:         linear-gradient(135deg, #fff 25%, #fff 100%);
+}
+.elementor-panel .elementor-element:hover .icon .hm:after,
+.elementor-panel .elementor-element:focus .icon .hm:after {
+	background-image: -webkit-linear-gradient(315deg, #a799ff 25%, #a799ff 100%);
+	background-image:         linear-gradient(135deg, #a799ff 25%, #a799ff 100%);
+}
+
 .haTemplateLibrary__logo-wrap {
 	background-color: #e8357c;
 }

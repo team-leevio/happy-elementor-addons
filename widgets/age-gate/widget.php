@@ -47,7 +47,11 @@ class Age_Gate extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'age-gate','age','gate' ];
+		return [ 'age-gate', 'age', 'gate' ];
+	}
+
+	protected function is_dynamic_content(): bool {
+		return false;
 	}
 
 	/**

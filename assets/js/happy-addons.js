@@ -1163,6 +1163,11 @@ function haObserveTarget(target, callback) {
         var cdate = new Date();
         var endDate = new Date();
         endDate.setDate(cdate.getDate() + cookies_time);
+        $("body,html,document").scrollTop($scope.offset().top);
+        var t = setTimeout(function () {
+          $("body,html,document").scrollTop($("body").offset().top);
+          clearTimeout(t);
+        }, 1000);
         if (exd != '' && exd != undefined && new Date(cdate) <= new Date(exd)) {
           $('.ha-age-gate-wrapper').hide();
           container.closest("body").css("overflow", "");

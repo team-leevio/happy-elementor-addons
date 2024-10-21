@@ -49,6 +49,10 @@ class Fun_Factor extends Base {
 		return ['fun', 'factor', 'animation', 'info', 'box', 'number', 'animated'];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */
@@ -871,26 +875,29 @@ class Fun_Factor extends Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		$this->add_render_attribute('fun_factor_number', 'class', 'ha-fun-factor__content-number');
-		$number           = $settings['fun_factor_number'];
-		$fun_factor_title = $settings['fun_factor_title'];
+		$this->add_render_attribute( 'fun_factor_number', 'class', 'ha-fun-factor__content-number' );
+		$number           = $settings['fun_factor_number'] ? $settings['fun_factor_number'] : $settings['fun_factor_number'];
+		$fun_factor_title = $settings['fun_factor_title'] ? $settings['fun_factor_title'] : '';
 
-		if ($settings['animate_number']) {
+		if ( $settings['animate_number'] ) {
 			$data = [
-				'toValue'  => intval($settings['fun_factor_number']),
-				'duration' => intval($settings['animate_duration']),
+				'toValue'  => intval( $settings['fun_factor_number'] ),
+				'duration' => intval( $settings['animate_duration'] ),
 			];
-			$this->add_render_attribute('fun_factor_number', 'data-animation', wp_json_encode($data));
+			$this->add_render_attribute( 'fun_factor_number', 'data-animation', wp_json_encode( $data ) );
 			$number = 0;
 		}
+		$number_prefix = $settings['fun_factor_number_prefix'] ?? '';
+		$number_suffix = $settings['fun_factor_number_suffix'] ?? '';
+		$text_align = $settings['text_align'] ?? '';
 		?>
 
 		<div class="ha-fun-factor__wrap">
-            <?php if (!empty($settings['icons']['value'])) : ?>
+            <?php if ( ! empty( $settings['icons']['value'] ) ) : ?>
                 <div class="ha-fun-factor__media ha-fun-factor__media--icon">
                     <?php Icons_Manager::render_icon( $settings['icons'], ['aria-hidden' => 'true'] ); ?>
                 </div>
-            <?php elseif ( isset($settings['image']) && isset($settings['image']['url']) && isset($settings['image']['id']) ) : ?>
+            <?php elseif ( isset( $settings['image'] ) && isset( $settings['image']['url'] ) && isset( $settings['image']['id'] ) ) : ?>
                 <div class="ha-fun-factor__media ha-fun-factor__media--image">
                     <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
                 </div>
@@ -899,15 +906,15 @@ class Fun_Factor extends Base {
             <div class="ha-fun-factor__content">
 				<div class="ha-fun-factor__content-number-wrap">
 					<?php if ( $settings['fun_factor_number_prefix'] ) : ?>
-						<span class="ha-fun-factor__content-number-prefix"><?php esc_html_e( $settings['fun_factor_number_prefix'] ); ?></span>
+						<span class="ha-fun-factor__content-number-prefix"><?php echo esc_html( $number_prefix ); ?></span>
 					<?php endif; ?>
 	                <span <?php $this->print_render_attribute_string( 'fun_factor_number' ); ?> ><?php echo esc_html( $number ); ?></span>
 					<?php if ( $settings['fun_factor_number_suffix'] ) : ?>
-						<span class="ha-fun-factor__content-number-suffix"><?php esc_html_e( $settings['fun_factor_number_suffix'] ); ?></span>
+						<span class="ha-fun-factor__content-number-suffix"><?php echo esc_html( $number_suffix ); ?></span>
 					<?php endif; ?>
 				</div>
                 <?php if ( 'yes' === $settings['divider_show_hide'] ) : ?>
-                    <span class="ha-fun-factor__divider ha-fun-factor__divider-align-<?php echo esc_attr( $settings['text_align'] ); ?>"></span>
+                    <span class="ha-fun-factor__divider ha-fun-factor__divider-align-<?php echo esc_attr( $text_align ); ?>"></span>
                 <?php endif; ?>
                 <?php printf( '<%1$s class="ha-fun-factor__content-text">%2$s</%1$s>',
                     ha_escape_tags( $settings['title_tag'], 'h2' ),

@@ -50,6 +50,10 @@ class Testimonial extends Base {
 		return [ 'testimonial', 'review', 'feedback' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

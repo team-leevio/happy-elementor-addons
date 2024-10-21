@@ -1,3 +1,14 @@
+= 3.12.5 - 21 October 2024 =
+
+- Fix: All Widget compatible with Element Caching of Elementor.
+- Fix: Floating Effects feature compatible with Element Caching of Elementor.
+- Fix: Happy Tooltip feature compatible with Element Caching of Elementor.
+- Fix: Equal Height feature compatible with Element Caching of Elementor.
+- Fix: Grid Layer feature compatible with latest Elementor 3.24.x
+- Fix: Fun Factor widget undefined variable issue.
+- Fix: Age Gate widget button background issue.
+- Fix: Gradient Heading widget rare issue.
+
 = 3.12.4 - 9 October 2024 =
 
 - New: Added WPML support to Lightbox widget.

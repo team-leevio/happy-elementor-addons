@@ -50,6 +50,10 @@ class Review extends Base {
 		return [ 'review', 'comment', 'feedback', 'testimonial' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	public function get_style_depends() {
 		return [
 			'elementor-icons-fa-solid',

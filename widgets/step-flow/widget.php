@@ -48,6 +48,10 @@ class Step_Flow extends Base {
 		return [ 'step', 'flow' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

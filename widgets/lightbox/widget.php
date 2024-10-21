@@ -55,6 +55,10 @@ class Lightbox extends Base {
         return [ 'lightbox', 'light', 'box', 'video', 'link', 'button' ];
     }
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

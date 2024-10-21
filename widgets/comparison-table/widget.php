@@ -67,6 +67,10 @@ class Comparison_Table extends Base {
 		return ['comparison table', 'table', 'comparison'];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
 	 * Register widget content controls
 	 */
@@ -1265,7 +1269,7 @@ class Comparison_Table extends Base {
 				],
 			]
 		);
-		
+
 		// $this->add_control(
 		// 	'row_text_color',
 		// 	[
@@ -1657,7 +1661,7 @@ class Comparison_Table extends Base {
 							<?php if ( ! empty( $table_cell[ $j ]['title'] ) ) : ?>
 							<div class="ha-comparison-table__row-item-cell-title">
 								<?php echo ha_kses_basic( $table_cell[ $j ]['title'] ); ?>
-								
+
 							</div>
 							<?php endif; ?>
 							<?php if ( ! empty( $table_cell[ $j ]['row_icons'] ) ) : ?>
@@ -1666,7 +1670,7 @@ class Comparison_Table extends Base {
 							</div>
 							<?php endif; ?>
 							<?php if ( ! empty( $table_cell[ $j ]['row_image'] ) ) : ?>
-							<div class="ha-comparison-table__row-cell-image">	
+							<div class="ha-comparison-table__row-cell-image">
 								<?php
 									echo wp_get_attachment_image( $table_cell[ $j ]['row_image']['id'], $table_cell[ $j ]['image_size'] );
 								?>

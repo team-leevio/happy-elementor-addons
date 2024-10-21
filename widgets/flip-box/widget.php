@@ -52,6 +52,10 @@ class Flip_Box extends Base {
         return [ 'flip', 'box', 'flip', 'info', 'content', 'animation' ];
     }
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

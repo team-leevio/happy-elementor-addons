@@ -12,27 +12,16 @@ defined('ABSPATH') || die();
 
 class Advanced_Tooltip {
 
-    static $should_script_enqueue = false;
-
     public static function init() {
         add_action('elementor/element/common/_section_style/after_section_end', [__CLASS__, 'add_controls_section'], 1);
 
-        add_action('elementor/frontend/widget/before_render', [__CLASS__, 'should_script_enqueue']);
+		add_action( 'elementor/frontend/before_register_scripts', [ __CLASS__, 'register_scripts' ] );
 
-        add_action('elementor/preview/enqueue_scripts', [__CLASS__, 'enqueue_scripts']);
+		add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'enqueue_preview_scripts' ] );
     }
 
-    public static function enqueue_scripts() {
-        $suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
-
-        $extension_js = HAPPY_ADDONS_DIR_PATH . 'assets/js/extension-advanced-tooltip' . $suffix . 'js';
-
-        if (file_exists($extension_js)) {
-            wp_add_inline_script(
-                'elementor-frontend',
-                file_get_contents($extension_js)
-            );
-        }
+    public static function enqueue_preview_scripts() {
+		wp_enqueue_script('happy-advanced-tooltip');
     }
 
     /**
@@ -41,18 +30,16 @@ class Advanced_Tooltip {
      * @param Element_Base $section
      * @return void
      */
-    public static function should_script_enqueue($section) {
-        if (self::$should_script_enqueue) {
-            return;
-        }
-
-        if ('enable' == $section->get_settings_for_display('ha_advanced_tooltip_enable')) {
-            self::$should_script_enqueue = true;
-
-            self::enqueue_scripts();
-
-            remove_action('elementor/frontend/section/before_render', [__CLASS__, 'should_script_enqueue']);
-        }
+    public static function register_scripts() {
+		$suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
+		// Advanced Tooltip
+		wp_register_script(
+			'happy-advanced-tooltip',
+			HAPPY_ADDONS_ASSETS . 'js/extension-advanced-tooltip' . $suffix . 'js',
+			[ 'elementor-frontend' ],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
     }
 
     public static function add_controls_section($element) {
@@ -75,6 +62,22 @@ class Advanced_Tooltip {
                 'return_value' => 'enable',
                 'prefix_class' => 'ha-advanced-tooltip-',
                 'default' => '',
+				'assets' => [
+					'scripts' => [
+						[
+							'name' => 'happy-advanced-tooltip',
+							'conditions' => [
+								'terms' => [
+									[
+										'name' => 'ha_advanced_tooltip_enable',
+										'operator' => '===',
+										'value' => 'enable',
+									],
+								],
+							],
+						]
+					],
+				],
                 'frontend_available' => true,
             ]
         );

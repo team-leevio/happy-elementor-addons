@@ -52,6 +52,10 @@ class Image_Accordion extends Base {
         return ['image', 'accordion', 'image accordion'];
     }
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
     protected function content_common() {
         $this->start_controls_section(
             '_section_content',

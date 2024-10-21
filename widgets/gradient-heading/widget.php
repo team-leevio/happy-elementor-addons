@@ -48,6 +48,10 @@ class Gradient_Heading extends Base {
 		return [ 'gradient', 'advanced', 'heading', 'title', 'colorful' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */
@@ -221,6 +225,7 @@ class Gradient_Heading extends Base {
 					'{{WRAPPER}} .ha-gradient-heading' => 'mix-blend-mode: {{VALUE}};',
 				],
 				'separator' => 'none',
+				'frontend_available' => true
 			]
 		);
 

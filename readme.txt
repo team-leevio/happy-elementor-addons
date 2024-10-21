@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.12.4
+Version: 3.12.5
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.6
-Stable tag: 3.12.4
+Stable tag: 3.12.5
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -268,6 +268,17 @@ For a more detailed explanation check out the following documentation
 13. Card widget - capsule design
 
 == Changelog ==
+
+= 3.12.5 - 21 October 2024 =
+
+- Fix: All Widget compatible with Element Caching of Elementor.
+- Fix: Floating Effects feature compatible with Element Caching of Elementor.
+- Fix: Happy Tooltip feature compatible with Element Caching of Elementor.
+- Fix: Equal Height feature compatible with Element Caching of Elementor.
+- Fix: Grid Layer feature compatible with latest Elementor 3.24.x
+- Fix: Fun Factor widget undefined variable issue.
+- Fix: Age Gate widget button background issue.
+- Fix: Gradient Heading widget rare issue.
 
 = 3.12.4 - 9 October 2024 =
 

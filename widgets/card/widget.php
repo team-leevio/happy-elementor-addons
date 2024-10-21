@@ -55,6 +55,10 @@ class Card extends Base {
 		return [ 'card', 'blurb', 'infobox', 'content', 'block', 'box' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */
