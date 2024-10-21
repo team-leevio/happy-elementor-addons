@@ -47,6 +47,10 @@ class Horizontal_Timeline extends Base {
 		return [ 'horizontal', 'timeline', 'slider', 'carousel', 'scroll' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

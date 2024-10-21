@@ -49,6 +49,10 @@ class Logo_Grid extends Base {
         return ['logo', 'grid', 'brand', 'client'];
     }
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

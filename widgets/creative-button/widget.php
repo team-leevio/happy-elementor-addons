@@ -39,6 +39,10 @@ class Creative_Button extends Base {
 		return [ 'button', 'btn', 'advance', 'link', 'creative', 'creative-utton' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
 	 * Register widget content controls
 	 */

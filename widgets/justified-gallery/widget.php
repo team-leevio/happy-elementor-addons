@@ -43,6 +43,10 @@ class Justified_Gallery extends Base {
 		return [ 'gallery', 'image', 'justified', 'filter', 'lightbox' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

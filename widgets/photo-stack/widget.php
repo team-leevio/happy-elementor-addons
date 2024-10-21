@@ -49,10 +49,13 @@ class Photo_Stack extends Base
         return 'hm hm-card';
     }
 
-    public function get_keywords()
-    {
+    public function get_keywords() {
         return ['photo', 'img-box', 'photo-gallery'];
     }
+
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
 
     /**
      * Register widget content controls

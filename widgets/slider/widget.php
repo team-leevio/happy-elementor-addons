@@ -52,6 +52,10 @@ class Slider extends Base {
 		return [ 'slider', 'image', 'gallery', 'carousel' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

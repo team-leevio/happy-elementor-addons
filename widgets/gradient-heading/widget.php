@@ -48,6 +48,10 @@ class Gradient_Heading extends Base {
 		return [ 'gradient', 'advanced', 'heading', 'title', 'colorful' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

@@ -245,7 +245,7 @@
 					var $current = $(this),
 						$lt = $current.find('.ha-skill-level-text'),
 						lv = $current.data('level');
-	
+
 					$current.animate({
 						width: lv+'%'
 					}, 500);
@@ -689,7 +689,7 @@
 			var locale = calendarEl.data('locale');
 			var showPopup = calendarEl.data('show-popup');
 			var allday_text = calendarEl.data('allday-text');
-			var time_format = calendarEl.data('time-format');			
+			var time_format = calendarEl.data('time-format');
 
 			var ECjson = window['HaECjson'+$scope.data('id')];
 			var events = ECjson;
@@ -731,11 +731,11 @@
 							// Parse the input time
 							var hours = date.getHours();
 							var minutes = date.getMinutes();
-							
+
 							var date = new Date();
 							date.setHours(hours);
 							date.setMinutes(minutes);
-							
+
 							var options = {};
 							if (time_format.includes('H')) {
 								options.hour = '2-digit';
@@ -748,13 +748,13 @@
 								}
 							}
 							options.minute = '2-digit';
-							
+
 							var formattedTime = new Intl.DateTimeFormat('en-US', options).format(date);
-						
+
 							if (time_format.includes('a')) {
 								formattedTime = formattedTime.toLowerCase();
 							}
-							
+
 							return formattedTime;
 						}
 
@@ -1333,6 +1333,11 @@
 				var endDate = new Date();
 				endDate.setDate(cdate.getDate()+cookies_time);
 
+				$("body,html,document").scrollTop( $scope.offset().top );
+				var t = setTimeout(() => {
+					$("body,html,document").scrollTop( $("body").offset().top );
+					clearTimeout(t);
+				}, 1000);
 
 				if(exd!='' && exd!=undefined && (new Date(cdate) <= new Date(exd))){
 					$('.ha-age-gate-wrapper').hide();

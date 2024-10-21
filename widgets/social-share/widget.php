@@ -48,6 +48,10 @@ class Social_Share extends Base {
 		return [ 'social', 'share', 'facebook', 'twitter', 'instagram', 'linkedin' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
 	 * Register widget content controls
 	 */
@@ -774,7 +778,7 @@ class Social_Share extends Base {
 						<?php
 						$social_media_name = $social_media_name == 'email' ? 'envelope' : $social_media_name;
 						$ico_library = $social_media_name == 'envelope' ? 'fa' : 'fab';
-						
+
 						if ( 'icon_and_text' == $network_view ) {
 							?>
 							<i class="<?=$ico_library?> fa-<?php echo esc_attr( $social_media_name ); ?>" aria-hidden="true"></i>

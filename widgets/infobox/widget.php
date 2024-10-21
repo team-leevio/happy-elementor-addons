@@ -53,6 +53,10 @@ class InfoBox extends Base {
 		return [ 'info', 'blurb', 'box', 'text', 'content' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */
@@ -755,7 +759,7 @@ class InfoBox extends Base {
 					'body[data-elementor-device-mode="tablet"] {{WRAPPER}}.ha-infobox-media-dir-tablet-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="mobile_extra"] {{WRAPPER}}.ha-infobox-media-dir-mobile_extra-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="mobile"] {{WRAPPER}}.ha-infobox-media-dir-mobile-top .ha-infobox-figure' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
-					
+
 					'body[data-elementor-device-mode="widescreen"] {{WRAPPER}}.ha-infobox-media-dir-widescreen-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="desktop"] {{WRAPPER}}.ha-infobox-media-dir-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
 					'body[data-elementor-device-mode="laptop"] {{WRAPPER}}.ha-infobox-media-dir-laptop-left .ha-infobox-figure' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
@@ -1312,33 +1316,33 @@ class InfoBox extends Base {
 
 		//for manage loard icon global colors only
 		$primary_color = $settings['primary_color'];
-		if( isset($settings['__globals__']) && !empty($settings['__globals__']['primary_color']) ) { 
+		if( isset($settings['__globals__']) && !empty($settings['__globals__']['primary_color']) ) {
 			$color_id = explode('=', $settings['__globals__']['primary_color']);
 			$get_id = end($color_id);
 			$primary_color = $this->get_golobal_color($get_id);
-		} 
-		
+		}
+
 		$secondary_color = $settings['secondary_color'];
-		if( isset($settings['__globals__']) && !empty($settings['__globals__']['secondary_color']) ) { 
+		if( isset($settings['__globals__']) && !empty($settings['__globals__']['secondary_color']) ) {
 			$color_id = explode('=', $settings['__globals__']['secondary_color']);
 			$get_id = end($color_id);
 			$secondary_color = $this->get_golobal_color($get_id);
-		} 
-		
+		}
+
 		$tertiary_color = $settings['tertiary_color'];
-		if( isset($settings['__globals__']) && !empty($settings['__globals__']['tertiary_color']) ) { 
+		if( isset($settings['__globals__']) && !empty($settings['__globals__']['tertiary_color']) ) {
 			$color_id = explode('=', $settings['__globals__']['tertiary_color']);
 			$get_id = end($color_id);
 			$tertiary_color = $this->get_golobal_color($get_id);
-		} 
-		
+		}
+
 		$quaternary_color = $settings['quaternary_color'];
-		if( isset($settings['__globals__']) && !empty($settings['__globals__']['quaternary_color']) ) { 
+		if( isset($settings['__globals__']) && !empty($settings['__globals__']['quaternary_color']) ) {
 			$color_id = explode('=', $settings['__globals__']['quaternary_color']);
 			$get_id = end($color_id);
 			$quaternary_color = $this->get_golobal_color($get_id);
-		} 
-				
+		}
+
 
 		$this->add_inline_editing_attributes( 'title', 'basic' );
 		$this->add_render_attribute( 'title', 'class', 'ha-infobox-title' );
@@ -1407,7 +1411,7 @@ class InfoBox extends Base {
 		if( ! $id ) {
 			return $global_color;
 		}
-		
+
 		$el_page_settings 	= [];
 
 		$ekit_id = get_option('elementor_active_kit', true);
