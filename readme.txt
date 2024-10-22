@@ -278,6 +278,7 @@ For a more detailed explanation check out the following documentation
 - Fix: Grid Layer feature compatible with latest Elementor 3.24.x
 - Fix: Fun Factor widget undefined variable issue.
 - Fix: Age Gate widget button background issue.
+- Fix: Gradient Heading widget rare issue.
 
 = 3.12.4 - 9 October 2024 =
 
