@@ -1219,7 +1219,7 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_next {
 	color: #fff;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_next:hover {
-	background: #5129be;
+	background: rgb(80.7657480315, 40.8366141732, 189.6633858268);
 	-webkit-box-shadow: 0 3px 6px rgba(90, 46, 210, .2);
 	        box-shadow: 0 3px 6px rgba(90, 46, 210, .2);
 }
@@ -1229,7 +1229,7 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_done {
 	color: #fff;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_done:hover {
-	background: #de337c;
+	background: rgb(222.4952606635, 51.0047393365, 123.8601895735);
 	-webkit-box-shadow: 0 3px 6px rgba(226, 73, 138, .16);
 	        box-shadow: 0 3px 6px rgba(226, 73, 138, .16);
 }
@@ -1240,7 +1240,7 @@ body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_bepro {
 	color: #fff;
 }
 body.toplevel_page_happy-addons-setup-wizard .ha-setup-wizard__nav_bepro:hover {
-	background: #de337c;
+	background: rgb(222.4952606635, 51.0047393365, 123.8601895735);
 	-webkit-box-shadow: 0 3px 6px rgba(226, 73, 138, .16);
 	        box-shadow: 0 3px 6px rgba(226, 73, 138, .16);
 }

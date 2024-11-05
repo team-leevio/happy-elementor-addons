@@ -225,7 +225,8 @@ class Gradient_Heading extends Base {
 					'{{WRAPPER}} .ha-gradient-heading' => 'mix-blend-mode: {{VALUE}};',
 				],
 				'separator' => 'none',
-				'frontend_available' => true
+				'frontend_available' => true,
+				'control_type' => 'content',
 			]
 		);
 
