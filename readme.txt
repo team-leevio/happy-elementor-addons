@@ -269,9 +269,10 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.12.6 - 04 November 2024 =
+= 3.12.6 - 05 November 2024 =
 
 - Fix: Security improvement for Image Compare widget.
+- Fix: Warning with element Caching feature disabled.
 
 = 3.12.5 - 21 October 2024 =
 
