@@ -53,6 +53,14 @@ class Widgets_Extended {
 		$of     = $map[ $widget->get_name() ]['of'];
 		$target = $map[ $widget->get_name() ]['target'];
 
+		$widget->update_control(
+			$of,
+			[
+				'control_type' => 'content',
+				'description' => __( 'update_control applied', 'happy-elementor-addons' ),
+			]
+		);
+
 		$widget->start_injection( [
 			'at' => 'after',
 			'of' => $of,
