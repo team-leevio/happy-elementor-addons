@@ -22,6 +22,18 @@ class Icons_Manager {
             'fetchJson' => HAPPY_ADDONS_ASSETS . 'fonts/happy-icons.js?v=' . HAPPY_ADDONS_VERSION,
             'native' => false,
         ];
+        $tabs['huge-icons'] = [
+            'name' => 'huge-icons',
+            'label' => __( 'Huge Icons', 'happy-elementor-addons' ),
+            'url' => HAPPY_ADDONS_ASSETS . 'fonts/huge-icons/huge-icons.min.css',
+            'enqueue' => [ HAPPY_ADDONS_ASSETS . 'fonts/huge-icons/huge-icons.min.css' ],
+            'prefix' => 'huge-',
+            'displayPrefix' => 'huge',
+            'labelIcon' => 'huge huge-huge-logo',
+            'ver' => HAPPY_ADDONS_VERSION,
+            'fetchJson' => HAPPY_ADDONS_ASSETS . 'fonts/huge-icons/huge-icons.js?v=' . HAPPY_ADDONS_VERSION,
+            'native' => false,
+        ];
         return $tabs;
     }
 

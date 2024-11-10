@@ -210,6 +210,13 @@ class Dashboard {
         );
 
         wp_enqueue_style(
+            'huge-icons',
+            HAPPY_ADDONS_ASSETS . 'fonts/huge-icons/huge-icons.min.css',
+            null,
+            HAPPY_ADDONS_VERSION
+        );
+
+        wp_enqueue_style(
             'google-nunito-font',
             HAPPY_ADDONS_ASSETS . 'fonts/nunito/stylesheet.css',
             null,
@@ -392,7 +399,7 @@ class Dashboard {
 
 	public static function get_raw_usage( $format = 'raw' ) {
 		/** @var Module $module */
-        
+
 		$module = \Elementor\Modules\Usage\Module::instance();
 		$usage = PHP_EOL;
 		$widgets_list = [];
