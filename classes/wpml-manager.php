@@ -933,6 +933,29 @@ class WPML_Manager {
 					],
 				],
 			],
+
+			/**
+			 * Liquid Hover Image
+			 */
+			'liquid-hover-image' => [
+				'fields' => [
+					'button_link' => [
+						'field'       => 'link',
+						'type'        => __( 'Liquid Hover Image: Link', 'happy-elementor-addons' ),
+						'editor_type' => 'LINK',
+					],
+					[
+						'field'       => 'title',
+						'type'        => __( 'Liquid Hover Image: Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'sub_title',
+						'type'        => __( 'Liquid Hover Image: Sub Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					]
+				],
+			],
 		];
 
 		foreach ( $widgets_map as $key => $data ) {
