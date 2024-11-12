@@ -272,7 +272,7 @@ For a more detailed explanation check out the following documentation
 = 3.13.0- 13 November 2024 =
 
 - New:  Liquid Hover Image widget.
-- New:  Huge Icon pack.
+- New:  Integrated Hugeicons.
 - Update:  Happy icon pack update.
 - Fix: Text Stroke issue.
 
