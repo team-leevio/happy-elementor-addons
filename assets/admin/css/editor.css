@@ -439,7 +439,7 @@
 	cursor: pointer;
 }
 .ha-template-element-modal .modal__content.new-template #ha-new-template-form__submit:hover {
-	background: rgb(74.75, 50.9285714286, 156.0714285714);
+	background: #4b339c;
 }
 .ha-template-element-modal .modal__content.new-template #ha-new-template-form__submit:disabled {
 	background: #cacaca;
@@ -525,7 +525,7 @@
 }
 .ha-template-element-modal .modal__btn-primary:hover,
 .ha-template-element-modal .modal__btn-primary:focus {
-	background-color: rgb(44.7857142857, 142.2142857143, 58.1428571429);
+	background-color: #2d8e3a;
 }
 .ha-template-element-modal .modal__btn-secondary {
 	background-color: #562dd4;

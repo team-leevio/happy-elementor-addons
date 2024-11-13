@@ -1222,5 +1222,129 @@ function haObserveTarget(target, callback) {
       }
     };
     elementorFrontend.hooks.addAction("frontend/element_ready/ha-age-gate.default", AgeGate);
+    var LiquidHoverImage = ModuleHandler.extend({
+      onInit: function onInit() {
+        ModuleHandler.prototype.onInit.apply(this, arguments);
+        this.run();
+
+        // $window.on('resize', debounce(this.run.bind(this), 100));
+      },
+      onElementChange: debounce(function (changedProp) {
+        var $keys = ['width', 'title_typography_typography', 'title_typography_font_size', 'title_typography_line_height', 'title_typography_font_weight', 'sub_title_typography_typography', 'sub_title_typography_font_size', 'sub_title_typography_line_height', 'sub_title_typography_font_weight'];
+        if ($keys.indexOf(changedProp) !== -1) {
+          this.run();
+        }
+      }, 300),
+      run: function run() {
+        var self = this,
+          settings = JSON.parse(self.$element.find('.ha-lhi-image-area').attr("data-settings")),
+          liquidImage = self.$element.find('.ha-lhi-image'),
+          title = self.$element.find('.ha-lhi-title h2'),
+          sub_title = self.$element.find('.ha-lhi-title p'),
+          canvas = self.$element.find('canvas'),
+          style = settings.hover_style;
+        if (canvas) {
+          canvas.remove();
+        }
+        var myAnimation = new hoverEffect({
+          parent: liquidImage[0],
+          intensity: settings.intensity,
+          image1: settings.first_image,
+          image2: settings.second_image,
+          displacementImage: settings.plugin_url + 'liquid-hover-image/' + settings.hover_effect,
+          imagesRatio: liquidImage.height() / liquidImage.width(),
+          angle1: (settings.angle - 45) * (Math.PI / 180) * -1,
+          angle2: (settings.angle - 45) * (Math.PI / 180) * -1,
+          speedIn: settings.speed,
+          speedOut: settings.speed
+        });
+
+        /* if title or subtitle enable */
+        if ('style-1' == style && (title.length || sub_title.length)) {
+          var HoverOutDelay = function HoverOutDelay(el, i, a) {
+            return 'right' == style_direction ? (a - i) * 40 : 40 * i;
+          };
+          var style_direction = settings.style_1_direction;
+          if (title.length) {
+            title[0].innerHTML = title[0].textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+          }
+          if (sub_title.length) {
+            sub_title.addClass("letter");
+          }
+          var HoverTranslateX = [0, 0],
+            HoverOutTranslateX = [0, 0],
+            HoverTranslateY = [0, 0],
+            HoverOutTranslateY = [0, 0];
+          ;
+          if ('left' == style_direction) {
+            HoverTranslateX = [80, 0], HoverOutTranslateX = [0, -80];
+          } else if ('right' == style_direction) {
+            HoverTranslateX = [0, 80], HoverOutTranslateX = [80, 200];
+          } else if ('up' == style_direction) {
+            HoverTranslateY = [80, 0], HoverOutTranslateY = [0, -80];
+          } else if ('down' == style_direction) {
+            HoverTranslateY = [-80, 0], HoverOutTranslateY = [0, 80];
+          }
+          self.$element.hover(function () {
+            anime.timeline({
+              loop: false
+            }).add({
+              targets: '.elementor-element-' + self.getID() + ' .ha-lhi-title .letter',
+              translateX: HoverTranslateX,
+              translateY: HoverTranslateY,
+              translateZ: 0,
+              opacity: [0, 1],
+              easing: "easeOutExpo",
+              duration: 800,
+              delay: function delay(el, i) {
+                return 40 * i;
+              }
+            });
+          }, function () {
+            anime.timeline({
+              loop: false
+            }).add({
+              targets: '.elementor-element-' + self.getID() + ' .ha-lhi-title .letter',
+              translateX: HoverOutTranslateX,
+              translateY: HoverOutTranslateY,
+              opacity: [1, 0],
+              // easing: "easeInExpo",
+              duration: 850,
+              delay: function delay(el, i, a) {
+                return HoverOutDelay(el, i, a);
+              }
+            });
+          });
+        }
+        if ('style-2' == style && (title.length || sub_title.length)) {
+          if (title.length) {
+            var height = title.find('.normal').outerHeight();
+            title.height(height);
+          }
+          if (sub_title.length) {
+            var height = sub_title.find('.normal').outerHeight();
+            sub_title.height(height);
+          }
+          self.$element.hover(function () {
+            title.addClass('play');
+            sub_title.addClass('play');
+          }, function () {
+            title.removeClass('play');
+            sub_title.removeClass('play');
+          });
+        }
+        if ('style-5' == style && (title.length || sub_title.length)) {
+          if (title.length) {
+            var height = title.find('.normal').outerHeight();
+            title.attr('style', '--ha-lhi-style-5-height:' + height + 'px');
+          }
+        }
+      }
+    });
+    elementorFrontend.hooks.addAction('frontend/element_ready/ha-liquid-hover-image.default', function ($scope) {
+      elementorFrontend.elementsHandler.addHandler(LiquidHoverImage, {
+        $element: $scope
+      });
+    });
   });
 })(jQuery);
