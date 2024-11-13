@@ -53,6 +53,10 @@ class Liquid_Hover_Image extends Base {
 		return [ 'liquid-hover-image','liquid','hover','image' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */
@@ -233,7 +237,6 @@ class Liquid_Hover_Image extends Base {
 				'label' => __( 'Title', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				// 'default' => __( 'OFFBEAT', 'happy-elementor-addons' ),
 				'dynamic' => [
                     'active' => true,
                 ],
@@ -246,7 +249,6 @@ class Liquid_Hover_Image extends Base {
 				'label' => __( 'Sub Title', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				// 'default' => __( 'Lorem ipsum dolor sit amet', 'happy-elementor-addons' ),
 				'dynamic' => [
                     'active' => true,
                 ],
@@ -340,14 +342,7 @@ class Liquid_Hover_Image extends Base {
 						'icon' => 'eicon-text-align-right',
 					],
 				],
-				//'prefix_class' => 'content-align-%s',
-                // 'selectors_dictionary' => [
-                //     'left' => 'justify-content: flex-start',
-                //     'center' => 'justify-content: center',
-                //     'right' => 'justify-content: flex-end',
-                // ],
                 'selectors' => [
-                    // '{{WRAPPER}} .ha-lhi-image-area' => '{{VALUE}}'
                     '{{WRAPPER}} .ha-lhi-image-area' => 'text-align:{{VALUE}}'
                 ]
 			]
@@ -468,7 +463,6 @@ class Liquid_Hover_Image extends Base {
 			[
 				'label' => esc_html__( 'Title', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
-				//'separator' => 'before',
 			]
 		);
 
@@ -680,7 +674,6 @@ class Liquid_Hover_Image extends Base {
                 'selectors' => [
                 	'{{WRAPPER}} .ha-lhi-title' => 'width: {{SIZE}}{{UNIT}}'
 				],
-				// 'render_type' => 'ui', //template
 			],
 		);
 
@@ -714,56 +707,52 @@ class Liquid_Hover_Image extends Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		$target = $settings['link']['is_external'] ? ' target="_blank"' : '';
+		$target   = $settings['link']['is_external'] ? ' target="_blank"' : '';
 		$nofollow = $settings['link']['nofollow'] ? ' rel="nofollow"' : '';
 
-        $intensity = isset($settings['intensity']['size']) ? $settings['intensity']['size'] : 0.3;
-        $angle = isset($settings['angle']['size']) ? $settings['angle']['size'] : 45;
-        $speed = isset($settings['duration']['size']) ? $settings['duration']['size'] : 1.5;
+		$intensity = isset( $settings['intensity']['size'] ) ? $settings['intensity']['size'] : 0.3;
+		$angle     = isset( $settings['angle']['size'] ) ? $settings['angle']['size'] : 45;
+		$speed     = isset( $settings['duration']['size'] ) ? $settings['duration']['size'] : 1.5;
 
-        $js_data = [
-        	// 'plugin_url' => plugins_url( '', __FILE__ ),
-        	'plugin_url' => HAPPY_ADDONS_ASSETS. 'imgs/',
-        	'first_image' => $settings['first_image']['url'],
-            'second_image'	=> $settings['second_image']['url'],
-            'hover_effect'	=> $settings['hover_effect'],
-            // 'width'	=> $settings['width'],
-            // 'width_tablet'	=> $width_tablet,
-            // 'width_mobile'	=> $width_mobile,
-            'intensity' => $intensity,
-            'speed' => $speed,
-            'angle' => $angle,
-            'hover_style' => $settings['title_hover_style'],
-            'style_1_direction' => $settings['style_1_direction']
+		$data_json = [
+			'plugin_url'        => HAPPY_ADDONS_ASSETS . 'imgs/',
+			'first_image'       => esc_url( $settings['first_image']['url'] ),
+			'second_image'      => esc_url( $settings['second_image']['url'] ),
+			'hover_effect'      => esc_html( $settings['hover_effect'] ),
+			'intensity'         => esc_html( $intensity ),
+			'speed'             => esc_html( $speed ),
+			'angle'             => esc_html( $angle ),
+			'hover_style'       => esc_html( $settings['title_hover_style'] ),
+			'style_1_direction' => esc_html( $settings['style_1_direction'] ),
 		];
 
 		$this->add_render_attribute(
-			'lhi_wrap',[
-				'class' => ['ha-lhi-area',$settings['title_hover_style']],
+			'lhi_wrap', [
+				'class' => [ 'ha-lhi-area', esc_html( $settings['title_hover_style'] ) ],
 			]
 		);
 
 		$this->add_render_attribute(
-			'lhi_img_wrap',[
-				'class' => ['ha-lhi-image-area'],
-				'data-settings' => [ json_encode($js_data) ]
+			'lhi_img_wrap', [
+				'class' => [ 'ha-lhi-image-area' ],
+				'data-settings' => [ json_encode( $data_json ) ],
 			]
 		);
 		// liquid-hover-image
 		?>
-		<div <?php echo $this->get_render_attribute_string( 'lhi_wrap' ); ?>>
+		<div <?php $this->print_render_attribute_string( 'lhi_wrap' ); ?>>
 
 			<?php if ( $settings['title'] || $settings['sub_title'] ) : ?>
 				<?php if ( 'style-1' == $settings['title_hover_style'] ) : ?>
 				<div class="ha-lhi-title">
 					<?php if ( $settings['title'] ) : ?>
 						<h2><?php echo esc_html( $settings['title'] ); ?></h2>
-					<?php endif;?>
+					<?php endif; ?>
 					<?php if ( $settings['sub_title'] ) : ?>
 						<p><?php echo esc_html( $settings['sub_title'] ); ?></p>
-					<?php endif;?>
+					<?php endif; ?>
 				</div>
-				<?php endif;?>
+				<?php endif; ?>
 				<?php if ( 'style-2' == $settings['title_hover_style'] ) : ?>
 				<div class="ha-lhi-title">
 					<?php if ( $settings['title'] ) : ?>
@@ -771,41 +760,41 @@ class Liquid_Hover_Image extends Base {
 							<span class="block normal"><?php echo esc_html( $settings['title'] ); ?></span>
 							<span class="block hover"><?php echo esc_html( $settings['title'] ); ?></span>
 						</h2>
-					<?php endif;?>
+					<?php endif; ?>
 					<?php if ( $settings['sub_title'] ) : ?>
 						<p>
 							<span class="block normal"><?php echo esc_html( $settings['sub_title'] ); ?></span>
 							<span class="block hover"><?php echo esc_html( $settings['sub_title'] ); ?></span>
 						</p>
-					<?php endif;?>
+					<?php endif; ?>
 				</div>
-				<?php endif;?>
+				<?php endif; ?>
 
 				<?php if ( 'style-3' == $settings['title_hover_style'] ) : ?>
 				<div class="ha-lhi-title">
 					<?php if ( $settings['title'] ) : ?>
 						<h2>
 							<?php
-							if( str_split( $settings['title'] ) ) {
-								foreach ( str_split( $settings['title'] ) as $key => $value) {
-									if( ' ' != $value ){
-										echo '<span style="animation-delay: '.(8 * $key).'0ms;">' . esc_html( $value ) . '</span>';
-									}else{
+							$title = str_split( $settings['title'] );
+							if ( $title ) {
+								foreach ( $title as $key => $value ) {
+									if ( ' ' != $value ) {
+										echo '<span style="animation-delay: ' . esc_attr( 8 * $key ) . '0ms;">' . esc_html( $value ) . '</span>';
+									} else {
 										echo '<span class="empty">' . esc_html( $value ) . '</span>';
 									}
-
 								}
 							} else {
 								echo '<span>' . esc_html( $settings['title'] ) . '</span>';
 							}
 							?>
 						</h2>
-					<?php endif;?>
+					<?php endif; ?>
 					<?php if ( $settings['sub_title'] ) : ?>
 						<p><?php echo esc_html( $settings['sub_title'] ); ?></p>
-					<?php endif;?>
+					<?php endif; ?>
 				</div>
-				<?php endif;?>
+				<?php endif; ?>
 
 				<?php if ( 'style-4' == $settings['title_hover_style'] ) : ?>
 					<div class="ha-lhi-title">
@@ -814,9 +803,9 @@ class Liquid_Hover_Image extends Base {
 						<?php endif;?>
 						<?php if ( $settings['sub_title'] ) : ?>
 							<p><?php echo esc_html( $settings['sub_title'] ); ?></p>
-						<?php endif;?>
+						<?php endif; ?>
 					</div>
-				<?php endif;?>
+				<?php endif; ?>
 
 				<?php if ( 'style-5' == $settings['title_hover_style'] ) : ?>
 					<div class="ha-lhi-title">
@@ -830,7 +819,7 @@ class Liquid_Hover_Image extends Base {
 							<p><?php echo esc_html( $settings['sub_title'] ); ?></p>
 						<?php endif;?>
 					</div>
-				<?php endif;?>
+				<?php endif; ?>
 
 				<?php if ( 'style-6' == $settings['title_hover_style'] ) : ?>
 					<div class="ha-lhi-title">
@@ -839,17 +828,17 @@ class Liquid_Hover_Image extends Base {
 						<?php endif;?>
 						<?php if ( $settings['sub_title'] ) : ?>
 							<p><?php echo esc_html( $settings['sub_title'] ); ?></p>
-						<?php endif;?>
+						<?php endif; ?>
 					</div>
-				<?php endif;?>
+				<?php endif; ?>
 
-			<?php endif;?>
+			<?php endif; ?>
 
-			<div <?php echo $this->get_render_attribute_string( 'lhi_img_wrap' ); ?>>
+			<div <?php $this->print_render_attribute_string( 'lhi_img_wrap' ); ?>>
 				<div class="ha-lhi-image">
 					<img src="<?php echo esc_url( $settings['first_image']['url'] ); ?>">
-					<?php if( $settings['link']['url'] != '' ) : ?>
-						<a href="<?php echo esc_url( $settings['link']['url'] ); ?>"<?php echo $target . $nofollow; ?>></a>
+					<?php if ( $settings['link']['url'] != '' ) : ?>
+						<a href="<?php echo esc_url( $settings['link']['url'] ); ?>"<?php echo esc_attr( $target ) . esc_attr( $nofollow ); ?>></a>
 					<?php endif; ?>
 				</div>
 			</div>
