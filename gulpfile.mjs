@@ -169,6 +169,7 @@ function deleteBuild () {
 
 export const build = series(
 	deleteBuild,
+	deleteOld,
 	makeFrontendCSS,
 	makeBackendCSS,
 	makeFrontendJS,
@@ -178,6 +179,7 @@ export const build = series(
 
 export const zip = series(
 	deleteBuild,
+	deleteOld,
 	makeFrontendCSS,
 	makeBackendCSS,
 	makeFrontendJS,
