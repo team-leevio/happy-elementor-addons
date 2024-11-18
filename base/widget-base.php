@@ -48,6 +48,10 @@ abstract class Base extends Widget_Base {
         return ['happy_addons_category'];
     }
 
+	protected function is_dynamic_content(): bool {
+		return true;
+	}
+
     /**
      * Override from addon to add custom wrapper class.
      *
@@ -74,6 +78,7 @@ abstract class Base extends Widget_Base {
      * Register widget controls
      */
     protected function register_controls() {
+		
         do_action( 'happyaddons_start_register_controls', $this );
 
         $this->register_content_controls();

@@ -49,6 +49,10 @@ class Icon_Box extends Base {
 		return [ 'info', 'box', 'icon' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */
@@ -1027,32 +1031,32 @@ class Icon_Box extends Base {
 
 		//for manage loard icon global colors only
 		$primary_color = $settings['primary_color'];
-		if( isset($settings['__globals__']) && !empty($settings['__globals__']['primary_color']) ) { 
+		if( isset($settings['__globals__']) && !empty($settings['__globals__']['primary_color']) ) {
 			$color_id = explode('=', $settings['__globals__']['primary_color']);
 			$get_id = end($color_id);
 			$primary_color = $this->get_golobal_color($get_id);
-		} 
-		
+		}
+
 		$secondary_color = $settings['secondary_color'];
-		if( isset($settings['__globals__']) && !empty($settings['__globals__']['secondary_color']) ) { 
+		if( isset($settings['__globals__']) && !empty($settings['__globals__']['secondary_color']) ) {
 			$color_id = explode('=', $settings['__globals__']['secondary_color']);
 			$get_id = end($color_id);
 			$secondary_color = $this->get_golobal_color($get_id);
-		} 
-		
+		}
+
 		$tertiary_color = $settings['tertiary_color'];
-		if( isset($settings['__globals__']) && !empty($settings['__globals__']['tertiary_color']) ) { 
+		if( isset($settings['__globals__']) && !empty($settings['__globals__']['tertiary_color']) ) {
 			$color_id = explode('=', $settings['__globals__']['tertiary_color']);
 			$get_id = end($color_id);
 			$tertiary_color = $this->get_golobal_color($get_id);
-		} 
-		
+		}
+
 		$quaternary_color = $settings['quaternary_color'];
-		if( isset($settings['__globals__']) && !empty($settings['__globals__']['quaternary_color']) ) { 
+		if( isset($settings['__globals__']) && !empty($settings['__globals__']['quaternary_color']) ) {
 			$color_id = explode('=', $settings['__globals__']['quaternary_color']);
 			$get_id = end($color_id);
 			$quaternary_color = $this->get_golobal_color($get_id);
-		} 
+		}
 
 
 		$this->add_inline_editing_attributes( 'title', 'basic' );
@@ -1128,7 +1132,7 @@ class Icon_Box extends Base {
 		if( ! $id ) {
 			return $global_color;
 		}
-		
+
 		$el_page_settings 	= [];
 
 		$ekit_id = get_option('elementor_active_kit', true);

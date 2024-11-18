@@ -49,6 +49,10 @@ class Skills extends Base {
         return [ 'progress', 'skill', 'bar', 'chart' ];
     }
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

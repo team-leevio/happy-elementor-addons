@@ -48,6 +48,10 @@ class Image_Stack_Group extends Base {
 		return [ 'image', 'stack', 'icon', 'group' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	protected function register_content_controls() {
 		$this->start_controls_section(
 			'_section_icon',

@@ -1,6 +1,38 @@
 $primary-color: #562dd4;
 $secondary-color: #e8357c;
 
+.elementor-panel {
+
+	#elementor-panel-category-happy_addons_category .elementor-element,
+	#elementor-panel-category-happy_addons_pro_category .elementor-element,
+	#elementor-panel-category-happy_addons_pro_category .is-ha-widget {
+
+		&:hover,
+		&:focus {
+			.icon,
+			.title {
+				background-image: linear-gradient(135deg, #A799FF 25%, #A799FF 100%);
+			}
+		}
+	}
+
+	.ha-section-icon {
+		background-image: linear-gradient(135deg, #ffffff 25%, #ffffff 100%);
+	}
+
+	.elementor-element {
+
+		&:hover,
+		&:focus {
+			.icon {
+				.hm:after {
+					background-image: linear-gradient(135deg, #A799FF 25%, #A799FF 100%);
+				}
+			}
+		}
+	}
+}
+
 .haTemplateLibrary__logo-wrap {
 	background-color: $secondary-color;
 }

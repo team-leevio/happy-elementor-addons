@@ -51,6 +51,10 @@ class Image_Grid extends Base {
 		return [ 'gallery', 'image', 'masonry', 'even', 'portfolio', 'filterable', 'grid' ];
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

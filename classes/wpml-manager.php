@@ -910,6 +910,52 @@ class WPML_Manager {
 					],
 				],
 			],
+
+			/**
+			 * Lightbox
+			 */
+			'lightbox' => [
+				'fields' => [
+					[
+						'field'       => 'button',
+						'type'        => __( 'Lightbox: Button', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					'youtube_link' => [
+						'field'       => 'youtube_link',
+						'type'        => __( 'Lightbox: Link', 'happy-elementor-addons' ),
+						'editor_type' => 'LINK',
+					],
+					'vimeo_link' => [
+						'field'       => 'vimeo_link',
+						'type'        => __( 'Lightbox: Link', 'happy-elementor-addons' ),
+						'editor_type' => 'LINK',
+					],
+				],
+			],
+
+			/**
+			 * Liquid Hover Image
+			 */
+			'liquid-hover-image' => [
+				'fields' => [
+					'button_link' => [
+						'field'       => 'link',
+						'type'        => __( 'Liquid Hover Image: Link', 'happy-elementor-addons' ),
+						'editor_type' => 'LINK',
+					],
+					[
+						'field'       => 'title',
+						'type'        => __( 'Liquid Hover Image: Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					[
+						'field'       => 'sub_title',
+						'type'        => __( 'Liquid Hover Image: Sub Title', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					]
+				],
+			],
 		];
 
 		foreach ( $widgets_map as $key => $data ) {

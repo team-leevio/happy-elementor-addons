@@ -47,6 +47,10 @@ class Link_Hover extends Base {
 		return array('link', 'hover', 'animation');
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */

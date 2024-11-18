@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.12.1
+Version: 3.13.0
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
-Tested up to: 6.6
-Stable tag: 3.12.1
+Tested up to: 6.7
+Stable tag: 3.13.0
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -269,55 +269,39 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.12.1 - 28 August 2024 =
+= 3.13.0- 13 November 2024 =
 
-- Fix: Event Calendar time format issue.
-- Fix: Security improvement for Happy Tooltip.
+- New:  Liquid Hover Image widget.
+- New:  Integrated Hugeicons.
+- Update:  Happy icon pack update.
+- Fix: Text Stroke issue.
 
-= 3.12.0 - 12 August 2024 =
+= 3.12.6 - 05 November 2024 =
 
-- New: Added WPML support for the following widgets: Age Gate, Archive Posts, Comparison Table, Event Calendar, Image Hover Effect, Image Stack Group, Animated Link, Photo Stack, Post Info, Post Navigation, Social Share, Post List, Taxonomy List.
-- Fix: Additional Bug Fixes and Performance Improvements.
+- Fix: Security improvement for Image Compare widget.
+- Fix: Warning with element Caching feature disabled.
 
-= 3.11.3 - 24 July 2024 =
+= 3.12.5 - 21 October 2024 =
 
-- Update: Replaced waypoint.js with Intersection Observer for the following widgets: Number, Fun Factor, Skill Bars, Bar Chart
-- Fix: Background Overlay feature issue on editor panel.
-- Fix: Security improvement for PDF View widget.
-- Fix: PHP warning in post excerpt widget.
+- Fix: All Widget compatible with Element Caching of Elementor.
+- Fix: Floating Effects feature compatible with Element Caching of Elementor.
+- Fix: Happy Tooltip feature compatible with Element Caching of Elementor.
+- Fix: Equal Height feature compatible with Element Caching of Elementor.
+- Fix: Grid Layer feature compatible with latest Elementor 3.24.x
+- Fix: Fun Factor widget undefined variable issue.
+- Fix: Age Gate widget button background issue.
+- Fix: Gradient Heading widget rare issue.
 
-= 3.11.2 - 27 June 2024 =
+= 3.12.4 - 9 October 2024 =
 
-- Tweak: Lightbox widget Alignment option added.
-- Fix: Security improvement for Gradient Heading widget.
+- New: Added WPML support to Lightbox widget.
+- Fix: Security improvement for Theme builder.
 
-= 3.11.1 - 12 June 2024 =
+= 3.12.3 - 19 September 2024 =
 
-- Tweak: Taxonomy List Widget Alignment option added for inline style.
-- Fix: Fatal error with BuddyBoss Platform.
-
-= 3.11.0 - 30 May 2024 =
-
-- New: Lightbox Widget.
-- Fix: GravityForms style issue.
-- Fix: Security improvement for Image Accordion widget.
-- Fix: Security improvement for Post Navigation widget.
-
-= 3.10.9 - 16 May 2024 =
-
-- Fix: Security improvement for Skill Bars widget.
-
-= 3.10.8 - 8 May 2024 =
-
-- Fix: Security improvement for Event Calendar and Image Stack Group widget.
-
-= 3.10.7 - 25 April 2024 =
-
-- Fix: Security improvement for Calendly widget.
-
-= 3.10.6 - 18 April 2024 =
-
-- Fix: Security improvement for Site Title, Horizontal Timeline, Image Stack Group and Photo Stack widget.
-- Update: Made Compatible with Elementor 3.21
+- Update: Made Compatible with Elementor 3.24
+- Update: magnific-popup js updated to v1.2.0.
+- Update: Updated Appsero SDK.
+- Fix: Security improvement for Content Switcher widget.
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)

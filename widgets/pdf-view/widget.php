@@ -50,6 +50,10 @@ class PDF_View extends Base {
         return ['pdf', 'document', 'docs'];
     }
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
     /**
      * Register widget content controls
      */

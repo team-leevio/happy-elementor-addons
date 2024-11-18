@@ -1,3 +1,42 @@
+= 3.13.0 - 13 November 2024 =
+
+- New:  Liquid Hover Image widget.
+- New:  Integrated Hugeicons.
+- Update:  Happy icon pack update.
+- Fix: Text Stroke issue.
+
+= 3.12.6 - 05 November 2024 =
+
+- Fix: Security improvement for Image Compare widget.
+- Fix: Warning with element Caching feature disabled.
+
+= 3.12.5 - 21 October 2024 =
+
+- Fix: All Widget compatible with Element Caching of Elementor.
+- Fix: Floating Effects feature compatible with Element Caching of Elementor.
+- Fix: Happy Tooltip feature compatible with Element Caching of Elementor.
+- Fix: Equal Height feature compatible with Element Caching of Elementor.
+- Fix: Grid Layer feature compatible with latest Elementor 3.24.x
+- Fix: Fun Factor widget undefined variable issue.
+- Fix: Age Gate widget button background issue.
+- Fix: Gradient Heading widget rare issue.
+
+= 3.12.4 - 9 October 2024 =
+
+- New: Added WPML support to Lightbox widget.
+- Fix: Security improvement for Theme builder.
+
+= 3.12.3 - 19 September 2024 =
+
+- Update: Made Compatible with Elementor 3.24
+- Update: magnific-popup js updated to v1.2.0.
+- Update: Updated Appsero SDK.
+- Fix: Security improvement for Content Switcher widget.
+
+= 3.12.2 - 5 September 2024 =
+
+- Tweak: Promotional material added.
+
 = 3.12.1 - 28 August 2024 =
 
 - Fix: Event Calendar time format issue.

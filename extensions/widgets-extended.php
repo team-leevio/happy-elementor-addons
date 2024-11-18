@@ -18,17 +18,18 @@ class Widgets_Extended {
 		add_action( 'elementor/element/button/section_style/after_section_start', [ __CLASS__, 'add_button_controls' ] );
 
 		if( ! in_array( 'text-stroke', ha_get_inactive_features() ) ){
-			add_action( 'elementor/element/heading/section_title_style/after_section_end', [ __CLASS__, 'add_text_stroke' ] );
-			add_action( 'elementor/element/theme-page-title/section_title_style/after_section_end', [ __CLASS__, 'add_text_stroke' ] );
-			add_action( 'elementor/element/theme-site-title/section_title_style/after_section_end', [ __CLASS__, 'add_text_stroke' ] );
-			add_action( 'elementor/element/theme-post-title/section_title_style/after_section_end', [ __CLASS__, 'add_text_stroke' ] );
-			add_action( 'elementor/element/woocommerce-product-title/section_title_style/after_section_end', [ __CLASS__, 'add_text_stroke' ] );
-			add_action( 'elementor/element/animated-headline/section_style_text/after_section_end', [ __CLASS__, 'add_text_stroke' ] );
-			add_action( 'elementor/element/ha-gradient-heading/_section_style_title/after_section_end', [ __CLASS__, 'add_text_stroke' ] );
+
+			add_action( 'elementor/element/heading/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
+			add_action( 'elementor/element/theme-page-title/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
+			add_action( 'elementor/element/theme-site-title/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
+			add_action( 'elementor/element/theme-post-title/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
+			add_action( 'elementor/element/woocommerce-product-title/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
+			add_action( 'elementor/element/animated-headline/section_style_text/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
+			add_action( 'elementor/element/ha-gradient-heading/_section_style_title/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
 		}
 	}
 
-	public static function add_text_stroke( Widget_Base $widget ) {
+	public static function add_text_stroke_old( Widget_Base $widget ) {
 		$common = [
 			'of'     => 'blend_mode',
 			'target' => '.elementor-heading-title',
@@ -53,6 +54,15 @@ class Widgets_Extended {
 		$of     = $map[ $widget->get_name() ]['of'];
 		$target = $map[ $widget->get_name() ]['target'];
 
+		if ( 'ha-gradient-heading' != $widget->get_name() ) {
+			$widget->update_control(
+				$of,
+				[
+					'control_type' => 'content',
+				]
+			);
+		}
+
 		$widget->start_injection( [
 			'at' => 'after',
 			'of' => $of,
@@ -67,6 +77,47 @@ class Widgets_Extended {
 		);
 
 		$widget->end_injection();
+	}
+
+	public static function add_text_stroke( Widget_Base $widget ) {
+		$common = [
+			'target' => '.elementor-heading-title',
+		];
+
+		$map = [
+			'heading'                   => $common,
+			'theme-page-title'          => $common,
+			'theme-site-title'          => $common,
+			'theme-post-title'          => $common,
+			'woocommerce-product-title' => $common,
+			'animated-headline'         => [
+				'target' => '.elementor-headline',
+			],
+			'ha-gradient-heading'       => [
+				'target' => '.ha-gradient-heading',
+			],
+		];
+
+		$target = $map[ $widget->get_name() ]['target'];
+
+		if ( 'animated-headline' == $widget->get_name() ) {
+			$widget->add_control(
+				'ha_text_stroke_heading',
+				[
+					'label' => esc_html__( 'Whole Text', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::HEADING,
+					'separator' => 'before',
+				]
+			);
+		}
+
+		$widget->add_group_control(
+			Group_Control_Text_Stroke::get_type(),
+			[
+				'name'     => 'text_stroke',
+				'selector' => '{{WRAPPER}} ' . $target,
+			]
+		);
 	}
 
 	public static function add_button_controls( Widget_Base $widget ) {
