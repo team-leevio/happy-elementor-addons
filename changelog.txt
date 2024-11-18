@@ -1,3 +1,7 @@
+= 3.14.0 - 19 November 2024 =
+
+- New:  Reading Progress Bar feature.
+
 = 3.13.0 - 13 November 2024 =
 
 - New:  Liquid Hover Image widget.
