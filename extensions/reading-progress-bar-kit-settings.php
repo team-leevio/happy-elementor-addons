@@ -689,6 +689,83 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
                 ],
 			]
         );
+		
+		$this->add_responsive_control(
+            'ha_rpb_horizontal_offset_top',
+            [
+				'label' => __( 'Top Offset', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+                'frontend_available' => true,
+				'size_units' => [ 'px' ],
+				'desktop_default' => [
+					'unit' => 'px'
+				],
+				'tablet_default' => [
+					'unit' => 'px',
+					'size' => 0
+				],
+				'mobile_default' => [
+					'unit' => 'px',
+					'size' => 0
+				],
+				'range' => [
+					'px' => [
+						'min' => 1,
+						'max' => 500,
+					],
+				],
+                'default' => [
+					'unit' => 'px',
+					'size' => 0,
+				],
+				'selectors' => [
+                    '{{WRAPPER}} .hm-hrp-bar-container' => 'top: {{SIZE}}{{UNIT}};',
+				],
+                'condition' => [
+                    'ha_rpb_enable' => 'yes',
+                    'ha_rpb_type' => 'horizontal',
+                    'ha_rpb_horizontal_position' => 'top',
+                ],
+			]
+        );
+		$this->add_responsive_control(
+            'ha_rpb_horizontal_offset_bottom',
+            [
+				'label' => __( 'Bottom Offset', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+                'frontend_available' => true,
+				'size_units' => [ 'px' ],
+				'desktop_default' => [
+					'unit' => 'px'
+				],
+				'tablet_default' => [
+					'unit' => 'px',
+					'size' => 0
+				],
+				'mobile_default' => [
+					'unit' => 'px',
+					'size' => 0
+				],
+				'range' => [
+					'px' => [
+						'min' => 1,
+						'max' => 500,
+					],
+				],
+                'default' => [
+					'unit' => 'px',
+					'size' => 0,
+				],
+				'selectors' => [
+                    '{{WRAPPER}} .hm-hrp-bar-container' => 'bottom: {{SIZE}}{{UNIT}};',
+				],
+                'condition' => [
+                    'ha_rpb_enable' => 'yes',
+                    'ha_rpb_type' => 'horizontal',
+                    'ha_rpb_horizontal_position' => 'bottom',
+                ],
+			]
+        );
 
 		$this->add_control(
 			'hm_rpb_horizontal_fill_heading',
