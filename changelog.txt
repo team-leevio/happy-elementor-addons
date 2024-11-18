@@ -1,10 +1,23 @@
-= *.*.* - 12 July 2024 =
+= 3.14.0 - 19 November 2024 =
 
+- New:  Reading Progress Bar feature.
 - Tweak: Url support for 'post title' widget
 - Tweak: Url support for 'page title' widget
 - Tweak: Url support for 'post featured image' widget
 - Tweak: Some improvement on 'post content' widget
 - Tweak: Some improvement on 'post excerpt' widget
+
+= 3.13.0 - 13 November 2024 =
+
+- New:  Liquid Hover Image widget.
+- New:  Integrated Hugeicons.
+- Update:  Happy icon pack update.
+- Fix: Text Stroke issue.
+
+= 3.12.6 - 05 November 2024 =
+
+- Fix: Security improvement for Image Compare widget.
+- Fix: Warning with element Caching feature disabled.
 
 = 3.12.5 - 21 October 2024 =
 

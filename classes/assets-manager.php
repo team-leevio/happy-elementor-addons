@@ -82,6 +82,13 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION
 		);
 
+		wp_register_style(
+			'huge-icons',
+			HAPPY_ADDONS_ASSETS . 'fonts/huge-icons/huge-icons.min.css',
+			null,
+			HAPPY_ADDONS_VERSION
+		);
+
 		// Image comparasion
 		wp_register_style(
 			'twentytwenty',
@@ -286,11 +293,38 @@ class Assets_Manager {
 			false
 		);
 
+		// gsap js
+		wp_register_script(
+			'gsap',
+			HAPPY_ADDONS_ASSETS . 'vendor/gsap.min.js',
+			[],
+			HAPPY_ADDONS_VERSION,
+			false
+		);
+
+		// three js
+		wp_register_script(
+			'three',
+			HAPPY_ADDONS_ASSETS . 'vendor/three.min.js',
+			[],
+			HAPPY_ADDONS_VERSION,
+			false
+		);
+
+		// hover-effect js
+		wp_register_script(
+			'hover-effect',
+			HAPPY_ADDONS_ASSETS . 'vendor/hover-effect.umd.js',
+			[],
+			HAPPY_ADDONS_VERSION,
+			false
+		);
+
 		// Anime js
 		wp_register_script(
 			'anime',
-			HAPPY_ADDONS_ASSETS . 'vendor/anime/lib/anime' . $suffix . 'js',
-			null,
+			HAPPY_ADDONS_ASSETS . 'vendor/anime/lib/anime.min.js',
+			[],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
@@ -429,6 +463,13 @@ class Assets_Manager {
 		wp_enqueue_style(
 			'happy-icons',
 			HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
+			null,
+			HAPPY_ADDONS_VERSION
+		);
+
+		wp_enqueue_style(
+			'huge-icons',
+			HAPPY_ADDONS_ASSETS . 'fonts/huge-icons/huge-icons.min.css',
 			null,
 			HAPPY_ADDONS_VERSION
 		);

@@ -91,7 +91,8 @@ class Image_Compare extends Base {
                 ],
                 'dynamic' => [
                     'active' => true,
-                ]
+                ],
+                'sanitize_callback' => 'sanitize_text_field',
             ]
         );
 
@@ -105,7 +106,8 @@ class Image_Compare extends Base {
                 'description' => __( 'Label will not be shown if Hide Overlay is enabled in Settings', 'happy-elementor-addons' ),
                 'dynamic' => [
                     'active' => true,
-                ]
+                ],
+                'sanitize_callback' => 'sanitize_text_field',
             ]
         );
 
@@ -536,6 +538,10 @@ class Image_Compare extends Base {
             'before_label' => 'before_label.str',
             'after_label' => 'after_label.str',
         ];
+        
+        $settings['before_label'] = esc_html( wp_strip_all_tags( $settings['before_label'] ) );
+        $settings['after_label'] = esc_html( wp_strip_all_tags( $settings['after_label'] ) );
+
         return ha_prepare_data_prop_settings( $settings, $field_map );
     }
 
@@ -589,6 +595,10 @@ class Image_Compare extends Base {
 
         var data = {};
 
+        function sanitizeInput(input) {
+            return input.replace(/<[^>]*>/g, '').replace(/javascript:/g, '').replace(/[\`\']+/g, '');
+        }
+
         _.each(fieldMap, function(dKey, sKey) {
             if (sKey === 'offset.size') {
                 data[dKey] = settings.offset.size;
@@ -597,8 +607,16 @@ class Image_Compare extends Base {
             if (_.isUndefined(settings[sKey])) {
                 return;
             }
-            data[dKey] = settings[sKey];
+
+            if (sKey === 'before_label' || sKey === 'after_label') {
+                var sLabelText = elementor.helpers.sanitize(settings[sKey], { ALLOW_DATA_ATTR: false });
+                data[dKey] = sanitizeInput(sLabelText);
+            } else {
+                data[dKey] = settings[sKey];
+            }
+            
         });
+
         view.addRenderAttribute('container', 'data-happy-settings', JSON.stringify(data)); #>
 
         <div {{{ view.getRenderAttributeString( 'container' ) }}}>
@@ -627,6 +645,7 @@ class Image_Compare extends Base {
                 var image_url = elementor.imagesManager.getImageUrl( image ); #>
                 <img src="{{ image_url }}">
             <# } #>
+            
         </div>
         <?php
     }
