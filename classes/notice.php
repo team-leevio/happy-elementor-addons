@@ -20,17 +20,13 @@ class Advance_Notice {
 			delete_option( 'ha__user_feedback_survey' );
 		}
 
-		// delete_option( 'ha__black_friday_24_notice' );
 		$black_friday_notice = get_option( 'ha__black_friday_24_notice', "0");
 		if ( 'not_interested' == $black_friday_notice ) {
 			return;
 		}
 
-		$start_utc = '2024-11-19 09:25:00'; // Test start time
-    	$end_utc   = '2024-11-19 09:50:00';   // Test End time
-
-		// $start_utc = '2024-11-19 16:00:00'; // 19 November, 4 PM UTC
-    	// $end_utc   = '2024-12-06 16:00:00';   // 6 December, 4 PM UTC
+		$start_utc = '2024-11-19 16:00:00'; // 19 November, 4 PM UTC
+    	$end_utc   = '2024-12-06 16:00:00';   // 6 December, 4 PM UTC
 		if ( true != self::check_notice_period( $start_utc, $end_utc ) ) {
 			return;
 		}
@@ -40,8 +36,6 @@ class Advance_Notice {
 
 	public static function check_notice_period( $start_utc, $end_utc ) {
 		// Get the current time in UTC
-		// $current_time_utc = time();
-		// $current_time_utc = current_time('timestamp');
 		$time_zone         = new \DateTimeZone( 'UTC' );
 		$current_utc_time = new \DateTime( 'now', $time_zone );
 		$current_time     = $current_utc_time->getTimestamp();
@@ -49,11 +43,6 @@ class Advance_Notice {
 		// Convert the start and end UTC timestamps to integers
 		$start_time   = strtotime( $start_utc );
 		$end_time     = strtotime( $end_utc );
-
-		error_log( print_r( 'Start Time => ' . $start_time , 1 ) );
-		error_log( print_r( 'Current Time => ' . $current_time , 1 ) );
-		error_log( print_r( 'End Time => ' . $end_time , 1 ) );
-		error_log( print_r( '=====================' , 1 ) );
 
 		// Check if the current time falls within the specified period
 		if ( $current_time >= $start_time && $current_time <= $end_time ) {
@@ -83,7 +72,7 @@ class Advance_Notice {
                     <h3>Black Friday Cyber Monday Alert 🎉</h3>
                     <p>Upgrade your website design with premium widgets and features, at up to %s discount!</p>
                     <div class="ha-review-notice__actions">
-                        <a href="%s" class="ha-review-button ha-review-button--cta" target="_blank"><span>👍 Upgrade Here</span></a>
+                        <a href="%s" class="ha-review-button ha-review-button--cta" target="_blank"><span>👍 Save BIG Today</span></a>
                         <a href="%s" class="ha-review-button ha-review-button--cta ha-review-button--error ha-review-button--outline"><span>💔 No Thanks</span></a>
                     </div>
                 </div>
