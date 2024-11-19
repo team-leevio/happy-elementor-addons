@@ -62,11 +62,11 @@ class Condition_Manager {
     }
 
     public function get_name($cond) {
-        return $this->all_conds_list[$cond]['title'];
+        return $this->all_conds_list[$cond]['title'] ?? '';
     }
 
     public function get_all_name($cond) {
-        return $this->all_conds_list[$cond]['all_label'];
+        return $this->all_conds_list[$cond]['all_label'] ?? '';
     }
 
     private function archive_conditions() {

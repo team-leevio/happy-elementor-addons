@@ -46,6 +46,10 @@ class Post_Content extends Base {
 		return [ 'content', 'text' ];
 	}
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
 	/**
      * Register widget content controls
      */
@@ -121,6 +125,7 @@ class Post_Content extends Base {
 				// 'separator' => 'after',
 			]
 		);
+
         $this->add_control(
 			'title_color',
 			[
@@ -137,15 +142,120 @@ class Post_Content extends Base {
 			]
 		);
 
+		$this->add_control(
+			'title_typography_type',
+			[
+				'label' => esc_html__( 'Individual Typography?', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Yes', 'happy-elementor-addons' ),
+				'label_off' => esc_html__( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'individual',
+				'default' => 'global',
+			]
+		);
+
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography',
-				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'label' => __( 'Global Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} h1, {{WRAPPER}} h2, {{WRAPPER}} h3, {{WRAPPER}} h4, {{WRAPPER}} h5, {{WRAPPER}} h6',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
+				'condition' => [
+					'title_typography_type!' => 'individual'
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography_h1',
+				'label' => __( 'HTML Tag H1', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} h1',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'condition' => [
+					'title_typography_type' => 'individual'
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography_h2',
+				'label' => __( 'HTML Tag H2', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} h2',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
+				'condition' => [
+					'title_typography_type' => 'individual'
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography_h3',
+				'label' => __( 'HTML Tag H3', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} h3',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
+				'condition' => [
+					'title_typography_type' => 'individual'
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography_h4',
+				'label' => __( 'HTML Tag H4', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} h4',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
+				'condition' => [
+					'title_typography_type' => 'individual'
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography_h5',
+				'label' => __( 'HTML Tag H5', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} h5',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
+				'condition' => [
+					'title_typography_type' => 'individual'
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography_h6',
+				'label' => __( 'HTML Tag H6', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} h6',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
+				'condition' => [
+					'title_typography_type' => 'individual'
+				]
 			]
 		);
         
@@ -187,8 +297,6 @@ class Post_Content extends Base {
 		static $have_posts = [];
         $post = get_post();
 
-		$settings = $this->get_settings_for_display();
-
 		if ( post_password_required( $post->ID ) ) {
 			echo get_the_password_form( $post->ID );
 			return;
@@ -196,9 +304,13 @@ class Post_Content extends Base {
 
 		if ( isset( $have_posts[ $post->ID ] ) ) { return; }
 		$have_posts[ $post->ID ] = true;
-		if (ha_elementor()->editor->is_edit_mode() || is_preview()) {
-			echo '<h1>What is Lorem Ipsum?</h1>
-			<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><h2>Why do we use it?</h2><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p><h3>Where does it come from?</h3><p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p><p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p><h4>Where can I get some?</h4><p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p><h5>How can I got it?</h5><p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p><h6>How can I do?</h6><p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>';
+		if (ha_elementor()->editor->is_edit_mode()) {
+			printf(
+				'<div %s>%s</div>',
+				'style="margin: 1rem;padding: 1rem 1.25rem;border-left: 5px solid #f5c848;color: #856404;background-color: #fff3cd;"',
+				__( 'This content is for design purpose only. It won\'t be shown in the frontend.', 'happy-elementor-addons' )
+			);
+			echo '<h1>What is Lorem Ipsum?</h1> <p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry.</p> <h2>Why do we use it?</h2> <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout</p> <h3>Where does it come from?</h3> <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p> <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p> <h4>Where can I get some?</h4> <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.</p> <h5>How can I got it?</h5> <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.</p> <h6>How can I do?</h6> <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.</p>';
 		}else {
 			echo apply_filters( 'the_content', get_the_content() );
 		}

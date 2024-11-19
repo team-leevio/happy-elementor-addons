@@ -51,6 +51,10 @@ class Post_Featured_Image extends Base {
 		return ['post image', 'image'];
 	}
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
 	/**
 	 * Register widget content controls
 	 */
@@ -112,6 +116,96 @@ class Post_Featured_Image extends Base {
 				'label_off' => __('no', 'happy-elementor-addons'),
 				'return_value' => 'yes',
 				'default' => 'no',
+			]
+		);
+
+		$this->add_control(
+			'enable_link',
+			[
+				'label' => esc_html__('Enable Link', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => esc_html__('Yes', 'happy-elementor-addons'),
+				'label_off' => esc_html__('No', 'happy-elementor-addons'),
+				'return_value' => 'yes',
+				'default' => '',
+			]
+		);
+
+		$this->add_control(
+			'link_type',
+			[
+				'label' => esc_html__('Link Type', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'dynamic',
+				'options' => [
+					'dynamic' => esc_html__('Dynamic', 'happy-elementor-addons'),
+					'custom' => esc_html__('Custom', 'happy-elementor-addons')
+				],
+				'condition' => [
+					'enable_link!' => ''
+				]
+			]
+		);
+
+		$this->add_control(
+			'dynamic_link_options',
+			[
+				'label' => esc_html__( 'Link Options', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::POPOVER_TOGGLE,
+				'label_off' => esc_html__( 'Default', 'happy-elementor-addons' ),
+				'label_on' => esc_html__( 'Custom', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => '',
+				'condition' => [
+					'enable_link!' => '',
+					'link_type' => 'dynamic'
+				]
+			]
+		);
+
+		$this->start_popover();
+
+		$this->add_control(
+			'dynamic_link_external',
+			[
+				'label' => esc_html__('Open in new window', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => esc_html__('Yes', 'happy-elementor-addons'),
+				'label_off' => esc_html__('No', 'happy-elementor-addons'),
+				'return_value' => 'yes',
+				'default' => '',
+			]
+		);
+
+		$this->add_control(
+			'dynamic_link_nofollow',
+			[
+				'label' => esc_html__('Add nofollow', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => esc_html__('Yes', 'happy-elementor-addons'),
+				'label_off' => esc_html__('No', 'happy-elementor-addons'),
+				'return_value' => 'yes',
+				'default' => '',
+			]
+		);
+
+		$this->end_popover();
+
+		$this->add_control(
+			'custom_link',
+			[
+				'label' => esc_html__('Custom Link', 'happy-elementor-addons'),
+				'type' => Controls_Manager::URL,
+				'placeholder' => esc_html__('https://your-link.com', 'happy-elementor-addons'),
+				'options' => ['url', 'is_external', 'nofollow'],
+				'label_block' => true,
+				'dynamic' => [
+					'active' => true,
+				],
+				'condition' => [
+					'enable_link!' => '',
+					'link_type' => 'custom'
+				]
 			]
 		);
 
@@ -275,10 +369,40 @@ class Post_Featured_Image extends Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		if (ha_elementor()->editor->is_edit_mode() || is_preview()) {
+		if (ha_elementor()->editor->is_edit_mode()) {
+			if (!empty($settings['enable_link'])) {
+				$link_type = isset($settings['link_type']) ? $settings['link_type'] : 'dynamic';
+				if ($link_type == 'dynamic') {
+					$this->add_link_attributes('single_link', [
+						'url' => get_the_permalink(),
+						'is_external' => ((!empty($settings['dynamic_link_options']))? ($settings['dynamic_link_external'] == 'yes'): false),
+						'nofollow' => ((!empty($settings['dynamic_link_options']))? ($settings['dynamic_link_nofollow'] == 'yes'): false),
+					]);
+				} else if (! empty( $settings['custom_link']['url'] )){
+					$this->add_link_attributes('single_link', $settings['custom_link']);
+				}
+				echo '<a '.$this->get_render_attribute_string( 'single_link' ).'>';
+			}
 			echo '<img src="' . Utils::get_placeholder_image_src() . '" alt="place holder image">';
+			if (!empty($settings['enable_link'])) {
+				echo '</a>';
+			}
 		} else {
 			if (has_post_thumbnail()) {
+
+				if (!empty($settings['enable_link'])) {
+					$link_type = isset($settings['link_type']) ? $settings['link_type'] : 'dynamic';
+					if ($link_type == 'dynamic') {
+						$this->add_link_attributes('single_link', [
+							'url' => get_the_permalink(),
+							'is_external' => ((!empty($settings['dynamic_link_options']))? ($settings['dynamic_link_external'] == 'yes'): false),
+							'nofollow' => ((!empty($settings['dynamic_link_options']))? ($settings['dynamic_link_nofollow'] == 'yes'): false),
+						]);
+					} else if (! empty( $settings['custom_link']['url'] )){
+						$this->add_link_attributes('single_link', $settings['custom_link']);
+					}
+					echo '<a '.$this->get_render_attribute_string( 'single_link' ).'>';
+				}
 
 				if ($settings['post_feature_image_size'] == 'custom') {
 					the_post_thumbnail(array($settings['post_feature_image_custom_dimension']['width'], $settings['post_feature_image_custom_dimension']['height']));
@@ -288,7 +412,11 @@ class Post_Featured_Image extends Base {
 
 				if ('yes' == $settings['image_caption']) { ?>
 					<figcaption class="ha-image-caption"><?php echo wp_kses_post(get_the_post_thumbnail_caption()); ?></figcaption>
-<?php }
+				<?php }
+
+				if (!empty($settings['enable_link'])) {
+					echo '</a>';
+				}
 			}
 		}
 	}

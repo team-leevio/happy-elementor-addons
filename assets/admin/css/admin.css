@@ -27,7 +27,7 @@
 }
 .ha-btn-primary:hover,
 .ha-btn-primary:focus {
-	background: #4b2f9d;
+	background: rgb(75.2, 47.2, 156.8);
 	color: #fff;
 }
 
@@ -37,7 +37,7 @@
 }
 .ha-btn-secondary:hover,
 .ha-btn-secondary:focus {
-	background: #d6226e;
+	background: rgb(213.9146919431, 34.0853080569, 110.4834123223);
 	color: #fff;
 }
 
@@ -1037,7 +1037,7 @@ p + .ha-review-notice__actions {
 	cursor: pointer;
 }
 .ha-template-element-modal .modal__content.new-template #ha-new-template-form__submit:hover {
-	background: #4b339c;
+	background: rgb(74.75, 50.9285714286, 156.0714285714);
 }
 .ha-template-element-modal .modal__content.new-template #ha-new-template-form__submit:disabled {
 	background: #cacaca;
@@ -1123,7 +1123,7 @@ p + .ha-review-notice__actions {
 }
 .ha-template-element-modal .modal__btn-primary:hover,
 .ha-template-element-modal .modal__btn-primary:focus {
-	background-color: #2d8e3a;
+	background-color: rgb(44.7857142857, 142.2142857143, 58.1428571429);
 }
 .ha-template-element-modal .modal__btn-secondary {
 	background-color: #562dd4;

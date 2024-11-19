@@ -19,7 +19,6 @@ class Theme_Builder {
     private $location_cache;
 
     const CPT = 'ha_library';
-    const TEMPLATE_TYPE = ['header' => 'Header', 'footer' => 'Footer', 'single' => 'Single', 'archive' => 'Archive'];
     const TAB_BASE = "edit.php?post_type=ha_library";
 
     public $header_template;
@@ -63,9 +62,35 @@ class Theme_Builder {
         add_filter('template_include', [$this, 'ha_theme_builder_content'], 999);
         add_action('happyaddons_theme_builder_render', array($this, 'single_blog_content_elementor'), 999);
 
+		add_action( 'elementor/elements/categories_registered', [$this, 'add_elementor_widget_categories'] );
+
         // Register Ajax Handles
         // add_action( 'wp_ajax_ha_cond_template_type', [$this, 'ha_get_template_type'] );
     }
+
+	public function add_elementor_widget_categories( $elements_manager ) {
+		if( self::CPT == get_post_type() ) {
+			$elements_manager->add_category(
+				'happy_addons_theme_builder',
+				[
+					'title' => esc_html__( 'Happy Theme Builder', 'happy-elementor-addons' ),
+					'icon' => 'fa fa-plug',
+				]
+			);
+		}
+	}
+
+	public static function get_template_types() {
+		$template_types = [
+			'header' => esc_html__('Header', 'happy-elementor-addons'),
+			'footer' => esc_html__('Footer', 'happy-elementor-addons'),
+			'single' => esc_html__('Single', 'happy-elementor-addons'),
+			'archive' => esc_html__('Archive', 'happy-elementor-addons')
+		];
+
+		// return apply_filters('happyaddons_theme_builder_template_types', $template_types);
+		return apply_filters('happyaddons/theme-builder/template-types', $template_types);
+	}
 
     public function add_query_vars_filter($vars) {
         $vars[] = "ha_library_type";
@@ -128,8 +153,8 @@ class Theme_Builder {
     public function modify_menu() {
         add_submenu_page(
             Dashboard::PAGE_SLUG, // Parent slug
-            'Theme Builder', // Page title
-            'Theme Builder', // Menu title
+            __('Theme Builder', 'happy-elementor-addons'), // Page title
+            __('Theme Builder', 'happy-elementor-addons'), // Menu title
             'manage_options', // Capability
             'edit.php?post_type=ha_library',  // Slug
             false // Function
@@ -194,7 +219,7 @@ class Theme_Builder {
                         <h1 class="ha-admin-top-bar__heading-title">Theme Builder</h1>
                     </div>
                     <div class="ha-admin-top-bar__main-area-buttons">
-                        <a class="page-title-action" id="ha-template-library-add-new" href="http://ha.test/wp-admin/post-new.php?post_type=ha_library">Add New</a>
+                        <a class="page-title-action" id="ha-template-library-add-new" href="<?php echo admin_url(); ?>post-new.php?post_type=ha_library">Add New</a>
                     </div>
                 </div>
             </div>
@@ -222,7 +247,7 @@ class Theme_Builder {
             $type       = get_post_meta($post_id, '_ha_library_type', true);
             $isActive   = get_post_meta($post_id, '_ha_template_active', true);
 
-            echo ucfirst($type);
+            echo ucwords(str_replace('-', ' ', $type));
 
             echo "<span id='htlt-", $post_id, "'>";
 
@@ -237,32 +262,37 @@ class Theme_Builder {
 
         if ( 'condition' === $column_name ) {
 
-            // generate display condition from document conditions
-            $includeConditions     = [];
-            $excludeConditions      = [];
+			$type       = get_post_meta($post_id, '_ha_library_type', true);
 
-            // get doc conditions
-            $documentConditions    = $this->get_document_conditions($post_id);
-
-            if( !empty( $documentConditions ) ) {
-                foreach( $documentConditions AS $key => $condition ) {
-                    if( 'include' === $condition['type'] ) {
-                        $sub_page_id            = !empty( $condition['sub_id'] ) ? '#' . get_the_title( $condition['sub_id'] ) : '';
-                        $con_label              = !empty( $condition['sub_name'] ) && 'all' !== $condition['sub_name'] ? Condition_Manager::instance()->get_name($condition['sub_name']) . $sub_page_id : Condition_Manager::instance()->get_all_name($condition['name']);
-                        $includeConditions[]    = $con_label;
-                    } else if ( 'exclude' === $condition['type'] ) {
-                        $sub_page_id        = !empty( $condition['sub_id'] ) ? '#' . get_the_title( $condition['sub_id'] ) : '';
-                        $con_label          =  !empty( $condition['sub_name'] ) && 'all' !== $condition['sub_name'] ? Condition_Manager::instance()->get_name($condition['sub_name']) . $sub_page_id : Condition_Manager::instance()->get_all_name($condition['name']);
-                        $excludeConditions[] = $con_label;
-                    } else {
-                        // not use this..
-                    }
-
-                }
-            }
-
-            echo '<b>Include : </b> ' . implode( ', ', $includeConditions ) . '<br/>' . '<b>Exclude : </b> ' . implode( ', ', $excludeConditions );
-
+			if( 'loop-template' != $type ) {
+				// generate display condition from document conditions
+				$includeConditions     = [];
+				$excludeConditions      = [];
+	
+				// get doc conditions
+				$documentConditions    = $this->get_document_conditions($post_id);
+	
+				if( !empty( $documentConditions ) ) {
+					foreach( $documentConditions AS $key => $condition ) {
+						if( 'include' === $condition['type'] ) {
+							$sub_page_id            = !empty( $condition['sub_id'] ) ? '#' . get_the_title( $condition['sub_id'] ) : '';
+							$con_label              = !empty( $condition['sub_name'] ) && 'all' !== $condition['sub_name'] ? Condition_Manager::instance()->get_name($condition['sub_name']) . $sub_page_id : Condition_Manager::instance()->get_all_name($condition['name']);
+							$includeConditions[]    = $con_label;
+						} else if ( 'exclude' === $condition['type'] ) {
+							$sub_page_id        = !empty( $condition['sub_id'] ) ? '#' . get_the_title( $condition['sub_id'] ) : '';
+							$con_label          =  !empty( $condition['sub_name'] ) && 'all' !== $condition['sub_name'] ? Condition_Manager::instance()->get_name($condition['sub_name']) . $sub_page_id : Condition_Manager::instance()->get_all_name($condition['name']);
+							$excludeConditions[] = $con_label;
+						} else {
+							// not use this..
+						}
+	
+					}
+				}
+	
+				echo '<b>Include : </b> ' . implode( ', ', $includeConditions ) . '<br/>' . '<b>Exclude : </b> ' . implode( ', ', $excludeConditions );
+			} else {
+				echo '<b>Not Applicable</b>';	
+			}
         }
     }
 
@@ -273,7 +303,7 @@ class Theme_Builder {
         <div id="happyaddon-template-library-tabs-wrapper" class="nav-tab-wrapper">
             <a class="nav-tab <?= !($getActive) ? 'nav-tab-active' : ''; ?>" href="<?= admin_url(self::TAB_BASE) ?>">All</a>
             <?php
-            foreach (self::TEMPLATE_TYPE as $key => $value) {
+            foreach (self::get_template_types() as $key => $value) {
                 $active = ($getActive == $key) ? 'nav-tab-active' : '';
                 $admin_filter_url = admin_url(self::TAB_BASE . '&ha_library_type=' . $key);
                 echo '<a class="nav-tab ' . $active . '" href="' . $admin_filter_url . '">' . $value . '</a>';
@@ -907,9 +937,15 @@ class Theme_Builder {
                 true
             );
 
+			wp_localize_script('happy-addons-template-elements', 'haTemplateInfo', [
+				'postType' => self::CPT,
+				'templateType' => get_post_meta(get_the_ID(), '_ha_library_type', true),
+				'postId' => get_the_ID(),
+			]);
+
             wp_enqueue_script(
-                'happy-addons-micromodal',
-                'https://unpkg.com/micromodal@0.4.10/dist/micromodal.js',
+                'micromodal',
+				HAPPY_ADDONS_ASSETS . 'vendor/micromodal/micromodal.min.js',
                 [],
                 HAPPY_ADDONS_VERSION,
                 true
@@ -941,31 +977,28 @@ class Theme_Builder {
             $title = "";
             switch ($tpl_type) {
                 case "header":
-                    $title = "Header Settings";
+                    $title = esc_html__('Header Settings', 'happy-elementor-addons');
                     break;
 
                 case "footer":
-                    $title = "Footer Settings";
+                    $title = esc_html__('Footer Settings', 'happy-elementor-addons');
                     break;
 
                 case "single":
-                    $title = "Singular Settings";
+                    $title = esc_html__('Single Settings', 'happy-elementor-addons');
                     break;
 
                 case "archive":
-                    $title = "Archive Settings";
+                    $title = esc_html__('Archive Settings', 'happy-elementor-addons');
+                    break;
+
+                case "loop-template":
+                    $title = esc_html__('Loop Template', 'happy-elementor-addons');
                     break;
             }
             $config['settings']['panelPage']['title'] = $title;
         }
         return $config;
-    }
-
-    public function pr($data=[])
-    {
-        echo '<pre>';
-        print_r($data);
-        echo '</pre>';
     }
 }
 

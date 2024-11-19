@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.13.0
+Version: 3.14.0
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.7
-Stable tag: 3.13.0
+Stable tag: 3.14.0
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -269,7 +269,11 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.13.0- 13 November 2024 =
+= 3.14.0 - 19 November 2024 =
+
+- New:  Reading Progress Bar feature.
+
+= 3.13.0 - 13 November 2024 =
 
 - New:  Liquid Hover Image widget.
 - New:  Integrated Hugeicons.

@@ -180,6 +180,12 @@ class Extensions_Manager {
 				// 'demo' => 'https://happyaddons.com/text-stroke/',
 				'is_pro' => false,
 			],
+			'reading-progress-bar' => [
+				'title' => __( 'Reading Progress Bar', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-reading-glass-alt',
+				// 'demo' => 'https://happyaddons.com/text-reading-progress-bar/',
+				'is_pro' => false,
+			],
 		];
 	}
 

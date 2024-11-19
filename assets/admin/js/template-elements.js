@@ -9,28 +9,34 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 (function ($) {
   var modalTemplate = document.getElementById("tmpl-modal-template-condition");
   var conditionTemplate = document.getElementById("tmpl-elementor-new-template");
-  var templateType = "";
+
+  // var templateType = "";
   var postId = 0;
   var newConditions = [];
   var oldConditionCache = "";
   if (typeof elementor !== "undefined") {
     elementor.on("panel:init", function ($e) {
       postId = elementor.config.document.id;
-      handleHaTemplateType(postId);
+      // handleHaTemplateType( postId );
       getHaTemplateConds(postId);
-      elementor.getPanelView().footer.currentView.addSubMenuItem("saver-options", {
-        before: "save-draft",
-        name: "haconditions",
-        icon: "ha-template-elements",
-        title: "Template Conditions",
-        callback: function callback() {
-          return elementor.trigger("ha:templateCondition");
-        }
-      });
+      if ('loop-template' != haTemplateInfo.templateType) {
+        elementor.getPanelView().footer.currentView.addSubMenuItem("saver-options", {
+          before: "save-draft",
+          name: "haconditions",
+          icon: "ha-template-elements",
+          title: "Template Conditions",
+          callback: function callback() {
+            return elementor.trigger("ha:templateCondition");
+          }
+        });
+      }
     });
-    elementor.channels.editor.on("elementorThemeBuilder:ApplyPreview", function ($e) {
-      handleHaTemplateType(postId);
-    });
+    // elementor.channels.editor.on(
+    // 	"elementorThemeBuilder:ApplyPreview",
+    // 	function ( $e ) {
+    // 		handleHaTemplateType( postId );
+    // 	}
+    // );
 
     //elementor.getPanelView().getHeaderView().setTitle('a');
     elementor.on("set:page", function ($e) {});
@@ -194,24 +200,25 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     });
     newConditions = conditions;
   }
-  function handleHaTemplateType(id) {
-    jQuery.ajax({
-      url: ajaxurl,
-      type: "get",
-      dataType: "json",
-      data: {
-        nonce: HappyAddonsEditor.editor_nonce,
-        action: "ha_cond_template_type",
-        // AJAX action for admin-ajax.php
-        post_id: id
-      },
-      success: function success(response) {
-        if (response && response.data) {
-          templateType = response.data;
-        }
-      }
-    });
-  }
+
+  // function handleHaTemplateType ( id ) {
+  // 	jQuery.ajax( {
+  // 		url: ajaxurl,
+  // 		type: "get",
+  // 		dataType: "json",
+  // 		data: {
+  // 			nonce: HappyAddonsEditor.editor_nonce,
+  // 			action: "ha_cond_template_type", // AJAX action for admin-ajax.php
+  // 			post_id: id,
+  // 		},
+  // 		success: function ( response ) {
+  // 			if ( response && response.data ) {
+  // 				templateType = response.data;
+  // 			}
+  // 		},
+  // 	} );
+  // }
+
   function getHaTemplateConds(id) {
     jQuery.ajax({
       url: ajaxurl,
@@ -327,7 +334,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     }, 500);
   }
   elementor.saver.on('after:save', function (data) {
-    if (data.status != "inherit") {
+    if (data.status != "inherit" && 'loop-template' != haTemplateInfo.templateType) {
       elementor.trigger("ha:templateCondition");
     }
   });

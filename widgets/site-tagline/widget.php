@@ -50,6 +50,10 @@ class Site_Tagline extends Base {
 		return ['site', 'tagline'];
 	}
 
+	public function get_categories() {
+        return [ 'happy_addons_category', 'happy_addons_theme_builder' ];
+    }
+
 	/**
 	 * Register widget content controls
 	 */

@@ -52,12 +52,12 @@
 .ha-dashboard-btn--save:hover,
 .ha-dashboard-btn--save:focus,
 .ha-dashboard-btn--save:active {
-	background-color: #488a20;
+	background-color: rgb(71.5384615385, 138.4615384615, 31.5384615385);
 	color: #fff;
 }
 .ha-dashboard-btn--save:disabled,
 .ha-dashboard-btn--save.disabled {
-	background-color: #b3b3b3;
+	background-color: rgb(178.5, 178.5, 178.5);
 	-webkit-box-shadow: none;
 	        box-shadow: none;
 	opacity: .7;
@@ -85,7 +85,7 @@
 	}
 }
 .ha-dashboard-tabs__nav-item--pro {
-	border-color: #d6226e;
+	border-color: rgb(213.9146919431, 34.0853080569, 110.4834123223);
 	background-color: #e2498a;
 	color: #fff;
 }
@@ -226,7 +226,7 @@
 .ha-dashboard-widgets__item-preview:active {
 	-webkit-box-shadow: none;
 	        box-shadow: none;
-	color: #8799a7;
+	color: rgb(135.3018867925, 152.9622641509, 166.6981132075);
 }
 .ha-dashboard-widgets__item-badge {
 	position: absolute;
@@ -331,7 +331,7 @@
 .ha-dashboard-credentials__item-preview:active {
 	-webkit-box-shadow: none;
 	        box-shadow: none;
-	color: #8799a7;
+	color: rgb(135.3018867925, 152.9622641509, 166.6981132075);
 }
 .ha-dashboard-credentials__item-badge {
 	position: absolute;
@@ -839,7 +839,7 @@
 }
 .ha-btn-primary:hover,
 .ha-btn-primary:focus {
-	background: #4b2f9d;
+	background: rgb(75.2, 47.2, 156.8);
 	color: #fff;
 }
 
@@ -849,7 +849,7 @@
 }
 .ha-btn-secondary:hover,
 .ha-btn-secondary:focus {
-	background: #d6226e;
+	background: rgb(213.9146919431, 34.0853080569, 110.4834123223);
 	color: #fff;
 }
 

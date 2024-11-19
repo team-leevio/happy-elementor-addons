@@ -90,7 +90,7 @@ class Conditions_Cache {
     public function regenerate() {
         $this->clear();
 
-        $document_types = array_keys(Theme_Builder::TEMPLATE_TYPE);
+        $document_types = array_keys(Theme_Builder::get_template_types());
 
         $post_types = [
             Theme_Builder::CPT,
