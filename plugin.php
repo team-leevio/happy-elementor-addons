@@ -4,7 +4,7 @@
  * Plugin Name: Happy Elementor Addons
  * Plugin URI: https://happyaddons.com/
  * Description: <a href="https://happyaddons.com/">Happy Addons for Elementor</a> Is the Best Elementor Addons Comes With 44+ Free Elementor Widgets Including Table Builder, Testimonial, Event Calendar,Slider,News Ticker, Image Grid, etc & Features Like Elementor Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Elementor Icons, 450+ Template Packs & More.
- * Version: 3.14.0
+ * Version: 3.14.1
  * Author: Leevio
  * Author URI: https://happyaddons.com/
  * Requires Plugins: elementor
@@ -42,7 +42,7 @@ defined('ABSPATH') || die();
 if ( defined( 'HAPPY_ADDONS_DEV' ) && true == HAPPY_ADDONS_DEV ) {
 	define('HAPPY_ADDONS_VERSION', time() );
 } else {
-	define('HAPPY_ADDONS_VERSION', '3.14.0');
+	define('HAPPY_ADDONS_VERSION', '3.14.1');
 }
 define('HAPPY_ADDONS__FILE__', __FILE__);
 define('HAPPY_ADDONS_DIR_PATH', plugin_dir_path(HAPPY_ADDONS__FILE__));
@@ -81,7 +81,7 @@ function ha_let_the_journey_begin() {
     }
 
     require HAPPY_ADDONS_DIR_PATH . 'base.php';
-    \Happy_Addons\Elementor\Base::instance();
+    \Happy_Addons\Elementor\Base::instance()->init();
 }
 
 add_action('plugins_loaded', 'ha_let_the_journey_begin');
