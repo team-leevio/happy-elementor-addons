@@ -20,21 +20,8 @@ class Base {
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
-			self::$instance->init();
 		}
 		return self::$instance;
-	}
-
-	private function __construct() {
-		add_action( 'init', [ $this, 'i18n' ] );
-	}
-
-	public function i18n() {
-		load_plugin_textdomain(
-			'happy-elementor-addons',
-			false,
-			dirname( plugin_basename( HAPPY_ADDONS__FILE__ ) ) . '/i18n/'
-		);
 	}
 
 	public function init() {
@@ -48,9 +35,15 @@ class Base {
 
 		add_action( 'init', [ $this, 'include_on_init' ] );
 
+		add_action( 'init', [ $this, 'i18n' ] );
+
 		$this->init_appsero_tracking();
 
 		do_action( 'happyaddons_loaded' );
+	}
+
+	public function i18n() {
+		load_plugin_textdomain( 'happy-elementor-addons', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n' );
 	}
 
 	/**
@@ -68,6 +61,8 @@ class Base {
 			'Happy Elementor Addons',
 			HAPPY_ADDONS__FILE__
 		);
+
+		$this->appsero->set_textdomain( 'happy-elementor-addons' );
 
 		// Active insights
 		$this->appsero->insights()
