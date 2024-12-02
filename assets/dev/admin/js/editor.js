@@ -296,6 +296,39 @@
 			elementor.settings.page.addChangeCallback(value, readingProgressBarHandaler);
 		});
 
+		// Custom Mouse Cursor
+		function cmcInitialHandaler (settingsValue) {
+			let changeItem = Object.entries(this.model.changed)[ 0 ];
+			let settings = this.getSettings().settings;
+			let attributes = this.model.attributes;
+			
+			let cmcInitData = {
+				'check': 'cmcInitMessage',
+				'changeValue': settingsValue,
+				'changeItem': changeItem
+			};			
+
+			if ( 'ha_cmc_init_switcher' != changeItem[0] ) {
+				let data = {
+					'ha_cmc_init_switcher': attributes.ha_cmc_init_switcher,
+					'ha_cmc_init_enable_lazy_move': attributes.ha_cmc_init_enable_lazy_move,
+				};
+				cmcInitData = Object.assign(cmcInitData, data);
+			} 
+			
+			$("#elementor-preview-iframe")[ 0 ].contentWindow.postMessage(cmcInitData);
+
+		};
+
+		let cmcInitialControlsHandler = [
+			'ha_cmc_init_switcher',
+			'ha_cmc_init_enable_lazy_move',
+		];
+
+		$.each(cmcInitialControlsHandler, function (index, value) {
+			elementor.settings.page.addChangeCallback(value, cmcInitialHandaler);
+		});
+
 
 		/**
 		 * Register grid layer shortcut

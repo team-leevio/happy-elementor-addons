@@ -186,6 +186,12 @@ class Extensions_Manager {
 				// 'demo' => 'https://happyaddons.com/text-reading-progress-bar/',
 				'is_pro' => false,
 			],
+			'custom-mouse-cursor' => [
+				'title' => __( 'Happy Mouse Cursor', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-cursor-hover-click',
+				// 'demo' => 'https://happyaddons.com/custom-mouse-cursor/',
+				'is_pro' => false,
+			],
 		];
 	}
 

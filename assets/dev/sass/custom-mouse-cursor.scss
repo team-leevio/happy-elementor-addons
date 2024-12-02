@@ -1,0 +1,159 @@
+.ha-cursor {
+	background: #000;
+	border-radius: 50%;
+	z-index: 99999;
+	transition: unset;
+}
+
+.ha-cursor:before {
+	height: 80px;
+	width: 80px;
+	top: -50%;
+	left: -50%;
+	transform: translate(-50%, -50%) scale(0.6);
+	background: #000;
+	transition: all 0.3s;
+}
+
+.ha-cursor.-text:before {
+	transform: translate(-50%, -50%) scale(1.2);
+	opacity: unset;
+}
+
+.ha-cursor .ha-cursor-text {
+	top: unset;
+	left: unset;
+	width: 80px;
+	height: 80px;
+}
+
+.ha-cursor .mf-cursor-media-box {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	transition: all 0.3s;
+}
+
+.mf-cursor-inner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.mf-cursor-media {
+	margin: unset;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ha-cursor.-media:before {
+	transform: translate(-50%, -50%);
+}
+
+.ha-cursor.-media .mf-cursor-media-box {
+	transform: scale(1);
+}
+
+.ha-cursor .ha-cursor-inner .ha-cursor-media {
+	transition: all 0.3s;
+}
+
+/**initial cursor **/
+.ha-cursor.ha-init-hide:before {
+	opacity: 0;
+	animation: hacmcfadeOut 0.3s forwards;
+}
+
+.ha-cursor.ha-init-hide.ha-text:before {
+	display: block;
+	animation: hacmcfadeIn 0.3s forwards;
+}
+
+.ha-cursor.ha-init-hide.ha-media:before {
+	display: block;
+	animation: hacmcfadeIn 0.3s forwards;
+}
+
+body.hm-init-default-cursor-none {
+	cursor: none !important;
+}
+
+body.hm-init-default-cursor-none a {
+	cursor: none !important;
+}
+
+@keyframes hacmcfadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	20% {
+		opacity: 0.2;
+	}
+
+	40% {
+		opacity: 0.4;
+	}
+
+	60% {
+		opacity: 0.6;
+	}
+
+	80% {
+		opacity: 0.8;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes hacmcfadeOut {
+	0% {
+		opacity: 1;
+	}
+
+	20% {
+		opacity: 0.8;
+	}
+
+	40% {
+		opacity: 0.6;
+	}
+
+	60% {
+		opacity: 0.4;
+	}
+
+	80% {
+		opacity: 0.2;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes haImageRotationClockwise {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+@keyframes haImageRotationAntiClockwise {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(-360deg);
+	}
+}
