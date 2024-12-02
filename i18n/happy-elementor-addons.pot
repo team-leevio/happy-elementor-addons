@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Happy Elementor Addons 3.14.1\n"
+"Project-Id-Version: Happy Elementor Addons 3.14.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/happy-elementor-addons\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-24T10:00:55+00:00\n"
+"POT-Creation-Date: 2024-12-02T12:57:51+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: happy-elementor-addons\n"
@@ -525,6 +525,12 @@ msgstr ""
 #: extensions/reading-progress-bar-kit-settings.php:39
 #: extensions/reading-progress-bar.php:76
 msgid "Reading Progress Bar"
+msgstr ""
+
+#: classes/extensions-manager.php:190
+#: extensions/custom-mouse-cursor.php:119
+#: extensions/custom-mouse-cursor.php:1187
+msgid "Happy Mouse Cursor"
 msgstr ""
 
 #: classes/icons-manager.php:15
@@ -2506,6 +2512,10 @@ msgid "Styles"
 msgstr ""
 
 #: extensions/advanced-tooltip.php:286
+#: extensions/custom-mouse-cursor.php:439
+#: extensions/custom-mouse-cursor.php:742
+#: extensions/custom-mouse-cursor.php:987
+#: extensions/custom-mouse-cursor.php:1350
 #: extensions/reading-progress-bar-kit-settings.php:951
 #: extensions/scroll-to-top-kit-settings.php:232
 #: extensions/widgets-extended.php:160
@@ -2592,6 +2602,10 @@ msgid "Background"
 msgstr ""
 
 #: extensions/advanced-tooltip.php:376
+#: extensions/custom-mouse-cursor.php:949
+#: extensions/custom-mouse-cursor.php:968
+#: extensions/custom-mouse-cursor.php:1312
+#: extensions/custom-mouse-cursor.php:1331
 #: extensions/reading-progress-bar-kit-settings.php:828
 #: extensions/reading-progress-bar-kit-settings.php:893
 #: extensions/reading-progress-bar-kit-settings.php:1043
@@ -2715,6 +2729,7 @@ msgid "Background Color"
 msgstr ""
 
 #: extensions/advanced-tooltip.php:393
+#: extensions/custom-mouse-cursor.php:363
 #: widgets/age-gate/widget.php:1134
 #: widgets/age-gate/widget.php:1205
 #: widgets/age-gate/widget.php:1515
@@ -2873,6 +2888,10 @@ msgid "Border"
 msgstr ""
 
 #: extensions/advanced-tooltip.php:421
+#: extensions/custom-mouse-cursor.php:534
+#: extensions/custom-mouse-cursor.php:835
+#: extensions/custom-mouse-cursor.php:1120
+#: extensions/custom-mouse-cursor.php:1418
 #: extensions/scroll-to-top-kit-settings.php:574
 #: widgets/age-gate/widget.php:641
 #: widgets/age-gate/widget.php:751
@@ -2999,6 +3018,7 @@ msgid "Border Radius"
 msgstr ""
 
 #: extensions/advanced-tooltip.php:436
+#: extensions/custom-mouse-cursor.php:1082
 #: widgets/age-gate/widget.php:812
 #: widgets/age-gate/widget.php:872
 #: widgets/age-gate/widget.php:957
@@ -3224,6 +3244,8 @@ msgstr ""
 
 #: extensions/background-overlay.php:59
 #: extensions/background-overlay.php:130
+#: extensions/custom-mouse-cursor.php:579
+#: extensions/custom-mouse-cursor.php:859
 #: extensions/scroll-to-top-kit-settings.php:299
 #: widgets/card/widget.php:609
 #: widgets/card/widget.php:643
@@ -3375,6 +3397,546 @@ msgstr ""
 msgid "Skew Y"
 msgstr ""
 
+#: extensions/custom-mouse-cursor.php:136
+msgid "Note:"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:137
+msgid "To change mouse cursor for the whole page, use the page settings options."
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:144
+#: extensions/custom-mouse-cursor.php:1195
+msgid "Enable Happy Mouse Cursor"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:225
+msgid "Keep in Mind:"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:226
+msgid "Enabling custom mouse cursor on a parent element will override the settings of the child element."
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:237
+msgid "Default Cursor"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:257
+msgid "Cursor Type"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:260
+#: extensions/scroll-to-top-kit-settings.php:333
+#: extensions/scroll-to-top-kit-settings.php:383
+#: inc/functions.php:122
+#: widgets/age-gate/widget.php:258
+#: widgets/age-gate/widget.php:309
+#: widgets/archive-title/widget.php:167
+#: widgets/card/widget.php:282
+#: widgets/comparison-table/widget.php:449
+#: widgets/creative-button/widget.php:178
+#: widgets/dual-button/widget.php:80
+#: widgets/dual-button/widget.php:192
+#: widgets/dual-button/widget.php:212
+#: widgets/dual-button/widget.php:269
+#: widgets/infobox/widget.php:512
+#: widgets/mailchimp/widget.php:577
+#: widgets/member/widget.php:590
+#: widgets/number/widget.php:73
+#: widgets/number/widget.php:300
+#: widgets/post-info/widget.php:655
+#: widgets/pricing-table/widget.php:277
+#: widgets/social-share/widget.php:437
+msgid "Text"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:261
+#: extensions/reading-progress-bar-kit-settings.php:613
+#: extensions/reading-progress-bar-kit-settings.php:878
+#: extensions/scroll-to-top-kit-settings.php:469
+#: extensions/scroll-to-top-kit-settings.php:526
+#: inc/functions.php:146
+#: widgets/age-gate/widget.php:672
+#: widgets/age-gate/widget.php:788
+#: widgets/age-gate/widget.php:849
+#: widgets/age-gate/widget.php:916
+#: widgets/age-gate/widget.php:987
+#: widgets/age-gate/widget.php:1839
+#: widgets/age-gate/widget.php:1940
+#: widgets/archive-posts/widget.php:717
+#: widgets/archive-posts/widget.php:764
+#: widgets/archive-posts/widget.php:811
+#: widgets/archive-posts/widget.php:858
+#: widgets/archive-posts/widget.php:920
+#: widgets/archive-posts/widget.php:940
+#: widgets/archive-posts/widget.php:960
+#: widgets/archive-title/widget.php:176
+#: widgets/author-meta/widget.php:233
+#: widgets/author-meta/widget.php:278
+#: widgets/author-meta/widget.php:491
+#: widgets/author-meta/widget.php:523
+#: widgets/bar-chart/widget.php:590
+#: widgets/bar-chart/widget.php:733
+#: widgets/bar-chart/widget.php:867
+#: widgets/bar-chart/widget.php:980
+#: widgets/bar-chart/widget.php:1185
+#: widgets/bar-chart/widget.php:1286
+#: widgets/carousel/widget.php:696
+#: widgets/carousel/widget.php:728
+#: widgets/carousel/widget.php:857
+#: widgets/carousel/widget.php:877
+#: widgets/carousel/widget.php:909
+#: widgets/comparison-table/widget.php:534
+#: widgets/comparison-table/widget.php:999
+#: widgets/comparison-table/widget.php:1030
+#: widgets/comparison-table/widget.php:1307
+#: widgets/comparison-table/widget.php:1407
+#: widgets/content-switcher/widget.php:952
+#: widgets/content-switcher/widget.php:983
+#: widgets/content-switcher/widget.php:1118
+#: widgets/data-table/widget.php:759
+#: widgets/data-table/widget.php:1090
+#: widgets/event-calendar/widget.php:898
+#: widgets/event-calendar/widget.php:955
+#: widgets/event-calendar/widget.php:1036
+#: widgets/event-calendar/widget.php:1113
+#: widgets/event-calendar/widget.php:1155
+#: widgets/event-calendar/widget.php:1246
+#: widgets/event-calendar/widget.php:1463
+#: widgets/event-calendar/widget.php:1514
+#: widgets/event-calendar/widget.php:1548
+#: widgets/event-calendar/widget.php:1587
+#: widgets/event-calendar/widget.php:1675
+#: widgets/event-calendar/widget.php:1730
+#: widgets/event-calendar/widget.php:1764
+#: widgets/flip-box/widget.php:699
+#: widgets/flip-box/widget.php:744
+#: widgets/flip-box/widget.php:797
+#: widgets/flip-box/widget.php:898
+#: widgets/flip-box/widget.php:1069
+#: widgets/flip-box/widget.php:1126
+#: widgets/flip-box/widget.php:1167
+#: widgets/fluent-form/widget.php:436
+#: widgets/fluent-form/widget.php:684
+#: widgets/fluent-form/widget.php:704
+#: widgets/fun-factor/widget.php:698
+#: widgets/fun-factor/widget.php:757
+#: widgets/fun-factor/widget.php:852
+#: widgets/gravityforms/widget.php:759
+#: widgets/gravityforms/widget.php:779
+#: widgets/horizontal-timeline/widget.php:552
+#: widgets/horizontal-timeline/widget.php:602
+#: widgets/horizontal-timeline/widget.php:1078
+#: widgets/horizontal-timeline/widget.php:1135
+#: widgets/horizontal-timeline/widget.php:1167
+#: widgets/icon-box/widget.php:601
+#: widgets/icon-box/widget.php:657
+#: widgets/image-accordion/widget.php:762
+#: widgets/image-accordion/widget.php:887
+#: widgets/image-accordion/widget.php:941
+#: widgets/image-accordion/widget.php:1055
+#: widgets/image-accordion/widget.php:1088
+#: widgets/image-compare/widget.php:270
+#: widgets/image-compare/widget.php:491
+#: widgets/image-stack-group/widget.php:515
+#: widgets/infobox/widget.php:833
+#: widgets/lightbox/widget.php:505
+#: widgets/lightbox/widget.php:536
+#: widgets/liquid-hover-image/widget.php:419
+#: widgets/liquid-hover-image/widget.php:488
+#: widgets/mailchimp/widget.php:712
+#: widgets/mailchimp/widget.php:789
+#: widgets/mailchimp/widget.php:1070
+#: widgets/mailchimp/widget.php:1302
+#: widgets/mailchimp/widget.php:1336
+#: widgets/mailchimp/widget.php:1536
+#: widgets/mailchimp/widget.php:1573
+#: widgets/member/widget.php:1564
+#: widgets/member/widget.php:1595
+#: widgets/navigation-menu/widget.php:348
+#: widgets/navigation-menu/widget.php:383
+#: widgets/navigation-menu/widget.php:418
+#: widgets/navigation-menu/widget.php:658
+#: widgets/navigation-menu/widget.php:691
+#: widgets/page-title/widget.php:259
+#: widgets/post-comments/widget.php:143
+#: widgets/post-comments/widget.php:199
+#: widgets/post-comments/widget.php:398
+#: widgets/post-comments/widget.php:521
+#: widgets/post-comments/widget.php:553
+#: widgets/post-content/widget.php:132
+#: widgets/post-content/widget.php:273
+#: widgets/post-excerpt/widget.php:157
+#: widgets/post-featured-image/widget.php:345
+#: widgets/post-info/widget.php:589
+#: widgets/post-info/widget.php:617
+#: widgets/post-list/widget.php:722
+#: widgets/post-list/widget.php:741
+#: widgets/post-list/widget.php:782
+#: widgets/post-list/widget.php:941
+#: widgets/post-list/widget.php:992
+#: widgets/post-list/widget.php:1037
+#: widgets/post-navigation/widget.php:300
+#: widgets/post-navigation/widget.php:321
+#: widgets/post-navigation/widget.php:368
+#: widgets/post-navigation/widget.php:388
+#: widgets/post-navigation/widget.php:434
+#: widgets/post-navigation/widget.php:454
+#: widgets/post-navigation/widget.php:519
+#: widgets/post-tab/widget.php:489
+#: widgets/post-tab/widget.php:519
+#: widgets/post-tab/widget.php:775
+#: widgets/post-tab/widget.php:794
+#: widgets/post-tab/widget.php:836
+#: widgets/post-tab/widget.php:856
+#: widgets/post-tab/widget.php:909
+#: widgets/post-title/widget.php:268
+#: widgets/site-tagline/widget.php:162
+#: widgets/site-title/widget.php:176
+#: widgets/slider/widget.php:774
+#: widgets/slider/widget.php:794
+#: widgets/slider/widget.php:826
+#: widgets/social-icons/widget.php:216
+#: widgets/social-icons/widget.php:266
+#: widgets/social-icons/widget.php:390
+#: widgets/social-icons/widget.php:492
+#: widgets/social-icons/widget.php:539
+#: widgets/social-icons/widget.php:867
+#: widgets/social-share/widget.php:301
+#: widgets/social-share/widget.php:352
+#: widgets/social-share/widget.php:641
+#: widgets/social-share/widget.php:683
+#: widgets/step-flow/widget.php:329
+#: widgets/step-flow/widget.php:409
+#: widgets/step-flow/widget.php:484
+#: widgets/step-flow/widget.php:551
+#: widgets/step-flow/widget.php:723
+#: widgets/taxonomy-list/widget.php:587
+#: widgets/taxonomy-list/widget.php:607
+#: widgets/twitter-feed/widget.php:656
+#: widgets/twitter-feed/widget.php:949
+#: widgets/twitter-feed/widget.php:996
+#: widgets/twitter-feed/widget.php:1060
+#: widgets/twitter-feed/widget.php:1124
+#: widgets/twitter-feed/widget.php:1232
+#: widgets/twitter-feed/widget.php:1263
+#: widgets/weform/widget.php:702
+#: widgets/weform/widget.php:722
+msgid "Color"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:262
+#: extensions/scroll-to-top-kit-settings.php:325
+#: extensions/scroll-to-top-kit-settings.php:350
+#: widgets/age-gate/widget.php:269
+#: widgets/age-gate/widget.php:323
+#: widgets/age-gate/widget.php:1271
+#: widgets/age-gate/widget.php:1631
+#: widgets/card/widget.php:366
+#: widgets/comparison-table/widget.php:193
+#: widgets/comparison-table/widget.php:203
+#: widgets/comparison-table/widget.php:453
+#: widgets/comparison-table/widget.php:517
+#: widgets/comparison-table/widget.php:1042
+#: widgets/comparison-table/widget.php:1370
+#: widgets/content-switcher/widget.php:223
+#: widgets/creative-button/widget.php:209
+#: widgets/data-table/widget.php:126
+#: widgets/data-table/widget.php:140
+#: widgets/data-table/widget.php:394
+#: widgets/data-table/widget.php:412
+#: widgets/dual-button/widget.php:109
+#: widgets/dual-button/widget.php:120
+#: widgets/dual-button/widget.php:196
+#: widgets/dual-button/widget.php:229
+#: widgets/dual-button/widget.php:242
+#: widgets/dual-button/widget.php:298
+#: widgets/dual-button/widget.php:309
+#: widgets/flip-box/widget.php:91
+#: widgets/flip-box/widget.php:108
+#: widgets/flip-box/widget.php:121
+#: widgets/flip-box/widget.php:251
+#: widgets/flip-box/widget.php:301
+#: widgets/flip-box/widget.php:314
+#: widgets/fun-factor/widget.php:82
+#: widgets/horizontal-timeline/widget.php:85
+#: widgets/horizontal-timeline/widget.php:613
+#: widgets/icon-box/widget.php:506
+#: widgets/image-stack-group/widget.php:77
+#: widgets/infobox/widget.php:88
+#: widgets/infobox/widget.php:198
+#: widgets/infobox/widget.php:542
+#: widgets/lightbox/widget.php:148
+#: widgets/lordicon/widget.php:220
+#: widgets/mailchimp/widget.php:276
+#: widgets/mailchimp/widget.php:363
+#: widgets/mailchimp/widget.php:462
+#: widgets/mailchimp/widget.php:537
+#: widgets/mailchimp/widget.php:599
+#: widgets/mailchimp/widget.php:1380
+#: widgets/member/widget.php:626
+#: widgets/pdf-view/widget.php:181
+#: widgets/pdf-view/widget.php:372
+#: widgets/post-info/widget.php:331
+#: widgets/post-info/widget.php:609
+#: widgets/post-list/widget.php:280
+#: widgets/pricing-table/widget.php:289
+#: widgets/site-tagline/widget.php:73
+#: widgets/social-icons/widget.php:62
+#: widgets/social-icons/widget.php:71
+#: widgets/social-icons/widget.php:665
+#: widgets/social-share/widget.php:436
+#: widgets/step-flow/widget.php:72
+#: widgets/step-flow/widget.php:83
+#: widgets/step-flow/widget.php:232
+#: widgets/taxonomy-list/widget.php:124
+#: widgets/taxonomy-list/widget.php:129
+#: widgets/taxonomy-list/widget.php:145
+#: widgets/taxonomy-list/widget.php:278
+#: widgets/taxonomy-list/widget.php:297
+msgid "Icon"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:263
+#: extensions/scroll-to-top-kit-settings.php:329
+#: extensions/scroll-to-top-kit-settings.php:367
+#: widgets/age-gate/widget.php:121
+#: widgets/age-gate/widget.php:723
+#: widgets/archive-posts/widget.php:586
+#: widgets/card/widget.php:84
+#: widgets/card/widget.php:435
+#: widgets/carousel/widget.php:114
+#: widgets/comparison-table/widget.php:457
+#: widgets/comparison-table/widget.php:484
+#: widgets/comparison-table/widget.php:1319
+#: widgets/data-table/widget.php:130
+#: widgets/data-table/widget.php:153
+#: widgets/data-table/widget.php:398
+#: widgets/data-table/widget.php:426
+#: widgets/event-calendar/widget.php:1379
+#: widgets/flip-box/widget.php:95
+#: widgets/flip-box/widget.php:139
+#: widgets/flip-box/widget.php:255
+#: widgets/flip-box/widget.php:267
+#: widgets/fun-factor/widget.php:86
+#: widgets/fun-factor/widget.php:99
+#: widgets/horizontal-timeline/widget.php:100
+#: widgets/horizontal-timeline/widget.php:968
+#: widgets/image-compare/widget.php:87
+#: widgets/image-compare/widget.php:126
+#: widgets/image-grid/widget.php:308
+#: widgets/image-hover-effect/widget.php:68
+#: widgets/image-stack-group/widget.php:73
+#: widgets/image-stack-group/widget.php:121
+#: widgets/infobox/widget.php:92
+#: widgets/infobox/widget.php:160
+#: widgets/justified-gallery/widget.php:349
+#: widgets/lightbox/widget.php:91
+#: widgets/lightbox/widget.php:100
+#: widgets/lightbox/widget.php:190
+#: widgets/lightbox/widget.php:200
+#: widgets/lightbox/widget.php:580
+#: widgets/liquid-hover-image/widget.php:77
+#: widgets/liquid-hover-image/widget.php:288
+#: widgets/photo-stack/widget.php:83
+#: widgets/post-tab/widget.php:687
+#: widgets/slider/widget.php:83
+#: widgets/taxonomy-list/widget.php:133
+#: widgets/taxonomy-list/widget.php:161
+#: widgets/taxonomy-list/widget.php:282
+#: widgets/taxonomy-list/widget.php:315
+#: widgets/testimonial/widget.php:150
+#: widgets/testimonial/widget.php:309
+msgid "Image"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:264
+#: widgets/lightbox/widget.php:186
+msgid "Video"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:292
+#: widgets/post-info/widget.php:348
+msgid "Choose Icon"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:309
+#: widgets/age-gate/widget.php:1408
+#: widgets/age-gate/widget.php:1435
+#: widgets/age-gate/widget.php:1775
+#: widgets/age-gate/widget.php:1804
+#: widgets/comparison-table/widget.php:216
+#: widgets/comparison-table/widget.php:1074
+#: widgets/content-switcher/widget.php:580
+#: widgets/content-switcher/widget.php:678
+#: widgets/data-table/widget.php:190
+#: widgets/data-table/widget.php:497
+#: widgets/data-table/widget.php:814
+#: widgets/fluent-form/widget.php:425
+#: widgets/fun-factor/widget.php:477
+#: widgets/horizontal-timeline/widget.php:182
+#: widgets/horizontal-timeline/widget.php:689
+#: widgets/image-stack-group/widget.php:189
+#: widgets/image-stack-group/widget.php:406
+#: widgets/navigation-menu/widget.php:856
+#: widgets/pdf-view/widget.php:381
+#: widgets/site-tagline/widget.php:178
+#: widgets/taxonomy-list/widget.php:633
+#: widgets/threesixty-rotation/widget.php:375
+#: widgets/twitter-feed/widget.php:1136
+msgid "Icon Color"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:327
+#: widgets/comparison-table/widget.php:1062
+#: widgets/creative-button/widget.php:464
+#: widgets/data-table/widget.php:791
+#: widgets/event-calendar/widget.php:1568
+#: widgets/event-calendar/widget.php:1654
+#: widgets/flip-box/widget.php:621
+#: widgets/flip-box/widget.php:991
+#: widgets/image-accordion/widget.php:1160
+#: widgets/image-stack-group/widget.php:312
+#: widgets/lightbox/widget.php:430
+#: widgets/mailchimp/widget.php:1441
+#: widgets/member/widget.php:1192
+#: widgets/navigation-menu/widget.php:763
+#: widgets/pdf-view/widget.php:393
+#: widgets/social-share/widget.php:580
+#: widgets/taxonomy-list/widget.php:646
+#: widgets/threesixty-rotation/widget.php:356
+msgid "Icon Size"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:348
+msgid "Cursor Text"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:398
+#: widgets/event-calendar/widget.php:256
+#: widgets/image-accordion/widget.php:73
+msgid "Choose Image"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:413
+#: extensions/custom-mouse-cursor.php:717
+msgid "Object Fit"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:416
+#: widgets/flip-box/widget.php:606
+#: widgets/flip-box/widget.php:976
+msgid "Contain"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:417
+#: extensions/custom-mouse-cursor.php:720
+#: widgets/flip-box/widget.php:607
+#: widgets/flip-box/widget.php:977
+msgid "Cover"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:418
+#: extensions/custom-mouse-cursor.php:721
+msgid "Fill"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:479
+#: extensions/custom-mouse-cursor.php:781
+#: extensions/custom-mouse-cursor.php:1028
+#: extensions/custom-mouse-cursor.php:1377
+#: extensions/reading-progress-bar-kit-settings.php:658
+#: extensions/scroll-to-top-kit-settings.php:255
+#: extensions/widgets-extended.php:138
+#: widgets/age-gate/widget.php:597
+#: widgets/calendly/widget.php:102
+#: widgets/card/widget.php:476
+#: widgets/comparison-table/widget.php:1350
+#: widgets/flip-box/widget.php:446
+#: widgets/fun-factor/widget.php:427
+#: widgets/fun-factor/widget.php:826
+#: widgets/horizontal-timeline/widget.php:995
+#: widgets/image-accordion/widget.php:475
+#: widgets/image-grid/widget.php:316
+#: widgets/infobox/widget.php:674
+#: widgets/justified-gallery/widget.php:208
+#: widgets/lightbox/widget.php:615
+#: widgets/logo-grid/widget.php:300
+#: widgets/member/widget.php:794
+#: widgets/pdf-view/widget.php:219
+#: widgets/post-info/widget.php:560
+#: widgets/review/widget.php:599
+#: widgets/skills/widget.php:225
+#: widgets/testimonial/widget.php:343
+msgid "Height"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:558
+msgid "360 Rotate"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:601
+msgid "Enable Rotation"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:625
+#: extensions/floating-effects.php:196
+#: extensions/floating-effects.php:359
+#: extensions/floating-effects.php:491
+msgid "Delay"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:656
+#: widgets/liquid-hover-image/widget.php:247
+#: widgets/step-flow/widget.php:586
+msgid "Direction"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:661
+msgid "Anti Clockwise"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:665
+msgid "Clockwise"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:702
+msgid "Choose Video"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:883
+msgid "Background Style"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:896
+msgid "Enable Blur"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:919
+msgid "Blur"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:1197
+msgid "Enable Initial mouse cursor"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:1209
+msgid "Enable Lazy Move"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:1253
+msgid "Enable Mix Blend"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:1276
+msgid "Mix Blend Color"
+msgstr ""
+
+#: extensions/custom-mouse-cursor.php:1301
+msgid "Cursor Style"
+msgstr ""
+
 #: extensions/equal-height.php:47
 msgid "Equal Height"
 msgstr ""
@@ -3432,12 +3994,6 @@ msgstr ""
 #: widgets/liquid-hover-image/widget.php:173
 #: widgets/number/widget.php:99
 msgid "Duration"
-msgstr ""
-
-#: extensions/floating-effects.php:196
-#: extensions/floating-effects.php:359
-#: extensions/floating-effects.php:491
-msgid "Delay"
 msgstr ""
 
 #: extensions/floating-effects.php:301
@@ -3913,206 +4469,6 @@ msgstr ""
 msgid "Typography"
 msgstr ""
 
-#: extensions/reading-progress-bar-kit-settings.php:613
-#: extensions/reading-progress-bar-kit-settings.php:878
-#: extensions/scroll-to-top-kit-settings.php:469
-#: extensions/scroll-to-top-kit-settings.php:526
-#: inc/functions.php:146
-#: widgets/age-gate/widget.php:672
-#: widgets/age-gate/widget.php:788
-#: widgets/age-gate/widget.php:849
-#: widgets/age-gate/widget.php:916
-#: widgets/age-gate/widget.php:987
-#: widgets/age-gate/widget.php:1839
-#: widgets/age-gate/widget.php:1940
-#: widgets/archive-posts/widget.php:717
-#: widgets/archive-posts/widget.php:764
-#: widgets/archive-posts/widget.php:811
-#: widgets/archive-posts/widget.php:858
-#: widgets/archive-posts/widget.php:920
-#: widgets/archive-posts/widget.php:940
-#: widgets/archive-posts/widget.php:960
-#: widgets/archive-title/widget.php:176
-#: widgets/author-meta/widget.php:233
-#: widgets/author-meta/widget.php:278
-#: widgets/author-meta/widget.php:491
-#: widgets/author-meta/widget.php:523
-#: widgets/bar-chart/widget.php:590
-#: widgets/bar-chart/widget.php:733
-#: widgets/bar-chart/widget.php:867
-#: widgets/bar-chart/widget.php:980
-#: widgets/bar-chart/widget.php:1185
-#: widgets/bar-chart/widget.php:1286
-#: widgets/carousel/widget.php:696
-#: widgets/carousel/widget.php:728
-#: widgets/carousel/widget.php:857
-#: widgets/carousel/widget.php:877
-#: widgets/carousel/widget.php:909
-#: widgets/comparison-table/widget.php:534
-#: widgets/comparison-table/widget.php:999
-#: widgets/comparison-table/widget.php:1030
-#: widgets/comparison-table/widget.php:1307
-#: widgets/comparison-table/widget.php:1407
-#: widgets/content-switcher/widget.php:952
-#: widgets/content-switcher/widget.php:983
-#: widgets/content-switcher/widget.php:1118
-#: widgets/data-table/widget.php:759
-#: widgets/data-table/widget.php:1090
-#: widgets/event-calendar/widget.php:898
-#: widgets/event-calendar/widget.php:955
-#: widgets/event-calendar/widget.php:1036
-#: widgets/event-calendar/widget.php:1113
-#: widgets/event-calendar/widget.php:1155
-#: widgets/event-calendar/widget.php:1246
-#: widgets/event-calendar/widget.php:1463
-#: widgets/event-calendar/widget.php:1514
-#: widgets/event-calendar/widget.php:1548
-#: widgets/event-calendar/widget.php:1587
-#: widgets/event-calendar/widget.php:1675
-#: widgets/event-calendar/widget.php:1730
-#: widgets/event-calendar/widget.php:1764
-#: widgets/flip-box/widget.php:699
-#: widgets/flip-box/widget.php:744
-#: widgets/flip-box/widget.php:797
-#: widgets/flip-box/widget.php:898
-#: widgets/flip-box/widget.php:1069
-#: widgets/flip-box/widget.php:1126
-#: widgets/flip-box/widget.php:1167
-#: widgets/fluent-form/widget.php:436
-#: widgets/fluent-form/widget.php:684
-#: widgets/fluent-form/widget.php:704
-#: widgets/fun-factor/widget.php:698
-#: widgets/fun-factor/widget.php:757
-#: widgets/fun-factor/widget.php:852
-#: widgets/gravityforms/widget.php:759
-#: widgets/gravityforms/widget.php:779
-#: widgets/horizontal-timeline/widget.php:552
-#: widgets/horizontal-timeline/widget.php:602
-#: widgets/horizontal-timeline/widget.php:1078
-#: widgets/horizontal-timeline/widget.php:1135
-#: widgets/horizontal-timeline/widget.php:1167
-#: widgets/icon-box/widget.php:601
-#: widgets/icon-box/widget.php:657
-#: widgets/image-accordion/widget.php:762
-#: widgets/image-accordion/widget.php:887
-#: widgets/image-accordion/widget.php:941
-#: widgets/image-accordion/widget.php:1055
-#: widgets/image-accordion/widget.php:1088
-#: widgets/image-compare/widget.php:270
-#: widgets/image-compare/widget.php:491
-#: widgets/image-stack-group/widget.php:515
-#: widgets/infobox/widget.php:833
-#: widgets/lightbox/widget.php:505
-#: widgets/lightbox/widget.php:536
-#: widgets/liquid-hover-image/widget.php:419
-#: widgets/liquid-hover-image/widget.php:488
-#: widgets/mailchimp/widget.php:712
-#: widgets/mailchimp/widget.php:789
-#: widgets/mailchimp/widget.php:1070
-#: widgets/mailchimp/widget.php:1302
-#: widgets/mailchimp/widget.php:1336
-#: widgets/mailchimp/widget.php:1536
-#: widgets/mailchimp/widget.php:1573
-#: widgets/member/widget.php:1564
-#: widgets/member/widget.php:1595
-#: widgets/navigation-menu/widget.php:348
-#: widgets/navigation-menu/widget.php:383
-#: widgets/navigation-menu/widget.php:418
-#: widgets/navigation-menu/widget.php:658
-#: widgets/navigation-menu/widget.php:691
-#: widgets/page-title/widget.php:259
-#: widgets/post-comments/widget.php:143
-#: widgets/post-comments/widget.php:199
-#: widgets/post-comments/widget.php:398
-#: widgets/post-comments/widget.php:521
-#: widgets/post-comments/widget.php:553
-#: widgets/post-content/widget.php:132
-#: widgets/post-content/widget.php:273
-#: widgets/post-excerpt/widget.php:157
-#: widgets/post-featured-image/widget.php:345
-#: widgets/post-info/widget.php:589
-#: widgets/post-info/widget.php:617
-#: widgets/post-list/widget.php:722
-#: widgets/post-list/widget.php:741
-#: widgets/post-list/widget.php:782
-#: widgets/post-list/widget.php:941
-#: widgets/post-list/widget.php:992
-#: widgets/post-list/widget.php:1037
-#: widgets/post-navigation/widget.php:300
-#: widgets/post-navigation/widget.php:321
-#: widgets/post-navigation/widget.php:368
-#: widgets/post-navigation/widget.php:388
-#: widgets/post-navigation/widget.php:434
-#: widgets/post-navigation/widget.php:454
-#: widgets/post-navigation/widget.php:519
-#: widgets/post-tab/widget.php:489
-#: widgets/post-tab/widget.php:519
-#: widgets/post-tab/widget.php:775
-#: widgets/post-tab/widget.php:794
-#: widgets/post-tab/widget.php:836
-#: widgets/post-tab/widget.php:856
-#: widgets/post-tab/widget.php:909
-#: widgets/post-title/widget.php:268
-#: widgets/site-tagline/widget.php:162
-#: widgets/site-title/widget.php:176
-#: widgets/slider/widget.php:774
-#: widgets/slider/widget.php:794
-#: widgets/slider/widget.php:826
-#: widgets/social-icons/widget.php:216
-#: widgets/social-icons/widget.php:266
-#: widgets/social-icons/widget.php:390
-#: widgets/social-icons/widget.php:492
-#: widgets/social-icons/widget.php:539
-#: widgets/social-icons/widget.php:867
-#: widgets/social-share/widget.php:301
-#: widgets/social-share/widget.php:352
-#: widgets/social-share/widget.php:641
-#: widgets/social-share/widget.php:683
-#: widgets/step-flow/widget.php:329
-#: widgets/step-flow/widget.php:409
-#: widgets/step-flow/widget.php:484
-#: widgets/step-flow/widget.php:551
-#: widgets/step-flow/widget.php:723
-#: widgets/taxonomy-list/widget.php:587
-#: widgets/taxonomy-list/widget.php:607
-#: widgets/twitter-feed/widget.php:656
-#: widgets/twitter-feed/widget.php:949
-#: widgets/twitter-feed/widget.php:996
-#: widgets/twitter-feed/widget.php:1060
-#: widgets/twitter-feed/widget.php:1124
-#: widgets/twitter-feed/widget.php:1232
-#: widgets/twitter-feed/widget.php:1263
-#: widgets/weform/widget.php:702
-#: widgets/weform/widget.php:722
-msgid "Color"
-msgstr ""
-
-#: extensions/reading-progress-bar-kit-settings.php:658
-#: extensions/scroll-to-top-kit-settings.php:255
-#: extensions/widgets-extended.php:138
-#: widgets/age-gate/widget.php:597
-#: widgets/calendly/widget.php:102
-#: widgets/card/widget.php:476
-#: widgets/comparison-table/widget.php:1350
-#: widgets/flip-box/widget.php:446
-#: widgets/fun-factor/widget.php:427
-#: widgets/fun-factor/widget.php:826
-#: widgets/horizontal-timeline/widget.php:995
-#: widgets/image-accordion/widget.php:475
-#: widgets/image-grid/widget.php:316
-#: widgets/infobox/widget.php:674
-#: widgets/justified-gallery/widget.php:208
-#: widgets/lightbox/widget.php:615
-#: widgets/logo-grid/widget.php:300
-#: widgets/member/widget.php:794
-#: widgets/pdf-view/widget.php:219
-#: widgets/post-info/widget.php:560
-#: widgets/review/widget.php:599
-#: widgets/skills/widget.php:225
-#: widgets/testimonial/widget.php:343
-msgid "Height"
-msgstr ""
-
 #: extensions/reading-progress-bar-kit-settings.php:696
 msgid "Top Offset"
 msgstr ""
@@ -4180,153 +4536,6 @@ msgstr ""
 #: widgets/image-stack-group/widget.php:69
 #: widgets/infobox/widget.php:83
 msgid "Media Type"
-msgstr ""
-
-#: extensions/scroll-to-top-kit-settings.php:325
-#: extensions/scroll-to-top-kit-settings.php:350
-#: widgets/age-gate/widget.php:269
-#: widgets/age-gate/widget.php:323
-#: widgets/age-gate/widget.php:1271
-#: widgets/age-gate/widget.php:1631
-#: widgets/card/widget.php:366
-#: widgets/comparison-table/widget.php:193
-#: widgets/comparison-table/widget.php:203
-#: widgets/comparison-table/widget.php:453
-#: widgets/comparison-table/widget.php:517
-#: widgets/comparison-table/widget.php:1042
-#: widgets/comparison-table/widget.php:1370
-#: widgets/content-switcher/widget.php:223
-#: widgets/creative-button/widget.php:209
-#: widgets/data-table/widget.php:126
-#: widgets/data-table/widget.php:140
-#: widgets/data-table/widget.php:394
-#: widgets/data-table/widget.php:412
-#: widgets/dual-button/widget.php:109
-#: widgets/dual-button/widget.php:120
-#: widgets/dual-button/widget.php:196
-#: widgets/dual-button/widget.php:229
-#: widgets/dual-button/widget.php:242
-#: widgets/dual-button/widget.php:298
-#: widgets/dual-button/widget.php:309
-#: widgets/flip-box/widget.php:91
-#: widgets/flip-box/widget.php:108
-#: widgets/flip-box/widget.php:121
-#: widgets/flip-box/widget.php:251
-#: widgets/flip-box/widget.php:301
-#: widgets/flip-box/widget.php:314
-#: widgets/fun-factor/widget.php:82
-#: widgets/horizontal-timeline/widget.php:85
-#: widgets/horizontal-timeline/widget.php:613
-#: widgets/icon-box/widget.php:506
-#: widgets/image-stack-group/widget.php:77
-#: widgets/infobox/widget.php:88
-#: widgets/infobox/widget.php:198
-#: widgets/infobox/widget.php:542
-#: widgets/lightbox/widget.php:148
-#: widgets/lordicon/widget.php:220
-#: widgets/mailchimp/widget.php:276
-#: widgets/mailchimp/widget.php:363
-#: widgets/mailchimp/widget.php:462
-#: widgets/mailchimp/widget.php:537
-#: widgets/mailchimp/widget.php:599
-#: widgets/mailchimp/widget.php:1380
-#: widgets/member/widget.php:626
-#: widgets/pdf-view/widget.php:181
-#: widgets/pdf-view/widget.php:372
-#: widgets/post-info/widget.php:331
-#: widgets/post-info/widget.php:609
-#: widgets/post-list/widget.php:280
-#: widgets/pricing-table/widget.php:289
-#: widgets/site-tagline/widget.php:73
-#: widgets/social-icons/widget.php:62
-#: widgets/social-icons/widget.php:71
-#: widgets/social-icons/widget.php:665
-#: widgets/social-share/widget.php:436
-#: widgets/step-flow/widget.php:72
-#: widgets/step-flow/widget.php:83
-#: widgets/step-flow/widget.php:232
-#: widgets/taxonomy-list/widget.php:124
-#: widgets/taxonomy-list/widget.php:129
-#: widgets/taxonomy-list/widget.php:145
-#: widgets/taxonomy-list/widget.php:278
-#: widgets/taxonomy-list/widget.php:297
-msgid "Icon"
-msgstr ""
-
-#: extensions/scroll-to-top-kit-settings.php:329
-#: extensions/scroll-to-top-kit-settings.php:367
-#: widgets/age-gate/widget.php:121
-#: widgets/age-gate/widget.php:723
-#: widgets/archive-posts/widget.php:586
-#: widgets/card/widget.php:84
-#: widgets/card/widget.php:435
-#: widgets/carousel/widget.php:114
-#: widgets/comparison-table/widget.php:457
-#: widgets/comparison-table/widget.php:484
-#: widgets/comparison-table/widget.php:1319
-#: widgets/data-table/widget.php:130
-#: widgets/data-table/widget.php:153
-#: widgets/data-table/widget.php:398
-#: widgets/data-table/widget.php:426
-#: widgets/event-calendar/widget.php:1379
-#: widgets/flip-box/widget.php:95
-#: widgets/flip-box/widget.php:139
-#: widgets/flip-box/widget.php:255
-#: widgets/flip-box/widget.php:267
-#: widgets/fun-factor/widget.php:86
-#: widgets/fun-factor/widget.php:99
-#: widgets/horizontal-timeline/widget.php:100
-#: widgets/horizontal-timeline/widget.php:968
-#: widgets/image-compare/widget.php:87
-#: widgets/image-compare/widget.php:126
-#: widgets/image-grid/widget.php:308
-#: widgets/image-hover-effect/widget.php:68
-#: widgets/image-stack-group/widget.php:73
-#: widgets/image-stack-group/widget.php:121
-#: widgets/infobox/widget.php:92
-#: widgets/infobox/widget.php:160
-#: widgets/justified-gallery/widget.php:349
-#: widgets/lightbox/widget.php:91
-#: widgets/lightbox/widget.php:100
-#: widgets/lightbox/widget.php:190
-#: widgets/lightbox/widget.php:200
-#: widgets/lightbox/widget.php:580
-#: widgets/liquid-hover-image/widget.php:77
-#: widgets/liquid-hover-image/widget.php:288
-#: widgets/photo-stack/widget.php:83
-#: widgets/post-tab/widget.php:687
-#: widgets/slider/widget.php:83
-#: widgets/taxonomy-list/widget.php:133
-#: widgets/taxonomy-list/widget.php:161
-#: widgets/taxonomy-list/widget.php:282
-#: widgets/taxonomy-list/widget.php:315
-#: widgets/testimonial/widget.php:150
-#: widgets/testimonial/widget.php:309
-msgid "Image"
-msgstr ""
-
-#: extensions/scroll-to-top-kit-settings.php:333
-#: extensions/scroll-to-top-kit-settings.php:383
-#: inc/functions.php:122
-#: widgets/age-gate/widget.php:258
-#: widgets/age-gate/widget.php:309
-#: widgets/archive-title/widget.php:167
-#: widgets/card/widget.php:282
-#: widgets/comparison-table/widget.php:449
-#: widgets/creative-button/widget.php:178
-#: widgets/dual-button/widget.php:80
-#: widgets/dual-button/widget.php:192
-#: widgets/dual-button/widget.php:212
-#: widgets/dual-button/widget.php:269
-#: widgets/infobox/widget.php:512
-#: widgets/mailchimp/widget.php:577
-#: widgets/member/widget.php:590
-#: widgets/number/widget.php:73
-#: widgets/number/widget.php:300
-#: widgets/post-info/widget.php:655
-#: widgets/pricing-table/widget.php:277
-#: widgets/social-share/widget.php:437
-msgid "Text"
 msgstr ""
 
 #: extensions/scroll-to-top-kit-settings.php:499
@@ -5749,32 +5958,6 @@ msgstr ""
 
 #: widgets/age-gate/widget.php:946
 msgid "Date Input"
-msgstr ""
-
-#: widgets/age-gate/widget.php:1408
-#: widgets/age-gate/widget.php:1435
-#: widgets/age-gate/widget.php:1775
-#: widgets/age-gate/widget.php:1804
-#: widgets/comparison-table/widget.php:216
-#: widgets/comparison-table/widget.php:1074
-#: widgets/content-switcher/widget.php:580
-#: widgets/content-switcher/widget.php:678
-#: widgets/data-table/widget.php:190
-#: widgets/data-table/widget.php:497
-#: widgets/data-table/widget.php:814
-#: widgets/fluent-form/widget.php:425
-#: widgets/fun-factor/widget.php:477
-#: widgets/horizontal-timeline/widget.php:182
-#: widgets/horizontal-timeline/widget.php:689
-#: widgets/image-stack-group/widget.php:189
-#: widgets/image-stack-group/widget.php:406
-#: widgets/navigation-menu/widget.php:856
-#: widgets/pdf-view/widget.php:381
-#: widgets/site-tagline/widget.php:178
-#: widgets/taxonomy-list/widget.php:633
-#: widgets/threesixty-rotation/widget.php:375
-#: widgets/twitter-feed/widget.php:1136
-msgid "Icon Color"
 msgstr ""
 
 #: widgets/age-gate/widget.php:2025
@@ -7413,26 +7596,6 @@ msgstr ""
 msgid "Table Width"
 msgstr ""
 
-#: widgets/comparison-table/widget.php:1062
-#: widgets/creative-button/widget.php:464
-#: widgets/data-table/widget.php:791
-#: widgets/event-calendar/widget.php:1568
-#: widgets/event-calendar/widget.php:1654
-#: widgets/flip-box/widget.php:621
-#: widgets/flip-box/widget.php:991
-#: widgets/image-accordion/widget.php:1160
-#: widgets/image-stack-group/widget.php:312
-#: widgets/lightbox/widget.php:430
-#: widgets/mailchimp/widget.php:1441
-#: widgets/member/widget.php:1192
-#: widgets/navigation-menu/widget.php:763
-#: widgets/pdf-view/widget.php:393
-#: widgets/social-share/widget.php:580
-#: widgets/taxonomy-list/widget.php:646
-#: widgets/threesixty-rotation/widget.php:356
-msgid "Icon Size"
-msgstr ""
-
 #: widgets/comparison-table/widget.php:1086
 msgid "If you've added <strong>Custom Style</strong> then Icon Color will be over written for that cell."
 msgstr ""
@@ -8011,11 +8174,6 @@ msgstr ""
 msgid "4382 Roosevelt Road, KS, Kansas"
 msgstr ""
 
-#: widgets/event-calendar/widget.php:256
-#: widgets/image-accordion/widget.php:73
-msgid "Choose Image"
-msgstr ""
-
 #: widgets/event-calendar/widget.php:280
 msgid "Details Link"
 msgstr ""
@@ -8351,16 +8509,6 @@ msgstr ""
 #: widgets/flip-box/widget.php:603
 #: widgets/flip-box/widget.php:973
 msgid "Image Fit"
-msgstr ""
-
-#: widgets/flip-box/widget.php:606
-#: widgets/flip-box/widget.php:976
-msgid "Contain"
-msgstr ""
-
-#: widgets/flip-box/widget.php:607
-#: widgets/flip-box/widget.php:977
-msgid "Cover"
 msgstr ""
 
 #: widgets/flip-box/widget.php:768
@@ -9419,10 +9567,6 @@ msgstr ""
 msgid "Lightbox Type"
 msgstr ""
 
-#: widgets/lightbox/widget.php:186
-msgid "Video"
-msgstr ""
-
 #: widgets/lightbox/widget.php:221
 #: widgets/member/widget.php:108
 msgid "YouTube"
@@ -9623,11 +9767,6 @@ msgstr ""
 
 #: widgets/liquid-hover-image/widget.php:242
 msgid "Style 6"
-msgstr ""
-
-#: widgets/liquid-hover-image/widget.php:247
-#: widgets/step-flow/widget.php:586
-msgid "Direction"
 msgstr ""
 
 #: widgets/liquid-hover-image/widget.php:353
@@ -10757,10 +10896,6 @@ msgstr ""
 
 #: widgets/post-info/widget.php:317
 msgid "Custom URL"
-msgstr ""
-
-#: widgets/post-info/widget.php:348
-msgid "Choose Icon"
 msgstr ""
 
 #: widgets/post-info/widget.php:450
