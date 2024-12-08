@@ -1552,6 +1552,81 @@
 			elementorFrontend.elementsHandler.addHandler( LiquidHoverImage, { $element: $scope });
 		});
 
+		var TextScroll = ModuleHandler.extend({
+			onInit: function () {
+				ModuleHandler.prototype.onInit.apply(this, arguments);
+				this.run();
+			},
+		
+			onElementChange: debounce(function(changedProp) {
+				let $keys = ['text_scroll_type'];
+				if ($keys.indexOf(changedProp) !== -1) {
+					this.run();
+				}
+			}, 300),
+		
+			run: function () {
+				let $element = this.$element;
+				let lastScrollTop = 0;
+				let typeSplit;
+		
+				// Split text into lines
+				function runSplit() {
+					typeSplit = new SplitType($element.find('.ha-split-lines')[0], {
+						types: 'lines, words',
+					});
+					createAnimation();
+				}
+		
+				runSplit();
+		
+				// Re-split on window resize
+				let windowWidth = $(window).innerWidth();
+				window.addEventListener('resize', function () {
+					if (windowWidth !== $(window).innerWidth()) {
+						windowWidth = $(window).innerWidth();
+						typeSplit.revert();
+						runSplit();
+					}
+				});
+		
+				// GSAP and ScrollTrigger setup
+				gsap.registerPlugin(ScrollTrigger);
+		
+				// Add scroll functionality
+				function createAnimation() {
+					$(window).on('scroll', function () {
+						const currentScrollTop = $(this).scrollTop();
+						const scrollDirection = currentScrollTop > lastScrollTop ? 'down' : 'up';
+						lastScrollTop = currentScrollTop;
+						
+						$element.find('.line').each(function () {
+							const offset = $(this).offset().top;
+							const windowHeight = $(window).height();
+							const scrollPosition = $(window).scrollTop();
+							const centerPoint = scrollPosition + windowHeight / 2;
+		
+							// Highlight lines in viewport center
+							if (offset >= centerPoint - 50 && offset <= centerPoint + 50) {
+								if (scrollDirection === 'down') {
+									$(this).addClass('highlight');
+								} else {
+									$(this).removeClass('highlight');
+								}
+							}
+						});
+					});
+				}
+			}
+		});
+		
+		// Hook into Elementor's frontend ready event
+		elementorFrontend.hooks.addAction('frontend/element_ready/ha-text-scroll.default', function ($scope) {
+			elementorFrontend.elementsHandler.addHandler(TextScroll, { $element: $scope });
+		});
+		
+		
+
 	});
 
 } (jQuery));

@@ -293,15 +293,6 @@ class Assets_Manager {
 			false
 		);
 
-		// gsap js
-		wp_register_script(
-			'gsap',
-			HAPPY_ADDONS_ASSETS . 'vendor/gsap.min.js',
-			[],
-			HAPPY_ADDONS_VERSION,
-			false
-		);
-
 		// three js
 		wp_register_script(
 			'three',
@@ -334,6 +325,50 @@ class Assets_Manager {
 			'jquery-match-height',
 			HAPPY_ADDONS_ASSETS . 'vendor/jquery-match-height/jquery.matchHeight-min.js',
 			[],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
+		// gsap js
+		wp_register_script(
+			'gsap',
+			HAPPY_ADDONS_ASSETS . 'vendor/gsap/gsap.min.js',
+			null,
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
+		// mouse follower css
+		wp_register_style(
+			'mouse-follower',
+			HAPPY_ADDONS_ASSETS . 'vendor/mouse-follower/mouse-follower.min.css',
+			[],
+			HAPPY_ADDONS_VERSION
+		);
+
+		// mouse follower js
+		wp_register_script(
+			'mouse-follower',
+			HAPPY_ADDONS_ASSETS . 'vendor/mouse-follower/mouse-follower.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+		
+		// Scroll Trigger
+		wp_register_script(
+			'scroll-trigger',
+			HAPPY_ADDONS_ASSETS . 'vendor/scroll-trigger/scroll-trigger.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+		
+		// Split Type
+		wp_register_script(
+			'split-type',
+			HAPPY_ADDONS_ASSETS . 'vendor/split-type/split-type.min.js',
+			['gsap', 'scroll-trigger'],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
