@@ -67,15 +67,18 @@
 			$this->add_control(
 				'text_scroll_type',
 				[
-					'label'   => __( 'Scroll Type', 'happy-elementor-addons' ),
-					'type'    => Controls_Manager::SELECT,
-					'label_block' => true,
-					'default' => 'vertical_line_highlight',
-					'options' => [
+					'label'              => __( 'Scroll Type', 'happy-elementor-addons' ),
+					'type'               => Controls_Manager::SELECT,
+					'label_block'        => true,
+					'default'            => 'vertical_line_highlight',
+					'options'            => [
 						'vertical_line_highlight' => __( 'Vertical Line Highlight', 'happy-elementor-addons' ),
 						'horizontal_line_mask'    => __( 'Horizontal Line Mask', 'happy-elementor-addons' ),
 						'vertical_line_mask'      => __( 'Vertical Line Mask', 'happy-elementor-addons' )
-					]
+					],
+					'render_type'        => 'template',
+					'style_transfer'     => true,
+					'frontend_available' => true
 				]
 			);
 
