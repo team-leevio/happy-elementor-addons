@@ -7,6 +7,9 @@
 	namespace Happy_Addons\Elementor\Widget;
 
 	use Elementor\Controls_Manager;
+use Elementor\Group_Control_Typography;
+use Elementor\Group_Control_Text_Shadow;
+use Elementor\Group_Control_Text_Stroke;
 
 	defined( 'ABSPATH' ) || die();
 
@@ -115,6 +118,107 @@
 				]
 			);
 
+			$this->add_responsive_control(
+				'text_scroll_align',
+				[
+					'label'     => __( 'Alignment', 'happy-elementor-addons' ),
+					'type'      => Controls_Manager::CHOOSE,
+					'options'   => [
+						'start'  => [
+							'title' => __( 'Left', 'happy-elementor-addons' ),
+							'icon'  => 'eicon-text-align-left'
+						],
+						'center' => [
+							'title' => __( 'Center', 'happy-elementor-addons' ),
+							'icon'  => 'eicon-text-align-center'
+						],
+						'end'    => [
+							'title' => __( 'Right', 'happy-elementor-addons' ),
+							'icon'  => 'eicon-text-align-right'
+						]
+					],
+					'default'   => 'start',
+					'selectors' => [
+						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .line' => 'text-align: {{VALUE}} !important;'
+					]
+				]
+			);
+
+			$this->add_control(
+				'text_scroll_color',
+				[
+					'label'     => __( 'Text Color', 'happy-elementor-addons' ),
+					'type'      => Controls_Manager::COLOR,
+					'default'   => '#f8ebd3',
+					'selectors' => [
+						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .line' => 'color: {{VALUE}};'
+					]
+				]
+			);
+
+			$this->add_group_control(
+				Group_Control_Typography::get_type(),
+				[
+					'name'     => 'text_scroll_typography',
+					'label'    => __( 'Typography', 'happy-elementor-addons' ),
+					'selector' => '{{WRAPPER}}.ha-text-scroll .ha-split-lines .line'
+				]
+			);
+
+			$this->add_group_control(
+				Group_Control_Text_Stroke::get_type(),
+				[
+					'name'     => 'text_scroll_stroke',
+					'selector' => '{{WRAPPER}}.ha-text-scroll .ha-split-lines .line'
+				]
+			);
+			
+			$this->add_control(
+				'text_scroll_bg_color',
+				[
+					'label'     => __( 'Background', 'happy-elementor-addons' ),
+					'type'      => Controls_Manager::COLOR,
+					'default'   => '#262626',
+					'selectors' => [
+						'{{WRAPPER}}.ha-text-scroll' => 'background: {{VALUE}};',
+					]
+				]
+			);
+
+			$this->add_control(
+				'text_scroll_masking_color',
+				[
+					'label'     => __( 'Masking Color', 'happy-elementor-addons' ),
+					'type'      => Controls_Manager::COLOR,
+					'default'   => '#262626',
+					'selectors' => [
+						'{{WRAPPER}}.ha-text-scroll .ha-line-mask' => 'background: {{VALUE}};',
+					],
+					'condition'  => [
+						'text_scroll_type!' => 'vertical_line_highlight'
+					]
+				]
+			);
+
+			$this->add_responsive_control(
+				'text_scroll_padding',
+				[
+					'label'      => __( 'Line Padding', 'happy-elementor-addons' ),
+					'type'       => Controls_Manager::DIMENSIONS,
+					'size_units' => ['px', 'em', '%'],
+					'default'    => [
+						'top'      => '0',
+						'right'    => '15',
+						'bottom'   => '0',
+						'left'     => '15',
+						'unit'     => 'px',
+					],
+					'selectors'  => [
+						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .line' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+					]
+				]
+			);
+
 			$this->end_controls_section();
 		}
 
@@ -124,7 +228,7 @@
 
 		?>
 
-		<div class="ha-text-scroll ha-split-lines">
+		<div class="ha-split-lines">
 			<?php echo esc_html__( $scroll_text, 'happy-elementor-addons' ); ?>
 		</div>
 

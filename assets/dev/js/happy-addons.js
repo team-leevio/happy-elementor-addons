@@ -1611,15 +1611,6 @@
 
 				runSplit();
 
-				let windowWidth = $( window ).innerWidth();
-				window.addEventListener( 'resize', function () {
-					if ( windowWidth !== $( window ).innerWidth() ) {
-						windowWidth = $( window ).innerWidth();
-						typeSplit.revert();
-						runSplit();
-					}
-				} );
-
 				function createAnimation () {
 					if ( textScrollType === 'horizontal_line_mask' || textScrollType === 'vertical_line_mask' ) {
 
