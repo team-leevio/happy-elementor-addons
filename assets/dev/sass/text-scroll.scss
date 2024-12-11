@@ -1,6 +1,6 @@
 .ha-text-scroll {
-	background: #262626;
-	color: #f8ebd3;
+	background: #FFFFFF;
+	color: #000000;
 
 	.ha-split-lines {
 		display: block;
@@ -13,8 +13,7 @@
 		position: absolute;
 		top: 0;
 		right: 0;
-		background: #262626;
-		opacity: 0.6;
+		background: #FFFFFF;
 		height: 100%;
 		width: 100%;
 		z-index: 2;
@@ -23,17 +22,17 @@
 	.line {
 		position: relative;
 		opacity: 0.2;
-		color: #f8ebd3;
+		color: #000000;
 		transition: all 0.6s ease-in-out;
 	}
 
 	.line.highlight {
-		opacity: 1;
+		opacity: 1 !important;
 		transition: all 0.6s ease-in-out;
 	}
 
 	.mask-active.line {
-		opacity: 1;
-		color: #f8ebd3;
+		opacity: 1 !important;
+		color: #000000;
 	}
 }

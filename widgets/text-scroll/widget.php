@@ -8,7 +8,6 @@
 
 	use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
-use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Text_Stroke;
 
 	defined( 'ABSPATH' ) || die();
@@ -149,7 +148,7 @@ use Elementor\Group_Control_Text_Stroke;
 				[
 					'label'     => __( 'Text Color', 'happy-elementor-addons' ),
 					'type'      => Controls_Manager::COLOR,
-					'default'   => '#f8ebd3',
+					// 'default'   => '#f8ebd3',
 					'selectors' => [
 						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .line' => 'color: {{VALUE}};'
 					]
@@ -172,30 +171,64 @@ use Elementor\Group_Control_Text_Stroke;
 					'selector' => '{{WRAPPER}}.ha-text-scroll .ha-split-lines .line'
 				]
 			);
-			
+
 			$this->add_control(
 				'text_scroll_bg_color',
 				[
 					'label'     => __( 'Background', 'happy-elementor-addons' ),
 					'type'      => Controls_Manager::COLOR,
-					'default'   => '#262626',
+					// 'default'   => '#262626',
 					'selectors' => [
-						'{{WRAPPER}}.ha-text-scroll' => 'background: {{VALUE}};',
+						'{{WRAPPER}}.ha-text-scroll'               => 'background: {{VALUE}};',
+						'{{WRAPPER}}.ha-text-scroll .ha-line-mask' => 'background: {{VALUE}};'
 					]
 				]
 			);
 
 			$this->add_control(
-				'text_scroll_masking_color',
+				'text_scroll_masking_opacity',
 				[
-					'label'     => __( 'Masking Color', 'happy-elementor-addons' ),
-					'type'      => Controls_Manager::COLOR,
-					'default'   => '#262626',
-					'selectors' => [
-						'{{WRAPPER}}.ha-text-scroll .ha-line-mask' => 'background: {{VALUE}};',
+					'label'     => __( 'Masking Opacity', 'happy-elementor-addons' ),
+					'type'      => Controls_Manager::SLIDER,
+					'range'     => [
+						'px' => [
+							'min'  => 0,
+							'max'  => 1,
+							'step' => 0.1
+						]
 					],
-					'condition'  => [
+					'default'   => [
+						'size' => 0.65
+					],
+					'selectors' => [
+						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .ha-line-mask' => 'opacity: {{SIZE}};'
+					],
+					'condition' => [
 						'text_scroll_type!' => 'vertical_line_highlight'
+					]
+				]
+			);
+
+			$this->add_control(
+				'text_scroll_highlight_opacity',
+				[
+					'label'     => __( 'Highlight Opacity', 'happy-elementor-addons' ),
+					'type'      => Controls_Manager::SLIDER,
+					'range'     => [
+						'px' => [
+							'min'  => 0,
+							'max'  => 1,
+							'step' => 0.1
+						]
+					],
+					'default'   => [
+						'size' => 0.2
+					],
+					'selectors' => [
+						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .line' => 'opacity: {{SIZE}};'
+					],
+					'condition' => [
+						'text_scroll_type' => 'vertical_line_highlight'
 					]
 				]
 			);
@@ -207,11 +240,11 @@ use Elementor\Group_Control_Text_Stroke;
 					'type'       => Controls_Manager::DIMENSIONS,
 					'size_units' => ['px', 'em', '%'],
 					'default'    => [
-						'top'      => '0',
-						'right'    => '15',
-						'bottom'   => '0',
-						'left'     => '15',
-						'unit'     => 'px',
+						'top'    => '0',
+						'right'  => '15',
+						'bottom' => '0',
+						'left'   => '15',
+						'unit'   => 'px'
 					],
 					'selectors'  => [
 						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .line' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
