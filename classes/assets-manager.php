@@ -333,9 +333,9 @@ class Assets_Manager {
 		wp_register_script(
 			'gsap',
 			HAPPY_ADDONS_ASSETS . 'vendor/gsap/gsap.min.js',
-			null,
-			HAPPY_ADDONS_VERSION,
-			true
+			[],
+			'3.12.5',
+			false
 		);
 
 		// mouse follower css
