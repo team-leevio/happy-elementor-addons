@@ -1567,18 +1567,13 @@
 
 			getReadySettings: function () {
 				let settings = {};
-
-				// Get settings 
 				let scroll_type = this.getElementSettings( 'text_scroll_type' );
-
 				if ( scroll_type ) settings.scroll_type = scroll_type;
-
 				return $.extend( {}, this.getSettings(), settings );
 			},
 
 			run: function () {
 				let settings = this.getReadySettings();
-
 				let $element = this.$element;
 				let elementsToSplit = $element.find( '.ha-split-lines' )[ 0 ];
 				let instancesOfSplit = [];
@@ -1586,9 +1581,13 @@
 				let lastScrollTop = 0;
 				let typeSplit;
 
+				if ( typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' ) return;
+
 				gsap.registerPlugin( ScrollTrigger );
 
 				function runSplit () {
+					if ( elementsToSplit.length <= 0 ) return;
+
 					if ( textScrollType === 'horizontal_line_mask' || textScrollType === 'vertical_line_mask' ) {
 						$( elementsToSplit ).each( function ( index ) {
 							let currentElement = $( this );
@@ -1597,8 +1596,16 @@
 							} );
 						} );
 
-						$( ".line" ).each( function ( index ) {
+						$( elementsToSplit ).find( ".line" ).each( function ( index ) {
 							$( this ).append( "<div class='ha-line-mask'></div>" );
+						} );
+
+					} else if ( textScrollType === 'horizontal_line_highlight' ) {
+						$( elementsToSplit ).each( function ( index ) {
+							let currentElement = $( this );
+							instancesOfSplit[ index ] = new SplitType( currentElement, {
+								types: "lines, chars"
+							} );
 						} );
 					} else {
 						typeSplit = new SplitType( elementsToSplit, {
@@ -1616,36 +1623,47 @@
 
 						$element.find( '.line' ).each( function ( index, targetElement ) {
 							let mask = $( targetElement ).find( '.ha-line-mask' );
+							if ( mask.length <= 0 ) return;
+
 							$( targetElement ).addClass( 'mask-active' );
 
-							let scrollTriggerProps = {};
-							if ( textScrollType === 'horizontal_line_mask' ) {
-								scrollTriggerProps.start = "bottom 50%";
-							} else if ( textScrollType === 'vertical_line_mask' ) {
-								scrollTriggerProps.start = "bottom center";
-							}
+							let scrollTriggerProps = {
+								start: textScrollType === 'horizontal_line_mask' ? 'bottom 50%' : 'bottom center',
+								end: 'bottom center',
+								scrub: 3
+							};
+
+							let animationProps = textScrollType === 'horizontal_line_mask' ? { width: '0%' } : { height: '0%' };
 
 							let tl = gsap.timeline( {
 								scrollTrigger: {
 									trigger: targetElement,
-									...scrollTriggerProps,
-									end: "bottom center",
-									scrub: 3,
+									...scrollTriggerProps
 								}
 							} );
 
-							let animationProps = {};
-							if ( textScrollType === 'horizontal_line_mask' ) {
-								animationProps.width = "0%";
-							} else if ( textScrollType === 'vertical_line_mask' ) {
-								animationProps.height = "0%";
-							}
+							tl.to( mask, { ...animationProps, duration: 1 } );
 
-							tl.to( mask, {
-								...animationProps,
-								duration: 1,
-							} );
 						} );
+
+					} else if ( textScrollType === 'horizontal_line_highlight' ) {
+
+						let charsTargetElement = $element.find( '.line .char' );
+						let triggerElement = $element.find( '.ha-split-lines' );
+
+						if ( charsTargetElement.length >= 0 && triggerElement.length >= 0 ) {
+							gsap.to( charsTargetElement, {
+								scrollTrigger: {
+									trigger: triggerElement,
+									start: 'top 40%',
+									end: 'bottom center',
+									scrub: 1,
+								},
+								opacity: 1,
+								duration: 2,
+								stagger: 1,
+							} );
+						}
 
 					} else {
 

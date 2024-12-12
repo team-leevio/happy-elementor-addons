@@ -21,12 +21,15 @@
 
 	.line {
 		position: relative;
-		opacity: 0.2;
 		color: #000000;
 		transition: all 0.6s ease-in-out;
+
+		.char {
+			opacity: 0.2;
+		}
 	}
 
-	.line.highlight {
+	.line.highlight .word {
 		opacity: 1 !important;
 		transition: all 0.6s ease-in-out;
 	}
@@ -35,4 +38,5 @@
 		opacity: 1 !important;
 		color: #000000;
 	}
+
 }
