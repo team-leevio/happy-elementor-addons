@@ -35,10 +35,10 @@ use Elementor\Group_Control_Typography;
 		public function init() {
 
 			// Enqueue the required JS file.
-			add_action( 'elementor/frontend/before_register_scripts', [$this, 'register_scripts'] );
-			add_action( 'elementor/frontend/before_register_styles', [$this, 'register_styles'] );
+			add_action( 'wp_enqueue_scripts', [$this, 'register_scripts'] );
+			add_action( 'wp_enqueue_scripts', [$this, 'register_styles'] );
 
-			add_action( 'wp_enqueue_scripts', [$this, 'enqueue_preview_scripts'] );
+			add_action( 'elementor/preview/enqueue_scripts', [$this, 'enqueue_preview_scripts'] );
 
 			// Creates Custom Mouse Cursor tab at the end of layout/content tab.
 			add_action( 'elementor/element/section/section_layout/after_section_end', [$this, 'register_controls'], 10 );
@@ -56,25 +56,9 @@ use Elementor\Group_Control_Typography;
 			$suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
 
 			wp_register_script(
-				'gsap',
-				HAPPY_ADDONS_ASSETS . 'vendor/gsap/gsap.min.js',
-				null,
-				HAPPY_ADDONS_VERSION,
-				true
-			);
-
-			wp_register_script(
-				'mouse-follower',
-				HAPPY_ADDONS_ASSETS . 'vendor/mouse-follower/mouse-follower.min.js',
-				['gsap'],
-				HAPPY_ADDONS_VERSION,
-				true
-			);
-
-			wp_register_script(
 				'happy-custom-mouse-cursor',
 				HAPPY_ADDONS_ASSETS . 'js/custom-mouse-cursor' . $suffix . 'js',
-				['jquery', 'happy-elementor-addons', 'mouse-follower'],
+				['jquery', 'elementor-frontend', 'happy-elementor-addons', 'mouse-follower'],
 				HAPPY_ADDONS_VERSION,
 				true
 			);
@@ -82,24 +66,18 @@ use Elementor\Group_Control_Typography;
 
 		public function register_styles() {
 			$suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
-			wp_register_style(
-				'mouse-follower',
-				HAPPY_ADDONS_ASSETS . 'vendor/mouse-follower/mouse-follower.min.css',
-				[],
-				HAPPY_ADDONS_VERSION
-			);
 
 			wp_register_style(
 				'happy-custom-mouse-cursor',
-				HAPPY_ADDONS_ASSETS . 'css/widgets/custom-mouse-cursor.min.css',
+				HAPPY_ADDONS_ASSETS . 'css/widgets/custom-mouse-cursor' . $suffix . 'css',
 				['mouse-follower'],
 				HAPPY_ADDONS_VERSION
 			);
 		}
 
 		public function enqueue_preview_scripts() {
-			wp_enqueue_script( 'mouse-follower' );
 			wp_enqueue_script( 'gsap' );
+			wp_enqueue_script( 'mouse-follower' );
 			wp_enqueue_script( 'happy-custom-mouse-cursor' );
 
 			wp_enqueue_style( 'mouse-follower' );
@@ -150,7 +128,7 @@ use Elementor\Group_Control_Typography;
 					'assets'             => [
 						'scripts' => [
 							[
-								'name'       => 'mouse-follower',
+								'name'       => 'elementor-frontend',
 								'conditions' => [
 									'terms' => [
 										[
@@ -163,6 +141,18 @@ use Elementor\Group_Control_Typography;
 							],
 							[
 								'name'       => 'gsap',
+								'conditions' => [
+									'terms' => [
+										[
+											'name'     => 'ha_cmc_switcher',
+											'operator' => '===',
+											'value'    => 'yes'
+										]
+									]
+								]
+							],
+							[
+								'name'       => 'mouse-follower',
 								'conditions' => [
 									'terms' => [
 										[
@@ -1199,7 +1189,85 @@ use Elementor\Group_Control_Typography;
 					'return_value'       => 'yes',
 					'render_type'        => 'template',
 					'style_transfer'     => false,
-					'frontend_available' => true
+					'frontend_available' => true,
+					'assets'             => [
+						'scripts' => [
+							[
+								'name'       => 'elementor-frontend',
+								'conditions' => [
+									'terms' => [
+										[
+											'name'     => 'ha_cmc_init_switcher',
+											'operator' => '===',
+											'value'    => 'yes'
+										]
+									]
+								]
+							],
+							[
+								'name'       => 'gsap',
+								'conditions' => [
+									'terms' => [
+										[
+											'name'     => 'ha_cmc_init_switcher',
+											'operator' => '===',
+											'value'    => 'yes'
+										]
+									]
+								]
+							],
+							[
+								'name'       => 'mouse-follower',
+								'conditions' => [
+									'terms' => [
+										[
+											'name'     => 'ha_cmc_init_switcher',
+											'operator' => '===',
+											'value'    => 'yes'
+										]
+									]
+								]
+							],
+							[
+								'name'       => 'happy-custom-mouse-cursor',
+								'conditions' => [
+									'terms' => [
+										[
+											'name'     => 'ha_cmc_init_switcher',
+											'operator' => '===',
+											'value'    => 'yes'
+										]
+									]
+								]
+							]
+						],
+						'styles'  => [
+							[
+								'name'       => 'mouse-follower',
+								'conditions' => [
+									'terms' => [
+										[
+											'name'     => 'ha_cmc_init_switcher',
+											'operator' => '===',
+											'value'    => 'yes'
+										]
+									]
+								]
+							],
+							[
+								'name'       => 'happy-custom-mouse-cursor',
+								'conditions' => [
+									'terms' => [
+										[
+											'name'     => 'ha_cmc_init_switcher',
+											'operator' => '===',
+											'value'    => 'yes'
+										]
+									]
+								]
+							]
+						]
+					]
 				]
 			);
 
@@ -1437,6 +1505,7 @@ use Elementor\Group_Control_Typography;
 
 		// initial custom mouse cursor
 		public function render_custom_mouse_cursor_html() {
+
 			$settings_data = [];
 			$post_id       = get_the_ID();
 			$document      = Plugin::$instance->documents->get( $post_id, false );
@@ -1459,13 +1528,11 @@ use Elementor\Group_Control_Typography;
 
 					$(document).ready(function() {
 
-
-
 						let isEnable = "<?php echo $enableInitialCursor; ?>";
 						let isEnableLazyMove = "<?php echo $enableLazyMove; ?>";
 						let speed = isEnableLazyMove ? '0.7' : '0.2';
 
-						if ( haCursor == null ) {
+						if (typeof haCursor == 'undefined' || haCursor == null) {
 							initiateHaCursorObject(speed);
 						}
 
@@ -1556,7 +1623,11 @@ use Elementor\Group_Control_Typography;
 						let isEnableLazyMove = "<?php echo $enableLazyMove; ?>";
 						let speed = isEnableLazyMove ? '0.7' : '0.2';
 
-						if ( haCursor == null ) {
+						if( !isEnable ) {
+							return;
+						}
+
+						if (typeof haCursor == 'undefined' || haCursor == null) {
 							initiateHaCursorObject(speed);
 						}
 
