@@ -1604,7 +1604,7 @@
 						$( elementsToSplit ).each( function ( index ) {
 							let currentElement = $( this );
 							instancesOfSplit[ index ] = new SplitType( currentElement, {
-								types: "lines, chars"
+								types: "words, chars"
 							} );
 						} );
 					} else {
@@ -1648,7 +1648,7 @@
 
 					} else if ( textScrollType === 'horizontal_line_highlight' ) {
 
-						let charsTargetElement = $element.find( '.line .char' );
+						let charsTargetElement = $element.find( '.word .char' );
 						let triggerElement = $element.find( '.ha-split-lines' );
 
 						if ( charsTargetElement.length >= 0 && triggerElement.length >= 0 ) {
