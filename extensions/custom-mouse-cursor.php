@@ -1189,7 +1189,85 @@ use Elementor\Group_Control_Typography;
 					'return_value'       => 'yes',
 					'render_type'        => 'template',
 					'style_transfer'     => false,
-					'frontend_available' => true
+					'frontend_available' => true,
+					'assets'             => [
+						'scripts' => [
+							[
+								'name'       => 'elementor-frontend',
+								'conditions' => [
+									'terms' => [
+										[
+											'name'     => 'ha_cmc_init_switcher',
+											'operator' => '===',
+											'value'    => 'yes'
+										]
+									]
+								]
+							],
+							[
+								'name'       => 'gsap',
+								'conditions' => [
+									'terms' => [
+										[
+											'name'     => 'ha_cmc_init_switcher',
+											'operator' => '===',
+											'value'    => 'yes'
+										]
+									]
+								]
+							],
+							[
+								'name'       => 'mouse-follower',
+								'conditions' => [
+									'terms' => [
+										[
+											'name'     => 'ha_cmc_init_switcher',
+											'operator' => '===',
+											'value'    => 'yes'
+										]
+									]
+								]
+							],
+							[
+								'name'       => 'happy-custom-mouse-cursor',
+								'conditions' => [
+									'terms' => [
+										[
+											'name'     => 'ha_cmc_init_switcher',
+											'operator' => '===',
+											'value'    => 'yes'
+										]
+									]
+								]
+							]
+						],
+						'styles'  => [
+							[
+								'name'       => 'mouse-follower',
+								'conditions' => [
+									'terms' => [
+										[
+											'name'     => 'ha_cmc_init_switcher',
+											'operator' => '===',
+											'value'    => 'yes'
+										]
+									]
+								]
+							],
+							[
+								'name'       => 'happy-custom-mouse-cursor',
+								'conditions' => [
+									'terms' => [
+										[
+											'name'     => 'ha_cmc_init_switcher',
+											'operator' => '===',
+											'value'    => 'yes'
+										]
+									]
+								]
+							]
+						]
+					]
 				]
 			);
 
@@ -1427,6 +1505,7 @@ use Elementor\Group_Control_Typography;
 
 		// initial custom mouse cursor
 		public function render_custom_mouse_cursor_html() {
+
 			$settings_data = [];
 			$post_id       = get_the_ID();
 			$document      = Plugin::$instance->documents->get( $post_id, false );
@@ -1449,15 +1528,9 @@ use Elementor\Group_Control_Typography;
 
 					$(document).ready(function() {
 
-
-
 						let isEnable = "<?php echo $enableInitialCursor; ?>";
 						let isEnableLazyMove = "<?php echo $enableLazyMove; ?>";
 						let speed = isEnableLazyMove ? '0.7' : '0.2';
-
-						if( !isEnable ) {
-							return;
-						}
 
 						if (typeof haCursor == 'undefined' || haCursor == null) {
 							initiateHaCursorObject(speed);
