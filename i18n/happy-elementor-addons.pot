@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Happy Elementor Addons 3.14.2\n"
+"Project-Id-Version: Happy Elementor Addons 3.15.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/happy-elementor-addons\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-02T12:57:51+00:00\n"
+"POT-Creation-Date: 2024-12-24T07:38:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: happy-elementor-addons\n"
@@ -60,31 +60,31 @@ msgstr ""
 msgid "Global: Renew On Demand Assets"
 msgstr ""
 
-#: classes/assets-manager.php:506
+#: classes/assets-manager.php:523
 msgid "%s Widget"
 msgstr ""
 
-#: classes/assets-manager.php:507
+#: classes/assets-manager.php:524
 msgid "Use %s widget with other exclusive pro widgets and 100% unique features to extend your toolbox and build sites faster and better."
 msgstr ""
 
-#: classes/assets-manager.php:508
+#: classes/assets-manager.php:525
 msgid "Upgrade Now"
 msgstr ""
 
-#: classes/assets-manager.php:509
+#: classes/assets-manager.php:526
 msgid "No Templates Found"
 msgstr ""
 
-#: classes/assets-manager.php:510
+#: classes/assets-manager.php:527
 msgid "Try different category or sync for new templates."
 msgstr ""
 
-#: classes/assets-manager.php:511
+#: classes/assets-manager.php:528
 msgid "No Results Found"
 msgstr ""
 
-#: classes/assets-manager.php:512
+#: classes/assets-manager.php:529
 msgid "Please make sure your search is spelled correctly or try a different words."
 msgstr ""
 
@@ -528,8 +528,8 @@ msgid "Reading Progress Bar"
 msgstr ""
 
 #: classes/extensions-manager.php:190
-#: extensions/custom-mouse-cursor.php:119
-#: extensions/custom-mouse-cursor.php:1187
+#: extensions/custom-mouse-cursor.php:97
+#: extensions/custom-mouse-cursor.php:1177
 msgid "Happy Mouse Cursor"
 msgstr ""
 
@@ -2512,10 +2512,10 @@ msgid "Styles"
 msgstr ""
 
 #: extensions/advanced-tooltip.php:286
-#: extensions/custom-mouse-cursor.php:439
-#: extensions/custom-mouse-cursor.php:742
-#: extensions/custom-mouse-cursor.php:987
-#: extensions/custom-mouse-cursor.php:1350
+#: extensions/custom-mouse-cursor.php:429
+#: extensions/custom-mouse-cursor.php:732
+#: extensions/custom-mouse-cursor.php:977
+#: extensions/custom-mouse-cursor.php:1418
 #: extensions/reading-progress-bar-kit-settings.php:951
 #: extensions/scroll-to-top-kit-settings.php:232
 #: extensions/widgets-extended.php:160
@@ -2602,10 +2602,10 @@ msgid "Background"
 msgstr ""
 
 #: extensions/advanced-tooltip.php:376
-#: extensions/custom-mouse-cursor.php:949
-#: extensions/custom-mouse-cursor.php:968
-#: extensions/custom-mouse-cursor.php:1312
-#: extensions/custom-mouse-cursor.php:1331
+#: extensions/custom-mouse-cursor.php:939
+#: extensions/custom-mouse-cursor.php:958
+#: extensions/custom-mouse-cursor.php:1380
+#: extensions/custom-mouse-cursor.php:1399
 #: extensions/reading-progress-bar-kit-settings.php:828
 #: extensions/reading-progress-bar-kit-settings.php:893
 #: extensions/reading-progress-bar-kit-settings.php:1043
@@ -2729,7 +2729,7 @@ msgid "Background Color"
 msgstr ""
 
 #: extensions/advanced-tooltip.php:393
-#: extensions/custom-mouse-cursor.php:363
+#: extensions/custom-mouse-cursor.php:353
 #: widgets/age-gate/widget.php:1134
 #: widgets/age-gate/widget.php:1205
 #: widgets/age-gate/widget.php:1515
@@ -2888,10 +2888,10 @@ msgid "Border"
 msgstr ""
 
 #: extensions/advanced-tooltip.php:421
-#: extensions/custom-mouse-cursor.php:534
-#: extensions/custom-mouse-cursor.php:835
-#: extensions/custom-mouse-cursor.php:1120
-#: extensions/custom-mouse-cursor.php:1418
+#: extensions/custom-mouse-cursor.php:524
+#: extensions/custom-mouse-cursor.php:825
+#: extensions/custom-mouse-cursor.php:1110
+#: extensions/custom-mouse-cursor.php:1486
 #: extensions/scroll-to-top-kit-settings.php:574
 #: widgets/age-gate/widget.php:641
 #: widgets/age-gate/widget.php:751
@@ -3018,7 +3018,7 @@ msgid "Border Radius"
 msgstr ""
 
 #: extensions/advanced-tooltip.php:436
-#: extensions/custom-mouse-cursor.php:1082
+#: extensions/custom-mouse-cursor.php:1072
 #: widgets/age-gate/widget.php:812
 #: widgets/age-gate/widget.php:872
 #: widgets/age-gate/widget.php:957
@@ -3244,8 +3244,8 @@ msgstr ""
 
 #: extensions/background-overlay.php:59
 #: extensions/background-overlay.php:130
-#: extensions/custom-mouse-cursor.php:579
-#: extensions/custom-mouse-cursor.php:859
+#: extensions/custom-mouse-cursor.php:569
+#: extensions/custom-mouse-cursor.php:849
 #: extensions/scroll-to-top-kit-settings.php:299
 #: widgets/card/widget.php:609
 #: widgets/card/widget.php:643
@@ -3397,36 +3397,36 @@ msgstr ""
 msgid "Skew Y"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:136
+#: extensions/custom-mouse-cursor.php:114
 msgid "Note:"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:137
+#: extensions/custom-mouse-cursor.php:115
 msgid "To change mouse cursor for the whole page, use the page settings options."
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:144
-#: extensions/custom-mouse-cursor.php:1195
+#: extensions/custom-mouse-cursor.php:122
+#: extensions/custom-mouse-cursor.php:1185
 msgid "Enable Happy Mouse Cursor"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:225
+#: extensions/custom-mouse-cursor.php:215
 msgid "Keep in Mind:"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:226
+#: extensions/custom-mouse-cursor.php:216
 msgid "Enabling custom mouse cursor on a parent element will override the settings of the child element."
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:237
+#: extensions/custom-mouse-cursor.php:227
 msgid "Default Cursor"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:257
+#: extensions/custom-mouse-cursor.php:247
 msgid "Cursor Type"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:260
+#: extensions/custom-mouse-cursor.php:250
 #: extensions/scroll-to-top-kit-settings.php:333
 #: extensions/scroll-to-top-kit-settings.php:383
 #: inc/functions.php:122
@@ -3451,7 +3451,7 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:261
+#: extensions/custom-mouse-cursor.php:251
 #: extensions/reading-progress-bar-kit-settings.php:613
 #: extensions/reading-progress-bar-kit-settings.php:878
 #: extensions/scroll-to-top-kit-settings.php:469
@@ -3626,7 +3626,7 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:262
+#: extensions/custom-mouse-cursor.php:252
 #: extensions/scroll-to-top-kit-settings.php:325
 #: extensions/scroll-to-top-kit-settings.php:350
 #: widgets/age-gate/widget.php:269
@@ -3698,7 +3698,7 @@ msgstr ""
 msgid "Icon"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:263
+#: extensions/custom-mouse-cursor.php:253
 #: extensions/scroll-to-top-kit-settings.php:329
 #: extensions/scroll-to-top-kit-settings.php:367
 #: widgets/age-gate/widget.php:121
@@ -3751,17 +3751,17 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:264
+#: extensions/custom-mouse-cursor.php:254
 #: widgets/lightbox/widget.php:186
 msgid "Video"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:292
+#: extensions/custom-mouse-cursor.php:282
 #: widgets/post-info/widget.php:348
 msgid "Choose Icon"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:309
+#: extensions/custom-mouse-cursor.php:299
 #: widgets/age-gate/widget.php:1408
 #: widgets/age-gate/widget.php:1435
 #: widgets/age-gate/widget.php:1775
@@ -3788,7 +3788,7 @@ msgstr ""
 msgid "Icon Color"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:327
+#: extensions/custom-mouse-cursor.php:317
 #: widgets/comparison-table/widget.php:1062
 #: widgets/creative-button/widget.php:464
 #: widgets/data-table/widget.php:791
@@ -3809,43 +3809,43 @@ msgstr ""
 msgid "Icon Size"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:348
+#: extensions/custom-mouse-cursor.php:338
 msgid "Cursor Text"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:398
+#: extensions/custom-mouse-cursor.php:388
 #: widgets/event-calendar/widget.php:256
 #: widgets/image-accordion/widget.php:73
 msgid "Choose Image"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:413
-#: extensions/custom-mouse-cursor.php:717
+#: extensions/custom-mouse-cursor.php:403
+#: extensions/custom-mouse-cursor.php:707
 msgid "Object Fit"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:416
+#: extensions/custom-mouse-cursor.php:406
 #: widgets/flip-box/widget.php:606
 #: widgets/flip-box/widget.php:976
 msgid "Contain"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:417
-#: extensions/custom-mouse-cursor.php:720
+#: extensions/custom-mouse-cursor.php:407
+#: extensions/custom-mouse-cursor.php:710
 #: widgets/flip-box/widget.php:607
 #: widgets/flip-box/widget.php:977
 msgid "Cover"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:418
-#: extensions/custom-mouse-cursor.php:721
+#: extensions/custom-mouse-cursor.php:408
+#: extensions/custom-mouse-cursor.php:711
 msgid "Fill"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:479
-#: extensions/custom-mouse-cursor.php:781
-#: extensions/custom-mouse-cursor.php:1028
-#: extensions/custom-mouse-cursor.php:1377
+#: extensions/custom-mouse-cursor.php:469
+#: extensions/custom-mouse-cursor.php:771
+#: extensions/custom-mouse-cursor.php:1018
+#: extensions/custom-mouse-cursor.php:1445
 #: extensions/reading-progress-bar-kit-settings.php:658
 #: extensions/scroll-to-top-kit-settings.php:255
 #: extensions/widgets-extended.php:138
@@ -3872,68 +3872,68 @@ msgstr ""
 msgid "Height"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:558
+#: extensions/custom-mouse-cursor.php:548
 msgid "360 Rotate"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:601
+#: extensions/custom-mouse-cursor.php:591
 msgid "Enable Rotation"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:625
+#: extensions/custom-mouse-cursor.php:615
 #: extensions/floating-effects.php:196
 #: extensions/floating-effects.php:359
 #: extensions/floating-effects.php:491
 msgid "Delay"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:656
+#: extensions/custom-mouse-cursor.php:646
 #: widgets/liquid-hover-image/widget.php:247
 #: widgets/step-flow/widget.php:586
 msgid "Direction"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:661
+#: extensions/custom-mouse-cursor.php:651
 msgid "Anti Clockwise"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:665
+#: extensions/custom-mouse-cursor.php:655
 msgid "Clockwise"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:702
+#: extensions/custom-mouse-cursor.php:692
 msgid "Choose Video"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:883
+#: extensions/custom-mouse-cursor.php:873
 msgid "Background Style"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:896
+#: extensions/custom-mouse-cursor.php:886
 msgid "Enable Blur"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:919
+#: extensions/custom-mouse-cursor.php:909
 msgid "Blur"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:1197
+#: extensions/custom-mouse-cursor.php:1187
 msgid "Enable Initial mouse cursor"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:1209
+#: extensions/custom-mouse-cursor.php:1277
 msgid "Enable Lazy Move"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:1253
+#: extensions/custom-mouse-cursor.php:1321
 msgid "Enable Mix Blend"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:1276
+#: extensions/custom-mouse-cursor.php:1344
 msgid "Mix Blend Color"
 msgstr ""
 
-#: extensions/custom-mouse-cursor.php:1301
+#: extensions/custom-mouse-cursor.php:1369
 msgid "Cursor Style"
 msgstr ""
 
