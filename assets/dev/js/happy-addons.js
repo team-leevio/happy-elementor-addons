@@ -1673,19 +1673,22 @@
 							lastScrollTop = currentScrollTop;
 
 							$element.find( '.line' ).each( function () {
-								const offset = $( this ).offset().top;
-								const windowHeight = $( window ).height();
-								const scrollPosition = $( window ).scrollTop();
-								const centerPoint = scrollPosition + windowHeight / 2;
-
-								if ( offset >= centerPoint - 50 && offset <= centerPoint + 50 ) {
-									if ( scrollDirection === 'down' ) {
-										$( this ).addClass( 'highlight' );
-									} else {
-										$( this ).removeClass( 'highlight' );
-									}
-								}
+								ScrollTrigger.create( {
+									trigger: this,
+									start: "top 60%",
+									onEnter: () => {
+										if ( scrollDirection === 'down' ) {
+											$( this ).addClass( 'highlight' );
+										}
+									},
+									onLeaveBack: () => {
+										if ( scrollDirection === 'up' ) {
+											$( this ).removeClass( 'highlight' );
+										}
+									},
+								} );
 							} );
+
 						} );
 					}
 				}

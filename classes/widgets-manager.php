@@ -1358,7 +1358,7 @@ class Widgets_Manager {
 				'cat' => 'creative',
 				'is_active' => true,
 				'title' => __('Text Scroll', 'happy-elementor-addons'),
-				'icon' => 'huge huge-scroll',
+				'icon' => 'hm hm-mouse-scroll-v',
 				'css' => ['text-scroll'],
 				'js' => [],
 				'vendor' => [

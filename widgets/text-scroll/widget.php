@@ -7,8 +7,8 @@
 	namespace Happy_Addons\Elementor\Widget;
 
 	use Elementor\Controls_Manager;
-use Elementor\Group_Control_Typography;
-use Elementor\Group_Control_Text_Stroke;
+	use Elementor\Group_Control_Typography;
+	use Elementor\Group_Control_Text_Stroke;
 
 	defined( 'ABSPATH' ) || die();
 
@@ -27,7 +27,7 @@ use Elementor\Group_Control_Text_Stroke;
 		}
 
 		public function get_custom_help_url() {
-			return '';
+			// return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/text-scroll/';
 		}
 
 		/**
@@ -39,15 +39,15 @@ use Elementor\Group_Control_Text_Stroke;
 		 * @return string Widget icon.
 		 */
 		public function get_icon() {
-			return 'huge huge-scroll';
+			return 'hm hm-mouse-scroll-v';
 		}
 
 		public function get_keywords() {
 			return ['Text', 'text scroll', 'Text Scroll', 'scroll'];
 		}
 
-		public function get_categories() {
-			return ['happy_addons_category', 'happy_addons_theme_builder'];
+		protected function is_dynamic_content(): bool {
+			return false;
 		}
 
 		/**
@@ -142,7 +142,7 @@ use Elementor\Group_Control_Text_Stroke;
 					'style_transfer' => true,
 					'selectors'      => [
 						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .line' => 'text-align: {{VALUE}} !important;',
-						'{{WRAPPER}}.ha-text-scroll .ha-split-lines' => 'text-align: {{VALUE}} !important;',
+						'{{WRAPPER}}.ha-text-scroll .ha-split-lines'       => 'text-align: {{VALUE}} !important;'
 					]
 				]
 			);
@@ -155,7 +155,7 @@ use Elementor\Group_Control_Text_Stroke;
 					'style_transfer' => true,
 					'selectors'      => [
 						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .line' => 'color: {{VALUE}};',
-						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .word' => 'color: {{VALUE}};',
+						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .word' => 'color: {{VALUE}};'
 					]
 				]
 			);
@@ -175,10 +175,10 @@ use Elementor\Group_Control_Text_Stroke;
 				[
 					'name'           => 'text_scroll_stroke',
 					'style_transfer' => true,
-					'selectors'       => [
+					'selectors'      => [
 						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .line',
 						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .word'
-					],
+					]
 				]
 			);
 
@@ -261,7 +261,7 @@ use Elementor\Group_Control_Text_Stroke;
 					],
 					'style_transfer' => true,
 					'selectors'      => [
-						'{{WRAPPER}}.ha-text-scroll .ha-split-lines' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+						'{{WRAPPER}}.ha-text-scroll .ha-split-lines' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
 					]
 				]
 			);
