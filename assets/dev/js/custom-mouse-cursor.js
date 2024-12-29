@@ -119,7 +119,7 @@ function initiateHaCursorObject (speed = 0.2) {
 						}
 						if ( 'text' == settings.type ) {
 							if ( settings.text && settings.text != undefined ) {
-								this.$element.attr( 'data-cursor-text', settings.text );
+								this.$element.attr( 'data-cursor-text', DOMPurify.sanitize(settings.text) );
 							} else {
 								this.$element.attr( 'data-cursor-text', ' ' );
 							}
