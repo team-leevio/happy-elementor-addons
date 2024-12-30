@@ -225,7 +225,9 @@
 				[
 					'label'          => __( 'Highlight Opacity', 'happy-elementor-addons' ),
 					'type'           => Controls_Manager::SLIDER,
-					'style_transfer' => true,
+					'render_type'        => 'template',
+					'style_transfer'     => true,
+					'frontend_available' => true,
 					'range'          => [
 						'px' => [
 							'min'  => 0,
