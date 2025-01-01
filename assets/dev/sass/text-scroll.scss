@@ -1,12 +1,14 @@
 .ha-text-scroll {
 	background: #FFFFFF;
 	color: #000000;
+	font-size: clamp(28px, 4.5vw, 300px);
+	line-height: 1.2;
 
 	.ha-split-lines {
 		display: block;
 		margin: 0 auto;
-		font-size: clamp(28px, 4.5vw, 300px);
-		line-height: 1.2;
+		// font-size: clamp(28px, 4.5vw, 300px);
+		// line-height: 1.2;
 	}
 
 	.ha-line-mask {
@@ -23,6 +25,7 @@
 		position: relative;
 		color: #000000;
 		transition: all 0.6s ease-in-out;
+
 		.word {
 			transition: all 0.6s ease-in-out;
 		}

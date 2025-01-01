@@ -223,26 +223,26 @@
 			$this->add_control(
 				'text_scroll_highlight_opacity',
 				[
-					'label'          => __( 'Highlight Opacity', 'happy-elementor-addons' ),
-					'type'           => Controls_Manager::SLIDER,
+					'label'              => __( 'Highlight Opacity', 'happy-elementor-addons' ),
+					'type'               => Controls_Manager::SLIDER,
 					'render_type'        => 'template',
 					'style_transfer'     => true,
 					'frontend_available' => true,
-					'range'          => [
+					'range'              => [
 						'px' => [
 							'min'  => 0,
 							'max'  => 1,
 							'step' => 0.1
 						]
 					],
-					'default'        => [
+					'default'            => [
 						'size' => 0.2
 					],
-					'selectors'      => [
+					'selectors'          => [
 						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .line .word' => 'opacity: {{SIZE}};',
 						'{{WRAPPER}}.ha-text-scroll .ha-split-lines .word .char' => 'opacity: {{SIZE}};'
 					],
-					'condition'      => [
+					'condition'          => [
 						'text_scroll_type' => ['vertical_line_highlight', 'horizontal_line_highlight']
 					]
 				]

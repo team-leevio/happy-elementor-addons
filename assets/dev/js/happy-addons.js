@@ -1667,26 +1667,20 @@
 
 					} else {
 
-						$( window ).on( 'scroll', function () {
-							const currentScrollTop = $( this ).scrollTop();
-							const scrollDirection = currentScrollTop > lastScrollTop ? 'down' : 'up';
-							lastScrollTop = currentScrollTop;
+						$element.find( '.line' ).each( function () {
 
-							$element.find( '.line' ).each( function () {
-								ScrollTrigger.create( {
+							gsap.to( this, {
+								scrollTrigger: {
 									trigger: this,
-									start: "top 60%",
+									start: 'top 50%',
+									end: 'bottom 50%',
 									onEnter: () => {
-										if ( scrollDirection === 'down' ) {
-											$( this ).addClass( 'highlight' );
-										}
+										$( this ).addClass( 'highlight' );
 									},
 									onLeaveBack: () => {
-										if ( scrollDirection === 'up' ) {
-											$( this ).removeClass( 'highlight' );
-										}
+										$( this ).removeClass( 'highlight' );
 									},
-								} );
+								},
 							} );
 
 						} );
