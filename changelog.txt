@@ -1,3 +1,7 @@
+= 3.##.# - ## #### 2025 =
+
+- Fix: Equal Height js error issues.
+
 = 3.15.2 - 24 December 2024 =
 
 - Fix: XSS security on Happy Mouse Cursor feature.
