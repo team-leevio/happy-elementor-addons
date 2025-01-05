@@ -40,3 +40,7 @@ npm install
 ```
 npm run dev
 ```
+- No cache assets: place this code in your `wp-config.php` file
+```php
+define( 'HAPPY_ADDONS_DEV', true );
+```

@@ -296,9 +296,9 @@ class Assets_Manager {
 		// gsap js
 		wp_register_script(
 			'gsap',
-			HAPPY_ADDONS_ASSETS . 'vendor/gsap.min.js',
+			HAPPY_ADDONS_ASSETS . 'vendor/gsap/gsap.min.js',
 			[],
-			HAPPY_ADDONS_VERSION,
+			'3.12.5',
 			false
 		);
 
@@ -343,6 +343,23 @@ class Assets_Manager {
 			'happy-elementor-addons',
 			HAPPY_ADDONS_ASSETS . 'css/main' . $suffix . 'css',
 			['elementor-frontend'],
+			HAPPY_ADDONS_VERSION
+		);
+
+		// mouse follower js
+		wp_register_script(
+			'mouse-follower',
+			HAPPY_ADDONS_ASSETS . 'vendor/mouse-follower/mouse-follower.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
+		// mouse follower css
+		wp_register_style(
+			'mouse-follower',
+			HAPPY_ADDONS_ASSETS . 'vendor/mouse-follower/mouse-follower.min.css',
+			[],
 			HAPPY_ADDONS_VERSION
 		);
 
