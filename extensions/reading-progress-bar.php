@@ -59,7 +59,7 @@ class Reading_Progress_Bar {
         wp_enqueue_script(
             'happy-reading-progress-bar',
             $extension_js,
-            ['jquery', 'elementor-frontend'],
+            ['jquery'],
             HAPPY_ADDONS_VERSION,
             true
         ); 
