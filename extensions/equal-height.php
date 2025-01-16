@@ -35,7 +35,7 @@ class Equal_Height {
 			'happy-equal-height',
 			HAPPY_ADDONS_ASSETS . 'js/extension-equal-height' . $suffix . 'js',
 			// [ 'elementor-frontend' ],
-			[ 'jquery' ],
+			[ 'jquery', 'elementor-frontend' ],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
