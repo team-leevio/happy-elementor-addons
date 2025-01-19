@@ -58,7 +58,7 @@ use Elementor\Group_Control_Typography;
 			wp_register_script(
 				'happy-custom-mouse-cursor',
 				HAPPY_ADDONS_ASSETS . 'js/custom-mouse-cursor' . $suffix . 'js',
-				['jquery', 'elementor-frontend', 'happy-elementor-addons', 'mouse-follower'],
+				['jquery', 'happy-elementor-addons', 'mouse-follower'],
 				HAPPY_ADDONS_VERSION,
 				true
 			);

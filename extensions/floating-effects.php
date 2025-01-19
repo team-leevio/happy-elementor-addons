@@ -31,7 +31,7 @@ class Floating_Effects {
 		wp_register_script(
 			'happy-floating-effects',
 			HAPPY_ADDONS_ASSETS . 'js/extension-floating-effects.min.js',
-			[ 'elementor-frontend' ],
+			[ 'jquery' ],
 			HAPPY_ADDONS_VERSION,
 			true
 		);

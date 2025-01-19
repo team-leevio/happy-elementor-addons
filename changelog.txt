@@ -1,3 +1,9 @@
+= 3.##.# - ## #### 2025 =
+
+- Tweak: Custom Effect option added to Liquid Hover Image widget
+- Fix: Equal Height js error issues.
+- New: Text Scrolling widget.
+
 = 3.15.2 - 24 December 2024 =
 
 - Fix: XSS security on Happy Mouse Cursor feature.

@@ -1426,12 +1426,17 @@
 
 			run: function () {
 				var self = this,
-					settings = JSON.parse( self.$element.find( '.ha-lhi-image-area' ).attr( "data-settings" ) ),
-					liquidImage = self.$element.find( '.ha-lhi-image' ),
-					title = self.$element.find( '.ha-lhi-title h2' ),
-					sub_title = self.$element.find( '.ha-lhi-title p' ),
-					canvas = self.$element.find( 'canvas' ),
-					style = settings.hover_style;
+				settings = JSON.parse(self.$element.find('.ha-lhi-image-area').attr("data-settings")),
+				liquidImage = self.$element.find('.ha-lhi-image'),
+				title = self.$element.find('.ha-lhi-title h2'),
+				sub_title = self.$element.find('.ha-lhi-title p'),
+				canvas = self.$element.find('canvas'),
+				style = settings.hover_style,
+				hover_effect = settings.plugin_url + 'liquid-hover-image/' + settings.hover_effect;
+
+				if( 'custom' == settings.hover_effect ) {
+					hover_effect = settings.custom_effect ? settings.custom_effect : '';
+				}
 
 				if ( canvas ) { canvas.remove(); }
 				var myAnimation = new hoverEffect( {
@@ -1439,10 +1444,10 @@
 					intensity: settings.intensity,
 					image1: settings.first_image,
 					image2: settings.second_image,
-					displacementImage: settings.plugin_url + 'liquid-hover-image/' + settings.hover_effect,
-					imagesRatio: liquidImage.height() / liquidImage.width(),
-					angle1: ( settings.angle - 45 ) * ( Math.PI / 180 ) * ( -1 ),
-					angle2: ( settings.angle - 45 ) * ( Math.PI / 180 ) * ( -1 ),
+					displacementImage: hover_effect,
+					imagesRatio: liquidImage.height()/liquidImage.width(),
+					angle1: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
+					angle2: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
 					speedIn: settings.speed,
 					speedOut: settings.speed,
 				} );

@@ -34,7 +34,8 @@ class Equal_Height {
 		wp_register_script(
 			'happy-equal-height',
 			HAPPY_ADDONS_ASSETS . 'js/extension-equal-height' . $suffix . 'js',
-			[ 'elementor-frontend' ],
+			// [ 'elementor-frontend' ],
+			[ 'jquery' ],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
