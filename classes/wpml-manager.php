@@ -939,7 +939,7 @@ class WPML_Manager {
 			 */
 			'liquid-hover-image' => [
 				'fields' => [
-					'button_link' => [
+					'link' => [
 						'field'       => 'link',
 						'type'        => __( 'Liquid Hover Image: Link', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
@@ -954,6 +954,19 @@ class WPML_Manager {
 						'type'        => __( 'Liquid Hover Image: Sub Title', 'happy-elementor-addons' ),
 						'editor_type' => 'LINE',
 					]
+				],
+			],
+
+			/**
+			 * Text Scroll
+			 */
+			'text-scroll' => [
+				'fields' => [
+					[
+						'field'       => 'scroll_text',
+						'type'        => __( 'Text Scroll: Scroll Text', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
 				],
 			],
 		];
