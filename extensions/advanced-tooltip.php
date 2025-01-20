@@ -36,7 +36,7 @@ class Advanced_Tooltip {
 		wp_register_script(
 			'happy-advanced-tooltip',
 			HAPPY_ADDONS_ASSETS . 'js/extension-advanced-tooltip' . $suffix . 'js',
-			[ 'elementor-frontend' ],
+			[ 'jquery' ],
 			HAPPY_ADDONS_VERSION,
 			true
 		);

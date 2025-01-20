@@ -1,5 +1,11 @@
 "use strict";
 
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 ;
 function haObserveTarget(target, callback) {
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
@@ -1242,7 +1248,11 @@ function haObserveTarget(target, callback) {
           title = self.$element.find('.ha-lhi-title h2'),
           sub_title = self.$element.find('.ha-lhi-title p'),
           canvas = self.$element.find('canvas'),
-          style = settings.hover_style;
+          style = settings.hover_style,
+          hover_effect = settings.plugin_url + 'liquid-hover-image/' + settings.hover_effect;
+        if ('custom' == settings.hover_effect) {
+          hover_effect = settings.custom_effect ? settings.custom_effect : '';
+        }
         if (canvas) {
           canvas.remove();
         }
@@ -1251,7 +1261,7 @@ function haObserveTarget(target, callback) {
           intensity: settings.intensity,
           image1: settings.first_image,
           image2: settings.second_image,
-          displacementImage: settings.plugin_url + 'liquid-hover-image/' + settings.hover_effect,
+          displacementImage: hover_effect,
           imagesRatio: liquidImage.height() / liquidImage.width(),
           angle1: (settings.angle - 45) * (Math.PI / 180) * -1,
           angle2: (settings.angle - 45) * (Math.PI / 180) * -1,
@@ -1343,6 +1353,129 @@ function haObserveTarget(target, callback) {
     });
     elementorFrontend.hooks.addAction('frontend/element_ready/ha-liquid-hover-image.default', function ($scope) {
       elementorFrontend.elementsHandler.addHandler(LiquidHoverImage, {
+        $element: $scope
+      });
+    });
+    var TextScroll = ModuleHandler.extend({
+      onInit: function onInit() {
+        ModuleHandler.prototype.onInit.apply(this, arguments);
+        this.run();
+      },
+      onElementChange: debounce(function (changedProp) {
+        var $keys = ['text_scroll_type'];
+        if ($keys.indexOf(changedProp) !== -1) {
+          this.run();
+        }
+      }, 300),
+      getReadySettings: function getReadySettings() {
+        var settings = {};
+        var scroll_type = this.getElementSettings('text_scroll_type');
+        if (scroll_type) settings.scroll_type = scroll_type;
+        return $.extend({}, this.getSettings(), settings);
+      },
+      run: function run() {
+        var settings = this.getReadySettings();
+        var $element = this.$element;
+        var elementsToSplit = $element.find('.ha-split-lines')[0];
+        var instancesOfSplit = [];
+        var textScrollType = settings.scroll_type;
+        var lastScrollTop = 0;
+        var typeSplit;
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+        gsap.registerPlugin(ScrollTrigger);
+        function runSplit() {
+          if (elementsToSplit.length <= 0) return;
+          if (textScrollType === 'horizontal_line_mask' || textScrollType === 'vertical_line_mask') {
+            $(elementsToSplit).each(function (index) {
+              var currentElement = $(this);
+              instancesOfSplit[index] = new SplitType(currentElement, {
+                types: "lines, words"
+              });
+            });
+            $(elementsToSplit).find(".line").each(function (index) {
+              $(this).append("<div class='ha-line-mask'></div>");
+            });
+          } else if (textScrollType === 'horizontal_line_highlight') {
+            $(elementsToSplit).each(function (index) {
+              var currentElement = $(this);
+              instancesOfSplit[index] = new SplitType(currentElement, {
+                types: "words, chars"
+              });
+            });
+          } else {
+            typeSplit = new SplitType(elementsToSplit, {
+              types: 'lines, words'
+            });
+          }
+          createAnimation();
+        }
+        runSplit();
+        function createAnimation() {
+          if (textScrollType === 'horizontal_line_mask' || textScrollType === 'vertical_line_mask') {
+            $element.find('.line').each(function (index, targetElement) {
+              var mask = $(targetElement).find('.ha-line-mask');
+              if (mask.length <= 0) return;
+              $(targetElement).addClass('mask-active');
+              var scrollTriggerProps = {
+                start: textScrollType === 'horizontal_line_mask' ? 'bottom 50%' : 'bottom center',
+                end: 'bottom center',
+                scrub: 3
+              };
+              var animationProps = textScrollType === 'horizontal_line_mask' ? {
+                width: '0%'
+              } : {
+                height: '0%'
+              };
+              var tl = gsap.timeline({
+                scrollTrigger: _objectSpread({
+                  trigger: targetElement
+                }, scrollTriggerProps)
+              });
+              tl.to(mask, _objectSpread(_objectSpread({}, animationProps), {}, {
+                duration: 1
+              }));
+            });
+          } else if (textScrollType === 'horizontal_line_highlight') {
+            var charsTargetElement = $element.find('.word .char');
+            var triggerElement = $element.find('.ha-split-lines');
+            if (charsTargetElement.length >= 0 && triggerElement.length >= 0) {
+              gsap.to(charsTargetElement, {
+                scrollTrigger: {
+                  trigger: triggerElement,
+                  start: 'top 40%',
+                  end: 'bottom center',
+                  scrub: 1
+                },
+                opacity: 1,
+                duration: 2,
+                stagger: 1
+              });
+            }
+          } else {
+            $element.find('.line').each(function () {
+              var _this2 = this;
+              gsap.to(this, {
+                scrollTrigger: {
+                  trigger: this,
+                  start: 'top 50%',
+                  end: 'bottom 50%',
+                  onEnter: function onEnter() {
+                    $(_this2).addClass('highlight');
+                  },
+                  onLeaveBack: function onLeaveBack() {
+                    $(_this2).removeClass('highlight');
+                  }
+                }
+              });
+            });
+          }
+        }
+      }
+    });
+
+    // Hook into Elementor's frontend ready event
+    elementorFrontend.hooks.addAction('frontend/element_ready/ha-text-scroll.default', function ($scope) {
+      elementorFrontend.elementsHandler.addHandler(TextScroll, {
         $element: $scope
       });
     });

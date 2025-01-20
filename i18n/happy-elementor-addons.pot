@@ -1,15 +1,15 @@
-# Copyright (C) 2024 Leevio
+# Copyright (C) 2025 Leevio
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Happy Elementor Addons 3.15.2\n"
+"Project-Id-Version: Happy Elementor Addons 3.16.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/happy-elementor-addons\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-24T07:38:57+00:00\n"
+"POT-Creation-Date: 2025-01-20T09:58:25+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: happy-elementor-addons\n"
@@ -60,31 +60,31 @@ msgstr ""
 msgid "Global: Renew On Demand Assets"
 msgstr ""
 
-#: classes/assets-manager.php:523
+#: classes/assets-manager.php:558
 msgid "%s Widget"
 msgstr ""
 
-#: classes/assets-manager.php:524
+#: classes/assets-manager.php:559
 msgid "Use %s widget with other exclusive pro widgets and 100% unique features to extend your toolbox and build sites faster and better."
 msgstr ""
 
-#: classes/assets-manager.php:525
+#: classes/assets-manager.php:560
 msgid "Upgrade Now"
 msgstr ""
 
-#: classes/assets-manager.php:526
+#: classes/assets-manager.php:561
 msgid "No Templates Found"
 msgstr ""
 
-#: classes/assets-manager.php:527
+#: classes/assets-manager.php:562
 msgid "Try different category or sync for new templates."
 msgstr ""
 
-#: classes/assets-manager.php:528
+#: classes/assets-manager.php:563
 msgid "No Results Found"
 msgstr ""
 
-#: classes/assets-manager.php:529
+#: classes/assets-manager.php:564
 msgid "Please make sure your search is spelled correctly or try a different words."
 msgstr ""
 
@@ -101,7 +101,7 @@ msgid "%s - [Cloned #%d]"
 msgstr ""
 
 #: classes/condition-manager.php:45
-#: widgets/liquid-hover-image/widget.php:508
+#: widgets/liquid-hover-image/widget.php:511
 #: widgets/number/widget.php:127
 #: widgets/pricing-table/widget.php:465
 msgid "General"
@@ -417,7 +417,7 @@ msgid "Home"
 msgstr ""
 
 #: classes/dashboard.php:451
-#: extensions/equal-height.php:98
+#: extensions/equal-height.php:99
 #: templates/admin/dashboard-pro.php:61
 #: templates/admin/dashboard-widgets.php:44
 msgid "Widgets"
@@ -1361,8 +1361,15 @@ msgid "Lightbox"
 msgstr ""
 
 #: classes/widgets-manager.php:1348
-#: widgets/liquid-hover-image/widget.php:34
+#: widgets/liquid-hover-image/widget.php:31
 msgid "Liquid Hover Image"
+msgstr ""
+
+#: classes/widgets-manager.php:1360
+#: widgets/text-scroll/widget.php:26
+#: widgets/text-scroll/widget.php:64
+#: widgets/text-scroll/widget.php:117
+msgid "Text Scroll"
 msgstr ""
 
 #: classes/wpml-manager.php:72
@@ -1735,6 +1742,10 @@ msgstr ""
 msgid "Liquid Hover Image: Sub Title"
 msgstr ""
 
+#: classes/wpml-manager.php:967
+msgid "Text Scroll: Scroll Text"
+msgstr ""
+
 #: controls/foreground.php:57
 #: controls/foreground.php:78
 msgctxt "Background Control"
@@ -2008,9 +2019,9 @@ msgstr ""
 #: widgets/justified-gallery/widget.php:671
 #: widgets/lightbox/widget.php:328
 #: widgets/link-hover/widget.php:114
-#: widgets/liquid-hover-image/widget.php:251
-#: widgets/liquid-hover-image/widget.php:297
-#: widgets/liquid-hover-image/widget.php:587
+#: widgets/liquid-hover-image/widget.php:257
+#: widgets/liquid-hover-image/widget.php:301
+#: widgets/liquid-hover-image/widget.php:590
 #: widgets/lordicon/widget.php:186
 #: widgets/member/widget.php:289
 #: widgets/navigation-menu/widget.php:95
@@ -2042,6 +2053,7 @@ msgstr ""
 #: widgets/step-flow/widget.php:178
 #: widgets/taxonomy-list/widget.php:339
 #: widgets/testimonial/widget.php:97
+#: widgets/text-scroll/widget.php:129
 #: widgets/threesixty-rotation/widget.php:124
 #: widgets/twitter-feed/widget.php:365
 #: widgets/twitter-feed/widget.php:394
@@ -2104,9 +2116,9 @@ msgstr ""
 #: widgets/justified-gallery/widget.php:679
 #: widgets/lightbox/widget.php:336
 #: widgets/link-hover/widget.php:122
-#: widgets/liquid-hover-image/widget.php:255
-#: widgets/liquid-hover-image/widget.php:305
-#: widgets/liquid-hover-image/widget.php:595
+#: widgets/liquid-hover-image/widget.php:261
+#: widgets/liquid-hover-image/widget.php:309
+#: widgets/liquid-hover-image/widget.php:598
 #: widgets/lordicon/widget.php:194
 #: widgets/member/widget.php:297
 #: widgets/navigation-menu/widget.php:103
@@ -2137,6 +2149,7 @@ msgstr ""
 #: widgets/step-flow/widget.php:186
 #: widgets/taxonomy-list/widget.php:347
 #: widgets/testimonial/widget.php:105
+#: widgets/text-scroll/widget.php:137
 #: widgets/threesixty-rotation/widget.php:132
 #: widgets/twitter-feed/widget.php:373
 #: widgets/twitter-feed/widget.php:402
@@ -2148,7 +2161,7 @@ msgstr ""
 
 #: extensions/advanced-tooltip.php:133
 #: widgets/bar-chart/widget.php:372
-#: widgets/liquid-hover-image/widget.php:132
+#: widgets/liquid-hover-image/widget.php:123
 #: widgets/social-icons/widget.php:730
 #: widgets/social-icons/widget.php:764
 #: widgets/social-icons/widget.php:796
@@ -2180,7 +2193,7 @@ msgstr ""
 #: widgets/icon-box/widget.php:811
 #: widgets/image-compare/widget.php:412
 #: widgets/infobox/widget.php:697
-#: widgets/liquid-hover-image/widget.php:516
+#: widgets/liquid-hover-image/widget.php:519
 #: widgets/logo-grid/widget.php:321
 #: widgets/member/widget.php:1665
 #: widgets/navigation-menu/widget.php:294
@@ -2470,8 +2483,8 @@ msgstr ""
 #: widgets/justified-gallery/widget.php:675
 #: widgets/lightbox/widget.php:332
 #: widgets/link-hover/widget.php:118
-#: widgets/liquid-hover-image/widget.php:301
-#: widgets/liquid-hover-image/widget.php:591
+#: widgets/liquid-hover-image/widget.php:305
+#: widgets/liquid-hover-image/widget.php:594
 #: widgets/lordicon/widget.php:190
 #: widgets/member/widget.php:293
 #: widgets/navigation-menu/widget.php:99
@@ -2498,6 +2511,7 @@ msgstr ""
 #: widgets/step-flow/widget.php:182
 #: widgets/taxonomy-list/widget.php:343
 #: widgets/testimonial/widget.php:101
+#: widgets/text-scroll/widget.php:133
 #: widgets/threesixty-rotation/widget.php:128
 #: widgets/twitter-feed/widget.php:369
 #: widgets/twitter-feed/widget.php:398
@@ -2532,8 +2546,8 @@ msgstr ""
 #: widgets/image-hover-effect/widget.php:223
 #: widgets/infobox/widget.php:649
 #: widgets/lightbox/widget.php:591
-#: widgets/liquid-hover-image/widget.php:315
-#: widgets/liquid-hover-image/widget.php:563
+#: widgets/liquid-hover-image/widget.php:319
+#: widgets/liquid-hover-image/widget.php:566
 #: widgets/mailchimp/widget.php:883
 #: widgets/mailchimp/widget.php:1250
 #: widgets/member/widget.php:772
@@ -2595,6 +2609,7 @@ msgstr ""
 #: widgets/post-tab/widget.php:532
 #: widgets/post-tab/widget.php:634
 #: widgets/taxonomy-list/widget.php:425
+#: widgets/text-scroll/widget.php:188
 #: widgets/threesixty-rotation/widget.php:253
 #: widgets/threesixty-rotation/widget.php:460
 #: widgets/threesixty-rotation/widget.php:490
@@ -2825,6 +2840,7 @@ msgstr ""
 #: widgets/testimonial/widget.php:249
 #: widgets/testimonial/widget.php:424
 #: widgets/testimonial/widget.php:468
+#: widgets/text-scroll/widget.php:153
 #: widgets/weform/widget.php:588
 #: widgets/weform/widget.php:620
 #: widgets/wpform/widget.php:597
@@ -2854,7 +2870,7 @@ msgstr ""
 #: widgets/image-accordion/widget.php:1216
 #: widgets/image-hover-effect/widget.php:259
 #: widgets/lightbox/widget.php:650
-#: widgets/liquid-hover-image/widget.php:359
+#: widgets/liquid-hover-image/widget.php:363
 #: widgets/logo-grid/widget.php:240
 #: widgets/mailchimp/widget.php:836
 #: widgets/mailchimp/widget.php:1109
@@ -2961,7 +2977,7 @@ msgstr ""
 #: widgets/justified-gallery/widget.php:632
 #: widgets/lightbox/widget.php:394
 #: widgets/lightbox/widget.php:660
-#: widgets/liquid-hover-image/widget.php:364
+#: widgets/liquid-hover-image/widget.php:368
 #: widgets/logo-grid/widget.php:417
 #: widgets/lordicon/widget.php:315
 #: widgets/mailchimp/widget.php:823
@@ -3253,7 +3269,7 @@ msgstr ""
 #: widgets/image-grid/widget.php:412
 #: widgets/justified-gallery/widget.php:394
 #: widgets/justified-gallery/widget.php:428
-#: widgets/liquid-hover-image/widget.php:336
+#: widgets/liquid-hover-image/widget.php:340
 #: widgets/logo-grid/widget.php:528
 #: widgets/logo-grid/widget.php:562
 #: widgets/member/widget.php:893
@@ -3294,7 +3310,7 @@ msgid "Column ordering is a great addition for responsive design. You can learn 
 msgstr ""
 
 #: extensions/css-transform.php:32
-#: extensions/equal-height.php:55
+#: extensions/equal-height.php:56
 #: extensions/floating-effects.php:52
 #: extensions/reading-progress-bar-kit-settings.php:46
 #: extensions/reading-progress-bar.php:98
@@ -3543,8 +3559,8 @@ msgstr ""
 #: widgets/infobox/widget.php:833
 #: widgets/lightbox/widget.php:505
 #: widgets/lightbox/widget.php:536
-#: widgets/liquid-hover-image/widget.php:419
-#: widgets/liquid-hover-image/widget.php:488
+#: widgets/liquid-hover-image/widget.php:422
+#: widgets/liquid-hover-image/widget.php:491
 #: widgets/mailchimp/widget.php:712
 #: widgets/mailchimp/widget.php:789
 #: widgets/mailchimp/widget.php:1070
@@ -3737,8 +3753,8 @@ msgstr ""
 #: widgets/lightbox/widget.php:190
 #: widgets/lightbox/widget.php:200
 #: widgets/lightbox/widget.php:580
-#: widgets/liquid-hover-image/widget.php:77
-#: widgets/liquid-hover-image/widget.php:288
+#: widgets/liquid-hover-image/widget.php:68
+#: widgets/liquid-hover-image/widget.php:292
 #: widgets/photo-stack/widget.php:83
 #: widgets/post-tab/widget.php:687
 #: widgets/slider/widget.php:83
@@ -3888,7 +3904,7 @@ msgid "Delay"
 msgstr ""
 
 #: extensions/custom-mouse-cursor.php:646
-#: widgets/liquid-hover-image/widget.php:247
+#: widgets/liquid-hover-image/widget.php:253
 #: widgets/step-flow/widget.php:586
 msgid "Direction"
 msgstr ""
@@ -3937,29 +3953,29 @@ msgstr ""
 msgid "Cursor Style"
 msgstr ""
 
-#: extensions/equal-height.php:47
+#: extensions/equal-height.php:48
 msgid "Equal Height"
 msgstr ""
 
-#: extensions/equal-height.php:95
+#: extensions/equal-height.php:96
 msgid "Apply To"
 msgstr ""
 
-#: extensions/equal-height.php:112
+#: extensions/equal-height.php:113
 msgid "Select Widgets"
 msgstr ""
 
-#: extensions/equal-height.php:114
+#: extensions/equal-height.php:115
 msgid "You can select multiple widgets from the dropdown and these widgets are only from the current selected section."
 msgstr ""
 
-#: extensions/equal-height.php:129
+#: extensions/equal-height.php:130
 #: widgets/image-grid/widget.php:255
 #: widgets/justified-gallery/widget.php:295
 msgid "Disable On Tablet"
 msgstr ""
 
-#: extensions/equal-height.php:144
+#: extensions/equal-height.php:145
 #: widgets/image-grid/widget.php:268
 #: widgets/justified-gallery/widget.php:308
 msgid "Disable On Mobile"
@@ -3991,7 +4007,7 @@ msgstr ""
 #: extensions/floating-effects.php:466
 #: widgets/bar-chart/widget.php:381
 #: widgets/fun-factor/widget.php:247
-#: widgets/liquid-hover-image/widget.php:173
+#: widgets/liquid-hover-image/widget.php:180
 #: widgets/number/widget.php:99
 msgid "Duration"
 msgstr ""
@@ -4034,7 +4050,7 @@ msgstr ""
 #: widgets/fun-factor/widget.php:557
 #: widgets/icon-box/widget.php:809
 #: widgets/infobox/widget.php:695
-#: widgets/liquid-hover-image/widget.php:514
+#: widgets/liquid-hover-image/widget.php:517
 #: widgets/review/widget.php:617
 #: widgets/step-flow/widget.php:657
 msgid "Offset"
@@ -4423,8 +4439,8 @@ msgstr ""
 #: widgets/justified-gallery/widget.php:547
 #: widgets/lightbox/widget.php:415
 #: widgets/link-hover/widget.php:209
-#: widgets/liquid-hover-image/widget.php:411
-#: widgets/liquid-hover-image/widget.php:483
+#: widgets/liquid-hover-image/widget.php:414
+#: widgets/liquid-hover-image/widget.php:486
 #: widgets/mailchimp/widget.php:704
 #: widgets/mailchimp/widget.php:802
 #: widgets/mailchimp/widget.php:1155
@@ -4461,6 +4477,7 @@ msgstr ""
 #: widgets/testimonial/widget.php:273
 #: widgets/testimonial/widget.php:436
 #: widgets/testimonial/widget.php:480
+#: widgets/text-scroll/widget.php:167
 #: widgets/twitter-feed/widget.php:938
 #: widgets/twitter-feed/widget.php:982
 #: widgets/twitter-feed/widget.php:1046
@@ -4761,7 +4778,7 @@ msgstr ""
 #: widgets/lightbox/widget.php:234
 #: widgets/lightbox/widget.php:254
 #: widgets/link-hover/widget.php:143
-#: widgets/liquid-hover-image/widget.php:116
+#: widgets/liquid-hover-image/widget.php:107
 #: widgets/member/widget.php:607
 #: widgets/photo-stack/widget.php:117
 #: widgets/post-info/widget.php:305
@@ -4787,7 +4804,7 @@ msgstr ""
 #: widgets/bar-chart/widget.php:1170
 #: widgets/bar-chart/widget.php:1249
 #: widgets/bar-chart/widget.php:1271
-#: widgets/liquid-hover-image/widget.php:142
+#: widgets/liquid-hover-image/widget.php:133
 #: widgets/page-title/widget.php:112
 #: widgets/page-title/widget.php:183
 #: widgets/post-featured-image/widget.php:155
@@ -5554,8 +5571,8 @@ msgstr ""
 #: widgets/infobox/widget.php:401
 #: widgets/infobox/widget.php:1038
 #: widgets/link-hover/widget.php:96
-#: widgets/liquid-hover-image/widget.php:215
-#: widgets/liquid-hover-image/widget.php:405
+#: widgets/liquid-hover-image/widget.php:221
+#: widgets/liquid-hover-image/widget.php:408
 #: widgets/news-ticker/widget.php:402
 #: widgets/page-title/widget.php:251
 #: widgets/pdf-view/widget.php:287
@@ -5659,8 +5676,8 @@ msgstr ""
 #: widgets/justified-gallery/widget.php:666
 #: widgets/lightbox/widget.php:323
 #: widgets/link-hover/widget.php:110
-#: widgets/liquid-hover-image/widget.php:293
-#: widgets/liquid-hover-image/widget.php:583
+#: widgets/liquid-hover-image/widget.php:297
+#: widgets/liquid-hover-image/widget.php:586
 #: widgets/lordicon/widget.php:182
 #: widgets/member/widget.php:285
 #: widgets/navigation-menu/widget.php:91
@@ -5685,6 +5702,7 @@ msgstr ""
 #: widgets/step-flow/widget.php:174
 #: widgets/taxonomy-list/widget.php:335
 #: widgets/testimonial/widget.php:92
+#: widgets/text-scroll/widget.php:125
 #: widgets/twitter-feed/widget.php:361
 msgid "Alignment"
 msgstr ""
@@ -5879,7 +5897,7 @@ msgstr ""
 #: widgets/image-stack-group/widget.php:429
 #: widgets/image-stack-group/widget.php:538
 #: widgets/lightbox/widget.php:640
-#: widgets/liquid-hover-image/widget.php:375
+#: widgets/liquid-hover-image/widget.php:379
 #: widgets/mailchimp/widget.php:845
 #: widgets/mailchimp/widget.php:1213
 #: widgets/navigation-menu/widget.php:482
@@ -6639,7 +6657,7 @@ msgstr ""
 #: widgets/image-compare/widget.php:413
 #: widgets/infobox/widget.php:340
 #: widgets/infobox/widget.php:698
-#: widgets/liquid-hover-image/widget.php:517
+#: widgets/liquid-hover-image/widget.php:520
 #: widgets/lordicon/widget.php:136
 #: widgets/mailchimp/widget.php:103
 #: widgets/page-title/widget.php:171
@@ -7125,7 +7143,7 @@ msgstr ""
 #: widgets/fun-factor/widget.php:570
 #: widgets/icon-box/widget.php:822
 #: widgets/infobox/widget.php:708
-#: widgets/liquid-hover-image/widget.php:524
+#: widgets/liquid-hover-image/widget.php:527
 #: widgets/step-flow/widget.php:695
 msgid "Offset Left"
 msgstr ""
@@ -7135,7 +7153,7 @@ msgstr ""
 #: widgets/fun-factor/widget.php:588
 #: widgets/icon-box/widget.php:846
 #: widgets/infobox/widget.php:729
-#: widgets/liquid-hover-image/widget.php:543
+#: widgets/liquid-hover-image/widget.php:546
 #: widgets/step-flow/widget.php:670
 msgid "Offset Top"
 msgstr ""
@@ -7251,7 +7269,7 @@ msgstr ""
 
 #: widgets/carousel/widget.php:140
 #: widgets/carousel/widget.php:533
-#: widgets/liquid-hover-image/widget.php:476
+#: widgets/liquid-hover-image/widget.php:479
 #: widgets/slider/widget.php:111
 #: widgets/slider/widget.php:448
 msgid "Subtitle"
@@ -7563,7 +7581,7 @@ msgstr ""
 #: widgets/horizontal-timeline/widget.php:137
 #: widgets/image-hover-effect/widget.php:144
 #: widgets/link-hover/widget.php:145
-#: widgets/liquid-hover-image/widget.php:118
+#: widgets/liquid-hover-image/widget.php:109
 #: widgets/page-title/widget.php:222
 #: widgets/post-featured-image/widget.php:199
 #: widgets/post-title/widget.php:231
@@ -7836,7 +7854,7 @@ msgstr ""
 #: widgets/creative-button/widget.php:116
 #: widgets/creative-button/widget.php:134
 #: widgets/creative-button/widget.php:155
-#: widgets/liquid-hover-image/widget.php:233
+#: widgets/liquid-hover-image/widget.php:239
 msgid "Effects"
 msgstr ""
 
@@ -8683,7 +8701,7 @@ msgstr ""
 
 #: widgets/horizontal-timeline/widget.php:148
 #: widgets/horizontal-timeline/widget.php:1102
-#: widgets/liquid-hover-image/widget.php:224
+#: widgets/liquid-hover-image/widget.php:230
 msgid "Sub Title"
 msgstr ""
 
@@ -8766,8 +8784,8 @@ msgid "Space between contents"
 msgstr ""
 
 #: widgets/horizontal-timeline/widget.php:1090
-#: widgets/liquid-hover-image/widget.php:427
-#: widgets/liquid-hover-image/widget.php:496
+#: widgets/liquid-hover-image/widget.php:430
+#: widgets/liquid-hover-image/widget.php:499
 #: widgets/step-flow/widget.php:509
 #: widgets/twitter-feed/widget.php:1010
 msgid "Hover Color"
@@ -9359,7 +9377,7 @@ msgid "Best Elementor Addons"
 msgstr ""
 
 #: widgets/image-hover-effect/widget.php:158
-#: widgets/liquid-hover-image/widget.php:138
+#: widgets/liquid-hover-image/widget.php:129
 msgid "Hover Effect"
 msgstr ""
 
@@ -9462,13 +9480,13 @@ msgstr ""
 
 #: widgets/image-stack-group/widget.php:156
 #: widgets/image-stack-group/widget.php:456
-#: widgets/liquid-hover-image/widget.php:259
+#: widgets/liquid-hover-image/widget.php:265
 msgid "Up"
 msgstr ""
 
 #: widgets/image-stack-group/widget.php:160
 #: widgets/image-stack-group/widget.php:460
-#: widgets/liquid-hover-image/widget.php:263
+#: widgets/liquid-hover-image/widget.php:269
 msgid "Down"
 msgstr ""
 
@@ -9678,106 +9696,111 @@ msgstr ""
 msgid "Link Hover Color"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:82
+#: widgets/liquid-hover-image/widget.php:73
 msgid "Initial Image"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:94
+#: widgets/liquid-hover-image/widget.php:85
 msgid "Hover Image"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:107
+#: widgets/liquid-hover-image/widget.php:98
 msgid "Initial & Hover Image should have similar dimension for best effect."
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:143
+#: widgets/liquid-hover-image/widget.php:134
 msgid "Zigzag"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:144
+#: widgets/liquid-hover-image/widget.php:135
 msgid "Stripe"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:145
+#: widgets/liquid-hover-image/widget.php:136
 msgid "Wave"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:146
+#: widgets/liquid-hover-image/widget.php:137
 msgid "Parallel"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:147
+#: widgets/liquid-hover-image/widget.php:138
 msgid "Water"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:148
+#: widgets/liquid-hover-image/widget.php:139
 msgid "Concrete"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:149
+#: widgets/liquid-hover-image/widget.php:140
 msgid "Mosaic"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:150
+#: widgets/liquid-hover-image/widget.php:141
 msgid "Honeycomb"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:151
+#: widgets/liquid-hover-image/widget.php:142
 msgid "Noise"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:152
+#: widgets/liquid-hover-image/widget.php:143
 msgid "Paint"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:157
+#: widgets/liquid-hover-image/widget.php:144
+#: widgets/liquid-hover-image/widget.php:149
+msgid "Custom Effect"
+msgstr ""
+
+#: widgets/liquid-hover-image/widget.php:164
 msgid "Intensity"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:189
+#: widgets/liquid-hover-image/widget.php:196
 #: widgets/post-navigation/widget.php:181
 #: widgets/step-flow/widget.php:630
 msgid "Angle"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:210
-#: widgets/liquid-hover-image/widget.php:385
+#: widgets/liquid-hover-image/widget.php:216
+#: widgets/liquid-hover-image/widget.php:388
 msgid "Title & Subtitle"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:237
+#: widgets/liquid-hover-image/widget.php:243
 msgid "Style 1"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:238
+#: widgets/liquid-hover-image/widget.php:244
 msgid "Style 2"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:239
+#: widgets/liquid-hover-image/widget.php:245
 msgid "Style 3"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:240
+#: widgets/liquid-hover-image/widget.php:246
 msgid "Style 4"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:241
+#: widgets/liquid-hover-image/widget.php:247
 msgid "Style 5"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:242
+#: widgets/liquid-hover-image/widget.php:248
 msgid "Style 6"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:353
+#: widgets/liquid-hover-image/widget.php:357
 msgid "CSS Filters"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:443
+#: widgets/liquid-hover-image/widget.php:446
 msgid "Secondary Hover Color"
 msgstr ""
 
-#: widgets/liquid-hover-image/widget.php:460
+#: widgets/liquid-hover-image/widget.php:463
 msgid "Bottom Space"
 msgstr ""
 
@@ -11852,6 +11875,50 @@ msgstr ""
 
 #: widgets/testimonial/widget.php:192
 msgid "Type reviewer title"
+msgstr ""
+
+#: widgets/text-scroll/widget.php:72
+msgid "Scroll Type"
+msgstr ""
+
+#: widgets/text-scroll/widget.php:77
+msgid "Vertical Line Highlight"
+msgstr ""
+
+#: widgets/text-scroll/widget.php:78
+msgid "Horizontal Line Highlight"
+msgstr ""
+
+#: widgets/text-scroll/widget.php:79
+msgid "Vertical Line Mask"
+msgstr ""
+
+#: widgets/text-scroll/widget.php:80
+msgid "Horizontal Line Mask"
+msgstr ""
+
+#: widgets/text-scroll/widget.php:91
+msgid "Scroll Text"
+msgstr ""
+
+#: widgets/text-scroll/widget.php:94
+msgid "Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas in erat non urna placerat consectetur. Curabitur rhoncus iaculis tincidunt. Fusce vel lectus consequat nisl posuere pellentesque vel et metus. Nam egestas sodales semet mattis."
+msgstr ""
+
+#: widgets/text-scroll/widget.php:95
+msgid "Type your scroll text here"
+msgstr ""
+
+#: widgets/text-scroll/widget.php:201
+msgid "Masking Opacity"
+msgstr ""
+
+#: widgets/text-scroll/widget.php:226
+msgid "Highlight Opacity"
+msgstr ""
+
+#: widgets/text-scroll/widget.php:254
+msgid "Line Padding"
 msgstr ""
 
 #: widgets/threesixty-rotation/widget.php:29

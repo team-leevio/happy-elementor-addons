@@ -338,6 +338,41 @@ class Assets_Manager {
 			true
 		);
 
+		// mouse follower css
+		wp_register_style(
+			'mouse-follower',
+			HAPPY_ADDONS_ASSETS . 'vendor/mouse-follower/mouse-follower.min.css',
+			[],
+			HAPPY_ADDONS_VERSION
+		);
+
+		// mouse follower js
+		wp_register_script(
+			'mouse-follower',
+			HAPPY_ADDONS_ASSETS . 'vendor/mouse-follower/mouse-follower.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+		
+		// Scroll Trigger
+		wp_register_script(
+			'scroll-trigger',
+			HAPPY_ADDONS_ASSETS . 'vendor/scroll-trigger/scroll-trigger.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+		
+		// Split Type
+		wp_register_script(
+			'split-type',
+			HAPPY_ADDONS_ASSETS . 'vendor/split-type/split-type.min.js',
+			['gsap', 'scroll-trigger'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
 		// Main assets
 		wp_register_style(
 			'happy-elementor-addons',

@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.15.2
+Version: 3.16.0
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.7
-Stable tag: 3.15.2
+Stable tag: 3.16.0
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -269,6 +269,13 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.16.0 - 20 January 2025 =
+
+- New: Text Scroll widget.
+- Tweak: Custom Effect option added to Liquid Hover Image widget
+- Fix: Equal Height feature JavaScript error.
+- Fix: Edge cases with script loading and dependencies.
+
 = 3.15.2 - 24 December 2024 =
 
 - Fix: XSS security on Happy Mouse Cursor feature.
@@ -316,12 +323,5 @@ For a more detailed explanation check out the following documentation
 
 - New: Added WPML support to Lightbox widget.
 - Fix: Security improvement for Theme builder.
-
-= 3.12.3 - 19 September 2024 =
-
-- Update: Made Compatible with Elementor 3.24
-- Update: magnific-popup js updated to v1.2.0.
-- Update: Updated Appsero SDK.
-- Fix: Security improvement for Content Switcher widget.
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)

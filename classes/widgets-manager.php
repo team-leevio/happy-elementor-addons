@@ -1354,6 +1354,18 @@ class Widgets_Manager {
 					'js' => ['gsap','three','hover-effect','anime'],
 				],
 			],
+			'text-scroll' => [
+				'cat' => 'creative',
+				'is_active' => true,
+				'title' => __('Text Scroll', 'happy-elementor-addons'),
+				'icon' => 'hm hm-mouse-scroll-v',
+				'css' => ['text-scroll'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => ['gsap','scroll-trigger','split-type'],
+				],
+			],
 		];
 	}
 

@@ -904,7 +904,7 @@ class WPML_Manager {
 						'editor_type' => 'LINE',
 					],
 					'button_link' => [
-						'field'       => 'button_link',
+						'field'       => 'url',
 						'type'        => __( 'Creative Button: Link', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
 					],
@@ -922,12 +922,12 @@ class WPML_Manager {
 						'editor_type' => 'LINE',
 					],
 					'youtube_link' => [
-						'field'       => 'youtube_link',
+						'field'       => 'url',
 						'type'        => __( 'Lightbox: Link', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
 					],
 					'vimeo_link' => [
-						'field'       => 'vimeo_link',
+						'field'       => 'url',
 						'type'        => __( 'Lightbox: Link', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
 					],
@@ -939,8 +939,8 @@ class WPML_Manager {
 			 */
 			'liquid-hover-image' => [
 				'fields' => [
-					'button_link' => [
-						'field'       => 'link',
+					'link' => [
+						'field'       => 'url',
 						'type'        => __( 'Liquid Hover Image: Link', 'happy-elementor-addons' ),
 						'editor_type' => 'LINK',
 					],
@@ -954,6 +954,19 @@ class WPML_Manager {
 						'type'        => __( 'Liquid Hover Image: Sub Title', 'happy-elementor-addons' ),
 						'editor_type' => 'LINE',
 					]
+				],
+			],
+
+			/**
+			 * Text Scroll
+			 */
+			'text-scroll' => [
+				'fields' => [
+					[
+						'field'       => 'scroll_text',
+						'type'        => __( 'Text Scroll: Scroll Text', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
 				],
 			],
 		];
