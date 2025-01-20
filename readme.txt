@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.15.2
+Version: 3.16.0
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.7
-Stable tag: 3.15.2
+Stable tag: 3.16.0
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -271,7 +271,7 @@ For a more detailed explanation check out the following documentation
 
 = 3.16.0 - 20 January 2025 =
 
-- New: Text Scrolling widget.
+- New: Text Scroll widget.
 - Tweak: Custom Effect option added to Liquid Hover Image widget
 - Fix: Equal Height feature JavaScript error.
 - Fix: Edge cases with script loading and dependencies.
