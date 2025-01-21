@@ -398,10 +398,10 @@ class Updater {
             esc_attr($plugin_file),
             $column_count,
             esc_html(sprintf(
-                __('%s %s is available. %s', 'appsero'),
+                __('%s %s is available. %s', 'happy-elementor-addons'),
                 $plugin_data['Name'],
                 $new_version,
-                __('Please resolve the following issues to update the plugin:', 'appsero')
+                __('Please resolve the following issues to update the plugin:', 'happy-elementor-addons')
             )),
             esc_html(implode('&nbsp;', $warnings))
         );
