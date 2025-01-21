@@ -27,7 +27,7 @@
 		}
 
 		public function get_custom_help_url() {
-			// return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/text-scroll/';
+			return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/text-scroll/';
 		}
 
 		/**
@@ -278,7 +278,7 @@
 		?>
 
 		<div class="ha-split-lines">
-			<?php echo esc_html__( $scroll_text, 'happy-elementor-addons' ); ?>
+			<?php echo esc_html( $scroll_text ); ?>
 		</div>
 
 		<?php
