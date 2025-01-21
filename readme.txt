@@ -1,29 +1,35 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.16.0
+Version: 3.16.1
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.7
-Stable tag: 3.16.0
+Stable tag: 3.16.1
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 [HappyAddons for Elementor](https://happyaddons.com/)-Get Header Footer, Single Post, Archive Page, Megamenu, Slider Builder & 143 Elementor Widgets.
 
+
 == Description ==
 
-[Happy Addons for Elementor](https://happyaddons.com/) is One of best Elementor Addons comes with **Theme Builder** that covers **free Header Footer**, **Single Post Template**, and **Archive Page Builder**, with **137** Free & Pro Widgets & **28** Features to enhance [Elementor](https://wordpress.org/plugins/elementor/).
+
+[Happy Addons for Elementor](https://happyaddons.com/) is One of best Elementor Addons comes with **Theme Builder** that covers **free Header Footer**, **Single Post Template**, and **Archive Page Builder**, with **143+** Free & Pro Widgets & **24+** Features to enhance [Elementor](https://wordpress.org/plugins/elementor/).
 Get **70+** full-page Elementor Templates & **500+** Template Blocks.
+
 
 ## Useful Links
 
+
 [Demo](https://happyaddons.com/elementor-widgets/) | [Docs](https://happyaddons.com/docs/) | [Videos](https://www.youtube.com/channel/UC1-e7ewkKB1Dao1U90QFQFA) | [Support](https://happyaddons.com/happy-support/) | [IdeaSharing](https://happyaddons.com/roadmaps/#ideas) | [FacebookGroup](https://www.facebook.com/groups/HappyAddonsCommunity) | [Get Pro](https://happyaddons.com/pricing/)
 
+
 ## Widgets In Free Version
+
 
 * **[Card](https://demo.happyaddons.com/elementor-card-widget-demo/)**: Showcase products, articles, news.
 * **[Info Box](https://demo.happyaddons.com/elementor-info-box-widget-demo/)**: Create information boxes.
@@ -92,8 +98,11 @@ Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 * **[Archive Title](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-title/)**: Add and style archive page’s title.
 * **[Archive Posts](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-post/)**: Create & style archive posts.
 * **[Age Gate](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/age-gate/)**:  Add age verification popup.
-
+* **[Lightbox](https://demo.happyaddons.com/lightbox-demo/)**:  Video & image lightbox.
+* **[Liquid Hover Image](https://demo.happyaddons.com/liquid-hover-image-widget-demo/)**:  Add liquid hover effects to images.
+* **[Text Scroll](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/text-scroll/)**:  Add eye-catching scrolling text effects.
 ## Widgets in HappyAddons Pro
+
 
 * **[Advanced Slider](https://demo.happyaddons.com/elementor-advanced-slider-widget-demo/)**: It’s a slider builder.
 * **[Happy Mega Menu](https://demo.happyaddons.com/elementor-happy-mega-menu-widget-demo/)**: Create MegaMenu with Elementor.
@@ -159,8 +168,14 @@ Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 * **[Image Swap](https://demo.happyaddons.com/elementor-image-swap-widget-demo/)**: Alter images on mouse action.
 * **[Remote Carousel](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/remote-carousel/)**: It’s remote button to control carousel widgets of HappyAddons.
 * **[Table of content](https://demo-x.happyaddons.com/elementor-table-of-content-widget-demo/)**: Create TOC easily.
+* **[Advanced Comparison Table](https://demo.happyaddons.com/elementor-advanced-comparison-table-widget-demo-mosaddek/)**: Create advanced comparison tables within Elementor.
+* **[Happy Loop Grid](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/happy-loop-grid/)**: Build your own grid items with this widget and place them anywhere you want.
+* **[Title Tips](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/title-tips/)**: Add amazing title hover effects to your landing page titles.
+* **[Metro Grid ](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/metro-grid/)**: Create amazing grid with 16 ready-made grid styles.
+
 
 ## Happy Addons Features/Extenions/Modules
+
 
 ### Free Features of HappyAddons:
 * **[Happy Templates](https://happyaddons.com/template-importer/)**(**Freemium**): 500+ section templates & 70+ full page templates are available.
@@ -183,7 +198,9 @@ Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 * **[Single Page/post Template Builder](https://happyaddons.com/how-to-create-a-blog-post-template-in-elementor/)**: Design and create single blog post’s template for free.
 * **[Archive Page Template Builder](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-post/)**: Design archive page.
 * **[Theme Builder With Basic Templating Conditions](https://happyaddons.com/docs/happy-theme-builder/how-to-set-conditions-to-display-templates-pro/)**: Free users can set template condition for Entire site, All Singular/Archive pages.
-
+* **[Hugeicons](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/huge-icons-library/)**: Use Hugeicons directly in your editor.
+* **[Reading Progress Bar](https://happyaddons.com/reading-progress-bar/)**: It offers horizontal, vertical, and circular styled reading progress bars.
+* **[Happy Mouse Cursor](https://demo-x.happyaddons.com/custom-mouse-cursor-feature-demo/)**: Add custom cursor effects with blur mode and liquid flow features.
 ### Premium Features of Happy Addons
 * **[Cross Domain Copy-Paste](https://demo.happyaddons.com/cross-domain-copy-paste/)**: You can copy & paste element from one domain to another.
 * **[Preset](https://happyaddons.com/presets-demo/)**: 400+ preset designs available in HappyAddons.
@@ -193,65 +210,87 @@ Get **70+** full-page Elementor Templates & **500+** Template Blocks.
 * **[Particle Effect](https://happyaddons.com/happy-particle-effect/)**: Add particle effects - Polygon, NASA, Snow & more.
 * **[Display Condition](https://happyaddons.com/display-condition/)**: Show, hide, & schedule content to display on site & display content depending on conditions like browser, operating system, date range, time, & more.
 * **[Theme Builder Advance Templating Conditions](https://happyaddons.com/docs/happy-theme-builder/how-to-set-conditions-to-display-templates-pro/)**: Advanced template conditioning option, Include & exclude page/posts, or archive pages to set conditions.
+* **[Global Badge](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/global-badge/)**: Add  badges to any Elementor widget, containers as per your need.
+
 
 ### Privacy-Policy
 
+
 **Happy Addons** uses **Appsero-SDK** to collect some telemetry data upon the user’s confirmation. [Read-Policy](https://appsero.com/privacy-policy/).
+
 
 ### Missing-Anything?
 
+
 If you miss anything [Submit ideas.](https://happyaddons.com/roadmaps/#ideas)
+
 
 ### Happy-With-Our-Work?
 
+
 We are thankful to you. If it brings smile, please share happiness by giving us [5***** rating](https://wordpress.org/support/plugin/happy-elementor-addons/reviews/?filter=5).
 
+
 == Frequently Asked Questions ==
+
 
 = Can I use Happy Addons without Elementor? =
 I'm afraid, you cannot use **[Happy Addons](https://happyaddons.com/)** without Elementor.
 
+
 = How to use Mega Menu in HappyAddons and Elementor? =
+
 
 Want to learn How to Create a MegaMenu? Watch this detailed tutorial of creating mega menus,
 [youtube https://www.youtube.com/watch?v=7qmCZFsDkmg&ab_channel=HappyAddons]
 
+
 = Does it work along with other Elementor Addons? =
 Yes, it does. And you'll get some cool and extra features like Happy Effects for other Addons or Extensions.
+
 
 = Does it work with any WordPress theme? =
 Yes, it works with any WordPress theme that works with Elementor. And it best works with [Hello Elementor](https://wordpress.org/themes/hello-elementor/).
 
+
 = Does it work with Elementor Pro? =
 Yes, undoubtedly.
 
+
 = Will Happy Addons break my site after an update? =
 No, It won't break your site or any page where you used our plugin. We put our best effort to make you happy. But we always recommend to keep back up of your site before updating our plugin. In case if anything happens you can revert back and contact our support team immediately.
+
 
 = How to User Image Masking in HappyAddons? =
 You will be able to convert your square image into lovely custom shapes. No hassles, just upload your image and choose your shape. Boom! Just done. Very Easy. Here is tutorial.
 [youtube https://www.youtube.com/watch?v=0U3wq3oxy2k&t=2s&ab_channel=HappyAddons]
 
+
 = Can I use my own particle js effects within HappyAddons? =
 Yes, you can use particle effects form the Particle Js site. Here is tutorial -
 [youtube https://www.youtube.com/watch?v=iD83Sr4pFSw&ab_channel=HappyAddons]
 
-= How can I report security bugs? =
-You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/happy-elementor-addons)
 
 == Installation ==
 
+
 **Step 1:** Upload the plugin file to install by navigating through Plugins➔Add New➔Upload Plugin➔Choose File to Install from your WordPress dashboard or you can simply search for the Happy Addons plugin from the plugin directory by going to Plugins➔Add New and search for the plugin in the search tab to install it on your WordPress site.
+
 
 **Step 2:** After successful installation, you have to click the "activate" button to activate the happy addons for Elementor.
 
+
 **Step 3:** When you activate Happy Addons for Elementor you will be redirected to our HappyAddons Dashboard Home Tab.
+
 
 For a more detailed explanation check out the following documentation
 
+
 ☞ [**How to Install Happy Addons For Elementor**](https://happyaddons.com/docs/happy-addons-for-elementor/getting-started-with-happy-elementor-addons/installation/)
 
+
 == Screenshots ==
+
 
 1. Review widget with image offset
 2. Icon box widget - capsule design
@@ -268,6 +307,10 @@ For a more detailed explanation check out the following documentation
 13. Card widget - capsule design
 
 == Changelog ==
+
+= 3.16.1 - 21 January 2025 =
+
+- Update: Made Compatible with Elementor 3.27
 
 = 3.16.0 - 20 January 2025 =
 
@@ -287,41 +330,5 @@ For a more detailed explanation check out the following documentation
 = 3.15.0 - 02 December 2024 =
 
 - New: Happy Mouse Cursor feature.
-
-= 3.14.1 - 24 November 2024 =
-
-- Fix: _load_textdomain_just_in_time issue with WordPress 6.7.1
-
-= 3.14.0 - 19 November 2024 =
-
-- New:  Reading Progress Bar feature.
-
-= 3.13.0 - 13 November 2024 =
-
-- New:  Liquid Hover Image widget.
-- New:  Integrated Hugeicons.
-- Update:  Happy icon pack update.
-- Fix: Text Stroke issue.
-
-= 3.12.6 - 05 November 2024 =
-
-- Fix: Security improvement for Image Compare widget.
-- Fix: Warning with element Caching feature disabled.
-
-= 3.12.5 - 21 October 2024 =
-
-- Fix: All Widget compatible with Element Caching of Elementor.
-- Fix: Floating Effects feature compatible with Element Caching of Elementor.
-- Fix: Happy Tooltip feature compatible with Element Caching of Elementor.
-- Fix: Equal Height feature compatible with Element Caching of Elementor.
-- Fix: Grid Layer feature compatible with latest Elementor 3.24.x
-- Fix: Fun Factor widget undefined variable issue.
-- Fix: Age Gate widget button background issue.
-- Fix: Gradient Heading widget rare issue.
-
-= 3.12.4 - 9 October 2024 =
-
-- New: Added WPML support to Lightbox widget.
-- Fix: Security improvement for Theme builder.
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)
