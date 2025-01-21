@@ -723,7 +723,7 @@ class Insights {
     public function add_weekly_schedule( $schedules ) {
         $schedules['weekly'] = array(
             'interval' => DAY_IN_SECONDS * 7,
-            'display'  => __( 'Once Weekly', 'appsero' ),
+            'display'  => __( 'Once Weekly', 'happy-elementor-addons' ),
         );
 
         return $schedules;

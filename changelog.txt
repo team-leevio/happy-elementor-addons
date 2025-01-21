@@ -1,3 +1,7 @@
+= 3.16.1 - 21 January 2025 =
+
+- Update: Made Compatible with Elementor 3.27
+
 = 3.16.0 - 20 January 2025 =
 
 - New: Text Scroll widget.
