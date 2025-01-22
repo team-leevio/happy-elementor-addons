@@ -42,7 +42,7 @@ defined('ABSPATH') || die();
 if ( defined( 'HAPPY_ADDONS_DEV' ) && true == HAPPY_ADDONS_DEV ) {
 	define('HAPPY_ADDONS_VERSION', time() );
 } else {
-	define('HAPPY_ADDONS_VERSION', '3.16.1');
+	define( 'HAPPY_ADDONS_VERSION', '3.16.1' );
 }
 define('HAPPY_ADDONS__FILE__', __FILE__);
 define('HAPPY_ADDONS_DIR_PATH', plugin_dir_path(HAPPY_ADDONS__FILE__));
@@ -61,6 +61,7 @@ define('HAPPY_ADDONS_MINIMUM_PHP_VERSION', '7.4');
  */
 function ha_let_the_journey_begin() {
     require(HAPPY_ADDONS_DIR_PATH . 'inc/functions.php');
+	include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-extensions.php' );
 
     // Check for required PHP version
     if (version_compare(PHP_VERSION, HAPPY_ADDONS_MINIMUM_PHP_VERSION, '<')) {
