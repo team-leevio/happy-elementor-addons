@@ -12,6 +12,7 @@ import gulpPlumberNotifier from 'gulp-plumber-notifier';
 import gulpConcat from 'gulp-concat';
 import gulpClean from 'gulp-clean';
 import gulpZip from 'gulp-zip';
+import fs from "fs";
 
 const packageJSON = JSON.parse( readFileSync( new URL( './package.json', import.meta.url ) ) );
 const { src, watch, dest, series } = gulp;
@@ -139,10 +140,26 @@ function startWatching () {
 	watch( backendJSFiles, makeBackendJS );
 }
 
-function deleteOld () {
+function deleteOld__old () {
 	return src( [ "assets/css", "assets/admin", "assets/js" ], {
 		read: false,
 	} ).pipe( gulpClean( { force: true } ) );
+}
+
+function deleteOld () {
+    const paths = ["assets/css", "assets/admin", "assets/js"];
+
+    // Filter paths that exist
+    const existingPaths = paths.filter(path => fs.existsSync(path));
+
+    if (existingPaths.length > 0) {
+        return src(existingPaths, {
+            read: false,
+        }).pipe(gulpClean({ force: true }));
+    } else {
+        console.log("No paths exist to clean.");
+        return Promise.resolve(); // Return a resolved promise to avoid breaking the Gulp task chain
+    }
 }
 
 function buildZip () {
