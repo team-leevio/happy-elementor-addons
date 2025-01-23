@@ -268,6 +268,22 @@ class Slider extends Base {
 		);
 
 		$this->add_control(
+			'slides_transition',
+			[
+				'label' => __( 'Transition', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'slide',
+				'options' => [
+					'slide' => __( 'Slide', 'happy-elementor-addons' ),
+					'fade' => __( 'Fade', 'happy-elementor-addons' ),
+				],
+				'frontend_available' => true,
+				'style_transfer' => true,
+				'render_type' => 'template',
+			]
+		);
+
+		$this->add_control(
 			'navigation',
 			[
 				'label' => __( 'Navigation', 'happy-elementor-addons' ),
