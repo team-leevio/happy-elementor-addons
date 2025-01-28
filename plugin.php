@@ -64,22 +64,22 @@ function ha_let_the_journey_begin() {
 	include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-extensions.php' );
 
     // Check for required PHP version
-    if (version_compare(PHP_VERSION, HAPPY_ADDONS_MINIMUM_PHP_VERSION, '<')) {
-        add_action('admin_notices', 'ha_required_php_version_missing_notice');
-        return;
-    }
+	if (version_compare(PHP_VERSION, HAPPY_ADDONS_MINIMUM_PHP_VERSION, '<')) {
+		add_action('admin_notices', 'ha_required_php_version_missing_notice');
+		return;
+	}
 
     // Check if Elementor installed and activated
-    if (!did_action('elementor/loaded')) {
-        add_action('admin_notices', 'ha_elementor_missing_notice');
-        return;
-    }
+	if (!did_action('elementor/loaded')) {
+		add_action('admin_notices', 'ha_elementor_missing_notice');
+		return;
+	}
 
     // Check for required Elementor version
-    if (!version_compare(ELEMENTOR_VERSION, HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION, '>=')) {
-        add_action('admin_notices', 'ha_required_elementor_version_missing_notice');
-        return;
-    }
+	if (!version_compare(ELEMENTOR_VERSION, HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION, '>=')) {
+		add_action('admin_notices', 'ha_required_elementor_version_missing_notice');
+		return;
+	}
 
     require HAPPY_ADDONS_DIR_PATH . 'base.php';
     \Happy_Addons\Elementor\Base::instance()->init();
