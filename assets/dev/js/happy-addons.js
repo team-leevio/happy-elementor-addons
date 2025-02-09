@@ -180,7 +180,16 @@
 				if ( 'yes' == this.getElementSettings( 'vertical' ) ) {
 					$rtl = false; // for vertical direction rtl is off
 				}
+
+				// Determine if the widget has the 'ha-slider' class
+				var isHaSlider = this.$element.hasClass( 'ha-slider' );
+
+				// Generate the settings object
 				var settings = {
+					fade: isHaSlider
+						? this.getElementSettings( 'slides_transition' ) === 'fade'
+						: this.getElementSettings( 'slides_transition' ) === 'fade' &&
+						parseInt( this.getElementSettings( 'slides_to_show' ) ) === 1,
 					infinite: !!this.getElementSettings( 'loop' ),
 					autoplay: !!this.getElementSettings( 'autoplay' ),
 					autoplaySpeed: this.getElementSettings( 'autoplay_speed' ),
@@ -1426,15 +1435,15 @@
 
 			run: function () {
 				var self = this,
-				settings = JSON.parse(self.$element.find('.ha-lhi-image-area').attr("data-settings")),
-				liquidImage = self.$element.find('.ha-lhi-image'),
-				title = self.$element.find('.ha-lhi-title h2'),
-				sub_title = self.$element.find('.ha-lhi-title p'),
-				canvas = self.$element.find('canvas'),
-				style = settings.hover_style,
-				hover_effect = settings.plugin_url + 'liquid-hover-image/' + settings.hover_effect;
+					settings = JSON.parse( self.$element.find( '.ha-lhi-image-area' ).attr( "data-settings" ) ),
+					liquidImage = self.$element.find( '.ha-lhi-image' ),
+					title = self.$element.find( '.ha-lhi-title h2' ),
+					sub_title = self.$element.find( '.ha-lhi-title p' ),
+					canvas = self.$element.find( 'canvas' ),
+					style = settings.hover_style,
+					hover_effect = settings.plugin_url + 'liquid-hover-image/' + settings.hover_effect;
 
-				if( 'custom' == settings.hover_effect ) {
+				if ( 'custom' == settings.hover_effect ) {
 					hover_effect = settings.custom_effect ? settings.custom_effect : '';
 				}
 
@@ -1445,9 +1454,9 @@
 					image1: settings.first_image,
 					image2: settings.second_image,
 					displacementImage: hover_effect,
-					imagesRatio: liquidImage.height()/liquidImage.width(),
-					angle1: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
-					angle2: ( settings.angle - 45 ) * (Math.PI/180) * (-1),
+					imagesRatio: liquidImage.height() / liquidImage.width(),
+					angle1: ( settings.angle - 45 ) * ( Math.PI / 180 ) * ( -1 ),
+					angle2: ( settings.angle - 45 ) * ( Math.PI / 180 ) * ( -1 ),
 					speedIn: settings.speed,
 					speedOut: settings.speed,
 				} );
