@@ -87,7 +87,7 @@ class Base {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
-		
+
 		if ( is_admin() ) {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
@@ -95,7 +95,7 @@ class Base {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard-widgets.php' );
 		}
-		
+
 		if ( is_user_logged_in() ) {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-manager.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-source.php' );
@@ -116,7 +116,6 @@ class Base {
 	}
 
 	public function include_on_init() {
-		include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-extensions.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
 	}
@@ -152,7 +151,7 @@ class Base {
 
 		$Select2 = __NAMESPACE__ . '\Controls\Select2';
 		$Widget_List = __NAMESPACE__ . '\Controls\Widget_List';
-		
+
 		ha_elementor()->controls_manager->register( new $Select2() );
 		ha_elementor()->controls_manager->register( new $Widget_List() );
 

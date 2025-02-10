@@ -1,3 +1,8 @@
+= 3.16.2 - 10 February 2025 =
+
+- Tweak: Add fade effect in Slider & Image Carousel widget.
+- Fix: plugin hook priority related issue
+
 = 3.16.1 - 21 January 2025 =
 
 - Update: Made Compatible with Elementor 3.27

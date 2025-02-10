@@ -4,7 +4,7 @@
  * Plugin Name: Happy Elementor Addons
  * Plugin URI: https://happyaddons.com/
  * Description: <a href="https://happyaddons.com/">Happy Addons for Elementor</a> Is the Best Elementor Addons Comes With 44+ Free Elementor Widgets Including Table Builder, Testimonial, Event Calendar,Slider,News Ticker, Image Grid, etc & Features Like Elementor Equal Height, Text Stroke, Shape Dividers, Floating Effect, Grid Layout, 500+ Elementor Icons, 450+ Template Packs & More.
- * Version: 3.16.1
+ * Version: 3.16.2
  * Author: Leevio
  * Author URI: https://happyaddons.com/
  * Requires Plugins: elementor
@@ -42,7 +42,7 @@ defined('ABSPATH') || die();
 if ( defined( 'HAPPY_ADDONS_DEV' ) && true == HAPPY_ADDONS_DEV ) {
 	define('HAPPY_ADDONS_VERSION', time() );
 } else {
-	define('HAPPY_ADDONS_VERSION', '3.16.1');
+	define( 'HAPPY_ADDONS_VERSION', '3.16.2' );
 }
 define('HAPPY_ADDONS__FILE__', __FILE__);
 define('HAPPY_ADDONS_DIR_PATH', plugin_dir_path(HAPPY_ADDONS__FILE__));
@@ -61,24 +61,25 @@ define('HAPPY_ADDONS_MINIMUM_PHP_VERSION', '7.4');
  */
 function ha_let_the_journey_begin() {
     require(HAPPY_ADDONS_DIR_PATH . 'inc/functions.php');
+	include_once( HAPPY_ADDONS_DIR_PATH . 'inc/functions-extensions.php' );
 
     // Check for required PHP version
-    if (version_compare(PHP_VERSION, HAPPY_ADDONS_MINIMUM_PHP_VERSION, '<')) {
-        add_action('admin_notices', 'ha_required_php_version_missing_notice');
-        return;
-    }
+	if (version_compare(PHP_VERSION, HAPPY_ADDONS_MINIMUM_PHP_VERSION, '<')) {
+		add_action('admin_notices', 'ha_required_php_version_missing_notice');
+		return;
+	}
 
     // Check if Elementor installed and activated
-    if (!did_action('elementor/loaded')) {
-        add_action('admin_notices', 'ha_elementor_missing_notice');
-        return;
-    }
+	if (!did_action('elementor/loaded')) {
+		add_action('admin_notices', 'ha_elementor_missing_notice');
+		return;
+	}
 
     // Check for required Elementor version
-    if (!version_compare(ELEMENTOR_VERSION, HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION, '>=')) {
-        add_action('admin_notices', 'ha_required_elementor_version_missing_notice');
-        return;
-    }
+	if (!version_compare(ELEMENTOR_VERSION, HAPPY_ADDONS_MINIMUM_ELEMENTOR_VERSION, '>=')) {
+		add_action('admin_notices', 'ha_required_elementor_version_missing_notice');
+		return;
+	}
 
     require HAPPY_ADDONS_DIR_PATH . 'base.php';
     \Happy_Addons\Elementor\Base::instance()->init();

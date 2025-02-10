@@ -163,7 +163,13 @@ function haObserveTarget(target, callback) {
         if ('yes' == this.getElementSettings('vertical')) {
           $rtl = false; // for vertical direction rtl is off
         }
+
+        // Determine if the widget has the 'ha-slider' class
+        var isHaSlider = this.$element.hasClass('ha-slider');
+
+        // Generate the settings object
         var settings = {
+          fade: isHaSlider ? this.getElementSettings('slides_transition') === 'fade' : this.getElementSettings('slides_transition') === 'fade' && parseInt(this.getElementSettings('slides_to_show')) === 1,
           infinite: !!this.getElementSettings('loop'),
           autoplay: !!this.getElementSettings('autoplay'),
           autoplaySpeed: this.getElementSettings('autoplay_speed'),

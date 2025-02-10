@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.16.1
+Version: 3.16.2
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.7
-Stable tag: 3.16.1
+Stable tag: 3.16.2
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -308,6 +308,11 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.16.2 - 10 February 2025 =
+
+- Tweak: Add fade effect in Slider & Image Carousel widget.
+- Fix: plugin hook priority related issue
+
 = 3.16.1 - 21 January 2025 =
 
 - Update: Made Compatible with Elementor 3.27
@@ -326,9 +331,5 @@ For a more detailed explanation check out the following documentation
 = 3.15.1 - 15 December 2024 =
 
 - Fix: Some edge cases with Happy Mouse Cursor feature.
-
-= 3.15.0 - 02 December 2024 =
-
-- New: Happy Mouse Cursor feature.
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)
