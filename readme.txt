@@ -310,7 +310,7 @@ For a more detailed explanation check out the following documentation
 
 = 3.16.2 - 10 February 2025 =
 
-- Tweak: Add fade effect in Slider & Carousel widget.
+- Tweak: Add fade effect in Slider & Image Carousel widget.
 - Fix: plugin hook priority related issue
 
 = 3.16.1 - 21 January 2025 =
