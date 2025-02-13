@@ -24,12 +24,25 @@
 				this.run();
 			},
 
+			getFloatingTarget: function() {
+				var the_container = ( this.findElement('.elementor-widget-container').length > 0 );
+				if(
+					elementorFrontendConfig.experimentalFeatures.hasOwnProperty('e_optimized_markup') &&
+					true == elementorFrontendConfig.experimentalFeatures.e_optimized_markup &&
+					! the_container
+				){
+					return this.$element;
+				}
+				return this.findElement('.elementor-widget-container');
+			},
+
 			getDefaultSettings: function() {
 				return {
 					direction: 'alternate',
 					easing: 'easeInOutSine',
 					loop: true,
-					targets: this.findElement('.elementor-widget-container').get(0),
+					// targets: this.findElement('.elementor-widget-container').get(0),
+					targets: this.getFloatingTarget().get(0),
 				};
 			},
 
@@ -106,7 +119,8 @@
 				}
 
 				if (this.getFxVal('translate_toggle') || this.getFxVal('rotate_toggle') || this.getFxVal('scale_toggle')) {
-					this.findElement('.elementor-widget-container').css('will-change', 'transform');
+					// this.findElement('.elementor-widget-container').css('will-change', 'transform');
+					this.getFloatingTarget().css('will-change', 'transform');
 					this.anime = window.anime && window.anime(config);
 				}
 			}
