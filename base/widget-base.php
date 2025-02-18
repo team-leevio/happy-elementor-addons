@@ -52,6 +52,10 @@ abstract class Base extends Widget_Base {
 		return true;
 	}
 
+	public function has_widget_inner_wrapper(): bool {
+		return ! ha_elementor()->experiments->is_feature_active( 'e_optimized_markup' );
+	}
+
     /**
      * Override from addon to add custom wrapper class.
      *
@@ -78,7 +82,7 @@ abstract class Base extends Widget_Base {
      * Register widget controls
      */
     protected function register_controls() {
-		
+
         do_action( 'happyaddons_start_register_controls', $this );
 
         $this->register_content_controls();
