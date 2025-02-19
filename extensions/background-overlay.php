@@ -52,7 +52,7 @@ class Background_Overlay {
 			]
 		);
 
-		if ( $is_e_optimized_markup ) {
+		if ( false && $is_e_optimized_markup ) {
 			$element->add_control(
 				'_ha_background_overlay_css_added_for_optimized_markup',
 				[
