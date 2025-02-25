@@ -5,6 +5,9 @@
   @include widgetContainer {
     padding-top: 1px;
   }
+  &:not(:has(.elementor-widget-container)) {
+	padding-top: 1px;
+  }
 }
 
 .ha-skill {
