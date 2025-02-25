@@ -7,7 +7,7 @@ $medium: 900px;
     // flex-direction: column;
     // flex-wrap: wrap;
     position: relative;
-    
+
 
 	&__head {
         display: flex;
@@ -16,7 +16,7 @@ $medium: 900px;
         align-content: center;
         align-items: center;
 
-       
+
         // border: 1px solid;
         // border-color: #5636d1 #320ebd #5636d1 #5636d1;
         background-color: #5636d1;
@@ -45,7 +45,7 @@ $medium: 900px;
         // @media screen and (min-width: $small) and (max-width: $medium) {
         //    width: 25%;
         // }
-        
+
         &:first-child{
             flex-grow: 1;
         }
@@ -58,16 +58,16 @@ $medium: 900px;
         .ha-comparison-table__head-column-cell-icon{
             margin: 0px 10px 0px 0px;
         }
-        
+
 	}
     &__head-item.icon-right{
-        
+
         .ha-comparison-table__head-column-cell-icon{
             order: 1;
             margin: 0px 0px 0px 10px;
         }
     }
-    
+
 	&__row {
         margin-bottom: 25px;
     }
@@ -77,7 +77,7 @@ $medium: 900px;
         flex-wrap: wrap;
         align-content: center;
         align-items: center;
-        
+
         border-bottom: 1px solid #e7e7e9;
         background-color: transparent;
         vertical-align: middle;
@@ -138,11 +138,14 @@ $medium: 900px;
             }
         }
     }
-    
+
 }
 
 @media screen and (min-width: $small) and (max-width: $medium){
-    .ha-comparison-table .elementor-widget-container {
-        overflow-x: auto;
+	.ha-comparison-table {
+		.elementor-widget-container,
+		&:not(:has(.elementor-widget-container)) {
+			overflow-x: auto;
+		}
     }
 }
