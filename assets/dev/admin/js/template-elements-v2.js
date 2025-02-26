@@ -10,11 +10,10 @@
 			priority: 10,
 			useProps: function () {
 				return {
-					// icon: "eicon-save",
 					icon:  function()  {
 						return window.React ? window.React.createElement("i", { className: "hm hm-happyaddons" }): null;
 					},
-					title: "Template Conditions",
+					title: window.wp ? window.wp.i18n.__("Template Conditions","happy-elementor-addons") : "Template Conditions",
 					visible: true,
 					onClick: function (e) {
 						e.preventDefault();
