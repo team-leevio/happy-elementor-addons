@@ -22,7 +22,6 @@ class Assets_Manager {
 		add_action('elementor/preview/enqueue_styles', [__CLASS__, 'enqueue_preview_styles']);
 
 		// Enqueue editor & editorv2 scripts
-		add_action( 'elementor/editor/v2/scripts/enqueue', [__CLASS__, 'elementorV2_enqueue'] );
 		add_action('elementor/editor/after_enqueue_scripts', [__CLASS__, 'editor_enqueue']);
 
 		// Paragraph toolbar registration
@@ -574,26 +573,6 @@ class Assets_Manager {
 			'happy-elementor-addons-editor',
 			'HappyAddonsEditor',
 			$localize_data
-		);
-	}
-
-	/**
-	 * Enqueue editor v2 assets
-	 *
-	 * @return void
-	 */
-	public static function elementorV2_enqueue() {
-		$suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
-		wp_enqueue_script(
-			'happy-elementor-template-elements-v2',
-			HAPPY_ADDONS_ASSETS . 'admin/js/template-elements-v2' . $suffix . 'js',
-			[
-				'elementor-editor',
-				'elementor-v2-editor-app-bar',
-				'jquery'
-			],
-			HAPPY_ADDONS_VERSION,
-			true
 		);
 	}
 
