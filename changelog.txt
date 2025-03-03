@@ -1,3 +1,7 @@
+= 3.16.# - ## ## 2025 =
+
+- Fix: Mobile menu text color issue in the Nav Menu Widget.
+
 = 3.16.2 - 10 February 2025 =
 
 - Tweak: Add fade effect in Slider & Image Carousel widget.
