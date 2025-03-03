@@ -33,7 +33,11 @@
 			add_action( 'init', [$this, 'create_themebuilder_cpt'], 0 );
 			add_action( 'admin_menu', [$this, 'modify_menu'], 90 );
 			add_action( 'pre_get_posts', [$this, 'add_role_filter_to_posts_query'] );
-			add_action( 'elementor/editor/v2/scripts/enqueue', [$this, 'ha_template_scripts_V2'] );
+			
+			// Only for evementor v2
+			add_action( 'elementor/editor/v2/scripts/enqueue', [$this, 'ha_template_element_scripts'] );
+
+			// Theme builder scripts
 			add_action( 'elementor/editor/after_enqueue_scripts', [$this, 'ha_template_element_scripts'] );
 			add_action( 'elementor/editor/after_enqueue_scripts', [$this, 'edit_template_condition_modal'], 10, 2 );
 
@@ -932,7 +936,7 @@
 				wp_enqueue_script(
 					'happy-addons-template-elements',
 					HAPPY_ADDONS_ASSETS . 'admin/js/template-elements.min.js',
-					['jquery', 'happy-elementor-addons-editor'],
+					['jquery', 'happy-elementor-addons-editor', 'elementor-editor'],
 					HAPPY_ADDONS_VERSION,
 					true
 				);
@@ -947,23 +951,6 @@
 					'micromodal',
 					HAPPY_ADDONS_ASSETS . 'vendor/micromodal/micromodal.min.js',
 					[],
-					HAPPY_ADDONS_VERSION,
-					true
-				);
-			}
-		}
-
-		public function ha_template_scripts_V2() {
-			if ( self::CPT === get_post_type() ) {
-				wp_enqueue_script(
-					'happy-elementor-template-elements-v2',
-					HAPPY_ADDONS_ASSETS . 'admin/js/template-elements-v2.min.js',
-					[
-						'elementor-editor',
-						'elementor-v2-editor-app-bar',
-						'jquery',
-						'happy-elementor-addons-editor'
-					],
 					HAPPY_ADDONS_VERSION,
 					true
 				);
