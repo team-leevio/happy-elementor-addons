@@ -1,6 +1,7 @@
 = 3.16.3 - 17 March 2025 =
 
 - Tweak: Add template condition menu in new UI app bar.
+- Fix: Mobile menu text color issue in the Nav Menu Widget.
 
 = 3.16.2 - 10 February 2025 =
 
