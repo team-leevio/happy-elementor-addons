@@ -98,3 +98,7 @@
 #happy_addons_news_update .ha-overview__footer ul li:first-of-type {
 	margin-right: 4px;
 }
+
+.toplevel_page_happy-addons-setup-wizard {
+	display: none;
+}

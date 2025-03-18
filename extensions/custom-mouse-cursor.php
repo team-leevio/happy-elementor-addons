@@ -69,7 +69,7 @@ use Elementor\Group_Control_Typography;
 
 			wp_register_style(
 				'happy-custom-mouse-cursor',
-				HAPPY_ADDONS_ASSETS . 'css/widgets/custom-mouse-cursor' . $suffix . 'css',
+				HAPPY_ADDONS_ASSETS . 'css/widgets/custom-mouse-cursor.min.css',
 				['mouse-follower'],
 				HAPPY_ADDONS_VERSION
 			);

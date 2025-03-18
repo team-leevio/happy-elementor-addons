@@ -319,7 +319,7 @@ class Post_Title extends Base {
 			echo '<a '.$this->get_render_attribute_string( 'single_link' ).'>';
 		}
 
-		printf('<%1$s %2$s>%3$s</%1$s>', $settings['post_title_tag'], $this->get_render_attribute_string('title'), get_the_title());
+		printf('<%1$s %2$s>%3$s</%1$s>', ha_escape_tags( $settings['post_title_tag'], 'h2' ), $this->get_render_attribute_string('title'), esc_html(get_the_title()));
 
 		if (!empty($settings['enable_link'])) {
 			echo '</a>';

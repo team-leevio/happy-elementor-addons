@@ -351,8 +351,8 @@ class Navigation_Menu extends Base {
 				'selectors' => [
 					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu > li > a' => 'color: {{VALUE}}',
 					'{{WRAPPER}} .ha-navigation-menu-wrapper ul.menu li .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
-					// '{{WRAPPER}} .ha-navigation-burger-menu ul.menu li a' => 'color: {{VALUE}}',
-					// '{{WRAPPER}} .ha-navigation-burger-menu ul.menu li .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-navigation-burger-menu ul.menu li a' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-navigation-burger-menu ul.menu li .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
 				],
 
 			]

@@ -222,91 +222,93 @@
   /**
    * Add pro widgets placeholder
    */
-  elementor.hooks.addFilter("panel/elements/regionViews", function (regionViews) {
-    if (HappyAddonsEditor.hasPro || _.isEmpty(HappyAddonsEditor.placeholder_widgets)) {
-      return regionViews;
-    }
-    var CATEGORY_NAME = "happy_addons_pro",
-      elementsView = regionViews.elements.view,
-      categoriesView = regionViews.categories.view,
-      elementsCollection = regionViews.elements.options.collection,
-      categoriesCollection = regionViews.categories.options.collection,
-      proWidgets = [],
-      ElementView,
-      freeCategoryIndex;
-    _.each(HappyAddonsEditor.placeholder_widgets, function (widget, name) {
-      elementsCollection.add({
-        name: "ha-" + name,
-        title: widget.title,
-        icon: widget.icon,
-        categories: [CATEGORY_NAME],
-        editable: false
-      });
-    });
-    elementsCollection.each(function (element) {
-      if (element.get("categories")[0] === CATEGORY_NAME) {
-        proWidgets.push(element);
+  if (typeof elementor !== 'undefined' && elementor.hooks) {
+    elementor.hooks.addFilter("panel/elements/regionViews", function (regionViews) {
+      if (HappyAddonsEditor.hasPro || _.isEmpty(HappyAddonsEditor.placeholder_widgets)) {
+        return regionViews;
       }
-    });
-    freeCategoryIndex = categoriesCollection.findIndex({
-      name: "happy_addons_category"
-    });
-    if (freeCategoryIndex) {
-      categoriesCollection.add({
-        name: "happy_addons_pro_category",
-        title: "Happy Addons Pro",
-        icon: "hm hm-happyaddons",
-        defaultActive: false,
-        sort: true,
-        hideIfEmpty: true,
-        items: proWidgets,
-        promotion: false
-      }, {
-        at: freeCategoryIndex + 1
+      var CATEGORY_NAME = "happy_addons_pro",
+        elementsView = regionViews.elements.view,
+        categoriesView = regionViews.categories.view,
+        elementsCollection = regionViews.elements.options.collection,
+        categoriesCollection = regionViews.categories.options.collection,
+        proWidgets = [],
+        ElementView,
+        freeCategoryIndex;
+      _.each(HappyAddonsEditor.placeholder_widgets, function (widget, name) {
+        elementsCollection.add({
+          name: "ha-" + name,
+          title: widget.title,
+          icon: widget.icon,
+          categories: [CATEGORY_NAME],
+          editable: false
+        });
       });
-    }
-    ElementView = {
-      className: function className() {
-        var className = this.constructor.__super__.className.call(this);
-        if (!this.isEditable() && this.isHappyWidget()) {
-          className += " ha-element--promotion";
+      elementsCollection.each(function (element) {
+        if (element.get("categories")[0] === CATEGORY_NAME) {
+          proWidgets.push(element);
         }
-        return className;
-      },
-      isHappyWidget: function isHappyWidget() {
-        var widgetName = this.model.get("name");
-        return widgetName != undefined && widgetName.indexOf("ha-") === 0;
-      },
-      onMouseDown: function onMouseDown() {
-        if (!this.isHappyWidget()) {
-          this.constructor.__super__.onMouseDown.call(this);
-          return;
-        }
-        elementor.promotion.showDialog({
-          title: haGetTranslated("promotionDialogHeader", [this.model.get("title")]),
-          content: haGetTranslated("promotionDialogMessage", [this.model.get("title")]),
-          targetElement: this.el,
-          position: {
-            blockStart: '-7'
-          },
-          actionButton: {
-            url: "https://happyaddons.com/pricing/?utm_source=ha-editor-pro-widgets&utm_medium=wp-elementor-editor&utm_campaign=ha-upgrade-pro",
-            text: HappyAddonsEditor.i18n.promotionDialogBtnTxt,
-            classes: ['elementor-button', 'ha-btn--promotion', 'go-pro']
-          }
+      });
+      freeCategoryIndex = categoriesCollection.findIndex({
+        name: "happy_addons_category"
+      });
+      if (freeCategoryIndex) {
+        categoriesCollection.add({
+          name: "happy_addons_pro_category",
+          title: "Happy Addons Pro",
+          icon: "hm hm-happyaddons",
+          defaultActive: false,
+          sort: true,
+          hideIfEmpty: true,
+          items: proWidgets,
+          promotion: false
+        }, {
+          at: freeCategoryIndex + 1
         });
       }
-    };
-    regionViews.elements.view = elementsView.extend({
-      childView: elementsView.prototype.childView.extend(ElementView)
+      ElementView = {
+        className: function className() {
+          var className = this.constructor.__super__.className.call(this);
+          if (!this.isEditable() && this.isHappyWidget()) {
+            className += " ha-element--promotion";
+          }
+          return className;
+        },
+        isHappyWidget: function isHappyWidget() {
+          var widgetName = this.model.get("name");
+          return widgetName != undefined && widgetName.indexOf("ha-") === 0;
+        },
+        onMouseDown: function onMouseDown() {
+          if (!this.isHappyWidget()) {
+            this.constructor.__super__.onMouseDown.call(this);
+            return;
+          }
+          elementor.promotion.showDialog({
+            title: haGetTranslated("promotionDialogHeader", [this.model.get("title")]),
+            content: haGetTranslated("promotionDialogMessage", [this.model.get("title")]),
+            targetElement: this.el,
+            position: {
+              blockStart: '-7'
+            },
+            actionButton: {
+              url: "https://happyaddons.com/pricing/?utm_source=ha-editor-pro-widgets&utm_medium=wp-elementor-editor&utm_campaign=ha-upgrade-pro",
+              text: HappyAddonsEditor.i18n.promotionDialogBtnTxt,
+              classes: ['elementor-button', 'ha-btn--promotion', 'go-pro']
+            }
+          });
+        }
+      };
+      regionViews.elements.view = elementsView.extend({
+        childView: elementsView.prototype.childView.extend(ElementView)
+      });
+      regionViews.categories.view = categoriesView.extend({
+        childView: categoriesView.prototype.childView.extend({
+          childView: categoriesView.prototype.childView.prototype.childView.extend(ElementView)
+        })
+      });
+      return regionViews;
     });
-    regionViews.categories.view = categoriesView.extend({
-      childView: categoriesView.prototype.childView.extend({
-        childView: categoriesView.prototype.childView.prototype.childView.extend(ElementView)
-      })
-    });
-    return regionViews;
-  });
+  }
 
   // Widget List controller view
   var WidgetList = elementor.modules.controls.Select2.extend({

@@ -273,18 +273,18 @@
 	color: rgb(237.2133333333, 98.7866666667, 153.6933333333);
 }
 .haTemplateLibrary__template .haTemplateLibrary__insert-button {
-	color: #562dd4;
+	color: #fff;
 }
 .haTemplateLibrary__template .haTemplateLibrary__insert-button:hover,
 .haTemplateLibrary__template .haTemplateLibrary__insert-button:focus {
-	color: rgb(120.0671936759, 87.3320158103, 220.6679841897);
+	color: #fff;
 }
 .haTemplateLibrary__template .haTemplateLibrary__preview-button {
-	color: #495157;
+	color: #fff;
 }
 .haTemplateLibrary__template .haTemplateLibrary__preview-button:hover,
 .haTemplateLibrary__template .haTemplateLibrary__preview-button:focus {
-	color: rgb(96.26875, 106.81875, 114.73125);
+	color: #fff;
 }
 
 #elementor-template-library-header-preview .haTemplateLibrary__pro-button {

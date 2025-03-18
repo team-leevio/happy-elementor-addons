@@ -60,6 +60,32 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       handleHaTemplateCondition();
     });
   }
+
+  //Elementor V2 App Bar
+  if (typeof elementor !== "undefined") {
+    if (window.elementorV2 && window.elementorV2.editorAppBar && window.elementorV2.editorAppBar.documentOptionsMenu) {
+      var documentOptionsMenu = window.elementorV2.editorAppBar.documentOptionsMenu;
+      documentOptionsMenu.registerAction({
+        id: "ha-template-condition",
+        group: ["save"],
+        priority: 10,
+        props: {
+          icon: function icon() {
+            return React ? React.createElement("i", {
+              className: "hm hm-happyaddons"
+            }) : null;
+          },
+          title: window.wp ? window.wp.i18n.__("Template Conditions", "happy-elementor-addons") : "Template Conditions",
+          visible: true,
+          onClick: function onClick(e) {
+            e.preventDefault();
+            return elementor.trigger("ha:templateCondition");
+          }
+        }
+      });
+    }
+  }
+  ;
   $(document).on("click", ".ha-cond-repeater-add", function () {
     var conditionContainer = $(".ha-template-condition-wrap");
     var uniqify = generateUniqeDom(conditionTemplate.innerHTML);
@@ -333,9 +359,18 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       $elBtn.classList.remove("elementor-button-state");
     }, 500);
   }
-  elementor.saver.on('after:save', function (data) {
-    if (data.status != "inherit" && 'loop-template' != haTemplateInfo.templateType) {
-      elementor.trigger("ha:templateCondition");
-    }
-  });
+
+  // elementor.saver.on( 'after:save', function ( data ) {
+  // 	if ( data.status != "inherit" && 'loop-template' != haTemplateInfo.templateType ) {
+  // 		elementor.trigger( "ha:templateCondition" );
+  // 	}
+  // } );
+
+  if (typeof elementor !== 'undefined' && elementor.saver) {
+    elementor.saver.on("after:save", function (data) {
+      if ("inherit" != data.status && "loop-template" != haTemplateInfo.templateType) {
+        elementor.trigger("ha:templateCondition");
+      }
+    });
+  }
 })(jQuery);

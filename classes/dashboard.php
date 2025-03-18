@@ -44,9 +44,9 @@ class Dashboard {
 
         add_action( 'in_admin_header', [ __CLASS__, 'remove_all_notices' ], PHP_INT_MAX );
 
-        add_action( 'admin_menu', function() {
-            remove_menu_page( 'happy-addons-setup-wizard' );
-        }, 100 );
+        // add_action( 'admin_menu', function() {
+        //     remove_menu_page( 'happy-addons-setup-wizard' );
+        // }, 100 );
     }
 
     public static function is_page() {
@@ -357,15 +357,17 @@ class Dashboard {
             58.5
         );
 
-        self::$wizard_slug =  add_menu_page(
-            __( 'Setup Wizard', 'happy-elementor-addons' ),
-            __( 'Setup Wizard', 'happy-elementor-addons' ),
-            'manage_options',
-            self::WIZARD_PAGE_SLUG,
-            [ __CLASS__, 'wizard_page_wrapper'],
-            '',
-            null
-        );
+		if ( 1 != get_option( HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG, false ) ) {
+			self::$wizard_slug =  add_menu_page(
+				__( 'Setup Wizard', 'happy-elementor-addons' ),
+				__( 'Setup Wizard', 'happy-elementor-addons' ),
+				'manage_options',
+				self::WIZARD_PAGE_SLUG,
+				[ __CLASS__, 'wizard_page_wrapper'],
+				'',
+				null
+			);
+		}
 
         $tabs = self::get_tabs();
         if ( is_array( $tabs ) ) {
