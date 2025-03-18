@@ -30,8 +30,8 @@ class Advance_Notice {
 			return;
 		}
 
-		$start_utc = '2025-03-18 06:00:00'; // 18 March, 4 PM UTC
-		$end_utc   = '2025-03-30 16:00:00'; // 30 March, 4 PM UTC
+		$start_utc = '2025-03-18 13:00:00'; // 18 March, 7 UTC
+		$end_utc   = '2025-03-30 16:00:00'; // 30 March, 4 UTC
 		if ( true != self::check_notice_period( $start_utc, $end_utc ) ) {
 			return;
 		}
