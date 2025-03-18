@@ -308,10 +308,12 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.16.3 - 17 March 2025 =
+= 3.16.3 - 18 March 2025 =
 
 - Tweak: Add template condition menu in new UI app bar.
 - Fix: Mobile menu text color issue in the Nav Menu Widget.
+- Fix: Resolved Title Tag vulnerability issue in the Post Title Widget.
+- Fix: Resolved Title Tag vulnerability issue in the Page Title Widget.
 
 = 3.16.2 - 10 February 2025 =
 
