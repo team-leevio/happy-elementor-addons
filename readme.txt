@@ -314,6 +314,7 @@ For a more detailed explanation check out the following documentation
 - Fix: Mobile menu text color issue in the Nav Menu Widget.
 - Fix: Resolved Title Tag vulnerability issue in the Post Title Widget.
 - Fix: Resolved Title Tag vulnerability issue in the Page Title Widget.
+- Update: Made Compatible with Elementor 3.28.
 
 = 3.16.2 - 10 February 2025 =
 
