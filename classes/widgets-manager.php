@@ -1366,6 +1366,18 @@ class Widgets_Manager {
 					'js' => ['gsap','scroll-trigger','split-type'],
 				],
 			],
+			'svg-draw' => [
+				'cat' => 'creative',
+				'is_active' => true,
+				'title' => __('Svg Draw', 'happy-elementor-addons'),
+				'icon' => 'hm hm-pen',
+				'css' => [''],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => ['tweenmax','scroll-trigger','gsap','motionpath'],
+				],
+			],
 		];
 	}
 
