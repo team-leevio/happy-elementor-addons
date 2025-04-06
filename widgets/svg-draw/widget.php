@@ -91,7 +91,7 @@
 					'fa4compatibility' => 'icon',
 					'label_block'      => true,
 					'default'          => [
-						'value'   => 'fas fa-star',
+						'value'   => 'fas fa-sun',
 						'library' => 'fa-solid'
 					],
 					'condition'        => [
