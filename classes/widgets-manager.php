@@ -1369,7 +1369,7 @@ class Widgets_Manager {
 			'svg-draw' => [
 				'cat' => 'creative',
 				'is_active' => true,
-				'title' => __('Svg Draw', 'happy-elementor-addons'),
+				'title' => __('SVG Draw', 'happy-elementor-addons'),
 				'icon' => 'hm hm-pen',
 				'css' => [''],
 				'js' => [],

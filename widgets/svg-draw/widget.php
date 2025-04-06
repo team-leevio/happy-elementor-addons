@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * Svg Draw widget class
+	 * SVG Draw widget class
 	 *
 	 * @package Happy_Addons
 	 */
@@ -45,7 +45,7 @@
 		}
 
 		public function get_keywords() {
-			return ['svg', 'icon', 'draw', 'svg draw', 'Svg Draw', 'Svg', 'animation', 'creative'];
+			return ['svg', 'icon', 'draw', 'svg draw', 'Svg Draw', 'Svg', 'animation', 'creative', 'SVG Animation', 'SVG Draw', 'SVG'];
 		}
 
 		protected function is_dynamic_content(): bool {
@@ -342,9 +342,9 @@
 			$this->add_control(
 				'frames',
 				[
-					'label'              => __( 'Speed', 'happy-elementor-addons' ),
+					'label'              => __( 'Draw Speed', 'happy-elementor-addons' ),
 					'type'               => Controls_Manager::NUMBER,
-					'description'        => __( 'Larger value means longer drawing duration', 'happy-elementor-addons' ),
+					'description'        => __( 'Larger value means longer draw duration.', 'happy-elementor-addons' ),
 					'default'            => 5,
 					'min'                => 1,
 					'max'                => 100,
@@ -426,7 +426,7 @@
 			$this->add_control(
 				'draw_speed',
 				[
-					'label'              => __( 'Speed Factor', 'happy-elementor-addons' ),
+					'label'              => __( 'Draw Speed Factor', 'happy-elementor-addons' ),
 					'type'               => Controls_Manager::SLIDER,
 					'description'        => __( 'Higher values = Slower animation.', 'happy-elementor-addons' ),
 					'range'              => [
@@ -468,7 +468,6 @@
 				'anim_rev',
 				[
 					'label'              => __( 'Restart Animation', 'happy-elementor-addons' ),
-					'description'        => __( 'Restart Animation on Scroll Up' ),
 					'type'               => Controls_Manager::SWITCHER,
 					'render_type'        => 'template',
 					'default'            => 'yes',
@@ -484,7 +483,7 @@
 				'svg_fill',
 				[
 					'label'              => __( 'Fill Color', 'happy-elementor-addons' ),
-					'description'        => __( 'Set the fill color after the SVG is drawn.', 'happy-elementor-addons' ),
+					'description'        => __( 'Enabling this will enable After Draw Fill Color, After Draw Stroke Color controls in Style Tab.', 'happy-elementor-addons' ),
 					'type'               => Controls_Manager::SWITCHER,
 					'condition'          => [
 						'animate_icon' => 'yes'
@@ -499,7 +498,7 @@
 					'label'       => __( 'Link', 'happy-elementor-addons' ),
 					'type'        => Controls_Manager::URL,
 					'dynamic'     => ['active' => true],
-					'placeholder' => 'https://happyaddons.com/',
+					'placeholder' => 'https://happyaddons.com',
 					'label_block' => true,
 					'separator'   => 'before'
 				]
@@ -542,6 +541,7 @@
 				[
 					'label'     => __( 'Fill Color', 'happy-elementor-addons' ),
 					'type'      => Controls_Manager::COLOR,
+					'default'   => '#FFF',
 					'selectors' => [
 						'{{WRAPPER}} .ha-svg-draw-container svg path, {{WRAPPER}} .ha-svg-draw-container svg circle, {{WRAPPER}} .ha-svg-draw-container svg square, {{WRAPPER}} .ha-svg-draw-container svg ellipse, {{WRAPPER}} .ha-svg-draw-container svg rect, {{WRAPPER}} .ha-svg-draw-container svg polyline, {{WRAPPER}} .ha-svg-draw-container svg line' => 'fill: {{VALUE}}'
 					]

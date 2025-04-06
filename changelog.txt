@@ -1,3 +1,7 @@
+= 3.17.0 - ## ## 2025 =
+
+- New: SVG Draw widget.
+
 = 3.16.3 - 18 March 2025 =
 
 - Tweak: Add template condition menu in new UI app bar.
