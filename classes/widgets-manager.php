@@ -1375,7 +1375,7 @@ class Widgets_Manager {
 				'js' => [],
 				'vendor' => [
 					'css' => [],
-					'js' => ['tweenmax','scroll-trigger','gsap','motionpath'],
+					'js' => ['tweenmax','scroll-trigger','gsap','scroll-magic','motionpath'],
 				],
 			],
 		];

@@ -381,6 +381,15 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
+
+		// Scroll Magic
+		wp_register_script(
+			'scroll-magic',
+			HAPPY_ADDONS_ASSETS . 'vendor/scroll-magic/scroll-magic.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
 		
 		// Split Type
 		wp_register_script(
