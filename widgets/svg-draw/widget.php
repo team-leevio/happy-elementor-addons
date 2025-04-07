@@ -530,7 +530,7 @@
 					'type'      => Controls_Manager::COLOR,
 					'default'   => '#6EC1E4',
 					'selectors' => [
-						'{{WRAPPER}} .ha-svg-draw-container svg'   => 'color: {{VALUE}};',
+						'{{WRAPPER}} .ha-svg-draw-container svg'   => 'color: {{VALUE}};overflow: visible;',
 						'{{WRAPPER}} .ha-svg-draw-container svg *' => 'stroke: {{VALUE}}'
 					]
 				]
