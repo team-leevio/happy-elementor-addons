@@ -371,6 +371,25 @@
 			);
 
 			$this->add_control(
+				'repeat_delay',
+				[
+					'label' => __('Repeat Delay', 'happy-elementor-addons'),
+					'type' => Controls_Manager::NUMBER,
+					'description' => __('Delay before repeating the animation', 'happy-elementor-addons'),
+					'default' => 3,
+					'min' => 1,
+					'max' => 30,
+					'step' => 1,
+					'condition' => [
+						'loop' => 'true',
+						'animate_icon'   => 'yes',
+						'scroll_action!' => 'viewport'
+					],
+					'frontend_available' => true
+				]
+			);
+
+			$this->add_control(
 				'yoyo',
 				[
 					'label'              => __( 'Swing Effect', 'happy-elementor-addons' ),

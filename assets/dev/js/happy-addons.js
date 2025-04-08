@@ -1738,7 +1738,8 @@
 				var elemID = $scope.data("id"),
 					settings = this.getElementSettings(),
 					scrollAction = settings.scroll_action,
-					scrollTrigger = null;
+					scrollTrigger = null,
+					repeatDelay = settings.repeat_delay || 0;
 
 
 				if ('automatic' === scrollAction) {
@@ -1749,6 +1750,7 @@
 						timeLine = new TimelineMax({
 							repeat: settings.loop ? -1 : 0,
 							yoyo: settings.yoyo ? true : false,
+							repeatDelay: settings.loop ? repeatDelay : 0,
 							scrollTrigger: {
 								trigger: '.elementor-element-' + elemID,
 								toggleActions: "play " + animRev,
@@ -1762,6 +1764,7 @@
 					var timeLine = new TimelineMax({
 						repeat: ('hover' === scrollAction && settings.loop) ? -1 : 0,
 						yoyo: ('hover' === scrollAction && settings.yoyo) ? true : false,
+						repeatDelay: ('hover' === scrollAction && settings.loop) ? repeatDelay : 0
 					});
 
 					if ('viewport' === scrollAction)
@@ -1813,8 +1816,9 @@
 
 				} else {
 
-					if (settings.frames)
+					if (settings.frames) {
 						timeLine.duration(settings.frames);
+					}
 
 					if ('hover' === scrollAction) {
 						timeLine.pause();
