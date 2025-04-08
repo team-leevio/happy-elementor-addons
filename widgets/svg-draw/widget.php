@@ -25,7 +25,7 @@
 		 * @return string Widget title.
 		 */
 		public function get_title() {
-			return __( 'SVG Draw', 'happy-elementor-addons' );
+			return __( 'SVG Line Draw', 'happy-elementor-addons' );
 		}
 
 		public function get_custom_help_url() {
@@ -45,7 +45,7 @@
 		}
 
 		public function get_keywords() {
-			return ['svg', 'icon', 'draw', 'svg draw', 'Svg Draw', 'Svg', 'animation', 'creative', 'SVG Animation', 'SVG Draw', 'SVG'];
+			return ['svg', 'icon', 'draw', 'svg line draw', 'Svg Line Draw', 'Svg', 'animation', 'creative', 'SVG Animation', 'SVG Draw', 'SVG', 'line', 'Line Draw', 'Line', 'Draw'];
 		}
 
 		protected function is_dynamic_content(): bool {
@@ -376,10 +376,10 @@
 					'label' => __('Repeat Delay', 'happy-elementor-addons'),
 					'type' => Controls_Manager::NUMBER,
 					'description' => __('Delay before repeating the animation', 'happy-elementor-addons'),
-					'default' => 3,
-					'min' => 1,
-					'max' => 30,
-					'step' => 1,
+					'default' => 5,
+					'min' => 0.5,
+					'max' => 100,
+					'step' => 0.5,
 					'condition' => [
 						'loop' => 'true',
 						'animate_icon'   => 'yes',
