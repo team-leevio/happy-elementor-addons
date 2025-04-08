@@ -1,20 +1,20 @@
-(function ($) {
+( function ( $ ) {
 	"use strict";
 
 	window.haHasIconLibrary = function () {
 		return elementor.helpers && elementor.helpers.renderIcon;
 	};
 
-	window.haGetFeatureLabel = function (text) {
-		var div = document.createElement("DIV");
+	window.haGetFeatureLabel = function ( text ) {
+		var div = document.createElement( "DIV" );
 
 		div.innerHTML = text;
 		text = div.textContent || div.innerText || text;
 
-		return text.length > 20 ? text.substring(0, 20) + "..." : text;
+		return text.length > 20 ? text.substring( 0, 20 ) + "..." : text;
 	};
 
-	window.haGetTranslated = function (stringKey, templateArgs) {
+	window.haGetTranslated = function ( stringKey, templateArgs ) {
 		return elementorCommon.translate(
 			stringKey,
 			null,
@@ -23,7 +23,7 @@
 		);
 	};
 
-	window.haGetButtonWithIcon = function (view, args) {
+	window.haGetButtonWithIcon = function ( view, args ) {
 		var buttonMarkup = [],
 			settings = {},
 			btnIconHTML,
@@ -33,7 +33,7 @@
 			buttonAfter;
 
 		args = args || {};
-		args = _.defaults(args, {
+		args = _.defaults( args, {
 			oldIcon: "button_icon",
 			iconPos: "button_icon_position",
 			newIcon: "button_selected_icon",
@@ -41,34 +41,34 @@
 			link: "button_link",
 			class: "ha-btn ha-btn--link",
 			textClass: "ha-btn-text",
-		});
+		} );
 
-		if (!_.isObject(view)) {
+		if ( !_.isObject( view ) ) {
 			return;
 		}
 
 		settings = view.model.attributes.settings.toJSON();
 
-		var buttonText = !_.isUndefined(settings[ args.text ])
+		var buttonText = !_.isUndefined( settings[ args.text ] )
 			? settings[ args.text ]
 			: "",
 			hasOldIcon =
-				!_.isUndefined(settings[ args.oldIcon ]) && settings[ args.oldIcon ]
+				!_.isUndefined( settings[ args.oldIcon ] ) && settings[ args.oldIcon ]
 					? true
 					: false,
 			hasNewIcon =
-				!_.isUndefined(settings[ args.newIcon ]) &&
-					_.isObject(settings[ args.newIcon ]) &&
+				!_.isUndefined( settings[ args.newIcon ] ) &&
+					_.isObject( settings[ args.newIcon ] ) &&
 					settings[ args.newIcon ].value
 					? true
 					: false;
 
-		if (!buttonText && !hasNewIcon && !hasOldIcon) {
+		if ( !buttonText && !hasNewIcon && !hasOldIcon ) {
 			return;
 		}
 
-		if (haHasIconLibrary()) {
-			(btnIconHTML = elementor.helpers.renderIcon(
+		if ( haHasIconLibrary() ) {
+			( btnIconHTML = elementor.helpers.renderIcon(
 				view,
 				settings[ args.newIcon ],
 				{
@@ -77,27 +77,27 @@
 				},
 				"i",
 				"object"
-			)),
-				(btnMigrated = elementor.helpers.isIconMigrated(
+			) ),
+				( btnMigrated = elementor.helpers.isIconMigrated(
 					settings,
 					args.newIcon
-				));
+				) );
 		}
 
-		view.addInlineEditingAttributes(args.text, "none");
-		view.addRenderAttribute(args.text, "class", args.textClass);
+		view.addInlineEditingAttributes( args.text, "none" );
+		view.addRenderAttribute( args.text, "class", args.textClass );
 
-		view.addRenderAttribute("button", "class", args.class);
-		view.addRenderAttribute("button", "href", settings[ args.link ].url);
+		view.addRenderAttribute( "button", "class", args.class );
+		view.addRenderAttribute( "button", "href", settings[ args.link ].url );
 
-		if (hasNewIcon || hasOldIcon) {
+		if ( hasNewIcon || hasOldIcon ) {
 			if (
 				haHasIconLibrary() &&
 				btnIconHTML &&
 				btnIconHTML.rendered &&
-				(!hasOldIcon || btnMigrated)
+				( !hasOldIcon || btnMigrated )
 			) {
-				if (settings[ args.newIcon ].library === "svg") {
+				if ( settings[ args.newIcon ].library === "svg" ) {
 					btnIcon =
 						'<span class="ha-btn-icon ha-btn-icon--svg">' +
 						btnIconHTML.value +
@@ -105,7 +105,7 @@
 				} else {
 					btnIcon = btnIconHTML.value;
 				}
-			} else if (hasOldIcon) {
+			} else if ( hasOldIcon ) {
 				btnIcon =
 					'<i class="ha-btn-icon ' +
 					args.oldIcon +
@@ -113,22 +113,22 @@
 			}
 		}
 
-		if (buttonText && !hasNewIcon && !hasOldIcon) {
+		if ( buttonText && !hasNewIcon && !hasOldIcon ) {
 			buttonMarkup = [
-				"<a " + view.getRenderAttributeString("button") + ">",
-				"<span " + view.getRenderAttributeString(args.text) + ">",
+				"<a " + view.getRenderAttributeString( "button" ) + ">",
+				"<span " + view.getRenderAttributeString( args.text ) + ">",
 				buttonText,
 				"</span>",
 				"</a>",
 			];
-		} else if (!buttonText && (hasNewIcon || hasOldIcon)) {
+		} else if ( !buttonText && ( hasNewIcon || hasOldIcon ) ) {
 			buttonMarkup = [
-				"<a " + view.getRenderAttributeString("button") + ">",
+				"<a " + view.getRenderAttributeString( "button" ) + ">",
 				btnIcon,
 				"</a>",
 			];
-		} else if (buttonText && (hasNewIcon || hasOldIcon)) {
-			if (settings[ args.iconPos ] === "before") {
+		} else if ( buttonText && ( hasNewIcon || hasOldIcon ) ) {
+			if ( settings[ args.iconPos ] === "before" ) {
 				view.addRenderAttribute(
 					"button",
 					"class",
@@ -137,7 +137,7 @@
 				buttonBefore = btnIcon;
 				buttonAfter =
 					"<span " +
-					view.getRenderAttributeString(args.text) +
+					view.getRenderAttributeString( args.text ) +
 					">" +
 					buttonText +
 					"</span>";
@@ -150,38 +150,38 @@
 				buttonAfter = btnIcon;
 				buttonBefore =
 					"<span " +
-					view.getRenderAttributeString(args.text) +
+					view.getRenderAttributeString( args.text ) +
 					">" +
 					buttonText +
 					"</span>";
 			}
 			buttonMarkup = [
-				"<a " + view.getRenderAttributeString("button") + ">",
+				"<a " + view.getRenderAttributeString( "button" ) + ">",
 				buttonBefore,
 				buttonAfter,
 				"</a>",
 			];
 		}
 
-		return buttonMarkup.join("");
+		return buttonMarkup.join( "" );
 	};
 
 	var registerDarkModeStylesheet = function () {
 		var darkModeLinkID = "happy-addons-editor-dark-css",
-			$darkModeLink = $("#" + darkModeLinkID);
+			$darkModeLink = $( "#" + darkModeLinkID );
 
-		if (!$darkModeLink.length) {
-			$darkModeLink = $("<link>", {
+		if ( !$darkModeLink.length ) {
+			$darkModeLink = $( "<link>", {
 				id: darkModeLinkID,
 				rel: "stylesheet",
 				href: HappyAddonsEditor.dark_stylesheet_url,
-			});
+			} );
 		}
 
 		elementor.settings.editorPreferences.model.on(
 			"change:ui_theme",
-			function (model, newValue) {
-				if ("light" === newValue) {
+			function ( model, newValue ) {
+				if ( "light" === newValue ) {
 					$darkModeLink.remove();
 					return;
 				}
@@ -193,28 +193,28 @@
 							? "(prefers-color-scheme: dark)"
 							: ""
 					)
-					.appendTo(elementorCommon.elements.$body);
+					.appendTo( elementorCommon.elements.$body );
 			}
 		);
 	};
 
-	elementor.on("panel:init", function () {
-		$("#elementor-panel-elements-search-input").on(
+	elementor.on( "panel:init", function () {
+		$( "#elementor-panel-elements-search-input" ).on(
 			"keyup",
-			_.debounce(function () {
-				$("#elementor-panel-elements")
-					.find(".hm")
-					.parents(".elementor-element")
-					.addClass("is-ha-widget");
-			}, 100)
+			_.debounce( function () {
+				$( "#elementor-panel-elements" )
+					.find( ".hm" )
+					.parents( ".elementor-element" )
+					.addClass( "is-ha-widget" );
+			}, 100 )
 		);
 
-		function scrollToTop(newValue) {
+		function scrollToTop ( newValue ) {
 			// $e.run( 'document/save/update' ).then( _.debounce( function () {
 			// 	elementor.reloadPreview();
 			// }, 1500));
 
-			var changeItem = Object.entries(this.model.changed)[ 0 ];
+			var changeItem = Object.entries( this.model.changed )[ 0 ];
 			var settings = this.getSettings().settings; //get saved value
 			var attributes = this.model.attributes;
 			var stt_data = {
@@ -223,7 +223,7 @@
 				'changeItem': changeItem
 			};
 
-			if ('ha_scroll_to_top_single_disable' != changeItem[ 0 ]) {
+			if ( 'ha_scroll_to_top_single_disable' != changeItem[ 0 ] ) {
 				var data = {
 					'enable_global_stt': attributes.ha_scroll_to_top_global,
 					'media_type': attributes.ha_scroll_to_top_media_type,
@@ -231,35 +231,35 @@
 					'image': attributes.ha_scroll_to_top_button_image,
 					'text': attributes.ha_scroll_to_top_button_text,
 				};
-				stt_data = Object.assign(stt_data, data);
+				stt_data = Object.assign( stt_data, data );
 			} else {
-				$e.run('document/save/update').then(_.debounce(function () {
+				$e.run( 'document/save/update' ).then( _.debounce( function () {
 					elementor.reloadPreview();
-				}, 1500));
+				}, 1500 ) );
 			}
 
-			$("#elementor-preview-iframe")[ 0 ].contentWindow.postMessage(stt_data);
+			$( "#elementor-preview-iframe" )[ 0 ].contentWindow.postMessage( stt_data );
 		}
 
 		var changeHandler = [ "ha_scroll_to_top_global", "ha_scroll_to_top_media_type", "ha_scroll_to_top_button_icon", "ha_scroll_to_top_button_image", "ha_scroll_to_top_button_text", "ha_scroll_to_top_single_disable" ];
 
-		$.each(changeHandler, function (index, value) {
-			elementor.settings.page.addChangeCallback(value, scrollToTop);
-		});
+		$.each( changeHandler, function ( index, value ) {
+			elementor.settings.page.addChangeCallback( value, scrollToTop );
+		} );
 
 		// Reading Progress Bar
-		function readingProgressBarHandaler (settingsValue) {
-			let changeItem = Object.entries(this.model.changed)[ 0 ];
+		function readingProgressBarHandaler ( settingsValue ) {
+			let changeItem = Object.entries( this.model.changed )[ 0 ];
 			let settings = this.getSettings().settings;
 			let attributes = this.model.attributes;
-			
+
 			let rpb_data = {
 				'check': 'rpbMessage',
 				'changeValue': settingsValue,
 				'changeItem': changeItem
-			};			
+			};
 
-			if ( 'ha_rpb_enable' != changeItem[0] ) {
+			if ( 'ha_rpb_enable' != changeItem[ 0 ] ) {
 				let data = {
 					'ha_rpb_enable': attributes.ha_rpb_enable,
 					'ha_rpb_apply_globally': attributes.ha_rpb_apply_globally,
@@ -269,54 +269,54 @@
 					'ha_rpb_single_disable': attributes.ha_rpb_single_disable,
 					'ha_rpb_single_enable': attributes.ha_rpb_single_enable,
 				};
-				rpb_data = Object.assign(rpb_data, data);
-			} 
-			
-			if( 'ha_rpb_single_enable' == changeItem[0] || 'ha_rpb_single_disable' == changeItem[0] ) {
-				$e.run('document/save/update').then(_.debounce(function () {
-					elementor.reloadPreview();
-				}, 1500));
+				rpb_data = Object.assign( rpb_data, data );
 			}
 
-			$("#elementor-preview-iframe")[ 0 ].contentWindow.postMessage(rpb_data);
+			if ( 'ha_rpb_single_enable' == changeItem[ 0 ] || 'ha_rpb_single_disable' == changeItem[ 0 ] ) {
+				$e.run( 'document/save/update' ).then( _.debounce( function () {
+					elementor.reloadPreview();
+				}, 1500 ) );
+			}
+
+			$( "#elementor-preview-iframe" )[ 0 ].contentWindow.postMessage( rpb_data );
 
 		};
 
 		let HmRPBHandler = [
 			'ha_rpb_enable',
-			'ha_rpb_apply_globally', 
-			'ha_rpb_type', 
-			'ha_rpb_horizontal_position', 
-			'ha_rpb_vertical_position', 
-			'ha_rpb_single_disable', 
+			'ha_rpb_apply_globally',
+			'ha_rpb_type',
+			'ha_rpb_horizontal_position',
+			'ha_rpb_vertical_position',
+			'ha_rpb_single_disable',
 			'ha_rpb_single_enable',
 		];
 		// Handle reading progress bar
-		$.each(HmRPBHandler, function (index, value) {
-			elementor.settings.page.addChangeCallback(value, readingProgressBarHandaler);
-		});
+		$.each( HmRPBHandler, function ( index, value ) {
+			elementor.settings.page.addChangeCallback( value, readingProgressBarHandaler );
+		} );
 
 		// Custom Mouse Cursor
-		function cmcInitialHandaler (settingsValue) {
-			let changeItem = Object.entries(this.model.changed)[ 0 ];
+		function cmcInitialHandaler ( settingsValue ) {
+			let changeItem = Object.entries( this.model.changed )[ 0 ];
 			let settings = this.getSettings().settings;
 			let attributes = this.model.attributes;
-			
+
 			let cmcInitData = {
 				'check': 'cmcInitMessage',
 				'changeValue': settingsValue,
 				'changeItem': changeItem
-			};			
+			};
 
-			if ( 'ha_cmc_init_switcher' != changeItem[0] ) {
+			if ( 'ha_cmc_init_switcher' != changeItem[ 0 ] ) {
 				let data = {
 					'ha_cmc_init_switcher': attributes.ha_cmc_init_switcher,
 					'ha_cmc_init_enable_lazy_move': attributes.ha_cmc_init_enable_lazy_move,
 				};
-				cmcInitData = Object.assign(cmcInitData, data);
-			} 
-			
-			$("#elementor-preview-iframe")[ 0 ].contentWindow.postMessage(cmcInitData);
+				cmcInitData = Object.assign( cmcInitData, data );
+			}
+
+			$( "#elementor-preview-iframe" )[ 0 ].contentWindow.postMessage( cmcInitData );
 
 		};
 
@@ -325,25 +325,25 @@
 			'ha_cmc_init_enable_lazy_move',
 		];
 
-		$.each(cmcInitialControlsHandler, function (index, value) {
-			elementor.settings.page.addChangeCallback(value, cmcInitialHandaler);
-		});
+		$.each( cmcInitialControlsHandler, function ( index, value ) {
+			elementor.settings.page.addChangeCallback( value, cmcInitialHandaler );
+		} );
 
 
 		/**
 		 * Register grid layer shortcut
 		 */
-		if (typeof $e !== "undefined" || $e !== null) {
+		if ( typeof $e !== "undefined" || $e !== null ) {
 			var option = {
 				callback: function () {
 					var ha_grid =
 						elementor.settings.page.model.attributes.ha_grid;
-					if ("" === ha_grid) {
+					if ( "" === ha_grid ) {
 						elementor.settings.page.model.setExternalChange(
 							"ha_grid",
 							"yes"
 						);
-					} else if ("yes" === ha_grid) {
+					} else if ( "yes" === ha_grid ) {
 						elementor.settings.page.model.setExternalChange(
 							"ha_grid",
 							""
@@ -352,228 +352,230 @@
 				},
 			};
 
-			$e.shortcuts.register("ctrl+shift+g", option);
-			$e.shortcuts.register("cmd+shift+g", option);
+			$e.shortcuts.register( "ctrl+shift+g", option );
+			$e.shortcuts.register( "cmd+shift+g", option );
 		}
 
 		registerDarkModeStylesheet();
-	});
+	} );
 
 	/**
 	 * Add pro widgets placeholder
 	 */
-	elementor.hooks.addFilter(
-		"panel/elements/regionViews",
-		function (regionViews) {
-			if (
-				HappyAddonsEditor.hasPro ||
-				_.isEmpty(HappyAddonsEditor.placeholder_widgets)
-			) {
-				return regionViews;
-			}
-
-			var CATEGORY_NAME = "happy_addons_pro",
-				elementsView = regionViews.elements.view,
-				categoriesView = regionViews.categories.view,
-				elementsCollection = regionViews.elements.options.collection,
-				categoriesCollection =
-					regionViews.categories.options.collection,
-				proWidgets = [],
-				ElementView,
-				freeCategoryIndex;
-
-			_.each(
-				HappyAddonsEditor.placeholder_widgets,
-				function (widget, name) {
-					elementsCollection.add({
-						name: "ha-" + name,
-						title: widget.title,
-						icon: widget.icon,
-						categories: [ CATEGORY_NAME ],
-						editable: false,
-					});
+	if ( typeof elementor !== 'undefined' && elementor.hooks ) {
+		elementor.hooks.addFilter(
+			"panel/elements/regionViews",
+			function ( regionViews ) {
+				if (
+					HappyAddonsEditor.hasPro ||
+					_.isEmpty( HappyAddonsEditor.placeholder_widgets )
+				) {
+					return regionViews;
 				}
-			);
 
-			elementsCollection.each(function (element) {
-				if (element.get("categories")[ 0 ] === CATEGORY_NAME) {
-					proWidgets.push(element);
-				}
-			});
+				var CATEGORY_NAME = "happy_addons_pro",
+					elementsView = regionViews.elements.view,
+					categoriesView = regionViews.categories.view,
+					elementsCollection = regionViews.elements.options.collection,
+					categoriesCollection =
+						regionViews.categories.options.collection,
+					proWidgets = [],
+					ElementView,
+					freeCategoryIndex;
 
-			freeCategoryIndex = categoriesCollection.findIndex({
-				name: "happy_addons_category",
-			});
-
-			if (freeCategoryIndex) {
-
-				categoriesCollection.add(
-					{
-						name: "happy_addons_pro_category",
-						title: "Happy Addons Pro",
-						icon: "hm hm-happyaddons",
-						defaultActive: false,
-						sort: true,
-						hideIfEmpty: true,
-						items: proWidgets,
-						promotion: false
-					},
-					{
-						at: freeCategoryIndex + 1,
+				_.each(
+					HappyAddonsEditor.placeholder_widgets,
+					function ( widget, name ) {
+						elementsCollection.add( {
+							name: "ha-" + name,
+							title: widget.title,
+							icon: widget.icon,
+							categories: [ CATEGORY_NAME ],
+							editable: false,
+						} );
 					}
 				);
+
+				elementsCollection.each( function ( element ) {
+					if ( element.get( "categories" )[ 0 ] === CATEGORY_NAME ) {
+						proWidgets.push( element );
+					}
+				} );
+
+				freeCategoryIndex = categoriesCollection.findIndex( {
+					name: "happy_addons_category",
+				} );
+
+				if ( freeCategoryIndex ) {
+
+					categoriesCollection.add(
+						{
+							name: "happy_addons_pro_category",
+							title: "Happy Addons Pro",
+							icon: "hm hm-happyaddons",
+							defaultActive: false,
+							sort: true,
+							hideIfEmpty: true,
+							items: proWidgets,
+							promotion: false
+						},
+						{
+							at: freeCategoryIndex + 1,
+						}
+					);
+				}
+
+				ElementView = {
+					className: function () {
+						var className =
+							this.constructor.__super__.className.call( this );
+						if ( !this.isEditable() && this.isHappyWidget() ) {
+							className += " ha-element--promotion";
+						}
+
+						return className;
+					},
+
+					isHappyWidget: function () {
+						const widgetName = this.model.get( "name" );
+						return widgetName != undefined && widgetName.indexOf( "ha-" ) === 0;
+					},
+
+					onMouseDown: function () {
+						if ( !this.isHappyWidget() ) {
+							this.constructor.__super__.onMouseDown.call( this );
+							return;
+						}
+
+						elementor.promotion.showDialog( {
+							title: haGetTranslated(
+								"promotionDialogHeader",
+								[ this.model.get( "title" ) ]
+							),
+							content: haGetTranslated( "promotionDialogMessage", [
+								this.model.get( "title" ),
+							] ),
+							targetElement: this.el,
+							position: {
+								blockStart: '-7'
+							},
+							actionButton: {
+								url: "https://happyaddons.com/pricing/?utm_source=ha-editor-pro-widgets&utm_medium=wp-elementor-editor&utm_campaign=ha-upgrade-pro",
+								text: HappyAddonsEditor.i18n.promotionDialogBtnTxt,
+								classes: [ 'elementor-button', 'ha-btn--promotion', 'go-pro' ]
+							},
+						} );
+					},
+				};
+
+				regionViews.elements.view = elementsView.extend( {
+					childView: elementsView.prototype.childView.extend( ElementView ),
+				} );
+
+				regionViews.categories.view = categoriesView.extend( {
+					childView: categoriesView.prototype.childView.extend( {
+						childView:
+							categoriesView.prototype.childView.prototype.childView.extend(
+								ElementView
+							),
+					} ),
+				} );
+
+				return regionViews;
 			}
-
-			ElementView = {
-				className: function () {
-					var className =
-						this.constructor.__super__.className.call(this);
-					if (!this.isEditable() && this.isHappyWidget()) {
-						className += " ha-element--promotion";
-					}
-
-					return className;
-				},
-
-				isHappyWidget: function () {
-					const widgetName = this.model.get("name");
-					return widgetName != undefined && widgetName.indexOf("ha-") === 0;
-				},
-
-				onMouseDown: function () {
-					if (!this.isHappyWidget()) {
-						this.constructor.__super__.onMouseDown.call(this);
-						return;
-					}
-
-					elementor.promotion.showDialog({
-						title: haGetTranslated(
-							"promotionDialogHeader",
-							[ this.model.get("title") ]
-						),
-						content: haGetTranslated("promotionDialogMessage", [
-							this.model.get("title"),
-						]),
-						targetElement: this.el,
-						position: {
-							blockStart: '-7'
-						},
-						actionButton: {
-							url: "https://happyaddons.com/pricing/?utm_source=ha-editor-pro-widgets&utm_medium=wp-elementor-editor&utm_campaign=ha-upgrade-pro",
-							text: HappyAddonsEditor.i18n.promotionDialogBtnTxt,
-							classes: [ 'elementor-button', 'ha-btn--promotion', 'go-pro' ]
-						},
-					});
-				},
-			};
-
-			regionViews.elements.view = elementsView.extend({
-				childView: elementsView.prototype.childView.extend(ElementView),
-			});
-
-			regionViews.categories.view = categoriesView.extend({
-				childView: categoriesView.prototype.childView.extend({
-					childView:
-						categoriesView.prototype.childView.prototype.childView.extend(
-							ElementView
-						),
-				}),
-			});
-
-			return regionViews;
-		}
-	);
+		);
+	}
 
 	// Widget List controller view
-	var WidgetList = elementor.modules.controls.Select2.extend({
+	var WidgetList = elementor.modules.controls.Select2.extend( {
 		onBeforeRender: function () {
-			if (this.container && (this.container.type === "section" || this.container.type === "container")) {
+			if ( this.container && ( this.container.type === "section" || this.container.type === "container" ) ) {
 				var widgetsConfig =
 					elementor.widgetsCache || elementor.config.widgets,
 					widgets = {};
 
-				if (this.container.type === "section") {
-					this.container.children.forEach(function (column) {
+				if ( this.container.type === "section" ) {
+					this.container.children.forEach( function ( column ) {
 
 						var $widgets =
 							column.view.$childViewContainer.children(
 								"[data-widget_type]"
 							);
 
-						$widgets.each(function (index, widget) {
-							var name = $(widget).data("widget_type"),
-								name = name.slice(0, name.lastIndexOf(".")),
-								config = !_.isUndefined(widgetsConfig[ name ])
+						$widgets.each( function ( index, widget ) {
+							var name = $( widget ).data( "widget_type" ),
+								name = name.slice( 0, name.lastIndexOf( "." ) ),
+								config = !_.isUndefined( widgetsConfig[ name ] )
 									? widgetsConfig[ name ]
 									: false;
 
-							if (config) {
+							if ( config ) {
 								widgets[ config.widget_type ] =
 									config.title + " (" + config.widget_type + ")";
 							}
-						});
-					});
+						} );
+					} );
 				};
 
-				if (this.container.type === "container") {
+				if ( this.container.type === "container" ) {
 					var $has_widget = false;
-					this.container.children.some(function (column) {
-						if (column.view.children.length == 0) {
-							$has_widget = (column.view.children.length == 0);
+					this.container.children.some( function ( column ) {
+						if ( column.view.children.length == 0 ) {
+							$has_widget = ( column.view.children.length == 0 );
 						}
-						return (column.view.children.length == 0);
-					});
-					this.container.children.forEach(function (column) {
-						let $widgets = column.view.$el.data("element_type") == 'widget' ? column.view.$el : column.view.$el.find('div[data-element_type="widget"]');
+						return ( column.view.children.length == 0 );
+					} );
+					this.container.children.forEach( function ( column ) {
+						let $widgets = column.view.$el.data( "element_type" ) == 'widget' ? column.view.$el : column.view.$el.find( 'div[data-element_type="widget"]' );
 
 
-						$widgets.each(function (index, widget) {
+						$widgets.each( function ( index, widget ) {
 
-							if ($(widget).data("element_type") == 'widget') {
-								var name = $(widget).data("widget_type"),
-									name = name.slice(0, name.lastIndexOf(".")),
-									config = !_.isUndefined(widgetsConfig[ name ])
+							if ( $( widget ).data( "element_type" ) == 'widget' ) {
+								var name = $( widget ).data( "widget_type" ),
+									name = name.slice( 0, name.lastIndexOf( "." ) ),
+									config = !_.isUndefined( widgetsConfig[ name ] )
 										? widgetsConfig[ name ]
 										: false;
 
-								if (config) {
+								if ( config ) {
 									widgets[ config.widget_type ] =
 										config.title + " (" + config.widget_type + ")";
 								}
 							}
-						});
-					});
+						} );
+					} );
 				};
 
-				this.model.set("options", widgets);
+				this.model.set( "options", widgets );
 			}
 		},
-	});
+	} );
 
-	elementor.addControlView("widget-list", WidgetList);
+	elementor.addControlView( "widget-list", WidgetList );
 
-	var AdvancedSelect2 = elementor.modules.controls.BaseData.extend({
+	var AdvancedSelect2 = elementor.modules.controls.BaseData.extend( {
 		getSelect2Placeholder: function () {
 			return (
-				this.ui.select.children('option:first[value=""]').text() ||
-				this.model.get("placeholder")
+				this.ui.select.children( 'option:first[value=""]' ).text() ||
+				this.model.get( "placeholder" )
 			);
 		},
 
 		getDependencyArgs: function () {
 			var self = this,
-				args = self.model.get("dynamic_params");
+				args = self.model.get( "dynamic_params" );
 
-			if (!_.isObject(args)) {
+			if ( !_.isObject( args ) ) {
 				args = {};
 			}
 			if (
 				args.control_dependency &&
-				_.isObject(args.control_dependency)
+				_.isObject( args.control_dependency )
 			) {
-				_.each(args.control_dependency, function (prop, key) {
-					args[ key ] = self.container.settings.get(prop);
-				});
+				_.each( args.control_dependency, function ( prop, key ) {
+					args[ key ] = self.container.settings.get( prop );
+				} );
 			}
 
 			return args;
@@ -592,7 +594,7 @@
 					dataType: "json",
 					method: "POST",
 					delay: 250,
-					data: function (params) {
+					data: function ( params ) {
 						var defaults = {
 							nonce: HappyAddonsEditor.editor_nonce,
 							action: "ha_process_dynamic_select",
@@ -601,13 +603,13 @@
 						};
 						return $.extend(
 							defaults,
-							_this.model.get("dynamic_params"),
+							_this.model.get( "dynamic_params" ),
 							_this.getDependencyArgs()
 						);
 					},
 
-					processResults: function (response) {
-						if (!response.success || response.data.length === 0) {
+					processResults: function ( response ) {
+						if ( !response.success || response.data.length === 0 ) {
 							return {
 								results: [
 									{
@@ -621,12 +623,12 @@
 
 						var data = [];
 
-						_.each(response.data, function (title, id) {
-							data.push({
+						_.each( response.data, function ( title, id ) {
+							data.push( {
 								id: id,
 								text: title,
-							});
-						});
+							} );
+						} );
 
 						return {
 							results: data,
@@ -641,31 +643,31 @@
 		getSelect2Options: function () {
 			return $.extend(
 				this.getSelect2DefaultOptions(),
-				this.model.get("select2options")
+				this.model.get( "select2options" )
 			);
 		},
 
 		addLoadingSpinner: function () {
 			this.$el
-				.find(".elementor-control-title")
+				.find( ".elementor-control-title" )
 				.after(
 					'<span class="elementor-control-spinner">&nbsp;<i class="eicon-spinner eicon-animation-spin"></i>&nbsp;</span>'
 				);
 		},
 
 		onBeforeRender: function () {
-			if (this.isRendered) {
+			if ( this.isRendered ) {
 				return;
 			}
 
 			var _this = this,
 				savedValues = this.getControlValue();
 
-			if (_.isEmpty(savedValues)) {
+			if ( _.isEmpty( savedValues ) ) {
 				return;
 			}
 
-			if (!_.isArray(savedValues)) {
+			if ( !_.isArray( savedValues ) ) {
 				savedValues = [ savedValues ];
 			}
 
@@ -676,33 +678,33 @@
 				saved_values: savedValues,
 			};
 
-			$.ajax({
+			$.ajax( {
 				url: ajaxurl,
 				type: "POST",
 				data: $.extend(
 					defaults,
-					_this.model.get("dynamic_params"),
+					_this.model.get( "dynamic_params" ),
 					_this.getDependencyArgs()
 				),
-				beforeSend: _this.addLoadingSpinner.bind(this),
-				success: function (response) {
-					if (response.success && response.data.length !== 0) {
+				beforeSend: _this.addLoadingSpinner.bind( this ),
+				success: function ( response ) {
+					if ( response.success && response.data.length !== 0 ) {
 						// Prefix an extra space to maintain order and backward compatibility
-						var ids = (ids = _.keys(response.data).map(function (
+						var ids = ( ids = _.keys( response.data ).map( function (
 							id
 						) {
-							return " " + $.trim(id);
-						}));
+							return " " + $.trim( id );
+						} ) );
 
 						_this.container.settings.set(
-							_this.model.get("name"),
+							_this.model.get( "name" ),
 							ids
 						);
-						_this.model.set("options", response.data);
+						_this.model.set( "options", response.data );
 						_this.render();
 					}
 				},
-			});
+			} );
 		},
 
 		applySavedValue: function () {
@@ -711,68 +713,68 @@
 				arguments
 			);
 
-			var select2Instance = this.ui.select.data("select2");
+			var select2Instance = this.ui.select.data( "select2" );
 
-			if (!select2Instance) {
-				this.ui.select.select2(this.getSelect2Options());
+			if ( !select2Instance ) {
+				this.ui.select.select2( this.getSelect2Options() );
 
-				if (this.model.get("sortable")) {
+				if ( this.model.get( "sortable" ) ) {
 					this.initSortable();
 				}
 			} else {
-				this.ui.select.trigger("change");
+				this.ui.select.trigger( "change" );
 			}
 		},
 
 		initSortable: function () {
-			var $sortable = this.$el.find("ul.select2-selection__rendered"),
+			var $sortable = this.$el.find( "ul.select2-selection__rendered" ),
 				_this = this;
 
-			$sortable.sortable({
+			$sortable.sortable( {
 				containment: "parent",
 
 				update: function () {
-					_this._orderSortedOption($sortable);
+					_this._orderSortedOption( $sortable );
 
 					_this.container.settings.setExternalChange(
-						_this.model.get("name"),
+						_this.model.get( "name" ),
 						_this.ui.select.val()
 					);
 
-					_this.model.set("options", _this.ui.select.val());
+					_this.model.set( "options", _this.ui.select.val() );
 				},
-			});
+			} );
 		},
 
-		_orderSortedOption: function ($sortable) {
+		_orderSortedOption: function ( $sortable ) {
 			var _this = this;
 
-			$sortable.children("li[title]").each(function (i, obj) {
+			$sortable.children( "li[title]" ).each( function ( i, obj ) {
 				var $elment = _this.ui.select
-					.children("option")
-					.filter(function () {
-						return $(this).html() == obj.title;
-					});
+					.children( "option" )
+					.filter( function () {
+						return $( this ).html() == obj.title;
+					} );
 
-				_this._moveOptionToEnd($elment);
-			});
+				_this._moveOptionToEnd( $elment );
+			} );
 		},
 
-		_moveOptionToEnd: function ($elment) {
+		_moveOptionToEnd: function ( $elment ) {
 			var $parent = $elment.parent();
 
 			$elment.detach();
-			$parent.append($elment);
+			$parent.append( $elment );
 		},
 
 		onBeforeDestroy: function () {
 			// We always destroy the select2 instance because there are cases where the DOM element's data cache
 			// itself has been destroyed but the select2 instance on it still exists
-			this.ui.select.select2("destroy");
+			this.ui.select.select2( "destroy" );
 			this.$el.remove();
 		},
-	});
+	} );
 
-	elementor.addControlView("ha_advanced_select2", AdvancedSelect2);
+	elementor.addControlView( "ha_advanced_select2", AdvancedSelect2 );
 
-})(jQuery);
+} )( jQuery );

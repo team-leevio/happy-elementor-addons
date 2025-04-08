@@ -21,7 +21,7 @@ class Assets_Manager {
 		// Edit and preview enqueue
 		add_action('elementor/preview/enqueue_styles', [__CLASS__, 'enqueue_preview_styles']);
 
-		// Enqueue editor scripts
+		// Enqueue editor & editorv2 scripts
 		add_action('elementor/editor/after_enqueue_scripts', [__CLASS__, 'editor_enqueue']);
 
 		// Paragraph toolbar registration
