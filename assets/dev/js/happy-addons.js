@@ -600,78 +600,47 @@
 			}
 		} );
 
-		var DataTablebb = function ( $scope ) {
+
+		var DataTable = function ( $scope ) {
 			var columnTH = $scope.find( '.ha-table__head-column-cell' );
 			var rowTR = $scope.find( '.ha-table__body-row' );
 
+			// Step 1: Handle rowspan by inserting placeholder cells ("nullval")
 			rowTR.each( function ( i, tr ) {
-				console.log( 'i ', i);
-				
-				var th = $( tr ).find( '.ha-table__body-row-cell' );				
-				th.each( function ( index, th ) {
-					// console.log('firstRowFirstCellCol ', firstRowFirstCellCol);
-					// console.log('i ', i);
-					console.log('index ', index);
-					
-					$( th ).prepend( '<div class="ha-table__head-column-cell">' + columnTH.eq( index ).html() + '</div>' );
+				var cells = $( tr ).find( '.ha-table__body-row-cell' );
+
+				cells.each( function ( index, cell ) {
+					var $cell = $( cell );
+					var rowspan = parseInt( $cell.attr( "rowspan" ), 10 );
+
+					if ( rowspan > 1 ) {
+						for ( var j = i + 1; j < i + rowspan && j < rowTR.length; j++ ) {
+							var targetRow = $( rowTR ).eq( j );
+							var targetCell = targetRow.children().eq( index );
+
+							$( '<td class="ha-table__body-row-cell test">nullval</td>' )
+								.insertBefore( targetCell );
+						}
+					}
 				} );
 			} );
-		};
-		
-		var DataTable = function($scope) {
-			var columnTH = $scope.find('.ha-table__head-column-cell');
-			var rowTR = $scope.find('.ha-table__body-row');
-			var maxColumns = 4; // We want exactly 4 columns per row
-			var firstRowHeaders = [];
-		
-			// Store headers from first row
-			if (rowTR.length > 0) {
-				rowTR.first().find('.ha-table__body-row-cell').each(function(index) {
-					firstRowHeaders.push(columnTH.eq(index).html());
-				});
-			}
-		
-			rowTR.each(function(i, tr) {
-				var $tr = $(tr);
-				var th = $tr.find('.ha-table__body-row-cell');
-				var actualColumns = th.length;
-				
-				console.log('i', i);
-				
-				// Process existing cells with proper header association
-				th.each(function(index, cell) {
-					console.log('index', index);
-					var $cell = $(cell);
-					
-					// Clear any existing headers
-					$cell.find('.ha-table__head-column-cell').remove();
-					
-					// For first row, use normal headers
-					if (i === 0) {
-						$cell.prepend('<div class="ha-table__head-column-cell">' + columnTH.eq(index).html() + '</div>');
-					} 
-					// For subsequent rows
-					else {
-						// Use header from first row's corresponding column
-						var headerIndex = index % firstRowHeaders.length;
-						$cell.prepend('<div class="ha-table__head-column-cell">' + firstRowHeaders[headerIndex] + '</div>');
+
+			// Step 2: Add header labels or remove placeholder cells
+			rowTR.each( function ( i, tr ) {
+				var cells = $( tr ).find( '.ha-table__body-row-cell' );
+
+				cells.each( function ( index, cell ) {
+					var $cell = $( cell );
+					var cellContent = $cell.html();
+
+					if ( cellContent.indexOf( "nullval" ) === -1 ) {
+						var headerContent = columnTH.eq( index ).html();
+						$cell.prepend( '<div class="ha-table__head-column-cell">' + headerContent + '</div>' );
+					} else {
+						$cell.remove();
 					}
-				});
-				
-				// Add missing cells if needed to maintain 4 columns
-				if (actualColumns < maxColumns) {
-					for (var j = actualColumns; j < maxColumns; j++) {
-						console.log('index', j);
-						var headerIndex = j % firstRowHeaders.length;
-						$tr.append(
-							'<td class="ha-table__body-row-cell">' +
-							'<div class="ha-table__head-column-cell">' + firstRowHeaders[headerIndex] + '</div>' +
-							'<div class="ha-table__body-row-cell-wrap"></div>' +
-							'</td>'
-						);
-					}
-				}
-			});
+				} );
+			} );
 		};
 
 		//Threesixty Rotation
