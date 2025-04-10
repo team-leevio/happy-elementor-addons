@@ -1709,7 +1709,7 @@
 		} );
 
 		// SVG Draw Handler
-		var haSvgDrawHandler = ModuleHandler.extend({
+		let haSvgDrawHandler = ModuleHandler.extend( {
 
 			onInit: function () {
 				ModuleHandler.prototype.onInit.apply( this, arguments );
@@ -1718,125 +1718,128 @@
 
 			bindEvents: function () {
 
-				ScrollTrigger.config({
+				ScrollTrigger.config( {
 					limitCallbacks: true,
 					ignoreMobileResize: true
-				});
+				} );
 			},
 
 			run: function () {
+				gsap.registerPlugin( ScrollTrigger );
 
-				gsap.registerPlugin(ScrollTrigger);
+				let $scope = this.$element;
 
-				var $scope = this.$element;
+				$scope.find( "title" ).remove();
 
-				$scope.find("title").remove();
-
-				if (!$scope.hasClass("ha-svg-animated-yes"))
+				if ( !$scope.hasClass( "ha-svg-animated-yes" ) )
 					return;
 
-				var elemID = $scope.data("id"),
+				let elemID = $scope.data( "id" ),
 					settings = this.getElementSettings(),
 					scrollAction = settings.scroll_action,
 					scrollTrigger = null,
-					repeatDelay = settings.repeat_delay || 0;
+					repeatDelay = parseFloat( settings.repeat_delay ) || 0.5,
+					timeLine = new TimelineMax( {
+						repeat: 0,
+						yoyo: false,
+						repeatDelay: 0.5
+					} );
 
-
-				if ('automatic' === scrollAction) {
-
+				if ( 'automatic' === scrollAction ) {
 					scrollTrigger = 'custom' !== settings.animate_trigger ? settings.animate_trigger : settings.animate_offset.size + "%";
+					let animRev = settings.anim_rev ? 'pause play reverse' : 'none';
 
-					var animRev = settings.anim_rev ? 'pause play reverse' : 'none',
-						timeLine = new TimelineMax({
-							repeat: settings.loop ? -1 : 0,
-							yoyo: settings.yoyo ? true : false,
-							repeatDelay: settings.loop ? repeatDelay : 0,
-							scrollTrigger: {
-								trigger: '.elementor-element-' + elemID,
-								toggleActions: "play " + animRev,
-								start: "top " + scrollTrigger,
-							}
-						});
+					// Configure the timeline
+					timeLine.repeat( settings.loop ? -1 : 0 )
+						.yoyo( settings.yoyo )
+						.repeatDelay( settings.loop ? repeatDelay : 0 );
 
+					ScrollTrigger.create( {
+						trigger: '.elementor-element-' + elemID,
+						toggleActions: "play " + animRev,
+						start: "top " + scrollTrigger,
+						animation: timeLine
+					} );
 
 				} else {
+					// Configure timeline for non-automatic cases
+					timeLine.repeat( ( 'hover' === scrollAction && settings.loop ) ? -1 : 0 )
+						.yoyo( ( 'hover' === scrollAction && settings.yoyo ) )
+						.repeatDelay( ( 'hover' === scrollAction && settings.loop ) ? repeatDelay : 0 );
 
-					var timeLine = new TimelineMax({
-						repeat: ('hover' === scrollAction && settings.loop) ? -1 : 0,
-						yoyo: ('hover' === scrollAction && settings.yoyo) ? true : false,
-						repeatDelay: ('hover' === scrollAction && settings.loop) ? repeatDelay : 0
-					});
-
-					if ('viewport' === scrollAction)
+					if ( 'viewport' === scrollAction ) {
 						scrollTrigger = settings.animate_offset.size / 100;
+					}
 				}
 
-				var fromOrTo = !$scope.hasClass("ha-svg-animation-rev-yes") ? 'from' : 'to',
-					$paths = $scope.find("path, circle, rect, square, ellipse, polyline, polygon, line"),
+				let fromOrTo = !$scope.hasClass( "ha-svg-animation-rev-yes" ) ? 'from' : 'to',
+					$paths = $scope.find( "path, circle, rect, square, ellipse, polyline, polygon, line" ),
 					lastPathIndex = 0,
 					startOrEndPoint = 'from' === fromOrTo ? settings.animate_start_point.size : settings.animate_end_point.size;
 
-				$paths.each(function (pathIndex, path) {
+				$paths.each( function ( pathIndex, path ) {
+					let $path = $( path );
 
-					var $path = $(path);
+					$path.attr( "fill", "transparent" );
 
-					$path.attr("fill", "transparent");
-
-					if ($scope.hasClass("ha-svg-sync-together-yes"))
+					if ( $scope.hasClass( "ha-svg-sync-together-yes" ) )
 						pathIndex = 0;
 
 					lastPathIndex = pathIndex;
 
-					timeLine[fromOrTo]($path, 1, {
-						PaSvgDrawer: (startOrEndPoint || 0) + "% 0",
-					}, pathIndex);
+					// Use the timeline's from/to methods
+					if ( fromOrTo === 'from' ) {
+						timeLine.from( $path, 1, {
+							PaSvgDrawer: ( startOrEndPoint || 0 ) + "% 0",
+						}, pathIndex );
+					} else {
+						timeLine.to( $path, 1, {
+							PaSvgDrawer: ( startOrEndPoint || 0 ) + "% 0",
+						}, pathIndex );
+					}
+				} );
 
-				});
-
-				if ('yes' === settings.svg_fill) {
-					if (lastPathIndex == 0)
+				if ( 'yes' === settings.svg_fill ) {
+					if ( lastPathIndex == 0 )
 						lastPathIndex = 1;
 
-					timeLine.to($paths, 1, {
+					timeLine.to( $paths, 1, {
 						fill: settings.svg_color,
 						stroke: settings.svg_stroke
-					}, lastPathIndex);
+					}, lastPathIndex );
 				}
 
-				if ('viewport' === scrollAction) {
-
-					var controller = new ScrollMagic.Controller(),
-						scene = new ScrollMagic.Scene({
+				if ( 'viewport' === scrollAction ) {
+					let controller = new ScrollMagic.Controller(),
+						scene = new ScrollMagic.Scene( {
 							triggerElement: '.elementor-element-' + elemID,
 							triggerHook: scrollTrigger,
 							duration: settings.draw_speed ? settings.draw_speed.size * 1000 : "150%"
-						})
+						} );
 
-					scene.setTween(timeLine).addTo(controller);
-
+					scene.setTween( timeLine ).addTo( controller );
 				} else {
 
-					if (settings.frames) {
+					if ( settings.frames ) {
 						timeLine.duration(settings.frames);
+						timeLine.repeatDelay(repeatDelay);
 					}
 
-					if ('hover' === scrollAction) {
+					if ( 'hover' === scrollAction ) {
 						timeLine.pause();
 
-						$scope.find("svg").hover(
+						$scope.find( "svg" ).hover(
 							function () {
 								timeLine.play();
 							},
 							function () {
 								timeLine.pause();
-							});
+							} );
 					}
-
 				}
-
 			}
 
-		});
+		} );
 
 		// Hook into Elementor's frontend ready event with svg draw
 		elementorFrontend.hooks.addAction( 'frontend/element_ready/ha-svg-draw.default', function ( $scope ) {

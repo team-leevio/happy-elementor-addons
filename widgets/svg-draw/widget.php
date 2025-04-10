@@ -378,7 +378,7 @@
 					'description' => __('Delay before repeating the animation', 'happy-elementor-addons'),
 					'default' => 5,
 					'min' => 0.5,
-					'max' => 100,
+					'max' => 50,
 					'step' => 0.5,
 					'condition' => [
 						'loop' => 'true',
