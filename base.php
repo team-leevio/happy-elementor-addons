@@ -101,9 +101,9 @@ class Base {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-source.php' );
 		}
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/api-handler.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/conditions-cache.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/theme-builder.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/conditions-cache.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/theme-builder.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
 
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/astra.php');
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/bbtheme.php');
@@ -118,6 +118,10 @@ class Base {
 	public function include_on_init() {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
+
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/conditions-cache.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/theme-builder.php' );
+		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
 	}
 
 	/**
