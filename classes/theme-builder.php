@@ -33,7 +33,7 @@
 			add_action( 'init', [$this, 'create_themebuilder_cpt'], 0 );
 			add_action( 'admin_menu', [$this, 'modify_menu'], 90 );
 			add_action( 'pre_get_posts', [$this, 'add_role_filter_to_posts_query'] );
-			
+
 			// Only for evementor v2
 			add_action( 'elementor/editor/v2/scripts/enqueue', [$this, 'ha_template_element_scripts'] );
 
@@ -478,6 +478,9 @@
 			if ( 'elementor_canvas' == $this->current_template ) {
 				return;
 			}
+			if ( ! class_exists( 'Happy_Addons\Elementor\Condition_Manager' ) ) {
+				include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
+			}
 
 			$this->current_theme = get_template();
 
@@ -564,6 +567,9 @@
 			$summary = [];
 
 			if ( ! empty( $document_conditions ) ) {
+				if ( ! class_exists( 'Happy_Addons\Elementor\Condition_Manager' ) ) {
+					include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
+				}
 				foreach ( $document_conditions as $document_condition ) {
 					if ( 'exclude' === $document_condition['type'] ) {
 						// continue;
@@ -752,6 +758,9 @@
 				}
 			}
 			if ( $location ) {
+				if ( ! class_exists( 'Happy_Addons\Elementor\Condition_Manager' ) ) {
+					include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
+				}
 				$location_documents = Condition_Manager::instance()->get_documents_for_location( $location );
 
 				if ( empty( $location_documents ) ) {
@@ -959,6 +968,9 @@
 
 		public function render_builder_data_location( $location ) {
 			// $teplates = Condition_Manager::instance()->get_location_templates($location);
+			if ( ! class_exists( 'Happy_Addons\Elementor\Condition_Manager' ) ) {
+				include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
+			}
 
 			$teplates       = Condition_Manager::instance()->get_documents_for_location( $location );
 			$first_key      = key( $teplates );
