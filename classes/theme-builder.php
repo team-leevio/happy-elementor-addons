@@ -277,6 +277,9 @@
     					$documentConditions = $this->get_document_conditions( $post_id );
 
     					if ( ! empty( $documentConditions ) ) {
+							if ( ! class_exists( 'Happy_Addons\Elementor\Condition_Manager' ) ) {
+								include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
+							}
     						foreach ( $documentConditions as $key => $condition ) {
     							if ( 'include' === $condition['type'] ) {
     								$sub_page_id         = ! empty( $condition['sub_id'] ) ? '#' . get_the_title( $condition['sub_id'] ) : '';
