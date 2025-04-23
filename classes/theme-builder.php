@@ -277,9 +277,6 @@
     					$documentConditions = $this->get_document_conditions( $post_id );
 
     					if ( ! empty( $documentConditions ) ) {
-							if ( ! class_exists( 'Happy_Addons\Elementor\Condition_Manager' ) ) {
-								include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
-							}
     						foreach ( $documentConditions as $key => $condition ) {
     							if ( 'include' === $condition['type'] ) {
     								$sub_page_id         = ! empty( $condition['sub_id'] ) ? '#' . get_the_title( $condition['sub_id'] ) : '';
@@ -481,9 +478,6 @@
 			if ( 'elementor_canvas' == $this->current_template ) {
 				return;
 			}
-			if ( ! class_exists( 'Happy_Addons\Elementor\Condition_Manager' ) ) {
-				include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
-			}
 
 			$this->current_theme = get_template();
 
@@ -570,9 +564,6 @@
 			$summary = [];
 
 			if ( ! empty( $document_conditions ) ) {
-				if ( ! class_exists( 'Happy_Addons\Elementor\Condition_Manager' ) ) {
-					include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
-				}
 				foreach ( $document_conditions as $document_condition ) {
 					if ( 'exclude' === $document_condition['type'] ) {
 						// continue;
@@ -761,9 +752,6 @@
 				}
 			}
 			if ( $location ) {
-				if ( ! class_exists( 'Happy_Addons\Elementor\Condition_Manager' ) ) {
-					include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
-				}
 				$location_documents = Condition_Manager::instance()->get_documents_for_location( $location );
 
 				if ( empty( $location_documents ) ) {
@@ -971,9 +959,6 @@
 
 		public function render_builder_data_location( $location ) {
 			// $teplates = Condition_Manager::instance()->get_location_templates($location);
-			if ( ! class_exists( 'Happy_Addons\Elementor\Condition_Manager' ) ) {
-				include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
-			}
 
 			$teplates       = Condition_Manager::instance()->get_documents_for_location( $location );
 			$first_key      = key( $teplates );
