@@ -9,6 +9,8 @@ namespace Happy_Addons\Elementor;
 use Elementor\Controls_Manager;
 use Elementor\Elements_Manager;
 
+// use \Happy_Addons\Elementor\Classes as HappyAddons_Classes; // Code from autoloader
+
 defined( 'ABSPATH' ) || die();
 
 class Base {
@@ -25,6 +27,11 @@ class Base {
 	}
 
 	private function __construct() {
+		$this->run_autoload();
+	}
+
+	private function __construct__old() { // Code from autoloader
+		add_action( 'init', [ $this, 'i18n' ] );
 		$this->run_autoload();
 	}
 
@@ -48,6 +55,9 @@ class Base {
 
 	public function i18n() {
 		load_plugin_textdomain( 'happy-elementor-addons', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n' );
+	}
+	public function i18n_old() { // Code from autoloader
+		load_plugin_textdomain( 'happy-elementor-addons', false, dirname( plugin_basename( HAPPY_ADDONS__FILE__ ) ) . '/i18n/' );
 	}
 
 	/**
@@ -119,10 +129,63 @@ class Base {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/theme-support.php');
 	}
 
+	public function include_files_old() { // Code from autoloader
+		include_once HAPPY_ADDONS_DIR_PATH . 'inc/functions-forms.php';
+
+		HappyAddons_Classes\Ajax_Handler::init();
+		HappyAddons_Classes\Icons_Manager::init();
+		HappyAddons_Classes\Widgets_Manager::init();
+		HappyAddons_Classes\Assets_Manager::init();
+		HappyAddons_Classes\Cache_Manager::init();
+		HappyAddons_Classes\WPML_Manager::init();
+
+		HappyAddons_Classes\Api_Handler::init();
+
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/ajax-handler.php' );
+
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/cache-manager.php' );
+
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' ); // assets-manager file has no init method
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' ); // assets-manager file has no init method
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
+
+		if ( is_admin() ) {
+			HappyAddons_Classes\Updater::init();
+			HappyAddons_Classes\Dashboard::init();
+			HappyAddons_Classes\Attention_Seeker::init();
+			HappyAddons_Classes\Select2_Handler::init();
+			HappyAddons_Classes\Dashboard_Widgets::instance()->init();
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/attention-seeker.php' );
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard-widgets.php' );
+		}
+
+		if ( is_user_logged_in() ) {
+			HappyAddons_Classes\Library_Manager::init();
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-manager.php' );
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-source.php' );
+		}
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/api-handler.php' );
+
+	}
+
 	public function include_on_init() {
 		Condition_Manager::instance();
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
+	}
+
+	public function include_on_init_old() { // Code from autoloader
+		include_once HAPPY_ADDONS_DIR_PATH . 'inc/functions-extensions.php';
+		HappyAddons_Classes\Extensions_Manager::init();
+		HappyAddons_Classes\Credentials_Manager::init();
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
 	}
 
 	/**
@@ -164,6 +227,39 @@ class Base {
 		$controls_Manager->add_group_control( $Text_Stroke::get_type(), new $Text_Stroke() );
 	}
 
+	public function register_controls_old( Controls_Manager $controls_Manager ) {
+		// Code from autoloader
+
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'controls/foreground.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'controls/select2.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'controls/widget-list.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'controls/text-stroke.php' );
+
+		$Foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
+		$controls_Manager->add_group_control( $Foreground::get_type(), new $Foreground() );
+
+		$Select2 = __NAMESPACE__ . '\Controls\Select2';
+		// ha_elementor()->controls_manager->register_control( $Select2::TYPE, new $Select2() );
+		ha_elementor()->controls_manager->register( new $Select2() );
+
+		$Widget_List = __NAMESPACE__ . '\Controls\Widget_List';
+		// ha_elementor()->controls_manager->register_control( $Widget_List::TYPE, new $Widget_List() );
+		ha_elementor()->controls_manager->register( new $Widget_List() );
+
+		$Text_Stroke = __NAMESPACE__ . '\Controls\Group_Control_Text_Stroke';
+		$controls_Manager->add_group_control( $Text_Stroke::get_type(), new $Text_Stroke() );
+	}
+
+	protected static function init_classes_aliases() {
+		// Code from autoloader
+		return [
+			'Happy_Addons\Elementor\Classes\Widgets_Manager' => 'Happy_Addons\Elementor\Widgets_Manager',
+			// 'Happy_Addons\Elementor\Widget\Base'=> 'Happy_Addons\Elementor\Widget\Base',
+			'Happy_Addons\Elementor\Classes\Widgets_Cache' => 'Happy_Addons\Elementor\Widgets_Cache',
+			'Happy_Addons\Elementor\Classes\Assets_Cache'  => 'Happy_Addons\Elementor\Assets_Cache',
+		];
+	}
+
 	protected function autoload( $class_name ) {
 		if ( 0 !== strpos( $class_name, __NAMESPACE__ ) ) {
 			return;
@@ -182,6 +278,157 @@ class Base {
 				include_once $file;
 			}
 		}
+	}
+
+	protected function autoload_old( $class_name ) {
+		// Code from autoloader
+
+		if ( 0 !== strpos( $class_name, __NAMESPACE__ ) ) {
+			return;
+		}
+
+		$file_name = strtolower(
+			str_replace(
+				[ __NAMESPACE__ . '\\', '_', '\\' ], // replace namespace, underscrore & backslash
+				[ '', '-', '/' ],
+				$class_name
+			)
+		);
+		// if ( 0 === strpos( $class_name, __NAMESPACE__ . '\Wpml\\' ) ){
+		// 	$fileX = HAPPY_ADDONS_DIR_PATH . '/' . str_replace( 'wpml_', '', $file_name ) . '.php';
+		// 	$fileY = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
+		// 	error_log( print_r( $class_name.' Class name' , 1 ) );
+		// 	// error_log( print_r( $fileX.' File name' , 1 ) );
+		// 	// error_log( print_r( $fileY.' File name' , 1 ) );
+		// 	// error_log( print_r( is_readable( $fileY ), 1 ) );
+		// }
+		// Happy_Addons\Elementor\Extensions\Column_Extended
+		//Happy_Addons\Elementor\Widget
+		//Happy_Addons\Elementor\Wpml
+		// //For Widget class load
+		if ( 0 === strpos( $class_name, __NAMESPACE__ . '\Widget\\' ) ) {
+			//error_log( print_r( $file_name.'/widget.php => Widget file name' , 1 ) );
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . str_replace( 'widget', 'widgets', $file_name ) . '/widget.php';
+		}
+		else {
+			//error_log( print_r( $file_name.'.php Others Classes file name' , 1 ) );
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
+		}
+
+
+		// elseif ( 0 === strpos( $class_name, __NAMESPACE__ . '\Wpml\\' ) ) {
+		// 	//error_log( print_r( $file_name.'/widget.php => Widget file name' , 1 ) );
+		// 	$file = HAPPY_ADDONS_DIR_PATH . '/' . str_replace( 'wpml-', '', $file_name ) . '.php';
+		// }
+
+		//Include called class
+		if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
+			// error_log( print_r( $class_name.' Class name' , 1 ) );
+			include_once $file;
+		}
+
+		// if ('Happy_Addons\Elementor\Classes\Widgets_Manager' == $class_name ){
+		// 	error_log( print_r( $class_name.' Alice is loaded' , 1 ) );
+		// 	class_alias( $class_name, 'Happy_Addons\Elementor\Widgets_Manager' );
+		// }
+
+		if ( array_key_exists( $class_name, self::init_classes_aliases() ) ) {
+			$aliases = self::init_classes_aliases();
+			// error_log( print_r( $class_name.' Alice is loaded' , 1 ) );
+			class_alias( $class_name, $aliases[ $class_name ] );
+		}
+
+	}
+
+	protected function autoload__2( $class_name ) {
+		// Code from autoloader
+		// error_log( print_r( $class_name.' Class name' , 1 ) );
+
+		if ( 0 !== strpos( $class_name, __NAMESPACE__ ) ) {
+			return;
+		}
+		// Happy_Addons\Elementor\Classes\Ajax_Handler
+		// C:\laragon\www\happy-test\wp-content\plugins\happy-elementor-addons/
+		// $file_name = strtolower(
+		//     preg_replace(
+		//         [ '/\b'.__NAMESPACE__.'\\\/', '/([a-z])([A-Z])/', '/_/', '/\\\/' ],
+		//         [ '', '$1-$2', '-', DIRECTORY_SEPARATOR],
+		//         $class_name
+		//     )
+		// );
+
+		$file_name = str_replace( __NAMESPACE__ . '\\', '', $class_name );
+		$file_name = str_replace( ['_', '\\'], ['-', '/'], strtolower( $file_name ) );
+		error_log( print_r( $file_name . 'php Path name', 1 ) );
+		$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
+		if ( is_readable( $file ) ) {
+			include_once $file;
+		}
+
+		//For Class folder class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Classes\\' ) ) {
+			$file_name = str_replace( 'Happy_Addons\Elementor\Classes\\', '', $class_name );
+			$file_name = str_replace( '_', '-', strtolower( $file_name ) );
+			// error_log( print_r( $file_name.' File name' , 1 ) );
+			// error_log( print_r( $class_name.' Class name' , 1 ) );
+			$widget_file = HAPPY_ADDONS_DIR_PATH . 'classes/' . $file_name . '.php';
+			if ( is_readable( $widget_file ) ) {
+				include_once $widget_file;
+				// error_log( print_r( $class_name.' Class name' , 1 ) );
+			}
+		}
+
+		//For Controls folder class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Controls\\' ) ) {
+			$file_name = str_replace( 'Happy_Addons\Elementor\Controls\\', '', $class_name );
+			$file_name = str_replace( '_', '-', strtolower( $file_name ) );
+			// error_log( print_r( $file_name.' Controls name' , 1 ) );
+			// error_log( print_r( $class_name.' Class name' , 1 ) );
+			$widget_file = HAPPY_ADDONS_DIR_PATH . 'controls/' . $file_name . '.php';
+			if ( is_readable( $widget_file ) ) {
+				include_once $widget_file;
+				// error_log( print_r( $class_name.' Class name' , 1 ) );
+			}
+		}
+
+		//For Extensions folder class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Extensions\\' ) ) {
+			$file_name = str_replace( 'Happy_Addons\Elementor\Extensions\\', '', $class_name );
+			$file_name = str_replace( '_', '-', strtolower( $file_name ) );
+			// error_log( print_r( $file_name.' Extensions name' , 1 ) );
+			// error_log( print_r( $class_name.' Class name' , 1 ) );
+			$widget_file = HAPPY_ADDONS_DIR_PATH . 'extensions/' . $file_name . '.php';
+			if ( is_readable( $widget_file ) ) {
+				include_once $widget_file;
+				// error_log( print_r( $class_name.' Class name' , 1 ) );
+			}
+		}
+
+		//For Traits folder class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Traits\\' ) ) {
+			$file_name = str_replace( 'Happy_Addons\Elementor\Traits\\', '', $class_name );
+			$file_name = str_replace( '_', '-', strtolower( $file_name ) );
+			// error_log( print_r( $file_name.' Traits name' , 1 ) );
+			// error_log( print_r( $class_name.' Class name' , 1 ) );
+			$widget_file = HAPPY_ADDONS_DIR_PATH . 'traits/' . $file_name . '.php';
+			if ( is_readable( $widget_file ) ) {
+				include_once $widget_file;
+				// error_log( print_r( $class_name.' Class name' , 1 ) );
+			}
+		}
+
+		//For Widget class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Widget\\' ) ) {
+			$folder_name = str_replace( 'Happy_Addons\Elementor\Widget\\', '', $class_name );
+			$folder_name = str_replace( '_', '-', strtolower( $folder_name ) );
+			// error_log( print_r( $folder_name.' Folder name' , 1 ) );
+			$widget_file = HAPPY_ADDONS_DIR_PATH . 'widgets/' . $folder_name . '/widget.php';
+			if ( is_readable( $widget_file ) ) {
+				include_once $widget_file;
+				// error_log( print_r( $class_name.' Class name' , 1 ) );
+			}
+		}
+
 	}
 
 	public function run_autoload() {
