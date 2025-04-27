@@ -258,7 +258,7 @@ class Post_Content extends Base {
 				]
 			]
 		);
-        
+
 		$this->add_control(
 			'ha_ps_content_style',
 			[
@@ -296,7 +296,10 @@ class Post_Content extends Base {
 	protected function render() {
 		static $have_posts = [];
         $post = get_post();
-
+		// Exit early if there's no valid post object
+		if ( ! $post ) {
+			return;
+		}
 		if ( post_password_required( $post->ID ) ) {
 			echo get_the_password_form( $post->ID );
 			return;
