@@ -83,6 +83,7 @@ function ha_let_the_journey_begin() {
 
     require HAPPY_ADDONS_DIR_PATH . 'base.php';
     \Happy_Addons\Elementor\Base::instance()->init();
+    // \Happy_Addons\Elementor\Base::instance();
 }
 
 add_action('plugins_loaded', 'ha_let_the_journey_begin');

@@ -26,7 +26,16 @@ class Base {
 		return self::$instance;
 	}
 
+	public static function instance_old() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+			self::$instance->init();
+		}
+		return self::$instance;
+	}
+
 	private function __construct() {
+		add_action( 'init', [ $this, 'i18n' ] );
 		$this->run_autoload();
 	}
 
@@ -46,17 +55,17 @@ class Base {
 
 		add_action( 'init', [ $this, 'include_on_init' ] );
 
-		add_action( 'init', [ $this, 'i18n' ] );
+		// add_action( 'init', [ $this, 'i18n' ] );
 
 		$this->init_appsero_tracking();
 
 		do_action( 'happyaddons_loaded' );
 	}
 
-	public function i18n() {
+	public function i18n_latest() {
 		load_plugin_textdomain( 'happy-elementor-addons', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n' );
 	}
-	public function i18n_old() { // Code from autoloader
+	public function i18n() { // Code from autoloader
 		load_plugin_textdomain( 'happy-elementor-addons', false, dirname( plugin_basename( HAPPY_ADDONS__FILE__ ) ) . '/i18n/' );
 	}
 
@@ -265,14 +274,25 @@ class Base {
 			return;
 		}
 
+		$file_name = strtolower(
+			str_replace(
+				[ __NAMESPACE__ . '\\', '_', '\\' ], // replace namespace, underscrore & backslash
+				[ '', '-', '/' ],
+				$class_name
+			)
+		);
+
+		if ( 0 === strpos( $class_name, __NAMESPACE__ . '\Widget\\' ) ) {
+			// error_log( print_r( $file_name.'/widget.php => Widget file name' , 1 ) );
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . str_replace( 'widget', 'widgets', $file_name ) . '/widget.php';
+
+			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
+				error_log( print_r( $class_name.' Class name' , 1 ) );
+				include_once $file;
+			}
+		}
+
 		if( 'Happy_Addons\Elementor\Condition_Manager' == $class_name ) {
-			$file_name = strtolower(
-				str_replace(
-					[ __NAMESPACE__ . '\\', '_', '\\' ], // replace namespace, underscrore & backslash
-					[ '', '-', '/' ],
-					$class_name
-				)
-			);
 			$file = HAPPY_ADDONS_DIR_PATH . 'classes/' . $file_name . '.php';
 			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
 				include_once $file;

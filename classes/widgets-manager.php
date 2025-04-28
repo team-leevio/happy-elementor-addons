@@ -1420,7 +1420,7 @@ class Widgets_Manager {
 
 		if (is_readable($widget_file)) {
 
-			include_once $widget_file;
+			// include_once $widget_file;
 
 			$widget_class = '\Happy_Addons\Elementor\Widget\\' . str_replace('-', '_', $widget_key);
 			if (class_exists($widget_class)) {
@@ -1428,6 +1428,19 @@ class Widgets_Manager {
 			}
 		}
 	}
+	// protected static function register_widget__old( $widget_key ) {
+	// 	$widget_file = HAPPY_ADDONS_DIR_PATH . 'widgets/' . $widget_key . '/widget.php';
+
+	// 	if ( is_readable( $widget_file ) ) {
+
+	// 		// include_once( $widget_file );
+
+	// 		$widget_class = '\Happy_Addons\Elementor\Widget\\' . str_replace( '-', '_', $widget_key );
+	// 		if (class_exists($widget_class)) {
+	// 			ha_elementor()->widgets_manager->register_widget_type( new $widget_class() );
+	// 		}
+	// 	}
+	// }
 }
 
 Widgets_Manager::init();
