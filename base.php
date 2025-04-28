@@ -24,6 +24,10 @@ class Base {
 		return self::$instance;
 	}
 
+	private function __construct() {
+		$this->run_autoload();
+	}
+
 	public function init() {
 		$this->include_files();
 
@@ -103,7 +107,7 @@ class Base {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/api-handler.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/conditions-cache.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/theme-builder.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
 
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/astra.php');
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/bbtheme.php');
@@ -116,6 +120,7 @@ class Base {
 	}
 
 	public function include_on_init() {
+		Condition_Manager::instance();
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
 	}
@@ -157,5 +162,29 @@ class Base {
 
 		$Text_Stroke = __NAMESPACE__ . '\Controls\Group_Control_Text_Stroke';
 		$controls_Manager->add_group_control( $Text_Stroke::get_type(), new $Text_Stroke() );
+	}
+
+	protected function autoload( $class_name ) {
+		if ( 0 !== strpos( $class_name, __NAMESPACE__ ) ) {
+			return;
+		}
+
+		if( 'Happy_Addons\Elementor\Condition_Manager' == $class_name ) {
+			$file_name = strtolower(
+				str_replace(
+					[ __NAMESPACE__ . '\\', '_', '\\' ], // replace namespace, underscrore & backslash
+					[ '', '-', '/' ],
+					$class_name
+				)
+			);
+			$file = HAPPY_ADDONS_DIR_PATH . 'classes/' . $file_name . '.php';
+			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
+				include_once $file;
+			}
+		}
+	}
+
+	public function run_autoload() {
+		spl_autoload_register( [ $this, 'autoload' ] );
 	}
 }

@@ -1,3 +1,9 @@
+= 3.16.4 - 28 April 2025 =
+
+- Fix: _load_textdomain_just_in_time issue with WordPress 6.8
+- Fix: Resolved rowspan issue in the Data Table widget.
+- Update: Made Compatible with WordPress 6.8
+
 = 3.16.3 - 18 March 2025 =
 
 - Tweak: Add template condition menu in new UI app bar.
