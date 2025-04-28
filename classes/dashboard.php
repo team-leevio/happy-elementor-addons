@@ -102,10 +102,10 @@ class Dashboard {
         if ( ! check_ajax_referer( self::WIDGETS_NONCE, 'nonce' ) ) {
             wp_send_json_error();
         }
-
-        $posted_data = ! empty( $_POST['data'] ) ? ha_sanitize_array_recursively($_POST['data']) : '';
+        $posted_data = ! empty( $_POST['data'] ) ? $_POST['data'] : '';
         $data = [];
         parse_str( $posted_data, $data );
+        $data = ha_sanitize_array_recursively( $data );
 
         do_action( 'happyaddons_save_dashboard_data', $data );
 

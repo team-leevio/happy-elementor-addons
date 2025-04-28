@@ -534,10 +534,35 @@ function haObserveTarget(target, callback) {
     var DataTable = function DataTable($scope) {
       var columnTH = $scope.find('.ha-table__head-column-cell');
       var rowTR = $scope.find('.ha-table__body-row');
+
+      // Step 1: Handle rowspan by inserting placeholder cells ("nullval")
       rowTR.each(function (i, tr) {
-        var th = $(tr).find('.ha-table__body-row-cell');
-        th.each(function (index, th) {
-          $(th).prepend('<div class="ha-table__head-column-cell">' + columnTH.eq(index).html() + '</div>');
+        var cells = $(tr).find('.ha-table__body-row-cell');
+        cells.each(function (index, cell) {
+          var $cell = $(cell);
+          var rowspan = parseInt($cell.attr("rowspan"), 10);
+          if (rowspan > 1) {
+            for (var j = i + 1; j < i + rowspan && j < rowTR.length; j++) {
+              var targetRow = $(rowTR).eq(j);
+              var targetCell = targetRow.children().eq(index);
+              $('<td class="ha-table__body-row-cell test">nullval</td>').insertBefore(targetCell);
+            }
+          }
+        });
+      });
+
+      // Step 2: Add header labels or remove placeholder cells
+      rowTR.each(function (i, tr) {
+        var cells = $(tr).find('.ha-table__body-row-cell');
+        cells.each(function (index, cell) {
+          var $cell = $(cell);
+          var cellContent = $cell.html();
+          if (cellContent.indexOf("nullval") === -1) {
+            var headerContent = columnTH.eq(index).html();
+            $cell.prepend('<div class="ha-table__head-column-cell">' + headerContent + '</div>');
+          } else {
+            $cell.remove();
+          }
         });
       });
     };

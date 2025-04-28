@@ -33,7 +33,7 @@
 			add_action( 'init', [$this, 'create_themebuilder_cpt'], 0 );
 			add_action( 'admin_menu', [$this, 'modify_menu'], 90 );
 			add_action( 'pre_get_posts', [$this, 'add_role_filter_to_posts_query'] );
-			
+
 			// Only for evementor v2
 			add_action( 'elementor/editor/v2/scripts/enqueue', [$this, 'ha_template_element_scripts'] );
 
