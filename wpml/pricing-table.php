@@ -2,11 +2,11 @@
 /**
  * Pricing Table integration
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
 
-class WPML_Pricing_Table extends \WPML_Elementor_Module_With_Items  {
+class Pricing_Table extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string

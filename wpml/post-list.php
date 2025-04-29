@@ -2,11 +2,11 @@
 /**
  * Post List integration
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
 
-class WPML_Post_List_Selected_List_Post extends \WPML_Elementor_Module_With_Items  {
+class Post_List_Selected_List_Post extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string
@@ -53,7 +53,7 @@ class WPML_Post_List_Selected_List_Post extends \WPML_Elementor_Module_With_Item
 	}
 }
 
-class WPML_Post_List_Selected_List_Page extends \WPML_Elementor_Module_With_Items  {
+class Post_List_Selected_List_Page extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string
@@ -100,7 +100,7 @@ class WPML_Post_List_Selected_List_Page extends \WPML_Elementor_Module_With_Item
 	}
 }
 
-class WPML_Post_List_Selected_List_Product extends \WPML_Elementor_Module_With_Items  {
+class Post_List_Selected_List_Product extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string
@@ -147,7 +147,7 @@ class WPML_Post_List_Selected_List_Product extends \WPML_Elementor_Module_With_I
 	}
 }
 
-class WPML_Post_List_Selected_List_E_Landing_Page extends \WPML_Elementor_Module_With_Items  {
+class Post_List_Selected_List_E_Landing_Page extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string

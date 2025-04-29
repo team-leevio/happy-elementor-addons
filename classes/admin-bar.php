@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
@@ -79,7 +79,7 @@ class Admin_Bar {
 		);
 
 		wp_enqueue_script( 'wp-api' );
-		
+
 		wp_enqueue_script(
 			'alpine',
 			'//unpkg.com/alpinejs',
@@ -87,7 +87,7 @@ class Admin_Bar {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
-		
+
 		wp_localize_script(
 			'happy-elementor-addons-admin',
 			'HappyAdmin',

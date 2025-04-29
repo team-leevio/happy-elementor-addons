@@ -2,11 +2,11 @@
 /**
  * Social Share integration
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
 
-class WPML_Social_Share extends \WPML_Elementor_Module_With_Items  {
+class Social_Share extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string

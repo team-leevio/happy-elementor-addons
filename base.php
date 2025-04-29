@@ -16,6 +16,7 @@ defined( 'ABSPATH' ) || die();
 class Base {
 
 	private static $instance = null;
+	private static $widget_count = 0;
 
 	public $appsero = null;
 
@@ -282,13 +283,43 @@ class Base {
 			)
 		);
 
+		// error_log( print_r( $class_name.' Class name' , 1 ) );
+
+		//For WPML class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Wpml') ) {
+			// error_log( print_r( $file_name.' file name' , 1 ) );
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
+			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
+				//error_log( print_r( $class_name.' Class name' , 1 ) );
+				// error_log( print_r( $class_name.' Class not exist', 1 ) );
+				include_once $file;
+			}
+		}
+
+		//For Widget class load
 		if ( 0 === strpos( $class_name, __NAMESPACE__ . '\Widget\\' ) ) {
 			// error_log( print_r( $file_name.'/widget.php => Widget file name' , 1 ) );
 			$file = HAPPY_ADDONS_DIR_PATH . '/' . str_replace( 'widget', 'widgets', $file_name ) . '/widget.php';
 
 			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
-				error_log( print_r( $class_name.' Class name' , 1 ) );
+				//error_log( print_r( $class_name.' Class name' , 1 ) );
+				self::$widget_count++;
 				include_once $file;
+				// error_log( print_r( self::$widget_count , 1 )
+				// error_log( print_r( $class_name.' Class name ' . self::$widget_count , 1 ) );
+			}
+		}
+
+		//For Traits folder class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Traits\\' ) ) {
+			$file_name = str_replace( 'Happy_Addons\Elementor\Traits\\', '', $class_name );
+			$file_name = str_replace( '_', '-', strtolower( $file_name ) );
+			// error_log( print_r( $file_name.' Traits name' , 1 ) );
+			// error_log( print_r( $class_name.' Class name' , 1 ) );
+			$widget_file = HAPPY_ADDONS_DIR_PATH . 'traits/' . $file_name . '.php';
+			if ( is_readable( $widget_file ) ) {
+				include_once $widget_file;
+				// error_log( print_r( $class_name.' Class name' , 1 ) );
 			}
 		}
 

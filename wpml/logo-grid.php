@@ -2,11 +2,11 @@
 /**
  * Logo Grid integration
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
 
-class WPML_Logo_Grid extends \WPML_Elementor_Module_With_Items  {
+class Logo_Grid extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string

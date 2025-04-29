@@ -2,11 +2,11 @@
 /**
  * Taxonomy List integration
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
 
-class WPML_Taxonomy_List_Selected_List_Category extends \WPML_Elementor_Module_With_Items  {
+class Taxonomy_List_Selected_List_Category extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string
@@ -53,7 +53,7 @@ class WPML_Taxonomy_List_Selected_List_Category extends \WPML_Elementor_Module_W
 	}
 }
 
-class WPML_Taxonomy_List_Selected_List_Post_Tag extends \WPML_Elementor_Module_With_Items  {
+class Taxonomy_List_Selected_List_Post_Tag extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string
@@ -100,7 +100,7 @@ class WPML_Taxonomy_List_Selected_List_Post_Tag extends \WPML_Elementor_Module_W
 	}
 }
 
-class WPML_Taxonomy_List_Selected_List_Post_Format extends \WPML_Elementor_Module_With_Items  {
+class Taxonomy_List_Selected_List_Post_Format extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string
@@ -147,7 +147,7 @@ class WPML_Taxonomy_List_Selected_List_Post_Format extends \WPML_Elementor_Modul
 	}
 }
 
-class WPML_Taxonomy_List_Selected_List_Product_Cat extends \WPML_Elementor_Module_With_Items  {
+class Taxonomy_List_Selected_List_Product_Cat extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string
@@ -194,7 +194,7 @@ class WPML_Taxonomy_List_Selected_List_Product_Cat extends \WPML_Elementor_Modul
 	}
 }
 
-class WPML_Taxonomy_List_Selected_List_Product_Tag extends \WPML_Elementor_Module_With_Items  {
+class Taxonomy_List_Selected_List_Product_Tag extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string
@@ -241,7 +241,7 @@ class WPML_Taxonomy_List_Selected_List_Product_Tag extends \WPML_Elementor_Modul
 	}
 }
 
-class WPML_Taxonomy_List_Selected_List_Product_Shipping_Class extends \WPML_Elementor_Module_With_Items  {
+class Taxonomy_List_Selected_List_Product_Shipping_Class extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string

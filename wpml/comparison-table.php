@@ -2,11 +2,11 @@
 /**
  * Comparison Table integration
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
 
-class WPML_Comparison_Table_Columns_Data extends \WPML_Elementor_Module_With_Items  {
+class Comparison_Table_Columns_Data extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string
@@ -58,7 +58,7 @@ class WPML_Comparison_Table_Columns_Data extends \WPML_Elementor_Module_With_Ite
 	}
 }
 
-class WPML_Comparison_Table_Rows_Data extends \WPML_Elementor_Module_With_Items  {
+class Comparison_Table_Rows_Data extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string
@@ -110,7 +110,7 @@ class WPML_Comparison_Table_Rows_Data extends \WPML_Elementor_Module_With_Items 
 	}
 }
 
-class WPML_Comparison_Table_Table_Btns extends \WPML_Elementor_Module_With_Items  {
+class Comparison_Table_Table_Btns extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string

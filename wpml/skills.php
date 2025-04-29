@@ -2,11 +2,11 @@
 /**
  * Skills integration
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
 
-class WPML_Skills extends \WPML_Elementor_Module_With_Items  {
+class Skills extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string

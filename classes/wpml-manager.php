@@ -37,25 +37,27 @@ class WPML_Manager {
 		// Load repeatable module class
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-module-with-items.php' );
 
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/bar-chart.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/carousel.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-grid.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/justified-gallery.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/logo-grid.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/pricing-table.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/skills.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/slider.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/social-icons.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/data-table.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/horizontal-timeline.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-accordion.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/content-switcher.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/comparison-table.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/events-calendar.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-stack-group.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/photo-stack.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/post-list.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/taxonomy-list.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/bar-chart.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/carousel.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/comparison-table.php' ); // double
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/content-switcher.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/data-table.php' );  // double
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/events-calendar.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/horizontal-timeline.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-accordion.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-grid.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-stack-group.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/justified-gallery.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/logo-grid.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/photo-stack.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/post-info.php' ); //new
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/post-list.php' );  // double
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/pricing-table.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/skills.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/slider.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/social-icons.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/social-share.php' ); // new
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/taxonomy-list.php' );  // double
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -140,7 +142,7 @@ class WPML_Manager {
 					],
 				],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Bar_Chart',
+					'Happy_Addons\Elementor\Wpml\Bar_Chart',
 				]
 			],
 
@@ -183,7 +185,7 @@ class WPML_Manager {
 			'carousel' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Carousel',
+					'Happy_Addons\Elementor\Wpml\Carousel',
 				]
 			],
 
@@ -193,9 +195,9 @@ class WPML_Manager {
 			'comparison-table' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Comparison_Table_Columns_Data',
-					__NAMESPACE__ . '\\WPML_Comparison_Table_Rows_Data',
-					__NAMESPACE__ . '\\WPML_Comparison_Table_Table_Btns',
+					'Happy_Addons\Elementor\Wpml\Comparison_Table_Columns_Data',
+					'Happy_Addons\Elementor\Wpml\Comparison_Table_Rows_Data',
+					'Happy_Addons\Elementor\Wpml\Comparison_Table_Table_Btns',
 				]
 			],
 
@@ -264,7 +266,7 @@ class WPML_Manager {
 					],
 				],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Event_Calendar_Manual_Event_List',
+					'Happy_Addons\Elementor\Wpml\Event_Calendar_Manual_Event_List',
 				]
 			],
 
@@ -380,7 +382,7 @@ class WPML_Manager {
 					],
 				],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Image_Grid',
+					'Happy_Addons\Elementor\Wpml\Image_Grid',
 				]
 			],
 
@@ -413,7 +415,7 @@ class WPML_Manager {
 			'image-stack-group' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Image_Stack_Group_Images',
+					'Happy_Addons\Elementor\Wpml\Image_Stack_Group_Images',
 				]
 			],
 
@@ -457,7 +459,7 @@ class WPML_Manager {
 					],
 				],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Justified_Gallery',
+					'Happy_Addons\Elementor\Wpml\Justified_Gallery',
 				]
 			],
 
@@ -485,7 +487,7 @@ class WPML_Manager {
 			'logo-grid' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Logo_Grid',
+					'Happy_Addons\Elementor\Wpml\Logo_Grid',
 				]
 			],
 
@@ -557,7 +559,7 @@ class WPML_Manager {
 			'photo-stack' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Photo_Stack_Image_List',
+					'Happy_Addons\Elementor\Wpml\Photo_Stack_Image_List',
 				]
 			],
 
@@ -567,7 +569,7 @@ class WPML_Manager {
 			'post-info' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Post_Info_Icon_List',
+					'Happy_Addons\Elementor\Wpml\Post_Info_Icon_List',
 				]
 			],
 
@@ -577,10 +579,10 @@ class WPML_Manager {
 			'post-list' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Post_List_Selected_List_Post',
-					__NAMESPACE__ . '\\WPML_Post_List_Selected_List_Page',
-					__NAMESPACE__ . '\\WPML_Post_List_Selected_List_Product',
-					__NAMESPACE__ . '\\WPML_Post_List_Selected_List_E_Landing_Page',
+					'Happy_Addons\Elementor\Wpml\Post_List_Selected_List_Post',
+					'Happy_Addons\Elementor\Wpml\Post_List_Selected_List_Page',
+					'Happy_Addons\Elementor\Wpml\Post_List_Selected_List_Product',
+					'Happy_Addons\Elementor\Wpml\Post_List_Selected_List_E_Landing_Page',
 				]
 			],
 
@@ -644,7 +646,7 @@ class WPML_Manager {
 					],
 				],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Pricing_Table',
+					'Happy_Addons\Elementor\Wpml\Pricing_Table',
 				]
 			],
 
@@ -677,7 +679,7 @@ class WPML_Manager {
 			'skills' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Skills',
+					'Happy_Addons\Elementor\Wpml\Skills',
 				]
 			],
 
@@ -687,7 +689,7 @@ class WPML_Manager {
 			'slider' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Slider',
+					'Happy_Addons\Elementor\Wpml\Slider',
 				]
 			],
 
@@ -697,7 +699,7 @@ class WPML_Manager {
 			'social-icons' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Social_Icons',
+					'Happy_Addons\Elementor\Wpml\Social_Icons',
 				]
 			],
 
@@ -707,7 +709,7 @@ class WPML_Manager {
 			'social-share' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Social_Share',
+					'Happy_Addons\Elementor\Wpml\Social_Share',
 				]
 			],
 
@@ -745,12 +747,12 @@ class WPML_Manager {
 			'taxonomy-list' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Category',
-					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Post_Tag',
-					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Post_Format',
-					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Product_Cat',
-					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Product_Tag',
-					__NAMESPACE__ . '\\WPML_Taxonomy_List_Selected_List_Product_Shipping_Class',
+					'Happy_Addons\Elementor\Wpml\Taxonomy_List_Selected_List_Category',
+					'Happy_Addons\Elementor\Wpml\Taxonomy_List_Selected_List_Post_Tag',
+					'Happy_Addons\Elementor\Wpml\Taxonomy_List_Selected_List_Post_Format',
+					'Happy_Addons\Elementor\Wpml\Taxonomy_List_Selected_List_Product_Cat',
+					'Happy_Addons\Elementor\Wpml\Taxonomy_List_Selected_List_Product_Tag',
+					'Happy_Addons\Elementor\Wpml\Taxonomy_List_Selected_List_Product_Shipping_Class',
 				]
 			],
 
@@ -801,8 +803,8 @@ class WPML_Manager {
 			'data-table' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Data_Table_Column_Data',
-					__NAMESPACE__ . '\\WPML_Data_Table_Row_Data',
+					'Happy_Addons\Elementor\Wpml\Data_Table_Column_Data',
+					'Happy_Addons\Elementor\Wpml\Data_Table_Row_Data',
 				]
 			],
 
@@ -812,7 +814,7 @@ class WPML_Manager {
 			'horizontal-timeline' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Horizontal_Timeline',
+					'Happy_Addons\Elementor\Wpml\Horizontal_Timeline',
 				]
 			],
 
@@ -881,7 +883,7 @@ class WPML_Manager {
 			'image-accordion' => [
 				'fields' => [],
 				'integration-class' => [
-					__NAMESPACE__ . '\\WPML_Image_Accordion',
+					'Happy_Addons\Elementor\Wpml\Image_Accordion',
 				]
 			],
 
@@ -890,7 +892,7 @@ class WPML_Manager {
 			 */
 			'content-switcher' => [
 				'fields' => [],
-				'integration-class' => __NAMESPACE__ . '\\WPML_Content_Switcher',
+				'integration-class' => 'Happy_Addons\Elementor\Wpml\Content_Switcher',
 			],
 
 			/**

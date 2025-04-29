@@ -2,11 +2,11 @@
 /**
  * Data Table
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
 
-class WPML_Data_Table_Column_Data extends \WPML_Elementor_Module_With_Items  {
+class Data_Table_Column_Data extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string
@@ -53,7 +53,7 @@ class WPML_Data_Table_Column_Data extends \WPML_Elementor_Module_With_Items  {
 	}
 }
 
-class WPML_Data_Table_Row_Data extends \WPML_Elementor_Module_With_Items  {
+class Data_Table_Row_Data extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string

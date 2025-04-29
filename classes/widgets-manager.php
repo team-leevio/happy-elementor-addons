@@ -1391,9 +1391,9 @@ class Widgets_Manager {
 	 */
 	public static function register( $widgets_manager = null) {
 		include_once HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php';
-		include_once HAPPY_ADDONS_DIR_PATH . 'traits/button-renderer.php';
-		include_once HAPPY_ADDONS_DIR_PATH . 'traits/link-hover-markup.php';
-		include_once HAPPY_ADDONS_DIR_PATH . 'traits/creative-button-markup.php';
+		// include_once HAPPY_ADDONS_DIR_PATH . 'traits/button-renderer.php';
+		// include_once HAPPY_ADDONS_DIR_PATH . 'traits/link-hover-markup.php';
+		// include_once HAPPY_ADDONS_DIR_PATH . 'traits/creative-button-markup.php';
 
 		$inactive_widgets = self::get_inactive_widgets();
 

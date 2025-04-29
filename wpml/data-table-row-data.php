@@ -1,18 +1,18 @@
 <?php
 /**
- * Slider integration
+ * Data Table
  */
 namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
 
-class Slider extends \WPML_Elementor_Module_With_Items  {
+class Data_Table_Row_Data extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string
 	 */
 	public function get_items_field() {
-		return 'slides';
+		return 'rows_data';
 	}
 
 	/**
@@ -20,9 +20,8 @@ class Slider extends \WPML_Elementor_Module_With_Items  {
 	 */
 	public function get_fields() {
 		return [
-			'title',
-			'subtitle',
-			'link' => ['url']
+			'cell_name',
+			'cell_link' => ['url']
 		];
 	}
 
@@ -33,12 +32,10 @@ class Slider extends \WPML_Elementor_Module_With_Items  {
 	 */
 	protected function get_title( $field ) {
 		switch ( $field ) {
-			case 'title':
-				return __( 'Slider: Title', 'happy-elementor-addons' );
-			case 'subtitle':
-				return __( 'Slider: Subtitle', 'happy-elementor-addons' );
+			case 'cell_name':
+				return __( 'Data Table: Cell Title', 'happy-elementor-addons' );
 			case 'url':
-				return __( 'Slider: Link', 'happy-elementor-addons' );
+				return __( 'Data Table: Cell Link', 'happy-elementor-addons' );
 			default:
 				return '';
 		}
@@ -51,10 +48,8 @@ class Slider extends \WPML_Elementor_Module_With_Items  {
 	 */
 	protected function get_editor_type( $field ) {
 		switch ( $field ) {
-			case 'title':
+			case 'cell_name':
 				return 'LINE';
-			case 'subtitle':
-				return 'AREA';
 			case 'url':
 				return 'LINK';
 			default:
