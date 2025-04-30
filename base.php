@@ -191,7 +191,7 @@ class Base {
 	}
 
 	public function include_on_init_old() { // Code from autoloader
-		include_once HAPPY_ADDONS_DIR_PATH . 'inc/functions-extensions.php';
+
 		HappyAddons_Classes\Extensions_Manager::init();
 		HappyAddons_Classes\Credentials_Manager::init();
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
@@ -237,29 +237,6 @@ class Base {
 		$controls_Manager->add_group_control( $Text_Stroke::get_type(), new $Text_Stroke() );
 	}
 
-	public function register_controls_old( Controls_Manager $controls_Manager ) {
-		// Code from autoloader
-
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'controls/foreground.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'controls/select2.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'controls/widget-list.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'controls/text-stroke.php' );
-
-		$Foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
-		$controls_Manager->add_group_control( $Foreground::get_type(), new $Foreground() );
-
-		$Select2 = __NAMESPACE__ . '\Controls\Select2';
-		// ha_elementor()->controls_manager->register_control( $Select2::TYPE, new $Select2() );
-		ha_elementor()->controls_manager->register( new $Select2() );
-
-		$Widget_List = __NAMESPACE__ . '\Controls\Widget_List';
-		// ha_elementor()->controls_manager->register_control( $Widget_List::TYPE, new $Widget_List() );
-		ha_elementor()->controls_manager->register( new $Widget_List() );
-
-		$Text_Stroke = __NAMESPACE__ . '\Controls\Group_Control_Text_Stroke';
-		$controls_Manager->add_group_control( $Text_Stroke::get_type(), new $Text_Stroke() );
-	}
-
 	protected static function init_classes_aliases() {
 		// Code from autoloader
 		return [
@@ -283,23 +260,94 @@ class Base {
 			)
 		);
 
-		// error_log( print_r( $class_name.' Class name' , 1 ) );
-
 		//For Controls folder class load
 		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Controls\\' ) ) {
 			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
-			error_log( print_r( $class_name.' Controls name' , 1 ) );
 			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
 				include_once $file;
 			}
 		}
 
 		//For Extensions folder class load
-		if ( false && 0 === strpos( $class_name, 'Happy_Addons\Elementor\Extensions\\' ) ) {
-			// error_log( print_r( $file_name.' Extensions file name' , 1 ) );
-			//error_log( print_r( $class_name.' Extensions Class name' , 1 ) );
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Extensions\\' ) ) {
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
 			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
 				include_once $file;
+			}
+		}
+
+		//For Traits folder class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Traits\\' ) ) {
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
+			if ( is_readable( $file ) ) {
+				include_once $file;
+			}
+		}
+
+		//For Widget class load
+		if ( 0 === strpos( $class_name, __NAMESPACE__ . '\Widget\\' ) ) {
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . str_replace( 'widget', 'widgets', $file_name ) . '/widget.php';
+			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
+				include_once $file;
+			}
+		}
+
+		//For WPML class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Wpml') ) {
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
+			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
+				include_once $file;
+			}
+		}
+
+		if( 'Happy_Addons\Elementor\Condition_Manager' == $class_name ) {
+			$file = HAPPY_ADDONS_DIR_PATH . 'classes/' . $file_name . '.php';
+			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
+				include_once $file;
+			}
+		}
+	}
+
+	public function run_autoload() {
+		spl_autoload_register( [ $this, 'autoload' ] );
+	}
+
+	protected function autoload_test( $class_name ) {
+		if ( 0 !== strpos( $class_name, __NAMESPACE__ ) ) {
+			return;
+		}
+
+		$file_name = strtolower(
+			str_replace(
+				[ __NAMESPACE__ . '\\', '_', '\\' ], // replace namespace, underscrore & backslash
+				[ '', '-', '/' ],
+				$class_name
+			)
+		);
+
+		// error_log( print_r( $class_name.' Class name' , 1 ) );
+
+		//For Controls folder class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Controls\\' ) ) {
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
+			//error_log( print_r( $class_name.' Controls name' , 1 ) );
+			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
+				include_once $file;
+			}
+		}
+
+		//For Extensions folder class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Extensions\\' ) ) {
+			// error_log( print_r( $file_name.' Extensions file name' , 1 ) );
+			// error_log( print_r( $class_name.' Extensions Class name' , 1 ) );
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
+
+			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
+				error_log( print_r( $file.' File Path' , 1 ) );
+				self::$widget_count++;
+				include_once $file;
+				error_log( print_r( self::$widget_count , 1 ) );
+				// error_log( print_r( '============================================' , 1 ) );
 			}
 		}
 
@@ -493,9 +541,5 @@ class Base {
 			}
 		}
 
-	}
-
-	public function run_autoload() {
-		spl_autoload_register( [ $this, 'autoload' ] );
 	}
 }

@@ -4,7 +4,7 @@
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 use Elementor\Element_Column;
@@ -52,4 +52,4 @@ href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/O
     }
 }
 
-Column_Extended::init();
+// Column_Extended::init();

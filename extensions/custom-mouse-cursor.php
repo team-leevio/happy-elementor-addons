@@ -1,6 +1,6 @@
 <?php
 
-	namespace Happy_Addons\Elementor\Extension;
+	namespace Happy_Addons\Elementor\Extensions;
 
 	// Elementor Classes.
 	use \Elementor\Plugin;
@@ -32,24 +32,24 @@ use Elementor\Group_Control_Typography;
 			return self::$instance;
 		}
 
-		public function init() {
+		public static function init() {
 
 			// Enqueue the required JS file.
-			add_action( 'wp_enqueue_scripts', [$this, 'register_scripts'] );
-			add_action( 'wp_enqueue_scripts', [$this, 'register_styles'] );
+			add_action( 'wp_enqueue_scripts', [__CLASS__, 'register_scripts'] );
+			add_action( 'wp_enqueue_scripts', [__CLASS__, 'register_styles'] );
 
-			add_action( 'elementor/preview/enqueue_scripts', [$this, 'enqueue_preview_scripts'] );
+			add_action( 'elementor/preview/enqueue_scripts', [__CLASS__, 'enqueue_preview_scripts'] );
 
 			// Creates Custom Mouse Cursor tab at the end of layout/content tab.
-			add_action( 'elementor/element/section/section_layout/after_section_end', [$this, 'register_controls'], 10 );
-			add_action( 'elementor/element/column/section_advanced/after_section_end', [$this, 'register_controls'], 10 );
-			add_action( 'elementor/element/common/_section_style/after_section_end', [$this, 'register_controls'], 10 );
+			add_action( 'elementor/element/section/section_layout/after_section_end', [__CLASS__, 'register_controls'], 10 );
+			add_action( 'elementor/element/column/section_advanced/after_section_end', [__CLASS__, 'register_controls'], 10 );
+			add_action( 'elementor/element/common/_section_style/after_section_end', [__CLASS__, 'register_controls'], 10 );
 
-			add_action( 'elementor/element/container/section_layout/after_section_end', [$this, 'register_controls'], 10 );
+			add_action( 'elementor/element/container/section_layout/after_section_end', [__CLASS__, 'register_controls'], 10 );
 
 			//Register on Page Settings
-			add_action( 'elementor/documents/register_controls', [$this, 'site_settings_controls'], 10 );
-			add_action( 'wp_footer', [$this, 'render_custom_mouse_cursor_html'] );
+			add_action( 'elementor/documents/register_controls', [__CLASS__, 'site_settings_controls'], 10 );
+			add_action( 'wp_footer', [__CLASS__, 'render_custom_mouse_cursor_html'] );
 		}
 
 		public function register_scripts() {
@@ -1655,4 +1655,5 @@ use Elementor\Group_Control_Typography;
 			}
 			}
 
-		Custom_Mouse_Cursor::instance()->init();
+		// Custom_Mouse_Cursor::instance()->init();
+		// Custom_Mouse_Cursor::instance()::init();

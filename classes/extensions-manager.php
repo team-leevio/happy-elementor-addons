@@ -11,7 +11,7 @@ class Extensions_Manager {
 	 */
 	public static function init() {
 		// include_once HAPPY_ADDONS_DIR_PATH . 'extensions/column-extended.php';
-		include_once HAPPY_ADDONS_DIR_PATH . 'extensions/widgets-extended.php';
+		// include_once HAPPY_ADDONS_DIR_PATH . 'extensions/widgets-extended.php'; // this file is replace with text-stroke
 
 		if ( is_user_logged_in() ) {
 			include_once HAPPY_ADDONS_DIR_PATH . 'classes/review.php';
@@ -138,12 +138,6 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/elementor-css-transform-demo-3/',
 				'is_pro' => false,
 			],
-			'css-transform' => [
-				'title' => __( 'CSS Transform', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-3d-rotate',
-				'demo' => 'https://happyaddons.com/elementor-css-transform-demo-3/',
-				'is_pro' => false,
-			],
 			'equal-height' => [
 				'title' => __( 'Equal Height Column', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-grid-layout',
@@ -177,13 +171,13 @@ class Extensions_Manager {
 			'scroll-to-top' => [
 				'title' => __( 'Scroll To Top', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-scroll-top',
-				// 'demo' => 'https://happyaddons.com/text-stroke/',
+				// 'demo' => 'https://happyaddons.com/scroll-to-top/',
 				'is_pro' => false,
 			],
 			'reading-progress-bar' => [
 				'title' => __( 'Reading Progress Bar', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-reading-glass-alt',
-				// 'demo' => 'https://happyaddons.com/text-reading-progress-bar/',
+				// 'demo' => 'https://happyaddons.com/reading-progress-bar/',
 				'is_pro' => false,
 			],
 			'custom-mouse-cursor' => [
@@ -195,12 +189,26 @@ class Extensions_Manager {
 		];
 	}
 
-	protected static function enable_feature( $feature_key ) {
+	/* protected static function enable_feature( $feature_key ) {
 		$feature_file = HAPPY_ADDONS_DIR_PATH . 'extensions/' . $feature_key . '.php';
 
 		if ( is_readable( $feature_file ) ) {
 			include_once( $feature_file );
 		}
+	} */
+
+	protected static function enable_feature( $feature_key ) {
+		// $feature_file = HAPPY_ADDONS_DIR_PATH . 'extensions/' . $feature_key . '.php';
+
+		$feature_key = ucwords( str_replace( '-', ' ', $feature_key ) ); //remove ' - ' & uc first later
+		$feature_key = '\Happy_Addons\Elementor\Extensions\\' . str_replace( ' ', '_', $feature_key );
+		error_log( print_r( $feature_key . ' From enable feature', 1 ) );
+
+		$feature_key::init();
+
+		// if ( is_readable( $feature_file ) ) {
+		// 	include_once( $feature_file );
+		// }
 	}
 
 	protected static function disable_pro_feature( $feature_key ) {

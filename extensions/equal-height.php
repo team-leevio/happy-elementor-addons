@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Element_Base;
 use Elementor\Controls_Manager;
@@ -158,4 +158,4 @@ class Equal_Height {
 	}
 }
 
-Equal_Height::init();
+// Equal_Height::init();

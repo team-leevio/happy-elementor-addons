@@ -4,7 +4,7 @@
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Element_Base;
 use Elementor\Controls_Manager;
@@ -750,4 +750,4 @@ class CSS_Transform {
 	}
 }
 
-CSS_Transform::init();
+// CSS_Transform::init();

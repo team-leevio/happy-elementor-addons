@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 use Elementor\Element_Base;
@@ -64,4 +64,4 @@ class Wrapper_Link {
 	}
 }
 
-Wrapper_Link::init();
+// Wrapper_Link::init();

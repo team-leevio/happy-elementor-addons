@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 use Elementor\Element_Base;
@@ -284,4 +284,4 @@ class Shape_Divider {
 	}
 }
 
-Shape_Divider::init();
+// Shape_Divider::init();

@@ -4,7 +4,7 @@
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Element_Base;
 use Elementor\Controls_Manager;
@@ -513,4 +513,4 @@ class Floating_Effects {
 	}
 }
 
-Floating_Effects::init();
+// Floating_Effects::init();

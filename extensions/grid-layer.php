@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 
@@ -237,4 +237,4 @@ class Grid_Layer {
 
 }
 
-Grid_Layer::init();
+// Grid_Layer::init();

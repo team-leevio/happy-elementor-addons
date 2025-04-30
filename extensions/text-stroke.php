@@ -4,7 +4,7 @@
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
@@ -12,7 +12,7 @@ use Happy_Addons\Elementor\Controls\Group_Control_Text_Stroke;
 
 defined('ABSPATH') || die();
 
-class Widgets_Extended {
+class Text_Stroke {
 
 	public static function init() {
 		add_action( 'elementor/element/button/section_style/after_section_start', [ __CLASS__, 'add_button_controls' ] );
@@ -266,4 +266,4 @@ class Widgets_Extended {
 	}
 }
 
-Widgets_Extended::init();
+// Text_Stroke::init();

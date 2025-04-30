@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use \Elementor\Controls_Manager;
 
@@ -16,16 +16,16 @@ class Scroll_To_Top {
 	}
 
 
-	public function init() {
+	public static function init() {
 		$feature_file = HAPPY_ADDONS_DIR_PATH . 'extensions/scroll-to-top-kit-settings.php';
 
 		if ( is_readable( $feature_file ) ) {
 			include_once $feature_file;
 		}
 
-		add_action( 'elementor/kit/register_tabs', [ $this, 'init_site_settings' ], 1, 40 );
-		add_action( 'elementor/documents/register_controls', [$this, 'scroll_to_top_controls'], 10 );
-		add_action( 'wp_footer', [$this, 'render_scroll_to_top_html'] );
+		add_action( 'elementor/kit/register_tabs', [ __CLASS__, 'init_site_settings' ], 1, 40 );
+		add_action( 'elementor/documents/register_controls', [__CLASS__, 'scroll_to_top_controls'], 10 );
+		add_action( 'wp_footer', [__CLASS__, 'render_scroll_to_top_html'] );
 	}
 
 	public function scroll_to_top_controls( $element ) {
@@ -257,4 +257,5 @@ class Scroll_To_Top {
 	}
 
 }
-Scroll_To_Top::instance()->init();
+// Scroll_To_Top::instance()->init();
+// Scroll_To_Top::instance()::init();

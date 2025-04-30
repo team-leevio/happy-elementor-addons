@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 use Elementor\Element_Base;
@@ -184,4 +184,4 @@ class Background_Overlay {
 	}
 }
 
-Background_Overlay::init();
+// Background_Overlay::init();
