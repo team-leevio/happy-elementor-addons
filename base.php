@@ -219,18 +219,18 @@ class Base {
 	 * @param Controls_Manager $controls_Manager
 	 */
 	public function register_controls( Controls_Manager $controls_Manager ) {
-		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/foreground.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/select2.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/widget-list.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'controls/text-stroke.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'controls/foreground.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'controls/select2.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'controls/widget-list.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'controls/text-stroke.php' );
 
 		$Foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
 		$controls_Manager->add_group_control( $Foreground::get_type(), new $Foreground() );
 
 		$Select2 = __NAMESPACE__ . '\Controls\Select2';
-		$Widget_List = __NAMESPACE__ . '\Controls\Widget_List';
-
 		ha_elementor()->controls_manager->register( new $Select2() );
+
+		$Widget_List = __NAMESPACE__ . '\Controls\Widget_List';
 		ha_elementor()->controls_manager->register( new $Widget_List() );
 
 		$Text_Stroke = __NAMESPACE__ . '\Controls\Group_Control_Text_Stroke';
@@ -285,13 +285,29 @@ class Base {
 
 		// error_log( print_r( $class_name.' Class name' , 1 ) );
 
-		//For WPML class load
-		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Wpml') ) {
-			// error_log( print_r( $file_name.' file name' , 1 ) );
+		//For Controls folder class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Controls\\' ) ) {
 			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
+			error_log( print_r( $class_name.' Controls name' , 1 ) );
 			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
-				//error_log( print_r( $class_name.' Class name' , 1 ) );
-				// error_log( print_r( $class_name.' Class not exist', 1 ) );
+				include_once $file;
+			}
+		}
+
+		//For Extensions folder class load
+		if ( false && 0 === strpos( $class_name, 'Happy_Addons\Elementor\Extensions\\' ) ) {
+			// error_log( print_r( $file_name.' Extensions file name' , 1 ) );
+			//error_log( print_r( $class_name.' Extensions Class name' , 1 ) );
+			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
+				include_once $file;
+			}
+		}
+
+		//For Traits folder class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Traits\\' ) ) {
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
+			//error_log( print_r( $file.' Traits name' , 1 ) );
+			if ( is_readable( $file ) ) {
 				include_once $file;
 			}
 		}
@@ -300,26 +316,23 @@ class Base {
 		if ( 0 === strpos( $class_name, __NAMESPACE__ . '\Widget\\' ) ) {
 			// error_log( print_r( $file_name.'/widget.php => Widget file name' , 1 ) );
 			$file = HAPPY_ADDONS_DIR_PATH . '/' . str_replace( 'widget', 'widgets', $file_name ) . '/widget.php';
-
 			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
 				//error_log( print_r( $class_name.' Class name' , 1 ) );
-				self::$widget_count++;
+				//self::$widget_count++;
 				include_once $file;
 				// error_log( print_r( self::$widget_count , 1 )
 				// error_log( print_r( $class_name.' Class name ' . self::$widget_count , 1 ) );
 			}
 		}
 
-		//For Traits folder class load
-		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Traits\\' ) ) {
-			$file_name = str_replace( 'Happy_Addons\Elementor\Traits\\', '', $class_name );
-			$file_name = str_replace( '_', '-', strtolower( $file_name ) );
-			// error_log( print_r( $file_name.' Traits name' , 1 ) );
-			// error_log( print_r( $class_name.' Class name' , 1 ) );
-			$widget_file = HAPPY_ADDONS_DIR_PATH . 'traits/' . $file_name . '.php';
-			if ( is_readable( $widget_file ) ) {
-				include_once $widget_file;
-				// error_log( print_r( $class_name.' Class name' , 1 ) );
+		//For WPML class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Wpml') ) {
+			// error_log( print_r( $file_name.' file name' , 1 ) );
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
+			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
+				//error_log( print_r( $class_name.' Class name' , 1 ) );
+				// error_log( print_r( $class_name.' Class not exist', 1 ) );
+				include_once $file;
 			}
 		}
 
