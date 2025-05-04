@@ -1,11 +1,11 @@
 <?php
 
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined('ABSPATH') || die();
 
 use Exception;
-use Happy_Addons\Elementor\Conditions_Cache;
+use Happy_Addons\Elementor\Classes\Conditions_Cache;
 
 class Condition_Manager {
     public static $instance = null;

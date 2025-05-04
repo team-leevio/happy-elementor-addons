@@ -1,9 +1,9 @@
 <?php
 
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 use Elementor\Element_Base;
-// use Happy_Addons\Elementor\Dashboard;
+// use Happy_Addons\Elementor\Classes\Dashboard;
 
 defined('ABSPATH') || die();
 

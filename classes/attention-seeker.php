@@ -4,7 +4,7 @@
  *
  * @since 2.3.0
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 

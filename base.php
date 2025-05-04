@@ -9,7 +9,7 @@ namespace Happy_Addons\Elementor;
 use Elementor\Controls_Manager;
 use Elementor\Elements_Manager;
 
-// use \Happy_Addons\Elementor\Classes as HappyAddons_Classes; // Code from autoloader
+use \Happy_Addons\Elementor\Classes as HappyAddons_Classes; // Code from autoloader
 
 defined( 'ABSPATH' ) || die();
 
@@ -63,9 +63,6 @@ class Base {
 		do_action( 'happyaddons_loaded' );
 	}
 
-	public function i18n_latest() {
-		load_plugin_textdomain( 'happy-elementor-addons', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n' );
-	}
 	public function i18n() { // Code from autoloader
 		load_plugin_textdomain( 'happy-elementor-addons', false, dirname( plugin_basename( HAPPY_ADDONS__FILE__ ) ) . '/i18n/' );
 	}
@@ -185,17 +182,32 @@ class Base {
 	}
 
 	public function include_on_init() {
-		Condition_Manager::instance();
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
-	}
-
-	public function include_on_init_old() { // Code from autoloader
+		HappyAddons_Classes\Condition_Manager::instance();
 
 		HappyAddons_Classes\Extensions_Manager::init();
 		HappyAddons_Classes\Credentials_Manager::init();
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/extensions-manager.php' );
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php' );
+
+		if ( is_user_logged_in() ) {
+			// include_once HAPPY_ADDONS_DIR_PATH . 'classes/review.php';
+			HappyAddons_Classes\Review::init();
+		}
+
+		if ( is_user_logged_in() ) {
+			// include_once HAPPY_ADDONS_DIR_PATH . 'classes/notice.php';
+			HappyAddons_Classes\Notice::init();
+		}
+
+		if ( is_user_logged_in() && ha_is_adminbar_menu_enabled() ) {
+			// include_once HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php';
+			HappyAddons_Classes\Admin_Bar::init();
+		}
+
+		if ( is_user_logged_in() && ha_is_happy_clone_enabled() ) {
+			// include_once HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php';
+			HappyAddons_Classes\Clone_Handler::init();
+		}
 	}
 
 	/**
@@ -238,19 +250,35 @@ class Base {
 	}
 
 	protected static function init_classes_aliases() {
-		// Code from autoloader
 		return [
-			'Happy_Addons\Elementor\Classes\Widgets_Manager' => 'Happy_Addons\Elementor\Widgets_Manager',
-			// 'Happy_Addons\Elementor\Widget\Base'=> 'Happy_Addons\Elementor\Widget\Base',
-			'Happy_Addons\Elementor\Classes\Widgets_Cache' => 'Happy_Addons\Elementor\Widgets_Cache',
-			'Happy_Addons\Elementor\Classes\Assets_Cache'  => 'Happy_Addons\Elementor\Assets_Cache',
+			'Widgets_Manager' => [
+				'Happy_Addons\Elementor\Classes\Widgets_Manager', 'Happy_Addons\Elementor\Widgets_Manager',
+			],
+			'Widgets_Cache' => [
+				'Happy_Addons\Elementor\Classes\Widgets_Cache', 'Happy_Addons\Elementor\Widgets_Cache',
+			],
+			'Assets_Cache' => [
+				'Happy_Addons\Elementor\Classes\Assets_Cache', 'Happy_Addons\Elementor\Assets_Cache',
+			]
 		];
+	}
+
+	public static function get_class_name($class_str) {
+		$last_slash_pos = strrpos($class_str, '\\');
+		if ($last_slash_pos !== false) {
+			$class_name = substr($class_str, $last_slash_pos + 1);
+		} else {
+			$class_name = $class_str; // Fallback if no backslash exists
+		}
+		return $class_name;
 	}
 
 	protected function autoload( $class_name ) {
 		if ( 0 !== strpos( $class_name, __NAMESPACE__ ) ) {
 			return;
 		}
+
+		$relative_class_name = self::get_class_name( $class_name );
 
 		$file_name = strtolower(
 			str_replace(
@@ -300,22 +328,30 @@ class Base {
 			}
 		}
 
-		if( 'Happy_Addons\Elementor\Condition_Manager' == $class_name ) {
+		//For class aliases
+		if ( array_key_exists( $relative_class_name, self::init_classes_aliases() ) ) {
+			$aliases = self::init_classes_aliases();
+			class_alias( $aliases[ $relative_class_name ][0], $aliases[ $relative_class_name ][1] );
+		}
+
+		/* if( 'Happy_Addons\Elementor\Condition_Manager' == $class_name ) {
 			$file = HAPPY_ADDONS_DIR_PATH . 'classes/' . $file_name . '.php';
 			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
 				include_once $file;
 			}
-		}
+		} */
 	}
 
 	public function run_autoload() {
-		spl_autoload_register( [ $this, 'autoload' ] );
+		spl_autoload_register( [ $this, 'autoload_test' ] );
 	}
 
 	protected function autoload_test( $class_name ) {
 		if ( 0 !== strpos( $class_name, __NAMESPACE__ ) ) {
 			return;
 		}
+
+		$relative_class_name = self::get_class_name($class_name);
 
 		$file_name = strtolower(
 			str_replace(
@@ -326,6 +362,19 @@ class Base {
 		);
 
 		// error_log( print_r( $class_name.' Class name' , 1 ) );
+
+		//For Classes folder class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Classes\\' ) ) {
+			// error_log( print_r( $file_name.' Classes file name' , 1 ) );
+			// error_log( print_r( $class_name.' Classes folder Class name' , 1 ) );
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
+
+			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
+				// error_log( print_r( $file.' File Path' , 1 ) );
+				include_once $file;
+				// error_log( print_r( '============================================' , 1 ) );
+			}
+		}
 
 		//For Controls folder class load
 		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Controls\\' ) ) {
@@ -343,10 +392,10 @@ class Base {
 			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
 
 			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
-				error_log( print_r( $file.' File Path' , 1 ) );
+				// error_log( print_r( $file.' File Path' , 1 ) );
 				self::$widget_count++;
 				include_once $file;
-				error_log( print_r( self::$widget_count , 1 ) );
+				// error_log( print_r( self::$widget_count , 1 ) );
 				// error_log( print_r( '============================================' , 1 ) );
 			}
 		}
@@ -384,12 +433,23 @@ class Base {
 			}
 		}
 
-		if( 'Happy_Addons\Elementor\Condition_Manager' == $class_name ) {
+		//For class aliases
+		if ( array_key_exists( $relative_class_name, self::init_classes_aliases() ) ) {
+			$aliases = self::init_classes_aliases();
+			error_log( print_r( $relative_class_name , 1 ) );
+			error_log( print_r( $class_name.' Alice is loaded' , 1 ) );
+			error_log( print_r( $aliases , 1 ) );
+			// class_alias( $class_name, $aliases[ $class_name ] );
+			class_alias( $aliases[ $relative_class_name ][0], $aliases[ $relative_class_name ][1] );
+			// class_alias( 'Happy_Addons\Elementor\Classes\Widgets_Manager', 'Happy_Addons\Elementor\Widgets_Manager' );
+		}
+
+		/* if( 'Happy_Addons\Elementor\Classes\Condition_Manager' == $class_name ) {
 			$file = HAPPY_ADDONS_DIR_PATH . 'classes/' . $file_name . '.php';
 			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
 				include_once $file;
 			}
-		}
+		} */
 	}
 
 	protected function autoload_old( $class_name ) {

@@ -2,7 +2,7 @@
 
 namespace Happy_Addons\Elementor\Theme_Hooks;
 
-use Happy_Addons\Elementor\Theme_Builder;
+use Happy_Addons\Elementor\Classes\Theme_Builder;
 
 defined('ABSPATH') || exit;
 

@@ -2,7 +2,7 @@
 
 namespace Happy_Addons\Elementor\Theme_Hooks;
 
-use Happy_Addons\Elementor\Condition_Manager;
+use Happy_Addons\Elementor\Classes\Condition_Manager;
 
 defined('ABSPATH') || exit;
 

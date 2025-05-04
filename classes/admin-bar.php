@@ -139,4 +139,4 @@ class Admin_Bar {
 	}
 }
 
-Admin_Bar::init();
+// Admin_Bar::init();

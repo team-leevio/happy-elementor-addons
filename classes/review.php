@@ -1,9 +1,9 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
-class Review_Us {
+class Review {
 
     public static function init() {
         add_action( 'admin_init', [__CLASS__, 'ha_void_check_installation_time'] );
@@ -21,7 +21,7 @@ class Review_Us {
 
         $install_date = get_option( 'happy_addons_activation_time', strtotime("now") );
         $past_date    = strtotime( '-10 days' );
-        
+
         $remind_time = get_option( 'ha__remind_me', strtotime("now"));
         $remind_due  = strtotime( '+15 days', $remind_time );
         $now         = strtotime( "now" );
@@ -105,4 +105,4 @@ class Review_Us {
     }
 }
 
-Review_Us::init();
+// Review_Us::init();

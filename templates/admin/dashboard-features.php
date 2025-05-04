@@ -6,7 +6,7 @@
 defined( 'ABSPATH' ) || die();
 
 $features = self::get_features();
-$inactive_features = \Happy_Addons\Elementor\Extensions_Manager::get_inactive_features();
+$inactive_features = \Happy_Addons\Elementor\Classes\Extensions_Manager::get_inactive_features();
 $has_pro = ha_has_pro();
 
 $total_features_count = count( $features );

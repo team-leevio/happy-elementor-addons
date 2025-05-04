@@ -1,10 +1,10 @@
 <?php
 
-	namespace Happy_Addons\Elementor;
+	namespace Happy_Addons\Elementor\Classes;
 
 	defined( 'ABSPATH' ) || die();
 
-	use Happy_Addons\Elementor\Conditions_Cache;
+	use \Happy_Addons\Elementor\Classes\Conditions_Cache;
 
 	class Theme_Builder {
 		public static $instance = null;
@@ -483,40 +483,40 @@
 
 			switch ( $this->current_theme ) {
 				case 'astra':
-					new Theme_Hooks\Astra( self::template_ids() );
+					new \Happy_Addons\Elementor\Theme_Hooks\Astra( self::template_ids() );
 					break;
 
 				case 'generatepress':
 				case 'generatepress-child':
-					new Theme_Hooks\Generatepress( self::template_ids() );
+					new \Happy_Addons\Elementor\Theme_Hooks\Generatepress( self::template_ids() );
 					break;
 
 				case 'oceanwp':
 				case 'oceanwp-child':
-					new Theme_Hooks\Oceanwp( self::template_ids() );
+					new \Happy_Addons\Elementor\Theme_Hooks\Oceanwp( self::template_ids() );
 					break;
 
 				case 'bb-theme':
 				case 'bb-theme-child':
-					new Theme_Hooks\Bbtheme( self::template_ids() );
+					new \Happy_Addons\Elementor\Theme_Hooks\Bbtheme( self::template_ids() );
 					break;
 
 				case 'genesis':
 				case 'genesis-child':
-					new Theme_Hooks\Genesis( self::template_ids() );
+					new \Happy_Addons\Elementor\Theme_Hooks\Genesis( self::template_ids() );
 					break;
 
 				case 'twentynineteen':
-					new Theme_Hooks\TwentyNineteen( self::template_ids() );
+					new \Happy_Addons\Elementor\Theme_Hooks\TwentyNineteen( self::template_ids() );
 					break;
 
 				case 'my-listing':
 				case 'my-listing-child':
-					new Theme_Hooks\MyListing( self::template_ids() );
+					new \Happy_Addons\Elementor\Theme_Hooks\MyListing( self::template_ids() );
 					break;
 
 				default:
-					new Theme_Hooks\Theme_Support();
+					new \Happy_Addons\Elementor\Theme_Hooks\Theme_Support();
 					break;
 			}
 		}

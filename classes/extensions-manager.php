@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
@@ -13,21 +13,25 @@ class Extensions_Manager {
 		// include_once HAPPY_ADDONS_DIR_PATH . 'extensions/column-extended.php';
 		// include_once HAPPY_ADDONS_DIR_PATH . 'extensions/widgets-extended.php'; // this file is replace with text-stroke
 
-		if ( is_user_logged_in() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'classes/review.php';
-		}
+		// if ( is_user_logged_in() ) {
+		// 	// include_once HAPPY_ADDONS_DIR_PATH . 'classes/review.php';
+		// 	\Happy_Addons\Elementor\Classes\Review::init();
+		// }
 
-		if ( is_user_logged_in() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'classes/notice.php';
-		}
+		// if ( is_user_logged_in() ) {
+		// 	// include_once HAPPY_ADDONS_DIR_PATH . 'classes/notice.php';
+		// 	\Happy_Addons\Elementor\Classes\Notice::init();
+		// }
 
-		if ( is_user_logged_in() && ha_is_adminbar_menu_enabled() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php';
-		}
+		// if ( is_user_logged_in() && ha_is_adminbar_menu_enabled() ) {
+		// 	// include_once HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php';
+		// 	\Happy_Addons\Elementor\Classes\Admin_Bar::init();
+		// }
 
-		if ( is_user_logged_in() && ha_is_happy_clone_enabled() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php';
-		}
+		// if ( is_user_logged_in() && ha_is_happy_clone_enabled() ) {
+		// 	// include_once HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php';
+		// 	\Happy_Addons\Elementor\Classes\Clone_Handler::init();
+		// }
 
 		$inactive_features = self::get_inactive_features();
 

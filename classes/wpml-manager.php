@@ -2,7 +2,7 @@
 /**
  * WPML integration and compatibility manager
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 
 defined('ABSPATH') || die();
@@ -15,9 +15,9 @@ class Api_Handler
     public static $active_widgets = [];
 
     const FEATURES_DB_KEY = 'happyaddons_inactive_features';
-    const WIDGETS_DB_KEY = 'happyaddons_inactive_widgets'; 
-    const CONSENT_DB_KEY = 'happy-elementor-addons_allow_tracking'; 
-    const CACHE_DB_KEY = 'happy-elementor-addons_wizard_cache_key'; 
+    const WIDGETS_DB_KEY = 'happyaddons_inactive_widgets';
+    const CONSENT_DB_KEY = 'happy-elementor-addons_allow_tracking';
+    const CACHE_DB_KEY = 'happy-elementor-addons_wizard_cache_key';
     const WIZARD_CACHE_FIX  = "happy-elementor-x98237938759348573";
 
     public static function init()
@@ -192,7 +192,7 @@ class Api_Handler
     }
 
     public static function ha_wizard_skip(\WP_REST_Request $request){
-        
+
         $stat = update_option(HAPPY_ADDONS_WIZARD_REDIRECTION_FLAG,1);
 
         $response = [
@@ -266,7 +266,7 @@ class Api_Handler
 
     protected static function haGetFeatureList(){
         $faetures = Extensions_Manager::get_local_features_map();
-        
+
         array_walk($faetures, function($item, $key){
 		    self::$featureMap[$key] = [
 		        'slug' => $key,

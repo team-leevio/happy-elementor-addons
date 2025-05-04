@@ -1,6 +1,6 @@
 <?php
 
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly

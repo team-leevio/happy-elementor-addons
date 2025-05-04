@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
@@ -230,4 +230,4 @@ class Clone_Handler {
 
 }
 
-Clone_Handler::init();
+// Clone_Handler::init();

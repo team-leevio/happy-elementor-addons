@@ -1,6 +1,6 @@
 <?php
 
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 use Elementor\Core\Files\CSS\Post as Post_CSS;
 use Elementor\Core\Settings\Manager as SettingsManager;
@@ -354,7 +354,7 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
-		
+
 		// Scroll Trigger
 		wp_register_script(
 			'scroll-trigger',
@@ -363,7 +363,7 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
-		
+
 		// Split Type
 		wp_register_script(
 			'split-type',
