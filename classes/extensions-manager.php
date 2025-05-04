@@ -202,9 +202,10 @@ class Extensions_Manager {
 
 		$feature_key = ucwords( str_replace( '-', ' ', $feature_key ) ); //remove ' - ' & uc first later
 		$feature_key = '\Happy_Addons\Elementor\Extensions\\' . str_replace( ' ', '_', $feature_key );
-		error_log( print_r( $feature_key . ' From enable feature', 1 ) );
+		// error_log( print_r( $feature_key . ' From enable feature', 1 ) );
 
-		$feature_key::init();
+		// $feature_key::init();
+		$feature_key::instance()->init();
 
 		// if ( is_readable( $feature_file ) ) {
 		// 	include_once( $feature_file );

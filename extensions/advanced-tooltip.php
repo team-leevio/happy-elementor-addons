@@ -12,7 +12,16 @@ defined('ABSPATH') || die();
 
 class Advanced_Tooltip {
 
-    public static function init() {
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
+	}
+
+    public function init() {
         add_action('elementor/element/common/_section_style/after_section_end', [__CLASS__, 'add_controls_section'], 1);
 
 		add_action( 'elementor/frontend/before_register_scripts', [ __CLASS__, 'register_scripts' ] );

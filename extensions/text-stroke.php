@@ -14,7 +14,16 @@ defined('ABSPATH') || die();
 
 class Text_Stroke {
 
-	public static function init() {
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
+	}
+
+	public function init() {
 		add_action( 'elementor/element/button/section_style/after_section_start', [ __CLASS__, 'add_button_controls' ] );
 
 		if( ! in_array( 'text-stroke', ha_get_inactive_features() ) ){

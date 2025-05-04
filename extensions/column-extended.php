@@ -13,7 +13,16 @@ defined('ABSPATH') || die();
 
 class Column_Extended {
 
-    public static function init() {
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
+	}
+
+    public function init() {
         add_action( 'elementor/element/column/layout/before_section_end', [ __CLASS__, 'add_controls' ] );
     }
 

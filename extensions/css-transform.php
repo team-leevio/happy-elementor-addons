@@ -13,7 +13,16 @@ defined( 'ABSPATH' ) || die();
 
 class CSS_Transform {
 
-	public static function init() {
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
+	}
+
+	public function init() {
 		add_action( 'elementor/element/common/_section_style/after_section_end', [ __CLASS__, 'register' ], 1 );
 	}
 

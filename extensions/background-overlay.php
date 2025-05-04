@@ -10,7 +10,16 @@ defined( 'ABSPATH' ) || die();
 
 class Background_Overlay {
 
-	public static function init() {
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
+	}
+
+	public function init() {
 		add_action( 'elementor/element/common/_section_background/after_section_end', [__CLASS__, 'add_section'] );
 	}
 

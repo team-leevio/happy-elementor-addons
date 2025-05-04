@@ -7,7 +7,16 @@ defined( 'ABSPATH' ) || die();
 
 class Grid_Layer {
 
-	public static function init() {
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
+	}
+
+	public function init() {
 		add_action('elementor/documents/register_controls', [__CLASS__, 'add_controls_section'] , 1 , 1 );
 	}
 

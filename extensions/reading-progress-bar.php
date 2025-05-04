@@ -22,21 +22,21 @@ class Reading_Progress_Bar {
 		return self::$instance;
 	}
 
-	public static function init() {
+	public function init() {
 		$feature_file = HAPPY_ADDONS_DIR_PATH . 'extensions/reading-progress-bar-kit-settings.php';
 
 		if ( is_readable( $feature_file ) ) {
 			include_once $feature_file;
 		}
 
-		add_action( 'elementor/kit/register_tabs', [ __CLASS__, 'init_site_settings' ], 1, 40 );
+		add_action( 'elementor/kit/register_tabs', [ $this, 'init_site_settings' ], 1, 40 );
 
-		add_action( 'elementor/documents/register_controls', [__CLASS__, 'reading_progress_bar_controls'], 10 );
-        // add_action('elementor/preview/enqueue_scripts', [__CLASS__, 'enqueue_scripts']);
+		add_action( 'elementor/documents/register_controls', [$this, 'reading_progress_bar_controls'], 10 );
+        // add_action('elementor/preview/enqueue_scripts', [$this, 'enqueue_scripts']);
         if ( !ha_elementor()->preview->is_preview_mode() ) {
-            add_action('wp_enqueue_scripts', [__CLASS__, 'enqueue_scripts_frontend']);
+            add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts_frontend']);
         }
-		add_action( 'wp_footer', [__CLASS__, 'render_reading_progress_bar_html'] );
+		add_action( 'wp_footer', [$this, 'render_reading_progress_bar_html'] );
 
 	}
 
