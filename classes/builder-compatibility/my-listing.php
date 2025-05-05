@@ -1,14 +1,14 @@
 <?php
-namespace Happy_Addons\Elementor\Theme_Hooks;
+namespace Happy_Addons\Elementor\Classes\Builder_Compatibility;
 
 use Happy_Addons\Elementor\Classes\Theme_Builder;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * MyListing support for the header footer.
+ * My_Listing support for the header footer.
  */
-class MyListing {
+class My_Listing {
 
 
 	/**

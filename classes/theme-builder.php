@@ -484,40 +484,40 @@
 
 			switch ( $this->current_theme ) {
 				case 'astra':
-					new \Happy_Addons\Elementor\Theme_Hooks\Astra( self::template_ids() );
+					new \Happy_Addons\Elementor\Classes\Builder_Compatibility\Astra( self::template_ids() );
 					break;
 
 				case 'generatepress':
 				case 'generatepress-child':
-					new \Happy_Addons\Elementor\Theme_Hooks\Generatepress( self::template_ids() );
+					new \Happy_Addons\Elementor\Classes\Builder_Compatibility\Generatepress( self::template_ids() );
 					break;
 
 				case 'oceanwp':
 				case 'oceanwp-child':
-					new \Happy_Addons\Elementor\Theme_Hooks\Oceanwp( self::template_ids() );
+					new \Happy_Addons\Elementor\Classes\Builder_Compatibility\Oceanwp( self::template_ids() );
 					break;
 
 				case 'bb-theme':
 				case 'bb-theme-child':
-					new \Happy_Addons\Elementor\Theme_Hooks\Bbtheme( self::template_ids() );
+					new \Happy_Addons\Elementor\Classes\Builder_Compatibility\Bbtheme( self::template_ids() );
 					break;
 
 				case 'genesis':
 				case 'genesis-child':
-					new \Happy_Addons\Elementor\Theme_Hooks\Genesis( self::template_ids() );
+					new \Happy_Addons\Elementor\Classes\Builder_Compatibility\Genesis( self::template_ids() );
 					break;
 
 				case 'twentynineteen':
-					new \Happy_Addons\Elementor\Theme_Hooks\TwentyNineteen( self::template_ids() );
+					new \Happy_Addons\Elementor\Classes\Builder_Compatibility\TwentyNineteen( self::template_ids() );
 					break;
 
 				case 'my-listing':
 				case 'my-listing-child':
-					new \Happy_Addons\Elementor\Theme_Hooks\MyListing( self::template_ids() );
+					new \Happy_Addons\Elementor\Classes\Builder_Compatibility\My_Listing( self::template_ids() );
 					break;
 
 				default:
-					new \Happy_Addons\Elementor\Theme_Hooks\Theme_Support();
+					new \Happy_Addons\Elementor\Classes\Builder_Compatibility\Theme_Support();
 					break;
 			}
 		}
