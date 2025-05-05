@@ -330,4 +330,4 @@ class Ajax_Handler {
 	}
 }
 
-Ajax_Handler::init();
+// Ajax_Handler::init();
