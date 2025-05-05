@@ -16,7 +16,8 @@ class Condition_Manager {
     private $location_cache = [];
 
     public function __construct() {
-        $this->cache = new Conditions_Cache();
+        // $this->cache = new Conditions_Cache();
+        $this->cache = Conditions_Cache::instance();
 
         add_action('wp_ajax_ha_condition_autocomplete', [$this, 'process_autocomplete']);
         add_action('wp_ajax_ha_condition_update', [$this, 'process_condition_update']);

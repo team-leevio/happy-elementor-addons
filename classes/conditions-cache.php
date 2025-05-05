@@ -8,6 +8,15 @@ if (!defined('ABSPATH')) {
 
 class Conditions_Cache {
 
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
+	}
+
     const OPTION_NAME = 'happy_theme_elements_conditions';
 
     protected $conditions = [];

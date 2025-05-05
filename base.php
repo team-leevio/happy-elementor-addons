@@ -105,7 +105,8 @@ class Base {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );
 		HappyAddons_Classes\Assets_Manager::init();
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/cache-manager.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/cache-manager.php' );
+		HappyAddons_Classes\Cache_Manager::init();
 
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
@@ -126,7 +127,7 @@ class Base {
 		}
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/api-handler.php' );
 		HappyAddons_Classes\Api_Handler::init();
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/conditions-cache.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/conditions-cache.php' );
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/theme-builder.php' );
 		HappyAddons_Classes\Theme_Builder::instance();
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );

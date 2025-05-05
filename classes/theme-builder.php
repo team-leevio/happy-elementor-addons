@@ -26,7 +26,8 @@
 
 		public function __construct() {
 			add_action( 'wp', [ $this, 'hooks' ] );
-			$this->cache = new Conditions_Cache();
+			// $this->cache = new Conditions_Cache();
+			$this->cache = Conditions_Cache::instance();
 
 			add_filter( 'query_vars', [$this, 'add_query_vars_filter'] );
 			add_filter( 'views_edit-' . self::CPT, [$this, 'admin_print_tabs'] );

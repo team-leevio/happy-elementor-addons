@@ -136,4 +136,4 @@ class Cache_Manager {
 	}
 }
 
-Cache_Manager::init();
+// Cache_Manager::init();
