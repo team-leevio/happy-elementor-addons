@@ -123,7 +123,8 @@ class Base {
 		}
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/api-handler.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/conditions-cache.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/theme-builder.php' );
+		HappyAddons_Classes\Theme_Builder::instance();
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/theme-builder.php' );
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
 
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/astra.php');
@@ -288,6 +289,14 @@ class Base {
 			)
 		);
 
+		//For Classes folder class load
+		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Classes\\' ) ) {
+			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
+			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
+				include_once $file;
+			}
+		}
+
 		//For Controls folder class load
 		if ( 0 === strpos( $class_name, 'Happy_Addons\Elementor\Controls\\' ) ) {
 			$file = HAPPY_ADDONS_DIR_PATH . '/' . $file_name . '.php';
@@ -343,7 +352,7 @@ class Base {
 	}
 
 	public function run_autoload() {
-		spl_autoload_register( [ $this, 'autoload_test' ] );
+		spl_autoload_register( [ $this, 'autoload' ] );
 	}
 
 	protected function autoload_test( $class_name ) {
