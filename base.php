@@ -114,19 +114,22 @@ class Base {
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
 
 		if ( is_admin() ) {
-			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
+			HappyAddons_Classes\Updater::init();
 			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
 			HappyAddons_Classes\Dashboard::init();
 			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/attention-seeker.php' );
 			HappyAddons_Classes\Attention_Seeker::init();
-			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
+			HappyAddons_Classes\Select2_Handler::init();
 			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard-widgets.php' );
 			HappyAddons_Classes\Dashboard_Widgets::instance()->init();
 		}
 
 		if ( is_user_logged_in() ) {
-			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-manager.php' );
-			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-source.php' );
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-manager.php' );
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-source.php' );
+			HappyAddons_Classes\Library_Manager::init();
 		}
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/api-handler.php' );
 		HappyAddons_Classes\Api_Handler::init();

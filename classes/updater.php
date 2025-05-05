@@ -54,4 +54,4 @@ class Updater {
     }
 }
 
-Updater::init();
+// Updater::init();

@@ -129,4 +129,4 @@ class Library_Manager {
 	}
 }
 
-Library_Manager::init();
+// Library_Manager::init();
