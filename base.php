@@ -101,7 +101,8 @@ class Base {
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/ajax-handler.php' );
 		HappyAddons_Classes\Ajax_Handler::init();
 
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
+		HappyAddons_Classes\Icons_Manager::init();
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );
 		HappyAddons_Classes\Assets_Manager::init();
@@ -114,11 +115,13 @@ class Base {
 
 		if ( is_admin() ) {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
-			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
+			HappyAddons_Classes\Dashboard::init();
 			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/attention-seeker.php' );
 			HappyAddons_Classes\Attention_Seeker::init();
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
-			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard-widgets.php' );
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard-widgets.php' );
+			HappyAddons_Classes\Dashboard_Widgets::instance()->init();
 		}
 
 		if ( is_user_logged_in() ) {

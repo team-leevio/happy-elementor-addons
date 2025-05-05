@@ -512,4 +512,4 @@ class Icons_Manager {
     }
 }
 
-Icons_Manager::init();
+// Icons_Manager::init();

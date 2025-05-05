@@ -579,4 +579,4 @@ class Dashboard {
 	}
 }
 
-Dashboard::init();
+// Dashboard::init();

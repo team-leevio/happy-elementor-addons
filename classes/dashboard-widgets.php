@@ -164,4 +164,4 @@ class Dashboard_Widgets {
 	}
 }
 
-Dashboard_Widgets::instance()->init();
+// Dashboard_Widgets::instance()->init();
