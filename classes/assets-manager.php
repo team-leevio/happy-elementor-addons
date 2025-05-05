@@ -670,4 +670,4 @@ class Assets_Manager {
 	}
 }
 
-Assets_Manager::init();
+// Assets_Manager::init();

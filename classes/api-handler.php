@@ -5,8 +5,7 @@ namespace Happy_Addons\Elementor\Classes;
 
 defined('ABSPATH') || die();
 
-class Api_Handler
-{
+class Api_Handler {
     public static $catwise_free_widget_map = [];
     public static $disabled_widgets = [];
 
@@ -20,8 +19,7 @@ class Api_Handler
     const CACHE_DB_KEY = 'happy-elementor-addons_wizard_cache_key';
     const WIZARD_CACHE_FIX  = "happy-elementor-x98237938759348573";
 
-    public static function init()
-    {
+    public static function init() {
         // need to delete after 1/2 release
         if(get_option('happy-elementor-addons_wizard_cache')){
             delete_option('happy-elementor-addons_wizard_cache');
@@ -280,4 +278,4 @@ class Api_Handler
     }
 }
 
-Api_Handler::init();
+// Api_Handler::init();

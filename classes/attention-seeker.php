@@ -103,4 +103,4 @@ class Attention_Seeker {
     }
 }
 
-Attention_Seeker::init();
+// Attention_Seeker::init();

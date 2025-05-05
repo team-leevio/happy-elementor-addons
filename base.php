@@ -103,17 +103,19 @@ class Base {
 
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );
+		HappyAddons_Classes\Assets_Manager::init();
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/cache-manager.php' );
 
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
 
 		if ( is_admin() ) {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard.php' );
-			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/attention-seeker.php' );
+			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/attention-seeker.php' );
+			HappyAddons_Classes\Attention_Seeker::init();
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/select2-handler.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/dashboard-widgets.php' );
 		}
@@ -122,10 +124,11 @@ class Base {
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-manager.php' );
 			include_once( HAPPY_ADDONS_DIR_PATH . 'classes/library-source.php' );
 		}
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/api-handler.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/api-handler.php' );
+		HappyAddons_Classes\Api_Handler::init();
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/conditions-cache.php' );
-		HappyAddons_Classes\Theme_Builder::instance();
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/theme-builder.php' );
+		HappyAddons_Classes\Theme_Builder::instance();
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/condition-manager.php' );
 
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/builder-compatibility/astra.php');
