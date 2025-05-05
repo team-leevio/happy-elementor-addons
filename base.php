@@ -103,15 +103,17 @@ class Base {
 
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/icons-manager.php' );
 		HappyAddons_Classes\Icons_Manager::init();
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-manager.php' );
+		HappyAddons_Classes\Widgets_Manager::init();
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-manager.php' );
 		HappyAddons_Classes\Assets_Manager::init();
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/cache-manager.php' );
 		HappyAddons_Classes\Cache_Manager::init();
 
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/widgets-cache.php' );
 		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/assets-cache.php' );
-		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
+		// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-manager.php' );
+		HappyAddons_Classes\WPML_Manager::init();
 
 		if ( is_admin() ) {
 			// include_once( HAPPY_ADDONS_DIR_PATH . 'classes/updater.php' );

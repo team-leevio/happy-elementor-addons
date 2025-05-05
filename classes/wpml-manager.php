@@ -994,4 +994,4 @@ class WPML_Manager {
 	}
 }
 
-WPML_Manager::init();
+// WPML_Manager::init();

@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) || die();
 
 $widgets = self::get_widgets();
 $catwise_widgets = self::get_widget_map_catwise();
-$inactive_widgets = \Happy_Addons\Elementor\Widgets_Manager::get_inactive_widgets();
+$inactive_widgets = \Happy_Addons\Elementor\Classes\Widgets_Manager::get_inactive_widgets();
 
 $total_widgets_count = count( $widgets );
 

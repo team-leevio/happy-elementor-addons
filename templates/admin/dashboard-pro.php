@@ -64,7 +64,7 @@ defined( 'ABSPATH' ) || die();
 
         <div class="ha-row ha-py-5 ha-pt-0 ha-align-items-center ha-align-center">
             <?php
-            $pro_widgets = \Happy_Addons\Elementor\Widgets_Manager::get_pro_widget_map();
+            $pro_widgets = \Happy_Addons\Elementor\Classes\Widgets_Manager::get_pro_widget_map();
 
             foreach ( $pro_widgets as $widget ) :
                 $title = isset( $widget['title'] ) ? $widget['title'] : 'Widget Title';

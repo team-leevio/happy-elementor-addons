@@ -6,8 +6,8 @@
 
 defined('ABSPATH') || die();
 
-$widgets =  ha_has_pro() ? self::get_widgets() : \Happy_Addons\Elementor\Widgets_Manager::get_local_widgets_map();
-$inactive_widgets = \Happy_Addons\Elementor\Widgets_Manager::get_inactive_widgets();
+$widgets =  ha_has_pro() ? self::get_widgets() : \Happy_Addons\Elementor\Classes\Widgets_Manager::get_local_widgets_map();
+$inactive_widgets = \Happy_Addons\Elementor\Classes\Widgets_Manager::get_inactive_widgets();
 $used_widget = self::get_raw_usage();
 $unuse_widget = self::get_un_usage();
 

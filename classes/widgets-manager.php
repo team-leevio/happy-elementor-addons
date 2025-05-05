@@ -1443,4 +1443,4 @@ class Widgets_Manager {
 	// }
 }
 
-Widgets_Manager::init();
+// Widgets_Manager::init();
