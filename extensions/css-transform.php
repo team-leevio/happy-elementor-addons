@@ -22,9 +22,9 @@ class CSS_Transform {
 		 return self::$instance;
 	}
 
-	public function init() {
-		add_action( 'elementor/element/common/_section_style/after_section_end', [ __CLASS__, 'register' ], 1 );
-	}
+	// public function init() {
+	// 	add_action( 'elementor/element/common/_section_style/after_section_end', [ __CLASS__, 'register' ], 1 );
+	// }
 
 	public static function register( Element_Base $element ) {
 		$element->start_controls_section(

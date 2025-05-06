@@ -21,13 +21,13 @@ class Advanced_Tooltip {
 		 return self::$instance;
 	}
 
-    public function init() {
-        add_action('elementor/element/common/_section_style/after_section_end', [__CLASS__, 'add_controls_section'], 1);
+    // public function init() {
+    //     add_action('elementor/element/common/_section_style/after_section_end', [__CLASS__, 'add_controls_section'], 1);
 
-		add_action( 'elementor/frontend/before_register_scripts', [ __CLASS__, 'register_scripts' ] );
+	// 	add_action( 'elementor/frontend/before_register_scripts', [ __CLASS__, 'register_scripts' ] );
 
-		add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'enqueue_preview_scripts' ] );
-    }
+	// 	add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'enqueue_preview_scripts' ] );
+    // }
 
     public static function enqueue_preview_scripts() {
 		wp_enqueue_script('happy-advanced-tooltip');

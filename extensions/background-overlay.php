@@ -19,9 +19,9 @@ class Background_Overlay {
 		 return self::$instance;
 	}
 
-	public function init() {
-		add_action( 'elementor/element/common/_section_background/after_section_end', [__CLASS__, 'add_section'] );
-	}
+	// public function init() {
+		// add_action( 'elementor/element/common/_section_background/after_section_end', [__CLASS__, 'add_section'] );
+	// }
 
 	public static function add_section( Element_Base $element ) {
 		$element->start_controls_section(

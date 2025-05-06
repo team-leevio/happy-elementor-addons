@@ -20,16 +20,16 @@ class Equal_Height {
 		 return self::$instance;
 	}
 
-	public function init() {
+	// public function init() {
 
-		add_action( 'elementor/element/container/section_layout/after_section_end', [ __CLASS__, 'register' ], 1 );
+	// 	add_action( 'elementor/element/container/section_layout/after_section_end', [ __CLASS__, 'register' ], 1 );
 
-		add_action( 'elementor/element/section/section_advanced/after_section_end', [ __CLASS__, 'register' ], 1 );
+	// 	add_action( 'elementor/element/section/section_advanced/after_section_end', [ __CLASS__, 'register' ], 1 );
 
-		add_action( 'elementor/frontend/before_register_scripts', [ __CLASS__, 'register_scripts' ] );
+	// 	add_action( 'elementor/frontend/before_register_scripts', [ __CLASS__, 'register_scripts' ] );
 
-		add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'enqueue_preview_scripts' ] );
-	}
+	// 	add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'enqueue_preview_scripts' ] );
+	// }
 
 	public static function enqueue_preview_scripts() {
 		wp_enqueue_script( 'jquery-match-height' );
