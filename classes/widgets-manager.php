@@ -16,18 +16,18 @@ class Widgets_Manager {
 	/**
 	 * Initialize
 	 */
-	public static function init() {
+	// public static function init() {
 
-		// legacy support hook
-		if( defined('HAPPY_ADDONS_PRO_VERSION') && HAPPY_ADDONS_PRO_VERSION <= '2.7.0' ){
-			add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register']);
-		}
+	// 	// legacy support hook
+	// 	if( defined('HAPPY_ADDONS_PRO_VERSION') && HAPPY_ADDONS_PRO_VERSION <= '2.7.0' ){
+	// 		add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register']);
+	// 	}
 
-		// original hook for register widgets
-		add_action('elementor/widgets/register', [__CLASS__, 'register']);
+	// 	// original hook for register widgets
+	// 	add_action('elementor/widgets/register', [__CLASS__, 'register']);
 
-		add_action('elementor/frontend/before_render', [__CLASS__, 'add_global_widget_render_attributes']);
-	}
+	// 	add_action('elementor/frontend/before_render', [__CLASS__, 'add_global_widget_render_attributes']);
+	// }
 
 	public static function add_global_widget_render_attributes(Element_Base $widget) {
 		if ($widget->get_name() === 'global' && method_exists($widget, 'get_original_element_instance')) {

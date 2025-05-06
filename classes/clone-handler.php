@@ -15,11 +15,11 @@ class Clone_Handler {
 	/**
 	 * Register hooks and initialize
 	 */
-	public static function init() {
-		add_action( 'admin_action_' . self::ACTION, [ __CLASS__, 'duplicate_thing' ] );
-		add_filter( 'post_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
-		add_filter( 'page_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
-	}
+	// public static function init() {
+	// 	add_action( 'admin_action_' . self::ACTION, [ __CLASS__, 'duplicate_thing' ] );
+	// 	add_filter( 'post_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
+	// 	add_filter( 'page_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
+	// }
 
 	/**
 	 * Check if current user can clone

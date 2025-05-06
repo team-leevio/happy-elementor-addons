@@ -5,10 +5,10 @@ defined( 'ABSPATH' ) || die();
 
 class Review {
 
-    public static function init() {
-        add_action( 'admin_init', [__CLASS__, 'ha_void_check_installation_time'] );
-        add_action( 'admin_init', [__CLASS__, 'ha_void_spare_me'], 5 );
-    }
+    // public static function init() {
+    //     add_action( 'admin_init', [__CLASS__, 'ha_void_check_installation_time'] );
+    //     add_action( 'admin_init', [__CLASS__, 'ha_void_spare_me'], 5 );
+    // }
 
     //check if review notice should be shown or not
     public static function ha_void_check_installation_time() {

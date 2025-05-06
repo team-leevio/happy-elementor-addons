@@ -6,18 +6,18 @@ defined('ABSPATH') || die();
 
 class Ajax_Handler {
 
-	public static function init() {
+	// public static function init() {
 
-		add_action( 'wp_ajax_ha_twitter_feed_action', [ __CLASS__, 'twitter_feed_ajax' ] );
-		add_action( 'wp_ajax_nopriv_ha_twitter_feed_action', [ __CLASS__, 'twitter_feed_ajax' ] );
+	// 	add_action( 'wp_ajax_ha_twitter_feed_action', [ __CLASS__, 'twitter_feed_ajax' ] );
+	// 	add_action( 'wp_ajax_nopriv_ha_twitter_feed_action', [ __CLASS__, 'twitter_feed_ajax' ] );
 
-		add_action( 'wp_ajax_ha_post_tab_action', [ __CLASS__, 'post_tab' ] );
-		add_action( 'wp_ajax_nopriv_ha_post_tab_action', [ __CLASS__, 'post_tab' ] );
+	// 	add_action( 'wp_ajax_ha_post_tab_action', [ __CLASS__, 'post_tab' ] );
+	// 	add_action( 'wp_ajax_nopriv_ha_post_tab_action', [ __CLASS__, 'post_tab' ] );
 
-		add_action( 'wp_ajax_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax'] );
-		add_action( 'wp_ajax_nopriv_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax'] );
+	// 	add_action( 'wp_ajax_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax'] );
+	// 	add_action( 'wp_ajax_nopriv_ha_mailchimp_ajax', [__CLASS__, 'mailchimp_prepare_ajax'] );
 
-	}
+	// }
 
 	/**
 	* Twitter Feed Ajax call

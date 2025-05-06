@@ -186,4 +186,4 @@ class Credentials_Manager {
 	}
 }
 
-Credentials_Manager::init();
+// Credentials_Manager::init();

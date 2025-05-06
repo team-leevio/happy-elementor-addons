@@ -8,10 +8,10 @@ defined( 'ABSPATH' ) || die();
 
 class WPML_Manager {
 
-	public static function init() {
-		add_filter( 'wpml_elementor_widgets_to_translate', [ __CLASS__, 'add_widgets_to_translate' ] );
-		add_action( 'wpml_translation_job_saved', [ __CLASS__, 'on_translation_job_saved' ], 10, 3 );
-	}
+	// public static function init() {
+	// 	add_filter( 'wpml_elementor_widgets_to_translate', [ __CLASS__, 'add_widgets_to_translate' ] );
+	// 	add_action( 'wpml_translation_job_saved', [ __CLASS__, 'on_translation_job_saved' ], 10, 3 );
+	// }
 
 	/**
 	 * Recreate HappyAddons widgets usage on transtion save

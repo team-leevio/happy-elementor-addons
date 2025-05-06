@@ -241,4 +241,4 @@ class Extensions_Manager {
 	}
 }
 
-Extensions_Manager::init();
+// Extensions_Manager::init();

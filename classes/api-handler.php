@@ -19,20 +19,20 @@ class Api_Handler {
     const CACHE_DB_KEY = 'happy-elementor-addons_wizard_cache_key';
     const WIZARD_CACHE_FIX  = "happy-elementor-x98237938759348573";
 
-    public static function init() {
+    // public static function init() {
         // need to delete after 1/2 release
-        if(get_option('happy-elementor-addons_wizard_cache')){
-            delete_option('happy-elementor-addons_wizard_cache');
-        }
+        // if(get_option('happy-elementor-addons_wizard_cache')){
+        //     delete_option('happy-elementor-addons_wizard_cache');
+        // }
 
-        add_action('rest_api_init', [__CLASS__, 'ha_wizard_routes']);
+        // add_action('rest_api_init', [__CLASS__, 'ha_wizard_routes']);
 
 
-        if(!get_option(self::WIZARD_CACHE_FIX)){
-            delete_option(self::CACHE_DB_KEY);
-            update_option(self::WIZARD_CACHE_FIX,1);
-        }
-    }
+        // if(!get_option(self::WIZARD_CACHE_FIX)){
+        //     delete_option(self::CACHE_DB_KEY);
+        //     update_option(self::WIZARD_CACHE_FIX,1);
+        // }
+    // }
 
     public static function ha_wizard_routes()
     {

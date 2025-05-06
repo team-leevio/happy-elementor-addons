@@ -14,23 +14,23 @@ class Assets_Manager {
 	 */
 	public static function init() {
 		// Frontend scripts
-		add_action('wp_enqueue_scripts', [__CLASS__, 'frontend_register']);
-		add_action('wp_enqueue_scripts', [__CLASS__, 'frontend_enqueue'], 100);
-		add_action('elementor/css-file/post/enqueue', [__CLASS__, 'frontend_enqueue_exceptions']);
+		// add_action('wp_enqueue_scripts', [__CLASS__, 'frontend_register']);
+		// add_action('wp_enqueue_scripts', [__CLASS__, 'frontend_enqueue'], 100);
+		// add_action('elementor/css-file/post/enqueue', [__CLASS__, 'frontend_enqueue_exceptions']);
 
-		// Edit and preview enqueue
-		add_action('elementor/preview/enqueue_styles', [__CLASS__, 'enqueue_preview_styles']);
+		// // Edit and preview enqueue
+		// add_action('elementor/preview/enqueue_styles', [__CLASS__, 'enqueue_preview_styles']);
 
-		// Enqueue editor & editorv2 scripts
-		add_action('elementor/editor/after_enqueue_scripts', [__CLASS__, 'editor_enqueue']);
+		// // Enqueue editor & editorv2 scripts
+		// add_action('elementor/editor/after_enqueue_scripts', [__CLASS__, 'editor_enqueue']);
 
-		// Paragraph toolbar registration
-		add_filter('elementor/editor/localize_settings', [__CLASS__, 'add_inline_editing_intermediate_toolbar']);
+		// // Paragraph toolbar registration
+		// add_filter('elementor/editor/localize_settings', [__CLASS__, 'add_inline_editing_intermediate_toolbar']);
 
 		/**
 		 * @see self::fix_pro_assets_loading
 		 */
-		self::fix_pro_assets_loading();
+		// self::fix_pro_assets_loading();
 	}
 
 	/**
@@ -662,11 +662,11 @@ class Assets_Manager {
 	 * @return void
 	 */
 	public static function fix_pro_assets_loading() {
-		if (ha_has_pro() && version_compare(HAPPY_ADDONS_PRO_VERSION, '1.9.0', '<=')) {
-			$callback = ['\Happy_Addons_Pro\Assets_Manager', 'frontend_register'];
-			remove_action('wp_enqueue_scripts', $callback);
-			add_action('wp_enqueue_scripts', $callback, 0);
-		}
+		// if (ha_has_pro() && version_compare(HAPPY_ADDONS_PRO_VERSION, '1.9.0', '<=')) {
+		// 	$callback = ['\Happy_Addons_Pro\Assets_Manager', 'frontend_register'];
+		// 	remove_action('wp_enqueue_scripts', $callback);
+		// 	add_action('wp_enqueue_scripts', $callback, 0);
+		// }
 	}
 }
 
