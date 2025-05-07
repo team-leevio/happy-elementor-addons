@@ -6,7 +6,14 @@ defined( 'ABSPATH' ) || die();
 
 class Dashboard_Widgets {
 
-	private static $instance;
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
+	}
 
 	// public function init() {
 	// 	add_action( 'wp_dashboard_setup', [$this, 'add_dashboard_widgets'], 9999 );
@@ -17,11 +24,11 @@ class Dashboard_Widgets {
 	 *
 	 * This function is hooked into the 'wp_dashboard_setup' action below.
 	 */
-	public function add_dashboard_widgets() {
+	public static function add_dashboard_widgets() {
 		wp_add_dashboard_widget(
 			'happy_addons_news_update',
 			esc_html__( 'HappyAddons News & Updates', 'happy-elementor-addons' ),
-			[$this, 'happy_addons_news_update_function']
+			[ self::instance(), 'happy_addons_news_update_function']
 		);
 
 		// Globalize the metaboxes array, this holds all the widgets for wp-admin.
@@ -154,13 +161,6 @@ class Dashboard_Widgets {
 		$data = json_decode( $body, true );
 
 		return $data;
-	}
-
-	public static function instance() {
-		if ( ! self::$instance ) {
-			self::$instance = new self();
-		}
-		return self::$instance;
 	}
 }
 
