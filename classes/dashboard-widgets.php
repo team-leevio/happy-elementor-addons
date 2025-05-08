@@ -19,16 +19,20 @@ class Dashboard_Widgets {
 	// 	add_action( 'wp_dashboard_setup', [$this, 'add_dashboard_widgets'], 9999 );
 	// }
 
+	public static function dashboard_widgets_handler() {
+		self::instance()->add_dashboard_widgets();
+	}
+
 	/**
 	 * Add a widget to the dashboard.
 	 *
 	 * This function is hooked into the 'wp_dashboard_setup' action below.
 	 */
-	public static function add_dashboard_widgets() {
+	public function add_dashboard_widgets() {
 		wp_add_dashboard_widget(
 			'happy_addons_news_update',
 			esc_html__( 'HappyAddons News & Updates', 'happy-elementor-addons' ),
-			[ self::instance(), 'happy_addons_news_update_function']
+			[$this, 'happy_addons_news_update_function']
 		);
 
 		// Globalize the metaboxes array, this holds all the widgets for wp-admin.

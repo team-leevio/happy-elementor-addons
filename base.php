@@ -172,7 +172,7 @@ class Base {
 			add_action( 'wp_ajax_ha_process_dynamic_select', [ HappyAddons_Classes\Select2_Handler::class, 'process_request' ] );
 
 			/* Dashboard_Widgets */
-			add_action( 'wp_dashboard_setup', [ HappyAddons_Classes\Dashboard_Widgets::class, 'add_dashboard_widgets' ], 9999 );
+			add_action( 'wp_dashboard_setup', [ HappyAddons_Classes\Dashboard_Widgets::class, 'dashboard_widgets_handler' ], 9999 );
 		}
 
 		if ( is_user_logged_in() ) {
