@@ -59,6 +59,10 @@ class Card extends Base {
 		return false;
 	}
 
+	public function has_widget_inner_wrapper(): bool {
+		return true;
+	}
+
 	/**
      * Register widget content controls
      */

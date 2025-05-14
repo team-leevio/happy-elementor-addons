@@ -193,7 +193,8 @@ class Step_Flow extends Base {
 				],
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};'
+					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}}:not(:has(.elementor-widget-container))' => 'text-align: {{VALUE}};',
 				]
 			]
 		);

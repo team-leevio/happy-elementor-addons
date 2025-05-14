@@ -342,6 +342,7 @@ class Photo_Stack extends Base
                 'separator' => 'before',
                 'selectors' => [
                     '{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}}:not(:has(.elementor-widget-container))' => 'text-align: {{VALUE}};',
                 ],
             ]
         );

@@ -170,33 +170,6 @@ class Threesixty_Rotation extends Base {
 			]
 		);
 
-		/* $this->add_control(
-			'wrapper_align',
-			[
-				'label' => __( 'Alignment', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::CHOOSE,
-				'options' => [
-					'left' => [
-						'title' => __( 'Left', 'happy-elementor-addons' ),
-						'icon' => 'eicon-text-align-left',
-					],
-					'center' => [
-						'title' => __( 'Center', 'happy-elementor-addons' ),
-						'icon' => 'eicon-text-align-center',
-					],
-					'right' => [
-						'title' => __( 'Right', 'happy-elementor-addons' ),
-						'icon' => 'eicon-text-align-right',
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}}.ha-threesixty-rotation .elementor-widget-container' => 'text-align: {{VALUE}};',
-					'{{WRAPPER}} .ha-threesixty-rotation-wrapper' => 'display:inline-block;',
-				],
-				'style_transfer' => true,
-			]
-		); */
-
 		$this->end_controls_section();
 	}
 

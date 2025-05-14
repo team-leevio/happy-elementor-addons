@@ -144,7 +144,8 @@ class Archive_Title extends Base {
 				],
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};'
+					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}}:not(:has(.elementor-widget-container)) .ha-archive-title' => 'text-align: {{VALUE}};'
 				]
 			]
 		);

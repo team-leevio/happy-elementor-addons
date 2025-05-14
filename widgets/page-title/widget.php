@@ -144,92 +144,93 @@ class Page_Title extends Base {
 				],
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};'
+					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}}:not(:has(.elementor-widget-container)) .ha-page-title' => 'text-align: {{VALUE}};'
 				]
 			]
 		);
 
-		$this->add_control(	
-			'enable_link',	
-			[	
-				'label' => esc_html__('Enable Link', 'happy-elementor-addons'),	
-				'type' => Controls_Manager::SWITCHER,	
-				'label_on' => esc_html__('Yes', 'happy-elementor-addons'),	
-				'label_off' => esc_html__('No', 'happy-elementor-addons'),	
-				'return_value' => 'yes',	
-				'default' => '',	
-			]	
-		);	
-		$this->add_control(	
-			'link_type',	
-			[	
-				'label' => esc_html__('Link Type', 'happy-elementor-addons'),	
-				'type' => Controls_Manager::SELECT,	
-				'default' => 'dynamic',	
-				'options' => [	
-					'dynamic' => esc_html__('Dynamic', 'happy-elementor-addons'),	
-					'custom' => esc_html__('Custom', 'happy-elementor-addons')	
-				],	
-				'condition' => [	
-					'enable_link!' => ''	
-				]	
-			]	
-		);	
-		$this->add_control(	
-			'dynamic_link_options',	
-			[	
-				'label' => esc_html__( 'Link Options', 'happy-elementor-addons' ),	
-				'type' => Controls_Manager::POPOVER_TOGGLE,	
-				'label_off' => esc_html__( 'Default', 'happy-elementor-addons' ),	
-				'label_on' => esc_html__( 'Custom', 'happy-elementor-addons' ),	
-				'return_value' => 'yes',	
-				'default' => '',	
-				'condition' => [	
-					'enable_link!' => '',	
-					'link_type' => 'dynamic'	
-				]	
-			]	
-		);	
-		$this->start_popover();	
-		$this->add_control(	
-			'dynamic_link_external',	
-			[	
-				'label' => esc_html__('Open in new window', 'happy-elementor-addons'),	
-				'type' => Controls_Manager::SWITCHER,	
-				'label_on' => esc_html__('Yes', 'happy-elementor-addons'),	
-				'label_off' => esc_html__('No', 'happy-elementor-addons'),	
-				'return_value' => 'yes',	
-				'default' => '',	
-			]	
-		);	
-		$this->add_control(	
-			'dynamic_link_nofollow',	
-			[	
-				'label' => esc_html__('Add nofollow', 'happy-elementor-addons'),	
-				'type' => Controls_Manager::SWITCHER,	
-				'label_on' => esc_html__('Yes', 'happy-elementor-addons'),	
-				'label_off' => esc_html__('No', 'happy-elementor-addons'),	
-				'return_value' => 'yes',	
-				'default' => '',	
-			]	
-		);	
-		$this->end_popover();	
-		$this->add_control(	
-			'custom_link',	
-			[	
-				'label' => esc_html__('Custom Link', 'happy-elementor-addons'),	
-				'type' => Controls_Manager::URL,	
-				'placeholder' => esc_html__('https://your-link.com', 'happy-elementor-addons'),	
-				'options' => ['url', 'is_external', 'nofollow'],	
-				'label_block' => true,	
-				'dynamic' => [	
-					'active' => true,	
-				],	
-				'condition' => [	
-					'enable_link!' => '',	
-					'link_type' => 'custom'	
-				]	
-			]	
+		$this->add_control(
+			'enable_link',
+			[
+				'label' => esc_html__('Enable Link', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => esc_html__('Yes', 'happy-elementor-addons'),
+				'label_off' => esc_html__('No', 'happy-elementor-addons'),
+				'return_value' => 'yes',
+				'default' => '',
+			]
+		);
+		$this->add_control(
+			'link_type',
+			[
+				'label' => esc_html__('Link Type', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'dynamic',
+				'options' => [
+					'dynamic' => esc_html__('Dynamic', 'happy-elementor-addons'),
+					'custom' => esc_html__('Custom', 'happy-elementor-addons')
+				],
+				'condition' => [
+					'enable_link!' => ''
+				]
+			]
+		);
+		$this->add_control(
+			'dynamic_link_options',
+			[
+				'label' => esc_html__( 'Link Options', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::POPOVER_TOGGLE,
+				'label_off' => esc_html__( 'Default', 'happy-elementor-addons' ),
+				'label_on' => esc_html__( 'Custom', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default' => '',
+				'condition' => [
+					'enable_link!' => '',
+					'link_type' => 'dynamic'
+				]
+			]
+		);
+		$this->start_popover();
+		$this->add_control(
+			'dynamic_link_external',
+			[
+				'label' => esc_html__('Open in new window', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => esc_html__('Yes', 'happy-elementor-addons'),
+				'label_off' => esc_html__('No', 'happy-elementor-addons'),
+				'return_value' => 'yes',
+				'default' => '',
+			]
+		);
+		$this->add_control(
+			'dynamic_link_nofollow',
+			[
+				'label' => esc_html__('Add nofollow', 'happy-elementor-addons'),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => esc_html__('Yes', 'happy-elementor-addons'),
+				'label_off' => esc_html__('No', 'happy-elementor-addons'),
+				'return_value' => 'yes',
+				'default' => '',
+			]
+		);
+		$this->end_popover();
+		$this->add_control(
+			'custom_link',
+			[
+				'label' => esc_html__('Custom Link', 'happy-elementor-addons'),
+				'type' => Controls_Manager::URL,
+				'placeholder' => esc_html__('https://your-link.com', 'happy-elementor-addons'),
+				'options' => ['url', 'is_external', 'nofollow'],
+				'label_block' => true,
+				'dynamic' => [
+					'active' => true,
+				],
+				'condition' => [
+					'enable_link!' => '',
+					'link_type' => 'custom'
+				]
+			]
 		);
 
         $this->end_controls_section();
@@ -292,25 +293,25 @@ class Page_Title extends Base {
 		$settings = $this->get_settings_for_display();
 		$this->add_render_attribute('title', 'class', 'ha-page-title');
 
-		if (!empty($settings['size'])) {	
-			$this->add_render_attribute('title', 'class', 'elementor-size-' . $settings['size']);	
-		}	
-		if (!empty($settings['enable_link'])) {	
-			$link_type = isset($settings['link_type']) ? $settings['link_type'] : 'dynamic';	
-			if ($link_type == 'dynamic') {	
-				$this->add_link_attributes('single_link', [	
-					'url' => get_the_permalink(),	
-					'is_external' => ((!empty($settings['dynamic_link_options']))? ($settings['dynamic_link_external'] == 'yes'): false),	
-					'nofollow' => ((!empty($settings['dynamic_link_options']))? ($settings['dynamic_link_nofollow'] == 'yes'): false),	
-				]);	
-			} else if (! empty( $settings['custom_link']['url'] )){	
-				$this->add_link_attributes('single_link', $settings['custom_link']);	
-			}	
-			echo '<a '.$this->get_render_attribute_string( 'single_link' ).'>';	
-		}	
-		printf('<%1$s %2$s>%3$s</%1$s>', ha_escape_tags($settings['page_title_tag'], 'H2'), $this->get_render_attribute_string('title'), esc_html(get_the_title()));	
-		if (!empty($settings['enable_link'])) {	
-			echo '</a>';	
+		if (!empty($settings['size'])) {
+			$this->add_render_attribute('title', 'class', 'elementor-size-' . $settings['size']);
+		}
+		if (!empty($settings['enable_link'])) {
+			$link_type = isset($settings['link_type']) ? $settings['link_type'] : 'dynamic';
+			if ($link_type == 'dynamic') {
+				$this->add_link_attributes('single_link', [
+					'url' => get_the_permalink(),
+					'is_external' => ((!empty($settings['dynamic_link_options']))? ($settings['dynamic_link_external'] == 'yes'): false),
+					'nofollow' => ((!empty($settings['dynamic_link_options']))? ($settings['dynamic_link_nofollow'] == 'yes'): false),
+				]);
+			} else if (! empty( $settings['custom_link']['url'] )){
+				$this->add_link_attributes('single_link', $settings['custom_link']);
+			}
+			echo '<a '.$this->get_render_attribute_string( 'single_link' ).'>';
+		}
+		printf('<%1$s %2$s>%3$s</%1$s>', ha_escape_tags($settings['page_title_tag'], 'H2'), $this->get_render_attribute_string('title'), esc_html(get_the_title()));
+		if (!empty($settings['enable_link'])) {
+			echo '</a>';
 		}
 	}
 }
