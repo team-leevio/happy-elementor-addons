@@ -8,6 +8,12 @@
 			border: 1px solid #ececec;
 			border-radius: 5px;
 		}
+		
+		&:not(:has(.elementor-widget-container)){
+			padding: 25px;
+			border: 1px solid #ececec;
+			border-radius: 5px;
+		}
 
 		.ha-testimonial__content {
 			margin-bottom: 25px;

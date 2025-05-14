@@ -10,12 +10,18 @@
 		padding: 25px;
 		@include widgetContainerBaseStyle;
 	}
+
+	&:not(:has(.elementor-widget-container)) {
+		padding: 25px;
+		@include widgetContainerBaseStyle;
+	}
 }
 
 body[data-elementor-device-mode="widescreen"] {
 	.ha-infobox {
 		&.ha-infobox-media-dir-widescreen-left {
 
+			&:not(:has(.elementor-widget-container)),
 			.elementor-widget-container {
 				display: flex;
 
@@ -37,6 +43,7 @@ body[data-elementor-device-mode="desktop"] {
 	.ha-infobox {
 		&.ha-infobox-media-dir-left {
 
+			&:not(:has(.elementor-widget-container)),
 			.elementor-widget-container {
 				display: flex;
 
@@ -58,6 +65,7 @@ body[data-elementor-device-mode="laptop"] {
 	.ha-infobox {
 		&.ha-infobox-media-dir-laptop-left {
 
+			&:not(:has(.elementor-widget-container)),
 			.elementor-widget-container {
 				display: flex;
 
@@ -79,6 +87,7 @@ body[data-elementor-device-mode="tablet_extra"] {
 	.ha-infobox {
 		&.ha-infobox-media-dir-tablet_extra-left {
 
+			&:not(:has(.elementor-widget-container)),
 			.elementor-widget-container {
 				display: flex;
 
@@ -100,6 +109,7 @@ body[data-elementor-device-mode="tablet"] {
 	.ha-infobox {
 		&.ha-infobox-media-dir-tablet-left {
 
+			&:not(:has(.elementor-widget-container)),
 			.elementor-widget-container {
 				display: flex;
 
@@ -121,6 +131,7 @@ body[data-elementor-device-mode="mobile_extra"] {
 	.ha-infobox {
 		&.ha-infobox-media-dir-mobile_extra-left {
 
+			&:not(:has(.elementor-widget-container)),
 			.elementor-widget-container {
 				display: flex;
 
@@ -142,6 +153,7 @@ body[data-elementor-device-mode="mobile"] {
 	.ha-infobox {
 		&.ha-infobox-media-dir-mobile-left {
 
+			&:not(:has(.elementor-widget-container)),
 			.elementor-widget-container {
 				display: flex;
 

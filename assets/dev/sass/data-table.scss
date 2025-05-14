@@ -2,7 +2,8 @@
 @import "mixins";
 
 .ha-data-table {
-	.elementor-widget-container {
+	.elementor-widget-container,
+	&:not(:has(.elementor-widget-container)) {
 		overflow: hidden;
 	}
 

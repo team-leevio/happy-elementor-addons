@@ -157,8 +157,16 @@
 						}
 						return $widgets;
 					}
-
-					return _this.$element.find('.elementor-widget-'+widget + ' .elementor-widget-container');
+					
+					var the_container = _this.$element.find('.elementor-widget-' + widget + ' .elementor-widget-container');
+					if (
+						elementorFrontendConfig.experimentalFeatures.hasOwnProperty('e_optimized_markup') &&
+						true == elementorFrontendConfig.experimentalFeatures.e_optimized_markup &&
+						! the_container.length
+					) {
+						return _this.$element.find( '.elementor-widget-' + widget );
+					}
+					return the_container;
 				});
 			},
 

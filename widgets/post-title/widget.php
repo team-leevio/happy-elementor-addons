@@ -146,7 +146,8 @@ class Post_Title extends Base {
 				],
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};'
+					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}}:not(:has(.elementor-widget-container)) .ha-post-title' => 'text-align: {{VALUE}};'
 				]
 			]
 		);

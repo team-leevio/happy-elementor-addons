@@ -8,6 +8,10 @@
 		text-align: center;
 		padding: 25px;
 	}
+	&:not(:has(.elementor-widget-container)){
+		text-align: center;
+		padding: 25px;
+	}
 }
 
 .ha-step-arrow {
