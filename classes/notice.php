@@ -5,13 +5,6 @@ defined( 'ABSPATH' ) || die();
 
 class Notice {
 
-	// public static function init() {
-	// 	if ( ! ( in_array( 'happy-elementor-addons-pro/happy-elementors-addons-pro.php', (array) get_option( 'active_plugins', [] ), true ) ) ) {
-	// 		add_action( 'admin_init', [__CLASS__, 'ha_void_check_installation_time'] );
-	// 		add_action( 'admin_init', [__CLASS__, 'ha_void_spare_me'], 5 );
-	// 	}
-	// }
-
 	//check if the notice should be shown or not
 	public static function ha_void_check_installation_time() {
 		$feedback = get_option( 'ha__user_feedback_survey', '0' );
@@ -117,5 +110,3 @@ class Notice {
 		return remove_query_arg( ['_wpnonce', '_wc_notice_nonce', 'wc_db_update', 'wc_db_update_nonce', 'wc-hide-notice'], admin_url( $uri ) );
 	}
 }
-
-// Advance_Notice::init();

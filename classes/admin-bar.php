@@ -5,13 +5,6 @@ defined( 'ABSPATH' ) || die();
 
 class Admin_Bar {
 
-	// public static function init() {
-	// 	add_action( 'admin_bar_menu', [__CLASS__, 'add_toolbar_items'], 500 );
-	// 	add_action( 'wp_enqueue_scripts', [__CLASS__, 'enqueue_assets'] );
-	// 	add_action( 'admin_enqueue_scripts', [__CLASS__, 'enqueue_assets'] );
-	// 	add_action( 'wp_ajax_ha_clear_cache', [__CLASS__, 'clear_cache' ] );
-	// }
-
 	public static function clear_cache() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
@@ -138,5 +131,3 @@ class Admin_Bar {
 		] );
 	}
 }
-
-// Admin_Bar::init();

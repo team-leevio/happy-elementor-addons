@@ -8,11 +8,6 @@ defined( 'ABSPATH' ) || die();
 
 class WPML_Manager {
 
-	// public static function init() {
-	// 	add_filter( 'wpml_elementor_widgets_to_translate', [ __CLASS__, 'add_widgets_to_translate' ] );
-	// 	add_action( 'wpml_translation_job_saved', [ __CLASS__, 'on_translation_job_saved' ], 10, 3 );
-	// }
-
 	/**
 	 * Recreate HappyAddons widgets usage on transtion save
 	 *
@@ -36,28 +31,6 @@ class WPML_Manager {
 	public static function load_integration_files() {
 		// Load repeatable module class
 		include_once( HAPPY_ADDONS_DIR_PATH . 'classes/wpml-module-with-items.php' );
-
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/bar-chart.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/carousel.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/comparison-table.php' ); // double
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/content-switcher.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/data-table.php' );  // double
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/events-calendar.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/horizontal-timeline.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-accordion.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-grid.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/image-stack-group.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/justified-gallery.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/logo-grid.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/photo-stack.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/post-info.php' ); //new
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/post-list.php' );  // double
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/pricing-table.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/skills.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/slider.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/social-icons.php' );
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/social-share.php' ); // new
-		// include_once( HAPPY_ADDONS_DIR_PATH . 'wpml/taxonomy-list.php' );  // double
 	}
 
 	public static function add_widgets_to_translate( $widgets ) {
@@ -993,5 +966,3 @@ class WPML_Manager {
 		return $widgets;
 	}
 }
-
-// WPML_Manager::init();

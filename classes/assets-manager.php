@@ -10,30 +10,6 @@ defined('ABSPATH') || die();
 class Assets_Manager {
 
 	/**
-	 * Bind hook and run internal methods here
-	 */
-	public static function init() {
-		// Frontend scripts
-		// add_action('wp_enqueue_scripts', [__CLASS__, 'frontend_register']);
-		// add_action('wp_enqueue_scripts', [__CLASS__, 'frontend_enqueue'], 100);
-		// add_action('elementor/css-file/post/enqueue', [__CLASS__, 'frontend_enqueue_exceptions']);
-
-		// // Edit and preview enqueue
-		// add_action('elementor/preview/enqueue_styles', [__CLASS__, 'enqueue_preview_styles']);
-
-		// // Enqueue editor & editorv2 scripts
-		// add_action('elementor/editor/after_enqueue_scripts', [__CLASS__, 'editor_enqueue']);
-
-		// // Paragraph toolbar registration
-		// add_filter('elementor/editor/localize_settings', [__CLASS__, 'add_inline_editing_intermediate_toolbar']);
-
-		/**
-		 * @see self::fix_pro_assets_loading
-		 */
-		// self::fix_pro_assets_loading();
-	}
-
-	/**
 	 * Register inline editing paragraph toolbar
 	 *
 	 * @param array $config
@@ -650,24 +626,5 @@ class Assets_Manager {
 			);
 		}
 	}
-
-	/**
-	 * Fix HappyAddons Pro assets loading.
-	 *
-	 * Assets loading issue casued by free 2.13.2 release
-	 * due to a change in hook priority.
-	 *
-	 * @todo remove in future
-	 *
-	 * @return void
-	 */
-	public static function fix_pro_assets_loading() {
-		// if (ha_has_pro() && version_compare(HAPPY_ADDONS_PRO_VERSION, '1.9.0', '<=')) {
-		// 	$callback = ['\Happy_Addons_Pro\Assets_Manager', 'frontend_register'];
-		// 	remove_action('wp_enqueue_scripts', $callback);
-		// 	add_action('wp_enqueue_scripts', $callback, 0);
-		// }
-	}
+	
 }
-
-// Assets_Manager::init();

@@ -22,10 +22,6 @@ class Column_Extended {
 		 return self::$instance;
 	}
 
-    // public function init() {
-    //     add_action( 'elementor/element/column/layout/before_section_end', [ __CLASS__, 'add_controls' ] );
-    // }
-
     public static function add_controls( Element_Column $element ) {
         $element->add_responsive_control(
             '_ha_column_width',
@@ -60,5 +56,3 @@ href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/O
         );
     }
 }
-
-// Column_Extended::init();

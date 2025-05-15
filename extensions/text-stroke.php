@@ -23,21 +23,6 @@ class Text_Stroke {
 		 return self::$instance;
 	}
 
-	// public function init() {
-	// 	add_action( 'elementor/element/button/section_style/after_section_start', [ __CLASS__, 'add_button_controls' ] );
-
-	// 	if( ! in_array( 'text-stroke', ha_get_inactive_features() ) ){
-
-	// 		add_action( 'elementor/element/heading/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
-	// 		add_action( 'elementor/element/theme-page-title/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
-	// 		add_action( 'elementor/element/theme-site-title/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
-	// 		add_action( 'elementor/element/theme-post-title/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
-	// 		add_action( 'elementor/element/woocommerce-product-title/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
-	// 		add_action( 'elementor/element/animated-headline/section_style_text/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
-	// 		add_action( 'elementor/element/ha-gradient-heading/_section_style_title/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
-	// 	}
-	// }
-
 	public static function add_text_stroke_old( Widget_Base $widget ) {
 		$common = [
 			'of'     => 'blend_mode',
@@ -274,5 +259,3 @@ class Text_Stroke {
 		$widget->end_popover();
 	}
 }
-
-// Text_Stroke::init();

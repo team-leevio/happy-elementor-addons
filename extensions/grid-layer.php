@@ -16,10 +16,6 @@ class Grid_Layer {
 		 return self::$instance;
 	}
 
-	// public function init() {
-	// 	add_action('elementor/documents/register_controls', [__CLASS__, 'add_controls_section'] , 1 , 1 );
-	// }
-
 	public static function add_controls_section( $element ) {
 		$element->start_controls_section(
 			'_section_happy_grid_layer',
@@ -245,5 +241,3 @@ class Grid_Layer {
 	}
 
 }
-
-// Grid_Layer::init();

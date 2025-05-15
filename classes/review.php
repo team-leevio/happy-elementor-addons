@@ -5,11 +5,6 @@ defined( 'ABSPATH' ) || die();
 
 class Review {
 
-    // public static function init() {
-    //     add_action( 'admin_init', [__CLASS__, 'ha_void_check_installation_time'] );
-    //     add_action( 'admin_init', [__CLASS__, 'ha_void_spare_me'], 5 );
-    // }
-
     //check if review notice should be shown or not
     public static function ha_void_check_installation_time() {
 
@@ -104,5 +99,3 @@ class Review {
         return remove_query_arg( [ '_wpnonce', '_wc_notice_nonce', 'wc_db_update', 'wc_db_update_nonce', 'wc-hide-notice' ], admin_url( $uri ) );
     }
 }
-
-// Review_Us::init();

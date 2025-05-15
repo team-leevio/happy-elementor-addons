@@ -9,11 +9,6 @@ class Cache_Manager {
 
 	private static $widgets_cache;
 
-	// public static function init() {
-	// 	add_action( 'elementor/editor/after_save', [ __CLASS__, 'cache_widgets' ], 10, 2 );
-	// 	add_action( 'after_delete_post', [ __CLASS__, 'delete_cache' ] );
-	// }
-
 	public static function delete_cache( $post_id ) {
 		// Delete to regenerate cache file
 		$assets_cache = new Assets_Cache( $post_id );
@@ -135,5 +130,3 @@ class Cache_Manager {
 		do_action( 'happyaddons_enqueue_assets', $is_cache = false, 0 );
 	}
 }
-
-// Cache_Manager::init();

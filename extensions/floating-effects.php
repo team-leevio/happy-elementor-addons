@@ -22,14 +22,6 @@ class Floating_Effects {
 		 return self::$instance;
 	}
 
-	// public function init() {
-	// 	add_action( 'elementor/element/common/_section_style/after_section_end', [ __CLASS__, 'register' ], 1 );
-
-	// 	add_action( 'elementor/frontend/before_register_scripts', [ __CLASS__, 'register_scripts' ] );
-
-	// 	add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'preview_enqueue_scripts' ] );
-	// }
-
 	public static function preview_enqueue_scripts() {
 		wp_enqueue_script('anime');
 		wp_enqueue_script('happy-floating-effects');
@@ -521,5 +513,3 @@ class Floating_Effects {
 		$element->end_controls_section();
 	}
 }
-
-// Floating_Effects::init();

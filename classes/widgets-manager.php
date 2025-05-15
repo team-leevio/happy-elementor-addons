@@ -9,25 +9,8 @@ defined('ABSPATH') || die();
 
 class Widgets_Manager {
 
-
 	const WIDGETS_DB_KEY = 'happyaddons_inactive_widgets';
 	// public static $catwise_widget_map = [];
-
-	/**
-	 * Initialize
-	 */
-	// public static function init() {
-
-	// 	// legacy support hook
-	// 	if( defined('HAPPY_ADDONS_PRO_VERSION') && HAPPY_ADDONS_PRO_VERSION <= '2.7.0' ){
-	// 		add_action( 'elementor/widgets/widgets_registered', [__CLASS__, 'register']);
-	// 	}
-
-	// 	// original hook for register widgets
-	// 	add_action('elementor/widgets/register', [__CLASS__, 'register']);
-
-	// 	add_action('elementor/frontend/before_render', [__CLASS__, 'add_global_widget_render_attributes']);
-	// }
 
 	public static function add_global_widget_render_attributes(Element_Base $widget) {
 		if ($widget->get_name() === 'global' && method_exists($widget, 'get_original_element_instance')) {
@@ -1391,9 +1374,6 @@ class Widgets_Manager {
 	 */
 	public static function register( $widgets_manager = null) {
 		include_once HAPPY_ADDONS_DIR_PATH . 'base/widget-base.php';
-		// include_once HAPPY_ADDONS_DIR_PATH . 'traits/button-renderer.php';
-		// include_once HAPPY_ADDONS_DIR_PATH . 'traits/link-hover-markup.php';
-		// include_once HAPPY_ADDONS_DIR_PATH . 'traits/creative-button-markup.php';
 
 		$inactive_widgets = self::get_inactive_widgets();
 
@@ -1428,19 +1408,5 @@ class Widgets_Manager {
 			}
 		}
 	}
-	// protected static function register_widget__old( $widget_key ) {
-	// 	$widget_file = HAPPY_ADDONS_DIR_PATH . 'widgets/' . $widget_key . '/widget.php';
 
-	// 	if ( is_readable( $widget_file ) ) {
-
-	// 		// include_once( $widget_file );
-
-	// 		$widget_class = '\Happy_Addons\Elementor\Widget\\' . str_replace( '-', '_', $widget_key );
-	// 		if (class_exists($widget_class)) {
-	// 			ha_elementor()->widgets_manager->register_widget_type( new $widget_class() );
-	// 		}
-	// 	}
-	// }
 }
-
-// Widgets_Manager::init();

@@ -15,10 +15,6 @@ class Dashboard_Widgets {
 		 return self::$instance;
 	}
 
-	// public function init() {
-	// 	add_action( 'wp_dashboard_setup', [$this, 'add_dashboard_widgets'], 9999 );
-	// }
-
 	public static function dashboard_widgets_handler() {
 		self::instance()->add_dashboard_widgets();
 	}
@@ -167,5 +163,3 @@ class Dashboard_Widgets {
 		return $data;
 	}
 }
-
-// Dashboard_Widgets::instance()->init();

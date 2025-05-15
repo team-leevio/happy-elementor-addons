@@ -22,10 +22,6 @@ class CSS_Transform {
 		 return self::$instance;
 	}
 
-	// public function init() {
-	// 	add_action( 'elementor/element/common/_section_style/after_section_end', [ __CLASS__, 'register' ], 1 );
-	// }
-
 	public static function register( Element_Base $element ) {
 		$element->start_controls_section(
 			'_section_css_transform',
@@ -758,5 +754,3 @@ class CSS_Transform {
 		$element->end_controls_section();
 	}
 }
-
-// CSS_Transform::init();

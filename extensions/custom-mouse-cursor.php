@@ -1654,6 +1654,3 @@ use Elementor\Group_Control_Typography;
 		<?php
 			}
 			}
-
-		// Custom_Mouse_Cursor::instance()->init();
-		// Custom_Mouse_Cursor::instance()::init();

@@ -823,4 +823,3 @@ EOF;
     }
 }
 
-// Condition_Manager::instance();

@@ -713,6 +713,3 @@ class Reading_Progress_Bar {
 	}
 
 }
-
-// Reading_Progress_Bar::instance()->init();
-// Reading_Progress_Bar::instance()::init();

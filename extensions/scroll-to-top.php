@@ -257,5 +257,3 @@ class Scroll_To_Top {
 	}
 
 }
-// Scroll_To_Top::instance()->init();
-// Scroll_To_Top::instance()::init();

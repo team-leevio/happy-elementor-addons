@@ -17,15 +17,6 @@ class Wrapper_Link {
 		 return self::$instance;
 	}
 
-	// public function init() {
-	// 	add_action( 'elementor/element/container/section_layout/after_section_end', [ __CLASS__, 'add_controls_section' ], 1 );
-	// 	add_action( 'elementor/element/column/section_advanced/after_section_end', [ __CLASS__, 'add_controls_section' ], 1 );
-	// 	add_action( 'elementor/element/section/section_advanced/after_section_end', [ __CLASS__, 'add_controls_section' ], 1 );
-	// 	add_action( 'elementor/element/common/_section_style/after_section_end', [ __CLASS__, 'add_controls_section' ], 1 );
-
-	// 	add_action( 'elementor/frontend/before_render', [ __CLASS__, 'before_section_render' ], 1 );
-	// }
-
 	public static function add_controls_section( Element_Base $element) {
 		$tabs = Controls_Manager::TAB_CONTENT;
 
@@ -72,5 +63,3 @@ class Wrapper_Link {
 		}
 	}
 }
-
-// Wrapper_Link::init();
