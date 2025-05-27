@@ -4,7 +4,7 @@
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Element_Base;
 use Elementor\Controls_Manager;
@@ -13,8 +13,13 @@ defined( 'ABSPATH' ) || die();
 
 class CSS_Transform {
 
-	public static function init() {
-		add_action( 'elementor/element/common/_section_style/after_section_end', [ __CLASS__, 'register' ], 1 );
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
 	}
 
 	public static function register( Element_Base $element ) {
@@ -749,5 +754,3 @@ class CSS_Transform {
 		$element->end_controls_section();
 	}
 }
-
-CSS_Transform::init();

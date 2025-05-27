@@ -197,7 +197,7 @@ function ha_render_icon($settings = [], $old_icon_id = 'icon', $new_icon_id = 's
  * @return array
  */
 function ha_get_happy_icons() {
-	return \Happy_Addons\Elementor\Icons_Manager::get_happy_icons();
+	return \Happy_Addons\Elementor\Classes\Icons_Manager::get_happy_icons();
 }
 
 /**
@@ -608,10 +608,10 @@ function ha_get_ele_widget_settings($post_id, $widget_id) {
  * @since 1.0.0
  */
 function ha_get_credentials($key = '') {
-	if (!class_exists('Happy_Addons\Elementor\Credentials_Manager')) {
+	if (!class_exists('Happy_Addons\Elementor\Classes\Credentials_Manager')) {
 		include_once(HAPPY_ADDONS_DIR_PATH . 'classes/credentials-manager.php');
 	}
-	$creds = Happy_Addons\Elementor\Credentials_Manager::get_saved_credentials();
+	$creds = \Happy_Addons\Elementor\Classes\Credentials_Manager::get_saved_credentials();
 	if (!empty($key)) {
 		return isset($creds[$key]) ? $creds[$key] : esc_html__('invalid key', 'happy-elementor-addons');
 	}

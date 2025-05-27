@@ -2,11 +2,11 @@
 /**
  * Event Calendar integration
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
 
-class WPML_Event_Calendar_Manual_Event_List extends \WPML_Elementor_Module_With_Items  {
+class Event_Calendar_Manual_Event_List extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string

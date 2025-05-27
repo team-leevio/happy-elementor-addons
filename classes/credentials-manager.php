@@ -1,35 +1,11 @@
 <?php
 
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined('ABSPATH') || die();
 
 class Credentials_Manager {
 	const CREDENTIALS_DB_KEY = 'happyaddons_credentials';
-
-	/**
-	 * Initialize
-	 */
-	public static function init() {
-
-		// if (is_admin()) {
-		// 	$screen = get_current_screen();
-
-		// 	if ($screen->id == "dashboard") {
-
-		// 		if (is_admin() && is_user_logged_in() && ha_is_adminbar_menu_enabled()) {
-		// 			include_once HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php';
-		// 		}
-
-		// 		if (is_admin() && is_user_logged_in() && ha_is_happy_clone_enabled()) {
-		// 			include_once HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php';
-		// 		}
-
-		// 	}
-		// }
-
-		// $credentials = self::get_credentials();
-	}
 
 	public static function get_credentials_map() {
 		$credentials_map = [];
@@ -186,4 +162,3 @@ class Credentials_Manager {
 	}
 }
 
-Credentials_Manager::init();

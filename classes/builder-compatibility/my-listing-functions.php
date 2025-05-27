@@ -9,7 +9,7 @@ if(!function_exists( 'hfe_render_header' )){
 
         do_action('happyaddons/template/before_header');
         echo '<div class="ekit-template-content-markup ekit-template-content-header">';
-            echo Theme_Builder::render_builder_data($ha__template_ids[0]);
+            echo \Happy_Addons\Elementor\Classes\Theme_Builder::render_builder_data($ha__template_ids[0]);
         echo '</div>';
         do_action('happyaddons/template/after_header');
     }
@@ -31,7 +31,7 @@ if(!function_exists( 'hfe_render_footer' )){
 
         do_action('happyaddons/template/before_header');
         echo '<div class="ekit-template-content-markup ekit-template-content-header">';
-            echo Theme_Builder::render_builder_data($ha__template_ids[1]);
+            echo \Happy_Addons\Elementor\Classes\Theme_Builder::render_builder_data($ha__template_ids[1]);
         echo '</div>';
         do_action('happyaddons/template/after_header');
     }

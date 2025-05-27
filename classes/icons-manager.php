@@ -1,13 +1,9 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
 class Icons_Manager {
-
-    public static function init() {
-        add_filter( 'elementor/icons_manager/additional_tabs', [ __CLASS__, 'add_happy_icons_tab' ] );
-    }
 
     public static function add_happy_icons_tab( $tabs ) {
         $tabs['happy-icons'] = [
@@ -511,5 +507,3 @@ class Icons_Manager {
         ];
     }
 }
-
-Icons_Manager::init();

@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 use Elementor\Element_Base;
@@ -10,9 +10,13 @@ defined( 'ABSPATH' ) || die();
 
 class Background_Overlay {
 
-	public static function init() {
-		add_action( 'elementor/element/common/_section_background/after_section_end', [__CLASS__, 'add_section'] );
-		// add_action( 'elementor/element/common-optimized/_section_background/after_section_end', [__CLASS__, 'add_section'] );
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
 	}
 
 	public static function add_section( Element_Base $element ) {
@@ -24,12 +28,6 @@ class Background_Overlay {
 		$hover_selector = $is_e_optimized_markup
 			? '{{WRAPPER}}.ha-has-bg-overlay:hover::before'
 			: '{{WRAPPER}}.ha-has-bg-overlay:hover > .elementor-widget-container::before';
-
-		// $element::WRAPPER_SELECTOR
-		// $element::WRAPPER_SELECTOR_CHILD
-		//error_log( print_r( $element::WRAPPER_SELECTOR , 1 ) );
-		// error_log( print_r( $is_e_optimized_markup , 1 ) );
-		//error_log( print_r( '==========================================' , 1 ) );
 
 		$element->start_controls_section(
 			'_ha_section_background_overlay',
@@ -80,7 +78,6 @@ class Background_Overlay {
 			Group_Control_Background::get_type(),
 			[
 				'name' => '_ha_background_overlay',
-				// 'selector' => '{{WRAPPER}}.ha-has-bg-overlay > .elementor-widget-container:before',
 				'selector' => $normal_selector,
 			]
 		);
@@ -100,7 +97,6 @@ class Background_Overlay {
 					],
 				],
 				'selectors' => [
-					// '{{WRAPPER}}.ha-has-bg-overlay > .elementor-widget-container:before' => 'opacity: {{SIZE}};',
 					$normal_selector => 'opacity: {{SIZE}};',
 				],
 				'condition' => [
@@ -113,7 +109,6 @@ class Background_Overlay {
 			Group_Control_Css_Filter::get_type(),
 			[
 				'name' => '_ha_css_filters',
-				// 'selector' => '{{WRAPPER}}.ha-has-bg-overlay > .elementor-widget-container:before',
 				'selector' => $normal_selector,
 			]
 		);
@@ -136,7 +131,6 @@ class Background_Overlay {
 					'luminosity' => 'Luminosity',
 				],
 				'selectors' => [
-					// '{{WRAPPER}}.ha-has-bg-overlay > .elementor-widget-container:before' => 'mix-blend-mode: {{VALUE}}',
 					$normal_selector => 'mix-blend-mode: {{VALUE}}',
 				],
 			]
@@ -155,7 +149,6 @@ class Background_Overlay {
 			Group_Control_Background::get_type(),
 			[
 				'name' => '_ha_background_overlay_hover',
-				// 'selector' => '{{WRAPPER}}.ha-has-bg-overlay:hover > .elementor-widget-container:before',
 				'selector' => $hover_selector,
 			]
 		);
@@ -175,7 +168,6 @@ class Background_Overlay {
 					],
 				],
 				'selectors' => [
-					// '{{WRAPPER}}.ha-has-bg-overlay:hover > .elementor-widget-container:before' => 'opacity: {{SIZE}};',
 					$hover_selector => 'opacity: {{SIZE}};',
 				],
 				'condition' => [
@@ -188,7 +180,6 @@ class Background_Overlay {
 			Group_Control_Css_Filter::get_type(),
 			[
 				'name' => '_ha_css_filters_hover',
-				// 'selector' => '{{WRAPPER}}.ha-has-bg-overlay:hover > .elementor-widget-container:before',
 				'selector' => $hover_selector,
 			]
 		);
@@ -209,7 +200,6 @@ class Background_Overlay {
 				],
 				'separator' => 'before',
 				'selectors' => [
-					// '{{WRAPPER}}.ha-has-bg-overlay > .elementor-widget-container:before' => 'transition: background {{SIZE}}s;',
 					$hover_selector => 'transition: background {{SIZE}}s;',
 				]
 			]
@@ -222,5 +212,3 @@ class Background_Overlay {
 		$element->end_controls_section();
 	}
 }
-
-Background_Overlay::init();

@@ -1,7 +1,7 @@
-<?php 
-namespace Happy_Addons\Elementor\Theme_Hooks;
+<?php
+namespace Happy_Addons\Elementor\Classes\Builder_Compatibility;
 
-use Happy_Addons\Elementor\Theme_Builder;
+use Happy_Addons\Elementor\Classes\Theme_Builder;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -69,23 +69,23 @@ class Bbtheme {
 		<?php
 		do_action('happyaddons/template/after_header');
   }
- 
+
 
 	// footer actions
 	  public function add_plugin_footer_markup(){
 			if ( is_page_template( 'tpl-no-header-footer.php' ) ) {
 				return;
 			}
-	
+
 			do_action('happyaddons/template/before_footer'); ?>
 
 				<footer itemscope="itemscope" itemtype="https://schema.org/WPFooter">
 				<?php echo Theme_Builder::render_builder_data($this->footer); ; ?>
 				</footer>
 
-			<?php 
+			<?php
 			do_action('happyaddons/template/after_footer');
     }
- 
+
 
 }

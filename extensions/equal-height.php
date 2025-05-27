@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Element_Base;
 use Elementor\Controls_Manager;
@@ -11,15 +11,13 @@ class Equal_Height {
 
 	static $should_script_enqueue = false;
 
-	public static function init() {
+	private static $instance = null;
 
-		add_action( 'elementor/element/container/section_layout/after_section_end', [ __CLASS__, 'register' ], 1 );
-
-		add_action( 'elementor/element/section/section_advanced/after_section_end', [ __CLASS__, 'register' ], 1 );
-
-		add_action( 'elementor/frontend/before_register_scripts', [ __CLASS__, 'register_scripts' ] );
-
-		add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'enqueue_preview_scripts' ] );
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
 	}
 
 	public static function enqueue_preview_scripts() {
@@ -157,5 +155,3 @@ class Equal_Height {
 		$element->end_controls_section();
 	}
 }
-
-Equal_Height::init();

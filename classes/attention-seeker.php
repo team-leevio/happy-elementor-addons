@@ -4,17 +4,11 @@
  *
  * @since 2.3.0
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
 class Attention_Seeker {
-
-    public static function init() {
-        add_action( 'admin_notices', [ __CLASS__, 'seek_attention' ] );
-        add_action( 'wp_ajax_ignore_attention_seeker', [ __CLASS__, 'process_ignore_request' ] );
-        add_action( 'admin_head', [ __CLASS__, 'setup_environment' ] );
-    }
 
     public static function setup_environment() {
         ?>
@@ -102,5 +96,3 @@ class Attention_Seeker {
         return [];
     }
 }
-
-Attention_Seeker::init();

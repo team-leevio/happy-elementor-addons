@@ -5,7 +5,7 @@
  * Package: Happy_Addons
  * @since 2.0.0
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
@@ -27,27 +27,6 @@ class Dashboard {
     public static $catwise_free_widget_map = [];
 
     static $wizard_slug = '';
-
-    public static function init() {
-        add_action( 'admin_menu', [ __CLASS__, 'add_menu' ], 21 );
-        add_action( 'admin_menu', [ __CLASS__, 'update_menu_items' ], 99 );
-        add_action( 'admin_enqueue_scripts', [ __CLASS__, 'enqueue_scripts' ] );
-        add_action( 'wp_ajax_' . self::WIDGETS_NONCE, [ __CLASS__, 'save_data' ] );
-
-        add_action( 'admin_init', [ __CLASS__, 'activation_redirect' ] );
-        add_filter( 'plugin_action_links_' . plugin_basename( HAPPY_ADDONS__FILE__ ), [ __CLASS__, 'add_action_links' ] );
-
-        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_widgets_data' ], 1);
-        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_features_data' ] );
-        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'save_credentials_data' ] );
-        add_action( 'happyaddons_save_dashboard_data', [ __CLASS__, 'disable_unused_widget' ], 10);
-
-        add_action( 'in_admin_header', [ __CLASS__, 'remove_all_notices' ], PHP_INT_MAX );
-
-        // add_action( 'admin_menu', function() {
-        //     remove_menu_page( 'happy-addons-setup-wizard' );
-        // }, 100 );
-    }
 
     public static function is_page() {
         return ( isset( $_GET['page'] ) && ( sanitize_text_field($_GET['page']) === self::PAGE_SLUG || sanitize_text_field($_GET['page']) === self::LICENSE_PAGE_SLUG ) );
@@ -578,5 +557,3 @@ class Dashboard {
 		<?php
 	}
 }
-
-Dashboard::init();

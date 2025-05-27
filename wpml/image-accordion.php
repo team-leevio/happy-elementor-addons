@@ -2,11 +2,11 @@
 /**
  * Image Accordion integration
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
-
-class WPML_Image_Accordion extends WPML_Module_With_Items  {
+use Happy_Addons\Elementor\Classes\WPML_Module_With_Items;
+class Image_Accordion extends WPML_Module_With_Items  {
 
 	/**
 	 * @return string

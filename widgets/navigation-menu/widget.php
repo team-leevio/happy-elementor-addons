@@ -18,7 +18,7 @@ use Elementor\Icons_Manager;
 defined( 'ABSPATH' ) || die();
 
 require HAPPY_ADDONS_DIR_PATH . 'extensions/walker-nav-menu.php';
-use \Happy_Addons\Elementor\Extension\HANav_Menu_Walker;
+use \Happy_Addons\Elementor\Extensions\HANav_Menu_Walker;
 
 class Navigation_Menu extends Base {
 
@@ -946,7 +946,7 @@ class Navigation_Menu extends Base {
 	protected function render_raw() {
 		$settings = $this->get_settings_for_display();
 
-		$walker = ( class_exists( '\Happy_Addons\Elementor\Extension\HANav_Menu_Walker' ) ? new \Happy_Addons\Elementor\Extension\HANav_Menu_Walker() : '' );
+		$walker = ( class_exists( '\Happy_Addons\Elementor\Extensions\HANav_Menu_Walker' ) ? new \Happy_Addons\Elementor\Extensions\HANav_Menu_Walker() : '' );
 		ob_start(); ?>
 				<div class="ha-nav-humberger-wrapper">
 					<span class="ha-menu-open-icon ha-menu-toggler" data-humberger="open"><?php Icons_Manager::render_icon( $settings['hamburger_icon'], [ 'aria-hidden' => 'true' ] ); ?></span>
@@ -958,7 +958,7 @@ class Navigation_Menu extends Base {
 			$args = array(
 				'items_wrap'    => $icon_markup . '<ul id="%1$s" class="%2$s">%3$s</ul>',
 				'menu'          => $settings['nav_menu_list'],
-				'fallback_cb'   => '\Happy_Addons\Elementor\Extension\HANav_Menu_Walker::fallback',
+				'fallback_cb'   => '\Happy_Addons\Elementor\Extensions\HANav_Menu_Walker::fallback',
 				'depth'         => 4,
 				'link_before'   => '<span class="menu-item-title">',
 				'link_after'    => '</span>',

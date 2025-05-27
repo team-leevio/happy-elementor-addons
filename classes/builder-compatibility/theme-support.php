@@ -1,8 +1,8 @@
 <?php
 
-namespace Happy_Addons\Elementor\Theme_Hooks;
+namespace Happy_Addons\Elementor\Classes\Builder_Compatibility;
 
-use Happy_Addons\Elementor\Condition_Manager;
+use Happy_Addons\Elementor\Classes\Condition_Manager;
 
 defined('ABSPATH') || exit;
 

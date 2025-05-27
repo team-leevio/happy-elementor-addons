@@ -1,6 +1,6 @@
 <?php
 
-use Happy_Addons\Elementor\Theme_Builder;
+use Happy_Addons\Elementor\Classes\Theme_Builder;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly

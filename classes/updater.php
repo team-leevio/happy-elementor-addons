@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
@@ -53,5 +53,3 @@ class Updater {
         return version_compare( self::get_new_version(), self::get_old_version(), '>' );
     }
 }
-
-Updater::init();

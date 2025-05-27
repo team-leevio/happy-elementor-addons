@@ -1,14 +1,14 @@
-<?php 
-namespace Happy_Addons\Elementor\Theme_Hooks;
+<?php
+namespace Happy_Addons\Elementor\Classes\Builder_Compatibility;
 
-use Happy_Addons\Elementor\Theme_Builder;
+use Happy_Addons\Elementor\Classes\Theme_Builder;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * MyListing support for the header footer.
+ * My_Listing support for the header footer.
  */
-class MyListing {
+class My_Listing {
 
 
 	/**
@@ -16,7 +16,7 @@ class MyListing {
 	 */
 	function __construct($template_ids) {
 		global $ha__template_ids;
-		
+
 		$ha__template_ids = $template_ids;
 		include 'my-listing-functions.php';
 	}

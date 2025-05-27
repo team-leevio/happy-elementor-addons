@@ -5,7 +5,7 @@
  * @package HappyAddons
  * @author HappyMonster
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 use Elementor\TemplateLibrary\Source_Base;
 

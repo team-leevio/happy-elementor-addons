@@ -1,11 +1,11 @@
 <?php
 
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined('ABSPATH') || die();
 
 use Exception;
-use Happy_Addons\Elementor\Conditions_Cache;
+use Happy_Addons\Elementor\Classes\Conditions_Cache;
 
 class Condition_Manager {
     public static $instance = null;
@@ -16,7 +16,8 @@ class Condition_Manager {
     private $location_cache = [];
 
     public function __construct() {
-        $this->cache = new Conditions_Cache();
+        // $this->cache = new Conditions_Cache();
+        $this->cache = Conditions_Cache::instance();
 
         add_action('wp_ajax_ha_condition_autocomplete', [$this, 'process_autocomplete']);
         add_action('wp_ajax_ha_condition_update', [$this, 'process_condition_update']);
@@ -822,4 +823,3 @@ EOF;
     }
 }
 
-// Condition_Manager::instance();

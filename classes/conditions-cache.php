@@ -1,12 +1,21 @@
 <?php
 
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
 class Conditions_Cache {
+
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
+	}
 
     const OPTION_NAME = 'happy_theme_elements_conditions';
 

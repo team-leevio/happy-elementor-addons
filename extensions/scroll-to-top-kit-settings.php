@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;

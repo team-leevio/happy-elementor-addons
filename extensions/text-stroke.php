@@ -4,7 +4,7 @@
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
@@ -12,21 +12,15 @@ use Happy_Addons\Elementor\Controls\Group_Control_Text_Stroke;
 
 defined('ABSPATH') || die();
 
-class Widgets_Extended {
+class Text_Stroke {
 
-	public static function init() {
-		add_action( 'elementor/element/button/section_style/after_section_start', [ __CLASS__, 'add_button_controls' ] );
+	private static $instance = null;
 
-		if( ! in_array( 'text-stroke', ha_get_inactive_features() ) ){
-
-			add_action( 'elementor/element/heading/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
-			add_action( 'elementor/element/theme-page-title/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
-			add_action( 'elementor/element/theme-site-title/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
-			add_action( 'elementor/element/theme-post-title/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
-			add_action( 'elementor/element/woocommerce-product-title/section_title_style/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
-			add_action( 'elementor/element/animated-headline/section_style_text/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
-			add_action( 'elementor/element/ha-gradient-heading/_section_style_title/before_section_end', [ __CLASS__, 'add_text_stroke' ] );
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
+		 return self::$instance;
 	}
 
 	public static function add_text_stroke_old( Widget_Base $widget ) {
@@ -265,5 +259,3 @@ class Widgets_Extended {
 		$widget->end_popover();
 	}
 }
-
-Widgets_Extended::init();
