@@ -334,6 +334,6 @@ For a more detailed explanation check out the following documentation
 = 3.16.2 - 10 February 2025 =
 
 - Tweak: Add fade effect in Slider & Image Carousel widget.
-- Fix: plugin hook priority related issue
+- Fix: plugin hook priority related issue.
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)
