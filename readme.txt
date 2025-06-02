@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.16.3
+Version: 3.18.0
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
-Tested up to: 6.7
-Stable tag: 3.16.3
+Tested up to: 6.8
+Stable tag: 3.18.0
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -308,6 +308,25 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.18.0 - 3 June 2025 =
+
+- New: SVG Draw widget.
+
+= 3.17.0 - 27 May 2025 =
+
+- New: Introduced Autoloader which improves file loading process.
+- Update: Made Compatible with Elementor 3.29.
+
+= 3.16.5 - 14 May 2025 =
+
+- Update: Made Compatible with Elementor Feature Optimized Markup
+
+= 3.16.4 - 28 April 2025 =
+
+- Fix: _load_textdomain_just_in_time issue with WordPress 6.8
+- Fix: Resolved rowspan issue in the Data Table widget.
+- Update: Made Compatible with WordPress 6.8
+
 = 3.16.3 - 18 March 2025 =
 
 - Tweak: Add template condition menu in new UI app bar.
@@ -320,24 +339,5 @@ For a more detailed explanation check out the following documentation
 
 - Tweak: Add fade effect in Slider & Image Carousel widget.
 - Fix: plugin hook priority related issue
-
-= 3.16.1 - 21 January 2025 =
-
-- Update: Made Compatible with Elementor 3.27
-
-= 3.16.0 - 20 January 2025 =
-
-- New: Text Scroll widget.
-- Tweak: Custom Effect option added to Liquid Hover Image widget
-- Fix: Equal Height feature JavaScript error.
-- Fix: Edge cases with script loading and dependencies.
-
-= 3.15.2 - 24 December 2024 =
-
-- Fix: XSS security on Happy Mouse Cursor feature.
-
-= 3.15.1 - 15 December 2024 =
-
-- Fix: Some edge cases with Happy Mouse Cursor feature.
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)

@@ -1,4 +1,5 @@
-@import 'fonts';
+@use 'sass:color';
+@use 'fonts';
 
 $primary-color: #562dd4;
 $secondary-color: #e2498a;
@@ -1034,7 +1035,7 @@ body.toplevel_page_happy-addons-setup-wizard {
             border-color: #5A2ED2 !important;
 
             &:hover {
-                background: darken(#5A2ED2, 5%);
+                background: color.adjust(#5A2ED2, $lightness: -5%);
                 box-shadow: 0 3px 6px rgba($color: #5A2ED2, $alpha: 0.2);
             }
         }
@@ -1045,7 +1046,7 @@ body.toplevel_page_happy-addons-setup-wizard {
             border-color: $secondary-color !important;
 
             &:hover {
-                background: darken($secondary-color, 5%);
+                background: color.adjust($secondary-color, $lightness: -5%);
                 box-shadow: 0 3px 6px rgba($color: $secondary-color, $alpha: 0.16);
             }
         }
@@ -1057,7 +1058,7 @@ body.toplevel_page_happy-addons-setup-wizard {
             border-color: $secondary-color !important;
 
             &:hover {
-                background: darken($secondary-color, 5%);
+                background: color.adjust($secondary-color, $lightness: -5%);
                 box-shadow: 0 3px 6px rgba($color: $secondary-color, $alpha: 0.16);
             }
         }

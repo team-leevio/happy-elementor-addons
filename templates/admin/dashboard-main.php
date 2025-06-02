@@ -20,9 +20,9 @@ defined( 'ABSPATH' ) || die();
                         $class .= ' nav-item-is--link';
                     }
 
-                    if ( $tab_count === 1 ) {
-                        $class .= ' tab--is-active';
-                    }
+                    // if ( $tab_count === 1 ) {
+                    //     $class .= ' tab--is-active';
+                    // }
 
                     if ( ! empty( $data['href'] ) ) {
                         $href = esc_url( $data['href'] );
@@ -52,9 +52,9 @@ defined( 'ABSPATH' ) || die();
                     }
 
                     $class = 'ha-dashboard-tabs__content-item';
-                    if ( $tab_count === 1 ) {
-                        $class .= ' tab--is-active';
-                    }
+                    // if ( $tab_count === 1 ) {
+                    //     $class .= ' tab--is-active';
+                    // }
 
                     $slug = esc_attr( strtolower( $slug ) );
                     ?>

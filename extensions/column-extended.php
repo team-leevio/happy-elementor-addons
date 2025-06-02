@@ -4,7 +4,7 @@
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 use Elementor\Element_Column;
@@ -13,9 +13,14 @@ defined('ABSPATH') || die();
 
 class Column_Extended {
 
-    public static function init() {
-        add_action( 'elementor/element/column/layout/before_section_end', [ __CLASS__, 'add_controls' ] );
-    }
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
+	}
 
     public static function add_controls( Element_Column $element ) {
         $element->add_responsive_control(
@@ -51,5 +56,3 @@ href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/O
         );
     }
 }
-
-Column_Extended::init();

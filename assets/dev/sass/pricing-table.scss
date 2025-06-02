@@ -9,6 +9,13 @@
 		overflow: hidden;
 		@include widgetContainerBaseStyle;
 	}
+	
+	&:not(:has(.elementor-widget-container)) {
+		padding: 3em 4em;
+		position: relative;
+		overflow: hidden;
+		@include widgetContainerBaseStyle;
+	}
 
 	&-badge {
 		position: absolute;

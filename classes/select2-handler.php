@@ -1,15 +1,11 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
 use Exception;
 
 class Select2_Handler {
-
-	public static function init() {
-		add_action( 'wp_ajax_ha_process_dynamic_select', [ __CLASS__, 'process_request' ] );
-	}
 
 	protected static function validate_reqeust() {
 		$nonce = ! empty( $_REQUEST['nonce'] ) ? $_REQUEST['nonce'] : '';
@@ -170,5 +166,3 @@ class Select2_Handler {
 
 	}
 }
-
-Select2_Handler::init();

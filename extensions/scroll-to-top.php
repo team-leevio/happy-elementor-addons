@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use \Elementor\Controls_Manager;
 
@@ -257,4 +257,3 @@ class Scroll_To_Top {
 	}
 
 }
-Scroll_To_Top::instance()->init();

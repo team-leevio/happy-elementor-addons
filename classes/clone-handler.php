@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
@@ -11,15 +11,6 @@ class Clone_Handler {
 	 * Request and nonce action name
 	 */
 	const ACTION = 'ha_duplicate_thing';
-
-	/**
-	 * Register hooks and initialize
-	 */
-	public static function init() {
-		add_action( 'admin_action_' . self::ACTION, [ __CLASS__, 'duplicate_thing' ] );
-		add_filter( 'post_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
-		add_filter( 'page_row_actions', [ __CLASS__, 'add_row_actions' ], 10, 2 );
-	}
 
 	/**
 	 * Check if current user can clone
@@ -229,5 +220,3 @@ class Clone_Handler {
 	}
 
 }
-
-Clone_Handler::init();

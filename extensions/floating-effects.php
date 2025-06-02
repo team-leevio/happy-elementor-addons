@@ -4,7 +4,7 @@
  *
  * @package Happy_Addons
  */
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Element_Base;
 use Elementor\Controls_Manager;
@@ -13,12 +13,13 @@ defined( 'ABSPATH' ) || die();
 
 class Floating_Effects {
 
-	public static function init() {
-		add_action( 'elementor/element/common/_section_style/after_section_end', [ __CLASS__, 'register' ], 1 );
+	private static $instance = null;
 
-		add_action( 'elementor/frontend/before_register_scripts', [ __CLASS__, 'register_scripts' ] );
-
-		add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'preview_enqueue_scripts' ] );
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
 	}
 
 	public static function preview_enqueue_scripts() {
@@ -512,5 +513,3 @@ class Floating_Effects {
 		$element->end_controls_section();
 	}
 }
-
-Floating_Effects::init();

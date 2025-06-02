@@ -1,7 +1,7 @@
-<?php 
-namespace Happy_Addons\Elementor\Theme_Hooks;
+<?php
+namespace Happy_Addons\Elementor\Classes\Builder_Compatibility;
 
-use Happy_Addons\Elementor\Theme_Builder;
+use Happy_Addons\Elementor\Classes\Theme_Builder;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -47,29 +47,29 @@ class Generatepress {
 	public function remove_theme_header_markup() {
 		remove_action( 'generate_header', 'generate_construct_header' );
   }
-    
+
   public function add_plugin_header_markup(){
 		do_action('happyaddons/template/before_header');
 		echo '<div class="ekit-template-content-markup ekit-template-content-header">';
-		echo Theme_Builder::render_builder_data($this->header); 
+		echo Theme_Builder::render_builder_data($this->header);
 		echo '</div>';
 		do_action('happyaddons/template/after_header');
   }
- 
+
 
 	// footer actions
 	public function remove_theme_footer_markup() {
 		remove_action( 'generate_footer', 'generate_construct_footer_widgets', 5 );
 		remove_action( 'generate_footer', 'generate_construct_footer' );
   }
-    
+
   public function add_plugin_footer_markup(){
 		do_action('happyaddons/template/before_footer');
 		echo '<div class="ekit-template-content-markup ekit-template-content-footer">';
-		echo Theme_Builder::render_builder_data($this->footer); 
+		echo Theme_Builder::render_builder_data($this->footer);
 		echo '</div>';
 		do_action('happyaddons/template/after_footer');
   }
- 
+
 
 }

@@ -1,16 +1,9 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
 class Admin_Bar {
-
-	public static function init() {
-		add_action( 'admin_bar_menu', [__CLASS__, 'add_toolbar_items'], 500 );
-		add_action( 'wp_enqueue_scripts', [__CLASS__, 'enqueue_assets'] );
-		add_action( 'admin_enqueue_scripts', [__CLASS__, 'enqueue_assets'] );
-		add_action( 'wp_ajax_ha_clear_cache', [__CLASS__, 'clear_cache' ] );
-	}
 
 	public static function clear_cache() {
 		if ( ! current_user_can( 'manage_options' ) ) {
@@ -79,7 +72,7 @@ class Admin_Bar {
 		);
 
 		wp_enqueue_script( 'wp-api' );
-		
+
 		wp_enqueue_script(
 			'alpine',
 			'//unpkg.com/alpinejs',
@@ -87,7 +80,7 @@ class Admin_Bar {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
-		
+
 		wp_localize_script(
 			'happy-elementor-addons-admin',
 			'HappyAdmin',
@@ -138,5 +131,3 @@ class Admin_Bar {
 		] );
 	}
 }
-
-Admin_Bar::init();

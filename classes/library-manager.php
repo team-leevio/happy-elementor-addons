@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 use Elementor\Core\Common\Modules\Ajax\Module as Ajax;
 
@@ -8,11 +8,6 @@ defined('ABSPATH') || die();
 class Library_Manager {
 
 	protected static $source = null;
-
-	public static function init() {
-		add_action( 'elementor/editor/footer', [ __CLASS__, 'print_template_views' ] );
-		add_action( 'elementor/ajax/register_actions', [ __CLASS__, 'register_ajax_actions' ] );
-	}
 
 	public static function print_template_views() {
 		include_once HAPPY_ADDONS_DIR_PATH . 'templates/template-library/templates.php';
@@ -128,5 +123,3 @@ class Library_Manager {
 		];
 	}
 }
-
-Library_Manager::init();

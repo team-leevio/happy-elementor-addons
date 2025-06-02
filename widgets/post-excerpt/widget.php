@@ -124,7 +124,8 @@ class Post_Excerpt extends Base {
 				],
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};'
+					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}}:not(:has(.elementor-widget-container))' => 'text-align: {{VALUE}};',
 				]
 			]
 		);
@@ -269,7 +270,10 @@ class Post_Excerpt extends Base {
 
 	protected function render() {
         $post = get_post();
-
+		// Exit early if there's no valid post object
+		if ( ! $post ) {
+			return;
+		}
 		$settings = $this->get_settings_for_display();
 
 		$length = $settings['excerpt_length'];

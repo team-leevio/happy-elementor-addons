@@ -2,7 +2,7 @@
 /**
  * HANav Menu Walker Class
  */
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 
 class HANav_Menu_Walker extends \Walker_Nav_Menu {

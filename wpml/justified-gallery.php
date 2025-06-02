@@ -2,11 +2,11 @@
 /**
  * Justified Gallery integration
  */
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
 
-class WPML_Justified_Gallery extends \WPML_Elementor_Module_With_Items  {
+class Justified_Gallery extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string

@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 use Elementor\Element_Base;
@@ -9,10 +9,13 @@ defined( 'ABSPATH' ) || die();
 
 class Shape_Divider {
 
-	public static function init() {
-		add_filter( 'elementor/shapes/additional_shapes', [__CLASS__, 'additional_shape_divider'] );
-		add_action( 'elementor/element/section/section_shape_divider/before_section_end', [__CLASS__, 'update_shape_list'] );
-		add_action( 'elementor/element/container/section_shape_divider/before_section_end', [__CLASS__, 'update_shape_list'] );
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
 	}
 
 	public static function update_shape_list( Element_Base $element ) {
@@ -283,5 +286,3 @@ class Shape_Divider {
 		return array_merge( $happy_shapes, $shape_list );
 	}
 }
-
-Shape_Divider::init();

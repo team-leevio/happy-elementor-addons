@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 use Elementor\Element_Base;
@@ -8,13 +8,13 @@ defined('ABSPATH') || die();
 
 class Wrapper_Link {
 
-	public static function init() {
-		add_action( 'elementor/element/container/section_layout/after_section_end', [ __CLASS__, 'add_controls_section' ], 1 );
-		add_action( 'elementor/element/column/section_advanced/after_section_end', [ __CLASS__, 'add_controls_section' ], 1 );
-		add_action( 'elementor/element/section/section_advanced/after_section_end', [ __CLASS__, 'add_controls_section' ], 1 );
-		add_action( 'elementor/element/common/_section_style/after_section_end', [ __CLASS__, 'add_controls_section' ], 1 );
+	private static $instance = null;
 
-		add_action( 'elementor/frontend/before_render', [ __CLASS__, 'before_section_render' ], 1 );
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
 	}
 
 	public static function add_controls_section( Element_Base $element) {
@@ -63,5 +63,3 @@ class Wrapper_Link {
 		}
 	}
 }
-
-Wrapper_Link::init();

@@ -1,14 +1,9 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
-class Review_Us {
-
-    public static function init() {
-        add_action( 'admin_init', [__CLASS__, 'ha_void_check_installation_time'] );
-        add_action( 'admin_init', [__CLASS__, 'ha_void_spare_me'], 5 );
-    }
+class Review {
 
     //check if review notice should be shown or not
     public static function ha_void_check_installation_time() {
@@ -21,7 +16,7 @@ class Review_Us {
 
         $install_date = get_option( 'happy_addons_activation_time', strtotime("now") );
         $past_date    = strtotime( '-10 days' );
-        
+
         $remind_time = get_option( 'ha__remind_me', strtotime("now"));
         $remind_due  = strtotime( '+15 days', $remind_time );
         $now         = strtotime( "now" );
@@ -104,5 +99,3 @@ class Review_Us {
         return remove_query_arg( [ '_wpnonce', '_wc_notice_nonce', 'wc_db_update', 'wc_db_update_nonce', 'wc-hide-notice' ], admin_url( $uri ) );
     }
 }
-
-Review_Us::init();

@@ -7,6 +7,10 @@
 
 	@include widgetContainerBase;
 
+	&:not(:has(.elementor-widget-container)) {
+		@include widgetContainerBaseStyle
+	}
+	
 	.twentytwenty-container,
 	.twentytwenty-wrapper {
 		border-radius: inherit;

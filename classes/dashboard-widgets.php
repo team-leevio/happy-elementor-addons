@@ -1,15 +1,22 @@
 <?php
 
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
 class Dashboard_Widgets {
 
-	private static $instance;
+	private static $instance = null;
 
-	public function init() {
-		add_action( 'wp_dashboard_setup', [$this, 'add_dashboard_widgets'], 9999 );
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
+	}
+
+	public static function dashboard_widgets_handler() {
+		self::instance()->add_dashboard_widgets();
 	}
 
 	/**
@@ -155,13 +162,4 @@ class Dashboard_Widgets {
 
 		return $data;
 	}
-
-	public static function instance() {
-		if ( ! self::$instance ) {
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
 }
-
-Dashboard_Widgets::instance()->init();

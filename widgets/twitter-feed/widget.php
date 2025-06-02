@@ -378,7 +378,8 @@ class Twitter_Feed extends Base {
 				'toggle' => false,
 				'prefix_class' => 'ha-twitter-',
 				'selectors' => [
-					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};'
+					'{{WRAPPER}} .elementor-widget-container' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}}:not(:has(.elementor-widget-container))' => 'text-align: {{VALUE}};',
 				]
 			]
 		);

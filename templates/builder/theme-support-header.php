@@ -27,11 +27,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     <div class="ha-template-content-markup ha-template-content-header ha-template-content-theme-support">
         <?php
-        // $template = \Happy_Addons\Elementor\Theme_Builder::template_ids();
-        // echo \Happy_Addons\Elementor\Theme_Builder::render_builder_data($template[0]);
+        // $template = \Happy_Addons\Elementor\Classes\Theme_Builder::template_ids();
+        // echo \Happy_Addons\Elementor\Classes\Theme_Builder::render_builder_data($template[0]);
 
         // $template = \Happy_Addons\Elementor\Condition_Manager::instance()->get_location_templates('header');
-        echo \Happy_Addons\Elementor\Theme_Builder::instance()->render_builder_data_location('header');
+        echo \Happy_Addons\Elementor\Classes\Theme_Builder::instance()->render_builder_data_location('header');
         ?>
     </div>
     <?php do_action('happyaddons/template/after_header'); ?>

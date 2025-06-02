@@ -1,5 +1,5 @@
-<?php 
-namespace Happy_Addons\Elementor\Theme_Hooks;
+<?php
+namespace Happy_Addons\Elementor\Classes\Builder_Compatibility;
 
 defined( 'ABSPATH' ) || exit;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Box_Shadow;
@@ -49,7 +49,7 @@ class Reading_Progress_Bar {
                 'elementor-frontend',
                 file_get_contents($extension_js)
             );
-        }  
+        }
     }
 
     public function enqueue_scripts_frontend () {
@@ -62,7 +62,7 @@ class Reading_Progress_Bar {
             ['jquery'],
             HAPPY_ADDONS_VERSION,
             true
-        ); 
+        );
 
     }
 
@@ -105,7 +105,7 @@ class Reading_Progress_Bar {
 				]
 			);
 		}
-		
+
 
 		$element->end_controls_section();
 	}
@@ -149,12 +149,12 @@ class Reading_Progress_Bar {
 		$reading_progress_is_enable = false;
 
 		if ($rpb_enable === 'yes') {
-			
+
 			if ($global_enable === 'globally') {
 				$display_condition = $this->elementor_get_setting('ha_rpb_global_display_condition');
 
 				$current_post_type = get_post_type();
-				
+
 				if (is_array($display_condition) && in_array($current_post_type, $display_condition)) {
 					$reading_progress_is_enable = true;
 				}
@@ -179,7 +179,7 @@ class Reading_Progress_Bar {
 			'progress_bar_type' => $progress_bar_type,
 			'rpb_vertical_position' => $rpb_vertical_position,
 		];
-        
+
         if ( ha_elementor()->preview->is_preview_mode() ) {
 
 			/*if ($global_enable === 'globally') {
@@ -200,11 +200,11 @@ class Reading_Progress_Bar {
 					</svg>
 					<div class="hm-progress-percent-text">0%</div>
 				</div>
-			
+
 			<div id="hm_vrp_bar_wrapper" class="hm-vrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>" style="opacity:0">
 				<div class="hm-vrp-bar"></div>
 			</div>
-			
+
 			<div id="hm_hrp_bar_wrapper" class="hm-hrp-bar-container ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>" style="opacity:0">
 				<div class="hm-hrp-bar">
 					<span class="hm-tool-tip hm-tool-tip-<?php echo esc_attr($horizontal_position); ?>">0%</span>
@@ -214,7 +214,7 @@ class Reading_Progress_Bar {
 			<script>
 				;(function($) {
 					'use strict';
-					
+
 					let rpbContainer = $('.ha-reading-progress-bar');
 
 					if(rpbContainer.rpbContainer <= 0) {
@@ -227,7 +227,7 @@ class Reading_Progress_Bar {
 					let global_enable = "<?php echo $global_enable; ?>";
 					let single_enable = "<?php echo $single_enable; ?>";
 					let single_disable = "<?php echo $single_disable; ?>";
-					
+
 					if( global_enable == 'globally' ) {
 						if( single_disable !== 'yes' ) {
 							if( rpbDefaultType == 'horizontal' ) {
@@ -288,10 +288,10 @@ class Reading_Progress_Bar {
 						$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
 						$('.hm-crp-wrapper').css({'opacity':1, 'transition':'opacity 0.3s'});
 					}
-					
+
 					window.addEventListener('message',function(e) {
 						let data = e.data;
-						
+
 						if( 'rpbMessage' == data.check ) {
 
 							if (e.origin != window.origin) {
@@ -303,7 +303,7 @@ class Reading_Progress_Bar {
 
 							let changeValue = data.changeValue;
 							let changeItem = data.changeItem;
-							let rpbDefaultType = "<?php echo $progress_bar_type;  ?>";						
+							let rpbDefaultType = "<?php echo $progress_bar_type;  ?>";
 
 							// Check enable
 							if (changeItem[0] == 'ha_rpb_enable') {
@@ -333,7 +333,7 @@ class Reading_Progress_Bar {
 							if ( changeItem[0] == 'ha_rpb_apply_globally' ) {
 								let single_enable = "<?php echo $single_enable; ?>";
 								let single_disable = "<?php echo $single_disable; ?>";
-								
+
 								if( changeValue == 'globally' ) {
 									if( single_disable !== 'yes' ) {
 										if( rpbDefaultType == 'horizontal' ) {
@@ -358,8 +358,8 @@ class Reading_Progress_Bar {
 										$('.ha-reading-progress-bar').css({'opacity':0, 'transition':'opacity 0.3s'});
 										return;
 									}
-								} 
-								
+								}
+
 							}
 
 							// Check type
@@ -384,7 +384,7 @@ class Reading_Progress_Bar {
 									$('.hm-vrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
 									$('.hm-crp-wrapper').css({'opacity':1, 'transition':'opacity 0.3s'});
 								}
-								
+
 							}
 
 							// Start scrolling
@@ -399,7 +399,7 @@ class Reading_Progress_Bar {
 								if (scrollPercent > 100) {
 									scrollPercent = 100;
 								}
-								
+
 								if( rpbDefaultType == 'horizontal' ) {
 									$('.hm-hrp-bar').css({'display': 'flex'});
 									$('.hm-hrp-bar').width(position + '%');
@@ -429,7 +429,7 @@ class Reading_Progress_Bar {
 								} else if (rpbDefaultType == 'circle') {
 									let circleRadius = 45;
 									let circumference = 2 * Math.PI * circleRadius;
-							
+
 									let offset = Math.round(circumference - (scrollPercent / 100) * circumference);
 
 									if( scrollPercent >= 0 ) {
@@ -450,11 +450,11 @@ class Reading_Progress_Bar {
 									$('.hm-hrp-bar .hm-tool-tip').addClass('hm-tool-tip-top');
 								}
 							}
-							
+
 							// Check vertical position
 							if ( changeItem[0] == 'ha_rpb_vertical_position' ) {
 								if ( changeValue == 'right' ) {
-									$('body').addClass('no-scroll'); 
+									$('body').addClass('no-scroll');
 								} else if( changeValue == 'left' ) {
 									$('body').removeClass('no-scroll');
 								}
@@ -463,14 +463,14 @@ class Reading_Progress_Bar {
 						}
 
 					});
-					
+
 				}(jQuery));
 			</script>
 
 		<?php }
 
 		if ( ! ha_elementor()->preview->is_preview_mode() ) {
-			
+
 			if( ! $reading_progress_is_enable ) {
 				return;
 			}
@@ -481,7 +481,7 @@ class Reading_Progress_Bar {
 						<circle class="hm-progress-background" cx="50" cy="50" r="45"></circle>
 						<circle class="hm-progress-circle" cx="50" cy="50" r="45"></circle>
 					</svg>
-					<?php if( 'yes' == $enable_circle_percentage){ ?> 
+					<?php if( 'yes' == $enable_circle_percentage){ ?>
 						<div class="hm-progress-percent-text">0%</div>
 					<?php } ?>
 				</div>
@@ -495,9 +495,9 @@ class Reading_Progress_Bar {
 					<span class="hm-tool-tip hm-tool-tip-<?php echo esc_attr($horizontal_position); ?>">0%</span>
 				</div>
 			</div>
-		<?php } 
+		<?php }
 		} ?>
-        
+
 		<style>
 			.hm-hrp-bar-container {
 				width: 100%;
@@ -684,7 +684,7 @@ class Reading_Progress_Bar {
 
 		if ( class_exists( 'ElementorPro\Modules\ThemeBuilder\Module' ) ) {
 			$conditions_manager = \ElementorPro\Plugin::instance()->modules_manager->get_modules( 'theme-builder' )->get_conditions_manager();
-		
+
 			if( ! empty( $conditions_manager->get_documents_for_location( 'archive') ) || ! empty( $conditions_manager->get_documents_for_location( 'single') ) ) {
 				$is_archive_template = true;
 			}
@@ -703,7 +703,7 @@ class Reading_Progress_Bar {
 					foreach( $page_body_classes as $page_body_class){
 						if ( strpos( $page_body_class, 'elementor-page-' ) !== FALSE ) {
 							$template_id = intval( str_replace('elementor-page-', '', $page_body_class) );
-						} 
+						}
 					}
 				}
 			}
@@ -713,5 +713,3 @@ class Reading_Progress_Bar {
 	}
 
 }
-
-Reading_Progress_Bar::instance()->init();

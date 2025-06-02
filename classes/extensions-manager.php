@@ -1,7 +1,9 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
+
+use Happy_Addons\Elementor\Extensions as Features;
 
 class Extensions_Manager {
 	const FEATURES_DB_KEY = 'happyaddons_inactive_features';
@@ -10,24 +12,6 @@ class Extensions_Manager {
 	 * Initialize
 	 */
 	public static function init() {
-		// include_once HAPPY_ADDONS_DIR_PATH . 'extensions/column-extended.php';
-		include_once HAPPY_ADDONS_DIR_PATH . 'extensions/widgets-extended.php';
-
-		if ( is_user_logged_in() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'classes/review.php';
-		}
-
-		if ( is_user_logged_in() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'classes/notice.php';
-		}
-
-		if ( is_user_logged_in() && ha_is_adminbar_menu_enabled() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'classes/admin-bar.php';
-		}
-
-		if ( is_user_logged_in() && ha_is_happy_clone_enabled() ) {
-			include_once HAPPY_ADDONS_DIR_PATH . 'classes/clone-handler.php';
-		}
 
 		$inactive_features = self::get_inactive_features();
 
@@ -138,12 +122,6 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/elementor-css-transform-demo-3/',
 				'is_pro' => false,
 			],
-			'css-transform' => [
-				'title' => __( 'CSS Transform', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-3d-rotate',
-				'demo' => 'https://happyaddons.com/elementor-css-transform-demo-3/',
-				'is_pro' => false,
-			],
 			'equal-height' => [
 				'title' => __( 'Equal Height Column', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-grid-layout',
@@ -177,13 +155,13 @@ class Extensions_Manager {
 			'scroll-to-top' => [
 				'title' => __( 'Scroll To Top', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-scroll-top',
-				// 'demo' => 'https://happyaddons.com/text-stroke/',
+				// 'demo' => 'https://happyaddons.com/scroll-to-top/',
 				'is_pro' => false,
 			],
 			'reading-progress-bar' => [
 				'title' => __( 'Reading Progress Bar', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-reading-glass-alt',
-				// 'demo' => 'https://happyaddons.com/text-reading-progress-bar/',
+				// 'demo' => 'https://happyaddons.com/reading-progress-bar/',
 				'is_pro' => false,
 			],
 			'custom-mouse-cursor' => [
@@ -196,10 +174,77 @@ class Extensions_Manager {
 	}
 
 	protected static function enable_feature( $feature_key ) {
-		$feature_file = HAPPY_ADDONS_DIR_PATH . 'extensions/' . $feature_key . '.php';
 
-		if ( is_readable( $feature_file ) ) {
-			include_once( $feature_file );
+		switch ($feature_key) {
+			case 'background-overlay':
+				add_action( 'elementor/element/common/_section_background/after_section_end', [Features\Background_Overlay::class, 'add_section'] );
+				break;
+
+			case 'grid-layer':
+				add_action('elementor/documents/register_controls', [Features\Grid_Layer::class, 'add_controls_section'] , 1 , 1 );
+				break;
+
+			case 'floating-effects':
+				add_action( 'elementor/element/common/_section_style/after_section_end', [ Features\Floating_Effects::class, 'register' ], 1 );
+				add_action( 'elementor/frontend/before_register_scripts', [ Features\Floating_Effects::class, 'register_scripts' ] );
+				add_action( 'elementor/preview/enqueue_scripts', [ Features\Floating_Effects::class, 'preview_enqueue_scripts' ] );
+				break;
+
+			case 'wrapper-link':
+				add_action( 'elementor/element/container/section_layout/after_section_end', [ Features\Wrapper_Link::class, 'add_controls_section' ], 1 );
+				add_action( 'elementor/element/column/section_advanced/after_section_end', [ Features\Wrapper_Link::class, 'add_controls_section' ], 1 );
+				add_action( 'elementor/element/section/section_advanced/after_section_end', [ Features\Wrapper_Link::class, 'add_controls_section' ], 1 );
+				add_action( 'elementor/element/common/_section_style/after_section_end', [ Features\Wrapper_Link::class, 'add_controls_section' ], 1 );
+				add_action( 'elementor/frontend/before_render', [ Features\Wrapper_Link::class, 'before_section_render' ], 1 );
+				break;
+
+			case 'css-transform':
+				add_action( 'elementor/element/common/_section_style/after_section_end', [ Features\CSS_Transform::class, 'register' ], 1 );
+				break;
+
+			case 'equal-height':
+				add_action( 'elementor/element/container/section_layout/after_section_end', [ Features\Equal_Height::class, 'register' ], 1 );
+				add_action( 'elementor/element/section/section_advanced/after_section_end', [ Features\Equal_Height::class, 'register' ], 1 );
+				add_action( 'elementor/frontend/before_register_scripts', [ Features\Equal_Height::class, 'register_scripts' ] );
+				add_action( 'elementor/preview/enqueue_scripts', [ Features\Equal_Height::class, 'enqueue_preview_scripts' ] );
+				break;
+
+			case 'shape-divider':
+				add_filter( 'elementor/shapes/additional_shapes', [Features\Shape_Divider::class, 'additional_shape_divider'] );
+				add_action( 'elementor/element/section/section_shape_divider/before_section_end', [Features\Shape_Divider::class, 'update_shape_list'] );
+				add_action( 'elementor/element/container/section_shape_divider/before_section_end', [Features\Shape_Divider::class, 'update_shape_list'] );
+				break;
+
+			case 'column-extended':
+				add_action( 'elementor/element/column/layout/before_section_end', [ Features\Column_Extended::class, 'add_controls' ] );
+				break;
+
+			case 'advanced-tooltip':
+				add_action('elementor/element/common/_section_style/after_section_end', [Features\Advanced_Tooltip::class, 'add_controls_section'], 1);
+				add_action( 'elementor/frontend/before_register_scripts', [ Features\Advanced_Tooltip::class, 'register_scripts' ] );
+				add_action( 'elementor/preview/enqueue_scripts', [ Features\Advanced_Tooltip::class, 'enqueue_preview_scripts' ] );
+				break;
+
+			case 'text-stroke':
+				add_action( 'elementor/element/button/section_style/after_section_start', [ Features\Text_Stroke::class, 'add_button_controls' ] );
+				if( ! in_array( 'text-stroke', ha_get_inactive_features() ) ) {
+					add_action( 'elementor/element/heading/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
+					add_action( 'elementor/element/theme-page-title/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
+					add_action( 'elementor/element/theme-site-title/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
+					add_action( 'elementor/element/theme-post-title/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
+					add_action( 'elementor/element/woocommerce-product-title/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
+					add_action( 'elementor/element/animated-headline/section_style_text/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
+					add_action( 'elementor/element/ha-gradient-heading/_section_style_title/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
+				}
+				break;
+
+			case 'scroll-to-top':
+			case 'reading-progress-bar':
+			case 'custom-mouse-cursor':
+				$cls_name = ucwords( str_replace( '-', ' ', $feature_key ) ); //remove ' - ' & uc first later
+				$cls_name = '\Happy_Addons\Elementor\Extensions\\' . str_replace( ' ', '_', $cls_name );
+				$cls_name::instance()->init();
+				break;
 		}
 	}
 
@@ -227,5 +272,3 @@ class Extensions_Manager {
 		}
 	}
 }
-
-Extensions_Manager::init();

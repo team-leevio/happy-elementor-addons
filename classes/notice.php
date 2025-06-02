@@ -1,16 +1,9 @@
 <?php
-namespace Happy_Addons\Elementor;
+namespace Happy_Addons\Elementor\Classes;
 
 defined( 'ABSPATH' ) || die();
 
-class Advance_Notice {
-
-	public static function init() {
-		if ( ! ( in_array( 'happy-elementor-addons-pro/happy-elementors-addons-pro.php', (array) get_option( 'active_plugins', [] ), true ) ) ) {
-			add_action( 'admin_init', [__CLASS__, 'ha_void_check_installation_time'] );
-			add_action( 'admin_init', [__CLASS__, 'ha_void_spare_me'], 5 );
-		}
-	}
+class Notice {
 
 	//check if the notice should be shown or not
 	public static function ha_void_check_installation_time() {
@@ -24,7 +17,7 @@ class Advance_Notice {
 		// if ( 'not_interested' == $black_friday_notice ) {
 		// 	return;
 		// }
-		
+
 		$black_friday_notice = get_option( 'ha__wedevs_12th_anniversary_notice', '0' );
 		if ( 'not_interested' == $black_friday_notice ) {
 			return;
@@ -117,5 +110,3 @@ class Advance_Notice {
 		return remove_query_arg( ['_wpnonce', '_wc_notice_nonce', 'wc_db_update', 'wc_db_update_nonce', 'wc-hide-notice'], admin_url( $uri ) );
 	}
 }
-
-Advance_Notice::init();

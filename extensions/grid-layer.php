@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 
@@ -7,8 +7,13 @@ defined( 'ABSPATH' ) || die();
 
 class Grid_Layer {
 
-	public static function init() {
-		add_action('elementor/documents/register_controls', [__CLASS__, 'add_controls_section'] , 1 , 1 );
+	private static $instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		 return self::$instance;
 	}
 
 	public static function add_controls_section( $element ) {
@@ -236,5 +241,3 @@ class Grid_Layer {
 	}
 
 }
-
-Grid_Layer::init();

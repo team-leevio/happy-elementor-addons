@@ -9,6 +9,9 @@
 	--ha-review-right-body-width: calc(100% - var(--ha-review-media-width) + (var(--ha-review-media-offset-x)));
 
 	@include widgetContainerBase;
+	&:not(:has(.elementor-widget-container)) {
+		@include widgetContainerBaseStyle;
+	}
 
 	&-header {
 		margin-top: 25px;
@@ -73,6 +76,9 @@
 		@include widgetContainer {
 			padding: 25px;
 		}
+		&:not(:has(.elementor-widget-container)){
+			padding: 25px;
+		}
 
 		.ha-review-figure {
 			display: inline-block;
@@ -89,6 +95,11 @@
 		--ha-review-media-width: 150px;
 
 		@include widgetContainer {
+			display: flex;
+			align-items: center;
+		}
+
+		&:not(:has(.elementor-widget-container)) {
 			display: flex;
 			align-items: center;
 		}
@@ -114,6 +125,11 @@
 			padding-left: 25px;
 		}
 
+		&:not(:has(.elementor-widget-container)){
+			flex-direction: row;
+			padding-left: 25px;
+		}
+
 		.ha-review {
 			&-body {
 				flex: 0 0 var(--ha-review-left-body-width);
@@ -125,6 +141,12 @@
 
 	&--right {
 		@include widgetContainer {
+			flex-direction: row-reverse;
+			padding-right: 25px;
+			text-align: right;
+		}
+
+		&:not(:has(.elementor-widget-container)) {
 			flex-direction: row-reverse;
 			padding-right: 25px;
 			text-align: right;

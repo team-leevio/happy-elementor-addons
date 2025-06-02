@@ -1,5 +1,5 @@
 <?php
-namespace Happy_Addons\Elementor\Extension;
+namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
@@ -124,7 +124,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
                     'ha_rpb_enable' => 'yes',
                 ],
             ]
-        );      
+        );
 
         // Start circle
 		$this->add_control(
@@ -322,7 +322,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 				]
 			]
 		); // end top-left
-        
+
         $this->add_responsive_control(
 			'ha_rpb_circle_offset_x_br',
 			[
@@ -379,7 +379,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 				]
 			]
 		); // end bottom-right
-        
+
         $this->add_responsive_control(
 			'ha_rpb_circle_offset_x_bl',
 			[
@@ -689,7 +689,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
                 ],
 			]
         );
-		
+
 		$this->add_responsive_control(
             'ha_rpb_horizontal_offset_top',
             [
@@ -835,8 +835,8 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
                     'ha_rpb_enable' => 'yes',
                 ],
 			]
-		); 
-		
+		);
+
 		$this->add_control(
 			'hm_rpb_horizontal_percentage_heading',
 			[
@@ -919,7 +919,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 		);
 		// End Horizontal
 
-        
+
         // Start vertical
 		$this->add_control(
             'ha_rpb_vertical_position',
@@ -1064,7 +1064,7 @@ class Reading_Progress_Bar_Kit_Setings extends Tab_Base {
 				$options[ $post_type->name ] = $post_type->label;
 			}
         }
-	
+
 		return $options;
     }
 }
