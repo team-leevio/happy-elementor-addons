@@ -308,9 +308,10 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.18.0 - 3 June 2025 =
+= 3.18.0 - 16 June 2025 =
 
 - New: SVG Draw widget.
+- Update: DOMPurify js library update.
 
 = 3.17.0 - 27 May 2025 =
 
