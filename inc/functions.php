@@ -167,28 +167,42 @@ function ha_is_elementor_version($operator = '<', $version = '2.6.0') {
  * @param string $new_icon_id
  * @param array $attributes
  */
-function ha_render_icon($settings = [], $old_icon_id = 'icon', $new_icon_id = 'selected_icon', $attributes = []) {
-	// Check if its already migrated
-	$migrated = isset($settings['__fa4_migrated'][$new_icon_id]);
-	// Check if its a new widget without previously selected icon using the old Icon control
-	$is_new = empty($settings[$old_icon_id]);
+/**
+ * @param array $settings
+ * @param $old_icon_id
+ * @param $new_icon_id
+ * @param array $attributes
+ */
+function ha_render_icon( $settings = [], $old_icon_id = 'icon', $new_icon_id = 'selected_icon', $attributes = [] ) {
+    // Function is modified by tanvir jonny to support happy-icons and happy-icons-svg library
+    // Check if its already migrated
+    $migrated = isset( $settings['__fa4_migrated'][$new_icon_id] );
+    // Check if its a new widget without previously selected icon using the old Icon control
+    $is_new = empty( $settings[$old_icon_id] );
+    if ( isset( $settings[$new_icon_id]['value'] ) && is_string( $settings[$new_icon_id]['value'] ) ) {
+        if ( preg_match( '/\bhm-[\w-]+/', $settings[$new_icon_id]['value'] ) ) {
+            if ( $settings[$new_icon_id]['library'] !== "happy-icons" ) {
+                $settings[$new_icon_id]['library'] = "happy-icons";
+            }
+        }
+    }
 
-	$attributes['aria-hidden'] = 'true';
+    if ( ha_is_elementor_version( '>=', '2.6.0' ) && ( $is_new || $migrated ) ) {
+        \Elementor\Icons_Manager::render_icon( $settings[$new_icon_id], $attributes );
 
-	if (ha_is_elementor_version('>=', '2.6.0') && ($is_new || $migrated)) {
-		\Elementor\Icons_Manager::render_icon($settings[$new_icon_id], $attributes);
-	} else {
-		if (empty($attributes['class'])) {
-			$attributes['class'] = $settings[$old_icon_id];
-		} else {
-			if (is_array($attributes['class'])) {
-				$attributes['class'][] = $settings[$old_icon_id];
-			} else {
-				$attributes['class'] .= ' ' . $settings[$old_icon_id];
-			}
-		}
-		printf('<i %s></i>', \Elementor\Utils::render_html_attributes($attributes));
-	}
+    } else {
+        if ( empty( $attributes['class'] ) ) {
+            $attributes['class'] = $settings[$old_icon_id];
+        } else {
+            if ( is_array( $attributes['class'] ) ) {
+                $attributes['class'][] = $settings[$old_icon_id];
+            } else {
+                $attributes['class'] .= ' ' . $settings[$old_icon_id];
+            }
+        }
+
+        printf( '<i %s></i>', \Elementor\Utils::render_html_attributes( $attributes ) );
+    }
 }
 
 /**

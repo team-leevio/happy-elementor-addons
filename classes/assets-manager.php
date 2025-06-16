@@ -269,10 +269,28 @@ class Assets_Manager {
 			false
 		);
 
+		// tweenmax js
+		wp_register_script(
+			'tweenmax',
+			HAPPY_ADDONS_ASSETS . 'vendor/tween-max.min.js',
+			[],
+			'3.12.5',
+			false
+		);
+
 		// gsap js
 		wp_register_script(
 			'gsap',
 			HAPPY_ADDONS_ASSETS . 'vendor/gsap/gsap.min.js',
+			[],
+			'3.12.5',
+			false
+		);
+
+		// motionpath js
+		wp_register_script(
+			'motionpath',
+			HAPPY_ADDONS_ASSETS . 'vendor/motionpath.js',
 			[],
 			'3.12.5',
 			false
@@ -335,6 +353,15 @@ class Assets_Manager {
 		wp_register_script(
 			'scroll-trigger',
 			HAPPY_ADDONS_ASSETS . 'vendor/scroll-trigger/scroll-trigger.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
+		// Scroll Magic
+		wp_register_script(
+			'scroll-magic',
+			HAPPY_ADDONS_ASSETS . 'vendor/scroll-magic/scroll-magic.js',
 			['gsap'],
 			HAPPY_ADDONS_VERSION,
 			true
@@ -626,5 +653,5 @@ class Assets_Manager {
 			);
 		}
 	}
-	
+
 }

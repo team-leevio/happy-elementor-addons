@@ -1,3 +1,8 @@
+= 3.18.0 - 16 June 2025 =
+
+- New: SVG Draw widget.
+- Update: DOMPurify js library update.
+
 = 3.17.0 - 27 May 2025 =
 
 - New: Introduced Autoloader which improves file loading process.

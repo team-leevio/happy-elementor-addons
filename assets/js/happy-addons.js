@@ -1510,5 +1510,111 @@ function haObserveTarget(target, callback) {
         $element: $scope
       });
     });
+
+    // SVG Draw Handler
+    var haSvgDrawHandler = ModuleHandler.extend({
+      onInit: function onInit() {
+        ModuleHandler.prototype.onInit.apply(this, arguments);
+        this.run();
+      },
+      bindEvents: function bindEvents() {
+        ScrollTrigger.config({
+          limitCallbacks: true,
+          ignoreMobileResize: true
+        });
+      },
+      run: function run() {
+        gsap.registerPlugin(ScrollTrigger);
+        var $scope = this.$element;
+        $scope.find("title").remove();
+        if (!$scope.hasClass("ha-svg-animated-yes")) return;
+        var elemID = $scope.data("id"),
+          settings = this.getElementSettings(),
+          scrollAction = settings.scroll_action,
+          scrollTrigger = null,
+          repeatDelay = parseFloat(settings.repeat_delay) || 0.5,
+          timeLine = new TimelineMax({
+            repeat: 0,
+            yoyo: false,
+            repeatDelay: 0.5
+          });
+        if ('automatic' === scrollAction) {
+          scrollTrigger = 'custom' !== settings.animate_trigger ? settings.animate_trigger : settings.animate_offset.size + "%";
+          var animRev = settings.anim_rev ? 'pause play reverse' : 'none';
+
+          // Configure the timeline
+          timeLine.repeat(settings.loop ? -1 : 0).yoyo(settings.yoyo).repeatDelay(settings.loop ? repeatDelay : 0);
+          ScrollTrigger.create({
+            trigger: '.elementor-element-' + elemID,
+            toggleActions: "play " + animRev,
+            start: "top " + scrollTrigger,
+            animation: timeLine
+          });
+        } else {
+          // Configure timeline for non-automatic cases
+          timeLine.repeat('hover' === scrollAction && settings.loop ? -1 : 0).yoyo('hover' === scrollAction && settings.yoyo).repeatDelay('hover' === scrollAction && settings.loop ? repeatDelay : 0);
+          if ('viewport' === scrollAction) {
+            scrollTrigger = settings.animate_offset.size / 100;
+          }
+        }
+        var fromOrTo = !$scope.hasClass("ha-svg-animation-rev-yes") ? 'from' : 'to',
+          $paths = $scope.find("path, circle, rect, square, ellipse, polyline, polygon, line"),
+          lastPathIndex = 0,
+          startOrEndPoint = 'from' === fromOrTo ? settings.animate_start_point.size : settings.animate_end_point.size;
+        $paths.each(function (pathIndex, path) {
+          var $path = $(path);
+          $path.attr("fill", "transparent");
+          if ($scope.hasClass("ha-svg-sync-together-yes")) pathIndex = 0;
+          lastPathIndex = pathIndex;
+
+          // Use the timeline's from/to methods
+          if (fromOrTo === 'from') {
+            timeLine.from($path, 1, {
+              PaSvgDrawer: (startOrEndPoint || 0) + "% 0"
+            }, pathIndex);
+          } else {
+            timeLine.to($path, 1, {
+              PaSvgDrawer: (startOrEndPoint || 0) + "% 0"
+            }, pathIndex);
+          }
+        });
+        if ('yes' === settings.svg_fill) {
+          if (lastPathIndex == 0) lastPathIndex = 1;
+          timeLine.to($paths, 1, {
+            fill: settings.svg_color,
+            stroke: settings.svg_stroke
+          }, lastPathIndex);
+        }
+        if ('viewport' === scrollAction) {
+          var controller = new ScrollMagic.Controller(),
+            scene = new ScrollMagic.Scene({
+              triggerElement: '.elementor-element-' + elemID,
+              triggerHook: scrollTrigger,
+              duration: settings.draw_speed ? settings.draw_speed.size * 1000 : "150%"
+            });
+          scene.setTween(timeLine).addTo(controller);
+        } else {
+          if (settings.frames) {
+            timeLine.duration(settings.frames);
+            timeLine.repeatDelay(repeatDelay);
+          }
+          if ('hover' === scrollAction) {
+            timeLine.pause();
+            $scope.find("svg").hover(function () {
+              timeLine.play();
+            }, function () {
+              timeLine.pause();
+            });
+          }
+        }
+      }
+    });
+
+    // Hook into Elementor's frontend ready event with svg draw
+    elementorFrontend.hooks.addAction('frontend/element_ready/ha-svg-draw.default', function ($scope) {
+      elementorFrontend.elementsHandler.addHandler(haSvgDrawHandler, {
+        $element: $scope
+      });
+    });
   });
 })(jQuery);

@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.17.0
+Version: 3.18.0
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 3.17.0
+Stable tag: 3.18.0
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -308,6 +308,11 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.18.0 - 16 June 2025 =
+
+- New: SVG Draw widget.
+- Update: DOMPurify js library update.
+
 = 3.17.0 - 27 May 2025 =
 
 - New: Introduced Autoloader which improves file loading process.
@@ -334,6 +339,6 @@ For a more detailed explanation check out the following documentation
 = 3.16.2 - 10 February 2025 =
 
 - Tweak: Add fade effect in Slider & Image Carousel widget.
-- Fix: plugin hook priority related issue.
+- Fix: plugin hook priority related issue
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)
