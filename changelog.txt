@@ -1,3 +1,7 @@
+= 3.18.1 - ## #### #### =
+
+- Fix: Undefined variable maxitems Fixed
+
 = 3.18.0 - 16 June 2025 =
 
 - New: SVG Draw widget.
