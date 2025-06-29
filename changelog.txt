@@ -1,6 +1,7 @@
 = 3.18.1 - ## #### #### =
 
 - Fix: Undefined variable maxitems Fixed
+- Fix: Template loading issue on content switcher under certain conditions.
 
 = 3.18.0 - 16 June 2025 =
 
