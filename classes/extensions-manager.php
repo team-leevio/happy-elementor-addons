@@ -51,7 +51,7 @@ class Extensions_Manager {
 	 * @return array
 	 */
 	public static function get_pro_features_map() {
-		return [
+		$pro_features_map = [
 			'display-conditions' => [
 				'title' => __( 'Display Condition', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-display-condition',
@@ -83,6 +83,8 @@ class Extensions_Manager {
 				'is_pro' => true,
 			],
 		];
+
+		return apply_filters( 'happyaddons_get_pro_features_map', $pro_features_map );
 	}
 
 	/**
