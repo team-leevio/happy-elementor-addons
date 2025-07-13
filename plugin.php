@@ -40,7 +40,7 @@ defined('ABSPATH') || die();
 
 
 if ( defined( 'HAPPY_ADDONS_DEV' ) && true == HAPPY_ADDONS_DEV ) {
-	define('HAPPY_ADDONS_VERSION', time() );
+	define('HAPPY_ADDONS_VERSION', '3.18.1' . time() );
 } else {
 	define( 'HAPPY_ADDONS_VERSION', '3.18.1' );
 }

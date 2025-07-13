@@ -313,6 +313,7 @@ For a more detailed explanation check out the following documentation
 - Fix: Undefined variable maxitems Fixed
 - Fix: Template loading issue on content switcher under certain conditions.
 - Fix: Text Stroke feature issue with the Fixed button width feature.
+- Update: Made Compatible with Elementor 3.30
 
 = 3.18.0 - 16 June 2025 =
 
