@@ -111,7 +111,7 @@ class Dashboard_Widgets {
 					<div class="ha-instruction ha-divider-bottom"><?php echo $promotion_banner['promotion_text']; ?></div>
 				<?php endif; ?>
 				<ul class="ha-overview__posts">
-					<?php if ( $maxitems == 0 ) : ?>
+					<?php if (($maxitems ?? null) === 0) : ?>
 						<li class="ha-overview__post"><?php _e( 'No items', 'happy-elementor-addons' ); ?></li>
 					<?php else : ?>
 						<?php foreach ( $rss_items as $item ) : ?>

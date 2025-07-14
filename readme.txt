@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.18.0
+Version: 3.18.1
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 3.18.0
+Stable tag: 3.18.1
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -308,6 +308,13 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.18.1 - 14 July 2025 =
+
+- Fix: Undefined variable maxitems Fixed
+- Fix: Template loading issue on content switcher under certain conditions.
+- Fix: Text Stroke feature issue with the Fixed button width feature.
+- Update: Made Compatible with Elementor 3.30
+
 = 3.18.0 - 16 June 2025 =
 
 - New: SVG Draw widget.
@@ -327,18 +334,5 @@ For a more detailed explanation check out the following documentation
 - Fix: _load_textdomain_just_in_time issue with WordPress 6.8
 - Fix: Resolved rowspan issue in the Data Table widget.
 - Update: Made Compatible with WordPress 6.8
-
-= 3.16.3 - 18 March 2025 =
-
-- Tweak: Add template condition menu in new UI app bar.
-- Fix: Mobile menu text color issue in the Nav Menu Widget.
-- Fix: Resolved Title Tag vulnerability issue in the Post Title Widget.
-- Fix: Resolved Title Tag vulnerability issue in the Page Title Widget.
-- Update: Made Compatible with Elementor 3.28.
-
-= 3.16.2 - 10 February 2025 =
-
-- Tweak: Add fade effect in Slider & Image Carousel widget.
-- Fix: plugin hook priority related issue
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)

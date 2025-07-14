@@ -1276,6 +1276,9 @@ class Content_Switcher extends Base {
 							} elseif ( $primary['content_type'] == 'saved_section' && 'publish' == get_post_status( $primary['saved_section'] ) ) {
 								$primary['saved_section'] = apply_filters('wpml_object_id', $primary['saved_section'], 'elementor_library');
 								echo ha_elementor()->frontend->get_builder_content_for_display( $primary['saved_section'] );
+							} elseif ( $primary['content_type'] == 'saved_container' && 'publish' == get_post_status( $primary['saved_container'] ) ) {
+								$primary['saved_container'] = apply_filters('wpml_object_id', $primary['saved_container'], 'elementor_library');
+								echo ha_elementor()->frontend->get_builder_content_for_display( $primary['saved_container'] );
 							} elseif ( $primary['content_type'] == 'saved_page' && 'publish' == get_post_status( $primary['saved_pages'] ) ) {
 								$primary['saved_pages'] = apply_filters('wpml_object_id', $primary['saved_pages'], 'elementor_library');
 								echo ha_elementor()->frontend->get_builder_content_for_display( $primary['saved_pages'] );
@@ -1290,6 +1293,9 @@ class Content_Switcher extends Base {
 							} elseif ( $secondary['content_type'] == 'saved_section' && 'publish' == get_post_status( $secondary['saved_section'] ) ) {
 								$secondary['saved_section'] = apply_filters('wpml_object_id', $secondary['saved_section'], 'elementor_library');
 								echo ha_elementor()->frontend->get_builder_content_for_display( $secondary['saved_section'] );
+							} elseif ( $secondary['content_type'] == 'saved_container' && 'publish' == get_post_status( $secondary['saved_container'] ) ) {
+								$secondary['saved_container'] = apply_filters('wpml_object_id', $secondary['saved_container'], 'elementor_library');
+								echo ha_elementor()->frontend->get_builder_content_for_display( $secondary['saved_container'] );
 							} elseif ( $secondary['content_type'] == 'saved_page' && 'publish' == get_post_status( $secondary['saved_pages'] ) ) {
 								$secondary['saved_pages'] = apply_filters('wpml_object_id', $secondary['saved_pages'], 'elementor_library');
 								echo ha_elementor()->frontend->get_builder_content_for_display( $secondary['saved_pages'] );

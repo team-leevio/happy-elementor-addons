@@ -13,6 +13,8 @@ class Extensions_Manager {
 	 */
 	public static function init() {
 
+		add_action( 'elementor/element/button/section_style/after_section_start', [ Features\Fixed_Size_Button::class, 'add_button_controls' ] );
+
 		$inactive_features = self::get_inactive_features();
 
 		foreach ( self::get_local_features_map() as $feature_key => $data ) {
@@ -51,7 +53,7 @@ class Extensions_Manager {
 	 * @return array
 	 */
 	public static function get_pro_features_map() {
-		return [
+		$pro_features_map = [
 			'display-conditions' => [
 				'title' => __( 'Display Condition', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-display-condition',
@@ -83,6 +85,8 @@ class Extensions_Manager {
 				'is_pro' => true,
 			],
 		];
+
+		return apply_filters( 'happyaddons_get_pro_features_map', $pro_features_map );
 	}
 
 	/**
@@ -226,7 +230,6 @@ class Extensions_Manager {
 				break;
 
 			case 'text-stroke':
-				add_action( 'elementor/element/button/section_style/after_section_start', [ Features\Text_Stroke::class, 'add_button_controls' ] );
 				if( ! in_array( 'text-stroke', ha_get_inactive_features() ) ) {
 					add_action( 'elementor/element/heading/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
 					add_action( 'elementor/element/theme-page-title/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
