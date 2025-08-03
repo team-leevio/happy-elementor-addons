@@ -1,3 +1,7 @@
+= 3.18.# - ## #### 2025 =
+
+- Update: Happy Shapes compatible latest Elementor shape divider control.
+
 = 3.18.1 - 14 July 2025 =
 
 - Fix: Undefined variable maxitems Fixed
