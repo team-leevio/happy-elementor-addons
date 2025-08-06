@@ -174,6 +174,12 @@ class Extensions_Manager {
 				// 'demo' => 'https://happyaddons.com/custom-mouse-cursor/',
 				'is_pro' => false,
 			],
+			'background-parallax' => [
+				'title' => __( 'Background Parallax', 'happy-addons-pro' ),
+				'icon' => 'hm hm-global-badge',
+				'demo' => 'https://happyaddons.com/background-parallax/',
+				'is_pro' => false,
+			]
 		];
 	}
 
@@ -244,6 +250,7 @@ class Extensions_Manager {
 			case 'scroll-to-top':
 			case 'reading-progress-bar':
 			case 'custom-mouse-cursor':
+			case 'background-parallax':
 				$cls_name = ucwords( str_replace( '-', ' ', $feature_key ) ); //remove ' - ' & uc first later
 				$cls_name = '\Happy_Addons\Elementor\Extensions\\' . str_replace( ' ', '_', $cls_name );
 				$cls_name::instance()->init();
