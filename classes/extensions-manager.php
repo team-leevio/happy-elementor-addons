@@ -177,7 +177,7 @@ class Extensions_Manager {
 			'background-parallax' => [
 				'title' => __( 'Background Parallax', 'happy-addons-pro' ),
 				'icon' => 'hm hm-global-badge',
-				'demo' => 'https://happyaddons.com/background-parallax/',
+				//'demo' => 'https://happyaddons.com/background-parallax/',
 				'is_pro' => false,
 			]
 		];

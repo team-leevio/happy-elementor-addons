@@ -6,6 +6,19 @@
 	$window.on("elementor/frontend/init", function () {
 
 		var HappyParallaxHandler = function ($scope) {
+			// For Background Parallax editor mode
+			const get_ID = sessionStorage.getItem('HappyBGParallaxChangeApply');
+			if ( elementorFrontend.isEditMode() && get_ID && get_ID == $scope.data('id')  ) {
+				$( "body,html,document" ).scrollTop( $scope.offset().top ); // for scroll to the widget top
+				let t = setInterval(() => {
+					let elementEdit = $scope.find('li.elementor-editor-element-setting.elementor-editor-element-edit.ui-sortable-handle');
+					if ( elementEdit.length > 0 ) {
+						elementEdit.trigger( "click" );
+						clearTimeout(t);
+					}
+				}, 500);
+			} // For Background Parallax editor mode end
+
             if (!$scope.hasClass("ha-bg-parallax-yes"))
                 return;
 
