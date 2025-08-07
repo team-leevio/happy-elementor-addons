@@ -302,12 +302,12 @@ class Background_Parallax {
 		if ( isset( $settings['ha_bg_parallax_type'] ) && '' !== $settings['ha_bg_parallax_type'] && $is_enable ) {
 			if ( 'automove' !== $bg_parallax_settings['type'] ) {
 				$element->add_render_attribute( '_wrapper', 'class', 'ha-bg-parallax-wrap-hide' );
-				$speed = isset( $settings['ha_bg_parallax_speed']['size'] ) ? $settings['ha_bg_parallax_speed']['size'] : 0.5;
+				$speed = ( isset( $settings['ha_bg_parallax_speed']['size'] ) && ! empty( $settings['ha_bg_parallax_speed']['size'] ) ) ? $settings['ha_bg_parallax_speed']['size'] : 0.5;
 				$bg_parallax_settings['speed'] = $speed;
 				$bg_parallax_settings['android'] ='yes' === $settings['ha_bg_parallax_enable_on_android'] ? 0 : 1;
 				$bg_parallax_settings['ios'] = 'yes' === $settings['ha_bg_parallax_enable_on_ios'] ? 0 : 1;
 				$bg_parallax_settings['size'] = isset( $settings['background_size'] ) ? $settings['background_size'] : 'cover';
-				$bg_parallax_settings['size'] = isset( $settings['background_repeat'] ) ? $settings['background_repeat'] : 'no-repeat';
+				$bg_parallax_settings['repeat'] = isset( $settings['background_repeat'] ) ? $settings['background_repeat'] : 'no-repeat';
 
 			} elseif ( 'automove' === $bg_parallax_settings['type'] ) {
 				$bg_parallax_settings['speed'] = ! empty( $settings['ha_bg_parallax_automove_speed'] ) ? $settings['ha_bg_parallax_automove_speed'] : 3;

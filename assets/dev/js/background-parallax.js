@@ -36,22 +36,26 @@
 
 			if ( "automove" !== parallaxSettings["type"] ) {
 				target.removeClass("ha-bg-parallax-wrap-hide");
+				var options = {
+					type: parallaxSettings["type"],
+					// speed: -1 || 0.1,
+					speed:  parallaxSettings["speed"] || 0,
+					keepImg: true,
+					imgSize: parallaxSettings["size"],
+					imgPosition: target.css('backgroundPosition'),
+					imgRepeat: parallaxSettings["repeat"],
+					disableParallax: disableParallaxOnDevice(
+						1 == parallaxSettings["android"],
+						1 == parallaxSettings["ios"]
+					),
+                }
+				console.log(options);
+
 				var eleObserver = new IntersectionObserver(function (entries) {
                     entries.forEach(function (entry) {
                         if (entry.isIntersecting) {
 
-                            target.jarallax({
-                                type: parallaxSettings["type"],
-                                speed: parallaxSettings["speed"] || 0.1,
-                                keepImg: true,
-                                imgSize: parallaxSettings["size"],
-                                imgPosition: target.css('backgroundPosition'),
-                                imgRepeat: parallaxSettings["repeat"],
-                                disableParallax: disableParallaxOnDevice(
-                                    1 == parallaxSettings["android"],
-                                    1 == parallaxSettings["ios"]
-                                ),
-                            });
+                            target.jarallax( options );
 
                             eleObserver.unobserve(entry.target); // to only excecute the callback func once.
                         }
