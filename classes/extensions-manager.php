@@ -177,7 +177,7 @@ class Extensions_Manager {
 			'custom-js' => [
 				'title' => __( 'Custom JS', 'happy-elementor-addons' ),
 				'icon' => 'huge huge-code',
-				'demo' => 'https://happyaddons.com/happy-tooltip/',
+				// 'demo' => 'https://happyaddons.com/custom-js/',
 				'is_pro' => false,
 			],
 		];
