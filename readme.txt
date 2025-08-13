@@ -308,7 +308,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.19.0 - 11 August 2025 =
+= 3.19.0 - 13 August 2025 =
 
 - New: Custom JS Feature.
 - Fix: Will no longer prompt for Icon library updates if Elementor is sufficiently updated.
