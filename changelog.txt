@@ -1,3 +1,10 @@
+= 3.19.0 - 13 August 2025 =
+
+- New: Custom JS Feature.
+- Fix: Will no longer prompt for Icon library updates if Elementor is sufficiently updated.
+- Update: Happy Shapes compatible latest Elementor shape divider control.
+- Update: Made Compatible with Elementor 3.31
+
 = 3.18.1 - 14 July 2025 =
 
 - Fix: Undefined variable maxitems Fixed

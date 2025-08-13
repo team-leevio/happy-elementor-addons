@@ -174,6 +174,12 @@ class Extensions_Manager {
 				// 'demo' => 'https://happyaddons.com/custom-mouse-cursor/',
 				'is_pro' => false,
 			],
+			'custom-js' => [
+				'title' => __( 'Custom JS', 'happy-elementor-addons' ),
+				'icon' => 'huge huge-code',
+				// 'demo' => 'https://happyaddons.com/custom-js/',
+				'is_pro' => false,
+			],
 		];
 	}
 
@@ -241,9 +247,15 @@ class Extensions_Manager {
 				}
 				break;
 
+			// case 'custom-js':
+			// 	add_action( 'elementor/documents/register_controls', [Features\Custom_Js::class, 'scroll_to_top_controls'], 10 );
+			// 	add_action( 'wp_footer', [Features\Custom_Js::class, 'render_scroll_to_top_html'] );
+			// 	break;
+
 			case 'scroll-to-top':
 			case 'reading-progress-bar':
 			case 'custom-mouse-cursor':
+			case 'custom-js':
 				$cls_name = ucwords( str_replace( '-', ' ', $feature_key ) ); //remove ' - ' & uc first later
 				$cls_name = '\Happy_Addons\Elementor\Extensions\\' . str_replace( ' ', '_', $cls_name );
 				$cls_name::instance()->init();
