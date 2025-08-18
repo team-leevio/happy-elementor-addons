@@ -109,9 +109,8 @@
 				action = $currentAction.data('action'),
 				$all = $widgetsList.find('.ha-dashboard-widgets__item'),
 				$free = $all.not('.item--is-pro'),
-				$pro = $all.filter('.item--is-pro'),
-				$toggle_widget = $all.not('.item--is-placeholder').find(':checkbox.ha-widget'),
-				$toggle_feature = $all.not('.item--is-placeholder').find(':checkbox.ha-feature');
+				$pro = $all.filter('.item--is-pro');
+
 
 			if (filter) {
 				switch (filter) {
@@ -129,6 +128,11 @@
 						break;
 				}
 			}
+
+
+			var $toggle_widget = $all.not('.item--is-placeholder').not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-widget'),
+				$toggle_feature = $all.not('.item--is-placeholder').not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-feature');
+
 
 			if (action) {
 				if ('enable' === action) {
