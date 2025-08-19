@@ -2,6 +2,21 @@
 (function ($, HappyDashboard) {
 	'use strict';
 
+	function debounce ( func, wait, immediate ) {
+		var timeout;
+		return function () {
+			var context = this, args = arguments;
+			var later = function () {
+				timeout = null;
+				if ( !immediate ) func.apply( context, args );
+			};
+			var callNow = immediate && !timeout;
+			clearTimeout( timeout );
+			timeout = setTimeout( later, wait );
+			if ( callNow ) func.apply( context, args );
+		};
+	}
+
 	$(function () {
 
 		var $tabsWrapper = $('.ha-dashboard-tabs'),
@@ -148,6 +163,35 @@
 				$toggle_feature.trigger('change');
 			}
 		});
+
+		$('.ha-search-action--btn input').on('input', debounce( function ( event ) {
+			event.preventDefault();
+			// console.log( 'event type => ', event.type );
+			// console.log( 'input value => ', event.target.value );
+			// console.log( $widgetsList );
+
+			var searchValue = event.target.value.toLowerCase();
+			var $all = $widgetsList.find('.ha-dashboard-widgets__item');
+			var $toggle_widget = $all.not('.item--is-placeholder').find(':checkbox.ha-widget');
+
+			//$toggle_feature = $all.not('.item--is-placeholder').find(':checkbox.ha-feature');
+			//console.log( $widgetsList.find(':checkbox.ha-widget') );
+			// $dashboardForm.find(".ha-dashboard-widgets--tab > h2")
+
+			if( '' != searchValue ) {
+				$dashboardForm.find(".ha-dashboard-widgets--tab > h2").hide();
+			} else {
+				$dashboardForm.find(".ha-dashboard-widgets--tab > h2").show();
+			}
+
+			// $toggle_widget
+			$toggle_widget.each( function ( index, item ) {
+				// console.log( item, index );
+				let item_wrapper = $(item).closest('.ha-dashboard-widgets__item');
+				let condition = item_wrapper.data('title').toLowerCase().indexOf(searchValue) > -1;
+				condition ? item_wrapper.show() : item_wrapper.hide();
+			});
+		}, 500));
 
 
 		$('.ha-feature-sub-title-a').magnificPopup({
