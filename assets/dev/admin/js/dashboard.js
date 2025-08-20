@@ -193,6 +193,10 @@
 			});
 		}, 500));
 
+		$('.ha-search-action--btn input').on('keypress', function (event) {
+			if ( event.key === 'Enter') event.preventDefault(); return;
+		})
+
 
 		$('.ha-feature-sub-title-a').magnificPopup({
 			disableOn: 700,
