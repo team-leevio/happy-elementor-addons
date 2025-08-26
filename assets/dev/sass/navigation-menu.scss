@@ -228,6 +228,17 @@
             z-index: 999;
         }
 
+				.ha-menu-toggler {
+						svg {
+						width: auto;
+						height: 1em;
+						fill: currentColor;
+					}
+					svg, i {
+						vertical-align: middle;
+					}
+				}
+
         .show-icon {
             display: inline-block;
         }

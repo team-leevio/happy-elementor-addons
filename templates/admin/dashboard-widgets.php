@@ -29,16 +29,17 @@ if ( ! ha_has_pro() && ! empty( $total_widgets_count ) ) {
                 <span class="ha-action--divider">|</span>
                 <button type="button" class="ha-action--btn" data-action="enable"><?php esc_html_e( 'Enable All', 'happy-elementor-addons' ); ?></button>
                 <button type="button" class="ha-action--btn" data-action="disable"><?php esc_html_e( 'Disable All', 'happy-elementor-addons' ); ?></button>
+                <span class="ha-search-action--btn"><input type="search" id="ha-widget-search" value="" name="ha-widget-search" placeholder="<?php esc_html_e( 'Search', 'happy-elementor-addons' ); ?>"></span>
             </div>
         </div>
     </div>
 
-    <div class="ha-dashboard-widgets">
+    <div class="ha-dashboard-widgets ha-dashboard-widgets--tab">
         <?php
 		if( $catwise_widgets ):
 			foreach( $catwise_widgets as $cat => $widgets) :
 				if( $widgets ):
-					printf('<h2 %s>%s %s</h2><br>',
+					printf('<h2 %s>%s %s</h2>',
 						"style='width: 100%; margin-left: 10px;'",
 						ucwords(str_replace('-', ' ', $cat)),
 						__( 'Widgets', 'happy-elementor-addons' )
@@ -66,7 +67,7 @@ if ( ! ha_has_pro() && ! empty( $total_widgets_count ) ) {
 							$checked = 'disabled="disabled"';
 						}
 						?>
-						<div class="<?php echo $class_attr; ?>">
+						<div class="<?php echo $class_attr; ?>" data-title="<?php echo esc_attr( $title ); ?>">
 							<?php if ( $is_pro ) : ?>
 								<span class="ha-dashboard-widgets__item-badge"><?php esc_html_e( 'Pro', 'happy-elementor-addons' ); ?></span>
 							<?php endif; ?>

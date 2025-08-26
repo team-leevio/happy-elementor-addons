@@ -660,6 +660,15 @@
 	font-size: 14px;
 	opacity: 0.7;
 	font-weight: bold;
+	display: flex;
+	align-items: center;
+}
+span.ha-search-action--btn {
+	margin-left: auto;
+}
+
+span.ha-search-action--btn input#ha-widget-search {
+    width: 230px;
 }
 
 .ha-action--divider {
