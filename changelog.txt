@@ -1,4 +1,6 @@
-= 3.#.# - ## ##### 2025 =
+= 3.20.0 - 26 August 2025 =
+
+- New: Background Parallax Feature.
 - Fix : Nav Menu svg icon render issue
 - Update: HappyAddons dashboard widget search option added and filter option improved
 

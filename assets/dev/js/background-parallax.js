@@ -59,43 +59,35 @@
                         }
                     });
                 });
-
                 eleObserver.observe(target[0]);
 			} else if ( "automove" === parallaxSettings["type"] ) {
-				// console.log("automove background");
-                //Remove transitions for Safari to prevent jittering coming from Elementor default transitions.
+                //Remove transitions for Safari
                 var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
                 var speed = parseInt(parallaxSettings["speed"]) || 0.1;
                 if (isSafari) {
 					target.addClass("ha-bg-parallax-no-trans");
 				}
                 target.css("background-position", "0px 0px");
-				// console.log( target.css("width") );
-				// console.log( target.outerWidth() );
                 if ( parallaxSettings["direction"] === "left") {
                     var position = parseInt(target.css("background-position-x"));
-
                     setInterval(function () {
                         position = position + speed;
                         target.css("backgroundPosition", position + "px 0");
                     }, 70);
                 } else if ( parallaxSettings["direction"] === "right") {
                     var position = parseInt(target.css("background-position-x"));
-
                     setInterval(function () {
                         position = position - speed;
                         target.css("backgroundPosition", position + "px 0");
                     }, 70);
                 } else if ( parallaxSettings["direction"] === "top") {
                     var position = parseInt(target.css("background-position-y"));
-
                     setInterval(function () {
                         position = position + speed;
                         target.css("backgroundPosition", "0 " + position + "px");
                     }, 70);
                 } else if ( parallaxSettings["direction"] === "bottom") {
                     var position = parseInt(target.css("background-position-y"));
-
                     setInterval(function () {
                         position = position - speed;
                         target.css("backgroundPosition", "0 " + position + "px");

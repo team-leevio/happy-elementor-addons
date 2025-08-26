@@ -40,15 +40,12 @@ class Background_Parallax {
 		add_action( 'elementor/frontend/before_register_styles', [ $this, 'register_styles' ] );
 		add_action( 'elementor/preview/enqueue_scripts', [ $this, 'enqueue_preview_scripts' ] );
 
-		// Register controls for section, column, and container.
 		add_action('elementor/element/section/section_layout/after_section_end', [ $this, 'register_controls' ], 10);
 		add_action('elementor/element/container/section_layout/after_section_end', [ $this, 'register_controls' ], 10);
 
-		// data management for frontend rendering.
 		add_action( 'elementor/frontend/section/before_render', [ $this, 'before_render' ], 10, 1 );
 		add_action( 'elementor/frontend/container/before_render', [ $this, 'before_render' ], 10, 1 );
 
-		// data management for editor rendering.
 		add_action( 'elementor/section/print_template', array( $this, 'editor_template_print' ), 10, 2 );
 		add_action( 'elementor/container/print_template', array( $this, 'editor_template_print' ), 10, 2 );
 	}
@@ -151,18 +148,6 @@ class Background_Parallax {
 								]
 							]
 						]
-						// [
-						// 	'name' => 'happy-background-parallax',
-						// 	'conditions' => [
-						// 		'terms' => [
-						// 			[
-						// 				'name' => 'ha_gb_switcher',
-						// 				'operator' => '===',
-						// 				'value' => 'yes',
-						// 			]
-						// 		]
-						// 	]
-						// ]
 					]
 				],
 			]
@@ -317,14 +302,6 @@ class Background_Parallax {
 			$element->add_render_attribute( '_wrapper', 'data-ha-bg-parallax', wp_json_encode( $bg_parallax_settings ) );
 
 		}
-	}
-
-	public function after_render($element) {
-		$settings = $element->get_settings_for_display();
-		// $element->get_settings('ha_bg_parallax_switcher');
-
-		error_log( print_r( $element->get_settings('ha_bg_parallax_switcher'), 1 ) );
-
 	}
 
 	public function editor_template_print( $template, $widget ) {
