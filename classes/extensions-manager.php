@@ -180,6 +180,12 @@ class Extensions_Manager {
 				// 'demo' => 'https://happyaddons.com/custom-js/',
 				'is_pro' => false,
 			],
+			'background-parallax' => [
+				'title' => __( 'Background Parallax', 'happy-addons-pro' ),
+				'icon' => 'huge huge-web-design-02',
+				//'demo' => 'https://happyaddons.com/background-parallax/',
+				'is_pro' => false,
+			]
 		];
 	}
 
@@ -256,6 +262,7 @@ class Extensions_Manager {
 			case 'reading-progress-bar':
 			case 'custom-mouse-cursor':
 			case 'custom-js':
+			case 'background-parallax':
 				$cls_name = ucwords( str_replace( '-', ' ', $feature_key ) ); //remove ' - ' & uc first later
 				$cls_name = '\Happy_Addons\Elementor\Extensions\\' . str_replace( ' ', '_', $cls_name );
 				$cls_name::instance()->init();

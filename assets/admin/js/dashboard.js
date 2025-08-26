@@ -4,6 +4,21 @@
 (function ($, HappyDashboard) {
   'use strict';
 
+  function debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+      var context = this,
+        args = arguments;
+      var later = function later() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  }
   $(function () {
     var $tabsWrapper = $('.ha-dashboard-tabs'),
       $tabsNav = $tabsWrapper.find('.ha-dashboard-tabs__nav'),
@@ -83,9 +98,7 @@
         action = $currentAction.data('action'),
         $all = $widgetsList.find('.ha-dashboard-widgets__item'),
         $free = $all.not('.item--is-pro'),
-        $pro = $all.filter('.item--is-pro'),
-        $toggle_widget = $all.not('.item--is-placeholder').find(':checkbox.ha-widget'),
-        $toggle_feature = $all.not('.item--is-placeholder').find(':checkbox.ha-feature');
+        $pro = $all.filter('.item--is-pro');
       if (filter) {
         switch (filter) {
           case 'free':
@@ -102,6 +115,8 @@
             break;
         }
       }
+      var $toggle_widget = $all.not('.item--is-placeholder').not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-widget'),
+        $toggle_feature = $all.not('.item--is-placeholder').not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-feature');
       if (action) {
         if ('enable' === action) {
           $toggle_widget.prop('checked', true);
@@ -115,6 +130,38 @@
         $toggle_widget.trigger('change');
         $toggle_feature.trigger('change');
       }
+    });
+    $('.ha-search-action--btn input').on('input', debounce(function (event) {
+      event.preventDefault();
+      // console.log( 'event type => ', event.type );
+      // console.log( 'input value => ', event.target.value );
+      // console.log( $widgetsList );
+
+      var searchValue = event.target.value.toLowerCase();
+      var $all = $widgetsList.find('.ha-dashboard-widgets__item');
+      var $toggle_widget = $all.not('.item--is-placeholder').find(':checkbox.ha-widget');
+
+      //$toggle_feature = $all.not('.item--is-placeholder').find(':checkbox.ha-feature');
+      //console.log( $widgetsList.find(':checkbox.ha-widget') );
+      // $dashboardForm.find(".ha-dashboard-widgets--tab > h2")
+
+      if ('' != searchValue) {
+        $dashboardForm.find(".ha-dashboard-widgets--tab > h2").hide();
+      } else {
+        $dashboardForm.find(".ha-dashboard-widgets--tab > h2").show();
+      }
+
+      // $toggle_widget
+      $toggle_widget.each(function (index, item) {
+        // console.log( item, index );
+        var item_wrapper = $(item).closest('.ha-dashboard-widgets__item');
+        var condition = item_wrapper.data('title').toLowerCase().indexOf(searchValue) > -1;
+        condition ? item_wrapper.show() : item_wrapper.hide();
+      });
+    }, 500));
+    $('.ha-search-action--btn input').on('keypress', function (event) {
+      if (event.key === 'Enter') event.preventDefault();
+      return;
     });
     $('.ha-feature-sub-title-a').magnificPopup({
       disableOn: 700,
