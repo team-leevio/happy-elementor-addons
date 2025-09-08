@@ -27,7 +27,7 @@ class Twitter_Feed extends Base {
 	 *
 	 */
 	public function get_title() {
-		return __('Twitter Feed', 'happy-elementor-addons');
+		return __('X Feed', 'happy-elementor-addons');
 	}
 
 	/**
@@ -43,7 +43,7 @@ class Twitter_Feed extends Base {
 	}
 
 	public function get_keywords() {
-		return ['twitter-feed', 'twitter', 'feed', 'social media'];
+		return ['x','x-feed','twitter-feed', 'twitter', 'feed', 'social media'];
 	}
 
 
