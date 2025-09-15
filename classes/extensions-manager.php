@@ -165,13 +165,13 @@ class Extensions_Manager {
 			'reading-progress-bar' => [
 				'title' => __( 'Reading Progress Bar', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-reading-glass-alt',
-				// 'demo' => 'https://happyaddons.com/reading-progress-bar/',
+				'demo' => 'https://happyaddons.com/reading-progress-bar/',
 				'is_pro' => false,
 			],
 			'custom-mouse-cursor' => [
 				'title' => __( 'Happy Mouse Cursor', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-cursor-hover-click',
-				// 'demo' => 'https://happyaddons.com/custom-mouse-cursor/',
+				'demo' => 'https://demo-x.happyaddons.com/custom-mouse-cursor-feature-demo/',
 				'is_pro' => false,
 			],
 			'custom-js' => [
@@ -183,7 +183,7 @@ class Extensions_Manager {
 			'background-parallax' => [
 				'title' => __( 'Background Parallax', 'happy-addons-pro' ),
 				'icon' => 'huge huge-web-design-02',
-				//'demo' => 'https://happyaddons.com/background-parallax/',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/background-parallax/',
 				'is_pro' => false,
 			]
 		];

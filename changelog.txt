@@ -1,3 +1,9 @@
+= 3.20.1 - 15 September 2025 =
+
+- Fix: Bug fixes and performance improvements.
+- Update: Internal logic so that localhost is not consuming license seat.
+- Update: Made Compatible with Elementor 3.32
+
 = 3.20.0 - 26 August 2025 =
 
 - New: Background Parallax Feature.
