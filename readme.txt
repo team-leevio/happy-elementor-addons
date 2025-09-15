@@ -311,7 +311,8 @@ For a more detailed explanation check out the following documentation
 = 3.20.1 - 15 September 2025 =
 
 - Fix: Bug fixes and performance improvements.
-- Update: Internal logic so that localhost is not consuming license seat
+- Update: Internal logic so that localhost is not consuming license seat.
+- Update: Made Compatible with Elementor 3.32
 
 = 3.20.0 - 26 August 2025 =
 
@@ -338,19 +339,5 @@ For a more detailed explanation check out the following documentation
 - New: SVG Draw widget.
 - Update: DOMPurify js library update.
 
-= 3.17.0 - 27 May 2025 =
-
-- New: Introduced Autoloader which improves file loading process.
-- Update: Made Compatible with Elementor 3.29.
-
-= 3.16.5 - 14 May 2025 =
-
-- Update: Made Compatible with Elementor Feature Optimized Markup
-
-= 3.16.4 - 28 April 2025 =
-
-- Fix: _load_textdomain_just_in_time issue with WordPress 6.8
-- Fix: Resolved rowspan issue in the Data Table widget.
-- Update: Made Compatible with WordPress 6.8
 
 [See changelog for all versions.](https://raw.githubusercontent.com/team-leevio/happy-elementor-addons/master/changelog.txt)

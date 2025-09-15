@@ -8,8 +8,8 @@
  * Author: Leevio
  * Author URI: https://happyaddons.com/
  * Requires Plugins: elementor
- * Elementor tested up to: 3.31
- * Elementor Pro tested up to: 3.31
+ * Elementor tested up to: 3.32
+ * Elementor Pro tested up to: 3.32
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: happy-elementor-addons

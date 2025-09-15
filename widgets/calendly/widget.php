@@ -46,10 +46,6 @@ class Calendly extends Base {
 		return [ 'info', 'blurb', 'box', 'text', 'content' ];
 	}
 
-    public function show_in_panel() {
-		return false;
-	}
-
 	/**
      * Register widget content controls
      */

@@ -47,6 +47,10 @@ class CalderaForm extends Base {
         return [ 'caldera', 'wpf', 'wpform' , 'form', 'contact', 'cf7', 'contact form', 'gravity', 'ninja' ];
     }
 
+    public function show_in_panel() {
+		return false;
+	}
+
 	/**
      * Register widget content controls
      */
