@@ -51,6 +51,11 @@
 	align-items: center;
 }
 
+.mf-cursor-media.ha-cursor-media {
+	width: auto;
+	height: auto;
+}
+
 .ha-cursor.-media:before {
 	transform: translate(-50%, -50%);
 }
