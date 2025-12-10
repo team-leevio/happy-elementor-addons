@@ -2004,6 +2004,11 @@ class Event_Calendar extends Base {
 				$date_format .= ' H:i';
 				$all_day      = '';
 			}
+			$end   = tribe_get_end_date( $event->ID, true, $date_format );
+			if ( $all_day == 'yes' ) {
+				// $end   = date( 'Y-m-d', strtotime( '+1 days', strtotime( $event['end_date_allday'] ) ) );
+				$end   = date( 'Y-m-d', strtotime( '+1 days', strtotime( tribe_get_end_date( $event->ID, true, $date_format ) ) ) );
+			}
 
 			$image = get_the_post_thumbnail_url( $event->ID );
 
@@ -2012,7 +2017,8 @@ class Event_Calendar extends Base {
 				'title'       => ! empty( $event->post_title ) ? esc_html( $event->post_title ) : '',
 				'description' => ha_kses_intermediate( $event->post_content ),
 				'start'       => esc_html( tribe_get_start_date( $event->ID, true, $date_format ) ),
-				'end'         => esc_html( tribe_get_end_date( $event->ID, true, $date_format ) ),
+				// 'end'         => esc_html( tribe_get_end_date( $event->ID, true, $date_format ) ),
+				'end'         => esc_html( $end ),
 				'url'         => ! empty( get_the_permalink( $event->ID ) ) ? esc_url( get_the_permalink( $event->ID ) ) : '',
 				'allDay'      => esc_html( $all_day ),
 				'external'    => 'on',

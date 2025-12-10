@@ -382,6 +382,7 @@ use Elementor\Group_Control_Typography;
 		}
 
 		private function hm_cmc_image_control( $element ) {
+
 			$element->add_control(
 				'ha_cmc_image',
 				[
@@ -672,6 +673,77 @@ use Elementor\Group_Control_Typography;
 				]
 			);
 
+			$element->add_control(
+				'ha_cmc_img_offset_toggle',
+				[
+					'label' => __( 'Offset', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::POPOVER_TOGGLE,
+					'return_value' => 'yes',
+					'selectors_dictionary' => [
+						''    => '',
+						'yes' => 'position: fixed;'
+					],
+					'selectors'            => [
+						'.elementor-element-{{ID}}.ha-cursor.-media.ha-media .mf-cursor-inner.ha-cursor-inner' => '{{VALUE}}'
+					],
+					'condition'            => [
+						'ha_cmc_type'     => 'image'
+					]
+				]
+			);
+
+			$element->start_popover();
+
+			$element->add_responsive_control(
+				'ha_cmc_img_offset_x',
+				[
+					'label' => __( 'Offset X', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::SLIDER,
+					'size_units' => ['px'],
+					'default' => [
+						'size' => '0',
+					],
+					'range' => [
+						'px' => [
+							'min' => -1000,
+							'max' => 1000,
+						]
+					],
+					'condition' => [
+						'ha_cmc_img_offset_toggle' => 'yes',
+					],
+					'selectors' => [
+						'.elementor-element-{{ID}}.ha-cursor.-media.ha-media .mf-cursor-inner.ha-cursor-inner' => 'left: {{SIZE}}px;'
+					],
+				]
+			);
+
+			$element->add_responsive_control(
+				'ha_cmc_img_offset_y',
+				[
+					'label' => __( 'Offset Y', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::SLIDER,
+					'size_units' => ['px'],
+					'default' => [
+						'size' => '0',
+					],
+					'range' => [
+						'px' => [
+							'min' => -1000,
+							'max' => 1000,
+						]
+					],
+					'condition' => [
+						'ha_cmc_img_offset_toggle' => 'yes',
+					],
+					'selectors' => [
+						'.elementor-element-{{ID}}.ha-cursor.-media.ha-media .mf-cursor-inner.ha-cursor-inner' => 'top: {{SIZE}}px;'
+					],
+				]
+			);
+
+			$element->end_popover();
+
 			$element->add_group_control(
 				Group_Control_Css_Filter::get_type(),
 				[
@@ -686,6 +758,7 @@ use Elementor\Group_Control_Typography;
 		}
 
 		private function hm_cmc_video_control( $element ) {
+			
 			$element->add_control(
 				'ha_cmc_video',
 				[
@@ -842,6 +915,77 @@ use Elementor\Group_Control_Typography;
 					]
 				]
 			);
+
+			$element->add_control(
+				'ha_cmc_video_offset_toggle',
+				[
+					'label' => __( 'Offset', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::POPOVER_TOGGLE,
+					'return_value' => 'yes',
+					'selectors_dictionary' => [
+						''    => '',
+						'yes' => 'position: fixed;'
+					],
+					'selectors'            => [
+						'.elementor-element-{{ID}}.ha-cursor.-media.ha-media .mf-cursor-inner.ha-cursor-inner' => '{{VALUE}}'
+					],
+					'condition'            => [
+						'ha_cmc_type'     => 'video'
+					]
+				]
+			);
+
+			$element->start_popover();
+
+			$element->add_responsive_control(
+				'ha_cmc_video_offset_x',
+				[
+					'label' => __( 'Offset X', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::SLIDER,
+					'size_units' => ['px'],
+					'default' => [
+						'size' => '0',
+					],
+					'range' => [
+						'px' => [
+							'min' => -1000,
+							'max' => 1000,
+						]
+					],
+					'condition' => [
+						'ha_cmc_video_offset_toggle' => 'yes',
+					],
+					'selectors' => [
+						'.elementor-element-{{ID}}.ha-cursor.-media.ha-media .mf-cursor-inner.ha-cursor-inner' => 'left: {{SIZE}}px;'
+					],
+				]
+			);
+
+			$element->add_responsive_control(
+				'ha_cmc_video_offset_y',
+				[
+					'label' => __( 'Offset Y', 'happy-elementor-addons' ),
+					'type' => Controls_Manager::SLIDER,
+					'size_units' => ['px'],
+					'default' => [
+						'size' => '0',
+					],
+					'range' => [
+						'px' => [
+							'min' => -1000,
+							'max' => 1000,
+						]
+					],
+					'condition' => [
+						'ha_cmc_video_offset_toggle' => 'yes',
+					],
+					'selectors' => [
+						'.elementor-element-{{ID}}.ha-cursor.-media.ha-media .mf-cursor-inner.ha-cursor-inner' => 'top: {{SIZE}}px;'
+					],
+				]
+			);
+
+			$element->end_popover();
 
 			$element->add_control(
 				'ha_cmc_video_opacity',
