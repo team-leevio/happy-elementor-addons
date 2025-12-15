@@ -57,6 +57,7 @@ class Dashboard_Widgets {
 		include_once ABSPATH . WPINC . '/feed.php';
 
 		$rss = fetch_feed( 'https://happyaddons.com/feed/' );
+		$rss_items = [];
 
 		if ( ! is_wp_error( $rss ) ) :
 
@@ -113,7 +114,7 @@ class Dashboard_Widgets {
 				<ul class="ha-overview__posts">
 					<?php if (($maxitems ?? null) === 0) : ?>
 						<li class="ha-overview__post"><?php _e( 'No items', 'happy-elementor-addons' ); ?></li>
-					<?php else : ?>
+					<?php elseif ( is_array($rss_items) && ! empty($rss_items) ) : ?>
 						<?php foreach ( $rss_items as $item ) : ?>
 							<li class="ha-overview__post">
 								<a href="<?php echo esc_url( $item->get_permalink() . '?utm_source=userwpdashboard&utm_medium=bannernotice&utm_campaign=usertrack' ); ?>" title="<?php printf( __( 'Posted %s', 'happy-elementor-addons' ), $item->get_date( 'j F Y | g:i a' ) ); ?>" class="ha-overview__post-link" target="_blank"><?php echo esc_html( $item->get_title() ); ?></a>
