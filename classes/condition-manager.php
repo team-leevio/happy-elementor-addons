@@ -234,7 +234,7 @@ class Condition_Manager {
             throw new Exception('Invalid request');
         }
 
-		if (!current_user_can('edit_post', $template_id)) {
+		if (!current_user_can('edit_posts', $template_id)) {
 			throw new Exception('Unauthorized request');
 		}
 
