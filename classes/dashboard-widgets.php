@@ -68,7 +68,7 @@ class Dashboard_Widgets {
 		else :
 			?>
 			<ul class="ha-overview__posts">
-				<li class="ha-overview__post"><?php _e( 'Con not get RSS feed.', 'happy-elementor-addons' ); ?></li>
+				<li class="ha-overview__post"><?php _e( 'Can not get RSS feed.', 'happy-elementor-addons' ); ?></li>
 			</ul>
 			<?php
 		endif;
