@@ -65,6 +65,12 @@ class Dashboard_Widgets {
 
 			$rss_items = $rss->get_items( 0, $maxitems );
 
+		else :
+			?>
+			<ul class="ha-overview__posts">
+				<li class="ha-overview__post"><?php _e( 'Con not get RSS feed.', 'happy-elementor-addons' ); ?></li>
+			</ul>
+			<?php
 		endif;
 
 		$shouldSetup = get_option( 'happy-elementor-addons_wizard_cache_key', '' );
