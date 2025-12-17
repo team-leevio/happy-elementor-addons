@@ -234,9 +234,9 @@ class Condition_Manager {
             throw new Exception('Invalid request');
         }
 
-        if (!current_user_can('edit_posts')) {
-            throw new Exception('Unauthorized request');
-        }
+		if (!current_user_can('edit_posts', $template_id)) {
+			throw new Exception('Unauthorized request');
+		}
 
 		$post_status = get_post_status( $template_id );
 		$same_author = self::is_the_same_author( $template_id );
@@ -822,4 +822,3 @@ EOF;
         return $documents;
     }
 }
-

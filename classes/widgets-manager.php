@@ -79,14 +79,14 @@ class Widgets_Manager {
 			],
 			'metro-grid' => [
 				'cat' => 'general',
-				'title' => __('Metro Grid', 'happy-addons-pro'),
+				'title' => __('Metro Grid', 'happy-elementor-addons'),
 				'icon' => 'hm hm-metro-grid-text-outline',
 				'is_pro' => true,
 				'demo'      => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/metro-grid/',
 			],
 			'loop-tab' => [
 				'cat' => 'creative',
-				'title' => __('Loop Tab', 'happy-addons-pro'),
+				'title' => __('Loop Tab', 'happy-elementor-addons'),
 				'icon' => 'hm hm-edd-my-account-tab',
 				'is_pro' => true,
 				'demo'      => 'https://demo.happyaddons.com/loop-tab/',
@@ -372,7 +372,7 @@ class Widgets_Manager {
 				'demo'      => 'https://demo.happyaddons.com/elementor-modal-popup-widget-demo/',
 			],
 			'multi-scroll' => [
-				'title' => __( 'Multi Scroll', 'happy-addons-pro' ),
+				'title' => __( 'Multi Scroll', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-multi-page-scroll',
 				'is_pro' => true,
 				'demo'      => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/multi-scroll/',
@@ -561,14 +561,14 @@ class Widgets_Manager {
 			],
 			'title-tips' => [
 				'cat' => 'general',
-				'title' => __('Title Tips', 'happy-addons-pro'),
+				'title' => __('Title Tips', 'happy-elementor-addons'),
 				'icon' => 'hm hm-title-tips-vector-path',
 				'is_pro' => true,
 				'demo'      => 'https://demo-x.happyaddons.com/title-tips-widget-demo/',
 			],
 			'advanced-comparison-table'    => [
 				'cat'       => 'creative',
-				'title'     => __('Advanced Comparison Table', 'happy-addons-pro'),
+				'title'     => __('Advanced Comparison Table', 'happy-elementor-addons'),
 				'icon'      => 'hm hm-link-box',
 				'is_pro' => true,
 				'demo'      => 'https://demo.happyaddons.com/elementor-advanced-comparison-table-widget-demo-mosaddek/',

@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.20.3
+Version: 3.20.4
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 3.20.3
+Stable tag: 3.20.4
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -267,8 +267,11 @@ You will be able to convert your square image into lovely custom shapes. No hass
 
 
 = Can I use my own particle js effects within HappyAddons? =
-Yes, you can use particle effects form the Particle Js site. Here is tutorial -
+Yes, you can use particle effects from the Particle Js site. Here is tutorial -
 [youtube https://www.youtube.com/watch?v=iD83Sr4pFSw&ab_channel=HappyAddons]
+
+= Where do I report security bugs found in this plugin? =
+Please report security bugs found in the source code of the Happy Addons for Elementor plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/9e5fb984-20b0-4938-ada0-b373eb456019). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
 
 
 == Installation ==
@@ -307,6 +310,11 @@ For a more detailed explanation check out the following documentation
 13. Card widget - capsule design
 
 == Changelog ==
+
+= 3.20.4 - 17 December 2025 =
+
+- Fix: Resolved Theme Builder Condition issue.
+- Fix: Resolved Custom JS issue.
 
 = 3.20.3 - 10 December 2025 =
 

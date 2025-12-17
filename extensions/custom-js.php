@@ -57,12 +57,26 @@ class Custom_Js {
         $element->end_controls_section();
 	}
 
-	public function before_save_data( $data ) {
-		if ( ! current_user_can( 'administrator' ) ) {
-			$page_setting = get_post_meta( get_the_ID(), '_elementor_page_settings', true );
+	public function before_save_data_old( $data ) {
+		if ( ! current_user_can('administrator') ) {
+			$page_setting = get_post_meta(get_the_ID(), '_elementor_page_settings', true);
 			if ( isset( $data['settings']['ha_page_custom_js'] ) && isset( $page_setting['ha_page_custom_js'] ) ) {
-				$prev_js = isset( $page_setting['ha_page_custom_js'] ) ? trim( $page_setting['ha_page_custom_js'] ) : '';
+				$prev_js = isset( $page_setting['ha_page_custom_js'] ) ? trim($page_setting['ha_page_custom_js']) : '';
 				$data['settings']['ha_page_custom_js'] = $prev_js;
+			}
+		}
+		return $data;
+	}
+
+	public function before_save_data( $data ) {
+		if ( ! current_user_can( 'administrator' ) && isset( $data['settings']['ha_page_custom_js'] ) ) {
+			$page_setting = get_post_meta( get_the_ID(), '_elementor_page_settings', true );
+			if ( isset( $page_setting['ha_page_custom_js'] ) ) {
+				// Restore previous value if it exists.
+				$data['settings']['ha_page_custom_js'] = trim( $page_setting['ha_page_custom_js'] );
+			} else {
+				// Remove any custom JS attempt from non-admin users
+				unset( $data['settings']['ha_page_custom_js'] );
 			}
 		}
 		return $data;
