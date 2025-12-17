@@ -313,7 +313,7 @@ For a more detailed explanation check out the following documentation
 
 = 3.20.4 - 17 December 2025 =
 
-- Fix: Resolved Builder Condition issue.
+- Fix: Resolved Theme Builder Condition issue.
 - Fix: Resolved Custom JS issue.
 
 = 3.20.3 - 10 December 2025 =
