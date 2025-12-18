@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@use "variables" as *;
+@use "mixins" as *;
 
 .ha-testimonial {
 	&--basic {
@@ -8,7 +8,7 @@
 			border: 1px solid #ececec;
 			border-radius: 5px;
 		}
-		
+
 		&:not(:has(.elementor-widget-container)){
 			padding: 25px;
 			border: 1px solid #ececec;

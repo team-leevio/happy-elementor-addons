@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@use "variables" as *;
+@use "mixins" as *;
 
 .ha-card {
 	--ha-card-image-offset-x: calc(1px - 1px);

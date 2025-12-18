@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@use "variables" as *;
+@use "mixins" as *;
 
 .ha-infobox {
 	--ha-infobox-media-offset-x: 0;

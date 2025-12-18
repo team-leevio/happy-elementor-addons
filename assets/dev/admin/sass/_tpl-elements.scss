@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "../../sass/variables" as *;
+
 /**************************\
   Micro Modal
 \**************************/
@@ -75,17 +78,17 @@
         ::-webkit-scrollbar {
             width: 8px;
         }
-        
+
         ::-webkit-scrollbar-track {
-            background: #f7f7fa; 
+            background: #f7f7fa;
         }
-        
+
         ::-webkit-scrollbar-thumb {
-            background: #888888a8; 
+            background: #888888a8;
         }
-        
+
         ::-webkit-scrollbar-thumb:hover {
-            background: #5555558f; 
+            background: #5555558f;
         }
     }
 
@@ -120,7 +123,7 @@
         color: #101028;
         display: flex;
         align-items: center;
-        
+
         svg{
             margin-right: 8px;
         }
@@ -292,7 +295,7 @@
                     cursor: pointer;
 
                     &:hover{
-                        background: darken($color: #5E41C1, $amount: 10);
+                        background: color.adjust(#5E41C1, $lightness: -10%);
                     }
 
                     &:disabled{
@@ -395,7 +398,7 @@
 
         &:hover,
         &:focus {
-            background-color: darken($color: #39b54a, $amount: 10);
+            background-color: color.adjust(#39b54a, $lightness: -10%);
         }
     }
 

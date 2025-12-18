@@ -1,4 +1,6 @@
-@import "../../sass/variables";
+@use "sass:color";
+@use "../../sass/variables" as *;
+@use 'tpl-elements' as *;
 
 .elementor-panel {
 	.ha-element--promotion>.elementor-element>.eicon-lock {
@@ -28,7 +30,7 @@
 		-webkit-text-fill-color: transparent;
 		margin-left: 5px;
 	}
-	
+
 	// center icons
 	// div.elementor-section-title:has(.hm.hm-happyaddons.ha-section-icon) {
 	// 	display: flex;
@@ -114,7 +116,7 @@
 }
 
 
-@import 'tpl-elements';
+
 
 .elementor-control.elementor-control-ha_scroll_to_top_button_icon.elementor-control-type-icons label.elementor-choices-label.tooltip-target.elementor-control-icons--inline__none {
 	display: none;

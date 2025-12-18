@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@use "variables" as *;
+@use "mixins" as *;
 
 .ha-pricing-table {
 
@@ -9,7 +9,7 @@
 		overflow: hidden;
 		@include widgetContainerBaseStyle;
 	}
-	
+
 	&:not(:has(.elementor-widget-container)) {
 		padding: 3em 4em;
 		position: relative;
