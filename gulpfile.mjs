@@ -1,6 +1,5 @@
 import { readFileSync } from "fs";
 import gulp from "gulp";
-import gulpSass from "gulp-sass";
 import * as sass from "sass";
 import gulpCsso from "gulp-csso";
 import gulpRename from "gulp-rename";
@@ -13,26 +12,57 @@ import gulpConcat from "gulp-concat";
 import gulpClean from "gulp-clean";
 import gulpZip from "gulp-zip";
 import fs from "fs";
+import through from "through2";
+import path from "path";
 
 const packageJSON = JSON.parse(
-  readFileSync(new URL("./package.json", import.meta.url))
+	readFileSync(new URL("./package.json", import.meta.url)),
 );
 const { src, watch, dest, series } = gulp;
-// Use the modern Sass compiler API with proper configuration
-const sassCompiler = gulpSass(sass);
+
+// Custom Sass compiler using the modern Sass API
+function compileSass() {
+	return through.obj(function (file, enc, cb) {
+		if (file.isNull()) {
+			return cb(null, file);
+		}
+
+		if (file.isStream()) {
+			return cb(new Error("Streaming not supported"));
+		}
+
+		try {
+			// Use the modern Sass API
+			const result = sass.compile(file.path, {
+				style: "expanded",
+				// Suppress deprecation warnings
+				verbose: false,
+			});
+
+			file.contents = Buffer.from(result.css);
+
+			// Update the extension to .css
+			file.path = file.path.replace(path.extname(file.path), ".css");
+
+			cb(null, file);
+		} catch (err) {
+			cb(err);
+		}
+	});
+}
 
 const AUTOPREFIXER_BROWSERS = [
-  "last 2 version",
-  "> 1%",
-  "ie >= 9",
-  "ie_mob >= 10",
-  "ff >= 30",
-  "chrome >= 34",
-  "safari >= 7",
-  "opera >= 23",
-  "ios >= 7",
-  "android >= 4",
-  "bb >= 10",
+	"last 2 version",
+	"> 1%",
+	"ie >= 9",
+	"ie_mob >= 10",
+	"ff >= 30",
+	"chrome >= 34",
+	"safari >= 7",
+	"opera >= 23",
+	"ios >= 7",
+	"android >= 4",
+	"bb >= 10",
 ];
 
 const frontendSassFiles = "assets/dev/sass/**/*.scss";
@@ -44,180 +74,180 @@ const packageName = packageJSON.name;
 const packageVersion = packageJSON.version;
 
 const buildSrcFiles = [
-  "./**/*",
-  "!./dist/*",
-  "!./**/_*/",
-  "!./node_modules/**",
-  "!./.csscomb.json",
-  "!./.distignore",
-  "!./.editorconfig",
-  "!./.vscode/**",
-  "!./.gitattributes",
-  "!./.gitignore",
-  "!./assets/dev/**",
-  "!./package-lock.json",
-  "!./package.json",
-  "!./gulpfile.mjs",
-  "!./yarn.lock",
-  "!./README.md",
-  // "./vendor/**/*",
-  "!./composer.lock",
-  "!./vendor/bin/**",
-  "!./vendor/composer/**",
-  "!./vendor/dealerdirect/**",
-  "!./vendor/phpcsstandards/**",
-  "!./vendor/squizlabs/**",
-  "!./vendor/wp-coding-standards/**",
-  "!./vendor/autoload.php",
+	"./**/*",
+	"!./dist/*",
+	"!./**/_*/",
+	"!./node_modules/**",
+	"!./.csscomb.json",
+	"!./.distignore",
+	"!./.editorconfig",
+	"!./.vscode/**",
+	"!./.gitattributes",
+	"!./.gitignore",
+	"!./assets/dev/**",
+	"!./package-lock.json",
+	"!./package.json",
+	"!./gulpfile.mjs",
+	"!./yarn.lock",
+	"!./README.md",
+	// "./vendor/**/*",
+	"!./composer.lock",
+	"!./vendor/bin/**",
+	"!./vendor/composer/**",
+	"!./vendor/dealerdirect/**",
+	"!./vendor/phpcsstandards/**",
+	"!./vendor/squizlabs/**",
+	"!./vendor/wp-coding-standards/**",
+	"!./vendor/autoload.php",
 ];
 
 function makeFrontendCSS() {
-  return src(frontendSassFiles)
-    .pipe(gulpPlumberNotifier())
-    .pipe(sassCompiler())
-    .pipe(gulpAutoPrefixer(AUTOPREFIXER_BROWSERS))
-    .pipe(gulpCsscomb())
-    .pipe(gulpCsso())
-    .pipe(gulpRename({ suffix: ".min" }))
-    .pipe(dest("assets/css/widgets"))
-    .pipe(gulpConcat("main.css"))
-    .pipe(dest("assets/css"))
-    .pipe(gulpRename({ suffix: ".min" }))
-    .pipe(dest("assets/css"));
+	return src(frontendSassFiles)
+		.pipe(gulpPlumberNotifier())
+		.pipe(compileSass())
+		.pipe(gulpAutoPrefixer(AUTOPREFIXER_BROWSERS))
+		.pipe(gulpCsscomb())
+		.pipe(gulpCsso())
+		.pipe(gulpRename({ suffix: ".min" }))
+		.pipe(dest("assets/css/widgets"))
+		.pipe(gulpConcat("main.css"))
+		.pipe(dest("assets/css"))
+		.pipe(gulpRename({ suffix: ".min" }))
+		.pipe(dest("assets/css"));
 }
 
 function makeBackendCSS() {
-  return src(backendSassFiles)
-    .pipe(gulpPlumberNotifier())
-    .pipe(sassCompiler())
-    .pipe(gulpAutoPrefixer(AUTOPREFIXER_BROWSERS))
-    .pipe(gulpCsscomb())
-    .pipe(dest("assets/admin/css"))
-    .pipe(gulpCsso())
-    .pipe(gulpRename({ suffix: ".min" }))
-    .pipe(dest("assets/admin/css"));
+	return src(backendSassFiles)
+		.pipe(gulpPlumberNotifier())
+		.pipe(compileSass())
+		.pipe(gulpAutoPrefixer(AUTOPREFIXER_BROWSERS))
+		.pipe(gulpCsscomb())
+		.pipe(dest("assets/admin/css"))
+		.pipe(gulpCsso())
+		.pipe(gulpRename({ suffix: ".min" }))
+		.pipe(dest("assets/admin/css"));
 }
 
 function makeFrontendJS() {
-  return src(frontendJSFiles)
-    .pipe(gulpPlumberNotifier())
-    .pipe(
-      gulpBabel({
-        presets: ["@babel/env"],
-      })
-    )
-    .pipe(dest("assets/js"))
-    .pipe(gulpUglify())
-    .pipe(gulpRename({ suffix: ".min" }))
-    .pipe(dest("assets/js"));
+	return src(frontendJSFiles)
+		.pipe(gulpPlumberNotifier())
+		.pipe(
+			gulpBabel({
+				presets: ["@babel/env"],
+			}),
+		)
+		.pipe(dest("assets/js"))
+		.pipe(gulpUglify())
+		.pipe(gulpRename({ suffix: ".min" }))
+		.pipe(dest("assets/js"));
 }
 
 function makeBackendJS() {
-  return src(backendJSFiles)
-    .pipe(gulpPlumberNotifier())
-    .pipe(
-      gulpBabel({
-        presets: ["@babel/env"],
-      })
-    )
-    .pipe(dest("assets/admin/js"))
-    .pipe(gulpUglify())
-    .pipe(gulpRename({ suffix: ".min" }))
-    .pipe(dest("assets/admin/js"))
-    .on("error", swallowError);
+	return src(backendJSFiles)
+		.pipe(gulpPlumberNotifier())
+		.pipe(
+			gulpBabel({
+				presets: ["@babel/env"],
+			}),
+		)
+		.pipe(dest("assets/admin/js"))
+		.pipe(gulpUglify())
+		.pipe(gulpRename({ suffix: ".min" }))
+		.pipe(dest("assets/admin/js"))
+		.on("error", swallowError);
 }
 
 function swallowError(error) {
-  // If you want details of the error in the console
-  console.log(error.toString());
+	// If you want details of the error in the console
+	console.log(error.toString());
 
-  this.emit("end");
+	this.emit("end");
 }
 
 function startWatching() {
-  watch(frontendSassFiles, makeFrontendCSS);
-  watch(backendSassFiles, makeBackendCSS);
-  watch(frontendJSFiles, makeFrontendJS);
-  watch(backendJSFiles, makeBackendJS);
+	watch(frontendSassFiles, makeFrontendCSS);
+	watch(backendSassFiles, makeBackendCSS);
+	watch(frontendJSFiles, makeFrontendJS);
+	watch(backendJSFiles, makeBackendJS);
 }
 
 function deleteOld__old() {
-  return src(["assets/css", "assets/admin", "assets/js"], {
-    read: false,
-  }).pipe(gulpClean({ force: true }));
+	return src(["assets/css", "assets/admin", "assets/js"], {
+		read: false,
+	}).pipe(gulpClean({ force: true }));
 }
 
 function deleteOld() {
-  const paths = ["assets/css", "assets/admin", "assets/js"];
+	const paths = ["assets/css", "assets/admin", "assets/js"];
 
-  // Filter paths that exist
-  const existingPaths = paths.filter((path) => fs.existsSync(path));
+	// Filter paths that exist
+	const existingPaths = paths.filter((path) => fs.existsSync(path));
 
-  if (existingPaths.length > 0) {
-    return src(existingPaths, {
-      read: false,
-    }).pipe(gulpClean({ force: true }));
-  } else {
-    console.log("No paths exist to clean.");
-    return Promise.resolve(); // Return a resolved promise to avoid breaking the Gulp task chain
-  }
+	if (existingPaths.length > 0) {
+		return src(existingPaths, {
+			read: false,
+		}).pipe(gulpClean({ force: true }));
+	} else {
+		console.log("No paths exist to clean.");
+		return Promise.resolve(); // Return a resolved promise to avoid breaking the Gulp task chain
+	}
 }
 
 function buildZip() {
-  return src(buildSrcFiles, { base: "./" })
-    .pipe(
-      gulpRename(function (file) {
-        file.dirname = packageName + "/" + file.dirname;
-      })
-    )
-    .pipe(gulpZip(packageName + "-v" + packageVersion + ".zip"))
-    .pipe(dest("./dist/"));
+	return src(buildSrcFiles, { base: "./" })
+		.pipe(
+			gulpRename(function (file) {
+				file.dirname = packageName + "/" + file.dirname;
+			}),
+		)
+		.pipe(gulpZip(packageName + "-v" + packageVersion + ".zip"))
+		.pipe(dest("./dist/"));
 }
 
 function buildRelease() {
-  return src(buildSrcFiles).pipe(dest("./dist/build"));
+	return src(buildSrcFiles).pipe(dest("./dist/build"));
 }
 
 function deleteBuild() {
-  return src(["./dist"], {
-    read: false,
-    allowEmpty: true,
-  }).pipe(gulpClean({ force: true }));
+	return src(["./dist"], {
+		read: false,
+		allowEmpty: true,
+	}).pipe(gulpClean({ force: true }));
 }
 
 export const build = series(
-  deleteBuild,
-  deleteOld,
-  makeFrontendCSS,
-  makeBackendCSS,
-  makeFrontendJS,
-  makeBackendJS,
-  buildRelease
+	deleteBuild,
+	deleteOld,
+	makeFrontendCSS,
+	makeBackendCSS,
+	makeFrontendJS,
+	makeBackendJS,
+	buildRelease,
 );
 
 export const zip = series(
-  deleteBuild,
-  deleteOld,
-  makeFrontendCSS,
-  makeBackendCSS,
-  makeFrontendJS,
-  makeBackendJS,
-  buildZip
+	deleteBuild,
+	deleteOld,
+	makeFrontendCSS,
+	makeBackendCSS,
+	makeFrontendJS,
+	makeBackendJS,
+	buildZip,
 );
 
 export const clean = deleteOld;
 
 export const production = series(
-  makeFrontendCSS,
-  makeBackendCSS,
-  makeFrontendJS,
-  makeBackendJS
+	makeFrontendCSS,
+	makeBackendCSS,
+	makeFrontendJS,
+	makeBackendJS,
 );
 
 export default series(
-  makeFrontendCSS,
-  makeBackendCSS,
-  makeFrontendJS,
-  makeBackendJS,
-  startWatching
+	makeFrontendCSS,
+	makeBackendCSS,
+	makeFrontendJS,
+	makeBackendJS,
+	startWatching,
 );
