@@ -1331,6 +1331,10 @@ class Twitter_Feed extends Base {
 		$transient_key = $user_name . $ha_tweets_cash;
 		$twitter_data = get_transient($transient_key);
 		$credentials = base64_encode($consumer_key . ':' . $consumer_secret);
+		/*
+		API Key = ZKWb2w65EnQkr4PMl1us9GWf4
+		API Key Secret = BnlDpzmT0HJ7Ez6uTbIl8ZiiUjtKGoHO7Iwlfm4WPecPzSNZlu
+		*/
 
 		if ( $twitter_data === false ) {
 			$auth_url = 'https://api.twitter.com/oauth2/token';
@@ -1386,8 +1390,13 @@ class Twitter_Feed extends Base {
 			return;
 		}
 
+		// $post_id = get_the_ID();
+		// if ( empty( $post_id ) ) {
+		// 	global $post;
+		// 	$post_id = isset( $post->ID ) ? (int) $post->ID : 0;
+		// }
+
 		$query_settings = [
-			'credentials' 			=> $credentials,
 			'id' 					=> $id,
 			'user_name' 			=> $user_name,
 			'remove_cache' 			=> $settings['remove_cache'],
@@ -1404,7 +1413,13 @@ class Twitter_Feed extends Base {
 			'read_more_text'		=> $settings['read_more_text'],
 			'content_word_count'	=> $settings['content_word_count'],
 		];
-		$query_settings = json_encode($query_settings, true);
+		$query_settings = json_encode( $query_settings, true );
+
+		$crede_cache_key = '_ha_tweeter_crede_cache_key_' . $id;
+		$crede_cache_data = get_transient( $crede_cache_key );
+		if ( $crede_cache_data && $crede_cache_data != $credentials ) {
+			set_transient( $crede_cache_key, $credentials, 12 * HOUR_IN_SECONDS );
+		}
 
 		switch ($settings['sort_by']) {
 			case 'old-posts':
