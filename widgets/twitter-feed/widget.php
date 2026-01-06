@@ -1331,10 +1331,6 @@ class Twitter_Feed extends Base {
 		$transient_key = $user_name . $ha_tweets_cash;
 		$twitter_data = get_transient($transient_key);
 		$credentials = base64_encode($consumer_key . ':' . $consumer_secret);
-		/*
-		API Key = ZKWb2w65EnQkr4PMl1us9GWf4
-		API Key Secret = BnlDpzmT0HJ7Ez6uTbIl8ZiiUjtKGoHO7Iwlfm4WPecPzSNZlu
-		*/
 
 		if ( $twitter_data === false ) {
 			$auth_url = 'https://api.twitter.com/oauth2/token';
@@ -1352,7 +1348,11 @@ class Twitter_Feed extends Base {
 
 			$body = json_decode( wp_remote_retrieve_body( $auth_response ) );
 
-			if ( !empty( $body ) ) {
+
+			error_log( print_r( $body, 1 ) );
+			error_log( print_r( 'first call body =============================', 1 ) );
+
+			if ( false && !empty( $body ) ) {
 				$token = $body->access_token;
 
 				$twitter_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $user_name . '&count=999&tweet_mode=extended';
@@ -1366,6 +1366,58 @@ class Twitter_Feed extends Base {
 				$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
 				set_transient( $transient_key, $twitter_data, 0 );
 			}
+
+			if ( true && ! empty( $body ) ) {
+                // $token = ! empty( $settings['eael_twitter_feed_bearer_token'] ) ? $settings['eael_twitter_feed_bearer_token'] : '';
+                $token = $body->access_token;
+                $tweet_fields = [ 'entities', 'public_metrics', 'in_reply_to_user_id', 'attachments', 'created_at' ];
+                $tweet_fields_params = implode(',', $tweet_fields);
+				$account_name = sanitize_text_field( str_replace('@', '', $user_name) );
+
+                // if ( empty( $user_object ) ) {
+                    $api_endpoint_user = esc_url( "https://api.twitter.com/2/users/by/username/$account_name?user.fields=profile_image_url" );
+
+                    $response_user = wp_remote_get($api_endpoint_user, [
+                        'blocking' => true,
+                        'headers' => [
+                            'Authorization' => "Bearer $token",
+                        ],
+                    ]);
+
+                    $body_user = json_decode(wp_remote_retrieve_body($response_user));
+					$user_object = $body_user;
+					error_log( print_r( $user_object, 1 ) );
+					error_log( print_r( 'user_object =============================', 1 ) );
+					$user_id   = ! empty( $user_object->id ) ? $user_object->id : '';
+
+                    // if ($body_user) {
+                    //     $user_object = $body_user;
+                    //     update_option($id . '_' . $settings['eael_twitter_feed_ac_name'] . '_tf_user_object', $user_object);
+
+                    //     $user_id                = ! empty( $user_object->id ) ? $user_object->id : '';
+                    //     $user_profile_image_url = ! empty( $user_object->profile_image_url ) ? $user_object->profile_image_url : '';
+                    //     $user_username          = ! empty( $user_object->username ) ? $user_object->username : '';
+                    //     $user_name              = ! empty( $user_object->name ) ? $user_object->name : '';
+                    // }
+                // }
+
+                // if ( empty( $user_id ) ){
+                //     return $html;
+                // }
+
+                $api_endpoint = esc_url( "https://api.twitter.com/2/users/$user_id/tweets?max_results=100&tweet.fields=$tweet_fields_params" );
+
+				$tweets_response = wp_remote_get( $api_endpoint,
+					array(
+						'blocking' => true,
+						'headers' => [ 'Authorization' => "Bearer $token", ],
+					) );
+
+				$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
+				error_log( print_r( $twitter_data, 1 ) );
+				set_transient( $transient_key, $twitter_data, 0 );
+
+            }
 		}
 		if ( $settings['remove_cache'] == 'yes' ) {
 			delete_transient( $transient_key );
@@ -1389,12 +1441,6 @@ class Twitter_Feed extends Base {
 			printf('<div class="ha-tweet-error-message">%1$s</div>', esc_html( $messages[0] ) );
 			return;
 		}
-
-		// $post_id = get_the_ID();
-		// if ( empty( $post_id ) ) {
-		// 	global $post;
-		// 	$post_id = isset( $post->ID ) ? (int) $post->ID : 0;
-		// }
 
 		$query_settings = [
 			'id' 					=> $id,
