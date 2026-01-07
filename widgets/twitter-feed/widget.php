@@ -1407,7 +1407,7 @@ class Twitter_Feed extends Base {
 
 		$crede_cache_key = '_ha_tweeter_crede_cache_key_' . $id;
 		$crede_cache_data = get_transient( $crede_cache_key );
-		if ( $crede_cache_data && $crede_cache_data != $credentials ) {
+		if ( $crede_cache_data || $crede_cache_data != $credentials ) {
 			set_transient( $crede_cache_key, $credentials, 12 * HOUR_IN_SECONDS );
 		}
 
