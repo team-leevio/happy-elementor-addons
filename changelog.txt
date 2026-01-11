@@ -1,6 +1,7 @@
 = 3.20.6 - 7 January 2026 =
 
 - Fix: Resolved Twitter Feed issue.
+- Fix: Resolved Happy Clone issue.
 
 = 3.20.4 - 17 December 2025 =
 
