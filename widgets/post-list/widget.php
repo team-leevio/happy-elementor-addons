@@ -279,6 +279,7 @@ class Post_List extends Base {
 			[
 				'label'       => __( 'Icon', 'happy-elementor-addons' ),
 				'type'        => Controls_Manager::ICONS,
+				'skin' => 'inline',
 				'label_block' => true,
 				'default'     => [
 					'value'   => 'far fa-check-circle',
@@ -335,6 +336,7 @@ class Post_List extends Base {
 			[
 				'label'     => __( 'Author Icon', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::ICONS,
+				'skin' => 'inline',
 				'default'   => [
 					'value'   => 'far fa-user',
 					'library' => 'reguler',
@@ -366,6 +368,7 @@ class Post_List extends Base {
 			[
 				'label'     => __( 'Date Icon', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::ICONS,
+				'skin' => 'inline',
 				'default'   => [
 					'value'   => 'far fa-calendar-check',
 					'library' => 'reguler',
@@ -398,6 +401,7 @@ class Post_List extends Base {
 			[
 				'label'     => __( 'Category Icon', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::ICONS,
+				'skin' => 'inline',
 				'default'   => [
 					'value'   => 'far fa-folder-open',
 					'library' => 'reguler',
@@ -406,6 +410,55 @@ class Post_List extends Base {
 					'meta'          => 'yes',
 					'category_meta' => 'yes',
 					'post_type' => [ 'post', 'product' ],
+				],
+			]
+		);
+
+		$this->add_control(
+			'custom_meta',
+			[
+				'label'        => __( 'Custom', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __( 'Show', 'happy-elementor-addons' ),
+				'label_off'    => __( 'Hide', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default'      => '',
+				'condition'    => [
+					'meta'      => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'custom_meta_text',
+			[
+				'label'     => __( 'Custom Meta Text', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::TEXT,
+				'label_block' => true,
+				'show_label' => false,
+				'dynamic'     => [
+					'active' => true,
+				],
+				'condition' => [
+					'meta'          => 'yes',
+					'custom_meta' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'custom_meta_icon',
+			[
+				'label'     => __( 'Custom Icon', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::ICONS,
+				'skin' => 'inline',
+				'default'   => [
+					'value'   => 'far fa-hand-point-right',
+					'library' => 'reguler',
+				],
+				'condition' => [
+					'meta'          => 'yes',
+					'custom_meta' => 'yes',
 				],
 			]
 		);
@@ -1049,7 +1102,7 @@ class Post_List extends Base {
 				'label'     => __( 'Space Between', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [
-					'{{WRAPPER}} .ha-post-list-meta-wrap span i' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-post-list-meta-wrap span :is(i, svg)' => 'margin-right: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -1189,6 +1242,26 @@ class Post_List extends Base {
 												endif;
 												echo ( ! empty( $categories ) ) ? esc_html( $categories[0]->name ) : '';
 												?>
+												</span>
+											<?php endif; ?>
+
+											<?php if ( 'yes' === $settings['custom_meta'] ) : ?>
+												<span class="ha-post-list-custom-meta">
+													<?php
+													if ( $settings['custom_meta_icon'] ) :
+														Icons_Manager::render_icon( $settings['custom_meta_icon'], [ 'aria-hidden' => 'true' ] );
+													endif;
+													// echo get_the_date( get_option( 'date_format' ), $post->ID );
+													// echo $settings['custom_meta_text'];
+													echo wp_kses( $settings['custom_meta_text'], [
+														'a' => [
+															'href' => [],
+															'title' => [],
+															'rel' => [],
+														],
+														'time' => [],
+													] );
+													?>
 												</span>
 											<?php endif; ?>
 
