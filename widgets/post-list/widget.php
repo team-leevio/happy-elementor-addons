@@ -430,14 +430,15 @@ class Post_List extends Base {
 		);
 
 		$this->add_control(
-			'custom_meta_text',
+			'custom_meta_key',
 			[
-				'label'     => __( 'Custom Meta Text', 'happy-elementor-addons' ),
+				'label'     => __( 'Custom Meta Key', 'happy-elementor-addons' ),
+				'description'     => __( 'Set custom meta key to show the value. value must be string or integer.', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::TEXT,
 				'label_block' => true,
 				'show_label' => false,
 				'dynamic'     => [
-					'active' => true,
+					'active' => false,
 				],
 				'condition' => [
 					'meta'          => 'yes',
@@ -1251,20 +1252,18 @@ class Post_List extends Base {
 													if ( $settings['custom_meta_icon'] ) :
 														Icons_Manager::render_icon( $settings['custom_meta_icon'], [ 'aria-hidden' => 'true' ] );
 													endif;
-													// echo get_the_date( get_option( 'date_format' ), $post->ID );
-													// echo $settings['custom_meta_text'];
-													$meta = get_post_meta( $post->ID, $settings['custom_meta_text'] );
-													echo '<pre>';
-													var_dump($meta);
-													echo '</pre>';
-													echo wp_kses( $settings['custom_meta_text'], [
-														'a' => [
-															'href' => [],
-															'title' => [],
-															'rel' => [],
-														],
-														'time' => [],
-													] );
+													$custom_meta_key = get_post_meta( $post->ID, $settings['custom_meta_key'], true );
+													if ( $custom_meta_key && ('string' == gettype($custom_meta_key) || 'integer' == gettype($custom_meta_key)) ) {
+														echo esc_html( $custom_meta_key );
+													}
+													// echo wp_kses( $custom_meta_key, [
+													// 	'a' => [
+													// 		'href' => [],
+													// 		'title' => [],
+													// 		'rel' => [],
+													// 	],
+													// 	'time' => [],
+													// ] );
 													?>
 												</span>
 											<?php endif; ?>
