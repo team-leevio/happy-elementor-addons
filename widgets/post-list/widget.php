@@ -381,6 +381,28 @@ class Post_List extends Base {
 		);
 
 		$this->add_control(
+			'date_format',
+			[
+				'label'     => __( 'Date Format', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'site_default',
+				'options' => [
+                    'site_default' => esc_html__('Site Default', 'happy-elementor-addons'),
+                    'format_1' => esc_html__( date('F j, Y'), 'happy-elementor-addons'),
+                    'format_2' => esc_html__( date('M j, Y'), 'happy-elementor-addons'),
+                    'format_3' => esc_html__( date('Y-m-d'), 'happy-elementor-addons'),
+                    'format_4' => esc_html__( date('m/d/Y'), 'happy-elementor-addons'),
+                    'format_5' => esc_html__( date('d/m/Y'), 'happy-elementor-addons'),
+                    'format_6' => esc_html__( date('d.m.Y'), 'happy-elementor-addons'),
+                ],
+				'condition' => [
+					'meta'      => 'yes',
+					'date_meta' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
 			'category_meta',
 			[
 				'label'        => __( 'Category', 'happy-elementor-addons' ),
@@ -479,6 +501,24 @@ class Post_List extends Base {
 				],
 			]
 		);
+
+		// $this->add_control(
+        //     'meta_separator',
+        //     [
+        //         'label' => esc_html__('Separator Between', 'happy-elementor-addons'),
+        //         'type' => Controls_Manager::TEXT,
+        //         'default' => '///',
+        //         'selectors' => [
+        //             '{{WRAPPER}} .ha-post-list-meta-wrap span:after' => 'content: "{{VALUE}}"',
+        //         ],
+        //         'condition' => [
+        //             'meta_data!' => [],
+        //         ],
+        //         'dynamic' => [
+        //             'active' => true,
+        //         ],
+        //     ]
+        // );
 
 		$this->add_control(
 			'title_tag',
@@ -1161,6 +1201,17 @@ class Post_List extends Base {
 			$posts = get_posts( $args );
 		}
 
+		$date_format = [
+			'site_default' => get_option( 'date_format' ),
+			'format_1'      => 'F j, Y',
+			'format_2'      => 'M j, Y',
+			'format_3'       => 'Y-m-d',
+			'format_4'       => 'm/d/Y',
+			'format_5'       => 'd/m/Y',
+			'format_6'       => 'd.m.Y',
+		];
+		$date_format = isset( $settings['date_format'] ) ? $date_format[ $settings['date_format'] ] : get_option( 'date_format' );
+
 		$this->add_render_attribute( 'wrapper', 'class', [ 'ha-post-list-wrapper' ] );
 		$this->add_render_attribute( 'wrapper-inner', 'class', [ 'ha-post-list' ] );
 		if ( 'inline' === $settings['view'] ) {
@@ -1220,7 +1271,7 @@ class Post_List extends Base {
 													if ( $settings['date_icon'] ) :
 														Icons_Manager::render_icon( $settings['date_icon'], [ 'aria-hidden' => 'true' ] );
 													endif;
-													echo get_the_date( get_option( 'date_format' ), $post->ID );
+													echo get_the_date( $date_format, $post->ID );
 													?>
 												</span>
 											<?php endif; ?>
