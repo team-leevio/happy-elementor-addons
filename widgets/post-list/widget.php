@@ -1253,6 +1253,10 @@ class Post_List extends Base {
 													endif;
 													// echo get_the_date( get_option( 'date_format' ), $post->ID );
 													// echo $settings['custom_meta_text'];
+													$meta = get_post_meta( $post->ID, $settings['custom_meta_text'] );
+													echo '<pre>';
+													var_dump($meta);
+													echo '</pre>';
 													echo wp_kses( $settings['custom_meta_text'], [
 														'a' => [
 															'href' => [],
