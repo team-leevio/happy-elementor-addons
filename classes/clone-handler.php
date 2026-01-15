@@ -203,14 +203,32 @@ class Clone_Handler {
 		);
 
 		if ( is_array( $entries ) ) {
-			$query = "INSERT INTO {$wpdb->postmeta} ( post_id, meta_key, meta_value ) VALUES ";
-			$_records = [];
+			// $query = "INSERT INTO {$wpdb->postmeta} ( post_id, meta_key, meta_value ) VALUES ";
+			// $_records = [];
+			// foreach ( $entries as $entry ) {
+			// 	$_value = wp_slash( $entry->meta_value );
+			// 	$_records[] = "( $duplicated_post_id, '{$entry->meta_key}', '{$_value}' )";
+			// }
+			// $query .= implode( ', ', $_records ) . ';';
+			// $wpdb->query( $query  );
+
+			// foreach ( $entries as $entry ) {
+			// 	$wpdb->insert(
+			// 		$wpdb->postmeta,
+			// 		[
+			// 			'post_id'    => $duplicated_post_id,
+			// 			'meta_key'   => $entry->meta_key,
+			// 			'meta_value' => $entry->meta_value,
+			// 		],
+			// 		[ '%d', '%s', '%s' ]
+			// 	);
+			// }
+
 			foreach ( $entries as $entry ) {
-				$_value = wp_slash( $entry->meta_value );
-				$_records[] = "( $duplicated_post_id, '{$entry->meta_key}', '{$_value}' )";
+				update_post_meta( $duplicated_post_id, $entry->meta_key, $entry->meta_value );
 			}
-			$query .= implode( ', ', $_records ) . ';';
-			$wpdb->query( $query  );
+
+
 
 			// Fix Template Type Wrong issue
 			$source_type = get_post_meta($post->ID, '_elementor_template_type', true);
