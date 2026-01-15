@@ -502,23 +502,23 @@ class Post_List extends Base {
 			]
 		);
 
-		// $this->add_control(
-        //     'meta_separator',
-        //     [
-        //         'label' => esc_html__('Separator Between', 'happy-elementor-addons'),
-        //         'type' => Controls_Manager::TEXT,
-        //         'default' => '///',
-        //         'selectors' => [
-        //             '{{WRAPPER}} .ha-post-list-meta-wrap span:after' => 'content: "{{VALUE}}"',
-        //         ],
-        //         'condition' => [
-        //             'meta_data!' => [],
-        //         ],
-        //         'dynamic' => [
-        //             'active' => true,
-        //         ],
-        //     ]
-        // );
+		$this->add_control(
+            'meta_separator',
+            [
+                'label' => esc_html__('Meta Separator', 'happy-elementor-addons'),
+                'type' => Controls_Manager::TEXT,
+                'default' => '///',
+                'selectors' => [
+                    '{{WRAPPER}} .ha-post-list-meta-wrap span:after' => 'content: "{{VALUE}}"'
+                ],
+				'condition' => [
+					'meta' => 'yes',
+				],
+                'dynamic' => [
+                    'active' => false,
+                ],
+            ]
+        );
 
 		$this->add_control(
 			'title_tag',
@@ -1144,6 +1144,17 @@ class Post_List extends Base {
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .ha-post-list-meta-wrap span :is(i, svg)' => 'margin-right: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'meta_separator_space',
+			[
+				'label'     => __( 'Separator Space', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list-meta-wrap span:after' => 'margin-left: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);

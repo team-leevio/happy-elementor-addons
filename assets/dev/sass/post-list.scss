@@ -92,6 +92,15 @@ span.ha-post-list-icon {
 		fill: currentColor;
 		margin-right: 3px;
 	}
+
+	&:after{
+		margin-left: 12px;
+	}
+
+	&:last-child:after{
+		content:'';
+		display: none;
+	}
 }
 
 .ha-post-list-excerpt p {
