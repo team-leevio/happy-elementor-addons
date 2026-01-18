@@ -100,6 +100,25 @@ class Post_List extends Base {
 				'options' => [
 					'recent'   => __( 'Recent Post', 'happy-elementor-addons' ),
 					'selected' => __( 'Selected Post', 'happy-elementor-addons' ),
+					'category' => __( 'Category', 'happy-elementor-addons' ),
+					// 'category' => __( 'Category (only compatible with post type.)', 'happy-elementor-addons' ),
+				],
+
+			]
+		);
+
+		$this->add_control(
+			'category',
+			[
+				'label'   => __( 'Categories', 'happy-elementor-addons' ),
+				'show_label'   => false,
+				'label_block'   => true,
+				'type'    => Controls_Manager::SELECT2,
+				'options' => $this->get_terms(),
+				'multiple'    => true,
+				'condition' => [
+					'post_type' => [ 'post' ],
+					'show_post_by' => [ 'category' ],
 				],
 
 			]
@@ -113,7 +132,20 @@ class Post_List extends Base {
 				'default'   => 3,
 				'dynamic'   => [ 'active' => true ],
 				'condition' => [
-					'show_post_by' => [ 'recent' ],
+					'show_post_by!' => [ 'selected' ],
+				],
+			]
+		);
+
+		$this->add_control(
+			'offset',
+			[
+				'label'     => __( 'Offset', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::NUMBER,
+				// 'default'   => 0,
+				'dynamic'   => [ 'active' => false ],
+				'condition' => [
+					'show_post_by!' => [ 'selected' ],
 				],
 			]
 		);
@@ -1162,6 +1194,36 @@ class Post_List extends Base {
 		$this->end_controls_section();
 	}
 
+	protected function get_terms() {
+		$data = [];
+		$terms = get_terms( [
+			'taxonomy'   => 'category',
+			'hide_empty' => false,
+		] );
+
+
+		if ( is_wp_error( $terms ) || empty( $terms ) ) {
+			return $data;
+		}
+
+		foreach ( $terms as $term ) {
+			$label = $term->name;
+			// $taxonomy_name = self::get_taxonomy_label( $term->taxonomy );
+			// if ( $taxonomy_name ) {
+			// 	$label = "{$taxonomy_name}: {$label}";
+			// }
+
+			// $data[] = [
+			// 	'id' => $term->term_taxonomy_id,
+			// 	'text' => $label,
+			// ];
+
+			$data[ $term->term_taxonomy_id ] = $label;
+		}
+
+		return $data;
+	}
+
 	protected function render() {
 
 		$settings = $this->get_settings_for_display();
@@ -1176,8 +1238,15 @@ class Post_List extends Base {
 			'suppress_filters' => false,
 		];
 
-		if ( 'recent' === $settings['show_post_by'] ) {
+		if ( 'recent' === $settings['show_post_by'] || 'category' === $settings['show_post_by'] ) {
 			$args['posts_per_page'] = $settings['posts_per_page'];
+			if ( !empty( $settings['offset'] ) ) {
+				$args['offset'] = $settings['offset'];
+			}
+		}
+
+		if ( 'post' === $settings['post_type'] && 'category' === $settings['show_post_by'] && isset($settings['category']) && ! empty( $settings['category'] ) ) {
+			$args['category__in'] = $settings['category'];
 		}
 
 		$customize_title = [];
@@ -1206,7 +1275,7 @@ class Post_List extends Base {
 			$args['orderby']  = 'post__in';
 		}
 
-		if ( 'selected' === $settings['show_post_by'] && empty( $ids ) ) {
+		if ( ('selected' === $settings['show_post_by'] && empty( $ids )) || ( 'category' === $settings['show_post_by'] && empty( $settings['category'] ) ) ) {
 			$posts = [];
 		} else {
 			$posts = get_posts( $args );
