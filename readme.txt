@@ -311,6 +311,12 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.20.6 - 15 January 2026 =
+
+- Fix: Resolved Twitter Feed issue.
+- Fix: Resolved Happy Clone issue.
+- Update: Made Compatible with Elementor 3.34
+
 = 3.20.4 - 17 December 2025 =
 
 - Fix: Resolved Theme Builder Condition issue.
