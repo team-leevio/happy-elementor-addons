@@ -212,21 +212,21 @@ class Clone_Handler {
 			// $query .= implode( ', ', $_records ) . ';';
 			// $wpdb->query( $query  );
 
-			// foreach ( $entries as $entry ) {
-			// 	$wpdb->insert(
-			// 		$wpdb->postmeta,
-			// 		[
-			// 			'post_id'    => $duplicated_post_id,
-			// 			'meta_key'   => $entry->meta_key,
-			// 			'meta_value' => $entry->meta_value,
-			// 		],
-			// 		[ '%d', '%s', '%s' ]
-			// 	);
-			// }
-
 			foreach ( $entries as $entry ) {
-				update_post_meta( $duplicated_post_id, $entry->meta_key, $entry->meta_value );
+				$wpdb->insert(
+					$wpdb->postmeta,
+					[
+						'post_id'    => $duplicated_post_id,
+						'meta_key'   => $entry->meta_key,
+						'meta_value' => $entry->meta_value,
+					],
+					[ '%d', '%s', '%s' ]
+				);
 			}
+
+			// foreach ( $entries as $entry ) {
+			// 	update_post_meta( $duplicated_post_id, $entry->meta_key, $entry->meta_value );
+			// }
 
 
 
