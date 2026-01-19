@@ -60,7 +60,7 @@ class Post_List extends Base {
 	 */
 	public function get_post_types() {
 		$post_types = ha_get_post_types( [], [ 'elementor_library', 'attachment' ] );
-		return $post_types;
+		return array_merge($post_types, [ 'current_query' => 'Current Query' ]);
 	}
 
 	/**
@@ -103,6 +103,9 @@ class Post_List extends Base {
 					'category' => __( 'Category', 'happy-elementor-addons' ),
 					// 'category' => __( 'Category (only compatible with post type.)', 'happy-elementor-addons' ),
 				],
+				'condition' => [
+					'post_type!' => [ 'current_query' ],
+				],
 
 			]
 		);
@@ -132,6 +135,7 @@ class Post_List extends Base {
 				'default'   => 3,
 				'dynamic'   => [ 'active' => true ],
 				'condition' => [
+					'post_type!' => [ 'current_query' ],
 					'show_post_by!' => [ 'selected' ],
 				],
 			]
@@ -145,6 +149,7 @@ class Post_List extends Base {
 				// 'default'   => 0,
 				'dynamic'   => [ 'active' => false ],
 				'condition' => [
+					'post_type!' => [ 'current_query' ],
 					'show_post_by!' => [ 'selected' ],
 				],
 			]
@@ -1273,6 +1278,16 @@ class Post_List extends Base {
 
 			$args['post__in'] = (array) $ids;
 			$args['orderby']  = 'post__in';
+		}
+
+		if ( 'current_query' === $settings['post_type'] ) {
+			global $wp_query;
+			// echo '<pre>';
+			// var_dump($wp_query->query_vars );
+			// var_dump($wp_query);
+			// echo '</pre>';
+			$args = $wp_query->query_vars;
+			// $args['posts_per_page'] = $settings['posts_per_page'];
 		}
 
 		if ( ('selected' === $settings['show_post_by'] && empty( $ids )) || ( 'category' === $settings['show_post_by'] && empty( $settings['category'] ) ) ) {
