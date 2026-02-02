@@ -105,6 +105,7 @@
 				[
 					'label'       => __( 'SVG Code', 'happy-elementor-addons' ),
 					'type'        => Controls_Manager::TEXTAREA,
+					'sanitize_callback' => 'wp_kses_post',
 					'description' => 'You can use these sites to Convert SVG image to code: <a href="https://nikitahl.github.io/svg-2-code/" target="_blank">SVG 2 CODE</a> ',
 					'condition'   => [
 						'ha_icon_type' => 'custom_code'
@@ -729,7 +730,13 @@
 
 					<?php } else { ?>
 
-						<?php $this->print_unescaped_setting( 'ha_custom_svg' ); ?>
+						<?php 
+							if ( current_user_can( 'unfiltered_html' ) ) {
+								echo $settings['ha_custom_svg'];
+							} else {
+								echo wp_kses_post( $settings['ha_custom_svg'] );
+							}
+						?>
 
 					<?php } ?>
 
