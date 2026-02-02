@@ -626,33 +626,42 @@ class Archive_Posts extends Base {
         $this->add_responsive_control(
             'image_width',
             [
-                'label' => esc_html__('Width', 'happy-elementor-addons'),
+                'label' => esc_html__('Size', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
-                    '%' => [
-                        'min' => 10,
-                        'max' => 100,
-                    ],
+                    // '%' => [
+                    //     'min' => 10,
+                    //     'max' => 100,
+                    // ],
                     'px' => [
                         'min' => 10,
-                        'max' => 600,
+                        'max' => 1000,
                     ],
                 ],
                 'default' => [
-                    'size' => 100,
-                    'unit' => '%',
+                    'size' => 250,
+                    'unit' => 'px',
                 ],
-                'tablet_default' => [
-                    'size' => '',
-                    'unit' => '%',
-                ],
-                'mobile_default' => [
-                    'size' => 100,
-                    'unit' => '%',
-                ],
+                // 'tablet_default' => [
+                //     'size' => '',
+                //     'unit' => '%',
+                // ],
+                // 'mobile_default' => [
+                //     'size' => 100,
+                //     'unit' => '%',
+                // ],
                 'size_units' => ['%', 'px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-archive-posts__thumbnail__link' => 'width: {{SIZE}}{{UNIT}};',
+                    // '{{WRAPPER}} .ha-archive-posts__thumbnail__link' => 'width: {{SIZE}}{{UNIT}};',
+                    // '{{WRAPPER}}.ha-archive-posts--thumbnail-top .ha-archive-posts__thumbnail__link' => 'width: 100%;',
+
+                    '{{WRAPPER}}.ha-archive-posts--thumbnail-top .ha-archive-posts__thumbnail__link' => 'height: {{SIZE}}{{UNIT}}; width: 100%;',
+                    '{{WRAPPER}}.ha-archive-posts--thumbnail-left .ha-archive-posts__thumbnail__link' => 'width: {{SIZE}}{{UNIT}}; height: 100%;',
+                    '{{WRAPPER}}.ha-archive-posts--thumbnail-right .ha-archive-posts__thumbnail__link' => 'width: {{SIZE}}{{UNIT}};height: 100%;',
+
+                    // '{{WRAPPER}}.ha-archive-posts--thumbnail-top .ha-archive-posts__thumbnail' => 'height: {{SIZE}}{{UNIT}}; width: 100%;',
+                    '{{WRAPPER}}.ha-archive-posts--thumbnail-left .ha-archive-posts__thumbnail' => 'width: {{SIZE}}{{UNIT}}; height: 100%;',
+                    '{{WRAPPER}}.ha-archive-posts--thumbnail-right .ha-archive-posts__thumbnail' => 'width: {{SIZE}}{{UNIT}};height: 100%;',
                 ],
                 'condition' => [
                     'thumbnail!' => 'none',
@@ -1034,7 +1043,8 @@ class Archive_Posts extends Base {
                 'post_status'            => array('publish'),
                 'paged'                  => $paged,
                 'offset'                 => 1,
-                'posts_per_page'         => 10,
+                'posts_per_page'         => 3,
+                'meta_key'            	 => '_thumbnail_id',
                 'order'                  => 'DESC',
                 'orderby'                => 'date',
 
