@@ -720,17 +720,6 @@ class Archive_Posts extends Base {
 			]
 		);
 
-        $this->add_control(
-			'title_color',
-			[
-				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-title' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
         $this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
@@ -758,23 +747,55 @@ class Archive_Posts extends Base {
             ]
         );
 
+		$this->start_controls_tabs( 'title_tab' );
+
+		$this->start_controls_tab(
+			'title_normal',
+			[
+				'label' => esc_html__( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'title_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'title_hover',
+			[
+				'label' => esc_html__( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'title_hover_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-title:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
         $this->add_control(
 			'content_meta',
 			[
 				'label' => esc_html__( 'Meta', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
                 'separator' => 'before'
-			]
-		);
-
-        $this->add_control(
-			'meta_color',
-			[
-				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-meta-wrap' => 'color: {{VALUE}}',
-				],
 			]
 		);
 
@@ -804,6 +825,48 @@ class Archive_Posts extends Base {
                 ],
             ]
         );
+
+		$this->start_controls_tabs( 'meta_tab' );
+		$this->start_controls_tab(
+			'meta_normal',
+			[
+				'label' => esc_html__( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'meta_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-meta-wrap' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'meta_hover',
+			[
+				'label' => esc_html__( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'meta_hover_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-meta-wrap:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
 
         $this->add_control(
 			'content_excerpt',
@@ -1043,8 +1106,7 @@ class Archive_Posts extends Base {
                 'post_status'            => array('publish'),
                 'paged'                  => $paged,
                 'offset'                 => 1,
-                'posts_per_page'         => 3,
-                'meta_key'            	 => '_thumbnail_id',
+                'posts_per_page'         => 10,
                 'order'                  => 'DESC',
                 'orderby'                => 'date',
 

@@ -58,6 +58,7 @@
         font-weight: 600;
         font-family: 'Nunito';
         color: #54595f;
+				transition: all 0.3s ease;
         a {
             color: inherit;
         }
@@ -81,6 +82,7 @@
             color: inherit;
             a {
                 color: inherit;
+								// transition: all 0.3s ease;
             }
         }
     }
