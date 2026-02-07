@@ -92,11 +92,11 @@ class Clone_Handler {
 		$same_author = self::is_the_same_author( $post_id );
 
 		if ( ('private' == $post_status || 'draft' == $post_status) && ! $same_author ) {
-			wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
+			wp_die( __( 'Sorry, you are not allowed to clone this item.', 'happy-elementor-addons' ) );
 		}
 
 		if ( post_password_required( $post_id ) && ! $same_author ) {
-			wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
+			wp_die( __( 'Sorry, you are not allowed to clone this item.', 'happy-elementor-addons' ) );
 		}
 
 		if ( is_null( ( $post = get_post( $post_id ) ) ) ) {
