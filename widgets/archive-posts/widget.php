@@ -311,6 +311,8 @@ class Archive_Posts extends Base {
                 'options' => [
                     '' => esc_html__('None', 'happy-elementor-addons'),
                     'numbers' => esc_html__('Numbers', 'happy-elementor-addons'),
+                    // 'prev_next' => esc_html__('Previous/Next', 'happy-elementor-addons'),
+                    // 'numbers_and_prev_next' => esc_html__('Numbers and Previous/Next', 'happy-elementor-addons'),
                 ],
                 'frontend_available' => true,
             ]
@@ -924,17 +926,6 @@ class Archive_Posts extends Base {
 			]
 		);
 
-        $this->add_control(
-			'readmore_color',
-			[
-				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-readmore' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
         $this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
@@ -961,6 +952,48 @@ class Archive_Posts extends Base {
                 ],
             ]
         );
+
+		$this->start_controls_tabs( 'readmore_tab' );
+		$this->start_controls_tab(
+			'readmore_normal',
+			[
+				'label' => esc_html__( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'readmore_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-readmore' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'readmore_hover',
+			[
+				'label' => esc_html__( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'readmore_hover_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-readmore:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
 
         $this->end_controls_section();
     }
@@ -1322,7 +1355,7 @@ class Archive_Posts extends Base {
         <div class="ha-archive-posts-excerpt">
             <?php printf('<p>%1$s</p>', ha_get_excerpt(get_the_ID(), $excerpt_length)); ?>
         </div>
-<?php
+	<?php
     }
 
     protected function render_read_more($read_more = false, $read_more_text = '') {
