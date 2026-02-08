@@ -311,7 +311,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.20.8 - ## January 2026 =
+= 3.20.8 - 02 February 2026 =
 
 - Fix: Age Gate & SVG Line Draw security issue.
 
