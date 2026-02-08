@@ -311,8 +311,8 @@ class Archive_Posts extends Base {
                 'options' => [
                     '' => esc_html__('None', 'happy-elementor-addons'),
                     'numbers' => esc_html__('Numbers', 'happy-elementor-addons'),
-                    // 'prev_next' => esc_html__('Previous/Next', 'happy-elementor-addons'),
-                    // 'numbers_and_prev_next' => esc_html__('Numbers and Previous/Next', 'happy-elementor-addons'),
+                    'prev_next' => esc_html__('Previous/Next', 'happy-elementor-addons'),
+                    'numbers_and_prev_next' => esc_html__('Numbers and Previous/Next', 'happy-elementor-addons'),
                 ],
                 'frontend_available' => true,
             ]
@@ -343,9 +343,9 @@ class Archive_Posts extends Base {
                 'default' => esc_html__('&laquo; Previous', 'happy-elementor-addons'),
                 'condition' => [
                     'pagination_type' => [
-                        'numbers',
-                        // 'prev_next',
-                        // 'numbers_and_prev_next',
+                        // 'numbers',
+                        'prev_next',
+                        'numbers_and_prev_next',
                     ],
                 ],
             ]
@@ -358,9 +358,9 @@ class Archive_Posts extends Base {
                 'default' => esc_html__('Next &raquo;', 'happy-elementor-addons'),
                 'condition' => [
                     'pagination_type' => [
-                        'numbers',
-                        // 'prev_next',
-                        // 'numbers_and_prev_next',
+                        // 'numbers',
+                        'prev_next',
+                        'numbers_and_prev_next',
                     ],
                 ],
                 'dynamic' => [
@@ -1245,30 +1245,69 @@ class Archive_Posts extends Base {
 
     public function get_pagination($query) {
 
-        if ('numbers' !== $this->settings['pagination_type']) {
+        if ( empty( $this->settings['pagination_type'] ) ) {
             return;
         }
 
-        $paged = intval(isset($query->query['paged']) ? $query->query['paged'] : max(1, get_query_var('paged')));
+        // if ( 'numbers' !== $this->settings['pagination_type'] ) {
+        //     return;
+        // }
+
+		$pagination_wrap_class = '';
+		if( 'numbers' === $this->settings['pagination_type'] ) {
+			$pagination_wrap_class = 'numbers';
+		} elseif( 'numbers_and_prev_next' === $this->settings['pagination_type'] ) {
+			$pagination_wrap_class = 'numbers-prev-next';
+		} elseif( 'prev_next' === $this->settings['pagination_type'] ) {
+			$pagination_wrap_class = 'prev-next';
+		}
+
+        $paged = intval( isset($query->query['paged']) ? $query->query['paged'] : max(1, get_query_var('paged')) );
+        $total = intval( !empty($this->settings['pagination_page_limit']) ? $this->settings['pagination_page_limit'] : $query->max_num_pages );
+
 
         $big  = 99999999; // need an unlikely integer
-        $html = paginate_links(
-            array(
-                'base'     => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-                'format'   => '/page/%#%',
-                'current'  => max(1, $paged),
-                'total'    => intval(!empty($this->settings['pagination_page_limit']) ? $this->settings['pagination_page_limit'] : $query->max_num_pages),
-                'end_size' => 2,
-                'show_all' => 'yes',
-                'type'     => 'list',
-                'prev_text' => $this->settings['pagination_prev_label'],
-                'next_text' => $this->settings['pagination_next_label'],
-            )
-        );
+		$arg  = [
+			'base'     => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+			'format'   => '/page/%#%',
+			'current'  => max(1, $paged),
+			'total'    => $total,
+			'end_size' => 2,
+			'show_all' => 'yes',
+			'type'     => 'list',
+			'prev_next'     => false,
+		];
+
+		if( 'numbers_and_prev_next' === $this->settings['pagination_type'] || 'prev_next' === $this->settings['pagination_type'] ) {
+			$arg['prev_next'] = true;
+			$arg['prev_text'] = $this->settings['pagination_prev_label'] ? esc_html( $this->settings['pagination_prev_label'] ) : '&laquo;';
+			$arg['next_text'] = $this->settings['pagination_next_label'] ? esc_html( $this->settings['pagination_next_label'] ) : '&raquo;';
+		}
+		$prev = '';
+		$next = '';
+		if( 'prev_next' === $this->settings['pagination_type'] ) {
+			if( 1 == $paged ) {
+				$prev = sprintf(
+					'<span class="page-numbers disable">%s</span>',
+					$this->settings['pagination_prev_label'] ? esc_html( $this->settings['pagination_prev_label'] ) : '&laquo;'
+				);
+			}
+			if( $paged == $total ) {
+				$next = sprintf(
+					'<span class="page-numbers disable">%s</span>',
+					$this->settings['pagination_next_label'] ? esc_html( $this->settings['pagination_next_label'] ) : '&raquo;'
+				);
+			}
+		}
+
+        $html = paginate_links( $arg );
 
         echo sprintf(
-            '<div class="ha-archive-posts-pagination">%s</div>',
-            wp_kses($html, ha_get_allowed_html_tags('intermediate'))
+            '<div class="ha-archive-posts-pagination %s">%s%s%s</div>',
+            esc_attr( $pagination_wrap_class ),
+            wp_kses($prev, ha_get_allowed_html_tags('intermediate')),
+            wp_kses($html, ha_get_allowed_html_tags('intermediate')),
+            wp_kses($next, ha_get_allowed_html_tags('intermediate'))
         );
     }
 

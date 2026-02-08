@@ -86,8 +86,16 @@
             }
         }
     }
-    &-pagination{
+    &-pagination {
         display: flex;
         gap: 10px;
+
+				&.prev-next {
+					a:not(.prev):not(.next),
+					span:not(.prev):not(.next):not(.disable) {
+							display: none;
+					}
+				}
     }
+
 }
