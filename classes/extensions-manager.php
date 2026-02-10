@@ -84,12 +84,20 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/global-badge/',
 				'is_pro' => true,
 			],
+
+			// GSAP Features Mapping 
 			'horizontal-scroll' => [
 				'title' => __( 'Horizontal Scroll', 'happy-addons-pro' ),
 				'icon' => 'huge huge-horizonal-scroll-point-round',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
 				'is_pro' => true,
-			]
+			],
+			'infinite-marquee' => [
+				'title' => __( 'Infinite Marquee', 'happy-addons-pro' ),
+				'icon' => 'huge huge-infinity-02',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
+				'is_pro' => true,
+			],
 		];
 
 		return apply_filters( 'happyaddons_get_pro_features_map', $pro_features_map );
