@@ -1,5 +1,6 @@
-@import "variables";
-@import "mixins";
+@use "sass:color";
+@use "variables" as *;
+@use "mixins" as *;
 
 .ha-dual-btn {
 
@@ -29,7 +30,7 @@
 		&:hover,
 		&:focus {
 			color: #fff;
-			background-color: darken($primary-color, 10%);
+			background-color: color.adjust($primary-color, $lightness: -10%);
 		}
 	}
 
@@ -39,7 +40,7 @@
 		&:hover,
 		&:focus {
 			color: #fff;
-			background-color: darken($secondary-color, 10%);
+			background-color: color.adjust($secondary-color, $lightness: -10%);
 		}
 	}
 

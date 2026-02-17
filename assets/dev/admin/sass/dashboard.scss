@@ -1,5 +1,6 @@
-@import "../../sass/variables";
-@import "../../sass/mixins";
+@use "sass:color";
+@use "../../sass/variables" as *;
+@use "../../sass/mixins" as *;
 
 .ha-dashboard {
 	padding-top: 20px;
@@ -46,13 +47,13 @@
 			&:focus,
 			&:active {
 				color: #fff;
-				background-color: darken(#5db429, 10%);
+				background-color: color.adjust(#5db429, $lightness: -10%);
 			}
 
 			&:disabled,
 			&.disabled {
 				opacity: 0.7;
-				background-color: lighten(#000, 70%);
+				background-color: color.adjust(#000, $lightness: 70%);
 				box-shadow: none;
 				cursor: not-allowed;
 			}
@@ -87,7 +88,7 @@
 				&--pro {
 					background-color: $secondary-color;
 					color: #fff;
-					border-color: darken($secondary-color, 10%);
+					border-color: color.adjust($secondary-color, $lightness: -10%);
 				}
 
 				&:focus,
@@ -234,7 +235,7 @@
 				&:hover,
 				&:focus,
 				&:active {
-					color: darken(#c2cbd2, 20%);
+					color: color.adjust(#c2cbd2, $lightness: -20%);
 					box-shadow: none;
 				}
 			}
@@ -342,7 +343,7 @@
 				&:hover,
 				&:focus,
 				&:active {
-					color: darken(#c2cbd2, 20%);
+					color: color.adjust(#c2cbd2, $lightness: -20%);
 					box-shadow: none;
 				}
 			}
@@ -858,7 +859,7 @@ span.ha-search-action--btn input#ha-widget-search {
 	&:hover,
 	&:focus {
 		color: #fff;
-		background: darken(#5e3bc4, 10%);
+		background: color.adjust(#5e3bc4, $lightness: -10%);
 	}
 }
 
@@ -869,7 +870,7 @@ span.ha-search-action--btn input#ha-widget-search {
 	&:hover,
 	&:focus {
 		color: #fff;
-		background: darken(#e2498a, 10%);
+		background: color.adjust(#e2498a, $lightness: -10%);
 	}
 }
 

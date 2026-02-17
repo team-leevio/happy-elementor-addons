@@ -1,4 +1,6 @@
-@import "../../sass/variables";
+@use "sass:color";
+@use "../../sass/variables" as *;
+@use 'tpl-elements' as *;
 
 .ha-btn {
 	padding: 0.95rem 1.5rem;
@@ -29,7 +31,7 @@
 	&:hover,
 	&:focus {
 		color: #fff;
-		background: darken(#5e3bc4, 10%);
+		background: color.adjust(#5e3bc4, $lightness: -10%);
 	}
 }
 
@@ -40,7 +42,7 @@
 	&:hover,
 	&:focus {
 		color: #fff;
-		background: darken(#e2498a, 10%);
+		background: color.adjust(#e2498a, $lightness: -10%);
 	}
 }
 
@@ -691,5 +693,3 @@
 		font-size: 12px;
 	}
 }
-
-@import 'tpl-elements';

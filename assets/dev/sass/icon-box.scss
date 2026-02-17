@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@use "variables" as *;
+@use "mixins" as *;
 
 .ha-icon-box {
 
@@ -71,12 +71,12 @@
        transform: scale(0.95);
        box-shadow: 0 0 0 0 var( --icon-pulse-color );
    }
-   
+
    70% {
        transform: scale(1);
        box-shadow: 0 0 0 20px var( --icon-pulse-color );
    }
-   
+
    100% {
        transform: scale(0.95);
        box-shadow: 0 0 0 0 var( --icon-pulse-color );

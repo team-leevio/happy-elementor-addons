@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@use "variables" as *;
+@use "mixins" as *;
 $small: 300px;
 $medium: 900px;
 .ha-comparison-table {

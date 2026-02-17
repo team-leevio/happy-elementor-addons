@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@use "variables" as *;
+@use "mixins" as *;
 
 .pulse_effect {
     animation: pulse_animation 1.5s infinite;
@@ -11,12 +11,12 @@
        transform: scale(0.95);
        box-shadow: 0 0 0 0 var( --pulse-color );
    }
-   
+
    70% {
        transform: scale(1);
        box-shadow: 0 0 0 20px var( --pulse-color );
    }
-   
+
    100% {
        transform: scale(0.95);
        box-shadow: 0 0 0 0 var( --pulse-color );
