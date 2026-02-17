@@ -507,6 +507,7 @@
 				e.preventDefault();
 				var $self = $( this ),
 					query_settings = $self.data( "settings" ),
+					widget_id = $scope.data( "id" ),
 					total = $self.data( "total" ),
 					items = $scope.find( '.ha-tweet-item' ).length;
 				$.ajax( {
@@ -516,6 +517,7 @@
 						action: "ha_twitter_feed_action",
 						security: HappyLocalize.nonce,
 						query_settings: query_settings,
+						widget_id: widget_id,
 						loaded_item: items,
 					},
 					success: function ( response ) {

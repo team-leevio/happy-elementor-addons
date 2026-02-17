@@ -12,8 +12,11 @@ class Ajax_Handler {
 	public static function twitter_feed_ajax() {
 
 		$security = check_ajax_referer( 'happy_addons_nonce', 'security' );
+		$widget_id  = esc_html( $_POST['widget_id'] );
+		$crede_cache_key = '_ha_tweeter_crede_cache_key_' . $widget_id;
+		$crede_cache_data = get_transient( $crede_cache_key );
 
-		if ( true == $security && isset( $_POST['query_settings'] ) ) :
+		if ( true == $security && isset( $_POST['query_settings'] ) && isset( $_POST['widget_id'] ) && $crede_cache_data !== false ) :
 			$settings    = ha_sanitize_array_recursively($_POST['query_settings']);
 			$loaded_item = absint($_POST['loaded_item']);
 
@@ -22,7 +25,8 @@ class Ajax_Handler {
 
 			$transient_key = $user_name . $ha_tweets_cash;
 			$twitter_data  = get_transient( $transient_key );
-			$credentials   = $settings['credentials'];
+			// $credentials   = $settings['credentials'];
+			$credentials   = $crede_cache_data;
 
 			$auth_response = wp_remote_post(
 				'https://api.twitter.com/oauth2/token',
