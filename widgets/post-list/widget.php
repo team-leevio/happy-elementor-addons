@@ -545,14 +545,17 @@ class Post_List extends Base {
                 'label' => esc_html__('Meta Separator', 'happy-elementor-addons'),
                 'type' => Controls_Manager::TEXT,
                 'default' => '///',
+				'ai' => [
+					'active' => false,
+				],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-post-list-meta-wrap span:after' => 'content: "{{VALUE}}"'
+                    '{{WRAPPER}} .ha-post-list-meta-wrap span:after' => 'content: "{{VALUE}}";',
                 ],
 				'condition' => [
 					'meta' => 'yes',
 				],
                 'dynamic' => [
-                    'active' => false,
+                    'active' => true
                 ],
             ]
         );
