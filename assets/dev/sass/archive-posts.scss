@@ -38,6 +38,18 @@
         gap: 5px;
     }
 
+    &__thumbnail {
+			// position: relative;
+			width: 100%;
+			height: 100%;
+			// height: 250px;
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+
     &-title {
         line-height: 1;
         margin-top: 5px;
@@ -46,6 +58,7 @@
         font-weight: 600;
         font-family: 'Nunito';
         color: #54595f;
+				transition: all 0.3s ease;
         a {
             color: inherit;
         }
@@ -69,11 +82,20 @@
             color: inherit;
             a {
                 color: inherit;
+								// transition: all 0.3s ease;
             }
         }
     }
-    &-pagination{
+    &-pagination {
         display: flex;
         gap: 10px;
+
+				&.prev-next {
+					a:not(.prev):not(.next),
+					span:not(.prev):not(.next):not(.disable) {
+							display: none;
+					}
+				}
     }
+
 }
