@@ -229,3 +229,5 @@ vendor/**/*
 !vendor/appsero
 composer.lock
 dist/*
+
+*.lock

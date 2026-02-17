@@ -47,7 +47,7 @@ class Age_Gate extends Base {
 	}
 
 	public function get_keywords() {
-		return [ 'age-gate', 'age', 'gate' ];
+		return [ 'age-gate', 'age', 'gate', 'age gate' ];
 	}
 
 	protected function is_dynamic_content(): bool {
@@ -145,6 +145,7 @@ class Age_Gate extends Base {
             [
             	'label' => esc_html__( 'Description', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::TEXTAREA,
+				'sanitize_callback' => 'wp_kses_post',
 				'default' => esc_html__( 'You must be 18 years of age to enter this website.', 'happy-elementor-addons' ),
 				'placeholder' => esc_html__( 'Enter Description', 'happy-elementor-addons' ),
 				'dynamic' => ['active'   => true,],
@@ -393,6 +394,7 @@ class Age_Gate extends Base {
             [
             	'label' => esc_html__( 'Footer Text', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::TEXTAREA,
+				'sanitize_callback' => 'wp_kses_post',
 				'default' => esc_html__( 'By entering this site you are agreeing to the Terms of use and Privacy Policy.', 'happy-elementor-addons' ),
 				'placeholder' => esc_html__( 'Type your extra info here', 'happy-elementor-addons' ),
 				'dynamic' => [
@@ -2052,7 +2054,7 @@ class Age_Gate extends Base {
 						<?php endif; ?>
 
 						<?php if( !empty($settings['desc']) ): ?>
-							<div class="ha-age-gate-description"><?php $this->print_unescaped_setting( 'desc' ); ?></div>
+							<div class="ha-age-gate-description"><?php echo wp_kses_post( $settings['desc'] ); ?></div>
 						<?php endif; ?>
 					</div>
 
@@ -2117,7 +2119,7 @@ class Age_Gate extends Base {
 					</div>
 
 					<?php if( !empty($settings['footer_text']) ): ?>
-						<div class="ha-age-gate-footer-text"><p><?php $this->print_unescaped_setting( 'footer_text' ); ?></p></div>
+						<div class="ha-age-gate-footer-text"><p><?php echo wp_kses_post( $settings['footer_text'] ); ?></p></div>
 					<?php endif; ?>
 				</div>
 
