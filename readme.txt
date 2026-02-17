@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.20.8
+Version: 3.21.0
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 3.20.8
+Stable tag: 3.21.0
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -310,6 +310,19 @@ For a more detailed explanation check out the following documentation
 13. Card widget - capsule design
 
 == Changelog ==
+
+= 3.21.0 - 17 February 2026 =
+
+- Fix: Resolved Archive Post image size issue.
+- Update: Added 'Previous/Next' & 'Numbers and Previous/Next' option in Archive Post pagination.
+- Update: Added Title, Meta & Readmore hover style controls in Archive Post.
+- Update: Added Current Query option in Post List.
+- Update: Added Offset control in Post List.
+- Update: Added Category filter option in Post List.
+- Update: Added Date format control in Post List.
+- Update: Added Custom Meta Field support in Post List.
+- Update: Added Item Counter Enable option in Taxonomy List.
+- Update: Added Item Counter style option in Taxonomy List.
 
 = 3.20.8 - 02 February 2026 =
 
