@@ -93,7 +93,7 @@ class Extensions_Manager {
 				'is_pro' => true,
 			],
 			'infinite-marquee' => [
-				'title' => __( 'Infinite Marquee', 'happy-addons-pro' ),
+				'title' => __( 'Marquee', 'happy-addons-pro' ),
 				'icon' => 'huge huge-infinity-02',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
 				'is_pro' => true,
