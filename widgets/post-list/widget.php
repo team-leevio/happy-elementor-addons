@@ -539,26 +539,26 @@ class Post_List extends Base {
 			]
 		);
 
-		$this->add_control(
-            'meta_separator',
-            [
-                'label' => esc_html__('Meta Separator', 'happy-elementor-addons'),
-                'type' => Controls_Manager::TEXT,
-                'default' => '///',
-				'ai' => [
-					'active' => false,
-				],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-post-list-meta-wrap span:after' => 'content: "{{VALUE}}";',
-                ],
-				'condition' => [
-					'meta' => 'yes',
-				],
-                'dynamic' => [
-                    'active' => true
-                ],
-            ]
-        );
+		// $this->add_control(
+        //     'meta_separator',
+        //     [
+        //         'label' => esc_html__('Meta Separator', 'happy-elementor-addons'),
+        //         'type' => Controls_Manager::TEXT,
+        //         'default' => '///',
+		// 		'ai' => [
+		// 			'active' => false,
+		// 		],
+        //         'selectors' => [
+        //             '{{WRAPPER}} .ha-post-list-meta-wrap span:after' => 'content: "{{VALUE}}";',
+        //         ],
+		// 		'condition' => [
+		// 			'meta' => 'yes',
+		// 		],
+        //         'dynamic' => [
+        //             'active' => true
+        //         ],
+        //     ]
+        // );
 
 		$this->add_control(
 			'title_tag',
