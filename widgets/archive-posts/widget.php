@@ -311,6 +311,8 @@ class Archive_Posts extends Base {
                 'options' => [
                     '' => esc_html__('None', 'happy-elementor-addons'),
                     'numbers' => esc_html__('Numbers', 'happy-elementor-addons'),
+                    'prev_next' => esc_html__('Previous/Next', 'happy-elementor-addons'),
+                    'numbers_and_prev_next' => esc_html__('Numbers and Previous/Next', 'happy-elementor-addons'),
                 ],
                 'frontend_available' => true,
             ]
@@ -341,9 +343,9 @@ class Archive_Posts extends Base {
                 'default' => esc_html__('&laquo; Previous', 'happy-elementor-addons'),
                 'condition' => [
                     'pagination_type' => [
-                        'numbers',
-                        // 'prev_next',
-                        // 'numbers_and_prev_next',
+                        // 'numbers',
+                        'prev_next',
+                        'numbers_and_prev_next',
                     ],
                 ],
             ]
@@ -356,9 +358,9 @@ class Archive_Posts extends Base {
                 'default' => esc_html__('Next &raquo;', 'happy-elementor-addons'),
                 'condition' => [
                     'pagination_type' => [
-                        'numbers',
-                        // 'prev_next',
-                        // 'numbers_and_prev_next',
+                        // 'numbers',
+                        'prev_next',
+                        'numbers_and_prev_next',
                     ],
                 ],
                 'dynamic' => [
@@ -626,33 +628,42 @@ class Archive_Posts extends Base {
         $this->add_responsive_control(
             'image_width',
             [
-                'label' => esc_html__('Width', 'happy-elementor-addons'),
+                'label' => esc_html__('Size', 'happy-elementor-addons'),
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
-                    '%' => [
-                        'min' => 10,
-                        'max' => 100,
-                    ],
+                    // '%' => [
+                    //     'min' => 10,
+                    //     'max' => 100,
+                    // ],
                     'px' => [
                         'min' => 10,
-                        'max' => 600,
+                        'max' => 1000,
                     ],
                 ],
                 'default' => [
-                    'size' => 100,
-                    'unit' => '%',
+                    'size' => 250,
+                    'unit' => 'px',
                 ],
-                'tablet_default' => [
-                    'size' => '',
-                    'unit' => '%',
-                ],
-                'mobile_default' => [
-                    'size' => 100,
-                    'unit' => '%',
-                ],
+                // 'tablet_default' => [
+                //     'size' => '',
+                //     'unit' => '%',
+                // ],
+                // 'mobile_default' => [
+                //     'size' => 100,
+                //     'unit' => '%',
+                // ],
                 'size_units' => ['%', 'px'],
                 'selectors' => [
-                    '{{WRAPPER}} .ha-archive-posts__thumbnail__link' => 'width: {{SIZE}}{{UNIT}};',
+                    // '{{WRAPPER}} .ha-archive-posts__thumbnail__link' => 'width: {{SIZE}}{{UNIT}};',
+                    // '{{WRAPPER}}.ha-archive-posts--thumbnail-top .ha-archive-posts__thumbnail__link' => 'width: 100%;',
+
+                    '{{WRAPPER}}.ha-archive-posts--thumbnail-top .ha-archive-posts__thumbnail__link' => 'height: {{SIZE}}{{UNIT}}; width: 100%;',
+                    '{{WRAPPER}}.ha-archive-posts--thumbnail-left .ha-archive-posts__thumbnail__link' => 'width: {{SIZE}}{{UNIT}}; height: 100%;',
+                    '{{WRAPPER}}.ha-archive-posts--thumbnail-right .ha-archive-posts__thumbnail__link' => 'width: {{SIZE}}{{UNIT}};height: 100%;',
+
+                    // '{{WRAPPER}}.ha-archive-posts--thumbnail-top .ha-archive-posts__thumbnail' => 'height: {{SIZE}}{{UNIT}}; width: 100%;',
+                    '{{WRAPPER}}.ha-archive-posts--thumbnail-left .ha-archive-posts__thumbnail' => 'width: {{SIZE}}{{UNIT}}; height: 100%;',
+                    '{{WRAPPER}}.ha-archive-posts--thumbnail-right .ha-archive-posts__thumbnail' => 'width: {{SIZE}}{{UNIT}};height: 100%;',
                 ],
                 'condition' => [
                     'thumbnail!' => 'none',
@@ -711,17 +722,6 @@ class Archive_Posts extends Base {
 			]
 		);
 
-        $this->add_control(
-			'title_color',
-			[
-				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-title' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
         $this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
@@ -749,23 +749,55 @@ class Archive_Posts extends Base {
             ]
         );
 
+		$this->start_controls_tabs( 'title_tab' );
+
+		$this->start_controls_tab(
+			'title_normal',
+			[
+				'label' => esc_html__( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'title_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'title_hover',
+			[
+				'label' => esc_html__( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'title_hover_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-title:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
         $this->add_control(
 			'content_meta',
 			[
 				'label' => esc_html__( 'Meta', 'happy-elementor-addons' ),
 				'type' => Controls_Manager::HEADING,
                 'separator' => 'before'
-			]
-		);
-
-        $this->add_control(
-			'meta_color',
-			[
-				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-meta-wrap' => 'color: {{VALUE}}',
-				],
 			]
 		);
 
@@ -795,6 +827,48 @@ class Archive_Posts extends Base {
                 ],
             ]
         );
+
+		$this->start_controls_tabs( 'meta_tab' );
+		$this->start_controls_tab(
+			'meta_normal',
+			[
+				'label' => esc_html__( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'meta_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-meta-wrap' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'meta_hover',
+			[
+				'label' => esc_html__( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'meta_hover_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-meta-wrap:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
 
         $this->add_control(
 			'content_excerpt',
@@ -852,17 +926,6 @@ class Archive_Posts extends Base {
 			]
 		);
 
-        $this->add_control(
-			'readmore_color',
-			[
-				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-readmore' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
         $this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
@@ -889,6 +952,48 @@ class Archive_Posts extends Base {
                 ],
             ]
         );
+
+		$this->start_controls_tabs( 'readmore_tab' );
+		$this->start_controls_tab(
+			'readmore_normal',
+			[
+				'label' => esc_html__( 'Normal', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'readmore_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-readmore' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'readmore_hover',
+			[
+				'label' => esc_html__( 'Hover', 'happy-elementor-addons' ),
+			]
+		);
+
+        $this->add_control(
+			'readmore_hover_color',
+			[
+				'label' => esc_html__( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-archive-posts-container .ha-archive-posts-readmore:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
 
         $this->end_controls_section();
     }
@@ -1140,30 +1245,69 @@ class Archive_Posts extends Base {
 
     public function get_pagination($query) {
 
-        if ('numbers' !== $this->settings['pagination_type']) {
+        if ( empty( $this->settings['pagination_type'] ) ) {
             return;
         }
 
-        $paged = intval(isset($query->query['paged']) ? $query->query['paged'] : max(1, get_query_var('paged')));
+        // if ( 'numbers' !== $this->settings['pagination_type'] ) {
+        //     return;
+        // }
+
+		$pagination_wrap_class = '';
+		if( 'numbers' === $this->settings['pagination_type'] ) {
+			$pagination_wrap_class = 'numbers';
+		} elseif( 'numbers_and_prev_next' === $this->settings['pagination_type'] ) {
+			$pagination_wrap_class = 'numbers-prev-next';
+		} elseif( 'prev_next' === $this->settings['pagination_type'] ) {
+			$pagination_wrap_class = 'prev-next';
+		}
+
+        $paged = intval( isset($query->query['paged']) ? $query->query['paged'] : max(1, get_query_var('paged')) );
+        $total = intval( !empty($this->settings['pagination_page_limit']) ? $this->settings['pagination_page_limit'] : $query->max_num_pages );
+
 
         $big  = 99999999; // need an unlikely integer
-        $html = paginate_links(
-            array(
-                'base'     => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-                'format'   => '/page/%#%',
-                'current'  => max(1, $paged),
-                'total'    => intval(!empty($this->settings['pagination_page_limit']) ? $this->settings['pagination_page_limit'] : $query->max_num_pages),
-                'end_size' => 2,
-                'show_all' => 'yes',
-                'type'     => 'list',
-                'prev_text' => $this->settings['pagination_prev_label'],
-                'next_text' => $this->settings['pagination_next_label'],
-            )
-        );
+		$arg  = [
+			'base'     => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+			'format'   => '/page/%#%',
+			'current'  => max(1, $paged),
+			'total'    => $total,
+			'end_size' => 2,
+			'show_all' => 'yes',
+			'type'     => 'list',
+			'prev_next'     => false,
+		];
+
+		if( 'numbers_and_prev_next' === $this->settings['pagination_type'] || 'prev_next' === $this->settings['pagination_type'] ) {
+			$arg['prev_next'] = true;
+			$arg['prev_text'] = $this->settings['pagination_prev_label'] ? esc_html( $this->settings['pagination_prev_label'] ) : '&laquo;';
+			$arg['next_text'] = $this->settings['pagination_next_label'] ? esc_html( $this->settings['pagination_next_label'] ) : '&raquo;';
+		}
+		$prev = '';
+		$next = '';
+		if( 'prev_next' === $this->settings['pagination_type'] ) {
+			if( 1 == $paged ) {
+				$prev = sprintf(
+					'<span class="page-numbers disable">%s</span>',
+					$this->settings['pagination_prev_label'] ? esc_html( $this->settings['pagination_prev_label'] ) : '&laquo;'
+				);
+			}
+			if( $paged == $total ) {
+				$next = sprintf(
+					'<span class="page-numbers disable">%s</span>',
+					$this->settings['pagination_next_label'] ? esc_html( $this->settings['pagination_next_label'] ) : '&raquo;'
+				);
+			}
+		}
+
+        $html = paginate_links( $arg );
 
         echo sprintf(
-            '<div class="ha-archive-posts-pagination">%s</div>',
-            wp_kses($html, ha_get_allowed_html_tags('intermediate'))
+            '<div class="ha-archive-posts-pagination %s">%s%s%s</div>',
+            esc_attr( $pagination_wrap_class ),
+            wp_kses($prev, ha_get_allowed_html_tags('intermediate')),
+            wp_kses($html, ha_get_allowed_html_tags('intermediate')),
+            wp_kses($next, ha_get_allowed_html_tags('intermediate'))
         );
     }
 
@@ -1250,7 +1394,7 @@ class Archive_Posts extends Base {
         <div class="ha-archive-posts-excerpt">
             <?php printf('<p>%1$s</p>', ha_get_excerpt(get_the_ID(), $excerpt_length)); ?>
         </div>
-<?php
+	<?php
     }
 
     protected function render_read_more($read_more = false, $read_more_text = '') {

@@ -1,3 +1,16 @@
+= 3.21.0 - 17 February 2026 =
+
+- Fix: Resolved Archive Post image size issue.
+- Update: Added 'Previous/Next' & 'Numbers and Previous/Next' option in Archive Post pagination.
+- Update: Added Title, Meta & Readmore hover style controls in Archive Post.
+- Update: Added Current Query option in Post List.
+- Update: Added Offset control in Post List.
+- Update: Added Category filter option in Post List.
+- Update: Added Date format control in Post List.
+- Update: Added Custom Meta Field support in Post List.
+- Update: Added Item Counter Enable option in Taxonomy List.
+- Update: Added Item Counter style option in Taxonomy List.
+
 = 3.20.8 - 02 February 2026 =
 
 - Fix: Age Gate & SVG Line Draw security issue.

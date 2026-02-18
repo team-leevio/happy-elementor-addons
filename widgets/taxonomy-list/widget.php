@@ -330,6 +330,63 @@ class Taxonomy_List extends Base {
 		);
 
 		$this->add_control(
+			'item_counter_enable',
+			[
+				'label' => __( 'Item Counter Enable?', 'happy-elementor-addons' ),
+				'description' => __( 'Enable item counter for each taxonomy item.', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default' => 'no',
+			]
+		);
+
+		$this->add_control(
+			'item_counter_align',
+			[
+				'label' => __( 'Item Counter Align', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'center' => [
+						'title' => __( 'Center', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-center',
+					],
+					'stretch' => [
+						'title' => __( 'Stretch', 'happy-elementor-addons' ),
+						'icon' => 'eicon-h-align-stretch',
+					],
+				],
+				'toggle' => true,
+				'selectors_dictionary' => [
+					// 'center' => 'margin-left: 0px',
+					'center' => '',
+					'stretch' => 'margin-left: auto;',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ha-taxonomy-list .ha-taxonomy-list-item a span.ha-taxonomy-list-count' => '{{VALUE}};',
+				],
+				'condition' => [
+					'item_counter_enable' => 'yes',
+					'view' => 'list',
+				]
+			]
+		);
+
+		$this->add_control(
+			'item_counter_align_note',
+			[
+				'type' => Controls_Manager::NOTICE,
+				'notice_type' => 'info',
+				'dismissible' => false,
+				'content' => __( 'Selecting Item Counter Align "Stretch" will make default alignment unusable.', 'happy-elementor-addons' ),
+				'condition' => [
+					'item_counter_enable' => 'yes',
+					'view' => 'list',
+					'item_counter_align' => 'stretch',
+				]
+			]
+		);
+
+		$this->add_control(
 			'item_align',
 			[
 				'label' => __( 'Alignment', 'happy-elementor-addons' ),
@@ -374,6 +431,7 @@ class Taxonomy_List extends Base {
 		$this->__list_style_controls();
 		$this->__title_style_controls();
 		$this->__icon_image_style_controls();
+		$this->__counter_style_controls();
 	}
 
 	protected function __list_style_controls() {
@@ -569,7 +627,7 @@ class Taxonomy_List extends Base {
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				],
-				'selector' => '{{WRAPPER}} .ha-taxonomy-list-title',
+				'selector' => '{{WRAPPER}} .ha-taxonomy-list-title, {{WRAPPER}} .ha-taxonomy-list-count',
 			]
 		);
 
@@ -589,6 +647,7 @@ class Taxonomy_List extends Base {
 				'default' => '#000000',
 				'selectors' => [
 					'{{WRAPPER}} .ha-taxonomy-list-title' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-taxonomy-list-count' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -608,6 +667,7 @@ class Taxonomy_List extends Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-taxonomy-list .ha-taxonomy-list-item a:hover .ha-taxonomy-list-title' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-taxonomy-list .ha-taxonomy-list-item a:hover .ha-taxonomy-list-count' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -724,6 +784,71 @@ class Taxonomy_List extends Base {
 		$this->end_controls_section();
 	}
 
+	protected function __counter_style_controls() {
+
+		$this->start_controls_section(
+			'_section_counter_style',
+			[
+				'label' => __( 'Counter', 'happy-elementor-addons' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'item_counter_enable' => 'yes',
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'counter_typography',
+				'label' => __( 'Typography', 'happy-elementor-addons' ),
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
+				'selector' => '{{WRAPPER}} .ha-taxonomy-list-item span.ha-taxonomy-list-count',
+			]
+		);
+
+		$this->add_control(
+			'counter_color',
+			[
+				'label' => __( 'Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .ha-taxonomy-list-item span.ha-taxonomy-list-count' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'counter_hvr_color',
+			[
+				'label' => __( 'Hover Color', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					// '{{WRAPPER}} .ha-taxonomy-list-item span.ha-taxonomy-list-count' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-taxonomy-list .ha-taxonomy-list-item a:hover span.ha-taxonomy-list-count' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'counter_space_between',
+			[
+				'label' => __( 'Space Between', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'selectors' => [
+					'{{WRAPPER}} span.ha-taxonomy-list-count' => 'margin-left: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
 	protected function render() {
 
 		$settings = $this->get_settings_for_display();
@@ -763,6 +888,8 @@ class Taxonomy_List extends Base {
 		}
 		$this->add_render_attribute( 'item', 'class', [ 'ha-taxonomy-list-item' ] );
 
+		// error_log( print_r( $lists , 1 ) );
+
 		if ( count( $terms ) !== 0 && count( $lists ) !== 0 ) :?>
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
 				<ul <?php $this->print_render_attribute_string( 'wrapper-inner' ); ?> >
@@ -792,12 +919,19 @@ class Taxonomy_List extends Base {
 							if ( array_key_exists( $terms[$index]->term_id, $customize_title ) ) {
 								$title = $customize_title[$terms[$index]->term_id];
 							}
+							// $title = "{$title} ({$terms[$index]->count})";
 							if ( $title ) {
 								printf( '<%1$s %2$s>%3$s</%1$s>',
 									ha_escape_tags( $settings['title_tag'], 'h2' ),
 									'class="ha-taxonomy-list-title"',
 									esc_html( $title )
 								);
+								if( 'yes' === $settings['item_counter_enable'] ) {
+									printf( '<span %s>(%s)</span>',
+										'class="ha-taxonomy-list-count"',
+										esc_html( $terms[$index]->count )
+									);
+								}
 							}
 							?>
 						</a>

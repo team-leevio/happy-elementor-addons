@@ -29,7 +29,8 @@
 	align-items: center;
 	width: 100%;
 }
-.ha-taxonomy-list-title {
+.ha-taxonomy-list-title,
+span.ha-taxonomy-list-count {
 	margin-top: 0;
 	margin-bottom: 0;
 	display: block;
@@ -37,7 +38,13 @@
 	color: #242424;
 	transition: all 0.4s;
 }
+span.ha-taxonomy-list-count {
+	margin-left: 5px;
+}
 .ha-taxonomy-list .ha-taxonomy-list-item a:hover .ha-taxonomy-list-title {
+	color: #e04d8b;
+}
+.ha-taxonomy-list .ha-taxonomy-list-item a:hover span.ha-taxonomy-list-count {
 	color: #e04d8b;
 }
 .ha-taxonomy-list span.ha-taxonomy-list-icon {
