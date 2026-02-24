@@ -98,6 +98,12 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
 				'is_pro' => true,
 			],
+			'appearing-image-animation' => [
+				'title' => __( 'Appearing Image Animation', 'happy-addons-pro' ),
+				'icon' => 'huge huge-layer-mask-1',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
+				'is_pro' => true,
+			],
 		];
 
 		return apply_filters( 'happyaddons_get_pro_features_map', $pro_features_map );
