@@ -1503,6 +1503,19 @@ class Widgets_Manager {
 					'js' => ['tweenmax','scroll-trigger','gsap','scroll-magic','motionpath'],
 				],
 			],
+			'whatsapp-button' => [
+				'cat'       => 'social-media',
+				'is_active' => true,
+				'demo'      => '',
+				'title'     => __( 'WhatsApp Button', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-whatsapp',
+				'css'       => [ 'whatsapp-button' ],
+				'js'        => [],
+				'vendor'    => [
+					'css' => [],
+					'js'  => [],
+				],
+			],
 		];
 	}
 
