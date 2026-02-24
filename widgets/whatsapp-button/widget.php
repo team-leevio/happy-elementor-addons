@@ -43,6 +43,14 @@ class Whatsapp_Button extends Base {
 		return [ 'whatsapp', 'chat', 'button', 'floating', 'social', 'messenger', 'contact', 'wa' ];
 	}
 
+	public function get_style_depends() {
+		return [
+			'elementor-icons-fa-solid',
+			'elementor-icons-fa-brands',
+			'elementor-icons-fa-regular',
+		];
+	}
+
 	protected function is_dynamic_content(): bool {
 		return false;
 	}
@@ -134,6 +142,14 @@ class Whatsapp_Button extends Base {
 				'condition'   => [
 					'button_style!' => 'icon-only',
 				],
+			]
+		);
+
+		$this->add_control(
+			'icon',
+			[
+				'type' => Controls_Manager::HIDDEN,
+				'default' => 'fab fa-whatsapp',
 			]
 		);
 
@@ -900,7 +916,7 @@ class Whatsapp_Button extends Base {
 			   rel="noopener noreferrer"
 			   aria-label="<?php echo esc_attr__( 'Chat on WhatsApp', 'happy-elementor-addons' ); ?>">
 				<span class="ha-whatsapp-icon">
-					<?php Icons_Manager::render_icon( $settings['selected_icon'], [ 'aria-hidden' => 'true' ] ); ?>
+					<?php ha_render_icon( $settings, 'icon', 'selected_icon', [ 'aria-hidden' => 'true' ] ); ?>
 				</span>
 				<?php if ( 'icon-only' !== $button_style && $button_text ) : ?>
 					<span class="ha-whatsapp-text"><?php echo esc_html( $button_text ); ?></span>

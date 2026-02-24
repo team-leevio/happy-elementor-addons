@@ -1512,7 +1512,7 @@ class Widgets_Manager {
 				'css'       => [ 'whatsapp-button' ],
 				'js'        => [],
 				'vendor'    => [
-					'css' => [],
+					'css' => [ 'font-awesome' ],
 					'js'  => [],
 				],
 			],
