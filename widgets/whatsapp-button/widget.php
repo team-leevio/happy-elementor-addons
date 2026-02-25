@@ -148,9 +148,6 @@ class Whatsapp_Button extends Base {
 				'separator'    => 'before',
 				'prefix_class' => 'ha-whatsapp--style-',
 				'render_type'  => 'template',
-				'condition'    => [
-					'button_type' => 'standard',
-				],
 			]
 		);
 
