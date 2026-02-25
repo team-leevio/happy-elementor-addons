@@ -60,6 +60,7 @@ class Whatsapp_Button extends Base {
 	 */
 	protected function register_content_controls() {
 		$this->__whatsapp_settings_controls();
+		$this->__floating_chat_controls();
 		$this->__position_controls();
 		$this->__tooltip_controls();
 		$this->__animation_controls();
@@ -72,6 +73,21 @@ class Whatsapp_Button extends Base {
 			[
 				'label' => __( 'WhatsApp Settings', 'happy-elementor-addons' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_control(
+			'button_type',
+			[
+				'label'   => __( 'Button Type', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'standard',
+				'options' => [
+					'standard'      => __( 'Standard Button', 'happy-elementor-addons' ),
+					'floating_chat' => __( 'Floating Chat', 'happy-elementor-addons' ),
+				],
+				'prefix_class' => 'ha-whatsapp--type-',
+				'render_type'  => 'template',
 			]
 		);
 
@@ -128,6 +144,9 @@ class Whatsapp_Button extends Base {
 				'separator'    => 'before',
 				'prefix_class' => 'ha-whatsapp--style-',
 				'render_type'  => 'template',
+				'condition'    => [
+					'button_type' => 'standard',
+				],
 			]
 		);
 
@@ -163,6 +182,103 @@ class Whatsapp_Button extends Base {
 					'value'   => 'fab fa-whatsapp',
 					'library' => 'fa-brands',
 				],
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
+	protected function __floating_chat_controls() {
+
+		$this->start_controls_section(
+			'_section_floating_chat',
+			[
+				'label'     => __( 'Floating Chat Box', 'happy-elementor-addons' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => [
+					'button_type' => 'floating_chat',
+				],
+			]
+		);
+
+		$this->add_control(
+			'agent_image',
+			[
+				'label'   => __( 'Agent Image', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::MEDIA,
+				'default' => [
+					'url' => '',
+				],
+			]
+		);
+
+		$this->add_control(
+			'agent_name',
+			[
+				'label'       => __( 'Agent Name', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'John Doe', 'happy-elementor-addons' ),
+				'placeholder' => __( 'Enter agent name', 'happy-elementor-addons' ),
+				'dynamic'     => [ 'active' => true ],
+			]
+		);
+
+		$this->add_control(
+			'agent_status',
+			[
+				'label'       => __( 'Agent Status', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'Online', 'happy-elementor-addons' ),
+				'placeholder' => __( 'Enter status (e.g. Online)', 'happy-elementor-addons' ),
+				'dynamic'     => [ 'active' => true ],
+			]
+		);
+
+		$this->add_control(
+			'show_status_dot',
+			[
+				'label'        => __( 'Show Status Dot', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __( 'Show', 'happy-elementor-addons' ),
+				'label_off'    => __( 'Hide', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default'      => 'yes',
+			]
+		);
+
+		$this->add_control(
+			'chat_header_bg_color',
+			[
+				'label'     => __( 'Header Background Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#075E54',
+				'selectors' => [
+					'{{WRAPPER}} .ha-whatsapp-popup__header' => 'background-color: {{VALUE}};',
+				],
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'chat_initial_message',
+			[
+				'label'       => __( 'Initial Message', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::TEXTAREA,
+				'default'     => __( "Hi there 👋\n\nHow can I help you?", 'happy-elementor-addons' ),
+				'placeholder' => __( 'Enter initial chat message', 'happy-elementor-addons' ),
+				'dynamic'     => [ 'active' => true ],
+				'separator'   => 'before',
+			]
+		);
+
+		$this->add_control(
+			'chat_button_text',
+			[
+				'label'       => __( 'Chat Button Text', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'Chat on WhatsApp', 'happy-elementor-addons' ),
+				'placeholder' => __( 'Enter button text', 'happy-elementor-addons' ),
+				'dynamic'     => [ 'active' => true ],
 			]
 		);
 
@@ -482,7 +598,168 @@ class Whatsapp_Button extends Base {
 	protected function register_style_controls() {
 		$this->__button_style_controls();
 		$this->__text_style_controls();
+		$this->__floating_chat_style_controls();
 		$this->__tooltip_style_controls();
+	}
+
+	protected function __floating_chat_style_controls() {
+
+		$this->start_controls_section(
+			'_section_style_floating_chat',
+			[
+				'label'     => __( 'Floating Chat Box', 'happy-elementor-addons' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'button_type' => 'floating_chat',
+				],
+			]
+		);
+
+		$this->add_control(
+			'chat_box_width',
+			[
+				'label'      => __( 'Box Width', 'happy-elementor-addons' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range'      => [
+					'px' => [ 'min' => 250, 'max' => 500 ],
+				],
+				'default'    => [
+					'size' => 330,
+					'unit' => 'px',
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .ha-whatsapp-popup' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'heading_chat_header',
+			[
+				'label'     => __( 'Header', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'chat_header_text_color',
+			[
+				'label'     => __( 'Text Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#ffffff',
+				'selectors' => [
+					'{{WRAPPER}} .ha-whatsapp-popup__header-title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-whatsapp-popup__header-status' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-whatsapp-popup__close' => 'color: {{VALUE}}; opacity: 0.8;',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'chat_header_name_typography',
+				'label'    => __( 'Name Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-whatsapp-popup__header-title',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'chat_header_status_typography',
+				'label'    => __( 'Status Typography', 'happy-elementor-addons' ),
+				'selector' => '{{WRAPPER}} .ha-whatsapp-popup__header-status',
+			]
+		);
+
+		$this->add_control(
+			'heading_chat_message',
+			[
+				'label'     => __( 'Message Bubble', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'chat_bubble_bg_color',
+			[
+				'label'     => __( 'Background Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#ffffff',
+				'selectors' => [
+					'{{WRAPPER}} .ha-whatsapp-popup__message-bubble' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-whatsapp-popup__message-bubble::before' => 'border-right-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'chat_bubble_text_color',
+			[
+				'label'     => __( 'Text Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#333333',
+				'selectors' => [
+					'{{WRAPPER}} .ha-whatsapp-popup__message-bubble' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'chat_bubble_typography',
+				'selector' => '{{WRAPPER}} .ha-whatsapp-popup__message-bubble',
+			]
+		);
+
+		$this->add_control(
+			'heading_chat_popup_button',
+			[
+				'label'     => __( 'Popup Button', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'chat_popup_button_typography',
+				'selector' => '{{WRAPPER}} .ha-whatsapp-popup__footer-btn',
+			]
+		);
+
+		$this->add_control(
+			'chat_popup_button_bg_color',
+			[
+				'label'     => __( 'Background Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#25D366',
+				'selectors' => [
+					'{{WRAPPER}} .ha-whatsapp-popup__footer-btn' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'chat_popup_button_text_color',
+			[
+				'label'     => __( 'Text Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#ffffff',
+				'selectors' => [
+					'{{WRAPPER}} .ha-whatsapp-popup__footer-btn' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-whatsapp-popup__footer-btn svg' => 'fill: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
 	}
 
 	protected function __button_style_controls() {
@@ -900,20 +1177,67 @@ class Whatsapp_Button extends Base {
 			$wa_url .= '?text=' . $message;
 		}
 
+		$button_type   = ! empty( $settings['button_type'] ) ? $settings['button_type'] : 'standard';
 		$button_style  = ! empty( $settings['button_style'] ) ? $settings['button_style'] : 'icon-only';
 		$enable_tooltip = ( 'yes' === $settings['enable_tooltip'] );
 		$tooltip_text  = ! empty( $settings['tooltip_text'] ) ? $settings['tooltip_text'] : '';
 		$button_text   = ! empty( $settings['button_text'] ) ? $settings['button_text'] : '';
+
+		$this->add_render_attribute( 'wrapper', 'class', 'ha-whatsapp-button' );
 		?>
-		<div class="ha-whatsapp-button">
+		<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
+			<?php if ( 'floating_chat' === $button_type ) : ?>
+				<div class="ha-whatsapp-popup">
+					<div class="ha-whatsapp-popup__header">
+						<div class="ha-whatsapp-popup__header-agent">
+							<?php if ( ! empty( $settings['agent_image']['url'] ) ) : ?>
+								<div class="ha-whatsapp-popup__header-avatar">
+									<img src="<?php echo esc_url( $settings['agent_image']['url'] ); ?>" alt="<?php echo esc_attr( $settings['agent_name'] ); ?>">
+									<?php if ( 'yes' === $settings['show_status_dot'] ) : ?>
+										<span class="ha-whatsapp-popup__header-status-dot"></span>
+									<?php endif; ?>
+								</div>
+							<?php endif; ?>
+							<div class="ha-whatsapp-popup__header-info">
+								<h4 class="ha-whatsapp-popup__header-title"><?php echo esc_html( $settings['agent_name'] ); ?></h4>
+								<span class="ha-whatsapp-popup__header-status"><?php echo esc_html( $settings['agent_status'] ); ?></span>
+							</div>
+						</div>
+						<button type="button" class="ha-whatsapp-popup__close" aria-label="<?php echo esc_attr__( 'Close', 'happy-elementor-addons' ); ?>">
+							<i class="fas fa-times"></i>
+						</button>
+					</div>
+
+					<div class="ha-whatsapp-popup__body">
+						<div class="ha-whatsapp-popup__message-bubble">
+							<?php echo nl2br( esc_html( $settings['chat_initial_message'] ) ); ?>
+						</div>
+					</div>
+
+					<div class="ha-whatsapp-popup__footer">
+						<a class="ha-whatsapp-popup__footer-btn"
+						   href="<?php echo esc_url( $wa_url ); ?>"
+						   target="<?php echo esc_attr( $target ); ?>"
+						   rel="noopener noreferrer">
+							<span class="ha-whatsapp-popup__footer-icon">
+								<i class="fab fa-whatsapp"></i>
+							</span>
+							<?php echo esc_html( $settings['chat_button_text'] ); ?>
+						</a>
+					</div>
+				</div>
+			<?php endif; ?>
+
 			<?php if ( $enable_tooltip && $tooltip_text ) : ?>
 				<span class="ha-whatsapp-tooltip"><?php echo esc_html( $tooltip_text ); ?></span>
 			<?php endif; ?>
 
 			<a class="ha-whatsapp-link"
-			   href="<?php echo esc_url( $wa_url ); ?>"
-			   target="<?php echo esc_attr( $target ); ?>"
+			   href="<?php echo ( 'floating_chat' === $button_type ) ? 'javascript:void(0);' : esc_url( $wa_url ); ?>"
+			   target="<?php echo ( 'floating_chat' === $button_type ) ? '_self' : esc_attr( $target ); ?>"
+			   <?php if ( 'standard' === $button_type ) : ?>
 			   rel="noopener noreferrer"
+			   <?php endif; ?>
 			   aria-label="<?php echo esc_attr__( 'Chat on WhatsApp', 'happy-elementor-addons' ); ?>">
 				<span class="ha-whatsapp-icon">
 					<?php ha_render_icon( $settings, 'icon', 'selected_icon', [ 'aria-hidden' => 'true' ] ); ?>
