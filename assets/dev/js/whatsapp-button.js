@@ -11,6 +11,7 @@
 
 		var $button = $scope.find('.ha-whatsapp-link');
 		var $close  = $scope.find('.ha-whatsapp-popup__close');
+		var $wrapper = $scope.find('.ha-whatsapp-button');
 		var hasTypingIndicator = $popup.find('.ha-whatsapp-popup__typing-indicator').length > 0;
 		var typingShown = false;
 
@@ -21,6 +22,7 @@
 			
 			var isOpening = !$popup.hasClass('ha-whatsapp-popup--active');
 			$popup.toggleClass('ha-whatsapp-popup--active');
+			$wrapper.toggleClass('ha-whatsapp-chat-opened');
 
 			if (isOpening && hasTypingIndicator && !typingShown) {
 				$popup.addClass('is-typing');
@@ -36,12 +38,14 @@
 			e.preventDefault();
 			e.stopPropagation();
 			$popup.removeClass('ha-whatsapp-popup--active');
+			$wrapper.removeClass('ha-whatsapp-chat-opened');
 		});
 
 		// Close popup when clicking outside the widget
 		$(document).on('click.whatsapp-popup-' + $scope.attr('data-id'), function (event) {
 			if (!$(event.target).closest($scope).length) {
 				$popup.removeClass('ha-whatsapp-popup--active');
+				$wrapper.removeClass('ha-whatsapp-chat-opened');
 			}
 		});
 	};

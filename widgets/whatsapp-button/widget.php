@@ -821,8 +821,8 @@ class Whatsapp_Button extends Base {
 					'px' => [ 'min' => 10, 'max' => 100 ],
 				],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon, {{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-close-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon svg, {{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-close-icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -842,6 +842,7 @@ class Whatsapp_Button extends Base {
 				],
 				'selectors'  => [
 					'{{WRAPPER}}.ha-whatsapp--style-icon-only .ha-whatsapp-link' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.ha-whatsapp-chat-opened .ha-whatsapp-link' => 'width: {{SIZE}}{{UNIT}} !important;',
 				],
 				'condition'  => [
 					'button_style' => 'icon-only',
@@ -864,6 +865,7 @@ class Whatsapp_Button extends Base {
 				],
 				'selectors'  => [
 					'{{WRAPPER}}.ha-whatsapp--style-icon-only .ha-whatsapp-link' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.ha-whatsapp-chat-opened .ha-whatsapp-link' => 'height: {{SIZE}}{{UNIT}} !important;',
 				],
 				'condition'  => [
 					'button_style' => 'icon-only',
@@ -923,8 +925,8 @@ class Whatsapp_Button extends Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ffffff',
 				'selectors' => [
-					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon'     => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon, {{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-close-icon'     => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon svg, {{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-close-icon svg' => 'fill: {{VALUE}};',
 				],
 			]
 		);
@@ -965,8 +967,8 @@ class Whatsapp_Button extends Base {
 				'label'     => __( 'Icon Color', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-whatsapp-link:hover .ha-whatsapp-icon'     => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-whatsapp-link:hover .ha-whatsapp-icon svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .ha-whatsapp-link:hover .ha-whatsapp-icon, {{WRAPPER}} .ha-whatsapp-link:hover .ha-whatsapp-close-icon'     => 'color: {{VALUE}};',
+					'{{WRAPPER}} .ha-whatsapp-link:hover .ha-whatsapp-icon svg, {{WRAPPER}} .ha-whatsapp-link:hover .ha-whatsapp-close-icon svg' => 'fill: {{VALUE}};',
 				],
 			]
 		);
@@ -1287,6 +1289,13 @@ class Whatsapp_Button extends Base {
 				<span class="ha-whatsapp-icon">
 					<?php ha_render_icon( $settings, 'icon', 'selected_icon', [ 'aria-hidden' => 'true' ] ); ?>
 				</span>
+				<?php if ( 'floating_chat' === $button_type ) : ?>
+					<span class="ha-whatsapp-close-icon">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</span>
+				<?php endif; ?>
 				<?php if ( 'icon-only' !== $button_style && $button_text ) : ?>
 					<span class="ha-whatsapp-text"><?php echo esc_html( $button_text ); ?></span>
 				<?php endif; ?>

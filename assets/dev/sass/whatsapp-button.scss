@@ -127,12 +127,50 @@
 	font-size: 28px;
 }
 
+.ha-whatsapp-close-icon {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+	font-size: 28px;
+
+	svg {
+		width: 1em;
+		height: 1em;
+	}
+}
+
 // --- Text ---
 .ha-whatsapp-text {
 	font-size: 15px;
 	font-weight: 600;
 	white-space: nowrap;
 	line-height: 1.2;
+}
+
+// --- Opened Chat State ---
+.ha-whatsapp-chat-opened {
+	border-radius: 50% !important;
+
+	.ha-whatsapp-link {
+		width: 60px !important;
+		height: 60px !important;
+		border-radius: 50% !important;
+		padding: 0 !important;
+	}
+	.ha-whatsapp-icon,
+	.ha-whatsapp-text {
+		display: none !important;
+	}
+	.ha-whatsapp-close-icon {
+		display: inline-flex !important;
+	}
+	.ha-whatsapp-tooltip {
+		display: none !important;
+	}
+	.ha-whatsapp-pulse-ring {
+		display: none !important;
+	}
 }
 
 // --- Style Variants ---
