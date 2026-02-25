@@ -11,12 +11,24 @@
 
 		var $button = $scope.find('.ha-whatsapp-link');
 		var $close  = $scope.find('.ha-whatsapp-popup__close');
+		var hasTypingIndicator = $popup.find('.ha-whatsapp-popup__typing-indicator').length > 0;
+		var typingShown = false;
 
 		// Toggle popup on button click
 		$button.on('click', function (e) {
 			e.preventDefault();
 			e.stopPropagation();
+			
+			var isOpening = !$popup.hasClass('ha-whatsapp-popup--active');
 			$popup.toggleClass('ha-whatsapp-popup--active');
+
+			if (isOpening && hasTypingIndicator && !typingShown) {
+				$popup.addClass('is-typing');
+				setTimeout(function() {
+					$popup.removeClass('is-typing');
+					typingShown = true;
+				}, 1500);
+			}
 		});
 
 		// Close popup on close button click

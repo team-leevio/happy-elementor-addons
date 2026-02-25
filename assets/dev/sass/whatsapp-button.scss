@@ -437,6 +437,67 @@
 	}
 }
 
+@keyframes ha-whatsapp-typing-bounce {
+	0%, 80%, 100% {
+		transform: translateY(0);
+	}
+	40% {
+		transform: translateY(-5px);
+	}
+}
+
+.ha-whatsapp-popup__typing-indicator {
+	background-color: #ffffff;
+	padding: 15px 16px;
+	border-radius: 0 12px 12px 12px;
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	position: relative;
+	margin-bottom: 10px;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 100%;
+		border: 8px solid transparent;
+		border-right-color: #ffffff;
+		border-top-color: #ffffff;
+	}
+
+	span {
+		width: 6px;
+		height: 6px;
+		background-color: #888888;
+		border-radius: 50%;
+		animation: ha-whatsapp-typing-bounce 1.4s infinite ease-in-out both;
+
+		&:nth-child(1) {
+			animation-delay: -0.32s;
+		}
+		&:nth-child(2) {
+			animation-delay: -0.16s;
+		}
+	}
+}
+
+.ha-whatsapp-popup.is-typing {
+	.ha-whatsapp-popup__typing-indicator {
+		display: inline-flex;
+	}
+	.ha-whatsapp-popup__message-bubble {
+		display: none;
+	}
+}
+
+.ha-whatsapp-popup:not(.is-typing) {
+	.ha-whatsapp-popup__typing-indicator {
+		display: none;
+	}
+}
+
 .ha-whatsapp-popup__footer {
 	padding: 15px 20px;
 	background-color: #ffffff;
@@ -466,3 +527,172 @@
 .ha-whatsapp-popup__footer-icon {
 	font-size: 18px;
 }
+
+// --- Chat Themes ---
+
+// 1. General (Default) - Handled by standard styles
+
+// 2. Message Field Theme
+.ha-whatsapp--chat-theme-message_field {
+	.ha-whatsapp-popup__footer {
+		padding: 10px 15px;
+		background: #f0f2f5;
+	}
+	.ha-whatsapp-popup__footer-btn {
+		background-color: #ffffff;
+		color: #888;
+		border-radius: 20px;
+		justify-content: space-between;
+		padding: 10px 15px;
+		box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+		font-weight: normal;
+
+		// Make the SVG/Icon look like a send button
+		.ha-whatsapp-popup__footer-icon {
+			color: #00a884;
+			font-size: 20px;
+		}
+
+		&:hover {
+			background-color: #f9f9f9;
+			color: #888;
+		}
+	}
+}
+
+// 3. White Theme
+.ha-whatsapp--chat-theme-white_theme {
+	.ha-whatsapp-popup__header {
+		background-color: #ffffff;
+		color: #333333;
+		border-bottom: 1px solid #eeeeee;
+	}
+	.ha-whatsapp-popup__header-title {
+		color: #333333;
+	}
+	.ha-whatsapp-popup__header-status {
+		color: #666666;
+	}
+	.ha-whatsapp-popup__close {
+		color: #999999;
+	}
+}
+
+// 4. Light Theme
+.ha-whatsapp--chat-theme-light_theme {
+	.ha-whatsapp-popup__header {
+		background-color: #f8f9fa;
+		color: #333333;
+		border-bottom: 1px solid #e9ecef;
+	}
+	.ha-whatsapp-popup__header-title {
+		color: #333333;
+	}
+	.ha-whatsapp-popup__header-status {
+		color: #666666;
+	}
+	.ha-whatsapp-popup__close {
+		color: #999999;
+	}
+}
+
+// 5. Dark Theme
+.ha-whatsapp--chat-theme-dark_theme {
+	.ha-whatsapp-popup__header {
+		background-color: #1a202c;
+		border-bottom: 1px solid #2d3748;
+	}
+	.ha-whatsapp-popup__body {
+		background-color: #2d3748;
+		background-image: none; /* remove background pattern for clean dark look */
+	}
+	.ha-whatsapp-popup__message-bubble {
+		background-color: #4a5568;
+		color: #ffffff;
+
+		&::before {
+			border-right-color: #4a5568;
+			border-top-color: #4a5568;
+		}
+	}
+	.ha-whatsapp-popup__typing-indicator {
+		background-color: #4a5568;
+		&::before {
+			border-right-color: #4a5568;
+			border-top-color: #4a5568;
+		}
+		span {
+			background-color: #a0aec0;
+		}
+	}
+	.ha-whatsapp-popup__footer {
+		background-color: #1a202c;
+	}
+}
+
+// 6. Booking Theme
+.ha-whatsapp--chat-theme-booking {
+	.ha-whatsapp-popup__header {
+		background-color: #0b57d0; // Booking blue
+	}
+	.ha-whatsapp-popup__footer-btn {
+		background-color: #0b57d0;
+		border-radius: 8px;
+
+		&:hover {
+			background-color: #0842a0;
+		}
+	}
+}
+
+// 7. Feedback Theme
+.ha-whatsapp--chat-theme-feedback {
+	.ha-whatsapp-popup__header {
+		background-color: #ffffff;
+		color: #333333;
+		border-bottom: 1px solid #eeeeee;
+	}
+	.ha-whatsapp-popup__header-title {
+		color: #333333;
+	}
+	.ha-whatsapp-popup__header-status {
+		color: #666666;
+	}
+	.ha-whatsapp-popup__close {
+		color: #999999;
+	}
+	.ha-whatsapp-popup__footer-btn {
+		background-color: #f59e0b; // Amber/Warning color
+		border-radius: 8px;
+
+		&:hover {
+			background-color: #d97706;
+		}
+	}
+}
+
+// 8. Onboarding Theme
+.ha-whatsapp--chat-theme-onboarding {
+	.ha-whatsapp-popup__header {
+		background-color: #f3f4f6;
+		color: #1f2937;
+	}
+	.ha-whatsapp-popup__header-title {
+		color: #1f2937;
+	}
+	.ha-whatsapp-popup__header-status {
+		color: #6b7280;
+	}
+	.ha-whatsapp-popup__close {
+		color: #9ca3af;
+	}
+	.ha-whatsapp-popup__footer-btn {
+		background-color: #8b5cf6; // Purple
+		border-radius: 25px;
+
+		&:hover {
+			background-color: #7c3aed;
+		}
+	}
+}
+

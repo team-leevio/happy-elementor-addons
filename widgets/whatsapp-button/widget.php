@@ -203,6 +203,26 @@ class Whatsapp_Button extends Base {
 		);
 
 		$this->add_control(
+			'chat_theme',
+			[
+				'label'   => __( 'Chat Theme', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'general',
+				'options' => [
+					'general'       => __( 'General', 'happy-elementor-addons' ),
+					'message_field' => __( 'Message Field', 'happy-elementor-addons' ),
+					'white_theme'   => __( 'White Theme', 'happy-elementor-addons' ),
+					'light_theme'   => __( 'Light Theme', 'happy-elementor-addons' ),
+					'dark_theme'    => __( 'Dark Theme', 'happy-elementor-addons' ),
+					'booking'       => __( 'Booking', 'happy-elementor-addons' ),
+					'feedback'      => __( 'Feedback', 'happy-elementor-addons' ),
+					'onboarding'    => __( 'Onboarding', 'happy-elementor-addons' ),
+				],
+				'prefix_class' => 'ha-whatsapp--chat-theme-',
+			]
+		);
+
+		$this->add_control(
 			'agent_image',
 			[
 				'label'   => __( 'Agent Image', 'happy-elementor-addons' ),
@@ -257,6 +277,19 @@ class Whatsapp_Button extends Base {
 					'{{WRAPPER}} .ha-whatsapp-popup__header' => 'background-color: {{VALUE}};',
 				],
 				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'show_typing_indicator',
+			[
+				'label'        => __( 'Show Typing Indicator', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __( 'Yes', 'happy-elementor-addons' ),
+				'label_off'    => __( 'No', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default'      => 'yes',
+				'separator'    => 'before',
 			]
 		);
 
@@ -1205,11 +1238,18 @@ class Whatsapp_Button extends Base {
 							</div>
 						</div>
 						<button type="button" class="ha-whatsapp-popup__close" aria-label="<?php echo esc_attr__( 'Close', 'happy-elementor-addons' ); ?>">
-							<i class="fas fa-times"></i>
+							<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
 						</button>
 					</div>
 
 					<div class="ha-whatsapp-popup__body">
+						<?php if ( 'yes' === $settings['show_typing_indicator'] ) : ?>
+							<div class="ha-whatsapp-popup__typing-indicator">
+								<span></span><span></span><span></span>
+							</div>
+						<?php endif; ?>
 						<div class="ha-whatsapp-popup__message-bubble">
 							<?php echo nl2br( esc_html( $settings['chat_initial_message'] ) ); ?>
 						</div>
