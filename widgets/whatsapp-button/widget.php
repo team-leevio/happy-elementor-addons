@@ -219,6 +219,7 @@ class Whatsapp_Button extends Base {
 					'onboarding'    => __( 'Onboarding', 'happy-elementor-addons' ),
 				],
 				'prefix_class' => 'ha-whatsapp--chat-theme-',
+				'render_type'  => 'template',
 			]
 		);
 
@@ -1218,6 +1219,9 @@ class Whatsapp_Button extends Base {
 		$button_text   = ! empty( $settings['button_text'] ) ? $settings['button_text'] : '';
 
 		$this->add_render_attribute( 'wrapper', 'class', 'ha-whatsapp-button' );
+
+		$chat_theme = ! empty( $settings['chat_theme'] ) ? $settings['chat_theme'] : 'general';
+		$this->add_render_attribute( 'wrapper', 'class', 'ha-whatsapp--chat-theme-' . $chat_theme );
 		?>
 		<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
 			<?php if ( 'floating_chat' === $button_type ) : ?>
