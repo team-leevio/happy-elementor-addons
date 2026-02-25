@@ -51,6 +51,10 @@ class Whatsapp_Button extends Base {
 		];
 	}
 
+	public function get_script_depends() {
+		return [ 'ha-whatsapp-button' ];
+	}
+
 	protected function is_dynamic_content(): bool {
 		return false;
 	}
