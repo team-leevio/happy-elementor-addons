@@ -45,6 +45,7 @@ class Whatsapp_Button extends Base {
 
 	public function get_style_depends() {
 		return [
+			'happy-elementor-addons',
 			'elementor-icons-fa-solid',
 			'elementor-icons-fa-brands',
 			'elementor-icons-fa-regular',
@@ -220,6 +221,7 @@ class Whatsapp_Button extends Base {
 				],
 				'prefix_class' => 'ha-whatsapp--chat-theme-',
 				'render_type'  => 'template',
+				'frontend_available' => true,
 			]
 		);
 
