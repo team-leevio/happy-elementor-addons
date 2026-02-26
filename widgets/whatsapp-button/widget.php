@@ -794,6 +794,78 @@ class Whatsapp_Button extends Base {
 			]
 		);
 
+		$this->add_control(
+			'heading_chat_popup_close_button',
+			[
+				'label'     => __( 'Close Button', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->start_controls_tabs( '_tabs_close_button' );
+		$this->start_controls_tab(
+			'_tab_close_button_normal',
+			[
+				'label' => __( 'Normal', 'happy-addons-pro' ),
+			]
+		);
+
+		$this->add_control(
+			'close_button_color',
+			[
+				'label'     => __( 'Color', 'happy-addons-pro' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} button.ha-whatsapp-popup__close' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'close_button_bg_color',
+			[
+				'label'     => __( 'Background Color', 'happy-addons-pro' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} button.ha-whatsapp-popup__close' => 'background: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->start_controls_tab(
+			'_tab_close_button_hover',
+			[
+				'label' => __( 'Hover', 'happy-addons-pro' ),
+			]
+		);
+
+		$this->add_control(
+			'close_button_hover_color',
+			[
+				'label'     => __( 'Color', 'happy-addons-pro' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} button.ha-whatsapp-popup__close:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'nav_active_bg_color',
+			[
+				'label'     => __( 'Background Color', 'happy-addons-pro' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} button.ha-whatsapp-popup__close:hover' => 'background: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
 		$this->end_controls_section();
 	}
 
