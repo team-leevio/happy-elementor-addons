@@ -366,19 +366,23 @@
 }
 
 // --- Responsive Visibility ---
-@media (min-width: 1025px) {
+body[data-elementor-device-mode="widescreen"],
+body[data-elementor-device-mode="desktop"],
+body[data-elementor-device-mode="laptop"] {
 	.ha-whatsapp--hide-desktop-yes .ha-whatsapp-button {
 		display: none !important;
 	}
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+body[data-elementor-device-mode="tablet_extra"],
+body[data-elementor-device-mode="tablet"] {
 	.ha-whatsapp--hide-tablet-yes .ha-whatsapp-button {
 		display: none !important;
 	}
 }
 
-@media (max-width: 767px) {
+body[data-elementor-device-mode="mobile_extra"],
+body[data-elementor-device-mode="mobile"] {
 	.ha-whatsapp--hide-mobile-yes .ha-whatsapp-button {
 		display: none !important;
 	}
