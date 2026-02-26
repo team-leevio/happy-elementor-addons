@@ -1508,7 +1508,7 @@ class Widgets_Manager {
 				'is_active' => true,
 				'demo'      => '',
 				'title'     => __( 'WhatsApp Button', 'happy-elementor-addons' ),
-				'icon'      => 'hm hm-whatsapp',
+				'icon'      => 'hm hm-circular-chat',
 				'css'       => [ 'whatsapp-button' ],
 				'js'        => [ 'ha-whatsapp-button' ],
 				'vendor'    => [

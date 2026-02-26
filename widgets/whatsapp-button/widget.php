@@ -36,7 +36,7 @@ class Whatsapp_Button extends Base {
 	 * @access public
 	 */
 	public function get_icon() {
-		return 'hm hm-whatsapp';
+		return 'hm hm-circular-chat';
 	}
 
 	public function get_keywords() {
@@ -179,7 +179,6 @@ class Whatsapp_Button extends Base {
 			[
 				'label'            => __( 'Icon', 'happy-elementor-addons' ),
 				'type'             => Controls_Manager::ICONS,
-				'fa4compatibility' => 'icon',
 				'default'          => [
 					'value'   => 'fab fa-whatsapp',
 					'library' => 'fa-brands',
