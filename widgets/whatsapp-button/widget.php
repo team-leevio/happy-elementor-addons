@@ -271,19 +271,6 @@ class Whatsapp_Button extends Base {
 		);
 
 		$this->add_control(
-			'chat_header_bg_color',
-			[
-				'label'     => __( 'Header Background Color', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '#075E54',
-				'selectors' => [
-					'{{WRAPPER}} .ha-whatsapp-popup__header' => 'background-color: {{VALUE}};',
-				],
-				'separator' => 'before',
-			]
-		);
-
-		$this->add_control(
 			'show_typing_indicator',
 			[
 				'label'        => __( 'Show Typing Indicator', 'happy-elementor-addons' ),
@@ -709,6 +696,18 @@ class Whatsapp_Button extends Base {
 				'name'     => 'chat_header_status_typography',
 				'label'    => __( 'Status Typography', 'happy-elementor-addons' ),
 				'selector' => '{{WRAPPER}} .ha-whatsapp-popup__header-status',
+			]
+		);
+
+		$this->add_control(
+			'chat_header_bg_color',
+			[
+				'label'     => __( 'Background Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#075E54',
+				'selectors' => [
+					'{{WRAPPER}} .ha-whatsapp-popup__header' => 'background-color: {{VALUE}};',
+				],
 			]
 		);
 
