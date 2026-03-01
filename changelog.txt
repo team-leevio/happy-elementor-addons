@@ -1,3 +1,6 @@
+= 3.21.1 - ## March 2026 =
+- Fix: Template Conditions Manager security issue.
+
 = 3.21.0 - 17 February 2026 =
 
 - Fix: Resolved Archive Post image size issue.
