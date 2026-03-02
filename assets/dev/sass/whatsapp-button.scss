@@ -129,7 +129,7 @@
 	&:hover {
 		text-decoration: none;
 		color: #ffffff;
-		transform: scale(1.1);
+		// transform: scale(1.1);
 	}
 }
 
@@ -275,7 +275,8 @@
 	.ha-whatsapp-link {
 		border-radius: 12px;
 		padding: 14px 22px;
-		height: auto;position: relative;
+		height: auto;
+		position: relative;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;

@@ -1064,22 +1064,22 @@ class Whatsapp_Button extends Base {
 			]
 		);
 
-		$this->add_control(
-			'button_hover_transform',
-			[
-				'label'     => __( 'Scale on Hover', 'happy-elementor-addons' ),
-				'type'      => Controls_Manager::SLIDER,
-				'default'   => [
-					'size' => 1.1,
-				],
-				'range'     => [
-					'px' => [ 'min' => 0.5, 'max' => 2, 'step' => 0.01 ],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ha-whatsapp-link:hover' => 'transform: scale({{SIZE}});',
-				],
-			]
-		);
+		// $this->add_control(
+		// 	'button_hover_transform',
+		// 	[
+		// 		'label'     => __( 'Scale on Hover', 'happy-elementor-addons' ),
+		// 		'type'      => Controls_Manager::SLIDER,
+		// 		'default'   => [
+		// 			'size' => 1.1,
+		// 		],
+		// 		'range'     => [
+		// 			'px' => [ 'min' => 0.5, 'max' => 2, 'step' => 0.01 ],
+		// 		],
+		// 		'selectors' => [
+		// 			'{{WRAPPER}} .ha-whatsapp-link:hover' => 'transform: scale({{SIZE}});',
+		// 		],
+		// 	]
+		// );
 
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
