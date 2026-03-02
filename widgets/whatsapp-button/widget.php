@@ -1291,6 +1291,11 @@ class Whatsapp_Button extends Base {
 		$enable_tooltip = ( 'yes' === $settings['enable_tooltip'] );
 		$tooltip_text  = ! empty( $settings['tooltip_text'] ) ? $settings['tooltip_text'] : '';
 		$button_text   = ! empty( $settings['button_text'] ) ? $settings['button_text'] : '';
+		if ( 'icon-only' !== $button_style && $button_text ){
+			$button_style_class='ha-whatsapp-pulse-non-ring';
+		}else{
+			$button_style_class='ha-whatsapp-pulse-ring';
+		}
 
 		$this->add_render_attribute( 'wrapper', 'class', 'ha-whatsapp-button' );
 
@@ -1373,7 +1378,7 @@ class Whatsapp_Button extends Base {
 				<?php endif; ?>
 			</a>
 
-			<span class="ha-whatsapp-pulse-ring"></span>
+			<span class="<?php echo esc_attr( $button_style_class ); ?>"></span>
 		</div>
 		<?php
 	}

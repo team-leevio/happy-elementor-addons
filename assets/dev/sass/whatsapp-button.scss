@@ -19,6 +19,21 @@
 		opacity: 0;
 	}
 }
+@keyframes perfectPulse {
+  0% {
+    inset: 0;
+    opacity: 0.8;
+  }
+  70% {
+    inset: -18px;
+    opacity: 0;
+  }
+  100% {
+    inset: -18px;
+    opacity: 0;
+  }
+}
+
 
 // Entrance animation (slide up + fade in)
 @keyframes ha-whatsapp-entrance {
@@ -234,7 +249,25 @@
 		border-radius: 50px;
 		padding: 14px 22px;
 		height: auto;
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 9999px;
+		z-index: 1; 
+		&:after{
+			content: "";
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			border: 3px solid #25D366;
+			opacity: 0.8;
+			pointer-events: none;
+			z-index: -1; 
+			animation: perfectPulse 2s ease-out infinite;
+		}
 	}
+
 }
 
 // Icon + Text (Rounded)
@@ -242,7 +275,22 @@
 	.ha-whatsapp-link {
 		border-radius: 12px;
 		padding: 14px 22px;
-		height: auto;
+		height: auto;position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 1; 
+		&:after{
+			content: "";
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			border: 3px solid #25D366;
+			opacity: 0.8;
+			pointer-events: none;
+			z-index: -1; 
+			animation: perfectPulse 2s ease-out infinite;
+		}
 	}
 }
 
