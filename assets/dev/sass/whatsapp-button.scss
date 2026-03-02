@@ -66,7 +66,7 @@
 
 	// Editor adjustments
 	.elementor-editor-active & {
-		position: relative;
+		// position: relative;
 		bottom: auto;
 		right: auto;
 		left: auto;
@@ -305,7 +305,7 @@
 		position: absolute;
 		left: 100%;
 		top: 50%;
-		transform: translateY(-50%);
+		transform: translateY(-50%) rotate(-90deg);
 		border: 6px solid transparent;
 		border-left-color: #333333;
 	}
@@ -323,7 +323,7 @@
 		position: absolute;
 		right: 100%;
 		top: 50%;
-		transform: translateY(-50%);
+		transform: translateY(-50%) rotate(90deg);
 		border: 6px solid transparent;
 		border-right-color: #333333;
 	}
@@ -341,7 +341,7 @@
 		position: absolute;
 		top: 100%;
 		left: 50%;
-		transform: translateX(-50%);
+		transform: translateX(-50%) rotate(360deg);
 		border: 6px solid transparent;
 		border-top-color: #333333;
 	}
@@ -359,7 +359,7 @@
 		position: absolute;
 		bottom: 100%;
 		left: 50%;
-		transform: translateX(-50%);
+		transform: translateX(-50%) rotate(180deg);
 		border: 6px solid transparent;
 		border-bottom-color: #333333;
 	}
