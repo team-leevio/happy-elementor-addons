@@ -1,4 +1,5 @@
 = 3.21.1 - ## March 2026 =
+
 - Fix: Template Conditions Manager security issue.
 - Fix: Happy Clone security issue.
 
