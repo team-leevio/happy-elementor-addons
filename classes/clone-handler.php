@@ -84,8 +84,16 @@ class Clone_Handler {
 		$post_id = isset( $_GET['post_id'] ) ? absint( $_GET['post_id'] ) : 0;
 		$ref = isset( $_GET['ref'] ) ? sanitize_text_field($_GET['ref']) : '';
 
-		if ( ! wp_verify_nonce( $nonce, self::ACTION ) ) {
+		if ( !$post_id || !get_post( $post_id ) ) {
+			wp_die( __( 'Invalid post.' ) );
+		}
+
+		if ( !wp_verify_nonce( $nonce, self::ACTION ) ) {
 			return;
+		}
+
+		if ( !current_user_can( 'edit_post', $post_id ) ) {
+			wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
 		}
 
 		$post_status = get_post_status ( $post_id );
