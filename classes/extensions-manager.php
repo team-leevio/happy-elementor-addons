@@ -205,6 +205,12 @@ class Extensions_Manager {
 				'icon' => 'huge huge-web-design-02',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/background-parallax/',
 				'is_pro' => false,
+			],
+			'heading-text-animation' => [
+				'title' => __( 'Text Animation', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-text-outline',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/#/',
+				'is_pro' => false,
 			]
 		];
 	}
@@ -283,6 +289,7 @@ class Extensions_Manager {
 			case 'custom-mouse-cursor':
 			case 'custom-js':
 			case 'background-parallax':
+			case 'heading-text-animation':
 				$cls_name = ucwords( str_replace( '-', ' ', $feature_key ) ); //remove ' - ' & uc first later
 				$cls_name = '\Happy_Addons\Elementor\Extensions\\' . str_replace( ' ', '_', $cls_name );
 				$cls_name::instance()->init();
