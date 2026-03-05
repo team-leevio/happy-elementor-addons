@@ -1,30 +1,43 @@
-/* Characters & Words */
-.ha-hta-char,
-.ha-hta-word {
+/* Wrapper enabled when animation switcher is ON */
+.elementor-widget-heading.ha-hta-yes {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Base heading */
+.elementor-widget-heading.ha-hta-yes .elementor-heading-title {
+    display: inline-block;
+}
+
+/* Characters */
+.ha-char {
     display: inline-block;
     white-space: pre;
     will-change: transform, opacity;
 }
 
-/* Reveal */
-.ha-hta-reveal {
-    overflow: hidden;
-    display: inline-flex;
-    flex-wrap: wrap;
-}
-
-/* 3D Animation */
-.ha-hta-3d-container {
-    position: relative;
+/* Words */
+.ha-word {
     display: inline-block;
-    perspective: 900px;
+    white-space: pre;
+    will-change: transform, opacity;
 }
 
-/* Duplicate Text for Effects */
-.duplicate-text {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+/* Lines */
+.ha-line {
+    display: block;
+    will-change: transform, opacity;
+}
+
+/* 3D mode */
+.ha-hta-3d-spin {
+    perspective: 800px;
+}
+
+/* Invert mode */
+.ha-hta-text-invert {
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, #000 50%, #fff 50%);
+    -webkit-background-clip: text;
+    color: transparent;
 }

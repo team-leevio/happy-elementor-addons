@@ -32,10 +32,10 @@ class Heading_Text_Animation
     {
 
         // Enqueue the required JS file.
-        add_action('wp_enqueue_scripts', [$this, 'register_scripts']);
-        add_action('wp_enqueue_scripts', [$this, 'register_styles']);
+        add_action( 'wp_enqueue_scripts', [$this, 'register_scripts'] );
+        add_action( 'wp_enqueue_scripts', [$this, 'register_styles'] );
 
-        add_action('elementor/preview/enqueue_scripts', [$this, 'enqueue_preview_scripts']);
+        add_action( 'elementor/preview/enqueue_scripts', [$this, 'enqueue_preview_scripts'] );
 
         // get Heading Widgets
         $headingTextWidgets = $this->get_heading_text_widgets();
@@ -153,7 +153,7 @@ class Heading_Text_Animation
                             ],
                         ],
                         [
-                            'name'       => 'happy-appearing-image-animation',
+                            'name'       => 'happy-heading-text-animation',
                             'conditions' => [
                                 'terms' => [
                                     [
@@ -167,7 +167,7 @@ class Heading_Text_Animation
                     ],
                     'styles'  => [
                         [
-                            'name'       => 'happy-appearing-image-animation',
+                            'name'       => 'happy-heading-text-animation',
                             'conditions' => [
                                 'terms' => [
                                     [
@@ -190,8 +190,7 @@ class Heading_Text_Animation
                 'type'               => Controls_Manager::SELECT,
                 'default'            => 'reveal',
                 'options'            => [
-                    'chars'     => __('Slide Chars', 'happy-elementor-addons'),
-                    'words'     => __('Slide Words', 'happy-elementor-addons'),
+                    'slide'     => __('Slide', 'happy-elementor-addons'),
                     'text_move' => __('Text Move', 'happy-elementor-addons'),
                     'reveal'    => __('Text Reveal', 'happy-elementor-addons'),
                     'scale'     => __('Scale', 'happy-elementor-addons'),
@@ -200,6 +199,26 @@ class Heading_Text_Animation
                 ],
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
+                ],
+                'render_type'        => 'template',
+                'frontend_available' => true,
+                'style_transfer'     => true,
+            ]
+        );
+        
+        $element->add_control(
+            'ha_hta_chars_words_mode',
+            [
+                'label'              => __('Slide Mode', 'happy-elementor-addons'),
+                'type'               => Controls_Manager::SELECT,
+                'default'            => 'chars',
+                'options'            => [
+                    'chars'     => __('Chars', 'happy-elementor-addons'),
+                    'words'     => __('Words', 'happy-elementor-addons'),
+                ],
+                'condition'          => [
+                    'ha_hta_switcher' => 'yes',
+                    'ha_hta_mode' => 'slide',
                 ],
                 'render_type'        => 'template',
                 'frontend_available' => true,
@@ -261,7 +280,7 @@ class Heading_Text_Animation
                 'style_transfer'     => true,
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
-                    'ha_hta_mode'     => ['chars', 'words'],
+                    'ha_hta_mode'     => 'slide',
                 ],
             ]
         );
@@ -280,7 +299,7 @@ class Heading_Text_Animation
                 'style_transfer'     => true,
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
-                    'ha_hta_mode'     => ['chars', 'words'],
+                    'ha_hta_mode'     => 'slide',
                 ],
             ]
         );
