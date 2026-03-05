@@ -311,6 +311,11 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.21.1 - 05 March 2026 =
+
+- Fix: Template Conditions Manager security issue.
+- Fix: Happy Clone security issue.
+
 = 3.21.0 - 17 February 2026 =
 
 - Fix: Resolved Archive Post image size issue.
@@ -323,11 +328,6 @@ For a more detailed explanation check out the following documentation
 - Update: Added Custom Meta Field support in Post List.
 - Update: Added Item Counter Enable option in Taxonomy List.
 - Update: Added Item Counter style option in Taxonomy List.
-
-= 3.21.1 - ## March 2026 =
-
-- Fix: Template Conditions Manager security issue.
-- Fix: Happy Clone security issue.
 
 = 3.20.8 - 02 February 2026 =
 
