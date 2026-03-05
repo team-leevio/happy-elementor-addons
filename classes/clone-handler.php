@@ -89,10 +89,6 @@ class Clone_Handler {
             wp_die( __( 'Invalid post.' ) );
         }
 
-        if ( !wp_verify_nonce( $nonce, self::ACTION . '_' . $post_id ) ) {
-            return;
-        }
-
         if ( !current_user_can( 'edit_post', $post_id ) ) {
             wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
         }
