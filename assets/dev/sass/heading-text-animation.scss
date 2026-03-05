@@ -1,0 +1,30 @@
+/* Characters & Words */
+.ha-hta-char,
+.ha-hta-word {
+    display: inline-block;
+    white-space: pre;
+    will-change: transform, opacity;
+}
+
+/* Reveal */
+.ha-hta-reveal {
+    overflow: hidden;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+/* 3D Animation */
+.ha-hta-3d-container {
+    position: relative;
+    display: inline-block;
+    perspective: 900px;
+}
+
+/* Duplicate Text for Effects */
+.duplicate-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
