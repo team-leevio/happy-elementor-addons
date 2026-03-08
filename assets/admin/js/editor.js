@@ -517,7 +517,6 @@
       $haBgParallax.trigger("click");
     }
     elementor.channels.editor.on("section:activated", function (event, panel) {
-      console.log(panel, event);
       if (event == "section_ha_bg_parallax") {
         sessionStorage.removeItem('HappyBGParallaxChangeApply');
         panel.$el.find(".elementor-update-preview-button.elementor-button").on("click", function (event) {
