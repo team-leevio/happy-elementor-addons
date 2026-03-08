@@ -24,43 +24,21 @@
     will-change: transform, opacity;
 }
 
-/* flip */
-.ha-flip {
+/* Lines */
+.ha-line {
     display: block;
     will-change: transform, opacity;
 }
 
 /* 3D mode */
 .ha-hta-3d-spin {
-    // perspective: 800px;
-    display: inline-block;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
+    perspective: 800px;
 }
 
 /* Invert mode */
-.ha-hta-text-invert .ha-invert {
-    position: relative;
-    display: block;
-
-    background: linear-gradient(
-        to left,
-        currentColor 50%,
-        rgba(0,0,0,0.2) 50%
-    );
-
+.ha-hta-text-invert {
     background-size: 200% 100%;
-    background-position-x: 100%;
-
+    background-image: linear-gradient(to right, #000 50%, #fff 50%);
     -webkit-background-clip: text;
-    background-clip: text;
-
     color: transparent;
-}
-
-.duplicate-text {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
 }
