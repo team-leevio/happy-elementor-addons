@@ -205,7 +205,7 @@ class Heading_Text_Animation {
                 'type'               => Controls_Manager::SELECT,
                 'default'            => 'chars',
                 'options'            => [
-                    'chars' => __( 'Chars', 'happy-elementor-addons' ),
+                    'chars' => __( 'Characters', 'happy-elementor-addons' ),
                     'words' => __( 'Words', 'happy-elementor-addons' )
                 ],
                 'condition'          => [
