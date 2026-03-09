@@ -183,8 +183,8 @@ class Heading_Text_Animation {
                 'default'            => 'reveal',
                 'options'            => [
                     'slide'  => __( 'Slide', 'happy-elementor-addons' ),
-                    'reveal' => __( 'Text Reveal', 'happy-elementor-addons' )
-                    // 'scale'     => __( 'Scale', 'happy-elementor-addons' ),
+                    'reveal' => __( 'Text Reveal', 'happy-elementor-addons' ),
+                    'scale'  => __( 'Scale', 'happy-elementor-addons' ),
                     // 'text_flip' => __( 'Text Flip', 'happy-elementor-addons' ),
                     // '3dspin'    => __( '3D Spin', 'happy-elementor-addons' ),
                     // 'invert'    => __( 'Text Invert', 'happy-elementor-addons' ),
@@ -228,7 +228,6 @@ class Heading_Text_Animation {
                     'scroll'         => __( 'On Appearing', 'happy-elementor-addons' ),
                     'playwithscroll' => __( 'Play with Scroll', 'happy-elementor-addons' ),
                     'hover'          => __( 'Hover in Element', 'happy-elementor-addons' )
-                    // 'pageload'       => __( 'On Page Load', 'happy-elementor-addons' )
                 ],
                 'condition'          => [
                     'ha_hta_switcher' => 'yes'
@@ -582,6 +581,7 @@ class Heading_Text_Animation {
                     'power2.out'    => __( 'Power2 Out', 'happy-elementor-addons' ),
                     'power3.out'    => __( 'Power3 Out', 'happy-elementor-addons' ),
                     'power4.out'    => __( 'Power4 Out', 'happy-elementor-addons' ),
+                    'back'          => __( 'Back', 'happy-elementor-addons' ),
                     'back.in'       => __( 'Back In', 'happy-elementor-addons' ),
                     'back.out'      => __( 'Back Out', 'happy-elementor-addons' ),
                     'back.inOut'    => __( 'Back InOut', 'happy-elementor-addons' ),
@@ -590,7 +590,10 @@ class Heading_Text_Animation {
                     'elastic.inOut' => __( 'Elastic InOut', 'happy-elementor-addons' ),
                     'bounce.in'     => __( 'Bounce In', 'happy-elementor-addons' ),
                     'bounce.out'    => __( 'Bounce Out', 'happy-elementor-addons' ),
-                    'bounce.inOut'  => __( 'Bounce InOut', 'happy-elementor-addons' )
+                    'bounce.inOut'  => __( 'Bounce InOut', 'happy-elementor-addons' ),
+                    'circ.out'      => __( 'Circ Out', 'happy-elementor-addons' ),
+                    'circ.in'       => __( 'Circ In', 'happy-elementor-addons' ),
+                    'circ.inOut'    => __( 'Circ InOut', 'happy-elementor-addons' )
                 ],
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',

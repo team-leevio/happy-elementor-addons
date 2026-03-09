@@ -3,6 +3,7 @@
     position: relative;
     overflow: hidden;
     display: inline-block;
+    perspective: 1000px;
 }
 
 /* Base heading */
@@ -26,8 +27,12 @@
 
 /* flip */
 .ha-flip {
-    display: block;
-    will-change: transform, opacity;
+    // display: block;
+    // will-change: transform, opacity;
+    display:block;
+    transform-style:preserve-3d;
+    backface-visibility:hidden;
+    will-change:transform,opacity;
 }
 
 /* 3D mode */

@@ -195,69 +195,35 @@
 
                 else if (config.mode === "text_flip") {
 
-                    // tl.from(elements, {
-                    //     x: config.textMoveDirection === "horizontal" ? config.textMoveValue : 0,
-                    //     y: config.textMoveDirection === "vertical" ? config.textMoveValue : 0,
-                    //     opacity: 0,
-                    //     duration: config.duration,
-                    //     stagger: config.stagger,
-                    //     ease: config.easing
-                    // });
-
-                    // gsap.set(container, {
-                    //     perspective: 400
-                    // });
-
-                    // const flipConfig = {
-                    //     opacity: 0,
-                    //     duration: config.duration,
-                    //     delay: config.delay,
-                    //     stagger: config.stagger,
-                    //     force3D: true,
-                    //     transformOrigin: "top center -50",
-                    //     // ease: config.easing
-                    // };
-
-                    // // rotation direction
-                    // if (config.textMoveDirection === "horizontal") {
-                    //     flipConfig.rotationX = config.textMoveValue;
-                    // }
-
-                    // if (config.textMoveDirection === "vertical") {
-                    //     flipConfig.rotationY = config.textMoveValue;
-                    // }
-
-                    // tl.from(elements, flipConfig);
-
                     gsap.set(container, {
-                        perspective: 400
+                        transformStyle: "preserve-3d",
+                        perspective: 1000,
                     });
 
-                    const flipConfig = {
-                        opacity: 0,
-                        duration: config.duration,
-                        delay: config.delay,
-                        stagger: config.stagger,
-                        ease: config.easing,
-                        transformOrigin: "top center -80",
-                        force3D: true,
+                    const axisRotation = config.textMoveDirection === "horizontal"
+                        ? { rotationX: config.textMoveValue }
+                        : { rotationY: config.textMoveValue };
 
-                        // depth illusion
-                        z: -120,
-                        rotationX: config.textMoveDirection === "horizontal" ? config.textMoveValue : 0,
-                        rotationY: config.textMoveDirection === "vertical" ? config.textMoveValue : 0,
-
-                        filter: "blur(8px)"
-                    };
-
-                    tl.from(elements, flipConfig);
-
-                    // remove blur smoothly
-                    tl.to(elements, {
-                        filter: "blur(0px)",
-                        duration: config.duration * 0.6,
-                        stagger: config.stagger
-                    }, 0);
+                    tl.fromTo(elements,
+                        {
+                            opacity: 0,
+                            y: 50,
+                            z: - parseInt(config.textMoveValue),
+                            ...axisRotation,
+                            transformOrigin: "bottom center -50"
+                        },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            z: 0,
+                            rotationX: 0,
+                            rotationY: 0,
+                            duration: config.duration,
+                            stagger: config.stagger,
+                            ease: config.easing,
+                            force3D: true
+                        }
+                    );
 
                 }
 
@@ -376,6 +342,22 @@
                     return;
                 }
 
+                // PLAY WITH SCROLL
+                if (config.triggerMode === "playwithscroll") {
+
+                    const st = ScrollTrigger.create({
+                        trigger: container,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1,
+                        animation: tl
+                    });
+
+                    this.scrollTriggers.push(st);
+                    return;
+                }
+
+                // NORMAL SCROLL (play once)
                 const st = ScrollTrigger.create({
                     trigger: container,
                     start: config.triggerPoint,
