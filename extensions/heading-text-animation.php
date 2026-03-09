@@ -184,7 +184,7 @@ class Heading_Text_Animation {
                 'options'            => [
                     'slide'  => __( 'Slide', 'happy-elementor-addons' ),
                     'reveal' => __( 'Text Reveal', 'happy-elementor-addons' ),
-                    'scale'  => __( 'Scale', 'happy-elementor-addons' ),
+                    'scale'  => __( 'Scale', 'happy-elementor-addons' )
                     // 'text_flip' => __( 'Text Flip', 'happy-elementor-addons' ),
                     // '3dspin'    => __( '3D Spin', 'happy-elementor-addons' ),
                     // 'invert'    => __( 'Text Invert', 'happy-elementor-addons' ),
@@ -475,10 +475,8 @@ class Heading_Text_Animation {
                     'bottom-bottom' => __( 'Bottom - Bottom', 'happy-elementor-addons' ),
                     'custom'        => __( 'Custom', 'happy-elementor-addons' )
                 ],
-                'description'        => __(
-                    'Select when the animation starts based on the element and viewport positions(Element Viewport).',
-                    'happy-elementor-addons'
-                ),
+                'description'        => __( 'First value = element position, second = viewport position.',
+                    'happy-elementor-addons' ),
                 'condition'          => [
                     'ha_hta_switcher' => 'yes'
                 ],
