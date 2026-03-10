@@ -261,57 +261,111 @@
                 }
 
                 else if (config.mode === "3dspin") {
+                    const headingEl = heading;
 
-                    const original = heading;
-                    const clone = heading.cloneNode(true);
-
+                    // Clone heading for spin
+                    const clone = headingEl.cloneNode(true);
                     clone.classList.add("duplicate-text");
+                    headingEl.after(clone);
 
-                    heading.parentNode.appendChild(clone);
-
-                    const originalChars = this.splitChars(original);
+                    // Split characters
+                    const originalChars = this.splitChars(headingEl);
                     const cloneChars = this.splitChars(clone);
 
-                    gsap.set(cloneChars, { opacity: 0 });
+                    // Get element dimensions for transform origin
+                    const headingHeight = headingEl.offsetHeight;
+                    const origin = `50% 50% -${headingHeight / 2}`;
 
-                    const height = heading.offsetHeight;
-                    const origin = `50% 50% -${height / 2}`;
+                    // Set wrapper perspective and white-space
+                    gsap.set([headingEl, clone], {
+                        perspective: "600px",
+                        whiteSpace: "nowrap"
+                    });
 
-                    const spinTL = gsap.timeline({ paused: true });
+                    // Set clone to be above original (yPercent: -100) and hidden initially
+                    gsap.set(clone, {
+                        yPercent: -100,
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        opacity: 0
+                    });
 
-                    spinTL.set(cloneChars, {
+                    // Set chars inline-block and 3D styles
+                    gsap.set([ ...originalChars, ...cloneChars ], {
+                        display: "inline-block",
+                        transformStyle: "preserve-3d",
+                        backfaceVisibility: "hidden",
+                        opacity: 1
+                    });
+
+                    // Set clone chars initial rotation
+                    gsap.set(cloneChars, {
+                        rotationX: -90,
+                        transformOrigin: origin,
+                        opacity: 0
+                    });
+
+                    const tl = gsap.timeline({ paused: true });
+
+                    // Set clone chars to start position
+                    tl.set(cloneChars, {
                         rotationX: -90,
                         transformOrigin: origin
-                    });
+                    }, 0);
 
-                    spinTL.to(originalChars, {
+                    // Animate original chars out (rotate and fade)
+                    tl.to(originalChars, {
+                        delay: config.delay || 0,
+                        duration: config.duration || 0.4,
                         rotationX: 90,
-                        opacity: 0,
                         transformOrigin: origin,
-                        duration: config.duration,
-                        stagger: config.stagger,
-                        ease: "power1"
-                    });
+                        opacity: 0,
+                        stagger: {
+                            each: config.stagger || 0.03,
+                            ease: "power1",
+                            from: "start"
+                        },
+                        ease: "power2.in"
+                    }, 0);
 
-                    spinTL.to(cloneChars, {
+                    // Show clone chars and animate to 0 rotation
+                    tl.to(cloneChars, {
+                        duration: 0.001,
+                        delay: config.delay || 0,
                         opacity: 1,
-                        duration: 0.01,
-                        stagger: config.stagger
-                    }, 0);
+                        stagger: {
+                            each: config.stagger || 0.03,
+                            ease: "power1",
+                            from: "start"
+                        }
+                    }, 0.001);
 
-                    spinTL.to(cloneChars, {
+                    tl.to(cloneChars, {
+                        duration: config.duration || 0.4,
+                        delay: config.delay || 0,
                         rotationX: 0,
-                        duration: config.duration,
-                        stagger: config.stagger,
-                        ease: "power2.out"
+                        stagger: {
+                            each: config.stagger || 0.03,
+                            ease: "power1",
+                            from: "start"
+                        },
+                        ease: config.easing || "power2.out"
                     }, 0);
 
-                    this.attachTrigger(container, spinTL, config);
+                    // Move clone to correct position and make it visible after animation completes
+                    tl.to(clone, {
+                        yPercent: 0,
+                        opacity: 1,
+                        duration: 0.001,
+                        ease: "none"
+                    }, config.duration + (config.delay || 0));
 
-                    this.timelines.push(spinTL);
+                    // Attach scroll/click trigger
+                    this.attachTrigger(headingEl, tl, config);
 
+                    this.timelines.push(tl);
                     return;
-
                 }
 
                 this.attachTrigger(container, tl, config);

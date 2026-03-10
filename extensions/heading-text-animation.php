@@ -184,9 +184,9 @@ class Heading_Text_Animation {
                 'options'            => [
                     'slide'  => __( 'Slide', 'happy-elementor-addons' ),
                     'reveal' => __( 'Text Reveal', 'happy-elementor-addons' ),
-                    'scale'  => __( 'Scale', 'happy-elementor-addons' )
+                    'scale'  => __( 'Scale', 'happy-elementor-addons' ),
                     // 'text_flip' => __( 'Text Flip', 'happy-elementor-addons' ),
-                    // '3dspin'    => __( '3D Spin', 'happy-elementor-addons' ),
+                    '3dspin'    => __( '3D Spin', 'happy-elementor-addons' ),
                     // 'invert'    => __( 'Text Invert', 'happy-elementor-addons' ),
                 ],
                 'condition'          => [
@@ -226,7 +226,7 @@ class Heading_Text_Animation {
                 'default'            => 'scroll',
                 'options'            => [
                     'scroll'         => __( 'On Appearing', 'happy-elementor-addons' ),
-                    'playwithscroll' => __( 'Play with Scroll', 'happy-elementor-addons' ),
+                    'playwithscroll' => __( 'On Scroll', 'happy-elementor-addons' ),
                     'hover'          => __( 'Hover in Element', 'happy-elementor-addons' )
                 ],
                 'condition'          => [
@@ -436,24 +436,21 @@ class Heading_Text_Animation {
     }
 
     protected function three_d_mode_controls( $element ) {
-        $element->add_control(
-            'ha_hta_3d_text_color',
-            [
-                'label'              => __( 'Text Color', 'animation-addons-for-elementor-pro' ),
-                'type'               => Controls_Manager::COLOR,
-                'selectors'          => [
-                    '{{WRAPPER}} .duplicate-text' => 'color: {{VALUE}} !important'
-                ],
-                'render_type'        => 'template',
-                'toggle'             => false,
-                'frontend_available' => true,
-                'style_transfer'     => true,
-                'condition'          => [
-                    'ha_hta_switcher' => 'yes',
-                    'ha_hta_mode'     => ['3dspin']
-                ]
-            ]
-        );
+        // $element->add_control(
+        //     'ha_hta_3d_text_color',
+        //     [
+        //         'label'              => __( 'Text Color', 'animation-addons-for-elementor-pro' ),
+        //         'type'               => Controls_Manager::COLOR,
+        //         'render_type'        => 'template',
+        //         'toggle'             => false,
+        //         'frontend_available' => true,
+        //         'style_transfer'     => true,
+        //         'condition'          => [
+        //             'ha_hta_switcher' => 'yes',
+        //             'ha_hta_mode'     => ['3dspin']
+        //         ]
+        //     ]
+        // );
     }
 
     protected function common_controls( $element ) {
@@ -517,7 +514,7 @@ class Heading_Text_Animation {
                 'style_transfer'     => true,
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
-                    'ha_hta_mode!'    => ['invert', '3dspin']
+                    'ha_hta_mode!'    => ['invert']
                 ]
             ]
         );
@@ -536,7 +533,7 @@ class Heading_Text_Animation {
                 'style_transfer'     => true,
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
-                    'ha_hta_mode!'    => ['invert', '3dspin']
+                    'ha_hta_mode!'    => ['invert',]
                 ]
             ]
         );
@@ -555,7 +552,7 @@ class Heading_Text_Animation {
                 'style_transfer'     => true,
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
-                    'ha_hta_mode!'    => ['invert', '3dspin']
+                    'ha_hta_mode!'    => ['invert']
                 ]
             ]
         );
