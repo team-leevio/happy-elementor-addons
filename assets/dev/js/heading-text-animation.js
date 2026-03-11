@@ -8,8 +8,6 @@
         if (typeof ScrollTrigger === "undefined") return;
 
         gsap.registerPlugin(ScrollTrigger);
-        console.log('mount ');
-
 
         const HappyHTA = elementorModules.frontend.handlers.Base.extend({
 
@@ -103,8 +101,9 @@
                     transformX: settings.ha_hta_cw_transform_x || 25,
                     transformY: settings.ha_hta_cw_transform_y || 0,
 
-                    textMoveDirection: settings.ha_hta_tv_rotation_direction || "horizontal",
-                    textMoveValue: settings.ha_hta_tv_rotation_value || -80,
+                    textFlipDirection: settings.ha_hta_tv_rotation_direction || "horizontal",
+                    textFlipValue: settings.ha_hta_tv_rotation_value || -80,
+                    textFlipTransformOrigin: settings.ha_hta_tv_transform_origin || "top center -50",
 
                     revealOrientation: settings.ha_hta_tr_orientation || "bottom",
 
@@ -195,35 +194,34 @@
 
                 else if (config.mode === "text_flip") {
 
-                    gsap.set(container, {
-                        transformStyle: "preserve-3d",
-                        perspective: 1000,
+                    // apply perspective on heading container
+                    gsap.set(heading, {
+                        perspective: 400
                     });
 
-                    const axisRotation = config.textMoveDirection === "horizontal"
-                        ? { rotationX: config.textMoveValue }
-                        : { rotationY: config.textMoveValue };
+                    // FIXED direction mapping
+                    const rotation_di = config.textFlipDirection === "horizontal" ? "y" : "x";
 
-                    tl.fromTo(elements,
-                        {
-                            opacity: 0,
-                            y: 50,
-                            z: - parseInt(config.textMoveValue),
-                            ...axisRotation,
-                            transformOrigin: "bottom center -50"
-                        },
-                        {
-                            opacity: 1,
-                            y: 0,
-                            z: 0,
-                            rotationX: 0,
-                            rotationY: 0,
-                            duration: config.duration,
-                            stagger: config.stagger,
-                            ease: config.easing,
-                            force3D: true
-                        }
-                    );
+                    let flipConfig = {
+                        duration: config.duration,
+                        delay: config.delay,
+                        opacity: 0,
+                        force3D: true,
+                        transformOrigin: config.textFlipTransformOrigin,
+                        stagger: config.stagger
+                    };
+
+                    // Horizontal = rotationY
+                    if (rotation_di === "y") {
+                        flipConfig.rotationY = config.textFlipValue;
+                    }
+
+                    // Vertical = rotationX
+                    if (rotation_di === "x") {
+                        flipConfig.rotationX = config.textFlipValue;
+                    }
+
+                    tl.from(elements, flipConfig);
 
                 }
 
@@ -321,11 +319,6 @@
             },
 
             attachTrigger(container, tl, config) {
-
-                // if (config.triggerMode === "pageload") {
-                //     gsap.delayedCall(config.delay, () => tl.play());
-                //     return;
-                // }
 
                 if (config.triggerMode === "hover") {
                     container.addEventListener("mouseenter", () => tl.restart());

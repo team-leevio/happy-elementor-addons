@@ -185,7 +185,7 @@ class Heading_Text_Animation {
                     'slide'  => __( 'Slide', 'happy-elementor-addons' ),
                     'reveal' => __( 'Text Reveal', 'happy-elementor-addons' ),
                     'scale'  => __( 'Scale', 'happy-elementor-addons' ),
-                    // 'text_flip' => __( 'Text Flip', 'happy-elementor-addons' ),
+                    'text_flip' => __( 'Text Flip', 'happy-elementor-addons' ),
                     '3dspin'    => __( '3D Spin', 'happy-elementor-addons' ),
                     // 'invert'    => __( 'Text Invert', 'happy-elementor-addons' ),
                 ],
@@ -306,7 +306,7 @@ class Heading_Text_Animation {
             [
                 'label'              => __( 'Rotation Direction', 'happy-addons-pro' ),
                 'type'               => Controls_Manager::SELECT,
-                'default'            => 'horizontal',
+                'default'            => 'vertical',
                 'options'            => [
                     'horizontal' => __( 'Horizontal', 'happy-addons-pro' ),
                     'vertical'   => __( 'Vertical', 'happy-addons-pro' )
@@ -339,23 +339,24 @@ class Heading_Text_Animation {
                 ]
             ]
         );
-
-        /*$element->add_responsive_control(
-    'ha_hta_tv_transform_origin',
-    [
-    'label'              => __('Transform Origin', 'happy-elementor-addons'),
-    'type'               => Controls_Manager::TEXT,
-    'default'            => 'top center -50',
-    'placeholder'        => __('top center', 'happy-elementor-addons'),
-    'render_type'        => 'template',
-    'frontend_available' => true,
-    'style_transfer'     => true,
-    'condition'          => [
-    'ha_hta_switcher' => 'yes',
-    'ha_hta_mode'     => ['text_flip'],
-    ],
-    ]
-    );*/
+    
+        $element->add_control(
+            'ha_hta_tv_transform_origin',
+            [
+                'label'              => __('Transform Origin', 'happy-elementor-addons'),
+                'type'               => Controls_Manager::TEXT,
+                'default'            => 'top center -50',
+                'placeholder'        => __('top center -50', 'happy-elementor-addons'),
+                'description' => __('Set the pivot point for the flip animation. Exam: "top center -50", "center center 0", "bottom center -50" to adjust the 3D depth.', 'happy-elementor-addons'),
+                'render_type'        => 'template',
+                'frontend_available' => true,
+                'style_transfer'     => true,
+                'condition'          => [
+                    'ha_hta_switcher' => 'yes',
+                    'ha_hta_mode'     => ['text_flip'],
+                ],
+            ]
+        );
 
     }
 
