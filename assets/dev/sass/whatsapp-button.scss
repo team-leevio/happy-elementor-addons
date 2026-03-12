@@ -87,7 +87,19 @@
 		left: auto;
 		top: auto;
 		margin: 0;
+		max-width: 1140px !important;
 	}
+}
+
+@media(max-width:1024px) {
+    .elementor-editor-active .ha-whatsapp-button {
+        max-width: 740px !important;
+    }
+}
+@media(max-width:767px) {
+    .elementor-editor-active .ha-whatsapp-button {
+       max-width: 320px !important;
+    }
 }
 
 // Default position: bottom-right
@@ -264,6 +276,15 @@
 			opacity: 0.8;
 			pointer-events: none;
 			z-index: -1; 
+		}
+	}
+
+}
+// Icon + Text (Pill)
+.ha-whatsapp--pulse-yes.ha-whatsapp--style-pill {
+	.ha-whatsapp-link {
+		&:after{
+			content: "";
 			animation: perfectPulse 2s ease-out infinite;
 		}
 	}
@@ -290,6 +311,13 @@
 			opacity: 0.8;
 			pointer-events: none;
 			z-index: -1; 
+		}
+	}
+}
+.ha-whatsapp--pulse-yes.ha-whatsapp--style-rounded {
+	.ha-whatsapp-link {
+		&:after{
+			content: "";
 			animation: perfectPulse 2s ease-out infinite;
 		}
 	}
