@@ -29,10 +29,10 @@
 .ha-flip {
     // display: block;
     // will-change: transform, opacity;
-    display:block;
-    transform-style:preserve-3d;
-    backface-visibility:hidden;
-    will-change:transform,opacity;
+    display: block;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
 }
 
 /* 3D mode */
@@ -43,29 +43,30 @@
     backface-visibility: hidden;
 }
 
-/* Invert mode */
-.ha-hta-text-invert .ha-invert {
-    position: relative;
-    display: block;
-
-    background: linear-gradient(
-        to left,
-        currentColor 50%,
-        rgba(0,0,0,0.2) 50%
-    );
-
-    background-size: 200% 100%;
-    background-position-x: 100%;
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-}
-
 .duplicate-text {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
+}
+
+/* Invert mode */
+/* Invert mode wrapper */
+.ha-hta-text-invert .invert-line {
+	background: linear-gradient(
+		90deg,
+		hsla(var(--text-color), 0.45) 0%,
+		hsla(var(--text-color), 0.45) 50%,
+		hsla(var(--text-color), 1) 50%,
+		hsla(var(--text-color), 1) 100%
+	);
+
+	background-size: 200% 100%;
+	background-position-x: 0%;
+
+	-webkit-background-clip: text;
+	background-clip: text;
+
+	color: transparent;
+	display: block;
 }

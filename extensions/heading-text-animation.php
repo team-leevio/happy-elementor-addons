@@ -186,8 +186,8 @@ class Heading_Text_Animation {
                     'reveal' => __( 'Text Reveal', 'happy-elementor-addons' ),
                     'scale'  => __( 'Scale', 'happy-elementor-addons' ),
                     'text_flip' => __( 'Text Flip', 'happy-elementor-addons' ),
-                    '3dspin'    => __( '3D Spin', 'happy-elementor-addons' ),
                     // 'invert'    => __( 'Text Invert', 'happy-elementor-addons' ),
+                    '3dspin'    => __( '3D Spin', 'happy-elementor-addons' ),
                 ],
                 'condition'          => [
                     'ha_hta_switcher' => 'yes'
@@ -241,9 +241,9 @@ class Heading_Text_Animation {
         $this->chars_mode_controls( $element );
         $this->words_mode_controls( $element );
         $this->chars_words_mode_common_controls( $element );
-        $this->text_flip_mode_controls( $element );
         $this->reveal_mode_controls( $element );
         $this->scale_mode_controls( $element );
+        $this->text_flip_mode_controls( $element );
         $this->invert_mode_controls( $element );
         $this->three_d_mode_controls( $element );
         $this->common_controls( $element );

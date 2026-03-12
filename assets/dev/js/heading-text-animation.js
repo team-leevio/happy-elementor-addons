@@ -239,23 +239,44 @@
 
                 else if (config.mode === "invert") {
 
-                    elements.forEach((line) => {
+                    const start = config.triggerPoint || "top 85%";
+                    const end = "bottom center";
+                    const wrapper = this.$element;
+                    const element = wrapper.find(".elementor-heading-title");
 
-                        const st = ScrollTrigger.create({
-                            trigger: line,
-                            start: "top 85%",
-                            end: "bottom center",
-                            scrub: 1,
-                            animation: gsap.to(line, {
-                                backgroundPositionX: "0%",
-                                ease: "none"
-                            })
-                        });
+                    const RGBToHSL = (r, g, b) => {
+                        r /= 255; g /= 255; b /= 255;
+                        const l = Math.max(r, g, b);
+                        const s = l - Math.min(r, g, b);
+                        const h = s ? l === r ? (g - b) / s : l === g ? 2 + (b - r) / s : 4 + (r - g) / s : 0;
+                        return [
+                            60 * h < 0 ? 60 * h + 360 : 60 * h,
+                            100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
+                            100 * (2 * l - s) / 2
+                        ];
+                    };
 
-                        this.scrollTriggers.push(st);
+                    let color = element.css("color").match(/(\d+)/g);
+                    const hsl = RGBToHSL(color[ 0 ], color[ 1 ], color[ 2 ]);
+                    element.css("--text-color", `${hsl[ 0 ].toFixed(1)}, ${hsl[ 1 ].toFixed(1)}%, ${hsl[ 2 ].toFixed(1)}%`);
 
+                    const split = new SplitText(element[ 0 ], {
+                        type: "lines",
+                        linesClass: "invert-line"
                     });
 
+                    split.lines.forEach((line) => {
+                        gsap.to(line, {
+                            backgroundPositionX: "-100%",
+                            ease: "none",
+                            scrollTrigger: {
+                                trigger: line,
+                                scrub: 1,
+                                start: start,
+                                end: end
+                            }
+                        });
+                    });
                 }
 
                 else if (config.mode === "3dspin") {
@@ -414,19 +435,41 @@
 
             splitLines(el, isTextInvert = false) {
 
-                const lines = el.innerHTML.split("<br>");
+                const lines = el.innerHTML.split(/<br\s*\/?>/i);
                 el.innerHTML = "";
 
                 const arr = [];
 
                 lines.forEach(line => {
 
-                    const div = document.createElement("div");
-                    div.className = isTextInvert ? "ha-invert" : "ha-flip";
-                    div.innerHTML = line;
+                    if (isTextInvert) {
 
-                    el.appendChild(div);
-                    arr.push(div);
+                        const wrapper = document.createElement("div");
+                        wrapper.className = "ha-invert-line";
+
+                        const text = document.createElement("span");
+                        text.className = "ha-invert-text";
+                        text.innerHTML = line;
+
+                        const mask = document.createElement("span");
+                        mask.className = "ha-invert-mask";
+
+                        wrapper.appendChild(text);
+                        wrapper.appendChild(mask);
+
+                        el.appendChild(wrapper);
+                        arr.push(mask);
+
+                    } else {
+
+                        const div = document.createElement("div");
+                        div.className = "ha-flip";
+                        div.innerHTML = line;
+
+                        el.appendChild(div);
+                        arr.push(div);
+
+                    }
 
                 });
 
