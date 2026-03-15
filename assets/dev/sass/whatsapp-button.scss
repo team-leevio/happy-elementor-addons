@@ -716,13 +716,13 @@ body[data-elementor-device-mode="mobile"] {
 	}
 	.ha-whatsapp-popup__message-bubble {
 		background-color: #ffffff;
-		border-radius: 18px 18px 4px 18px;
+		border-radius: 0px 18px 4px 18px;
 		padding: 10px 14px;
 		font-size: 14px;
 	}
 	.ha-whatsapp-popup__typing-indicator {
 		background-color: #ffffff;
-		border-radius: 18px 18px 4px 18px;
+		border-radius: 0px 18px 4px 16px;
 		padding: 12px 16px;
 	}
 	.ha-whatsapp-popup__footer {
@@ -865,23 +865,23 @@ body[data-elementor-device-mode="mobile"] {
 	.ha-whatsapp-popup__message-bubble {
 		background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
 		color: #f7fafc;
-		border-radius: 18px 18px 4px 18px;
+		border-radius: 0px 18px 4px 18px;
 		padding: 14px 18px;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 
 		&::before {
-			border-right-color: #4a5568;
+			border-right-color: #4a5568 !important;
 			border-top-color: #4a5568;
 		}
 	}
 	.ha-whatsapp-popup__typing-indicator {
 		background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-		border-radius: 18px 18px 4px 18px;
+		border-radius: 0px 18px 4px 18px;
 		padding: 14px 18px;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 
 		&::before {
-			border-right-color: #4a5568;
+			border-right-color: #4a5568 !important;
 			border-top-color: #4a5568;
 		}
 
@@ -945,7 +945,7 @@ body[data-elementor-device-mode="mobile"] {
 	}
 	.ha-whatsapp-popup__message-bubble {
 		background-color: #ffffff;
-		border-radius: 16px 16px 4px 16px;
+		border-radius: 0px 16px 4px 16px;
 		box-shadow: 0 1px 2px rgba(0,0,0,0.08);
 	}
 	.ha-whatsapp-popup__footer-btn {
@@ -989,6 +989,9 @@ body[data-elementor-device-mode="mobile"] {
 		color: #ffffff;
 		background: rgba(0,0,0,0.2);
 		border-radius: 50%;
+	}
+	.ha-whatsapp-popup__footer{
+		border-radius: 20px;
 	}
 	.ha-whatsapp-popup__footer-btn {
 		background-color: #f59e0b;
@@ -1061,7 +1064,7 @@ body[data-elementor-device-mode="mobile"] {
 	}
 	.ha-whatsapp-popup__message-bubble {
 		background-color: #ffffff;
-		border-radius: 18px;
+		border-radius: 0px 18px 18px 18px ;
 		padding: 14px 18px;
 	}
 	.ha-whatsapp-popup__footer-btn {

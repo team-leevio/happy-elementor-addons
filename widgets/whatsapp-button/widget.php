@@ -95,8 +95,8 @@ class Whatsapp_Button extends Base
 			'button_type',
 			[
 				'label'   => __('Button Type', 'happy-elementor-addons'),
-				'type'    => Controls_Manager::HIDDEN,
-				//'type'    => Controls_Manager::SELECT,
+				//'type'    => Controls_Manager::HIDDEN,
+				'type'    => Controls_Manager::SELECT,
 				'default' => 'standard',
 				'options' => [
 					'standard'      => __('Standard Button', 'happy-elementor-addons'),
@@ -279,6 +279,9 @@ class Whatsapp_Button extends Base
 				'label_off'    => __('Hide', 'happy-elementor-addons'),
 				'return_value' => 'yes',
 				'default'      => 'yes',
+				'condition'    => [
+					'agent_image[url]!' => '',
+				],
 			]
 		);
 

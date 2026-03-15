@@ -1,114 +1,179 @@
 (function ($) {
-	"use strict";
-	var WhatsAppButton = function ($scope) {
-		elementor.channels.editor.on("change", function (event, value) {
-			if (!event.model) return;
+    "use strict";
 
-			var controlName = event.model.get("name");
+    var WhatsAppButton = function ($scope) {
 
-			// Phone number
-			if (controlName === "phone_number") {
-				var editedElement = elementor
-					.getPanelView()
-					.getCurrentPageView()
-					.getOption("editedElementView");
-				var settings = editedElement.model.get("settings");
-				var currentValue = settings.get("phone_number");
-				var newValue = currentValue.replace(/\D/g, "");
+        elementor.channels.editor.on("change", function (event, value) {
+            if (!event.model) return;
+            var controlName = event.model.get("name");
 
-				if (newValue !== currentValue) {
-					// elementor.notifications.showToast({
-					// 	message: "Phone number accepts digits only.",
-					// });
-					setTimeout(function () {
-						settings.set("phone_number", newValue);
-						var panelView = elementor
-							.getPanelView()
-							.getCurrentPageView();
-						var controlView = panelView.children.findByModelCid(
-							panelView.collection.findWhere({
-								name: "phone_number",
-							}).cid,
-						);
-						if (
-							controlView &&
-							controlView.ui &&
-							controlView.ui.input
-						) {
-							controlView.ui.input.val(newValue).trigger("input");
-							var $el = controlView.$el;
-							if ($el.find(".ha-phone-hint").length === 0) {
-								var $hint = $(
-									'<p class="ha-phone-hint" style="color:#e74c3c;font-size:11px;margin:4px 0 0 0;">⚠ Only numbers are allowed.</p>',
-								);
-								$el.append($hint);
-								setTimeout(function () {
-									$hint.remove();
-								}, 2000);
-							}
-						}
-					}, 0);
-				}
-			}
-		});
-		// Listen to any widget being edited
+            if (controlName === "phone_number") {
+                var editedElement = elementor
+                    .getPanelView()
+                    .getCurrentPageView()
+                    .getOption("editedElementView");
+                var settings = editedElement.model.get("settings");
+                var currentValue = settings.get("phone_number");
+                var newValue = currentValue.replace(/\D/g, "");
 
-		var $popup = $scope.find(".ha-whatsapp-popup");
+                if (newValue !== currentValue) {
+                    setTimeout(function () {
+                        settings.set("phone_number", newValue);
+                        var panelView = elementor.getPanelView().getCurrentPageView();
+                        var controlView = panelView.children.findByModelCid(
+                            panelView.collection.findWhere({ name: "phone_number" }).cid
+                        );
+                        if (controlView && controlView.ui && controlView.ui.input) {
+                            controlView.ui.input.val(newValue).trigger("input");
+                            var $el = controlView.$el;
+                            if ($el.find(".ha-phone-hint").length === 0) {
+                                var $hint = $('<p class="ha-phone-hint" style="color:#e74c3c;font-size:11px;margin:4px 0 0 0;">⚠ Only numbers are allowed.</p>');
+                                $el.append($hint);
+                                setTimeout(function () { $hint.remove(); }, 2000);
+                            }
+                        }
+                    }, 0);
+                }
+            }
+        });
 
-		// // If no popup element exists in this widget, it's not floating chat mode
-		if (!$popup.length) {
-			return;
-		}
+        var $popup   = $scope.find(".ha-whatsapp-popup");
+        if (!$popup.length) return;
 
-		var $button = $scope.find(".ha-whatsapp-link");
-		var $close = $scope.find(".ha-whatsapp-popup__close");
-		var $wrapper = $scope.find(".ha-whatsapp-button");
-		var hasTypingIndicator =
-			$popup.find(".ha-whatsapp-popup__typing-indicator").length > 0;
-		var typingShown = false;
+        var $button  = $scope.find(".ha-whatsapp-link");
+        var $close   = $scope.find(".ha-whatsapp-popup__close");
+        var $wrapper = $scope.find(".ha-whatsapp-button");
+        var hasTypingIndicator = $popup.find(".ha-whatsapp-popup__typing-indicator").length > 0;
+        var typingShown = false;
 
-		// Toggle popup on button click
-		$button.on("click", function (e) {
-			e.preventDefault();
-			e.stopPropagation();
+        // ── Smart Popup Positioning ──────────────────────────────────────
+        function positionPopup() {
+            // Reset inline styles so we can measure naturally
+            $popup.css({
+                position : "absolute",
+                top      : "auto",
+                bottom   : "auto",
+                left     : "auto",
+                right    : "auto",
+                visibility: "hidden",
+                display  : "flex",
+            });
 
-			var isOpening = !$popup.hasClass("ha-whatsapp-popup--active");
-			$popup.toggleClass("ha-whatsapp-popup--active");
-			$wrapper.toggleClass("ha-whatsapp-chat-opened");
+            // Measurements
+            var vpW        = window.innerWidth;
+            var vpH        = window.innerHeight;
+            var btnRect    = $button[0].getBoundingClientRect();
+            var popupW     = $popup.outerWidth(true)  || 320;
+            var popupH     = $popup.outerHeight(true) || 350;
+            var gap        = 12; // px gap between button and popup
 
-			if (isOpening && hasTypingIndicator && !typingShown) {
-				$popup.addClass("is-typing");
-				setTimeout(function () {
-					$popup.removeClass("is-typing");
-					typingShown = true;
-				}, 1500);
-			}
-		});
+            var spaceTop    = btnRect.top;
+            var spaceBottom = vpH - btnRect.bottom;
+            var spaceLeft   = btnRect.left;
+            var spaceRight  = vpW - btnRect.right;
 
-		// Close popup on close button click
-		$close.on("click", function (e) {
-			e.preventDefault();
-			e.stopPropagation();
-			$popup.removeClass("ha-whatsapp-popup--active");
-			$wrapper.removeClass("ha-whatsapp-chat-opened");
-		});
+            var css = {};
 
-		// Close popup when clicking outside the widget
-		$(document).on(
-			"click.whatsapp-popup-" + $scope.attr("data-id"),
-			function (event) {
-				if (!$(event.target).closest($scope).length) {
-					$popup.removeClass("ha-whatsapp-popup--active");
-					$wrapper.removeClass("ha-whatsapp-chat-opened");
-				}
-			},
-		);
-	};
+            // ── Vertical ────────────────────────────────────────────────
+            if (spaceTop >= popupH + gap) {
+                // Place ABOVE
+                css.bottom = $wrapper.outerHeight(true) + gap + "px";
+                css.top    = "auto";
+            } else if (spaceBottom >= popupH + gap) {
+                // Place BELOW
+                css.top    = $wrapper.outerHeight(true) + gap + "px";
+                css.bottom = "auto";
+            } else {
+                // Pick bigger space
+                if (spaceTop >= spaceBottom) {
+                    css.bottom = $wrapper.outerHeight(true) + gap + "px";
+                    css.top    = "auto";
+                } else {
+                    css.top    = $wrapper.outerHeight(true) + gap + "px";
+                    css.bottom = "auto";
+                }
+            }
 
-	$(window).on("elementor/frontend/init", function () {
-		elementorFrontend.hooks.addAction(
-			"frontend/element_ready/ha-whatsapp-button.default",
-			WhatsAppButton,
-		);
-	});
+            // ── Horizontal ──────────────────────────────────────────────
+            if (spaceRight >= popupW) {
+                // Align to button LEFT edge
+                css.left  = "0";
+                css.right = "auto";
+            } else if (spaceLeft >= popupW) {
+                // Align to button RIGHT edge
+                css.right = "0";
+                css.left  = "auto";
+            } else {
+                // Center under/above button, clamped to viewport
+                var btnCenterX  = btnRect.left + btnRect.width / 2;
+                var idealLeft   = btnCenterX - popupW / 2;
+                var clampedLeft = Math.max(gap, Math.min(idealLeft, vpW - popupW - gap));
+                // Convert viewport-relative left → position relative to wrapper
+                css.left  = (clampedLeft - btnRect.left + $wrapper[0].getBoundingClientRect().left - btnRect.left) + "px";
+                css.right = "auto";
+            }
+
+            // Apply & restore visibility
+            $popup.css(css).css({ visibility: "", display: "" });
+
+            console.log("VP:", vpW, vpH);
+            console.log("Button rect:", btnRect);
+            console.log("Popup size:", popupW, popupH);
+            console.log("Spaces — top:", spaceTop, "bottom:", spaceBottom, "left:", spaceLeft, "right:", spaceRight);
+            console.log("Applied CSS:", css);
+        }
+
+        // ── Toggle popup ─────────────────────────────────────────────────
+        $button.on("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            var isOpening = !$popup.hasClass("ha-whatsapp-popup--active");
+
+            if (isOpening) {
+                positionPopup(); // Calculate before showing
+            }
+
+            $popup.toggleClass("ha-whatsapp-popup--active");
+            $wrapper.toggleClass("ha-whatsapp-chat-opened");
+
+            if (isOpening && hasTypingIndicator && !typingShown) {
+                $popup.addClass("is-typing");
+                setTimeout(function () {
+                    $popup.removeClass("is-typing");
+                    typingShown = true;
+                }, 1500);
+            }
+        });
+
+        // Reposition on window resize
+        $(window).on("resize.whatsapp-" + $scope.attr("data-id"), function () {
+            if ($popup.hasClass("ha-whatsapp-popup--active")) {
+                positionPopup();
+            }
+        });
+
+        // ── Close handlers ───────────────────────────────────────────────
+        $close.on("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $popup.removeClass("ha-whatsapp-popup--active");
+            $wrapper.removeClass("ha-whatsapp-chat-opened");
+        });
+
+        $(document).on("click.whatsapp-popup-" + $scope.attr("data-id"), function (event) {
+            if (!$(event.target).closest($scope).length) {
+                $popup.removeClass("ha-whatsapp-popup--active");
+                $wrapper.removeClass("ha-whatsapp-chat-opened");
+            }
+        });
+    };
+
+    $(window).on("elementor/frontend/init", function () {
+        elementorFrontend.hooks.addAction(
+            "frontend/element_ready/ha-whatsapp-button.default",
+            WhatsAppButton
+        );
+    });
+
 })(jQuery);
