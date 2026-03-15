@@ -117,7 +117,7 @@ class Whatsapp_Button extends Base
 				'placeholder' => __('e.g. 15551234567 (no + or dashes)', 'happy-elementor-addons'),
 				'description' => __('Enter phone number with country code, no spaces, plus sign or dashes. Example: 15551234567', 'happy-elementor-addons'),
 				'dynamic'     => ['active' => true],
-				
+
 			]
 		);
 
@@ -341,7 +341,7 @@ class Whatsapp_Button extends Base
 				'options'      => [
 					'bottom-right' => __('Bottom Right', 'happy-elementor-addons'),
 					'bottom-left'  => __('Bottom Left', 'happy-elementor-addons'),
-					// 'custom'       => __('Custom', 'happy-elementor-addons'),
+					'custom'       => __('Custom', 'happy-elementor-addons'),
 				],
 				'prefix_class' => 'ha-whatsapp--pos-',
 				'render_type'  => 'template',
@@ -404,8 +404,20 @@ class Whatsapp_Button extends Base
 				'label'      => __('Top', 'happy-elementor-addons'),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => ['px', '%'],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 2000,
+						'step' => 1,
+					],
+					'%'  => [
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					],
+				],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-whatsapp-button' => 'top: {{SIZE}}{{UNIT}}; bottom: 0;',
+					'{{WRAPPER}} .ha-whatsapp-button' => 'top: {{SIZE}}{{UNIT}};',
 				],
 				'condition'  => [
 					'button_position' => 'custom',
@@ -413,20 +425,20 @@ class Whatsapp_Button extends Base
 			]
 		);
 
-		$this->add_responsive_control(
-			'custom_bottom',
-			[
-				'label'      => __('Bottom', 'happy-elementor-addons'),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => ['px', '%'],
-				'selectors'  => [
-					'{{WRAPPER}} .ha-whatsapp-button' => 'bottom: {{SIZE}}{{UNIT}}; top: 0;',
-				],
-				'condition'  => [
-					'button_position' => 'custom',
-				],
-			]
-		);
+		// $this->add_responsive_control(
+		// 	'custom_bottom',
+		// 	[
+		// 		'label'      => __('Bottom', 'happy-elementor-addons'),
+		// 		'type'       => Controls_Manager::SLIDER,
+		// 		'size_units' => ['px', '%'],
+		// 		'selectors'  => [
+		// 			'{{WRAPPER}} .ha-whatsapp-button' => 'bottom: {{SIZE}}{{UNIT}}; top: 0;',
+		// 		],
+		// 		'condition'  => [
+		// 			'button_position' => 'custom',
+		// 		],
+		// 	]
+		// );
 
 		$this->add_responsive_control(
 			'custom_left',
@@ -434,8 +446,20 @@ class Whatsapp_Button extends Base
 				'label'      => __('Left', 'happy-elementor-addons'),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => ['px', '%'],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 2000,
+						'step' => 1,
+					],
+					'%'  => [
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					],
+				],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-whatsapp-button' => 'left: {{SIZE}}{{UNIT}}; right: 0;',
+					'{{WRAPPER}} .ha-whatsapp-button' => 'left: {{SIZE}}{{UNIT}};',
 				],
 				'condition'  => [
 					'button_position' => 'custom',
@@ -443,20 +467,20 @@ class Whatsapp_Button extends Base
 			]
 		);
 
-		$this->add_responsive_control(
-			'custom_right',
-			[
-				'label'      => __('Right', 'happy-elementor-addons'),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => ['px', '%'],
-				'selectors'  => [
-					'{{WRAPPER}} .ha-whatsapp-button' => 'right: {{SIZE}}{{UNIT}}; left: 0;',
-				],
-				'condition'  => [
-					'button_position' => 'custom',
-				],
-			]
-		);
+		// $this->add_responsive_control(
+		// 	'custom_right',
+		// 	[
+		// 		'label'      => __('Right', 'happy-elementor-addons'),
+		// 		'type'       => Controls_Manager::SLIDER,
+		// 		'size_units' => ['px', '%'],
+		// 		'selectors'  => [
+		// 			'{{WRAPPER}} .ha-whatsapp-button' => 'right: {{SIZE}}{{UNIT}}; left: 0;',
+		// 		],
+		// 		'condition'  => [
+		// 			'button_position' => 'custom',
+		// 		],
+		// 	]
+		// );
 
 		$this->add_control(
 			'z_index',
