@@ -17,6 +17,9 @@
 				var newValue = currentValue.replace(/\D/g, "");
 
 				if (newValue !== currentValue) {
+					// elementor.notifications.showToast({
+					// 	message: "Phone number accepts digits only.",
+					// });
 					setTimeout(function () {
 						settings.set("phone_number", newValue);
 						var panelView = elementor
@@ -33,6 +36,16 @@
 							controlView.ui.input
 						) {
 							controlView.ui.input.val(newValue).trigger("input");
+							var $el = controlView.$el;
+							if ($el.find(".ha-phone-hint").length === 0) {
+								var $hint = $(
+									'<p class="ha-phone-hint" style="color:#e74c3c;font-size:11px;margin:4px 0 0 0;">⚠ Only numbers are allowed.</p>',
+								);
+								$el.append($hint);
+								setTimeout(function () {
+									$hint.remove();
+								}, 2000);
+							}
 						}
 					}, 0);
 				}
