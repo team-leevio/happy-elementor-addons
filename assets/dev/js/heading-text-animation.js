@@ -5,9 +5,7 @@
     $(w).on("elementor/frontend/init", function () {
 
         if (typeof gsap === "undefined") return;
-        if (typeof ScrollTrigger === "undefined") return;
-        console.log("mounted text animation");
-        
+        if (typeof ScrollTrigger === "undefined") return;        
 
         gsap.registerPlugin(ScrollTrigger);
 
