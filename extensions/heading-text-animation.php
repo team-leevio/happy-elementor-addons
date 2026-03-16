@@ -73,6 +73,7 @@ class Heading_Text_Animation {
     // Enqueue Preview Scripts
     public function enqueue_preview_scripts() {
         wp_enqueue_script( 'gsap' );
+        wp_enqueue_script( 'split-text' );
         wp_enqueue_script( 'scroll-trigger' );
         wp_enqueue_script( 'happy-heading-text-animation' );
 
@@ -122,6 +123,18 @@ class Heading_Text_Animation {
                         ],
                         [
                             'name'       => 'gsap',
+                            'conditions' => [
+                                'terms' => [
+                                    [
+                                        'name'     => 'ha_hta_switcher',
+                                        'operator' => '===',
+                                        'value'    => 'yes'
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            'name'       => 'split-text',
                             'conditions' => [
                                 'terms' => [
                                     [
@@ -186,7 +199,7 @@ class Heading_Text_Animation {
                     'reveal' => __( 'Text Reveal', 'happy-elementor-addons' ),
                     'scale'  => __( 'Scale', 'happy-elementor-addons' ),
                     'text_flip' => __( 'Text Flip', 'happy-elementor-addons' ),
-                    // 'invert'    => __( 'Text Invert', 'happy-elementor-addons' ),
+                    'invert'    => __( 'Text Invert', 'happy-elementor-addons' ),
                     '3dspin'    => __( '3D Spin', 'happy-elementor-addons' ),
                 ],
                 'condition'          => [
@@ -227,7 +240,7 @@ class Heading_Text_Animation {
                 'options'            => [
                     'scroll'         => __( 'On Appearing', 'happy-elementor-addons' ),
                     'playwithscroll' => __( 'On Scroll', 'happy-elementor-addons' ),
-                    'hover'          => __( 'Hover in Element', 'happy-elementor-addons' )
+                    // 'hover'          => __( 'Hover in Element', 'happy-elementor-addons' ),
                 ],
                 'condition'          => [
                     'ha_hta_switcher' => 'yes'

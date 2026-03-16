@@ -6,6 +6,8 @@
 
         if (typeof gsap === "undefined") return;
         if (typeof ScrollTrigger === "undefined") return;
+        console.log("mounted text animation");
+        
 
         gsap.registerPlugin(ScrollTrigger);
 

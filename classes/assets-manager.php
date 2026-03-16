@@ -376,6 +376,15 @@ class Assets_Manager {
 			true
 		);
 
+		// Split Text
+		wp_register_script(
+			'split-text',
+			HAPPY_ADDONS_ASSETS . 'vendor/split-text/split-text.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
 		// Main assets
 		wp_register_style(
 			'happy-elementor-addons',
