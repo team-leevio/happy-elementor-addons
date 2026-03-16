@@ -2,8 +2,8 @@
 	"use strict";
 
 	var WhatsAppButton = function ($scope) {
-		//if ( elementorFrontend.isEditMode() ) {
-		if (typeof elementor !== "undefined") {
+		if ( elementorFrontend.isEditMode() ) {
+		//if (typeof elementor !== "undefined") {
 			elementor.channels.editor.on("change", function (event, value) {
 				if (!event.model) return;
 				var controlName = event.model.get("name");
