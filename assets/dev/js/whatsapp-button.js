@@ -79,7 +79,8 @@
 									"⚠ Number too long. Max 15 digits.",
 									"warning",
 								);
-							} else if (
+							} 
+							else if (
 								newValue.startsWith("0") &&
 								newValue.length < 10
 							) {
@@ -89,7 +90,8 @@
 									"⚠ Add country code e.g. 880XXXXXXXXX.",
 									"warning",
 								);
-							} else {
+							} 
+							else {
 								// Valid
 								showHint(
 									$el,
