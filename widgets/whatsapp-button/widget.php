@@ -367,7 +367,7 @@ class Whatsapp_Button extends Base
 					'%'  => ['min' => 0, 'max' => 100],
 				],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-whatsapp-button' => 'bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-whatsapp-button-main' => 'bottom: {{SIZE}}{{UNIT}};',
 				],
 				'condition'  => [
 					'button_position!' => 'custom',
@@ -391,8 +391,8 @@ class Whatsapp_Button extends Base
 					'%'  => ['min' => 0, 'max' => 100],
 				],
 				'selectors'  => [
-					'{{WRAPPER}}.ha-whatsapp--pos-bottom-right .ha-whatsapp-button' => 'right: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}}.ha-whatsapp--pos-bottom-left .ha-whatsapp-button'  => 'left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.ha-whatsapp--pos-bottom-right .ha-whatsapp-button-main' => 'right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.ha-whatsapp--pos-bottom-left .ha-whatsapp-button-main'  => 'left: {{SIZE}}{{UNIT}};',
 				],
 				'condition'  => [
 					'button_position!' => 'custom',
@@ -420,7 +420,7 @@ class Whatsapp_Button extends Base
 					],
 				],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-whatsapp-button' => 'top: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-whatsapp-button-main' => 'top: {{SIZE}}{{UNIT}};',
 				],
 				'condition'  => [
 					'button_position' => 'custom',
@@ -435,7 +435,7 @@ class Whatsapp_Button extends Base
 		// 		'type'       => Controls_Manager::SLIDER,
 		// 		'size_units' => ['px', '%'],
 		// 		'selectors'  => [
-		// 			'{{WRAPPER}} .ha-whatsapp-button' => 'bottom: {{SIZE}}{{UNIT}}; top: 0;',
+		// 			'{{WRAPPER}} .ha-whatsapp-button-main' => 'bottom: {{SIZE}}{{UNIT}}; top: 0;',
 		// 		],
 		// 		'condition'  => [
 		// 			'button_position' => 'custom',
@@ -462,7 +462,7 @@ class Whatsapp_Button extends Base
 					],
 				],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-whatsapp-button' => 'left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-whatsapp-button-main' => 'left: {{SIZE}}{{UNIT}};',
 				],
 				'condition'  => [
 					'button_position' => 'custom',
@@ -477,7 +477,7 @@ class Whatsapp_Button extends Base
 		// 		'type'       => Controls_Manager::SLIDER,
 		// 		'size_units' => ['px', '%'],
 		// 		'selectors'  => [
-		// 			'{{WRAPPER}} .ha-whatsapp-button' => 'right: {{SIZE}}{{UNIT}}; left: 0;',
+		// 			'{{WRAPPER}} .ha-whatsapp-button-main' => 'right: {{SIZE}}{{UNIT}}; left: 0;',
 		// 		],
 		// 		'condition'  => [
 		// 			'button_position' => 'custom',
@@ -495,7 +495,7 @@ class Whatsapp_Button extends Base
 				'default'   => 9999,
 				'separator' => 'before',
 				'selectors' => [
-					'{{WRAPPER}} .ha-whatsapp-button' => 'z-index: {{VALUE}};',
+					'{{WRAPPER}} .ha-whatsapp-button-main' => 'z-index: {{VALUE}};',
 				],
 			]
 		);
@@ -648,7 +648,7 @@ class Whatsapp_Button extends Base
 					's' => ['min' => 0, 'max' => 10, 'step' => 0.1],
 				],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-whatsapp-button' => 'animation-delay: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-whatsapp-button-main' => 'animation-delay: {{SIZE}}{{UNIT}};',
 				],
 				'condition'  => [
 					'enable_entrance' => 'yes',
@@ -1347,7 +1347,7 @@ class Whatsapp_Button extends Base
 			$button_style_class = 'ha-whatsapp-pulse-ring';
 		}
 
-		$this->add_render_attribute('wrapper', 'class', 'ha-whatsapp-button');
+		$this->add_render_attribute('wrapper', 'class', 'ha-whatsapp-button-main');
 
 		$chat_theme = ! empty($settings['chat_theme']) ? $settings['chat_theme'] : 'general';
 		$this->add_render_attribute('wrapper', 'class', 'ha-whatsapp--chat-theme-' . $chat_theme);

@@ -143,7 +143,7 @@
 
 		var $button = $scope.find(".ha-whatsapp-link");
 		var $close = $scope.find(".ha-whatsapp-popup__close");
-		var $wrapper = $scope.find(".ha-whatsapp-button");
+		var $wrapper = $scope.find(".ha-whatsapp-button-main");
 		var hasTypingIndicator =
 			$popup.find(".ha-whatsapp-popup__typing-indicator").length > 0;
 		var typingShown = false;

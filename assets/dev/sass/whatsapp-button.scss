@@ -69,7 +69,7 @@
 }
 
 // Positioning logic on frontend
-.ha-whatsapp-button {
+.ha-whatsapp-button-main {
 	position: fixed;
 	bottom: 30px;
 	right: 25px;
@@ -112,33 +112,33 @@
 }
 
 @media (max-width: 1024px) {
-	.elementor-editor-active .ha-whatsapp-button {
+	.elementor-editor-active .ha-whatsapp-button-main {
 		max-width: 740px !important;
 	}
 }
 @media (max-width: 767px) {
-	.elementor-editor-active .ha-whatsapp-button {
+	.elementor-editor-active .ha-whatsapp-button-main {
 		max-width: 320px !important;
 	}
 }
 
 // Default position: bottom-right
 .ha-whatsapp--pos-bottom-right {
-	.ha-whatsapp-button {
+	.ha-whatsapp-button-main {
 		right: 25px;
 	}
 }
 
 // Bottom-left position
 .ha-whatsapp--pos-bottom-left {
-	.ha-whatsapp-button {
+	.ha-whatsapp-button-main {
 		left: 25px;
 		right: auto;
 	}
 }
 
 // --- Entrance Animation ---
-.ha-whatsapp--entrance-yes .ha-whatsapp-button {
+.ha-whatsapp--entrance-yes .ha-whatsapp-button-main {
 	animation: ha-whatsapp-entrance 0.5s ease forwards;
 	animation-delay: 1.5s;
 	opacity: 0;
@@ -368,7 +368,7 @@
 }
 
 .ha-whatsapp--pulse-yes {
-	.ha-whatsapp-button {
+	.ha-whatsapp-button-main {
 		position: fixed; // ensure stacking context for the ring
 	}
 
@@ -395,7 +395,7 @@
 }
 
 // Show tooltip on hover
-.ha-whatsapp-button:hover .ha-whatsapp-tooltip {
+.ha-whatsapp-button-main:hover .ha-whatsapp-tooltip {
 	opacity: 1;
 }
 
@@ -475,21 +475,21 @@
 body[data-elementor-device-mode="widescreen"],
 body[data-elementor-device-mode="desktop"],
 body[data-elementor-device-mode="laptop"] {
-	.ha-whatsapp--hide-desktop-yes .ha-whatsapp-button {
+	.ha-whatsapp--hide-desktop-yes .ha-whatsapp-button-main {
 		display: none !important;
 	}
 }
 
 body[data-elementor-device-mode="tablet_extra"],
 body[data-elementor-device-mode="tablet"] {
-	.ha-whatsapp--hide-tablet-yes .ha-whatsapp-button {
+	.ha-whatsapp--hide-tablet-yes .ha-whatsapp-button-main {
 		display: none !important;
 	}
 }
 
 body[data-elementor-device-mode="mobile_extra"],
 body[data-elementor-device-mode="mobile"] {
-	.ha-whatsapp--hide-mobile-yes .ha-whatsapp-button {
+	.ha-whatsapp--hide-mobile-yes .ha-whatsapp-button-main {
 		display: none !important;
 	}
 }
