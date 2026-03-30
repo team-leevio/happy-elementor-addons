@@ -53,20 +53,19 @@
 /* Invert mode */
 /* Invert mode wrapper */
 .ha-hta-text-invert .invert-line {
-	background: linear-gradient(
-		90deg,
-		hsla(var(--text-color), 0.45) 0%,
-		hsla(var(--text-color), 0.45) 50%,
-		hsla(var(--text-color), 1) 50%,
-		hsla(var(--text-color), 1) 100%
-	);
+    --ha-opacity: 0.45;
+    background: linear-gradient(90deg,
+            hsla(var(--text-color), var(--ha-opacity)) 0%,
+            hsla(var(--text-color), var(--ha-opacity)) 50%,
+            hsla(var(--text-color), 1) 50%,
+            hsla(var(--text-color), 1) 100%);
 
-	background-size: 200% 100%;
-	background-position-x: 0%;
+    background-size: 200% 100%;
+    background-position-x: 0%;
 
-	-webkit-background-clip: text;
-	background-clip: text;
+    -webkit-background-clip: text;
+    background-clip: text;
 
-	color: transparent;
-	display: block;
+    color: transparent;
+    display: block;
 }

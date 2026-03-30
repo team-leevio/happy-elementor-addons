@@ -195,12 +195,12 @@ class Heading_Text_Animation {
                 'type'               => Controls_Manager::SELECT,
                 'default'            => 'reveal',
                 'options'            => [
-                    'slide'  => __( 'Slide', 'happy-elementor-addons' ),
-                    'reveal' => __( 'Text Reveal', 'happy-elementor-addons' ),
-                    'scale'  => __( 'Scale', 'happy-elementor-addons' ),
+                    'slide'     => __( 'Slide', 'happy-elementor-addons' ),
+                    'reveal'    => __( 'Text Reveal', 'happy-elementor-addons' ),
+                    'scale'     => __( 'Scale', 'happy-elementor-addons' ),
                     'text_flip' => __( 'Text Flip', 'happy-elementor-addons' ),
                     'invert'    => __( 'Text Invert', 'happy-elementor-addons' ),
-                    '3dspin'    => __( '3D Spin', 'happy-elementor-addons' ),
+                    '3dspin'    => __( '3D Spin', 'happy-elementor-addons' )
                 ],
                 'condition'          => [
                     'ha_hta_switcher' => 'yes'
@@ -239,7 +239,7 @@ class Heading_Text_Animation {
                 'default'            => 'scroll',
                 'options'            => [
                     'scroll'         => __( 'On Appearing', 'happy-elementor-addons' ),
-                    'playwithscroll' => __( 'On Scroll', 'happy-elementor-addons' ),
+                    'playwithscroll' => __( 'On Scroll', 'happy-elementor-addons' )
                     // 'hover'          => __( 'Hover in Element', 'happy-elementor-addons' ),
                 ],
                 'condition'          => [
@@ -352,22 +352,22 @@ class Heading_Text_Animation {
                 ]
             ]
         );
-    
+
         $element->add_control(
             'ha_hta_tv_transform_origin',
             [
-                'label'              => __('Transform Origin', 'happy-elementor-addons'),
+                'label'              => __( 'Transform Origin', 'happy-elementor-addons' ),
                 'type'               => Controls_Manager::TEXT,
                 'default'            => 'top center -50',
-                'placeholder'        => __('top center -50', 'happy-elementor-addons'),
-                'description' => __('Set the pivot point for the flip animation. Exam: "top center -50", "center center 0", "bottom center -50" to adjust the 3D depth.', 'happy-elementor-addons'),
+                'placeholder'        => __( 'top center -50', 'happy-elementor-addons' ),
+                'description'        => __( 'Set the pivot point for the flip animation. Exam: "top center -50", "center center 0", "bottom center -50" to adjust the 3D depth.', 'happy-elementor-addons' ),
                 'render_type'        => 'template',
                 'frontend_available' => true,
                 'style_transfer'     => true,
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
-                    'ha_hta_mode'     => ['text_flip'],
-                ],
+                    'ha_hta_mode'     => ['text_flip']
+                ]
             ]
         );
 
@@ -446,14 +446,37 @@ class Heading_Text_Animation {
     }
 
     protected function invert_mode_controls( $element ) {
-        //TODO::Add Controls
+        $element->add_control(
+            'ha_hta_invert_opacity',
+            [
+                'label'     => __( 'Mask Opacity', 'happy-elementor-addons' ),
+                'type'      => Controls_Manager::SLIDER,
+                'range'     => [
+                    'px' => [
+                        'min'  => 0,
+                        'max'  => 1,
+                        'step' => 0.01
+                    ]
+                ],
+                'default'   => [
+                    'size' => 0.45
+                ],
+                'condition' => [
+                    'ha_hta_switcher' => 'yes',
+                    'ha_hta_mode'     => 'invert'
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .invert-line' => '--ha-opacity: {{SIZE}};'
+                ]
+            ]
+        );
     }
 
     protected function three_d_mode_controls( $element ) {
         // $element->add_control(
         //     'ha_hta_3d_text_color',
         //     [
-        //         'label'              => __( 'Text Color', 'animation-addons-for-elementor-pro' ),
+        //         'label'              => __( 'Text Color', 'happy-elementor-addons' ),
         //         'type'               => Controls_Manager::COLOR,
         //         'render_type'        => 'template',
         //         'toggle'             => false,
@@ -547,7 +570,7 @@ class Heading_Text_Animation {
                 'style_transfer'     => true,
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
-                    'ha_hta_mode!'    => ['invert',]
+                    'ha_hta_mode!'    => ['invert']
                 ]
             ]
         );
