@@ -96,20 +96,20 @@
 		left: 0;
 		top: auto;
 		margin: 0 auto;
-		width: 1140px !important;
+		width: 100% !important;
 		display: block;
 	}
 }
-@media (max-width: 1024px) {
-	.elementor-editor-active .ha-whatsapp-notice {
-		width: 740px !important;
-	}
-}
-@media (max-width: 767px) {
-	.elementor-editor-active .ha-whatsapp-notice {
-		max-width: 320px !important;
-	}
-}
+// @media (max-width: 1024px) {
+// 	.elementor-editor-active .ha-whatsapp-notice {
+// 		width: 740px !important;
+// 	}
+// }
+// @media (max-width: 767px) {
+// 	.elementor-editor-active .ha-whatsapp-notice {
+// 		max-width: 320px !important;
+// 	}
+// }
 
 @media (max-width: 1024px) {
 	.elementor-editor-active .ha-whatsapp-button-main {
