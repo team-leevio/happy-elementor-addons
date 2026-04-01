@@ -1,3 +1,7 @@
+= 3.21.2 - 01 April 2026 =
+
+- Update: Made Compatible with Elementor 4.0
+
 = 3.21.1 - 05 March 2026 =
 
 - Fix: Template Conditions Manager security issue.
