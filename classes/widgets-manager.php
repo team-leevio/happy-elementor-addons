@@ -1510,7 +1510,7 @@ class Widgets_Manager {
 				'title'     => __( 'WhatsApp Button', 'happy-elementor-addons' ),
 				'icon'      => 'hm hm-circular-chat',
 				'css'       => [ 'whatsapp-button' ],
-				'js'        => [ 'ha-whatsapp-button' ],
+				'js'        => [],
 				'vendor'    => [
 					'css' => [ 'font-awesome' ],
 					'js'  => [],
