@@ -195,12 +195,14 @@ class Heading_Text_Animation {
                 'type'               => Controls_Manager::SELECT,
                 'default'            => 'reveal',
                 'options'            => [
-                    'slide'     => __( 'Slide', 'happy-elementor-addons' ),
-                    'reveal'    => __( 'Text Reveal', 'happy-elementor-addons' ),
-                    'scale'     => __( 'Scale', 'happy-elementor-addons' ),
-                    'text_flip' => __( 'Text Flip', 'happy-elementor-addons' ),
-                    'invert'    => __( 'Text Invert', 'happy-elementor-addons' ),
-                    '3dspin'    => __( '3D Spin', 'happy-elementor-addons' )
+                    'slide'        => __( 'Slide', 'happy-elementor-addons' ),
+                    'reveal'       => __( 'Text Reveal', 'happy-elementor-addons' ),
+                    'smoky_reveal' => __( 'Smoky Reveal', 'happy-elementor-addons' ),
+                    // 'alt_reveal'   => __( 'Alternative Reveal', 'happy-elementor-addons' ),
+                    'scale'        => __( 'Scale', 'happy-elementor-addons' ),
+                    'text_flip'    => __( 'Text Flip', 'happy-elementor-addons' ),
+                    'invert'       => __( 'Text Invert', 'happy-elementor-addons' ),
+                    '3dspin'       => __( '3D Spin', 'happy-elementor-addons' )
                 ],
                 'condition'          => [
                     'ha_hta_switcher' => 'yes'
@@ -255,6 +257,8 @@ class Heading_Text_Animation {
         $this->words_mode_controls( $element );
         $this->chars_words_mode_common_controls( $element );
         $this->reveal_mode_controls( $element );
+        $this->smoky_reveal_mode_controls( $element );
+        $this->alternative_reveal_mode_controls( $element );
         $this->scale_mode_controls( $element );
         $this->text_flip_mode_controls( $element );
         $this->invert_mode_controls( $element );
@@ -397,6 +401,127 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['reveal']
+                ]
+            ]
+        );
+    }
+
+    protected function smoky_reveal_mode_controls( $element ) {
+        $element->add_control(
+            'ha_hta_smoky_y_offset',
+            [
+                'label'              => __( 'Vertical Offset', 'happy-addons-pro' ),
+                'type'               => Controls_Manager::NUMBER,
+                'min'                => -200,
+                'max'                => 200,
+                'step'               => 1,
+                'default'            => 80,
+                'render_type'        => 'template',
+                'frontend_available' => true,
+                'style_transfer'     => true,
+                'condition'          => [
+                    'ha_hta_switcher' => 'yes',
+                    'ha_hta_mode'     => ['smoky_reveal']
+                ]
+            ]
+        );
+
+        $element->add_control(
+            'ha_hta_smoky_scale',
+            [
+                'label'              => __( 'Scale From', 'happy-addons-pro' ),
+                'type'               => Controls_Manager::NUMBER,
+                'min'                => 0,
+                'max'                => 10,
+                'step'               => 0.1,
+                'default'            => 2.5,
+                'render_type'        => 'template',
+                'frontend_available' => true,
+                'style_transfer'     => true,
+                'condition'          => [
+                    'ha_hta_switcher' => 'yes',
+                    'ha_hta_mode'     => ['smoky_reveal']
+                ]
+            ]
+        );
+
+        $element->add_control(
+            'ha_hta_smoky_blur',
+            [
+                'label'              => __( 'Blur', 'happy-addons-pro' ),
+                'type'               => Controls_Manager::NUMBER,
+                'min'                => 0,
+                'max'                => 100,
+                'step'               => 1,
+                'default'            => 15,
+                'render_type'        => 'template',
+                'frontend_available' => true,
+                'style_transfer'     => true,
+                'condition'          => [
+                    'ha_hta_switcher' => 'yes',
+                    'ha_hta_mode'     => ['smoky_reveal']
+                ]
+            ]
+        );
+
+        $element->add_control(
+            'ha_hta_smoky_stagger_from',
+            [
+                'label'              => __( 'Stagger From', 'happy-elementor-addons' ),
+                'type'               => Controls_Manager::SELECT,
+                'default'            => 'random',
+                'options'            => [
+                    'start'  => __( 'Start', 'happy-elementor-addons' ),
+                    'end'    => __( 'End', 'happy-elementor-addons' ),
+                    'center' => __( 'Center', 'happy-elementor-addons' ),
+                    'random' => __( 'Random', 'happy-elementor-addons' ),
+                    'edges'  => __( 'Edges', 'happy-elementor-addons' )
+                ],
+                'condition'          => [
+                    'ha_hta_switcher' => 'yes',
+                    'ha_hta_mode'     => ['smoky_reveal']
+                ],
+                'render_type'        => 'template',
+                'frontend_available' => true,
+                'style_transfer'     => true
+            ]
+        );
+    }
+
+    protected function alternative_reveal_mode_controls( $element ) {
+        $element->add_control(
+            'ha_hta_alt_even_reveal_y_offset',
+            [
+                'label'              => __( 'Even Vertical Offset', 'happy-addons-pro' ),
+                'type'               => Controls_Manager::NUMBER,
+                'min'                => -200,
+                'max'                => 200,
+                'step'               => 1,
+                'default'            => -60,
+                'render_type'        => 'template',
+                'frontend_available' => true,
+                'style_transfer'     => true,
+                'condition'          => [
+                    'ha_hta_switcher' => 'yes',
+                    'ha_hta_mode'     => ['alt_reveal']
+                ]
+            ]
+        );
+        $element->add_control(
+            'ha_hta_alt_odd_reveal_y_offset',
+            [
+                'label'              => __( 'Odd Vertical Offset', 'happy-addons-pro' ),
+                'type'               => Controls_Manager::NUMBER,
+                'min'                => -200,
+                'max'                => 200,
+                'step'               => 1,
+                'default'            => 60,
+                'render_type'        => 'template',
+                'frontend_available' => true,
+                'style_transfer'     => true,
+                'condition'          => [
+                    'ha_hta_switcher' => 'yes',
+                    'ha_hta_mode'     => ['alt_reveal']
                 ]
             ]
         );

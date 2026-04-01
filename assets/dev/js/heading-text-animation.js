@@ -5,7 +5,7 @@
     $(w).on("elementor/frontend/init", function () {
 
         if (typeof gsap === "undefined") return;
-        if (typeof ScrollTrigger === "undefined") return;        
+        if (typeof ScrollTrigger === "undefined") return;
 
         gsap.registerPlugin(ScrollTrigger);
 
@@ -68,7 +68,7 @@
                 }
 
                 wrapper.removeClass(
-                    "ha-hta-chars ha-hta-words ha-hta-lines ha-hta-text-scale ha-hta-text-invert ha-hta-3d-spin ha-hta-text-flip"
+                    "ha-hta-chars ha-hta-words ha-hta-lines ha-hta-text-scale ha-hta-text-invert ha-hta-3d-spin ha-hta-text-flip ha-tm-smoky-reveal ha-tm-alt-reveal"
                 );
 
                 let modeClass = "ha-hta-chars";
@@ -81,6 +81,8 @@
                     case "invert": modeClass = "ha-hta-text-invert"; break;
                     case "3dspin": modeClass = "ha-hta-3d-spin"; break;
                     case "text_flip": modeClass = "ha-hta-text-flip"; break;
+                    case "smoky_reveal": modeClass = "ha-tm-smoky-reveal"; break;
+                    case "alt_reveal": modeClass = "ha-tm-alt-reveal"; break;
                 }
 
                 wrapper.addClass(modeClass);
@@ -118,7 +120,17 @@
                     duration: parseFloat(settings.ha_hta_duration) || 0.8,
                     stagger: parseFloat(settings.ha_hta_stagger_delay) || 0.05,
 
-                    easing: settings.ha_hta_easing_function || "power2.out"
+                    easing: settings.ha_hta_easing_function || "power2.out",
+
+                    // Smoky Reveal settings
+                    smokyYOffset: parseFloat(settings.ha_hta_smoky_y_offset) || 80,
+                    smokyScale: parseFloat(settings.ha_hta_smoky_scale) || 2.5,
+                    smokyBlur: parseFloat(settings.ha_hta_smoky_blur) || 15,
+                    smokyStaggerFrom: settings.ha_hta_smoky_stagger_from || "random",
+
+                    // Alternative Reveal settings
+                    altEvenYOffset: parseFloat(settings.ha_hta_alt_even_reveal_y_offset) || -60,
+                    altOddYOffset: parseFloat(settings.ha_hta_alt_odd_reveal_y_offset) || 60
 
                 };
 
@@ -156,6 +168,14 @@
 
                     case "3dspin":
                         elements = this.build3D(heading);
+                        break;
+
+                    case "smoky_reveal":
+                        elements = this.splitLetters(heading);
+                        break;
+
+                    case "alt_reveal":
+                        elements = this.splitLetters(heading);
                         break;
 
                     default:
@@ -333,6 +353,50 @@
 
                 }
 
+                else if (config.mode === "smoky_reveal") {
+
+                    gsap.set(elements, {
+                        y: config.smokyYOffset,
+                        scale: config.smokyScale,
+                        filter: `blur(${config.smokyBlur}px)`,
+                        opacity: 0
+                    });
+
+                    tl.to(elements, {
+                        y: 0,
+                        scale: 1,
+                        filter: "blur(0px)",
+                        opacity: 1,
+                        duration: config.duration,
+                        ease: config.easing,
+                        stagger: {
+                            each: config.stagger,
+                            from: config.smokyStaggerFrom
+                        }
+                    });
+
+                }
+
+                else if (config.mode === "alt_reveal") {
+
+                    elements.forEach((letter, i) => {
+                        const yValue = i % 2 === 0 ? config.altEvenYOffset : config.altOddYOffset;
+                        gsap.set(letter, {
+                            y: yValue,
+                            opacity: 0
+                        });
+                    });
+
+                    tl.to(elements, {
+                        y: 0,
+                        opacity: 1,
+                        duration: config.duration,
+                        ease: config.easing,
+                        stagger: config.stagger
+                    });
+
+                }
+
                 this.attachTrigger(container, tl, config);
 
                 this.timelines.push(tl);
@@ -493,6 +557,28 @@
                 chars.forEach(c => c.classList.add("ha-spin-char"));
 
                 return chars;
+
+            },
+
+            splitLetters(el) {
+
+                const text = el.textContent.trim();
+                el.innerHTML = "";
+
+                const letters = [];
+
+                text.split("").forEach(c => {
+
+                    const span = document.createElement("span");
+                    span.className = "letter";
+                    span.textContent = c === " " ? "\u00A0" : c;
+
+                    el.appendChild(span);
+                    letters.push(span);
+
+                });
+
+                return letters;
 
             }
 
