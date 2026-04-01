@@ -75,7 +75,7 @@ class Assets_Manager {
 
 		wp_register_script(
 			'ha-whatsapp-button',
-			HAPPY_ADDONS_ASSETS . 'dev/js/whatsapp-button.js',
+			HAPPY_ADDONS_ASSETS . 'js/whatsapp-button.js',
 			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
