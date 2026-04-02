@@ -95,3 +95,8 @@
 .ha-tm-mixing-reveal .word {
     display: inline-block;
 }
+
+/* Highlight */
+.ha-tm-highlight {
+    color: var(--ha-highlight-color, inherit);
+}

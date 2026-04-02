@@ -195,16 +195,16 @@ class Heading_Text_Animation {
                 'type'               => Controls_Manager::SELECT,
                 'default'            => 'reveal',
                 'options'            => [
-                    'slide'         => __( 'Slide', 'happy-elementor-addons' ),
-                    'reveal'        => __( 'Text Reveal', 'happy-elementor-addons' ),
-                    'smoky_reveal'  => __( 'Smoky Reveal', 'happy-elementor-addons' ),
-                    'alt_reveal'    => __( 'Alternative Reveal', 'happy-elementor-addons' ),
-                    'popup_reveal'  => __( 'Popup Reveal', 'happy-elementor-addons' ),
-                    'mixing_reveal' => __( 'Mixing Reveal', 'happy-elementor-addons' ),
-                    'scale'         => __( 'Scale', 'happy-elementor-addons' ),
-                    'text_flip'     => __( 'Text Flip', 'happy-elementor-addons' ),
-                    'invert'        => __( 'Text Invert', 'happy-elementor-addons' ),
-                    '3dspin'        => __( '3D Spin', 'happy-elementor-addons' )
+                    'slide'        => __( 'Slide', 'happy-elementor-addons' ),
+                    'reveal'       => __( 'Text Reveal', 'happy-elementor-addons' ),
+                    'smoky_reveal' => __( 'Smoky Reveal', 'happy-elementor-addons' ),
+                    'alt_reveal'   => __( 'Alternative Reveal', 'happy-elementor-addons' ),
+                    // 'popup_reveal'  => __( 'Popup Reveal', 'happy-elementor-addons' ),
+                    // 'mixing_reveal' => __( 'Mixing Reveal', 'happy-elementor-addons' ),
+                    'scale'        => __( 'Scale', 'happy-elementor-addons' ),
+                    'text_flip'    => __( 'Text Flip', 'happy-elementor-addons' ),
+                    'invert'       => __( 'Text Invert', 'happy-elementor-addons' ),
+                    '3dspin'       => __( '3D Spin', 'happy-elementor-addons' )
                 ],
                 'condition'          => [
                     'ha_hta_switcher' => 'yes'
@@ -830,6 +830,25 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode!'    => ['invert', 'popup_reveal']
+                ],
+                'render_type'        => 'template',
+                'frontend_available' => true,
+                'style_transfer'     => true
+            ]
+        );
+
+        $element->add_control(
+            'ha_hta_highlight_color',
+            [
+                'label'              => __( 'Highlight Color', 'happy-elementor-addons' ),
+                'type'               => Controls_Manager::COLOR,
+                'description'        => __( 'Choose a color for highlighted text. It will be applied to any text wrapped in curly braces ( e.g., Happy {Addons} ) in Content → Heading → Title.', 'happy-elementor-addons' ),
+                'selectors'          => [
+                    '{{WRAPPER}} .ha-tm-highlight' => 'color: {{VALUE}};'
+                ],
+                'condition'          => [
+                    'ha_hta_switcher' => 'yes',
+                    'ha_hta_mode!'    => ['invert', '3dspin']
                 ],
                 'render_type'        => 'template',
                 'frontend_available' => true,

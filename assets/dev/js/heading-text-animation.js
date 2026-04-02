@@ -59,6 +59,9 @@
                     heading.data("original", heading.html());
                 }
 
+                // Parse highlight syntax
+                this.parseHighlightSyntax(heading[0], settings);
+
                 const config = this.getConfig(settings);
 
                 let actualMode = config.mode;
@@ -506,50 +509,120 @@
 
             splitChars(el) {
 
-                const text = el.textContent.trim();
+                const nodes = Array.from(el.childNodes);
                 el.innerHTML = "";
 
                 const chars = [];
 
-                text.split("").forEach(c => {
+                nodes.forEach(node => {
 
-                    const span = document.createElement("span");
-                    span.className = "ha-char";
-                    span.textContent = c === " " ? "\u00A0" : c;
+                    // NORMAL TEXT
+                    if (node.nodeType === 3) {
 
-                    el.appendChild(span);
-                    chars.push(span);
+                        node.textContent.split("").forEach(c => {
 
-                });
+                            const span = document.createElement("span");
+                            span.className = "ha-char";
+                            span.textContent = c === " " ? "\u00A0" : c;
 
-                return chars;
+                            el.appendChild(span);
+                            chars.push(span);
 
-            },
+                        });
 
-            splitWords(el) {
+                    }
 
-                const words = el.textContent.trim().split(" ");
-                el.innerHTML = "";
+                    // ELEMENT (like highlight span)
+                    else if (node.nodeType === 1) {
 
-                const spans = [];
+                        const isHighlight = node.dataset.highlight === "true";
+                        const color = node.dataset.color;
 
-                words.forEach((w, i) => {
+                        node.textContent.split("").forEach(c => {
 
-                    const span = document.createElement("span");
-                    span.className = "ha-word";
-                    span.textContent = w;
+                            const span = document.createElement("span");
+                            span.className = "ha-char";
 
-                    el.appendChild(span);
-                    spans.push(span);
+                            if (isHighlight) {
+                                span.classList.add("ha-tm-highlight");
+                                if (color) span.style.color = color;
+                            }
 
-                    if (i !== words.length - 1) {
-                        el.appendChild(document.createTextNode(" "));
+                            span.textContent = c === " " ? "\u00A0" : c;
+
+                            el.appendChild(span);
+                            chars.push(span);
+
+                        });
+
                     }
 
                 });
 
-                return spans;
+                return chars;
+            },
 
+            splitWords(el) {
+
+                const nodes = Array.from(el.childNodes);
+                el.innerHTML = "";
+
+                const wordsArr = [];
+
+                nodes.forEach(node => {
+
+                    if (node.nodeType === 3) {
+
+                        node.textContent.split(" ").forEach((w, i, arr) => {
+
+                            const span = document.createElement("span");
+                            span.className = "ha-word";
+                            span.textContent = w;
+
+                            el.appendChild(span);
+                            wordsArr.push(span);
+
+                            if (i !== arr.length - 1) {
+                                el.appendChild(document.createTextNode(" "));
+                            }
+
+                        });
+
+                    }
+
+                    else if (node.nodeType === 1) {
+
+                        const isHighlight = node.dataset.highlight === "true";
+                        const color = node.dataset.color;
+
+                        const words = node.textContent.split(" ");
+
+                        words.forEach((w, i) => {
+
+                            const span = document.createElement("span");
+                            span.className = "ha-word";
+
+                            if (isHighlight) {
+                                span.classList.add("ha-tm-highlight");
+                                if (color) span.style.color = color;
+                            }
+
+                            span.textContent = w;
+
+                            el.appendChild(span);
+                            wordsArr.push(span);
+
+                            if (i !== words.length - 1) {
+                                el.appendChild(document.createTextNode(" "));
+                            }
+
+                        });
+
+                    }
+
+                });
+
+                return wordsArr;
             },
 
             splitReveal(el) {
@@ -627,25 +700,107 @@
 
             splitLetters(el) {
 
-                const text = el.textContent.trim();
+                const nodes = Array.from(el.childNodes);
                 el.innerHTML = "";
 
                 const letters = [];
 
-                text.split("").forEach(c => {
+                nodes.forEach(node => {
 
-                    const span = document.createElement("span");
-                    span.className = "letter";
-                    span.textContent = c === " " ? "\u00A0" : c;
+                    if (node.nodeType === 3) {
 
-                    el.appendChild(span);
-                    letters.push(span);
+                        node.textContent.split("").forEach(c => {
+
+                            const span = document.createElement("span");
+                            span.className = "letter";
+                            span.textContent = c === " " ? "\u00A0" : c;
+
+                            el.appendChild(span);
+                            letters.push(span);
+
+                        });
+
+                    }
+
+                    else if (node.nodeType === 1) {
+
+                        const isHighlight = node.dataset.highlight === "true";
+                        const color = node.dataset.color;
+
+                        node.textContent.split("").forEach(c => {
+
+                            const span = document.createElement("span");
+                            span.className = "letter";
+
+                            if (isHighlight) {
+                                span.classList.add("ha-tm-highlight");
+                                if (color) span.style.color = color;
+                            }
+
+                            span.textContent = c === " " ? "\u00A0" : c;
+
+                            el.appendChild(span);
+                            letters.push(span);
+
+                        });
+
+                    }
 
                 });
 
                 return letters;
+            },
 
-            }
+            parseHighlightSyntax(el, settings) {
+
+                const highlightColor = settings.ha_hta_highlight_color || "";
+
+                function processNode(node) {
+
+                    // TEXT NODE
+                    if (node.nodeType === 3) {
+
+                        const parts = node.textContent.split(/({.*?})/g);
+
+                        if (parts.length > 1) {
+
+                            const fragment = document.createDocumentFragment();
+
+                            parts.forEach(p => {
+
+                                if (p.startsWith("{") && p.endsWith("}")) {
+
+                                    const span = document.createElement("span");
+                                    span.className = "ha-tm-highlight";
+                                    span.setAttribute("data-highlight", "true");
+                                    span.setAttribute("data-color", highlightColor);
+                                    span.textContent = p.slice(1, -1);
+
+                                    fragment.appendChild(span);
+
+                                } else {
+
+                                    fragment.appendChild(document.createTextNode(p));
+
+                                }
+
+                            });
+
+                            node.replaceWith(fragment);
+                        }
+
+                    }
+
+                    // ELEMENT NODE
+                    else if (node.nodeType === 1) {
+
+                        Array.from(node.childNodes).forEach(processNode);
+
+                    }
+                }
+
+                processNode(el);
+            },
 
         });
 
