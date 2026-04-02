@@ -126,7 +126,7 @@
                     smokyYOffset: parseFloat(settings.ha_hta_smoky_y_offset) || 80,
                     smokyScale: parseFloat(settings.ha_hta_smoky_scale) || 2.5,
                     smokyBlur: parseFloat(settings.ha_hta_smoky_blur) || 15,
-                    smokyStaggerFrom: settings.ha_hta_smoky_stagger_from || "random",
+                    staggerFrom: settings.ha_hta_stagger_from || "random",
 
                     // Alternative Reveal settings
                     altEvenYOffset: parseFloat(settings.ha_hta_alt_even_reveal_y_offset) || -60,
@@ -371,7 +371,7 @@
                         ease: config.easing,
                         stagger: {
                             each: config.stagger,
-                            from: config.smokyStaggerFrom
+                            from: config.staggerFrom
                         }
                     });
 
