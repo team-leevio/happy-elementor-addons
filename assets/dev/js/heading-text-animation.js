@@ -68,7 +68,7 @@
                 }
 
                 wrapper.removeClass(
-                    "ha-hta-chars ha-hta-words ha-hta-lines ha-hta-text-scale ha-hta-text-invert ha-hta-3d-spin ha-hta-text-flip ha-tm-smoky-reveal ha-tm-alt-reveal"
+                    "ha-hta-chars ha-hta-words ha-hta-lines ha-hta-text-scale ha-hta-text-invert ha-hta-3d-spin ha-hta-text-flip ha-tm-smoky-reveal ha-tm-alt-reveal ha-tm-popup-reveal ha-tm-mixing-reveal"
                 );
 
                 let modeClass = "ha-hta-chars";
@@ -83,6 +83,8 @@
                     case "text_flip": modeClass = "ha-hta-text-flip"; break;
                     case "smoky_reveal": modeClass = "ha-tm-smoky-reveal"; break;
                     case "alt_reveal": modeClass = "ha-tm-alt-reveal"; break;
+                    case "popup_reveal": modeClass = "ha-tm-popup-reveal"; break;
+                    case "mixing_reveal": modeClass = "ha-tm-mixing-reveal"; break;
                 }
 
                 wrapper.addClass(modeClass);
@@ -130,7 +132,14 @@
 
                     // Alternative Reveal settings
                     altEvenYOffset: parseFloat(settings.ha_hta_alt_even_reveal_y_offset) || -60,
-                    altOddYOffset: parseFloat(settings.ha_hta_alt_odd_reveal_y_offset) || 60
+                    altOddYOffset: parseFloat(settings.ha_hta_alt_odd_reveal_y_offset) || 60,
+
+                    // Popup Reveal settings
+                    popupYOffset: parseFloat(settings.ha_hta_popup_y_offset) || 50,
+                    popupRotationDeg: parseFloat(settings.ha_hta_popup_rotation_deg) || 40,
+
+                    // Mixing Reveal settings
+                    mixingBlur: parseFloat(settings.ha_hta_mixing_blur) || 4
 
                 };
 
@@ -176,6 +185,14 @@
 
                     case "alt_reveal":
                         elements = this.splitLetters(heading);
+                        break;
+
+                    case "popup_reveal":
+                        elements = this.splitLetters(heading);
+                        break;
+
+                    case "mixing_reveal":
+                        elements = this.splitWords(heading);
                         break;
 
                     default:
@@ -393,6 +410,54 @@
                         duration: config.duration,
                         ease: config.easing,
                         stagger: config.stagger
+                    });
+
+                }
+
+                else if (config.mode === "popup_reveal") {
+
+                    gsap.set(elements, {
+                        y: config.popupYOffset,
+                        rotation: config.popupRotationDeg,
+                        scale: 0,
+                        opacity: 0,
+                        transformOrigin: "50% 50%"
+                    });
+
+                    tl.to(elements, {
+                        y: 0,
+                        rotation: 0,
+                        scale: 1,
+                        opacity: 1,
+                        duration: config.duration,
+                        // ease: config.easing,
+                        ease: "back.out(1.7)",
+                        stagger: {
+                            each: config.stagger,
+                            from: config.staggerFrom
+                        }
+                    });
+
+                }
+
+                else if (config.mode === "mixing_reveal") {
+
+                    gsap.set(elements, {
+                        opacity: 0,
+                        scale: 0,
+                        filter: `blur(${config.mixingBlur}px)`
+                    });
+
+                    tl.to(elements, {
+                        opacity: 1,
+                        scale: 1,
+                        filter: "blur(0px)",
+                        duration: config.duration,
+                        ease: config.easing,
+                        stagger: {
+                            each: config.stagger,
+                            from: config.staggerFrom
+                        }
                     });
 
                 }
