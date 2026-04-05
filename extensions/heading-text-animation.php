@@ -842,7 +842,7 @@ class Heading_Text_Animation {
             [
                 'label'              => __( 'Highlight Color', 'happy-elementor-addons' ),
                 'type'               => Controls_Manager::COLOR,
-                'description'        => __( 'Choose a color for highlighted text. It will be applied to any text wrapped in curly braces ( e.g., Happy {Addons} ) in Content → Heading → Title.', 'happy-elementor-addons' ),
+                'description'        => __( 'Color for text wrapped in {curly braces} ( e.g: Happy {Addons} ) in Content → Heading → Title.', 'happy-elementor-addons' ),
                 'selectors'          => [
                     '{{WRAPPER}} .ha-tm-highlight' => 'color: {{VALUE}};'
                 ],
