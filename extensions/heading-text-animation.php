@@ -200,7 +200,7 @@ class Heading_Text_Animation {
                     'smoky_reveal' => __( 'Smoky Reveal', 'happy-elementor-addons' ),
                     'alt_reveal'   => __( 'Alternative Reveal', 'happy-elementor-addons' ),
                     'popup_reveal'  => __( 'Popup Reveal', 'happy-elementor-addons' ),
-                    // 'mixing_reveal' => __( 'Mixing Reveal', 'happy-elementor-addons' ),
+                    'mixing_reveal' => __( 'Mixing Reveal', 'happy-elementor-addons' ),
                     'scale'        => __( 'Scale', 'happy-elementor-addons' ),
                     'text_flip'    => __( 'Text Flip', 'happy-elementor-addons' ),
                     'invert'       => __( 'Text Invert', 'happy-elementor-addons' ),
