@@ -7,234 +7,237 @@ use Elementor\Core\Files\CSS\Post as Post_CSS;
 
 class Clone_Handler {
 
-	/**
-	 * Request and nonce action name
-	 */
-	const ACTION = 'ha_duplicate_thing';
+    /**
+     * Request and nonce action name
+     */
+    const ACTION = 'ha_duplicate_thing';
 
-	/**
-	 * Check if current user can clone
-	 *
-	 * @return bool
-	 */
-	public static function can_clone() {
-		return current_user_can( 'edit_posts' );
-	}
+    /**
+     * Check if current user can clone
+     *
+     * @return bool
+     */
+    public static function can_clone() {
+        return current_user_can( 'edit_posts' );
+    }
 
-	/**
-	 * Check if current user and post author are same
-	 *
-	 * @param int $post_id
-	 * @return boolean
-	 */
-	public static function is_the_same_author($post_id) {
-		$author_id = get_post_field( 'post_author', $post_id );
-		return ( get_current_user_id() == $author_id );
-	}
+    /**
+     * Check if current user and post author are same
+     *
+     * @param  int       $post_id
+     * @return boolean
+     */
+    public static function is_the_same_author( $post_id ) {
+        $author_id = get_post_field( 'post_author', $post_id );
 
-	/**
-	 * Add clone link in row actions
-	 *
-	 * @param array $actions
-	 * @param \WP_Post $post
-	 * @return array
-	 */
-	public static function add_row_actions( $actions, $post ) {
-		if ( current_user_can( 'edit_post', $post->ID ) && post_type_supports( $post->post_type, 'elementor' ) ) {
-			$actions[ self::ACTION ] = sprintf(
-				'<a href="%1$s" title="%2$s"><span class="screen-reader-text">%2$s</span>%3$s</a>',
-				esc_url( self::get_url( $post->ID, 'list' ) ),
-				sprintf( esc_attr__( 'Clone - %s', 'happy-elementor-addons' ), esc_attr( $post->post_title ) ),
-				esc_html__( 'Happy Clone', 'happy-elementor-addons' )
-			);
-		}
+        return ( get_current_user_id() == $author_id );
+    }
 
-		return $actions;
-	}
+    /**
+     * Add clone link in row actions
+     *
+     * @param  array    $actions
+     * @param  \WP_Post $post
+     * @return array
+     */
+    public static function add_row_actions( $actions, $post ) {
+        if ( current_user_can( 'edit_post', $post->ID ) && post_type_supports( $post->post_type, 'elementor' ) ) {
+            $actions[self::ACTION] = sprintf(
+                '<a href="%1$s" title="%2$s"><span class="screen-reader-text">%2$s</span>%3$s</a>',
+                esc_url( self::get_url( $post->ID, 'list' ) ),
+                sprintf( esc_attr__( 'Clone - %s', 'happy-elementor-addons' ), esc_attr( $post->post_title ) ),
+                esc_html__( 'Happy Clone', 'happy-elementor-addons' )
+            );
+        }
 
-	/**
-	 * Duplicate requested post
-	 *
-	 * @return void
-	 */
-	public static function duplicate_thing() {
-		if ( ! self::can_clone() ) {
-			return;
-		}
+        return $actions;
+    }
 
-		$_uri = $_SERVER['REQUEST_URI'];
+    /**
+     * Duplicate requested post
+     *
+     * @return void
+     */
+    public static function duplicate_thing() {
+        if ( !self::can_clone() ) {
+            return;
+        }
 
-		// Resolve finder clone request issue
-		if ( stripos( $_uri, '&amp;' ) !== false ) {
-			$_uri = html_entity_decode( $_uri );
-			$_uri = parse_url( $_uri, PHP_URL_QUERY );
-			$valid_args = ['_wpnonce', 'post_id', 'ref'];
-			parse_str( $_uri, $args );
+        $_uri = $_SERVER['REQUEST_URI'];
 
-			if ( ! empty( $args ) && is_array( $args ) ) {
-				foreach ( $args as $key => $val ) {
-					if ( in_array( $key, $valid_args, true ) ) {
-						$_GET[ $key ] = $val;
-					}
-				}
-			}
-		}
+        // Resolve finder clone request issue
+        if ( stripos( $_uri, '&amp;' ) !== false ) {
+            $_uri       = html_entity_decode( $_uri );
+            $_uri       = parse_url( $_uri, PHP_URL_QUERY );
+            $valid_args = ['_wpnonce', 'post_id', 'ref'];
+            parse_str( $_uri, $args );
 
-		$nonce = isset( $_GET['_wpnonce'] ) ? $_GET['_wpnonce'] : '';
-		$post_id = isset( $_GET['post_id'] ) ? absint( $_GET['post_id'] ) : 0;
-		$ref = isset( $_GET['ref'] ) ? sanitize_text_field($_GET['ref']) : '';
+            if ( !empty( $args ) && is_array( $args ) ) {
+                foreach ( $args as $key => $val ) {
+                    if ( in_array( $key, $valid_args, true ) ) {
+                        $_GET[$key] = $val;
+                    }
+                }
+            }
+        }
 
-		if ( ! wp_verify_nonce( $nonce, self::ACTION ) ) {
-			return;
-		}
+        $nonce   = isset( $_GET['_wpnonce'] ) ? $_GET['_wpnonce'] : '';
+        $post_id = isset( $_GET['post_id'] ) ? absint( $_GET['post_id'] ) : 0;
+        $ref     = isset( $_GET['ref'] ) ? sanitize_text_field( $_GET['ref'] ) : '';
 
-		$post_status = get_post_status ( $post_id );
-		$same_author = self::is_the_same_author( $post_id );
+        if ( !$post_id || !get_post( $post_id ) ) {
+            wp_die( __( 'Invalid post.' ) );
+        }
 
-		if ( ('private' == $post_status || 'draft' == $post_status) && ! $same_author ) {
-			wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
-		}
+        if ( !current_user_can( 'edit_post', $post_id ) ) {
+            wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
+        }
 
-		if ( post_password_required( $post_id ) && ! $same_author ) {
-			wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
-		}
+        $post_status = get_post_status( $post_id );
+        $same_author = self::is_the_same_author( $post_id );
 
-		if ( is_null( ( $post = get_post( $post_id ) ) ) ) {
-			return;
-		}
+        if ( ( 'private' == $post_status || 'draft' == $post_status ) && !$same_author ) {
+            wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
+        }
 
-		$post = sanitize_post( $post, 'db' );
-		$duplicated_post_id = self::duplicate_post( $post );
-		$redirect = add_query_arg( [ 'post_type' => $post->post_type ], admin_url( 'edit.php' ) );
+        if ( post_password_required( $post_id ) && !$same_author ) {
+            wp_die( __( 'Sorry, you are not allowed to clone this item.' ) );
+        }
 
-		if ( ! is_wp_error( $duplicated_post_id ) ) {
-			self::duplicate_taxonomies( $post, $duplicated_post_id );
-			self::duplicate_meta_entries( $post, $duplicated_post_id );
+        if ( null === ( ( $post = get_post( $post_id ) ) ) ) {
+            return;
+        }
 
-			$css = Post_CSS::create( $duplicated_post_id );
-			$css->update();
+        $post               = sanitize_post( $post, 'db' );
+        $duplicated_post_id = self::duplicate_post( $post );
+        $redirect           = add_query_arg( ['post_type' => $post->post_type], admin_url( 'edit.php' ) );
 
-			if ( $ref === 'editor' ) {
-				$document = ha_elementor()->documents->get( $duplicated_post_id );
-				$redirect = $document->get_edit_url();
-			}
-		}
+        if ( !is_wp_error( $duplicated_post_id ) ) {
+            self::duplicate_taxonomies( $post, $duplicated_post_id );
+            self::duplicate_meta_entries( $post, $duplicated_post_id );
 
-		wp_safe_redirect( $redirect );
-		die();
-	}
+            $css = Post_CSS::create( $duplicated_post_id );
+            $css->update();
 
-	/**
-	 * Get clone url with required query params
-	 *
-	 * @param $post_id
-	 * @param string $ref
-	 * @return string
-	 */
-	public static function get_url( $post_id, $ref = '' ) {
-		return wp_nonce_url(
-			add_query_arg(
-				[
-					'action' => self::ACTION,
-					'post_id' => $post_id,
-					'ref' => $ref,
-				],
-				admin_url( 'admin.php' )
-			),
-			self::ACTION
-		);
-	}
+            if ( $ref === 'editor' ) {
+                $document = ha_elementor()->documents->get( $duplicated_post_id );
+                $redirect = $document->get_edit_url();
+            }
+        }
 
-	/**
-	 * Clone post
-	 *
-	 * @param $old_post
-	 * @return int $dulicated post id
-	 */
-	protected static function duplicate_post( $post ) {
-		$current_user = wp_get_current_user();
+        wp_safe_redirect( $redirect );
+        die();
+    }
 
-		$duplicated_post_args = [
-			'post_status'    => 'draft',
-			'to_ping'        => $post->to_ping,
-			'post_type'      => $post->post_type,
-			'menu_order'     => $post->menu_order,
-			'post_author'    => $current_user->ID,
-			'post_parent'    => $post->post_parent,
-			'ping_status'    => $post->ping_status,
-			'post_excerpt'   => $post->post_excerpt,
-			'post_content'   => $post->post_content,
-			'post_password'  => $post->post_password,
-			'comment_status' => $post->comment_status,
-			'post_title'     => sprintf( __( '%s - [Cloned #%d]', 'happy-elementor-addons' ), $post->post_title,
-				$post->ID ),
-		];
+    /**
+     * Get clone url with required query params
+     *
+     * @param  $post_id
+     * @param  string     $ref
+     * @return string
+     */
+    public static function get_url( $post_id, $ref = '' ) {
+        return wp_nonce_url(
+            add_query_arg(
+                [
+                    'action'  => self::ACTION,
+                    'post_id' => $post_id,
+                    'ref'     => $ref
+                ],
+                admin_url( 'admin.php' )
+            ),
+            self::ACTION
+        );
+    }
 
-		return wp_insert_post( $duplicated_post_args );
-	}
+    /**
+     * Clone post
+     *
+     * @param  $old_post
+     * @return int         $dulicated post id
+     */
+    protected static function duplicate_post( $post ) {
+        $current_user = wp_get_current_user();
 
-	/**
-	 * Copy post taxonomies to cloned post
-	 *
-	 * @param $post
-	 * @param $duplicated_post_id
-	 */
-	protected static function duplicate_taxonomies( $post, $duplicated_post_id ) {
-		$taxonomies = get_object_taxonomies( $post->post_type );
-		if ( ! empty( $taxonomies ) && is_array( $taxonomies ) ) {
-			foreach ( $taxonomies as $taxonomy ) {
-				$terms = wp_get_object_terms( $post->ID, $taxonomy, [ 'fields' => 'slugs' ] );
-				wp_set_object_terms( $duplicated_post_id, $terms, $taxonomy, false );
-			}
-		}
-	}
+        $duplicated_post_args = [
+            'post_status'    => 'draft',
+            'to_ping'        => $post->to_ping,
+            'post_type'      => $post->post_type,
+            'menu_order'     => $post->menu_order,
+            'post_author'    => $current_user->ID,
+            'post_parent'    => $post->post_parent,
+            'ping_status'    => $post->ping_status,
+            'post_excerpt'   => $post->post_excerpt,
+            'post_content'   => $post->post_content,
+            'post_password'  => $post->post_password,
+            'comment_status' => $post->comment_status,
+            'post_title'     => sprintf( __( '%s - [Cloned #%d]', 'happy-elementor-addons' ), $post->post_title,
+                $post->ID )
+        ];
 
-	/**
-	 * Copy post meta entries to cloned post
-	 *
-	 * @param $post
-	 * @param $duplicated_post_id
-	 */
-	protected static function duplicate_meta_entries( $post, $duplicated_post_id ) {
-		global $wpdb;
+        return wp_insert_post( $duplicated_post_args );
+    }
 
-		$entries = $wpdb->get_results(
-			$wpdb->prepare( "SELECT meta_key, meta_value FROM {$wpdb->postmeta} WHERE post_id = %d", $post->ID )
-		);
+    /**
+     * Copy post taxonomies to cloned post
+     *
+     * @param $post
+     * @param $duplicated_post_id
+     */
+    protected static function duplicate_taxonomies( $post, $duplicated_post_id ) {
+        $taxonomies = get_object_taxonomies( $post->post_type );
+        if ( !empty( $taxonomies ) && is_array( $taxonomies ) ) {
+            foreach ( $taxonomies as $taxonomy ) {
+                $terms = wp_get_object_terms( $post->ID, $taxonomy, ['fields' => 'slugs'] );
+                wp_set_object_terms( $duplicated_post_id, $terms, $taxonomy, false );
+            }
+        }
+    }
 
-		if ( is_array( $entries ) ) {
-			// $query = "INSERT INTO {$wpdb->postmeta} ( post_id, meta_key, meta_value ) VALUES ";
-			// $_records = [];
-			// foreach ( $entries as $entry ) {
-			// 	$_value = wp_slash( $entry->meta_value );
-			// 	$_records[] = "( $duplicated_post_id, '{$entry->meta_key}', '{$_value}' )";
-			// }
-			// $query .= implode( ', ', $_records ) . ';';
-			// $wpdb->query( $query  );
+    /**
+     * Copy post meta entries to cloned post
+     *
+     * @param $post
+     * @param $duplicated_post_id
+     */
+    protected static function duplicate_meta_entries( $post, $duplicated_post_id ) {
+        global $wpdb;
 
-			foreach ( $entries as $entry ) {
-				$wpdb->insert(
-					$wpdb->postmeta,
-					[
-						'post_id'    => $duplicated_post_id,
-						'meta_key'   => $entry->meta_key,
-						'meta_value' => $entry->meta_value,
-					],
-					[ '%d', '%s', '%s' ]
-				);
-			}
+        $entries = $wpdb->get_results(
+            $wpdb->prepare( "SELECT meta_key, meta_value FROM {$wpdb->postmeta} WHERE post_id = %d", $post->ID )
+        );
 
-			// foreach ( $entries as $entry ) {
-			// 	update_post_meta( $duplicated_post_id, $entry->meta_key, $entry->meta_value );
-			// }
+        if ( is_array( $entries ) ) {
+            // $query = "INSERT INTO {$wpdb->postmeta} ( post_id, meta_key, meta_value ) VALUES ";
+            // $_records = [];
+            // foreach ( $entries as $entry ) {
+            //     $_value = wp_slash( $entry->meta_value );
+            //     $_records[] = "( $duplicated_post_id, '{$entry->meta_key}', '{$_value}' )";
+            // }
+            // $query .= implode( ', ', $_records ) . ';';
+            // $wpdb->query( $query  );
 
+            foreach ( $entries as $entry ) {
+                $wpdb->insert(
+                    $wpdb->postmeta,
+                    [
+                        'post_id'    => $duplicated_post_id,
+                        'meta_key'   => $entry->meta_key,
+                        'meta_value' => $entry->meta_value
+                    ],
+                    ['%d', '%s', '%s']
+                );
+            }
 
+            // foreach ( $entries as $entry ) {
+            //     update_post_meta( $duplicated_post_id, $entry->meta_key, $entry->meta_value );
+            // }
 
-			// Fix Template Type Wrong issue
-			$source_type = get_post_meta($post->ID, '_elementor_template_type', true);
-			delete_post_meta($duplicated_post_id, '_elementor_template_type');
-			update_post_meta($duplicated_post_id, '_elementor_template_type', $source_type);
-		}
-	}
+            // Fix Template Type Wrong issue
+            $source_type = get_post_meta( $post->ID, '_elementor_template_type', true );
+            delete_post_meta( $duplicated_post_id, '_elementor_template_type' );
+            update_post_meta( $duplicated_post_id, '_elementor_template_type', $source_type );
+        }
+    }
 
 }

@@ -101,8 +101,6 @@ class Condition_Manager {
 
         return apply_filters('happyaddons/conditions/archive', $conditions);
     }
-
-
     private function singular_conditions() {
         $conditions = [
             'all' => [
@@ -226,7 +224,55 @@ class Condition_Manager {
         return $keys;
     }
 
-    protected function validate_reqeust() {
+
+    /**
+     * Validate a general AJAX request that does NOT operate on a specific template.
+     *
+     * This method verifies:
+     * - The request nonce for CSRF protection.
+     * - The current user's capability to access the editor context.
+     *
+     * Intended for endpoints that return global/shared data
+     * (e.g., condition autocomplete results) and do not require
+     * object-level authorization.
+     *
+     * @version 1.0.0
+     *
+     * @throws \Exception If the nonce is invalid or the user lacks permission.
+     * @return void
+     */
+    protected function validate_general_request() {
+
+        $nonce = $_REQUEST['nonce'] ?? '';
+
+        if ( !wp_verify_nonce( $nonce, 'ha_editor_nonce' ) ) {
+            throw new Exception( 'Invalid request' );
+        }
+
+        if ( !current_user_can( 'edit_posts' ) ) {
+            throw new Exception( 'Unauthorized request' );
+        }
+    }
+
+    /**
+     * Validate a template-specific AJAX request.
+     *
+     * This method performs full object-level authorization and ensures:
+     * - The request nonce is valid (CSRF protection).
+     * - A valid template ID is provided.
+     * - The template exists and belongs to the expected post type.
+     * - The current user has permission to edit the specific template
+     *   via WordPress meta capability mapping (edit_post).
+     *
+     * This protects against IDOR (Insecure Direct Object Reference)
+     * and unauthorized access to template data.
+     *
+     * @version 1.0.1
+     *
+     * @throws \Exception If validation fails at any step.
+     * @return void
+     */
+    protected function validate_template_request() {
         $nonce = !empty($_REQUEST['nonce']) ? $_REQUEST['nonce'] : '';
 		$template_id = isset( $_REQUEST['template_id'] ) ? absint( $_REQUEST['template_id'] ) : null;
 
@@ -234,7 +280,7 @@ class Condition_Manager {
             throw new Exception('Invalid request');
         }
 
-		if (!current_user_can('edit_posts', $template_id)) {
+		if (!current_user_can('edit_post', $template_id)) {
 			throw new Exception('Unauthorized request');
 		}
 
@@ -252,7 +298,7 @@ class Condition_Manager {
 
     public function ha_get_template_type() {
         try {
-            //$this->validate_reqeust();
+            //$this->validate_template_request();
             $id = isset($_REQUEST['post_id']) ? absint($_REQUEST['post_id']) : null;
             if ($id) {
                 $tpl_type = get_post_meta($id, '_ha_library_type', true);
@@ -269,7 +315,7 @@ class Condition_Manager {
     // update template conditions
     public function process_condition_update() {
         try {
-            $this->validate_reqeust();
+            $this->validate_template_request();
             $templateID = isset($_REQUEST['template_id']) ? absint($_REQUEST['template_id']) : null;
             $requestConditions = isset($_REQUEST['conds']) ? ha_sanitize_array_recursively($_REQUEST['conds']) : [];
 
@@ -359,7 +405,7 @@ class Condition_Manager {
 
     public function process_condition_update_old() {
         try {
-            $this->validate_reqeust();
+            $this->validate_template_request();
             $templateID = isset($_REQUEST['template_id']) ? $_REQUEST['template_id'] : null;
             $conditions = isset($_REQUEST['conds']) ? $_REQUEST['conds'] : [];
 
@@ -454,7 +500,7 @@ class Condition_Manager {
 
     public function ha_get_current_condition() {
         try {
-            // $this->validate_reqeust();
+            $this->validate_template_request();
             $templateID = isset($_REQUEST['template_id']) ? absint($_REQUEST['template_id']) : null;
             // wp_send_json_success($templateID);
             if ($templateID) {
@@ -486,9 +532,9 @@ class Condition_Manager {
             $sub_name = $parsed_condition['sub_name'];
             $sub_id = $parsed_condition['sub_id'];
 
-            $sub_name_html = ($sub_name) ? '<option value="' . $sub_name . '" selected="selected">' . $this->all_conds_list[$sub_name]['title'] . '</option>' : '';
+            $sub_name_html = ($sub_name) ? '<option value="' . esc_attr($sub_name) . '" selected="selected">' . esc_html($this->all_conds_list[$sub_name]['title']) . '</option>' : '';
 
-            $sub_id_html = ($sub_id) ? '<option value="' . $sub_id . '" selected="selected">' . get_the_title($sub_id) . '</option>' : '';
+            $sub_id_html = ($sub_id) ? '<option value="' . esc_attr($sub_id) . '" selected="selected">' . esc_html(get_the_title($sub_id)) . '</option>' : '';
 
             $uuid = uniqid();
             $if = function ($condition, $true, $false) {
@@ -517,12 +563,12 @@ class Condition_Manager {
             </select>
         </div>
         <div class="ha-tce-sub_name" $sub_name_visibility>
-            <select data-id="sub_name-$uuid" data-parent="$uuid" data-setting="sub_name" data-selected="$sub_name">
+            <select data-id="sub_name-$uuid" data-parent="$uuid" data-setting="sub_name" data-selected="esc_attr($sub_name)">
             $sub_name_html
             </select>
         </div>
         <div class="ha-tce-sub_id" $sub_id_visibility>
-            <select data-id="sub_id-$uuid" data-parent="$uuid" data-setting="sub_id" data-selected="$sub_id">
+            <select data-id="sub_id-$uuid" data-parent="$uuid" data-setting="sub_id" data-selected="esc_attr($sub_id)">
             $sub_id_html
             </select>
         </div>
@@ -539,7 +585,7 @@ EOF;
 
     public function process_autocomplete() {
         try {
-            $this->validate_reqeust();
+            $this->validate_general_request();
 
             $object_type = !empty($_REQUEST['object_type']) ? trim(sanitize_text_field($_REQUEST['object_type'])) : '';
 
