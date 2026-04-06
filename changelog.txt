@@ -1,4 +1,4 @@
-= 3.21.2 - 01 April 2026 =
+= 3.21.2 - 06 April 2026 =
 
 - Update: Made Compatible with Elementor 4.0
 
