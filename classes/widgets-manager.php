@@ -573,6 +573,13 @@ class Widgets_Manager {
 				'is_pro' => true,
 				'demo'      => 'https://demo.happyaddons.com/elementor-advanced-comparison-table-widget-demo-mosaddek/',
 			],
+			'cards-stacked' => [
+				'cat' => 'creative',
+				'title' => __('Cards Stacked', 'happy-addons-pro'),
+				'icon' => 'hm hm-photo-stack',
+				'demo'      => 'https://demo.happyaddons.com/#/',
+				'is_pro' => true,
+			],
 		];
 	}
 
