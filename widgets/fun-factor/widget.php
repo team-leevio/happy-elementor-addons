@@ -231,7 +231,7 @@ class Fun_Factor extends Base {
 			'animate_number',
 			[
 				'label'        => __('Animate', 'happy-elementor-addons'),
-				'description'  => __('Only number is animatable'),
+				'description'  => __('Only number is animatable', 'happy-elementor-addons'),
 				'type'         => Controls_Manager::SWITCHER,
 				'label_on'     => __('Yes', 'happy-elementor-addons'),
 				'label_off'    => __('No', 'happy-elementor-addons'),
