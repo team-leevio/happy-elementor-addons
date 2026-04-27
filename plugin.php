@@ -40,9 +40,9 @@ defined('ABSPATH') || die();
 
 
 if ( defined( 'HAPPY_ADDONS_DEV' ) && true == HAPPY_ADDONS_DEV ) {
-	define('HAPPY_ADDONS_VERSION', '3.21.2' . time() );
+	define('HAPPY_ADDONS_VERSION', '3.21.3' . time() );
 } else {
-	define( 'HAPPY_ADDONS_VERSION', '3.21.2' );
+	define( 'HAPPY_ADDONS_VERSION', '3.21.3' );
 }
 define('HAPPY_ADDONS__FILE__', __FILE__);
 define('HAPPY_ADDONS_DIR_PATH', plugin_dir_path(HAPPY_ADDONS__FILE__));
