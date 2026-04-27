@@ -1,4 +1,4 @@
-= 3.21.# - ## ### 2026 =
+= 3.21.3 - 27 April 2026 =
 
 - Fix: Justified Grid widget Compatible with Elementor's Tabs & Accordion widgets.
 

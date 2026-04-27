@@ -7,7 +7,7 @@ Contributors: happyaddons, thehappymonster, wedevs, Leevio
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 3.21.2
+Stable tag: 3.21.3
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -310,6 +310,10 @@ For a more detailed explanation check out the following documentation
 13. Card widget - capsule design
 
 == Changelog ==
+
+= 3.21.3 - 27 April 2026 =
+
+- Fix: Justified Grid widget Compatible with Elementor's Tabs & Accordion widgets.
 
 = 3.21.2 - 01 April 2026 =
 
