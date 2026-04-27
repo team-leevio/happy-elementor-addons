@@ -122,7 +122,33 @@ function haObserveTarget(target, callback) {
       }, 400);
     });
   };
+
+  // Trigger change for nested widgets
+  function triggerChange(el) {
+    $window.trigger('ha:nested:change', [el]);
+  }
+  $(document).on('click', '.e-n-tab-title, .e-n-accordion-item-title', function () {
+    triggerChange(this);
+  });
+  function observeNested() {
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        if (mutation.type === 'attributes' && (mutation.attributeName === 'class' || mutation.attributeName === 'aria-expanded')) {
+          triggerChange(mutation.target);
+        }
+      });
+    });
+    document.querySelectorAll('.e-n-tabs, .e-n-accordion').forEach(function (el) {
+      observer.observe(el, {
+        attributes: true,
+        subtree: true
+      });
+    });
+  }
+  ;
   $window.on('elementor/frontend/init', function () {
+    // Call the handlers for the justified widget
+    observeNested();
     var ModuleHandler = elementorModules.frontend.handlers.Base;
     var SliderBase = ModuleHandler.extend({
       bindEvents: function bindEvents() {
@@ -244,6 +270,8 @@ function haObserveTarget(target, callback) {
         this.run();
         this.runFilter();
         $window.on('resize', debounce(this.run.bind(this), 100));
+        // Trigger layout on nested change
+        $window.on('ha:nested:change', debounce(this.run.bind(this), 100));
       },
       getLayoutMode: function getLayoutMode() {
         var layout = this.getElementSettings('layout');
@@ -303,6 +331,8 @@ function haObserveTarget(target, callback) {
         this.run();
         this.runFilter();
         $window.on('resize', debounce(this.run.bind(this), 100));
+        // Trigger layout on nested change
+        $window.on('ha:nested:change', debounce(this.run.bind(this), 100));
       },
       getDefaultSettings: function getDefaultSettings() {
         var $defaultSettings = {
