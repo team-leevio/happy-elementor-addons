@@ -242,7 +242,7 @@ class Heading_Text_Animation {
                 'type'               => Controls_Manager::SELECT,
                 'default'            => 'scroll',
                 'options'            => [
-                    'scroll'         => __( 'On Appearing', 'happy-elementor-addons' ),
+                    'scroll'         => __( 'On Appearance', 'happy-elementor-addons' ),
                     'playwithscroll' => __( 'On Scroll', 'happy-elementor-addons' )
                 ],
                 'condition'          => [
@@ -368,7 +368,7 @@ class Heading_Text_Animation {
                 'type'               => Controls_Manager::TEXT,
                 'default'            => 'top center -50',
                 'placeholder'        => __( 'top center -50', 'happy-elementor-addons' ),
-                'description'        => __( 'Set the pivot point for the flip animation. Exam: "top center -50", "center center 0", "bottom center -50" to adjust the 3D depth.', 'happy-elementor-addons' ),
+                'description'        => __( 'Set the pivot point for the flip animation. Ex: "top center -50", "center center 0", "bottom center -50" to adjust the 3D depth.', 'happy-elementor-addons' ),
                 'render_type'        => 'template',
                 'frontend_available' => true,
                 'style_transfer'     => true,
