@@ -57,14 +57,7 @@ class Assets_Manager {
 			null,
 			HAPPY_ADDONS_VERSION
 		);
-
-		wp_register_style(
-			'huge-icons',
-			HAPPY_ADDONS_ASSETS . 'fonts/huge-icons/huge-icons.min.css',
-			null,
-			HAPPY_ADDONS_VERSION
-		);
-
+		
 		// Image comparasion
 		wp_register_style(
 			'twentytwenty',
@@ -518,13 +511,6 @@ class Assets_Manager {
 		wp_enqueue_style(
 			'happy-icons',
 			HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
-			null,
-			HAPPY_ADDONS_VERSION
-		);
-
-		wp_enqueue_style(
-			'huge-icons',
-			HAPPY_ADDONS_ASSETS . 'fonts/huge-icons/huge-icons.min.css',
 			null,
 			HAPPY_ADDONS_VERSION
 		);

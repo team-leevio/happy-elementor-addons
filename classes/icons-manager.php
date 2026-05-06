@@ -22,7 +22,6 @@ class Icons_Manager {
             'name' => 'huge-icons',
             'label' => __( 'Huge Icons', 'happy-elementor-addons' ),
             'url' => HAPPY_ADDONS_ASSETS . 'fonts/huge-icons/huge-icons.min.css',
-            'enqueue' => [ HAPPY_ADDONS_ASSETS . 'fonts/huge-icons/huge-icons.min.css' ],
             'prefix' => 'huge-',
             'displayPrefix' => 'huge',
             'labelIcon' => 'huge huge-huge-logo',
