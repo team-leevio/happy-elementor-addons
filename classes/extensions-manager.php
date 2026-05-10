@@ -109,7 +109,13 @@ class Extensions_Manager {
                 'icon'   => 'hm hm-alien',
                 'demo'   => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
                 'is_pro' => true
-            ]
+            ],
+			'sticky-pin-element' => [
+				'title'  => __( 'Sticky Pin Element', 'happy-addons-pro' ),
+				'icon'   => 'hm hm-sticky',
+				'demo'   => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
+				'is_pro' => true
+			],
 		];
 
 		return apply_filters( 'happyaddons_get_pro_features_map', $pro_features_map );
