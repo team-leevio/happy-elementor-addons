@@ -313,7 +313,7 @@ For a more detailed explanation check out the following documentation
 
 = 3.21.4 - 12 May 2026 =
 
-- Tweak: Added hugeicons auto loading.
+- Tweak: Added Hugeicons Autoloading.
 
 = 3.21.3 - 27 April 2026 =
 
