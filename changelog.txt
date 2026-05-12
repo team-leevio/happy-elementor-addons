@@ -1,4 +1,8 @@
 
+= 3.21.5 - ?? ???? 2026 =
+
+- Fix: PHP 8.5 compatibility issue with implicit nullable parameter declaration.
+
 = 3.21.4 - 12 May 2026 =
 
 - Tweak: Added Hugeicons Autoloading.
