@@ -1,3 +1,8 @@
+
+= 3.21.4 - 12 May 2026 =
+
+- Tweak: Added Hugeicons Autoloading.
+
 = 3.21.3 - 27 April 2026 =
 
 - Fix: Justified Grid widget Compatible with Elementor's Tabs & Accordion widgets.
