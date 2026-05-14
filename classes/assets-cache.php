@@ -27,7 +27,7 @@ class Assets_Cache {
 
 	protected $upload_url;
 
-	public function __construct( $post_id = 0, Widgets_Cache $widget_cache_instance = null ) {
+	public function __construct( $post_id = 0, ?Widgets_Cache $widget_cache_instance = null ) {
 		$this->post_id = $post_id;
 		$this->widgets_cache = $widget_cache_instance;
 
