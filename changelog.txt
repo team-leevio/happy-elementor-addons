@@ -1,5 +1,5 @@
 
-= 3.21.5 - ?? ???? 2026 =
+= 3.21.5 - 29 May 2026 =
 
 - Fix: PHP 8.5 compatibility issue with implicit nullable parameter declaration.
 
