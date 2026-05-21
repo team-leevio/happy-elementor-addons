@@ -350,6 +350,15 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
+		
+		// Scroll Smoother
+		wp_register_script(
+			'scroll-smoother',
+			HAPPY_ADDONS_ASSETS . 'vendor/scroll-smoother/scroll-smoother.min.js',
+			['gsap', 'scroll-trigger'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
 
 		// Scroll Magic
 		wp_register_script(
