@@ -178,7 +178,8 @@ function ha_render_icon( $settings = [], $old_icon_id = 'icon', $new_icon_id = '
     // Check if its already migrated
     $migrated = isset( $settings['__fa4_migrated'][$new_icon_id] );
     // Check if its a new widget without previously selected icon using the old Icon control
-    $is_new = empty( $settings[$old_icon_id] );
+	$old_icon_id = is_string($old_icon_id) ? $old_icon_id : '';
+	$is_new = empty($old_icon_id) || empty($settings[$old_icon_id] ?? '');
     if ( isset( $settings[$new_icon_id]['value'] ) && is_string( $settings[$new_icon_id]['value'] ) ) {
         if ( preg_match( '/\bhm-[\w-]+/', $settings[$new_icon_id]['value'] ) ) {
             if ( $settings[$new_icon_id]['library'] !== "happy-icons" ) {
