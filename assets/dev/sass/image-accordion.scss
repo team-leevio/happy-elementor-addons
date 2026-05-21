@@ -164,6 +164,9 @@
 	&.ha-ia-icon-right {
 		flex-direction: row-reverse;
 	}
+	 svg {
+		width: 30px;
+	}
 }
 
 .ha-ia-content-label {
@@ -254,6 +257,9 @@ body[data-elementor-device-mode="tablet"] {
 	.ha-ia-content-icon-title {
 		font-size: 20px;
 	}
+	.ha-ia-content-icon-title svg {
+		width: 20px;
+	}
 	
 	.ha-ia-content-label {
 		font-size: 14px;
@@ -301,7 +307,9 @@ body[data-elementor-device-mode="mobile"] {
 	.ha-ia-content-icon-title {
 		font-size: 20px;
 	}
-	
+	.ha-ia-content-icon-title svg {
+		width: 20px;
+	}
 	.ha-ia-content-label {
 		font-size: 12px;
 	}
