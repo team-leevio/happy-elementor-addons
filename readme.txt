@@ -3,7 +3,7 @@ Plugin Name: Happy Addons for Elementor
 Version: 3.22.0
 Author: Leevio
 Author URI: https://happyaddons.com/
-Contributors: Leevio, happyaddons, thehappymonster, wedevs
+Contributors: leevio, happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
 Tested up to: 7.0
