@@ -4,7 +4,7 @@
  *
  * @package Happy_Addons
  * @since 2.13.0
- * @author HappyMonster
+ * @author Leevio
  *
  */
 defined( 'ABSPATH' ) || die();
