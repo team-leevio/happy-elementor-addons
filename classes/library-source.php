@@ -3,7 +3,7 @@
  * Library api class
  *
  * @package HappyAddons
- * @author HappyMonster
+ * @author Leevio
  */
 namespace Happy_Addons\Elementor\Classes;
 
