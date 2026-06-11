@@ -580,6 +580,14 @@ class Widgets_Manager {
 				'demo'      => 'https://demo.happyaddons.com/#/',
 				'is_pro' => true,
 			],
+			'morph-svg' => [
+				'cat' => 'creative',
+				'title' => __('Morph Svg', 'happy-elementor-addons'),
+				'icon' => 'hm hm-hexa',
+				'demo'      => 'https://demo.happyaddons.com/#/',
+				'is_pro' => true,
+			],
+			
 		];
 	}
 

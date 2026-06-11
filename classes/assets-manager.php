@@ -351,6 +351,15 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
+		
+		// Morph SVG Plugin
+		wp_register_script(
+			'morph-svg-plugin',
+			HAPPY_ADDONS_ASSETS . 'vendor/morph-svg-plugin/morph-svg-plugin.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
 
 		// Scroll Magic
 		wp_register_script(
