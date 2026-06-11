@@ -752,6 +752,8 @@ class Image_Accordion extends Base {
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+
+                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title svg' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -764,6 +766,7 @@ class Image_Accordion extends Base {
                 'default' => '#FFFFFF',
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title svg' => 'fill: {{VALUE}}',
                 ],
             ]
         );
@@ -785,6 +788,40 @@ class Image_Accordion extends Base {
                     ],
                 ],
                 'selector' => '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title',
+                
+            ]
+        );
+
+
+        $this->add_responsive_control(
+            'title_icon_size',
+            [
+                'label' => __('Icon Size', 'happy-elementor-addons'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                    'default' => [
+                        'unit' => 'px',
+                        'size' => 25,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title i' 
+                        => 'font-size: {{SIZE}}{{UNIT}};',
+
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title svg'
+                        => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                ],
+
             ]
         );
 
@@ -812,6 +849,9 @@ class Image_Accordion extends Base {
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title.ha-ia-icon-left i + span' => 'margin-left: {{SIZE}}{{UNIT}};',
                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title.ha-ia-icon-right i + span' => 'margin-right: {{SIZE}}{{UNIT}};',
+                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title.ha-ia-icon-left svg + span' => 'margin-left: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-content-icon-title.ha-ia-icon-right svg + span' => 'margin-right: {{SIZE}}{{UNIT}};',
+                
                 ],
             ]
         );
@@ -1255,6 +1295,7 @@ class Image_Accordion extends Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-popup i' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-popup svg' => 'fill: {{VALUE}}',
                 ],
             ]
         );
@@ -1292,6 +1333,7 @@ class Image_Accordion extends Base {
                 'separator' => 'before',
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-link i' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-link svg' => 'fill: {{VALUE}}',
                 ],
             ]
         );
@@ -1338,6 +1380,7 @@ class Image_Accordion extends Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-popup:hover i' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-popup:hover svg' => 'fill: {{VALUE}}',
                 ],
             ]
         );
@@ -1376,6 +1419,7 @@ class Image_Accordion extends Base {
                 'separator' => 'before',
                 'selectors' => [
                     '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-link:hover i' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .ha-ia-content-wrapper .ha-ia-actions .ha-ia-link:hover svg' => 'fill: {{VALUE}}',
                 ],
             ]
         );
