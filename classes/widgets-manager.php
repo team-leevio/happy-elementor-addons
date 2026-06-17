@@ -587,6 +587,13 @@ class Widgets_Manager {
 				'demo'      => 'https://demo.happyaddons.com/#/',
 				'is_pro' => true,
 			],
+			'dropping-elements' => [
+				'cat' => 'creative',
+				'title' => __('Dropping Elements', 'happy-elementor-addons'),
+				'icon' => 'hm hm-weather-windy-rain',
+				'demo'      => 'https://demo.happyaddons.com/#/',
+				'is_pro' => true,
+			],
 			
 		];
 	}
