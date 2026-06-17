@@ -170,7 +170,7 @@ class Dashboard {
                     'nonce'   => wp_create_nonce( self::WIZARD_NONCE ),
                     'ajaxUrl' => admin_url( 'admin-ajax.php' ),
                     'apiBase' => get_rest_url( null, 'happy/v1' ),
-                    'haAdmin' => admin_url( 'admin.php?page=happy-addons' ),
+                    'haAdmin' => admin_url( 'admin.php?page=happy-addons#pro' ),
                 ]
             );
 
