@@ -594,6 +594,13 @@ class Widgets_Manager {
 				'demo'      => 'https://demo.happyaddons.com/#/',
 				'is_pro' => true,
 			],
+			'gsap-svg-draw' => [
+				'cat' => 'creative',
+				'title' => __('GSAP SVG Draw', 'happy-elementor-addons'),
+				'icon' => 'hm hm-text-outline',
+				'demo'      => 'https://demo.happyaddons.com/#/',
+				'is_pro' => true,
+			],
 			
 		];
 	}
