@@ -49,7 +49,7 @@ graph TD
     C --> G[Individual Widget Classes]
     D --> H[Extension Files]
     G --> I[Traits / Helper Functions]
-    G --> J[Controls (via Controls Manager)]
+    G --> J[Controls via Controls Manager]
     G --> K[Render → Front‑end Assets]
     K --> L[Assets Cache]
     F --> M[License / Pro Services]
