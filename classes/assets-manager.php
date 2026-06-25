@@ -360,6 +360,15 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
+		
+		// Draw SVGP SVG Plugin
+		wp_register_script(
+			'draw-svg-plugin',
+			HAPPY_ADDONS_ASSETS . 'vendor/draw-svg/draw-svg-plugin.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
 
 		// Scroll Magic
 		wp_register_script(
