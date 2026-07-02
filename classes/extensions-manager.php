@@ -116,6 +116,12 @@ class Extensions_Manager {
 				'demo'   => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
 				'is_pro' => true
 			],
+			'multi-layer-parallax' => [
+				'title' => __( 'Multi Layer Parallax', 'happy-addons-pro' ),
+				'icon' => 'huge huge-layers-02',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/multi-layer-parallax/',
+				'is_pro' => true,
+			]
 		];
 
 		return apply_filters( 'happyaddons_get_pro_features_map', $pro_features_map );
