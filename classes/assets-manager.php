@@ -369,6 +369,15 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
+		
+		// Motion Path Plugin
+		wp_register_script(
+			'motion-path-plugin',
+			HAPPY_ADDONS_ASSETS . 'vendor/motion-path-plugin/MotionPathPlugin.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
 
 		// Scroll Magic
 		wp_register_script(

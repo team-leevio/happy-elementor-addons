@@ -601,6 +601,13 @@ class Widgets_Manager {
 				'demo'      => 'https://demo.happyaddons.com/#/',
 				'is_pro' => true,
 			],
+			'motion-path-waypoints' => [
+				'cat' => 'creative',
+				'title' => __('Motion Path Waypoints', 'happy-elementor-addons'),
+				'icon' => 'hm hm-motion-button',
+				'demo'      => 'https://demo.happyaddons.com/#/',
+				'is_pro' => true,
+			],
 			
 		];
 	}
