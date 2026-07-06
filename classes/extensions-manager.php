@@ -181,7 +181,7 @@ class Extensions_Manager {
 				'is_pro' => false,
 			],
 			'background-parallax' => [
-				'title' => __( 'Background Parallax', 'happy-addons-pro' ),
+				'title' => __( 'Background Parallax', 'happy-elementor-addons' ),
 				'icon' => 'huge huge-web-design-02',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/background-parallax/',
 				'is_pro' => false,

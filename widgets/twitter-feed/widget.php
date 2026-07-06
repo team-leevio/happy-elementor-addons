@@ -1387,7 +1387,6 @@ class Twitter_Feed extends Base {
 		}
 
 		$query_settings = [
-			'credentials' 			=> $credentials,
 			'id' 					=> $id,
 			'user_name' 			=> $user_name,
 			'remove_cache' 			=> $settings['remove_cache'],
@@ -1404,7 +1403,13 @@ class Twitter_Feed extends Base {
 			'read_more_text'		=> $settings['read_more_text'],
 			'content_word_count'	=> $settings['content_word_count'],
 		];
-		$query_settings = json_encode($query_settings, true);
+		$query_settings = json_encode( $query_settings, true );
+
+		$crede_cache_key = '_ha_tweeter_crede_cache_key_' . $id;
+		$crede_cache_data = get_transient( $crede_cache_key );
+		if ( ! $crede_cache_data || $crede_cache_data != $credentials ) {
+			set_transient( $crede_cache_key, $credentials, 12 * HOUR_IN_SECONDS );
+		}
 
 		switch ($settings['sort_by']) {
 			case 'old-posts':

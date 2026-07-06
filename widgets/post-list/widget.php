@@ -60,7 +60,7 @@ class Post_List extends Base {
 	 */
 	public function get_post_types() {
 		$post_types = ha_get_post_types( [], [ 'elementor_library', 'attachment' ] );
-		return $post_types;
+		return array_merge($post_types, [ 'current_query' => 'Current Query' ]);
 	}
 
 	/**
@@ -100,6 +100,28 @@ class Post_List extends Base {
 				'options' => [
 					'recent'   => __( 'Recent Post', 'happy-elementor-addons' ),
 					'selected' => __( 'Selected Post', 'happy-elementor-addons' ),
+					'category' => __( 'Category', 'happy-elementor-addons' ),
+					// 'category' => __( 'Category (only compatible with post type.)', 'happy-elementor-addons' ),
+				],
+				'condition' => [
+					'post_type!' => [ 'current_query' ],
+				],
+
+			]
+		);
+
+		$this->add_control(
+			'category',
+			[
+				'label'   => __( 'Categories', 'happy-elementor-addons' ),
+				'show_label'   => false,
+				'label_block'   => true,
+				'type'    => Controls_Manager::SELECT2,
+				'options' => $this->get_terms(),
+				'multiple'    => true,
+				'condition' => [
+					'post_type' => [ 'post' ],
+					'show_post_by' => [ 'category' ],
 				],
 
 			]
@@ -113,7 +135,22 @@ class Post_List extends Base {
 				'default'   => 3,
 				'dynamic'   => [ 'active' => true ],
 				'condition' => [
-					'show_post_by' => [ 'recent' ],
+					'post_type!' => [ 'current_query' ],
+					'show_post_by!' => [ 'selected' ],
+				],
+			]
+		);
+
+		$this->add_control(
+			'offset',
+			[
+				'label'     => __( 'Offset', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::NUMBER,
+				// 'default'   => 0,
+				'dynamic'   => [ 'active' => false ],
+				'condition' => [
+					'post_type!' => [ 'current_query' ],
+					'show_post_by!' => [ 'selected' ],
 				],
 			]
 		);
@@ -279,6 +316,7 @@ class Post_List extends Base {
 			[
 				'label'       => __( 'Icon', 'happy-elementor-addons' ),
 				'type'        => Controls_Manager::ICONS,
+				'skin' => 'inline',
 				'label_block' => true,
 				'default'     => [
 					'value'   => 'far fa-check-circle',
@@ -335,6 +373,7 @@ class Post_List extends Base {
 			[
 				'label'     => __( 'Author Icon', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::ICONS,
+				'skin' => 'inline',
 				'default'   => [
 					'value'   => 'far fa-user',
 					'library' => 'reguler',
@@ -366,10 +405,33 @@ class Post_List extends Base {
 			[
 				'label'     => __( 'Date Icon', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::ICONS,
+				'skin' => 'inline',
 				'default'   => [
 					'value'   => 'far fa-calendar-check',
 					'library' => 'reguler',
 				],
+				'condition' => [
+					'meta'      => 'yes',
+					'date_meta' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'date_format',
+			[
+				'label'     => __( 'Date Format', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'site_default',
+				'options' => [
+                    'site_default' => esc_html__('Site Default', 'happy-elementor-addons'),
+                    'format_1' => esc_html__( date('F j, Y'), 'happy-elementor-addons'),
+                    'format_2' => esc_html__( date('M j, Y'), 'happy-elementor-addons'),
+                    'format_3' => esc_html__( date('Y-m-d'), 'happy-elementor-addons'),
+                    'format_4' => esc_html__( date('m/d/Y'), 'happy-elementor-addons'),
+                    'format_5' => esc_html__( date('d/m/Y'), 'happy-elementor-addons'),
+                    'format_6' => esc_html__( date('d.m.Y'), 'happy-elementor-addons'),
+                ],
 				'condition' => [
 					'meta'      => 'yes',
 					'date_meta' => 'yes',
@@ -398,6 +460,7 @@ class Post_List extends Base {
 			[
 				'label'     => __( 'Category Icon', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::ICONS,
+				'skin' => 'inline',
 				'default'   => [
 					'value'   => 'far fa-folder-open',
 					'library' => 'reguler',
@@ -406,6 +469,56 @@ class Post_List extends Base {
 					'meta'          => 'yes',
 					'category_meta' => 'yes',
 					'post_type' => [ 'post', 'product' ],
+				],
+			]
+		);
+
+		$this->add_control(
+			'custom_meta',
+			[
+				'label'        => __( 'Custom', 'happy-elementor-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __( 'Show', 'happy-elementor-addons' ),
+				'label_off'    => __( 'Hide', 'happy-elementor-addons' ),
+				'return_value' => 'yes',
+				'default'      => '',
+				'condition'    => [
+					'meta'      => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'custom_meta_key',
+			[
+				'label'     => __( 'Custom Meta Key', 'happy-elementor-addons' ),
+				'description'     => __( 'Set custom meta key to show the value. value must be string or integer.', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::TEXT,
+				'label_block' => true,
+				'show_label' => false,
+				'dynamic'     => [
+					'active' => false,
+				],
+				'condition' => [
+					'meta'          => 'yes',
+					'custom_meta' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'custom_meta_icon',
+			[
+				'label'     => __( 'Custom Icon', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::ICONS,
+				'skin' => 'inline',
+				'default'   => [
+					'value'   => 'far fa-hand-point-right',
+					'library' => 'reguler',
+				],
+				'condition' => [
+					'meta'          => 'yes',
+					'custom_meta' => 'yes',
 				],
 			]
 		);
@@ -425,6 +538,27 @@ class Post_List extends Base {
 				],
 			]
 		);
+
+		// $this->add_control(
+        //     'meta_separator',
+        //     [
+        //         'label' => esc_html__('Meta Separator', 'happy-elementor-addons'),
+        //         'type' => Controls_Manager::TEXT,
+        //         'default' => '///',
+		// 		'ai' => [
+		// 			'active' => false,
+		// 		],
+        //         'selectors' => [
+        //             '{{WRAPPER}} .ha-post-list-meta-wrap span:after' => 'content: "{{VALUE}}";',
+        //         ],
+		// 		'condition' => [
+		// 			'meta' => 'yes',
+		// 		],
+        //         'dynamic' => [
+        //             'active' => true
+        //         ],
+        //     ]
+        // );
 
 		$this->add_control(
 			'title_tag',
@@ -1049,12 +1183,53 @@ class Post_List extends Base {
 				'label'     => __( 'Space Between', 'happy-elementor-addons' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [
-					'{{WRAPPER}} .ha-post-list-meta-wrap span i' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-post-list-meta-wrap span :is(i, svg)' => 'margin-right: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'meta_separator_space',
+			[
+				'label'     => __( 'Separator Space', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .ha-post-list-meta-wrap span:after' => 'margin-left: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
 
 		$this->end_controls_section();
+	}
+
+	protected function get_terms() {
+		$data = [];
+		$terms = get_terms( [
+			'taxonomy'   => 'category',
+			'hide_empty' => false,
+		] );
+
+
+		if ( is_wp_error( $terms ) || empty( $terms ) ) {
+			return $data;
+		}
+
+		foreach ( $terms as $term ) {
+			$label = $term->name;
+			// $taxonomy_name = self::get_taxonomy_label( $term->taxonomy );
+			// if ( $taxonomy_name ) {
+			// 	$label = "{$taxonomy_name}: {$label}";
+			// }
+
+			// $data[] = [
+			// 	'id' => $term->term_taxonomy_id,
+			// 	'text' => $label,
+			// ];
+
+			$data[ $term->term_taxonomy_id ] = $label;
+		}
+
+		return $data;
 	}
 
 	protected function render() {
@@ -1071,8 +1246,15 @@ class Post_List extends Base {
 			'suppress_filters' => false,
 		];
 
-		if ( 'recent' === $settings['show_post_by'] ) {
+		if ( 'recent' === $settings['show_post_by'] || 'category' === $settings['show_post_by'] ) {
 			$args['posts_per_page'] = $settings['posts_per_page'];
+			if ( !empty( $settings['offset'] ) ) {
+				$args['offset'] = $settings['offset'];
+			}
+		}
+
+		if ( 'post' === $settings['post_type'] && 'category' === $settings['show_post_by'] && isset($settings['category']) && ! empty( $settings['category'] ) ) {
+			$args['category__in'] = $settings['category'];
 		}
 
 		$customize_title = [];
@@ -1101,11 +1283,32 @@ class Post_List extends Base {
 			$args['orderby']  = 'post__in';
 		}
 
-		if ( 'selected' === $settings['show_post_by'] && empty( $ids ) ) {
+		if ( 'current_query' === $settings['post_type'] ) {
+			global $wp_query;
+			// echo '<pre>';
+			// var_dump($wp_query->query_vars );
+			// var_dump($wp_query);
+			// echo '</pre>';
+			$args = $wp_query->query_vars;
+			// $args['posts_per_page'] = $settings['posts_per_page'];
+		}
+
+		if ( ('selected' === $settings['show_post_by'] && empty( $ids )) || ( 'category' === $settings['show_post_by'] && empty( $settings['category'] ) ) ) {
 			$posts = [];
 		} else {
 			$posts = get_posts( $args );
 		}
+
+		$date_format = [
+			'site_default' => get_option( 'date_format' ),
+			'format_1'      => 'F j, Y',
+			'format_2'      => 'M j, Y',
+			'format_3'       => 'Y-m-d',
+			'format_4'       => 'm/d/Y',
+			'format_5'       => 'd/m/Y',
+			'format_6'       => 'd.m.Y',
+		];
+		$date_format = isset( $settings['date_format'] ) ? $date_format[ $settings['date_format'] ] : get_option( 'date_format' );
 
 		$this->add_render_attribute( 'wrapper', 'class', [ 'ha-post-list-wrapper' ] );
 		$this->add_render_attribute( 'wrapper-inner', 'class', [ 'ha-post-list' ] );
@@ -1166,7 +1369,7 @@ class Post_List extends Base {
 													if ( $settings['date_icon'] ) :
 														Icons_Manager::render_icon( $settings['date_icon'], [ 'aria-hidden' => 'true' ] );
 													endif;
-													echo get_the_date( get_option( 'date_format' ), $post->ID );
+													echo get_the_date( $date_format, $post->ID );
 													?>
 												</span>
 											<?php endif; ?>
@@ -1189,6 +1392,28 @@ class Post_List extends Base {
 												endif;
 												echo ( ! empty( $categories ) ) ? esc_html( $categories[0]->name ) : '';
 												?>
+												</span>
+											<?php endif; ?>
+
+											<?php if ( 'yes' === $settings['custom_meta'] ) : ?>
+												<span class="ha-post-list-custom-meta">
+													<?php
+													if ( $settings['custom_meta_icon'] ) :
+														Icons_Manager::render_icon( $settings['custom_meta_icon'], [ 'aria-hidden' => 'true' ] );
+													endif;
+													$custom_meta_key = get_post_meta( $post->ID, $settings['custom_meta_key'], true );
+													if ( $custom_meta_key && ('string' == gettype($custom_meta_key) || 'integer' == gettype($custom_meta_key)) ) {
+														echo esc_html( $custom_meta_key );
+													}
+													// echo wp_kses( $custom_meta_key, [
+													// 	'a' => [
+													// 		'href' => [],
+													// 		'title' => [],
+													// 		'rel' => [],
+													// 	],
+													// 	'time' => [],
+													// ] );
+													?>
 												</span>
 											<?php endif; ?>
 

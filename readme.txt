@@ -1,13 +1,13 @@
 === Happy Addons for Elementor ===
 Plugin Name: Happy Addons for Elementor
-Version: 3.20.1
+Version: 3.22.0
 Author: Leevio
 Author URI: https://happyaddons.com/
-Contributors: happyaddons, thehappymonster, wedevs, Leevio
+Contributors: Leevio, happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 5.0
-Tested up to: 6.8
-Stable tag: 3.20.1
+Tested up to: 7.0
+Stable tag: 3.22.0
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -267,8 +267,11 @@ You will be able to convert your square image into lovely custom shapes. No hass
 
 
 = Can I use my own particle js effects within HappyAddons? =
-Yes, you can use particle effects form the Particle Js site. Here is tutorial -
+Yes, you can use particle effects from the Particle Js site. Here is tutorial -
 [youtube https://www.youtube.com/watch?v=iD83Sr4pFSw&ab_channel=HappyAddons]
+
+= Where do I report security bugs found in this plugin? =
+Please report security bugs found in the source code of the Happy Addons for Elementor plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/9e5fb984-20b0-4938-ada0-b373eb456019). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
 
 
 == Installation ==
@@ -307,6 +310,71 @@ For a more detailed explanation check out the following documentation
 13. Card widget - capsule design
 
 == Changelog ==
+
+= 3.22.0 - 8 June 2026 =
+
+- Update: Made Compatible with PHP 8.5
+- Update: Made Compatible with WordPress 7.0
+- Update: Made Compatible with Elementor 4.1
+
+= 3.21.4 - 12 May 2026 =
+
+- Tweak: Added Hugeicons Autoloading.
+
+= 3.21.3 - 27 April 2026 =
+
+- Fix: Justified Grid widget Compatible with Elementor's Tabs & Accordion widgets.
+
+= 3.21.2 - 01 April 2026 =
+
+- Update: Made Compatible with Elementor 4.0
+
+= 3.21.1 - 05 March 2026 =
+
+- Fix: Template Conditions Manager security issue.
+- Fix: Happy Clone security issue.
+
+= 3.21.0 - 17 February 2026 =
+
+- Fix: Resolved Archive Post image size issue.
+- Update: Added 'Previous/Next' & 'Numbers and Previous/Next' option in Archive Post pagination.
+- Update: Added Title, Meta & Readmore hover style controls in Archive Post.
+- Update: Added Current Query option in Post List.
+- Update: Added Offset control in Post List.
+- Update: Added Category filter option in Post List.
+- Update: Added Date format control in Post List.
+- Update: Added Custom Meta Field support in Post List.
+- Update: Added Item Counter Enable option in Taxonomy List.
+- Update: Added Item Counter style option in Taxonomy List.
+
+= 3.20.8 - 02 February 2026 =
+
+- Fix: Age Gate & SVG Line Draw security issue.
+
+= 3.20.7 - 19 January 2026 =
+
+- Fix: Hotfix for happy clone issue.
+
+= 3.20.6 - 15 January 2026 =
+
+- Fix: Resolved Twitter Feed issue.
+- Fix: Resolved Happy Clone issue.
+- Update: Made Compatible with Elementor 3.34
+
+= 3.20.4 - 17 December 2025 =
+
+- Fix: Resolved Theme Builder Condition issue.
+- Fix: Resolved Custom JS issue.
+
+= 3.20.3 - 10 December 2025 =
+
+- Fix: Event Calendar all day event issue.
+- Update: Added Image & Video offset control in Mouse Cursor.
+- Update: Made Compatible with WordPress 6.9
+
+= 3.20.2 - 20 November 2025 =
+
+- Update: Made Compatible with Elementor 3.33
 
 = 3.20.1 - 15 September 2025 =
 

@@ -57,14 +57,7 @@ class Assets_Manager {
 			null,
 			HAPPY_ADDONS_VERSION
 		);
-
-		wp_register_style(
-			'huge-icons',
-			HAPPY_ADDONS_ASSETS . 'fonts/huge-icons/huge-icons.min.css',
-			null,
-			HAPPY_ADDONS_VERSION
-		);
-
+		
 		// Image comparasion
 		wp_register_style(
 			'twentytwenty',
@@ -332,14 +325,6 @@ class Assets_Manager {
 			true
 		);
 
-		// mouse follower css
-		wp_register_style(
-			'mouse-follower',
-			HAPPY_ADDONS_ASSETS . 'vendor/mouse-follower/mouse-follower.min.css',
-			[],
-			HAPPY_ADDONS_VERSION
-		);
-
 		// mouse follower js
 		wp_register_script(
 			'mouse-follower',
@@ -382,15 +367,6 @@ class Assets_Manager {
 			HAPPY_ADDONS_ASSETS . 'css/main' . $suffix . 'css',
 			['elementor-frontend'],
 			HAPPY_ADDONS_VERSION
-		);
-
-		// mouse follower js
-		wp_register_script(
-			'mouse-follower',
-			HAPPY_ADDONS_ASSETS . 'vendor/mouse-follower/mouse-follower.min.js',
-			['gsap'],
-			HAPPY_ADDONS_VERSION,
-			true
 		);
 
 		// mouse follower css
@@ -518,13 +494,6 @@ class Assets_Manager {
 		wp_enqueue_style(
 			'happy-icons',
 			HAPPY_ADDONS_ASSETS . 'fonts/style.min.css',
-			null,
-			HAPPY_ADDONS_VERSION
-		);
-
-		wp_enqueue_style(
-			'huge-icons',
-			HAPPY_ADDONS_ASSETS . 'fonts/huge-icons/huge-icons.min.css',
 			null,
 			HAPPY_ADDONS_VERSION
 		);

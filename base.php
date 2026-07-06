@@ -38,7 +38,7 @@ class Base {
 		add_action( 'elementor/elements/categories_registered', [ $this, 'add_category' ] );
 
 		// Register custom controls
-		add_action( 'elementor/controls/controls_registered', [ $this, 'register_controls' ] );
+		add_action( 'elementor/controls/register', [ $this, 'register_controls' ] );
 
 		add_action( 'init', [ $this, 'include_on_init' ] );
 
@@ -224,7 +224,7 @@ class Base {
 			'happy_addons_category',
 			[
 				'title' => __( 'Happy Addons', 'happy-elementor-addons' ),
-				'icon' => 'fa fa-smile-o',
+				'icon' => 'far fa-smile',
 			]
 		);
 	}
