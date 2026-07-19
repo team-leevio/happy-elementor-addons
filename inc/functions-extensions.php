@@ -109,6 +109,7 @@ if (! function_exists('ha_is_equal_height_enabled')) {
 	}
 }
 
+
 if (! function_exists('ha_is_shape_divider_enabled')) {
 	/**
 	 * Check if Happy Shape Divider is enabled
@@ -118,13 +119,15 @@ if (! function_exists('ha_is_shape_divider_enabled')) {
 	function ha_is_shape_divider_enabled() {
 		return apply_filters('happyaddons/extensions/shape_divider', true);
 	}
+}
 
+if (! function_exists('ha_is_liquid_glass_enabled')) {
 	/**
 	 * Check if Liquid Glass is enabled
 	 *
 	 * @return bool
 	 */
-	function hapro_is_liquid_glass_enabled() {
-		return apply_filters('happyaddons/extensions/liquid_glass', true);
+	function ha_is_liquid_glass_enabled() {
+		return apply_filters( 'happyaddons/extensions/liquid_glass', true );
 	}
 }
