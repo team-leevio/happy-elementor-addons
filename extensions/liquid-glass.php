@@ -71,7 +71,7 @@ class Liquid_Glass {
 		$element->start_controls_section(
 			'_ha_liquid_glass_section',
 			[
-				'label' => esc_html__('Happy Liquid Glass', 'happy-addons-pro') . ha_get_section_icon(),
+				'label' => esc_html__('Liquid Glass', 'happy-addons-pro') . ha_get_section_icon(),
 				'tab'   => $tab,
 			]
 		);
@@ -87,7 +87,7 @@ class Liquid_Glass {
 		$element->add_control(
 			'ha_lg_switcher',
 			[
-				'label'        => __('Enable Happy Liquid Glass', 'happy-addons-pro'),
+				'label'        => __('Enable Liquid Glass', 'happy-addons-pro'),
 				'type'         => Controls_Manager::SWITCHER,
 				'prefix_class' => 'ha-lg-',
 				'render_type'  => 'template',
