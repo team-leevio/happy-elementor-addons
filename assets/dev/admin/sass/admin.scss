@@ -349,6 +349,7 @@
 	--e-button-padding-x: 10px;
 }
 
+
 .ha-review-button--error {
 	--e-button-context-color: var(--e-context-error-color);
 	--e-button-context-color-dark: var(--e-context-error-color-dark);
@@ -380,6 +381,10 @@
 .ha-review-button.ha-review-button--outline.disabled {
 	color: var(--e-button-context-color-dark);
 	background: #818a91;
+}
+
+.ha-review-notice__actions > .ha-review-button.ha-review-button--cta:first-child {
+    color: #fff;
 }
 
 #happy_addons_news_update {
