@@ -316,7 +316,7 @@ For a more detailed explanation check out the following documentation
 - New: Liquid Glass Feature.
 - New: WhatsApp Button widget.
 
-= 3.23.0 - 8 June 2026 =
+= 3.22.0 - 8 June 2026 =
 
 - Update: Made Compatible with PHP 8.5
 - Update: Made Compatible with WordPress 7.0
