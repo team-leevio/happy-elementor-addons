@@ -3,6 +3,7 @@
 
 - New: Liquid Glass feature.
 - New: WhatsApp Button widget.
+- Fix: Notice & Review CSS  issue with WP 7.
 
 = 3.22.0 - 8 June 2026 =
 
