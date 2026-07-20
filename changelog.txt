@@ -1,4 +1,9 @@
 
+= 3.23.0 - 21 July 2026 =
+
+- New: Liquid Glass Feature.
+- New: WhatsApp Button widget.
+
 = 3.22.0 - 8 June 2026 =
 
 - Update: Made Compatible with PHP 8.5
