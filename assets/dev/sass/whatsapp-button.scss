@@ -46,6 +46,10 @@
 	}
 }
 
+.elementor-editor-preview .elementor-widget-empty.ha-whatsapp-button {
+    display: block;
+}
+
 // --- Wrapper ---
 // The Elementor widget wrapper will have position:fixed via our prefix classes.
 // We force the wrapper itself to be a "zero-size" fixed anchor.

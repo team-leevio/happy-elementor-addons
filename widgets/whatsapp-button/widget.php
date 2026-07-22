@@ -393,6 +393,7 @@ class Whatsapp_Button extends Base
 				'selectors'  => [
 					'{{WRAPPER}}.ha-whatsapp--pos-bottom-right .ha-whatsapp-button-main' => 'right: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}}.ha-whatsapp--pos-bottom-left .ha-whatsapp-button-main'  => 'left: {{SIZE}}{{UNIT}};',
+					
 				],
 				'condition'  => [
 					'button_position!' => 'custom',
@@ -420,7 +421,7 @@ class Whatsapp_Button extends Base
 					],
 				],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-whatsapp-button-main' => 'top: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-whatsapp-button-main' => 'top: {{SIZE}}{{UNIT}};bottom: auto;',
 				],
 				'condition'  => [
 					'button_position' => 'custom',
@@ -462,7 +463,8 @@ class Whatsapp_Button extends Base
 					],
 				],
 				'selectors'  => [
-					'{{WRAPPER}} .ha-whatsapp-button-main' => 'left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-whatsapp-button-main' => 'left: {{SIZE}}{{UNIT}}; right: auto;',
+					
 				],
 				'condition'  => [
 					'button_position' => 'custom',
