@@ -39,9 +39,9 @@ class Liquid_Glass {
 
 		wp_register_script(
 			'happy-liquid-glass',
-			HAPPY_ADDONS_PRO_ASSETS . 'js/liquid-glass' . $suffix . 'js',
+			HAPPY_ADDONS_ASSETS . 'js/liquid-glass' . $suffix . 'js',
 			['jquery', 'happy-elementor-addons'],
-			HAPPY_ADDONS_PRO_VERSION,
+			HAPPY_ADDONS_VERSION,
 			true
 		);
 	}
@@ -51,9 +51,9 @@ class Liquid_Glass {
 
 		wp_register_style(
 			'happy-liquid-glass',
-			HAPPY_ADDONS_PRO_ASSETS . 'css/widgets/liquid-glass.min.css',
+			HAPPY_ADDONS_ASSETS . 'css/widgets/liquid-glass.min.css',
 			[],
-			HAPPY_ADDONS_PRO_VERSION
+			HAPPY_ADDONS_VERSION
 		);
 	}
 
@@ -138,49 +138,34 @@ class Liquid_Glass {
 					'bubble-glass'      => __('Bubble Glass', 'happy-addons-pro'),
 					'bubble-lens'       => __('Bubble Lens', 'happy-addons-pro'),
 					'cascade-ripple'    => __('Cascade Ripple', 'happy-addons-pro'),
-					
-					
 					'diamond-dust'      => __('Diamond Dust', 'happy-addons-pro'),
 					'drop-water'        => __('Drop Water', 'happy-addons-pro'),
-					
 					'distorted-prism'   => __('Distorted Prism', 'happy-addons-pro'),
 					'fine-crystal'      => __('Fine Crystal', 'happy-addons-pro'),
-	// 'fog-drift'         => __('Fog Drift', 'happy-addons-pro'),
 					'frozen-glass'      => __('Frozen Glass', 'happy-addons-pro'),
-	// 'frozen-window'     => __('Frozen Window', 'happy-addons-pro'),
 					'gentle-wave'       => __('Gentle Wave', 'happy-addons-pro'),
 					'glass-fiber'       => __('Glass Fiber', 'happy-addons-pro'),
-	// 'goo'               => __('Goo', 'happy-addons-pro'),
-	// 'gooey'             => __('Gooey', 'happy-addons-pro'),
 					'holographic-glass' => __('Holographic Glass', 'happy-addons-pro'),
 					'ice-crystal'       => __('Ice Crystal', 'happy-addons-pro'),
 					'jelly-blob'        => __('Jelly Blob', 'happy-addons-pro'),
 					'jelly-surface'     => __('Jelly Surface', 'happy-addons-pro'),
 					'lateral-surge'     => __('Lateral Surge', 'happy-addons-pro'),
 					'lava-flow'         => __('Lava Flow', 'happy-addons-pro'),
-	// 'lens-glass'        => __('Lens Glass', 'happy-addons-pro'),
 					'liquid-lens'       => __('Liquid Lens', 'happy-addons-pro'),
 					'macos-glass'       => __('macOS Glass', 'happy-addons-pro'),
 					'magnifier-lens'    => __('Magnifier Lens', 'happy-addons-pro'),
 					'melted-glass'      => __('Melted Glass', 'happy-addons-pro'),
-	// 'mercury-liquid'    => __('Mercury Liquid', 'happy-addons-pro'),
 					'micro-frost'       => __('Micro Frost', 'happy-addons-pro'),
-	// 'neutral-frost'     => __('Neutral Frost', 'happy-addons-pro'),
 					'ocean-current'     => __('Ocean Current', 'happy-addons-pro'),
 					'prism-cut'         => __('Prism Cut', 'happy-addons-pro'),
-	// 'quartz-stream'     => __('Quartz Stream', 'happy-addons-pro'),
 					'rain-streak'       => __('Rain Streak', 'happy-addons-pro'),
-				'tempest-glass'     => __('Tempest Glass', 'happy-addons-pro'),
-				'thai-frost'        => __('Thai Frost', 'happy-addons-pro'),
-				'thai-frost-2'      => __('Thai Frost 2', 'happy-addons-pro'),
-				'turbulent-warp'    => __('Turbulent Warp', 'happy-addons-pro'),
+					'tempest-glass'     => __('Tempest Glass', 'happy-addons-pro'),
+					'thai-frost'        => __('Thai Frost', 'happy-addons-pro'),
+					'thai-frost-2'      => __('Thai Frost 2', 'happy-addons-pro'),
+					'turbulent-warp'    => __('Turbulent Warp', 'happy-addons-pro'),
 					'ultra-lens'        => __('Ultra Lens', 'happy-addons-pro'),
-	// 'vapor-lens'        => __('Vapor Lens', 'happy-addons-pro'),
 					'viscous-gel'       => __('Viscous Gel', 'happy-addons-pro'),
-	// 'visionos-glass'    => __('VisionOS Glass', 'happy-addons-pro'),
-	//'water-ripple'      => __('Water Ripple', 'happy-addons-pro'),
 					'wavy-water'        => __('Wavy Water', 'happy-addons-pro'),
-	// 'wind-flow'         => __('Wind Flow', 'happy-addons-pro'),
 					'custom'            => __('Custom', 'happy-addons-pro'),
 				],
 				'prefix_class' => 'ha-lg-',
