@@ -478,20 +478,6 @@ class Whatsapp_Button extends Base
 			]
 		);
 
-		// $this->add_responsive_control(
-		// 	'custom_right',
-		// 	[
-		// 		'label'      => __('Right', 'happy-elementor-addons'),
-		// 		'type'       => Controls_Manager::SLIDER,
-		// 		'size_units' => ['px', '%'],
-		// 		'selectors'  => [
-		// 			'{{WRAPPER}} .ha-whatsapp-button-main' => 'right: {{SIZE}}{{UNIT}}; left: 0;',
-		// 		],
-		// 		'condition'  => [
-		// 			'button_position' => 'custom',
-		// 		],
-		// 	]
-		// );
 
 		$this->add_control(
 			'z_index',
