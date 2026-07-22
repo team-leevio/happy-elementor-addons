@@ -263,10 +263,31 @@ class Whatsapp_Button extends Base
 			'agent_status',
 			[
 				'label'       => __('Agent Status', 'happy-elementor-addons'),
-				'type'        => Controls_Manager::TEXT,
-				'default'     => __('Online', 'happy-elementor-addons'),
+				'type'   	  => Controls_Manager::SELECT,
+				'default'     => 'online',
 				'placeholder' => __('Enter status (e.g. Online)', 'happy-elementor-addons'),
 				'dynamic'     => ['active' => true],
+				'render_type' => 'template',
+				'options'     => [
+					'online'   => __('Online', 'happy-elementor-addons'),
+					'offline'  => __('Offline', 'happy-elementor-addons'),
+					'busy'     => __('Busy', 'happy-elementor-addons'),
+					'custom'   => __('Custom', 'happy-elementor-addons'),
+				],
+			]
+		);
+
+		$this->add_control(
+			'custom_agent_status',
+			[
+				'label'       => __('Custom Status Text', 'happy-elementor-addons'),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'placeholder' => __('e.g. Available for chat', 'happy-elementor-addons'),
+				'dynamic'     => ['active' => true],
+				'condition'   => [
+					'agent_status' => 'custom',
+				],
 			]
 		);
 
@@ -428,21 +449,6 @@ class Whatsapp_Button extends Base
 				],
 			]
 		);
-
-		// $this->add_responsive_control(
-		// 	'custom_bottom',
-		// 	[
-		// 		'label'      => __('Bottom', 'happy-elementor-addons'),
-		// 		'type'       => Controls_Manager::SLIDER,
-		// 		'size_units' => ['px', '%'],
-		// 		'selectors'  => [
-		// 			'{{WRAPPER}} .ha-whatsapp-button-main' => 'bottom: {{SIZE}}{{UNIT}}; top: 0;',
-		// 		],
-		// 		'condition'  => [
-		// 			'button_position' => 'custom',
-		// 		],
-		// 	]
-		// );
 
 		$this->add_responsive_control(
 			'custom_left',
@@ -1370,7 +1376,13 @@ class Whatsapp_Button extends Base
 							<?php endif; ?>
 							<div class="ha-whatsapp-popup__header-info">
 								<h4 class="ha-whatsapp-popup__header-title"><?php echo esc_html($settings['agent_name']); ?></h4>
-								<span class="ha-whatsapp-popup__header-status"><?php echo esc_html($settings['agent_status']); ?></span>
+								<?php
+								$status_text = $settings['agent_status'];
+								if ('custom' === $settings['agent_status'] && ! empty($settings['custom_agent_status'])) {
+									$status_text = $settings['custom_agent_status'];
+								}
+								?>
+								<span class="ha-whatsapp-popup__header-status"><?php echo esc_html($status_text); ?></span>
 							</div>
 						</div>
 						<button type="button" class="ha-whatsapp-popup__close" aria-label="<?php echo esc_attr__('Close', 'happy-elementor-addons'); ?>">
