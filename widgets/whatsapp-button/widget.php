@@ -941,7 +941,7 @@ class Whatsapp_Button extends Base
 				],
 				'selectors'  => [
 					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon, {{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-close-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon svg, {{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-close-icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon svg, {{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-close-icon svg, .ha-whatsapp-chat-opened .ha-whatsapp-icon-chat svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -1045,7 +1045,7 @@ class Whatsapp_Button extends Base
 				'default'   => '#ffffff',
 				'selectors' => [
 					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon, {{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-close-icon'     => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon svg, {{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-close-icon svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-icon svg, {{WRAPPER}} .ha-whatsapp-link .ha-whatsapp-close-icon svg, {{WRAPPER}} .ha-whatsapp-chat-opened .ha-whatsapp-icon-chat svg' => 'fill: {{VALUE}};',
 				],
 			]
 		);
@@ -1059,6 +1059,7 @@ class Whatsapp_Button extends Base
 				'selectors' => [
 					'{{WRAPPER}} .ha-whatsapp-link'        => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .ha-whatsapp-pulse-ring'  => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-whatsapp-chat-opened .ha-whatsapp-popup__footer-btn' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -1087,7 +1088,7 @@ class Whatsapp_Button extends Base
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ha-whatsapp-link:hover .ha-whatsapp-icon, {{WRAPPER}} .ha-whatsapp-link:hover .ha-whatsapp-close-icon'     => 'color: {{VALUE}};',
-					'{{WRAPPER}} .ha-whatsapp-link:hover .ha-whatsapp-icon svg, {{WRAPPER}} .ha-whatsapp-link:hover .ha-whatsapp-close-icon svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .ha-whatsapp-link:hover .ha-whatsapp-icon svg, {{WRAPPER}} .ha-whatsapp-link:hover .ha-whatsapp-close-icon svg, {{WRAPPER}} .ha-whatsapp-chat-opened .ha-whatsapp-popup__footer-btn:hover .ha-whatsapp-icon-chat svg' => 'fill: {{VALUE}};',
 				],
 			]
 		);
@@ -1098,7 +1099,7 @@ class Whatsapp_Button extends Base
 				'label'     => __('Background Color', 'happy-elementor-addons'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .ha-whatsapp-link:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .ha-whatsapp-link:hover, {{WRAPPER}} .ha-whatsapp-popup__footer-btn:hover' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -1394,7 +1395,10 @@ class Whatsapp_Button extends Base
 							target="<?php echo esc_attr($target); ?>"
 							rel="noopener noreferrer">
 							<span class="ha-whatsapp-popup__footer-icon">
-								<i class="fab fa-whatsapp"></i>
+								
+								<span class="ha-whatsapp-icon-chat">
+									<?php ha_render_icon($settings, 'icon', 'selected_icon', ['aria-hidden' => 'true']); ?>
+								</span>
 							</span>
 							<?php echo esc_html($settings['chat_button_text']); ?>
 						</a>
