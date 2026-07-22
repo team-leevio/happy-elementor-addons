@@ -231,3 +231,4 @@ composer.lock
 dist/*
 
 *.lock
+.github
