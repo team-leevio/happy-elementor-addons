@@ -1,5 +1,5 @@
 
-= 3.23.0 - 21 July 2026 =
+= 3.23.0 - 22 July 2026 =
 
 - New: Liquid Glass feature.
 - New: WhatsApp Button widget.

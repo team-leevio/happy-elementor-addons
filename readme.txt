@@ -6,9 +6,9 @@ Author URI: https://happyaddons.com/
 Contributors: leevio, happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 6.8
-Tested up to: 7.0
+Tested up to: 7.0.2
 Stable tag: 3.23.0
-Requires PHP: 8.0
+Requires PHP: 8.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -311,7 +311,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.23.0 - 21 July 2026 =
+= 3.23.0 - 22 July 2026 =
 
 - New: Liquid Glass Feature.
 - New: WhatsApp Button widget.
