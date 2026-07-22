@@ -232,3 +232,4 @@ dist/*
 
 *.lock
 .github
+ARCHITECTURE_OVERVIEW.md
