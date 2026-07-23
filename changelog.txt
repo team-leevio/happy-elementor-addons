@@ -1,4 +1,11 @@
 
+= 3.23.0 - 22 July 2026 =
+
+- New: Liquid Glass feature.
+- New: WhatsApp Button widget.
+- Fix: Notice & Review CSS  issue with WP 7.
+- Update: Made Compatible with Elementor 4.2.
+
 = 3.22.0 - 8 June 2026 =
 
 - Update: Made Compatible with PHP 8.5

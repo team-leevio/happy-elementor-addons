@@ -67,6 +67,14 @@ class Assets_Manager {
 		);
 
 		wp_register_script(
+			'ha-whatsapp-button',
+			HAPPY_ADDONS_ASSETS . 'js/whatsapp-button'.$suffix.'js',
+			['jquery'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
+		wp_register_script(
 			'jquery-event-move',
 			HAPPY_ADDONS_ASSETS . 'vendor/twentytwenty/js/jquery.event.move.js',
 			['jquery'],

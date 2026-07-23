@@ -67,6 +67,7 @@ Write the widget styles in SCSS. Elementor controls often use dynamic CSS via `s
 **Instructions:**
 1. Create the SCSS file at exactly: `/assets/dev/sass/[widget-name].scss`.
 2. Nest your styles inside the main widget wrapper class (which is usually `.ha-[widget-name]`).
+3. For a responsive device, use the body attribute selector like body[data-elementor-device-mode="desktop"] instead of @media . There are seven device modes in elementor which are widescreen, desktop, laptop, tablet_extra, tablet, mobile_extra, and mobile. For example, `body[data-elementor-device-mode="desktop"] { .ha-whatsapp--hide-desktop-yes .ha-whatsapp-button { display: none; } }`
 
 ---
 
