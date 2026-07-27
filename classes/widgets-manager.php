@@ -580,13 +580,6 @@ class Widgets_Manager {
 				'demo'      => 'https://demo.happyaddons.com/#/',
 				'is_pro' => true,
 			],
-			'svg-morphing' => [
-				'cat' => 'creative',
-				'title' => __('Svg Morphing', 'happy-elementor-addons'),
-				'icon' => 'hm hm-hexa',
-				'demo'      => 'https://demo.happyaddons.com/#/',
-				'is_pro' => true,
-			],
 			'dropping-elements' => [
 				'cat' => 'creative',
 				'title' => __('Dropping Elements', 'happy-elementor-addons'),
@@ -598,13 +591,6 @@ class Widgets_Manager {
 				'cat' => 'creative',
 				'title' => __('GSAP SVG Draw', 'happy-elementor-addons'),
 				'icon' => 'hm hm-text-outline',
-				'demo'      => 'https://demo.happyaddons.com/#/',
-				'is_pro' => true,
-			],
-			'motion-path-waypoints' => [
-				'cat' => 'creative',
-				'title' => __('Motion Path Waypoints', 'happy-elementor-addons'),
-				'icon' => 'hm hm-motion-button',
 				'demo'      => 'https://demo.happyaddons.com/#/',
 				'is_pro' => true,
 			],
