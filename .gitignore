@@ -232,3 +232,6 @@ composer.lock
 dist/*
 
 *.lock
+packer.sh
+.github
+ARCHITECTURE_OVERVIEW.md

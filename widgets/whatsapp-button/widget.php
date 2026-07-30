@@ -68,6 +68,11 @@ class Whatsapp_Button extends Base
 		return false;
 	}
 
+	public function get_custom_help_url() {
+		return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/whatsapp-chat/';
+	}
+
+
 	/**
 	 * Register widget content controls
 	 */

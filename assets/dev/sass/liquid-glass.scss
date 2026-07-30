@@ -233,3 +233,220 @@
 	backdrop-filter: blur(var(--ha-lg-blur, 8px));
 	-webkit-backdrop-filter: blur(var(--ha-lg-blur, 8px));
 }
+
+// -----------------------------------------------------------------------------
+// Flip Box integration
+//
+// Applying backdrop-filter to the Flip Box widget wrapper flattens the 3D
+// context, which kills the flip animation (rotateX/rotateY stop working).
+// For the Flip Box widget we therefore neutralize the effect on the wrapper
+// and push it down to the actual faces (front / back) instead.
+// -----------------------------------------------------------------------------
+
+$ha-lg-presets: (
+	"gentle-wave": 6px,
+	"abyss-glass": 8px,
+	"turbulent-warp": 24px,
+	"cascade-ripple": 18px,
+	"lateral-surge": 16px,
+	"tempest-glass": 14px,
+	"thai-frost": 8px,
+	"thai-frost-2": 8px,
+	"lava-flow": 20px,
+	"magnifier-lens": 10px,
+	"micro-frost": 6px,
+	"rain-streak": 12px,
+	"fine-crystal": 4px,
+	"bubble-lens": 14px,
+	"aqua-warp": 10px,
+	"ocean-current": 10px,
+	"prism-cut": 6px,
+	"glass-fiber": 6px,
+	"jelly-blob": 14px,
+	"viscous-gel": 14px,
+	"diamond-dust": 4px,
+	"drop-water": 8px,
+	"ultra-lens": 16px,
+	"liquid-lens": 12px,
+	"frozen-glass": 10px,
+	"macos-glass": 14px,
+	"melted-glass": 8px,
+	"holographic-glass": 10px,
+	"bubble-glass": 12px,
+	"jelly-surface": 10px,
+	"wavy-water": 8px,
+	"ice-crystal": 6px,
+	"distorted-prism": 8px,
+);
+
+@each $name, $blur in $ha-lg-presets {
+	.elementor-widget-ha-flip-box.ha-lg-#{$name} {
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+	}
+
+	.elementor-widget-ha-flip-box.ha-lg-#{$name} .ha-flip-box-front,
+	.elementor-widget-ha-flip-box.ha-lg-#{$name} .ha-flip-box-back {
+		backdrop-filter: blur(var(--ha-lg-blur, $blur)) url(#ha-glass-distortion-#{$name});
+		-webkit-backdrop-filter: blur(var(--ha-lg-blur, $blur)) url(#ha-glass-distortion-#{$name});
+	}
+}
+
+.elementor-widget-ha-flip-box.ha-lg-custom {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+.elementor-widget-ha-flip-box.ha-lg-custom .ha-flip-box-front,
+.elementor-widget-ha-flip-box.ha-lg-custom .ha-flip-box-back {
+	backdrop-filter: blur(var(--ha-lg-blur, 8px));
+	-webkit-backdrop-filter: blur(var(--ha-lg-blur, 8px));
+}
+
+// -----------------------------------------------------------------------------
+// Creative Button integration
+//
+// backdrop-filter turns the inline-block button into a new formatting context,
+// so it needs to be vertically aligned within its wrapper.
+// -----------------------------------------------------------------------------
+
+.ha-lg-yes .ha-creative-btn-wrap .ha-creative-btn {
+	vertical-align: middle;
+}
+
+// -----------------------------------------------------------------------------
+// Form widgets (Contact Form 7 & Elementor Form) integration
+//
+// The glass effect must land on the actual form controls, not the widget
+// wrapper. The mixin below holds the shared list of field selectors used by
+// both form widgets.
+// -----------------------------------------------------------------------------
+
+@mixin ha-lg-form-field-selectors {
+	input[type="text"],
+	input[type="email"],
+	input[type="number"],
+	input[type="url"],
+	input[type="date"],
+	input[type="time"],
+	input[type="password"],
+	input[type="tel"],
+	textarea,
+	select,
+	button,
+	input[type="submit"] {
+		@content;
+	}
+}
+
+@each $name, $blur in $ha-lg-presets {
+	.elementor-widget-ha-cf7.ha-lg-#{$name} {
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+
+		@include ha-lg-form-field-selectors {
+			backdrop-filter: blur(var(--ha-lg-blur, $blur)) url(#ha-glass-distortion-#{$name});
+			-webkit-backdrop-filter: blur(var(--ha-lg-blur, $blur)) url(#ha-glass-distortion-#{$name});
+		}
+	}
+}
+
+.elementor-widget-ha-cf7.ha-lg-custom {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+
+	@include ha-lg-form-field-selectors {
+		backdrop-filter: blur(var(--ha-lg-blur, 8px));
+		-webkit-backdrop-filter: blur(var(--ha-lg-blur, 8px));
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Elementor Form widget integration
+// (shares the ha-lg-form-field-selectors mixin defined above)
+// -----------------------------------------------------------------------------
+
+@each $name, $blur in $ha-lg-presets {
+	.elementor-widget-form.ha-lg-#{$name} {
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+
+		@include ha-lg-form-field-selectors {
+			backdrop-filter: blur(var(--ha-lg-blur, $blur)) url(#ha-glass-distortion-#{$name});
+			-webkit-backdrop-filter: blur(var(--ha-lg-blur, $blur)) url(#ha-glass-distortion-#{$name});
+		}
+	}
+}
+
+.elementor-widget-form.ha-lg-custom {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+
+	@include ha-lg-form-field-selectors {
+		backdrop-filter: blur(var(--ha-lg-blur, 8px));
+		-webkit-backdrop-filter: blur(var(--ha-lg-blur, 8px));
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Liquid Glass shadow redirection (Flip Box, Contact Form 7 & Elementor Form)
+//
+// The ha_lg_shadow control registers on Elementor's "common" element, so it
+// can only emit its box-shadow onto {{WRAPPER}} (the widget wrapper). For
+// widgets whose wrapper is not the visible glass surface, we neutralize the
+// shadow on the wrapper and re-apply it to the actual surfaces.
+// Values mirror the ha_lg_shadow "selectors_dictionary" in
+// extensions/liquid-glass.php.
+// -----------------------------------------------------------------------------
+
+$ha-lg-shadows: (
+	soft-glow:    "0 0 15px 0 rgba(255, 255, 255, 0.6) inset",
+	warm-glow:    "0 0 20px 0 rgba(255, 255, 255, 0.65) inset",
+	bright-glow:  "0 0 15px 0 rgba(255, 255, 255, 0.7) inset",
+	wide-bloom:   "0 0 30px 1px rgba(255, 255, 255, 0.7) inset",
+	deep-bloom:   "0 0 40px 5px rgba(255, 255, 255, 0.6) inset",
+	top-light:    "0 20px 15px -5px rgba(255, 255, 255, 0.5) inset",
+	bottom-light: "0 -20px 25px -15px rgba(255, 255, 255, 0.5) inset",
+	top-fade:     "0 10px 25px -10px rgba(255, 255, 255, 0.4) inset",
+	bottom-fade:  "0 -10px 20px -5px rgba(255, 255, 255, 0.55) inset",
+	top-edge:     "0 15px 15px -10px rgba(255, 255, 255, 0.45) inset",
+	rim-light:    "0 0 10px 0 rgba(255, 255, 255, 0.8) inset, 0 0 2px 0 rgba(255, 255, 255, 0.9) inset",
+	inner-shadow: "inset 0 2px 8px 0 rgba(0, 0, 0, 0.15), inset 0 0 12px 0 rgba(255, 255, 255, 0.3)",
+	spotlight:    "0 -5px 30px -10px rgba(255, 255, 255, 0.7) inset",
+	frost-edge:   "0 0 6px 0 rgba(255, 255, 255, 0.9) inset, 0 0 20px -5px rgba(200, 220, 255, 0.4) inset",
+	vignette:     "inset 0 0 50px 10px rgba(0, 0, 0, 0.08)",
+);
+
+// Flip Box: shadow on the faces, never the wrapper.
+@each $cls, $val in $ha-lg-shadows {
+	.elementor-widget-ha-flip-box.ha-lg-#{$cls} {
+		box-shadow: none !important;
+	}
+
+	.elementor-widget-ha-flip-box.ha-lg-#{$cls} .ha-flip-box-front,
+	.elementor-widget-ha-flip-box.ha-lg-#{$cls} .ha-flip-box-back {
+		box-shadow: #{$val};
+	}
+}
+
+// Contact Form 7: shadow on the form controls, never the wrapper.
+@each $cls, $val in $ha-lg-shadows {
+	.elementor-widget-ha-cf7.ha-lg-#{$cls} {
+		box-shadow: none !important;
+
+		@include ha-lg-form-field-selectors {
+			box-shadow: #{$val};
+		}
+	}
+}
+
+// Elementor Form widget: shadow on the form controls, never the wrapper.
+@each $cls, $val in $ha-lg-shadows {
+	.elementor-widget-form.ha-lg-#{$cls} {
+		box-shadow: none !important;
+
+		@include ha-lg-form-field-selectors {
+			box-shadow: #{$val};
+		}
+	}
+}
