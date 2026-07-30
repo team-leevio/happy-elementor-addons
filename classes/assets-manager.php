@@ -351,15 +351,6 @@ class Assets_Manager {
 			true
 		);
 		
-		// Scroll Smoother
-		wp_register_script(
-			'scroll-smoother',
-			HAPPY_ADDONS_ASSETS . 'vendor/scroll-smoother/scroll-smoother.min.js',
-			['gsap', 'scroll-trigger'],
-			HAPPY_ADDONS_VERSION,
-			true
-		);
-		
 		// Morph SVG Plugin
 		wp_register_script(
 			'morph-svg-plugin',
