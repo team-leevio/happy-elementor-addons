@@ -211,7 +211,8 @@ class Heading_Text_Animation {
                 ],
                 'render_type'        => 'template',
                 'frontend_available' => true,
-                'style_transfer'     => true
+                'style_transfer'     => true,
+                'responsive'         => true
             ]
         );
 
@@ -231,7 +232,8 @@ class Heading_Text_Animation {
                 ],
                 'render_type'        => 'template',
                 'frontend_available' => true,
-                'style_transfer'     => true
+                'style_transfer'     => true,
+                'responsive'         => true
             ]
         );
 
@@ -250,7 +252,8 @@ class Heading_Text_Animation {
                 ],
                 'render_type'        => 'template',
                 'frontend_available' => true,
-                'style_transfer'     => true
+                'style_transfer'     => true,
+                'responsive'         => true
             ]
         );
 
@@ -291,7 +294,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => 'slide'
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -310,7 +314,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => 'slide'
-                ]
+                ],
+                'responsive'         => true
             ]
         );
     }
@@ -338,7 +343,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['text_flip']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -357,7 +363,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['text_flip']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -375,7 +382,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['text_flip']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -405,7 +413,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['reveal']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
     }
@@ -426,7 +435,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['smoky_reveal']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -445,7 +455,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['smoky_reveal']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -464,7 +475,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['smoky_reveal']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -487,7 +499,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['alt_reveal']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -506,7 +519,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['alt_reveal']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
     }
@@ -528,7 +542,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['popup_reveal']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -547,7 +562,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['popup_reveal']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -570,7 +586,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['mixing_reveal']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -596,7 +613,8 @@ class Heading_Text_Animation {
                 ],
                 'render_type'        => 'template',
                 'frontend_available' => true,
-                'style_transfer'     => true
+                'style_transfer'     => true,
+                'responsive'         => true
             ]
         );
     }
@@ -618,7 +636,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['scale']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -639,7 +658,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['scale']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
     }
@@ -666,7 +686,8 @@ class Heading_Text_Animation {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .invert-line' => '--ha-opacity: {{SIZE}};'
-                ]
+                ],
+                'responsive'  => true
             ]
         );
     }
@@ -715,7 +736,8 @@ class Heading_Text_Animation {
                 ],
                 'render_type'        => 'template',
                 'frontend_available' => true,
-                'style_transfer'     => true
+                'style_transfer'     => true,
+                'responsive'         => true
             ]
         );
 
@@ -732,7 +754,7 @@ class Heading_Text_Animation {
                     'ha_hta_switcher'      => 'yes',
                     'ha_hta_trigger_point' => 'custom'
 
-                ]
+                ],
             ]
         );
 
@@ -751,7 +773,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode!'    => ['invert']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -770,7 +793,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode!'    => ['invert']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -789,7 +813,8 @@ class Heading_Text_Animation {
                 'condition'          => [
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode!'    => ['invert']
-                ]
+                ],
+                'responsive'         => true
             ]
         );
 
@@ -833,7 +858,8 @@ class Heading_Text_Animation {
                 ],
                 'render_type'        => 'template',
                 'frontend_available' => true,
-                'style_transfer'     => true
+                'style_transfer'     => true,
+                'responsive'         => true
             ]
         );
 
@@ -853,6 +879,21 @@ class Heading_Text_Animation {
                 'render_type'        => 'template',
                 'frontend_available' => true,
                 'style_transfer'     => true
+            ]
+        );
+
+        $element->add_control(
+            'ha_hta_enable_on_mobile',
+            [
+                'label'              => __( 'Enable On Mobile', 'happy-elementor-addons' ),
+                'type'               => Controls_Manager::SWITCHER,
+                'return_value'       => 'yes',
+                'render_type'        => 'template',
+                'frontend_available' => true,
+                'description'        => __( 'Animations are disabled on mobile by default. Enable to run the animation on mobile screens.', 'happy-elementor-addons' ),
+                'condition'          => [
+                    'ha_hta_switcher' => 'yes'
+                ]
             ]
         );
     }

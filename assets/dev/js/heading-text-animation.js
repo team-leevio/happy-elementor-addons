@@ -26,6 +26,59 @@
 
             onDestroy() {
                 this.destroyAnimation();
+                $(w).off("resize.haHta orientationchange.haHta");
+            },
+
+            bindEvents() {
+
+                elementorModules.frontend.handlers.Base.prototype.bindEvents.apply(this, arguments);
+
+                let lastMode = this.getDeviceMode();
+                let timer = null;
+
+                $(w).on("resize.haHta orientationchange.haHta", () => {
+
+                    clearTimeout(timer);
+
+                    timer = setTimeout(() => {
+
+                        if (this.getElementSettings("ha_hta_switcher") !== "yes") return;
+
+                        const mode = this.getDeviceMode();
+
+                        if (mode !== lastMode) {
+                            lastMode = mode;
+                            this.destroyAnimation();
+                            this.build();
+                        }
+
+                    }, 250);
+
+                });
+
+            },
+
+            getDeviceMode() {
+
+                if (typeof elementorFrontend !== "undefined" &&
+                    typeof elementorFrontend.getCurrentDeviceMode === "function") {
+                    return elementorFrontend.getCurrentDeviceMode();
+                }
+
+                return "desktop";
+
+            },
+
+            isDisabledOnMobile() {
+
+                const settings = this.getElementSettings();
+
+                if (settings.ha_hta_enable_on_mobile === "yes") return false;
+
+                const mode = this.getDeviceMode();
+
+                return mode === "mobile" || mode === "mobile_extra";
+
             },
 
             destroyAnimation() {
@@ -49,6 +102,8 @@
                 const settings = this.getElementSettings();
 
                 if (settings.ha_hta_switcher !== "yes") return;
+
+                if (this.isDisabledOnMobile()) return;
 
                 const wrapper = this.$element;
                 const heading = wrapper.find(".elementor-heading-title");
