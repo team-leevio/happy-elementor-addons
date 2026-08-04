@@ -15,6 +15,8 @@ class Extensions_Manager {
 
 		add_action( 'elementor/element/button/section_style/after_section_start', [ Features\Fixed_Size_Button::class, 'add_button_controls' ] );
 
+		add_action( 'elementor/element/container/section_background/before_section_end', [ Features\Container_Hover_Text_Color::class, 'add_controls_section' ] );
+
 		$inactive_features = self::get_inactive_features();
 
 		foreach ( self::get_local_features_map() as $feature_key => $data ) {
