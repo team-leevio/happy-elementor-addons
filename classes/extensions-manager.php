@@ -98,12 +98,6 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
 				'is_pro' => true,
 			],
-			'appearing-image-animation' => [
-				'title' => __( 'Appearing Image Animation', 'happy-addons-pro' ),
-				'icon' => 'huge huge-layer-mask-1',
-				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
-				'is_pro' => true,
-			],
 			'global-animation' => [
                 'title'  => __( 'Animation', 'happy-addons-pro' ),
                 'icon'   => 'hm hm-alien',
@@ -224,6 +218,12 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/background-parallax/',
 				'is_pro' => false,
 			],
+			'appearing-image-animation' => [
+				'title' => __( 'Appearing Image Animation', 'happy-elementor-addons' ),
+				'icon' => 'huge huge-layer-mask-1',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/#/',
+				'is_pro' => false,
+			],
 			'heading-text-animation' => [
 				'title' => __( 'Text Animation', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-text-outline',
@@ -313,6 +313,7 @@ class Extensions_Manager {
 			case 'custom-mouse-cursor':
 			case 'custom-js':
 			case 'background-parallax':
+			case 'appearing-image-animation':
 			case 'heading-text-animation':
 			case 'liquid-glass':
 				$cls_name = ucwords( str_replace( '-', ' ', $feature_key ) ); //remove ' - ' & uc first later

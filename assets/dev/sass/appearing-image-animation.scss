@@ -1,0 +1,29 @@
+.elementor-widget-image.ha-aia-yes {
+	position: relative;
+	overflow: hidden;
+	opacity: 0;
+	visibility: hidden;
+
+	img {
+		height: auto;
+		object-fit: cover;
+		will-change: transform, clip-path;
+		backface-visibility: hidden;
+		transform: translateZ(0);
+	}
+
+	.ha-aia-slice {
+		will-change: transform;
+		position: absolute;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		img {
+			transform: none !important;
+			clip-path: none !important;
+		}
+
+		opacity: 1 !important;
+		visibility: visible !important;
+	}
+}
