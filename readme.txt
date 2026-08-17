@@ -17,9 +17,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-[HappyAddons](https://happyaddons.com/) is a comprehensive Elementor addon built and maintained by **weDevs**, a company trusted by the WordPress community for over 13 years. With **150+ Free & Pro Elementor Widgets, **35+ advanced Features**, a **Free Theme Builder**, 500+ Section Blocks, 70+ Full Page Templates, and 650+ Design Presets, you can build websites faster with everything you need in one place.
+[HappyAddons](https://happyaddons.com/) is a comprehensive Elementor addon built and maintained by **weDevs**, a company trusted by the WordPress community for over 13 years. With **150+ Free & Pro Elementor Widgets, 35+ advanced Features**, a **Free Theme Builder**, 500+ Section Blocks, 70+ Full Page Templates, and 650+ Design Presets, you can build websites faster with everything you need in one place.
 
-[https://youtu.be/1OwiAUyTB8Q?si=y8DtO82DVRKtZrAG]
+[youtube https://youtu.be/1OwiAUyTB8Q?si=y8DtO82DVRKtZrAG]
 
 HappyAddons includes a full Theme Builder by which you can build Header, Footer, Single Post Template, and Archive Page Builder - at no extra charge. This means you can build a complete site theme without requiring Elementor Pro.
 
@@ -38,7 +38,7 @@ HappyAddons includes a full Theme Builder by which you can build Header, Footer,
 –   Works with any WordPress theme
 –   Expert support available 24/7
 
-[https://youtu.be/aaGBwyH6CRY?si=cpVyiBfEAo3m7Nr9]
+[youtube https://youtu.be/aaGBwyH6CRY?si=cpVyiBfEAo3m7Nr9]
 
 ## 70+ Free Elementor Widgets
 HappyAddons free version includes 70+ Elementor widgets, a full Theme Builder, and more - all at zero cost. We've grouped them into a few categories below to help you quickly find the ones you need.
@@ -124,7 +124,7 @@ Build your complete WordPress site theme - header, footer, single posts, archive
 * **[Archive Posts](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-post/)**: Create & style archive posts.
 
 
-[https://youtu.be/PWrgzML7h4w?si=r9r2hJOpkVUUAhW7]
+[youtube https://youtu.be/PWrgzML7h4w?si=r9r2hJOpkVUUAhW7]
 
 ##📥 Free Form Styling Widgets (Integration)
 Style any major WordPress form plugin directly inside Elementor, without writing a single line of CSS. Supported Form Plugins are:
@@ -254,7 +254,7 @@ Design your WooCommerce store pages inside Elementor with dedicated widgets.
 * **[WooCommerce Mini Cart](https://demo.happyaddons.com/elementor-mini-cart-widget-demo/)**: Add floating mini cart for Woo stores.
 
 
-[https://youtu.be/5SNVUJumQWE?si=5iQwy_7G2gTGH7tc]
+[youtube https://youtu.be/5SNVUJumQWE?si=5iQwy_7G2gTGH7tc]
 
 ##📦 Easy Digital Downloads (EDD) Widgets
 HappyAddons includes complete EDD store support with 9 dedicated widgets - products, categories, cart, checkout, login, registration.
