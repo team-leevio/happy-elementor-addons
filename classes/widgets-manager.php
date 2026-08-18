@@ -1538,6 +1538,19 @@ class Widgets_Manager {
 					'js'  => [],
 				],
 			],
+			'image-cycle' => [
+				'cat' => 'creative',
+				'is_active' => true,
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/#/',
+				'title' => __('Image Cycle', 'happy-elementor-addons'),
+				'icon' => 'hm hm-net',
+				'css' => ['image-cycle'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => ['gsap','imagesloaded'],
+				],
+			],
 		];
 	}
 

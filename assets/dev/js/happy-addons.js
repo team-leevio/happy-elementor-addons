@@ -1920,6 +1920,428 @@
 		elementorFrontend.hooks.addAction( 'frontend/element_ready/ha-svg-draw.default', function ( $scope ) {
 			elementorFrontend.elementsHandler.addHandler( haSvgDrawHandler, { $element: $scope } );
 		} );
+		
+		// Image Cycle Handler
+		let haImageCycleHandler = ModuleHandler.extend( {
+
+			onInit: function () {
+				ModuleHandler.prototype.onInit.apply( this, arguments );
+				this.run();
+			},
+
+			onElementChange: function () {
+				this.run();
+			},
+
+			onDestroy: function () {
+				if ( this._icMm ) {
+					try { this._icMm.revert(); } catch ( e ) {}
+					this._icMm = null;
+				}
+				ModuleHandler.prototype.onDestroy.apply( this, arguments );
+			},
+
+			run: function () {
+				let $scope = this.$element;
+				let self = this;
+
+				if ( typeof gsap === 'undefined' ) {
+					return;
+				}
+
+				let $wrapper = $scope.find( '.ha-ic-wrapper' );
+				let $group = $scope.find( '.ha-ic-group' );
+				let $container = $scope.find( '.ha-ic-container' );
+				let $headings = $scope.find( '.ha-ic-headings' );
+				let $cards = $scope.find( '.ha-ic-card' );
+
+				if ( !$cards.length || !$wrapper.length ) {
+					return;
+				}
+
+				// Kill previous tweens / timelines to avoid duplicates in editor
+				if ( self._icMm ) {
+					try { self._icMm.revert(); } catch ( e ) {}
+					self._icMm = null;
+				}
+				gsap.killTweensOf( $cards.get() );
+				gsap.killTweensOf( $group.get() );
+				gsap.killTweensOf( $container.get() );
+				gsap.killTweensOf( $headings.get() );
+
+				// Add loading state until images are ready
+				$wrapper.addClass( 'ha-ic--loading' );
+
+				let didInit = false;
+				let doInit = function () {
+					if ( didInit ) {
+						return;
+					}
+					didInit = true;
+					$wrapper.removeClass( 'ha-ic--loading' );
+					self._runCycle( $scope );
+				};
+
+				// Safety fallback: never leave headings hidden if image loading stalls
+				setTimeout( doInit, 5000 );
+
+				// Preload background images before animating
+				if ( typeof imagesLoaded !== 'undefined' ) {
+					try {
+						imagesLoaded( $scope.find( '.ha-ic-card__img' ).get(), { background: true }, doInit );
+					} catch ( e ) {
+						doInit();
+					}
+				} else {
+					doInit();
+				}
+			},
+
+			_runCycle: function ( $scope ) {
+				let self = this;
+				let $wrapper = $scope.find( '.ha-ic-wrapper' );
+				let $group = $scope.find( '.ha-ic-group' );
+				let $container = $scope.find( '.ha-ic-container' );
+				let $headings = $scope.find( '.ha-ic-headings' );
+				let cardEls = $scope.find( '.ha-ic-card' ).get();
+				let count = cardEls.length;
+				if ( !count ) {
+					return;
+				}
+
+				let settings = self.getElementSettings() || {};
+				let mode = settings.ha_ic_animation_mode || $wrapper.data( 'animation-mode' ) || 'variation-1';
+
+				// Physics defaults from demo
+				let getRadius = function ( settingKey ) {
+					let value = settings[settingKey];
+					if ( typeof value === 'object' && value !== null ) {
+						value = value.size;
+					}
+					if ( value !== undefined && value !== '' && value !== null ) {
+						let parsed = parseFloat( value );
+						if ( !isNaN( parsed ) ) {
+							return parsed;
+						}
+					}
+					return null;
+				};
+				let radius = null;
+				if ( elementorFrontend && elementorFrontend.utils && elementorFrontend.utils.controls ) {
+					let responsiveValue = elementorFrontend.utils.controls.getResponsiveControlValue( settings, 'ha_ic_radius', 'size' );
+					if ( responsiveValue !== undefined && responsiveValue !== '' && responsiveValue !== null ) {
+						let parsed = parseFloat( responsiveValue );
+						if ( !isNaN( parsed ) ) {
+							radius = parsed;
+						}
+					}
+				}
+				if ( radius === null ) {
+					let radiusDesktop = getRadius( 'ha_ic_radius_desktop' );
+					let radiusMobile = getRadius( 'ha_ic_radius_mobile' );
+					radius = radiusDesktop !== null ? radiusDesktop : ( radiusMobile !== null ? radiusMobile : 250 );
+				}
+				let staggerRaw = settings.ha_ic_stagger;
+				let stagger = staggerRaw !== undefined && staggerRaw !== '' ? parseFloat( staggerRaw ) : ( mode === 'variation-3' ? 0.15 : 0.1 );
+				if ( mode === 'variation-3' && settings.ha_ic_stagger_v3 !== undefined && settings.ha_ic_stagger_v3 !== '' ) {
+					let sv3 = parseFloat( settings.ha_ic_stagger_v3 );
+					if ( !isNaN( sv3 ) ) {
+						stagger = sv3;
+					}
+				}
+				let entranceDuration = settings.ha_ic_entrance_duration !== undefined && settings.ha_ic_entrance_duration !== '' ? parseFloat( settings.ha_ic_entrance_duration ) : 0.5;
+				let headingDuration = settings.ha_ic_heading_duration !== undefined && settings.ha_ic_heading_duration !== '' ? parseFloat( settings.ha_ic_heading_duration ) : 1;
+				let groupDuration = settings.ha_ic_group_duration !== undefined && settings.ha_ic_group_duration !== '' ? parseFloat( settings.ha_ic_group_duration ) : 20;
+				let flipInterval = settings.ha_ic_flip_interval !== undefined && settings.ha_ic_flip_interval !== '' ? parseFloat( settings.ha_ic_flip_interval ) : 2;
+				let initialScale = settings.ha_ic_initial_scale !== undefined && settings.ha_ic_initial_scale !== '' ? parseFloat( settings.ha_ic_initial_scale ) : 3;
+				let v2Scale = settings.ha_ic_v2_scale !== undefined && settings.ha_ic_v2_scale !== '' ? parseFloat( settings.ha_ic_v2_scale ) : 5;
+				let initialOpacity = 0.8;
+				if ( settings.ha_ic_initial_opacity !== undefined ) {
+					if ( typeof settings.ha_ic_initial_opacity === 'object' && settings.ha_ic_initial_opacity.size !== undefined ) {
+						let v = parseFloat( settings.ha_ic_initial_opacity.size );
+						if ( !isNaN( v ) ) { initialOpacity = v; }
+					} else if ( settings.ha_ic_initial_opacity !== '' ) {
+						let v = parseFloat( settings.ha_ic_initial_opacity );
+						if ( !isNaN( v ) ) { initialOpacity = v; }
+					}
+				}
+
+				// Variation-3 group rotates container, others rotate group
+				let breakPoint = '53em';
+				let mm = gsap.matchMedia();
+				self._icMm = mm;
+
+				mm.add(
+					{
+						isDesktop: '(min-width: ' + breakPoint + ')',
+						isMobile: '(max-width: ' + breakPoint + ')',
+					},
+					function ( context ) {
+						let isDesktop = context.conditions.isDesktop;
+						let image = $scope.find( '.ha-ic-card__img' ).get( 0 );
+						let sliceAngle = ( 2 * Math.PI ) / count;
+
+						// Ensure previous tweens cleared inside context
+						gsap.set( cardEls, { clearProps: 'all' } );
+						gsap.set( $group.get(0), { clearProps: 'all' } );
+						if ( $container.length ) {
+							gsap.set( $container.get(0), { clearProps: 'all' } );
+						}
+						gsap.set( $headings.get(), { clearProps: 'all' } );
+
+						let tl;
+
+						if ( mode === 'variation-1' ) {
+							let radius1 = 50 + ( image ? image.clientHeight / 2 : 60 );
+							let radius2 = radius - radius1;
+
+							tl = gsap.timeline();
+							tl.from( cardEls, {
+								y: window.innerHeight / 2 + ( image ? image.clientHeight * 1.5 : 120 ),
+								rotateX: -180,
+								stagger: stagger,
+								duration: 0.5,
+								opacity: initialOpacity,
+								scale: initialScale,
+							} )
+								.set( cardEls, {
+									transformOrigin: 'center ' + ( radius1 + ( image ? image.clientHeight / 2 : 60 ) ) + 'px',
+								} )
+								.set( $group.get( 0 ), {
+									transformStyle: 'preserve-3d',
+								} )
+								.to( cardEls, {
+									y: -radius1,
+									duration: entranceDuration,
+									ease: 'power1.out',
+								} )
+								.to(
+									cardEls,
+									{
+										rotation: function ( index ) {
+											return ( index * 360 ) / count;
+										},
+										rotateY: 15,
+										duration: 1,
+										ease: 'power1.out',
+									},
+									'<'
+								)
+								.to( cardEls, {
+									x: function ( index ) {
+										return Math.round( radius2 * Math.cos( sliceAngle * index - Math.PI / 4 ) );
+									},
+									y: function ( index ) {
+										return Math.round( radius2 * Math.sin( sliceAngle * index - Math.PI / 4 ) ) - radius1;
+									},
+									rotation: function ( index ) {
+										return ( index + 1 ) * ( 360 / count );
+									},
+								} )
+								.to(
+									cardEls,
+									{
+										rotateY: 180,
+										opacity: initialOpacity,
+										duration: 1,
+									},
+									'<'
+								)
+								.from(
+									$headings.get(),
+									{
+										opacity: 0,
+										filter: 'blur(60px)',
+										duration: headingDuration,
+									},
+									'<'
+								)
+								.to( cardEls, {
+									repeat: -1,
+									duration: flipInterval,
+									onRepeat: function () {
+										gsap.to( cardEls[ Math.floor( Math.random() * count ) ], {
+											rotateY: '+=180',
+										} );
+									},
+								} )
+								.to(
+									$group.get( 0 ),
+									{
+										rotation: 360,
+										duration: groupDuration,
+										repeat: -1,
+										ease: 'none',
+									},
+									'<-=' + flipInterval
+								);
+						} else if ( mode === 'variation-2' ) {
+							tl = gsap.timeline();
+							tl.from( cardEls, {
+								x: function ( index ) {
+									let w = image ? image.clientWidth : 80;
+									return index % 2 ? -window.innerWidth / 2 - w * 4 : window.innerWidth / 2 + w * 4;
+								},
+								rotation: function ( index ) {
+									return index % 2 ? -90 : 90;
+								},
+								delay: function ( index ) {
+									return Math.floor( index / 2 ) * stagger;
+								},
+								duration: 1,
+								opacity: initialOpacity,
+								scale: v2Scale,
+								ease: 'power4.out',
+							} )
+								.set( cardEls, {
+									scale: function ( index ) {
+										return index > count / 2 - 1 ? -1 : 1;
+									},
+								} )
+								.to( cardEls, {
+									y: function ( index ) {
+										return ( index >= Math.floor( count / 2 ) ? 1 : -1 ) * radius;
+									},
+									duration: entranceDuration,
+									ease: 'power2.out',
+								} )
+								.set( cardEls, {
+									transformOrigin: 'center ' + ( radius + ( image ? image.clientHeight / 2 : 60 ) ) + 'px',
+									y: function ( index ) {
+										if ( index >= Math.floor( count / 2 ) ) {
+											return -radius;
+										}
+									},
+								} )
+								.to( cardEls, {
+									rotation: function ( index ) {
+										return index > count / 2 - 1 ? ( ( count - index - 1 ) * 360 ) / count : ( index * 360 ) / count;
+									},
+									opacity: initialOpacity,
+									duration: 1,
+									ease: 'power2.out',
+								} )
+								.from(
+									$headings.get(),
+									{
+										opacity: 0,
+										filter: 'blur(60px)',
+										duration: 1.5,
+									},
+									'<-=1'
+								)
+								.to( cardEls, {
+									repeat: -1,
+									duration: flipInterval,
+									onRepeat: function () {
+										gsap.to( cardEls[ Math.floor( Math.random() * count ) ], {
+											rotateY: '+=180',
+										} );
+									},
+								} )
+								.to(
+									$group.get( 0 ),
+									{
+										rotation: 360,
+										duration: groupDuration,
+										repeat: -1,
+										ease: 'none',
+									},
+									'<-=1.5'
+								);
+						} else {
+							// variation-3
+							gsap.set( cardEls, {
+								x: function ( index ) {
+									return Math.round( radius * Math.cos( sliceAngle * index - Math.PI / 4 ) );
+								},
+								y: function ( index ) {
+									return Math.round( radius * Math.sin( sliceAngle * index - Math.PI / 4 ) );
+								},
+								rotation: function ( index ) {
+									return ( index + 1 ) * ( 360 / count );
+								},
+							} );
+
+							tl = gsap.timeline();
+							tl.set( cardEls, {
+								opacity: 0,
+								scale: 0,
+								x: 0,
+								y: 0,
+								duration: 2,
+							} )
+								.to( cardEls, {
+									stagger: stagger,
+									opacity: 1,
+									scale: 1,
+									duration: 1,
+									x: function ( index ) {
+										return Math.round( radius * Math.cos( sliceAngle * index - Math.PI / 4 ) );
+									},
+									y: function ( index ) {
+										return Math.round( radius * Math.sin( sliceAngle * index - Math.PI / 4 ) );
+									},
+									rotation: function ( index ) {
+										return ( index + 1 ) * ( 360 / count );
+									},
+								} )
+								.to(
+									$group.get( 0 ),
+									{
+										rotation: -360 - 90,
+										duration: 3,
+										ease: 'power4.out',
+									},
+									0
+								)
+								.from(
+									$headings.get(),
+									{
+										opacity: 0,
+										filter: 'blur(60px)',
+										duration: headingDuration,
+									},
+									1
+								)
+								.to( cardEls, {
+									repeat: -1,
+									duration: flipInterval,
+									onRepeat: function () {
+										gsap.to( cardEls[ Math.floor( Math.random() * count ) ], {
+											rotateY: '+=180',
+										} );
+									},
+								} );
+
+							let containerTarget = $container.length ? $container.get( 0 ) : $group.get( 0 );
+							tl.to(
+								containerTarget,
+								{
+									rotation: '-=360',
+									duration: groupDuration,
+									ease: 'none',
+									repeat: -1,
+								},
+								0
+							);
+						}
+
+						return function () {
+							if ( tl ) {
+								tl.kill();
+							}
+						};
+					}
+				);
+			}
+
+		} );
+
+		// Hook into Elementor's frontend ready event with svg draw
+		elementorFrontend.hooks.addAction( 'frontend/element_ready/ha-image-cycle.default', function ( $scope ) {
+			elementorFrontend.elementsHandler.addHandler( haImageCycleHandler, { $element: $scope } );
+		} );
 
 	} );
 
