@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Elementor Container enhancements
  *
@@ -17,6 +18,7 @@
  *
  * @package Happy_Addons
  */
+
 namespace Happy_Addons\Elementor\Extensions;
 
 use Elementor\Controls_Manager;
@@ -30,22 +32,22 @@ class Container_Hover_Text_Color {
 	private static $instance = null;
 
 	public static function instance() {
-		if ( is_null( self::$instance ) ) {
+		if (is_null(self::$instance)) {
 			self::$instance = new self();
 		}
 		return self::$instance;
 	}
 
-	public static function add_controls_section( Element_Base $element ) {
-		$element->start_injection( [
+	public static function add_controls_section(Element_Base $element) {
+		$element->start_injection([
 			'of' => 'background_hover_transition',
 			'at' => 'after',
-		] );
+		]);
 
 		$element->add_control(
 			'ha_hover_text_color',
 			[
-				'label'     => __( 'Text Color', 'happy-elementor-addons' ). '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
+				'label'     => __('Text Color', 'happy-elementor-addons') . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
 				'type'      => Controls_Manager::COLOR,
 				'separator' => 'before',
 				'selectors' => [
@@ -59,34 +61,33 @@ class Container_Hover_Text_Color {
 		$element->add_control(
 			'ha_hover_bg_effects',
 			[
-				'label'       => __( 'Background Hover Effects', 'happy-elementor-addons' ) . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
-			'description' => __( 'Apply the hover animation to a background layer (::before) and the CSS filters to a full-size overlay (::after) via backdrop-filter, so the blur covers 100% of the container while the content inside stays untouched. Do not use together with a Background Overlay.', 'happy-elementor-addons' ),
-			'type'        => Controls_Manager::SWITCHER,
-			'label_on'    => __( 'On', 'happy-elementor-addons' ),
-			'label_off'   => __( 'Off', 'happy-elementor-addons' ),
-			'return_value'=> 'yes',
-			'default'     => '',
-			'separator'   => 'before',
-			'selectors'   => [
-				'{{WRAPPER}}' => 'position: relative; overflow: hidden;',
-				'{{WRAPPER}}::before' => 'content: ""; position: absolute; inset: 0; background: inherit; transition: transform var(--background-transition, .5s) ease; z-index: 1; pointer-events: none;',
-				'{{WRAPPER}}::after' => 'content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; transition: -webkit-backdrop-filter var(--background-transition, .5s) ease, backdrop-filter var(--background-transition, .5s) ease;',
-				'{{WRAPPER}} > *:not(.elementor-element-overlay):not(.elementor-background-video-container):not(.elementor-background-slideshow):not(.elementor-motion-effects-container):not(.elementor-shape)' => 'z-index: 2;',
-			],
+				'label'       => __('Effects', 'happy-elementor-addons') . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
+				'type'        => Controls_Manager::SWITCHER,
+				'label_on'    => __('On', 'happy-elementor-addons'),
+				'label_off'   => __('Off', 'happy-elementor-addons'),
+				'return_value' => 'yes',
+				'default'     => '',
+				'separator'   => 'before',
+				'selectors'   => [
+					'{{WRAPPER}}' => 'position: relative; overflow: hidden;',
+					'{{WRAPPER}}::before' => 'content: ""; position: absolute; inset: 0; background: inherit; transition: transform var(--background-transition, .5s) ease; z-index: 1; pointer-events: none;',
+					'{{WRAPPER}}::after' => 'content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; transition: -webkit-backdrop-filter var(--background-transition, .5s) ease, backdrop-filter var(--background-transition, .5s) ease;',
+					'{{WRAPPER}} > *:not(.elementor-element-overlay):not(.elementor-background-video-container):not(.elementor-background-slideshow):not(.elementor-motion-effects-container):not(.elementor-shape)' => 'z-index: 2;',
+				],
 			]
 		);
 
 		$element->add_control(
 			'ha_hover_bg_animation',
 			[
-				'label'       => __( 'Background Animation', 'happy-elementor-addons' ) . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
+				'label'       => __('Animation', 'happy-elementor-addons') . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
 				'type'        => Controls_Manager::SELECT,
 				'default'     => '',
 				'options'     => [
-					''       => __( 'None', 'happy-elementor-addons' ),
-					'grow'   => __( 'Grow', 'happy-elementor-addons' ),
-					'shrink' => __( 'Shrink', 'happy-elementor-addons' ),
-					'rotate' => __( 'Grow & Rotate', 'happy-elementor-addons' ),
+					''       => __('None', 'happy-elementor-addons'),
+					'grow'   => __('Grow', 'happy-elementor-addons'),
+					'shrink' => __('Shrink', 'happy-elementor-addons'),
+					'rotate' => __('Grow & Rotate', 'happy-elementor-addons'),
 				],
 				'selectors_dictionary' => [
 					'grow'   => 'scale(1.08)',
@@ -111,7 +112,7 @@ class Container_Hover_Text_Color {
 				],
 				'fields_options' => [
 					'css_filter' => [
-						'label'       => __( 'Background CSS Filter', 'happy-elementor-addons' ) . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
+						'label'       => __('CSS Filter', 'happy-elementor-addons') . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
 					],
 					'blur' => [
 						// The whole filter chain is emitted through the blur
