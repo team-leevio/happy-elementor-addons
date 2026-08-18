@@ -2041,6 +2041,24 @@
 					let radiusMobile = getRadius( 'ha_ic_radius_mobile' );
 					radius = radiusDesktop !== null ? radiusDesktop : ( radiusMobile !== null ? radiusMobile : 250 );
 				}
+				let radius1Base = null;
+				if ( elementorFrontend && elementorFrontend.utils && elementorFrontend.utils.controls ) {
+					let responsiveValue = elementorFrontend.utils.controls.getResponsiveControlValue( settings, 'ha_ic_radius1', 'size' );
+					if ( responsiveValue !== undefined && responsiveValue !== '' && responsiveValue !== null ) {
+						let parsed = parseFloat( responsiveValue );
+						if ( !isNaN( parsed ) ) {
+							radius1Base = parsed;
+						}
+					}
+				}
+				if ( radius1Base === null ) {
+					radius1Base = getRadius( 'ha_ic_radius1' );
+				}
+				if ( radius1Base === null ) {
+					let radius1Tablet = getRadius( 'ha_ic_radius1_tablet' );
+					let radius1Mobile = getRadius( 'ha_ic_radius1_mobile' );
+					radius1Base = radius1Tablet !== null ? radius1Tablet : ( radius1Mobile !== null ? radius1Mobile : 50 );
+				}
 				let staggerRaw = settings.ha_ic_stagger;
 				let stagger = staggerRaw !== undefined && staggerRaw !== '' ? parseFloat( staggerRaw ) : ( mode === 'variation-3' ? 0.15 : 0.1 );
 				if ( mode === 'variation-3' && settings.ha_ic_stagger_v3 !== undefined && settings.ha_ic_stagger_v3 !== '' ) {
@@ -2092,7 +2110,7 @@
 						let tl;
 
 						if ( mode === 'variation-1' ) {
-							let radius1 = 50 + ( image ? image.clientHeight / 2 : 60 );
+							let radius1 = radius1Base + ( image ? image.clientHeight / 2 : 60 );
 							let radius2 = radius - radius1;
 
 							tl = gsap.timeline();
