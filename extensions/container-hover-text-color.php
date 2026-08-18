@@ -67,7 +67,7 @@ class Container_Hover_Text_Color {
 				'separator'   => 'before',
 				'selectors'   => [
 					'{{WRAPPER}}' => 'position: relative; overflow: hidden;',
-					'{{WRAPPER}}::before' => 'content: ""; position: absolute; inset: 0; background: inherit; transition: filter .5s ease, transform .5s ease, opacity .5s ease; z-index: 1; pointer-events: none;',
+					'{{WRAPPER}}::before' => 'content: ""; position: absolute; inset: 0; background: inherit; transition: filter var(--background-transition, .5s) ease, transform var(--background-transition, .5s) ease, opacity var(--background-transition, .5s) ease; z-index: 1; pointer-events: none;',
 					'{{WRAPPER}} > *:not(.elementor-element-overlay):not(.elementor-background-video-container):not(.elementor-background-slideshow):not(.elementor-motion-effects-container):not(.elementor-shape)' => 'position: relative; z-index: 2;',
 				],
 			]
