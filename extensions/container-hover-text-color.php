@@ -7,6 +7,11 @@
  *  - Text Color (Heading & Text Editor widgets inside the container)
  *  - Hover Animation (Elementor's built-in hover animations)
  *  - CSS Filters (applied to the container on hover)
+ *  - Background Hover Effects: a switcher that reveals a second
+ *    Animation + CSS Filters pair whose effects are applied to a
+ *    ::before pseudo-element layer instead of the container itself,
+ *    so the content inside is never affected (see add_controls_section
+ *    notes for the stacking details)
  *
  * @package Happy_Addons
  */
@@ -33,8 +38,8 @@ class Container_Hover_Text_Color {
 	 * Inject hover controls into the Container's Background > Hover tab,
 	 * right after the transition control.
 	 *
-	 * Three controls are added; all default to "empty" so existing designs
-	 * are unaffected until a value is chosen:
+	 * All controls default to "empty" so existing designs are unaffected
+	 * until a value is chosen.
 	 *
 	 * 1) Text Color — applied to the Heading and Text Editor widgets found
 	 *    inside the container (see the detailed selector notes below).
@@ -54,6 +59,37 @@ class Container_Hover_Text_Color {
 	 *    affects the container's child content. The group ships with neutral
 	 *    defaults (brightness/contrast/saturation 100, blur/hue 0), so nothing
 	 *    renders until a slider is changed.
+	 *
+	 * 4) Background Hover Effects — switcher. When on, it shows the Background
+	 *    Animation select and the Background CSS Filter group (below) and
+	 *    emits the "hover card" styles on the container:
+	 *
+	 *    {{WRAPPER}}         -> position: relative; overflow: hidden;
+	 *    {{WRAPPER}}::before -> the background layer:
+	 *        content: ""; position: absolute; inset: 0;
+	 *        background-image: inherit; cover; center;
+	 *        transition: filter/transform/opacity .5s ease;
+	 *        z-index: 1; pointer-events: none;
+	 *    {{WRAPPER}} > *     -> position: relative; z-index: 2;
+	 *
+	 *    The layer copies the container's background image (`inherit` picks up
+	 *    the hover background too, since the :hover rule changes the parent's
+	 *    computed background-image the pseudo inherits from) and the hover
+	 *    transform/filter apply to `{{WRAPPER}}:hover::before` only — the
+	 *    content inside the container is never blurred or scaled.
+	 *
+	 *    Stacking: the layer sits at z-index 1, above the container's own
+	 *    background, and every direct child is lifted to z-index 2 so all
+	 *    widgets stay above it. The child lift is essential for boxed
+	 *    containers — their .e-con-inner wrapper is NOT positioned, so
+	 *    without it the absolutely-positioned layer would paint over the
+	 *    content. Caveat: the lift overrides a widget's own Advanced >
+	 *    Z-Index inside this container (same trade-off the reference
+	 *    hover-card CSS makes). overflow: hidden clips the scaled/blurred
+	 *    layer to the container bounds.
+	 *
+	 *    Note: the container ::before is also Elementor's Background Overlay
+	 *    slot — do not combine this switcher with a container overlay.
 	 *
 	 * Text Color selector notes:
 	 *
@@ -103,22 +139,84 @@ class Container_Hover_Text_Color {
 		);
 
 		$element->add_control(
-			'ha_hover_animation',
+			'ha_hover_bg_effects',
 			[
-				'label'        => __( 'Hover Animation', 'happy-elementor-addons' ) . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
-				'type'         => Controls_Manager::HOVER_ANIMATION,
-				'prefix_class' => 'elementor-animation-',
-				'label_block'  => true,
-				'separator'    => 'before',
+				'label'       => __( 'Background Hover Effects', 'happy-elementor-addons' ) . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
+				'description' => __( 'Apply the hover animation and CSS filters to a background layer (::before) instead of the container, so the content inside stays untouched. Do not use together with a Background Overlay.', 'happy-elementor-addons' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'label_on'    => __( 'On', 'happy-elementor-addons' ),
+				'label_off'   => __( 'Off', 'happy-elementor-addons' ),
+				'return_value'=> 'yes',
+				'default'     => '',
+				'separator'   => 'before',
+				'selectors'   => [
+					'{{WRAPPER}}' => 'position: relative; overflow: hidden;',
+					'{{WRAPPER}}::before' => 'content: ""; position: absolute; inset: 0; background-image: inherit; background-size: cover; background-position: center; transition: filter .5s ease, transform .5s ease, opacity .5s ease; z-index: 1; pointer-events: none;',
+					'{{WRAPPER}} > *' => 'position: relative; z-index: 2;',
+				],
+			]
+		);
+
+		$element->add_control(
+			'ha_hover_bg_animation',
+			[
+				'label'       => __( 'Background Animation', 'happy-elementor-addons' ) . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
+				'type'        => Controls_Manager::SELECT,
+				'default'     => '',
+				'options'     => [
+					''       => __( 'None', 'happy-elementor-addons' ),
+					'grow'   => __( 'Grow', 'happy-elementor-addons' ),
+					'shrink' => __( 'Shrink', 'happy-elementor-addons' ),
+					'zoom'   => __( 'Zoom In', 'happy-elementor-addons' ),
+					'rotate' => __( 'Grow & Rotate', 'happy-elementor-addons' ),
+				],
+				'selectors_dictionary' => [
+					'grow'   => 'scale(1.08)',
+					'shrink' => 'scale(0.95)',
+					'zoom'   => 'scale(1.2)',
+					'rotate' => 'scale(1.08) rotate(2deg)',
+				],
+				'selectors'   => [
+					'{{WRAPPER}}:hover::before' => 'transform: {{VALUE}};',
+				],
+				'condition'   => [
+					'ha_hover_bg_effects' => 'yes',
+				],
 			]
 		);
 		$element->add_group_control(
 			Group_Control_Css_Filter::get_type(),
 			[
-				'name'     => 'ha_hover_css_filters',
-				'selector' => '{{WRAPPER}}:hover',
+				'name'      => 'ha_hover_bg_css_filters',
+				'selector'  => '{{WRAPPER}}:hover::before',
+				'condition' => [
+					'ha_hover_bg_effects' => 'yes',
+				],
+				'fields_options' => [
+					'css_filter' => [
+						'label' => __( 'Background CSS Filter', 'happy-elementor-addons' ),
+					],
+				],
 			]
 		);
+
+		// $element->add_control(
+		// 	'ha_hover_animation',
+		// 	[
+		// 		'label'        => __( 'Hover Animation', 'happy-elementor-addons' ) . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
+		// 		'type'         => Controls_Manager::HOVER_ANIMATION,
+		// 		'prefix_class' => 'elementor-animation-',
+		// 		'label_block'  => true,
+		// 		'separator'    => 'before',
+		// 	]
+		// );
+		// $element->add_group_control(
+		// 	Group_Control_Css_Filter::get_type(),
+		// 	[
+		// 		'name'     => 'ha_hover_css_filters',
+		// 		'selector' => '{{WRAPPER}}:hover',
+		// 	]
+		// );
 
 		$element->end_injection();
 	}
