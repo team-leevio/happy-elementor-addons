@@ -91,7 +91,7 @@ class Container_Hover_Text_Color {
 				],
 				'selectors_dictionary' => [
 					'grow'   => 'scale(1.08)',
-					'shrink' => 'scale(0.95)',
+					'shrink' => 'scale(1)',
 					'rotate' => 'scale(1.08) rotate(2deg)',
 				],
 				'selectors'   => [
@@ -99,6 +99,21 @@ class Container_Hover_Text_Color {
 				],
 				'condition'   => [
 					'ha_hover_bg_effects' => 'yes',
+				],
+			]
+		);
+		
+		$element->add_control(
+			'ha_hover_bg_animation_shrink_rest',
+			[
+				'type'      => Controls_Manager::HIDDEN,
+				'default'   => 'yes',
+				'selectors' => [
+					'{{WRAPPER}}::before' => 'transform: scale(1.08);',
+				],
+				'condition' => [
+					'ha_hover_bg_effects'   => 'yes',
+					'ha_hover_bg_animation' => 'shrink',
 				],
 			]
 		);
@@ -115,12 +130,6 @@ class Container_Hover_Text_Color {
 						'label'       => __('CSS Filter', 'happy-elementor-addons') . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
 					],
 					'blur' => [
-						// The whole filter chain is emitted through the blur
-						// sub-control (see Group_Control_Css_Filter::init_fields).
-						// Re-target it from `filter` to `backdrop-filter` so the
-						// filters run on the full-size ::after overlay instead of
-						// the scaled ::before layer, keeping 100% coverage even
-						// with the Shrink animation active.
 						'selectors' => [
 							'{{SELECTOR}}' => '-webkit-backdrop-filter: brightness( {{brightness.SIZE}}% ) contrast( {{contrast.SIZE}}% ) saturate( {{saturate.SIZE}}% ) blur( {{blur.SIZE}}px ) hue-rotate( {{hue.SIZE}}deg ); backdrop-filter: brightness( {{brightness.SIZE}}% ) contrast( {{contrast.SIZE}}% ) saturate( {{saturate.SIZE}}% ) blur( {{blur.SIZE}}px ) hue-rotate( {{hue.SIZE}}deg );',
 						],
