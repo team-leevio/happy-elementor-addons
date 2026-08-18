@@ -111,7 +111,7 @@ class Container_Hover_Text_Color {
 				],
 				'fields_options' => [
 					'css_filter' => [
-						'label' => __( 'Background CSS Filter', 'happy-elementor-addons' ),
+						'label'       => __( 'Background CSS Filter', 'happy-elementor-addons' ) . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
 					],
 					'blur' => [
 						// The whole filter chain is emitted through the blur
@@ -127,24 +127,6 @@ class Container_Hover_Text_Color {
 				],
 			]
 		);
-
-		// $element->add_control(
-		// 	'ha_hover_animation',
-		// 	[
-		// 		'label'        => __( 'Hover Animation', 'happy-elementor-addons' ) . '<i style="margin-left: 5px;" class="hm hm-happyaddons"></i>',
-		// 		'type'         => Controls_Manager::HOVER_ANIMATION,
-		// 		'prefix_class' => 'elementor-animation-',
-		// 		'label_block'  => true,
-		// 		'separator'    => 'before',
-		// 	]
-		// );
-		// $element->add_group_control(
-		// 	Group_Control_Css_Filter::get_type(),
-		// 	[
-		// 		'name'     => 'ha_hover_css_filters',
-		// 		'selector' => '{{WRAPPER}}:hover',
-		// 	]
-		// );
 
 		$element->end_injection();
 	}
