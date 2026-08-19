@@ -1924,14 +1924,24 @@
 		// Image Cycle Handler
 		let haImageCycleHandler = ModuleHandler.extend( {
 
-			onInit: function () {
-				ModuleHandler.prototype.onInit.apply( this, arguments );
-				this.run();
-			},
+		onInit: function () {
+			ModuleHandler.prototype.onInit.apply( this, arguments );
+			this.run();
+		},
 
-			onElementChange: function () {
-				this.run();
-			},
+		onElementChange: debounce( function ( changedProp ) {
+			this._icReplayEntrance = [
+				'ha_ic_animation_mode',
+				'ha_ic_direction',
+				'ha_ic_stagger',
+				'ha_ic_stagger_v3',
+				'ha_ic_entrance_duration',
+				'ha_ic_heading_duration',
+				'ha_ic_initial_scale',
+				'ha_ic_initial_opacity'
+			].indexOf( changedProp ) !== -1;
+			this.run();
+		}, 150 ),
 
 			onDestroy: function () {
 				if ( this._icMm ) {
@@ -1964,23 +1974,40 @@
 					try { self._icMm.revert(); } catch ( e ) {}
 					self._icMm = null;
 				}
-				gsap.killTweensOf( $cards.get() );
-				gsap.killTweensOf( $group.get() );
-				gsap.killTweensOf( $container.get() );
-				gsap.killTweensOf( $headings.get() );
+			gsap.killTweensOf( $cards.get() );
+			gsap.killTweensOf( $group.get() );
+			gsap.killTweensOf( $container.get() );
+			gsap.killTweensOf( $headings.get() );
 
-				// Add loading state until images are ready
-				$wrapper.addClass( 'ha-ic--loading' );
+			// A timeline killed mid-entrance leaves its inline styles behind
+			// (oversized scale, offset, opacity) which the loading class cannot
+			// override — reset them synchronously so that state is never painted
+			$wrapper.addClass( 'ha-ic--loading' );
+			gsap.set( $cards.get(), { clearProps: 'all' } );
+			gsap.set( $group.get(), { clearProps: 'all' } );
+			if ( $container.length ) {
+				gsap.set( $container.get(), { clearProps: 'all' } );
+			}
+			gsap.set( $headings.get(), { clearProps: 'all' } );
 
-				let didInit = false;
-				let doInit = function () {
-					if ( didInit ) {
-						return;
-					}
-					didInit = true;
-					$wrapper.removeClass( 'ha-ic--loading' );
-					self._runCycle( $scope );
-				};
+			// Invalidate any pending async init from an earlier run() call,
+			// otherwise overlapping runs build two live timelines at once
+			self._icRunToken = ( self._icRunToken || 0 ) + 1;
+			let runToken = self._icRunToken;
+
+			let didInit = false;
+			let doInit = function () {
+				if ( didInit ) {
+					return;
+				}
+				// A newer run() started meanwhile — discard this stale init
+				if ( runToken !== self._icRunToken ) {
+					return;
+				}
+				didInit = true;
+				$wrapper.removeClass( 'ha-ic--loading' );
+				self._runCycle( $scope );
+			};
 
 				// Safety fallback: never leave headings hidden if image loading stalls
 				setTimeout( doInit, 5000 );
@@ -1997,9 +2024,16 @@
 				}
 			},
 
-			_runCycle: function ( $scope ) {
-				let self = this;
-				let $wrapper = $scope.find( '.ha-ic-wrapper' );
+		_runCycle: function ( $scope ) {
+			let self = this;
+
+			// Defensive: never build a new timeline while a stale one is alive
+			if ( self._icMm ) {
+				try { self._icMm.revert(); } catch ( e ) {}
+				self._icMm = null;
+			}
+
+			let $wrapper = $scope.find( '.ha-ic-wrapper' );
 				let $group = $scope.find( '.ha-ic-group' );
 				let $container = $scope.find( '.ha-ic-container' );
 				let $headings = $scope.find( '.ha-ic-headings' );
@@ -2009,8 +2043,9 @@
 					return;
 				}
 
-				let settings = self.getElementSettings() || {};
-				let mode = settings.ha_ic_animation_mode || $wrapper.data( 'animation-mode' ) || 'variation-1';
+			let settings = self.getElementSettings() || {};
+			let mode = settings.ha_ic_animation_mode || $wrapper.data( 'animation-mode' ) || 'variation-1';
+			let direction = settings.ha_ic_direction || 'bottom';
 
 				// Physics defaults from demo
 				let getRadius = function ( settingKey ) {
@@ -2072,7 +2107,6 @@
 				let groupDuration = settings.ha_ic_group_duration !== undefined && settings.ha_ic_group_duration !== '' ? parseFloat( settings.ha_ic_group_duration ) : 20;
 				let flipInterval = settings.ha_ic_flip_interval !== undefined && settings.ha_ic_flip_interval !== '' ? parseFloat( settings.ha_ic_flip_interval ) : 2;
 				let initialScale = settings.ha_ic_initial_scale !== undefined && settings.ha_ic_initial_scale !== '' ? parseFloat( settings.ha_ic_initial_scale ) : 3;
-				let v2Scale = settings.ha_ic_v2_scale !== undefined && settings.ha_ic_v2_scale !== '' ? parseFloat( settings.ha_ic_v2_scale ) : 5;
 				let initialOpacity = 0.8;
 				if ( settings.ha_ic_initial_opacity !== undefined ) {
 					if ( typeof settings.ha_ic_initial_opacity === 'object' && settings.ha_ic_initial_opacity.size !== undefined ) {
@@ -2107,21 +2141,43 @@
 						}
 						gsap.set( $headings.get(), { clearProps: 'all' } );
 
-						let tl;
+					let entranceEnd = 0;
+					let tl;
 
-						if ( mode === 'variation-1' ) {
-							let radius1 = radius1Base + ( image ? image.clientHeight / 2 : 60 );
-							let radius2 = radius - radius1;
+					if ( mode === 'variation-1' ) {
+						let radius1 = radius1Base + ( image ? image.clientHeight / 2 : 60 );
+						let radius2 = radius - radius1;
 
-							tl = gsap.timeline();
-							tl.from( cardEls, {
-								y: window.innerHeight / 2 + ( image ? image.clientHeight * 1.5 : 120 ),
-								rotateX: -180,
-								stagger: stagger,
-								duration: 0.5,
-								opacity: initialOpacity,
-								scale: initialScale,
-							} )
+						// Base offsets on the wrapper itself (not the window) so the
+						// scaled cards always start fully outside the widget bounds —
+						// clipped by overflow — in both the editor preview and frontend
+						let wrapWidth = $wrapper.outerWidth() || window.innerWidth;
+						let wrapHeight = $wrapper.outerHeight() || window.innerHeight;
+						let offsetY = wrapHeight / 2 + ( image ? image.clientHeight * 1.5 : 120 );
+						let offsetX = wrapWidth / 2 + ( image ? image.clientWidth * 1.5 : 120 );
+						let entranceFrom = {
+							stagger: stagger,
+							duration: 0.5,
+							opacity: initialOpacity,
+							scale: initialScale,
+						};
+
+						if ( 'top' === direction ) {
+							entranceFrom.y = -offsetY;
+							entranceFrom.rotateX = 180;
+						} else if ( 'left' === direction ) {
+							entranceFrom.x = -offsetX;
+							entranceFrom.rotateY = -180;
+						} else if ( 'right' === direction ) {
+							entranceFrom.x = offsetX;
+							entranceFrom.rotateY = 180;
+						} else {
+							entranceFrom.y = offsetY;
+							entranceFrom.rotateX = -180;
+						}
+
+						tl = gsap.timeline();
+						tl.from( cardEls, entranceFrom )
 								.set( cardEls, {
 									transformOrigin: 'center ' + ( radius1 + ( image ? image.clientHeight / 2 : 60 ) ) + 'px',
 								} )
@@ -2165,34 +2221,37 @@
 									},
 									'<'
 								)
-								.from(
-									$headings.get(),
-									{
-										opacity: 0,
-										filter: 'blur(60px)',
-										duration: headingDuration,
-									},
-									'<'
-								)
-								.to( cardEls, {
+							.from(
+								$headings.get(),
+								{
+									opacity: 0,
+									filter: 'blur(60px)',
+									duration: headingDuration,
+								},
+								'<'
+							);
+
+							entranceEnd = tl.duration();
+
+							tl.to( cardEls, {
+								repeat: -1,
+								duration: flipInterval,
+								onRepeat: function () {
+									gsap.to( cardEls[ Math.floor( Math.random() * count ) ], {
+										rotateY: '+=180',
+									} );
+								},
+							} )
+							.to(
+								$group.get( 0 ),
+								{
+									rotation: 360,
+									duration: groupDuration,
 									repeat: -1,
-									duration: flipInterval,
-									onRepeat: function () {
-										gsap.to( cardEls[ Math.floor( Math.random() * count ) ], {
-											rotateY: '+=180',
-										} );
-									},
-								} )
-								.to(
-									$group.get( 0 ),
-									{
-										rotation: 360,
-										duration: groupDuration,
-										repeat: -1,
-										ease: 'none',
-									},
-									'<-=' + flipInterval
-								);
+									ease: 'none',
+								},
+								'<-=' + flipInterval
+							);
 						} else if ( mode === 'variation-2' ) {
 							tl = gsap.timeline();
 							tl.from( cardEls, {
@@ -2208,7 +2267,7 @@
 								},
 								duration: 1,
 								opacity: initialOpacity,
-								scale: v2Scale,
+								scale: initialScale,
 								ease: 'power4.out',
 							} )
 								.set( cardEls, {
@@ -2239,24 +2298,27 @@
 									duration: 1,
 									ease: 'power2.out',
 								} )
-								.from(
-									$headings.get(),
-									{
-										opacity: 0,
-										filter: 'blur(60px)',
-										duration: 1.5,
-									},
-									'<-=1'
-								)
-								.to( cardEls, {
-									repeat: -1,
-									duration: flipInterval,
-									onRepeat: function () {
-										gsap.to( cardEls[ Math.floor( Math.random() * count ) ], {
-											rotateY: '+=180',
-										} );
-									},
-								} )
+							.from(
+								$headings.get(),
+								{
+									opacity: 0,
+									filter: 'blur(60px)',
+									duration: 1.5,
+								},
+								'<-=1'
+							);
+
+							entranceEnd = tl.duration();
+
+							tl.to( cardEls, {
+								repeat: -1,
+								duration: flipInterval,
+								onRepeat: function () {
+									gsap.to( cardEls[ Math.floor( Math.random() * count ) ], {
+										rotateY: '+=180',
+									} );
+								},
+							} )
 								.to(
 									$group.get( 0 ),
 									{
@@ -2313,39 +2375,48 @@
 									},
 									0
 								)
-								.from(
-									$headings.get(),
-									{
-										opacity: 0,
-										filter: 'blur(60px)',
-										duration: headingDuration,
-									},
-									1
-								)
-								.to( cardEls, {
-									repeat: -1,
-									duration: flipInterval,
-									onRepeat: function () {
-										gsap.to( cardEls[ Math.floor( Math.random() * count ) ], {
-											rotateY: '+=180',
-										} );
-									},
-								} );
-
-							let containerTarget = $container.length ? $container.get( 0 ) : $group.get( 0 );
-							tl.to(
-								containerTarget,
+							.from(
+								$headings.get(),
 								{
-									rotation: '-=360',
-									duration: groupDuration,
-									ease: 'none',
-									repeat: -1,
+									opacity: 0,
+									filter: 'blur(60px)',
+									duration: headingDuration,
 								},
-								0
+								1
 							);
-						}
 
-						return function () {
+							entranceEnd = tl.duration();
+
+							tl.to( cardEls, {
+								repeat: -1,
+								duration: flipInterval,
+								onRepeat: function () {
+									gsap.to( cardEls[ Math.floor( Math.random() * count ) ], {
+										rotateY: '+=180',
+									} );
+								}
+							} );
+
+						let containerTarget = $container.length ? $container.get( 0 ) : $group.get( 0 );
+						tl.to(
+							containerTarget,
+							{
+								rotation: '-=360',
+								duration: groupDuration,
+								ease: 'none',
+								repeat: -1,
+							},
+							0
+						);
+					}
+
+					if ( self._icHasEntered && ! self._icReplayEntrance && entranceEnd > 0 ) {
+						tl.time( entranceEnd + 0.001 );
+					}
+					self._icHasEntered = true;
+					self._icReplayEntrance = false;
+
+					return function () {
 							if ( tl ) {
 								tl.kill();
 							}

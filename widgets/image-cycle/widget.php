@@ -87,11 +87,44 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'type'               => Controls_Manager::SELECT,
                 'default'            => 'variation-1',
                 'options'            => [
-                    'variation-1' => __( 'Variation 1', 'happy-elementor-addons' )
-                    // 'variation-2' => __( 'Variation 2', 'happy-elementor-addons' ),
-                    // 'variation-3' => __( 'Variation 3', 'happy-elementor-addons' ),
+                    'variation-1' => __( 'Variation 1', 'happy-elementor-addons' ),
+                    'variation-2' => __( 'Variation 2', 'happy-elementor-addons' ),
+                    'variation-3' => __( 'Variation 3', 'happy-elementor-addons' ),
                 ],
                 'frontend_available' => true
+            ]
+        );
+
+        $this->add_control(
+            'ha_ic_direction',
+            [
+                'label'              => __( 'Entrance Direction', 'happy-elementor-addons' ),
+                'type'               => Controls_Manager::CHOOSE,
+                'options'            => [
+                    'bottom'    => [
+                        'title' => __( 'Bottom', 'happy-elementor-addons' ),
+                        'icon'  => 'eicon-arrow-up'
+                    ],
+                    'left'  => [
+                        'title' => __( 'Left', 'happy-elementor-addons' ),
+                        'icon'  => 'eicon-arrow-right'
+                    ],
+                    'top' => [
+                        'title' => __( 'Top', 'happy-elementor-addons' ),
+                        'icon'  => 'eicon-arrow-down'
+                    ],
+                    'right'   => [
+                        'title' => __( 'Right', 'happy-elementor-addons' ),
+                        'icon'  => 'eicon-arrow-left'
+                    ]
+                ],
+                'default'            => 'bottom',
+                'toggle'             => false,
+                'condition'          => [
+                    'ha_ic_animation_mode' => 'variation-1'
+                ],
+                'frontend_available' => true,
+                // 'render_type' => 'template'
             ]
         );
 
@@ -392,29 +425,13 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'label' => __( 'Initial Scale', 'happy-elementor-addons' ),
                 'type' => Controls_Manager::NUMBER,
                 'min' => 1,
-                'max' => 10,
+                'max' => 5,
                 'step' => 0.1,
                 'default' => 3,
                 'condition' => [
                     'ha_ic_animation_mode!' => 'variation-3',
                 ],
                 'frontend_available' => true,
-            ]
-        );
-
-        $this->add_control(
-            'ha_ic_v2_scale',
-            [
-                'label'              => __( 'Initial Scale (V2)', 'happy-elementor-addons' ),
-                'type'               => Controls_Manager::NUMBER,
-                'min'                => 1,
-                'max'                => 10,
-                'step'               => 0.1,
-                'default'            => 5,
-                'condition'          => [
-                    'ha_ic_animation_mode' => 'variation-2'
-                ],
-                'frontend_available' => true
             ]
         );
 
@@ -499,7 +516,6 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'selectors'  => [
                     '{{WRAPPER}} .ha-ic-wrapper' => 'height: {{SIZE}}{{UNIT}}; min-height: {{SIZE}}{{UNIT}};'
                 ],  
-                'render_type' => 'ui'
             ]
         );
 
@@ -520,7 +536,6 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'selectors'  => [
                     '{{WRAPPER}} .ha-ic-wrapper' => 'min-height: {{SIZE}}{{UNIT}};'
                 ],
-                'render_type' => 'ui'
             ]
         );
 
@@ -529,7 +544,6 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             [
                 'name'     => 'ha_ic_wrapper_border',
                 'selector' => '{{WRAPPER}} .ha-ic-wrapper',
-                'render_type' => 'ui'
             ]
         );
 
@@ -542,7 +556,6 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'selectors'  => [
                     '{{WRAPPER}} .ha-ic-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
                 ],
-                'render_type' => 'ui'
             ]
         );
 
@@ -551,7 +564,6 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             [
                 'name'     => 'ha_ic_wrapper_shadow',
                 'selector' => '{{WRAPPER}} .ha-ic-wrapper',
-                'render_type' => 'ui'
             ]
         );
 
@@ -592,7 +604,6 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'selectors'  => [
                     '{{WRAPPER}} .ha-ic-headings' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
                 ],
-                'render_type' => 'template'
             ]
         );
 
@@ -605,7 +616,6 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'selectors'  => [
                     '{{WRAPPER}} .ha-ic-headings' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
                 ],
-                'render_type' => 'template'
             ]
         );
 
@@ -617,7 +627,6 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'selectors' => [
                     '{{WRAPPER}} .ha-ic-headings' => 'background-color: {{VALUE}};'
                 ],
-                'render_type' => 'template'
             ]
         );
 
