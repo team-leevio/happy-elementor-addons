@@ -269,7 +269,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'desktop_default'    => 50,
                 'tablet_default'     => 50,
                 'mobile_default'     => 50,
-                'description'        => __( 'Initial Circle', 'happy-elementor-addons' ),
+                'description'        => __( 'Circle size when the animation is appearing.', 'happy-elementor-addons' ),
                 'frontend_available' => true
             ]
         );
@@ -277,7 +277,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
         $this->add_responsive_control(
             'ha_ic_radius',
             [
-                'label'              => __( 'Circle', 'happy-elementor-addons' ),
+                'label'              => __( 'Final Circle', 'happy-elementor-addons' ),
                 'type'               => Controls_Manager::SLIDER,
                 'size_units'         => ['px', '%', 'em', 'rem'],
                 'range'              => [
@@ -310,7 +310,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'label'              => __( 'Stagger Delay', 'happy-elementor-addons' ),
                 'type'               => Controls_Manager::NUMBER,
                 'min'                => 0,
-                'max'                => 1,
+                'max'                => 5,
                 'step'               => 0.01,
                 'default'            => 0.1,
                 'description'        => __( 'Variation 1/2: 0.1, Variation 3: 0.15 by default.', 'happy-elementor-addons' ),
@@ -321,10 +321,10 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
         $this->add_control(
             'ha_ic_stagger_v3',
             [
-                'label'              => __( 'Stagger (Variation 3)', 'happy-elementor-addons' ),
+                'label'              => __( 'Stagger Delay (V3)', 'happy-elementor-addons' ),
                 'type'               => Controls_Manager::NUMBER,
                 'min'                => 0,
-                'max'                => 1,
+                'max'                => 5,
                 'step'               => 0.01,
                 'default'            => 0.15,
                 'condition'          => [
@@ -340,7 +340,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'label'              => __( 'Entrance Duration (s)', 'happy-elementor-addons' ),
                 'type'               => Controls_Manager::NUMBER,
                 'min'                => 0.1,
-                'max'                => 5,
+                'max'                => 10,
                 'step'               => 0.1,
                 'default'            => 0.5,
                 'frontend_available' => true
@@ -353,7 +353,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'label'              => __( 'Heading Fade Duration (s)', 'happy-elementor-addons' ),
                 'type'               => Controls_Manager::NUMBER,
                 'min'                => 0.1,
-                'max'                => 5,
+                'max'                => 10,
                 'step'               => 0.1,
                 'default'            => 1,
                 'frontend_available' => true
@@ -405,7 +405,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
         $this->add_control(
             'ha_ic_v2_scale',
             [
-                'label'              => __( 'Initial Scale (Variation 2)', 'happy-elementor-addons' ),
+                'label'              => __( 'Initial Scale (V2)', 'happy-elementor-addons' ),
                 'type'               => Controls_Manager::NUMBER,
                 'min'                => 1,
                 'max'                => 10,
@@ -463,7 +463,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             [
                 'name'     => 'ha_ic_wrapper_bg',
                 'types'    => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .ha-ic-wrapper'
+                'selector' => '{{WRAPPER}} .ha-ic-wrapper',
+                'render_type' => 'ui'
             ]
         );
 
@@ -475,7 +476,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors'  => [
                     '{{WRAPPER}} .ha-ic-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
-                ]
+                ],
+                'render_type' => 'ui'
             ]
         );
 
@@ -496,7 +498,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 ],
                 'selectors'  => [
                     '{{WRAPPER}} .ha-ic-wrapper' => 'height: {{SIZE}}{{UNIT}}; min-height: {{SIZE}}{{UNIT}};'
-                ]
+                ],  
+                'render_type' => 'ui'
             ]
         );
 
@@ -516,7 +519,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 ],
                 'selectors'  => [
                     '{{WRAPPER}} .ha-ic-wrapper' => 'min-height: {{SIZE}}{{UNIT}};'
-                ]
+                ],
+                'render_type' => 'ui'
             ]
         );
 
@@ -524,7 +528,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             Group_Control_Border::get_type(),
             [
                 'name'     => 'ha_ic_wrapper_border',
-                'selector' => '{{WRAPPER}} .ha-ic-wrapper'
+                'selector' => '{{WRAPPER}} .ha-ic-wrapper',
+                'render_type' => 'ui'
             ]
         );
 
@@ -536,7 +541,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors'  => [
                     '{{WRAPPER}} .ha-ic-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
-                ]
+                ],
+                'render_type' => 'ui'
             ]
         );
 
@@ -544,7 +550,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             Group_Control_Box_Shadow::get_type(),
             [
                 'name'     => 'ha_ic_wrapper_shadow',
-                'selector' => '{{WRAPPER}} .ha-ic-wrapper'
+                'selector' => '{{WRAPPER}} .ha-ic-wrapper',
+                'render_type' => 'ui'
             ]
         );
 
@@ -584,7 +591,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors'  => [
                     '{{WRAPPER}} .ha-ic-headings' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
-                ]
+                ],
+                'render_type' => 'template'
             ]
         );
 
@@ -596,7 +604,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors'  => [
                     '{{WRAPPER}} .ha-ic-headings' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
-                ]
+                ],
+                'render_type' => 'template'
             ]
         );
 
@@ -607,7 +616,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .ha-ic-headings' => 'background-color: {{VALUE}};'
-                ]
+                ],
+                'render_type' => 'template'
             ]
         );
 
@@ -663,8 +673,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'type'            => Controls_Manager::SLIDER,
                 'size_units'      => ['px', 'em', 'rem'],
                 'range'           => [
-                    'px' => ['min' => 40, 'max' => 500],
-                    'em' => ['min' => 1, 'max' => 22]
+                    'px' => ['min' => 1, 'max' => 500],
+                    'em' => ['min' => 1, 'max' => 50]
                 ],
                 'default'         => [
                     'unit' => 'em',
