@@ -124,7 +124,6 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                     'ha_ic_animation_mode' => 'variation-1'
                 ],
                 'frontend_available' => true,
-                // 'render_type' => 'template'
             ]
         );
 
@@ -183,15 +182,6 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                     ['ha_ic_image' => ['url' => Utils::get_placeholder_image_src()]]
                 ],
                 'title_field' => '{{{ ha_ic_link.url }}}'
-            ]
-        );
-
-        $this->add_control(
-            'ha_ic_images_note',
-            [
-                'type'            => Controls_Manager::RAW_HTML,
-                'raw'             => __( 'Add up to 10 images. 8 images are set by default.', 'happy-elementor-addons' ),
-                'content_classes' => 'elementor-descriptor'
             ]
         );
 
@@ -286,7 +276,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
         $this->start_controls_section(
             '_section_ic_settings',
             [
-                'label' => __( 'Physics Settings', 'happy-elementor-addons' ),
+                'label' => __( 'Animation Settings', 'happy-elementor-addons' ),
                 'tab'   => Controls_Manager::TAB_CONTENT
             ]
         );
@@ -294,7 +284,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
         $this->add_responsive_control(
             'ha_ic_radius1',
             [
-                'label'              => __( 'Initial Circle', 'happy-elementor-addons' ),
+                'label'              => __( 'Initial Circle Radius', 'happy-elementor-addons' ),
                 'type'               => Controls_Manager::NUMBER,
                 'min'                => 0,
                 'max'                => 800,
@@ -310,7 +300,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
         $this->add_responsive_control(
             'ha_ic_radius',
             [
-                'label'              => __( 'Final Circle', 'happy-elementor-addons' ),
+                'label'              => __( 'Final Circle Radius', 'happy-elementor-addons' ),
                 'type'               => Controls_Manager::SLIDER,
                 'size_units'         => ['px', '%', 'em', 'rem'],
                 'range'              => [
@@ -463,7 +453,6 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
         $this->__ic_layout_style_controls();
         $this->__ic_content_style_controls();
         $this->__ic_image_style_controls();
-        $this->__ic_heading_style_controls();
     }
 
     protected function __ic_layout_style_controls() {
@@ -663,6 +652,106 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             ]
         );
 
+        $this->add_control(
+            'ha_ic_title_heading',
+            [
+                'label'     => __( 'Title', 'happy-elementor-addons' ),
+                'type'      => Controls_Manager::HEADING,
+                'separator' => 'after'
+            ]
+        );
+
+        $this->add_control(
+            'ha_ic_title_color',
+            [
+                'label'     => __( 'Color', 'happy-elementor-addons' ),
+                'type'      => Controls_Manager::COLOR,
+                'global'    => ['default' => Global_Colors::COLOR_SECONDARY],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ic-heading__main' => 'color: {{VALUE}};'
+                ]
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name'     => 'ha_ic_title_typography',
+                'global'   => ['default' => Global_Typography::TYPOGRAPHY_PRIMARY],
+                'selector' => '{{WRAPPER}} .ha-ic-heading__main'
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name'     => 'ha_ic_title_shadow',
+                'selector' => '{{WRAPPER}} .ha-ic-heading__main'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'ha_ic_title_margin',
+            [
+                'label'      => __( 'Margin', 'happy-elementor-addons' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors'  => [
+                    '{{WRAPPER}} .ha-ic-heading__main' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'ha_ic_subtitle_heading',
+            [
+                'label'     => __( 'Subtitle', 'happy-elementor-addons' ),
+                'type'      => Controls_Manager::HEADING,
+                'separator' => 'after'
+            ]
+        );
+
+        $this->add_control(
+            'ha_ic_subtitle_color',
+            [
+                'label'     => __( 'Color', 'happy-elementor-addons' ),
+                'type'      => Controls_Manager::COLOR,
+                'global'    => ['default' => Global_Colors::COLOR_SECONDARY],
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ic-heading__subtitle' => 'color: {{VALUE}};'
+                ]
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name'     => 'ha_ic_subtitle_typography',
+                'global'   => ['default' => Global_Typography::TYPOGRAPHY_SECONDARY],
+                'selector' => '{{WRAPPER}} .ha-ic-heading__subtitle'
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name'     => 'ha_ic_subtitle_shadow',
+                'selector' => '{{WRAPPER}} .ha-ic-heading__subtitle'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'ha_ic_subtitle_margin',
+            [
+                'label'      => __( 'Margin', 'happy-elementor-addons' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors'  => [
+                    '{{WRAPPER}} .ha-ic-heading__subtitle' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+                ]
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -756,118 +845,6 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'default'   => 'cover',
                 'selectors' => [
                     '{{WRAPPER}} .ha-ic-card__img' => 'background-size: {{VALUE}};'
-                ]
-            ]
-        );
-
-        $this->end_controls_section();
-    }
-
-    protected function __ic_heading_style_controls() {
-        $this->start_controls_section(
-            '__ha_ic_heading_style',
-            [
-                'label' => __( 'Heading', 'happy-elementor-addons' ),
-                'tab'   => Controls_Manager::TAB_STYLE
-            ]
-        );
-
-        $this->add_control(
-            'ha_ic_title_heading',
-            [
-                'label'     => __( 'Title', 'happy-elementor-addons' ),
-                'type'      => Controls_Manager::HEADING,
-                'separator' => 'before'
-            ]
-        );
-
-        $this->add_control(
-            'ha_ic_title_color',
-            [
-                'label'     => __( 'Color', 'happy-elementor-addons' ),
-                'type'      => Controls_Manager::COLOR,
-                'global'    => ['default' => Global_Colors::COLOR_SECONDARY],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ic-heading__main' => 'color: {{VALUE}};'
-                ]
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'ha_ic_title_typography',
-                'global'   => ['default' => Global_Typography::TYPOGRAPHY_PRIMARY],
-                'selector' => '{{WRAPPER}} .ha-ic-heading__main'
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Text_Shadow::get_type(),
-            [
-                'name'     => 'ha_ic_title_shadow',
-                'selector' => '{{WRAPPER}} .ha-ic-heading__main'
-            ]
-        );
-
-        $this->add_responsive_control(
-            'ha_ic_title_margin',
-            [
-                'label'      => __( 'Margin', 'happy-elementor-addons' ),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors'  => [
-                    '{{WRAPPER}} .ha-ic-heading__main' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'ha_ic_subtitle_heading',
-            [
-                'label'     => __( 'Subtitle', 'happy-elementor-addons' ),
-                'type'      => Controls_Manager::HEADING,
-                'separator' => 'before'
-            ]
-        );
-
-        $this->add_control(
-            'ha_ic_subtitle_color',
-            [
-                'label'     => __( 'Color', 'happy-elementor-addons' ),
-                'type'      => Controls_Manager::COLOR,
-                'global'    => ['default' => Global_Colors::COLOR_SECONDARY],
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ic-heading__subtitle' => 'color: {{VALUE}};'
-                ]
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'ha_ic_subtitle_typography',
-                'global'   => ['default' => Global_Typography::TYPOGRAPHY_SECONDARY],
-                'selector' => '{{WRAPPER}} .ha-ic-heading__subtitle'
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Text_Shadow::get_type(),
-            [
-                'name'     => 'ha_ic_subtitle_shadow',
-                'selector' => '{{WRAPPER}} .ha-ic-heading__subtitle'
-            ]
-        );
-
-        $this->add_responsive_control(
-            'ha_ic_subtitle_margin',
-            [
-                'label'      => __( 'Margin', 'happy-elementor-addons' ),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors'  => [
-                    '{{WRAPPER}} .ha-ic-heading__subtitle' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
                 ]
             ]
         );
