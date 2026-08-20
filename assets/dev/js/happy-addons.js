@@ -2383,7 +2383,7 @@
 										return Math.round( radius * Math.sin( sliceAngle * index - Math.PI / 4 ) );
 									},
 									rotation: function ( index ) {
-										return ( index + 1 ) * ( 360 / count ) + spinOffset;
+										return ( index + 1 ) * ( 360 / count ) + 360 * rotationDir;
 									},
 								} )
 							.to(

@@ -202,7 +202,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'default'     => __( 'Astral', 'happy-elementor-addons' ),
                 'placeholder' => __( 'First Title Line', 'happy-elementor-addons' ),
                 'label_block' => true,
-                'dynamic'     => ['active' => true]
+                'dynamic'     => ['active' => true],
             ]
         );
 
