@@ -1938,17 +1938,23 @@
 				'ha_ic_entrance_duration',
 				'ha_ic_heading_duration',
 				'ha_ic_initial_scale',
-				'ha_ic_initial_opacity'
+				'ha_ic_initial_opacity',
+				'ha_ic_title',
+				'ha_ic_title_second',
+				'ha_ic_subtitle',
+				'ha_ic_title_tag',
+				'ha_ic_subtitle_tag'
 			].indexOf( changedProp ) !== -1;
 			this.run();
-		}, 150 ),
+		}, 300 ),
 
 			onDestroy: function () {
 				if ( this._icMm ) {
 					try { this._icMm.revert(); } catch ( e ) {}
 					this._icMm = null;
 				}
-				this.$element.find( '.ha-ic-wrapper' ).off( '.icRotationPause' );
+				clearTimeout( this._icResumeTimer );
+				this.$element.find( '.ha-ic-wrapper, .ha-ic-card' ).off( '.icRotationPause' );
 				this._icRotationTweens = [];
 				ModuleHandler.prototype.onDestroy.apply( this, arguments );
 			},
@@ -2052,7 +2058,8 @@
 				let $group = $scope.find( '.ha-ic-group' );
 				let $container = $scope.find( '.ha-ic-container' );
 				let $headings = $scope.find( '.ha-ic-headings' );
-				let cardEls = $scope.find( '.ha-ic-card' ).get();
+				let $cardElements = $scope.find( '.ha-ic-card' );
+				let cardEls = $cardElements.get();
 				let count = cardEls.length;
 				if ( !count ) {
 					return;
@@ -2389,7 +2396,7 @@
 							.to(
 								$group.get( 0 ),
 								{
-									rotation: rotationDir * ( 360 + 90 ),
+									rotation: rotationDir * 360 - 90,
 									duration: 3,
 									ease: 'power4.out',
 								},
@@ -2442,18 +2449,36 @@
 					}
 				);
 
-				// Pause the rotation while the mouse is over the widget, resume on mouse out
+				// Pause the rotation while the mouse is over an image, resume on mouse out
 				$wrapper.off( '.icRotationPause' );
+				$cardElements.off( '.icRotationPause' );
+				clearTimeout( self._icResumeTimer );
 				if ( pauseOnHover ) {
-					$wrapper.on( 'mouseenter.icRotationPause', function () {
+					$cardElements.on( 'mouseenter.icRotationPause', function () {
+						clearTimeout( self._icResumeTimer );
 						self._icSetRotationPaused( true );
 					} );
-					$wrapper.on( 'mouseleave.icRotationPause', function () {
-						self._icSetRotationPaused( false );
+					$cardElements.on( 'mouseleave.icRotationPause', function () {
+						// Cards orbit around the ring, so a card may slide out from
+						// under the cursor while another is still hovered. Only resume
+						// once no card is hovered, with a short delay to avoid flicker.
+						var stillHovered = cardEls.some( function ( el ) {
+							return el.matches( ':hover' );
+						} );
+						if ( stillHovered ) {
+							return;
+						}
+						clearTimeout( self._icResumeTimer );
+						self._icResumeTimer = setTimeout( function () {
+							self._icSetRotationPaused( false );
+						}, 60 );
 					} );
-					// Rebuilt while the mouse is already over the widget (editor toggle):
+					// Rebuilt while the mouse is already over an image (editor toggle):
 					// start paused instead of waiting for the next mouseenter
-					if ( $wrapper.is( ':hover' ) ) {
+					var hoveredOnInit = cardEls.some( function ( el ) {
+						return el.matches( ':hover' );
+					} );
+					if ( hoveredOnInit ) {
 						self._icSetRotationPaused( true );
 					}
 				}

@@ -199,7 +199,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             [
                 'label'       => __( 'Title', 'happy-elementor-addons' ),
                 'type'        => Controls_Manager::TEXT,
-                'default'     => __( 'Astral', 'happy-elementor-addons' ),
+                'default'     => __( 'Happy', 'happy-elementor-addons' ),
                 'placeholder' => __( 'First Title Line', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'dynamic'     => ['active' => true],
@@ -211,7 +211,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             [
                 'label'       => __( 'Title Second Line', 'happy-elementor-addons' ),
                 'type'        => Controls_Manager::TEXT,
-                'default'     => __( 'Aesthetics', 'happy-elementor-addons' ),
+                'default'     => __( 'Addons', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Second Title Line', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'dynamic'     => ['active' => true]
@@ -223,7 +223,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             [
                 'label'       => __( 'Subtitle', 'happy-elementor-addons' ),
                 'type'        => Controls_Manager::TEXT,
-                'default'     => __( '2024', 'happy-elementor-addons' ),
+                'default'     => __( '2026', 'happy-elementor-addons' ),
                 'placeholder' => __( 'Subtitle', 'happy-elementor-addons' ),
                 'label_block' => true,
                 'dynamic'     => ['active' => true]
@@ -295,7 +295,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'tablet_default'     => 50,
                 'mobile_default'     => 50,
                 'description'        => __( 'Circle size when the animation is appearing.', 'happy-elementor-addons' ),
-                'frontend_available' => true
+                'frontend_available' => true,
+                'renter_type' => 'template'
             ]
         );
 
@@ -325,7 +326,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                     'size' => 180
                 ],
                 'description'        => __('Distance from image center to screen center.','happy-elementor-addons'),
-                'frontend_available' => true
+                'frontend_available' => true,
+                'renter_type' => 'template'
             ]
         );
 
