@@ -1948,7 +1948,22 @@
 					try { this._icMm.revert(); } catch ( e ) {}
 					this._icMm = null;
 				}
+				this.$element.find( '.ha-ic-wrapper' ).off( '.icRotationPause' );
+				this._icRotationTweens = [];
 				ModuleHandler.prototype.onDestroy.apply( this, arguments );
+			},
+
+			_icSetRotationPaused: function ( paused ) {
+				let tweens = this._icRotationTweens || [];
+				for ( let i = 0; i < tweens.length; i++ ) {
+					try {
+						if ( paused ) {
+							tweens[ i ].pause();
+						} else {
+							tweens[ i ].play();
+						}
+					} catch ( e ) {}
+				}
 			},
 
 			run: function () {
@@ -2046,6 +2061,12 @@
 			let settings = self.getElementSettings() || {};
 			let mode = settings.ha_ic_animation_mode || $wrapper.data( 'animation-mode' ) || 'variation-1';
 			let direction = settings.ha_ic_direction || 'bottom';
+			let rotationDir = 'counter-clockwise' === settings.ha_ic_rotation_direction ? -1 : 1;
+			let pauseOnHover = 'yes' === settings.ha_ic_pause_rotation_on_hover;
+			// Counter-clockwise entrance: orbit the fan rotations a full turn in the
+			// opposite direction. Targets end at the same angle (mod 360), so the
+			// final ring layout stays identical to the clockwise one.
+			let spinOffset = 1 === rotationDir ? 0 : -360;
 
 				// Physics defaults from demo
 				let getRadius = function ( settingKey ) {
@@ -2122,6 +2143,7 @@
 				let breakPoint = '53em';
 				let mm = gsap.matchMedia();
 				self._icMm = mm;
+				self._icRotationTweens = [];
 
 				mm.add(
 					{
@@ -2129,9 +2151,9 @@
 						isMobile: '(max-width: ' + breakPoint + ')',
 					},
 					function ( context ) {
-						let isDesktop = context.conditions.isDesktop;
-						let image = $scope.find( '.ha-ic-card__img' ).get( 0 );
-						let sliceAngle = ( 2 * Math.PI ) / count;
+					let isDesktop = context.conditions.isDesktop;
+					let image = $scope.find( '.ha-ic-card__img' ).get( 0 );
+					let sliceAngle = ( 2 * Math.PI ) / count;
 
 						// Ensure previous tweens cleared inside context
 						gsap.set( cardEls, { clearProps: 'all' } );
@@ -2164,16 +2186,16 @@
 
 						if ( 'top' === direction ) {
 							entranceFrom.y = -offsetY;
-							entranceFrom.rotateX = 180;
+							entranceFrom.rotateX = 180 * rotationDir;
 						} else if ( 'left' === direction ) {
 							entranceFrom.x = -offsetX;
-							entranceFrom.rotateY = -180;
+							entranceFrom.rotateY = -180 * rotationDir;
 						} else if ( 'right' === direction ) {
 							entranceFrom.x = offsetX;
-							entranceFrom.rotateY = 180;
+							entranceFrom.rotateY = 180 * rotationDir;
 						} else {
 							entranceFrom.y = offsetY;
-							entranceFrom.rotateX = -180;
+							entranceFrom.rotateX = -180 * rotationDir;
 						}
 
 						tl = gsap.timeline();
@@ -2193,7 +2215,7 @@
 									cardEls,
 									{
 										rotation: function ( index ) {
-											return ( index * 360 ) / count;
+											return ( index * 360 ) / count + spinOffset;
 										},
 										rotateY: 15,
 										duration: 1,
@@ -2201,17 +2223,17 @@
 									},
 									'<'
 								)
-								.to( cardEls, {
-									x: function ( index ) {
-										return Math.round( radius2 * Math.cos( sliceAngle * index - Math.PI / 4 ) );
-									},
-									y: function ( index ) {
-										return Math.round( radius2 * Math.sin( sliceAngle * index - Math.PI / 4 ) ) - radius1;
-									},
-									rotation: function ( index ) {
-										return ( index + 1 ) * ( 360 / count );
-									},
-								} )
+							.to( cardEls, {
+								x: function ( index ) {
+									return Math.round( radius2 * Math.cos( sliceAngle * index - Math.PI / 4 ) );
+								},
+								y: function ( index ) {
+									return Math.round( radius2 * Math.sin( sliceAngle * index - Math.PI / 4 ) ) - radius1;
+								},
+								rotation: function ( index ) {
+									return ( index + 1 ) * ( 360 / count ) + spinOffset;
+								},
+							} )
 								.to(
 									cardEls,
 									{
@@ -2233,35 +2255,34 @@
 
 							entranceEnd = tl.duration();
 
-							tl.to( cardEls, {
-								repeat: -1,
-								duration: flipInterval,
-								onRepeat: function () {
-									gsap.to( cardEls[ Math.floor( Math.random() * count ) ], {
-										rotateY: '+=180',
-									} );
-								},
-							} )
-							.to(
-								$group.get( 0 ),
-								{
-									rotation: 360,
-									duration: groupDuration,
-									repeat: -1,
-									ease: 'none',
-								},
-								'<-=' + flipInterval
-							);
-						} else if ( mode === 'variation-2' ) {
+						tl.to( cardEls, {
+							repeat: -1,
+							duration: flipInterval,
+							onRepeat: function () {
+								gsap.to( cardEls[ Math.floor( Math.random() * count ) ], {
+									rotateY: '+=180',
+								} );
+							},
+						} );
+
+						let rotationTween = gsap.to( $group.get( 0 ), {
+							rotation: 360 * rotationDir,
+							duration: groupDuration,
+							repeat: -1,
+							ease: 'none',
+						} );
+						tl.add( rotationTween, '<-=' + flipInterval );
+						self._icRotationTweens.push( rotationTween );
+					} else if ( mode === 'variation-2' ) {
 							tl = gsap.timeline();
 							tl.from( cardEls, {
 								x: function ( index ) {
 									let w = image ? image.clientWidth : 80;
 									return index % 2 ? -window.innerWidth / 2 - w * 4 : window.innerWidth / 2 + w * 4;
 								},
-								rotation: function ( index ) {
-									return index % 2 ? -90 : 90;
-								},
+							rotation: function ( index ) {
+								return index % 2 ? -90 * rotationDir : 90 * rotationDir;
+							},
 								delay: function ( index ) {
 									return Math.floor( index / 2 ) * stagger;
 								},
@@ -2290,14 +2311,14 @@
 										}
 									},
 								} )
-								.to( cardEls, {
-									rotation: function ( index ) {
-										return index > count / 2 - 1 ? ( ( count - index - 1 ) * 360 ) / count : ( index * 360 ) / count;
-									},
-									opacity: initialOpacity,
-									duration: 1,
-									ease: 'power2.out',
-								} )
+							.to( cardEls, {
+								rotation: function ( index ) {
+									return index > count / 2 - 1 ? ( ( count - index - 1 ) * 360 ) / count + spinOffset : ( index * 360 ) / count + spinOffset;
+								},
+								opacity: initialOpacity,
+								duration: 1,
+								ease: 'power2.out',
+							} )
 							.from(
 								$headings.get(),
 								{
@@ -2310,38 +2331,37 @@
 
 							entranceEnd = tl.duration();
 
-							tl.to( cardEls, {
-								repeat: -1,
-								duration: flipInterval,
-								onRepeat: function () {
-									gsap.to( cardEls[ Math.floor( Math.random() * count ) ], {
-										rotateY: '+=180',
-									} );
-								},
-							} )
-								.to(
-									$group.get( 0 ),
-									{
-										rotation: 360,
-										duration: groupDuration,
-										repeat: -1,
-										ease: 'none',
-									},
-									'<-=1.5'
-								);
+						tl.to( cardEls, {
+							repeat: -1,
+							duration: flipInterval,
+							onRepeat: function () {
+								gsap.to( cardEls[ Math.floor( Math.random() * count ) ], {
+									rotateY: '+=180',
+								} );
+							},
+						} );
+
+						let rotationTween = gsap.to( $group.get( 0 ), {
+							rotation: 360 * rotationDir,
+							duration: groupDuration,
+							repeat: -1,
+							ease: 'none',
+						} );
+						tl.add( rotationTween, '<-=1.5' );
+						self._icRotationTweens.push( rotationTween );
 						} else {
 							// variation-3
-							gsap.set( cardEls, {
-								x: function ( index ) {
-									return Math.round( radius * Math.cos( sliceAngle * index - Math.PI / 4 ) );
-								},
-								y: function ( index ) {
-									return Math.round( radius * Math.sin( sliceAngle * index - Math.PI / 4 ) );
-								},
-								rotation: function ( index ) {
-									return ( index + 1 ) * ( 360 / count );
-								},
-							} );
+						gsap.set( cardEls, {
+							x: function ( index ) {
+								return Math.round( radius * Math.cos( sliceAngle * index - Math.PI / 4 ) );
+							},
+							y: function ( index ) {
+								return Math.round( radius * Math.sin( sliceAngle * index - Math.PI / 4 ) );
+							},
+							rotation: function ( index ) {
+								return ( index + 1 ) * ( 360 / count );
+							},
+						} );
 
 							tl = gsap.timeline();
 							tl.set( cardEls, {
@@ -2363,18 +2383,18 @@
 										return Math.round( radius * Math.sin( sliceAngle * index - Math.PI / 4 ) );
 									},
 									rotation: function ( index ) {
-										return ( index + 1 ) * ( 360 / count );
+										return ( index + 1 ) * ( 360 / count ) + spinOffset;
 									},
 								} )
-								.to(
-									$group.get( 0 ),
-									{
-										rotation: -360 - 90,
-										duration: 3,
-										ease: 'power4.out',
-									},
-									0
-								)
+							.to(
+								$group.get( 0 ),
+								{
+									rotation: rotationDir * ( 360 + 90 ),
+									duration: 3,
+									ease: 'power4.out',
+								},
+								0
+							)
 							.from(
 								$headings.get(),
 								{
@@ -2397,17 +2417,15 @@
 								}
 							} );
 
-						let containerTarget = $container.length ? $container.get( 0 ) : $group.get( 0 );
-						tl.to(
-							containerTarget,
-							{
-								rotation: '-=360',
-								duration: groupDuration,
-								ease: 'none',
-								repeat: -1,
-							},
-							0
-						);
+					let containerTarget = $container.length ? $container.get( 0 ) : $group.get( 0 );
+					let rotationTween = gsap.to( containerTarget, {
+						rotation: 1 === rotationDir ? '+=360' : '-=360',
+						duration: groupDuration,
+						ease: 'none',
+						repeat: -1,
+					} );
+					tl.add( rotationTween, 0 );
+					self._icRotationTweens.push( rotationTween );
 					}
 
 					if ( self._icHasEntered && ! self._icReplayEntrance && entranceEnd > 0 ) {
@@ -2423,6 +2441,22 @@
 						};
 					}
 				);
+
+				// Pause the rotation while the mouse is over the widget, resume on mouse out
+				$wrapper.off( '.icRotationPause' );
+				if ( pauseOnHover ) {
+					$wrapper.on( 'mouseenter.icRotationPause', function () {
+						self._icSetRotationPaused( true );
+					} );
+					$wrapper.on( 'mouseleave.icRotationPause', function () {
+						self._icSetRotationPaused( false );
+					} );
+					// Rebuilt while the mouse is already over the widget (editor toggle):
+					// start paused instead of waiting for the next mouseenter
+					if ( $wrapper.is( ':hover' ) ) {
+						self._icSetRotationPaused( true );
+					}
+				}
 			}
 
 		} );

@@ -91,7 +91,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                     'variation-2' => __( 'Variation 2', 'happy-elementor-addons' ),
                     'variation-3' => __( 'Variation 3', 'happy-elementor-addons' ),
                 ],
-                'frontend_available' => true
+                'frontend_available' => true,
+                'render_type' => 'ui',
             ]
         );
 
@@ -124,6 +125,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                     'ha_ic_animation_mode' => 'variation-1'
                 ],
                 'frontend_available' => true,
+                'render_type' => 'ui'
             ]
         );
 
@@ -328,6 +330,29 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
         );
 
         $this->add_control(
+            'ha_ic_rotation_direction',
+            [
+                'label'              => __( 'Rotation Direction', 'happy-elementor-addons' ),
+                'type'               => Controls_Manager::CHOOSE,
+                'options'            => [
+                    'clockwise'        => [
+                        'title' => __( 'Clockwise', 'happy-elementor-addons' ),
+                        'icon'  => 'eicon-redo'
+                    ],
+                    'counter-clockwise' => [
+                        'title' => __( 'Counter Clockwise', 'happy-elementor-addons' ),
+                        'icon'  => 'eicon-undo'
+                    ]
+                ],
+                'default'            => 'clockwise',
+                'toggle'             => false,
+                'description'        => __( 'Rotation direction for the entrance animation and the continuous rotation.', 'happy-elementor-addons' ),
+                'frontend_available' => true,
+                'render_type' => 'ui'
+            ]
+        );
+
+        $this->add_control(
             'ha_ic_stagger',
             [
                 'label'              => __( 'Stagger Delay', 'happy-elementor-addons' ),
@@ -442,6 +467,20 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                     'unit' => 'px',
                     'size' => 0.8
                 ],
+                'frontend_available' => true
+            ]
+        );
+
+        $this->add_control(
+            'ha_ic_pause_rotation_on_hover',
+            [
+                'label'              => __( 'Pause Rotation On Hover', 'happy-elementor-addons' ),
+                'type'               => Controls_Manager::SWITCHER,
+                'label_on'           => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off'          => __( 'No', 'happy-elementor-addons' ),
+                'return_value'       => 'yes',
+                'default'            => '',
+                'description'        => __( 'Stop the rotation while the mouse is over the images and start it again when the mouse moves out.', 'happy-elementor-addons' ),
                 'frontend_available' => true
             ]
         );
