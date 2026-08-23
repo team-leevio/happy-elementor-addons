@@ -117,6 +117,12 @@ class Extensions_Manager {
 				'icon' => 'huge huge-layers-02',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/multi-layer-parallax/',
 				'is_pro' => true,
+			],
+			'happy-image-trails' => [
+				'title' => __( 'Image Trails', 'happy-addons-pro' ),
+				'icon' => 'hm hm-media-all',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#',
+				'is_pro' => true,
 			]
 		];
 
