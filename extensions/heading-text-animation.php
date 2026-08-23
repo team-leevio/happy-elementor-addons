@@ -212,7 +212,6 @@ class Heading_Text_Animation {
                 'render_type'        => 'template',
                 'frontend_available' => true,
                 'style_transfer'     => true,
-                'responsive'         => true
             ]
         );
 
@@ -233,7 +232,6 @@ class Heading_Text_Animation {
                 'render_type'        => 'template',
                 'frontend_available' => true,
                 'style_transfer'     => true,
-                'responsive'         => true
             ]
         );
 
@@ -253,7 +251,6 @@ class Heading_Text_Animation {
                 'render_type'        => 'template',
                 'frontend_available' => true,
                 'style_transfer'     => true,
-                'responsive'         => true
             ]
         );
 
@@ -295,7 +292,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => 'slide'
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -315,7 +311,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => 'slide'
                 ],
-                'responsive'         => true
             ]
         );
     }
@@ -344,7 +339,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['text_flip']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -364,7 +358,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['text_flip']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -383,7 +376,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['text_flip']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -414,7 +406,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['reveal']
                 ],
-                'responsive'         => true
             ]
         );
     }
@@ -436,7 +427,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['smoky_reveal']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -456,7 +446,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['smoky_reveal']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -476,7 +465,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['smoky_reveal']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -500,7 +488,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['alt_reveal']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -520,7 +507,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['alt_reveal']
                 ],
-                'responsive'         => true
             ]
         );
     }
@@ -543,7 +529,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['popup_reveal']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -563,7 +548,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['popup_reveal']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -587,7 +571,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['mixing_reveal']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -614,7 +597,6 @@ class Heading_Text_Animation {
                 'render_type'        => 'template',
                 'frontend_available' => true,
                 'style_transfer'     => true,
-                'responsive'         => true
             ]
         );
     }
@@ -637,7 +619,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['scale']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -659,7 +640,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode'     => ['scale']
                 ],
-                'responsive'         => true
             ]
         );
     }
@@ -737,7 +717,6 @@ class Heading_Text_Animation {
                 'render_type'        => 'template',
                 'frontend_available' => true,
                 'style_transfer'     => true,
-                'responsive'         => true
             ]
         );
 
@@ -774,7 +753,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode!'    => ['invert']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -794,7 +772,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode!'    => ['invert']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -814,7 +791,6 @@ class Heading_Text_Animation {
                     'ha_hta_switcher' => 'yes',
                     'ha_hta_mode!'    => ['invert']
                 ],
-                'responsive'         => true
             ]
         );
 
@@ -859,7 +835,6 @@ class Heading_Text_Animation {
                 'render_type'        => 'template',
                 'frontend_available' => true,
                 'style_transfer'     => true,
-                'responsive'         => true
             ]
         );
 
