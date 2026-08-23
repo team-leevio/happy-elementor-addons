@@ -364,6 +364,9 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'step'               => 0.01,
                 'default'            => 0.1,
                 'description'        => __( 'Variation 1/2: 0.1, Variation 3: 0.15 by default.', 'happy-elementor-addons' ),
+                'condition'          => [
+                    'ha_ic_animation_mode' => ['variation-1', 'variation-2']
+                ],
                 'frontend_available' => true
             ]
         );
@@ -371,12 +374,13 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
         $this->add_control(
             'ha_ic_stagger_v3',
             [
-                'label'              => __( 'Stagger Delay (V3)', 'happy-elementor-addons' ),
+                'label'              => __( 'Stagger Delay', 'happy-elementor-addons' ),
                 'type'               => Controls_Manager::NUMBER,
                 'min'                => 0,
                 'max'                => 5,
                 'step'               => 0.01,
                 'default'            => 0.15,
+                'description'        => __( 'Variation 1/2: 0.1, Variation 3: 0.15 by default.', 'happy-elementor-addons' ),
                 'condition'          => [
                     'ha_ic_animation_mode' => 'variation-3'
                 ],
