@@ -8,6 +8,8 @@ use Happy_Addons\Elementor\Extensions as Features;
 class Extensions_Manager {
 	const FEATURES_DB_KEY = 'happyaddons_inactive_features';
 
+	const EXTENSIONS_DB_KEY = 'happyaddons_inactive_extensions';
+
 	/**
 	 * Initialize
 	 */
@@ -30,6 +32,73 @@ class Extensions_Manager {
 				self::disable_pro_feature( $feature_key );
 			}
 		}
+
+		$inactive_extensions = self::get_inactive_extensions();
+
+		foreach ( self::get_local_extensions_map() as $extension_key => $data ) {
+			if ( ! in_array( $extension_key, $inactive_extensions ) ) {
+				self::enable_extension( $extension_key );
+			} else {
+				self::disable_extension( $extension_key );
+			}
+		}
+
+		foreach ( self::get_pro_extensions_map() as $extension_key => $data ) {
+			if ( in_array( $extension_key, $inactive_extensions ) ) {
+				self::disable_pro_extension( $extension_key );
+			}
+		}
+	}
+
+	public static function get_extensions_map() {
+		$extensions_map = self::get_local_extensions_map();
+
+		return apply_filters( 'happyaddons_get_extensions_map', $extensions_map );
+	}
+
+	public static function get_inactive_extensions() {
+		return get_option( self::EXTENSIONS_DB_KEY, [] );
+	}
+
+	public static function save_inactive_extensions( $extensions = [] ) {
+		update_option( self::EXTENSIONS_DB_KEY, $extensions );
+	}
+
+	/**
+	 * Get the pro extensions map for dashboard only
+	 *
+	 * @return array
+	 */
+	public static function get_pro_extensions_map() {
+		return apply_filters( 'happyaddons_get_pro_extensions_map', [] );
+	}
+
+	/**
+	 * Get the free extensions map
+	 *
+	 * @return array
+	 */
+	public static function get_local_extensions_map() {
+		return [
+			'admin-bar-menu' => [
+				'title' => __( 'Admin Bar Menu', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-scroll-top',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
+				'is_pro' => false,
+			],
+			'happy-clone' => [
+				'title' => __( 'Happy Clone', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-flip-card2',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
+				'is_pro' => false,
+			],
+			'on-demand-cache' => [
+				'title' => __( 'On Demand Cache', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-layer',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
+				'is_pro' => false,
+			],
+		];
 	}
 
 	public static function get_features_map() {
@@ -347,5 +416,34 @@ class Extensions_Manager {
 			// 	add_filter( 'happyaddons/extensions/happy_preset', '__return_false' );
 			// 	break;
 		}
+	}
+
+	protected static function enable_extension( $extension_key ) {
+		switch ( $extension_key ) {
+			default:
+				do_action( 'happyaddons/enable_extension', $extension_key );
+				break;
+		}
+	}
+
+	protected static function disable_extension( $extension_key ) {
+		switch ( $extension_key ) {
+			case 'admin-bar-menu':
+				add_filter( 'happyaddons/extensions/adminbar_menu', '__return_false' );
+				break;
+
+			case 'happy-clone':
+				add_filter( 'happyaddons/extensions/happy_clone', '__return_false' );
+				break;
+
+			case 'on-demand-cache':
+				add_filter( 'happyaddons/extensions/on_demand_cache', '__return_false' );
+				break;
+		}
+	}
+
+	protected static function disable_pro_extension( $extension_key ) {
+		$filter_key = str_replace( '-', '_', $extension_key );
+		add_filter( 'happyaddons/extensions/' . $filter_key, '__return_false' );
 	}
 }

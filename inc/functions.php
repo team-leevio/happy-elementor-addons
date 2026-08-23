@@ -659,6 +659,15 @@ function ha_get_inactive_features() {
 }
 
 /**
+ * Get inactive happy extension list
+ *
+ * @return array
+ */
+function ha_get_inactive_extensions() {
+	return get_option('happyaddons_inactive_extensions', []);
+}
+
+/**
  * Get post date link
  *
  * @param int $post_id

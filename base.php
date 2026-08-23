@@ -148,6 +148,7 @@ class Base {
 			add_filter( 'plugin_action_links_' . plugin_basename( HAPPY_ADDONS__FILE__ ), [ HappyAddons_Classes\Dashboard::class, 'add_action_links' ] );
 			add_action( 'happyaddons_save_dashboard_data', [ HappyAddons_Classes\Dashboard::class, 'save_widgets_data' ], 1);
 			add_action( 'happyaddons_save_dashboard_data', [ HappyAddons_Classes\Dashboard::class, 'save_features_data' ] );
+			add_action( 'happyaddons_save_dashboard_data', [ HappyAddons_Classes\Dashboard::class, 'save_extensions_data' ] );
 			add_action( 'happyaddons_save_dashboard_data', [ HappyAddons_Classes\Dashboard::class, 'save_credentials_data' ] );
 			add_action( 'happyaddons_save_dashboard_data', [ HappyAddons_Classes\Dashboard::class, 'disable_unused_widget' ], 10);
 			add_action( 'in_admin_header', [ HappyAddons_Classes\Dashboard::class, 'remove_all_notices' ], PHP_INT_MAX );

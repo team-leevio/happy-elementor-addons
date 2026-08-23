@@ -111,6 +111,20 @@ class Dashboard {
         Extensions_Manager::save_inactive_features( $inactive_features );
     }
 
+    public static function save_extensions_data( $data ) {
+        $extensions = ! empty( $data['extensions'] ) ? $data['extensions'] : [];
+
+        /* Check whether Pro is available and allow to disable pro extensions */
+        $extensions_map = self::get_real_extensions_map();
+        if ( ha_has_pro() ) {
+            $extensions_map = array_merge( $extensions_map, Extensions_Manager::get_pro_extensions_map() );
+        }
+
+        $inactive_extensions = array_values( array_diff( array_keys( $extensions_map ), $extensions ) );
+
+        Extensions_Manager::save_inactive_extensions( $inactive_extensions );
+    }
+
     public static function save_credentials_data( $data ) {
         $credentials = ! empty( $data['credentials'] ) ? $data['credentials'] : [];
         Credentials_Manager::save_credentials( $credentials );
@@ -303,6 +317,10 @@ class Dashboard {
         return $widgets_map;
     }
 
+    private static function get_real_extensions_map() {
+        return Extensions_Manager::get_extensions_map();
+    }
+
     public static function get_features() {
         $widgets_map = self::get_real_features_map();
 
@@ -310,6 +328,15 @@ class Dashboard {
 
         uksort( $widgets_map, [ __CLASS__, 'sort_widgets' ] );
         return $widgets_map;
+    }
+
+    public static function get_extensions() {
+        $extensions_map = self::get_real_extensions_map();
+
+        $extensions_map = array_merge( $extensions_map, Extensions_Manager::get_pro_extensions_map() );
+
+        uksort( $extensions_map, [ __CLASS__, 'sort_widgets' ] );
+        return $extensions_map;
     }
 
     public static function get_credentials() {
@@ -436,6 +463,10 @@ class Dashboard {
                 'title' => esc_html__( 'Features', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_features' ],
             ],
+            'extensions' => [
+                'title' => esc_html__( 'Extension', 'happy-elementor-addons' ),
+                'renderer' => [ __CLASS__, 'render_extensions' ],
+            ],
             'credentials' => [
                 'title' => esc_html__( 'Credentials', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_credentials' ],
@@ -481,6 +512,10 @@ class Dashboard {
 
     public static function render_features() {
         self::load_template( 'features' );
+    }
+
+    public static function render_extensions() {
+        self::load_template( 'extensions' );
     }
 
     public static function render_credentials() {
