@@ -53,13 +53,19 @@ class Foreground_Overlay {
 		$element->add_control(
 			'_ha_foreground_overlay_type',
 			[
-				'label'   => __( 'Type', 'happy-elementor-addons' ),
-				'type'    => Controls_Manager::SELECT,
+				'label'   => __( 'Foreground Type', 'happy-elementor-addons' ),
+				'type'    => Controls_Manager::CHOOSE,
+				'toggle'  => true,
 				'default' => '',
 				'options' => [
-					''        => __( 'None', 'happy-elementor-addons' ),
-					'classic' => __( 'Classic', 'happy-elementor-addons' ),
-					'gradient' => __( 'Gradient', 'happy-elementor-addons' ),
+					'classic' => [
+						'title' => __( 'Classic', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-paint-brush',
+					],
+					'gradient' => [
+						'title' => __( 'Gradient', 'happy-elementor-addons' ),
+						'icon'  => 'eicon-barcode',
+					],
 				],
 				'selectors' => [
 					'{{WRAPPER}}' => 'position: relative; isolation: isolate; overflow: hidden;',
