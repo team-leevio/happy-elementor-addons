@@ -108,6 +108,11 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/background-overlay-demo/',
 				'is_pro' => false,
 			],
+			'foreground-overlay' => [
+				'title' => __( 'Foreground Overlay', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-layer',
+				'is_pro' => false,
+			],
 			'grid-layer' => [
 				'title' => __( 'Grid Layer', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-grid',
@@ -206,6 +211,10 @@ class Extensions_Manager {
 		switch ($feature_key) {
 			case 'background-overlay':
 				add_action( 'elementor/element/common/_section_background/after_section_end', [Features\Background_Overlay::class, 'add_section'] );
+				break;
+
+			case 'foreground-overlay':
+				add_action( 'elementor/element/container/section_background_overlay/after_section_end', [Features\Foreground_Overlay::class, 'add_section'] );
 				break;
 
 			case 'grid-layer':
