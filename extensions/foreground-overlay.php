@@ -501,6 +501,17 @@ class Foreground_Overlay {
 			]
 		);
 
+		$element->add_group_control(
+			Group_Control_Css_Filter::get_type(),
+			[
+				'name'      => '_ha_foreground_overlay_gradient_css_filters',
+				'selector'  => '{{WRAPPER}}::after',
+				'condition' => [
+					'_ha_foreground_overlay_type' => 'gradient',
+				],
+			]
+		);
+
 		$element->add_control(
 			'_ha_foreground_overlay_blend_mode',
 			[
