@@ -42,15 +42,6 @@ class Foreground_Overlay {
 			self::get_gradient_layer( 'right', [ 'start' => 98, 'end' => 100, 'opacity' => 1, 'blend' => 20 ] ),
 		] );
 
-		$element->start_injection( [
-			'type'     => 'section',
-			'of'       => 'section_background_overlay',
-			'fallback' => [
-				'type' => 'section',
-				'of'   => 'section_background',
-			],
-		] );
-
 		$element->start_controls_section(
 			'_ha_section_foreground_overlay',
 			[
@@ -532,7 +523,5 @@ class Foreground_Overlay {
 		);
 
 		$element->end_controls_section();
-
-		$element->end_injection();
 	}
 }
