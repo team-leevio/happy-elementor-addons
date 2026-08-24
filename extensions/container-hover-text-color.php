@@ -39,10 +39,16 @@ class Container_Hover_Text_Color {
 	}
 
 	public static function add_controls_section(Element_Base $element) {
-		$element->start_injection([
-			'of' => 'background_hover_transition',
-			'at' => 'after',
-		]);
+		$has_injection = false;
+
+		if ( false !== $element->get_control_index( 'background_hover_transition' ) ) {
+			$element->start_injection( [
+				'of' => 'background_hover_transition',
+				'at' => 'after',
+			] );
+
+			$has_injection = true;
+		}
 
 		$element->add_control(
 			'ha_hover_text_color',
@@ -138,6 +144,8 @@ class Container_Hover_Text_Color {
 			]
 		);
 
-		$element->end_injection();
+		if ( $has_injection ) {
+			$element->end_injection();
+		}
 	}
 }
