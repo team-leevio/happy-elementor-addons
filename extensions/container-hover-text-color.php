@@ -38,7 +38,13 @@ class Container_Hover_Text_Color {
 		return self::$instance;
 	}
 
-	public static function add_controls_section(Element_Base $element) {
+	public function init() {
+		if ( defined( 'ELEMENTOR_VERSION' ) && ha_elementor()->experiments->is_feature_active( 'container' ) ) {
+			add_action( 'elementor/element/container/section_background/before_section_end', [ $this, 'add_controls_section' ] );
+		}
+	}
+
+	public function add_controls_section( Element_Base $element ) {
 		$element->start_injection([
 			'of' => 'background_hover_transition',
 			'at' => 'after',

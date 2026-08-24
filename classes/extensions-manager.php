@@ -15,8 +15,6 @@ class Extensions_Manager {
 
 		add_action( 'elementor/element/button/section_style/after_section_start', [ Features\Fixed_Size_Button::class, 'add_button_controls' ] );
 
-		add_action( 'elementor/element/container/section_background/before_section_end', [ Features\Container_Hover_Text_Color::class, 'add_controls_section' ] );
-
 		$inactive_features = self::get_inactive_features();
 
 		foreach ( self::get_local_features_map() as $feature_key => $data ) {
@@ -244,6 +242,11 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/',
 				'is_pro' => false,
 			],
+			'container-hover-text-color' => [
+				'title' => __( 'Background Hover Effect', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-cursor-hover-click',
+				'is_pro' => false,
+			],
 		];
 	}
 
@@ -324,6 +327,7 @@ class Extensions_Manager {
 			case 'appearing-image-animation':
 			case 'heading-text-animation':
 			case 'liquid-glass':
+			case 'container-hover-text-color':
 				$cls_name = ucwords( str_replace( '-', ' ', $feature_key ) ); //remove ' - ' & uc first later
 				$cls_name = '\Happy_Addons\Elementor\Extensions\\' . str_replace( ' ', '_', $cls_name );
 				$cls_name::instance()->init();
