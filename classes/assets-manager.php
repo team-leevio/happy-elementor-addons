@@ -405,6 +405,15 @@ class Assets_Manager {
 			true
 		);
 
+		// imagesloaded.pkgd.min.js
+		wp_register_script(
+			'imagesloaded',
+			HAPPY_ADDONS_ASSETS . 'vendor/imagesloaded.pkgd.min.js',
+			['jquery'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
 		// Main assets
 		wp_register_style(
 			'happy-elementor-addons',

@@ -12,7 +12,7 @@ Requires PHP: 8.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-[HappyAddons](https://happyaddons.com/) packs Header Footer Builder, Megamenu, Single Post, Archive Page, Slider Builder, & 500+ Ready Templates into one powerful Elementor Addons plugin.
+HappyAddons packs Header Footer Builder, Megamenu, Single Post, Archive Page, & 500+ Ready Templates into one powerful Elementor Addons plugin.
 
 
 == Description ==
