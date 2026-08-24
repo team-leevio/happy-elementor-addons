@@ -503,15 +503,8 @@ class Foreground_Overlay {
 				'separator' => 'before',
 				'options'   => [
 					''             => __( 'Normal', 'happy-elementor-addons' ),
-					'multiply'     => 'Multiply',
-					'screen'       => 'Screen',
 					'overlay'      => 'Overlay',
-					'darken'       => 'Darken',
-					'lighten'      => 'Lighten',
-					'color-dodge'  => 'Color Dodge',
 					'saturation'   => 'Saturation',
-					'color'        => 'Color',
-					'luminosity'   => 'Luminosity',
 				],
 				'selectors' => [
 					'{{WRAPPER}}::after' => 'mix-blend-mode: {{VALUE}}',
