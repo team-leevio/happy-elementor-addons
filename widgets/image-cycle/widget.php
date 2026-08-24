@@ -509,6 +509,16 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             ]
         );
 
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name'     => 'ha_ic_wrapper_bg',
+                'types'    => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .ha-ic-wrapper',
+                'render_type' => 'ui'
+            ]
+        );
+
         $this->add_responsive_control(
             'ha_ic_wrapper_height',
             [
@@ -591,16 +601,6 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             ]
         );
 
-        $this->add_group_control(
-            Group_Control_Background::get_type(),
-            [
-                'name'     => 'ha_ic_wrapper_bg',
-                'types'    => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .ha-ic-wrapper',
-                'render_type' => 'ui'
-            ]
-        );
-
         $this->add_control(
             'ha_ic_wrapper_overflow',
             [
@@ -629,7 +629,18 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             ]
         );
 
-         $this->add_responsive_control(
+        $this->add_control(
+            'ha_ic_headings_bg',
+            [
+                'label'     => __( 'Background', 'happy-elementor-addons' ),
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .ha-ic-headings' => 'background-color: {{VALUE}};'
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
             'ha_ic_headings_gap',
             [
                 'label'      => __( 'Gap', 'happy-elementor-addons' ),
@@ -650,27 +661,15 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
                 'label'     => __( 'Alignment', 'happy-elementor-addons' ),
                 'type'      => Controls_Manager::CHOOSE,
                 'options'   => [
-                    'left'   => ['title' => __( 'Left', 'happy-elementor-addons' ), 'icon' => 'eicon-text-align-left'],
+                    'start'   => ['title' => __( 'Left', 'happy-elementor-addons' ), 'icon' => 'eicon-text-align-left'],
                     'center' => ['title' => __( 'Center', 'happy-elementor-addons' ), 'icon' => 'eicon-text-align-center'],
-                    'right'  => ['title' => __( 'Right', 'happy-elementor-addons' ), 'icon' => 'eicon-text-align-right']
+                    'end'  => ['title' => __( 'Right', 'happy-elementor-addons' ), 'icon' => 'eicon-text-align-right']
                 ],
                 'default'   => 'center',
                 'toggle'    => true,
                 'selectors' => [
-                    '{{WRAPPER}} .ha-ic-headings' => 'text-align: {{VALUE}};'
+                    '{{WRAPPER}} .ha-ic-headings' => 'align-items: {{VALUE}};'
                 ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'ha_ic_headings_margin',
-            [
-                'label'      => __( 'Margin', 'happy-elementor-addons' ),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors'  => [
-                    '{{WRAPPER}} .ha-ic-headings' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
-                ],
             ]
         );
 
@@ -686,14 +685,30 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             ]
         );
 
-        $this->add_control(
-            'ha_ic_headings_bg',
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
             [
-                'label'     => __( 'Background', 'happy-elementor-addons' ),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .ha-ic-headings' => 'background-color: {{VALUE}};'
+                'name'     => 'ha_ic_headings_border',
+                'selector' => '{{WRAPPER}} .ha-ic-headings'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'ha_ic_headings_radius',
+            [
+                'label'      => __( 'Border Radius', 'happy-elementor-addons' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'default'    => [
+                    'top'      => '',
+                    'right'    => '',
+                    'bottom'   => '',
+                    'left'     => '',
+                    'unit'     => 'px',
                 ],
+                'selectors'  => [
+                    '{{WRAPPER}} .ha-ic-headings' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+                ]
             ]
         );
 
@@ -736,13 +751,16 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
         );
 
         $this->add_responsive_control(
-            'ha_ic_title_margin',
+            'ha_ic_title_sb',
             [
-                'label'      => __( 'Margin', 'happy-elementor-addons' ),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
+                'label'      => __( 'Space Between', 'happy-elementor-addons' ),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem'],
+                'range'      => [
+                    'px' => ['min' => 0, 'max' => 100]
+                ],
                 'selectors'  => [
-                    '{{WRAPPER}} .ha-ic-heading__main' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+                    '{{WRAPPER}} .ha-ic-heading__main' => 'margin-top: {{SIZE}}{{UNIT}}; margin-bottom: {{SIZE}}{{UNIT}};',
                 ]
             ]
         );
@@ -786,13 +804,16 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
         );
 
         $this->add_responsive_control(
-            'ha_ic_subtitle_margin',
+            'ha_ic_subtitle_sb',
             [
-                'label'      => __( 'Margin', 'happy-elementor-addons' ),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
+                'label'      => __( 'Space Between', 'happy-elementor-addons' ),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem'],
+                'range'      => [
+                    'px' => ['min' => 0, 'max' => 100]
+                ],
                 'selectors'  => [
-                    '{{WRAPPER}} .ha-ic-heading__subtitle' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+                    '{{WRAPPER}} .ha-ic-heading__subtitle' => 'margin-top: {{SIZE}}{{UNIT}}; margin-bottom: {{SIZE}}{{UNIT}};',
                 ]
             ]
         );

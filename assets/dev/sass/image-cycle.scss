@@ -78,7 +78,7 @@
 
 // Headings overlay (centered)
 .ha-ic-headings {
-    text-align: center;
+    // text-align: center;
     position: relative;
     z-index: 10;
     color: #000;
@@ -95,7 +95,7 @@
 
 .ha-ic-heading__main {
     line-height: 0.9;
-    font-size: clamp(2.5rem, 1.59rem + 3.883vw, 6.25rem);
+    font-size: 120px;
     margin: 0;
     font-weight: 400;
     font-family: inherit;
