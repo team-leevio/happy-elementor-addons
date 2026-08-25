@@ -88,14 +88,28 @@ class Foreground_Overlay {
 		$element->add_render_attribute( '_wrapper', 'style', $style );
 	}
 
-	private static function get_gradient_layer( $position, array $defaults ) {
+	private static function get_color_mix( $position, $opacity = 1 ) {
 		return sprintf(
-			'linear-gradient( var(--fg-angle, 90deg), transparent calc(var(--fg-%1$s-start, %2$s%%) - var(--fg-blend, %3$s%%)), color-mix(in srgb, var(--fg-%1$s-color, #ffffff) calc(var(--fg-%1$s-opacity, %4$s) * 100%%), transparent) var(--fg-%1$s-start, %2$s%%), color-mix(in srgb, var(--fg-%1$s-color, #ffffff) calc(var(--fg-%1$s-opacity, %4$s) * 100%%), transparent) var(--fg-%1$s-end, %5$s%%), transparent calc(var(--fg-%1$s-end, %5$s%%) + var(--fg-blend, %3$s%%)), transparent 100%% )',
+			'color-mix(in srgb, var(--fg-%1$s-color, #ffffff) calc(var(--fg-%1$s-opacity, %2$s) * 100%%), transparent)',
 			$position,
-			$defaults['start'],
-			$defaults['blend'],
-			$defaults['opacity'],
-			$defaults['end']
+			$opacity
+		);
+	}
+
+	private static function get_gradient_css() {
+		$left   = self::get_color_mix( 'left', 1 );
+		$center = self::get_color_mix( 'center', 0 );
+		$right  = self::get_color_mix( 'right', 1 );
+
+		return sprintf(
+			'linear-gradient( var(--fg-angle, 90deg), ' .
+				'%1$s 0%%, ' .
+				'%1$s calc((var(--fg-left-end, 5%%) + var(--fg-center-start, 5%%) - var(--fg-blend, 20%%)) / 2), ' .
+				'%2$s calc((var(--fg-left-end, 5%%) + var(--fg-center-start, 5%%) + var(--fg-blend, 20%%)) / 2), ' .
+				'%2$s calc((var(--fg-center-end, 95%%) + var(--fg-right-start, 95%%) - var(--fg-blend, 20%%)) / 2), ' .
+				'%3$s calc((var(--fg-center-end, 95%%) + var(--fg-right-start, 95%%) + var(--fg-blend, 20%%)) / 2), ' .
+				'%3$s 100%% )',
+			$left, $center, $right
 		);
 	}
 
@@ -140,11 +154,7 @@ class Foreground_Overlay {
 			return;
 		}
 
-		$gradient_css = implode( ', ', [
-			self::get_gradient_layer( 'left', [ 'start' => 0, 'end' => 5, 'opacity' => 1, 'blend' => 20 ] ),
-			self::get_gradient_layer( 'center', [ 'start' => 5, 'end' => 95, 'opacity' => 0, 'blend' => 20 ] ),
-			self::get_gradient_layer( 'right', [ 'start' => 95, 'end' => 100, 'opacity' => 1, 'blend' => 20 ] ),
-		] );
+		$gradient_css = self::get_gradient_css();
 
 		$element->start_controls_section(
 			'_ha_section_foreground_overlay',
@@ -497,6 +507,9 @@ class Foreground_Overlay {
 					'lighten' => 'Lighten',
 					'color-dodge' => 'Color Dodge',
 					'saturation' => 'Saturation',
+					'difference' => 'Difference',
+					'exclusion' => 'Exclusion',
+					'hue' => 'Hue',
 					'color' => 'Color',
 					'luminosity' => 'Luminosity',
 				],
