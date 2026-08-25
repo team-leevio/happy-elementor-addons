@@ -215,6 +215,10 @@ class Extensions_Manager {
 
 			case 'foreground-overlay':
 				add_action( 'elementor/element/container/section_background_overlay/after_section_end', [Features\Foreground_Overlay::class, 'add_section'] );
+				add_action( 'elementor/frontend/before_render', [Features\Foreground_Overlay::class, 'before_render'], 1 );
+				add_action( 'elementor/frontend/before_register_scripts', [Features\Foreground_Overlay::class, 'register_scripts'] );
+				add_action( 'elementor/preview/enqueue_scripts', [Features\Foreground_Overlay::class, 'preview_enqueue_scripts'] );
+				add_action( 'elementor/preview/enqueue_styles', [Features\Foreground_Overlay::class, 'preview_enqueue_styles'] );
 				break;
 
 			case 'grid-layer':

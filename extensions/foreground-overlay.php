@@ -20,6 +20,79 @@ class Foreground_Overlay {
 		return self::$instance;
 	}
 
+	public static function register_scripts() {
+		wp_register_script(
+			'happy-foreground-overlay',
+			HAPPY_ADDONS_ASSETS . 'js/extension-foreground-overlay.min.js',
+			[ 'jquery', 'elementor-frontend' ],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+	}
+
+	public static function register_styles() {
+		wp_register_style(
+			'happy-foreground-overlay',
+			HAPPY_ADDONS_ASSETS . 'css/foreground-overlay.min.css',
+			[],
+			HAPPY_ADDONS_VERSION
+		);
+	}
+
+	public static function preview_enqueue_scripts() {
+		wp_enqueue_script( 'happy-foreground-overlay' );
+	}
+
+	public static function preview_enqueue_styles() {
+		self::register_styles();
+		wp_enqueue_style( 'happy-foreground-overlay' );
+	}
+
+	public static function before_render( Element_Base $element ) {
+		if ( 'container' !== $element->get_name() ) {
+			return;
+		}
+
+		$settings = $element->get_settings_for_display();
+
+		if ( empty( $settings['_ha_foreground_overlay_type'] ) ) {
+			return;
+		}
+
+		$element->add_render_attribute( '_wrapper', 'class', 'ha-foreground-overlay-active' );
+
+		if ( 'gradient' !== $settings['_ha_foreground_overlay_type'] ) {
+			return;
+		}
+
+		$areas = [
+			'left'   => [ 'start', 0, 5 ],
+			'center' => [ 'center', 5, 95 ],
+			'right'  => [ 'end', 95, 100 ],
+		];
+
+		$style = '';
+
+		foreach ( $areas as $position => $area ) {
+			$value = $element->get_settings_for_display( '_ha_foreground_overlay_' . $area[0] . '_area' );
+
+			$from = $area[1];
+			$to   = $area[2];
+
+			if ( is_array( $value ) && isset( $value['sizes']['from'] ) && '' !== $value['sizes']['from'] && null !== $value['sizes']['from'] ) {
+				$from = $value['sizes']['from'];
+			}
+
+			if ( is_array( $value ) && isset( $value['sizes']['to'] ) && '' !== $value['sizes']['to'] && null !== $value['sizes']['to'] ) {
+				$to = $value['sizes']['to'];
+			}
+
+			$style .= "--fg-{$position}-start: {$from}%; --fg-{$position}-end: {$to}%;";
+		}
+
+		$element->add_render_attribute( '_wrapper', 'style', $style );
+	}
+
 	private static function get_gradient_layer( $position, array $defaults ) {
 		return sprintf(
 			'linear-gradient( var(--fg-angle, 90deg), transparent calc(var(--fg-%1$s-start, %2$s%%) - var(--fg-blend, %3$s%%)), color-mix(in srgb, var(--fg-%1$s-color, #ffffff) calc(var(--fg-%1$s-opacity, %4$s) * 100%%), transparent) var(--fg-%1$s-start, %2$s%%), color-mix(in srgb, var(--fg-%1$s-color, #ffffff) calc(var(--fg-%1$s-opacity, %4$s) * 100%%), transparent) var(--fg-%1$s-end, %5$s%%), transparent calc(var(--fg-%1$s-end, %5$s%%) + var(--fg-blend, %3$s%%)), transparent 100%% )',
@@ -31,15 +104,51 @@ class Foreground_Overlay {
 		);
 	}
 
+	private static function add_area_control( Element_Base $element, $suffix, $from, $to ) {
+		$element->add_control(
+			'_ha_foreground_overlay_' . $suffix . '_area',
+			[
+				'label' => __( 'Area', 'happy-elementor-addons' ),
+				'type' => Controls_Manager::SLIDER,
+				'default' => [
+					'sizes' => [
+						'from' => $from,
+						'to' => $to,
+					],
+					'unit' => '%',
+				],
+				'size_units' => [ '%' ],
+				'range' => [
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+				'labels' => [
+					__( 'From', 'happy-elementor-addons' ),
+					__( 'To', 'happy-elementor-addons' ),
+				],
+				'scales' => 1,
+				'handles' => 'range',
+				'render_type' => 'none',
+				'frontend_available' => true,
+				'condition' => [
+					'_ha_foreground_overlay_type' => 'gradient',
+				],
+			]
+		);
+	}
+
 	public static function add_section( Element_Base $element ) {
 		if ( 'container' !== $element->get_name() ) {
 			return;
 		}
 
 		$gradient_css = implode( ', ', [
-			self::get_gradient_layer( 'left', [ 'start' => 0, 'end' => 2, 'opacity' => 1, 'blend' => 20 ] ),
-			self::get_gradient_layer( 'center', [ 'start' => 2, 'end' => 98, 'opacity' => 0, 'blend' => 20 ] ),
-			self::get_gradient_layer( 'right', [ 'start' => 98, 'end' => 100, 'opacity' => 1, 'blend' => 20 ] ),
+			self::get_gradient_layer( 'left', [ 'start' => 0, 'end' => 5, 'opacity' => 1, 'blend' => 20 ] ),
+			self::get_gradient_layer( 'center', [ 'start' => 5, 'end' => 95, 'opacity' => 0, 'blend' => 20 ] ),
+			self::get_gradient_layer( 'right', [ 'start' => 95, 'end' => 100, 'opacity' => 1, 'blend' => 20 ] ),
 		] );
 
 		$element->start_controls_section(
@@ -70,6 +179,22 @@ class Foreground_Overlay {
 				'selectors' => [
 					'{{WRAPPER}}' => 'position: relative; isolation: isolate; overflow: hidden;',
 					'{{WRAPPER}}::after' => 'content: ""; position: absolute; inset: 0; z-index: 9999; pointer-events: none; display: block;',
+				],
+				'assets' => [
+					'scripts' => [
+						[
+							'name' => 'happy-foreground-overlay',
+							'conditions' => [
+								'terms' => [
+									[
+										'name' => '_ha_foreground_overlay_type',
+										'operator' => '===',
+										'value' => 'gradient',
+									],
+								],
+							],
+						],
+					],
 				],
 			]
 		);
@@ -168,15 +293,17 @@ class Foreground_Overlay {
 			]
 		);
 
+		self::add_area_control( $element, 'start', 0, 5 );
+
 		$element->add_control(
 			'_ha_foreground_overlay_start_opacity',
 			[
 				'label'   => __( 'Opacity', 'happy-elementor-addons' ),
-				'type'    => Controls_Manager::SLIDER,
-				'default' => [
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => [
 					'size' => 1,
 				],
-				'range' => [
+				'range'     => [
 					'px' => [
 						'max'  => 1,
 						'step' => 0.01,
@@ -184,58 +311,6 @@ class Foreground_Overlay {
 				],
 				'selectors' => [
 					'{{WRAPPER}}' => '--fg-left-opacity: {{SIZE}};',
-				],
-				'condition' => [
-					'_ha_foreground_overlay_type' => 'gradient',
-				],
-			]
-		);
-
-		$element->add_control(
-			'_ha_foreground_overlay_start_from',
-			[
-				'label'   => __( 'Area Start', 'happy-elementor-addons' ),
-				'type'    => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 0,
-					'unit' => '%',
-				],
-				'size_units' => [ '%' ],
-				'range' => [
-					'%' => [
-						'min'  => 0,
-						'max'  => 100,
-						'step' => 1,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}}' => '--fg-left-start: {{SIZE}}%;',
-				],
-				'condition' => [
-					'_ha_foreground_overlay_type' => 'gradient',
-				],
-			]
-		);
-
-		$element->add_control(
-			'_ha_foreground_overlay_start_to',
-			[
-				'label'   => __( 'Area End', 'happy-elementor-addons' ),
-				'type'    => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 2,
-					'unit' => '%',
-				],
-				'size_units' => [ '%' ],
-				'range' => [
-					'%' => [
-						'min'  => 0,
-						'max'  => 100,
-						'step' => 1,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}}' => '--fg-left-end: {{SIZE}}%;',
 				],
 				'condition' => [
 					'_ha_foreground_overlay_type' => 'gradient',
@@ -270,6 +345,8 @@ class Foreground_Overlay {
 			]
 		);
 
+		self::add_area_control( $element, 'center', 5, 95 );
+
 		$element->add_control(
 			'_ha_foreground_overlay_center_opacity',
 			[
@@ -286,58 +363,6 @@ class Foreground_Overlay {
 				],
 				'selectors' => [
 					'{{WRAPPER}}' => '--fg-center-opacity: {{SIZE}};',
-				],
-				'condition' => [
-					'_ha_foreground_overlay_type' => 'gradient',
-				],
-			]
-		);
-
-		$element->add_control(
-			'_ha_foreground_overlay_center_from',
-			[
-				'label'   => __( 'Area Start', 'happy-elementor-addons' ),
-				'type'    => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 2,
-					'unit' => '%',
-				],
-				'size_units' => [ '%' ],
-				'range' => [
-					'%' => [
-						'min'  => 0,
-						'max'  => 100,
-						'step' => 1,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}}' => '--fg-center-start: {{SIZE}}%;',
-				],
-				'condition' => [
-					'_ha_foreground_overlay_type' => 'gradient',
-				],
-			]
-		);
-
-		$element->add_control(
-			'_ha_foreground_overlay_center_to',
-			[
-				'label'   => __( 'Area End', 'happy-elementor-addons' ),
-				'type'    => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 98,
-					'unit' => '%',
-				],
-				'size_units' => [ '%' ],
-				'range' => [
-					'%' => [
-						'min'  => 0,
-						'max'  => 100,
-						'step' => 1,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}}' => '--fg-center-end: {{SIZE}}%;',
 				],
 				'condition' => [
 					'_ha_foreground_overlay_type' => 'gradient',
@@ -372,6 +397,8 @@ class Foreground_Overlay {
 			]
 		);
 
+		self::add_area_control( $element, 'end', 95, 100 );
+
 		$element->add_control(
 			'_ha_foreground_overlay_end_opacity',
 			[
@@ -388,58 +415,6 @@ class Foreground_Overlay {
 				],
 				'selectors' => [
 					'{{WRAPPER}}' => '--fg-right-opacity: {{SIZE}};',
-				],
-				'condition' => [
-					'_ha_foreground_overlay_type' => 'gradient',
-				],
-			]
-		);
-
-		$element->add_control(
-			'_ha_foreground_overlay_end_from',
-			[
-				'label'   => __( 'Area Start', 'happy-elementor-addons' ),
-				'type'    => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 98,
-					'unit' => '%',
-				],
-				'size_units' => [ '%' ],
-				'range' => [
-					'%' => [
-						'min'  => 0,
-						'max'  => 100,
-						'step' => 1,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}}' => '--fg-right-start: {{SIZE}}%;',
-				],
-				'condition' => [
-					'_ha_foreground_overlay_type' => 'gradient',
-				],
-			]
-		);
-
-		$element->add_control(
-			'_ha_foreground_overlay_end_to',
-			[
-				'label'   => __( 'Area End', 'happy-elementor-addons' ),
-				'type'    => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 100,
-					'unit' => '%',
-				],
-				'size_units' => [ '%' ],
-				'range' => [
-					'%' => [
-						'min'  => 0,
-						'max'  => 100,
-						'step' => 1,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}}' => '--fg-right-end: {{SIZE}}%;',
 				],
 				'condition' => [
 					'_ha_foreground_overlay_type' => 'gradient',
