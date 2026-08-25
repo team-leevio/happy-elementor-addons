@@ -640,20 +640,20 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             ]
         );
 
-        $this->add_responsive_control(
-            'ha_ic_headings_gap',
-            [
-                'label'      => __( 'Gap', 'happy-elementor-addons' ),
-                'type'       => Controls_Manager::SLIDER,
-                'size_units' => ['px', 'em', 'rem'],
-                'range'      => [
-                    'px' => ['min' => 0, 'max' => 100]
-                ],
-                'selectors'  => [
-                    '{{WRAPPER}} .ha-ic-headings' => 'display:flex; flex-direction:column; gap: {{SIZE}}{{UNIT}};'
-                ]
-            ]
-        );
+        // $this->add_responsive_control(
+        //     'ha_ic_headings_gap',
+        //     [
+        //         'label'      => __( 'Gap', 'happy-elementor-addons' ),
+        //         'type'       => Controls_Manager::SLIDER,
+        //         'size_units' => ['px', 'em', 'rem'],
+        //         'range'      => [
+        //             'px' => ['min' => 0, 'max' => 100]
+        //         ],
+        //         'selectors'  => [
+        //             '{{WRAPPER}} .ha-ic-headings' => 'display:flex; flex-direction:column; gap: {{SIZE}}{{UNIT}};'
+        //         ]
+        //     ]
+        // );
 
         $this->add_responsive_control(
             'ha_ic_headings_alignment',

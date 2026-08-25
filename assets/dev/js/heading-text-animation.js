@@ -165,7 +165,9 @@
 
                     textFlipDirection: settings.ha_hta_tv_rotation_direction || "horizontal",
                     textFlipValue: settings.ha_hta_tv_rotation_value || -80,
-                    textFlipTransformOrigin: settings.ha_hta_tv_transform_origin || "top center -50",
+                    textFlipTransformOrigin: settings.ha_hta_tv_transform_origin === "custom"
+                        ? (settings.ha_hta_tv_transform_origin_custom || "bottom center -50")
+                        : (settings.ha_hta_tv_transform_origin || "50% 100% -50"),
 
                     revealOrientation: settings.ha_hta_tr_orientation || "bottom",
 
