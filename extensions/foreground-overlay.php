@@ -104,10 +104,10 @@ class Foreground_Overlay {
 		return sprintf(
 			'linear-gradient( var(--fg-angle, 90deg), ' .
 				'%1$s 0%%, ' .
-				'%1$s calc((var(--fg-left-end, 5%%) + var(--fg-center-start, 5%%) - var(--fg-blend, 20%%)) / 2), ' .
-				'%2$s calc((var(--fg-left-end, 5%%) + var(--fg-center-start, 5%%) + var(--fg-blend, 20%%)) / 2), ' .
-				'%2$s calc((var(--fg-center-end, 95%%) + var(--fg-right-start, 95%%) - var(--fg-blend, 20%%)) / 2), ' .
-				'%3$s calc((var(--fg-center-end, 95%%) + var(--fg-right-start, 95%%) + var(--fg-blend, 20%%)) / 2), ' .
+				'%1$s clamp(0%%, (var(--fg-left-end, 5%%) + var(--fg-center-start, 5%%) - var(--fg-blend, 20%%)) / 2, 100%%), ' .
+				'%2$s clamp(0%%, (var(--fg-left-end, 5%%) + var(--fg-center-start, 5%%) + var(--fg-blend, 20%%)) / 2, 100%%), ' .
+				'%2$s clamp(0%%, (var(--fg-center-end, 95%%) + var(--fg-right-start, 95%%) - var(--fg-blend, 20%%)) / 2, 100%%), ' .
+				'%3$s clamp(0%%, (var(--fg-center-end, 95%%) + var(--fg-right-start, 95%%) + var(--fg-blend, 20%%)) / 2, 100%%), ' .
 				'%3$s 100%% )',
 			$left, $center, $right
 		);
