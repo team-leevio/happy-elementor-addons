@@ -30,22 +30,17 @@ class Foreground_Overlay {
 		);
 	}
 
-	public static function register_styles() {
-		wp_register_style(
-			'happy-foreground-overlay',
-			HAPPY_ADDONS_ASSETS . 'css/foreground-overlay.min.css',
-			[],
-			HAPPY_ADDONS_VERSION
-		);
-	}
-
 	public static function preview_enqueue_scripts() {
 		wp_enqueue_script( 'happy-foreground-overlay' );
 	}
 
 	public static function preview_enqueue_styles() {
-		self::register_styles();
+		wp_register_style( 'happy-foreground-overlay', false, [], HAPPY_ADDONS_VERSION );
 		wp_enqueue_style( 'happy-foreground-overlay' );
+		wp_add_inline_style(
+			'happy-foreground-overlay',
+			'.elementor-element.ha-foreground-overlay-active > .elementor-element-overlay{z-index:10000;}'
+		);
 	}
 
 	public static function before_render( Element_Base $element ) {
@@ -129,7 +124,7 @@ class Foreground_Overlay {
 					__( 'From', 'happy-elementor-addons' ),
 					__( 'To', 'happy-elementor-addons' ),
 				],
-				'scales' => 1,
+				'scales' => 0,
 				'handles' => 'range',
 				'render_type' => 'none',
 				'frontend_available' => true,
