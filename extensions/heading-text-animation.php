@@ -696,7 +696,6 @@ class Heading_Text_Animation {
                 'selectors' => [
                     '{{WRAPPER}} .invert-line' => '--ha-opacity: {{SIZE}};'
                 ],
-                'responsive'  => true
             ]
         );
     }
