@@ -84,10 +84,42 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/global-badge/',
 				'is_pro' => true,
 			],
+
+			// GSAP Features Mapping 
+			'horizontal-scroll' => [
+				'title' => __( 'Horizontal Scroll', 'happy-addons-pro' ),
+				'icon' => 'huge huge-horizonal-scroll-point-round',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
+				'is_pro' => true,
+			],
+			'infinite-marquee' => [
+				'title' => __( 'Marquee', 'happy-addons-pro' ),
+				'icon' => 'huge huge-infinity-02',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
+				'is_pro' => true,
+			],
+			'global-animation' => [
+                'title'  => __( 'Animation', 'happy-addons-pro' ),
+                'icon'   => 'hm hm-alien',
+                'demo'   => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
+                'is_pro' => true
+            ],
+			'sticky-pin-element' => [
+				'title'  => __( 'Sticky Pin Element', 'happy-addons-pro' ),
+				'icon'   => 'hm hm-sticky',
+				'demo'   => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
+				'is_pro' => true
+			],
 			'multi-layer-parallax' => [
 				'title' => __( 'Multi Layer Parallax', 'happy-addons-pro' ),
 				'icon' => 'huge huge-layers-02',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/multi-layer-parallax/',
+				'is_pro' => true,
+			],
+			'happy-image-trails' => [
+				'title' => __( 'Image Trails', 'happy-addons-pro' ),
+				'icon' => 'hm hm-media-all',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#',
 				'is_pro' => true,
 			]
 		];
@@ -197,12 +229,29 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/background-parallax/',
 				'is_pro' => false,
 			],
+			'appearing-image-animation' => [
+				'title' => __( 'Appearing Image Animation', 'happy-elementor-addons' ),
+				'icon' => 'huge huge-layer-mask-1',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/#/',
+				'is_pro' => false,
+			],
+			'heading-text-animation' => [
+				'title' => __( 'Text Animation', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-text-outline',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/#/',
+				'is_pro' => false,
+			],
 			'liquid-glass' => [
 				'title' => __( 'Liquid Glass', 'happy-addons-pro' ),
 				'icon' => 'hm hm-reading-glass',
 				'demo' => 'https://happyaddons.com/',
 				'is_pro' => false,
-			]
+			],
+			'container-hover-text-color' => [
+				'title' => __( 'Background Hover Effect', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-cursor-hover-click',
+				'is_pro' => false,
+			],
 		];
 	}
 
@@ -288,7 +337,10 @@ class Extensions_Manager {
 			case 'custom-mouse-cursor':
 			case 'custom-js':
 			case 'background-parallax':
+			case 'appearing-image-animation':
+			case 'heading-text-animation':
 			case 'liquid-glass':
+			case 'container-hover-text-color':
 				$cls_name = ucwords( str_replace( '-', ' ', $feature_key ) ); //remove ' - ' & uc first later
 				$cls_name = '\Happy_Addons\Elementor\Extensions\\' . str_replace( ' ', '_', $cls_name );
 				$cls_name::instance()->init();

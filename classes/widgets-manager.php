@@ -573,6 +573,28 @@ class Widgets_Manager {
 				'is_pro' => true,
 				'demo'      => 'https://demo.happyaddons.com/elementor-advanced-comparison-table-widget-demo-mosaddek/',
 			],
+			'stacked-card' => [
+				'cat' => 'creative',
+				'title' => __('Stacked Card', 'happy-elementor-addons'),
+				'icon' => 'hm hm-photo-stack',
+				'demo'      => 'https://demo.happyaddons.com/#/',
+				'is_pro' => true,
+			],
+			'dropping-elements' => [
+				'cat' => 'creative',
+				'title' => __('Dropping Elements', 'happy-elementor-addons'),
+				'icon' => 'hm hm-weather-windy-rain',
+				'demo'      => 'https://demo.happyaddons.com/#/',
+				'is_pro' => true,
+			],
+			'gsap-svg-draw' => [
+				'cat' => 'creative',
+				'title' => __('GSAP SVG Draw', 'happy-elementor-addons'),
+				'icon' => 'hm hm-text-outline',
+				'demo'      => 'https://demo.happyaddons.com/#/',
+				'is_pro' => true,
+			],
+			
 		];
 	}
 
@@ -1514,6 +1536,19 @@ class Widgets_Manager {
 				'vendor'    => [
 					'css' => [ 'font-awesome' ],
 					'js'  => [],
+				],
+			],
+			'image-cycle' => [
+				'cat' => 'creative',
+				'is_active' => true,
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/#/',
+				'title' => __('Image Cycle', 'happy-elementor-addons'),
+				'icon' => 'hm hm-net',
+				'css' => ['image-cycle'],
+				'js' => [],
+				'vendor' => [
+					'css' => [],
+					'js' => ['gsap','imagesloaded'],
 				],
 			],
 		];

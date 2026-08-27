@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@use "variables" as *;
+@use "mixins" as *;
 
 .ha-fun-factor__content .ha-fun-factor__content-number-wrap {
 	display: flex;

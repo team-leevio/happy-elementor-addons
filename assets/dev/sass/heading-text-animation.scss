@@ -1,0 +1,102 @@
+/* Wrapper enabled when animation switcher is ON */
+.elementor-widget-heading.ha-hta-yes {
+    position: relative;
+    // overflow: hidden;
+    display: inline-block;
+    perspective: 1000px;
+}
+
+/* Base heading */
+.elementor-widget-heading.ha-hta-yes .elementor-heading-title {
+    display: inline-block;
+    height: auto;
+}
+
+/* Characters */
+.ha-char {
+    display: inline-block;
+    white-space: pre;
+    will-change: transform, opacity;
+}
+
+/* Words */
+.ha-word {
+    display: inline-block;
+    white-space: pre;
+    will-change: transform, opacity;
+}
+
+/* flip */
+.ha-flip {
+    // display: block;
+    // will-change: transform, opacity;
+    display: block;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+}
+
+/* 3D mode */
+.ha-hta-3d-spin {
+    // perspective: 800px;
+    display: inline-block;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.duplicate-text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+/* Invert mode */
+/* Invert mode wrapper */
+.ha-hta-text-invert .invert-line {
+    --ha-opacity: 0.45;
+    background: linear-gradient(90deg,
+            hsla(var(--text-color), var(--ha-opacity)) 0%,
+            hsla(var(--text-color), var(--ha-opacity)) 50%,
+            hsla(var(--text-color), 1) 50%,
+            hsla(var(--text-color), 1) 100%);
+
+    background-size: 200% 100%;
+    background-position-x: 0%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+    display: block;
+}
+
+/* Smoky Reveal Animation */
+.ha-tm-smoky-reveal .letter {
+    display: inline-block;
+    white-space: pre;
+    will-change: transform, opacity, filter;
+}
+
+/* Alternative Reveal Animation */
+.ha-tm-alt-reveal .letter {
+    display: inline-block;
+    white-space: pre;
+    will-change: transform, opacity;
+}
+
+/* Popup Reveal Animation */
+.ha-tm-popup-reveal .letter {
+    display: inline-block;
+    white-space: pre;
+}
+
+/* Mixing Reveal Animation */
+.ha-tm-mixing-reveal .word {
+    display: inline-block;
+}
+
+/* Highlight */
+.ha-tm-highlight {
+    color: var(--ha-highlight-color, inherit);
+}

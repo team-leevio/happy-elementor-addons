@@ -1,22 +1,55 @@
-import { readFileSync } from 'fs';
-import gulp from 'gulp';
-import gulpSass from 'gulp-sass';
-import * as dartSass from 'sass';
-import gulpCsso from 'gulp-csso';
-import gulpRename from 'gulp-rename';
-import gulpBabel from 'gulp-babel';
-import gulpUglify from 'gulp-uglify';
-import gulpCsscomb from 'gulp-csscomb';
-import gulpAutoPrefixer from 'gulp-autoprefixer';
-import gulpPlumberNotifier from 'gulp-plumber-notifier';
-import gulpConcat from 'gulp-concat';
-import gulpClean from 'gulp-clean';
-import gulpZip from 'gulp-zip';
+import { readFileSync } from "fs";
+import gulp from "gulp";
+import * as sass from "sass";
+import gulpCsso from "gulp-csso";
+import gulpRename from "gulp-rename";
+import gulpBabel from "gulp-babel";
+import gulpUglify from "gulp-uglify";
+import gulpCsscomb from "gulp-csscomb";
+import gulpAutoPrefixer from "gulp-autoprefixer";
+import gulpPlumberNotifier from "gulp-plumber-notifier";
+import gulpConcat from "gulp-concat";
+import gulpClean from "gulp-clean";
+import gulpZip from "gulp-zip";
 import fs from "fs";
+import through from "through2";
+import path from "path";
 
-const packageJSON = JSON.parse( readFileSync( new URL( './package.json', import.meta.url ) ) );
+const packageJSON = JSON.parse(
+	readFileSync(new URL("./package.json", import.meta.url)),
+);
 const { src, watch, dest, series } = gulp;
-const sass = gulpSass( dartSass );
+
+// Custom Sass compiler using the modern Sass API
+function compileSass() {
+	return through.obj(function (file, enc, cb) {
+		if (file.isNull()) {
+			return cb(null, file);
+		}
+
+		if (file.isStream()) {
+			return cb(new Error("Streaming not supported"));
+		}
+
+		try {
+			// Use the modern Sass API
+			const result = sass.compile(file.path, {
+				style: "expanded",
+				// Suppress deprecation warnings
+				verbose: false,
+			});
+
+			file.contents = Buffer.from(result.css);
+
+			// Update the extension to .css
+			file.path = file.path.replace(path.extname(file.path), ".css");
+
+			cb(null, file);
+		} catch (err) {
+			cb(err);
+		}
+	});
+}
 
 const AUTOPREFIXER_BROWSERS = [
 	"last 2 version",
@@ -70,120 +103,118 @@ const buildSrcFiles = [
 	"!./ARCHITECTURE_OVERVIEW.md"
 ];
 
-function makeFrontendCSS () {
-	return src( frontendSassFiles )
-		.pipe( gulpPlumberNotifier() )
-		.pipe( sass() )
-		.pipe( gulpAutoPrefixer( AUTOPREFIXER_BROWSERS ) )
-		.pipe( gulpCsscomb() )
-		.pipe( gulpCsso() )
-		.pipe( gulpRename( { suffix: ".min" } ) )
-		.pipe( dest( "assets/css/widgets" ) )
-		.pipe( gulpConcat( "main.css" ) )
-		.pipe( dest( "assets/css" ) )
-		.pipe( gulpRename( { suffix: ".min" } ) )
-		.pipe( dest( "assets/css" ) );
+function makeFrontendCSS() {
+	return src(frontendSassFiles)
+		.pipe(gulpPlumberNotifier())
+		.pipe(compileSass())
+		.pipe(gulpAutoPrefixer(AUTOPREFIXER_BROWSERS))
+		.pipe(gulpCsscomb())
+		.pipe(gulpCsso())
+		.pipe(gulpRename({ suffix: ".min" }))
+		.pipe(dest("assets/css/widgets"))
+		.pipe(gulpConcat("main.css"))
+		.pipe(dest("assets/css"))
+		.pipe(gulpRename({ suffix: ".min" }))
+		.pipe(dest("assets/css"));
 }
 
-function makeBackendCSS () {
-	return src( backendSassFiles )
-		.pipe( gulpPlumberNotifier() )
-		.pipe( sass() )
-		.pipe( gulpAutoPrefixer( AUTOPREFIXER_BROWSERS ) )
-		.pipe( gulpCsscomb() )
-		.pipe( dest( "assets/admin/css" ) )
-		.pipe( gulpCsso() )
-		.pipe( gulpRename( { suffix: ".min" } ) )
-		.pipe( dest( "assets/admin/css" ) );
+function makeBackendCSS() {
+	return src(backendSassFiles)
+		.pipe(gulpPlumberNotifier())
+		.pipe(compileSass())
+		.pipe(gulpAutoPrefixer(AUTOPREFIXER_BROWSERS))
+		.pipe(gulpCsscomb())
+		.pipe(dest("assets/admin/css"))
+		.pipe(gulpCsso())
+		.pipe(gulpRename({ suffix: ".min" }))
+		.pipe(dest("assets/admin/css"));
 }
 
-function makeFrontendJS () {
-	return (
-		src( frontendJSFiles )
-			.pipe( gulpPlumberNotifier() )
-			.pipe(
-				gulpBabel( {
-					presets: [ "@babel/env" ],
-				} )
-			)
-			.pipe( dest( "assets/js" ) )
-			.pipe( gulpUglify() )
-			.pipe( gulpRename( { suffix: ".min" } ) )
-			.pipe( dest( "assets/js" ) )
-	);
-}
-
-function makeBackendJS () {
-	return src( backendJSFiles )
-		.pipe( gulpPlumberNotifier() )
+function makeFrontendJS() {
+	return src(frontendJSFiles)
+		.pipe(gulpPlumberNotifier())
 		.pipe(
-			gulpBabel( {
-				presets: [ "@babel/env" ],
-			} )
+			gulpBabel({
+				presets: ["@babel/env"],
+			}),
 		)
-		.pipe( dest( "assets/admin/js" ) )
-		.pipe( gulpUglify() )
-		.pipe( gulpRename( { suffix: ".min" } ) )
-		.pipe( dest( "assets/admin/js" ) )
-		.on( "error", swallowError );
+		.pipe(dest("assets/js"))
+		.pipe(gulpUglify())
+		.pipe(gulpRename({ suffix: ".min" }))
+		.pipe(dest("assets/js"));
 }
 
-function swallowError ( error ) {
+function makeBackendJS() {
+	return src(backendJSFiles)
+		.pipe(gulpPlumberNotifier())
+		.pipe(
+			gulpBabel({
+				presets: ["@babel/env"],
+			}),
+		)
+		.pipe(dest("assets/admin/js"))
+		.pipe(gulpUglify())
+		.pipe(gulpRename({ suffix: ".min" }))
+		.pipe(dest("assets/admin/js"))
+		.on("error", swallowError);
+}
+
+function swallowError(error) {
 	// If you want details of the error in the console
-	console.log( error.toString() );
+	console.log(error.toString());
 
-	this.emit( "end" );
+	this.emit("end");
 }
 
-function startWatching () {
-	watch( frontendSassFiles, makeFrontendCSS );
-	watch( backendSassFiles, makeBackendCSS );
-	watch( frontendJSFiles, makeFrontendJS );
-	watch( backendJSFiles, makeBackendJS );
+function startWatching() {
+	watch(frontendSassFiles, makeFrontendCSS);
+	watch(backendSassFiles, makeBackendCSS);
+	watch(frontendJSFiles, makeFrontendJS);
+	watch(backendJSFiles, makeBackendJS);
 }
 
-function deleteOld__old () {
-	return src( [ "assets/css", "assets/admin", "assets/js" ], {
+function deleteOld__old() {
+	return src(["assets/css", "assets/admin", "assets/js"], {
 		read: false,
-	} ).pipe( gulpClean( { force: true } ) );
+	}).pipe(gulpClean({ force: true }));
 }
 
-function deleteOld () {
-    const paths = ["assets/css", "assets/admin", "assets/js"];
+function deleteOld() {
+	const paths = ["assets/css", "assets/admin", "assets/js"];
 
-    // Filter paths that exist
-    const existingPaths = paths.filter(path => fs.existsSync(path));
+	// Filter paths that exist
+	const existingPaths = paths.filter((path) => fs.existsSync(path));
 
-    if (existingPaths.length > 0) {
-        return src(existingPaths, {
-            read: false,
-        }).pipe(gulpClean({ force: true }));
-    } else {
-        console.log("No paths exist to clean.");
-        return Promise.resolve(); // Return a resolved promise to avoid breaking the Gulp task chain
-    }
+	if (existingPaths.length > 0) {
+		return src(existingPaths, {
+			read: false,
+		}).pipe(gulpClean({ force: true }));
+	} else {
+		console.log("No paths exist to clean.");
+		return Promise.resolve(); // Return a resolved promise to avoid breaking the Gulp task chain
+	}
 }
 
-function buildZip () {
-	return src( buildSrcFiles, { base: "./" } )
+function buildZip() {
+	return src(buildSrcFiles, { base: "./" })
 		.pipe(
-			gulpRename( function ( file ) {
+			gulpRename(function (file) {
 				file.dirname = packageName + "/" + file.dirname;
-			} )
+			}),
 		)
-		.pipe( gulpZip( packageName + "-v" + packageVersion + ".zip" ) )
-		.pipe( dest( "./dist/" ) );
+		.pipe(gulpZip(packageName + "-v" + packageVersion + ".zip"))
+		.pipe(dest("./dist/"));
 }
 
-function buildRelease () {
-	return src( buildSrcFiles ).pipe( dest( "./dist/build" ) );
+function buildRelease() {
+	return src(buildSrcFiles).pipe(dest("./dist/build"));
 }
 
-function deleteBuild () {
-	return src( [ "./dist" ], {
+function deleteBuild() {
+	return src(["./dist"], {
 		read: false,
 		allowEmpty: true,
-	} ).pipe( gulpClean( { force: true } ) );
+	}).pipe(gulpClean({ force: true }));
 }
 
 export const build = series(
@@ -193,7 +224,7 @@ export const build = series(
 	makeBackendCSS,
 	makeFrontendJS,
 	makeBackendJS,
-	buildRelease
+	buildRelease,
 );
 
 export const zip = series(
@@ -203,7 +234,7 @@ export const zip = series(
 	makeBackendCSS,
 	makeFrontendJS,
 	makeBackendJS,
-	buildZip
+	buildZip,
 );
 
 export const clean = deleteOld;
@@ -212,7 +243,7 @@ export const production = series(
 	makeFrontendCSS,
 	makeBackendCSS,
 	makeFrontendJS,
-	makeBackendJS
+	makeBackendJS,
 );
 
 export default series(
@@ -220,5 +251,5 @@ export default series(
 	makeBackendCSS,
 	makeFrontendJS,
 	makeBackendJS,
-	startWatching
+	startWatching,
 );

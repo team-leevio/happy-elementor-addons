@@ -1,0 +1,142 @@
+/* Image Cycle — Entrances from EntranceAnimationForImages demo (variation 1/2/3) */
+
+.ha-ic-wrapper {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ha-ic-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+// Scene + group with perspective
+.ha-ic-scene {
+    perspective: 1000px;
+    overflow: hidden;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+}
+
+.ha-ic-group {
+    position: relative;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+}
+
+// Variation 3 container rotates instead of group directly (inner wrapper)
+.ha-ic-wrapper.ha-ic--variation-3 {
+    .ha-ic-container {
+        position: relative;
+        width: 0;
+        height: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.ha-ic-card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
+}
+
+.ha-ic-card__link {
+    display: block;
+    text-decoration: none;
+}
+
+.ha-ic-card__img {
+    width: 5em;
+    border-radius: 5px;
+    aspect-ratio: 2 / 3;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+// Headings overlay (centered)
+.ha-ic-headings {
+    // text-align: center;
+    position: relative;
+    z-index: 10;
+    color: #000;
+    text-transform: uppercase;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15em;
+    padding: 1rem;
+    max-width: 90%;
+}
+
+.ha-ic-heading__main {
+    line-height: 0.9;
+    font-size: 120px;
+    margin: 0;
+    font-weight: 400;
+    font-family: inherit;
+}
+
+.ha-ic-heading__subtitle {
+    line-height: 1;
+    font-size: clamp(1rem, 0.757rem + 1.036vw, 2rem);
+    margin: 0.25em 0 0;
+    font-weight: 400;
+    font-family: inherit;
+}
+
+// Responsive width like base.css
+@media screen and (min-width: 53em) {
+    .ha-ic-card__img {
+        width: 6em;
+    }
+}
+
+// Ensure wrapper is responsive; headings scale already uses clamp
+@media screen and (max-width: 53em) {
+    .ha-ic-wrapper {
+        min-height: 420px;
+        height: 65vh;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .ha-ic-wrapper {
+        min-height: 380px;
+    }
+    .ha-ic-heading__main {
+        font-size: clamp(1.9rem, 6vw, 2.8rem);
+    }
+}
+
+// Loading state before images preloaded — keep invisible briefly to avoid flash
+.ha-ic-wrapper.ha-ic--loading {
+    .ha-ic-card,
+    .ha-ic-headings {
+        opacity: 0;
+    }
+}

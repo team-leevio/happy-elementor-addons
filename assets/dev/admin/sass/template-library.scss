@@ -1,3 +1,4 @@
+@use "sass:color";
 $primary-color: #562dd4;
 $secondary-color: #e8357c;
 
@@ -243,7 +244,7 @@ $secondary-color: #e8357c;
 
 		&:hover,
 		&:focus {
-			color: lighten($secondary-color, 10%);
+				color: color.adjust($secondary-color, $lightness: 10%);
 		}
 	}
 
@@ -273,8 +274,7 @@ $secondary-color: #e8357c;
 
 		&:hover,
 		&:focus {
-			color: #fff;
-			background-color: lighten($secondary-color, 10%);
+				background-color: color.adjust($secondary-color, $lightness: 10%);
 		}
 	}
 
@@ -284,8 +284,7 @@ $secondary-color: #e8357c;
 
 		&:hover,
 		&:focus {
-			color: #fff;
-			background-color: lighten($primary-color, 10%);
+				background-color: color.adjust($primary-color, $lightness: 10%);
 		}
 	}
 }

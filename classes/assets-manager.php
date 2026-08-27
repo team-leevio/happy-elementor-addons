@@ -350,6 +350,33 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
+		
+		// Morph SVG Plugin
+		wp_register_script(
+			'morph-svg-plugin',
+			HAPPY_ADDONS_ASSETS . 'vendor/morph-svg-plugin/morph-svg-plugin.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+		
+		// Draw SVGP SVG Plugin
+		wp_register_script(
+			'draw-svg-plugin',
+			HAPPY_ADDONS_ASSETS . 'vendor/draw-svg/draw-svg-plugin.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+		
+		// Motion Path Plugin
+		wp_register_script(
+			'motion-path-plugin',
+			HAPPY_ADDONS_ASSETS . 'vendor/motion-path-plugin/MotionPathPlugin.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
 
 		// Scroll Magic
 		wp_register_script(
@@ -365,6 +392,24 @@ class Assets_Manager {
 			'split-type',
 			HAPPY_ADDONS_ASSETS . 'vendor/split-type/split-type.min.js',
 			['gsap', 'scroll-trigger'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
+		// Split Text
+		wp_register_script(
+			'split-text',
+			HAPPY_ADDONS_ASSETS . 'vendor/split-text/split-text.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
+
+		// imagesloaded.pkgd.min.js
+		wp_register_script(
+			'imagesloaded',
+			HAPPY_ADDONS_ASSETS . 'vendor/imagesloaded.pkgd.min.js',
+			['jquery'],
 			HAPPY_ADDONS_VERSION,
 			true
 		);
