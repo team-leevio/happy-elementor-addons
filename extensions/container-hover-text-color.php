@@ -46,6 +46,20 @@ class Container_Hover_Text_Color {
 
 	public static function add_controls_section(Element_Base $element) {
 
+		// Only inject into the Normal/Hover tabs when the target control exists
+		// and no other callback (e.g., Elementor Pro Motion FX, which hooks the
+		// same section) has an injection open. Unbalanced injections trigger
+		// Elementor's "A controls injection is already opened" warning/fatal.
+		$can_inject = (bool) $element->get_controls( 'background_hover_transition' )
+			&& null === $element->get_injection_point();
+
+		if ( $can_inject ) {
+			$element->start_injection( [
+				'of' => 'background_hover_transition',
+				'at' => 'after',
+			] );
+		}
+
 		$element->add_control(
 			'ha_hover_text_color',
 			[
@@ -139,6 +153,10 @@ class Container_Hover_Text_Color {
 				],
 			]
 		);
+
+		if ( $can_inject ) {
+			$element->end_injection();
+		}
 
 	}
 }
