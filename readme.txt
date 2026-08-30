@@ -6,7 +6,7 @@ Author URI: https://happyaddons.com/
 Contributors: leevio, happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 6.8
-Tested up to: 7.0.2
+Tested up to: 7.1
 Stable tag: 3.23.1
 Requires PHP: 8.1
 License: GPLv2
