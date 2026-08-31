@@ -580,6 +580,13 @@ class Widgets_Manager {
 				'demo'      => 'https://demo.happyaddons.com/#/',
 				'is_pro' => true,
 			],
+			'svg-morphing' => [
+				'cat' => 'creative',
+				'title' => __('Svg Morphing', 'happy-elementor-addons'),
+				'icon' => 'hm hm-hexa',
+				'demo'      => 'https://demo.happyaddons.com/#/',
+				'is_pro' => true,
+			],
 			'dropping-elements' => [
 				'cat' => 'creative',
 				'title' => __('Dropping Elements', 'happy-elementor-addons'),
