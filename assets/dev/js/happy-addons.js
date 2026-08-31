@@ -1939,6 +1939,7 @@
 				'ha_ic_heading_duration',
 				'ha_ic_initial_scale',
 				'ha_ic_initial_opacity',
+				'ha_ic_play_on_appear',
 				'ha_ic_title',
 				'ha_ic_title_second',
 				'ha_ic_subtitle',
@@ -1956,6 +1957,7 @@
 				clearTimeout( this._icResumeTimer );
 				this.$element.find( '.ha-ic-wrapper, .ha-ic-card' ).off( '.icRotationPause' );
 				this._icRotationTweens = [];
+				this._icClearPlayOnAppear();
 				ModuleHandler.prototype.onDestroy.apply( this, arguments );
 			},
 
@@ -1970,6 +1972,59 @@
 						}
 					} catch ( e ) {}
 				}
+			},
+
+			// "Animation Play On Appearing": hold the entrance timeline until the
+			// widget reaches the center of the viewport while scrolling, then play.
+			_icObservePlayOnAppear: function ( el ) {
+				let self = this;
+				if ( self._icPlayOnAppearIO ) {
+					try { self._icPlayOnAppearIO.disconnect(); } catch ( e ) {}
+					self._icPlayOnAppearIO = null;
+				}
+				if ( ! ( 'IntersectionObserver' in window ) || ! el ) {
+					self._icResumePlayOnAppear();
+					return;
+				}
+				self._icPlayOnAppearIO = new IntersectionObserver( function ( entries ) {
+					entries.forEach( function ( entry ) {
+						if ( entry.isIntersecting ) {
+							self._icResumePlayOnAppear();
+						}
+					} );
+				}, {
+					root: null,
+					rootMargin: '-50% 0px -50% 0px',
+					threshold: 0
+				} );
+				self._icPlayOnAppearIO.observe( el );
+			},
+
+			_icResumePlayOnAppear: function () {
+				let self = this;
+				if ( self._icPlayOnAppearIO ) {
+					try { self._icPlayOnAppearIO.disconnect(); } catch ( e ) {}
+					self._icPlayOnAppearIO = null;
+				}
+				if ( ! self._icPlayOnAppearPending ) {
+					return;
+				}
+				self._icPlayOnAppearPending = false;
+				self._icHasEntered = true;
+				if ( self._icTimeline ) {
+					try { self._icTimeline.play(); } catch ( e ) {}
+					self._icTimeline = null;
+				}
+			},
+
+			_icClearPlayOnAppear: function () {
+				let self = this;
+				if ( self._icPlayOnAppearIO ) {
+					try { self._icPlayOnAppearIO.disconnect(); } catch ( e ) {}
+					self._icPlayOnAppearIO = null;
+				}
+				self._icPlayOnAppearPending = false;
+				self._icTimeline = null;
 			},
 
 			run: function () {
@@ -1995,6 +2050,7 @@
 					try { self._icMm.revert(); } catch ( e ) {}
 					self._icMm = null;
 				}
+			self._icClearPlayOnAppear();
 			gsap.killTweensOf( $cards.get() );
 			gsap.killTweensOf( $group.get() );
 			gsap.killTweensOf( $container.get() );
@@ -2070,6 +2126,7 @@
 			let direction = settings.ha_ic_direction || 'bottom';
 			let rotationDir = 'counter-clockwise' === settings.ha_ic_rotation_direction ? -1 : 1;
 			let pauseOnHover = 'yes' === settings.ha_ic_pause_rotation_on_hover;
+			let playOnAppear = 'yes' === settings.ha_ic_play_on_appear;
 			// Counter-clockwise entrance: orbit the fan rotations a full turn in the
 			// opposite direction. Targets end at the same angle (mod 360), so the
 			// final ring layout stays identical to the clockwise one.
@@ -2435,10 +2492,19 @@
 					self._icRotationTweens.push( rotationTween );
 					}
 
-					if ( self._icHasEntered && ! self._icReplayEntrance && entranceEnd > 0 ) {
-						tl.time( entranceEnd + 0.001 );
+					if ( playOnAppear && ! self._icHasEntered && entranceEnd > 0 ) {
+						// Hold the entrance until the widget reaches the center of the
+						// viewport while scrolling, then play from the beginning.
+						tl.pause( 0 );
+						self._icPlayOnAppearPending = true;
+						self._icTimeline = tl;
+						self._icObservePlayOnAppear( $wrapper[ 0 ] );
+					} else {
+						if ( self._icHasEntered && ! self._icReplayEntrance && entranceEnd > 0 ) {
+							tl.time( entranceEnd + 0.001 );
+						}
+						self._icHasEntered = true;
 					}
-					self._icHasEntered = true;
 					self._icReplayEntrance = false;
 
 					return function () {
