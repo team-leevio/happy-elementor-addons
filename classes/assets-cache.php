@@ -223,7 +223,7 @@ class Assets_Cache {
 
 		foreach ( $files_name as $file_name ) {
 			$file_path = HAPPY_ADDONS_DIR_PATH . "assets/css/widgets/{$file_name}.min.css";
-			$file_path = apply_filters( 'happyaddons_get_styles_file_path', $file_path, $file_name, $is_pro );
+			$file_path = ha_safe_apply_filters( 'happyaddons_get_styles_file_path', $file_path, $file_name, $is_pro );
 
 			if ( is_readable( $file_path ) ) {
 				$css .= file_get_contents( $file_path );

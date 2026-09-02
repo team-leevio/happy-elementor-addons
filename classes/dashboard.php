@@ -86,7 +86,7 @@ class Dashboard {
         parse_str( $posted_data, $data );
         $data = ha_sanitize_array_recursively( $data );
 
-        do_action( 'happyaddons_save_dashboard_data', $data );
+        ha_safe_do_action( 'happyaddons_save_dashboard_data', $data );
 
         wp_send_json_success();
     }
@@ -481,7 +481,7 @@ class Dashboard {
             ],
         ];
 
-        return apply_filters( 'happyaddons_dashboard_get_tabs', $tabs );
+        return ha_safe_apply_filters( 'happyaddons_dashboard_get_tabs', $tabs );
     }
 
     private static function load_template( $template ) {

@@ -13,7 +13,7 @@ class Credentials_Manager {
 		$local_credentials_map = self::get_local_credentials_map();
 		$credentials_map = array_merge($credentials_map, $local_credentials_map);
 
-		return apply_filters('happyaddons_get_credentials_map', $credentials_map);
+		return ha_safe_apply_filters('happyaddons_get_credentials_map', $credentials_map);
 	}
 
 	public static function get_saved_credentials() {

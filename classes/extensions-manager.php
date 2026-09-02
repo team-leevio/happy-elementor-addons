@@ -53,7 +53,7 @@ class Extensions_Manager {
 	public static function get_extensions_map() {
 		$extensions_map = self::get_local_extensions_map();
 
-		return apply_filters( 'happyaddons_get_extensions_map', $extensions_map );
+		return ha_safe_apply_filters( 'happyaddons_get_extensions_map', $extensions_map );
 	}
 
 	public static function get_inactive_extensions() {
@@ -70,7 +70,7 @@ class Extensions_Manager {
 	 * @return array
 	 */
 	public static function get_pro_extensions_map() {
-		return apply_filters( 'happyaddons_get_pro_extensions_map', [] );
+		return ha_safe_apply_filters( 'happyaddons_get_pro_extensions_map', [] );
 	}
 
 	/**
@@ -107,7 +107,7 @@ class Extensions_Manager {
 		$local_features_map = self::get_local_features_map();
 		$features_map = array_merge( $features_map, $local_features_map );
 
-		return apply_filters( 'happyaddons_get_features_map', $features_map );
+		return ha_safe_apply_filters( 'happyaddons_get_features_map', $features_map );
 	}
 
 	public static function get_inactive_features() {
@@ -189,7 +189,7 @@ class Extensions_Manager {
 			]
 		];
 
-		return apply_filters( 'happyaddons_get_pro_features_map', $pro_features_map );
+		return ha_safe_apply_filters( 'happyaddons_get_pro_features_map', $pro_features_map );
 	}
 
 	/**

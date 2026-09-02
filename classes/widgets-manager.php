@@ -53,7 +53,7 @@ class Widgets_Manager {
 		// $pro_widget_map = apply_filters( 'happyaddons_get_widgets_map', self::get_pro_widget_map() );
 
 		// return array_merge($widgets_map, $pro_widget_map);
-		return apply_filters('happyaddons_get_widgets_map', $widgets_map);
+		return ha_safe_apply_filters('happyaddons_get_widgets_map', $widgets_map);
 	}
 
 	/**
