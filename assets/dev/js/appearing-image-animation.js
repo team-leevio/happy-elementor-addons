@@ -95,7 +95,7 @@
 				mode: this.getResponsiveSetting(settings, 'ha_aia_mode') || 'reveal',
 				direction: this.getResponsiveSetting(settings, 'ha_aia_rs_direction') || 'left',
 				cornerDirection: this.getResponsiveSetting(settings, 'ha_aia_corner_direction') || 'top-left',
-				scaleFrom: parseFloat(this.getResponsiveSetting(settings, 'ha_aia_scale_from')) || 0.5,
+				scaleFrom: parseFloat(this.getResponsiveSetting(settings, 'ha_aia_scale_from')) || 0,
 				scaleTo: parseFloat(this.getResponsiveSetting(settings, 'ha_aia_scale_to')) || 1,
 				duration: parseFloat(this.getResponsiveSetting(settings, 'ha_aia_animation_duration')) || 1,
 				delay: parseFloat(this.getResponsiveSetting(settings, 'ha_aia_delay')) || 0,

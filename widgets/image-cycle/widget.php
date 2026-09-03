@@ -491,6 +491,20 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
             ]
         );
 
+        $this->add_control(
+            'ha_ic_play_on_appear',
+            [
+                'label'              => __( 'Animation Play On Appearing', 'happy-elementor-addons' ),
+                'type'               => Controls_Manager::SWITCHER,
+                'label_on'           => __( 'Yes', 'happy-elementor-addons' ),
+                'label_off'          => __( 'No', 'happy-elementor-addons' ),
+                'return_value'       => 'yes',
+                'default'            => '',
+                'description'        => __( 'Play the animation when the widget reaches the center of the viewport while scrolling.', 'happy-elementor-addons' ),
+                'frontend_available' => true
+            ]
+        );
+
         $this->end_controls_section();
     }
 
