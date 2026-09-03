@@ -45,33 +45,17 @@ class Container_Hover_Text_Color {
 	}
 
 	public static function add_controls_section(Element_Base $element) {
+		$can_inject = false !== $element->get_control_index( 'background_hover_transition' );
 
-		// An unresolved injection leaves injection_point as `false`, which later
-		// breaks get_pointer_index()/end_popover() with "array offset on false"
-		// and "Undefined array key -1" in controls-stack.php (:1141/:696). So
-		// first clear a stray failed injection left open by another callback
-		// (e.g., Elementor Pro Motion FX, which hooks this same section).
-		if ( false === $element->get_injection_point() ) {
-			$element->end_injection();
+		if ( ! $can_inject ) {
+			error_log( '[Happy Addons] Container hover controls: injection target "background_hover_transition" not found.' );
 		}
 
-		$can_inject = false;
-
-		if (
-			null === $element->get_injection_point()
-			&& $element->get_controls( 'background_hover_transition' )
-		) {
-			$element->start_injection( [
+		if ( $can_inject ) {
+			$element->start_injection([
 				'of' => 'background_hover_transition',
 				'at' => 'after',
-			] );
-
-			// Only keep the injection if it resolved to a real position.
-			if ( is_array( $element->get_injection_point() ) ) {
-				$can_inject = true;
-			} else {
-				$element->end_injection();
-			}
+			]);
 		}
 
 		$element->add_control(
@@ -171,6 +155,5 @@ class Container_Hover_Text_Color {
 		if ( $can_inject ) {
 			$element->end_injection();
 		}
-
 	}
 }
