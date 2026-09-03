@@ -47,10 +47,6 @@ class Container_Hover_Text_Color {
 	public static function add_controls_section(Element_Base $element) {
 		$can_inject = false !== $element->get_control_index( 'background_hover_transition' );
 
-		if ( ! $can_inject ) {
-			error_log( '[Happy Addons] Container hover controls: injection target "background_hover_transition" not found.' );
-		}
-
 		if ( $can_inject ) {
 			$element->start_injection([
 				'of' => 'background_hover_transition',
