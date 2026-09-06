@@ -80,20 +80,38 @@ class Extensions_Manager {
 	 */
 	public static function get_local_extensions_map() {
 		return [
-			'admin-bar-menu' => [
-				'title' => __( 'Admin Bar Menu', 'happy-elementor-addons' ),
+			'background-hover-effect' => [
+				'title' => __( 'Background Hover Effect', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-scroll-top',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
 				'is_pro' => false,
 			],
-			'happy-clone' => [
-				'title' => __( 'Happy Clone', 'happy-elementor-addons' ),
+			'foreground-overlay' => [
+				'title' => __( 'Foreground Overlay', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-flip-card2',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
 				'is_pro' => false,
 			],
-			'on-demand-cache' => [
-				'title' => __( 'On Demand Cache', 'happy-elementor-addons' ),
+			'button-fixed-size' => [
+				'title' => __( 'Button Fixed Size', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-layer',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
+				'is_pro' => false,
+			],
+			'widget-background-overlay' => [
+				'title' => __( 'Widget Background Overlay', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-layer',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
+				'is_pro' => false,
+			],
+			'image-masking' => [
+				'title' => __( 'Image Masking', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-layer',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
+				'is_pro' => false,
+			],
+			'text-stroke' => [
+				'title' => __( 'Text Stroke', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-layer',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
 				'is_pro' => false,
