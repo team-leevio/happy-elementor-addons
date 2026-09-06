@@ -146,7 +146,8 @@
 
 
 			var $toggle_widget = $all.not('.item--is-placeholder').not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-widget'),
-				$toggle_feature = $all.not('.item--is-placeholder').not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-feature');
+				$toggle_feature = $all.not('.item--is-placeholder').not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-feature'),
+				$toggle_extension = $all.not('.item--is-placeholder').not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-extension');
 
 
 			if (action) {
@@ -158,9 +159,14 @@
 					$toggle_feature.prop('checked', true);
 				} else if ('disable_feature' === action) {
 					$toggle_feature.prop('checked', false);
+				} else if ('enable_extension' === action) {
+					$toggle_extension.prop('checked', true);
+				} else if ('disable_extension' === action) {
+					$toggle_extension.prop('checked', false);
 				}
 				$toggle_widget.trigger('change');
 				$toggle_feature.trigger('change');
+				$toggle_extension.trigger('change');
 			}
 		});
 
