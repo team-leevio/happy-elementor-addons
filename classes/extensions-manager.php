@@ -104,12 +104,6 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
 				'is_pro' => false,
 			],
-			'image-masking' => [
-				'title' => __( 'Image Masking', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-layer',
-				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
-				'is_pro' => false,
-			],
 			'text-stroke' => [
 				'title' => __( 'Text Stroke', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-layer',
@@ -147,12 +141,6 @@ class Extensions_Manager {
 				'title' => __( 'Display Condition', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-display-condition',
 				'demo' => 'https://happyaddons.com/display-condition/',
-				'is_pro' => true,
-			],
-			'image-masking' => [
-				'title' => __( 'Image Masking', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-image-masking',
-				'demo' => 'https://happyaddons.com/image-masking-demo/',
 				'is_pro' => true,
 			],
 			'happy-particle-effects' => [
