@@ -85,7 +85,17 @@ class Extensions_Manager {
 	 * @return array
 	 */
 	public static function get_pro_extensions_map() {
-		return ha_safe_apply_filters( 'happyaddons_get_pro_extensions_map', [] );
+
+		$pro_extensions_map = [
+            'image-masking'=> [
+                'title'  => __( 'Image Masking', 'happy-addons-pro' ),
+                'icon'   => 'hm hm-image-masking',
+                'demo'   => 'https://happyaddons.com/image-masking-demo/',
+                'is_pro' => true
+            ],
+            
+        ];
+		return ha_safe_apply_filters( 'happyaddons_get_pro_extensions_map', $pro_extensions_map );
 	}
 
 	/**
