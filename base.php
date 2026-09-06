@@ -238,7 +238,7 @@ class Base {
 	 * @param Controls_Manager $controls_Manager
 	 */
 	public function register_controls( Controls_Manager $controls_Manager ) {
-		if ( ha_is_foreground_overlay_enabled() ) {
+		if ( ! class_exists( __NAMESPACE__ . '\Extensions\Foreground_Overlay' ) || ha_is_foreground_overlay_enabled() ) {
 			$Foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
 			$controls_Manager->add_group_control( $Foreground::get_type(), new $Foreground() );
 		}

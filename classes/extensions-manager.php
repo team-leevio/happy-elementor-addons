@@ -423,10 +423,6 @@ class Extensions_Manager {
 				add_filter( 'happyaddons/extensions/display_condition', '__return_false' );
 				break;
 
-			case 'image-masking':
-				add_filter( 'happyaddons/extensions/image_masking', '__return_false' );
-				break;
-
 			case 'happy-particle-effects':
 				add_filter( 'happyaddons/extensions/happy_particle_effects', '__return_false' );
 				break;
