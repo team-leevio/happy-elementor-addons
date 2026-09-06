@@ -199,6 +199,17 @@
 				opacity: 0.7;
 			}
 
+			&.item--is-always-on {
+				.ha-toggle__check {
+					cursor: not-allowed;
+				}
+
+				// Locked "on" knob but track keeps the gray/off color
+				.ha-toggle__check:checked ~ .ha-toggle__track {
+					box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.01);
+				}
+			}
+
 			&-icon {
 				font-size: 20px;
 				display: inline-block;

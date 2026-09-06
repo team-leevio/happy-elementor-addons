@@ -25,15 +25,16 @@ class Extensions_Manager {
 		}
 
 		$inactive_features = self::get_inactive_features();
+		$always_on_features = self::get_always_on_features();
 
 		foreach ( self::get_local_features_map() as $feature_key => $data ) {
-			if ( ! in_array( $feature_key, $inactive_features ) ) {
+			if ( in_array( $feature_key, $always_on_features, true ) || ! in_array( $feature_key, $inactive_features ) ) {
 				self::enable_feature( $feature_key );
 			}
 		}
 
 		foreach ( self::get_pro_features_map() as $feature_key => $data ) {
-			if ( in_array( $feature_key, $inactive_features ) ) {
+			if ( ! in_array( $feature_key, $always_on_features, true ) && in_array( $feature_key, $inactive_features ) ) {
 				self::disable_pro_feature( $feature_key );
 			}
 		}
@@ -96,6 +97,32 @@ class Extensions_Manager {
             
         ];
 		return ha_safe_apply_filters( 'happyaddons_get_pro_extensions_map', $pro_extensions_map );
+	}
+
+	/**
+	 * Get the list of features that are always on and can not be disabled.
+	 *
+	 * Features marked with `always_on => true` are excluded from the inactive
+	 * list both while running and while saving dashboard settings.
+	 *
+	 * @return array
+	 */
+	public static function get_always_on_features() {
+		$always_on_features = [];
+
+		foreach ( self::get_local_features_map() as $feature_key => $data ) {
+			if ( ! empty( $data['always_on'] ) ) {
+				$always_on_features[] = $feature_key;
+			}
+		}
+
+		foreach ( self::get_pro_features_map() as $feature_key => $data ) {
+			if ( ! empty( $data['always_on'] ) ) {
+				$always_on_features[] = $feature_key;
+			}
+		}
+
+		return array_values( array_unique( $always_on_features ) );
 	}
 
 	/**
@@ -167,6 +194,13 @@ class Extensions_Manager {
 				'icon' => 'hm hm-display-condition',
 				'demo' => 'https://happyaddons.com/display-condition/',
 				'is_pro' => true,
+			],
+			'live-copy' => [
+				'title' => __( 'Live Copy', 'happy-addons-pro' ),
+				'icon' => 'hm hm-copy',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
+				'is_pro' => true,
+				'always_on' => true,
 			],
 			'happy-particle-effects' => [
 				'title' => __( 'Happy Particle Effects', 'happy-elementor-addons' ),

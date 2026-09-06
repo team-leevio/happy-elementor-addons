@@ -108,6 +108,12 @@ class Dashboard {
 
         $inactive_features = array_values( array_diff( array_keys( $widgets_map ), $features ) );
 
+        /* Always on features can not be disabled */
+        $always_on_features = Extensions_Manager::get_always_on_features();
+        if ( ! empty( $always_on_features ) ) {
+            $inactive_features = array_values( array_diff( $inactive_features, $always_on_features ) );
+        }
+
         Extensions_Manager::save_inactive_features( $inactive_features );
     }
 
