@@ -14,10 +14,15 @@ class Extensions_Manager {
 	 * Initialize
 	 */
 	public static function init() {
+		self::register_extension_filters();
 
-		add_action( 'elementor/element/button/section_style/after_section_start', [ Features\Fixed_Size_Button::class, 'add_button_controls' ] );
+		if ( ha_is_button_fixed_size_enabled() ) {
+			add_action( 'elementor/element/button/section_style/after_section_start', [ Features\Fixed_Size_Button::class, 'add_button_controls' ] );
+		}
 
-		add_action( 'elementor/element/container/section_background/before_section_end', [ Features\Container_Hover_Text_Color::class, 'add_controls_section' ] );
+		if ( ha_is_background_hover_effect_enabled() ) {
+			add_action( 'elementor/element/container/section_background/before_section_end', [ Features\Container_Hover_Text_Color::class, 'add_controls_section' ] );
+		}
 
 		$inactive_features = self::get_inactive_features();
 
@@ -38,8 +43,6 @@ class Extensions_Manager {
 		foreach ( self::get_local_extensions_map() as $extension_key => $data ) {
 			if ( ! in_array( $extension_key, $inactive_extensions ) ) {
 				self::enable_extension( $extension_key );
-			} else {
-				self::disable_extension( $extension_key );
 			}
 		}
 
@@ -62,6 +65,18 @@ class Extensions_Manager {
 
 	public static function save_inactive_extensions( $extensions = [] ) {
 		update_option( self::EXTENSIONS_DB_KEY, $extensions );
+	}
+
+	/**
+	 * Register "disable" filters for inactive extensions.
+	 *
+	 * This must run before any extension is checked via ha_is_*_enabled()
+	 * so the filters are in place regardless of the hook order.
+	 */
+	public static function register_extension_filters() {
+		foreach ( self::get_inactive_extensions() as $extension_key ) {
+			self::disable_extension( $extension_key );
+		}
 	}
 
 	/**
@@ -320,7 +335,9 @@ class Extensions_Manager {
 
 		switch ($feature_key) {
 			case 'background-overlay':
-				add_action( 'elementor/element/common/_section_background/after_section_end', [Features\Background_Overlay::class, 'add_section'] );
+				if ( ha_is_widget_background_overlay_enabled() ) {
+					add_action( 'elementor/element/common/_section_background/after_section_end', [Features\Background_Overlay::class, 'add_section'] );
+				}
 				break;
 
 			case 'grid-layer':
@@ -369,7 +386,7 @@ class Extensions_Manager {
 				break;
 
 			case 'text-stroke':
-				if( ! in_array( 'text-stroke', ha_get_inactive_features() ) ) {
+				if( ! in_array( 'text-stroke', ha_get_inactive_features() ) && ha_is_text_stroke_enabled() ) {
 					add_action( 'elementor/element/heading/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
 					add_action( 'elementor/element/theme-page-title/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
 					add_action( 'elementor/element/theme-site-title/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
@@ -433,19 +450,8 @@ class Extensions_Manager {
 	}
 
 	protected static function disable_extension( $extension_key ) {
-		switch ( $extension_key ) {
-			case 'admin-bar-menu':
-				add_filter( 'happyaddons/extensions/adminbar_menu', '__return_false' );
-				break;
-
-			case 'happy-clone':
-				add_filter( 'happyaddons/extensions/happy_clone', '__return_false' );
-				break;
-
-			case 'on-demand-cache':
-				add_filter( 'happyaddons/extensions/on_demand_cache', '__return_false' );
-				break;
-		}
+		$filter_key = str_replace( '-', '_', $extension_key );
+		add_filter( 'happyaddons/extensions/' . $filter_key, '__return_false' );
 	}
 
 	protected static function disable_pro_extension( $extension_key ) {

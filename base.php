@@ -32,6 +32,8 @@ class Base {
 	}
 
 	public function init() {
+		HappyAddons_Classes\Extensions_Manager::register_extension_filters();
+
 		$this->include_files();
 
 		// Register custom category
@@ -236,8 +238,10 @@ class Base {
 	 * @param Controls_Manager $controls_Manager
 	 */
 	public function register_controls( Controls_Manager $controls_Manager ) {
-		$Foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
-		$controls_Manager->add_group_control( $Foreground::get_type(), new $Foreground() );
+		if ( ha_is_foreground_overlay_enabled() ) {
+			$Foreground = __NAMESPACE__ . '\Controls\Group_Control_Foreground';
+			$controls_Manager->add_group_control( $Foreground::get_type(), new $Foreground() );
+		}
 
 		$Select2 = __NAMESPACE__ . '\Controls\Select2';
 		ha_elementor()->controls_manager->register( new $Select2() );

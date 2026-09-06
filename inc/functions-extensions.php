@@ -131,3 +131,58 @@ if (! function_exists('ha_is_liquid_glass_enabled')) {
 		return apply_filters( 'happyaddons/extensions/liquid_glass', true );
 	}
 }
+
+if (! function_exists('ha_is_background_hover_effect_enabled')) {
+	/**
+	 * Check if Background Hover Effect is enabled
+	 *
+	 * @return bool
+	 */
+	function ha_is_background_hover_effect_enabled() {
+		return apply_filters( 'happyaddons/extensions/background_hover_effect', true );
+	}
+}
+
+if (! function_exists('ha_is_foreground_overlay_enabled')) {
+	/**
+	 * Check if Foreground Overlay is enabled
+	 *
+	 * @return bool
+	 */
+	function ha_is_foreground_overlay_enabled() {
+		return apply_filters( 'happyaddons/extensions/foreground_overlay', true );
+	}
+}
+
+if (! function_exists('ha_is_button_fixed_size_enabled')) {
+	/**
+	 * Check if Button Fixed Size is enabled
+	 *
+	 * @return bool
+	 */
+	function ha_is_button_fixed_size_enabled() {
+		return apply_filters( 'happyaddons/extensions/button_fixed_size', true );
+	}
+}
+
+if (! function_exists('ha_is_widget_background_overlay_enabled')) {
+	/**
+	 * Check if Widget Background Overlay is enabled
+	 *
+	 * @return bool
+	 */
+	function ha_is_widget_background_overlay_enabled() {
+		return apply_filters( 'happyaddons/extensions/widget_background_overlay', true );
+	}
+}
+
+if (! function_exists('ha_is_text_stroke_enabled')) {
+	/**
+	 * Check if Text Stroke is enabled
+	 *
+	 * @return bool
+	 */
+	function ha_is_text_stroke_enabled() {
+		return apply_filters( 'happyaddons/extensions/text_stroke', true );
+	}
+}
