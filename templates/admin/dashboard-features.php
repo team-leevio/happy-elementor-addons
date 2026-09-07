@@ -13,12 +13,15 @@ $has_pro = ha_has_pro();
 $total_features_count = count( $features );
 
 $always_on_group_keys = [];
+$gsap_group_keys = array_keys( self::get_gsap_features() );
 $general_group_keys = [];
 
 foreach ( $features as $feature_key => $feature_data ) {
 	$is_always_on = in_array( $feature_key, $always_on_features, true );
 
-	if ( $is_always_on ) {
+	if ( in_array( $feature_key, $gsap_group_keys, true ) ) {
+		continue;
+	} elseif ( $is_always_on ) {
 		$always_on_group_keys[] = $feature_key;
 	} else {
 		$general_group_keys[] = $feature_key;

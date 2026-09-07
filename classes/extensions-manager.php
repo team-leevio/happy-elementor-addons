@@ -366,12 +366,14 @@ class Extensions_Manager {
 				'icon' => 'huge huge-layer-mask-1',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/#/',
 				'is_pro' => false,
+				'is_gsap' => true,
 			],
 			'heading-text-animation' => [
 				'title' => __( 'Text Animation', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-text-outline',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/#/',
 				'is_pro' => false,
+				'is_gsap' => true,
 			],
 			'liquid-glass' => [
 				'title' => __( 'Liquid Glass', 'happy-addons-pro' ),

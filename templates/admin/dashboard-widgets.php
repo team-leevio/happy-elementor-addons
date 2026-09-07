@@ -8,6 +8,7 @@ defined( 'ABSPATH' ) || die();
 $widgets = self::get_widgets();
 $catwise_widgets = self::get_widget_map_catwise();
 $inactive_widgets = \Happy_Addons\Elementor\Classes\Widgets_Manager::get_inactive_widgets();
+$gsap_widgets = self::get_gsap_widgets();
 
 $total_widgets_count = count( $widgets );
 
@@ -45,6 +46,7 @@ if ( ! ha_has_pro() && ! empty( $total_widgets_count ) ) {
 						__( 'Widgets', 'happy-elementor-addons' )
 					);
 					foreach ( $widgets as $widget_key => $widget_data ) :
+						if ( isset( $gsap_widgets[ $widget_key ] ) ) { continue; }
 						$title = isset( $widget_data['title'] ) ? $widget_data['title'] : '';
 						$icon = isset( $widget_data['icon'] ) ? $widget_data['icon'] : '';
 						$is_pro = isset( $widget_data['is_pro'] ) && $widget_data['is_pro'] ? true : false;

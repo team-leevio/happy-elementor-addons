@@ -174,6 +174,7 @@ class Widgets_Manager {
 				'icon' => 'hm hm-weather-windy-rain',
 				'demo'      => 'https://demo.happyaddons.com/#/',
 				'is_pro' => true,
+				'is_gsap' => true,
 			],
 			'edd-cart' => [
 				'cat' => 'easy-digital-downloads',
@@ -286,6 +287,7 @@ class Widgets_Manager {
 				'icon' => 'hm hm-timeline-spiral',
 				'demo'      => 'https://demo.happyaddons.com/#/',
 				'is_pro' => true,
+				'is_gsap' => true,
 			],
 			'happy-loop-grid' => [
 				'cat'    => 'post',
@@ -558,6 +560,7 @@ class Widgets_Manager {
 				'icon' => 'hm hm-photo-stack',
 				'demo'      => 'https://demo.happyaddons.com/#/',
 				'is_pro' => true,
+				'is_gsap' => true,
 			],
 			'sticky-video'              => [
 				'cat'    => 'general',
@@ -575,10 +578,11 @@ class Widgets_Manager {
 			],
 			'svg-morphing' => [
 				'cat' => 'creative',
-				'title' => __('Svg Morphing', 'happy-elementor-addons'),
+				'title' => __('SVG Morphing', 'happy-elementor-addons'),
 				'icon' => 'hm hm-hexa',
 				'demo'      => 'https://demo.happyaddons.com/#/',
 				'is_pro' => true,
+				'is_gsap' => true,
 			],
 			'table-of-contents' => [
 				'cat' => 'general',

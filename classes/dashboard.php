@@ -336,6 +336,18 @@ class Dashboard {
         return $widgets_map;
     }
 
+    public static function get_gsap_features() {
+        return array_filter( self::get_features(), function ( $feature_data ) {
+            return ! empty( $feature_data['is_gsap'] );
+        } );
+    }
+
+    public static function get_gsap_widgets() {
+        return array_filter( self::get_widgets(), function ( $widget_data ) {
+            return ! empty( $widget_data['is_gsap'] );
+        } );
+    }
+
     public static function get_extensions() {
         $extensions_map = self::get_real_extensions_map();
 
@@ -473,6 +485,10 @@ class Dashboard {
                 'title' => esc_html__( 'Extension', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_extensions' ],
             ],
+            'gsap' => [
+                'title' => esc_html__( 'GSAP', 'happy-elementor-addons' ),
+                'renderer' => [ __CLASS__, 'render_gsap' ],
+            ],
             'credentials' => [
                 'title' => esc_html__( 'Credentials', 'happy-elementor-addons' ),
                 'renderer' => [ __CLASS__, 'render_credentials' ],
@@ -522,6 +538,10 @@ class Dashboard {
 
     public static function render_extensions() {
         self::load_template( 'extensions' );
+    }
+
+    public static function render_gsap() {
+        self::load_template( 'gsap' );
     }
 
     public static function render_credentials() {
