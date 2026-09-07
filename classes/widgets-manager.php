@@ -601,6 +601,28 @@ class Widgets_Manager {
 				'demo'      => 'https://demo.happyaddons.com/#/',
 				'is_pro' => true,
 			],
+			'team-hover-grid' => [
+				'cat' => 'creative',
+				'title' => __('Team Hover Grid', 'happy-addons-pro'),
+				'icon' => 'hm hm-User-Circle',
+				'demo'      => 'https://demo.happyaddons.com/#/',
+				'is_pro' => true,
+			],
+			'happy-nested-hover-list' => [
+				'cat'       => 'general',
+				'title'     => __('Hover Accordion', 'happy-addons-pro'),
+				'icon'      => 'hm hm-list',
+				'demo'      => 'https://demo.happyaddons.com/#/',
+				'is_pro' => true,
+			],
+		
+			'visual-tabs' => [
+				'cat'       => 'general',
+				'title'     => __('Visual Tabs', 'happy-addons-pro'),
+				'icon'      => 'hm hm-cta',
+				'demo'      => 'https://demo.happyaddons.com/#/',
+				'is_pro'    => true,	
+			]
 			
 		];
 	}
