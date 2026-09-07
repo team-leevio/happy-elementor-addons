@@ -283,7 +283,7 @@ class Widgets_Manager {
 			'gsap-svg-draw' => [
 				'cat' => 'creative',
 				'title' => __('GSAP SVG Draw', 'happy-elementor-addons'),
-				'icon' => 'hm hm-text-outline',
+				'icon' => 'hm hm-timeline-spiral',
 				'demo'      => 'https://demo.happyaddons.com/#/',
 				'is_pro' => true,
 			],

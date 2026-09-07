@@ -142,19 +142,19 @@ class Extensions_Manager {
 			],
 			'button-fixed-size' => [
 				'title' => __( 'Fixed Size Button', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-layer',
+				'icon' => 'hm hm-fixed-size-button',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
 				'is_pro' => false,
 			],
 			'widget-background-overlay' => [
 				'title' => __( 'Widget Background Overlay', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-layer',
+				'icon' => 'hm hm-file-rotate',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
 				'is_pro' => false,
 			],
 			'text-stroke' => [
 				'title' => __( 'Text Stroke', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-layer',
+				'icon' => 'hm hm-text-outline',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
 				'is_pro' => false,
 			],
