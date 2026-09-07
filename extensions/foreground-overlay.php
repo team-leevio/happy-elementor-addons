@@ -184,6 +184,7 @@ class Foreground_Overlay {
 				'selectors' => [
 					'{{WRAPPER}}' => 'position: relative; isolation: isolate; overflow: hidden;',
 					'{{WRAPPER}}::after' => 'content: ""; position: absolute; inset: 0; z-index: 9999; pointer-events: none; display: block;',
+					'{{WRAPPER}} .elementor-element-overlay' => ' z-index: 10000;',
 				],
 				'assets' => [
 					'scripts' => [
