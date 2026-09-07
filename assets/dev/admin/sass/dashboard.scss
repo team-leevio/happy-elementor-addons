@@ -736,7 +736,8 @@ span.ha-search-action--btn input#ha-widget-search {
 	}
 
 	&[data-action="enable"],
-	&[data-action="enable_feature"] {
+	&[data-action="enable_feature"],
+	&[data-action="enable_extension"] {
 		color: #5db429;
 
 		&:hover,
@@ -748,7 +749,8 @@ span.ha-search-action--btn input#ha-widget-search {
 	}
 
 	&[data-action="disable"],
-	&[data-action="disable_feature"] {
+	&[data-action="disable_feature"],
+	&[data-action="disable_extension"] {
 		color: #e63d3d;
 
 		&:hover,
