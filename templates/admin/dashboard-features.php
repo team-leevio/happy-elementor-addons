@@ -46,6 +46,29 @@ foreach ( $features as $feature_key => $feature_data ) {
     </div>
 
     <div class="ha-dashboard-widgets ha-dashboard-widgets--tab">
+        <?php if ( ! empty( $gsap_group_keys ) ) : ?>
+            <h2 style="width: 100%; margin-left: 10px;"><?php esc_html_e( 'GSAP Features', 'happy-elementor-addons' ); ?></h2>
+            <?php foreach ( array_unique( $gsap_group_keys ) as $feature_key ) :
+                $feature_data = $features[ $feature_key ];
+                $title = isset( $feature_data['title'] ) ? $feature_data['title'] : '';
+                $icon = isset( $feature_data['icon'] ) ? $feature_data['icon'] : '';
+                $is_pro = ! empty( $feature_data['is_pro'] );
+                $is_placeholder = $is_pro && ! $has_pro;
+                $class_attr = 'ha-dashboard-widgets__item' . ( $is_pro ? ' item--is-pro' : '' ) . ( $is_placeholder ? ' item--is-placeholder' : '' );
+                $checked = ! in_array( $feature_key, $inactive_features, true ) ? 'checked="checked"' : '';
+                if ( $is_placeholder ) { $checked = 'disabled="disabled"'; }
+                ?>
+                <div class="<?php echo esc_attr( $class_attr ); ?>">
+                    <?php if ( $is_pro ) : ?><span class="ha-dashboard-widgets__item-badge"><?php esc_html_e( 'Pro', 'happy-elementor-addons' ); ?></span><?php endif; ?>
+                    <span class="ha-dashboard-widgets__item-icon"><i class="<?php echo esc_attr( $icon ); ?>"></i></span>
+                    <h3 class="ha-dashboard-widgets__item-title"><label for="ha-widget-<?php echo esc_attr( $feature_key ); ?>"><?php echo esc_html( $title ); ?></label></h3>
+                    <div class="ha-dashboard-widgets__item-toggle ha-toggle">
+                        <input id="ha-widget-<?php echo esc_attr( $feature_key ); ?>" <?php echo $checked; ?> type="checkbox" class="ha-toggle__check ha-feature" name="features[]" value="<?php echo esc_attr( $feature_key ); ?>">
+                        <b class="ha-toggle__switch"></b><b class="ha-toggle__track"></b>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
         <?php if ( ! empty( $general_group_keys ) ) : ?>
             <h2 style="width: 100%; margin-left: 10px;"><?php esc_html_e( 'General Features', 'happy-elementor-addons' ); ?></h2>
             <?php foreach ( $general_group_keys as $feature_key ) :

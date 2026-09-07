@@ -116,6 +116,25 @@
 			$saveButton.attr('disabled', false).text(HappyDashboard.saveChangesLabel);
 		});
 
+		// GSAP items are listed on both the Features/Widgets tabs and the GSAP
+		// tab. The whole form is serialized on save, so every duplicate control
+		// (same name + value) must mirror the same state.
+		$dashboardForm.on('change', ':checkbox', function () {
+			var source = this,
+				name = source.name,
+				value = source.value;
+
+			if (!name) {
+				return;
+			}
+
+			$dashboardForm.find(':checkbox').not(':disabled').each(function () {
+				if (this !== source && this.name === name && this.value === value) {
+					this.checked = source.checked;
+				}
+			});
+		});
+
 		$('.ha-action--btn').on('click', function (event) {
 			event.preventDefault();
 

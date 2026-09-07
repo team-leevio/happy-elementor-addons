@@ -36,6 +36,26 @@ if ( ! ha_has_pro() && ! empty( $total_widgets_count ) ) {
     </div>
 
     <div class="ha-dashboard-widgets ha-dashboard-widgets--tab">
+        <?php if ( ! empty( $gsap_widgets ) ) : ?>
+            <h2 style="width: 100%; margin-left: 10px;"><?php esc_html_e( 'GSAP Widgets', 'happy-elementor-addons' ); ?></h2>
+            <?php foreach ( $gsap_widgets as $widget_key => $widget_data ) :
+                $is_pro = ! empty( $widget_data['is_pro'] );
+                $is_placeholder = $is_pro && ! ha_has_pro();
+                $class_attr = 'ha-dashboard-widgets__item' . ( $is_pro ? ' item--is-pro' : '' ) . ( $is_placeholder ? ' item--is-placeholder' : '' );
+                $checked = ! in_array( $widget_key, $inactive_widgets, true ) ? 'checked="checked"' : '';
+                if ( $is_placeholder ) { $checked = 'disabled="disabled"'; }
+                ?>
+                <div class="<?php echo esc_attr( $class_attr ); ?>" data-title="<?php echo esc_attr( $widget_data['title'] ); ?>">
+                    <?php if ( $is_pro ) : ?><span class="ha-dashboard-widgets__item-badge"><?php esc_html_e( 'Pro', 'happy-elementor-addons' ); ?></span><?php endif; ?>
+                    <span class="ha-dashboard-widgets__item-icon"><i class="<?php echo esc_attr( $widget_data['icon'] ); ?>"></i></span>
+                    <h3 class="ha-dashboard-widgets__item-title"><label for="ha-widget-<?php echo esc_attr( $widget_key ); ?>"><?php echo esc_html( $widget_data['title'] ); ?></label></h3>
+                    <div class="ha-dashboard-widgets__item-toggle ha-toggle">
+                        <input id="ha-widget-<?php echo esc_attr( $widget_key ); ?>" <?php echo $checked; ?> type="checkbox" class="ha-toggle__check ha-widget" name="widgets[]" value="<?php echo esc_attr( $widget_key ); ?>">
+                        <b class="ha-toggle__switch"></b><b class="ha-toggle__track"></b>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
         <?php
 		if( $catwise_widgets ):
 			foreach( $catwise_widgets as $cat => $widgets) :
