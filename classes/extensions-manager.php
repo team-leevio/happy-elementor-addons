@@ -141,7 +141,7 @@ class Extensions_Manager {
 				'is_pro' => false,
 			],
 			'button-fixed-size' => [
-				'title' => __( 'Button Fixed Size', 'happy-elementor-addons' ),
+				'title' => __( 'Fixed Size Button', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-layer',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
 				'is_pro' => false,
