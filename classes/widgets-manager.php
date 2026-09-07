@@ -616,6 +616,48 @@ class Widgets_Manager {
 				'is_pro' => true,
 			],
 		
+			'featured-post' => [
+				'cat'    => 'post',
+				'title'  => __('Featured Post', 'happy-elementor-addons'),
+				'icon'   => 'hm hm-tb-post-info',
+				'is_pro' => true,
+				'demo'   => 'https://demo.happyaddons.com/#/',
+			],
+			'happy-loop-grid' => [
+				'cat'    => 'post',
+				'title'  => __('Happy Loop Grid', 'happy-elementor-addons'),
+				'icon'   => 'hm hm-loop-grid-content-slider',
+				'is_pro' => true,
+				'demo'   => 'https://demo.happyaddons.com/#/',
+			],
+			'scroll-sequence' => [
+				'cat'    => 'creative',
+				'title'  => __('Scroll Sequence', 'happy-elementor-addons'),
+				'icon'   => 'hm hm-magic-scroll',
+				'is_pro' => true,
+				'demo'   => 'https://demo.happyaddons.com/#/',
+			],
+			'scroll-tabs' => [
+				'cat'    => 'creative',
+				'title'  => __('Scroll Tabs', 'happy-elementor-addons'),
+				'icon'   => 'hm hm-up-down',
+				'is_pro' => true,
+				'demo'   => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/scroll-tabs/',
+			],
+			'super-button' => [
+				'cat'    => 'creative',
+				'title'  => __('Super Button', 'happy-elementor-addons'),
+				'icon'   => 'hm hm-fixed-size-button',
+				'is_pro' => true,
+				'demo'   => 'https://demo.happyaddons.com/#/',
+			],
+			'advanced-search' => [
+				'cat'    => 'general',
+				'title'  => __('Advanced Search', 'happy-elementor-addons'),
+				'icon'   => 'hm hm-search',
+				'is_pro' => true,
+				'demo'   => 'https://demo.happyaddons.com/#/',
+			],
 			'visual-tabs' => [
 				'cat'       => 'general',
 				'title'     => __('Visual Tabs', 'happy-addons-pro'),
