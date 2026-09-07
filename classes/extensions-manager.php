@@ -14,19 +14,27 @@ class Extensions_Manager {
 	 * Initialize
 	 */
 	public static function init() {
+		self::register_extension_filters();
 
-		add_action( 'elementor/element/button/section_style/after_section_start', [ Features\Fixed_Size_Button::class, 'add_button_controls' ] );
+		if ( ha_is_button_fixed_size_enabled() ) {
+			add_action( 'elementor/element/button/section_style/after_section_start', [ Features\Fixed_Size_Button::class, 'add_button_controls' ] );
+		}
+
+		if ( ha_is_background_hover_effect_enabled() ) {
+			add_action( 'elementor/element/container/section_background/before_section_end', [ Features\Container_Hover_Text_Color::class, 'add_controls_section' ] );
+		}
 
 		$inactive_features = self::get_inactive_features();
+		$always_on_features = self::get_always_on_features();
 
 		foreach ( self::get_local_features_map() as $feature_key => $data ) {
-			if ( ! in_array( $feature_key, $inactive_features ) ) {
+			if ( in_array( $feature_key, $always_on_features, true ) || ! in_array( $feature_key, $inactive_features ) ) {
 				self::enable_feature( $feature_key );
 			}
 		}
 
 		foreach ( self::get_pro_features_map() as $feature_key => $data ) {
-			if ( in_array( $feature_key, $inactive_features ) ) {
+			if ( ! in_array( $feature_key, $always_on_features, true ) && in_array( $feature_key, $inactive_features ) ) {
 				self::disable_pro_feature( $feature_key );
 			}
 		}
@@ -36,8 +44,6 @@ class Extensions_Manager {
 		foreach ( self::get_local_extensions_map() as $extension_key => $data ) {
 			if ( ! in_array( $extension_key, $inactive_extensions ) ) {
 				self::enable_extension( $extension_key );
-			} else {
-				self::disable_extension( $extension_key );
 			}
 		}
 
@@ -63,12 +69,60 @@ class Extensions_Manager {
 	}
 
 	/**
+	 * Register "disable" filters for inactive extensions.
+	 *
+	 * This must run before any extension is checked via ha_is_*_enabled()
+	 * so the filters are in place regardless of the hook order.
+	 */
+	public static function register_extension_filters() {
+		foreach ( self::get_inactive_extensions() as $extension_key ) {
+			self::disable_extension( $extension_key );
+		}
+	}
+
+	/**
 	 * Get the pro extensions map for dashboard only
 	 *
 	 * @return array
 	 */
 	public static function get_pro_extensions_map() {
-		return ha_safe_apply_filters( 'happyaddons_get_pro_extensions_map', [] );
+
+		$pro_extensions_map = [
+            'image-masking'=> [
+                'title'  => __( 'Image Masking', 'happy-addons-pro' ),
+                'icon'   => 'hm hm-image-masking',
+                'demo'   => 'https://happyaddons.com/image-masking-demo/',
+                'is_pro' => true
+            ],
+            
+        ];
+		return ha_safe_apply_filters( 'happyaddons_get_pro_extensions_map', $pro_extensions_map );
+	}
+
+	/**
+	 * Get the list of features that are always on and can not be disabled.
+	 *
+	 * Features marked with `always_on => true` are excluded from the inactive
+	 * list both while running and while saving dashboard settings.
+	 *
+	 * @return array
+	 */
+	public static function get_always_on_features() {
+		$always_on_features = [];
+
+		foreach ( self::get_local_features_map() as $feature_key => $data ) {
+			if ( ! empty( $data['always_on'] ) ) {
+				$always_on_features[] = $feature_key;
+			}
+		}
+
+		foreach ( self::get_pro_features_map() as $feature_key => $data ) {
+			if ( ! empty( $data['always_on'] ) ) {
+				$always_on_features[] = $feature_key;
+			}
+		}
+
+		return array_values( array_unique( $always_on_features ) );
 	}
 
 	/**
@@ -78,20 +132,32 @@ class Extensions_Manager {
 	 */
 	public static function get_local_extensions_map() {
 		return [
-			'admin-bar-menu' => [
-				'title' => __( 'Admin Bar Menu', 'happy-elementor-addons' ),
+			'background-hover-effect' => [
+				'title' => __( 'Background Hover Effect', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-scroll-top',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
 				'is_pro' => false,
 			],
-			'happy-clone' => [
-				'title' => __( 'Happy Clone', 'happy-elementor-addons' ),
+			'foreground-overlay' => [
+				'title' => __( 'Foreground Overlay', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-flip-card2',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
 				'is_pro' => false,
 			],
-			'on-demand-cache' => [
-				'title' => __( 'On Demand Cache', 'happy-elementor-addons' ),
+			'button-fixed-size' => [
+				'title' => __( 'Button Fixed Size', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-layer',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
+				'is_pro' => false,
+			],
+			'widget-background-overlay' => [
+				'title' => __( 'Widget Background Overlay', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-layer',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
+				'is_pro' => false,
+			],
+			'text-stroke' => [
+				'title' => __( 'Text Stroke', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-layer',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/',
 				'is_pro' => false,
@@ -129,11 +195,12 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/display-condition/',
 				'is_pro' => true,
 			],
-			'image-masking' => [
-				'title' => __( 'Image Masking', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-image-masking',
-				'demo' => 'https://happyaddons.com/image-masking-demo/',
+			'live-copy' => [
+				'title' => __( 'Live Copy', 'happy-addons-pro' ),
+				'icon' => 'hm hm-copy',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/#/',
 				'is_pro' => true,
+				'always_on' => true,
 			],
 			'happy-particle-effects' => [
 				'title' => __( 'Happy Particle Effects', 'happy-elementor-addons' ),
@@ -328,7 +395,9 @@ class Extensions_Manager {
 
 		switch ($feature_key) {
 			case 'background-overlay':
-				add_action( 'elementor/element/common/_section_background/after_section_end', [Features\Background_Overlay::class, 'add_section'] );
+				if ( ha_is_widget_background_overlay_enabled() ) {
+					add_action( 'elementor/element/common/_section_background/after_section_end', [Features\Background_Overlay::class, 'add_section'] );
+				}
 				break;
 
 			case 'foreground-overlay':
@@ -385,7 +454,7 @@ class Extensions_Manager {
 				break;
 
 			case 'text-stroke':
-				if( ! in_array( 'text-stroke', ha_get_inactive_features() ) ) {
+				if( ! in_array( 'text-stroke', ha_get_inactive_features() ) && ha_is_text_stroke_enabled() ) {
 					add_action( 'elementor/element/heading/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
 					add_action( 'elementor/element/theme-page-title/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
 					add_action( 'elementor/element/theme-site-title/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
@@ -423,10 +492,6 @@ class Extensions_Manager {
 				add_filter( 'happyaddons/extensions/display_condition', '__return_false' );
 				break;
 
-			case 'image-masking':
-				add_filter( 'happyaddons/extensions/image_masking', '__return_false' );
-				break;
-
 			case 'happy-particle-effects':
 				add_filter( 'happyaddons/extensions/happy_particle_effects', '__return_false' );
 				break;
@@ -450,19 +515,8 @@ class Extensions_Manager {
 	}
 
 	protected static function disable_extension( $extension_key ) {
-		switch ( $extension_key ) {
-			case 'admin-bar-menu':
-				add_filter( 'happyaddons/extensions/adminbar_menu', '__return_false' );
-				break;
-
-			case 'happy-clone':
-				add_filter( 'happyaddons/extensions/happy_clone', '__return_false' );
-				break;
-
-			case 'on-demand-cache':
-				add_filter( 'happyaddons/extensions/on_demand_cache', '__return_false' );
-				break;
-		}
+		$filter_key = str_replace( '-', '_', $extension_key );
+		add_filter( 'happyaddons/extensions/' . $filter_key, '__return_false' );
 	}
 
 	protected static function disable_pro_extension( $extension_key ) {

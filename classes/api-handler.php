@@ -154,7 +154,12 @@ class Api_Handler {
                 Widgets_Manager::save_inactive_widgets($data->widget);
             }
             if(isset($data->features)){
-                Extensions_Manager::save_inactive_features($data->features);
+                $features = (array) $data->features;
+                $always_on_features = Extensions_Manager::get_always_on_features();
+                if ( ! empty( $always_on_features ) ) {
+                    $features = array_values( array_diff( $features, $always_on_features ) );
+                }
+                Extensions_Manager::save_inactive_features($features);
             }
 
             if(isset($data->consent)){
