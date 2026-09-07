@@ -20,10 +20,6 @@ class Extensions_Manager {
 			add_action( 'elementor/element/button/section_style/after_section_start', [ Features\Fixed_Size_Button::class, 'add_button_controls' ] );
 		}
 
-		if ( ha_is_background_hover_effect_enabled() ) {
-			add_action( 'elementor/element/container/section_background/before_section_end', [ Features\Container_Hover_Text_Color::class, 'add_controls_section' ] );
-		}
-
 		$inactive_features = self::get_inactive_features();
 		$always_on_features = self::get_always_on_features();
 

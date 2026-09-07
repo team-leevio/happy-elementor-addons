@@ -39,7 +39,7 @@ class Container_Hover_Text_Color {
 	}
 
 	public function init() {
-		if ( defined( 'ELEMENTOR_VERSION' ) && ha_elementor()->experiments->is_feature_active( 'container' ) ) {
+		if ( defined( 'ELEMENTOR_VERSION' ) && ha_elementor()->experiments->is_feature_active( 'container' ) && ha_is_background_hover_effect_enabled() ) {
 			add_action( 'elementor/element/container/section_background/before_section_end', [ $this, 'add_controls_section' ] );
 		}
 	}
