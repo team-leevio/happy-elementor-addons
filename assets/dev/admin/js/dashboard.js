@@ -141,7 +141,8 @@
 			var $currentAction = $(this),
 				filter = $currentAction.data('filter'),
 				action = $currentAction.data('action'),
-				$all = $widgetsList.find('.ha-dashboard-widgets__item'),
+				$scope = $currentAction.closest('.ha-dashboard-tabs__content-item'),
+				$all = ( $scope.length ? $scope : $widgetsList ).find('.ha-dashboard-widgets__item'),
 				$free = $all.not('.item--is-pro'),
 				$pro = $all.filter('.item--is-pro');
 
@@ -182,6 +183,12 @@
 					$toggle_extension.prop('checked', true);
 				} else if ('disable_extension' === action) {
 					$toggle_extension.prop('checked', false);
+				} else if ('enable_gsap' === action) {
+					$toggle_feature.prop('checked', true);
+					$toggle_widget.prop('checked', true);
+				} else if ('disable_gsap' === action) {
+					$toggle_feature.prop('checked', false);
+					$toggle_widget.prop('checked', false);
 				}
 				$toggle_widget.trigger('change');
 				$toggle_feature.trigger('change');

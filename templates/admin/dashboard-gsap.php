@@ -20,6 +20,15 @@ $has_pro = ha_has_pro();
         <div class="ha-dashboard-panel__header-content">
             <h2><?php esc_html_e( 'GSAP', 'happy-elementor-addons' ); ?></h2>
             <p class="f16"><?php esc_html_e( 'Manage GSAP features and widgets. These settings are also reflected on the Features and Widgets pages.', 'happy-elementor-addons' ); ?></p>
+
+            <div class="ha-action-list">
+                <button type="button" class="ha-action--btn" data-filter="*"><?php esc_html_e( 'All', 'happy-elementor-addons' ); ?></button>
+                <button type="button" class="ha-action--btn" data-filter="free"><?php esc_html_e( 'Free', 'happy-elementor-addons' ); ?></button>
+                <button type="button" class="ha-action--btn" data-filter="pro"><?php esc_html_e( 'Pro', 'happy-elementor-addons' ); ?></button>
+                <span class="ha-action--divider">|</span>
+                <button type="button" class="ha-action--btn" data-action="enable_gsap"><?php esc_html_e( 'Enable All', 'happy-elementor-addons' ); ?></button>
+                <button type="button" class="ha-action--btn" data-action="disable_gsap"><?php esc_html_e( 'Disable All', 'happy-elementor-addons' ); ?></button>
+            </div>
         </div>
     </div>
 

@@ -348,6 +348,7 @@ class Extensions_Manager {
 				'icon' => 'hm hm-cursor-hover-click',
 				'demo' => 'https://demo-x.happyaddons.com/custom-mouse-cursor-feature-demo/',
 				'is_pro' => false,
+				'is_gsap' => true,
 			],
 			'custom-js' => [
 				'title' => __( 'Custom JS', 'happy-elementor-addons' ),

@@ -81,8 +81,13 @@
 				border-top: 3px solid #bbb;
 				font-weight: 700;
 
-				@media screen and (min-width:1200px) and (max-width: 1340px) {
+				@media screen and (min-width:1201px) and (max-width: 1366px) {
 					padding: 15px 25px;
+				}
+
+				@media screen and (min-width:1025px) and (max-width: 1200px) {
+					padding: 15px;
+					font-size: 12px;
 				}
 
 				&--pro {
@@ -116,6 +121,26 @@
 
 				&:not(:last-child) {
 					margin-right: 10px;
+				}
+			}
+
+			@media screen and (max-width: 1024px) {
+				display: flex;
+				flex-wrap: wrap;
+
+				&-item {
+					float: none;
+					margin-right: 6px;
+					margin-bottom: 4px;
+					padding: 12px 14px;
+					font-size: 12px;
+				}
+
+				&-btn {
+					float: none;
+					margin: 4px 0 0 auto;
+					width: auto;
+					padding: 12px 20px;
 				}
 			}
 		}
@@ -737,7 +762,8 @@ span.ha-search-action--btn input#ha-widget-search {
 
 	&[data-action="enable"],
 	&[data-action="enable_feature"],
-	&[data-action="enable_extension"] {
+	&[data-action="enable_extension"],
+	&[data-action="enable_gsap"]{
 		color: #5db429;
 
 		&:hover,
@@ -750,7 +776,8 @@ span.ha-search-action--btn input#ha-widget-search {
 
 	&[data-action="disable"],
 	&[data-action="disable_feature"],
-	&[data-action="disable_extension"] {
+	&[data-action="disable_extension"],
+	&[data-action="disable_gsap"]  {
 		color: #e63d3d;
 
 		&:hover,

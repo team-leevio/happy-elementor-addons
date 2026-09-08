@@ -1623,6 +1623,7 @@ class Widgets_Manager {
 					'css' => [],
 					'js' => ['gsap','imagesloaded'],
 				],
+				'is_gsap' => true,
 			],
 		];
 	}
