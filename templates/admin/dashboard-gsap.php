@@ -19,7 +19,7 @@ $has_pro = ha_has_pro();
     <div class="ha-dashboard-panel__header">
         <div class="ha-dashboard-panel__header-content">
             <h2><?php esc_html_e( 'GSAP', 'happy-elementor-addons' ); ?></h2>
-            <p class="f16"><?php esc_html_e( 'Manage GSAP features and widgets. These settings are also reflected on the Features and Widgets pages.', 'happy-elementor-addons' ); ?></p>
+            <p class="f16"><?php printf( esc_html__( 'Here is the list of our %1$s GSAP features and %2$s GSAP widgets. These settings are also reflected on the Features and Widgets pages. %3$sAfter enabling or disabling any feature or widget make sure to click the Save Changes button.%4$s', 'happy-elementor-addons' ), count( $features ), count( $widgets ), '<strong>', '</strong>' ); ?></p>
 
             <div class="ha-action-list">
                 <button type="button" class="ha-action--btn" data-filter="*"><?php esc_html_e( 'All', 'happy-elementor-addons' ); ?></button>
