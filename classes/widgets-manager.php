@@ -1584,6 +1584,7 @@ class Widgets_Manager {
 					'css' => [],
 					'js' => ['gsap','scroll-trigger','split-type'],
 				],
+				'is_gsap' => true,
 			],
 			'svg-draw' => [
 				'cat' => 'creative',
@@ -1597,6 +1598,7 @@ class Widgets_Manager {
 					'css' => [],
 					'js' => ['tweenmax','scroll-trigger','gsap','scroll-magic','motionpath'],
 				],
+				'is_gsap' => true,
 			],
 			'whatsapp-button' => [
 				'cat'       => 'social-media',
