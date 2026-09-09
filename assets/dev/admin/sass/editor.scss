@@ -77,6 +77,14 @@
 	}
 }
 
+[class*="elementor-control-ha_"][class*="_help_url_notice_box"] {
+	.elementor-control-notice {
+		border: 0;
+		padding: 0;
+		margin: 0;
+	}
+}
+
 .elementor-control-ha_floating_fx_translate_toggle,
 .elementor-control-ha_floating_fx_rotate_toggle,
 .elementor-control-ha_floating_fx_scale_toggle {

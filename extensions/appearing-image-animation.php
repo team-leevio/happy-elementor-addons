@@ -90,6 +90,20 @@ class Appearing_Image_Animation {
             ]
         );
 
+        $element->add_control(
+            'ha_aia_help_url_notice_box',
+            [
+                'type'        => Controls_Manager::NOTICE,
+                'notice_type' => 'info',
+                'content'     => sprintf(
+                    esc_html__( 'Need help? %s', 'happy-elementor-addons' ),
+                    '<a href="https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/appearing-image-animation/" target="_blank" rel="noopener noreferrer">'
+                    . esc_html__( 'Read Documentation', 'happy-elementor-addons' )
+                    . '</a>'
+                ),
+            ]
+        );
+
         $this->add_content_controls( $element );
 
         $element->end_controls_section();
