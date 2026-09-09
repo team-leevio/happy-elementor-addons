@@ -43,7 +43,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
      * @return string Widget document.
      */
     public function get_custom_help_url() {
-        return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/#/';
+        return 'https://happyaddons.com/docs/happy-addons-for-elementor/widgets/image-cycle/';
     }
 
     /**
