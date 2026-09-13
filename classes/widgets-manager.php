@@ -690,7 +690,7 @@ class Widgets_Manager {
 				'js'        => [],
 				'vendor'    => [
 					'css' => [],
-					'js'  => ['lord-icon'],
+					'js'  => [],
 				],
 			],
 			'card'                => [
@@ -729,7 +729,7 @@ class Widgets_Manager {
 				'js'        => [],
 				'vendor'    => [
 					'css' => [],
-					'js'  => ['lord-icon'],
+					'js'  => [],
 				],
 			],
 			'member'              => [
@@ -1337,7 +1337,7 @@ class Widgets_Manager {
 				'js'        => [],
 				'vendor'    => [
 					'css' => [],
-					'js'  => ['lord-icon'],
+					'js'  => [],
 				],
 			],
 			'page-title' => [

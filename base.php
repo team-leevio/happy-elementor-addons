@@ -112,6 +112,7 @@ class Base {
 		add_action('elementor/css-file/post/enqueue', [HappyAddons_Classes\Assets_Manager::class, 'frontend_enqueue_exceptions']);
 		// Edit and preview enqueue
 		add_action('elementor/preview/enqueue_styles', [HappyAddons_Classes\Assets_Manager::class, 'enqueue_preview_styles']);
+		add_action('elementor/preview/enqueue_scripts', [HappyAddons_Classes\Assets_Manager::class, 'enqueue_preview_scripts']);
 		// Enqueue editor & editorv2 scripts
 		add_action('elementor/editor/after_enqueue_scripts', [HappyAddons_Classes\Assets_Manager::class, 'editor_enqueue']);
 		// Paragraph toolbar registration

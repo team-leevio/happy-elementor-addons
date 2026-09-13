@@ -74,6 +74,22 @@ class LordIcon extends Base {
 				],
 				'default'     => 'cdn',
 				'label_block' => true,
+				'assets'      => [
+					'scripts' => [
+						[
+							'name'       => 'lord-icon',
+							'conditions' => [
+								'terms' => [
+									[
+										'name'     => 'icon_method',
+										'operator' => 'in',
+										'value'    => [ 'cdn', 'file' ],
+									],
+								],
+							],
+						],
+					],
+				],
 			]
 		);
 		$this->add_control(
@@ -337,6 +353,8 @@ class LordIcon extends Base {
 
 	protected function render() {
 		$settings    = $this->get_settings_for_display();
+
+		wp_enqueue_script( 'lord-icon' );
 
 		//for manage loard icon global colors only
 		$primary_color = $settings['primary_color'];

@@ -76,6 +76,22 @@ class Icon_Box extends Base {
 					'default'  => esc_html__( 'Elementor Default', 'happy-elementor-addons' ),
 					'lordicon' => esc_html__( 'LordIcon', 'happy-elementor-addons' ),
 				],
+				'assets' => [
+					'scripts' => [
+						[
+							'name' => 'lord-icon',
+							'conditions' => [
+								'terms' => [
+									[
+										'name' => 'icon_type',
+										'operator' => '===',
+										'value' => 'lordicon',
+									],
+								],
+							],
+						],
+					],
+				],
 			]
 		);
 
@@ -1071,6 +1087,8 @@ class Icon_Box extends Base {
         $icon_stroke = $settings['lord_icon_stroke'];
 
 		if( 'lordicon' == $settings[ 'icon_type' ] ){
+			wp_enqueue_script( 'lord-icon' );
+
 			if ( 'file' == $method ) {
 				$json_url = $settings['icon_json']['url'];
 			} else {

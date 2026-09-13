@@ -100,6 +100,22 @@ class InfoBox extends Base {
 				'default' => 'icon',
 				'toggle' => false,
 				'style_transfer' => true,
+				'assets' => [
+					'scripts' => [
+						[
+							'name' => 'lord-icon',
+							'conditions' => [
+								'terms' => [
+									[
+										'name' => 'type',
+										'operator' => '===',
+										'value' => 'lordicon',
+									],
+								],
+							],
+						],
+					],
+				],
 			]
 		);
 
@@ -1351,6 +1367,8 @@ class InfoBox extends Base {
 		$this->add_render_attribute( 'description', 'class', 'ha-infobox-text' );
 
 		if( 'lordicon' == $settings[ 'type' ] ){
+			wp_enqueue_script( 'lord-icon' );
+
 			if ( 'file' == $settings['icon_method'] ) {
 				$json_url = $settings['icon_json']['url'];
 			} else {
