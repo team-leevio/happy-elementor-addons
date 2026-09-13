@@ -32,10 +32,7 @@ class Reading_Progress_Bar {
 		add_action( 'elementor/kit/register_tabs', [ $this, 'init_site_settings' ], 1, 40 );
 
 		add_action( 'elementor/documents/register_controls', [$this, 'reading_progress_bar_controls'], 10 );
-        // add_action('elementor/preview/enqueue_scripts', [$this, 'enqueue_scripts']);
-        if ( !ha_elementor()->preview->is_preview_mode() ) {
-            add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts_frontend']);
-        }
+        add_action( 'wp_enqueue_scripts', [$this, 'register_scripts'] );
 		add_action( 'wp_footer', [$this, 'render_reading_progress_bar_html'] );
 
 	}
@@ -52,11 +49,11 @@ class Reading_Progress_Bar {
         }
     }
 
-    public function enqueue_scripts_frontend () {
+    public function register_scripts () {
         $suffix = ha_is_script_debug_enabled() ? '.' : '.min.';
         $extension_js = HAPPY_ADDONS_ASSETS . 'js/extension-reading-progress-bar' . $suffix . 'js';
 
-        wp_enqueue_script(
+        wp_register_script(
             'happy-reading-progress-bar',
             $extension_js,
             ['jquery'],
@@ -474,6 +471,8 @@ class Reading_Progress_Bar {
 			if( ! $reading_progress_is_enable ) {
 				return;
 			}
+
+			wp_enqueue_script( 'happy-reading-progress-bar' );
 
 			if( 'circle' === $progress_bar_type ) { ?>
 				<div class="hm-crp-wrapper ha-reading-progress-bar" data-ha_rpbsettings="<?php echo esc_attr(json_encode($settings_data)); ?>">
