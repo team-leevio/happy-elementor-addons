@@ -536,6 +536,18 @@ class Assets_Manager {
 	}
 
 	/**
+	 * Enqueue preview scripts.
+	 *
+	 * Loads vendor scripts that are handled conditionally on the frontend
+	 * so widgets still render correctly inside the editor preview.
+	 *
+	 * @return void
+	 */
+	public static function enqueue_preview_scripts() {
+		wp_enqueue_script( 'lord-icon' );
+	}
+
+	/**
 	 * Enqueue editor assets
 	 *
 	 * @return void
