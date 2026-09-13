@@ -53,12 +53,14 @@
 			}).parent().addClass('current').siblings().removeClass('current');
 		});
 
-		if (window.location.hash) {
-			$tabsNav.find('a[href="' + window.location.hash + '"]').click();
-			$sidebarSubmenu.find('a').filter(function (i, a) {
-				return window.location.hash === a.hash;
-			}).parent().addClass('current').siblings().removeClass('current');
+		if (!window.location.hash) {
+			window.location.hash = '#home';
 		}
+
+		$tabsNav.find('a[href="' + window.location.hash + '"]').click();
+		$sidebarSubmenu.find('a').filter(function (i, a) {
+			return window.location.hash === a.hash;
+		}).parent().addClass('current').siblings().removeClass('current');
 
 		$sidebarSubmenu.on('click', 'a', function (event) {
 			if (!event.currentTarget.hash) {
