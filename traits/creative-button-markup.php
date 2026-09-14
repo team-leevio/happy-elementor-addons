@@ -40,7 +40,7 @@ EOF;
 		$wrap_attr = $this->get_render_attribute_string( 'wrap' );
 		$btn_attr = $this->get_render_attribute_string( 'button' );
 		$btn_txt = $settings['button_text'];
-		$icon = $settings['icon']['value'] ? $settings['icon']['value'] : 'hm hm-happyaddons';
+		$icon = $settings['icon']['value'] ? esc_attr( $settings['icon']['value'] ) : 'hm hm-happyaddons';
 
 		$markup = <<<EOF
 		<div $wrap_attr>
@@ -59,7 +59,7 @@ EOF;
 		$wrap_attr = $this->get_render_attribute_string( 'wrap' );
 		$btn_attr = $this->get_render_attribute_string( 'button' );
 		$btn_txt = $settings['button_text'];
-		$icon = $settings['icon']['value'] ? $settings['icon']['value'] : 'hm hm-happyaddons';
+		$icon = $settings['icon']['value'] ? esc_attr( $settings['icon']['value'] ) : 'hm hm-happyaddons';
 
 		$markup = <<<EOF
 		<div $wrap_attr>

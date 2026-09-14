@@ -6,6 +6,7 @@
 - New: Background Hover Effect Extension.
 - New: Foreground Overlay Extension.
 - New: New Extensions Menu add in admin Page.
+- Fix: Fixed stored XSS via the Creative Button widget icon value. Reported by Revanth Hari Narayana Matte.
 
 = 3.23.1 - 29 July 2026 =
 
