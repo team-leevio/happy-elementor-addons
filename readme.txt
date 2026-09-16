@@ -19,7 +19,7 @@ HappyAddons packs Header Footer Builder, Megamenu, Single Post, Archive Page, & 
 
 [HappyAddons](https://happyaddons.com/) is a comprehensive Elementor addon built and maintained by **weDevs**, a company trusted by the WordPress community for over 13 years. With **150+ Free & Pro Elementor Widgets, 35+ advanced Features**, a **Free Theme Builder**, 500+ Section Blocks, 70+ Full Page Templates, and 650+ Design Presets, you can build websites faster with everything you need in one place.
 
-[youtube https://youtu.be/1OwiAUyTB8Q?si=y8DtO82DVRKtZrAG]
+[youtube https://youtu.be/6hquQ1Ax5JA]
 
 HappyAddons includes a full Theme Builder by which you can build Header, Footer, Single Post Template, and Archive Page Builder - at no extra charge. This means you can build a complete site theme without requiring Elementor Pro.
 
