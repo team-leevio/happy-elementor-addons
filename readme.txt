@@ -51,7 +51,7 @@ The biggest release in HappyAddons history. Powered by the industry-standard GSA
 * **[Horizontal Scroll](https://demo-x.happyaddons.com/horizzontal-scroll/)**: Break the vertical barrier with sideways scroll sections, like the best agency sites
 * **[Marquee Animation](https://demo-x.happyaddons.com/marquee/)**: Add infinite scrolling ticker sections — control direction, speed, and pause on hover
 * **[Sticky Pin Elements](https://demo-x.happyaddons.com/sticky-pin-elements/)**: Pin any element in place while content scrolls behind it — powered by GSAP ScrollTrigger
-* **[Image Trail](https://demo-x.happyaddons.com/image-trail/)**: Make images follow the user's cursor in a captivating trail effect
+* **[Image Trail](https://demo-x.happyaddons.com/image-trail/)**: Make images follow the user's cursor in a captivating trail effect.
 
 [youtube https://youtu.be/4TBcmLl0e9A?si=ozouzUnC9Zq6ymZ2]
 
