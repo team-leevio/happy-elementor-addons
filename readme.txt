@@ -1,5 +1,5 @@
-=== HappyAddons for Elementor – 150+ Elementor Widgets, GSAP Animations & Templates ===
-Plugin Name: HappyAddons for Elementor – 150+ Elementor Widgets & Templates
+=== HappyAddons for Elementor – 157+ Elementor Widgets, GSAP Animations & Templates ===
+Plugin Name: HappyAddons for Elementor – 157+ Elementor Widgets & Templates
 Version: 3.23.1
 Author: Leevio
 Author URI: https://happyaddons.com/
@@ -17,11 +17,11 @@ HappyAddons packs Header Footer Builder, Megamenu, Single Post, Archive Page, & 
 
 == Description ==
 
-[HappyAddons](https://happyaddons.com/) is a comprehensive Elementor addon built and maintained by **weDevs**, a company trusted by the WordPress community for over 13 years. With **150+ Free & Pro Elementor Widgets, 35+ advanced Features**, a **Free Theme Builder**, 500+ Section Blocks, 70+ Full Page Templates, and 650+ Design Presets, you can build websites faster with everything you need in one place.
+[HappyAddons](https://happyaddons.com/) is a comprehensive Elementor addon built and maintained by **weDevs**, a company trusted by the WordPress community for over 13 years. With **157+ Free & Pro Elementor Widgets, 40+ advanced Features, GSAP animations**, a **Free Theme Builder**, 500+ Section Blocks, 100+ Full Page Templates, and 650+ Design Presets, you can build websites faster with everything you need in one place.
 
-[youtube https://youtu.be/1OwiAUyTB8Q?si=y8DtO82DVRKtZrAG]
+[youtube https://youtu.be/EBlm9nMYu58?si=833ZxwE5II3eLw82]
 
-HappyAddons includes a full Theme Builder by which you can build Header, Footer, Single Post Template, and Archive Page Builder - at no extra charge. This means you can build a complete site theme without requiring Elementor Pro.
+HappyAddons includes a full Theme Builder by which you can build Header, Footer, Single Post Template, and Archive Page Builder - at no extra charge. Also, you can add eye-catching animations to your landing pages without any code. This means you can build a complete site theme without requiring Elementor Pro.
 
 ## Useful Links
 
@@ -30,40 +30,42 @@ HappyAddons includes a full Theme Builder by which you can build Header, Footer,
 ##🔑 Key Highlights
 –   12 Million+ Downloads 
 –   GSAP Animation Pack
-–   150+ Free & Pro Widgets - More widgets than any competitor at this price tier
-–   35+ top-notch features
+–   157+ Free & Pro Widgets - More widgets than any competitor at this price tier
+–   40+ top-notch features
 –   Free Theme Builder
 –   400+ Design Presets - Professional designs applied in one click, fully customizable
-–   448+ Section Blocks & 81+ Full Page Templates - Start any site in minutes
+–   448+ Section Blocks & 100+ Full Page Templates - Start any site in minutes
 –   No extra loading - Enable only the widgets you need, keep your site fast
 –   Works with any WordPress theme
 –   Expert support available 24/7
 
-[youtube https://youtu.be/aaGBwyH6CRY?si=cpVyiBfEAo3m7Nr9]
-
 ## GSAP Animation Pack - Cinematic Motion for Elementor
-The biggest release in HappyAddons history. Powered by the industry-standard GSAP (GreenSock Animation Platform), the Animation Pack brings cinematic, scroll-driven motion to any part of your Elementor page — headings, images, cards, buttons, containers — without writing a single line of code.
+The biggest release in HappyAddons history. Powered by the industry-standard GSAP (GreenSock Animation Platform), the Animation Pack brings cinematic, scroll-driven motion to any part of your Elementor page — headings, images, cards, buttons, containers - without writing a single line of code.
+
+[youtube https://youtu.be/CTdIorOTcSY?si=dUt_5jwHxzHH8XI_]
 
 ##🎞️ GSAP Animation Features
 * **[Appearing Image Animation](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/appearing-image-animation/)**: Reveal images on scroll with cinematic Reveal, Tiles Reveal, and Corner Reveal effects
-* **[Global Animation](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/global-animation/)**: Animate opacity, position, scale, rotation, blur, skew, flip, perspective, and 25+ more properties on any widget — with scroll trigger and scrubbing support
-* **[Text Animation](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/text-animation/)**: Animate headings letter-by-letter or word-by-word using GSAP SplitText
-* **[Horizontal Scroll](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/horizontal-scroll/)**: Break the vertical barrier with sideways scroll sections, like the best agency sites
-* **[Marquee Animation](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/marquee-animation-2/)**: Add infinite scrolling ticker sections — control direction, speed, and pause on hover
-* **[Sticky Pin Elements](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/sticky-pin-elements/)**: Pin any element in place while content scrolls behind it — powered by GSAP ScrollTrigger
-* **[Image Trail](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/image-trail/)**: Make images follow the user's cursor in a captivating trail effect
+* **[Global Animation](https://demo-x.happyaddons.com/global-animation/)**: Animate opacity, position, scale, rotation, blur, skew, flip, perspective, and 25+ more properties on any widget — with scroll trigger and scrubbing support
+* **[Text Animation](https://demo-x.happyaddons.com/image-appearing-animation/)**: Animate headings letter-by-letter or word-by-word using GSAP SplitText
+* **[Horizontal Scroll](https://demo-x.happyaddons.com/horizzontal-scroll/)**: Break the vertical barrier with sideways scroll sections, like the best agency sites
+* **[Marquee Animation](https://demo-x.happyaddons.com/marquee/)**: Add infinite scrolling ticker sections — control direction, speed, and pause on hover
+* **[Sticky Pin Elements](https://demo-x.happyaddons.com/sticky-pin-elements/)**: Pin any element in place while content scrolls behind it — powered by GSAP ScrollTrigger
+* **[Image Trail](https://demo-x.happyaddons.com/image-trail/)**: Make images follow the user's cursor in a captivating trail effect.
 
-[youtube https://youtu.be/6hquQ1Ax5JA]
+[youtube https://youtu.be/4TBcmLl0e9A?si=ozouzUnC9Zq6ymZ2]
 
 ##🎞️ GSAP Animation Widgets
-* **[Dropping Elements](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/dropping-elements/)**: Drop images, icons, and shapes from above with real gravity and bounce physics
-* **[Stacked Card](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/stacked-card/)**: Layer cards on top of each other and peel them away as users scroll down
-* **[SVG Morphing](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/svg-morphing/)**: Smoothly morph one SVG shape into another using GSAP MorphSVG
-* **[SVG Draw](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/svg-draw/)**: Animate SVG paths to draw themselves stroke-by-stroke on scroll
-* **[Visual Tabs](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/visual-tabs/)**: Sticky left navigation that highlights the active tab as users scroll through
-* **[Image Cycle](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/image-cycle/)**: Display images rotating in a circular orbit with animated headings and entrance effects
-* **[Hover Accordion](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/hover-accordion/)**: Expanding accordion panels that respond to hover for frictionless content reveal
-* **[Team Hover Grid](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/team-hover-grid/)**: Team member cards with a smooth scale hover reveal — control Transform Origin per card
+* **[Dropping Elements](https://demo-x.happyaddons.com/dropping-elements/)**: Drop images, icons, and shapes from above with real gravity and bounce physics
+* **[Stacked Card](https://demo-x.happyaddons.com/stacked-card/)**: Layer cards on top of each other and peel them away as users scroll down
+* **[SVG Morphing](https://demo-x.happyaddons.com/svg-morphing/)**: Smoothly morph one SVG shape into another using GSAP MorphSVG
+* **[SVG Line Draw](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/svg-line-draw/)**: Animate SVG paths to draw themselves stroke-by-stroke on scroll
+* **[Visual Tabs](https://demo-x.happyaddons.com/visual-tabs-demo/)**: Sticky left navigation that highlights the active tab as users scroll through
+* **[Image Cycle](https://demo-x.happyaddons.com/image-cycle/)**: Display images rotating in a circular orbit with animated headings and entrance effects
+* **[Hover Accordion](https://demo-x.happyaddons.com/hover-accordion/)**: Expanding accordion panels that respond to hover for frictionless content reveal
+* **[Team Hover Grid](https://demo-x.happyaddons.com/team-hover-grid/)**: Team member cards with a smooth scale hover reveal — control Transform Origin per card
+
+[youtube https://youtu.be/EiRmmfdWu5Q?si=f9wjgkdLDoVZqVYF]
 
 ## 70+ Free Elementor Widgets
 HappyAddons free version includes 70+ Elementor widgets, a full Theme Builder, and more - all at zero cost. We've grouped them into a few categories below to help you quickly find the ones you need.
@@ -93,6 +95,8 @@ HappyAddons free version includes 70+ Elementor widgets, a full Theme Builder, a
 * **[Photo Stack](https://demo.happyaddons.com/elementor-photo-stack-widget-demo/)**: Create a critical layout of Image stacks
 * **[Lord Icon](https://demo-x.happyaddons.com/elementor-lordicon-widget-demo/)**: Add lord icons in site
 
+[youtube https://youtu.be/VBA0UDw5cXg?si=UPYaG6OeVPvbGMpc]
+
 ##🎨 Creative - Make your site visually stand out
 * **[Gradient Heading](https://demo.happyaddons.com/elementor-gradient-heading-widget-demo/)**: Eye-catching multi-color gradient headlines
 * **[Image Compare](https://demo.happyaddons.com/elementor-image-compare-widget-demo/)**: Before/after image slider with drag control
@@ -116,6 +120,8 @@ HappyAddons free version includes 70+ Elementor widgets, a full Theme Builder, a
 * **[Social Share](https://demo.happyaddons.com/elementor-social-share-widget-demo/)**: Social sharing buttons for any page, post, or product
 * **[Twitter Feed](https://demo.happyaddons.com/elementor-twitter-feed-widget-demo/)**: Bring Twitter-feed within site
 * **[Social Icon](https://demo.happyaddons.com/elementor-social-icon-widget-demo/)**: Add social links with it
+
+[youtube https://youtu.be/Fy65VNzKMR0?si=v7PyKvJYT93eLfmj]
 
 ##📢 Marketing - Convert visitors with smarter content and scheduling tools
 * **[News Ticker](https://demo.happyaddons.com/elementor-news-ticker-widget-demo/)**: Scrolling ticker-style content display for announcements
@@ -147,7 +153,6 @@ Build your complete WordPress site theme - header, footer, single posts, archive
 * **[Post Info(Meta)](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/post-info/)**: Add post’s meta information.
 * **[Archive Title](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-title/)**: Add and style archive page’s title.
 * **[Archive Posts](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-post/)**: Create & style archive posts.
-
 
 [youtube https://youtu.be/PWrgzML7h4w?si=r9r2hJOpkVUUAhW7]
 
@@ -250,6 +255,8 @@ HappyAddons Pro unlocks 75+ additional Elementor widgets for professional sites,
 * **[Twitter Feed Carousel](https://demo.happyaddons.com/elementor-twitter-feed-carousel-widget-demo/)**: Create twitter feed carousels.
 * **[Facebook Feed](https://demo.happyaddons.com/elementor-facebook-feed-widget-demo/)**: Add facebook feed in site.
 
+[youtube https://youtu.be/kQ_GewRRNsc?si=88wIwHJKm8PgVFvM]
+
 ##📢 Marketing - Widgets that drive action and boost conversions
 * **[Pricing Table](https://demo.happyaddons.com/elementor-pricing-table-widget-demo/)**: Create advanced pricing table.
 * **[Price Menu](https://demo.happyaddons.com/elementor-price-menu-widget-demo/)**: Display restaurant food menu list.
@@ -277,7 +284,6 @@ Design your WooCommerce store pages inside Elementor with dedicated widgets.
 * **[WooCommerce Product Category Carousel](https://demo.happyaddons.com/elementor-product-category-carousel-widget-demo/)**: Create Woo Product category carousel.
 * **[WooCommerce Single Product](https://demo.happyaddons.com/elementor-single-product-demo/)**: Featured a single Woo product.
 * **[WooCommerce Mini Cart](https://demo.happyaddons.com/elementor-mini-cart-widget-demo/)**: Add floating mini cart for Woo stores.
-
 
 [youtube https://youtu.be/5SNVUJumQWE?si=5iQwy_7G2gTGH7tc]
 
