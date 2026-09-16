@@ -1,4 +1,4 @@
-=== Happy Addons for Elementor ===
+=== HappyAddons for Elementor – 150+ Elementor Widgets, GSAP Animations & Templates ===
 Plugin Name: HappyAddons for Elementor – 150+ Elementor Widgets & Templates
 Version: 3.23.1
 Author: Leevio
@@ -29,6 +29,7 @@ HappyAddons includes a full Theme Builder by which you can build Header, Footer,
 
 ##🔑 Key Highlights
 –   12 Million+ Downloads 
+–   GSAP Animation Pack
 –   150+ Free & Pro Widgets - More widgets than any competitor at this price tier
 –   35+ top-notch features
 –   Free Theme Builder
@@ -39,6 +40,30 @@ HappyAddons includes a full Theme Builder by which you can build Header, Footer,
 –   Expert support available 24/7
 
 [youtube https://youtu.be/aaGBwyH6CRY?si=cpVyiBfEAo3m7Nr9]
+
+## GSAP Animation Pack - Cinematic Motion for Elementor
+The biggest release in HappyAddons history. Powered by the industry-standard GSAP (GreenSock Animation Platform), the Animation Pack brings cinematic, scroll-driven motion to any part of your Elementor page — headings, images, cards, buttons, containers — without writing a single line of code.
+
+##🎞️ GSAP Animation Features
+* **[Appearing Image Animation](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/appearing-image-animation/)**: Reveal images on scroll with cinematic Reveal, Tiles Reveal, and Corner Reveal effects
+* **[Global Animation](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/global-animation/)**: Animate opacity, position, scale, rotation, blur, skew, flip, perspective, and 25+ more properties on any widget — with scroll trigger and scrubbing support
+* **[Text Animation](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/text-animation/)**: Animate headings letter-by-letter or word-by-word using GSAP SplitText
+* **[Horizontal Scroll](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/horizontal-scroll/)**: Break the vertical barrier with sideways scroll sections, like the best agency sites
+* **[Marquee Animation](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/marquee-animation-2/)**: Add infinite scrolling ticker sections — control direction, speed, and pause on hover
+* **[Sticky Pin Elements](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/sticky-pin-elements/)**: Pin any element in place while content scrolls behind it — powered by GSAP ScrollTrigger
+* **[Image Trail](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/image-trail/)**: Make images follow the user's cursor in a captivating trail effect
+
+[youtube https://youtu.be/6hquQ1Ax5JA]
+
+##🎞️ GSAP Animation Widgets
+* **[Dropping Elements](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/dropping-elements/)**: Drop images, icons, and shapes from above with real gravity and bounce physics
+* **[Stacked Card](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/stacked-card/)**: Layer cards on top of each other and peel them away as users scroll down
+* **[SVG Morphing](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/svg-morphing/)**: Smoothly morph one SVG shape into another using GSAP MorphSVG
+* **[SVG Draw](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/svg-draw/)**: Animate SVG paths to draw themselves stroke-by-stroke on scroll
+* **[Visual Tabs](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/visual-tabs/)**: Sticky left navigation that highlights the active tab as users scroll through
+* **[Image Cycle](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/image-cycle/)**: Display images rotating in a circular orbit with animated headings and entrance effects
+* **[Hover Accordion](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/hover-accordion/)**: Expanding accordion panels that respond to hover for frictionless content reveal
+* **[Team Hover Grid](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/team-hover-grid/)**: Team member cards with a smooth scale hover reveal — control Transform Origin per card
 
 ## 70+ Free Elementor Widgets
 HappyAddons free version includes 70+ Elementor widgets, a full Theme Builder, and more - all at zero cost. We've grouped them into a few categories below to help you quickly find the ones you need.
@@ -282,10 +307,17 @@ HappyAddons includes complete EDD store support with 9 dedicated widgets - produ
 * **[Global Badge](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/global-badge/)**: Add  badges to any Elementor widget or containers as per your need
 * **[Multi Layer Parallax](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/multi-layer-parallax/)**: Stack multiple independent images as a background layer, assigning a different scrolling speed
 
+##🏆 Why Choose Us
+–   Trusted by 12 Million+ Downloads 
+–   24/7 Expert Support
+–   Actively Maintained and Security-Tested
+–   At Least 2 Releases Every Month
+–   Works With Any Theme & Most Plugins
+–   Built for Performance
 
-### Privacy-Policy
+### Privacy Policy
 
-**Happy Addons** uses **Appsero-SDK** to collect some telemetry data upon the user’s confirmation. [Read-Policy](https://appsero.com/privacy-policy/).
+**HappyAddons** uses **Appsero-SDK** to collect some telemetry data upon the user’s confirmation. [Read-Policy](https://appsero.com/privacy-policy/).
 
 
 ### Missing-Anything?
@@ -303,8 +335,8 @@ We are thankful to you. If it brings smile, please share happiness by giving us 
 == Frequently Asked Questions ==
 
 
-= Can I use Happy Addons without Elementor? =
-I'm afraid, you cannot use **[Happy Addons](https://happyaddons.com/)** without Elementor.
+= Can I use HappyAddons without Elementor? =
+I'm afraid, you cannot use **[HappyAddons](https://happyaddons.com/)** without Elementor.
 
 
 = How to use Mega Menu in HappyAddons and Elementor? =
@@ -326,7 +358,7 @@ Yes, it works with any WordPress theme that works with Elementor. And it best wo
 Yes, undoubtedly.
 
 
-= Will Happy Addons break my site after an update? =
+= Will HappyAddons break my site after an update? =
 No, It won't break your site or any page where you used our plugin. We put our best effort to make you happy. But we always recommend to keep back up of your site before updating our plugin. In case if anything happens you can revert back and contact our support team immediately.
 
 
@@ -340,25 +372,25 @@ Yes, you can use particle effects from the Particle Js site. Here is tutorial -
 [youtube https://www.youtube.com/watch?v=iD83Sr4pFSw&ab_channel=HappyAddons]
 
 = Where do I report security bugs found in this plugin? =
-Please report security bugs found in the source code of the Happy Addons for Elementor plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/9e5fb984-20b0-4938-ada0-b373eb456019). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
+Please report security bugs found in the source code of the HappyAddons for Elementor plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/9e5fb984-20b0-4938-ada0-b373eb456019). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
 
 
 == Installation ==
 
 
-**Step 1:** Upload the plugin file to install by navigating through Plugins➔Add New➔Upload Plugin➔Choose File to Install from your WordPress dashboard or you can simply search for the Happy Addons plugin from the plugin directory by going to Plugins➔Add New and search for the plugin in the search tab to install it on your WordPress site.
+**Step 1:** Upload the plugin file to install by navigating through Plugins➔Add New➔Upload Plugin➔Choose File to Install from your WordPress dashboard or you can simply search for the HappyAddons plugin from the plugin directory by going to Plugins➔Add New and search for the plugin in the search tab to install it on your WordPress site.
 
 
-**Step 2:** After successful installation, you have to click the "activate" button to activate the happy addons for Elementor.
+**Step 2:** After successful installation, you have to click the "activate" button to activate the HappyAddons for Elementor.
 
 
-**Step 3:** When you activate Happy Addons for Elementor you will be redirected to our HappyAddons Dashboard Home Tab.
+**Step 3:** When you activate HappyAddons for Elementor you will be redirected to our HappyAddons Dashboard Home Tab.
 
 
 For a more detailed explanation check out the following documentation
 
 
-☞ [**How to Install Happy Addons For Elementor**](https://happyaddons.com/docs/happy-addons-for-elementor/getting-started-with-happy-elementor-addons/installation/)
+☞ [**How to Install HappyAddons For Elementor**](https://happyaddons.com/docs/happy-addons-for-elementor/getting-started-with-happy-elementor-addons/installation/)
 
 
 == Screenshots ==
