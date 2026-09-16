@@ -412,7 +412,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.50.0 -  ## ## 2026 =
+= 3.50.0 -  16 September 2026 =
 
 - New: Image Cycle Widget.
 - New: Appearing Image Animation Feature.
