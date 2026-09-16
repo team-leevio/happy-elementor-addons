@@ -17,11 +17,11 @@ HappyAddons packs Header Footer Builder, Megamenu, Single Post, Archive Page, & 
 
 == Description ==
 
-[HappyAddons](https://happyaddons.com/) is a comprehensive Elementor addon built and maintained by **weDevs**, a company trusted by the WordPress community for over 13 years. With **157+ Free & Pro Elementor Widgets, 40+ advanced Features, GSAP animations**, a **Free Theme Builder**, 500+ Section Blocks, 100+ Full Page Templates, and 650+ Design Presets, you can build websites faster with everything you need in one place.
+[HappyAddons](https://happyaddons.com/) is a comprehensive Elementor addons with **157+ Free & Pro Elementor Widgets, 40+ advanced Features, GSAP animations**, a **Free Theme Builder**, 500+ Section Blocks, 100+ Full Page Templates, and 650+ Design Presets. You can build websites faster with everything you need in one place.
 
 [youtube https://youtu.be/EBlm9nMYu58?si=833ZxwE5II3eLw82]
 
-HappyAddons includes a full Theme Builder by which you can build Header, Footer, Single Post Template, and Archive Page Builder - at no extra charge. Also, you can add eye-catching animations to your landing pages without any code. This means you can build a complete site theme without requiring Elementor Pro.
+HappyAddons includes a full Theme Builder by which you can build Header, Footer, Single Post Template, and Archive Page Builder - at no extra charge. This means you can build a complete site theme without requiring Elementor Pro.
 
 ## Useful Links
 
@@ -40,7 +40,7 @@ HappyAddons includes a full Theme Builder by which you can build Header, Footer,
 –   Expert support available 24/7
 
 ## GSAP Animation Pack - Cinematic Motion for Elementor
-The biggest release in HappyAddons history. Powered by the industry-standard GSAP (GreenSock Animation Platform), the Animation Pack brings cinematic, scroll-driven motion to any part of your Elementor page — headings, images, cards, buttons, containers - without writing a single line of code.
+With the GSAP Pack, you can create various complex animations natively in Elementor without any coding.
 
 [youtube https://youtu.be/CTdIorOTcSY?si=dUt_5jwHxzHH8XI_]
 
@@ -82,15 +82,10 @@ HappyAddons free version includes 70+ Elementor widgets, a full Theme Builder, a
 * **[Logo Grid](https://demo.happyaddons.com/elementor-logo-grid-widget-demo)**: Display client or partner logos in a clean grid
 * **[Justified Grid](https://demo.happyaddons.com/elementor-justified-grid-widget-demo/)**: Isotope-style photo galleries with filtering
 * **[Image Grid](https://demo.happyaddons.com/elementor-image-grid-widget-demo/)**: Simple, stylish image grid layouts
-* **[Step Flow](https://demo.happyaddons.com/elementor-step-flow-widget-demo/)**: Visual step-by-step diagrams for processes or workflows
 * **[Comparison Table](https://demo.happyaddons.com/elementor-comparison-table-widget-demo/)**: Side-by-side comparisons for products, plans, or services
-* **[PDF View](https://demo.happyaddons.com/elementor-pdf-view-widget-demo/)**: Embed and display PDFs directly on any page
-* **[Age Gate](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/age-gate/)**:  Age verification popup for restricted content
 * **[Content Switcher](https://demo.happyaddons.com/elementor-content-switcher-demo/)**: Toggle between two sections or pricing plans
-* **[Lightbox](https://demo.happyaddons.com/lightbox-demo/)**:  Video and image lightbox popups
 * **[Post Tab](https://demo.happyaddons.com/elementor-post-tab-widget-demo/)**: Showcase posts within tabs
 * **[Post List](https://demo.happyaddons.com/elementor-post-list-widget-demo/)**: List any posts
-* **[Taxonomy List](https://demo.happyaddons.com/elementor-taxonomy-widget-demo/)**: Create list of posts - sorting categories, tags
 * **[Image Stack Group](https://demo.happyaddons.com/elementor-image-stack-group-demo/)**: Show images in a stack group
 * **[Photo Stack](https://demo.happyaddons.com/elementor-photo-stack-widget-demo/)**: Create a critical layout of Image stacks
 * **[Lord Icon](https://demo-x.happyaddons.com/elementor-lordicon-widget-demo/)**: Add lord icons in site
@@ -107,8 +102,6 @@ HappyAddons free version includes 70+ Elementor widgets, a full Theme Builder, a
 * **[Animated Link](https://demo.happyaddons.com/elementor-animated-link-widget-demo/)**: Link text with animated underline and hover effects
 * **[Text Scroll](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/text-scroll/)**: Horizontally scrolling marquee-style text
 * **[360° Rotation](https://demo.happyaddons.com/elementor-360-rotation-widget-demo/)**: Interactive 360-degree product image viewer
-* **[Number](https://demo.happyaddons.com/elementor-number-widget-demo/)**: Create number blocks
-* **[Fun-Factor](https://demo.happyaddons.com/elementor-fun-factor-widget-demo/)**: It’s a counter widget
 * **[Promo Box](https://demo.happyaddons.com/elementor-promo-box-widget-demo/)**: Add promotional content box
 * **[WhatsApp Button](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/whatsapp-chat/)**: Add an interactive click-to-chat button that connects website visitors directly to your WhatsApp
 
@@ -128,8 +121,6 @@ HappyAddons free version includes 70+ Elementor widgets, a full Theme Builder, a
 * **[Event Calendar](https://demo.happyaddons.com/elementor-event-calendar-widget-demo/)**: Google Calendar and event plugin integration
 * **[Mailchimp Widget](https://demo.happyaddons.com/elementor-mailchimp-widget-demo/)**: Build and embed Mailchimp signup forms
 * **[Horizontal TimeLine](https://demo.happyaddons.com/elementor-horizontal-timeline-widget-demo/)**: Visual horizontal storyline for history or roadmaps
-* **[Calendly](https://demo.happyaddons.com/elementor-calendly-widget-demo/)**: Integrate Calendly within site.
-* **[Business Hour](https://demo.happyaddons.com/elementor-business-hour-widget-demo/)**: Show the business hours in a tabular style.
 
 ##📊 Charts & Data - Show numbers, stats, and tables without writing code
 * **[Bar Chart](https://demo.happyaddons.com/elementor-bar-chart-widget-demo/)**: Clean, animated bar charts for stats and comparisons
@@ -176,12 +167,10 @@ Style any major WordPress form plugin directly inside Elementor, without writing
 * **[Custom Mouse Cursor](https://demo-x.happyaddons.com/custom-mouse-cursor-feature-demo/)**: Add custom cursor effects with blur mode and liquid flow features.
 * **[Theme Builder](https://happyaddons.com/docs/happy-theme-builder/how-to-set-conditions-to-display-templates-pro/)**: Set display conditions across your entire site
 * **[Floating Effects](https://happyaddons.com/elementor-floating-effect-demo-2/):** Add Translate, rotate & scale animations on any widget
-* **[CSS Transform](https://happyaddons.com/elementor-css-transform-demo-3/)**: Add CSS transforms- translate, rotate, scale, and skew.
 * **[Background Overlay](https://happyaddons.com/background-overlay-demo/)**: Allow to add images, colors, & icons behind any widget.
 * **[Column Control](https://happyaddons.com/happy-column-control/)**: Rearrange the order of the column in small devices.
 * **[Happy Clone](https://happyaddons.com/happy-clone-demo/)**: Duplicate any post, page, or template instantly
 * **[Grid Layout](https://happyaddons.com/happy-grid-layout-demo/)**: Maintain perfect alignment across layouts
-* **[Wrapper Link](https://happyaddons.com/wrapper-link-feature-demo/)**: Hyperlinked to any section/container.
 * **[Happy Templates](https://happyaddons.com/template-importer/)**(**Freemium**): 500+ section templates & 70+ full page templates are available.
 * **[On Demand Asset Loading](https://happyaddons.com/on-demand-asset-loading-demo/)**: Only loads the specific CSS and JavaScript needed for the widgets
 * **[Happy Shape Dividers](https://happyaddons.com/happy-shape-divider/)**: 18+ new shape dividers added within Elementor shape dividers.
@@ -189,13 +178,7 @@ Style any major WordPress form plugin directly inside Elementor, without writing
 * **[Happy Line Icons](https://happyaddons.com/happy-icon/)**: Get line icon library within elementor.
 * **[Happy Tooltip](https://happyaddons.com/happy-tooltip/)**: Add tooltips to any element.
 * **[Scroll To Top](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/scroll-to-top-button/)**: Add scroll to top button.
-* **[Text Stroke](https://happyaddons.com/text-stroke/)**: Add exterior border around heading & title widgets.
-* **[Manage Column Width by Adding Pixels](https://happyaddons.com/happy-column-control/)**: Control the column width of widgets with percentage parameters.
-* **[WPML Support](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/wpml-support-for-happyaddons-free/)**: Ensures complete multilingual compatibility
-* **[Feature Controller](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/feature-controller/)**: Allows you to completely deactivate widgets you are not using
 * **[Fixed Size Controls in Elementor Button](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/fixed-size-controls-in-elementor-button-widget/)**:  Set a fixed size to Elementor Buttons to make a perfect circular button.
-* **[Reading Progress Bar](https://happyaddons.com/reading-progress-bar/)**: It offers horizontal, vertical, and circular styled reading progress bars.
-* **[Custom JS](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/custom-js-feature/)**: Allows you to inject custom JavaScript code directly into individual widgets
 * **[Background Parallax](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/background-parallax/)**: Adds a dynamic multi-layered scrolling effect to your element backgrounds
 * **[Hugeicons](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/huge-icons-library/)**: Use Hugeicons directly in your editor.
 * **[Liquid Glass](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/liquid-glass/)**: Design modern frosted-glass layouts with fluidly morphing background shapes
@@ -211,15 +194,9 @@ HappyAddons Pro unlocks 75+ additional Elementor widgets for professional sites,
 * **[Countdown](https://demo.happyaddons.com/elementor-countdown-widget-demo/)**: Countdown timers with multiple display styles
 * **[Timeline](https://demo.happyaddons.com/elementor-timeline-widget-demo/)**: Visual vertical timeline content builder
 * **[Sticky Video](https://demo.happyaddons.com/elementor-sticky-video-widget-demo/)**: Picture-in-picture video player that follows the user
-* **[Source Code](https://demo.happyaddons.com/elementor-source-code-widget-demo/)**: Code snippets with syntax highlighting
 * **[Table of content](https://demo-x.happyaddons.com/elementor-table-of-content-widget-demo/)**: Auto-generated table of contents for any post
-* **[Advanced Google Map](https://demo.happyaddons.com/elementor-google-map-widget-demo/)**: Fully styled and customizable embedded Google Maps
-* **[Happy Loop Grid](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/happy-loop-grid/)**: Build fully custom loop grid items
-* **[Remote Carousel](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/remote-carousel/)**: Control multiple carousel widgets with one remote control
 * **[Advanced Comparison Table](https://demo.happyaddons.com/elementor-advanced-comparison-table-widget-demo-mosaddek/)**: Feature-rich comparison tables for products or plans
-* **[Title Tips](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/title-tips/)**: Add amazing title hover effects to your landing page titles.
 * **[Featured Post](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/featured-post/)**: Showcase your most important blog posts in grids, lists, or masonry layouts
-* **[Unfold Widget](https://demo.happyaddons.com/elementor-unfold-widget-demo/)**: Create unfold items.
 * **[Feature List](https://demo.happyaddons.com/elementor-feature-list-widget-demo/)**: Create beautiful lists items.
 * **[Advanced Toggle](https://demo.happyaddons.com/elementor-advanced-toggle-widget-demo/)**: Show/hide items on toggle.
 * **[List Group](https://demo.happyaddons.com/elementor-list-group-widget-demo/)**: Add multiple lists beautifully.
@@ -230,13 +207,10 @@ HappyAddons Pro unlocks 75+ additional Elementor widgets for professional sites,
 * **[Off-Canvas Content/Menu](https://demo.happyaddons.com/elementor-off-canvas-content-demo/)**: Slide-in menus and off-canvas content panels
 * **[Hot Spot](https://demo.happyaddons.com/elementor-hot-spot-widgets-demo/)**: Hotspot images with interactive tooltip overlays
 * **[Image Swap](https://demo.happyaddons.com/elementor-image-swap-widget-demo/)**: Alter images on mouse action.
-* **[Metro Grid ](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/metro-grid/)**: 16 ready-made metro-style grid layouts
 * **[Animated Text](https://demo.happyaddons.com/elementor-animated-text-widget-demo/)**: Animated headings/texts with it.
 * **[Happy Mega Menu](https://demo.happyaddons.com/elementor-happy-mega-menu-widget-demo/)**: Create MegaMenu with Elementor.
 * **[Flip Box](https://demo.happyaddons.com/elementor-flip-box-widget-demo-2/)**: 3D flip card effects with front and back content panels
 * **[Hover Box](https://demo.happyaddons.com/elementor-image-hover-box-widget-demo/)**: Animated content panels that reveal on hover
-* **[Scroll Tabs](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/scroll-tabs/)**: Organize vast amounts of text and media into responsive vertical or horizontal tabs
-* **[Super Buttons](https://demo-x.happyaddons.com/super-button-demo/)**: You can create highly interactive call-to-action buttons featuring dual icons
 * **[Scrolling Image](https://demo.happyaddons.com/elementor-scrolling-image-widget-demo/)**: Add horizontally scrolling images & more
 * **[Multi Scroll](https://happyaddons.com/docs/happy-addons-for-elementor-pro/happy-effects-pro/multi-scroll/)**: Split your screen into two distinct vertical columns that scroll in opposite directions
 * **[Single Image Scroll](https://demo.happyaddons.com/single-image-scroll-widget-demo/)**: Scroll on hover effect on long image.
@@ -312,14 +286,6 @@ HappyAddons includes complete EDD store support with 9 dedicated widgets - produ
 * **[Preset](https://happyaddons.com/presets-demo/)**: 400+ preset designs available in HappyAddons.
 * **[Global Badge](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/global-badge/)**: Add  badges to any Elementor widget or containers as per your need
 * **[Multi Layer Parallax](https://happyaddons.com/docs/happy-addons-for-elementor-pro/features/multi-layer-parallax/)**: Stack multiple independent images as a background layer, assigning a different scrolling speed
-
-##🏆 Why Choose Us
-–   Trusted by 12 Million+ Downloads 
-–   24/7 Expert Support
-–   Actively Maintained and Security-Tested
-–   At Least 2 Releases Every Month
-–   Works With Any Theme & Most Plugins
-–   Built for Performance
 
 ### Privacy Policy
 
