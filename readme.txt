@@ -1,5 +1,5 @@
-=== HappyAddons for Elementor – 157+ Elementor Widgets, GSAP Animations & Templates ===
-Plugin Name: HappyAddons for Elementor – 157+ Elementor Widgets & Templates
+=== HappyAddons for Elementor – 160 Elementor Widgets, GSAP Animations & Templates ===
+Plugin Name: HappyAddons for Elementor – 160 Elementor Widgets & Templates
 Version: 3.23.1
 Author: Leevio
 Author URI: https://happyaddons.com/
@@ -17,7 +17,7 @@ HappyAddons packs Header Footer Builder, Megamenu, Single Post, Archive Page, & 
 
 == Description ==
 
-[HappyAddons](https://happyaddons.com/) is a comprehensive Elementor addons with **157+ Free & Pro Elementor Widgets, 40+ advanced Features, GSAP animations**, a **Free Theme Builder**, 500+ Section Blocks, 100+ Full Page Templates, and 650+ Design Presets. You can build websites faster with everything you need in one place.
+[HappyAddons](https://happyaddons.com/) is a comprehensive Elementor addons with **160 Free & Pro Elementor Widgets, 40+ advanced Features, GSAP animations**, a **Free Theme Builder**, **500+ Section Blocks, 100+ Full Page Templates**, and **650+ Design Presets**. You can build websites faster with everything you need in one place.
 
 [youtube https://youtu.be/EBlm9nMYu58?si=833ZxwE5II3eLw82]
 
@@ -30,7 +30,7 @@ HappyAddons includes a full Theme Builder by which you can build Header, Footer,
 ##🔑 Key Highlights
 –   12 Million+ Downloads 
 –   GSAP Animation Pack
-–   157+ Free & Pro Widgets - More widgets than any competitor at this price tier
+–   160 Free & Pro Widgets - More widgets than any competitor at this price tier
 –   40+ top-notch features
 –   Free Theme Builder
 –   400+ Design Presets - Professional designs applied in one click, fully customizable
@@ -49,6 +49,7 @@ With the GSAP Pack, you can create various complex animations natively in Elemen
 * **[Global Animation](https://demo-x.happyaddons.com/global-animation/)**: Animate opacity, position, scale, rotation, blur, skew, flip, perspective, and 25+ more properties on any widget — with scroll trigger and scrubbing support
 * **[Text Animation](https://demo-x.happyaddons.com/image-appearing-animation/)**: Animate headings letter-by-letter or word-by-word using GSAP SplitText
 * **[Horizontal Scroll](https://demo-x.happyaddons.com/horizzontal-scroll/)**: Break the vertical barrier with sideways scroll sections, like the best agency sites
+* **[Custom Mouse Cursor](https://demo-x.happyaddons.com/custom-mouse-cursor-feature-demo/)**: Add custom cursor effects with blur mode and liquid flow features.
 * **[Marquee Animation](https://demo-x.happyaddons.com/marquee/)**: Add infinite scrolling ticker sections — control direction, speed, and pause on hover
 * **[Sticky Pin Elements](https://demo-x.happyaddons.com/sticky-pin-elements/)**: Pin any element in place while content scrolls behind it — powered by GSAP ScrollTrigger
 * **[Image Trail](https://demo-x.happyaddons.com/image-trail/)**: Make images follow the user's cursor in a captivating trail effect.
@@ -60,10 +61,7 @@ With the GSAP Pack, you can create various complex animations natively in Elemen
 * **[Stacked Card](https://demo-x.happyaddons.com/stacked-card/)**: Layer cards on top of each other and peel them away as users scroll down
 * **[SVG Morphing](https://demo-x.happyaddons.com/svg-morphing/)**: Smoothly morph one SVG shape into another using GSAP MorphSVG
 * **[SVG Line Draw](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/svg-line-draw/)**: Animate SVG paths to draw themselves stroke-by-stroke on scroll
-* **[Visual Tabs](https://demo-x.happyaddons.com/visual-tabs-demo/)**: Sticky left navigation that highlights the active tab as users scroll through
 * **[Image Cycle](https://demo-x.happyaddons.com/image-cycle/)**: Display images rotating in a circular orbit with animated headings and entrance effects
-* **[Hover Accordion](https://demo-x.happyaddons.com/hover-accordion/)**: Expanding accordion panels that respond to hover for frictionless content reveal
-* **[Team Hover Grid](https://demo-x.happyaddons.com/team-hover-grid/)**: Team member cards with a smooth scale hover reveal — control Transform Origin per card
 
 [youtube https://youtu.be/EiRmmfdWu5Q?si=f9wjgkdLDoVZqVYF]
 
@@ -71,6 +69,9 @@ With the GSAP Pack, you can create various complex animations natively in Elemen
 HappyAddons free version includes 70+ Elementor widgets, a full Theme Builder, and more - all at zero cost. We've grouped them into a few categories below to help you quickly find the ones you need.
 
 ##🧩 General - Core building widgets for every type of page
+* **[Visual Tabs](https://demo-x.happyaddons.com/visual-tabs-demo/)**: Sticky left navigation that highlights the active tab as users scroll through
+* **[Hover Accordion](https://demo-x.happyaddons.com/hover-accordion/)**: Expanding accordion panels that respond to hover for frictionless content reveal
+* **[Team Hover Grid](https://demo-x.happyaddons.com/team-hover-grid/)**: Team member cards with a smooth scale hover reveal — control Transform Origin per card
 * **[Card](https://demo.happyaddons.com/elementor-card-widget-demo/)**: Showcase products, articles, and news with image, text, and badge in one widget
 * **[Info Box](https://demo.happyaddons.com/elementor-info-box-widget-demo/)**: Display key information with icons, headings, and descriptions
 * **[Icon Box](https://demo.happyaddons.com/elementor-icon-box-widget-demo/)**: Icon-first layout for presenting services or features cleanly
@@ -164,7 +165,6 @@ Style any major WordPress form plugin directly inside Elementor, without writing
 * **[Header Footer Builder](https://happyaddons.com/how-to-create-header-and-footer-in-elementor/)**: Create free Elementor header and footer.
 * **[Single Page/post Template Builder](https://happyaddons.com/how-to-create-a-blog-post-template-in-elementor/)**: Design and create single blog post’s template for free.
 * **[Archive Page Template Builder](https://happyaddons.com/docs/happy-theme-builder/theme-building-widgets/archive-post/)**: Design archive page.
-* **[Custom Mouse Cursor](https://demo-x.happyaddons.com/custom-mouse-cursor-feature-demo/)**: Add custom cursor effects with blur mode and liquid flow features.
 * **[Theme Builder](https://happyaddons.com/docs/happy-theme-builder/how-to-set-conditions-to-display-templates-pro/)**: Set display conditions across your entire site
 * **[Floating Effects](https://happyaddons.com/elementor-floating-effect-demo-2/):** Add Translate, rotate & scale animations on any widget
 * **[Background Overlay](https://happyaddons.com/background-overlay-demo/)**: Allow to add images, colors, & icons behind any widget.
