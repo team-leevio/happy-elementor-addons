@@ -1,5 +1,5 @@
-=== HappyAddons for Elementor – 157+ Elementor Widgets, GSAP Animations & Templates ===
-Plugin Name: HappyAddons for Elementor – 157+ Elementor Widgets & Templates
+=== HappyAddons for Elementor – 160 Elementor Widgets, GSAP Animations & Templates ===
+Plugin Name: HappyAddons for Elementor – 160 Elementor Widgets & Templates
 Version: 3.50.0
 Author: Leevio
 Author URI: https://happyaddons.com/
