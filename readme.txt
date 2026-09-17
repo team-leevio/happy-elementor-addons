@@ -45,23 +45,25 @@ With the GSAP Pack, you can create various complex animations natively in Elemen
 [youtube https://youtu.be/CTdIorOTcSY?si=dUt_5jwHxzHH8XI_]
 
 ##🎞️ GSAP Animation Features
-* **[Appearing Image Animation](https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/appearing-image-animation/)**: Reveal images on scroll with cinematic Reveal, Tiles Reveal, and Corner Reveal effects
 * **[Global Animation](https://demo-x.happyaddons.com/global-animation/)**: Animate opacity, position, scale, rotation, blur, skew, flip, perspective, and 25+ more properties on any widget — with scroll trigger and scrubbing support
+* **[Marquee](https://demo-x.happyaddons.com/marquee/)**: Add infinite scrolling ticker sections — control direction, speed, and pause on hover
+* **[Image Trail](https://demo-x.happyaddons.com/image-trail/)**: Make images follow the user's cursor in a captivating trail effect
+* **[Sticky Pin Elements](https://demo-x.happyaddons.com/sticky-pin-elements/)**: Pin any element in place while content scrolls behind it — powered by GSAP ScrollTrigger
+* **[Appearing Image Animation](https://demo-x.happyaddons.com/image-appearing-animation/)**: Reveal images on scroll with cinematic Reveal, Tiles Reveal, and Corner Reveal effects
 * **[Text Animation](https://demo-x.happyaddons.com/image-appearing-animation/)**: Animate headings letter-by-letter or word-by-word using GSAP SplitText
 * **[Horizontal Scroll](https://demo-x.happyaddons.com/horizzontal-scroll/)**: Break the vertical barrier with sideways scroll sections, like the best agency sites
-* **[Custom Mouse Cursor](https://demo-x.happyaddons.com/custom-mouse-cursor-feature-demo/)**: Add custom cursor effects with blur mode and liquid flow features.
-* **[Marquee Animation](https://demo-x.happyaddons.com/marquee/)**: Add infinite scrolling ticker sections — control direction, speed, and pause on hover
-* **[Sticky Pin Elements](https://demo-x.happyaddons.com/sticky-pin-elements/)**: Pin any element in place while content scrolls behind it — powered by GSAP ScrollTrigger
-* **[Image Trail](https://demo-x.happyaddons.com/image-trail/)**: Make images follow the user's cursor in a captivating trail effect.
+* **[Happy Mouse Cursor](https://demo-x.happyaddons.com/custom-mouse-cursor-feature-demo/)**: Add custom cursor effects with blur mode and liquid flow features.
 
 [youtube https://youtu.be/4TBcmLl0e9A?si=ozouzUnC9Zq6ymZ2]
 
 ##🎞️ GSAP Animation Widgets
-* **[Dropping Elements](https://demo-x.happyaddons.com/dropping-elements/)**: Drop images, icons, and shapes from above with real gravity and bounce physics
 * **[Stacked Card](https://demo-x.happyaddons.com/stacked-card/)**: Layer cards on top of each other and peel them away as users scroll down
-* **[SVG Morphing](https://demo-x.happyaddons.com/svg-morphing/)**: Smoothly morph one SVG shape into another using GSAP MorphSVG
-* **[SVG Line Draw](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/svg-line-draw/)**: Animate SVG paths to draw themselves stroke-by-stroke on scroll
+* **[Dropping Elements](https://demo-x.happyaddons.com/dropping-elements/)**: Drop images, icons, and shapes from above with real gravity and bounce physics
 * **[Image Cycle](https://demo-x.happyaddons.com/image-cycle/)**: Display images rotating in a circular orbit with animated headings and entrance effects
+* **[GSAP SVG Draw](https://demo-x.happyaddons.com/gsap-svg-draw/)**: Animate SVG paths to draw themselves stroke-by-stroke on scroll
+* **[SVG Morphing](https://demo-x.happyaddons.com/svg-morphing/)**: Smoothly morph one SVG shape into another using GSAP MorphSVG
+* **[Text Scroll](https://demo-x.happyaddons.com/text-scroll-widget-demo/)**: Horizontally scrolling marquee-style text
+* **[SVG Line Draw](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/svg-line-draw/)**: Horizontally scrolling marquee-style text
 
 [youtube https://youtu.be/EiRmmfdWu5Q?si=f9wjgkdLDoVZqVYF]
 
@@ -72,9 +74,9 @@ HappyAddons free version includes 70+ Elementor widgets, a full Theme Builder, a
 * **[Visual Tabs](https://demo-x.happyaddons.com/visual-tabs-demo/)**: Sticky left navigation that highlights the active tab as users scroll through
 * **[Hover Accordion](https://demo-x.happyaddons.com/hover-accordion/)**: Expanding accordion panels that respond to hover for frictionless content reveal
 * **[Team Hover Grid](https://demo-x.happyaddons.com/team-hover-grid/)**: Team member cards with a smooth scale hover reveal — control Transform Origin per card
-* **[Card](https://demo.happyaddons.com/elementor-card-widget-demo/)**: Showcase products, articles, and news with image, text, and badge in one widget
 * **[Info Box](https://demo.happyaddons.com/elementor-info-box-widget-demo/)**: Display key information with icons, headings, and descriptions
 * **[Icon Box](https://demo.happyaddons.com/elementor-icon-box-widget-demo/)**: Icon-first layout for presenting services or features cleanly
+* **[Card](https://demo.happyaddons.com/elementor-card-widget-demo/)**: Showcase products, articles, and news with image, text, and badge in one widget
 * **[Team Member](https://demo.happyaddons.com/elementor-team-member-widget-demo/)**: Introduce your team with photos, roles, bios, and social links
 * **[Dual Button](https://demo.happyaddons.com/elementor-dual-button-widget-demo/)**: Two CTA buttons in a single, styled container
 * **[Skill Bars](https://demo.happyaddons.com/elementor-skill-bars-widget-demo/)**: Animated progress bars to showcase skills or completion rates
@@ -101,7 +103,6 @@ HappyAddons free version includes 70+ Elementor widgets, a full Theme Builder, a
 * **[Liquid Hover Image](https://demo.happyaddons.com/liquid-hover-image-widget-demo/)**: Liquid distortion effect on image hover
 * **[Creative Button](https://demo.happyaddons.com/elementor-creative-button-demo/)**: Buttons with magnetic, bubble, and advanced hover effects
 * **[Animated Link](https://demo.happyaddons.com/elementor-animated-link-widget-demo/)**: Link text with animated underline and hover effects
-* **[Text Scroll](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/text-scroll/)**: Horizontally scrolling marquee-style text
 * **[360° Rotation](https://demo.happyaddons.com/elementor-360-rotation-widget-demo/)**: Interactive 360-degree product image viewer
 * **[Promo Box](https://demo.happyaddons.com/elementor-promo-box-widget-demo/)**: Add promotional content box
 * **[WhatsApp Button](https://happyaddons.com/docs/happy-addons-for-elementor/widgets/whatsapp-chat/)**: Add an interactive click-to-chat button that connects website visitors directly to your WhatsApp
