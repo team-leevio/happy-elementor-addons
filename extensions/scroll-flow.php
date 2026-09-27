@@ -205,6 +205,23 @@ class Scroll_Flow {
 				'style_transfer'     => true,
 			]
 		);
+
+		$element->add_control(
+			'ha_sf_trigger_point',
+			[
+				'label'              => __( 'Trigger Point (px)', 'happy-elementor-addons' ),
+				'type'               => Controls_Manager::NUMBER,
+				'min'                => -1000,
+				'max'                => 2000,
+				'step'               => 1,
+				'default'            => 0,
+				'description'        => __( 'Offset from the viewport top where Scroll Flow starts.', 'happy-elementor-addons' ),
+				'condition'          => $this->get_control_condition(),
+				'render_type'        => 'template',
+				'frontend_available' => true,
+				'style_transfer'     => true,
+			]
+		);
 	}
 
 	/**
@@ -218,7 +235,7 @@ class Scroll_Flow {
 		$element->add_control(
 			'ha_sf_duration',
 			[
-				'label'              => __( 'Duration(s)', 'happy-elementor-addons' ),
+				'label'              => __( 'Duration (s)', 'happy-elementor-addons' ),
 				'type'               => Controls_Manager::NUMBER,
 				'min'                => 0.1,
 				'max'                => 5,
@@ -383,6 +400,7 @@ class Scroll_Flow {
 			'bgMove'         => $this->clamp_number( $settings['ha_sf_bg_move'] ?? 15, 0, 60, 15 ),
 			'wheelSpeed'     => $this->clamp_number( $settings['ha_sf_wheel_speed'] ?? -1, -3, 3, -1 ),
 			'tolerance'      => $this->clamp_number( $settings['ha_sf_tolerance'] ?? 10, 0, 50, 10 ),
+			'triggerPoint'   => $this->clamp_number( $settings['ha_sf_trigger_point'] ?? 0, -1000, 2000, 0 ),
 			'loop'           => ( ! isset( $settings['ha_sf_loop'] ) || 'yes' === $settings['ha_sf_loop'] ) ? 'yes' : 'no',
 			'enableOnMobile' => ( isset( $settings['ha_sf_enable_on_mobile'] ) && 'yes' === $settings['ha_sf_enable_on_mobile'] ) ? 'yes' : 'no',
 		];

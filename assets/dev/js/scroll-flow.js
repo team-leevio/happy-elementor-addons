@@ -230,6 +230,7 @@
                     bgMove: clamp(toNumber(this.getResponsiveSetting(settings, "ha_sf_bg_move"), toNumber(server.bgMove, 15)), 0, 60),
                     wheelSpeed: clamp(toNumber(this.getResponsiveSetting(settings, "ha_sf_wheel_speed"), toNumber(server.wheelSpeed, -1)), -3, 3),
                     tolerance: clamp(toNumber(this.getResponsiveSetting(settings, "ha_sf_tolerance"), toNumber(server.tolerance, 10)), 0, 50),
+                    triggerPoint: clamp(toNumber(this.getResponsiveSetting(settings, "ha_sf_trigger_point"), toNumber(server.triggerPoint, 0)), -1000, 2000),
                     loop: toBool(this.getResponsiveSetting(settings, "ha_sf_loop"), toBool(server.loop, true))
                 };
             },
@@ -514,6 +515,10 @@
              * The document position at which the stage fills the viewport. A
              * stage near the bottom of a short page may not be able to reach the
              * viewport top, so the furthest reachable position is used instead.
+             *
+             * The optional trigger point shifts that position: a value of 100
+             * engages the flow while the section top is still 100px below the
+             * viewport top.
              */
             alignTarget: function () {
                 const doc = document.documentElement;
@@ -523,8 +528,9 @@
                     body ? body.scrollHeight : 0
                 );
                 const maxScroll = Math.max(0, height - (w.innerHeight || doc.clientHeight || 0));
+                const offset = this.config ? this.config.triggerPoint : 0;
 
-                return Math.min(this.stageTop, maxScroll);
+                return clamp(Math.min(this.stageTop - offset, maxScroll), 0, maxScroll);
             },
 
             isAligned: function () {
@@ -548,12 +554,13 @@
                     body ? body.scrollHeight : 0
                 );
                 const maxScroll = Math.max(0, height - (w.innerHeight || doc.clientHeight || 0));
+                const target = this.alignTarget();
 
                 if (down) {
-                    return this.stageTop < maxScroll - ALIGN_EPS;
+                    return target < maxScroll - ALIGN_EPS;
                 }
 
-                return this.stageTop > ALIGN_EPS;
+                return target > ALIGN_EPS;
             },
 
             /**
