@@ -10,20 +10,13 @@
 
         gsap.registerPlugin(Observer);
 
-        const ALLOWED_MODES = [ "slide", "fade", "zoom" ];
-        const ALLOWED_EASES = [
-            "none",
-            "power1.inOut", "power2.inOut", "power3.inOut", "power4.inOut",
-            "power1.in", "power2.in", "power3.in", "power4.in",
-            "power1.out", "power2.out", "power3.out", "power4.out",
-            "sine.inOut", "expo.inOut", "circ.inOut", "circ.in", "circ.out",
-            "back.in", "back.out", "back.inOut",
-            "elastic.in", "elastic.out", "elastic.inOut",
-            "bounce.in", "bounce.out", "bounce.inOut"
-        ];
-
         const MIN_PANELS = 2;
         const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
+
+        // Every live Scroll Flow on the page. Used to hand a gesture to the flow
+        // that currently owns the viewport instead of whichever wrapper the
+        // pointer happens to be over.
+        const flows = [];
 
         /*
          * The section takes over the wheel as soon as a gesture starts over it.
@@ -231,13 +224,12 @@
                 const ease = String(this.getResponsiveSetting(settings, "ha_sf_easing_function") || server.ease || "power1.inOut");
 
                 return {
-                    mode: ALLOWED_MODES.indexOf(mode) >= 0 ? mode : "slide",
-                    ease: ALLOWED_EASES.indexOf(ease) >= 0 ? ease : "power1.inOut",
+                    mode: mode,
+                    ease: ease,
                     duration: clamp(toNumber(this.getResponsiveSetting(settings, "ha_sf_duration"), toNumber(server.duration, 1.25)), 0.1, 5),
                     bgMove: clamp(toNumber(this.getResponsiveSetting(settings, "ha_sf_bg_move"), toNumber(server.bgMove, 15)), 0, 60),
                     wheelSpeed: clamp(toNumber(this.getResponsiveSetting(settings, "ha_sf_wheel_speed"), toNumber(server.wheelSpeed, -1)), -3, 3),
                     tolerance: clamp(toNumber(this.getResponsiveSetting(settings, "ha_sf_tolerance"), toNumber(server.tolerance, 10)), 0, 50),
-                    invert: toBool(this.getResponsiveSetting(settings, "ha_sf_invert"), toBool(server.invert, false)),
                     loop: toBool(this.getResponsiveSetting(settings, "ha_sf_loop"), toBool(server.loop, true))
                 };
             },
@@ -279,6 +271,10 @@
                 this.createObserver();
                 this.gotoSection(0, 1);
 
+                if (flows.indexOf(this) === -1) {
+                    flows.push(this);
+                }
+
                 /*
                  * Happy Addons keeps its animation timelines paused until their
                  * own ScrollTrigger fires. Capture them while they are still in
@@ -293,6 +289,12 @@
                 this.killObserver();
 
                 clearTimeout(this.captureTimer);
+
+                const registered = flows.indexOf(this);
+
+                if (registered !== -1) {
+                    flows.splice(registered, 1);
+                }
 
                 if (this.timeline) {
                     this.timeline.kill();
@@ -350,11 +352,54 @@
             },
 
             onGesture: function (self, forward) {
+                if (!this.config || !this.panels.length) {
+                    return;
+                }
+
+                const engaged = this.getEngagedFlow();
+
+                if (engaged && engaged !== this) {
+                    const mine = this.$element[ 0 ];
+                    const theirs = engaged.$element[ 0 ];
+
+                    /*
+                     * Nested flows receive the same bubbled gesture; the flow that
+                     * already owns it must not process it twice.
+                     */
+                    if (mine && theirs && (mine.contains(theirs) || theirs.contains(mine))) {
+                        return;
+                    }
+
+                    /*
+                     * Only a sliver of this flow is under the pointer while another
+                     * flow owns the viewport. Hand the gesture over instead of
+                     * aligning/transitioning the wrong flow.
+                     */
+                    engaged.handleGesture(self, forward, true);
+                    return;
+                }
+
+                this.handleGesture(self, forward, false);
+            },
+
+            handleGesture: function (self, forward, delegated) {
                 if (!this.config || !this.panels.length || this.animating) {
                     return;
                 }
 
-                if (this.shouldIgnore(self)) {
+                if (!delegated && this.shouldIgnore(self)) {
+                    return;
+                }
+
+                const step = forward ? 1 : -1;
+
+                /*
+                 * At a boundary (Loop off) the flow already handed the page
+                 * over; keep feeding it the gesture instead of re-aligning and
+                 * snapping back to the section.
+                 */
+                if (this.released) {
+                    this.release(step > 0 ? this.panels.length : -1, self);
                     return;
                 }
 
@@ -368,8 +413,6 @@
                     return;
                 }
 
-                const direction = this.config.invert ? -1 : 1;
-                const step = forward ? direction : -direction;
                 const next = this.currentIndex + step;
 
                 if (this.canGo(next)) {
@@ -377,6 +420,41 @@
                 } else {
                     this.release(next, self);
                 }
+            },
+
+            /**
+             * The flow that currently owns the viewport (its box straddles the
+             * vertical center). With several Scroll Flows on a page this is the
+             * one a gesture should drive.
+             */
+            getEngagedFlow: function () {
+                const viewportHeight = w.innerHeight || document.documentElement.clientHeight || 0;
+                const center = viewportHeight / 2;
+                let engaged = null;
+                let closest = Infinity;
+
+                flows.forEach((flow) => {
+                    const element = flow.$element && flow.$element[ 0 ];
+
+                    if (!element || !flow.config || !flow.panels.length) {
+                        return;
+                    }
+
+                    const rect = element.getBoundingClientRect();
+
+                    if (rect.top > center || rect.bottom < center) {
+                        return;
+                    }
+
+                    const distance = Math.abs((rect.top + rect.bottom) / 2 - center);
+
+                    if (distance < closest) {
+                        closest = distance;
+                        engaged = flow;
+                    }
+                });
+
+                return engaged;
             },
 
             /**

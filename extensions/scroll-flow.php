@@ -283,20 +283,6 @@ class Scroll_Flow {
 		);
 
 		$element->add_control(
-			'ha_sf_invert',
-			[
-				'label'              => __( 'Invert Direction', 'happy-elementor-addons' ),
-				'type'               => Controls_Manager::SWITCHER,
-				'return_value'       => 'yes',
-				'description'        => __( 'Swaps what scrolling down and scrolling up do.', 'happy-elementor-addons' ),
-				'condition'          => $this->get_control_condition(),
-				'render_type'        => 'template',
-				'frontend_available' => true,
-				'style_transfer'     => true,
-			]
-		);
-
-		$element->add_control(
 			'ha_sf_loop',
 			[
 				'label'              => __( 'Loop', 'happy-elementor-addons' ),
@@ -397,7 +383,6 @@ class Scroll_Flow {
 			'bgMove'         => $this->clamp_number( $settings['ha_sf_bg_move'] ?? 15, 0, 60, 15 ),
 			'wheelSpeed'     => $this->clamp_number( $settings['ha_sf_wheel_speed'] ?? -1, -3, 3, -1 ),
 			'tolerance'      => $this->clamp_number( $settings['ha_sf_tolerance'] ?? 10, 0, 50, 10 ),
-			'invert'         => ( isset( $settings['ha_sf_invert'] ) && 'yes' === $settings['ha_sf_invert'] ) ? 'yes' : 'no',
 			'loop'           => ( ! isset( $settings['ha_sf_loop'] ) || 'yes' === $settings['ha_sf_loop'] ) ? 'yes' : 'no',
 			'enableOnMobile' => ( isset( $settings['ha_sf_enable_on_mobile'] ) && 'yes' === $settings['ha_sf_enable_on_mobile'] ) ? 'yes' : 'no',
 		];
