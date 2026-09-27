@@ -304,7 +304,15 @@
                 const panels = this.panels || [];
 
                 if (panels.length) {
-                    gsap.set(panels, { clearProps: "transform,opacity,visibility,zIndex,backgroundPositionY" });
+                    gsap.set(panels, { clearProps: "transform,opacity,visibility,zIndex,backgroundPositionY,clipPath,webkitClipPath" });
+
+                    panels.forEach((panel) => {
+                        const content = this.getPanelContent(panel);
+
+                        if (content) {
+                            gsap.set(content, { clearProps: "transform" });
+                        }
+                    });
                 }
 
                 panels.forEach((panel) => {
@@ -623,6 +631,33 @@
                 return background.indexOf("url(") !== -1;
             },
 
+            /**
+             * The layer that holds a panel's content. Boxed Elementor
+             * containers use `.e-con-inner` and legacy sections
+             * `.elementor-container`; full-width containers keep their
+             * children at the top level, so those direct children are used
+             * instead. The layer is only used for the small parallax drift.
+             */
+            getPanelContent: function (panel) {
+                if (!panel) {
+                    return null;
+                }
+
+                const $inner = $(panel).children(".e-con-inner, .elementor-container").first();
+
+                if ($inner.length) {
+                    return $inner[ 0 ];
+                }
+
+                const children = panel.children;
+
+                if (!children || !children.length) {
+                    return null;
+                }
+
+                return Array.prototype.slice.call(children);
+            },
+
             gotoSection: function (rawIndex, direction) {
                 if (this.animating || !this.panels.length) {
                     return;
@@ -659,8 +694,35 @@
                 });
 
                 if (this.currentIndex >= 0 && panels[ this.currentIndex ]) {
-                    gsap.set(panels[ this.currentIndex ], { zIndex: 0 });
-                    timeline.set(panels[ this.currentIndex ], { autoAlpha: 0 }, config.duration);
+                    const previous = panels[ this.currentIndex ];
+                    const previousContent = this.getPanelContent(previous);
+                    const previousParallax = (previous.offsetHeight || w.innerHeight || 0) * (config.bgMove / 100);
+
+                    gsap.set(previous, { zIndex: 0 });
+
+                    /*
+                     * Match the demo: the outgoing layer drifts in the
+                     * opposite direction while the panel fades out.
+                     */
+                    if ("slide" === config.mode && config.bgMove) {
+                        if (this.hasBackgroundImage(previous)) {
+                            timeline.to(
+                                previous,
+                                { backgroundPositionY: (50 - config.bgMove * distanceFactor) + "%" },
+                                0
+                            );
+                        }
+
+                        if (previousContent && previousParallax) {
+                            timeline.to(
+                                previousContent,
+                                { y: -previousParallax * distanceFactor },
+                                0
+                            );
+                        }
+                    }
+
+                    timeline.set(previous, { autoAlpha: 0 }, config.duration);
                 }
 
                 gsap.set(panels[ index ], { autoAlpha: 1, zIndex: 1 });
@@ -689,16 +751,43 @@
                         0
                     );
                 } else {
+                    const panel = panels[ index ];
+                    const content = this.getPanelContent(panel);
+                    const panelHeight = panel.offsetHeight || w.innerHeight || 0;
+                    const parallax = panelHeight * (config.bgMove / 100);
+
+                    /*
+                     * Match the reference demo: the panel itself never
+                     * translates. Its box is revealed by a moving clip edge
+                     * (the demo's `.outer` wrapper) while the content layer
+                     * stays pinned and drifts with a small parallax (the
+                     * demo's `.inner` wrapper and `.bg` layer), so the
+                     * section is uncovered rather than dragged in as a block.
+                     */
+                    const hiddenClip = distanceFactor > 0
+                        ? "inset(100% 0% 0% 0%)"
+                        : "inset(0% 0% 100% 0%)";
+                    const shownClip = "inset(0% 0% 0% 0%)";
+
                     timeline.fromTo(
-                        panels[ index ],
-                        { yPercent: 100 * distanceFactor },
-                        { yPercent: 0 },
+                        panel,
+                        { clipPath: hiddenClip, webkitClipPath: hiddenClip },
+                        { clipPath: shownClip, webkitClipPath: shownClip },
                         0
                     );
 
-                    if (config.bgMove && this.hasBackgroundImage(panels[ index ])) {
+                    if (content && parallax) {
                         timeline.fromTo(
-                            panels[ index ],
+                            content,
+                            { y: parallax * distanceFactor },
+                            { y: 0 },
+                            0
+                        );
+                    }
+
+                    if (config.bgMove && this.hasBackgroundImage(panel)) {
+                        timeline.fromTo(
+                            panel,
                             { backgroundPositionY: (50 + config.bgMove * distanceFactor) + "%" },
                             { backgroundPositionY: "50%" },
                             0
