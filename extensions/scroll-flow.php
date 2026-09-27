@@ -305,7 +305,7 @@ class Scroll_Flow {
 				'label'              => __( 'Loop', 'happy-elementor-addons' ),
 				'type'               => Controls_Manager::SWITCHER,
 				'return_value'       => 'yes',
-				'default'            => 'yes',
+				'default'            => 'no',
 				'description'        => __( 'When enabled, scrolling past the last panel wraps to the first (and vice versa).', 'happy-elementor-addons' ),
 				'condition'          => $this->get_control_condition(),
 				'render_type'        => 'template',
