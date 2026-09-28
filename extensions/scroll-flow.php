@@ -199,7 +199,7 @@ class Scroll_Flow {
 					'fade'  => __( 'Fade', 'happy-elementor-addons' ),
 					'zoom'  => __( 'Zoom', 'happy-elementor-addons' ),
 				],
-				'condition'          => $this->get_control_condition(),
+				'condition'          => [ 'ha_sf_switcher' => 'yes' ],
 				'render_type'        => 'template',
 				'frontend_available' => true,
 				'style_transfer'     => true,
@@ -216,7 +216,7 @@ class Scroll_Flow {
 				'step'               => 1,
 				'default'            => 0,
 				'description'        => __( 'Offset from the viewport top where Scroll Flow starts.', 'happy-elementor-addons' ),
-				'condition'          => $this->get_control_condition(),
+				'condition'          => [ 'ha_sf_switcher' => 'yes' ],
 				'render_type'        => 'template',
 				'frontend_available' => true,
 				'style_transfer'     => true,
@@ -241,7 +241,7 @@ class Scroll_Flow {
 				'max'                => 5,
 				'step'               => 0.05,
 				'default'            => 1.25,
-				'condition'          => $this->get_control_condition(),
+				'condition'          => [ 'ha_sf_switcher' => 'yes' ],
 				'render_type'        => 'template',
 				'frontend_available' => true,
 				'style_transfer'     => true,
@@ -258,7 +258,7 @@ class Scroll_Flow {
 				'step'               => 1,
 				'default'            => 15,
 				'description'        => __( 'Parallax distance of the panel background image during a transition. Set to 0 to disable parallax.', 'happy-elementor-addons' ),
-				'condition'          => $this->get_control_condition(),
+				'condition'          => [ 'ha_sf_switcher' => 'yes' ],
 				'render_type'        => 'template',
 				'frontend_available' => true,
 				'style_transfer'     => true,
@@ -272,10 +272,10 @@ class Scroll_Flow {
 				'type'               => Controls_Manager::NUMBER,
 				'min'                => -3,
 				'max'                => 3,
-				'step'               => 0.5,
+				'step'               => 1,
 				'default'            => -1,
 				'description'        => __( 'Native wheel delta multiplier. Negative values invert the wheel direction. Default: -1.', 'happy-elementor-addons' ),
-				'condition'          => $this->get_control_condition(),
+				'condition'          => [ 'ha_sf_switcher' => 'yes' ],
 				'render_type'        => 'template',
 				'frontend_available' => true,
 				'style_transfer'     => true,
@@ -292,7 +292,7 @@ class Scroll_Flow {
 				'step'               => 1,
 				'default'            => 10,
 				'description'        => __( 'Minimum wheel/touch distance required before a transition fires. Higher means less sensitive.', 'happy-elementor-addons' ),
-				'condition'          => $this->get_control_condition(),
+				'condition'          => [ 'ha_sf_switcher' => 'yes' ],
 				'render_type'        => 'template',
 				'frontend_available' => true,
 				'style_transfer'     => true,
@@ -307,7 +307,7 @@ class Scroll_Flow {
 				'return_value'       => 'yes',
 				'default'            => 'no',
 				'description'        => __( 'When enabled, scrolling past the last panel wraps to the first (and vice versa).', 'happy-elementor-addons' ),
-				'condition'          => $this->get_control_condition(),
+				'condition'          => [ 'ha_sf_switcher' => 'yes' ],
 				'render_type'        => 'template',
 				'frontend_available' => true,
 				'style_transfer'     => true,
@@ -326,7 +326,7 @@ class Scroll_Flow {
 				'render_type'        => 'template',
 				'frontend_available' => true,
 				'description'        => __( 'When disabled, the Scroll Flow will not run on mobile devices.', 'happy-elementor-addons' ),
-				'condition'          => $this->get_control_condition(),
+				'condition'          => [ 'ha_sf_switcher' => 'yes' ],
 			]
 		);
 
@@ -337,7 +337,7 @@ class Scroll_Flow {
 				'type'               => Controls_Manager::SELECT,
 				'default'            => 'power1.inOut',
 				'options'            => $this->get_easing_options(),
-				'condition'          => $this->get_control_condition(),
+				'condition'          => [ 'ha_sf_switcher' => 'yes' ],
 				'render_type'        => 'template',
 				'frontend_available' => true,
 				'style_transfer'     => true,
@@ -441,15 +441,6 @@ class Scroll_Flow {
 			'bounce.out'    => __( 'Bounce Out', 'happy-elementor-addons' ),
 			'bounce.inOut'  => __( 'Bounce InOut', 'happy-elementor-addons' ),
 		];
-	}
-
-	/**
-	 * Shared control condition.
-	 *
-	 * @return array
-	 */
-	protected function get_control_condition() {
-		return [ 'ha_sf_switcher' => 'yes' ];
 	}
 
 	/**
