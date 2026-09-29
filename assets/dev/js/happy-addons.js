@@ -1058,14 +1058,20 @@
 				$this.addClass( 'active' );
 			} );
 
-			// $scope.on( 'mouseleave', '.ha-ia-gallery-wrap', function () {
-			// 	if ( ! $scope.hasClass( 'ha-image-accordion-hover' ) ) {
-			// 		return;
-			// 	}
+		$scope.on( 'mouseleave', '.ha-ia-gallery-wrap', function () {
+			if ( ! $scope.hasClass( 'ha-image-accordion-hover' ) ) {
+				return;
+			}
 
-			// 	$scope.find( '.ha-ia-item' ).removeClass( 'active' );
-			// 	$scope.find( '.ha-ia-item.ha-ia-active-on-load' ).addClass( 'active' );
-			// } );
+			var $activeOnLoad = $scope.find( '.ha-ia-item.ha-ia-active-on-load' );
+
+			if ( $activeOnLoad.length ) {
+				return;
+			}
+
+			$scope.find( '.ha-ia-item' ).removeClass( 'active' );
+			$activeOnLoad.addClass( 'active' );
+		} );
 		};
 
 		//Content Switcher
