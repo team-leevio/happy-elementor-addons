@@ -471,8 +471,8 @@ class Image_Accordion extends Base {
                     'enable_inactive_content_blur' => 'yes',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}}.ha-image-accordion-click .ha-ia-item:not(.active)::after' => '-webkit-backdrop-filter: blur({{SIZE}}{{UNIT}}); backdrop-filter: blur({{SIZE}}{{UNIT}});',
-                    '{{WRAPPER}}.ha-image-accordion-hover .ha-ia-item:not(:hover):not(.active)::after' => '-webkit-backdrop-filter: blur({{SIZE}}{{UNIT}}); backdrop-filter: blur({{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-image-accordion-click .ha-ia-gallery-wrap:has(.ha-ia-item.active) .ha-ia-item:not(.active)::after' => '-webkit-backdrop-filter: blur({{SIZE}}{{UNIT}}); backdrop-filter: blur({{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}}.ha-image-accordion-hover .ha-ia-gallery-wrap:has(.ha-ia-item.active) .ha-ia-item:not(:hover):not(.active)::after' => '-webkit-backdrop-filter: blur({{SIZE}}{{UNIT}}); backdrop-filter: blur({{SIZE}}{{UNIT}});',
                 ],
             ]
         );
