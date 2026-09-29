@@ -387,6 +387,13 @@ class Extensions_Manager {
 				'icon' => 'hm hm-cursor-hover-click',
 				'is_pro' => false,
 			],
+			'scroll-flow' => [
+				'title' => __( 'Scroll Flow', 'happy-elementor-addons' ),
+				'icon' => 'hm hm-full-page-scroll',
+				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/#/',
+				'is_pro' => false,
+				'is_gsap' => true,
+			],
 		];
 	}
 
@@ -476,6 +483,7 @@ class Extensions_Manager {
 			case 'background-parallax':
 			case 'appearing-image-animation':
 			case 'heading-text-animation':
+			case 'scroll-flow':
 			case 'liquid-glass':
 			case 'container-hover-text-color':
 				$cls_name = ucwords( str_replace( '-', ' ', $feature_key ) ); //remove ' - ' & uc first later

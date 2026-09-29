@@ -413,6 +413,15 @@ class Assets_Manager {
 			HAPPY_ADDONS_VERSION,
 			true
 		);
+		
+		// gsap observer js
+		wp_register_script(
+			'observer',
+			HAPPY_ADDONS_ASSETS . 'vendor/gsap-observer/observer.min.js',
+			['gsap'],
+			HAPPY_ADDONS_VERSION,
+			true
+		);
 
 		// Main assets
 		wp_register_style(
