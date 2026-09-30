@@ -1028,20 +1028,50 @@
 
 		//Image Accordion
 		var Image_Accordion = function ( $scope ) {
-			if ( $scope.hasClass( 'ha-image-accordion-click' ) ) {
-				var items = $scope.find( '.ha-ia-item' );
-				items.each( function ( inx, btn ) {
-					$( this ).on( 'click', function ( e ) {
-						// e.preventDefault();
-						if ( $( this ).hasClass( 'active' ) ) {
-							return;
-						} else {
-							items.removeClass( 'active' );
-							$( this ).addClass( 'active' );
-						}
-					} );
-				} );
+			$scope.on( 'click', '.ha-ia-item', function () {
+				if ( ! $scope.hasClass( 'ha-image-accordion-click' ) ) {
+					return;
+				}
+
+				var $this = $( this );
+
+				if ( $this.hasClass( 'active' ) ) {
+					return;
+				}
+
+				$scope.find( '.ha-ia-item' ).removeClass( 'active' );
+				$this.addClass( 'active' );
+			} );
+
+			$scope.on( 'mouseenter', '.ha-ia-item', function () {
+				if ( ! $scope.hasClass( 'ha-image-accordion-hover' ) ) {
+					return;
+				}
+
+				var $this = $( this );
+
+				if ( $this.hasClass( 'active' ) ) {
+					return;
+				}
+
+				$scope.find( '.ha-ia-item' ).removeClass( 'active' );
+				$this.addClass( 'active' );
+			} );
+
+		$scope.on( 'mouseleave', '.ha-ia-gallery-wrap', function () {
+			if ( ! $scope.hasClass( 'ha-image-accordion-hover' ) ) {
+				return;
 			}
+
+			var $activeOnLoad = $scope.find( '.ha-ia-item.ha-ia-active-on-load' );
+
+			if ( $activeOnLoad.length ) {
+				return;
+			}
+
+			$scope.find( '.ha-ia-item' ).removeClass( 'active' );
+			$activeOnLoad.addClass( 'active' );
+		} );
 		};
 
 		//Content Switcher

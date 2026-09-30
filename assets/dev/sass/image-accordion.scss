@@ -85,7 +85,8 @@
 .ha-image-accordion-hover .ha-ia-item {
 	// transition: all 0.3s ease 0.2s;
 
-	&:hover {
+	&:hover,
+	&.active {
 		flex: 3;
 
 		.ha-overlay {
@@ -93,7 +94,7 @@
 		}
 	}
 
-	&:not(:hover) {
+	&:not(:hover):not(.active) {
 		.ha-ia-content-wrapper {
 			display: none;
 		}
@@ -115,6 +116,23 @@
 		.ha-ia-content-wrapper {
 			display: none;
 		}
+	}
+}
+
+.ha-ia-gallery-wrap.ha-ia-inactive-blur {
+
+	.ha-ia-item::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 1;
+		pointer-events: none;
+		-webkit-backdrop-filter: blur(0);
+		backdrop-filter: blur(0);
+		transition: -webkit-backdrop-filter .4s, backdrop-filter .4s;
 	}
 }
 

@@ -1,0 +1,66 @@
+/* Scroll Flow Scss */
+.ha-sf-wrapper.ha-sf-active {
+	position: relative;
+	width: 100%;
+	max-width: none;
+	// height: 100vh;
+	// height: 100svh;
+	margin-inline: 0;
+	overflow: hidden;
+
+	/*
+	 * Keep the inner wrapper out of the positioning chain so panels anchor to
+	 * the outer viewport and fill it edge-to-edge, ignoring Elementor's boxed
+	 * width and padding.
+	 */
+	> .e-con-inner,
+	> .elementor-container {
+		position: static;
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		margin-inline: 0;
+	}
+
+	/* Each direct child becomes a full-height panel. */
+	.ha-sf-panel {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 0;
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		margin: 0;
+		overflow: hidden;
+		visibility: hidden;
+		will-change: transform, opacity;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+
+		/*
+		 * Elementor applies `transform .4s` (and background) transitions to
+		 * elements. They would fight GSAP's per-frame transforms and turn the
+		 * slide into a lagging, non-linear motion, so disable them here.
+		 */
+		transition: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ha-sf-wrapper.ha-sf-active {
+		height: auto;
+		overflow: visible;
+
+		> .e-con-inner,
+		> .elementor-container {
+			height: auto;
+		}
+
+		.ha-sf-panel {
+			position: relative;
+			height: auto;
+			visibility: visible;
+		}
+	}
+}
