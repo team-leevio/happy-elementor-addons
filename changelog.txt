@@ -1,6 +1,8 @@
 = 3.##.# - ## #### #### =
 
 - Fix: Resolved Reading Progress Bar vulnerability issue.
+- Update: Image Accordion widget.
+
 
 = 3.50.0 -  16 September 2026 =
 
