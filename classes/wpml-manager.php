@@ -932,19 +932,93 @@ class WPML_Manager {
 				],
 			],
 
-			/**
-			 * Text Scroll
-			 */
-			'text-scroll' => [
-				'fields' => [
-					[
-						'field'       => 'scroll_text',
-						'type'        => __( 'Text Scroll: Scroll Text', 'happy-elementor-addons' ),
-						'editor_type' => 'AREA',
-					],
+		/**
+		 * Text Scroll
+		 */
+		'text-scroll' => [
+			'fields' => [
+				[
+					'field'       => 'scroll_text',
+					'type'        => __( 'Text Scroll: Scroll Text', 'happy-elementor-addons' ),
+					'editor_type' => 'AREA',
 				],
 			],
-		];
+		],
+
+		/**
+		 * Image Cycle
+		 */
+		'image-cycle' => [
+			'fields' => [
+				[
+					'field'       => 'ha_ic_title',
+					'type'        => __( 'Image Cycle: Title', 'happy-elementor-addons' ),
+					'editor_type' => 'LINE',
+				],
+				[
+					'field'       => 'ha_ic_title_second',
+					'type'        => __( 'Image Cycle: Title Second Line', 'happy-elementor-addons' ),
+					'editor_type' => 'LINE',
+				],
+				[
+					'field'       => 'ha_ic_subtitle',
+					'type'        => __( 'Image Cycle: Subtitle', 'happy-elementor-addons' ),
+					'editor_type' => 'LINE',
+				],
+			],
+			'integration-class' => [
+				'Happy_Addons\Elementor\Wpml\Image_Cycle',
+			]
+		],
+
+		/**
+		 * WhatsApp Button
+		 */
+		'whatsapp-button' => [
+			'fields' => [
+				[
+					'field'       => 'phone_number',
+					'type'        => __( 'WhatsApp Button: Phone Number', 'happy-elementor-addons' ),
+					'editor_type' => 'LINE',
+				],
+				[
+					'field'       => 'pre_filled_message',
+					'type'        => __( 'WhatsApp Button: Pre-filled Message', 'happy-elementor-addons' ),
+					'editor_type' => 'AREA',
+				],
+				[
+					'field'       => 'button_text',
+					'type'        => __( 'WhatsApp Button: Button Text', 'happy-elementor-addons' ),
+					'editor_type' => 'LINE',
+				],
+				[
+					'field'       => 'agent_name',
+					'type'        => __( 'WhatsApp Button: Agent Name', 'happy-elementor-addons' ),
+					'editor_type' => 'LINE',
+				],
+				[
+					'field'       => 'custom_agent_status',
+					'type'        => __( 'WhatsApp Button: Custom Status Text', 'happy-elementor-addons' ),
+					'editor_type' => 'LINE',
+				],
+				[
+					'field'       => 'chat_initial_message',
+					'type'        => __( 'WhatsApp Button: Initial Message', 'happy-elementor-addons' ),
+					'editor_type' => 'AREA',
+				],
+				[
+					'field'       => 'chat_button_text',
+					'type'        => __( 'WhatsApp Button: Chat Button Text', 'happy-elementor-addons' ),
+					'editor_type' => 'LINE',
+				],
+				[
+					'field'       => 'tooltip_text',
+					'type'        => __( 'WhatsApp Button: Tooltip Text', 'happy-elementor-addons' ),
+					'editor_type' => 'LINE',
+				],
+			],
+		],
+	];
 
 		foreach ( $widgets_map as $key => $data ) {
 			$widget_name = 'ha-'.$key;
