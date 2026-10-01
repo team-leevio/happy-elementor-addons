@@ -972,6 +972,45 @@ class WPML_Manager {
 		],
 
 		/**
+		 * Calendly
+		 */
+		'calendly' => [
+			'fields' => [
+				[
+					'field'       => 'calendly_username',
+					'type'        => __( 'Calendly: Username', 'happy-elementor-addons' ),
+					'editor_type' => 'LINE',
+				],
+			],
+		],
+
+		/**
+		 * LordIcon
+		 */
+		'lordicon' => [
+			'fields' => [
+				[
+					'field'       => 'icon_cdn',
+					'type'        => __( 'LordIcon: Icon CDN URL', 'happy-elementor-addons' ),
+					'editor_type' => 'LINE',
+				],
+			],
+		],
+
+		/**
+		 * SVG Line Draw
+		 */
+		'svg-draw' => [
+			'fields' => [
+				'link' => [
+					'field'       => 'url',
+					'type'        => __( 'SVG Line Draw: Link', 'happy-elementor-addons' ),
+					'editor_type' => 'LINK',
+				],
+			],
+		],
+
+		/**
 		 * WhatsApp Button
 		 */
 		'whatsapp-button' => [

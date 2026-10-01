@@ -562,10 +562,13 @@ class CF7 extends Base {
         $settings = $this->get_settings_for_display();
 
         if ( ! empty( $settings['form_id'] ) ) {
+            // Translate the form ID to the current language (returns the original ID when WPML is inactive)
+            $form_id = apply_filters( 'wpml_object_id', $settings['form_id'], 'wpcf7_contact_form', true );
+
             echo ha_do_shortcode( 'contact-form-7', [
-                'id' => $settings['form_id'],
+                'id' => $form_id,
                 'html_class' => 'ha-cf7-form ' . ha_sanitize_html_class_param( $settings['html_class'] ),
-			] );
+            ] );
         }
     }
 }
