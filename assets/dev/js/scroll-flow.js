@@ -608,8 +608,17 @@
                 }
 
                 const target = this.alignTarget();
-                const crossed = (previous < target && scrollTop >= target) ||
-                    (previous > target && scrollTop <= target);
+
+                /*
+                 * A real crossing must clear the alignment tolerance on both
+                 * sides. Without that margin a fractional stage top (e.g.
+                 * 2478.25) compared against an integer scroll position (2478)
+                 * is misread as a crossing right after the release scroll, so
+                 * the flow re-arms instantly and the next gesture snaps the
+                 * page back to the stage top instead of continuing past it.
+                 */
+                const crossed = (previous < target - ALIGN_EPS && scrollTop > target + ALIGN_EPS) ||
+                    (previous > target + ALIGN_EPS && scrollTop < target - ALIGN_EPS);
 
                 if (!crossed && Math.abs(scrollTop - target) > ALIGN_EPS) {
                     return;
