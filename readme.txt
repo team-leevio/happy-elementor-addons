@@ -387,8 +387,9 @@ For a more detailed explanation check out the following documentation
 
 = 3.50.1 - 05 October 2026 =
 
-- Fix: Resolved Reading Progress Bar vulnerability issue.
-- Update: Image Accordion widget.
+- Fix: Resolved Reading Progress Bar vulnerability.
+- Update: Added blur effect to inactive Image Accordion content.
+- Update: Improved Image Accordion active content behavior on load and hover.
 
 
 = 3.50.0 -  16 September 2026 =
