@@ -1,13 +1,13 @@
 === HappyAddons for Elementor – 160 Elementor Widgets, GSAP Animations & Templates ===
 Plugin Name: HappyAddons for Elementor – 160 Elementor Widgets & Templates
-Version: 3.50.0
+Version: 3.50.1
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: leevio, happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 3.50.0
+Stable tag: 3.50.1
 Requires PHP: 8.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -384,6 +384,12 @@ For a more detailed explanation check out the following documentation
 13. Card widget - capsule design
 
 == Changelog ==
+
+= 3.50.1 - 05 October 2026 =
+
+- Fix: Resolved Reading Progress Bar vulnerability issue.
+- Update: Image Accordion widget.
+
 
 = 3.50.0 -  16 September 2026 =
 

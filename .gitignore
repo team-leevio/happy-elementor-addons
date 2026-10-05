@@ -235,3 +235,4 @@ dist/*
 packer.sh
 .github
 ARCHITECTURE_OVERVIEW.md
+*.md

@@ -186,3 +186,14 @@ if (! function_exists('ha_is_text_stroke_enabled')) {
 		return apply_filters( 'happyaddons/extensions/text_stroke', true );
 	}
 }
+
+if (! function_exists('ha_is_scroll_flow_enabled')) {
+	/**
+	 * Check if Scroll Flow is enabled
+	 *
+	 * @return bool
+	 */
+	function ha_is_scroll_flow_enabled() {
+		return apply_filters( 'happyaddons/extensions/scroll_flow', true );
+	}
+}
