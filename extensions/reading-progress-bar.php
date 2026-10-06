@@ -142,6 +142,10 @@ class Reading_Progress_Bar {
 		$single_enable = isset( $document_settings_data['ha_rpb_single_enable'] ) ? $document_settings_data['ha_rpb_single_enable'] : 'no' ;
 		$single_disable = isset( $document_settings_data['ha_rpb_single_disable'] ) ? $document_settings_data['ha_rpb_single_disable'] : 'no' ;
 
+		// Whitelist switcher values to prevent stored XSS via _elementor_page_settings
+		$single_enable = ( 'yes' === $single_enable ) ? 'yes' : 'no';
+		$single_disable = ( 'yes' === $single_disable ) ? 'yes' : 'no';
+
 		//render rbp
 		$reading_progress_is_enable = false;
 
@@ -218,12 +222,12 @@ class Reading_Progress_Bar {
 						return;
 					}
 
-					let rpbDefaultType = "<?php echo $progress_bar_type;  ?>";
+				let rpbDefaultType = "<?php echo esc_js( $progress_bar_type ); ?>";
 
-					// Check display on
-					let global_enable = "<?php echo $global_enable; ?>";
-					let single_enable = "<?php echo $single_enable; ?>";
-					let single_disable = "<?php echo $single_disable; ?>";
+				// Check display on
+				let global_enable = "<?php echo esc_js( $global_enable ); ?>";
+				let single_enable = "<?php echo esc_js( $single_enable ); ?>";
+				let single_disable = "<?php echo esc_js( $single_disable ); ?>";
 
 					if( global_enable == 'globally' ) {
 						if( single_disable !== 'yes' ) {
@@ -300,7 +304,7 @@ class Reading_Progress_Bar {
 
 							let changeValue = data.changeValue;
 							let changeItem = data.changeItem;
-							let rpbDefaultType = "<?php echo $progress_bar_type;  ?>";
+							let rpbDefaultType = "<?php echo esc_js( $progress_bar_type ); ?>";
 
 							// Check enable
 							if (changeItem[0] == 'ha_rpb_enable') {
@@ -328,8 +332,8 @@ class Reading_Progress_Bar {
 
 							// Check display on
 							if ( changeItem[0] == 'ha_rpb_apply_globally' ) {
-								let single_enable = "<?php echo $single_enable; ?>";
-								let single_disable = "<?php echo $single_disable; ?>";
+								let single_enable = "<?php echo esc_js( $single_enable ); ?>";
+								let single_disable = "<?php echo esc_js( $single_disable ); ?>";
 
 								if( changeValue == 'globally' ) {
 									if( single_disable !== 'yes' ) {
@@ -370,7 +374,7 @@ class Reading_Progress_Bar {
 									$('.hm-hrp-bar-container').css({'opacity':0, 'transition':'opacity 0.3s'});
 									$('.hm-vrp-bar-container').css({'opacity':1, 'transition':'opacity 0.3s'});
 									$('.hm-crp-wrapper').css({'opacity':0, 'transition':'opacity 0.3s'});
-									let vertical_position = "<?php echo $rpb_vertical_position; ?>";
+									let vertical_position = "<?php echo esc_js( $rpb_vertical_position ); ?>";
 									if(vertical_position == 'right') {
 										$('body').addClass('no-scroll');
 									} else {

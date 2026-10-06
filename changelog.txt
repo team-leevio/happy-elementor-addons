@@ -1,3 +1,11 @@
+= 3.50.1 - 05 October 2026 =
+
+- Fix: Resolved Reading Progress Bar vulnerability.
+- Update: Added blur effect to inactive Image Accordion content.
+- Update: Improved Image Accordion active content behavior on load and hover.
+
+
+
 = 3.50.0 -  16 September 2026 =
 
 - New: Image Cycle Widget.
