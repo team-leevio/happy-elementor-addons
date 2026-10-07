@@ -897,6 +897,19 @@ class Navigation_Menu extends Base {
 				// 'separator' => 'before',
 			]
 		);
+		$this->add_control(
+			'nav_menu_res_item_color',
+			[
+				'label'     => __( 'Color', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-navigation-burger-menu ul.menu li a' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ha-navigation-burger-menu ul.menu li .ha-submenu-indicator-wrap' => 'color: {{VALUE}}',
+				],
+
+			]
+		);
+
 		$this->add_group_control(
 			Group_Control_Background::get_type(),
 			[
@@ -905,6 +918,18 @@ class Navigation_Menu extends Base {
 				'types'    => ['classic', 'gradient'],
 				'exclude'  => ['image'],
 				'selector' => '{{WRAPPER}} .ha-navigation-burger-menu ul.menu li.menu-item',
+			]
+		);
+
+		$this->add_control(
+			'nav_menu_res_dropdown_background_color',
+			[
+				'label'     => __( 'Dropdown Background', 'happy-elementor-addons' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ha-navigation-burger-menu ul.sub-menu li.menu-item' => 'background-color: {{VALUE}}',
+				],
+
 			]
 		);
 

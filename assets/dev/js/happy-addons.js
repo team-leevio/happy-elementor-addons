@@ -1357,16 +1357,19 @@
 			var navMenu = $scope.find( '.ha-nav-menu' );
 
 			//for tablet only
-			if ( jQuery( window ).width() < 1025 && jQuery( window ).width() > 767 ) {
-				let indicator = navMenu.find( '.ha-submenu-indicator-wrap' );
-				indicator.on( 'click', function ( e ) {
-					e.preventDefault();
-					let $parentEl = $( this ).parent( 'li.menu-item-has-children' );
-					if ( $parentEl ) {
-						$parentEl.children( 'ul.sub-menu' ).slideToggle();
-					}
-				} );
-			}
+			// if ( jQuery( window ).width() < 1025 && jQuery( window ).width() > 767 ) {
+			// 	console.log(33)
+			// 	let indicator = navMenu.find( '.ha-submenu-indicator-wrap' );
+			// 	indicator.on( 'click', function ( e ) {
+			// 		e.preventDefault();
+			// 		console.log(11)
+			// 		let $parentEl = $( this ).parent( 'li.menu-item-has-children' );
+			// 		if ( $parentEl ) {
+			// 			$parentEl.children( 'ul.sub-menu' ).slideToggle();
+			// 			console.log(22)
+			// 		}
+			// 	} );
+			// }
 
 			var humBurgerBtn = navMenu.find( '.ha-menu-toggler' );
 
@@ -1392,22 +1395,22 @@
 
 			} );
 
-			function burgerClsAdd () {
+		function burgerClsAdd () {
 
-				if ( jQuery( window ).width() < 768 ) {
+			if ( window.matchMedia( '(max-width: 1024px)' ).matches ) {
 
-					navMenu.removeClass( 'ha-navigation-menu-wrapper' );
-					navMenu.addClass( 'ha-navigation-burger-menu' );
+				navMenu.removeClass( 'ha-navigation-menu-wrapper' );
+				navMenu.addClass( 'ha-navigation-burger-menu' );
 
-					var humBurgerSubMenuBtn = navMenu.find( '.ha-submenu-indicator-wrap' );
+				var humBurgerSubMenuBtn = navMenu.find( '.ha-submenu-indicator-wrap' );
 
-					humBurgerSubMenuBtn.on( 'click', function ( e ) {
-						e.preventDefault();
-						let $parentEl = $( this ).parent( 'li.menu-item-has-children' );
-						if ( $parentEl ) {
-							$parentEl.children( 'ul.sub-menu' ).slideToggle();
-						}
-					} );
+				humBurgerSubMenuBtn.off( 'click.haSubMenuToggle' ).on( 'click.haSubMenuToggle', function ( e ) {
+					e.preventDefault();
+					let $parentEl = $( this ).parent( 'li.menu-item-has-children' );
+					if ( $parentEl ) {
+						$parentEl.children( 'ul.sub-menu' ).slideToggle();
+					}
+				} );
 
 				} else {
 					navMenu.addClass( 'ha-navigation-menu-wrapper' );
@@ -1420,7 +1423,7 @@
 
 			burgerClsAdd();
 
-			$window.on( 'resize', debounce( burgerClsAdd, 100 ) );
+			$window.on( 'resize orientationchange', debounce( burgerClsAdd, 100 ) );
 
 		};
 
