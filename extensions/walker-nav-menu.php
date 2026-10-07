@@ -59,8 +59,26 @@ class HANav_Menu_Walker extends \Walker_Nav_Menu {
         }
         $submenu_indicator = '';
         if (in_array('menu-item-has-children', $classes)) {
-			$submenu_indicator .= '<span class="ha-submenu-indicator-wrap fas fa-angle-down"></span>';
-		}
+            $submenu_indicator .= '<span class="ha-submenu-indicator-wrap">';
+
+            if ( class_exists( '\Elementor\Icons_Manager' ) ) {
+                ob_start();
+                \Elementor\Icons_Manager::render_icon(
+                    [
+                        'library' => 'fa-solid',
+                        'value'   => 'fas fa-angle-down',
+                    ],
+                    [
+                        'aria-hidden' => 'true',
+                    ]
+                );
+                $submenu_indicator .= ob_get_clean();
+            } else {
+                $submenu_indicator .= '<i class="fas fa-angle-down" aria-hidden="true"></i>';
+            }
+
+            $submenu_indicator .= '</span>';
+        }
 
         $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
 
