@@ -26,6 +26,13 @@ class HANav_Menu_Walker extends \Walker_Nav_Menu {
     public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
         $indent = ($depth) ? str_repeat("\t", $depth) : '';
         $classes = empty($item->classes) ? array() : (array) $item->classes;
+
+        $has_children = in_array('menu-item-has-children', $classes) && is_object($args) && (empty($args->depth) || $depth < ((int) $args->depth - 1));
+
+        if (!$has_children) {
+            $classes = array_diff($classes, array('menu-item-has-children'));
+        }
+
         // $classes[] = 'menu-item-' . $item->ID;
         /**
          * Filter the CSS class(es) applied to a menu item's list item element.
@@ -58,7 +65,7 @@ class HANav_Menu_Walker extends \Walker_Nav_Menu {
             $class_names .= ' active';
         }
         $submenu_indicator = '';
-        if (in_array('menu-item-has-children', $classes)) {
+        if ($has_children) {
             $submenu_indicator .= '<span class="ha-submenu-indicator-wrap">';
 
             if ( class_exists( '\Elementor\Icons_Manager' ) ) {
