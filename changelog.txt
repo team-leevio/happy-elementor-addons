@@ -1,3 +1,9 @@
+= 3.50.2 - ## #### #### =
+
+- Fix: Nav Menu dropdown icon .
+- Update: Nav Menu Option and Style.
+
+
 = 3.50.1 - 05 October 2026 =
 
 - Fix: Resolved Reading Progress Bar vulnerability.
