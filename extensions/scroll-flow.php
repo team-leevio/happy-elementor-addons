@@ -197,7 +197,6 @@ class Scroll_Flow {
 				'options'            => [
 					'slide' => __( 'Slide', 'happy-elementor-addons' ),
 					'fade'  => __( 'Fade', 'happy-elementor-addons' ),
-					'zoom'  => __( 'Zoom', 'happy-elementor-addons' ),
 				],
 				'condition'          => [ 'ha_sf_switcher' => 'yes' ],
 				'render_type'        => 'none',
@@ -378,7 +377,7 @@ class Scroll_Flow {
 	 */
 	protected function get_frontend_settings( $settings ) {
 
-		$allowed_modes = [ 'slide', 'fade', 'zoom' ];
+		$allowed_modes = [ 'slide', 'fade' ];
 		$allowed_eases = array_keys( $this->get_easing_options() );
 
 		$mode = isset( $settings['ha_sf_mode'] ) ? sanitize_key( $settings['ha_sf_mode'] ) : 'slide';

@@ -719,13 +719,6 @@
                             0
                         );
                     }
-                } else if ("zoom" === config.mode) {
-                    timeline.fromTo(
-                        panels[ index ],
-                        { scale: 1.15, yPercent: 0 },
-                        { scale: 1, yPercent: 0 },
-                        0
-                    );
                 } else {
                     const panel = panels[ index ];
                     const content = this.getPanelContent(panel);
