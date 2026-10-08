@@ -138,6 +138,7 @@
 
 }
 
+
 .ha-submenu-indicator-wrap svg {
     display: block;
     width: 1em;
@@ -194,9 +195,8 @@
             text-align: left;
             position: absolute;
             height: auto;
-            left: 0;
+            width: 100vw;
             right: 0;
-            width: auto;
 
             li.menu-item:not(:last-child) {
                 border-bottom-style: solid;
@@ -277,5 +277,12 @@
 
     }
 
+    // Elementor editor preview only: compensate 14px iframe scrollbar
+    .elementor-editor-active,
+    .elementor-editor-preview {
+        .ha-navigation-burger-menu ul.menu {
+            width: calc(100vw - 14px);
+        }
+    }
 
 }
