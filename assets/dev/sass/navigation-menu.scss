@@ -153,13 +153,16 @@
 
     svg {
         display: block;
-        width: auto;
+        width: 1em;
         height: 1em;
         fill: currentColor;
         vertical-align: middle;
     }
 
     i {
+        display: inline-flex;
+        justify-content: center;
+        width: 1em;
         vertical-align: middle;
     }
 }
