@@ -1378,20 +1378,20 @@
 				var humberger = $( this ).data( 'humberger' );
 				var $pel = navMenu.find( 'ul.menu' );
 
-				if ( 'open' == humberger ) {
+			if ( 'open' == humberger ) {
 
-					$( '.ha-menu-open-icon' ).addClass( 'hide-icon' );
-					$( '.ha-menu-close-icon' ).removeClass( 'hide-icon' );
-					$( '.ha-menu-close-icon' ).addClass( 'show-icon' );
-					$pel.slideDown();
+				navMenu.find( '.ha-menu-open-icon' ).addClass( 'hide-icon' );
+				navMenu.find( '.ha-menu-close-icon' ).removeClass( 'hide-icon' );
+				navMenu.find( '.ha-menu-close-icon' ).addClass( 'show-icon' );
+				$pel.slideDown();
 
-				} else {
+			} else {
 
-					$( '.ha-menu-close-icon' ).addClass( 'hide-icon' );
-					$( '.ha-menu-open-icon' ).removeClass( 'hide-icon' );
-					$( '.ha-menu-open-icon' ).addClass( 'show-icon' );
-					$pel.slideUp();
-				}
+				navMenu.find( '.ha-menu-close-icon' ).addClass( 'hide-icon' );
+				navMenu.find( '.ha-menu-open-icon' ).removeClass( 'hide-icon' );
+				navMenu.find( '.ha-menu-open-icon' ).addClass( 'show-icon' );
+				$pel.slideUp();
+			}
 
 			} );
 
