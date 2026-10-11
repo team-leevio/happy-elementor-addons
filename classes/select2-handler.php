@@ -136,16 +136,16 @@ class Select2_Handler {
 
 	public static function process_mailchimp_list() {
 		$choose_api = ! empty( $_REQUEST['mailchimp_api_choose'] ) ? sanitize_text_field($_REQUEST['mailchimp_api_choose']) : '';
-		$global_api = ! empty( $_REQUEST['global_api'] ) ? sanitize_text_field($_REQUEST['global_api']) : '';
-		$custom_api = ! empty( $_REQUEST['mailchimp_api'] ) ? sanitize_key($_REQUEST['mailchimp_api']) : $global_api;
+		$custom_api = ! empty( $_REQUEST['mailchimp_api'] ) ? sanitize_key($_REQUEST['mailchimp_api']) : '';
+		$global_api = ha_get_credentials('mailchimp');
 
 		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? ha_sanitize_array_recursively($_REQUEST['saved_values']) : 0;
 
-		if ( empty( $custom_api ) && empty( $global_api ) ) {
+		if ( empty( $custom_api ) && empty( $global_api['api'] ) ) {
 			throw new Exception( 'Invalid taxonomy' );
 		}
 
-		$current_api = $global_api;
+		$current_api = $global_api['api'];
 
         if($choose_api == 'custom') {
             $current_api = $custom_api;
