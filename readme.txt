@@ -1,6 +1,6 @@
 === HappyAddons for Elementor – 160 Elementor Widgets, GSAP Animations & Templates ===
 Plugin Name: HappyAddons for Elementor – 160 Elementor Widgets & Templates
-Version: 3.50.1
+Version: 3.50.2
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: leevio, happyaddons, thehappymonster, wedevs
