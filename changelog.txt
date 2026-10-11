@@ -1,6 +1,6 @@
 = 3.50.# - ## ## 2026 =
 
-- New: Scroll Flow Widget.
+- New: Scroll Flow Animation Feature.
 - Fix: Resolved Mailchimp vulnerability.
 
 = 3.50.1 - 05 October 2026 =
