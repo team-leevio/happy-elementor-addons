@@ -28,7 +28,7 @@ class Scroll_To_Top {
 
 		add_action( 'elementor/kit/register_tabs', [ $this, 'init_site_settings' ], 1, 40 );
 		add_action( 'elementor/documents/register_controls', [$this, 'scroll_to_top_controls'], 10 );
-		add_action( 'elementor/document/saved', [ $this, 'register_wpml_strings' ] );
+		add_action( 'elementor/document/after_save', [ $this, 'register_wpml_strings' ] );
 		add_action( 'wp_footer', [$this, 'render_scroll_to_top_html'] );
 	}
 
@@ -40,12 +40,17 @@ class Scroll_To_Top {
 	 * would attach the string to whatever language page happened to be viewed
 	 * first, which breaks translation.
 	 */
-	public function register_wpml_strings( $document ) {
-		if ( ! class_exists( '\Elementor\Core\Kits\Document' ) || ! $document instanceof \Elementor\Core\Kits\Document ) {
+	public function register_wpml_strings( $document, $data = [] ) {
+		if ( ! $document instanceof \Elementor\Core\Kits\Documents\Kit ) {
 			return;
 		}
 
-		$text = $document->get_settings( 'ha_scroll_to_top_button_text' );
+		$text = '';
+		if ( isset( $data['settings']['ha_scroll_to_top_button_text'] ) ) {
+			$text = $data['settings']['ha_scroll_to_top_button_text'];
+		} else {
+			$text = $document->get_settings( 'ha_scroll_to_top_button_text' );
+		}
 
 		if ( ! empty( $text ) ) {
 			do_action( 'wpml_register_single_string', self::WPML_DOMAIN, self::WPML_STT_NAME, (string) $text );
