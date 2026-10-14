@@ -389,7 +389,7 @@ class Extensions_Manager {
 			],
 			'scroll-flow' => [
 				'title' => __( 'Scroll Flow', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-full-page-scroll',
+				'icon' => 'hm hm-magic-scroll',
 				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/#/',
 				'is_pro' => false,
 				'is_gsap' => true,

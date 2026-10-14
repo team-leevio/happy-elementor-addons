@@ -128,8 +128,9 @@ class Mailchimp extends Base {
 				'multiple'       => false,
 				'placeholder'    => 'Choose your created audience ',
 				'dynamic_params' => [
-					'object_type'        => 'mailchimp_list',
-					'global_api'         => isset( $this->settings['api'] ) ? $this->settings['api'] : '',
+					'object_type'    => 'mailchimp_list',
+					// Never send the real API key to the browser, only whether one exists
+					'has_global_api' => ! empty( $this->settings['api'] ),
 					'control_dependency' => [
 						'mailchimp_api_choose' => 'mailchimp_api_choose',
 						'mailchimp_api'        => 'mailchimp_api',

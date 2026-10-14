@@ -136,26 +136,35 @@ class Select2_Handler {
 
 	public static function process_mailchimp_list() {
 		$choose_api = ! empty( $_REQUEST['mailchimp_api_choose'] ) ? sanitize_text_field($_REQUEST['mailchimp_api_choose']) : '';
-		$global_api = ! empty( $_REQUEST['global_api'] ) ? sanitize_text_field($_REQUEST['global_api']) : '';
-		$custom_api = ! empty( $_REQUEST['mailchimp_api'] ) ? sanitize_key($_REQUEST['mailchimp_api']) : $global_api;
+		$custom_api = ! empty( $_REQUEST['mailchimp_api'] ) ? sanitize_key($_REQUEST['mailchimp_api']) : '';
 
 		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? ha_sanitize_array_recursively($_REQUEST['saved_values']) : 0;
 
-		if ( empty( $custom_api ) && empty( $global_api ) ) {
-			throw new Exception( 'Invalid taxonomy' );
+		$current_api = null;
+
+		if ( $choose_api == 'custom' ) {
+			if ( empty( $custom_api ) ) {
+				throw new Exception( 'Invalid API key' );
+			}
+			$current_api = $custom_api;
+		} else {
+			// Global API is chosen: ignore any client provided key,
+			// the credential is fetched server side by get_mailchimp_lists()
+			$global_api = ha_get_credentials('mailchimp');
+			if ( ! is_array( $global_api ) || empty( $global_api['api'] ) ) {
+				throw new Exception( 'Invalid API key' );
+			}
 		}
-
-		$current_api = $global_api;
-
-        if($choose_api == 'custom') {
-            $current_api = $custom_api;
-        }
 
 		if(!class_exists('Happy_Addons\Elementor\Widget\Mailchimp\Mailchimp_Api')) {
 			include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
 		}
 
 		$options = Widget\Mailchimp\Mailchimp_Api::get_mailchimp_lists($current_api);
+
+		if ( ! is_array( $options ) ) {
+			$options = [];
+		}
 
 		if ( $saved_values  ){
 			$saved_values[0] = ' '.$saved_values[0];

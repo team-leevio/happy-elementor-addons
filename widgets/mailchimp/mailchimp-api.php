@@ -63,11 +63,7 @@ class Mailchimp_Api {
 
 		$server = explode( '-', $auth['api_key'] );
 
-		if ( ! isset( $server[1] ) ) {
-			return ['status' => 0, 'msg' => esc_html__( 'Invalid API key.', 'happy-elementor-addons' )];
-		}
-
-		if( strpos( $server[1], 'us' ) === false ) {
+		if ( ! isset( $server[1] ) || ! preg_match( '/^[a-zA-Z0-9]+$/', $server[1] ) ) {
 			return ['status' => 0, 'msg' => esc_html__( 'Invalid API key.', 'happy-elementor-addons' )];
 		}
 
@@ -119,6 +115,8 @@ class Mailchimp_Api {
 	 */
 	public static function get_mailchimp_lists( $api = null ) {
 
+		self::$credentials = ha_get_credentials( 'mailchimp' );
+
 		self::$api_key = isset( self::$credentials['api'] ) ? self::$credentials['api'] : '';
 
 		$options = [];
@@ -129,7 +127,7 @@ class Mailchimp_Api {
 
 		$server = explode( '-', self::$api_key );
 
-		if ( ! isset( $server[1] ) ) {
+		if ( ! isset( $server[1] ) || ! preg_match( '/^[a-zA-Z0-9]+$/', $server[1] ) ) {
 			return 0;
 		}
 

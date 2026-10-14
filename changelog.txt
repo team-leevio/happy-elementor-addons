@@ -1,16 +1,15 @@
 = 3.50.2 - ## #### #### =
 
-- Fix: Nav Menu dropdown icon .
+- New: Scroll Flow Animation Feature.
 - Update: Nav Menu Option and Style.
-
+- Fix: Nav Menu dropdown icon.
+- Fix: Resolved Mailchimp vulnerability.
 
 = 3.50.1 - 05 October 2026 =
 
 - Fix: Resolved Reading Progress Bar vulnerability.
 - Update: Added blur effect to inactive Image Accordion content.
 - Update: Improved Image Accordion active content behavior on load and hover.
-
-
 
 = 3.50.0 -  16 September 2026 =
 

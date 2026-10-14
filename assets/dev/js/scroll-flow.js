@@ -13,17 +13,10 @@
         const MIN_PANELS = 2;
         const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
 
-        // Every live Scroll Flow on the page. Used to hand a gesture to the flow
-        // that currently owns the viewport instead of whichever wrapper the
-        // pointer happens to be over.
+        // Only the flow at its trigger point may own the page's gestures.
         const flows = [];
-
-        /*
-         * The section takes over the wheel as soon as a gesture starts over it.
-         * If it is not aligned with the viewport yet, the page is scrolled into
-         * place first so every transition runs full-screen, exactly like the
-         * reference demo (which relies on `position: fixed` sections).
-         */
+        let engagedFlow = null;
+        let lastScrollTop = 0;
         const ALIGN_EPS = 2;
 
         function toNumber(value, fallback) {
@@ -83,7 +76,8 @@
             resizeTimer: null,
             animTimer: null,
             captureTimer: null,
-            released: false,
+            // The page-scroll direction of the last boundary release, or 0.
+            released: 0,
             stageTop: 0,
 
             onInit: function () {
@@ -115,7 +109,7 @@
                     }, 250);
                 });
 
-                // Only used to re-arm the observer after a boundary release.
+                // Capture the first trigger crossed, including on return visits.
                 $(w).on("scroll" + ns, () => this.onScroll());
             },
 
@@ -258,8 +252,7 @@
                 this.hostEl = $host[ 0 ];
                 this.currentIndex = -1;
                 this.animating = false;
-                this.released = false;
-                this.lastScrollTop = null;
+                this.released = 0;
 
                 this.$element.addClass("ha-sf-active");
                 this.hostEl.classList.add("ha-sf-host");
@@ -273,8 +266,14 @@
                 this.gotoSection(0, 1);
 
                 if (flows.indexOf(this) === -1) {
+                    if (!flows.length) {
+                        lastScrollTop = this.getScrollTop();
+                    }
+
                     flows.push(this);
                 }
+
+                flows[ 0 ].onScroll();
 
                 /*
                  * Happy Addons keeps its animation timelines paused until their
@@ -295,6 +294,10 @@
 
                 if (registered !== -1) {
                     flows.splice(registered, 1);
+                }
+
+                if (engagedFlow === this) {
+                    engagedFlow = null;
                 }
 
                 if (this.timeline) {
@@ -333,8 +336,7 @@
                 this.config = null;
                 this.currentIndex = -1;
                 this.animating = false;
-                this.released = false;
-                this.lastScrollTop = null;
+                this.released = 0;
             },
 
             createObserver: function () {
@@ -343,11 +345,14 @@
                 const config = this.config;
 
                 this.observer = Observer.create({
-                    target: this.$element[ 0 ],
+                    target: document,
                     type: "wheel,touch",
                     wheelSpeed: config.wheelSpeed,
                     tolerance: config.tolerance,
                     preventDefault: true,
+                    // Ignore before Observer prevents native scrolling. An
+                    // inactive/released flow must not consume another's input.
+                    ignoreCheck: (event) => engagedFlow !== this || this.shouldIgnore({ event: event }),
                     onDown: (self) => this.onGesture(self, false),
                     onUp: (self) => this.onGesture(self, true)
                 });
@@ -361,56 +366,23 @@
             },
 
             onGesture: function (self, forward) {
-                if (!this.config || !this.panels.length) {
+                if (engagedFlow !== this) {
                     return;
                 }
 
-                const engaged = this.getEngagedFlow();
-
-                if (engaged && engaged !== this) {
-                    const mine = this.$element[ 0 ];
-                    const theirs = engaged.$element[ 0 ];
-
-                    /*
-                     * Nested flows receive the same bubbled gesture; the flow that
-                     * already owns it must not process it twice.
-                     */
-                    if (mine && theirs && (mine.contains(theirs) || theirs.contains(mine))) {
-                        return;
-                    }
-
-                    /*
-                     * Only a sliver of this flow is under the pointer while another
-                     * flow owns the viewport. Hand the gesture over instead of
-                     * aligning/transitioning the wrong flow.
-                     */
-                    engaged.handleGesture(self, forward, true);
-                    return;
-                }
-
-                this.handleGesture(self, forward, false);
+                this.handleGesture(self, forward);
             },
 
-            handleGesture: function (self, forward, delegated) {
-                if (!this.config || !this.panels.length || this.animating) {
+            handleGesture: function (self, forward) {
+                if (!this.config || !this.panels.length || this.animating || this.released) {
                     return;
                 }
 
-                if (!delegated && this.shouldIgnore(self)) {
+                if (this.shouldIgnore(self)) {
                     return;
                 }
 
                 const step = forward ? 1 : -1;
-
-                /*
-                 * At a boundary (Loop off) the flow already handed the page
-                 * over; keep feeding it the gesture instead of re-aligning and
-                 * snapping back to the section.
-                 */
-                if (this.released) {
-                    this.release(step > 0 ? this.panels.length : -1, self);
-                    return;
-                }
 
                 /*
                  * Make sure the section fills the viewport before transitioning
@@ -432,41 +404,6 @@
             },
 
             /**
-             * The flow that currently owns the viewport (its box straddles the
-             * vertical center). With several Scroll Flows on a page this is the
-             * one a gesture should drive.
-             */
-            getEngagedFlow: function () {
-                const viewportHeight = w.innerHeight || document.documentElement.clientHeight || 0;
-                const center = viewportHeight / 2;
-                let engaged = null;
-                let closest = Infinity;
-
-                flows.forEach((flow) => {
-                    const element = flow.$element && flow.$element[ 0 ];
-
-                    if (!element || !flow.config || !flow.panels.length) {
-                        return;
-                    }
-
-                    const rect = element.getBoundingClientRect();
-
-                    if (rect.top > center || rect.bottom < center) {
-                        return;
-                    }
-
-                    const distance = Math.abs((rect.top + rect.bottom) / 2 - center);
-
-                    if (distance < closest) {
-                        closest = distance;
-                        engaged = flow;
-                    }
-                });
-
-                return engaged;
-            },
-
-            /**
              * Ignore gestures that originate from a nested Scroll Flow wrapper
              * so only the innermost instance reacts.
              */
@@ -478,9 +415,9 @@
                     return false;
                 }
 
-                const owner = target.closest("[data-ha-sf]");
+                const owner = target.closest(".ha-sf-active");
 
-                return owner !== null && owner !== this.$element[ 0 ];
+                return owner !== null && owner !== this.$element[ 0 ] && this.$element[ 0 ].contains(owner);
             },
 
             canGo: function (index) {
@@ -579,46 +516,78 @@
 
                 if (event && "number" === typeof event.deltaY && 0 !== event.deltaY) {
                     delta = event.deltaY;
+
+                    if (event.deltaMode === 1) {
+                        delta *= 16;
+                    } else if (event.deltaMode === 2) {
+                        delta *= w.innerHeight;
+                    }
                 }
 
-                this.released = true;
-
-                if (this.observer) {
-                    this.observer.disable();
-                }
+                this.released = delta > 0 ? 1 : -1;
+                engagedFlow = null;
+                lastScrollTop = this.getScrollTop();
 
                 scrollByInstantly(delta);
             },
 
             /**
-             * Re-arm the observer once the page is scrolled back onto the stage.
+             * Let the page travel naturally between stages, then capture at the
+             * first trigger crossed in either direction, not the viewport center.
              */
             onScroll: function () {
-                if (!this.config || !this.panels.length) {
+                // One coordinator avoids handler registration order deciding
+                // which stage wins when a large scroll crosses several triggers.
+                if (flows[ 0 ] !== this) {
                     return;
                 }
 
                 const scrollTop = this.getScrollTop();
-                const previous = "number" === typeof this.lastScrollTop ? this.lastScrollTop : scrollTop;
+                const previous = lastScrollTop;
+                const direction = scrollTop > previous ? 1 : scrollTop < previous ? -1 : 0;
 
-                this.lastScrollTop = scrollTop;
+                lastScrollTop = scrollTop;
 
-                if (!this.released) {
+                if (engagedFlow) {
+                    // Stop residual native touch/trackpad scrolling after capture.
+                    if (!engagedFlow.isAligned()) {
+                        engagedFlow.align();
+                    }
+
+                    lastScrollTop = this.getScrollTop();
                     return;
                 }
 
-                const target = this.alignTarget();
-                const crossed = (previous < target && scrollTop >= target) ||
-                    (previous > target && scrollTop <= target);
+                let nextFlow = null;
+                let closest = Infinity;
 
-                if (!crossed && Math.abs(scrollTop - target) > ALIGN_EPS) {
-                    return;
-                }
+                flows.forEach((flow) => {
+                    flow.updateStageMetrics();
 
-                this.released = false;
+                    // Never recapture an outgoing release, even if a tiny delta
+                    // or fractional stage position is still within the tolerance.
+                    if (flow.released && (!direction || direction === flow.released)) {
+                        return;
+                    }
 
-                if (this.observer) {
-                    this.observer.enable();
+                    const target = flow.alignTarget();
+                    const aligned = Math.abs(scrollTop - target) <= ALIGN_EPS;
+                    const crossed = direction > 0
+                        ? previous < target && scrollTop >= target
+                        : direction < 0 && previous > target && scrollTop <= target;
+                    const distance = Math.abs(target - previous);
+
+                    if ((aligned || crossed) && distance < closest) {
+                        closest = distance;
+                        nextFlow = flow;
+                    }
+                });
+
+                if (nextFlow) {
+                    engagedFlow = nextFlow;
+                    nextFlow.released = 0;
+                    nextFlow.align();
+                    lastScrollTop = this.getScrollTop();
                 }
             },
 
@@ -750,13 +719,6 @@
                             0
                         );
                     }
-                } else if ("zoom" === config.mode) {
-                    timeline.fromTo(
-                        panels[ index ],
-                        { scale: 1.15, yPercent: 0 },
-                        { scale: 1, yPercent: 0 },
-                        0
-                    );
                 } else {
                     const panel = panels[ index ];
                     const content = this.getPanelContent(panel);
