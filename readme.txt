@@ -385,12 +385,19 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.50.2 - 27 October 2026 =
+
+- New: Scroll Flow Animation Feature.
+- Update: Nav Menu Option and Style.
+- New: Added WPML support for the following widgets: Post Excerpt, Page Title, Post Featured Image, Image Cycle, Calendly, Lordicon, Svg Draw.
+- Fix: Nav Menu dropdown icon.
+- Fix: Resolved Mailchimp vulnerability.
+
 = 3.50.1 - 05 October 2026 =
 
 - Fix: Resolved Reading Progress Bar vulnerability.
 - Update: Added blur effect to inactive Image Accordion content.
 - Update: Improved Image Accordion active content behavior on load and hover.
-
 
 = 3.50.0 -  16 September 2026 =
 
