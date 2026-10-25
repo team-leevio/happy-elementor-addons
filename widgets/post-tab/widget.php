@@ -948,6 +948,15 @@ class Post_Tab extends Base {
 		$taxonomy  = $settings[ 'tax_type_' . $settings['post_type'] ];
 		$terms_ids = $settings[ 'tax_ids_' . $taxonomy ];
 
+		// Translate the saved term IDs to the current language (returns the originals when WPML is inactive)
+		$terms_ids = array_map(
+			static function ( $term_id ) use ( $taxonomy ) {
+				return apply_filters( 'wpml_object_id', $term_id, $taxonomy, true );
+			},
+			(array) $terms_ids
+		);
+		$terms_ids = array_values( array_filter( $terms_ids ) );
+
 		$terms_args = [
 			'taxonomy'   => $taxonomy,
 			'hide_empty' => true,

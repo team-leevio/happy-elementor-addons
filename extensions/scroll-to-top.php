@@ -8,6 +8,9 @@ class Scroll_To_Top {
 
 	private static $instance = null;
 
+	const WPML_DOMAIN = 'happy-addons';
+	const WPML_STT_NAME = 'Scroll to Top: Button Text';
+
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
@@ -25,7 +28,33 @@ class Scroll_To_Top {
 
 		add_action( 'elementor/kit/register_tabs', [ $this, 'init_site_settings' ], 1, 40 );
 		add_action( 'elementor/documents/register_controls', [$this, 'scroll_to_top_controls'], 10 );
+		add_action( 'elementor/document/after_save', [ $this, 'register_wpml_strings' ] );
 		add_action( 'wp_footer', [$this, 'render_scroll_to_top_html'] );
+	}
+
+	/**
+	 * Register Kit strings for WPML String Translation.
+	 *
+	 * Runs on Kit save (Site Settings) so registration always happens in an
+	 * admin / default-language context. Registering during front-end renders
+	 * would attach the string to whatever language page happened to be viewed
+	 * first, which breaks translation.
+	 */
+	public function register_wpml_strings( $document, $data = [] ) {
+		if ( ! $document instanceof \Elementor\Core\Kits\Documents\Kit ) {
+			return;
+		}
+
+		$text = '';
+		if ( isset( $data['settings']['ha_scroll_to_top_button_text'] ) ) {
+			$text = $data['settings']['ha_scroll_to_top_button_text'];
+		} else {
+			$text = $document->get_settings( 'ha_scroll_to_top_button_text' );
+		}
+
+		if ( ! empty( $text ) ) {
+			do_action( 'wpml_register_single_string', self::WPML_DOMAIN, self::WPML_STT_NAME, (string) $text );
+		}
 	}
 
 	public function scroll_to_top_controls( $element ) {
@@ -99,6 +128,14 @@ class Scroll_To_Top {
 				$stt_icon_html = "<img src='$stt_image'>";
 			} elseif ( 'text' == $stt_media_type ) {
 				$stt_text      = ! empty( $this->elementor_get_setting( 'ha_scroll_to_top_button_text' ) ) ? $this->elementor_get_setting( 'ha_scroll_to_top_button_text' ) : '';
+				if ( $stt_text ) {
+					// One-time bootstrap for kits saved before WPML registration
+					// existed; afterwards the Kit-save hook keeps it updated.
+					if ( function_exists( 'icl_st_is_registered_string' ) && ! icl_st_is_registered_string( self::WPML_DOMAIN, self::WPML_STT_NAME ) ) {
+						do_action( 'wpml_register_single_string', self::WPML_DOMAIN, self::WPML_STT_NAME, $stt_text );
+					}
+					$stt_text = apply_filters( 'wpml_translate_single_string', $stt_text, self::WPML_DOMAIN, self::WPML_STT_NAME );
+				}
 				$stt_icon_html = "<span>$stt_text</span>";
 			}
 

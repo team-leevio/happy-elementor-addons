@@ -606,7 +606,7 @@ class Author_Meta extends Base {
 				}
 
 				if( 'yes' == $settings['show_archive_btn'] ) { ?>
-					<a class="ha-author-posts ha-author-posts-btn" href="<?php echo esc_url( $post_url ); ?>">All Posts</a>
+					<a class="ha-author-posts ha-author-posts-btn" href="<?php echo esc_url( $post_url ); ?>"><?php esc_html_e( 'All Posts', 'happy-elementor-addons' ); ?></a>
 				<?php }
 				?>
 			</div>

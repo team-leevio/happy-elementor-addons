@@ -592,7 +592,7 @@ class Post_Comments extends Base {
 		$settings = $this->get_settings();
 
 		if ('custom' === $settings['source_type']) {
-			$post_id = (int) $settings['source_custom'];
+			$post_id = (int) apply_filters( 'wpml_object_id', $settings['source_custom'], 'post', true );
 			ha_elementor()->db->switch_to_post($post_id);
 		}
 
