@@ -7,7 +7,6 @@
  * Version: 3.50.2
  * Author: Leevio
  * Author URI: https://happyaddons.com/
- * Requires Plugins: elementor
  * Elementor tested up to: 4.2
  * Elementor Pro tested up to: 4.2
  * License: GPLv2

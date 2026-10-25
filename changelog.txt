@@ -5,6 +5,7 @@
 - New: Added WPML support for the following widgets: Post Excerpt, Page Title, Post Featured Image, Image Cycle, Calendly, Lordicon, Svg Draw.
 - Fix: Nav Menu dropdown icon.
 - Fix: Resolved Mailchimp vulnerability.
+- Fix: Secured the Custom JS feature against a stored XSS by unprivileged users writing page settings via the REST API.
 
 = 3.50.1 - 05 October 2026 =
 
