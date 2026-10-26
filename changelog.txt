@@ -1,6 +1,5 @@
 = 3.51.0 - 27 October 2026 =
 
-- New: Scroll Flow Animation Feature.
 - Update: Nav Menu Option and Style.
 - New: Added WPML support for the following widgets: Post Excerpt, Page Title, Post Featured Image, Image Cycle, Calendly, Lordicon, Svg Draw.
 - Fix: Nav Menu dropdown icon.

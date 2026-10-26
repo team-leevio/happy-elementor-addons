@@ -382,19 +382,12 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/',
 				'is_pro' => false,
 			],
-			'container-hover-text-color' => [
-				'title' => __( 'Background Hover Effect', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-cursor-hover-click',
-				'is_pro' => false,
-			],
-			'scroll-flow' => [
-				'title' => __( 'Scroll Flow', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-magic-scroll',
-				'demo' => 'https://happyaddons.com/docs/happy-addons-for-elementor/happy-features/#/',
-				'is_pro' => false,
-				'is_gsap' => true,
-			],
-		];
+		'container-hover-text-color' => [
+			'title' => __( 'Background Hover Effect', 'happy-elementor-addons' ),
+			'icon' => 'hm hm-cursor-hover-click',
+			'is_pro' => false,
+		],
+	];
 	}
 
 	protected static function enable_feature( $feature_key ) {
@@ -482,9 +475,8 @@ class Extensions_Manager {
 			case 'custom-js':
 			case 'background-parallax':
 			case 'appearing-image-animation':
-			case 'heading-text-animation':
-			case 'scroll-flow':
-			case 'liquid-glass':
+		case 'heading-text-animation':
+		case 'liquid-glass':
 			case 'container-hover-text-color':
 				$cls_name = ucwords( str_replace( '-', ' ', $feature_key ) ); //remove ' - ' & uc first later
 				$cls_name = '\Happy_Addons\Elementor\Extensions\\' . str_replace( ' ', '_', $cls_name );
