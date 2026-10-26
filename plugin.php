@@ -7,8 +7,8 @@
  * Version: 3.51.0
  * Author: Leevio
  * Author URI: https://happyaddons.com/
- * Elementor tested up to: 4.2
- * Elementor Pro tested up to: 4.2
+ * Elementor tested up to: 4.3
+ * Elementor Pro tested up to: 4.3
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: happy-elementor-addons
