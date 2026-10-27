@@ -836,6 +836,7 @@
 		this.triggers = [];
 		this.listeners = [];
 		this.original = el.innerHTML;
+		this.built = false;
 		this.build();
 	}
 
@@ -870,6 +871,7 @@
 
 		this.modeClass = classes[mode] || 'ha-hta-chars';
 		el.classList.add('ha-hta-yes', this.modeClass);
+		this.built = true;
 
 		this.apply(mode);
 		el.style.visibility = 'visible';
@@ -1100,6 +1102,12 @@
 	TextAnimation.prototype.highlight = function (el) {
 		var color = this.config.highlight_color || '';
 
+		if (color) {
+			el.style.setProperty('--ha-highlight-color', color);
+		} else {
+			el.style.removeProperty('--ha-highlight-color');
+		}
+
 		var walk = function (node) {
 			if (3 === node.nodeType) {
 				var parts = node.textContent.split(/(\{.*?\})/g);
@@ -1117,6 +1125,11 @@
 						span.className = 'ha-tm-highlight';
 						span.setAttribute('data-highlight', 'true');
 						span.setAttribute('data-color', color);
+
+						if (color) {
+							span.style.color = color;
+						}
+
 						span.textContent = part.slice(1, -1);
 						fragment.appendChild(span);
 					} else if (part) {
@@ -1131,6 +1144,23 @@
 		};
 
 		walk(el);
+	};
+
+	// Stop without touching the markup: the editor has already replaced it.
+	TextAnimation.prototype.abandon = function () {
+		this.triggers.forEach(function (trigger) {
+			trigger.kill();
+		});
+		this.timelines.forEach(function (tl) {
+			tl.kill();
+		});
+
+		if (this.splitText) {
+			this.splitText.revert();
+		}
+
+		this.triggers = [];
+		this.timelines = [];
 	};
 
 	TextAnimation.prototype.destroy = function () {
@@ -1151,6 +1181,7 @@
 		var el = this.el;
 
 		el.innerHTML = this.original;
+		el.style.removeProperty('--ha-highlight-color');
 		el.classList.remove('ha-hta-yes');
 
 		if (this.modeClass) {
@@ -1164,51 +1195,121 @@
 	/* ------------------------------------------------------------------ *
 	 * Boot + lifecycle
 	 * ------------------------------------------------------------------ */
-	function scanEditorImages(root) {
-		var defaults = w.HappyAtomic && w.HappyAtomic.defaults && w.HappyAtomic.defaults['appearing-image-animation'];
+	// Features that also run in the editor preview: Atomic element type, setting
+	// prefix, runtime class and the node that gets animated.
+	var EDITOR_FEATURES = [
+		{
+			key: 'appearing-image-animation',
+			type: 'e-image',
+			prefix: 'ha_aia_',
+			Runtime: AppearingImage,
+			target: function (node) {
+				return node.querySelector('img');
+			}
+		},
+		{
+			key: 'text-animation',
+			type: 'e-heading',
+			prefix: 'ha_hta_',
+			Runtime: TextAnimation,
+			target: function (node) {
+				return node.matches('[data-interaction-id]') ? node : node.querySelector('[data-interaction-id]');
+			}
+		}
+	];
+
+	function editorElementType(id) {
+		try {
+			var editor = (w.parent && w.parent.elementor) || w.elementor;
+			var container = editor && editor.getContainer && editor.getContainer(id);
+
+			return container ? (container.model.get('widgetType') || container.model.get('elType')) : null;
+		} catch (e) {
+			return null;
+		}
+	}
+
+	function scanEditorFeatures(root) {
+		var defaults = w.HappyAtomic && w.HappyAtomic.defaults;
 
 		if (!defaults || !isEditor()) {
 			return;
 		}
 
-		// The canvas puts the id on the widget wrapper; the img is rendered inside it.
-		(root || d).querySelectorAll('[data-id][data-widget_type^="e-image"], [data-id].elementor-widget-e-image').forEach(function (wrapper) {
-			var el = wrapper.querySelector('img');
-			var settings = el ? editorSettings(wrapper.getAttribute('data-id')) : null;
-			var config = settings ? editorFeatureConfig(settings, 'ha_aia_', defaults) : null;
-			var existing = instances.get(el);
+		var features = EDITOR_FEATURES.filter(function (feature) {
+			return defaults[feature.key];
+		});
 
-			if (!el) {
-				return;
-			}
+		if (!features.length) {
+			return;
+		}
 
-			if (!config || !config.switcher) {
-				if (existing) {
-					destroy(el);
+		(root || d).querySelectorAll('[data-id]').forEach(function (node) {
+			var id = node.getAttribute('data-id');
+			var type = editorElementType(id);
+
+			features.forEach(function (feature) {
+				if (feature.type !== type) {
+					return;
 				}
 
-				return;
-			}
+				var el = feature.target(node);
 
-			var signature = JSON.stringify(config);
+				if (!el) {
+					return;
+				}
 
-			if (existing && existing.signature === signature) {
-				return;
-			}
+				var settings = editorSettings(id);
+				var config = settings ? editorFeatureConfig(settings, feature.prefix, defaults[feature.key]) : null;
+				var existing = instances.get(el);
 
-			if (existing) {
-				destroy(el);
-			}
+				if (!config || !config.switcher) {
+					if (existing) {
+						destroy(el);
+					}
 
-			var instance = new AppearingImage(el, config);
+					return;
+				}
 
-			instance.signature = signature;
-			register(el, instance);
+				var configJSON = JSON.stringify(config);
+				var titleJSON = settings.title ? JSON.stringify(settings.title) : '';
+
+				if (existing) {
+					// Editing the text, or any change that re-renders the element, replaces
+					// the markup the runtime built; the class it adds is then gone.
+					var replaced = existing.built && !el.classList.contains('ha-hta-yes');
+					var changed = existing.configJSON !== configJSON;
+
+					if (!changed && existing.titleJSON === titleJSON && !replaced) {
+						return;
+					}
+
+					if (replaced || existing.titleJSON !== titleJSON) {
+						// Do not restore the old markup over what the editor rendered.
+						if (existing.abandon) {
+							existing.abandon();
+						}
+
+						instances.delete(el);
+						live = live.filter(function (item) {
+							return item !== el;
+						});
+					} else {
+						destroy(el);
+					}
+				}
+
+				var instance = new feature.Runtime(el, config);
+
+				instance.configJSON = configJSON;
+				instance.titleJSON = titleJSON;
+				register(el, instance);
+			});
 		});
 	}
 
 	function scan(root) {
-		scanEditorImages(root);
+		scanEditorFeatures(root);
 
 		(root || d).querySelectorAll('[data-ha-atomic="image-cycle"]').forEach(function (el) {
 			if (!instances.has(el)) {
@@ -1273,7 +1374,7 @@
 		// A setting that does not change the markup (the animation settings) fires
 		// no DOM mutation, so the editor settings are also checked on a timer.
 		setInterval(function () {
-			scanEditorImages(d);
+			scanEditorFeatures(d);
 		}, 500);
 	}
 

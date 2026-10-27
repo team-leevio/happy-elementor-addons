@@ -240,7 +240,7 @@ class Atomic_Manager {
 	private static function editor_feature_defaults() {
 		$defaults = [];
 
-		foreach ( [ 'appearing-image-animation' ] as $key ) {
+		foreach ( [ 'appearing-image-animation', 'text-animation' ] as $key ) {
 			$item = Atomic_Registry::features()[ $key ] ?? null;
 
 			if ( ! $item || ! in_array( $key, self::get_active( 'features' ), true ) ) {
@@ -304,6 +304,10 @@ class Atomic_Manager {
 
 		if ( in_array( 'appearing-image-animation', self::get_active( 'features' ), true ) ) {
 			wp_enqueue_style( 'happy-atomic-aia' );
+		}
+
+		if ( in_array( 'text-animation', self::get_active( 'features' ), true ) ) {
+			wp_enqueue_style( 'happy-atomic-hta' );
 		}
 	}
 

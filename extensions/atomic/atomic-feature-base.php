@@ -6,6 +6,7 @@ use Elementor\Modules\AtomicWidgets\Controls\Types\Select_Control;
 use Elementor\Modules\AtomicWidgets\Controls\Types\Switch_Control;
 use Elementor\Modules\AtomicWidgets\Controls\Types\Text_Control;
 use Elementor\Modules\AtomicWidgets\PropDependencies\Manager as Dependency_Manager;
+use Elementor\Modules\AtomicWidgets\PropTypes\Color_Prop_Type;
 use Elementor\Modules\AtomicWidgets\PropTypes\Primitives\Boolean_Prop_Type;
 use Elementor\Modules\AtomicWidgets\PropTypes\Primitives\Number_Prop_Type;
 use Elementor\Modules\AtomicWidgets\PropTypes\Primitives\String_Prop_Type;
@@ -26,7 +27,7 @@ require_once HAPPY_ADDONS_DIR_PATH . 'classes/atomic-field-control.php';
  * Field spec: [ 'type' => bool|enum|number|string, 'default' => mixed,
  * 'label' => string, 'description' => string, 'options' => [value => label] (enum),
  * 'icons' => [value => @elementor/icons name] (enum shown as icon buttons),
- * 'min'/'max'/'step' => number, 'show' => [ other_key => value|value[] ] ]
+ * 'min'/'max'/'step' => number, 'color' type = color picker, 'show' => [ other_key => value|value[] ] ]
  */
 abstract class Atomic_Feature_Base {
 
@@ -83,6 +84,9 @@ abstract class Atomic_Feature_Base {
 					break;
 				case 'number':
 					$type = Number_Prop_Type::make()->float()->default( $field['default'] );
+					break;
+				case 'color':
+					$type = Color_Prop_Type::make();
 					break;
 				default:
 					$type = String_Prop_Type::make()->default( (string) $field['default'] );
@@ -176,6 +180,9 @@ abstract class Atomic_Feature_Base {
 					$description
 				);
 
+			case 'color':
+				return Atomic_Field_Control::color( $prop, $label, $description );
+
 			default:
 				$control = Text_Control::bind_to( $prop );
 
@@ -248,7 +255,7 @@ abstract class Atomic_Feature_Base {
 						$value = min( $field['max'], $value );
 					}
 					break;
-				default:
+				default: // string, color
 					$value = sanitize_text_field( (string) $value );
 			}
 

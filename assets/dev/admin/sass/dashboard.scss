@@ -1409,7 +1409,8 @@ span.ha-search-action--btn input#ha-widget-search {
 // Enable All / Disable All of the Atomic lists use the Happy base colors.
 .ha-atomic-panel .ha-action--btn {
 	&[data-action="enable_atomic_widget"],
-	&[data-action="enable_atomic_feature"] {
+	&[data-action="enable_atomic_feature"],
+	&[data-action="enable_atomic_gsap"] {
 		color: $primary-color;
 
 		&:hover,
@@ -1421,7 +1422,8 @@ span.ha-search-action--btn input#ha-widget-search {
 	}
 
 	&[data-action="disable_atomic_widget"],
-	&[data-action="disable_atomic_feature"] {
+	&[data-action="disable_atomic_feature"],
+	&[data-action="disable_atomic_gsap"] {
 		color: $secondary-color;
 
 		&:hover,

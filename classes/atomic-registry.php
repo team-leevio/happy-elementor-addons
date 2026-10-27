@@ -18,6 +18,7 @@ class Atomic_Registry {
 			'image-cycle' => [
 				'title'     => __( 'Image Cycle', 'happy-elementor-addons' ),
 				'icon'      => 'hm hm-net',
+				'cat'       => 'creative',
 				'is_active' => true,
 				'is_pro'    => false,
 				'is_gsap'   => true,

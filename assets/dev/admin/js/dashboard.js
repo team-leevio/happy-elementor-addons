@@ -198,6 +198,12 @@
 					$toggle_atomic_feature.prop('checked', true);
 				} else if ('disable_atomic_feature' === action) {
 					$toggle_atomic_feature.prop('checked', false);
+				} else if ('enable_atomic_gsap' === action) {
+					$toggle_atomic_widget.prop('checked', true);
+					$toggle_atomic_feature.prop('checked', true);
+				} else if ('disable_atomic_gsap' === action) {
+					$toggle_atomic_widget.prop('checked', false);
+					$toggle_atomic_feature.prop('checked', false);
 				} else if ('enable_gsap' === action) {
 					$toggle_feature.prop('checked', true);
 					$toggle_widget.prop('checked', true);
