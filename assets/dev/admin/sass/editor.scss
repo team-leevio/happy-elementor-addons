@@ -152,3 +152,9 @@
 #elementor-panel-categories #elementor-panel-category-happy_addons_theme_builder {
 	order: -2;
 }
+
+// Atomic widgets: Elementor's Atomic badge sits top right, over the Happy icon.
+.elementor-panel .elementor-element[data-library-element-type^="ha-a-"] > .eicon-atomic {
+	inset-inline-end: auto;
+	inset-inline-start: 6px;
+}

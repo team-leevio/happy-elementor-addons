@@ -19,14 +19,16 @@ $supported = Atomic_Manager::is_environment_supported();
 	<?php if ( 'widgets' === $tab ) : ?>
 		<input type="hidden" name="atomic_scope" value="1">
 		<div class="ha-dashboard-panel__header">
-			<div class="ha-dashboard-panel__header-content">
+			<div class="ha-dashboard-panel__header-content ha-atomic-hero">
+				<div class="ha-atomic-hero__text">
 				<h2><?php esc_html_e( 'Elementor V4 (Atomic) Integration', 'happy-elementor-addons' ); ?></h2>
 				<p class="f16"><?php esc_html_e( 'Happy Addons components built for Elementor Atomic elements. They are separate from the Classic widgets and features: turning them on or off here never changes the V3 settings.', 'happy-elementor-addons' ); ?></p>
+				</div>
 				<div class="ha-dashboard-widgets__item ha-atomic-switch">
 					<span class="ha-dashboard-widgets__item-icon">
 						<svg class="ha-atomic-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1.6" fill="currentColor"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></svg>
 					</span>
-					<h3 class="ha-dashboard-widgets__item-title"><label for="ha-atomic-integration"><?php esc_html_e( 'Enable Atomic Integration', 'happy-elementor-addons' ); ?></label></h3>
+					<h3 class="ha-dashboard-widgets__item-title"><label for="ha-atomic-integration"><?php esc_html_e( 'Enable V4(Atomic)', 'happy-elementor-addons' ); ?></label></h3>
 					<div class="ha-dashboard-widgets__item-toggle ha-toggle">
 						<input id="ha-atomic-integration" <?php checked( $enabled ); ?> type="checkbox" class="ha-toggle__check ha-atomic-integration" name="atomic_integration" value="on">
 						<b class="ha-toggle__switch"></b><b class="ha-toggle__track"></b>

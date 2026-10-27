@@ -1318,8 +1318,12 @@ span.ha-search-action--btn input#ha-widget-search {
 		font-weight: 700;
 		cursor: pointer;
 
+		&:hover {
+			color: $primary-color;
+		}
+
 		&.is-active {
-			background: #2b2b2b;
+			background-image: linear-gradient(135deg, $primary-color 25%, $secondary-color 100%);
 			color: #fff;
 		}
 	}
@@ -1340,13 +1344,45 @@ span.ha-search-action--btn input#ha-widget-search {
 	line-height: 1.5;
 }
 
+.ha-atomic-hero {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px 32px;
+
+	&__text {
+		flex: 1 1 380px;
+		min-width: 0;
+	}
+}
+
 .ha-atomic-switch {
-	margin-top: 20px;
-	max-width: 360px;
+	flex: 0 0 auto;
+	width: auto !important;
+	min-width: 280px;
+	margin: 0 !important;
+	padding: 18px 22px !important;
+	background: #fff;
+	border-color: rgba($primary-color, 0.25) !important;
+	box-shadow: 0 4px 18px rgba($primary-color, 0.08);
 
 	.ha-atomic-icon {
 		display: block;
 		margin: 0 auto;
+	}
+
+	// The shared toggle is absolutely positioned; here it takes part in the row.
+	.ha-dashboard-widgets__item-toggle {
+		position: relative !important;
+		right: auto;
+		flex: 0 0 auto;
+		margin-left: 24px;
+	}
+
+	.ha-dashboard-widgets__item-title {
+		flex: 1 1 auto;
+		white-space: nowrap;
 	}
 }
 
@@ -1367,5 +1403,32 @@ span.ha-search-action--btn input#ha-widget-search {
 	p {
 		margin: 0;
 		font-size: 14px;
+	}
+}
+
+// Enable All / Disable All of the Atomic lists use the Happy base colors.
+.ha-atomic-panel .ha-action--btn {
+	&[data-action="enable_atomic_widget"],
+	&[data-action="enable_atomic_feature"] {
+		color: $primary-color;
+
+		&:hover,
+		&:focus {
+			color: #fff;
+			background-color: $primary-color;
+			border-color: $primary-color;
+		}
+	}
+
+	&[data-action="disable_atomic_widget"],
+	&[data-action="disable_atomic_feature"] {
+		color: $secondary-color;
+
+		&:hover,
+		&:focus {
+			color: #fff;
+			background-color: $secondary-color;
+			border-color: $secondary-color;
+		}
 	}
 }
