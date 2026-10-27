@@ -197,3 +197,25 @@ if (! function_exists('ha_is_scroll_flow_enabled')) {
 		return apply_filters( 'happyaddons/extensions/scroll_flow', true );
 	}
 }
+
+if ( ! function_exists( 'ha_is_atomic_integration_enabled' ) ) {
+	/**
+	 * Check if the Elementor V4 (Atomic) integration switch is on
+	 *
+	 * @return bool
+	 */
+	function ha_is_atomic_integration_enabled() {
+		return \Happy_Addons\Elementor\Classes\Atomic_Manager::is_enabled();
+	}
+}
+
+if ( ! function_exists( 'ha_is_atomic_environment_supported' ) ) {
+	/**
+	 * Check if Elementor 4+ with the Atomic experiment is available
+	 *
+	 * @return bool
+	 */
+	function ha_is_atomic_environment_supported() {
+		return \Happy_Addons\Elementor\Classes\Atomic_Manager::is_environment_supported();
+	}
+}

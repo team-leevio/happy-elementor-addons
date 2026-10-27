@@ -103,8 +103,13 @@ const buildSrcFiles = [
 	"!./ARCHITECTURE_OVERVIEW.md"
 ];
 
+// Elementor V4 (Atomic) styles are loaded per component, so they are kept
+// out of the main.css bundle (see makeAtomicCSS, which skips csscomb because
+// it cannot parse :where()/:is() selector lists).
+const atomicSassFiles = "assets/dev/sass/atomic/**/*.scss";
+
 function makeFrontendCSS() {
-	return src(frontendSassFiles)
+	return src([frontendSassFiles, "!" + atomicSassFiles])
 		.pipe(gulpPlumberNotifier())
 		.pipe(compileSass())
 		.pipe(gulpAutoPrefixer(AUTOPREFIXER_BROWSERS))
@@ -116,6 +121,16 @@ function makeFrontendCSS() {
 		.pipe(dest("assets/css"))
 		.pipe(gulpRename({ suffix: ".min" }))
 		.pipe(dest("assets/css"));
+}
+
+function makeAtomicCSS() {
+	return src(atomicSassFiles)
+		.pipe(gulpPlumberNotifier())
+		.pipe(compileSass())
+		.pipe(gulpAutoPrefixer(AUTOPREFIXER_BROWSERS))
+		.pipe(gulpCsso())
+		.pipe(gulpRename({ suffix: ".min" }))
+		.pipe(dest("assets/css/widgets/atomic"));
 }
 
 function makeBackendCSS() {
@@ -167,7 +182,7 @@ function swallowError(error) {
 }
 
 function startWatching() {
-	watch(frontendSassFiles, makeFrontendCSS);
+	watch(frontendSassFiles, series(makeFrontendCSS, makeAtomicCSS));
 	watch(backendSassFiles, makeBackendCSS);
 	watch(frontendJSFiles, makeFrontendJS);
 	watch(backendJSFiles, makeBackendJS);
@@ -221,6 +236,7 @@ export const build = series(
 	deleteBuild,
 	deleteOld,
 	makeFrontendCSS,
+	makeAtomicCSS,
 	makeBackendCSS,
 	makeFrontendJS,
 	makeBackendJS,
@@ -231,6 +247,7 @@ export const zip = series(
 	deleteBuild,
 	deleteOld,
 	makeFrontendCSS,
+	makeAtomicCSS,
 	makeBackendCSS,
 	makeFrontendJS,
 	makeBackendJS,
@@ -241,6 +258,7 @@ export const clean = deleteOld;
 
 export const production = series(
 	makeFrontendCSS,
+	makeAtomicCSS,
 	makeBackendCSS,
 	makeFrontendJS,
 	makeBackendJS,
@@ -248,6 +266,7 @@ export const production = series(
 
 export default series(
 	makeFrontendCSS,
+	makeAtomicCSS,
 	makeBackendCSS,
 	makeFrontendJS,
 	makeBackendJS,

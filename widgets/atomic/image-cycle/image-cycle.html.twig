@@ -1,0 +1,24 @@
+{% import 'elementor/macros' as m %}
+{% macro card(item) %}{% if item and item.image and item.image.src %}<div class="ha-ic-card">{% if item.link and item.link.href %}<a class="ha-ic-card__link" href="{{ item.link.href | e('full_url') }}" target="{{ item.link.target | default('_self') | e('html_attr') }}"{% if item.link.target == '_blank' %} rel="noopener noreferrer"{% endif %}>{% endif %}<img class="ha-ic-card__img" src="{{ item.image.src | e('full_url') }}" alt="" />{% if item.link and item.link.href %}</a>{% endif %}</div>{% endif %}{% endmacro %}
+{% import _self as c %}
+{%- set mode = settings.animation_mode | default('variation-1') -%}
+{%- set title_tag = settings.title_tag | default('h2') -%}
+{%- set subtitle_tag = settings.subtitle_tag | default('h5') -%}
+{%- set classes = settings.classes | merge( [ base_styles.base, 'ha-ic-wrapper', 'ha-a-image-cycle', 'ha-ic--' ~ mode ] ) | join(' ') -%}
+<div class="{{ classes }}" data-interaction-id="{{ interaction_id }}" data-ha-atomic="image-cycle" data-animation-mode="{{ mode | e('html_attr') }}" data-ha-config="{{ settings | json_encode | e('html_attr') }}"
+    {{- m.render_custom_attributes(settings) }}>
+    <div class="ha-ic-content">
+        <div class="ha-ic-scene">
+            {% if mode == 'variation-3' %}<div class="ha-ic-container">{% endif %}
+            <div class="ha-ic-group">
+                {% for item in settings.images | default([]) | slice(0, 20) %}{{ c.card(item) }}{% endfor %}
+            </div>
+            {% if mode == 'variation-3' %}</div>{% endif %}
+        </div>
+        <div class="ha-ic-headings">
+            {% if settings.title %}<{{ title_tag | e('html_tag') }} class="ha-ic-heading__main">{{ settings.title | e }}</{{ title_tag | e('html_tag') }}>{% endif %}
+            {% if settings.title_second %}<{{ title_tag | e('html_tag') }} class="ha-ic-heading__main">{{ settings.title_second | e }}</{{ title_tag | e('html_tag') }}>{% endif %}
+            {% if settings.subtitle %}<{{ subtitle_tag | e('html_tag') }} class="ha-ic-heading__subtitle">{{ settings.subtitle | e }}</{{ subtitle_tag | e('html_tag') }}>{% endif %}
+        </div>
+    </div>
+</div>

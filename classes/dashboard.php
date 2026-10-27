@@ -136,6 +136,22 @@ class Dashboard {
         Credentials_Manager::save_credentials( $credentials );
     }
 
+    /**
+     * Elementor V4 (Atomic) settings. Independent from the V3 lists and only
+     * written when the form carries the Atomic marker, so a save that did not
+     * render the V4 panel can never wipe them.
+     */
+    public static function save_atomic_data( $data ) {
+        if ( empty( $data['atomic_scope'] ) ) {
+            return;
+        }
+
+        update_option( Atomic_Manager::OPTION_ENABLED, ! empty( $data['atomic_integration'] ) ? 'on' : 'off' );
+
+        Atomic_Manager::save_active( 'widgets', ! empty( $data['atomic_widgets'] ) ? (array) $data['atomic_widgets'] : [] );
+        Atomic_Manager::save_active( 'features', ! empty( $data['atomic_features'] ) ? (array) $data['atomic_features'] : [] );
+    }
+
     public static function disable_unused_widget( $data ) {
         $disable_unused_widgets = ( ( ! empty( $data['disable-unused-widgets'] ) ) && ( 'true' == $data['disable-unused-widgets'] ) ) ? true : false;
 
@@ -275,6 +291,12 @@ class Dashboard {
     }
 
     public static function get_widgets() {
+        static $cache = null;
+
+        if ( null !== $cache ) {
+            return $cache;
+        }
+
         $widgets_map = self::get_real_widgets_map();
 
         if ( ! ha_has_pro() ) {
@@ -285,7 +307,9 @@ class Dashboard {
 		}
 
         uksort( $widgets_map, [ __CLASS__, 'sort_widgets' ] );
-        return $widgets_map;
+        $cache = $widgets_map;
+
+        return $cache;
     }
 
 
@@ -328,12 +352,20 @@ class Dashboard {
     }
 
     public static function get_features() {
+        static $cache = null;
+
+        if ( null !== $cache ) {
+            return $cache;
+        }
+
         $widgets_map = self::get_real_features_map();
 
         $widgets_map = array_merge( $widgets_map, Extensions_Manager::get_pro_features_map() );
 
         uksort( $widgets_map, [ __CLASS__, 'sort_widgets' ] );
-        return $widgets_map;
+        $cache = $widgets_map;
+
+        return $cache;
     }
 
     public static function get_gsap_features() {
@@ -349,12 +381,20 @@ class Dashboard {
     }
 
     public static function get_extensions() {
+        static $cache = null;
+
+        if ( null !== $cache ) {
+            return $cache;
+        }
+
         $extensions_map = self::get_real_extensions_map();
 
         $extensions_map = array_merge( $extensions_map, Extensions_Manager::get_pro_extensions_map() );
 
         uksort( $extensions_map, [ __CLASS__, 'sort_widgets' ] );
-        return $extensions_map;
+        $cache = $extensions_map;
+
+        return $cache;
     }
 
     public static function get_credentials() {
@@ -424,34 +464,46 @@ class Dashboard {
     }
 
 	public static function get_raw_usage( $format = 'raw' ) {
-		/** @var Module $module */
+		static $cache = [];
 
-		$module = \Elementor\Modules\Usage\Module::instance();
-		$usage = PHP_EOL;
+		if ( isset( $cache[ $format ] ) ) {
+			return $cache[ $format ];
+		}
+
+		// Read Elementor's stored usage directly. Elementor's own formatter looks up
+		// every element's widget type, which boots (and instantiates) all the
+		// registered widgets: that is slow and can exhaust memory on this page.
+		$usage = get_option( \Elementor\Modules\Usage\Module::OPTION_NAME, [] );
 		$widgets_list = [];
-		if( ha_has_pro() ){
+
+		if ( ha_has_pro() ) {
 			$all_widgets = self::get_widgets();
-		}else{
+		} else {
 			$all_widgets = Widgets_Manager::get_local_widgets_map();
 		}
-        if(is_array($module->get_formatted_usage( $format ))||is_object($module->get_formatted_usage( $format ))){
-            foreach ( $module->get_formatted_usage( $format ) as $doc_type => $data ) {
-                $usage .= "\t{$data['title']} : " . $data['count'] . PHP_EOL;
 
-                if(is_array($data['elements'])||is_object($data['elements'])){
-                    foreach ( $data['elements'] as $element => $count ) {
-                        $usage .= "\t\t{$element} : {$count}" . PHP_EOL;
-                        $is_happy_widget = strpos( $element , "ha-") !== false;
-                        $widget_key = str_replace('ha-','',$element);
+		if ( is_array( $usage ) ) {
+			foreach ( $usage as $elements ) {
+				if ( ! is_array( $elements ) ) {
+					continue;
+				}
 
-                        if( $is_happy_widget && array_key_exists( $widget_key, $all_widgets ) ) {
+				foreach ( $elements as $element => $data ) {
+					if ( in_array( $element, [ 'section', 'column' ], true ) || ! is_array( $data ) ) {
+						continue;
+					}
 
-                            $widgets_list[ $widget_key ] = $count;
-                        }
-                    }
-                }
-            }
-        }
+					$widget_key = str_replace( 'ha-', '', $element );
+
+					if ( false !== strpos( $element, 'ha-' ) && array_key_exists( $widget_key, $all_widgets ) ) {
+						$widgets_list[ $widget_key ] = isset( $data['count'] ) ? $data['count'] : 0;
+					}
+				}
+			}
+		}
+
+		$cache[ $format ] = $widgets_list;
+
 		return $widgets_list;
 	}
 
@@ -468,6 +520,12 @@ class Dashboard {
 	}
 
     public static function get_tabs() {
+        static $cached_tabs = null;
+
+        if ( null !== $cached_tabs ) {
+            return $cached_tabs;
+        }
+
         $tabs = [
             'home' => [
                 'title' => esc_html__( 'Home', 'happy-elementor-addons' ),
@@ -503,7 +561,9 @@ class Dashboard {
             ],
         ];
 
-        return ha_safe_apply_filters( 'happyaddons_dashboard_get_tabs', $tabs );
+        $cached_tabs = ha_safe_apply_filters( 'happyaddons_dashboard_get_tabs', $tabs );
+
+        return $cached_tabs;
     }
 
     private static function load_template( $template ) {
@@ -529,19 +589,46 @@ class Dashboard {
     }
 
     public static function render_widgets() {
-        self::load_template( 'widgets' );
+        self::render_versioned( 'widgets' );
     }
 
     public static function render_features() {
-        self::load_template( 'features' );
+        self::render_versioned( 'features' );
     }
 
     public static function render_extensions() {
-        self::load_template( 'extensions' );
+        self::render_versioned( 'extensions' );
     }
 
     public static function render_gsap() {
-        self::load_template( 'gsap' );
+        self::render_versioned( 'gsap' );
+    }
+
+    /**
+     * Tab being rendered by the V4 (Atomic) panel template.
+     *
+     * @var string
+     */
+    public static $atomic_tab = '';
+
+    /**
+     * Render a tab as a V3 / V4 pair. Both panels live in the same form; the
+     * V3 template is untouched and the V4 panel only has its own fields.
+     */
+    private static function render_versioned( $tab ) {
+        self::$atomic_tab = $tab;
+        ?>
+        <div class="ha-version-switcher" role="tablist" data-tab="<?php echo esc_attr( $tab ); ?>">
+            <button type="button" class="ha-version-switcher__btn is-active" data-version="v3"><?php esc_html_e( 'Elementor V3 (Classic)', 'happy-elementor-addons' ); ?></button>
+            <button type="button" class="ha-version-switcher__btn" data-version="v4"><?php esc_html_e( 'Elementor V4 (Atomic)', 'happy-elementor-addons' ); ?></button>
+        </div>
+        <div class="ha-version-panel" data-version="v3">
+            <?php self::load_template( $tab ); ?>
+        </div>
+        <div class="ha-version-panel" data-version="v4" hidden>
+            <?php self::load_template( 'atomic-panel' ); ?>
+        </div>
+        <?php
     }
 
     public static function render_credentials() {

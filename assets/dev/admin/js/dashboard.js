@@ -143,8 +143,11 @@
 			var $currentAction = $(this),
 				filter = $currentAction.data('filter'),
 				action = $currentAction.data('action'),
-				$scope = $currentAction.closest('.ha-dashboard-tabs__content-item'),
-				$all = ( $scope.length ? $scope : $widgetsList ).find('.ha-dashboard-widgets__item'),
+				// A bulk action only touches the panel (V3 or V4) it was clicked in
+				$scope = $currentAction.closest('.ha-version-panel').length
+					? $currentAction.closest('.ha-version-panel')
+					: $currentAction.closest('.ha-dashboard-tabs__content-item'),
+				$all = ( $scope.length ? $scope : $widgetsList ).find('.ha-dashboard-widgets__item').not('.ha-atomic-switch'),
 				$free = $all.not('.item--is-pro'),
 				$pro = $all.filter('.item--is-pro');
 
@@ -169,7 +172,9 @@
 
 			var $toggle_widget = $all.not('.item--is-placeholder').not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-widget'),
 				$toggle_feature = $all.not('.item--is-placeholder').not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-feature'),
-				$toggle_extension = $all.not('.item--is-placeholder').not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-extension');
+				$toggle_extension = $all.not('.item--is-placeholder').not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-extension'),
+				$toggle_atomic_widget = $all.not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-atomic-widget'),
+				$toggle_atomic_feature = $all.not('[style*="display:none"]').not('[style*="display: none"]').find(':checkbox.ha-atomic-feature');
 
 
 			if (action) {
@@ -185,6 +190,14 @@
 					$toggle_extension.prop('checked', true);
 				} else if ('disable_extension' === action) {
 					$toggle_extension.prop('checked', false);
+				} else if ('enable_atomic_widget' === action) {
+					$toggle_atomic_widget.prop('checked', true);
+				} else if ('disable_atomic_widget' === action) {
+					$toggle_atomic_widget.prop('checked', false);
+				} else if ('enable_atomic_feature' === action) {
+					$toggle_atomic_feature.prop('checked', true);
+				} else if ('disable_atomic_feature' === action) {
+					$toggle_atomic_feature.prop('checked', false);
 				} else if ('enable_gsap' === action) {
 					$toggle_feature.prop('checked', true);
 					$toggle_widget.prop('checked', true);
@@ -195,8 +208,43 @@
 				$toggle_widget.trigger('change');
 				$toggle_feature.trigger('change');
 				$toggle_extension.trigger('change');
+				$toggle_atomic_widget.trigger('change');
+				$toggle_atomic_feature.trigger('change');
 			}
 		});
+
+		// V3 / V4 (Atomic) version switcher. The choice is a per-browser
+		// convenience, so storage failures are ignored.
+		var versionKey = 'haDashboardVersion';
+
+		function switchDashboardVersion(version) {
+			$dashboardForm.find('.ha-version-switcher__btn').each(function () {
+				$(this).toggleClass('is-active', $(this).data('version') === version);
+			});
+
+			$dashboardForm.find('.ha-version-panel').each(function () {
+				this.hidden = $(this).data('version') !== version;
+			});
+
+			try {
+				window.localStorage.setItem(versionKey, version);
+			} catch (e) {}
+		}
+
+		$dashboardForm.on('click', '.ha-version-switcher__btn', function (event) {
+			event.preventDefault();
+			switchDashboardVersion($(this).data('version'));
+		});
+
+		var storedVersion = 'v3';
+
+		try {
+			storedVersion = window.localStorage.getItem(versionKey) === 'v4' ? 'v4' : 'v3';
+		} catch (e) {}
+
+		if ('v4' === storedVersion) {
+			switchDashboardVersion('v4');
+		}
 
 		$('.ha-search-action--btn input').on('input', debounce( function ( event ) {
 			event.preventDefault();

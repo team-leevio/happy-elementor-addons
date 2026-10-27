@@ -1297,3 +1297,75 @@ span.ha-search-action--btn input#ha-widget-search {
 	visibility: visible;
 	opacity: 1;
 }
+
+// Elementor V4 (Atomic) version switcher and panel
+.ha-version-switcher {
+	display: inline-flex;
+	gap: 4px;
+	margin: 0 0 20px;
+	padding: 4px;
+	background: #fff;
+	border: 1px solid #e8e8e8;
+	border-radius: 8px;
+
+	&__btn {
+		padding: 9px 18px;
+		border: 0;
+		border-radius: 6px;
+		background: transparent;
+		color: #4b4b4b;
+		font-size: 13px;
+		font-weight: 700;
+		cursor: pointer;
+
+		&.is-active {
+			background: #2b2b2b;
+			color: #fff;
+		}
+	}
+}
+
+.ha-version-panel[hidden] {
+	display: none;
+}
+
+.ha-atomic-notice {
+	margin: 0 0 20px;
+	padding: 14px 18px;
+	border-left: 4px solid #f5a623;
+	border-radius: 4px;
+	background: #fff8e9;
+	color: #5b4300;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.ha-atomic-switch {
+	margin-top: 20px;
+	max-width: 360px;
+
+	.ha-atomic-icon {
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+.ha-atomic-panel--off .ha-atomic-list {
+	opacity: 0.55;
+}
+
+.ha-atomic-empty {
+	padding: 40px 20px;
+	text-align: center;
+	color: #616161;
+
+	h3 {
+		margin: 0 0 8px;
+		font-size: 18px;
+	}
+
+	p {
+		margin: 0;
+		font-size: 14px;
+	}
+}

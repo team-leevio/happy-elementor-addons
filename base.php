@@ -105,6 +105,9 @@ class Base {
 		add_action('elementor/widgets/register', [ HappyAddons_Classes\Widgets_Manager::class, 'register'] );
 		add_action('elementor/frontend/before_render', [ HappyAddons_Classes\Widgets_Manager::class, 'add_global_widget_render_attributes'] );
 
+		/* Atomic_Manager (Elementor V4) */
+		add_action( 'elementor/init', [ HappyAddons_Classes\Atomic_Manager::class, 'init' ] );
+
 		/* Assets_Manager */
 		// Frontend scripts
 		add_action('wp_enqueue_scripts', [HappyAddons_Classes\Assets_Manager::class, 'frontend_register']);
@@ -153,6 +156,7 @@ class Base {
 			add_action( 'happyaddons_save_dashboard_data', [ HappyAddons_Classes\Dashboard::class, 'save_features_data' ] );
 			add_action( 'happyaddons_save_dashboard_data', [ HappyAddons_Classes\Dashboard::class, 'save_extensions_data' ] );
 			add_action( 'happyaddons_save_dashboard_data', [ HappyAddons_Classes\Dashboard::class, 'save_credentials_data' ] );
+			add_action( 'happyaddons_save_dashboard_data', [ HappyAddons_Classes\Dashboard::class, 'save_atomic_data' ] );
 			add_action( 'happyaddons_save_dashboard_data', [ HappyAddons_Classes\Dashboard::class, 'disable_unused_widget' ], 10);
 			add_action( 'in_admin_header', [ HappyAddons_Classes\Dashboard::class, 'remove_all_notices' ], PHP_INT_MAX );
 

@@ -677,9 +677,17 @@ class Widgets_Manager {
 	 * @return array
 	 */
 	public static function get_local_widgets_map() {
+		static $map = null;
+
+		// The map is a large literal with ~150 translated labels and is read by
+		// many callers; build it once, but never before translations can load.
+		if ( null !== $map ) {
+			return $map;
+		}
+
 		// All the widgets are listed below with respective map
 
-		return [
+		$local_map = [
 			'infobox'             => [
 				'cat'       => 'general',
 				'is_active' => true,
@@ -1628,6 +1636,12 @@ class Widgets_Manager {
 				'is_gsap' => true,
 			],
 		];
+
+		if ( did_action( 'init' ) ) {
+			$map = $local_map;
+		}
+
+		return $local_map;
 	}
 
 	public static function get_base_widget_key() {
