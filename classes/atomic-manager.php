@@ -240,7 +240,7 @@ class Atomic_Manager {
 	private static function editor_feature_defaults() {
 		$defaults = [];
 
-		foreach ( [ 'appearing-image-animation' ] as $key ) {
+		foreach ( [ 'appearing-image-animation', 'container-hover-effect' ] as $key ) {
 			$item = Atomic_Registry::features()[ $key ] ?? null;
 
 			if ( ! $item || ! in_array( $key, self::get_active( 'features' ), true ) ) {

@@ -136,6 +136,11 @@
 	register('ha-field', Field, 'custom');
 	register('ha-slider', Slider, 'full', props.numberPropTypeUtil);
 
+	// The core color control is not in the settings registry (only the style tab uses it).
+	if (controls.ColorControl && props.colorPropTypeUtil) {
+		register('ha-color', controls.ColorControl, 'custom', props.colorPropTypeUtil);
+	}
+
 	if (itemUtil) {
 		register('ha-image-item', ImageItem, 'full', itemUtil);
 	}

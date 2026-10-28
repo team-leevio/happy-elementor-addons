@@ -6,6 +6,7 @@ use Elementor\Modules\AtomicWidgets\Controls\Types\Select_Control;
 use Elementor\Modules\AtomicWidgets\Controls\Types\Switch_Control;
 use Elementor\Modules\AtomicWidgets\Controls\Types\Text_Control;
 use Elementor\Modules\AtomicWidgets\PropDependencies\Manager as Dependency_Manager;
+use Elementor\Modules\AtomicWidgets\PropTypes\Color_Prop_Type;
 use Elementor\Modules\AtomicWidgets\PropTypes\Primitives\Boolean_Prop_Type;
 use Elementor\Modules\AtomicWidgets\PropTypes\Primitives\Number_Prop_Type;
 use Elementor\Modules\AtomicWidgets\PropTypes\Primitives\String_Prop_Type;
@@ -23,7 +24,7 @@ require_once HAPPY_ADDONS_DIR_PATH . 'classes/atomic-field-control.php';
  * A feature describes its settings in `fields()`; this class turns that into
  * props, editor controls, and the sanitized frontend config.
  *
- * Field spec: [ 'type' => bool|enum|number|string, 'default' => mixed,
+ * Field spec: [ 'type' => bool|enum|number|string|color, 'default' => mixed,
  * 'label' => string, 'description' => string, 'options' => [value => label] (enum),
  * 'icons' => [value => @elementor/icons name] (enum shown as icon buttons),
  * 'min'/'max'/'step' => number, 'show' => [ other_key => value|value[] ] ]
@@ -44,7 +45,7 @@ abstract class Atomic_Feature_Base {
 	/** Prefix for every prop, e.g. "ha_aia_". */
 	abstract protected function prefix();
 
-	/** Core Atomic element type the feature extends. */
+	/** Core Atomic element type (or list of types) the feature extends. */
 	abstract protected function target_type();
 
 	/** Registry key used as the frontend config bucket. */
@@ -84,6 +85,9 @@ abstract class Atomic_Feature_Base {
 				case 'number':
 					$type = Number_Prop_Type::make()->float()->default( $field['default'] );
 					break;
+				case 'color':
+					$type = Color_Prop_Type::make();
+					break;
 				default:
 					$type = String_Prop_Type::make()->default( (string) $field['default'] );
 			}
@@ -103,7 +107,7 @@ abstract class Atomic_Feature_Base {
 			return $controls;
 		}
 
-		if ( $element::get_element_type() !== $this->target_type() ) {
+		if ( ! $this->is_target( $element ) ) {
 			return $controls;
 		}
 
@@ -119,6 +123,10 @@ abstract class Atomic_Feature_Base {
 			->set_items( $items );
 
 		return $controls;
+	}
+
+	protected function is_target( $element ) {
+		return in_array( $element::get_element_type(), (array) $this->target_type(), true );
 	}
 
 	/**
@@ -166,6 +174,9 @@ abstract class Atomic_Feature_Base {
 					? $control->set_label( $label )
 					: Atomic_Field_Control::wrap( $control, $label, $description );
 
+			case 'color':
+				return Atomic_Field_Control::color( $prop, $label, $description );
+
 			case 'number':
 				return Atomic_Field_Control::number(
 					$prop,
@@ -204,7 +215,7 @@ abstract class Atomic_Feature_Base {
 			return;
 		}
 
-		if ( $element::get_element_type() !== $this->target_type() ) {
+		if ( ! $this->is_target( $element ) ) {
 			return;
 		}
 
@@ -237,6 +248,9 @@ abstract class Atomic_Feature_Base {
 				case 'enum':
 					$value = array_key_exists( (string) $value, $field['options'] ) ? (string) $value : (string) $field['default'];
 					break;
+				case 'color':
+					$value = self::sanitize_color( $value );
+					break;
 				case 'number':
 					$value = (float) $value;
 
@@ -256,6 +270,19 @@ abstract class Atomic_Feature_Base {
 		}
 
 		return $config;
+	}
+
+	/**
+	 * Hex, rgb()/hsl() (with alpha) or a plain color keyword; anything else is dropped.
+	 */
+	protected static function sanitize_color( $value ) {
+		$value = trim( (string) $value );
+
+		if ( preg_match( '/^(#[0-9a-f]{3,8}|(rgb|hsl)a?\(\s*[0-9.%,\s\/-]+\)|[a-z]+)$/i', $value ) ) {
+			return $value;
+		}
+
+		return '';
 	}
 
 	private function dependencies( array $show ) {

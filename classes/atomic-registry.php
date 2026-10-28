@@ -42,6 +42,15 @@ class Atomic_Registry {
 				'class'     => 'Appearing_Image_Animation',
 				'file'      => 'extensions/atomic/appearing-image-animation.php',
 			],
+			'container-hover-effect'    => [
+				'title'     => __( 'Background Hover Effect', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-cursor-hover-click',
+				'is_active' => true,
+				'is_pro'    => false,
+				'is_gsap'   => false,
+				'class'     => 'Container_Hover_Effect',
+				'file'      => 'extensions/atomic/container-hover-effect.php',
+			],
 			'text-animation'            => [
 				'title'     => __( 'Text Animation', 'happy-elementor-addons' ),
 				'icon'      => 'hm hm-text-outline',
