@@ -60,6 +60,8 @@ class Atomic_Registry {
 				'is_gsap'   => false,
 				'class'     => 'Container_Hover_Effect',
 				'file'      => 'extensions/atomic/container-hover-effect.php',
+				'script'         => 'happy-atomic-container-hover',
+				'editor_preview' => true,
 			],
 			'text-animation'            => [
 				'title'     => __( 'Text Animation', 'happy-elementor-addons' ),

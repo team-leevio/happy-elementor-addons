@@ -221,6 +221,17 @@ class Atomic_Manager {
 			);
 		}
 
+		// Editor preview of the Background Hover Effect; the frontend is pure CSS from PHP.
+		if ( ! wp_script_is( 'happy-atomic-container-hover', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-container-hover',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-container-hover' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
 		$styles = [
 			'happy-atomic-image-cycle' => 'image-cycle',
 			'happy-atomic-aia'         => 'appearing-image-animation',

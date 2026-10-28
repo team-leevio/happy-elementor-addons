@@ -49,12 +49,6 @@ class Atomic_Field_Control extends Atomic_Control_Base {
 		return static::make( $control->get_bind(), $control->get_type(), $control->get_props(), $label, $description, $inline );
 	}
 
-	/**
-	 * Color picker (the core "color" control) with the helper text under it.
-	 */
-	public static function color( $bind, $label, $description = '' ) {
-		return static::make( $bind, 'ha-color', [], $label, $description );
-	}
 
 	/**
 	 * Number field; unlike the core control, min, max and step may be fractions.
