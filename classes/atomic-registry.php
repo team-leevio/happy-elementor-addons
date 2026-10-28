@@ -30,10 +30,19 @@ class Atomic_Registry {
 	}
 
 	/**
+	 * Pro features are listed here too (title, icon, 'is_pro') so the dashboard
+	 * shows them, locked, without Happy Addons Pro, as in the Classic lists.
+	 *
+	 * Happy Addons Pro supplies the implementation through the
+	 * "happyaddons_atomic_features" filter: the same entry plus 'path' (absolute
+	 * file), 'fqcn' (feature class) and optionally 'script' / 'style' (registered
+	 * handles enqueued with it) and 'editor_preview' (true when it also runs in
+	 * the editor preview).
+	 *
 	 * @return array[]
 	 */
 	public static function features() {
-		return [
+		$features = [
 			'appearing-image-animation' => [
 				'title'     => __( 'Appearing Image Animation', 'happy-elementor-addons' ),
 				'icon'      => 'huge huge-layer-mask-1',
@@ -52,6 +61,30 @@ class Atomic_Registry {
 				'class'     => 'Text_Animation',
 				'file'      => 'extensions/atomic/text-animation.php',
 			],
+			'infinite-marquee'          => [
+				'title'     => __( 'Infinite Marquee', 'happy-elementor-addons' ),
+				'icon'      => 'huge huge-infinity-02',
+				'is_active' => true,
+				'is_pro'    => true,
+				'is_gsap'   => true,
+			],
 		];
+
+		$extra = apply_filters( 'happyaddons_atomic_features', [] );
+
+		if ( is_array( $extra ) ) {
+			foreach ( $extra as $key => $item ) {
+				if ( ! is_array( $item ) || empty( $item['path'] ) || empty( $item['fqcn'] ) ) {
+					continue;
+				}
+
+				// A listed (Pro) entry keeps its title and icon; the add-on adds the code.
+				$features[ $key ] = isset( $features[ $key ] ) && empty( $features[ $key ]['file'] )
+					? array_merge( $features[ $key ], $item )
+					: ( $features[ $key ] ?? $item );
+			}
+		}
+
+		return $features;
 	}
 }

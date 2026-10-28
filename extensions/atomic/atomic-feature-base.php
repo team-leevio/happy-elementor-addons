@@ -48,6 +48,11 @@ abstract class Atomic_Feature_Base {
 	/** Core Atomic element type the feature extends. */
 	abstract protected function target_type();
 
+	/** Core Atomic element types the feature extends; defaults to the single target type. */
+	protected function target_types() {
+		return [ $this->target_type() ];
+	}
+
 	/** Registry key used as the frontend config bucket. */
 	abstract protected function feature_key();
 
@@ -83,6 +88,7 @@ abstract class Atomic_Feature_Base {
 						->default( (string) $field['default'] );
 					break;
 				case 'number':
+				case 'slider':
 					$type = Number_Prop_Type::make()->float()->default( $field['default'] );
 					break;
 				case 'color':
@@ -107,7 +113,7 @@ abstract class Atomic_Feature_Base {
 			return $controls;
 		}
 
-		if ( $element::get_element_type() !== $this->target_type() ) {
+		if ( ! in_array( $element::get_element_type(), $this->target_types(), true ) ) {
 			return $controls;
 		}
 
@@ -180,6 +186,16 @@ abstract class Atomic_Feature_Base {
 					$description
 				);
 
+			case 'slider':
+				return Atomic_Field_Control::slider(
+					$prop,
+					$label,
+					$field['min'] ?? 0,
+					$field['max'] ?? 100,
+					$field['step'] ?? 1,
+					$description
+				);
+
 			case 'color':
 				return Atomic_Field_Control::color( $prop, $label, $description );
 
@@ -211,7 +227,7 @@ abstract class Atomic_Feature_Base {
 			return;
 		}
 
-		if ( $element::get_element_type() !== $this->target_type() ) {
+		if ( ! in_array( $element::get_element_type(), $this->target_types(), true ) ) {
 			return;
 		}
 
@@ -245,6 +261,7 @@ abstract class Atomic_Feature_Base {
 					$value = array_key_exists( (string) $value, $field['options'] ) ? (string) $value : (string) $field['default'];
 					break;
 				case 'number':
+				case 'slider':
 					$value = (float) $value;
 
 					if ( isset( $field['min'] ) ) {

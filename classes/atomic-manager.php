@@ -79,6 +79,15 @@ class Atomic_Manager {
 		return array_values( array_intersect( $saved, array_keys( $registry ) ) );
 	}
 
+	/**
+	 * Pro features only run while Happy Addons Pro is active.
+	 */
+	public static function is_feature_available( $key ) {
+		$item = Atomic_Registry::features()[ $key ] ?? null;
+
+		return $item && ( empty( $item['is_pro'] ) || ha_has_pro() );
+	}
+
 	public static function save_active( $type, $keys ) {
 		$registry = 'widgets' === $type ? Atomic_Registry::widgets() : Atomic_Registry::features();
 		$option   = 'widgets' === $type ? self::OPTION_ACTIVE_WIDGETS : self::OPTION_ACTIVE_FEATURES;
@@ -145,6 +154,30 @@ class Atomic_Manager {
 		}
 	}
 
+	/**
+	 * Include a feature's file and return its class name ('' when missing).
+	 * Add-on features give an absolute 'path' and a full 'fqcn'.
+	 */
+	private static function load_feature( array $item ) {
+		if ( empty( $item['path'] ) && empty( $item['file'] ) ) {
+			return '';
+		}
+
+		if ( ! empty( $item['path'] ) ) {
+			$file  = $item['path'];
+			$class = '\\' . ltrim( $item['fqcn'], '\\' );
+		} else {
+			$file  = HAPPY_ADDONS_DIR_PATH . $item['file'];
+			$class = '\Happy_Addons\Elementor\Extensions\Atomic\\' . $item['class'];
+		}
+
+		if ( is_readable( $file ) ) {
+			include_once $file;
+		}
+
+		return class_exists( $class ) ? $class : '';
+	}
+
 	public static function init_features() {
 		if ( self::$features_initialized ) {
 			return;
@@ -155,16 +188,14 @@ class Atomic_Manager {
 		$active = self::get_active( 'features' );
 
 		foreach ( Atomic_Registry::features() as $key => $item ) {
-			if ( ! in_array( $key, $active, true ) ) {
+			if ( ! in_array( $key, $active, true ) || ! self::is_feature_available( $key ) ) {
 				continue;
 			}
 
 			try {
-				include_once HAPPY_ADDONS_DIR_PATH . $item['file'];
+				$class = self::load_feature( $item );
 
-				$class = '\Happy_Addons\Elementor\Extensions\Atomic\\' . $item['class'];
-
-				if ( class_exists( $class ) ) {
+				if ( $class ) {
 					$class::instance()->init();
 				}
 			} catch ( \Throwable $e ) {
@@ -221,6 +252,14 @@ class Atomic_Manager {
 			wp_enqueue_script( self::SCRIPT_HANDLE );
 		}
 
+		foreach ( array_keys( $defaults ) as $key ) {
+			$script = Atomic_Registry::features()[ $key ]['script'] ?? '';
+
+			if ( $script ) {
+				wp_enqueue_script( $script );
+			}
+		}
+
 		// Tells the preview which features run there and their default settings
 		// (the preview reads the rest from the editor).
 		if ( $defaults ) {
@@ -240,18 +279,16 @@ class Atomic_Manager {
 	private static function editor_feature_defaults() {
 		$defaults = [];
 
-		foreach ( [ 'appearing-image-animation', 'text-animation' ] as $key ) {
-			$item = Atomic_Registry::features()[ $key ] ?? null;
+		foreach ( Atomic_Registry::features() as $key => $item ) {
+			$previewed = in_array( $key, [ 'appearing-image-animation', 'text-animation' ], true ) || ! empty( $item['editor_preview'] );
 
-			if ( ! $item || ! in_array( $key, self::get_active( 'features' ), true ) ) {
+			if ( ! $previewed || ! self::is_feature_available( $key ) || ! in_array( $key, self::get_active( 'features' ), true ) ) {
 				continue;
 			}
 
-			include_once HAPPY_ADDONS_DIR_PATH . $item['file'];
+			$class = self::load_feature( $item );
 
-			$class = '\Happy_Addons\Elementor\Extensions\Atomic\\' . $item['class'];
-
-			if ( class_exists( $class ) ) {
+			if ( $class ) {
 				$defaults[ $key ] = $class::instance()->defaults();
 			}
 		}
@@ -309,6 +346,12 @@ class Atomic_Manager {
 		if ( in_array( 'text-animation', self::get_active( 'features' ), true ) ) {
 			wp_enqueue_style( 'happy-atomic-hta' );
 		}
+
+		foreach ( Atomic_Registry::features() as $key => $item ) {
+			if ( ! empty( $item['style'] ) && self::is_feature_available( $key ) && in_array( $key, self::get_active( 'features' ), true ) ) {
+				wp_enqueue_style( $item['style'] );
+			}
+		}
 	}
 
 	/**
@@ -325,8 +368,14 @@ class Atomic_Manager {
 
 		wp_enqueue_script( self::SCRIPT_HANDLE );
 
-		$style = 'appearing-image-animation' === $feature ? 'happy-atomic-aia' : 'happy-atomic-hta';
+		$item  = Atomic_Registry::features()[ $feature ] ?? [];
+		$style = $item['style'] ?? ( 'appearing-image-animation' === $feature ? 'happy-atomic-aia' : 'happy-atomic-hta' );
+
 		wp_enqueue_style( $style );
+
+		if ( ! empty( $item['script'] ) ) {
+			wp_enqueue_script( $item['script'] );
+		}
 	}
 
 	/**
