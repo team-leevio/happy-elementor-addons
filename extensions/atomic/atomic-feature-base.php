@@ -27,7 +27,7 @@ require_once HAPPY_ADDONS_DIR_PATH . 'classes/atomic-field-control.php';
  * Field spec: [ 'type' => bool|enum|number|string|color, 'default' => mixed,
  * 'label' => string, 'description' => string, 'options' => [value => label] (enum),
  * 'icons' => [value => @elementor/icons name] (enum shown as icon buttons),
- * 'min'/'max'/'step' => number, 'show' => [ other_key => value|value[] ] ]
+ * 'min'/'max'/'step' => number, 'color' type = color picker, 'show' => [ other_key => value|value[] ] ]
  */
 abstract class Atomic_Feature_Base {
 
@@ -47,6 +47,11 @@ abstract class Atomic_Feature_Base {
 
 	/** Core Atomic element type (or list of types) the feature extends. */
 	abstract protected function target_type();
+
+	/** Core Atomic element types the feature extends; defaults to the single target type. */
+	protected function target_types() {
+		return [ $this->target_type() ];
+	}
 
 	/** Registry key used as the frontend config bucket. */
 	abstract protected function feature_key();
@@ -83,6 +88,7 @@ abstract class Atomic_Feature_Base {
 						->default( (string) $field['default'] );
 					break;
 				case 'number':
+				case 'slider':
 					$type = Number_Prop_Type::make()->float()->default( $field['default'] );
 					break;
 				case 'color':
@@ -107,7 +113,7 @@ abstract class Atomic_Feature_Base {
 			return $controls;
 		}
 
-		if ( ! $this->is_target( $element ) ) {
+		if ( ! in_array( $element::get_element_type(), $this->target_types(), true ) ) {
 			return $controls;
 		}
 
@@ -187,6 +193,19 @@ abstract class Atomic_Feature_Base {
 					$description
 				);
 
+			case 'slider':
+				return Atomic_Field_Control::slider(
+					$prop,
+					$label,
+					$field['min'] ?? 0,
+					$field['max'] ?? 100,
+					$field['step'] ?? 1,
+					$description
+				);
+
+			case 'color':
+				return Atomic_Field_Control::color( $prop, $label, $description );
+
 			default:
 				$control = Text_Control::bind_to( $prop );
 
@@ -215,7 +234,7 @@ abstract class Atomic_Feature_Base {
 			return;
 		}
 
-		if ( ! $this->is_target( $element ) ) {
+		if ( ! in_array( $element::get_element_type(), $this->target_types(), true ) ) {
 			return;
 		}
 
@@ -252,6 +271,7 @@ abstract class Atomic_Feature_Base {
 					$value = self::sanitize_color( $value );
 					break;
 				case 'number':
+				case 'slider':
 					$value = (float) $value;
 
 					if ( isset( $field['min'] ) ) {
@@ -262,7 +282,7 @@ abstract class Atomic_Feature_Base {
 						$value = min( $field['max'], $value );
 					}
 					break;
-				default:
+				default: // string, color
 					$value = sanitize_text_field( (string) $value );
 			}
 

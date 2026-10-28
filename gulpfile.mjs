@@ -67,7 +67,19 @@ const AUTOPREFIXER_BROWSERS = [
 
 const frontendSassFiles = "assets/dev/sass/**/*.scss";
 const backendSassFiles = "assets/dev/admin/sass/**/*.scss";
-const frontendJSFiles = "assets/dev/js/**/*.js";
+const atomicJSDir = "assets/dev/js/atomic/";
+// Elementor V4 (Atomic) scripts are source modules, not standalone files: they
+// are concatenated in this order into one runtime bundle (the first opens the
+// closure, the last closes it), and the editor script is built on its own.
+const atomicRuntimeJSFiles = [
+	"core",
+	"image-cycle",
+	"appearing-image-animation",
+	"text-animation",
+	"lifecycle",
+].map((name) => atomicJSDir + name + ".js");
+const atomicEditorJSFile = atomicJSDir + "editor.js";
+const frontendJSFiles = ["assets/dev/js/**/*.js", "!" + atomicJSDir + "**"];
 const backendJSFiles = "assets/dev/admin/js/**/*.js";
 
 const packageName = packageJSON.name;
@@ -159,6 +171,37 @@ function makeFrontendJS() {
 		.pipe(dest("assets/js"));
 }
 
+function minifyJS(stream) {
+	return stream
+		.pipe(
+			gulpBabel({
+				presets: ["@babel/env"],
+			}),
+		)
+		.pipe(dest("assets/js"))
+		.pipe(gulpUglify())
+		.pipe(gulpRename({ suffix: ".min" }))
+		.pipe(dest("assets/js"));
+}
+
+function makeAtomicRuntimeJS() {
+	return minifyJS(
+		src(atomicRuntimeJSFiles)
+			.pipe(gulpPlumberNotifier())
+			.pipe(gulpConcat("happy-addons-atomic.js")),
+	);
+}
+
+function makeAtomicEditorJS() {
+	return minifyJS(
+		src(atomicEditorJSFile)
+			.pipe(gulpPlumberNotifier())
+			.pipe(gulpRename("happy-atomic-editor.js")),
+	);
+}
+
+const makeAtomicJS = series(makeAtomicRuntimeJS, makeAtomicEditorJS);
+
 function makeBackendJS() {
 	return src(backendJSFiles)
 		.pipe(gulpPlumberNotifier())
@@ -185,6 +228,7 @@ function startWatching() {
 	watch(frontendSassFiles, series(makeFrontendCSS, makeAtomicCSS));
 	watch(backendSassFiles, makeBackendCSS);
 	watch(frontendJSFiles, makeFrontendJS);
+	watch(atomicJSDir + "**/*.js", makeAtomicJS);
 	watch(backendJSFiles, makeBackendJS);
 }
 
@@ -239,6 +283,7 @@ export const build = series(
 	makeAtomicCSS,
 	makeBackendCSS,
 	makeFrontendJS,
+	makeAtomicJS,
 	makeBackendJS,
 	buildRelease,
 );
@@ -250,6 +295,7 @@ export const zip = series(
 	makeAtomicCSS,
 	makeBackendCSS,
 	makeFrontendJS,
+	makeAtomicJS,
 	makeBackendJS,
 	buildZip,
 );
@@ -261,6 +307,7 @@ export const production = series(
 	makeAtomicCSS,
 	makeBackendCSS,
 	makeFrontendJS,
+	makeAtomicJS,
 	makeBackendJS,
 );
 
@@ -269,6 +316,7 @@ export default series(
 	makeAtomicCSS,
 	makeBackendCSS,
 	makeFrontendJS,
+	makeAtomicJS,
 	makeBackendJS,
 	startWatching,
 );

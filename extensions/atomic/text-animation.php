@@ -129,6 +129,10 @@ class Text_Animation extends Atomic_Feature_Base {
 					'top'    => __( 'From Top', 'happy-elementor-addons' ),
 					'bottom' => __( 'From Bottom', 'happy-elementor-addons' ),
 				],
+				'icons'   => [
+					'top'    => 'ArrowDownIcon',
+					'bottom' => 'ArrowUpIcon',
+				],
 				'show'    => $on + [ 'mode' => 'reveal' ],
 			],
 			'smoky_y_offset'           => $num( 80, __( 'Y Offset', 'happy-elementor-addons' ), -500, 500, 'smoky_reveal' ),
@@ -195,8 +199,8 @@ class Text_Animation extends Atomic_Feature_Base {
 				'show'    => $on,
 			],
 			'highlight_color'          => [
-				'type' => 'string', 'default' => '',
-				'label' => __( 'Highlight Color ({text})', 'happy-elementor-addons' ),
+				'type' => 'color', 'default' => '',
+				'label' => __( 'Highlight Color', 'happy-elementor-addons' ),
 				'description' => __( 'Color for text wrapped in {curly braces} ( e.g: Happy {Addons} ) in Content → Heading → Title.', 'happy-elementor-addons' ),
 				'show'  => $on,
 			],

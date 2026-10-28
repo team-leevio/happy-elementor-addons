@@ -77,6 +77,13 @@ class Atomic_Field_Control extends Atomic_Control_Base {
 	}
 
 	/**
+	 * Color picker (hex/rgba, swatch and picker), bound to a "color" prop.
+	 */
+	public static function color( $bind, $label, $description = '' ) {
+		return static::make( $bind, 'ha-color', [], $label, $description, false );
+	}
+
+	/**
 	 * Icon buttons, like the Classic "Choose" control.
 	 *
 	 * @param array $options value => [ 'title' => string, 'icon' => @elementor/icons name ]

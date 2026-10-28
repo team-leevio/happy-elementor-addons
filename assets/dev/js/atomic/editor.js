@@ -6,6 +6,7 @@
  *  - ha-field       a core control with a fractional step / icon buttons and the
  *                   helper text under it
  *  - ha-slider      slider with a number input
+ *  - ha-color       color picker (swatch, hex/rgba field)
  *  - ha-image-item  one Image Cycle item: image, resolution and link
  */
 (function (w) {
@@ -46,7 +47,11 @@
 		var child = h(Child, config.props || {});
 		var label = fieldProps.label ? h(panel.ControlLabel, null, fieldProps.label) : null;
 		var description = fieldProps.description
-			? h(ui.Typography, {variant: 'caption', color: 'text.secondary'}, fieldProps.description)
+			? h(ui.Typography, {
+				variant: 'caption',
+				color: 'text.tertiary',
+				sx: {display: 'block', fontSize: '11px', fontStyle: 'italic', lineHeight: 1.4}
+			}, fieldProps.description)
 			: null;
 
 		var body = fieldProps.inline
@@ -134,6 +139,7 @@
 	});
 
 	register('ha-field', Field, 'custom');
+	register('ha-color', controls.ColorControl, 'full', props.colorPropTypeUtil);
 	register('ha-slider', Slider, 'full', props.numberPropTypeUtil);
 
 	// The core color control is not in the settings registry (only the style tab uses it).
