@@ -186,7 +186,6 @@ if (! function_exists('ha_is_text_stroke_enabled')) {
 		return apply_filters( 'happyaddons/extensions/text_stroke', true );
 	}
 }
-<<<<<<< HEAD
 
 if (! function_exists('ha_is_scroll_flow_enabled')) {
 	/**
@@ -220,5 +219,3 @@ if ( ! function_exists( 'ha_is_atomic_environment_supported' ) ) {
 		return \Happy_Addons\Elementor\Classes\Atomic_Manager::is_environment_supported();
 	}
 }
-=======
->>>>>>> dev
