@@ -86,6 +86,13 @@ class Atomic_Registry {
 				'is_pro'    => true,
 				'is_gsap'   => true,
 			],
+			'sticky-pin-element'        => [
+				'title'     => __( 'Sticky Pin Element', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-sticky',
+				'is_active' => true,
+				'is_pro'    => true,
+				'is_gsap'   => true,
+			],
 		];
 
 		$extra = apply_filters( 'happyaddons_atomic_features', [] );
