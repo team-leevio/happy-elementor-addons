@@ -401,8 +401,23 @@ class Atomic_Manager {
 		// the final state). The keyframe is a safety net if the script never runs.
 		$ids = [];
 
-		foreach ( self::$frontend_config as $elements ) {
+		foreach ( self::$frontend_config as $feature => $elements ) {
+			// A feature that works on a whole container can opt out ('prehide' => false).
+			if ( false === ( Atomic_Registry::features()[ $feature ]['prehide'] ?? true ) ) {
+				continue;
+			}
+
 			$ids = array_merge( $ids, array_keys( $elements ) );
+		}
+
+		if ( ! $ids ) {
+			wp_add_inline_script(
+				self::SCRIPT_HANDLE,
+				'window.HappyAtomic = window.HappyAtomic || {}; window.HappyAtomic.features = ' . wp_json_encode( self::$frontend_config ) . ';',
+				'before'
+			);
+
+			return;
 		}
 
 		$selectors = array_map( function ( $id ) {

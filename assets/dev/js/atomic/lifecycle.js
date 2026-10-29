@@ -75,6 +75,13 @@
 				var config = settings ? editorFeatureConfig(settings, feature.prefix, defaults[feature.key]) : null;
 				var existing = instances.get(el);
 
+				// Features can share an element type: one feature must not destroy or
+				// rebuild the runtime another feature put on the same element.
+				if (existing && existing.featureKey && existing.featureKey !== feature.key) {
+					return;
+				}
+
+
 				if (!config || !config.switcher) {
 					if (existing) {
 						destroy(el);
@@ -113,6 +120,7 @@
 
 				var instance = new feature.Runtime(el, config);
 
+				instance.featureKey = feature.key;
 				instance.configJSON = configJSON;
 				instance.titleJSON = titleJSON;
 				register(el, instance);
@@ -132,8 +140,10 @@
 		var features = (w.HappyAtomic && w.HappyAtomic.features) || {};
 
 		[['appearing-image-animation', AppearingImage], ['text-animation', TextAnimation]].concat(external.map(function (feature) {
-			return [feature.key, feature.Runtime];
-		})).forEach(function (item) {
+			// In the editor the settings scan owns these: a runtime built here from
+			// the saved config is destroyed and rebuilt by that scan, over and over.
+			return isEditor() && feature.type ? null : [feature.key, feature.Runtime];
+		})).filter(Boolean).forEach(function (item) {
 			var configs = features[item[0]] || {};
 
 			Object.keys(configs).forEach(function (id) {
