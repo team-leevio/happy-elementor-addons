@@ -79,6 +79,13 @@ class Atomic_Registry {
 				'is_pro'    => true,
 				'is_gsap'   => true,
 			],
+			'horizontal-scroll'         => [
+				'title'     => __( 'Horizontal Scroll', 'happy-elementor-addons' ),
+				'icon'      => 'huge huge-horizonal-scroll-point-round',
+				'is_active' => true,
+				'is_pro'    => true,
+				'is_gsap'   => true,
+			],
 		];
 
 		$extra = apply_filters( 'happyaddons_atomic_features', [] );
