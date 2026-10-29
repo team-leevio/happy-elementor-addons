@@ -63,6 +63,17 @@ class Atomic_Registry {
 				'script'         => 'happy-atomic-container-hover',
 				'editor_preview' => true,
 			],
+			'foreground-overlay'        => [
+				'title'     => __( 'Foreground Overlay', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-cursor-hover-click',
+				'is_active' => true,
+				'is_pro'    => false,
+				'is_gsap'   => false,
+				'class'     => 'Foreground_Overlay',
+				'file'      => 'extensions/atomic/foreground-overlay.php',
+				'script'         => 'happy-atomic-foreground-overlay',
+				'editor_preview' => true,
+			],
 			'text-animation'            => [
 				'title'     => __( 'Text Animation', 'happy-elementor-addons' ),
 				'icon'      => 'hm hm-text-outline',
