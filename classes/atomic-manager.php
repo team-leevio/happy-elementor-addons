@@ -243,6 +243,17 @@ class Atomic_Manager {
 			);
 		}
 
+		// Editor preview of Liquid Glass; the frontend is pure CSS + SVG from PHP.
+		if ( ! wp_script_is( 'happy-atomic-liquid-glass', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-liquid-glass',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-liquid-glass' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
 		$styles = [
 			'happy-atomic-image-cycle' => 'image-cycle',
 			'happy-atomic-aia'         => 'appearing-image-animation',

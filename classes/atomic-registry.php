@@ -74,6 +74,17 @@ class Atomic_Registry {
 				'script'         => 'happy-atomic-foreground-overlay',
 				'editor_preview' => true,
 			],
+			'liquid-glass'              => [
+				'title'     => __( 'Liquid Glass', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-cursor-hover-click',
+				'is_active' => true,
+				'is_pro'    => false,
+				'is_gsap'   => false,
+				'class'     => 'Liquid_Glass',
+				'file'      => 'extensions/atomic/liquid-glass.php',
+				'script'         => 'happy-atomic-liquid-glass',
+				'editor_preview' => true,
+			],
 			'text-animation'            => [
 				'title'     => __( 'Text Animation', 'happy-elementor-addons' ),
 				'icon'      => 'hm hm-text-outline',

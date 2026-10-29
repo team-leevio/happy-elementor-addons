@@ -113,7 +113,7 @@ abstract class Atomic_Feature_Base {
 			return $controls;
 		}
 
-		if ( ! in_array( $element::get_element_type(), $this->target_types(), true ) ) {
+		if ( ! $this->targets_element( $element ) ) {
 			return $controls;
 		}
 
@@ -133,6 +133,11 @@ abstract class Atomic_Feature_Base {
 
 	protected function is_target( $element ) {
 		return in_array( $element::get_element_type(), (array) $this->target_type(), true );
+	}
+
+	/** Whether the feature's controls and frontend output apply to the element. */
+	protected function targets_element( $element ) {
+		return in_array( $element::get_element_type(), $this->target_types(), true );
 	}
 
 	/**
@@ -234,7 +239,7 @@ abstract class Atomic_Feature_Base {
 			return;
 		}
 
-		if ( ! in_array( $element::get_element_type(), $this->target_types(), true ) ) {
+		if ( ! $this->targets_element( $element ) ) {
 			return;
 		}
 
