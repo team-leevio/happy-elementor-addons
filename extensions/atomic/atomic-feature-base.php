@@ -50,7 +50,7 @@ abstract class Atomic_Feature_Base {
 
 	/** Core Atomic element types the feature extends; defaults to the single target type. */
 	protected function target_types() {
-		return [ $this->target_type() ];
+		return (array) $this->target_type();
 	}
 
 	/** Registry key used as the frontend config bucket. */

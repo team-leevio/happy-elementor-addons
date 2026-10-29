@@ -97,7 +97,7 @@
 			return;
 		}
 
-		d.querySelectorAll('[data-id].e-flexbox-base, [data-id].e-div-block-base, [data-id][data-element_type="e-flexbox"], [data-id][data-element_type="e-div-block"]').forEach(function (el) {
+		d.querySelectorAll('[data-id].e-flexbox-base, [data-id].e-div-block-base, [data-id].e-grid-base, [data-id][data-element_type="e-flexbox"], [data-id][data-element_type="e-div-block"], [data-id][data-element_type="e-grid"]').forEach(function (el) {
 			var id = el.getAttribute('data-id');
 			var settings = editorSettings(id);
 			var tag = d.getElementById('ha-che-' + id);

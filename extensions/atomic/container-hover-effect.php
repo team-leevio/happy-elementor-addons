@@ -25,7 +25,7 @@ class Container_Hover_Effect extends Atomic_Feature_Base {
 	}
 
 	protected function target_type() {
-		return [ 'e-flexbox', 'e-div-block' ];
+		return [ 'e-flexbox', 'e-div-block', 'e-grid' ];
 	}
 
 	protected function feature_key() {
