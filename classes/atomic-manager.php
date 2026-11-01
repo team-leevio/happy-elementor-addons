@@ -254,6 +254,17 @@ class Atomic_Manager {
 			);
 		}
 
+		// Editor preview of Text Stroke; the frontend is pure CSS from PHP.
+		if ( ! wp_script_is( 'happy-atomic-text-stroke', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-text-stroke',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-text-stroke' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
 		$styles = [
 			'happy-atomic-image-cycle' => 'image-cycle',
 			'happy-atomic-aia'         => 'appearing-image-animation',

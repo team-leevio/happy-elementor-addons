@@ -85,6 +85,17 @@ class Atomic_Registry {
 				'script'         => 'happy-atomic-liquid-glass',
 				'editor_preview' => true,
 			],
+			'text-stroke'               => [
+				'title'     => __( 'Text Stroke', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-text-outline',
+				'is_active' => true,
+				'is_pro'    => false,
+				'is_gsap'   => false,
+				'class'     => 'Text_Stroke',
+				'file'      => 'extensions/atomic/text-stroke.php',
+				'script'         => 'happy-atomic-text-stroke',
+				'editor_preview' => true,
+			],
 			'text-animation'            => [
 				'title'     => __( 'Text Animation', 'happy-elementor-addons' ),
 				'icon'      => 'hm hm-text-outline',
