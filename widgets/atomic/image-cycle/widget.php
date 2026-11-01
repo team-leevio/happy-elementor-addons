@@ -214,6 +214,7 @@ class Image_Cycle extends Atomic_Widget_Base {
 			->set_patternLabel( '${value.link.value.destination.value}' )
 			->set_placeholder( __( 'Image', 'happy-elementor-addons' ) )
 			->set_prop_key( 'ha-image-item-array' )
+			->set_is_sortable( true )
 			->hide_toggle();
 
 		return [
