@@ -43,6 +43,13 @@ class Atomic_Registry {
 	 */
 	public static function features() {
 		$features = [
+			'global-animation'          => [
+				'title'     => __( 'Animation', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-alien',
+				'is_active' => true,
+				'is_pro'    => true,
+				'is_gsap'   => true,
+			],
 			'appearing-image-animation' => [
 				'title'     => __( 'Appearing Image Animation', 'happy-elementor-addons' ),
 				'icon'      => 'huge huge-layer-mask-1',
