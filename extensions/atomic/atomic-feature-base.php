@@ -147,7 +147,8 @@ abstract class Atomic_Feature_Base {
 		}
 
 		$controls[] = Section::make()
-			->set_label( $this->section_label() )
+			// The trailing run of zero-width characters (not used by Elementor) marks a Happy section: the editor script adds the Happy icon to it.
+			->set_label( $this->section_label() . "\u{200B}\u{200C}\u{200B}" )
 			->set_id( $this->prefix() . 'section' )
 			->set_items( $items );
 
