@@ -72,11 +72,20 @@ class Atomic_Manager {
 
 		if ( ! is_array( $saved ) ) {
 			return array_keys( array_filter( $registry, function ( $item ) {
-				return ! empty( $item['is_active'] );
+				return ! empty( $item['is_active'] ) && ( empty( $item['is_pro'] ) || ha_has_pro() );
 			} ) );
 		}
 
-		return array_values( array_intersect( $saved, array_keys( $registry ) ) );
+		$active = array_values( array_intersect( $saved, array_keys( $registry ) ) );
+
+		// Pro components are inactive while Happy Addons Pro is not active.
+		if ( ! ha_has_pro() ) {
+			$active = array_values( array_filter( $active, function ( $key ) use ( $registry ) {
+				return empty( $registry[ $key ]['is_pro'] );
+			} ) );
+		}
+
+		return $active;
 	}
 
 	/**
