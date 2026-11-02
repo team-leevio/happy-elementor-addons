@@ -100,6 +100,13 @@ class Atomic_Registry {
 				'is_pro'    => true,
 				'is_gsap'   => true,
 			],
+			'display-condition'         => [
+				'title'     => __( 'Display Condition', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-display-condition',
+				'is_active' => true,
+				'is_pro'    => true,
+				'is_gsap'   => false,
+			],
 		];
 
 		$extra = apply_filters( 'happyaddons_atomic_features', [] );
