@@ -1,0 +1,125 @@
+/* Happy Tooltip for Atomic elements: one floating element appended to <body>
+   and placed by happy-atomic-tooltip.js. Look is driven by --ha-att-* variables. */
+.ha-atomic-tooltip {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99999;
+	box-sizing: border-box;
+	width: var(--ha-att-width, 120px);
+	max-width: calc(100vw - 16px);
+	padding: var(--ha-att-padding-y, 5px) var(--ha-att-padding-x, 10px);
+	border-radius: var(--ha-att-radius, 6px);
+	background: var(--ha-att-bg, #000);
+	color: var(--ha-att-color, #fff);
+	font-size: var(--ha-att-font-size, 14px);
+	font-weight: var(--ha-att-font-weight, 500);
+	line-height: 1.4;
+	text-align: var(--ha-att-align, center);
+	overflow-wrap: break-word;
+	pointer-events: none;
+	opacity: 0;
+	visibility: hidden;
+
+	&[data-trigger="click"] {
+		pointer-events: auto;
+	}
+
+	&.is-visible {
+		opacity: 1;
+		visibility: visible;
+		animation-duration: var(--ha-att-duration, 1000ms);
+		animation-fill-mode: both;
+	}
+
+	&[data-arrow="true"]::after {
+		content: "";
+		position: absolute;
+		border: var(--ha-att-arrow-size, 5px) solid transparent;
+	}
+
+	&[data-position="top"]::after {
+		top: 100%;
+		left: var(--ha-att-arrow-pos, 50%);
+		margin-left: calc(var(--ha-att-arrow-size, 5px) * -1);
+		border-top-color: var(--ha-att-bg, #000);
+	}
+
+	&[data-position="bottom"]::after {
+		bottom: 100%;
+		left: var(--ha-att-arrow-pos, 50%);
+		margin-left: calc(var(--ha-att-arrow-size, 5px) * -1);
+		border-bottom-color: var(--ha-att-bg, #000);
+	}
+
+	&[data-position="left"]::after {
+		left: 100%;
+		top: var(--ha-att-arrow-pos, 50%);
+		margin-top: calc(var(--ha-att-arrow-size, 5px) * -1);
+		border-left-color: var(--ha-att-bg, #000);
+	}
+
+	&[data-position="right"]::after {
+		right: 100%;
+		top: var(--ha-att-arrow-pos, 50%);
+		margin-top: calc(var(--ha-att-arrow-size, 5px) * -1);
+		border-right-color: var(--ha-att-bg, #000);
+	}
+
+	&.is-visible[data-animation="fadeIn"] { animation-name: ha-att-fade-in; }
+	&.is-visible[data-animation="zoomIn"] { animation-name: ha-att-zoom-in; }
+	&.is-visible[data-animation="rollIn"] { animation-name: ha-att-roll-in; }
+	&.is-visible[data-animation="bounce"] { animation-name: ha-att-bounce; }
+	&.is-visible[data-animation="slideInDown"] { animation-name: ha-att-slide-in-down; }
+	&.is-visible[data-animation="slideInLeft"] { animation-name: ha-att-slide-in-left; }
+	&.is-visible[data-animation="slideInRight"] { animation-name: ha-att-slide-in-right; }
+	&.is-visible[data-animation="slideInUp"] { animation-name: ha-att-slide-in-up; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ha-atomic-tooltip.is-visible {
+		animation: none;
+	}
+}
+
+@keyframes ha-att-fade-in {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes ha-att-zoom-in {
+	from { opacity: 0; transform: scale3d(0.3, 0.3, 0.3); }
+	50% { opacity: 1; }
+}
+
+@keyframes ha-att-roll-in {
+	from { opacity: 0; transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg); }
+	to { opacity: 1; transform: none; }
+}
+
+@keyframes ha-att-bounce {
+	from, 20%, 53%, 80%, to { animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); transform: translate3d(0, 0, 0); }
+	40%, 43% { animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06); transform: translate3d(0, -30px, 0); }
+	70% { animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06); transform: translate3d(0, -15px, 0); }
+	90% { transform: translate3d(0, -4px, 0); }
+}
+
+@keyframes ha-att-slide-in-down {
+	from { transform: translate3d(0, -100%, 0); visibility: visible; }
+	to { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes ha-att-slide-in-up {
+	from { transform: translate3d(0, 100%, 0); visibility: visible; }
+	to { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes ha-att-slide-in-left {
+	from { transform: translate3d(-100%, 0, 0); visibility: visible; }
+	to { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes ha-att-slide-in-right {
+	from { transform: translate3d(100%, 0, 0); visibility: visible; }
+	to { transform: translate3d(0, 0, 0); }
+}

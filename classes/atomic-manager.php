@@ -265,10 +265,22 @@ class Atomic_Manager {
 			);
 		}
 
+		// Happy Tooltip: configs come from PHP on the frontend, from the editor settings in the preview.
+		if ( ! wp_script_is( 'happy-atomic-tooltip', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-tooltip',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-tooltip' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
 		$styles = [
 			'happy-atomic-image-cycle' => 'image-cycle',
 			'happy-atomic-aia'         => 'appearing-image-animation',
 			'happy-atomic-hta'         => 'heading-text-animation',
+			'happy-atomic-tooltip'     => 'tooltip',
 		];
 
 		foreach ( $styles as $handle => $file ) {
