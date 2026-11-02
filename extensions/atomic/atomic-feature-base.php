@@ -105,7 +105,25 @@ abstract class Atomic_Feature_Base {
 			$schema[ $prop ] = $type;
 		}
 
-		return $schema;
+		return $schema + $this->extra_props();
+	}
+
+	/**
+	 * Props that are not a plain field (e.g. a repeater), keyed by full prop name.
+	 *
+	 * @return array<string,\Elementor\Modules\AtomicWidgets\PropTypes\Contracts\Prop_Type>
+	 */
+	protected function extra_props() {
+		return [];
+	}
+
+	/**
+	 * Panel controls for extra_props(), keyed by the field key they follow.
+	 *
+	 * @return array<string,object>
+	 */
+	protected function extra_controls() {
+		return [];
 	}
 
 	public function add_controls( $controls, $element ) {
@@ -118,13 +136,19 @@ abstract class Atomic_Feature_Base {
 		}
 
 		$items = [];
+		$extra = $this->extra_controls();
 
 		foreach ( $this->fields() as $key => $field ) {
 			$items[] = $this->control( $this->prefix() . $key, $field );
+
+			if ( isset( $extra[ $key ] ) ) {
+				$items[] = $extra[ $key ];
+			}
 		}
 
 		$controls[] = Section::make()
-			->set_label( $this->section_label() )
+			// The trailing run of zero-width characters (not used by Elementor) marks a Happy section: the editor script adds the Happy icon to it.
+			->set_label( $this->section_label() . "\u{200B}\u{200C}\u{200B}" )
 			->set_id( $this->prefix() . 'section' )
 			->set_items( $items );
 

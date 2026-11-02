@@ -150,4 +150,46 @@
 	if (itemUtil) {
 		register('ha-image-item', ImageItem, 'full', itemUtil);
 	}
+
+	/* ---------------------------------------------------------------- *
+	 * Happy icon on the section of every Happy Atomic feature, like the
+	 * Classic panel. PHP ends those section labels with a run of zero-width characters.
+	 * ---------------------------------------------------------------- */
+	var MARK = '\u200B\u200C\u200B';
+
+	function addSectionIcons() {
+		var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+			acceptNode: function (node) {
+				return node.nodeValue.slice(-MARK.length) === MARK ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+			}
+		});
+		var nodes = [];
+
+		while (walker.nextNode()) {
+			nodes.push(walker.currentNode);
+		}
+
+		nodes.forEach(function (node) {
+			var parent = node.parentNode;
+
+			if (!parent || parent.querySelector('.ha-section-icon')) {
+				return;
+			}
+
+			var icon = document.createElement('i');
+
+			icon.className = 'hm hm-happyaddons ha-section-icon';
+			icon.style.float = 'right';
+			parent.appendChild(icon);
+		});
+	}
+
+	if (w.MutationObserver && document.body) {
+		var timer = null;
+
+		new MutationObserver(function () {
+			clearTimeout(timer);
+			timer = setTimeout(addSectionIcons, 100);
+		}).observe(document.body, {childList: true, subtree: true});
+	}
 }(window));

@@ -43,6 +43,13 @@ class Atomic_Registry {
 	 */
 	public static function features() {
 		$features = [
+			'global-animation'          => [
+				'title'     => __( 'Animation', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-alien',
+				'is_active' => true,
+				'is_pro'    => true,
+				'is_gsap'   => true,
+			],
 			'appearing-image-animation' => [
 				'title'     => __( 'Appearing Image Animation', 'happy-elementor-addons' ),
 				'icon'      => 'huge huge-layer-mask-1',
@@ -108,6 +115,20 @@ class Atomic_Registry {
 			'infinite-marquee'          => [
 				'title'     => __( 'Infinite Marquee', 'happy-elementor-addons' ),
 				'icon'      => 'huge huge-infinity-02',
+				'is_active' => true,
+				'is_pro'    => true,
+				'is_gsap'   => true,
+			],
+			'horizontal-scroll'         => [
+				'title'     => __( 'Horizontal Scroll', 'happy-elementor-addons' ),
+				'icon'      => 'huge huge-horizonal-scroll-point-round',
+				'is_active' => true,
+				'is_pro'    => true,
+				'is_gsap'   => true,
+			],
+			'sticky-pin-element'        => [
+				'title'     => __( 'Sticky Pin Element', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-sticky',
 				'is_active' => true,
 				'is_pro'    => true,
 				'is_gsap'   => true,
