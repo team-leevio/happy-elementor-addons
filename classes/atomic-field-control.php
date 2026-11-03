@@ -101,6 +101,13 @@ class Atomic_Field_Control extends Atomic_Control_Base {
 		return static::wrap( $toggle, $label, $description );
 	}
 
+	/**
+	 * Field around a control registered by happy-atomic-editor.js (font family, spacing, borders).
+	 */
+	public static function custom( $bind, $child_type, array $child_props, $label = '' ) {
+		return static::make( $bind, $child_type, $child_props, $label, '', false );
+	}
+
 	private static function make( $bind, $child_type, array $child_props, $label, $description, $inline = true ) {
 		$field = static::bind_to( $bind );
 

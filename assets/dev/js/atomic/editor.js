@@ -138,6 +138,95 @@
 		);
 	});
 
+	/* ---------------------------------------------------------------- *
+	 * Native Atomic controls the settings registry does not expose:
+	 * font family, spacing and the border width / radius of Happy Mouse Cursor
+	 * (the same controls the Style tab uses). Each sits inside an "ha-field".
+	 * ---------------------------------------------------------------- */
+	var icons = v2.icons || {};
+	var editorUi = v2.editorUi || {};
+
+	function icon(name) {
+		return icons[name] ? h(icons[name], {fontSize: 'tiny'}) : null;
+	}
+
+	// Sub-heading that groups the controls below it (Layout & Style).
+	if (props.stringPropTypeUtil) {
+		register('ha-heading', controls.createControl(function (headingProps) {
+			return h(ui.Stack, {gap: 1, sx: {pt: 1}},
+				h(ui.Divider, null),
+				h(ui.Typography, {variant: 'subtitle2', sx: {fontWeight: 600}}, headingProps.text)
+			);
+		}), 'full', props.stringPropTypeUtil);
+	}
+
+	// The native spacing controls clear a prop by setting it to null. A null setting
+	// breaks Elementor's own style-id handling (isClassesProp reads `.$$type` of every
+	// setting), so a cleared prop is stored as an empty value of its type instead.
+	function noNull(Inner, type) {
+		return controls.createControl(function (innerProps) {
+			var bound = controls.useBoundProp();
+			var context = Object.assign({}, bound);
+
+			delete context.value;
+			delete context.setValue;
+
+			return h(controls.PropProvider, Object.assign({}, context, {
+				value: bound.value,
+				setValue: function (value, options, meta) {
+					bound.setValue(null === value || undefined === value ? {$$type: type, value: {}} : value, options, meta);
+				}
+			}), h(Inner, innerProps));
+		});
+	}
+
+	if (controls.FontFamilyControl && controls.useFontFamilies && props.fontFamilyPropTypeUtil) {
+		register('ha-font-family', controls.createControl(function () {
+			var fonts = controls.useFontFamilies();
+			var width = editorUi.useSectionWidth ? editorUi.useSectionWidth() : 320;
+
+			return h(controls.FontFamilyControl, {fontFamilies: fonts, sectionWidth: width, ariaLabel: 'Font family'});
+		}), 'full', props.fontFamilyPropTypeUtil);
+	}
+
+	if (controls.LinkedDimensionsControl && props.dimensionsPropTypeUtil) {
+		register('ha-dimensions', noNull(function (dimProps) {
+			return h(controls.LinkedDimensionsControl, {label: dimProps.label, isSiteRtl: false, min: dimProps.min});
+		}, 'dimensions'), 'full', props.dimensionsPropTypeUtil);
+	}
+
+	if (controls.EqualUnequalSizesControl && props.borderWidthPropTypeUtil && props.borderRadiusPropTypeUtil) {
+		register('ha-border-width', noNull(function (sizeProps) {
+			return h(controls.EqualUnequalSizesControl, {
+				items: [
+					{label: 'Top', ariaLabel: 'Border top width', icon: icon('SideTopIcon'), bind: 'block-start'},
+					{label: 'Right', ariaLabel: 'Border right width', icon: icon('SideRightIcon'), bind: 'inline-end'},
+					{label: 'Bottom', ariaLabel: 'Border bottom width', icon: icon('SideBottomIcon'), bind: 'block-end'},
+					{label: 'Left', ariaLabel: 'Border left width', icon: icon('SideLeftIcon'), bind: 'inline-start'}
+				],
+				label: sizeProps.label,
+				icon: icon('SideAllIcon'),
+				tooltipLabel: 'Adjust borders',
+				multiSizePropTypeUtil: props.borderWidthPropTypeUtil
+			});
+		}, 'border-width-v2'), 'full', props.borderWidthPropTypeUtil);
+
+		register('ha-border-radius', noNull(function (sizeProps) {
+			return h(controls.EqualUnequalSizesControl, {
+				items: [
+					{label: 'Top left', ariaLabel: 'Border top left radius', icon: icon('RadiusTopLeftIcon'), bind: 'start-start'},
+					{label: 'Top right', ariaLabel: 'Border top right radius', icon: icon('RadiusTopRightIcon'), bind: 'start-end'},
+					{label: 'Bottom right', ariaLabel: 'Border bottom right radius', icon: icon('RadiusBottomRightIcon'), bind: 'end-end'},
+					{label: 'Bottom left', ariaLabel: 'Border bottom left radius', icon: icon('RadiusBottomLeftIcon'), bind: 'end-start'}
+				],
+				label: sizeProps.label,
+				icon: icon('BorderCornersIcon'),
+				tooltipLabel: 'Adjust corners',
+				multiSizePropTypeUtil: props.borderRadiusPropTypeUtil
+			});
+		}, 'border-radius-v2'), 'full', props.borderRadiusPropTypeUtil);
+	}
+
 	register('ha-field', Field, 'custom');
 	register('ha-color', controls.ColorControl, 'full', props.colorPropTypeUtil);
 	register('ha-slider', Slider, 'full', props.numberPropTypeUtil);
