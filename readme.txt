@@ -388,6 +388,7 @@ For a more detailed explanation check out the following documentation
 = 3.51.1 - ## #### 2026 =
 
 - Fix: Resolved Lordicon widget vulnerability.
+- Update: Improved Dashboard page load speed.
 
 = 3.51.0 - 27 October 2026 =
 
