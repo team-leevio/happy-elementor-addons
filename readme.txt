@@ -385,6 +385,10 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.51.1 - ## #### 2026 =
+
+- Fix: Resolved Lordicon widget vulnerability.
+
 = 3.51.0 - 27 October 2026 =
 
 - Update: Nav Menu Option and Style.

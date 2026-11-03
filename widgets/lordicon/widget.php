@@ -392,14 +392,14 @@ class LordIcon extends Base {
 		$icon_stroke = $settings['icon_stroke'];
 
 		if ( 'file' == $method ) {
-			$json_url = $settings['icon_json']['url'];
+			$json_url = $this->sanitize_animation_url( $settings['icon_json']['url'], true );
 		} else {
-			$json_url = $settings['icon_cdn'];
+			$json_url = $this->sanitize_animation_url( $settings['icon_cdn'] );
 		}
 		$target_class = '';
 
 		if ( 'custom' == $target ) {
-			$target_class = $settings['custom_target'];
+			$target_class = $this->sanitize_target_selector( $settings['custom_target'] );
 		} elseif ( 'column' == $target ) {
 			$target_class = '.elementor-column';
 		} elseif ( 'section' == $target ) {
@@ -408,6 +408,10 @@ class LordIcon extends Base {
 			$target_class = '.ha-lordicon-wrapper';
 		}
 		$pulse_effect = ( 'yes' == $settings['pulse_effect'] ) ? ' pulse_effect' : '';
+
+		if ( '' === $json_url ) {
+			return;
+		}
 
 		?>
 			<div class="ha-lordicon-wrapper<?php echo esc_attr( $pulse_effect ); ?>">
@@ -422,6 +426,64 @@ class LordIcon extends Base {
 			</div>
 		<?php
 
+	}
+
+	/**
+	 * Animation JSON can carry executable lottie expressions, so only
+	 * trusted sources are allowed: https URLs on Lordicon hosts and,
+	 * for the media-library control, files from this site's uploads.
+	 *
+	 * @param string $url
+	 * @param bool   $allow_uploads
+	 * @return string Safe URL or empty string.
+	 */
+	private function sanitize_animation_url( $url, $allow_uploads = false ) {
+		$url = is_string( $url ) ? trim( $url ) : '';
+
+		if ( '' === $url ) {
+			return '';
+		}
+
+		$url    = esc_url_raw( $url, [ 'http', 'https' ] );
+		$parsed = wp_parse_url( $url );
+
+		if ( empty( $parsed['host'] ) || empty( $parsed['scheme'] ) ) {
+			return '';
+		}
+
+		$allowed_hosts = apply_filters( 'happyaddons_lordicon_allowed_hosts', [ 'cdn.lordicon.com' ] );
+		if ( 'https' === $parsed['scheme'] && in_array( strtolower( $parsed['host'] ), array_map( 'strtolower', (array) $allowed_hosts ), true ) ) {
+			return $url;
+		}
+
+		if ( $allow_uploads ) {
+			$check = set_url_scheme( $url, 'https' );
+			$uploads = wp_get_upload_dir();
+			$bases   = [
+				set_url_scheme( $uploads['baseurl'], 'https' ),
+				set_url_scheme( HAPPY_ADDONS_ASSETS, 'https' ),
+			];
+			foreach ( $bases as $base ) {
+				if ( 0 === strpos( $check, trailingslashit( $base ) ) && false === strpos( $check, '..' ) ) {
+					return $url;
+				}
+			}
+		}
+
+		return '';
+	}
+
+	/**
+	 * Limit the custom trigger target to a simple class/ID/tag selector.
+	 */
+	private function sanitize_target_selector( $selector ) {
+		$selector = is_string( $selector ) ? trim( $selector ) : '';
+
+		if ( ! preg_match( '/^[.#]?[A-Za-z_][\w-]*$/', $selector ) ) {
+			return '.ha-lordicon-wrapper';
+		}
+
+		return $selector;
 	}
 
 	private function get_golobal_color($id) {
