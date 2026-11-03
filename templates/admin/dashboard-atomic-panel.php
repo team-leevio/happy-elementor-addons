@@ -129,14 +129,15 @@ $supported = Atomic_Manager::is_environment_supported();
 				<?php foreach ( $entries as $entry ) :
 					list( $type, $key, $item ) = $entry;
 					$is_pro = ! empty( $item['is_pro'] );
+					$is_placeholder = $is_pro && ! ha_has_pro();
 					$id     = 'ha-atomic-' . ( 'gsap' === $tab ? 'gsap-' : '' ) . $type . '-' . $key;
 					?>
-					<div class="ha-dashboard-widgets__item<?php echo $is_pro ? ' item--is-pro' : ''; ?>" data-title="<?php echo esc_attr( $item['title'] ); ?>">
+					<div class="ha-dashboard-widgets__item<?php echo $is_pro ? ' item--is-pro' : ''; ?><?php echo $is_placeholder ? ' item--is-placeholder' : ''; ?>" data-title="<?php echo esc_attr( $item['title'] ); ?>">
 						<?php if ( $is_pro ) : ?><span class="ha-dashboard-widgets__item-badge"><?php esc_html_e( 'Pro', 'happy-elementor-addons' ); ?></span><?php endif; ?>
 						<span class="ha-dashboard-widgets__item-icon"><i class="<?php echo esc_attr( $item['icon'] ); ?>"></i></span>
 						<h3 class="ha-dashboard-widgets__item-title"><label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $item['title'] ); ?></label></h3>
 						<div class="ha-dashboard-widgets__item-toggle ha-toggle">
-							<input id="<?php echo esc_attr( $id ); ?>" <?php checked( in_array( $key, $active_lists[ $type ], true ) ); ?> type="checkbox" class="ha-toggle__check ha-atomic-<?php echo esc_attr( $type ); ?>" name="atomic_<?php echo esc_attr( $type ); ?>s[]" value="<?php echo esc_attr( $key ); ?>">
+							<input id="<?php echo esc_attr( $id ); ?>" <?php checked( in_array( $key, $active_lists[ $type ], true ) ); ?> <?php disabled( $is_placeholder ); ?> type="checkbox" class="ha-toggle__check ha-atomic-<?php echo esc_attr( $type ); ?>" name="atomic_<?php echo esc_attr( $type ); ?>s[]" value="<?php echo esc_attr( $key ); ?>">
 							<b class="ha-toggle__switch"></b><b class="ha-toggle__track"></b>
 						</div>
 					</div>
