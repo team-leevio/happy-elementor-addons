@@ -265,6 +265,21 @@ class Atomic_Manager {
 			);
 		}
 
+		// Floating Effects: configs come from PHP on the frontend, from the editor settings in the preview.
+		if ( ! wp_script_is( 'anime', 'registered' ) ) {
+			wp_register_script( 'anime', HAPPY_ADDONS_ASSETS . 'vendor/anime/lib/anime.min.js', [], HAPPY_ADDONS_VERSION, true );
+		}
+
+		if ( ! wp_script_is( 'happy-atomic-floating-effects', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-floating-effects',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-floating-effects' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE, 'anime' ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
 		// Editor preview of Fixed Size Button; the frontend is pure CSS from PHP.
 		if ( ! wp_script_is( 'happy-atomic-fixed-size-button', 'registered' ) ) {
 			wp_register_script(
@@ -438,7 +453,9 @@ class Atomic_Manager {
 		$item  = Atomic_Registry::features()[ $feature ] ?? [];
 		$style = $item['style'] ?? ( 'appearing-image-animation' === $feature ? 'happy-atomic-aia' : 'happy-atomic-hta' );
 
-		wp_enqueue_style( $style );
+		if ( $style ) {
+			wp_enqueue_style( $style );
+		}
 
 		if ( ! empty( $item['script'] ) ) {
 			wp_enqueue_script( $item['script'] );
