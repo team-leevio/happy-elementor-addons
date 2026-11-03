@@ -252,6 +252,35 @@ class Atomic_Manager {
 			);
 		}
 
+		// Happy Mouse Cursor: runtime for the Atomic elements; the cursor is the shared MouseFollower.
+		// The Atomic assets can be registered before the Classic ones, and a script whose dependency is missing is dropped.
+		if ( ! wp_script_is( 'mouse-follower', 'registered' ) ) {
+			wp_register_script( 'mouse-follower', HAPPY_ADDONS_ASSETS . 'vendor/mouse-follower/mouse-follower.min.js', [ 'gsap' ], HAPPY_ADDONS_VERSION, true );
+		}
+
+		if ( ! wp_style_is( 'mouse-follower', 'registered' ) ) {
+			wp_register_style( 'mouse-follower', HAPPY_ADDONS_ASSETS . 'vendor/mouse-follower/mouse-follower.min.css', [], HAPPY_ADDONS_VERSION );
+		}
+
+		if ( ! wp_script_is( 'happy-atomic-custom-mouse-cursor', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-custom-mouse-cursor',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-custom-mouse-cursor' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE, 'mouse-follower' ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
+		if ( ! wp_style_is( 'happy-atomic-cmc', 'registered' ) ) {
+			wp_register_style(
+				'happy-atomic-cmc',
+				HAPPY_ADDONS_ASSETS . 'css/widgets/custom-mouse-cursor.min.css',
+				[ 'mouse-follower' ],
+				HAPPY_ADDONS_VERSION
+			);
+		}
+
 		// Editor preview of Liquid Glass; the frontend is pure CSS + SVG from PHP.
 		if ( ! wp_script_is( 'happy-atomic-liquid-glass', 'registered' ) ) {
 			wp_register_script(
@@ -401,6 +430,8 @@ class Atomic_Manager {
 				'elementor-v2-editor-props',
 				'elementor-v2-schema',
 				'elementor-v2-ui',
+				'elementor-v2-icons',
+				'elementor-v2-editor-ui',
 				'react',
 			],
 			function ( $handle ) {

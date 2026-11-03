@@ -120,7 +120,7 @@ abstract class Atomic_Feature_Base {
 	/**
 	 * Panel controls for extra_props(), keyed by the field key they follow.
 	 *
-	 * @return array<string,object>
+	 * @return array<string,object|object[]>
 	 */
 	protected function extra_controls() {
 		return [];
@@ -142,7 +142,7 @@ abstract class Atomic_Feature_Base {
 			$items[] = $this->control( $this->prefix() . $key, $field );
 
 			if ( isset( $extra[ $key ] ) ) {
-				$items[] = $extra[ $key ];
+				$items = array_merge( $items, is_array( $extra[ $key ] ) ? $extra[ $key ] : [ $extra[ $key ] ] );
 			}
 		}
 
@@ -334,7 +334,7 @@ abstract class Atomic_Feature_Base {
 		return '';
 	}
 
-	private function dependencies( array $show ) {
+	protected function dependencies( array $show ) {
 		$manager = Dependency_Manager::make( Dependency_Manager::RELATION_AND );
 
 		foreach ( $show as $key => $value ) {
