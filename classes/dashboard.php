@@ -426,32 +426,40 @@ class Dashboard {
 	public static function get_raw_usage( $format = 'raw' ) {
 		/** @var Module $module */
 
-		$module = \Elementor\Modules\Usage\Module::instance();
-		$usage = PHP_EOL;
+		// Building the formatted usage is expensive, so compute it once per request.
+		static $cache = [];
+
+		if ( isset( $cache[ $format ] ) ) {
+			return $cache[ $format ];
+		}
+
+		$module       = \Elementor\Modules\Usage\Module::instance();
 		$widgets_list = [];
 		if( ha_has_pro() ){
 			$all_widgets = self::get_widgets();
 		}else{
 			$all_widgets = Widgets_Manager::get_local_widgets_map();
 		}
-        if(is_array($module->get_formatted_usage( $format ))||is_object($module->get_formatted_usage( $format ))){
-            foreach ( $module->get_formatted_usage( $format ) as $doc_type => $data ) {
-                $usage .= "\t{$data['title']} : " . $data['count'] . PHP_EOL;
 
-                if(is_array($data['elements'])||is_object($data['elements'])){
-                    foreach ( $data['elements'] as $element => $count ) {
-                        $usage .= "\t\t{$element} : {$count}" . PHP_EOL;
-                        $is_happy_widget = strpos( $element , "ha-") !== false;
-                        $widget_key = str_replace('ha-','',$element);
+		$formatted_usage = $module->get_formatted_usage( $format );
 
-                        if( $is_happy_widget && array_key_exists( $widget_key, $all_widgets ) ) {
+		if ( is_array( $formatted_usage ) || is_object( $formatted_usage ) ) {
+			foreach ( $formatted_usage as $doc_type => $data ) {
+				if ( is_array( $data['elements'] ) || is_object( $data['elements'] ) ) {
+					foreach ( $data['elements'] as $element => $count ) {
+						$is_happy_widget = strpos( $element , "ha-") !== false;
+						$widget_key = str_replace('ha-','',$element);
 
-                            $widgets_list[ $widget_key ] = $count;
-                        }
-                    }
-                }
-            }
-        }
+						if( $is_happy_widget && array_key_exists( $widget_key, $all_widgets ) ) {
+							$widgets_list[ $widget_key ] = $count;
+						}
+					}
+				}
+			}
+		}
+
+		$cache[ $format ] = $widgets_list;
+
 		return $widgets_list;
 	}
 
