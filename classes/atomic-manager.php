@@ -265,6 +265,17 @@ class Atomic_Manager {
 			);
 		}
 
+		// Editor preview of Fixed Size Button; the frontend is pure CSS from PHP.
+		if ( ! wp_script_is( 'happy-atomic-fixed-size-button', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-fixed-size-button',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-fixed-size-button' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
 		// Happy Tooltip: configs come from PHP on the frontend, from the editor settings in the preview.
 		if ( ! wp_script_is( 'happy-atomic-tooltip', 'registered' ) ) {
 			wp_register_script(
