@@ -392,6 +392,11 @@ class Extensions_Manager {
 
 	protected static function enable_feature( $feature_key ) {
 
+		// Switched off in the Elementor V4 (Atomic) dashboard.
+		if ( Atomic_Manager::is_shared_feature_disabled( $feature_key ) ) {
+			return;
+		}
+
 		switch ($feature_key) {
 			case 'background-overlay':
 				if ( ha_is_widget_background_overlay_enabled() ) {

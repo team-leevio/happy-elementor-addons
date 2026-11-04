@@ -14,6 +14,7 @@ class Atomic_Manager {
 	const OPTION_ENABLED         = 'happyaddons_atomic_integration_enabled';
 	const OPTION_ACTIVE_WIDGETS  = 'happyaddons_active_atomic_widgets';
 	const OPTION_ACTIVE_FEATURES = 'happyaddons_active_atomic_features';
+	const OPTION_SHARED_SEEN     = 'happyaddons_atomic_shared_seen';
 
 	const SCRIPT_HANDLE        = 'happy-elementor-addons-atomic';
 	const EDITOR_SCRIPT_HANDLE = 'happy-elementor-addons-atomic-editor';
@@ -78,6 +79,17 @@ class Atomic_Manager {
 
 		$active = array_values( array_intersect( $saved, array_keys( $registry ) ) );
 
+		// Shared features added after the last save stay on until the user saves again.
+		if ( 'features' === $type ) {
+			$seen = (array) get_option( self::OPTION_SHARED_SEEN, [] );
+
+			foreach ( self::shared_features() as $key ) {
+				if ( ! in_array( $key, $seen, true ) && ! in_array( $key, $active, true ) ) {
+					$active[] = $key;
+				}
+			}
+		}
+
 		// Pro components are inactive while Happy Addons Pro is not active.
 		if ( ! ha_has_pro() ) {
 			$active = array_values( array_filter( $active, function ( $key ) use ( $registry ) {
@@ -102,6 +114,31 @@ class Atomic_Manager {
 		$option   = 'widgets' === $type ? self::OPTION_ACTIVE_WIDGETS : self::OPTION_ACTIVE_FEATURES;
 
 		update_option( $option, array_values( array_intersect( (array) $keys, array_keys( $registry ) ) ) );
+
+		if ( 'features' === $type ) {
+			update_option( self::OPTION_SHARED_SEEN, self::shared_features() );
+		}
+	}
+
+	/**
+	 * Keys of the features that reuse their Classic implementation.
+	 *
+	 * @return string[]
+	 */
+	public static function shared_features() {
+		return array_keys( array_filter( Atomic_Registry::features(), function ( $item ) {
+			return ! empty( $item['shared'] );
+		} ) );
+	}
+
+	/**
+	 * True when a shared feature was switched off in the Atomic dashboard.
+	 * Classic code consults it before enabling the feature.
+	 */
+	public static function is_shared_feature_disabled( $key ) {
+		return in_array( $key, self::shared_features(), true )
+			&& self::is_supported()
+			&& ! in_array( $key, self::get_active( 'features' ), true );
 	}
 
 	public static function init() {

@@ -105,6 +105,23 @@ class Atomic_Registry {
 				'editor_preview' => true,
 				'prehide'        => false,
 			],
+			// 'shared' features keep their Classic code, which already runs in V4; the entry only drives the dashboard on/off switch.
+			'scroll-to-top'             => [
+				'title'     => __( 'Scroll To Top', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-scroll-top',
+				'is_active' => true,
+				'is_pro'    => false,
+				'is_gsap'   => false,
+				'shared'    => true,
+			],
+			'reading-progress-bar'      => [
+				'title'     => __( 'Reading Progress Bar', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-reading-glass-alt',
+				'is_active' => true,
+				'is_pro'    => false,
+				'is_gsap'   => false,
+				'shared'    => true,
+			],
 			'infinite-marquee'          => [
 				'title'     => __( 'Infinite Marquee', 'happy-elementor-addons' ),
 				'icon'      => 'huge huge-infinity-02',
