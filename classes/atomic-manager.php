@@ -279,6 +279,25 @@ class Atomic_Manager {
 			);
 		}
 
+		// Background Parallax: Jarallax drives the Atomic Flexbox / Div Block. The Atomic assets can be registered before the Classic ones.
+		if ( ! wp_script_is( 'jarallax-js', 'registered' ) ) {
+			wp_register_script( 'jarallax-js', HAPPY_ADDONS_ASSETS . 'vendor/jarallax/jarallax.min.js', null, HAPPY_ADDONS_VERSION, true );
+		}
+
+		if ( ! wp_style_is( 'jarallax-css', 'registered' ) ) {
+			wp_register_style( 'jarallax-css', HAPPY_ADDONS_ASSETS . 'vendor/jarallax/jarallax.min.css', [], HAPPY_ADDONS_VERSION );
+		}
+
+		if ( ! wp_script_is( 'happy-atomic-background-parallax', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-background-parallax',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-background-parallax' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE, 'jarallax-js' ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
 		$styles = [
 			'happy-atomic-image-cycle' => 'image-cycle',
 			'happy-atomic-aia'         => 'appearing-image-animation',
