@@ -122,6 +122,13 @@ class Atomic_Registry {
 				'is_gsap'   => false,
 				'shared'    => true,
 			],
+			'happy-particle-effects'  => [
+				'title'     => __( 'Happy Particle Effects', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-spark',
+				'is_active' => true,
+				'is_pro'    => true,
+				'is_gsap'   => false,
+			],
 			'infinite-marquee'          => [
 				'title'     => __( 'Infinite Marquee', 'happy-elementor-addons' ),
 				'icon'      => 'huge huge-infinity-02',

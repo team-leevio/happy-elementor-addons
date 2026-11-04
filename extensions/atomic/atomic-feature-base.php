@@ -5,6 +5,7 @@ use Elementor\Modules\AtomicWidgets\Controls\Section;
 use Elementor\Modules\AtomicWidgets\Controls\Types\Select_Control;
 use Elementor\Modules\AtomicWidgets\Controls\Types\Switch_Control;
 use Elementor\Modules\AtomicWidgets\Controls\Types\Text_Control;
+use Elementor\Modules\AtomicWidgets\Controls\Types\Textarea_Control;
 use Elementor\Modules\AtomicWidgets\PropDependencies\Manager as Dependency_Manager;
 use Elementor\Modules\AtomicWidgets\PropTypes\Color_Prop_Type;
 use Elementor\Modules\AtomicWidgets\PropTypes\Primitives\Boolean_Prop_Type;
@@ -102,7 +103,12 @@ abstract class Atomic_Feature_Base {
 					break;
 				case 'number':
 				case 'slider':
-					$type = Number_Prop_Type::make()->float()->default( $field['default'] );
+					$type = Number_Prop_Type::make()->float();
+
+					// A null default leaves the setting empty (the feature then falls back to its own value).
+					if ( null !== $field['default'] ) {
+						$type->default( $field['default'] );
+					}
 					break;
 				case 'color':
 					$type = Color_Prop_Type::make();
@@ -243,6 +249,9 @@ abstract class Atomic_Feature_Base {
 			case 'color':
 				return Atomic_Field_Control::color( $prop, $label, $description );
 
+			case 'textarea':
+				return Atomic_Field_Control::wrap( Textarea_Control::bind_to( $prop ), $label, $description, false );
+
 			default:
 				$control = Text_Control::bind_to( $prop );
 
@@ -295,6 +304,12 @@ abstract class Atomic_Feature_Base {
 
 			if ( null === $value || '' === $value ) {
 				$value = $field['default'];
+			}
+
+			// An empty setting without a default stays empty.
+			if ( null === $value && in_array( $field['type'], [ 'number', 'slider' ], true ) ) {
+				$config[ $key ] = '';
+				continue;
 			}
 
 			switch ( $field['type'] ) {
