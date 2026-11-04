@@ -396,12 +396,39 @@ class Atomic_Manager {
 			}
 		);
 
+		// Section label => switcher prop of every active feature: the editor script lights an indicator on the section while it is on.
+		$sections = [];
+
+		foreach ( Atomic_Registry::features() as $key => $item ) {
+			if ( ! self::is_feature_available( $key ) || ! in_array( $key, self::get_active( 'features' ), true ) ) {
+				continue;
+			}
+
+			try {
+				$class = self::load_feature( $item );
+
+				if ( $class && method_exists( $class, 'editor_section' ) ) {
+					$section = $class::instance()->editor_section();
+
+					$sections[ $section['label'] ] = $section['switcher'];
+				}
+			} catch ( \Throwable $e ) {
+				continue;
+			}
+		}
+
 		wp_enqueue_script(
 			self::EDITOR_SCRIPT_HANDLE,
 			HAPPY_ADDONS_ASSETS . 'js/happy-atomic-editor' . $suffix . 'js',
 			array_values( $deps ),
 			HAPPY_ADDONS_VERSION,
 			true
+		);
+
+		wp_add_inline_script(
+			self::EDITOR_SCRIPT_HANDLE,
+			'window.HappyAtomicEditor = window.HappyAtomicEditor || {}; window.HappyAtomicEditor.sections = ' . wp_json_encode( $sections ) . ';',
+			'before'
 		);
 	}
 

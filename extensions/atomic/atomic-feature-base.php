@@ -70,6 +70,19 @@ abstract class Atomic_Feature_Base {
 		add_action( 'elementor/frontend/before_render', [ $this, 'before_render' ] );
 	}
 
+	/**
+	 * Label of the panel section and the prop that turns the feature on, so the
+	 * editor can light the section's indicator while the feature is enabled.
+	 *
+	 * @return array{label:string,switcher:string}
+	 */
+	public function editor_section() {
+		return [
+			'label'    => $this->section_label(),
+			'switcher' => $this->prefix() . 'switcher',
+		];
+	}
+
 	public function add_props( $schema ) {
 		if ( ! is_array( $schema ) || ! $this->matches_schema( $schema ) ) {
 			return $schema;

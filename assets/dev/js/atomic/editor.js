@@ -244,9 +244,33 @@
 	 * Happy icon on the section of every Happy Atomic feature, like the
 	 * Classic panel. PHP ends those section labels with a run of zero-width characters.
 	 * ---------------------------------------------------------------- */
-	var MARK = '\u200B\u200C\u200B';
+	var MARK = '​‌​';
+	var DOT_COLOR = '#524CFF';
+
+	function unwrapValue(value) {
+		while (value && 'object' === typeof value && '$$type' in value) {
+			value = value.value;
+		}
+
+		return value;
+	}
+
+	// Whether the selected element has the feature of this section turned on.
+	function sectionActive(switcher) {
+		try {
+			var editor = w.elementor;
+			var selected = editor && editor.selection && editor.selection.getElements ? editor.selection.getElements() : [];
+			var settings = selected.length && selected[0].settings;
+			var value = settings && settings.get ? settings.get(switcher) : null;
+
+			return true === unwrapValue(value) || 'yes' === unwrapValue(value);
+		} catch (e) {
+			return false;
+		}
+	}
 
 	function addSectionIcons() {
+		var sections = (w.HappyAtomicEditor && w.HappyAtomicEditor.sections) || {};
 		var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
 			acceptNode: function (node) {
 				return node.nodeValue.slice(-MARK.length) === MARK ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
@@ -261,15 +285,36 @@
 		nodes.forEach(function (node) {
 			var parent = node.parentNode;
 
-			if (!parent || parent.querySelector('.ha-section-icon')) {
+			if (!parent) {
 				return;
 			}
 
-			var icon = document.createElement('i');
+			var icon = parent.querySelector('.ha-section-icon');
+			var dot = parent.querySelector('.ha-section-dot');
 
-			icon.className = 'hm hm-happyaddons ha-section-icon';
-			icon.style.float = 'right';
-			parent.appendChild(icon);
+			if (!icon) {
+				icon = document.createElement('i');
+				icon.className = 'hm hm-happyaddons ha-section-icon';
+				parent.appendChild(icon);
+			}
+
+			// Icon and indicator sit on the label's middle line.
+			parent.style.display = 'inline-flex';
+			parent.style.alignItems = 'center';
+			parent.style.gap = '6px';
+			icon.style.cssText = 'float:none;display:inline-block;line-height:1;vertical-align:middle;flex:none;';
+
+			var switcher = sections[node.nodeValue.slice(0, -MARK.length)];
+			var active = switcher ? sectionActive(switcher) : false;
+
+			if (active && !dot) {
+				dot = document.createElement('span');
+				dot.className = 'ha-section-dot';
+				dot.style.cssText = 'display:inline-block;flex:none;width:6px;height:6px;border-radius:50%;background:' + DOT_COLOR + ';';
+				parent.appendChild(dot);
+			} else if (!active && dot) {
+				dot.remove();
+			}
 		});
 	}
 
@@ -280,5 +325,8 @@
 			clearTimeout(timer);
 			timer = setTimeout(addSectionIcons, 100);
 		}).observe(document.body, {childList: true, subtree: true});
+
+		// A setting change does not always touch the DOM around the section header.
+		setInterval(addSectionIcons, 500);
 	}
 }(window));
