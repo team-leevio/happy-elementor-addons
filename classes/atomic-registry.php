@@ -129,6 +129,17 @@ class Atomic_Registry {
 				'is_pro'    => true,
 				'is_gsap'   => false,
 			],
+			'wrapper-link'             => [
+				'title'     => __( 'Wrapper Link', 'happy-elementor-addons' ),
+				'icon'      => 'hm hm-section-link',
+				'is_active' => true,
+				'is_pro'    => false,
+				'is_gsap'   => false,
+				'class'     => 'Wrapper_Link',
+				'file'      => 'extensions/atomic/wrapper-link.php',
+				'script'    => 'happy-atomic-wrapper-link',
+				'prehide'   => false,
+			],
 			'infinite-marquee'          => [
 				'title'     => __( 'Infinite Marquee', 'happy-elementor-addons' ),
 				'icon'      => 'huge huge-infinity-02',

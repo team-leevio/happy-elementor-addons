@@ -335,6 +335,17 @@ class Atomic_Manager {
 			);
 		}
 
+		// Wrapper Link: makes the Atomic elements that have a link clickable.
+		if ( ! wp_script_is( 'happy-atomic-wrapper-link', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-wrapper-link',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-wrapper-link' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
 		$styles = [
 			'happy-atomic-image-cycle' => 'image-cycle',
 			'happy-atomic-aia'         => 'appearing-image-animation',

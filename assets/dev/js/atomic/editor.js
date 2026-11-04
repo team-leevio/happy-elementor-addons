@@ -263,7 +263,10 @@
 			var settings = selected.length && selected[0].settings;
 			var value = settings && settings.get ? settings.get(switcher) : null;
 
-			return true === unwrapValue(value) || 'yes' === unwrapValue(value);
+			var active = unwrapValue(value);
+
+			// A text "switcher" (Wrapper Link's URL) is on once it has a value.
+			return true === active || 'yes' === active || ('string' === typeof active && '' !== active.trim());
 		} catch (e) {
 			return false;
 		}
