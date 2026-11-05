@@ -84,7 +84,8 @@
 		}
 
 		if (isNaN(current)) {
-			current = min;
+			// An empty value rests on 0 when the range holds it (translate, rotate, skew).
+			current = min > 0 ? min : (max < 0 ? max : 0);
 		}
 
 		return h(ui.Stack, {direction: 'row', alignItems: 'center', gap: 2},
@@ -227,9 +228,102 @@
 		}, 'border-radius-v2'), 'full', props.borderRadiusPropTypeUtil);
 	}
 
+	/* ---------------------------------------------------------------- *
+	 * ha-tabs
+	 * Style tabs (Normal / Hover) whose groups open as popovers, like the
+	 * Classic panel. Bound to the feature's switcher: nothing shows while it is off.
+	 * Every inner control is rendered by the panel itself (SettingsControl), so
+	 * dependencies, history and prop wrapping behave as for any other control.
+	 * ---------------------------------------------------------------- */
+	var icons = v2.icons || {};
+
+	function PopoverRow(rowProps) {
+		var bound = controls.useBoundProp(props.booleanPropTypeUtil);
+		var anchor = React.useRef(null);
+		var state = React.useState(false);
+		var open = state[0];
+		var on = true === bound.value;
+		var Popover = ui.Popover;
+
+		return h(ui.Stack, {gap: 0},
+			h(ui.Stack, {direction: 'row', alignItems: 'center', justifyContent: 'space-between'},
+				h(panel.ControlLabel, null, rowProps.label),
+				h(ui.Stack, {direction: 'row', alignItems: 'center', gap: 0.5},
+					on && icons.ArrowBackUpIcon ? h(ui.IconButton, {
+						size: 'tiny',
+						'aria-label': 'Reset',
+						onClick: function () {
+							state[1](false);
+							bound.setValue(false);
+						}
+					}, h(icons.ArrowBackUpIcon, {fontSize: 'tiny'})) : null,
+					h(ui.IconButton, {
+						size: 'tiny',
+						ref: anchor,
+						color: on ? 'primary' : 'default',
+						'aria-label': rowProps.label,
+						onClick: function () {
+							if (!on) {
+								bound.setValue(true);
+							}
+
+							state[1](true);
+						}
+					}, icons.PencilIcon ? h(icons.PencilIcon, {fontSize: 'tiny'}) : '✎')
+				)
+			),
+			Popover ? h(Popover, {
+				open: open && on,
+				anchorEl: anchor.current,
+				onClose: function () {
+					state[1](false);
+				},
+				anchorOrigin: {vertical: 'bottom', horizontal: 'center'},
+				transformOrigin: {vertical: 'top', horizontal: 'center'},
+				slotProps: {paper: {sx: {width: 280, maxWidth: '90vw', p: 2}}}
+			}, h(ui.Stack, {gap: 1.5}, rowProps.controls.map(function (control) {
+				return h(panel.SettingsControl, {key: control.value.bind, control: control});
+			}))) : null
+		);
+	}
+
+	var Tabs = controls.createControl(function (tabsProps) {
+		var bound = controls.useBoundProp(props.booleanPropTypeUtil);
+		var state = React.useState(0);
+		var tabs = tabsProps.tabs || [];
+
+		if (true !== bound.value || !tabs.length) {
+			return null;
+		}
+
+		var tab = tabs[Math.min(state[0], tabs.length - 1)];
+
+		return h(ui.Stack, {gap: 1.5},
+			h(ui.Tabs, {
+				value: Math.min(state[0], tabs.length - 1),
+				variant: 'fullWidth',
+				size: 'small',
+				onChange: function (event, value) {
+					state[1](value);
+				}
+			}, tabs.map(function (item, index) {
+				return h(ui.Tab, {key: index, label: item.label, value: index, sx: {px: 1}});
+			})),
+			h(ui.Stack, {gap: 1.5}, tab.items.map(function (item, index) {
+				if ('popover' === item.kind) {
+					return h(panel.SettingsField, {key: item.toggle + index, bind: item.toggle, propDisplayName: item.label},
+						h(PopoverRow, {label: item.label, controls: item.controls}));
+				}
+
+				return h(panel.SettingsControl, {key: item.control.value.bind, control: item.control});
+			}))
+		);
+	});
+
 	register('ha-field', Field, 'custom');
 	register('ha-color', controls.ColorControl, 'full', props.colorPropTypeUtil);
 	register('ha-slider', Slider, 'full', props.numberPropTypeUtil);
+	register('ha-tabs', Tabs, 'custom', props.booleanPropTypeUtil);
 
 	// The core color control is not in the settings registry (only the style tab uses it).
 	if (controls.ColorControl && props.colorPropTypeUtil) {
@@ -245,7 +339,7 @@
 	 * Classic panel. PHP ends those section labels with a run of zero-width characters.
 	 * ---------------------------------------------------------------- */
 	var MARK = '​‌​';
-	var DOT_COLOR = '#524CFF';
+	var DOT_COLOR = '#fd85d4';
 
 	function unwrapValue(value) {
 		while (value && 'object' === typeof value && '$$type' in value) {

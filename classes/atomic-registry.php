@@ -153,6 +153,18 @@ class Atomic_Registry {
 				'editor_preview' => true,
 				'prehide'        => false,
 			],
+			'css-transform'            => [
+				'title'          => __( 'CSS Transform', 'happy-elementor-addons' ),
+				'icon'           => 'hm hm-3d-rotate',
+				'is_active'      => true,
+				'is_pro'         => false,
+				'is_gsap'        => false,
+				'class'          => 'CSS_Transform',
+				'file'           => 'extensions/atomic/css-transform.php',
+				'script'         => 'happy-atomic-css-transform',
+				'editor_preview' => true,
+				'prehide'        => false,
+			],
 			'infinite-marquee'          => [
 				'title'     => __( 'Infinite Marquee', 'happy-elementor-addons' ),
 				'icon'      => 'huge huge-infinity-02',

@@ -182,7 +182,7 @@ abstract class Atomic_Feature_Base {
 	 * Editor control for a field. Fields with a helper text, a fractional step
 	 * or icon buttons go through the Happy field wrapper.
 	 */
-	private function control( $prop, array $field ) {
+	protected function control( $prop, array $field ) {
 		$label       = $field['label'];
 		$description = $field['description'] ?? '';
 

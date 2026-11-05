@@ -357,6 +357,17 @@ class Atomic_Manager {
 			);
 		}
 
+		// CSS Transform: editor preview only; the frontend is pure CSS from PHP.
+		if ( ! wp_script_is( 'happy-atomic-css-transform', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-css-transform',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-css-transform' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
 		$styles = [
 			'happy-atomic-image-cycle' => 'image-cycle',
 			'happy-atomic-aia'         => 'appearing-image-animation',
