@@ -1,0 +1,48 @@
+/* Shape Divider (Atomic). Same geometry as Elementor's own shape divider. */
+.ha-sd-shape {
+	direction: ltr;
+	left: 0;
+	line-height: 0;
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	pointer-events: none;
+	// Behind the content of the container (the container gets `isolation: isolate`).
+	z-index: -1;
+
+	&--front {
+		z-index: 2;
+	}
+
+	&--top {
+		top: -1px;
+	}
+
+	&--bottom {
+		bottom: -1px;
+	}
+
+	&[data-negative="false"].ha-sd-shape--bottom,
+	&[data-negative="true"].ha-sd-shape--top {
+		transform: rotate(180deg);
+	}
+
+	svg {
+		display: block;
+		left: 50%;
+		position: relative;
+		transform: translateX(-50%);
+		width: calc(var(--ha-sd-width, 100%) + 1.3px);
+		height: var(--ha-sd-height, auto);
+	}
+
+	&--flip svg {
+		transform: translateX(-50%) rotateY(180deg);
+	}
+
+	.elementor-shape-fill {
+		fill: var(--ha-sd-color, #fff);
+		transform: rotateY(0deg);
+		transform-origin: center;
+	}
+}

@@ -346,10 +346,22 @@ class Atomic_Manager {
 			);
 		}
 
+		// Shape Divider: draws the top / bottom shapes of the Atomic containers.
+		if ( ! wp_script_is( 'happy-atomic-shape-divider', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-shape-divider',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-shape-divider' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
 		$styles = [
 			'happy-atomic-image-cycle' => 'image-cycle',
 			'happy-atomic-aia'         => 'appearing-image-animation',
 			'happy-atomic-hta'         => 'heading-text-animation',
+			'happy-atomic-shape-divider' => 'shape-divider',
 		];
 
 		foreach ( $styles as $handle => $file ) {
