@@ -1,5 +1,6 @@
 = 3.51.1 - ## #### 2026 =
 
+- Fix: Fixed an authorization vulnerability in Setup Wizard REST API endpoints.
 - Fix: Resolved Lordicon, Icon Box & Info Box widget vulnerability.
 - Update: Improved Dashboard page load speed.
 
