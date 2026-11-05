@@ -9,10 +9,13 @@
 	use Elementor\Controls_Manager;
 	use Elementor\Group_Control_Border;
 	use Elementor\Group_Control_Box_Shadow;
+	use Happy_Addons\Elementor\Traits\Lordicon_Sanitizer;
 
 	defined( 'ABSPATH' ) || die();
 
-class LordIcon extends Base {
+	class LordIcon extends Base {
+
+		use Lordicon_Sanitizer;
 
 	/**
 	 * Get widget title.
@@ -426,64 +429,6 @@ class LordIcon extends Base {
 			</div>
 		<?php
 
-	}
-
-	/**
-	 * Animation JSON can carry executable lottie expressions, so only
-	 * trusted sources are allowed: https URLs on Lordicon hosts and,
-	 * for the media-library control, files from this site's uploads.
-	 *
-	 * @param string $url
-	 * @param bool   $allow_uploads
-	 * @return string Safe URL or empty string.
-	 */
-	private function sanitize_animation_url( $url, $allow_uploads = false ) {
-		$url = is_string( $url ) ? trim( $url ) : '';
-
-		if ( '' === $url ) {
-			return '';
-		}
-
-		$url    = esc_url_raw( $url, [ 'http', 'https' ] );
-		$parsed = wp_parse_url( $url );
-
-		if ( empty( $parsed['host'] ) || empty( $parsed['scheme'] ) ) {
-			return '';
-		}
-
-		$allowed_hosts = apply_filters( 'happyaddons_lordicon_allowed_hosts', [ 'cdn.lordicon.com' ] );
-		if ( 'https' === $parsed['scheme'] && in_array( strtolower( $parsed['host'] ), array_map( 'strtolower', (array) $allowed_hosts ), true ) ) {
-			return $url;
-		}
-
-		if ( $allow_uploads ) {
-			$check = set_url_scheme( $url, 'https' );
-			$uploads = wp_get_upload_dir();
-			$bases   = [
-				set_url_scheme( $uploads['baseurl'], 'https' ),
-				set_url_scheme( HAPPY_ADDONS_ASSETS, 'https' ),
-			];
-			foreach ( $bases as $base ) {
-				if ( 0 === strpos( $check, trailingslashit( $base ) ) && false === strpos( $check, '..' ) ) {
-					return $url;
-				}
-			}
-		}
-
-		return '';
-	}
-
-	/**
-	 * Limit the custom trigger target to a simple class/ID/tag selector.
-	 */
-	private function sanitize_target_selector( $selector ) {
-		$selector = is_string( $selector ) ? trim( $selector ) : '';
-
-		if ( ! preg_match( '/^[.#]?[A-Za-z_][\w-]*$/', $selector ) ) {
-			return '.ha-lordicon-wrapper';
-		}
-
-		return $selector;
 	}
 
 	private function get_golobal_color($id) {
