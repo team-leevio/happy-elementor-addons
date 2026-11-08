@@ -1,6 +1,7 @@
 = 3.51.1 - ## #### 2026 =
 
 - Fix: Fixed an authorization vulnerability in Setup Wizard REST API endpoints.
+- Fix: Fixed a broken access control vulnerability in the Team Member widget.
 - Fix: Resolved Lordicon, Icon Box & Info Box widget vulnerability.
 - Fix: WPML Compatibility Issues in Image Stack Group, Photo Stack, Post Info, Team Member & WhatsApp Button.
 - Update: Improved Dashboard page load speed.
