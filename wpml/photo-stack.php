@@ -6,7 +6,7 @@ namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
 
-class Photo_Stack_Image_List extends \WPML_Elementor_Module_With_Items  {
+class Photo_Stack extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string

@@ -374,6 +374,11 @@ class WPML_Manager {
 						'type'        => __( 'Image Hover Effect: Title', 'happy-elementor-addons' ),
 						'editor_type' => 'AREA',
 					],
+					[
+						'field'       => 'hover_description',
+						'type'        => __( 'Image Hover Effect: Description', 'happy-elementor-addons' ),
+						'editor_type' => 'AREA',
+					],
 					'hover_link' => [
 						'field'       => 'url',
 						'type'        => __( 'Image Hover Effect: Link URL', 'happy-elementor-addons' ),
@@ -388,7 +393,7 @@ class WPML_Manager {
 			'image-stack-group' => [
 				'fields' => [],
 				'integration-class' => [
-					'Happy_Addons\Elementor\Wpml\Image_Stack_Group_Images',
+					'Happy_Addons\Elementor\Wpml\Image_Stack_Group',
 				]
 			],
 
@@ -484,6 +489,16 @@ class WPML_Manager {
 						'type'        => __( 'Team Member: Short Bio', 'happy-elementor-addons' ),
 						'editor_type' => 'AREA',
 					],
+					[
+						'field'       => 'button_text',
+						'type'        => __( 'Team Member: Button Text', 'happy-elementor-addons' ),
+						'editor_type' => 'LINE',
+					],
+					'button_link' => [
+						'field'       => 'url',
+						'type'        => __( 'Team Member: Button Link', 'happy-elementor-addons' ),
+						'editor_type' => 'LINK',
+					],
 				],
 			],
 
@@ -532,7 +547,7 @@ class WPML_Manager {
 			'photo-stack' => [
 				'fields' => [],
 				'integration-class' => [
-					'Happy_Addons\Elementor\Wpml\Photo_Stack_Image_List',
+					'Happy_Addons\Elementor\Wpml\Photo_Stack',
 				]
 			],
 
@@ -542,7 +557,7 @@ class WPML_Manager {
 			'post-info' => [
 				'fields' => [],
 				'integration-class' => [
-					'Happy_Addons\Elementor\Wpml\Post_Info_Icon_List',
+					'Happy_Addons\Elementor\Wpml\Post_Info',
 				]
 			],
 
