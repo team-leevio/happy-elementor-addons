@@ -14,6 +14,7 @@ class Atomic_Manager {
 	const OPTION_ENABLED         = 'happyaddons_atomic_integration_enabled';
 	const OPTION_ACTIVE_WIDGETS  = 'happyaddons_active_atomic_widgets';
 	const OPTION_ACTIVE_FEATURES = 'happyaddons_active_atomic_features';
+	const OPTION_SHARED_SEEN     = 'happyaddons_atomic_shared_seen';
 
 	const SCRIPT_HANDLE        = 'happy-elementor-addons-atomic';
 	const EDITOR_SCRIPT_HANDLE = 'happy-elementor-addons-atomic-editor';
@@ -78,6 +79,17 @@ class Atomic_Manager {
 
 		$active = array_values( array_intersect( $saved, array_keys( $registry ) ) );
 
+		// Shared features added after the last save stay on until the user saves again.
+		if ( 'features' === $type ) {
+			$seen = (array) get_option( self::OPTION_SHARED_SEEN, [] );
+
+			foreach ( self::shared_features() as $key ) {
+				if ( ! in_array( $key, $seen, true ) && ! in_array( $key, $active, true ) ) {
+					$active[] = $key;
+				}
+			}
+		}
+
 		// Pro components are inactive while Happy Addons Pro is not active.
 		if ( ! ha_has_pro() ) {
 			$active = array_values( array_filter( $active, function ( $key ) use ( $registry ) {
@@ -102,6 +114,31 @@ class Atomic_Manager {
 		$option   = 'widgets' === $type ? self::OPTION_ACTIVE_WIDGETS : self::OPTION_ACTIVE_FEATURES;
 
 		update_option( $option, array_values( array_intersect( (array) $keys, array_keys( $registry ) ) ) );
+
+		if ( 'features' === $type ) {
+			update_option( self::OPTION_SHARED_SEEN, self::shared_features() );
+		}
+	}
+
+	/**
+	 * Keys of the features that reuse their Classic implementation.
+	 *
+	 * @return string[]
+	 */
+	public static function shared_features() {
+		return array_keys( array_filter( Atomic_Registry::features(), function ( $item ) {
+			return ! empty( $item['shared'] );
+		} ) );
+	}
+
+	/**
+	 * True when a shared feature was switched off in the Atomic dashboard.
+	 * Classic code consults it before enabling the feature.
+	 */
+	public static function is_shared_feature_disabled( $key ) {
+		return in_array( $key, self::shared_features(), true )
+			&& self::is_supported()
+			&& ! in_array( $key, self::get_active( 'features' ), true );
 	}
 
 	public static function init() {
@@ -292,11 +329,52 @@ class Atomic_Manager {
 			);
 		}
 
+		// Background Parallax: Jarallax drives the Atomic Flexbox / Div Block. The Atomic assets can be registered before the Classic ones.
+		if ( ! wp_script_is( 'jarallax-js', 'registered' ) ) {
+			wp_register_script( 'jarallax-js', HAPPY_ADDONS_ASSETS . 'vendor/jarallax/jarallax.min.js', null, HAPPY_ADDONS_VERSION, true );
+		}
+
+		if ( ! wp_style_is( 'jarallax-css', 'registered' ) ) {
+			wp_register_style( 'jarallax-css', HAPPY_ADDONS_ASSETS . 'vendor/jarallax/jarallax.min.css', [], HAPPY_ADDONS_VERSION );
+		}
+
+		if ( ! wp_script_is( 'happy-atomic-background-parallax', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-background-parallax',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-background-parallax' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE, 'jarallax-js' ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
+		// Wrapper Link: makes the Atomic elements that have a link clickable.
+		if ( ! wp_script_is( 'happy-atomic-wrapper-link', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-wrapper-link',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-wrapper-link' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
 		// Editor preview of Text Stroke; the frontend is pure CSS from PHP.
 		if ( ! wp_script_is( 'happy-atomic-text-stroke', 'registered' ) ) {
 			wp_register_script(
 				'happy-atomic-text-stroke',
 				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-text-stroke' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
+		// Shape Divider: draws the top / bottom shapes of the Atomic containers.
+		if ( ! wp_script_is( 'happy-atomic-shape-divider', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-shape-divider',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-shape-divider' . $suffix . 'js',
 				[ self::SCRIPT_HANDLE ],
 				HAPPY_ADDONS_VERSION,
 				true
@@ -340,11 +418,23 @@ class Atomic_Manager {
 			);
 		}
 
+		// CSS Transform: editor preview only; the frontend is pure CSS from PHP.
+		if ( ! wp_script_is( 'happy-atomic-css-transform', 'registered' ) ) {
+			wp_register_script(
+				'happy-atomic-css-transform',
+				HAPPY_ADDONS_ASSETS . 'js/happy-atomic-css-transform' . $suffix . 'js',
+				[ self::SCRIPT_HANDLE ],
+				HAPPY_ADDONS_VERSION,
+				true
+			);
+		}
+
 		$styles = [
 			'happy-atomic-image-cycle' => 'image-cycle',
 			'happy-atomic-aia'         => 'appearing-image-animation',
 			'happy-atomic-hta'         => 'heading-text-animation',
 			'happy-atomic-tooltip'     => 'tooltip',
+			'happy-atomic-shape-divider' => 'shape-divider',
 		];
 
 		foreach ( $styles as $handle => $file ) {
@@ -439,12 +529,39 @@ class Atomic_Manager {
 			}
 		);
 
+		// Section label => switcher prop of every active feature: the editor script lights an indicator on the section while it is on.
+		$sections = [];
+
+		foreach ( Atomic_Registry::features() as $key => $item ) {
+			if ( ! self::is_feature_available( $key ) || ! in_array( $key, self::get_active( 'features' ), true ) ) {
+				continue;
+			}
+
+			try {
+				$class = self::load_feature( $item );
+
+				if ( $class && method_exists( $class, 'editor_section' ) ) {
+					$section = $class::instance()->editor_section();
+
+					$sections[ $section['label'] ] = $section['switcher'];
+				}
+			} catch ( \Throwable $e ) {
+				continue;
+			}
+		}
+
 		wp_enqueue_script(
 			self::EDITOR_SCRIPT_HANDLE,
 			HAPPY_ADDONS_ASSETS . 'js/happy-atomic-editor' . $suffix . 'js',
 			array_values( $deps ),
 			HAPPY_ADDONS_VERSION,
 			true
+		);
+
+		wp_add_inline_script(
+			self::EDITOR_SCRIPT_HANDLE,
+			'window.HappyAtomicEditor = window.HappyAtomicEditor || {}; window.HappyAtomicEditor.sections = ' . wp_json_encode( $sections ) . ';',
+			'before'
 		);
 	}
 

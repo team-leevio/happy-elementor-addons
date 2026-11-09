@@ -84,7 +84,8 @@
 		}
 
 		if (isNaN(current)) {
-			current = min;
+			// An empty value rests on 0 when the range holds it (translate, rotate, skew).
+			current = min > 0 ? min : (max < 0 ? max : 0);
 		}
 
 		return h(ui.Stack, {direction: 'row', alignItems: 'center', gap: 2},
@@ -227,9 +228,102 @@
 		}, 'border-radius-v2'), 'full', props.borderRadiusPropTypeUtil);
 	}
 
+	/* ---------------------------------------------------------------- *
+	 * ha-tabs
+	 * Style tabs (Normal / Hover) whose groups open as popovers, like the
+	 * Classic panel. Bound to the feature's switcher: nothing shows while it is off.
+	 * Every inner control is rendered by the panel itself (SettingsControl), so
+	 * dependencies, history and prop wrapping behave as for any other control.
+	 * ---------------------------------------------------------------- */
+	var icons = v2.icons || {};
+
+	function PopoverRow(rowProps) {
+		var bound = controls.useBoundProp(props.booleanPropTypeUtil);
+		var anchor = React.useRef(null);
+		var state = React.useState(false);
+		var open = state[0];
+		var on = true === bound.value;
+		var Popover = ui.Popover;
+
+		return h(ui.Stack, {gap: 0},
+			h(ui.Stack, {direction: 'row', alignItems: 'center', justifyContent: 'space-between'},
+				h(panel.ControlLabel, null, rowProps.label),
+				h(ui.Stack, {direction: 'row', alignItems: 'center', gap: 0.5},
+					on && icons.ArrowBackUpIcon ? h(ui.IconButton, {
+						size: 'tiny',
+						'aria-label': 'Reset',
+						onClick: function () {
+							state[1](false);
+							bound.setValue(false);
+						}
+					}, h(icons.ArrowBackUpIcon, {fontSize: 'tiny'})) : null,
+					h(ui.IconButton, {
+						size: 'tiny',
+						ref: anchor,
+						color: on ? 'primary' : 'default',
+						'aria-label': rowProps.label,
+						onClick: function () {
+							if (!on) {
+								bound.setValue(true);
+							}
+
+							state[1](true);
+						}
+					}, icons.PencilIcon ? h(icons.PencilIcon, {fontSize: 'tiny'}) : '✎')
+				)
+			),
+			Popover ? h(Popover, {
+				open: open && on,
+				anchorEl: anchor.current,
+				onClose: function () {
+					state[1](false);
+				},
+				anchorOrigin: {vertical: 'bottom', horizontal: 'center'},
+				transformOrigin: {vertical: 'top', horizontal: 'center'},
+				slotProps: {paper: {sx: {width: 280, maxWidth: '90vw', p: 2}}}
+			}, h(ui.Stack, {gap: 1.5}, rowProps.controls.map(function (control) {
+				return h(panel.SettingsControl, {key: control.value.bind, control: control});
+			}))) : null
+		);
+	}
+
+	var Tabs = controls.createControl(function (tabsProps) {
+		var bound = controls.useBoundProp(props.booleanPropTypeUtil);
+		var state = React.useState(0);
+		var tabs = tabsProps.tabs || [];
+
+		if (true !== bound.value || !tabs.length) {
+			return null;
+		}
+
+		var tab = tabs[Math.min(state[0], tabs.length - 1)];
+
+		return h(ui.Stack, {gap: 1.5},
+			h(ui.Tabs, {
+				value: Math.min(state[0], tabs.length - 1),
+				variant: 'fullWidth',
+				size: 'small',
+				onChange: function (event, value) {
+					state[1](value);
+				}
+			}, tabs.map(function (item, index) {
+				return h(ui.Tab, {key: index, label: item.label, value: index, sx: {px: 1}});
+			})),
+			h(ui.Stack, {gap: 1.5}, tab.items.map(function (item, index) {
+				if ('popover' === item.kind) {
+					return h(panel.SettingsField, {key: item.toggle + index, bind: item.toggle, propDisplayName: item.label},
+						h(PopoverRow, {label: item.label, controls: item.controls}));
+				}
+
+				return h(panel.SettingsControl, {key: item.control.value.bind, control: item.control});
+			}))
+		);
+	});
+
 	register('ha-field', Field, 'custom');
 	register('ha-color', controls.ColorControl, 'full', props.colorPropTypeUtil);
 	register('ha-slider', Slider, 'full', props.numberPropTypeUtil);
+	register('ha-tabs', Tabs, 'custom', props.booleanPropTypeUtil);
 
 	// The core color control is not in the settings registry (only the style tab uses it).
 	if (controls.ColorControl && props.colorPropTypeUtil) {
@@ -244,9 +338,36 @@
 	 * Happy icon on the section of every Happy Atomic feature, like the
 	 * Classic panel. PHP ends those section labels with a run of zero-width characters.
 	 * ---------------------------------------------------------------- */
-	var MARK = '\u200B\u200C\u200B';
+	var MARK = '​‌​';
+	var DOT_COLOR = '#fd85d4';
+
+	function unwrapValue(value) {
+		while (value && 'object' === typeof value && '$$type' in value) {
+			value = value.value;
+		}
+
+		return value;
+	}
+
+	// Whether the selected element has the feature of this section turned on.
+	function sectionActive(switcher) {
+		try {
+			var editor = w.elementor;
+			var selected = editor && editor.selection && editor.selection.getElements ? editor.selection.getElements() : [];
+			var settings = selected.length && selected[0].settings;
+			var value = settings && settings.get ? settings.get(switcher) : null;
+
+			var active = unwrapValue(value);
+
+			// A text "switcher" (Wrapper Link's URL) is on once it has a value.
+			return true === active || 'yes' === active || ('string' === typeof active && '' !== active.trim());
+		} catch (e) {
+			return false;
+		}
+	}
 
 	function addSectionIcons() {
+		var sections = (w.HappyAtomicEditor && w.HappyAtomicEditor.sections) || {};
 		var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
 			acceptNode: function (node) {
 				return node.nodeValue.slice(-MARK.length) === MARK ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
@@ -261,15 +382,36 @@
 		nodes.forEach(function (node) {
 			var parent = node.parentNode;
 
-			if (!parent || parent.querySelector('.ha-section-icon')) {
+			if (!parent) {
 				return;
 			}
 
-			var icon = document.createElement('i');
+			var icon = parent.querySelector('.ha-section-icon');
+			var dot = parent.querySelector('.ha-section-dot');
 
-			icon.className = 'hm hm-happyaddons ha-section-icon';
-			icon.style.float = 'right';
-			parent.appendChild(icon);
+			if (!icon) {
+				icon = document.createElement('i');
+				icon.className = 'hm hm-happyaddons ha-section-icon';
+				parent.appendChild(icon);
+			}
+
+			// Icon and indicator sit on the label's middle line.
+			parent.style.display = 'inline-flex';
+			parent.style.alignItems = 'center';
+			parent.style.gap = '6px';
+			icon.style.cssText = 'float:none;display:inline-block;line-height:1;vertical-align:middle;flex:none;';
+
+			var switcher = sections[node.nodeValue.slice(0, -MARK.length)];
+			var active = switcher ? sectionActive(switcher) : false;
+
+			if (active && !dot) {
+				dot = document.createElement('span');
+				dot.className = 'ha-section-dot';
+				dot.style.cssText = 'display:inline-block;flex:none;width:6px;height:6px;border-radius:50%;background:' + DOT_COLOR + ';';
+				parent.appendChild(dot);
+			} else if (!active && dot) {
+				dot.remove();
+			}
 		});
 	}
 
@@ -280,5 +422,8 @@
 			clearTimeout(timer);
 			timer = setTimeout(addSectionIcons, 100);
 		}).observe(document.body, {childList: true, subtree: true});
+
+		// A setting change does not always touch the DOM around the section header.
+		setInterval(addSectionIcons, 500);
 	}
 }(window));
