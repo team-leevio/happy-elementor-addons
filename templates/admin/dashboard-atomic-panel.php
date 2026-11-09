@@ -2,8 +2,7 @@
 /**
  * Dashboard V4 (Atomic) panel, rendered next to the V3 panel of a tab.
  *
- * Only the Widgets and Features tabs list components; Extensions and GSAP
- * have no Atomic components yet and show an empty state.
+ * The Widgets, Features, Extensions and GSAP tabs list components.
  */
 
 use Happy_Addons\Elementor\Classes\Atomic_Manager;
@@ -52,7 +51,7 @@ $supported = Atomic_Manager::is_environment_supported();
 		</div>
 	<?php endif; ?>
 
-	<?php if ( in_array( $tab, [ 'widgets', 'features', 'gsap' ], true ) ) :
+	<?php if ( in_array( $tab, [ 'widgets', 'features', 'extensions', 'gsap' ], true ) ) :
 		$active_lists = [
 			'widget'  => Atomic_Manager::get_active( 'widgets' ),
 			'feature' => Atomic_Manager::get_active( 'features' ),
@@ -93,7 +92,19 @@ $supported = Atomic_Manager::is_environment_supported();
 				}
 			}
 		} else {
+			$is_extensions_tab = 'extensions' === $tab;
+
 			foreach ( Atomic_Registry::features() as $key => $item ) {
+				// Extensions (Text Stroke, Foreground Overlay...) live in the Extensions tab, as in Classic.
+				if ( $is_extensions_tab !== ! empty( $item['is_extension'] ) ) {
+					continue;
+				}
+
+				if ( $is_extensions_tab ) {
+					$push( __( 'Extensions', 'happy-elementor-addons' ), 'feature', $key, $item );
+					continue;
+				}
+
 				$push( ! empty( $item['is_gsap'] ) ? __( 'GSAP Features', 'happy-elementor-addons' ) : __( 'General Features', 'happy-elementor-addons' ), 'feature', $key, $item );
 			}
 
@@ -106,9 +117,10 @@ $supported = Atomic_Manager::is_environment_supported();
 		$heading = [
 			'widgets'  => __( 'Atomic Widgets', 'happy-elementor-addons' ),
 			'features' => __( 'Atomic Features', 'happy-elementor-addons' ),
+			'extensions' => __( 'Atomic Extensions', 'happy-elementor-addons' ),
 			'gsap'     => __( 'Atomic GSAP', 'happy-elementor-addons' ),
 		][ $tab ];
-		$action  = [ 'widgets' => 'atomic_widget', 'features' => 'atomic_feature', 'gsap' => 'atomic_gsap' ][ $tab ];
+		$action  = [ 'widgets' => 'atomic_widget', 'features' => 'atomic_feature', 'extensions' => 'atomic_feature', 'gsap' => 'atomic_gsap' ][ $tab ];
 		?>
 		<div class="ha-dashboard-panel__header">
 			<div class="ha-dashboard-panel__header-content">
@@ -146,8 +158,7 @@ $supported = Atomic_Manager::is_environment_supported();
 		</div>
 	<?php else : ?>
 		<div class="ha-atomic-empty">
-			<h3><?php esc_html_e( 'No Atomic extensions yet', 'happy-elementor-addons' ); ?></h3>
-			<p><?php esc_html_e( 'None of the Happy extensions have an Elementor V4 version yet. The Classic extensions keep working for Classic elements.', 'happy-elementor-addons' ); ?></p>
+			<h3><?php esc_html_e( 'Nothing to show yet', 'happy-elementor-addons' ); ?></h3>
 		</div>
 	<?php endif; ?>
 

@@ -29,6 +29,18 @@ class Extensions_Manager {
 			}
 		}
 
+		// These are extensions: the Extensions tab (filters registered above) switches them on or off.
+		if ( ha_is_foreground_overlay_enabled() ) {
+			self::enable_feature( 'foreground-overlay' );
+		}
+
+		if ( ha_is_text_stroke_enabled() ) {
+			self::enable_feature( 'text-stroke' );
+		}
+
+		// Checks ha_is_background_hover_effect_enabled() itself.
+		self::enable_feature( 'container-hover-text-color' );
+
 		foreach ( self::get_pro_features_map() as $feature_key => $data ) {
 			if ( ! in_array( $feature_key, $always_on_features, true ) && in_array( $feature_key, $inactive_features ) ) {
 				self::disable_pro_feature( $feature_key );
@@ -272,11 +284,6 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/background-overlay-demo/',
 				'is_pro' => false,
 			],
-			'foreground-overlay' => [
-				'title' => __( 'Foreground Overlay', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-layer',
-				'is_pro' => false,
-			],
 			'grid-layer' => [
 				'title' => __( 'Grid Layer', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-grid',
@@ -323,12 +330,6 @@ class Extensions_Manager {
 				'title' => __( 'Happy Tooltip', 'happy-elementor-addons' ),
 				'icon' => 'hm hm-comment-square',
 				'demo' => 'https://happyaddons.com/happy-tooltip/',
-				'is_pro' => false,
-			],
-			'text-stroke' => [
-				'title' => __( 'Text Stroke', 'happy-elementor-addons' ),
-				'icon' => 'hm hm-text-outline',
-				'demo' => 'https://happyaddons.com/text-stroke/',
 				'is_pro' => false,
 			],
 			'scroll-to-top' => [
@@ -382,11 +383,6 @@ class Extensions_Manager {
 				'demo' => 'https://happyaddons.com/',
 				'is_pro' => false,
 			],
-		'container-hover-text-color' => [
-			'title' => __( 'Background Hover Effect', 'happy-elementor-addons' ),
-			'icon' => 'hm hm-cursor-hover-click',
-			'is_pro' => false,
-		],
 	];
 	}
 
@@ -458,7 +454,7 @@ class Extensions_Manager {
 				break;
 
 			case 'text-stroke':
-				if( ! in_array( 'text-stroke', ha_get_inactive_features() ) && ha_is_text_stroke_enabled() ) {
+				if ( ha_is_text_stroke_enabled() ) {
 					add_action( 'elementor/element/heading/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
 					add_action( 'elementor/element/theme-page-title/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
 					add_action( 'elementor/element/theme-site-title/section_title_style/before_section_end', [ Features\Text_Stroke::class, 'add_text_stroke' ] );
