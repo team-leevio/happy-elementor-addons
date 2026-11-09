@@ -28,6 +28,7 @@ $has_pro = ha_has_pro();
                 <span class="ha-action--divider">|</span>
                 <button type="button" class="ha-action--btn" data-action="enable_gsap"><?php esc_html_e( 'Enable All', 'happy-elementor-addons' ); ?></button>
                 <button type="button" class="ha-action--btn" data-action="disable_gsap"><?php esc_html_e( 'Disable All', 'happy-elementor-addons' ); ?></button>
+                <span class="ha-search-action--btn"><input type="search" value="" placeholder="<?php esc_html_e( 'Search', 'happy-elementor-addons' ); ?>"></span>
             </div>
         </div>
     </div>

@@ -41,6 +41,7 @@ foreach ( $features as $feature_key => $feature_data ) {
                 <span class="ha-action--divider">|</span>
                 <button type="button" class="ha-action--btn" data-action="enable_feature"><?php esc_html_e( 'Enable All', 'happy-elementor-addons' ); ?></button>
                 <button type="button" class="ha-action--btn" data-action="disable_feature"><?php esc_html_e( 'Disable All', 'happy-elementor-addons' ); ?></button>
+                <span class="ha-search-action--btn"><input type="search" value="" placeholder="<?php esc_html_e( 'Search', 'happy-elementor-addons' ); ?>"></span>
             </div>
         </div>
     </div>

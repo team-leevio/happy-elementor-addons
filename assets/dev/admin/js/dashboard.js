@@ -254,31 +254,25 @@
 
 		$('.ha-search-action--btn input').on('input', debounce( function ( event ) {
 			event.preventDefault();
-			// console.log( 'event type => ', event.type );
-			// console.log( 'input value => ', event.target.value );
-			// console.log( $widgetsList );
 
-			var searchValue = event.target.value.toLowerCase();
-			var $all = $widgetsList.find('.ha-dashboard-widgets__item');
-			var $toggle_widget = $all.not('.item--is-placeholder').find(':checkbox.ha-widget');
+			var searchValue = $.trim(event.target.value).toLowerCase(),
+				// Search only the panel (tab, or V3 / V4 sub-panel) the field belongs to
+				$scope = $(event.target).closest('.ha-version-panel').length
+					? $(event.target).closest('.ha-version-panel')
+					: $(event.target).closest('.ha-dashboard-panel'),
+				$items = $scope.find('.ha-dashboard-widgets__item').not('.ha-atomic-switch'),
+				$headings = $scope.find('.ha-dashboard-widgets > h2');
 
-			//$toggle_feature = $all.not('.item--is-placeholder').find(':checkbox.ha-feature');
-			//console.log( $widgetsList.find(':checkbox.ha-widget') );
-			// $dashboardForm.find(".ha-dashboard-widgets--tab > h2")
+			$items.each( function () {
+				var $item = $(this),
+					// Classic Features / Extensions / GSAP items carry no data-title, so fall back to the visible title
+					title = String($item.data('title') || $item.find('.ha-dashboard-widgets__item-title').text()).toLowerCase();
 
-			if( '' != searchValue ) {
-				$dashboardForm.find(".ha-dashboard-widgets--tab > h2").hide();
-			} else {
-				$dashboardForm.find(".ha-dashboard-widgets--tab > h2").show();
-			}
-
-			// $toggle_widget
-			$toggle_widget.each( function ( index, item ) {
-				// console.log( item, index );
-				let item_wrapper = $(item).closest('.ha-dashboard-widgets__item');
-				let condition = item_wrapper.data('title').toLowerCase().indexOf(searchValue) > -1;
-				condition ? item_wrapper.show() : item_wrapper.hide();
+				$item.toggle( '' === searchValue || title.indexOf(searchValue) > -1 );
 			});
+
+			// Hide group titles while searching, as on the Widgets tab
+			$headings.toggle( '' === searchValue );
 		}, 500));
 
 		$('.ha-search-action--btn input').on('keypress', function (event) {
