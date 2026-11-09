@@ -122,6 +122,14 @@ class Atomic_Registry {
 				'is_gsap'   => false,
 				'shared'    => true,
 			],
+			'custom-js'                 => [
+				'title'     => __( 'Custom JS', 'happy-elementor-addons' ),
+				'icon'      => 'huge huge-code',
+				'is_active' => true,
+				'is_pro'    => false,
+				'is_gsap'   => false,
+				'shared'    => true,
+			],
 			'happy-particle-effects'  => [
 				'title'     => __( 'Happy Particle Effects', 'happy-elementor-addons' ),
 				'icon'      => 'hm hm-spark',
