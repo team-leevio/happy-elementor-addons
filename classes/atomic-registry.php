@@ -137,6 +137,13 @@ class Atomic_Registry {
 				'is_pro'    => true,
 				'is_gsap'   => false,
 			],
+			'multi-layer-parallax'    => [
+				'title'     => __( 'Multi Layer Parallax', 'happy-elementor-addons' ),
+				'icon'      => 'huge huge-layers-02',
+				'is_active' => true,
+				'is_pro'    => true,
+				'is_gsap'   => false,
+			],
 			'wrapper-link'             => [
 				'title'     => __( 'Wrapper Link', 'happy-elementor-addons' ),
 				'icon'      => 'hm hm-section-link',
