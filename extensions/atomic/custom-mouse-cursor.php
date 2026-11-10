@@ -373,7 +373,10 @@ class Custom_Mouse_Cursor extends Atomic_Feature_Base {
 		/** @var Svg_Control $icon */
 		$icon = Svg_Control::bind_to( $prop . 'media_svg' );
 		$icon->set_label( __( 'Choose Icon', 'happy-elementor-addons' ) );
-		$icon->set_show_icon_library( true );
+		// Not available in every Elementor version.
+		if ( method_exists( $icon, 'set_show_icon_library' ) ) {
+			$icon->set_show_icon_library( true );
+		}
 
 		return [
 			'type'              => [
