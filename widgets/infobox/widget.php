@@ -6,20 +6,22 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Utils;
-use Elementor\Controls_Manager;
-use Elementor\Group_Control_Border;
-use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
-use Elementor\Group_Control_Typography;
-use Happy_Addons\Elementor\Traits\Button_Renderer;
-use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+	use Elementor\Utils;
+	use Elementor\Controls_Manager;
+	use Elementor\Group_Control_Border;
+	use Elementor\Group_Control_Box_Shadow;
+	use Elementor\Group_Control_Image_Size;
+	use Elementor\Group_Control_Typography;
+	use Happy_Addons\Elementor\Traits\Button_Renderer;
+	use Happy_Addons\Elementor\Traits\Lordicon_Sanitizer;
+	use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
-defined( 'ABSPATH' ) || die();
+	defined( 'ABSPATH' ) || die();
 
-class InfoBox extends Base {
+	class InfoBox extends Base {
 
-	use Button_Renderer;
+		use Button_Renderer;
+		use Lordicon_Sanitizer;
 
 	/**
 	 * Get widget title.
@@ -1370,9 +1372,14 @@ class InfoBox extends Base {
 			wp_enqueue_script( 'lord-icon' );
 
 			if ( 'file' == $settings['icon_method'] ) {
-				$json_url = $settings['icon_json']['url'];
+				$json_url = $this->sanitize_animation_url( $settings['icon_json']['url'], true );
 			} else {
-				$json_url = $settings['icon_cdn'];
+				$json_url = $this->sanitize_animation_url( $settings['icon_cdn'] );
+			}
+
+			$trigger_target = isset( $settings['target'] ) ? $settings['target'] : 'widget';
+			if ( ! in_array( $trigger_target, [ 'widget', 'column', 'section', 'custom' ], true ) ) {
+				$trigger_target = 'widget';
 			}
 		}
 		$pulse_effect = ( 'yes' == $settings['pulse_effect'] ) ? ' pulse_effect' : '';
@@ -1384,18 +1391,20 @@ class InfoBox extends Base {
 			<figure class="ha-infobox-figure ha-infobox-figure--image">
 				<?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' ); ?>
 			</figure>
-		<?php elseif( isset( $settings['type'] ) && 'lordicon' === $settings['type'] ) : ?>
+	<?php elseif( isset( $settings['type'] ) && 'lordicon' === $settings['type'] ) : ?>
+		<?php if ( ! empty( $json_url ) ) : ?>
 		<span class="ha-info-box-icon<?php echo esc_attr( $pulse_effect ); ?>">
 			<lord-icon
 				src="<?php echo esc_url( $json_url ); ?>"
 				trigger="<?php echo esc_attr($settings['animation_trigger'] ); ?>"
 				stroke="<?php echo esc_attr( $settings['lord_icon_stroke']['size']); ?>"
-				target="<?php echo esc_attr( $settings['target'] ); ?>"
+				target="<?php echo esc_attr( $trigger_target ); ?>"
 				colors="primary:<?php echo esc_attr($primary_color); ?>,secondary:<?php echo esc_attr($secondary_color); ?>,tertiary:<?php echo esc_attr($tertiary_color); ?>,quaternary:<?php echo esc_attr($quaternary_color); ?>"
 				style="width:<?php echo esc_attr($settings['lord_icon_size']['size']); ?>px;height:<?php echo esc_attr($settings['lord_icon_size']['size']); ?>px">
 			</lord-icon>
 		</span>
-		<?php elseif ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon']['value'] ) ) : ?>
+		<?php endif; ?>
+	<?php elseif ( ! empty( $settings['icon'] ) || ! empty( $settings['selected_icon']['value'] ) ) : ?>
 			<figure class="ha-infobox-figure ha-infobox-figure--icon">
 				<?php ha_render_icon( $settings, 'icon', 'selected_icon' ); ?>
 			</figure>

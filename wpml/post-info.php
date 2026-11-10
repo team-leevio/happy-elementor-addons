@@ -6,7 +6,7 @@ namespace Happy_Addons\Elementor\Wpml;
 
 defined( 'ABSPATH' ) || die();
 
-class Post_Info_Icon_List extends \WPML_Elementor_Module_With_Items  {
+class Post_Info extends \WPML_Elementor_Module_With_Items  {
 
 	/**
 	 * @return string

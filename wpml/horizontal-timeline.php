@@ -24,6 +24,7 @@ class Horizontal_Timeline extends \WPML_Elementor_Module_With_Items  {
 			'event_title',
 			'event_subtitle',
 			'event_description',
+			'event_link' => [ 'url' ],
 		];
 	}
 
@@ -48,6 +49,10 @@ class Horizontal_Timeline extends \WPML_Elementor_Module_With_Items  {
 		if ( $field === 'event_description' ) {
 			return __( 'Horizontal Timeline: Description', 'happy-elementor-addons' );
 		}
+
+		if ( $field === 'url' ) {
+			return __( 'Horizontal Timeline: Link', 'happy-elementor-addons' );
+		}
 	}
 
 	/**
@@ -70,6 +75,10 @@ class Horizontal_Timeline extends \WPML_Elementor_Module_With_Items  {
 
 		if ( $field === 'event_description' ) {
 			return 'AREA';
+		}
+
+		if ( $field === 'url' ) {
+			return 'LINK';
 		}
 	}
 }

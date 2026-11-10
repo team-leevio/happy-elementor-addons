@@ -1371,6 +1371,12 @@ class Whatsapp_Button extends Base
 								$status_text = $settings['agent_status'];
 								if ('custom' === $settings['agent_status'] && ! empty($settings['custom_agent_status'])) {
 									$status_text = $settings['custom_agent_status'];
+								} elseif ('online' === $settings['agent_status']) {
+									$status_text = __('Online', 'happy-elementor-addons');
+								} elseif ('offline' === $settings['agent_status']) {
+									$status_text = __('Offline', 'happy-elementor-addons');
+								} elseif ('busy' === $settings['agent_status']) {
+									$status_text = __('Busy', 'happy-elementor-addons');
 								}
 								?>
 								<span class="ha-whatsapp-popup__header-status"><?php echo esc_html($status_text); ?></span>

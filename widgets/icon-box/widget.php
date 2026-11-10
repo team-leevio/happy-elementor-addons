@@ -6,16 +6,19 @@
  */
 namespace Happy_Addons\Elementor\Widget;
 
-use Elementor\Controls_Manager;
-use Elementor\Group_Control_Border;
-use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Text_Shadow;
-use Elementor\Group_Control_Typography;
-use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+	use Elementor\Controls_Manager;
+	use Elementor\Group_Control_Border;
+	use Elementor\Group_Control_Box_Shadow;
+	use Elementor\Group_Control_Text_Shadow;
+	use Elementor\Group_Control_Typography;
+	use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+	use Happy_Addons\Elementor\Traits\Lordicon_Sanitizer;
 
-defined( 'ABSPATH' ) || die();
+	defined( 'ABSPATH' ) || die();
 
-class Icon_Box extends Base {
+	class Icon_Box extends Base {
+
+		use Lordicon_Sanitizer;
 
 	/**
 	 * Get widget title.
@@ -1090,15 +1093,15 @@ class Icon_Box extends Base {
 			wp_enqueue_script( 'lord-icon' );
 
 			if ( 'file' == $method ) {
-				$json_url = $settings['icon_json']['url'];
+				$json_url = $this->sanitize_animation_url( $settings['icon_json']['url'], true );
 			} else {
-				$json_url = $settings['icon_cdn'];
+				$json_url = $this->sanitize_animation_url( $settings['icon_cdn'] );
 			}
 		}
         $target_class = '';
 
         if ('custom' == $target ) {
-            $target_class = $settings['custom_target'];
+            $target_class = $this->sanitize_target_selector( $settings['custom_target'], '.ha-icon-box-icon' );
         } elseif ('column' == $target ) {
             $target_class = '.elementor-column';
         } elseif ('section' == $target ) {

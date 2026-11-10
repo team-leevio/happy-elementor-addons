@@ -18,6 +18,7 @@ class Api_Handler {
     const CONSENT_DB_KEY = 'happy-elementor-addons_allow_tracking';
     const CACHE_DB_KEY = 'happy-elementor-addons_wizard_cache_key';
     const WIZARD_CACHE_FIX  = "happy-elementor-x98237938759348573";
+    const MAX_WIZARD_CACHE_LENGTH = 1048576;
 
     public static function ha_wizard_routes()
     {
@@ -26,7 +27,7 @@ class Api_Handler {
             'methods' => 'GET',
             'callback' => [__CLASS__,'ha_wizard_get_dummy_data'],
             'permission_callback' => function () {
-                return true;
+                return current_user_can( 'manage_options' );
             }
         ));
 
@@ -34,7 +35,7 @@ class Api_Handler {
             'methods' => 'GET',
             'callback' => [__CLASS__,'ha_wizard_get_cache_data'],
             'permission_callback' => function () {
-                return current_user_can( 'edit_others_posts' );
+                return current_user_can( 'manage_options' );
             }
         ));
 
@@ -42,7 +43,7 @@ class Api_Handler {
             'methods' => 'GET',
             'callback' => [__CLASS__,'ha_wizard_get_preset'],
             'permission_callback' => function () {
-                return current_user_can( 'edit_others_posts' );
+                return current_user_can( 'manage_options' );
             }
         ));
 
@@ -50,7 +51,7 @@ class Api_Handler {
             'methods' => 'GET',
             'callback' => [__CLASS__,'ha_wizard_get_preset_pro'],
             'permission_callback' => function () {
-                return current_user_can( 'edit_others_posts' );
+                return current_user_can( 'manage_options' );
             }
         ));
 
@@ -60,7 +61,7 @@ class Api_Handler {
             'methods' => 'POST',
             'callback' => [__CLASS__,'ha_wizard_save_data'],
             'permission_callback' => function () {
-                return current_user_can( 'edit_others_posts' );
+                return current_user_can( 'manage_options' );
             }
         ));
 
@@ -68,7 +69,7 @@ class Api_Handler {
             'methods' => 'POST',
             'callback' => [__CLASS__,'ha_wizard_save_cache_data'],
             'permission_callback' => function () {
-                return current_user_can( 'edit_others_posts' );
+                return current_user_can( 'manage_options' );
             }
         ));
 
@@ -76,7 +77,7 @@ class Api_Handler {
             'methods' => 'POST',
             'callback' => [__CLASS__,'ha_wizard_skip'],
             'permission_callback' => function () {
-                return current_user_can( 'edit_others_posts' );
+                return current_user_can( 'manage_options' );
             }
         ));
     }
@@ -150,19 +151,28 @@ class Api_Handler {
         $data = json_decode( $request->get_body() );
 
         if($data){
-            if(isset($data->widget)){
-                Widgets_Manager::save_inactive_widgets($data->widget);
+            if(isset($data->widget) && (is_array($data->widget) || is_object($data->widget))){
+                $widgets_map = Widgets_Manager::get_widgets_map();
+                unset( $widgets_map[ Widgets_Manager::get_base_widget_key() ] );
+                $known_widgets = array_map( 'strval', array_keys( $widgets_map ) );
+                $inactive_widgets = array_values( array_intersect( array_map( 'strval', (array) $data->widget ), $known_widgets ) );
+                Widgets_Manager::save_inactive_widgets( $inactive_widgets );
             }
-            if(isset($data->features)){
-                $features = (array) $data->features;
+            if(isset($data->features) && (is_array($data->features) || is_object($data->features))){
+                $features_map = Extensions_Manager::get_features_map();
+                if ( ha_has_pro() ) {
+                    $features_map = array_merge( $features_map, Extensions_Manager::get_pro_features_map() );
+                }
+                $known_features = array_map( 'strval', array_keys( $features_map ) );
+                $features = array_values( array_intersect( array_map( 'strval', (array) $data->features ), $known_features ) );
                 $always_on_features = Extensions_Manager::get_always_on_features();
                 if ( ! empty( $always_on_features ) ) {
                     $features = array_values( array_diff( $features, $always_on_features ) );
                 }
-                Extensions_Manager::save_inactive_features($features);
+                Extensions_Manager::save_inactive_features( $features );
             }
 
-            if(isset($data->consent)){
+            if(isset($data->consent) && ! empty( $data->consent ) && 'no' !== $data->consent){
                 update_option(self::CONSENT_DB_KEY,'yes');
             }
 
@@ -195,8 +205,11 @@ class Api_Handler {
     public static function ha_wizard_save_cache_data(\WP_REST_Request $request){
         $data = $request->get_body();
 
-        if($data){
-            update_option(self::CACHE_DB_KEY,$data);
+        if($data && strlen($data) <= self::MAX_WIZARD_CACHE_LENGTH){
+            $decoded = json_decode( $data );
+            if ( is_array( $decoded ) || is_object( $decoded ) ) {
+                update_option( self::CACHE_DB_KEY, wp_json_encode( $decoded ) );
+            }
         }
 
         $response = [
