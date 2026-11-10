@@ -38,6 +38,16 @@ class Text_Stroke extends Atomic_Feature_Base {
 		return isset( $schema['title'], $schema['tag'], $schema['link'] ) && ! isset( $schema['image'], $schema['text'], $schema['paragraph'] );
 	}
 
+	/**
+	 * No switch: the feature is on while the stroke width is above zero, so the panel indicator follows that.
+	 */
+	public function editor_section() {
+		return [
+			'label'    => $this->section_label(),
+			'switcher' => [ $this->prefix() . 'width' ],
+		];
+	}
+
 	protected function fields() {
 		return [
 			'width' => [
