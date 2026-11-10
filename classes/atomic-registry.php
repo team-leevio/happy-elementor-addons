@@ -44,7 +44,7 @@ class Atomic_Registry {
 	public static function features() {
 		$features = [
 			'global-animation'          => [
-				'title'     => __( 'Animation', 'happy-elementor-addons' ),
+				'title'     => __( 'Global Animation', 'happy-elementor-addons' ),
 				'icon'      => 'hm hm-alien',
 				'is_active' => true,
 				'is_pro'    => true,
