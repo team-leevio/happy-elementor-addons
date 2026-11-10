@@ -140,6 +140,8 @@ function makeAtomicCSS() {
 		.pipe(gulpPlumberNotifier())
 		.pipe(compileSass())
 		.pipe(gulpAutoPrefixer(AUTOPREFIXER_BROWSERS))
+		// Unminified copy too: Atomic_Manager::register_assets() asks for it while SCRIPT_DEBUG is on.
+		.pipe(dest("assets/css/widgets/atomic"))
 		.pipe(gulpCsso())
 		.pipe(gulpRename({ suffix: ".min" }))
 		.pipe(dest("assets/css/widgets/atomic"));
