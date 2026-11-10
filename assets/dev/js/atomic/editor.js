@@ -349,18 +349,49 @@
 		return value;
 	}
 
-	// Whether the selected element has the feature of this section turned on.
+	// Whether one prop counts as "on": a switch, a non-empty text (Wrapper Link's URL,
+	// a Foreground type other than "none") or a number above zero (Text Stroke width).
+	function propActive(settings, prop) {
+		var raw = settings.get(prop);
+
+		if (undefined === raw && settings.attributes) {
+			raw = settings.attributes[prop];
+		}
+
+		var active = unwrapValue(raw);
+
+		if ('string' === typeof active && '' !== active.trim() && !isNaN(Number(active))) {
+			active = Number(active);
+		}
+
+		if ('number' === typeof active) {
+			return active > 0;
+		}
+
+		if ('string' === typeof active) {
+			active = active.trim();
+
+			return '' !== active && 'none' !== active && 'no' !== active && '0' !== active;
+		}
+
+		return true === active || 'yes' === active;
+	}
+
+	// Whether the selected element has the feature of this section turned on
+	// (any of the section's switcher props, when several are given).
 	function sectionActive(switcher) {
 		try {
 			var editor = w.elementor;
 			var selected = editor && editor.selection && editor.selection.getElements ? editor.selection.getElements() : [];
 			var settings = selected.length && selected[0].settings;
-			var value = settings && settings.get ? settings.get(switcher) : null;
 
-			var active = unwrapValue(value);
+			if (!settings || !settings.get) {
+				return false;
+			}
 
-			// A text "switcher" (Wrapper Link's URL) is on once it has a value.
-			return true === active || 'yes' === active || ('string' === typeof active && '' !== active.trim());
+			return [].concat(switcher).some(function (prop) {
+				return propActive(settings, prop);
+			});
 		} catch (e) {
 			return false;
 		}

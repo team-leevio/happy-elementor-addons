@@ -41,6 +41,16 @@ class Container_Hover_Effect extends Atomic_Feature_Base {
 			&& ! isset( $schema['title'], $schema['image'], $schema['text'], $schema['paragraph'] );
 	}
 
+	/**
+	 * No switch: the feature is on once the hover text color is set or the effects are enabled, so the panel indicator follows that.
+	 */
+	public function editor_section() {
+		return [
+			'label'    => $this->section_label(),
+			'switcher' => [ $this->prefix() . 'text_color', $this->prefix() . 'effects' ],
+		];
+	}
+
 	protected function fields() {
 		$on = [ 'effects' => true ];
 

@@ -41,6 +41,16 @@ class Foreground_Overlay extends Atomic_Feature_Base {
 			&& ! isset( $schema['title'], $schema['image'], $schema['text'], $schema['paragraph'] );
 	}
 
+	/**
+	 * No switch: the feature is on while a foreground type is chosen, so the panel indicator follows that.
+	 */
+	public function editor_section() {
+		return [
+			'label'    => $this->section_label(),
+			'switcher' => [ $this->prefix() . 'type' ],
+		];
+	}
+
 	protected function fields() {
 		$classic  = [ 'type' => 'classic' ];
 		$gradient = [ 'type' => 'gradient' ];
