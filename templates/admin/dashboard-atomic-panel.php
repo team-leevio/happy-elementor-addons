@@ -121,10 +121,30 @@ $supported = Atomic_Manager::is_environment_supported();
 			'gsap'     => __( 'Atomic GSAP', 'happy-elementor-addons' ),
 		][ $tab ];
 		$action  = [ 'widgets' => 'atomic_widget', 'features' => 'atomic_feature', 'extensions' => 'atomic_feature', 'gsap' => 'atomic_gsap' ][ $tab ];
+
+		$count_of = function ( $type ) use ( $groups ) {
+			$total = 0;
+			foreach ( $groups as $entries ) {
+				foreach ( $entries as $entry ) {
+					if ( $entry[0] === $type ) {
+						$total++;
+					}
+				}
+			}
+			return $total;
+		};
+		$total_count = $count_of( 'feature' ) + $count_of( 'widget' );
 		?>
 		<div class="ha-dashboard-panel__header">
 			<div class="ha-dashboard-panel__header-content">
 				<h2><?php echo esc_html( $heading ); ?></h2>
+				<?php if ( 'gsap' === $tab ) : ?>
+					<p class="f16"><?php printf( esc_html__( 'Here is the list of our %1$s Atomic GSAP features and %2$s Atomic GSAP widgets. %3$sAfter enabling or disabling any feature or widget make sure to click the Save Changes button.%4$s', 'happy-elementor-addons' ), $count_of( 'feature' ), $count_of( 'widget' ), '<strong>', '</strong>' ); ?></p>
+				<?php elseif ( 'extensions' === $tab ) : ?>
+					<p class="f16"><?php printf( esc_html__( 'Here is the list of our all %1$s Atomic extensions. You can enable or disable extensions from here. %2$sAfter enabling or disabling any extension make sure to click the Save Changes button.%3$s', 'happy-elementor-addons' ), $total_count, '<strong>', '</strong>' ); ?></p>
+				<?php elseif ( 'features' === $tab ) : ?>
+					<p class="f16"><?php printf( esc_html__( 'Here is the list of our all %1$s Atomic features. You can enable or disable features from here. %2$sAfter enabling or disabling any feature make sure to click the Save Changes button.%3$s', 'happy-elementor-addons' ), $total_count, '<strong>', '</strong>' ); ?></p>
+				<?php endif; ?>
 				<div class="ha-action-list">
 					<button type="button" class="ha-action--btn" data-filter="*"><?php esc_html_e( 'All', 'happy-elementor-addons' ); ?></button>
 					<button type="button" class="ha-action--btn" data-filter="free"><?php esc_html_e( 'Free', 'happy-elementor-addons' ); ?></button>
