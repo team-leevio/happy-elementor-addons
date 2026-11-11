@@ -105,7 +105,7 @@
 				[
 					'label'       => __( 'SVG Code', 'happy-elementor-addons' ),
 					'type'        => Controls_Manager::TEXTAREA,
-					'sanitize_callback' => 'wp_kses_post',
+					'sanitize_callback' => [ __CLASS__, 'sanitize_custom_svg' ],
 					'description' => 'You can use these sites to Convert SVG image to code: <a href="https://nikitahl.github.io/svg-2-code/" target="_blank">SVG 2 CODE</a> ',
 					'condition'   => [
 						'ha_icon_type' => 'custom_code'
@@ -730,13 +730,7 @@
 
 					<?php } else { ?>
 
-						<?php 
-							if ( current_user_can( 'unfiltered_html' ) ) {
-								echo $settings['ha_custom_svg'];
-							} else {
-								echo wp_kses_post( $settings['ha_custom_svg'] );
-							}
-						?>
+						<?php echo self::sanitize_custom_svg( $settings['ha_custom_svg'] ); ?>
 
 					<?php } ?>
 
@@ -747,6 +741,157 @@
 				</div>
 
 			<?php
+		}
+
+		/**
+		 * Sanitize user-supplied SVG code with an SVG-aware allow-list.
+		 *
+		 * The output must never depend on the capability of whoever is
+		 * viewing the page, otherwise SVG code saved by a less privileged
+		 * author would execute in a privileged visitor's session. The same
+		 * allow-list is applied for every visitor and every author.
+		 *
+		 * @param string $svg Raw SVG code.
+		 *
+		 * @return string Sanitized SVG code.
+		 */
+		public static function sanitize_custom_svg( $svg ) {
+			$svg = (string) $svg;
+
+			// Remove script/style elements with their content up front, so
+			// neither code nor leftover CSS text survives in the markup.
+			$stripped = preg_replace( '#<(script|style)\b[^>]*>.*?</\1>#is', '', $svg );
+			if ( null !== $stripped ) {
+				$svg = $stripped;
+			}
+
+			return wp_kses( $svg, self::get_allowed_svg_html() );
+		}
+
+		/**
+		 * SVG allow-list for wp_kses() that keeps the shapes, gradients and
+		 * animation elements this widget needs while dropping scripts, event
+		 * handlers and other XSS vectors.
+		 *
+		 * Attribute names are lowercase because kses lowercases them while
+		 * parsing (e.g. viewBox becomes viewbox).
+		 *
+		 * @return array
+		 */
+		private static function get_allowed_svg_html() {
+			static $allowed = null;
+
+			if ( null !== $allowed ) {
+				return $allowed;
+			}
+
+			$common = [
+				'id'                => true,
+				'class'             => true,
+				'style'             => true,
+				'transform'         => true,
+				'fill'              => true,
+				'fill-opacity'      => true,
+				'fill-rule'         => true,
+				'clip-rule'         => true,
+				'stroke'            => true,
+				'stroke-width'      => true,
+				'stroke-opacity'    => true,
+				'stroke-linecap'    => true,
+				'stroke-linejoin'   => true,
+				'stroke-miterlimit' => true,
+				'stroke-dasharray'  => true,
+				'stroke-dashoffset' => true,
+				'opacity'           => true,
+				'clip-path'         => true,
+				'mask'              => true,
+				'filter'            => true,
+				'paint-order'       => true,
+				'vector-effect'     => true,
+				'role'              => true,
+				'aria-hidden'       => true,
+				'aria-label'        => true,
+			];
+
+			// kses expects attr => true maps, so convert plain lists.
+			$true_list = static function ( array $attrs ) {
+				return array_fill_keys( $attrs, true );
+			};
+
+			$text = $true_list( [
+				'x', 'y', 'dx', 'dy', 'rotate', 'textlength', 'lengthadjust',
+				'font-family', 'font-size', 'font-style', 'font-weight', 'font-variant',
+				'text-anchor', 'dominant-baseline', 'alignment-baseline',
+				'letter-spacing', 'word-spacing', 'text-decoration',
+			] );
+
+			$animation = $true_list( [
+				'attributename', 'attributetype', 'from', 'to', 'by', 'values',
+				'begin', 'end', 'dur', 'repeatcount', 'calcmode', 'keytimes',
+				'keysplines', 'additive', 'accumulate',
+			] );
+
+			$gradient = $true_list( [ 'href', 'gradientunits', 'gradienttransform', 'spreadmethod' ] );
+
+			$transfer = $true_list( [ 'type', 'tablevalues', 'slope', 'intercept', 'amplitude', 'exponent', 'offset' ] );
+
+			$allowed = [
+				'svg'              => array_merge( $common, $true_list( [ 'xmlns', 'version', 'viewbox', 'baseprofile', 'x', 'y', 'width', 'height', 'preserveaspectratio', 'overflow', 'color', 'color-interpolation' ] ) ),
+				'g'                => $common,
+				'defs'             => $common,
+				'title'            => $true_list( [ 'id', 'class' ] ),
+				'desc'             => $true_list( [ 'id', 'class' ] ),
+				'path'             => array_merge( $common, $true_list( [ 'd' ] ) ),
+				'circle'           => array_merge( $common, $true_list( [ 'cx', 'cy', 'r' ] ) ),
+				'ellipse'          => array_merge( $common, $true_list( [ 'cx', 'cy', 'rx', 'ry' ] ) ),
+				'rect'             => array_merge( $common, $true_list( [ 'x', 'y', 'width', 'height', 'rx', 'ry' ] ) ),
+				'line'             => array_merge( $common, $true_list( [ 'x1', 'y1', 'x2', 'y2' ] ) ),
+				'polyline'         => array_merge( $common, $true_list( [ 'points' ] ) ),
+				'polygon'          => array_merge( $common, $true_list( [ 'points' ] ) ),
+				'text'             => array_merge( $common, $text ),
+				'tspan'            => array_merge( $common, $text ),
+				'textpath'         => array_merge( $common, $text, $true_list( [ 'path', 'startoffset', 'method', 'spacing', 'href' ] ) ),
+				'marker'           => array_merge( $common, $true_list( [ 'markerunits', 'markerwidth', 'markerheight', 'refx', 'refy', 'orient', 'viewbox', 'preserveaspectratio' ] ) ),
+				'symbol'           => array_merge( $common, $true_list( [ 'viewbox', 'preserveaspectratio', 'x', 'y', 'width', 'height' ] ) ),
+				'use'              => array_merge( $common, $true_list( [ 'href', 'x', 'y', 'width', 'height' ] ) ),
+				'lineargradient'   => array_merge( $true_list( [ 'id', 'class', 'x1', 'y1', 'x2', 'y2' ] ), $gradient ),
+				'radialgradient'   => array_merge( $true_list( [ 'id', 'class', 'cx', 'cy', 'r', 'fx', 'fy', 'fr' ] ), $gradient ),
+				'stop'             => $true_list( [ 'id', 'class', 'style', 'offset', 'stop-color', 'stop-opacity' ] ),
+				'clippath'         => $true_list( [ 'id', 'class', 'clippathunits' ] ),
+				'mask'             => $true_list( [ 'id', 'class', 'x', 'y', 'width', 'height', 'maskunits', 'maskcontentunits' ] ),
+				'pattern'          => $true_list( [ 'id', 'class', 'href', 'patternunits', 'patterncontentunits', 'patterntransform', 'x', 'y', 'width', 'height', 'viewbox', 'preserveaspectratio' ] ),
+				'animate'          => $animation,
+				'animatetransform' => array_merge( $animation, $true_list( [ 'type' ] ) ),
+				'animatemotion'    => array_merge( $animation, $true_list( [ 'path', 'keypoints', 'origin' ] ) ),
+				'set'              => $true_list( [ 'attributename', 'to', 'begin', 'end' ] ),
+				'filter'           => $true_list( [ 'id', 'class', 'x', 'y', 'width', 'height', 'filterunits', 'primitiveunits', 'color-interpolation-filters' ] ),
+				'fegaussianblur'   => $true_list( [ 'in', 'stddeviation', 'edgemode' ] ),
+				'feoffset'         => $true_list( [ 'in', 'dx', 'dy' ] ),
+				'feblend'          => $true_list( [ 'in', 'in2', 'mode' ] ),
+				'fecolormatrix'    => $true_list( [ 'in', 'type', 'values' ] ),
+				'fecomponenttransfer' => $true_list( [ 'in' ] ),
+				'fefuncr'          => $transfer,
+				'fefuncg'          => $transfer,
+				'fefuncb'          => $transfer,
+				'fefunca'          => $transfer,
+				'fecomposite'      => $true_list( [ 'in', 'in2', 'operator', 'k1', 'k2', 'k3', 'k4' ] ),
+				'feconvolvematrix' => $true_list( [ 'in', 'order', 'kernelmatrix', 'divisor', 'bias', 'edgemode', 'preservealpha' ] ),
+				'fediffuselighting' => $true_list( [ 'in', 'surfacescale', 'diffuseconstant', 'kernelunitlength' ] ),
+				'fedisplacementmap' => $true_list( [ 'in', 'in2', 'scale', 'xchannelselector', 'ychannelselector' ] ),
+				'fespecularlighting' => $true_list( [ 'in', 'surfacescale', 'specularconstant', 'specularexponent', 'kernelunitlength' ] ),
+				'fedistantlight'   => $true_list( [ 'azimuth', 'elevation' ] ),
+				'fepointlight'     => $true_list( [ 'x', 'y', 'z' ] ),
+				'fespotlight'      => $true_list( [ 'x', 'y', 'z', 'pointsatx', 'pointsaty', 'pointsatz', 'exponent', 'limitingconeangle' ] ),
+				'feflood'          => $true_list( [ 'in', 'flood-color', 'flood-opacity' ] ),
+				'fedropshadow'     => $true_list( [ 'in', 'dx', 'dy', 'stddeviation', 'flood-color', 'flood-opacity' ] ),
+				'femerge'          => [],
+				'femergenode'      => $true_list( [ 'in' ] ),
+				'femorphology'     => $true_list( [ 'in', 'operator', 'radius' ] ),
+				'fetile'           => $true_list( [ 'in' ] ),
+				'feturbulence'     => $true_list( [ 'type', 'basefrequency', 'numoctaves', 'seed', 'stitchtiles' ] ),
+			];
+
+			return $allowed;
 		}
 
 		private function ha_get_svg_from_icon( $icon, $attributes = [] ) {
