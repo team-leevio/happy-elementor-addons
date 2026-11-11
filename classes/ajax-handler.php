@@ -11,23 +11,42 @@ class Ajax_Handler {
 	*/
 	public static function twitter_feed_ajax() {
 
-		$security = check_ajax_referer( 'happy_addons_nonce', 'security' );
-		$widget_id  = esc_html( $_POST['widget_id'] );
-		$crede_cache_key = '_ha_tweeter_crede_cache_key_' . $widget_id;
-		$crede_cache_data = get_transient( $crede_cache_key );
+		check_ajax_referer( 'happy_addons_nonce', 'security' );
 
-		if ( true == $security && isset( $_POST['query_settings'] ) && isset( $_POST['widget_id'] ) && $crede_cache_data !== false ) :
-			$settings    = ha_sanitize_array_recursively($_POST['query_settings']);
-			$loaded_item = absint($_POST['loaded_item']);
+		if ( ! isset( $_POST['widget_id'] ) ) {
+			wp_die();
+		}
 
-			$user_name      = trim( $settings['user_name'] );
-			$ha_tweets_cash = '_' . $settings['id'] . '_tweet_cash';
+		$widget_id = preg_replace( '/[^a-zA-Z0-9_\-]/', '', wp_unslash( $_POST['widget_id'] ) );
 
-			$transient_key = $user_name . $ha_tweets_cash;
-			$twitter_data  = get_transient( $transient_key );
-			// $credentials   = $settings['credentials'];
-			$credentials   = $crede_cache_data;
+		if ( empty( $widget_id ) ) {
+			wp_die();
+		}
 
+		/**
+		 * Query settings and credentials are stored server-side when the widget
+		 * renders. They must never be accepted from the request.
+		 */
+		$settings    = get_transient( '_ha_tweeter_settings_cache_key_' . $widget_id );
+		$credentials = get_transient( '_ha_tweeter_crede_cache_key_' . $widget_id );
+
+		if ( ! is_array( $settings ) || empty( $credentials ) ) {
+			wp_die();
+		}
+
+		$loaded_item  = isset( $_POST['loaded_item'] ) ? absint( $_POST['loaded_item'] ) : 0;
+		$tweets_limit = isset( $settings['tweets_limit'] ) ? min( max( absint( $settings['tweets_limit'] ), 1 ), 200 ) : 6;
+		$sort_by      = isset( $settings['sort_by'] ) ? $settings['sort_by'] : 'recent-posts';
+		$user_name    = isset( $settings['user_name'] ) ? ha_twitter_feed_normalize_screen_name( $settings['user_name'] ) : '';
+
+		if ( '' === $user_name ) {
+			wp_die();
+		}
+
+		$transient_key = $user_name . '_' . $widget_id . '_tweet_cash';
+		$twitter_data  = get_transient( $transient_key );
+
+		if ( false === $twitter_data || ! is_array( $twitter_data ) ) {
 			$auth_response = wp_remote_post(
 				'https://api.twitter.com/oauth2/token',
 				[
@@ -44,10 +63,10 @@ class Ajax_Handler {
 
 			$body = json_decode( wp_remote_retrieve_body( $auth_response ) );
 
-			if ( ! empty( $body ) ) {
+			if ( ! empty( $body ) && ! empty( $body->access_token ) ) {
 				$token           = $body->access_token;
 				$tweets_response = wp_remote_get(
-					'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $settings['user_name'] . '&count=999&tweet_mode=extended',
+					'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . rawurlencode( $user_name ) . '&count=200&tweet_mode=extended',
 					[
 						'httpversion' => '1.1',
 						'blocking'    => true,
@@ -56,150 +75,161 @@ class Ajax_Handler {
 				);
 
 				if ( ! is_wp_error( $tweets_response ) ) {
-					$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
-					set_transient( $transient_key, $twitter_data, 0 );
+					$tweets = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
+					if ( is_array( $tweets ) ) {
+						// Cap the cached entries and use an expiry so the transient cannot become a permanent autoloaded option.
+						$twitter_data = array_slice( $tweets, 0, 200 );
+						set_transient( $transient_key, $twitter_data, 12 * HOUR_IN_SECONDS );
+					}
 				}
 			}
-			if ( 'yes' == $settings['remove_cache'] ) {
-				delete_transient( $transient_key );
+		}
+
+		if ( isset( $settings['remove_cache'] ) && 'yes' === $settings['remove_cache'] ) {
+			delete_transient( $transient_key );
+		}
+
+		if ( ! is_array( $twitter_data ) || empty( $twitter_data ) ) {
+			wp_die();
+		}
+
+		switch ( $sort_by ) {
+			case 'old-posts':
+				usort(
+					$twitter_data,
+					function ( $a, $b ) {
+						if ( $a['created_at'] == $b['created_at'] ) {
+							return 0;
+						}
+
+						return ( $a['created_at'] < $b['created_at'] ) ? -1 : 1;
+					}
+				);
+				break;
+			case 'favorite_count':
+				usort(
+					$twitter_data,
+					function ( $a, $b ) {
+						if ( $a['favorite_count'] == $b['favorite_count'] ) {
+							return 0;
+						}
+
+						return ( $a['favorite_count'] > $b['favorite_count'] ) ? -1 : 1;
+					}
+				);
+				break;
+			case 'retweet_count':
+				usort(
+					$twitter_data,
+					function ( $a, $b ) {
+						if ( $a['retweet_count'] == $b['retweet_count'] ) {
+							return 0;
+						}
+
+						return ( $a['retweet_count'] > $b['retweet_count'] ) ? -1 : 1;
+					}
+				);
+				break;
+			default:
+				$twitter_data;
+		}
+
+		$items = array_splice( $twitter_data, $loaded_item, $tweets_limit );
+
+		$content_word_count = isset( $settings['content_word_count'] ) ? absint( $settings['content_word_count'] ) : 0;
+
+		foreach ( $items as $item ) :
+			if ( ! empty( $item['entities']['urls'] ) ) {
+				$content = str_replace( $item['entities']['urls'][0]['url'], '', $item['full_text'] );
+			} else {
+				$content = $item['full_text'];
 			}
 
-			switch ( $settings['sort_by'] ) {
-				case 'old-posts':
-					usort(
-						$twitter_data,
-						function ( $a, $b ) {
-							if ( $a['created_at'] == $b['created_at'] ) {
-								return 0;
-							}
-
-							return ( $a['created_at'] < $b['created_at'] ) ? -1 : 1;
-						}
-					);
-					break;
-				case 'favorite_count':
-					usort(
-						$twitter_data,
-						function ( $a, $b ) {
-							if ( $a['favorite_count'] == $b['favorite_count'] ) {
-								return 0;
-							}
-
-							return ( $a['favorite_count'] > $b['favorite_count'] ) ? -1 : 1;
-						}
-					);
-					break;
-				case 'retweet_count':
-					usort(
-						$twitter_data,
-						function ( $a, $b ) {
-							if ( $a['retweet_count'] == $b['retweet_count'] ) {
-								return 0;
-							}
-
-							return ( $a['retweet_count'] > $b['retweet_count'] ) ? -1 : 1;
-						}
-					);
-					break;
-				default:
-					$twitter_data;
+			$description = explode( ' ', $content );
+			if ( ! empty( $content_word_count ) && count( $description ) > $content_word_count ) {
+				$description_shorten = array_slice( $description, 0, $content_word_count );
+				$description         = implode( ' ', $description_shorten ) . '...';
+			} else {
+				$description = $content;
 			}
+			?>
+			<div class="ha-tweet-item">
 
-			$items = array_splice( $twitter_data, $loaded_item, $settings['tweets_limit'] );
+				<?php if ( 'yes' == $settings['show_twitter_logo'] ) : ?>
+					<div class="ha-tweeter-feed-icon">
+						<i class="fa fa-twitter"></i>
+					</div>
+				<?php endif; ?>
 
-			foreach ( $items as $item ) :
-				if ( ! empty( $item['entities']['urls'] ) ) {
-					$content = str_replace( $item['entities']['urls'][0]['url'], '', $item['full_text'] );
-				} else {
-					$content = $item['full_text'];
-				}
+				<div class="ha-tweet-inner-wrapper">
 
-				$description = explode( ' ', $content );
-				if ( ! empty( $settings['content_word_count'] ) && count( $description ) > $settings['content_word_count'] ) {
-					$description_shorten = array_slice( $description, 0, $settings['content_word_count'] );
-					$description         = implode( ' ', $description_shorten ) . '...';
-				} else {
-					$description = $content;
-				}
-				?>
-				<div class="ha-tweet-item">
+					<div class="ha-tweet-author">
+						<?php if ( 'yes' == $settings['show_user_image'] ) : ?>
+							<a href="<?php echo esc_url( 'https://twitter.com/' . $user_name ); ?>">
+								<img src="<?php echo esc_url( $item['user']['profile_image_url_https'] ); ?>" alt="<?php echo esc_attr( $item['user']['name'] ); ?>" class="ha-tweet-avatar">
+							</a>
+						<?php endif; ?>
 
-					<?php if ( 'yes' == $settings['show_twitter_logo'] ) : ?>
-						<div class="ha-tweeter-feed-icon">
-							<i class="fa fa-twitter"></i>
-						</div>
-					<?php endif; ?>
-
-					<div class="ha-tweet-inner-wrapper">
-
-						<div class="ha-tweet-author">
-							<?php if ( 'yes' == $settings['show_user_image'] ) : ?>
-								<a href="<?php echo esc_url( 'https://twitter.com/' . $user_name ); ?>">
-									<img src="<?php echo esc_url( $item['user']['profile_image_url_https'] ); ?>" alt="<?php echo esc_attr( $item['user']['name'] ); ?>" class="ha-tweet-avatar">
+						<div class="ha-tweet-user">
+							<?php if ( 'yes' == $settings['show_name'] ) : ?>
+								<a href="<?php echo esc_url( 'https://twitter.com/' . $user_name ); ?>" class="ha-tweet-author-name">
+									<?php echo esc_html( $item['user']['name'] ); ?>
 								</a>
 							<?php endif; ?>
 
-							<div class="ha-tweet-user">
-								<?php if ( 'yes' == $settings['show_name'] ) : ?>
-									<a href="<?php echo esc_url( 'https://twitter.com/' . $user_name ); ?>" class="ha-tweet-author-name">
-										<?php echo esc_html( $item['user']['name'] ); ?>
-									</a>
-								<?php endif; ?>
-
-								<?php if ( 'yes' == $settings['show_user_name'] ) : ?>
-									<a href="<?php echo esc_url( 'https://twitter.com/' . $user_name ); ?>" class="ha-tweet-username">
-										<?php echo esc_html( $settings['user_name'] ); ?>
-									</a>
-								<?php endif; ?>
-							</div>
-						</div>
-
-						<div class="ha-tweet-content">
-							<p>
-								<?php echo esc_html( $description ); ?>
-
-								<?php if ( 'yes' == $settings['read_more'] ) : ?>
-									<a href="<?php echo esc_url( '//twitter.com/' . $item['user']['screen_name'] . '/status/' . $item['id'] ); ?>" target="_blank">
-										<?php echo esc_html( $settings['read_more_text'] ); ?>
-									</a>
-								<?php endif; ?>
-							</p>
-
-							<?php if ( 'yes' == $settings['show_date'] ) : ?>
-								<div class="ha-tweet-date">
-									<?php echo esc_html( date( 'M d Y', strtotime( $item['created_at'] ) ) ); ?>
-								</div>
+							<?php if ( 'yes' == $settings['show_user_name'] ) : ?>
+								<a href="<?php echo esc_url( 'https://twitter.com/' . $user_name ); ?>" class="ha-tweet-username">
+									<?php echo esc_html( $user_name ); ?>
+								</a>
 							<?php endif; ?>
 						</div>
-
 					</div>
 
-					<?php if ( 'yes' == $settings['show_favorite'] || 'yes' == $settings['show_retweet'] ) : ?>
-						<div class="ha-tweet-footer-wrapper">
-							<div class="ha-tweet-footer">
+					<div class="ha-tweet-content">
+						<p>
+							<?php echo esc_html( $description ); ?>
 
-								<?php if ( 'yes' == $settings['show_favorite'] ) : ?>
-									<div class="ha-tweet-favorite">
-										<?php echo esc_html( $item['favorite_count'] ); ?>
-										<i class="fa fa-heart-o"></i>
-									</div>
-								<?php endif; ?>
+							<?php if ( 'yes' == $settings['read_more'] ) : ?>
+								<a href="<?php echo esc_url( '//twitter.com/' . $item['user']['screen_name'] . '/status/' . $item['id'] ); ?>" target="_blank">
+									<?php echo esc_html( $settings['read_more_text'] ); ?>
+								</a>
+							<?php endif; ?>
+						</p>
 
-								<?php if ( 'yes' == $settings['show_retweet'] ) : ?>
-									<div class="ha-tweet-retweet">
-										<?php echo esc_html( $item['retweet_count'] ); ?>
-										<i class="fa fa-retweet"></i>
-									</div>
-								<?php endif; ?>
-
+						<?php if ( 'yes' == $settings['show_date'] ) : ?>
+							<div class="ha-tweet-date">
+								<?php echo esc_html( date( 'M d Y', strtotime( $item['created_at'] ) ) ); ?>
 							</div>
-						</div>
-					<?php endif; ?>
+						<?php endif; ?>
+					</div>
 
 				</div>
-				<?php
-			endforeach;
-		endif;
+
+				<?php if ( 'yes' == $settings['show_favorite'] || 'yes' == $settings['show_retweet'] ) : ?>
+					<div class="ha-tweet-footer-wrapper">
+						<div class="ha-tweet-footer">
+
+							<?php if ( 'yes' == $settings['show_favorite'] ) : ?>
+								<div class="ha-tweet-favorite">
+									<?php echo esc_html( $item['favorite_count'] ); ?>
+									<i class="fa fa-heart-o"></i>
+								</div>
+							<?php endif; ?>
+
+							<?php if ( 'yes' == $settings['show_retweet'] ) : ?>
+								<div class="ha-tweet-retweet">
+									<?php echo esc_html( $item['retweet_count'] ); ?>
+									<i class="fa fa-retweet"></i>
+								</div>
+							<?php endif; ?>
+
+						</div>
+					</div>
+				<?php endif; ?>
+
+			</div>
+			<?php
+		endforeach;
 		wp_die();
 	}
 

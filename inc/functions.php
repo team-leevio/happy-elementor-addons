@@ -733,6 +733,22 @@ function ha_get_excerpt($post_id = null, $length = 15) {
 	return wp_trim_words(get_the_excerpt($post_id), $length);
 }
 
+/**
+ * Normalize a Twitter/X screen name for API requests and cache keys.
+ *
+ * @param string $name
+ * @return string Normalized screen name, or empty string when invalid.
+ */
+function ha_twitter_feed_normalize_screen_name( $name ) {
+	$name = trim( (string) $name );
+
+	if ( ! preg_match( '/^[A-Za-z0-9_]{1,15}$/', $name ) ) {
+		return '';
+	}
+
+	return $name;
+}
+
 function ha_sanitize_array_recursively($array) {
 
 	foreach ($array as $key => &$value) {
