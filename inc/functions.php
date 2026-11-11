@@ -749,6 +749,23 @@ function ha_twitter_feed_normalize_screen_name( $name ) {
 	return $name;
 }
 
+/**
+ * Whether an ID points to a published Elementor library template that is
+ * safe to render on the front end.
+ *
+ * @param int|string $id
+ * @return bool
+ */
+function ha_is_renderable_template( $id ) {
+	$id = absint( $id );
+
+	if ( ! $id ) {
+		return false;
+	}
+
+	return 'publish' === get_post_status( $id ) && 'elementor_library' === get_post_type( $id );
+}
+
 function ha_sanitize_array_recursively($array) {
 
 	foreach ($array as $key => &$value) {
