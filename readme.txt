@@ -1,13 +1,13 @@
 === HappyAddons for Elementor – 160 Elementor Widgets, GSAP Animations & Templates ===
 Plugin Name: HappyAddons for Elementor – 160 Elementor Widgets & Templates
-Version: 3.51.3
+Version: 3.51.4
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: leevio, happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 3.51.3
+Stable tag: 3.51.4
 Requires PHP: 8.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -385,9 +385,16 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.51.4 - ## #### 2026 =
+
+Fix: Resolved Post Tab widget vulnerability.
+
 = 3.51.3 - 10 November 2026 =
 
-- Fix: Resolved Lordicon widget vulnerability.
+- Fix: Fixed an authorization vulnerability in Setup Wizard REST API endpoints.
+- Fix: Fixed a broken access control vulnerability in the Team Member widget.
+- Fix: Resolved Lordicon, Icon Box & Info Box widget vulnerability.
+- Fix: WPML Compatibility Issues in Image Stack Group, Photo Stack, Post Info, Team Member & WhatsApp Button.
 - Update: Improved Dashboard page load speed.
 
 = 3.51.0 - 27 October 2026 =

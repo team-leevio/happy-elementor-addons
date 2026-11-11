@@ -221,8 +221,17 @@ class Ajax_Handler {
 			$orderby    = $settings['orderby'];
 			$order      = $settings['order'];
 
+			// Only allow publicly viewable post types and cap the limit.
+			$post_type = sanitize_key( $post_type );
+			if ( ! post_type_exists( $post_type ) || ! is_post_type_viewable( $post_type ) ) {
+				wp_die();
+			}
+			$taxonomy   = sanitize_key( $taxonomy );
+			$item_limit = min( max( absint( $item_limit ), 1 ), 50 );
+
 			$args = [
 				'post_status'      => 'publish',
+				'has_password'     => false,
 				'post_type'        => $post_type,
 				'posts_per_page'   => $item_limit,
 				'orderby'          => $orderby,
@@ -279,7 +288,7 @@ class Ajax_Handler {
 										<?php endif; ?>
 									</div>
 								<?php endif; ?>
-								<?php if ( 'yes' === $excerpt && ! empty( $post->post_excerpt ) ) : ?>
+								<?php if ( 'yes' === $excerpt && ! empty( $post->post_excerpt ) && ! post_password_required( $post ) ) : ?>
 									<div class="ha-post-tab-excerpt">
 										<p><?php echo esc_html( $post->post_excerpt ); ?></p>
 									</div>

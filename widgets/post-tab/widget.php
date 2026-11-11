@@ -1091,7 +1091,7 @@ class Post_Tab extends Base {
 											</div>
 									<?php } ?>
 
-									<?php if ( 'yes' === $settings['excerpt'] && ! empty( $post->post_excerpt ) ) : ?>
+									<?php if ( 'yes' === $settings['excerpt'] && ! empty( $post->post_excerpt ) && ! post_password_required( $post ) ) : ?>
 										<div class="ha-post-tab-excerpt">
 											<p><?php echo esc_html( $post->post_excerpt ); ?></p>
 										</div>
