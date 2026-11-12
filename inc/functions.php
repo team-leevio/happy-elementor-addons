@@ -768,6 +768,10 @@ function ha_is_renderable_template( $id ) {
 
 function ha_sanitize_array_recursively($array) {
 
+	if ( ! is_array( $array ) ) {
+		return sanitize_text_field( (string) $array );
+	}
+
 	foreach ($array as $key => &$value) {
 		if (is_array($value)) {
 			$value = ha_sanitize_array_recursively($value);
