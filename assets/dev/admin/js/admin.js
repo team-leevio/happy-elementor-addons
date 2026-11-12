@@ -44,7 +44,7 @@ jQuery(document).ready(function ($) {
 			type: "get",
 			dataType: "json",
 			data: {
-				nonce: HappyAdmin.nonce,
+				nonce: HappyAdmin.template_type_nonce,
 				action: "ha_cond_template_type", // AJAX action for admin-ajax.php
 				post_id: _id,
 			},

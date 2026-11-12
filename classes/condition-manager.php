@@ -298,8 +298,17 @@ class Condition_Manager {
 
     public function ha_get_template_type() {
         try {
-            //$this->validate_template_request();
+            $nonce = ! empty( $_REQUEST['nonce'] ) ? $_REQUEST['nonce'] : '';
             $id = isset($_REQUEST['post_id']) ? absint($_REQUEST['post_id']) : null;
+
+            if ( ! wp_verify_nonce( $nonce, 'ha_cond_template_type' ) ) {
+                throw new Exception( 'Invalid request' );
+            }
+
+            if ( $id && ! current_user_can( 'edit_post', $id ) ) {
+                throw new Exception( 'Unauthorized request' );
+            }
+
             if ($id) {
                 $tpl_type = get_post_meta($id, '_ha_library_type', true);
                 wp_send_json_success($tpl_type);
