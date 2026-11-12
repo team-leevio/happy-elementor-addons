@@ -2037,7 +2037,7 @@ class Age_Gate extends Base {
 
 					<div class="ha-age-gate-header">
 						<?php if(!empty($settings['warning_message'])): ?>
-							<div class="ha-age-gate-warning-msg"><?php echo $settings['warning_message'] ?></div>
+							<div class="ha-age-gate-warning-msg"><?php echo ha_kses_intermediate( $settings['warning_message'] ); ?></div>
 						<?php endif; ?>
 
 						<?php if( !empty($settings['header_img']['url']) ): ?>
