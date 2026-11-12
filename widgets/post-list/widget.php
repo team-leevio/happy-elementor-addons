@@ -1369,7 +1369,7 @@ class Post_List extends Base {
 													if ( $settings['date_icon'] ) :
 														Icons_Manager::render_icon( $settings['date_icon'], [ 'aria-hidden' => 'true' ] );
 													endif;
-													echo get_the_date( $date_format, $post->ID );
+													echo esc_html( get_the_date( $date_format, $post->ID ) );
 													?>
 												</span>
 											<?php endif; ?>

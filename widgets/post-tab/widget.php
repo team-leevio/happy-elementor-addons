@@ -1084,7 +1084,7 @@ class Post_Tab extends Base {
 													<span class="ha-post-tab-meta-date">
 														<i class="fa fa-calendar-o"></i>
 														<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>">
-														<?php echo get_the_date( get_option( 'date_format' ), $post->ID ); ?>
+														<?php echo esc_html( get_the_date( get_option( 'date_format' ), $post->ID ) ); ?>
 														</a>
 													</span>
 
