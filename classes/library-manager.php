@@ -57,7 +57,7 @@ class Library_Manager {
 			if ( ! empty( $data['editor_post_id'] ) ) {
 				$editor_post_id = absint( $data['editor_post_id'] );
 
-				if ( ! get_post( $editor_post_id ) ) {
+				if ( ! get_post( $editor_post_id ) || ! current_user_can( 'edit_post', $editor_post_id ) ) {
 					throw new \Exception( __( 'Post not found.', 'happy-elementor-addons' ) );
 				}
 
@@ -77,7 +77,7 @@ class Library_Manager {
 			if ( ! empty( $data['editor_post_id'] ) ) {
 				$editor_post_id = absint( $data['editor_post_id'] );
 
-				if ( ! get_post( $editor_post_id ) ) {
+				if ( ! get_post( $editor_post_id ) || ! current_user_can( 'edit_post', $editor_post_id ) ) {
 					throw new \Exception( __( 'Post not found', 'happy-elementor-addons' ) );
 				}
 
