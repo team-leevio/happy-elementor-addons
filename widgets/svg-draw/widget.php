@@ -990,25 +990,38 @@
 	
 			$icon_key = str_replace( ' fa-', '-', $icon['value'] );
 	
-			$icon_file_name = str_replace( 'fa-', '', $icon['library'] );
-	
-			$path = ELEMENTOR_ASSETS_PATH . 'lib/font-awesome/json/' . $icon_file_name . '.json';
-	
-			$data = file_get_contents( $path );
-	
-			if( ! $data ) {
-				return;
-			}
-	
-			$data = json_decode( $data, true );
-	
-			$svg_data = $data['icons'][ $icon_name ];
-	
-			return [
-				'width'  => $svg_data[0],
-				'height' => $svg_data[1],
-				'path'   => $svg_data[4],
-			];
+		$icon_file_name = str_replace( 'fa-', '', $icon['library'] );
+
+		// Only the bundled Font Awesome metadata files may be read.
+		if ( ! in_array( $icon_file_name, [ 'solid', 'regular', 'brands' ], true ) ) {
+			return;
 		}
+
+		$path = ELEMENTOR_ASSETS_PATH . 'lib/font-awesome/json/' . $icon_file_name . '.json';
+
+		$data = file_get_contents( $path );
+
+		if( ! $data ) {
+			return;
+		}
+
+		$data = json_decode( $data, true );
+
+		if ( ! is_array( $data ) || ! isset( $data['icons'][ $icon_name ] ) || ! is_array( $data['icons'][ $icon_name ] ) ) {
+			return;
+		}
+
+		$svg_data = $data['icons'][ $icon_name ];
+
+		if ( ! isset( $svg_data[0], $svg_data[1], $svg_data[4] ) ) {
+			return;
+		}
+
+		return [
+			'width'  => $svg_data[0],
+			'height' => $svg_data[1],
+			'path'   => $svg_data[4],
+		];
+	}
 
 }
