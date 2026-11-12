@@ -1000,7 +1000,9 @@ class Post_Tab extends Base {
 			'excerpt'    => $settings['excerpt'] ? $settings['excerpt'] : 'no',
 			'title_tag'  => $settings['title_tag'],
 		];
-		$query_settings = json_encode( $query_settings, true );
+
+		// Store the query settings server-side; the ajax handler must not accept them from the request.
+		set_transient( '_ha_post_tab_settings_cache_key_' . $this->get_id(), $query_settings, 7 * DAY_IN_SECONDS );
 
 		$event = 'click';
 		if ( 'hover' === $settings['event'] ) {
@@ -1014,7 +1016,7 @@ class Post_Tab extends Base {
 			isset( $settings['column_mobile'] ) ? 'ha-post-tab-grid-mobile-' . $settings['column_mobile'] : 'ha-post-tab-grid-mobile-1',
 		];
 		$this->add_render_attribute( 'wrapper', 'class', $wrapper_class );
-		$this->add_render_attribute( 'wrapper', 'data-query-args', $query_settings );
+
 		$this->add_render_attribute( 'wrapper', 'data-event', $event );
 		$this->add_render_attribute( 'tab-filter', 'class', [ 'ha-post-tab-filter ha-text--center' ] );
 		$this->add_render_attribute( 'tab-body', 'class', [ 'ha-post-tab-content' ] );

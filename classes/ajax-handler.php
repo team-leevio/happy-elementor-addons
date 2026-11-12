@@ -238,98 +238,127 @@ class Ajax_Handler {
 	 */
 	public static function post_tab() {
 
-		$security = check_ajax_referer( 'happy_addons_nonce', 'security' );
+		check_ajax_referer( 'happy_addons_nonce', 'security' );
 
-		if ( true == $security ) :
-			$settings   = ha_sanitize_array_recursively($_POST['post_tab_query']);
-			$post_type  = $settings['post_type'];
-			$taxonomy   = $settings['taxonomy'];
-			$item_limit = $settings['item_limit'];
-			$excerpt    = $settings['excerpt'];
-			$title_tag  = $settings['title_tag'];
-			$term_id    = absint($_POST['term_id']);
-			$orderby    = $settings['orderby'];
-			$order      = $settings['order'];
+		if ( ! isset( $_POST['widget_id'] ) ) {
+			wp_die();
+		}
 
-			// Only allow publicly viewable post types and cap the limit.
-			$post_type = sanitize_key( $post_type );
-			if ( ! post_type_exists( $post_type ) || ! is_post_type_viewable( $post_type ) ) {
-				wp_die();
-			}
-			$taxonomy   = sanitize_key( $taxonomy );
-			$item_limit = min( max( absint( $item_limit ), 1 ), 50 );
+		$widget_id = preg_replace( '/[^a-zA-Z0-9_\-]/', '', wp_unslash( $_POST['widget_id'] ) );
 
-			$args = [
-				'post_status'      => 'publish',
-				'has_password'     => false,
-				'post_type'        => $post_type,
-				'posts_per_page'   => $item_limit,
-				'orderby'          => $orderby,
-				'order'            => $order,
-				'suppress_filters' => false,
-				'tax_query'        => [
-					[
-						'taxonomy' => $taxonomy,
-						'field'    => 'term_id',
-						'terms'    => $term_id,
-					],
+		if ( empty( $widget_id ) ) {
+			wp_die();
+		}
+
+		/**
+		 * Query settings are stored server-side when the widget renders.
+		 * They must never be accepted from the request.
+		 */
+		$settings = get_transient( '_ha_post_tab_settings_cache_key_' . $widget_id );
+
+		if ( ! is_array( $settings ) ) {
+			wp_die();
+		}
+
+		$post_type  = isset( $settings['post_type'] ) ? sanitize_key( $settings['post_type'] ) : '';
+		$taxonomy   = isset( $settings['taxonomy'] ) ? sanitize_key( $settings['taxonomy'] ) : '';
+		$item_limit = isset( $settings['item_limit'] ) ? $settings['item_limit'] : 10;
+		$excerpt    = isset( $settings['excerpt'] ) ? $settings['excerpt'] : 'no';
+		$title_tag  = isset( $settings['title_tag'] ) ? $settings['title_tag'] : 'h2';
+		$term_id    = isset( $_POST['term_id'] ) ? absint( $_POST['term_id'] ) : 0;
+		$orderby    = isset( $settings['orderby'] ) ? $settings['orderby'] : 'date';
+		$order      = isset( $settings['order'] ) ? strtoupper( $settings['order'] ) : 'DESC';
+
+		// Only allow publicly viewable post types, real taxonomies of that post type, and a capped limit.
+		if ( ! post_type_exists( $post_type ) || ! is_post_type_viewable( $post_type ) ) {
+			wp_die();
+		}
+
+		if ( ! taxonomy_exists( $taxonomy ) || ! is_object_in_taxonomy( $post_type, $taxonomy ) ) {
+			wp_die();
+		}
+
+		$item_limit = min( max( absint( $item_limit ), 1 ), 50 );
+
+		$allowed_orderby = ['date', 'title', 'ID', 'author', 'modified', 'rand', 'menu_order', 'comment_count'];
+		if ( ! in_array( $orderby, $allowed_orderby, true ) ) {
+			$orderby = 'date';
+		}
+
+		if ( ! in_array( $order, ['ASC', 'DESC'], true ) ) {
+			$order = 'DESC';
+		}
+
+		$args = [
+			'post_status'      => 'publish',
+			'has_password'     => false,
+			'post_type'        => $post_type,
+			'posts_per_page'   => $item_limit,
+			'orderby'          => $orderby,
+			'order'            => $order,
+			'suppress_filters' => false,
+			'tax_query'        => [
+				[
+					'taxonomy' => $taxonomy,
+					'field'    => 'term_id',
+					'terms'    => $term_id,
 				],
-			];
+			],
+		];
 
-			$posts = get_posts( $args );
+		$posts = get_posts( $args );
 
-			if ( count( $posts ) !== 0 ) :
-				?>
-				<div class="ha-post-tab-item-wrapper active" data-term="<?php echo esc_attr( $term_id ); ?>">
-					<?php foreach ( $posts as $post ) : ?>
-						<div class="ha-post-tab-item">
-							<div class="ha-post-tab-item-inner">
-								<?php if ( has_post_thumbnail( $post->ID ) ) : ?>
-									<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>" class="ha-post-tab-thumb">
-										<?php echo get_the_post_thumbnail( $post->ID, 'full' ); ?>
-									</a>
-								<?php endif; ?>
-								<?php
-									printf(
-										'<%1$s class="ha-post-tab-title"><a href="%2$s">%3$s</a></%1$s>',
-										ha_escape_tags( $title_tag, 'h2' ),
-										esc_url( get_the_permalink( $post->ID ) ),
-										esc_html( $post->post_title )
-									);
-								?>
-								<?php if ( ( 'yes' == $settings['show_user_meta'] ) || ( 'yes' == $settings['show_date_meta'] ) ) : ?>
-									<div class="ha-post-tab-meta">
-										<?php if ( 'yes' == $settings['show_user_meta'] ) : ?>
-											<span class="ha-post-tab-meta-author">
-												<i class="fa fa-user-o"></i>
-												<a href="<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
-											</span>
-										<?php endif; ?>
-										<?php if ( 'yes' == $settings['show_date_meta'] ) : ?>
-											<?php
-											$archive_year  = get_the_time( 'Y', $post->ID );
-											$archive_month = get_the_time( 'm', $post->ID );
-											$archive_day   = get_the_time( 'd', $post->ID );
-											?>
-											<span class="ha-post-tab-meta-date">
-												<i class="fa fa-calendar-o"></i>
-												<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>"><?php echo get_the_date( get_option( 'date_format' ), $post->ID ); ?></a>
-											</span>
-										<?php endif; ?>
-									</div>
-								<?php endif; ?>
-								<?php if ( 'yes' === $excerpt && ! empty( $post->post_excerpt ) && ! post_password_required( $post ) ) : ?>
-									<div class="ha-post-tab-excerpt">
-										<p><?php echo esc_html( $post->post_excerpt ); ?></p>
-									</div>
-								<?php endif; ?>
-							</div>
+		if ( count( $posts ) !== 0 ) :
+			?>
+			<div class="ha-post-tab-item-wrapper active" data-term="<?php echo esc_attr( $term_id ); ?>">
+				<?php foreach ( $posts as $post ) : ?>
+					<div class="ha-post-tab-item">
+						<div class="ha-post-tab-item-inner">
+							<?php if ( has_post_thumbnail( $post->ID ) ) : ?>
+								<a href="<?php echo esc_url( get_the_permalink( $post->ID ) ); ?>" class="ha-post-tab-thumb">
+									<?php echo get_the_post_thumbnail( $post->ID, 'full' ); ?>
+								</a>
+							<?php endif; ?>
+							<?php
+								printf(
+									'<%1$s class="ha-post-tab-title"><a href="%2$s">%3$s</a></%1$s>',
+									ha_escape_tags( $title_tag, 'h2' ),
+									esc_url( get_the_permalink( $post->ID ) ),
+									esc_html( $post->post_title )
+								);
+							?>
+							<?php if ( ( 'yes' == $settings['show_user_meta'] ) || ( 'yes' == $settings['show_date_meta'] ) ) : ?>
+								<div class="ha-post-tab-meta">
+									<?php if ( 'yes' == $settings['show_user_meta'] ) : ?>
+										<span class="ha-post-tab-meta-author">
+											<i class="fa fa-user-o"></i>
+											<a href="<?php echo esc_url( get_author_posts_url( $post->post_author ) ); ?>"><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></a>
+										</span>
+									<?php endif; ?>
+									<?php if ( 'yes' == $settings['show_date_meta'] ) : ?>
+										<?php
+										$archive_year  = get_the_time( 'Y', $post->ID );
+										$archive_month = get_the_time( 'm', $post->ID );
+										$archive_day   = get_the_time( 'd', $post->ID );
+										?>
+										<span class="ha-post-tab-meta-date">
+											<i class="fa fa-calendar-o"></i>
+											<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>"><?php echo esc_html( get_the_date( get_option( 'date_format' ), $post->ID ) ); ?></a>
+										</span>
+									<?php endif; ?>
+								</div>
+							<?php endif; ?>
+							<?php if ( 'yes' === $excerpt && ! empty( $post->post_excerpt ) && ! post_password_required( $post ) ) : ?>
+								<div class="ha-post-tab-excerpt">
+									<p><?php echo esc_html( $post->post_excerpt ); ?></p>
+								</div>
+							<?php endif; ?>
 						</div>
-					<?php endforeach; ?>
-				</div>
-				<?php
+					</div>
+				<?php endforeach; ?>
+			</div>
+			<?php
 
-			endif;
 		endif;
 		wp_die();
 	}

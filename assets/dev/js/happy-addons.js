@@ -587,7 +587,7 @@
 				var filter_wrap = this.wrapper.find( '.ha-post-tab-filter' ),
 					filter = filter_wrap.find( 'li' ),
 					event = this.wrapper.data( 'event' ),
-					args = this.wrapper.data( 'query-args' );
+					widget_id = this.$element.data( 'id' );
 
 				filter.on( event, debounce( function ( e ) {
 					e.preventDefault();
@@ -621,7 +621,7 @@
 								data: {
 									action: "ha_post_tab_action",
 									security: HappyLocalize.nonce,
-									post_tab_query: args,
+									widget_id: widget_id,
 									term_id: term_id,
 								},
 								beforeSend: function () {
