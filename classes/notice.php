@@ -60,8 +60,8 @@ class Notice {
 		$exclude = ['themes.php', 'users.php', 'tools.php', 'options-general.php', 'options-writing.php', 'options-reading.php', 'options-discussion.php', 'options-media.php', 'options-permalink.php', 'options-privacy.php', 'edit-comments.php', 'upload.php', 'media-new.php', 'admin.php', 'import.php', 'export.php', 'site-health.php', 'export-personal-data.php', 'erase-personal-data.php'];
 
 		if ( ! in_array( $pagenow, $exclude ) ) {
-			$no_thanks    = esc_url( add_query_arg( 'ha_not_interested', '1', self::ha_current_admin_url() ) );
-			$participated = esc_url( add_query_arg( 'ha_participated', '1', self::ha_current_admin_url() ) );
+			$no_thanks    = esc_url( wp_nonce_url( add_query_arg( 'ha_not_interested', '1', self::ha_current_admin_url() ), 'ha_notice_dismiss' ) );
+			$participated = esc_url( wp_nonce_url( add_query_arg( 'ha_participated', '1', self::ha_current_admin_url() ), 'ha_notice_dismiss' ) );
 
 			printf( __( '<div class="notice ha-review-notice ha-review-notice--extended">
                 <div class="ha-review-notice__aside">
@@ -81,22 +81,21 @@ class Notice {
 
 	// remove the notice if the user does not want to
 	public static function ha_void_spare_me() {
-		if ( isset( $_GET['ha_not_interested'] ) && ! empty( $_GET['ha_not_interested'] ) ) {
-			$spare_me = absint( $_GET['ha_not_interested'] );
-			// if ( 1 == $spare_me ) {
-			// 	update_option( 'ha__black_friday_24_notice', 'not_interested' );
-			// }
-			if ( 1 == $spare_me ) {
-				update_option( 'ha__wedevs_12th_anniversary_notice', 'not_interested' );
-			}
+		$has_action = isset( $_GET['ha_not_interested'] ) || isset( $_GET['ha_participated'] );
+
+		if ( ! $has_action ) {
+			return;
 		}
 
-		// if ( isset( $_GET['ha_participated'] ) && ! empty( $_GET['ha_participated'] ) ) {
-		//     $ha_rated = absint($_GET['ha_participated']);
-		//     if ( 1 == $ha_rated ) {
-		//         update_option( 'ha__user_feedback_survey', "participated" );
-		//     }
-		// }
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		check_admin_referer( 'ha_notice_dismiss' );
+
+		if ( isset( $_GET['ha_not_interested'] ) && 1 == absint( $_GET['ha_not_interested'] ) ) {
+			update_option( 'ha__wedevs_12th_anniversary_notice', 'not_interested' );
+		}
 	}
 
 	protected static function ha_current_admin_url() {
