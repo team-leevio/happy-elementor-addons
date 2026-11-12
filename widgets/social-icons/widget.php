@@ -900,7 +900,7 @@ class Social_Icons extends Base {
 		$enable_separator  = $settings['social_media_separator'];
 		$separator_type    = $settings['separator_type'];
 		$custom_separators = $settings['custom_separator'];
-		$separators        = $custom_separators ? $custom_separators : '';
+		$separators        = $custom_separators ? esc_html( $custom_separators ) : '';
 
 		$hover_css_animation = '';
 
