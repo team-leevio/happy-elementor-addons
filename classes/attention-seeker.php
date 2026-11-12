@@ -46,11 +46,14 @@ class Attention_Seeker {
     public static function process_ignore_request() {
         $nonce = isset( $_POST['nonce'] ) ? $_POST['nonce'] : '';
         $id = isset( $_POST['id'] ) ? sanitize_text_field($_POST['id']) : '';
-        if ( wp_verify_nonce( $nonce, 'ignore_attention_seeker' ) && $id ) {
+
+        if ( current_user_can( 'manage_options' ) && wp_verify_nonce( $nonce, 'ignore_attention_seeker' ) && $id ) {
             $seeker = wp_list_filter( self::get_attentions(), ['_id' => $id] );
-            $expire_date = $seeker[0]['end_date'] - time();
-            set_transient( self::generate_db_key( $id ), 'ignore', $expire_date );
-            wp_send_json_success();
+
+            if ( ! empty( $seeker ) && isset( $seeker[0]['end_date'] ) && $seeker[0]['end_date'] > time() ) {
+                set_transient( self::generate_db_key( $id ), 'ignore', $seeker[0]['end_date'] - time() );
+                wp_send_json_success();
+            }
         }
 
         exit;
