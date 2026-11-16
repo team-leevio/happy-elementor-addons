@@ -1,6 +1,21 @@
-= 3.51.4 - ## #### 2026 =
+= 3.52.0 - 18 November 2026 =
 
-Fix: Resolved Post Tab widget vulnerability.
+- Fix: Resolved SVG Draw widget vulnerability.
+- Fix: Resolved Mailchimp subscription form vulnerability.
+- Fix: Resolved Twitter Feed widget vulnerability.
+- Fix: Resolved Happy Clone security issue.
+- Fix: Resolved Content Switcher widget vulnerability.
+- Fix: Resolved output escaping vulnerability in Creative Button, Age Gate, Archive Posts, Post Navigation & Social Icons widgets.
+- Fix: Resolved Card, Review & Gradient Heading widget editor template vulnerability.
+- Fix: Resolved Event Calendar widget vulnerability.
+- Fix: Resolved Attention Seeker AJAX security issue.
+- Fix: Resolved Notice & Review admin security issue.
+- Fix: Resolved Template Library AJAX security issue.
+- Fix: Resolved Template Conditions endpoint security issue.
+- Fix: Resolved Post Tab widget vulnerability.
+- Update: Hardened Post Tab AJAX query handling.
+- Update: Escaped date format output in Post List & Post Tab widgets.
+- Update: Improved robustness of public AJAX request handling.
 
 = 3.51.3 - 10 November 2026 =
 
