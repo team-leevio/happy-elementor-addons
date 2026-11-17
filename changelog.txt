@@ -16,6 +16,9 @@
 - Update: Hardened Post Tab AJAX query handling.
 - Update: Escaped date format output in Post List & Post Tab widgets.
 - Update: Improved robustness of public AJAX request handling.
+- Fix: Mailchimp widget subscription failing with a fatal error and the audience list not loading in the editor.
+- Fix: Mailchimp widget not working when placed in header, footer or popup templates.
+- Update: Mailchimp widget now shows the double opt-in confirmation message and keeps form input on failed submissions.
 - Fix: Resolved Post Tab widget vulnerability.
 - Fix: Resolved stored XSS via Theme Builder display condition segments.
 - Fix: Resolved Creative Button widget vulnerability.
