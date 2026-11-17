@@ -1,13 +1,9 @@
 = 3.52.0 - 18 November 2026 =
 
-- Fix: Resolved vulnerabilities in SVG Draw, Mailchimp, Twitter Feed, Content Switcher, Event Calendar, Post Tab, Creative Button, Card, Review, Gradient Heading, Age Gate, Archive Posts, Post Navigation & Social Icons widgets.
-- Fix: Resolved Happy Clone, Attention Seeker AJAX, Notice & Review admin, Template Library AJAX & Template Conditions endpoint security issues.
-- Fix: Resolved stored XSS via Theme Builder display condition segments.
-- Fix: Mailchimp widget fatal error on subscription, audience list not loading in the editor, and not working in header, footer or popup templates.
-- Update: Hardened Post Tab AJAX query handling and escaped date format output in Post List & Post Tab widgets.
-- Update: Improved robustness of public AJAX request handling.
-- Update: Mailchimp widget now shows the double opt-in confirmation message and keeps form input on failed submissions.
-- Update: Updated DOMPurify library.
+- Fix: Addressed multiple security vulnerabilities across widgets, AJAX endpoints, admin features, and Theme Builder, including stored XSS.
+- Fix: Resolved Mailchimp subscription, audience loading, and template compatibility issues.
+- Update: Hardened AJAX query handling, improved output escaping and request validation, and updated DOMPurify.
+- Update: Improved Mailchimp double opt-in messaging and form data retention on failed submissions.
 
 = 3.51.3 - 10 November 2026 =
 
