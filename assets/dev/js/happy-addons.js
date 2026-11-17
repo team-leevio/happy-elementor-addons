@@ -275,6 +275,8 @@
 			},
 
 			run: function () {
+				// Security: ignore any user-supplied data-slick attribute; options come only from widget settings.
+				this.elements.$container.removeAttr( 'data-slick' ).removeData( 'slick' );
 				this.elements.$container.slick( this.getSlickSettings() );
 			}
 		} );
@@ -1198,6 +1200,9 @@
 		var PDF_View = function ( $scope ) {
 			var $id = $scope.data( 'id' );
 			var $settings = $scope.find( ".viewer-" + $id ).data( 'pdf-settings' );
+			if ( ! $settings || ! /^(https?:)?\/\//i.test( String( $settings.pdf_url ).trim() ) && String( $settings.pdf_url ).trim().charAt( 0 ) !== '/' ) {
+				return;
+			}
 			var options = {
 				width: $settings.width,
 				height: $settings.height,
