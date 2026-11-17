@@ -328,6 +328,12 @@ class Condition_Manager {
             $templateID = isset($_REQUEST['template_id']) ? absint($_REQUEST['template_id']) : null;
             $requestConditions = isset($_REQUEST['conds']) ? ha_sanitize_array_recursively($_REQUEST['conds']) : [];
 
+            foreach ((array) $requestConditions as $requestCondition) {
+                if ( ! $this->validate_condition_string( $requestCondition ) ) {
+                    wp_send_json_error(['msg' => esc_html__('Invalid display condition.', 'happy-elementor-addons')]);
+                }
+            }
+
             // error_log(print_r($templateID), true);
             // error_log(print_r($requestConditions), true);
 
@@ -365,6 +371,44 @@ class Condition_Manager {
         } catch (Exception $e) {
             wp_send_json_error($e->getMessage());
         }
+    }
+
+    /*
+     * validate a single condition string against the known condition grammar
+     * expected format: {include|exclude}/{name}/{sub_name}/{sub_id}
+     *
+     * @param mixed $cond
+     *
+     * @return boolean
+     */
+    private function validate_condition_string($cond) {
+        if ( ! is_string( $cond ) ) {
+            return false;
+        }
+
+        if ( count( explode( '/', $cond ) ) > 4 ) {
+            return false;
+        }
+
+        list($type, $name, $sub_name, $sub_id) = array_pad( explode( '/', $cond ), 4, '' );
+
+        if ( ! in_array( $type, ['include', 'exclude'], true ) ) {
+            return false;
+        }
+
+        if ( ! in_array( $name, $this->all_conds['name'] ?? [], true ) ) {
+            return false;
+        }
+
+        if ( '' !== $sub_name && ! array_key_exists( $sub_name, $this->all_conds_list ) ) {
+            return false;
+        }
+
+        if ( '' !== $sub_id && ! absint( $sub_id ) ) {
+            return false;
+        }
+
+        return true;
     }
 
     /*
@@ -541,7 +585,12 @@ class Condition_Manager {
             $sub_name = $parsed_condition['sub_name'];
             $sub_id = $parsed_condition['sub_id'];
 
-            $sub_name_html = ($sub_name) ? '<option value="' . esc_attr($sub_name) . '" selected="selected">' . esc_html($this->all_conds_list[$sub_name]['title']) . '</option>' : '';
+            $type_attr = esc_attr($include);
+            $name_attr = esc_attr($name);
+            $sub_name_attr = esc_attr($sub_name);
+            $sub_id_attr = esc_attr($sub_id);
+
+            $sub_name_html = ($sub_name) ? '<option value="' . esc_attr($sub_name) . '" selected="selected">' . esc_html($this->all_conds_list[$sub_name]['title'] ?? '') . '</option>' : '';
 
             $sub_id_html = ($sub_id) ? '<option value="' . esc_attr($sub_id) . '" selected="selected">' . esc_html(get_the_title($sub_id)) . '</option>' : '';
 
@@ -557,13 +606,13 @@ class Condition_Manager {
 <div id="ha-template-condition-item-$uuid" class="ha-template-condition-item">
     <div class="ha-template-condition-item-row">
         <div class="ha-tce-type">
-            <select data-id="type-$uuid" data-parent="$uuid" data-setting="type" data-selected="$include">
+            <select data-id="type-$uuid" data-parent="$uuid" data-setting="type" data-selected="$type_attr">
                 <option value="include" {$if($include == 'include', "selected", "")}>Include</option>
                 <option value="exclude" {$if($include == 'exclude', "selected", "")}>Exclude</option>
             </select>
         </div>
         <div class="ha-tce-name">
-            <select data-id="name-$uuid" data-parent="$uuid" data-setting="name" data-selected="$name">
+            <select data-id="name-$uuid" data-parent="$uuid" data-setting="name" data-selected="$name_attr">
                 <optgroup label="General">
                     <option value="general" {$if($name == 'general', "selected", "")}>Entire Site</option>
                     <option value="archive" {$if($name == 'archive', "selected", "")}>Archives</option>
@@ -572,12 +621,12 @@ class Condition_Manager {
             </select>
         </div>
         <div class="ha-tce-sub_name" $sub_name_visibility>
-            <select data-id="sub_name-$uuid" data-parent="$uuid" data-setting="sub_name" data-selected="esc_attr($sub_name)">
+            <select data-id="sub_name-$uuid" data-parent="$uuid" data-setting="sub_name" data-selected="$sub_name_attr">
             $sub_name_html
             </select>
         </div>
         <div class="ha-tce-sub_id" $sub_id_visibility>
-            <select data-id="sub_id-$uuid" data-parent="$uuid" data-setting="sub_id" data-selected="esc_attr($sub_id)">
+            <select data-id="sub_id-$uuid" data-parent="$uuid" data-setting="sub_id" data-selected="$sub_id_attr">
             $sub_id_html
             </select>
         </div>
