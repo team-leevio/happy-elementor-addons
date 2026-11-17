@@ -20,7 +20,7 @@ trait Creative_Button_Markup {
 
 		$wrap_attr = $this->get_render_attribute_string( 'wrap' );
 		$btn_attr = $this->get_render_attribute_string( 'button' );
-		$btn_txt = $settings['button_text'];
+		$btn_txt = esc_html( $settings['button_text'] );
 		// $magnatic_datajk = $this->$magnatic_data;
 
 		$markup = <<<EOF
@@ -39,7 +39,7 @@ EOF;
 
 		$wrap_attr = $this->get_render_attribute_string( 'wrap' );
 		$btn_attr = $this->get_render_attribute_string( 'button' );
-		$btn_txt = $settings['button_text'];
+		$btn_txt = esc_html( $settings['button_text'] );
 		$icon = $settings['icon']['value'] ? esc_attr( $settings['icon']['value'] ) : 'hm hm-happyaddons';
 
 		$markup = <<<EOF
@@ -58,7 +58,7 @@ EOF;
 
 		$wrap_attr = $this->get_render_attribute_string( 'wrap' );
 		$btn_attr = $this->get_render_attribute_string( 'button' );
-		$btn_txt = $settings['button_text'];
+		$btn_txt = esc_html( $settings['button_text'] );
 		$icon = $settings['icon']['value'] ? esc_attr( $settings['icon']['value'] ) : 'hm hm-happyaddons';
 
 		$markup = <<<EOF
@@ -133,7 +133,7 @@ EOF;
 		foreach ( $text_array as $key => $value ) {
 			$delay = $base * ($key+1);
 			if(trim($value)){
-				$markup .= '<span style="--delay:'.$delay.'s">'.$value.'</span>';
+				$markup .= '<span style="--delay:'.$delay.'s">'.esc_html($value).'</span>';
 			}else{
 				$markup .= '<span>&nbsp;</span>';
 			}
