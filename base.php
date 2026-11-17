@@ -327,7 +327,19 @@ class Base {
 
 		//For Widget class load
 		if ( 0 === strpos( $class_name, __NAMESPACE__ . '\Widget\\' ) ) {
-			$file = HAPPY_ADDONS_DIR_PATH . '/' . str_replace( 'widget', 'widgets', $file_name ) . '/widget.php';
+			// Widget classes extend Base, which is otherwise only loaded by the widgets manager
+			// (not available e.g. under WP-CLI or direct class_exists() calls).
+			$base_file = HAPPY_ADDONS_DIR_PATH . '/base/widget-base.php';
+			if ( __NAMESPACE__ . '\Widget\Base' === $class_name ) {
+				if ( ! class_exists( $class_name, false ) && class_exists( '\Elementor\Widget_Base' ) && is_readable( $base_file ) ) {
+					include_once $base_file;
+				}
+				return;
+			}
+			if ( ! class_exists( __NAMESPACE__ . '\Widget\Base', false ) && class_exists( '\Elementor\Widget_Base' ) && is_readable( $base_file ) ) {
+				include_once $base_file;
+			}
+			$file =HAPPY_ADDONS_DIR_PATH . '/' . str_replace( 'widget', 'widgets', $file_name ) . '/widget.php';
 			if ( ! class_exists( $class_name ) && is_readable( $file ) ) {
 				include_once $file;
 			}
