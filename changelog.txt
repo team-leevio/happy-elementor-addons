@@ -3,9 +3,9 @@
 - Fix: Resolved vulnerabilities in SVG Draw, Mailchimp, Twitter Feed, Content Switcher, Event Calendar, Post Tab, Creative Button, Card, Review, Gradient Heading, Age Gate, Archive Posts, Post Navigation & Social Icons widgets.
 - Fix: Resolved Happy Clone, Attention Seeker AJAX, Notice & Review admin, Template Library AJAX & Template Conditions endpoint security issues.
 - Fix: Resolved stored XSS via Theme Builder display condition segments.
+- Fix: Mailchimp widget fatal error on subscription, audience list not loading in the editor, and not working in header, footer or popup templates.
 - Update: Hardened Post Tab AJAX query handling and escaped date format output in Post List & Post Tab widgets.
 - Update: Improved robustness of public AJAX request handling.
-- Fix: Mailchimp widget fatal error on subscription, audience list not loading in the editor, and not working in header, footer or popup templates.
 - Update: Mailchimp widget now shows the double opt-in confirmation message and keeps form input on failed submissions.
 - Update: Updated DOMPurify library to 3.4.18.
 
