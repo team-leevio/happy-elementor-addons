@@ -1607,8 +1607,13 @@ class Mailchimp extends Base {
 		$form_fields = ( ( $settings['enable_name'] == 'yes' || $settings['enable_phone'] == 'yes' ) ? 'multiple_form_fields' : '' );
 		$list_id     = ( ( is_array( $settings['mailchimp_lists'] ) ) ? ( isset( $settings['mailchimp_lists'][0] ) ? ltrim( $settings['mailchimp_lists'][0] ) : '' ) : ( ltrim( $settings['mailchimp_lists'] ) ) );
 
+		// Use the document that actually holds this widget (header/footer
+		// templates, popups, loops) rather than the host page.
+		$document = \Elementor\Plugin::$instance->documents->get_current();
+		$post_id  = $document ? $document->get_main_id() : get_the_ID();
+
 		?>
-		<div class="ha-mailchimp-wrapper" data-post-id="<?php echo esc_attr( get_the_ID() ); ?>" data-widget-id="<?php echo esc_attr( $this->get_id() ); ?>">
+		<div class="ha-mailchimp-wrapper" data-post-id="<?php echo esc_attr( $post_id ); ?>" data-widget-id="<?php echo esc_attr( $this->get_id() ); ?>">
 			<?php if ( \Elementor\Plugin::$instance->editor->is_edit_mode() && $settings['mailchimp_success_message_show_in_editor'] == 'yes' ) : ?>
 				<div class="ha-mc-response-message success"><?php esc_html_e( 'This is a dummy message for success. This won\'t show in preview', 'happy-elementor-addons' ); ?></div>
 			<?php endif; ?>

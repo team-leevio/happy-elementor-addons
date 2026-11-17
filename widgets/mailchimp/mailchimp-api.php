@@ -136,15 +136,17 @@ class Mailchimp_Api {
 			$return['status'] = 0;
 			$return['msg']    = 'Something went wrong: ' . esc_html( $error_message );
 		} else {
-			$body           = (array) json_decode( $response['body'] );
-			$return['body'] = $body;
-			if ( $body['status'] > 399 && $body['status'] < 600 ) {
+			$body   = json_decode( wp_remote_retrieve_body( $response ), true );
+			$body   = is_array( $body ) ? $body : [];
+			$status = isset( $body['status'] ) ? $body['status'] : '';
+
+			if ( is_int( $status ) && $status > 399 && $status < 600 ) {
 				$return['status'] = 0;
-				$return['msg']    = $body['title'];
-			} elseif ( $body['status'] == 'subscribed' ) {
+				$return['msg']    = isset( $body['title'] ) ? sanitize_text_field( $body['title'] ) : esc_html__( 'Something went wrong. Try again later.', 'happy-elementor-addons' );
+			} elseif ( $status === 'subscribed' ) {
 				$return['status'] = 1;
 				$return['msg']    = isset($widget_settings['mailchimp_success_message']) ? $widget_settings['mailchimp_success_message']: "";
-			} elseif ( $body['status'] == 'pending' ) {
+			} elseif ( $status === 'pending' ) {
 				$return['status'] = 1;
 				$return['msg']    = esc_html__( 'Confirm your subscription from your email.', 'happy-elementor-addons' );
 			} else {

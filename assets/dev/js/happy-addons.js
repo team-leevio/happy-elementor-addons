@@ -1000,11 +1000,11 @@
 					url: HappyLocalize.ajax_url,
 					data: data,
 					success: function ( response ) {
-						elForm.trigger( 'reset' );
 						if ( response.status ) {
+							elForm.trigger( 'reset' );
 							elMessage.removeClass( 'error' );
 							elMessage.addClass( 'success' );
-							elMessage.text( successMessage );
+							elMessage.text( response.msg || successMessage );
 						} else {
 							elMessage.addClass( 'error' );
 							elMessage.removeClass( 'success' );
@@ -1017,7 +1017,9 @@
 							clearTimeout( hideMsg );
 						}, 5000 );
 					},
-					error: function ( error ) {
+					error: function () {
+						elMessage.addClass( 'error' ).removeClass( 'success' );
+						elMessage.text( 'Something went wrong. Please refresh the page and try again.' );
 					}
 				} );
 

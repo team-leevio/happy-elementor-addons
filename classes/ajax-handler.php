@@ -381,7 +381,7 @@ class Ajax_Handler {
 			include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
 		}
 
-		$response = Widget\Mailchimp\Mailchimp_Api::insert_subscriber_to_mailchimp( $subscriber );
+		$response = \Happy_Addons\Elementor\Widget\Mailchimp\Mailchimp_Api::insert_subscriber_to_mailchimp( $subscriber );
 
 		echo wp_send_json( $response );
 
