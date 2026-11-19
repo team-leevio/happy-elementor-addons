@@ -1,11 +1,11 @@
 = 3.53.0 - ## #### 2026 =
 
 - New: Atomic support for Hover Effect, Background Hover Effect, Background Overlay & Text Stroke.
-- New: Atomic support for Floating Effects, Tooltip, Fixed Size Button & Image Trail.
+- New: Atomic support for Floating Effects, Tooltip, Fixed Size Button.
 - New: Atomic support for Custom Mouse Cursor with icon library support.
 - New: Atomic support for Background Parallax, Multi Layer Parallax, Particle Effect & CSS Transform.
-- New: Atomic support for Wrapper Link, Shape Divider, Custom JS, Horizontal Scroll, Sticky Pin Element & Foreground Overlay.
-- New: Atomic support for Global Animation, Global Badge, Display Condition, Liquid Glass, Scroll To Top & Reading Progress Bar features.
+- New: Atomic support for Wrapper Link, Shape Divider, Custom JS & Foreground Overlay.
+- New: Atomic support for Liquid Glass features.
 - Update: Added search and feature counts to Happy Addons Dashboard.
 - Update: Image Cycle widget repeater now supports sorting.
 - Fix: Resolved Happy Features interrogator feature enable/disable & icon alignment issue.
