@@ -733,7 +733,44 @@ function ha_get_excerpt($post_id = null, $length = 15) {
 	return wp_trim_words(get_the_excerpt($post_id), $length);
 }
 
+/**
+ * Normalize a Twitter/X screen name for API requests and cache keys.
+ *
+ * @param string $name
+ * @return string Normalized screen name, or empty string when invalid.
+ */
+function ha_twitter_feed_normalize_screen_name( $name ) {
+	$name = trim( (string) $name );
+
+	if ( ! preg_match( '/^[A-Za-z0-9_]{1,15}$/', $name ) ) {
+		return '';
+	}
+
+	return $name;
+}
+
+/**
+ * Whether an ID points to a published Elementor library template that is
+ * safe to render on the front end.
+ *
+ * @param int|string $id
+ * @return bool
+ */
+function ha_is_renderable_template( $id ) {
+	$id = absint( $id );
+
+	if ( ! $id ) {
+		return false;
+	}
+
+	return 'publish' === get_post_status( $id ) && 'elementor_library' === get_post_type( $id );
+}
+
 function ha_sanitize_array_recursively($array) {
+
+	if ( ! is_array( $array ) ) {
+		return sanitize_text_field( (string) $array );
+	}
 
 	foreach ($array as $key => &$value) {
 		if (is_array($value)) {

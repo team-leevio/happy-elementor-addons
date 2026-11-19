@@ -86,6 +86,7 @@ class Admin_Bar {
 			'HappyAdmin',
 			[
 				'nonce'    => wp_create_nonce( 'ha_clear_cache' ),
+				'template_type_nonce' => wp_create_nonce( 'ha_cond_template_type' ),
 				'post_id'  => get_queried_object_id(),
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
 			]

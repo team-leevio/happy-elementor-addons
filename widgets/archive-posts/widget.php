@@ -1173,7 +1173,7 @@ class Archive_Posts extends Base {
 
                     $this->get_pagination($this->query);
                 } else {
-                    echo $this->settings['nothing_found_message'];
+                    echo ha_kses_intermediate( $this->settings['nothing_found_message'] );
                 }
             }
 

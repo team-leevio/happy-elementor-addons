@@ -1315,6 +1315,8 @@ class Twitter_Feed extends Base {
 			$consumer_secret = $settings['consumer_secret'];
 		}
 
+		$user_name = ha_twitter_feed_normalize_screen_name( $user_name );
+
 		if ( empty( $user_name ) ) {
 			$messages[] = __( 'Add user Name', 'happy-elementor-addons' );
 		} elseif ( empty( $consumer_key ) ) {
@@ -1351,7 +1353,7 @@ class Twitter_Feed extends Base {
 			if ( !empty( $body ) ) {
 				$token = $body->access_token;
 
-				$twitter_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . $user_name . '&count=999&tweet_mode=extended';
+				$twitter_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' . rawurlencode( $user_name ) . '&count=200&tweet_mode=extended';
 				$tweets_response = wp_remote_get( $twitter_url,
 					array(
 						'httpversion' => '1.1',
@@ -1360,7 +1362,10 @@ class Twitter_Feed extends Base {
 					) );
 
 				$twitter_data = json_decode( wp_remote_retrieve_body( $tweets_response ), true );
-				set_transient( $transient_key, $twitter_data, 0 );
+				if ( is_array( $twitter_data ) ) {
+					$twitter_data = array_slice( $twitter_data, 0, 200 );
+					set_transient( $transient_key, $twitter_data, 12 * HOUR_IN_SECONDS );
+				}
 			}
 		}
 		if ( $settings['remove_cache'] == 'yes' ) {
@@ -1403,13 +1408,14 @@ class Twitter_Feed extends Base {
 			'read_more_text'		=> $settings['read_more_text'],
 			'content_word_count'	=> $settings['content_word_count'],
 		];
-		$query_settings = json_encode( $query_settings, true );
-
 		$crede_cache_key = '_ha_tweeter_crede_cache_key_' . $id;
 		$crede_cache_data = get_transient( $crede_cache_key );
 		if ( ! $crede_cache_data || $crede_cache_data != $credentials ) {
 			set_transient( $crede_cache_key, $credentials, 12 * HOUR_IN_SECONDS );
 		}
+
+		// Store the query settings server-side; the ajax handler must not accept them from the request.
+		set_transient( '_ha_tweeter_settings_cache_key_' . $id, $query_settings, 7 * DAY_IN_SECONDS );
 
 		switch ($settings['sort_by']) {
 			case 'old-posts':
@@ -1546,7 +1552,7 @@ class Twitter_Feed extends Base {
 
 		<?php if ( $settings['load_more'] == 'yes' ) : ?>
 			<div class="ha-twitter-load-more-wrapper">
-				<button class="ha-twitter-load-more" data-settings="<?php echo esc_attr( $query_settings ); ?>" data-total="<?php echo esc_attr( count( $twitter_data ) ); ?>">
+				<button class="ha-twitter-load-more" data-total="<?php echo esc_attr( count( $twitter_data ) ); ?>">
 					<?php echo esc_html( $settings['load_more_text'] ); ?>
 				</button>
 			</div>

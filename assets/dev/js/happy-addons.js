@@ -275,6 +275,8 @@
 			},
 
 			run: function () {
+				// Security: ignore any user-supplied data-slick attribute; options come only from widget settings.
+				this.elements.$container.removeAttr( 'data-slick' ).removeData( 'slick' );
 				this.elements.$container.slick( this.getSlickSettings() );
 			}
 		} );
@@ -548,7 +550,6 @@
 			button.on( "click", function ( e ) {
 				e.preventDefault();
 				var $self = $( this ),
-					query_settings = $self.data( "settings" ),
 					widget_id = $scope.data( "id" ),
 					total = $self.data( "total" ),
 					items = $scope.find( '.ha-tweet-item' ).length;
@@ -558,7 +559,6 @@
 					data: {
 						action: "ha_twitter_feed_action",
 						security: HappyLocalize.nonce,
-						query_settings: query_settings,
 						widget_id: widget_id,
 						loaded_item: items,
 					},
@@ -589,7 +589,7 @@
 				var filter_wrap = this.wrapper.find( '.ha-post-tab-filter' ),
 					filter = filter_wrap.find( 'li' ),
 					event = this.wrapper.data( 'event' ),
-					args = this.wrapper.data( 'query-args' );
+					widget_id = this.$element.data( 'id' );
 
 				filter.on( event, debounce( function ( e ) {
 					e.preventDefault();
@@ -623,7 +623,7 @@
 								data: {
 									action: "ha_post_tab_action",
 									security: HappyLocalize.nonce,
-									post_tab_query: args,
+									widget_id: widget_id,
 									term_id: term_id,
 								},
 								beforeSend: function () {
@@ -1002,11 +1002,11 @@
 					url: HappyLocalize.ajax_url,
 					data: data,
 					success: function ( response ) {
-						elForm.trigger( 'reset' );
 						if ( response.status ) {
+							elForm.trigger( 'reset' );
 							elMessage.removeClass( 'error' );
 							elMessage.addClass( 'success' );
-							elMessage.text( successMessage );
+							elMessage.text( response.msg || successMessage );
 						} else {
 							elMessage.addClass( 'error' );
 							elMessage.removeClass( 'success' );
@@ -1019,7 +1019,9 @@
 							clearTimeout( hideMsg );
 						}, 5000 );
 					},
-					error: function ( error ) {
+					error: function () {
+						elMessage.addClass( 'error' ).removeClass( 'success' );
+						elMessage.text( 'Something went wrong. Please refresh the page and try again.' );
 					}
 				} );
 
@@ -1198,6 +1200,9 @@
 		var PDF_View = function ( $scope ) {
 			var $id = $scope.data( 'id' );
 			var $settings = $scope.find( ".viewer-" + $id ).data( 'pdf-settings' );
+			if ( ! $settings || ! /^(https?:)?\/\//i.test( String( $settings.pdf_url ).trim() ) && String( $settings.pdf_url ).trim().charAt( 0 ) !== '/' ) {
+				return;
+			}
 			var options = {
 				width: $settings.width,
 				height: $settings.height,

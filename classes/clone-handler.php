@@ -85,6 +85,10 @@ class Clone_Handler {
         $post_id = isset( $_GET['post_id'] ) ? absint( $_GET['post_id'] ) : 0;
         $ref     = isset( $_GET['ref'] ) ? sanitize_text_field( $_GET['ref'] ) : '';
 
+        if ( ! wp_verify_nonce( $nonce, self::ACTION ) ) {
+            wp_die( __( 'Sorry, your nonce did not verify.', 'happy-elementor-addons' ), 403 );
+        }
+
         if ( !$post_id || !get_post( $post_id ) ) {
             wp_die( __( 'Invalid post.' ) );
         }

@@ -576,8 +576,8 @@ class Post_Navigation extends Base {
         $next_arrow = '';
 
         if ('yes' === $settings['show_label']) {
-            $prev_label = '<span class="post-navigation__prev--label">' . $settings['prev_label'] . '</span>';
-            $next_label = '<span class="post-navigation__next--label">' . $settings['next_label'] . '</span>';
+            $prev_label = '<span class="post-navigation__prev--label">' . esc_html( $settings['prev_label'] ) . '</span>';
+            $next_label = '<span class="post-navigation__next--label">' . esc_html( $settings['next_label'] ) . '</span>';
         }
 
         if ('yes' === $settings['show_arrow']) {

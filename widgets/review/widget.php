@@ -816,18 +816,18 @@ class Review extends Base {
 		<# } #>
 
 		<div class="ha-review-body">
-			<# if (settings.review_position === 'before' && settings.review) { #>
-				<div {{{ view.getRenderAttributeString( 'review' ) }}}>
-					<p>{{{ settings.review }}}</p>
-				</div>
-			<# } #>
+		<# if (settings.review_position === 'before' && settings.review) { #>
+			<div {{{ view.getRenderAttributeString( 'review' ) }}}>
+				<p>{{ settings.review }}</p>
+			</div>
+		<# } #>
 			<div class="ha-review-header">
 				<# if (settings.title) { #>
 					<# var title_tag = elementor.helpers.validateHTMLTag( settings.title_tag ); #>
-					<{{ title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ settings.title }}}</{{ title_tag }}>
+					<{{ title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ title_tag }}>
 				<# } #>
 				<# if (settings.job_title) { #>
-					<div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{{ settings.job_title }}}</div>
+					<div {{{ view.getRenderAttributeString( 'job_title' ) }}}>{{ settings.job_title }}</div>
 				<# } #>
 				<# if ( settings.ratting_style === 'num' ) { #>
 					<div class="ha-review-ratting ha-review-ratting--num">{{ ratting }} <i class="fa fa-star"></i></div>
@@ -843,11 +843,11 @@ class Review extends Base {
 					</div>
 				<# } #>
 			</div>
-			<# if ( settings.review_position === 'after' && settings.review) { #>
-				<div {{{ view.getRenderAttributeString( 'review' ) }}}>
-					<p>{{{ settings.review }}}</p>
-				</div>
-			<# } #>
+		<# if ( settings.review_position === 'after' && settings.review) { #>
+			<div {{{ view.getRenderAttributeString( 'review' ) }}}>
+				<p>{{ settings.review }}</p>
+			</div>
+		<# } #>
 		</div>
 		<?php
 	}

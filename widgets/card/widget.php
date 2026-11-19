@@ -1214,7 +1214,7 @@ class Card extends Base {
 			<figure class="ha-card-figure">
 				<img class="elementor-animation-{{settings.hover_animation}}" src="{{ image_url }}">
 				<# if (settings.badge_text) { #>
-					<div {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{{ settings.badge_text }}}</div>
+					<div {{{ view.getRenderAttributeString( 'badge_text' ) }}}>{{ settings.badge_text }}</div>
 				<# } #>
 			</figure>
 		<# } #>
@@ -1222,12 +1222,12 @@ class Card extends Base {
 		<div class="ha-card-body">
 			<# if (settings.title) { #>
 			<# var title_tag = elementor.helpers.validateHTMLTag( settings.title_tag ); #>
-				<{{ title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ settings.title }}}</{{ title_tag }}>
+				<{{ title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{ settings.title }}</{{ title_tag }}>
 			<# } #>
 
 			<# if (settings.description) { #>
 				<div {{{ view.getRenderAttributeString( 'description' ) }}}>
-					<p>{{{ settings.description }}}</p>
+					<p>{{ settings.description }}</p>
 				</div>
 			<# } #>
 

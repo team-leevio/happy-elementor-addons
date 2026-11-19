@@ -25,11 +25,59 @@ class Mailchimp_Api {
 	public static function insert_subscriber_to_mailchimp( $submitted_data ) {
 		$return = [];
 
+		// Rate limit: allow only a few submissions per minute per IP.
+		$rate_key = 'ha_mc_rl_' . md5( isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '' );
+		$attempts = (int) get_transient( $rate_key );
+		if ( $attempts >= 10 ) {
+			return [
+				'status' => 0,
+				'msg'    => esc_html__( 'Too many requests. Please wait a minute and try again.', 'happy-elementor-addons' ),
+			];
+		}
+		set_transient( $rate_key, $attempts + 1, MINUTE_IN_SECONDS );
+
+		if ( empty( $submitted_data['email'] ) || ! is_email( $submitted_data['email'] ) ) {
+			return [
+				'status' => 0,
+				'msg'    => esc_html__( 'Please enter a valid email address.', 'happy-elementor-addons' ),
+			];
+		}
+
 		self::$credentials = ha_get_credentials( 'mailchimp' );
 
 		self::$api_key = isset( self::$credentials['api'] ) ? self::$credentials['api'] : '';
 
-		$widget_settings = ha_get_ele_widget_settings( absint($_POST['post_id']), sanitize_text_field($_POST['widget_id']) );
+		// Never trust the client with the audience id: resolve the widget
+		// saved on this site and use the audience configured in its settings.
+		$post_id   = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+		$widget_id = isset( $_POST['widget_id'] ) ? sanitize_text_field( wp_unslash( $_POST['widget_id'] ) ) : '';
+
+		// Only published content may subscribe anonymously; users who can
+		// edit the post may still test the form from a draft preview.
+		if ( ! $post_id || ( 'publish' !== get_post_status( $post_id ) && ! current_user_can( 'edit_post', $post_id ) ) ) {
+			return [
+				'status' => 0,
+				'msg'    => esc_html__( 'Invalid request.', 'happy-elementor-addons' ),
+			];
+		}
+
+		$widget_settings = $widget_id ? ha_get_ele_widget_settings( $post_id, $widget_id ) : '';
+
+		$list_id = '';
+		if ( ! empty( $widget_settings['mailchimp_lists'] ) ) {
+			$lists   = $widget_settings['mailchimp_lists'];
+			$list_id = is_array( $lists ) && isset( $lists[0] ) ? $lists[0] : $lists;
+			$list_id = ltrim( $list_id ); // Select2 saves ids with a leading space.
+		}
+
+		// Mailchimp audience ids are 32 hex characters; refuse anything
+		// else before it can reach the API url.
+		if ( ! preg_match( '/^[a-f0-9]{32}$/i', (string) $list_id ) ) {
+			return [
+				'status' => 0,
+				'msg'    => esc_html__( 'Invalid request.', 'happy-elementor-addons' ),
+			];
+		}
 
 		$tags = '';
 		if( !empty($widget_settings) ) {
@@ -39,7 +87,7 @@ class Mailchimp_Api {
 
 		$auth = [
 			'api_key' => self::$api_key,
-			'list_id' => sanitize_text_field($_POST['list_id']),
+			'list_id' => $list_id,
 		];
 
 		if ( isset($widget_settings['mailchimp_api_choose']) && $widget_settings['mailchimp_api_choose'] == 'custom' ) {
@@ -88,15 +136,17 @@ class Mailchimp_Api {
 			$return['status'] = 0;
 			$return['msg']    = 'Something went wrong: ' . esc_html( $error_message );
 		} else {
-			$body           = (array) json_decode( $response['body'] );
-			$return['body'] = $body;
-			if ( $body['status'] > 399 && $body['status'] < 600 ) {
+			$body   = json_decode( wp_remote_retrieve_body( $response ), true );
+			$body   = is_array( $body ) ? $body : [];
+			$status = isset( $body['status'] ) ? $body['status'] : '';
+
+			if ( is_int( $status ) && $status > 399 && $status < 600 ) {
 				$return['status'] = 0;
-				$return['msg']    = $body['title'];
-			} elseif ( $body['status'] == 'subscribed' ) {
+				$return['msg']    = isset( $body['title'] ) ? sanitize_text_field( $body['title'] ) : esc_html__( 'Something went wrong. Try again later.', 'happy-elementor-addons' );
+			} elseif ( $status === 'subscribed' ) {
 				$return['status'] = 1;
 				$return['msg']    = isset($widget_settings['mailchimp_success_message']) ? $widget_settings['mailchimp_success_message']: "";
-			} elseif ( $body['status'] == 'pending' ) {
+			} elseif ( $status === 'pending' ) {
 				$return['status'] = 1;
 				$return['msg']    = esc_html__( 'Confirm your subscription from your email.', 'happy-elementor-addons' );
 			} else {

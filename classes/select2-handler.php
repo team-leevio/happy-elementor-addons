@@ -160,7 +160,7 @@ class Select2_Handler {
 			include_once HAPPY_ADDONS_DIR_PATH . 'widgets/mailchimp/mailchimp-api.php';
 		}
 
-		$options = Widget\Mailchimp\Mailchimp_Api::get_mailchimp_lists($current_api);
+		$options = \Happy_Addons\Elementor\Widget\Mailchimp\Mailchimp_Api::get_mailchimp_lists($current_api);
 
 		if ( ! is_array( $options ) ) {
 			$options = [];

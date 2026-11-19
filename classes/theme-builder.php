@@ -377,7 +377,7 @@
 
         $post_type_object = get_post_type_object( $post_type );
 
-        if ( !current_user_can( $post_type_object->cap->edit_posts ) ) {
+        if ( ! $post_type_object || ! current_user_can( $post_type_object->cap->edit_posts ) ) {
             return;
         }
 

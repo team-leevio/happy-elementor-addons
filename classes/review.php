@@ -39,9 +39,9 @@ class Review {
         $exclude = [ 'themes.php', 'users.php', 'tools.php', 'options-general.php', 'options-writing.php', 'options-reading.php', 'options-discussion.php', 'options-media.php', 'options-permalink.php', 'options-privacy.php', 'edit-comments.php', 'upload.php', 'media-new.php', 'admin.php', 'import.php', 'export.php', 'site-health.php', 'export-personal-data.php', 'erase-personal-data.php' ];
 
         if ( ! in_array( $pagenow, $exclude ) ) {
-            $dont_disturb = esc_url( add_query_arg( 'spare_me', '1', self::ha_current_admin_url() ) );
-            $remind_me    = esc_url( add_query_arg( 'remind_me', '1', self::ha_current_admin_url() ) );
-            $rated        = esc_url( add_query_arg( 'ha_rated', '1', self::ha_current_admin_url() ) );
+            $dont_disturb = esc_url( wp_nonce_url( add_query_arg( 'spare_me', '1', self::ha_current_admin_url() ), 'ha_review_notice' ) );
+            $remind_me    = esc_url( wp_nonce_url( add_query_arg( 'remind_me', '1', self::ha_current_admin_url() ), 'ha_review_notice' ) );
+            $rated        = esc_url( wp_nonce_url( add_query_arg( 'ha_rated', '1', self::ha_current_admin_url() ), 'ha_review_notice' ) );
             $reviewurl    = esc_url( 'https://wordpress.org/support/plugin/happy-elementor-addons/reviews/?rate=5#new-post' );
 
             printf( __( '<div class="notice ha-review-notice ha-review-notice--extended">
@@ -64,28 +64,31 @@ class Review {
 
     // remove the notice for the user if review already done or if the user does not want to
     public static function ha_void_spare_me() {
-        if ( isset( $_GET['spare_me'] ) && ! empty( $_GET['spare_me'] ) ) {
-            $spare_me = absint($_GET['spare_me']);
-            if ( 1 == $spare_me ) {
-                update_option( 'ha__spare_me', "1" );
-            }
+        $has_action = isset( $_GET['spare_me'] ) || isset( $_GET['remind_me'] ) || isset( $_GET['ha_rated'] );
+
+        if ( ! $has_action ) {
+            return;
         }
 
-        if ( isset( $_GET['remind_me'] ) && ! empty( $_GET['remind_me'] ) ) {
-            $remind_me = absint($_GET['remind_me']);
-            if ( 1 == $remind_me ) {
-                $get_activation_time = strtotime( "now" );
-                update_option( 'ha__remind_me', $get_activation_time );
-                update_option( 'ha__spare_me', "2" );
-            }
+        if ( ! current_user_can( 'manage_options' ) ) {
+            return;
         }
 
-        if ( isset( $_GET['ha_rated'] ) && ! empty( $_GET['ha_rated'] ) ) {
-            $ha_rated = absint($_GET['ha_rated']);
-            if ( 1 == $ha_rated ) {
-                update_option( 'ha__rated', 'yes' );
-                update_option( 'ha__spare_me', "3" );
-            }
+        check_admin_referer( 'ha_review_notice' );
+
+        if ( isset( $_GET['spare_me'] ) && 1 == absint( $_GET['spare_me'] ) ) {
+            update_option( 'ha__spare_me', "1" );
+        }
+
+        if ( isset( $_GET['remind_me'] ) && 1 == absint( $_GET['remind_me'] ) ) {
+            $get_activation_time = strtotime( "now" );
+            update_option( 'ha__remind_me', $get_activation_time );
+            update_option( 'ha__spare_me', "2" );
+        }
+
+        if ( isset( $_GET['ha_rated'] ) && 1 == absint( $_GET['ha_rated'] ) ) {
+            update_option( 'ha__rated', 'yes' );
+            update_option( 'ha__spare_me', "3" );
         }
     }
 

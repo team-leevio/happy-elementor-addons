@@ -278,7 +278,7 @@ class Gradient_Heading extends Base {
 		console.log( HA_gradient_heading_sanitizeURL( settings.link.url ) );
 
 		<!-- var title = _.isEmpty(settings.link.url) ? settings.title : '<a href="' + _.escape( settings.link.url ) + '">'+settings.title+'</a>'; -->
-		var title = _.isEmpty(settings.link.url) ? settings.title : '<a href="' + HA_gradient_heading_sanitizeURL( settings.link.url ) + '">'+settings.title+'</a>';
+		var title = _.isEmpty(settings.link.url) ? _.escape( settings.title ) : '<a href="' + HA_gradient_heading_sanitizeURL( settings.link.url ) + '">' + _.escape( settings.title ) + '</a>';
 		var title_tag = elementor.helpers.validateHTMLTag( settings.title_tag );
 		#>
 		<{{ title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ title }}}</{{ title_tag }}>

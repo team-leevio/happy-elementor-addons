@@ -1811,7 +1811,7 @@ class Event_Calendar extends Base {
 
 		if ( $data ) :?>
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
-				<script> window['HaECjson<?php echo esc_html( $this->get_id() );?>'] = <?php echo json_encode( $data ); ?>; </script>
+				<script> window['HaECjson<?php echo esc_html( $this->get_id() );?>'] = <?php echo wp_json_encode( $data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ); ?>; </script>
 				<div <?php $this->print_render_attribute_string( 'event-calendar' ); ?>></div>
 			</div>
 
