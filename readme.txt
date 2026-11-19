@@ -1,13 +1,13 @@
 === HappyAddons for Elementor – 160 Elementor Widgets, GSAP Animations & Templates ===
 Plugin Name: HappyAddons for Elementor – 160 Elementor Widgets & Templates
-Version: 3.52.0
+Version: 3.53.0
 Author: Leevio
 Author URI: https://happyaddons.com/
 Contributors: leevio, happyaddons, thehappymonster, wedevs
 Tags: Elementor, Elementor Addons, Mega Menu, Header Footer Builder, Elementor Widget
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 3.52.0
+Stable tag: 3.53.0
 Requires PHP: 8.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -385,31 +385,24 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
+= 3.53.0 - ## #### 2026 =
+
+- New: Atomic support for Hover Effect, Background Hover Effect, Background Overlay & Text Stroke.
+- New: Atomic support for Floating Effects, Tooltip, Fixed Size Button & Image Trail.
+- New: Atomic support for Custom Mouse Cursor with icon library support.
+- New: Atomic support for Background Parallax, Multi Layer Parallax, Particle Effect & CSS Transform.
+- New: Atomic support for Wrapper Link, Shape Divider, Custom JS, Horizontal Scroll, Sticky Pin Element & Foreground Overlay.
+- New: Atomic support for Global Animation, Global Badge, Display Condition, Liquid Glass, Scroll To Top & Reading Progress Bar features.
+- Update: Added search and feature counts to Happy Addons Dashboard.
+- Update: Image Cycle widget repeater now supports sorting.
+- Fix: Resolved Happy Features interrogator feature enable/disable & icon alignment issue.
+
 = 3.52.0 - 18 November 2026 =
 
-- Fix: Resolved SVG Draw widget vulnerability.
-- Fix: Resolved Mailchimp subscription form vulnerability.
-- Fix: Resolved Twitter Feed widget vulnerability.
-- Fix: Resolved Happy Clone security issue.
-- Fix: Resolved Content Switcher widget vulnerability.
-- Fix: Resolved output escaping vulnerability in Creative Button, Age Gate, Archive Posts, Post Navigation & Social Icons widgets.
-- Fix: Resolved Card, Review & Gradient Heading widget editor template vulnerability.
-- Fix: Resolved Event Calendar widget vulnerability.
-- Fix: Resolved Attention Seeker AJAX security issue.
-- Fix: Resolved Notice & Review admin security issue.
-- Fix: Resolved Template Library AJAX security issue.
-- Fix: Resolved Template Conditions endpoint security issue.
-- Fix: Resolved Post Tab widget vulnerability.
-- Update: Hardened Post Tab AJAX query handling.
-- Update: Escaped date format output in Post List & Post Tab widgets.
-- Update: Improved robustness of public AJAX request handling.
-- Fix: Mailchimp widget subscription failing with a fatal error and the audience list not loading in the editor.
-- Fix: Mailchimp widget not working when placed in header, footer or popup templates.
-- Update: Mailchimp widget now shows the double opt-in confirmation message and keeps form input on failed submissions.
-- Fix: Resolved Post Tab widget vulnerability.
-- Fix: Resolved stored XSS via Theme Builder display condition segments.
-- Fix: Resolved Creative Button widget vulnerability.
-- Update: Updated DOMPurify library to 3.4.18.
+- Fix: Addressed multiple security vulnerabilities across widgets, AJAX endpoints, admin features, and Theme Builder, including stored XSS.
+- Fix: Resolved Mailchimp subscription, audience loading, and template compatibility issues.
+- Update: Hardened AJAX query handling, improved output escaping and request validation, and updated DOMPurify.
+- Update: Improved Mailchimp double opt-in messaging and form data retention on failed submissions.
 
 = 3.51.3 - 10 November 2026 =
 
