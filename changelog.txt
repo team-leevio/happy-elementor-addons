@@ -16,6 +16,7 @@
 - Fix: Resolved Mailchimp subscription, audience loading, and template compatibility issues.
 - Update: Hardened AJAX query handling, improved output escaping and request validation, and updated DOMPurify.
 - Update: Improved Mailchimp double opt-in messaging and form data retention on failed submissions.
+- Update: Updated the Slick carousel library.
 
 = 3.51.3 - 10 November 2026 =
 
