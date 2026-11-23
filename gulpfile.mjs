@@ -73,7 +73,6 @@ const atomicJSDir = "assets/dev/js/atomic/";
 // closure, the last closes it), and the editor script is built on its own.
 const atomicRuntimeJSFiles = [
 	"core",
-	"image-cycle",
 	"appearing-image-animation",
 	"text-animation",
 	"lifecycle",

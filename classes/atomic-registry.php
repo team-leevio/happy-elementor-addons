@@ -14,19 +14,7 @@ class Atomic_Registry {
 	 * @return array[]
 	 */
 	public static function widgets() {
-		return [
-			'image-cycle' => [
-				'title'     => __( 'Image Cycle', 'happy-elementor-addons' ),
-				'icon'      => 'hm hm-net',
-				'cat'       => 'creative',
-				'is_active' => true,
-				'is_pro'    => false,
-				'is_gsap'   => true,
-				'class'     => 'Image_Cycle',
-				'kind'      => 'widget',
-				'file'      => 'widgets/atomic/image-cycle/widget.php',
-			],
-		];
+		return [];
 	}
 
 	/**

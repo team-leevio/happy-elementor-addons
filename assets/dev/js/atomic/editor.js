@@ -2,12 +2,11 @@
  * Happy Addons — Elementor V4 (Atomic) editor controls.
  *
  * Registers the panel controls the Atomic components use on top of the core
- * ones (see Atomic_Field_Control and the Image Cycle widget):
+ * ones (see Atomic_Field_Control):
  *  - ha-field       a core control with a fractional step / icon buttons and the
  *                   helper text under it
  *  - ha-slider      slider with a number input
  *  - ha-color       color picker (swatch, hex/rgba field)
- *  - ha-image-item  one Image Cycle item: image, resolution and link
  */
 (function (w) {
 	'use strict';
@@ -103,38 +102,6 @@
 			),
 			h(ui.Box, {sx: {width: '76px', flexShrink: 0}},
 				h(controls.NumberControl, {min: min, max: max, step: step})
-			)
-		);
-	});
-
-	/* ---------------------------------------------------------------- *
-	 * ha-image-item
-	 * ---------------------------------------------------------------- */
-	var itemUtil = z && props.createPropUtils('ha-image-item', z.strictObject({
-		image: z.any().nullable().optional(),
-		link: z.any().nullable().optional()
-	}));
-
-	// The link control refuses a link while the element already holds an anchor,
-	// and the cards of the other items are anchors. An id that matches no element
-	// keeps every item free to take a link.
-	var NO_LINK_RESTRICTION_ID = 'ha-image-cycle-item';
-
-	var ImageItem = controls.createControl(function (itemProps) {
-		var bound = controls.useBoundProp(itemUtil);
-		var context = Object.assign({}, bound);
-
-		delete context.value;
-		delete context.setValue;
-
-		return h(controls.PropProvider, Object.assign({}, context, {value: bound.value, setValue: bound.setValue}),
-			h(ui.Stack, {gap: 2},
-				h(controls.PropKeyProvider, {bind: 'image'},
-					h(controls.ImageControl, {sizes: itemProps.sizes})
-				),
-				h(controls.PropKeyProvider, {bind: 'link'},
-					h(controls.LinkControl, Object.assign({}, itemProps.linkOptions, {context: {elementId: NO_LINK_RESTRICTION_ID}}))
-				)
 			)
 		);
 	});
@@ -328,10 +295,6 @@
 	// The core color control is not in the settings registry (only the style tab uses it).
 	if (controls.ColorControl && props.colorPropTypeUtil) {
 		register('ha-color', controls.ColorControl, 'custom', props.colorPropTypeUtil);
-	}
-
-	if (itemUtil) {
-		register('ha-image-item', ImageItem, 'full', itemUtil);
 	}
 
 	/* ---------------------------------------------------------------- *

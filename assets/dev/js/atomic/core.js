@@ -3,7 +3,6 @@
  *
  * Atomic elements do not fire frontend/element_ready/*, so every component
  * here is found in the DOM and tracked in a single WeakMap:
- *  - Image Cycle   [data-ha-atomic="image-cycle"] (settings in data-ha-config)
  *  - Appearing Image Animation / Text Animation: elements listed in
  *    window.HappyAtomic.features (keyed by the element's data-id).
  *  - In the Elementor editor the canvas renders Atomic elements client side, so

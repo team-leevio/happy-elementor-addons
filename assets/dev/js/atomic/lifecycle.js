@@ -131,12 +131,6 @@
 	function scan(root) {
 		scanEditorFeatures(root);
 
-		(root || d).querySelectorAll('[data-ha-atomic="image-cycle"]').forEach(function (el) {
-			if (!instances.has(el)) {
-				register(el, new ImageCycle(el));
-			}
-		});
-
 		var features = (w.HappyAtomic && w.HappyAtomic.features) || {};
 
 		[['appearing-image-animation', AppearingImage], ['text-animation', TextAnimation]].concat(external.map(function (feature) {
@@ -163,11 +157,6 @@
 				return;
 			}
 
-			var instance = instances.get(el);
-
-			if (instance instanceof ImageCycle && instance.signature !== ImageCycle.signature(el)) {
-				instance.update();
-			}
 		});
 
 		scan(d);

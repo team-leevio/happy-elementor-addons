@@ -430,7 +430,6 @@ class Atomic_Manager {
 		}
 
 		$styles = [
-			'happy-atomic-image-cycle' => 'image-cycle',
 			'happy-atomic-aia'         => 'appearing-image-animation',
 			'happy-atomic-hta'         => 'heading-text-animation',
 			'happy-atomic-tooltip'     => 'tooltip',
@@ -458,7 +457,7 @@ class Atomic_Manager {
 
 		$defaults = self::editor_feature_defaults();
 
-		if ( array_intersect( [ 'image-cycle' ], self::get_active( 'widgets' ) ) || $defaults ) {
+		if ( $defaults ) {
 			wp_enqueue_script( self::SCRIPT_HANDLE );
 		}
 
@@ -567,16 +566,6 @@ class Atomic_Manager {
 
 	public static function enqueue_preview_styles() {
 		self::register_assets();
-
-		$styles = [
-			'image-cycle' => 'happy-atomic-image-cycle',
-		];
-
-		foreach ( self::get_active( 'widgets' ) as $key ) {
-			if ( isset( $styles[ $key ] ) ) {
-				wp_enqueue_style( $styles[ $key ] );
-			}
-		}
 
 		if ( in_array( 'appearing-image-animation', self::get_active( 'features' ), true ) ) {
 			wp_enqueue_style( 'happy-atomic-aia' );
