@@ -385,7 +385,7 @@ For a more detailed explanation check out the following documentation
 
 == Changelog ==
 
-= 3.53.0 - ## #### 2026 =
+= 3.53.0 - 24 November 2026 =
 
 - New: Atomic support for Hover Effect, Background Hover Effect, Background Overlay & Text Stroke.
 - New: Atomic support for Floating Effects, Tooltip, Fixed Size Button & Image Trail.
@@ -394,8 +394,10 @@ For a more detailed explanation check out the following documentation
 - New: Atomic support for Wrapper Link, Shape Divider, Custom JS, Horizontal Scroll, Sticky Pin Element & Foreground Overlay.
 - New: Atomic support for Global Animation, Global Badge, Display Condition, Liquid Glass, Scroll To Top & Reading Progress Bar features.
 - Update: Added search and feature counts to Happy Addons Dashboard.
-- Update: Image Cycle widget repeater now supports sorting.
 - Fix: Resolved Happy Features interrogator feature enable/disable & icon alignment issue.
+- Fix: Fixed a stored XSS vulnerability in the Liquid Glass feature via the element ID.
+- Fix: Fixed a broken access control (IDOR) vulnerability in the Theme Builder new template action.
+- Fix: Hardened Liquid Hover Image title rendering, Table header rendering and Theme Builder display condition requests.
 
 = 3.52.0 - 18 November 2026 =
 
