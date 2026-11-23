@@ -173,6 +173,11 @@
 
 	// The filter is shared per preset, so the SVG is only (re)written when it changes.
 	function syncSvg(c, id) {
+		// The id is user-controlled; it ends up in a class name, a selector and an attribute.
+		if (!/^[A-Za-z0-9_-]+$/.test(String(id))) {
+			return;
+		}
+
 		var name = 'custom' === c.preset ? 'custom-' + id : c.preset;
 		var svgClass = 'ha-lg-svg-' + name;
 		var markup = c.switcher ? filterMarkup(c) : '';

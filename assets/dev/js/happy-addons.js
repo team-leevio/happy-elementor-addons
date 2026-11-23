@@ -678,8 +678,10 @@
 					var cellContent = $cell.html();
 
 					if ( cellContent.indexOf( "nullval" ) === -1 ) {
-						var headerContent = columnTH.eq( index ).html();
-						$cell.prepend( '<div class="ha-table__head-column-cell">' + headerContent + '</div>' );
+						// Clone the DOM nodes instead of re-parsing serialized HTML.
+						var $headerCell = $( '<div class="ha-table__head-column-cell"></div>' );
+						$headerCell.append( columnTH.eq( index ).contents().clone() );
+						$cell.prepend( $headerCell );
 					} else {
 						$cell.remove();
 					}
@@ -1095,7 +1097,7 @@
 
 							contents.removeClass( 'active' );
 							var contentId = $( this ).data( 'content-id' );
-							parent.find( '#' + contentId ).addClass( 'active' );
+							parent.find( '#' + CSS.escape( String( contentId ) ) ).addClass( 'active' );
 						}
 					} );
 				} );
@@ -1579,7 +1581,19 @@
 					var style_direction = settings.style_1_direction;
 
 					if ( title.length ) {
-						title[ 0 ].innerHTML = title[ 0 ].textContent.replace( /\S/g, "<span class='letter'>$&</span>" );
+						// Build nodes with textContent: the decoded text must never be re-parsed as HTML.
+						var titleText = title[ 0 ].textContent;
+						title[ 0 ].textContent = '';
+						Array.from( titleText ).forEach( function ( ch ) {
+							if ( /\S/.test( ch ) ) {
+								var letter = document.createElement( 'span' );
+								letter.className = 'letter';
+								letter.textContent = ch;
+								title[ 0 ].appendChild( letter );
+							} else {
+								title[ 0 ].appendChild( document.createTextNode( ch ) );
+							}
+						} );
 					}
 
 					if ( sub_title.length ) {

@@ -239,28 +239,51 @@
 			$targets.css('backdrop-filter', '');
 			$targets.css('-webkit-backdrop-filter', '');
 
-			var elementId = $scope.data('id') || $scope.attr('id') || $scope.attr('data-ha-lg-uid');
+			var elementId = this.sanitizeId($scope.data('id') || $scope.attr('id') || $scope.attr('data-ha-lg-uid'));
 			if (elementId) {
-				$('.ha-lg-svg-custom-' + elementId).remove();
+				$('.' + CSS.escape('ha-lg-svg-custom-' + elementId)).remove();
 			}
+		},
+
+		// Element ids are user-controlled; only allow characters that are safe
+		// in class names, ids and selectors.
+		sanitizeId: function (id) {
+			id = String(id === undefined || id === null ? '' : id);
+			return /^[A-Za-z0-9_-]+$/.test(id) ? id : '';
+		},
+
+		sanitizeNumber: function (val, fallback) {
+			val = String(val || '').trim();
+			return /^-?\d*\.?\d+(e-?\d+)?$/i.test(val) ? val : fallback;
+		},
+
+		sanitizeNumberList: function (val, fallback) {
+			val = String(val || '').trim();
+			return /^-?\d*\.?\d+(\s+-?\d*\.?\d+)?$/.test(val) ? val : fallback;
+		},
+
+		sanitizeChannel: function (val, fallback) {
+			val = String(val || '').trim().replace(/^["']|["']$/g, '').toUpperCase();
+			return /^[RGBA]$/.test(val) ? val : fallback;
 		},
 
 		renderCustomFilter: function ($scope) {
 			var el = $scope[0];
 			var style = window.getComputedStyle(el);
 
-			var freqX = this.trimCSSVar(style.getPropertyValue('--ha-lg-frequency-x')) || '0.006';
-			var freqY = this.trimCSSVar(style.getPropertyValue('--ha-lg-frequency-y')) || '0.006';
-			var scale = this.trimCSSVar(style.getPropertyValue('--ha-lg-scale')) || '80';
-			var octaves = this.trimCSSVar(style.getPropertyValue('--ha-lg-octaves')) || '2';
-			var seed = this.trimCSSVar(style.getPropertyValue('--ha-lg-seed')) || '92';
-			var xChannel = this.trimCSSVar(style.getPropertyValue('--ha-lg-x-channel')) || 'R';
-			var yChannel = this.trimCSSVar(style.getPropertyValue('--ha-lg-y-channel')) || 'G';
-			var stdDeviation = this.trimCSSVar(style.getPropertyValue('--ha-lg-std-deviation')) || '2';
+			var freqX = this.sanitizeNumber(this.trimCSSVar(style.getPropertyValue('--ha-lg-frequency-x')), '0.006');
+			var freqY = this.sanitizeNumber(this.trimCSSVar(style.getPropertyValue('--ha-lg-frequency-y')), '0.006');
+			var scale = this.sanitizeNumber(this.trimCSSVar(style.getPropertyValue('--ha-lg-scale')), '80');
+			var octaves = this.sanitizeNumber(this.trimCSSVar(style.getPropertyValue('--ha-lg-octaves')), '2');
+			var seed = this.sanitizeNumber(this.trimCSSVar(style.getPropertyValue('--ha-lg-seed')), '92');
+			var xChannel = this.sanitizeChannel(this.trimCSSVar(style.getPropertyValue('--ha-lg-x-channel')), 'R');
+			var yChannel = this.sanitizeChannel(this.trimCSSVar(style.getPropertyValue('--ha-lg-y-channel')), 'G');
+			var stdDeviation = this.sanitizeNumberList(this.trimCSSVar(style.getPropertyValue('--ha-lg-std-deviation')), '2');
 
-			var elementId = $scope.data('id') || $scope.attr('id');
+			// The element id is user-controlled data: never trust it as-is.
+			var elementId = this.sanitizeId($scope.data('id') || $scope.attr('id'));
 			if (!elementId) {
-				elementId = $scope.attr('data-ha-lg-uid');
+				elementId = this.sanitizeId($scope.attr('data-ha-lg-uid'));
 				if (!elementId) {
 					elementId = 'el-' + Math.random().toString(36).substr(2, 9);
 					$scope.attr('data-ha-lg-uid', elementId);
@@ -270,26 +293,26 @@
 			var filterId = 'ha-glass-distortion-custom-' + elementId;
 			var svgClass = 'ha-lg-svg-custom-' + elementId;
 
-			$('.' + svgClass).remove();
+			$('.' + CSS.escape(svgClass)).remove();
 
-			var filterInner =
-				'<feTurbulence type="fractalNoise" baseFrequency="' + freqX + ' ' + freqY + '" numOctaves="' + octaves + '" seed="' + seed + '" result="noise" />' +
-				'<feGaussianBlur in="noise" stdDeviation="' + stdDeviation + '" result="blurred" />' +
-				'<feDisplacementMap in="SourceGraphic" in2="blurred" scale="' + scale + '" xChannelSelector="' + xChannel + '" yChannelSelector="' + yChannel + '" />';
+			var NS = 'http://www.w3.org/2000/svg';
+			var mk = function (tag, attrs) {
+				var node = document.createElementNS(NS, tag);
+				for (var k in attrs) {
+					node.setAttribute(k, attrs[k]);
+				}
+				return node;
+			};
 
-			var svgMarkup =
-				'<svg class="' + svgClass + '" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;overflow:hidden">' +
-				'<defs>' +
-				'<filter id="' + filterId + '" x="0%" y="0%" width="100%" height="100%">' +
-				filterInner +
-				'</filter>' +
-				'</defs>' +
-				'</svg>';
-
-			$("body").append(svgMarkup);
-
-			console.log('Applied custom liquid glass filter with ID:', filterId);
-			console.log('$scope:', $scope);
+			var svg = mk('svg', { 'class': svgClass, width: '0', height: '0', style: 'position:absolute;overflow:hidden' });
+			var defs = mk('defs', {});
+			var filter = mk('filter', { id: filterId, x: '0%', y: '0%', width: '100%', height: '100%' });
+			filter.appendChild(mk('feTurbulence', { type: 'fractalNoise', baseFrequency: freqX + ' ' + freqY, numOctaves: octaves, seed: seed, result: 'noise' }));
+			filter.appendChild(mk('feGaussianBlur', { 'in': 'noise', stdDeviation: stdDeviation, result: 'blurred' }));
+			filter.appendChild(mk('feDisplacementMap', { 'in': 'SourceGraphic', in2: 'blurred', scale: scale, xChannelSelector: xChannel, yChannelSelector: yChannel }));
+			defs.appendChild(filter);
+			svg.appendChild(defs);
+			document.body.appendChild(svg);
 
 			var $targets = this.getEffectTargets($scope);
 			$targets.css('backdrop-filter', 'blur(var(--ha-lg-blur, 8px)) url(#' + filterId + ')');
