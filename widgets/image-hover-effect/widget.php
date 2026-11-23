@@ -445,7 +445,14 @@ class Image_Hover_Effect extends Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$url_target = $settings['hover_link']['is_external'] ? ' target="_blank"' : '';
-		$url_nofollow = $settings['hover_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$url_rel = [];
+		if ( $settings['hover_link']['is_external'] ) {
+			$url_rel[] = 'noopener';
+		}
+		if ( $settings['hover_link']['nofollow'] ) {
+			$url_rel[] = 'nofollow';
+		}
+		$url_rel_attr = $url_rel ? ' rel="' . esc_attr( implode( ' ', $url_rel ) ) . '"' : '';
 ?>
 		<div class="ha-ihe-wrapper grid">
 			<figure class="ha-ihe-fig <?php echo esc_attr($settings['hover_effect']); ?>">
@@ -467,7 +474,7 @@ class Image_Hover_Effect extends Base {
 						</div>
 					<?php endif; ?>
 					<?php if ($settings['hover_link']['url'] != '') : ?>
-						<a href="<?php echo esc_url($settings['hover_link']['url']); ?>" <?php echo esc_attr($url_target . $url_nofollow); ?>></a>
+						<a href="<?php echo esc_url($settings['hover_link']['url']); ?>" <?php echo $url_target . $url_rel_attr; // phpcs:ignore WordPress.Security.EscapeOutput -- built from fixed strings and esc_attr() ?>></a>
 					<?php endif; ?>
 				</figcaption>
 			</figure>

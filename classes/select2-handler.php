@@ -94,7 +94,9 @@ class Select2_Handler {
 		$query_term    = ! empty( $_REQUEST['query_term'] ) ? sanitize_text_field($_REQUEST['query_term']) : '';
 		$saved_values  = ! empty( $_REQUEST['saved_values'] ) ? ha_sanitize_array_recursively($_REQUEST['saved_values']) : 0;
 
-		if ( empty( $term_taxonomy ) ) {
+		$term_taxonomy = sanitize_key( wp_unslash( $term_taxonomy ) );
+
+		if ( empty( $term_taxonomy ) || ! taxonomy_exists( $term_taxonomy ) ) {
 			throw new Exception( 'Invalid taxonomy' );
 		}
 

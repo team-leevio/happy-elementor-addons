@@ -1304,7 +1304,9 @@ class Twitter_Feed extends Base {
 
 		$messages = [];
 
-		if( 'global' == $settings['credentials'] && is_array( ha_get_credentials('twitter_feed') ) ){
+		$use_global_credentials = 'global' == $settings['credentials'] && is_array( ha_get_credentials('twitter_feed') );
+
+		if( $use_global_credentials ){
 			$credentials = ha_get_credentials('twitter_feed');
 			$user_name = trim($credentials['user_name']);
 			$consumer_key = $credentials['consumer_key'];
@@ -1410,8 +1412,10 @@ class Twitter_Feed extends Base {
 		];
 		$crede_cache_key = '_ha_tweeter_crede_cache_key_' . $id;
 		$crede_cache_data = get_transient( $crede_cache_key );
-		if ( ! $crede_cache_data || $crede_cache_data != $credentials ) {
-			set_transient( $crede_cache_key, $credentials, 12 * HOUR_IN_SECONDS );
+		// Global credentials are never copied into a transient; the AJAX handler reads them from the credentials option.
+		$crede_to_cache = $use_global_credentials ? '__global__' : $credentials;
+		if ( ! $crede_cache_data || $crede_cache_data != $crede_to_cache ) {
+			set_transient( $crede_cache_key, $crede_to_cache, 12 * HOUR_IN_SECONDS );
 		}
 
 		// Store the query settings server-side; the ajax handler must not accept them from the request.

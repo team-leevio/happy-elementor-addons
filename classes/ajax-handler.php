@@ -30,6 +30,13 @@ class Ajax_Handler {
 		$settings    = get_transient( '_ha_tweeter_settings_cache_key_' . $widget_id );
 		$credentials = get_transient( '_ha_tweeter_crede_cache_key_' . $widget_id );
 
+		if ( '__global__' === $credentials ) {
+			$global = ha_get_credentials( 'twitter_feed' );
+			$credentials = ( is_array( $global ) && ! empty( $global['consumer_key'] ) && ! empty( $global['consumer_secret'] ) )
+				? base64_encode( $global['consumer_key'] . ':' . $global['consumer_secret'] )
+				: '';
+		}
+
 		if ( ! is_array( $settings ) || empty( $credentials ) ) {
 			wp_die();
 		}
