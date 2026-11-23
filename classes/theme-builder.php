@@ -327,6 +327,13 @@
      * @since 2.3.0
      */
     public function add_new_template_template() {
+        $post_type_object = get_post_type_object( self::CPT );
+
+        // The form carries the action nonce: only print it for users who may create templates.
+        if ( ! $post_type_object || ! current_user_can( $post_type_object->cap->create_posts ) ) {
+            return;
+        }
+
         ob_start();
         include HAPPY_ADDONS_DIR_PATH . 'templates/admin/new-template.php';
         $template = ob_get_clean();
@@ -369,25 +376,27 @@
 
         check_admin_referer( 'ha_library_new_post_action' );
 
-        if ( empty( $_GET['post_type'] ) ) {
-            $post_type = 'post';
-        } else {
-            $post_type = sanitize_text_field( $_GET['post_type'] );
-        }
-
+        // This action only creates Theme Builder templates. Never trust a
+        // post type from the request: it would allow writing any post type.
+        $post_type        = self::CPT;
         $post_type_object = get_post_type_object( $post_type );
 
-        if ( ! $post_type_object || ! current_user_can( $post_type_object->cap->edit_posts ) ) {
-            return;
+        if ( ! $post_type_object || ! current_user_can( $post_type_object->cap->create_posts ) ) {
+            wp_die( esc_html__( 'Sorry, you are not allowed to create templates.', 'happy-elementor-addons' ), 403 );
         }
 
-        if ( empty( $_GET['template_type'] ) ) {
-            $type = 'post';
-        } else {
-            $type = sanitize_text_field( $_GET['template_type'] );
+        $type = empty( $_GET['template_type'] ) ? 'post' : sanitize_text_field( wp_unslash( $_GET['template_type'] ) );
+
+        if ( 'post' !== $type && ! array_key_exists( $type, self::get_template_types() ) ) {
+            wp_die( esc_html__( 'Invalid template type.', 'happy-elementor-addons' ), 400 );
         }
 
-        $post_data = isset( $_GET['post_data'] ) ? ha_sanitize_array_recursively( $_GET['post_data'] ) : [];
+        // Allowlist: only the title is accepted. ID, post_status, post_author,
+        // post_content etc. must never come from the request.
+        $post_data = [];
+        if ( isset( $_GET['post_data']['post_title'] ) && is_scalar( $_GET['post_data']['post_title'] ) ) {
+            $post_data['post_title'] = sanitize_text_field( wp_unslash( $_GET['post_data']['post_title'] ) );
+        }
 
         // $template_display_type = isset($_GET['template_display_type']) ? $_GET['template_display_type'] : '';
         // $template_display_type_singular = isset($_GET['template_display_type_singular']) ? $_GET['template_display_type_singular'] : '';
@@ -421,6 +430,7 @@
 
         $meta['display_conditions'] = $conditions;
         $post_data['post_type']     = $post_type;
+        $post_data['post_status']   = 'draft';
 
         $document = $this->create_template_document( $type, $post_data, $meta );
 
@@ -451,13 +461,12 @@
         $post_id = wp_insert_post( $post_data );
 
         if ( !empty( $update_title ) ) {
-            $post_data['ID'] = $post_id;
-            $post_data['post_title'] .= ' #' . $post_id;
-
-            // The meta doesn't need update.
-            unset( $post_data['meta_input'] );
-
-            wp_update_post( $post_data );
+            wp_update_post(
+                [
+                    'ID'         => $post_id,
+                    'post_title' => $post_data['post_title'] . ' #' . $post_id,
+                ]
+            );
         }
 
         return $post_id;

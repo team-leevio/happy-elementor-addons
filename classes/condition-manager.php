@@ -284,6 +284,11 @@ class Condition_Manager {
 			throw new Exception('Unauthorized request');
 		}
 
+		// Display conditions only belong to Theme Builder templates.
+		if ( get_post_type( $template_id ) !== \Happy_Addons\Elementor\Classes\Theme_Builder::CPT ) {
+			throw new Exception('Invalid template');
+		}
+
 		$post_status = get_post_status( $template_id );
 		$same_author = self::is_the_same_author( $template_id );
 
