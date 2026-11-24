@@ -157,6 +157,12 @@ $supported = Atomic_Manager::is_environment_supported();
 			</div>
 		</div>
 		<div class="ha-dashboard-widgets ha-dashboard-widgets--tab ha-atomic-list">
+			<?php if ( 'widgets' === $tab && empty( $groups ) ) : ?>
+				<div class="ha-atomic-empty" style="width:100%;min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+					<h3><?php esc_html_e( 'Atomic widgets are coming soon', 'happy-elementor-addons' ); ?></h3>
+					<p><?php esc_html_e( 'We are building Happy Addons widgets for Elementor V4 (Atomic). They are not available yet, but will appear here as soon as they are released. Your Classic widgets are not affected.', 'happy-elementor-addons' ); ?></p>
+				</div>
+			<?php endif; ?>
 			<?php foreach ( $groups as $group_title => $entries ) : ?>
 				<h2 style="width: 100%; margin-left: 10px;"><?php echo esc_html( $group_title ); ?></h2>
 				<?php foreach ( $entries as $entry ) :

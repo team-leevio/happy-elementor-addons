@@ -589,12 +589,6 @@ class Dashboard {
     }
 
     public static function render_widgets() {
-        // No Atomic widgets exist yet: skip the V3 / V4 switcher for this tab.
-        if ( ! \Happy_Addons\Elementor\Classes\Atomic_Registry::widgets() ) {
-            self::load_template( 'widgets' );
-            return;
-        }
-
         self::render_versioned( 'widgets' );
     }
 
