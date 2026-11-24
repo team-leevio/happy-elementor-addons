@@ -1,16 +1,10 @@
 = 3.53.0 - 24 November 2026 =
 
-- New: Atomic support for Hover Effect, Background Hover Effect, Background Overlay & Text Stroke.
-- New: Atomic support for Floating Effects, Tooltip, Fixed Size Button.
-- New: Atomic support for Custom Mouse Cursor with icon library support.
-- New: Atomic support for Background Parallax, Multi Layer Parallax, Particle Effect & CSS Transform.
-- New: Atomic support for Wrapper Link, Shape Divider, Custom JS & Foreground Overlay.
-- New: Atomic support for Liquid Glass features.
-- Update: Added search and feature counts to Happy Addons Dashboard.
-- Fix: Resolved Happy Features interrogator feature enable/disable & icon alignment issue.
-- Fix: Fixed a stored XSS vulnerability in the Liquid Glass feature via the element ID.
-- Fix: Fixed a broken access control (IDOR) vulnerability in the Theme Builder new template action.
-- Fix: Hardened Liquid Hover Image title rendering, Table header rendering and Theme Builder display condition requests.
+- New: Expanded Atomic V4 support with new Atomic features, Classic features, Extensions & GSAP features.
+- Update: Updated Slick & Chat.js libraries.
+- Update: Improved Happy Addons Dashboard with feature search and counts.
+- Fix: Resolved stored XSS and broken access control vulnerabilities.
+- Fix: Improved feature toggling, icon alignment and request security.
 
 = 3.52.0 - 18 November 2026 =
 
