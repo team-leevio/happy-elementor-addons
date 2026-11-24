@@ -100,7 +100,7 @@ const buildSrcFiles = [
 	"!./package.json",
 	"!./gulpfile.mjs",
 	"!./yarn.lock",
-	"!./README.md",
+	"!./**/*.md",
 	// "./vendor/**/*",
 	"!./composer.lock",
 	"!./vendor/bin/**",
@@ -110,8 +110,7 @@ const buildSrcFiles = [
 	"!./vendor/squizlabs/**",
 	"!./vendor/wp-coding-standards/**",
 	"!./vendor/autoload.php",
-	"!./packer.sh",
-	"!./ARCHITECTURE_OVERVIEW.md"
+	"!./packer.sh"
 ];
 
 // Elementor V4 (Atomic) styles are loaded per component, so they are kept
