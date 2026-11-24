@@ -236,3 +236,8 @@ packer.sh
 .github
 ARCHITECTURE_OVERVIEW.md
 *.md
+
+# Ignore all markdown files except README.md
+*.md
+!README.md
+!**/README.md
